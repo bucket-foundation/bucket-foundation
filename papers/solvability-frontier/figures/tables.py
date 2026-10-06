@@ -22,7 +22,7 @@ def ascii_safe(s: str) -> str:
     return "".join(out)
 
 OUT = os.path.join(HERE, "..", "tables")
-CLASSES = ["AI can reach with known results", "borderline", "needs a new idea", "unsampled"]
+CLASSES = ["close to known results", "borderline", "needs a new idea", "unsampled"]
 
 
 def esc(s: str) -> str:
@@ -47,9 +47,9 @@ def write(name: str, lines: list[str]) -> None:
         f.write("\n".join(lines) + "\n")
 
 
-def strata(c: dict) -> list[str]:
+def strata(k: dict) -> list[str]:
     rows = []
-    for s in [c["all"], *c["byLength"], *c["byBranch"]]:
+    for s in [k["all"], k["undatedRemoved"]["all"], *k["byLength"], *k["byBranch"]]:
         if s["belowFloor"]:
             rows.append(f"{esc(s['name'])} & {s['inside']} & {s['outside']} & \\multicolumn{{4}}{{l}}{{under 10 on one side}} \\\\")
         else:
@@ -62,11 +62,14 @@ def main() -> None:
     d = page_data()
     b = d["backtest"]
     for c in b["cutoffs"]:
-        write(f"backtest-{c['cutoff']}.tex", [
-            "\\begin{tabular}{@{}lrrrrrr@{}}", "\\toprule",
-            "Stratum & Inside & Outside & Resolved in & Resolved out & Ratio & $p$ \\\\", "\\midrule",
-            *strata(c), "\\bottomrule", "\\end{tabular}",
-        ])
+        for k in c["codings"]:
+            write(f"backtest-{c['cutoff']}-{k['coding']}.tex", [
+                "\\begin{tabular}{@{}lrrrrrr@{}}", "\\toprule",
+                "Stratum & Inside & Outside & Resolved in & Resolved out & Ratio & $p$ \\\\", "\\midrule",
+                *strata(k), "\\midrule",
+                *[f"{esc(bd['name'])} & {bd['inside']} & {bd['outside']} & {pct(bd['rateInside'])} & {pct(bd['rateOutside'])} & {f3(bd['ratio'])} & \\\\" for bd in k["undecidedBounds"]],
+                "\\bottomrule", "\\end{tabular}",
+            ])
     br = sorted(d["frontier"]["branches"].items(), key=lambda kv: -kv[1]["total"])
     write("branches.tex", [
         "\\begin{tabular}{@{}lrrrrrrr@{}}", "\\toprule",
@@ -88,7 +91,7 @@ def main() -> None:
         "\\begin{longtable}{@{}p{0.3\\linewidth}llrrp{0.3\\linewidth}@{}}",
         "\\toprule Problem & Class & Branch & Reach & Growth & Nearest solved \\\\ \\midrule \\endhead",
         "\\bottomrule \\endfoot",
-        *[f"{esc(r['title'][:70])} & {esc(r['reachClass'].replace('AI can reach with known results', 'reach'))} & {esc(r['branch'])} & {f3(r['reach'])} & {r['growth']} & {esc(r['nearest'][0]['title'][:60]) if r['nearest'] else ''} \\\\" for r in atlas],
+        *[f"{esc(r['title'][:70])} & {esc(r['reachClass'].replace('close to known results', 'reach'))} & {esc(r['branch'])} & {f3(r['reach'])} & {r['growth']} & {esc(r['nearest'][0]['title'][:60]) if r['nearest'] else ''} \\\\" for r in atlas],
         "\\end{longtable}",
     ])
     counts = p["counts"]

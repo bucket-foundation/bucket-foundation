@@ -39,7 +39,7 @@
   {For a problem beyond the frontier, one plus the number of beyond problems among its stored neighbours that sit at or above the threshold from it; see \Cref{def:growth}.}
 \glossentry{reachclass}{reach class}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-predictions.ts}%
-  {One of four labels for an open problem: AI can reach with known results, borderline, needs a new idea, unsampled; see \Cref{def:class}.}
+  {One of four labels for an open problem: close to known results, borderline, needs a new idea, unsampled; see \Cref{def:class}.}
 \glossentry{backtest}{backtest}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-backtest.ts}%
   {The frontier rule applied at a past cutoff year to the problems posed by then, scored against their 2026 status; see \Cref{def:backtest}.}
@@ -52,7 +52,7 @@
 \maketitle
 
 \begin{abstract}
-We embed 5,080 problem statements across seven canon branches with a small sentence encoder, call a problem's \term{reach}{reach} its highest similarity to a solved problem, and draw a \term{frontier}{frontier} at the 10th percentile of solved problems' reach, 0.781 on this set \fr. Open problems inside the frontier are sorted into a \term{reachclass}{reach class}: 251 problems where known results sit close, 764 borderline, 911 that need a new idea and 103 in a branch with too few solved rows to judge \pr. A \term{backtest}{backtest} at cutoffs 2005 and 2021 scores the rule on the questions posed by those years: at 2005 the inside rate of resolution by 2026 is 46\% against 61\% outside (ratio 0.752, permutation $p=0.051$, AUC 0.479, $n=183$); at 2021 it is 43\% against 39\% (ratio 1.102, $p=0.503$, AUC 0.523, $n=364$) \bt. The rule carries no measurable signal about resolution on this data, and the paper says why: similarity measures vocabulary, resolved years exist for 224 of 1,621 solved rows, the tested rows come from two cohorts, and 50 stored neighbours bound the reach at a cutoff.
+We embed 5,080 problem statements across seven canon branches with a small sentence encoder, call a problem's \term{reach}{reach} its highest similarity to a solved problem, and draw a \term{frontier}{frontier} at the 10th percentile of solved problems' reach, 0.781 on this set \fr. Open problems are sorted into a \term{reachclass}{reach class}: 251 close to known results, 764 borderline, 911 that need a new idea and 103 in a branch with too few solved rows to judge \pr. A \term{backtest}{backtest} at cutoffs 2005 and 2021 scores the rule on the questions posed by those years under two outcome codings. Settled only (solved in 2026): at 2005 the inside rows settle at 21\% against 6\% outside (112 and 71 rows, ratio 3.804, permutation $p=0.006$, AUC 0.800), at 2021 at 12\% against 1\% (238 and 126 rows, ratio 14.824, $p=0.000$, AUC 0.883) \bt; removing the solved rows that carry no resolved year, 11 and 21, drops the gaps to 13\% against 6\% ($p=0.131$) and 3\% against 1\% ($p=0.269$) \bt. Settled or advanced (solved or partial): at 2005, 46\% inside against 61\% outside (ratio 0.752, $p=0.051$, AUC 0.479), at 2021, 43\% against 39\% (ratio 1.102, $p=0.503$, AUC 0.523) \bt. The conclusion depends on how partial is coded, and partial is the uncertain column: the ingest assigned it in 2026 from a status page with no rule for how much progress counts. The embeddings and the 50 stored neighbours come from the 2026 corpus, so the test is a check against known outcomes under that leak; a forecast would need embeddings fitted on pre-cutoff text and a neighbour set frozen per cutoff.
 \end{abstract}
 
 \section{Introduction}
@@ -90,12 +90,12 @@ For a top-level row beyond the frontier, \term{growth}{growth} is one plus the n
 
 \begin{definition}[Reach class]
 \label{def:class}
-Let $u$ be the 75th percentile of reach among open rows inside the frontier. An open top-level row is \enquote{AI can reach with known results} when inside with reach at or above $u$, \enquote{borderline} when inside below $u$, \enquote{needs a new idea} when beyond, and \enquote{unsampled} when its branch holds fewer than 10 solved rows. Within a class, rows rank by growth, then reach, then id; a ranking by score with unique ids has one ordering \bm{BucketMath.Ranking.rank\_ordered}.
+Let $u$ be the 75th percentile of reach among open rows inside the frontier. An open top-level row is \enquote{close to known results} when inside with reach at or above $u$, \enquote{borderline} when inside below $u$, \enquote{needs a new idea} when beyond, and \enquote{unsampled} when its branch holds fewer than 10 solved rows. Within a class, rows rank by growth, then reach, then id; a ranking by score with unique ids has one ordering \bm{BucketMath.Ranking.rank\_ordered}.
 \end{definition}
 
 \begin{definition}[Backtest]
 \label{def:backtest}
-For a cutoff year $c$, the solved set $S_c$ holds every row solved under \Cref{def:set} with a resolved year at or before $c$. The tested set holds every row posed at or before $c$ and outside $S_c$. Reach is computed as in \Cref{def:reach} against $S_c$ alone. When none of a row's stored neighbours is in $S_c$, its reach is unknown and bounded above by its 50th neighbour's similarity. The threshold $\tau_c$ is the 10th percentile of reach over the rows of $S_c$ that have a neighbour in $S_c$; the rest are counted and dropped. A tested row is inside when its reach is at or above $\tau_c$, outside when its reach or its bound is below $\tau_c$, and undecided otherwise; undecided rows are counted and left out of the rates. The outcome is the row's 2026 status: solved or partial counts as resolved, open does not.
+For a cutoff year $c$, the solved set $S_c$ holds every row solved under \Cref{def:set} with a resolved year at or before $c$. The tested set holds every row posed at or before $c$ and outside $S_c$. Reach is computed as in \Cref{def:reach} against $S_c$ alone. When none of a row's stored neighbours is in $S_c$, its reach is unknown and bounded above by its 50th neighbour's similarity. The threshold $\tau_c$ is the 10th percentile of reach over the rows of $S_c$ that have a neighbour in $S_c$; the rest are counted and dropped. A tested row is inside when its reach is at or above $\tau_c$, outside when its reach or its bound is below $\tau_c$, and undecided otherwise; undecided rows are counted and left out of the rates. The outcome is the row's 2026 status under two codings reported side by side: \enquote{settled} counts solved only, \enquote{settled or advanced} counts solved or partial. A solved row with no resolved year that was posed by the cutoff is tested and scored as resolved; every table repeats its first row with those rows removed. Undecided rows are also scored under two extremes, all inside and all outside, as bounds without a $p$-value.
 \end{definition}
 
 \section{Method}
@@ -134,36 +134,85 @@ The frontier sits at $\tau = 0.781$: 1,621 rows solved, 2,225 reachable, 1,131 b
 
 \subsection{Backtest}
 
-\Cref{tab:bt2005}, \Cref{tab:bt2021} and \Cref{fig:backtest} hold the backtest. At cutoff 2005, 108 rows were solved by then, 16 of them with no solved neighbour among the 50 stored and dropped from the threshold, which came out at 0.644; 287 rows were posed by 2005 and open at the cutoff, 38 unsampled, 66 undecided and 183 scored \bt. The inside rate is 46\% over 112 rows against 61\% over 71 outside, ratio 0.752, $p=0.051$, AUC 0.479 \bt. At cutoff 2021, 190 rows were solved by then, 11 dropped, threshold 0.656; 465 rows tested, 58 unsampled, 43 undecided and 364 scored \bt. The inside rate is 43\% over 238 against 39\% over 126, ratio 1.102, $p=0.503$, AUC 0.523 \bt.
+\Cref{tab:bt2005s}, \Cref{tab:bt2005a}, \Cref{tab:bt2021s}, \Cref{tab:bt2021a} and \Cref{fig:backtest} hold the backtest. At cutoff 2005, 108 rows were solved by then, 16 of them with no solved neighbour among the 50 stored and dropped from the threshold, which came out at 0.644; 287 rows were posed by 2005 and open at the cutoff, 38 unsampled, 66 undecided and 183 scored \bt. At cutoff 2021, 190 rows were solved by then, 11 dropped, threshold 0.656; 465 rows tested, 58 unsampled, 43 undecided and 364 scored \bt.
+
+\paragraph{Settled only.}
+At 2005 the inside rows settle at 21\% over 112 against 6\% over 71 outside, ratio 3.804, $p=0.006$, AUC 0.800 \bt. At 2021 they settle at 12\% over 238 against 1\% over 126, ratio 14.824, $p=0.000$, AUC 0.883 \bt. The settled rows number 28 at 2005 and 29 at 2021 \bt. Of the tested rows, 32 at 2005 and 33 at 2021 are solved today with no resolved year, 11 and 21 of them scored; with those removed the inside rate falls to 13\% against 6\% (ratio 2.285, $p=0.131$, AUC 0.700) and to 3\% against 1\% (ratio 4.065, $p=0.269$, AUC 0.700) \bt. Most of the settled-only gap is those rows.
+
+\paragraph{Settled or advanced.}
+At 2005 the inside rate is 46\% against 61\% outside, ratio 0.752, $p=0.051$, AUC 0.479; at 2021 it is 43\% against 39\%, ratio 1.102, $p=0.503$, AUC 0.523 \bt. With the undated solved rows removed: 40\% against 61\% ($p=0.008$) and 37\% against 39\% ($p=0.818$) \bt.
+
+\paragraph{Undecided rows.}
+The 66 undecided rows at 2005 resolve at 32\% settled and 53\% settled or advanced; the 43 at 2021 at 28\% and 53\% \bt. Placing all of them inside or all outside gives, settled only, inside rates of 25\% or 21\% against 6\% or 18\% at 2005 and 14\% or 12\% against 1\% or 8\% at 2021; settled or advanced, 48\% or 46\% against 61\% or 57\% at 2005 and 45\% or 43\% against 39\% or 43\% at 2021 \bt. The last rows of each table carry the exact counts.
 
 \begin{table}[htbp]
   \centering
-  \caption{Backtest at cutoff 2005, by stratum \bt.}
-  \label{tab:bt2005}
+  \caption{Backtest at cutoff 2005, settled only, by stratum; the last two rows place the undecided rows all inside and all outside \bt.}
+  \label{tab:bt2005s}
   \small
-  \input{tables/backtest-2005.tex}
+  \input{tables/backtest-2005-settled.tex}
 \end{table}
 
 \begin{table}[htbp]
   \centering
-  \caption{Backtest at cutoff 2021, by stratum \bt.}
-  \label{tab:bt2021}
+  \caption{Backtest at cutoff 2005, settled or advanced, by stratum \bt.}
+  \label{tab:bt2005a}
   \small
-  \input{tables/backtest-2021.tex}
+  \input{tables/backtest-2005-advanced.tex}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Backtest at cutoff 2021, settled only, by stratum \bt.}
+  \label{tab:bt2021s}
+  \small
+  \input{tables/backtest-2021-settled.tex}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Backtest at cutoff 2021, settled or advanced, by stratum \bt.}
+  \label{tab:bt2021a}
+  \small
+  \input{tables/backtest-2021-advanced.tex}
 \end{table}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\linewidth]{figures/fig_backtest.pdf}
-  \caption{Resolved rate by 2026 inside and outside the cutoff frontier, over all scored rows and by length band \bt.}
+  \caption{Resolved rate by 2026 inside and outside the cutoff frontier under both codings, over all scored rows, with the undated solved rows removed, and by length band \bt.}
   \label{fig:backtest}
 \end{figure}
 
-Two strata reach $p$ below 0.05, and both run against each other: at 2005 the 20 to 40 word band resolves at 46\% inside against 75\% outside ($p=0.013$), while at 2021 the over 40 word band resolves at 45\% inside against 0\% outside over 20 rows ($p=0.000$) \bt. The second is a cohort effect: the long statements outside at 2021 are the 2021 list's own longer paraphrases, all still open five years on. Mathematics scores one row outside at both cutoffs, because nearly every dated mathematics row has a solved mathematics neighbour, so no mathematics rate is given.
+Under settled or advanced, two strata reach $p$ below 0.05 and run against each other: at 2005 the 20 to 40 word band resolves at 46\% inside against 75\% outside ($p=0.013$), while at 2021 the over 40 word band resolves at 45\% inside against 0\% outside over 20 rows ($p=0.000$) \bt. The second is a cohort effect: the long statements outside at 2021 are the 2021 list's own longer paraphrases, all still open five years on. Mathematics scores one row outside at both cutoffs, because nearly every dated mathematics row has a solved mathematics neighbour, so no mathematics rate is given.
+
+\subsection{Where this is weak}
+\label{sec:weak}
+
+\paragraph{Partial.}
+The two codings disagree on sign at 2005 and on size at 2021. Partial was assigned in 2026 by the ingest from a status page, with no threshold for how much progress counts, so the column that decides the result is the least reliable one in the file.
+
+\paragraph{Leakage.}
+The embeddings and the 50 stored neighbours come from the 2026 corpus. Statements written after a cutoff, including the 2021 list when scoring 2005, shape the geometry each cutoff is scored on, and the nearest solved row at a cutoff was found among neighbours chosen in 2026. The test checks the rule against known outcomes under that leak, which is a weaker claim than a forecast. A clean version needs embeddings fitted on text dated at or before the cutoff and a neighbour set frozen per cutoff.
+
+\paragraph{Vocabulary.}
+Cosine similarity between statement embeddings measures shared words and phrasing. Two problems can share a method and no vocabulary, or vocabulary and no method.
+
+\paragraph{Mathematics.}
+4,112 of 5,080 rows and 1,473 of 1,621 solved rows are mathematics \fr. The threshold is a mathematics quantity, and the other six branches are read against it.
+
+\paragraph{Two cohorts.}
+Of the 517 rows with a posed year, 241 come from the 2005 and 2021 Science lists, and those two lists supply most of the tested rows at both cutoffs \bt. A list's paraphrases share length and style, which is what the length bands are for, and the over 40 word result at 2021 shows the cohort rather than the rule.
+
+\paragraph{The 50-neighbour bound.}
+At a cutoff with few solved rows, most of a row's solved peers fall outside its 50 stored neighbours, so its reach is unknown: 66 rows undecided and 16 solved rows dropped at 2005, 43 and 11 at 2021 \bt. Dropping them can only raise the threshold; the undecided bounds above show how far they can move the inside rate.
+
+\paragraph{Resolved years.}
+Only 224 of the 1,621 solved rows carry a resolved year, so the solved set at a cutoff, 108 at 2005 and 190 at 2021, is a fraction of what was solved by then \bt, and 32 and 33 solved rows with no year sit in the tested set instead.
 
 \subsection{Predictions}
 
-\Cref{tab:counts} gives the class counts: 251 rows where AI can reach with known results, 764 borderline, 911 that need a new idea and 103 unsampled, with $u = 0.854$ \pr. \Cref{tab:top0}, \Cref{tab:top1}, \Cref{tab:top2} and \Cref{tab:top3} list the first ten of each class by growth; the full ranked table with the three nearest solved problems and the starting works is \texttt{predictions.csv}. \Cref{app:atlas} lists the 56 open atlas problems in full. Among them, Goldbach and the Langlands program fall in the first class, with reach 0.867 and 0.863 to an Erdős problem and to the geometric Langlands conjecture \pr; the Riemann hypothesis, Navier-Stokes, dark matter, weak cosmic censorship and quantum gravity head the \enquote{needs a new idea} class by growth, 4, 4, 3, 3 and 3 \pr. The Goldbach placement is the vocabulary effect of \Cref{sec:limitations}: the nearest solved row shares the words, and nothing in the method says whether it shares a method.
+\Cref{tab:counts} gives the class counts: 251 rows close to known results, 764 borderline, 911 that need a new idea and 103 unsampled, with $u = 0.854$ \pr. \Cref{tab:top0}, \Cref{tab:top1}, \Cref{tab:top2} and \Cref{tab:top3} list the first ten of each class by growth; the full ranked table with the three nearest solved problems and the starting works is \texttt{predictions.csv}. \Cref{app:atlas} lists the 56 open atlas problems in full. Among them, Goldbach and the Langlands program are close to known results, with reach 0.867 and 0.863 to an Erdős problem and to the geometric Langlands conjecture \pr; the Riemann hypothesis, Navier-Stokes, dark matter, weak cosmic censorship and quantum gravity head the \enquote{needs a new idea} class by growth, 4, 4, 3, 3 and 3 \pr. The Goldbach placement is the vocabulary effect of \Cref{sec:weak}: the nearest solved row shares the words, and nothing in the method says whether it shares a method.
 
 \begin{table}[htbp]
   \centering
@@ -181,7 +230,7 @@ Two strata reach $p$ below 0.05, and both run against each other: at 2005 the 20
 
 \begin{table}[htbp]
   \centering
-  \caption{AI can reach with known results, first ten by growth \pr.}
+  \caption{Close to known results, first ten by growth \pr.}
   \label{tab:top0}
   \footnotesize
   \input{tables/top-0.tex}
@@ -214,28 +263,12 @@ Two strata reach $p$ below 0.05, and both run against each other: at 2005 the 20
 \section{Calibration}
 \label{sec:calibration}
 
-The central claims are empirical, so the calibration is the backtest itself: the rule is fixed before the outcomes are read, the outcomes are the 2026 status column with its per-row source, and the threshold and the strata are recomputed at each cutoff from data dated at or before it. The error budget is the permutation $p$-value and the stratum floor. The two cutoffs agree on the sign of nothing: the ratio is 0.752 at 2005 and 1.102 at 2021, and the AUC sits at 0.479 and 0.523, each within 0.03 of chance \bt. The reading is that reach, as defined here, does not predict which open problem gets resolved on this data.
+The central claims are empirical, so the calibration is the backtest itself: the rule is fixed before the outcomes are read, the outcomes are the 2026 status column with its per-row source, and the threshold and the strata are recomputed at each cutoff from rows dated at or before it. The error budget is the permutation $p$-value, the stratum floor, the two codings and the two bounded exclusions. Under settled only the inside rows settle at a higher rate at both cutoffs, and most of that gap is the solved rows with no resolved year; under settled or advanced the AUC sits at 0.479 and 0.523, each within 0.03 of chance \bt. The reading is that the result turns on the partial column, and no forecast claim survives the embedding leak of \Cref{sec:weak}.
 
 \section{Limitations}
 \label{sec:limitations}
 
-\paragraph{Vocabulary.}
-Cosine similarity between statement embeddings measures shared words and phrasing. Two problems can share a method and no vocabulary, or vocabulary and no method.
-
-\paragraph{Mathematics.}
-4,112 of 5,080 rows and 1,473 of 1,621 solved rows are mathematics \fr. The threshold is a mathematics quantity, and the other six branches are read against it.
-
-\paragraph{Two cohorts.}
-Of the 517 rows with a posed year, 241 come from the 2005 and 2021 Science lists, and those two lists supply most of the tested rows at both cutoffs \bt. A list's paraphrases share length and style, which is what the length bands are for, and the over 40 word result at 2021 shows the cohort rather than the rule.
-
-\paragraph{Partial as resolved.}
-Many list questions saw an advance without a settlement, and the outcome calls both resolved. A solved-only outcome leaves too few resolved rows for a rate.
-
-\paragraph{The 50-neighbour bound.}
-At a cutoff with few solved rows, most of a row's solved peers fall outside its 50 stored neighbours, so its reach is unknown: 66 rows undecided and 16 solved rows dropped at 2005, 43 and 11 at 2021 \bt. Dropping them can only raise the threshold.
-
-\paragraph{Resolved years.}
-Only 224 of the 1,621 solved rows carry a resolved year, so the solved set at a cutoff, 108 at 2005 and 190 at 2021, is a fraction of what was solved by then \bt.
+\Cref{sec:weak} lists the weak points of the backtest and the frontier: the partial column, the 2026 embedding leak, vocabulary as similarity, mathematics dominance, the two cohorts, the 50-neighbour bound and the missing resolved years.
 
 \paragraph{Sources and licences.}
 \texttt{problems.tsv} is MIT. formal-conjectures rows are Apache-2.0. Wikipedia lists and the DARPA and XPRIZE rows are CC BY-SA 4.0 with attribution in the data. The Science 2005 and 2021 lists, the systems-neuroscience chapter titles and the Holy Grails titles are cited as headlines under 15 words with paraphrased statements, since the bodies are under copyright. The encoder is MIT.

@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from common import BRANCH_COLOR, HERE, deterministic_pdf, load
 
 OUT = os.path.join(HERE, "fig_classes.pdf")
-CLASSES = ["AI can reach with known results", "borderline", "needs a new idea", "unsampled"]
+CLASSES = ["close to known results", "borderline", "needs a new idea", "unsampled"]
 
 
 def main() -> None:
