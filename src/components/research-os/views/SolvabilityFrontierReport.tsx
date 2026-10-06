@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import ZoomPane from "./ZoomPane";
 import { PageHeader, Panel } from "@/components/ui";
 import type { Stratum } from "@/lib/research-os/solvability-backtest";
 import { REACH_CLASSES, type Prediction } from "@/lib/research-os/solvability-predictions";
@@ -103,7 +104,7 @@ export default function SolvabilityFrontierReport({ data, svg }: { data: ReportD
       <p className={P}>{verdict(data)}</p>
 
       <Panel title="frontier">
-        <div className="w-full overflow-hidden [&>svg]:w-full [&>svg]:h-auto" dangerouslySetInnerHTML={{ __html: svg }} />
+        <ZoomPane svg={svg} label="frontier drawing" />
         <p className={`${P} mt-3`}>{data.frontier.rule}</p>
         <p className={P}>{data.frontier.gaps}</p>
       </Panel>

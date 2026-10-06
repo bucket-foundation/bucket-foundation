@@ -63,3 +63,9 @@ test("siteVersion prefers the release tag and falls back to package.json", () =>
   assert.equal(siteVersion(undefined, "0.2.0"), "v0.2.0");
   assert.equal(siteVersion(null, "0.2.0"), "v0.2.0");
 });
+
+test("the user menu never shows a second Download button", () => {
+  const menu = fs.readFileSync(path.join(process.cwd(), "src/components/auth/UserMenuV2.tsx"), "utf8");
+  assert.ok(!/cta = closed \? "Download"/.test(menu));
+  assert.ok(menu.includes('"Sign in"'));
+});

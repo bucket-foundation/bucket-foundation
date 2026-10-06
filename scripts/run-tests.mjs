@@ -23,6 +23,7 @@ const SUITES = {
       "scripts/test-download-demo.ts",
       "scripts/test-download-release.ts",
       "scripts/test-site-chrome.ts",
+      "scripts/test-site-zoom-pane.ts",
       "scripts/test-sitemap-routes.ts",
       "scripts/test-canon-branch-status.ts",
       "scripts/test-download-install.ts",
