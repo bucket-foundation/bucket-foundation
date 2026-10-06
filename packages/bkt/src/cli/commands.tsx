@@ -379,7 +379,7 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "canon show") return canonShow(inv, json);
   if (name === "atlas frontier") {
     const o = frontierOptions(inv.values);
-    const f = atlasFrontier(o.reach);
+    const f = atlasFrontier(o.reach, undefined, o.full || undefined);
     if (!f) throw new NoDataError(NO_ATLAS);
     if (o.svg) writeFrontierSvg(f, o.svg);
     if (json) console.log(jsonLine("atlas frontier", f));
