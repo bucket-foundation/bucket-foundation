@@ -1,0 +1,297 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{longtable}
+
+\usepackage[backend=biber,style=numeric,sorting=none,maxnames=3,minnames=1]{biblatex}
+\addbibresource{bib/refs.bib}
+\addbibresource{../bib/common.bib}
+
+\usepackage{hyperref}
+
+\usepackage{bucket}
+
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = bucketblue,
+  citecolor  = bucketblue,
+  urlcolor   = bucketblue,
+}
+
+\newcommand{\emp}[1]{\textcolor{bucketgray}{\footnotesize [empirical: #1]}}
+\newcommand{\bm}[1]{\textcolor{bucketgray}{\footnotesize [bm:#1]}}
+\newcommand{\cmd}{\texttt{npx ts-node scripts/build-solvability-frontier-report.ts}}
+\newcommand{\bt}{\emp{output/solvability-frontier/report/backtest.json, 2026-10-06, \cmd}}
+\newcommand{\fr}{\emp{output/solvability-frontier/report/frontier.json, 2026-10-06, \cmd}}
+\newcommand{\pr}{\emp{output/solvability-frontier/report/predictions.json, 2026-10-06, \cmd}}
+
+\glossentry{reach}{reach}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-frontier.ts}%
+  {A problem's highest cosine similarity to a solved problem other than itself, over its stored neighbours; see \Cref{def:reach}.}
+\glossentry{frontier}{frontier}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-frontier.ts}%
+  {The reach value at the 10th percentile of solved problems' reach; a problem at or above it is inside, below it outside; see \Cref{def:frontier}.}
+\glossentry{growth}{growth}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-frontier.ts}%
+  {For a problem beyond the frontier, one plus the number of beyond problems among its stored neighbours that sit at or above the threshold from it; see \Cref{def:growth}.}
+\glossentry{reachclass}{reach class}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-predictions.ts}%
+  {One of four labels for an open problem: AI can reach with known results, borderline, needs a new idea, unsampled; see \Cref{def:class}.}
+\glossentry{backtest}{backtest}%
+  {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-backtest.ts}%
+  {The frontier rule applied at a past cutoff year to the problems posed by then, scored against their 2026 status; see \Cref{def:backtest}.}
+
+\title{The Solvability Frontier: Which Open Problems Sit Next to Solved Ones, and a Backtest of the Rule}
+\author{Bucket Foundation}
+\date{2026-10-06}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We embed 5,080 problem statements across seven canon branches with a small sentence encoder, call a problem's \term{reach}{reach} its highest similarity to a solved problem, and draw a \term{frontier}{frontier} at the 10th percentile of solved problems' reach, 0.781 on this set \fr. Open problems inside the frontier are sorted into a \term{reachclass}{reach class}: 251 problems where known results sit close, 764 borderline, 911 that need a new idea and 103 in a branch with too few solved rows to judge \pr. A \term{backtest}{backtest} at cutoffs 2005 and 2021 scores the rule on the questions posed by those years: at 2005 the inside rate of resolution by 2026 is 46\% against 61\% outside (ratio 0.752, permutation $p=0.051$, AUC 0.479, $n=183$); at 2021 it is 43\% against 39\% (ratio 1.102, $p=0.503$, AUC 0.523, $n=364$) \bt. The rule carries no measurable signal about resolution on this data, and the paper says why: similarity measures vocabulary, resolved years exist for 224 of 1,621 solved rows, the tested rows come from two cohorts, and 50 stored neighbours bound the reach at a cutoff.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+Bucket's solvability atlas lists open and closed problems with their statements, branch, status and, where known, the years they were posed and resolved. The question behind the frontier is whether an open problem that sits close in meaning to solved problems is closer to being solved, and whether an AI system working from known results could reach it. The frontier drawing answers the first clause by a rule; this paper tests the rule on problems whose outcome is known and publishes the ranked predictions for the open ones, with every number tagged to the file and command that reproduces it.
+
+\section{Related work}
+\label{sec:related}
+
+The atlas draws on the 2005 Science list of 125 questions \autocite{kennedy2005whatdontweknow,science2005somuchmore}, the 2021 Science and Shanghai Jiao Tong University list\footnote{\url{https://www.science.org/content/resource/125-questions-exploration-and-discovery}, read from a Wayback copy of the booklet; no DOI.}, the google-deepmind formal-conjectures repository\footnote{\url{https://github.com/google-deepmind/formal-conjectures}, Apache-2.0; no DOI.} and the Wikipedia lists of unsolved problems\footnote{\url{https://en.wikipedia.org/wiki/Lists_of_unsolved_problems}, CC BY-SA 4.0; no DOI.}. The encoder is bge-small-en-v1.5, whose model card points at the C-Pack paper \autocite{xiao2023cpack}. Systems that generate and test scientific hypotheses end to end \autocite{gottweis2025coscientist,lu2024aiscientist} are the setting in which a reach score would be used; this paper measures only whether the score tracks outcomes.
+
+\section{Preliminaries}
+\label{sec:prelim}
+
+\begin{definition}[Set]
+\label{def:set}
+The set is the 71 atlas problems and the 5,009 rows of \texttt{problems-sourced.tsv}, 5,080 rows once Lean theorems are left off \fr. A top-level row is solved when its status is solved. A variant is solved only when it and its parent are both solved. Each row's statement is embedded with bge-small-en-v1.5 at revision 5c38ec7, and its 50 most similar rows are stored with cosine similarity to three decimals \fr.
+\end{definition}
+
+\begin{definition}[Reach]
+\label{def:reach}
+The \term{reach}{reach} of a row is its highest similarity to a solved row other than itself, taken over its stored neighbours and its stored nearest solved row.
+\end{definition}
+
+\begin{definition}[Frontier]
+\label{def:frontier}
+The \term{frontier}{frontier} threshold $\tau$ is the 10th percentile of reach over the solved rows. A row with reach at or above $\tau$ is inside; below it, outside. An open row whose branch holds fewer than 10 solved rows is unsampled and counted outside.
+\end{definition}
+
+\begin{definition}[Growth]
+\label{def:growth}
+For a top-level row beyond the frontier, \term{growth}{growth} is one plus the number of beyond top-level rows among its 50 stored neighbours whose similarity to it is at or above $\tau$: the number of rows that would move inside if it were solved. Variants neither pull nor count as pulled.
+\end{definition}
+
+\begin{definition}[Reach class]
+\label{def:class}
+Let $u$ be the 75th percentile of reach among open rows inside the frontier. An open top-level row is \enquote{AI can reach with known results} when inside with reach at or above $u$, \enquote{borderline} when inside below $u$, \enquote{needs a new idea} when beyond, and \enquote{unsampled} when its branch holds fewer than 10 solved rows. Within a class, rows rank by growth, then reach, then id; a ranking by score with unique ids has one ordering \bm{BucketMath.Ranking.rank\_ordered}.
+\end{definition}
+
+\begin{definition}[Backtest]
+\label{def:backtest}
+For a cutoff year $c$, the solved set $S_c$ holds every row solved under \Cref{def:set} with a resolved year at or before $c$. The tested set holds every row posed at or before $c$ and outside $S_c$. Reach is computed as in \Cref{def:reach} against $S_c$ alone. When none of a row's stored neighbours is in $S_c$, its reach is unknown and bounded above by its 50th neighbour's similarity. The threshold $\tau_c$ is the 10th percentile of reach over the rows of $S_c$ that have a neighbour in $S_c$; the rest are counted and dropped. A tested row is inside when its reach is at or above $\tau_c$, outside when its reach or its bound is below $\tau_c$, and undecided otherwise; undecided rows are counted and left out of the rates. The outcome is the row's 2026 status: solved or partial counts as resolved, open does not.
+\end{definition}
+
+\section{Method}
+\label{sec:method}
+
+\paragraph{Statistics.}
+Per cutoff and per stratum we report the inside and outside counts, the resolved rate on each side, their ratio (inside over outside, undefined when the outside rate is zero \bm{BucketMath.Marketing.ratio}) and a two-sided permutation $p$-value: the outcomes are shuffled 10,000 times under seed 20261006 and $p$ is the share of shuffles whose absolute rate difference is at least the observed one, with one added to numerator and denominator \bt. The $p$-value so defined is positive and at most one (\Cref{app:lean}). A stratum with fewer than 10 rows on either side reports counts only. The AUC is the Mann-Whitney probability that a resolved row's reach exceeds an unresolved row's, ties counting one half.
+
+\paragraph{Strata.}
+Rows are stratified by the word count of the embedded text, under 20, 20 to 40 and over 40 words, and by branch. The bands partition the naturals (\Cref{app:lean}). The length bands exist because the dated lists are short paraphrases: their statements average 19 words against 34 for the rest of the file \bt.
+
+\paragraph{Reproduction.}
+\texttt{tools/solvability-atlas/build.sh} rebuilds the embeddings and the neighbour file; \cmd{} writes \texttt{frontier.json}, \texttt{backtest.json}, \texttt{predictions.json} and \texttt{predictions.csv} under \texttt{output/solvability-frontier/report/} and the page data under \texttt{src/lib/research-os/}. \texttt{make figures} in this directory redraws every figure and table from those files.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{The frontier}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/fig_frontier.pdf}
+  \caption{The frontier on 5,080 rows. Solved rows fill the inner disc by reach, open rows inside fill the ring up to the circle at 0.781, outside rows sit beyond it by how far their reach falls short, and unsampled rows are grey crosses \fr. Angle is the row's rank along the first two principal components of the embeddings.}
+  \label{fig:frontier}
+\end{figure}
+
+The frontier sits at $\tau = 0.781$: 1,621 rows solved, 2,225 reachable, 1,131 beyond and 103 unsampled, 3,846 inside and 1,234 outside \fr. \Cref{tab:branches} gives the split per branch. Mathematics holds 4,112 of the 5,080 rows and 1,473 of the 1,621 solved ones \fr, so it sets the threshold on its own.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Rows per branch and zone \fr.}
+  \label{tab:branches}
+  \small
+  \input{tables/branches.tex}
+\end{table}
+
+\subsection{Backtest}
+
+\Cref{tab:bt2005}, \Cref{tab:bt2021} and \Cref{fig:backtest} hold the backtest. At cutoff 2005, 108 rows were solved by then, 16 of them with no solved neighbour among the 50 stored and dropped from the threshold, which came out at 0.644; 287 rows were posed by 2005 and open at the cutoff, 38 unsampled, 66 undecided and 183 scored \bt. The inside rate is 46\% over 112 rows against 61\% over 71 outside, ratio 0.752, $p=0.051$, AUC 0.479 \bt. At cutoff 2021, 190 rows were solved by then, 11 dropped, threshold 0.656; 465 rows tested, 58 unsampled, 43 undecided and 364 scored \bt. The inside rate is 43\% over 238 against 39\% over 126, ratio 1.102, $p=0.503$, AUC 0.523 \bt.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Backtest at cutoff 2005, by stratum \bt.}
+  \label{tab:bt2005}
+  \small
+  \input{tables/backtest-2005.tex}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Backtest at cutoff 2021, by stratum \bt.}
+  \label{tab:bt2021}
+  \small
+  \input{tables/backtest-2021.tex}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_backtest.pdf}
+  \caption{Resolved rate by 2026 inside and outside the cutoff frontier, over all scored rows and by length band \bt.}
+  \label{fig:backtest}
+\end{figure}
+
+Two strata reach $p$ below 0.05, and both run against each other: at 2005 the 20 to 40 word band resolves at 46\% inside against 75\% outside ($p=0.013$), while at 2021 the over 40 word band resolves at 45\% inside against 0\% outside over 20 rows ($p=0.000$) \bt. The second is a cohort effect: the long statements outside at 2021 are the 2021 list's own longer paraphrases, all still open five years on. Mathematics scores one row outside at both cutoffs, because nearly every dated mathematics row has a solved mathematics neighbour, so no mathematics rate is given.
+
+\subsection{Predictions}
+
+\Cref{tab:counts} gives the class counts: 251 rows where AI can reach with known results, 764 borderline, 911 that need a new idea and 103 unsampled, with $u = 0.854$ \pr. \Cref{tab:top0}, \Cref{tab:top1}, \Cref{tab:top2} and \Cref{tab:top3} list the first ten of each class by growth; the full ranked table with the three nearest solved problems and the starting works is \texttt{predictions.csv}. \Cref{app:atlas} lists the 56 open atlas problems in full. Among them, Goldbach and the Langlands program fall in the first class, with reach 0.867 and 0.863 to an Erdős problem and to the geometric Langlands conjecture \pr; the Riemann hypothesis, Navier-Stokes, dark matter, weak cosmic censorship and quantum gravity head the \enquote{needs a new idea} class by growth, 4, 4, 3, 3 and 3 \pr. The Goldbach placement is the vocabulary effect of \Cref{sec:limitations}: the nearest solved row shares the words, and nothing in the method says whether it shares a method.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Open top-level problems per reach class \pr.}
+  \label{tab:counts}
+  \input{tables/counts.tex}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig_classes.pdf}
+  \caption{Reach classes by branch \pr.}
+  \label{fig:classes}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{AI can reach with known results, first ten by growth \pr.}
+  \label{tab:top0}
+  \footnotesize
+  \input{tables/top-0.tex}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Borderline, first ten by growth \pr.}
+  \label{tab:top1}
+  \footnotesize
+  \input{tables/top-1.tex}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Needs a new idea, first ten by growth \pr.}
+  \label{tab:top2}
+  \footnotesize
+  \input{tables/top-2.tex}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Unsampled, first ten by growth \pr.}
+  \label{tab:top3}
+  \footnotesize
+  \input{tables/top-3.tex}
+\end{table}
+
+\section{Calibration}
+\label{sec:calibration}
+
+The central claims are empirical, so the calibration is the backtest itself: the rule is fixed before the outcomes are read, the outcomes are the 2026 status column with its per-row source, and the threshold and the strata are recomputed at each cutoff from data dated at or before it. The error budget is the permutation $p$-value and the stratum floor. The two cutoffs agree on the sign of nothing: the ratio is 0.752 at 2005 and 1.102 at 2021, and the AUC sits at 0.479 and 0.523, each within 0.03 of chance \bt. The reading is that reach, as defined here, does not predict which open problem gets resolved on this data.
+
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Vocabulary.}
+Cosine similarity between statement embeddings measures shared words and phrasing. Two problems can share a method and no vocabulary, or vocabulary and no method.
+
+\paragraph{Mathematics.}
+4,112 of 5,080 rows and 1,473 of 1,621 solved rows are mathematics \fr. The threshold is a mathematics quantity, and the other six branches are read against it.
+
+\paragraph{Two cohorts.}
+Of the 517 rows with a posed year, 241 come from the 2005 and 2021 Science lists, and those two lists supply most of the tested rows at both cutoffs \bt. A list's paraphrases share length and style, which is what the length bands are for, and the over 40 word result at 2021 shows the cohort rather than the rule.
+
+\paragraph{Partial as resolved.}
+Many list questions saw an advance without a settlement, and the outcome calls both resolved. A solved-only outcome leaves too few resolved rows for a rate.
+
+\paragraph{The 50-neighbour bound.}
+At a cutoff with few solved rows, most of a row's solved peers fall outside its 50 stored neighbours, so its reach is unknown: 66 rows undecided and 16 solved rows dropped at 2005, 43 and 11 at 2021 \bt. Dropping them can only raise the threshold.
+
+\paragraph{Resolved years.}
+Only 224 of the 1,621 solved rows carry a resolved year, so the solved set at a cutoff, 108 at 2005 and 190 at 2021, is a fraction of what was solved by then \bt.
+
+\paragraph{Sources and licences.}
+\texttt{problems.tsv} is MIT. formal-conjectures rows are Apache-2.0. Wikipedia lists and the DARPA and XPRIZE rows are CC BY-SA 4.0 with attribution in the data. The Science 2005 and 2021 lists, the systems-neuroscience chapter titles and the Holy Grails titles are cited as headlines under 15 words with paraphrased statements, since the bodies are under copyright. The encoder is MIT.
+
+\printbibliography
+
+\appendix
+
+\section{Glossary}
+\label{app:glossary}
+
+\printglossaryentry{reach}
+\printglossaryentry{frontier}
+\printglossaryentry{growth}
+\printglossaryentry{reachclass}
+\printglossaryentry{backtest}
+
+\section{The atlas problems}
+\label{app:atlas}
+
+\footnotesize
+\input{tables/atlas.tex}
+\normalsize
+
+\section{Lean listings}
+\label{app:lean}
+
+\texttt{lean/Bucket/Backtest.lean}, checked by \texttt{make lean}, holds the two facts the method leans on: the corrected permutation $p$ has a positive numerator no larger than its denominator, and the length bands cover every word count.
+
+\begin{lstlisting}[style=bucketlean]
+structure PermutationP where
+  hits : Nat
+  permutations : Nat
+  bounded : hits <= permutations
+
+def PermutationP.numerator (p : PermutationP) : Nat := p.hits + 1
+def PermutationP.denominator (p : PermutationP) : Nat := p.permutations + 1
+
+theorem PermutationP.numerator_pos (p : PermutationP) : 0 < p.numerator :=
+  Nat.succ_pos p.hits
+
+theorem PermutationP.numerator_le_denominator (p : PermutationP) :
+    p.numerator <= p.denominator :=
+  Nat.succ_le_succ p.bounded
+
+def lengthBand (words : Nat) : LengthBand :=
+  if words < 20 then .short else if words <= 40 then .middle else .long
+
+theorem lengthBand_total (words : Nat) :
+    lengthBand words = .short \/ lengthBand words = .middle \/ lengthBand words = .long
+\end{lstlisting}
+
+\texttt{lake build} output, quoted verbatim.
+% voice-ignore-next 4
+\begin{verbatim}
+Build completed successfully (4 jobs).
+\end{verbatim}
+
+\end{document}
