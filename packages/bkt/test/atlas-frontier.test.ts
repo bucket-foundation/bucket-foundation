@@ -63,7 +63,7 @@ describe("bkt atlas frontier", () => {
     const f = atlasFrontier();
     expect(f.inside + f.outside).toBe(f.points.length);
     const lines = frontierLines(f, 79, false);
-    expect(frontierLines(f, 120, false)[0]).toBe(`Solvability frontier: ${f.inside} inside (${f.counts.solved} solved, ${f.counts.reachable} open within reach), ${f.outside} outside`);
+    expect(frontierLines(f, 200, false)[0]).toBe(`Solvability frontier: ${f.inside} inside (${f.counts.solved} solved, ${f.counts.reachable} open within reach), ${f.outside} outside (${f.counts.beyond} far from solved work, ${f.counts.unsampled} in a branch with no solved peers yet)`);
     expect(lines.every((l) => l.length <= 79)).toBe(true);
     expect(lines.every((l) => !l.includes("\x1b"))).toBe(true);
     expect(frontierLines(f, 79, true).some((l) => l.includes("\x1b["))).toBe(true);

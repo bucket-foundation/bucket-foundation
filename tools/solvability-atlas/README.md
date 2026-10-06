@@ -49,7 +49,7 @@ bun run src/cli.tsx atlas frontier --svg out/frontier.svg --json > out/frontier.
 cd ../../tools/solvability-atlas && python3 atlas.py out --relabel out/frontier.json   # components plots with the top 40 outside
 ```
 
-Frontier at the full scale, 2026-10-05: 4,667 rows (Lean off), 1,499 solved, 3,324 inside, 1,343 outside, threshold 0.803 `[empirical: output/solvability-frontier/full/frontier.json, bkt atlas frontier --json]`.
+Frontier at the full scale, 2026-10-05: 4,667 rows (Lean off), 1,499 solved, 3,317 inside, 1,350 outside (994 beyond, 356 unsampled: open problems in a branch with fewer than 10 solved entries), threshold 0.803 `[empirical: output/solvability-frontier/full/frontier.json, bkt atlas frontier --json]`.
 
 The frontier circle sits at reach 0.795, the 10th percentile of each solved problem's highest similarity to another solved problem, over the 156 productions in `solvability-atlas-data.json` (99 solved) `[empirical: src/lib/research-os/solvability-similarity-data.json, 2026-10-05, bkt atlas frontier --json]`. The similarity file covers the 218 nodes the tool builds today; the frontier reads the 156 the committed atlas data holds. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
 

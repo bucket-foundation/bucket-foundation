@@ -1,5 +1,5 @@
 import type { AtlasBranch } from "./solvability-atlas";
-import { CORE_RADIUS, FRONTIER_RADIUS, OUTER_RADIUS, ZONE_LABEL, ZONES, branchCounts, frontierXY, growthRanking, type Frontier, type FrontierPoint, type Zone } from "./solvability-frontier";
+import { CORE_RADIUS, FRONTIER_RADIUS, MIN_BRANCH_SOLVED, OUTER_RADIUS, ZONE_LABEL, branchCounts, frontierXY, growthRanking, type Frontier, type FrontierPoint, type Zone } from "./solvability-frontier";
 
 export const BRANCH_COLOR: Record<AtlasBranch, string> = {
   mathematics: "#1f6f78",
@@ -14,6 +14,7 @@ export const BRANCH_COLOR: Record<AtlasBranch, string> = {
 };
 
 const INK = "#1c2b2d";
+const GREY = "#8f8f88";
 const PAPER = "#f7f3ea";
 const MUTED = "#3f4a46";
 
@@ -56,9 +57,23 @@ export function methodFull(f: Frontier): string[] {
     "4. A top-level entry counts as solved when its status is solved. A variant counts as solved only when it and the problem it varies are both solved; a proved special case of an open problem stays open. Reach is an entry's highest similarity to a solved entry other than itself.",
     "5. The frontier sits at the 10th percentile of solved entries' reach: nine in ten solved entries are at least that close to another solved one. Open entries at or above it are inside; the rest are outside.",
     "6. Radius: solved entries fill the inner disc by reach, open entries inside fill the ring up to the frontier, outside entries sit beyond it by how far their reach falls short.",
-    "7. For each outside entry, +n counts the outside entries that would move inside if it were solved, counted over its 50 stored neighbours; a red line joins such pairs. Labels name the 40 outside entries with the largest +n and the atlas problems.",
+    "7. For each outside top-level entry, +n counts the outside top-level entries that would move inside if it were solved, counted over its 50 stored neighbours; variants neither pull nor count as pulled. A red line joins such pairs. Labels name the 40 outside entries with the largest +n and the atlas problems.",
+    `8. An open entry whose branch holds fewer than ${MIN_BRANCH_SOLVED} solved entries is unsampled, drawn grey outside the circle: its distance says nothing yet, since the corpus has no solved peer in that branch. ${f.gaps}`,
     "Produced by bkt atlas frontier --svg from src/lib/research-os/solvability-frontier.ts.",
   ];
+}
+
+export function labelSides(points: readonly FrontierPoint[], balance: boolean): Map<string, 1 | -1> {
+  const sides = new Map<string, 1 | -1>(points.map((p) => [p.id, Math.cos(p.theta) >= 0 ? 1 : -1]));
+  if (!balance) return sides;
+  const count = (side: 1 | -1) => points.filter((p) => sides.get(p.id) === side).length;
+  const movable = [...points].sort((a, b) => Math.abs(Math.cos(a.theta)) - Math.abs(Math.cos(b.theta)));
+  for (const p of movable) {
+    const heavy = count(1) > count(-1) ? 1 : -1;
+    if (count(heavy) - count(-heavy as 1 | -1) < 2) break;
+    if (sides.get(p.id) === heavy) sides.set(p.id, -heavy as 1 | -1);
+  }
+  return sides;
 }
 
 export interface SvgOptions {
@@ -75,7 +90,7 @@ export function isFull(f: Frontier): boolean {
 export function labelled(f: Frontier, limit: number): FrontierPoint[] {
   if (isFull(f)) {
     const top = growthRanking(f).slice(0, FULL_LABELS);
-    const known = f.points.filter((p) => p.sourceKind === "problem" && p.zone !== "solved" && !top.includes(p));
+    const known = f.points.filter((p) => p.sourceKind === "problem" && !top.includes(p));
     return [...top, ...known];
   }
   const open = f.points.filter((p) => p.zone !== "solved" && p.sourceKind === "problem");
@@ -86,10 +101,11 @@ export function labelled(f: Frontier, limit: number): FrontierPoint[] {
 export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
   const full = isFull(f);
   const named = labelled(f, opts.labels ?? 80);
-  const size = opts.size ?? (full ? 2400 : 1500);
-  const unit = (size * 0.23) / FRONTIER_RADIUS;
+  const size = opts.size ?? (full ? 3200 : 1500);
+  const unit = ((full ? 2400 : size) * 0.23) / FRONTIER_RADIUS;
   const cx = full ? size * 0.5 : size * 0.36;
-  const sideCount = (side: number) => named.filter((p) => p.zone !== "solved" && Math.sign(Math.cos(p.theta) || 1) === side).length;
+  const sides = labelSides(named.filter((p) => p.zone !== "solved"), full);
+  const sideCount = (side: 1 | -1) => named.filter((p) => sides.get(p.id) === side).length;
   const half = Math.max(OUTER_RADIUS * unit, (Math.max(sideCount(1), sideCount(-1)) * LABEL_GAP) / 2 + 20);
   const cy = half + 150;
   const at = (p: FrontierPoint): [number, number] => {
@@ -106,10 +122,13 @@ export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(CORE_RADIUS * unit)}" fill="#d6e6dc" stroke="${MUTED}" stroke-width="1" stroke-dasharray="5 5"/>`);
   const band = (r: number, text: string, strong = false) =>
     out.push(`<text x="${f1(cx - r * unit * Math.SQRT1_2)}" y="${f1(cy + r * unit * Math.SQRT1_2)}" font-size="16" fill="${INK}" text-anchor="middle" letter-spacing="2.5" font-weight="700" opacity="${strong ? 1 : 0.8}" paint-order="stroke" stroke="${PAPER}" stroke-width="6">${text}</text>`);
+  const bandUp = (r: number, text: string, strong = false) =>
+    out.push(`<text x="${f1(cx - r * unit * Math.SQRT1_2)}" y="${f1(cy - r * unit * Math.SQRT1_2)}" font-size="16" fill="${INK}" text-anchor="middle" letter-spacing="2.5" font-weight="700" opacity="${strong ? 1 : 0.8}" paint-order="stroke" stroke="${PAPER}" stroke-width="6">${text}</text>`);
   band(CORE_RADIUS - 0.08, "SOLVED");
-  band(FRONTIER_RADIUS - 0.08, "WITHIN REACH OF KNOWN RESULTS");
-  band(FRONTIER_RADIUS + 0.08, "FRONTIER", true);
+  (full ? bandUp : band)(FRONTIER_RADIUS - 0.08, "WITHIN REACH OF KNOWN RESULTS");
+  (full ? bandUp : band)(FRONTIER_RADIUS + 0.08, "FRONTIER", true);
   band(OUTER_RADIUS + 0.08, "NEEDS A NEW IDEA");
+  bandUp(OUTER_RADIUS + 0.08, "NO SOLVED PROBLEMS IN THE BRANCH YET");
   const byId = new Map(f.points.map((p) => [p.id, p]));
   const namedIds = new Set(named.map((p) => p.id));
   for (const p of growthRanking(f)) {
@@ -128,12 +147,13 @@ export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
     const big = !full || namedIds.has(p.id);
     if (p.zone === "solved") out.push(`<circle cx="${f1(x)}" cy="${f1(y)}" r="${big && p.sourceKind === "problem" ? 5 : full ? 1.6 : 2.6}" fill="${c}" opacity="${big && p.sourceKind === "problem" ? 0.95 : 0.5}"/>`);
     else if (p.zone === "reachable") out.push(big ? `<circle cx="${f1(x)}" cy="${f1(y)}" r="6" fill="${PAPER}" stroke="${c}" stroke-width="2.6"/>` : `<circle cx="${f1(x)}" cy="${f1(y)}" r="2.2" fill="${PAPER}" stroke="${c}" stroke-width="1.1" opacity="0.8"/>`);
+    else if (p.zone === "unsampled") out.push(big ? `<path d="M${f1(x)},${f1(y - 8)} L${f1(x + 7)},${f1(y + 6)} L${f1(x - 7)},${f1(y + 6)} Z" fill="${GREY}" stroke="${INK}" stroke-width="0.8"/>` : `<path d="M${f1(x)},${f1(y - 3.6)} L${f1(x + 3.2)},${f1(y + 2.6)} L${f1(x - 3.2)},${f1(y + 2.6)} Z" fill="${GREY}" opacity="0.6"/>`);
     else if (big) out.push(`<path d="M${f1(x)},${f1(y - 8)} L${f1(x + 7)},${f1(y + 6)} L${f1(x - 7)},${f1(y + 6)} Z" fill="${c}" stroke="${INK}" stroke-width="0.8"/>`);
     else out.push(`<path d="M${f1(x)},${f1(y - 3.6)} L${f1(x + 3.2)},${f1(y + 2.6)} L${f1(x - 3.2)},${f1(y + 2.6)} Z" fill="${c}" opacity="0.75"/>`);
   }
   const column = (side: 1 | -1) => {
     const rows = named
-      .filter((p) => p.zone !== "solved" && Math.sign(Math.cos(p.theta) || 1) === side)
+      .filter((p) => sides.get(p.id) === side)
       .map((p) => ({ p, y: at(p)[1] }))
       .sort((u, v) => u.y - v.y);
     const ys = spread(rows.map((r) => r.y), LABEL_GAP, cy - half, cy + half + 40);
@@ -142,26 +162,28 @@ export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
       const [px, py] = at(r.p);
       const y = ys[i];
       out.push(`<line x1="${f1(px)}" y1="${f1(py)}" x2="${f1(lx - side * 6)}" y2="${f1(y)}" stroke="${MUTED}" stroke-width="0.7" opacity="0.6"/>`);
-      const text = `${r.p.title}${r.p.zone === "beyond" && r.p.growth > 1 ? `  +${r.p.growth}` : ""}`;
-      out.push(`<text x="${f1(lx)}" y="${f1(y)}" font-size="13" fill="${INK}" font-weight="${r.p.zone === "beyond" ? 700 : 400}" text-anchor="${side > 0 ? "start" : "end"}" dominant-baseline="middle">${esc(text)}</text>`);
+      const title = full && r.p.title.length > 64 ? `${r.p.title.slice(0, 63)}…` : r.p.title;
+      const text = `${title}${r.p.zone === "beyond" && r.p.growth > 1 ? `  +${r.p.growth}` : ""}`;
+      out.push(`<text x="${f1(lx)}" y="${f1(y)}" font-size="13" fill="${r.p.zone === "unsampled" ? MUTED : INK}" font-weight="${r.p.zone === "beyond" ? 700 : 400}" text-anchor="${side > 0 ? "start" : "end"}" dominant-baseline="middle">${esc(text)}</text>`);
     });
   };
   column(1);
   column(-1);
   const ly = Math.round(cy + half + 110);
-  const legend: [Zone, string][] = [["solved", `<circle cx="0" cy="-6" r="7" fill="${INK}"/>`], ["reachable", `<circle cx="0" cy="-6" r="8" fill="${PAPER}" stroke="${INK}" stroke-width="3"/>`], ["beyond", `<path d="M0,-16 L9,2 L-9,2 Z" fill="${INK}"/>`]];
-  legend.forEach(([zone, mark], i) => out.push(`<g transform="translate(${70 + i * 400} ${ly})">${mark}<text x="18" y="0" font-size="20" font-weight="700" fill="${INK}">${esc(ZONE_LABEL[zone])}: ${f.counts[zone]}</text></g>`));
-  let by = ly + 40;
+  const legend: [Zone, string][] = [["solved", `<circle cx="0" cy="-6" r="7" fill="${INK}"/>`], ["reachable", `<circle cx="0" cy="-6" r="8" fill="${PAPER}" stroke="${INK}" stroke-width="3"/>`], ["beyond", `<path d="M0,-16 L9,2 L-9,2 Z" fill="${INK}"/>`], ["unsampled", `<path d="M0,-16 L9,2 L-9,2 Z" fill="${GREY}"/>`]];
+  const legendStep = Math.floor((size - 140) / 2);
+  legend.forEach(([zone, mark], i) => out.push(`<g transform="translate(${70 + (i % 2) * legendStep} ${ly + Math.floor(i / 2) * 32})">${mark}<text x="18" y="0" font-size="20" font-weight="700" fill="${INK}">${esc(ZONE_LABEL[zone])}: ${f.counts[zone]}</text></g>`));
+  let by = ly + 72;
   if (full) {
     const counts = branchCounts(f);
-    const branches = Object.keys(counts).sort((a, b) => (counts[b].solved + counts[b].reachable + counts[b].beyond) - (counts[a].solved + counts[a].reachable + counts[a].beyond));
+    const branches = Object.keys(counts).sort((a, b) => counts[b].total - counts[a].total);
     branches.forEach((b, i) => {
       const c = counts[b];
-      const x = 70 + (i % 3) * 700;
-      const y = by + Math.floor(i / 3) * 26;
-      out.push(`<g transform="translate(${x} ${y})"><circle cx="0" cy="-5" r="6" fill="${BRANCH_COLOR[b as AtlasBranch] ?? INK}"/><text x="14" y="0" font-size="15" fill="${INK}">${esc(b)}: ${c.solved + c.reachable + c.beyond} (${c.solved} solved, ${c.reachable} within reach, ${c.beyond} outside)</text></g>`);
+      const x = 70 + (i % 2) * legendStep;
+      const y = by + Math.floor(i / 2) * 26;
+      out.push(`<g transform="translate(${x} ${y})"><circle cx="0" cy="-5" r="6" fill="${BRANCH_COLOR[b as AtlasBranch] ?? INK}"/><text x="14" y="0" font-size="15" fill="${INK}">${esc(b)}: ${c.total} (${c.solved} solved, ${c.reachable} within reach, ${c.beyond} outside, ${c.unsampled} unsampled)</text></g>`);
     });
-    by += Math.ceil(branches.length / 3) * 26 + 12;
+    by += Math.ceil(branches.length / 2) * 26 + 12;
   }
   out.push(`<text x="60" y="${by}" font-size="17" fill="${INK}">${esc(f.rule)}</text>`);
   out.push(`<text x="60" y="${by + 26}" font-size="17" fill="${INK}">Angle is position in meaning. A red line joins two outside problems close enough that solving one brings the other inside; +n counts the problems that move.</text>`);
@@ -182,8 +204,8 @@ export interface TextOptions {
   list?: number;
 }
 
-const ANSI: Record<Zone | "ring" | "dim" | "off", string> = { solved: "\x1b[32m", reachable: "\x1b[36m", beyond: "\x1b[33;1m", ring: "\x1b[37;1m", dim: "\x1b[2m", off: "\x1b[0m" };
-export const TEXT_MARK: Record<Zone, string> = { solved: "·", reachable: "o", beyond: "▲" };
+const ANSI: Record<Zone | "ring" | "dim" | "off", string> = { solved: "\x1b[32m", reachable: "\x1b[36m", beyond: "\x1b[33;1m", unsampled: "\x1b[90m", ring: "\x1b[37;1m", dim: "\x1b[2m", off: "\x1b[0m" };
+export const TEXT_MARK: Record<Zone, string> = { solved: "·", reachable: "o", beyond: "▲", unsampled: "x" };
 const TAGS = "123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 export function wrapWords(text: string, width: number): string[] {
@@ -217,7 +239,7 @@ export function frontierText(f: Frontier, opts: TextOptions = {}): string[] {
   ring(FRONTIER_RADIUS, "#", "ring");
   const ranked = growthRanking(f);
   const tag = new Map(ranked.slice(0, TAGS.length).map((p, i) => [p.id, TAGS[i]]));
-  const order: Zone[] = ["solved", "reachable", "beyond"];
+  const order: Zone[] = ["solved", "reachable", "unsampled", "beyond"];
   for (const zone of order)
     for (const p of f.points.filter((q) => q.zone === zone)) {
       const [x, y] = frontierXY(p);
@@ -225,12 +247,13 @@ export function frontierText(f: Frontier, opts: TextOptions = {}): string[] {
     }
   const lines = cells.map((row) => row.map((c) => (c.kind ? paint(c.kind, c.ch) : c.ch)).join("").replace(/\s+$/, ""));
   const out = [
-    ...wrapWords(`Solvability frontier: ${f.inside} inside (${f.counts.solved} solved, ${f.counts.reachable} open within reach), ${f.outside} outside`, width),
+    ...wrapWords(`Solvability frontier: ${f.inside} inside (${f.counts.solved} solved, ${f.counts.reachable} open within reach), ${f.outside} outside (${f.counts.beyond} far from solved work, ${f.counts.unsampled} in a branch with no solved peers yet)`, width),
     "",
     ...lines,
     "",
     `${paint("ring", "#")} frontier at reach ${f.threshold}   ${paint("solved", TEXT_MARK.solved)} solved   ${paint("reachable", TEXT_MARK.reachable)} open, within reach`,
     `${paint("beyond", "1-9a-z")} open, needs a new idea`,
+    `${paint("unsampled", TEXT_MARK.unsampled)} open, no solved peers in its branch yet`,
     "",
     ...wrapWords("Outside the circle, ranked by how far solving each one moves the frontier:", width),
   ];
@@ -243,9 +266,9 @@ export function frontierText(f: Frontier, opts: TextOptions = {}): string[] {
     out.push(` ${paint("beyond", TAGS[i] ?? TEXT_MARK.beyond)}${head}${room >= tail.length ? tail : room > 16 ? `${tail.slice(0, room - 1)}…` : ""}`.replace(/\s+$/, ""));
   });
   const counts = branchCounts(f);
-  const branches = Object.keys(counts).sort((a, b) => ZONES.reduce((s, z) => s + counts[b][z], 0) - ZONES.reduce((s, z) => s + counts[a][z], 0));
-  out.push("", "Per branch: total, solved, within reach, outside");
-  for (const b of branches) out.push(`  ${b.padEnd(12)} ${String(ZONES.reduce((s, z) => s + counts[b][z], 0)).padStart(5)} ${String(counts[b].solved).padStart(5)} ${String(counts[b].reachable).padStart(5)} ${String(counts[b].beyond).padStart(5)}`);
-  out.push("", ...wrapWords(f.rule, width), ...wrapWords(`Similarity is measured on ${isFull(f) ? "problem statements" : "titles and keywords"}. Whether AI can solve what sits inside is the hypothesis under test.`, width));
+  const branches = Object.keys(counts).sort((a, b) => counts[b].total - counts[a].total);
+  out.push("", "Per branch: total, solved, within reach, outside, unsampled");
+  for (const b of branches) out.push(`  ${b.padEnd(12)} ${String(counts[b].total).padStart(5)} ${String(counts[b].solved).padStart(5)} ${String(counts[b].reachable).padStart(5)} ${String(counts[b].beyond).padStart(5)} ${String(counts[b].unsampled).padStart(5)}`);
+  out.push("", ...wrapWords(f.rule, width), ...wrapWords(f.gaps, width), ...wrapWords(`Similarity is measured on ${isFull(f) ? "problem statements" : "titles and keywords"}. Whether AI can solve what sits inside is the hypothesis under test.`, width));
   return out;
 }
