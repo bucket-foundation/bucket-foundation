@@ -19,6 +19,32 @@ const MUTED = "#3f4a46";
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const f1 = (x: number) => x.toFixed(1);
 
+export const LABEL_GAP = 15;
+
+export function spread(ys: readonly number[], gap: number, lo: number, hi: number): number[] {
+  const out = [...ys];
+  for (let i = 1; i < out.length; i++) out[i] = Math.max(out[i], out[i - 1] + gap);
+  const over = out.length ? out[out.length - 1] - hi : 0;
+  if (over > 0) for (let i = 0; i < out.length; i++) out[i] -= over;
+  for (let i = out.length - 2; i >= 0; i--) out[i] = Math.min(out[i], out[i + 1] - gap);
+  if (out.length && out[0] < lo) {
+    const up = lo - out[0];
+    for (let i = 0; i < out.length; i++) out[i] += up;
+  }
+  return out;
+}
+
+export const METHOD: readonly string[] = [
+  "How this drawing was made. 1. tools/solvability-atlas lists 71 open and closed problems across the seven canon branches (problems.tsv) and every theorem in lean/manifest.json, 156 entries in the atlas data.",
+  "2. Each entry's title, branch and keywords are embedded with BAAI/bge-small-en-v1.5, and cosine similarity is computed between every pair (solvability-similarity-data.json).",
+  "3. Angle is the entry's rank along the first two principal directions of the embeddings, so neighbours on the circle are neighbours in meaning.",
+  "4. An entry counts as solved when it has a resolved year. Reach is an entry's highest similarity to a solved entry other than itself.",
+  "5. The frontier sits at the 10th percentile of solved entries' reach: nine in ten solved entries are at least that close to another solved one. Open entries at or above it are inside; the rest are outside.",
+  "6. Radius: solved entries fill the inner disc by reach, open entries inside fill the ring up to the frontier, outside entries sit beyond it by how far their reach falls short.",
+  "7. For each outside entry, +n counts the outside entries that would move inside if it were solved (itself plus every outside entry at least the threshold similar to it); a red line joins such pairs.",
+  "Produced by bkt atlas frontier --svg from src/lib/research-os/solvability-frontier.ts.",
+];
+
 export interface SvgOptions {
   size?: number;
   labels?: number;
@@ -31,27 +57,28 @@ function labelled(f: Frontier, limit: number): FrontierPoint[] {
 }
 
 export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
-  const size = opts.size ?? 1400;
-  const cx = size / 2;
-  const cy = size / 2 + 60;
-  const unit = (size * 0.25) / FRONTIER_RADIUS;
+  const size = opts.size ?? 1500;
+  const unit = (size * 0.23) / FRONTIER_RADIUS;
+  const cx = size * 0.36;
+  const cy = OUTER_RADIUS * unit + 150;
   const at = (p: FrontierPoint): [number, number] => {
     const [x, y] = frontierXY(p);
     return [cx + x * unit, cy + y * unit];
   };
   const out: string[] = [];
-  out.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size + 290}" width="${size}" height="${size + 290}" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Solvability frontier: ${f.inside} problems inside the circle, ${f.outside} outside">`);
+  out.push(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} __H__" width="${size}" height="__H__" font-family="Georgia, 'Times New Roman', serif" role="img" aria-label="Solvability frontier: ${f.inside} problems inside the circle, ${f.outside} outside">`);
   out.push(`<rect width="100%" height="100%" fill="${PAPER}"/>`);
   out.push(`<text x="60" y="64" font-size="34" font-weight="700" fill="${INK}">Solvability frontier</text>`);
   out.push(`<text x="60" y="100" font-size="21" fill="${INK}">${f.inside} problems inside the circle: ${f.counts.solved} solved, ${f.counts.reachable} open and close to a solved one. ${f.outside} outside.</text>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(OUTER_RADIUS * unit)}" fill="none" stroke="${MUTED}" stroke-width="0.6" stroke-dasharray="2 7" opacity="0.5"/>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(FRONTIER_RADIUS * unit)}" fill="#e7efe9" stroke="${INK}" stroke-width="3.2"/>`);
   out.push(`<circle cx="${cx}" cy="${cy}" r="${f1(CORE_RADIUS * unit)}" fill="#d6e6dc" stroke="${MUTED}" stroke-width="1" stroke-dasharray="5 5"/>`);
-  const band = (r: number, text: string, strong = false) => out.push(`<text x="${f1(cx - r * unit)}" y="${f1(cy)}" font-size="16" fill="${INK}" text-anchor="middle" letter-spacing="2.5" font-weight="700" opacity="${strong ? 1 : 0.8}" transform="rotate(-90 ${f1(cx - r * unit)} ${f1(cy)})">${text}</text>`);
-  band(CORE_RADIUS - 0.05, "SOLVED");
-  band((CORE_RADIUS + FRONTIER_RADIUS) / 2, "WITHIN REACH OF KNOWN RESULTS");
-  band(FRONTIER_RADIUS + 0.05, "FRONTIER", true);
-  band((FRONTIER_RADIUS + OUTER_RADIUS) / 2 + 0.05, "NEEDS A NEW IDEA");
+  const band = (r: number, text: string, strong = false) =>
+    out.push(`<text x="${f1(cx - r * unit * Math.SQRT1_2)}" y="${f1(cy + r * unit * Math.SQRT1_2)}" font-size="16" fill="${INK}" text-anchor="middle" letter-spacing="2.5" font-weight="700" opacity="${strong ? 1 : 0.8}" paint-order="stroke" stroke="${PAPER}" stroke-width="6">${text}</text>`);
+  band(CORE_RADIUS - 0.08, "SOLVED");
+  band(FRONTIER_RADIUS - 0.08, "WITHIN REACH OF KNOWN RESULTS");
+  band(FRONTIER_RADIUS + 0.08, "FRONTIER", true);
+  band(OUTER_RADIUS + 0.08, "NEEDS A NEW IDEA");
   const byId = new Map(f.points.map((p) => [p.id, p]));
   for (const p of growthRanking(f)) {
     const [x1, y1] = at(p);
@@ -69,26 +96,37 @@ export function frontierSvg(f: Frontier, opts: SvgOptions = {}): string {
     else if (p.zone === "reachable") out.push(`<circle cx="${f1(x)}" cy="${f1(y)}" r="6" fill="${PAPER}" stroke="${c}" stroke-width="2.6"/>`);
     else out.push(`<path d="M${f1(x)},${f1(y - 8)} L${f1(x + 7)},${f1(y + 6)} L${f1(x - 7)},${f1(y + 6)} Z" fill="${c}" stroke="${INK}" stroke-width="0.8"/>`);
   }
-  for (const p of labelled(f, opts.labels ?? 80)) {
-    if (p.zone === "solved") continue;
-    const dx = Math.cos(p.theta);
-    const dy = -Math.sin(p.theta);
-    const r = (p.zone === "beyond" ? Math.max(p.radius, FRONTIER_RADIUS) : p.radius) * unit + 13;
-    const x = cx + dx * r;
-    const y = cy + dy * r;
-    const deg = (-p.theta * 180) / Math.PI;
-    const flip = dx < 0;
-    const text = `${p.title}${p.zone === "beyond" && p.growth > 1 ? `  +${p.growth}` : ""}`;
-    out.push(`<text x="${f1(x)}" y="${f1(y)}" font-size="13.5" fill="${INK}" font-weight="${p.zone === "beyond" ? 700 : 500}" text-anchor="${flip ? "end" : "start"}" dominant-baseline="middle" transform="rotate(${f1(flip ? deg + 180 : deg)} ${f1(x)} ${f1(y)})">${esc(text)}</text>`);
-  }
-  const ly = size + 150;
+  const column = (side: 1 | -1) => {
+    const rows = labelled(f, opts.labels ?? 80)
+      .filter((p) => p.zone !== "solved" && Math.sign(Math.cos(p.theta) || 1) === side)
+      .map((p) => ({ p, y: at(p)[1] }))
+      .sort((u, v) => u.y - v.y);
+    const ys = spread(rows.map((r) => r.y), LABEL_GAP, cy - OUTER_RADIUS * unit, cy + OUTER_RADIUS * unit + 40);
+    const lx = side > 0 ? cx + OUTER_RADIUS * unit + 24 : Math.max(240, cx - OUTER_RADIUS * unit - 24);
+    rows.forEach((r, i) => {
+      const [px, py] = at(r.p);
+      const y = ys[i];
+      out.push(`<line x1="${f1(px)}" y1="${f1(py)}" x2="${f1(lx - side * 6)}" y2="${f1(y)}" stroke="${MUTED}" stroke-width="0.7" opacity="0.6"/>`);
+      const text = `${r.p.title}${r.p.zone === "beyond" && r.p.growth > 1 ? `  +${r.p.growth}` : ""}`;
+      out.push(`<text x="${f1(lx)}" y="${f1(y)}" font-size="13" fill="${INK}" font-weight="${r.p.zone === "beyond" ? 700 : 400}" text-anchor="${side > 0 ? "start" : "end"}" dominant-baseline="middle">${esc(text)}</text>`);
+    });
+  };
+  column(1);
+  column(-1);
+  const ly = Math.round(cy + OUTER_RADIUS * unit + 110);
   const legend: [Zone, string][] = [["solved", `<circle cx="0" cy="-6" r="7" fill="${INK}"/>`], ["reachable", `<circle cx="0" cy="-6" r="8" fill="${PAPER}" stroke="${INK}" stroke-width="3"/>`], ["beyond", `<path d="M0,-16 L9,2 L-9,2 Z" fill="${INK}"/>`]];
   legend.forEach(([zone, mark], i) => out.push(`<g transform="translate(${70 + i * 400} ${ly})">${mark}<text x="18" y="0" font-size="20" font-weight="700" fill="${INK}">${esc(ZONE_LABEL[zone])}: ${f.counts[zone]}</text></g>`));
   out.push(`<text x="60" y="${ly + 40}" font-size="17" fill="${INK}">${esc(f.rule)}</text>`);
   out.push(`<text x="60" y="${ly + 66}" font-size="17" fill="${INK}">Angle is position in meaning. A red line joins two outside problems close enough that solving one brings the other inside; +n counts the problems that move.</text>`);
   out.push(`<text x="60" y="${ly + 92}" font-size="17" fill="${INK}">Similarity is measured on titles and keywords. Whether AI can solve what sits inside is the hypothesis under test.</text>`);
+  let my = ly + 136;
+  for (const line of METHOD)
+    for (const part of wrapWords(line, Math.floor((size - 120) / 7.6))) {
+      out.push(`<text x="60" y="${my}" font-size="15" fill="${INK}">${esc(part)}</text>`);
+      my += 21;
+    }
   out.push("</svg>");
-  return out.join("\n");
+  return out.join("\n").replaceAll("__H__", String(my + 30));
 }
 
 export interface TextOptions {
