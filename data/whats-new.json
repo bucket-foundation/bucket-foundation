@@ -2,6 +2,188 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "production-solvability-frontier",
+      "date": "2026-10-06",
+      "category": "production",
+      "branch": null,
+      "title": "The solvability frontier",
+      "summary": "One circle over 5,080 problems. Reach is a problem's highest text similarity to a solved problem; the circle sits at reach 0.781, where nine in ten solved problems sit. 3,846 inside, 1,234 outside.",
+      "commit": null,
+      "pr": 589,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/589",
+      "status": "merged",
+      "plot_title": "Solvability frontier over 5,080 problems: solved inside, open within reach on the ring, open beyond the circle, labels on the 40 outside problems with the largest pull",
+      "image": "/whats-new/solvability-frontier.webp",
+      "image_alt": "A large circle with 1,621 solved problems as filled dots in the centre, 2,225 open problems as rings inside the edge and 1,234 open problems as triangles outside, with problem names in two label columns and a legend of eight branches.",
+      "discussion": "Mathematics holds 4,112 rows and 3,644 of the inside, so the threshold is a mathematics threshold. A backtest at cutoffs 2005 and 2021 reads two ways. Counting solved only, inside rows settled at 21% against 6% and 12% against 1%. Counting solved or partial, 46% against 61% and 43% against 39%. The verdict is inconclusive. Embeddings and neighbours come from the 2026 corpus, so later statements shape the geometry each cutoff is scored on. Drawing: MIT code output over Apache-2.0 and CC BY-SA 4.0 data, attributed.",
+      "links": [
+        {
+          "label": "Report",
+          "href": "/research-os/solvability/frontier"
+        },
+        {
+          "label": "PR 576, the circle",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/576"
+        },
+        {
+          "label": "PR 581 and 582, the drawing",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/582"
+        },
+        {
+          "label": "PR 586, full set",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/586"
+        },
+        {
+          "label": "PR 589, backtest",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/589"
+        },
+        {
+          "label": "Data",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/tools/solvability-atlas"
+        },
+        {
+          "label": "Rule",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/src/lib/research-os/solvability-frontier.ts"
+        }
+      ]
+    },
+    {
+      "id": "production-solvability-problem-set",
+      "date": "2026-10-06",
+      "category": "production",
+      "branch": null,
+      "title": "The 5,080-problem set",
+      "summary": "71 curated atlas problems and 5,009 ingested rows from formal-conjectures, Wikipedia unsolved lists, Hilbert, Smale, Science 2005 and 2021, DARPA, XPRIZE, Holy Grails, systems neuroscience and solved timelines. 1,621 solved, 903 partial, 2,556 open.",
+      "commit": null,
+      "pr": 592,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/592",
+      "status": "merged",
+      "plot_title": "Make-up of the 5,080 problems: branch, status, form, source, licence, posed decade, resolved kind and prediction class",
+      "image": "/whats-new/solvability-problem-set-makeup.webp",
+      "image_alt": "A grid of stacked bar charts, one per label, each bar split by category with counts, mathematics the longest bar in every branch chart.",
+      "discussion": "Mathematics holds 4,112 rows; every other branch sits under 260, and mind has 5 solved of 108, so the set reads the sciences against a mathematics frontier. Licences: 3,557 rows Apache-2.0 from formal-conjectures, 1,154 CC BY-SA 4.0 from Wikipedia, DARPA and XPRIZE, 71 MIT, and 288 cited as headlines under 15 words with paraphrased statements from the Science, ACS and Library of Congress lists. 325 dated rows carry posed years for the backtest. Chart: MIT code output over Apache-2.0 and CC BY-SA 4.0 data, attributed.",
+      "links": [
+        {
+          "label": "Report",
+          "href": "/research-os/solvability/frontier"
+        },
+        {
+          "label": "PR 584, sources",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/584"
+        },
+        {
+          "label": "PR 587, solved science",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/587"
+        },
+        {
+          "label": "PR 588, dated lists",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/588"
+        },
+        {
+          "label": "PR 592, make-up",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/592"
+        },
+        {
+          "label": "problems-sourced.tsv",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/problems-sourced.tsv"
+        },
+        {
+          "label": "SOURCES.md",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/SOURCES.md"
+        }
+      ]
+    },
+    {
+      "id": "production-solvability-components",
+      "date": "2026-10-06",
+      "category": "production",
+      "branch": null,
+      "title": "Principal components of the problems",
+      "summary": "Five principal components of the 71 atlas problems from an SVD of centred bge-small embeddings, each named by the eight terms at its two ends.",
+      "commit": null,
+      "pr": 583,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/583",
+      "status": "merged",
+      "plot_title": "The 71 atlas problems on their first two principal components, labelled, with the terms that load each end",
+      "image": "/whats-new/solvability-components-problems.webp",
+      "image_alt": "Scatter of 71 labelled problems on two axes, number theory at one end of the first axis and photobiology, turbulence and dark energy at the other.",
+      "discussion": "Component 1 carries 12.6% of the variance and runs from additive number theory and diophantine sets to photobiology, turbulence and dark energy. Component 2, 8.5%, sets Kähler manifolds, string theory and gauge theory against computation, learning theory and AI. Component 3, 5.6%, sets qualia and black holes against redox, electron transport and membrane voltage. Component 4, 4.8%, runs longevity against correlated electrons and lattice QCD. On the full set component 1 split Lean theorems from problems, so the problems-only set is drawn. Drawing: MIT code output over MIT, CC BY-SA 4.0 and Apache-2.0 data, attributed.",
+      "links": [
+        {
+          "label": "Report",
+          "href": "/research-os/solvability/frontier"
+        },
+        {
+          "label": "PR 583",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/583"
+        },
+        {
+          "label": "atlas.py",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/atlas.py"
+        }
+      ]
+    },
+    {
+      "id": "production-solvability-problem-records",
+      "date": "2026-10-06",
+      "category": "production",
+      "branch": null,
+      "title": "Problem records and OpenAlex activity",
+      "summary": "Each of the 71 atlas problems has a record: a Wikipedia statement, key works, yearly activity and arXiv totals from OpenAlex, and repo mentions. Empty records fell from 22 to 0; 54 full, 3 partial, 14 weak; 925 key works; activity for 67 of 71.",
+      "commit": null,
+      "pr": 590,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/590",
+      "status": "merged",
+      "plot_title": "OpenAlex works per sourced problem, 388 of 499 queried rows with any work; seven of eight branches under 30 rows",
+      "image": "/atlas/makeup/openalex_works_by_branch.webp",
+      "image_alt": "One stacked bar for mathematics, 499 rows split by works matching the query: 111 with none, 115 with 1 to 9, 153 with 10 to 99, 79 with 100 to 999, 41 with 1,000 or more.",
+      "discussion": "The records feed the embedding text, so a problem is placed by its statement and its literature. OpenAlex activity also covers 499 of the 5,009 sourced rows, all of them mathematics so far; the free budget is 1,000 requests a day and the run resumes daily. The chart compares no branches for that reason. Chart: MIT code output over OpenAlex CC0 counts for Apache-2.0 and CC BY-SA 4.0 problem rows, attributed.",
+      "links": [
+        {
+          "label": "Report",
+          "href": "/research-os/solvability/frontier"
+        },
+        {
+          "label": "PR 585, records",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/585"
+        },
+        {
+          "label": "PR 590, OpenAlex fill",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/590"
+        },
+        {
+          "label": "Records",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/tools/solvability-atlas/records"
+        },
+        {
+          "label": "openalex-sourced.json",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/openalex-sourced.json"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-06-language-quiz",
+      "date": "2026-10-06",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Language questions on the quiz",
+      "summary": "Four question forms from the Polingual word set, meaning, sound, language and pair, across 27 languages, drawn from 844 word cells and 5,190 pairs. Each person picks languages on /research-os/quiz and in the desktop Work quiz; an empty pick leaves the quiz as it was. Every language question credits Wiktionary under CC BY-SA. These are pieces, short of a course. PRs #575, #577 and #580; #593 trims every choice question to three choices.",
+      "commit": null,
+      "pr": 580,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/580"
+    },
+    {
+      "id": "2026-10-06-desktop-resources",
+      "date": "2026-10-06",
+      "category": "site-feature",
+      "branch": null,
+      "title": "The desktop app uses less of your machine",
+      "summary": "Explore scenes draw on demand, spin at 20 fps, rest after 15 s idle and stop when hidden; idle CPU fell from about four cores to under 13% of one. Python jobs run with 4 threads, an 8 GiB address-space cap and nice 10. SQLite gains a checkpoint and a journal limit, so the write log after a 20 MB write fell from 21 MB to under 4 MB. A fresh window profile fell from 127 MB to 8 MB. Open: the protein view still grows about 16 MB per visit.",
+      "commit": null,
+      "pr": 578,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/578"
+    },
+    {
       "id": "production-desktop-turn",
       "date": "2026-10-01",
       "category": "production",
