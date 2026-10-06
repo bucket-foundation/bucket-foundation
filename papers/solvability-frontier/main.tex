@@ -130,7 +130,7 @@ Rows are stratified by the word count of the embedded text, under 20, 20 to 40 a
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\linewidth]{figures/fig_makeup.pdf}
-  \caption{Make-up of the 5,080 rows by branch, status, form, source, licence, resolved kind, posed and resolved years, zone, prediction class, variant or top-level, embedding text kind and statement length, with status by branch \mk.}
+  \caption{Make-up of the 5,080 rows by branch, status, form, source, licence, resolution evidence, posed and resolved years, zone, prediction class, variant or top-level, embedding text kind and statement length, with status by branch \mk.}
   \label{fig:makeup}
 \end{figure}
 
@@ -146,7 +146,7 @@ Each step names its formula; $i$ and $j$ index rows.
   \item \textbf{Reach.} $r_i = \max_{j \in S,\, j \neq i} s_{ij}$ over the stored neighbours and the stored nearest solved row (\Cref{def:reach}).
   \item \textbf{Threshold.} $\tau = Q_{0.1}(\{ r_j : j \in S \})$, the value at index $\lfloor 0.1\,|S| \rfloor$ of the sorted solved reaches; $\tau = 0.781$ \fr.
   \item \textbf{Zones.} solved if $i \in S$; unsampled if the branch holds fewer than 10 solved rows; reachable if $r_i \geq \tau$; beyond if $r_i < \tau$: 1,621, 103, 2,225 and 1,131 rows \fr.
-  \item \textbf{Radius.} With $\mathrm{span}(x,a,b) = \min(1,\max(0,(x-a)/(b-a)))$: $\rho_i = 0.6\,(1 - \mathrm{span}(r_i, \min_S r, 1))$ for solved rows, $0.6 + 0.4\,(1 - \mathrm{span}(r_i, \tau, 1))$ for reachable rows, and $1 + 0.5\,(1 - \mathrm{span}(r_i, r_{\min}, \tau))$ beyond, where $r_{\min}$ is the smallest reach in the set \fr.
+  \item \textbf{Radius.} With $\mathrm{span}(x,a,b) = \min(1,\max(0,(x-a)/(b-a)))$: $\rho_i = 0.6\,(1 - \mathrm{span}(r_i, \min_S r, 1))$ for solved rows, $0.6 + 0.4\,(1 - \mathrm{span}(r_i, \tau, 1))$ for reachable rows, $1 + 0.5\,(1 - \mathrm{span}(r_i, \mathrm{floor}, \tau))$ for beyond rows and $1 + 0.5\,(1 - \mathrm{span}(r_i, \mathrm{floor}, 1))$ for unsampled rows, where $\mathrm{floor} = \min(\tau, \min_i r_i)$ \fr.
   \item \textbf{Growth.} $g_i = 1 + |\{\, j \in N_i : \mathrm{zone}_j = \text{beyond},\ j \text{ top-level},\ s_{ij} \geq \tau \,\}|$ over the 50 stored neighbours $N_i$ (\Cref{def:growth}).
   \item \textbf{Angle.} $p_i = (e_i - \bar e)\,V_2$ with $V_2$ the first two right singular vectors of the centred embeddings; $\theta_i$ is the rank of $\operatorname{atan2}(p_{i2}, p_{i1})$ over the rows, scaled to $[0, 2\pi)$ \fr.
   \item \textbf{Reach class.} $u = Q_{0.75}(\{ r_i : i \text{ open, inside} \}) = 0.854$ \pr; close when $r_i \geq u$, borderline when $\tau \leq r_i < u$, needs a new idea when $r_i < \tau$, unsampled by branch (\Cref{def:class}).
@@ -155,7 +155,7 @@ Each step names its formula; $i$ and $j$ index rows.
 \end{enumerate}
 
 \paragraph{OpenAlex activity.}
-A title-and-abstract search on each sourced row's name or first clause, run against the OpenAlex works index with a key, stores the matching work count, counts per year for the last 30 years and the three most cited works per row in \texttt{tools/solvability-atlas/openalex-sourced.json}. The free daily budget is 1,000 requests, two per row, so 499 of the 5,009 rows are stored at this date, 388 of them with at least one matching work, median 15 works for mathematics \mk. The frontier score does not use these counts yet; \Cref{fig:makeup} carries no activity axis and the distribution by branch sits in the page's make-up charts.
+A title-and-abstract search on each sourced row's name or first clause, run against the OpenAlex works index with a key, stores the matching work count, counts per year for the last 30 years and the three most cited works per row in \texttt{tools/solvability-atlas/openalex-sourced.json}. The free daily budget is 1,000 requests, two per row. The first run took the file in its own order and stored 499 of the 5,009 rows before the budget ran out, 388 of them with at least one matching work, all 499 in mathematics (median 15 works) and none in the other seven branches \mk; a second run the same day was refused for ten hours. Later runs take the remaining rows in an order that interleaves the branches. Until every branch holds at least 30 rows with data no comparison across branches is possible. The frontier score does not use these counts yet; \Cref{fig:makeup} carries no activity axis and the distribution by branch sits in the page's make-up charts.
 
 \section{Results}
 \label{sec:results}

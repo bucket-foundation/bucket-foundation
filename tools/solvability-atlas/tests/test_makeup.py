@@ -40,8 +40,9 @@ def test_every_label_sums_to_the_row_total():
     for key, lab in data["labels"].items():
         assert lab["present"] + lab["absent"] == data["rows"], key
         assert sum(lab["counts"].values()) == lab["present"], key
-        if not key.endswith("_decade"):
+        if not key.endswith("_decade") and key != "resolved_kind":
             assert lab["absent"] == 0, key
+    assert data["labels"]["resolved_kind"]["present"] == data["labels"]["status"]["counts"]["solved"]
     assert sum(sum(v.values()) for v in data["status_by_branch"].values()) == data["rows"]
     assert sum(s["rows"] for s in data["sources"].values()) == data["rows"]
     assert data["labels"]["status"]["counts"]["solved"] == data["labels"]["zone"]["counts"]["solved"]

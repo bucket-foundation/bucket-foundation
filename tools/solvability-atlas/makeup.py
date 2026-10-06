@@ -35,7 +35,7 @@ LABELS = OrderedDict([
     ("form", "Form"),
     ("source", "Source"),
     ("licence", "Licence"),
-    ("resolved_kind", "Resolved kind"),
+    ("resolved_kind", "Resolution evidence, solved rows"),
     ("posed_present", "Posed year"),
     ("posed_decade", "Posed year by decade, where present"),
     ("resolved_decade", "Resolved year by decade, where present"),
@@ -110,7 +110,7 @@ def licence_label(r):
 
 def resolved_kind(r):
     if r["status_marked"] != "solved":
-        return "not solved"
+        return None
     pid = r["id"]
     if r["origin"] == "atlas":
         return "curated, resolved year in problems.tsv"
@@ -209,6 +209,8 @@ def build(rows, frontier, predictions, neighbors, openalex):
         if key.endswith("_decade"):
             counts = ordered_counts(values)
             counts = OrderedDict((k, counts[k]) for k in decade_order(counts))
+        elif key == "resolved_kind":
+            counts = ordered_counts(values)
         else:
             counts = ordered_counts(values, ORDERS.get(key))
         present = sum(counts.values())
@@ -342,8 +344,11 @@ def draw_all(data, out):
         band_colors = dict(zip([b[0] for b in WORKS_BANDS] + ["no result"], ["#d9d2c3", "#a3923a", "#4d9a6a", "#1f6f78", "#2f5fa8", "#8a5fb0", GREY]))
         fig = figure(1.4 + 0.4 * len(oa["works_by_branch"]))
         ax = fig.add_subplot(111)
-        stacked_chart(ax, oa["works_by_branch"], f"OpenAlex works per problem by branch, {oa['with_works']:,} of {oa['queried']:,} queried rows with any work", band_colors, oa["queried"])
-        ax.legend(loc="lower right", fontsize=7, frameon=False, ncol=4, title="works matching the query", title_fontsize=7)
+        thin = [b for b, v in oa["works_by_branch"].items() if sum(v.values()) < 30]
+        missing = [b for b in BRANCH_COLOR if b not in oa["works_by_branch"]]
+        note = f"; {len(thin) + len(missing)} of 8 branches under 30 rows, so the chart cannot compare branches" if thin or missing else ""
+        stacked_chart(ax, oa["works_by_branch"], f"OpenAlex works per problem, {oa['with_works']:,} of {oa['queried']:,} queried rows with any work{note}", band_colors, oa["queried"])
+        ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.25), fontsize=7, frameon=False, ncol=4, title="works matching the query", title_fontsize=7)
         files.append(out / "openalex_works_by_branch.png")
         save(fig, files[-1])
     return files
