@@ -26,9 +26,17 @@ export interface WorkStatus {
   repo: string | null;
   repoError: string | null;
   chat?: { claude: boolean; codex: boolean };
+  languages?: string[];
   ready: boolean;
   answered: number;
   correct: number;
+}
+
+export interface WorkWord {
+  lang: string | null;
+  choicesLang: string | null;
+  credit: string;
+  href: string | null;
 }
 
 export interface WorkQuestion {
@@ -38,6 +46,7 @@ export interface WorkQuestion {
   lines: string[];
   choices: string[] | null;
   limitSec: number;
+  word?: WorkWord;
 }
 
 export interface WorkSource {
@@ -376,6 +385,14 @@ export class Api {
 
   workChat(chat: { claude: boolean; codex: boolean }) {
     return this.call<{ chat: { claude: boolean; codex: boolean } }>("/local/work-quiz/chat", { method: "POST", body: chat });
+  }
+
+  workLanguages() {
+    return this.call<{ languages: string[]; available: { code: string; name: string }[] }>("/local/work-quiz/languages");
+  }
+
+  workSetLanguages(languages: string[]) {
+    return this.call<{ languages: string[] }>("/local/work-quiz/languages", { method: "POST", body: { languages } });
   }
 
   workForget() {

@@ -7,7 +7,7 @@ import { normalizeState } from "../../../src/lib/academy/engine";
 import { newDataKey } from "../src/crypto";
 import { schedule } from "../src/grade";
 import { RosGraph, syncRosGraph } from "../src/ros";
-import { LOCAL_ONLY_TABLES, MIGRATIONS, Store } from "../src/store";
+import { LOCAL_ONLY_TABLES, MIGRATIONS, SCHEMA_VERSION, Store } from "../src/store";
 
 let dir: string;
 beforeEach(() => {
@@ -127,7 +127,7 @@ describe("migration 11", () => {
     db.close();
     const key = newDataKey();
     const s = new Store(path, key);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(11);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     const tables = s.db.query<{ name: string }, []>("select name from sqlite_master where type = 'table' and name like 'ros_%' order by name").all().map((t) => t.name);
     expect(tables).toEqual(["ros_edges", "ros_items", "ros_nodes", "ros_profile", "ros_state"]);
     expect(snapshot(s.db)).toEqual(before);

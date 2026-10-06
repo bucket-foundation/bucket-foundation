@@ -26,6 +26,7 @@ export interface QuizDeps {
   loadCoverage?(learnerId: string): Promise<CoverageRow[]>;
   recordPicks?(learnerId: string, picks: SamplePick[], day: string): Promise<void>;
   recordMiss?(learnerId: string, question: QuizQuestion, day: string): Promise<void>;
+  loadLanguages?(learnerId: string): Promise<string[]>;
 }
 
 export interface CardRefresh {
@@ -105,8 +106,9 @@ export async function issueQuestion(deps: QuizDeps, learnerId: string, mode: Qui
     const sources = await deps.loadSources();
     const day = now.toISOString().slice(0, 10);
     const coverage = deps.loadCoverage ? await deps.loadCoverage(learnerId) : [];
+    const languages = deps.loadLanguages ? await deps.loadLanguages(learnerId) : [];
     const dueNow = due.map((c) => dueFrom(c.question, Date.parse(c.due_at)));
-    const picked = sampleQuiz({ day, sources, coverage, due: dueNow, slots: 1, reviewSlots: 0, now: now.getTime(), exclude: usedOn(coverage, day) });
+    const picked = sampleQuiz({ day, sources, coverage, due: dueNow, slots: 1, reviewSlots: 0, now: now.getTime(), exclude: usedOn(coverage, day), languages });
     question = picked.questions[0] ?? generateQuestion(sources, seed);
     if (picked.questions.length > 0 && deps.recordPicks) await deps.recordPicks(learnerId, picked.picks, day);
     if (!question && due.length > 0) {

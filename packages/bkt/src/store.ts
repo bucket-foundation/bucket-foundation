@@ -8,11 +8,11 @@ import type { Card, Item, Rating } from "./grade";
 import { cardKey } from "../../../src/lib/research-os/work-quiz/fact";
 import type { Form } from "../../../src/lib/research-os/work-quiz/space";
 
-export const SCHEMA_VERSION = 11;
+export const SCHEMA_VERSION = 12;
 
 export const SYNC_TABLES = ["attempts"] as const;
 
-export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage", "ros_nodes", "ros_edges", "ros_items", "ros_state", "ros_profile"] as const;
+export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage", "ros_nodes", "ros_edges", "ros_items", "ros_state", "ros_profile", "work_quiz_languages"] as const;
 
 export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
 
@@ -114,6 +114,7 @@ export const MIGRATIONS: Migration[] = [
    create index ros_items_node on ros_items(node_id);
    create table ros_state (node_id text primary key, stage text not null, confidence real, evidence text not null default '[]', updated_at integer not null);
    create table ros_profile (id integer primary key check (id = 1), role text, birth_year_bucket text, game text, updated_at integer not null);`,
+  `create table if not exists work_quiz_languages (code text primary key check (length(code) between 2 and 3), added_at integer not null);`,
 ];
 
 export interface AttemptInput {
