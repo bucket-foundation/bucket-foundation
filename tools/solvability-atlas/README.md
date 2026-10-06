@@ -45,3 +45,7 @@ The frontier circle sits at reach 0.795, the 10th percentile of each solved prob
 ## Public Plots
 
 The plots in `public/atlas/` are public on purpose: they show published problems and the repo's own Lean manifest. The page that frames them waits behind the launch gate.
+
+## Sourced Problems
+
+`problems-sourced.tsv` holds rows ingested from outside lists, with the same columns plus `status`, `source` and `licence`. `SOURCES.md` surveys every candidate source with count, licence and verdict; `python3 sources/build.py` rebuilds the file from the fetchers in `sources/`, and `tests/test_sourced.py` checks it. `atlas.py` does not read it yet.
