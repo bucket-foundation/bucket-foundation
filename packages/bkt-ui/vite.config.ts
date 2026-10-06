@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig, type Plugin } from "vite";
 import { DENIED_NAME } from "../bkt/src/pack/rights";
+import { exploreAliases } from "./explore-aliases";
 
 const SRC = resolve(__dirname, "../../src");
 const LANDMASK = ["landmask-2k.bin", "landmask-2k.json"];
@@ -44,6 +45,7 @@ export default defineConfig({
   resolve: {
     dedupe: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei"],
     alias: [
+      ...Object.entries(exploreAliases).map(([find, replacement]) => ({ find: new RegExp(`^${find}$`), replacement })),
       ...["react-dom", "react", "three-stdlib", "three", "@react-three/fiber", "@react-three/drei", "3dmol", "smiles-drawer"].map((pkg) => ({
         find: new RegExp(`^${pkg.replace("/", "\\/")}(/.*)?$`),
         replacement: `${resolve(__dirname, "node_modules", pkg)}$1`,

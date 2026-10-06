@@ -1,16 +1,19 @@
 import { createHash } from "node:crypto";
 import { cardFields, compoundFactId, FACT_JOIN } from "./fact";
-import { FORM_MAKERS, type SampledQuestion } from "./forms";
+import { FORM_MAKERS, type FormMaker, type SampledQuestion } from "./forms";
 import { seededRng, type Rng } from "./generate";
-import { checkLimits } from "./limits";
-import { BLOCKED_FORMS, FORMS, allCells, cellId, type Cell, type Form } from "./space";
+import { checkLimits, QUIZ_QUESTIONS } from "./limits";
+import { knownLanguages, languageMakers, type WordSet } from "./polingual-forms";
+import { loadWordSet } from "./polingual-server";
+import { BLOCKED_FORMS, FORMS, LANGUAGE_FORMS, allCells, cellId, type Cell, type Form } from "./space";
 import type { QuizQuestion, WorkSources } from "./types";
 
-export const QUIZ_SLOTS = 5;
+export const QUIZ_SLOTS = QUIZ_QUESTIONS.max;
 export const REVIEW_SLOTS = 2;
 export const CANDIDATES = 16;
 export const MISS_WEIGHT = 2;
 export const DAY_MS = 86_400_000;
+export const RNG_RANGE = 4_294_967_296;
 
 export interface DueCard {
   cardKey: string;
@@ -41,6 +44,8 @@ export interface SampleInput {
   slots?: number;
   reviewSlots?: number;
   exclude?: readonly string[];
+  languages?: readonly string[];
+  words?: WordSet;
 }
 
 export interface SampledQuiz {
@@ -64,6 +69,16 @@ export function builtCells(): Cell[] {
   return allCells().filter((c) => FORM_MAKERS[c.form] && !BLOCKED_FORMS[c.form]);
 }
 
+export function languageCells(makers: Readonly<Partial<Record<Form, FormMaker>>>): Cell[] {
+  return allCells().filter((c) => (LANGUAGE_FORMS as readonly Form[]).includes(c.form) && makers[c.form] && !BLOCKED_FORMS[c.form]);
+}
+
+function wordMakers(input: Pick<SampleInput, "languages" | "words">): Partial<Record<Form, FormMaker>> {
+  if (!input.languages || input.languages.length === 0) return {};
+  const set = input.words ?? loadWordSet();
+  return languageMakers(set, knownLanguages(set, input.languages));
+}
+
 function cellOf(q: SampledQuestion, format: Cell["format"]): Cell {
   return { form: q.form, format, depth: q.depth };
 }
@@ -74,7 +89,7 @@ export function factWeights(coverage: readonly CoverageRow[], due: readonly DueC
   for (const r of coverage) for (const id of splitFactId(r.factId)) misses.set(id, (misses.get(id) ?? 0) + r.misses);
   for (const [id, n] of Array.from(misses)) w.set(id, 1 + MISS_WEIGHT * n);
   for (const c of due) {
-    const overdue = Math.max(0, (now - c.dueAt) / DAY_MS);
+    const overdue = Math.max(0, Math.floor((now - c.dueAt) / DAY_MS));
     for (const id of c.factIds) w.set(id, (w.get(id) ?? 1) + overdue);
   }
   return w;
@@ -84,12 +99,16 @@ function weightOf(q: SampledQuestion, weights: Map<string, number>): number {
   return q.factIds.reduce((n, id) => n + (weights.get(id) ?? 1), 0);
 }
 
-function weightedPick<T>(rng: Rng, xs: readonly T[], weight: (x: T) => number): T {
+export function rngInt(rng: Rng): number {
+  return Math.floor(rng() * RNG_RANGE);
+}
+
+export function weightedPick<T>(rng: Rng, xs: readonly T[], weight: (x: T) => number): T {
   const total = xs.reduce((n, x) => n + weight(x), 0);
-  let r = rng() * total;
+  let r = total > 0 ? rngInt(rng) % total : 0;
   for (const x of xs) {
+    if (r < weight(x)) return x;
     r -= weight(x);
-    if (r <= 0) return x;
   }
   return xs[xs.length - 1];
 }
@@ -123,12 +142,13 @@ export function sampleQuiz(input: SampleInput): SampledQuiz {
   const reviewed = questions.length;
   const weights = factWeights(coverage, due, now);
   const stats = cellStats(coverage);
-  const ranked = builtCells()
-    .map((c) => ({ c, id: cellId(c), tie: rng(), ...(stats.get(cellId(c)) ?? { picks: 0, lastDay: "" }) }))
+  const extra = wordMakers(input);
+  const ranked = [...builtCells(), ...languageCells(extra)]
+    .map((c) => ({ c, id: cellId(c), tie: rngInt(rng), ...(stats.get(cellId(c)) ?? { picks: 0, lastDay: "" }) }))
     .sort((a, b) => a.picks - b.picks || a.lastDay.localeCompare(b.lastDay) || a.tie - b.tie);
   for (const cell of ranked) {
     if (questions.length >= slots) break;
-    const maker = FORM_MAKERS[cell.c.form]!;
+    const maker = (FORM_MAKERS[cell.c.form] ?? extra[cell.c.form])!;
     const found: SampledQuestion[] = [];
     for (let i = 0; i < CANDIDATES; i++) {
       const q = maker(input.sources, seededRng(`${seed}|${cell.id}|${i}`), cell.c.depth);

@@ -1,0 +1,469 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "darkenergy",
+ "title": "Cosmological constant problem",
+ "statement": {
+  "text": "In cosmology, the cosmological constant problem or vacuum catastrophe is the substantial disagreement between the observed values of vacuum energy density and the much larger theoretical value of zero-point energy suggested by quantum field theory.",
+  "source": "https://en.wikipedia.org/wiki/Cosmological_constant_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Cosmological constant problem",
+   "url": "https://en.wikipedia.org/wiki/Cosmological_constant_problem"
+  }
+ },
+ "aliases": [
+  "vacuum catastrophe"
+ ],
+ "branch": "cosmology",
+ "level": 5,
+ "industries": [
+  "astronomy and astrophysics"
+ ],
+ "posed": 1917,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1917,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2056173066",
+   "title": "The cosmological constant problem",
+   "year": 1989,
+   "cited_by_count": 7373,
+   "doi": "https://doi.org/10.1103/revmodphys.61.1",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1980458704",
+   "title": "Cosmological constant—the weight of the vacuum",
+   "year": 2003,
+   "cited_by_count": 3199,
+   "doi": "https://doi.org/10.1016/s0370-1573(03)00120-0",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1983233159",
+   "title": "Everything you always wanted to know about the cosmological constant problem (but were afraid to ask)",
+   "year": 2012,
+   "cited_by_count": 918,
+   "doi": "https://doi.org/10.1016/j.crhy.2012.04.008",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2089247721",
+   "title": "Extra space-time dimensions: Towards a solution to the cosmological constant problem",
+   "year": 1983,
+   "cited_by_count": 625,
+   "doi": "https://doi.org/10.1016/0370-2693(83)91254-6",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2596778397",
+   "title": "The Cosmological Constant",
+   "year": 1992,
+   "cited_by_count": 1546,
+   "doi": "https://doi.org/10.1146/annurev.aa.30.090192.002435",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2064043359",
+   "title": "Effective Field Theory, Black Holes, and the Cosmological Constant",
+   "year": 1999,
+   "cited_by_count": 1437,
+   "doi": "https://doi.org/10.1103/physrevlett.82.4971",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2099822476",
+   "title": "Supersymmetric unification without low energy supersymmetry and signatures for fine-tuning at the LHC",
+   "year": 2005,
+   "cited_by_count": 881,
+   "doi": "https://doi.org/10.1088/1126-6708/2005/06/073",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2118778033",
+   "title": "Cosmology with decaying vacuum energy",
+   "year": 1987,
+   "cited_by_count": 448,
+   "doi": "https://doi.org/10.1016/0550-3213(87)90129-5",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2591817099",
+   "title": "THE CASE FOR A POSITIVE COSMOLOGICAL Λ-TERM",
+   "year": 2000,
+   "cited_by_count": 2758,
+   "doi": "https://doi.org/10.1142/s0218271800000542",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2022232745",
+   "title": "Entropy bounds and dark energy",
+   "year": 2004,
+   "cited_by_count": 839,
+   "doi": "https://doi.org/10.1016/j.physletb.2004.05.020",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2103906554",
+   "title": "5 Dark Matter and Dark Energy",
+   "year": 2004,
+   "cited_by_count": 543,
+   "doi": "https://doi.org/10.1007/978-3-540-31535-3_5",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2140123438",
+   "title": "Time varying speed of light as a solution to cosmological puzzles",
+   "year": 1999,
+   "cited_by_count": 524,
+   "doi": "https://doi.org/10.1103/physrevd.59.043516",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2039997372",
+   "title": "Alternatives to dark matter and dark energy",
+   "year": 2005,
+   "cited_by_count": 432,
+   "doi": "https://doi.org/10.1016/j.ppnp.2005.08.001",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2949154581",
+   "title": "Beyond ΛCDM : Problems, solutions, and the road ahead",
+   "year": 2016,
+   "cited_by_count": 530,
+   "doi": "https://doi.org/10.1016/j.dark.2016.02.001",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 7,
+  "duplicate": 4
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1977": 1,
+   "1983": 1,
+   "1984": 3,
+   "1985": 3,
+   "1986": 8,
+   "1987": 6,
+   "1988": 7,
+   "1989": 8,
+   "1990": 13,
+   "1991": 15,
+   "1992": 10,
+   "1993": 11,
+   "1994": 8,
+   "1995": 9,
+   "1996": 16,
+   "1997": 13,
+   "1998": 16,
+   "1999": 35,
+   "2000": 47,
+   "2001": 54,
+   "2002": 52,
+   "2003": 57,
+   "2004": 65,
+   "2005": 53,
+   "2006": 57,
+   "2007": 66,
+   "2008": 41,
+   "2009": 42,
+   "2010": 42,
+   "2011": 58,
+   "2012": 56,
+   "2013": 48,
+   "2014": 55,
+   "2015": 63,
+   "2016": 78,
+   "2017": 91,
+   "2018": 57,
+   "2019": 72,
+   "2020": 59,
+   "2021": 72,
+   "2022": 62,
+   "2023": 74,
+   "2024": 81,
+   "2025": 529,
+   "2026": 2773
+  },
+  "openalex_total": 4987,
+  "arxiv_total": 933,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22cosmological+constant+problem%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5067962057",
+   "name": "Varun Sahni A",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5043632498",
+   "name": "Steven Weinberg",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "T Padmanabhan",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5002196467",
+   "name": "Jérôme Martin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5040101549",
+   "name": "Valery A Rubakov",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5090408249",
+   "name": "Mikhail Shaposhnikov",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5061242206",
+   "name": "Sean M. Carroll",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5021973169",
+   "name": "William H. Press",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5112758750",
+   "name": "Edwin L. Turner",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5108728296",
+   "name": "Andrew G. Cohen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5030215642",
+   "name": "David B. Kaplan",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5105405236",
+   "name": "Ann E. Nelson",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Nima Arkani-Hamed",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Savas Dimopoulos",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5039320034",
+   "name": "Katherine Freese",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I59781447",
+   "name": "Inter-University Centre for Astronomy and Astrophysics",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2801766991",
+   "name": "Institut d'Astrophysique de Paris",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I136199984",
+   "name": "Harvard University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I122411786",
+   "name": "California Institute of Technology",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I47508984",
+   "name": "Imperial College London",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I86519309",
+   "name": "The University of Texas at Austin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405264447",
+   "name": "Université Pierre-et-Marie-Curie",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I12323705",
+   "name": "The Abdus Salam International Centre for Theoretical Physics (ICTP)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210102177",
+   "name": "Institute for Nuclear Research",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I153167508",
+   "name": "Smithsonian Astrophysical Observatory",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210124175",
+   "name": "Center for Astrophysics Harvard & Smithsonian",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I20089843",
+   "name": "Princeton University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I111088046",
+   "name": "Boston University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2056173066",
+   "title": "The cosmological constant problem",
+   "source": "openalex-fanout/W2056173066-the-cosmological-constant-problem"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Cosmological_constant_problem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cosmological+constant+problem%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22cosmological+constant+problem%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "14 relevant works of 25 considered, 4987 works with the phrase"
+ }
+}

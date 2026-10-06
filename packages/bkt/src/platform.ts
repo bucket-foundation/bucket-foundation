@@ -65,12 +65,23 @@ export interface Platform {
   timerDir(): string | null;
 }
 
+export const WINDOW_DISK_CACHE_BYTES = 64 * 1024 * 1024;
+
+export const LEAN_WINDOW_FLAGS = [
+  "--disable-component-update",
+  "--disable-background-networking",
+  "--disable-sync",
+  `--disk-cache-size=${WINDOW_DISK_CACHE_BYTES}`,
+  `--media-cache-size=${WINDOW_DISK_CACHE_BYTES / 4}`,
+];
+
 export const CHROMIUM_FLAGS = (url: string, profile: string) => [
   `--app=${url}`,
   `--user-data-dir=${profile}`,
   "--disable-extensions",
   "--no-first-run",
   "--no-default-browser-check",
+  ...LEAN_WINDOW_FLAGS,
   "--window-size=1280,860",
 ];
 

@@ -20,7 +20,7 @@ const TITLES = JSON.parse(readFileSync(join(import.meta.dir, "../../../scripts/f
 const BEADS: BeadFact[] = TITLES.beads.map((title, i) => ({ id: `bkt-f${i.toString(36)}`, title, status: ["open", "closed", "in_progress"][i % 3], priority: i % 5, createdAt: "2026-09-01" }));
 
 describe("schema 10 coverage", () => {
-  test("a v9 database migrates to 10 and the coverage table stays local", () => {
+  test("a v9 database migrates to the current schema and the coverage table stays local", () => {
     const path = join(dir, "bkt.db");
     const db = new Database(path, { create: true, strict: true });
     for (const m of MIGRATIONS.slice(0, 9)) {
@@ -31,8 +31,8 @@ describe("schema 10 coverage", () => {
     db.run("insert into work_quiz_cards (card_key, fact_id, form, state, due, updated_at) values ('pr:1|order', 'pr:1', 'order', '{}', 1, 1)");
     db.close();
     const s = new Store(path, newDataKey());
-    expect(SCHEMA_VERSION).toBe(10);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(10);
+    expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(10);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     expect(s.db.query("select card_key from work_quiz_cards").all()).toEqual([{ card_key: "pr:1|order" }]);
     expect(LOCAL_ONLY_TABLES).toContain("work_quiz_coverage");
     s.close();

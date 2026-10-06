@@ -1,0 +1,454 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "busybeaver",
+ "title": "Busy Beaver BB(5)",
+ "statement": {
+  "text": "In theoretical computer science, the busy beaver game aims to find a terminating program of a given size that either produces the most output possible, or runs for the longest number of steps. Since an endlessly looping program producing infinite output or running for infinite time is easily conceived, such programs are excluded from the game. Rather than traditional programming languages, the programs used in the game are n-state Turing machines, one of the first mathematical models of computation.",
+  "source": "https://en.wikipedia.org/wiki/Busy_beaver",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Busy beaver",
+   "url": "https://en.wikipedia.org/wiki/Busy_beaver"
+  }
+ },
+ "aliases": [
+  "Busy beaver",
+  "busy beaver game"
+ ],
+ "branch": "information",
+ "level": 3,
+ "industries": [
+  "computational theory and mathematics",
+  "ecology"
+ ],
+ "posed": 1962,
+ "resolved": 2024,
+ "history": [
+  {
+   "year": 1962,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 2024,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W1561186228",
+   "title": "Computing the Busy Beaver Function",
+   "year": 1987,
+   "cited_by_count": 40,
+   "doi": "https://doi.org/10.1007/978-1-4612-4808-8_28",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2345781622",
+   "title": "A Relatively Small Turing Machine Whose Behavior Is Independent of Set Theory",
+   "year": 2016,
+   "cited_by_count": 30,
+   "doi": "https://doi.org/10.25088/complexsystems.25.4.297",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2091219308",
+   "title": "A bound on the shift function in terms of the Busy Beaver function",
+   "year": 1992,
+   "cited_by_count": 9,
+   "doi": "https://doi.org/10.1145/141914.141918",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2554312410",
+   "title": "The \"Paradox\" of Computability and a Recursive Relative Version of the Busy Beaver Function",
+   "year": 2016,
+   "cited_by_count": 8,
+   "doi": "https://doi.org/10.1142/9789813109032_0001",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1998724425",
+   "title": "Some better results estimating the shift function in terms of busy beaver function",
+   "year": 1997,
+   "cited_by_count": 6,
+   "doi": "https://doi.org/10.1145/250037.250038",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2574943505",
+   "title": "Relativizing an incompressible number and an incompressible function through subrecursive extensions of Turing machines",
+   "year": 2016,
+   "cited_by_count": 1,
+   "doi": "https://doi.org/10.48550/arxiv.1612.05221",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3081595695",
+   "title": "The Busy Beaver Frontier",
+   "year": 2020,
+   "cited_by_count": 14,
+   "doi": "https://doi.org/10.1145/3427361.3427369",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2010433167",
+   "title": "A note on busy beavers and other creatures",
+   "year": 1996,
+   "cited_by_count": 12,
+   "doi": "https://doi.org/10.1007/bf01192693",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2067356164",
+   "title": "Improved Bounds for Functions Related to Busy Beavers",
+   "year": 2002,
+   "cited_by_count": 8,
+   "doi": "https://doi.org/10.1007/s00224-001-1052-0",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4386746839",
+   "title": "Combining Finite Combination Properties: Finite Models and Busy Beavers",
+   "year": 2023,
+   "cited_by_count": 7,
+   "doi": "https://doi.org/10.1007/978-3-031-43369-6_9",
+   "role": "resolved",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W7170557179",
+   "title": "After Turing: The Fold Machine - An Exact, Parameter-Free and Machine-Closed Derivation of Classical Computational Science from Smithian Fold Theory",
+   "year": 2026,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.5281/zenodo.21536437",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4402652819",
+   "title": "Hardness of Busy Beaver Value BB(15)",
+   "year": 2024,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.1007/978-3-031-72621-7_9",
+   "role": "resolved",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4246204271",
+   "title": "An Scrutiny of Run-time Ramification for 5-Proviso Busy Beaver Proving Empirical Composition",
+   "year": 2019,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.35940/ijitee.i1117.0789s19",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2272146828",
+   "title": "Generic algorithms for halting problem and optimal machines revisited",
+   "year": 2016,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.2168/lmcs-12(2:1)2016",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 8,
+  "duplicate": 3
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1987": 2,
+   "1992": 2,
+   "1996": 1,
+   "1997": 1,
+   "1999": 1,
+   "2002": 1,
+   "2005": 1,
+   "2006": 1,
+   "2007": 2,
+   "2009": 2,
+   "2010": 1,
+   "2011": 2,
+   "2012": 1,
+   "2013": 4,
+   "2014": 1,
+   "2015": 3,
+   "2016": 6,
+   "2017": 3,
+   "2019": 1,
+   "2020": 2,
+   "2021": 2,
+   "2023": 2,
+   "2024": 2,
+   "2025": 4,
+   "2026": 111
+  },
+  "openalex_total": 159,
+  "arxiv_total": 16,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22busy+beaver+function%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5020769134",
+   "name": "Scott Aaronson",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5073112856",
+   "name": "Bryant A. Julstrom",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5066534634",
+   "name": "Felipe S. Abrahão",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5019616888",
+   "name": "Amir M. Ben-Amram",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5063257061",
+   "name": "Gregory J. Chaitin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5045137858",
+   "name": "Adam Yedidia",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5112276874",
+   "name": "Ruiguang Yang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5101792363",
+   "name": "Longyun Ding",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5077327926",
+   "name": "Shurun Xu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5040770339",
+   "name": "U. Zwick",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "H. Petersen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5011100065",
+   "name": "Guilherme V. Toledo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5052302712",
+   "name": "Yoni Zohar",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5026961968",
+   "name": "Clark Barrett",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5143533982",
+   "name": "Maria Smith",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I1341412227",
+   "name": "IBM (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210114115",
+   "name": "IBM Research - Thomas J. Watson Research Center",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I122140584",
+   "name": "Universidade Federal do Rio de Janeiro",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I205237279",
+   "name": "Nankai University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I86519309",
+   "name": "The University of Texas at Austin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I16391192",
+   "name": "Tel Aviv University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I173963315",
+   "name": "St. Cloud State University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210141777",
+   "name": "Academic College of Tel Aviv-Yafo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I100066346",
+   "name": "University of Stuttgart",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I13955877",
+   "name": "Bar-Ilan University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I157286207",
+   "name": "National University of Ireland, Maynooth",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I19894307",
+   "name": "Université de Montpellier",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "halting",
+   "why": "shared keywords: turing machine; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "proved",
+  "source": "bbchallenge, Coq proof of BB(5)",
+  "url": "https://github.com/ccz181078/Coq-BB5"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Busy_beaver",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22busy+beaver+function%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "14 relevant works of 25 considered, 159 works with the phrase"
+ }
+}

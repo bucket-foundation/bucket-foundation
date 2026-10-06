@@ -1,0 +1,516 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "ecc",
+ "title": "Elliptic curve discrete log hardness",
+ "statement": {
+  "text": "Elliptic-curve cryptography (ECC) is an approach to public-key cryptography based on the algebraic structure of elliptic curves over finite fields. ECC allows smaller keys to provide equivalent security, compared to cryptosystems based on modular exponentiation in finite fields, such as the RSA cryptosystem and ElGamal cryptosystem.",
+  "source": "https://en.wikipedia.org/wiki/Elliptic-curve_cryptography",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Elliptic-curve cryptography",
+   "url": "https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"
+  }
+ },
+ "aliases": [
+  "Elliptic-curve cryptography",
+  "ECC"
+ ],
+ "branch": "information",
+ "level": 4,
+ "industries": [
+  "cryptography",
+  "finance",
+  "information systems"
+ ],
+ "posed": 1985,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1985,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2083052384",
+   "title": "Index calculus for abelian varieties of small dimension and the elliptic curve discrete logarithm problem",
+   "year": 2008,
+   "cited_by_count": 124,
+   "doi": "https://doi.org/10.1016/j.jsc.2008.08.005",
+   "role": "partial",
+   "relevance": 17,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2218139189",
+   "title": "Recent progress on the elliptic curve discrete logarithm problem",
+   "year": 2015,
+   "cited_by_count": 119,
+   "doi": "https://doi.org/10.1007/s10623-015-0146-7",
+   "role": "survey",
+   "relevance": 17,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1557191373",
+   "title": "Elliptic Curve Discrete Logarithms and the Index Calculus",
+   "year": 1998,
+   "cited_by_count": 88,
+   "doi": "https://doi.org/10.1007/3-540-49649-1_10",
+   "role": "partial",
+   "relevance": 17,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2949288242",
+   "title": "Quantum Resource Estimates for Computing Elliptic Curve Discrete Logarithms",
+   "year": 2017,
+   "cited_by_count": 206,
+   "doi": "https://doi.org/10.1007/978-3-319-70697-9_9",
+   "role": "partial",
+   "relevance": 16,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2149528579",
+   "title": "On the discrete logarithm problem in elliptic curves",
+   "year": 2010,
+   "cited_by_count": 93,
+   "doi": "https://doi.org/10.1112/s0010437x10005075",
+   "role": "partial",
+   "relevance": 15,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1150532718",
+   "title": "Image Encryption using Elliptic Curve Cryptography",
+   "year": 2015,
+   "cited_by_count": 118,
+   "doi": "https://doi.org/10.1016/j.procs.2015.06.054",
+   "role": "partial",
+   "relevance": 13,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3093657066",
+   "title": "Efficient Image Encryption Scheme Using Henon Map, Dynamic S-Boxes and Elliptic Curve Cryptography",
+   "year": 2020,
+   "cited_by_count": 92,
+   "doi": "https://doi.org/10.1109/access.2020.3032403",
+   "role": "partial",
+   "relevance": 12,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1997065269",
+   "title": "Elliptic curve cryptography based mutual authentication scheme for session initiation protocol",
+   "year": 2011,
+   "cited_by_count": 90,
+   "doi": "https://doi.org/10.1007/s11042-011-0787-0",
+   "role": "partial",
+   "relevance": 12,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1713936078",
+   "title": "A secure mutual authentication scheme for session initiation protocol using elliptic curve cryptography",
+   "year": 2012,
+   "cited_by_count": 86,
+   "doi": "https://doi.org/10.1002/sec.506",
+   "role": "partial",
+   "relevance": 12,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2071680489",
+   "title": "The Improbability That an Elliptic Curve Has Subexponential Discrete Log Problem under the Menezes—Okamoto—Vanstone Algorithm",
+   "year": 1998,
+   "cited_by_count": 204,
+   "doi": "https://doi.org/10.1007/s001459900040",
+   "role": "partial",
+   "relevance": 11,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2013613544",
+   "title": "The Elliptic Curve Digital Signature Algorithm (ECDSA)",
+   "year": 2001,
+   "cited_by_count": 2258,
+   "doi": "https://doi.org/10.1007/s102070100002",
+   "role": "partial",
+   "relevance": 9,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1921672120",
+   "title": "New Explicit Conditions of Elliptic Curve Traces for FR-Reduction",
+   "year": 2001,
+   "cited_by_count": 518,
+   "doi": null,
+   "role": "partial",
+   "relevance": 9,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2127898253",
+   "title": "Implementation of Elliptic Curve Digital Signature Algorithm",
+   "year": 2010,
+   "cited_by_count": 108,
+   "doi": "https://doi.org/10.5120/631-876",
+   "role": "partial",
+   "relevance": 9,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2132341963",
+   "title": "An RNS Implementation of an $F_{p}$ Elliptic Curve Point Multiplier",
+   "year": 2008,
+   "cited_by_count": 103,
+   "doi": "https://doi.org/10.1109/tcsi.2008.2008507",
+   "role": "partial",
+   "relevance": 9,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1851253658",
+   "title": "Characterization of Elliptic Curve Traces Under FR-Reduction",
+   "year": 2001,
+   "cited_by_count": 89,
+   "doi": "https://doi.org/10.1007/3-540-45247-8_8",
+   "role": "partial",
+   "relevance": 9,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2795055082",
+   "title": "A pairing-free and provably secure certificateless signature scheme",
+   "year": 2018,
+   "cited_by_count": 82,
+   "doi": "https://doi.org/10.1016/j.ins.2018.03.053",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2905646440",
+   "title": "An improved certificateless aggregate signature scheme without bilinear pairings for vehicular ad hoc networks",
+   "year": 2018,
+   "cited_by_count": 130,
+   "doi": "https://doi.org/10.1016/j.jisa.2018.12.004",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3007841246",
+   "title": "Post-Quantum Authentication in TLS 1.3: A Performance Study",
+   "year": 2020,
+   "cited_by_count": 147,
+   "doi": "https://doi.org/10.14722/ndss.2020.24203",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 7
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1990": 1,
+   "1993": 1,
+   "1997": 1,
+   "1998": 7,
+   "1999": 8,
+   "2000": 8,
+   "2001": 16,
+   "2002": 7,
+   "2003": 16,
+   "2004": 30,
+   "2005": 26,
+   "2006": 21,
+   "2007": 38,
+   "2008": 43,
+   "2009": 68,
+   "2010": 53,
+   "2011": 63,
+   "2012": 55,
+   "2013": 60,
+   "2014": 41,
+   "2015": 45,
+   "2016": 37,
+   "2017": 47,
+   "2018": 47,
+   "2019": 45,
+   "2020": 42,
+   "2021": 39,
+   "2022": 44,
+   "2023": 59,
+   "2024": 47,
+   "2025": 55,
+   "2026": 95
+  },
+  "openalex_total": 1165,
+  "arxiv_total": 49,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22elliptic+curve+discrete+logarithm%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5049279304",
+   "name": "Pierrick Gaudry",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5010929606",
+   "name": "Atsuko Miyaji",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5078756341",
+   "name": "Masaki Nakabayashi",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5067807679",
+   "name": "Shunzo Takano",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5037105570",
+   "name": "Steven D. Galbraith⋆",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5058156788",
+   "name": "Joseph H. Silverman",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5063307080",
+   "name": "Joe Suzuki",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5040193392",
+   "name": "Martin Roetteler",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5057584611",
+   "name": "Michael Naehrig",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5019716296",
+   "name": "Krysta M. Svore",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5002850656",
+   "name": "Kristin Lauter",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5026994882",
+   "name": "Claus Diem",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5072932633",
+   "name": "Laiphrakpam Dolendro Singh",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5075233695",
+   "name": "Kh. Manglem Singh",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5044827655",
+   "name": "Saleh Ibrahim",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I142476485",
+   "name": "École Polytechnique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210121838",
+   "name": "Laboratoire Lorrain de Recherche en Informatique et ses Applications",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210139461",
+   "name": "Laboratoire d'Informatique de l'École Polytechnique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I154130895",
+   "name": "University of Auckland",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1326498283",
+   "name": "Institut national de recherche en sciences et technologies du numérique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405260044",
+   "name": "CARAMBA: Cryptology, arithmetic : algebraic methods for better algorithms",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I90183372",
+   "name": "Université de Lorraine",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I27804330",
+   "name": "Brown University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I98285908",
+   "name": "The University of Osaka",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1290206253",
+   "name": "Microsoft (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I926574661",
+   "name": "Leipzig University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I265627732",
+   "name": "National Institute of Technology Manipur",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I145487455",
+   "name": "Cairo University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I179331831",
+   "name": "Taif University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "bsd",
+   "why": "shared keywords: elliptic curve; shared markets: cryptography"
+  },
+  {
+   "id": "fermat",
+   "why": "shared keywords: elliptic curve; shared markets: cryptography"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "owf",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "zkp",
+   "why": "shared markets: cryptography, finance; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Elliptic-curve_cryptography",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22elliptic+curve+discrete+logarithm%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "18 relevant works of 25 considered, 1165 works with the phrase"
+ }
+}

@@ -2,10 +2,9 @@ export const LIMITS = {
   stem: 15,
   intentStem: 20,
   option: 5,
-  optionOfTwo: 10,
-  maxOptions: 4,
+  choices: 3,
   why: 20,
-  screen: 35,
+  screen: 30,
   parityTokens: 1,
   parityShare: 0.3,
   formulaChars: 12,
@@ -15,6 +14,8 @@ export const LIMITS = {
   whyChars: 160,
   unspacedCharsPerToken: 2,
 } as const;
+
+export const QUIZ_QUESTIONS = { min: 3, max: 5 } as const;
 
 const UNITS = new Set([
   "percent", "%", "ms", "s", "sec", "secs", "second", "seconds", "min", "mins", "minute", "minutes", "h", "hr", "hrs", "hour", "hours",
@@ -158,10 +159,6 @@ export function screenTokens(q: Pick<Limited, "prompt" | "lines" | "choices">): 
   return stemTokens(q) + (q.choices ?? []).reduce((n, c) => n + countTokens(c), 0);
 }
 
-export function optionCap(count: number): number {
-  return count === 2 ? LIMITS.optionOfTwo : LIMITS.option;
-}
-
 export function checkLimits(q: Limited, o: { intent?: boolean } = {}): string[] {
   const found: string[] = [];
   const stem = stemTokens(q);
@@ -169,11 +166,10 @@ export function checkLimits(q: Limited, o: { intent?: boolean } = {}): string[] 
   if (stem > stemCap) found.push(`the stem has ${stem} tokens, the limit is ${stemCap}`);
   const choices = q.choices ?? [];
   if (o.intent && choices.length > 0) found.push("an intent question takes free text and has no options");
-  if (choices.length > LIMITS.maxOptions) found.push(`${choices.length} options, the limit is ${LIMITS.maxOptions}`);
-  const cap = optionCap(choices.length);
+  if (choices.length > 0 && choices.length !== LIMITS.choices) found.push(`${choices.length} options, a choice question takes exactly ${LIMITS.choices}`);
   for (const c of choices) {
     const n = countTokens(c);
-    if (n > cap) found.push(`an option has ${n} tokens, the limit is ${cap}`);
+    if (n > LIMITS.option) found.push(`an option has ${n} tokens, the limit is ${LIMITS.option}`);
   }
   if (!parityOk(choices)) found.push(`the options differ by more than ${LIMITS.parityTokens} token or ${LIMITS.parityShare * 100} percent in length`);
   const why = countTokens(q.explain ?? "");

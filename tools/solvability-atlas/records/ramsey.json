@@ -1,0 +1,84 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "ramsey",
+ "title": "Diagonal Ramsey exponential improvement",
+ "statement": {
+  "text": "In combinatorics, Ramsey's theorem, in one of its graph-theoretic forms, states that one will find monochromatic cliques in any edge labelling of a sufficiently large complete graph.",
+  "source": "https://en.wikipedia.org/wiki/Ramsey's_theorem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Ramsey's theorem",
+   "url": "https://en.wikipedia.org/wiki/Ramsey's_theorem"
+  }
+ },
+ "aliases": [
+  "Ramsey's theorem"
+ ],
+ "branch": "mathematics",
+ "level": 4,
+ "industries": [],
+ "posed": 1935,
+ "resolved": 2023,
+ "history": [
+  {
+   "year": 1935,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 2023,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22diagonal+Ramsey+numbers+exponential+improvement%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22diagonal+Ramsey+numbers+exponential+improvement%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "fourcolor",
+   "why": "shared keywords: graph coloring; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Ramsey's_theorem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22diagonal+Ramsey+numbers+exponential+improvement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22diagonal+Ramsey+numbers+exponential+improvement%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22diagonal+Ramsey+numbers+exponential+improvement%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 0 works, 0 kept; refine the query phrase in sources.tsv"
+ }
+}

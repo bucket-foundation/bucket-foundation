@@ -1,5 +1,5 @@
 import data from "../../../learning/app/short-fields.json" with { type: "json" };
-import { checkLimits, countTokens, parityOk } from "../../../src/lib/research-os/work-quiz/limits";
+import { checkLimits, countTokens, LIMITS, parityOk } from "../../../src/lib/research-os/work-quiz/limits";
 import { seededRandom, type Item, type Question } from "./grade";
 
 export interface ShortField {
@@ -39,7 +39,7 @@ export function shortLimitSec(prompt: string, answer: string): number {
   return Math.min(45, Math.max(20, Math.round((countTokens(prompt) + countTokens(answer)) * 1.5)));
 }
 
-export function buildShortQuestion(item: Item, pool: Item[], seed: string, choiceCount = 4): Question | null {
+export function buildShortQuestion(item: Item, pool: Item[], seed: string, choiceCount: number = LIMITS.choices): Question | null {
   if (!hasShort(item)) return null;
   const rand = seededRandom(seed + ":short:" + item.id);
   const answer = item.shortAnswer;
@@ -47,21 +47,16 @@ export function buildShortQuestion(item: Item, pool: Item[], seed: string, choic
   const stem = normShort(item.shortPrompt);
   const others = pool.filter((o): o is Item & { shortAnswer: string } => o.id !== item.id && !!o.shortAnswer && !!o.shortPrompt && normShort(o.shortAnswer) !== key);
   const ordered = [...shuffle(others.filter((o) => o.branch === item.branch), rand), ...shuffle(others.filter((o) => o.branch !== item.branch), rand)];
-  for (const n of [choiceCount, 2]) {
-    const picked: string[] = [];
-    for (const o of ordered) {
-      if (picked.length >= n - 1) break;
-      const c = o.shortAnswer;
-      if (picked.some((p) => normShort(p) === normShort(c)) || stem.includes(normShort(c))) continue;
-      const choices = [answer, ...picked, c];
-      if (!parityOk(choices)) continue;
-      if (n === 2 && checkLimits({ prompt: item.shortPrompt, choices }).length > 0) continue;
-      picked.push(c);
-    }
-    if (picked.length < n - 1) continue;
-    const choices = shuffle([answer, ...picked], rand);
-    if (checkLimits({ prompt: item.shortPrompt, choices }).length > 0) continue;
-    return { itemId: item.id, prompt: item.shortPrompt, choices, answerIndex: choices.indexOf(answer), limitSec: shortLimitSec(item.shortPrompt, answer) };
+  const picked: string[] = [];
+  for (const o of ordered) {
+    if (picked.length >= choiceCount - 1) break;
+    const c = o.shortAnswer;
+    if (picked.some((p) => normShort(p) === normShort(c)) || stem.includes(normShort(c))) continue;
+    if (!parityOk([answer, ...picked, c])) continue;
+    picked.push(c);
   }
-  return null;
+  if (picked.length < choiceCount - 1) return null;
+  const choices = shuffle([answer, ...picked], rand);
+  if (checkLimits({ prompt: item.shortPrompt, choices }).length > 0) return null;
+  return { itemId: item.id, prompt: item.shortPrompt, choices, answerIndex: choices.indexOf(answer), limitSec: shortLimitSec(item.shortPrompt, answer) };
 }

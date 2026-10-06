@@ -1,7 +1,7 @@
 export const MINT_STATES = ["minted", "pending", "draft", "unminted"] as const;
 export type MintState = (typeof MINT_STATES)[number];
 
-export const BRANCHES = ["mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "bucketmath"] as const;
+export const BRANCHES = ["mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "bucketmath", "applied"] as const;
 export type AtlasBranch = (typeof BRANCHES)[number];
 
 export const MINT_HINT: Record<MintState, string> = {

@@ -72,22 +72,8 @@ test("every type generates with its answer among the choices and a source", () =
   }
 });
 
-test("true-false answers match the source facts", () => {
-  for (let i = 0; i < 60; i++) {
-    const q = generateQuestion(SOURCES, `tf-${i}`, "true_false");
-    assert.ok(q);
-    assert.deepEqual(q.lines, []);
-    const bead = SOURCES.beads.find((b) => q.sources[0].ref === b.id);
-    if (bead) {
-      assert.ok(q.prompt.includes(shortTitle(bead.title, 6)));
-      assert.equal(q.answer, q.prompt.endsWith(`is ${bead.status.replace(/_/g, " ")}.`) ? "true" : "false");
-    } else {
-      const pr = SOURCES.prs.find((p) => q.sources[0].ref === `#${p.number}`);
-      assert.ok(pr);
-      assert.ok(q.prompt.includes(shortTitle(pr.title, 6)));
-      assert.equal(q.answer, q.prompt.endsWith(`on ${pr.date}.`) ? "true" : "false");
-    }
-  }
+test("true-false is retired and makes no question", () => {
+  for (let i = 0; i < 20; i++) assert.equal(generateQuestion(SOURCES, `tf-${i}`, "true_false"), null);
 });
 
 test("which-came-first names the older item", () => {
@@ -97,7 +83,7 @@ test("which-came-first names the older item", () => {
     if (!q) continue;
     made++;
     assert.ok(q.choices);
-    assert.equal(q.choices.length, 2);
+    assert.equal(q.choices.length, 3);
     assert.equal(q.sources.length, 1);
     if (q.sources[0].kind === "note") {
       assert.equal(q.answer, "Swipe Breaks");
@@ -105,10 +91,11 @@ test("which-came-first names the older item", () => {
     }
     const older = SOURCES.prs.find((p) => q.sources[0].ref === `#${p.number}`)!;
     assert.ok(shortTitle(older.title, 5).startsWith(q.answer));
-    const other = q.choices.find((c) => c !== q.answer)!;
-    const newer = SOURCES.prs.find((p) => p.number !== older.number && shortTitle(p.title, 5).startsWith(other))!;
-    assert.ok(older.order < newer.order);
-    assert.ok(q.explain.includes(older.date) && q.explain.includes(newer.date));
+    for (const other of q.choices.filter((c) => c !== q.answer)) {
+      const newer = SOURCES.prs.find((p) => p.number !== older.number && shortTitle(p.title, 5).startsWith(other))!;
+      assert.ok(older.order < newer.order);
+    }
+    assert.ok(q.explain.includes(older.date));
   }
   assert.ok(made >= 20, `which-first made ${made} of 40`);
 });
@@ -125,7 +112,7 @@ test("spot-the-error changes exactly the field it names", () => {
     } else {
       const b = SOURCES.beads.find((x) => q.sources[0].ref === x.id)!;
       const words = ["top", "high", "medium", "low", "lowest"];
-      const wrong = [q.lines[1] !== `status: ${b.status.replace(/_/g, " ")}` && "the status", q.lines[2] !== `priority: ${words[b.priority]}` && "the priority"].filter(Boolean);
+      const wrong = [q.lines[1] !== `status: ${b.status.replace(/_/g, " ")}` && "the status", q.lines[2] !== `priority: ${words[b.priority]}` && "the priority", q.lines[0] !== `"${shortTitle(b.title, 5)}"` && "the title"].filter(Boolean);
       assert.deepEqual(wrong, [q.answer]);
     }
   }
@@ -414,17 +401,17 @@ function oldCard(n: number, question: QuizQuestion): CardRow {
   return { learner_id: ME, question_id: question.id, question, card: { reps: 2, due: clock - 100_000 + n } as Card, due_at: new Date(clock - 100_000 + n).toISOString(), reps: 2 };
 }
 
-function oldTrueFalse(n: number, pr: { number: number; title: string; date: string } | null): QuizQuestion {
+function oldSpotError(n: number, pr: { number: number; title: string; date: string } | null): QuizQuestion {
   const number = pr?.number ?? 9000 + n;
   return {
-    id: `true_false:old${n}`,
-    type: "true_false",
-    prompt: "True or false?",
-    lines: [`PR #${number}, "${pr?.title ?? "a change that left the history window long ago and has no shorter form"} with the full sentence of context the old template quoted", merged into dev on 2026-09-22.`],
-    choices: ["true", "false"],
-    answer: "false",
+    id: `spot_error:old${n}`,
+    type: "spot_error",
+    prompt: "Which change fact is wrong?",
+    lines: [`number: #${number}`, "merged: 2026-09-22", `title: ${pr?.title ?? "a change that left the history window long ago and has no shorter form"} with the full sentence of context the old template quoted`],
+    choices: ["the number", "the date", "the title"],
+    answer: "the date",
     tolerance: 0,
-    limitSec: 20,
+    limitSec: 45,
     explain: `PR #${number} merged on ${pr?.date ?? "2026-01-01"}.`,
     sources: [{ kind: "pr", ref: `#${number}`, label: `PR #${number}`, href: null }],
   };
@@ -433,18 +420,18 @@ function oldTrueFalse(n: number, pr: { number: number; title: string; date: stri
 test("25 due cards over the limit are rewritten or retired, counted, and never hide the card behind them", async () => {
   const { deps, cards } = fakeDeps();
   for (let n = 0; n < 25; n++) {
-    const q = oldTrueFalse(n, n < 5 ? SOURCES.prs[n] : null);
+    const q = oldSpotError(n, n < 5 ? SOURCES.prs[n] : null);
     assert.ok(checkLimits(q).length > 0);
     cards.set(`${ME}|${q.id}`, oldCard(n, q));
   }
-  const behind: QuizQuestion = { ...oldTrueFalse(99, null), id: "true_false:short", prompt: 'The change "pgvector nearest-node search" merged on 2026-09-22.', lines: [], sources: [] };
+  const behind: QuizQuestion = { ...oldSpotError(99, null), id: "spot_error:short", lines: ["number: #9099", "merged: 2026-09-22", "title: pgvector nearest-node search"], sources: [] };
   cards.set(`${ME}|${behind.id}`, oldCard(1000, behind));
   const out = await issueQuestion(deps, ME, "review", new Date(clock));
   assert.equal(out.status, "issued");
   if (out.status !== "issued") return;
   assert.deepEqual([out.rewritten, out.retired, out.fromReview], [5, 20, true]);
   assert.deepEqual(checkLimits(out.question), []);
-  assert.match(out.question.prompt, /^The change "/);
+  assert.equal(out.question.prompt, "Which change fact is wrong?");
   assert.equal(retiredNotice(out.retired), "20 review cards were over the length limit, had no shorter form, and were retired.");
   const left = Array.from(cards.values());
   assert.equal(left.length, 6);
@@ -459,7 +446,7 @@ test("25 due cards over the limit are rewritten or retired, counted, and never h
 
 test("review mode with only retired cards says so and reports the count", async () => {
   const { deps, cards } = fakeDeps();
-  for (let n = 0; n < 450; n++) cards.set(`${ME}|true_false:old${n}`, oldCard(n, oldTrueFalse(n, null)));
+  for (let n = 0; n < 450; n++) cards.set(`${ME}|spot_error:old${n}`, oldCard(n, oldSpotError(n, null)));
   const out = await issueQuestion(deps, ME, "review", new Date(clock));
   assert.deepEqual(out, { status: "empty", reason: "nothing_due", retired: 450, rewritten: 0 });
   assert.equal(cards.size, 0);
@@ -469,7 +456,7 @@ test("review mode with only retired cards says so and reports the count", async 
 
 test("a rewrite that lands on a card the learner already holds retires the old one", async () => {
   const { deps, cards } = fakeDeps();
-  const old = oldTrueFalse(1, SOURCES.prs[0]);
+  const old = oldSpotError(1, SOURCES.prs[0]);
   const shorter = rewriteQuestion(old, SOURCES)!;
   assert.deepEqual(checkLimits(shorter), []);
   assert.equal(shorter.sources[0].ref, `#${SOURCES.prs[0].number}`);

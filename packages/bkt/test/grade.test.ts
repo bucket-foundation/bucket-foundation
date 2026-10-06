@@ -15,9 +15,9 @@ const item = (id: string, branch: string, answer: string): Item => ({
 const pool = [item("a", "physics", "A"), item("b", "physics", "B"), item("c", "physics", "C"), item("d", "physics", "D"), item("e", "math", "E")];
 
 describe("buildQuestion", () => {
-  test("has the answer once and three same-branch distractors", () => {
+  test("has the answer once and two same-branch distractors", () => {
     const q = buildQuestion(pool[0], pool, "s1");
-    expect(q.choices).toHaveLength(4);
+    expect(q.choices).toHaveLength(3);
     expect(q.choices[q.answerIndex]).toBe("A");
     expect(q.choices.filter((c) => c === "A")).toHaveLength(1);
     expect(q.choices).not.toContain("E");
@@ -29,7 +29,7 @@ describe("buildQuestion", () => {
 
   test("falls back to other branches when a branch is short", () => {
     const q = buildQuestion(pool[4], pool, "s2");
-    expect(q.choices).toHaveLength(4);
+    expect(q.choices).toHaveLength(3);
     expect(q.choices[q.answerIndex]).toBe("E");
   });
 

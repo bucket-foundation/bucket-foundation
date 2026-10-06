@@ -2,246 +2,186 @@
   "version": "0.1",
   "entries": [
     {
-      "id": "pr-572",
-      "date": "2026-10-04",
-      "category": "pr-merged",
+      "id": "production-solvability-frontier",
+      "date": "2026-10-06",
+      "category": "production",
       "branch": null,
-      "title": "Interactive sample and captioned desktop tour",
-      "summary": "New in download: interactive sample and captioned desktop tour.",
-      "commit": "e745b01",
-      "pr": 572,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/572"
+      "title": "The solvability frontier",
+      "summary": "One circle over 5,080 problems. Reach is a problem's highest text similarity to a solved problem; the circle sits at reach 0.781, where nine in ten solved problems sit. 3,846 inside, 1,234 outside.",
+      "commit": null,
+      "pr": 589,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/589",
+      "status": "merged",
+      "plot_title": "Solvability frontier over 5,080 problems: solved inside, open within reach on the ring, open beyond the circle, labels on the 40 outside problems with the largest pull",
+      "image": "/whats-new/solvability-frontier.webp",
+      "image_alt": "A large circle with 1,621 solved problems as filled dots in the centre, 2,225 open problems as rings inside the edge and 1,234 open problems as triangles outside, with problem names in two label columns and a legend of eight branches.",
+      "discussion": "Mathematics holds 4,112 rows and 3,644 of the inside, so the threshold is a mathematics threshold. A backtest at cutoffs 2005 and 2021 reads two ways. Counting solved only, inside rows settled at 21% against 6% and 12% against 1%. Counting solved or partial, 46% against 61% and 43% against 39%. The verdict is inconclusive. Embeddings and neighbours come from the 2026 corpus, so later statements shape the geometry each cutoff is scored on. Drawing: MIT code output over Apache-2.0 and CC BY-SA 4.0 data, attributed.",
+      "links": [
+        {
+          "label": "Report",
+          "href": "/research-os/solvability/frontier"
+        },
+        {
+          "label": "PR 576, the circle",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/576"
+        },
+        {
+          "label": "PR 581 and 582, the drawing",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/582"
+        },
+        {
+          "label": "PR 586, full set",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/586"
+        },
+        {
+          "label": "PR 589, backtest",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/589"
+        },
+        {
+          "label": "Data",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/tools/solvability-atlas"
+        },
+        {
+          "label": "Rule",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/src/lib/research-os/solvability-frontier.ts"
+        }
+      ]
     },
     {
-      "id": "pr-563",
-      "date": "2026-10-02",
-      "category": "pr-merged",
+      "id": "production-solvability-problem-set",
+      "date": "2026-10-06",
+      "category": "production",
       "branch": null,
-      "title": "Sampler with overdue slots and a coverage table (bkt-b89w.12)",
-      "summary": "New in quiz: sampler with overdue slots and a coverage table (bkt-b89w.12).",
-      "commit": "19a4d18",
-      "pr": 563,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/563"
+      "title": "The 5,080-problem set",
+      "summary": "71 curated atlas problems and 5,009 ingested rows from formal-conjectures, Wikipedia unsolved lists, Hilbert, Smale, Science 2005 and 2021, DARPA, XPRIZE, Holy Grails, systems neuroscience and solved timelines. 1,621 solved, 903 partial, 2,556 open.",
+      "commit": null,
+      "pr": 592,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/592",
+      "status": "merged",
+      "plot_title": "Make-up of the 5,080 problems: branch, status, form, source, licence, posed decade, resolved kind and prediction class",
+      "image": "/whats-new/solvability-problem-set-makeup.webp",
+      "image_alt": "A grid of stacked bar charts, one per label, each bar split by category with counts, mathematics the longest bar in every branch chart.",
+      "discussion": "Mathematics holds 4,112 rows; every other branch sits under 260, and mind has 5 solved of 108, so the set reads the sciences against a mathematics frontier. Licences: 3,557 rows Apache-2.0 from formal-conjectures, 1,154 CC BY-SA 4.0 from Wikipedia, DARPA and XPRIZE, 71 MIT, and 288 cited as headlines under 15 words with paraphrased statements from the Science, ACS and Library of Congress lists. 325 dated rows carry posed years for the backtest. Chart: MIT code output over Apache-2.0 and CC BY-SA 4.0 data, attributed.",
+      "links": [
+        {
+          "label": "Report",
+          "href": "/research-os/solvability/frontier"
+        },
+        {
+          "label": "PR 584, sources",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/584"
+        },
+        {
+          "label": "PR 587, solved science",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/587"
+        },
+        {
+          "label": "PR 588, dated lists",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/588"
+        },
+        {
+          "label": "PR 592, make-up",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/592"
+        },
+        {
+          "label": "problems-sourced.tsv",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/problems-sourced.tsv"
+        },
+        {
+          "label": "SOURCES.md",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/SOURCES.md"
+        }
+      ]
     },
     {
-      "id": "pr-566",
-      "date": "2026-10-02",
-      "category": "pr-merged",
+      "id": "production-solvability-components",
+      "date": "2026-10-06",
+      "category": "production",
       "branch": null,
-      "title": "Explore page in the desktop window on local data",
-      "summary": "New in bkt-ui: explore page in the desktop window on local data.",
-      "commit": "32ca10c",
-      "pr": 566,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/566"
+      "title": "Principal components of the problems",
+      "summary": "Five principal components of the 71 atlas problems from an SVD of centred bge-small embeddings, each named by the eight terms at its two ends.",
+      "commit": null,
+      "pr": 583,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/583",
+      "status": "merged",
+      "plot_title": "The 71 atlas problems on their first two principal components, labelled, with the terms that load each end",
+      "image": "/whats-new/solvability-components-problems.webp",
+      "image_alt": "Scatter of 71 labelled problems on two axes, number theory at one end of the first axis and photobiology, turbulence and dark energy at the other.",
+      "discussion": "Component 1 carries 12.6% of the variance and runs from additive number theory and diophantine sets to photobiology, turbulence and dark energy. Component 2, 8.5%, sets Kähler manifolds, string theory and gauge theory against computation, learning theory and AI. Component 3, 5.6%, sets qualia and black holes against redox, electron transport and membrane voltage. Component 4, 4.8%, runs longevity against correlated electrons and lattice QCD. On the full set component 1 split Lean theorems from problems, so the problems-only set is drawn. Drawing: MIT code output over MIT, CC BY-SA 4.0 and Apache-2.0 data, attributed.",
+      "links": [
+        {
+          "label": "Report",
+          "href": "/research-os/solvability/frontier"
+        },
+        {
+          "label": "PR 583",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/583"
+        },
+        {
+          "label": "atlas.py",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/atlas.py"
+        }
+      ]
     },
     {
-      "id": "pr-562",
-      "date": "2026-10-02",
-      "category": "pr-merged",
+      "id": "production-solvability-problem-records",
+      "date": "2026-10-06",
+      "category": "production",
       "branch": null,
-      "title": "Bkt notes, bkt history and bkt import",
-      "summary": "New in bkt: bkt notes, bkt history and bkt import.",
-      "commit": "650541e",
-      "pr": 562,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/562"
+      "title": "Problem records and OpenAlex activity",
+      "summary": "Each of the 71 atlas problems has a record: a Wikipedia statement, key works, yearly activity and arXiv totals from OpenAlex, and repo mentions. Empty records fell from 22 to 0; 54 full, 3 partial, 14 weak; 925 key works; activity for 67 of 71.",
+      "commit": null,
+      "pr": 590,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/590",
+      "status": "merged",
+      "plot_title": "OpenAlex works per sourced problem, 388 of 499 queried rows with any work; seven of eight branches under 30 rows",
+      "image": "/atlas/makeup/openalex_works_by_branch.webp",
+      "image_alt": "One stacked bar for mathematics, 499 rows split by works matching the query: 111 with none, 115 with 1 to 9, 153 with 10 to 99, 79 with 100 to 999, 41 with 1,000 or more.",
+      "discussion": "The records feed the embedding text, so a problem is placed by its statement and its literature. OpenAlex activity also covers 499 of the 5,009 sourced rows, all of them mathematics so far; the free budget is 1,000 requests a day and the run resumes daily. The chart compares no branches for that reason. Chart: MIT code output over OpenAlex CC0 counts for Apache-2.0 and CC BY-SA 4.0 problem rows, attributed.",
+      "links": [
+        {
+          "label": "Report",
+          "href": "/research-os/solvability/frontier"
+        },
+        {
+          "label": "PR 585, records",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/585"
+        },
+        {
+          "label": "PR 590, OpenAlex fill",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/590"
+        },
+        {
+          "label": "Records",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/tools/solvability-atlas/records"
+        },
+        {
+          "label": "openalex-sourced.json",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/openalex-sourced.json"
+        }
+      ]
     },
     {
-      "id": "pr-568",
-      "date": "2026-10-02",
-      "category": "pr-merged",
+      "id": "2026-10-06-language-quiz",
+      "date": "2026-10-06",
+      "category": "site-feature",
       "branch": null,
-      "title": "Explore e2e finds the no-author excerpt by its Talk label",
-      "summary": "Fix in site: explore e2e finds the no-author excerpt by its Talk label.",
-      "commit": "685547f",
-      "pr": 568,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/568"
+      "title": "Language questions on the quiz",
+      "summary": "Four question forms from the Polingual word set, meaning, sound, language and pair, across 27 languages, drawn from 844 word cells and 5,190 pairs. Each person picks languages on /research-os/quiz and in the desktop Work quiz; an empty pick leaves the quiz as it was. Every language question credits Wiktionary under CC BY-SA. These are pieces, short of a course. PRs #575, #577 and #580; #593 trims every choice question to three choices.",
+      "commit": null,
+      "pr": 580,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/580"
     },
     {
-      "id": "pr-560",
-      "date": "2026-10-02",
-      "category": "pr-merged",
+      "id": "2026-10-06-desktop-resources",
+      "date": "2026-10-06",
+      "category": "site-feature",
       "branch": null,
-      "title": "Short quiz fields for the learning corpus (bkt-b89w.8)",
-      "summary": "New in bkt: short quiz fields for the learning corpus (bkt-b89w.8).",
-      "commit": "52c7c74",
-      "pr": 560,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/560"
-    },
-    {
-      "id": "pr-555",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Knowledge graph on the Canon screen (bkt-6wjd.9)",
-      "summary": "New in bkt-ui: knowledge graph on the Canon screen (bkt-6wjd.9).",
-      "commit": "bfb12aa",
-      "pr": 555,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/555"
-    },
-    {
-      "id": "pr-554",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Learn and daily commands with the writes-beside-server rule (bkt-qkcp.4)",
-      "summary": "New in bkt: learn and daily commands with the writes-beside-server rule (bkt-qkcp.4).",
-      "commit": "cb79efd",
-      "pr": 554,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/554"
-    },
-    {
-      "id": "pr-567",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Restore writeRoute import and read any pack graph shape",
-      "summary": "Fix in bkt: restore writeRoute import and read any pack graph shape.",
-      "commit": "1175356",
-      "pr": 567,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/567"
-    },
-    {
-      "id": "pr-549",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Data screen with tabs (bkt-u4iw)",
-      "summary": "New in bkt-ui: Data screen with tabs (bkt-u4iw).",
-      "commit": "5d9be42",
-      "pr": 549,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/549"
-    },
-    {
-      "id": "pr-559",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Live timeline, at times, publish email and autopublish scope",
-      "summary": "New in whats-new: live timeline, at times, publish email and autopublish scope.",
-      "commit": "2acff76",
-      "pr": 559,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/559"
-    },
-    {
-      "id": "pr-561",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Follow-ups from the four Lean PRs",
-      "summary": "Fix in lean: follow-ups from the four Lean PRs.",
-      "commit": "32c5a8e",
-      "pr": 561,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/561"
-    },
-    {
-      "id": "pr-565",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "The desktop turn of 2026-10-01",
-      "summary": "Docs in history: the desktop turn of 2026-10-01.",
-      "commit": "573188b",
-      "pr": 565,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/565"
-    },
-    {
-      "id": "pr-557",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Seven Learn views pass with the network denied",
-      "summary": "Tests in bkt: seven Learn views pass with the network denied.",
-      "commit": "67b44cf",
-      "pr": 557,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/557"
-    },
-    {
-      "id": "pr-533",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Ranking with a pinned founding work",
-      "summary": "New in explore: ranking with a pinned founding work.",
-      "commit": "6ffe8f7",
-      "pr": 533,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/533"
-    },
-    {
-      "id": "pr-558",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Bkt search, bkt canon show and TUI screens 1 to 5",
-      "summary": "New in bkt: bkt search, bkt canon show and TUI screens 1 to 5.",
-      "commit": "5b32b7b",
-      "pr": 558,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/558"
-    },
-    {
-      "id": "pr-556",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Question sample space, four forms and the card key (bkt-b89w.2)",
-      "summary": "New in quiz: question sample space, four forms and the card key (bkt-b89w.2).",
-      "commit": "70b4f5b",
-      "pr": 556,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/556"
-    },
-    {
-      "id": "pr-529",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Bkt app keeps one window per profile",
-      "summary": "Fix in bkt: bkt app keeps one window per profile.",
-      "commit": "56b0bae",
-      "pr": 529,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/529"
-    },
-    {
-      "id": "pr-538",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Analyze data replaces Jobs, plain words slice 2 (bkt-398t.3)",
-      "summary": "New in bkt-ui: Analyze data replaces Jobs, plain words slice 2 (bkt-398t.3).",
-      "commit": "d9a920c",
-      "pr": 538,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/538"
-    },
-    {
-      "id": "pr-550",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Specify the payment split and emit contract vectors",
-      "summary": "New in lean: specify the payment split and emit contract vectors.",
-      "commit": "30c14f0",
-      "pr": 550,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/550"
-    },
-    {
-      "id": "pr-544",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Navigation, Add your own and the Work quiz setup page, plain words slice 3 (bkt-398t.4)",
-      "summary": "New in bkt-ui: navigation, Add your own and the Work quiz setup page, plain words slice 3 (bkt-398t.4).",
-      "commit": "838fc08",
-      "pr": 544,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/544"
-    },
-    {
-      "id": "pr-547",
-      "date": "2026-10-02",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Bound the review scheduling clamps and replay fsrs.ts",
-      "summary": "New in lean: bound the review scheduling clamps and replay fsrs.ts.",
-      "commit": "7d625b7",
-      "pr": 547,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/547"
+      "title": "The desktop app uses less of your machine",
+      "summary": "Explore scenes draw on demand, spin at 20 fps, rest after 15 s idle and stop when hidden; idle CPU fell from about four cores to under 13% of one. Python jobs run with 4 threads, an 8 GiB address-space cap and nice 10. SQLite gains a checkpoint and a journal limit, so the write log after a 20 MB write fell from 21 MB to under 4 MB. A fresh window profile fell from 127 MB to 8 MB. Open: the protein view still grows about 16 MB per visit.",
+      "commit": null,
+      "pr": 578,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/578"
     },
     {
       "id": "production-desktop-turn",
@@ -310,457 +250,6 @@
       "commit": "c15e4cc",
       "pr": 496,
       "url": "https://github.com/bucket-foundation/bucket-foundation/pull/496"
-    },
-    {
-      "id": "pr-498",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Publish desktop installers in the bkt-v release",
-      "summary": "New in bkt-desktop: publish desktop installers in the bkt-v release.",
-      "commit": "7d075ab",
-      "pr": 498,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/498"
-    },
-    {
-      "id": "pr-502",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Fail closed when the serve peer lookup is unavailable",
-      "summary": "Fix in bkt: fail closed when the serve peer lookup is unavailable.",
-      "commit": "03674b7",
-      "pr": 502,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/502"
-    },
-    {
-      "id": "pr-503",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Canon is a single header link, dropdown removed",
-      "summary": "Fix in site: Canon is a single header link, dropdown removed.",
-      "commit": "a0353fe",
-      "pr": 503,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/503"
-    },
-    {
-      "id": "pr-499",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Call whoami by absolute System32 path on Windows",
-      "summary": "Fix in bkt: call whoami by absolute System32 path on Windows.",
-      "commit": "db552b1",
-      "pr": 499,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/499"
-    },
-    {
-      "id": "pr-501",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Final /privacy text matching what /download stores",
-      "summary": "Fix in site: final /privacy text matching what /download stores.",
-      "commit": "52513d7",
-      "pr": 501,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/501"
-    },
-    {
-      "id": "pr-500",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "What's New entries for the desktop and download PRs",
-      "summary": "New in site: What's New entries for the desktop and download PRs.",
-      "commit": "1b538b1",
-      "pr": 500,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/500"
-    },
-    {
-      "id": "pr-497",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Close sign-in in production behind SIGN_IN_OPEN",
-      "summary": "Fix in site: close sign-in in production behind SIGN_IN_OPEN.",
-      "commit": "fb06887",
-      "pr": 497,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/497"
-    },
-    {
-      "id": "pr-509",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "LAUNCH.md names the bkt-v0.4.0 assets and the window limit",
-      "summary": "Docs in growth: LAUNCH.md names the bkt-v0.4.0 assets and the window limit.",
-      "commit": "c548541",
-      "pr": 509,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/509"
-    },
-    {
-      "id": "pr-508",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "README covers the window and what 0.4.0 ships",
-      "summary": "Docs in bkt: README covers the window and what 0.4.0 ships.",
-      "commit": "c6d2ed5",
-      "pr": 508,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/508"
-    },
-    {
-      "id": "pr-507",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Open the daily quiz from a bucket:// link",
-      "summary": "New in bkt-desktop: open the daily quiz from a bucket:// link.",
-      "commit": "70a83c4",
-      "pr": 507,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/507"
-    },
-    {
-      "id": "pr-506",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Daily quiz view at #/work/daily/<day>",
-      "summary": "New in bkt-ui: daily quiz view at #/work/daily/<day>.",
-      "commit": "b0127fc",
-      "pr": 506,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/506"
-    },
-    {
-      "id": "pr-504",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Daily quiz store and Fermi log10 grading",
-      "summary": "New in bkt: daily quiz store and Fermi log10 grading.",
-      "commit": "6d4cf37",
-      "pr": 504,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/504"
-    },
-    {
-      "id": "pr-535",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Plain output on the command line and in the terminal app (bkt-398t.2)",
-      "summary": "New in bkt: plain output on the command line and in the terminal app (bkt-398t.2).",
-      "commit": "34ca884",
-      "pr": 535,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/535"
-    },
-    {
-      "id": "pr-534",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Ingest API slice 3, publish, delete, audit and digest freeze",
-      "summary": "New in whats-new: ingest API slice 3, publish, delete, audit and digest freeze.",
-      "commit": "b03165b",
-      "pr": 534,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/534"
-    },
-    {
-      "id": "pr-536",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Prove the ranking order and replay it against canon-rank",
-      "summary": "New in lean: prove the ranking order and replay it against canon-rank.",
-      "commit": "78f980b",
-      "pr": 536,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/536"
-    },
-    {
-      "id": "pr-523",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Plain words in the Bucket window, slice 1 (bkt-398t.1)",
-      "summary": "New in bkt-ui: plain words in the Bucket window, slice 1 (bkt-398t.1).",
-      "commit": "300b310",
-      "pr": 523,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/523"
-    },
-    {
-      "id": "pr-522",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Ingest API slice 1, store, auth, POST and GET entries",
-      "summary": "New in whats-new: ingest API slice 1, store, auth, POST and GET entries.",
-      "commit": "b8af4d7",
-      "pr": 522,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/522"
-    },
-    {
-      "id": "pr-521",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Draft the founding works data with a validator",
-      "summary": "New in explore: draft the founding works data with a validator.",
-      "commit": "a9b3a91",
-      "pr": 521,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/521"
-    },
-    {
-      "id": "pr-515",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Canon data pack and keyword search view",
-      "summary": "New in bkt: canon data pack and keyword search view.",
-      "commit": "aee257f",
-      "pr": 515,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/515"
-    },
-    {
-      "id": "pr-520",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Add the primary papers to the source index",
-      "summary": "New in explore: add the primary papers to the source index.",
-      "commit": "c272bc4",
-      "pr": 520,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/520"
-    },
-    {
-      "id": "pr-514",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Daily quiz notifier and systemd timer on Linux",
-      "summary": "New in bkt: daily quiz notifier and systemd timer on Linux.",
-      "commit": "91b424d",
-      "pr": 514,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/514"
-    },
-    {
-      "id": "pr-517",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Keep sample advisors out of production, add a draft evaluation set",
-      "summary": "Fix in explore: keep sample advisors out of production, add a draft evaluation set.",
-      "commit": "e5e1a5d",
-      "pr": 517,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/517"
-    },
-    {
-      "id": "pr-516",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Never overwrite a keyring entry, scope keys to the data folder, allowlist --json",
-      "summary": "Fix in bkt: never overwrite a keyring entry, scope keys to the data folder, allowlist --json.",
-      "commit": "6c7e0f0",
-      "pr": 516,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/516"
-    },
-    {
-      "id": "pr-513",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "CLI help, usage errors, exit codes, --json and the keyring guard",
-      "summary": "New in bkt: CLI help, usage errors, exit codes, --json and the keyring guard.",
-      "commit": "8dc140d",
-      "pr": 513,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/513"
-    },
-    {
-      "id": "pr-511",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Canon search ranking in one pure function",
-      "summary": "Refactor in site: canon search ranking in one pure function.",
-      "commit": "6101f25",
-      "pr": 511,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/511"
-    },
-    {
-      "id": "pr-510",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Chat sources, secret scan and question writer for the daily quiz",
-      "summary": "New in bkt: chat sources, secret scan and question writer for the daily quiz.",
-      "commit": "3106932",
-      "pr": 510,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/510"
-    },
-    {
-      "id": "pr-548",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Grip sphere and topic graph on Path (bkt-bay5)",
-      "summary": "New in bkt-ui: grip sphere and topic graph on Path (bkt-bay5).",
-      "commit": "72cddc7",
-      "pr": 548,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/548"
-    },
-    {
-      "id": "pr-537",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Bkt doctor and bkt completion (bkt-qkcp.3)",
-      "summary": "New in bkt: bkt doctor and bkt completion (bkt-qkcp.3).",
-      "commit": "c223f77",
-      "pr": 537,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/537"
-    },
-    {
-      "id": "pr-552",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Slice 4, Generations section and admin draft preview",
-      "summary": "New in whats-new: slice 4, Generations section and admin draft preview.",
-      "commit": "d4d37a1",
-      "pr": 552,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/552"
-    },
-    {
-      "id": "pr-545",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Specify the log-scale grade and replay grade.ts",
-      "summary": "New in lean: specify the log-scale grade and replay grade.ts.",
-      "commit": "f650f03",
-      "pr": 545,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/545"
-    },
-    {
-      "id": "pr-530",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Canon search rendering in the desktop window",
-      "summary": "New in bkt-ui: canon search rendering in the desktop window.",
-      "commit": "1b0f00b",
-      "pr": 530,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/530"
-    },
-    {
-      "id": "pr-539",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Rust reads the keyring entries the TypeScript app stored (S2)",
-      "summary": "Change: Rust reads the keyring entries the TypeScript app stored (S2).",
-      "commit": "2d4cb0f",
-      "pr": 539,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/539"
-    },
-    {
-      "id": "pr-528",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Length limits on the work quiz and daily quiz (bkt-b89w.1)",
-      "summary": "New in quiz: length limits on the work quiz and daily quiz (bkt-b89w.1).",
-      "commit": "d2f0308",
-      "pr": 528,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/528"
-    },
-    {
-      "id": "pr-531",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Explore search on local data in the desktop app",
-      "summary": "New in bkt: explore search on local data in the desktop app.",
-      "commit": "f4621a7",
-      "pr": 531,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/531"
-    },
-    {
-      "id": "pr-553",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Target architecture v9 with key store spike S2",
-      "summary": "Docs in architecture: target architecture v9 with key store spike S2.",
-      "commit": "a0952b5",
-      "pr": 553,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/553"
-    },
-    {
-      "id": "pr-542",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Explicit id tie-break in the canon rankers",
-      "summary": "Fix in site: explicit id tie-break in the canon rankers.",
-      "commit": "2322e3d",
-      "pr": 542,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/542"
-    },
-    {
-      "id": "pr-540",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Rust engine feasibility experiments for bkt-neoj",
-      "summary": "Change: Rust engine feasibility experiments for bkt-neoj.",
-      "commit": "8da845f",
-      "pr": 540,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/540"
-    },
-    {
-      "id": "pr-518",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Target architecture draft",
-      "summary": "Docs: target architecture draft.",
-      "commit": "f6b9af3",
-      "pr": 518,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/518"
-    },
-    {
-      "id": "pr-543",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Ingest API slice 2, images through sharp",
-      "summary": "New in whats-new: ingest API slice 2, images through sharp.",
-      "commit": "57a95d7",
-      "pr": 543,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/543"
-    },
-    {
-      "id": "pr-551",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Data standard proposal v2, bucket.data/1 draft",
-      "summary": "Docs in data: data standard proposal v2, bucket.data/1 draft.",
-      "commit": "96f1815",
-      "pr": 551,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/551"
-    },
-    {
-      "id": "pr-532",
-      "date": "2026-10-01",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Save and cite a result (bkt-1fuf.5)",
-      "summary": "New in explore: save and cite a result (bkt-1fuf.5).",
-      "commit": "36e9840",
-      "pr": 532,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/532"
     },
     {
       "id": "production-solver-gap-engine",
@@ -3773,6 +3262,699 @@
       "title": "Canon site refactor",
       "summary": "Branch grid + interactive armillary globe at /canon. Filesystem-driven entry tables. The private corpus left the top nav and became one of several sources under biophysics. Pattern-B changelog (this file) introduced.",
       "commit": "afec2ed"
+    },
+    {
+      "id": "pr-572",
+      "date": "2026-10-04",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Interactive sample and captioned desktop tour",
+      "summary": "New in download: interactive sample and captioned desktop tour.",
+      "commit": "e745b01",
+      "pr": 572,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/572"
+    },
+    {
+      "id": "pr-563",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Sampler with overdue slots and a coverage table (bkt-b89w.12)",
+      "summary": "New in quiz: sampler with overdue slots and a coverage table (bkt-b89w.12).",
+      "commit": "19a4d18",
+      "pr": 563,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/563"
+    },
+    {
+      "id": "pr-566",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Explore page in the desktop window on local data",
+      "summary": "New in bkt-ui: explore page in the desktop window on local data.",
+      "commit": "32ca10c",
+      "pr": 566,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/566"
+    },
+    {
+      "id": "pr-562",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Bkt notes, bkt history and bkt import",
+      "summary": "New in bkt: bkt notes, bkt history and bkt import.",
+      "commit": "650541e",
+      "pr": 562,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/562"
+    },
+    {
+      "id": "pr-568",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Explore e2e finds the no-author excerpt by its Talk label",
+      "summary": "Fix in site: explore e2e finds the no-author excerpt by its Talk label.",
+      "commit": "685547f",
+      "pr": 568,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/568"
+    },
+    {
+      "id": "pr-560",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Short quiz fields for the learning corpus (bkt-b89w.8)",
+      "summary": "New in bkt: short quiz fields for the learning corpus (bkt-b89w.8).",
+      "commit": "52c7c74",
+      "pr": 560,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/560"
+    },
+    {
+      "id": "pr-555",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Knowledge graph on the Canon screen (bkt-6wjd.9)",
+      "summary": "New in bkt-ui: knowledge graph on the Canon screen (bkt-6wjd.9).",
+      "commit": "bfb12aa",
+      "pr": 555,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/555"
+    },
+    {
+      "id": "pr-554",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Learn and daily commands with the writes-beside-server rule (bkt-qkcp.4)",
+      "summary": "New in bkt: learn and daily commands with the writes-beside-server rule (bkt-qkcp.4).",
+      "commit": "cb79efd",
+      "pr": 554,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/554"
+    },
+    {
+      "id": "pr-567",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Restore writeRoute import and read any pack graph shape",
+      "summary": "Fix in bkt: restore writeRoute import and read any pack graph shape.",
+      "commit": "1175356",
+      "pr": 567,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/567"
+    },
+    {
+      "id": "pr-549",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Data screen with tabs (bkt-u4iw)",
+      "summary": "New in bkt-ui: Data screen with tabs (bkt-u4iw).",
+      "commit": "5d9be42",
+      "pr": 549,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/549"
+    },
+    {
+      "id": "pr-559",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Live timeline, at times, publish email and autopublish scope",
+      "summary": "New in whats-new: live timeline, at times, publish email and autopublish scope.",
+      "commit": "2acff76",
+      "pr": 559,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/559"
+    },
+    {
+      "id": "pr-561",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Follow-ups from the four Lean PRs",
+      "summary": "Fix in lean: follow-ups from the four Lean PRs.",
+      "commit": "32c5a8e",
+      "pr": 561,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/561"
+    },
+    {
+      "id": "pr-565",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "The desktop turn of 2026-10-01",
+      "summary": "Docs in history: the desktop turn of 2026-10-01.",
+      "commit": "573188b",
+      "pr": 565,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/565"
+    },
+    {
+      "id": "pr-557",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Seven Learn views pass with the network denied",
+      "summary": "Tests in bkt: seven Learn views pass with the network denied.",
+      "commit": "67b44cf",
+      "pr": 557,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/557"
+    },
+    {
+      "id": "pr-533",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Ranking with a pinned founding work",
+      "summary": "New in explore: ranking with a pinned founding work.",
+      "commit": "6ffe8f7",
+      "pr": 533,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/533"
+    },
+    {
+      "id": "pr-558",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Bkt search, bkt canon show and TUI screens 1 to 5",
+      "summary": "New in bkt: bkt search, bkt canon show and TUI screens 1 to 5.",
+      "commit": "5b32b7b",
+      "pr": 558,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/558"
+    },
+    {
+      "id": "pr-556",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Question sample space, four forms and the card key (bkt-b89w.2)",
+      "summary": "New in quiz: question sample space, four forms and the card key (bkt-b89w.2).",
+      "commit": "70b4f5b",
+      "pr": 556,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/556"
+    },
+    {
+      "id": "pr-529",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Bkt app keeps one window per profile",
+      "summary": "Fix in bkt: bkt app keeps one window per profile.",
+      "commit": "56b0bae",
+      "pr": 529,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/529"
+    },
+    {
+      "id": "pr-538",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Analyze data replaces Jobs, plain words slice 2 (bkt-398t.3)",
+      "summary": "New in bkt-ui: Analyze data replaces Jobs, plain words slice 2 (bkt-398t.3).",
+      "commit": "d9a920c",
+      "pr": 538,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/538"
+    },
+    {
+      "id": "pr-550",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Specify the payment split and emit contract vectors",
+      "summary": "New in lean: specify the payment split and emit contract vectors.",
+      "commit": "30c14f0",
+      "pr": 550,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/550"
+    },
+    {
+      "id": "pr-544",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Navigation, Add your own and the Work quiz setup page, plain words slice 3 (bkt-398t.4)",
+      "summary": "New in bkt-ui: navigation, Add your own and the Work quiz setup page, plain words slice 3 (bkt-398t.4).",
+      "commit": "838fc08",
+      "pr": 544,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/544"
+    },
+    {
+      "id": "pr-547",
+      "date": "2026-10-02",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Bound the review scheduling clamps and replay fsrs.ts",
+      "summary": "New in lean: bound the review scheduling clamps and replay fsrs.ts.",
+      "commit": "7d625b7",
+      "pr": 547,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/547"
+    },
+    {
+      "id": "pr-498",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Publish desktop installers in the bkt-v release",
+      "summary": "New in bkt-desktop: publish desktop installers in the bkt-v release.",
+      "commit": "7d075ab",
+      "pr": 498,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/498"
+    },
+    {
+      "id": "pr-502",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Fail closed when the serve peer lookup is unavailable",
+      "summary": "Fix in bkt: fail closed when the serve peer lookup is unavailable.",
+      "commit": "03674b7",
+      "pr": 502,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/502"
+    },
+    {
+      "id": "pr-503",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Canon is a single header link, dropdown removed",
+      "summary": "Fix in site: Canon is a single header link, dropdown removed.",
+      "commit": "a0353fe",
+      "pr": 503,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/503"
+    },
+    {
+      "id": "pr-499",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Call whoami by absolute System32 path on Windows",
+      "summary": "Fix in bkt: call whoami by absolute System32 path on Windows.",
+      "commit": "db552b1",
+      "pr": 499,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/499"
+    },
+    {
+      "id": "pr-501",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Final /privacy text matching what /download stores",
+      "summary": "Fix in site: final /privacy text matching what /download stores.",
+      "commit": "52513d7",
+      "pr": 501,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/501"
+    },
+    {
+      "id": "pr-500",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "What's New entries for the desktop and download PRs",
+      "summary": "New in site: What's New entries for the desktop and download PRs.",
+      "commit": "1b538b1",
+      "pr": 500,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/500"
+    },
+    {
+      "id": "pr-497",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Close sign-in in production behind SIGN_IN_OPEN",
+      "summary": "Fix in site: close sign-in in production behind SIGN_IN_OPEN.",
+      "commit": "fb06887",
+      "pr": 497,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/497"
+    },
+    {
+      "id": "pr-509",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "LAUNCH.md names the bkt-v0.4.0 assets and the window limit",
+      "summary": "Docs in growth: LAUNCH.md names the bkt-v0.4.0 assets and the window limit.",
+      "commit": "c548541",
+      "pr": 509,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/509"
+    },
+    {
+      "id": "pr-508",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "README covers the window and what 0.4.0 ships",
+      "summary": "Docs in bkt: README covers the window and what 0.4.0 ships.",
+      "commit": "c6d2ed5",
+      "pr": 508,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/508"
+    },
+    {
+      "id": "pr-507",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Open the daily quiz from a bucket:// link",
+      "summary": "New in bkt-desktop: open the daily quiz from a bucket:// link.",
+      "commit": "70a83c4",
+      "pr": 507,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/507"
+    },
+    {
+      "id": "pr-506",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Daily quiz view at #/work/daily/<day>",
+      "summary": "New in bkt-ui: daily quiz view at #/work/daily/<day>.",
+      "commit": "b0127fc",
+      "pr": 506,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/506"
+    },
+    {
+      "id": "pr-504",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Daily quiz store and Fermi log10 grading",
+      "summary": "New in bkt: daily quiz store and Fermi log10 grading.",
+      "commit": "6d4cf37",
+      "pr": 504,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/504"
+    },
+    {
+      "id": "pr-535",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Plain output on the command line and in the terminal app (bkt-398t.2)",
+      "summary": "New in bkt: plain output on the command line and in the terminal app (bkt-398t.2).",
+      "commit": "34ca884",
+      "pr": 535,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/535"
+    },
+    {
+      "id": "pr-534",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Ingest API slice 3, publish, delete, audit and digest freeze",
+      "summary": "New in whats-new: ingest API slice 3, publish, delete, audit and digest freeze.",
+      "commit": "b03165b",
+      "pr": 534,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/534"
+    },
+    {
+      "id": "pr-536",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Prove the ranking order and replay it against canon-rank",
+      "summary": "New in lean: prove the ranking order and replay it against canon-rank.",
+      "commit": "78f980b",
+      "pr": 536,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/536"
+    },
+    {
+      "id": "pr-523",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Plain words in the Bucket window, slice 1 (bkt-398t.1)",
+      "summary": "New in bkt-ui: plain words in the Bucket window, slice 1 (bkt-398t.1).",
+      "commit": "300b310",
+      "pr": 523,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/523"
+    },
+    {
+      "id": "pr-522",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Ingest API slice 1, store, auth, POST and GET entries",
+      "summary": "New in whats-new: ingest API slice 1, store, auth, POST and GET entries.",
+      "commit": "b8af4d7",
+      "pr": 522,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/522"
+    },
+    {
+      "id": "pr-521",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Draft the founding works data with a validator",
+      "summary": "New in explore: draft the founding works data with a validator.",
+      "commit": "a9b3a91",
+      "pr": 521,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/521"
+    },
+    {
+      "id": "pr-515",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Canon data pack and keyword search view",
+      "summary": "New in bkt: canon data pack and keyword search view.",
+      "commit": "aee257f",
+      "pr": 515,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/515"
+    },
+    {
+      "id": "pr-520",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Add the primary papers to the source index",
+      "summary": "New in explore: add the primary papers to the source index.",
+      "commit": "c272bc4",
+      "pr": 520,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/520"
+    },
+    {
+      "id": "pr-514",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Daily quiz notifier and systemd timer on Linux",
+      "summary": "New in bkt: daily quiz notifier and systemd timer on Linux.",
+      "commit": "91b424d",
+      "pr": 514,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/514"
+    },
+    {
+      "id": "pr-517",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Keep sample advisors out of production, add a draft evaluation set",
+      "summary": "Fix in explore: keep sample advisors out of production, add a draft evaluation set.",
+      "commit": "e5e1a5d",
+      "pr": 517,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/517"
+    },
+    {
+      "id": "pr-516",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Never overwrite a keyring entry, scope keys to the data folder, allowlist --json",
+      "summary": "Fix in bkt: never overwrite a keyring entry, scope keys to the data folder, allowlist --json.",
+      "commit": "6c7e0f0",
+      "pr": 516,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/516"
+    },
+    {
+      "id": "pr-513",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "CLI help, usage errors, exit codes, --json and the keyring guard",
+      "summary": "New in bkt: CLI help, usage errors, exit codes, --json and the keyring guard.",
+      "commit": "8dc140d",
+      "pr": 513,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/513"
+    },
+    {
+      "id": "pr-511",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Canon search ranking in one pure function",
+      "summary": "Refactor in site: canon search ranking in one pure function.",
+      "commit": "6101f25",
+      "pr": 511,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/511"
+    },
+    {
+      "id": "pr-510",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Chat sources, secret scan and question writer for the daily quiz",
+      "summary": "New in bkt: chat sources, secret scan and question writer for the daily quiz.",
+      "commit": "3106932",
+      "pr": 510,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/510"
+    },
+    {
+      "id": "pr-548",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Grip sphere and topic graph on Path (bkt-bay5)",
+      "summary": "New in bkt-ui: grip sphere and topic graph on Path (bkt-bay5).",
+      "commit": "72cddc7",
+      "pr": 548,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/548"
+    },
+    {
+      "id": "pr-537",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Bkt doctor and bkt completion (bkt-qkcp.3)",
+      "summary": "New in bkt: bkt doctor and bkt completion (bkt-qkcp.3).",
+      "commit": "c223f77",
+      "pr": 537,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/537"
+    },
+    {
+      "id": "pr-552",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Slice 4, Generations section and admin draft preview",
+      "summary": "New in whats-new: slice 4, Generations section and admin draft preview.",
+      "commit": "d4d37a1",
+      "pr": 552,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/552"
+    },
+    {
+      "id": "pr-545",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Specify the log-scale grade and replay grade.ts",
+      "summary": "New in lean: specify the log-scale grade and replay grade.ts.",
+      "commit": "f650f03",
+      "pr": 545,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/545"
+    },
+    {
+      "id": "pr-530",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Canon search rendering in the desktop window",
+      "summary": "New in bkt-ui: canon search rendering in the desktop window.",
+      "commit": "1b0f00b",
+      "pr": 530,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/530"
+    },
+    {
+      "id": "pr-539",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Rust reads the keyring entries the TypeScript app stored (S2)",
+      "summary": "Change: Rust reads the keyring entries the TypeScript app stored (S2).",
+      "commit": "2d4cb0f",
+      "pr": 539,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/539"
+    },
+    {
+      "id": "pr-528",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Length limits on the work quiz and daily quiz (bkt-b89w.1)",
+      "summary": "New in quiz: length limits on the work quiz and daily quiz (bkt-b89w.1).",
+      "commit": "d2f0308",
+      "pr": 528,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/528"
+    },
+    {
+      "id": "pr-531",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Explore search on local data in the desktop app",
+      "summary": "New in bkt: explore search on local data in the desktop app.",
+      "commit": "f4621a7",
+      "pr": 531,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/531"
+    },
+    {
+      "id": "pr-553",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Target architecture v9 with key store spike S2",
+      "summary": "Docs in architecture: target architecture v9 with key store spike S2.",
+      "commit": "a0952b5",
+      "pr": 553,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/553"
+    },
+    {
+      "id": "pr-542",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Explicit id tie-break in the canon rankers",
+      "summary": "Fix in site: explicit id tie-break in the canon rankers.",
+      "commit": "2322e3d",
+      "pr": 542,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/542"
+    },
+    {
+      "id": "pr-540",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Rust engine feasibility experiments for bkt-neoj",
+      "summary": "Change: Rust engine feasibility experiments for bkt-neoj.",
+      "commit": "8da845f",
+      "pr": 540,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/540"
+    },
+    {
+      "id": "pr-518",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Target architecture draft",
+      "summary": "Docs: target architecture draft.",
+      "commit": "f6b9af3",
+      "pr": 518,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/518"
+    },
+    {
+      "id": "pr-543",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Ingest API slice 2, images through sharp",
+      "summary": "New in whats-new: ingest API slice 2, images through sharp.",
+      "commit": "57a95d7",
+      "pr": 543,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/543"
+    },
+    {
+      "id": "pr-551",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Data standard proposal v2, bucket.data/1 draft",
+      "summary": "Docs in data: data standard proposal v2, bucket.data/1 draft.",
+      "commit": "96f1815",
+      "pr": 551,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/551"
+    },
+    {
+      "id": "pr-532",
+      "date": "2026-10-01",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Save and cite a result (bkt-1fuf.5)",
+      "summary": "New in explore: save and cite a result (bkt-1fuf.5).",
+      "commit": "36e9840",
+      "pr": 532,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/532"
     }
   ]
 }

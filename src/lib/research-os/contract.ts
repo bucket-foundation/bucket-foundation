@@ -128,3 +128,69 @@ function fetchSource(kind: "web" | "local", opts: FetchSourceOptions): RosSource
 export const webRosSource = (opts: Omit<FetchSourceOptions, "token"> = {}): RosSource => fetchSource("web", opts);
 
 export const localRosSource = (opts: FetchSourceOptions & { token: string }): RosSource => fetchSource("local", opts);
+
+export type RosLiveRoute = "graph" | "search" | "node" | "state" | "directions" | "connections" | "loop" | "profile" | "modules" | "route";
+
+export const ROS_LIVE_ROUTES: RosLiveRoute[] = ["graph", "search", "node", "state", "directions", "connections", "loop", "profile", "modules", "route"];
+
+export const ROS_LIVE_PATHS: Record<RosLiveRoute, { web: string; local: string; methods: ("GET" | "POST")[] }> = {
+  graph: { web: "/api/research-os/graph", local: "/local/ros/graph", methods: ["GET"] },
+  search: { web: "/api/research-os/search", local: "/local/ros/search", methods: ["GET"] },
+  node: { web: "/api/research-os/node", local: "/local/ros/node", methods: ["GET"] },
+  state: { web: "/api/research-os/state", local: "/local/ros/state", methods: ["GET", "POST"] },
+  directions: { web: "/api/research-os/directions", local: "/local/ros/directions", methods: ["GET"] },
+  connections: { web: "/api/research-os/connections", local: "/local/ros/connections", methods: ["GET"] },
+  loop: { web: "/api/research-os/loop", local: "/local/ros/loop", methods: ["GET"] },
+  profile: { web: "/api/research-os/profile", local: "/local/ros/profile", methods: ["GET", "POST"] },
+  modules: { web: "/api/research-os/modules", local: "/local/ros/modules", methods: ["GET"] },
+  route: { web: "/api/research-os/route", local: "/local/ros/route", methods: ["GET"] },
+};
+
+const bool: Check = (v) => typeof v === "boolean";
+const any: Check = () => true;
+const oneOf =
+  (...alts: Record<string, Check>[]): Check =>
+  (v) =>
+    alts.some((a) => shape(a)(v));
+
+const LIVE_SHAPES: Record<RosLiveRoute, Check> = {
+  graph: oneOf(
+    { branches: arr(shape({ id: str, nodes: num })) },
+    { branch: str, nodes: arr(shape({ id: str, slug: str, title: str, kind: str })), edges: arr(shape({ fromId: str, toId: str, kind: str })), standing: obj, assignments: arr(obj), holders: nullable(obj), learners: num, signedIn: bool },
+  ),
+  search: shape({ q: str, results: arr(shape({ id: str, slug: str, title: str, branch: str, stage: nullable(str) })) }),
+  node: shape({
+    node: shape({ id: str, slug: str, title: str, branch: str }),
+    standing: obj,
+    prerequisites: arr(obj),
+    dependents: arr(obj),
+    related: arr(obj),
+    acting: arr(obj),
+    directions: shape({ dependents: arr(obj), frontier: arr(obj), openQuestions: arr(obj), reach: arr(any) }),
+    learn: nullable(obj),
+    productions: arr(obj),
+    verbs: obj,
+    classes: arr(obj),
+    assignments: arr(obj),
+    holders: nullable(arr(obj)),
+    transfer: shape({ itemId: str, prompt: str }),
+    signedIn: bool,
+  }),
+  state: oneOf({ states: arr(shape({ nodeId: str, stage: str })) }, { stage: str, event: obj }),
+  directions: shape({ dependents: arr(obj), frontier: arr(obj), openQuestions: arr(obj), reach: arr(any) }),
+  connections: shape({ held: arr(obj), bridges: arr(obj) }),
+  loop: shape({ access: obj, awareness: obj, understanding: obj, internalization: obj, production: obj, empty: bool }),
+  profile: oneOf({ profile: nullable(shape({ role: str, consentStatus: str, updatedAt: str })), game: nullable(obj) }, { profile: nullable(obj), deleted: bool }),
+  modules: shape({ node: shape({ id: str, slug: str, title: str }), modules: arr(obj) }),
+  route: shape({ target: obj, frontier: arr(obj), chain: arr(obj), gap: arr(obj), lowConfidenceFlags: arr(obj), engineFrontier: any, openQuestions: arr(obj), llmEnabled: bool, learner: str }),
+};
+
+export function parseRosLive(route: RosLiveRoute, raw: unknown): unknown {
+  if (!LIVE_SHAPES[route](raw)) throw new Error(`${route} payload breaks the contract`);
+  return raw;
+}
+
+export function rosLiveLocal(path: string): string | undefined {
+  const hit = ROS_LIVE_ROUTES.find((r) => ROS_LIVE_PATHS[r].web === path);
+  return hit ? ROS_LIVE_PATHS[hit].local : undefined;
+}

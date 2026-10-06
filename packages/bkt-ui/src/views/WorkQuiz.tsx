@@ -1,9 +1,111 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { languagesByName, textDir, toggleLanguage, wordCaption } from "@ros/work-quiz/languages";
+import { QUIZ_QUESTIONS } from "@ros/work-quiz/limits";
 import { ApiError, type Api, type DailyAnswer, type DailyQuiz, type WorkAnswer, type WorkQuestion, type WorkStatus } from "../api";
 import { href } from "../router";
 import { FILE_UNREADABLE } from "./file";
 
 export const WORK_QUIZ_CHANGED = "bkt-work-quiz-changed";
+export const LANGUAGES_SAVE_FAILED = "Your languages were not saved.";
+
+type LanguageApi = Pick<Api, "workLanguages" | "workSetLanguages">;
+
+export function LanguageChips({ api, onSaved }: { api: LanguageApi; onSaved?: (languages: string[]) => void }) {
+  const [chosen, setChosen] = useState<string[] | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let live = true;
+    api.workLanguages().then(
+      (r) => live && setChosen(r.languages),
+      (e: Error) => live && setError(e.message),
+    );
+    return () => {
+      live = false;
+    };
+  }, [api]);
+
+  const toggle = async (code: string) => {
+    if (!chosen) return;
+    const next = toggleLanguage(chosen, code);
+    setChosen(next);
+    setBusy(true);
+    try {
+      const saved = (await api.workSetLanguages(next)).languages;
+      setChosen(saved);
+      setError(null);
+      onSaved?.(saved);
+      window.dispatchEvent(new Event(WORK_QUIZ_CHANGED));
+    } catch {
+      setChosen(chosen);
+      setError(LANGUAGES_SAVE_FAILED);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="lang-pick">
+      <p className="muted small">Pick the languages you know or are learning. Word questions in them join the quiz. Changes save as you tap.</p>
+      <div className="lang-chips" role="group" aria-label="languages">
+        {languagesByName().map((l) => {
+          const on = chosen?.includes(l.code) ?? false;
+          return (
+            <button key={l.code} type="button" className={`lang-chip${on ? " on" : ""}`} aria-pressed={on} disabled={busy || !chosen} onClick={() => void toggle(l.code)}>
+              {l.name}
+            </button>
+          );
+        })}
+      </div>
+      <p className="muted small">Words and definitions from Wiktionary via Kaikki, CC-BY-SA.</p>
+      {error && <p className="error">{error}</p>}
+    </div>
+  );
+}
+
+export function WordCredit({ q }: { q: Pick<WorkQuestion, "word"> }) {
+  const caption = wordCaption(q);
+  if (!caption) return null;
+  return (
+    <p className="muted small word-credit">
+      {caption.language ? `${caption.language} · ` : ""}
+      {caption.href ? (
+        <a href={caption.href} target="_blank" rel="noreferrer noopener">
+          {caption.credit}
+        </a>
+      ) : (
+        caption.credit
+      )}
+    </p>
+  );
+}
+
+export function QuestionBody({ q }: { q: WorkQuestion }) {
+  return (
+    <>
+      <p className="q">{q.prompt}</p>
+      {q.lines.length > 0 && (
+        <ul className={`lines${q.word ? " word" : ""}`}>
+          {q.lines.map((l, i) => (
+            <li key={i} dir={textDir(l)} lang={q.word?.lang ?? undefined}>
+              {l}
+            </li>
+          ))}
+        </ul>
+      )}
+      <WordCredit q={q} />
+    </>
+  );
+}
+
+export function Choice({ q, text }: { q: WorkQuestion; text: string }) {
+  return (
+    <span dir={textDir(text)} lang={q.word?.choicesLang ?? undefined} className={q.word?.choicesLang ? "word" : undefined}>
+      {text}
+    </span>
+  );
+}
 
 export function Why({ result }: { result: WorkAnswer }) {
   const source = result.sources?.[0];
@@ -67,13 +169,17 @@ export function WorkQuizView({ api }: { api: Api }) {
     <section>
       <header className="head">
         <h1>Work quiz</h1>
-        <p className="muted">Questions from your own tasks and merged changes.</p>
+        <p className="muted">Questions from your own tasks, merged changes and the languages you pick.</p>
         {q && (
           <p className="muted small">
             <a href={href({ name: "setup" })}>Work quiz setup</a>
           </p>
         )}
       </header>
+      <details className="panel lang-panel">
+        <summary>Languages</summary>
+        <LanguageChips api={api} onSaved={() => (q ? undefined : next())} />
+      </details>
       {error && <p className="error">{error}</p>}
       {none && (
         <div className="panel empty">
@@ -84,14 +190,7 @@ export function WorkQuizView({ api }: { api: Api }) {
       {q && (
         <article className="panel card">
           <span className="tag ghost">{q.type.replace(/_/g, " ")}</span>
-          <p className="q">{q.prompt}</p>
-          {q.lines.length > 0 && (
-            <ul className="lines">
-              {q.lines.map((l, i) => (
-                <li key={i}>{l}</li>
-              ))}
-            </ul>
-          )}
+          <QuestionBody q={q} />
           {q.choices ? (
             <ol className="choices">
               {q.choices.map((c, k) => {
@@ -100,7 +199,7 @@ export function WorkQuizView({ api }: { api: Api }) {
                   <li key={k}>
                     <button className={`choice ${state}`} disabled={!!result} onClick={() => (setValue(c), void answer(c))}>
                       <span className="key">{String.fromCharCode(65 + k)}</span>
-                      {c}
+                      <Choice q={q} text={c} />
                     </button>
                   </li>
                 );
@@ -139,6 +238,10 @@ export function WorkQuizView({ api }: { api: Api }) {
 }
 
 export const NO_QUIZ = "no quiz for that day";
+export const DAILY_MIN = QUIZ_QUESTIONS.min;
+export const DAILY_MAX = QUIZ_QUESTIONS.max;
+export const TOO_FEW = `fewer than ${DAILY_MIN} questions could be built for that day`;
+export const TOO_FEW_SHOWN = `A daily quiz holds ${DAILY_MIN} to ${DAILY_MAX} questions. Your sources gave fewer than ${DAILY_MIN} today, so Bucket built none. Add a beads file or a repository, or turn on a chat source, then open this page again.`;
 export const OUTDATED = "This copy of Bucket is older than the daily quiz. Update Bucket, then open this page again.";
 export const QUIZ_CHANGED = "This quiz changed while the page was open. Reload the page to get the current questions.";
 export const GRADED_ONCE = "This question was already graded. Each daily question is graded once.";
@@ -153,6 +256,7 @@ type DailyApi = Pick<Api, "dailyQuiz" | "dailyAnswer">;
 export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
   const [quiz, setQuiz] = useState<DailyQuiz | null>(null);
   const [missing, setMissing] = useState(false);
+  const [tooFew, setTooFew] = useState(false);
   const [done, setDone] = useState<Set<string>>(new Set());
   const [right, setRight] = useState(0);
   const [at, setAt] = useState<string | null>(null);
@@ -179,6 +283,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       (e: Error) => {
         if (!live) return;
         if (e instanceof ApiError && e.status === 404 && e.code === NO_QUIZ) setMissing(true);
+        else if (e instanceof ApiError && e.status === 404 && e.code === TOO_FEW) setTooFew(true);
         else if (e instanceof ApiError && e.status === 404) setOutdated(true);
         else setError(e.message);
       },
@@ -236,6 +341,15 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
           </p>
         </div>
       )}
+      {tooFew && (
+        <div className="panel empty">
+          <h2>No quiz for {day}</h2>
+          <p>{TOO_FEW_SHOWN}</p>
+          <p>
+            <a href={href({ name: "work" })}>Open the work quiz</a>
+          </p>
+        </div>
+      )}
       {outdated && (
         <div className="panel empty">
           <h2>Bucket needs an update</h2>
@@ -253,14 +367,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       {q && (
         <article className="panel card">
           <span className="tag ghost">{q.type.replace(/_/g, " ")}</span>
-          <p className="q">{q.prompt}</p>
-          {q.lines.length > 0 && (
-            <ul className="lines">
-              {q.lines.map((l, i) => (
-                <li key={i}>{l}</li>
-              ))}
-            </ul>
-          )}
+          <QuestionBody q={q} />
           {q.choices ? (
             <ol className="choices">
               {q.choices.map((c, k) => {
@@ -269,7 +376,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
                   <li key={k}>
                     <button className={`choice ${state}`} disabled={settled} onClick={() => (setValue(c), void answer(c))}>
                       <span className="key">{String.fromCharCode(65 + k)}</span>
-                      {c}
+                      <Choice q={q} text={c} />
                     </button>
                   </li>
                 );
@@ -377,7 +484,7 @@ export function WorkQuizSources({ api }: { api: Api }) {
     <article className="panel card">
       <h2>Work quiz</h2>
       <p className="muted">
-        Get quizzed on your own recent work. {status ? `${status.beads} tasks, ${status.prs} merged changes.${status.repoError ? ` ${FOLDER_UNUSABLE}` : ""}` : "Loading…"} Work quiz joins the menu once tasks or a project folder are set.
+        Get quizzed on your own recent work. {status ? `${status.beads} tasks, ${status.prs} merged changes.${status.repoError ? ` ${FOLDER_UNUSABLE}` : ""}` : "Loading…"} Work quiz joins the menu once tasks, a project folder or a language are set.
       </p>
       <label className="file row">
         <input type="file" accept=".jsonl" onChange={(e) => void beads(e.target.files?.[0])} />
@@ -407,7 +514,8 @@ export function WorkQuizSources({ api }: { api: Api }) {
       <label className="row">
         <input type="checkbox" checked={chat.codex} disabled={!status} onChange={(e) => void setChat({ ...chat, codex: e.target.checked })} /> Codex chats
       </label>
-      {status && (status.beads > 0 || status.repo || chat.claude || chat.codex) && (
+      <LanguageChips api={api} onSaved={load} />
+      {status && (status.beads > 0 || status.repo || chat.claude || chat.codex || (status.languages ?? []).length > 0) && (
         <button className="ghost" onClick={() => window.confirm("Remove everything the work quiz reads from this computer?") && void api.workForget().then(load)}>
           Remove all
         </button>

@@ -1,0 +1,489 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "smale18",
+ "title": "Smale's 18th problem limits of intelligence",
+ "statement": {
+  "text": "Smale's problems is a list of eighteen unsolved problems in mathematics proposed by Steve Smale in 1998 and republished in 1999. Smale composed this list in reply to a request from Vladimir Arnold, then vice-president of the International Mathematical Union, who asked several mathematicians to propose a list of problems for the 21st century. Arnold's inspiration came from the list of Hilbert's problems that had been published at the beginning of the 20th century.",
+  "source": "https://en.wikipedia.org/wiki/Smale's_problems",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Smale's problems",
+   "url": "https://en.wikipedia.org/wiki/Smale's_problems"
+  }
+ },
+ "aliases": [
+  "Smale's problems"
+ ],
+ "branch": "mind",
+ "level": 5,
+ "industries": [
+  "ai",
+  "political science and international relations"
+ ],
+ "posed": 1998,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1998,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2800331819",
+   "title": "A World of Secrets: The Uses and Limits of Intelligence",
+   "year": 1986,
+   "cited_by_count": 66,
+   "doi": "https://doi.org/10.2307/20042724",
+   "role": "posed",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1553115740",
+   "title": "Intelligence and Statecraft: The Use and Limits of Intelligence in International Society",
+   "year": 2005,
+   "cited_by_count": 36,
+   "doi": null,
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2316874153",
+   "title": "The Limits of Intelligence",
+   "year": 2011,
+   "cited_by_count": 28,
+   "doi": "https://doi.org/10.1038/scientificamerican0711-36",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W74962716",
+   "title": "The Limits of Intelligence Reform",
+   "year": 2005,
+   "cited_by_count": 17,
+   "doi": "https://doi.org/10.2307/20031780",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W604186943",
+   "title": "The Uses and Limits of Intelligence",
+   "year": 2017,
+   "cited_by_count": 15,
+   "doi": "https://doi.org/10.4324/9781351302128",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1999043309",
+   "title": "The Limits of Intelligence: Iraq's Lessons",
+   "year": 2004,
+   "cited_by_count": 13,
+   "doi": "https://doi.org/10.1080/00396338.2004.9688605",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2010142784",
+   "title": "Limits of Intelligence Analysis",
+   "year": 2004,
+   "cited_by_count": 40,
+   "doi": "https://doi.org/10.1016/j.orbis.2004.10.007",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1528992434",
+   "title": "The limits of intelligence in design",
+   "year": 1993,
+   "cited_by_count": 35,
+   "doi": null,
+   "role": "posed",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2208179229",
+   "title": "The Limits of Intelligence in Maritime Counterproliferation Operations",
+   "year": 2007,
+   "cited_by_count": 17,
+   "doi": null,
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1679671593",
+   "title": "Intelligence in an Insecure World",
+   "year": 2006,
+   "cited_by_count": 203,
+   "doi": null,
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2569396741",
+   "title": "Why strategic intelligence analysis has limited influence on American foreign policy",
+   "year": 2017,
+   "cited_by_count": 70,
+   "doi": "https://doi.org/10.1080/02684527.2016.1275139",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4200136316",
+   "title": "Human Judges in the Era of Artificial Intelligence: Challenges and Opportunities",
+   "year": 2021,
+   "cited_by_count": 69,
+   "doi": "https://doi.org/10.1080/08839514.2021.2013652",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3183805976",
+   "title": "Application of Artificial Intelligence for COVID-19 Epidemic: An Exploratory Study, Opportunities, Challenges, and Future Prospects",
+   "year": 2021,
+   "cited_by_count": 30,
+   "doi": "https://doi.org/10.1007/978-3-030-69744-0_4",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4398219068",
+   "title": "Denaturalizing “Intelligence” in Higher Education: AI as a Rupture to Imagining and Manifesting Sustainable and Anti‐colonial Literacies",
+   "year": 2024,
+   "cited_by_count": 12,
+   "doi": "https://doi.org/10.1002/rrq.540",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4288492209",
+   "title": "Deepfake Tweets Detection Using Deep Learning Algorithms",
+   "year": 2022,
+   "cited_by_count": 12,
+   "doi": "https://doi.org/10.3390/engproc2022020002",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1591384012",
+   "title": "Cognitive development and working memory: A dialogue between neo-piagetian theories and cognitive approaches",
+   "year": 2010,
+   "cited_by_count": 52,
+   "doi": "https://doi.org/10.4324/9780203845837",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W33147485",
+   "title": "Conversations with a chimpanzee in a computer-controlled environment.",
+   "year": 1975,
+   "cited_by_count": 13,
+   "doi": null,
+   "role": "posed",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 3,
+  "no keyword hit": 4,
+  "duplicate": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1975": 1,
+   "1984": 1,
+   "1985": 1,
+   "1986": 9,
+   "1987": 6,
+   "1988": 4,
+   "1989": 1,
+   "1993": 1,
+   "1994": 1,
+   "2001": 1,
+   "2003": 1,
+   "2004": 6,
+   "2005": 6,
+   "2006": 1,
+   "2007": 3,
+   "2008": 2,
+   "2009": 6,
+   "2010": 2,
+   "2011": 4,
+   "2012": 4,
+   "2013": 3,
+   "2014": 2,
+   "2015": 2,
+   "2016": 5,
+   "2017": 10,
+   "2018": 3,
+   "2019": 6,
+   "2020": 5,
+   "2021": 10,
+   "2022": 6,
+   "2023": 7,
+   "2024": 11,
+   "2025": 28,
+   "2026": 185
+  },
+  "openalex_total": 344,
+  "arxiv_total": 30,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22limits+of+intelligence%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5026999093",
+   "name": "Walter Z. Laqueur",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5015496637",
+   "name": "Gaddis Smith",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5025097046",
+   "name": "Peter Jackson",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5103117219",
+   "name": "Jennifer R. Siegel",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Douglas Fox",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5009471896",
+   "name": "Helen Fessenden",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5069010728",
+   "name": "Dennis M. Gormley",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5083532750",
+   "name": "Richards J. Heuer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5111286627",
+   "name": "K. Papamichael",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5091505579",
+   "name": "Jean‐Pierre Protzen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5039890033",
+   "name": "Craig H. Allen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5076236949",
+   "name": "Peter Gill",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5051216693",
+   "name": "Mark Phythian",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5018630800",
+   "name": "Stephen Marrin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5023955363",
+   "name": "Zichun Xu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I201448701",
+   "name": "University of Washington",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I64852412",
+   "name": "Sichuan University of Science and Engineering",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I134542131",
+   "name": "University of Ilorin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I894372087",
+   "name": "Olabisi Onabanjo University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I304664074",
+   "name": "Landmark University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I7882870",
+   "name": "University of Glasgow",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I274311791",
+   "name": "Lahore Leads University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I3130814776",
+   "name": "University of Okara",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I5100685",
+   "name": "University of Education",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I151746803",
+   "name": "NED University of Engineering and Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I114457229",
+   "name": "University of Geneva",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I132053463",
+   "name": "Université Libre de Bruxelles",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "bindingprob",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "consciousness",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "freeenergy",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "alignment",
+   "why": "shared markets: ai"
+  },
+  {
+   "id": "autoform",
+   "why": "shared markets: ai"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Smale's_problems",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22limits+of+intelligence%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "17 relevant works of 25 considered, 344 works with the phrase"
+ }
+}

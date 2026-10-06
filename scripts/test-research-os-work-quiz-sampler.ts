@@ -2,9 +2,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
+import { LIMITS, QUIZ_QUESTIONS, checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { makeForm } from "../src/lib/research-os/work-quiz/forms";
-import { DAY_MS, QUIZ_SLOTS, REVIEW_SLOTS, builtCells, cellStats, daySeed, factWeights, recordPicks, sampleQuiz, usedOn, type CoverageRow, type DueCard } from "../src/lib/research-os/work-quiz/sampler";
+import { seededRng } from "../src/lib/research-os/work-quiz/generate";
+import { DAY_MS, QUIZ_SLOTS, REVIEW_SLOTS, RNG_RANGE, builtCells, cellStats, daySeed, factWeights, recordPicks, rngInt, sampleQuiz, usedOn, weightedPick, type CoverageRow, type DueCard } from "../src/lib/research-os/work-quiz/sampler";
 import type { WorkSources } from "../src/lib/research-os/work-quiz/types";
 
 const TITLES = JSON.parse(fs.readFileSync(path.join(process.cwd(), "scripts/fixtures/quiz-titles.json"), "utf8")) as { prs: string[]; beads: string[] };
@@ -34,13 +35,26 @@ test("no fact appears twice in a day and every question passes checkLimits", () 
     const facts = quiz.picks.flatMap((p) => p.factIds);
     assert.equal(new Set(facts).size, facts.length, d);
     for (const q of quiz.questions) assert.deepEqual(checkLimits(q), [], `${d} ${q.id}`);
-    assert.deepEqual(quiz.blocked, ["which_changed"]);
+    assert.deepEqual(quiz.blocked, ["true_false", "which_changed"]);
+    assert.ok(quiz.questions.length >= QUIZ_QUESTIONS.min && quiz.questions.length <= QUIZ_QUESTIONS.max, `${d} has ${quiz.questions.length} questions`);
+    for (const q of quiz.questions) if (q.choices) assert.equal(q.choices.length, LIMITS.choices, `${d} ${q.id} has ${q.choices.length} choices`);
   }
 });
 
+test("every day of 60 samples to a deep-equal quiz when run twice", () => {
+  let d = "2026-10-01";
+  const seen = new Set<string>();
+  for (let i = 0; i < 60; i++, d = nextDay(d)) {
+    const a = sampleQuiz({ day: d, sources: SOURCES });
+    assert.deepEqual(sampleQuiz({ day: d, sources: SOURCES }), a, d);
+    seen.add(JSON.stringify(a.questions));
+  }
+  assert.equal(seen.size, 60);
+});
+
 const due = (key: string, factIds: string[], dueAt: number): DueCard => {
-  const q = makeForm("true_false", SOURCES, key, 1)!;
-  return { cardKey: `${factIds.join("+")}|true_false`, factIds, question: { ...q, id: `${q.id}-${key}` }, dueAt };
+  const q = makeForm("spot_error", SOURCES, key, 1)!;
+  return { cardKey: `${factIds.join("+")}|spot_error`, factIds, question: { ...q, id: `${q.id}-${key}` }, dueAt };
 };
 
 test("two slots go to the most overdue cards and are released when none are due", () => {
@@ -59,6 +73,22 @@ test("a due card whose fact is already used that day is skipped", () => {
   const now = Date.parse("2026-10-01T12:00:00Z");
   const cards = [due("a", ["bead:x1"], now - 2 * DAY_MS), due("b", ["bead:x1"], now - 3 * DAY_MS)];
   assert.equal(sampleQuiz({ day: "2026-10-01", sources: SOURCES, due: cards, now }).reviewed, 1);
+});
+
+test("no fact repeats across review cards and sampled questions on one day", () => {
+  let d = "2026-10-01";
+  for (let i = 0; i < 30; i++, d = nextDay(d)) {
+    const now = Date.parse(`${d}T12:00:00Z`);
+    const taken = sampleQuiz({ day: d, sources: SOURCES }).picks.flatMap((p) => p.factIds);
+    assert.ok(taken.length >= 2, d);
+    const cards = [due("a", [taken[0]], now - 2 * DAY_MS), due("b", [taken[1]], now - DAY_MS)];
+    const quiz = sampleQuiz({ day: d, sources: SOURCES, due: cards, now });
+    assert.equal(quiz.reviewed, REVIEW_SLOTS, d);
+    const facts = [...cards.flatMap((c) => c.factIds), ...quiz.picks.flatMap((p) => p.factIds)];
+    assert.equal(new Set(facts).size, facts.length, `${d} ${facts.join(" ")}`);
+    assert.equal(quiz.questions.length, quiz.reviewed + quiz.picks.length);
+    assert.deepEqual(sampleQuiz({ day: d, sources: SOURCES, due: cards, now }), quiz, d);
+  }
 });
 
 test("over 30 simulated days coverage moves to the least-seen cell and reaches every built cell", () => {
@@ -83,6 +113,29 @@ test("misses and overdue days raise a fact's weight", () => {
   const w = factWeights([{ cell: "order/order/1", factId: "pr:1+pr:2+pr:3", picks: 1, misses: 2, lastDay: "2026-09-30" }], [due("a", ["bead:x1"], now - 4 * DAY_MS)], now);
   assert.equal(w.get("pr:2"), 5);
   assert.equal(w.get("bead:x1"), 5);
+});
+
+test("overdue time counts in whole days, so every fact weight is an integer", () => {
+  const now = Date.parse("2026-10-01T12:00:00Z");
+  const cards = [due("a", ["bead:x1"], now - 4 * DAY_MS - DAY_MS / 2), due("b", ["bead:x2"], now - DAY_MS + 1), due("c", ["bead:x3"], now + DAY_MS), due("d", ["bead:x1"], now - 2 * DAY_MS - 7)];
+  const w = factWeights([{ cell: "cloze/pick/1", factId: "bead:x2", picks: 3, misses: 1, lastDay: "2026-09-30" }], cards, now);
+  assert.deepEqual(Array.from(w), [["bead:x2", 3], ["bead:x1", 7], ["bead:x3", 1]]);
+  for (const n of Array.from(w.values())) assert.equal(Number.isInteger(n), true);
+});
+
+test("weightedPick draws an integer below the weight total and picks by integer ranges", () => {
+  const items = [{ k: "a", w: 3 }, { k: "b", w: 1 }, { k: "c", w: 4 }];
+  const hits: Record<string, number> = { a: 0, b: 0, c: 0 };
+  for (let i = 0; i < 16; i++) hits[weightedPick(() => i / RNG_RANGE, items, (x) => x.w).k] += 1;
+  assert.deepEqual(hits, { a: 6, b: 2, c: 8 });
+  assert.deepEqual([0, 2, 3, 4, 7].map((i) => weightedPick(() => i / RNG_RANGE, items, (x) => x.w).k), ["a", "a", "b", "c", "c"]);
+  assert.equal(weightedPick(() => (RNG_RANGE - 1) / RNG_RANGE, items, (x) => x.w).k, "c");
+  assert.equal(weightedPick(() => 0.5, items, () => 0).k, "c");
+  const rng = seededRng("ints");
+  for (let i = 0; i < 1000; i++) {
+    const n = rngInt(rng);
+    assert.ok(Number.isInteger(n) && n >= 0 && n < RNG_RANGE);
+  }
 });
 
 test("samples on one day share one no-repeat set through the facts already used that day", () => {
