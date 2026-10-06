@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Box, Text, useStdout } from "ink";
 import { branchLabel, searchCanon, searchParams, showExcerpt, type CanonSource, type Excerpt, type SearchHit } from "../core/search";
 import type { Note } from "../notes";
-import { atlasFrontier, fitWidth, frontierLines } from "./atlas";
+import { atlasFrontier, fitWidth, frontierLines, NO_ATLAS } from "./atlas";
 import { stamp } from "./out";
 
 export const TABS = [
@@ -204,7 +204,10 @@ export function graphView(raw: unknown): GraphView | null {
 
 export function FrontierScreen() {
   const { stdout } = useStdout();
-  const lines = useMemo(() => frontierLines(atlasFrontier(), fitWidth(stdout?.columns), false), [stdout?.columns]);
+  const lines = useMemo(() => {
+    const f = atlasFrontier();
+    return f ? frontierLines(f, fitWidth(stdout?.columns), false) : [NO_ATLAS];
+  }, [stdout?.columns]);
   return (
     <Box flexDirection="column">
       {lines.map((line, i) => (
