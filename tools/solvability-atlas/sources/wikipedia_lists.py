@@ -1,6 +1,6 @@
 import re
 
-from common import Row, keyword_fill, report, slug, strip_markup, wikilinks, wikitext, year_in
+from common import Row, first_sentence, keywords_from, posed_year, report, resolved_year, slug, strip_markup, wikilinks, wikitext
 
 LICENCE = "CC BY-SA 4.0"
 PAGES = {
@@ -19,10 +19,12 @@ PAGES = {
 SKIP_SECTIONS = re.compile(r"see also|references|external links|books|further reading|historical|notes|lists", re.I)
 SOLVED_SECTION = re.compile(r"\b(solved|resolved|proved)\b", re.I)
 NAMED = re.compile(r"conjecture|hypothesis|problem", re.I)
+BOLD = re.compile(r"'{3}(.+?)'{3}")
 
 
 def bullets(text):
     section = ""
+    subsection = ""
     solved = False
     for line in text.split("\n"):
         heading = re.match(r"^(=+)\s*(.*?)\s*=+\s*$", line)
@@ -30,35 +32,41 @@ def bullets(text):
             depth = len(heading.group(1))
             title = heading.group(2)
             if depth == 2:
-                section = title
-                solved = bool(SOLVED_SECTION.search(title))
+                section, subsection = title, ""
             else:
-                solved = bool(SOLVED_SECTION.search(section)) or bool(SOLVED_SECTION.search(title))
+                subsection = title
+            solved = bool(SOLVED_SECTION.search(section)) or bool(SOLVED_SECTION.search(subsection))
             continue
         if re.match(r"^\*{1,2}\s*[^*\s]", line) and not SKIP_SECTIONS.search(section):
-            yield line.lstrip("*").strip(), solved
+            yield line.lstrip("*").strip(), solved, section + (" / " + subsection if subsection else "")
 
 
 def name_of(bullet):
     links = wikilinks(bullet)
-    bold = re.match(r"'''(.+?)'''", bullet)
+    bold = BOLD.match(bullet)
     if bold:
         return strip_markup(bold.group(1))
-    head = strip_markup(bullet.split(":", 1)[0])
-    if links and (head.startswith(links[0]) or len(head) > 80):
-        return links[0]
-    return head if 0 < len(head) <= 80 else (links[0] if links else "")
+    head, sep, _ = bullet.partition(":")
+    head = strip_markup(head)
+    if sep and 0 < len(head) <= 80 and not re.search(r"[?.!]", head):
+        return head
+    sentence = first_sentence(strip_markup(bullet))
+    if sentence:
+        return sentence
+    return links[0] if links else ""
 
 
 def rows_for(page, branch, market):
     out = []
     text = wikitext(page)
     url = "https://en.wikipedia.org/wiki/" + page.replace(" ", "_")
-    for bullet, solved in bullets(text):
-        name = name_of(bullet)
+    for bullet, solved, section in bullets(text):
+        name = name_of(bullet).rstrip(" :;,")
         if not name or len(name) < 4:
             continue
         plain = strip_markup(bullet)
+        if plain.endswith(":") or len(plain) < 12:
+            continue
         keywords = [k for k in wikilinks(bullet) if k.lower() != name.lower()]
         level = 4 if NAMED.search(name) else 3
         out.append(
@@ -70,9 +78,13 @@ def rows_for(page, branch, market):
                 status="solved" if solved else "open",
                 source=url,
                 licence=LICENCE,
-                keywords=keyword_fill(keywords, plain, (branch, "open problem" if not solved else "solved problem", page.split(" in ")[-1], "wikipedia list")),
-                resolved=year_in(plain) if solved else "",
+                keywords=keywords_from(plain, keywords),
+                posed=posed_year(plain),
+                resolved=resolved_year(plain) if solved else "",
                 market=market,
+                statement=plain,
+                statement_source=url,
+                status_source=f"Wikipedia section: {section}",
             )
         )
     report(page, out)

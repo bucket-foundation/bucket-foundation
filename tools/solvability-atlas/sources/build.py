@@ -20,6 +20,7 @@ def main():
     print("by source:", dict(by_source))
     print("by branch:", dict(by_branch))
     print("by status:", dict(Counter(r.status for r in rows)))
+    print("with statement:", sum(bool(r.statement) for r in rows), "posed:", sum(bool(r.posed) for r in rows), "resolved:", sum(bool(r.resolved) for r in rows))
 
 
 if __name__ == "__main__":

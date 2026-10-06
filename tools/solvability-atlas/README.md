@@ -48,4 +48,4 @@ The plots in `public/atlas/` are public on purpose: they show published problems
 
 ## Sourced Problems
 
-`problems-sourced.tsv` holds rows ingested from outside lists, with the same columns plus `status`, `source` and `licence`. `SOURCES.md` surveys every candidate source with count, licence and verdict; `python3 sources/build.py` rebuilds the file from the fetchers in `sources/`, and `tests/test_sourced.py` checks it. `atlas.py` does not read it yet.
+`problems-sourced.tsv` holds rows ingested from outside lists, with the same columns plus `status`, `source`, `licence`, `statement`, `statement_source` and `status_source`. `SOURCES.md` surveys every candidate source with count, licence and verdict; `python3 sources/build.py` rebuilds the file from the fetchers in `sources/`, and `tests/test_sourced.py` checks it. `atlas.py` does not read it yet.

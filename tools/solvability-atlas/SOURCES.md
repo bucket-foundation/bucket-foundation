@@ -58,15 +58,19 @@ Where open and solved problems can be sourced, with count, status coverage, lice
 
 ## Ingest rules
 
-- Rows live in `problems-sourced.tsv` with the `problems.tsv` columns plus `status`, `source` and `licence`. `sources/build.py` rebuilds it from `sources/formal_conjectures.py`, `sources/wikipedia_lists.py` and `sources/named_lists.py`, dedupes by normalised title against `problems.tsv`, and `tests/test_sourced.py` checks the file.
-- CC BY-SA pages: the row carries the problem name, status, year and five to eight keywords taken from the page's links, and cites the page in `source`. Statement text is not copied.
+- Rows live in `problems-sourced.tsv` with the `problems.tsv` columns plus `status`, `source`, `licence`, `statement`, `statement_source` and `status_source`. `sources/build.py` rebuilds it from `sources/formal_conjectures.py`, `sources/wikipedia_lists.py` and `sources/named_lists.py`, dedupes by normalised title against `problems.tsv` and within the file, and `tests/test_sourced.py` checks the file.
+- `statement` holds the full problem text: the `text` field of `problem_map.jsonl` for formal-conjectures (the Lean declaration from `_intake/solver-gap-engine/fc/` when `text` is empty, 10 rows), the full list item for Wikipedia pages, the explanation cell for Hilbert and Smale. `statement_source` names the file or page it came from.
+- Names: a bold or linked head before a colon when the page gives one, else the item's first sentence up to 140 characters, cut only at a sentence end. Formal-conjectures names are the family and number plus the declaration's own suffix, so `green_14_lower_bound_hunter` becomes "Green open problem 14, lower bound hunter".
+- Keywords: up to eight phrases that occur in the statement, page links first, then nouns and noun pairs by frequency, after dropping English, German and French stopwords, verbs and adverbs by suffix, citation keys and LaTeX. Rows with nothing left keep an empty cell.
+- Years: `posed` and `resolved` come from the text only: "posed in 1900", "(1916 to 2016)" with a dash, "(Name, 2017)", "proved in 2004", or the Hilbert and Smale year column. Empty otherwise.
+- `status_source`: the formal-conjectures status field, the Wikipedia section heading the item sits under, or the Wikipedia table status column.
 - Level rule: 5 for Hilbert, Smale and Millennium rows; 4 for a Wikipedia list entry whose name carries "conjecture", "hypothesis" or "problem"; 3 for other Wikipedia entries and top-level formal-conjectures statements; 2 for formal-conjectures variants.
 - Branch rule: physics, chemistry, mathematics and statistics map to their canon branch; biology to biophysics; computer science and information theory to information; neuroscience to mind; astronomy to cosmology; geoscience to physics; economics to applied. Open quantum problems in formal-conjectures map to physics.
 - Industries (`market`) are set per Wikipedia list, blank for formal-conjectures.
 
 ## First ingest, 2026-10-05
 
-3,851 rows: formal-conjectures 2,843, Wikipedia field lists 1,008 (mathematics 524, physics 120, biology 93, astronomy 84, neuroscience 43, computer science 46, chemistry 21, economics 15, geoscience 10, statistics 9, information theory 7, Hilbert 23, Smale 13, Millennium 0 after dedupe against the 71). Branches: mathematics 3,409, physics 133, biophysics 93, cosmology 84, information 53, mind 43, chemistry 21, applied 15. Status: 1,868 solved, 1,983 open.
+4,605 rows, every one with a statement; 104 with `posed`, 109 with `resolved`. formal-conjectures 3,566 of 3,598: the 32 dropped share a normalised title with another row (five declaration pairs such as `erdos_897.parts.i` twice, Beck-Fiala and Green 24 duplicates, and 27 statements whose name matches one of the 71 atlas problems or a Wikipedia entry). Wikipedia 1,039: mathematics 534, physics 121, biology 96, astronomy 81, computer science 49, neuroscience 47, chemistry 27, Hilbert 23, geoscience 16, economics 15, Smale 13, statistics 9, information theory 7, Millennium 0 after dedupe against the 71. Status: 2,269 solved, 2,336 open.
 
 ## Founder calls
 

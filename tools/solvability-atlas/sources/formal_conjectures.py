@@ -1,52 +1,58 @@
 import json
 import re
 
-from common import REPO, Row, keyword_fill, report, slug
+from common import REPO, Row, keywords_from, posed_year, report, resolved_year, slug
 
 PROBLEM_MAP = REPO / "_intake" / "solver-gap-engine" / "problem_map.jsonl"
+LEAN_ROOT = REPO / "_intake" / "solver-gap-engine" / "fc" / "FormalConjectures"
 SOURCE = "https://github.com/google-deepmind/formal-conjectures"
 LICENCE = "Apache-2.0"
-AMS = {
-    "03": "logic", "05": "combinatorics", "11": "number theory", "12": "field theory", "13": "commutative algebra",
-    "14": "algebraic geometry", "15": "linear algebra", "16": "associative rings", "17": "nonassociative rings",
-    "18": "category theory", "19": "K-theory", "20": "group theory", "22": "topological groups", "26": "real functions",
-    "28": "measure theory", "30": "complex analysis", "31": "potential theory", "32": "several complex variables",
-    "33": "special functions", "34": "ordinary differential equations", "35": "partial differential equations",
-    "37": "dynamical systems", "39": "difference equations", "40": "sequences and series", "41": "approximation",
-    "42": "harmonic analysis", "43": "abstract harmonic analysis", "44": "integral transforms", "45": "integral equations",
-    "46": "functional analysis", "47": "operator theory", "49": "calculus of variations", "51": "geometry",
-    "52": "convex geometry", "53": "differential geometry", "54": "general topology", "55": "algebraic topology",
-    "57": "manifolds", "58": "global analysis", "60": "probability", "62": "statistics", "65": "numerical analysis",
-    "68": "computer science", "70": "mechanics", "74": "deformable solids", "76": "fluid mechanics", "78": "optics",
-    "80": "thermodynamics", "81": "quantum theory", "82": "statistical mechanics", "83": "relativity",
-    "85": "astrophysics", "86": "geophysics", "90": "operations research", "91": "game theory", "92": "biology",
-    "93": "systems theory", "94": "information theory", "97": "mathematics education",
-}
+STATUS_SOURCE = "formal-conjectures status field in problem_map.jsonl"
 FAMILY = {
     "ErdosProblems": "Erdős problem",
     "GreensOpenProblems": "Green open problem",
     "WrittenOnTheWallII": "Written on the Wall II problem",
     "OpenQuantumProblems": "Open quantum problem",
 }
+DROP_PARTS = {"variants", "parts", "statement", "conjecture", "theorem"}
 
 
 def name_of(identifier):
     path, decl = identifier.split("::", 1)
     family, stem = path.split("/", 1)
     stem = stem[:-5] if stem.endswith(".lean") else stem
-    base, _, variant = decl.partition(".variants.")
-    if family in FAMILY:
+    leaf = stem.split("/")[-1]
+    if family == "OEIS":
+        label = f"OEIS A{leaf}"
+    elif family in FAMILY:
         label = f"{FAMILY[family]} {stem.replace('/', ' ')}"
     else:
-        words = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", stem.split("/")[-1]).replace("_", " ")
+        words = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", leaf).replace("_", " ")
         label = words[:1].upper() + words[1:]
-    if variant:
-        label += ", variant " + variant.replace("_", " ").replace(".", " ")
-    elif "." in base and not base.endswith(stem.lower().replace("/", "_")):
-        tail = base.rsplit(".", 1)[-1]
-        if tail not in {"statement", "conjecture", "theorem"} and not re.fullmatch(r"[a-z]+_\d+", tail):
-            label += ", " + tail.replace("_", " ")
-    return family, label, bool(variant)
+    parts = [p.strip(":") for p in re.split(r"[._]", decl)]
+    snake = re.sub(r"(?<=[a-z0-9])(?=[A-Z])", "_", leaf).lower().split("_")
+    while parts and (parts[0].lower() in snake or re.fullmatch(r"[a-z]+", parts[0]) and parts[0] in {"erdos", "green", "wotw", "oqp", "open", "quantum", "problem"} or re.fullmatch(r"\d+", parts[0]) and parts[0] in snake):
+        parts.pop(0)
+    tail = " ".join(p for p in parts if p and p.lower() not in DROP_PARTS and p != leaf)
+    is_variant = ".variants." in decl
+    return family, label + (f", {tail}" if tail else ""), is_variant
+
+
+def lean_statement(path, decl):
+    file = LEAN_ROOT / path
+    if not file.exists():
+        return ""
+    lines = file.read_text(encoding="utf8").split("\n")
+    pattern = re.compile(r"^\s*(theorem|lemma|def|abbrev)\s+" + re.escape(decl.split(".")[-1]) + r"\b")
+    for i, line in enumerate(lines):
+        if pattern.match(line) or re.match(r"^\s*(theorem|lemma|def|abbrev)\s+" + re.escape(decl) + r"\b", line):
+            block = []
+            for later in lines[i:]:
+                block.append(later.strip())
+                if ":=" in later:
+                    break
+            return " ".join(block)
+    return ""
 
 
 def rows():
@@ -54,11 +60,18 @@ def rows():
     with PROBLEM_MAP.open(encoding="utf8") as handle:
         for line in handle:
             item = json.loads(line)
+            path, decl = item["id"].split("::", 1)
             family, name, is_variant = name_of(item["id"])
             level = 5 if family == "Millennium" else 2 if is_variant else 3
             branch = "physics" if family == "OpenQuantumProblems" else "mathematics"
-            keywords = [AMS[c] for c in item.get("ams", []) if c in AMS]
-            keywords = keyword_fill(keywords, re.sub(r"\$[^$]*\$", " ", item["text"]), (FAMILY.get(family, family).lower(), branch, item["status"], "formal conjectures"))
+            text = item["text"].strip()
+            if text:
+                statement, statement_source = text, str(PROBLEM_MAP.relative_to(REPO))
+            else:
+                statement, statement_source = lean_statement(path, decl), f"{SOURCE}/blob/main/FormalConjectures/{path}"
+            if not statement:
+                statement, statement_source = f"Lean declaration {decl} in {path}", f"{SOURCE}/blob/main/FormalConjectures/{path}"
+            prose = re.sub(r"\$[^$]*\$", " ", statement)
             out.append(
                 Row(
                     id="fc-" + slug(item["id"].replace(".lean::", "-").replace(".variants.", "-")),
@@ -66,10 +79,15 @@ def rows():
                     branch=branch,
                     level=level,
                     status=item["status"],
-                    source=f"{SOURCE}/blob/main/FormalConjectures/{item['id'].split('::')[0]}",
+                    source=f"{SOURCE}/blob/main/FormalConjectures/{path}",
                     licence=LICENCE,
-                    keywords=keywords,
+                    keywords=keywords_from(prose),
                     lean="proved" if item.get("lean_proof") else "statement",
+                    posed=posed_year(prose),
+                    resolved=resolved_year(prose) if item["status"] == "solved" else "",
+                    statement=statement,
+                    statement_source=statement_source,
+                    status_source=STATUS_SOURCE,
                 )
             )
     report("formal-conjectures", out)

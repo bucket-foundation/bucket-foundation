@@ -1,6 +1,6 @@
 import re
 
-from common import Row, keyword_fill, report, slug, strip_markup, wikilinks, wikitext, year_in
+from common import Row, first_sentence, keywords_from, posed_year, report, resolved_year, slug, strip_markup, wikilinks, wikitext, year_in
 
 LICENCE = "CC BY-SA 4.0"
 TABLES = {
@@ -28,12 +28,13 @@ def status_of(cell, year_cell):
     return "open"
 
 
-def gloss(label, explanation, limit=60):
-    plain = strip_markup(explanation)
-    head = re.split(r"[.:;(]", re.sub(r"^\(\w\)\s*", "", plain), maxsplit=1)[0].strip()
-    if len(head) > limit:
-        head = head[:limit].rsplit(" ", 1)[0]
-    return f"{label}: {head.rstrip(' ,')}"
+def gloss(label, explanation, limit=140):
+    plain = re.sub(r"^\(\w\)\s*", "", strip_markup(explanation))
+    sentence = first_sentence(plain, limit - len(label) - 2)
+    if not sentence:
+        head = re.split(r"[.:;?]", plain, maxsplit=1)[0].strip()
+        sentence = head if 0 < len(head) <= limit - len(label) - 2 else ""
+    return f"{label}: {sentence.rstrip(' ,')}" if sentence else label
 
 
 def rows():
@@ -53,6 +54,7 @@ def rows():
             status = status_of(cells[2], year_cell)
             resolved = year_in(strip_markup(year_cell)) if status == "solved" else ""
             keywords = [k for k in links if k.lower() != name.lower()]
+            statement = strip_markup(explanation)
             out.append(
                 Row(
                     id=f"{prefix}-{number}",
@@ -62,9 +64,12 @@ def rows():
                     status=status,
                     source=url,
                     licence=LICENCE,
-                    keywords=keyword_fill(keywords, strip_markup(explanation), (page.split("'")[0].lower(), "mathematics", status, "named list")),
+                    keywords=keywords_from(statement, keywords),
                     posed=posed,
                     resolved=resolved,
+                    statement=statement,
+                    statement_source=url,
+                    status_source=f"Wikipedia table status column on {page}",
                 )
             )
         report(page, out)
@@ -95,9 +100,12 @@ def millennium():
                     status="solved" if solved else "open",
                     source=url,
                     licence=LICENCE,
-                    keywords=keyword_fill(wikilinks(" ".join(body))[:8], plain, ("millennium", "clay", "prize problem", "mathematics")),
-                    posed="2000",
-                    resolved=year_in(plain) if solved else "",
+                    keywords=keywords_from(plain, wikilinks(" ".join(body))),
+                    posed=posed_year(plain) or "2000",
+                    resolved=resolved_year(plain) if solved else "",
+                    statement=plain,
+                    statement_source=url,
+                    status_source="Wikipedia section: Solved problems" if solved else "Wikipedia section: Unsolved problems",
                 )
             )
 
