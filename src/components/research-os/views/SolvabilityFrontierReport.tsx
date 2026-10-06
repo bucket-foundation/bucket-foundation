@@ -3,6 +3,7 @@ import { PageHeader, Panel } from "@/components/ui";
 import type { Stratum } from "@/lib/research-os/solvability-backtest";
 import { REACH_CLASSES, type Prediction } from "@/lib/research-os/solvability-predictions";
 import { boundSentence, cutoffSummary, f3, ledeCodings, methodParagraphs, n, pct, verdict, weakParagraphs, type ReportData } from "@/lib/research-os/solvability-frontier-report-copy";
+import { MAKEUP_CHARTS, makeupSummary, pipelineSteps, sourceRows, type MakeupData } from "@/lib/research-os/solvability-frontier-provenance";
 
 const TH = "text-left small-caps text-[10px] tracking-[0.16em] text-[color:var(--basalt-3)] font-normal px-2 py-1 border-b border-[color:var(--hairline)]";
 const TD = "px-2 py-1 align-top text-[12px] text-[color:var(--basalt)] border-b border-[color:var(--hairline)]";
@@ -91,7 +92,55 @@ function PredictionRows({ rows }: { rows: readonly Prediction[] }) {
   );
 }
 
-export default function SolvabilityFrontierReport({ data, svg }: { data: ReportData; svg: string }) {
+function Provenance({ data, makeup }: { data: ReportData; makeup: MakeupData }) {
+  const charts = MAKEUP_CHARTS.filter(([key]) => key !== "openalex_works_by_branch" || makeup.openalex);
+  return (
+    <>
+      <Panel title="provenance" meta={`${n(Object.keys(makeup.sources).length)} sources, ${n(makeup.rows)} rows`}>
+        <p className={`${P} mb-3`}>{makeupSummary(makeup)}</p>
+        <Table head={["source", "rows", "licence", "status", "years", "what was taken", "what was done to it"]}>
+          {sourceRows(makeup).map((r) => (
+            <tr key={r.source}>
+              <td className={TD}>{r.source}</td>
+              <td className={NUM}>{n(r.rows)}</td>
+              <td className={TD}>{r.licence}</td>
+              <td className={TD}>{r.status}</td>
+              <td className={TD}>{r.years}</td>
+              <td className={TD}>{r.taken}</td>
+              <td className={TD}>{r.done}</td>
+            </tr>
+          ))}
+        </Table>
+      </Panel>
+
+      <Panel title="pipeline" meta="one formula per step">
+        <ol className="flex flex-col gap-3 list-decimal pl-5">
+          {pipelineSteps(data, makeup).map((s) => (
+            <li key={s.title} className={P}>
+              <span className="font-display text-[13px] text-[color:var(--basalt)]">{s.title}. </span>
+              <code className="block font-mono text-[11px] text-[color:var(--basalt)] my-1 whitespace-pre-wrap">{s.formula}</code>
+              {s.text}
+            </li>
+          ))}
+        </ol>
+      </Panel>
+
+      <Panel title="data make-up" meta={`${n(charts.length)} charts, built ${makeup.built}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {charts.map(([key, title]) => (
+            <figure key={key} className="m-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/atlas/makeup/${key}.webp`} alt={`${title}: counts and percentages over ${n(makeup.rows)} rows`} className="w-full h-auto border border-[color:var(--hairline)]" loading="lazy" />
+              <figcaption className="text-[11px] text-[color:var(--basalt-3)] mt-1">{title}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </Panel>
+    </>
+  );
+}
+
+export default function SolvabilityFrontierReport({ data, makeup, svg }: { data: ReportData; makeup: MakeupData; svg: string }) {
   const branches = Object.entries(data.frontier.branches).sort((a, b) => b[1].total - a[1].total);
   return (
     <div className="flex flex-col gap-8">
@@ -124,6 +173,8 @@ export default function SolvabilityFrontierReport({ data, svg }: { data: ReportD
           ))}
         </Table>
       </Panel>
+
+      <Provenance data={data} makeup={makeup} />
 
       {data.backtest.cutoffs.map((c) => (
         <Panel key={c.cutoff} title={`backtest, cutoff ${c.cutoff}`} meta={c.codings.map((k) => `${k.coding} AUC ${f3(k.auc)}`).join(", ")}>

@@ -4,7 +4,18 @@ import os
 
 import unicodedata
 
-from common import HERE, load, page_data
+from common import HERE, REPORT, load, page_data
+
+MAKEUP = os.path.join(REPORT, "makeup", "makeup.json")
+FAMILIES = [
+    ("formal-conjectures", "formal-conjectures", "statement (text field, or the Lean declaration when empty), status, family and declaration suffix as name", "deduped by normalised title; suffixed declarations marked as variants of their file's top-level row; keywords mined from the statement; years from the text only"),
+    ("Wikipedia, unsolved problems", "Wikipedia unsolved lists", "full list item as statement, bold or linked head as name, section heading as status", "branch per page, market per list, deduped against the atlas and within the file; years from the text only"),
+    ("Wikipedia, Hilbert's problems", "Hilbert's problems", "explanation cell, table status and year columns, 1900 as posed year", "partial for partial, no consensus, disputed, weaker form or partially cells; curator overrides on 14 and 18"),
+    ("Wikipedia, Smale's problems", "Smale's problems", "explanation cell, table status and year columns, 1998 as posed year", "same table rule; curator overrides on 8, 14 and 17"),
+    ("dated list", "dated lists (Science 2005 and 2021, DARPA, XPRIZE, neuroscience 23, Holy Grails)", "headline under 15 words as name, list year as posed year, a 2026 status check per row", "statement paraphrased in 15 to 40 words; deduped by title and at 0.85 similarity; solved rows carry the discovery year"),
+    ("solved timelines", "solved timelines, Wikipedia and Kavli", "a question shown to predate its answer, the discovery or proof year, a posed-evidence quote under 12 words", "statement rewritten as the question stood before resolution; discovery rows with no prior question held back; 159 pages verified"),
+    ("atlas, problems.tsv", "atlas, problems.tsv", "name, branch, level, Lean status, posed and resolved years, markets, keywords, all curated", "resolved year marks solved; embedding text is the problem record when one exists"),
+]
 
 GREEK = {"α": "alpha", "β": "beta", "γ": "gamma", "δ": "delta", "ε": "epsilon", "ζ": "zeta", "η": "eta", "θ": "theta", "ι": "iota", "κ": "kappa", "λ": "lambda", "μ": "mu", "ν": "nu", "ξ": "xi", "π": "pi", "ρ": "rho", "σ": "sigma", "τ": "tau", "υ": "upsilon", "φ": "phi", "χ": "chi", "ψ": "psi", "ω": "omega", "Γ": "Gamma", "Δ": "Delta", "Θ": "Theta", "Λ": "Lambda", "Ξ": "Xi", "Π": "Pi", "Σ": "Sigma", "Φ": "Phi", "Ψ": "Psi", "Ω": "Omega"}
 
@@ -94,6 +105,30 @@ def main() -> None:
         *[f"{esc(r['title'][:70])} & {esc(r['reachClass'].replace('close to known results', 'reach'))} & {esc(r['branch'])} & {f3(r['reach'])} & {r['growth']} & {esc(r['nearest'][0]['title'][:60]) if r['nearest'] else ''} \\\\" for r in atlas],
         "\\end{longtable}",
     ])
+    if os.path.exists(MAKEUP):
+        import json
+        with open(MAKEUP) as f:
+            m = json.load(f)
+        rows = []
+        for prefix, label, taken, done in FAMILIES:
+            members = {k: v for k, v in m["sources"].items() if k.startswith(prefix)}
+            if not members:
+                continue
+            n = sum(v["rows"] for v in members.values())
+            lic = {}
+            for v in members.values():
+                for l, c in v["licences"].items():
+                    lic[l] = lic.get(l, 0) + c
+            licence = "; ".join(f"{l} ({c})" if len(lic) > 1 else l for l, c in sorted(lic.items(), key=lambda x: -x[1]))
+            posed = sum(v["posed"] for v in members.values())
+            resolved = sum(v["resolved"] for v in members.values())
+            rows.append(f"{esc(label)} & {n} & {esc(licence)} & {esc(taken)}; {posed} posed and {resolved} resolved years & {esc(done)} \\\\")
+        assert sum(int(r.split(" & ")[1]) for r in rows) == m["rows"]
+        write("sources.tex", [
+            "\\begin{tabular}{@{}p{2.1cm}rp{2.6cm}p{4.3cm}p{4.6cm}@{}}", "\\toprule", "Source & Rows & Licence & What was taken & What was done to it \\\\", "\\midrule",
+            *rows,
+            "\\bottomrule", "\\end{tabular}",
+        ])
     counts = p["counts"]
     write("counts.tex", [
         "\\begin{tabular}{@{}lr@{}}", "\\toprule", "Class & Open problems \\\\", "\\midrule",

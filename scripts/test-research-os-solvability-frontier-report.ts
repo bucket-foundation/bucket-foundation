@@ -7,17 +7,21 @@ import path from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import report from "../src/lib/research-os/solvability-frontier-report-data.json";
+import makeupData from "../src/lib/research-os/solvability-makeup-data.json";
+import { MAKEUP_CHARTS, makeupSummary, pipelineSteps, sourceRows, type MakeupData } from "../src/lib/research-os/solvability-frontier-provenance";
 import SolvabilityFrontierReport from "../src/components/research-os/views/SolvabilityFrontierReport";
 import { cutoffSummary, methodParagraphs, rateSentence, reportMarkdown, verdict, weakParagraphs, type ReportData } from "../src/lib/research-os/solvability-frontier-report-copy";
 import { REACH_CLASSES } from "../src/lib/research-os/solvability-predictions";
 
 const ROOT = path.join(__dirname, "..");
 const data = report as unknown as ReportData;
+const makeup = makeupData as unknown as MakeupData;
 const TAGGED = /\[(bm|bm-open):[A-Za-z0-9_.']+\]|\[empirical:[^\]]+\]/;
 
 test("the report page renders every section from the committed data", () => {
-  const html = renderToStaticMarkup(createElement(SolvabilityFrontierReport, { data, svg: "<svg viewBox=\"0 0 10 10\"></svg>" }));
-  for (const heading of ["frontier", "per branch", "backtest, cutoff 2005", "backtest, cutoff 2021", "method", "where this is weak", "the atlas problems"]) assert.ok(html.includes(`>${heading}<`), heading);
+  const html = renderToStaticMarkup(createElement(SolvabilityFrontierReport, { data, makeup, svg: "<svg viewBox=\"0 0 10 10\"></svg>" }));
+  for (const heading of ["frontier", "per branch", "provenance", "pipeline", "data make-up", "backtest, cutoff 2005", "backtest, cutoff 2021", "method", "where this is weak", "the atlas problems"]) assert.ok(html.includes(`>${heading}<`), heading);
+  assert.ok(html.indexOf(">provenance<") < html.indexOf(">pipeline<") && html.indexOf(">pipeline<") < html.indexOf(">data make-up<") && html.indexOf(">data make-up<") < html.indexOf(">backtest, cutoff 2005<"));
   assert.ok(html.indexOf(">where this is weak<") < html.indexOf(">predictions: close to known results<"));
   assert.ok(html.indexOf(">backtest, cutoff 2021<") < html.indexOf(">where this is weak<"));
   assert.ok(html.includes("settled: solved only") && html.includes("settled or advanced: solved or partial"));
@@ -57,7 +61,22 @@ test("bm.py lint accepts the report copy", () => {
   const dir = path.join(os.homedir(), ".cache", "bucket-atlas");
   mkdirSync(dir, { recursive: true });
   const file = path.join(dir, "frontier-report-copy.md");
-  writeFileSync(file, reportMarkdown(data));
+  writeFileSync(file, [reportMarkdown(data), "## Provenance", "", makeupSummary(makeup), "", ...pipelineSteps(data, makeup).flatMap((s) => [`${s.title}. ${s.formula}`, "", s.text, ""])].join("\n"));
   const out = execFileSync("python3", [bm, "lint", file], { cwd: ROOT, encoding: "utf8" });
   assert.ok(!/names nothing|cite it as|without \[bm:\]/.test(out), out);
+});
+
+test("the provenance section covers every source, every step and every chart with tagged numbers", () => {
+  const rows = sourceRows(makeup);
+  assert.equal(rows.reduce((a, r) => a + r.rows, 0), makeup.rows);
+  for (const r of rows) assert.ok(r.taken.length > 10 && r.done.length > 10 && r.licence.length > 2, r.source);
+  const steps = pipelineSteps(data, makeup);
+  assert.ok(steps.length >= 12);
+  for (const s of steps) {
+    assert.ok(s.formula.length > 5, s.title);
+    if (/\d/.test(s.text)) assert.ok(TAGGED.test(s.text), s.title);
+  }
+  assert.ok(TAGGED.test(makeupSummary(makeup)));
+  for (const [key] of MAKEUP_CHARTS) if (key !== "openalex_works_by_branch" || makeup.openalex) assert.ok(existsSync(path.join(ROOT, "public", "atlas", "makeup", `${key}.webp`)), key);
+  for (const lab of Object.values(makeup.labels)) assert.equal(Object.values(lab.counts).reduce((a, b) => a + b, 0) + lab.absent, makeup.rows, lab.title);
 });
