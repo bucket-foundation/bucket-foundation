@@ -135,6 +135,7 @@ def rows(kind="posed"):
                 statement=record["statement"],
                 statement_source=record["source"],
                 status_source=record["status_source"],
+                posed_evidence=record["posed_evidence"],
             )
         )
     return out

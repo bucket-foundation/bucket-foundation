@@ -5,6 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import dated_lists
 import formal_conjectures
 import named_lists
 import solved_discoveries
@@ -62,10 +63,12 @@ def main():
     rows, merged = merge_erdos(rows)
     rows = dedupe(rows, existing_titles())
     write(rows)
+    kept, dropped, filled, _ = dated_lists.apply()
+    rows += kept
     top = [r for r in rows if not r.variant_of]
     variants = [r for r in rows if r.variant_of]
-    print(f"wrote {len(rows)} rows to {OUTPUT}; {merged} Erdős rows merged")
-    print("by source:", dict(Counter("both" if ";" in r.source else "solved-discoveries" if r.id.startswith("sd-") else "wikipedia" if "wikipedia" in r.source else "formal-conjectures" for r in rows)))
+    print(f"wrote {len(rows)} rows to {OUTPUT}; {merged} Erdős rows merged; {len(kept)} dated-list rows appended, {len(dropped)} matched existing rows, posed filled {dict(filled)}")
+    print("by source:", dict(Counter("both" if ";" in r.source else "solved-discoveries" if r.id.startswith("sd-") else "dated-lists" if r.id.startswith("dl-") else "wikipedia" if "wikipedia" in r.source else "formal-conjectures" for r in rows)))
     print("by branch:", dict(Counter(r.branch for r in rows)))
     print("by form:", dict(Counter(r.form for r in rows)))
     print("top-level status:", dict(Counter(r.status for r in top)), "variants:", dict(Counter(r.status for r in variants)))

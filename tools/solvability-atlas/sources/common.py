@@ -12,7 +12,7 @@ ATLAS = Path(__file__).resolve().parent.parent
 REPO = ATLAS.parent.parent
 EXISTING = ATLAS / "problems.tsv"
 OUTPUT = ATLAS / "problems-sourced.tsv"
-COLUMNS = ["id", "name", "branch", "level", "form", "variant_of", "lean", "posed", "resolved", "market", "keywords", "status", "source", "licence", "statement", "statement_source", "status_source"]
+COLUMNS = ["id", "name", "branch", "level", "form", "variant_of", "lean", "posed", "resolved", "market", "keywords", "status", "source", "licence", "statement", "statement_source", "status_source", "posed_evidence"]
 FORMS = {"conjecture", "problem", "question", "variant"}
 STATUSES = {"open", "partial", "solved"}
 BRANCHES = {"mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "applied"}
@@ -71,6 +71,7 @@ class Row:
     statement: str = ""
     statement_source: str = ""
     status_source: str = ""
+    posed_evidence: str = ""
 
     def record(self):
         assert self.branch in BRANCHES, self.branch
@@ -94,6 +95,7 @@ class Row:
             "statement": clean_cell(self.statement),
             "statement_source": self.statement_source,
             "status_source": self.status_source,
+            "posed_evidence": clean_cell(self.posed_evidence),
         }
 
 
