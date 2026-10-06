@@ -8,11 +8,11 @@ import type { Card, Item, Rating } from "./grade";
 import { cardKey } from "../../../src/lib/research-os/work-quiz/fact";
 import type { Form } from "../../../src/lib/research-os/work-quiz/space";
 
-export const SCHEMA_VERSION = 10;
+export const SCHEMA_VERSION = 11;
 
 export const SYNC_TABLES = ["attempts"] as const;
 
-export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage"] as const;
+export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage", "work_quiz_languages"] as const;
 
 export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
 
@@ -104,6 +104,7 @@ export const MIGRATIONS: Migration[] = [
   `create table work_quiz_coverage (cell text not null, fact_id text not null, picks integer not null default 0, misses integer not null default 0,
      last_day text not null, primary key (cell, fact_id));
    alter table work_quiz_cards add column question text;`,
+  `create table work_quiz_languages (code text primary key check (length(code) between 2 and 3), added_at integer not null);`,
 ];
 
 export interface AttemptInput {

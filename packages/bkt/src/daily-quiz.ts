@@ -1,6 +1,7 @@
 import { FERMI_LOG10_TOLERANCE } from "../../../src/lib/research-os/work-quiz/grade";
 import { checkLimits, withinLimits } from "../../../src/lib/research-os/work-quiz/limits";
-import { ALL_QUIZ_TYPES, SOURCE_KINDS, type QuizQuestion, type QuizType, type SourceRef } from "../../../src/lib/research-os/work-quiz/types";
+import { ALL_QUIZ_TYPES, SOURCE_KINDS, type QuestionWord, type QuizQuestion, type QuizType, type SourceRef } from "../../../src/lib/research-os/work-quiz/types";
+import { LANGUAGE_CODES } from "../../../src/lib/research-os/work-quiz/languages";
 import { open, seal } from "./crypto";
 import type { Store } from "./store";
 
@@ -44,6 +45,19 @@ function source(v: unknown): SourceRef {
   return { kind: r.kind as SourceRef["kind"], ref: text(r.ref, "a source ref", 120), label: text(r.label, "a source label", 120), href };
 }
 
+const langCode = (v: unknown, what: string): string | null => {
+  if (v === null || v === undefined) return null;
+  if (typeof v !== "string" || !LANGUAGE_CODES.includes(v)) throw new DailyQuizError(`${what} must be a language code from the word set`);
+  return v;
+};
+
+function word(v: unknown): QuestionWord {
+  const r = (v && typeof v === "object" ? v : {}) as Record<string, unknown>;
+  const href = r.href === null || r.href === undefined ? null : text(r.href, "a word credit href");
+  if (href !== null && !href.startsWith("https://")) throw new DailyQuizError("a word credit href must start with https://");
+  return { lang: langCode(r.lang, "a word language"), choicesLang: langCode(r.choicesLang, "a choices language"), credit: text(r.credit, "a word credit", 120), href };
+}
+
 function limited(q: QuizQuestion, limits: boolean): QuizQuestion {
   const over = limits ? checkLimits(q) : [];
   if (over.length) throw new DailyQuizError(`question ${q.id} is over length: ${over.join("; ")}`);
@@ -73,6 +87,7 @@ function question(v: unknown, limits: boolean): QuizQuestion {
     limitSec,
     explain,
     sources: sources.map(source),
+    ...(r.word === undefined || r.word === null ? {} : { word: word(r.word) }),
   };
   if (r.choices !== null && r.choices !== undefined) {
     if (!Array.isArray(r.choices) || r.choices.length < 2 || r.choices.length > MAX_CHOICES) throw new DailyQuizError(`question ${id} needs between 2 and ${MAX_CHOICES} choices`);
