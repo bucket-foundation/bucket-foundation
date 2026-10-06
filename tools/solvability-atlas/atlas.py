@@ -112,6 +112,7 @@ def main():
     plot_network(g, nodes)
     plot_matrices(nodes, sim, stats, problems, tokens, tok_sim)
     export_graph(g, nodes, tokens, tok_users, stats)
+    export_similarity(nodes, sim)
     print(json.dumps(stats["summary"], indent=1))
 
 
@@ -343,6 +344,14 @@ def export_graph(g, nodes, tokens, users, stats):
         for e in edges:
             w = f" SET r.weight = {e['weight']}" if "weight" in e else ""
             f.write(f"MATCH (a:AtlasNode {{id: {json.dumps(e['source'])}}}), (b:AtlasNode {{id: {json.dumps(e['target'])}}}) MERGE (a)-[r:{e['type']}]->(b){w};\n")
+
+
+def similarity_rows(nodes, sim):
+    return {"schema": "bucket.solvability-atlas.similarity/v1", "ids": [n["id"] for n in nodes], "upper": [[round(float(sim[i, j]), 3) for j in range(i + 1, len(nodes))] for i in range(len(nodes))]}
+
+
+def export_similarity(nodes, sim):
+    json.dump(similarity_rows(nodes, sim), open(OUT / "similarity.json", "w"), separators=(",", ":"))
 
 
 def cypher_map(n):

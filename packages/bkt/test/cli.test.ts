@@ -34,12 +34,13 @@ describe("command table", () => {
       ["graph", "graph", "knowledge graph"],
       ["research", "research", "notes and saved results"],
       ["jobs", "jobs", "saved analyses"],
+      ["frontier", "frontier", "solvability frontier circle"],
     ]);
   });
 
   test("every command name is unique and every palette-only entry stays off the command line", () => {
     expect(new Set(TABLE.map((c) => c.name)).size).toBe(TABLE.length);
-    for (const name of ["review", "home", "quit", "graph", "research", "jobs"]) expect(() => resolve([name])).toThrow(`unknown command ${name}`);
+    for (const name of ["review", "home", "quit", "graph", "research", "jobs", "frontier"]) expect(() => resolve([name])).toThrow(`unknown command ${name}`);
     expect(() => resolve(["quiz"])).toThrow("quiz needs a subcommand: notify, schedule, unschedule");
   });
 

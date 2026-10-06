@@ -6,9 +6,9 @@ import { statRows } from "./cli/out";
 import { paletteEntries, type PaletteTarget } from "./cli/table";
 import type { Session } from "./setup";
 import type { CanonSource } from "./core/search";
-import { GraphScreen, JobsScreen, nextTab, ResearchScreen, SearchScreen, TabBar, TABS, type GraphView, type JobView, type KeyHandler, type ResearchView } from "./cli/screens";
+import { FrontierScreen, GraphScreen, JobsScreen, nextTab, ResearchScreen, SearchScreen, TabBar, TABS, type GraphView, type JobView, type KeyHandler, type ResearchView } from "./cli/screens";
 
-type Screen = "home" | "quiz" | "review" | "stats" | "search" | "graph" | "research" | "jobs";
+type Screen = "home" | "quiz" | "review" | "stats" | "search" | "graph" | "research" | "jobs" | "frontier";
 
 const TOP = new Set<string>(TABS.map((t) => t.screen));
 
@@ -318,7 +318,7 @@ export function App({ session, sources = {} }: { session: Session; sources?: App
       return;
     }
     if (screen === "graph" || screen === "research" || screen === "jobs") return;
-    if (screen === "stats") {
+    if (screen === "stats" || screen === "frontier") {
       if (input === "q" || input === "h" || key.escape) setScreen("home");
       return;
     }
@@ -352,6 +352,8 @@ export function App({ session, sources = {} }: { session: Session; sources?: App
         <GraphScreen graph={sources.graph ?? null} />
       ) : screen === "research" ? (
         <ResearchScreen view={sources.research?.() ?? { notes: [], saved: null }} />
+      ) : screen === "frontier" ? (
+        <FrontierScreen />
       ) : screen === "jobs" ? (
         <JobsScreen jobs={sources.jobs?.() ?? []} />
       ) : (
