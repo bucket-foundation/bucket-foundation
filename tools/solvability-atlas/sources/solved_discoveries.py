@@ -1,4 +1,5 @@
 import csv
+import difflib
 import hashlib
 import html
 import json
@@ -13,7 +14,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import BRANCHES, OUTPUT, Row, dedupe, existing_titles, fetch, good_phrase, keywords_from, normal_title, read, slug, strip_markup, wikitext
 
 SOLVED_DIR = Path(__file__).resolve().parent / "solved"
-CURATED_COLUMNS = ["name", "posed", "resolved", "source", "licence", "statement", "status_source", "keywords", "market"]
+CURATED_COLUMNS = ["name", "posed", "resolved", "resolved_kind", "posed_evidence", "source", "licence", "statement", "status_source", "keywords", "market"]
+KINDS = {"posed", "discovery"}
+MIN_WORDS = 15
+MAX_WORDS = 40
+QUOTE_WORDS = 12
+PRIZE_YEAR = re.compile(r"(?:nobelprize\.org/prizes/[a-z_-]+|kavliprize\.org/prizes/[a-z-]+|breakthroughprize\.org/Laureates)/(\d{4})")
 TARGET_BRANCHES = ("physics", "chemistry", "biophysics", "cosmology", "mind", "information", "applied")
 TARGET = 100
 LICENCES = {
@@ -79,6 +85,20 @@ def check(record):
         problems.append(f"licence {record['licence']!r} not in the allowed set")
     if record["statement"] and not problem_shaped(record["statement"]):
         problems.append("statement is not a question or an imperative problem")
+    if record["resolved_kind"] not in KINDS:
+        problems.append(f"resolved_kind {record['resolved_kind']!r} must be posed or discovery")
+    if record["resolved_kind"] == "posed":
+        if not record["posed_evidence"]:
+            problems.append("posed row has no posed_evidence")
+        words = len(record["statement"].split())
+        if not MIN_WORDS <= words <= MAX_WORDS:
+            problems.append(f"posed statement has {words} words, band is {MIN_WORDS} to {MAX_WORDS}")
+    prize = prize_year(record["source"])
+    if prize and record["resolved"] == prize:
+        problems.append(f"resolved year equals the prize year {prize}; use the discovery year the page states")
+    for quote in re.findall(r'"([^"]+)"', record["status_source"] + " " + record["posed_evidence"]):
+        if len(quote.split()) > QUOTE_WORDS:
+            problems.append(f"quote longer than {QUOTE_WORDS} words")
     if len(record["name"]) > 140 or re.search(r"[,;:(\-]$", record["name"]):
         problems.append("name too long or ends at a bad boundary")
     if len([k for k in record["keywords"].split(";") if k.strip()]) > 8:
@@ -86,11 +106,18 @@ def check(record):
     return problems
 
 
-def rows():
+def prize_year(url):
+    match = PRIZE_YEAR.search(url)
+    return match.group(1) if match else ""
+
+
+def rows(kind="posed"):
     out = []
     for record in curated_rows():
         problems = check(record)
         assert not problems, (record["line"], problems)
+        if record["resolved_kind"] != kind:
+            continue
         keywords = [k.strip() for k in record["keywords"].split(";") if k.strip()]
         out.append(
             Row(
@@ -111,6 +138,27 @@ def rows():
             )
         )
     return out
+
+
+def statement_key(text):
+    return re.sub(r"[^a-z0-9 ]", "", text.lower())
+
+
+def similar(a, b, threshold=0.85):
+    matcher = difflib.SequenceMatcher(None, statement_key(a), statement_key(b))
+    return matcher.real_quick_ratio() >= threshold and matcher.quick_ratio() >= threshold and matcher.ratio() >= threshold
+
+
+def similar_pairs(candidates, against, threshold=0.85):
+    candidate_ids = {c["id"] for c in candidates}
+    pairs = []
+    for row in candidates:
+        for other in against:
+            if other["id"] == row["id"] or (other["id"] in candidate_ids and other["id"] < row["id"]):
+                continue
+            if similar(row["statement"], other["statement"], threshold):
+                pairs.append((row["id"], other["id"]))
+    return pairs
 
 
 def page_text(url, cache):
@@ -185,6 +233,12 @@ def main(argv):
         cache = Path(argv[argv.index("--verify") + 1]) if len(argv) > argv.index("--verify") + 1 else Path.home() / ".cache" / "bucket-solvability-atlas" / "solved"
         failures = verify(curated_rows(), cache)
         return 1 if failures else 0
+    if "--dupes" in argv:
+        current = read()
+        fresh = [r.record() for r in rows()]
+        for a, b in similar_pairs(fresh, fresh + [r for r in current if not r["id"].startswith("sd-")]):
+            print(a, "~", b)
+        return 0
     if "--append" in argv:
         fresh = append()
         print(f"appended {len(fresh)} rows to {OUTPUT}")
@@ -193,6 +247,7 @@ def main(argv):
         return 0
     curated = curated_rows()
     print("curated rows:", len(curated), dict(Counter(r["branch"] for r in curated)))
+    print("by kind:", {k: dict(Counter(r["branch"] for r in curated if r["resolved_kind"] == k)) for k in sorted(KINDS)})
     print("by licence:", dict(Counter(r["licence"] for r in curated)))
     bad = [(r["line"], check(r)) for r in curated if check(r)]
     for line, problems in bad:

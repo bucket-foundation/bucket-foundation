@@ -58,21 +58,26 @@ Where open and solved problems can be sourced, with count, status coverage, lice
 
 ## Solved problems outside mathematics
 
-Second ingest, 2026-10-05. Curated rows in `sources/solved/<branch>.tsv`, loaded by `sources/solved_discoveries.py` with ids `sd-<slug>`. Each row is one question the field asked and later answered, with the year the source gives for the answer. `python3 sources/solved_discoveries.py --verify` fetched all 163 source pages and confirmed that the resolved year and one anchor term from the name or keywords appear on each page: 821 rows, 0 failures. `--append` adds the rows to `problems-sourced.tsv` after dedupe by normalised title; `sources/build.py` includes them on a full rebuild.
+Second ingest, 2026-10-05, revised after critic round 1. Curated rows in `sources/solved/<branch>.tsv` (786 rows), loaded by `sources/solved_discoveries.py`. Each row carries `resolved_kind`:
 
-Selection rule: a row needs a statement that was an open question before the resolution year, a resolution the source page states with a year, one https source url, a licence from the allowed set in `solved_discoveries.LICENCES`, and a `status_source` naming the page and the entry or citation. `posed` is filled only when the page states the year the question was raised (26 rows). Discovery reports ("X was found in 1998") are rewritten as the question they closed ("Does the neutrino have mass?"). Prize citations are quoted in at most twelve words with the url; the prize year stands as `resolved`. Rows whose year the page did not carry were dropped (20 mind candidates). Within the ingest, a title that appears in two branch files keeps the science branch and the applied copy is removed.
+- `posed`: the source page shows the question existed before the answer, as a named conjecture or hypothesis, a prediction later confirmed, a prize problem, a dispute between schools, a stated posed year, or a long-sought goal. `posed_evidence` quotes the phrase from the page, at most 12 words. The statement is rewritten as the question stood before resolution, in the terms of its time, 15 to 40 words, so it sits in the length band of the open rows.
+- `discovery`: the answer arrived without a prior posed question (a new moon, an unpredicted particle, a compound or organism found, a first device). These rows stay in the curated files for later and never enter `problems-sourced.tsv`.
 
-| Branch | Solved before | Added | Solved after | Sources with rows |
-|---|---|---|---|---|
-| physics | 20 | 107 | 127 | Timeline of particle discoveries 29, thermodynamics 20, quantum mechanics 19, atomic and subatomic physics 17, electromagnetism and classical optics 14, gravitational physics and relativity 6, Solar System astronomy 1, cosmological theories 1 |
-| chemistry | 0 | 110 | 110 | Timeline of chemistry 79, biology and organic chemistry 10, chemical element discoveries 9, materials technology 8, hydrogen technologies 4 |
-| biophysics | 0 | 110 | 110 | Timeline of biology and organic chemistry 71, biotechnology 12, human vaccines 12, immunology 12, antibiotics 3 |
-| cosmology | 0 | 110 | 110 | Timeline of Solar System astronomy 42, galaxies and large-scale structure 17, cosmological theories 17, black hole physics 16, white dwarfs, neutron stars and supernovae 11, Solar System planets and moons 6, gravitational physics 1 |
-| mind | 0 | 116 | 116 | nobelprize.org medicine and economics summaries 23, kavliprize.org neuroscience 9, 84 Wikipedia topic pages one row each (Broca's area, Hodgkin-Huxley model, Place cell, Long-term potentiation, Prospect theory and so on) |
-| information | 0 | 126 | 126 | Timeline of algorithms 33, Gödel Prize 27, information theory 21, artificial intelligence 20, cryptography 11, Solved game 2, 12 topic pages one row each (Halting problem, Entscheidungsproblem, Cook-Levin theorem, Graph isomorphism problem, Zero-knowledge proof and so on) |
-| applied | 0 | 137 | 137 | Timeline of medicine and medical technology 47, Nobel economics laureate list 22, transportation technology 16, materials technology 13, human vaccines 10, low-temperature technology 8, antibiotics 7, XPRIZE 6, hydrogen technologies 5, Longitude rewards 2, nuclear fusion 1 |
+Only `posed` rows reach `problems-sourced.tsv` (ids `sd-<slug>`) and count as solved in the frontier. `resolved` is the discovery or proof year the page states, never a prize year; rows on prize pages whose summary gave no earlier year were dropped (23 Nobel medicine rows, Nobel economics 2002, Kavli 2008 and 2016). `--verify` fetched the 159 source pages and confirmed year plus anchor term on each: 786 rows, 0 failures. `--dupes` compares statements at 0.85 difflib ratio within the curated rows and against open rows and prints nothing; the fast Fourier transform open row (the n log n lower bound) stays open and the 1965 algorithm row is a discovery. 88 posed rows were appended (one information row deduped by title).
 
-Licences: 784 rows CC BY-SA 4.0 (Wikipedia), 23 rows Nobel Prize Outreach AB with the citation quoted briefly, 9 rows Kavli Foundation with the citation quoted briefly. Every row is `form=question`. Shortfalls: none, every branch holds at least 100 top-level solved rows. Sources named in the bead and not used for rows: Breakthrough Prize, Crafoord Prize, XPRIZE and Longitude Prize sites (the Wikipedia pages stood in), formal-conjectures proved rows outside number theory (none map outside mathematics). Weak spots a curator should read: the 6 cosmology rows from the planets and moons table name only the moon and discoverer; mind and information `status_source` text for Wikipedia pages is a paraphrase of the page entry.
+| Branch | Posed, in frontier | Discovery, held back | Shortfall below 100 posed | Posed median words | Open median words |
+|---|---|---|---|---|---|
+| physics | 15 (35 solved with the earlier Wikipedia rows) | 95 | 65 | 29 | 30 |
+| chemistry | 10 | 100 | 90 | 28 | 15 |
+| biophysics | 13 | 97 | 87 | 28 | 22 |
+| cosmology | 16 | 94 | 84 | 27.5 | 16 |
+| mind | 5 | 86 | 95 | 28 | 9 |
+| information | 11 | 116 | 89 | 28 | 11.5 |
+| applied | 18 | 109 | 82 | 25.5 | 85 |
+
+Sources with rows: physics (particle discoveries, quantum mechanics, thermodynamics, atomic and subatomic, electromagnetism and optics, gravitational physics timelines), chemistry (Timeline of chemistry, chemical element discoveries, biology and organic chemistry, materials, hydrogen), biophysics (biology and organic chemistry, biotechnology, vaccines, immunology, antibiotics timelines), cosmology (Solar System, galaxies, cosmological theories, black holes, supernovae, moons timelines), mind (84 Wikipedia topic pages, 7 Kavli neuroscience pages), information (algorithms, information theory, AI, cryptography timelines, Gödel Prize, 14 topic pages), applied (medicine, vaccines, antibiotics, transport, materials, cryogenics, hydrogen timelines, 14 economics topic pages, XPRIZE, Marine chronometer, Longitude rewards, Human Genome Project, Sound barrier). Licences: 779 rows CC BY-SA 4.0, 7 rows Kavli Foundation with the citation quoted briefly.
+
+Shortfall: every one of the seven branches is below 100 posed solved rows. The Wikipedia timelines record discoveries and seldom record the question that preceded them, so the posed count depends on pages that state a prediction or a prize. Closing the gap needs sources that pose questions before answering them: histories of named conjectures per field, prize problem statements, and the "solved" sections of the unsolved lists, which the next pass should mine page by page.
 
 ## Ingest rules
 
