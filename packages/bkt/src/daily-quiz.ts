@@ -1,11 +1,15 @@
 import { FERMI_LOG10_TOLERANCE } from "../../../src/lib/research-os/work-quiz/grade";
-import { checkLimits, withinLimits } from "../../../src/lib/research-os/work-quiz/limits";
+import { checkLimits, LIMITS, QUIZ_QUESTIONS, withinLimits } from "../../../src/lib/research-os/work-quiz/limits";
 import { ALL_QUIZ_TYPES, SOURCE_KINDS, type QuestionWord, type QuizQuestion, type QuizType, type SourceRef } from "../../../src/lib/research-os/work-quiz/types";
 import { LANGUAGE_CODES } from "../../../src/lib/research-os/work-quiz/languages";
 import { open, seal } from "./crypto";
 import type { Store } from "./store";
 
 export const MAX_DAILY_QUESTIONS = 20;
+export const DAILY_MIN = QUIZ_QUESTIONS.min;
+export const DAILY_MAX = QUIZ_QUESTIONS.max;
+export const CHOICE_COUNT = LIMITS.choices;
+export const TOO_FEW = `fewer than ${DAILY_MIN} questions could be built for that day`;
 export const MAX_DAILY_BYTES = 256 * 1024;
 export const MAX_TEXT = 600;
 export const MAX_LIMIT_SEC = 600;
@@ -91,6 +95,7 @@ function question(v: unknown, limits: boolean): QuizQuestion {
   };
   if (r.choices !== null && r.choices !== undefined) {
     if (!Array.isArray(r.choices) || r.choices.length < 2 || r.choices.length > MAX_CHOICES) throw new DailyQuizError(`question ${id} needs between 2 and ${MAX_CHOICES} choices`);
+    if (limits && r.choices.length !== CHOICE_COUNT) throw new DailyQuizError(`question ${id} needs exactly ${CHOICE_COUNT} choices`);
     const choices = r.choices.map((c) => text(c, `a choice of question ${id}`));
     if (new Set(choices).size !== choices.length) throw new DailyQuizError(`question ${id} repeats a choice`);
     if (!choices.includes(answer)) throw new DailyQuizError(`the answer of question ${id} is missing from its choices`);
@@ -109,12 +114,17 @@ function question(v: unknown, limits: boolean): QuizQuestion {
   return limited({ ...base, choices: null, tolerance }, limits);
 }
 
+export function parseQuestion(raw: unknown, o: { limits?: boolean } = {}): QuizQuestion {
+  return question(raw, o.limits !== false);
+}
+
 export function parseDailyQuiz(raw: unknown, o: { limits?: boolean } = {}): DailyQuiz {
   const r = (raw && typeof raw === "object" && !Array.isArray(raw) ? raw : {}) as Record<string, unknown>;
   if (!validDay(r.day)) throw new DailyQuizError("the quiz needs a day written as YYYY-MM-DD");
-  if (!Array.isArray(r.questions) || r.questions.length === 0 || r.questions.length > MAX_DAILY_QUESTIONS)
-    throw new DailyQuizError(`the quiz needs between 1 and ${MAX_DAILY_QUESTIONS} questions`);
-  const questions = r.questions.map((q) => question(q, o.limits !== false));
+  const strict = o.limits !== false;
+  const max = strict ? DAILY_MAX : MAX_DAILY_QUESTIONS;
+  if (!Array.isArray(r.questions) || r.questions.length === 0 || r.questions.length > max) throw new DailyQuizError(`the quiz needs between 1 and ${max} questions`);
+  const questions = r.questions.map((q) => question(q, strict));
   if (new Set(questions.map((q) => q.id)).size !== questions.length) throw new DailyQuizError("the quiz repeats a question id");
   return { day: r.day, questions };
 }

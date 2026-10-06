@@ -1,6 +1,6 @@
 import { MAKERS, hashString, seededRng, type Rng } from "./generate";
 import { cardKey, compoundFactId, factId, factIdOfSource, makeFact, type Fact } from "./fact";
-import { checkLimits, parityOk, shortTitle } from "./limits";
+import { checkLimits, LIMITS, parityOk, shortTitle } from "./limits";
 import { FORM_LIMIT_SEC, MIN_ORDER_FACTS, type Depth, type Form } from "./space";
 import type { PrFact, QuizQuestion, WorkQuizType, WorkSources } from "./types";
 
@@ -15,7 +15,7 @@ export type FormMaker = (src: WorkSources, rng: Rng, depth: Depth) => SampledQue
 
 export const ESTIMATE_LOG10: Readonly<Record<Depth, number>> = { 1: 0.3, 2: 0.2, 3: 0.1 };
 export const estimateFactor = (depth: Depth): number => Math.floor(10 ** ESTIMATE_LOG10[depth] * 100) / 100;
-export const ORDER_CHOICES: Readonly<Record<Depth, number>> = { 1: 2, 2: 3, 3: 4 };
+export const ORDER_CHOICES = LIMITS.choices;
 export const ORDER_TITLE_TOKENS = 3;
 export const ORDER_LABELS = ["A", "B", "C"] as const;
 
@@ -111,7 +111,7 @@ const order: FormMaker = (src, rng, depth) => {
   const labelled = picked.map((p, i) => ({ ...p, label: ORDER_LABELS[i] }));
   const answer = [...labelled].sort((a, b) => a.pr.order - b.pr.order).map((p) => p.label).join("");
   const wrong = shuffle(rng, permutations([...ORDER_LABELS]).map((p) => p.join("")).filter((p) => p !== answer));
-  const choices = shuffle(rng, [answer, ...wrong.slice(0, ORDER_CHOICES[depth] - 1)]);
+  const choices = shuffle(rng, [answer, ...wrong.slice(0, ORDER_CHOICES - 1)]);
   const oldest = labelled.find((p) => p.label === answer[0])!;
   return stamp(
     {
@@ -135,7 +135,6 @@ const order: FormMaker = (src, rng, depth) => {
 export const FORM_MAKERS: Readonly<Partial<Record<Form, FormMaker>>> = {
   cloze: wrap("recall", "cloze"),
   spot_error: wrap("spot_error", "spot_error"),
-  true_false: wrap("true_false", "true_false"),
   estimate,
   compare: wrap("which_first", "compare"),
   order,

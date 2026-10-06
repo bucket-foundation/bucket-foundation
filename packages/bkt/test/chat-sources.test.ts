@@ -5,10 +5,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { CHAT_CAPS, CHAT_OFF, chatRoot, localDay, MAX_LABEL, readChatSources, userText, type FactStub } from "../src/chat-sources";
 import { newDataKey, seal } from "../src/crypto";
-import { parseDailyQuiz } from "../src/daily-quiz";
+import { DAILY_MAX, DAILY_MIN, parseDailyQuiz, TOO_FEW } from "../src/daily-quiz";
 import { askModel, loopbackUrl, modelPrompt, safeStubs, templateQuestions, writeDailyQuiz, WriterError, type Fetcher } from "../src/quiz-writer";
 import { scanLines, secretLine } from "../src/secret-scan";
-import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
+import { checkLimits, LIMITS } from "../../../src/lib/research-os/work-quiz/limits";
 import { startServe, type Serve } from "../src/serve";
 import { Store } from "../src/store";
 import { WorkQuizStore, workQuizRoutes } from "../src/work-quiz";
@@ -243,7 +243,7 @@ const reply = (questions: unknown): Fetcher => async () => new Response(JSON.str
 const GOOD = {
   stub: "aaaaaaaaaaaaaaaa",
   prompt: "Which grader did the session wire into the daily quiz route?",
-  choices: ["Fermi", "Exact", "Rubric", "Peers"],
+  choices: ["Fermi", "Exact", "Rubric"],
   answer: "Fermi",
   explain: "The session began with the Fermi grader.",
 };
@@ -517,6 +517,25 @@ describe("daily quiz from chats", () => {
     expect(logs).toHaveLength(1);
     const first = quiz.questions[0];
     expect((await req("/local/work-quiz/answer", { method: "POST", body: { day: DAY, id: first.id, response: "2", elapsedMs: 900 } })).status).toBe(200);
+  });
+
+  test("a built quiz holds 3 to 5 questions and every choice question offers 3 choices", async () => {
+    await req("/local/work-quiz/chat", { method: "POST", body: BOTH });
+    const quiz = (await (await req(`/local/work-quiz/daily?day=${DAY}`)).json()) as { questions: { choices: string[] | null }[] };
+    expect(quiz.questions.length).toBeGreaterThanOrEqual(DAILY_MIN);
+    expect(quiz.questions.length).toBeLessThanOrEqual(DAILY_MAX);
+    for (const q of quiz.questions) if (q.choices) expect(q.choices).toHaveLength(LIMITS.choices);
+  });
+
+  test("fewer than 3 available questions yields the too-few message and no short quiz", async () => {
+    rmSync(join(home, ".codex"), { recursive: true });
+    rmSync(join(home, ".claude/projects/project-a"), { recursive: true });
+    session(".claude/projects/project-b/one.jsonl", "x".repeat(60));
+    await req("/local/work-quiz/chat", { method: "POST", body: BOTH });
+    const res = await req(`/local/work-quiz/daily?day=${DAY}`);
+    expect(res.status).toBe(404);
+    expect(((await res.json()) as { error: string }).error).toBe(TOO_FEW);
+    expect(store.db.query("select count(*) n from daily_quiz").get()).toEqual({ n: 0 });
   });
 
   test("a reachable model writes into the sealed quiz", async () => {

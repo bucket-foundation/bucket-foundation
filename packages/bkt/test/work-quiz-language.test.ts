@@ -132,7 +132,7 @@ describe("schema 11 languages", () => {
   });
 
   test("the daily parser keeps a well-formed word block and refuses a bad one", () => {
-    const base = { id: "w1", type: "meaning", prompt: "Which German word means \"tooth\"?", choices: ["Zahn", "Hand"], answer: "Zahn", limitSec: 20, sources: [{ kind: "word", ref: "de:tooth", label: "Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0", href: "https://en.wiktionary.org/wiki/Zahn" }] };
+    const base = { id: "w1", type: "meaning", prompt: "Which German word means \"tooth\"?", choices: ["Zahn", "Hand", "Fuß"], answer: "Zahn", limitSec: 20, sources: [{ kind: "word", ref: "de:tooth", label: "Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0", href: "https://en.wiktionary.org/wiki/Zahn" }] };
     const ok = parseDailyQuiz({ day: "2026-10-05", questions: [{ ...base, word: { lang: null, choicesLang: "de", credit: "Wiktionary, CC-BY-SA 3.0", href: "https://en.wiktionary.org" } }] }).questions[0];
     expect(ok.word).toEqual({ lang: null, choicesLang: "de", credit: "Wiktionary, CC-BY-SA 3.0", href: "https://en.wiktionary.org" });
     expect(parseDailyQuiz({ day: "2026-10-05", questions: [base] }).questions[0].word).toBeUndefined();

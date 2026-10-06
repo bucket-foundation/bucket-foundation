@@ -282,13 +282,13 @@ function populated(over: Stub = {}): Stub {
       ],
     }),
     ...jobsStub(JOBS.finished, { ...JOBS.stoppedOnForm, id: "20261001T170000-0a1b2c3d" }),
-    workNext: async () => served("populated", "true_false")!.question,
+    workNext: async () => served("populated", "spot_error")!.question,
     dailyQuiz: async () => ({
       day: DAY,
       answered: [],
       questions: [
         { id: "chat-sessions", type: "estimate", prompt: "How many chat sessions did you run in the last two days?", lines: [], choices: null, limitSec: 60 },
-        { id: "chat-day-1", type: "recall", prompt: 'On which day did the session that began "Fix the review buttons" start?', lines: [], choices: ["2026-09-29", "2026-09-30"], limitSec: 30 },
+        { id: "chat-day-1", type: "recall", prompt: 'On which day did the session that began "Fix the review buttons" start?', lines: [], choices: ["2026-09-28", "2026-09-29", "2026-09-30"], limitSec: 30 },
       ],
     }),
     ...over,

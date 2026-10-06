@@ -28,6 +28,7 @@ export const VALID_PAIRS: Readonly<Record<Form, readonly Format[]>> = {
 
 export const BLOCKED_FORMS: Readonly<Partial<Record<Form, string>>> = {
   which_changed: "needs a daily snapshot of bead and PR state",
+  true_false: "a true or false claim offers two answers; a choice question takes three",
 };
 
 export const FORM_LIMIT_SEC: Readonly<Record<Form, number>> = {

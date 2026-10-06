@@ -99,7 +99,7 @@ describe("learn commands over the core module", () => {
     store.importPack("fixture", LEARN_ITEMS);
     const early = backend(store, key, 1_000_000);
     await expect(learnDue(early, 10, false, io())).rejects.toBeInstanceOf(NoDataError);
-    for (const q of await early.quiz(2)) await early.answerQuiz(q.itemId, 3, 500);
+    for (const q of await early.quiz(2)) await early.answerQuiz(q.itemId, 2, 500);
     const later = backend(store, key, 1_000_000 + 400 * 86_400_000);
     const due = io();
     expect(await learnDue(later, 10, true, due)).toBe(0);

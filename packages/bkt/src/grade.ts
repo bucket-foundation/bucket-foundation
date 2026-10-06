@@ -1,4 +1,5 @@
 import { FSRS, type Card, type Rating } from "../../../src/lib/academy/fsrs";
+import { LIMITS } from "../../../src/lib/research-os/work-quiz/limits";
 
 export type { Card, Rating };
 
@@ -57,7 +58,7 @@ export function limitFor(item: Pick<Item, "answer" | "prompt">): number {
   return Math.min(90, Math.max(20, Math.round(words * 0.6)));
 }
 
-export function buildQuestion(item: Item, pool: Item[], seed: string, choiceCount = 4): Question {
+export function buildQuestion(item: Item, pool: Item[], seed: string, choiceCount: number = LIMITS.choices): Question {
   const rand = seededRandom(seed + ":" + item.id);
   const others = pool.filter((o) => o.id !== item.id && o.answer !== item.answer);
   const sameBranch = others.filter((o) => o.branch === item.branch);
