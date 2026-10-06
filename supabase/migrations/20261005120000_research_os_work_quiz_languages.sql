@@ -1,3 +1,4 @@
+-- Rollback: drop table research_os_work_quiz_languages and restore the prior privacy_delete_learner from the previous migration.
 create table if not exists graph.work_quiz_languages (
   learner_id  uuid        primary key references auth.users (id) on delete cascade,
   languages   text[]      not null default '{}',
