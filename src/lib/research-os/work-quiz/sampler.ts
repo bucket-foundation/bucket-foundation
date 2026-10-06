@@ -13,6 +13,7 @@ export const REVIEW_SLOTS = 2;
 export const CANDIDATES = 16;
 export const MISS_WEIGHT = 2;
 export const DAY_MS = 86_400_000;
+export const RNG_RANGE = 4_294_967_296;
 
 export interface DueCard {
   cardKey: string;
@@ -88,7 +89,7 @@ export function factWeights(coverage: readonly CoverageRow[], due: readonly DueC
   for (const r of coverage) for (const id of splitFactId(r.factId)) misses.set(id, (misses.get(id) ?? 0) + r.misses);
   for (const [id, n] of Array.from(misses)) w.set(id, 1 + MISS_WEIGHT * n);
   for (const c of due) {
-    const overdue = Math.max(0, (now - c.dueAt) / DAY_MS);
+    const overdue = Math.max(0, Math.floor((now - c.dueAt) / DAY_MS));
     for (const id of c.factIds) w.set(id, (w.get(id) ?? 1) + overdue);
   }
   return w;
@@ -98,12 +99,16 @@ function weightOf(q: SampledQuestion, weights: Map<string, number>): number {
   return q.factIds.reduce((n, id) => n + (weights.get(id) ?? 1), 0);
 }
 
-function weightedPick<T>(rng: Rng, xs: readonly T[], weight: (x: T) => number): T {
+export function rngInt(rng: Rng): number {
+  return Math.floor(rng() * RNG_RANGE);
+}
+
+export function weightedPick<T>(rng: Rng, xs: readonly T[], weight: (x: T) => number): T {
   const total = xs.reduce((n, x) => n + weight(x), 0);
-  let r = rng() * total;
+  let r = total > 0 ? rngInt(rng) % total : 0;
   for (const x of xs) {
+    if (r < weight(x)) return x;
     r -= weight(x);
-    if (r <= 0) return x;
   }
   return xs[xs.length - 1];
 }
@@ -139,7 +144,7 @@ export function sampleQuiz(input: SampleInput): SampledQuiz {
   const stats = cellStats(coverage);
   const extra = wordMakers(input);
   const ranked = [...builtCells(), ...languageCells(extra)]
-    .map((c) => ({ c, id: cellId(c), tie: rng(), ...(stats.get(cellId(c)) ?? { picks: 0, lastDay: "" }) }))
+    .map((c) => ({ c, id: cellId(c), tie: rngInt(rng), ...(stats.get(cellId(c)) ?? { picks: 0, lastDay: "" }) }))
     .sort((a, b) => a.picks - b.picks || a.lastDay.localeCompare(b.lastDay) || a.tie - b.tie);
   for (const cell of ranked) {
     if (questions.length >= slots) break;

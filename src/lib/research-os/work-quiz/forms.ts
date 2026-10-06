@@ -14,6 +14,7 @@ export interface SampledQuestion extends QuizQuestion {
 export type FormMaker = (src: WorkSources, rng: Rng, depth: Depth) => SampledQuestion | null;
 
 export const ESTIMATE_LOG10: Readonly<Record<Depth, number>> = { 1: 0.3, 2: 0.2, 3: 0.1 };
+export const estimateFactor = (depth: Depth): number => Math.floor(10 ** ESTIMATE_LOG10[depth] * 100) / 100;
 export const ORDER_CHOICES: Readonly<Record<Depth, number>> = { 1: 2, 2: 3, 3: 4 };
 export const ORDER_TITLE_TOKENS = 3;
 export const ORDER_LABELS = ["A", "B", "C"] as const;
@@ -71,13 +72,12 @@ const estimate: FormMaker = (src, rng, depth) => {
   const pool = counts(src);
   if (pool.length === 0) return null;
   const c = pick(rng, pool);
-  const factor = Math.round(10 ** ESTIMATE_LOG10[depth] * 100 - 100);
   return stamp(
     {
       id: "",
       type: "estimate",
       prompt: c.prompt,
-      lines: [`Within ${factor} percent counts.`],
+      lines: [`A factor of ${estimateFactor(depth)} either way counts.`],
       choices: null,
       answer: String(c.count),
       tolerance: 0,
