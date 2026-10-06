@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { newDataKey } from "../src/crypto";
 import { jobRoutes } from "../src/job-routes";
-import { checkModules, jobSpecs, type AnalysisCard } from "../src/job-specs";
+import { capJob, checkModules, JOB_ADDRESS_BYTES, JOB_NICE, JOB_THREADS, jobSpecs, THREAD_VARS, type AnalysisCard } from "../src/job-specs";
 import { JOB_MARKER, JobRunner, type JobSpec, type JobView } from "../src/jobs";
 import { buildPySource } from "../src/pack/pysrc";
 import { PeopleStore } from "../src/people";
@@ -294,6 +294,41 @@ describe("real job specs", () => {
     expect(r.start("fit-me", { statement: "s", people: "p" }).error).toBe("this job needs scikit-learn");
     expect(() => r.start("fit-me", { statement: "s", people: "p" }, { k: 1 })).toThrow("k must be a whole number from 2 to 256");
     expect(() => r.start("fit-me", { statement: "s", people: "p" }, { shell: 1 })).toThrow("takes no option shell");
+    store.close();
+  });
+});
+
+describe("job resource caps", () => {
+  test("the caps stay small enough for a shared machine", () => {
+    expect(JOB_THREADS).toBeLessThanOrEqual(4);
+    expect(JOB_ADDRESS_BYTES).toBeLessThanOrEqual(8 * 1024 ** 3);
+    expect(JOB_NICE).toBeGreaterThanOrEqual(10);
+  });
+
+  test("capJob wraps the command in prlimit and nice and pins every thread pool", () => {
+    const capped = capJob(["python3", "x.py"], { PYTHONPATH: "/py" }, (b) => `/usr/bin/${b}`);
+    expect(capped.argv).toEqual(["/usr/bin/prlimit", `--as=${JOB_ADDRESS_BYTES}`, "/usr/bin/nice", "-n", String(JOB_NICE), "python3", "x.py"]);
+    expect(capped.env.PYTHONPATH).toBe("/py");
+    for (const v of THREAD_VARS) expect(capped.env[v]).toBe(String(JOB_THREADS));
+    expect([...THREAD_VARS]).toEqual(["OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"]);
+  });
+
+  test("capJob keeps the thread caps where prlimit and nice are missing", () => {
+    const capped = capJob(["python3", "x.py"], {}, () => null);
+    expect(capped.argv).toEqual(["python3", "x.py"]);
+    expect(capped.env.OPENBLAS_NUM_THREADS).toBe(String(JOB_THREADS));
+  });
+
+  test("both python specs plan a capped command", () => {
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    const specs = jobSpecs({ src: { version: "x", files: { "bkt_analyze.py": "" } }, cacheRoot: join(root, "py"), dataRoot: root, people: new PeopleStore(store, key), python: "python3", check: () => null, which: (b) => `/usr/bin/${b}` });
+    const dirs = { dir: root, inputs: { data: "d.csv", statement: "s.md", people: "p.jsonl" }, out: join(root, "out") };
+    for (const kind of ["analyze", "fit-me"]) {
+      const plan = specs[kind].plan(dirs, {}) as { argv: string[]; env: Record<string, string> };
+      expect(plan.argv.slice(0, 6)).toEqual(["/usr/bin/prlimit", `--as=${JOB_ADDRESS_BYTES}`, "/usr/bin/nice", "-n", String(JOB_NICE), "python3"]);
+      expect(plan.env.OMP_NUM_THREADS).toBe(String(JOB_THREADS));
+    }
     store.close();
   });
 });

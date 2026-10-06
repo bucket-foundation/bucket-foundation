@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { GLViewer } from "3dmol";
 import { useSceneTheme } from "./useSceneTheme";
 import { surfaceEligible } from "./protein-surface";
+import { releaseWebgl } from "./frame-policy";
 
 export const PROTEIN_OFFLINE = "The protein viewer could not start here, so this structure is hidden.";
 import { formatOf, summarize, type ProteinEntry, type ResidueLink, type StructureSummary } from "@/lib/explore/protein";
@@ -25,6 +26,7 @@ export default function ProteinView({ protein, focus, onFocus, upload }: Props) 
   const paper = useRef(theme.paper);
   paper.current = theme.paper;
   const viewer = useRef<GLViewer | null>(null);
+  const drawn = useRef<HTMLDivElement | null>(null);
   const input = useRef<HTMLInputElement>(null);
   const [data, setData] = useState<{ text: string; format: "pdb" | "cif"; name: string } | null>(null);
   const [summary, setSummary] = useState<StructureSummary | null>(null);
@@ -57,6 +59,7 @@ export default function ProteinView({ protein, focus, onFocus, upload }: Props) 
       if (!live || !host.current) return;
       const v = viewer.current ?? $3Dmol.createViewer(host.current, { backgroundColor: paper.current });
       viewer.current = v;
+      drawn.current = host.current;
       v.removeAllModels();
       v.removeAllSurfaces();
       try {
@@ -98,6 +101,8 @@ export default function ProteinView({ protein, focus, onFocus, upload }: Props) 
     () => () => {
       viewer.current?.clear();
       viewer.current = null;
+      releaseWebgl(drawn.current);
+      drawn.current = null;
     },
     [],
   );
