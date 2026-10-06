@@ -1,0 +1,88 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "climate",
+ "title": "Climate sensitivity bound",
+ "statement": {
+  "text": "Climate sensitivity is a key measure in climate science and describes how much Earth's surface will warm in response to a doubling of the atmospheric carbon dioxide (CO2) concentration. Its formal definition is: \"The change in the surface temperature in response to a change in the atmospheric carbon dioxide (CO2) concentration or other radiative forcing.\" This concept helps scientists understand the extent and magnitude of the effects of climate change.",
+  "source": "https://en.wikipedia.org/wiki/Climate_sensitivity",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Climate sensitivity",
+   "url": "https://en.wikipedia.org/wiki/Climate_sensitivity"
+  }
+ },
+ "aliases": [
+  "Climate sensitivity"
+ ],
+ "branch": "physics",
+ "level": 4,
+ "industries": [
+  "climate",
+  "energy"
+ ],
+ "posed": 1896,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1896,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 25,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22equilibrium+climate+sensitivity%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "navier",
+   "why": "shared markets: climate, energy; same branch"
+  },
+  {
+   "id": "turbulence",
+   "why": "shared markets: climate, energy; same branch"
+  },
+  {
+   "id": "fusion",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "hubbard",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "roomtemp",
+   "why": "shared markets: energy; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Climate_sensitivity",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22equilibrium+climate+sensitivity%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

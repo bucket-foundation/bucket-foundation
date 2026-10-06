@@ -1,0 +1,211 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "bindingprob",
+ "title": "Neural binding problem",
+ "statement": {
+  "text": "The unity of consciousness and (cognitive) binding problem is the problem of how objects, background, and abstract or emotional features are combined into a single experience. The binding problem refers to the overall encoding of our brain circuits for the combination of decisions, actions, and perception. It is considered a \"problem\" because no complete model exists.",
+  "source": "https://en.wikipedia.org/wiki/Binding_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Binding problem",
+   "url": "https://en.wikipedia.org/wiki/Binding_problem"
+  }
+ },
+ "aliases": [
+  "Binding problem",
+  "unity of consciousness and",
+  "cognitive",
+  "binding problem"
+ ],
+ "branch": "mind",
+ "level": 4,
+ "industries": [
+  "ai"
+ ],
+ "posed": 1981,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1981,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 61,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22binding+problem%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "llmreason",
+   "why": "shared keywords: attention; shared markets: ai"
+  },
+  {
+   "id": "consciousness",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "freeenergy",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "smale18",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "alignment",
+   "why": "shared markets: ai"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W1558366326",
+   "title": "Cognitive biases potentially affecting judgement of global risks",
+   "source": "openalex-fanout/W1558366326-cognitive-biases-potentially-affecting-judgement-of-global-r"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2024595034",
+   "title": "Cognitive Foundations of Musical Pitch",
+   "source": "openalex-fanout/W2024595034-cognitive-foundations-of-musical-pitch"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2048701323",
+   "title": "The Embodied Mind: Cognitive Science and Human Experience",
+   "source": "openalex-fanout/W2048701323-the-embodied-mind-cognitive-science-and-human-experience"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2118373646",
+   "title": "Connectionism and cognitive architecture: A critical analysis",
+   "source": "openalex-fanout/W2118373646-connectionism-and-cognitive-architecture-a-critical-analysis"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2119909013",
+   "title": "Cognitive Enhancement: Methods, Ethics, Regulatory Challenges",
+   "source": "openalex-fanout/W2119909013-cognitive-enhancement-methods-ethics-regulatory-challenges"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2128493489",
+   "title": "Perspectives on Cognitive Neuroscience",
+   "source": "openalex-fanout/W2128493489-perspectives-on-cognitive-neuroscience"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2319171828",
+   "title": "Cognitive Foundations of Musical Pitch",
+   "source": "openalex-fanout/W2319171828-cognitive-foundations-of-musical-pitch"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2549247608",
+   "title": "Cognitive Influences on the Evolution of New Languages",
+   "source": "openalex-fanout/W2549247608-cognitive-influences-on-the-evolution-of-new-languages"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10822042",
+   "title": "Cross-cultural music cognition: cognitive methodology applied to North Sami yoiks.",
+   "source": "pubmed/PMID-10822042-cross-cultural-music-cognition-cognitive-methodology-applied"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12015230",
+   "title": "Motor and cognitive functions of the ventral premotor cortex.",
+   "source": "pubmed/PMID-12015230-motor-and-cognitive-functions-of-the-ventral-premotor-cortex"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12413574",
+   "title": "Degeneracy and cognitive anatomy.",
+   "source": "pubmed/PMID-12413574-degeneracy-and-cognitive-anatomy"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12587094",
+   "title": "Use of multivariate linkage analysis for dissection of a complex cognitive trait.",
+   "source": "pubmed/PMID-12587094-use-of-multivariate-linkage-analysis-for-dissection-of-a-com"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID13406145",
+   "title": "The effect on affective and cognitive behavior in the dog of lesions of the pyriformamygdala-hippocampal complex.",
+   "source": "pubmed/PMID-13406145-the-effect-on-affective-and-cognitive-behavior-in-the-dog-of"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID15100724",
+   "title": "Neurocognitive enhancement: what can we do and what should we do?",
+   "source": "pubmed/PMID-15100724-neurocognitive-enhancement-what-can-we-do-and-what-should-we"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID15207239",
+   "title": "Chromatin acetylation, memory, and LTP are impaired in CBP+/- mice: a model for the cognitive deficit in Rubinstein-Taybi syndrome and its amelioration.",
+   "source": "pubmed/PMID-15207239-chromatin-acetylation-memory-and-ltp-are-impaired-in-cbp-mic"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID15355167",
+   "title": "Genetic and environmental contributions to general cognitive ability through the first 16 years of life.",
+   "source": "pubmed/PMID-15355167-genetic-and-environmental-contributions-to-general-cognitive"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID1596255",
+   "title": "Differential heritability across levels of cognitive ability.",
+   "source": "pubmed/PMID-1596255-differential-heritability-across-levels-of-cognitive-ability"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID17312260",
+   "title": "Converging cognitive enhancements.",
+   "source": "pubmed/PMID-17312260-converging-cognitive-enhancements"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID17588775",
+   "title": "Post-decision wagering measures metacognitive content, not sensory consciousness.",
+   "source": "pubmed/PMID-17588775-post-decision-wagering-measures-metacognitive-content-not-se"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID18633786",
+   "title": "Getting a grip on other minds: mirror neurons, intention understanding, and cognitive empathy.",
+   "source": "pubmed/PMID-18633786-getting-a-grip-on-other-minds-mirror-neurons-intention-under"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Binding_problem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22binding+problem%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "bioelectric",
+ "title": "Bioelectric pattern control",
+ "statement": {
+  "text": "In biology, developmental bioelectricity is the regulation of cell, tissue, and organ-level patterning and behavior by electrical signals during the development of embryonic animals and plants. The charge carrier in developmental bioelectricity is the ion rather than the electron, and an electric current and field is generated whenever a net ion flux occurs. Cells and tissues of all types use flows of ions to communicate electrically. Endogenous electric currents and fields, ion fluxes, and differences in resting potential across tissues comprise a signalling system. It functions along with biochemical factors, transcriptional networks, and other physical forces to regulate cell behaviour and large-scale patterning in processes such as embryogenesis, regeneration, and cancer suppression.",
+  "source": "https://en.wikipedia.org/wiki/Developmental_bioelectricity",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Developmental bioelectricity",
+   "url": "https://en.wikipedia.org/wiki/Developmental_bioelectricity"
+  }
+ },
+ "aliases": [
+  "Developmental bioelectricity",
+  "developmental bioelectricity"
+ ],
+ "branch": "biophysics",
+ "level": 4,
+ "industries": [
+  "biotech",
+  "longevity"
+ ],
+ "posed": 1938,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1938,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 26,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22bioelectric+signaling%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22bioelectric+signaling%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "aging",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "circadian",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "foldpath",
+   "why": "shared markets: biotech; same branch"
+  },
+  {
+   "id": "mitoredox",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "protein",
+   "why": "shared markets: biotech; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Developmental_bioelectricity",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22bioelectric+signaling%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

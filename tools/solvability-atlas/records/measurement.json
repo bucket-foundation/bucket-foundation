@@ -1,0 +1,477 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "measurement",
+ "title": "Quantum measurement problem",
+ "statement": {
+  "text": "In quantum mechanics, the measurement problem is the problem of definite outcomes: quantum systems have superpositions but quantum measurements only give one definite result.",
+  "source": "https://en.wikipedia.org/wiki/Measurement_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Measurement problem",
+   "url": "https://en.wikipedia.org/wiki/Measurement_problem"
+  }
+ },
+ "aliases": [
+  "Measurement problem",
+  "measurement problem"
+ ],
+ "branch": "physics",
+ "level": 5,
+ "industries": [
+  "quantum computing",
+  "atomic and molecular physics, and optics"
+ ],
+ "posed": 1932,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1932,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2050035613",
+   "title": "Decoherence, the measurement problem, and interpretations of quantum mechanics",
+   "year": 2005,
+   "cited_by_count": 1446,
+   "doi": "https://doi.org/10.1103/revmodphys.76.1267",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2084149621",
+   "title": "Why decoherence has not solved the measurement problem: a response to P.W. Anderson",
+   "year": 2003,
+   "cited_by_count": 152,
+   "doi": "https://doi.org/10.1016/s1355-2198(02)00086-2",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1417962967",
+   "title": "On the Quantum Measurement Problem",
+   "year": 2016,
+   "cited_by_count": 148,
+   "doi": "https://doi.org/10.1007/978-3-319-38987-5_5",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2038921381",
+   "title": "Insolubility of the Quantum Measurement Problem",
+   "year": 1970,
+   "cited_by_count": 142,
+   "doi": "https://doi.org/10.1103/physrevd.2.2783",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2019344671",
+   "title": "Cosmological inflation and the quantum measurement problem",
+   "year": 2012,
+   "cited_by_count": 134,
+   "doi": "https://doi.org/10.1103/physrevd.86.103524",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2001257415",
+   "title": "The Quantum Measurement Problem",
+   "year": 2005,
+   "cited_by_count": 104,
+   "doi": "https://doi.org/10.1126/science.1109541",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2005979608",
+   "title": "Decoherence and Quantum Measurements",
+   "year": 1998,
+   "cited_by_count": 99,
+   "doi": "https://doi.org/10.1142/3420",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W51361633",
+   "title": "Many Worlds Interpretation of Quantum Mechanics",
+   "year": 2009,
+   "cited_by_count": 642,
+   "doi": "https://doi.org/10.1007/978-3-540-70626-7_113",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2146769591",
+   "title": "Understanding quantum measurement from the solution of dynamical models",
+   "year": 2012,
+   "cited_by_count": 246,
+   "doi": "https://doi.org/10.1016/j.physrep.2012.11.001",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2971857150",
+   "title": "Physics without determinism: Alternative interpretations of classical physics",
+   "year": 2019,
+   "cited_by_count": 102,
+   "doi": "https://doi.org/10.1103/physreva.100.062107",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1997058359",
+   "title": "Lyapounov variable: Entropy and measurement in quantum mechanics",
+   "year": 1979,
+   "cited_by_count": 100,
+   "doi": "https://doi.org/10.1073/pnas.76.10.4768",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W430432375",
+   "title": "The Everett interpretation of quantum mechanics : collected works 1955-1980 with commentary",
+   "year": 2012,
+   "cited_by_count": 87,
+   "doi": "https://doi.org/10.1515/9781400842742",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3104348698",
+   "title": "A strong no-go theorem on the Wigner’s friend paradox",
+   "year": 2020,
+   "cited_by_count": 224,
+   "doi": "https://doi.org/10.1038/s41567-020-0990-x",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 3,
+  "no keyword hit": 7,
+  "duplicate": 2
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1950": 1,
+   "1957": 1,
+   "1970": 1,
+   "1972": 1,
+   "1976": 1,
+   "1979": 2,
+   "1984": 1,
+   "1985": 2,
+   "1986": 3,
+   "1988": 4,
+   "1989": 1,
+   "1990": 1,
+   "1991": 3,
+   "1992": 4,
+   "1993": 7,
+   "1994": 5,
+   "1995": 12,
+   "1996": 6,
+   "1997": 3,
+   "1998": 12,
+   "1999": 6,
+   "2000": 6,
+   "2001": 13,
+   "2002": 9,
+   "2003": 6,
+   "2004": 12,
+   "2005": 18,
+   "2006": 11,
+   "2007": 7,
+   "2008": 6,
+   "2009": 14,
+   "2010": 10,
+   "2011": 15,
+   "2012": 21,
+   "2013": 14,
+   "2014": 15,
+   "2015": 12,
+   "2016": 14,
+   "2017": 16,
+   "2018": 13,
+   "2019": 32,
+   "2020": 17,
+   "2021": 29,
+   "2022": 36,
+   "2023": 26,
+   "2024": 22,
+   "2025": 286,
+   "2026": 1137
+  },
+  "openalex_total": 1894,
+  "arxiv_total": 177,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22quantum+measurement+problem%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5040179661",
+   "name": "Jeffrey Alan Barrett",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5035354042",
+   "name": "Maximilian Schlosshauer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Stephen L. Adler",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5013288134",
+   "name": "Časlav Brukner",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5077007194",
+   "name": "Arthur I. Fine",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5002196467",
+   "name": "Jérôme Martin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5076550631",
+   "name": "Vincent Vennin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5026732461",
+   "name": "Patrick Peter",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5009732950",
+   "name": "A. J. Leggett",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5108468568",
+   "name": "Mikio Namiki",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5063922660",
+   "name": "Hiromichi Nakazato",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5060622844",
+   "name": "Saverio Pascazio",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5054875221",
+   "name": "ARMEN E. ALLAHVERDYAN",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5112789657",
+   "name": "Roger Balian",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5062604707",
+   "name": "Theo M. Nieuwenhuizen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I129774422",
+   "name": "University of Vienna",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I138211613",
+   "name": "Austrian Academy of Sciences",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I201448701",
+   "name": "University of Washington",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I40036882",
+   "name": "Institute for Advanced Study",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I205783295",
+   "name": "Cornell University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2801766991",
+   "name": "Institut d'Astrophysique de Paris",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405264447",
+   "name": "Université Pierre-et-Marie-Curie",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I157725225",
+   "name": "University of Illinois Urbana-Champaign",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I150744194",
+   "name": "Waseda University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I5561750",
+   "name": "University of Bari Aldo Moro",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210086593",
+   "name": "Institut Supérieur des Matériaux du Mans",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2738703131",
+   "name": "Commissariat à l'Énergie Atomique et aux Énergies Alternatives",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2801360556",
+   "name": "CEA Paris-Saclay - Etablissement de Saclay",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210128565",
+   "name": "CEA Paris-Saclay",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "signproblem",
+   "why": "shared markets: quantum computing; same branch"
+  },
+  {
+   "id": "bhinfo",
+   "why": "shared markets: quantum computing"
+  },
+  {
+   "id": "bqp",
+   "why": "shared markets: quantum computing"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2126561200",
+   "title": "Three measurement problems",
+   "source": "openalex-fanout/W2126561200-three-measurement-problems"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Measurement_problem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+measurement+problem%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22quantum+measurement+problem%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "13 relevant works of 25 considered, 1894 works with the phrase"
+ }
+}

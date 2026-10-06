@@ -12,7 +12,7 @@ Solvability score: `0.55 * resolved + 0.45 * formal`, where formal is proved 1.0
 ./build.sh
 ```
 
-Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an angle from its rank along the first two principal directions, so neighbours on the circle are neighbours in embedding space.
+Embeddings come from `BAAI/bge-small-en-v1.5`. Four text variants exist (`atlas.TEXT_VARIANTS`): `keywords` (title, branch, keywords), `statement`, `statement_titles` (plus the titles of the kept key works marked `in_embedding`) and `statement_titles_aliases`. `ATLAS_TEXT=<variant>` selects one; the default is the variant with the best hit rate against `atlas.EXPECTED_PAIRS` in the ablation table of `records/INDEX.md` (`python3 ablation.py` rebuilds it), `keywords` as of 2026-10-06. `graph.json` names the variant and counts the text kinds per node in `embedding_text`. Each problem and token takes an angle from its rank along the first two principal directions, so neighbours on the circle are neighbours in embedding space.
 
 ## Outputs
 
@@ -37,6 +37,10 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Each problem and token takes an a
 The frontier circle sits at reach 0.795, the 10th percentile of each solved problem's highest similarity to another solved problem, over the 156 productions in `solvability-atlas-data.json` (99 solved) `[empirical: src/lib/research-os/solvability-similarity-data.json, 2026-10-05, bkt atlas frontier --json]`. The similarity file covers the 218 nodes the tool builds today; the frontier reads the 156 the committed atlas data holds. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
 
 `out/` stays out of git; its PNGs, graph.json, graph.cypher and stats.json are mirrored to `gdrive:AGFarms/Nucleus/bucket-foundation/solvability-atlas/`.
+
+## Problem records
+
+`records.py` builds one JSON record per problem in `records/` from OpenAlex, Wikipedia, arXiv and the repo's own corpora, with every network field carrying its source URL and licence. Schema, relevance filter and build flags: `records/SCHEMA.md`. Per-problem counts, a status per record and the neighbour shift between keyword and record embeddings: `records/INDEX.md` (`python3 neighbour_shift.py` rebuilds the shift section). Responses cache under `cache/`, which stays out of git. Records hold Wikipedia text under CC BY-SA 4.0 with attribution; the code is MIT and the derived numbers are CC0 in intent.
 
 ## Reproduce
 

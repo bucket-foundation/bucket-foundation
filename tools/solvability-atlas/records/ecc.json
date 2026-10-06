@@ -1,0 +1,89 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "ecc",
+ "title": "Elliptic curve discrete log hardness",
+ "statement": {
+  "text": "Elliptic-curve cryptography (ECC) is an approach to public-key cryptography based on the algebraic structure of elliptic curves over finite fields. ECC allows smaller keys to provide equivalent security, compared to cryptosystems based on modular exponentiation in finite fields, such as the RSA cryptosystem and ElGamal cryptosystem.",
+  "source": "https://en.wikipedia.org/wiki/Elliptic-curve_cryptography",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Elliptic-curve cryptography",
+   "url": "https://en.wikipedia.org/wiki/Elliptic-curve_cryptography"
+  }
+ },
+ "aliases": [
+  "Elliptic-curve cryptography",
+  "ECC"
+ ],
+ "branch": "information",
+ "level": 4,
+ "industries": [
+  "cryptography",
+  "finance"
+ ],
+ "posed": 1985,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1985,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 49,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22elliptic+curve+discrete+logarithm%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22elliptic+curve+discrete+logarithm%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "bsd",
+   "why": "shared keywords: elliptic curve; shared markets: cryptography"
+  },
+  {
+   "id": "fermat",
+   "why": "shared keywords: elliptic curve; shared markets: cryptography"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "owf",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "zkp",
+   "why": "shared markets: cryptography, finance; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Elliptic-curve_cryptography",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22elliptic+curve+discrete+logarithm%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

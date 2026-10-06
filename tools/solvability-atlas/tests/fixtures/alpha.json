@@ -1,0 +1,110 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "alpha",
+ "title": "Alpha problem",
+ "statement": {
+  "text": "The alpha problem asks whether every alpha is beta.",
+  "source": "https://en.wikipedia.org/wiki/Alpha_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Alpha problem",
+   "url": "https://en.wikipedia.org/wiki/Alpha_problem"
+  }
+ },
+ "aliases": [
+  "alpha conjecture"
+ ],
+ "branch": "mathematics",
+ "level": 3,
+ "industries": [
+  "ai",
+  "number theory"
+ ],
+ "posed": 1900,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1900,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W1",
+   "title": "On the alpha problem",
+   "year": 1901,
+   "cited_by_count": 120,
+   "doi": "https://doi.org/10.1/x",
+   "role": "posed",
+   "source": "https://api.openalex.org/works?x",
+   "relevance": 4,
+   "in_embedding": true
+  },
+  {
+   "openalex": "W2",
+   "title": "A survey of the alpha problem",
+   "year": 1990,
+   "cited_by_count": 40,
+   "doi": null,
+   "role": "survey",
+   "source": "https://api.openalex.org/works?x",
+   "relevance": 3,
+   "in_embedding": true
+  }
+ ],
+ "activity": {
+  "openalex_by_year": {
+   "1901": 1,
+   "1990": 3
+  },
+  "openalex_total": 4,
+  "arxiv_total": 2,
+  "source": "https://api.openalex.org/works?y"
+ },
+ "people": [
+  {
+   "openalex": "A1",
+   "name": "A. Person",
+   "works": 2,
+   "source": "https://api.openalex.org/works?x"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": null,
+   "name": "Some University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?x"
+  }
+ ],
+ "related": [
+  {
+   "id": "beta",
+   "why": "shared keywords: shared word"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "statement",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Alpha_problem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "key_works_considered": 5,
+ "quality": {
+  "status": "partial",
+  "reason": "2 relevant works of 5 considered"
+ },
+ "key_works_dropped": {
+  "uncited": 2,
+  "off-field": 1
+ }
+}

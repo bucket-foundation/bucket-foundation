@@ -1,0 +1,113 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "freeenergy",
+ "title": "Free energy principle formalization",
+ "statement": {
+  "text": "The free energy principle is a mathematical principle of information physics. Its application to fMRI brain imaging data as a theoretical framework suggests that the brain reduces surprise or uncertainty by making predictions based on internal models and uses sensory input to update its models so as to improve the accuracy of its predictions. This principle approximates an integration of Bayesian inference with active inference, where sensory feedback refines prediction-guided actions. From it, wide-ranging inferences have been made about brain function, perception, and action. Its applicability to living systems has been questioned.",
+  "source": "https://en.wikipedia.org/wiki/Free_energy_principle",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Free energy principle",
+   "url": "https://en.wikipedia.org/wiki/Free_energy_principle"
+  }
+ },
+ "aliases": [
+  "Free energy principle",
+  "free energy principle"
+ ],
+ "branch": "mind",
+ "level": 4,
+ "industries": [
+  "ai"
+ ],
+ "posed": 2006,
+ "resolved": null,
+ "history": [
+  {
+   "year": 2006,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 196,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22free+energy+principle%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22free+energy+principle%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "bindingprob",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "consciousness",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "smale18",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "alignment",
+   "why": "shared markets: ai"
+  },
+  {
+   "id": "autoform",
+   "why": "shared markets: ai"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID17097864",
+   "title": "A free energy principle for the brain.",
+   "source": "pubmed/PMID-17097864-a-free-energy-principle-for-the-brain"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID23204829",
+   "title": "A Free Energy Principle for Biological Systems.",
+   "source": "pubmed/PMID-23204829-a-free-energy-principle-for-biological-systems"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID29343629",
+   "title": "The Markov blankets of life: autonomy, active inference and the free energy principle.",
+   "source": "pubmed/PMID-29343629-the-markov-blankets-of-life-autonomy-active-inference-and-th"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID40724400",
+   "title": "Improving the Minimum Free Energy Principle to the Maximum Information Efficiency Principle.",
+   "source": "pubmed/PMID-40724400-improving-the-minimum-free-energy-principle-to-the-maximum-i"
+  }
+ ],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Free_energy_principle",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22free+energy+principle%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

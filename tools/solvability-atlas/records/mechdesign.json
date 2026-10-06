@@ -1,0 +1,96 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "mechdesign",
+ "title": "Optimal multi-item auction design",
+ "statement": {
+  "text": "Mechanism design is a branch of economics and game theory. It studies how to construct rules—called mechanisms or institutions—that produce good outcomes according to some predefined metric, even when the designer does not know the players' true preferences or what information they have. Mechanism design thus focuses on the study of solution concepts for a class of private-information games.",
+  "source": "https://en.wikipedia.org/wiki/Mechanism_design",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Mechanism design",
+   "url": "https://en.wikipedia.org/wiki/Mechanism_design"
+  }
+ },
+ "aliases": [
+  "Mechanism design",
+  "Empirical  methods"
+ ],
+ "branch": "information",
+ "level": 4,
+ "industries": [
+  "finance",
+  "advertising"
+ ],
+ "posed": 1981,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1981,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 31,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22multi-item+auction%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22multi-item+auction%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "ecc",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "nash",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "optimalstop",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "owf",
+   "why": "shared markets: finance; same branch"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID37646246",
+   "title": "Behavioral mechanism design.",
+   "source": "pubmed/PMID-37646246-behavioral-mechanism-design"
+  }
+ ],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Mechanism_design",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22multi-item+auction%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

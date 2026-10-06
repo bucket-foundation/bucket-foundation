@@ -1,0 +1,95 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "circadian",
+ "title": "Light, circadian biology and metabolism",
+ "statement": {
+  "text": "A circadian rhythm, or circadian cycle, is a natural oscillation that repeats roughly every 24 hours. Circadian rhythms can refer to any process that originates within an organism and responds to the environment. Circadian rhythms are regulated by a circadian clock whose primary function is to rhythmically co-ordinate biological processes so they occur at the correct time to maximize the fitness of an individual. Circadian rhythms have been widely observed in animals, plants, fungi and cyanobacteria and there is evidence that they evolved independently in each of these kingdoms of life.",
+  "source": "https://en.wikipedia.org/wiki/Circadian_rhythm",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Circadian rhythm",
+   "url": "https://en.wikipedia.org/wiki/Circadian_rhythm"
+  }
+ },
+ "aliases": [
+  "Circadian rhythm",
+  "circadian rhythm",
+  "circadian cycle"
+ ],
+ "branch": "biophysics",
+ "level": 3,
+ "industries": [
+  "longevity",
+  "consumer health"
+ ],
+ "posed": 1960,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1960,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 84,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22circadian+clock%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "aging",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "bioelectric",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "mitoredox",
+   "why": "shared markets: longevity; same branch"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID41396154",
+   "title": "Is Vitamin D Signaling Regulated by and Does It Regulate Circadian Rhythms?",
+   "source": "pubmed/PMID-41396154-is-vitamin-d-signaling-regulated-by-and-does-it-regulate-cir"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID41984972",
+   "title": "Circadian rhythms remain temperature compensated during a Q neuron-induced hibernation-like state in mice.",
+   "source": "pubmed/PMID-41984972-circadian-rhythms-remain-temperature-compensated-during-a-q"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Circadian_rhythm",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22circadian+clock%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

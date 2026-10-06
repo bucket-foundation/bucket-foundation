@@ -1,5 +1,6 @@
 import csv
 import json
+import os
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -53,6 +54,68 @@ def load_bucketmath():
         })
         rows[-1]["solvability"] = 1.0 if t["status"] == "proved" else 0.35 * 0.45
     return rows
+
+
+RECORDS = HERE / "records"
+KEY_WORK_TITLES = 8
+TEXT_VARIANTS = ("keywords", "statement", "statement_titles", "statement_titles_aliases")
+DEFAULT_TEXT = "keywords"
+TEXT = os.environ.get("ATLAS_TEXT", DEFAULT_TEXT)
+EXPECTED_PAIRS = [("navier", "turbulence"), ("goldbach", "twinprime"), ("pnp", "bqp"), ("protein", "foldpath"), ("hubble", "darkenergy"), ("darkmatter", "darkenergy"), ("ramsey", "capset"), ("fermat", "abc"), ("riemann", "twinprime"), ("factoring", "ecc"), ("owf", "zkp"), ("halting", "busybeaver"), ("consciousness", "bindingprob"), ("mitoredox", "aging"), ("hubbard", "roomtemp")]
+
+
+def load_record(pid):
+    path = RECORDS / f"{pid}.json"
+    return json.load(open(path)) if path.exists() else None
+
+
+def keyword_text(n):
+    return f"{n['name']}. {n['branch']}. " + ", ".join(n["keywords"])
+
+
+def record_text(n, rec, variant="statement_titles_aliases"):
+    titles = [w["title"] for w in rec["key_works"] if w.get("in_embedding")][:KEY_WORK_TITLES]
+    parts = [n["name"] + "."]
+    if rec["aliases"] and variant == "statement_titles_aliases":
+        parts.append("Also called " + ", ".join(rec["aliases"]) + ".")
+    if rec["statement"]["text"]:
+        parts.append(rec["statement"]["text"])
+    parts.append("Keywords: " + ", ".join(n["keywords"]) + ".")
+    if titles and variant in ("statement_titles", "statement_titles_aliases"):
+        parts.append("Key works: " + "; ".join(titles) + ".")
+    return " ".join(parts)
+
+
+def neighbours(ids, emb, k=K):
+    sim = emb @ emb.T
+    return {pid: {ids[j] for j in np.argsort(-sim[i])[1:k + 1]} for i, pid in enumerate(ids)}
+
+
+def pair_hits(ids, emb, pairs=EXPECTED_PAIRS, k=K):
+    nb = neighbours(ids, emb, k)
+    hits = [(a, b) for a, b in pairs if a in nb and b in nb and (b in nb[a] or a in nb[b])]
+    return {"hits": len(hits), "pairs": len(pairs), "rate": round(len(hits) / len(pairs), 3), "hit_pairs": hits, "missed": [p for p in pairs if p not in hits]}
+
+
+def neighbour_shift(ids, emb_a, emb_b, k=K):
+    sim_a, sim_b = emb_a @ emb_a.T, emb_b @ emb_b.T
+    rows = []
+    for i, pid in enumerate(ids):
+        na = {ids[j] for j in np.argsort(-sim_a[i])[1:k + 1]}
+        nb = {ids[j] for j in np.argsort(-sim_b[i])[1:k + 1]}
+        rows.append({"id": pid, "changed": len(na - nb), "left": sorted(na - nb), "entered": sorted(nb - na), "cosine": round(float(emb_a[i] @ emb_b[i]), 4)})
+    total = sum(r["changed"] for r in rows)
+    return {"k": k, "problems": len(ids), "changed_edges": total, "possible_edges": len(ids) * k, "problems_with_change": sum(r["changed"] > 0 for r in rows), "rows": sorted(rows, key=lambda r: (-r["changed"], r["cosine"]))}
+
+
+def embed_text(n, variant=None):
+    variant = variant or TEXT
+    if variant not in TEXT_VARIANTS:
+        raise ValueError(f"unknown text variant {variant}")
+    rec = load_record(n["id"]) if n["kind"] == "problem" and variant != "keywords" else None
+    if rec and (rec["statement"]["text"] or rec["key_works"]):
+        return record_text(n, rec, variant), variant
+    return keyword_text(n), "keywords"
 
 
 def unit(v):
@@ -145,7 +208,10 @@ def main():
     lean = load_bucketmath()
     nodes = problems + lean
     model = SentenceTransformer(MODEL, revision=MODEL_REVISION)
-    texts = [f"{n['name']}. {n['branch']}. " + ", ".join(n["keywords"]) for n in nodes]
+    texts = []
+    for n in nodes:
+        text, n["embedding_text"] = embed_text(n)
+        texts.append(text)
     emb = unit(model.encode(texts, normalize_embeddings=True))
     sim = emb @ emb.T
 
@@ -389,14 +455,15 @@ def export_graph(g, nodes, tokens, users, stats):
     per = stats["per_node"]
     out_nodes = []
     for n in nodes:
-        out_nodes.append({k: n[k] for k in ("id", "name", "branch", "level", "lean", "posed", "resolved", "market", "keywords", "solvability", "kind", "theta")} | per[n["id"]])
+        out_nodes.append({k: n[k] for k in ("id", "name", "branch", "level", "lean", "posed", "resolved", "market", "keywords", "solvability", "kind", "theta", "embedding_text")} | per[n["id"]])
     for t in tokens:
         out_nodes.append({"id": "token:" + t, "name": t, "kind": "token"})
     edges = [{"source": a, "target": b, "type": "SIMILAR_TO", "weight": round(d["weight"], 4)} for a, b, d in g.edges(data=True)]
     for t in tokens:
         for n in users[t]:
             edges.append({"source": n["id"], "target": "token:" + t, "type": "MARKET" if t in n["market"] else "HAS_TOKEN"})
-    json.dump({"schema": "bucket.solvability-atlas/v1", "nodes": out_nodes, "edges": edges, "summary": stats["summary"], "communities": stats["communities"]}, open(OUT / "graph.json", "w"), indent=1)
+    counts = Counter(n["embedding_text"] for n in nodes)
+    json.dump({"schema": "bucket.solvability-atlas/v1", "embedding_text": {"variant": TEXT, "counts": dict(counts)}, "nodes": out_nodes, "edges": edges, "summary": stats["summary"], "communities": stats["communities"]}, open(OUT / "graph.json", "w"), indent=1)
     json.dump(stats["summary"], open(OUT / "stats.json", "w"), indent=1)
     with open(OUT / "graph.cypher", "w") as f:
         for n in out_nodes:

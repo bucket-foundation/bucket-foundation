@@ -1,0 +1,88 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "blackscholes",
+ "title": "Rough volatility pricing",
+ "statement": {
+  "text": "In statistics, stochastic volatility models are those in which the variance of a stochastic process is itself randomly distributed. They are used in the field of mathematical finance to evaluate derivative securities, such as options. The name derives from the models' treatment of the underlying security's volatility as a random process, governed by state variables such as the price level of the underlying security, the tendency of volatility to revert to some long-run mean value, and the variance of the volatility process itself, among others.",
+  "source": "https://en.wikipedia.org/wiki/Stochastic_volatility",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Stochastic volatility",
+   "url": "https://en.wikipedia.org/wiki/Stochastic_volatility"
+  }
+ },
+ "aliases": [
+  "Stochastic volatility",
+  "stochastic volatility"
+ ],
+ "branch": "mathematics",
+ "level": 3,
+ "industries": [
+  "finance"
+ ],
+ "posed": 2014,
+ "resolved": null,
+ "history": [
+  {
+   "year": 2014,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 173,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rough+volatility%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22rough+volatility%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "ecc",
+   "why": "shared markets: finance"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: finance"
+  },
+  {
+   "id": "mechdesign",
+   "why": "shared markets: finance"
+  },
+  {
+   "id": "nash",
+   "why": "shared markets: finance"
+  },
+  {
+   "id": "optimalstop",
+   "why": "shared markets: finance"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Stochastic_volatility",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22rough+volatility%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

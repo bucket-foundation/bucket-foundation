@@ -1,0 +1,96 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "aging",
+ "title": "Programmed versus stochastic aging",
+ "statement": {
+  "text": "Senescence or biological aging is the gradual deterioration of functional characteristics in living organisms. Whole organism senescence involves an increase in death rates or a decrease in fecundity with increasing age, at least in the later part of an organism's life cycle. However, the effects of senescence can be delayed. The 1934 discovery that calorie restriction can extend lifespans by 50% in rats, the existence of species having negligible senescence, and the existence of potentially immortal organisms such as members of the genus Hydra have motivated research into delaying senescence and thus age-related diseases. Rare human mutations can cause accelerated aging diseases.",
+  "source": "https://en.wikipedia.org/wiki/Senescence",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Senescence",
+   "url": "https://en.wikipedia.org/wiki/Senescence"
+  }
+ },
+ "aliases": [
+  "Senescence",
+  "biological aging"
+ ],
+ "branch": "biophysics",
+ "level": 5,
+ "industries": [
+  "longevity",
+  "pharma"
+ ],
+ "posed": 1952,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1952,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 7,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22programmed+aging%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "mitoredox",
+   "why": "shared markets: longevity, pharma; same branch"
+  },
+  {
+   "id": "pfr",
+   "why": "shared keywords: entropy"
+  },
+  {
+   "id": "bioelectric",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "circadian",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "foldpath",
+   "why": "shared markets: pharma; same branch"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID41811567",
+   "title": "Interplay Between Autophagy, Cellular Senescence, and Brain Aging: Neuroprotective Implications of Intermittent Fasting.",
+   "source": "pubmed/PMID-41811567-interplay-between-autophagy-cellular-senescence-and-brain-ag"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Senescence",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22programmed+aging%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
+}

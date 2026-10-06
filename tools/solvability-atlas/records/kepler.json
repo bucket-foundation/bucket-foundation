@@ -1,0 +1,108 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "kepler",
+ "title": "Kepler conjecture",
+ "statement": {
+  "text": "The Kepler conjecture, named after the 17th-century mathematician and astronomer Johannes Kepler, is a mathematical theorem about sphere packing in three-dimensional Euclidean space. It states that no arrangement of equally sized spheres filling space has a greater average density than that of the cubic close packing and hexagonal close packing arrangements. The density of these arrangements is around 74.05%.",
+  "source": "https://en.wikipedia.org/wiki/Kepler_conjecture",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Kepler conjecture",
+   "url": "https://en.wikipedia.org/wiki/Kepler_conjecture"
+  }
+ },
+ "aliases": [],
+ "branch": "mathematics",
+ "level": 4,
+ "industries": [
+  "materials"
+ ],
+ "posed": 1611,
+ "resolved": 1998,
+ "history": [
+  {
+   "year": 1611,
+   "event": "first stated by Johannes Kepler",
+   "source": "https://en.wikipedia.org/wiki/Kepler_conjecture"
+  },
+  {
+   "year": 1611,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 1998,
+   "event": "first proof by Thomas Callister Hales",
+   "source": "https://en.wikipedia.org/wiki/Kepler_conjecture"
+  },
+  {
+   "year": 1998,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "uncited": 1,
+  "duplicate": 24
+ },
+ "activity": {
+  "openalex_by_year": {
+   "2013": 1,
+   "2025": 25
+  },
+  "openalex_total": 26,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Kepler+conjecture+sphere+packing%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22Kepler+conjecture+sphere+packing%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "catalysis",
+   "why": "shared markets: materials"
+  },
+  {
+   "id": "dftfunc",
+   "why": "shared markets: materials"
+  },
+  {
+   "id": "glass",
+   "why": "shared markets: materials"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "proved",
+  "source": "Hales et al., A formal proof of the Kepler conjecture, Forum of Mathematics Pi 2017",
+  "url": "https://doi.org/10.1017/fmp.2017.1"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Kepler_conjecture",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Kepler+conjecture+sphere+packing%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Kepler+conjecture+sphere+packing%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22Kepler+conjecture+sphere+packing%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 26 works, 0 kept; refine the query phrase in sources.tsv"
+ }
+}
