@@ -155,7 +155,7 @@ test("every language question passes checkLimits and holds its answer once", () 
     assert.ok(qs.length > 0, `${lang} ${form}`);
     for (const q of qs) {
       assert.deepEqual(checkLimits(q), [], `${lang} ${form} ${q.id}`);
-      assert.equal(q.choices!.length, LANGUAGE_CHOICES[q.depth as Depth]);
+      assert.equal(q.choices!.length, LANGUAGE_CHOICES);
       assert.equal(q.choices!.filter((c) => c === q.answer).length, 1);
       assert.equal(new Set(q.choices!.map(fold)).size, q.choices!.length);
       assert.equal(q.limitSec, FORM_LIMIT_SEC[form]);

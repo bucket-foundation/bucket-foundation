@@ -2,13 +2,14 @@ export type WorkQuizType = "recall" | "true_false" | "which_first" | "estimate" 
 export type LanguageQuizType = "meaning" | "sound" | "language" | "pair";
 export type QuizType = WorkQuizType | LanguageQuizType;
 
-export const QUIZ_TYPES: readonly WorkQuizType[] = ["recall", "true_false", "which_first", "estimate", "spot_error"];
+export const QUIZ_TYPES: readonly WorkQuizType[] = ["recall", "which_first", "estimate", "spot_error"];
+export const RETIRED_QUIZ_TYPES: readonly WorkQuizType[] = ["true_false"];
 export const LANGUAGE_QUIZ_TYPES: readonly LanguageQuizType[] = ["meaning", "sound", "language", "pair"];
-export const ALL_QUIZ_TYPES: readonly QuizType[] = [...QUIZ_TYPES, ...LANGUAGE_QUIZ_TYPES];
+export const ALL_QUIZ_TYPES: readonly QuizType[] = [...QUIZ_TYPES, ...RETIRED_QUIZ_TYPES, ...LANGUAGE_QUIZ_TYPES];
 export const SOURCE_KINDS = ["bead", "pr", "note", "chat", "word"] as const;
 
 export function isWorkQuizType(type: QuizType): type is WorkQuizType {
-  return (QUIZ_TYPES as readonly QuizType[]).includes(type);
+  return (QUIZ_TYPES as readonly QuizType[]).includes(type) || (RETIRED_QUIZ_TYPES as readonly QuizType[]).includes(type);
 }
 
 export interface BeadFact {

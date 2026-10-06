@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { buildQuestion, type Item } from "../grade";
 
 export const BANK_SEED = "hai-bank-v1";
+export const BANK_CHOICES = 4;
 
 export interface FrozenItem {
   id: string;
@@ -35,7 +36,7 @@ export function freezeBank(items: Item[], packVersion: string, seed = BANK_SEED)
   const atomOf = new Map<string, string>();
   for (const i of items) if (!atomOf.has(i.answer)) atomOf.set(i.answer, i.atomId);
   const frozen = items.map((item) => {
-    const q = buildQuestion(item, items, seed);
+    const q = buildQuestion(item, items, seed, BANK_CHOICES);
     const choiceAtoms = q.choices.map((c, i) => (i === q.answerIndex ? item.atomId : (atomOf.get(c) ?? "")));
     return { id: item.id, atomId: item.atomId, branch: item.branch, tier: item.level, prompt: q.prompt, choices: q.choices, answerIndex: q.answerIndex, limitSec: q.limitSec, choiceAtoms };
   });

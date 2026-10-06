@@ -14,12 +14,13 @@ import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, ty
 import { open, seal } from "./crypto";
 import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
 import { answerDaily, LearnError } from "./core/learn";
-import { DailyQuizStore, MAX_DAILY_QUESTIONS, overLength, validDay, type DailyQuiz } from "./daily-quiz";
+import { DAILY_MAX, DAILY_MIN, DailyQuizStore, overLength, TOO_FEW, validDay, type DailyQuiz } from "./daily-quiz";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import type { Route } from "./serve";
 import type { Store } from "./store";
 
 export const GIT_TIMEOUT_MS = 3000;
+export const NO_QUIZ = "no quiz for that day";
 export const MAX_PRS = 400;
 export const BEADS_BODY_BYTES = 32 * 1024 * 1024;
 export const MAX_BEAD_BYTES = 24 * 1024 * 1024;
@@ -217,7 +218,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   const readChats = o.readChats ?? readChatSources;
   const log = o.log ?? ((line: string) => console.error(line));
   const building = new Map<string, Promise<DailyQuiz | null>>();
-  const empty = new Set<string>();
+  const empty = new Map<string, string>();
 
   async function build(day: string): Promise<DailyQuiz | null> {
     const { sources: src } = await sources();
@@ -235,9 +236,9 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       );
     }
     const seen = new Set<string>();
-    const questions = [...(sampled?.questions ?? []), ...chat].filter((q) => !seen.has(q.id) && seen.add(q.id)).slice(0, MAX_DAILY_QUESTIONS);
-    if (questions.length === 0) {
-      empty.add(day);
+    const questions = [...(sampled?.questions ?? []), ...chat].filter((q) => !seen.has(q.id) && seen.add(q.id)).slice(0, DAILY_MAX);
+    if (questions.length < DAILY_MIN) {
+      empty.set(day, questions.length === 0 ? NO_QUIZ : TOO_FEW);
       return null;
     }
     const quiz = wq.daily.put({ day, questions }, now());
@@ -346,7 +347,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const day = url.searchParams.get("day");
       if (!validDay(day)) return json({ error: "give a day written as YYYY-MM-DD" }, 400);
       const quiz = await daily(day);
-      if (!quiz) return json({ error: "no quiz for that day" }, 404);
+      if (!quiz) return json({ error: empty.get(day) ?? NO_QUIZ }, 404);
       const fit = url.searchParams.get("fit") === "1";
       return json({ day, questions: quiz.questions.filter((q) => !fit || checkLimits(q).length === 0).map(toPublic), answered: [...wq.daily.answered(day)] });
     },

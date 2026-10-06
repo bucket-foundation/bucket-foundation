@@ -2,9 +2,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { CLOZE_TITLE_TOKENS, MAKERS, OPTION_TITLE_TOKENS, STEM_TITLE_TOKENS, clozeOptions, clozeWords, generateQuestion, rewriteQuestion, seededRng, shortPair, uniqueShort } from "../src/lib/research-os/work-quiz/generate";
+import { CLOZE_TITLE_TOKENS, MAKERS, OPTION_TITLE_TOKENS, clozeOptions, clozeWords, generateQuestion, rewriteQuestion, seededRng, shortTriple } from "../src/lib/research-os/work-quiz/generate";
 import { LIMITS, checkLimits, countTokens, parityOk, screenTokens, shortTitle, stemTokens, tokenize, withinLimits } from "../src/lib/research-os/work-quiz/limits";
-import { QUIZ_TYPES, type WorkQuizType, type WorkSources } from "../src/lib/research-os/work-quiz/types";
+import { QUIZ_TYPES, RETIRED_QUIZ_TYPES, type WorkQuizType, type WorkSources } from "../src/lib/research-os/work-quiz/types";
 
 const TITLES = JSON.parse(fs.readFileSync(path.join(process.cwd(), "scripts/fixtures/quiz-titles.json"), "utf8")) as { prs: string[]; beads: string[] };
 const SEEDS = 200;
@@ -116,23 +116,22 @@ test("shortTitle strips the commit prefix and PR number, drops function words an
 });
 
 test("checkLimits names each limit a question breaks", () => {
-  const ok = { prompt: "Which branch takes desktop PRs?", lines: [], choices: ["dev", "main"], explain: "Desktop work targets dev.", sources: [] };
+  const ok = { prompt: "Which branch takes desktop PRs?", lines: [], choices: ["dev", "main", "ops"], explain: "Desktop work targets dev.", sources: [] };
   assert.deepEqual(checkLimits(ok), []);
   const words = (n: number) => Array.from({ length: n }, (_, i) => `w${i}`).join(" ");
   assert.match(checkLimits({ ...ok, prompt: words(16) })[0], /stem has 16 tokens, the limit is 15/);
   assert.match(checkLimits({ ...ok, prompt: words(10), lines: [words(6)] })[0], /stem has 16 tokens/);
   assert.deepEqual(checkLimits({ ...ok, prompt: words(15) }), []);
-  assert.match(checkLimits({ ...ok, choices: ["a1", "b2", "c3", "d4", "e5"] })[0], /5 options, the limit is 4/);
-  assert.match(checkLimits({ ...ok, choices: [words(6), words(6), words(6), words(6)] })[0], /an option has 6 tokens, the limit is 5/);
-  assert.deepEqual(checkLimits({ prompt: words(15), choices: [words(10), words(10)] }), []);
-  assert.match(checkLimits({ ...ok, choices: [words(11), words(11)] })[0], /an option has 11 tokens, the limit is 10/);
-  assert.match(checkLimits({ ...ok, choices: [words(1), words(3)] })[0], /options differ/);
-  assert.match(checkLimits({ ...ok, choices: ["dev", "hte/integration"] })[0], /options differ/);
+  assert.match(checkLimits({ ...ok, choices: ["a1", "b2", "c3", "d4"] })[0], /4 options, a choice question takes exactly 3/);
+  assert.match(checkLimits({ ...ok, choices: ["true", "false"] })[0], /2 options, a choice question takes exactly 3/);
+  assert.match(checkLimits({ ...ok, choices: [words(6), words(6), words(6)] })[0], /an option has 6 tokens, the limit is 5/);
+  assert.deepEqual(checkLimits({ prompt: words(15), choices: [words(5), words(5), words(5)] }), []);
+  assert.match(checkLimits({ ...ok, choices: [words(1), words(3), words(3)] })[0], /options differ/);
+  assert.match(checkLimits({ ...ok, choices: ["dev", "hte/integration", "main"] })[0], /options differ/);
   assert.match(checkLimits({ ...ok, explain: words(21) })[0], /why line has 21 tokens, the limit is 20/);
   assert.match(checkLimits({ ...ok, sources: [1, 2] })[0], /2 sources, the limit is 1 link/);
-  assert.equal(LIMITS.stem + LIMITS.maxOptions * LIMITS.option, LIMITS.screen);
-  assert.equal(LIMITS.stem + 2 * LIMITS.optionOfTwo, LIMITS.screen);
-  assert.ok(parityOk(["true", "false"]));
+  assert.equal(LIMITS.stem + LIMITS.choices * LIMITS.option, LIMITS.screen);
+  assert.ok(parityOk(["true", "false", "maybe"]));
   assert.ok(!parityOk(["Fermi", "Exact match", "Rubric", "Peer"]));
 });
 
@@ -140,7 +139,7 @@ test("an intent question is free text with a stem of at most 20 tokens", () => {
   const words = (n: number) => Array.from({ length: n }, (_, i) => `w${i}`).join(" ");
   assert.deepEqual(checkLimits({ prompt: words(20), choices: null }, { intent: true }), []);
   assert.match(checkLimits({ prompt: words(21), choices: null }, { intent: true })[0], /stem has 21 tokens, the limit is 20/);
-  assert.match(checkLimits({ prompt: words(5), choices: ["yes", "no"] }, { intent: true })[0], /free text/);
+  assert.match(checkLimits({ prompt: words(5), choices: ["yes", "no", "later"] }, { intent: true })[0], /free text/);
 });
 
 test(`${SEEDS} seeds per generator over fixture PRs, beads and notes stay within every limit`, () => {
@@ -163,27 +162,12 @@ test(`${SEEDS} seeds per generator over fixture PRs, beads and notes stay within
   }
 });
 
-test("no two items share a true-or-false stem, and the stem names the kind of fact", () => {
-  const twins: WorkSources = {
-    repoUrl: null,
-    notes: [],
-    prs: [],
-    beads: [
-      { id: "bkt-s1", title: "Quiz length limits on the work quiz slice 1", status: "closed", priority: 0, createdAt: "2026-10-01" },
-      { id: "bkt-s2", title: "Quiz length limits on the work quiz slice 2", status: "open", priority: 0, createdAt: "2026-10-01" },
-      { id: "bkt-s3", title: "Plain words in the Bucket window", status: "open", priority: 1, createdAt: "2026-10-01" },
-    ],
-  };
-  assert.equal(uniqueShort(twins.beads[0].title, twins.beads.map((b) => b.title), STEM_TITLE_TOKENS), null);
-  let made = 0;
-  for (let i = 0; i < SEEDS; i++) {
-    const q = MAKERS.true_false(twins, seededRng(`twins-${i}`));
-    if (!q) continue;
-    made++;
-    assert.equal(q.sources[0].ref, "bkt-s3");
-    assert.match(q.prompt, /^The task "Plain words Bucket window" is (open|closed)\.$/);
+test("a retired type makes no question, and the stem names the kind of fact", () => {
+  for (const type of RETIRED_QUIZ_TYPES) {
+    for (let i = 0; i < 40; i++) assert.equal(MAKERS[type](SOURCES, seededRng(`retired-${type}-${i}`)), null);
+    assert.equal(generateQuestion(SOURCES, "retired", type), null);
   }
-  assert.ok(made > 0 && made < SEEDS);
+  assert.ok(!QUIZ_TYPES.some((t) => (RETIRED_QUIZ_TYPES as readonly string[]).includes(t)));
   for (let i = 0; i < 40; i++) {
     const r = MAKERS.recall(SOURCES, seededRng(`kind-${i}`));
     if (r) assert.match(r.prompt, /^Fill the blank in this (task|merged change)\.$/);
@@ -192,6 +176,23 @@ test("no two items share a true-or-false stem, and the stem names the kind of fa
       if (!q) continue;
       const frame = [q.prompt.replace(/"[^"]*"/g, ""), ...(type === "spot_error" ? q.choices ?? [] : []), ...q.sources.map((x) => x.label)].join(" ");
       assert.ok(!/\bbeads?\b|\bPRs?\b|\bid\b/i.test(frame), `${type} uses plain words: ${frame}`);
+    }
+  }
+});
+
+test("every generated choice question offers exactly three choices", () => {
+  for (const [part, src] of Object.entries(PARTS)) {
+    for (const type of QUIZ_TYPES) {
+      for (let i = 0; i < SEEDS; i++) {
+        const q = MAKERS[type](src, seededRng(`three-${part}-${type}-${i}`));
+        if (!q) continue;
+        if (type === "estimate") assert.equal(q.choices, null);
+        else {
+          assert.equal(q.choices?.length, LIMITS.choices, `${part} ${type} seed ${i}`);
+          assert.equal(new Set(q.choices).size, LIMITS.choices);
+          assert.equal(q.choices!.filter((c) => c === q.answer).length, 1);
+        }
+      }
     }
   }
 });
@@ -214,7 +215,7 @@ test("a stored question is rewritten about the same fact, or not at all", () => 
     }
     assert.ok(done >= 10, `${type} rewrote ${done}`);
   }
-  const gone = { ...MAKERS.true_false(PARTS.prs, seededRng("gone"))!, sources: [{ kind: "pr" as const, ref: "#99999", label: "x", href: null }] };
+  const gone = { ...MAKERS.spot_error(PARTS.prs, seededRng("gone"))!, sources: [{ kind: "pr" as const, ref: "#99999", label: "x", href: null }] };
   assert.equal(rewriteQuestion(gone, SOURCES), null);
   assert.equal(rewriteQuestion({ ...gone, sources: [] }, SOURCES), null);
 });
@@ -225,20 +226,26 @@ test("generateQuestion drops a question over a limit and falls through to the ne
     const q = generateQuestion(long, `drop-${i}`);
     if (q) assert.ok(withinLimits(q));
   }
-  assert.equal(generateQuestion(long, "x", "true_false"), null);
+  assert.equal(generateQuestion(long, "x", "spot_error"), null);
 });
 
 function share(cells: boolean[]): number {
   return cells.length === 0 ? 0 : cells.filter(Boolean).length / cells.length;
 }
 
-function allPairs(titles: string[]): boolean[] {
+function allTriples(titles: string[]): boolean[] {
   const out: boolean[] = [];
-  for (let i = 0; i < titles.length; i++) for (let j = i + 1; j < titles.length; j++) out.push(shortPair(titles[i], titles[j]) !== null);
+  const rng = seededRng("triples");
+  for (let n = 0; n < 4000; n++) {
+    const picked = new Set<number>();
+    while (picked.size < 3) picked.add(Math.floor(rng() * titles.length));
+    const [a, b, c] = Array.from(picked).map((i) => titles[i]);
+    out.push(shortTriple([a, b, c]) !== null);
+  }
   return out;
 }
 
-export function validCells(titles: { prs: string[]; beads: string[] }): Record<WorkQuizType | "four_titles", number> {
+export function validCells(titles: { prs: string[]; beads: string[] }): Record<Exclude<WorkQuizType, "true_false"> | "three_titles", number> {
   const all = [...titles.prs, ...titles.beads];
   const shorts = all.map((t) => shortTitle(t, CLOZE_TITLE_TOKENS));
   const pool = Array.from(new Set(shorts.flatMap(clozeWords)));
@@ -252,25 +259,19 @@ export function validCells(titles: { prs: string[]; beads: string[] }): Record<W
       return options !== null && withinLimits({ prompt: "Fill the blank in this merged change.", lines: [s.replace(answer, "____")], choices: options, explain: `Change #000 reads: ${s}` });
     });
   });
-  const claim = (set: string[]) =>
-    set.map((t) => {
-      const s = uniqueShort(t, set, STEM_TITLE_TOKENS);
-      return s !== null && withinLimits({ prompt: `The change "${s}" merged on 2026-10-01.`, choices: ["true", "false"] });
-    });
   const rng = seededRng("four-titles");
   const four = Array.from({ length: 2000 }, () => {
     const picked = new Set<number>();
-    while (picked.size < 4) picked.add(Math.floor(rng() * all.length));
+    while (picked.size < LIMITS.choices) picked.add(Math.floor(rng() * all.length));
     const options = Array.from(picked).map((i) => shortTitle(all[i], LIMITS.option));
-    return new Set(options).size === 4 && parityOk(options);
+    return new Set(options).size === LIMITS.choices && parityOk(options);
   });
   return {
     recall: share(recall),
-    true_false: share([...claim(titles.prs), ...claim(titles.beads)]),
-    which_first: share([...allPairs(titles.prs), ...allPairs(titles.beads)]),
+    which_first: share([...allTriples(titles.prs), ...allTriples(titles.beads)]),
     estimate: 1,
     spot_error: share(all.map((t) => shortTitle(t, OPTION_TITLE_TOKENS) !== "" && withinLimits({ prompt: "Which change fact is wrong?", lines: [`number: #000`, "merged: 2026-10-01", `title: ${shortTitle(t, OPTION_TITLE_TOKENS)}`], choices: ["the number", "the date", "the title"] }))),
-    four_titles: share(four),
+    three_titles: share(four),
   };
 }
 
@@ -279,5 +280,8 @@ test("the gate: recall keeps at least 60 percent valid cells on real PR and bead
   const cells = validCells(TITLES);
   for (const [form, value] of Object.entries(cells)) console.log(`valid cells ${form}: ${(value * 100).toFixed(1)} percent`);
   assert.ok(cells.recall >= RECALL_GATE, `recall has ${(cells.recall * 100).toFixed(1)} percent valid cells`);
-  for (const type of QUIZ_TYPES) assert.ok(cells[type] >= RECALL_GATE, `${type} has ${(cells[type] * 100).toFixed(1)} percent valid cells`);
+  for (const type of QUIZ_TYPES) {
+    const value = cells[type as keyof typeof cells];
+    assert.ok(value >= RECALL_GATE, `${type} has ${(value * 100).toFixed(1)} percent valid cells`);
+  }
 });

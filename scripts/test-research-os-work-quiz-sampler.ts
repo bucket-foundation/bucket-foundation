@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
+import { LIMITS, QUIZ_QUESTIONS, checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { makeForm } from "../src/lib/research-os/work-quiz/forms";
 import { seededRng } from "../src/lib/research-os/work-quiz/generate";
 import { DAY_MS, QUIZ_SLOTS, REVIEW_SLOTS, RNG_RANGE, builtCells, cellStats, daySeed, factWeights, recordPicks, rngInt, sampleQuiz, usedOn, weightedPick, type CoverageRow, type DueCard } from "../src/lib/research-os/work-quiz/sampler";
@@ -35,7 +35,9 @@ test("no fact appears twice in a day and every question passes checkLimits", () 
     const facts = quiz.picks.flatMap((p) => p.factIds);
     assert.equal(new Set(facts).size, facts.length, d);
     for (const q of quiz.questions) assert.deepEqual(checkLimits(q), [], `${d} ${q.id}`);
-    assert.deepEqual(quiz.blocked, ["which_changed"]);
+    assert.deepEqual(quiz.blocked, ["true_false", "which_changed"]);
+    assert.ok(quiz.questions.length >= QUIZ_QUESTIONS.min && quiz.questions.length <= QUIZ_QUESTIONS.max, `${d} has ${quiz.questions.length} questions`);
+    for (const q of quiz.questions) if (q.choices) assert.equal(q.choices.length, LIMITS.choices, `${d} ${q.id} has ${q.choices.length} choices`);
   }
 });
 
@@ -51,8 +53,8 @@ test("every day of 60 samples to a deep-equal quiz when run twice", () => {
 });
 
 const due = (key: string, factIds: string[], dueAt: number): DueCard => {
-  const q = makeForm("true_false", SOURCES, key, 1)!;
-  return { cardKey: `${factIds.join("+")}|true_false`, factIds, question: { ...q, id: `${q.id}-${key}` }, dueAt };
+  const q = makeForm("spot_error", SOURCES, key, 1)!;
+  return { cardKey: `${factIds.join("+")}|spot_error`, factIds, question: { ...q, id: `${q.id}-${key}` }, dueAt };
 };
 
 test("two slots go to the most overdue cards and are released when none are due", () => {

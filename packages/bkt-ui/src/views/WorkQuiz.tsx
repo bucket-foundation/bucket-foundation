@@ -139,6 +139,8 @@ export function WorkQuizView({ api }: { api: Api }) {
 }
 
 export const NO_QUIZ = "no quiz for that day";
+export const TOO_FEW = "fewer than 3 questions could be built for that day";
+export const TOO_FEW_SHOWN = "A daily quiz holds 3 to 5 questions. Your sources gave fewer than 3 today, so Bucket built none. Add a beads file or a repository, or turn on a chat source, then open this page again.";
 export const OUTDATED = "This copy of Bucket is older than the daily quiz. Update Bucket, then open this page again.";
 export const QUIZ_CHANGED = "This quiz changed while the page was open. Reload the page to get the current questions.";
 export const GRADED_ONCE = "This question was already graded. Each daily question is graded once.";
@@ -153,6 +155,7 @@ type DailyApi = Pick<Api, "dailyQuiz" | "dailyAnswer">;
 export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
   const [quiz, setQuiz] = useState<DailyQuiz | null>(null);
   const [missing, setMissing] = useState(false);
+  const [tooFew, setTooFew] = useState(false);
   const [done, setDone] = useState<Set<string>>(new Set());
   const [right, setRight] = useState(0);
   const [at, setAt] = useState<string | null>(null);
@@ -179,6 +182,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       (e: Error) => {
         if (!live) return;
         if (e instanceof ApiError && e.status === 404 && e.code === NO_QUIZ) setMissing(true);
+        else if (e instanceof ApiError && e.status === 404 && e.code === TOO_FEW) setTooFew(true);
         else if (e instanceof ApiError && e.status === 404) setOutdated(true);
         else setError(e.message);
       },
@@ -231,6 +235,15 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
         <div className="panel empty">
           <h2>No quiz for {day}</h2>
           <p>Bucket has no quiz saved for this day. A daily quiz is built from your recent chats on the day itself, and nothing was built for this one. Either reading your chats was turned off, or the chats from those two days held nothing Bucket could ask about.</p>
+          <p>
+            <a href={href({ name: "work" })}>Open the work quiz</a>
+          </p>
+        </div>
+      )}
+      {tooFew && (
+        <div className="panel empty">
+          <h2>No quiz for {day}</h2>
+          <p>{TOO_FEW_SHOWN}</p>
           <p>
             <a href={href({ name: "work" })}>Open the work quiz</a>
           </p>

@@ -2,13 +2,13 @@ import { createHash } from "node:crypto";
 import { cardFields, compoundFactId, FACT_JOIN } from "./fact";
 import { FORM_MAKERS, type FormMaker, type SampledQuestion } from "./forms";
 import { seededRng, type Rng } from "./generate";
-import { checkLimits } from "./limits";
+import { checkLimits, QUIZ_QUESTIONS } from "./limits";
 import { knownLanguages, languageMakers, type WordSet } from "./polingual-forms";
 import { loadWordSet } from "./polingual-server";
 import { BLOCKED_FORMS, FORMS, LANGUAGE_FORMS, allCells, cellId, type Cell, type Form } from "./space";
 import type { QuizQuestion, WorkSources } from "./types";
 
-export const QUIZ_SLOTS = 5;
+export const QUIZ_SLOTS = QUIZ_QUESTIONS.max;
 export const REVIEW_SLOTS = 2;
 export const CANDIDATES = 16;
 export const MISS_WEIGHT = 2;

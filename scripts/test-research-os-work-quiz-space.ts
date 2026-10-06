@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
+import { LIMITS, checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { BLOCKED_FORMS, DEPTHS, FORMATS, FORMS, VALID_PAIRS, allCells, cellValid, openCells, validPair, validPairs, type Form } from "../src/lib/research-os/work-quiz/space";
 import { CARD_KEY_SEPARATOR, cardFields, compoundFactId, cardKey, factId, factsFromSources, parseCardKey } from "../src/lib/research-os/work-quiz/fact";
@@ -69,7 +69,7 @@ test("the Supabase migration builds the card key the same way as cardKey", () =>
   assert.equal(cardKey("pr:504", "estimate"), ["pr:504", "estimate"].join("|"));
 });
 
-const BUILT: Form[] = ["true_false", "estimate", "compare", "order"];
+const BUILT: Form[] = ["cloze", "spot_error", "estimate", "compare", "order"];
 
 for (const form of BUILT) {
   test(`${form}: ${SEEDS} seeds per depth, every question passes checkLimits and grades on an existing grader`, () => {
@@ -84,7 +84,10 @@ for (const form of BUILT) {
         assert.equal(q.cardKey, cardKey(compoundFactId(q.factIds), form));
         assert.equal(q.id, sampledId(form, q.factIds, depth));
         assert.equal(gradeAnswer(q, q.answer, 1000).correct, true);
-        if (q.choices) assert.ok(q.choices.includes(q.answer));
+        if (q.choices) {
+          assert.ok(q.choices.includes(q.answer));
+          assert.equal(q.choices.length, LIMITS.choices, `${form} seed ${s} has ${q.choices.length} choices`);
+        }
       }
     }
     assert.ok(made >= SEEDS, `${form} made ${made} questions`);
@@ -108,7 +111,11 @@ test("the same seed yields a deep-equal question for every built form, depth and
 test("order uses a choice string and estimate grades by log10 distance", () => {
   const o = makeForm("order", SOURCES, "o", 3)!;
   assert.equal(o.lines.length, 3);
-  assert.equal(o.choices!.length, 4);
+  assert.equal(o.choices!.length, LIMITS.choices);
+  for (let i = 0; i < 20; i++) {
+    const shallow = makeForm("order", SOURCES, `o1-${i}`, 1);
+    if (shallow) assert.equal(shallow.choices!.length, LIMITS.choices);
+  }
   assert.match(o.answer, /^[ABC]{3}$/);
   const e = makeForm("estimate", SOURCES, "e", 2)!;
   assert.equal(e.log10Tolerance, 0.2);
@@ -132,8 +139,10 @@ test("the estimate prompt states the factor the log10 grader accepts on both sid
   }
 });
 
-test("which_changed has no maker and the other built forms do", () => {
+test("which_changed and true_false have no maker and the other built forms do", () => {
   assert.equal(FORM_MAKERS.which_changed, undefined);
+  assert.equal(FORM_MAKERS.true_false, undefined);
+  assert.ok(BLOCKED_FORMS.true_false);
   for (const f of BUILT) assert.ok(FORM_MAKERS[f]);
 });
 

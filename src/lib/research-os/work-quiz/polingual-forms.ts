@@ -55,7 +55,7 @@ export interface WordSet {
   byConcept: Readonly<Record<string, readonly WordCell[]>>;
 }
 
-export const LANGUAGE_CHOICES: Readonly<Record<Depth, number>> = { 1: 2, 2: 3, 3: 4 };
+export const LANGUAGE_CHOICES = LIMITS.choices;
 export const GLOSS_TOKENS = 8;
 export const MIN_GLOSS_TOKENS = 3;
 export const WORD_TOKENS = 3;
@@ -308,7 +308,7 @@ function question(form: LanguageForm, set: WordSet, answer: WordCell, body: Pick
 }
 
 function wordChoices(set: WordSet, rng: Rng, answer: WordCell, depth: Depth, ok?: (c: WordCell) => boolean): string[] | null {
-  return choose(rng, answer.word, shuffle(rng, rivals(set, answer, ok)).map((c) => c.word), LANGUAGE_CHOICES[depth]);
+  return choose(rng, answer.word, shuffle(rng, rivals(set, answer, ok)).map((c) => c.word), LANGUAGE_CHOICES);
 }
 
 const meaning = (set: WordSet, languages: readonly string[]): FormMaker => (_src, rng, depth) => {
@@ -345,7 +345,7 @@ const language = (set: WordSet, languages: readonly string[]): FormMaker => (_sr
   const a = pick(rng, pool);
   const name = set.names[a.lang];
   const ordered = languageRivals(set, a).flatMap((ls) => shuffle(rng, ls)).map((l) => set.names[l]);
-  const choices = choose(rng, name, ordered, LANGUAGE_CHOICES[depth]);
+  const choices = choose(rng, name, ordered, LANGUAGE_CHOICES);
   return question("language", set, a, { prompt: "Which language is this word?", lines: [a.word], choices, answer: name, explain: `${a.word} is ${name} for "${a.concept}".` }, depth, [wordFactId(a)]);
 };
 

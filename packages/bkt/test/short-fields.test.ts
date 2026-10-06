@@ -67,22 +67,19 @@ describe("short question distractors", () => {
   for (const i of pool) branchesOf.set(i.shortAnswer, (branchesOf.get(i.shortAnswer) ?? new Set<string>()).add(i.branch));
   const mk = (id: string, branch: string, shortAnswer: string): Item => ({ id, atomId: id, branch, title: id, level: "recall", prompt: `Which word fits ${id}?`, answer: `It is ${shortAnswer}`, shortPrompt: `Which word fits ${id}?`, shortAnswer });
 
-  test("on the corpus at least 80 percent of distractors share the item's branch and under 5 percent of questions fall to 2 choices", () => {
+  test("on the corpus at least 80 percent of distractors share the item's branch and every question has 3 choices", () => {
     for (const seed of ["s1", "s2", "s3"]) {
       let same = 0;
       let total = 0;
-      let two = 0;
       for (const i of pool) {
         const q = buildShortQuestion(i, pool, seed)!;
-        expect([2, 4]).toContain(q.choices.length);
-        if (q.choices.length === 2) two += 1;
+        expect(q.choices).toHaveLength(3);
         for (const c of q.choices.filter((x) => x !== i.shortAnswer)) {
           total += 1;
           if (branchesOf.get(c)?.has(i.branch)) same += 1;
         }
       }
       expect(same / total).toBeGreaterThanOrEqual(0.8);
-      expect(two / pool.length).toBeLessThan(0.05);
     }
   });
 
@@ -90,7 +87,7 @@ describe("short question distractors", () => {
     const deck = [...["alpha", "bravo", "delta", "gamma", "omega"].map((w, n) => mk(`a${n}`, "a", w)), ...["sigma", "theta", "kappa"].map((w, n) => mk(`b${n}`, "b", w))];
     for (const seed of ["s1", "s2", "s3", "s4"]) {
       const q = buildShortQuestion(deck[0], deck, seed)!;
-      expect(q.choices).toHaveLength(4);
+      expect(q.choices).toHaveLength(3);
       expect(q.choices.filter((c) => c !== "alpha").every((c) => ["bravo", "delta", "gamma", "omega"].includes(c))).toBe(true);
     }
   });
@@ -99,18 +96,19 @@ describe("short question distractors", () => {
     const deck = [mk("a0", "a", "alpha"), mk("a1", "a", "bravo"), ...["sigma", "theta", "kappa", "gamma"].map((w, n) => mk(`b${n}`, "b", w))];
     for (const seed of ["s1", "s2", "s3", "s4"]) {
       const q = buildShortQuestion(deck[0], deck, seed)!;
-      expect(q.choices).toHaveLength(4);
+      expect(q.choices).toHaveLength(3);
       expect(q.choices).toContain("bravo");
-      expect(q.choices.filter((c) => ["sigma", "theta", "kappa", "gamma"].includes(c))).toHaveLength(2);
+      expect(q.choices.filter((c) => ["sigma", "theta", "kappa", "gamma"].includes(c))).toHaveLength(1);
     }
   });
 
-  test("with one usable distractor the question falls to 2 choices, and with none it is null", () => {
-    const deck = [mk("a0", "a", "alpha"), mk("b0", "b", "sigma"), mk("b1", "b", "Alpha"), mk("b2", "b", "a far longer answer than the rest")];
+  test("with two usable distractors the question has 3 choices, and with fewer it is null", () => {
+    const deck = [mk("a0", "a", "alpha"), mk("b0", "b", "sigma"), mk("b1", "b", "Alpha"), mk("b2", "b", "a far longer answer than the rest"), mk("b3", "b", "theta")];
     const q = buildShortQuestion(deck[0], deck, "s1")!;
-    expect(q.choices.slice().sort()).toEqual(["alpha", "sigma"]);
+    expect(q.choices.slice().sort()).toEqual(["alpha", "sigma", "theta"]);
     expect(q.choices[q.answerIndex]).toBe("alpha");
     expect(checkLimits(q)).toEqual([]);
+    expect(buildShortQuestion(deck[0], [deck[0], deck[1], deck[2], deck[3]], "s1")).toBeNull();
     expect(buildShortQuestion(deck[0], [deck[0], deck[2], deck[3]], "s1")).toBeNull();
   });
 });
