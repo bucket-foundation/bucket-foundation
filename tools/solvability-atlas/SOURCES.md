@@ -85,13 +85,15 @@ Third ingest, 2026-10-05, the backtest set for the frontier. Every row comes fro
 
 | List | Posed | Rows | Open | Partial | Solved | Licence | Read from |
 |---|---|---|---|---|---|---|---|
-| Science, 125 questions: what don't we know? (25 big questions plus 100 further questions) | 2005 | 117 | 48 | 65 | 4 | AAAS copyright; headline under 15 words cited, statement paraphrased | Wayback copy of the Science 309(5731) article |
-| Science and Shanghai Jiao Tong University, 125 questions: exploration and discovery | 2021 | 122 | 80 | 42 | 0 | AAAS copyright; headline under 15 words cited, statement paraphrased | Wayback copy of the booklet PDF |
+| Science, 125 questions: what don't we know? (25 big questions plus 100 further questions) | 2005 | 117 | 48 | 65 | 4 | AAAS copyright; headline under 15 words cited, statement paraphrased | Wayback copy of the Science 309(5731) article, in `source`; the science.org url in `statement_source` |
+| Science and Shanghai Jiao Tong University, 125 questions: exploration and discovery | 2021 | 122 | 80 | 42 | 0 | AAAS copyright; headline under 15 words cited, statement paraphrased | Wayback copy of the booklet PDF, in `source`; the science.org url in `statement_source` |
 | DARPA prize competitions, Grand Challenge 2004 to AI Cyber Challenge 2025 | 2002 to 2023 | 16 | 3 | 0 | 13 | CC BY-SA 4.0 | Wikipedia, DARPA Prize Competitions and the per-challenge pages |
 | XPRIZE competitions 1996 to 2025 plus the Longitude Prize 2014 | 1996 to 2021 | 21 | 3 | 1 | 17 | CC BY-SA 4.0 | Wikipedia, Xprize Foundation and the per-prize pages |
 | 23 Problems in Systems Neuroscience, van Hemmen and Sejnowski | 2006 | 23 | 15 | 8 | 0 | Library of Congress record, chapter titles cited, statement paraphrased | Library of Congress table of contents |
 | Holy Grails in Chemistry, Accounts of Chemical Research 50(3) | 2017 | 26 | 20 | 6 | 0 | ACS copyright; title cited, statement paraphrased | PubMed titles of the issue |
 | Total | | 325 | 169 | 122 | 34 | | |
+
+Coverage after this ingest: 517 of 5,009 rows carry a posed year, 192 of the 4,684 rows outside the dated lists (157 before the fills). The dated rows cluster on two years, 117 on 2005 and 124 on 2021, 241 of 325, with the other 84 spread over 1996 to 2023. Their statements average 19 words against 34 for the rest of the file. The backtest must stratify by posed year and by statement length, or the 2005 and 2021 blocks and the short paraphrases will drive the result.
 
 Rules for these rows:
 

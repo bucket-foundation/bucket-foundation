@@ -97,7 +97,7 @@ def check(record):
         problems.append(f"statement has {words} words, band is {MIN_WORDS} to {MAX_WORDS}")
     if record["statement"] and not problem_shaped(record["statement"]):
         problems.append("statement is not a question or an imperative problem")
-    if "–" in record["statement"] or "—" in record["statement"]:
+    if "\u2013" in record["statement"] or "\u2014" in record["statement"]:
         problems.append("dash in statement")
     if record["licence"].startswith(("AAAS", "ACS")) and len(record["name"].split()) >= 15:
         problems.append("copyrighted headline must stay under 15 words")
