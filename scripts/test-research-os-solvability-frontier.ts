@@ -2,9 +2,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import atlas from "../src/lib/research-os/solvability-atlas-data.json";
 import similarity from "../src/lib/research-os/solvability-similarity-data.json";
+import neighbors from "../src/lib/research-os/solvability-neighbors-data.json";
 import type { SolvabilityAtlasData } from "../src/lib/research-os/solvability-atlas";
-import { CORE_RADIUS, FRONTIER_RADIUS, OUTER_RADIUS, REACH_QUANTILE, buildFrontier, edgeRanking, growthRanking, quantile, similarityOf, type FrontierRow, type SimilarityData } from "../src/lib/research-os/solvability-frontier";
-import { frontierSvg, frontierText } from "../src/lib/research-os/solvability-frontier-render";
+import { CORE_RADIUS, FRONTIER_RADIUS, OUTER_RADIUS, REACH_QUANTILE, branchCounts, buildFrontier, edgeRanking, frontierRows, growthRanking, isNeighborData, quantile, similarityOf, type FrontierRow, type NeighborData, type NeighborNode, type SimilarityData } from "../src/lib/research-os/solvability-frontier";
+import { FULL_LABELS, frontierSvg, frontierText, labelled } from "../src/lib/research-os/solvability-frontier-render";
 
 const rows = (atlas as SolvabilityAtlasData).productions;
 const data = similarity as SimilarityData;
@@ -121,4 +122,119 @@ test("the terminal drawing fits its width, tags each outside problem, and carrie
   assert.ok(narrow.filter((l) => / reach \d\.\d\d {2}\+/.test(l)).every((l) => l.length <= 62));
   assert.ok(lines.filter((l) => / reach \d\.\d\d {2}\+/.test(l)).every((l) => l.length <= 79));
   assert.ok(frontierText(f, { color: true }).some((l) => l.includes("\x1b[")));
+});
+
+const full = neighbors as unknown as NeighborData;
+const fullRows = frontierRows(full);
+const ff = buildFrontier(fullRows, full);
+
+function sparse(ids: string[], sim: number[][], solved: boolean[], k: number, kind: NeighborNode["kind"][] = [], variantOf: (string | null)[] = []): NeighborData {
+  const nodes = ids.map((id, i): NeighborNode => {
+    const order = ids.map((_, j) => j).filter((j) => j !== i).sort((a, b) => sim[i][b] - sim[i][a]);
+    const top = order.slice(0, k);
+    const best = order.filter((j) => solved[j])[0];
+    return { id, title: id, branch: "mathematics", kind: kind[i] ?? "sourced", form: "problem", variant_of: variantOf[i] ?? null, status: solved[i] ? "solved" : "open", solved: solved[i], resolved: null, theta: i, source: "t", licence: "t", text_kind: "statement", n: top, s: top.map((j) => sim[i][j]), solved_nearest: best === undefined ? null : { id: ids[best], sim: sim[i][best] } };
+  });
+  return { schema: "t", model: "t", revision: "t", k, note: "", solved_rule: "", text_counts: {}, ids, solved: ids.filter((_, i) => solved[i]), nodes };
+}
+
+const toyIds = ["s1", "s2", "near", "far", "farther"];
+const toySim = [
+  [1, 0.9, 0.85, 0.3, 0.2],
+  [0.9, 1, 0.6, 0.25, 0.2],
+  [0.85, 0.6, 1, 0.1, 0.1],
+  [0.3, 0.25, 0.1, 1, 0.95],
+  [0.2, 0.2, 0.1, 0.95, 1],
+];
+const toySparse = sparse(toyIds, toySim, [true, true, false, false, false], 4);
+
+test("the sparse path repeats the dense toy frontier when every neighbour is stored", () => {
+  assert.ok(isNeighborData(toySparse) && !isNeighborData(toy));
+  const dense = buildFrontier(toyRows, toy, 0.8);
+  const thin = buildFrontier(frontierRows(toySparse), toySparse, 0.8);
+  assert.deepEqual(thin.counts, dense.counts);
+  assert.deepEqual(thin.points.map((p) => [p.id, p.zone, p.reach, p.pulls, p.growth]), dense.points.map((p) => [p.id, p.zone, p.reach, p.pulls, p.growth]));
+  assert.ok(thin.rule.includes("Pulls count only a problem's 4 stored neighbours."));
+});
+
+test("the sparse path bounds pulls by the stored neighbours and recomputes reach from them when a node is solved", () => {
+  const one = sparse(toyIds, toySim, [true, true, false, false, false], 1);
+  const t = buildFrontier(frontierRows(one), one, 0.8);
+  const far = t.points.find((p) => p.id === "far")!;
+  assert.deepEqual(far.pulls, ["farther"]);
+  const grown = buildFrontier(frontierRows(one).map((r) => (r.id === "far" ? { ...r, solved: true } : r)), one, 0.8);
+  assert.equal(grown.points.find((p) => p.id === "farther")!.zone, "reachable");
+  assert.equal(grown.inside, t.inside + far.growth);
+});
+
+test("the sparse path refuses a node with no solved neighbour in reach", () => {
+  const sim = [
+    [1, 0.2, 0.1, 0.8],
+    [0.2, 1, 0.9, 0.2],
+    [0.1, 0.9, 1, 0.1],
+    [0.8, 0.2, 0.1, 1],
+  ];
+  const thin = sparse(["a", "b", "c", "d"], sim, [true, true, false, true], 1);
+  const rows = frontierRows(thin);
+  assert.equal(buildFrontier(rows, thin, 0.5).points.find((p) => p.id === "c")!.nearest!.id, "b");
+  assert.throws(() => buildFrontier(rows.map((r) => (r.id === "b" ? { ...r, solved: false } : r)), thin, 0.5), /c has no solved neighbour/);
+});
+
+test("lean theorems are left off the full set by default and in on request", () => {
+  assert.ok(full.nodes.some((n) => n.kind === "lean"));
+  assert.ok(fullRows.every((r) => r.source_kind !== "lean"));
+  assert.equal(frontierRows(full, { lean: true }).length, full.nodes.length);
+  assert.equal(fullRows.length, full.nodes.filter((n) => n.kind !== "lean").length);
+});
+
+test("the variant rule: a variant is solved only when it and its parent are solved", () => {
+  const byId = new Map(full.nodes.map((n) => [n.id, n]));
+  const status = (id: string) => byId.get(id)!.status;
+  let proved = 0;
+  for (const n of full.nodes) {
+    if (n.kind !== "variant") continue;
+    assert.ok(n.variant_of, n.id);
+    const parentSolved = byId.get(n.variant_of!)!.solved;
+    if (n.solved) assert.ok(parentSolved, n.id);
+    if (n.status === "partial") {
+      proved += 1;
+      assert.ok(!n.solved && !parentSolved, n.id);
+    }
+  }
+  assert.ok(proved > 0);
+  for (const n of full.nodes) if (n.kind === "problem") assert.equal(n.solved, n.resolved !== null, n.id);
+  assert.equal(status("poincare"), "solved");
+  assert.ok(full.solved_rule.includes("variant"));
+});
+
+test("the full frontier: every row lands, the threshold is the stated quantile, counts add up by branch", () => {
+  assert.equal(ff.points.length, fullRows.length);
+  assert.deepEqual(ff.missing, []);
+  assert.equal(ff.inside + ff.outside, fullRows.length);
+  const solved = ff.points.filter((p) => p.zone === "solved").map((p) => p.reach).sort((a, b) => a - b);
+  assert.equal(ff.threshold, quantile(solved, REACH_QUANTILE));
+  const byBranch = branchCounts(ff);
+  const total = Object.values(byBranch).reduce((s, c) => s + c.solved + c.reachable + c.beyond, 0);
+  assert.equal(total, ff.points.length);
+  for (const p of ff.points) {
+    assert.ok(p.reach > 0 && p.reach <= 1, p.id);
+    if (p.zone === "beyond") assert.ok(p.radius > FRONTIER_RADIUS && p.radius <= OUTER_RADIUS, p.id);
+    assert.ok(p.pulls.length <= full.k, p.id);
+  }
+  assert.deepEqual(buildFrontier(fullRows, full), ff);
+});
+
+test("the full drawing labels the top outside problems by growth and the atlas problems, with branch counts", () => {
+  const names = labelled(ff, 80);
+  const top = growthRanking(ff).slice(0, FULL_LABELS);
+  for (const p of top) assert.ok(names.includes(p));
+  for (const p of ff.points) if (p.sourceKind === "problem" && p.zone !== "solved") assert.ok(names.includes(p));
+  const svg = frontierSvg(ff);
+  assert.ok(svg.includes("mathematics: ") && svg.includes("problems-sourced.tsv") && svg.includes("Apache-2.0") && svg.includes("CC BY-SA 4.0"));
+  const marks = (svg.match(/<circle cx="\d/g) ?? []).length + (svg.match(/<path d="M\d/g) ?? []).length;
+  assert.equal(marks, ff.points.length + 6 + Object.keys(branchCounts(ff)).length);
+  const lines = frontierText(ff, { width: 79, list: 10 });
+  assert.ok(lines.every((l) => l.length <= 79));
+  assert.ok(lines.some((l) => l.startsWith("Per branch:")));
+  assert.equal(lines.filter((l) => / reach \d\.\d\d {2}\+/.test(l)).length, 10);
 });

@@ -3,12 +3,13 @@ import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { resolve as resolvePath } from "node:path";
-import { atlasFrontier as fromPack, DEFAULT_WIDTH, fitWidth, frontierLines, frontierOptions, MAX_WIDTH, MIN_WIDTH, writeFrontierSvg } from "../src/cli/atlas";
+import { atlasFrontier as fromPack, DEFAULT_WIDTH, fitWidth, frontierLines, frontierOptions, FULL_LIST, MAX_WIDTH, MIN_WIDTH, NO_FULL, writeFrontierSvg } from "../src/cli/atlas";
 import { staffData } from "../src/pack/staff";
 
 const REPO = resolvePath(import.meta.dir, "../../..");
 const STAFF = staffData(REPO, { BKT_INCLUDE_STAFF_DATA: "1" });
-const atlasFrontier = (reach?: number) => fromPack(reach, STAFF)!;
+const atlasFrontier = (reach?: number) => fromPack(reach, STAFF, false)!;
+const fullFrontier = (reach?: number) => fromPack(reach, STAFF, true)!;
 import { JSON_SHAPES, jsonLine } from "../src/cli/out";
 import { resolve } from "../src/cli/run";
 
@@ -18,6 +19,21 @@ describe("bkt atlas frontier", () => {
     expect(fromPack(undefined, { solvability: STAFF.solvability })).toBeNull();
     expect(JSON.parse(readFileSync(resolvePath(REPO, "src/lib/research-os/solvability-similarity-data.json"), "utf8")).ids.length).toBeGreaterThan(0);
     expect(fromPack(undefined, STAFF)).not.toBeNull();
+  });
+
+  test("the full set is the default when the pack holds neighbour data, and --full without it refuses", () => {
+    const f = fromPack(undefined, STAFF)!;
+    expect(f.points.length).toBeGreaterThan(4000);
+    expect(f.points.every((p) => p.sourceKind !== "lean")).toBe(true);
+    expect(f.rule).toContain("stored neighbours");
+    expect(fullFrontier().points.length).toBe(f.points.length);
+    expect(atlasFrontier().points.length).toBeLessThan(400);
+    expect(() => fromPack(undefined, { solvability: STAFF.solvability, similarity: STAFF.similarity }, true)).toThrow(NO_FULL);
+    expect(fromPack(undefined, { solvability: STAFF.solvability, similarity: STAFF.similarity })!.points.length).toBeLessThan(400);
+    const lines = frontierLines(f, 120, false);
+    expect(lines.filter((l) => / reach \d\.\d\d {2}\+/.test(l)).length).toBe(Math.min(FULL_LIST, f.outside));
+    expect(lines.some((l) => l.startsWith("Per branch:"))).toBe(true);
+    expect(lines.some((l) => l.trimStart().startsWith("mathematics"))).toBe(true);
   });
 
   test("resolves with its options and refuses a bad reach or width", () => {
@@ -30,8 +46,9 @@ describe("bkt atlas frontier", () => {
   });
 
   test("options default to the stated rule, no file and the terminal width", () => {
-    expect(frontierOptions({})).toEqual({ reach: undefined, svg: null, width: null });
-    expect(frontierOptions({ reach: "0.75", svg: "f.svg", width: "100" })).toEqual({ reach: 0.75, svg: "f.svg", width: 100 });
+    expect(frontierOptions({})).toEqual({ reach: undefined, svg: null, width: null, full: false });
+    expect(frontierOptions({ reach: "0.75", svg: "f.svg", width: "100", full: true })).toEqual({ reach: 0.75, svg: "f.svg", width: 100, full: true });
+    expect(resolve(["atlas", "frontier", "--full"]).kind).toBe("run");
     expect(() => frontierOptions({ svg: " " })).toThrow("--svg needs a file name");
   });
 

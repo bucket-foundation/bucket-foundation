@@ -30,9 +30,26 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Four text variants exist (`atlas.
 | stats.json | density, clustering, modularity, assortativity, permutation test, Spearman |
 | productions.json | one production card per node: claim, formal status, minted state, status, sources |
 | similarity.json | cosine similarity between every pair of nodes, upper triangle, three decimals |
+| neighbors.json | the full set: 71 atlas problems, every row of `problems-sourced.tsv` and the Lean theorems, each with its 50 most similar nodes (index into `ids`, cosine to three decimals) and its nearest solved problem over the whole set; `solved` lists the solved ids and `solved_rule` states the variant rule |
+| components-full*.json, components-full*.csv, 10-components-full*.png | the components of the full set, with and without the Lean theorems; the plots label the 71 atlas problems and, after `--relabel`, the 40 outside problems with the largest growth |
 | components*.json, components*.csv, 10-components*.png | each node's coordinates on the first five principal components of the embeddings, the share of variance each explains, and the tokens that load each end of each component; a labelled scatter of the first two. `components-problems` repeats this on the 71 problems alone, because the first component of the full set mainly separates Lean theorems from problems |
 
-`build.sh` runs `atlas.py`, then `site.py` writes the plots to `public/atlas/` and the production cards to `src/lib/research-os/solvability-atlas-data.json`. `site.py` also copies `similarity.json` to `src/lib/research-os/solvability-similarity-data.json`, which the frontier circle reads: `bkt atlas frontier` prints it in the terminal, `--svg FILE` writes the drawing and `--json` prints the data. Research OS renders the cards at `/research-os/solvability`.
+`build.sh` runs `atlas.py`, then `site.py` writes the plots to `public/atlas/` and the production cards to `src/lib/research-os/solvability-atlas-data.json`. `site.py` also copies `similarity.json` to `src/lib/research-os/solvability-similarity-data.json` and `neighbors.json` to `src/lib/research-os/solvability-neighbors-data.json`, which the frontier circle reads: `bkt atlas frontier` prints it in the terminal, `--svg FILE` writes the drawing and `--json` prints the data. The full set is the default whenever the build holds the neighbour file; `--full` insists on it. Research OS renders the cards at `/research-os/solvability`.
+
+## Full Set
+
+`atlas.py` ends with the full set: the 71 atlas problems, the 4,596 rows of `problems-sourced.tsv` (top-level rows and variants, with `form` and `variant_of` kept) and the Lean theorems as a separate kind that the frontier leaves off by default. The embedding text is the statement when present, else the problem record text, else name plus keywords; the branch word is never in the text. Embeddings are cached under `~/.cache/bucket-atlas` (`ATLAS_CACHE` overrides) keyed by model revision and text hash, so a rerun with no new text encodes nothing. Angle comes from the first two principal components of the problem embeddings alone; Lean theorems are projected on the same axes.
+
+Solved rule: a top-level row is solved when its status is solved. A variant is solved only when its own status and its parent's status are both solved; a proved special case of an open problem is `partial` and stays open, so a problem cannot be pulled inside by its own fragments. Growth pulls are bounded by the 50 stored neighbours.
+
+```bash
+./build.sh                                   # atlas.py then site.py, full set included
+cd ../../packages/bkt && BKT_INCLUDE_STAFF_DATA=1 bun run src/pack/staff.ts
+bun run src/cli.tsx atlas frontier --svg out/frontier.svg --json > out/frontier.json
+cd ../../tools/solvability-atlas && python3 atlas.py out --relabel out/frontier.json   # components plots with the top 40 outside
+```
+
+Frontier at the full scale, 2026-10-05: 4,667 rows (Lean off), 1,499 solved, 3,324 inside, 1,343 outside, threshold 0.803 `[empirical: output/solvability-frontier/full/frontier.json, bkt atlas frontier --json]`.
 
 The frontier circle sits at reach 0.795, the 10th percentile of each solved problem's highest similarity to another solved problem, over the 156 productions in `solvability-atlas-data.json` (99 solved) `[empirical: src/lib/research-os/solvability-similarity-data.json, 2026-10-05, bkt atlas frontier --json]`. The similarity file covers the 218 nodes the tool builds today; the frontier reads the 156 the committed atlas data holds. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
 
@@ -52,4 +69,4 @@ The plots in `public/atlas/` are public on purpose: they show published problems
 
 ## Sourced Problems
 
-`problems-sourced.tsv` holds rows ingested from outside lists, with the same columns plus `status`, `source`, `licence`, `statement`, `statement_source` and `status_source`. `SOURCES.md` surveys every candidate source with count, licence and verdict; `python3 sources/build.py` rebuilds the file from the fetchers in `sources/`, and `tests/test_sourced.py` checks it. `atlas.py` does not read it yet.
+`problems-sourced.tsv` holds rows ingested from outside lists, with the same columns plus `form`, `variant_of`, `status`, `source`, `licence`, `statement`, `statement_source` and `status_source`. `SOURCES.md` surveys every candidate source with count, licence and verdict; `python3 sources/build.py` rebuilds the file from the fetchers in `sources/`, and `tests/test_sourced.py` checks it. `atlas.py` reads it for the full set.

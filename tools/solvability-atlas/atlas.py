@@ -1,7 +1,9 @@
 import csv
+import hashlib
 import json
 import os
 import sys
+import time
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -18,9 +20,11 @@ HERE = Path(__file__).parent
 REPO = HERE.parent.parent
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "out"
 FORMAL = {"proved": 1.0, "partial": 0.6, "statement": 0.35, "none": 0.1}
-BRANCHES = ["mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "bucketmath"]
-COLORS = dict(zip(BRANCHES, ["#4c78a8", "#f58518", "#54a24b", "#b279a2", "#e45756", "#72b7b2", "#eeca3b", "#9d755d"]))
+BRANCHES = ["mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "bucketmath", "applied"]
+COLORS = dict(zip(BRANCHES, ["#4c78a8", "#f58518", "#54a24b", "#b279a2", "#e45756", "#72b7b2", "#eeca3b", "#9d755d", "#7f7f7f"]))
 K = 6
+NEIGHBOURS = 50
+CACHE = Path(os.environ.get("ATLAS_CACHE", Path.home() / ".cache" / "bucket-atlas"))
 MODEL = "BAAI/bge-small-en-v1.5"
 MODEL_REVISION = "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a"
 
@@ -108,6 +112,117 @@ def neighbour_shift(ids, emb_a, emb_b, k=K):
     return {"k": k, "problems": len(ids), "changed_edges": total, "possible_edges": len(ids) * k, "problems_with_change": sum(r["changed"] > 0 for r in rows), "rows": sorted(rows, key=lambda r: (-r["changed"], r["cosine"]))}
 
 
+def load_sourced():
+    rows = list(csv.DictReader(open(HERE / "problems-sourced.tsv"), delimiter="\t"))
+    for r in rows:
+        r["level"] = int(r["level"]) if r["level"] else 0
+        r["posed"] = int(r["posed"]) if r["posed"] else None
+        r["resolved"] = int(r["resolved"]) if r["resolved"] else None
+        r["keywords"] = [k.strip() for k in r["keywords"].split(",") if k.strip()]
+        r["market"] = [m for m in r["market"].split(";") if m and m != "none"]
+        r["variant_of"] = r["variant_of"] or None
+        r["kind"] = "variant" if r["variant_of"] else "sourced"
+        r["solvability"] = round(0.55 * (r["status"] == "solved") + 0.45 * FORMAL[r["lean"]], 3)
+    return rows
+
+
+SOLVED_RULE = "A top-level row is solved when its status is solved (a resolved year for the 71 atlas problems). A variant is solved only when its own status and the status of the problem it varies are both solved; a proved special case of an open problem stays open as partial progress on it."
+
+
+def mark_solved(nodes):
+    status = {}
+    for n in nodes:
+        if n["kind"] == "problem":
+            status[n["id"]] = "solved" if n["resolved"] is not None else "open"
+        elif n["kind"] == "lean":
+            status[n["id"]] = "solved" if n["resolved"] is not None else "open"
+        else:
+            status[n["id"]] = n["status"]
+    for n in nodes:
+        own = status[n["id"]] == "solved"
+        parent = n.get("variant_of")
+        n["solved"] = own and (parent is None or status.get(parent) == "solved")
+        n["status"] = "solved" if n["solved"] else ("partial" if own else status[n["id"]])
+    return nodes
+
+
+def name_keyword_text(n):
+    return f"{n['name']}. " + ", ".join(n["keywords"])
+
+
+def full_text(n):
+    if n.get("statement"):
+        return n["statement"], "statement"
+    rec = load_record(n["id"]) if n["kind"] == "problem" else None
+    if rec and (rec["statement"]["text"] or rec["key_works"]):
+        return record_text(n, rec), "record"
+    return name_keyword_text(n), "name_keywords"
+
+
+def text_key(text):
+    return hashlib.sha1(f"{MODEL}@{MODEL_REVISION}\n{text}".encode()).hexdigest()
+
+
+def cached_encode(model, texts, cache=CACHE, batch_size=64):
+    cache.mkdir(parents=True, exist_ok=True)
+    keys_path, vec_path = cache / "keys.json", cache / "vectors.npy"
+    keys = json.load(open(keys_path)) if keys_path.exists() and vec_path.exists() else []
+    vecs = np.load(vec_path) if keys else np.zeros((0, 0), dtype=np.float32)
+    at = {k: i for i, k in enumerate(keys)}
+    wanted = [text_key(t) for t in texts]
+    missing = sorted({k for k in wanted if k not in at})
+    if missing:
+        by_key = {text_key(t): t for t in texts}
+        fresh = unit(model.encode([by_key[k] for k in missing], normalize_embeddings=True, batch_size=batch_size)).astype(np.float32)
+        vecs = fresh if not keys else np.vstack([vecs, fresh])
+        for k in missing:
+            at[k] = len(keys)
+            keys.append(k)
+        np.save(vec_path, vecs)
+        json.dump(keys, open(keys_path, "w"))
+    return vecs[[at[k] for k in wanted]].astype(np.float64), len(missing)
+
+
+def neighbour_rows(nodes, emb, k=NEIGHBOURS, block=512):
+    solved_idx = np.flatnonzero(np.array([n["solved"] and n["kind"] != "lean" for n in nodes]))
+    rows = []
+    for start in range(0, len(nodes), block):
+        sim = emb[start:start + block] @ emb.T
+        for r in range(sim.shape[0]):
+            i = start + r
+            s = sim[r].copy()
+            s[i] = -2
+            top = np.argpartition(-s, min(k, len(s) - 1))[:k]
+            top = top[np.argsort(-s[top])]
+            rows.append({"n": [int(j) for j in top], "s": [round(float(s[j]), 3) for j in top]})
+            cand = solved_idx[solved_idx != i]
+            if len(cand):
+                j = cand[np.argmax(s[cand])]
+                rows[-1]["solved_nearest"] = {"id": nodes[j]["id"], "sim": round(float(s[j]), 3)}
+            else:
+                rows[-1]["solved_nearest"] = None
+    return rows
+
+
+def neighbour_data(nodes, emb, counts, k=NEIGHBOURS):
+    rows = neighbour_rows(nodes, emb, k)
+    out = []
+    for n, r in zip(nodes, rows):
+        out.append({"id": n["id"], "title": n["name"], "branch": n["branch"], "kind": n["kind"], "form": n.get("form", "problem"), "variant_of": n.get("variant_of"), "status": n["status"], "solved": n["solved"], "resolved": n["resolved"], "theta": round(n["theta"], 5), "source": n.get("source", "tools/solvability-atlas/problems.tsv"), "licence": n.get("licence", "MIT"), "text_kind": n["embedding_text"], **r})
+    return {
+        "schema": "bucket.solvability-atlas.neighbors/v1",
+        "model": MODEL,
+        "revision": MODEL_REVISION,
+        "k": k,
+        "note": f"Each node lists its {k} most similar nodes by index into ids with cosine similarity to three decimals, and its nearest solved problem over the whole set (Lean theorems excluded). Growth pulls in the frontier are bounded by these {k} neighbours. Angle is the rank along the first two principal components of the problem embeddings; Lean theorems are projected on the same axes and excluded from the frontier by default. " + SOLVED_RULE,
+        "solved_rule": SOLVED_RULE,
+        "text_counts": counts,
+        "ids": [n["id"] for n in nodes],
+        "solved": [n["id"] for n in nodes if n["solved"]],
+        "nodes": out,
+    }
+
+
 def embed_text(n, variant=None):
     variant = variant or TEXT
     if variant not in TEXT_VARIANTS:
@@ -148,7 +263,7 @@ def components(nodes, emb, tokens, tok_emb, n=N_COMPONENTS):
     for k in range(n):
         order = np.argsort(tok[:, k])
         directions.append({"component": k + 1, "explained": round(explained[k], 4), "positive": [tokens[i] for i in order[::-1][:DIRECTION_TOKENS]], "negative": [tokens[i] for i in order[:DIRECTION_TOKENS]]})
-    rows = [{"id": m["id"], "name": m["name"], "branch": m["branch"], "kind": m["kind"], "solvability": m["solvability"], "resolved": m["resolved"], "pc": [round(float(x), 4) for x in coords[i]]} for i, m in enumerate(nodes)]
+    rows = [{"id": m["id"], "name": m["name"], "branch": m["branch"], "kind": m["kind"], "solvability": m["solvability"], "resolved": m["resolved"], "solved": m.get("solved", m["resolved"] is not None), "pc": [round(float(x), 4) for x in coords[i]]} for i, m in enumerate(nodes)]
     return {"schema": "bucket.solvability-atlas.components/v1", "model": MODEL, "explained": [round(x, 4) for x in explained], "directions": directions, "nodes": rows}
 
 
@@ -161,30 +276,35 @@ def export_components(nodes, emb, tokens, tok_emb):
     return data
 
 
-def write_components(data, stem):
+def write_components(data, stem, labels=None):
     json.dump(data, open(OUT / f"{stem}.json", "w"), indent=1)
     with open(OUT / f"{stem}.csv", "w") as f:
-        f.write("id\tname\tbranch\tkind\tsolvability\tresolved\t" + "\t".join(f"pc{k + 1}" for k in range(N_COMPONENTS)) + "\n")
+        f.write("id\tname\tbranch\tkind\tsolvability\tresolved\tsolved\t" + "\t".join(f"pc{k + 1}" for k in range(N_COMPONENTS)) + "\n")
         for r in data["nodes"]:
-            f.write("\t".join([r["id"], r["name"], r["branch"], r["kind"], str(r["solvability"]), str(r["resolved"] or ""), *map(str, r["pc"])]) + "\n")
-    plot_components(data, OUT / f"10-{stem}.png")
+            f.write("\t".join([r["id"], r["name"], r["branch"], r["kind"], str(r["solvability"]), str(r["resolved"] or ""), str(int(r["solved"])), *map(str, r["pc"])]) + "\n")
+    plot_components(data, OUT / f"10-{stem}.png", labels)
 
 
-def plot_components(data, path):
+def plot_components(data, path, labels=None):
     fig, ax = plt.subplots(figsize=(16, 14))
     d = data["directions"]
+    big = len(data["nodes"]) > 400
     for r in data["nodes"]:
         x, y = r["pc"][0], r["pc"][1]
         problem = r["kind"] == "problem"
-        ax.scatter(x, y, c=COLORS[r["branch"]], s=70 if problem else 14, marker="^" if r["resolved"] is None else "o", edgecolor="k" if problem else "none", lw=0.4, alpha=0.95 if problem else 0.45)
-        if problem:
-            ax.annotate(r["name"], (x, y), xytext=(4, 3), textcoords="offset points", fontsize=6.5)
+        named = r["id"] in labels if labels is not None else problem
+        open_ = r.get("solved") is False if "solved" in r else r["resolved"] is None
+        size = (70 if problem else 14) if not big else (40 if named else 5)
+        ax.scatter(x, y, c=COLORS[r["branch"]], s=size, marker="^" if open_ else "o", edgecolor="k" if named else "none", lw=0.4, alpha=0.95 if named else (0.45 if not big else 0.3))
+        if named:
+            ax.annotate(r["name"], (x, y), xytext=(4, 3), textcoords="offset points", fontsize=6.5 if not big else 5.5)
     ax.axhline(0, color="#999", lw=0.6)
     ax.axvline(0, color="#999", lw=0.6)
     ax.set_xlabel(f"component 1, {d[0]['explained'] * 100:.1f} percent of variance")
     ax.set_ylabel(f"component 2, {d[1]['explained'] * 100:.1f} percent of variance", rotation=0, ha="right", va="center", labelpad=10)
     n = len(data["nodes"])
-    ax.set_title(f"Principal components of {n} entries: triangles are open, dots are solved, small dots are Lean theorems")
+    kinds = Counter(r["kind"] for r in data["nodes"])
+    ax.set_title(f"Principal components of {n} entries ({', '.join(f'{v} {k}' for k, v in sorted(kinds.items()))}): triangles are open, dots are solved, labelled points are the atlas problems" + (" and the top outside problems by growth" if labels is not None else ""))
     notes = [f"component {k + 1} ({c['explained'] * 100:.1f} percent). Toward: {', '.join(c['positive'][:6])}. Away: {', '.join(c['negative'][:6])}." for k, c in enumerate(d)]
     fig.text(0.02, -0.02, "\n".join(notes), fontsize=8.5, va="top", family="monospace")
     legend(ax)
@@ -240,6 +360,65 @@ def main():
     export_similarity(nodes, sim)
     export_components(nodes, emb, tokens, tok_emb)
     print(json.dumps(stats["summary"], indent=1))
+    full(model, problems, lean)
+
+
+def full_nodes(problems, lean, sourced=None):
+    sourced = load_sourced() if sourced is None else sourced
+    nodes = [dict(n) for n in problems] + [dict(n) for n in sourced] + [dict(n) for n in lean]
+    seen = set()
+    for n in nodes:
+        if n["id"] in seen:
+            raise ValueError(f"duplicate id {n['id']}")
+        seen.add(n["id"])
+    return mark_solved(nodes)
+
+
+def project_angles(problem_emb, emb):
+    centre = problem_emb.mean(0)
+    _, _, vt = np.linalg.svd(problem_emb - centre, full_matrices=False)
+    p = (emb - centre) @ vt[:2].T
+    return np.arctan2(p[:, 1], p[:, 0])
+
+
+def full(model, problems, lean):
+    nodes = full_nodes(problems, lean)
+    texts = []
+    for n in nodes:
+        text, n["embedding_text"] = full_text(n)
+        texts.append(text)
+    t0 = time.time()
+    emb, fresh = cached_encode(model, texts)
+    elapsed = round(time.time() - t0, 1)
+    is_problem = np.array([n["kind"] != "lean" for n in nodes])
+    theta, _ = ranked_angles(emb[is_problem])
+    raw = project_angles(emb[is_problem], emb)
+    for i, n in enumerate(nodes):
+        n["theta"] = float(raw[i]) % (2 * np.pi)
+    for i, t in zip(np.flatnonzero(is_problem), theta):
+        nodes[i]["theta"] = float(t)
+    counts = dict(Counter(n["embedding_text"] for n in nodes))
+    data = neighbour_data(nodes, emb, counts)
+    data["embedding"] = {"nodes": len(nodes), "fresh": fresh, "seconds": elapsed, "cache": str(CACHE)}
+    json.dump(data, open(OUT / "neighbors.json", "w"), separators=(",", ":"))
+    tokens = sorted({k.lower() for n in nodes for k in n["keywords"]} | {m for n in nodes for m in n["market"]})
+    tok_emb, _ = cached_encode(model, tokens)
+    labels = {n["id"] for n in problems}
+    write_components(components(nodes, emb, tokens, tok_emb), "components-full", labels)
+    only = np.flatnonzero(is_problem)
+    write_components(components([nodes[i] for i in only], emb[only], tokens, tok_emb), "components-full-problems", labels)
+    print(json.dumps({"full_nodes": len(nodes), "solved": len(data["solved"]), "embedding_seconds": elapsed, "fresh_embeddings": fresh, "text_counts": counts, "branches": dict(Counter(n["branch"] for n in nodes))}, indent=1))
+
+
+def relabel_components(frontier_path, top=40):
+    f = json.load(open(frontier_path))
+    outside = [p for p in f["points"] if p["zone"] == "beyond"]
+    outside.sort(key=lambda p: (-p["growth"], p["reach"], p["id"]))
+    labels = {n["id"] for n in load_problems()} | {p["id"] for p in outside[:top]}
+    for stem in ("components-full", "components-full-problems"):
+        data = json.load(open(OUT / f"{stem}.json"))
+        plot_components(data, OUT / f"10-{stem}.png", labels)
+    return labels
 
 
 def plot_token_circle(tokens, tok_emb, tok_sim, users):
@@ -491,4 +670,7 @@ def cypher_map(n):
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 3 and sys.argv[2] == "--relabel":
+        relabel_components(sys.argv[3])
+    else:
+        main()
