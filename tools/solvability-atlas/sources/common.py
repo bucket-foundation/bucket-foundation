@@ -189,13 +189,21 @@ def good_phrase(phrase):
     return bool(words) and not is_stopword(words[0]) and not is_stopword(words[-1]) and all(re.fullmatch(WORD, w) or w.lower() in {"of", "and"} for w in words)
 
 
-def keywords_from(statement, candidates=(), ceiling=8):
+def specific_enough(phrase, name, anchor):
+    if " " in phrase:
+        return True
+    if phrase.lower() in name.lower():
+        return True
+    return anchor and phrase[:1].isupper()
+
+
+def keywords_from(statement, candidates=(), ceiling=8, name=""):
     text = re.sub(r"\$[^$]*\$|`[^`]*`|\[[A-Za-z]+\d+[a-z]?\]|https?://\S+|\\[A-Za-z]+|\[\[[^\]]*\]\]|\[[^\]]*\]\([^)]*\)", " ", statement)
     low = text.lower()
     picked = []
     for phrase in candidates:
         phrase = phrase.strip()
-        if good_phrase(phrase) and phrase.lower() in low and phrase.lower() not in {p.lower() for p in picked}:
+        if good_phrase(phrase) and phrase.lower() in low and phrase.lower() not in {p.lower() for p in picked} and specific_enough(phrase, name, True):
             picked.append(phrase)
     words = re.findall(WORD, text)
     counts = {}

@@ -93,6 +93,14 @@ def test_erdos_merge_lists_both_sources():
     assert not [r for r in rows() if r["id"].startswith("wp-") and r["name"].startswith(("Erdős–Faber", "Erdős discrepancy", "Burr–Erdős"))]
 
 
+def test_generic_single_words_are_dropped():
+    text = "Admissibility of a translation rule in sequential testing of maximum-degree vertices, see the Collatz function."
+    picked = keywords_from(text, ["translation", "admissibility", "sequential testing", "maximum-degree vertices", "Collatz function", "Collatz"], name="Collatz problem")
+    assert "translation" not in picked and "admissibility" not in picked
+    assert "sequential testing" in picked and "Collatz function" in picked and "Collatz" in picked
+    assert all(" " in p or p.lower() in "collatz problem" or p[:1].isupper() for p in picked)
+
+
 def test_keywords_come_from_the_statement():
     text = "Can light signals travel faster than c between two closely spaced conducting plates exploiting the Casimir effect?"
     picked = keywords_from(text, ["Casimir effect", "Not in text"])

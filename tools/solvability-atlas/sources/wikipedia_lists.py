@@ -76,7 +76,7 @@ def rows_for(page, branch, market):
                 status="solved" if solved else "open",
                 source=url,
                 licence=LICENCE,
-                keywords=keywords_from(plain, keywords),
+                keywords=keywords_from(plain, keywords, name=name),
                 posed=posed_year(plain),
                 resolved=resolved_year(plain) if solved else "",
                 market=market,

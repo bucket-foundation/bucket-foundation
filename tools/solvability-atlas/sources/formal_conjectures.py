@@ -82,7 +82,7 @@ def rows():
                     status=item["status"],
                     source=f"{SOURCE}/blob/main/FormalConjectures/{path}",
                     licence=LICENCE,
-                    keywords=keywords_from(prose),
+                    keywords=keywords_from(prose, name=name),
                     lean="proved" if item.get("lean_proof") else "statement",
                     posed=posed_year(prose),
                     resolved=resolved_year(prose) if item["status"] == "solved" else "",
