@@ -1,6 +1,6 @@
 import re
 
-from common import Row, first_sentence, keywords_from, posed_year, report, resolved_year, slug, strip_markup, wikilinks, wikitext, year_in
+from common import Row, first_sentence, form_of, keywords_from, posed_year, report, resolved_year, slug, strip_markup, wikilinks, wikitext, year_in
 
 LICENCE = "CC BY-SA 4.0"
 TABLES = {
@@ -22,8 +22,21 @@ def table_rows(text):
             yield cells
 
 
+DISPUTED = re.compile(r"no consensus|disputed|controvers|weaker form|only partial|partially|some cases|not (?:fully|completely)|unclear", re.I)
+OVERRIDES = {
+    "smale-8": "open",
+    "hilbert-14": "partial",
+    "hilbert-18": "partial",
+    "smale-14": "partial",
+    "smale-17": "partial",
+}
+
+
 def status_of(cell, year_cell):
-    if "{{yes" in cell or ("{{partial" in cell and year_in(strip_markup(year_cell))):
+    plain = strip_markup(cell)
+    if "{{partial" in cell or DISPUTED.search(plain):
+        return "partial"
+    if "{{yes" in cell and year_in(strip_markup(year_cell)):
         return "solved"
     return "open"
 
@@ -51,7 +64,7 @@ def rows():
             links = wikilinks(explanation)
             name = links[0] if links and NAMED_LINK.search(links[0]) else label.format(n=ordinal)
             year_cell = cells[3] if len(cells) > 3 else ""
-            status = status_of(cells[2], year_cell)
+            status = OVERRIDES.get(f"{prefix}-{number}", status_of(cells[2], year_cell))
             resolved = year_in(strip_markup(year_cell)) if status == "solved" else ""
             keywords = [k for k in links if k.lower() != name.lower()]
             statement = strip_markup(explanation)
@@ -60,7 +73,7 @@ def rows():
                     id=f"{prefix}-{number}",
                     name=name if name != label.format(n=ordinal) else gloss(name, explanation),
                     branch="information" if "P versus NP" in name else "mathematics",
-                    level=5,
+                    form=form_of(name, statement),
                     status=status,
                     source=url,
                     licence=LICENCE,
@@ -69,7 +82,7 @@ def rows():
                     resolved=resolved,
                     statement=statement,
                     statement_source=url,
-                    status_source=f"Wikipedia table status column on {page}",
+                    status_source=f"Wikipedia table status column on {page}" + ("; curator override, see SOURCES.md" if f"{prefix}-{number}" in OVERRIDES else ""),
                 )
             )
         report(page, out)
@@ -96,7 +109,7 @@ def millennium():
                     id="millennium-" + slug(name),
                     name=name,
                     branch="information" if "P versus NP" in name else "physics" if "Navier" in name or "Yang" in name else "mathematics",
-                    level=5,
+                    form=form_of(name, plain),
                     status="solved" if solved else "open",
                     source=url,
                     licence=LICENCE,

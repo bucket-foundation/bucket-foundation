@@ -1,7 +1,7 @@
 import json
 import re
 
-from common import REPO, Row, keywords_from, posed_year, report, resolved_year, slug
+from common import REPO, Row, form_of, keywords_from, posed_year, report, resolved_year, slug
 
 PROBLEM_MAP = REPO / "_intake" / "solver-gap-engine" / "problem_map.jsonl"
 LEAN_ROOT = REPO / "_intake" / "solver-gap-engine" / "fc" / "FormalConjectures"
@@ -34,8 +34,7 @@ def name_of(identifier):
     while parts and (parts[0].lower() in snake or re.fullmatch(r"[a-z]+", parts[0]) and parts[0] in {"erdos", "green", "wotw", "oqp", "open", "quantum", "problem"} or re.fullmatch(r"\d+", parts[0]) and parts[0] in snake):
         parts.pop(0)
     tail = " ".join(p for p in parts if p and p.lower() not in DROP_PARTS and p != leaf)
-    is_variant = ".variants." in decl
-    return family, label + (f", {tail}" if tail else ""), is_variant
+    return family, label + (f", {tail}" if tail else ""), bool(tail)
 
 
 def lean_statement(path, decl):
@@ -62,7 +61,6 @@ def rows():
             item = json.loads(line)
             path, decl = item["id"].split("::", 1)
             family, name, is_variant = name_of(item["id"])
-            level = 5 if family == "Millennium" else 2 if is_variant else 3
             branch = "physics" if family == "OpenQuantumProblems" else "mathematics"
             text = item["text"].strip()
             if text:
@@ -72,12 +70,15 @@ def rows():
             if not statement:
                 statement, statement_source = f"Lean declaration {decl} in {path}", f"{SOURCE}/blob/main/FormalConjectures/{path}"
             prose = re.sub(r"\$[^$]*\$", " ", statement)
+            row_id = "fc-" + slug(item["id"].replace(".lean::", "-").replace(".variants.", "-"))
+            file_id = "fc-" + slug(path[:-5] if path.endswith(".lean") else path)
             out.append(
                 Row(
-                    id="fc-" + slug(item["id"].replace(".lean::", "-").replace(".variants.", "-")),
+                    id=row_id,
                     name=name,
                     branch=branch,
-                    level=level,
+                    form=form_of(name, prose, is_variant),
+                    variant_of=file_id if is_variant else "",
                     status=item["status"],
                     source=f"{SOURCE}/blob/main/FormalConjectures/{path}",
                     licence=LICENCE,
@@ -90,5 +91,17 @@ def rows():
                     status_source=STATUS_SOURCE,
                 )
             )
+    parents = {}
+    for row in out:
+        if not row.variant_of:
+            parents.setdefault("fc-" + slug(row.source.split("FormalConjectures/")[1][:-5]), row.id)
+    for row in out:
+        if row.variant_of and row.variant_of not in parents:
+            parents[row.variant_of] = row.id
+            row.variant_of = ""
+            row.form = form_of(row.name, row.statement)
+    for row in out:
+        if row.variant_of:
+            row.variant_of = parents[row.variant_of]
     report("formal-conjectures", out)
     return out

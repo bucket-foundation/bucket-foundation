@@ -1,6 +1,6 @@
 import re
 
-from common import Row, first_sentence, keywords_from, posed_year, report, resolved_year, slug, strip_markup, wikilinks, wikitext
+from common import Row, first_sentence, form_of, keywords_from, posed_year, report, resolved_year, slug, strip_markup, wikilinks, wikitext
 
 LICENCE = "CC BY-SA 4.0"
 PAGES = {
@@ -18,7 +18,6 @@ PAGES = {
 }
 SKIP_SECTIONS = re.compile(r"see also|references|external links|books|further reading|historical|notes|lists", re.I)
 SOLVED_SECTION = re.compile(r"\b(solved|resolved|proved)\b", re.I)
-NAMED = re.compile(r"conjecture|hypothesis|problem", re.I)
 BOLD = re.compile(r"'{3}(.+?)'{3}")
 
 
@@ -68,13 +67,12 @@ def rows_for(page, branch, market):
         if plain.endswith(":") or len(plain) < 12:
             continue
         keywords = [k for k in wikilinks(bullet) if k.lower() != name.lower()]
-        level = 4 if NAMED.search(name) else 3
         out.append(
             Row(
                 id="wp-" + slug(name),
                 name=name,
                 branch=branch,
-                level=level,
+                form=form_of(name, plain),
                 status="solved" if solved else "open",
                 source=url,
                 licence=LICENCE,

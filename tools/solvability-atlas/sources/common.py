@@ -12,11 +12,13 @@ ATLAS = Path(__file__).resolve().parent.parent
 REPO = ATLAS.parent.parent
 EXISTING = ATLAS / "problems.tsv"
 OUTPUT = ATLAS / "problems-sourced.tsv"
-COLUMNS = ["id", "name", "branch", "level", "lean", "posed", "resolved", "market", "keywords", "status", "source", "licence", "statement", "statement_source", "status_source"]
+COLUMNS = ["id", "name", "branch", "level", "form", "variant_of", "lean", "posed", "resolved", "market", "keywords", "status", "source", "licence", "statement", "statement_source", "status_source"]
+FORMS = {"conjecture", "problem", "question", "variant"}
+STATUSES = {"open", "partial", "solved"}
 BRANCHES = {"mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind", "applied"}
 USER_AGENT = "bucket-solvability-atlas/0.1 (https://bucket.foundation; gianyrox@gmail.com)"
 
-# voice-ignore-next 20
+# voice-ignore-next 32
 STOPWORDS = set(
     """a an the of in on for to and or is are be with by as at from that this which it its into than then there their
     every any all some such does do not no if only also one two three each other more most many can has have had
@@ -36,7 +38,18 @@ STOPWORDS = set(
     lean mathlib theorem lemma sorry statement formal formalization formalisation variant variants
     solved solve solves solution cannot need needs claim part parts small large sufficiently constant contain contains
     toward slightly closely recurring whether trivial nontrivial asymptotically positive negative finite infinite
-    integer integers function functions exists existence unique uniquely arbitrary arbitrarily""".split()
+    integer integers function functions exists existence unique uniquely arbitrary arbitrarily
+    follows follow taken take easy hard best lower upper bound bounds trivially obvious equivalently equivalent
+    weaker stronger strong weak original related similar analogous corresponding respectively actually
+    current currently recent recently improved improve improvement implies imply implied gives give giving
+    holds answer answered yes no open closed true false proven proves shows show shown says said
+    least most many much some several various certain particular specific general special
+    frac sqrt equiv pmod mathbb mathcal mathrm leq geq cdot cdots ldots sum prod log lim infty text left right
+    claims claim choose chose consider considered determine determined research informal faculty author authors
+    times also remark remarks comment comments discussion footnote reference references see cf page pages
+    first second third last next previous above below here there then than when where while whose
+    https http wiki wikipedia arxiv main another explain explained entry entries agent prover good approx quad
+    delta almost nearly roughly exactly namely words word sense note known fact facts proven proof proofs""".split()
 )
 
 
@@ -45,7 +58,7 @@ class Row:
     id: str
     name: str
     branch: str
-    level: int
+    form: str
     status: str
     source: str
     licence: str
@@ -54,24 +67,27 @@ class Row:
     posed: str = ""
     resolved: str = ""
     market: str = ""
+    variant_of: str = ""
     statement: str = ""
     statement_source: str = ""
     status_source: str = ""
 
     def record(self):
         assert self.branch in BRANCHES, self.branch
-        assert self.status in {"open", "solved"}, self.status
-        assert 1 <= self.level <= 5
+        assert self.status in STATUSES, self.status
+        assert self.form in FORMS, self.form
         return {
             "id": self.id,
             "name": self.name,
             "branch": self.branch,
-            "level": str(self.level),
+            "level": "",
+            "form": self.form,
+            "variant_of": self.variant_of,
             "lean": self.lean,
             "posed": self.posed,
             "resolved": self.resolved,
             "market": self.market,
-            "keywords": ",".join(self.keywords),
+            "keywords": ",".join(k for k in self.keywords if k.strip()),
             "status": self.status,
             "source": self.source,
             "licence": self.licence,
@@ -96,7 +112,7 @@ def normal_title(text):
 
 def existing_titles():
     with EXISTING.open(encoding="utf8") as handle:
-        return {normal_title(r["name"]) for r in csv.DictReader(handle, delimiter="\t")}
+        return {normal_title(r["name"]): r["id"] for r in csv.DictReader(handle, delimiter="\t")}
 
 
 def fetch(url, params=None):
@@ -174,7 +190,7 @@ def good_phrase(phrase):
 
 
 def keywords_from(statement, candidates=(), ceiling=8):
-    text = re.sub(r"\$[^$]*\$|`[^`]*`|\[[A-Za-z]+\d+[a-z]?\]", " ", statement)
+    text = re.sub(r"\$[^$]*\$|`[^`]*`|\[[A-Za-z]+\d+[a-z]?\]|https?://\S+|\\[A-Za-z]+|\[\[[^\]]*\]\]|\[[^\]]*\]\([^)]*\)", " ", statement)
     low = text.lower()
     picked = []
     for phrase in candidates:
@@ -187,16 +203,30 @@ def keywords_from(statement, candidates=(), ceiling=8):
         if not nounish(word):
             continue
         counts[word.lower()] = counts.get(word.lower(), 0) + 1
-        if i + 1 < len(words) and nounish(words[i + 1]):
-            bigram = f"{word} {words[i + 1]}".lower()
+        following = words[i + 1] if i + 1 < len(words) else ""
+        if following and nounish(following) and following.lower() != word.lower() and not (word[0].isupper() and following[0].isupper()):
+            bigram = f"{word} {following}".lower()
             counts[bigram] = counts.get(bigram, 0) + 2
-    for phrase, _ in sorted(counts.items(), key=lambda kv: (-kv[1], -len(kv[0].split()), kv[0])):
+    for phrase, score in sorted(counts.items(), key=lambda kv: (-kv[1], -len(kv[0].split()), kv[0])):
         if len(picked) >= ceiling:
             break
-        if any(phrase == p.lower() or phrase in p.lower() for p in picked):
+        if " " not in phrase or score < 4 or any(phrase == p.lower() or phrase in p.lower() for p in picked):
             continue
         picked.append(phrase)
     return picked[:ceiling]
+
+
+QUESTION = re.compile(r"^(is|are|can|could|does|do|did|what|which|how|why|when|where|who|whether|must|will|would|should)\b", re.I)
+
+
+def form_of(name, statement, variant=False):
+    if variant:
+        return "variant"
+    if re.search(r"conjecture|hypothesis", name, re.I):
+        return "conjecture"
+    if QUESTION.match(name) or name.rstrip().endswith("?") or statement.strip().endswith("?"):
+        return "question"
+    return "problem"
 
 
 YEAR = r"(1[6-9]\d\d|20[0-2]\d)"
@@ -240,21 +270,28 @@ def year_in(text):
 
 
 def dedupe(rows, seen=None):
-    seen = set(seen or ())
+    seen = dict(seen or {})
     ids = set()
     kept = []
+    alias = {}
     for row in rows:
         key = normal_title(row.name)
         if not key or key in seen:
+            alias[row.id] = seen.get(key, "")
             continue
         base = row.id
         n = 2
         while row.id in ids:
             row.id = f"{base}-{n}"
             n += 1
-        seen.add(key)
+        seen[key] = row.id
         ids.add(row.id)
         kept.append(row)
+    for row in kept:
+        if row.variant_of in alias:
+            row.variant_of = alias[row.variant_of]
+            if not row.variant_of:
+                row.form = form_of(row.name, row.statement)
     return kept
 
 
