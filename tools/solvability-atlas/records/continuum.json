@@ -1,0 +1,127 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "continuum",
+ "title": "Continuum hypothesis independence",
+ "statement": {
+  "text": "In mathematics, specifically set theory, the continuum hypothesis is a hypothesis about the possible sizes of infinite sets. It states:There is no set whose cardinality is strictly between that of the integers and the real numbers.",
+  "source": "https://en.wikipedia.org/wiki/Continuum_hypothesis"
+ },
+ "aliases": [
+  "Continuum hypothesis",
+  "continuum hypothesis"
+ ],
+ "branch": "mathematics",
+ "level": 4,
+ "industries": [
+  "astronomy and astrophysics",
+  "mathematical physics",
+  "experimental and cognitive psychology"
+ ],
+ "posed": 1878,
+ "resolved": 1963,
+ "history": [
+  {
+   "year": 1878,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 1963,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W1507376847",
+   "title": "Set theory and the continuum problem",
+   "year": 1997,
+   "cited_by_count": 85,
+   "doi": "https://doi.org/10.5860/choice.35-0956b",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1493370200",
+   "title": "The continuum hypothesis : independence and truth-value",
+   "year": 1974,
+   "cited_by_count": 3,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W7154996762",
+   "title": "The Framework-Origin Hypothesis: STEP 930 Typology Predicts the Field of Resolution for Unsolved Math Problems (Rei-AIOS Paper 123)",
+   "year": 2026,
+   "cited_by_count": 0,
+   "doi": "https://doi.org/10.5281/zenodo.19665576",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W7155002218",
+   "title": "The Framework-Origin Hypothesis: STEP 930 Typology Predicts the Field of Resolution for Unsolved Math Problems (Rei-AIOS Paper 123)",
+   "year": 2026,
+   "cited_by_count": 0,
+   "doi": "https://doi.org/10.5281/zenodo.19665575",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "activity": {
+  "openalex_by_year": {
+   "1974": 1,
+   "1997": 1,
+   "2026": 2
+  },
+  "openalex_total": 4,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22continuum+hypothesis+independence%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5000297975",
+   "name": "Nobuki Fujimoto",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5078532689",
+   "name": "T. S. Weston",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "organizations": [],
+ "related": [],
+ "repo_mentions": [],
+ "formal": {
+  "status": "proved",
+  "source": "Han, van Doorn, Flypitch: independence of the continuum hypothesis in Lean, 2019",
+  "url": "https://flypitch.github.io/"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Continuum_hypothesis",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22continuum+hypothesis+independence%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22continuum+hypothesis+independence%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

@@ -1,0 +1,78 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "mitoredox",
+ "title": "Mitochondrial redox and aging mechanism",
+ "statement": {
+  "text": "The free radical theory of aging, first proposed by American biogerontologist Denham Harman in the 1950s, states that organisms age because cells accumulate free radical damage over time. A free radical is any atom or molecule that has a single unpaired electron in an outer shell. While a few free radicals such as melanin are not chemically reactive, most biologically relevant free radicals are highly reactive. For most biological structures, free radical damage is closely associated with oxidative damage. Antioxidants are reducing agents that limit oxidative damage to biological structures by passivating them from free radicals. In some model organisms, such as yeast and Drosophila, there is evidence that reducing oxidative damage can extend lifespan.",
+  "source": "https://en.wikipedia.org/wiki/Free-radical_theory_of_aging"
+ },
+ "aliases": [
+  "Free-radical theory of aging",
+  "free radical theory of aging"
+ ],
+ "branch": "biophysics",
+ "level": 4,
+ "industries": [
+  "longevity",
+  "pharma"
+ ],
+ "posed": 1956,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1956,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22mitochondrial+theory+of+aging%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "aging",
+   "why": "shared markets: longevity, pharma; same branch"
+  },
+  {
+   "id": "bioelectric",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "circadian",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "foldpath",
+   "why": "shared markets: pharma; same branch"
+  },
+  {
+   "id": "protein",
+   "why": "shared markets: pharma; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Free-radical_theory_of_aging",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22mitochondrial+theory+of+aging%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

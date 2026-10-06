@@ -1,0 +1,590 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "fermat",
+ "title": "Fermat's Last Theorem",
+ "statement": {
+  "text": "In number theory, Fermat's Last Theorem states that there are no positive integers  with  such that . The cases  and  have been known since antiquity to have infinitely many solutions.",
+  "source": "https://en.wikipedia.org/wiki/Fermat's_Last_Theorem"
+ },
+ "aliases": [
+  "Fermat's conjecture"
+ ],
+ "branch": "mathematics",
+ "level": 5,
+ "industries": [
+  "cryptography",
+  "theoretical computer science",
+  "geometry and topology",
+  "mathematical physics"
+ ],
+ "posed": 1637,
+ "resolved": 1994,
+ "history": [
+  {
+   "year": 1637,
+   "event": "first stated by Pierre de Fermat",
+   "source": "https://en.wikipedia.org/wiki/Fermat's_Last_Theorem"
+  },
+  {
+   "year": 1637,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 1994,
+   "event": "first proof by Andrew Wiles",
+   "source": "https://en.wikipedia.org/wiki/Fermat's_Last_Theorem"
+  },
+  {
+   "year": 1994,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W4388288416",
+   "title": "An Introduction To The Theory Of Numbers",
+   "year": 2008,
+   "cited_by_count": 2729,
+   "doi": "https://doi.org/10.1093/oso/9780199219858.001.0001",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2333976070",
+   "title": "Modular Elliptic Curves and Fermat's Last Theorem",
+   "year": 1995,
+   "cited_by_count": 2110,
+   "doi": "https://doi.org/10.2307/2118559",
+   "role": "resolved",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2061107511",
+   "title": "Abelian l-Adic Representations and Elliptic Curves",
+   "year": 1997,
+   "cited_by_count": 858,
+   "doi": "https://doi.org/10.1201/9781439863862",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1967061303",
+   "title": "Elementary Number Theory and Its Applications.",
+   "year": 1987,
+   "cited_by_count": 844,
+   "doi": "https://doi.org/10.2307/2007902",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1547407391",
+   "title": "Elliptic curves: number theory and cryptography",
+   "year": 2004,
+   "cited_by_count": 556,
+   "doi": "https://doi.org/10.5860/choice.41-4097",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1539883774",
+   "title": "What is mathematics : an elementary approach to ideas and methods",
+   "year": 1996,
+   "cited_by_count": 374,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1563585979",
+   "title": "The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography",
+   "year": 2009,
+   "cited_by_count": 348,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W4301698992",
+   "title": "13 Lectures on Fermat’s Last Theorem",
+   "year": 1979,
+   "cited_by_count": 211,
+   "doi": "https://doi.org/10.1007/978-1-4684-9342-9",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2053785749",
+   "title": "Lectures on Fermat's Last Theorem",
+   "year": 1981,
+   "cited_by_count": 205,
+   "doi": "https://doi.org/10.2307/2007754",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W565248971",
+   "title": "An Introduction to Invariants and Moduli",
+   "year": 2003,
+   "cited_by_count": 188,
+   "doi": "https://doi.org/10.1017/cbo9781316257074",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W635124484",
+   "title": "Contributions to Automorphic Forms, Geometry, and Number Theory",
+   "year": 2004,
+   "cited_by_count": 180,
+   "doi": "https://doi.org/10.56021/9780801878602",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1608793188",
+   "title": "Winding quotients and some variants of Fermat's Last Theorem.",
+   "year": 1997,
+   "cited_by_count": 173,
+   "doi": "https://doi.org/10.1515/crll.1997.490.81",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1977852626",
+   "title": "Fermat's Last Theorem. A Genetic Introduction to Algebraic Number Theory.",
+   "year": 1978,
+   "cited_by_count": 171,
+   "doi": "https://doi.org/10.2307/2006502",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2147215127",
+   "title": "The Mathematical Career of Pierre de Fermat, 1601-1665",
+   "year": 1973,
+   "cited_by_count": 160,
+   "doi": "https://doi.org/10.1515/9780691187631",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1967973885",
+   "title": "On the Equations zm = F (x, y ) and Axp + Byq = Czr",
+   "year": 1995,
+   "cited_by_count": 154,
+   "doi": "https://doi.org/10.1112/blms/27.6.513",
+   "role": "resolved",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1549200531",
+   "title": "A Course in Number Theory",
+   "year": 1995,
+   "cited_by_count": 153,
+   "doi": "https://doi.org/10.1093/oso/9780198534792.001.0001",
+   "role": "resolved",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1589032548",
+   "title": "Classical Theory of Algebraic Numbers",
+   "year": 2001,
+   "cited_by_count": 151,
+   "doi": "https://doi.org/10.1007/978-0-387-21690-4",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1524896264",
+   "title": "A Friendly Introduction to Number Theory",
+   "year": 1996,
+   "cited_by_count": 143,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1488979098",
+   "title": "The Higher Arithmetic : An Introduction to the Theory of Numbers",
+   "year": 1952,
+   "cited_by_count": 140,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W634483280",
+   "title": "Introductory Algebraic Number Theory",
+   "year": 2003,
+   "cited_by_count": 124,
+   "doi": "https://doi.org/10.1017/cbo9780511791260",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2022967387",
+   "title": "Littlewood's miscellany",
+   "year": 1988,
+   "cited_by_count": 111,
+   "doi": "https://doi.org/10.1016/0378-4754(88)90125-5",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W84338012",
+   "title": "Algebraic Number Theory and Fermat's Last Theorem",
+   "year": 2015,
+   "cited_by_count": 109,
+   "doi": "https://doi.org/10.1201/b19331",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1521777256",
+   "title": "The Theory of Classical Valuations",
+   "year": 1999,
+   "cited_by_count": 104,
+   "doi": "https://doi.org/10.1007/978-1-4612-0551-7",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1514233326",
+   "title": "Modular Forms and Galois Cohomology",
+   "year": 2000,
+   "cited_by_count": 102,
+   "doi": "https://doi.org/10.1017/cbo9780511526046",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2918305066",
+   "title": "Algebraic Number Theory and Fermat's Last Theorem",
+   "year": 2001,
+   "cited_by_count": 99,
+   "doi": "https://doi.org/10.1201/9781439864081",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "activity": {
+  "openalex_by_year": {
+   "1913": 4,
+   "1914": 2,
+   "1916": 2,
+   "1917": 2,
+   "1918": 1,
+   "1919": 3,
+   "1920": 4,
+   "1921": 3,
+   "1922": 4,
+   "1924": 1,
+   "1925": 3,
+   "1926": 5,
+   "1927": 1,
+   "1928": 2,
+   "1929": 4,
+   "1930": 1,
+   "1931": 1,
+   "1932": 4,
+   "1933": 1,
+   "1934": 3,
+   "1936": 1,
+   "1938": 2,
+   "1940": 2,
+   "1942": 1,
+   "1944": 2,
+   "1946": 2,
+   "1949": 1,
+   "1952": 3,
+   "1953": 4,
+   "1954": 11,
+   "1955": 8,
+   "1956": 2,
+   "1958": 2,
+   "1959": 1,
+   "1960": 2,
+   "1962": 3,
+   "1963": 1,
+   "1964": 2,
+   "1965": 2,
+   "1966": 4,
+   "1967": 3,
+   "1968": 2,
+   "1969": 8,
+   "1970": 2,
+   "1971": 5,
+   "1972": 1,
+   "1973": 3,
+   "1974": 3,
+   "1975": 5,
+   "1976": 1,
+   "1977": 6,
+   "1978": 6,
+   "1979": 4,
+   "1980": 3,
+   "1981": 9,
+   "1982": 7,
+   "1983": 3,
+   "1984": 5,
+   "1985": 9,
+   "1986": 7,
+   "1987": 7,
+   "1988": 13,
+   "1989": 6,
+   "1990": 7,
+   "1991": 8,
+   "1992": 8,
+   "1993": 10,
+   "1994": 22,
+   "1995": 24,
+   "1996": 13,
+   "1997": 13,
+   "1998": 11,
+   "1999": 19,
+   "2000": 19,
+   "2001": 14,
+   "2002": 15,
+   "2003": 14,
+   "2004": 15,
+   "2005": 16,
+   "2006": 14,
+   "2007": 18,
+   "2008": 17,
+   "2009": 16,
+   "2010": 13,
+   "2011": 33,
+   "2012": 26,
+   "2013": 40,
+   "2014": 40,
+   "2015": 27,
+   "2016": 38,
+   "2017": 38,
+   "2018": 39,
+   "2019": 21,
+   "2020": 39,
+   "2021": 26,
+   "2022": 48,
+   "2023": 37,
+   "2024": 47,
+   "2025": 162,
+   "2026": 431
+  },
+  "openalex_total": 1623,
+  "arxiv_total": 146,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22Fermat%27s+Last+Theorem%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5007388596",
+   "name": "Paulo Ribenboim",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5067692123",
+   "name": "Lawrence C. Washington",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5039341455",
+   "name": "Haruzo Hida",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5066205389",
+   "name": "Henri Darmon",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5079169390",
+   "name": "Ian Nicholas Stewart",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5057983489",
+   "name": "David O. Tall",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5110397833",
+   "name": "G. H. Hardy",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5041980198",
+   "name": "Ewan M. Wright",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5108430356",
+   "name": "Andrew J. Wiles",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5110436353",
+   "name": "Jean-Pierre Serre",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5065022787",
+   "name": "Samuel S. Wagstaff",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5083766083",
+   "name": "Kenneth Rosen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5076112588",
+   "name": "Richard Courant",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5046510415",
+   "name": "Herbert Robbins",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5013035684",
+   "name": "Simon Singh",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I204722609",
+   "name": "Queen's University",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I195460627",
+   "name": "University of Aberdeen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I60134161",
+   "name": "Nagoya University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I5023651",
+   "name": "McGill University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I165733156",
+   "name": "University of Georgia",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I36234482",
+   "name": "University of Bristol",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I241749",
+   "name": "University of Cambridge",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I67031392",
+   "name": "Carleton University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I39555362",
+   "name": "University of Warwick",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I161318765",
+   "name": "University of California, Los Angeles",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "related": [
+  {
+   "id": "bsd",
+   "why": "shared keywords: elliptic curve; shared markets: cryptography; same branch"
+  },
+  {
+   "id": "ecc",
+   "why": "shared keywords: elliptic curve; shared markets: cryptography"
+  },
+  {
+   "id": "langlands",
+   "why": "shared keywords: galois representation; same branch"
+  },
+  {
+   "id": "abc",
+   "why": "shared markets: cryptography; same branch"
+  },
+  {
+   "id": "riemann",
+   "why": "shared markets: cryptography; same branch"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2333976070",
+   "title": "Modular Elliptic Curves and Fermat's Last Theorem",
+   "source": "openalex-fanout/W2333976070-modular-elliptic-curves-and-fermat-s-last-theorem"
+  }
+ ],
+ "formal": {
+  "status": "partial",
+  "source": "Buzzard, FLT formalization project in Lean",
+  "url": "https://github.com/ImperialCollegeLondon/FLT"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Fermat's_Last_Theorem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Fermat%27s+Last+Theorem%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22Fermat%27s+Last+Theorem%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

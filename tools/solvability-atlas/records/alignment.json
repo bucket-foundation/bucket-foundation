@@ -1,0 +1,96 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "alignment",
+ "title": "AI alignment verification",
+ "statement": {
+  "text": "In the field of artificial intelligence (AI), alignment aims to steer AI systems toward a person's or group's intended goals, preferences, or ethical principles. An AI system is considered aligned if it advances the intended objectives. A misaligned AI system pursues unintended objectives.",
+  "source": "https://en.wikipedia.org/wiki/AI_alignment"
+ },
+ "aliases": [
+  "AI alignment",
+  "alignment"
+ ],
+ "branch": "information",
+ "level": 5,
+ "industries": [
+  "ai"
+ ],
+ "posed": 2014,
+ "resolved": null,
+ "history": [
+  {
+   "year": 2014,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 432,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22AI+alignment%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22AI+alignment%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "autoform",
+   "why": "shared keywords: formal verification; shared markets: ai; same branch"
+  },
+  {
+   "id": "llmreason",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "matmul",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "pnp",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "sensitivity",
+   "why": "shared markets: ai; same branch"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID30151423",
+   "title": "Evidence-Based Alignment of Pathology Residency With Practice: Methodology and General Consideration of Results.",
+   "source": "pubmed/PMID-30151423-evidence-based-alignment-of-pathology-residency-with-practic"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID33889716",
+   "title": "Evidence-Based Alignment of Pathology Residency With Practice II: Findings and Implications.",
+   "source": "pubmed/PMID-33889716-evidence-based-alignment-of-pathology-residency-with-practic"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID9999168",
+   "title": "Spontaneous alignment of frustrated bonds in an anisotropic, three-dimensional Ising model.",
+   "source": "pubmed/PMID-9999168-spontaneous-alignment-of-frustrated-bonds-in-an-anisotropic"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/AI_alignment",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22AI+alignment%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

@@ -1,0 +1,103 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "dftfunc",
+ "title": "Exact exchange-correlation functional",
+ "statement": {
+  "text": "Density functional theory (DFT) is a computational quantum mechanical modeling method used in physics, chemistry and materials science to investigate the electronic structure of many-body systems, in particular atoms, molecules, and the condensed phases. Using this theory, the properties of a many-electron system can be determined by using functionals – that is, functions that accept a function as input and output a single real number. In the case of DFT, these are functionals of the spatially dependent electron density. DFT is among the most popular and versatile methods available in condensed-matter physics, computational physics, and computational chemistry.",
+  "source": "https://en.wikipedia.org/wiki/Density_functional_theory"
+ },
+ "aliases": [
+  "Density functional theory",
+  "DFT"
+ ],
+ "branch": "chemistry",
+ "level": 5,
+ "industries": [
+  "materials",
+  "pharma"
+ ],
+ "posed": 1965,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1965,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 837,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22exchange-correlation+functional%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22exchange-correlation+functional%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "catalysis",
+   "why": "shared markets: materials; same branch"
+  },
+  {
+   "id": "glass",
+   "why": "shared markets: materials; same branch"
+  },
+  {
+   "id": "aging",
+   "why": "shared markets: pharma"
+  },
+  {
+   "id": "foldpath",
+   "why": "shared markets: pharma"
+  },
+  {
+   "id": "kepler",
+   "why": "shared markets: materials"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID16852970",
+   "title": "Energy ranking of molecular crystals using density functional theory calculations and an empirical van der waals correction.",
+   "source": "pubmed/PMID-16852970-energy-ranking-of-molecular-crystals-using-density-functiona"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID20841921",
+   "title": "Validation of experimental molecular crystal structures with dispersion-corrected density functional theory calculations.",
+   "source": "pubmed/PMID-20841921-validation-of-experimental-molecular-crystal-structures-with"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID22528670",
+   "title": "Empirical van der Waals corrections to solid-state density functional theory: Iodine and phosphorous containing molecular crystals.",
+   "source": "pubmed/PMID-22528670-empirical-van-der-waals-corrections-to-solid-state-density-f"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID25449625",
+   "title": "Validation of molecular crystal structures from powder diffraction data with dispersion-corrected density functional theory (DFT-D).",
+   "source": "pubmed/PMID-25449625-validation-of-molecular-crystal-structures-from-powder-diffr"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Density_functional_theory",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22exchange-correlation+functional%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

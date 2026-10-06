@@ -1,0 +1,163 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "catalysis",
+ "title": "Rational catalyst design",
+ "statement": {
+  "text": "Catalysis is the increase in rate of a chemical reaction due to an added substance known as a catalyst. Catalysts are not consumed by the reaction and remain unchanged after the reaction. If the reaction is rapid and the catalyst is recycled quickly, a very small amount of catalyst often suffices; mixing, surface area, and temperature are important factors in reaction rate. Catalysts generally react with one or more reactants to form intermediates that subsequently give the final reaction product, in the process of regenerating the catalyst.",
+  "source": "https://en.wikipedia.org/wiki/Catalysis"
+ },
+ "aliases": [
+  "Catalysis",
+  "catalyst"
+ ],
+ "branch": "chemistry",
+ "level": 4,
+ "industries": [
+  "energy",
+  "materials"
+ ],
+ "posed": 1835,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1835,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 3,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22rational+catalyst+design%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "dftfunc",
+   "why": "shared markets: materials; same branch"
+  },
+  {
+   "id": "glass",
+   "why": "shared markets: materials; same branch"
+  },
+  {
+   "id": "water",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "climate",
+   "why": "shared markets: energy"
+  },
+  {
+   "id": "fusion",
+   "why": "shared markets: energy"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2953538730",
+   "title": "Moving from acridinium to pyridinium: From complex to simple. 2,4,6-Triphenylpyridine and 2,4,6-triphenylpyrilium perchlorate as “metal-free” electrocatalysts of hydrogen evolution reaction (HER): The influence of the nature of the heteroatom and acid on the pathway HER",
+   "source": "openalex-fanout/W2953538730-moving-from-acridinium-to-pyridinium-from-complex-to-simple-"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID11607036",
+   "title": "Uracil-DNA glycosylase acts by substrate autocatalysis.",
+   "source": "pubmed/PMID-11607036-uracil-dna-glycosylase-acts-by-substrate-autocatalysis"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID11947013",
+   "title": "Chlorophyll catalysis and Einstein's photochemical law in photosynthesis.",
+   "source": "pubmed/PMID-11947013-chlorophyll-catalysis-and-einstein-s-photochemical-law-in-ph"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12592398",
+   "title": "Product-assisted catalysis in base-excision DNA repair.",
+   "source": "pubmed/PMID-12592398-product-assisted-catalysis-in-base-excision-dna-repair"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID15920483",
+   "title": "Movements of the epsilon-subunit during catalysis and activation in single membrane-bound H(+)-ATP synthase.",
+   "source": "pubmed/PMID-15920483-movements-of-the-epsilon-subunit-during-catalysis-and-activa"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID18026087",
+   "title": "A hierarchy of timescales in protein dynamics is linked to enzyme catalysis.",
+   "source": "pubmed/PMID-18026087-a-hierarchy-of-timescales-in-protein-dynamics-is-linked-to-e"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID20133745",
+   "title": "PR65, the HEAT-repeat scaffold of phosphatase PP2A, is an elastic connector that links force and catalysis.",
+   "source": "pubmed/PMID-20133745-pr65-the-heat-repeat-scaffold-of-phosphatase-pp2a-is-an-elas"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID21686171",
+   "title": "Required levels of catalysis for emergence of autocatalytic sets in models of chemical reaction systems.",
+   "source": "pubmed/PMID-21686171-required-levels-of-catalysis-for-emergence-of-autocatalytic"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID31165752",
+   "title": "Novel Green Biomimetic Approach for Synthesis of ZnO-Ag Nanocomposite; Antimicrobial Activity against Food-borne Pathogen, Biocompatibility and Solar Photocatalysis.",
+   "source": "pubmed/PMID-31165752-novel-green-biomimetic-approach-for-synthesis-of-zno-ag-nano"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID31337085",
+   "title": "Visible Light Driven Heterojunction Photocatalyst of CuO-Cu",
+   "source": "pubmed/PMID-31337085-visible-light-driven-heterojunction-photocatalyst-of-cuo-cu"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID40744487",
+   "title": "In-Cell NAD(P)H Photocatalysis with a Metal Complex for Photocatalytic Anticancer Therapy.",
+   "source": "pubmed/PMID-40744487-in-cell-nad-p-h-photocatalysis-with-a-metal-complex-for-phot"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID4391365",
+   "title": "[Chlorophyll catalysis of photosynthesis].",
+   "source": "pubmed/PMID-4391365-chlorophyll-catalysis-of-photosynthesis"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID4509308",
+   "title": "Sulfhydryl group catalysis of charge transfer.",
+   "source": "pubmed/PMID-4509308-sulfhydryl-group-catalysis-of-charge-transfer"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID6048801",
+   "title": "Acid-base titration across the membrane system of rat-liver mitochondria. Catalysis by uncouplers.",
+   "source": "pubmed/PMID-6048801-acid-base-titration-across-the-membrane-system-of-rat-liver"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Catalysis",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22rational+catalyst+design%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

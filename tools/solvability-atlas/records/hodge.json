@@ -1,0 +1,522 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "hodge",
+ "title": "Hodge conjecture",
+ "statement": {
+  "text": "In mathematics, the Hodge conjecture is a major unsolved problem in algebraic geometry and complex geometry that relates the algebraic topology of a non-singular complex algebraic variety to its subvarieties.",
+  "source": "https://en.wikipedia.org/wiki/Hodge_conjecture"
+ },
+ "aliases": [],
+ "branch": "mathematics",
+ "level": 5,
+ "industries": [
+  "geometry and topology",
+  "computational theory and mathematics",
+  "nuclear and high energy physics"
+ ],
+ "posed": 1950,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1950,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W4293045476",
+   "title": "Complex Abelian Varieties",
+   "year": 2004,
+   "cited_by_count": 604,
+   "doi": "https://doi.org/10.1007/978-3-662-06307-1",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1589086369",
+   "title": "Lectures on Algebraic Cycles",
+   "year": 2010,
+   "cited_by_count": 331,
+   "doi": "https://doi.org/10.1017/cbo9780511760693",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W603376266",
+   "title": "The Millennium Prize Problems",
+   "year": 2006,
+   "cited_by_count": 228,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1964202216",
+   "title": "Hodge's general conjecture is false for trivial reasons",
+   "year": 1969,
+   "cited_by_count": 162,
+   "doi": "https://doi.org/10.1016/0040-9383(69)90016-0",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W402222452",
+   "title": "A Survey of the Hodge Conjecture",
+   "year": 2016,
+   "cited_by_count": 103,
+   "doi": "https://doi.org/10.1090/crmm/010",
+   "role": "survey",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2015968078",
+   "title": "Some aspects of the Hodge conjecture",
+   "year": 2007,
+   "cited_by_count": 101,
+   "doi": "https://doi.org/10.1007/s11537-007-0639-x",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2058056595",
+   "title": "The hodge conjecture for Fermat varieties",
+   "year": 1979,
+   "cited_by_count": 97,
+   "doi": "https://doi.org/10.1007/bf01428804",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1619207062",
+   "title": "Torsion algebraic cycles and complex cobordism",
+   "year": 1997,
+   "cited_by_count": 96,
+   "doi": "https://doi.org/10.1090/s0894-0347-97-00232-4",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W13320186",
+   "title": "The hodge conjecture for cubic fourfolds",
+   "year": 1977,
+   "cited_by_count": 88,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2141416465",
+   "title": "A Semiregularity Map for Modules and Applications to Deformations",
+   "year": 2003,
+   "cited_by_count": 85,
+   "doi": "https://doi.org/10.1023/a:1023999012081",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2117389403",
+   "title": "Cohomologie non ramifiée et conjecture de Hodge entière",
+   "year": 2012,
+   "cited_by_count": 83,
+   "doi": "https://doi.org/10.1215/00127094-1548389",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2040324351",
+   "title": "Hodge Classes on Certain Types of Abelian Varieties",
+   "year": 1983,
+   "cited_by_count": 82,
+   "doi": "https://doi.org/10.2307/2374267",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2023268586",
+   "title": "A category of kernels for equivariant factorizations and its implications for Hodge theory",
+   "year": 2013,
+   "cited_by_count": 75,
+   "doi": "https://doi.org/10.1007/s10240-013-0059-9",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3160190504",
+   "title": "Stability conditions in families",
+   "year": 2021,
+   "cited_by_count": 66,
+   "doi": "https://doi.org/10.1007/s10240-021-00124-6",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1762702122",
+   "title": "The generalized Hodge and Bloch conjectures are equivalent for general complete intersections",
+   "year": 2013,
+   "cited_by_count": 65,
+   "doi": "https://doi.org/10.24033/asens.2193",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1564172184",
+   "title": "Motives over finite fields",
+   "year": 1994,
+   "cited_by_count": 62,
+   "doi": "https://doi.org/10.1090/pspum/055.1/1265538",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1565866094",
+   "title": "Néron–Severi groups under specialization",
+   "year": 2012,
+   "cited_by_count": 59,
+   "doi": "https://doi.org/10.1215/00127094-1699490",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2463852522",
+   "title": "Pink’s theory of Hodge structures and the Hodge conjecture over function fields",
+   "year": 2020,
+   "cited_by_count": 51,
+   "doi": "https://doi.org/10.4171/198-1/2",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2916834398",
+   "title": "Stability conditions in families",
+   "year": 2021,
+   "cited_by_count": 50,
+   "doi": "https://doi.org/10.1007/s10240-021-00124-6",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2001237404",
+   "title": "The Hodge conjecture for fourfolds admitting a covering by rational curves",
+   "year": 1978,
+   "cited_by_count": 49,
+   "doi": "https://doi.org/10.1007/bf01351457",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1765718449",
+   "title": "Kuga-Satake Varieties and the Hodge Conjecture",
+   "year": 2000,
+   "cited_by_count": 48,
+   "doi": "https://doi.org/10.1007/978-94-011-4098-0_3",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1491668899",
+   "title": "Fourier-Mukai partners of K3 surfaces in positive characteristic",
+   "year": 2015,
+   "cited_by_count": 47,
+   "doi": "https://doi.org/10.24033/asens.2264",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W592792116",
+   "title": "Group Cohomology and Algebraic Cycles",
+   "year": 2014,
+   "cited_by_count": 46,
+   "doi": "https://doi.org/10.1017/cbo9781139059480",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3097786109",
+   "title": "Moduli space holography and the finiteness of flux vacua",
+   "year": 2021,
+   "cited_by_count": 45,
+   "doi": "https://doi.org/10.1007/jhep10(2021)153",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2171729474",
+   "title": "Abel-Jacobi map, integral Hodge classes and decomposition of the diagonal",
+   "year": 2012,
+   "cited_by_count": 45,
+   "doi": "https://doi.org/10.1090/s1056-3911-2012-00597-9",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "activity": {
+  "openalex_by_year": {
+   "1969": 1,
+   "1971": 1,
+   "1975": 2,
+   "1977": 3,
+   "1978": 1,
+   "1979": 2,
+   "1982": 4,
+   "1983": 2,
+   "1984": 1,
+   "1987": 2,
+   "1989": 1,
+   "1990": 2,
+   "1991": 6,
+   "1992": 4,
+   "1993": 3,
+   "1994": 9,
+   "1995": 3,
+   "1996": 2,
+   "1997": 6,
+   "1998": 5,
+   "1999": 5,
+   "2000": 7,
+   "2001": 9,
+   "2002": 9,
+   "2003": 10,
+   "2004": 13,
+   "2005": 9,
+   "2006": 22,
+   "2007": 17,
+   "2008": 18,
+   "2009": 14,
+   "2010": 14,
+   "2011": 13,
+   "2012": 15,
+   "2013": 23,
+   "2014": 15,
+   "2015": 13,
+   "2016": 23,
+   "2017": 18,
+   "2018": 23,
+   "2019": 25,
+   "2020": 27,
+   "2021": 26,
+   "2022": 25,
+   "2023": 21,
+   "2024": 21,
+   "2025": 313,
+   "2026": 1297
+  },
+  "openalex_total": 2105,
+  "arxiv_total": 238,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22Hodge+conjecture%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5111439625",
+   "name": "Claire Voisin",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5072058132",
+   "name": "Burt Totaro",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5012961943",
+   "name": "Martí Lahoz",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5031149825",
+   "name": "Arend Bayer",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5050594011",
+   "name": "Emanuele Macrì",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5055477084",
+   "name": "Howard Nuer",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5108254938",
+   "name": "Alexander Perry",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5029317691",
+   "name": "Paolo Stellari",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5112820705",
+   "name": "Christina Birkenhake",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5034013045",
+   "name": "Herbert Lange",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5109876341",
+   "name": "Spencer Janney Bloch",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5102436087",
+   "name": "James A. Carlson",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5103278449",
+   "name": "Arthur M. Jaffe",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5108430356",
+   "name": "Andrew J. Wiles",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5111371044",
+   "name": "Alexandre Grothendieck",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I40347166",
+   "name": "University of Chicago",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I3017942884",
+   "name": "Institut de Mathématiques de Jussieu-Paris Rive Gauche",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210117017",
+   "name": "Maxwell Institute for Mathematical Sciences",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I98677209",
+   "name": "University of Edinburgh",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4387154366",
+   "name": "Université Paris Diderot",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I12912129",
+   "name": "Northeastern University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I78577930",
+   "name": "Columbia University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I189158943",
+   "name": "University of Milan",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I181369854",
+   "name": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I84909340",
+   "name": "Institut des Hautes Études Scientifiques",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I154425047",
+   "name": "University of Alberta",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I8692664",
+   "name": "University of Oklahoma",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I74801974",
+   "name": "The University of Tokyo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I185261750",
+   "name": "University of Toronto",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "related": [],
+ "repo_mentions": [],
+ "formal": {
+  "status": "statement",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Hodge_conjecture",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hodge+conjecture%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22Hodge+conjecture%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

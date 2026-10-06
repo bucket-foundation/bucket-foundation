@@ -1,0 +1,541 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "bsd",
+ "title": "Birch and Swinnerton-Dyer conjecture",
+ "statement": {
+  "text": "In mathematics, the Birch and Swinnerton-Dyer conjecture describes the set of rational solutions to equations defining an elliptic curve. It is an open problem in the field of number theory and is widely recognized as one of the most challenging mathematical problems. It is named after mathematicians Bryan John Birch and Sir Peter Swinnerton-Dyer, who formulated the conjecture in the 1960s with the help of machine computation. Only special cases of the conjecture have been proven.",
+  "source": "https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture"
+ },
+ "aliases": [
+  "Birch–Swinnerton-Dyer conjecture"
+ ],
+ "branch": "mathematics",
+ "level": 5,
+ "industries": [
+  "cryptography",
+  "geometry and topology",
+  "mathematical physics",
+  "algebra and number theory"
+ ],
+ "posed": 1965,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1965,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W1529471319",
+   "title": "Algorithms for Modular Elliptic Curves",
+   "year": 1992,
+   "cited_by_count": 702,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2010436631",
+   "title": "PARABOLIC POINTS AND ZETA-FUNCTIONS OF MODULAR CURVES",
+   "year": 1972,
+   "cited_by_count": 378,
+   "doi": "https://doi.org/10.1070/im1972v006n01abeh001867",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1980939000",
+   "title": "Values ofL-series of modular forms at the center of the critical strip",
+   "year": 1981,
+   "cited_by_count": 328,
+   "doi": "https://doi.org/10.1007/bf01389166",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2597408316",
+   "title": "Diagonal cycles and Euler systems I: A $p$-adic Gross-Zagier formula",
+   "year": 2014,
+   "cited_by_count": 97,
+   "doi": "https://doi.org/10.24033/asens.2227",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1575996225",
+   "title": "Galois Representations in Arithmetic Algebraic Geometry",
+   "year": 1998,
+   "cited_by_count": 89,
+   "doi": "https://doi.org/10.1017/cbo9780511662010",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2334647060",
+   "title": "Selmer groups and the indivisibility of Heegner points",
+   "year": 2014,
+   "cited_by_count": 79,
+   "doi": "https://doi.org/10.4310/cjm.2014.v2.n2.a2",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2090154643",
+   "title": "On ranks of twists of elliptic curves and power-free values of binary forms",
+   "year": 1995,
+   "cited_by_count": 76,
+   "doi": "https://doi.org/10.1090/s0894-0347-1995-1290234-5",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1976994099",
+   "title": "On the conjecture of Birch and Swinnerton-Dyer for an elliptic curve of rank 3",
+   "year": 1985,
+   "cited_by_count": 71,
+   "doi": "https://doi.org/10.1090/s0025-5718-1985-0777279-x",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2166029767",
+   "title": "Moments and distribution of central $$L$$ L -values of quadratic twists of elliptic curves",
+   "year": 2015,
+   "cited_by_count": 70,
+   "doi": "https://doi.org/10.1007/s00222-015-0582-z",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2023336105",
+   "title": "The behavior of the Mordell-Weil group of elliptic curves",
+   "year": 1990,
+   "cited_by_count": 70,
+   "doi": "https://doi.org/10.1090/s0273-0979-1990-15937-3",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2048205489",
+   "title": "Iwasawa theory and $p$-adic Hodge theory",
+   "year": 1993,
+   "cited_by_count": 58,
+   "doi": "https://doi.org/10.2996/kmj/1138039701",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3103080174",
+   "title": "THE SECOND MOMENT OF QUADRATIC TWISTS OF MODULAR L-FUNCTIONS",
+   "year": 2013,
+   "cited_by_count": 56,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W373829465",
+   "title": "Arithmetic Algebraic Geometry",
+   "year": 1991,
+   "cited_by_count": 54,
+   "doi": "https://doi.org/10.1007/978-1-4612-0457-2",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2747938323",
+   "title": "Character Theory and Artin L-functions",
+   "year": 2017,
+   "cited_by_count": 47,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2072989137",
+   "title": "Beilinson-Flach elements and Euler systems II: The Birch-Swinnerton-Dyer conjecture for Hasse-Weil-Artin 𝐿-series",
+   "year": 2015,
+   "cited_by_count": 44,
+   "doi": "https://doi.org/10.1090/s1056-3911-2015-00675-0",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2167342665",
+   "title": "Quadratic twists of elliptic curves",
+   "year": 2014,
+   "cited_by_count": 39,
+   "doi": "https://doi.org/10.1112/plms/pdu059",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W965349518",
+   "title": "Non-congruent numbers, odd graphs and the Birch-Swinnerton-Dyer conjecture",
+   "year": 1996,
+   "cited_by_count": 38,
+   "doi": "https://doi.org/10.4064/aa-75-1-71-83",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1554054217",
+   "title": "Survey of diophantine geometry",
+   "year": 1962,
+   "cited_by_count": 38,
+   "doi": null,
+   "role": "survey",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3099024553",
+   "title": "ELLIPTIC CURVES WITH ALL QUADRATIC TWISTS OF POSITIVE RANK",
+   "year": 2012,
+   "cited_by_count": 31,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2981339885",
+   "title": "Iwasawa Main Conjecture for Supersingular Elliptic Curves and BSD conjecture",
+   "year": 2014,
+   "cited_by_count": 30,
+   "doi": "https://doi.org/10.48550/arxiv.1411.6352",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W4235125007",
+   "title": "Periods of cusp forms and elliptic curves over imaginary quadratic fields",
+   "year": 1994,
+   "cited_by_count": 30,
+   "doi": "https://doi.org/10.1090/s0025-5718-1994-1185241-6",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2038180223",
+   "title": "Periods of Cusp Forms and Elliptic Curves Over Imaginary Quadratic Fields",
+   "year": 1994,
+   "cited_by_count": 28,
+   "doi": "https://doi.org/10.2307/2153419",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2332577260",
+   "title": "Lectures on the Birch-Swinnerton-Dyer Conjecture",
+   "year": 2013,
+   "cited_by_count": 26,
+   "doi": "https://doi.org/10.4310/iccm.2013.v1.n2.a5",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1997888843",
+   "title": "A nonvanishing theorem for derivatives of automorphic 𝐿-functions with applications to elliptic curves",
+   "year": 1989,
+   "cited_by_count": 23,
+   "doi": "https://doi.org/10.1090/s0273-0979-1989-15771-6",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2626548081",
+   "title": "Recent progress on the Tate conjecture",
+   "year": 2017,
+   "cited_by_count": 20,
+   "doi": "https://doi.org/10.1090/bull/1588",
+   "role": "survey",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "activity": {
+  "openalex_by_year": {
+   "1962": 1,
+   "1972": 1,
+   "1981": 2,
+   "1983": 2,
+   "1984": 1,
+   "1985": 1,
+   "1989": 1,
+   "1990": 3,
+   "1991": 3,
+   "1992": 4,
+   "1993": 2,
+   "1994": 5,
+   "1995": 1,
+   "1996": 1,
+   "1997": 1,
+   "1998": 4,
+   "1999": 2,
+   "2000": 2,
+   "2002": 3,
+   "2003": 1,
+   "2004": 1,
+   "2005": 2,
+   "2006": 2,
+   "2007": 3,
+   "2008": 2,
+   "2009": 4,
+   "2010": 2,
+   "2011": 6,
+   "2012": 4,
+   "2013": 9,
+   "2014": 6,
+   "2015": 6,
+   "2016": 7,
+   "2017": 10,
+   "2018": 1,
+   "2019": 5,
+   "2020": 4,
+   "2021": 4,
+   "2022": 2,
+   "2023": 10,
+   "2024": 2,
+   "2025": 124,
+   "2026": 358
+  },
+  "openalex_total": 615,
+  "arxiv_total": 43,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22Birch+Swinnerton-Dyer+conjecture%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5084924590",
+   "name": "J. E. Cremona",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5005589416",
+   "name": "Don Bernard Zagier",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5066205389",
+   "name": "Henri Darmon",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5000728707",
+   "name": "Víctor Rotger",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": null,
+   "name": "K. Soundararajan",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5110643536",
+   "name": "John Coates",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5030890385",
+   "name": "E. Whitley",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5043732119",
+   "name": "Ju I Manin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5060563927",
+   "name": "Winfried Kohnen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5100441660",
+   "name": "Wei Zhang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5057631857",
+   "name": "Cameron L. Stewart",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5035693229",
+   "name": "JAAP TOP",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5020049691",
+   "name": "Joe Buhler",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5071449791",
+   "name": "Benedict H. Gross",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5027276960",
+   "name": "Maksym Radziwiłł",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I23923803",
+   "name": "University of Exeter",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I123900574",
+   "name": "Pohang University of Science and Technology",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I241749",
+   "name": "University of Cambridge",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I135140700",
+   "name": "University of Bonn",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I78577930",
+   "name": "Columbia University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I151746483",
+   "name": "University of Waterloo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I169381384",
+   "name": "University of Groningen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I149899117",
+   "name": "Max Planck Society",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210119712",
+   "name": "Max Planck Institute for Mathematics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I40036882",
+   "name": "Institute for Advanced Study",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I91045830",
+   "name": "Texas A&M University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I887064364",
+   "name": "University of Amsterdam",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I193662353",
+   "name": "Utrecht University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I145872427",
+   "name": "Radboud University Nijmegen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "related": [
+  {
+   "id": "fermat",
+   "why": "shared keywords: elliptic curve; shared markets: cryptography; same branch"
+  },
+  {
+   "id": "ecc",
+   "why": "shared keywords: elliptic curve; shared markets: cryptography"
+  },
+  {
+   "id": "abc",
+   "why": "shared markets: cryptography; same branch"
+  },
+  {
+   "id": "riemann",
+   "why": "shared markets: cryptography; same branch"
+  },
+  {
+   "id": "twinprime",
+   "why": "shared markets: cryptography; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "statement",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Birch_and_Swinnerton-Dyer_conjecture",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Birch+Swinnerton-Dyer+conjecture%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22Birch+Swinnerton-Dyer+conjecture%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

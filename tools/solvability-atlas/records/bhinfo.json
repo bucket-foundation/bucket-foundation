@@ -1,0 +1,521 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "bhinfo",
+ "title": "Black hole information paradox",
+ "statement": {
+  "text": "The black hole information paradox is an unsolved problem in physics and a paradox that appears when the predictions of quantum mechanics and general relativity are combined. The theory of general relativity predicts the existence of black holes that are regions of spacetime from which nothing—not even light—can escape. In the 1970s, Stephen Hawking applied the semiclassical approach of quantum field theory in curved spacetime to such systems and found that an isolated black hole would emit a form of radiation. He also argued that the detailed form of the radiation would be independent of the initial state of the black hole, and depend only on its mass, electric charge and angular momentum.",
+  "source": "https://en.wikipedia.org/wiki/Black_hole_information_paradox"
+ },
+ "aliases": [],
+ "branch": "cosmology",
+ "level": 5,
+ "industries": [
+  "quantum computing",
+  "nuclear and high energy physics",
+  "astronomy and astrophysics",
+  "atomic and molecular physics, and optics"
+ ],
+ "posed": 1975,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1975,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2133890384",
+   "title": "The information paradox: a pedagogical introduction",
+   "year": 2009,
+   "cited_by_count": 976,
+   "doi": "https://doi.org/10.1088/0264-9381/26/22/224001",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1966832838",
+   "title": "AdS/CFT duality and the black hole information paradox",
+   "year": 2002,
+   "cited_by_count": 527,
+   "doi": "https://doi.org/10.1016/s0550-3213(01)00620-4",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2763764038",
+   "title": "Echoes from the abyss: Tentative evidence for Planck-scale structure at black hole horizons",
+   "year": 2017,
+   "cited_by_count": 413,
+   "doi": "https://doi.org/10.1103/physrevd.96.082004",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3100586592",
+   "title": "AdS/CFT duality and the black hole information paradox",
+   "year": 2001,
+   "cited_by_count": 352,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3035289862",
+   "title": "Quantum extremal islands made easy. Part I. Entanglement on the brane",
+   "year": 2020,
+   "cited_by_count": 244,
+   "doi": "https://doi.org/10.1007/jhep10(2020)166",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2103576134",
+   "title": "Quantum Information Cannot Be Completely Hidden in Correlations: Implications for the Black-Hole Information Paradox",
+   "year": 2007,
+   "cited_by_count": 196,
+   "doi": "https://doi.org/10.1103/physrevlett.98.080502",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2587561562",
+   "title": "Not quite a black hole",
+   "year": 2017,
+   "cited_by_count": 158,
+   "doi": "https://doi.org/10.1103/physrevd.95.084034",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2147427575",
+   "title": "Black hole information, unitarity, and nonlocality",
+   "year": 2006,
+   "cited_by_count": 158,
+   "doi": "https://doi.org/10.1103/physrevd.74.106005",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2461213399",
+   "title": "The tune of love and the nature(ness) of spacetime",
+   "year": 2016,
+   "cited_by_count": 135,
+   "doi": "https://doi.org/10.1002/prop.201600064",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2504676948",
+   "title": "Dressed Hard States and Black Hole Soft Hair",
+   "year": 2016,
+   "cited_by_count": 127,
+   "doi": "https://doi.org/10.1103/physrevlett.117.211301",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1964890283",
+   "title": "Fuzzballs and the Information Paradox: A Summary and Conjectures",
+   "year": 2009,
+   "cited_by_count": 122,
+   "doi": "https://doi.org/10.1166/asl.2009.1021",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2779723223",
+   "title": "Gravitational wave echoes through new windows",
+   "year": 2018,
+   "cited_by_count": 121,
+   "doi": "https://doi.org/10.1103/physrevd.98.044021",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3004440321",
+   "title": "Eigenstate Thermalization and Disorder Averaging in Gravity",
+   "year": 2020,
+   "cited_by_count": 119,
+   "doi": "https://doi.org/10.1103/physrevlett.125.021601",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2620975615",
+   "title": "Soft hair as a soft wig",
+   "year": 2017,
+   "cited_by_count": 102,
+   "doi": "https://doi.org/10.1088/1361-6382/aa8be2",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3123344367",
+   "title": "What Exactly is the Information Paradox",
+   "year": 2013,
+   "cited_by_count": 99,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3089568964",
+   "title": "Island in charged black holes",
+   "year": 2021,
+   "cited_by_count": 98,
+   "doi": "https://doi.org/10.1007/jhep03(2021)251",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3149164678",
+   "title": "Islands and Page curves of Reissner-Nordström black holes",
+   "year": 2021,
+   "cited_by_count": 95,
+   "doi": "https://doi.org/10.1007/jhep04(2021)103",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2194015151",
+   "title": "Conformal blocks beyond the semi-classical limit",
+   "year": 2016,
+   "cited_by_count": 92,
+   "doi": "https://doi.org/10.1007/jhep05(2016)075",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3158500012",
+   "title": "Islands and Page curves in 4d from Type IIB",
+   "year": 2021,
+   "cited_by_count": 89,
+   "doi": "https://doi.org/10.1007/jhep08(2021)104",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1999275835",
+   "title": "Quantum correlations through event horizons: Fermionic versus bosonic entanglement",
+   "year": 2010,
+   "cited_by_count": 89,
+   "doi": "https://doi.org/10.1103/physreva.81.032320",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3036264594",
+   "title": "What Exactly is the Information Paradox?",
+   "year": 2008,
+   "cited_by_count": 89,
+   "doi": "https://doi.org/10.1007/978-3-540-88460-6_1",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3193979649",
+   "title": "Quantum information in holographic duality",
+   "year": 2022,
+   "cited_by_count": 84,
+   "doi": "https://doi.org/10.1088/1361-6633/ac51b5",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2021912075",
+   "title": "Comments on information loss and remnants",
+   "year": 1994,
+   "cited_by_count": 81,
+   "doi": "https://doi.org/10.1103/physrevd.49.4078",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2011696372",
+   "title": "Four-dimensional black holes in string theory",
+   "year": 1993,
+   "cited_by_count": 80,
+   "doi": "https://doi.org/10.1103/physrevd.48.5784",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2001588129",
+   "title": "Fermionic entanglement that survives a black hole",
+   "year": 2009,
+   "cited_by_count": 78,
+   "doi": "https://doi.org/10.1103/physreva.80.042318",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "activity": {
+  "openalex_by_year": {
+   "1993": 3,
+   "1994": 2,
+   "1995": 5,
+   "1996": 2,
+   "1997": 3,
+   "2000": 3,
+   "2001": 4,
+   "2002": 5,
+   "2003": 1,
+   "2004": 7,
+   "2005": 4,
+   "2006": 8,
+   "2007": 3,
+   "2008": 5,
+   "2009": 17,
+   "2010": 8,
+   "2011": 7,
+   "2012": 3,
+   "2013": 18,
+   "2014": 14,
+   "2015": 19,
+   "2016": 23,
+   "2017": 22,
+   "2018": 19,
+   "2019": 22,
+   "2020": 28,
+   "2021": 34,
+   "2022": 26,
+   "2023": 47,
+   "2024": 39,
+   "2025": 457,
+   "2026": 3437,
+   "2027": 1
+  },
+  "openalex_total": 4296,
+  "arxiv_total": 270,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22black+hole+information+paradox%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": null,
+   "name": "Samir D. Mathur",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5009064504",
+   "name": "Steven B. Giddings",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5017262644",
+   "name": "Bob Holdom",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5086179365",
+   "name": "Jing Ren",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5000633071",
+   "name": "Massimo Porrati",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5074464574",
+   "name": "Eduardo Martín-Martínez",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5027531994",
+   "name": "Juan León",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5030743949",
+   "name": "Oleg Lunin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5084993531",
+   "name": "Jahed Abedi",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5040031731",
+   "name": "Hannah Dykaar",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5089090610",
+   "name": "Niayesh Afshordi",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": null,
+   "name": "Lunin, O",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": null,
+   "name": "Mathur, S D",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5044845134",
+   "name": "Hong Zhe Chen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5041824947",
+   "name": "Robert Cobb Myers",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I52357470",
+   "name": "The Ohio State University",
+   "works": 6,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I154570441",
+   "name": "University of California, Santa Barbara",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I183974707",
+   "name": "Perimeter Institute",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I151746483",
+   "name": "University of Waterloo",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I185261750",
+   "name": "University of Toronto",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I57206974",
+   "name": "New York University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I19820366",
+   "name": "Chinese Academy of Sciences",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210137180",
+   "name": "Institute of High Energy Physics",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210095385",
+   "name": "Instituto de Física Fundamental",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I133529467",
+   "name": "Sharif University of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210146419",
+   "name": "Institute for Research in Fundamental Sciences",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I5023651",
+   "name": "McGill University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I149899117",
+   "name": "Max Planck Society",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210127646",
+   "name": "Max Planck Institute for Gravitational Physics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I52099693",
+   "name": "University of York",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "related": [
+  {
+   "id": "bqp",
+   "why": "shared markets: quantum computing"
+  },
+  {
+   "id": "measurement",
+   "why": "shared markets: quantum computing"
+  },
+  {
+   "id": "signproblem",
+   "why": "shared markets: quantum computing"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Black_hole_information_paradox",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22black+hole+information+paradox%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22black+hole+information+paradox%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

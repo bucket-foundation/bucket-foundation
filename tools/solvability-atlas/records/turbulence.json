@@ -1,0 +1,526 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "turbulence",
+ "title": "Turbulence closure",
+ "statement": {
+  "text": "In fluid dynamics, turbulence modeling is the construction and use of a mathematical model to predict the effects of turbulence. Turbulent flows are commonplace in most real-life scenarios. In spite of decades of research, there is no analytical theory to predict the evolution of these turbulent flows. The equations governing turbulent flows can only be solved directly for simple cases of flow. For most real-life turbulent flows, CFD simulations use turbulent models to predict the evolution of turbulence. These turbulence models are simplified constitutive equations that predict the statistical evolution of turbulent flows.",
+  "source": "https://en.wikipedia.org/wiki/Turbulence_modeling"
+ },
+ "aliases": [
+  "Turbulence modeling",
+  "turbulence modeling"
+ ],
+ "branch": "physics",
+ "level": 5,
+ "industries": [
+  "aerospace",
+  "energy",
+  "climate",
+  "computational mechanics",
+  "aerospace engineering",
+  "mechanics of materials"
+ ],
+ "posed": 1941,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1941,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W630244277",
+   "title": "Fundamentals of turbulence modeling",
+   "year": 1998,
+   "cited_by_count": 166,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2150396031",
+   "title": "Third-Order Transport and Nonlocal Turbulence Closures for Convective Boundary Layers*",
+   "year": 1999,
+   "cited_by_count": 106,
+   "doi": "https://doi.org/10.1175/1520-0469(1999)056<3463:totant>2.0.co;2",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2520380507",
+   "title": "Numerical modelling of gas dispersion using OpenFOAM",
+   "year": 2016,
+   "cited_by_count": 54,
+   "doi": "https://doi.org/10.1016/j.psep.2016.09.011",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W4312038333",
+   "title": "Parametrization in Weather and Climate Models",
+   "year": 2022,
+   "cited_by_count": 28,
+   "doi": "https://doi.org/10.1093/acrefore/9780190228620.013.826",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2916329703",
+   "title": "An improved actuator disc model for the numerical prediction of the far-wake region of a horizontal axis wind turbine and its performance",
+   "year": 2019,
+   "cited_by_count": 28,
+   "doi": "https://doi.org/10.1016/j.enconman.2019.02.005",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2580343577",
+   "title": "Cavitation passive control on immersed bodies",
+   "year": 2017,
+   "cited_by_count": 28,
+   "doi": "https://doi.org/10.1007/s11804-017-1400-3",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2176084114",
+   "title": "The Primitive Equations in the Stochastic Theory of Adiabatic Stratified Turbulence",
+   "year": 1999,
+   "cited_by_count": 28,
+   "doi": "https://doi.org/10.1175/1520-0485(1999)029<1865:tpeits>2.0.co;2",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2342125189",
+   "title": "Theoretical comparison of subgrid turbulence in atmospheric and oceanic quasi-geostrophic models",
+   "year": 2016,
+   "cited_by_count": 14,
+   "doi": "https://doi.org/10.5194/npg-23-95-2016",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2066276523",
+   "title": "Numerical Simulation of Orifice Cavitating Flows Using Two-Fluid and Three-Fluid Cavitation Models",
+   "year": 2010,
+   "cited_by_count": 12,
+   "doi": "https://doi.org/10.1080/10407782.2010.508436",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1641421067",
+   "title": "On the investigation of cascade and turbomachinery rotor wake characteristics",
+   "year": 1974,
+   "cited_by_count": 10,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2015168036",
+   "title": "Iterative and multigrid methods in the finite element solution of incompressible and turbulent fluid flow",
+   "year": 1999,
+   "cited_by_count": 8,
+   "doi": "https://doi.org/10.1002/(sici)1097-0363(19990730)30:6<609::aid-fld733>3.0.co;2-6",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W4321372592",
+   "title": "Numerical Simulation of Hydrodynamics and Sediment Transport in the Surf and Swash Zone Using OpenFOAM®",
+   "year": 2023,
+   "cited_by_count": 7,
+   "doi": "https://doi.org/10.3390/jmse11020446",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2601421744",
+   "title": "Introduction to Direct Numerical Simulation",
+   "year": 2002,
+   "cited_by_count": 7,
+   "doi": "https://doi.org/10.1017/cbo9780511755385.009",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W4254203865",
+   "title": "The Reynolds Navier-Stokes Turbulence Equations of Incompressible Flow Are Closed Rather Than Unclosed",
+   "year": 2018,
+   "cited_by_count": 6,
+   "doi": "https://doi.org/10.20944/preprints201806.0461.v2",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2811069585",
+   "title": "The Reynolds Navier-Stokes Turbulence Equations of Incompressible Flow Are Closed Rather Than Unclosed",
+   "year": 2018,
+   "cited_by_count": 6,
+   "doi": "https://doi.org/10.20944/preprints201806.0461.v1",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2579076550",
+   "title": "A dynamic subgrid-scale modeling framework for Boussinesq turbulence",
+   "year": 2017,
+   "cited_by_count": 6,
+   "doi": "https://doi.org/10.1016/j.ijheatmasstransfer.2017.01.028",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2073048872",
+   "title": "On the closure problem of turbulence model theory",
+   "year": 1995,
+   "cited_by_count": 6,
+   "doi": "https://doi.org/10.1007/bf02450522",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W3006411162",
+   "title": "The use of a general convected time derivative to compute the Reynolds stress tensor for a compressible turbulent flow",
+   "year": 2020,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.1007/s40430-020-2221-x",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2892016968",
+   "title": "Closed integral-differential equations of incompressible Navier-Stokes turbulent flow",
+   "year": 2018,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.20944/preprints201807.0622.v1",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2324710689",
+   "title": "The Effect of a Mini-Scale Flame-Holder on Nano-Particulate Soot Aerosol Formation and CO/CO2 Emissions From a Jet Fuel Combustion Chamber",
+   "year": 2015,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.1115/imece2015-50082",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2038323758",
+   "title": "Assimilation de données par méthode variationnelle utilisant l’adjoint d’un code de circulation côtière tridimensionnel",
+   "year": 2001,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.1016/s0399-1784(01)01158-6",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2064291131",
+   "title": "Similarity Solution for a Turbulent Round Jet",
+   "year": 1996,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.1115/1.2817805",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2887195001",
+   "title": "Model analysis of the turbulent flows in a convergent–divergent channel and around a sphere",
+   "year": 2018,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.1007/s40430-018-1324-0",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2301878320",
+   "title": "The Effect of Inlet Turbulence Intensity on Nano-Particulate Soot Formation in Kerosene-Fueled Combustors",
+   "year": 2016,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.1115/mnhmt2016-6601",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2051550950",
+   "title": "On entropy method of turbulence closure problem",
+   "year": 1996,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.1088/0305-4470/29/6/016",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "activity": {
+  "openalex_by_year": {
+   "1974": 1,
+   "1977": 1,
+   "1990": 1,
+   "1995": 2,
+   "1996": 2,
+   "1998": 3,
+   "1999": 4,
+   "2000": 1,
+   "2001": 1,
+   "2002": 2,
+   "2005": 1,
+   "2009": 1,
+   "2010": 2,
+   "2012": 1,
+   "2013": 2,
+   "2015": 2,
+   "2016": 5,
+   "2017": 2,
+   "2018": 5,
+   "2019": 3,
+   "2020": 1,
+   "2022": 2,
+   "2023": 2,
+   "2025": 2,
+   "2026": 7
+  },
+  "openalex_total": 56,
+  "arxiv_total": 2,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22turbulence+closure+problem%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5089596120",
+   "name": "Masoud Darbandi",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5050735499",
+   "name": "Bohua Sun",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5020996119",
+   "name": "Roney  Leon Thompson",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5071336584",
+   "name": "João Felipe Mitre",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5067564543",
+   "name": "Majid Ghafourizadeh",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5110702056",
+   "name": "Ching Jen Chen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5111834334",
+   "name": "Shenq‐Yuh Jaw",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5027245968",
+   "name": "Sergej Zilitinkevich",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5057249517",
+   "name": "Vladimir M. Gryanik",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5079545533",
+   "name": "V. N. Lykossov",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5028321902",
+   "name": "Dmitrii Mironov",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5057644361",
+   "name": "Juliane Fiates",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5028797940",
+   "name": "Sávio S.V. Vianna",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": null,
+   "name": "Hannah Christensen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5032073724",
+   "name": "Laure Zanna",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I133529467",
+   "name": "Sharif University of Technology",
+   "works": 5,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I159253421",
+   "name": "Cape Peninsula University of Technology",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I161127581",
+   "name": "Universidade Federal Fluminense",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I122140584",
+   "name": "Universidade Federal do Rio de Janeiro",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I123387679",
+   "name": "Uppsala University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I127251866",
+   "name": "Alfred-Wegener-Institut Helmholtz-Zentrum für Polar- und Meeresforschung",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I1313323035",
+   "name": "Russian Academy of Sciences",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210086928",
+   "name": "Institute of Numerical Mathematics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210150607",
+   "name": "A.M. Obukhov Institute of Atmospheric Physics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I181391015",
+   "name": "Universidade Estadual de Campinas (UNICAMP)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I40120149",
+   "name": "University of Oxford",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I57206974",
+   "name": "New York University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I60158472",
+   "name": "Concordia University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I1281210470",
+   "name": "CSIRO Oceans and Atmosphere",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I1292875679",
+   "name": "Commonwealth Scientific and Industrial Research Organisation",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "related": [
+  {
+   "id": "navier",
+   "why": "shared markets: aerospace, climate, energy; same branch"
+  },
+  {
+   "id": "climate",
+   "why": "shared markets: climate, energy; same branch"
+  },
+  {
+   "id": "fusion",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "hubbard",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "roomtemp",
+   "why": "shared markets: energy; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Turbulence_modeling",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22turbulence+closure+problem%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22turbulence+closure+problem%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}

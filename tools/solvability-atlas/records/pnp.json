@@ -1,0 +1,537 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "pnp",
+ "title": "P vs NP",
+ "statement": {
+  "text": "The P versus NP problem is a major unsolved problem in theoretical computer science. Informally, it asks whether every decision problem for which a proposed positive answer can be quickly verified can also be quickly solved.",
+  "source": "https://en.wikipedia.org/wiki/P_versus_NP_problem"
+ },
+ "aliases": [
+  "P versus NP problem"
+ ],
+ "branch": "information",
+ "level": 5,
+ "industries": [
+  "cryptography",
+  "optimization",
+  "ai",
+  "computational theory and mathematics",
+  "artificial intelligence",
+  "emergency medicine"
+ ],
+ "posed": 1971,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1971,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W1527197079",
+   "title": "Computational Complexity: A Modern Approach",
+   "year": 2009,
+   "cited_by_count": 2351,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2091469954",
+   "title": "The status of the P versus NP problem",
+   "year": 2009,
+   "cited_by_count": 330,
+   "doi": "https://doi.org/10.1145/1562164.1562186",
+   "role": "survey",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W603376266",
+   "title": "The Millennium Prize Problems",
+   "year": 2006,
+   "cited_by_count": 228,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2047749000",
+   "title": "The history and status of the P versus NP question",
+   "year": 1992,
+   "cited_by_count": 172,
+   "doi": "https://doi.org/10.1145/129712.129771",
+   "role": "survey",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1984477611",
+   "title": "Algebrization",
+   "year": 2009,
+   "cited_by_count": 157,
+   "doi": "https://doi.org/10.1145/1490270.1490272",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2071193890",
+   "title": "Free mutual mate preferences in house mice affect reproductive success and offspring performance",
+   "year": 2003,
+   "cited_by_count": 117,
+   "doi": "https://doi.org/10.1006/anbe.2002.2027",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2049316103",
+   "title": "The satanic notations",
+   "year": 1995,
+   "cited_by_count": 83,
+   "doi": "https://doi.org/10.1145/203610.203611",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2117537240",
+   "title": "The P versus NP Problem",
+   "year": 2010,
+   "cited_by_count": 70,
+   "doi": "https://doi.org/10.48550/arxiv.1001.3816",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2117843400",
+   "title": "Pediatric Physiologic Pulsatile Pump Enhances Cerebral and Renal Blood Flow During and After Cardiopulmonary Bypass",
+   "year": 2002,
+   "cited_by_count": 69,
+   "doi": "https://doi.org/10.1046/j.1525-1594.2002.07127.x",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2202163874",
+   "title": "Towards NP – P via proof complexity and search",
+   "year": 2011,
+   "cited_by_count": 63,
+   "doi": "https://doi.org/10.1016/j.apal.2011.09.009",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W4251610435",
+   "title": "P, NP, and NP-Completeness",
+   "year": 2010,
+   "cited_by_count": 62,
+   "doi": "https://doi.org/10.1017/cbo9780511761355",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2064224503",
+   "title": "Feasible arithmetic computations: Valiant's hypothesis",
+   "year": 1987,
+   "cited_by_count": 58,
+   "doi": "https://doi.org/10.1016/s0747-7171(87)80063-9",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W130806391",
+   "title": "Is P Versus NP Formally Independent",
+   "year": 2003,
+   "cited_by_count": 56,
+   "doi": null,
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2158980211",
+   "title": "Icodextrin use in CCPD patients during peritonitis: ultrafiltration and serum disaccharide concentrations",
+   "year": 1998,
+   "cited_by_count": 53,
+   "doi": "https://doi.org/10.1093/ndt/13.9.2341",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2050955338",
+   "title": "Two decades of applied Kolmogorov complexity: in memoriam Andrei Nikolaevich Kolmogorov 1903-87",
+   "year": 1988,
+   "cited_by_count": 53,
+   "doi": "https://doi.org/10.1109/sct.1988.5265",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2248038145",
+   "title": "P, NP and mathematics - a computational complexity perspective",
+   "year": 2006,
+   "cited_by_count": 52,
+   "doi": "https://doi.org/10.5446/15981",
+   "role": "survey",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2031203957",
+   "title": "The importance of the P versus NP question",
+   "year": 2003,
+   "cited_by_count": 52,
+   "doi": "https://doi.org/10.1145/602382.602398",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2913542369",
+   "title": "Minimal cooperation as a way to achieve the efficiency in cell-like membrane systems",
+   "year": 2019,
+   "cited_by_count": 39,
+   "doi": "https://doi.org/10.1007/s41965-018-00004-9",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1551029096",
+   "title": "In Vivo Hemodynamic Performance Evaluation of Novel Electrocardiogram‐Synchronized Pulsatile and Nonpulsatile Extracorporeal Life Support Systems in an Adult Swine Model",
+   "year": 2015,
+   "cited_by_count": 39,
+   "doi": "https://doi.org/10.1111/aor.12482",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2140270919",
+   "title": "A Survey of Lower Bounds for Satisfiability and Related Problems",
+   "year": 2006,
+   "cited_by_count": 35,
+   "doi": "https://doi.org/10.1561/9781601980854",
+   "role": "survey",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2024920805",
+   "title": "Computation as an unbounded process",
+   "year": 2011,
+   "cited_by_count": 28,
+   "doi": "https://doi.org/10.1016/j.tcs.2011.12.040",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W10927739",
+   "title": "On P versus NP $ \\cap $ co-NP for decision trees and read-once branching programs",
+   "year": 1999,
+   "cited_by_count": 27,
+   "doi": "https://doi.org/10.1007/s000370050005",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W2026314591",
+   "title": "Pregnancy Induces an Increase in the Expression of Glyceraldehyde-3-Phosphate Dehydrogenase in Uterine Artery Endothelial Cells",
+   "year": 1997,
+   "cited_by_count": 27,
+   "doi": "https://doi.org/10.1177/107155769700400604",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W602999816",
+   "title": "P, NP, and NP-completeness: the basics of computational complexity",
+   "year": 2011,
+   "cited_by_count": 24,
+   "doi": "https://doi.org/10.5860/choice.48-3333",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "W1971556138",
+   "title": "The P versus NP–complete dichotomy of some challenging problems in graph theory",
+   "year": 2011,
+   "cited_by_count": 24,
+   "doi": "https://doi.org/10.1016/j.dam.2010.12.014",
+   "role": "partial",
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "activity": {
+  "openalex_by_year": {
+   "1978": 1,
+   "1985": 1,
+   "1987": 1,
+   "1988": 1,
+   "1990": 1,
+   "1992": 2,
+   "1995": 4,
+   "1996": 1,
+   "1997": 3,
+   "1998": 1,
+   "1999": 1,
+   "2001": 3,
+   "2002": 2,
+   "2003": 6,
+   "2004": 5,
+   "2005": 9,
+   "2006": 8,
+   "2007": 2,
+   "2008": 2,
+   "2009": 14,
+   "2010": 12,
+   "2011": 16,
+   "2012": 11,
+   "2013": 14,
+   "2014": 8,
+   "2015": 17,
+   "2016": 9,
+   "2017": 14,
+   "2018": 22,
+   "2019": 49,
+   "2020": 60,
+   "2021": 18,
+   "2022": 12,
+   "2023": 38,
+   "2024": 71,
+   "2025": 151,
+   "2026": 698
+  },
+  "openalex_total": 1288,
+  "arxiv_total": 55,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22P+versus+NP%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5020769134",
+   "name": "Scott Aaronson",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5039043184",
+   "name": "Avi Wigderson",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": null,
+   "name": "Akif Ündar",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5103334936",
+   "name": "Sanjeev Arora",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5102710346",
+   "name": "Boaz Barak",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5075191567",
+   "name": "Lance Fortnow",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5102436087",
+   "name": "James A. Carlson",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5103278449",
+   "name": "Arthur M. Jaffe",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5108430356",
+   "name": "Andrew J. Wiles",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5112131750",
+   "name": "Michael Sipser",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5072025796",
+   "name": "Lee C. Drickamer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5046157044",
+   "name": "Patricia Adair Gowaty",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5080099109",
+   "name": "David M. Wagner",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5088546793",
+   "name": "Lane A. Hemaspaandra",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "A5008982209",
+   "name": "Heribert Vollmer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I185261750",
+   "name": "University of Toronto",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I135310074",
+   "name": "University of Wisconsin–Madison",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I202391551",
+   "name": "Czech Academy of Sciences",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210155092",
+   "name": "Czech Academy of Sciences, Institute of Computer Science",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I20089843",
+   "name": "Princeton University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I111979921",
+   "name": "Northwestern University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I40036882",
+   "name": "Institute for Advanced Study",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I203172682",
+   "name": "Northern Arizona University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I165733156",
+   "name": "University of Georgia",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I5388228",
+   "name": "University of Rochester",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I181547552",
+   "name": "Baylor College of Medicine",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I4210147586",
+   "name": "Texas Children's Hospital",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I36258959",
+   "name": "University of California San Diego",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  },
+  {
+   "openalex": "I53964585",
+   "name": "Weizmann Institute of Science",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+  }
+ ],
+ "related": [
+  {
+   "id": "alignment",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "autoform",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "ecc",
+   "why": "shared markets: cryptography; same branch"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: cryptography; same branch"
+  },
+  {
+   "id": "llmreason",
+   "why": "shared markets: ai; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "statement",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/P_versus_NP_problem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22P+versus+NP%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22P+versus+NP%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05"
+}
