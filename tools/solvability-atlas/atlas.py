@@ -208,7 +208,7 @@ def neighbour_data(nodes, emb, counts, k=NEIGHBOURS):
     rows = neighbour_rows(nodes, emb, k)
     out = []
     for n, r in zip(nodes, rows):
-        out.append({"id": n["id"], "title": n["name"], "branch": n["branch"], "kind": n["kind"], "form": n.get("form", "problem"), "variant_of": n.get("variant_of"), "status": n["status"], "solved": n["solved"], "resolved": n["resolved"], "theta": round(n["theta"], 5), "source": n.get("source", "tools/solvability-atlas/problems.tsv"), "licence": n.get("licence", "MIT"), "text_kind": n["embedding_text"], **r})
+        out.append({"id": n["id"], "title": n["name"], "branch": n["branch"], "kind": n["kind"], "form": n.get("form", "problem"), "variant_of": n.get("variant_of"), "status": n["status"], "solved": n["solved"], "resolved": n["resolved"], "posed": n.get("posed"), "words": n.get("words", len(n["name"].split())), "theta": round(n["theta"], 5), "source": n.get("source", "tools/solvability-atlas/problems.tsv"), "licence": n.get("licence", "MIT"), "text_kind": n["embedding_text"], **r})
     return {
         "schema": "bucket.solvability-atlas.neighbors/v1",
         "model": MODEL,
@@ -386,6 +386,7 @@ def full(model, problems, lean):
     texts = []
     for n in nodes:
         text, n["embedding_text"] = full_text(n)
+        n["words"] = len(text.split())
         texts.append(text)
     t0 = time.time()
     emb, fresh = cached_encode(model, texts)

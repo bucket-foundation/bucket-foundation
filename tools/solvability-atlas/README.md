@@ -30,7 +30,7 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Four text variants exist (`atlas.
 | stats.json | density, clustering, modularity, assortativity, permutation test, Spearman |
 | productions.json | one production card per node: claim, formal status, minted state, status, sources |
 | similarity.json | cosine similarity between every pair of nodes, upper triangle, three decimals |
-| neighbors.json | the full set: 71 atlas problems, every row of `problems-sourced.tsv` and the Lean theorems, each with its 50 most similar nodes (index into `ids`, cosine to three decimals) and its nearest solved problem over the whole set; `solved` lists the solved ids and `solved_rule` states the variant rule |
+| neighbors.json | the full set: 71 atlas problems, every row of `problems-sourced.tsv` and the Lean theorems, each with its 50 most similar nodes (index into `ids`, cosine to three decimals), its nearest solved problem over the whole set, its posed year and the word count of its embedded text; `solved` lists the solved ids and `solved_rule` states the variant rule |
 | components-full*.json, components-full*.csv, 10-components-full*.png | the components of the full set, with and without the Lean theorems; the plots label the 71 atlas problems and, after `--relabel`, the 40 outside problems with the largest growth |
 | components*.json, components*.csv, 10-components*.png | each node's coordinates on the first five principal components of the embeddings, the share of variance each explains, and the tokens that load each end of each component; a labelled scatter of the first two. `components-problems` repeats this on the 71 problems alone, because the first component of the full set mainly separates Lean theorems from problems |
 
@@ -38,7 +38,7 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Four text variants exist (`atlas.
 
 ## Full Set
 
-`atlas.py` ends with the full set: the 71 atlas problems, the 4,596 rows of `problems-sourced.tsv` (top-level rows and variants, with `form` and `variant_of` kept) and the Lean theorems as a separate kind that the frontier leaves off by default. The embedding text is the statement when present, else the problem record text, else name plus keywords; the branch word is never in the text. Embeddings are cached under `~/.cache/bucket-atlas` (`ATLAS_CACHE` overrides) keyed by model revision and text hash, so a rerun with no new text encodes nothing. Angle comes from the first two principal components of the problem embeddings alone; Lean theorems are projected on the same axes.
+`atlas.py` ends with the full set: the 71 atlas problems, the 5,009 rows of `problems-sourced.tsv` (top-level rows and variants, with `form` and `variant_of` kept) and the Lean theorems as a separate kind that the frontier leaves off by default. The embedding text is the statement when present, else the problem record text, else name plus keywords; the branch word is never in the text. Embeddings are cached under `~/.cache/bucket-atlas` (`ATLAS_CACHE` overrides) keyed by model revision and text hash, so a rerun with no new text encodes nothing. Angle comes from the first two principal components of the problem embeddings alone; Lean theorems are projected on the same axes.
 
 Solved rule: a top-level row is solved when its status is solved. A variant is solved only when its own status and its parent's status are both solved; a proved special case of an open problem is `partial` and stays open, so a problem cannot be pulled inside by its own fragments. Growth pulls are bounded by the 50 stored neighbours.
 
@@ -49,7 +49,7 @@ bun run src/cli.tsx atlas frontier --svg out/frontier.svg --json > out/frontier.
 cd ../../tools/solvability-atlas && python3 atlas.py out --relabel out/frontier.json   # components plots with the top 40 outside
 ```
 
-Frontier at the full scale, 2026-10-05: 4,667 rows (Lean off), 1,499 solved, 3,317 inside, 1,350 outside (994 beyond, 356 unsampled: open problems in a branch with fewer than 10 solved entries), threshold 0.803 `[empirical: output/solvability-frontier/full/frontier.json, bkt atlas frontier --json]`.
+Frontier at the full scale, 2026-10-06: 5,080 rows (Lean off), 1,621 solved, 3,846 inside, 1,234 outside (1,131 beyond, 103 unsampled: open problems in a branch with fewer than 10 solved entries), threshold 0.781 `[empirical: output/solvability-frontier/full/frontier.json, bkt atlas frontier --json]`.
 
 The frontier circle sits at reach 0.795, the 10th percentile of each solved problem's highest similarity to another solved problem, over the 156 productions in `solvability-atlas-data.json` (99 solved) `[empirical: src/lib/research-os/solvability-similarity-data.json, 2026-10-05, bkt atlas frontier --json]`. The similarity file covers the 218 nodes the tool builds today; the frontier reads the 156 the committed atlas data holds. Edit `problems.tsv` or `descriptions.tsv`, rerun, and the page follows.
 
