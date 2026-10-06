@@ -175,3 +175,83 @@ def test_named_list_status_and_gloss():
     assert status_of("{{partial|some progress}}", "–") == "partial"
     assert status_of("{{partial|some progress}}", "1940, 1963?") == "partial"
     assert gloss("Hilbert's 3rd problem", "(a) Given any two [[polyhedra]] of equal volume, is it always possible.") == "Hilbert's 3rd problem: Given any two polyhedra of equal volume, is it always possible"
+
+
+def test_solved_discovery_rows_carry_year_source_and_status():
+    import solved_discoveries
+
+    data = [r for r in rows() if r["id"].startswith("sd-")]
+    assert len(data) >= 80
+    for r in data:
+        assert r["status"] == "solved" and r["form"] in {"question", "problem"}, r["id"]
+        assert re.fullmatch(r"\d{4}", r["resolved"]), r["id"]
+        assert r["source"].startswith("https://") and r["licence"] in solved_discoveries.LICENCES, r["id"]
+        assert r["statement"] and r["status_source"], r["id"]
+        assert solved_discoveries.problem_shaped(r["statement"]), r["id"]
+        assert "\u2013" not in r["statement"] and "\u2014" not in r["statement"], r["id"]
+    curated = solved_discoveries.curated_rows()
+    assert not [(c["line"], solved_discoveries.check(c)) for c in curated if solved_discoveries.check(c)]
+    assert {c["resolved_kind"] for c in curated} == {"posed", "discovery"}
+    posed = {"sd-" + common.slug(c["name"]) for c in curated if c["resolved_kind"] == "posed"}
+    assert all(r["id"].rsplit("-", 1)[0] in posed or r["id"] in posed for r in data)
+    assert all(c["posed_evidence"] for c in curated if c["resolved_kind"] == "posed")
+    assert all(not c["posed_evidence"] for c in curated if c["resolved_kind"] == "discovery")
+
+
+def test_solved_statements_sit_in_the_open_rows_length_band():
+    import statistics
+    import solved_discoveries
+
+    data = rows()
+    for branch in solved_discoveries.TARGET_BRANCHES:
+        open_lengths = [len(r["statement"].split()) for r in data if r["branch"] == branch and r["status"] == "open"]
+        solved_lengths = [len(r["statement"].split()) for r in data if r["branch"] == branch and r["id"].startswith("sd-")]
+        assert solved_lengths, branch
+        assert all(solved_discoveries.MIN_WORDS <= n <= solved_discoveries.MAX_WORDS for n in solved_lengths), branch
+        low, high = statistics.quantiles(open_lengths, n=4)[0], statistics.quantiles(open_lengths, n=4)[2]
+        median = statistics.median(solved_lengths)
+        assert min(low, solved_discoveries.MIN_WORDS) <= median <= max(high, solved_discoveries.MAX_WORDS), (branch, median, low, high)
+
+
+def test_resolved_year_is_never_the_prize_year():
+    import solved_discoveries
+
+    for c in solved_discoveries.curated_rows():
+        prize = solved_discoveries.prize_year(c["source"])
+        if prize:
+            assert int(c["resolved"]) < int(prize), (c["line"], c["resolved"], prize)
+    assert solved_discoveries.prize_year("https://www.nobelprize.org/prizes/medicine/1963/summary/") == "1963"
+    assert solved_discoveries.prize_year("https://www.kavliprize.org/prizes/neuroscience/2014") == "2014"
+    assert solved_discoveries.prize_year("https://en.wikipedia.org/wiki/Nobel_Prize") == ""
+
+
+def test_prize_quotes_hold_at_most_twelve_words():
+    import solved_discoveries
+
+    for c in solved_discoveries.curated_rows():
+        for cell in (c["status_source"], c["posed_evidence"]):
+            for quote in re.findall(r'"([^"]+)"', cell):
+                assert len(quote.split()) <= solved_discoveries.QUOTE_WORDS, (c["line"], quote)
+
+
+def test_no_solved_statement_duplicates_another_row():
+    import solved_discoveries
+
+    data = rows()
+    solved = [r for r in data if r["id"].startswith("sd-")]
+    others = [r for r in data if not r["id"].startswith("sd-")]
+    assert solved_discoveries.similar_pairs(solved, solved + others) == []
+    assert solved_discoveries.similar("Does the neutrino have mass?", "Does the neutrino have a mass?")
+    assert not solved_discoveries.similar("Does the neutrino have mass?", "Is the proton stable?")
+
+
+POSED_FLOOR = {"physics": 15, "chemistry": 10, "biophysics": 13, "cosmology": 16, "mind": 1, "information": 1, "applied": 18}
+
+
+def test_each_science_branch_states_its_solved_count():
+    import solved_discoveries
+
+    counts = solved_discoveries.solved_counts(ATLAS / "problems-sourced.tsv")
+    short = {branch: solved_discoveries.TARGET - n for branch, n in counts.items() if n < solved_discoveries.TARGET}
+    for branch, floor in POSED_FLOOR.items():
+        assert counts[branch] >= floor, (branch, counts[branch], f"shortfall below {solved_discoveries.TARGET}: {short}")

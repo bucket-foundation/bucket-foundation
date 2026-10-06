@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import formal_conjectures
 import named_lists
+import solved_discoveries
 import wikipedia_lists
 from common import OUTPUT, ascii_fold, dedupe, existing_titles, write
 
@@ -57,14 +58,14 @@ def merge_erdos(rows):
 
 
 def main():
-    rows = named_lists.rows() + wikipedia_lists.rows() + formal_conjectures.rows()
+    rows = named_lists.rows() + wikipedia_lists.rows() + formal_conjectures.rows() + solved_discoveries.rows()
     rows, merged = merge_erdos(rows)
     rows = dedupe(rows, existing_titles())
     write(rows)
     top = [r for r in rows if not r.variant_of]
     variants = [r for r in rows if r.variant_of]
     print(f"wrote {len(rows)} rows to {OUTPUT}; {merged} Erdős rows merged")
-    print("by source:", dict(Counter("both" if ";" in r.source else "wikipedia" if "wikipedia" in r.source else "formal-conjectures" for r in rows)))
+    print("by source:", dict(Counter("both" if ";" in r.source else "solved-discoveries" if r.id.startswith("sd-") else "wikipedia" if "wikipedia" in r.source else "formal-conjectures" for r in rows)))
     print("by branch:", dict(Counter(r.branch for r in rows)))
     print("by form:", dict(Counter(r.form for r in rows)))
     print("top-level status:", dict(Counter(r.status for r in top)), "variants:", dict(Counter(r.status for r in variants)))

@@ -56,6 +56,29 @@ Where open and solved problems can be sourced, with count, status coverage, lice
 | IRDS semiconductor roadmap | https://irds.ieee.org/editions | editions 2016 to 2026, each with chapters of "difficult challenges" | no | IEEE copyright | PDF | metadata only |
 | Battery and aviation roadmaps | Battery 2030+, ICAO, ATI | unverified | no | varies | PDF | metadata only |
 
+## Solved problems outside mathematics
+
+Second ingest, 2026-10-05, revised after critic round 1. Curated rows in `sources/solved/<branch>.tsv` (786 rows), loaded by `sources/solved_discoveries.py`. Each row carries `resolved_kind`:
+
+- `posed`: the source page shows the question existed before the answer, as a named conjecture or hypothesis, a prediction later confirmed, a prize problem, a dispute between schools, a stated posed year, or a long-sought goal. `posed_evidence` quotes the phrase from the page, at most 12 words. The statement is rewritten as the question stood before resolution, in the terms of its time, 15 to 40 words, so it sits in the length band of the open rows.
+- `discovery`: the answer arrived without a prior posed question (a new moon, an unpredicted particle, a compound or organism found, a first device). These rows stay in the curated files for later and never enter `problems-sourced.tsv`.
+
+Only `posed` rows reach `problems-sourced.tsv` (ids `sd-<slug>`) and count as solved in the frontier. `resolved` is the discovery or proof year the page states, never a prize year; rows on prize pages whose summary gave no earlier year were dropped (23 Nobel medicine rows, Nobel economics 2002, Kavli 2008 and 2016). `--verify` fetched the 159 source pages and confirmed year plus anchor term on each: 786 rows, 0 failures. `--dupes` compares statements at 0.85 difflib ratio within the curated rows and against open rows and prints nothing; the fast Fourier transform open row (the n log n lower bound) stays open and the 1965 algorithm row is a discovery. 88 posed rows were appended (one information row deduped by title).
+
+| Branch | Posed, in frontier | Discovery, held back | Shortfall below 100 posed | Posed median words | Open median words |
+|---|---|---|---|---|---|
+| physics | 15 (35 solved with the earlier Wikipedia rows) | 95 | 65 | 29 | 30 |
+| chemistry | 10 | 100 | 90 | 28 | 15 |
+| biophysics | 13 | 97 | 87 | 28 | 22 |
+| cosmology | 16 | 94 | 84 | 27.5 | 16 |
+| mind | 5 | 86 | 95 | 28 | 9 |
+| information | 11 | 116 | 89 | 28 | 11.5 |
+| applied | 18 | 109 | 82 | 25.5 | 85 |
+
+Sources with rows: physics (particle discoveries, quantum mechanics, thermodynamics, atomic and subatomic, electromagnetism and optics, gravitational physics timelines), chemistry (Timeline of chemistry, chemical element discoveries, biology and organic chemistry, materials, hydrogen), biophysics (biology and organic chemistry, biotechnology, vaccines, immunology, antibiotics timelines), cosmology (Solar System, galaxies, cosmological theories, black holes, supernovae, moons timelines), mind (84 Wikipedia topic pages, 7 Kavli neuroscience pages), information (algorithms, information theory, AI, cryptography timelines, Gödel Prize, 14 topic pages), applied (medicine, vaccines, antibiotics, transport, materials, cryogenics, hydrogen timelines, 14 economics topic pages, XPRIZE, Marine chronometer, Longitude rewards, Human Genome Project, Sound barrier). Licences: 779 rows CC BY-SA 4.0, 7 rows Kavli Foundation with the citation quoted briefly.
+
+Shortfall: every one of the seven branches is below 100 posed solved rows. The Wikipedia timelines record discoveries and seldom record the question that preceded them, so the posed count depends on pages that state a prediction or a prize. Closing the gap needs sources that pose questions before answering them: histories of named conjectures per field, prize problem statements, and the "solved" sections of the unsolved lists, which the next pass should mine page by page.
+
 ## Ingest rules
 
 - Rows live in `problems-sourced.tsv` with the `problems.tsv` columns plus `form`, `variant_of`, `status`, `source`, `licence`, `statement`, `statement_source` and `status_source`. `sources/build.py` rebuilds it from `sources/formal_conjectures.py`, `sources/wikipedia_lists.py` and `sources/named_lists.py`, merges Erdős aliases, dedupes by normalised title against `problems.tsv` and within the file, and `tests/test_sourced.py` checks the file.
