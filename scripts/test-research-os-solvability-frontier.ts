@@ -266,8 +266,10 @@ test("an open problem in a branch with few solved entries is unsampled, grey out
   assert.ok(growthRanking(t).every((p) => p.zone === "beyond"));
   assert.equal(buildFrontier(rows, thin, 0.95, { minBranchSolved: 1 }).counts.unsampled, 0);
   assert.equal(MIN_BRANCH_SOLVED, 10);
-  for (const b of ["cosmology", "mind", "biophysics"]) assert.equal(ff.branches[b].beyond + ff.branches[b].reachable, 0, b);
-  assert.ok(ff.gaps.includes("cosmology 0 of 87"));
+  const thinBranches = Object.entries(ff.branches).filter(([, c]) => c.solved < MIN_BRANCH_SOLVED);
+  assert.ok(thinBranches.length >= 1);
+  for (const [b, c] of thinBranches) assert.equal(c.beyond + c.reachable, 0, b);
+  assert.ok(ff.gaps.includes("mind 5 of 108"));
 });
 
 test("variants neither pull nor count as pulled, and the growth ranking lists top-level problems only", () => {

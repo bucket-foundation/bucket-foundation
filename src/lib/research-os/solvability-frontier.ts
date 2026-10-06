@@ -19,6 +19,8 @@ export interface NeighborNode {
   status: string;
   solved: boolean;
   resolved: number | null;
+  posed?: number | null;
+  words?: number;
   theta: number;
   source: string;
   licence: string;
