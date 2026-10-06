@@ -23,6 +23,7 @@ const SUITES = {
       "scripts/test-download-demo.ts",
       "scripts/test-download-release.ts",
       "scripts/test-site-chrome.ts",
+      "scripts/test-site-zoom-pane.ts",
       "scripts/test-sitemap-routes.ts",
       "scripts/test-canon-branch-status.ts",
       "scripts/test-download-install.ts",
@@ -46,7 +47,7 @@ const SUITES = {
       "scripts/test-tutor-provider.ts",
       "scripts/test-llm-contract.ts",
       "scripts/test-mcp-route.ts",
-      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler}.ts",
+      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language}.ts",
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
       "scripts/test-whats-new.mjs",
@@ -78,7 +79,7 @@ const SUITES = {
       "scripts/test-research-tools-routes.ts",
     ],
     exclude: [
-      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler}.ts",
+      "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language}.ts",
       "scripts/test-research-os-*-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts",
     ],
     commands: [

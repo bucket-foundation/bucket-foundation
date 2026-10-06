@@ -1,0 +1,105 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "navier",
+ "title": "Navier-Stokes existence and smoothness",
+ "statement": {
+  "text": "The question of whether the Navier–Stokes equations always have smooth solutions in three-dimensional Euclidean space, given some initial conditions and possibly an external force, has been a longstanding unsolved problem in mathematics since the early 20th century. The equations are a system of partial differential equations that describe the motion of a fluid in space. Although computational solutions to the Navier–Stokes equations are used in a large number of practical applications, there is no complete analytical understanding of the solutions. In particular, solutions of the Navier–Stokes equations often include turbulence, which remains one of the greatest unsolved problems in physics, despite its immense importance in science and engineering.",
+  "source": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_existence_and_smoothness",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Navier–Stokes existence and smoothness",
+   "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_existence_and_smoothness"
+  }
+ },
+ "aliases": [
+  "Navier–Stokes existence and smoothness"
+ ],
+ "branch": "physics",
+ "level": 5,
+ "industries": [
+  "aerospace",
+  "energy",
+  "climate"
+ ],
+ "posed": 1934,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1934,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "uncited": 12,
+  "duplicate": 13
+ },
+ "activity": {
+  "openalex_by_year": {
+   "2025": 5,
+   "2026": 40
+  },
+  "openalex_total": 45,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Navier-Stokes+existence+smoothness%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22Navier-Stokes+existence+smoothness%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "turbulence",
+   "why": "shared markets: aerospace, climate, energy; same branch"
+  },
+  {
+   "id": "climate",
+   "why": "shared markets: climate, energy; same branch"
+  },
+  {
+   "id": "fusion",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "hubbard",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "roomtemp",
+   "why": "shared markets: energy; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_existence_and_smoothness",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Navier-Stokes+existence+smoothness%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Navier-Stokes+existence+smoothness%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22Navier-Stokes+existence+smoothness%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 45 works, 0 kept; refine the query phrase in sources.tsv"
+ }
+}

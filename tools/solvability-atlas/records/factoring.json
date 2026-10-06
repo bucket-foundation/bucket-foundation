@@ -1,0 +1,106 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "factoring",
+ "title": "Integer factoring complexity",
+ "statement": {
+  "text": "In mathematics, integer factorization is the decomposition of a positive integer into a product of integers. Every positive integer greater than 1 is either the product of two or more integer factors greater than 1, in which case it is a composite number, or it is not, in which case it is a prime number. For example, 15 is a composite number because 15 = 3 · 5, but 7 is a prime number because it cannot be decomposed in this way. If one of the factors is composite, it can in turn be written as a product of smaller factors, for example 60 = 3 · 20 = 3 · (5 · 4). Continuing this process until every factor is prime is called prime factorization; the result is always unique up to the order of the factors by the prime factorization theorem.",
+  "source": "https://en.wikipedia.org/wiki/Integer_factorization",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Integer factorization",
+   "url": "https://en.wikipedia.org/wiki/Integer_factorization"
+  }
+ },
+ "aliases": [
+  "Integer factorization",
+  "integer factorization",
+  "prime factorization"
+ ],
+ "branch": "information",
+ "level": 4,
+ "industries": [
+  "cryptography",
+  "finance"
+ ],
+ "posed": 1977,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1977,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 5,
+ "key_works_dropped": {
+  "uncited": 3,
+  "duplicate": 2
+ },
+ "activity": {
+  "openalex_by_year": {
+   "2021": 1,
+   "2026": 4
+  },
+  "openalex_total": 5,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22integer+factorization+complexity%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22integer+factorization+complexity%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "ecc",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "owf",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "zkp",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "mechdesign",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "nash",
+   "why": "shared markets: finance; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Integer_factorization",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22integer+factorization+complexity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22integer+factorization+complexity%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22integer+factorization+complexity%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 5 works, 0 kept; refine the query phrase in sources.tsv"
+ }
+}

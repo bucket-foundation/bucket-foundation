@@ -1,0 +1,117 @@
+% bucket.sty
+%
+% Shared macros for Bucket Foundation research papers. Load this after
+% biblatex and hyperref in main.tex (see papers/template/main.tex for the
+% canonical load order and papers/PAPER-STANDARDS.md for the rules this
+% package exists to enforce).
+%
+% Provides:
+%   - amsthm environments: definition, lemma, theorem, corollary,
+%     proposition, remark (all numbered together per section)
+%   - \term{key}{text}      typeset a term, hyperlinked to its glossary entry
+%   - \glossentry{key}{term}{url}{definition}   declare one glossary entry
+%   - \printglossaryentry{key}                  render one entry in the
+%                                                appendix Glossary section
+%   - cleveref, loaded if present; a plain-\ref fallback (\cref = \Cref =
+%     \ref) if texlive-cleveref is not installed, so the template compiles
+%     either way
+%   - bucketblue / bucketgray colors for links and glossary URLs
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bucket}[2026/09/09 v1.0 Bucket Foundation paper macros]
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{amsthm}
+\RequirePackage{xcolor}
+\RequirePackage{booktabs}
+\RequirePackage{graphicx}
+\RequirePackage{listings}
+\RequirePackage{tikz}
+
+% ---------------------------------------------------------------- colors --
+\definecolor{bucketblue}{RGB}{20,60,120}
+\definecolor{bucketgray}{RGB}{95,95,95}
+
+% ------------------------------------------------------- cross-references --
+% cleveref must load after hyperref, so main.tex loads hyperref before
+% \usepackage{bucket}. If texlive-cleveref is not on the system this falls
+% back to plain \ref for \cref/\Cref so the paper still compiles; running
+% `dnf install texlive-cleveref` upgrades every paper to real reference-type
+% detection with no source change.
+\IfFileExists{cleveref.sty}{%
+  \RequirePackage[capitalise,noabbrev]{cleveref}%
+}{%
+  \PackageWarningNoLine{bucket}{cleveref.sty not found on this system --
+    falling back to plain \string\ref for \string\cref/\string\Cref. Install
+    texlive-cleveref (dnf install texlive-cleveref) for real
+    cross-reference-type detection}%
+  \providecommand{\cref}[1]{\ref{##1}}%
+  \providecommand{\Cref}[1]{\ref{##1}}%
+  \providecommand{\crefrange}[2]{\ref{##1}--\ref{##2}}%
+  \providecommand{\Crefrange}[2]{\ref{##1}--\ref{##2}}%
+}
+
+% -------------------------------------------------------- theorem bodies --
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+% \begin{proof}...\end{proof} comes from amsthm directly.
+
+% ------------------------------------------------------------- glossary --
+% Hand-rolled: no dependency on texlive-glossaries. \glossentry declares
+% one entry (call these in the preamble, or anywhere before
+% \printglossaryentry runs); \term links prose to it from anywhere in the
+% document, in either order, because \hyperlink/\hypertarget resolve
+% through the PDF's own named destinations, independent of LaTeX's pass
+% order.
+\newcommand{\glossentry}[4]{%
+  % #1 key  #2 display term  #3 canon URL  #4 definition text
+  \expandafter\gdef\csname bkt@gls@#1@term\endcsname{#2}%
+  \expandafter\gdef\csname bkt@gls@#1@url\endcsname{#3}%
+  \expandafter\gdef\csname bkt@gls@#1@def\endcsname{#4}%
+}
+\newcommand{\term}[2]{\hyperlink{gls:#1}{#2}}
+\newcommand{\printglossaryentry}[1]{%
+  \hypertarget{gls:#1}{}%
+  \noindent\textbf{\csname bkt@gls@#1@term\endcsname}\hfill
+    {\small\color{bucketgray}\url{\csname bkt@gls@#1@url\endcsname}}\\
+  \csname bkt@gls@#1@def\endcsname
+  \par\bigskip
+}
+
+% -------------------------------------------------------- Lean listings --
+% A plain lstlisting style for Lean 4 source in the appendix. Deliberately
+% not minted: minted needs a shell-escape + Pygments round trip that this
+% toolchain does not assume is available, and Lean's syntax is close enough
+% to a generic ML-family language that keyword highlighting earns its
+% keep without it.
+\lstdefinelanguage{lean4}{
+  morekeywords={theorem,lemma,def,structure,inductive,class,instance,
+    variable,variables,namespace,end,import,open,section,where,by,do,
+    match,with,fun,let,have,show,from,suffices,calc,if,then,else,sorry,
+    axiom,example},
+  morecomment=[l]{--},
+  morecomment=[s]{/-}{-/},
+  morestring=[b]",
+}
+\lstdefinestyle{bucketlean}{
+  language=lean4,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{bucketblue}\bfseries,
+  commentstyle=\color{bucketgray}\itshape,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  framesep=4pt,
+  rulecolor=\color{gray!40},
+  xleftmargin=6pt, xrightmargin=6pt,
+  aboveskip=8pt, belowskip=8pt,
+}
+
+\endinput

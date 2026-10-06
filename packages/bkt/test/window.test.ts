@@ -22,6 +22,7 @@ import {
   type ProcessTable,
   type Spawner,
 } from "../src/window";
+import { LEAN_WINDOW_FLAGS, platformFor, WINDOW_DISK_CACHE_BYTES } from "../src/platform";
 
 let dir: string;
 beforeEach(() => {
@@ -56,9 +57,36 @@ describe("app record", () => {
   test("runtime dir sits under XDG_RUNTIME_DIR", () => {
     expect(runtimeDir({ XDG_RUNTIME_DIR: "/run/user/1000" })).toBe("/run/user/1000/bucket");
   });
+
+  test("runtime dir on Linux stays off the temp filesystem when XDG_RUNTIME_DIR is unset", () => {
+    expect(runtimeDir({ TMPDIR: "/tmp" }, "linux", "/home/u")).toBe("/home/u/.cache/bkt/run");
+    expect(runtimeDir({ XDG_CACHE_HOME: "/c", TMPDIR: "/tmp" }, "linux", "/home/u")).toBe("/c/bkt/run");
+    expect(runtimeDir({ TMPDIR: "/t" }, "darwin", "/Users/u")).toStartWith("/t/bucket-");
+  });
 });
 
 describe("window command", () => {
+  test.each([
+    ["--disable-component-update"],
+    ["--disable-background-networking"],
+    ["--disable-sync"],
+    [`--disk-cache-size=${WINDOW_DISK_CACHE_BYTES}`],
+    [`--media-cache-size=${WINDOW_DISK_CACHE_BYTES / 4}`],
+    ["--disable-extensions"],
+    ["--no-first-run"],
+    ["--no-default-browser-check"],
+  ])("every window launch carries %s exactly once", (flag) => {
+    expect(LEAN_WINDOW_FLAGS.length).toBe(5);
+    for (const os of ["linux", "darwin", "win32"] as const) {
+      const cmd = platformFor(os, { which: (b) => `/bin/${b}`, exists: () => true, env: { ProgramFiles: "C:\\P" }, home: "/h" }).windowCommand("http://127.0.0.1:5/", "/p");
+      expect(cmd.filter((a) => a === flag).length).toBe(1);
+    }
+  });
+
+  test("the window disk cache stays at or under 64 MB", () => {
+    expect(WINDOW_DISK_CACHE_BYTES).toBeLessThanOrEqual(64 * 1024 * 1024);
+  });
+
   test("opens a dedicated app profile with extensions off", () => {
     const cmd = windowCommand("http://127.0.0.1:5/", "/p", (b) => (b === "google-chrome" ? "/usr/bin/google-chrome" : null));
     expect(cmd).toEqual([
@@ -68,6 +96,11 @@ describe("window command", () => {
       "--disable-extensions",
       "--no-first-run",
       "--no-default-browser-check",
+      "--disable-component-update",
+      "--disable-background-networking",
+      "--disable-sync",
+      "--disk-cache-size=67108864",
+      "--media-cache-size=16777216",
       "--window-size=1280,860",
     ]);
   });

@@ -2,7 +2,7 @@ import { MAKERS, hashString, seededRng, type Rng } from "./generate";
 import { cardKey, compoundFactId, factId, factIdOfSource, makeFact, type Fact } from "./fact";
 import { checkLimits, parityOk, shortTitle } from "./limits";
 import { FORM_LIMIT_SEC, MIN_ORDER_FACTS, type Depth, type Form } from "./space";
-import type { PrFact, QuizQuestion, QuizType, WorkSources } from "./types";
+import type { PrFact, QuizQuestion, WorkQuizType, WorkSources } from "./types";
 
 export interface SampledQuestion extends QuizQuestion {
   form: Form;
@@ -14,6 +14,7 @@ export interface SampledQuestion extends QuizQuestion {
 export type FormMaker = (src: WorkSources, rng: Rng, depth: Depth) => SampledQuestion | null;
 
 export const ESTIMATE_LOG10: Readonly<Record<Depth, number>> = { 1: 0.3, 2: 0.2, 3: 0.1 };
+export const estimateFactor = (depth: Depth): number => Math.floor(10 ** ESTIMATE_LOG10[depth] * 100) / 100;
 export const ORDER_CHOICES: Readonly<Record<Depth, number>> = { 1: 2, 2: 3, 3: 4 };
 export const ORDER_TITLE_TOKENS = 3;
 export const ORDER_LABELS = ["A", "B", "C"] as const;
@@ -22,17 +23,17 @@ export function sampledId(form: Form, factIds: readonly string[], depth: Depth):
   return `${form}-${hashString(`${factIds.join(",")}|${form}|${depth}`).toString(36)}`;
 }
 
-function stamp(q: QuizQuestion, form: Form, depth: Depth, factIds: string[]): SampledQuestion | null {
+export function stamp(q: QuizQuestion, form: Form, depth: Depth, factIds: string[]): SampledQuestion | null {
   if (factIds.length === 0) return null;
   const out: SampledQuestion = { ...q, id: sampledId(form, factIds, depth), form, depth, factIds, cardKey: cardKey(compoundFactId(factIds), form), limitSec: FORM_LIMIT_SEC[form] };
   return checkLimits(out).length === 0 ? out : null;
 }
 
-function pick<T>(rng: Rng, xs: readonly T[]): T {
+export function pick<T>(rng: Rng, xs: readonly T[]): T {
   return xs[Math.floor(rng() * xs.length)];
 }
 
-function shuffle<T>(rng: Rng, xs: readonly T[]): T[] {
+export function shuffle<T>(rng: Rng, xs: readonly T[]): T[] {
   const out = [...xs];
   for (let i = out.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
@@ -41,7 +42,7 @@ function shuffle<T>(rng: Rng, xs: readonly T[]): T[] {
   return out;
 }
 
-function wrap(type: QuizType, form: Form): FormMaker {
+function wrap(type: WorkQuizType, form: Form): FormMaker {
   return (src, rng, depth) => {
     const q = MAKERS[type](src, rng);
     return q ? stamp(q, form, depth, q.sources.map(factIdOfSource)) : null;
@@ -71,13 +72,12 @@ const estimate: FormMaker = (src, rng, depth) => {
   const pool = counts(src);
   if (pool.length === 0) return null;
   const c = pick(rng, pool);
-  const factor = Math.round(10 ** ESTIMATE_LOG10[depth] * 100 - 100);
   return stamp(
     {
       id: "",
       type: "estimate",
       prompt: c.prompt,
-      lines: [`Within ${factor} percent counts.`],
+      lines: [`A factor of ${estimateFactor(depth)} either way counts.`],
       choices: null,
       answer: String(c.count),
       tolerance: 0,

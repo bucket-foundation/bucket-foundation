@@ -91,6 +91,11 @@ describe("macos", () => {
       "--disable-extensions",
       "--no-first-run",
       "--no-default-browser-check",
+      "--disable-component-update",
+      "--disable-background-networking",
+      "--disable-sync",
+      "--disk-cache-size=67108864",
+      "--media-cache-size=16777216",
       "--window-size=1280,860",
     ]);
   });

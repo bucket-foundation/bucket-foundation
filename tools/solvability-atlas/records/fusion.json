@@ -1,0 +1,589 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "fusion",
+ "title": "Plasma confinement stability",
+ "statement": {
+  "text": "In plasma physics, plasma stability concerns the stability properties of a plasma in equilibrium and its behavior under small perturbations. The stability of the system determines if the perturbations will grow, oscillate, or be damped out. It is an important consideration in topics such as nuclear fusion and astrophysical plasma.",
+  "source": "https://en.wikipedia.org/wiki/Plasma_stability",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Plasma stability",
+   "url": "https://en.wikipedia.org/wiki/Plasma_stability"
+  }
+ },
+ "aliases": [
+  "Plasma stability",
+  "plasma stability"
+ ],
+ "branch": "physics",
+ "level": 4,
+ "industries": [
+  "energy",
+  "nuclear and high energy physics"
+ ],
+ "posed": 1950,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1950,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W4211151981",
+   "title": "Chapter 2: Plasma confinement and transport",
+   "year": 1999,
+   "cited_by_count": 1041,
+   "doi": "https://doi.org/10.1088/0029-5515/39/12/302",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2009776912",
+   "title": "MHD-Limits to Plasma Confinement",
+   "year": 1984,
+   "cited_by_count": 635,
+   "doi": "https://doi.org/10.1088/0741-3335/26/1a/319",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2114968528",
+   "title": "Plasma confinement in JET H mode plasmas with H, D, DT and T isotopes",
+   "year": 1999,
+   "cited_by_count": 356,
+   "doi": "https://doi.org/10.1088/0029-5515/39/3/301",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1995817278",
+   "title": "Theory of plasma confinement in non-axisymmetric magnetic fields",
+   "year": 2014,
+   "cited_by_count": 355,
+   "doi": "https://doi.org/10.1088/0034-4885/77/8/087001",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2022197318",
+   "title": "Scaling laws for plasma confinement",
+   "year": 1977,
+   "cited_by_count": 332,
+   "doi": "https://doi.org/10.1088/0029-5515/17/5/015",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2082938274",
+   "title": "A model realization of self-organized criticality for plasma confinement",
+   "year": 1996,
+   "cited_by_count": 215,
+   "doi": "https://doi.org/10.1063/1.871650",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2032266651",
+   "title": "Plasma confinement by localized cusps",
+   "year": 1976,
+   "cited_by_count": 221,
+   "doi": "https://doi.org/10.1063/1.861575",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1998430355",
+   "title": "Diffusion Driven Plasma Currents and Bootstrap Tokamak",
+   "year": 1971,
+   "cited_by_count": 328,
+   "doi": "https://doi.org/10.1038/physci229110a0",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1967483716",
+   "title": "Mean and Oscillating Plasma Flows and Turbulence Interactions across the L−H Confinement Transition",
+   "year": 2011,
+   "cited_by_count": 307,
+   "doi": "https://doi.org/10.1103/physrevlett.106.065001",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2022089171",
+   "title": "Bifurcation theory of poloidal rotation in tokamaks: A model for L-H transition",
+   "year": 1989,
+   "cited_by_count": 732,
+   "doi": "https://doi.org/10.1103/physrevlett.63.2369",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1992655022",
+   "title": "The Stellarator Concept",
+   "year": 1958,
+   "cited_by_count": 460,
+   "doi": "https://doi.org/10.1063/1.1705883",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2005354546",
+   "title": "Plasma equilibrium with rational magnetic surfaces",
+   "year": 1981,
+   "cited_by_count": 403,
+   "doi": "https://doi.org/10.1063/1.863297",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1992088569",
+   "title": "Physics of magnetically confined plasmas",
+   "year": 2005,
+   "cited_by_count": 373,
+   "doi": "https://doi.org/10.1103/revmodphys.76.1071",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2007862397",
+   "title": "The role of the electric field in confinement",
+   "year": 1996,
+   "cited_by_count": 329,
+   "doi": "https://doi.org/10.1088/0741-3335/38/1/001",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W573997810",
+   "title": "Microwave excited plasmas",
+   "year": 1992,
+   "cited_by_count": 279,
+   "doi": null,
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2094270942",
+   "title": "Bifurcation of poloidal rotation and suppression of turbulent fluctuations: A model for the L–H transition in tokamaks",
+   "year": 1990,
+   "cited_by_count": 272,
+   "doi": "https://doi.org/10.1063/1.859473",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2116666365",
+   "title": "Novel radio-frequency induction plasma processing techniques",
+   "year": 1993,
+   "cited_by_count": 243,
+   "doi": "https://doi.org/10.1116/1.578597",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2002148731",
+   "title": "Modifications in turbulence and edge electric fields at the L–H transition in the DIII-D tokamak",
+   "year": 1991,
+   "cited_by_count": 234,
+   "doi": "https://doi.org/10.1063/1.859597",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2064022524",
+   "title": "Nonlinear reduced Braginskii equations with ion thermal dynamics in toroidal plasma",
+   "year": 1997,
+   "cited_by_count": 233,
+   "doi": "https://doi.org/10.1063/1.872368",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2060261254",
+   "title": "Drift waves and transport",
+   "year": 1999,
+   "cited_by_count": 1241,
+   "doi": "https://doi.org/10.1103/revmodphys.71.735",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1975288372",
+   "title": "Heating and current drive by electron cyclotron waves",
+   "year": 2004,
+   "cited_by_count": 326,
+   "doi": "https://doi.org/10.1063/1.1690762",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "duplicate": 1,
+  "no keyword hit": 3
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1900": 1,
+   "1956": 1,
+   "1957": 1,
+   "1958": 4,
+   "1959": 3,
+   "1960": 5,
+   "1961": 10,
+   "1962": 5,
+   "1963": 14,
+   "1964": 9,
+   "1965": 8,
+   "1966": 9,
+   "1967": 15,
+   "1968": 16,
+   "1969": 24,
+   "1970": 33,
+   "1971": 32,
+   "1972": 29,
+   "1973": 49,
+   "1974": 40,
+   "1975": 43,
+   "1976": 45,
+   "1977": 49,
+   "1978": 37,
+   "1979": 42,
+   "1980": 39,
+   "1981": 57,
+   "1982": 32,
+   "1983": 37,
+   "1984": 39,
+   "1985": 47,
+   "1986": 41,
+   "1987": 41,
+   "1988": 29,
+   "1989": 41,
+   "1990": 51,
+   "1991": 33,
+   "1992": 41,
+   "1993": 45,
+   "1994": 46,
+   "1995": 66,
+   "1996": 46,
+   "1997": 63,
+   "1998": 57,
+   "1999": 86,
+   "2000": 64,
+   "2001": 81,
+   "2002": 110,
+   "2003": 113,
+   "2004": 72,
+   "2005": 94,
+   "2006": 90,
+   "2007": 83,
+   "2008": 81,
+   "2009": 75,
+   "2010": 95,
+   "2011": 105,
+   "2012": 79,
+   "2013": 84,
+   "2014": 89,
+   "2015": 91,
+   "2016": 85,
+   "2017": 107,
+   "2018": 106,
+   "2019": 94,
+   "2020": 92,
+   "2021": 96,
+   "2022": 79,
+   "2023": 131,
+   "2024": 126,
+   "2025": 226,
+   "2026": 575
+  },
+  "openalex_total": 4584,
+  "arxiv_total": 202,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22plasma+confinement%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5082779205",
+   "name": "G. D. Conway",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5088285915",
+   "name": "J. W. Connor",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5027083300",
+   "name": "John Bryan Taylor",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5033274216",
+   "name": "K. C. Shaing",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5084175689",
+   "name": "E.C. Crume",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5033583500",
+   "name": "Allen H. Boozer",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5019422799",
+   "name": "ITER Physics Expert Group on Confin Transport",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5027511542",
+   "name": "ITER Physics Expert Group on Confin Database",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5079113204",
+   "name": "ITER Physics Basis Editors",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5018269945",
+   "name": "Francis Troyon",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5110568607",
+   "name": "R. Gruber",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5087645220",
+   "name": "H. Saurenmann",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5048913913",
+   "name": "S. Semenzato",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5075643472",
+   "name": "Sauro Succi",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5107832108",
+   "name": "J.G. Cordey",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I20089843",
+   "name": "Princeton University",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1289243028",
+   "name": "Oak Ridge National Laboratory",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2799567181",
+   "name": "Princeton Plasma Physics Laboratory",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2800863004",
+   "name": "Culham Centre for Fusion Energy",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I161318765",
+   "name": "University of California, Los Angeles",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210139716",
+   "name": "Max Planck Institute for Plasma Physics",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2800620090",
+   "name": "Joint European Torus",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I922237871",
+   "name": "Netherlands Institute for Radio Astronomy",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210116617",
+   "name": "Max Planck Institute for Plasma Physics - Greifswald",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I36258959",
+   "name": "University of California San Diego",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I47367911",
+   "name": "United Kingdom Atomic Energy Authority",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I149899117",
+   "name": "Max Planck Society",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405253065",
+   "name": "Instituto de Plasmas e Fusão Nuclear",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I78577930",
+   "name": "Columbia University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210108322",
+   "name": "National Institute for Fusion Science",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "climate",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "hubbard",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "navier",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "roomtemp",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "turbulence",
+   "why": "shared markets: energy; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Plasma_stability",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22plasma+confinement%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "21 relevant works of 25 considered, 4584 works with the phrase"
+ }
+}

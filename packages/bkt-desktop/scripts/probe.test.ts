@@ -6,8 +6,10 @@ import { alive, appRecordPath, linuxStat, parentPid, probe, readPort, readRecord
 
 test("finds app.json where bkt writes it", () => {
   expect(appRecordPath({ XDG_RUNTIME_DIR: "/run/user/7" }, 7)).toBe(join("/run/user/7", "bucket", "app.json"));
-  expect(appRecordPath({}, undefined)).toBe(join(tmpdir(), "bucket-user", "bucket", "app.json"));
-  expect(appRecordPath({ TMPDIR: "/t" }, 7)).toBe(join("/t", "bucket-7", "bucket", "app.json"));
+  expect(appRecordPath({}, undefined, "darwin")).toBe(join(tmpdir(), "bucket-user", "bucket", "app.json"));
+  expect(appRecordPath({ TMPDIR: "/t" }, 7, "darwin")).toBe(join("/t", "bucket-7", "bucket", "app.json"));
+  expect(appRecordPath({ TMPDIR: "/t" }, 7, "linux", "/home/u")).toBe("/home/u/.cache/bkt/run/app.json");
+  expect(appRecordPath({ XDG_CACHE_HOME: "/c" }, 7, "linux", "/home/u")).toBe("/c/bkt/run/app.json");
 });
 
 test("reads the port or reports none", () => {

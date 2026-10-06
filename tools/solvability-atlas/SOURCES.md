@@ -1,0 +1,144 @@
+# Problem Sources
+
+Where open and solved problems can be sourced, with count, status coverage, licence and access per source. Counts and licences were checked by fetching each page on 2026-10-05; "unverified" marks the ones the fetch could not confirm. Verdicts: ingest (rows go into `problems-sourced.tsv`), metadata only (name, url, count kept here, rows deferred), skip.
+
+## Mathematics
+
+| Source | URL | Count | Status recorded | Licence | Access | Verdict |
+|---|---|---|---|---|---|---|
+| formal-conjectures (DeepMind) | https://github.com/google-deepmind/formal-conjectures | 3,598 statements in `_intake/solver-gap-engine/problem_map.jsonl` (2,196 solved, 1,403 open; 2,062 Erdős, 496 Wikipedia, 319 OEIS, 230 Green, 147 papers) | yes, plus Lean proof flag | Apache-2.0 | git, Lean, local jsonl | ingest |
+| Erdős Problems | https://www.erdosproblems.com | 1,221 problems | yes, FAQ says not fully current | none stated | HTML, no API found | metadata only; statements reach the atlas through formal-conjectures |
+| Open Problem Garden | http://www.openproblemgarden.org | about 613 (algebra 297, graph theory 228, number theory 49, topology 40, combinatorics 35) | open only, solved ones marked | GFDL | HTML | metadata only; names could be ingested as facts with attribution |
+| Wikipedia, unsolved problems in mathematics | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics | 644 bullets, 63 sections, "Problems solved since 2015" section | yes | CC BY-SA 4.0 | MediaWiki API | ingest facts, cite page |
+| Hilbert's problems | https://en.wikipedia.org/wiki/Hilbert%27s_problems | 23 plus the 24th, table with status and year | yes | CC BY-SA 4.0 | MediaWiki API | ingest |
+| Smale's problems | https://en.wikipedia.org/wiki/Smale%27s_problems | 18, table with status and year | yes | CC BY-SA 4.0 | MediaWiki API | ingest |
+| Millennium Prize Problems | https://www.claymath.org/millennium-problems/ | 7 (1 solved) | yes | Clay copyright; facts via Wikipedia page | HTML | ingest via Wikipedia |
+| Kourovka Notebook | https://arxiv.org/abs/1401.0300 | unverified (20th edition, over 1,000 group theory problems by reputation) | yes, solved ones annotated | arXiv non-exclusive distribution | PDF | metadata only |
+| MathOverflow `open-problems` tag | https://mathoverflow.net/questions/tagged/open-problems | 610 questions (Stack Exchange API) | no | CC BY-SA 4.0 | Stack Exchange API | metadata only; questions are not a curated list |
+| PolyMath wiki | https://michaelnielsen.org/polymath1/ | unverified (fetch returned an empty page; about 16 projects by reputation) | yes | unverified | HTML | metadata only |
+| Wikipedia, statistics | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_statistics | 11 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+
+## Sciences
+
+| Source | URL | Count | Status recorded | Licence | Access | Verdict |
+|---|---|---|---|---|---|---|
+| Wikipedia, physics | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics | 146 bullets, "Problems solved in the past 30 years" section | yes | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, astronomy | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_astronomy | 122 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, biology | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_biology | 105 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, neuroscience | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_neuroscience | 79 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, computer science | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science | 59 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, chemistry | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_chemistry | 46 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, economics | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_economics | 20 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, geoscience | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_geoscience | 17 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, information theory | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_information_theory | 12 bullets | no | CC BY-SA 4.0 | MediaWiki API | ingest facts |
+| Wikipedia, medicine | https://en.wikipedia.org/wiki/Unsolved_problems_in_medicine | 3 bullets | no | CC BY-SA 4.0 | MediaWiki API | skip, too thin |
+| Wikipedia, linguistics, materials, engineering | n/a | no such pages (API returns `missingtitle`) | n/a | n/a | n/a | skip |
+| ClinicalTrials.gov | https://clinicaltrials.gov/api/v2 | 605,819 studies | trial status only | US public domain | REST API v2 | skip for rows; a later pass can mine unmet-need language from conditions |
+| FDA unmet medical need designations | https://www.fda.gov | unverified (page moved, 404) | n/a | US public domain | HTML | skip until a stable list is found |
+| NIH-wide strategic plan | https://www.nih.gov/about-nih/nih-wide-strategic-plan | priorities, no problem count | no | US public domain | HTML, PDF | skip; the page lists funding priorities |
+| NSF focus areas | https://www.nsf.gov/focus-areas | priorities, no problem count | no | US public domain | HTML | skip; the page lists funding priorities |
+| PhysioNet challenges | https://physionet.org/challenge/ | unverified (annual since 2000; page lists by year) | yes, scored bar per challenge | ODC-BY per dataset, varies | HTML, data downloads | metadata only |
+| Papers with Code SOTA | https://paperswithcode.com/sota | unverified (page fetched, counts not parsed) | leaderboard, no solved bar | CC BY-SA | HTML, JSON API | skip; no defined solved bar |
+| ImageNet style benchmarks | https://www.image-net.org | one benchmark, bar set by papers | leaderboard | custom terms | download with registration | metadata only |
+
+## Industry and prizes
+
+| Source | URL | Count | Status recorded | Licence | Access | Verdict |
+|---|---|---|---|---|---|---|
+| DARPA challenges | https://www.darpa.mil/research/challenges | 4 listed (Triage, Lift, Surgical, D2 Sprint); historic grand-challenge page 404 | no | US public domain | HTML | metadata only |
+| XPRIZE | https://www.xprize.org/prizes | 6 (4 active, 2 awarded) | yes | all rights reserved | HTML | metadata only |
+| NAE grand challenges | https://www.engineeringchallenges.org | unverified (14 by reputation; host refused connection) | no | unverified | HTML | metadata only |
+| Longitude Prize | https://longitudeprize.org | 3 (AMR, Dementia, ALS) | yes | unverified | HTML | metadata only |
+| Kaggle competitions | https://www.kaggle.com/competitions | unverified (API needs a key, 401) | yes, scored | per-competition rules | REST API with key | skip |
+| DrivenData competitions | https://www.drivendata.org/competitions/ | 53 competition links on the index | yes, scored | per-competition terms | HTML | metadata only |
+| DOE Energy Earthshots | https://www.energy.gov/energy-earthshots | unverified (8 by reputation; page fetched, names not parsed) | targets with year | US public domain | HTML | metadata only |
+| IEA Net Zero Roadmap | https://www.iea.org/reports/net-zero-roadmap-a-global-pathway-to-keep-the-15-0c-goal-in-reach | unverified (403) | milestones | IEA terms, CC BY 4.0 for some data | HTML, PDF | skip |
+| IRDS semiconductor roadmap | https://irds.ieee.org/editions | editions 2016 to 2026, each with chapters of "difficult challenges" | no | IEEE copyright | PDF | metadata only |
+| Battery and aviation roadmaps | Battery 2030+, ICAO, ATI | unverified | no | varies | PDF | metadata only |
+
+## Solved problems outside mathematics
+
+Second ingest, 2026-10-05, revised after critic round 1. Curated rows in `sources/solved/<branch>.tsv` (786 rows), loaded by `sources/solved_discoveries.py`. Each row carries `resolved_kind`:
+
+- `posed`: the source page shows the question existed before the answer, as a named conjecture or hypothesis, a prediction later confirmed, a prize problem, a dispute between schools, a stated posed year, or a long-sought goal. `posed_evidence` quotes the phrase from the page, at most 12 words. The statement is rewritten as the question stood before resolution, in the terms of its time, 15 to 40 words, so it sits in the length band of the open rows.
+- `discovery`: the answer arrived without a prior posed question (a new moon, an unpredicted particle, a compound or organism found, a first device). These rows stay in the curated files for later and never enter `problems-sourced.tsv`.
+
+Only `posed` rows reach `problems-sourced.tsv` (ids `sd-<slug>`) and count as solved in the frontier. `resolved` is the discovery or proof year the page states, never a prize year; rows on prize pages whose summary gave no earlier year were dropped (23 Nobel medicine rows, Nobel economics 2002, Kavli 2008 and 2016). `--verify` fetched the 159 source pages and confirmed year plus anchor term on each: 786 rows, 0 failures. `--dupes` compares statements at 0.85 difflib ratio within the curated rows and against open rows and prints nothing; the fast Fourier transform open row (the n log n lower bound) stays open and the 1965 algorithm row is a discovery. 88 posed rows were appended (one information row deduped by title).
+
+| Branch | Posed, in frontier | Discovery, held back | Shortfall below 100 posed | Posed median words | Open median words |
+|---|---|---|---|---|---|
+| physics | 15 (35 solved with the earlier Wikipedia rows) | 95 | 65 | 29 | 30 |
+| chemistry | 10 | 100 | 90 | 28 | 15 |
+| biophysics | 13 | 97 | 87 | 28 | 22 |
+| cosmology | 16 | 94 | 84 | 27.5 | 16 |
+| mind | 5 | 86 | 95 | 28 | 9 |
+| information | 11 | 116 | 89 | 28 | 11.5 |
+| applied | 18 | 109 | 82 | 25.5 | 85 |
+
+Sources with rows: physics (particle discoveries, quantum mechanics, thermodynamics, atomic and subatomic, electromagnetism and optics, gravitational physics timelines), chemistry (Timeline of chemistry, chemical element discoveries, biology and organic chemistry, materials, hydrogen), biophysics (biology and organic chemistry, biotechnology, vaccines, immunology, antibiotics timelines), cosmology (Solar System, galaxies, cosmological theories, black holes, supernovae, moons timelines), mind (84 Wikipedia topic pages, 7 Kavli neuroscience pages), information (algorithms, information theory, AI, cryptography timelines, Gödel Prize, 14 topic pages), applied (medicine, vaccines, antibiotics, transport, materials, cryogenics, hydrogen timelines, 14 economics topic pages, XPRIZE, Marine chronometer, Longitude rewards, Human Genome Project, Sound barrier). Licences: 779 rows CC BY-SA 4.0, 7 rows Kavli Foundation with the citation quoted briefly.
+
+Shortfall: every one of the seven branches is below 100 posed solved rows. The Wikipedia timelines record discoveries and seldom record the question that preceded them, so the posed count depends on pages that state a prediction or a prize. Closing the gap needs sources that pose questions before answering them: histories of named conjectures per field, prize problem statements, and the "solved" sections of the unsolved lists, which the next pass should mine page by page.
+
+## Dated question lists
+
+Third ingest, 2026-10-05, the backtest set for the frontier. Every row comes from a list published with a date, so the posed year is known by construction and the 2026 status can be scored against what the atlas predicts from data before that year. Curated rows live in `sources/dated/<list>.tsv`, loaded by `sources/dated_lists.py` (ids `dl-<list>-<slug>`), which also fills posed years on existing rows and writes the `posed_evidence` column. `python3 sources/dated_lists.py` checks the files and prints duplicates; `--apply` appends to `problems-sourced.tsv` and is idempotent.
+
+| List | Posed | Rows | Open | Partial | Solved | Licence | Read from |
+|---|---|---|---|---|---|---|---|
+| Science, 125 questions: what don't we know? (25 big questions plus 100 further questions) | 2005 | 117 | 48 | 65 | 4 | AAAS copyright; headline under 15 words cited, statement paraphrased | Wayback copy of the Science 309(5731) article, in `source`; the science.org url in `statement_source` |
+| Science and Shanghai Jiao Tong University, 125 questions: exploration and discovery | 2021 | 122 | 80 | 42 | 0 | AAAS copyright; headline under 15 words cited, statement paraphrased | Wayback copy of the booklet PDF, in `source`; the science.org url in `statement_source` |
+| DARPA prize competitions, Grand Challenge 2004 to AI Cyber Challenge 2025 | 2002 to 2023 | 16 | 3 | 0 | 13 | CC BY-SA 4.0 | Wikipedia, DARPA Prize Competitions and the per-challenge pages |
+| XPRIZE competitions 1996 to 2025 plus the Longitude Prize 2014 | 1996 to 2021 | 21 | 3 | 1 | 17 | CC BY-SA 4.0 | Wikipedia, Xprize Foundation and the per-prize pages |
+| 23 Problems in Systems Neuroscience, van Hemmen and Sejnowski | 2006 | 23 | 15 | 8 | 0 | Library of Congress record, chapter titles cited, statement paraphrased | Library of Congress table of contents |
+| Holy Grails in Chemistry, Accounts of Chemical Research 50(3) | 2017 | 26 | 20 | 6 | 0 | ACS copyright; title cited, statement paraphrased | PubMed titles of the issue |
+| Total | | 325 | 169 | 122 | 34 | | |
+
+Coverage after this ingest: 517 of 5,009 rows carry a posed year, 192 of the 4,684 rows outside the dated lists (157 before the fills). The dated rows cluster on two years, 117 on 2005 and 124 on 2021, 241 of 325, with the other 84 spread over 1996 to 2023. Their statements average 19 words against 34 for the rest of the file. The backtest must stratify by posed year and by statement length, or the 2005 and 2021 blocks and the short paraphrases will drive the result.
+
+Rules for these rows:
+
+- The `name` is the question headline or chapter title as published, kept under 15 words for the copyrighted lists. The `statement` is a 15 to 40 word paraphrase written here, never the body text; `statement_source` points at the page the headline was read from. The `licence` column says so.
+- `status` is a 2026 check per row with `status_source` naming the page and the fact: `solved` carries a `resolved` year (never a prize year when the page gives the discovery year), `partial` names the advance and what stays open, `open` cites the matching Wikipedia unsolved list.
+- Dedupe ran by normalised title and by statement similarity at 0.85. Three rows matched existing rows and were not added; the existing row took the posed year instead (`wp-why-do-we-dream` and `wp-how-do-general-anesthetics-work` got 2005, `sd-water-from-air-at-low-cost` already carried 2016). The six Clay questions in the 2005 list and the Riemann and Navier-Stokes questions in the 2021 list are the Millennium rows of `problems.tsv` and were not added. The 2021 question on interbreeding with archaic humans was answered in 2010, before the list, and was left out as a posed-after-resolved row. Twelve 2021 questions repeat a 2005 question in substance (universe contents, life elsewhere, species count, genome size, dinosaur size, sleep, autism, consciousness, superconductivity, gravity, cosmic rays, migration) and stay as separate dated observations with distinct names.
+- Posed years filled on existing rows: 13 Millennium rows (`fc-millennium-*`, the conjecture year Wikipedia states, or 2000 for the Navier-Stokes statement), `wp-landau-s-problems` (1912), 20 top-level Erdős rows whose formal-conjectures text says "conjectured by" or "posed" next to an `[ErXX]` reference key (the key year), and the 2 Wikipedia matches above: 35 rows. The 37 Hilbert and Smale rows already had their list year and now carry `posed_evidence`. No new Erdős problems were scraped.
+- `posed_evidence` is a column of `problems-sourced.tsv` from this ingest: filled for every `dl-` row, the 88 `sd-` posed rows (from `sources/solved/*.tsv`), the Hilbert, Smale and Millennium rows and the fills above; empty elsewhere.
+
+Not read: the Science pages themselves return 403 to scripts, so the 2005 list came from the 2007 Wayback copy of the article and the 2021 list from the 2023 Wayback copy of the booklet PDF; the Oxford University Press and ACS tables of contents return 403, so the neuroscience chapters came from the Library of Congress record and the chemistry titles from PubMed. Knuth's open problems and the 2000 "Computing the future" lists had no freely readable dated list and were skipped. Physics Today and Nature open-problem lists were skipped for the same reason.
+
+## OpenAlex activity
+
+`python3 openalex_sourced.py` runs one title-and-abstract search per sourced row against the OpenAlex works index (`https://api.openalex.org/works`, metadata CC0-1.0): the query is the problem name, or the first clause of the statement when the name is a numbered label such as "Erdős problem 403", cleaned of LaTeX, citation keys and links and cut to 10 words. Two requests per row, one for the match count and the three most cited works, one grouped by year for the last 30 years. Results go to `openalex-sourced.json`, keyed by row id: `query`, `works_total`, `by_year` (30 years), `top` (OpenAlex id, title, year, cited_by_count) and `retrieved`. Responses cache under `cache/` with the mailto address stripped, and the key stays in the `Authorization` header from `OPENALEX_API_KEY`. The run is resumable: a stored row is never queried again, `--limit N` takes the next N rows, and the rows still to query are taken in an order that interleaves the branches, so each resumed run adds rows to every branch.
+
+Budget: OpenAlex charges 10 credits per request against a free daily allowance of 10,000, so 500 rows a day. The first run on 2026-10-06 stored 499 rows (388 with at least one matching work) before the daily budget ran out; the remaining 4510 rows need nine more daily runs or a paid credit balance. The script stops cleanly on a `Retry-After` above five minutes.
+
+The counts are a text match on vocabulary: "continuum hypothesis" returns Alzheimer's papers alongside set theory. The activity columns are stored for a later score and the frontier score in this release does not read them. `makeup.py` charts the `works_total` distribution by branch over the rows stored so far.
+
+## Ingest rules
+
+- Rows live in `problems-sourced.tsv` with the `problems.tsv` columns plus `form`, `variant_of`, `status`, `source`, `licence`, `statement`, `statement_source`, `status_source` and `posed_evidence`. `sources/build.py` rebuilds it from `sources/formal_conjectures.py`, `sources/wikipedia_lists.py`, `sources/named_lists.py` and `sources/solved_discoveries.py`, merges Erdős aliases, dedupes by normalised title against `problems.tsv` and within the file, then runs `sources/dated_lists.apply` for the dated lists and posed fills, and `tests/test_sourced.py` checks the file.
+- `statement` holds the full problem text: the `text` field of `problem_map.jsonl` for formal-conjectures (the Lean declaration from `_intake/solver-gap-engine/fc/` when `text` is empty, 10 rows), the full list item for Wikipedia pages, the explanation cell for Hilbert and Smale. `statement_source` names the file or page it came from.
+- Names: a bold or linked head before a colon when the page gives one, else the item's first sentence up to 140 characters, cut only at a sentence end. Formal-conjectures names are the family and number plus the declaration's own suffix, so `green_14_lower_bound_hunter` becomes "Green open problem 14, lower bound hunter".
+- Status is `open`, `partial` or `solved`, and `status=solved` must be read with `form`: a solved variant is a settled sub-case or lemma, so solved counts are reported for top-level rows and for variants as two numbers. formal-conjectures rows carry the status field of `problem_map.jsonl`. Wikipedia list rows carry the section heading they sit under. Hilbert and Smale rows read the table's status column: a `{{partial}}` cell, or any cell with "no consensus", "disputed", "weaker form" or "partially", is `partial`; a `{{yes}}` cell with a year is `solved`; everything else is `open`. Curator overrides, named in `status_source`: Hilbert 14 (resolved only as a counterexample in degree 3 and above), Hilbert 18 (three parts, settled at different times), Smale 14 (computer-assisted proof), Smale 17 (resolved in the average-case probabilistic form only) are `partial`; Smale 8 is `open`, since the cited 2013 extension does not settle the question.
+- `form` is `conjecture` (name carries "conjecture" or "hypothesis"), `question` (name or statement is a question), `variant` (a formal-conjectures declaration with a suffix, such as `erdos_1047.variants.goodman` or `green_22_lower_nine`) or `problem`. `level` is empty for every sourced row; the earlier string-match guess is gone and level stays a curator call.
+- `variant_of` holds the id of the top-level declaration in the same Lean file. When a file has only suffixed declarations, its first one stands as the top-level row. When the parent was deduped into one of the 71 atlas problems, `variant_of` carries that atlas id (`poincare` for the three Poincaré smooth cases).
+- Keywords: up to eight phrases that occur in the statement: page links first, then noun pairs that occur at least twice in the statement, after dropping English, German and French stopwords, verbs and adverbs by suffix, LaTeX, URLs, citation keys and author name pairs. A single word survives only when it appears in the problem name or is a capitalised page-link anchor; multi-word noun phrases stay. A row with nothing left keeps an empty cell. On a fresh sample of 20 rows with keywords (seed 31), 1 row carried a generic phrase ("regular local"); 818 of 4,596 rows have keywords, most formal-conjectures rows have none.
+- Years: `posed` and `resolved` come from the text only: "posed in 1900", "(1916 to 2016)" with a dash, "(Name, 2017)", "proved in 2004", or the Hilbert and Smale year column. Empty otherwise.
+- Erdős aliases: ten Wikipedia entries name an Erdős problem that formal-conjectures also holds (Faber-Lovász 19, Gyárfás 136, Hajnal 61, arithmetic progressions 3, Turán additive bases 40, Moser, sumset 109, discrepancy 67, Burr-Erdős 163, unit distance 90), matched by the file header in `_intake/solver-gap-engine/fc/`. Each pair is one row with both urls in `source`, both licences in `licence` and both labels in `status_source`. Oler, Ulam, Straus and Mollin-Walsh have no formal-conjectures file and stay Wikipedia rows.
+- Branch rule: physics, chemistry, mathematics and statistics map to their canon branch; biology to biophysics; computer science and information theory to information; neuroscience to mind; astronomy to cosmology; geoscience to physics; economics to applied. Open quantum problems in formal-conjectures map to physics.
+- Industries (`market`) are set per Wikipedia list, blank for formal-conjectures.
+
+## Licence
+
+The 1,029 Wikipedia rows are CC BY-SA 4.0 and the 3,557 formal-conjectures rows are Apache-2.0; the 10 merged Erdős rows carry both. The `licence` column separates them, so `licence == "Apache-2.0"` yields a permissive subset. Any derived file that carries the CC BY-SA statements (embeddings are fine, copied statement text is not) inherits share-alike and must cite the page in `source`.
+
+## First ingest, 2026-10-05
+
+4,596 rows, every one with a statement; 104 with `posed`, 99 with `resolved`. Top-level rows 2,402: 1,672 open, 10 partial, 720 solved. Variants 2,194: 659 open, 1,535 solved. formal-conjectures keeps 3,567 of 3,598 (3,557 plus the 10 merged): 31 dropped because they share a normalised title with another row (five declaration pairs such as `erdos_897.parts.i` twice, Beck-Fiala and Green 24 duplicates, and statements whose name matches one of the 71 atlas problems or a Wikipedia entry). Wikipedia 1,039 before the merge: mathematics 534, physics 121, biology 96, astronomy 81, computer science 49, neuroscience 47, chemistry 27, Hilbert 23, geoscience 16, economics 15, Smale 13, statistics 9, information theory 7, Millennium 0 after dedupe against the 71.
+
+Branch skew: mathematics holds 4,088 of 4,596 rows (89%), physics 186, biophysics 96, cosmology 81, information 56, mind 47, chemistry 27, applied 15. Outside mathematics the file has 508 rows; a balanced atlas needs the industry and science sources above to move from metadata only to ingest.
+
+## Founder calls
+
+- Open Problem Garden names under GFDL: ingest as facts with attribution, or keep metadata only.
+- Erdős Problems has no stated licence; the 2,062 Apache rows in formal-conjectures cover most of it. Ask the maintainer before scraping the site itself.
+- Industry roadmaps and prizes (IRDS, Earthshots, XPRIZE, NAE) need hand-curated rows; none has a machine-readable problem list.

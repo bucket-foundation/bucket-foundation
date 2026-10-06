@@ -1,0 +1,630 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "protein",
+ "title": "Protein structure prediction",
+ "statement": {
+  "text": "Protein structure prediction is the inference of the three-dimensional structure of a protein from its amino acid sequence—that is, the prediction of its secondary and tertiary structure from primary structure. Structure prediction is different from the inverse problem of protein design.",
+  "source": "https://en.wikipedia.org/wiki/Protein_structure_prediction",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Protein structure prediction",
+   "url": "https://en.wikipedia.org/wiki/Protein_structure_prediction"
+  }
+ },
+ "aliases": [],
+ "branch": "biophysics",
+ "level": 4,
+ "industries": [
+  "pharma",
+  "biotech",
+  "molecular biology"
+ ],
+ "posed": 1972,
+ "resolved": 2020,
+ "history": [
+  {
+   "year": 1972,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 2020,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W3177828909",
+   "title": "Highly accurate protein structure prediction with AlphaFold",
+   "year": 2021,
+   "cited_by_count": 47924,
+   "doi": "https://doi.org/10.1038/s41586-021-03819-2",
+   "role": "resolved",
+   "relevance": 9,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2171755502",
+   "title": "Funnels, pathways, and the energy landscape of protein folding: A synthesis",
+   "year": 1995,
+   "cited_by_count": 2702,
+   "doi": "https://doi.org/10.1002/prot.340210302",
+   "role": "partial",
+   "relevance": 9,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2158476854",
+   "title": "THEORY OF PROTEIN FOLDING: The Energy Landscape Perspective",
+   "year": 1997,
+   "cited_by_count": 2267,
+   "doi": "https://doi.org/10.1146/annurev.physchem.48.1.545",
+   "role": "survey",
+   "relevance": 9,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2060259273",
+   "title": "Protein structure prediction on the Web: a case study using the Phyre server",
+   "year": 2009,
+   "cited_by_count": 4229,
+   "doi": "https://doi.org/10.1038/nprot.2009.2",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2999044305",
+   "title": "Improved protein structure prediction using potentials from deep learning",
+   "year": 2020,
+   "cited_by_count": 3634,
+   "doi": "https://doi.org/10.1038/s41586-019-1923-7",
+   "role": "resolved",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2115167726",
+   "title": "Protein structure prediction and analysis using the Robetta server",
+   "year": 2004,
+   "cited_by_count": 2216,
+   "doi": "https://doi.org/10.1093/nar/gkh468",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1548178570",
+   "title": "Protein Structure Prediction Using Rosetta",
+   "year": 2004,
+   "cited_by_count": 1815,
+   "doi": "https://doi.org/10.1016/s0076-6879(04)83004-0",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2142529984",
+   "title": "The PSIPRED protein structure prediction server",
+   "year": 2000,
+   "cited_by_count": 3941,
+   "doi": "https://doi.org/10.1093/bioinformatics/16.4.404",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3183475563",
+   "title": "Highly accurate protein structure prediction for the human proteome",
+   "year": 2021,
+   "cited_by_count": 3347,
+   "doi": "https://doi.org/10.1038/s41586-021-03828-1",
+   "role": "resolved",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3211795435",
+   "title": "AlphaFold Protein Structure Database: massively expanding the structural coverage of protein-sequence space with high-accuracy models",
+   "year": 2021,
+   "cited_by_count": 8674,
+   "doi": "https://doi.org/10.1093/nar/gkab1061",
+   "role": "resolved",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2153187042",
+   "title": "Protein secondary structure prediction based on position-specific scoring matrices 1 1Edited by G. Von Heijne",
+   "year": 1999,
+   "cited_by_count": 5582,
+   "doi": "https://doi.org/10.1006/jmbi.1999.3091",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2155201844",
+   "title": "I-TASSER server for protein 3D structure prediction",
+   "year": 2008,
+   "cited_by_count": 5286,
+   "doi": "https://doi.org/10.1186/1471-2105-9-40",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2094458603",
+   "title": "I-TASSER server: new development for protein structure and function predictions",
+   "year": 2015,
+   "cited_by_count": 2718,
+   "doi": "https://doi.org/10.1093/nar/gkv342",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2030776726",
+   "title": "Prediction and Functional Analysis of Native Disorder in Proteins from the Three Kingdoms of Life",
+   "year": 2004,
+   "cited_by_count": 2074,
+   "doi": "https://doi.org/10.1016/j.jmb.2004.02.002",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2008708467",
+   "title": "Dictionary of protein secondary structure: Pattern recognition of hydrogen‐bonded and geometrical features",
+   "year": 1983,
+   "cited_by_count": 15912,
+   "doi": "https://doi.org/10.1002/bip.360221211",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2102245393",
+   "title": "TM-align: a protein structure alignment algorithm based on the TM-score",
+   "year": 2005,
+   "cited_by_count": 4105,
+   "doi": "https://doi.org/10.1093/nar/gki524",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2161151688",
+   "title": "Scoring function for automated assessment of protein structure template quality",
+   "year": 2004,
+   "cited_by_count": 2596,
+   "doi": "https://doi.org/10.1002/prot.20264",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2159614853",
+   "title": "Toward the estimation of the absolute quality of individual protein structure models",
+   "year": 2010,
+   "cited_by_count": 2342,
+   "doi": "https://doi.org/10.1093/bioinformatics/btq662",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1980374511",
+   "title": "Modeling of loops in protein structures",
+   "year": 2000,
+   "cited_by_count": 2197,
+   "doi": "https://doi.org/10.1110/ps.9.9.1753",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4296032638",
+   "title": "Robust deep learning–based protein sequence design using ProteinMPNN",
+   "year": 2022,
+   "cited_by_count": 2130,
+   "doi": "https://doi.org/10.1126/science.add2187",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2062018285",
+   "title": "A General Empirical Model of Protein Evolution Derived from Multiple Protein Families Using a Maximum-Likelihood Approach",
+   "year": 2001,
+   "cited_by_count": 3002,
+   "doi": "https://doi.org/10.1093/oxfordjournals.molbev.a003851",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2145268834",
+   "title": "Protein homology detection by HMM–HMM comparison",
+   "year": 2004,
+   "cited_by_count": 2555,
+   "doi": "https://doi.org/10.1093/bioinformatics/bti125",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4308616064",
+   "title": "InterPro in 2022",
+   "year": 2022,
+   "cited_by_count": 2673,
+   "doi": "https://doi.org/10.1093/nar/gkac993",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 2
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1964": 1,
+   "1970": 1,
+   "1979": 1,
+   "1983": 1,
+   "1984": 1,
+   "1985": 2,
+   "1987": 3,
+   "1988": 3,
+   "1989": 10,
+   "1990": 11,
+   "1991": 25,
+   "1992": 19,
+   "1993": 24,
+   "1994": 23,
+   "1995": 25,
+   "1996": 36,
+   "1997": 71,
+   "1998": 45,
+   "1999": 79,
+   "2000": 49,
+   "2001": 111,
+   "2002": 103,
+   "2003": 121,
+   "2004": 134,
+   "2005": 179,
+   "2006": 181,
+   "2007": 216,
+   "2008": 208,
+   "2009": 216,
+   "2010": 206,
+   "2011": 217,
+   "2012": 212,
+   "2013": 228,
+   "2014": 237,
+   "2015": 194,
+   "2016": 182,
+   "2017": 215,
+   "2018": 220,
+   "2019": 221,
+   "2020": 265,
+   "2021": 397,
+   "2022": 453,
+   "2023": 568,
+   "2024": 612,
+   "2025": 830,
+   "2026": 798
+  },
+  "openalex_total": 7954,
+  "arxiv_total": 280,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22protein+structure+prediction%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5059179935",
+   "name": "John Jumper",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5101569668",
+   "name": "Tim Green",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5009567462",
+   "name": "Augustin Žídek",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5050109164",
+   "name": "Stig Petersen",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5013834379",
+   "name": "Pushmeet Kohli",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5005349213",
+   "name": "Demis Hassabis",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5068654082",
+   "name": "David T. Jones",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100354659",
+   "name": "Yang Zhang",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Richard Evans",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5004531184",
+   "name": "Michael Figurnov",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5079389977",
+   "name": "Kathryn Tunyasuvunakool",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5027154958",
+   "name": "Alex Bridgland",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Andrew Cowie",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5046346579",
+   "name": "Ellen Clancy",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5079708487",
+   "name": "Andrew Senior",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I4210090411",
+   "name": "Google DeepMind (United Kingdom)",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I45129253",
+   "name": "University College London",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I201448701",
+   "name": "University of Washington",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1303153112",
+   "name": "European Bioinformatics Institute",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1299303238",
+   "name": "National Institutes of Health",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I36258959",
+   "name": "University of California San Diego",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I157725225",
+   "name": "University of Illinois Urbana-Champaign",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1344073410",
+   "name": "Howard Hughes Medical Institute",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I39555362",
+   "name": "University of Warwick",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63190737",
+   "name": "University at Buffalo, State University of New York",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I12708293",
+   "name": "SIB Swiss Institute of Bioinformatics",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I241749",
+   "name": "University of Cambridge",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I139264467",
+   "name": "Seoul National University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2801919071",
+   "name": "University of Illinois System",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I47508984",
+   "name": "Imperial College London",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "foldpath",
+   "why": "shared markets: biotech, pharma; same branch"
+  },
+  {
+   "id": "aging",
+   "why": "shared markets: pharma; same branch"
+  },
+  {
+   "id": "bioelectric",
+   "why": "shared markets: biotech; same branch"
+  },
+  {
+   "id": "mitoredox",
+   "why": "shared markets: pharma; same branch"
+  },
+  {
+   "id": "dftfunc",
+   "why": "shared markets: pharma"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W3177828909",
+   "title": "Highly accurate protein structure prediction with AlphaFold",
+   "source": "openalex-fanout/W3177828909-highly-accurate-protein-structure-prediction-with-alphafold"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID31602685",
+   "title": "Protein structure prediction using multiple deep neural networks in the 13th Critical Assessment of Protein Structure Prediction (CASP13).",
+   "source": "pubmed/PMID-31602685-protein-structure-prediction-using-multiple-deep-neural-netw"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID31942072",
+   "title": "Improved protein structure prediction using potentials from deep learning.",
+   "source": "pubmed/PMID-31942072-improved-protein-structure-prediction-using-potentials-from"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID34265844",
+   "title": "Highly accurate protein structure prediction with AlphaFold.",
+   "source": "pubmed/PMID-34265844-highly-accurate-protein-structure-prediction-with-alphafold"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID34293799",
+   "title": "Highly accurate protein structure prediction for the human proteome.",
+   "source": "pubmed/PMID-34293799-highly-accurate-protein-structure-prediction-for-the-human-p"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID35017726",
+   "title": "Protein structure predictions to atomic accuracy with AlphaFold.",
+   "source": "pubmed/PMID-35017726-protein-structure-predictions-to-atomic-accuracy-with-alphaf"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID37732824",
+   "title": "The Protein Structure Prediction Revolution and Its Implications for Medicine: 2023 Albert Lasker Basic Medical Research Award.",
+   "source": "pubmed/PMID-37732824-the-protein-structure-prediction-revolution-and-its-implicat"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Protein_structure_prediction",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+structure+prediction%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22protein+structure+prediction%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "23 relevant works of 25 considered, 7954 works with the phrase"
+ }
+}

@@ -6,7 +6,7 @@ export interface OptionSpec {
   help: string;
 }
 
-export type PaletteTarget = "quiz" | "review" | "stats" | "home" | "help" | "quit" | "search" | "graph" | "research" | "jobs";
+export type PaletteTarget = "quiz" | "review" | "stats" | "home" | "help" | "quit" | "search" | "graph" | "research" | "jobs" | "frontier";
 
 export interface CommandSpec {
   name: string;
@@ -169,6 +169,18 @@ export const TABLE: CommandSpec[] = [
   { name: "graph", summary: "knowledge graph", tuiOnly: true, palette: { run: "graph", hint: "knowledge graph", order: 8 } },
   { name: "research", summary: "notes and saved results", tuiOnly: true, palette: { run: "research", hint: "notes and saved results", order: 9 } },
   { name: "jobs", summary: "saved analyses", tuiOnly: true, palette: { run: "jobs", hint: "saved analyses", order: 10 } },
+  { name: "frontier", summary: "solvability frontier circle", tuiOnly: true, palette: { run: "frontier", hint: "solvability frontier circle", order: 11 } },
+  {
+    name: "atlas frontier",
+    summary: "draw the solvability frontier: solved and close-to-solved problems inside one circle, the rest outside",
+    json: true,
+    options: {
+      reach: { type: "string", value: "R", help: "put the circle at this similarity, above 0 and below 1; the stated rule picks it when omitted" },
+      svg: { type: "string", value: "FILE", help: "also write the drawing to FILE as SVG" },
+      width: { type: "string", value: "N", help: "drawing width in columns, 41 to 200; the terminal width when omitted" },
+      full: { type: "boolean", help: "use the full problem set, 71 atlas problems plus the sourced rows; the default whenever this build holds it" },
+    },
+  },
   {
     name: "notes ls",
     summary: "list your notes, pinned first, by number",

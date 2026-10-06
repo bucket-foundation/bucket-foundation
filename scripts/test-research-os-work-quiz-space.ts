@@ -6,7 +6,7 @@ import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { BLOCKED_FORMS, DEPTHS, FORMATS, FORMS, VALID_PAIRS, allCells, cellValid, openCells, validPair, validPairs, type Form } from "../src/lib/research-os/work-quiz/space";
 import { CARD_KEY_SEPARATOR, cardFields, compoundFactId, cardKey, factId, factsFromSources, parseCardKey } from "../src/lib/research-os/work-quiz/fact";
-import { FORM_MAKERS, makeForm, sampledId } from "../src/lib/research-os/work-quiz/forms";
+import { ESTIMATE_LOG10, FORM_MAKERS, estimateFactor, makeForm, sampledId } from "../src/lib/research-os/work-quiz/forms";
 import type { WorkSources } from "../src/lib/research-os/work-quiz/types";
 
 const TITLES = JSON.parse(fs.readFileSync(path.join(process.cwd(), "scripts/fixtures/quiz-titles.json"), "utf8")) as { prs: string[]; beads: string[] };
@@ -24,15 +24,15 @@ const SOURCES: WorkSources = {
   ],
 };
 
-test("the space has nine forms, four formats, three depths and eleven valid form-format pairs", () => {
-  assert.equal(FORMS.length, 9);
+test("the space has thirteen forms, four formats, three depths and fifteen valid form-format pairs", () => {
+  assert.equal(FORMS.length, 13);
   assert.equal(FORMATS.length, 4);
   assert.equal(DEPTHS.length, 3);
   assert.deepEqual(
     validPairs().map(([f, fmt]) => `${f}:${fmt}`).sort(),
-    ["cause_effect:pick", "cloze:pick", "cloze:word", "compare:pick", "estimate:number", "order:order", "recall:pick", "recall:word", "spot_error:pick", "true_false:pick", "which_changed:pick"],
+    ["cause_effect:pick", "cloze:pick", "cloze:word", "compare:pick", "estimate:number", "language:pick", "meaning:pick", "order:order", "pair:pick", "recall:pick", "recall:word", "sound:pick", "spot_error:pick", "true_false:pick", "which_changed:pick"],
   );
-  assert.equal(allCells().length, 33);
+  assert.equal(allCells().length, 45);
   for (const f of FORMS) for (const fmt of FORMATS) assert.equal(validPair(f, fmt), VALID_PAIRS[f].includes(fmt));
   assert.equal(validPair("estimate", "pick"), false);
   assert.equal(validPair("order", "pick"), false);
@@ -91,8 +91,18 @@ for (const form of BUILT) {
   });
 }
 
-test("the same seed yields the same question id, so regenerating keeps ids", () => {
-  for (const form of BUILT) assert.equal(makeForm(form, SOURCES, "x", 2)?.id, makeForm(form, SOURCES, "x", 2)?.id);
+test("the same seed yields a deep-equal question for every built form, depth and seed", () => {
+  let made = 0;
+  for (const form of BUILT) {
+    for (const depth of DEPTHS) {
+      for (let s = 0; s < 50; s++) {
+        const a = makeForm(form, SOURCES, `same-${s}`, depth);
+        assert.deepEqual(makeForm(form, SOURCES, `same-${s}`, depth), a, `${form} ${depth} ${s}`);
+        if (a) made += 1;
+      }
+    }
+  }
+  assert.ok(made >= 300, `made ${made}`);
 });
 
 test("order uses a choice string and estimate grades by log10 distance", () => {
@@ -104,6 +114,22 @@ test("order uses a choice string and estimate grades by log10 distance", () => {
   assert.equal(e.log10Tolerance, 0.2);
   assert.equal(gradeAnswer(e, String(Number(e.answer) * 1.5), 1000).correct, Math.log10(1.5) <= 0.2);
   assert.equal(gradeAnswer(e, String(Number(e.answer) * 10), 1000).correct, false);
+});
+
+test("the estimate prompt states the factor the log10 grader accepts on both sides", () => {
+  assert.deepEqual(DEPTHS.map(estimateFactor), [1.99, 1.58, 1.25]);
+  for (const depth of DEPTHS) {
+    const f = estimateFactor(depth);
+    assert.ok(Math.log10(f) <= ESTIMATE_LOG10[depth] && Math.log10(f + 0.01) > ESTIMATE_LOG10[depth]);
+    for (let s = 0; s < 20; s++) {
+      const q = makeForm("estimate", SOURCES, `band-${depth}-${s}`, depth)!;
+      const n = Number(q.answer);
+      assert.deepEqual(q.lines, [`A factor of ${f} either way counts.`]);
+      assert.equal(q.lines.join(" ").includes("percent"), false);
+      for (const edge of [n * f, n / f]) assert.equal(gradeAnswer(q, String(edge), 1000).correct, true, `${depth} ${edge}`);
+      for (const out of [n * (f + 0.02), n / (f + 0.02)]) assert.equal(gradeAnswer(q, String(out), 1000).correct, false, `${depth} ${out}`);
+    }
+  }
 });
 
 test("which_changed has no maker and the other built forms do", () => {
