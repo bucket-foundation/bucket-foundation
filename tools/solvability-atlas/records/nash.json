@@ -4,7 +4,12 @@
  "title": "Complexity of computing Nash equilibria",
  "statement": {
   "text": "In computer science, PPAD is a complexity class introduced by Christos Papadimitriou in 1994. PPAD is a subclass of TFNP based on functions that can be shown to be total by a parity argument. The class attracted significant attention in the field of algorithmic game theory because it contains the problem of computing a Nash equilibrium: this problem was shown to be complete for PPAD by Daskalakis, Goldberg and Papadimitriou with at least 3 players and later extended by Chen and Deng to 2 players.",
-  "source": "https://en.wikipedia.org/wiki/PPAD_(complexity)"
+  "source": "https://en.wikipedia.org/wiki/PPAD_(complexity)",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "PPAD (complexity)",
+   "url": "https://en.wikipedia.org/wiki/PPAD_(complexity)"
+  }
  },
  "aliases": [
   "PPAD (complexity)",
@@ -31,11 +36,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 78,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22computing+Nash+equilibria%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22computing+Nash+equilibria%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -79,5 +85,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

@@ -4,7 +4,12 @@
  "title": "Free energy principle formalization",
  "statement": {
   "text": "The free energy principle is a mathematical principle of information physics. Its application to fMRI brain imaging data as a theoretical framework suggests that the brain reduces surprise or uncertainty by making predictions based on internal models and uses sensory input to update its models so as to improve the accuracy of its predictions. This principle approximates an integration of Bayesian inference with active inference, where sensory feedback refines prediction-guided actions. From it, wide-ranging inferences have been made about brain function, perception, and action. Its applicability to living systems has been questioned.",
-  "source": "https://en.wikipedia.org/wiki/Free_energy_principle"
+  "source": "https://en.wikipedia.org/wiki/Free_energy_principle",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Free energy principle",
+   "url": "https://en.wikipedia.org/wiki/Free_energy_principle"
+  }
  },
  "aliases": [
   "Free energy principle",
@@ -25,11 +30,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 196,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22free+energy+principle%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22free+energy+principle%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22free+energy+principle%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22free+energy+principle%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -98,5 +104,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

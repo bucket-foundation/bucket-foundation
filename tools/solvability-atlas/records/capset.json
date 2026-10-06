@@ -4,7 +4,12 @@
  "title": "Cap set problem",
  "statement": {
   "text": "In affine geometry, a cap set is a subset of the affine space  where no three elements sum to the zero vector.\nThe cap set problem is the problem of finding the size of the largest possible cap set, as a function of . The first few cap set sizes are 1, 2, 4, 9, 20, 45, 112, ....",
-  "source": "https://en.wikipedia.org/wiki/Cap_set"
+  "source": "https://en.wikipedia.org/wiki/Cap_set",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Cap set",
+   "url": "https://en.wikipedia.org/wiki/Cap_set"
+  }
  },
  "aliases": [
   "Cap set",
@@ -14,9 +19,7 @@
  "level": 3,
  "industries": [
   "ai",
-  "discrete mathematics and combinatorics",
-  "computational mathematics",
-  "computational theory and mathematics"
+  "discrete mathematics and combinatorics"
  ],
  "posed": 1970,
  "resolved": 2016,
@@ -34,94 +37,15 @@
  ],
  "key_works": [
   {
-   "openalex": "W4389727268",
-   "title": "Mathematical discoveries from program search with large language models",
-   "year": 2023,
-   "cited_by_count": 499,
-   "doi": "https://doi.org/10.1038/s41586-023-06924-6",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2963631653",
-   "title": "On large subsets of $\\mathbb{F}_q^n$ with no three-term arithmetic progression",
-   "year": 2016,
-   "cited_by_count": 142,
-   "doi": "https://doi.org/10.4007/annals.2017.185.1.8",
-   "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2407637222",
-   "title": "On cap sets and the group-theoretic approach to matrix multiplication",
-   "year": 2017,
-   "cited_by_count": 90,
-   "doi": "https://doi.org/10.19086/da.1245",
-   "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2463059379",
-   "title": "The growth rate of tri-colored sum-free sets",
-   "year": 2018,
-   "cited_by_count": 39,
-   "doi": "https://doi.org/10.19086/da.3734",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2763468056",
-   "title": "A tight bound for Green's arithmetic triangle removal lemma in vector spaces",
-   "year": 2017,
-   "cited_by_count": 23,
-   "doi": "https://doi.org/10.1016/j.aim.2017.09.037",
-   "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
    "openalex": "W2895170202",
    "title": "New applications of the polynomial method: The cap set conjecture and beyond",
    "year": 2018,
    "cited_by_count": 16,
    "doi": "https://doi.org/10.1090/bull/1648",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2964300648",
-   "title": "Proof of a conjecture of Kleinberg-Sawin-Speyer",
-   "year": 2018,
-   "cited_by_count": 15,
-   "doi": "https://doi.org/10.19086/da.3733",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2462199236",
-   "title": "A tight bound for Green's arithmetic triangle removal lemma in vector spaces",
-   "year": 2017,
-   "cited_by_count": 15,
-   "doi": "https://doi.org/10.1137/1.9781611974782.106",
-   "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2877479193",
-   "title": "The analytic rank of tensors and its applications",
-   "year": 2019,
-   "cited_by_count": 13,
-   "doi": "https://doi.org/10.19086/da.8654",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4292731303",
-   "title": "The G-stable rank for tensors and the cap set problem",
-   "year": 2022,
-   "cited_by_count": 12,
-   "doi": "https://doi.org/10.2140/ant.2022.16.1071",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2978244766",
@@ -130,70 +54,9 @@
    "cited_by_count": 10,
    "doi": "https://doi.org/10.4230/lipics.itp.2019.15",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W3126356201",
-   "title": "Structure vs. randomness for bilinear maps",
-   "year": 2021,
-   "cited_by_count": 8,
-   "doi": "https://doi.org/10.1145/3406325.3451007",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2580588137",
-   "title": "Sumsets as unions of sumsets of subsets",
-   "year": 2018,
-   "cited_by_count": 6,
-   "doi": "https://doi.org/10.19086/da.2103",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2898996103",
-   "title": "Logarithmic bounds for Roth's theorem via almost-periodicity",
-   "year": 2019,
-   "cited_by_count": 5,
-   "doi": "https://doi.org/10.19086/da.7884",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W3114635005",
-   "title": "Weighted slice rank and a minimax correspondence to Strassen's spectra",
-   "year": 2023,
-   "cited_by_count": 4,
-   "doi": "https://doi.org/10.1016/j.matpur.2023.02.006",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2980367328",
-   "title": "Bounds on upper transversals in hypergraphs",
-   "year": 2019,
-   "cited_by_count": 4,
-   "doi": "https://doi.org/10.1007/s10878-019-00456-4",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4387422667",
-   "title": "Bounds on the higher degree Erdős–Ginzburg–Ziv constants over $${\\mathbb {F}}_q^n$$",
-   "year": 2023,
-   "cited_by_count": 2,
-   "doi": "https://doi.org/10.1007/s00013-023-01916-4",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4367191582",
-   "title": "geometric-rank-of-tensors-and-subrank-of-matrix-multiplication",
-   "year": 2023,
-   "cited_by_count": 2,
-   "doi": "https://doi.org/10.19086/da.73322",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W3135784370",
@@ -202,43 +65,20 @@
    "cited_by_count": 2,
    "doi": "https://doi.org/10.48550/arxiv.2103.06481",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "W3008903234",
-   "title": "Geometric Rank of Tensors and Subrank of Matrix Multiplication",
-   "year": 2020,
-   "cited_by_count": 2,
-   "doi": "https://doi.org/10.4230/lipics.ccc.2020.35",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2953610015",
-   "title": "Formalizing the Solution to the Cap Set Problem",
-   "year": 2019,
-   "cited_by_count": 2,
-   "doi": "https://doi.org/10.48550/arxiv.1907.01449",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4416243088",
-   "title": "\\(X\\)-evolve: Solution space evolution powered by large language models",
-   "year": 2025,
-   "cited_by_count": 1,
-   "doi": "https://doi.org/10.48550/arxiv.2508.07932",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4309616279",
-   "title": "Structure vs Randomness for Bilinear Maps",
+   "openalex": "W4292731303",
+   "title": "The G-stable rank for tensors and the cap set problem",
    "year": 2022,
-   "cited_by_count": 1,
-   "doi": "https://doi.org/10.19086/da.38587",
+   "cited_by_count": 12,
+   "doi": "https://doi.org/10.2140/ant.2022.16.1071",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2627959950",
@@ -247,9 +87,67 @@
    "cited_by_count": 1,
    "doi": "https://doi.org/10.1093/qmath/hax025",
    "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2963631653",
+   "title": "On large subsets of $\\mathbb{F}_q^n$ with no three-term arithmetic progression",
+   "year": 2016,
+   "cited_by_count": 142,
+   "doi": "https://doi.org/10.4007/annals.2017.185.1.8",
+   "role": "resolved",
+   "relevance": 1,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2763468056",
+   "title": "A tight bound for Green's arithmetic triangle removal lemma in vector spaces",
+   "year": 2017,
+   "cited_by_count": 23,
+   "doi": "https://doi.org/10.1016/j.aim.2017.09.037",
+   "role": "resolved",
+   "relevance": 1,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2964300648",
+   "title": "Proof of a conjecture of Kleinberg-Sawin-Speyer",
+   "year": 2018,
+   "cited_by_count": 15,
+   "doi": "https://doi.org/10.19086/da.3733",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2580588137",
+   "title": "Sumsets as unions of sumsets of subsets",
+   "year": 2018,
+   "cited_by_count": 6,
+   "doi": "https://doi.org/10.19086/da.2103",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2898996103",
+   "title": "Logarithmic bounds for Roth's theorem via almost-periodicity",
+   "year": 2019,
+   "cited_by_count": 5,
+   "doi": "https://doi.org/10.19086/da.7884",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
+ "key_works_considered": 25,
  "activity": {
   "openalex_by_year": {
    "2013": 1,
@@ -266,190 +164,154 @@
   },
   "openalex_total": 50,
   "arxiv_total": 21,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22cap+set+problem%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22cap+set+problem%22&max_results=1"
  },
  "people": [
   {
    "openalex": "A5071941381",
    "name": "Jordan S. Ellenberg",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5038647809",
-   "name": "Guy Moshkovitz",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5044598882",
-   "name": "Jeroen Zuiddam",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5062065155",
    "name": "Joshua A. Grochow",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5112361944",
-   "name": "Jacob Fox",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5007693622",
    "name": "Sander R. Dahmen",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5037209402",
    "name": "Johannes Hölzl",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5019463319",
    "name": "Robert Y. Lewis",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5031695135",
-   "name": "Swastik Kopparty",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "openalex": "A5101810593",
+   "name": "Zhi Jie Jiang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5062636643",
+   "name": "Harm Derksen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5030691831",
+   "name": "Pierre‐Yves Bienvenu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5065602628",
+   "name": "Dion Gijswijt",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5112361944",
+   "name": "Jacob Fox",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5067889485",
+   "name": "László Lovász",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5097443670",
+   "name": "Luke Peabody",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": null,
-   "name": "More about Guy Moshkovitz",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "name": "More about Thomas Bloom",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5088601308",
-   "name": "Bernardino Romera‐Paredes",
+   "openalex": null,
+   "name": "More about Olof Sisask",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5078666530",
-   "name": "Mohammadamin Barekatain",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5101733098",
-   "name": "Alexander Novikov",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5077302579",
-   "name": "Matej Balog",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5018728658",
-   "name": "Manish Kumar",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
   {
    "openalex": "I135310074",
    "name": "University of Wisconsin–Madison",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I97018004",
-   "name": "Stanford University",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I63966007",
-   "name": "Massachusetts Institute of Technology",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I174216632",
-   "name": "City University of New York",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "openalex": "I188538660",
+   "name": "University of Colorado Boulder",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I865915315",
    "name": "Vrije Universiteit Amsterdam",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I887064364",
-   "name": "University of Amsterdam",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I4210090411",
-   "name": "Google DeepMind (United Kingdom)",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I4210113297",
-   "name": "Google (United Kingdom)",
+   "openalex": "I12912129",
+   "name": "Northeastern University",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I100532134",
-   "name": "Lyon 1 Université",
+   "openalex": "I36234482",
+   "name": "University of Bristol",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I113428412",
-   "name": "École Normale Supérieure de Lyon",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I1326498283",
-   "name": "Institut national de recherche en sciences et technologies du numérique",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I203339264",
-   "name": "Université de Lyon",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I4210144566",
-   "name": "Laboratoire de l'Informatique du Parallélisme",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I98358874",
    "name": "Delft University of Technology",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I72816309",
-   "name": "Drexel University",
+   "openalex": "I97018004",
+   "name": "Stanford University",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I241749",
+   "name": "University of Cambridge",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I123387679",
+   "name": "Uppsala University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "related": [
@@ -487,12 +349,12 @@
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22cap+set+problem%22&group_by=publication_year",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
@@ -502,5 +364,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "10 relevant works of 25 considered, 50 works with the phrase"
+ }
 }

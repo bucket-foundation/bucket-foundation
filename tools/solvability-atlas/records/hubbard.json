@@ -4,7 +4,12 @@
  "title": "2D Hubbard model ground state",
  "statement": {
   "text": "The Hubbard model is a simplified model used to describe the transition between conducting and insulating systems. It is particularly useful in solid-state physics. The model is named after John Hubbard.",
-  "source": "https://en.wikipedia.org/wiki/Hubbard_model"
+  "source": "https://en.wikipedia.org/wiki/Hubbard_model",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Hubbard model",
+   "url": "https://en.wikipedia.org/wiki/Hubbard_model"
+  }
  },
  "aliases": [
   "Hubbard model"
@@ -13,8 +18,7 @@
  "level": 5,
  "industries": [
   "semiconductors",
-  "energy",
-  "condensed matter physics"
+  "energy"
  ],
  "posed": 1963,
  "resolved": null,
@@ -33,47 +37,50 @@
    "cited_by_count": 74,
    "doi": "https://doi.org/10.1103/physrevresearch.4.013239",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
+ "key_works_considered": 1,
  "activity": {
   "openalex_by_year": {
    "2022": 1
   },
   "openalex_total": 1,
   "arxiv_total": 1,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22two-dimensional+Hubbard+model+ground+state%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22two-dimensional+Hubbard+model+ground+state%22&max_results=1"
  },
  "people": [
   {
    "openalex": "A5004355374",
    "name": "Hao Xu",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5015967977",
    "name": "Hao Shi",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5081704417",
    "name": "Ettore Vitali",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5051252837",
    "name": "Mingpu Qin",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5100449694",
    "name": "Shiwei Zhang",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
@@ -81,31 +88,31 @@
    "openalex": "I16285277",
    "name": "William & Mary",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I86501945",
    "name": "University of Delaware",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I67328108",
    "name": "California State University, Fresno",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I183067930",
    "name": "Shanghai Jiao Tong University",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I4387153999",
    "name": "Flatiron Institute",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "related": [
@@ -143,12 +150,12 @@
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22two-dimensional+Hubbard+model+ground+state%22&group_by=publication_year",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
@@ -158,5 +165,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 1 works, 1 kept; refine the query phrase in sources.tsv"
+ }
 }

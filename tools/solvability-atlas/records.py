@@ -21,16 +21,29 @@ HERE = Path(__file__).parent
 REPO = HERE.parent.parent
 CACHE = HERE / "cache"
 RECORDS = HERE / "records"
-MAILTO = "gianyrox@gmail.com"
+MAILTO = os.environ.get("OPENALEX_MAILTO", "")
 OPENALEX_KEY = os.environ.get("OPENALEX_API_KEY", "")
-AGENT = f"bucket-solvability-atlas/1.0 (mailto:{MAILTO})"
+AGENT = "bucket-solvability-atlas/1.0" + (f" (mailto:{MAILTO})" if MAILTO else "")
 OPENALEX = "https://api.openalex.org"
 WIKI = "https://en.wikipedia.org/api/rest_v1/page"
 ARXIV = "http://export.arxiv.org/api/query"
 LICENCE = {"api.openalex.org": "CC0-1.0", "en.wikipedia.org": "CC-BY-SA-4.0", "export.arxiv.org": "arXiv API terms, metadata CC0-1.0"}
 INTERVAL = {"api.openalex.org": 0.12, "en.wikipedia.org": 0.25, "export.arxiv.org": 3.0}
 KEY_WORKS = 25
+EMBED_WORKS = 8
+MIN_SUBFIELD_WORKS = 3
 TOP_PEOPLE = 15
+STOP = {"problem", "conjecture", "theorem", "hypothesis", "program", "versus", "existence", "model", "theory", "function", "energy", "effect", "number", "general", "structure", "design", "system", "method", "state", "states", "ground", "limits", "identity", "mechanism", "control", "complexity", "formal", "optimal", "exact", "rational", "anomalous", "properties", "programmed", "stochastic", "neural", "quantum", "matrix", "light", "water", "glass"}
+SYNONYMS = {"artificial intelligence": "ai", "machine learning": "ai"}
+BRANCH_FIELDS = {
+    "mathematics": {"Mathematics", "Computer Science", "Physics and Astronomy"},
+    "physics": {"Physics and Astronomy", "Mathematics", "Engineering", "Materials Science", "Chemistry", "Earth and Planetary Sciences", "Energy"},
+    "chemistry": {"Chemistry", "Chemical Engineering", "Materials Science", "Physics and Astronomy", "Biochemistry, Genetics and Molecular Biology", "Engineering", "Environmental Science"},
+    "information": {"Computer Science", "Mathematics", "Economics, Econometrics and Finance", "Decision Sciences", "Engineering", "Physics and Astronomy", "Business, Management and Accounting"},
+    "biophysics": {"Biochemistry, Genetics and Molecular Biology", "Physics and Astronomy", "Medicine", "Neuroscience", "Agricultural and Biological Sciences", "Immunology and Microbiology", "Chemistry", "Computer Science", "Environmental Science", "Pharmacology, Toxicology and Pharmaceutics", "Earth and Planetary Sciences"},
+    "cosmology": {"Physics and Astronomy", "Earth and Planetary Sciences", "Mathematics"},
+    "mind": {"Neuroscience", "Psychology", "Arts and Humanities", "Computer Science", "Mathematics", "Medicine", "Social Sciences", "Biochemistry, Genetics and Molecular Biology", "Physics and Astronomy"},
+}
 SURVEY = re.compile(r"\b(survey|review|progress|overview|status|open problems|perspective)\b", re.I)
 YEAR = re.compile(r"\b(1[5-9]\d\d|20\d\d)\b")
 TAG = re.compile(r"<[^>]+>")
@@ -47,20 +60,44 @@ def today():
     return dt.date.today().isoformat()
 
 
+def strip_mailto(url):
+    parts = urllib.parse.urlsplit(url)
+    q = [(k, v) for k, v in urllib.parse.parse_qsl(parts.query, keep_blank_values=True) if k != "mailto"]
+    return urllib.parse.urlunsplit(parts._replace(query=urllib.parse.urlencode(q)))
+
+
+def cache_path(url):
+    return CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".json")
+
+
+def migrate_cache():
+    for f in CACHE.glob("*.json"):
+        e = json.load(open(f))
+        clean_url = strip_mailto(e["url"])
+        if clean_url != e["url"]:
+            e["url"] = clean_url
+            json.dump(e, open(cache_path(clean_url), "w"))
+            f.unlink()
+
+
 def fetch(url, offline=False):
-    key = CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".json")
+    url = strip_mailto(url)
+    key = cache_path(url)
     if key.exists():
         return json.load(open(key))
     if offline:
         return {"url": url, "status": 0, "body": "", "retrieved": today()}
     host = urllib.parse.urlparse(url).netloc
+    request_url = url
+    if host == "api.openalex.org" and MAILTO:
+        request_url += ("&" if "?" in url else "?") + urllib.parse.urlencode({"mailto": MAILTO})
     wait = INTERVAL.get(host, 1.0) - (time.monotonic() - last_call.get(host, 0))
     if wait > 0:
         time.sleep(wait)
     headers = {"User-Agent": AGENT, "Accept": "application/json, text/html, application/atom+xml"}
     if host == "api.openalex.org" and OPENALEX_KEY:
         headers["Authorization"] = "Bearer " + OPENALEX_KEY
-    req = urllib.request.Request(url, headers=headers)
+    req = urllib.request.Request(request_url, headers=headers)
     reason = None
     for attempt in range(6):
         try:
@@ -69,6 +106,7 @@ def fetch(url, offline=False):
             break
         except urllib.error.HTTPError as e:
             if e.code in (404, 400) or 300 <= e.code < 400:
+                print(f"HTTP {e.code} {url}", file=sys.stderr)
                 entry = {"url": url, "status": e.code, "body": "", "retrieved": today()}
                 break
             if e.code == 429 and int(e.headers.get("Retry-After", "0") or 0) > 300:
@@ -131,13 +169,13 @@ def openalex_fetch(url, offline):
 
 
 def openalex_works(q, offline):
-    params = {"filter": f'title_and_abstract.search:"{q}"', "sort": "cited_by_count:desc", "per-page": KEY_WORKS, "select": "id,title,publication_year,cited_by_count,doi,authorships,primary_topic", "mailto": MAILTO}
+    params = {"filter": f'title_and_abstract.search:"{q}"', "sort": "cited_by_count:desc", "per-page": KEY_WORKS, "select": "id,title,publication_year,cited_by_count,doi,authorships,primary_topic"}
     e = openalex_fetch(f"{OPENALEX}/works?{urllib.parse.urlencode(params)}", offline)
     return (json.loads(e["body"]).get("results", []) if e["status"] == 200 else []), e
 
 
 def openalex_activity(q, offline):
-    params = {"filter": f'title_and_abstract.search:"{q}"', "group_by": "publication_year", "mailto": MAILTO}
+    params = {"filter": f'title_and_abstract.search:"{q}"', "group_by": "publication_year"}
     e = openalex_fetch(f"{OPENALEX}/works?{urllib.parse.urlencode(params)}", offline)
     by_year = {}
     if e["status"] == 200:
@@ -203,12 +241,52 @@ def role_of(w, p):
     return "partial"
 
 
-def key_works(works, p, src):
-    out = []
+def match_terms(p, aliases):
+    terms = {p["query"].lower()}
+    for phrase in [p["name"], *aliases, *p["keywords"]]:
+        low = phrase.lower()
+        terms.add(low)
+        for word in re.findall(r"[a-z][a-z-]{4,}", low):
+            if word not in STOP:
+                terms.add(word)
+    return {t for t in terms if len(t) >= 5 or t == p["query"].lower()}
+
+
+def normal_title(t):
+    return re.sub(r"[^a-z0-9]+", " ", (t or "").lower()).strip()
+
+
+def relevance(w, p, terms):
+    topic = w.get("primary_topic") or {}
+    field = topic.get("field", {}).get("display_name", "")
+    if not int(w.get("cited_by_count") or 0) or (field and field not in BRANCH_FIELDS[p["branch"]]):
+        return 0
+    title = normal_title(w.get("title"))
+    topic_text = normal_title(topic.get("display_name", "") + " " + topic.get("subfield", {}).get("display_name", ""))
+    hits = sum(2 for t in terms if normal_title(t) in title) + sum(1 for t in terms if normal_title(t) in topic_text)
+    return hits
+
+
+def select_works(works, p, aliases):
+    terms = match_terms(p, aliases)
+    seen = set()
+    kept = []
     for w in works:
-        if not w.get("title"):
+        key = normal_title(w.get("title"))
+        if not key or key in seen:
             continue
-        out.append({"openalex": w["id"].rsplit("/", 1)[-1], "title": w["title"], "year": w.get("publication_year"), "cited_by_count": int(w.get("cited_by_count") or 0), "doi": w.get("doi"), "role": role_of(w, p), "source": src})
+        seen.add(key)
+        r = relevance(w, p, terms)
+        if r > 0:
+            kept.append((r, w))
+    kept.sort(key=lambda t: (-t[0], -int(t[1].get("cited_by_count") or 0)))
+    return [(r, w) for r, w in kept]
+
+
+def key_works(works, p, src, aliases=()):
+    out = []
+    for i, (r, w) in enumerate(select_works(works, p, aliases)):
+        out.append({"openalex": w["id"].rsplit("/", 1)[-1], "title": w["title"], "year": w.get("publication_year"), "cited_by_count": int(w.get("cited_by_count") or 0), "doi": w.get("doi"), "role": role_of(w, p), "relevance": r, "in_embedding": i < EMBED_WORKS, "source": src})
     return out
 
 
@@ -232,10 +310,11 @@ def people_orgs(works, src):
     return ppl, org
 
 
-def industries(p, works):
-    sub = Counter((w.get("primary_topic") or {}).get("subfield", {}).get("display_name", "") for w in works)
+def industries(p, kept):
+    sub = Counter((w.get("primary_topic") or {}).get("subfield", {}).get("display_name", "") for w in kept)
     sub.pop("", None)
-    return list(dict.fromkeys(p["market"] + [s.lower() for s, _ in sub.most_common(3)]))
+    names = [SYNONYMS.get(s.lower(), s.lower()) for s, c in sub.most_common() if c >= MIN_SUBFIELD_WORKS]
+    return list(dict.fromkeys([SYNONYMS.get(m, m) for m in p["market"]] + names))
 
 
 def related(p, problems):
@@ -321,14 +400,14 @@ def build(p, problems, titles, offline):
     sources = []
     summary, s_entry, rows, lead = wikipedia(p["wikipedia"], offline)
     wiki_url = None
-    statement = {"text": p["description"], "source": "descriptions.tsv"}
+    statement = {"text": p["description"], "source": "descriptions.tsv", "licence": "MIT", "attribution": {"title": "descriptions.tsv", "url": "tools/solvability-atlas/descriptions.tsv"}}
     aliases = []
     if summary:
         wiki_url = summary.get("content_urls", {}).get("desktop", {}).get("page") or s_entry["url"]
         sources.append(source(s_entry) | {"url": wiki_url})
         text = (summary.get("extract") or "").strip()
         if text:
-            statement = {"text": text, "source": wiki_url}
+            statement = {"text": text, "source": wiki_url, "licence": "CC BY-SA 4.0", "attribution": {"title": summary.get("title", p["wikipedia"]), "url": wiki_url}}
         aliases = [a for a in [summary.get("title", "")] + lead if a and a.lower() != p["name"].lower()]
         aliases = list(dict.fromkeys(aliases))
     works, w_entry = openalex_works(p["query"], offline)
@@ -340,18 +419,33 @@ def build(p, problems, titles, offline):
     arx, x_entry = arxiv_total(p["query"], offline)
     if x_entry["status"]:
         sources.append(source(x_entry))
-    ppl, org = people_orgs(works, w_entry["url"])
+    kw = key_works(works, p, w_entry["url"], aliases)
+    kept = [w for _, w in select_works(works, p, aliases)]
+    ppl, org = people_orgs(kept, w_entry["url"])
     f = p["formal_source"]
     rec = {
         "schema": record_schema.SCHEMA, "id": p["id"], "title": p["name"], "statement": statement, "aliases": aliases,
-        "branch": p["branch"], "level": p["level"], "industries": industries(p, works), "posed": p["posed"], "resolved": p["resolved"],
-        "history": history(p, rows, wiki_url or "wikipedia"), "key_works": key_works(works, p, w_entry["url"]),
+        "branch": p["branch"], "level": p["level"], "industries": industries(p, kept), "posed": p["posed"], "resolved": p["resolved"],
+        "history": history(p, rows, wiki_url or "wikipedia"), "key_works": kw, "key_works_considered": len(works),
         "activity": {"openalex_by_year": by_year, "openalex_total": sum(by_year.values()), "arxiv_total": arx, "source": a_entry["url"] + (" ; " + x_entry["url"] if arx is not None else "")},
         "people": ppl, "organizations": org, "related": related(p, problems), "repo_mentions": mentions(p, aliases, titles),
         "formal": {"status": p["lean"], "source": f["source"] if f else None, "url": f["url"] if f else None},
         "sources": sources, "retrieved": today(),
     }
+    rec["quality"] = quality(rec)
     return record_schema.validate(rec)
+
+
+def quality(rec):
+    if not has_openalex(rec):
+        return {"status": "empty", "reason": "no OpenAlex response cached; rerun with --retry-empty"}
+    n = len(rec["key_works"])
+    total = rec["activity"]["openalex_total"]
+    if n == 0 or total < 5:
+        return {"status": "weak", "reason": f"query matched {total} works, {n} kept; refine the query phrase in sources.tsv"}
+    if n < EMBED_WORKS:
+        return {"status": "partial", "reason": f"{n} relevant works of {rec['key_works_considered']} considered"}
+    return {"status": "full", "reason": f"{n} relevant works of {rec['key_works_considered']} considered, {total} works with the phrase"}
 
 
 def has_openalex(rec):
@@ -360,13 +454,28 @@ def has_openalex(rec):
 
 def index(records):
     lines = ["# Problem records", "", f"{len(records)} records, built {today()} by `records.py`. Counts are what each source returned.", "",
-             "| id | title | statement from | aliases | history | key works | top citations | activity years | OpenAlex works | arXiv | people | orgs | repo mentions |",
-             "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+             "| id | title | status | statement from | aliases | history | key works kept / considered | top citations | activity years | OpenAlex works | arXiv | people | orgs | repo mentions |",
+             "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in records:
         top = max((w["cited_by_count"] for w in r["key_works"]), default=0)
         st = "wikipedia" if "wikipedia.org" in (r["statement"]["source"] or "") else r["statement"]["source"]
-        lines.append(f"| {r['id']} | {r['title']} | {st} | {len(r['aliases'])} | {len(r['history'])} | {len(r['key_works'])} | {top} | {len(r['activity']['openalex_by_year'])} | {r['activity']['openalex_total']} | {r['activity']['arxiv_total'] if r['activity']['arxiv_total'] is not None else ''} | {len(r['people'])} | {len(r['organizations'])} | {len(r['repo_mentions'])} |")
+        lines.append(f"| {r['id']} | {r['title']} | {r['quality']['status']} | {st} | {len(r['aliases'])} | {len(r['history'])} | {len(r['key_works'])} / {r['key_works_considered']} | {top} | {len(r['activity']['openalex_by_year'])} | {r['activity']['openalex_total']} | {r['activity']['arxiv_total'] if r['activity']['arxiv_total'] is not None else ''} | {len(r['people'])} | {len(r['organizations'])} | {len(r['repo_mentions'])} |")
+    counts = Counter(r["quality"]["status"] for r in records)
+    lines += ["", "Status: " + ", ".join(f"{k} {counts[k]}" for k in ("full", "partial", "weak", "empty")) + ". Reasons sit in each record's `quality` field.", ""]
     return "\n".join(lines) + "\n"
+
+
+NEIGHBOUR_HEADING = "## Neighbour shift"
+
+
+def write_index(records):
+    path = RECORDS / "INDEX.md"
+    tail = ""
+    if path.exists():
+        old = path.read_text()
+        if NEIGHBOUR_HEADING in old:
+            tail = "\n" + old[old.index(NEIGHBOUR_HEADING):]
+    path.write_text(index(records) + tail)
 
 
 def main():
@@ -377,6 +486,7 @@ def main():
     ap.add_argument("--only", nargs="*", default=None)
     ap.add_argument("--retry-empty", action="store_true")
     a = ap.parse_args()
+    migrate_cache()
     problems = load_problems()
     todo = [p for p in problems if a.only is None or p["id"] in a.only]
     RECORDS.mkdir(exist_ok=True)
@@ -393,7 +503,7 @@ def main():
         done += 1
         print(p["id"], len(rec["key_works"]), rec["activity"]["openalex_total"], file=sys.stderr)
     records = [json.load(open(RECORDS / f"{p['id']}.json")) for p in problems if (RECORDS / f"{p['id']}.json").exists()]
-    (RECORDS / "INDEX.md").write_text(index(records))
+    write_index(records)
     missing = [r["id"] for r in records if not has_openalex(r)]
     print(f"{done} built, {len(records)} records on disk, {len(missing)} without OpenAlex data" + (": rerun with --retry-empty once the budget resets" if missing else ""))
 

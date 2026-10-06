@@ -4,7 +4,12 @@
  "title": "Busy Beaver BB(5)",
  "statement": {
   "text": "In theoretical computer science, the busy beaver game aims to find a terminating program of a given size that either produces the most output possible, or runs for the longest number of steps. Since an endlessly looping program producing infinite output or running for infinite time is easily conceived, such programs are excluded from the game. Rather than traditional programming languages, the programs used in the game are n-state Turing machines, one of the first mathematical models of computation.",
-  "source": "https://en.wikipedia.org/wiki/Busy_beaver"
+  "source": "https://en.wikipedia.org/wiki/Busy_beaver",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Busy beaver",
+   "url": "https://en.wikipedia.org/wiki/Busy_beaver"
+  }
  },
  "aliases": [
   "Busy beaver",
@@ -13,9 +18,7 @@
  "branch": "information",
  "level": 3,
  "industries": [
-  "computational theory and mathematics",
-  "artificial intelligence",
-  "ecology"
+  "computational theory and mathematics"
  ],
  "posed": 1962,
  "resolved": 2024,
@@ -33,40 +36,15 @@
  ],
  "key_works": [
   {
-   "openalex": "W1561186228",
-   "title": "Computing the Busy Beaver Function",
-   "year": 1987,
-   "cited_by_count": 40,
-   "doi": "https://doi.org/10.1007/978-1-4612-4808-8_28",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
    "openalex": "W2345781622",
    "title": "A Relatively Small Turing Machine Whose Behavior Is Independent of Set Theory",
    "year": 2016,
    "cited_by_count": 30,
    "doi": "https://doi.org/10.25088/complexsystems.25.4.297",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W3081595695",
-   "title": "The Busy Beaver Frontier",
-   "year": 2020,
-   "cited_by_count": 14,
-   "doi": "https://doi.org/10.1145/3427361.3427369",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2010433167",
-   "title": "A note on busy beavers and other creatures",
-   "year": 1996,
-   "cited_by_count": 12,
-   "doi": "https://doi.org/10.1007/bf01192693",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2091219308",
@@ -75,7 +53,9 @@
    "cited_by_count": 9,
    "doi": "https://doi.org/10.1145/141914.141918",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2554312410",
@@ -84,169 +64,9 @@
    "cited_by_count": 8,
    "doi": "https://doi.org/10.1142/9789813109032_0001",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1918099480",
-   "title": "Random Semicomputable Reals Revisited",
-   "year": 2012,
-   "cited_by_count": 8,
-   "doi": "https://doi.org/10.1007/978-3-642-27654-5_3",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2067356164",
-   "title": "Improved Bounds for Functions Related to Busy Beavers",
-   "year": 2002,
-   "cited_by_count": 8,
-   "doi": "https://doi.org/10.1007/s00224-001-1052-0",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4386746839",
-   "title": "Combining Finite Combination Properties: Finite Models and Busy Beavers",
-   "year": 2023,
-   "cited_by_count": 7,
-   "doi": "https://doi.org/10.1007/978-3-031-43369-6_9",
-   "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1589181118",
-   "title": "Algorithmic Statistics Revisited",
-   "year": 2015,
-   "cited_by_count": 6,
-   "doi": "https://doi.org/10.1007/978-3-319-21852-6_17",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1998724425",
-   "title": "Some better results estimating the shift function in terms of busy beaver function",
-   "year": 1997,
-   "cited_by_count": 6,
-   "doi": "https://doi.org/10.1145/250037.250038",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1481271169",
-   "title": "Sophistication vs Logical Depth",
-   "year": 2016,
-   "cited_by_count": 5,
-   "doi": "https://doi.org/10.1007/s00224-016-9672-6",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2034594082",
-   "title": "Betti numbers of finitely presented groups and very rapidly growing functions",
-   "year": 2007,
-   "cited_by_count": 5,
-   "doi": "https://doi.org/10.1016/j.top.2007.02.002",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1597946367",
-   "title": "Bringing mathematics education into the algorithmic age",
-   "year": 1992,
-   "cited_by_count": 5,
-   "doi": "https://doi.org/10.1007/bfb0021092",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4245529379",
-   "title": "COMPUTING THE BUSY BEAVER FUNCTION",
-   "year": 1987,
-   "cited_by_count": 5,
-   "doi": "https://doi.org/10.1142/9789814434058_0009",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W7170557179",
-   "title": "After Turing: The Fold Machine - An Exact, Parameter-Free and Machine-Closed Derivation of Classical Computational Science from Smithian Fold Theory",
-   "year": 2026,
-   "cited_by_count": 3,
-   "doi": "https://doi.org/10.5281/zenodo.21536437",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4402652819",
-   "title": "Hardness of Busy Beaver Value BB(15)",
-   "year": 2024,
-   "cited_by_count": 2,
-   "doi": "https://doi.org/10.1007/978-3-031-72621-7_9",
-   "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4246204271",
-   "title": "An Scrutiny of Run-time Ramification for 5-Proviso Busy Beaver Proving Empirical Composition",
-   "year": 2019,
-   "cited_by_count": 2,
-   "doi": "https://doi.org/10.35940/ijitee.i1117.0789s19",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2272146828",
-   "title": "Generic algorithms for halting problem and optimal machines revisited",
-   "year": 2016,
-   "cited_by_count": 2,
-   "doi": "https://doi.org/10.2168/lmcs-12(2:1)2016",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W72736484",
-   "title": "On Logical Depth and the Running Time of Shortest Programs",
-   "year": 2013,
-   "cited_by_count": 2,
-   "doi": "https://doi.org/10.48550/arxiv.1310.6976",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4403573414",
-   "title": "Bounds on the rates of growth and convergence of all physical processes",
-   "year": 2024,
-   "cited_by_count": 1,
-   "doi": "https://doi.org/10.48550/arxiv.2410.10928",
-   "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4384644012",
-   "title": "Combining Finite Combination Properties: Finite Models and Busy Beavers",
-   "year": 2023,
-   "cited_by_count": 1,
-   "doi": "https://doi.org/10.48550/arxiv.2307.07885",
-   "role": "resolved",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4301225406",
-   "title": "Generic algorithms for halting problem and optimal machines revisited",
-   "year": 2017,
-   "cited_by_count": 1,
-   "doi": "https://doi.org/10.31219/osf.io/yf6kj",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2748419703",
-   "title": "On the rate of decrease in logical depth",
-   "year": 2017,
-   "cited_by_count": 1,
-   "doi": "https://doi.org/10.1016/j.tcs.2017.08.012",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2574943505",
@@ -255,9 +75,89 @@
    "cited_by_count": 1,
    "doi": "https://doi.org/10.48550/arxiv.1612.05221",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3081595695",
+   "title": "The Busy Beaver Frontier",
+   "year": 2020,
+   "cited_by_count": 14,
+   "doi": "https://doi.org/10.1145/3427361.3427369",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2010433167",
+   "title": "A note on busy beavers and other creatures",
+   "year": 1996,
+   "cited_by_count": 12,
+   "doi": "https://doi.org/10.1007/bf01192693",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4386746839",
+   "title": "Combining Finite Combination Properties: Finite Models and Busy Beavers",
+   "year": 2023,
+   "cited_by_count": 7,
+   "doi": "https://doi.org/10.1007/978-3-031-43369-6_9",
+   "role": "resolved",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W7170557179",
+   "title": "After Turing: The Fold Machine - An Exact, Parameter-Free and Machine-Closed Derivation of Classical Computational Science from Smithian Fold Theory",
+   "year": 2026,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.5281/zenodo.21536437",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4402652819",
+   "title": "Hardness of Busy Beaver Value BB(15)",
+   "year": 2024,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.1007/978-3-031-72621-7_9",
+   "role": "resolved",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4246204271",
+   "title": "An Scrutiny of Run-time Ramification for 5-Proviso Busy Beaver Proving Empirical Composition",
+   "year": 2019,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.35940/ijitee.i1117.0789s19",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2272146828",
+   "title": "Generic algorithms for halting problem and optimal machines revisited",
+   "year": 2016,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.2168/lmcs-12(2:1)2016",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
+ "key_works_considered": 25,
  "activity": {
   "openalex_by_year": {
    "1987": 2,
@@ -288,190 +188,172 @@
   },
   "openalex_total": 159,
   "arxiv_total": 16,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22busy+beaver+function%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22busy+beaver+function%22&max_results=1"
  },
  "people": [
-  {
-   "openalex": "A5083603294",
-   "name": "Alexander Shen",
-   "works": 4,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5002764180",
-   "name": "Laurent Bienvenu",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5048190616",
-   "name": "Luís Filipe Antunes",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5054293792",
-   "name": "André Souto",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5063257061",
-   "name": "Gregory J. Chaitin",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
   {
    "openalex": "A5020769134",
    "name": "Scott Aaronson",
    "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5019616888",
-   "name": "Amir M. Ben-Amram",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5073112856",
    "name": "Bryant A. Julstrom",
    "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5066534634",
    "name": "Felipe S. Abrahão",
    "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5011100065",
-   "name": "Guilherme V. Toledo",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5052302712",
-   "name": "Yoni Zohar",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5026961968",
-   "name": "Clark Barrett",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5068236076",
-   "name": "Damien Desfontaines",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5029628745",
-   "name": "Paul M. B. Vitanyi",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5045137858",
    "name": "Adam Yedidia",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5019616888",
+   "name": "Amir M. Ben-Amram",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5040770339",
+   "name": "U. Zwick",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5011100065",
+   "name": "Guilherme V. Toledo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5052302712",
+   "name": "Yoni Zohar",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5026961968",
+   "name": "Clark Barrett",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5143533982",
+   "name": "Maria Smith",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5027140762",
+   "name": "Tristan Stérin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5029275026",
+   "name": "Damien Woods",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Laurent Bienvenu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Damien Desfontaines",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Alexander Shen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
   {
-   "openalex": "I4210101743",
-   "name": "Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier",
-   "works": 4,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I1294671590",
-   "name": "Centre National de la Recherche Scientifique",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I182534213",
-   "name": "Universidade do Porto",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I4210114115",
-   "name": "IBM Research - Thomas J. Watson Research Center",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I13955877",
-   "name": "Bar-Ilan University",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I97018004",
-   "name": "Stanford University",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I141596103",
-   "name": "University of Lisbon",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I19894307",
-   "name": "Université de Montpellier",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I4210100430",
-   "name": "Google (Switzerland)",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I1341640284",
-   "name": "Centrum Wiskunde & Informatica",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I887064364",
-   "name": "University of Amsterdam",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I1341412227",
-   "name": "IBM (United States)",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
    "openalex": "I63966007",
    "name": "Massachusetts Institute of Technology",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I122140584",
+   "name": "Universidade Federal do Rio de Janeiro",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I86519309",
    "name": "The University of Texas at Austin",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I16391192",
    "name": "Tel Aviv University",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I173963315",
+   "name": "St. Cloud State University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I13955877",
+   "name": "Bar-Ilan University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I157286207",
+   "name": "National University of Ireland, Maynooth",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I19894307",
+   "name": "Université de Montpellier",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210101743",
+   "name": "Laboratoire d'Informatique, de Robotique et de Microélectronique de Montpellier",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210100430",
+   "name": "Google (Switzerland)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "related": [
@@ -493,12 +375,12 @@
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22busy+beaver+function%22&group_by=publication_year",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
@@ -508,5 +390,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "11 relevant works of 25 considered, 159 works with the phrase"
+ }
 }

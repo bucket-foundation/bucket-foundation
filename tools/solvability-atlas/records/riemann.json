@@ -4,16 +4,19 @@
  "title": "Riemann hypothesis",
  "statement": {
   "text": "In mathematics, the Riemann hypothesis is the conjecture that the Riemann zeta function has its zeros only at the negative even integers and at complex numbers with real part . Many consider it to be the most important unsolved problem in pure mathematics. It is of great interest in number theory because it implies results about the distribution of prime numbers. It was proposed by Bernhard Riemann, after whom it is named. There is overwhelming numerical evidence for the hypothesis, but no proof is known.",
-  "source": "https://en.wikipedia.org/wiki/Riemann_hypothesis"
+  "source": "https://en.wikipedia.org/wiki/Riemann_hypothesis",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Riemann hypothesis",
+   "url": "https://en.wikipedia.org/wiki/Riemann_hypothesis"
+  }
  },
  "aliases": [],
  "branch": "mathematics",
  "level": 5,
  "industries": [
   "cryptography",
-  "algebra and number theory",
-  "artificial intelligence",
-  "geometry and topology"
+  "algebra and number theory"
  ],
  "posed": 1859,
  "resolved": null,
@@ -32,70 +35,9 @@
    "cited_by_count": 3227,
    "doi": null,
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2072184935",
-   "title": "Random Matrix Theory and Wireless Communications",
-   "year": 2004,
-   "cited_by_count": 2125,
-   "doi": "https://doi.org/10.1561/0100000001",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4229746864",
-   "title": "Random Matrix Theory and Wireless Communications",
-   "year": 2004,
-   "cited_by_count": 849,
-   "doi": "https://doi.org/10.1561/9781933019505",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2095393613",
-   "title": "Random Matrix Theory and ζ(1/2+ it)",
-   "year": 2000,
-   "cited_by_count": 761,
-   "doi": "https://doi.org/10.1007/s002200000261",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2012857639",
-   "title": "Riemann's hypothesis and tests for primality",
-   "year": 1976,
-   "cited_by_count": 718,
-   "doi": "https://doi.org/10.1016/s0022-0000(76)80043-8",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2015585803",
-   "title": "Numbers of solutions of equations in finite fields",
-   "year": 1949,
-   "cited_by_count": 525,
-   "doi": "https://doi.org/10.1090/s0002-9904-1949-09219-4",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2134617517",
-   "title": "Low lying zeros of families of L -functions",
-   "year": 2000,
-   "cited_by_count": 385,
-   "doi": "https://doi.org/10.1007/bf02698741",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W647960632",
-   "title": "Noncommutative Geometry, Quantum Fields and Motives",
-   "year": 2007,
-   "cited_by_count": 374,
-   "doi": "https://doi.org/10.1090/coll/055",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2147436369",
@@ -104,88 +46,9 @@
    "cited_by_count": 349,
    "doi": "https://doi.org/10.1007/s000290050042",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W3015507268",
-   "title": "Mathematical Theory of Scattering Resonances",
-   "year": 2019,
-   "cited_by_count": 332,
-   "doi": "https://doi.org/10.1090/gsm/200",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W4245500462",
-   "title": "Multiplicative Number Theory I",
-   "year": 2006,
-   "cited_by_count": 301,
-   "doi": "https://doi.org/10.1017/cbo9780511618314",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2477451100",
-   "title": "The Riemann Hypothesis",
-   "year": 2007,
-   "cited_by_count": 271,
-   "doi": "https://doi.org/10.1007/978-0-387-72126-2",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2029447994",
-   "title": "Some consequences of the Riemann hypothesis for varieties over finite fields",
-   "year": 1974,
-   "cited_by_count": 265,
-   "doi": "https://doi.org/10.1007/bf01405203",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2154773260",
-   "title": "Weierstrass Points and Curves Over Finite Fields",
-   "year": 1986,
-   "cited_by_count": 239,
-   "doi": "https://doi.org/10.1112/plms/s3-52.1.1",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2049433041",
-   "title": "Zeta functions of finite graphs and coverings, III",
-   "year": 2006,
-   "cited_by_count": 233,
-   "doi": "https://doi.org/10.1016/j.aim.2006.03.002",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W3101994345",
-   "title": "Constructing elliptic curve isogenies in quantum subexponential time",
-   "year": 2010,
-   "cited_by_count": 232,
-   "doi": null,
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1506247181",
-   "title": "Mathematical Developments Arising from Hilbert Problems",
-   "year": 1976,
-   "cited_by_count": 229,
-   "doi": "https://doi.org/10.1090/pspum/028.2",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W603376266",
-   "title": "The Millennium Prize Problems",
-   "year": 2006,
-   "cited_by_count": 228,
-   "doi": null,
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W1986386529",
@@ -194,34 +57,9 @@
    "cited_by_count": 224,
    "doi": "https://doi.org/10.4007/annals.2009.170.981",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2010510777",
-   "title": "Chebyshev's Bias",
-   "year": 1994,
-   "cited_by_count": 219,
-   "doi": "https://doi.org/10.1080/10586458.1994.10504289",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2011809718",
-   "title": "Explicit bounds for primality testing and related problems",
-   "year": 1990,
-   "cited_by_count": 215,
-   "doi": "https://doi.org/10.1090/s0025-5718-1990-1023756-8",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2040296694",
-   "title": "The Least Quadratic Non Residue",
-   "year": 1952,
-   "cited_by_count": 212,
-   "doi": "https://doi.org/10.2307/1969420",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2101718938",
@@ -230,7 +68,97 @@
    "cited_by_count": 207,
    "doi": "https://doi.org/10.5802/jtnb.591",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2134617517",
+   "title": "Low lying zeros of families of L -functions",
+   "year": 2000,
+   "cited_by_count": 385,
+   "doi": "https://doi.org/10.1007/bf02698741",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2477451100",
+   "title": "The Riemann Hypothesis",
+   "year": 2007,
+   "cited_by_count": 271,
+   "doi": "https://doi.org/10.1007/978-0-387-72126-2",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2029447994",
+   "title": "Some consequences of the Riemann hypothesis for varieties over finite fields",
+   "year": 1974,
+   "cited_by_count": 265,
+   "doi": "https://doi.org/10.1007/bf01405203",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2012857639",
+   "title": "Riemann's hypothesis and tests for primality",
+   "year": 1976,
+   "cited_by_count": 718,
+   "doi": "https://doi.org/10.1016/s0022-0000(76)80043-8",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4245500462",
+   "title": "Multiplicative Number Theory I",
+   "year": 2006,
+   "cited_by_count": 301,
+   "doi": "https://doi.org/10.1017/cbo9780511618314",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2049433041",
+   "title": "Zeta functions of finite graphs and coverings, III",
+   "year": 2006,
+   "cited_by_count": 233,
+   "doi": "https://doi.org/10.1016/j.aim.2006.03.002",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2010510777",
+   "title": "Chebyshev's Bias",
+   "year": 1994,
+   "cited_by_count": 219,
+   "doi": "https://doi.org/10.1080/10586458.1994.10504289",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2040296694",
+   "title": "The Least Quadratic Non Residue",
+   "year": 1952,
+   "cited_by_count": 212,
+   "doi": "https://doi.org/10.2307/1969420",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2578557174",
@@ -239,18 +167,12 @@
    "cited_by_count": 201,
    "doi": "https://doi.org/10.1515/crll.1985.357.138",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2045890225",
-   "title": "Constructing elliptic curve isogenies in quantum subexponential time",
-   "year": 2013,
-   "cited_by_count": 199,
-   "doi": "https://doi.org/10.1515/jmc-2012-0016",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
+ "key_works_considered": 25,
  "activity": {
   "openalex_by_year": {
    "1927": 1,
@@ -332,190 +254,184 @@
   },
   "openalex_total": 19557,
   "arxiv_total": 1637,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22Riemann+hypothesis%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22Riemann+hypothesis%22&max_results=1"
  },
  "people": [
-  {
-   "openalex": "A5066992345",
-   "name": "Antonia Maria Tulino",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": null,
-   "name": "Sergio Verdú",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
   {
    "openalex": "A5109077139",
    "name": "Peter Sarnak",
    "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5007101684",
-   "name": "Alain Connes",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": null,
-   "name": "David Jao",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": null,
-   "name": "Vladimir Soukharev",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5082894957",
    "name": "Edward Charles Titchmarsh",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5086566271",
    "name": "David Rodney Heath-Brown",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5080921125",
-   "name": "Jonathan P. Keating",
+   "openalex": "A5007101684",
+   "name": "Alain Connes",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5041882515",
-   "name": "N. C. Snaith",
+   "openalex": "A5031078757",
+   "name": "K. Soundararajan",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5010457003",
-   "name": "Gary Lee Miller",
+   "openalex": "A5091203108",
+   "name": "YoungJu Choie",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5007811589",
-   "name": "ANDRE A. WEIL",
+   "openalex": "A5087961421",
+   "name": "Nicolas Lichiardopol",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5009645792",
+   "name": "Pieter Moree",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5024873890",
+   "name": "Patrick Solé",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5038498345",
    "name": "Henryk Iwaniec",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5103073603",
    "name": "Wenzhi Luo",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5007011418",
-   "name": "Matilde Marcolli",
+   "openalex": "A5029261392",
+   "name": "Peter Borwein",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Choi , Stephen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5082003410",
+   "name": "Brendan Rooney",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5045888796",
+   "name": "Andrea Weirathmueller",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
   {
    "openalex": "I20089843",
    "name": "Princeton University",
-   "works": 4,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I151746483",
-   "name": "University of Waterloo",
    "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I102322142",
-   "name": "Rutgers, The State University of New Jersey",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I187986737",
    "name": "Collège de France",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I149899117",
+   "name": "Max Planck Society",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I4210119712",
    "name": "Max Planck Institute for Mathematics",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I63966007",
-   "name": "Massachusetts Institute of Technology",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I71267560",
-   "name": "University of Naples Federico II",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I36234482",
-   "name": "University of Bristol",
+   "openalex": "I102322142",
+   "name": "Rutgers, The State University of New Jersey",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I4210156325",
-   "name": "Hewlett-Packard (United Kingdom)",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I52357470",
    "name": "The Ohio State University",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I95457486",
-   "name": "University of California, Berkeley",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I27837315",
-   "name": "University of Michigan",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I130769515",
-   "name": "Pennsylvania State University",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I18014758",
    "name": "Simon Fraser University",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I125749732",
    "name": "Western University",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I151746483",
+   "name": "University of Waterloo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I27837315",
+   "name": "University of Michigan",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I130769515",
+   "name": "Pennsylvania State University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I36258959",
+   "name": "University of California San Diego",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "related": [
@@ -553,12 +469,12 @@
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Riemann+hypothesis%22&group_by=publication_year",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
@@ -568,5 +484,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "13 relevant works of 25 considered, 19557 works with the phrase"
+ }
 }

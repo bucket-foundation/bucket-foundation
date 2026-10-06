@@ -4,7 +4,12 @@
  "title": "Unique Games Conjecture",
  "statement": {
   "text": "In computational complexity theory, the unique games conjecture is a conjecture made by Subhash Khot in 2002. The conjecture postulates that the problem of determining the approximate value of a certain type of game, known as a unique game, has NP-hard computational complexity. It has broad applications in the theory of hardness of approximation. If the unique games conjecture is true and P ≠ NP, then for many important problems it is not only impossible to get an exact solution in polynomial time, but also impossible to get a good polynomial-time approximation. The problems for which such an inapproximability result would hold include constraint satisfaction problems, which crop up in a wide variety of disciplines.",
-  "source": "https://en.wikipedia.org/wiki/Unique_games_conjecture"
+  "source": "https://en.wikipedia.org/wiki/Unique_games_conjecture",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Unique games conjecture",
+   "url": "https://en.wikipedia.org/wiki/Unique_games_conjecture"
+  }
  },
  "aliases": [
   "UGC"
@@ -13,8 +18,7 @@
  "level": 5,
  "industries": [
   "optimization",
-  "computational theory and mathematics",
-  "artificial intelligence"
+  "computational theory and mathematics"
  ],
  "posed": 2002,
  "resolved": null,
@@ -27,58 +31,15 @@
  ],
  "key_works": [
   {
-   "openalex": "W1993116423",
-   "title": "Towards Sharp Inapproximability For Any 2-CSP",
-   "year": 2007,
-   "cited_by_count": 1343,
-   "doi": "https://doi.org/10.1109/focs.2007.41",
-   "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2120358419",
-   "title": "On the power of unique 2-prover 1-round games",
-   "year": 2002,
-   "cited_by_count": 850,
-   "doi": "https://doi.org/10.1145/509907.510017",
-   "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2087038607",
-   "title": "Optimal Inapproximability Results for MAX‐CUT and Other 2‐Variable CSPs?",
-   "year": 2007,
-   "cited_by_count": 594,
-   "doi": "https://doi.org/10.1137/s0097539705447372",
-   "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2110871651",
-   "title": "Optimal algorithms and inapproximability results for every CSP?",
-   "year": 2008,
-   "cited_by_count": 399,
-   "doi": "https://doi.org/10.1145/1374376.1374414",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
    "openalex": "W1571037334",
    "title": "The Unique Games Conjecture, Integrality Gap for Cut Problems and Embeddability of Negative Type Metrics into \\ell 1",
    "year": 2005,
    "cited_by_count": 271,
    "doi": "https://doi.org/10.1109/sfcs.2005.74",
    "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W3088409280",
-   "title": "Warm-starting quantum optimization",
-   "year": 2021,
-   "cited_by_count": 268,
-   "doi": "https://doi.org/10.22331/q-2021-06-17-479",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2019404063",
@@ -87,70 +48,9 @@
    "cited_by_count": 267,
    "doi": "https://doi.org/10.1145/1806689.1806792",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2161719898",
-   "title": "ON THE HARDNESS OF APPROXIMATING MULTICUT AND SPARSEST-CUT",
-   "year": 2006,
-   "cited_by_count": 221,
-   "doi": "https://doi.org/10.1007/s00037-006-0210-9",
-   "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1670963965",
-   "title": "Hypercontractivity, sum-of-squares proofs, and their applications",
-   "year": 2012,
-   "cited_by_count": 193,
-   "doi": "https://doi.org/10.1145/2213977.2214006",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2163925208",
-   "title": "Subexponential Algorithms for Unique Games and Related Problems",
-   "year": 2010,
-   "cited_by_count": 177,
-   "doi": "https://doi.org/10.1109/focs.2010.59",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1507028355",
-   "title": "Parallel Repetition in Projection Games and a Concentration Bound",
-   "year": 2008,
-   "cited_by_count": 156,
-   "doi": "https://doi.org/10.1137/080734042",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W232814632",
-   "title": "CSP gaps and reductions in the lasserre hierarchy",
-   "year": 2009,
-   "cited_by_count": 147,
-   "doi": "https://doi.org/10.1145/1536414.1536457",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2099677042",
-   "title": "Optimal Inapproximability Results for Max-Cut and Other 2-Variable CSPs?",
-   "year": 2004,
-   "cited_by_count": 144,
-   "doi": "https://doi.org/10.1109/focs.2004.49",
-   "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1480663790",
-   "title": "Agnostic Learning of Monomials by Halfspaces Is Hard",
-   "year": 2009,
-   "cited_by_count": 139,
-   "doi": "https://doi.org/10.1109/focs.2009.26",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W1588469622",
@@ -159,16 +59,31 @@
    "cited_by_count": 128,
    "doi": "https://doi.org/10.1109/focs.2011.95",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "W2133263321",
-   "title": "Noise stability of functions with low in.uences invariance and optimality",
-   "year": 2005,
-   "cited_by_count": 127,
-   "doi": "https://doi.org/10.1109/sfcs.2005.53",
+   "openalex": "W2120358419",
+   "title": "On the power of unique 2-prover 1-round games",
+   "year": 2002,
+   "cited_by_count": 850,
+   "doi": "https://doi.org/10.1145/509907.510017",
    "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2163925208",
+   "title": "Subexponential Algorithms for Unique Games and Related Problems",
+   "year": 2010,
+   "cited_by_count": 177,
+   "doi": "https://doi.org/10.1109/focs.2010.59",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2165732281",
@@ -177,61 +92,31 @@
    "cited_by_count": 126,
    "doi": "https://doi.org/10.1145/1132516.1132547",
    "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "W4242357733",
-   "title": "On the power of unique 2-prover 1-round games",
-   "year": 2003,
-   "cited_by_count": 113,
-   "doi": "https://doi.org/10.1109/ccc.2002.1004334",
-   "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2963946005",
-   "title": "Sum-of-squares proofs and the quest toward optimal algorithms",
-   "year": 2014,
-   "cited_by_count": 105,
-   "doi": "https://doi.org/10.48550/arxiv.1404.5236",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2344590581",
-   "title": "Fully Dynamic Maximal Matching in Constant Update Time",
-   "year": 2016,
-   "cited_by_count": 103,
-   "doi": "https://doi.org/10.1109/focs.2016.43",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1975810219",
-   "title": "Gowers uniformity, influence of variables, and PCPs",
+   "openalex": "W2161719898",
+   "title": "ON THE HARDNESS OF APPROXIMATING MULTICUT AND SPARSEST-CUT",
    "year": 2006,
-   "cited_by_count": 100,
-   "doi": "https://doi.org/10.1145/1132516.1132519",
+   "cited_by_count": 221,
+   "doi": "https://doi.org/10.1007/s00037-006-0210-9",
    "role": "posed",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "W2152490496",
-   "title": "Optimal Long Code Test with One Free Bit",
-   "year": 2009,
-   "cited_by_count": 97,
-   "doi": "https://doi.org/10.1109/focs.2009.23",
+   "openalex": "W1507028355",
+   "title": "Parallel Repetition in Projection Games and a Concentration Bound",
+   "year": 2008,
+   "cited_by_count": 156,
+   "doi": "https://doi.org/10.1137/080734042",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2242403914",
-   "title": "Subexponential Algorithms for Unique Games and Related Problems",
-   "year": 2015,
-   "cited_by_count": 92,
-   "doi": "https://doi.org/10.1145/2775105",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "W2179897858",
@@ -240,18 +125,12 @@
    "cited_by_count": 92,
    "doi": "https://doi.org/10.1007/s00037-009-0272-6",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W1965562201",
-   "title": "Reductions between Expansion Problems",
-   "year": 2012,
-   "cited_by_count": 90,
-   "doi": "https://doi.org/10.1109/ccc.2012.43",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
+ "key_works_considered": 25,
  "activity": {
   "openalex_by_year": {
    "2002": 1,
@@ -282,190 +161,166 @@
   },
   "openalex_total": 524,
   "arxiv_total": 174,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22unique+games+conjecture%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22unique+games+conjecture%22&max_results=1"
  },
  "people": [
   {
    "openalex": "A5089128021",
    "name": "David Steurer",
-   "works": 7,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5067917669",
    "name": "Subhash Khot",
-   "works": 5,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5101701586",
    "name": "Prasad Raghavendra",
-   "works": 5,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5102710346",
    "name": "Boaz Barak",
-   "works": 5,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5013467728",
-   "name": "Elchanan Mossel",
-   "works": 4,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5051167298",
-   "name": "Ryan O’Donnell",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5055776088",
-   "name": "Per Austrin",
    "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5083621825",
-   "name": "Guy Kindler",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5103334936",
-   "name": "Sanjeev Arora",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5057481716",
-   "name": "Madhur Tulsiani",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5063089732",
    "name": "Nisheeth K. Vishnoi",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5027150880",
-   "name": "Daniel J. Egger",
+   "openalex": "A5103334936",
+   "name": "Sanjeev Arora",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5003656133",
-   "name": "Jakub Mareček",
+   "openalex": "A5071016611",
+   "name": "Moses Charikar",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "A5085105920",
-   "name": "Stefan Woerner",
+   "openalex": "A5033681881",
+   "name": "Konstantin Makarychev",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5068045392",
+   "name": "Yury Makarychev",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5005407267",
    "name": "Shuchi Chawla",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5037378898",
+   "name": "Robert Krauthgamer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5107809381",
+   "name": "Ravi Kumar",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5010842984",
+   "name": "Yuval Rabani",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5034629063",
+   "name": "D. Sivakumar",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5035012558",
+   "name": "Anup Rao",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
   {
    "openalex": "I20089843",
    "name": "Princeton University",
-   "works": 6,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I95457486",
-   "name": "University of California, Berkeley",
-   "works": 6,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I74973139",
-   "name": "Carnegie Mellon University",
-   "works": 5,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I4400600948",
-   "name": "Microsoft Research New England (United States)",
-   "works": 5,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I130701444",
    "name": "Georgia Institute of Technology",
-   "works": 3,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I86987016",
-   "name": "KTH Royal Institute of Technology",
    "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I53964585",
-   "name": "Weizmann Institute of Science",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I201448701",
-   "name": "University of Washington",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I4210085935",
-   "name": "IBM Research - Almaden",
-   "works": 2,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I4210103279",
    "name": "IBM Research - India",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I4210129961",
    "name": "IBM (India)",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I4210126328",
-   "name": "IBM Research - Zurich",
+   "openalex": "I4400600948",
+   "name": "Microsoft Research New England (United States)",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I44504214",
-   "name": "Czech Technical University in Prague",
+   "openalex": "I74973139",
+   "name": "Carnegie Mellon University",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210085935",
+   "name": "IBM Research - Almaden",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "I174306211",
    "name": "Technion – Israel Institute of Technology",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
-   "openalex": "I110200422",
-   "name": "Universidade Federal de Minas Gerais",
+   "openalex": "I86987016",
+   "name": "KTH Royal Institute of Technology",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I53964585",
+   "name": "Weizmann Institute of Science",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I95457486",
+   "name": "University of California, Berkeley",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "related": [
@@ -491,12 +346,12 @@
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22unique+games+conjecture%22&group_by=publication_year",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
@@ -506,5 +361,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "9 relevant works of 25 considered, 524 works with the phrase"
+ }
 }

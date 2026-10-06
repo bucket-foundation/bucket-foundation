@@ -4,7 +4,12 @@
  "title": "Hard problem of consciousness",
  "statement": {
   "text": "In philosophy of mind, the hard problem of consciousness is to explain how and why organisms have qualia, phenomenal consciousness, or subjective experience. It is contrasted with the \"easy problems\" of explaining why and how physical systems give rise to the ability to discriminate, to integrate information, and to perform behavioural functions such as watching, listening, speaking, and so forth. The easy problems are amenable to functional explanation—that is, explanations that are mechanistic or behavioural—since each physical system can be explained purely by reference to the \"structure and dynamics\" that underpin the phenomenon.",
-  "source": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+  "source": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Hard problem of consciousness",
+   "url": "https://en.wikipedia.org/wiki/Hard_problem_of_consciousness"
+  }
  },
  "aliases": [
   "hard problem"
@@ -24,11 +29,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 26,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22hard+problem+of+consciousness%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22hard+problem+of+consciousness%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22hard+problem+of+consciousness%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -79,5 +85,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

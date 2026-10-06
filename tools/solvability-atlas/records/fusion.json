@@ -4,7 +4,12 @@
  "title": "Plasma confinement stability",
  "statement": {
   "text": "In plasma physics, plasma stability concerns the stability properties of a plasma in equilibrium and its behavior under small perturbations. The stability of the system determines if the perturbations will grow, oscillate, or be damped out. It is an important consideration in topics such as nuclear fusion and astrophysical plasma.",
-  "source": "https://en.wikipedia.org/wiki/Plasma_stability"
+  "source": "https://en.wikipedia.org/wiki/Plasma_stability",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Plasma stability",
+   "url": "https://en.wikipedia.org/wiki/Plasma_stability"
+  }
  },
  "aliases": [
   "Plasma stability",
@@ -25,11 +30,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 202,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22plasma+confinement%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22plasma+confinement%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22plasma+confinement%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -73,5 +79,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

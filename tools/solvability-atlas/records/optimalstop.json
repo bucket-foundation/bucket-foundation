@@ -4,7 +4,12 @@
  "title": "Market efficiency as computational hardness",
  "statement": {
   "text": "The efficient-market hypothesis (EMH) is a hypothesis in financial economics that states that asset prices reflect all available information. A direct implication is that it is impossible to \"beat the market\" consistently on a risk-adjusted basis since market prices should only react to new information.",
-  "source": "https://en.wikipedia.org/wiki/Efficient-market_hypothesis"
+  "source": "https://en.wikipedia.org/wiki/Efficient-market_hypothesis",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Efficient-market hypothesis",
+   "url": "https://en.wikipedia.org/wiki/Efficient-market_hypothesis"
+  }
  },
  "aliases": [
   "Efficient-market hypothesis",
@@ -26,11 +31,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 256,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22market+efficiency%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22market+efficiency%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -74,5 +80,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

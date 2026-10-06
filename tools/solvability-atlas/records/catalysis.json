@@ -4,7 +4,12 @@
  "title": "Rational catalyst design",
  "statement": {
   "text": "Catalysis is the increase in rate of a chemical reaction due to an added substance known as a catalyst. Catalysts are not consumed by the reaction and remain unchanged after the reaction. If the reaction is rapid and the catalyst is recycled quickly, a very small amount of catalyst often suffices; mixing, surface area, and temperature are important factors in reaction rate. Catalysts generally react with one or more reactants to form intermediates that subsequently give the final reaction product, in the process of regenerating the catalyst.",
-  "source": "https://en.wikipedia.org/wiki/Catalysis"
+  "source": "https://en.wikipedia.org/wiki/Catalysis",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Catalysis",
+   "url": "https://en.wikipedia.org/wiki/Catalysis"
+  }
  },
  "aliases": [
   "Catalysis",
@@ -26,11 +31,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 3,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22rational+catalyst+design%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22rational+catalyst+design%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -159,5 +165,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

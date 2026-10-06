@@ -4,7 +4,12 @@
  "title": "AI alignment verification",
  "statement": {
   "text": "In the field of artificial intelligence (AI), alignment aims to steer AI systems toward a person's or group's intended goals, preferences, or ethical principles. An AI system is considered aligned if it advances the intended objectives. A misaligned AI system pursues unintended objectives.",
-  "source": "https://en.wikipedia.org/wiki/AI_alignment"
+  "source": "https://en.wikipedia.org/wiki/AI_alignment",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "AI alignment",
+   "url": "https://en.wikipedia.org/wiki/AI_alignment"
+  }
  },
  "aliases": [
   "AI alignment",
@@ -25,11 +30,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 432,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22AI+alignment%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22AI+alignment%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22AI+alignment%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22AI+alignment%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -92,5 +98,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

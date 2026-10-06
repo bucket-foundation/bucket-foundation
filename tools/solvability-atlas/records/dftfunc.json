@@ -4,7 +4,12 @@
  "title": "Exact exchange-correlation functional",
  "statement": {
   "text": "Density functional theory (DFT) is a computational quantum mechanical modeling method used in physics, chemistry and materials science to investigate the electronic structure of many-body systems, in particular atoms, molecules, and the condensed phases. Using this theory, the properties of a many-electron system can be determined by using functionals – that is, functions that accept a function as input and output a single real number. In the case of DFT, these are functionals of the spatially dependent electron density. DFT is among the most popular and versatile methods available in condensed-matter physics, computational physics, and computational chemistry.",
-  "source": "https://en.wikipedia.org/wiki/Density_functional_theory"
+  "source": "https://en.wikipedia.org/wiki/Density_functional_theory",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Density functional theory",
+   "url": "https://en.wikipedia.org/wiki/Density_functional_theory"
+  }
  },
  "aliases": [
   "Density functional theory",
@@ -26,11 +31,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 837,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22exchange-correlation+functional%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22exchange-correlation+functional%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22exchange-correlation+functional%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22exchange-correlation+functional%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -99,5 +105,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

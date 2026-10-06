@@ -4,7 +4,12 @@
  "title": "Smale's 18th problem limits of intelligence",
  "statement": {
   "text": "Smale's problems is a list of eighteen unsolved problems in mathematics proposed by Steve Smale in 1998 and republished in 1999. Smale composed this list in reply to a request from Vladimir Arnold, then vice-president of the International Mathematical Union, who asked several mathematicians to propose a list of problems for the 21st century. Arnold's inspiration came from the list of Hilbert's problems that had been published at the beginning of the 20th century.",
-  "source": "https://en.wikipedia.org/wiki/Smale's_problems"
+  "source": "https://en.wikipedia.org/wiki/Smale's_problems",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Smale's problems",
+   "url": "https://en.wikipedia.org/wiki/Smale's_problems"
+  }
  },
  "aliases": [
   "Smale's problems"
@@ -24,11 +29,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 30,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22limits+of+intelligence%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22limits+of+intelligence%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22limits+of+intelligence%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -72,5 +78,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

@@ -4,7 +4,12 @@
  "title": "Succinct proofs without trusted setup optimality",
  "statement": {
   "text": "In cryptography, a zero-knowledge proof is a protocol in which one party can convince another party that some given statement is true, without conveying to the verifier any information beyond the mere fact of that statement's truth. The intuition behind the nontriviality of zero-knowledge proofs is that it is trivial to prove possession of the relevant information simply by revealing it; the hard part is to prove this possession without revealing this information.",
-  "source": "https://en.wikipedia.org/wiki/Zero-knowledge_proof"
+  "source": "https://en.wikipedia.org/wiki/Zero-knowledge_proof",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Zero-knowledge proof",
+   "url": "https://en.wikipedia.org/wiki/Zero-knowledge_proof"
+  }
  },
  "aliases": [
   "Zero-knowledge proof",
@@ -28,11 +33,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 13,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22succinct+arguments%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22succinct+arguments%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22succinct+arguments%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -76,5 +82,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

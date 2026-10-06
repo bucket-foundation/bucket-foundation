@@ -4,7 +4,12 @@
  "title": "Origin of life",
  "statement": {
   "text": "Abiogenesis or the origin of life is the natural process by which life arises from non-living matter, such as simple organic compounds. The prevailing scientific hypothesis is that the transition from non-living to living entities on Earth was not a single event, but a process of increasing complexity involving the formation of a habitable planet, the prebiotic synthesis of organic molecules, molecular self-replication, self-assembly, autocatalysis, and the emergence of cell membranes. The transition from non-life to life has not been observed experimentally, but many proposals have been made for different stages of the process.",
-  "source": "https://en.wikipedia.org/wiki/Abiogenesis"
+  "source": "https://en.wikipedia.org/wiki/Abiogenesis",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Abiogenesis",
+   "url": "https://en.wikipedia.org/wiki/Abiogenesis"
+  }
  },
  "aliases": [
   "Abiogenesis",
@@ -23,11 +28,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 405,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22origin+of+life%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22origin+of+life%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22origin+of+life%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22origin+of+life%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -81,5 +87,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

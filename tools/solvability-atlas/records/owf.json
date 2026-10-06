@@ -4,7 +4,12 @@
  "title": "Existence of one-way functions",
  "statement": {
   "text": "In computer science, a one-way function is a function that is easy to compute on every input, but hard to invert given the image of a random input. Here, \"easy\" and \"hard\" are to be understood in the sense of computational complexity theory, specifically the theory of polynomial time problems. This has nothing to do with whether the function is one-to-one; finding any one input with the desired image is considered a successful inversion.",
-  "source": "https://en.wikipedia.org/wiki/One-way_function"
+  "source": "https://en.wikipedia.org/wiki/One-way_function",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "One-way function",
+   "url": "https://en.wikipedia.org/wiki/One-way_function"
+  }
  },
  "aliases": [
   "One-way function",
@@ -14,9 +19,7 @@
  "level": 5,
  "industries": [
   "cryptography",
-  "finance",
-  "artificial intelligence",
-  "atomic and molecular physics, and optics"
+  "finance"
  ],
  "posed": 1976,
  "resolved": null,
@@ -35,18 +38,12 @@
    "cited_by_count": 7,
    "doi": "https://doi.org/10.1007/978-3-030-56880-1_21",
    "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "W2019169735",
-   "title": "A consequence of a proof of the one-way function existence for the problem of macroscopic superpositions",
-   "year": 2008,
-   "cited_by_count": 0,
-   "doi": "https://doi.org/10.1016/j.chaos.2008.10.010",
-   "role": "partial",
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
+ "key_works_considered": 2,
  "activity": {
   "openalex_by_year": {
    "2008": 1,
@@ -54,26 +51,20 @@
   },
   "openalex_total": 2,
   "arxiv_total": 33,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22one-way+functions+existence%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22one-way+functions+existence%22&max_results=1"
  },
  "people": [
   {
    "openalex": "A5082365034",
    "name": "Hemanta K. Maji",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   },
   {
    "openalex": "A5100692035",
    "name": "Mingyuan Wang",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "A5066433624",
-   "name": "Arkady Bolotin",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "organizations": [
@@ -81,13 +72,7 @@
    "openalex": "I219193219",
    "name": "Purdue University West Lafayette",
    "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
-  },
-  {
-   "openalex": "I124227911",
-   "name": "Ben-Gurion University of the Negev",
-   "works": 1,
-   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com"
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
   }
  ],
  "related": [
@@ -125,12 +110,12 @@
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
   {
-   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&group_by=publication_year&mailto=gianyrox%40gmail.com",
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&group_by=publication_year",
    "licence": "CC0-1.0",
    "retrieved": "2026-10-05"
   },
@@ -140,5 +125,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 2 works, 1 kept; refine the query phrase in sources.tsv"
+ }
 }

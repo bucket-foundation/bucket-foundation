@@ -4,7 +4,12 @@
  "title": "Autoformalization of mathematics",
  "statement": {
   "text": "Logic translation is the process of representing a text in the formal language of a logical system. If the original text is formulated in ordinary language then the term natural language formalization is often used. An example is the translation of the English sentence \"some men are bald\" into first-order logic as . The purpose is to reveal the logical structure of arguments. This makes it possible to use the precise rules of formal logic to assess whether these arguments are correct. It can also guide reasoning by arriving at new conclusions.",
-  "source": "https://en.wikipedia.org/wiki/Logic_translation"
+  "source": "https://en.wikipedia.org/wiki/Logic_translation",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Logic translation",
+   "url": "https://en.wikipedia.org/wiki/Logic_translation"
+  }
  },
  "aliases": [
   "Logic translation",
@@ -25,11 +30,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 198,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22autoformalization%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22autoformalization%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -73,5 +79,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

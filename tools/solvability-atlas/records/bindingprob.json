@@ -4,7 +4,12 @@
  "title": "Neural binding problem",
  "statement": {
   "text": "The unity of consciousness and (cognitive) binding problem is the problem of how objects, background, and abstract or emotional features are combined into a single experience. The binding problem refers to the overall encoding of our brain circuits for the combination of decisions, actions, and perception. It is considered a \"problem\" because no complete model exists.",
-  "source": "https://en.wikipedia.org/wiki/Binding_problem"
+  "source": "https://en.wikipedia.org/wiki/Binding_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Binding problem",
+   "url": "https://en.wikipedia.org/wiki/Binding_problem"
+  }
  },
  "aliases": [
   "Binding problem",
@@ -27,11 +32,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 61,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22binding+problem%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22binding+problem%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -196,5 +202,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

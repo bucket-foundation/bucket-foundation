@@ -2,11 +2,13 @@ SCHEMA = "bucket.solvability-atlas.record/v1"
 BRANCHES = {"mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind"}
 ROLES = {"posed", "partial", "resolved", "survey"}
 FORMAL = {"none", "statement", "partial", "proved"}
+QUALITY = {"full", "partial", "weak", "empty"}
+EMBED_WORKS = 8
 TOP = {
     "schema": str, "id": str, "title": str, "statement": dict, "aliases": list, "branch": str, "level": int,
     "industries": list, "posed": int, "resolved": (int, type(None)), "history": list, "key_works": list,
-    "activity": dict, "people": list, "organizations": list, "related": list, "repo_mentions": list,
-    "formal": dict, "sources": list, "retrieved": str,
+    "key_works_considered": int, "activity": dict, "people": list, "organizations": list, "related": list, "repo_mentions": list,
+    "formal": dict, "sources": list, "retrieved": str, "quality": dict,
 }
 
 
@@ -30,14 +32,15 @@ def errors(r):
     if r["resolved"] is not None and r["resolved"] < r["posed"]:
         out.append("resolved before posed")
     st = r["statement"]
-    if set(st) != {"text", "source"} or not isinstance(st["text"], str) or not isinstance(st["source"], (str, type(None))):
-        out.append("statement needs text and source")
-    if st["text"] and st["source"] is None:
+    out += [f"statement {m}" for m in keys(st, {"text": str, "source": (str, type(None)), "licence": str, "attribution": dict})]
+    if st.get("text") and st.get("source") is None:
         out.append("statement text without source")
+    if isinstance(st.get("attribution"), dict):
+        out += [f"statement attribution {m}" for m in keys(st["attribution"], {"title": str, "url": str})]
     for i, e in enumerate(r["history"]):
         out += [f"history[{i}] {m}" for m in keys(e, {"year": int, "event": str, "source": str})]
     for i, w in enumerate(r["key_works"]):
-        out += [f"key_works[{i}] {m}" for m in keys(w, {"openalex": str, "title": str, "year": (int, type(None)), "cited_by_count": int, "doi": (str, type(None)), "role": str, "source": str})]
+        out += [f"key_works[{i}] {m}" for m in keys(w, {"openalex": str, "title": str, "year": (int, type(None)), "cited_by_count": int, "doi": (str, type(None)), "role": str, "relevance": int, "in_embedding": bool, "source": str})]
         if isinstance(w, dict) and w.get("role") not in ROLES:
             out.append(f"key_works[{i}] role {w.get('role')}")
     a = r["activity"]
@@ -59,6 +62,16 @@ def errors(r):
     out += [f"formal {m}" for m in keys(r["formal"], {"status": str, "source": (str, type(None)), "url": (str, type(None))})]
     if r["formal"].get("status") not in FORMAL:
         out.append(f"formal status {r['formal'].get('status')}")
+    if sum(1 for w in r["key_works"] if isinstance(w, dict) and w.get("in_embedding")) > EMBED_WORKS:
+        out.append(f"more than {EMBED_WORKS} works marked for embedding")
+    if len({k for w in r["key_works"] if isinstance(w, dict) for k in [w.get("title", "").lower()]}) != len(r["key_works"]):
+        out.append("duplicate key work titles")
+    out += [f"quality {m}" for m in keys(r["quality"], {"status": str, "reason": str})]
+    if r["quality"].get("status") not in QUALITY:
+        out.append(f"quality status {r['quality'].get('status')}")
+    for s in r["sources"]:
+        if isinstance(s, dict) and "mailto" in s.get("url", ""):
+            out.append("source url carries a mailto address")
     for i, s in enumerate(r["sources"]):
         out += [f"sources[{i}] {m}" for m in keys(s, {"url": str, "licence": str, "retrieved": str})]
     return out

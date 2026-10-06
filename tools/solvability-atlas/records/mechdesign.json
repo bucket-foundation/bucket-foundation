@@ -4,7 +4,12 @@
  "title": "Optimal multi-item auction design",
  "statement": {
   "text": "Mechanism design is a branch of economics and game theory. It studies how to construct rules—called mechanisms or institutions—that produce good outcomes according to some predefined metric, even when the designer does not know the players' true preferences or what information they have. Mechanism design thus focuses on the study of solution concepts for a class of private-information games.",
-  "source": "https://en.wikipedia.org/wiki/Mechanism_design"
+  "source": "https://en.wikipedia.org/wiki/Mechanism_design",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Mechanism design",
+   "url": "https://en.wikipedia.org/wiki/Mechanism_design"
+  }
  },
  "aliases": [
   "Mechanism design",
@@ -26,11 +31,12 @@
   }
  ],
  "key_works": [],
+ "key_works_considered": 0,
  "activity": {
   "openalex_by_year": {},
   "openalex_total": 0,
   "arxiv_total": 31,
-  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22multi-item+auction%22&group_by=publication_year&mailto=gianyrox%40gmail.com ; http://export.arxiv.org/api/query?search_query=all%3A%22multi-item+auction%22&max_results=1"
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22multi-item+auction%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22multi-item+auction%22&max_results=1"
  },
  "people": [],
  "organizations": [],
@@ -81,5 +87,9 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "empty",
+  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+ }
 }

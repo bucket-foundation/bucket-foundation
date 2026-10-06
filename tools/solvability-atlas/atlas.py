@@ -69,7 +69,7 @@ def keyword_text(n):
 
 
 def record_text(n, rec):
-    titles = [w["title"] for w in sorted(rec["key_works"], key=lambda w: -w["cited_by_count"])[:KEY_WORK_TITLES]]
+    titles = [w["title"] for w in rec["key_works"] if w.get("in_embedding")][:KEY_WORK_TITLES]
     parts = [n["name"] + "."]
     if rec["aliases"]:
         parts.append("Also called " + ", ".join(rec["aliases"]) + ".")
@@ -79,6 +79,17 @@ def record_text(n, rec):
     if titles:
         parts.append("Key works: " + "; ".join(titles) + ".")
     return " ".join(parts)
+
+
+def neighbour_shift(ids, emb_a, emb_b, k=K):
+    sim_a, sim_b = emb_a @ emb_a.T, emb_b @ emb_b.T
+    rows = []
+    for i, pid in enumerate(ids):
+        na = {ids[j] for j in np.argsort(-sim_a[i])[1:k + 1]}
+        nb = {ids[j] for j in np.argsort(-sim_b[i])[1:k + 1]}
+        rows.append({"id": pid, "changed": len(na - nb), "left": sorted(na - nb), "entered": sorted(nb - na), "cosine": round(float(emb_a[i] @ emb_b[i]), 4)})
+    total = sum(r["changed"] for r in rows)
+    return {"k": k, "problems": len(ids), "changed_edges": total, "possible_edges": len(ids) * k, "problems_with_change": sum(r["changed"] > 0 for r in rows), "rows": sorted(rows, key=lambda r: (-r["changed"], r["cosine"]))}
 
 
 def embed_text(n):

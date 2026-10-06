@@ -4,7 +4,12 @@
  "title": "Alpha problem",
  "statement": {
   "text": "The alpha problem asks whether every alpha is beta.",
-  "source": "https://en.wikipedia.org/wiki/Alpha_problem"
+  "source": "https://en.wikipedia.org/wiki/Alpha_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Alpha problem",
+   "url": "https://en.wikipedia.org/wiki/Alpha_problem"
+  }
  },
  "aliases": [
   "alpha conjecture"
@@ -32,7 +37,9 @@
    "cited_by_count": 120,
    "doi": "https://doi.org/10.1/x",
    "role": "posed",
-   "source": "https://api.openalex.org/works?x"
+   "source": "https://api.openalex.org/works?x",
+   "relevance": 4,
+   "in_embedding": true
   },
   {
    "openalex": "W2",
@@ -41,7 +48,9 @@
    "cited_by_count": 40,
    "doi": null,
    "role": "survey",
-   "source": "https://api.openalex.org/works?x"
+   "source": "https://api.openalex.org/works?x",
+   "relevance": 3,
+   "in_embedding": true
   }
  ],
  "activity": {
@@ -88,5 +97,10 @@
    "retrieved": "2026-10-05"
   }
  ],
- "retrieved": "2026-10-05"
+ "retrieved": "2026-10-05",
+ "key_works_considered": 5,
+ "quality": {
+  "status": "partial",
+  "reason": "2 relevant works of 5 considered"
+ }
 }
