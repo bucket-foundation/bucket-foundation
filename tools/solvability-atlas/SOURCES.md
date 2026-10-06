@@ -105,6 +105,14 @@ Rules for these rows:
 
 Not read: the Science pages themselves return 403 to scripts, so the 2005 list came from the 2007 Wayback copy of the article and the 2021 list from the 2023 Wayback copy of the booklet PDF; the Oxford University Press and ACS tables of contents return 403, so the neuroscience chapters came from the Library of Congress record and the chemistry titles from PubMed. Knuth's open problems and the 2000 "Computing the future" lists had no freely readable dated list and were skipped. Physics Today and Nature open-problem lists were skipped for the same reason.
 
+## OpenAlex activity
+
+`python3 openalex_sourced.py` runs one title-and-abstract search per sourced row against the OpenAlex works index (`https://api.openalex.org/works`, metadata CC0-1.0): the query is the problem name, or the first clause of the statement when the name is a numbered label such as "Erdős problem 403", cleaned of LaTeX, citation keys and links and cut to 10 words. Two requests per row, one for the match count and the three most cited works, one grouped by year for the last 30 years. Results go to `openalex-sourced.json`, keyed by row id: `query`, `works_total`, `by_year` (30 years), `top` (OpenAlex id, title, year, cited_by_count) and `retrieved`. Responses cache under `cache/` with the mailto address stripped, and the key stays in the `Authorization` header from `OPENALEX_API_KEY`. The run is resumable: a stored row is never queried again, `--limit N` takes the next N rows, and the remaining rows are interleaved across branches so a partial run covers every branch.
+
+Budget: OpenAlex charges 10 credits per request against a free daily allowance of 10,000, so 500 rows a day. The first run on 2026-10-06 stored 499 rows (388 with at least one matching work) before the daily budget ran out; the remaining 4510 rows need nine more daily runs or a paid credit balance. The script stops cleanly on a `Retry-After` above five minutes.
+
+The counts are a text match on vocabulary: "continuum hypothesis" returns Alzheimer's papers alongside set theory. The activity columns are stored for a later score and the frontier score in this release does not read them. `makeup.py` charts the `works_total` distribution by branch over the rows stored so far.
+
 ## Ingest rules
 
 - Rows live in `problems-sourced.tsv` with the `problems.tsv` columns plus `form`, `variant_of`, `status`, `source`, `licence`, `statement`, `statement_source`, `status_source` and `posed_evidence`. `sources/build.py` rebuilds it from `sources/formal_conjectures.py`, `sources/wikipedia_lists.py`, `sources/named_lists.py` and `sources/solved_discoveries.py`, merges Erdős aliases, dedupes by normalised title against `problems.tsv` and within the file, then runs `sources/dated_lists.apply` for the dated lists and posed fills, and `tests/test_sourced.py` checks the file.
