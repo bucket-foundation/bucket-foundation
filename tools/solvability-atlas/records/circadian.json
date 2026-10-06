@@ -20,7 +20,8 @@
  "level": 3,
  "industries": [
   "longevity",
-  "consumer health"
+  "consumer health",
+  "endocrine and autonomic systems"
  ],
  "posed": 1960,
  "resolved": null,
@@ -31,17 +32,526 @@
    "source": "problems.tsv"
   }
  ],
- "key_works": [],
- "key_works_considered": 0,
- "key_works_dropped": {},
+ "key_works": [
+  {
+   "openalex": "W2009077913",
+   "title": "Phototransduction by Retinal Ganglion Cells That Set the Circadian Clock",
+   "year": 2002,
+   "cited_by_count": 3702,
+   "doi": "https://doi.org/10.1126/science.1067262",
+   "role": "partial",
+   "relevance": 12,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2147712103",
+   "title": "Obesity and Metabolic Syndrome in Circadian Clock Mutant Mice",
+   "year": 2005,
+   "cited_by_count": 2518,
+   "doi": "https://doi.org/10.1126/science.1108750",
+   "role": "partial",
+   "relevance": 12,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1979385177",
+   "title": "Molecular Bases for Circadian Clocks",
+   "year": 1999,
+   "cited_by_count": 2950,
+   "doi": "https://doi.org/10.1016/s0092-8674(00)80566-8",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2567503091",
+   "title": "Transcriptional architecture of the mammalian circadian clock",
+   "year": 2016,
+   "cited_by_count": 2820,
+   "doi": "https://doi.org/10.1038/nrg.2016.150",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2101600063",
+   "title": "Coordinated Transcription of Key Pathways in the Mouse by the Circadian Clock",
+   "year": 2002,
+   "cited_by_count": 2342,
+   "doi": "https://doi.org/10.1016/s0092-8674(02)00722-5",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2164824098",
+   "title": "Central and Peripheral Circadian Clocks in Mammals",
+   "year": 2012,
+   "cited_by_count": 2328,
+   "doi": "https://doi.org/10.1146/annurev-neuro-060909-153128",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2134377844",
+   "title": "Entrainment of the Circadian Clock in the Liver by Feeding",
+   "year": 2001,
+   "cited_by_count": 1829,
+   "doi": "https://doi.org/10.1126/science.291.5503.490",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2142478420",
+   "title": "Molecular components of the mammalian circadian clock",
+   "year": 2006,
+   "cited_by_count": 1695,
+   "doi": "https://doi.org/10.1093/hmg/ddl207",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1973788573",
+   "title": "mCRY1 and mCRY2 Are Essential Components of the Negative Limb of the Circadian Clock Feedback Loop",
+   "year": 1999,
+   "cited_by_count": 1645,
+   "doi": "https://doi.org/10.1016/s0092-8674(00)81014-4",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1992494470",
+   "title": "Mutagenesis and Mapping of a Mouse Gene, Clock , Essential for Circadian Behavior",
+   "year": 1994,
+   "cited_by_count": 1643,
+   "doi": "https://doi.org/10.1126/science.8171325",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2171931117",
+   "title": "Epidemiology of the human circadian clock",
+   "year": 2007,
+   "cited_by_count": 1568,
+   "doi": "https://doi.org/10.1016/j.smrv.2007.07.005",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1997151200",
+   "title": "High-Fat Diet Disrupts Behavioral and Molecular Circadian Rhythms in Mice",
+   "year": 2007,
+   "cited_by_count": 1557,
+   "doi": "https://doi.org/10.1016/j.cmet.2007.09.006",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2133918896",
+   "title": "A circadian gene expression atlas in mammals: Implications for biology and medicine",
+   "year": 2014,
+   "cited_by_count": 2466,
+   "doi": "https://doi.org/10.1073/pnas.1408886111",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2009132775",
+   "title": "Role of the CLOCK Protein in the Mammalian Circadian Mechanism",
+   "year": 1998,
+   "cited_by_count": 2044,
+   "doi": "https://doi.org/10.1126/science.280.5369.1564",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2157481078",
+   "title": "Circadian Integration of Metabolism and Energetics",
+   "year": 2010,
+   "cited_by_count": 1951,
+   "doi": "https://doi.org/10.1126/science.1195027",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1995815904",
+   "title": "Orchestrated Transcription of Key Pathways in Arabidopsis by the Circadian Clock",
+   "year": 2000,
+   "cited_by_count": 1670,
+   "doi": "https://doi.org/10.1126/science.290.5499.2110",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2035853180",
+   "title": "Melanopsin-Containing Retinal Ganglion Cells: Architecture, Projections, and Intrinsic Photosensitivity",
+   "year": 2002,
+   "cited_by_count": 2787,
+   "doi": "https://doi.org/10.1126/science.1069609",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2123106689",
+   "title": "Life between Clocks: Daily Temporal Patterns of Human Chronotypes",
+   "year": 2003,
+   "cited_by_count": 2728,
+   "doi": "https://doi.org/10.1177/0748730402239679",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2123319274",
+   "title": "Time-Restricted Feeding without Reducing Caloric Intake Prevents Metabolic Diseases in Mice Fed a High-Fat Diet",
+   "year": 2012,
+   "cited_by_count": 2027,
+   "doi": "https://doi.org/10.1016/j.cmet.2012.04.019",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2104266531",
+   "title": "Plant Circadian Clocks Increase Photosynthesis, Growth, Survival, and Competitive Advantage",
+   "year": 2005,
+   "cited_by_count": 1545,
+   "doi": "https://doi.org/10.1126/science.1115581",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2162650381",
+   "title": "Disruption of the clock components CLOCK and BMAL1 leads to hypoinsulinaemia and diabetes",
+   "year": 2010,
+   "cited_by_count": 1547,
+   "doi": "https://doi.org/10.1038/nature09253",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2122023734",
+   "title": "PAS Domains: Internal Sensors of Oxygen, Redox Potential, and Light",
+   "year": 1999,
+   "cited_by_count": 1668,
+   "doi": "https://doi.org/10.1128/mmbr.63.2.479-506.1999",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1999777663",
+   "title": "Regulation of noise in the expression of a single gene",
+   "year": 2002,
+   "cited_by_count": 1654,
+   "doi": "https://doi.org/10.1038/ng869",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 1,
+  "no keyword hit": 1
+ },
  "activity": {
-  "openalex_by_year": {},
-  "openalex_total": 0,
+  "openalex_by_year": {
+   "1881": 1,
+   "1882": 1,
+   "1936": 1,
+   "1953": 1,
+   "1961": 2,
+   "1963": 1,
+   "1964": 1,
+   "1965": 5,
+   "1966": 5,
+   "1967": 7,
+   "1968": 3,
+   "1969": 5,
+   "1970": 6,
+   "1971": 5,
+   "1972": 9,
+   "1973": 12,
+   "1974": 5,
+   "1975": 8,
+   "1976": 12,
+   "1977": 12,
+   "1978": 15,
+   "1979": 13,
+   "1980": 23,
+   "1981": 21,
+   "1982": 28,
+   "1983": 23,
+   "1984": 32,
+   "1985": 33,
+   "1986": 26,
+   "1987": 30,
+   "1988": 40,
+   "1989": 42,
+   "1990": 33,
+   "1991": 43,
+   "1992": 63,
+   "1993": 59,
+   "1994": 90,
+   "1995": 111,
+   "1996": 134,
+   "1997": 132,
+   "1998": 181,
+   "1999": 202,
+   "2000": 236,
+   "2001": 295,
+   "2002": 319,
+   "2003": 422,
+   "2004": 340,
+   "2005": 471,
+   "2006": 486,
+   "2007": 566,
+   "2008": 589,
+   "2009": 706,
+   "2010": 737,
+   "2011": 764,
+   "2012": 800,
+   "2013": 911,
+   "2014": 962,
+   "2015": 973,
+   "2016": 1067,
+   "2017": 1195,
+   "2018": 1197,
+   "2019": 1305,
+   "2020": 1402,
+   "2021": 1370,
+   "2022": 1408,
+   "2023": 1496,
+   "2024": 1370,
+   "2025": 1370,
+   "2026": 1323
+  },
+  "openalex_total": 25556,
   "arxiv_total": 84,
   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22circadian+clock%22&max_results=1"
  },
- "people": [],
- "organizations": [],
+ "people": [
+  {
+   "openalex": "A5076767575",
+   "name": "Joseph S. Takahashi",
+   "works": 9,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5023940237",
+   "name": "Joseph T. Bass",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5084820716",
+   "name": "Fred William Turek",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5035012559",
+   "name": "John B. Hogenesch",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5083481324",
+   "name": "David M. Berson",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5022640592",
+   "name": "Motoharu Takao",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5049891011",
+   "name": "Corinne E. Joshu",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5023128942",
+   "name": "Akira Kohsaka",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5080831754",
+   "name": "Ganka Ivanova",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5009049698",
+   "name": "Aaron D. Laposky",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5023608974",
+   "name": "Satchidananda Panda",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5111689980",
+   "name": "Marty Straume",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5008053313",
+   "name": "Steve A. Kay",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5017505165",
+   "name": "Caroline H. Ko",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5003825512",
+   "name": "Martha Hotz Vitaterna",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I1344073410",
+   "name": "Howard Hughes Medical Institute",
+   "works": 9,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I111979921",
+   "name": "Northwestern University",
+   "works": 8,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I867280407",
+   "name": "The University of Texas Southwestern Medical Center",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I51556381",
+   "name": "University of Virginia",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I27804330",
+   "name": "Brown University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I123431417",
+   "name": "Scripps Research Institute",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I127128434",
+   "name": "Genomics Institute of the Novartis Research Foundation",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1311060795",
+   "name": "U.S. National Science Foundation",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I136199984",
+   "name": "Harvard University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I241749",
+   "name": "University of Cambridge",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I135310074",
+   "name": "University of Wisconsin–Madison",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405258781",
+   "name": "Institut für Medizinische Psychologie",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I921990950",
+   "name": "University of Colorado Denver",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I107672454",
+   "name": "Dartmouth College",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I78037679",
+   "name": "UiT The Arctic University of Norway",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
  "related": [
   {
    "id": "aging",
@@ -79,17 +589,27 @@
   {
    "url": "https://en.wikipedia.org/wiki/Circadian_rhythm",
    "licence": "CC-BY-SA-4.0",
-   "retrieved": "2026-10-05"
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22circadian+clock%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
   },
   {
    "url": "http://export.arxiv.org/api/query?search_query=all%3A%22circadian+clock%22&max_results=1",
    "licence": "arXiv API terms, metadata CC0-1.0",
-   "retrieved": "2026-10-05"
+   "retrieved": "2026-10-06"
   }
  ],
- "retrieved": "2026-10-05",
+ "retrieved": "2026-10-06",
  "quality": {
-  "status": "empty",
-  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+  "status": "full",
+  "reason": "23 relevant works of 25 considered, 25556 works with the phrase"
  }
 }
