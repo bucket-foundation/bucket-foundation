@@ -19,7 +19,8 @@
  "level": 4,
  "industries": [
   "longevity",
-  "pharma"
+  "pharma",
+  "molecular biology"
  ],
  "posed": 1956,
  "resolved": null,
@@ -30,17 +31,478 @@
    "source": "problems.tsv"
   }
  ],
- "key_works": [],
- "key_works_considered": 0,
- "key_works_dropped": {},
+ "key_works": [
+  {
+   "openalex": "W2081878182",
+   "title": "The mitochondrial theory of aging and its relationship to reactive oxygen species damage and somatic mtDNA mutations",
+   "year": 2005,
+   "cited_by_count": 227,
+   "doi": "https://doi.org/10.1073/pnas.0509776102",
+   "role": "partial",
+   "relevance": 15,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2166740727",
+   "title": "Is there more to aging than mitochondrial DNA and reactive oxygen species?",
+   "year": 2009,
+   "cited_by_count": 199,
+   "doi": "https://doi.org/10.1111/j.1742-4658.2009.07269.x",
+   "role": "partial",
+   "relevance": 13,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2118939556",
+   "title": "Somatic mtDNA mutations cause aging phenotypes without affecting reactive oxygen species production",
+   "year": 2005,
+   "cited_by_count": 562,
+   "doi": "https://doi.org/10.1073/pnas.0508886102",
+   "role": "partial",
+   "relevance": 11,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W71336344",
+   "title": "Reactive oxygen species, mitochondria, apoptosis and aging",
+   "year": 1997,
+   "cited_by_count": 471,
+   "doi": "https://doi.org/10.1007/978-1-4615-6111-8_47",
+   "role": "partial",
+   "relevance": 11,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2098774492",
+   "title": "The Life Span Determinant p66Shc Localizes to Mitochondria Where It Associates with Mitochondrial Heat Shock Protein 70 and Regulates Trans-membrane Potential",
+   "year": 2004,
+   "cited_by_count": 294,
+   "doi": "https://doi.org/10.1074/jbc.m401844200",
+   "role": "partial",
+   "relevance": 9,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2053900971",
+   "title": "Age‐associated increases in oxidative stress and antioxidant enzyme activities in cardiac interfibrillar mitochondria: implications for the mitochondrial theory of aging",
+   "year": 2005,
+   "cited_by_count": 328,
+   "doi": "https://doi.org/10.1096/fj.04-2622fje",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2035664793",
+   "title": "Oxidative stress and the mitochondrial theory of aging in human skeletal muscle",
+   "year": 2004,
+   "cited_by_count": 229,
+   "doi": "https://doi.org/10.1016/j.exger.2004.06.002",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1996797097",
+   "title": "The mitochondrial theory of aging: Insight from transgenic and knockout mouse models",
+   "year": 2009,
+   "cited_by_count": 182,
+   "doi": "https://doi.org/10.1016/j.exger.2008.12.006",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2064958017",
+   "title": "Resistance training, sarcopenia, and the mitochondrial theory of aging",
+   "year": 2008,
+   "cited_by_count": 173,
+   "doi": "https://doi.org/10.1139/h07-141",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1585796965",
+   "title": "Mitochondrial Theory of Aging: Importance to Explain Why Females Live Longer Than Males",
+   "year": 2003,
+   "cited_by_count": 149,
+   "doi": "https://doi.org/10.1089/152308603770310194",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2062254594",
+   "title": "Experimental evidence against the mitochondrial theory of aging A study of isolated human skeletal muscle mitochondria",
+   "year": 2003,
+   "cited_by_count": 132,
+   "doi": "https://doi.org/10.1016/s0531-5565(03)00092-5",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2021460489",
+   "title": "Oxidative Stress, Mitochondrial Dysfunction, and Aging",
+   "year": 2011,
+   "cited_by_count": 1037,
+   "doi": "https://doi.org/10.1155/2012/646354",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2063087581",
+   "title": "Mitochondrial oxidative stress in aging and healthspan",
+   "year": 2014,
+   "cited_by_count": 486,
+   "doi": "https://doi.org/10.1186/2046-2395-3-6",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2027262563",
+   "title": "Oxidative Stress and Mitochondrial DNA Mutations in Human Aging",
+   "year": 1998,
+   "cited_by_count": 362,
+   "doi": "https://doi.org/10.3181/00379727-217-44205",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2014007422",
+   "title": "Mitochondrial bioenergetics in aging",
+   "year": 2000,
+   "cited_by_count": 188,
+   "doi": "https://doi.org/10.1016/s0005-2728(00)00177-8",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1480350120",
+   "title": "Mitochondrial complex I defects in aging.",
+   "year": 1997,
+   "cited_by_count": 149,
+   "doi": null,
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2013647909",
+   "title": "Mitochondrial DNA and aging",
+   "year": 2004,
+   "cited_by_count": 147,
+   "doi": "https://doi.org/10.1042/cs20040148",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2143265389",
+   "title": "Nuclear–Mitochondrial Epistasis and Drosophila Aging: Introgression of Drosophila simulans mtDNA Modifies Longevity in D. melanogaster Nuclear Backgrounds",
+   "year": 2005,
+   "cited_by_count": 134,
+   "doi": "https://doi.org/10.1534/genetics.105.046698",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2148641357",
+   "title": "High aggregate burden of somatic mtDNA point mutations in aging and Alzheimer's disease brain",
+   "year": 2002,
+   "cited_by_count": 368,
+   "doi": "https://doi.org/10.1093/hmg/11.2.133",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2051500083",
+   "title": "Strong Variations of Mitochondrial Mutation Rate across Mammals--the Longevity Hypothesis",
+   "year": 2007,
+   "cited_by_count": 502,
+   "doi": "https://doi.org/10.1093/molbev/msm248",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2063954678",
+   "title": "An Update of the Oxidation-Inflammation Theory of Aging: The Involvement of the Immune System in Oxi-Inflamm-Aging",
+   "year": 2009,
+   "cited_by_count": 500,
+   "doi": "https://doi.org/10.2174/138161209789058110",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2146060811",
+   "title": "Role of Mitochondria in Oxidative Stress and Aging",
+   "year": 2002,
+   "cited_by_count": 493,
+   "doi": "https://doi.org/10.1111/j.1749-6632.2002.tb02094.x",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "duplicate": 2,
+  "no keyword hit": 1
+ },
  "activity": {
-  "openalex_by_year": {},
-  "openalex_total": 0,
+  "openalex_by_year": {
+   "1993": 1,
+   "1996": 1,
+   "1997": 6,
+   "1998": 3,
+   "1999": 7,
+   "2000": 1,
+   "2001": 5,
+   "2002": 8,
+   "2003": 10,
+   "2004": 11,
+   "2005": 8,
+   "2006": 10,
+   "2007": 5,
+   "2008": 4,
+   "2009": 7,
+   "2010": 5,
+   "2011": 7,
+   "2012": 8,
+   "2013": 2,
+   "2014": 11,
+   "2015": 8,
+   "2016": 9,
+   "2017": 3,
+   "2018": 6,
+   "2019": 5,
+   "2020": 4,
+   "2021": 4,
+   "2022": 2,
+   "2023": 1,
+   "2024": 2,
+   "2025": 6,
+   "2026": 3
+  },
+  "openalex_total": 173,
   "arxiv_total": 0,
   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22mitochondrial+theory+of+aging%22&max_results=1"
  },
- "people": [],
- "organizations": [],
+ "people": [
+  {
+   "openalex": "A5045919146",
+   "name": "Giorgio Lenaz",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5027335357",
+   "name": "Milena Merlo Pich",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031518448",
+   "name": "Maria Luisa Genova",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5025531646",
+   "name": "Carla Bovina",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5003850136",
+   "name": "Gabriella Formiggini",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5063303923",
+   "name": "Giovanna Parenti Castelli",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5076508648",
+   "name": "Mikhail F. ALEXEYEV",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5070788675",
+   "name": "Gianni Parise",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5014167350",
+   "name": "Marilena D’Aurelio",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5000221581",
+   "name": "Barbara Ventura",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5010541501",
+   "name": "Romana Fato",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5079598741",
+   "name": "Lawrence A. Loeb",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5085274471",
+   "name": "Douglas C. Wallace",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5059153511",
+   "name": "George M. Martin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5001301469",
+   "name": "Aleksandra Trifunović",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I9360294",
+   "name": "University of Bologna",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I201448701",
+   "name": "University of Washington",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I83809506",
+   "name": "University of South Alabama",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I98251732",
+   "name": "McMaster University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4387153466",
+   "name": "Weill Cornell Medicine",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I204250578",
+   "name": "University of California, Irvine",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I68243183",
+   "name": "Institute of Molecular Biology and Genetics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I28166907",
+   "name": "Karolinska Institutet",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210126318",
+   "name": "Tampere University Hospital",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4387153886",
+   "name": "University of Tampere",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I5561750",
+   "name": "University of Bari Aldo Moro",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I19880235",
+   "name": "Lomonosov Moscow State University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210114103",
+   "name": "IFOM",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I6141010",
+   "name": "European Institute of Oncology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I83816512",
+   "name": "University of Genoa",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
  "related": [
   {
    "id": "aging",
@@ -73,17 +535,27 @@
   {
    "url": "https://en.wikipedia.org/wiki/Free-radical_theory_of_aging",
    "licence": "CC-BY-SA-4.0",
-   "retrieved": "2026-10-05"
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22mitochondrial+theory+of+aging%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
   },
   {
    "url": "http://export.arxiv.org/api/query?search_query=all%3A%22mitochondrial+theory+of+aging%22&max_results=1",
    "licence": "arXiv API terms, metadata CC0-1.0",
-   "retrieved": "2026-10-05"
+   "retrieved": "2026-10-06"
   }
  ],
- "retrieved": "2026-10-05",
+ "retrieved": "2026-10-06",
  "quality": {
-  "status": "empty",
-  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+  "status": "full",
+  "reason": "22 relevant works of 25 considered, 173 works with the phrase"
  }
 }

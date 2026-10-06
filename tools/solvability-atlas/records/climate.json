@@ -18,7 +18,9 @@
  "level": 4,
  "industries": [
   "climate",
-  "energy"
+  "energy",
+  "global and planetary change",
+  "atmospheric science"
  ],
  "posed": 1896,
  "resolved": null,
@@ -29,17 +31,366 @@
    "source": "problems.tsv"
   }
  ],
- "key_works": [],
- "key_works_considered": 0,
- "key_works_dropped": {},
+ "key_works": [
+  {
+   "openalex": "W3037496774",
+   "title": "Context for interpreting equilibrium climate sensitivity and transient climate response from the CMIP6 Earth system models",
+   "year": 2020,
+   "cited_by_count": 869,
+   "doi": "https://doi.org/10.1126/sciadv.aba1981",
+   "role": "partial",
+   "relevance": 11,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1930393311",
+   "title": "Forcing, feedbacks and climate sensitivity in CMIP5 coupled atmosphere‐ocean climate models",
+   "year": 2012,
+   "cited_by_count": 844,
+   "doi": "https://doi.org/10.1029/2012gl051607",
+   "role": "partial",
+   "relevance": 11,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2319504665",
+   "title": "Observational constraints on mixed-phase clouds imply higher climate sensitivity",
+   "year": 2016,
+   "cited_by_count": 596,
+   "doi": "https://doi.org/10.1126/science.aad5300",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2998500935",
+   "title": "Causes of Higher Climate Sensitivity in CMIP6 Models",
+   "year": 2020,
+   "cited_by_count": 1887,
+   "doi": "https://doi.org/10.1029/2019gl085782",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2006750690",
+   "title": "Improved Climate Simulation by MIROC5: Mean States, Variability, and Climate Sensitivity",
+   "year": 2010,
+   "cited_by_count": 1408,
+   "doi": "https://doi.org/10.1175/2010jcli3679.1",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3044698812",
+   "title": "An Assessment of Earth's Climate Sensitivity Using Multiple Lines of Evidence",
+   "year": 2020,
+   "cited_by_count": 1348,
+   "doi": "https://doi.org/10.1029/2019rg000678",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1995483742",
+   "title": "Spread in model climate sensitivity traced to atmospheric convective mixing",
+   "year": 2013,
+   "cited_by_count": 821,
+   "doi": "https://doi.org/10.1038/nature12829",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2960797162",
+   "title": "High Climate Sensitivity in the Community Earth System Model Version 2 (CESM2)",
+   "year": 2019,
+   "cited_by_count": 537,
+   "doi": "https://doi.org/10.1029/2019gl083978",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2996825230",
+   "title": "Glacial cooling and climate sensitivity revisited",
+   "year": 2020,
+   "cited_by_count": 540,
+   "doi": "https://doi.org/10.1038/s41586-020-2617-x",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2083367302",
+   "title": "Plio-Pleistocene climate sensitivity evaluated using high-resolution CO2 records",
+   "year": 2015,
+   "cited_by_count": 455,
+   "doi": "https://doi.org/10.1038/nature14145",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2151486570",
+   "title": "The Role of Surface Albedo Feedback in Climate",
+   "year": 2004,
+   "cited_by_count": 593,
+   "doi": "https://doi.org/10.1175/1520-0442(2004)017<1550:trosaf>2.0.co;2",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2337297954",
+   "title": "Changing atmospheric CO2 concentration was the primary driver of early Cenozoic climate",
+   "year": 2016,
+   "cited_by_count": 499,
+   "doi": "https://doi.org/10.1038/nature17423",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 13
+ },
  "activity": {
-  "openalex_by_year": {},
-  "openalex_total": 0,
+  "openalex_by_year": {
+   "1970": 1,
+   "1985": 2,
+   "1990": 1,
+   "1991": 1,
+   "1996": 1,
+   "1998": 1,
+   "2000": 2,
+   "2003": 2,
+   "2004": 3,
+   "2005": 1,
+   "2006": 5,
+   "2007": 5,
+   "2008": 12,
+   "2009": 19,
+   "2010": 10,
+   "2011": 18,
+   "2012": 22,
+   "2013": 36,
+   "2014": 26,
+   "2015": 38,
+   "2016": 42,
+   "2017": 33,
+   "2018": 66,
+   "2019": 53,
+   "2020": 138,
+   "2021": 89,
+   "2022": 100,
+   "2023": 106,
+   "2024": 101,
+   "2025": 111,
+   "2026": 159
+  },
+  "openalex_total": 1204,
   "arxiv_total": 25,
   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22equilibrium+climate+sensitivity%22&max_results=1"
  },
- "people": [],
- "organizations": [],
+ "people": [
+  {
+   "openalex": "A5070265114",
+   "name": "Karl E. Taylor",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5071054071",
+   "name": "Mark D. Zelinka",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5069362910",
+   "name": "Gavin L. Foster",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5003443811",
+   "name": "Jean‐François Lamarque",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5004375415",
+   "name": "Timothy Andrews",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5024576697",
+   "name": "Mark J. Webb",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5022865217",
+   "name": "Stephen A. Klein",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5085868360",
+   "name": "Masahiro Watanabe",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5051942539",
+   "name": "Steven C. Sherwood",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5076761974",
+   "name": "Eelco J. Rohling",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5069811512",
+   "name": "Daniel John Lunt",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5015162860",
+   "name": "Richard David Pancost",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5088846266",
+   "name": "Gerald A. Meehl",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5077264335",
+   "name": "Catherine A. Senior",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5034118743",
+   "name": "Veronika Eyring",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I1282311441",
+   "name": "Lawrence Livermore National Laboratory",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I107766831",
+   "name": "NSF National Center for Atmospheric Research",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1293035123",
+   "name": "Met Office",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405255067",
+   "name": "Program for Climate Model Diagnosis and Intercomparison",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I197940685",
+   "name": "National Oceanography Centre",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I43439940",
+   "name": "University of Southampton",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I138006243",
+   "name": "University of Arizona",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I130828816",
+   "name": "University of Leeds",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I74801974",
+   "name": "The University of Tokyo",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I31746571",
+   "name": "UNSW Sydney",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405259391",
+   "name": "Climate Change Research Centre",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I201448701",
+   "name": "University of Washington",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I118347636",
+   "name": "Australian National University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I36234482",
+   "name": "University of Bristol",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
  "related": [
   {
    "id": "navier",
@@ -72,17 +423,27 @@
   {
    "url": "https://en.wikipedia.org/wiki/Climate_sensitivity",
    "licence": "CC-BY-SA-4.0",
-   "retrieved": "2026-10-05"
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22equilibrium+climate+sensitivity%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
   },
   {
    "url": "http://export.arxiv.org/api/query?search_query=all%3A%22equilibrium+climate+sensitivity%22&max_results=1",
    "licence": "arXiv API terms, metadata CC0-1.0",
-   "retrieved": "2026-10-05"
+   "retrieved": "2026-10-06"
   }
  ],
- "retrieved": "2026-10-05",
+ "retrieved": "2026-10-06",
  "quality": {
-  "status": "empty",
-  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+  "status": "full",
+  "reason": "12 relevant works of 25 considered, 1204 works with the phrase"
  }
 }

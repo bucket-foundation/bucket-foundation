@@ -1,6 +1,6 @@
 # Problem records
 
-71 records, built 2026-10-05 by `records.py`. Counts are what each source returned.
+71 records, built 2026-10-06 by `records.py`. Counts are what each source returned.
 
 | id | title | status | statement from | aliases | history | key works kept / considered | top citations | activity years | OpenAlex works | arXiv | people | orgs | repo mentions |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -53,30 +53,31 @@
 | signproblem | Fermion sign problem | full | wikipedia | 2 | 1 | 16 / 25 | 501 | 36 | 302 | 206 | 15 | 15 | 0 |
 | glass | Glass transition | full | wikipedia | 1 | 1 | 13 / 25 | 4823 | 98 | 114055 | 2718 | 15 | 15 | 0 |
 | water | Anomalous properties of water | full | wikipedia | 1 | 1 | 8 / 25 | 548 | 40 | 125 | 10 | 15 | 13 | 0 |
-| catalysis | Rational catalyst design | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 3 | 0 | 0 | 14 |
-| dftfunc | Exact exchange-correlation functional | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 837 | 0 | 0 | 4 |
-| abiogenesis | Origin of life | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 405 | 0 | 0 | 5 |
-| mitoredox | Mitochondrial redox and aging mechanism | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| circadian | Light, circadian biology and metabolism | empty | wikipedia | 3 | 1 | 0 / 0 | 0 | 0 | 0 | 84 | 0 | 0 | 2 |
-| bioelectric | Bioelectric pattern control | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 26 | 0 | 0 | 0 |
-| aging | Programmed versus stochastic aging | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 7 | 0 | 0 | 1 |
-| consciousness | Hard problem of consciousness | empty | wikipedia | 1 | 1 | 0 / 0 | 0 | 0 | 0 | 26 | 0 | 0 | 1 |
-| bindingprob | Neural binding problem | empty | wikipedia | 4 | 1 | 0 / 0 | 0 | 0 | 0 | 61 | 0 | 0 | 20 |
-| freeenergy | Free energy principle formalization | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 196 | 0 | 0 | 4 |
-| alignment | AI alignment verification | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 432 | 0 | 0 | 3 |
-| llmreason | Formal reasoning limits of transformers | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 89 | 0 | 0 | 1 |
-| autoform | Autoformalization of mathematics | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 198 | 0 | 0 | 0 |
-| smale18 | Smale's 18th problem limits of intelligence | empty | wikipedia | 1 | 1 | 0 / 0 | 0 | 0 | 0 | 30 | 0 | 0 | 0 |
-| optimalstop | Market efficiency as computational hardness | empty | wikipedia | 3 | 1 | 0 / 0 | 0 | 0 | 0 | 256 | 0 | 0 | 0 |
-| nash | Complexity of computing Nash equilibria | empty | wikipedia | 2 | 2 | 0 / 0 | 0 | 0 | 0 | 78 | 0 | 0 | 0 |
-| mechdesign | Optimal multi-item auction design | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 31 | 0 | 0 | 1 |
-| blackscholes | Rough volatility pricing | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 173 | 0 | 0 | 0 |
-| ecc | Elliptic curve discrete log hardness | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 49 | 0 | 0 | 0 |
-| zkp | Succinct proofs without trusted setup optimality | empty | wikipedia | 4 | 1 | 0 / 0 | 0 | 0 | 0 | 13 | 0 | 0 | 0 |
-| climate | Climate sensitivity bound | empty | wikipedia | 1 | 1 | 0 / 0 | 0 | 0 | 0 | 25 | 0 | 0 | 0 |
-| fusion | Plasma confinement stability | empty | wikipedia | 2 | 1 | 0 / 0 | 0 | 0 | 0 | 202 | 0 | 0 | 0 |
+| catalysis | Rational catalyst design | full | wikipedia | 2 | 1 | 22 / 25 | 912 | 32 | 1059 | 3 | 15 | 15 | 14 |
+| dftfunc | Exact exchange-correlation functional | full | wikipedia | 2 | 1 | 22 / 25 | 104399 | 60 | 7196 | 838 | 15 | 15 | 4 |
+| abiogenesis | Origin of life | full | wikipedia | 2 | 1 | 12 / 25 | 7862 | 145 | 14766 | 405 | 15 | 15 | 5 |
+| mitoredox | Mitochondrial redox and aging mechanism | full | wikipedia | 2 | 1 | 22 / 25 | 1037 | 32 | 173 | 0 | 15 | 15 | 0 |
+| circadian | Light, circadian biology and metabolism | full | wikipedia | 3 | 1 | 23 / 25 | 3702 | 69 | 25556 | 84 | 15 | 15 | 2 |
+| bioelectric | Bioelectric pattern control | full | wikipedia | 2 | 1 | 13 / 25 | 1003 | 67 | 2467 | 26 | 15 | 15 | 0 |
+| aging | Programmed versus stochastic aging | full | wikipedia | 2 | 1 | 11 / 25 | 1028 | 56 | 993 | 7 | 15 | 15 | 1 |
+| consciousness | Hard problem of consciousness | full | wikipedia | 1 | 1 | 16 / 25 | 403 | 32 | 2859 | 26 | 15 | 14 | 1 |
+| bindingprob | Neural binding problem | full | wikipedia | 4 | 1 | 21 / 25 | 1645 | 53 | 1412 | 61 | 15 | 15 | 20 |
+| freeenergy | Free energy principle formalization | full | wikipedia | 2 | 1 | 13 / 25 | 8401 | 36 | 3109 | 196 | 15 | 15 | 4 |
+| alignment | AI alignment verification | full | wikipedia | 2 | 1 | 12 / 25 | 752 | 14 | 4134 | 432 | 15 | 15 | 3 |
+| llmreason | Formal reasoning limits of transformers | full | wikipedia | 2 | 1 | 12 / 25 | 2404 | 6 | 45 | 89 | 15 | 14 | 1 |
+| autoform | Autoformalization of mathematics | full | wikipedia | 2 | 1 | 21 / 25 | 42 | 9 | 302 | 198 | 15 | 15 | 0 |
+| smale18 | Smale's 18th problem limits of intelligence | full | wikipedia | 1 | 1 | 17 / 25 | 203 | 34 | 344 | 30 | 15 | 12 | 0 |
+| optimalstop | Market efficiency as computational hardness | full | wikipedia | 3 | 1 | 19 / 25 | 11669 | 67 | 19808 | 257 | 15 | 15 | 0 |
+| nash | Complexity of computing Nash equilibria | full | wikipedia | 2 | 2 | 20 / 25 | 3358 | 34 | 305 | 80 | 15 | 15 | 0 |
+| mechdesign | Optimal multi-item auction design | full | wikipedia | 2 | 1 | 23 / 25 | 921 | 29 | 164 | 31 | 15 | 15 | 1 |
+| blackscholes | Rough volatility pricing | full | wikipedia | 2 | 1 | 14 / 25 | 465 | 15 | 521 | 173 | 15 | 15 | 0 |
+| ecc | Elliptic curve discrete log hardness | full | wikipedia | 2 | 1 | 18 / 25 | 2258 | 32 | 1165 | 49 | 15 | 15 | 0 |
+| zkp | Succinct proofs without trusted setup optimality | full | wikipedia | 4 | 1 | 16 / 25 | 327 | 27 | 169 | 13 | 15 | 15 | 0 |
+| climate | Climate sensitivity bound | full | wikipedia | 1 | 1 | 12 / 25 | 1887 | 31 | 1204 | 25 | 15 | 15 | 0 |
+| fusion | Plasma confinement stability | full | wikipedia | 2 | 1 | 21 / 25 | 1241 | 72 | 4584 | 202 | 15 | 15 | 0 |
 
-Status: full 32, partial 3, weak 14, empty 22. Reasons sit in each record's `quality` field.
+Status: full 54, partial 3, weak 14, empty 0. Reasons sit in each record's `quality` field.
+
 
 ## Neighbour shift
 

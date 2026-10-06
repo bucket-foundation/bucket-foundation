@@ -19,7 +19,8 @@
  "branch": "information",
  "level": 4,
  "industries": [
-  "finance"
+  "finance",
+  "economics and econometrics"
  ],
  "posed": 2010,
  "resolved": null,
@@ -30,17 +31,480 @@
    "source": "problems.tsv"
   }
  ],
- "key_works": [],
- "key_works_considered": 0,
- "key_works_dropped": {},
+ "key_works": [
+  {
+   "openalex": "W2125520394",
+   "title": "Returns to Buying Winners and Selling Losers: Implications for Stock Market Efficiency",
+   "year": 1993,
+   "cited_by_count": 11669,
+   "doi": "https://doi.org/10.1111/j.1540-6261.1993.tb04702.x",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2158120228",
+   "title": "A Simple Implicit Measure of the Effective Bid‐Ask Spread in an Efficient Market",
+   "year": 1984,
+   "cited_by_count": 2769,
+   "doi": "https://doi.org/10.1111/j.1540-6261.1984.tb03897.x",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2111255674",
+   "title": "Market efficiency, long-term returns, and behavioral finance1The comments of Brad Barber, David Hirshleifer, S.P. Kothari, Owen Lamont, Mark Mitchell, Hersh Shefrin, Robert Shiller, Rex Sinquefield, Richard Thaler, Theo Vermaelen, Robert Vishny, Ivo Welch, and a referee have been helpful. Kenneth French and Jay Ritter get special thanks.1",
+   "year": 1998,
+   "cited_by_count": 2576,
+   "doi": "https://doi.org/10.1016/s0304-405x(98)00026-9",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3122205006",
+   "title": "Some anomalous evidence regarding market efficiency",
+   "year": 1978,
+   "cited_by_count": 1447,
+   "doi": "https://doi.org/10.1016/0304-405x(78)90025-9",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2098630070",
+   "title": "Insiders' profits, costs of trading, and market efficiency",
+   "year": 1986,
+   "cited_by_count": 1298,
+   "doi": "https://doi.org/10.1016/0304-405x(86)90060-7",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4205384207",
+   "title": "Market Efficiency, Long-Term Returns, and Behavioral Finance",
+   "year": 1997,
+   "cited_by_count": 1285,
+   "doi": "https://doi.org/10.2139/ssrn.15108",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2010891591",
+   "title": "Fads, Martingales, and Market Efficiency",
+   "year": 1990,
+   "cited_by_count": 1643,
+   "doi": "https://doi.org/10.2307/2937816",
+   "role": "posed",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2141003613",
+   "title": "Blockholder Trading, Market Efficiency, and Managerial Myopia",
+   "year": 2009,
+   "cited_by_count": 1349,
+   "doi": "https://doi.org/10.1111/j.1540-6261.2009.01508.x",
+   "role": "posed",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4239934782",
+   "title": "Efficient Capital Markets: II",
+   "year": 1991,
+   "cited_by_count": 1283,
+   "doi": "https://doi.org/10.2307/2328565",
+   "role": "posed",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2144487825",
+   "title": "Does the Stock Market Overreact?",
+   "year": 1985,
+   "cited_by_count": 7334,
+   "doi": "https://doi.org/10.1111/j.1540-6261.1985.tb05004.x",
+   "role": "posed",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3125788531",
+   "title": "Capital markets research in accounting",
+   "year": 2001,
+   "cited_by_count": 2490,
+   "doi": "https://doi.org/10.1016/s0165-4101(01)00030-1",
+   "role": "posed",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3122305330",
+   "title": "The Adaptive Markets Hypothesis",
+   "year": 2004,
+   "cited_by_count": 1700,
+   "doi": "https://doi.org/10.3905/jpm.2004.442611",
+   "role": "posed",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2523675164",
+   "title": "The inefficiency of Bitcoin",
+   "year": 2016,
+   "cited_by_count": 1278,
+   "doi": "https://doi.org/10.1016/j.econlet.2016.09.019",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1975676844",
+   "title": "On the aggregation of information in competitive markets",
+   "year": 1980,
+   "cited_by_count": 1317,
+   "doi": "https://doi.org/10.1016/0022-0531(80)90056-3",
+   "role": "posed",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2055836625",
+   "title": "The Anatomy of Market Failure",
+   "year": 1958,
+   "cited_by_count": 1303,
+   "doi": "https://doi.org/10.2307/1882231",
+   "role": "posed",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2038621549",
+   "title": "Permanent and Temporary Components of Stock Prices",
+   "year": 1988,
+   "cited_by_count": 3120,
+   "doi": "https://doi.org/10.1086/261535",
+   "role": "posed",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2110321237",
+   "title": "The Adjustment of Stock Prices to New Information",
+   "year": 2003,
+   "cited_by_count": 3101,
+   "doi": "https://doi.org/10.2139/ssrn.321524",
+   "role": "posed",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2146287001",
+   "title": "Stock Returns, Expected Returns, and Real Activity",
+   "year": 1990,
+   "cited_by_count": 1465,
+   "doi": "https://doi.org/10.1111/j.1540-6261.1990.tb02428.x",
+   "role": "posed",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2104559023",
+   "title": "A New Estimate of Transaction Costs",
+   "year": 1999,
+   "cited_by_count": 1433,
+   "doi": "https://doi.org/10.1093/rfs/12.5.1113",
+   "role": "posed",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 5,
+  "duplicate": 1
+ },
  "activity": {
-  "openalex_by_year": {},
-  "openalex_total": 0,
-  "arxiv_total": 256,
+  "openalex_by_year": {
+   "1948": 1,
+   "1954": 1,
+   "1957": 1,
+   "1958": 1,
+   "1962": 3,
+   "1963": 1,
+   "1964": 3,
+   "1966": 2,
+   "1968": 1,
+   "1969": 4,
+   "1970": 2,
+   "1971": 2,
+   "1972": 9,
+   "1973": 3,
+   "1974": 11,
+   "1975": 17,
+   "1976": 15,
+   "1977": 22,
+   "1978": 29,
+   "1979": 30,
+   "1980": 43,
+   "1981": 35,
+   "1982": 25,
+   "1983": 51,
+   "1984": 41,
+   "1985": 45,
+   "1986": 63,
+   "1987": 44,
+   "1988": 55,
+   "1989": 61,
+   "1990": 71,
+   "1991": 101,
+   "1992": 72,
+   "1993": 74,
+   "1994": 102,
+   "1995": 104,
+   "1996": 105,
+   "1997": 149,
+   "1998": 138,
+   "1999": 139,
+   "2000": 151,
+   "2001": 205,
+   "2002": 252,
+   "2003": 270,
+   "2004": 312,
+   "2005": 359,
+   "2006": 354,
+   "2007": 377,
+   "2008": 471,
+   "2009": 453,
+   "2010": 540,
+   "2011": 600,
+   "2012": 661,
+   "2013": 672,
+   "2014": 758,
+   "2015": 699,
+   "2016": 600,
+   "2017": 601,
+   "2018": 686,
+   "2019": 661,
+   "2020": 743,
+   "2021": 709,
+   "2022": 694,
+   "2023": 801,
+   "2024": 1160,
+   "2025": 2112,
+   "2026": 2231
+  },
+  "openalex_total": 19808,
+  "arxiv_total": 257,
   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22market+efficiency%22&max_results=1"
  },
- "people": [],
- "organizations": [],
+ "people": [
+  {
+   "openalex": "A5091820687",
+   "name": "Eugene F. Fama",
+   "works": 6,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5110205824",
+   "name": "Richard W. Roll",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5068490503",
+   "name": "Michael C. Jensen",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5074911203",
+   "name": "Narasimhan Jegadeesh",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5011644728",
+   "name": "Sheridan D. Titman",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5063274601",
+   "name": "H. Nejat Seyhun",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5052630723",
+   "name": "Bruce N. Lehmann",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031996018",
+   "name": "Alex Edmans",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5059458129",
+   "name": "Werner F. M. De Bondt",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5081252843",
+   "name": "Richard H. Thaler",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5112942844",
+   "name": "S.P. Kothari",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5109980718",
+   "name": "Andrew W. Lo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5064234855",
+   "name": "Andrew Urquhart",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5043941158",
+   "name": "Martin Hellwig",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5042959873",
+   "name": "Francis M. Bator",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I40347166",
+   "name": "University of Chicago",
+   "works": 5,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I161318765",
+   "name": "University of California, Los Angeles",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1321305853",
+   "name": "National Bureau of Economic Research",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I200769079",
+   "name": "Hong Kong University of Science and Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I5388228",
+   "name": "University of Rochester",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I27837315",
+   "name": "University of Michigan",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I78577930",
+   "name": "Columbia University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210140326",
+   "name": "Centre for Economic Policy Research",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I61544103",
+   "name": "London Business School",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I79576946",
+   "name": "University of Pennsylvania",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I135310074",
+   "name": "University of Wisconsin–Madison",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I205783295",
+   "name": "Cornell University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I43439940",
+   "name": "University of Southampton",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I135140700",
+   "name": "University of Bonn",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
  "related": [
   {
    "id": "ecc",
@@ -73,17 +537,27 @@
   {
    "url": "https://en.wikipedia.org/wiki/Efficient-market_hypothesis",
    "licence": "CC-BY-SA-4.0",
-   "retrieved": "2026-10-05"
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22market+efficiency%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
   },
   {
    "url": "http://export.arxiv.org/api/query?search_query=all%3A%22market+efficiency%22&max_results=1",
    "licence": "arXiv API terms, metadata CC0-1.0",
-   "retrieved": "2026-10-05"
+   "retrieved": "2026-10-06"
   }
  ],
- "retrieved": "2026-10-05",
+ "retrieved": "2026-10-06",
  "quality": {
-  "status": "empty",
-  "reason": "no OpenAlex response cached; rerun with --retry-empty"
+  "status": "full",
+  "reason": "19 relevant works of 25 considered, 19808 works with the phrase"
  }
 }
