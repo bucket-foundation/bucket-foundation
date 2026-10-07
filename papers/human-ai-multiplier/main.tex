@@ -33,44 +33,44 @@
 
 \glossentry{hp}{unaided score}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/src/hai/stats.ts}%
-  {$H_p$, the guess-corrected share of solo items a person gets right with no AI answer shown; see \Cref{def:scores}.}
+  {$H_p$, the guess-corrected share of solo items a person gets right with no AI answer shown; see Definition~\ref{def:scores}.}
 \glossentry{a}{AI score}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/src/hai/score.ts}%
-  {$A$, the guess-corrected share of the same frozen items the model gets right on its own; see \Cref{def:scores}.}
+  {$A$, the guess-corrected share of the same frozen items the model gets right on its own; see Definition~\ref{def:scores}.}
 \glossentry{jp}{joint score}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/src/hai/stats.ts}%
-  {$J_p$, the guess-corrected share of pair items a person gets right after the model's answer and rationale are shown; see \Cref{def:scores}.}
+  {$J_p$, the guess-corrected share of pair items a person gets right after the model's answer and rationale are shown; see Definition~\ref{def:scores}.}
 \glossentry{mp}{multiplier}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/src/hai/stats.ts}%
-  {$m_p = J_p / \max(H_p, A)$, the joint score over the better single agent; see \Cref{def:multiplier}.}
+  {$m_p = J_p / \max(H_p, A)$, the joint score over the better single agent; see Definition~\ref{def:multiplier}.}
 \glossentry{rp}{retention}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/src/hai/stats.ts}%
-  {$R_p = H_p(t + 7\,\mathrm{d}) - H_p(t)$, the change in the unaided score on the same items after seven days; see \Cref{def:retention}.}
+  {$R_p = H_p(t + 7\,\mathrm{d}) - H_p(t)$, the change in the unaided score on the same items after seven days; see Definition~\ref{def:retention}.}
 \glossentry{dependence}{dependence}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/src/hai/stats.ts}%
-  {The state in which a tool raises the joint score while the person keeps none of the gain a week later; see \Cref{def:dependence}.}
+  {The state in which a tool raises the joint score while the person keeps none of the gain a week later; see Definition~\ref{def:dependence}.}
 \glossentry{probe}{probe}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/src/hai/probe.ts}%
-  {One session of 40 unseen items in 20 matched pairs, one item of each pair solo and one with AI, retested unaided seven days later; see \Cref{def:probe}.}
+  {One session of 40 unseen items in 20 matched pairs, one item of each pair solo and one with AI, retested unaided seven days later; see Definition~\ref{def:probe}.}
 
 \glossentry{closure}{prerequisite closure}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/learning/research-os/learning-system/lean/LearningSystem.lean}%
-  {$C(t)$, the target $t$ together with every concept on a prerequisite path into $t$; see \Cref{def:catalog}.}
+  {$C(t)$, the target $t$ together with every concept on a prerequisite path into $t$; see Definition~\ref{def:catalog}.}
 \glossentry{required}{required set}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/learning/research-os/learning-system/lean/LearningSystem.lean}%
-  {$R(t, M) = C(t) \setminus M$, the concepts in the closure the learner has not mastered; see \Cref{def:required}.}
+  {$R(t, M) = C(t) \setminus M$, the concepts in the closure the learner has not mastered; see Definition~\ref{def:required}.}
 \glossentry{frontier}{frontier}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/learning/research-os/learning-system/lean/LearningSystem.lean}%
-  {The ready concepts: unknown concepts whose immediate prerequisites are all known; see \Cref{def:catalog}.}
+  {The ready concepts: unknown concepts whose immediate prerequisites are all known; see Definition~\ref{def:catalog}.}
 \glossentry{mastery}{mastery}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/academy/mastery.ts}%
-  {$M = P^{\alpha} R^{\beta}$ with proficiency $P$, FSRS retention $R$ at 90 days and $\alpha = \beta = 1$; see \Cref{def:mastery}.}
+  {$M = P^{\alpha} R^{\beta}$ with proficiency $P$, FSRS retention $R$ at 90 days and $\alpha = \beta = 1$; see Definition~\ref{def:mastery}.}
 \glossentry{retrievability}{retrievability}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/academy/fsrs.ts}%
-  {$R(t, S) = (1 + F\,t/S)^{-1/2}$ with $F = 0.9^{-2} - 1$, the FSRS-5 predicted recall $t$ days after a review at stability $S$; see \Cref{def:fsrs}.}
+  {$R(t, S) = (1 + F\,t/S)^{-1/2}$ with $F = 0.9^{-2} - 1$, the FSRS-5 predicted recall $t$ days after a review at stability $S$; see Definition~\ref{def:fsrs}.}
 \glossentry{coverage}{coverage}%
   {https://github.com/gianyrox/bucket-foundation/blob/dev/learning/research-os/learning-system/brief/BRIEF.md}%
-  {$G$, the share of the catalog with a confirmed flag, with its axis coordinates $g_j$ and radial extent $r$; see \Cref{def:coverage}.}
+  {$G$, the share of the catalog with a confirmed flag, with its axis coordinates $g_j$ and radial extent $r$; see Definition~\ref{def:coverage}.}
 
 \title{Human-AI-Computer Interaction: Measuring Whether AI Strengthens Unaided Judgment}
 \author{Gianangelo Dichio\\Bucket Foundation}
@@ -80,7 +80,7 @@
 \maketitle
 
 \begin{abstract}
-A tool that helps a person answer today and leaves them no better at answering alone next week has made them dependent on it. We state a measurement protocol that separates the two outcomes. On one task set, three scores are taken: the person's \term{hp}{unaided score} $H_p$, the model's \term{a}{AI score} $A$, and the person's \term{jp}{joint score} $J_p$ with the model's answer in view. The \term{mp}{multiplier} is $m_p = J_p / \max(H_p, A)$, the gain is $D = J_p - \max(H_p, A)$, and the unaided test is repeated after seven days to give \term{rp}{retention} $R_p = H_p(t + 7\,\mathrm{d}) - H_p(t)$ and learning $L = J_p(t + 7\,\mathrm{d}) - H_p(t + 7\,\mathrm{d})$. A tool that raises $J_p$ while $L$ stays at or below zero across its interval marks \term{dependence}{dependence}. The instrument is the \texttt{hai} probe in Bucket's \texttt{bkt} package: a frozen bank of 998 four-choice items across the seven canon branches, of which 68 are held out by an automated distractor review \bank; sessions of 40 items in 20 pairs matched on tier and on whether the model got the pair's items right; a 20 second think window before the model's answer appears; no feedback until the retest; guess-corrected scores and a bootstrap over pairs for every interval \hai. The learning side of the measurement is the minimum prerequisite learning problem: the catalog is a directed acyclic graph of concepts, a learner's state is a closed set of mastered concepts, and the least a learner must add to reach a target is the \term{required}{required set} $R(t, M)$, the target's \term{closure}{prerequisite closure} minus their mastery, a count proved minimal in Lean 4 under stated assumptions. Per-concept \term{mastery}{mastery} is $M = P^{\alpha} R^{\beta}$ with FSRS-5 \term{retrievability}{retrievability} as $R$ and $\alpha = \beta = 1$ as implemented. The protocol draws probe items at the learner's \term{frontier}{frontier}, the ready concepts of that graph, and reads $R_p$ against the FSRS prediction. The instrument is built and no probe has been retested, so this report carries no result on a person; the learning system's own evaluation, 57,060 enumerated planning cases with zero errors and a synthetic prediction experiment, is reported with its source. The report states the planned analysis, paired comparisons stratified by education level, a divergence hypothesis on how reliance on one model narrows the range of answers across a group, and the rule by which the scores decide which tasks Research OS hands to the model and which it keeps with the person.
+A tool that helps a person answer today and leaves them no better at answering alone next week has made them dependent on it. We state a measurement protocol that separates the two outcomes. On one task set, three scores are taken: the person's \term{hp}{unaided score} $H_p$, the model's \term{a}{AI score} $A$, and the person's \term{jp}{joint score} $J_p$ with the model's answer in view. The \term{mp}{multiplier} is $m_p = J_p / \max(H_p, A)$, the gain is $D = J_p - \max(H_p, A)$, and the unaided test is repeated after seven days to give \term{rp}{retention} $R_p = H_p(t + 7\,\mathrm{d}) - H_p(t)$ and learning $L = J_p(t + 7\,\mathrm{d}) - H_p(t + 7\,\mathrm{d})$. A tool that raises $J_p$ while $L$ stays at or below zero across its interval marks \term{dependence}{dependence}. The instrument is the \texttt{hai} probe in Bucket's \texttt{bkt} package: a frozen bank of 998 four-choice items across the seven canon branches, of which 68 are held out by an automated distractor review \bank; sessions of 40 items in 20 pairs matched on tier and on whether the model got the pair's items right; a 20 second think window before the model's answer appears; no feedback until the retest; guess-corrected scores and a bootstrap over pairs for every interval \hai. The learning side of the measurement is the minimum prerequisite learning problem: the catalog is a directed acyclic graph of concepts, a learner's state is a closed set of mastered concepts, and the least a learner must add to reach a target is the \term{required}{required set} $R(t, M)$, the target's \term{closure}{prerequisite closure} minus their mastery, a count proved minimal in Lean 4 under stated assumptions. Three rules will join the two sides, probe items drawn at the learner's \term{frontier}{frontier}, $R_p$ reported against the engine's predicted recall, and \term{mastery}{mastery} updated from the solo half only; all three are design, since the probe code holds no mastery or FSRS logic today. The instrument is built and no probe has been retested, so this report carries no result on a person; the learning system's own evaluation, 57,060 enumerated planning cases with zero errors and a synthetic prediction experiment, is reported with its source. The report states the planned analysis, paired comparisons stratified by education level, a divergence hypothesis on how reliance on one model narrows the range of answers across a group, and the rule by which the scores decide which tasks Research OS hands to the model and which it keeps with the person.
 \end{abstract}
 
 \section{Introduction}
@@ -91,7 +91,7 @@ Research OS puts a model next to a person on every task in the product: recall o
 \section{Related work}
 \label{sec:related}
 
-Complementary team performance, the case where the pair beats both the person and the model, was named and tested in a user study of AI explanations, which found explanations raised acceptance of the model's answer whether it was right or wrong \autocite{bansal2021whole}. The jagged frontier study randomized consultants to model access and found gains inside the model's competence and losses outside it \autocite{dellacqua2023jagged}; the customer-support study found the largest gains for the least experienced workers \autocite{brynjolfsson2023generative}. The retention arm of this protocol follows the testing-effect literature, in which an unaided retrieval test is itself the strongest predictor of later recall \autocite{roediger2006testing}. The divergence hypothesis of \Cref{sec:divergence} follows a study in which model assistance raised the rated quality of each writer's story and lowered the diversity across writers \autocite{doshi2024diversity}. Intervals use the pair bootstrap \autocite{efron1979bootstrap}.
+Complementary team performance, the case where the pair beats both the person and the model, was named and tested in a user study of AI explanations, which found explanations raised acceptance of the model's answer whether it was right or wrong \autocite{bansal2021whole}. The jagged frontier study randomized consultants to model access and found gains inside the model's competence and losses outside it \autocite{dellacqua2023jagged}; the customer-support study found the largest gains for the least experienced workers \autocite{brynjolfsson2023generative}. The retention arm of this protocol follows the testing-effect literature, in which an unaided retrieval test is itself the strongest predictor of later recall \autocite{roediger2006testing}. The divergence hypothesis of Section~\ref{sec:divergence} follows a study in which model assistance raised the rated quality of each writer's story and lowered the diversity across writers \autocite{doshi2024diversity}. Intervals use the pair bootstrap \autocite{efron1979bootstrap}.
 
 \section{Preliminaries}
 \label{sec:prelim}
@@ -131,10 +131,26 @@ The \term{mp}{multiplier} is $m_p = J_p / \max(H_p, A)$, reported as null when $
 \term{dependence}{Dependence} is flagged when the 95\% interval of $J_p - H_p$ lies above zero and the 95\% interval of $L$ includes or lies below zero \hai. The gain was there with the model in the room and gone a week later.
 \end{definition}
 
+\figpage{%
+  \includegraphics[width=\linewidth]{figures/fig_timeline.pdf}
+  \caption{The session timeline. Each probe splits 40 unseen items into solo and pair conditions on day 0, is retested unaided in full on day 7, and unlocks its scores only then; the next probe draws 40 new items. $A$ is scored on every frozen item once, before any person sees it \hai.}
+  \label{fig:timeline}
+  \vfill
+  \readingbox{\hai}{A probe is 40 items in 20 pairs; one item of each pair goes to the solo condition and gives $H_p$, the other to the pair condition and gives $J_p$. The retest on day 7 reuses the same 40 items, unaided and reshuffled, and gives $H_p(t + 7\,\mathrm{d})$ on the ex-solo half and $J_p(t + 7\,\mathrm{d})$ on the ex-pair half. Nothing is shown to the person between day 0 and the end of the retest: no correctness, no score, and no probe item enters spaced review. The day 14 probe draws 40 items the person has never seen, so two probes test different items and a change in $H_p$ across probes mixes the person with the items, which is why every within-probe statistic is a matched comparison and why no trend is read before 5 retested probes. The 20 second window before the model's answer appears is the same on every pair item, and the model's answers were fixed before the first probe, so $A$ is a property of the bank version.}
+}
+
+\figpage{%
+  \includegraphics[width=0.92\linewidth]{figures/fig_scores.pdf}
+  \caption{The four scores and the statistics derived from them. $H_p$, $A$ and $J_p$ combine into the multiplier and the gain; the day 7 scores give retention on the solo items and learning on the pair items; dependence is the pattern where the gain is positive and learning is not \hai.}
+  \label{fig:scores}
+  \vfill
+  \readingbox{\hai}{Three scores are taken on day 0 and two on day 7, all on the guess-corrected scale $s = (c/n - 1/4)/(3/4)$, so each runs from $-1/3$ at zero correct through 0 at chance to 1 at a perfect run. $m_p = J_p / \max(H_p, A)$ is reported as null when $\max(H_p, A) < 0.1$, since a ratio over a near-zero denominator carries no information, and $D = J_p - \max(H_p, A)$ is the primary statistic. $R_p$ is a within-item difference on the 20 solo items and $L$ is a between-half difference at the day 7 retest, so the practice effect of the retest falls on both halves of $L$ and cancels to first order. Dependence needs the whole 95\% interval of $J_p - H_p$ above zero and the whole interval of $L$ at or below zero; the two intervals are percentile bootstraps over the 20 matched pairs with 2,000 draws, and an interval is withheld when fewer than half the draws give a finite statistic.}
+}
+
 \section{The learning system}
 \label{sec:learning}
 
-The protocol of \Cref{sec:prelim} measures a person on items. The learning system says which items, and what a person's state is before and after. Its contract is the minimum prerequisite learning problem stated in the learning-system brief and checked in Lean 4 \brief, and its per-concept state is the mastery formula of the Academy engine \mast.
+The protocol of Section~\ref{sec:prelim} measures a person on items. The learning system says which items, and what a person's state is before and after. Its contract is the minimum prerequisite learning problem stated in the learning-system brief and checked in Lean 4 \brief, and its per-concept state is the mastery formula of the Academy engine \mast.
 
 \subsection{The minimum prerequisite learning problem}
 \label{sec:minprereq}
@@ -161,7 +177,7 @@ A step adds one fresh ready concept and keeps everything already known:
   K_{i+1} = K_i \cup \{v_i\}, \qquad v_i \notin K_i, \qquad (p \to v_i \Rightarrow p \in K_i).
   \label{eq:transition}
 \end{equation}
-A finite list $\pi = (v_1, \ldots, v_n)$ is feasible from $K_0$ when every step satisfies \Cref{eq:transition}; it reaches $t$ when $t \in K_0$ or $t$ occurs in $\pi$ \bm{LearningSystem.Path, LearningSystem.After}.
+A finite list $\pi = (v_1, \ldots, v_n)$ is feasible from $K_0$ when every step satisfies Equation~\eqref{eq:transition}; it reaches $t$ when $t \in K_0$ or $t$ occurs in $\pi$ \bm{LearningSystem.Path, LearningSystem.After}.
 \end{definition}
 
 \begin{definition}[Cost model]
@@ -192,7 +208,7 @@ From a closed $M_C$, every feasible sequence $\pi$ that reaches $t$ contains eve
 \end{theorem}
 
 \begin{proof}
-By \Cref{lem:closed} the final state is closed; by \Cref{lem:ancestors} it contains $C(t)$. The final state is $M_C$ together with the additions of $\pi$, and a member of $R$ is absent from $M_C$, so it is one of the additions.
+By Lemma~\ref{lem:closed} the final state is closed; by Lemma~\ref{lem:ancestors} it contains $C(t)$. The final state is $M_C$ together with the additions of $\pi$, and a member of $R$ is absent from $M_C$, so it is one of the additions.
 \end{proof}
 
 \begin{theorem}[Attained minimum]
@@ -205,20 +221,20 @@ Let $\pi$ list each element of $R(t, M)$ once in an order where every prerequisi
 If $M_1 \subseteq M_2$ then $R(t, M_2) \subseteq R(t, M_1)$ and $|R(t, M_2)| \leq |R(t, M_1)|$ \bm{LearningSystem.distance\_antitone}.
 \end{corollary}
 
-\Cref{fig:prereq} shows the diamond that separates the theorem from chain planning: $F \to A$, $F \to B$, $A \to T$, $B \to T$ with empty mastery. The chain $F, A, T$ has three nodes and never reaches $T$, since after $\{F, A\}$ the target is still blocked by $B$; the feasible sequence $F, A, B, T$ has four transitions, equal to $|R(T, \emptyset)|$, and $F, B, A, T$ is a second optimum \bm{LearningSystem.diamond\_minimum, diamond\_chain\_insufficient}. The planner's running time with adjacency lists is $O(|C(t)| + |E_C|)$ for $E_C$ the edges inside the closure \brief; this bound is a human argument outside Lean.
+Figure~\ref{fig:prereq} shows the diamond that separates the theorem from chain planning: $F \to A$, $F \to B$, $A \to T$, $B \to T$ with empty mastery. The chain $F, A, T$ has three nodes and never reaches $T$, since after $\{F, A\}$ the target is still blocked by $B$; the feasible sequence $F, A, B, T$ has four transitions, equal to $|R(T, \emptyset)|$, and $F, B, A, T$ is a second optimum \bm{LearningSystem.diamond\_minimum, diamond\_chain\_insufficient}. The planner's running time with adjacency lists is $O(|C(t)| + |E_C|)$ for $E_C$ the edges inside the closure \brief; this bound is a human argument outside Lean.
 
 \figpage{%
   \includegraphics[width=\linewidth]{figures/fig_prereq_chart.pdf}
   \caption{The prerequisite chart for a target $T$ with one verified foundation, two ready concepts and a blocked target, and the shortest knowledge-state path from empty mastery through the same diamond \brief.}
   \label{fig:prereq}
   \vfill
-  \readingbox{\brief, with the diamond facts checked in \texttt{lean/\allowbreak Bucket/\allowbreak Learning.\allowbreak lean}}{The chart has four required concepts, one verified and three remaining, which is $|C(T)| = 4$, $|M_C| = 1$ and $|R(T, M)| = 3$ for this learner. The two outlined concepts are the frontier: $F$ is known and is the only prerequisite of each, so both are ready, and these are the concepts a probe draws items from. $T$ is tinted because $A$ and $B$ are both mandatory and neither is known. The lower panel starts from empty mastery, so $|R(T, \emptyset)| = 4$ and the path has four transitions: each arrow adds one ready concept, and the state after each arrow is closed. The chain $F, A, T$ counts three nodes and fails at its third step because $B \notin \{F, A\}$; counting nodes on a path through the graph is the error the theorem rules out, since the quantity that is minimal is the count of the required set and the order is a certificate that the count is attained. Swapping $A$ and $B$ gives a second optimum, so the minimum is unique and the order is not. Fixed costs $2, 3, 5, 4$ on $F, A, B, T$ give $c^* = 14$ from empty mastery and $12$ once $F$ is known.}
+  \readingbox{\brief, with the diamond facts checked in \texttt{lean/\allowbreak Bucket/\allowbreak Learning.\allowbreak lean}}{The chart has four required concepts, one verified and three remaining, which is $|C(T)| = 4$, $|M_C| = 1$ and $|R(T, M)| = 3$ for this learner. The two outlined concepts are the frontier: $F$ is known and is the only prerequisite of each, so both are ready, and these are the concepts a probe will draw items from. $T$ is tinted because $A$ and $B$ are both mandatory and neither is known. The lower panel starts from empty mastery, so $|R(T, \emptyset)| = 4$ and the path has four transitions: each arrow adds one ready concept, and the state after each arrow is closed. The chain $F, A, T$ counts three nodes and fails at its third step because $B \notin \{F, A\}$; counting nodes on a path through the graph is the error the theorem rules out, since the quantity that is minimal is the count of the required set and the order is a certificate that the count is attained. Swapping $A$ and $B$ gives a second optimum, so the minimum is unique and the order is not. Fixed costs $2, 3, 5, 4$ on $F, A, B, T$ give $c^* = 14$ from empty mastery and $12$ once $F$ is known.}
 }
 
 \subsection{The Lean contract}
 \label{sec:leancontract}
 
-The learning-system source is \texttt{lean/\allowbreak Bucket/\allowbreak Learning.\allowbreak lean}, a copy of \texttt{learning/\allowbreak research-os/\allowbreak learning-system/\allowbreak lean/\allowbreak LearningSystem.\allowbreak lean} built by \texttt{make lean} under Lean 4.33.1 with bundled \texttt{Std} and no other dependency \bm{papers/human-ai-multiplier/lean}. The four statements the section rests on are quoted here; \Cref{app:lean} lists the rest.
+The learning-system source is \texttt{lean/\allowbreak Bucket/\allowbreak Learning.\allowbreak lean}, a copy of \texttt{learning/\allowbreak research-os/\allowbreak learning-system/\allowbreak lean/\allowbreak LearningSystem.\allowbreak lean} built by \texttt{make lean} under Lean 4.33.1 with bundled \texttt{Std} and no other dependency \bm{papers/human-ai-multiplier/lean}. The four statements the section rests on are quoted here; Appendix~\ref{app:lean} lists the rest.
 
 \begin{lstlisting}[style=bucketlean]
 def Closed (edge : a -> a -> Prop) (known : a -> Prop) : Prop :=
@@ -248,10 +264,10 @@ theorem minimum_weighted_effort {edge : a -> a -> Prop} {known : a -> Prop}
 \end{lstlisting}
 
 \paragraph{What is proved.}
-\Cref{lem:closed}, \Cref{lem:ancestors}, \Cref{thm:necessary}, \Cref{thm:minimum} and \Cref{cor:antitone} are the Lean theorems \texttt{after\_closed}, \texttt{required\_known}, \texttt{remaining\_necessary}, \texttt{minimum\_\allowbreak unit\_\allowbreak distance}, \texttt{minimum\_\allowbreak weighted\_\allowbreak effort} and \texttt{distance\_\allowbreak antitone}; \texttt{restricted\_closed} and \texttt{restricted\_remaining} justify the restriction to $M_C$; the diamond is five theorems on a four-element inductive type; \texttt{coverage\_monotone} and \texttt{squared\_extent\_monotone} prove the natural-number cases of the coverage results below. The axiom audit of all ten named theorems reports dependencies empty or within \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}, with no \texttt{sorry}, custom axiom or \texttt{native\_decide} \emp{\texttt{learning/\allowbreak research-os/\allowbreak learning-system/\allowbreak lean/\allowbreak check-output.\allowbreak txt}, 2026-10-07, \texttt{bash lean/\allowbreak check.\allowbreak sh}}.
+Lemma~\ref{lem:closed}, Lemma~\ref{lem:ancestors}, Theorem~\ref{thm:necessary}, Theorem~\ref{thm:minimum} and Corollary~\ref{cor:antitone} are the Lean theorems \texttt{after\_closed}, \texttt{required\_known}, \texttt{remaining\_necessary}, \texttt{minimum\_\allowbreak unit\_\allowbreak distance}, \texttt{minimum\_\allowbreak weighted\_\allowbreak effort} and \texttt{distance\_\allowbreak antitone}; \texttt{restricted\_closed} and \texttt{restricted\_remaining} justify the restriction to $M_C$; the diamond is five theorems on a four-element inductive type; \texttt{coverage\_monotone} and \texttt{squared\_extent\_monotone} prove the natural-number cases of the coverage results below. The axiom audit of all ten named theorems reports dependencies empty or within \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}, with no \texttt{sorry}, custom axiom or \texttt{native\_decide} \emp{\texttt{learning/\allowbreak research-os/\allowbreak learning-system/\allowbreak lean/\allowbreak check-output.\allowbreak txt}, 2026-10-07, \texttt{bash lean/\allowbreak check.\allowbreak sh}}.
 
 \paragraph{What is deferred.}
-The enumeration and the ready-order certificate are inputs to the theorem; Lean does not construct them from a graph, verify a topological sort, or prove the TypeScript planner. The real-valued coverage propositions of \Cref{sec:coverage} are human proofs. Nothing in Lean touches the mastery formula, FSRS, assessment validity or any learner outcome; those live in tests and in the protocol of \Cref{sec:connect}.
+The enumeration and the ready-order certificate are inputs to the theorem; Lean does not construct them from a graph, verify a topological sort, or prove the TypeScript planner. The real-valued coverage propositions of Section~\ref{sec:coverage} are human proofs. Nothing in Lean touches the mastery formula, FSRS, assessment validity or any learner outcome; those live in tests and in the protocol of Section~\ref{sec:connect}.
 
 \subsection{The knowledge region}
 \label{sec:coverage}
@@ -284,14 +300,14 @@ Each row of $A$ sums to one, so interchanging sums gives $\sum_j d_j = |V|$ and 
 With $V$, $S$ and $d$ fixed, if no flag $m(v)$ decreases then no $g_j$, $G$ or $r$ decreases \brief. The natural-weight coverage sum and the integer squared extent are the cases proved in Lean \bm{LearningSystem.coverage\_monotone, squared\_extent\_monotone}.
 \end{proposition}
 
-\Cref{fig:region} draws the worked fixture: $S(a) = \{a\}$, $S(b) = \{b\}$, $S(t) = \{a, b\}$, so $d_a = d_b = 3/2$; mastering $a$ gives $g = (2/3, 0)$, $G = 1/3$ and $r^2 = 2/9$; adding $b$ gives $(2/3, 2/3)$, $G = 2/3$ and $r^2 = 4/9$; adding $t$ gives $G = r = 1$ \ls. $r$ and $G$ measure different things, since profiles with the same $G$ can differ in $r$, and neither carries a meaning of intelligence or general competence.
+Figure~\ref{fig:region} draws the worked fixture: $S(a) = \{a\}$, $S(b) = \{b\}$, $S(t) = \{a, b\}$, so $d_a = d_b = 3/2$; mastering $a$ gives $g = (2/3, 0)$, $G = 1/3$ and $r^2 = 2/9$; adding $b$ gives $(2/3, 2/3)$, $G = 2/3$ and $r^2 = 4/9$; adding $t$ gives $G = r = 1$ \ls. $r$ and $G$ measure different things, since profiles with the same $G$ can differ in $r$, and neither carries a meaning of intelligence or general competence.
 
 \figpage{%
   \includegraphics[width=\linewidth]{figures/fig_knowledge_region.pdf}
   \caption{The knowledge region on the three-concept fixture: the path of confirmed coordinates $(g_a, g_b)$ as $a$, then $b$, then $t$ are confirmed, and the catalog coverage $G$ with the radial extent $r$ at each milestone \ls.}
   \label{fig:region}
   \vfill
-  \readingbox{\ls}{Both denominators are $3/2$, since $a$ and $b$ each receive allocation 1 from their own concept and $1/2$ from $t$. Confirming $a$ alone moves the point to $(2/3, 0)$: the axis $a$ gains $1$ of its $3/2$, and axis $b$ nothing. $G = 1/3$ is one confirmed concept of three, which is the identity of \Cref{prop:bounds}, and $r = \sqrt{2/9} = 0.47$ sits between $G = 0.33$ and $\sqrt{G} = 0.58$. Confirming $b$ gives $(2/3, 2/3)$, $G = 2/3$ and $r = 2/3$, the point where the two agree because the coordinates are equal and the variance term vanishes. Confirming $t$ fills both axes, since $t$ contributes its remaining $1/2$ to each, and $G = r = 1$. The shaded square marks the region reachable before $t$: no flag on $a$ or $b$ alone can push either coordinate past $2/3$. The saved run also records duplicate invariance, repeating $a$ inside the support of $t$ changes nothing after set deduplication, and monotonicity across all $2^3$ flag vectors, both \texttt{true} in the metrics file. The coordinates describe where confirmed concepts fall in a declared basis for one catalog version; a larger catalog or a new basis changes the denominators and ends the comparison.}
+  \readingbox{\ls}{Both denominators are $3/2$, since $a$ and $b$ each receive allocation 1 from their own concept and $1/2$ from $t$. Confirming $a$ alone moves the point to $(2/3, 0)$: the axis $a$ gains $1$ of its $3/2$, and axis $b$ nothing. $G = 1/3$ is one confirmed concept of three, which is the identity of Proposition~\ref{prop:bounds}, and $r = \sqrt{2/9} = 0.47$ sits between $G = 0.33$ and $\sqrt{G} = 0.58$. Confirming $b$ gives $(2/3, 2/3)$, $G = 2/3$ and $r = 2/3$, the point where the two agree because the coordinates are equal and the variance term vanishes. Confirming $t$ fills both axes, since $t$ contributes its remaining $1/2$ to each, and $G = r = 1$. The shaded square marks the region reachable before $t$: no flag on $a$ or $b$ alone can push either coordinate past $2/3$. The saved run also records duplicate invariance, repeating $a$ inside the support of $t$ changes nothing after set deduplication, and monotonicity across all $2^3$ flag vectors, both \texttt{true} in the metrics file. The coordinates describe where confirmed concepts fall in a declared basis for one catalog version; a larger catalog or a new basis changes the denominators and ends the comparison.}
 }
 
 \subsection{Mastery and retention as implemented}
@@ -317,59 +333,40 @@ Proficiency is a logistic function of the concept's ability estimate $\theta$ ag
 clipped to $[0, 1]$, with $M = 0$ when either factor is zero and $M = 1 - e^{-S/21}$ when no proficiency record exists; a concept counts as mastered at $M \geq 0.7$ \mast.
 \end{definition}
 
-The exponents are the \texttt{MASTERY\_ALPHA} and \texttt{MASTERY\_BETA} constants of \texttt{src/\allowbreak lib/\allowbreak academy/\allowbreak mastery.ts}, both $1.0$, so the formula as shipped is the plain product and the exponents are a hook for a later fit rather than a fitted parameter \mast. \Cref{fig:mastery} shows the two factors. The set $M$ in \Cref{sec:minprereq} is the accepted mastery that the planner reads; the mastery formula here is the engine's per-concept signal, and the brief's A3 is the rule that a concept enters $M$ only when its evidence and its prerequisites' evidence satisfy the contract. The mapping from $M \geq 0.7$ to membership in $M$ is a product decision that no theorem covers.
+The exponents are the \texttt{MASTERY\_ALPHA} and \texttt{MASTERY\_BETA} constants of \texttt{src/\allowbreak lib/\allowbreak academy/\allowbreak mastery.ts}, both $1.0$, so the formula as shipped is the plain product and the exponents are a hook for a later fit rather than a fitted parameter \mast. Figure~\ref{fig:mastery} shows the two factors. The set $M$ in Section~\ref{sec:minprereq} is the accepted mastery that the planner reads; the mastery formula here is the engine's per-concept signal, and the brief's A3 is the rule that a concept enters $M$ only when its evidence and its prerequisites' evidence satisfy the contract. The mapping from $M \geq 0.7$ to membership in $M$ is a product decision that no theorem covers.
 
 \figpage{%
   \includegraphics[width=\linewidth]{figures/fig_mastery.pdf}
   \caption{FSRS-5 retrievability over 120 days for four stabilities, with the day 7 retest and the 90-day mastery horizon marked, and the mastery surface $M = PR$ over proficiency and retention with the 0.7 mastered contour \mast.}
   \label{fig:mastery}
   \vfill
-  \readingbox{\mast, evaluated from \Cref{eq:fsrs} and \Cref{eq:mastery}}{Every curve crosses $0.9$ at $t = S$, since $F$ is chosen so that $R(S, S) = 0.9$. At the day 7 retest a concept at stability 3 days predicts recall $0.80$, at 7 days $0.90$, at 21 days $0.96$ and at 90 days $0.99$; at the 90-day horizon the same four predict $0.35$, $0.50$, $0.71$ and $0.90$, and those are the $R$ values that enter mastery. The surface on the right is the product, so $M = 0.7$ is the hyperbola $PR = 0.7$: a concept with $P = 1$ is mastered at $R \geq 0.7$, which needs $S \geq 20.3$ days at the 90-day horizon, and a concept with $R = 1$ needs $P \geq 0.7$, which is $\theta \geq 0.65$ against the apply offset. With $\alpha = \beta = 1$ the two factors trade one for one in log space; a different pair of exponents would tilt the contour and nothing in the shipped code sets them to anything else. The retention axis is a prediction from the FSRS state, and the protocol's $R_p$ is the observation that tests it.}
+  \readingbox{\mast, evaluated from Equation~\eqref{eq:fsrs} and Equation~\eqref{eq:mastery}}{Every curve crosses $0.9$ at $t = S$, since $F$ is chosen so that $R(S, S) = 0.9$. At the day 7 retest a concept at stability 3 days predicts recall $0.80$, at 7 days $0.90$, at 21 days $0.96$ and at 90 days $0.99$; at the 90-day horizon the same four predict $0.35$, $0.50$, $0.71$ and $0.90$, and those are the $R$ values that enter mastery. The surface on the right is the product, so $M = 0.7$ is the hyperbola $PR = 0.7$: a concept with $P = 1$ is mastered at $R \geq 0.7$, which needs $S \geq 20.3$ days at the 90-day horizon, and a concept with $R = 1$ needs $P \geq 0.7$, which is $\theta \geq 0.65$ against the apply offset. With $\alpha = \beta = 1$ the two factors trade one for one in log space; a different pair of exponents would tilt the contour and nothing in the shipped code sets them to anything else. The retention axis is a prediction from the FSRS state, and the protocol's $R_p$ will be the observation that tests it.}
 }
 
 \section{Connecting the learning system to the protocol}
 \label{sec:connect}
 
-The probe of \Cref{def:probe} draws 40 unseen bank items grouped by tier and by the model's correctness \hai. The learning system adds a third rule for which atoms those items come from, and a prediction for what the day 7 retest should find. \Cref{fig:protocol} draws both over a learner's knowledge region.
+What exists in \texttt{packages/bkt/src/hai} is the frozen item bank, the solo and pair conditions, the seven-day retest and the scoring of Section~\ref{sec:prelim}; the probe holds no prerequisite graph, no FSRS state and no mastery code, and its draw groups items by tier and by the model's correctness only \hai. The three rules below are design. Each names what the protocol will do once the Academy's prerequisite graph and engine state are bound to the bank's atoms by version. Figure~\ref{fig:protocol} draws them over a learner's knowledge region.
 
 \paragraph{Items at the frontier.}
-The unaided test $H_p$ is scored on items drawn from atoms at the learner's \term{frontier}{frontier}: concepts not in their accepted mastery $M$ whose immediate prerequisites are all in $M$, the outlined nodes of \Cref{fig:prereq}. An item on a known atom measures recall of something already mastered and an item on a blocked atom measures a prerequisite gap, and neither is what the multiplier is for; an item at the frontier is one the person could answer from what they know, which is where a model's help can either teach or substitute. The draw keeps the pairing of \Cref{sec:method}, so within the frontier set, pairs are still matched on tier and on the model's correctness. This rule is specified here and is not yet in \texttt{packages/bkt/src/hai}, whose grouping today reads tier and model correctness only \hai.
+The protocol will draw the probe's 40 items from atoms at the learner's \term{frontier}{frontier}: concepts outside their accepted mastery $M$ whose immediate prerequisites are all in $M$, the outlined nodes of Figure~\ref{fig:prereq}. An item on a known atom measures recall of something already mastered and an item on a blocked atom measures a prerequisite gap; an item at the frontier is one the person could answer from what they know, which is where a model's help can either teach or substitute. Within the frontier set, pairs will still be matched on tier and on the model's correctness as in Section~\ref{sec:method}, $A$ stays the per-item score fixed before any draw, $J_p$ will use the pair half of the same draw, and the retest will reuse all 40, so the frontier rule changes the population of items and none of the definitions.
 
-\paragraph{The same items in every condition.}
-The AI condition $A$ is scored once per frozen item, before any draw, so $A$ on a frontier item is the same number whether that item lands in a solo or a pair slot. The joint condition $J_p$ uses the pair half of the same frontier draw, and the retest reuses all 40. Nothing about the frontier rule changes the scores' definitions, only the population of items they are taken on.
+\paragraph{Retention against the predicted recall.}
+$R_p$ is an observed change in recall over seven days. For each solo item the engine will carry a prediction, $R(7, S)$ from Equation~\eqref{eq:fsrs} with $S$ the atom's stability at the probe, and the report will print the predicted mean recall beside the observed one. A retest under the prediction on the pair half and at it on the solo half would be the dependence pattern of Definition~\ref{def:dependence} seen from the engine's side; a retest above the prediction on both halves would be the testing effect \autocite{roediger2006testing}. Probe items stay out of spaced review until the retest ends, so $S$ would be frozen across the seven days and the prediction fixed before the observation.
 
-\paragraph{Retention against the FSRS prediction.}
-$R_p = H_p(t + 7\,\mathrm{d}) - H_p(t)$ is an observed change in recall over seven days. For each solo item the engine also carries a prediction, $R(7, S)$ from \Cref{eq:fsrs} with $S$ the atom's stability at the probe, and the protocol reports the predicted mean recall beside the observed one. A retest that lands under the prediction on the pair half and at it on the solo half is the dependence pattern of \Cref{def:dependence} seen from the engine's side; a retest above the prediction on both halves is the testing effect \autocite{roediger2006testing}. Probe items stay out of spaced review until the retest ends, so $S$ is frozen across the seven days and the prediction is fixed before the observation.
-
-\paragraph{What the decision rule reads.}
-The cells of \Cref{tab:decision} are read per task class, and the frontier rule makes a task class a set of atoms at a depth: recall, apply, derive or teach, on concepts at the frontier. A class that falls in the augment cell has its atoms' $M$ updated from the pair half as well as the solo half; a class in the dependence cell updates $M$ from the solo half only, so a model's answer can never raise a concept into accepted mastery on its own.
+\paragraph{What the decision rule will read.}
+The cells of Table~\ref{tab:decision} are read per task class, and the frontier rule makes a task class a set of atoms at a depth on frontier concepts. A class in the augment cell will have its atoms' $M$ updated from the pair half as well as the solo half; a class in the dependence cell will update $M$ from the solo half only, so a model's answer could never raise a concept into accepted mastery on its own.
 
 \figpage{%
   \includegraphics[width=\linewidth]{figures/fig_protocol_region.pdf}
   \caption{The protocol over a learner's knowledge region. Left: a layered catalog with known, frontier and blocked concepts, and four probe items drawn at the frontier, two solo and two pair. Right: the timeline of one probe with the day 0 scores, the day 7 retest and the FSRS-5 predicted recall for a solo and a pair item. The points are placed to show the pattern and carry no measured value \hai.}
   \label{fig:protocol}
   \vfill
-  \readingbox{a schematic; the two curves are \Cref{eq:fsrs} at $S = 7$ and $S = 14$ days, and the point heights are illustrative}{The left panel has 18 concepts in five layers: 8 known, 4 at the frontier, where every incoming arrow comes from a known node, and 6 blocked. The four dashed rings are the probe draw, and every one sits on a frontier node; a real probe draws 40 items across the frontier atoms of all seven branches. The right panel places $H_p$, $A$ and $J_p$ on day 0 and the two retest scores on day 7 at heights chosen to show one dependence pattern: $J_p$ above both single agents on day 0, and on day 7 the ex-pair half back near the ex-solo half, so $D > 0$ and $L \approx 0$. The curves are what the engine predicts for recall of an item reviewed at the probe at stability 7 or 14 days: $0.90$ and $0.95$ on day 7. The gap marked between the pair curve and the ex-pair retest is the quantity the protocol reports beside $R_p$, predicted minus observed recall. The timeline is fixed by the probe, with the next draw at day 14, and the prediction is fixed on day 0 because probe items are held out of spaced review until the retest ends.}
+  \readingbox{a schematic; the two curves are Equation~\eqref{eq:fsrs} at $S = 7$ and $S = 14$ days, and the point heights are illustrative}{The left panel has 18 concepts in five layers: 8 known, 4 at the frontier, where every incoming arrow comes from a known node, and 6 blocked. The four dashed rings are the probe draw, and every one sits on a frontier node; a real probe will draw 40 items across the frontier atoms of all seven branches. The right panel places $H_p$, $A$ and $J_p$ on day 0 and the two retest scores on day 7 at heights chosen to show one dependence pattern: $J_p$ above both single agents on day 0, and on day 7 the ex-pair half back near the ex-solo half, so $D > 0$ and $L \approx 0$. The curves are what the engine predicts for recall of an item reviewed at the probe at stability 7 or 14 days: $0.90$ and $0.95$ on day 7. The gap marked between the pair curve and the ex-pair retest is the quantity the protocol will report beside $R_p$, predicted minus observed recall. The timeline is fixed by the probe, with the next draw at day 14, and the prediction is fixed on day 0 because probe items are held out of spaced review until the retest ends.}
 }
 
 \section{Method}
 \label{sec:method}
-
-\figpage{%
-  \includegraphics[width=\linewidth]{figures/fig_timeline.pdf}
-  \caption{The session timeline. Each probe splits 40 unseen items into solo and pair conditions on day 0, is retested unaided in full on day 7, and unlocks its scores only then; the next probe draws 40 new items. $A$ is scored on every frozen item once, before any person sees it \hai.}
-  \label{fig:timeline}
-  \vfill
-  \readingbox{\hai}{A probe is 40 items in 20 pairs; one item of each pair goes to the solo condition and gives $H_p$, the other to the pair condition and gives $J_p$. The retest on day 7 reuses the same 40 items, unaided and reshuffled, and gives $H_p(t + 7\,\mathrm{d})$ on the ex-solo half and $J_p(t + 7\,\mathrm{d})$ on the ex-pair half. Nothing is shown to the person between day 0 and the end of the retest: no correctness, no score, and no probe item enters spaced review. The day 14 probe draws 40 items the person has never seen, so two probes test different items and a change in $H_p$ across probes mixes the person with the items, which is why every within-probe statistic is a matched comparison and why no trend is read before 5 retested probes. The 20 second window before the model's answer appears is the same on every pair item, and the model's answers were fixed before the first probe, so $A$ is a property of the bank version.}
-}
-
-\figpage{%
-  \includegraphics[width=0.92\linewidth]{figures/fig_scores.pdf}
-  \caption{The four scores and the statistics derived from them. $H_p$, $A$ and $J_p$ combine into the multiplier and the gain; the day 7 scores give retention on the solo items and learning on the pair items; dependence is the pattern where the gain is positive and learning is not \hai.}
-  \label{fig:scores}
-  \vfill
-  \readingbox{\hai}{Three scores are taken on day 0 and two on day 7, all on the guess-corrected scale $s = (c/n - 1/4)/(3/4)$, so each runs from $-1/3$ at zero correct through 0 at chance to 1 at a perfect run. $m_p = J_p / \max(H_p, A)$ is reported as null when $\max(H_p, A) < 0.1$, since a ratio over a near-zero denominator carries no information, and $D = J_p - \max(H_p, A)$ is the primary statistic. $R_p$ is a within-item difference on the 20 solo items and $L$ is a between-half difference at the day 7 retest, so the practice effect of the retest falls on both halves of $L$ and cancels to first order. Dependence needs the whole 95\% interval of $J_p - H_p$ above zero and the whole interval of $L$ at or below zero; the two intervals are percentile bootstraps over the 20 matched pairs with 2,000 draws, and an interval is withheld when fewer than half the draws give a finite statistic.}
-}
 
 \paragraph{The instrument.}
 The probe lives in \texttt{packages/bkt/src/hai/} and runs inside the \texttt{bkt} terminal app, offline, with answers sealed in the same encrypted store as the person's other attempts; nothing leaves the device, and the person can export or wipe their data \hai. \texttt{bkt hai freeze} writes the bank, \texttt{bkt hai review} writes the flags, \texttt{bkt hai score} sends the bank to the model through a batch job and stores each answer with its rationale, model id and date, \texttt{bkt hai} runs a probe or its retest, and \texttt{bkt hai report} prints the scores as sentences \hai.
@@ -400,7 +397,7 @@ The learning system has two saved evaluations, both in \texttt{learning/\allowbr
 Every edge subset under a fixed topological labelling for one through five nodes gives 1,099 DAGs; enumerating downward-closed mastery sets and targets over them gives 57,060 cases \ls. The candidate planner computes the unmet closure and a prerequisite-first order; the reference is a breadth-first search over ready additions that shares no code with the candidate. Across all 57,060 cases the distance error $\Delta = |\pi_{\mathrm{cand}}| - d_{\mathrm{BFS}}$, the omitted-required count $|R \setminus \mathrm{set}(\pi)|$ and the readiness-error count were all zero \ls. The fixtures return the diamond sequence of length 4, a shortcut of length 3, a mastered target at 0, an unmastered root at 1, and typed failures for a cycle, a mastery conflict, an unreviewed foundation and a missing node; the chain counterexample records 3 chain nodes against 4 minimum learning nodes with concept 2 omitted and a readiness failure at the target \ls.
 
 \paragraph{Statistical experiment.}
-1,200 synthetic learners with eight items each are split by learner into 400 training, 200 calibration and 600 test, so the test set is $N = 4{,}800$ responses \ls. Three logistic models are fitted with ridge 0.01 and recalibrated on the calibration learners before scoring: intercept only, item effects, and item effects with synthetic axis and prerequisite covariates. \Cref{tab:ls} gives the saved Brier scores and the two residual correlations; \Cref{fig:validation} draws them. The planted pair's 97.5\% bootstrap interval is $[0.24379, 0.41299]$ and the control's is $[-0.16685, 0.00182]$, from 2,000 learner bootstraps and 2,000 learner permutations with Holm correction over the two tests \ls.
+1,200 synthetic learners with eight items each are split by learner into 400 training, 200 calibration and 600 test, so the test set is $N = 4{,}800$ responses \ls. Three logistic models are fitted with ridge 0.01 and recalibrated on the calibration learners before scoring: intercept only, item effects, and item effects with synthetic axis and prerequisite covariates. Table~\ref{tab:ls} gives the saved Brier scores and the two residual correlations; Figure~\ref{fig:validation} draws them. The planted pair's 97.5\% bootstrap interval is $[0.24379, 0.41299]$ and the control's is $[-0.16685, 0.00182]$, from 2,000 learner bootstraps and 2,000 learner permutations with Holm correction over the two tests \ls.
 
 \begin{table}[htbp]
   \centering
@@ -445,7 +442,7 @@ The hypothesis is that a group of people answering with the same model converges
 \subsection{Decision rule for Research OS}
 \label{sec:decision}
 
-The scores decide, per task class, what Research OS does with the model. \Cref{tab:decision} gives the rule. A class where $D$ is above zero and $L$ is at or above zero is augmented: the model's answer stays in view and the person's own attempt stays first. A class where $D$ is above zero and $L$ is below zero, the dependence pattern, is augmented only when the task is a means and never when it is a learning target; in the Learn module it falls back to unaided practice with the model held until after the attempt. A class where $D$ is at or below zero is left with the person. A class where $A$ exceeds $H_p$ and $J_p$ sits at $A$ is a candidate for replacement, meaning the model answers and the person reviews, and only outside the Learn module. The rule is applied per person, since the same class can fall in different cells for different people, and the cells are re-read after each retested probe.
+The scores decide, per task class, what Research OS does with the model. Table~\ref{tab:decision} gives the rule. A class where $D$ is above zero and $L$ is at or above zero is augmented: the model's answer stays in view and the person's own attempt stays first. A class where $D$ is above zero and $L$ is below zero, the dependence pattern, is augmented only when the task is a means and never when it is a learning target; in the Learn module it falls back to unaided practice with the model held until after the attempt. A class where $D$ is at or below zero is left with the person. A class where $A$ exceeds $H_p$ and $J_p$ sits at $A$ is a candidate for replacement, meaning the model answers and the person reviews, and only outside the Learn module. The rule is applied per person, since the same class can fall in different cells for different people, and the cells are re-read after each retested probe.
 
 \begin{table}[htbp]
   \centering
@@ -466,7 +463,7 @@ The scores decide, per task class, what Research OS does with the model. \Cref{t
 \section{Calibration}
 \label{sec:calibration}
 
-The central claims are the definitions, and their calibration is the instrument's test suite and the Lean listing. The tests check that the freeze is deterministic across builds, that pairs match on tier and model correctness, the guess correction at chance and at a perfect run, the four statistics on fixed data, the pair bootstrap on fixed data under a fixed seed, that no feedback is shown before the retest, and that the retest is gated by an injected clock \hai. \Cref{app:lean} checks the learning-system contract of \Cref{sec:leancontract}, that the retest time is after the probe time, that the guess-corrected numerator lies between the negative item count and the denominator for any count of correct answers at most the item count, that it is zero at chance, and that the dependence flag requires a positive gain and cannot fire when learning is positive. The error budget on a reported statistic is its bootstrap interval, and \Cref{sec:method} gives the item counts that interval needs.
+The central claims are the definitions, and their calibration is the instrument's test suite and the Lean listing. The tests check that the freeze is deterministic across builds, that pairs match on tier and model correctness, the guess correction at chance and at a perfect run, the four statistics on fixed data, the pair bootstrap on fixed data under a fixed seed, that no feedback is shown before the retest, and that the retest is gated by an injected clock \hai. The Lean facts behind the definitions are listed in Appendix~\ref{app:lean}. The error budget on a reported statistic is its bootstrap interval, and Section~\ref{sec:method} gives the item counts that interval needs.
 
 \section{Limitations}
 \label{sec:limitations}
@@ -478,13 +475,13 @@ No probe has been retested, so nothing here has been measured on a person. The b
 $A$ is one run of one model at one effort setting. A different model, a higher effort or a second sample would give a different $A$ and a different pairing. The bank version and the model id are stored with every score so that a re-run is a new instrument version and never a silent change.
 
 \paragraph{Four-choice items.}
-The bank measures recognition under four fixed choices. It cannot show divergence, and it rewards a model that is good at eliminating distractors. The open-item bank of \Cref{sec:divergence} is unbuilt.
+The bank measures recognition under four fixed choices. It cannot show divergence, and it rewards a model that is good at eliminating distractors. The open-item bank of Section~\ref{sec:divergence} is unbuilt.
 
 \paragraph{Ceilings, drift, regression and practice.}
 Four artefacts of a repeated test can mimic or hide an effect. A ceiling: when $J_p$ and $A$ both sit near the task maximum, $D$ cannot show a gain and $m_p$ collapses toward 1; the bank's tiers run from recall to teach so that each probe carries items the model and the person miss, and a pair group in which the model is wrong is matched on purpose. Task drift: a probe draws items the person has never seen, so two probes a week apart test different items, and a change in $H_p$ between probes mixes the person's change with the items' difficulty; the design answers this with matching on tier and model correctness inside each probe, so every within-probe statistic compares items of the same difficulty, and item-level difficulty matching across probes, from the pooled item accuracy, is planned before any trend is read. Regression to the mean: a person who scored low on day 0 by chance will tend to score higher on day 7, which inflates $R_p$; the retest reuses the same 40 items, so $R_p$ is a within-item difference and the chance component is bounded by the bootstrap interval, and the planned control arm, a probe with no AI on either half, gives the expected $R_p$ under retest alone. Practice: the weekly unaided retest is itself a retrieval event that raises later recall \autocite{roediger2006testing}; the design reads $L$ as the difference between the pair and solo halves at the same retest, so the practice effect falls on both halves, and parallel item forms, a second frozen bank with the same atoms and new distractors, are planned so that a later probe can test an atom without repeating its item.
 
-\paragraph{The frontier rule.}
-The probe draws by tier and model correctness today; the frontier rule of \Cref{sec:connect} is specified and unimplemented, and until the Academy's prerequisite graph is bound to the bank's atoms by version, a probe cannot tell a frontier item from a known one. The learning system's theorems hold under A1 through A5, and A1, that every encoded edge is mandatory and none is missing, is a property of the curriculum that no proof can supply.
+\paragraph{The three connecting rules.}
+The frontier draw, the predicted-recall report and the solo-only mastery update of Section~\ref{sec:connect} are all design; the probe draws by tier and model correctness today and holds no FSRS or mastery code \hai. Until the Academy's prerequisite graph is bound to the bank's atoms by version, a probe cannot tell a frontier item from a known one. The learning system's theorems hold under A1 through A5, and A1, that every encoded edge is mandatory and none is missing, is a property of the curriculum that no proof can supply.
 
 \paragraph{Synthetic evaluation only.}
 The 57,060 graph cases are every DAG on at most five nodes; the planner is untested above that size except by its fixtures. The statistical experiment detects what its own generator planted and says nothing about a real learner or a real item bank.
@@ -496,7 +493,7 @@ The retest interval is fixed at seven days. Retention at thirty days or ninety i
 Participants are users of a terminal app who opt in; the education strata will reflect that. The 68 flagged items are out until a person clears them, and the automated review is a set of surface rules, so an item with a subtler cue can pass it.
 
 \paragraph{The decision rule.}
-\Cref{tab:decision} is a rule with no result behind it yet. Its cells are set by the signs of two statistics and say nothing about effect size; a positive $D$ of 0.02 and one of 0.30 fall in the same cell. Thresholds on size wait for the first intervals.
+Table~\ref{tab:decision} is a rule with no result behind it yet. Its cells are set by the signs of two statistics and say nothing about effect size; a positive $D$ of 0.02 and one of 0.30 fall in the same cell. Thresholds on size wait for the first intervals.
 
 \paragraph{Licences.}
 The item bank is derived from the Academy pack, whose lesson text is open and whose sources are listed per atom in the pack; the probe code is MIT with the repository. Per-person data never leaves the device, and the planned cross-person analysis uses only exported, consented records.
@@ -555,16 +552,9 @@ theorem no_dependence_when_learning_kept (gain learning : Interval) (h : 0 < lea
     ~ dependence gain learning
 \end{lstlisting}
 
-\texttt{lean/\allowbreak Bucket/\allowbreak Learning.\allowbreak lean} is a verbatim copy of \texttt{learning/\allowbreak research-os/\allowbreak learning-system/\allowbreak lean/\allowbreak LearningSystem.\allowbreak lean}. Beyond the four statements quoted in \Cref{sec:leancontract}, it holds the following, each proved.
+\texttt{lean/\allowbreak Bucket/\allowbreak Learning.\allowbreak lean} is a verbatim copy of \texttt{learning/\allowbreak research-os/\allowbreak learning-system/\allowbreak lean/\allowbreak LearningSystem.\allowbreak lean}. Beyond the four statements quoted in Section~\ref{sec:leancontract}, it holds the following, each proved; \texttt{After}, \texttt{Path}, \texttt{Coverage} and the four-element \texttt{Diamond} type are defined in the source as Section~\ref{sec:minprereq} states them.
 
 \begin{lstlisting}[style=bucketlean]
-def After (known : a -> Prop) (steps : List a) (v : a) : Prop := known v \/ v in steps
-
-inductive Path (edge : a -> a -> Prop) : (a -> Prop) -> List a -> Prop where
-  | nil (known) : Path edge known []
-  | cons {known v rest} : ~ known v -> (forall p, edge p v -> known p) ->
-      Path edge (fun p => known p \/ p = v) rest -> Path edge known (v :: rest)
-
 def Enumerates (edge : a -> a -> Prop) (known : a -> Prop) (target : a)
     (remaining : List a) : Prop :=
   remaining.Nodup /\ forall v, v in remaining <-> Required edge target v /\ ~ known v
@@ -581,14 +571,11 @@ theorem distance_antitone (growth : forall x, small x -> large x)
     (oldEn : Enumerates edge small target oldOrder)
     (newEn : Enumerates edge large target newOrder) : newOrder.length <= oldOrder.length
 
-def Coverage (catalog : List a) (known : a -> Bool) (weight : a -> Nat) : Nat :=
-  ((catalog.filter known).map weight).sum
 theorem coverage_monotone (growth : forall v, small v = true -> large v = true) :
     Coverage catalog small weight <= Coverage catalog large weight
 theorem squared_extent_monotone (growth : CoordinateGrowth small large) :
     SquaredExtent small <= SquaredExtent large
 
-inductive Diamond where | foundation | left | right | target
 theorem diamond_minimum : forall steps, Path diamondEdge (fun _ => False) steps ->
     After (fun _ => False) steps .target -> diamondOrder.length <= steps.length
 theorem diamond_chain_insufficient : ~ Path diamondEdge (fun _ => False) diamondChain
