@@ -352,6 +352,59 @@ export const PAPERS: Paper[] = [
   note         = {Full report, version 1.0, 2026-10-07}
 }`,
   },
+  {
+    slug: "human-ai-multiplier",
+    title:
+      "Human-AI-computer interaction: measuring whether AI strengthens unaided judgment",
+    authors: "Gianangelo Dichio",
+    affiliation: "Bucket Foundation",
+    date: "2026-10-07",
+    version: "1.0 (protocol report, no results)",
+    venue: "Bucket Foundation report",
+    pdfUrl: "/papers/human-ai-multiplier/paper.pdf",
+    githubUrl:
+      "https://github.com/gianyrox/bucket-foundation/tree/dev/packages/bkt/src/hai",
+    license: "CC-BY-4.0",
+    corpusLine:
+      "hai probe in packages/bkt: 998 frozen four-choice items across the seven canon branches, 68 held out by review, no retested probes yet",
+    abstract: [
+      "A tool that helps a person answer today and leaves them no better at answering alone next week has made them dependent on it. We state a measurement protocol that separates the two outcomes. On one task set, three scores are taken: the person's unaided score Hp, the model's score A, and the person's joint score Jp with the model's answer in view. The multiplier is mp = Jp / max(Hp, A), the gain is D = Jp - max(Hp, A), and the unaided test is repeated after seven days to give retention Rp = Hp(t + 7 days) - Hp(t) and learning L = Jp(t + 7 days) - Hp(t + 7 days). A tool that raises Jp while L stays at or below zero across its interval marks dependence.",
+      "The instrument is the hai probe in Bucket's bkt package: a frozen bank of 998 four-choice items, sessions of 40 items in 20 pairs matched on tier and on whether the model got the pair's items right, a 20 second think window before the model's answer appears, no feedback until the retest, guess-corrected scores and a bootstrap over pairs for every interval. The instrument is built and no probe has been retested, so this report carries no result. It states the planned analysis, paired comparisons stratified by education level, a divergence hypothesis on how reliance on one model narrows the range of answers across a group, and the rule by which the scores decide which tasks Research OS hands to the model and which it keeps with the person.",
+    ],
+    highlights: [
+      "Four scores on the same items: Hp, A, Jp at day 0 and Hp again at day 7; mp = Jp / max(Hp, A), Rp = Hp(t + 7) - Hp(t), L = Jp(t + 7) - Hp(t + 7).",
+      "Dependence flag: the 95% interval of Jp - Hp above zero and the interval of L at or below zero.",
+      "Status 2026-10-07: bank frozen at 998 items, 68 flagged by review, no AI scores collected, no probe run, no retest. No numbers are reported.",
+      "A half-width of 0.10 on Jp - Hp needs about 342 items per condition, 17 probes; no trend before 5 retested probes.",
+    ],
+    figures: [
+      {
+        src: "/papers/human-ai-multiplier/fig_timeline.webp",
+        alt: "Timeline of probe sessions: day 0 probe with solo and pair items, day 7 unaided retest, day 14 next probe",
+        caption:
+          "Figure 1. The session timeline. Each probe splits 40 unseen items into solo and pair conditions on day 0, is retested unaided in full on day 7, and unlocks its scores only then; the next probe draws 40 new items.",
+      },
+      {
+        src: "/papers/human-ai-multiplier/fig_scores.webp",
+        alt: "Diagram of the four scores Hp, A, Jp and Hp at day 7 and the statistics derived from them",
+        caption:
+          "Figure 2. The four scores and the statistics derived from them: the multiplier and the gain from Hp, A and Jp; retention on the solo items and learning on the pair items from the day 7 scores; dependence where the gain is positive and learning is not.",
+      },
+    ],
+    dataLinks: [
+      { label: "probe source, packages/bkt/src/hai", href: "https://github.com/gianyrox/bucket-foundation/tree/dev/packages/bkt/src/hai" },
+      { label: "bkt package README, hai commands", href: "https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/README.md" },
+    ],
+    bibtex: `@techreport{dichio2026humanaimultiplier,
+  title        = {Human-AI-computer interaction: measuring whether AI strengthens unaided judgment},
+  author       = {Dichio, Gianangelo},
+  institution  = {Bucket Foundation},
+  year         = {2026},
+  month        = {10},
+  url          = {https://www.bucket.foundation/research/papers/human-ai-multiplier},
+  note         = {Protocol report, version 1.0, 2026-10-07, no results}
+}`,
+  },
 ];
 
 export function listPapers(): Paper[] {
