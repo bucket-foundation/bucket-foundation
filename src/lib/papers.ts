@@ -360,23 +360,26 @@ export const PAPERS: Paper[] = [
     authors: "Gianangelo Dichio",
     affiliation: "Bucket Foundation",
     date: "2026-10-07",
-    version: "1.0 (protocol report, no results)",
+    version: "1.1 (protocol report with the learning system, no results on a person)",
     venue: "Bucket Foundation report",
     pdfUrl: "/papers/human-ai-multiplier/paper.pdf",
     githubUrl:
       "https://github.com/gianyrox/bucket-foundation/tree/dev/packages/bkt/src/hai",
-    license: "CC-BY-4.0 text; figures MIT code output, no data; code MIT",
+    license: "CC-BY-4.0 text; figures MIT code output over the repository's own synthetic metrics; code MIT",
     corpusLine:
-      "hai probe in packages/bkt: 998 frozen four-choice items across the seven canon branches, 68 held out by review, no retested probes yet",
+      "hai probe in packages/bkt: 998 frozen four-choice items across the seven canon branches, 68 held out by review, no retested probes yet; learning system in learning/research-os/learning-system: 57,060 enumerated planning cases, Lean 4 contract, synthetic prediction experiment",
     abstract: [
       "A tool that helps a person answer today and leaves them no better at answering alone next week has made them dependent on it. We state a measurement protocol that separates the two outcomes. On one task set, three scores are taken: the person's unaided score Hp, the model's score A, and the person's joint score Jp with the model's answer in view. The multiplier is mp = Jp / max(Hp, A), the gain is D = Jp - max(Hp, A), and the unaided test is repeated after seven days to give retention Rp = Hp(t + 7 days) - Hp(t) and learning L = Jp(t + 7 days) - Hp(t + 7 days). A tool that raises Jp while L stays at or below zero across its interval marks dependence.",
-      "The instrument is the hai probe in Bucket's bkt package: a frozen bank of 998 four-choice items, sessions of 40 items in 20 pairs matched on tier and on whether the model got the pair's items right, a 20 second think window before the model's answer appears, no feedback until the retest, guess-corrected scores and a bootstrap over pairs for every interval. The instrument is built and no probe has been retested, so this report carries no result. It states the planned analysis, paired comparisons stratified by education level, a divergence hypothesis on how reliance on one model narrows the range of answers across a group, and the rule by which the scores decide which tasks Research OS hands to the model and which it keeps with the person.",
+      "The learning side of the measurement is the minimum prerequisite learning problem: the catalog is a directed acyclic graph of concepts, a learner's state is a closed set of mastered concepts, and the least a learner must add to reach a target is the required set R(t, M), the target's prerequisite closure minus their mastery, a count proved minimal in Lean 4 under stated assumptions. Per-concept mastery is M = P^alpha R^beta with FSRS-5 retrievability as R and alpha = beta = 1 as implemented. The protocol draws probe items at the learner's frontier, the ready concepts of that graph, and reads Rp against the FSRS prediction.",
+      "The instrument is the hai probe in Bucket's bkt package: a frozen bank of 998 four-choice items, sessions of 40 items in 20 pairs matched on tier and on whether the model got the pair's items right, a 20 second think window before the model's answer appears, no feedback until the retest, guess-corrected scores and a bootstrap over pairs for every interval. The instrument is built and no probe has been retested, so this report carries no result on a person; the learning system's own evaluation, 57,060 enumerated planning cases with zero errors and a synthetic prediction experiment, is reported with its source. The report states the planned analysis, paired comparisons stratified by education level, a divergence hypothesis on how reliance on one model narrows the range of answers across a group, and the rule by which the scores decide which tasks Research OS hands to the model and which it keeps with the person.",
     ],
     highlights: [
       "Four scores on the same items: Hp, A, Jp at day 0 and Hp again at day 7; mp = Jp / max(Hp, A), Rp = Hp(t + 7) - Hp(t), L = Jp(t + 7) - Hp(t + 7).",
       "Dependence flag: the 95% interval of Jp - Hp above zero and the interval of L at or below zero.",
       "Status 2026-10-07: bank frozen at 998 items, 68 flagged by review, no AI scores collected, no probe run, no retest. No numbers are reported.",
       "A half-width of 0.10 on Jp - Hp needs about 342 items per condition, 17 probes; no trend before 5 retested probes.",
+      "Learning side: the minimum number of concepts to reach a target is |R(t, M)|, proved in Lean 4 (minimum_unit_distance, minimum_weighted_effort) under five stated assumptions; 57,060 enumerated planning cases on every DAG up to five nodes with zero errors.",
+      "Mastery as shipped: M = P^alpha R^beta with alpha = beta = 1, P = sigmoid(theta + 0.2), R = FSRS-5 retrievability at 90 days, mastered at M >= 0.7. Probe items are drawn at the learner's frontier; the day 7 retest is reported against the FSRS prediction.",
     ],
     figures: [
       {
@@ -391,10 +394,43 @@ export const PAPERS: Paper[] = [
         caption:
           "Figure 2. The four scores and the statistics derived from them: the multiplier and the gain from Hp, A and Jp; retention on the solo items and learning on the pair items from the day 7 scores; dependence where the gain is positive and learning is not.",
       },
+      {
+        src: "/papers/human-ai-multiplier/fig_prereq_chart.webp",
+        alt: "Prerequisite chart with a verified foundation, two ready concepts and a blocked target, and the shortest knowledge-state path through the diamond",
+        caption:
+          "Figure 3. The prerequisite chart for a target T with one verified foundation, two ready concepts and a blocked target, and the shortest knowledge-state path from empty mastery through the same diamond: four transitions, equal to the required set.",
+      },
+      {
+        src: "/papers/human-ai-multiplier/fig_knowledge_region.webp",
+        alt: "Path of confirmed coordinates on two axes for a three-concept fixture, with coverage G and radial extent r at each milestone",
+        caption:
+          "Figure 4. The knowledge region on the three-concept fixture: the path of confirmed coordinates as a, then b, then t are confirmed, and the catalog coverage G with the radial extent r at each milestone, from analysis/results/metrics.json.",
+      },
+      {
+        src: "/papers/human-ai-multiplier/fig_mastery.webp",
+        alt: "FSRS-5 retrievability curves over 120 days for four stabilities, and the mastery surface M = P R with the 0.7 contour",
+        caption:
+          "Figure 5. FSRS-5 retrievability over 120 days for four stabilities with the day 7 retest and the 90-day horizon marked, and the mastery surface M = P R over proficiency and retention with the 0.7 mastered contour, as implemented in src/lib/academy.",
+      },
+      {
+        src: "/papers/human-ai-multiplier/fig_protocol_region.webp",
+        alt: "A layered catalog with known, frontier and blocked concepts and four probe items at the frontier, beside a one-probe timeline with FSRS predicted recall",
+        caption:
+          "Figure 6. The protocol over a learner's knowledge region: probe items drawn at the frontier, the day 0 scores, the day 7 retest and the FSRS-5 predicted recall for a solo and a pair item. The points show the pattern and carry no measured value.",
+      },
+      {
+        src: "/papers/human-ai-multiplier/fig_validation.webp",
+        alt: "Brier scores of three models on synthetic data and two residual correlations with bootstrap intervals",
+        caption:
+          "Figure 7. The synthetic statistical experiment: Brier scores of the three models on 4,800 test responses, and the two prespecified residual correlations with their 97.5% bootstrap intervals and Holm-adjusted p-values, from analysis/results/metrics.json.",
+      },
     ],
     dataLinks: [
       { label: "probe source, packages/bkt/src/hai", href: "https://github.com/gianyrox/bucket-foundation/tree/dev/packages/bkt/src/hai" },
       { label: "bkt package README, hai commands", href: "https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/README.md" },
+      { label: "learning system brief, Lean contract and metrics.json; CC-BY-4.0 text, MIT code", href: "https://github.com/gianyrox/bucket-foundation/tree/dev/learning/research-os/learning-system" },
+      { label: "mastery and FSRS-5 as implemented, src/lib/academy; MIT", href: "https://github.com/gianyrox/bucket-foundation/tree/dev/src/lib/academy" },
+      { label: "paper figures, seven webp; MIT code output over the repository's synthetic metrics, no person data", href: "https://github.com/gianyrox/bucket-foundation/tree/dev/papers/human-ai-multiplier/figures" },
     ],
     bibtex: `@techreport{dichio2026humanaimultiplier,
   title        = {Human-AI-computer interaction: measuring whether AI strengthens unaided judgment},
@@ -403,7 +439,7 @@ export const PAPERS: Paper[] = [
   year         = {2026},
   month        = {10},
   url          = {https://www.bucket.foundation/research/papers/human-ai-multiplier},
-  note         = {Protocol report, version 1.0, 2026-10-07, no results}
+  note         = {Protocol report, version 1.1, 2026-10-07, no results on a person}
 }`,
   },
 ];

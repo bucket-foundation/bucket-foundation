@@ -11,7 +11,7 @@ pdf:
 	$(TEX) $(PAPER).tex
 
 figures:
-	cd figures && $(PYTHON) fig_timeline.py && $(PYTHON) fig_scores.py
+	cd figures && for f in fig_timeline fig_scores fig_prereq_chart fig_knowledge_region fig_mastery fig_protocol_region fig_validation; do $(PYTHON) $$f.py; done
 
 lean:
 	cd lean && lake build
@@ -28,5 +28,5 @@ clean:
 	rm -f $(PAPER).aux $(PAPER).bbl $(PAPER).bcf $(PAPER).blg $(PAPER).log \
 	      $(PAPER).out $(PAPER).run.xml $(PAPER).synctex.gz $(PAPER).toc \
 	      $(PAPER).pdf
-	rm -f figures/fig_timeline.pdf figures/fig_scores.pdf
+	rm -f figures/*.pdf figures/*.png
 	rm -rf lean/.lake
