@@ -87,14 +87,16 @@ export default function Page() {
                 >
                   read paper →
                 </Link>
-                <a
-                  href={p.doiUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
-                >
-                  cite via DOI {p.doi} ↗
-                </a>
+                {p.doiUrl && (
+                  <a
+                    href={p.doiUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4"
+                  >
+                    cite via DOI {p.doi} ↗
+                  </a>
+                )}
                 <span>${DATASET_CITE_PRICE_USD.toFixed(2)} per citation in a paid work</span>
               </div>
             </article>

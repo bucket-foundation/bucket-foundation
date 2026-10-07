@@ -53,6 +53,12 @@ def f3(x) -> str:
     return "" if x is None else f"{x:.3f}"
 
 
+def pval(x):
+    if x is None:
+        return ""
+    return "$<$0.001" if x < 0.001 else f"{x:.3f}"
+
+
 def write(name: str, lines: list[str]) -> None:
     with open(os.path.join(OUT, name), "w") as f:
         f.write("\n".join(lines) + "\n")
@@ -64,7 +70,7 @@ def strata(k: dict) -> list[str]:
         if s["belowFloor"]:
             rows.append(f"{esc(s['name'])} & {s['inside']} & {s['outside']} & \\multicolumn{{4}}{{l}}{{under 10 on one side}} \\\\")
         else:
-            rows.append(f"{esc(s['name'])} & {s['inside']} & {s['outside']} & {pct(s['rateInside'])} & {pct(s['rateOutside'])} & {f3(s['ratio'])} & {f3(s['pValue'])} \\\\")
+            rows.append(f"{esc(s['name'])} & {s['inside']} & {s['outside']} & {pct(s['rateInside'])} & {pct(s['rateOutside'])} & {f3(s['ratio'])} & {pval(s['pValue'])} \\\\")
     return rows
 
 

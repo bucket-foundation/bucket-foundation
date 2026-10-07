@@ -46,21 +46,35 @@
   {https://github.com/gianyrox/bucket-foundation/blob/dev/src/lib/research-os/solvability-backtest.ts}%
   {The frontier rule applied at a past cutoff year to the problems posed by then, scored against their 2026 status; see \Cref{def:backtest}.}
 
-\title{The Solvability Frontier: Which Open Problems Sit Next to Solved Ones, and a Backtest of the Rule}
-\author{Bucket Foundation}
-\date{2026-10-06}
+\usepackage{caption}
+\newcommand{\readingbox}[3][\footnotesize]{\noindent\fbox{\parbox[b]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1\textbf{Reading the figure.} Every number in this box: #2.\par\noindent #3}}}
+\newcommand{\pca}{\emp{\textasciitilde/.cache/bucket-atlas vectors for 5,058 of the 5,080 rows, 2026-10-07, SVD of the centred embeddings in python3}}
+\newcommand{\sg}{\emp{Solver Gap Engine stats.json at formal-conjectures 7d450ef, 2026-09-30, python3 match.py}}
+
+\title{Machine Learning for Scientific Discovery: The Solvability Frontier}
+\author{Gianangelo Dichio\\Bucket Foundation}
+\date{2026-10-07}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We embed 5,080 problem statements across seven canon branches with a small sentence encoder, call a problem's \term{reach}{reach} its highest similarity to a solved problem, and draw a \term{frontier}{frontier} at the 10th percentile of solved problems' reach, 0.781 on this set \fr. Open problems are sorted into a \term{reachclass}{reach class}: 251 close to known results, 764 borderline, 911 that need a new idea and 103 in a branch with too few solved rows to judge \pr. A \term{backtest}{backtest} at cutoffs 2005 and 2021 scores the rule on the questions posed by those years under two outcome codings. Settled only (solved in 2026): at 2005 the inside rows settle at 21\% against 6\% outside (112 and 71 rows, ratio 3.804, permutation $p=0.006$, AUC 0.800), at 2021 at 12\% against 1\% (238 and 126 rows, ratio 14.824, $p=0.000$, AUC 0.883) \bt; removing the solved rows that carry no resolved year, 11 and 21, drops the gaps to 13\% against 6\% ($p=0.131$) and 3\% against 1\% ($p=0.269$) \bt. Settled or advanced (solved or partial): at 2005, 46\% inside against 61\% outside (ratio 0.752, $p=0.051$, AUC 0.479), at 2021, 43\% against 39\% (ratio 1.102, $p=0.503$, AUC 0.523) \bt. The conclusion depends on how partial is coded, and partial is the uncertain column: the ingest assigned it in 2026 from a status page with no rule for how much progress counts. The embeddings and the 50 stored neighbours come from the 2026 corpus, so the test is a check against known outcomes under that leak; a forecast would need embeddings fitted on pre-cutoff text and a neighbour set frozen per cutoff.
+A first pass, the Solver Gap Engine of 2026-09-30, ranked 1,364 open problems from the formal-conjectures repository by their nearest solved problem in another file and found 31 at cosine similarity 0.8 or above \sg. The frontier is the second pass. We embed 5,080 problem statements across seven canon branches with a small sentence encoder, call a problem's \term{reach}{reach} its highest similarity to a solved problem, and draw a \term{frontier}{frontier} at the 10th percentile of solved problems' reach, 0.781 on this set \fr. Open problems are sorted into a \term{reachclass}{reach class}: 251 close to known results, 764 borderline, 911 that need a new idea and 103 in a branch with too few solved rows to judge \pr. A \term{backtest}{backtest} at cutoffs 2005 and 2021 scores the rule on the questions posed by those years under two outcome codings, and the backtest is inconclusive. Settled only (solved in 2026): at 2005 the inside rows settle at 21\% against 6\% outside (112 and 71 rows, ratio 3.804, permutation $p=0.006$, AUC 0.800) and at 2021 at 12\% against 1\% (238 and 126 rows, ratio 14.824, $p<0.001$, AUC 0.883), but 11 and 21 of the scored rows are solved rows with no resolved year, and without them the gaps are 13\% against 6\% ($p=0.131$) and 3\% against 1\% ($p=0.269$) \bt. Settled or advanced (solved or partial): at 2005, 46\% inside against 61\% outside (183 rows, ratio 0.752, $p=0.051$, AUC 0.479), at 2021, 43\% against 39\% (364 rows, ratio 1.102, $p=0.503$, AUC 0.523) \bt. The verdict depends on how partial is coded, and partial is the uncertain column: the ingest assigned it in 2026 from a status page with no rule for how much progress counts. The embeddings and the 50 stored neighbours come from the 2026 corpus, so the test is a check against known outcomes under that leak; a forecast would need embeddings fitted on pre-cutoff text and a neighbour set frozen per cutoff.
 \end{abstract}
 
 \section{Introduction}
 \label{sec:intro}
 
 Bucket's solvability atlas lists open and closed problems with their statements, branch, status and, where known, the years they were posed and resolved. The question behind the frontier is whether an open problem that sits close in meaning to solved problems is closer to being solved, and whether an AI system working from known results could reach it. The frontier drawing answers the first clause by a rule; this paper tests the rule on problems whose outcome is known and publishes the ranked predictions for the open ones, with every number tagged to the file and command that reproduces it.
+
+\section{Origin: the Solver Gap Engine}
+\label{sec:origin}
+
+The frontier began as a narrower tool. The Solver Gap Engine of 2026-09-30 read the google-deepmind formal-conjectures repository at commit 7d450ef, mapped each Lean declaration with its docstring and status into one row, and asked which open problems sit closest in wording to a solved one. It mapped 3,599 problems, 1,403 of them open \sg. Rows whose docstring ran to 30 characters or fewer were dropped, leaving 1,364 open problems to rank \sg. Each text was embedded with all-MiniLM-L6-v2 and each open row was scored by the cosine similarity of its nearest solved row in a different source file; a match in the same file was recorded and excluded, since two declarations in one file share a theme and a vocabulary by construction. The same-file nearest row was the closest overall for 455 of the 1,364 \sg.
+
+The engine found 5 open problems at similarity 0.9 or above and 31 at 0.8 or above, with a median nearest cross-file similarity of 0.586 against a median of 0.167 for a random open-solved pair \sg. The ranked list was meant as a queue for a prover: a high score marks a problem worth handing to one and says nothing about its difficulty. A Lean check script ran a sample of classical results against the mapped rows and exited non-zero on any failed check.
+
+Three limits of that pass set the design of this one. It covered one repository and one branch, mathematics. The same-file exclusion was a rule of thumb for a leak it could name and no test of whether the score tracked outcomes. And it had no threshold: a ranked list with no line between inside and outside gives no count of what is reachable. The frontier keeps the embedding-and-nearest-solved core, widens the set to 5,080 rows across seven branches, replaces the file rule with a threshold fitted on the solved rows, and adds a backtest. The engine's code and its ranked table sit in a private intake folder pending release; the numbers above are its published summary, dated.
 
 \section{Related work}
 \label{sec:related}
@@ -110,7 +124,14 @@ Per cutoff and per stratum we report the inside and outside counts, the resolved
 Rows are stratified by the word count of the embedded text, under 20, 20 to 40 and over 40 words, and by branch. The bands partition the naturals (\Cref{app:lean}). The length bands exist because the dated lists are short paraphrases: their statements average 19 words against 34 for the rest of the file \bt.
 
 \paragraph{Reproduction.}
-\texttt{tools/solvability-atlas/build.sh} rebuilds the embeddings and the neighbour file; \cmd{} writes \texttt{frontier.json}, \texttt{backtest.json}, \texttt{predictions.json} and \texttt{predictions.csv} under \texttt{output/solvability-frontier/report/} and the page data under \texttt{src/lib/research-os/}. \texttt{make figures} in this directory redraws every figure and table from those files.
+From the repository root:
+\begin{verbatim}
+bash tools/solvability-atlas/build.sh
+npx ts-node scripts/build-solvability-frontier-report.ts
+python3 tools/solvability-atlas/makeup.py --publish
+cd papers/solvability-frontier && make figures && make pdf
+\end{verbatim}
+The first command rebuilds the embeddings and the neighbour file. The second writes \texttt{frontier.json}, \texttt{backtest.json}, \texttt{predictions.json} and \texttt{predictions.csv} under \texttt{output/solvability-frontier/report/} and the page data under \texttt{src/lib/research-os/}. The third writes the make-up counts. \texttt{make figures} redraws every figure and table from those files. The report files \texttt{backtest.json}, \texttt{predictions.csv}, \texttt{frontier.svg} and \texttt{makeup.json} are published beside this paper at \url{https://www.bucket.foundation/research/papers/solvability-frontier}.
 
 \section{Provenance and method}
 \label{sec:provenance}
@@ -127,12 +148,14 @@ Rows are stratified by the word count of the embedded text, under 20, 20 to 40 a
   \input{tables/sources.tex}
 \end{table}
 
-\begin{figure}[htbp]
+\clearpage\noindent\begin{minipage}[b][\dimexpr\textheight-8pt\relax][s]{\linewidth}\setlength{\abovecaptionskip}{3pt}
   \centering
-  \includegraphics[width=\linewidth]{figures/fig_makeup.pdf}
-  \caption{Make-up of the 5,080 rows by branch, status, form, source, licence, resolution evidence, posed and resolved years, zone, prediction class, variant or top-level, embedding text kind and statement length, with status by branch \mk.}
+  \includegraphics[width=\linewidth,height=0.66\textheight,keepaspectratio]{figures/fig_makeup.pdf}
+  \captionof{figure}{Make-up of the 5,080 rows by branch, status, form, source, licence, resolution evidence, posed and resolved years, zone, prediction class, variant or top-level, embedding text kind and statement length, with status by branch \mk.}
   \label{fig:makeup}
-\end{figure}
+  \vfill
+  \readingbox{\mk}{Mathematics holds 4,112 of the 5,080 rows, and the formal-conjectures repository supplies 3,567 of them, 2,057 from the Erd\H{o}s problems alone, which is why Apache-2.0 covers 3,557 rows and the licence panel mirrors the source panel. Status is 1,621 solved, 903 partial and 2,556 open, and 2,194 rows are variants of another row, so the 1,430 open variants carry no class of their own. Only 588 rows carry a posed year and 236 a resolved year, with the posed years piling into the 2000s (166) and 2020s (134) because the two Science lists and the recent repository entries are the dated cohorts. The resolved-year evidence is the formal-conjectures status field for 1,419 rows and a curated or dated check for the remaining 202, and 3,459 rows have no resolution evidence at all. Statement length splits into 1,952 rows under 20 words, 1,769 between 20 and 40 and 1,359 over 40, the bands the backtest stratifies on.}
+  \end{minipage}\clearpage
 
 \subsection{Pipeline}
 
@@ -160,14 +183,36 @@ A title-and-abstract search on each sourced row's name or first clause, run agai
 \section{Results}
 \label{sec:results}
 
+\subsection{Coordinates}
+\label{sec:coords}
+
+\paragraph{Radius.}
+With $r_i = \max_{j \in S,\, j \neq i} s_{ij}$ and $\mathrm{span}(x,a,b) = \min(1, \max(0, (x-a)/(b-a)))$, the radius is piecewise \fr:
+\[
+\rho_i =
+\begin{cases}
+0.6\,(1 - \mathrm{span}(r_i, \min_S r, 1)) & i \in S,\\
+0.6 + 0.4\,(1 - \mathrm{span}(r_i, \tau, 1)) & \text{reachable},\\
+1 + 0.5\,(1 - \mathrm{span}(r_i, \mathrm{floor}, \tau)) & \text{beyond or unsampled},
+\end{cases}
+\qquad \mathrm{floor} = \min(\tau, \min_i r_i).
+\]
+Within each band $\rho$ is a monotone rescaling of $1 - r$, and the frontier sits at $\rho = 1$. The bands have different scales, so equal radial distances in different bands are not equal differences in reach: the solved band maps $[\min_S r, 1]$ onto 0.6 units, the reachable band maps $[\tau, 1]$ onto 0.4, and the outside band maps $[\mathrm{floor}, \tau]$ onto 0.5.
+
+\paragraph{Angle.}
+The centred embeddings are projected on their first two principal components, which carry 9.4 and 3.9 percent of the variance \pca; $\operatorname{atan2}$ of the two coordinates gives a raw angle, the rows are sorted by it, and $\theta$ spaces them evenly on $[0, 2\pi)$ \fr. So neighbours on the circle are neighbours in the two leading components, arc length counts rows and says nothing about how different they are, and the angle sees only those two directions. The angle depends on the embedding alone and the radius on the solved set alone, so a row keeps its angle whether it is solved, inside or outside; a sector being solved shows as rows moving inward.
+
+\clearpage\noindent\begin{minipage}[b][\dimexpr\textheight-8pt\relax][s]{\linewidth}\setlength{\abovecaptionskip}{3pt}
+  \centering
+  \includegraphics[width=0.85\linewidth,trim=0 10 0 40,clip]{figures/fig_frontier.pdf}
+  \captionof{figure}{The frontier on 5,080 rows. Solved rows fill the inner disc by reach, open rows inside fill the ring up to the circle at 0.781, outside rows sit beyond it by how far their reach falls short, and unsampled rows are grey crosses \fr.}
+  \label{fig:frontier}
+  \vfill
+  \readingbox[\scriptsize]{\fr}{A solved row's reach is its highest similarity to another solved row, and its radius in the inner disc is $0.6\,(1 - \mathrm{span}(r, \min_S r, 1))$, so reach near 1 sits at the centre and the minimum solved reach, 0.57, at the dashed core ring, where solved results with no close solved sibling in the corpus sit. The exact centre holds solved rows with near-duplicate solved neighbours, proved variants of one Erd\H{o}s problem and theorem families with near-identical statements: 182 solved rows have reach above 0.95 and 133 of them are variants. The centre carries no meaning of ease, importance or time, only density of solved work in statement space; and since the threshold is the 10th percentile of solved reach, many near-duplicate solved rows pull it up and tighten the circle. The circle holds 3,846 rows and 1,234 sit outside it: 1,621 solved, 2,225 reachable, 1,131 beyond and 103 unsampled. 3,644 of the inside rows are mathematics, which holds 1,473 of the 1,621 solved rows, so the solved base is a mathematics base; physics has 37 solved rows and 65 inside against 194 outside, biophysics 21 solved and 25 against 183, cosmology 16 solved and 16 against 111, and the grey crosses at the left are the 103 open rows of mind, whose 5 solved rows fall under the floor of ten. The ring is dense just inside the circle: 367 open rows have reach between 0.781 and 0.801, against 214 beyond rows between 0.761 and 0.781 and 519 below 0.70. The five outside top-level rows with the most growth are the cosmological principle (growth 8, reach 0.721, nearest solved: baryon acoustic oscillations), the extended Riemann hypothesis (6, 0.778, Riemann zeta values at odd integers), the generalized Riemann hypothesis for the Selberg class (6, 0.777, Erd\H{o}s problem 193), the L = P problem (6, 0.758, Erd\H{o}s problem 318) and dark energy (6, 0.663, the photon underproduction crisis). Of the atlas problems, Goldbach sits inside at reach 0.867, abc and twin prime just outside at 0.760 and 0.745, and Riemann, Navier-Stokes and dark matter further out at 0.771, 0.671 and 0.678. The angle is a rank along the first two principal components, so rows cluster by vocabulary: 808 of the 809 rows in the first radian are mathematics, and 902 of the 968 rows outside mathematics sit between 2.7 and 4.0 radians, the left of the disc. Reach is text similarity, so a row inside shares words with a solved row and may share no method; and the embeddings and neighbours come from the 2026 corpus, so the drawing describes the corpus as it stands and forecasts nothing.}
+  \end{minipage}\clearpage
+
 \subsection{The frontier}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.9\linewidth]{figures/fig_frontier.pdf}
-  \caption{The frontier on 5,080 rows. Solved rows fill the inner disc by reach, open rows inside fill the ring up to the circle at 0.781, outside rows sit beyond it by how far their reach falls short, and unsampled rows are grey crosses \fr. Angle is the row's rank along the first two principal components of the embeddings.}
-  \label{fig:frontier}
-\end{figure}
 
 The frontier sits at $\tau = 0.781$: 1,621 rows solved, 2,225 reachable, 1,131 beyond and 103 unsampled, 3,846 inside and 1,234 outside \fr. \Cref{tab:branches} gives the split per branch. Mathematics holds 4,112 of the 5,080 rows and 1,473 of the 1,621 solved ones \fr, so it sets the threshold on its own.
 
@@ -183,8 +228,10 @@ The frontier sits at $\tau = 0.781$: 1,621 rows solved, 2,225 reachable, 1,131 b
 
 \Cref{tab:bt2005s}, \Cref{tab:bt2005a}, \Cref{tab:bt2021s}, \Cref{tab:bt2021a} and \Cref{fig:backtest} hold the backtest. At cutoff 2005, 108 rows were solved by then, 16 of them with no solved neighbour among the 50 stored and dropped from the threshold, which came out at 0.644; 287 rows were posed by 2005 and open at the cutoff, 38 unsampled, 66 undecided and 183 scored \bt. At cutoff 2021, 190 rows were solved by then, 11 dropped, threshold 0.656; 465 rows tested, 58 unsampled, 43 undecided and 364 scored \bt.
 
+The backtest is inconclusive: the two codings disagree on sign at 2005 and on size at 2021, and the one gap that clears $p=0.05$ is carried by rows with no resolved year.
+
 \paragraph{Settled only.}
-At 2005 the inside rows settle at 21\% over 112 against 6\% over 71 outside, ratio 3.804, $p=0.006$, AUC 0.800 \bt. At 2021 they settle at 12\% over 238 against 1\% over 126, ratio 14.824, $p=0.000$, AUC 0.883 \bt. The settled rows number 28 at 2005 and 29 at 2021 \bt. Of the tested rows, 32 at 2005 and 33 at 2021 are solved today with no resolved year, 11 and 21 of them scored; with those removed the inside rate falls to 13\% against 6\% (ratio 2.285, $p=0.131$, AUC 0.700) and to 3\% against 1\% (ratio 4.065, $p=0.269$, AUC 0.700) \bt. Most of the settled-only gap is those rows.
+At 2005 the inside rows settle at 21\% over 112 against 6\% over 71 outside (ratio 3.804, $p=0.006$, AUC 0.800), and at 2021 at 12\% over 238 against 1\% over 126 (ratio 14.824, $p<0.001$, AUC 0.883), but 11 and 21 of those scored rows are solved today with no resolved year, and with them removed the inside rate falls to 13\% against 6\% (ratio 2.285, $p=0.131$, AUC 0.700) and to 3\% against 1\% (ratio 4.065, $p=0.269$, AUC 0.700) \bt. The settled rows number 28 at 2005 and 29 at 2021, and the undated solved rows in the tested set number 32 and 33 \bt. Most of the settled-only gap is those rows.
 
 \paragraph{Settled or advanced.}
 At 2005 the inside rate is 46\% against 61\% outside, ratio 0.752, $p=0.051$, AUC 0.479; at 2021 it is 43\% against 39\%, ratio 1.102, $p=0.503$, AUC 0.523 \bt. With the undated solved rows removed: 40\% against 61\% ($p=0.008$) and 37\% against 39\% ($p=0.818$) \bt.
@@ -231,7 +278,7 @@ The 66 undecided rows at 2005 resolve at 32\% settled and 53\% settled or advanc
   \label{fig:backtest}
 \end{figure}
 
-Under settled or advanced, two strata reach $p$ below 0.05 and run against each other: at 2005 the 20 to 40 word band resolves at 46\% inside against 75\% outside ($p=0.013$), while at 2021 the over 40 word band resolves at 45\% inside against 0\% outside over 20 rows ($p=0.000$) \bt. The second is a cohort effect: the long statements outside at 2021 are the 2021 list's own longer paraphrases, all still open five years on \bt. Mathematics scores one row outside at both cutoffs \bt, because nearly every dated mathematics row has a solved mathematics neighbour, so no mathematics rate is given.
+Under settled or advanced, two strata reach $p$ below 0.05 and run against each other: at 2005 the 20 to 40 word band resolves at 46\% inside against 75\% outside ($p=0.013$), while at 2021 the over 40 word band resolves at 45\% inside against 0\% outside over 20 rows ($p<0.001$) \bt. The second is a cohort effect: the long statements outside at 2021 are the 2021 list's own longer paraphrases, all still open five years on \bt. Mathematics scores one row outside at both cutoffs \bt, because nearly every dated mathematics row has a solved mathematics neighbour, so no mathematics rate is given.
 
 \subsection{Where this is weak}
 \label{sec:weak}
@@ -249,7 +296,7 @@ Cosine similarity between statement embeddings measures shared words and phrasin
 4,112 of 5,080 rows and 1,473 of 1,621 solved rows are mathematics \fr. The threshold is a mathematics quantity, and the other six branches are read against it.
 
 \paragraph{Two cohorts.}
-Of the 517 rows with a posed year, 241 come from the 2005 and 2021 Science lists, and those two lists supply most of the tested rows at both cutoffs \bt. A list's paraphrases share length and style, which is what the length bands are for, and the over 40 word result at 2021 shows the cohort rather than the rule \bt.
+Of the 588 rows with a posed year, 71 are atlas problems and 517 are sourced rows \mk; 239 of the sourced rows come from the 2005 and 2021 Science lists, and those two lists supply most of the tested rows at both cutoffs \bt. A list's paraphrases share length and style, which is what the length bands are for, and the over 40 word result at 2021 shows the cohort rather than the rule \bt.
 
 \paragraph{The 50-neighbour bound.}
 At a cutoff with few solved rows, most of a row's solved peers fall outside its 50 stored neighbours, so its reach is unknown: 66 rows undecided and 16 solved rows dropped at 2005, 43 and 11 at 2021 \bt. Dropping them can only raise the threshold; the undecided bounds above show how far they can move the inside rate.
@@ -268,12 +315,14 @@ Only 224 of the 1,621 solved rows carry a resolved year, so the solved set at a 
   \input{tables/counts.tex}
 \end{table}
 
-\begin{figure}[htbp]
+\clearpage\noindent\begin{minipage}[b][\dimexpr\textheight-8pt\relax][s]{\linewidth}\setlength{\abovecaptionskip}{3pt}
   \centering
   \includegraphics[width=\linewidth]{figures/fig_classes.pdf}
-  \caption{Reach classes by branch \pr.}
+  \captionof{figure}{Reach classes by branch \pr.}
   \label{fig:classes}
-\end{figure}
+  \vfill
+  \readingbox{\pr}{Mathematics holds 247 of the 251 rows close to known results and 737 of the 764 borderline rows, so the two inside classes are mathematics classes. Every other branch is mostly beyond: physics 172 of 177 top-level open rows, biophysics 183 of 187, chemistry 69 of 72, cosmology 111 of 111 and applied 39 of 39 need a new idea under this rule, and information is the one branch outside mathematics with rows in the top class, 4 close and 15 borderline against 67 beyond. Mind is unsampled in full, 103 rows, because its 5 solved rows are under the floor of ten. The split follows the solved base: a branch with few solved rows has few neighbours to reach, so its open rows fall outside whatever their difficulty, and the class counts outside mathematics measure the corpus before they measure the problems.}
+  \end{minipage}\clearpage
 
 \begin{table}[htbp]
   \centering

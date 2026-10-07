@@ -60,12 +60,16 @@ function paperJsonLd(p: NonNullable<ReturnType<typeof getPaper>>) {
     license: "https://creativecommons.org/licenses/by/4.0/",
     abstract: p.abstract.join(" "),
     description: p.abstract[0],
-    identifier: {
-      "@type": "PropertyValue",
-      propertyID: "DOI",
-      value: p.doi,
-    },
-    sameAs: p.doiUrl,
+    ...(p.doi && p.doiUrl
+      ? {
+          identifier: {
+            "@type": "PropertyValue",
+            propertyID: "DOI",
+            value: p.doi,
+          },
+          sameAs: p.doiUrl,
+        }
+      : {}),
     image: p.figures.map((f) => `${SITE}${f.src}`),
   };
 }
@@ -112,14 +116,16 @@ export default function Page({ params }: { params: { slug: string } }) {
           >
             read the PDF ↗
           </a>
-          <a
-            href={p.doiUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 border border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition-colors"
-          >
-            DOI ↗
-          </a>
+          {p.doiUrl && (
+            <a
+              href={p.doiUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 border border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition-colors"
+            >
+              DOI ↗
+            </a>
+          )}
           <a
             href={p.githubUrl}
             target="_blank"
@@ -187,20 +193,44 @@ export default function Page({ params }: { params: { slug: string } }) {
           ))}
         </div>
 
+        {p.dataLinks && p.dataLinks.length > 0 && (
+          <>
+            <h2 className="mt-14 font-display uppercase text-[16px] tracking-[0.1em] text-[color:var(--basalt)]">
+              Data and code
+            </h2>
+            <ul className="mt-4 flex flex-col gap-2">
+              {p.dataLinks.map((d) => (
+                <li key={d.href} className="text-[14px] leading-[1.7]">
+                  <a
+                    href={d.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 break-all"
+                  >
+                    {d.label} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
         <h2 className="mt-14 font-display uppercase text-[16px] tracking-[0.1em] text-[color:var(--basalt)]">
           Cite this paper
         </h2>
-        <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
-          DOI:{" "}
-          <a
-            href={p.doiUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 break-all"
-          >
-            {p.doi}
-          </a>
-        </p>
+        {p.doi && p.doiUrl && (
+          <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
+            DOI:{" "}
+            <a
+              href={p.doiUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[color:var(--aegean-deep)] underline decoration-[color:var(--gold)] underline-offset-4 break-all"
+            >
+              {p.doi}
+            </a>
+          </p>
+        )}
         <pre className="mt-4 overflow-x-auto text-[12px] leading-[1.6] bg-[color:var(--bone-2,var(--bone))] border border-[color:var(--hairline)] p-5 text-[color:var(--basalt)] whitespace-pre">
 {p.bibtex}
         </pre>
