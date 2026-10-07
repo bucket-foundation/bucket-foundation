@@ -4,6 +4,11 @@ export type Figure = {
   caption: string;
 };
 
+export type DataLink = {
+  label: string;
+  href: string;
+};
+
 export type Paper = {
   slug: string;
   title: string;
@@ -12,8 +17,8 @@ export type Paper = {
   date: string;
   version: string;
   venue: string;
-  doi: string;
-  doiUrl: string;
+  doi?: string;
+  doiUrl?: string;
   pdfUrl: string;
   githubUrl: string;
   license: string;
@@ -21,6 +26,7 @@ export type Paper = {
   abstract: string[];
   highlights: string[];
   figures: Figure[];
+  dataLinks?: DataLink[];
   bibtex: string;
 };
 
@@ -276,6 +282,128 @@ export const PAPERS: Paper[] = [
   doi          = {10.5281/zenodo.20836727},
   url          = {https://doi.org/10.5281/zenodo.20836727},
   note         = {research-atlas v0.5.0}
+}`,
+  },
+  {
+    slug: "solvability-frontier",
+    title:
+      "Machine learning for scientific discovery: the solvability frontier",
+    authors: "Gianangelo Dichio",
+    affiliation: "Bucket Foundation",
+    date: "2026-10-07",
+    version: "1.0 (full report)",
+    venue: "Bucket Foundation report",
+    pdfUrl: "/papers/solvability-frontier/paper.pdf",
+    githubUrl:
+      "https://github.com/gianyrox/bucket-foundation/tree/dev/papers/solvability-frontier",
+    license: "CC-BY-4.0 text; figures and data per file below",
+    corpusLine:
+      "solvability atlas, 5,080 problem statements across seven branches, bge-small-en-v1.5 embeddings, 50 stored neighbours per row",
+    abstract: [
+      "A first pass, the Solver Gap Engine of 2026-09-30, ranked 1,364 open problems from the formal-conjectures repository by their nearest solved problem in another file and found 31 at cosine similarity 0.8 or above. The frontier is the second pass. We embed 5,080 problem statements across seven canon branches with a small sentence encoder, call a problem's reach its highest similarity to a solved problem, and draw a frontier at the 10th percentile of solved problems' reach, 0.781 on this set. Open problems are sorted into a reach class: 251 close to known results, 764 borderline, 911 that need a new idea and 103 in a branch with too few solved rows to judge.",
+      "A backtest at cutoffs 2005 and 2021 scores the rule on the questions posed by those years under two outcome codings, and the backtest is inconclusive. Settled only: at 2005 the inside rows settle at 21% against 6% outside (112 and 71 rows, permutation p = 0.006, AUC 0.800) and at 2021 at 12% against 1% (238 and 126 rows, p < 0.001, AUC 0.883), but 11 and 21 of the scored rows are solved rows with no resolved year, and without them the gaps are 13% against 6% (p = 0.131) and 3% against 1% (p = 0.269). Settled or advanced: 46% inside against 61% outside at 2005 (183 rows, p = 0.051, AUC 0.479) and 43% against 39% at 2021 (364 rows, p = 0.503, AUC 0.523). The verdict depends on how partial is coded, and the embeddings and stored neighbours come from the 2026 corpus, so the test is a check against known outcomes under that leak and no forecast.",
+    ],
+    highlights: [
+      "Solver Gap Engine, 2026-09-30: 3,599 formal-conjectures problems mapped, 1,364 open problems ranked, 31 at cross-file similarity 0.8 or above, median 0.586 against 0.167 for a random pair.",
+      "Frontier at reach 0.781 on 5,080 rows: 1,621 solved, 2,225 reachable, 1,131 beyond, 103 unsampled; 3,644 of the 3,846 inside rows are mathematics.",
+      "The backtest is inconclusive: the settled-only gap (21% against 6% at 2005, 12% against 1% at 2021, p = 0.006 and p < 0.001) is carried by solved rows with no resolved year and drops to p = 0.131 and p = 0.269 without them; the settled-or-advanced AUC sits within 0.03 of chance at both cutoffs.",
+      "Predictions by class for 2,029 open top-level problems, with the three nearest solved problems and starting works per row, published as predictions.csv.",
+    ],
+    figures: [
+      {
+        src: "/papers/solvability-frontier/fig_frontier.webp",
+        alt: "The solvability frontier drawn as a disc: solved rows inside, open rows inside the circle at reach 0.781, outside rows beyond it, unsampled rows as grey crosses",
+        caption:
+          "Figure 2. The frontier on 5,080 rows. Solved rows fill the inner disc by reach, open rows inside fill the ring up to the circle at 0.781, outside rows sit beyond it by how far their reach falls short, and unsampled rows are grey crosses. Angle is the row's rank along the first two principal components of the embeddings.",
+      },
+      {
+        src: "/papers/solvability-frontier/fig_makeup.webp",
+        alt: "Bar charts of the 5,080 rows by branch, status, form, source, licence, resolution evidence, posed and resolved years, zone, class, level, text kind and length",
+        caption:
+          "Figure 1. Make-up of the 5,080 rows under every label the pipeline reads: mathematics holds 4,112 rows, formal-conjectures supplies 3,567, Apache-2.0 covers 3,557, 588 rows carry a posed year, 236 a resolved year, and 2,194 are variants of another row.",
+      },
+      {
+        src: "/papers/solvability-frontier/fig_backtest.webp",
+        alt: "Resolved rate by 2026 inside and outside the cutoff frontier at 2005 and 2021 under both codings and by length band",
+        caption:
+          "Figure 3. Resolved rate by 2026 inside and outside the cutoff frontier under both codings, over all scored rows, with the undated solved rows removed, and by length band.",
+      },
+      {
+        src: "/papers/solvability-frontier/fig_classes.webp",
+        alt: "Stacked bars of open problems per reach class, coloured by branch",
+        caption:
+          "Figure 4. Reach classes by branch: 251 close to known results, 764 borderline, 911 that need a new idea and 103 unsampled. Mathematics holds 247 of the 251 and 737 of the 764.",
+      },
+    ],
+    dataLinks: [
+      { label: "predictions.csv, 2,029 ranked open problems; CC BY-SA 4.0, carries Wikipedia and formal-conjectures statements, attributed per row", href: "/papers/solvability-frontier/data/predictions.csv" },
+      { label: "backtest.json, both cutoffs and codings; CC BY-SA 4.0, carries row statements", href: "/papers/solvability-frontier/data/backtest.json" },
+      { label: "makeup.json, counts per label; CC0", href: "/papers/solvability-frontier/data/makeup.json" },
+      { label: "frontier.svg, the drawing; MIT code output over CC BY-SA 4.0 and Apache-2.0 data, attributed", href: "/papers/solvability-frontier/data/frontier.svg" },
+      { label: "fig_frontier, fig_makeup, fig_backtest, fig_classes (webp); MIT code output over CC BY-SA 4.0 and Apache-2.0 data, attributed", href: "https://github.com/gianyrox/bucket-foundation/tree/dev/papers/solvability-frontier/figures" },
+      { label: "formal-conjectures, Apache-2.0", href: "https://github.com/google-deepmind/formal-conjectures" },
+    ],
+    bibtex: `@techreport{dichio2026solvabilityfrontier,
+  title        = {Machine learning for scientific discovery: the solvability frontier},
+  author       = {Dichio, Gianangelo},
+  institution  = {Bucket Foundation},
+  year         = {2026},
+  month        = {10},
+  url          = {https://www.bucket.foundation/research/papers/solvability-frontier},
+  note         = {Full report, version 1.0, 2026-10-07}
+}`,
+  },
+  {
+    slug: "human-ai-multiplier",
+    title:
+      "Human-AI-computer interaction: measuring whether AI strengthens unaided judgment",
+    authors: "Gianangelo Dichio",
+    affiliation: "Bucket Foundation",
+    date: "2026-10-07",
+    version: "1.0 (protocol report, no results)",
+    venue: "Bucket Foundation report",
+    pdfUrl: "/papers/human-ai-multiplier/paper.pdf",
+    githubUrl:
+      "https://github.com/gianyrox/bucket-foundation/tree/dev/packages/bkt/src/hai",
+    license: "CC-BY-4.0 text; figures MIT code output, no data; code MIT",
+    corpusLine:
+      "hai probe in packages/bkt: 998 frozen four-choice items across the seven canon branches, 68 held out by review, no retested probes yet",
+    abstract: [
+      "A tool that helps a person answer today and leaves them no better at answering alone next week has made them dependent on it. We state a measurement protocol that separates the two outcomes. On one task set, three scores are taken: the person's unaided score Hp, the model's score A, and the person's joint score Jp with the model's answer in view. The multiplier is mp = Jp / max(Hp, A), the gain is D = Jp - max(Hp, A), and the unaided test is repeated after seven days to give retention Rp = Hp(t + 7 days) - Hp(t) and learning L = Jp(t + 7 days) - Hp(t + 7 days). A tool that raises Jp while L stays at or below zero across its interval marks dependence.",
+      "The instrument is the hai probe in Bucket's bkt package: a frozen bank of 998 four-choice items, sessions of 40 items in 20 pairs matched on tier and on whether the model got the pair's items right, a 20 second think window before the model's answer appears, no feedback until the retest, guess-corrected scores and a bootstrap over pairs for every interval. The instrument is built and no probe has been retested, so this report carries no result. It states the planned analysis, paired comparisons stratified by education level, a divergence hypothesis on how reliance on one model narrows the range of answers across a group, and the rule by which the scores decide which tasks Research OS hands to the model and which it keeps with the person.",
+    ],
+    highlights: [
+      "Four scores on the same items: Hp, A, Jp at day 0 and Hp again at day 7; mp = Jp / max(Hp, A), Rp = Hp(t + 7) - Hp(t), L = Jp(t + 7) - Hp(t + 7).",
+      "Dependence flag: the 95% interval of Jp - Hp above zero and the interval of L at or below zero.",
+      "Status 2026-10-07: bank frozen at 998 items, 68 flagged by review, no AI scores collected, no probe run, no retest. No numbers are reported.",
+      "A half-width of 0.10 on Jp - Hp needs about 342 items per condition, 17 probes; no trend before 5 retested probes.",
+    ],
+    figures: [
+      {
+        src: "/papers/human-ai-multiplier/fig_timeline.webp",
+        alt: "Timeline of probe sessions: day 0 probe with solo and pair items, day 7 unaided retest, day 14 next probe",
+        caption:
+          "Figure 1. The session timeline. Each probe splits 40 unseen items into solo and pair conditions on day 0, is retested unaided in full on day 7, and unlocks its scores only then; the next probe draws 40 new items.",
+      },
+      {
+        src: "/papers/human-ai-multiplier/fig_scores.webp",
+        alt: "Diagram of the four scores Hp, A, Jp and Hp at day 7 and the statistics derived from them",
+        caption:
+          "Figure 2. The four scores and the statistics derived from them: the multiplier and the gain from Hp, A and Jp; retention on the solo items and learning on the pair items from the day 7 scores; dependence where the gain is positive and learning is not.",
+      },
+    ],
+    dataLinks: [
+      { label: "probe source, packages/bkt/src/hai", href: "https://github.com/gianyrox/bucket-foundation/tree/dev/packages/bkt/src/hai" },
+      { label: "bkt package README, hai commands", href: "https://github.com/gianyrox/bucket-foundation/blob/dev/packages/bkt/README.md" },
+    ],
+    bibtex: `@techreport{dichio2026humanaimultiplier,
+  title        = {Human-AI-computer interaction: measuring whether AI strengthens unaided judgment},
+  author       = {Dichio, Gianangelo},
+  institution  = {Bucket Foundation},
+  year         = {2026},
+  month        = {10},
+  url          = {https://www.bucket.foundation/research/papers/human-ai-multiplier},
+  note         = {Protocol report, version 1.0, 2026-10-07, no results}
 }`,
   },
 ];

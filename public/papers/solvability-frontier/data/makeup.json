@@ -1,0 +1,788 @@
+{
+ "schema": "bucket.solvability-atlas.makeup/v1",
+ "built": "2026-10-06",
+ "rows": 5080,
+ "atlas_rows": 71,
+ "sourced_rows": 5009,
+ "threshold": 0.781,
+ "labels": {
+  "branch": {
+   "title": "Branch",
+   "counts": {
+    "mathematics": 4112,
+    "physics": 259,
+    "chemistry": 85,
+    "information": 115,
+    "biophysics": 208,
+    "cosmology": 127,
+    "mind": 108,
+    "applied": 66
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "status": {
+   "title": "Status",
+   "counts": {
+    "solved": 1621,
+    "partial": 903,
+    "open": 2556
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "form": {
+   "title": "Form",
+   "counts": {
+    "variant": 2194,
+    "problem": 1260,
+    "question": 1213,
+    "conjecture": 413
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "source": {
+   "title": "Source",
+   "counts": {
+    "formal-conjectures, Erdős problems": 2057,
+    "Wikipedia, unsolved problems in mathematics": 524,
+    "formal-conjectures, Wikipedia conjectures": 472,
+    "formal-conjectures, OEIS": 319,
+    "formal-conjectures, Green open problems": 229,
+    "formal-conjectures, papers": 146,
+    "dated list, Science and SJTU 2021, 125 questions": 122,
+    "Wikipedia, unsolved problems in physics": 121,
+    "dated list, Science 2005, 125 questions": 117,
+    "formal-conjectures, arXiv": 105,
+    "Wikipedia, unsolved problems in biology": 96,
+    "solved timelines, Wikipedia and Kavli": 88,
+    "Wikipedia, unsolved problems in astronomy": 81,
+    "atlas, problems.tsv": 71,
+    "formal-conjectures, Written on the Wall II": 54,
+    "Wikipedia, unsolved problems in computer science": 49,
+    "formal-conjectures, open quantum problems": 49,
+    "Wikipedia, unsolved problems in neuroscience": 47,
+    "formal-conjectures, books": 39,
+    "formal-conjectures, other": 34,
+    "Wikipedia, unsolved problems in chemistry": 27,
+    "dated list, Holy Grails in Chemistry": 26,
+    "formal-conjectures, MathOverflow": 25,
+    "Wikipedia, Hilbert's problems": 23,
+    "dated list, 23 Problems in Systems Neuroscience": 23,
+    "dated list, XPRIZE and Longitude Prize": 21,
+    "Wikipedia, unsolved problems in geoscience": 16,
+    "dated list, DARPA prize competitions": 16,
+    "Wikipedia, unsolved problems in economics": 15,
+    "Wikipedia, Smale's problems": 14,
+    "formal-conjectures, Millennium": 13,
+    "formal-conjectures, Kourovka Notebook": 10,
+    "Wikipedia, unsolved problems in statistics": 9,
+    "Wikipedia, unsolved problems in information theory": 7,
+    "formal-conjectures, Hilbert problems": 7,
+    "formal-conjectures, optimization constants": 5,
+    "formal-conjectures, Litt problems": 3
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "licence": {
+   "title": "Licence",
+   "counts": {
+    "Apache-2.0": 3557,
+    "CC BY-SA 4.0": 1154,
+    "AAAS copyright, headline cited, statement paraphrased": 239,
+    "MIT": 71,
+    "ACS copyright, title cited, statement paraphrased": 26,
+    "Library of Congress record, chapter titles cited": 23,
+    "Apache-2.0 and CC BY-SA 4.0": 10
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "resolved_kind": {
+   "title": "Resolution evidence, solved rows",
+   "counts": {
+    "formal-conjectures status field": 1419,
+    "posed question, curated timeline row": 88,
+    "Wikipedia status column or solved section": 65,
+    "dated list, 2026 status check": 34,
+    "curated, resolved year in problems.tsv": 15
+   },
+   "present": 1621,
+   "absent": 3459
+  },
+  "posed_present": {
+   "title": "Posed year",
+   "counts": {
+    "posed year present": 588,
+    "posed year absent": 4492
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "posed_decade": {
+   "title": "Posed year by decade, where present",
+   "counts": {
+    "before 1800": 8,
+    "1810s": 1,
+    "1830s": 2,
+    "1840s": 2,
+    "1850s": 4,
+    "1860s": 1,
+    "1870s": 2,
+    "1880s": 3,
+    "1890s": 5,
+    "1900s": 32,
+    "1910s": 5,
+    "1920s": 11,
+    "1930s": 15,
+    "1940s": 5,
+    "1950s": 10,
+    "1960s": 24,
+    "1970s": 27,
+    "1980s": 25,
+    "1990s": 38,
+    "2000s": 166,
+    "2010s": 68,
+    "2020s": 134
+   },
+   "present": 588,
+   "absent": 4492
+  },
+  "resolved_decade": {
+   "title": "Resolved year by decade, where present",
+   "counts": {
+    "before 1800": 6,
+    "1800s": 1,
+    "1810s": 1,
+    "1820s": 4,
+    "1830s": 1,
+    "1840s": 2,
+    "1860s": 2,
+    "1870s": 2,
+    "1880s": 3,
+    "1890s": 1,
+    "1900s": 5,
+    "1910s": 3,
+    "1920s": 6,
+    "1930s": 10,
+    "1940s": 9,
+    "1950s": 10,
+    "1960s": 6,
+    "1970s": 12,
+    "1980s": 4,
+    "1990s": 6,
+    "2000s": 25,
+    "2010s": 60,
+    "2020s": 57
+   },
+   "present": 236,
+   "absent": 4844
+  },
+  "zone": {
+   "title": "Zone",
+   "counts": {
+    "solved": 1621,
+    "reachable": 2225,
+    "beyond": 1131,
+    "unsampled": 103
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "prediction_class": {
+   "title": "Prediction class",
+   "counts": {
+    "close to known results": 251,
+    "borderline": 764,
+    "needs a new idea": 911,
+    "unsampled": 103,
+    "solved": 1621,
+    "variant": 1430
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "level": {
+   "title": "Variant or top-level",
+   "counts": {
+    "top-level": 2886,
+    "variant": 2194
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "text_kind": {
+   "title": "Embedding text kind",
+   "counts": {
+    "statement": 5009,
+    "record": 71
+   },
+   "present": 5080,
+   "absent": 0
+  },
+  "length_band": {
+   "title": "Statement length band",
+   "counts": {
+    "under 20 words": 1952,
+    "20 to 40 words": 1769,
+    "over 40 words": 1359
+   },
+   "present": 5080,
+   "absent": 0
+  }
+ },
+ "status_by_branch": {
+  "mathematics": {
+   "solved": 1473,
+   "partial": 762,
+   "open": 1877
+  },
+  "physics": {
+   "solved": 37,
+   "partial": 32,
+   "open": 190
+  },
+  "chemistry": {
+   "solved": 13,
+   "partial": 8,
+   "open": 64
+  },
+  "information": {
+   "solved": 29,
+   "partial": 5,
+   "open": 81
+  },
+  "biophysics": {
+   "solved": 21,
+   "partial": 59,
+   "open": 128
+  },
+  "cosmology": {
+   "solved": 16,
+   "partial": 12,
+   "open": 99
+  },
+  "mind": {
+   "solved": 5,
+   "partial": 21,
+   "open": 82
+  },
+  "applied": {
+   "solved": 27,
+   "partial": 4,
+   "open": 35
+  }
+ },
+ "openalex": {
+  "queried": 499,
+  "with_works": 388,
+  "median_works_by_branch": {
+   "mathematics": 15
+  },
+  "works_by_branch": {
+   "mathematics": {
+    "0": 111,
+    "1 to 9": 115,
+    "10 to 99": 153,
+    "100 to 999": 79,
+    "1,000 to 9,999": 29,
+    "10,000 and up": 12,
+    "no result": 0
+   }
+  },
+  "retrieved": "2026-10-06"
+ },
+ "sources": {
+  "atlas, problems.tsv": {
+   "rows": 71,
+   "licences": {
+    "MIT": 71
+   },
+   "status": {
+    "open": 56,
+    "solved": 15
+   },
+   "posed": 71,
+   "resolved": 15,
+   "statement": 0
+  },
+  "Wikipedia, Hilbert's problems": {
+   "rows": 23,
+   "licences": {
+    "CC BY-SA 4.0": 23
+   },
+   "status": {
+    "partial": 7,
+    "solved": 6,
+    "open": 10
+   },
+   "posed": 23,
+   "resolved": 6,
+   "statement": 23
+  },
+  "Wikipedia, Smale's problems": {
+   "rows": 14,
+   "licences": {
+    "CC BY-SA 4.0": 14
+   },
+   "status": {
+    "open": 11,
+    "partial": 3
+   },
+   "posed": 14,
+   "resolved": 0,
+   "statement": 14
+  },
+  "Wikipedia, unsolved problems in mathematics": {
+   "rows": 524,
+   "licences": {
+    "CC BY-SA 4.0": 524
+   },
+   "status": {
+    "open": 484,
+    "solved": 40
+   },
+   "posed": 2,
+   "resolved": 39,
+   "statement": 524
+  },
+  "Wikipedia, unsolved problems in physics": {
+   "rows": 121,
+   "licences": {
+    "CC BY-SA 4.0": 121
+   },
+   "status": {
+    "open": 102,
+    "solved": 19
+   },
+   "posed": 14,
+   "resolved": 15,
+   "statement": 121
+  },
+  "Wikipedia, unsolved problems in chemistry": {
+   "rows": 27,
+   "licences": {
+    "CC BY-SA 4.0": 27
+   },
+   "status": {
+    "open": 27
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 27
+  },
+  "Wikipedia, unsolved problems in biology": {
+   "rows": 96,
+   "licences": {
+    "CC BY-SA 4.0": 96
+   },
+   "status": {
+    "open": 96
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 96
+  },
+  "Wikipedia, unsolved problems in computer science": {
+   "rows": 49,
+   "licences": {
+    "CC BY-SA 4.0": 49
+   },
+   "status": {
+    "open": 49
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 49
+  },
+  "Wikipedia, unsolved problems in neuroscience": {
+   "rows": 47,
+   "licences": {
+    "CC BY-SA 4.0": 47
+   },
+   "status": {
+    "open": 47
+   },
+   "posed": 2,
+   "resolved": 0,
+   "statement": 47
+  },
+  "Wikipedia, unsolved problems in economics": {
+   "rows": 15,
+   "licences": {
+    "CC BY-SA 4.0": 15
+   },
+   "status": {
+    "open": 15
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 15
+  },
+  "Wikipedia, unsolved problems in astronomy": {
+   "rows": 81,
+   "licences": {
+    "CC BY-SA 4.0": 81
+   },
+   "status": {
+    "open": 81
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 81
+  },
+  "Wikipedia, unsolved problems in geoscience": {
+   "rows": 16,
+   "licences": {
+    "CC BY-SA 4.0": 16
+   },
+   "status": {
+    "open": 16
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 16
+  },
+  "Wikipedia, unsolved problems in statistics": {
+   "rows": 9,
+   "licences": {
+    "CC BY-SA 4.0": 9
+   },
+   "status": {
+    "open": 9
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 9
+  },
+  "Wikipedia, unsolved problems in information theory": {
+   "rows": 7,
+   "licences": {
+    "CC BY-SA 4.0": 7
+   },
+   "status": {
+    "open": 7
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 7
+  },
+  "formal-conjectures, books": {
+   "rows": 39,
+   "licences": {
+    "Apache-2.0": 39
+   },
+   "status": {
+    "solved": 17,
+    "open": 11,
+    "partial": 11
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 39
+  },
+  "formal-conjectures, Erdős problems": {
+   "rows": 2057,
+   "licences": {
+    "Apache-2.0": 2048,
+    "Apache-2.0 and CC BY-SA 4.0": 9
+   },
+   "status": {
+    "solved": 963,
+    "open": 643,
+    "partial": 451
+   },
+   "posed": 33,
+   "resolved": 12,
+   "statement": 2057
+  },
+  "formal-conjectures, Green open problems": {
+   "rows": 229,
+   "licences": {
+    "Apache-2.0": 229
+   },
+   "status": {
+    "open": 92,
+    "solved": 71,
+    "partial": 66
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 229
+  },
+  "formal-conjectures, Hilbert problems": {
+   "rows": 7,
+   "licences": {
+    "Apache-2.0": 7
+   },
+   "status": {
+    "solved": 2,
+    "open": 2,
+    "partial": 3
+   },
+   "posed": 1,
+   "resolved": 1,
+   "statement": 7
+  },
+  "formal-conjectures, Kourovka Notebook": {
+   "rows": 10,
+   "licences": {
+    "Apache-2.0": 10
+   },
+   "status": {
+    "open": 6,
+    "partial": 1,
+    "solved": 3
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 10
+  },
+  "formal-conjectures, Litt problems": {
+   "rows": 3,
+   "licences": {
+    "Apache-2.0": 3
+   },
+   "status": {
+    "solved": 1,
+    "open": 2
+   },
+   "posed": 1,
+   "resolved": 0,
+   "statement": 3
+  },
+  "formal-conjectures, MathOverflow": {
+   "rows": 25,
+   "licences": {
+    "Apache-2.0": 25
+   },
+   "status": {
+    "solved": 12,
+    "open": 10,
+    "partial": 3
+   },
+   "posed": 1,
+   "resolved": 2,
+   "statement": 25
+  },
+  "formal-conjectures, Millennium": {
+   "rows": 13,
+   "licences": {
+    "Apache-2.0": 13
+   },
+   "status": {
+    "open": 10,
+    "partial": 2,
+    "solved": 1
+   },
+   "posed": 12,
+   "resolved": 2,
+   "statement": 13
+  },
+  "formal-conjectures, OEIS": {
+   "rows": 319,
+   "licences": {
+    "Apache-2.0": 319
+   },
+   "status": {
+    "solved": 120,
+    "open": 189,
+    "partial": 10
+   },
+   "posed": 4,
+   "resolved": 1,
+   "statement": 319
+  },
+  "formal-conjectures, open quantum problems": {
+   "rows": 49,
+   "licences": {
+    "Apache-2.0": 49
+   },
+   "status": {
+    "solved": 2,
+    "open": 28,
+    "partial": 19
+   },
+   "posed": 6,
+   "resolved": 0,
+   "statement": 49
+  },
+  "formal-conjectures, optimization constants": {
+   "rows": 5,
+   "licences": {
+    "Apache-2.0": 5
+   },
+   "status": {
+    "solved": 2,
+    "open": 3
+   },
+   "posed": 0,
+   "resolved": 0,
+   "statement": 5
+  },
+  "formal-conjectures, other": {
+   "rows": 34,
+   "licences": {
+    "Apache-2.0": 34
+   },
+   "status": {
+    "open": 16,
+    "partial": 5,
+    "solved": 13
+   },
+   "posed": 1,
+   "resolved": 0,
+   "statement": 34
+  },
+  "formal-conjectures, papers": {
+   "rows": 146,
+   "licences": {
+    "Apache-2.0": 146
+   },
+   "status": {
+    "open": 70,
+    "partial": 32,
+    "solved": 44
+   },
+   "posed": 1,
+   "resolved": 1,
+   "statement": 146
+  },
+  "formal-conjectures, Wikipedia conjectures": {
+   "rows": 472,
+   "licences": {
+    "Apache-2.0": 471,
+    "Apache-2.0 and CC BY-SA 4.0": 1
+   },
+   "status": {
+    "open": 252,
+    "partial": 146,
+    "solved": 74
+   },
+   "posed": 24,
+   "resolved": 11,
+   "statement": 472
+  },
+  "formal-conjectures, Written on the Wall II": {
+   "rows": 54,
+   "licences": {
+    "Apache-2.0": 54
+   },
+   "status": {
+    "solved": 48,
+    "open": 6
+   },
+   "posed": 0,
+   "resolved": 3,
+   "statement": 54
+  },
+  "formal-conjectures, arXiv": {
+   "rows": 105,
+   "licences": {
+    "Apache-2.0": 105
+   },
+   "status": {
+    "solved": 46,
+    "open": 37,
+    "partial": 22
+   },
+   "posed": 0,
+   "resolved": 6,
+   "statement": 105
+  },
+  "solved timelines, Wikipedia and Kavli": {
+   "rows": 88,
+   "licences": {
+    "CC BY-SA 4.0": 88
+   },
+   "status": {
+    "solved": 88
+   },
+   "posed": 53,
+   "resolved": 88,
+   "statement": 88
+  },
+  "dated list, DARPA prize competitions": {
+   "rows": 16,
+   "licences": {
+    "CC BY-SA 4.0": 16
+   },
+   "status": {
+    "solved": 13,
+    "open": 3
+   },
+   "posed": 16,
+   "resolved": 13,
+   "statement": 16
+  },
+  "dated list, Holy Grails in Chemistry": {
+   "rows": 26,
+   "licences": {
+    "ACS copyright, title cited, statement paraphrased": 26
+   },
+   "status": {
+    "open": 20,
+    "partial": 6
+   },
+   "posed": 26,
+   "resolved": 0,
+   "statement": 26
+  },
+  "dated list, 23 Problems in Systems Neuroscience": {
+   "rows": 23,
+   "licences": {
+    "Library of Congress record, chapter titles cited": 23
+   },
+   "status": {
+    "partial": 8,
+    "open": 15
+   },
+   "posed": 23,
+   "resolved": 0,
+   "statement": 23
+  },
+  "dated list, Science 2005, 125 questions": {
+   "rows": 117,
+   "licences": {
+    "AAAS copyright, headline cited, statement paraphrased": 117
+   },
+   "status": {
+    "open": 48,
+    "partial": 65,
+    "solved": 4
+   },
+   "posed": 117,
+   "resolved": 4,
+   "statement": 117
+  },
+  "dated list, Science and SJTU 2021, 125 questions": {
+   "rows": 122,
+   "licences": {
+    "AAAS copyright, headline cited, statement paraphrased": 122
+   },
+   "status": {
+    "open": 80,
+    "partial": 42
+   },
+   "posed": 122,
+   "resolved": 0,
+   "statement": 122
+  },
+  "dated list, XPRIZE and Longitude Prize": {
+   "rows": 21,
+   "licences": {
+    "CC BY-SA 4.0": 21
+   },
+   "status": {
+    "solved": 17,
+    "open": 3,
+    "partial": 1
+   },
+   "posed": 21,
+   "resolved": 17,
+   "statement": 21
+  }
+ }
+}
