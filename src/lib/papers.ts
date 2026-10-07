@@ -4,6 +4,11 @@ export type Figure = {
   caption: string;
 };
 
+export type DataLink = {
+  label: string;
+  href: string;
+};
+
 export type Paper = {
   slug: string;
   title: string;
@@ -12,8 +17,8 @@ export type Paper = {
   date: string;
   version: string;
   venue: string;
-  doi: string;
-  doiUrl: string;
+  doi?: string;
+  doiUrl?: string;
   pdfUrl: string;
   githubUrl: string;
   license: string;
@@ -21,6 +26,7 @@ export type Paper = {
   abstract: string[];
   highlights: string[];
   figures: Figure[];
+  dataLinks?: DataLink[];
   bibtex: string;
 };
 

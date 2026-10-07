@@ -50,6 +50,7 @@ const SUITES = {
       "scripts/test-research-os-{dedup,merge-actions,work-quiz,work-quiz-limits,work-quiz-space,work-quiz-sampler,work-quiz-language,work-quiz-route,work-quiz-page}.ts",
       "scripts/test-no-hetzner-defaults.ts",
       "scripts/test-beads-export.mjs",
+      "scripts/test-report-record.mjs",
       "scripts/test-whats-new.mjs",
       "scripts/test-whats-new-api.ts",
       "scripts/test-whats-new-publish.ts",
