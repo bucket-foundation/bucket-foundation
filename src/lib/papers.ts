@@ -379,7 +379,7 @@ export const PAPERS: Paper[] = [
       "Status 2026-10-07: bank frozen at 998 items, 68 flagged by review, no AI scores collected, no probe run, no retest. No numbers are reported.",
       "A half-width of 0.10 on Jp - Hp needs about 342 items per condition, 17 probes; no trend before 5 retested probes.",
       "Learning side: the minimum number of concepts to reach a target is |R(t, M)|, proved in Lean 4 (minimum_unit_distance, minimum_weighted_effort) under five stated assumptions; 57,060 enumerated planning cases on every DAG up to five nodes with zero errors.",
-      "Mastery as shipped: M = P^alpha R^beta with alpha = beta = 1, P = sigmoid(theta + 0.2), R = FSRS-5 retrievability at 90 days, mastered at M >= 0.7. The frontier draw and the predicted-recall report are design; the probe code holds neither today.",
+      "Mastery as shipped: M = P^alpha R^beta with alpha = beta = 1, P = sigmoid(theta + 0.2), R = FSRS-5 retrievability at 90 days, mastered at M >= 0.7. The frontier draw, the predicted-recall report and the solo-only mastery update are design; the probe code holds neither today.",
     ],
     figures: [
       {
