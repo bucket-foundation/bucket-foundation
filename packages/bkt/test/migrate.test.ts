@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { normalizeState } from "../../../src/lib/academy/engine";
 import { newDataKey } from "../src/crypto";
-import { contentItemId, promptHash, schedule } from "../src/grade";
+import { contentItemId, contentItemIds, promptHash, schedule } from "../src/grade";
 import { RosGraph, syncRosGraph } from "../src/ros";
 import { LOCAL_ONLY_TABLES, MIGRATIONS, SCHEMA_VERSION, Store } from "../src/store";
 
@@ -202,6 +202,32 @@ describe("migration 13", () => {
     expect(live).toEqual(["inserted?", "second?"]);
     expect(s.db.query<{ retired: number }, [string]>("select retired from items where id = ?").get(contentItemId("01-math", "nernst", "first?"))!.retired).toBe(1);
     expect(s.db.query<{ n: number }, []>("select count(*) n from attempts").get()!.n).toBe(4);
+    s.close();
+  });
+
+  test("two same-prompt items in one atom keep distinct ids and their attempts", () => {
+    const path = join(dir, "bkt.db");
+    const db = new Database(path, { create: true, strict: true });
+    MIGRATIONS.slice(0, 12).forEach((m) => (typeof m === "string" ? db.run(m) : m(db)));
+    db.run("pragma user_version = 12");
+    const item = db.query("insert into items (id, atom_id, branch, deck, title, level, prompt, answer, pack_version) values (?, 'x', '01-math', '01-math', 'X', 'recall', 'same?', ?, 'v1')");
+    item.run("01-math/x/0", "one");
+    item.run("01-math/x/1", "two");
+    const at = db.query("insert into attempts (id, item_id, mode, response_enc, correct, rating, elapsed_ms, at) values (?, ?, 'quiz', null, 1, 3, 100, ?)");
+    at.run("d1", "01-math/x/0", 1);
+    at.run("d2", "01-math/x/1", 2);
+    db.close();
+    const s = new Store(path, newDataKey());
+    const answers = s.db.query<{ answer: string }, []>("select i.answer from attempts a join items i on i.id = a.item_id order by a.at").all();
+    expect(answers.map((r) => r.answer)).toEqual(["one", "two"]);
+    const rows = [
+      { id: "", atomId: "x", branch: "01-math", title: "X", level: "recall", prompt: "same?", answer: "two" },
+      { id: "", atomId: "x", branch: "01-math", title: "X", level: "recall", prompt: "same?", answer: "one" },
+    ];
+    const ids = contentItemIds(rows);
+    s.importPack("v2", rows.map((r, n) => ({ ...r, id: ids[n] })));
+    expect(s.items()).toHaveLength(2);
+    expect(s.db.query<{ n: number }, []>("select count(*) n from items where retired = 1").get()!.n).toBe(0);
     s.close();
   });
 });

@@ -11,12 +11,20 @@ export function deckOf(branch: string): string {
   return LEGACY_DECKS[branch] ?? branch;
 }
 
-export function promptHash(prompt: string, options: string[] = []): string {
-  return createHash("sha1").update(prompt.trim() + [...options].sort().join("")).digest("hex").slice(0, 10);
+export function promptHash(prompt: string): string {
+  return createHash("sha1").update(prompt.trim()).digest("hex").slice(0, 10);
 }
 
-export function contentItemId(branch: string, atomId: string, prompt: string): string {
-  return `${deckOf(branch)}/${atomId}/${promptHash(prompt)}`;
+export function contentItemId(branch: string, atomId: string, prompt: string, answer?: string): string {
+  const hash = answer === undefined ? promptHash(prompt) : promptHash(`${prompt.trim()}\n${answer.trim()}`);
+  return `${deckOf(branch)}/${atomId}/${hash}`;
+}
+
+export function contentItemIds(rows: { branch: string; atomId: string; prompt: string; answer: string }[]): string[] {
+  const count = new Map<string, number>();
+  const key = (r: { branch: string; atomId: string; prompt: string }) => JSON.stringify([deckOf(r.branch), r.atomId, r.prompt.trim()]);
+  for (const r of rows) count.set(key(r), (count.get(key(r)) ?? 0) + 1);
+  return rows.map((r) => (count.get(key(r))! > 1 ? contentItemId(r.branch, r.atomId, r.prompt, r.answer) : contentItemId(r.branch, r.atomId, r.prompt)));
 }
 
 export const GRACE_MS = 1500;

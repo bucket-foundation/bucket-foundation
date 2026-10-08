@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { Atom } from "../../../../src/lib/academy/engine";
-import { contentItemId, type Item } from "../grade";
+import { contentItemIds, type Item } from "../grade";
 
 export interface PackDeck {
   id: string;
@@ -47,26 +47,15 @@ function readIndex(corpusDir: string): Map<string, { id: string; title: string }
 }
 
 export function itemsFromCorpus(branch: string, corpus: CorpusFile): Item[] {
-  const out: Item[] = [];
-  const seen = new Set<string>();
+  const rows: Omit<Item, "id">[] = [];
   for (const atom of corpus.atoms ?? []) {
-    (atom.quiz ?? []).forEach((q) => {
-      if (!q.prompt?.trim() || !q.answer?.trim()) return;
-      let id = contentItemId(branch, atom.id, q.prompt);
-      if (seen.has(id)) id = contentItemId(branch, atom.id, `${q.prompt}\n${q.answer}`);
-      seen.add(id);
-      out.push({
-        id,
-        atomId: atom.id,
-        branch,
-        title: atom.title,
-        level: q.level ?? "recall",
-        prompt: q.prompt.trim(),
-        answer: q.answer.trim(),
-      });
-    });
+    for (const q of atom.quiz ?? []) {
+      if (!q.prompt?.trim() || !q.answer?.trim()) continue;
+      rows.push({ atomId: atom.id, branch, title: atom.title, level: q.level ?? "recall", prompt: q.prompt.trim(), answer: q.answer.trim() });
+    }
   }
-  return out;
+  const ids = contentItemIds(rows);
+  return rows.map((r, n) => ({ id: ids[n], ...r }));
 }
 
 export function buildPack(corpusDir: string): Pack {

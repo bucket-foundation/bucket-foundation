@@ -212,4 +212,12 @@ describe("content item ids", () => {
     expect(s.items()).toHaveLength(2);
     s.close();
   });
+
+  test("same-prompt items get ids that do not depend on order", () => {
+    const quiz = [{ prompt: "same?", answer: "one" }, { prompt: "same?", answer: "two" }];
+    const a = itemsFromCorpus("01-math", { atoms: [{ id: "x", title: "X", quiz }] } as never);
+    const b = itemsFromCorpus("01-math", { atoms: [{ id: "x", title: "X", quiz: [...quiz].reverse() }] } as never);
+    expect(new Set(a.map((i) => i.id)).size).toBe(2);
+    expect(Object.fromEntries(a.map((i) => [i.answer, i.id]))).toEqual(Object.fromEntries(b.map((i) => [i.answer, i.id])));
+  });
 });

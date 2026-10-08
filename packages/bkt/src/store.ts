@@ -4,7 +4,7 @@ import { dirname } from "node:path";
 import { randomUUID } from "node:crypto";
 import { open, seal } from "./crypto";
 import { ADAPTIVE, grade as engineGrade, normalizeState, updateProficiency, type Depth, type EncEdge, type EngineState } from "../../../src/lib/academy/engine";
-import { contentItemId, deckOf, LEGACY_DECKS, type Card, type Item, type Rating } from "./grade";
+import { contentItemIds, deckOf, LEGACY_DECKS, type Card, type Item, type Rating } from "./grade";
 
 import { cardKey } from "../../../src/lib/research-os/work-quiz/fact";
 import type { Form } from "../../../src/lib/research-os/work-quiz/space";
@@ -62,15 +62,17 @@ export function migrateLearn(db: Database) {
 }
 
 export function migrateItemIds(db: Database) {
-  db.run("alter table items add column retired integer not null default 0");
+  const cols = db.query<{ name: string }, []>("pragma table_info(items)").all();
+  if (!cols.some((c) => c.name === "retired")) db.run("alter table items add column retired integer not null default 0");
   type Row = { id: string; atom_id: string; branch: string; deck: string; title: string; level: string; prompt: string; answer: string; pack_version: string };
   const rows = db.query<Row, []>("select id, atom_id, branch, deck, title, level, prompt, answer, pack_version from items order by id").all();
   const alias = new Map<string, string>();
   const insert = db.query(
     "insert into items (id, atom_id, branch, deck, title, level, prompt, answer, pack_version) values (?, ?, ?, ?, ?, ?, ?, ?, ?) on conflict(id) do nothing",
   );
-  for (const r of rows) {
-    const next = contentItemId(r.deck, r.atom_id, r.prompt);
+  const nextIds = contentItemIds(rows.map((r) => ({ branch: r.deck, atomId: r.atom_id, prompt: r.prompt, answer: r.answer })));
+  for (const [n, r] of rows.entries()) {
+    const next = nextIds[n];
     if (next === r.id) continue;
     alias.set(r.id, next);
     insert.run(next, r.atom_id, r.branch, r.deck, r.title, r.level, r.prompt, r.answer, r.pack_version);
