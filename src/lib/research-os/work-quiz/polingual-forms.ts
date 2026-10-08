@@ -50,7 +50,6 @@ export interface WordSet {
   wiktionaryUrl: string;
   cells: readonly WordCell[];
   byLang: Readonly<Record<string, readonly WordCell[]>>;
-  fill: Readonly<Record<string, readonly WordCell[]>>;
   conceptPos: Readonly<Record<string, string>>;
   byConcept: Readonly<Record<string, readonly WordCell[]>>;
 }
@@ -64,6 +63,10 @@ export const SOURCE_LANGUAGE = "en";
 export const MIN_PAIR_LANGUAGES = 3;
 export const VAGUE_GLOSS = /^(terms?|relating to|to do with|used|of,|any of|any)\b|\b(specifically|etc)$/i;
 export const MIN_OTHER_SENSES = 2;
+export const LEAD_SENSES = 2;
+export const MIN_SENSES_FOR_AGREEMENT = 3;
+export const SENSE_STOPWORDS: ReadonlySet<string> = new Set(["the", "and", "for", "that", "this", "with", "from", "have", "has", "was", "are", "not", "one", "any", "who", "its", "his", "her", "etc", "used", "use", "something", "someone", "person", "thing", "being", "usually", "especially", "also", "other", "into", "such", "some", "when", "which", "than", "more", "most", "can", "may", "often", "like", "type", "kind", "form", "part", "make", "made"]);
+export const WRONG_PAIRS: ReadonlySet<string> = new Set(["zh:門子:door", "sa:पिङ्ग:yellow", "pt:público:people"]);
 export const SENSE_KEY_CHARS = 25;
 export const MARKED_TAGS: readonly string[] = ["plural-only", "form-of", "alt-of", "archaic", "obsolete", "abbreviation", "rare", "dated", "slang", "vulgar", "derogatory", "offensive", "misspelling", "dialectal", "historical", "poetic", "figuratively", "colloquial", "informal"];
 
@@ -165,9 +168,20 @@ export function corroborated(w: RawWord): boolean {
   return others.length < MIN_OTHER_SENSES || others.some((s) => mentions(s.g ?? "", w.c ?? ""));
 }
 
+export function leadAgrees(w: RawWord): boolean {
+  const same = (w.senses ?? []).filter((s) => s.p === w.p);
+  if (same.length < MIN_SENSES_FOR_AGREEMENT) return true;
+  return same.slice(0, LEAD_SENSES).some((s) => mentions(s.g ?? "", w.c ?? ""));
+}
+
+export function denied(w: RawWord): boolean {
+  return WRONG_PAIRS.has(`${w.l}:${w.s}:${w.c}`);
+}
+
 export function cleanMatch(w: RawWord, pos: Readonly<Record<string, string>>): boolean {
   if (!w.c || !strictMatch(w) || !pos[w.c]) return false;
-  return w.l === SOURCE_LANGUAGE ? sourceSense(w, pos[w.c]) !== null : w.p === pos[w.c] && corroborated(w);
+  if (w.l === SOURCE_LANGUAGE) return sourceSense(w, pos[w.c]) !== null;
+  return w.p === pos[w.c] && corroborated(w) && leadAgrees(w) && !denied(w);
 }
 
 function shortGloss(w: RawWord, pos: string): string {
@@ -239,9 +253,7 @@ export function buildWordSet(raw: RawSubset): WordSet {
     return out;
   };
   const clean = sole((w) => cleanMatch(w, pos));
-  const loose = sole(strictMatch);
   const cells = Array.from(clean.values()).map(toCell);
-  const filler = [...cells, ...Array.from(loose).filter(([key]) => !clean.has(key)).map(([, w]) => toCell(w))];
   const byLang = group(cells, (c) => c.lang);
   const scripts: Record<string, Script> = {};
   for (const l of languages) scripts[l] = mode((byLang[l] ?? []).map((c) => c.script));
@@ -253,7 +265,6 @@ export function buildWordSet(raw: RawSubset): WordSet {
     wiktionaryUrl: raw.attribution.wiktionary_url,
     cells,
     byLang,
-    fill: group(filler, (c) => c.lang),
     conceptPos: pos,
     byConcept: group(cells, (c) => c.concept),
   };
@@ -290,12 +301,21 @@ function choose(rng: Rng, answer: string, pool: readonly string[], count: number
   return chosen.length === count ? shuffle(rng, chosen) : null;
 }
 
-function rivals(set: WordSet, answer: WordCell, ok: (c: WordCell) => boolean = () => true): WordCell[] {
+export function contentWords(text: string): string[] {
+  return (text.toLowerCase().match(/[a-z]+/g) ?? []).filter((m) => m.length > 2 && !SENSE_STOPWORDS.has(m));
+}
+
+export function sharesSense(a: WordCell, b: WordCell): boolean {
+  if (a.senseWords.has(b.concept) || b.senseWords.has(a.concept)) return true;
+  return contentWords(b.gloss).some((m) => a.senseWords.has(m)) || contentWords(a.gloss).some((m) => b.senseWords.has(m));
+}
+
+export function rivals(set: WordSet, answer: WordCell, ok: (c: WordCell) => boolean = () => true): WordCell[] {
   const seen = new Set([answer.folded]);
   const out: WordCell[] = [];
-  for (const c of set.fill[answer.lang] ?? []) {
+  for (const c of set.byLang[answer.lang] ?? []) {
     if (c.concept === answer.concept || c.script !== answer.script || seen.has(c.folded)) continue;
-    if (c.senseWords.has(answer.concept) || answer.senseWords.has(c.concept) || !ok(c)) continue;
+    if (sharesSense(answer, c) || !ok(c)) continue;
     seen.add(c.folded);
     out.push(c);
   }
