@@ -48,6 +48,7 @@ The standard covers every dataset the app, the site, a pack or a feed402 respons
 | Research atlas manifest | `src/data/research-atlas-manifest.json` | 9 dataset entries | Table name | Licence is the string `MIT (code) / CC-BY-4.0 (data)`. Points at parquet files outside the repo. |
 | Evidence search fixture | `scripts/research-os/route-characterization/evidence-search.json` | 11 recorded route cases | Case label | A test fixture. It holds no canon records and is listed so that no reader mistakes it for a dataset. |
 | BibTeX exports | `bucket-canon/**/*.bib` | 37 files; 6 more `.bib` files sit under `papers` and `tools` and hold paper references | BibTeX key | A second rendering of the yaml papers. Under the standard it is generated from the work records. |
+| Reports | `reports/<slug>/report.json`, rows in `graph.reports` | 7 records: 4 public, 3 private | Slug | `docs/REPORTS.md`. Already in canonical form. Four public papers hold only their PDF as source; the LaTeX is in research-atlas. |
 
 ### Learning corpus
 
