@@ -7,7 +7,7 @@ import { FORM_MAKERS, type SampledQuestion } from "../src/lib/research-os/work-q
 import { LIMIT_SEC, rewriteQuestion, seededRng } from "../src/lib/research-os/work-quiz/generate";
 import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
-import { LANGUAGE_CHOICES, MIN_PAIR_LANGUAGES, MIN_STRICT_PAIRS, buildWordSet, cleanMatch, contentWords, fold, headword, knownLanguages, languageMakers, languageRivals, leadAgrees, pairTargets, rivals, sharesSense, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
+import { LANGUAGE_CHOICES, MIN_PAIR_LANGUAGES, MIN_STRICT_PAIRS, buildWordSet, cleanMatch, contentWords, fold, headword, knownLanguages, languageMakers, languageRivals, pairTargets, rivals, sharesSense, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
 import { SUBSET_FILE, loadWordSet, subsetPath } from "../src/lib/research-os/work-quiz/polingual-server";
 import { LANGUAGE_CODES, LANGUAGE_NAMES, MAX_LANGUAGES, RTL_LANGUAGES, languageDir, languagesByName, parseLanguages, textDir, toggleLanguage, wordCaption } from "../src/lib/research-os/work-quiz/languages";
 import { builtCells, dueFrom, languageCells, sampleQuiz } from "../src/lib/research-os/work-quiz/sampler";
@@ -26,9 +26,9 @@ const SOURCES: WorkSources = {
   notes: [],
 };
 const NONE: WorkSources = { beads: [], prs: [], notes: [], repoUrl: null };
-const STRICT_CELLS = 783;
-const STRICT_CONCEPTS = 141;
-const STRICT_PAIRS = 4562;
+const STRICT_CELLS = 839;
+const STRICT_CONCEPTS = 144;
+const STRICT_PAIRS = 5136;
 const has = (lang: string, concept: string) => SET.cells.some((c) => c.lang === lang && c.concept === concept);
 const raw = (lang: string, word: string) => RAW.words.find((w) => w.l === lang && w.s === word)!;
 const TRIES = 40;
@@ -214,16 +214,12 @@ test("wrong words come from the clean pool and no strict cell has a second corre
   assert.ok(thin < SET.cells.length * 0.1, `${thin} cells have too few wrong words`);
 });
 
-test("the named wrong pairs are gone and a lead sense that never mentions the meaning fails", () => {
-  for (const [lang, word, concept] of [["zh", "門子", "door"], ["sa", "पिङ्ग", "yellow"], ["pt", "público", "people"]]) {
+test("the named wrong pairs are gone and the critic pairs are gone", () => {
+  for (const [lang, word, concept] of [["zh", "門子", "door"], ["sa", "पिङ्ग", "yellow"], ["pt", "público", "people"], ["fa", "مهشید", "moon"], ["hi", "बालिश", "child"]]) {
     assert.ok(raw(lang, word).c === concept, `${lang} ${word} is tagged ${concept}`);
     assert.ok(!SET.cells.some((c) => c.lang === lang && c.word === word), `${lang} ${word} is not a cell`);
     assert.ok(!cleanMatch(raw(lang, word), SET.conceptPos));
   }
-  assert.equal(leadAgrees(raw("sa", "पिङ्ग")), false);
-  assert.equal(leadAgrees({ s: "x", l: "xx", g: "dog", p: "noun", c: "dog", senses: [{ g: "a pet", p: "noun" }, { g: "a hound", p: "noun" }, { g: "a dog", p: "noun" }] }), false);
-  assert.equal(leadAgrees({ s: "x", l: "xx", g: "dog", p: "noun", c: "dog", senses: [{ g: "a hound", p: "noun" }, { g: "a dog", p: "noun" }, { g: "a pet", p: "noun" }] }), true);
-  assert.equal(leadAgrees({ s: "x", l: "xx", g: "dog", p: "noun", c: "dog", senses: [{ g: "a pet", p: "noun" }] }), true);
 });
 
 test("a rival whose gloss shares a sense word with the answer is rejected", () => {

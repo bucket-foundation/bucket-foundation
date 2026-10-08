@@ -63,10 +63,8 @@ export const SOURCE_LANGUAGE = "en";
 export const MIN_PAIR_LANGUAGES = 3;
 export const VAGUE_GLOSS = /^(terms?|relating to|to do with|used|of,|any of|any)\b|\b(specifically|etc)$/i;
 export const MIN_OTHER_SENSES = 2;
-export const LEAD_SENSES = 2;
-export const MIN_SENSES_FOR_AGREEMENT = 3;
 export const SENSE_STOPWORDS: ReadonlySet<string> = new Set(["the", "and", "for", "that", "this", "with", "from", "have", "has", "was", "are", "not", "one", "any", "who", "its", "his", "her", "etc", "used", "use", "something", "someone", "person", "thing", "being", "usually", "especially", "also", "other", "into", "such", "some", "when", "which", "than", "more", "most", "can", "may", "often", "like", "type", "kind", "form", "part", "make", "made"]);
-export const WRONG_PAIRS: ReadonlySet<string> = new Set(["zh:門子:door", "sa:पिङ्ग:yellow", "pt:público:people"]);
+export const WRONG_PAIRS: ReadonlySet<string> = new Set(["zh:門子:door", "sa:पिङ्ग:yellow", "pt:público:people", "fa:مهشید:moon", "hi:बालिश:child"]);
 export const SENSE_KEY_CHARS = 25;
 export const MARKED_TAGS: readonly string[] = ["plural-only", "form-of", "alt-of", "archaic", "obsolete", "abbreviation", "rare", "dated", "slang", "vulgar", "derogatory", "offensive", "misspelling", "dialectal", "historical", "poetic", "figuratively", "colloquial", "informal"];
 
@@ -168,12 +166,6 @@ export function corroborated(w: RawWord): boolean {
   return others.length < MIN_OTHER_SENSES || others.some((s) => mentions(s.g ?? "", w.c ?? ""));
 }
 
-export function leadAgrees(w: RawWord): boolean {
-  const same = (w.senses ?? []).filter((s) => s.p === w.p);
-  if (same.length < MIN_SENSES_FOR_AGREEMENT) return true;
-  return same.slice(0, LEAD_SENSES).some((s) => mentions(s.g ?? "", w.c ?? ""));
-}
-
 export function denied(w: RawWord): boolean {
   return WRONG_PAIRS.has(`${w.l}:${w.s}:${w.c}`);
 }
@@ -181,7 +173,7 @@ export function denied(w: RawWord): boolean {
 export function cleanMatch(w: RawWord, pos: Readonly<Record<string, string>>): boolean {
   if (!w.c || !strictMatch(w) || !pos[w.c]) return false;
   if (w.l === SOURCE_LANGUAGE) return sourceSense(w, pos[w.c]) !== null;
-  return w.p === pos[w.c] && corroborated(w) && leadAgrees(w) && !denied(w);
+  return w.p === pos[w.c] && corroborated(w) && !denied(w);
 }
 
 function shortGloss(w: RawWord, pos: string): string {
