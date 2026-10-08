@@ -1,9 +1,9 @@
 {
  "schema": "bucket.solvability-atlas.makeup/v1",
  "built": "2026-10-07",
- "rows": 5149,
+ "rows": 5206,
  "atlas_rows": 71,
- "sourced_rows": 5078,
+ "sourced_rows": 5135,
  "threshold": 0.781,
  "labels": {
   "branch": {
@@ -11,14 +11,14 @@
    "counts": {
     "mathematics": 4112,
     "physics": 275,
-    "chemistry": 94,
-    "information": 127,
+    "chemistry": 104,
+    "information": 137,
     "biophysics": 218,
     "cosmology": 139,
-    "mind": 113,
-    "applied": 71
+    "mind": 139,
+    "applied": 82
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "status": {
@@ -26,20 +26,20 @@
    "counts": {
     "solved": 1690,
     "partial": 903,
-    "open": 2556
+    "open": 2613
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "form": {
    "title": "Form",
    "counts": {
     "variant": 2194,
-    "question": 1282,
+    "question": 1339,
     "problem": 1260,
     "conjecture": 413
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "source": {
@@ -59,6 +59,7 @@
     "Wikipedia, unsolved problems in biology": 96,
     "Wikipedia, unsolved problems in astronomy": 81,
     "atlas, problems.tsv": 71,
+    "Wikipedia, other pages": 57,
     "formal-conjectures, Written on the Wall II": 54,
     "Wikipedia, unsolved problems in computer science": 49,
     "formal-conjectures, open quantum problems": 49,
@@ -83,21 +84,21 @@
     "formal-conjectures, optimization constants": 5,
     "formal-conjectures, Litt problems": 3
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "licence": {
    "title": "Licence",
    "counts": {
     "Apache-2.0": 3557,
-    "CC BY-SA 4.0": 1223,
+    "CC BY-SA 4.0": 1280,
     "AAAS copyright, headline cited, statement paraphrased": 239,
     "MIT": 71,
     "ACS copyright, title cited, statement paraphrased": 26,
     "Library of Congress record, chapter titles cited": 23,
     "Apache-2.0 and CC BY-SA 4.0": 10
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "resolved_kind": {
@@ -110,15 +111,15 @@
     "curated, resolved year in problems.tsv": 15
    },
    "present": 1690,
-   "absent": 3459
+   "absent": 3516
   },
   "posed_present": {
    "title": "Posed year",
    "counts": {
-    "posed year present": 657,
-    "posed year absent": 4492
+    "posed year present": 662,
+    "posed year absent": 4544
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "posed_decade": {
@@ -141,16 +142,16 @@
     "1930s": 21,
     "1940s": 9,
     "1950s": 16,
-    "1960s": 29,
+    "1960s": 30,
     "1970s": 33,
-    "1980s": 28,
-    "1990s": 40,
+    "1980s": 30,
+    "1990s": 42,
     "2000s": 166,
     "2010s": 69,
     "2020s": 134
    },
-   "present": 657,
-   "absent": 4492
+   "present": 662,
+   "absent": 4544
   },
   "resolved_decade": {
    "title": "Resolved year by decade, where present",
@@ -180,7 +181,7 @@
     "2020s": 57
    },
    "present": 305,
-   "absent": 4844
+   "absent": 4901
   },
   "zone": {
    "title": "Zone",
@@ -189,9 +190,9 @@
     "reachable": 2225,
     "beyond": 1131,
     "unsampled": 103,
-    "not in frontier": 69
+    "not in frontier": 126
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "prediction_class": {
@@ -202,37 +203,38 @@
     "needs a new idea": 911,
     "unsampled": 103,
     "solved": 1690,
-    "variant": 1430
+    "variant": 1430,
+    "not classed": 57
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "level": {
    "title": "Variant or top-level",
    "counts": {
-    "top-level": 2955,
+    "top-level": 3012,
     "variant": 2194
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "text_kind": {
    "title": "Embedding text kind",
    "counts": {
-    "statement": 5078,
+    "statement": 5135,
     "record": 71
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   },
   "length_band": {
    "title": "Statement length band",
    "counts": {
-    "under 20 words": 1952,
-    "20 to 40 words": 1838,
+    "under 20 words": 1956,
+    "20 to 40 words": 1891,
     "over 40 words": 1359
    },
-   "present": 5149,
+   "present": 5206,
    "absent": 0
   }
  },
@@ -250,12 +252,12 @@
   "chemistry": {
    "solved": 22,
    "partial": 8,
-   "open": 64
+   "open": 74
   },
   "information": {
    "solved": 41,
    "partial": 5,
-   "open": 81
+   "open": 91
   },
   "biophysics": {
    "solved": 31,
@@ -270,12 +272,12 @@
   "mind": {
    "solved": 10,
    "partial": 21,
-   "open": 82
+   "open": 108
   },
   "applied": {
    "solved": 32,
    "partial": 4,
-   "open": 35
+   "open": 46
   }
  },
  "openalex": {
@@ -786,6 +788,18 @@
    "posed": 21,
    "resolved": 17,
    "statement": 21
+  },
+  "Wikipedia, other pages": {
+   "rows": 57,
+   "licences": {
+    "CC BY-SA 4.0": 57
+   },
+   "status": {
+    "open": 57
+   },
+   "posed": 5,
+   "resolved": 0,
+   "statement": 57
   }
  }
 }
