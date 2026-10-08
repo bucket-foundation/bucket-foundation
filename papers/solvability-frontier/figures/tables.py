@@ -87,6 +87,12 @@ def main() -> None:
                 *[f"{esc(bd['name'])} & {bd['inside']} & {bd['outside']} & {pct(bd['rateInside'])} & {pct(bd['rateOutside'])} & {f3(bd['ratio'])} & \\\\" for bd in k["undecidedBounds"]],
                 "\\bottomrule", "\\end{tabular}",
             ])
+    write("frozen.tex", [
+        "\\begin{tabular}{@{}llrrrrrrrr@{}}", "\\toprule",
+        "Cutoff & Coding & $\\tau_c$ & Inside & Outside & Resolved in & Resolved out & Ratio & $p$ & AUC \\\\", "\\midrule",
+        *[f"{c['cutoff']} & {k['coding']} & {f3(c['threshold'])} & {k['all']['inside']} & {k['all']['outside']} & {pct(k['all']['rateInside'])} & {pct(k['all']['rateOutside'])} & {f3(k['all']['ratio'])} & {pval(k['all']['pValue'])} & {f3(k['auc'])} \\\\" for c in d["frozen"] for k in c["codings"]],
+        "\\bottomrule", "\\end{tabular}",
+    ])
     br = sorted(d["frontier"]["branches"].items(), key=lambda kv: -kv[1]["total"])
     write("branches.tex", [
         "\\begin{tabular}{@{}lrrrrrrr@{}}", "\\toprule",
