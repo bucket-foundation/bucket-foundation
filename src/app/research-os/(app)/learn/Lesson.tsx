@@ -6,7 +6,6 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import katex from "katex";
-import "katex/dist/katex.min.css";
 import { InlineMath } from "@/components/math/InlineMath";
 import type { Atom } from "@/lib/academy/engine";
 
