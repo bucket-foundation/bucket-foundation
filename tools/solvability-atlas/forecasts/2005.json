@@ -5,7 +5,7 @@
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
- "input_hash": "c76d4e596bf3d93b73a98dbf72c59452706f875885eb324a9b65de9ccf8d3fae",
+ "input_hash": "bee5b31a4c20d53d740cc4d04d8693d04bc9a3e07e5b7c409dcb06d3341892e4",
  "solved": 170,
  "threshold_bounded": 16,
  "threshold": 0.639,
@@ -1325,6 +1325,24 @@
    "zone": "undecided"
   },
   {
+   "id": "fc-erdosproblems-163-erdos-163",
+   "branch": "mathematics",
+   "posed": 1973,
+   "words": 95,
+   "reach": 0.816,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-19-erdos-19",
+   "branch": "mathematics",
+   "posed": 1972,
+   "words": 16,
+   "reach": 0.765,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
    "id": "fc-erdosproblems-21-erdos-21",
    "branch": "mathematics",
    "posed": 1975,
@@ -1449,6 +1467,15 @@
    "reach": 0.797,
    "bounded": true,
    "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-67-erdos-67",
+   "branch": "mathematics",
+   "posed": 1932,
+   "words": 42,
+   "reach": 0.829,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "fc-erdosproblems-803-erdos-803",
@@ -2247,7 +2274,7 @@
    "branch": "cosmology",
    "posed": 1930,
    "words": 126,
-   "reach": 0.606,
+   "reach": 0.607,
    "bounded": true,
    "zone": "outside"
   },
@@ -2257,6 +2284,15 @@
    "posed": 1935,
    "words": 44,
    "reach": 0.732,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "rc-do-pentaquark-particles-exist",
+   "branch": "physics",
+   "posed": 1964,
+   "words": 27,
+   "reach": 0.811,
    "bounded": false,
    "zone": "inside"
   },
@@ -2418,7 +2454,7 @@
    "branch": "mathematics",
    "posed": 1998,
    "words": 13,
-   "reach": 0.654,
+   "reach": 0.655,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2558,6 +2594,60 @@
    "zone": "inside"
   },
   {
+   "id": "wp-andreoort-conjecture-jonathan-pila-ananth-shankar-jacob-tsim",
+   "branch": "mathematics",
+   "posed": 1989,
+   "words": 9,
+   "reach": 0.805,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-babai-s-problem-alireza-abdollahi-maysam-zallaghi-2015",
+   "branch": "mathematics",
+   "posed": 1979,
+   "words": 7,
+   "reach": 0.597,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "wp-blankenshipoporowski-conjecture",
+   "branch": "mathematics",
+   "posed": 1999,
+   "words": 20,
+   "reach": 0.768,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-bunkbed-conjecture-nikita-gladkov-igor-pak-alexander-zimin-2",
+   "branch": "mathematics",
+   "posed": 1985,
+   "words": 9,
+   "reach": 0.773,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-caratheodory-conjecture-for-surfaces-of-smoothness-c-4-brend",
+   "branch": "mathematics",
+   "posed": 1924,
+   "words": 13,
+   "reach": 0.797,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-crouzeix-s-conjecture-shanmu-jin-using-gpt-5-6-sol-2026",
+   "branch": "mathematics",
+   "posed": 2004,
+   "words": 21,
+   "reach": 0.815,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
    "id": "wp-delta-conjecture-1978",
    "branch": "mathematics",
    "posed": 1978,
@@ -2565,6 +2655,15 @@
    "reach": 0.793,
    "bounded": false,
    "zone": "inside"
+  },
+  {
+   "id": "wp-disproof-of-hedetniemi-s-conjecture-on-the-chromatic-number",
+   "branch": "mathematics",
+   "posed": 1966,
+   "words": 16,
+   "reach": 0.822,
+   "bounded": true,
+   "zone": "undecided"
   },
   {
    "id": "wp-existence-of-gravitational-waves-19162016",
@@ -2612,11 +2711,47 @@
    "zone": "outside"
   },
   {
+   "id": "wp-kakeya-conjecture",
+   "branch": "mathematics",
+   "posed": 1917,
+   "words": 25,
+   "reach": 0.765,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-keller-s-conjecture-joshua-brakensiek-marijn-heule-john-mack",
+   "branch": "mathematics",
+   "posed": 1930,
+   "words": 11,
+   "reach": 0.779,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-kelmansseymour-conjecture-dawei-he-yan-wang-and-xingxing-yu",
+   "branch": "mathematics",
+   "posed": 1977,
+   "words": 10,
+   "reach": 0.808,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
    "id": "wp-landau-s-problems",
    "branch": "mathematics",
    "posed": 1912,
    "words": 2,
    "reach": 0.682,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-mckay-conjecture",
+   "branch": "mathematics",
+   "posed": 1971,
+   "words": 39,
+   "reach": 0.774,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2657,6 +2792,15 @@
    "zone": "inside"
   },
   {
+   "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
+   "branch": "mathematics",
+   "posed": 1959,
+   "words": 11,
+   "reach": 0.813,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
    "id": "wp-solar-abundance-problem-19982022",
    "branch": "physics",
    "posed": 1998,
@@ -2666,6 +2810,42 @@
    "zone": "inside"
   },
   {
+   "id": "wp-suita-conjecture-qi-an-guan-and-xiangyu-zhou-2015",
+   "branch": "mathematics",
+   "posed": 1972,
+   "words": 8,
+   "reach": 0.815,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-telescope-conjecture",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 14,
+   "reach": 0.786,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-the-hadwigernelson-problem-on-the-chromatic-number-of-unit-d",
+   "branch": "mathematics",
+   "posed": 1950,
+   "words": 11,
+   "reach": 0.796,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-weibel-s-conjecture-moritz-kerz-florian-strunk-and-georg-tam",
+   "branch": "mathematics",
+   "posed": 1980,
+   "words": 10,
+   "reach": 0.814,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
    "id": "wp-why-do-we-dream",
    "branch": "mind",
    "posed": 2005,
@@ -2673,6 +2853,15 @@
    "reach": 0.513,
    "bounded": false,
    "zone": "outside"
+  },
+  {
+   "id": "wp-yau-s-conjecture-antoine-song-2018",
+   "branch": "mathematics",
+   "posed": 1982,
+   "words": 5,
+   "reach": 0.759,
+   "bounded": true,
+   "zone": "undecided"
   },
   {
    "id": "yangmills",

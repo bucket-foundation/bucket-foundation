@@ -298,29 +298,29 @@ export const PAPERS: Paper[] = [
       "https://github.com/gianyrox/bucket-foundation/tree/dev/papers/solvability-frontier",
     license: "CC-BY-4.0 text; figures and data per file below",
     corpusLine:
-      "solvability atlas, 5,206 problem statements across seven branches, bge-small-en-v1.5 embeddings, 50 stored neighbours per row",
+      "solvability atlas, 5,209 problem statements across seven branches, bge-small-en-v1.5 embeddings, 50 stored neighbours per row",
     abstract: [
-      "A first pass, the Solver Gap Engine of 2026-09-30, ranked 1,364 open problems from the formal-conjectures repository by their nearest solved problem in another file and found 31 at cosine similarity 0.8 or above. The frontier is the second pass. We embed 5,206 problem statements across seven canon branches with a small sentence encoder, call a problem's reach its highest similarity to a solved problem, and draw a frontier at the 10th percentile of solved problems' reach, 0.759 on this set. Open problems are sorted into a reach class: 277 close to known results, 875 borderline and 934 that need a new idea.",
-      "A backtest at cutoffs 2005 and 2021, and frozen forecasts at 2005, 2015 and 2021, score the rule on the questions posed by those years under two outcome codings. Settled only: the inside rows settle at 23% against 4.5% outside at 2005 (159 and 67 rows, permutation p = 0.001, AUC 0.807), 17% against 3% at 2015 (p = 0.008, AUC 0.755) and 11% against 1% at 2021 (261 and 167 rows, p < 0.001, AUC 0.890); with the solved rows that have no resolved year removed, the 2005 gap holds (p = 0.014) and the 2021 gap does not (p = 0.149); placing the 72 undecided 2005 rows outside narrows the 2005 gap to 23% against 19%. Settled or advanced shows no gap: AUC 0.520, 0.512 and 0.516. The embeddings and stored neighbours come from the 2026 corpus and the embedding model postdates every cutoff, so the frozen forecasts are a retrospective check under that leak and no prospective test.",
+      "A first pass, the Solver Gap Engine of 2026-09-30, ranked 1,364 open problems from the formal-conjectures repository by their nearest solved problem in another file and found 31 at cosine similarity 0.8 or above. The frontier is the second pass. We embed 5,209 problem statements across seven canon branches with a small sentence encoder, call a problem's reach its highest similarity to a solved problem, and draw a frontier at the 10th percentile of solved problems' reach, 0.762 on this set. Open problems are sorted into a reach class: 268 close to known results, 863 borderline and 954 that need a new idea.",
+      "A backtest at cutoffs 2005 and 2021, and frozen forecasts at 2005, 2015 and 2021, score the rule on the questions posed by those years under two outcome codings. Settled only: the inside rows settle at 24% against 5.9% outside at 2005 (161 and 68 rows, permutation p = 0.002, AUC 0.799), 22% against 3% at 2015 (p < 0.001, AUC 0.812) and 13% against 1% at 2021 (272 and 167 rows, p < 0.001, AUC 0.906); with the solved rows that have no resolved year removed, the 2005 gap holds (p = 0.020) and the 2021 gap shrinks but holds (p = 0.013); placing the 90 undecided 2005 rows outside reverses the 2005 comparison to 24% against 27%. Settled or advanced shows no gap: AUC 0.524, 0.554 and 0.543. The embeddings and stored neighbours come from the 2026 corpus and the embedding model postdates every cutoff, so the frozen forecasts are a retrospective check under that leak and no prospective test.",
     ],
     highlights: [
       "Solver Gap Engine, 2026-09-30: 3,599 formal-conjectures problems mapped, 1,364 open problems ranked, 31 at cross-file similarity 0.8 or above, median 0.586 against 0.167 for a random pair.",
-      "Frontier at reach 0.759 on 5,206 rows: 1,690 solved, 2,466 reachable, 1,050 beyond; 3,851 of the 4,156 inside rows are mathematics.",
-      "The settled-only gap holds at three cutoffs (23% against 4.5% at 2005, 17% against 3% at 2015, 11% against 1% at 2021); without solved rows that have no resolved year it holds at 2005 (p = 0.014) and not at 2021 (p = 0.149), and the settled-or-advanced AUC sits within 0.03 of chance at every cutoff.",
-      "Predictions by class for 2,086 open top-level problems, with the three nearest solved problems and starting works per row, published as predictions.csv.",
+      "Frontier at reach 0.762 on 5,209 rows: 1,694 solved, 2,434 reachable, 1,081 beyond; 3,825 of the 4,128 inside rows are mathematics.",
+      "The settled-only gap holds at three cutoffs (24% against 5.9% at 2005, 22% against 3% at 2015, 13% against 1% at 2021); without solved rows that have no resolved year it holds at 2005 (p = 0.020) and at 2021 (p = 0.013), and the settled-or-advanced AUC sits within 0.06 of chance at every cutoff.",
+      "Predictions by class for 2,085 open top-level problems, with the three nearest solved problems and starting works per row, published as predictions.csv.",
     ],
     figures: [
       {
         src: "/papers/solvability-frontier/fig_frontier.webp",
-        alt: "The solvability frontier drawn as a disc: solved rows inside, open rows inside the circle at reach 0.759, outside rows beyond it",
+        alt: "The solvability frontier drawn as a disc: solved rows inside, open rows inside the circle at reach 0.762, outside rows beyond it",
         caption:
-          "Figure 2. The frontier on 5,206 rows. Solved rows fill the inner disc by reach, open rows inside fill the ring up to the circle at 0.759, and outside rows sit beyond it by how far their reach falls short. Angle is the row's rank along the first two principal components of the embeddings.",
+          "Figure 2. The frontier on 5,209 rows. Solved rows fill the inner disc by reach, open rows inside fill the ring up to the circle at 0.762, and outside rows sit beyond it by how far their reach falls short. Angle is the row's rank along the first two principal components of the embeddings.",
       },
       {
         src: "/papers/solvability-frontier/fig_makeup.webp",
-        alt: "Bar charts of the 5,206 rows by branch, status, form, source, licence, resolution evidence, posed and resolved years, zone, class, level, text kind and length",
+        alt: "Bar charts of the 5,209 rows by branch, status, form, source, licence, resolution evidence, posed and resolved years, zone, class, level, text kind and length",
         caption:
-          "Figure 1. Make-up of the 5,206 rows under every label the pipeline reads: mathematics holds 4,112 rows, formal-conjectures supplies 3,567, Apache-2.0 covers 3,557, 662 rows carry a posed year, 305 a resolved year, and 2,194 are variants of another row.",
+          "Figure 1. Make-up of the 5,209 rows under every label the pipeline reads: mathematics holds 4,112 rows, formal-conjectures supplies 3,567, Apache-2.0 covers 3,557, 687 rows carry a posed year, 309 a resolved year, and 2,194 are variants of another row.",
       },
       {
         src: "/papers/solvability-frontier/fig_backtest.webp",
@@ -332,11 +332,11 @@ export const PAPERS: Paper[] = [
         src: "/papers/solvability-frontier/fig_classes.webp",
         alt: "Stacked bars of open problems per reach class, coloured by branch",
         caption:
-          "Figure 4. Reach classes by branch: 277 close to known results, 875 borderline and 934 that need a new idea. Mathematics holds 273 of the 277 and 820 of the 875.",
+          "Figure 4. Reach classes by branch: 268 close to known results, 863 borderline and 954 that need a new idea. Mathematics holds 264 of the 268 and 811 of the 863.",
       },
     ],
     dataLinks: [
-      { label: "predictions.csv, 2,086 ranked open problems; CC BY-SA 4.0, carries Wikipedia and formal-conjectures statements, attributed per row", href: "/papers/solvability-frontier/data/predictions.csv" },
+      { label: "predictions.csv, 2,085 ranked open problems; CC BY-SA 4.0, carries Wikipedia and formal-conjectures statements, attributed per row", href: "/papers/solvability-frontier/data/predictions.csv" },
       { label: "backtest.json, both cutoffs and codings; CC BY-SA 4.0, carries row statements", href: "/papers/solvability-frontier/data/backtest.json" },
       { label: "forecasts, one JSON file per cutoff with its threshold, input hash and zone per row; MIT", href: "https://github.com/gianyrox/bucket-foundation/tree/dev/tools/solvability-atlas/forecasts" },
       { label: "makeup.json, counts per label; CC0", href: "/papers/solvability-frontier/data/makeup.json" },
