@@ -179,7 +179,7 @@ if [[ $DIFF_STATUS -ne 0 ]]; then
   build "could not compute the diff from $RANGE_DESC (git said: $DIFF_OUTPUT); building to be safe"
 fi
 
-ALLOWLIST_RE='^(src/|public/|package\.json$|package-lock\.json$|next\.config\.mjs$|tailwind\.config\.ts$|postcss\.config\.mjs$|tsconfig\.json$|vercel\.json$|scripts/vercel-ignore-build\.sh$|scripts/sync-academy\.mjs$|learning/app/|bucket-canon/|canon-figures/figures\.json$|feed\.json$|PROTOCOL\.md$|GOVERNANCE\.md$|MANIFESTO\.md$|_intake/embeddings/|_intake/embeddings-v2/|_intake/connections/)'
+ALLOWLIST_RE='^(src/|public/|package\.json$|package-lock\.json$|next\.config\.mjs$|tailwind\.config\.ts$|postcss\.config\.mjs$|tsconfig\.json$|vercel\.json$|scripts/vercel-ignore-build\.sh$|scripts/sync-academy\.mjs$|learning/app/|bucket-canon/|canon-figures/figures\.json$|feed\.json$|docs/foundation/(PROTOCOL|GOVERNANCE|MANIFESTO)\.md$|_intake/embeddings/|_intake/embeddings-v2/|_intake/connections/)'
 
 if grep -qE "$ALLOWLIST_RE" <<<"$DIFF_OUTPUT"; then
   MATCHED="$(grep -E "$ALLOWLIST_RE" <<<"$DIFF_OUTPUT")"

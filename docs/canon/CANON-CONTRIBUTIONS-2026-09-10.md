@@ -63,7 +63,7 @@ manifest:
 
 ### Protocol surfaces
 
-- **x402 paid-to-cite.** `PROTOCOL.md` §3.1 states the agent-trust rule: a
+- **x402 paid-to-cite.** `docs/foundation/PROTOCOL.md` §3.1 states the agent-trust rule: a
   caller-facing response never carries a payment challenge. Settlement, when
   it happens, runs server-side between the bucket's own wallet and the
   upstream source; the caller reads `agent_action_required: false` and
@@ -119,7 +119,7 @@ An entry becomes citeable in three steps: the file lands under `bucket-canon/`
 per one of the three formats above; `tools/feed/feed.py` (driven by
 `tools/feed/parse.py`'s git-diff classifier) emits an `add_canon_entry` or
 `add_paper` event into `feed.json`/`feed.xml` on the commit that adds it; and
-`canon_tier` (`draft` → `candidate` → `canon`, per `PROTOCOL.md` §4.3)
+`canon_tier` (`draft` → `candidate` → `canon`, per `docs/foundation/PROTOCOL.md` §4.3)
 advances as the entry is reviewed, at which point the reference site's
 `canon.json` sidecar and the MCP `canon_search` tool both pick it up with no
 further wiring. No minting step follows: IP-NFT minting was removed in
@@ -127,7 +127,7 @@ further wiring. No minting step follows: IP-NFT minting was removed in
 
 ## 2. What is new since the last ingestion-index update
 
-`CANON-INGESTION-INDEX.md` and `CANON-MASTER.md` both carry a 2026-05-10
+`docs/canon/CANON-INGESTION-INDEX.md` and `docs/canon/CANON-MASTER.md` both carry a 2026-05-10
 timestamp. `git log --since=2026-09-01` shows nine commits since, three of
 them merged pull requests: PR #2 (`feat/hypothesis-engine`, 2026-09-10T03:03),
 PR #3 (`feat/research-os-k12`, 2026-09-10T04:02), and PR #6
@@ -166,7 +166,7 @@ not built.
 | 6 | Site: `/research/papers` listing entry for the design paper | `src/lib/papers.ts`, append a third `Paper` object to `PAPERS` | See sketch below. Diverges from the existing two entries: no `pdfUrl` under `public/papers/` (the task requires linking to the paper's own path rather than copying the PDF), so this needs a `sourceUrl`-style field pointing at the GitHub blob instead of a vendored `public/` copy, or a `pdfUrl` that resolves to a new `/papers/history-hypothesis-engine/main.pdf` static passthrough if the team decides to vendor it after all. | P2, pending (touches `src/`) |
 | 7 | Site: MCP `canon` tool exposure for the new concept node and campaign runs | `mcp-server/bucket-mcp.py`, `list_claims()`'s branch/concept walk already finds `concepts/` files (confirmed: it walks `sub-claims/` only), and `TOOLS` | `list_claims()` needs a second walk over `<branch>/concepts/*.md` alongside its existing `sub-claims/<concept>/*.md` walk, or the two cards (chemiosmosis, this pass's hypothesis-engine node) stay invisible to `canon_search`/`canon_get_claim`. A new `bucket_hypothesis_timeline(corpus, run_id)` tool would expose item 3 once that route exists. | P2, pending (touches `mcp-server/`, adjacent to `src/`) |
 | 8 | `feed.json`/`feed.xml` entries and `public/llms.txt` lines for the paper and the five specs | `feed.json`, `feed.xml`, `feed/2026-09.json`, `public/llms.txt` | **Done this pass**, see Part 4. | Done |
-| 9 | DOI for the design paper | Zenodo, via the same mint path `education-atlas` already used | Minted 2026-09-10 with the founder's `ZENODO_TOKEN`: `10.5281/zenodo.22694649` (v1.0.0, report, license `cc-by-4.0`, community `open-science`, matching the `10.5281/zenodo.22083720` precedent's metadata shape). `papers/history-hypothesis-engine/zenodo.json` records the submitted metadata; `papers/tools/zenodo-mint.py` is the reusable mint script, generalized from this run so the next paper only writes a `zenodo.json`. The DOI is backfilled into `main.tex`'s title-page footnote, this file, the canon card, `CANON-INGESTION-INDEX.md`, `CANON-MASTER.md`, and `papers/bib/common.bib`. Still open: `src/lib/papers.ts`'s `doi`/`doiUrl` fields (item 6), which stays P2 pending on its own (touches `src/`). | Done |
+| 9 | DOI for the design paper | Zenodo, via the same mint path `education-atlas` already used | Minted 2026-09-10 with the founder's `ZENODO_TOKEN`: `10.5281/zenodo.22694649` (v1.0.0, report, license `cc-by-4.0`, community `open-science`, matching the `10.5281/zenodo.22083720` precedent's metadata shape). `papers/history-hypothesis-engine/zenodo.json` records the submitted metadata; `papers/tools/zenodo-mint.py` is the reusable mint script, generalized from this run so the next paper only writes a `zenodo.json`. The DOI is backfilled into `main.tex`'s title-page footnote, this file, the canon card, `docs/canon/CANON-INGESTION-INDEX.md`, `docs/canon/CANON-MASTER.md`, and `papers/bib/common.bib`. Still open: `src/lib/papers.ts`'s `doi`/`doiUrl` fields (item 6), which stays P2 pending on its own (touches `src/`). | Done |
 
 ## 4. Done now
 
@@ -178,7 +178,7 @@ Four artifacts, all outside `src/`:
    calculus, its nine key Lean derivations by name and proof status, and its
    two downstream campaign runs. Links to `papers/history-hypothesis-engine/main.tex`
    and the `lean/Bucket/` sources rather than copying the PDF.
-2. **`CANON-INGESTION-INDEX.md`** and **`CANON-MASTER.md`**: each gets a
+2. **`docs/canon/CANON-INGESTION-INDEX.md`** and **`docs/canon/CANON-MASTER.md`**: each gets a
    dated "Recent additions, 2026-09-10" section listing the seven new
    artifacts (the paper, the survey, the four specs, and the canon card),
    kept separate from the audited pipeline counts above them rather than
@@ -201,7 +201,7 @@ Four artifacts, all outside `src/`:
 
 `agf-lint-voice check` ran clean (zero violations) on all four files plus
 this one after two manual antithesis-construction fixes in the concept card
-and one in `CANON-INGESTION-INDEX.md`.
+and one in `docs/canon/CANON-INGESTION-INDEX.md`.
 
 Not done, by instruction: nothing under `src/` changed. Items 3, 4, 6, and 7
 in Part 3 stay proposals with paths and diff sketches for whoever picks up

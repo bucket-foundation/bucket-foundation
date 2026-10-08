@@ -24,7 +24,7 @@ except ImportError:  # pragma: no cover - requests is in requirements.txt
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CANON_ROOT = REPO_ROOT / "bucket-canon"
-INGESTION_INDEX = REPO_ROOT / "CANON-INGESTION-INDEX.md"
+INGESTION_INDEX = REPO_ROOT / "docs" / "canon" / "CANON-INGESTION-INDEX.md"
 
 _PENDING_RE = re.compile(r"^\s*pending\b", re.I)
 _REJECTED_RE = re.compile(r"^\s*rejected\b", re.I)

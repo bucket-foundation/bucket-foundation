@@ -3,7 +3,7 @@
 -- gaps that bead names: quote-locator source verification, duplicate
 -- detection against prior work and canon, an optional-to-required
 -- counter-evidence field (Osborne 2010), and a computed citation-
--- incentive-eligibility flag (GOVERNANCE.md: payment only after canon
+-- incentive-eligibility flag (docs/foundation/GOVERNANCE.md: payment only after canon
 -- acceptance). See learning/research-os/PRODUCTION-GUARD.md for the full
 -- rule set and src/lib/research-os/production-guard.ts for the pure
 -- functions that compute each value; this migration only adds the
@@ -46,7 +46,7 @@ alter table graph.productions add column if not exists counter_evidence_required
 -- reviewer's decision flips `status` to 'accepted' (production-guard.ts's
 -- computeIncentiveEligible), true only when the target node's linked
 -- canon record (graph.nodes.provenance.paper_id) carries a raw
--- provenance_signoff value starting with "approved" (GOVERNANCE.md,
+-- provenance_signoff value starting with "approved" (docs/foundation/GOVERNANCE.md,
 -- "Canon sign-off"). No payment code reads this column yet; it exists so
 -- a future payout pass has a real, audited eligibility signal to read
 -- instead of re-deriving one.

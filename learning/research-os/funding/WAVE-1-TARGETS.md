@@ -34,9 +34,9 @@ Sources: [tools-competition.org](https://tools-competition.org/), fetched 2026-0
 
 **Lead paragraph.**
 
-> Research OS for K-12's code is MIT-licensed and built on an open protocol; the workspace exists to make research skill-building free to any learner, with no gatekeeping between a learner and the graph. Registering as a Digital Public Good makes that openness legible to the funders, governments, and NGOs the DPGA registry already serves as a discovery layer, the same open-source, no-exclusivity posture `MANIFESTO.md` states as a founding commitment for the parent Foundation.
+> Research OS for K-12's code is MIT-licensed and built on an open protocol; the workspace exists to make research skill-building free to any learner, with no gatekeeping between a learner and the graph. Registering as a Digital Public Good makes that openness legible to the funders, governments, and NGOs the DPGA registry already serves as a discovery layer, the same open-source, no-exclusivity posture `docs/foundation/MANIFESTO.md` states as a founding commitment for the parent Foundation.
 
-Source: `MANIFESTO.md` section 6 ("What bucket is not," on no exclusivity); `_intake/research-os-k12/04-funding-and-people.md` section 2.3, Digital Public Goods Alliance row.
+Source: `docs/foundation/MANIFESTO.md` section 6 ("What bucket is not," on no exclusivity); `_intake/research-os-k12/04-funding-and-people.md` section 2.3, Digital Public Goods Alliance row.
 
 Sources: [digitalpublicgoods.net/digital-public-goods/submission-guide](https://digitalpublicgoods.net/digital-public-goods/submission-guide), fetched 2026-09-10; `_intake/research-os-k12/04-funding-and-people.md` section 2.1, row 4.
 

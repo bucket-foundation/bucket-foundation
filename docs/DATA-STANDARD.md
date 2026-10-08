@@ -105,10 +105,10 @@ A record is one JSON object. Every record carries the common fields. A kind adds
 | `creators_original` | no | The source's author string, kept when it cannot be split or ends in `et al.`; `creators_truncated` is then true |
 | `dates` | no | See Dates |
 | `source` | yes | `{url, license, retrieved_at, file, sha256}`; `file` is the repo path the record came from |
-| `sha256` | when Bucket holds the bytes | Hash of the work's bytes, as in `PROTOCOL.md` |
+| `sha256` | when Bucket holds the bytes | Hash of the work's bytes, as in `docs/foundation/PROTOCOL.md` |
 | `tier` | yes | `draft`, `candidate` or `canon` |
 | `provenance` | no | `[{action, at, by, via}]` |
-| `cite` | when a citation fee applies | `{price_usd, payout_wallet, license}` as in `PROTOCOL.md`, where `payout_wallet` is required |
+| `cite` | when a citation fee applies | `{price_usd, payout_wallet, license}` as in `docs/foundation/PROTOCOL.md`, where `payout_wallet` is required |
 | `rights` | yes | See Rights |
 | `verification` | yes | See Verification |
 | `relations` | yes, may be empty | See Relations |
@@ -116,7 +116,7 @@ A record is one JSON object. Every record carries the common fields. A kind adds
 | `living` | on `person` | `yes`, `no` or `unknown`. See Additional Coverage |
 | `embargo_until` | no | Date before which the record stays out of packs and feeds |
 
-An implementation preserves a field it does not know. `PROTOCOL.md` section 4 already requires this of sidecars.
+An implementation preserves a field it does not know. `docs/foundation/PROTOCOL.md` section 4 already requires this of sidecars.
 
 A field name means one thing. `tier` is the canon tier everywhere. The yaml papers' `tier: OUTCOME` becomes `outcome_tier`, and the numeric `tier` of `lang-core`, which orders categories from 0 to 10, becomes `order_tier`.
 
@@ -322,21 +322,21 @@ UCUM has no currency units. A currency is written as a UCUM annotation holding t
 
 ## Protocol Mapping
 
-Checked against `PROTOCOL.md` section 4 and `src/lib/feed402-client.ts`.
+Checked against `docs/foundation/PROTOCOL.md` section 4 and `src/lib/feed402-client.ts`.
 
 | Field | Origin | Use in a record |
 |---|---|---|
-| `sha256` | `PROTOCOL.md` | Kept: hash of the work's bytes |
-| `canon_tier` | `PROTOCOL.md`: `draft`, `candidate`, `canon` | Kept as `tier` |
-| `provenance[]` | `PROTOCOL.md`: `action`, `at`, `by`, `via` | Kept |
-| `authors[].orcid`, `authors[].wallet` | `PROTOCOL.md` | Kept inside `creators[].ids` and `creators[].wallet` |
-| `source.url`, `source.license` | `PROTOCOL.md` | Kept |
-| `cite.license` | `PROTOCOL.md` sidecar | Cite policy. It says nothing about the work's own licence, which lives in `rights.licence`. |
-| `cite.payout_wallet`, `cite.price_usd` | `PROTOCOL.md` sidecar; the wallet is a required field there | Kept in `cite` |
+| `sha256` | `docs/foundation/PROTOCOL.md` | Kept: hash of the work's bytes |
+| `canon_tier` | `docs/foundation/PROTOCOL.md`: `draft`, `candidate`, `canon` | Kept as `tier` |
+| `provenance[]` | `docs/foundation/PROTOCOL.md`: `action`, `at`, `by`, `via` | Kept |
+| `authors[].orcid`, `authors[].wallet` | `docs/foundation/PROTOCOL.md` | Kept inside `creators[].ids` and `creators[].wallet` |
+| `source.url`, `source.license` | `docs/foundation/PROTOCOL.md` | Kept |
+| `cite.license` | `docs/foundation/PROTOCOL.md` sidecar | Cite policy. It says nothing about the work's own licence, which lives in `rights.licence`. |
+| `cite.payout_wallet`, `cite.price_usd` | `docs/foundation/PROTOCOL.md` sidecar; the wallet is a required field there | Kept in `cite` |
 | `canonical_url` | feed402 `CitationSource` | Bucket's URL for the record. The origin of the bytes is `source.url`. |
 | `kind`, `rights.facets`, `verification`, `relations`, `dates` | Bucket | New in `bucket.data/1` |
 
-`PROTOCOL.md` does not define `canonical_url`. The field belongs to the feed402 envelope, beside `retrieved_at` and `license`.
+`docs/foundation/PROTOCOL.md` does not define `canonical_url`. The field belongs to the feed402 envelope, beside `retrieved_at` and `license`.
 
 ## Relations
 
@@ -422,7 +422,7 @@ An embedding rebuild is its own PR.
 Points where the repo disagrees with the proposal or with a review finding, and what the standard does about each.
 
 1. `rankSourceSha256` hashes ranking code. `inputSha256` covers the three globe files, so CI asserts that one.
-2. `canonical_url` is a feed402 field and is absent from `PROTOCOL.md`.
+2. `canonical_url` is a feed402 field and is absent from `docs/foundation/PROTOCOL.md`.
 3. The seven repeated atom ids hold different atoms, so `same-as` applies to none of them without an editor's call.
 4. `excerpt:<slug>` alone leaves duplicates: 26 slugs occur twice. Rule 6 of Ids adds the `claim_no` suffix to the later one.
 5. Evidence lookup by `concept::slug` already merges 17 pairs of excerpts.

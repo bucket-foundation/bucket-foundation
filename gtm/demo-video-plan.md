@@ -468,8 +468,8 @@ Drop these into `gtm/inputs/reading/` on first regen:
 - Lessig, *Free Culture* (2004) ch. 1, citation-as-infrastructure argument
 - Benkler, *The Wealth of Networks* (2006) ch. 9
 - Nielsen, *Reinventing Discovery* (2011), open science operating system
-- MANIFESTO.md (current bucket)
-- HISTORY.md § "Three slogans, three eras"
+- docs/foundation/MANIFESTO.md (current bucket)
+- docs/foundation/HISTORY.md § "Three slogans, three eras"
 - `canon-figures/figures.json` pass-1 seed
 - One representative paper from each of the 8 canon branches
 

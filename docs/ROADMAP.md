@@ -1,10 +1,10 @@
 # Roadmap
 
-Bucket reforms education. Research OS is the product, the canon holds the foundations, and citation fees route to authors ([MANIFESTO.md](./MANIFESTO.md)). This file lists the current release and the work queued behind it. The bead queue is the source of truth for status: `bd ready`.
+Bucket reforms education. Research OS is the product, the canon holds the foundations, and citation fees route to authors ([docs/foundation/MANIFESTO.md](foundation/MANIFESTO.md)). This file lists the current release and the work queued behind it. The bead queue is the source of truth for status: `bd ready`.
 
 ## Current release
 
-`bkt-v0.4.0`, 2026-09-30. Release notes: [CHANGELOG.md](./CHANGELOG.md).
+`bkt-v0.4.0`, 2026-09-30. Release notes: [CHANGELOG.md](../CHANGELOG.md).
 
 | Surface | State |
 |---|---|
@@ -35,8 +35,8 @@ A bead is ready only when it names a screen or API a user touches at launch. Eve
 | Author-side citation split | Reader-side settlement over x402 is live. The split that routes at least 80% of net receipts to the author completes the patronage rail. |
 | Research OS stages | Bead bkt-oc8l stages every queued `ros-` slice as MVP, near-term or later for the founder to mark. The marks set the build order. |
 | Student productions as graph nodes | An accepted production enters the map as a citable contribution. The engine fuses it as evidence and routes learners toward gap nodes. |
-| Canon growth | Dossiers and concept nodes enter by the promotion checklist in [CONTRIBUTING.md](./CONTRIBUTING.md). The canon stays small and holds foundations only. |
-| Second bucket | A separate operator runs the protocol from [PROTOCOL.md](./PROTOCOL.md) with its own canon. This is the measure of success in MANIFESTO section 9. |
+| Canon growth | Dossiers and concept nodes enter by the promotion checklist in [CONTRIBUTING.md](../CONTRIBUTING.md). The canon stays small and holds foundations only. |
+| Second bucket | A separate operator runs the protocol from [docs/foundation/PROTOCOL.md](foundation/PROTOCOL.md) with its own canon. This is the measure of success in MANIFESTO section 9. |
 
 ## Later
 
@@ -44,4 +44,4 @@ Labelled `post-launch` in the queue: prime directions for any corpus, the resear
 
 ## Polingual
 
-The photon index, 6,564,942 photons in 35 languages, runs locally. Its contract and plan are in [PHOTON-SPEC.md](./PHOTON-SPEC.md) and [POLINGUAL.md](./POLINGUAL.md). The former roadmap for that index sits in [docs/internal/archive/ROADMAP-POLINGUAL-2026-05-14.md](./docs/internal/archive/ROADMAP-POLINGUAL-2026-05-14.md).
+The photon index, 6,564,942 photons in 35 languages, runs locally. Its contract and plan are in [docs/specs/PHOTON-SPEC.md](specs/PHOTON-SPEC.md) and [docs/specs/POLINGUAL.md](specs/POLINGUAL.md). The former roadmap for that index sits in [docs/internal/archive/ROADMAP-POLINGUAL-2026-05-14.md](internal/archive/ROADMAP-POLINGUAL-2026-05-14.md).

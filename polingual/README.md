@@ -3,7 +3,7 @@
 Language-focused frontend for the photon graph. Sister product of
 bucket.foundation. Same substrate (photon index), different lens.
 
-See `../POLINGUAL.md` and `../PHOTON-SPEC.md` for the canonical specs.
+See `docs/specs/POLINGUAL.md` and `docs/specs/PHOTON-SPEC.md` for the canonical specs.
 
 ## Status
 

@@ -62,8 +62,8 @@ Or in development, polingual can read the same sqlite + memmap files directly (s
 
 ```
 bucket-foundation/
-├── PHOTON-SPEC.md            ← the contract (this lives in this repo)
-├── POLINGUAL.md              ← this file
+├── docs/specs/PHOTON-SPEC.md            ← the contract (this lives in this repo)
+├── docs/specs/POLINGUAL.md              ← this file
 ├── _intake/photons/          ← the shared substrate
 ├── src/                      ← bucket.foundation Next.js app
 └── polingual/                ← polingual.com Next.js app (separate)
