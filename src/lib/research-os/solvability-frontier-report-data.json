@@ -1,6 +1,6 @@
 {
  "schema": "bucket.solvability-frontier-report/v1",
- "built": "2026-10-06",
+ "built": "2026-10-08",
  "nodes": 5080,
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
@@ -799,6 +799,1094 @@
    }
   ]
  },
+ "frozen": [
+  {
+   "cutoff": 2005,
+   "solvedAtCutoff": 108,
+   "threshold": 0.644,
+   "thresholdBounded": 16,
+   "tested": 287,
+   "unsampled": 38,
+   "reachBounded": 76,
+   "undecided": 66,
+   "undatedSolved": 11,
+   "undatedSolvedTested": 32,
+   "codings": [
+    {
+     "coding": "settled",
+     "label": "settled: solved only",
+     "all": {
+      "name": "all",
+      "inside": 112,
+      "outside": 71,
+      "resolvedInside": 24,
+      "resolvedOutside": 4,
+      "rateInside": 0.214,
+      "rateOutside": 0.056,
+      "ratio": 3.804,
+      "pValue": 0.0062,
+      "belowFloor": false
+     },
+     "byLength": [
+      {
+       "name": "under 20 words",
+       "inside": 28,
+       "outside": 20,
+       "resolvedInside": 2,
+       "resolvedOutside": 0,
+       "rateInside": 0.071,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.5027,
+       "belowFloor": false
+      },
+      {
+       "name": "20 to 40 words",
+       "inside": 44,
+       "outside": 36,
+       "resolvedInside": 6,
+       "resolvedOutside": 2,
+       "rateInside": 0.136,
+       "rateOutside": 0.056,
+       "ratio": 2.455,
+       "pValue": 0.282,
+       "belowFloor": false
+      },
+      {
+       "name": "over 40 words",
+       "inside": 40,
+       "outside": 15,
+       "resolvedInside": 16,
+       "resolvedOutside": 2,
+       "rateInside": 0.4,
+       "rateOutside": 0.133,
+       "ratio": 3,
+       "pValue": 0.1018,
+       "belowFloor": false
+      }
+     ],
+     "byBranch": [
+      {
+       "name": "applied",
+       "inside": 4,
+       "outside": 3,
+       "resolvedInside": 0,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "biophysics",
+       "inside": 18,
+       "outside": 44,
+       "resolvedInside": 2,
+       "resolvedOutside": 2,
+       "rateInside": 0.111,
+       "rateOutside": 0.045,
+       "ratio": 2.444,
+       "pValue": 0.5768,
+       "belowFloor": false
+      },
+      {
+       "name": "chemistry",
+       "inside": 7,
+       "outside": 2,
+       "resolvedInside": 0,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "cosmology",
+       "inside": 11,
+       "outside": 5,
+       "resolvedInside": 0,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "mathematics",
+       "inside": 49,
+       "outside": 1,
+       "resolvedInside": 15,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "physics",
+       "inside": 23,
+       "outside": 16,
+       "resolvedInside": 7,
+       "resolvedOutside": 2,
+       "rateInside": 0.304,
+       "rateOutside": 0.125,
+       "ratio": 2.435,
+       "pValue": 0.2633,
+       "belowFloor": false
+      }
+     ],
+     "auc": 0.8,
+     "aucRows": 183,
+     "undatedRemoved": {
+      "all": {
+       "name": "all, undated solved rows removed",
+       "inside": 101,
+       "outside": 71,
+       "resolvedInside": 13,
+       "resolvedOutside": 4,
+       "rateInside": 0.129,
+       "rateOutside": 0.056,
+       "ratio": 2.285,
+       "pValue": 0.1305,
+       "belowFloor": false
+      },
+      "auc": 0.7,
+      "aucRows": 172
+     },
+     "undecidedResolved": 21,
+     "undecidedBounds": [
+      {
+       "name": "all undecided inside",
+       "inside": 178,
+       "outside": 71,
+       "rateInside": 0.253,
+       "rateOutside": 0.056,
+       "ratio": 4.487
+      },
+      {
+       "name": "all undecided outside",
+       "inside": 112,
+       "outside": 137,
+       "rateInside": 0.214,
+       "rateOutside": 0.182,
+       "ratio": 1.174
+      }
+     ]
+    },
+    {
+     "coding": "advanced",
+     "label": "settled or advanced: solved or partial",
+     "all": {
+      "name": "all",
+      "inside": 112,
+      "outside": 71,
+      "resolvedInside": 51,
+      "resolvedOutside": 43,
+      "rateInside": 0.455,
+      "rateOutside": 0.606,
+      "ratio": 0.752,
+      "pValue": 0.0508,
+      "belowFloor": false
+     },
+     "byLength": [
+      {
+       "name": "under 20 words",
+       "inside": 28,
+       "outside": 20,
+       "resolvedInside": 13,
+       "resolvedOutside": 14,
+       "rateInside": 0.464,
+       "rateOutside": 0.7,
+       "ratio": 0.663,
+       "pValue": 0.139,
+       "belowFloor": false
+      },
+      {
+       "name": "20 to 40 words",
+       "inside": 44,
+       "outside": 36,
+       "resolvedInside": 20,
+       "resolvedOutside": 27,
+       "rateInside": 0.455,
+       "rateOutside": 0.75,
+       "ratio": 0.606,
+       "pValue": 0.0126,
+       "belowFloor": false
+      },
+      {
+       "name": "over 40 words",
+       "inside": 40,
+       "outside": 15,
+       "resolvedInside": 18,
+       "resolvedOutside": 2,
+       "rateInside": 0.45,
+       "rateOutside": 0.133,
+       "ratio": 3.375,
+       "pValue": 0.0534,
+       "belowFloor": false
+      }
+     ],
+     "byBranch": [
+      {
+       "name": "applied",
+       "inside": 4,
+       "outside": 3,
+       "resolvedInside": 1,
+       "resolvedOutside": 2,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "biophysics",
+       "inside": 18,
+       "outside": 44,
+       "resolvedInside": 14,
+       "resolvedOutside": 32,
+       "rateInside": 0.778,
+       "rateOutside": 0.727,
+       "ratio": 1.069,
+       "pValue": 0.7564,
+       "belowFloor": false
+      },
+      {
+       "name": "chemistry",
+       "inside": 7,
+       "outside": 2,
+       "resolvedInside": 1,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "cosmology",
+       "inside": 11,
+       "outside": 5,
+       "resolvedInside": 2,
+       "resolvedOutside": 3,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "mathematics",
+       "inside": 49,
+       "outside": 1,
+       "resolvedInside": 24,
+       "resolvedOutside": 1,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "physics",
+       "inside": 23,
+       "outside": 16,
+       "resolvedInside": 9,
+       "resolvedOutside": 5,
+       "rateInside": 0.391,
+       "rateOutside": 0.313,
+       "ratio": 1.252,
+       "pValue": 0.7454,
+       "belowFloor": false
+      }
+     ],
+     "auc": 0.479,
+     "aucRows": 183,
+     "undatedRemoved": {
+      "all": {
+       "name": "all, undated solved rows removed",
+       "inside": 101,
+       "outside": 71,
+       "resolvedInside": 40,
+       "resolvedOutside": 43,
+       "rateInside": 0.396,
+       "rateOutside": 0.606,
+       "ratio": 0.654,
+       "pValue": 0.0075,
+       "belowFloor": false
+      },
+      "auc": 0.416,
+      "aucRows": 172
+     },
+     "undecidedResolved": 35,
+     "undecidedBounds": [
+      {
+       "name": "all undecided inside",
+       "inside": 178,
+       "outside": 71,
+       "rateInside": 0.483,
+       "rateOutside": 0.606,
+       "ratio": 0.798
+      },
+      {
+       "name": "all undecided outside",
+       "inside": 112,
+       "outside": 137,
+       "rateInside": 0.455,
+       "rateOutside": 0.569,
+       "ratio": 0.8
+      }
+     ]
+    }
+   ],
+   "inputHash": "42b2633583328c99e4e4efdab081bf0447c1120f9816d72db978b898781e1306",
+   "forecastBuilt": "2026-10-07"
+  },
+  {
+   "cutoff": 2015,
+   "solvedAtCutoff": 145,
+   "threshold": 0.634,
+   "thresholdBounded": 16,
+   "tested": 323,
+   "unsampled": 42,
+   "reachBounded": 66,
+   "undecided": 60,
+   "undatedSolved": 14,
+   "undatedSolvedTested": 33,
+   "codings": [
+    {
+     "coding": "settled",
+     "label": "settled: solved only",
+     "all": {
+      "name": "all",
+      "inside": 170,
+      "outside": 51,
+      "resolvedInside": 35,
+      "resolvedOutside": 0,
+      "rateInside": 0.206,
+      "rateOutside": 0,
+      "ratio": null,
+      "pValue": 0.0007,
+      "belowFloor": false
+     },
+     "byLength": [
+      {
+       "name": "under 20 words",
+       "inside": 40,
+       "outside": 13,
+       "resolvedInside": 3,
+       "resolvedOutside": 0,
+       "rateInside": 0.075,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.564,
+       "belowFloor": false
+      },
+      {
+       "name": "20 to 40 words",
+       "inside": 70,
+       "outside": 25,
+       "resolvedInside": 13,
+       "resolvedOutside": 0,
+       "rateInside": 0.186,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.0346,
+       "belowFloor": false
+      },
+      {
+       "name": "over 40 words",
+       "inside": 60,
+       "outside": 13,
+       "resolvedInside": 19,
+       "resolvedOutside": 0,
+       "rateInside": 0.317,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.0317,
+       "belowFloor": false
+      }
+     ],
+     "byBranch": [
+      {
+       "name": "applied",
+       "inside": 12,
+       "outside": 1,
+       "resolvedInside": 4,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "biophysics",
+       "inside": 33,
+       "outside": 30,
+       "resolvedInside": 3,
+       "resolvedOutside": 0,
+       "rateInside": 0.091,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.234,
+       "belowFloor": false
+      },
+      {
+       "name": "chemistry",
+       "inside": 8,
+       "outside": 2,
+       "resolvedInside": 1,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "cosmology",
+       "inside": 13,
+       "outside": 3,
+       "resolvedInside": 0,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "information",
+       "inside": 14,
+       "outside": 1,
+       "resolvedInside": 4,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "mathematics",
+       "inside": 68,
+       "outside": 2,
+       "resolvedInside": 18,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "physics",
+       "inside": 22,
+       "outside": 12,
+       "resolvedInside": 5,
+       "resolvedOutside": 0,
+       "rateInside": 0.227,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.135,
+       "belowFloor": false
+      }
+     ],
+     "auc": 0.736,
+     "aucRows": 221,
+     "undatedRemoved": {
+      "all": {
+       "name": "all, undated solved rows removed",
+       "inside": 156,
+       "outside": 51,
+       "resolvedInside": 21,
+       "resolvedOutside": 0,
+       "rateInside": 0.135,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.0061,
+       "belowFloor": false
+      },
+      "auc": 0.608,
+      "aucRows": 207
+     },
+     "undecidedResolved": 19,
+     "undecidedBounds": [
+      {
+       "name": "all undecided inside",
+       "inside": 230,
+       "outside": 51,
+       "rateInside": 0.235,
+       "rateOutside": 0,
+       "ratio": null
+      },
+      {
+       "name": "all undecided outside",
+       "inside": 170,
+       "outside": 111,
+       "rateInside": 0.206,
+       "rateOutside": 0.171,
+       "ratio": 1.203
+      }
+     ]
+    },
+    {
+     "coding": "advanced",
+     "label": "settled or advanced: solved or partial",
+     "all": {
+      "name": "all",
+      "inside": 170,
+      "outside": 51,
+      "resolvedInside": 82,
+      "resolvedOutside": 28,
+      "rateInside": 0.482,
+      "rateOutside": 0.549,
+      "ratio": 0.879,
+      "pValue": 0.4297,
+      "belowFloor": false
+     },
+     "byLength": [
+      {
+       "name": "under 20 words",
+       "inside": 40,
+       "outside": 13,
+       "resolvedInside": 20,
+       "resolvedOutside": 10,
+       "rateInside": 0.5,
+       "rateOutside": 0.769,
+       "ratio": 0.65,
+       "pValue": 0.115,
+       "belowFloor": false
+      },
+      {
+       "name": "20 to 40 words",
+       "inside": 70,
+       "outside": 25,
+       "resolvedInside": 37,
+       "resolvedOutside": 18,
+       "rateInside": 0.529,
+       "rateOutside": 0.72,
+       "ratio": 0.734,
+       "pValue": 0.1039,
+       "belowFloor": false
+      },
+      {
+       "name": "over 40 words",
+       "inside": 60,
+       "outside": 13,
+       "resolvedInside": 25,
+       "resolvedOutside": 0,
+       "rateInside": 0.417,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.008,
+       "belowFloor": false
+      }
+     ],
+     "byBranch": [
+      {
+       "name": "applied",
+       "inside": 12,
+       "outside": 1,
+       "resolvedInside": 6,
+       "resolvedOutside": 1,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "biophysics",
+       "inside": 33,
+       "outside": 30,
+       "resolvedInside": 24,
+       "resolvedOutside": 22,
+       "rateInside": 0.727,
+       "rateOutside": 0.733,
+       "ratio": 0.992,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "chemistry",
+       "inside": 8,
+       "outside": 2,
+       "resolvedInside": 2,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "cosmology",
+       "inside": 13,
+       "outside": 3,
+       "resolvedInside": 3,
+       "resolvedOutside": 2,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "information",
+       "inside": 14,
+       "outside": 1,
+       "resolvedInside": 5,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "mathematics",
+       "inside": 68,
+       "outside": 2,
+       "resolvedInside": 34,
+       "resolvedOutside": 1,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "physics",
+       "inside": 22,
+       "outside": 12,
+       "resolvedInside": 8,
+       "resolvedOutside": 2,
+       "rateInside": 0.364,
+       "rateOutside": 0.167,
+       "ratio": 2.182,
+       "pValue": 0.2686,
+       "belowFloor": false
+      }
+     ],
+     "auc": 0.509,
+     "aucRows": 221,
+     "undatedRemoved": {
+      "all": {
+       "name": "all, undated solved rows removed",
+       "inside": 156,
+       "outside": 51,
+       "resolvedInside": 68,
+       "resolvedOutside": 28,
+       "rateInside": 0.436,
+       "rateOutside": 0.549,
+       "ratio": 0.794,
+       "pValue": 0.1919,
+       "belowFloor": false
+      },
+      "auc": 0.451,
+      "aucRows": 207
+     },
+     "undecidedResolved": 32,
+     "undecidedBounds": [
+      {
+       "name": "all undecided inside",
+       "inside": 230,
+       "outside": 51,
+       "rateInside": 0.496,
+       "rateOutside": 0.549,
+       "ratio": 0.903
+      },
+      {
+       "name": "all undecided outside",
+       "inside": 170,
+       "outside": 111,
+       "rateInside": 0.482,
+       "rateOutside": 0.541,
+       "ratio": 0.892
+      }
+     ]
+    }
+   ],
+   "inputHash": "2ac47f048a9217ae463aade5f490f491b20f03b10a4cf08ee082e54dd67a2a93",
+   "forecastBuilt": "2026-10-07"
+  },
+  {
+   "cutoff": 2021,
+   "solvedAtCutoff": 190,
+   "threshold": 0.656,
+   "thresholdBounded": 11,
+   "tested": 465,
+   "unsampled": 58,
+   "reachBounded": 53,
+   "undecided": 43,
+   "undatedSolved": 21,
+   "undatedSolvedTested": 33,
+   "codings": [
+    {
+     "coding": "settled",
+     "label": "settled: solved only",
+     "all": {
+      "name": "all",
+      "inside": 238,
+      "outside": 126,
+      "resolvedInside": 28,
+      "resolvedOutside": 1,
+      "rateInside": 0.118,
+      "rateOutside": 0.008,
+      "ratio": 14.824,
+      "pValue": 0.0002,
+      "belowFloor": false
+     },
+     "byLength": [
+      {
+       "name": "under 20 words",
+       "inside": 101,
+       "outside": 57,
+       "resolvedInside": 1,
+       "resolvedOutside": 0,
+       "rateInside": 0.01,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "20 to 40 words",
+       "inside": 77,
+       "outside": 49,
+       "resolvedInside": 6,
+       "resolvedOutside": 1,
+       "rateInside": 0.078,
+       "rateOutside": 0.02,
+       "ratio": 3.818,
+       "pValue": 0.2534,
+       "belowFloor": false
+      },
+      {
+       "name": "over 40 words",
+       "inside": 60,
+       "outside": 20,
+       "resolvedInside": 21,
+       "resolvedOutside": 0,
+       "rateInside": 0.35,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.0016,
+       "belowFloor": false
+      }
+     ],
+     "byBranch": [
+      {
+       "name": "applied",
+       "inside": 13,
+       "outside": 11,
+       "resolvedInside": 0,
+       "resolvedOutside": 0,
+       "rateInside": 0,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "biophysics",
+       "inside": 39,
+       "outside": 52,
+       "resolvedInside": 1,
+       "resolvedOutside": 0,
+       "rateInside": 0.026,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.4306,
+       "belowFloor": false
+      },
+      {
+       "name": "chemistry",
+       "inside": 30,
+       "outside": 16,
+       "resolvedInside": 1,
+       "resolvedOutside": 0,
+       "rateInside": 0.033,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "cosmology",
+       "inside": 20,
+       "outside": 10,
+       "resolvedInside": 0,
+       "resolvedOutside": 0,
+       "rateInside": 0,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "information",
+       "inside": 18,
+       "outside": 11,
+       "resolvedInside": 1,
+       "resolvedOutside": 1,
+       "rateInside": 0.056,
+       "rateOutside": 0.091,
+       "ratio": 0.611,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "mathematics",
+       "inside": 87,
+       "outside": 1,
+       "resolvedInside": 24,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "physics",
+       "inside": 31,
+       "outside": 25,
+       "resolvedInside": 1,
+       "resolvedOutside": 0,
+       "rateInside": 0.032,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 1,
+       "belowFloor": false
+      }
+     ],
+     "auc": 0.883,
+     "aucRows": 364,
+     "undatedRemoved": {
+      "all": {
+       "name": "all, undated solved rows removed",
+       "inside": 217,
+       "outside": 126,
+       "resolvedInside": 7,
+       "resolvedOutside": 1,
+       "rateInside": 0.032,
+       "rateOutside": 0.008,
+       "ratio": 4.065,
+       "pValue": 0.2692,
+       "belowFloor": false
+      },
+      "auc": 0.7,
+      "aucRows": 343
+     },
+     "undecidedResolved": 12,
+     "undecidedBounds": [
+      {
+       "name": "all undecided inside",
+       "inside": 281,
+       "outside": 126,
+       "rateInside": 0.142,
+       "rateOutside": 0.008,
+       "ratio": 17.936
+      },
+      {
+       "name": "all undecided outside",
+       "inside": 238,
+       "outside": 169,
+       "rateInside": 0.118,
+       "rateOutside": 0.077,
+       "ratio": 1.529
+      }
+     ]
+    },
+    {
+     "coding": "advanced",
+     "label": "settled or advanced: solved or partial",
+     "all": {
+      "name": "all",
+      "inside": 238,
+      "outside": 126,
+      "resolvedInside": 102,
+      "resolvedOutside": 49,
+      "rateInside": 0.429,
+      "rateOutside": 0.389,
+      "ratio": 1.102,
+      "pValue": 0.5034,
+      "belowFloor": false
+     },
+     "byLength": [
+      {
+       "name": "under 20 words",
+       "inside": 101,
+       "outside": 57,
+       "resolvedInside": 37,
+       "resolvedOutside": 21,
+       "rateInside": 0.366,
+       "rateOutside": 0.368,
+       "ratio": 0.994,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "20 to 40 words",
+       "inside": 77,
+       "outside": 49,
+       "resolvedInside": 38,
+       "resolvedOutside": 28,
+       "rateInside": 0.494,
+       "rateOutside": 0.571,
+       "ratio": 0.864,
+       "pValue": 0.465,
+       "belowFloor": false
+      },
+      {
+       "name": "over 40 words",
+       "inside": 60,
+       "outside": 20,
+       "resolvedInside": 27,
+       "resolvedOutside": 0,
+       "rateInside": 0.45,
+       "rateOutside": 0,
+       "ratio": null,
+       "pValue": 0.0001,
+       "belowFloor": false
+      }
+     ],
+     "byBranch": [
+      {
+       "name": "applied",
+       "inside": 13,
+       "outside": 11,
+       "resolvedInside": 2,
+       "resolvedOutside": 2,
+       "rateInside": 0.154,
+       "rateOutside": 0.182,
+       "ratio": 0.846,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "biophysics",
+       "inside": 39,
+       "outside": 52,
+       "resolvedInside": 25,
+       "resolvedOutside": 35,
+       "rateInside": 0.641,
+       "rateOutside": 0.673,
+       "ratio": 0.952,
+       "pValue": 0.8227,
+       "belowFloor": false
+      },
+      {
+       "name": "chemistry",
+       "inside": 30,
+       "outside": 16,
+       "resolvedInside": 6,
+       "resolvedOutside": 3,
+       "rateInside": 0.2,
+       "rateOutside": 0.188,
+       "ratio": 1.067,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "cosmology",
+       "inside": 20,
+       "outside": 10,
+       "resolvedInside": 8,
+       "resolvedOutside": 4,
+       "rateInside": 0.4,
+       "rateOutside": 0.4,
+       "ratio": 1,
+       "pValue": 1,
+       "belowFloor": false
+      },
+      {
+       "name": "information",
+       "inside": 18,
+       "outside": 11,
+       "resolvedInside": 6,
+       "resolvedOutside": 1,
+       "rateInside": 0.333,
+       "rateOutside": 0.091,
+       "ratio": 3.667,
+       "pValue": 0.1974,
+       "belowFloor": false
+      },
+      {
+       "name": "mathematics",
+       "inside": 87,
+       "outside": 1,
+       "resolvedInside": 45,
+       "resolvedOutside": 0,
+       "rateInside": null,
+       "rateOutside": null,
+       "ratio": null,
+       "pValue": null,
+       "belowFloor": true
+      },
+      {
+       "name": "physics",
+       "inside": 31,
+       "outside": 25,
+       "resolvedInside": 10,
+       "resolvedOutside": 4,
+       "rateInside": 0.323,
+       "rateOutside": 0.16,
+       "ratio": 2.016,
+       "pValue": 0.2227,
+       "belowFloor": false
+      }
+     ],
+     "auc": 0.523,
+     "aucRows": 364,
+     "undatedRemoved": {
+      "all": {
+       "name": "all, undated solved rows removed",
+       "inside": 217,
+       "outside": 126,
+       "resolvedInside": 81,
+       "resolvedOutside": 49,
+       "rateInside": 0.373,
+       "rateOutside": 0.389,
+       "ratio": 0.96,
+       "pValue": 0.8176,
+       "belowFloor": false
+      },
+      "auc": 0.455,
+      "aucRows": 343
+     },
+     "undecidedResolved": 23,
+     "undecidedBounds": [
+      {
+       "name": "all undecided inside",
+       "inside": 281,
+       "outside": 126,
+       "rateInside": 0.445,
+       "rateOutside": 0.389,
+       "ratio": 1.144
+      },
+      {
+       "name": "all undecided outside",
+       "inside": 238,
+       "outside": 169,
+       "rateInside": 0.429,
+       "rateOutside": 0.426,
+       "ratio": 1.006
+      }
+     ]
+    }
+   ],
+   "inputHash": "91d9c862d2cf997fc293ac3aca6c91244abb23e5387da2a8a6e35dc74db0efa0",
+   "forecastBuilt": "2026-10-07"
+  }
+ ],
  "predictions": {
   "schema": "bucket.solvability-predictions/v1",
   "threshold": 0.781,
