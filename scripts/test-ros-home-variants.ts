@@ -20,6 +20,15 @@ test("every module route resolves to a page", () => {
   }
 });
 
+test("every module has its own route", () => {
+  const routes = MODULES.map((m) => m.route);
+  assert.equal(new Set(routes).size, routes.length);
+});
+
+test("module lines stay short", () => {
+  for (const m of MODULES) assert.ok(m.line.length <= 70, `${m.label}: ${m.line.length}`);
+});
+
 test("variants are distinct and deterministic", () => {
   assert.equal(new Set(VARIANTS.map((v) => JSON.stringify({ ...v, id: "" }))).size, VARIANTS.length);
   assert.deepEqual(generateVariants(), VARIANTS);
