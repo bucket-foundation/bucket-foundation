@@ -29,7 +29,7 @@ export function idListMarkers(ids: readonly string[], perFile: number, run = ID_
 }
 
 export function markersOf(file: string, data: unknown, code: string, perFile: number): string[] {
-  const name = file.slice(file.lastIndexOf("/") + 1);
+  const name = file.split(/[\\/]/).pop() as string;
   if (ID_LIST_FILES.has(name)) {
     const ids = (data as { ids?: unknown }).ids;
     if (!Array.isArray(ids) || !ids.every((x) => typeof x === "string")) throw new Error(`${file} holds no ids array`);

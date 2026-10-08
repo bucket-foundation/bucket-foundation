@@ -10,6 +10,7 @@ const FORMATS: [RegExp, string][] = [
   [/\.app\.tar\.gz$/, "app.tar.gz"],
   [/\.AppImage$/, "AppImage"],
   [/\.deb$/, "deb"],
+  [/\.rpm$/, "rpm"],
   [/\.dmg$/, "dmg"],
   [/\.msi$/, "msi"],
   [/-setup\.exe$/, "exe"],
