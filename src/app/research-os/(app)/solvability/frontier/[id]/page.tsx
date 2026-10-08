@@ -38,7 +38,7 @@ function Neighbours({ rows }: { rows: readonly NeighbourRef[] }) {
 export default async function SolvabilityRecordPage({ params }: { params: Promise<{ id: string }> | { id: string } }) {
   const { id } = await params;
   const data = records as unknown as PackedRecords;
-  const rec = recordFor(data, decodeURIComponent(id));
+  const rec = recordFor(data, id);
   if (!rec) notFound();
   const svg = recordGlyph(rec, neighbourPositions(data, rec));
   return (

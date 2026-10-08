@@ -96,8 +96,15 @@ export interface ProblemRecord {
 export const CODING_OF: Record<string, Coding> = { solved: "settled", partial: "advanced", open: "open" };
 export const NEIGHBOUR_STRIDE = 1024;
 
+const indexes = new WeakMap<PackedRecords, Map<string, number>>();
+
 export function recordIndex(data: PackedRecords): Map<string, number> {
-  return new Map(data.rows.map((r, i) => [r.id, i]));
+  let index = indexes.get(data);
+  if (!index) {
+    index = new Map(data.rows.map((r, i) => [r.id, i]));
+    indexes.set(data, index);
+  }
+  return index;
 }
 
 function neighbours(data: PackedRecords, packed: number[]): NeighbourRef[] {

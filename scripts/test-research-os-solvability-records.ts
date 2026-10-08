@@ -35,6 +35,7 @@ test("zone, reach, radius and threshold agree with the frontier built from the n
     const rec = recordAt(data, i);
     const p = point.get(rec.id)!;
     assert.equal(rec.zone, p.zone, rec.id);
+    assert.ok(Math.abs(rec.theta - p.theta) <= 0.0001, `${rec.id} angle ${rec.theta} against ${p.theta}`);
     assert.ok(Math.abs(rec.reach - p.reach) <= 0.0015, `${rec.id} reach ${rec.reach} against ${p.reach}`);
     assert.ok(Math.abs(rec.radius - p.radius) <= 0.01, `${rec.id} radius ${rec.radius} against ${p.radius}`);
   }
