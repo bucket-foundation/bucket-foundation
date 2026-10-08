@@ -241,7 +241,7 @@ test("field rules for productions and generations", () => {
   assert.equal(defaults.ok && defaults.entry.kind === "generation" && defaults.entry.machine_generated, true);
 });
 
-test("links need https, an exact host, an allowlisted path, no userinfo and no query", () => {
+test("API links need https, an exact host, an allowlisted path, no userinfo and no query; legacy site links name an existing page", () => {
   const accepted = [
     "https://github.com/bucket-foundation/bucket-foundation",
     "https://github.com/bucket-foundation/bucket-foundation/pull/519",
