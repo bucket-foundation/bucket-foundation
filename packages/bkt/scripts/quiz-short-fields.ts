@@ -10,6 +10,7 @@ const ROOT = resolve(import.meta.dir, "../../..");
 const CORPUS = join(ROOT, "learning/app/corpus");
 const OUT = join(ROOT, "learning/app/short-fields.json");
 const MODEL_FILE = join(ROOT, "learning/app/short-fields-model.json");
+const MATH_FILE = join(ROOT, "learning/app/short-fields-math.json");
 const SAMPLE = join(ROOT, "learning/app/REVIEW-SAMPLE.md");
 const LLM = process.env.BKT_LLM_URL ?? "http://127.0.0.1:11435";
 const SAMPLE_SIZE = 100;
@@ -255,6 +256,8 @@ async function main() {
     writeFileSync(MODEL_FILE, JSON.stringify({ items: Object.fromEntries(ids.map((id) => [id, modelFile[id]])) }, null, 1) + "\n");
   }
   prune(items, fields);
+  const math: Record<string, Partial<ShortField>> = existsSync(MATH_FILE) ? JSON.parse(readFileSync(MATH_FILE, "utf8")).items : {};
+  for (const [id, override] of Object.entries(math)) if (fields[id]) fields[id] = { ...fields[id], ...override };
   const ordered = Object.fromEntries(items.filter((i) => fields[i.id]).map((i) => [i.id, fields[i.id]]));
   const version = createHash("sha256").update(JSON.stringify(ordered)).digest("hex").slice(0, 12);
   writeFileSync(OUT, JSON.stringify({ version, items: ordered }, null, 1) + "\n");

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
+import { InlineMath } from "@/components/math/InlineMath";
 import { DONE_EVENT, START_EVENT } from "@/lib/research-os/work-quiz/trigger";
 import { resourceForQuestion } from "@/lib/research-os/work-quiz/resources";
 import { TYPE_LABEL } from "@/lib/research-os/work-quiz/types";
@@ -110,8 +111,8 @@ export default function QuizPanel() {
                   <span>{r.skipped ? "skipped" : r.timed_out ? "out of time" : r.correct ? "right" : "missed"}</span>
                   <span className="ml-auto">{r.answered_at ? new Date(r.answered_at).toLocaleString() : ""}</span>
                 </div>
-                <p className="text-[13px] text-[color:var(--basalt)]">{r.question.prompt}</p>
-                <p className="text-[12px] text-[color:var(--basalt-3)]">{r.question.explain}</p>
+                <p className="text-[13px] text-[color:var(--basalt)]"><InlineMath text={r.question.prompt} /></p>
+                <p className="text-[12px] text-[color:var(--basalt-3)]"><InlineMath text={r.question.explain} /></p>
                 {resource && (
                   <Link href={resource.href} className="text-[12px] underline underline-offset-4 text-[color:var(--aegean-deep)]">
                     {resource.label}

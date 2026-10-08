@@ -1,0 +1,164 @@
+{
+ "items": {
+  "01-mathematics/combinatorics/8bdee8c97c": {
+   "short_answer": "$\\binom{6}{3} = \\frac{6!}{3!\\,3!} = 20$"
+  },
+  "01-mathematics/probability/d981d0c62b": {
+   "short_stem": "If $P(A)=0.5$, $P(B)=0.4$, and A,B are independent, what is $P(A\\cap B)$?",
+   "short_answer": "Independence gives $P(A\\cap B)=P(A)P(B)=0.5\\times0.4=0.2$"
+  },
+  "01-mathematics/random-variables/5334b80849": {
+   "short_answer": "$E[X] = \\frac{1+2+3+4+5+6}{6} = \\frac{21}{6} = 3.5$"
+  },
+  "01-mathematics/complex-numbers/83c901ac68": {
+   "short_stem": "What is the value of $e^{i\\pi}$ using Euler's formula?",
+   "short_answer": "$\\cos\\pi + i\\sin\\pi$"
+  },
+  "01-mathematics/multivariable-calculus/ff62e79e88": {
+   "short_stem": "What is the gradient of $f(x,y) = x^2y$ at the point $(1,2)$?"
+  },
+  "01-mathematics/trigonometry/981fe64fab": {
+   "short_stem": "What are $\\cos(\\pi/2)$ and $\\sin(\\pi/2)$, and where is that point on the unit circle?",
+   "short_answer": "$\\cos(\\pi/2) = 0$ and $\\sin(\\pi/2) = 1$"
+  },
+  "01-mathematics/change-of-variables/1e134ed7e4": {
+   "short_answer": "$dA = r\\,dr\\,d\\theta$"
+  },
+  "01-mathematics/svd/73e685f1db": {
+   "short_answer": "$A = U\\Sigma V^{\\top}$"
+  },
+  "02-physics/work-energy/8fb37f4d17": {
+   "short_answer": "$W_{\\text{net}} = \\Delta(\\frac{1}{2}mv^2)$"
+  },
+  "02-physics/lagrangian/d8745c92fa": {
+   "short_answer": "$L = T - V$ (kinetic minus potential energy)"
+  },
+  "02-physics/waves/03d47a5436": {
+   "short_answer": "$v = f\\lambda$"
+  },
+  "02-physics/maxwell-equations/ba721df99a": {
+   "short_answer": "$c = 1/\\sqrt{\\mu_0\\varepsilon_0}$"
+  },
+  "02-physics/geometric-optics/d49c257425": {
+   "short_answer": "$n_1\\sin\\theta_1 = n_2\\sin\\theta_2$"
+  },
+  "02-physics/spacetime/1071c81391": {
+   "short_answer": "$\\Delta s^2$"
+  },
+  "02-physics/mass-energy/c0a4424a54": {
+   "short_answer": "$E = pc$"
+  },
+  "02-physics/photoelectric-quantization/54249e8b8b": {
+   "short_answer": "$E = h\\nu$"
+  },
+  "02-physics/wavefunction/0cd48bbbf9": {
+   "short_stem": "What does the Born rule say $|\\psi(x)|^2$ represents?"
+  },
+  "02-physics/schrodinger/65d1cf5314": {
+   "short_answer": "$p \\to -i\\hbar\\nabla$"
+  },
+  "02-physics/uncertainty/3437d700e8": {
+   "short_answer": "$\\Delta x \\cdot \\Delta p \\ge \\hbar/2$"
+  },
+  "02-physics/hydrogen-atom/a675173e2c": {
+   "short_stem": "What is the energy of the $n$th hydrogen level, and what does $n = 1$ give?",
+   "short_answer": "$E_n = -13.6\\ \\text{eV}/n^2$"
+  },
+  "02-physics/electric-potential/b87e23880a": {
+   "short_answer": "$U = \\frac{1}{2}CV^2$"
+  },
+  "03-chemistry/lewis-structures/a626a41077": {
+   "short_answer": "$\\mathrm{SF}_6$"
+  },
+  "03-chemistry/hybridization/6ec905fd60": {
+   "short_stem": "What is the hybridization of each carbon in ethene ($\\mathrm{C}_2\\mathrm{H}_4$)?",
+   "short_answer": "$sp^2$"
+  },
+  "03-chemistry/mole-concept/c943acabcc": {
+   "short_answer": "$6.022\\times10^{23}$ molecules"
+  },
+  "03-chemistry/solutions-concentration/7595cca50d": {
+   "short_answer": "$0.40\\ \\text{mol/L} \\times 0.250\\ \\text{L} = 0.10\\ \\text{mol}$"
+  },
+  "03-chemistry/ph-scale/d7211c549c": {
+   "short_answer": "$1.0\\times10^{-14}$, the product $[\\mathrm{H}^+][\\mathrm{OH}^-]$"
+  },
+  "03-chemistry/arrhenius-activation/afd66a50ec": {
+   "short_answer": "Plot $\\ln k$ versus $1/T$"
+  },
+  "03-chemistry/redox/c6d7a22bb6": {
+   "short_stem": "In $\\mathrm{Zn} + \\mathrm{Cu}^{2+} \\to \\mathrm{Zn}^{2+} + \\mathrm{Cu}$, which species is oxidized?"
+  },
+  "03-chemistry/equilibrium-thermo-link/6c14783ccc": {
+   "short_answer": "$\\Delta G^\\circ = -RT\\ln K$"
+  },
+  "03-chemistry/equilibrium-thermo-link/48ab27c42a": {
+   "short_answer": "$K = 1$"
+  },
+  "04-information/shannon-entropy/1f51b35702": {
+   "short_stem": "What is the entropy of a biased coin with $P(\\text{heads})=1/4$?"
+  },
+  "04-information/mutual-information/877b249b19": {
+   "short_stem": "When is the mutual information $I(X;Y)$ exactly zero?"
+  },
+  "04-information/perfect-secrecy/53636efec9": {
+   "short_answer": "$I(M;C)=0$"
+  },
+  "06-cosmology/scale-factor/39d78c912c": {
+   "short_answer": "$a(t_0) = 1$"
+  },
+  "06-cosmology/friedmann-equations/a529d9b7d3": {
+   "short_answer": "$H^2 = (\\dot a/a)^2$"
+  },
+  "06-cosmology/thermal-history/b4d03a422c": {
+   "short_answer": "$T \\propto 1/a = 1 + z$"
+  },
+  "06-cosmology/dark-energy-equation-of-state/143b9ea5f3": {
+   "short_stem": "What value of $w$ distinguishes a true cosmological constant from evolving dark energy?",
+   "short_answer": "$w = -1$ exactly"
+  },
+  "07-mind/nernst/c4230a0c4b": {
+   "short_answer": "$E_K \\approx -90\\ \\text{mV}$"
+  },
+  "07-mind/chemical-synapse/b591de36d1": {
+   "short_answer": "$\\mathrm{Ca}^{2+}$"
+  },
+  "05-biophysics/fick/411ce975ec": {
+   "short_answer": "$\\partial c/\\partial t = D\\nabla^2 c$"
+  },
+  "05-biophysics/einstein-stokes/239b8f8ddd": {
+   "short_answer": "Inversely on both: $D = kT/(6\\pi\\eta r)$"
+  },
+  "05-biophysics/md/9965f9e00b": {
+   "short_answer": "Newton's equations of motion ($F = ma$)"
+  },
+  "05-biophysics/langevin/e717bc81d5": {
+   "short_answer": "$\\gamma\\,dx/dt = -\\partial U/\\partial x + \\xi(t)$"
+  },
+  "05-biophysics/smoluchowski-rate/ffd7be7071": {
+   "short_answer": "$k = 4\\pi DR$"
+  },
+  "05-biophysics/bragg/7ddc406908": {
+   "short_answer": "$n\\lambda = 2d\\sin\\theta$"
+  },
+  "05-biophysics/fret/ce362d3dee": {
+   "short_stem": "What is the FRET efficiency as a function of distance and define $R_0$?",
+   "short_answer": "$E = 1/(1+(r/R_0)^6)$"
+  },
+  "05-biophysics/monte-carlo/95f0c3a8da": {
+   "short_answer": "Accept if $\\Delta E \\le 0$"
+  },
+  "05-biophysics/pka-shift/3498538851": {
+   "short_answer": "$\\Delta pK_a = \\Delta\\Delta G_{\\text{elec}}/(2.303\\,RT)$"
+  },
+  "05-biophysics/optical-tweezers/5e8761f842": {
+   "short_answer": "$F = -k_{\\text{trap}}x$"
+  },
+  "05-biophysics/optical-tweezers/71d89a8c95": {
+   "short_answer": "$k_{\\text{trap}} = k_BT/\\langle x^2\\rangle$"
+  },
+  "05-biophysics/chemical-potential/520d14c09c": {
+   "short_answer": "$\\mu_i = (\\partial G/\\partial n_i)$"
+  }
+ }
+}

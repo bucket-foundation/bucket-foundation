@@ -2,6 +2,252 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "2026-10-08-frontier-records",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "A record for every problem",
+      "summary": "Each of the 5,209 frontier problems has its own page with statement, sources, posed and resolved years, zone, reach and the six nearest solved and open problems. The pages are staff-gated for now; the report tables link to them.",
+      "commit": null,
+      "pr": 615,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/615",
+      "links": [
+        {
+          "label": "Report",
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-frontier-data-5209",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Frontier data at 5,209 problems",
+      "summary": "The backtest reads mixed. Counting settled problems only, a larger share of inside rows settled than outside rows at 2005, 2015 and 2021; counting solved or partial, the gap does not hold. 25 problems settled from 2015 to 2026 gained checked evidence, the set is 5,209 rows and the circle sits at reach 0.762. The paper and report follow.",
+      "commit": null,
+      "pr": 613,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/613",
+      "links": [
+        {
+          "label": "Paper",
+          "href": "https://bucket.foundation/research/papers/solvability-frontier"
+        },
+        {
+          "label": "Report",
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-frontier-paper-refresh",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "The frontier paper, refreshed",
+      "summary": "The paper carries the October data and frozen pre-cutoff forecasts for 2005, 2015 and 2021, so the backtest reads the same inputs each time. The reading stays mixed.",
+      "commit": null,
+      "pr": 612,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/612",
+      "links": [
+        {
+          "label": "Paper",
+          "href": "https://bucket.foundation/research/papers/solvability-frontier"
+        },
+        {
+          "label": "Forecasts",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/tools/solvability-atlas/forecasts"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-posed-evidence",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Dated evidence for 69 solved problems",
+      "summary": "69 solved problems outside mathematics gained a posed year and a quoted line from Wikipedia, each checked against the page. Mind rows grew from 5 to 10. The target of 40 per branch is not met.",
+      "commit": null,
+      "pr": 607,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/607",
+      "links": [
+        {
+          "label": "Report",
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-open-problems",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "57 open problems for the thin branches",
+      "summary": "57 open problems from Wikipedia lists (CC BY-SA 4.0) joined mind, chemistry, information and applied, each with a checked quote. Supply ran out below the 40-per-branch target.",
+      "commit": null,
+      "pr": 611,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/611",
+      "links": [
+        {
+          "label": "Report",
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-research-home",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "The research home",
+      "summary": "/research groups papers, reports, figures, datasets, tools and docs under education reform, scientific discovery with ML and more capable humans, with a filter by kind and text.",
+      "commit": null,
+      "pr": 606,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/606",
+      "links": [
+        {
+          "label": "Research",
+          "href": "https://bucket.foundation/research"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-complement-score",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Complement beside fit",
+      "summary": "Each advisor now has a complement score next to fit: how far the advisor stands above you on the prime directions where they are higher, with the top three directions named. The advisor page gains Fit and Complement columns and a sort option.",
+      "commit": null,
+      "pr": 605,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/605",
+      "links": [
+        {
+          "label": "Advisors",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/tools/prime-directions"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-quiz-lesson-links",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "A wrong answer links to its lesson",
+      "summary": "After a miss, the quiz links to the lesson that teaches it. 717 of 998 pack items (72%) resolve to an atom lesson; work facts do not match a lesson yet.",
+      "commit": null,
+      "pr": 617,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/617",
+      "links": [
+        {
+          "label": "Quiz",
+          "href": "https://bucket.foundation/research-os/quiz"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-quiz-language-choices",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Language choices hold one correct answer",
+      "summary": "Wrong choices on language questions come from a clean pool and are dropped when they share a sense word with the answer. Five loose entries are removed. Pairs fall from 5,190 to 5,136.",
+      "commit": null,
+      "pr": 620,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/620",
+      "links": [
+        {
+          "label": "Quiz",
+          "href": "https://bucket.foundation/research-os/quiz"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-quiz-item-ids",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Quiz progress survives reordering",
+      "summary": "Quiz item ids derive from the prompt, so inserting, deleting or reordering questions keeps each attempt attached. Migration 13 rewrites existing attempts to the new ids and drops none.",
+      "commit": null,
+      "pr": 618,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/618",
+      "links": [
+        {
+          "label": "Change",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/618"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-kindred-thinkers",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Kindred thinkers for the frontier thesis",
+      "summary": "12 founder claims are matched against Crossref abstracts and 1,869 Wright passages, five sources per claim with a quoted sentence. OpenAlex hit its daily limit, so Crossref stands in until the rerun.",
+      "commit": null,
+      "pr": 610,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/610",
+      "links": [
+        {
+          "label": "Report",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/kindred/out/KINDRED.md"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-repo-organization",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "The repository, reorganized",
+      "summary": "Foundation documents moved under docs/foundation, specs under docs/specs and canon files under docs/canon. The README is rewritten against the current repository.",
+      "commit": null,
+      "pr": 608,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/608",
+      "links": [
+        {
+          "label": "README",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/README.md"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-report-system",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "A standard report system",
+      "summary": "Reports live in reports/<slug> with a report.json record, a graph.reports table and a script to build, register, publish and check them. Seven reports are registered; four are public papers.",
+      "commit": null,
+      "pr": 599,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/599",
+      "links": [
+        {
+          "label": "Guide",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/docs/REPORTS.md"
+        }
+      ]
+    },
+    {
+      "id": "2026-10-08-research-tooling",
+      "date": "2026-10-08",
+      "category": "site-feature",
+      "branch": null,
+      "title": "Research tooling",
+      "summary": "An embedding ablation on the frozen 2021 forecast found no input that beats the current rule by more than the dated-only spread, so the rule is unchanged. Five red tests on dev are cleared.",
+      "commit": null,
+      "pr": 614,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/614",
+      "links": [
+        {
+          "label": "Change",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/614"
+        }
+      ]
+    },
+    {
       "id": "production-solvability-paper-refresh",
       "date": "2026-10-08",
       "category": "production",
@@ -9,9 +255,9 @@
       "title": "The frontier paper, refreshed",
       "summary": "The paper now covers 5,206 problems, circle at reach 0.759. Solved rows with no resolved year carry part of the signal: without them the 2005 gap holds and the 2021 gap does not. With them, the settled-only gap shows at 2005, 2015 and 2021.",
       "commit": null,
-      "pr": null,
-      "url": null,
-      "status": "open",
+      "pr": 612,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/612",
+      "status": "merged",
       "plot_title": "Solvability frontier over 5,206 problems: solved inside, open within reach on the ring, open beyond the circle",
       "image": "/whats-new/solvability-frontier-paper.webp",
       "image_alt": "A large circle with solved problems as filled dots in the centre, open problems inside the edge as rings and open problems outside as triangles, coloured by branch.",
@@ -19,11 +265,11 @@
       "links": [
         {
           "label": "Paper",
-          "href": "/research/papers/solvability-frontier"
+          "href": "https://bucket.foundation/research/papers/solvability-frontier"
         },
         {
           "label": "Report",
-          "href": "/research-os/solvability/frontier"
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
         },
         {
           "label": "Forecasts",
@@ -53,7 +299,7 @@
       "links": [
         {
           "label": "Report",
-          "href": "/research-os/solvability/frontier"
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
         },
         {
           "label": "PR 576, the circle",
@@ -99,7 +345,7 @@
       "links": [
         {
           "label": "Report",
-          "href": "/research-os/solvability/frontier"
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
         },
         {
           "label": "PR 584, sources",
@@ -145,7 +391,7 @@
       "links": [
         {
           "label": "Report",
-          "href": "/research-os/solvability/frontier"
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
         },
         {
           "label": "PR 583",
@@ -175,7 +421,7 @@
       "links": [
         {
           "label": "Report",
-          "href": "/research-os/solvability/frontier"
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
         },
         {
           "label": "PR 585, records",

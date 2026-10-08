@@ -1,3 +1,4 @@
+import "katex/dist/katex.min.css";
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
