@@ -3,6 +3,30 @@ import { LIMITS } from "../../../src/lib/research-os/work-quiz/limits";
 
 export type { Card, Rating };
 
+import { createHash } from "node:crypto";
+
+export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
+
+export function deckOf(branch: string): string {
+  return LEGACY_DECKS[branch] ?? branch;
+}
+
+export function promptHash(prompt: string): string {
+  return createHash("sha1").update(prompt.trim()).digest("hex").slice(0, 10);
+}
+
+export function contentItemId(branch: string, atomId: string, prompt: string, answer?: string): string {
+  const hash = answer === undefined ? promptHash(prompt) : promptHash(`${prompt.trim()}\n${answer.trim()}`);
+  return `${deckOf(branch)}/${atomId}/${hash}`;
+}
+
+export function contentItemIds(rows: { branch: string; atomId: string; prompt: string; answer: string }[]): string[] {
+  const count = new Map<string, number>();
+  const key = (r: { branch: string; atomId: string; prompt: string }) => JSON.stringify([deckOf(r.branch), r.atomId, r.prompt.trim()]);
+  for (const r of rows) count.set(key(r), (count.get(key(r)) ?? 0) + 1);
+  return rows.map((r) => (count.get(key(r))! > 1 ? contentItemId(r.branch, r.atomId, r.prompt, r.answer) : contentItemId(r.branch, r.atomId, r.prompt)));
+}
+
 export const GRACE_MS = 1500;
 export const FAST_FRACTION = 0.4;
 

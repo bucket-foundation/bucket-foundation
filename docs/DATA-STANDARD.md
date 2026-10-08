@@ -54,7 +54,7 @@ The standard covers every dataset the app, the site, a pack or a feed402 respons
 
 | Deck | Path under `learning/app/corpus` | Count | Gaps |
 |---|---|---|---|
-| Eight science decks | `00-learning-to-learn.json` to `07-mind.json`, `biophysics.json` | 487 atoms, 998 quiz items | Seven atom ids repeat across decks with different content: `central-limit-theorem`, `godel-incompleteness`, `lagrange-multipliers`, `equivalence-principle`, `le-chatelier`, `nernst`, `hodgkin-huxley`. A quiz item has no id in the file. Licence is one sentence per deck. |
+| Eight science decks | `00-learning-to-learn.json` to `07-mind.json`, `biophysics.json` | 487 atoms, 998 quiz items | Seven atom ids repeat across decks with different content: `central-limit-theorem`, `godel-incompleteness`, `lagrange-multipliers`, `equivalence-principle`, `le-chatelier`, `nernst`, `hodgkin-huxley`. A quiz item has no id in the file; the bkt store derives it. Licence is one sentence per deck. |
 | `lang-core` | `lang-core.json` | 244 atoms, 17 languages | Licence is a paragraph naming Wiktionary under CC BY-SA 3.0. |
 | `lang-cognates` | `lang-cognates.json` | 244 concepts | Keyed by the same 244 ids as `lang-core`. |
 | `lang-phrases` | `lang-phrases.json` | 82 phrases | 7 phrase ids equal a `lang-core` id. |
@@ -164,6 +164,8 @@ An id is fixed in the file and checked by CI. The validator never invents one at
 12. Alias uniqueness is stated over `same-as` classes. Take the classes of the symmetric, transitive closure of `same-as`. An external alias such as `doi:` maps to exactly one class. A `legacy:` alias maps to exactly one record.
 13. A retired id stays in the file as a tombstone with a `superseded-by` relation. A tombstoned id is never assigned again. CI checks every new id against the tombstones.
 14. `claim_no` comes from a counter file, `bucket-canon/CLAIM-NO`, one line holding the next free number. It reads 599 after the migration. A PR that adds an excerpt takes the number and increments the line in the same commit. Two concurrent PRs both edit that line, so git reports a conflict on the second, and its author takes the next number after rebasing. CI checks that the file equals the highest `claim_no` plus one.
+
+The bkt store keys a quiz item as `<deck>/<atom>/<10 hex>`, the first 10 hex of the sha1 of the prompt and its sorted options. Reordering, inserting or removing quiz items leaves a stored attempt on its prompt, and the deck in the id keeps the seven repeated atom ids apart.
 
 The two duplicated paper ids in `bioelectric-lineage/primary-papers.yaml` fail rule 3 today and are merged before the works migration.
 
