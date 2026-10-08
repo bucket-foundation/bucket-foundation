@@ -208,6 +208,8 @@ jobs:
         run: |
           rpms=(bundles/*.rpm)
           [ "${#rpms[@]}" -eq 1 ] && [ -f "${rpms[0]}" ] || { echo "expected one rpm, found ${#rpms[@]}"; exit 1; }
+          taken=$(dnf repoquery -q --whatprovides /usr/bin/bkt /usr/bin/bucket-desktop)
+          [ -z "$taken" ] || { echo "Fedora packages already ship these paths: $taken"; exit 1; }
           dnf install -yq "./${rpms[0]}"
           rpm -q --whatprovides /usr/bin/bkt
           test -x /usr/bin/bucket-desktop
