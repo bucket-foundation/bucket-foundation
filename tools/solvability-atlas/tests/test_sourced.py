@@ -319,3 +319,25 @@ def test_copyrighted_headlines_stay_short():
         if r["licence"].startswith(("AAAS", "ACS")):
             assert len(r["name"].split()) < 15, r["id"]
             assert r["statement"] != r["name"], r["id"]
+
+
+def test_open_list_rows_pass_their_checks():
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "sources"))
+    import open_lists
+
+    records = open_lists.curated_rows()
+    assert len(records) >= 50
+    for record in records:
+        assert open_lists.check(record) == [], record["line"]
+    ids = [r.id for r in open_lists.rows()]
+    assert len(ids) == len(set(ids))
+    assert {r["branch"] for r in records} == {"mind", "chemistry", "information", "applied"}
+
+
+def test_open_list_rows_are_in_the_sourced_file():
+    open_ids = {r["id"] for r in rows() if r["id"].startswith("op-")}
+    assert len(open_ids) >= 50
+    for r in rows():
+        if r["id"] in open_ids:
+            assert r["status"] == "open" and r["licence"] == "CC BY-SA 4.0" and r["statement_source"] and r["status_source"]
+            assert bool(r["posed"]) == bool(r["posed_evidence"])
