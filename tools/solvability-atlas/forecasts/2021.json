@@ -5,10 +5,10 @@
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
- "input_hash": "41b96ca87665c493c93d8b00a6eb930825b2ba56193e09cd264d2600abb74679",
- "solved": 262,
+ "input_hash": "a5b7b472d7a16905fedc6891d12b2cc65af024900df60948fafaf42900a9542c",
+ "solved": 259,
  "threshold_bounded": 12,
- "threshold": 0.666,
+ "threshold": 0.665,
  "rows": [
   {
    "id": "abc",
@@ -708,7 +708,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 18,
-   "reach": 0.748,
+   "reach": 0.712,
    "bounded": false,
    "zone": "inside"
   },
@@ -789,9 +789,9 @@
    "branch": "physics",
    "posed": 2005,
    "words": 20,
-   "reach": 0.67,
+   "reach": 0.655,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-do-pheromones-influence-human-behavior",
@@ -845,7 +845,7 @@
    "words": 20,
    "reach": 0.665,
    "bounded": false,
-   "zone": "outside"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-how-did-cooperative-behavior-evolve",
@@ -1401,8 +1401,8 @@
    "branch": "physics",
    "posed": 2005,
    "words": 18,
-   "reach": 0.648,
-   "bounded": false,
+   "reach": 0.643,
+   "bounded": true,
    "zone": "outside"
   },
   {
@@ -1788,9 +1788,9 @@
    "branch": "information",
    "posed": 2021,
    "words": 16,
-   "reach": 0.697,
-   "bounded": false,
-   "zone": "inside"
+   "reach": 0.669,
+   "bounded": true,
+   "zone": "undecided"
   },
   {
    "id": "dl-science-2021-can-we-accurately-simulate-the-macro-and-microworl",
@@ -2139,9 +2139,9 @@
    "branch": "physics",
    "posed": 2021,
    "words": 18,
-   "reach": 0.713,
-   "bounded": false,
-   "zone": "inside"
+   "reach": 0.669,
+   "bounded": true,
+   "zone": "undecided"
   },
   {
    "id": "dl-science-2021-is-there-a-diffraction-limit",
@@ -2220,7 +2220,7 @@
    "branch": "physics",
    "posed": 2021,
    "words": 15,
-   "reach": 0.731,
+   "reach": 0.719,
    "bounded": false,
    "zone": "inside"
   },
@@ -2292,7 +2292,7 @@
    "branch": "physics",
    "posed": 2021,
    "words": 19,
-   "reach": 0.661,
+   "reach": 0.614,
    "bounded": false,
    "zone": "outside"
   },
@@ -2330,7 +2330,7 @@
    "words": 22,
    "reach": 0.665,
    "bounded": false,
-   "zone": "outside"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2021-what-is-the-future-of-hydrogen-energy",
@@ -2607,9 +2607,9 @@
    "branch": "physics",
    "posed": 2021,
    "words": 16,
-   "reach": 0.685,
-   "bounded": false,
-   "zone": "inside"
+   "reach": 0.651,
+   "bounded": true,
+   "zone": "outside"
   },
   {
    "id": "dl-science-2021-why-don-t-the-orbits-of-planets-decay-and-cause-co",
@@ -2932,15 +2932,6 @@
    "posed": 1984,
    "words": 136,
    "reach": 0.828,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "fc-erdosproblems-19-erdos-19",
-   "branch": "mathematics",
-   "posed": 1972,
-   "words": 16,
-   "reach": 0.771,
    "bounded": false,
    "zone": "inside"
   },
@@ -3786,9 +3777,9 @@
    "branch": "physics",
    "posed": 1963,
    "words": 64,
-   "reach": 0.667,
+   "reach": 0.64,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "hubble",
@@ -3966,8 +3957,8 @@
    "branch": "cosmology",
    "posed": 1930,
    "words": 126,
-   "reach": 0.644,
-   "bounded": false,
+   "reach": 0.606,
+   "bounded": true,
    "zone": "outside"
   },
   {
@@ -3976,15 +3967,6 @@
    "posed": 1935,
    "words": 44,
    "reach": 0.785,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "rc-how-many-colours-does-the-plane-need-so-that-no-two-points-a",
-   "branch": "mathematics",
-   "posed": 1950,
-   "words": 29,
-   "reach": 0.708,
    "bounded": false,
    "zone": "inside"
   },
@@ -4056,9 +4038,9 @@
    "branch": "mathematics",
    "posed": 1998,
    "words": 13,
-   "reach": 0.675,
+   "reach": 0.664,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "smale-15",
@@ -4196,47 +4178,11 @@
    "zone": "outside"
   },
   {
-   "id": "wp-bunkbed-conjecture-nikita-gladkov-igor-pak-alexander-zimin-2",
-   "branch": "mathematics",
-   "posed": 1985,
-   "words": 9,
-   "reach": 0.843,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-caratheodory-conjecture-for-surfaces-of-smoothness-c-4-brend",
-   "branch": "mathematics",
-   "posed": 1924,
-   "words": 13,
-   "reach": 0.811,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-crouzeix-s-conjecture-shanmu-jin-using-gpt-5-6-sol-2026",
-   "branch": "mathematics",
-   "posed": 2004,
-   "words": 21,
-   "reach": 0.853,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
    "id": "wp-delta-conjecture-1978",
    "branch": "mathematics",
    "posed": 1978,
    "words": 64,
    "reach": 0.793,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-egan-conjecture-sergei-drozdov-2023",
-   "branch": "mathematics",
-   "posed": 2014,
-   "words": 5,
-   "reach": 0.877,
    "bounded": false,
    "zone": "inside"
   },
@@ -4250,24 +4196,6 @@
    "zone": "outside"
   },
   {
-   "id": "wp-kahnkalai-conjecture-jinyoung-park-and-huy-tuan-pham-2022",
-   "branch": "mathematics",
-   "posed": 2006,
-   "words": 9,
-   "reach": 0.876,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-kakeya-conjecture",
-   "branch": "mathematics",
-   "posed": 1917,
-   "words": 25,
-   "reach": 0.785,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
    "id": "wp-landau-s-problems",
    "branch": "mathematics",
    "posed": 1912,
@@ -4277,38 +4205,11 @@
    "zone": "inside"
   },
   {
-   "id": "wp-mckay-conjecture",
-   "branch": "mathematics",
-   "posed": 1971,
-   "words": 39,
-   "reach": 0.774,
-   "bounded": true,
-   "zone": "undecided"
-  },
-  {
-   "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
-   "branch": "mathematics",
-   "posed": 1959,
-   "words": 11,
-   "reach": 0.88,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
    "id": "wp-solar-abundance-problem-19982022",
    "branch": "physics",
    "posed": 1998,
    "words": 27,
    "reach": 0.701,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-telescope-conjecture",
-   "branch": "mathematics",
-   "posed": 1984,
-   "words": 14,
-   "reach": 0.806,
    "bounded": false,
    "zone": "inside"
   },

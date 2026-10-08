@@ -5,8 +5,8 @@
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
- "input_hash": "1adcae4ddeda049a0e80e9ea7ec100bd798ec3159df524c69447ef18dd1ea23a",
- "solved": 213,
+ "input_hash": "8139af4df334aec0ba7f4f5ef0576a9980cf66cd8c37ccaa5b6e9bde292fb702",
+ "solved": 212,
  "threshold_bounded": 16,
  "threshold": 0.639,
  "rows": [
@@ -474,7 +474,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 18,
-   "reach": 0.748,
+   "reach": 0.712,
    "bounded": false,
    "zone": "inside"
   },
@@ -1622,24 +1622,6 @@
    "zone": "undecided"
   },
   {
-   "id": "fc-erdosproblems-163-erdos-163",
-   "branch": "mathematics",
-   "posed": 1973,
-   "words": 95,
-   "reach": 0.816,
-   "bounded": true,
-   "zone": "undecided"
-  },
-  {
-   "id": "fc-erdosproblems-19-erdos-19",
-   "branch": "mathematics",
-   "posed": 1972,
-   "words": 16,
-   "reach": 0.765,
-   "bounded": true,
-   "zone": "undecided"
-  },
-  {
    "id": "fc-erdosproblems-21-erdos-21",
    "branch": "mathematics",
    "posed": 1975,
@@ -2634,7 +2616,7 @@
    "branch": "cosmology",
    "posed": 1930,
    "words": 126,
-   "reach": 0.607,
+   "reach": 0.606,
    "bounded": true,
    "zone": "outside"
   },
@@ -2644,33 +2626,6 @@
    "posed": 1935,
    "words": 44,
    "reach": 0.732,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "rc-do-time-crystals-exist",
-   "branch": "physics",
-   "posed": 2012,
-   "words": 31,
-   "reach": 0.695,
-   "bounded": true,
-   "zone": "undecided"
-  },
-  {
-   "id": "rc-how-many-colours-does-the-plane-need-so-that-no-two-points-a",
-   "branch": "mathematics",
-   "posed": 1950,
-   "words": 29,
-   "reach": 0.708,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "rc-what-is-the-charge-radius-of-the-proton",
-   "branch": "physics",
-   "posed": 2010,
-   "words": 27,
-   "reach": 0.726,
    "bounded": false,
    "zone": "inside"
   },
@@ -2927,74 +2882,11 @@
    "zone": "inside"
   },
   {
-   "id": "wp-andreoort-conjecture-jonathan-pila-ananth-shankar-jacob-tsim",
-   "branch": "mathematics",
-   "posed": 1989,
-   "words": 9,
-   "reach": 0.858,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-blankenshipoporowski-conjecture",
-   "branch": "mathematics",
-   "posed": 1999,
-   "words": 20,
-   "reach": 0.786,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-bunkbed-conjecture-nikita-gladkov-igor-pak-alexander-zimin-2",
-   "branch": "mathematics",
-   "posed": 1985,
-   "words": 9,
-   "reach": 0.826,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-caratheodory-conjecture-for-surfaces-of-smoothness-c-4-brend",
-   "branch": "mathematics",
-   "posed": 1924,
-   "words": 13,
-   "reach": 0.797,
-   "bounded": true,
-   "zone": "undecided"
-  },
-  {
-   "id": "wp-crouzeix-s-conjecture-shanmu-jin-using-gpt-5-6-sol-2026",
-   "branch": "mathematics",
-   "posed": 2004,
-   "words": 21,
-   "reach": 0.829,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
    "id": "wp-delta-conjecture-1978",
    "branch": "mathematics",
    "posed": 1978,
    "words": 64,
    "reach": 0.793,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-disproof-of-hedetniemi-s-conjecture-on-the-chromatic-number",
-   "branch": "mathematics",
-   "posed": 1966,
-   "words": 16,
-   "reach": 0.824,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-egan-conjecture-sergei-drozdov-2023",
-   "branch": "mathematics",
-   "posed": 2014,
-   "words": 5,
-   "reach": 0.85,
    "bounded": false,
    "zone": "inside"
   },
@@ -3026,56 +2918,11 @@
    "zone": "outside"
   },
   {
-   "id": "wp-kahnkalai-conjecture-jinyoung-park-and-huy-tuan-pham-2022",
-   "branch": "mathematics",
-   "posed": 2006,
-   "words": 9,
-   "reach": 0.876,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-kakeya-conjecture",
-   "branch": "mathematics",
-   "posed": 1917,
-   "words": 25,
-   "reach": 0.765,
-   "bounded": true,
-   "zone": "undecided"
-  },
-  {
-   "id": "wp-keller-s-conjecture-joshua-brakensiek-marijn-heule-john-mack",
-   "branch": "mathematics",
-   "posed": 1930,
-   "words": 11,
-   "reach": 0.819,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-kelmansseymour-conjecture-dawei-he-yan-wang-and-xingxing-yu",
-   "branch": "mathematics",
-   "posed": 1977,
-   "words": 10,
-   "reach": 0.863,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
    "id": "wp-landau-s-problems",
    "branch": "mathematics",
    "posed": 1912,
    "words": 2,
    "reach": 0.682,
-   "bounded": true,
-   "zone": "undecided"
-  },
-  {
-   "id": "wp-mckay-conjecture",
-   "branch": "mathematics",
-   "posed": 1971,
-   "words": 39,
-   "reach": 0.774,
    "bounded": true,
    "zone": "undecided"
   },
@@ -3098,38 +2945,11 @@
    "zone": "inside"
   },
   {
-   "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
-   "branch": "mathematics",
-   "posed": 1959,
-   "words": 11,
-   "reach": 0.83,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
    "id": "wp-solar-abundance-problem-19982022",
    "branch": "physics",
    "posed": 1998,
    "words": 27,
    "reach": 0.701,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-telescope-conjecture",
-   "branch": "mathematics",
-   "posed": 1984,
-   "words": 14,
-   "reach": 0.792,
-   "bounded": false,
-   "zone": "inside"
-  },
-  {
-   "id": "wp-weibel-s-conjecture-moritz-kerz-florian-strunk-and-georg-tam",
-   "branch": "mathematics",
-   "posed": 1980,
-   "words": 10,
-   "reach": 0.853,
    "bounded": false,
    "zone": "inside"
   },
@@ -3141,15 +2961,6 @@
    "reach": 0.513,
    "bounded": false,
    "zone": "outside"
-  },
-  {
-   "id": "wp-yau-s-conjecture-antoine-song-2018",
-   "branch": "mathematics",
-   "posed": 1982,
-   "words": 5,
-   "reach": 0.802,
-   "bounded": false,
-   "zone": "inside"
   },
   {
    "id": "yangmills",
