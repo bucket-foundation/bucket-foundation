@@ -7,7 +7,7 @@ import { FORM_MAKERS, type SampledQuestion } from "../src/lib/research-os/work-q
 import { LIMIT_SEC, rewriteQuestion, seededRng } from "../src/lib/research-os/work-quiz/generate";
 import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
-import { LANGUAGE_CHOICES, MIN_PAIR_LANGUAGES, MIN_STRICT_PAIRS, buildWordSet, cleanMatch, fold, headword, knownLanguages, languageMakers, languageRivals, pairTargets, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
+import { LANGUAGE_CHOICES, MIN_PAIR_LANGUAGES, MIN_STRICT_PAIRS, buildWordSet, cleanMatch, contentWords, fold, headword, knownLanguages, languageMakers, languageRivals, pairTargets, rivals, sharesSense, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
 import { SUBSET_FILE, loadWordSet, subsetPath } from "../src/lib/research-os/work-quiz/polingual-server";
 import { LANGUAGE_CODES, LANGUAGE_NAMES, MAX_LANGUAGES, RTL_LANGUAGES, languageDir, languagesByName, parseLanguages, textDir, toggleLanguage, wordCaption } from "../src/lib/research-os/work-quiz/languages";
 import { builtCells, dueFrom, languageCells, sampleQuiz } from "../src/lib/research-os/work-quiz/sampler";
@@ -26,9 +26,9 @@ const SOURCES: WorkSources = {
   notes: [],
 };
 const NONE: WorkSources = { beads: [], prs: [], notes: [], repoUrl: null };
-const STRICT_CELLS = 844;
+const STRICT_CELLS = 839;
 const STRICT_CONCEPTS = 144;
-const STRICT_PAIRS = 5190;
+const STRICT_PAIRS = 5136;
 const has = (lang: string, concept: string) => SET.cells.some((c) => c.lang === lang && c.concept === concept);
 const raw = (lang: string, word: string) => RAW.words.find((w) => w.l === lang && w.s === word)!;
 const TRIES = 40;
@@ -187,7 +187,7 @@ test("wrong words come from other concepts in the same language and script and n
   for (const lang of SET.languages) for (const form of ["meaning", "sound", "pair"] as const) for (const q of made(form, [lang], 10)) {
     const a = cellOf(q.sources[0].ref);
     for (const wrong of q.choices!.filter((c) => c !== q.answer)) {
-      const cell = SET.fill[a.lang].find((c) => c.word === wrong)!;
+      const cell = SET.byLang[a.lang].find((c) => c.word === wrong)!;
       assert.ok(cell, `${wrong} is a strict ${a.lang} word`);
       assert.notEqual(cell.concept, a.concept);
       assert.equal(cell.script, a.script);
@@ -196,6 +196,37 @@ test("wrong words come from other concepts in the same language and script and n
       if (form === "sound") assert.ok(cell.ipa && cell.ipa !== a.ipa);
     }
   }
+});
+
+test("wrong words come from the clean pool and no strict cell has a second correct answer", () => {
+  let thin = 0;
+  for (const a of SET.cells) {
+    const list = rivals(SET, a);
+    if (list.length < LANGUAGE_CHOICES - 1) thin++;
+    for (const r of list) {
+      assert.ok(SET.cells.includes(r), `${r.lang}:${r.concept} is a clean cell`);
+      assert.ok(!a.senseWords.has(r.concept) && !r.senseWords.has(a.concept), `${r.word} also means ${a.concept}`);
+      for (const m of [...contentWords(r.gloss)]) assert.ok(!a.senseWords.has(m), `${a.lang}:${a.concept} and ${r.lang}:${r.concept} share "${m}"`);
+      for (const m of [...contentWords(a.gloss)]) assert.ok(!r.senseWords.has(m), `${a.lang}:${a.concept} and ${r.lang}:${r.concept} share "${m}"`);
+      assert.ok(!sharesSense(a, r));
+    }
+  }
+  assert.ok(thin < SET.cells.length * 0.1, `${thin} cells have too few wrong words`);
+});
+
+test("the named wrong pairs are gone and the critic pairs are gone", () => {
+  for (const [lang, word, concept] of [["zh", "門子", "door"], ["sa", "पिङ्ग", "yellow"], ["pt", "público", "people"], ["fa", "مهشید", "moon"], ["hi", "बालिश", "child"]]) {
+    assert.ok(raw(lang, word).c === concept, `${lang} ${word} is tagged ${concept}`);
+    assert.ok(!SET.cells.some((c) => c.lang === lang && c.word === word), `${lang} ${word} is not a cell`);
+    assert.ok(!cleanMatch(raw(lang, word), SET.conceptPos));
+  }
+});
+
+test("a rival whose gloss shares a sense word with the answer is rejected", () => {
+  const cell = (concept: string, gloss: string, senses: string[]) => ({ ...SET.cells[0], concept, gloss, senseWords: new Set(senses) });
+  assert.equal(sharesSense(cell("a", "yellow metal", ["a"]), cell("b", "bright light", ["b", "metal"])), true);
+  assert.equal(sharesSense(cell("a", "yellow metal", ["a"]), cell("b", "bright light", ["b"])), false);
+  assert.deepEqual(contentWords("The big dog, and a cat"), ["big", "dog", "cat"]);
 });
 
 test("right-to-left and unspaced scripts are covered by every form", () => {
