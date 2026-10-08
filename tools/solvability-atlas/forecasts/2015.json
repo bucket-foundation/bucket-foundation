@@ -5,7 +5,7 @@
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
- "input_hash": "7ad4419453b95af9b417cb00502bf7c11d432702c64116fae987cfe0d416cd65",
+ "input_hash": "8139af4df334aec0ba7f4f5ef0576a9980cf66cd8c37ccaa5b6e9bde292fb702",
  "solved": 212,
  "threshold_bounded": 16,
  "threshold": 0.639,
@@ -285,7 +285,7 @@
    "branch": "mind",
    "posed": 2006,
    "words": 15,
-   "reach": 0.604,
+   "reach": 0.612,
    "bounded": true,
    "zone": "outside"
   },
@@ -1203,8 +1203,8 @@
    "branch": "physics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.599,
-   "bounded": false,
+   "reach": 0.6,
+   "bounded": true,
    "zone": "outside"
   },
   {
@@ -2229,7 +2229,7 @@
    "branch": "physics",
    "posed": 1950,
    "words": 124,
-   "reach": 0.572,
+   "reach": 0.573,
    "bounded": true,
    "zone": "outside"
   },
@@ -2391,7 +2391,7 @@
    "branch": "mathematics",
    "posed": 1900,
    "words": 7,
-   "reach": 0.714,
+   "reach": 0.715,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2520,6 +2520,51 @@
    "reach": 0.656,
    "bounded": false,
    "zone": "inside"
+  },
+  {
+   "id": "op-is-every-real-time-computable-irrational-number-transcendent",
+   "branch": "information",
+   "posed": 1965,
+   "words": 22,
+   "reach": 0.769,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-do-national-savings-and-investment-rates-correlate",
+   "branch": "applied",
+   "posed": 1980,
+   "words": 22,
+   "reach": 0.673,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-does-capital-not-flow-from-rich-to-poor-countries",
+   "branch": "applied",
+   "posed": 1990,
+   "words": 24,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-is-consumption-uncorrelated-with-the-real-exchange-rate",
+   "branch": "applied",
+   "posed": 1993,
+   "words": 25,
+   "reach": 0.661,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-is-the-equity-risk-premium-so-high",
+   "branch": "applied",
+   "posed": 1985,
+   "words": 24,
+   "reach": 0.613,
+   "bounded": false,
+   "zone": "outside"
   },
   {
    "id": "optimalstop",

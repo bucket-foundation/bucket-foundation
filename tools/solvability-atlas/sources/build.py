@@ -8,6 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import dated_lists
 import formal_conjectures
 import named_lists
+import open_lists
 import solved_discoveries
 import wikipedia_lists
 from common import OUTPUT, ascii_fold, dedupe, existing_titles, write
@@ -59,7 +60,7 @@ def merge_erdos(rows):
 
 
 def main():
-    rows = named_lists.rows() + wikipedia_lists.rows() + formal_conjectures.rows() + solved_discoveries.rows()
+    rows = named_lists.rows() + wikipedia_lists.rows() + formal_conjectures.rows() + solved_discoveries.rows() + open_lists.rows()
     rows, merged = merge_erdos(rows)
     rows = dedupe(rows, existing_titles())
     write(rows)

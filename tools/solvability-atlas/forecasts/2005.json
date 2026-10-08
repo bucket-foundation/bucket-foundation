@@ -5,7 +5,7 @@
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
- "input_hash": "0832cd25121c7ee067ef2fa682369ed6aa3a6ecee31b1acbeb5f98fa1e4b42b1",
+ "input_hash": "c76d4e596bf3d93b73a98dbf72c59452706f875885eb324a9b65de9ccf8d3fae",
  "solved": 170,
  "threshold_bounded": 16,
  "threshold": 0.639,
@@ -987,8 +987,8 @@
    "branch": "physics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.599,
-   "bounded": false,
+   "reach": 0.6,
+   "bounded": true,
    "zone": "outside"
   },
   {
@@ -1788,7 +1788,7 @@
    "branch": "mathematics",
    "posed": 1973,
    "words": 27,
-   "reach": 0.756,
+   "reach": 0.757,
    "bounded": true,
    "zone": "undecided"
   },
@@ -1860,7 +1860,7 @@
    "branch": "physics",
    "posed": 1950,
    "words": 124,
-   "reach": 0.572,
+   "reach": 0.573,
    "bounded": true,
    "zone": "outside"
   },
@@ -1896,7 +1896,7 @@
    "branch": "information",
    "posed": 1970,
    "words": 34,
-   "reach": 0.701,
+   "reach": 0.702,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2022,7 +2022,7 @@
    "branch": "mathematics",
    "posed": 1900,
    "words": 7,
-   "reach": 0.714,
+   "reach": 0.715,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2160,6 +2160,51 @@
    "reach": 0.656,
    "bounded": false,
    "zone": "inside"
+  },
+  {
+   "id": "op-is-every-real-time-computable-irrational-number-transcendent",
+   "branch": "information",
+   "posed": 1965,
+   "words": 22,
+   "reach": 0.769,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-do-national-savings-and-investment-rates-correlate",
+   "branch": "applied",
+   "posed": 1980,
+   "words": 22,
+   "reach": 0.673,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-does-capital-not-flow-from-rich-to-poor-countries",
+   "branch": "applied",
+   "posed": 1990,
+   "words": 24,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-is-consumption-uncorrelated-with-the-real-exchange-rate",
+   "branch": "applied",
+   "posed": 1993,
+   "words": 25,
+   "reach": 0.661,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-is-the-equity-risk-premium-so-high",
+   "branch": "applied",
+   "posed": 1985,
+   "words": 24,
+   "reach": 0.613,
+   "bounded": false,
+   "zone": "outside"
   },
   {
    "id": "owf",

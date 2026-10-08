@@ -5,10 +5,10 @@
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
- "input_hash": "14420d0eadbc0c1c045def4088ce64db906bccb42df8e628d26ad8ae92b45b35",
+ "input_hash": "a5b7b472d7a16905fedc6891d12b2cc65af024900df60948fafaf42900a9542c",
  "solved": 259,
- "threshold_bounded": 11,
- "threshold": 0.662,
+ "threshold_bounded": 12,
+ "threshold": 0.665,
  "rows": [
   {
    "id": "abc",
@@ -278,7 +278,7 @@
    "words": 20,
    "reach": 0.663,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-holy-grails-cost-effective-and-sustainable-use-of-precious-met",
@@ -386,7 +386,7 @@
    "words": 18,
    "reach": 0.663,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-holy-grails-site-selective-bond-activation-under-catalyst-cont",
@@ -449,7 +449,7 @@
    "words": 17,
    "reach": 0.663,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-neuro-23-are-single-cortical-neurons-independent-or-members",
@@ -971,7 +971,7 @@
    "words": 21,
    "reach": 0.663,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-how-is-plant-growth-controlled",
@@ -1070,7 +1070,7 @@
    "words": 17,
    "reach": 0.663,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-is-inflammation-a-major-factor-in-all-chronic-dise",
@@ -1115,7 +1115,7 @@
    "words": 22,
    "reach": 0.662,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-is-there-a-unified-theory-explaining-all-correlate",
@@ -1428,8 +1428,8 @@
    "branch": "physics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.599,
-   "bounded": false,
+   "reach": 0.6,
+   "bounded": true,
    "zone": "outside"
   },
   {
@@ -1628,7 +1628,7 @@
    "words": 20,
    "reach": 0.662,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-why-is-time-different-from-other-dimensions",
@@ -1788,7 +1788,7 @@
    "branch": "information",
    "posed": 2021,
    "words": 16,
-   "reach": 0.668,
+   "reach": 0.669,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2096,7 +2096,7 @@
    "words": 23,
    "reach": 0.664,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2021-is-it-possible-to-live-permanently-on-another-plan",
@@ -2366,7 +2366,7 @@
    "words": 17,
    "reach": 0.663,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2021-what-is-the-origin-of-cosmic-rays",
@@ -3561,7 +3561,7 @@
    "branch": "physics",
    "posed": 1950,
    "words": 124,
-   "reach": 0.572,
+   "reach": 0.573,
    "bounded": true,
    "zone": "outside"
   },
@@ -3872,6 +3872,51 @@
    "zone": "outside"
   },
   {
+   "id": "op-is-every-real-time-computable-irrational-number-transcendent",
+   "branch": "information",
+   "posed": 1965,
+   "words": 22,
+   "reach": 0.769,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-do-national-savings-and-investment-rates-correlate",
+   "branch": "applied",
+   "posed": 1980,
+   "words": 22,
+   "reach": 0.673,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-does-capital-not-flow-from-rich-to-poor-countries",
+   "branch": "applied",
+   "posed": 1990,
+   "words": 24,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-is-consumption-uncorrelated-with-the-real-exchange-rate",
+   "branch": "applied",
+   "posed": 1993,
+   "words": 25,
+   "reach": 0.661,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "op-why-is-the-equity-risk-premium-so-high",
+   "branch": "applied",
+   "posed": 1985,
+   "words": 24,
+   "reach": 0.613,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
    "id": "optimalstop",
    "branch": "information",
    "posed": 2010,
@@ -3995,7 +4040,7 @@
    "words": 13,
    "reach": 0.664,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "smale-15",

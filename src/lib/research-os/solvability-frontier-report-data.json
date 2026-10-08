@@ -1,7 +1,7 @@
 {
  "schema": "bucket.solvability-frontier-report/v1",
  "built": "2026-10-08",
- "nodes": 5149,
+ "nodes": 5206,
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
@@ -10,18 +10,18 @@
   "rule": "Reach is a problem's highest text similarity to a solved problem. The circle sits at reach 0.759: nine in ten solved problems are at least that close to another solved problem. Pulls count only a problem's 50 stored neighbours. Variants neither pull nor count as pulled.",
   "counts": {
    "solved": 1690,
-   "reachable": 2460,
-   "beyond": 999,
+   "reachable": 2466,
+   "beyond": 1050,
    "unsampled": 0
   },
-  "inside": 4150,
-  "outside": 999,
+  "inside": 4156,
+  "outside": 1050,
   "branches": {
    "information": {
-    "total": 127,
+    "total": 137,
     "solved": 41,
-    "reachable": 26,
-    "beyond": 60,
+    "reachable": 32,
+    "beyond": 64,
     "unsampled": 0
    },
    "mathematics": {
@@ -53,24 +53,24 @@
     "unsampled": 0
    },
    "chemistry": {
-    "total": 94,
+    "total": 104,
     "solved": 22,
     "reachable": 5,
-    "beyond": 67,
+    "beyond": 77,
     "unsampled": 0
    },
    "mind": {
-    "total": 113,
+    "total": 139,
     "solved": 10,
     "reachable": 0,
-    "beyond": 103,
+    "beyond": 129,
     "unsampled": 0
    },
    "applied": {
-    "total": 71,
+    "total": 82,
     "solved": 32,
     "reachable": 2,
-    "beyond": 37,
+    "beyond": 48,
     "unsampled": 0
    }
   },
@@ -90,9 +90,9 @@
     "solvedAtCutoff": 170,
     "threshold": 0.639,
     "thresholdBounded": 16,
-    "tested": 293,
+    "tested": 298,
     "unsampled": 0,
-    "reachBounded": 77,
+    "reachBounded": 78,
     "undecided": 72,
     "undatedSolved": 11,
     "undatedSolvedTested": 32,
@@ -102,14 +102,14 @@
       "label": "settled: solved only",
       "all": {
        "name": "all",
-       "inside": 155,
-       "outside": 66,
+       "inside": 159,
+       "outside": 67,
        "resolvedInside": 36,
        "resolvedOutside": 3,
-       "rateInside": 0.232,
+       "rateInside": 0.226,
        "rateOutside": 0.045,
-       "ratio": 5.11,
-       "pValue": 0.0006,
+       "ratio": 5.057,
+       "pValue": 0.0014,
        "belowFloor": false
       },
       "byLength": [
@@ -127,14 +127,14 @@
        },
        {
         "name": "20 to 40 words",
-        "inside": 69,
-        "outside": 28,
+        "inside": 73,
+        "outside": 29,
         "resolvedInside": 16,
         "resolvedOutside": 1,
-        "rateInside": 0.232,
-        "rateOutside": 0.036,
-        "ratio": 6.493,
-        "pValue": 0.035,
+        "rateInside": 0.219,
+        "rateOutside": 0.034,
+        "ratio": 6.356,
+        "pValue": 0.0372,
         "belowFloor": false
        },
        {
@@ -153,8 +153,8 @@
       "byBranch": [
        {
         "name": "applied",
-        "inside": 5,
-        "outside": 2,
+        "inside": 8,
+        "outside": 3,
         "resolvedInside": 0,
         "resolvedOutside": 0,
         "rateInside": null,
@@ -201,7 +201,7 @@
        },
        {
         "name": "information",
-        "inside": 19,
+        "inside": 20,
         "outside": 2,
         "resolvedInside": 10,
         "resolvedOutside": 1,
@@ -249,40 +249,40 @@
        }
       ],
       "auc": 0.807,
-      "aucRows": 221,
+      "aucRows": 226,
       "undatedRemoved": {
        "all": {
         "name": "all, undated solved rows removed",
-        "inside": 144,
-        "outside": 66,
+        "inside": 148,
+        "outside": 67,
         "resolvedInside": 25,
         "resolvedOutside": 3,
-        "rateInside": 0.174,
+        "rateInside": 0.169,
         "rateOutside": 0.045,
-        "ratio": 3.819,
-        "pValue": 0.0151,
+        "ratio": 3.773,
+        "pValue": 0.0141,
         "belowFloor": false
        },
-       "auc": 0.746,
-       "aucRows": 210
+       "auc": 0.745,
+       "aucRows": 215
       },
       "undecidedResolved": 23,
       "undecidedBounds": [
        {
         "name": "all undecided inside",
-        "inside": 227,
-        "outside": 66,
-        "rateInside": 0.26,
+        "inside": 231,
+        "outside": 67,
+        "rateInside": 0.255,
         "rateOutside": 0.045,
-        "ratio": 5.718
+        "ratio": 5.704
        },
        {
         "name": "all undecided outside",
-        "inside": 155,
-        "outside": 138,
-        "rateInside": 0.232,
-        "rateOutside": 0.188,
-        "ratio": 1.233
+        "inside": 159,
+        "outside": 139,
+        "rateInside": 0.226,
+        "rateOutside": 0.187,
+        "ratio": 1.21
        }
       ]
      },
@@ -291,14 +291,14 @@
       "label": "settled or advanced: solved or partial",
       "all": {
        "name": "all",
-       "inside": 155,
-       "outside": 66,
+       "inside": 159,
+       "outside": 67,
        "resolvedInside": 75,
        "resolvedOutside": 39,
-       "rateInside": 0.484,
-       "rateOutside": 0.591,
-       "ratio": 0.819,
-       "pValue": 0.1858,
+       "rateInside": 0.472,
+       "rateOutside": 0.582,
+       "ratio": 0.81,
+       "pValue": 0.1482,
        "belowFloor": false
       },
       "byLength": [
@@ -316,14 +316,14 @@
        },
        {
         "name": "20 to 40 words",
-        "inside": 69,
-        "outside": 28,
+        "inside": 73,
+        "outside": 29,
         "resolvedInside": 39,
         "resolvedOutside": 22,
-        "rateInside": 0.565,
-        "rateOutside": 0.786,
-        "ratio": 0.719,
-        "pValue": 0.0645,
+        "rateInside": 0.534,
+        "rateOutside": 0.759,
+        "ratio": 0.704,
+        "pValue": 0.045,
         "belowFloor": false
        },
        {
@@ -342,8 +342,8 @@
       "byBranch": [
        {
         "name": "applied",
-        "inside": 5,
-        "outside": 2,
+        "inside": 8,
+        "outside": 3,
         "resolvedInside": 1,
         "resolvedOutside": 2,
         "rateInside": null,
@@ -390,7 +390,7 @@
        },
        {
         "name": "information",
-        "inside": 19,
+        "inside": 20,
         "outside": 2,
         "resolvedInside": 11,
         "resolvedOutside": 1,
@@ -437,41 +437,41 @@
         "belowFloor": false
        }
       ],
-      "auc": 0.521,
-      "aucRows": 221,
+      "auc": 0.52,
+      "aucRows": 226,
       "undatedRemoved": {
        "all": {
         "name": "all, undated solved rows removed",
-        "inside": 144,
-        "outside": 66,
+        "inside": 148,
+        "outside": 67,
         "resolvedInside": 64,
         "resolvedOutside": 39,
-        "rateInside": 0.444,
-        "rateOutside": 0.591,
-        "ratio": 0.752,
-        "pValue": 0.0511,
+        "rateInside": 0.432,
+        "rateOutside": 0.582,
+        "ratio": 0.743,
+        "pValue": 0.0534,
         "belowFloor": false
        },
-       "auc": 0.475,
-       "aucRows": 210
+       "auc": 0.474,
+       "aucRows": 215
       },
       "undecidedResolved": 37,
       "undecidedBounds": [
        {
         "name": "all undecided inside",
-        "inside": 227,
-        "outside": 66,
-        "rateInside": 0.493,
-        "rateOutside": 0.591,
-        "ratio": 0.835
+        "inside": 231,
+        "outside": 67,
+        "rateInside": 0.485,
+        "rateOutside": 0.582,
+        "ratio": 0.833
        },
        {
         "name": "all undecided outside",
-        "inside": 155,
-        "outside": 138,
-        "rateInside": 0.484,
-        "rateOutside": 0.551,
-        "ratio": 0.879
+        "inside": 159,
+        "outside": 139,
+        "rateInside": 0.472,
+        "rateOutside": 0.547,
+        "ratio": 0.863
        }
       ]
      }
@@ -480,11 +480,11 @@
    {
     "cutoff": 2021,
     "solvedAtCutoff": 259,
-    "threshold": 0.662,
-    "thresholdBounded": 11,
-    "tested": 465,
+    "threshold": 0.665,
+    "thresholdBounded": 12,
+    "tested": 470,
     "unsampled": 0,
-    "reachBounded": 49,
+    "reachBounded": 50,
     "undecided": 42,
     "undatedSolved": 21,
     "undatedSolvedTested": 33,
@@ -494,24 +494,24 @@
       "label": "settled: solved only",
       "all": {
        "name": "all",
-       "inside": 268,
-       "outside": 155,
+       "inside": 261,
+       "outside": 167,
        "resolvedInside": 28,
        "resolvedOutside": 1,
-       "rateInside": 0.104,
+       "rateInside": 0.107,
        "rateOutside": 0.006,
-       "ratio": 16.194,
+       "ratio": 17.916,
        "pValue": 0.0001,
        "belowFloor": false
       },
       "byLength": [
        {
         "name": "under 20 words",
-        "inside": 119,
-        "outside": 76,
+        "inside": 114,
+        "outside": 81,
         "resolvedInside": 1,
         "resolvedOutside": 0,
-        "rateInside": 0.008,
+        "rateInside": 0.009,
         "rateOutside": 0,
         "ratio": null,
         "pValue": 1,
@@ -519,14 +519,14 @@
        },
        {
         "name": "20 to 40 words",
-        "inside": 91,
-        "outside": 52,
+        "inside": 89,
+        "outside": 59,
         "resolvedInside": 6,
         "resolvedOutside": 1,
-        "rateInside": 0.066,
-        "rateOutside": 0.019,
-        "ratio": 3.429,
-        "pValue": 0.2637,
+        "rateInside": 0.067,
+        "rateOutside": 0.017,
+        "ratio": 3.978,
+        "pValue": 0.2505,
         "belowFloor": false
        },
        {
@@ -545,8 +545,8 @@
       "byBranch": [
        {
         "name": "applied",
-        "inside": 13,
-        "outside": 11,
+        "inside": 15,
+        "outside": 13,
         "resolvedInside": 0,
         "resolvedOutside": 0,
         "rateInside": 0,
@@ -557,23 +557,23 @@
        },
        {
         "name": "biophysics",
-        "inside": 43,
-        "outside": 48,
+        "inside": 41,
+        "outside": 50,
         "resolvedInside": 1,
         "resolvedOutside": 0,
-        "rateInside": 0.023,
+        "rateInside": 0.024,
         "rateOutside": 0,
         "ratio": null,
-        "pValue": 0.4707,
+        "pValue": 0.4505,
         "belowFloor": false
        },
        {
         "name": "chemistry",
-        "inside": 30,
-        "outside": 16,
+        "inside": 27,
+        "outside": 19,
         "resolvedInside": 1,
         "resolvedOutside": 0,
-        "rateInside": 0.033,
+        "rateInside": 0.037,
         "rateOutside": 0,
         "ratio": null,
         "pValue": 1,
@@ -594,7 +594,7 @@
        {
         "name": "information",
         "inside": 23,
-        "outside": 7,
+        "outside": 8,
         "resolvedInside": 1,
         "resolvedOutside": 1,
         "rateInside": null,
@@ -605,8 +605,8 @@
        },
        {
         "name": "mathematics",
-        "inside": 87,
-        "outside": 1,
+        "inside": 86,
+        "outside": 2,
         "resolvedInside": 24,
         "resolvedOutside": 0,
         "rateInside": null,
@@ -629,52 +629,52 @@
        },
        {
         "name": "physics",
-        "inside": 29,
-        "outside": 27,
+        "inside": 26,
+        "outside": 30,
         "resolvedInside": 1,
         "resolvedOutside": 0,
-        "rateInside": 0.034,
+        "rateInside": 0.038,
         "rateOutside": 0,
         "ratio": null,
-        "pValue": 1,
+        "pValue": 0.4602,
         "belowFloor": false
        }
       ],
       "auc": 0.89,
-      "aucRows": 423,
+      "aucRows": 428,
       "undatedRemoved": {
        "all": {
         "name": "all, undated solved rows removed",
-        "inside": 247,
-        "outside": 155,
+        "inside": 240,
+        "outside": 167,
         "resolvedInside": 7,
         "resolvedOutside": 1,
-        "rateInside": 0.028,
+        "rateInside": 0.029,
         "rateOutside": 0.006,
-        "ratio": 4.393,
-        "pValue": 0.1512,
+        "ratio": 4.871,
+        "pValue": 0.1489,
         "belowFloor": false
        },
        "auc": 0.709,
-       "aucRows": 402
+       "aucRows": 407
       },
       "undecidedResolved": 12,
       "undecidedBounds": [
        {
         "name": "all undecided inside",
-        "inside": 310,
-        "outside": 155,
-        "rateInside": 0.129,
+        "inside": 303,
+        "outside": 167,
+        "rateInside": 0.132,
         "rateOutside": 0.006,
-        "ratio": 20
+        "ratio": 22.046
        },
        {
         "name": "all undecided outside",
-        "inside": 268,
-        "outside": 197,
-        "rateInside": 0.104,
-        "rateOutside": 0.066,
-        "ratio": 1.583
+        "inside": 261,
+        "outside": 209,
+        "rateInside": 0.107,
+        "rateOutside": 0.062,
+        "ratio": 1.725
        }
       ]
      },
@@ -683,39 +683,39 @@
       "label": "settled or advanced: solved or partial",
       "all": {
        "name": "all",
-       "inside": 268,
-       "outside": 155,
-       "resolvedInside": 110,
-       "resolvedOutside": 62,
-       "rateInside": 0.41,
-       "rateOutside": 0.4,
-       "ratio": 1.026,
-       "pValue": 0.832,
+       "inside": 261,
+       "outside": 167,
+       "resolvedInside": 105,
+       "resolvedOutside": 67,
+       "rateInside": 0.402,
+       "rateOutside": 0.401,
+       "ratio": 1.003,
+       "pValue": 1,
        "belowFloor": false
       },
       "byLength": [
        {
         "name": "under 20 words",
-        "inside": 119,
-        "outside": 76,
-        "resolvedInside": 41,
-        "resolvedOutside": 31,
-        "rateInside": 0.345,
-        "rateOutside": 0.408,
-        "ratio": 0.845,
-        "pValue": 0.4525,
+        "inside": 114,
+        "outside": 81,
+        "resolvedInside": 39,
+        "resolvedOutside": 33,
+        "rateInside": 0.342,
+        "rateOutside": 0.407,
+        "ratio": 0.84,
+        "pValue": 0.3704,
         "belowFloor": false
        },
        {
         "name": "20 to 40 words",
-        "inside": 91,
-        "outside": 52,
-        "resolvedInside": 42,
-        "resolvedOutside": 31,
-        "rateInside": 0.462,
-        "rateOutside": 0.596,
-        "ratio": 0.774,
-        "pValue": 0.167,
+        "inside": 89,
+        "outside": 59,
+        "resolvedInside": 39,
+        "resolvedOutside": 34,
+        "rateInside": 0.438,
+        "rateOutside": 0.576,
+        "ratio": 0.76,
+        "pValue": 0.128,
         "belowFloor": false
        },
        {
@@ -734,37 +734,37 @@
       "byBranch": [
        {
         "name": "applied",
-        "inside": 13,
-        "outside": 11,
+        "inside": 15,
+        "outside": 13,
         "resolvedInside": 2,
         "resolvedOutside": 2,
-        "rateInside": 0.154,
-        "rateOutside": 0.182,
-        "ratio": 0.846,
+        "rateInside": 0.133,
+        "rateOutside": 0.154,
+        "ratio": 0.867,
         "pValue": 1,
         "belowFloor": false
        },
        {
         "name": "biophysics",
-        "inside": 43,
-        "outside": 48,
-        "resolvedInside": 28,
-        "resolvedOutside": 32,
-        "rateInside": 0.651,
-        "rateOutside": 0.667,
-        "ratio": 0.977,
+        "inside": 41,
+        "outside": 50,
+        "resolvedInside": 27,
+        "resolvedOutside": 33,
+        "rateInside": 0.659,
+        "rateOutside": 0.66,
+        "ratio": 0.998,
         "pValue": 1,
         "belowFloor": false
        },
        {
         "name": "chemistry",
-        "inside": 30,
-        "outside": 16,
-        "resolvedInside": 6,
-        "resolvedOutside": 3,
-        "rateInside": 0.2,
-        "rateOutside": 0.188,
-        "ratio": 1.067,
+        "inside": 27,
+        "outside": 19,
+        "resolvedInside": 5,
+        "resolvedOutside": 4,
+        "rateInside": 0.185,
+        "rateOutside": 0.211,
+        "ratio": 0.88,
         "pValue": 1,
         "belowFloor": false
        },
@@ -783,7 +783,7 @@
        {
         "name": "information",
         "inside": 23,
-        "outside": 7,
+        "outside": 8,
         "resolvedInside": 6,
         "resolvedOutside": 1,
         "rateInside": null,
@@ -794,10 +794,10 @@
        },
        {
         "name": "mathematics",
-        "inside": 87,
-        "outside": 1,
-        "resolvedInside": 45,
-        "resolvedOutside": 0,
+        "inside": 86,
+        "outside": 2,
+        "resolvedInside": 44,
+        "resolvedOutside": 1,
         "rateInside": null,
         "rateOutside": null,
         "ratio": null,
@@ -818,52 +818,52 @@
        },
        {
         "name": "physics",
-        "inside": 29,
-        "outside": 27,
-        "resolvedInside": 8,
-        "resolvedOutside": 6,
-        "rateInside": 0.276,
-        "rateOutside": 0.222,
-        "ratio": 1.241,
-        "pValue": 0.7618,
+        "inside": 26,
+        "outside": 30,
+        "resolvedInside": 6,
+        "resolvedOutside": 8,
+        "rateInside": 0.231,
+        "rateOutside": 0.267,
+        "ratio": 0.865,
+        "pValue": 1,
         "belowFloor": false
        }
       ],
       "auc": 0.516,
-      "aucRows": 423,
+      "aucRows": 428,
       "undatedRemoved": {
        "all": {
         "name": "all, undated solved rows removed",
-        "inside": 247,
-        "outside": 155,
-        "resolvedInside": 89,
-        "resolvedOutside": 62,
-        "rateInside": 0.36,
-        "rateOutside": 0.4,
-        "ratio": 0.901,
-        "pValue": 0.4589,
+        "inside": 240,
+        "outside": 167,
+        "resolvedInside": 84,
+        "resolvedOutside": 67,
+        "rateInside": 0.35,
+        "rateOutside": 0.401,
+        "ratio": 0.872,
+        "pValue": 0.2963,
         "belowFloor": false
        },
-       "auc": 0.455,
-       "aucRows": 402
+       "auc": 0.456,
+       "aucRows": 407
       },
       "undecidedResolved": 23,
       "undecidedBounds": [
        {
         "name": "all undecided inside",
-        "inside": 310,
-        "outside": 155,
-        "rateInside": 0.429,
-        "rateOutside": 0.4,
-        "ratio": 1.073
+        "inside": 303,
+        "outside": 167,
+        "rateInside": 0.422,
+        "rateOutside": 0.401,
+        "ratio": 1.053
        },
        {
         "name": "all undecided outside",
-        "inside": 268,
-        "outside": 197,
-        "rateInside": 0.41,
+        "inside": 261,
+        "outside": 209,
+        "rateInside": 0.402,
         "rateOutside": 0.431,
-        "ratio": 0.951
+        "ratio": 0.934
        }
       ]
      }
@@ -877,9 +877,9 @@
    "solvedAtCutoff": 170,
    "threshold": 0.639,
    "thresholdBounded": 16,
-   "tested": 293,
+   "tested": 298,
    "unsampled": 0,
-   "reachBounded": 77,
+   "reachBounded": 78,
    "undecided": 72,
    "undatedSolved": 11,
    "undatedSolvedTested": 32,
@@ -889,14 +889,14 @@
      "label": "settled: solved only",
      "all": {
       "name": "all",
-      "inside": 155,
-      "outside": 66,
+      "inside": 159,
+      "outside": 67,
       "resolvedInside": 36,
       "resolvedOutside": 3,
-      "rateInside": 0.232,
+      "rateInside": 0.226,
       "rateOutside": 0.045,
-      "ratio": 5.11,
-      "pValue": 0.0006,
+      "ratio": 5.057,
+      "pValue": 0.0014,
       "belowFloor": false
      },
      "byLength": [
@@ -914,14 +914,14 @@
       },
       {
        "name": "20 to 40 words",
-       "inside": 69,
-       "outside": 28,
+       "inside": 73,
+       "outside": 29,
        "resolvedInside": 16,
        "resolvedOutside": 1,
-       "rateInside": 0.232,
-       "rateOutside": 0.036,
-       "ratio": 6.493,
-       "pValue": 0.035,
+       "rateInside": 0.219,
+       "rateOutside": 0.034,
+       "ratio": 6.356,
+       "pValue": 0.0372,
        "belowFloor": false
       },
       {
@@ -940,8 +940,8 @@
      "byBranch": [
       {
        "name": "applied",
-       "inside": 5,
-       "outside": 2,
+       "inside": 8,
+       "outside": 3,
        "resolvedInside": 0,
        "resolvedOutside": 0,
        "rateInside": null,
@@ -988,7 +988,7 @@
       },
       {
        "name": "information",
-       "inside": 19,
+       "inside": 20,
        "outside": 2,
        "resolvedInside": 10,
        "resolvedOutside": 1,
@@ -1036,40 +1036,40 @@
       }
      ],
      "auc": 0.807,
-     "aucRows": 221,
+     "aucRows": 226,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 144,
-       "outside": 66,
+       "inside": 148,
+       "outside": 67,
        "resolvedInside": 25,
        "resolvedOutside": 3,
-       "rateInside": 0.174,
+       "rateInside": 0.169,
        "rateOutside": 0.045,
-       "ratio": 3.819,
-       "pValue": 0.0151,
+       "ratio": 3.773,
+       "pValue": 0.0141,
        "belowFloor": false
       },
-      "auc": 0.746,
-      "aucRows": 210
+      "auc": 0.745,
+      "aucRows": 215
      },
      "undecidedResolved": 23,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 227,
-       "outside": 66,
-       "rateInside": 0.26,
+       "inside": 231,
+       "outside": 67,
+       "rateInside": 0.255,
        "rateOutside": 0.045,
-       "ratio": 5.718
+       "ratio": 5.704
       },
       {
        "name": "all undecided outside",
-       "inside": 155,
-       "outside": 138,
-       "rateInside": 0.232,
-       "rateOutside": 0.188,
-       "ratio": 1.233
+       "inside": 159,
+       "outside": 139,
+       "rateInside": 0.226,
+       "rateOutside": 0.187,
+       "ratio": 1.21
       }
      ]
     },
@@ -1078,14 +1078,14 @@
      "label": "settled or advanced: solved or partial",
      "all": {
       "name": "all",
-      "inside": 155,
-      "outside": 66,
+      "inside": 159,
+      "outside": 67,
       "resolvedInside": 75,
       "resolvedOutside": 39,
-      "rateInside": 0.484,
-      "rateOutside": 0.591,
-      "ratio": 0.819,
-      "pValue": 0.1858,
+      "rateInside": 0.472,
+      "rateOutside": 0.582,
+      "ratio": 0.81,
+      "pValue": 0.1482,
       "belowFloor": false
      },
      "byLength": [
@@ -1103,14 +1103,14 @@
       },
       {
        "name": "20 to 40 words",
-       "inside": 69,
-       "outside": 28,
+       "inside": 73,
+       "outside": 29,
        "resolvedInside": 39,
        "resolvedOutside": 22,
-       "rateInside": 0.565,
-       "rateOutside": 0.786,
-       "ratio": 0.719,
-       "pValue": 0.0645,
+       "rateInside": 0.534,
+       "rateOutside": 0.759,
+       "ratio": 0.704,
+       "pValue": 0.045,
        "belowFloor": false
       },
       {
@@ -1129,8 +1129,8 @@
      "byBranch": [
       {
        "name": "applied",
-       "inside": 5,
-       "outside": 2,
+       "inside": 8,
+       "outside": 3,
        "resolvedInside": 1,
        "resolvedOutside": 2,
        "rateInside": null,
@@ -1177,7 +1177,7 @@
       },
       {
        "name": "information",
-       "inside": 19,
+       "inside": 20,
        "outside": 2,
        "resolvedInside": 11,
        "resolvedOutside": 1,
@@ -1224,46 +1224,46 @@
        "belowFloor": false
       }
      ],
-     "auc": 0.521,
-     "aucRows": 221,
+     "auc": 0.52,
+     "aucRows": 226,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 144,
-       "outside": 66,
+       "inside": 148,
+       "outside": 67,
        "resolvedInside": 64,
        "resolvedOutside": 39,
-       "rateInside": 0.444,
-       "rateOutside": 0.591,
-       "ratio": 0.752,
-       "pValue": 0.0511,
+       "rateInside": 0.432,
+       "rateOutside": 0.582,
+       "ratio": 0.743,
+       "pValue": 0.0534,
        "belowFloor": false
       },
-      "auc": 0.475,
-      "aucRows": 210
+      "auc": 0.474,
+      "aucRows": 215
      },
      "undecidedResolved": 37,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 227,
-       "outside": 66,
-       "rateInside": 0.493,
-       "rateOutside": 0.591,
-       "ratio": 0.835
+       "inside": 231,
+       "outside": 67,
+       "rateInside": 0.485,
+       "rateOutside": 0.582,
+       "ratio": 0.833
       },
       {
        "name": "all undecided outside",
-       "inside": 155,
-       "outside": 138,
-       "rateInside": 0.484,
-       "rateOutside": 0.551,
-       "ratio": 0.879
+       "inside": 159,
+       "outside": 139,
+       "rateInside": 0.472,
+       "rateOutside": 0.547,
+       "ratio": 0.863
       }
      ]
     }
    ],
-   "inputHash": "0832cd25121c7ee067ef2fa682369ed6aa3a6ecee31b1acbeb5f98fa1e4b42b1",
+   "inputHash": "c76d4e596bf3d93b73a98dbf72c59452706f875885eb324a9b65de9ccf8d3fae",
    "forecastBuilt": "2026-10-08"
   },
   {
@@ -1271,9 +1271,9 @@
    "solvedAtCutoff": 212,
    "threshold": 0.639,
    "thresholdBounded": 16,
-   "tested": 325,
+   "tested": 330,
    "unsampled": 0,
-   "reachBounded": 62,
+   "reachBounded": 63,
    "undecided": 57,
    "undatedSolved": 14,
    "undatedSolvedTested": 33,
@@ -1283,14 +1283,14 @@
      "label": "settled: solved only",
      "all": {
       "name": "all",
-      "inside": 203,
-      "outside": 65,
+      "inside": 207,
+      "outside": 66,
       "resolvedInside": 35,
       "resolvedOutside": 2,
-      "rateInside": 0.172,
-      "rateOutside": 0.031,
-      "ratio": 5.603,
-      "pValue": 0.0073,
+      "rateInside": 0.169,
+      "rateOutside": 0.03,
+      "ratio": 5.58,
+      "pValue": 0.0081,
       "belowFloor": false
      },
      "byLength": [
@@ -1308,14 +1308,14 @@
       },
       {
        "name": "20 to 40 words",
-       "inside": 86,
-       "outside": 25,
+       "inside": 90,
+       "outside": 26,
        "resolvedInside": 14,
        "resolvedOutside": 1,
-       "rateInside": 0.163,
-       "rateOutside": 0.04,
-       "ratio": 4.07,
-       "pValue": 0.1834,
+       "rateInside": 0.156,
+       "rateOutside": 0.038,
+       "ratio": 4.044,
+       "pValue": 0.1805,
        "belowFloor": false
       },
       {
@@ -1334,8 +1334,8 @@
      "byBranch": [
       {
        "name": "applied",
-       "inside": 11,
-       "outside": 2,
+       "inside": 14,
+       "outside": 3,
        "resolvedInside": 3,
        "resolvedOutside": 1,
        "rateInside": null,
@@ -1382,7 +1382,7 @@
       },
       {
        "name": "information",
-       "inside": 18,
+       "inside": 19,
        "outside": 2,
        "resolvedInside": 6,
        "resolvedOutside": 0,
@@ -1430,40 +1430,40 @@
       }
      ],
      "auc": 0.755,
-     "aucRows": 268,
+     "aucRows": 273,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 189,
-       "outside": 65,
+       "inside": 193,
+       "outside": 66,
        "resolvedInside": 21,
        "resolvedOutside": 2,
-       "rateInside": 0.111,
-       "rateOutside": 0.031,
-       "ratio": 3.611,
-       "pValue": 0.0737,
+       "rateInside": 0.109,
+       "rateOutside": 0.03,
+       "ratio": 3.591,
+       "pValue": 0.0795,
        "belowFloor": false
       },
       "auc": 0.641,
-      "aucRows": 254
+      "aucRows": 259
      },
      "undecidedResolved": 19,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 260,
-       "outside": 65,
-       "rateInside": 0.208,
-       "rateOutside": 0.031,
+       "inside": 264,
+       "outside": 66,
+       "rateInside": 0.205,
+       "rateOutside": 0.03,
        "ratio": 6.75
       },
       {
        "name": "all undecided outside",
-       "inside": 203,
-       "outside": 122,
-       "rateInside": 0.172,
-       "rateOutside": 0.172,
-       "ratio": 1.002
+       "inside": 207,
+       "outside": 123,
+       "rateInside": 0.169,
+       "rateOutside": 0.171,
+       "ratio": 0.99
       }
      ]
     },
@@ -1472,14 +1472,14 @@
      "label": "settled or advanced: solved or partial",
      "all": {
       "name": "all",
-      "inside": 203,
-      "outside": 65,
+      "inside": 207,
+      "outside": 66,
       "resolvedInside": 94,
       "resolvedOutside": 34,
-      "rateInside": 0.463,
-      "rateOutside": 0.523,
-      "ratio": 0.885,
-      "pValue": 0.4724,
+      "rateInside": 0.454,
+      "rateOutside": 0.515,
+      "ratio": 0.882,
+      "pValue": 0.4016,
       "belowFloor": false
      },
      "byLength": [
@@ -1497,14 +1497,14 @@
       },
       {
        "name": "20 to 40 words",
-       "inside": 86,
-       "outside": 25,
+       "inside": 90,
+       "outside": 26,
        "resolvedInside": 44,
        "resolvedOutside": 19,
-       "rateInside": 0.512,
-       "rateOutside": 0.76,
-       "ratio": 0.673,
-       "pValue": 0.0384,
+       "rateInside": 0.489,
+       "rateOutside": 0.731,
+       "ratio": 0.669,
+       "pValue": 0.0409,
        "belowFloor": false
       },
       {
@@ -1523,8 +1523,8 @@
      "byBranch": [
       {
        "name": "applied",
-       "inside": 11,
-       "outside": 2,
+       "inside": 14,
+       "outside": 3,
        "resolvedInside": 5,
        "resolvedOutside": 2,
        "rateInside": null,
@@ -1571,7 +1571,7 @@
       },
       {
        "name": "information",
-       "inside": 18,
+       "inside": 19,
        "outside": 2,
        "resolvedInside": 7,
        "resolvedOutside": 0,
@@ -1618,56 +1618,56 @@
        "belowFloor": true
       }
      ],
-     "auc": 0.511,
-     "aucRows": 268,
+     "auc": 0.512,
+     "aucRows": 273,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 189,
-       "outside": 65,
+       "inside": 193,
+       "outside": 66,
        "resolvedInside": 80,
        "resolvedOutside": 34,
-       "rateInside": 0.423,
-       "rateOutside": 0.523,
-       "ratio": 0.809,
-       "pValue": 0.1923,
+       "rateInside": 0.415,
+       "rateOutside": 0.515,
+       "ratio": 0.805,
+       "pValue": 0.197,
        "belowFloor": false
       },
       "auc": 0.46,
-      "aucRows": 254
+      "aucRows": 259
      },
      "undecidedResolved": 32,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 260,
-       "outside": 65,
-       "rateInside": 0.485,
-       "rateOutside": 0.523,
+       "inside": 264,
+       "outside": 66,
+       "rateInside": 0.477,
+       "rateOutside": 0.515,
        "ratio": 0.926
       },
       {
        "name": "all undecided outside",
-       "inside": 203,
-       "outside": 122,
-       "rateInside": 0.463,
-       "rateOutside": 0.541,
-       "ratio": 0.856
+       "inside": 207,
+       "outside": 123,
+       "rateInside": 0.454,
+       "rateOutside": 0.537,
+       "ratio": 0.846
       }
      ]
     }
    ],
-   "inputHash": "7ad4419453b95af9b417cb00502bf7c11d432702c64116fae987cfe0d416cd65",
+   "inputHash": "8139af4df334aec0ba7f4f5ef0576a9980cf66cd8c37ccaa5b6e9bde292fb702",
    "forecastBuilt": "2026-10-08"
   },
   {
    "cutoff": 2021,
    "solvedAtCutoff": 259,
-   "threshold": 0.662,
-   "thresholdBounded": 11,
-   "tested": 465,
+   "threshold": 0.665,
+   "thresholdBounded": 12,
+   "tested": 470,
    "unsampled": 0,
-   "reachBounded": 49,
+   "reachBounded": 50,
    "undecided": 42,
    "undatedSolved": 21,
    "undatedSolvedTested": 33,
@@ -1677,24 +1677,24 @@
      "label": "settled: solved only",
      "all": {
       "name": "all",
-      "inside": 268,
-      "outside": 155,
+      "inside": 261,
+      "outside": 167,
       "resolvedInside": 28,
       "resolvedOutside": 1,
-      "rateInside": 0.104,
+      "rateInside": 0.107,
       "rateOutside": 0.006,
-      "ratio": 16.194,
+      "ratio": 17.916,
       "pValue": 0.0001,
       "belowFloor": false
      },
      "byLength": [
       {
        "name": "under 20 words",
-       "inside": 119,
-       "outside": 76,
+       "inside": 114,
+       "outside": 81,
        "resolvedInside": 1,
        "resolvedOutside": 0,
-       "rateInside": 0.008,
+       "rateInside": 0.009,
        "rateOutside": 0,
        "ratio": null,
        "pValue": 1,
@@ -1702,14 +1702,14 @@
       },
       {
        "name": "20 to 40 words",
-       "inside": 91,
-       "outside": 52,
+       "inside": 89,
+       "outside": 59,
        "resolvedInside": 6,
        "resolvedOutside": 1,
-       "rateInside": 0.066,
-       "rateOutside": 0.019,
-       "ratio": 3.429,
-       "pValue": 0.2637,
+       "rateInside": 0.067,
+       "rateOutside": 0.017,
+       "ratio": 3.978,
+       "pValue": 0.2505,
        "belowFloor": false
       },
       {
@@ -1728,8 +1728,8 @@
      "byBranch": [
       {
        "name": "applied",
-       "inside": 13,
-       "outside": 11,
+       "inside": 15,
+       "outside": 13,
        "resolvedInside": 0,
        "resolvedOutside": 0,
        "rateInside": 0,
@@ -1740,23 +1740,23 @@
       },
       {
        "name": "biophysics",
-       "inside": 43,
-       "outside": 48,
+       "inside": 41,
+       "outside": 50,
        "resolvedInside": 1,
        "resolvedOutside": 0,
-       "rateInside": 0.023,
+       "rateInside": 0.024,
        "rateOutside": 0,
        "ratio": null,
-       "pValue": 0.4707,
+       "pValue": 0.4505,
        "belowFloor": false
       },
       {
        "name": "chemistry",
-       "inside": 30,
-       "outside": 16,
+       "inside": 27,
+       "outside": 19,
        "resolvedInside": 1,
        "resolvedOutside": 0,
-       "rateInside": 0.033,
+       "rateInside": 0.037,
        "rateOutside": 0,
        "ratio": null,
        "pValue": 1,
@@ -1777,7 +1777,7 @@
       {
        "name": "information",
        "inside": 23,
-       "outside": 7,
+       "outside": 8,
        "resolvedInside": 1,
        "resolvedOutside": 1,
        "rateInside": null,
@@ -1788,8 +1788,8 @@
       },
       {
        "name": "mathematics",
-       "inside": 87,
-       "outside": 1,
+       "inside": 86,
+       "outside": 2,
        "resolvedInside": 24,
        "resolvedOutside": 0,
        "rateInside": null,
@@ -1812,52 +1812,52 @@
       },
       {
        "name": "physics",
-       "inside": 29,
-       "outside": 27,
+       "inside": 26,
+       "outside": 30,
        "resolvedInside": 1,
        "resolvedOutside": 0,
-       "rateInside": 0.034,
+       "rateInside": 0.038,
        "rateOutside": 0,
        "ratio": null,
-       "pValue": 1,
+       "pValue": 0.4602,
        "belowFloor": false
       }
      ],
      "auc": 0.89,
-     "aucRows": 423,
+     "aucRows": 428,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 247,
-       "outside": 155,
+       "inside": 240,
+       "outside": 167,
        "resolvedInside": 7,
        "resolvedOutside": 1,
-       "rateInside": 0.028,
+       "rateInside": 0.029,
        "rateOutside": 0.006,
-       "ratio": 4.393,
-       "pValue": 0.1512,
+       "ratio": 4.871,
+       "pValue": 0.1489,
        "belowFloor": false
       },
       "auc": 0.709,
-      "aucRows": 402
+      "aucRows": 407
      },
      "undecidedResolved": 12,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 310,
-       "outside": 155,
-       "rateInside": 0.129,
+       "inside": 303,
+       "outside": 167,
+       "rateInside": 0.132,
        "rateOutside": 0.006,
-       "ratio": 20
+       "ratio": 22.046
       },
       {
        "name": "all undecided outside",
-       "inside": 268,
-       "outside": 197,
-       "rateInside": 0.104,
-       "rateOutside": 0.066,
-       "ratio": 1.583
+       "inside": 261,
+       "outside": 209,
+       "rateInside": 0.107,
+       "rateOutside": 0.062,
+       "ratio": 1.725
       }
      ]
     },
@@ -1866,39 +1866,39 @@
      "label": "settled or advanced: solved or partial",
      "all": {
       "name": "all",
-      "inside": 268,
-      "outside": 155,
-      "resolvedInside": 110,
-      "resolvedOutside": 62,
-      "rateInside": 0.41,
-      "rateOutside": 0.4,
-      "ratio": 1.026,
-      "pValue": 0.832,
+      "inside": 261,
+      "outside": 167,
+      "resolvedInside": 105,
+      "resolvedOutside": 67,
+      "rateInside": 0.402,
+      "rateOutside": 0.401,
+      "ratio": 1.003,
+      "pValue": 1,
       "belowFloor": false
      },
      "byLength": [
       {
        "name": "under 20 words",
-       "inside": 119,
-       "outside": 76,
-       "resolvedInside": 41,
-       "resolvedOutside": 31,
-       "rateInside": 0.345,
-       "rateOutside": 0.408,
-       "ratio": 0.845,
-       "pValue": 0.4525,
+       "inside": 114,
+       "outside": 81,
+       "resolvedInside": 39,
+       "resolvedOutside": 33,
+       "rateInside": 0.342,
+       "rateOutside": 0.407,
+       "ratio": 0.84,
+       "pValue": 0.3704,
        "belowFloor": false
       },
       {
        "name": "20 to 40 words",
-       "inside": 91,
-       "outside": 52,
-       "resolvedInside": 42,
-       "resolvedOutside": 31,
-       "rateInside": 0.462,
-       "rateOutside": 0.596,
-       "ratio": 0.774,
-       "pValue": 0.167,
+       "inside": 89,
+       "outside": 59,
+       "resolvedInside": 39,
+       "resolvedOutside": 34,
+       "rateInside": 0.438,
+       "rateOutside": 0.576,
+       "ratio": 0.76,
+       "pValue": 0.128,
        "belowFloor": false
       },
       {
@@ -1917,37 +1917,37 @@
      "byBranch": [
       {
        "name": "applied",
-       "inside": 13,
-       "outside": 11,
+       "inside": 15,
+       "outside": 13,
        "resolvedInside": 2,
        "resolvedOutside": 2,
-       "rateInside": 0.154,
-       "rateOutside": 0.182,
-       "ratio": 0.846,
+       "rateInside": 0.133,
+       "rateOutside": 0.154,
+       "ratio": 0.867,
        "pValue": 1,
        "belowFloor": false
       },
       {
        "name": "biophysics",
-       "inside": 43,
-       "outside": 48,
-       "resolvedInside": 28,
-       "resolvedOutside": 32,
-       "rateInside": 0.651,
-       "rateOutside": 0.667,
-       "ratio": 0.977,
+       "inside": 41,
+       "outside": 50,
+       "resolvedInside": 27,
+       "resolvedOutside": 33,
+       "rateInside": 0.659,
+       "rateOutside": 0.66,
+       "ratio": 0.998,
        "pValue": 1,
        "belowFloor": false
       },
       {
        "name": "chemistry",
-       "inside": 30,
-       "outside": 16,
-       "resolvedInside": 6,
-       "resolvedOutside": 3,
-       "rateInside": 0.2,
-       "rateOutside": 0.188,
-       "ratio": 1.067,
+       "inside": 27,
+       "outside": 19,
+       "resolvedInside": 5,
+       "resolvedOutside": 4,
+       "rateInside": 0.185,
+       "rateOutside": 0.211,
+       "ratio": 0.88,
        "pValue": 1,
        "belowFloor": false
       },
@@ -1966,7 +1966,7 @@
       {
        "name": "information",
        "inside": 23,
-       "outside": 7,
+       "outside": 8,
        "resolvedInside": 6,
        "resolvedOutside": 1,
        "rateInside": null,
@@ -1977,10 +1977,10 @@
       },
       {
        "name": "mathematics",
-       "inside": 87,
-       "outside": 1,
-       "resolvedInside": 45,
-       "resolvedOutside": 0,
+       "inside": 86,
+       "outside": 2,
+       "resolvedInside": 44,
+       "resolvedOutside": 1,
        "rateInside": null,
        "rateOutside": null,
        "ratio": null,
@@ -2001,57 +2001,57 @@
       },
       {
        "name": "physics",
-       "inside": 29,
-       "outside": 27,
-       "resolvedInside": 8,
-       "resolvedOutside": 6,
-       "rateInside": 0.276,
-       "rateOutside": 0.222,
-       "ratio": 1.241,
-       "pValue": 0.7618,
+       "inside": 26,
+       "outside": 30,
+       "resolvedInside": 6,
+       "resolvedOutside": 8,
+       "rateInside": 0.231,
+       "rateOutside": 0.267,
+       "ratio": 0.865,
+       "pValue": 1,
        "belowFloor": false
       }
      ],
      "auc": 0.516,
-     "aucRows": 423,
+     "aucRows": 428,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 247,
-       "outside": 155,
-       "resolvedInside": 89,
-       "resolvedOutside": 62,
-       "rateInside": 0.36,
-       "rateOutside": 0.4,
-       "ratio": 0.901,
-       "pValue": 0.4589,
+       "inside": 240,
+       "outside": 167,
+       "resolvedInside": 84,
+       "resolvedOutside": 67,
+       "rateInside": 0.35,
+       "rateOutside": 0.401,
+       "ratio": 0.872,
+       "pValue": 0.2963,
        "belowFloor": false
       },
-      "auc": 0.455,
-      "aucRows": 402
+      "auc": 0.456,
+      "aucRows": 407
      },
      "undecidedResolved": 23,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 310,
-       "outside": 155,
-       "rateInside": 0.429,
-       "rateOutside": 0.4,
-       "ratio": 1.073
+       "inside": 303,
+       "outside": 167,
+       "rateInside": 0.422,
+       "rateOutside": 0.401,
+       "ratio": 1.053
       },
       {
        "name": "all undecided outside",
-       "inside": 268,
-       "outside": 197,
-       "rateInside": 0.41,
+       "inside": 261,
+       "outside": 209,
+       "rateInside": 0.402,
        "rateOutside": 0.431,
-       "ratio": 0.951
+       "ratio": 0.934
       }
      ]
     }
    ],
-   "inputHash": "14420d0eadbc0c1c045def4088ce64db906bccb42df8e628d26ad8ae92b45b35",
+   "inputHash": "a5b7b472d7a16905fedc6891d12b2cc65af024900df60948fafaf42900a9542c",
    "forecastBuilt": "2026-10-08"
   }
  ],
@@ -2062,8 +2062,8 @@
   "rule": "Open top-level problems only; variants are left off. A problem inside the frontier (reach at or above 0.759) with reach at or above 0.851, the 75th percentile of reach among inside open problems, is \"close to known results\"; inside below that is \"borderline\"; beyond the frontier is \"needs a new idea\"; a branch with too few solved problems is \"unsampled\". Within a class, rows rank by growth, then reach, then id. The nearest solved problems come from the 50 stored neighbours. Starting works exist only for the atlas problems with a record.",
   "counts": {
    "close to known results": 277,
-   "borderline": 869,
-   "needs a new idea": 883,
+   "borderline": 875,
+   "needs a new idea": 934,
    "unsampled": 0
   },
   "top": {
@@ -4010,6 +4010,36 @@
      "atlas": false
     },
     {
+     "id": "op-is-every-real-time-computable-irrational-number-transcendent",
+     "title": "Is every real-time computable irrational number transcendental?",
+     "branch": "information",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.807,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "fc-books-bugeauddistributionmoduloone-problem10-32-problem-10-3",
+       "title": "Problem10 32, 10 32 strong",
+       "similarity": 0.807
+      },
+      {
+       "id": "fc-books-bugeauddistributionmoduloone-problem10-32-problem-10-3-2",
+       "title": "Problem10 32, 10 32",
+       "similarity": 0.79
+      },
+      {
+       "id": "hilbert-7",
+       "title": "Hilbert's 7th problem: Is ab transcendental, for algebraic a ≠ 0,1 and irrational algebraic b ?",
+       "similarity": 0.769
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
      "id": "wp-inscribed-square-problem-also-known-as-toeplitz-conjecture-a",
      "title": "Inscribed square problem, also known as Toeplitz' conjecture and the square peg problem – does every Jordan curve have an inscribed square?",
      "branch": "mathematics",
@@ -4490,6 +4520,36 @@
      "atlas": false
     },
     {
+     "id": "wp-can-the-shortest-vector-of-a-lattice-be-computed-in-polynomi",
+     "title": "Can the shortest vector of a lattice be computed in polynomial time on a classical or quantum computer?",
+     "branch": "information",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.776,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "sd-graph-isomorphism-in-quasi-polynomial-time",
+       "title": "Graph isomorphism in quasi-polynomial time",
+       "similarity": 0.776
+      },
+      {
+       "id": "sd-linear-programming-in-polynomial-time",
+       "title": "Linear programming in polynomial time",
+       "similarity": 0.766
+      },
+      {
+       "id": "fc-hilbertproblems-17-hilbert-17th-problem-poly",
+       "title": "17, hilbert 17th problem poly",
+       "similarity": 0.762
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
      "id": "wp-generalized-riemann-hypothesis",
      "title": "Generalized Riemann hypothesis",
      "branch": "mathematics",
@@ -4539,6 +4599,36 @@
        "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
        "title": "Sendov's conjecture and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026)",
        "similarity": 0.77
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "op-is-there-a-polynomial-time-algorithm-for-the-dihedral-hidden",
+     "title": "Is there a polynomial-time algorithm for the dihedral hidden subgroup problem?",
+     "branch": "information",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.771,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "sd-practical-public-key-encryption",
+       "title": "Practical public-key encryption",
+       "similarity": 0.771
+      },
+      {
+       "id": "sd-graph-isomorphism-in-quasi-polynomial-time",
+       "title": "Graph isomorphism in quasi-polynomial time",
+       "similarity": 0.763
+      },
+      {
+       "id": "wp-heilramanathantopiwala-conjecture",
+       "title": "Heil–Ramanathan–Topiwala conjecture",
+       "similarity": 0.763
       }
      ],
      "works": [],
@@ -4933,96 +5023,6 @@
      ],
      "works": [],
      "atlas": false
-    },
-    {
-     "id": "wp-rosetta",
-     "title": "Rosetta",
-     "branch": "biophysics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.84,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 1,
-     "nearest": [
-      {
-       "id": "protein",
-       "title": "Protein structure prediction",
-       "similarity": 0.84
-      },
-      {
-       "id": "dl-science-2005-can-we-predict-how-proteins-will-fold",
-       "title": "Can we predict how proteins will fold?",
-       "similarity": 0.791
-      },
-      {
-       "id": "sd-training-networks-over-1000-layers-deep",
-       "title": "Training networks over 1000 layers deep",
-       "similarity": 0.626
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-the-graceful-tree-conjecture-that-every-tree-admits-a-gracef",
-     "title": "The graceful tree conjecture that every tree admits a graceful labeling",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.84,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 1,
-     "nearest": [
-      {
-       "id": "wp-ringel-s-conjecture",
-       "title": "Ringel's conjecture",
-       "similarity": 0.84
-      },
-      {
-       "id": "fc-erdosproblems-548-erdos-548",
-       "title": "Erdős problem 548",
-       "similarity": 0.816
-      },
-      {
-       "id": "fc-arxiv-2001-02665-ringelconjecture-kotzig-conjecture-large",
-       "title": "Ringel Conjecture, kotzig large",
-       "similarity": 0.792
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "fc-erdosproblems-830-erdos-830-parts-i",
-     "title": "Erdős problem 830, i",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.838,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 1,
-     "nearest": [
-      {
-       "id": "fc-erdosproblems-678-erdos-678-infinitely-many-triples",
-       "title": "Erdős problem 678, infinitely many triples",
-       "similarity": 0.838
-      },
-      {
-       "id": "fc-erdosproblems-678-erdos-678-not-infinitely-many-pairs",
-       "title": "Erdős problem 678, not infinitely many pairs",
-       "similarity": 0.82
-      },
-      {
-       "id": "fc-erdosproblems-730-erdos-730",
-       "title": "Erdős problem 730",
-       "similarity": 0.8
-      }
-     ],
-     "works": [],
-     "atlas": false
     }
    ],
    "needs a new idea": [
@@ -5125,7 +5125,7 @@
      "reach": 0.706,
      "zone": "beyond",
      "reachClass": "needs a new idea",
-     "growth": 11,
+     "growth": 12,
      "nearest": [
       {
        "id": "sd-undirected-connectivity-in-logarithmic-space",
@@ -5186,11 +5186,36 @@
        "id": "sd-experience-driven-reorganisation-of-the-brain",
        "title": "Experience-driven reorganisation of the brain",
        "similarity": 0.686
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-is-there-a-canonical-computation-performed-by-cortical-colum",
+     "title": "Is there a canonical computation performed by cortical columns?",
+     "branch": "mind",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.701,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 10,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-298-erdos-298-natural-density",
+       "title": "Erdős problem 298, natural density",
+       "similarity": 0.701
       },
       {
        "id": "sd-undirected-connectivity-in-logarithmic-space",
        "title": "Undirected connectivity in logarithmic space",
-       "similarity": 0.683
+       "similarity": 0.7
+      },
+      {
+       "id": "wp-duffinschaeffer-theorem-dimitris-koukoulopoulos-james-maynar",
+       "title": "Duffin–Schaeffer theorem (Dimitris Koukoulopoulos, James Maynard, 2019)",
+       "similarity": 0.698
       }
      ],
      "works": [],
@@ -5211,11 +5236,6 @@
        "id": "fc-erdosproblems-152-erdos-152",
        "title": "Erdős problem 152",
        "similarity": 0.677
-      },
-      {
-       "id": "dl-xprize-ibm-watson-ai-xprize",
-       "title": "IBM Watson AI XPRIZE",
-       "similarity": 0.668
       }
      ],
      "works": [],
@@ -5291,36 +5311,6 @@
        "id": "sd-neurons-that-encode-location",
        "title": "Neurons that encode location",
        "similarity": 0.647
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-is-there-a-canonical-computation-performed-by-cortical-colum",
-     "title": "Is there a canonical computation performed by cortical columns?",
-     "branch": "mind",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.701,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 9,
-     "nearest": [
-      {
-       "id": "fc-erdosproblems-298-erdos-298-natural-density",
-       "title": "Erdős problem 298, natural density",
-       "similarity": 0.701
-      },
-      {
-       "id": "sd-undirected-connectivity-in-logarithmic-space",
-       "title": "Undirected connectivity in logarithmic space",
-       "similarity": 0.7
-      },
-      {
-       "id": "wp-duffinschaeffer-theorem-dimitris-koukoulopoulos-james-maynar",
-       "title": "Duffin–Schaeffer theorem (Dimitris Koukoulopoulos, James Maynard, 2019)",
-       "similarity": 0.698
       }
      ],
      "works": [],
@@ -5526,11 +5516,6 @@
        "id": "sd-chemical-neurotransmission-at-synapses",
        "title": "Chemical neurotransmission at synapses",
        "similarity": 0.665
-      },
-      {
-       "id": "sd-cellular-basis-of-memory-storage",
-       "title": "Cellular basis of memory storage",
-       "similarity": 0.658
       }
      ],
      "works": [],
@@ -5712,6 +5697,36 @@
      "atlas": false
     },
     {
+     "id": "dl-neuro-23-how-can-neural-systems-compute-in-the-time-domain",
+     "title": "How can neural systems compute in the time domain?",
+     "branch": "mind",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.685,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 7,
+     "nearest": [
+      {
+       "id": "sd-undirected-connectivity-in-logarithmic-space",
+       "title": "Undirected connectivity in logarithmic space",
+       "similarity": 0.685
+      },
+      {
+       "id": "sd-recording-electrical-activity-from-the-human-brain",
+       "title": "Recording electrical activity from the human brain",
+       "similarity": 0.656
+      },
+      {
+       "id": "sd-training-networks-over-1000-layers-deep",
+       "title": "Training networks over 1000 layers deep",
+       "similarity": 0.65
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
      "id": "dl-neuro-23-how-fast-is-neuronal-signal-transmission",
      "title": "How fast is neuronal signal transmission?",
      "branch": "mind",
@@ -5806,6 +5821,26 @@
        "id": "wp-existence-of-a-complex-structure-on-s-6-levent-alpoge-2026-u",
        "title": "Existence of a complex structure on S^6 (Levent Alpöge, 2026 using Claude Fable 5)",
        "similarity": 0.648
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-language",
+     "title": "Language",
+     "branch": "biophysics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.618,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 7,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-298-erdos-298-natural-density",
+       "title": "Erdős problem 298, natural density",
+       "similarity": 0.618
       }
      ],
      "works": [],
@@ -5932,30 +5967,25 @@
      "atlas": false
     },
     {
-     "id": "dl-neuro-23-how-can-neural-systems-compute-in-the-time-domain",
-     "title": "How can neural systems compute in the time domain?",
+     "id": "dl-science-2005-what-is-the-biological-basis-of-consciousness",
+     "title": "What is the Biological Basis of Consciousness?",
      "branch": "mind",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.685,
+     "reach": 0.683,
      "zone": "beyond",
      "reachClass": "needs a new idea",
      "growth": 6,
      "nearest": [
       {
-       "id": "sd-undirected-connectivity-in-logarithmic-space",
-       "title": "Undirected connectivity in logarithmic space",
-       "similarity": 0.685
+       "id": "sd-chemical-neurotransmission-at-synapses",
+       "title": "Chemical neurotransmission at synapses",
+       "similarity": 0.683
       },
       {
-       "id": "sd-recording-electrical-activity-from-the-human-brain",
-       "title": "Recording electrical activity from the human brain",
-       "similarity": 0.656
-      },
-      {
-       "id": "sd-training-networks-over-1000-layers-deep",
-       "title": "Training networks over 1000 layers deep",
-       "similarity": 0.65
+       "id": "sd-experience-driven-reorganisation-of-the-brain",
+       "title": "Experience-driven reorganisation of the brain",
+       "similarity": 0.665
       }
      ],
      "works": [],
@@ -6036,26 +6066,6 @@
        "id": "wp-eremenko-s-conjecture",
        "title": "Eremenko's conjecture",
        "similarity": 0.642
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-language",
-     "title": "Language",
-     "branch": "biophysics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.618,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 6,
-     "nearest": [
-      {
-       "id": "fc-erdosproblems-298-erdos-298-natural-density",
-       "title": "Erdős problem 298, natural density",
-       "similarity": 0.618
       }
      ],
      "works": [],
@@ -6326,36 +6336,6 @@
        "id": "sd-weak-force-carriers",
        "title": "Weak force carriers",
        "similarity": 0.692
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-p-pspace-problem",
-     "title": "P = PSPACE problem",
-     "branch": "information",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.712,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 5,
-     "nearest": [
-      {
-       "id": "fc-erdosproblems-318-erdos-318-univ",
-       "title": "Erdős problem 318, univ",
-       "similarity": 0.712
-      },
-      {
-       "id": "fc-erdosproblems-116-erdos-116-polya",
-       "title": "Erdős problem 116, polya",
-       "similarity": 0.68
-      },
-      {
-       "id": "fc-oeis-129365-conjecture3",
-       "title": "OEIS A129365, conjecture3",
-       "similarity": 0.662
       }
      ],
      "works": [],
@@ -7648,11 +7628,6 @@
       "id": "sd-experience-driven-reorganisation-of-the-brain",
       "title": "Experience-driven reorganisation of the brain",
       "similarity": 0.661
-     },
-     {
-      "id": "sd-controlling-neurons-with-light",
-      "title": "Controlling neurons with light",
-      "similarity": 0.65
      }
     ],
     "works": [
@@ -7673,6 +7648,55 @@
       "year": 1999,
       "role": "partial",
       "doi": "https://doi.org/10.1016/s0896-6273(00)80819-3"
+     }
+    ],
+    "atlas": true
+   },
+   {
+    "id": "alignment",
+    "title": "AI alignment verification",
+    "branch": "information",
+    "sourceKind": "problem",
+    "status": "open",
+    "reach": 0.651,
+    "zone": "beyond",
+    "reachClass": "needs a new idea",
+    "growth": 2,
+    "nearest": [
+     {
+      "id": "dl-xprize-ibm-watson-ai-xprize",
+      "title": "IBM Watson AI XPRIZE",
+      "similarity": 0.651
+     },
+     {
+      "id": "dl-xprize-pandemic-response-xprize",
+      "title": "Pandemic Response XPRIZE",
+      "similarity": 0.635
+     },
+     {
+      "id": "dl-darpa-darpa-fang-challenge",
+      "title": "DARPA FANG Challenge",
+      "similarity": 0.616
+     }
+    ],
+    "works": [
+     {
+      "title": "AI Alignment: A Comprehensive Survey",
+      "year": 2023,
+      "role": "survey",
+      "doi": "https://doi.org/10.48550/arxiv.2310.19852"
+     },
+     {
+      "title": "Incomplete Contracting and AI Alignment",
+      "year": 2019,
+      "role": "posed",
+      "doi": "https://doi.org/10.1145/3306618.3314250"
+     },
+     {
+      "title": "Relationship Between Trust in the AI Creator and Trust in AI Systems: The Crucial Role of AI Alignment and Steerability",
+      "year": 2024,
+      "role": "partial",
+      "doi": "https://doi.org/10.1080/07421222.2024.2376382"
      }
     ],
     "atlas": true
@@ -8667,55 +8691,6 @@
       "year": 2014,
       "role": "partial",
       "doi": "https://doi.org/10.1287/moor.2014.0645"
-     }
-    ],
-    "atlas": true
-   },
-   {
-    "id": "alignment",
-    "title": "AI alignment verification",
-    "branch": "information",
-    "sourceKind": "problem",
-    "status": "open",
-    "reach": 0.651,
-    "zone": "beyond",
-    "reachClass": "needs a new idea",
-    "growth": 1,
-    "nearest": [
-     {
-      "id": "dl-xprize-ibm-watson-ai-xprize",
-      "title": "IBM Watson AI XPRIZE",
-      "similarity": 0.651
-     },
-     {
-      "id": "dl-xprize-pandemic-response-xprize",
-      "title": "Pandemic Response XPRIZE",
-      "similarity": 0.635
-     },
-     {
-      "id": "dl-darpa-darpa-fang-challenge",
-      "title": "DARPA FANG Challenge",
-      "similarity": 0.616
-     }
-    ],
-    "works": [
-     {
-      "title": "AI Alignment: A Comprehensive Survey",
-      "year": 2023,
-      "role": "survey",
-      "doi": "https://doi.org/10.48550/arxiv.2310.19852"
-     },
-     {
-      "title": "Incomplete Contracting and AI Alignment",
-      "year": 2019,
-      "role": "posed",
-      "doi": "https://doi.org/10.1145/3306618.3314250"
-     },
-     {
-      "title": "Relationship Between Trust in the AI Creator and Trust in AI Systems: The Crucial Role of AI Alignment and Steerability",
-      "year": 2024,
-      "role": "partial",
-      "doi": "https://doi.org/10.1080/07421222.2024.2376382"
      }
     ],
     "atlas": true
