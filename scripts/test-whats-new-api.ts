@@ -16,7 +16,8 @@ function pageDirs(dir: string, segments: string[]): string[] {
   const groups = entries.filter((d) => d.isDirectory() && /^\(.+\)$/.test(d.name)).flatMap((d) => pageDirs(path.join(dir, d.name), segments));
   if (segments.length === 0) return entries.some((d) => d.isFile() && d.name === "page.tsx") ? [dir, ...groups] : groups;
   const exact = entries.some((d) => d.isDirectory() && d.name === segments[0]) ? pageDirs(path.join(dir, segments[0]), segments.slice(1)) : [];
-  return [...exact, ...groups];
+  const dynamic = entries.filter((d) => d.isDirectory() && /^\[[a-z]+\]$/i.test(d.name)).flatMap((d) => pageDirs(path.join(dir, d.name), segments.slice(1)));
+  return [...exact, ...dynamic, ...groups];
 }
 
 function isSitePage(href: string): boolean {
@@ -288,8 +289,8 @@ test("API links need https, an exact host, an allowlisted path, no userinfo and 
     if (link.href.startsWith("https://")) assert.equal(checkLink(link.href, "href"), link.href);
     else assert.ok(isSitePage(link.href), link.href);
   }
-  assert.equal(isSitePage("/research-os/solvability"), true);
-  for (const href of ["/no-such-page", "//evil.example/x", "/research-os/solvability/frontier?x=1", "http://github.com/a", "/../etc"]) assert.equal(isSitePage(href), false, href);
+  for (const href of ["/research-os/solvability", "/research/papers/solvability-frontier"]) assert.equal(isSitePage(href), true, href);
+  for (const href of ["/no-such-page", "/research/papers/a/b", "//evil.example/x", "/research-os/solvability/frontier?x=1", "http://github.com/a", "/../etc"]) assert.equal(isSitePage(href), false, href);
   const inLinks = parseEntryBody({ ...production(), links: [{ label: "PR", href: "https://bit.ly/x" }] });
   assert.deepEqual([inLinks.ok, !inLinks.ok && inLinks.field], [false, "links[0].href"]);
   const inEvidence = parseEntryBody({ ...generation(), evidence: ["https://github.com/a/b", "https://user@github.com/a/b"] });
