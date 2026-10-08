@@ -1,6 +1,7 @@
 import { academyHref } from "../learn-link";
 import { FACT_JOIN } from "./fact";
-import type { LearnResource, QuizQuestion } from "./types";
+import { matchLearnItem, questionText, type LearnAtom } from "./learn-match";
+import type { LearnLink, LearnResource, QuizQuestion } from "./types";
 
 export const LEARN_LABEL = "learn this";
 export const EVIDENCE_ANCHOR = "evidence";
@@ -59,10 +60,18 @@ export function resourceForFact(factId: string): LearnResource | null {
   return null;
 }
 
-export function resourceForQuestion(q: Pick<QuizQuestion, "sources">): LearnResource | null {
+export function packLearnAtoms(atoms: Readonly<Record<string, readonly { id: string; title: string }[]>> | undefined): LearnAtom[] {
+  return Object.entries(atoms ?? {}).flatMap(([deck, list]) => list.map((a) => ({ branchFile: deck, id: a.id, title: a.title })));
+}
+
+export function lessonResource(link: LearnLink | null | undefined): LearnResource | null {
+  return link ? { label: LEARN_LABEL, href: link.href } : null;
+}
+
+export function resourceForQuestion(q: Pick<QuizQuestion, "sources" | "explain"> & { learn?: LearnLink | null }, atoms: readonly LearnAtom[] = []): LearnResource | null {
   for (const s of q.sources) {
     const hit = resourceForFact(`${s.kind}:${s.ref}`);
     if (hit) return hit;
   }
-  return null;
+  return lessonResource(q.learn ?? matchLearnItem(questionText(q), atoms));
 }

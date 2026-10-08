@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { EVIDENCE_ANCHOR, LEARN_LABEL, resourceForFact, resourceForQuestion } from "../src/lib/research-os/work-quiz/resources";
+import { EVIDENCE_ANCHOR, LEARN_LABEL, packLearnAtoms, resourceForFact, resourceForQuestion } from "../src/lib/research-os/work-quiz/resources";
 import { compoundFactId } from "../src/lib/research-os/work-quiz/fact";
 import { FACT_KINDS } from "../src/lib/research-os/work-quiz/fact";
 import { SOURCE_KINDS } from "../src/lib/research-os/work-quiz/types";
@@ -35,8 +35,8 @@ test("a question resolves through its sources", () => {
     { kind: "pr" as const, ref: "#9", label: "x", href: null },
     { kind: "atom" as const, ref: "07-mind/memory", label: "Memory", href: null },
   ];
-  assert.equal(resourceForQuestion({ sources })?.href, "/research-os/learn/07-mind/memory");
-  assert.equal(resourceForQuestion({ sources: [] }), null);
+  assert.equal(resourceForQuestion({ sources, explain: "" })?.href, "/research-os/learn/07-mind/memory");
+  assert.equal(resourceForQuestion({ sources: [], explain: "" }), null);
 });
 
 test("the new kinds are known to facts and sources", () => {
@@ -44,4 +44,12 @@ test("the new kinds are known to facts and sources", () => {
     assert.ok(FACT_KINDS.includes(k as (typeof FACT_KINDS)[number]));
     assert.ok(SOURCE_KINDS.includes(k as (typeof SOURCE_KINDS)[number]));
   }
+});
+
+test("a question with no teachable source falls back to its stored lesson, then to a match on its text", () => {
+  const q = { sources: [{ kind: "pr" as const, ref: "#9", label: "x", href: null }], explain: "Entropy and thermodynamics decide the direction." };
+  assert.deepEqual(resourceForQuestion({ ...q, learn: { href: "/research-os/learn/02-physics/entropy", title: "Entropy" } }), { label: LEARN_LABEL, href: "/research-os/learn/02-physics/entropy" });
+  const atoms = packLearnAtoms({ "02-physics": [{ id: "entropy", title: "Entropy and thermodynamics" }] });
+  assert.equal(resourceForQuestion(q, atoms)?.href, "/research-os/learn/02-physics/entropy");
+  assert.equal(resourceForQuestion(q), null);
 });

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 import { DONE_EVENT, START_EVENT } from "@/lib/research-os/work-quiz/trigger";
-import { LEARN_LABEL, resourceForQuestion } from "@/lib/research-os/work-quiz/resources";
+import { resourceForQuestion } from "@/lib/research-os/work-quiz/resources";
 import { TYPE_LABEL } from "@/lib/research-os/work-quiz/types";
 import type { QuizStats } from "@/lib/research-os/work-quiz/db";
 import type { SourceStatus } from "@/lib/research-os/work-quiz/sources-server";
@@ -101,7 +101,9 @@ export default function QuizPanel() {
         <section>
           <h2 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)]">recent</h2>
           <ul className="mt-2 flex flex-col gap-2">
-            {s.recent.map((r) => (
+            {s.recent.map((r) => {
+              const resource = !r.correct && !r.skipped ? resourceForQuestion(r.question) : null;
+              return (
               <li key={r.id} className={`${CARD} flex flex-col gap-1`}>
                 <div className="flex flex-wrap items-center gap-2 text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)]">
                   <span>{TYPE_LABEL[r.question.type]}</span>
@@ -110,13 +112,14 @@ export default function QuizPanel() {
                 </div>
                 <p className="text-[13px] text-[color:var(--basalt)]">{r.question.prompt}</p>
                 <p className="text-[12px] text-[color:var(--basalt-3)]">{r.question.explain}</p>
-                {!r.correct && !r.skipped && resourceForQuestion(r.question) && (
-                  <Link href={resourceForQuestion(r.question)!.href} className="text-[12px] underline underline-offset-4 text-[color:var(--aegean-deep)]">
-                    {LEARN_LABEL}
+                {resource && (
+                  <Link href={resource.href} className="text-[12px] underline underline-offset-4 text-[color:var(--aegean-deep)]">
+                    {resource.label}
                   </Link>
                 )}
               </li>
-            ))}
+              );
+            })}
           </ul>
         </section>
       )}
