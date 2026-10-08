@@ -20,9 +20,10 @@ test("every module route resolves to a page", () => {
   }
 });
 
-test("every module has its own route", () => {
-  const routes = MODULES.map((m) => m.route);
-  assert.equal(new Set(routes).size, routes.length);
+test("web modules have their own routes and desktop modules point at the download", () => {
+  const web = MODULES.filter((m) => m.where === "web").map((m) => m.route);
+  assert.equal(new Set(web).size, web.length);
+  for (const m of MODULES.filter((m) => m.where === "desktop")) assert.equal(m.route, "/download");
 });
 
 test("module lines stay short", () => {

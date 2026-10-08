@@ -6,7 +6,10 @@ function Tile({ m, i }: { m: Module; i: number }) {
   return (
     <Link href={m.route} className="hv-tile">
       <span className="hv-tile-num">{String(i + 1).padStart(2, "0")}</span>
-      <span className="hv-tile-label">{m.label}</span>
+      <span className="hv-tile-label">
+        {m.label}
+        {m.where === "desktop" ? <span className="hv-tile-tag">desktop</span> : null}
+      </span>
       <span className="hv-tile-line">{m.line}</span>
     </Link>
   );
@@ -65,7 +68,7 @@ export default function HomeVariant({ v }: { v: Variant }) {
       </header>
       <Modules v={v} />
       <footer className="hv-foot">
-        <span>{MODULES.length} modules, the same ones as the desktop app.</span>
+        <span>{MODULES.length} modules. Tiles marked desktop open in the app you download; the rest open on the web.</span>
         <Link href="/research-os">The five states →</Link>
       </footer>
     </main>
