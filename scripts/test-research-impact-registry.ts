@@ -3,8 +3,17 @@ import assert from "node:assert/strict";
 import fs from "fs";
 import path from "path";
 import { PAPERS } from "../src/lib/papers";
-import { buildImpactItems, IMPACT_LINES, KINDS } from "../src/lib/research/impact-registry";
-import { loadReportRecords } from "../src/lib/research/reports-loader";
+import Module from "module";
+import { IMPACT_LINES, KINDS } from "../src/lib/research/impact-types";
+
+type Resolver = (request: string, ...rest: unknown[]) => string;
+const mod = Module as unknown as { _resolveFilename: Resolver };
+const original = mod._resolveFilename;
+mod._resolveFilename = function (request, ...rest) {
+  return request === "server-only" ? require.resolve("./stub-empty-module.cjs") : original.call(this, request, ...rest);
+};
+const { buildImpactItems } = require("../src/lib/research/impact-registry") as typeof import("../src/lib/research/impact-registry");
+const { loadReportRecords } = require("../src/lib/research/reports-loader") as typeof import("../src/lib/research/reports-loader");
 
 const ROOT = process.cwd();
 const APP = path.join(ROOT, "src", "app");
@@ -76,4 +85,10 @@ test("each impact line holds four items and every kind but report appears", () =
   for (const k of KINDS.filter((x) => x !== "report")) {
     assert.ok(items.some((i) => i.kind === k), k);
   }
+});
+
+test("the client browser imports only the pure types module", () => {
+  const src = fs.readFileSync(path.join(APP, "research", "ImpactBrowser.tsx"), "utf8");
+  assert.ok(!/impact-registry|reports-loader/.test(src));
+  assert.ok(src.includes("@/lib/research/impact-types"));
 });

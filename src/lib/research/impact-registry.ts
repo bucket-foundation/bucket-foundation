@@ -2,27 +2,11 @@ import { PAPERS } from "@/lib/papers";
 import { FLAGSHIP, EDUCATION_DOCS } from "@/lib/education";
 import { TOOLS } from "@/lib/tools";
 import { listDatasets, datasetSlug, datasetTitle, datasetDescription } from "@/lib/research-atlas";
+import { type ImpactItem, type ImpactLine } from "@/lib/research/impact-types";
 import { loadReportRecords, type ReportRecord } from "@/lib/research/reports-loader";
 
-export const IMPACT_LINES = [
-  { id: "education", title: "Education reform", line: "Open the path from consuming knowledge to producing it, for every learner." },
-  { id: "discovery", title: "Scientific discovery with ML", line: "Find the open problems within reach of current methods and give researchers instruments to attack them." },
-  { id: "capable", title: "More capable humans", line: "Shorten the route to mastery with learning systems that build on what a person already knows." },
-] as const;
-
-export type ImpactLine = (typeof IMPACT_LINES)[number]["id"];
-export const KINDS = ["paper", "report", "figure", "dataset", "tool", "doc"] as const;
-export type ItemKind = (typeof KINDS)[number];
-
-export type ImpactItem = {
-  id: string;
-  title: string;
-  summary: string;
-  date: string | null;
-  kind: ItemKind;
-  impact: ImpactLine;
-  href: string;
-};
+export { IMPACT_LINES, KINDS } from "@/lib/research/impact-types";
+export type { ImpactLine, ItemKind, ImpactItem } from "@/lib/research/impact-types";
 
 const PAPER_IMPACT: Record<string, ImpactLine> = {
   "human-ai-multiplier": "capable",

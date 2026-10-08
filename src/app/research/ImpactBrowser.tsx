@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { IMPACT_LINES, KINDS, type ImpactItem, type ItemKind } from "@/lib/research/impact-registry";
+import { IMPACT_LINES, KINDS, type ImpactItem, type ItemKind } from "@/lib/research/impact-types";
 
 const COLLAPSED = 8;
 
