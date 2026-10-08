@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 import { DONE_EVENT, START_EVENT } from "@/lib/research-os/work-quiz/trigger";
+import { LEARN_LABEL, resourceForQuestion } from "@/lib/research-os/work-quiz/resources";
 import { TYPE_LABEL } from "@/lib/research-os/work-quiz/types";
 import type { QuizStats } from "@/lib/research-os/work-quiz/db";
 import type { SourceStatus } from "@/lib/research-os/work-quiz/sources-server";
@@ -108,6 +110,11 @@ export default function QuizPanel() {
                 </div>
                 <p className="text-[13px] text-[color:var(--basalt)]">{r.question.prompt}</p>
                 <p className="text-[12px] text-[color:var(--basalt-3)]">{r.question.explain}</p>
+                {!r.correct && !r.skipped && resourceForQuestion(r.question) && (
+                  <Link href={resourceForQuestion(r.question)!.href} className="text-[12px] underline underline-offset-4 text-[color:var(--aegean-deep)]">
+                    {LEARN_LABEL}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

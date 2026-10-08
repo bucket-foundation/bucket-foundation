@@ -304,7 +304,14 @@ function Outcome({ result }: { result: QuizResult }) {
           ))}
         </ul>
       )}
-      {!result.correct && !result.skipped && result.learn && (
+      {!result.correct && !result.skipped && result.resource && (
+        <div className="mt-3 text-[13px]">
+          <Link href={result.resource.href} className="underline underline-offset-4 text-[color:var(--aegean-deep)]">
+            {result.resource.label}
+          </Link>
+        </div>
+      )}
+      {!result.correct && !result.skipped && !result.resource && result.learn && (
         <div className="mt-3 text-[13px]">
           <Link href={result.learn.href} className="underline underline-offset-4 text-[color:var(--aegean-deep)]">
             related lesson: {result.learn.title}

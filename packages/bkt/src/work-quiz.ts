@@ -4,6 +4,7 @@ import { existsSync, realpathSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { isAbsolute, join, relative, resolve } from "node:path";
 import { generateQuestion, sourcesEmpty } from "../../../src/lib/research-os/work-quiz/generate";
+import { resourceForQuestion } from "../../../src/lib/research-os/work-quiz/resources";
 import { cardFields } from "../../../src/lib/research-os/work-quiz/fact";
 import { dueFrom, sampleQuiz, splitFactId, usedOn, type CoverageRow, type DueCard, type SamplePick } from "../../../src/lib/research-os/work-quiz/sampler";
 import { gradeAnswer, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
@@ -404,7 +405,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const response = normalizeResponse(open.q, b.response);
       const g = gradeAnswer(open.q, response, elapsed);
       wq.record(open.q, g.correct, g.rating, elapsed, now());
-      return json({ ...g, answer: open.q.answer, explain: open.q.explain, sources: open.q.sources });
+      return json({ ...g, answer: open.q.answer, explain: open.q.explain, sources: open.q.sources, resource: resourceForQuestion(open.q) });
     },
   };
 }

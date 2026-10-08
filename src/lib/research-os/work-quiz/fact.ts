@@ -1,7 +1,7 @@
 import type { Form } from "./space";
 import type { QuizQuestion, QuizType, SourceRef, WorkSources } from "./types";
 
-export const FACT_KINDS = ["pr", "bead", "note", "chat", "atom", "count", "word"] as const;
+export const FACT_KINDS = ["pr", "bead", "note", "chat", "atom", "excerpt", "work", "count", "word"] as const;
 export type FactKind = (typeof FACT_KINDS)[number];
 
 export interface Fact {

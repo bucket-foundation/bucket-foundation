@@ -1,7 +1,8 @@
 import { buildEncompassingMap, withLeverage, type Atom, type EncEdge } from "../../../../src/lib/academy/engine";
 import { gradeAnswer, log10Distance, normalizeResponse } from "../../../../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../../../../src/lib/research-os/work-quiz/limits";
-import { toPublic, type QuizQuestion } from "../../../../src/lib/research-os/work-quiz/types";
+import { resourceForQuestion } from "../../../../src/lib/research-os/work-quiz/resources";
+import { toPublic, type LearnResource, type QuizQuestion } from "../../../../src/lib/research-os/work-quiz/types";
 import { attemptId, type DailyQuizStore } from "../daily-quiz";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "../deck";
 import type { GradeResult, Question, Rating } from "../grade";
@@ -49,6 +50,7 @@ export interface DailyOutcome extends GradeResult {
   answer: string;
   explain: string;
   sources: QuizQuestion["sources"];
+  resource: LearnResource | null;
 }
 
 export const fitsScreen = (q: { prompt: string; choices?: readonly string[] | null }) => checkLimits({ prompt: q.prompt, choices: q.choices ? [...q.choices] : null }).length === 0;
@@ -130,5 +132,5 @@ export function answerDaily(daily: DailyQuizStore, record: Recorder, day: string
     if (/UNIQUE constraint failed/i.test((e as Error).message)) throw new LearnError("already answered", 409);
     throw e;
   }
-  return { ...g, log10Distance: distance, answer: q.answer, explain: q.explain, sources: q.sources };
+  return { ...g, log10Distance: distance, answer: q.answer, explain: q.explain, sources: q.sources, resource: resourceForQuestion(q) };
 }
