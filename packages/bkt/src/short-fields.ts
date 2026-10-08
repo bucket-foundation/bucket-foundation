@@ -45,7 +45,7 @@ export function buildShortQuestion(item: Item, pool: Item[], seed: string, choic
   const answer = item.shortAnswer;
   const key = normShort(answer);
   const stem = normShort(item.shortPrompt);
-  const others = pool.filter((o): o is Item & { shortAnswer: string } => o.id !== item.id && !!o.shortAnswer && !!o.shortPrompt && normShort(o.shortAnswer) !== key);
+  const others = pool.filter((o): o is Item & { shortAnswer: string } => o.id !== item.id && o.atomId !== item.atomId && !!o.shortAnswer && !!o.shortPrompt && normShort(o.shortAnswer) !== key);
   const ordered = [...shuffle(others.filter((o) => o.branch === item.branch), rand), ...shuffle(others.filter((o) => o.branch !== item.branch), rand)];
   const picked: string[] = [];
   for (const o of ordered) {

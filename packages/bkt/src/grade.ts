@@ -84,7 +84,7 @@ export function limitFor(item: Pick<Item, "answer" | "prompt">): number {
 
 export function buildQuestion(item: Item, pool: Item[], seed: string, choiceCount: number = LIMITS.choices): Question {
   const rand = seededRandom(seed + ":" + item.id);
-  const others = pool.filter((o) => o.id !== item.id && o.answer !== item.answer);
+  const others = pool.filter((o) => o.id !== item.id && o.atomId !== item.atomId && o.answer !== item.answer);
   const sameBranch = others.filter((o) => o.branch === item.branch);
   const source = sameBranch.length >= choiceCount - 1 ? sameBranch : others;
   const distractors: string[] = [];

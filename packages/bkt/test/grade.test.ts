@@ -39,6 +39,15 @@ describe("buildQuestion", () => {
     expect(q.choices.sort()).toEqual(["other", "same"]);
   });
 
+  test("never offers the answer of another question on the same atom", () => {
+    const sibling = { ...item("a2", "physics", "A2"), atomId: "a" };
+    for (const seed of ["s1", "s2", "s3", "s4", "s5", "s6"]) {
+      const q = buildQuestion(pool[0], [...pool, sibling], seed);
+      expect(q.choices).toHaveLength(3);
+      expect(q.choices).not.toContain("A2");
+    }
+  });
+
   test("time limit stays within 20 to 90 seconds", () => {
     expect(limitFor({ prompt: "x", answer: "y" })).toBe(20);
     expect(limitFor({ prompt: "w ".repeat(500), answer: "y" })).toBe(90);
