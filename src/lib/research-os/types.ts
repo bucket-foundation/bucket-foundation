@@ -163,3 +163,18 @@ export interface HypothesizeResult {
   gapNodes: HypothesizeGapNode[];
   calibration: HypothesizeCalibration | null;
 }
+
+export type LearnerRole = "student" | "teacher" | "independent";
+export type BirthYearBucket = "under13" | "13to17" | "18plus";
+export type ConsentStatus = "none" | "school" | "parent" | "self";
+
+export interface GradeResult {
+  result: "support" | "contradiction" | "unknown";
+  confidence: "high" | "medium" | "low";
+  abstained: boolean;
+  feedback: string;
+  citations: string[];
+}
+
+export const LEARNER_CONFIDENCE_VALUES = ["not_sure", "a_little", "fairly", "certain"] as const;
+export type LearnerConfidence = (typeof LEARNER_CONFIDENCE_VALUES)[number];

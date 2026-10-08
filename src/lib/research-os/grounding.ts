@@ -1,13 +1,7 @@
 import { callGroundedModelWithUsage, parseModelJson, type Provider, type LlmUsage } from "./llm";
-import type { GuidanceLevel, Provenance } from "./types";
+import type { GradeResult, GuidanceLevel, Provenance } from "./types";
 
-export interface GradeResult {
-  result: "support" | "contradiction" | "unknown";
-  confidence: "high" | "medium" | "low";
-  abstained: boolean;
-  feedback: string;
-  citations: string[];
-}
+export type { GradeResult };
 
 export interface GradeResultWithUsage extends GradeResult {
   usage: LlmUsage | null;
