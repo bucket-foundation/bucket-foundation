@@ -110,12 +110,18 @@ function env() {
   return vars;
 }
 
+function isLocalHost(url) {
+  const host = new URL(url).hostname;
+  return host === "localhost" || host === "127.0.0.1" || host === "::1" || host === "host.docker.internal";
+}
+
 async function register(slug) {
   const record = readRecord(slug);
   const errors = [...validateRecord(record), ...checkHashes(record, readRepoBytes)];
   if (errors.length) throw new Error(`${slug}: ${errors.join("; ")}`);
   const { NEXT_PUBLIC_SUPABASE_URL: url, SUPABASE_SERVICE_ROLE_KEY: key } = env();
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY missing from .env.local");
+  if (!isLocalHost(url) && !process.argv.includes("--remote")) throw new Error(`${slug}: ${url} is not local; pass --remote to register there`);
   const row = {
     slug: record.slug,
     title: record.title,
@@ -152,9 +158,10 @@ async function register(slug) {
 
 async function publish(slug) {
   const record = readRecord(slug);
-  const errors = validateRecord({ ...record, status: "public", published_at: record.published_at ?? now(), pdf_path: record.pdf_path ?? "x" });
-  if (errors.length) throw new Error(`${slug}: ${errors.join("; ")}`);
   if (!record.pdf_path) throw new Error(`${slug}: build first`);
+  const candidate = { ...record, status: "public", published_at: record.published_at ?? now() };
+  const errors = [...validateRecord(candidate), ...checkHashes(candidate, readRepoBytes)];
+  if (errors.length) throw new Error(`${slug}: ${errors.join("; ")}`);
   const paths = publicPaths(record);
   mkdirSync(join(ROOT, paths.base), { recursive: true });
   copyFileSync(join(ROOT, record.pdf_path), join(ROOT, paths.pdf));

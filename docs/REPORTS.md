@@ -51,7 +51,7 @@ Written in the Data Standard canonical form: UTF-8, keys `[a-z0-9_]+` sorted byt
 
 ```
 node scripts/report.mjs build <slug>      PDF, webp figures, data copies, hashes, built_at
-node scripts/report.mjs register <slug>   upsert the row through the local stack, service role from .env.local
+node scripts/report.mjs register <slug>   upsert the row through the local stack, service role from .env.local; a hosted URL needs `--remote`
 node scripts/report.mjs publish <slug>    copy to public/papers/<slug>, set status public, upsert src/lib/papers.ts
 node scripts/report.mjs list              slug, status, kind, date, source
 node scripts/report.mjs check             every record valid, hashes match, public copies and papers entry present
