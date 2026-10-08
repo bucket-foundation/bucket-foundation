@@ -5,7 +5,7 @@ import { firstRunHash, followRoutes, href, useRoute } from "./router";
 import { FOOT_LINK, navFor, Screen } from "./nav";
 
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
-import "../../../node_modules/katex/dist/katex.min.css";
+import "katex/dist/katex.min.css";
 import "./app.css";
 
 function App() {
