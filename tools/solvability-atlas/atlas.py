@@ -400,7 +400,7 @@ def full(model, problems, lean):
         nodes[i]["theta"] = float(t)
     counts = dict(Counter(n["embedding_text"] for n in nodes))
     data = neighbour_data(nodes, emb, counts)
-    data["embedding"] = {"nodes": len(nodes), "fresh": fresh, "seconds": elapsed, "cache": str(CACHE)}
+    data["embedding"] = {"nodes": len(nodes), "fresh": fresh, "seconds": elapsed, "cache": str(CACHE).replace(str(Path.home()), "~")}
     json.dump(data, open(OUT / "neighbors.json", "w"), separators=(",", ":"))
     tokens = sorted({k.lower() for n in nodes for k in n["keywords"]} | {m for n in nodes for m in n["market"]})
     tok_emb, _ = cached_encode(model, tokens)
