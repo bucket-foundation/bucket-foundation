@@ -370,7 +370,7 @@ export function generateQuestion(src: WorkSources, seed: string, only?: WorkQuiz
 export function focusOf(q: QuizQuestion): Focus | null {
   if (q.type === "estimate") return { kind: "estimate", ref: q.id };
   const first = q.sources[0];
-  if (!first || first.kind === "chat" || first.kind === "word") return null;
+  if (!first || (first.kind !== "bead" && first.kind !== "pr" && first.kind !== "note")) return null;
   return { kind: first.kind, ref: first.ref, other: q.sources[1]?.ref };
 }
 

@@ -4,8 +4,9 @@ import { generateQuestion, rewriteQuestion, seededRng } from "./generate";
 import { gradeAnswer, nextCard, normalizeResponse } from "./grade";
 import { questionText } from "./learn-match";
 import { withinLimits } from "./limits";
+import { resourceForQuestion } from "./resources";
 import { dueFrom, sampleQuiz, usedOn, type CoverageRow, type SamplePick } from "./sampler";
-import { toPublic, type LearnLink, type PublicQuestion, type QuizQuestion, type SourceRef, type WorkSources } from "./types";
+import { toPublic, type LearnLink, type LearnResource, type PublicQuestion, type QuizQuestion, type SourceRef, type WorkSources } from "./types";
 
 export const REVIEW_SHARE = 0.5;
 export const DUE_SCAN = 200;
@@ -77,6 +78,7 @@ export interface QuizResult {
   explain: string;
   sources: SourceRef[];
   learn: LearnLink | null;
+  resource: LearnResource | null;
   elapsedMs: number;
   reviewDueAt: string | null;
   reviewSaved: boolean;
@@ -133,6 +135,7 @@ function resultFrom(row: AttemptRow, reviewDueAt: string | null, reviewSaved: bo
     explain: row.question.explain,
     sources: row.question.sources,
     learn: row.question.learn ?? null,
+    resource: resourceForQuestion(row.question),
     elapsedMs: row.elapsed_ms ?? 0,
     reviewDueAt,
     reviewSaved,

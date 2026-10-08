@@ -387,6 +387,7 @@ test("answering grades on server time, and a retry returns the stored result", a
   if (first.status !== "ok") return;
   assert.equal(first.result.correct, false);
   assert.equal(first.result.answer, q.answer);
+  assert.deepEqual(first.result.resource, { label: "learn this", href: "/research-os/learn/02-physics/entropy" });
   assert.equal(first.result.elapsedMs, 5000);
   assert.ok(first.result.reviewDueAt);
   assert.equal(cards.size, 1);

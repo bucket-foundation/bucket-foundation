@@ -62,6 +62,7 @@ export interface WorkAnswer {
   answer: string;
   explain: string;
   sources?: WorkSource[];
+  resource?: { label: string; href: string } | null;
 }
 
 export interface DailyQuiz {
