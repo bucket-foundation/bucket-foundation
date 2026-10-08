@@ -3,9 +3,12 @@ import html
 import json
 import re
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+from .errors import QuotaSpent
 
 BASE = "https://api.crossref.org/works"
 SELECT = "DOI,title,author,issued,abstract,is-referenced-by-count"
@@ -52,8 +55,13 @@ class Client:
         self.opener = opener or self._open
 
     def _open(self, url):
-        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "bucket-kindred/1"}), timeout=60) as r:
-            return json.loads(r.read().decode("utf-8"))
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "bucket-kindred/1"}), timeout=60) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except urllib.error.HTTPError as err:
+            if err.code == 429:
+                raise QuotaSpent("Crossref answered 429") from None
+            raise RuntimeError(f"Crossref answered {err.code}") from None
 
     def search(self, query, per_page=25):
         url = query_url(query, per_page)

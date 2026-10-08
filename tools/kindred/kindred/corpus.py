@@ -7,6 +7,7 @@ SENTENCE = re.compile(r"(?<=[.!?])\s+")
 WINDOW = 28
 PASSAGE_WORDS = 110
 MIN_WORDS = 25
+MAX_QUOTE = 200
 
 
 def parse_front_matter(text):
@@ -76,16 +77,20 @@ def load_wright(root):
     return out
 
 
+def cap(text):
+    return text if len(text) <= MAX_QUOTE else text[:MAX_QUOTE].rsplit(" ", 1)[0]
+
+
 def spans(text):
     out = []
     for sentence in SENTENCE.split(text.strip()):
         words = sentence.split()
         if len(words) <= WINDOW * 1.6:
             if len(words) >= 5:
-                out.append(sentence)
+                out.append(sentence if len(sentence) <= MAX_QUOTE else sentence[:MAX_QUOTE].rsplit(" ", 1)[0] + "...")
         else:
             for i in range(0, len(words), WINDOW):
                 chunk = words[i:i + WINDOW]
                 if len(chunk) >= 5:
-                    out.append(" ".join(chunk))
+                    out.append(cap(" ".join(chunk)) + "...")
     return out

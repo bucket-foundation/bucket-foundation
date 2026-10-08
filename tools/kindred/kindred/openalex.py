@@ -3,19 +3,16 @@ import json
 import os
 import time
 import urllib.error
-import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+
+from .errors import QuotaSpent
 
 BASE = "https://api.openalex.org"
 SECRET_PARAMS = ("mailto", "api_key")
 MAX_REQUESTS = 200
 MAX_WAIT = 120
-
-
-class QuotaSpent(RuntimeError):
-    pass
 
 
 FIELDS = "id,doi,title,publication_year,cited_by_count,authorships,abstract_inverted_index"
@@ -91,18 +88,6 @@ class Client:
         if os.environ.get("OPENALEX_MAILTO"):
             out["mailto"] = os.environ["OPENALEX_MAILTO"]
         return out
-
-    def fetch_with_retry(self, signed, attempts=4):
-        for attempt in range(attempts):
-            if self.spent >= self.budget:
-                raise RuntimeError(f"request budget of {self.budget} spent")
-            self.spent += 1
-            try:
-                return self.opener(signed)
-            except urllib.error.HTTPError as err:
-                if err.code != 429 or attempt == attempts - 1:
-                    raise RuntimeError(f"OpenAlex answered {err.code}") from None
-                time.sleep(float(err.headers.get("Retry-After") or 8 * (attempt + 1)))
 
     def fetch_with_retry(self, signed, attempts=4):
         for attempt in range(attempts):

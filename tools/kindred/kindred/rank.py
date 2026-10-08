@@ -28,14 +28,3 @@ def pca2(matrix):
     centered = x - x.mean(axis=0)
     _, _, vt = np.linalg.svd(centered, full_matrices=False)
     return centered @ vt[:2].T
-
-
-def verdict(best, tau):
-    ratio = best / tau
-    if ratio >= 1.0:
-        return "near existing work"
-    if ratio >= 0.9:
-        return "close to existing work"
-    if ratio >= 0.8:
-        return "partly covered"
-    return "unusual"

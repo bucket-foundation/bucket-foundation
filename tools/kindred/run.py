@@ -44,6 +44,7 @@ def main(argv=None):
     ap.add_argument("--intake", type=Path, default=DEFAULT_INTAKE)
     ap.add_argument("--out", type=Path, default=HERE / "out")
     ap.add_argument("--cache", type=Path, default=HERE / "cache")
+    ap.add_argument("--skip-openalex", default="")
     ap.add_argument("--budget", type=int, default=openalex.MAX_REQUESTS)
     args = ap.parse_args(argv)
 
@@ -56,7 +57,12 @@ def main(argv=None):
     client = openalex.Client(args.cache / "openalex", budget=args.budget)
     notes = []
     crossref_client = crossref.Client(args.cache / "crossref")
-    works = gather(claims, client, "OpenAlex", notes) + gather(claims, crossref_client, "Crossref", notes)
+    if args.skip_openalex:
+        notes.append(f"OpenAlex was not queried: {args.skip_openalex}.")
+        works = []
+    else:
+        works = gather(claims, client, "OpenAlex", notes)
+    works += gather(claims, crossref_client, "Crossref", notes)
     passages = corpus.load_wright(args.intake)
     rows = source_rows(works, passages)
     enc = Encoder(args.cache / "embeddings")
@@ -64,38 +70,41 @@ def main(argv=None):
     svecs = enc([r["text"] for r in rows])
 
     sims = rank.unit(cvecs) @ rank.unit(svecs).T
+    is_corpus = np.array([r["origin"] == "Wright corpus" for r in rows])
+
+    def top_hits(i, mask, k=5):
+        picked = {}
+        for j in np.argsort(-sims[i], kind="stable"):
+            if not mask[j] or rows[j]["key"] in picked:
+                continue
+            picked[rows[j]["key"]] = int(j)
+            if len(picked) >= k:
+                break
+        out = []
+        for j in picked.values():
+            quote, qsim = rank.best_span(cvecs[i], rows[j]["quote_text"], enc)
+            out.append({"source": rows[j], "sim": float(sims[i, j]), "quote": quote, "quote_sim": qsim, "index": j})
+        return sorted(out, key=lambda h: -h["sim"])
+
     results = []
     for i, c in enumerate(claims):
-        best_by_key = {}
-        for j in np.argsort(-sims[i], kind="stable"):
-            key = rows[j]["key"]
-            if key not in best_by_key:
-                best_by_key[key] = int(j)
-            if len(best_by_key) >= 5:
-                break
-        hits = []
-        for j in best_by_key.values():
-            quote, qsim = rank.best_span(cvecs[i], rows[j]["quote_text"], enc)
-            hits.append({"source": rows[j], "sim": float(sims[i, j]), "quote": quote, "quote_sim": qsim, "index": j})
-        hits.sort(key=lambda h: -h["sim"])
-        oa = [sims[i, j] for j, r in enumerate(rows) if r["origin"] != "Wright corpus"]
-        co = [sims[i, j] for j, r in enumerate(rows) if r["origin"] == "Wright corpus"]
-        results.append({"claim": c, "hits": hits, "best": hits[0]["sim"], "best_live": float(max(oa)) if oa else 0.0, "best_corpus": float(max(co)) if co else 0.0})
+        lit, cor = top_hits(i, ~is_corpus), top_hits(i, is_corpus)
+        results.append({"claim": c, "lit": lit, "corpus": cor, "best_lit": lit[0]["sim"] if lit else 0.0, "best_corpus": cor[0]["sim"] if cor else 0.0})
 
     counts = {o: sum(1 for w in works if w["origin"] == o) for o in ("OpenAlex", "Crossref")}
-    queries = sum(len(c["queries"]) for c in claims)
-    note = (f"Sources searched: {counts['OpenAlex']} OpenAlex works and {counts['Crossref']} Crossref works with abstracts, from {queries} keyword queries per index (25 results per query; OpenAlex most cited first, Crossref by relevance), and {len(passages)} passages from the Robert Wright newsletter, legacy essays and public Nonzero video transcripts. The private call transcript with John Horgan is not used. "
-            f"Embeddings: BAAI/bge-small-en-v1.5, the model of the solvability atlas. Requests this run: OpenAlex {client.spent}, Crossref {crossref_client.spent}. {' '.join(notes)}")
+    makeup = {"openalex": counts["OpenAlex"], "crossref": counts["Crossref"], "passages": len(passages), "queries": sum(len(c["queries"]) for c in claims), "notes": notes,
+              "requests": {"OpenAlex": client.spent, "Crossref": crossref_client.spent}}
     args.out.mkdir(parents=True, exist_ok=True)
-    (args.out / "KINDRED.md").write_text(report.render(results, sources_note=note), encoding="utf-8")
+    (args.out / "KINDRED.md").write_text(report.render(results, makeup), encoding="utf-8")
 
-    chosen = sorted({h["index"] for r in results for h in r["hits"]})
+    shown = [(r, r["lit"][:3] + r["corpus"][:2]) for r in results]
+    chosen = sorted({h["index"] for _, hs in shown for h in hs})
     pts = pca_points(cvecs, svecs, chosen)
     claim_xy, src_xy = pts[: len(claims)], pts[len(claims):]
     pos = {j: src_xy[k] for k, j in enumerate(chosen)}
     sources = []
-    for r in results:
-        for h in r["hits"]:
+    for r, hs in shown:
+        for h in hs:
             who = report.first_author(h["source"]["authors"]).split()[-1] if h["source"]["authors"] else "unknown"
             sources.append({"claim": r["claim"]["id"], "xy": tuple(pos[h["index"]]), "label": f"{who} {h['source']['year'] or ''}".strip()})
     (args.out / "kindred-map.svg").write_text(kindred_svg(claims, [tuple(p) for p in claim_xy], sources), encoding="utf-8")

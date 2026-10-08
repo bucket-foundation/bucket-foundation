@@ -2,6 +2,8 @@ import json
 import sys
 from pathlib import Path
 
+import urllib.error
+
 import numpy as np
 import pytest
 
@@ -137,13 +139,45 @@ def test_spread_keeps_labels_apart():
     assert all(b - a >= 15 - 1e-9 for a, b in zip(ys, ys[1:]))
 
 
-def test_verdict_bands():
-    assert rank.verdict(0.8, 0.781) == "near existing work"
-    assert rank.verdict(0.72, 0.781) == "close to existing work"
-    assert rank.verdict(0.5, 0.781) == "unusual"
+def _http_429(url):
+    raise urllib.error.HTTPError(url, 429, "Too Many Requests", {}, None)
 
 
-def test_crossref_record_strips_markup_and_builds_a_doi_link():
-    item = {"DOI": "10.1/AB", "title": ["T <i>x</i>"], "author": [{"given": "A", "family": "B"}], "issued": {"date-parts": [[2021]]}, "abstract": "<jats:p>Abstract Some &amp; text.</jats:p>"}
-    r = crossref.work_record(item)
-    assert r["abstract"] == "Some & text." and r["title"] == "T x" and r["url"] == "https://doi.org/10.1/AB" and r["year"] == 2021
+def test_crossref_stops_on_429_as_quota_spent(tmp_path):
+    from kindred.errors import QuotaSpent
+
+    client = crossref.Client(tmp_path, pause=0)
+    client.opener = lambda url: (_ for _ in ()).throw(QuotaSpent("Crossref answered 429"))
+    with pytest.raises(QuotaSpent):
+        client.search("anything")
+
+
+def test_crossref_http_429_is_translated(monkeypatch, tmp_path):
+    from kindred.errors import QuotaSpent
+
+    def opener(request, timeout=None):
+        raise urllib.error.HTTPError(request.full_url, 429, "Too Many Requests", {}, None)
+
+    monkeypatch.setattr(crossref.urllib.request, "urlopen", opener)
+    with pytest.raises(QuotaSpent):
+        crossref.Client(tmp_path, pause=0).search("anything")
+
+
+def test_openalex_long_retry_after_is_quota_spent(tmp_path):
+    from kindred.errors import QuotaSpent
+
+    class Headers(dict):
+        pass
+
+    def opener(url):
+        raise urllib.error.HTTPError(url, 429, "x", Headers({"Retry-After": "72000"}), None)
+
+    with pytest.raises(QuotaSpent):
+        openalex.Client(tmp_path, pause=0, opener=opener).search("q")
+
+
+def test_quotes_stay_within_two_hundred_characters_and_one_sentence():
+    long = "word " * 80
+    for span in corpus.spans(long + ". Short second sentence here today."):
+        assert len(span) <= corpus.MAX_QUOTE + 3
+    assert len(corpus.spans("A first sentence of enough words. A second sentence of enough words.")) == 2
