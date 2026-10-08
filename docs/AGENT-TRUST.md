@@ -11,7 +11,7 @@ Then fixed, the agent-trust design of a paid research protocol.
 
 bucket.foundation · nonprofit reference implementation of feed402 · MIT code · CC0-intent spec
 Permanent home of this document: <https://www.bucket.foundation/protocol/agent-trust>
-Spec sibling: feed402 `SPEC.md §3.1` · normative rule: [`PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/PROTOCOL.md) · trust model: [`/llms-full.txt §4`](https://www.bucket.foundation/llms-full.txt)
+Spec sibling: feed402 `SPEC.md §3.1` · normative rule: [`docs/foundation/PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/docs/foundation/PROTOCOL.md) · trust model: [`/llms-full.txt §4`](https://www.bucket.foundation/llms-full.txt)
 
 ---
 
@@ -224,7 +224,7 @@ without objecting") states the model precisely: the difference between
 paid-to-cite and pay-to-proceed, the zero-key guarantee as a verifiable
 Invariant, where settlement happens, and that the entire citation
 action is "copy the `citation` block verbatim, no payment, no signature, no
-follow-up." This is normative in `PROTOCOL.md §3.1` and mirrored in feed402
+follow-up." This is normative in `docs/foundation/PROTOCOL.md §3.1` and mirrored in feed402
 `SPEC.md §3.1`.
 
 ### 5.6 The before/after envelope
@@ -342,7 +342,7 @@ not a risk to manage, it is the work.
 
 ---
 
-*Reference: normative rule, [`PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/PROTOCOL.md);
+*Reference: normative rule, [`docs/foundation/PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/docs/foundation/PROTOCOL.md);
 Agent trust model, [`/llms-full.txt §4`](https://www.bucket.foundation/llms-full.txt);
 Envelope shape, [`/protocol/envelope`](https://www.bucket.foundation/protocol/envelope);
 Spec sibling, feed402 `SPEC.md §3.1`. Source: `gianyrox/bucket-foundation`,

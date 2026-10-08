@@ -1,8 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
+import { InlineMath } from "@/components/math/InlineMath";
 import { DONE_EVENT, START_EVENT } from "@/lib/research-os/work-quiz/trigger";
+import { resourceForQuestion } from "@/lib/research-os/work-quiz/resources";
 import { TYPE_LABEL } from "@/lib/research-os/work-quiz/types";
 import type { QuizStats } from "@/lib/research-os/work-quiz/db";
 import type { SourceStatus } from "@/lib/research-os/work-quiz/sources-server";
@@ -99,17 +102,25 @@ export default function QuizPanel() {
         <section>
           <h2 className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)]">recent</h2>
           <ul className="mt-2 flex flex-col gap-2">
-            {s.recent.map((r) => (
+            {s.recent.map((r) => {
+              const resource = !r.correct && !r.skipped ? resourceForQuestion(r.question) : null;
+              return (
               <li key={r.id} className={`${CARD} flex flex-col gap-1`}>
                 <div className="flex flex-wrap items-center gap-2 text-[11px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)]">
                   <span>{TYPE_LABEL[r.question.type]}</span>
                   <span>{r.skipped ? "skipped" : r.timed_out ? "out of time" : r.correct ? "right" : "missed"}</span>
                   <span className="ml-auto">{r.answered_at ? new Date(r.answered_at).toLocaleString() : ""}</span>
                 </div>
-                <p className="text-[13px] text-[color:var(--basalt)]">{r.question.prompt}</p>
-                <p className="text-[12px] text-[color:var(--basalt-3)]">{r.question.explain}</p>
+                <p className="text-[13px] text-[color:var(--basalt)]"><InlineMath text={r.question.prompt} /></p>
+                <p className="text-[12px] text-[color:var(--basalt-3)]"><InlineMath text={r.question.explain} /></p>
+                {resource && (
+                  <Link href={resource.href} className="text-[12px] underline underline-offset-4 text-[color:var(--aegean-deep)]">
+                    {resource.label}
+                  </Link>
+                )}
               </li>
-            ))}
+              );
+            })}
           </ul>
         </section>
       )}

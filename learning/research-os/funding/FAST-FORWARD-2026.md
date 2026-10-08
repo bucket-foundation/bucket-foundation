@@ -16,7 +16,7 @@ Fast Forward's two hard requirements, quoted verbatim from ffwd.org/apply: "1) Y
 
 Requirement 1 is where the FAQ adds a condition the base packet has not yet met. Quoted from Fast Forward's FAQ: on current 501(c)(3) determination, "Yes. We can help with the incorporation process. Teams that are fiscally sponsored by larger nonprofits are also eligible." On pending status: "Yes. As long as you're registered as a nonprofit in your country."
 
-Bucket Foundation today has **neither** a signed fiscal sponsor **nor** a filed state nonprofit incorporation. `GOVERNANCE.md` section: "Legal status: nonprofit, formalization in progress." `nonprofit-application/00-BASE-INFO-MEMO.md` gaps G-1 through G-4: no EIN filed, no board named, no bylaws drafted, no state of incorporation chosen. The same memo's own status line states plainly: "Nothing has been filed. No sponsor has been contacted." `_intake/research-os-k12/funding-log.md` already logged this exact gap against this exact funder: "Deadline 2026-09-18; state the fiscal-sponsor plan in the application."
+Bucket Foundation today has **neither** a signed fiscal sponsor **nor** a filed state nonprofit incorporation. `docs/foundation/GOVERNANCE.md` section: "Legal status: nonprofit, formalization in progress." `nonprofit-application/00-BASE-INFO-MEMO.md` gaps G-1 through G-4: no EIN filed, no board named, no bylaws drafted, no state of incorporation chosen. The same memo's own status line states plainly: "Nothing has been filed. No sponsor has been contacted." `_intake/research-os-k12/funding-log.md` already logged this exact gap against this exact funder: "Deadline 2026-09-18; state the fiscal-sponsor plan in the application."
 
 So this thread does not stop, but it does not clear on the current packet alone either. Two paths close the gap before 2026-09-18, and either one is enough on Fast Forward's own eligibility language:
 
@@ -25,7 +25,7 @@ So this thread does not stop, but it does not clear on the current packet alone 
 
 Either path lets the application state a concrete answer instead of "pending, unresolved" on the one question the FAQ makes load-bearing. This is the single founder action that determines whether the application is submittable at all; everything in section 3 below can be drafted regardless.
 
-Sources: [ffwd.org/apply](https://www.ffwd.org/apply/), [ffwd.org/faq](https://www.ffwd.org/faq/), fetched 2026-09-10; `GOVERNANCE.md`; `nonprofit-application/00-BASE-INFO-MEMO.md`; `_intake/research-os-k12/funding-log.md`.
+Sources: [ffwd.org/apply](https://www.ffwd.org/apply/), [ffwd.org/faq](https://www.ffwd.org/faq/), fetched 2026-09-10; `docs/foundation/GOVERNANCE.md`; `nonprofit-application/00-BASE-INFO-MEMO.md`; `_intake/research-os-k12/funding-log.md`.
 
 ## 3. What Fast Forward funds
 
@@ -38,7 +38,7 @@ These are the fields apply.ffwd.org/2027-accelerator rendered on fetch. All are 
 | Field | Answer | Source |
 |---|---|---|
 | Primary contact name | Gian Dichio | `nonprofit-application/README.md`, "Founding maintainer: Gian Dichio (@gianyrox)" |
-| Primary contact title | Founding maintainer | `MANIFESTO.md` closing signature; `GOVERNANCE.md` section 5 |
+| Primary contact title | Founding maintainer | `docs/foundation/MANIFESTO.md` closing signature; `docs/foundation/GOVERNANCE.md` section 5 |
 | Primary contact email | gianyrox@gmail.com | `nonprofit-application/README.md` |
 | Applied to the Accelerator before | No | No prior Fast Forward application exists in any file this pass read |
 | How did you learn about Fast Forward | Founder-only, no source file states this | Founder must answer |
@@ -62,7 +62,7 @@ Standard categories a nonprofit tech accelerator asks about, built from Fast For
 
 > Bucket Foundation makes primary research paid for once and citeable forever, and routes citation fees back to the authors who wrote the foundations, away from the publishers that paywall them. Research OS for K-12 is the education-facing extension of that mission: the constrained-AI workspace and the citation-canon substrate share one graph, one production schema, and one citation rail. A nonprofit structure is the only one consistent with the mission's own terms, no equity, no exit, and a payment rail that exists to route value to authors and learners rather than extract it.
 >
-> Source: `GOVERNANCE.md` section 1 ("Mission"); `MANIFESTO.md` sections 3 and 6 ("What bucket is not," on equity and exit).
+> Source: `docs/foundation/GOVERNANCE.md` section 1 ("Mission"); `docs/foundation/MANIFESTO.md` sections 3 and 6 ("What bucket is not," on equity and exit).
 
 **Team and technical capability (approx. 84 words)**
 

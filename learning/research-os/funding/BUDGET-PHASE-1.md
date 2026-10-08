@@ -39,7 +39,7 @@ The compliance row's high end includes room for the iKeepSafe FERPA certificatio
 Consistent with `nonprofit-application/03-BUDGET.md`'s own convention of stating what a budget deliberately omits:
 
 - **No payout or citation-fee revenue line.** System review section 8 places payout accrual and the custodial ledger at Phase 2; Phase 1 ships peer-review-only productions with no payout.
-- **No revenue assumption of any kind.** Research OS for K-12 is free to the learner and the school at every phase per `MANIFESTO.md`'s own commitment; this is a cost budget alone, with no break-even projection attached.
+- **No revenue assumption of any kind.** Research OS for K-12 is free to the learner and the school at every phase per `docs/foundation/MANIFESTO.md`'s own commitment; this is a cost budget alone, with no break-even projection attached.
 - **No district or grant revenue already secured.** Every dollar in section 2 is a projected cost against funding this packet is actively seeking (`FAST-FORWARD-2026.md`, `WAVE-1-TARGETS.md`); none of it is backed by a signed grant or contract as of this draft.
 - **No compensation for the founder.** Consistent with `nonprofit-application/03-BUDGET.md` section 2c's "compensation is zero in year one" rule; the People line in section 2 above covers a possible contractor or part-time hire, separate from founder pay.
 

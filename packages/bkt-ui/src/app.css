@@ -1055,6 +1055,12 @@ button {
   white-space: normal;
 }
 
+.why .learn-this {
+  color: var(--accent, var(--ink));
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .why .source {
   color: var(--ink-2);
 }

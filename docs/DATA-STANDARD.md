@@ -48,12 +48,13 @@ The standard covers every dataset the app, the site, a pack or a feed402 respons
 | Research atlas manifest | `src/data/research-atlas-manifest.json` | 9 dataset entries | Table name | Licence is the string `MIT (code) / CC-BY-4.0 (data)`. Points at parquet files outside the repo. |
 | Evidence search fixture | `scripts/research-os/route-characterization/evidence-search.json` | 11 recorded route cases | Case label | A test fixture. It holds no canon records and is listed so that no reader mistakes it for a dataset. |
 | BibTeX exports | `bucket-canon/**/*.bib` | 37 files; 6 more `.bib` files sit under `papers` and `tools` and hold paper references | BibTeX key | A second rendering of the yaml papers. Under the standard it is generated from the work records. |
+| Reports | `reports/<slug>/report.json`, rows in `graph.reports` | 7 records: 4 public, 3 private | Slug | `docs/REPORTS.md`. Already in canonical form. Four public papers hold only their PDF as source; the LaTeX is in research-atlas. |
 
 ### Learning corpus
 
 | Deck | Path under `learning/app/corpus` | Count | Gaps |
 |---|---|---|---|
-| Eight science decks | `00-learning-to-learn.json` to `07-mind.json`, `biophysics.json` | 487 atoms, 998 quiz items | Seven atom ids repeat across decks with different content: `central-limit-theorem`, `godel-incompleteness`, `lagrange-multipliers`, `equivalence-principle`, `le-chatelier`, `nernst`, `hodgkin-huxley`. A quiz item has no id in the file. Licence is one sentence per deck. |
+| Eight science decks | `00-learning-to-learn.json` to `07-mind.json`, `biophysics.json` | 487 atoms, 998 quiz items | Seven atom ids repeat across decks with different content: `central-limit-theorem`, `godel-incompleteness`, `lagrange-multipliers`, `equivalence-principle`, `le-chatelier`, `nernst`, `hodgkin-huxley`. A quiz item has no id in the file; the bkt store derives it. Licence is one sentence per deck. |
 | `lang-core` | `lang-core.json` | 244 atoms, 17 languages | Licence is a paragraph naming Wiktionary under CC BY-SA 3.0. |
 | `lang-cognates` | `lang-cognates.json` | 244 concepts | Keyed by the same 244 ids as `lang-core`. |
 | `lang-phrases` | `lang-phrases.json` | 82 phrases | 7 phrase ids equal a `lang-core` id. |
@@ -104,10 +105,10 @@ A record is one JSON object. Every record carries the common fields. A kind adds
 | `creators_original` | no | The source's author string, kept when it cannot be split or ends in `et al.`; `creators_truncated` is then true |
 | `dates` | no | See Dates |
 | `source` | yes | `{url, license, retrieved_at, file, sha256}`; `file` is the repo path the record came from |
-| `sha256` | when Bucket holds the bytes | Hash of the work's bytes, as in `PROTOCOL.md` |
+| `sha256` | when Bucket holds the bytes | Hash of the work's bytes, as in `docs/foundation/PROTOCOL.md` |
 | `tier` | yes | `draft`, `candidate` or `canon` |
 | `provenance` | no | `[{action, at, by, via}]` |
-| `cite` | when a citation fee applies | `{price_usd, payout_wallet, license}` as in `PROTOCOL.md`, where `payout_wallet` is required |
+| `cite` | when a citation fee applies | `{price_usd, payout_wallet, license}` as in `docs/foundation/PROTOCOL.md`, where `payout_wallet` is required |
 | `rights` | yes | See Rights |
 | `verification` | yes | See Verification |
 | `relations` | yes, may be empty | See Relations |
@@ -115,7 +116,7 @@ A record is one JSON object. Every record carries the common fields. A kind adds
 | `living` | on `person` | `yes`, `no` or `unknown`. See Additional Coverage |
 | `embargo_until` | no | Date before which the record stays out of packs and feeds |
 
-An implementation preserves a field it does not know. `PROTOCOL.md` section 4 already requires this of sidecars.
+An implementation preserves a field it does not know. `docs/foundation/PROTOCOL.md` section 4 already requires this of sidecars.
 
 A field name means one thing. `tier` is the canon tier everywhere. The yaml papers' `tier: OUTCOME` becomes `outcome_tier`, and the numeric `tier` of `lang-core`, which orders categories from 0 to 10, becomes `order_tier`.
 
@@ -163,6 +164,8 @@ An id is fixed in the file and checked by CI. The validator never invents one at
 12. Alias uniqueness is stated over `same-as` classes. Take the classes of the symmetric, transitive closure of `same-as`. An external alias such as `doi:` maps to exactly one class. A `legacy:` alias maps to exactly one record.
 13. A retired id stays in the file as a tombstone with a `superseded-by` relation. A tombstoned id is never assigned again. CI checks every new id against the tombstones.
 14. `claim_no` comes from a counter file, `bucket-canon/CLAIM-NO`, one line holding the next free number. It reads 599 after the migration. A PR that adds an excerpt takes the number and increments the line in the same commit. Two concurrent PRs both edit that line, so git reports a conflict on the second, and its author takes the next number after rebasing. CI checks that the file equals the highest `claim_no` plus one.
+
+The bkt store keys a quiz item as `<deck>/<atom>/<10 hex>`, the first 10 hex of the sha1 of the prompt and its sorted options. Reordering, inserting or removing quiz items leaves a stored attempt on its prompt, and the deck in the id keeps the seven repeated atom ids apart.
 
 The two duplicated paper ids in `bioelectric-lineage/primary-papers.yaml` fail rule 3 today and are merged before the works migration.
 
@@ -321,21 +324,21 @@ UCUM has no currency units. A currency is written as a UCUM annotation holding t
 
 ## Protocol Mapping
 
-Checked against `PROTOCOL.md` section 4 and `src/lib/feed402-client.ts`.
+Checked against `docs/foundation/PROTOCOL.md` section 4 and `src/lib/feed402-client.ts`.
 
 | Field | Origin | Use in a record |
 |---|---|---|
-| `sha256` | `PROTOCOL.md` | Kept: hash of the work's bytes |
-| `canon_tier` | `PROTOCOL.md`: `draft`, `candidate`, `canon` | Kept as `tier` |
-| `provenance[]` | `PROTOCOL.md`: `action`, `at`, `by`, `via` | Kept |
-| `authors[].orcid`, `authors[].wallet` | `PROTOCOL.md` | Kept inside `creators[].ids` and `creators[].wallet` |
-| `source.url`, `source.license` | `PROTOCOL.md` | Kept |
-| `cite.license` | `PROTOCOL.md` sidecar | Cite policy. It says nothing about the work's own licence, which lives in `rights.licence`. |
-| `cite.payout_wallet`, `cite.price_usd` | `PROTOCOL.md` sidecar; the wallet is a required field there | Kept in `cite` |
+| `sha256` | `docs/foundation/PROTOCOL.md` | Kept: hash of the work's bytes |
+| `canon_tier` | `docs/foundation/PROTOCOL.md`: `draft`, `candidate`, `canon` | Kept as `tier` |
+| `provenance[]` | `docs/foundation/PROTOCOL.md`: `action`, `at`, `by`, `via` | Kept |
+| `authors[].orcid`, `authors[].wallet` | `docs/foundation/PROTOCOL.md` | Kept inside `creators[].ids` and `creators[].wallet` |
+| `source.url`, `source.license` | `docs/foundation/PROTOCOL.md` | Kept |
+| `cite.license` | `docs/foundation/PROTOCOL.md` sidecar | Cite policy. It says nothing about the work's own licence, which lives in `rights.licence`. |
+| `cite.payout_wallet`, `cite.price_usd` | `docs/foundation/PROTOCOL.md` sidecar; the wallet is a required field there | Kept in `cite` |
 | `canonical_url` | feed402 `CitationSource` | Bucket's URL for the record. The origin of the bytes is `source.url`. |
 | `kind`, `rights.facets`, `verification`, `relations`, `dates` | Bucket | New in `bucket.data/1` |
 
-`PROTOCOL.md` does not define `canonical_url`. The field belongs to the feed402 envelope, beside `retrieved_at` and `license`.
+`docs/foundation/PROTOCOL.md` does not define `canonical_url`. The field belongs to the feed402 envelope, beside `retrieved_at` and `license`.
 
 ## Relations
 
@@ -421,7 +424,7 @@ An embedding rebuild is its own PR.
 Points where the repo disagrees with the proposal or with a review finding, and what the standard does about each.
 
 1. `rankSourceSha256` hashes ranking code. `inputSha256` covers the three globe files, so CI asserts that one.
-2. `canonical_url` is a feed402 field and is absent from `PROTOCOL.md`.
+2. `canonical_url` is a feed402 field and is absent from `docs/foundation/PROTOCOL.md`.
 3. The seven repeated atom ids hold different atoms, so `same-as` applies to none of them without an editor's call.
 4. `excerpt:<slug>` alone leaves duplicates: 26 slugs occur twice. Rule 6 of Ids adds the `claim_no` suffix to the later one.
 5. Evidence lookup by `concept::slug` already merges 17 pairs of excerpts.

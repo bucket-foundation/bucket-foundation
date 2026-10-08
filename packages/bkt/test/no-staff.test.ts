@@ -22,6 +22,7 @@ describe("staff data check", () => {
     expect(markers.some((m) => m.startsWith('"') && m.split(",").length === ID_RUN)).toBe(true);
     expect(() => markersOf("x/solvability-neighbors-data.json", { nodes: [] }, "", 12)).toThrow("holds no ids array");
     expect(() => markersOf("x/solvability-neighbors-data.json", { ids: ["a", "b"] }, "", 12)).toThrow("too few markers");
+    expect(() => markersOf("D:\\a\\src\\lib\\research-os\\solvability-similarity-data.json", { nodes: [] }, "", 12)).toThrow("holds no ids array");
     expect(idListMarkers(["a", "b", "c", "d", "e", "f", "g"], 12)).toEqual(['"a","b","c","d","e","f"']);
   });
 

@@ -208,7 +208,7 @@ sustainability), Anki's free-baseline pressure, and Whop's creator rail.
 "you can learn here, for real" · **$0 forever**.
 
 On-mission for a nonprofit; the growth engine.
-- Full access to the **nucleus paths of every branch** (foundations are free, this is non-negotiable per GOVERNANCE.md).
+- Full access to the **nucleus paths of every branch** (foundations are free, this is non-negotiable per docs/foundation/GOVERNANCE.md).
 - FSRS spaced repetition, streaks, XP, branch skill-trees, leagues, community decks (shared, upvoted).
 - **Pre-generated/cached concept art** (the shareable cards, $0 marginal cost, and they're the viral loop).
 - **Capped AI:** 5-10 tutor messages/day + a couple of card generations/day (cost-bounded, see §5). Generous enough to learn; capped enough to stay sustainable.

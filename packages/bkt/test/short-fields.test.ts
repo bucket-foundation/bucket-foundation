@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { checkLimits, LIMITS, countTokens } from "../../../src/lib/research-os/work-quiz/limits";
+import { hasMath, mathToText } from "../../../src/lib/research-os/work-quiz/math";
 import { newDataKey } from "../src/crypto";
 import { pickSession, quizQuestions } from "../src/deck";
 import type { Item } from "../src/grade";
@@ -17,6 +18,7 @@ const items: Item[] = readdirSync(corpusDir)
     const c = JSON.parse(readFileSync(join(corpusDir, f), "utf8"));
     return Array.isArray(c.atoms) ? itemsFromCorpus(f.replace(/\.json$/, ""), c) : [];
   });
+const plainForm = (s: string) => s.normalize("NFC").replace(/[A-Z]/g, (c) => c.toLowerCase()).replace(/[\s·×*()[\]{}_^]+/g, "").replace(/−/g, "-").replace(/ℏ/g, "ħ").replace(/½/g, "1/2");
 const pool = items.map((i) => withShort(i)).filter(hasShort);
 
 describe("quiz short fields", () => {
@@ -29,7 +31,8 @@ describe("quiz short fields", () => {
   test("short answers appear verbatim in the full answer and are unique within a branch", () => {
     const seen = new Set<string>();
     for (const i of pool) {
-      expect(i.answer.includes(i.shortAnswer)).toBe(true);
+      if (!hasMath(i.shortAnswer)) expect(i.answer.includes(i.shortAnswer)).toBe(true);
+      else expect(plainForm(i.answer).includes(plainForm(mathToText(i.shortAnswer)))).toBe(true);
       expect(countTokens(i.shortAnswer)).toBeLessThanOrEqual(LIMITS.option);
       expect(countTokens(i.shortPrompt)).toBeLessThanOrEqual(LIMITS.stem);
       const key = `${i.branch}|${normShort(i.shortAnswer)}`;
@@ -110,6 +113,20 @@ describe("short question distractors", () => {
     expect(checkLimits(q)).toEqual([]);
     expect(buildShortQuestion(deck[0], [deck[0], deck[1], deck[2], deck[3]], "s1")).toBeNull();
     expect(buildShortQuestion(deck[0], [deck[0], deck[2], deck[3]], "s1")).toBeNull();
+  });
+
+  test("no distractor comes from another question on the same atom", () => {
+    const deck = [mk("a0", "a", "alpha"), { ...mk("a1", "a", "bravo"), atomId: "a0" }, ...["delta", "gamma", "omega"].map((w, n) => mk(`a${n + 2}`, "a", w))];
+    for (const seed of ["s1", "s2", "s3", "s4", "s5", "s6"]) expect(buildShortQuestion(deck[0], deck, seed)!.choices).not.toContain("bravo");
+  });
+
+  test("on the corpus no distractor answers another question on the same atom", () => {
+    const atomOf = new Map(pool.map((i) => [normShort(i.shortAnswer), i.atomId]));
+    for (const seed of ["s1", "s2"])
+      for (const i of pool) {
+        const q = buildShortQuestion(i, pool, seed);
+        if (q) expect(q.choices.filter((_, n) => n !== q.answerIndex && atomOf.get(normShort(q.choices[n])) === i.atomId)).toEqual([]);
+      }
   });
 });
 

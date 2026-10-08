@@ -1,6 +1,6 @@
 # Contributing to bucket.foundation
 
-Bucket reforms education: Research OS is the product and the canon holds the foundations ([MANIFESTO.md](./MANIFESTO.md)). Every path below serves that mission.
+Bucket reforms education: Research OS is the product and the canon holds the foundations ([docs/foundation/MANIFESTO.md](docs/foundation/MANIFESTO.md)). Every path below serves that mission.
 
 ## Contribution paths
 

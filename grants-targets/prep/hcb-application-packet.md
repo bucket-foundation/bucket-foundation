@@ -30,12 +30,12 @@ https://bucket.foundation
 GitHub: https://github.com/gianyrox/bucket-foundation (MIT, public)
 
 ### Mission statement
-*(Lifted from MANIFESTO.md §3 + GOVERNANCE.md §1, condensed)*
+*(Lifted from docs/foundation/MANIFESTO.md §3 + docs/foundation/GOVERNANCE.md §1, condensed)*
 
 Bucket Foundation makes primary research **paid-for-once and citeable-forever**, and routes citation fees to the authors who produced the foundations, bypassing publishers who extract rent from a process they did not create.
 
 We do this by maintaining four things:
-1. An **open protocol** (`PROTOCOL.md`, CC0-in-intent) so anyone can run an interoperable bucket, a content-addressed folder containing a paper, a manifest, and an HTTP 402 payment receipt.
+1. An **open protocol** (`docs/foundation/PROTOCOL.md`, CC0-in-intent) so anyone can run an interoperable bucket, a content-addressed folder containing a paper, a manifest, and an HTTP 402 payment receipt.
 2. A **reference implementation** at bucket.foundation (Next.js + Story Protocol IP NFTs + Walrus on-chain storage + Dynamic web3 auth + Supabase) as a non-exclusive example.
 3. A **conservative canon** of foundation-tier research, axioms, real math, rules, laws, principles, primary derivations, across seven branches: mathematics, physics, chemistry, information & computation, biophysics, cosmology, and mind.
 4. A **payment rail** that returns citation revenue to original authors at a default ≥80% of net receipts.
@@ -50,12 +50,12 @@ The current academic publishing economy charges authors to publish, charges read
 | Bucket | $ | Notes |
 |---|---:|---|
 | Reference site infrastructure (Vercel, Supabase, Walrus storage, x402 wallet gas, domain) | $1,800 | Already running; covers 12 months at current scale |
-| Author payouts seed (citation fee subsidy + initial canon-author honoraria) | $4,000 | Returns to authors ≥80% per GOVERNANCE.md §4 |
+| Author payouts seed (citation fee subsidy + initial canon-author honoraria) | $4,000 | Returns to authors ≥80% per docs/foundation/GOVERNANCE.md §4 |
 | Canon curation contractor labor (research librarian, ~40 hrs across 7 branches) | $3,000 | Branch curators for math/physics/chem/info/biophysics/cosmology/mind |
 | Story Protocol minting + chain costs for first ~50 canon papers | $1,200 | IP NFT registration on Story testnet → mainnet |
 | Legal, 501(c)(3) Form 1023-EZ filing + state incorporation + counsel UBIT opinion | $2,500 | $275 IRS fee + ~$1,500 attorney UBIT memo + state filing |
 | Accounting / bookkeeping (annual 990-N, basic ledger) | $500 | Volunteer-hour gap fill |
-| Reserve / buffer | $1,000 | Per GOVERNANCE.md §4 (no reserves >12mo opex) |
+| Reserve / buffer | $1,000 | Per docs/foundation/GOVERNANCE.md §4 (no reserves >12mo opex) |
 | **Total Year 1** | **$14,000** | |
 
 ### 12-month budget projection
@@ -75,7 +75,7 @@ Conservative scenario funds Y1 operating burn ($14k) by closing one $5k OSS roun
 **Expenses:** as per Use of funds table above.
 
 ### Governance / board sketch
-*(Lifted from GOVERNANCE.md §5 + nonprofit-application memo §5.2)*
+*(Lifted from docs/foundation/GOVERNANCE.md §5 + nonprofit-application memo §5.2)*
 
 Until formal 501(c)(3) determination, Bucket runs under **maintainer authority** with full transparency:
 - **Founding maintainer:** Gianangelo Dichio (@gianyrox), decision-maker of last resort.
@@ -89,14 +89,14 @@ Until formal 501(c)(3) determination, Bucket runs under **maintainer authority**
 4. *(Optional 4th)* Pro-bono CPA or nonprofit attorney.
 5. *(Y2+)* A canon author who has been paid via Bucket's citation rail.
 
-**COI structural protections** (GOVERNANCE.md §7 + nonprofit-app memo §6):
+**COI structural protections** (docs/foundation/GOVERNANCE.md §7 + nonprofit-app memo §6):
 - Founder is also founder of AGFarms LLC (for-profit venture studio). This is disclosed; AGFarms has zero ownership/equity/control over Bucket.
 - Standing recusal for any motion touching AGFarms or any AGFarms venture.
 - Open-output requirement on any Bucket-funded research (CC-BY / CC0 / MIT, deposited in public canon).
 - Arms-length pricing parity, any AGFarms-Bucket transaction at identical rate to public rate card, contract published quarterly.
 
 ### Prior-year financials
-**None.** Bucket is pre-revenue and was reactivated 2026-04-14 from a 14-month dormancy (originally prototyped Dec 2022 as a different product, see `HISTORY.md`). No prior EIN, no prior bank account, no prior state filing. This HCB application is the first formal financial vehicle.
+**None.** Bucket is pre-revenue and was reactivated 2026-04-14 from a 14-month dormancy (originally prototyped Dec 2022 as a different product, see `docs/foundation/HISTORY.md`). No prior EIN, no prior bank account, no prior state filing. This HCB application is the first formal financial vehicle.
 
 ### Expected first-year donations + grants
 - **Donations (individual):** $1,000, $5,000. Crypto-native audience; small donor base initially via founder network + Twitter / canon-figures outreach.
@@ -106,14 +106,14 @@ Until formal 501(c)(3) determination, Bucket runs under **maintainer authority**
 ### Why HCB?
 - **Open-source culture fit.** HCB is built by hackers; the platform itself is open-source (github.com/hackclub/hcb). Aligns with Bucket's MIT-code / CC0-protocol ethos.
 - **Web3 / crypto donations supported natively.** Bucket's payment rail is x402 on Base L2, we need a sponsor who can receive ETH/USDC donations and bridge to fiat, well past flinching at crypto.
-- **Transparent ledger by default**, Bucket's GOVERNANCE.md §5 commits to "transparency default"; HCB is the only major fiscal sponsor whose entire ledger is public.
+- **Transparent ledger by default**, Bucket's docs/foundation/GOVERNANCE.md §5 commits to "transparency default"; HCB is the only major fiscal sponsor whose entire ledger is public.
 - **0% fee** on standard tier vs 6-10% at PPF / Social Good Fund / CS&S, every dollar of fee saved goes to author payouts.
 - **Speed**, days-to-weeks intake vs months at CS&S/SFC. We need to be able to receive Sloan / Gitcoin / ESP funds in June 2026.
 
 ### Risk disclosures
 1. **Adult-led project** in a teen-majority sponsor, confirmed in intake gate. Plenty of precedent (adult OSS projects on HCB).
 2. **Crypto component**, citation rail uses x402 on Base L2. Wallet activity will be on-chain transparent. We will cooperate with HCB compliance review of any specific transaction pattern.
-3. **AGFarms COI**, founder also runs AGFarms LLC (for-profit). Structural separation documented in GOVERNANCE.md §7 and `nonprofit-application/00-BASE-INFO-MEMO.md` §6. Bucket holds no AGFarms equity; AGFarms holds no Bucket equity. Founder will recuse on any AGFarms-touching motion.
+3. **AGFarms COI**, founder also runs AGFarms LLC (for-profit). Structural separation documented in docs/foundation/GOVERNANCE.md §7 and `nonprofit-application/00-BASE-INFO-MEMO.md` §6. Bucket holds no AGFarms equity; AGFarms holds no Bucket equity. Founder will recuse on any AGFarms-touching motion.
 4. **Founder personal capacity custody (today)**, domain, wallet, and GitHub repo currently in founder's personal name. HCB onboarding is part of moving these to a c3 vehicle. Repo transfer to AGFarms or to a future c3 entity scheduled for post-determination.
 5. **Long-tail c3 path**, Form 1023-EZ filing planned for May, June 2026; determination expected Q3, Q4 2026. HCB is the bridge.
 

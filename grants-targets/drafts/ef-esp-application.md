@@ -53,7 +53,7 @@ X402 has, as of late 2025, complete client-side and middleware tooling, but the 
 
 We propose four milestones over 9 months. ESP funds release on milestone completion against a public commit history.
 
-**M1, Protocol v1.0 (months 0-2).** Promote `PROTOCOL.md` from draft v0.1 to v1.0. Add a federation / mirroring section. Publish a public test-vector suite (canon.json schema, x402 fetch flow, citation receipt) and a conformance rig any implementer can run against their bucket. Open-source under MIT.
+**M1, Protocol v1.0 (months 0-2).** Promote `docs/foundation/PROTOCOL.md` from draft v0.1 to v1.0. Add a federation / mirroring section. Publish a public test-vector suite (canon.json schema, x402 fetch flow, citation receipt) and a conformance rig any implementer can run against their bucket. Open-source under MIT.
 
 **M2, Reference bucket hardened on Base mainnet (months 1-4).** Migrate the reference implementation from Base Sepolia to Base mainnet. Onboard the Story Protocol IP-NFT mint path for canon-tier artifacts. Operate a publicly available, zero-key, budget-capped agent proxy at `bucket.foundation/api/research` returning the feed402-compliant `{ data, citation, receipt }` envelope. Target: 1,000 canon-tier buckets [[FOUNDER: reality-check 1,000 in 4 months against current canon-intake throughput; if marginal, drop to 250 + commit to 1,000 by end of grant]] across the seven foundation branches (mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind) live and citeable.
 
@@ -80,11 +80,11 @@ We are willing to scope to any subset of the milestones at any award size in the
 
 ## 6. Open-source guarantee
 
-All code produced under this grant will be MIT-licensed in `github.com/gianyrox/bucket-foundation` (or its post-transfer successor at `github.com/AGFarms/bucket-foundation` once the nonprofit transfer is complete). The protocol spec is CC0-in-intent. There is no token, no equity, no investor, no exit. The Foundation is structurally non-extractive, see `GOVERNANCE.md` and `MANIFESTO.md` in the repo for the operating constraints.
+All code produced under this grant will be MIT-licensed in `github.com/gianyrox/bucket-foundation` (or its post-transfer successor at `github.com/AGFarms/bucket-foundation` once the nonprofit transfer is complete). The protocol spec is CC0-in-intent. There is no token, no equity, no investor, no exit. The Foundation is structurally non-extractive, see `docs/foundation/GOVERNANCE.md` and `docs/foundation/MANIFESTO.md` in the repo for the operating constraints.
 
 ## 7. Conflict of interest disclosure
 
-Bucket.foundation is currently held in the applicant's personal capacity (`gianyrox/bucket-foundation`) pending formal 501(c)(3) reinstatement, with Hack Club Bank in process as interim fiscal sponsor. This is disclosed in `GOVERNANCE.md`. The applicant also operates AGFarms, a venture studio, but bucket is explicitly not an AGFarms-owned asset, it is managed by the AGFarms workflow under founder ownership, and will transfer to the nonprofit legal entity on reinstatement. ESP funds, if awarded, would be received via HCB or directly to the nonprofit upon determination, at the EF's preference. [[FOUNDER: pick one before submit, offering both signals indecision; default to HCB and provide ACH/wire details on request]] [[FOUNDER: confirm Base mainnet wallet address if ESP elects USDC-on-Base disbursement]]
+Bucket.foundation is currently held in the applicant's personal capacity (`gianyrox/bucket-foundation`) pending formal 501(c)(3) reinstatement, with Hack Club Bank in process as interim fiscal sponsor. This is disclosed in `docs/foundation/GOVERNANCE.md`. The applicant also operates AGFarms, a venture studio, but bucket is explicitly not an AGFarms-owned asset, it is managed by the AGFarms workflow under founder ownership, and will transfer to the nonprofit legal entity on reinstatement. ESP funds, if awarded, would be received via HCB or directly to the nonprofit upon determination, at the EF's preference. [[FOUNDER: pick one before submit, offering both signals indecision; default to HCB and provide ACH/wire details on request]] [[FOUNDER: confirm Base mainnet wallet address if ESP elects USDC-on-Base disbursement]]
 
 ## 8. Why ESP, why now
 

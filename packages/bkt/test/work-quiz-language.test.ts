@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { join } from "node:path";
 import { seededRng } from "../../../src/lib/research-os/work-quiz/generate";
-import { languageMakers } from "../../../src/lib/research-os/work-quiz/polingual-forms";
+import { languageMakers, rivals, sharesSense } from "../../../src/lib/research-os/work-quiz/polingual-forms";
 import { loadWordSet, subsetPath } from "../../../src/lib/research-os/work-quiz/polingual-server";
 import { sampleQuiz } from "../../../src/lib/research-os/work-quiz/sampler";
 import { LANGUAGE_FORMS } from "../../../src/lib/research-os/work-quiz/space";
@@ -29,6 +29,17 @@ describe("language questions in the desktop engine", () => {
       expect(back.sources[0].label).toContain("Wiktionary");
     }
     expect(() => parseDailyQuiz({ day: "2026-10-05", questions: [{ id: "x", type: "meaning", prompt: "Which word?", choices: ["a", "b"], answer: "a", limitSec: 20, sources: [{ kind: "lexeme", ref: "a", label: "b" }] }] })).toThrow(DailyQuizError);
+  });
+
+  test("wrong choices come from the clean pool and never share the answer's sense", () => {
+    const set = loadWordSet();
+    expect(set.cells.some((c) => c.lang === "zh" && c.word === "門子")).toBe(false);
+    expect(set.cells.some((c) => c.lang === "sa" && c.word === "पिङ्ग")).toBe(false);
+    expect(set.cells.some((c) => c.lang === "pt" && c.word === "público")).toBe(false);
+    for (const a of set.cells) for (const r of rivals(set, a)) {
+      expect(set.cells).toContain(r);
+      expect(sharesSense(a, r)).toBe(false);
+    }
   });
 
   test("the sampler serves language questions under bun", () => {
@@ -75,8 +86,8 @@ describe("schema 11 languages", () => {
     db.close();
     const key = newDataKey();
     const s = new Store(path, key);
-    expect(SCHEMA_VERSION).toBe(12);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(12);
+    expect(SCHEMA_VERSION).toBe(13);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     expect(s.db.query("select cell from work_quiz_coverage").all()).toEqual([{ cell: "c" }]);
     expect(LOCAL_ONLY_TABLES).toContain("work_quiz_languages");
     const wq = new WorkQuizStore(s, key);

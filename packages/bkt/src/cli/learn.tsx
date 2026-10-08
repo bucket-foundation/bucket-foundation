@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, render, Text, useApp, useInput } from "ink";
+import { mathToText } from "../../../../src/lib/research-os/work-quiz/math";
 import type { LearnBackend } from "../core/backend";
 import { LearnError, type PublicQuestion, type QuizOutcome, type ReviewCard } from "../core/learn";
 import type { PackDeck } from "../pack/export";
@@ -118,9 +119,9 @@ export async function daily(b: LearnBackend, day: string, json: boolean, spec: C
   else {
     io.print(`Daily quiz for ${day}: ${quiz.questions.length} questions, ${quiz.answered.length} answered.`);
     quiz.questions.forEach((q, i) => {
-      io.print(`${i + 1}. ${q.prompt}${quiz.answered.includes(q.id) ? " (answered)" : ""}`);
+      io.print(`${i + 1}. ${mathToText(q.prompt)}${quiz.answered.includes(q.id) ? " (answered)" : ""}`);
       for (const l of q.lines) io.print(`   ${l}`);
-      (q.choices ?? []).forEach((c, k) => io.print(`   ${String.fromCharCode(97 + k)}) ${c}`));
+      (q.choices ?? []).forEach((c, k) => io.print(`   ${String.fromCharCode(97 + k)}) ${mathToText(c)}`));
     });
     io.print("Answer in the Bucket window, or send answers with --json.");
     return EXIT.ok;
@@ -198,14 +199,14 @@ export function QuizScreen({ backend, size, onExit }: { backend: LearnBackend; s
         {q.long ? ", long" : ""}
       </Text>
       <Box marginY={1}>
-        <Text bold>{q.prompt}</Text>
+        <Text bold>{mathToText(q.prompt)}</Text>
       </Box>
       {q.choices.map((c, i) => (
         <Text key={i}>
-          {i + 1}. {c}
+          {i + 1}. {mathToText(c)}
         </Text>
       ))}
-      {last ? <Text color={last.correct ? "green" : "red"}>{last.timedOut ? "Time ran out" : last.correct ? "Correct" : `Wrong. The answer: ${last.answer}`}. Enter for the next one.</Text> : <Text dimColor>1-{q.choices.length} to answer, q to leave</Text>}
+      {last ? <Text color={last.correct ? "green" : "red"}>{last.timedOut ? "Time ran out" : last.correct ? "Correct" : `Wrong. The answer: ${mathToText(last.answer)}`}. Enter for the next one.</Text> : <Text dimColor>1-{q.choices.length} to answer, q to leave</Text>}
     </Box>
   );
 }
@@ -249,7 +250,7 @@ export function ReviewScreen({ backend, size, onExit }: { backend: LearnBackend;
         {c.long ? ", long" : ""}
       </Text>
       <Box marginY={1}>
-        <Text bold>{c.prompt}</Text>
+        <Text bold>{mathToText(c.prompt)}</Text>
       </Box>
       {shown ? (
         <Box flexDirection="column">

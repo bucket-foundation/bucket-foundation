@@ -3,7 +3,7 @@ import argparse, datetime, json, pathlib, re, shutil, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 WHATS_NEW = ROOT / "data" / "whats-new.json"
-HISTORY = ROOT / "HISTORY.md"
+HISTORY = ROOT / "docs" / "foundation" / "HISTORY.md"
 REPORTS = ROOT / "reports"
 IMAGES = ROOT / "public" / "whats-new"
 HISTORY_HEAD = "## Research additions"
@@ -58,7 +58,7 @@ def whats_new(a, root=None):
 
 
 def history(a, root=None):
-    path = (root or ROOT) / "HISTORY.md"
+    path = (root or ROOT) / "docs" / "foundation" / "HISTORY.md"
     text = path.read_text()
     line = f"- **{a.date or today()}, {a.title}.** {a.summary}"
     if HISTORY_HEAD not in text:

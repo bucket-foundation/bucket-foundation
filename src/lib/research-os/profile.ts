@@ -1,4 +1,4 @@
-import type { BirthYearBucket, LearnerRole } from "./consent";
+import type { BirthYearBucket, LearnerRole } from "./types";
 
 const VALID_ROLES = new Set<LearnerRole>(["student", "teacher", "independent"]);
 const VALID_BUCKETS = new Set<BirthYearBucket>(["under13", "13to17", "18plus"]);

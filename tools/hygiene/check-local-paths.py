@@ -35,7 +35,7 @@ REPO_ROOT = Path(
 )
 ALLOWLIST_PATH = REPO_ROOT / "tools" / "hygiene" / ".local-path-allowlist"
 
-PATH_RE = re.compile(r"(?<!\w)/home/[A-Za-z0-9_][A-Za-z0-9_.-]*(?:/[^\s\"'`)]*)?")
+PATH_RE = re.compile(r"(?<![\w)])/home/[A-Za-z0-9_][A-Za-z0-9_.-]*(?:/[^\s\"'`)]*)?")
 
 def load_allowlist() -> set[str]:
     if not ALLOWLIST_PATH.exists():

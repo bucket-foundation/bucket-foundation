@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const DOC_ROOT = path.join(process.cwd());
+const DOC_ROOT = path.join(process.cwd(), "docs", "foundation");
 
 export function readDoc(name: string): string {
   const safe = name.replace(/[^A-Za-z0-9._-]/g, "");

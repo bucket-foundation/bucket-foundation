@@ -1,7 +1,9 @@
 import { buildEncompassingMap, withLeverage, type Atom, type EncEdge } from "../../../../src/lib/academy/engine";
 import { gradeAnswer, log10Distance, normalizeResponse } from "../../../../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../../../../src/lib/research-os/work-quiz/limits";
-import { toPublic, type QuizQuestion } from "../../../../src/lib/research-os/work-quiz/types";
+import type { LearnAtom } from "../../../../src/lib/research-os/work-quiz/learn-match";
+import { resourceForQuestion } from "../../../../src/lib/research-os/work-quiz/resources";
+import { toPublic, type LearnResource, type QuizQuestion } from "../../../../src/lib/research-os/work-quiz/types";
 import { attemptId, type DailyQuizStore } from "../daily-quiz";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "../deck";
 import type { GradeResult, Question, Rating } from "../grade";
@@ -49,6 +51,7 @@ export interface DailyOutcome extends GradeResult {
   answer: string;
   explain: string;
   sources: QuizQuestion["sources"];
+  resource: LearnResource | null;
 }
 
 export const fitsScreen = (q: { prompt: string; choices?: readonly string[] | null }) => checkLimits({ prompt: q.prompt, choices: q.choices ? [...q.choices] : null }).length === 0;
@@ -117,7 +120,7 @@ export function dailyQuestions(daily: DailyQuizStore, day: string, o: { fit?: bo
 
 export type Recorder = (q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId: string; log10Distance: number | null }) => void;
 
-export function answerDaily(daily: DailyQuizStore, record: Recorder, day: string, id: unknown, raw: unknown, elapsedMs: number, now: number): DailyOutcome {
+export function answerDaily(daily: DailyQuizStore, record: Recorder, day: string, id: unknown, raw: unknown, elapsedMs: number, now: number, atoms: readonly LearnAtom[] = []): DailyOutcome {
   const q = daily.get(day)?.questions.find((x) => x.id === id);
   if (!q) throw new LearnError("no such question", 404);
   if (daily.answered(day).has(q.id)) throw new LearnError("already answered", 409);
@@ -130,5 +133,5 @@ export function answerDaily(daily: DailyQuizStore, record: Recorder, day: string
     if (/UNIQUE constraint failed/i.test((e as Error).message)) throw new LearnError("already answered", 409);
     throw e;
   }
-  return { ...g, log10Distance: distance, answer: q.answer, explain: q.explain, sources: q.sources };
+  return { ...g, log10Distance: distance, answer: q.answer, explain: q.explain, sources: q.sources, resource: resourceForQuestion(q, atoms) };
 }

@@ -3,6 +3,7 @@ import { proveServer } from "../serve";
 import { chmodSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import type { PublicQuestion as DailyQuestion } from "../../../../src/lib/research-os/work-quiz/types";
+import { packLearnAtoms } from "../../../../src/lib/research-os/work-quiz/resources";
 import type { DailyQuizStore } from "../daily-quiz";
 import type { Pack, PackDeck } from "../pack/export";
 import type { Store } from "../store";
@@ -79,7 +80,7 @@ export function directBackend(p: DirectParts): LearnBackend {
       return dailyQuestions(p.daily, day, { fit: true });
     },
     async answerDaily(day, id, response, elapsedMs) {
-      return answerDaily(p.daily, p.record, day, id, response, Math.min(elapsedMs, 3_600_000), now());
+      return answerDaily(p.daily, p.record, day, id, response, Math.min(elapsedMs, 3_600_000), now(), packLearnAtoms(p.content.atoms));
     },
   };
 }

@@ -6,7 +6,7 @@ import { cells, segments, writeOrCheck } from "./md-inline.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const MEMO = path.join(ROOT, "learning/research-os/PATENTS.md");
-const BEADS = path.join(ROOT, "BEADS-PENDING.jsonl");
+const BEADS = path.join(ROOT, ".beads", "BEADS-PENDING.jsonl");
 const OUT = path.join(ROOT, "src/lib/research-os/patents-design-data.json");
 
 function table(lines, header) {

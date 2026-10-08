@@ -24,7 +24,7 @@ Design only. No code, migration or deploy ships with this file. It defines the d
 | Advisor rows | `tools/prime-directions/prime_directions/advisors.py` | `score`, `percentile`, `term_overlap`, `shared_terms`, `shared_topics`, `star_prime` (position on the prime axes), `star_ours` (position on our research directions) |
 | PI fit | `tools/pi-fit/README.md` | Cosine fit over OpenAlex topic embeddings, private output outside the repo |
 | Viewer decisions | `advisor_page.html` on `feat/ros-advisor-decisions` | `shortlist`, `maybe`, `skip` per person, in browser storage today |
-| feed402 envelope | `PROTOCOL.md` | `data` plus `citation` plus optional `receipt`; `citation.type` is the extension point |
+| feed402 envelope | `docs/foundation/PROTOCOL.md` | `data` plus `citation` plus optional `receipt`; `citation.type` is the extension point |
 
 ## External Sources
 
@@ -215,7 +215,7 @@ A statement is public only when its best source is `T0`, `T1` or `self`. `T2` an
 
 | Question | Answer, pending founder and counsel approval |
 |---|---|
-| Controller | Bucket is held in the founder's personal capacity (GOVERNANCE.md), so the founder is the controller of profile data until the nonprofit entity exists; the privacy notice names him and a contact address, and control transfers to the entity on formation |
+| Controller | Bucket is held in the founder's personal capacity (docs/foundation/GOVERNANCE.md), so the founder is the controller of profile data until the nonprofit entity exists; the privacy notice names him and a contact address, and control transfers to the entity on formation |
 | Lawful basis for unclaimed EU and UK researchers | GDPR Art. 6(1)(f) legitimate interest: helping students find advisors and crediting researchers for their public work |
 | Balancing test | Data is professional and already published by the person or their institution under open licences; the page adds source links; no email, no inferred traits, no ranking, no contact action; only T0 and T1 facts show; objection is one form away. Recorded as a written legitimate interest assessment before any unclaimed page ships |
 | Art. 14 notice | Indirect collection. Art. 14(5)(b) disproportionate effort covers 1.4M people only with a public notice: a privacy page listing sources, purposes, retention, rights and the objection form, linked from every profile. Once a verified official email exists for a person in the private atlas, a one-time notice is sent before the page goes public |
@@ -632,7 +632,7 @@ Each function fills or refreshes one slice of a profile. It reads ids already on
 | 23 | `derive_topics` | works with OpenAlex topics, Research OS topic nodes | local join on OpenAlex topic id | `profile.topic_positions`, `works_on` | local | after each build | none | atlas `work_field`; ADVISOR-DB-PLAN topic join |
 | 24 | `link_bucket` | Bucket user id after claim, DOIs | local Supabase: `graph.productions` accepted, `graph.nodes` `provenance.doi`, `figure` nodes | `produced`, `extended`, `replicated`, `reviewed`, `authored_claim`, `is_figure`, `holds_account` | local | on write | claim for `holds_account`; none for DOI matches to canon nodes | `graph.productions`, `graph.nodes` |
 | 25 | `viewer_fit` | viewer's own research text, person topic vector | local embedding | `profile.viewer_fit` only, never a statement | local | on viewer request | viewer's own session | `prime_directions/advisors.py` (`star_prime`, `star_ours`, `shared_topics`), `tools/pi-fit/fitmap.py` |
-| 26 | `render_profile` | all public statements | `profile.public_statements` | page and a feed402 envelope: `data` is the statement list, `citation` is the per-statement `sources[]` | local | on read | none | `PROTOCOL.md` envelope; `src/app/api/research-os/node/route.ts` source rendering |
+| 26 | `render_profile` | all public statements | `profile.public_statements` | page and a feed402 envelope: `data` is the statement list, `citation` is the per-statement `sources[]` | local | on read | none | `docs/foundation/PROTOCOL.md` envelope; `src/app/api/research-os/node/route.ts` source rendering |
 
 Stages 2 and 4 run in parallel after stage 1. Stages 5 to 14 depend only on ids and works from stages 2 and 4 and run in parallel per host. Stages 15 to 20 need a reviewer, a claim or founder use. Stages 21 to 23 run after every build. A full refresh for one person with 40 works costs about 60 requests under these ceilings [empirical: this plan's stage table, 2026-09-29, count of per-person calls in stages 0 to 14 at 40 works and 200 per page].
 

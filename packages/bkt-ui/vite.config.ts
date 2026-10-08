@@ -46,7 +46,7 @@ export default defineConfig({
     dedupe: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei"],
     alias: [
       ...Object.entries(exploreAliases).map(([find, replacement]) => ({ find: new RegExp(`^${find}$`), replacement })),
-      ...["react-dom", "react", "three-stdlib", "three", "@react-three/fiber", "@react-three/drei", "3dmol", "smiles-drawer"].map((pkg) => ({
+      ...["react-dom", "react", "three-stdlib", "three", "@react-three/fiber", "@react-three/drei", "3dmol", "smiles-drawer", "katex"].map((pkg) => ({
         find: new RegExp(`^${pkg.replace("/", "\\/")}(/.*)?$`),
         replacement: `${resolve(__dirname, "node_modules", pkg)}$1`,
       })),

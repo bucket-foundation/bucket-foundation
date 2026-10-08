@@ -125,5 +125,5 @@ Have a legal open copy; the table records the route for each.
 **Policy note.** No shadow-library pulls. Where a paper is paywalled, the legal route is the
 Author's own posted copy, an institutional/library license, ERIC/PMC where indexed, or
 Purchase. The *findings and effect sizes* are facts and are written directly into the ranked
-Index, we never reproduce publisher prose. Consistent with GOVERNANCE.md and the §A-C policy
+Index, we never reproduce publisher prose. Consistent with docs/foundation/GOVERNANCE.md and the §A-C policy
 Above.

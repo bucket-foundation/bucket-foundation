@@ -50,7 +50,7 @@ The plates pair across abstraction levels:
 
 These are the **layer-4 cosmological substrate** of the manifesto.
 Pair with founder's iPad math (bead `bkt-ow0`). Each plate can be
-embedded in `MANIFESTO.md`, the `/quantum` page, or a future
+embedded in `docs/foundation/MANIFESTO.md`, the `/quantum` page, or a future
 `GEOMETRY.md` document.
 
 Voice register for any prose alongside: founder's own (em-dash heavy,

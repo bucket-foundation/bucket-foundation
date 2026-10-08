@@ -1,6 +1,6 @@
 # Board & Governance
 
-> Companion document to `GOVERNANCE.md` at the repo root. The application-facing version describes who is in charge **today**, who will be in charge **after sponsor onboarding**, and the decision rules for the gap in between.
+> Companion document to `docs/foundation/GOVERNANCE.md` at the repo root. The application-facing version describes who is in charge **today**, who will be in charge **after sponsor onboarding**, and the decision rules for the gap in between.
 
 ---
 
@@ -21,7 +21,7 @@ Until a fiscal sponsor is in place or a board is seated, the founding maintainer
 
 | Decision class | Rule |
 |---|---|
-| Merging changes to `PROTOCOL.md` | 7-day public comment window on the PR; founding maintainer merges. |
+| Merging changes to `docs/foundation/PROTOCOL.md` | 7-day public comment window on the PR; founding maintainer merges. |
 | Accepting a grant or sponsorship | Public disclosure on the GitHub repo at least 7 days before acceptance. |
 | Spending operating funds > $250 in a single transaction | Public disclosure within 7 days, with receipt or on-chain link. |
 | Any transaction touching AGFarms LLC | Public disclosure **before** the transaction; founding maintainer does not unilaterally approve. |
@@ -73,7 +73,7 @@ The Foundation will recruit a board of **3-7 members** within 12 months of spons
 - Prior: software engineering, applied AI, distributed systems
 - GitHub: @gianyrox
 - Email: gianyrox@gmail.com
-- Disclosed conflict: see § 6 and `GOVERNANCE.md` § 7
+- Disclosed conflict: see § 6 and `docs/foundation/GOVERNANCE.md` § 7
 
 The founding maintainer's role in the Foundation is **technical stewardship and decision-making of last resort during the interim period**. The role is not designed to be permanent. The first board chair, once seated, is expected to be someone other than the founding maintainer.
 

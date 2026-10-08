@@ -116,9 +116,9 @@ made at the identical `made_at` over the identical run produce byte-
 identical predictions, the property that makes a re-run of `register`
 safe to check against a previous one.
 
-Every prediction also carries a feed402-shaped `envelope` (`PROTOCOL.md`
+Every prediction also carries a feed402-shaped `envelope` (`docs/foundation/PROTOCOL.md`
 §4): a `citation` block whose `type` is `"prediction"`, the additive
-extension point `PROTOCOL.md` §3.1 and `CLAUDE.md`'s own feed402 forward-
+extension point `docs/foundation/PROTOCOL.md` §3.1 and `CLAUDE.md`'s own feed402 forward-
 compat note both name (sibling to DerbyFish's `derbyfish.bhrv.v2`), and a
 `receipt` that is a placeholder throughout, `price_usd: 0`, `status:
 "forecast_registered_not_yet_resolved"`, since no x402 settlement has

@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import neighbors from "../src/lib/research-os/solvability-neighbors-data.json";
-import { LENGTH_BANDS, auc, backtest, backtestCutoff, lengthBand, permutationP, seededRandom, shuffleInPlace, stratum, type BacktestRow } from "../src/lib/research-os/solvability-backtest";
+import { LENGTH_BANDS, auc, backtest, backtestCutoff, lengthBand, permutationP, scoreForecast, seededRandom, shuffleInPlace, statusMap, stratum, type BacktestRow, type Forecast } from "../src/lib/research-os/solvability-backtest";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 import { buildFrontier, frontierRows, type NeighborData, type NeighborNode } from "../src/lib/research-os/solvability-frontier";
 import { buildPredictions, classify, predictionsCsv, rankPredictions, topPerClass } from "../src/lib/research-os/solvability-predictions";
 
@@ -136,4 +138,70 @@ test("predictions classify by zone and the upper reach, rank by growth, and keep
   const csv = predictionsCsv(p);
   assert.equal(csv.split("\n").length, p.rows.length + 2);
   assert.match(csv, /^id,title,branch,status,class,reach,growth/);
+});
+
+function toyForecast(): Forecast {
+  return {
+    schema: "bucket.solvability-atlas.forecast/v1",
+    cutoff: 2000,
+    built: "2026-10-07",
+    model: "m",
+    revision: "r",
+    k: 5,
+    input_hash: "h",
+    solved: 2,
+    threshold_bounded: 0,
+    threshold: 0.9,
+    rows: [
+      { id: "c", branch: "mathematics", posed: 1990, words: 10, reach: 0.85, bounded: false, zone: "outside" },
+      { id: "d", branch: "mathematics", posed: 1990, words: 50, reach: 0.3, bounded: false, zone: "outside" },
+      { id: "e", branch: "mathematics", posed: 1990, words: 25, reach: 0.95, bounded: false, zone: "inside" },
+      { id: "f", branch: "mathematics", posed: 1990, words: 10, reach: 0.7, bounded: true, zone: "undecided" },
+    ],
+  };
+}
+
+test("a forecast file scores against the current status column only", () => {
+  const status = statusMap(toy());
+  const c = scoreForecast(toyForecast(), status, { permutations: 200, floor: 1 });
+  assert.equal(c.cutoff, 2000);
+  assert.equal(c.threshold, 0.9);
+  assert.equal(c.solvedAtCutoff, 2);
+  assert.equal(c.tested, 4);
+  assert.equal(c.undecided, 1);
+  const [settled, advanced] = c.codings;
+  assert.equal(settled.all.inside, 1);
+  assert.equal(settled.all.outside, 2);
+  assert.equal(settled.all.resolvedInside, 0);
+  assert.equal(settled.all.resolvedOutside, 1);
+  assert.equal(advanced.all.resolvedInside, 1);
+  assert.equal(advanced.auc, 1);
+  const flipped = new Map(status);
+  flipped.set("d", { ...status.get("d")!, status: "solved", solved: true, resolved: 2020 });
+  assert.equal(scoreForecast(toyForecast(), flipped, { permutations: 200, floor: 1 }).codings[0].all.resolvedOutside, 2);
+  assert.equal(c.threshold, scoreForecast(toyForecast(), flipped, { permutations: 200, floor: 1 }).threshold);
+});
+
+test("a forecast naming an unknown row is refused", () => {
+  const f = toyForecast();
+  f.rows[0].id = "zzz";
+  assert.throws(() => scoreForecast(f, statusMap(toy())), /zzz/);
+});
+
+test("the committed forecasts score the same as the live cutoff computation", () => {
+  const dir = path.join(__dirname, "..", "tools", "solvability-atlas", "forecasts");
+  const status = statusMap(data);
+  for (const cutoff of [2005, 2021]) {
+    const file = path.join(dir, `${cutoff}.json`);
+    assert.ok(existsSync(file), file);
+    const forecast = JSON.parse(readFileSync(file, "utf8")) as Forecast;
+    assert.equal(forecast.cutoff, cutoff);
+    for (const r of forecast.rows) assert.ok(r.posed <= cutoff);
+    const frozen = scoreForecast(forecast, status, { permutations: 300 });
+    const live = backtestCutoff(data, cutoff, { permutations: 300 });
+    const { rows: frozenRows, ...frozenRest } = frozen;
+    const { rows: liveRows, ...liveRest } = live;
+    assert.deepEqual(frozenRest, liveRest);
+    assert.deepEqual(frozenRows.map((r) => [r.id, r.reach, r.status]), liveRows.map((r) => [r.id, r.reach, r.status]));
+  }
 });
