@@ -43,7 +43,7 @@ export const KINDS: readonly SourceRef["kind"][] = SOURCE_KINDS;
 
 function source(v: unknown): SourceRef {
   const r = (v && typeof v === "object" ? v : {}) as Record<string, unknown>;
-  if (!KINDS.includes(r.kind as SourceRef["kind"])) throw new DailyQuizError("a source needs kind bead, pr, note, chat or word");
+  if (!KINDS.includes(r.kind as SourceRef["kind"])) throw new DailyQuizError("a source needs kind bead, pr, note, chat, word, atom, excerpt or work");
   const href = r.href === null || r.href === undefined ? null : text(r.href, "a source href");
   if (href !== null && !href.startsWith("https://")) throw new DailyQuizError("a source href must start with https://");
   return { kind: r.kind as SourceRef["kind"], ref: text(r.ref, "a source ref", 120), label: text(r.label, "a source label", 120), href };

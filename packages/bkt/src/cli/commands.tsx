@@ -44,6 +44,7 @@ import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
 import { jobSpecs } from "../job-specs";
 import { JobRunner } from "../jobs";
 import { isSidecar, parentGone } from "../parent";
+import { packLearnAtoms } from "../../../../src/lib/research-os/work-quiz/resources";
 import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "../work-quiz";
 import { MAX_BODY, NOTES_BODY_BYTES, NotesStore, notesRoutes } from "../notes";
 import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
@@ -191,7 +192,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
-      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on) }),
+      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms) }),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
     },

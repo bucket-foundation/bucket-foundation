@@ -238,6 +238,24 @@ describe("factor wording", () => {
     await v.unmount();
   });
 
+  test("a miss shows one learn this link and a right answer shows none", async () => {
+    const resource = { label: "learn this", href: "/research-os/learn/02-physics/entropy" };
+    const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: async (_d, id) => (id === "c1" ? graded({ correct: false, resource }) : graded({ resource })) });
+    await v.click(v.host.querySelector(".choice"));
+    const links = v.host.querySelectorAll(".why a.learn-this");
+    expect(links.length).toBe(1);
+    expect(links[0].textContent).toBe("learn this");
+    expect(links[0].getAttribute("href")).toBe("#/learn/02-physics/entropy");
+    await v.unmount();
+  });
+
+  test("resourceHref keeps absolute links, maps lessons to window routes and sends the rest to the site", async () => {
+    const { resourceHref, SITE_ORIGIN } = await import("./views/WorkQuiz");
+    expect(resourceHref("https://doi.org/10.1/x")).toBe("https://doi.org/10.1/x");
+    expect(resourceHref("/research-os/learn/02-physics/entropy")).toBe("#/learn/02-physics/entropy");
+    expect(resourceHref("/excerpts/a/b#evidence")).toBe(`${SITE_ORIGIN}/excerpts/a/b#evidence`);
+  });
+
   test("a source without an https link shows as plain text", async () => {
     const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: async () => graded({ sources: [{ kind: "chat", ref: "aa", label: "Claude session, 2026-09-30", href: null }] }) });
     await v.click(v.host.querySelector(".choice"));

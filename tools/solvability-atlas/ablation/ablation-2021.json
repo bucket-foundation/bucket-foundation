@@ -1,0 +1,273 @@
+{
+ "cutoff": 2021,
+ "coding": "settled",
+ "permutations": 10000,
+ "seed": 20261006,
+ "chosen": "current",
+ "results": [
+  {
+   "model": "BAAI/bge-small-en-v1.5",
+   "variant": "name",
+   "words_mean": 5.1,
+   "fresh_embeddings": 57,
+   "threshold": 0.716,
+   "score": {
+    "cutoff": 2021,
+    "tested": 470,
+    "unsampled": 0,
+    "undecided": 45,
+    "threshold": 0.716,
+    "all": {
+     "name": "all",
+     "inside": 225,
+     "outside": 200,
+     "resolvedInside": 15,
+     "resolvedOutside": 3,
+     "rateInside": 0.067,
+     "rateOutside": 0.015,
+     "ratio": 4.444,
+     "pValue": 0.0113,
+     "belowFloor": false
+    },
+    "auc": 0.797,
+    "aucRows": 425,
+    "undatedRemoved": {
+     "auc": 0.717,
+     "aucRows": 415,
+     "all": {
+      "name": "all, undated solved rows removed",
+      "inside": 216,
+      "outside": 199,
+      "resolvedInside": 6,
+      "resolvedOutside": 2,
+      "rateInside": 0.028,
+      "rateOutside": 0.01,
+      "ratio": 2.764,
+      "pValue": 0.2897,
+      "belowFloor": false
+     }
+    }
+   }
+  },
+  {
+   "model": "BAAI/bge-small-en-v1.5",
+   "variant": "name_keywords",
+   "words_mean": 6.1,
+   "fresh_embeddings": 57,
+   "threshold": 0.699,
+   "score": {
+    "cutoff": 2021,
+    "tested": 470,
+    "unsampled": 0,
+    "undecided": 44,
+    "threshold": 0.699,
+    "all": {
+     "name": "all",
+     "inside": 274,
+     "outside": 152,
+     "resolvedInside": 15,
+     "resolvedOutside": 1,
+     "rateInside": 0.055,
+     "rateOutside": 0.007,
+     "ratio": 8.321,
+     "pValue": 0.0142,
+     "belowFloor": false
+    },
+    "auc": 0.763,
+    "aucRows": 426,
+    "undatedRemoved": {
+     "auc": 0.782,
+     "aucRows": 418,
+     "all": {
+      "name": "all, undated solved rows removed",
+      "inside": 267,
+      "outside": 151,
+      "resolvedInside": 8,
+      "resolvedOutside": 0,
+      "rateInside": 0.03,
+      "rateOutside": 0.0,
+      "ratio": null,
+      "pValue": 0.0595,
+      "belowFloor": false
+     }
+    }
+   }
+  },
+  {
+   "model": "BAAI/bge-small-en-v1.5",
+   "variant": "name_statement",
+   "words_mean": 37.9,
+   "fresh_embeddings": 57,
+   "threshold": 0.67,
+   "score": {
+    "cutoff": 2021,
+    "tested": 470,
+    "unsampled": 0,
+    "undecided": 52,
+    "threshold": 0.67,
+    "all": {
+     "name": "all",
+     "inside": 233,
+     "outside": 185,
+     "resolvedInside": 23,
+     "resolvedOutside": 1,
+     "rateInside": 0.099,
+     "rateOutside": 0.005,
+     "ratio": 18.262,
+     "pValue": 0.0001,
+     "belowFloor": false
+    },
+    "auc": 0.892,
+    "aucRows": 418,
+    "undatedRemoved": {
+     "auc": 0.741,
+     "aucRows": 402,
+     "all": {
+      "name": "all, undated solved rows removed",
+      "inside": 217,
+      "outside": 185,
+      "resolvedInside": 7,
+      "resolvedOutside": 1,
+      "rateInside": 0.032,
+      "rateOutside": 0.005,
+      "ratio": 5.968,
+      "pValue": 0.0761,
+      "belowFloor": false
+     }
+    }
+   }
+  },
+  {
+   "model": "BAAI/bge-small-en-v1.5",
+   "variant": "name_statement_keywords_branch",
+   "words_mean": 41.5,
+   "fresh_embeddings": 57,
+   "threshold": 0.674,
+   "score": {
+    "cutoff": 2021,
+    "tested": 470,
+    "unsampled": 0,
+    "undecided": 48,
+    "threshold": 0.674,
+    "all": {
+     "name": "all",
+     "inside": 272,
+     "outside": 150,
+     "resolvedInside": 23,
+     "resolvedOutside": 1,
+     "rateInside": 0.085,
+     "rateOutside": 0.007,
+     "ratio": 12.684,
+     "pValue": 0.0002,
+     "belowFloor": false
+    },
+    "auc": 0.883,
+    "aucRows": 422,
+    "undatedRemoved": {
+     "auc": 0.708,
+     "aucRows": 406,
+     "all": {
+      "name": "all, undated solved rows removed",
+      "inside": 256,
+      "outside": 150,
+      "resolvedInside": 7,
+      "resolvedOutside": 1,
+      "rateInside": 0.027,
+      "rateOutside": 0.007,
+      "ratio": 4.102,
+      "pValue": 0.2771,
+      "belowFloor": false
+     }
+    }
+   }
+  },
+  {
+   "model": "BAAI/bge-small-en-v1.5",
+   "variant": "statement_only",
+   "words_mean": 32.8,
+   "fresh_embeddings": 0,
+   "threshold": 0.662,
+   "score": {
+    "cutoff": 2021,
+    "tested": 470,
+    "unsampled": 0,
+    "undecided": 41,
+    "threshold": 0.662,
+    "all": {
+     "name": "all",
+     "inside": 279,
+     "outside": 150,
+     "resolvedInside": 28,
+     "resolvedOutside": 1,
+     "rateInside": 0.1,
+     "rateOutside": 0.007,
+     "ratio": 15.054,
+     "pValue": 0.0003,
+     "belowFloor": false
+    },
+    "auc": 0.875,
+    "aucRows": 429,
+    "undatedRemoved": {
+     "auc": 0.656,
+     "aucRows": 408,
+     "all": {
+      "name": "all, undated solved rows removed",
+      "inside": 258,
+      "outside": 150,
+      "resolvedInside": 7,
+      "resolvedOutside": 1,
+      "rateInside": 0.027,
+      "rateOutside": 0.007,
+      "ratio": 4.07,
+      "pValue": 0.2651,
+      "belowFloor": false
+     }
+    }
+   }
+  },
+  {
+   "model": "BAAI/bge-small-en-v1.5",
+   "variant": "current",
+   "words_mean": 33.9,
+   "fresh_embeddings": 0,
+   "threshold": 0.665,
+   "score": {
+    "cutoff": 2021,
+    "tested": 470,
+    "unsampled": 0,
+    "undecided": 42,
+    "threshold": 0.665,
+    "all": {
+     "name": "all",
+     "inside": 261,
+     "outside": 167,
+     "resolvedInside": 28,
+     "resolvedOutside": 1,
+     "rateInside": 0.107,
+     "rateOutside": 0.006,
+     "ratio": 17.916,
+     "pValue": 0.0001,
+     "belowFloor": false
+    },
+    "auc": 0.89,
+    "aucRows": 428,
+    "undatedRemoved": {
+     "auc": 0.709,
+     "aucRows": 407,
+     "all": {
+      "name": "all, undated solved rows removed",
+      "inside": 240,
+      "outside": 167,
+      "resolvedInside": 7,
+      "resolvedOutside": 1,
+      "rateInside": 0.029,
+      "rateOutside": 0.006,
+      "ratio": 4.871,
+      "pValue": 0.1489,
+      "belowFloor": false
+     }
+    }
+   }
+  }
+ ]
+}

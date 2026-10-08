@@ -110,3 +110,16 @@ def test_cached_encode_reuses_vectors(tmp_path):
     b, fresh = atlas.cached_encode(m, ["three", "one", "seven"], cache=tmp_path)
     assert fresh == 1 and m.calls[-1] and len(m.calls[-1]) == 1
     assert np.allclose(b[0], a[1]) and np.allclose(b[1], a[0])
+
+
+def test_ablation_inputs_build_the_documented_texts():
+    import embed_inputs
+
+    n = {"id": "x", "name": "x", "branch": "physics", "kind": "sourced", "keywords": ["a"], "statement": "A statement."}
+    bare = {"id": "y", "name": "y", "branch": "physics", "kind": "sourced", "keywords": ["k1"], "statement": ""}
+    assert embed_inputs.text_for(n, "name_statement") == "x. A statement."
+    assert embed_inputs.text_for(bare, "name_statement") == "y. k1"
+    assert embed_inputs.text_for(n, "statement_only") == "A statement."
+    assert embed_inputs.text_for(n, "name") == "x."
+    assert embed_inputs.text_for(n, "current") == atlas.full_text(n)[0]
+    assert "physics" in embed_inputs.text_for(n, "name_statement_keywords_branch")

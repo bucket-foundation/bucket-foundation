@@ -138,6 +138,18 @@ describe("learn commands over the core module", () => {
     store.close();
   });
 
+  test("a wrong daily answer carries the link to the resource that teaches it", async () => {
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    const d = new DailyQuizStore(store, key);
+    const sources = [{ kind: "atom" as const, ref: "02-physics/entropy", label: "Entropy", href: null }];
+    d.put({ day: "2026-10-01", questions: [fermi({ id: "q1", prompt: "How many days in a year?", answer: 365, explain: "Earth's orbit.", sources })] }, 1);
+    const out = io(['{"response":"3","elapsedMs":4000}']);
+    expect(await daily(backend(store, key), "2026-10-01", true, spec("daily"), out)).toBe(0);
+    expect(JSON.parse(out.out[1])).toMatchObject({ correct: false, resource: { label: "learn this", href: "/research-os/learn/02-physics/entropy" } });
+    store.close();
+  });
+
   test("usage is checked before any store opens", () => {
     expect(() => resolve(["learn", "quiz", "--count", "0"])).toThrow("--count needs a whole number from 1 to 50");
     expect(() => resolve(["daily", "2026-02-30"])).toThrow("give the day as YYYY-MM-DD");

@@ -45,7 +45,7 @@ export const JSON_SHAPES = {
   "learn review": [["cards", ["id", "title", "prompt", "answer", "long"]]],
   "learn review answer": ["itemId", "due"],
   daily: ["day", ["questions", ["id", "type", "prompt", ["lines", "open"], ["choices", "open"], "limitSec"]], ["answered", "open"]],
-  "daily answer": ["id", "correct", "timedOut", "rating", "log10Distance", "answer", "explain"],
+  "daily answer": ["id", "correct", "timedOut", "rating", "log10Distance", "answer", "explain", ["resource", ["label", "href"]]],
   doctor: ["ok", ["checks", ["id", "name", "status", "result", "fix"]]],
   "hai export": [
     ["probes", ["id", "bank_version", "seed", "started_at", "completed_at", "due_at", "retest_completed_at"]],

@@ -3,6 +3,7 @@ import { languagesByName, textDir, toggleLanguage, wordCaption } from "@ros/work
 import { QUIZ_QUESTIONS } from "@ros/work-quiz/limits";
 import { ApiError, type Api, type DailyAnswer, type DailyQuiz, type WorkAnswer, type WorkQuestion, type WorkStatus } from "../api";
 import { href } from "../router";
+import { windowHref } from "../site-fetch";
 import { FILE_UNREADABLE } from "./file";
 
 export const WORK_QUIZ_CHANGED = "bkt-work-quiz-changed";
@@ -107,6 +108,13 @@ export function Choice({ q, text }: { q: WorkQuestion; text: string }) {
   );
 }
 
+export const SITE_ORIGIN = "https://www.bucket.foundation";
+
+export function resourceHref(path: string): string {
+  if (/^https:\/\//.test(path)) return path;
+  return windowHref(path.replace(/#evidence$/, "")) ?? `${SITE_ORIGIN}${path}`;
+}
+
 export function Why({ result }: { result: WorkAnswer }) {
   const source = result.sources?.[0];
   return (
@@ -121,6 +129,14 @@ export function Why({ result }: { result: WorkAnswer }) {
         ) : (
           <span className="source">{source.label}</span>
         ))}
+      {!result.correct && result.resource && (
+        <>
+          {" "}
+          <a className="learn-this" href={resourceHref(result.resource.href)}>
+            {result.resource.label}
+          </a>
+        </>
+      )}
     </p>
   );
 }
