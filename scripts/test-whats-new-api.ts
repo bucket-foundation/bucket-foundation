@@ -267,8 +267,17 @@ test("links need https, an exact host, an allowlisted path, no userinfo and no q
     "https://github.com/a",
     "https://github.com/",
     "https://github.com/redirect/x",
+    "/research/papers/solvability-frontier",
+    "https://bucket.foundation/api/research-os/state",
+    "https://bucket.foundation/",
+    "https://bucket.foundation/research?tab=x",
+    "https://bucket.foundation.evil.example/research",
+    "https://bucket.foundation/a%20b",
     42,
   ];
+  for (const href of ["https://bucket.foundation/research/papers/solvability-frontier", "https://www.bucket.foundation/research-os/solvability/frontier", "https://bucket.foundation/whats-new#solvability"]) {
+    assert.equal(checkLink(href, "href"), href);
+  }
   for (const href of rejected) assert.throws(() => checkLink(href, "href"), Error, String(href));
   const legacy = (JSON.parse(readFileSync(path.join(__dirname, "..", "data", "whats-new.json"), "utf8")) as { entries: { links?: { href: string }[] }[] }).entries;
   for (const link of legacy.flatMap((e) => e.links ?? [])) assert.equal(checkLink(link.href, "href"), link.href);
