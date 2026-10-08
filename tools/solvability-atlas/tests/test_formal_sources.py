@@ -1,4 +1,5 @@
 import csv
+import re
 import json
 from pathlib import Path
 
@@ -55,3 +56,14 @@ def test_packed_records_carry_the_cited_source():
         row = src.get(r["id"]) if r["lean"] != "none" else None
         assert rows[r["id"]]["h"]["formal"]["source"] == (row and row["source"]), r["id"]
         assert rows[r["id"]]["h"]["formal"]["url"] == (row and row["url"]), r["id"]
+
+
+def test_formal_conjectures_citations_name_a_file_at_a_pinned_commit():
+    prefix = "https://github.com/google-deepmind/formal-conjectures"
+    pinned = re.compile(re.escape(prefix) + r"/blob/[0-9a-f]{40}/FormalConjectures/(\w+/\w+\.lean)$")
+    for pid, row in cited().items():
+        if not row["url"].startswith(prefix):
+            continue
+        m = pinned.match(row["url"])
+        assert m, pid
+        assert row["source"].split(", ")[1] == m.group(1), pid
