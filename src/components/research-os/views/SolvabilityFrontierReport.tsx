@@ -203,7 +203,7 @@ export default function SolvabilityFrontierReport({ data, makeup, svg }: { data:
       {data.frozen && data.frozen.length > 0 && (
         <Panel title="frozen forecasts" meta={data.frozen.map((c) => c.cutoff).join(", ")}>
           <p className={`${P} mb-3`}>
-            Each forecast was written once from rows posed and solved at or before its cutoff, with its own threshold, and scored afterwards against the current status column only. The embedding model itself postdates every cutoff, so these are frozen forecasts under a model that never saw the past; they are not a test that the model could have been built then.
+            Each forecast uses only rows posed and solved at or before its cutoff, with its own threshold, and is scored against the current status column. All three were built in 2026 with the outcomes already known: freezing fixes the method and the inputs, and this is a retrospective check rather than a prospective test. The embedding model postdates every cutoff. Settled rates count solved rows without a resolution year as resolved; the main backtest table above carries the variant with those rows removed.
           </p>
           <Table head={["cutoff", "coding", "threshold", "inside", "outside", "resolved inside", "resolved outside", "p", "AUC"]}>
             {data.frozen.flatMap((c) =>
