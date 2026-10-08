@@ -18,6 +18,7 @@ const SUITES = {
       "scripts/test-sign-in-gate.ts",
       "scripts/test-depth-ladder-counts.ts",
       "scripts/test-ros-home-variants.ts",
+      "scripts/test-research-statement.ts",
       "scripts/test-research-host.ts",
       "scripts/test-research-impact-registry.ts",
       "scripts/test-waitlist.ts",
