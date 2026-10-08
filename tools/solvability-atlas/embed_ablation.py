@@ -40,7 +40,7 @@ def run(permutations=scoring.PERMUTATIONS):
     status = {n["id"]: {"status": n["status"], "solved": n["solved"], "resolved": n["resolved"]} for n in committed["nodes"]}
     results = []
     for model_name, revision in MODELS:
-        model = SentenceTransformer(model_name, revision=revision)
+        model = SentenceTransformer(model_name, revision=revision, local_files_only=True)
         for variant in embed_inputs.VARIANTS:
             nodes = atlas.full_nodes(atlas.load_problems(), atlas.load_bucketmath())
             if [n["id"] for n in nodes] != committed["ids"]:
