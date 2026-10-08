@@ -66,7 +66,11 @@
   align-items: start;
 }
 .sv-split .sv-body {
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2.4fr;
+}
+.sv-split .sv-dir-facts,
+.sv-ledger .sv-dir-facts {
+  font-size: 12px;
 }
 .sv-stack .sv-body {
   grid-template-columns: 1fr;

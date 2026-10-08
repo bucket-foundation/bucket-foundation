@@ -18,7 +18,7 @@ export const DIRECTIONS: Direction[] = [
     facts: [
       `${N.problems.toLocaleString("en-US")} problems, ${N.counts.solved.toLocaleString("en-US")} solved, frontier at reach ${N.threshold}: ${N.classes["close to known results"]} open problems close to known results, ${N.classes.borderline} borderline, ${N.classes["needs a new idea"]} need a new idea`,
       `Backtest on problems posed by 2005: ${pct(c2005.settled.rateInside)} of inside rows settled against ${pct(c2005.settled.rateOutside)} outside (p ${c2005.settled.pValue}, AUC ${c2005.settled.auc}); by 2021, ${pct(c2021.settled.rateInside)} against ${pct(c2021.settled.rateOutside)} (AUC ${c2021.settled.auc})`,
-      `Caveats: the embeddings come from the 2026 corpus, and counting partial progress erases the gap (p ${c2005.advanced.pValue} at 2005)`,
+      `Caveats: the embeddings come from the 2026 corpus; the 2005 gap rests on ${N.cutoffs[0].undecided} undecided rows and vanishes when partial progress counts (p ${c2005.advanced.pValue})`,
     ],
     link: { href: "/research/papers/solvability-frontier", label: "the paper and data" },
   },
@@ -28,7 +28,7 @@ export const DIRECTIONS: Direction[] = [
     claim: "Score unaided human, AI, and joint performance on the same tasks, and repeat the unaided test a week later.",
     facts: [
       "Multiplier m = J / max(H, A); retention R = H(t + 7 days) − H(t). A tool that raises J while R ≤ 0 may indicate dependence",
-      "The probe runs in the Bucket desktop app with a frozen task bank; the result decides which tasks Research OS replaces and which it augments",
+      "A probe with a frozen task bank is built into the Bucket desktop app, packages/bkt/src/hai; its results would guide which tasks Research OS replaces and which it augments",
       "Whether reliance on the same models narrows the range of research ideas links one person's capability to a field's",
     ],
     link: { href: "/research/papers/human-ai-multiplier", label: "the protocol" },
@@ -38,10 +38,10 @@ export const DIRECTIONS: Direction[] = [
     title: "Interdisciplinary research",
     claim: "Apply the two methods with researchers in other sciences and measure what each field needs from people and from models.",
     facts: [
-      "Quantum Algorithm Discovery matches computational problems in papers to known quantum algorithms",
+      "Planned: Quantum Algorithm Discovery, matching computational problems in papers to known quantum algorithms; QuantumBioRAG scores quantum-biology claims against OpenAlex today",
       `The atlas is thin outside mathematics: mind holds ${N.branchRows.mind.solved} solved problems, chemistry ${N.branchRows.chemistry.solved}, cosmology ${N.branchRows.cosmology.solved}; each collaboration adds solved rows and records the capability it took`,
     ],
-    link: { href: "/research/tools/quantumbiorag", label: "the quantum tool" },
+    link: { href: "/research/tools/quantumbiorag", label: "QuantumBioRAG" },
   },
 ];
 

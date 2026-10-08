@@ -7,13 +7,14 @@ const backtest = JSON.parse(readFileSync(`${dir}/backtest.json`, "utf8"));
 type Rates = { rateInside: number; rateOutside: number; ratio: number; pValue: number; inside: number; outside: number };
 type Coding = { coding: string; auc: number; all: Rates; undatedRemoved: { all: Rates } };
 
-const cutoffs = backtest.cutoffs.map((c: { cutoff: number; codings: Coding[]; solvedAtCutoff: number; tested: number }) => {
+const cutoffs = backtest.cutoffs.map((c: { cutoff: number; codings: Coding[]; solvedAtCutoff: number; tested: number; undecided: number }) => {
   const s = c.codings.find((k) => k.coding === "settled")!;
   const a = c.codings.find((k) => k.coding === "advanced")!;
   return {
     cutoff: c.cutoff,
     solvedAtCutoff: c.solvedAtCutoff,
     tested: c.tested,
+    undecided: c.undecided,
     settled: { ...s.all, auc: s.auc, undated: { rateInside: s.undatedRemoved.all.rateInside, rateOutside: s.undatedRemoved.all.rateOutside, pValue: s.undatedRemoved.all.pValue } },
     advanced: { rateInside: a.all.rateInside, rateOutside: a.all.rateOutside, ratio: a.all.ratio, pValue: a.all.pValue, auc: a.auc },
   };

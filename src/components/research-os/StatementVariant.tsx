@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { DIRECTIONS, FIGURE, GOAL, QUESTION, type Direction, type StatementVariant as SV } from "@/lib/research-os/statement-variants";
+import { DIRECTIONS, FIGURE, GOAL, N, QUESTION, type Direction, type StatementVariant as SV } from "@/lib/research-os/statement-variants";
 import "./statement-variant.css";
 
 function Block({ d }: { d: Direction }) {
@@ -43,7 +43,7 @@ export default function StatementVariant({ v }: { v: SV }) {
         {v.figureFirst ? null : <Figure />}
       </div>
       <footer className="sv-foot">
-        <span>Every number traces to a file and a command in the paper.</span>
+        <span>Numbers from {N.builtFrom}; the paper names the command for each.</span>
         <Link href="/research">Bucket research →</Link>
       </footer>
     </main>
