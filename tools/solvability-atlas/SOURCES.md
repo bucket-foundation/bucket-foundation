@@ -79,6 +79,10 @@ Sources with rows: physics (particle discoveries, quantum mechanics, thermodynam
 
 Shortfall: every one of the seven branches is below 100 posed solved rows. The Wikipedia timelines record discoveries and seldom record the question that preceded them, so the posed count depends on pages that state a prediction or a prize. Closing the gap needs sources that pose questions before answering them: histories of named conjectures per field, prize problem statements, and the "solved" sections of the unsolved lists, which the next pass should mine page by page.
 
+## Posed evidence for solved rows
+
+69 rows moved from `discovery` to `posed` on 2026-10-07. Each carries the year a named source says the question, prediction or proposal first appeared, a quote of at most 12 words in `posed_evidence`, and the Wikipedia article that holds the quote in `status_source` after `Posed:`. A script checked that every quote occurs on its article with the posed year within 250 characters. Rows without a dated source stay `discovery`. Solved counts per branch, top-level rows, before and after: physics 36 to 52, chemistry 13 to 22, biophysics 20 to 30, cosmology 16 to 28, mind 5 to 10, information 25 to 37, applied 27 to 32. The posed year floor is 1500.
+
 ## Dated question lists
 
 Third ingest, 2026-10-05, the backtest set for the frontier. Every row comes from a list published with a date, so the posed year is known by construction and the 2026 status can be scored against what the atlas predicts from data before that year. Curated rows live in `sources/dated/<list>.tsv`, loaded by `sources/dated_lists.py` (ids `dl-<list>-<slug>`), which also fills posed years on existing rows and writes the `posed_evidence` column. `python3 sources/dated_lists.py` checks the files and prints duplicates; `--apply` appends to `problems-sourced.tsv` and is idempotent.

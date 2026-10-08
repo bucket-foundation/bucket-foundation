@@ -65,7 +65,7 @@ def test_years_are_four_digits_in_range():
     for r in rows():
         for year in (r["posed"], r["resolved"]):
             if year:
-                assert re.fullmatch(r"\d{4}", year) and 1600 <= int(year) <= 2026, (r["id"], year)
+                assert re.fullmatch(r"\d{4}", year) and 1500 <= int(year) <= 2026, (r["id"], year)
 
 
 def test_year_parsing_never_guesses():
