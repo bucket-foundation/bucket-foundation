@@ -13,6 +13,8 @@ export interface AdvisorRow {
   links: Record<string, string>;
   star_prime: number[];
   star_ours: number[];
+  complement: number | null;
+  complement_directions: string[];
   theta: number | null;
   radius: number | null;
 }
@@ -64,7 +66,7 @@ export function hasEmail(s: string): boolean {
 }
 const PRIVATE_KEY = /email|tracker|image|^id$|statement|note/i;
 const LINK_KEYS = new Set(["profile_url", "program_url"]);
-const ROW_CORE = new Set(["rank", "name", "score", "percentile", "star_prime", "star_ours", "theta", "radius"]);
+const ROW_CORE = new Set(["rank", "name", "score", "percentile", "star_prime", "star_ours", "complement", "complement_directions", "theta", "radius"]);
 const MAX_TEXT = 2_000;
 
 const obj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
@@ -120,6 +122,8 @@ export function publicRow(raw: unknown): AdvisorRow | null {
     links,
     star_prime: nums(raw.star_prime),
     star_ours: nums(raw.star_ours),
+    complement: num(raw.complement) ? raw.complement : null,
+    complement_directions: strs(raw.complement_directions, 3),
     theta: num(raw.theta) ? raw.theta : null,
     radius: num(raw.radius) ? raw.radius : null,
   };

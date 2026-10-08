@@ -4,7 +4,7 @@ import path from "path";
 import { SPLIT_NOTE } from "../src/lib/explore/modes/map";
 import { BundleError, isPublished, DEFAULT_BUNDLE_PATH, bundleAxes, bundleSources, bundleStar, loadAdvisors, loadBundle, parseAdvisorBundle, resetAdvisors } from "../src/lib/explore/advisors";
 import { ORIGIN_LABEL } from "../src/lib/explore/advisor-origin";
-import { hasEmail } from "../src/lib/research-os/advisor-review";
+import { hasEmail, publicRow } from "../src/lib/research-os/advisor-review";
 import { mapLayout } from "../src/lib/explore/modes/map";
 import { unify } from "../src/lib/explore/search";
 import fixture from "../src/lib/explore/fixtures/advisor-bundle.sample.json";
@@ -135,6 +135,11 @@ check("the production switcher drops the sample data set", !listDatasets([], [],
 check("default path points at the local advisor review folder", DEFAULT_BUNDLE_PATH.endsWith(path.join(".local", "share", "bucket-advisor-review", "advisor-bundle.json")));
 check("origin labels read as the UI strings", ORIGIN_LABEL.bundle === "source: local advisor bundle" && ORIGIN_LABEL.sample === "source: sample" && ORIGIN_LABEL.none === "no advisors published");
 check("no real bundle is committed", !fs.existsSync("src/data/advisor-bundle.json") && fs.statSync("src/lib/explore/fixtures/advisor-bundle.sample.json").size < 5000);
+
+const withComplement = publicRow({ rank: 1, name: "A", score: 0.5, star_prime: [0.9, 0.2], complement: 0.35, complement_directions: ["alpha", "beta", "c", "d"], note: "x" });
+check("complement and its directions survive parsing, capped at three", withComplement?.complement === 0.35 && withComplement.complement_directions.length === 3 && !("complement" in withComplement.fields));
+const withoutComplement = publicRow({ rank: 1, name: "A", score: 0.5, complement: "high" });
+check("a row without a numeric complement parses to null and no directions", withoutComplement?.complement === null && withoutComplement.complement_directions.length === 0);
 
 if (failed) {
   console.error(`${failed} failed`);
