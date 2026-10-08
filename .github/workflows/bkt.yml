@@ -107,6 +107,9 @@ jobs:
       - name: install
         working-directory: packages/bkt-ui
         run: bun install --frozen-lockfile
+      - name: staff pack the window typecheck imports
+        working-directory: packages/bkt
+        run: bun install --frozen-lockfile && bun run src/pack/staff.ts
       - name: typecheck and test
         working-directory: packages/bkt-ui
         run: bun run typecheck && bun run test
