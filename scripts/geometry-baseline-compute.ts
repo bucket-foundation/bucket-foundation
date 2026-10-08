@@ -1,8 +1,8 @@
-import atlas from "../src/lib/research-os/solvability-atlas-data.json";
-import type { SolvabilityAtlasData } from "../src/lib/research-os/solvability-atlas";
+import input from "../tests/baselines/solvability-geometry-input.json";
+import type { AtlasProduction } from "../src/lib/research-os/solvability-atlas";
 import { SPACE_VIEWS, axisPoint, helixAngle, place, ringPoint, sharedTokenEdges, sliceRows, smoothedRadius, spaceRadius, timeCoord, eraOf } from "../src/lib/research-os/solvability-space";
 
-const rows = (atlas as SolvabilityAtlasData).productions;
+const rows = input as Pick<AtlasProduction, "id" | "posed" | "theta" | "solvability" | "tokens">[];
 const SAMPLE_U = [0.25, 0.5, 1.5, 2.75, 3.5, 4.5, 5.75];
 const SAMPLE_ANGLE = [-2.5, -1, 0, 0.7, 2, 3.1];
 

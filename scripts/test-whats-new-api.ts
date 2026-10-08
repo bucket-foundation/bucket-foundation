@@ -11,6 +11,19 @@ import { BODY_MAX_BYTES, handleList, handlePost, handleRevoke, mergeEntries, rea
 import { checkLink, IMAGE_MAX_BYTES, imageSize, parseEntryBody } from "../src/lib/whats-new/schema";
 import { fileDocs, getWhatsNewStore, LOCK_TTL_MS, markRevoked, readEntry, readUsage, whatsNewPrefix, writeEntry, type DocStore, type StoredEntry } from "../src/lib/whats-new/store";
 
+function pageDirs(dir: string, segments: string[]): string[] {
+  const entries = readdirSync(dir, { withFileTypes: true });
+  const groups = entries.filter((d) => d.isDirectory() && /^\(.+\)$/.test(d.name)).flatMap((d) => pageDirs(path.join(dir, d.name), segments));
+  if (segments.length === 0) return entries.some((d) => d.isFile() && d.name === "page.tsx") ? [dir, ...groups] : groups;
+  const exact = entries.some((d) => d.isDirectory() && d.name === segments[0]) ? pageDirs(path.join(dir, segments[0]), segments.slice(1)) : [];
+  return [...exact, ...groups];
+}
+
+function isSitePage(href: string): boolean {
+  if (!/^(?:\/[a-z0-9-]+)+$/.test(href)) return false;
+  return pageDirs(path.join(__dirname, "..", "src", "app"), href.slice(1).split("/")).length > 0;
+}
+
 const FIXTURES = path.join(__dirname, "fixtures", "whats-new-api");
 const LEGACY: LegacyEntry[] = [{ id: "pr-496", date: "2026-10-01", category: "pr-merged", title: "Legacy row" }];
 const PNG = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
@@ -271,7 +284,12 @@ test("links need https, an exact host, an allowlisted path, no userinfo and no q
   ];
   for (const href of rejected) assert.throws(() => checkLink(href, "href"), Error, String(href));
   const legacy = (JSON.parse(readFileSync(path.join(__dirname, "..", "data", "whats-new.json"), "utf8")) as { entries: { links?: { href: string }[] }[] }).entries;
-  for (const link of legacy.flatMap((e) => e.links ?? [])) assert.equal(checkLink(link.href, "href"), link.href);
+  for (const link of legacy.flatMap((e) => e.links ?? [])) {
+    if (link.href.startsWith("https://")) assert.equal(checkLink(link.href, "href"), link.href);
+    else assert.ok(isSitePage(link.href), link.href);
+  }
+  assert.equal(isSitePage("/research-os/solvability"), true);
+  for (const href of ["/no-such-page", "//evil.example/x", "/research-os/solvability/frontier?x=1", "http://github.com/a", "/../etc"]) assert.equal(isSitePage(href), false, href);
   const inLinks = parseEntryBody({ ...production(), links: [{ label: "PR", href: "https://bit.ly/x" }] });
   assert.deepEqual([inLinks.ok, !inLinks.ok && inLinks.field], [false, "links[0].href"]);
   const inEvidence = parseEntryBody({ ...generation(), evidence: ["https://github.com/a/b", "https://user@github.com/a/b"] });
