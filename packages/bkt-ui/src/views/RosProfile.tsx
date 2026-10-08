@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { BIRTH_YEAR_BUCKET_LABELS, ROLE_LABELS } from "@ros/profile";
-import type { BirthYearBucket, LearnerRole } from "@ros/consent";
+import type { BirthYearBucket, LearnerRole } from "@ros/types";
 import "../ros.css";
 
 interface ProfileData {
