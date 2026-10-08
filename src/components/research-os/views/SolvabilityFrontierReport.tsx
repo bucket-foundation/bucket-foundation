@@ -200,6 +200,31 @@ export default function SolvabilityFrontierReport({ data, makeup, svg }: { data:
         </Panel>
       ))}
 
+      {data.frozen && data.frozen.length > 0 && (
+        <Panel title="frozen forecasts" meta={data.frozen.map((c) => c.cutoff).join(", ")}>
+          <p className={`${P} mb-3`}>
+            Each forecast uses only rows posed and solved at or before its cutoff, with its own threshold, and is scored against the current status column. All three were built in 2026 with the outcomes already known: freezing fixes the method and the inputs, and this is a retrospective check rather than a prospective test. The embedding model postdates every cutoff. Settled rates count solved rows without a resolution year as resolved; the main backtest table above carries the variant with those rows removed.
+          </p>
+          <Table head={["cutoff", "coding", "threshold", "inside", "outside", "resolved inside", "resolved outside", "p", "AUC"]}>
+            {data.frozen.flatMap((c) =>
+              c.codings.map((k) => (
+                <tr key={`${c.cutoff}-${k.coding}`}>
+                  <td className={TD}>{c.cutoff}</td>
+                  <td className={TD}>{k.coding}</td>
+                  <td className={NUM}>{f3(c.threshold)}</td>
+                  <td className={NUM}>{n(k.all.inside)}</td>
+                  <td className={NUM}>{n(k.all.outside)}</td>
+                  <td className={NUM}>{pct(k.all.rateInside)}</td>
+                  <td className={NUM}>{pct(k.all.rateOutside)}</td>
+                  <td className={NUM}>{f3(k.all.pValue)}</td>
+                  <td className={NUM}>{f3(k.auc)}</td>
+                </tr>
+              )),
+            )}
+          </Table>
+        </Panel>
+      )}
+
       <Panel title="where this is weak">
         <div className="flex flex-col gap-3">
           {weakParagraphs(data).map((p) => (

@@ -11,6 +11,7 @@ export interface ReportData {
   k: number;
   frontier: { threshold: number; rule: string; counts: Record<Zone, number>; inside: number; outside: number; branches: Record<string, BranchCount>; gaps: string };
   backtest: Omit<Backtest, "cutoffs"> & { cutoffs: Omit<CutoffBacktest, "rows">[] };
+  frozen?: (Omit<CutoffBacktest, "rows"> & { inputHash: string; forecastBuilt: string })[];
   predictions: Omit<Predictions, "rows"> & { top: Record<ReachClass, Predictions["rows"]>; atlas: Predictions["rows"] };
 }
 
