@@ -1,10 +1,10 @@
 {
  "schema": "bucket.solvability-atlas.makeup/v1",
- "built": "2026-10-07",
+ "built": "2026-10-08",
  "rows": 5206,
  "atlas_rows": 71,
  "sourced_rows": 5135,
- "threshold": 0.781,
+ "threshold": 0.759,
  "labels": {
   "branch": {
    "title": "Branch",
@@ -186,11 +186,9 @@
   "zone": {
    "title": "Zone",
    "counts": {
-    "solved": 1621,
-    "reachable": 2225,
-    "beyond": 1131,
-    "unsampled": 103,
-    "not in frontier": 126
+    "solved": 1690,
+    "reachable": 2466,
+    "beyond": 1050
    },
    "present": 5206,
    "absent": 0
@@ -198,13 +196,11 @@
   "prediction_class": {
    "title": "Prediction class",
    "counts": {
-    "close to known results": 251,
-    "borderline": 764,
-    "needs a new idea": 911,
-    "unsampled": 103,
+    "close to known results": 277,
+    "borderline": 875,
+    "needs a new idea": 934,
     "solved": 1690,
-    "variant": 1430,
-    "not classed": 57
+    "variant": 1430
    },
    "present": 5206,
    "absent": 0

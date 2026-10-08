@@ -1,45 +1,45 @@
 {
  "schema": "bucket.solvability-atlas.makeup/v1",
- "built": "2026-10-06",
- "rows": 5080,
+ "built": "2026-10-08",
+ "rows": 5206,
  "atlas_rows": 71,
- "sourced_rows": 5009,
- "threshold": 0.781,
+ "sourced_rows": 5135,
+ "threshold": 0.759,
  "labels": {
   "branch": {
    "title": "Branch",
    "counts": {
     "mathematics": 4112,
-    "physics": 259,
-    "chemistry": 85,
-    "information": 115,
-    "biophysics": 208,
-    "cosmology": 127,
-    "mind": 108,
-    "applied": 66
+    "physics": 275,
+    "chemistry": 104,
+    "information": 137,
+    "biophysics": 218,
+    "cosmology": 139,
+    "mind": 139,
+    "applied": 82
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "status": {
    "title": "Status",
    "counts": {
-    "solved": 1621,
+    "solved": 1690,
     "partial": 903,
-    "open": 2556
+    "open": 2613
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "form": {
    "title": "Form",
    "counts": {
     "variant": 2194,
+    "question": 1339,
     "problem": 1260,
-    "question": 1213,
     "conjecture": 413
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "source": {
@@ -50,15 +50,16 @@
     "formal-conjectures, Wikipedia conjectures": 472,
     "formal-conjectures, OEIS": 319,
     "formal-conjectures, Green open problems": 229,
+    "solved timelines, Wikipedia and Kavli": 157,
     "formal-conjectures, papers": 146,
     "dated list, Science and SJTU 2021, 125 questions": 122,
     "Wikipedia, unsolved problems in physics": 121,
     "dated list, Science 2005, 125 questions": 117,
     "formal-conjectures, arXiv": 105,
     "Wikipedia, unsolved problems in biology": 96,
-    "solved timelines, Wikipedia and Kavli": 88,
     "Wikipedia, unsolved problems in astronomy": 81,
     "atlas, problems.tsv": 71,
+    "Wikipedia, other pages": 57,
     "formal-conjectures, Written on the Wall II": 54,
     "Wikipedia, unsolved problems in computer science": 49,
     "formal-conjectures, open quantum problems": 49,
@@ -83,153 +84,153 @@
     "formal-conjectures, optimization constants": 5,
     "formal-conjectures, Litt problems": 3
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "licence": {
    "title": "Licence",
    "counts": {
     "Apache-2.0": 3557,
-    "CC BY-SA 4.0": 1154,
+    "CC BY-SA 4.0": 1280,
     "AAAS copyright, headline cited, statement paraphrased": 239,
     "MIT": 71,
     "ACS copyright, title cited, statement paraphrased": 26,
     "Library of Congress record, chapter titles cited": 23,
     "Apache-2.0 and CC BY-SA 4.0": 10
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "resolved_kind": {
    "title": "Resolution evidence, solved rows",
    "counts": {
     "formal-conjectures status field": 1419,
-    "posed question, curated timeline row": 88,
+    "posed question, curated timeline row": 157,
     "Wikipedia status column or solved section": 65,
     "dated list, 2026 status check": 34,
     "curated, resolved year in problems.tsv": 15
    },
-   "present": 1621,
-   "absent": 3459
+   "present": 1690,
+   "absent": 3516
   },
   "posed_present": {
    "title": "Posed year",
    "counts": {
-    "posed year present": 588,
-    "posed year absent": 4492
+    "posed year present": 662,
+    "posed year absent": 4544
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "posed_decade": {
    "title": "Posed year by decade, where present",
    "counts": {
-    "before 1800": 8,
-    "1810s": 1,
-    "1830s": 2,
+    "before 1800": 16,
+    "1800s": 1,
+    "1810s": 3,
+    "1820s": 1,
+    "1830s": 3,
     "1840s": 2,
-    "1850s": 4,
-    "1860s": 1,
-    "1870s": 2,
-    "1880s": 3,
-    "1890s": 5,
-    "1900s": 32,
-    "1910s": 5,
-    "1920s": 11,
-    "1930s": 15,
-    "1940s": 5,
-    "1950s": 10,
-    "1960s": 24,
-    "1970s": 27,
-    "1980s": 25,
-    "1990s": 38,
+    "1850s": 7,
+    "1860s": 2,
+    "1870s": 4,
+    "1880s": 5,
+    "1890s": 9,
+    "1900s": 34,
+    "1910s": 7,
+    "1920s": 18,
+    "1930s": 21,
+    "1940s": 9,
+    "1950s": 16,
+    "1960s": 30,
+    "1970s": 33,
+    "1980s": 30,
+    "1990s": 42,
     "2000s": 166,
-    "2010s": 68,
+    "2010s": 69,
     "2020s": 134
    },
-   "present": 588,
-   "absent": 4492
+   "present": 662,
+   "absent": 4544
   },
   "resolved_decade": {
    "title": "Resolved year by decade, where present",
    "counts": {
-    "before 1800": 6,
-    "1800s": 1,
+    "before 1800": 9,
+    "1800s": 2,
     "1810s": 1,
-    "1820s": 4,
+    "1820s": 5,
     "1830s": 1,
     "1840s": 2,
-    "1860s": 2,
-    "1870s": 2,
-    "1880s": 3,
-    "1890s": 1,
-    "1900s": 5,
-    "1910s": 3,
-    "1920s": 6,
-    "1930s": 10,
-    "1940s": 9,
-    "1950s": 10,
-    "1960s": 6,
-    "1970s": 12,
-    "1980s": 4,
-    "1990s": 6,
-    "2000s": 25,
-    "2010s": 60,
+    "1860s": 3,
+    "1870s": 5,
+    "1880s": 4,
+    "1890s": 2,
+    "1900s": 7,
+    "1910s": 6,
+    "1920s": 11,
+    "1930s": 16,
+    "1940s": 13,
+    "1950s": 16,
+    "1960s": 13,
+    "1970s": 17,
+    "1980s": 6,
+    "1990s": 16,
+    "2000s": 29,
+    "2010s": 64,
     "2020s": 57
    },
-   "present": 236,
-   "absent": 4844
+   "present": 305,
+   "absent": 4901
   },
   "zone": {
    "title": "Zone",
    "counts": {
-    "solved": 1621,
-    "reachable": 2225,
-    "beyond": 1131,
-    "unsampled": 103
+    "solved": 1690,
+    "reachable": 2466,
+    "beyond": 1050
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "prediction_class": {
    "title": "Prediction class",
    "counts": {
-    "close to known results": 251,
-    "borderline": 764,
-    "needs a new idea": 911,
-    "unsampled": 103,
-    "solved": 1621,
+    "close to known results": 277,
+    "borderline": 875,
+    "needs a new idea": 934,
+    "solved": 1690,
     "variant": 1430
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "level": {
    "title": "Variant or top-level",
    "counts": {
-    "top-level": 2886,
+    "top-level": 3012,
     "variant": 2194
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "text_kind": {
    "title": "Embedding text kind",
    "counts": {
-    "statement": 5009,
+    "statement": 5135,
     "record": 71
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   },
   "length_band": {
    "title": "Statement length band",
    "counts": {
-    "under 20 words": 1952,
-    "20 to 40 words": 1769,
+    "under 20 words": 1956,
+    "20 to 40 words": 1891,
     "over 40 words": 1359
    },
-   "present": 5080,
+   "present": 5206,
    "absent": 0
   }
  },
@@ -240,39 +241,39 @@
    "open": 1877
   },
   "physics": {
-   "solved": 37,
+   "solved": 53,
    "partial": 32,
    "open": 190
   },
   "chemistry": {
-   "solved": 13,
+   "solved": 22,
    "partial": 8,
-   "open": 64
+   "open": 74
   },
   "information": {
-   "solved": 29,
+   "solved": 41,
    "partial": 5,
-   "open": 81
+   "open": 91
   },
   "biophysics": {
-   "solved": 21,
+   "solved": 31,
    "partial": 59,
    "open": 128
   },
   "cosmology": {
-   "solved": 16,
+   "solved": 28,
    "partial": 12,
    "open": 99
   },
   "mind": {
-   "solved": 5,
+   "solved": 10,
    "partial": 21,
-   "open": 82
+   "open": 108
   },
   "applied": {
-   "solved": 27,
+   "solved": 32,
    "partial": 4,
-   "open": 35
+   "open": 46
   }
  },
  "openalex": {
@@ -693,16 +694,16 @@
    "statement": 105
   },
   "solved timelines, Wikipedia and Kavli": {
-   "rows": 88,
+   "rows": 157,
    "licences": {
-    "CC BY-SA 4.0": 88
+    "CC BY-SA 4.0": 157
    },
    "status": {
-    "solved": 88
+    "solved": 157
    },
-   "posed": 53,
-   "resolved": 88,
-   "statement": 88
+   "posed": 122,
+   "resolved": 157,
+   "statement": 157
   },
   "dated list, DARPA prize competitions": {
    "rows": 16,
@@ -783,6 +784,18 @@
    "posed": 21,
    "resolved": 17,
    "statement": 21
+  },
+  "Wikipedia, other pages": {
+   "rows": 57,
+   "licences": {
+    "CC BY-SA 4.0": 57
+   },
+   "status": {
+    "open": 57
+   },
+   "posed": 5,
+   "resolved": 0,
+   "statement": 57
   }
  }
 }

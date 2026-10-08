@@ -12,6 +12,7 @@ FAMILIES = [
     ("Wikipedia, unsolved problems", "Wikipedia unsolved lists", "full list item as statement, bold or linked head as name, section heading as status", "branch per page, market per list, deduped against the atlas and within the file; years from the text only"),
     ("Wikipedia, Hilbert's problems", "Hilbert's problems", "explanation cell, table status and year columns, 1900 as posed year", "partial for partial, no consensus, disputed, weaker form or partially cells; curator overrides on 14 and 18"),
     ("Wikipedia, Smale's problems", "Smale's problems", "explanation cell, table status and year columns, 1998 as posed year", "same table rule; curator overrides on 8, 14 and 17"),
+    ("Wikipedia, other pages", "Wikipedia, other articles", "open problems from articles outside the unsolved lists, each row with a verified quote", "added for the thin branches; status open; branch per article; deduped against the atlas and within the file"),
     ("dated list", "dated lists (Science 2005 and 2021, DARPA, XPRIZE, neuroscience 23, Holy Grails)", "headline under 15 words as name, list year as posed year, a 2026 status check per row", "statement paraphrased in 15 to 40 words; deduped by title and at 0.85 similarity; solved rows carry the discovery year"),
     ("solved timelines", "solved timelines, Wikipedia and Kavli", "a question shown to predate its answer, the discovery or proof year, a posed-evidence quote under 12 words", "statement rewritten as the question stood before resolution; discovery rows with no prior question held back; 159 pages verified"),
     ("atlas, problems.tsv", "atlas, problems.tsv", "name, branch, level, Lean status, posed and resolved years, markets, keywords, all curated", "resolved year marks solved; embedding text is the problem record when one exists"),
@@ -87,6 +88,12 @@ def main() -> None:
                 *[f"{esc(bd['name'])} & {bd['inside']} & {bd['outside']} & {pct(bd['rateInside'])} & {pct(bd['rateOutside'])} & {f3(bd['ratio'])} & \\\\" for bd in k["undecidedBounds"]],
                 "\\bottomrule", "\\end{tabular}",
             ])
+    write("frozen.tex", [
+        "\\begin{tabular}{@{}llrrrrrrrr@{}}", "\\toprule",
+        "Cutoff & Coding & $\\tau_c$ & Inside & Outside & Resolved in & Resolved out & Ratio & $p$ & AUC \\\\", "\\midrule",
+        *[f"{c['cutoff']} & {k['coding']} & {f3(c['threshold'])} & {k['all']['inside']} & {k['all']['outside']} & {pct(k['all']['rateInside'])} & {pct(k['all']['rateOutside'])} & {f3(k['all']['ratio'])} & {pval(k['all']['pValue'])} & {f3(k['auc'])} \\\\" for c in d["frozen"] for k in c["codings"]],
+        "\\bottomrule", "\\end{tabular}",
+    ])
     br = sorted(d["frontier"]["branches"].items(), key=lambda kv: -kv[1]["total"])
     write("branches.tex", [
         "\\begin{tabular}{@{}lrrrrrrr@{}}", "\\toprule",
