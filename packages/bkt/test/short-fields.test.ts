@@ -114,6 +114,20 @@ describe("short question distractors", () => {
     expect(buildShortQuestion(deck[0], [deck[0], deck[1], deck[2], deck[3]], "s1")).toBeNull();
     expect(buildShortQuestion(deck[0], [deck[0], deck[2], deck[3]], "s1")).toBeNull();
   });
+
+  test("no distractor comes from another question on the same atom", () => {
+    const deck = [mk("a0", "a", "alpha"), { ...mk("a1", "a", "bravo"), atomId: "a0" }, ...["delta", "gamma", "omega"].map((w, n) => mk(`a${n + 2}`, "a", w))];
+    for (const seed of ["s1", "s2", "s3", "s4", "s5", "s6"]) expect(buildShortQuestion(deck[0], deck, seed)!.choices).not.toContain("bravo");
+  });
+
+  test("on the corpus no distractor answers another question on the same atom", () => {
+    const atomOf = new Map(pool.map((i) => [normShort(i.shortAnswer), i.atomId]));
+    for (const seed of ["s1", "s2"])
+      for (const i of pool) {
+        const q = buildShortQuestion(i, pool, seed);
+        if (q) expect(q.choices.filter((_, n) => n !== q.answerIndex && atomOf.get(normShort(q.choices[n])) === i.atomId)).toEqual([]);
+      }
+  });
 });
 
 describe("long fallback", () => {
