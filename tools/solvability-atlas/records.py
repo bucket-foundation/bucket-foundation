@@ -518,7 +518,12 @@ def main():
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--only", nargs="*", default=None)
     ap.add_argument("--retry-empty", action="store_true")
+    ap.add_argument("--all", action="store_true")
     a = ap.parse_args()
+    if a.all:
+        import records_all
+
+        return records_all.main([])
     migrate_cache()
     problems = load_problems()
     todo = [p for p in problems if a.only is None or p["id"] in a.only]
