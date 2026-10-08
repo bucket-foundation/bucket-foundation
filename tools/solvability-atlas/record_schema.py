@@ -94,3 +94,60 @@ def validate(r):
     if e:
         raise ValueError("; ".join(e))
     return r
+
+
+ROW_SCHEMA = "bucket.solvability-atlas.records/v1"
+ROW_ZONES = {"solved", "reachable", "beyond", "unsampled"}
+ROW_CODINGS = {"settled", "advanced", "open"}
+ROW_STATUSES = {"solved", "partial", "open"}
+ROW_FIELDS = {
+    "id": str, "title": str, "branch": str, "form": str, "variant_of": (str, type(None)), "status": str, "coding": str,
+    "posed": (int, type(None)), "resolved": (int, type(None)), "posed_evidence": str, "statement": str, "source": str,
+    "licence": str, "statement_source": str, "status_source": str, "keywords": list, "market": list, "zone": str,
+    "reach": (int, float), "radius": (int, float), "theta": (int, float), "pc": list, "near_solved": list, "near_open": list,
+}
+
+
+def row_errors(data):
+    out = []
+    if data.get("schema") != ROW_SCHEMA:
+        out.append(f"schema is {data.get('schema')}")
+    rows = data.get("rows")
+    if not isinstance(rows, list) or not rows:
+        return out + ["rows missing"]
+    seen = set()
+    for i, r in enumerate(rows):
+        tag = f"rows[{i}]"
+        for k, t in ROW_FIELDS.items():
+            if k not in r:
+                out.append(f"{tag} missing {k}")
+            elif not isinstance(r[k], t):
+                out.append(f"{tag} {k} has type {type(r[k]).__name__}")
+        if out and any(m.startswith(tag) for m in out):
+            continue
+        if r["id"] in seen:
+            out.append(f"{tag} duplicate id {r['id']}")
+        seen.add(r["id"])
+        if r["zone"] not in ROW_ZONES:
+            out.append(f"{tag} zone {r['zone']}")
+        if r["status"] not in ROW_STATUSES or r["coding"] not in ROW_CODINGS:
+            out.append(f"{tag} status or coding")
+        if (r["status"] == "solved") != (r["zone"] == "solved"):
+            out.append(f"{tag} zone disagrees with status")
+        if len(r["pc"]) != 3:
+            out.append(f"{tag} needs three loadings")
+        if r["resolved"] is not None and r["posed"] is not None and r["resolved"] < r["posed"]:
+            out.append(f"{tag} resolved before posed")
+        if not 0 <= r["reach"] <= 1 or not 0 <= r["radius"] <= 1.5:
+            out.append(f"{tag} reach or radius out of range")
+        for key in ("near_solved", "near_open"):
+            for j, s in r[key]:
+                if not (isinstance(j, int) and 0 <= j < len(rows) and -1 <= s <= 1):
+                    out.append(f"{tag} {key} entry {j}")
+        if r["status"] == "solved" and r["near_open"] and any(rows[j]["zone"] == "solved" for j, _ in r["near_open"]):
+            out.append(f"{tag} open neighbour is solved")
+        if any(rows[j]["zone"] != "solved" for j, _ in r["near_solved"]):
+            out.append(f"{tag} solved neighbour is not solved")
+        if r["id"] == "" or not r["title"]:
+            out.append(f"{tag} empty id or title")
+    return out

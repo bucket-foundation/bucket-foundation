@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 import ZoomPane from "./ZoomPane";
 import { PageHeader, Panel } from "@/components/ui";
@@ -57,7 +58,7 @@ function PredictionRows({ rows }: { rows: readonly Prediction[] }) {
       {rows.map((r) => (
         <tr key={r.id}>
           <td className={TD}>
-            <span className="font-display text-[13px]">{r.title}</span>
+            <Link href={`/research-os/solvability/frontier/${encodeURIComponent(r.id)}`} className="font-display text-[13px] underline underline-offset-4 text-[color:var(--aegean-deep)]">{r.title}</Link>
             <span className="block font-mono text-[10px] text-[color:var(--basalt-3)]">{r.id}</span>
           </td>
           <td className={TD}>{r.branch}</td>
@@ -248,7 +249,7 @@ export default function SolvabilityFrontierReport({ data, makeup, svg }: { data:
           {data.predictions.atlas.map((r) => (
             <tr key={r.id}>
               <td className={TD}>
-                <span className="font-display text-[13px]">{r.title}</span>
+                <Link href={`/research-os/solvability/frontier/${encodeURIComponent(r.id)}`} className="font-display text-[13px] underline underline-offset-4 text-[color:var(--aegean-deep)]">{r.title}</Link>
                 <span className="block font-mono text-[10px] text-[color:var(--basalt-3)]">{r.id}</span>
               </td>
               <td className={TD}>{r.reachClass}</td>
