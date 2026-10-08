@@ -98,6 +98,13 @@ jobs:
       - name: contract, web regression and runtime-neutral tests
         working-directory: packages/ros-contract
         run: bun test && bun run typecheck
+      - name: rendered pages that missed their golden
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: ros-contract-actual-html
+          path: packages/ros-contract/test/golden/*.actual.html
+          if-no-files-found: ignore
 
   bkt-ui:
     runs-on: ubuntu-latest
