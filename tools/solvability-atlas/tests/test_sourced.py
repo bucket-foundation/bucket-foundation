@@ -341,3 +341,30 @@ def test_open_list_rows_are_in_the_sourced_file():
         if r["id"] in open_ids:
             assert r["status"] == "open" and r["licence"] == "CC BY-SA 4.0" and r["statement_source"] and r["status_source"]
             assert bool(r["posed"]) == bool(r["posed_evidence"])
+
+
+def test_recent_list_rows_pass_their_checks():
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "sources"))
+    import recent_lists
+
+    fills = recent_lists.fills()
+    assert len(fills) >= 20
+    for record in fills:
+        assert recent_lists.check_fill(record) == [], record["line"]
+    for record in recent_lists.new_records():
+        assert recent_lists.check_new(record) == [], record["line"]
+    assert len({r.id for r in recent_lists.new_rows()}) == len(recent_lists.new_records())
+
+
+def test_recent_fills_reach_the_sourced_file():
+    by_id = {r["id"]: r for r in rows()}
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "sources"))
+    import recent_lists
+
+    for record in recent_lists.fills():
+        row = by_id[record["id"]]
+        assert row["posed"] == record["posed"] and row["posed_evidence"] == record["posed_evidence"]
+        if record["status"]:
+            assert row["status"] == record["status"]
+    for record in recent_lists.new_records():
+        assert any(r["name"] == record["name"] and r["posed"] == record["posed"] for r in by_id.values())

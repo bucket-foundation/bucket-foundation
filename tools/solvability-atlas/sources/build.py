@@ -9,6 +9,7 @@ import dated_lists
 import formal_conjectures
 import named_lists
 import open_lists
+import recent_lists
 import solved_discoveries
 import wikipedia_lists
 from common import OUTPUT, ascii_fold, dedupe, existing_titles, write
@@ -65,6 +66,7 @@ def main():
     rows = dedupe(rows, existing_titles())
     write(rows)
     kept, dropped, filled, _ = dated_lists.apply()
+    recent_lists.apply()
     rows += kept
     top = [r for r in rows if not r.variant_of]
     variants = [r for r in rows if r.variant_of]

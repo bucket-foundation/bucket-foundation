@@ -1,21 +1,21 @@
 {
  "schema": "bucket.solvability-frontier-report/v1",
  "built": "2026-10-08",
- "nodes": 5206,
+ "nodes": 5209,
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
  "frontier": {
-  "threshold": 0.759,
-  "rule": "Reach is a problem's highest text similarity to a solved problem. The circle sits at reach 0.759: nine in ten solved problems are at least that close to another solved problem. Pulls count only a problem's 50 stored neighbours. Variants neither pull nor count as pulled.",
+  "threshold": 0.762,
+  "rule": "Reach is a problem's highest text similarity to a solved problem. The circle sits at reach 0.762: nine in ten solved problems are at least that close to another solved problem. Pulls count only a problem's 50 stored neighbours. Variants neither pull nor count as pulled.",
   "counts": {
-   "solved": 1690,
-   "reachable": 2466,
-   "beyond": 1050,
+   "solved": 1694,
+   "reachable": 2434,
+   "beyond": 1081,
    "unsampled": 0
   },
-  "inside": 4156,
-  "outside": 1050,
+  "inside": 4128,
+  "outside": 1081,
   "branches": {
    "information": {
     "total": 137,
@@ -26,30 +26,30 @@
    },
    "mathematics": {
     "total": 4112,
-    "solved": 1473,
-    "reachable": 2378,
-    "beyond": 261,
+    "solved": 1475,
+    "reachable": 2350,
+    "beyond": 287,
     "unsampled": 0
    },
    "physics": {
-    "total": 275,
-    "solved": 53,
-    "reachable": 39,
-    "beyond": 183,
+    "total": 278,
+    "solved": 55,
+    "reachable": 38,
+    "beyond": 185,
     "unsampled": 0
    },
    "biophysics": {
     "total": 218,
     "solved": 31,
-    "reachable": 5,
-    "beyond": 182,
+    "reachable": 4,
+    "beyond": 183,
     "unsampled": 0
    },
    "cosmology": {
     "total": 139,
     "solved": 28,
-    "reachable": 5,
-    "beyond": 106,
+    "reachable": 4,
+    "beyond": 107,
     "unsampled": 0
    },
    "chemistry": {
@@ -69,8 +69,8 @@
    "applied": {
     "total": 82,
     "solved": 32,
-    "reachable": 2,
-    "beyond": 48,
+    "reachable": 1,
+    "beyond": 49,
     "unsampled": 0
    }
   },
@@ -90,10 +90,10 @@
     "solvedAtCutoff": 170,
     "threshold": 0.639,
     "thresholdBounded": 16,
-    "tested": 298,
+    "tested": 319,
     "unsampled": 0,
-    "reachBounded": 78,
-    "undecided": 72,
+    "reachBounded": 97,
+    "undecided": 90,
     "undatedSolved": 11,
     "undatedSolvedTested": 32,
     "codings": [
@@ -102,51 +102,51 @@
       "label": "settled: solved only",
       "all": {
        "name": "all",
-       "inside": 159,
-       "outside": 67,
-       "resolvedInside": 36,
-       "resolvedOutside": 3,
-       "rateInside": 0.226,
-       "rateOutside": 0.045,
-       "ratio": 5.057,
-       "pValue": 0.0014,
+       "inside": 161,
+       "outside": 68,
+       "resolvedInside": 38,
+       "resolvedOutside": 4,
+       "rateInside": 0.236,
+       "rateOutside": 0.059,
+       "ratio": 4.012,
+       "pValue": 0.0024,
        "belowFloor": false
       },
       "byLength": [
        {
         "name": "under 20 words",
         "inside": 33,
-        "outside": 24,
+        "outside": 25,
         "resolvedInside": 2,
-        "resolvedOutside": 0,
+        "resolvedOutside": 1,
         "rateInside": 0.061,
-        "rateOutside": 0,
-        "ratio": null,
-        "pValue": 0.5087,
+        "rateOutside": 0.04,
+        "ratio": 1.515,
+        "pValue": 1,
         "belowFloor": false
        },
        {
         "name": "20 to 40 words",
-        "inside": 73,
+        "inside": 74,
         "outside": 29,
-        "resolvedInside": 16,
+        "resolvedInside": 17,
         "resolvedOutside": 1,
-        "rateInside": 0.219,
+        "rateInside": 0.23,
         "rateOutside": 0.034,
-        "ratio": 6.356,
-        "pValue": 0.0372,
+        "ratio": 6.662,
+        "pValue": 0.0208,
         "belowFloor": false
        },
        {
         "name": "over 40 words",
-        "inside": 53,
+        "inside": 54,
         "outside": 14,
-        "resolvedInside": 18,
+        "resolvedInside": 19,
         "resolvedOutside": 2,
-        "rateInside": 0.34,
+        "rateInside": 0.352,
         "rateOutside": 0.143,
-        "ratio": 2.377,
-        "pValue": 0.2019,
+        "ratio": 2.463,
+        "pValue": 0.205,
         "belowFloor": false
        }
       ],
@@ -213,10 +213,10 @@
        },
        {
         "name": "mathematics",
-        "inside": 50,
-        "outside": 0,
-        "resolvedInside": 15,
-        "resolvedOutside": 0,
+        "inside": 51,
+        "outside": 1,
+        "resolvedInside": 16,
+        "resolvedOutside": 1,
         "rateInside": null,
         "rateOutside": null,
         "ratio": null,
@@ -237,52 +237,52 @@
        },
        {
         "name": "physics",
-        "inside": 27,
+        "inside": 28,
         "outside": 11,
-        "resolvedInside": 8,
+        "resolvedInside": 9,
         "resolvedOutside": 1,
-        "rateInside": 0.296,
+        "rateInside": 0.321,
         "rateOutside": 0.091,
-        "ratio": 3.259,
-        "pValue": 0.2374,
+        "ratio": 3.536,
+        "pValue": 0.2344,
         "belowFloor": false
        }
       ],
-      "auc": 0.807,
-      "aucRows": 226,
+      "auc": 0.799,
+      "aucRows": 229,
       "undatedRemoved": {
        "all": {
         "name": "all, undated solved rows removed",
-        "inside": 148,
-        "outside": 67,
-        "resolvedInside": 25,
-        "resolvedOutside": 3,
-        "rateInside": 0.169,
-        "rateOutside": 0.045,
-        "ratio": 3.773,
-        "pValue": 0.0141,
+        "inside": 150,
+        "outside": 68,
+        "resolvedInside": 27,
+        "resolvedOutside": 4,
+        "rateInside": 0.18,
+        "rateOutside": 0.059,
+        "ratio": 3.06,
+        "pValue": 0.0195,
         "belowFloor": false
        },
-       "auc": 0.745,
-       "aucRows": 215
+       "auc": 0.742,
+       "aucRows": 218
       },
-      "undecidedResolved": 23,
+      "undecidedResolved": 38,
       "undecidedBounds": [
        {
         "name": "all undecided inside",
-        "inside": 231,
-        "outside": 67,
-        "rateInside": 0.255,
-        "rateOutside": 0.045,
-        "ratio": 5.704
+        "inside": 251,
+        "outside": 68,
+        "rateInside": 0.303,
+        "rateOutside": 0.059,
+        "ratio": 5.147
        },
        {
         "name": "all undecided outside",
-        "inside": 159,
-        "outside": 139,
-        "rateInside": 0.226,
-        "rateOutside": 0.187,
-        "ratio": 1.21
+        "inside": 161,
+        "outside": 158,
+        "rateInside": 0.236,
+        "rateOutside": 0.266,
+        "ratio": 0.888
        }
       ]
      },
@@ -291,51 +291,51 @@
       "label": "settled or advanced: solved or partial",
       "all": {
        "name": "all",
-       "inside": 159,
-       "outside": 67,
-       "resolvedInside": 75,
-       "resolvedOutside": 39,
-       "rateInside": 0.472,
-       "rateOutside": 0.582,
-       "ratio": 0.81,
-       "pValue": 0.1482,
+       "inside": 161,
+       "outside": 68,
+       "resolvedInside": 77,
+       "resolvedOutside": 40,
+       "rateInside": 0.478,
+       "rateOutside": 0.588,
+       "ratio": 0.813,
+       "pValue": 0.1526,
        "belowFloor": false
       },
       "byLength": [
        {
         "name": "under 20 words",
         "inside": 33,
-        "outside": 24,
+        "outside": 25,
         "resolvedInside": 16,
-        "resolvedOutside": 15,
+        "resolvedOutside": 16,
         "rateInside": 0.485,
-        "rateOutside": 0.625,
-        "ratio": 0.776,
-        "pValue": 0.424,
+        "rateOutside": 0.64,
+        "ratio": 0.758,
+        "pValue": 0.2876,
         "belowFloor": false
        },
        {
         "name": "20 to 40 words",
-        "inside": 73,
+        "inside": 74,
         "outside": 29,
-        "resolvedInside": 39,
+        "resolvedInside": 40,
         "resolvedOutside": 22,
-        "rateInside": 0.534,
+        "rateInside": 0.541,
         "rateOutside": 0.759,
-        "ratio": 0.704,
-        "pValue": 0.045,
+        "ratio": 0.713,
+        "pValue": 0.0451,
         "belowFloor": false
        },
        {
         "name": "over 40 words",
-        "inside": 53,
+        "inside": 54,
         "outside": 14,
-        "resolvedInside": 20,
+        "resolvedInside": 21,
         "resolvedOutside": 2,
-        "rateInside": 0.377,
+        "rateInside": 0.389,
         "rateOutside": 0.143,
-        "ratio": 2.642,
-        "pValue": 0.1205,
+        "ratio": 2.722,
+        "pValue": 0.1204,
         "belowFloor": false
        }
       ],
@@ -402,10 +402,10 @@
        },
        {
         "name": "mathematics",
-        "inside": 50,
-        "outside": 0,
-        "resolvedInside": 25,
-        "resolvedOutside": 0,
+        "inside": 51,
+        "outside": 1,
+        "resolvedInside": 26,
+        "resolvedOutside": 1,
         "rateInside": null,
         "rateOutside": null,
         "ratio": null,
@@ -426,52 +426,52 @@
        },
        {
         "name": "physics",
-        "inside": 27,
+        "inside": 28,
         "outside": 11,
-        "resolvedInside": 11,
+        "resolvedInside": 12,
         "resolvedOutside": 3,
-        "rateInside": 0.407,
+        "rateInside": 0.429,
         "rateOutside": 0.273,
-        "ratio": 1.494,
-        "pValue": 0.4852,
+        "ratio": 1.571,
+        "pValue": 0.4912,
         "belowFloor": false
        }
       ],
-      "auc": 0.52,
-      "aucRows": 226,
+      "auc": 0.524,
+      "aucRows": 229,
       "undatedRemoved": {
        "all": {
         "name": "all, undated solved rows removed",
-        "inside": 148,
-        "outside": 67,
-        "resolvedInside": 64,
-        "resolvedOutside": 39,
-        "rateInside": 0.432,
-        "rateOutside": 0.582,
-        "ratio": 0.743,
-        "pValue": 0.0534,
+        "inside": 150,
+        "outside": 68,
+        "resolvedInside": 66,
+        "resolvedOutside": 40,
+        "rateInside": 0.44,
+        "rateOutside": 0.588,
+        "ratio": 0.748,
+        "pValue": 0.059,
         "belowFloor": false
        },
-       "auc": 0.474,
-       "aucRows": 215
+       "auc": 0.479,
+       "aucRows": 218
       },
-      "undecidedResolved": 37,
+      "undecidedResolved": 55,
       "undecidedBounds": [
        {
         "name": "all undecided inside",
-        "inside": 231,
-        "outside": 67,
-        "rateInside": 0.485,
-        "rateOutside": 0.582,
-        "ratio": 0.833
+        "inside": 251,
+        "outside": 68,
+        "rateInside": 0.526,
+        "rateOutside": 0.588,
+        "ratio": 0.894
        },
        {
         "name": "all undecided outside",
-        "inside": 159,
-        "outside": 139,
-        "rateInside": 0.472,
-        "rateOutside": 0.547,
-        "ratio": 0.863
+        "inside": 161,
+        "outside": 158,
+        "rateInside": 0.478,
+        "rateOutside": 0.601,
+        "ratio": 0.795
        }
       ]
      }
@@ -479,13 +479,13 @@
    },
    {
     "cutoff": 2021,
-    "solvedAtCutoff": 259,
+    "solvedAtCutoff": 261,
     "threshold": 0.665,
     "thresholdBounded": 12,
-    "tested": 470,
+    "tested": 482,
     "unsampled": 0,
-    "reachBounded": 50,
-    "undecided": 42,
+    "reachBounded": 51,
+    "undecided": 43,
     "undatedSolved": 21,
     "undatedSolvedTested": 33,
     "codings": [
@@ -494,39 +494,39 @@
       "label": "settled: solved only",
       "all": {
        "name": "all",
-       "inside": 261,
+       "inside": 272,
        "outside": 167,
-       "resolvedInside": 28,
+       "resolvedInside": 35,
        "resolvedOutside": 1,
-       "rateInside": 0.107,
+       "rateInside": 0.129,
        "rateOutside": 0.006,
-       "ratio": 17.916,
+       "ratio": 21.489,
        "pValue": 0.0001,
        "belowFloor": false
       },
       "byLength": [
        {
         "name": "under 20 words",
-        "inside": 114,
+        "inside": 122,
         "outside": 81,
-        "resolvedInside": 1,
+        "resolvedInside": 7,
         "resolvedOutside": 0,
-        "rateInside": 0.009,
+        "rateInside": 0.057,
         "rateOutside": 0,
         "ratio": null,
-        "pValue": 1,
+        "pValue": 0.0423,
         "belowFloor": false
        },
        {
         "name": "20 to 40 words",
-        "inside": 89,
+        "inside": 92,
         "outside": 59,
-        "resolvedInside": 6,
+        "resolvedInside": 7,
         "resolvedOutside": 1,
-        "rateInside": 0.067,
+        "rateInside": 0.076,
         "rateOutside": 0.017,
-        "ratio": 3.978,
-        "pValue": 0.2505,
+        "ratio": 4.489,
+        "pValue": 0.1511,
         "belowFloor": false
        },
        {
@@ -605,9 +605,9 @@
        },
        {
         "name": "mathematics",
-        "inside": 86,
+        "inside": 96,
         "outside": 2,
-        "resolvedInside": 24,
+        "resolvedInside": 31,
         "resolvedOutside": 0,
         "rateInside": null,
         "rateOutside": null,
@@ -629,52 +629,52 @@
        },
        {
         "name": "physics",
-        "inside": 26,
+        "inside": 27,
         "outside": 30,
         "resolvedInside": 1,
         "resolvedOutside": 0,
-        "rateInside": 0.038,
+        "rateInside": 0.037,
         "rateOutside": 0,
         "ratio": null,
-        "pValue": 0.4602,
+        "pValue": 0.4726,
         "belowFloor": false
        }
       ],
-      "auc": 0.89,
-      "aucRows": 428,
+      "auc": 0.906,
+      "aucRows": 439,
       "undatedRemoved": {
        "all": {
         "name": "all, undated solved rows removed",
-        "inside": 240,
+        "inside": 251,
         "outside": 167,
-        "resolvedInside": 7,
+        "resolvedInside": 14,
         "resolvedOutside": 1,
-        "rateInside": 0.029,
+        "rateInside": 0.056,
         "rateOutside": 0.006,
-        "ratio": 4.871,
-        "pValue": 0.1489,
+        "ratio": 9.315,
+        "pValue": 0.0126,
         "belowFloor": false
        },
-       "auc": 0.709,
-       "aucRows": 407
+       "auc": 0.836,
+       "aucRows": 418
       },
-      "undecidedResolved": 12,
+      "undecidedResolved": 13,
       "undecidedBounds": [
        {
         "name": "all undecided inside",
-        "inside": 303,
+        "inside": 315,
         "outside": 167,
-        "rateInside": 0.132,
+        "rateInside": 0.152,
         "rateOutside": 0.006,
-        "ratio": 22.046
+        "ratio": 25.448
        },
        {
         "name": "all undecided outside",
-        "inside": 261,
-        "outside": 209,
-        "rateInside": 0.107,
-        "rateOutside": 0.062,
-        "ratio": 1.725
+        "inside": 272,
+        "outside": 210,
+        "rateInside": 0.129,
+        "rateOutside": 0.067,
+        "ratio": 1.93
        }
       ]
      },
@@ -683,39 +683,39 @@
       "label": "settled or advanced: solved or partial",
       "all": {
        "name": "all",
-       "inside": 261,
+       "inside": 272,
        "outside": 167,
-       "resolvedInside": 105,
+       "resolvedInside": 116,
        "resolvedOutside": 67,
-       "rateInside": 0.402,
+       "rateInside": 0.426,
        "rateOutside": 0.401,
-       "ratio": 1.003,
-       "pValue": 1,
+       "ratio": 1.063,
+       "pValue": 0.6146,
        "belowFloor": false
       },
       "byLength": [
        {
         "name": "under 20 words",
-        "inside": 114,
+        "inside": 122,
         "outside": 81,
-        "resolvedInside": 39,
+        "resolvedInside": 47,
         "resolvedOutside": 33,
-        "rateInside": 0.342,
+        "rateInside": 0.385,
         "rateOutside": 0.407,
-        "ratio": 0.84,
-        "pValue": 0.3704,
+        "ratio": 0.946,
+        "pValue": 0.7732,
         "belowFloor": false
        },
        {
         "name": "20 to 40 words",
-        "inside": 89,
+        "inside": 92,
         "outside": 59,
-        "resolvedInside": 39,
+        "resolvedInside": 42,
         "resolvedOutside": 34,
-        "rateInside": 0.438,
+        "rateInside": 0.457,
         "rateOutside": 0.576,
-        "ratio": 0.76,
-        "pValue": 0.128,
+        "ratio": 0.792,
+        "pValue": 0.1835,
         "belowFloor": false
        },
        {
@@ -794,9 +794,9 @@
        },
        {
         "name": "mathematics",
-        "inside": 86,
+        "inside": 96,
         "outside": 2,
-        "resolvedInside": 44,
+        "resolvedInside": 54,
         "resolvedOutside": 1,
         "rateInside": null,
         "rateOutside": null,
@@ -818,52 +818,52 @@
        },
        {
         "name": "physics",
-        "inside": 26,
+        "inside": 27,
         "outside": 30,
-        "resolvedInside": 6,
+        "resolvedInside": 7,
         "resolvedOutside": 8,
-        "rateInside": 0.231,
+        "rateInside": 0.259,
         "rateOutside": 0.267,
-        "ratio": 0.865,
+        "ratio": 0.972,
         "pValue": 1,
         "belowFloor": false
        }
       ],
-      "auc": 0.516,
-      "aucRows": 428,
+      "auc": 0.543,
+      "aucRows": 439,
       "undatedRemoved": {
        "all": {
         "name": "all, undated solved rows removed",
-        "inside": 240,
+        "inside": 251,
         "outside": 167,
-        "resolvedInside": 84,
+        "resolvedInside": 95,
         "resolvedOutside": 67,
-        "rateInside": 0.35,
+        "rateInside": 0.378,
         "rateOutside": 0.401,
-        "ratio": 0.872,
-        "pValue": 0.2963,
+        "ratio": 0.943,
+        "pValue": 0.6773,
         "belowFloor": false
        },
-       "auc": 0.456,
-       "aucRows": 407
+       "auc": 0.49,
+       "aucRows": 418
       },
-      "undecidedResolved": 23,
+      "undecidedResolved": 24,
       "undecidedBounds": [
        {
         "name": "all undecided inside",
-        "inside": 303,
+        "inside": 315,
         "outside": 167,
-        "rateInside": 0.422,
+        "rateInside": 0.444,
         "rateOutside": 0.401,
-        "ratio": 1.053
+        "ratio": 1.108
        },
        {
         "name": "all undecided outside",
-        "inside": 261,
-        "outside": 209,
-        "rateInside": 0.402,
-        "rateOutside": 0.431,
-        "ratio": 0.934
+        "inside": 272,
+        "outside": 210,
+        "rateInside": 0.426,
+        "rateOutside": 0.433,
+        "ratio": 0.984
        }
       ]
      }
@@ -877,10 +877,10 @@
    "solvedAtCutoff": 170,
    "threshold": 0.639,
    "thresholdBounded": 16,
-   "tested": 298,
+   "tested": 319,
    "unsampled": 0,
-   "reachBounded": 78,
-   "undecided": 72,
+   "reachBounded": 97,
+   "undecided": 90,
    "undatedSolved": 11,
    "undatedSolvedTested": 32,
    "codings": [
@@ -889,51 +889,51 @@
      "label": "settled: solved only",
      "all": {
       "name": "all",
-      "inside": 159,
-      "outside": 67,
-      "resolvedInside": 36,
-      "resolvedOutside": 3,
-      "rateInside": 0.226,
-      "rateOutside": 0.045,
-      "ratio": 5.057,
-      "pValue": 0.0014,
+      "inside": 161,
+      "outside": 68,
+      "resolvedInside": 38,
+      "resolvedOutside": 4,
+      "rateInside": 0.236,
+      "rateOutside": 0.059,
+      "ratio": 4.012,
+      "pValue": 0.0024,
       "belowFloor": false
      },
      "byLength": [
       {
        "name": "under 20 words",
        "inside": 33,
-       "outside": 24,
+       "outside": 25,
        "resolvedInside": 2,
-       "resolvedOutside": 0,
+       "resolvedOutside": 1,
        "rateInside": 0.061,
-       "rateOutside": 0,
-       "ratio": null,
-       "pValue": 0.5087,
+       "rateOutside": 0.04,
+       "ratio": 1.515,
+       "pValue": 1,
        "belowFloor": false
       },
       {
        "name": "20 to 40 words",
-       "inside": 73,
+       "inside": 74,
        "outside": 29,
-       "resolvedInside": 16,
+       "resolvedInside": 17,
        "resolvedOutside": 1,
-       "rateInside": 0.219,
+       "rateInside": 0.23,
        "rateOutside": 0.034,
-       "ratio": 6.356,
-       "pValue": 0.0372,
+       "ratio": 6.662,
+       "pValue": 0.0208,
        "belowFloor": false
       },
       {
        "name": "over 40 words",
-       "inside": 53,
+       "inside": 54,
        "outside": 14,
-       "resolvedInside": 18,
+       "resolvedInside": 19,
        "resolvedOutside": 2,
-       "rateInside": 0.34,
+       "rateInside": 0.352,
        "rateOutside": 0.143,
-       "ratio": 2.377,
-       "pValue": 0.2019,
+       "ratio": 2.463,
+       "pValue": 0.205,
        "belowFloor": false
       }
      ],
@@ -1000,10 +1000,10 @@
       },
       {
        "name": "mathematics",
-       "inside": 50,
-       "outside": 0,
-       "resolvedInside": 15,
-       "resolvedOutside": 0,
+       "inside": 51,
+       "outside": 1,
+       "resolvedInside": 16,
+       "resolvedOutside": 1,
        "rateInside": null,
        "rateOutside": null,
        "ratio": null,
@@ -1024,52 +1024,52 @@
       },
       {
        "name": "physics",
-       "inside": 27,
+       "inside": 28,
        "outside": 11,
-       "resolvedInside": 8,
+       "resolvedInside": 9,
        "resolvedOutside": 1,
-       "rateInside": 0.296,
+       "rateInside": 0.321,
        "rateOutside": 0.091,
-       "ratio": 3.259,
-       "pValue": 0.2374,
+       "ratio": 3.536,
+       "pValue": 0.2344,
        "belowFloor": false
       }
      ],
-     "auc": 0.807,
-     "aucRows": 226,
+     "auc": 0.799,
+     "aucRows": 229,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 148,
-       "outside": 67,
-       "resolvedInside": 25,
-       "resolvedOutside": 3,
-       "rateInside": 0.169,
-       "rateOutside": 0.045,
-       "ratio": 3.773,
-       "pValue": 0.0141,
+       "inside": 150,
+       "outside": 68,
+       "resolvedInside": 27,
+       "resolvedOutside": 4,
+       "rateInside": 0.18,
+       "rateOutside": 0.059,
+       "ratio": 3.06,
+       "pValue": 0.0195,
        "belowFloor": false
       },
-      "auc": 0.745,
-      "aucRows": 215
+      "auc": 0.742,
+      "aucRows": 218
      },
-     "undecidedResolved": 23,
+     "undecidedResolved": 38,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 231,
-       "outside": 67,
-       "rateInside": 0.255,
-       "rateOutside": 0.045,
-       "ratio": 5.704
+       "inside": 251,
+       "outside": 68,
+       "rateInside": 0.303,
+       "rateOutside": 0.059,
+       "ratio": 5.147
       },
       {
        "name": "all undecided outside",
-       "inside": 159,
-       "outside": 139,
-       "rateInside": 0.226,
-       "rateOutside": 0.187,
-       "ratio": 1.21
+       "inside": 161,
+       "outside": 158,
+       "rateInside": 0.236,
+       "rateOutside": 0.266,
+       "ratio": 0.888
       }
      ]
     },
@@ -1078,51 +1078,51 @@
      "label": "settled or advanced: solved or partial",
      "all": {
       "name": "all",
-      "inside": 159,
-      "outside": 67,
-      "resolvedInside": 75,
-      "resolvedOutside": 39,
-      "rateInside": 0.472,
-      "rateOutside": 0.582,
-      "ratio": 0.81,
-      "pValue": 0.1482,
+      "inside": 161,
+      "outside": 68,
+      "resolvedInside": 77,
+      "resolvedOutside": 40,
+      "rateInside": 0.478,
+      "rateOutside": 0.588,
+      "ratio": 0.813,
+      "pValue": 0.1526,
       "belowFloor": false
      },
      "byLength": [
       {
        "name": "under 20 words",
        "inside": 33,
-       "outside": 24,
+       "outside": 25,
        "resolvedInside": 16,
-       "resolvedOutside": 15,
+       "resolvedOutside": 16,
        "rateInside": 0.485,
-       "rateOutside": 0.625,
-       "ratio": 0.776,
-       "pValue": 0.424,
+       "rateOutside": 0.64,
+       "ratio": 0.758,
+       "pValue": 0.2876,
        "belowFloor": false
       },
       {
        "name": "20 to 40 words",
-       "inside": 73,
+       "inside": 74,
        "outside": 29,
-       "resolvedInside": 39,
+       "resolvedInside": 40,
        "resolvedOutside": 22,
-       "rateInside": 0.534,
+       "rateInside": 0.541,
        "rateOutside": 0.759,
-       "ratio": 0.704,
-       "pValue": 0.045,
+       "ratio": 0.713,
+       "pValue": 0.0451,
        "belowFloor": false
       },
       {
        "name": "over 40 words",
-       "inside": 53,
+       "inside": 54,
        "outside": 14,
-       "resolvedInside": 20,
+       "resolvedInside": 21,
        "resolvedOutside": 2,
-       "rateInside": 0.377,
+       "rateInside": 0.389,
        "rateOutside": 0.143,
-       "ratio": 2.642,
-       "pValue": 0.1205,
+       "ratio": 2.722,
+       "pValue": 0.1204,
        "belowFloor": false
       }
      ],
@@ -1189,10 +1189,10 @@
       },
       {
        "name": "mathematics",
-       "inside": 50,
-       "outside": 0,
-       "resolvedInside": 25,
-       "resolvedOutside": 0,
+       "inside": 51,
+       "outside": 1,
+       "resolvedInside": 26,
+       "resolvedOutside": 1,
        "rateInside": null,
        "rateOutside": null,
        "ratio": null,
@@ -1213,68 +1213,68 @@
       },
       {
        "name": "physics",
-       "inside": 27,
+       "inside": 28,
        "outside": 11,
-       "resolvedInside": 11,
+       "resolvedInside": 12,
        "resolvedOutside": 3,
-       "rateInside": 0.407,
+       "rateInside": 0.429,
        "rateOutside": 0.273,
-       "ratio": 1.494,
-       "pValue": 0.4852,
+       "ratio": 1.571,
+       "pValue": 0.4912,
        "belowFloor": false
       }
      ],
-     "auc": 0.52,
-     "aucRows": 226,
+     "auc": 0.524,
+     "aucRows": 229,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 148,
-       "outside": 67,
-       "resolvedInside": 64,
-       "resolvedOutside": 39,
-       "rateInside": 0.432,
-       "rateOutside": 0.582,
-       "ratio": 0.743,
-       "pValue": 0.0534,
+       "inside": 150,
+       "outside": 68,
+       "resolvedInside": 66,
+       "resolvedOutside": 40,
+       "rateInside": 0.44,
+       "rateOutside": 0.588,
+       "ratio": 0.748,
+       "pValue": 0.059,
        "belowFloor": false
       },
-      "auc": 0.474,
-      "aucRows": 215
+      "auc": 0.479,
+      "aucRows": 218
      },
-     "undecidedResolved": 37,
+     "undecidedResolved": 55,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 231,
-       "outside": 67,
-       "rateInside": 0.485,
-       "rateOutside": 0.582,
-       "ratio": 0.833
+       "inside": 251,
+       "outside": 68,
+       "rateInside": 0.526,
+       "rateOutside": 0.588,
+       "ratio": 0.894
       },
       {
        "name": "all undecided outside",
-       "inside": 159,
-       "outside": 139,
-       "rateInside": 0.472,
-       "rateOutside": 0.547,
-       "ratio": 0.863
+       "inside": 161,
+       "outside": 158,
+       "rateInside": 0.478,
+       "rateOutside": 0.601,
+       "ratio": 0.795
       }
      ]
     }
    ],
-   "inputHash": "c76d4e596bf3d93b73a98dbf72c59452706f875885eb324a9b65de9ccf8d3fae",
+   "inputHash": "bee5b31a4c20d53d740cc4d04d8693d04bc9a3e07e5b7c409dcb06d3341892e4",
    "forecastBuilt": "2026-10-08"
   },
   {
    "cutoff": 2015,
-   "solvedAtCutoff": 212,
+   "solvedAtCutoff": 213,
    "threshold": 0.639,
    "thresholdBounded": 16,
-   "tested": 330,
+   "tested": 351,
    "unsampled": 0,
-   "reachBounded": 63,
-   "undecided": 57,
+   "reachBounded": 69,
+   "undecided": 63,
    "undatedSolved": 14,
    "undatedSolvedTested": 33,
    "codings": [
@@ -1283,39 +1283,39 @@
      "label": "settled: solved only",
      "all": {
       "name": "all",
-      "inside": 207,
+      "inside": 222,
       "outside": 66,
-      "resolvedInside": 35,
+      "resolvedInside": 49,
       "resolvedOutside": 2,
-      "rateInside": 0.169,
+      "rateInside": 0.221,
       "rateOutside": 0.03,
-      "ratio": 5.58,
-      "pValue": 0.0081,
+      "ratio": 7.284,
+      "pValue": 0.0005,
       "belowFloor": false
      },
      "byLength": [
       {
        "name": "under 20 words",
-       "inside": 55,
+       "inside": 66,
        "outside": 24,
-       "resolvedInside": 3,
+       "resolvedInside": 14,
        "resolvedOutside": 0,
-       "rateInside": 0.055,
+       "rateInside": 0.212,
        "rateOutside": 0,
        "ratio": null,
-       "pValue": 0.546,
+       "pValue": 0.0185,
        "belowFloor": false
       },
       {
        "name": "20 to 40 words",
-       "inside": 90,
+       "inside": 94,
        "outside": 26,
-       "resolvedInside": 14,
+       "resolvedInside": 17,
        "resolvedOutside": 1,
-       "rateInside": 0.156,
+       "rateInside": 0.181,
        "rateOutside": 0.038,
-       "ratio": 4.044,
-       "pValue": 0.1805,
+       "ratio": 4.702,
+       "pValue": 0.1154,
        "belowFloor": false
       },
       {
@@ -1394,9 +1394,9 @@
       },
       {
        "name": "mathematics",
-       "inside": 69,
+       "inside": 82,
        "outside": 1,
-       "resolvedInside": 18,
+       "resolvedInside": 31,
        "resolvedOutside": 0,
        "rateInside": null,
        "rateOutside": null,
@@ -1418,9 +1418,9 @@
       },
       {
        "name": "physics",
-       "inside": 25,
+       "inside": 27,
        "outside": 9,
-       "resolvedInside": 5,
+       "resolvedInside": 6,
        "resolvedOutside": 0,
        "rateInside": null,
        "rateOutside": null,
@@ -1429,41 +1429,41 @@
        "belowFloor": true
       }
      ],
-     "auc": 0.755,
-     "aucRows": 273,
+     "auc": 0.812,
+     "aucRows": 288,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 193,
+       "inside": 208,
        "outside": 66,
-       "resolvedInside": 21,
+       "resolvedInside": 35,
        "resolvedOutside": 2,
-       "rateInside": 0.109,
+       "rateInside": 0.168,
        "rateOutside": 0.03,
-       "ratio": 3.591,
-       "pValue": 0.0795,
+       "ratio": 5.553,
+       "pValue": 0.0058,
        "belowFloor": false
       },
-      "auc": 0.641,
-      "aucRows": 259
+      "auc": 0.762,
+      "aucRows": 274
      },
-     "undecidedResolved": 19,
+     "undecidedResolved": 22,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 264,
+       "inside": 285,
        "outside": 66,
-       "rateInside": 0.205,
+       "rateInside": 0.249,
        "rateOutside": 0.03,
-       "ratio": 6.75
+       "ratio": 8.221
       },
       {
        "name": "all undecided outside",
-       "inside": 207,
-       "outside": 123,
-       "rateInside": 0.169,
-       "rateOutside": 0.171,
-       "ratio": 0.99
+       "inside": 222,
+       "outside": 129,
+       "rateInside": 0.221,
+       "rateOutside": 0.186,
+       "ratio": 1.186
       }
      ]
     },
@@ -1472,39 +1472,39 @@
      "label": "settled or advanced: solved or partial",
      "all": {
       "name": "all",
-      "inside": 207,
+      "inside": 222,
       "outside": 66,
-      "resolvedInside": 94,
+      "resolvedInside": 109,
       "resolvedOutside": 34,
-      "rateInside": 0.454,
+      "rateInside": 0.491,
       "rateOutside": 0.515,
-      "ratio": 0.882,
-      "pValue": 0.4016,
+      "ratio": 0.953,
+      "pValue": 0.7766,
       "belowFloor": false
      },
      "byLength": [
       {
        "name": "under 20 words",
-       "inside": 55,
+       "inside": 66,
        "outside": 24,
-       "resolvedInside": 26,
+       "resolvedInside": 37,
        "resolvedOutside": 14,
-       "rateInside": 0.473,
+       "rateInside": 0.561,
        "rateOutside": 0.583,
-       "ratio": 0.81,
-       "pValue": 0.4626,
+       "ratio": 0.961,
+       "pValue": 1,
        "belowFloor": false
       },
       {
        "name": "20 to 40 words",
-       "inside": 90,
+       "inside": 94,
        "outside": 26,
-       "resolvedInside": 44,
+       "resolvedInside": 48,
        "resolvedOutside": 19,
-       "rateInside": 0.489,
+       "rateInside": 0.511,
        "rateOutside": 0.731,
-       "ratio": 0.669,
-       "pValue": 0.0409,
+       "ratio": 0.699,
+       "pValue": 0.0759,
        "belowFloor": false
       },
       {
@@ -1583,9 +1583,9 @@
       },
       {
        "name": "mathematics",
-       "inside": 69,
+       "inside": 82,
        "outside": 1,
-       "resolvedInside": 35,
+       "resolvedInside": 48,
        "resolvedOutside": 0,
        "rateInside": null,
        "rateOutside": null,
@@ -1607,9 +1607,9 @@
       },
       {
        "name": "physics",
-       "inside": 25,
+       "inside": 27,
        "outside": 9,
-       "resolvedInside": 9,
+       "resolvedInside": 11,
        "resolvedOutside": 1,
        "rateInside": null,
        "rateOutside": null,
@@ -1618,57 +1618,57 @@
        "belowFloor": true
       }
      ],
-     "auc": 0.512,
-     "aucRows": 273,
+     "auc": 0.554,
+     "aucRows": 288,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 193,
+       "inside": 208,
        "outside": 66,
-       "resolvedInside": 80,
+       "resolvedInside": 95,
        "resolvedOutside": 34,
-       "rateInside": 0.415,
+       "rateInside": 0.457,
        "rateOutside": 0.515,
-       "ratio": 0.805,
-       "pValue": 0.197,
+       "ratio": 0.887,
+       "pValue": 0.4752,
        "belowFloor": false
       },
-      "auc": 0.46,
-      "aucRows": 259
+      "auc": 0.514,
+      "aucRows": 274
      },
-     "undecidedResolved": 32,
+     "undecidedResolved": 38,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 264,
+       "inside": 285,
        "outside": 66,
-       "rateInside": 0.477,
+       "rateInside": 0.516,
        "rateOutside": 0.515,
-       "ratio": 0.926
+       "ratio": 1.001
       },
       {
        "name": "all undecided outside",
-       "inside": 207,
-       "outside": 123,
-       "rateInside": 0.454,
-       "rateOutside": 0.537,
-       "ratio": 0.846
+       "inside": 222,
+       "outside": 129,
+       "rateInside": 0.491,
+       "rateOutside": 0.558,
+       "ratio": 0.88
       }
      ]
     }
    ],
-   "inputHash": "8139af4df334aec0ba7f4f5ef0576a9980cf66cd8c37ccaa5b6e9bde292fb702",
+   "inputHash": "043f8923e4087cb2b6ef34b0d4e9e4759d7ae9db3339096e9dfb69070a872230",
    "forecastBuilt": "2026-10-08"
   },
   {
    "cutoff": 2021,
-   "solvedAtCutoff": 259,
+   "solvedAtCutoff": 261,
    "threshold": 0.665,
    "thresholdBounded": 12,
-   "tested": 470,
+   "tested": 482,
    "unsampled": 0,
-   "reachBounded": 50,
-   "undecided": 42,
+   "reachBounded": 51,
+   "undecided": 43,
    "undatedSolved": 21,
    "undatedSolvedTested": 33,
    "codings": [
@@ -1677,39 +1677,39 @@
      "label": "settled: solved only",
      "all": {
       "name": "all",
-      "inside": 261,
+      "inside": 272,
       "outside": 167,
-      "resolvedInside": 28,
+      "resolvedInside": 35,
       "resolvedOutside": 1,
-      "rateInside": 0.107,
+      "rateInside": 0.129,
       "rateOutside": 0.006,
-      "ratio": 17.916,
+      "ratio": 21.489,
       "pValue": 0.0001,
       "belowFloor": false
      },
      "byLength": [
       {
        "name": "under 20 words",
-       "inside": 114,
+       "inside": 122,
        "outside": 81,
-       "resolvedInside": 1,
+       "resolvedInside": 7,
        "resolvedOutside": 0,
-       "rateInside": 0.009,
+       "rateInside": 0.057,
        "rateOutside": 0,
        "ratio": null,
-       "pValue": 1,
+       "pValue": 0.0423,
        "belowFloor": false
       },
       {
        "name": "20 to 40 words",
-       "inside": 89,
+       "inside": 92,
        "outside": 59,
-       "resolvedInside": 6,
+       "resolvedInside": 7,
        "resolvedOutside": 1,
-       "rateInside": 0.067,
+       "rateInside": 0.076,
        "rateOutside": 0.017,
-       "ratio": 3.978,
-       "pValue": 0.2505,
+       "ratio": 4.489,
+       "pValue": 0.1511,
        "belowFloor": false
       },
       {
@@ -1788,9 +1788,9 @@
       },
       {
        "name": "mathematics",
-       "inside": 86,
+       "inside": 96,
        "outside": 2,
-       "resolvedInside": 24,
+       "resolvedInside": 31,
        "resolvedOutside": 0,
        "rateInside": null,
        "rateOutside": null,
@@ -1812,52 +1812,52 @@
       },
       {
        "name": "physics",
-       "inside": 26,
+       "inside": 27,
        "outside": 30,
        "resolvedInside": 1,
        "resolvedOutside": 0,
-       "rateInside": 0.038,
+       "rateInside": 0.037,
        "rateOutside": 0,
        "ratio": null,
-       "pValue": 0.4602,
+       "pValue": 0.4726,
        "belowFloor": false
       }
      ],
-     "auc": 0.89,
-     "aucRows": 428,
+     "auc": 0.906,
+     "aucRows": 439,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 240,
+       "inside": 251,
        "outside": 167,
-       "resolvedInside": 7,
+       "resolvedInside": 14,
        "resolvedOutside": 1,
-       "rateInside": 0.029,
+       "rateInside": 0.056,
        "rateOutside": 0.006,
-       "ratio": 4.871,
-       "pValue": 0.1489,
+       "ratio": 9.315,
+       "pValue": 0.0126,
        "belowFloor": false
       },
-      "auc": 0.709,
-      "aucRows": 407
+      "auc": 0.836,
+      "aucRows": 418
      },
-     "undecidedResolved": 12,
+     "undecidedResolved": 13,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 303,
+       "inside": 315,
        "outside": 167,
-       "rateInside": 0.132,
+       "rateInside": 0.152,
        "rateOutside": 0.006,
-       "ratio": 22.046
+       "ratio": 25.448
       },
       {
        "name": "all undecided outside",
-       "inside": 261,
-       "outside": 209,
-       "rateInside": 0.107,
-       "rateOutside": 0.062,
-       "ratio": 1.725
+       "inside": 272,
+       "outside": 210,
+       "rateInside": 0.129,
+       "rateOutside": 0.067,
+       "ratio": 1.93
       }
      ]
     },
@@ -1866,39 +1866,39 @@
      "label": "settled or advanced: solved or partial",
      "all": {
       "name": "all",
-      "inside": 261,
+      "inside": 272,
       "outside": 167,
-      "resolvedInside": 105,
+      "resolvedInside": 116,
       "resolvedOutside": 67,
-      "rateInside": 0.402,
+      "rateInside": 0.426,
       "rateOutside": 0.401,
-      "ratio": 1.003,
-      "pValue": 1,
+      "ratio": 1.063,
+      "pValue": 0.6146,
       "belowFloor": false
      },
      "byLength": [
       {
        "name": "under 20 words",
-       "inside": 114,
+       "inside": 122,
        "outside": 81,
-       "resolvedInside": 39,
+       "resolvedInside": 47,
        "resolvedOutside": 33,
-       "rateInside": 0.342,
+       "rateInside": 0.385,
        "rateOutside": 0.407,
-       "ratio": 0.84,
-       "pValue": 0.3704,
+       "ratio": 0.946,
+       "pValue": 0.7732,
        "belowFloor": false
       },
       {
        "name": "20 to 40 words",
-       "inside": 89,
+       "inside": 92,
        "outside": 59,
-       "resolvedInside": 39,
+       "resolvedInside": 42,
        "resolvedOutside": 34,
-       "rateInside": 0.438,
+       "rateInside": 0.457,
        "rateOutside": 0.576,
-       "ratio": 0.76,
-       "pValue": 0.128,
+       "ratio": 0.792,
+       "pValue": 0.1835,
        "belowFloor": false
       },
       {
@@ -1977,9 +1977,9 @@
       },
       {
        "name": "mathematics",
-       "inside": 86,
+       "inside": 96,
        "outside": 2,
-       "resolvedInside": 44,
+       "resolvedInside": 54,
        "resolvedOutside": 1,
        "rateInside": null,
        "rateOutside": null,
@@ -2001,69 +2001,69 @@
       },
       {
        "name": "physics",
-       "inside": 26,
+       "inside": 27,
        "outside": 30,
-       "resolvedInside": 6,
+       "resolvedInside": 7,
        "resolvedOutside": 8,
-       "rateInside": 0.231,
+       "rateInside": 0.259,
        "rateOutside": 0.267,
-       "ratio": 0.865,
+       "ratio": 0.972,
        "pValue": 1,
        "belowFloor": false
       }
      ],
-     "auc": 0.516,
-     "aucRows": 428,
+     "auc": 0.543,
+     "aucRows": 439,
      "undatedRemoved": {
       "all": {
        "name": "all, undated solved rows removed",
-       "inside": 240,
+       "inside": 251,
        "outside": 167,
-       "resolvedInside": 84,
+       "resolvedInside": 95,
        "resolvedOutside": 67,
-       "rateInside": 0.35,
+       "rateInside": 0.378,
        "rateOutside": 0.401,
-       "ratio": 0.872,
-       "pValue": 0.2963,
+       "ratio": 0.943,
+       "pValue": 0.6773,
        "belowFloor": false
       },
-      "auc": 0.456,
-      "aucRows": 407
+      "auc": 0.49,
+      "aucRows": 418
      },
-     "undecidedResolved": 23,
+     "undecidedResolved": 24,
      "undecidedBounds": [
       {
        "name": "all undecided inside",
-       "inside": 303,
+       "inside": 315,
        "outside": 167,
-       "rateInside": 0.422,
+       "rateInside": 0.444,
        "rateOutside": 0.401,
-       "ratio": 1.053
+       "ratio": 1.108
       },
       {
        "name": "all undecided outside",
-       "inside": 261,
-       "outside": 209,
-       "rateInside": 0.402,
-       "rateOutside": 0.431,
-       "ratio": 0.934
+       "inside": 272,
+       "outside": 210,
+       "rateInside": 0.426,
+       "rateOutside": 0.433,
+       "ratio": 0.984
       }
      ]
     }
    ],
-   "inputHash": "a5b7b472d7a16905fedc6891d12b2cc65af024900df60948fafaf42900a9542c",
+   "inputHash": "e2872875ea1f1cdd45fc307f1b4c468991fa351ffd8fc130aaa09058b2ee1a5a",
    "forecastBuilt": "2026-10-08"
   }
  ],
  "predictions": {
   "schema": "bucket.solvability-predictions/v1",
-  "threshold": 0.759,
-  "upperReach": 0.851,
-  "rule": "Open top-level problems only; variants are left off. A problem inside the frontier (reach at or above 0.759) with reach at or above 0.851, the 75th percentile of reach among inside open problems, is \"close to known results\"; inside below that is \"borderline\"; beyond the frontier is \"needs a new idea\"; a branch with too few solved problems is \"unsampled\". Within a class, rows rank by growth, then reach, then id. The nearest solved problems come from the 50 stored neighbours. Starting works exist only for the atlas problems with a record.",
+  "threshold": 0.762,
+  "upperReach": 0.852,
+  "rule": "Open top-level problems only; variants are left off. A problem inside the frontier (reach at or above 0.762) with reach at or above 0.852, the 75th percentile of reach among inside open problems, is \"close to known results\"; inside below that is \"borderline\"; beyond the frontier is \"needs a new idea\"; a branch with too few solved problems is \"unsampled\". Within a class, rows rank by growth, then reach, then id. The nearest solved problems come from the 50 stored neighbours. Starting works exist only for the atlas problems with a record.",
   "counts": {
-   "close to known results": 277,
-   "borderline": 875,
-   "needs a new idea": 934,
+   "close to known results": 268,
+   "borderline": 863,
+   "needs a new idea": 954,
    "unsampled": 0
   },
   "top": {
@@ -2202,36 +2202,6 @@
        "id": "fc-erdosproblems-464-erdos-464",
        "title": "Erdős problem 464",
        "similarity": 0.81
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-does-every-convex-polyhedron-have-rupert-s-property",
-     "title": "Does every convex polyhedron have Rupert's property?",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.851,
-     "zone": "reachable",
-     "reachClass": "close to known results",
-     "growth": 1,
-     "nearest": [
-      {
-       "id": "fc-paper-rupert-is-every-convex-polyhedron-rupert",
-       "title": "Rupert, is every convex polyhedron rupert",
-       "similarity": 0.851
-      },
-      {
-       "id": "fc-erdosproblems-353-erdos-353-congruent-sides",
-       "title": "Erdős problem 353, congruent sides",
-       "similarity": 0.763
-      },
-      {
-       "id": "fc-arxiv-2607-03582-lprogersshephard-isparallelogramatorigin-of",
-       "title": "Lp Rogers Shephard, isParallelogramAtOrigin of volume lpSum eq",
-       "similarity": 0.757
       }
      ],
      "works": [],
@@ -3586,6 +3556,36 @@
      ],
      "works": [],
      "atlas": false
+    },
+    {
+     "id": "fc-erdosproblems-243-erdos-243",
+     "title": "Erdős problem 243",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.899,
+     "zone": "reachable",
+     "reachClass": "close to known results",
+     "growth": 0,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-253-erdos-253",
+       "title": "Erdős problem 253",
+       "similarity": 0.899
+      },
+      {
+       "id": "fc-erdosproblems-124-erdos124-melfi-construction",
+       "title": "Erdős problem 124, erdos124 melfi construction",
+       "similarity": 0.853
+      },
+      {
+       "id": "fc-erdosproblems-481-erdos-481",
+       "title": "Erdős problem 481",
+       "similarity": 0.853
+      }
+     ],
+     "works": [],
+     "atlas": false
     }
    ],
    "borderline": [
@@ -3598,7 +3598,7 @@
      "reach": 0.776,
      "zone": "reachable",
      "reachClass": "borderline",
-     "growth": 5,
+     "growth": 4,
      "nearest": [
       {
        "id": "sd-undirected-connectivity-in-logarithmic-space",
@@ -3614,36 +3614,6 @@
        "id": "fc-oeis-108081-count-words-in-x-is-a-shifted",
        "title": "OEIS A108081, count words in x is a shifted",
        "similarity": 0.77
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-threshold-problem",
-     "title": "Threshold problem",
-     "branch": "physics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.759,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 5,
-     "nearest": [
-      {
-       "id": "sd-quantum-computational-advantage",
-       "title": "Quantum computational advantage",
-       "similarity": 0.759
-      },
-      {
-       "id": "wp-sensitivity-conjecture-for-boolean-functions-hao-huang-2019",
-       "title": "Sensitivity conjecture for Boolean functions (Hao Huang, 2019)",
-       "similarity": 0.707
-      },
-      {
-       "id": "sd-undirected-connectivity-in-logarithmic-space",
-       "title": "Undirected connectivity in logarithmic space",
-       "similarity": 0.68
       }
      ],
      "works": [],
@@ -3680,36 +3650,6 @@
      "atlas": false
     },
     {
-     "id": "wp-proton-decay-and-spin-crisis",
-     "title": "Proton decay and spin crisis",
-     "branch": "physics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.766,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 4,
-     "nearest": [
-      {
-       "id": "sd-internal-structure-of-the-proton",
-       "title": "Internal structure of the proton",
-       "similarity": 0.766
-      },
-      {
-       "id": "wp-existence-of-pentaquarks-19642015",
-       "title": "Existence of pentaquarks (1964–2015)",
-       "similarity": 0.743
-      },
-      {
-       "id": "wp-proton-radius-puzzle",
-       "title": "Proton radius puzzle",
-       "similarity": 0.735
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
      "id": "wp-the-kobon-triangle-problem-on-triangles-in-line-arrangements",
      "title": "The Kobon triangle problem on triangles in line arrangements",
      "branch": "mathematics",
@@ -3734,66 +3674,6 @@
        "id": "wp-boolean-pythagorean-triples-problem-marijn-heule-oliver-kull",
        "title": "Boolean Pythagorean triples problem (Marijn Heule, Oliver Kullmann, Victor W",
        "similarity": 0.792
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-can-integer-factorization-be-done-in-polynomial-time",
-     "title": "Can integer factorization be done in polynomial time?",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.804,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 3,
-     "nearest": [
-      {
-       "id": "sd-linear-programming-in-polynomial-time",
-       "title": "Linear programming in polynomial time",
-       "similarity": 0.804
-      },
-      {
-       "id": "hilbert-10",
-       "title": "Hilbert's 10th problem",
-       "similarity": 0.795
-      },
-      {
-       "id": "sd-integer-multiplication-faster-than-quadratic",
-       "title": "Integer multiplication faster than quadratic",
-       "similarity": 0.78
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "dl-holy-grails-chemistry-enabling-an-economically-viable-co2-capt",
-     "title": "Chemistry enabling an economically viable CO2 capture, utilization, and storage strategy",
-     "branch": "chemistry",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.8,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 3,
-     "nearest": [
-      {
-       "id": "sd-turning-carbon-dioxide-into-products",
-       "title": "Turning carbon dioxide into products",
-       "similarity": 0.8
-      },
-      {
-       "id": "dl-xprize-xprize-carbon-removal",
-       "title": "XPRIZE Carbon Removal",
-       "similarity": 0.749
-      },
-      {
-       "id": "dl-xprize-nrg-cosia-carbon-xprize",
-       "title": "NRG COSIA Carbon XPRIZE",
-       "similarity": 0.748
       }
      ],
      "works": [],
@@ -3830,30 +3710,115 @@
      "atlas": false
     },
     {
-     "id": "fc-wikipedia-transcendental-exp-add-pi-transcendental",
-     "title": "Transcendental, exp add pi transcendental",
+     "id": "wp-are-the-nim-sequences-of-all-finite-octal-games-eventually-p",
+     "title": "Are the nim-sequences of all finite octal games eventually periodic?",
      "branch": "mathematics",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.768,
+     "reach": 0.788,
      "zone": "reachable",
      "reachClass": "borderline",
      "growth": 3,
      "nearest": [
       {
-       "id": "fc-erdosproblems-440-erdos-440-erdos-szemeredi",
-       "title": "Erdős problem 440, erdos szemeredi",
+       "id": "fc-erdosproblems-198-erdos-198-concrete",
+       "title": "Erdős problem 198, concrete",
+       "similarity": 0.788
+      },
+      {
+       "id": "wp-andreoort-conjecture-jonathan-pila-ananth-shankar-jacob-tsim",
+       "title": "André–Oort conjecture (Jonathan Pila, Ananth Shankar, Jacob Tsimerman, 2021)",
+       "similarity": 0.771
+      },
+      {
+       "id": "fc-oeis-1223-conjecture",
+       "title": "OEIS A1223",
        "similarity": 0.768
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-finite-lattice-representation-problem",
+     "title": "Finite lattice representation problem",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.782,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 3,
+     "nearest": [
+      {
+       "id": "fc-wikipedia-modularityconjecture-modularity-conjecture",
+       "title": "Modularity Conjecture",
+       "similarity": 0.782
       },
       {
-       "id": "fc-erdosproblems-793-erdos-793-constant",
-       "title": "Erdős problem 793, constant",
-       "similarity": 0.764
+       "id": "fc-wikipedia-congruentnumber-tunnell-even",
+       "title": "Congruent Number, Tunnell even",
+       "similarity": 0.779
       },
       {
-       "id": "wp-eremenko-s-conjecture",
-       "title": "Eremenko's conjecture",
-       "similarity": 0.764
+       "id": "sd-graph-isomorphism-in-quasi-polynomial-time",
+       "title": "Graph isomorphism in quasi-polynomial time",
+       "similarity": 0.778
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "fc-arxiv-math-0110202-banachmazurrotation-banach-mazur-rotation",
+     "title": "Banach Mazur Rotation",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.772,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 3,
+     "nearest": [
+      {
+       "id": "wp-mazur-s-conjecture-b-vessilin-dimitrov-ziyang-gao-and-philip",
+       "title": "Mazur's conjecture B (Vessilin Dimitrov, Ziyang Gao, and Philipp Habegger, 2020)",
+       "similarity": 0.772
+      },
+      {
+       "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
+       "title": "Sendov's conjecture and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026)",
+       "similarity": 0.77
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-proton-decay-and-spin-crisis",
+     "title": "Proton decay and spin crisis",
+     "branch": "physics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.766,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 3,
+     "nearest": [
+      {
+       "id": "sd-internal-structure-of-the-proton",
+       "title": "Internal structure of the proton",
+       "similarity": 0.766
+      },
+      {
+       "id": "rc-do-pentaquark-particles-exist",
+       "title": "Do pentaquark particles exist?",
+       "similarity": 0.748
+      },
+      {
+       "id": "wp-existence-of-pentaquarks-19642015",
+       "title": "Existence of pentaquarks (1964–2015)",
+       "similarity": 0.743
       }
      ],
      "works": [],
@@ -3894,7 +3859,7 @@
      "title": "The Hadwiger–Nelson problem on the chromatic number of unit distance graphs",
      "branch": "mathematics",
      "sourceKind": "sourced",
-     "status": "open",
+     "status": "partial",
      "reach": 0.833,
      "zone": "reachable",
      "reachClass": "borderline",
@@ -3914,6 +3879,36 @@
        "id": "fc-erdosproblems-705-erdos-705",
        "title": "Erdős problem 705",
        "similarity": 0.797
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-pentaquarks-and-other-exotic-hadrons",
+     "title": "Pentaquarks and other exotic hadrons",
+     "branch": "physics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.831,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "rc-do-pentaquark-particles-exist",
+       "title": "Do pentaquark particles exist?",
+       "similarity": 0.831
+      },
+      {
+       "id": "wp-existence-of-pentaquarks-19642015",
+       "title": "Existence of pentaquarks (1964–2015)",
+       "similarity": 0.811
+      },
+      {
+       "id": "sd-charm-quark",
+       "title": "Charm quark",
+       "similarity": 0.787
       }
      ],
      "works": [],
@@ -3950,6 +3945,36 @@
      "atlas": false
     },
     {
+     "id": "wp-the-covering-problem-of-rado",
+     "title": "The covering problem of Rado",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.824,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-1071-erdos-1071-parts-i",
+       "title": "Erdős problem 1071, i",
+       "similarity": 0.824
+      },
+      {
+       "id": "fc-writtenonthewallii-graphconjecture16-conjecture16",
+       "title": "Written on the Wall II problem GraphConjecture16",
+       "similarity": 0.806
+      },
+      {
+       "id": "wp-suita-conjecture-qi-an-guan-and-xiangyu-zhou-2015",
+       "title": "Suita conjecture (Qi'an Guan and Xiangyu Zhou, 2015)",
+       "similarity": 0.801
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
      "id": "fc-millennium-pvsnp-p-ne-np",
      "title": "Pvs NP, P ne NP",
      "branch": "mathematics",
@@ -3974,36 +3999,6 @@
        "id": "fc-mathoverflow-75792-complexity-five-pow",
        "title": "75792, complexity five pow",
        "similarity": 0.817
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-pentaquarks-and-other-exotic-hadrons",
-     "title": "Pentaquarks and other exotic hadrons",
-     "branch": "physics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.811,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 2,
-     "nearest": [
-      {
-       "id": "wp-existence-of-pentaquarks-19642015",
-       "title": "Existence of pentaquarks (1964–2015)",
-       "similarity": 0.811
-      },
-      {
-       "id": "sd-charm-quark",
-       "title": "Charm quark",
-       "similarity": 0.787
-      },
-      {
-       "id": "sd-bottom-quark",
-       "title": "Bottom quark",
-       "similarity": 0.766
       }
      ],
      "works": [],
@@ -4090,30 +4085,90 @@
      "atlas": false
     },
     {
-     "id": "fc-wikipedia-surjunctivegroup-gottschalk-surjunctivity-conjectu",
-     "title": "Surjunctive Group, gottschalk surjunctivity",
+     "id": "wp-can-integer-factorization-be-done-in-polynomial-time",
+     "title": "Can integer factorization be done in polynomial time?",
      "branch": "mathematics",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.803,
+     "reach": 0.804,
      "zone": "reachable",
      "reachClass": "borderline",
      "growth": 2,
      "nearest": [
       {
-       "id": "fc-kourovka-21-149-kourovka-21-149-not-inner",
-       "title": "21 149, kourovka 21 149 not inner",
-       "similarity": 0.803
+       "id": "sd-linear-programming-in-polynomial-time",
+       "title": "Linear programming in polynomial time",
+       "similarity": 0.804
+      },
+      {
+       "id": "hilbert-10",
+       "title": "Hilbert's 10th problem",
+       "similarity": 0.795
+      },
+      {
+       "id": "sd-integer-multiplication-faster-than-quadratic",
+       "title": "Integer multiplication faster than quadratic",
+       "similarity": 0.78
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-shelah-s-categoricity-conjecture-for-l-omega-1-omega",
+     "title": "Shelah's categoricity conjecture for L_{\\omega_1,\\omega}",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.802,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "fc-books-bugeauddistributionmoduloone-problem10-53-problem-10-5-3",
+       "title": "Problem10 53, 10 53 uncountable",
+       "similarity": 0.802
+      },
+      {
+       "id": "fc-erdosproblems-590-erdos-590-finite-cardinal",
+       "title": "Erdős problem 590, finite cardinal",
+       "similarity": 0.8
       },
       {
        "id": "fc-erdosproblems-1036-erdos-1036-alon-hajnal",
        "title": "Erdős problem 1036, alon hajnal",
-       "similarity": 0.789
+       "similarity": 0.791
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "dl-holy-grails-chemistry-enabling-an-economically-viable-co2-capt",
+     "title": "Chemistry enabling an economically viable CO2 capture, utilization, and storage strategy",
+     "branch": "chemistry",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.8,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "sd-turning-carbon-dioxide-into-products",
+       "title": "Turning carbon dioxide into products",
+       "similarity": 0.8
       },
       {
-       "id": "fc-wikipedia-gromovpolynomialgrowth-gromovpolynomialgrowththeor",
-       "title": "Gromov Polynomial Growth, GromovPolynomialGrowthTheorem",
-       "similarity": 0.783
+       "id": "dl-xprize-xprize-carbon-removal",
+       "title": "XPRIZE Carbon Removal",
+       "similarity": 0.749
+      },
+      {
+       "id": "dl-xprize-nrg-cosia-carbon-xprize",
+       "title": "NRG COSIA Carbon XPRIZE",
+       "similarity": 0.748
       }
      ],
      "works": [],
@@ -4240,6 +4295,36 @@
      "atlas": false
     },
     {
+     "id": "fc-greensopenproblems-42-green-42",
+     "title": "Green open problem 42",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.796,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "wp-talagrand-s-convexity-conjecture-dongming-hua-antoine-song-s",
+       "title": "Talagrand's convexity conjecture (Dongming Hua, Antoine Song, Stefan Tudose using GPT-5.5 Pro, 2026)",
+       "similarity": 0.796
+      },
+      {
+       "id": "fc-erdosproblems-1121-erdos-1121-higher-dimension",
+       "title": "Erdős problem 1121, higher dimension",
+       "similarity": 0.789
+      },
+      {
+       "id": "fc-erdosproblems-1121-erdos-1121",
+       "title": "Erdős problem 1121",
+       "similarity": 0.788
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
      "id": "wp-are-there-infinitely-many-wolstenholme-primes",
      "title": "Are there infinitely many Wolstenholme primes?",
      "branch": "mathematics",
@@ -4254,6 +4339,36 @@
        "id": "fc-wikipedia-regularprimes-infinitude-of-irregularprimes",
        "title": "Regular Primes, infinitude of irregularprimes",
        "similarity": 0.796
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-is-the-borel-monadic-theory-of-the-real-order-bmto-decidable",
+     "title": "Is the Borel monadic theory of the real order (BMTO) decidable?",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.792,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "fc-kourovka-21-149-kourovka-21-149-not-inner",
+       "title": "21 149, kourovka 21 149 not inner",
+       "similarity": 0.792
+      },
+      {
+       "id": "fc-paper-branchingvas-reachability-decidable",
+       "title": "Branching VAS, reachability decidable",
+       "similarity": 0.762
+      },
+      {
+       "id": "fc-erdosproblems-482-erdos-482-binary-explicit",
+       "title": "Erdős problem 482, binary explicit",
+       "similarity": 0.757
       }
      ],
      "works": [],
@@ -4314,36 +4429,6 @@
        "id": "fc-erdosproblems-494-erdos-494-k-eq-2-card-not-pow-two",
        "title": "Erdős problem 494, k eq 2 card not pow two",
        "similarity": 0.777
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-are-the-nim-sequences-of-all-finite-octal-games-eventually-p",
-     "title": "Are the nim-sequences of all finite octal games eventually periodic?",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.788,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 2,
-     "nearest": [
-      {
-       "id": "fc-erdosproblems-198-erdos-198-concrete",
-       "title": "Erdős problem 198, concrete",
-       "similarity": 0.788
-      },
-      {
-       "id": "wp-andreoort-conjecture-jonathan-pila-ananth-shankar-jacob-tsim",
-       "title": "André–Oort conjecture (Jonathan Pila, Ananth Shankar, Jacob Tsimerman, 2021)",
-       "similarity": 0.771
-      },
-      {
-       "id": "fc-oeis-1223-conjecture",
-       "title": "OEIS A1223",
-       "similarity": 0.768
       }
      ],
      "works": [],
@@ -4430,6 +4515,36 @@
      "atlas": false
     },
     {
+     "id": "wp-tarski-s-exponential-function-problem",
+     "title": "Tarski's exponential function problem",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.782,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-1-erdos-1-lb",
+       "title": "Erdős problem 1, lb",
+       "similarity": 0.782
+      },
+      {
+       "id": "wp-eremenko-s-conjecture",
+       "title": "Eremenko's conjecture",
+       "similarity": 0.781
+      },
+      {
+       "id": "fc-erdosproblems-482-erdos-482-binary-explicit",
+       "title": "Erdős problem 482, binary explicit",
+       "similarity": 0.78
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
      "id": "wp-kaplanyorke-conjecture-on-the-dimension-of-an-attractor-in-t",
      "title": "Kaplan–Yorke conjecture on the dimension of an attractor in terms of its Lyapunov exponents",
      "branch": "mathematics",
@@ -4454,6 +4569,36 @@
        "id": "wp-egan-conjecture-sergei-drozdov-2023",
        "title": "Egan conjecture (Sergei Drozdov, 2023)",
        "similarity": 0.772
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-weairephelan-structure",
+     "title": "Weaire–Phelan structure",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.78,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "wp-upper-bound-for-the-cap-set-problem-jordan-ellenberg-dion-gi",
+       "title": "Upper bound for the cap set problem (Jordan Ellenberg, Dion Gijswijt, 2016)",
+       "similarity": 0.78
+      },
+      {
+       "id": "fc-erdosproblems-298-erdos-298-natural-density",
+       "title": "Erdős problem 298, natural density",
+       "similarity": 0.771
+      },
+      {
+       "id": "wp-talagrand-s-convexity-conjecture-dongming-hua-antoine-song-s",
+       "title": "Talagrand's convexity conjecture (Dongming Hua, Antoine Song, Stefan Tudose using GPT-5.5 Pro, 2026)",
+       "similarity": 0.769
       }
      ],
      "works": [],
@@ -4550,9 +4695,39 @@
      "atlas": false
     },
     {
-     "id": "wp-generalized-riemann-hypothesis",
-     "title": "Generalized Riemann hypothesis",
+     "id": "wp-reinhardt-cardinals",
+     "title": "Reinhardt cardinals",
      "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.775,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-1036-erdos-1036-alon-hajnal",
+       "title": "Erdős problem 1036, alon hajnal",
+       "similarity": 0.775
+      },
+      {
+       "id": "wp-goldbergseymour-conjecture-guantao-chen-guangming-jing-and-w",
+       "title": "Goldberg–Seymour conjecture (Guantao Chen, Guangming Jing, and Wenan Zang, 2019)",
+       "similarity": 0.771
+      },
+      {
+       "id": "wp-suita-conjecture-qi-an-guan-and-xiangyu-zhou-2015",
+       "title": "Suita conjecture (Qi'an Guan and Xiangyu Zhou, 2015)",
+       "similarity": 0.77
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-baryon-asymmetry",
+     "title": "Baryon asymmetry",
+     "branch": "cosmology",
      "sourceKind": "sourced",
      "status": "open",
      "reach": 0.773,
@@ -4561,44 +4736,19 @@
      "growth": 2,
      "nearest": [
       {
-       "id": "fc-erdosproblems-990-erdos-990-hayman",
-       "title": "Erdős problem 990, hayman",
+       "id": "rc-do-pentaquark-particles-exist",
+       "title": "Do pentaquark particles exist?",
        "similarity": 0.773
       },
       {
-       "id": "wp-eremenko-s-conjecture",
-       "title": "Eremenko's conjecture",
-       "similarity": 0.769
+       "id": "sd-baryon-acoustic-oscillations",
+       "title": "Baryon acoustic oscillations",
+       "similarity": 0.761
       },
       {
-       "id": "fc-oeis-317940-f-nonnegative",
-       "title": "OEIS A317940, f nonnegative",
-       "similarity": 0.765
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "fc-arxiv-math-0110202-banachmazurrotation-banach-mazur-rotation",
-     "title": "Banach Mazur Rotation",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.772,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 2,
-     "nearest": [
-      {
-       "id": "wp-mazur-s-conjecture-b-vessilin-dimitrov-ziyang-gao-and-philip",
-       "title": "Mazur's conjecture B (Vessilin Dimitrov, Ziyang Gao, and Philipp Habegger, 2020)",
-       "similarity": 0.772
-      },
-      {
-       "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
-       "title": "Sendov's conjecture and Phelps–Rodriguez conjecture (Lech Mazur using GPT-5.6 Pro, 2026)",
-       "similarity": 0.77
+       "id": "sd-weak-force-carriers",
+       "title": "Weak force carriers",
+       "similarity": 0.755
       }
      ],
      "works": [],
@@ -4699,6 +4849,36 @@
        "id": "fc-oeis-113252-conjecture",
        "title": "OEIS A113252",
        "similarity": 0.747
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "fc-wikipedia-transcendental-exp-add-pi-transcendental",
+     "title": "Transcendental, exp add pi transcendental",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.768,
+     "zone": "reachable",
+     "reachClass": "borderline",
+     "growth": 2,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-440-erdos-440-erdos-szemeredi",
+       "title": "Erdős problem 440, erdos szemeredi",
+       "similarity": 0.768
+      },
+      {
+       "id": "fc-erdosproblems-793-erdos-793-constant",
+       "title": "Erdős problem 793, constant",
+       "similarity": 0.764
+      },
+      {
+       "id": "wp-eremenko-s-conjecture",
+       "title": "Eremenko's conjecture",
+       "similarity": 0.764
       }
      ],
      "works": [],
@@ -4839,186 +5019,6 @@
        "id": "fc-erdosproblems-248-erdos-248",
        "title": "Erdős problem 248",
        "similarity": 0.762
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "fc-millennium-navierstokes-navier-stokes-existence-and-smoothne",
-     "title": "Navier Stokes, existence and smoothness R3",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.761,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 2,
-     "nearest": [
-      {
-       "id": "fc-paper-nlscritical-nls-apriori",
-       "title": "NLSCritical, NLS apriori",
-       "similarity": 0.761
-      },
-      {
-       "id": "fc-millennium-poincare-poincare-conjecture-smooth-known-cases",
-       "title": "Poincare, smooth known cases",
-       "similarity": 0.732
-      },
-      {
-       "id": "wp-caratheodory-conjecture-for-surfaces-of-smoothness-c-4-brend",
-       "title": "Carathéodory conjecture for surfaces of smoothness C^{4} (Brendan Guilfoyle and Wilhelm Klingenberg, 2025)",
-       "similarity": 0.73
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-baryon-asymmetry",
-     "title": "Baryon asymmetry",
-     "branch": "cosmology",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.761,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 2,
-     "nearest": [
-      {
-       "id": "sd-baryon-acoustic-oscillations",
-       "title": "Baryon acoustic oscillations",
-       "similarity": 0.761
-      },
-      {
-       "id": "sd-weak-force-carriers",
-       "title": "Weak force carriers",
-       "similarity": 0.755
-      },
-      {
-       "id": "sd-dark-matter-in-spiral-galaxies",
-       "title": "Dark matter in spiral galaxies",
-       "similarity": 0.722
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-what-constant-1-1-governs-the-lower-bound-of-a-closed-knot-k",
-     "title": "What constant 1.1 governs the lower bound of a closed knot K's minimum ropelength L(K) \\geq a\\operatorname{Cr}(K)^{3/4}?",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.76,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 2,
-     "nearest": [
-      {
-       "id": "fc-erdosproblems-920-erdos-920",
-       "title": "Erdős problem 920",
-       "similarity": 0.76
-      },
-      {
-       "id": "fc-erdosproblems-814-erdos-814-sauermann",
-       "title": "Erdős problem 814, sauermann",
-       "similarity": 0.748
-      },
-      {
-       "id": "fc-greensopenproblems-14-green-14-lower-bound-green",
-       "title": "Green open problem 14, lower bound green",
-       "similarity": 0.744
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-is-every-fermat-number-2-2-n-1-composite-for-n-4",
-     "title": "Is every Fermat number 2^{2^n} + 1 composite for n > 4?",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.759,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 2,
-     "nearest": [
-      {
-       "id": "fc-oeis-64169-conjecture",
-       "title": "OEIS A64169",
-       "similarity": 0.759
-      },
-      {
-       "id": "fc-erdosproblems-205-erdos-205-many-prime-factors",
-       "title": "Erdős problem 205, many prime factors",
-       "similarity": 0.755
-      },
-      {
-       "id": "fc-oeis-1223-conjecture",
-       "title": "OEIS A1223",
-       "similarity": 0.755
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "fc-wikipedia-wilsonprime-infinitely-many-wilson-primes",
-     "title": "Wilson Prime, infinitely many wilson primes",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.849,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 1,
-     "nearest": [
-      {
-       "id": "fc-wikipedia-regularprimes-infinitude-of-irregularprimes",
-       "title": "Regular Primes, infinitude of irregularprimes",
-       "similarity": 0.849
-      },
-      {
-       "id": "fc-erdosproblems-946-erdos-946-spiro-5040",
-       "title": "Erdős problem 946, spiro 5040",
-       "similarity": 0.771
-      },
-      {
-       "id": "fc-erdosproblems-6-erdos-6",
-       "title": "Erdős problem 6",
-       "similarity": 0.766
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "fc-wikipedia-hasseweil-exists-hasmeromorphiccontinuation",
-     "title": "Hasse Weil, exists hasMeromorphicContinuation",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.848,
-     "zone": "reachable",
-     "reachClass": "borderline",
-     "growth": 1,
-     "nearest": [
-      {
-       "id": "fc-wikipedia-modularityconjecture-modularity-conjecture",
-       "title": "Modularity Conjecture",
-       "similarity": 0.848
-      },
-      {
-       "id": "fc-wikipedia-ellipticcurverank-mordell-weil",
-       "title": "Elliptic Curve Rank, mordell weil",
-       "similarity": 0.83
-      },
-      {
-       "id": "fc-wikipedia-ellipticcurverank-goldfeld-conjecture-two-le",
-       "title": "Elliptic Curve Rank, goldfeld two le",
-       "similarity": 0.829
       }
      ],
      "works": [],
@@ -5192,36 +5192,6 @@
      "atlas": false
     },
     {
-     "id": "wp-is-there-a-canonical-computation-performed-by-cortical-colum",
-     "title": "Is there a canonical computation performed by cortical columns?",
-     "branch": "mind",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.701,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 10,
-     "nearest": [
-      {
-       "id": "fc-erdosproblems-298-erdos-298-natural-density",
-       "title": "Erdős problem 298, natural density",
-       "similarity": 0.701
-      },
-      {
-       "id": "sd-undirected-connectivity-in-logarithmic-space",
-       "title": "Undirected connectivity in logarithmic space",
-       "similarity": 0.7
-      },
-      {
-       "id": "wp-duffinschaeffer-theorem-dimitris-koukoulopoulos-james-maynar",
-       "title": "Duffin–Schaeffer theorem (Dimitris Koukoulopoulos, James Maynard, 2019)",
-       "similarity": 0.698
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
      "id": "wp-computational-theory-of-mind",
      "title": "Computational theory of mind",
      "branch": "biophysics",
@@ -5250,7 +5220,7 @@
      "reach": 0.661,
      "zone": "beyond",
      "reachClass": "needs a new idea",
-     "growth": 10,
+     "growth": 9,
      "nearest": [
       {
        "id": "sd-chemical-neurotransmission-at-synapses",
@@ -5261,76 +5231,6 @@
        "id": "sd-experience-driven-reorganisation-of-the-brain",
        "title": "Experience-driven reorganisation of the brain",
        "similarity": 0.66
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "dl-holy-grails-computational-catalyst-design-feasible-or-fiction",
-     "title": "Computational catalyst design: feasible or fiction?",
-     "branch": "chemistry",
-     "sourceKind": "sourced",
-     "status": "partial",
-     "reach": 0.655,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 10,
-     "nearest": [
-      {
-       "id": "sd-conflicting-atomic-weights-and-molecular-formulas",
-       "title": "Conflicting atomic weights and molecular formulas",
-       "similarity": 0.655
-      },
-      {
-       "id": "sd-linear-programming-in-polynomial-time",
-       "title": "Linear programming in polynomial time",
-       "similarity": 0.654
-      },
-      {
-       "id": "sd-self-replicating-rna",
-       "title": "Self-replicating RNA",
-       "similarity": 0.651
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-problem-of-representation",
-     "title": "Problem of representation",
-     "branch": "mind",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.647,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 10,
-     "nearest": [
-      {
-       "id": "sd-neurons-that-encode-location",
-       "title": "Neurons that encode location",
-       "similarity": 0.647
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-dark-energy",
-     "title": "Dark energy",
-     "branch": "physics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.663,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 9,
-     "nearest": [
-      {
-       "id": "wp-photon-underproduction-crisis-20142015",
-       "title": "Photon underproduction crisis (2014–2015)",
-       "similarity": 0.663
       }
      ],
      "works": [],
@@ -5351,36 +5251,6 @@
        "id": "sd-experience-driven-reorganisation-of-the-brain",
        "title": "Experience-driven reorganisation of the brain",
        "similarity": 0.66
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-l-p-problem",
-     "title": "L = P problem",
-     "branch": "information",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.758,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 8,
-     "nearest": [
-      {
-       "id": "fc-erdosproblems-318-erdos-318-univ",
-       "title": "Erdős problem 318, univ",
-       "similarity": 0.758
-      },
-      {
-       "id": "fc-erdosproblems-305-erdos-305-prime-lower-bound",
-       "title": "Erdős problem 305, prime lower bound",
-       "similarity": 0.727
-      },
-      {
-       "id": "fc-erdosproblems-283-erdos-283-graham",
-       "title": "Erdős problem 283, graham",
-       "similarity": 0.718
       }
      ],
      "works": [],
@@ -5417,30 +5287,30 @@
      "atlas": false
     },
     {
-     "id": "dl-science-2021-what-are-the-coding-principles-embedded-in-neurona",
-     "title": "What are the coding principles embedded in neuronal spike trains?",
+     "id": "wp-is-there-a-canonical-computation-performed-by-cortical-colum",
+     "title": "Is there a canonical computation performed by cortical columns?",
      "branch": "mind",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.696,
+     "reach": 0.701,
      "zone": "beyond",
      "reachClass": "needs a new idea",
      "growth": 8,
      "nearest": [
       {
+       "id": "fc-erdosproblems-298-erdos-298-natural-density",
+       "title": "Erdős problem 298, natural density",
+       "similarity": 0.701
+      },
+      {
        "id": "sd-undirected-connectivity-in-logarithmic-space",
        "title": "Undirected connectivity in logarithmic space",
-       "similarity": 0.696
+       "similarity": 0.7
       },
       {
-       "id": "sd-cellular-basis-of-memory-storage",
-       "title": "Cellular basis of memory storage",
-       "similarity": 0.674
-      },
-      {
-       "id": "sd-chemical-neurotransmission-at-synapses",
-       "title": "Chemical neurotransmission at synapses",
-       "similarity": 0.671
+       "id": "wp-duffinschaeffer-theorem-dimitris-koukoulopoulos-james-maynar",
+       "title": "Duffin–Schaeffer theorem (Dimitris Koukoulopoulos, James Maynard, 2019)",
+       "similarity": 0.698
       }
      ],
      "works": [],
@@ -5562,30 +5432,30 @@
      "atlas": false
     },
     {
-     "id": "wp-quantum-spacetime-or-the-emergence-of-spacetime",
-     "title": "Quantum spacetime or the emergence of spacetime",
-     "branch": "physics",
+     "id": "dl-holy-grails-computational-catalyst-design-feasible-or-fiction",
+     "title": "Computational catalyst design: feasible or fiction?",
+     "branch": "chemistry",
      "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.664,
+     "status": "partial",
+     "reach": 0.655,
      "zone": "beyond",
      "reachClass": "needs a new idea",
      "growth": 8,
      "nearest": [
       {
-       "id": "fc-arxiv-2607-05349-microscopicweighting-microscopic-weighting",
-       "title": "Microscopic Weighting, iff finite concentration",
-       "similarity": 0.664
+       "id": "sd-conflicting-atomic-weights-and-molecular-formulas",
+       "title": "Conflicting atomic weights and molecular formulas",
+       "similarity": 0.655
       },
       {
-       "id": "wp-existence-of-time-crystals-20122016",
-       "title": "Existence of time crystals (2012–2016)",
-       "similarity": 0.663
+       "id": "sd-linear-programming-in-polynomial-time",
+       "title": "Linear programming in polynomial time",
+       "similarity": 0.654
       },
       {
-       "id": "wp-numerical-solution-for-binary-black-hole-1960s2005",
-       "title": "Numerical solution for binary black hole (1960s–2005)",
-       "similarity": 0.656
+       "id": "sd-self-replicating-rna",
+       "title": "Self-replicating RNA",
+       "similarity": 0.651
       }
      ],
      "works": [],
@@ -5606,6 +5476,36 @@
        "id": "wp-keller-s-conjecture-joshua-brakensiek-marijn-heule-john-mack",
        "title": "Keller's conjecture (Joshua Brakensiek, Marijn Heule, John Mackey, David Narvaez, 2019)",
        "similarity": 0.644
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-l-p-problem",
+     "title": "L = P problem",
+     "branch": "information",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.758,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 7,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-318-erdos-318-univ",
+       "title": "Erdős problem 318, univ",
+       "similarity": 0.758
+      },
+      {
+       "id": "fc-erdosproblems-305-erdos-305-prime-lower-bound",
+       "title": "Erdős problem 305, prime lower bound",
+       "similarity": 0.727
+      },
+      {
+       "id": "fc-erdosproblems-283-erdos-283-graham",
+       "title": "Erdős problem 283, graham",
+       "similarity": 0.718
       }
      ],
      "works": [],
@@ -5642,55 +5542,30 @@
      "atlas": false
     },
     {
-     "id": "dl-holy-grails-holy-grails-for-computational-organic-chemistry-an",
-     "title": "Holy grails for computational organic chemistry and biochemistry",
-     "branch": "chemistry",
+     "id": "dl-science-2021-what-are-the-coding-principles-embedded-in-neurona",
+     "title": "What are the coding principles embedded in neuronal spike trains?",
+     "branch": "mind",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.726,
+     "reach": 0.696,
      "zone": "beyond",
      "reachClass": "needs a new idea",
      "growth": 7,
      "nearest": [
       {
-       "id": "dl-science-2005-can-we-predict-how-proteins-will-fold",
-       "title": "Can we predict how proteins will fold?",
-       "similarity": 0.726
+       "id": "sd-undirected-connectivity-in-logarithmic-space",
+       "title": "Undirected connectivity in logarithmic space",
+       "similarity": 0.696
       },
       {
-       "id": "sd-self-replicating-rna",
-       "title": "Self-replicating RNA",
-       "similarity": 0.652
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-how-is-the-growth-of-supermassive-black-holes-related-to-evo",
-     "title": "How is the growth of supermassive black holes related to evolution of their host galaxies?",
-     "branch": "cosmology",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.72,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 7,
-     "nearest": [
-      {
-       "id": "sd-black-hole-at-the-galactic-center",
-       "title": "Black hole at the Galactic center",
-       "similarity": 0.72
+       "id": "sd-cellular-basis-of-memory-storage",
+       "title": "Cellular basis of memory storage",
+       "similarity": 0.674
       },
       {
-       "id": "wp-photon-underproduction-crisis-20142015",
-       "title": "Photon underproduction crisis (2014–2015)",
-       "similarity": 0.675
-      },
-      {
-       "id": "sd-expansion-of-the-universe",
-       "title": "Expansion of the universe",
-       "similarity": 0.65
+       "id": "sd-chemical-neurotransmission-at-synapses",
+       "title": "Chemical neurotransmission at synapses",
+       "similarity": 0.671
       }
      ],
      "works": [],
@@ -5757,31 +5632,6 @@
      "atlas": false
     },
     {
-     "id": "wp-is-the-hubble-tension-evidence-that-the-cosmological-princip",
-     "title": "Is the Hubble tension evidence that the cosmological principle is false?",
-     "branch": "cosmology",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.68,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 7,
-     "nearest": [
-      {
-       "id": "sd-dark-matter-in-spiral-galaxies",
-       "title": "Dark matter in spiral galaxies",
-       "similarity": 0.68
-      },
-      {
-       "id": "sd-baryon-acoustic-oscillations",
-       "title": "Baryon acoustic oscillations",
-       "similarity": 0.679
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
      "id": "dl-neuro-23-what-is-the-origin-and-function-of-irregular-neura",
      "title": "What is the origin and function of irregular neural activity?",
      "branch": "mind",
@@ -5801,6 +5651,56 @@
        "id": "fc-erdosproblems-298-erdos-298-natural-density",
        "title": "Erdős problem 298, natural density",
        "similarity": 0.645
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-quantum-spacetime-or-the-emergence-of-spacetime",
+     "title": "Quantum spacetime or the emergence of spacetime",
+     "branch": "physics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.664,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 7,
+     "nearest": [
+      {
+       "id": "fc-arxiv-2607-05349-microscopicweighting-microscopic-weighting",
+       "title": "Microscopic Weighting, iff finite concentration",
+       "similarity": 0.664
+      },
+      {
+       "id": "wp-existence-of-time-crystals-20122016",
+       "title": "Existence of time crystals (2012–2016)",
+       "similarity": 0.663
+      },
+      {
+       "id": "wp-numerical-solution-for-binary-black-hole-1960s2005",
+       "title": "Numerical solution for binary black hole (1960s–2005)",
+       "similarity": 0.656
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-dark-energy",
+     "title": "Dark energy",
+     "branch": "physics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.663,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 7,
+     "nearest": [
+      {
+       "id": "wp-photon-underproduction-crisis-20142015",
+       "title": "Photon underproduction crisis (2014–2015)",
+       "similarity": 0.663
       }
      ],
      "works": [],
@@ -5827,20 +5727,80 @@
      "atlas": false
     },
     {
-     "id": "wp-language",
-     "title": "Language",
-     "branch": "biophysics",
+     "id": "wp-problem-of-representation",
+     "title": "Problem of representation",
+     "branch": "mind",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.618,
+     "reach": 0.647,
      "zone": "beyond",
      "reachClass": "needs a new idea",
      "growth": 7,
      "nearest": [
       {
-       "id": "fc-erdosproblems-298-erdos-298-natural-density",
-       "title": "Erdős problem 298, natural density",
-       "similarity": 0.618
+       "id": "sd-neurons-that-encode-location",
+       "title": "Neurons that encode location",
+       "similarity": 0.647
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-threshold-problem",
+     "title": "Threshold problem",
+     "branch": "physics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.759,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 6,
+     "nearest": [
+      {
+       "id": "sd-quantum-computational-advantage",
+       "title": "Quantum computational advantage",
+       "similarity": 0.759
+      },
+      {
+       "id": "wp-sensitivity-conjecture-for-boolean-functions-hao-huang-2019",
+       "title": "Sensitivity conjecture for Boolean functions (Hao Huang, 2019)",
+       "similarity": 0.707
+      },
+      {
+       "id": "sd-undirected-connectivity-in-logarithmic-space",
+       "title": "Undirected connectivity in logarithmic space",
+       "similarity": 0.68
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-how-is-the-growth-of-supermassive-black-holes-related-to-evo",
+     "title": "How is the growth of supermassive black holes related to evolution of their host galaxies?",
+     "branch": "cosmology",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.72,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 6,
+     "nearest": [
+      {
+       "id": "sd-black-hole-at-the-galactic-center",
+       "title": "Black hole at the Galactic center",
+       "similarity": 0.72
+      },
+      {
+       "id": "wp-photon-underproduction-crisis-20142015",
+       "title": "Photon underproduction crisis (2014–2015)",
+       "similarity": 0.675
+      },
+      {
+       "id": "sd-expansion-of-the-universe",
+       "title": "Expansion of the universe",
+       "similarity": 0.65
       }
      ],
      "works": [],
@@ -5937,36 +5897,6 @@
      "atlas": false
     },
     {
-     "id": "dl-holy-grails-catalysts-by-design-the-power-of-theory",
-     "title": "Catalysts by design: the power of theory",
-     "branch": "chemistry",
-     "sourceKind": "sourced",
-     "status": "partial",
-     "reach": 0.689,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 6,
-     "nearest": [
-      {
-       "id": "dl-science-2005-can-we-predict-how-proteins-will-fold",
-       "title": "Can we predict how proteins will fold?",
-       "similarity": 0.689
-      },
-      {
-       "id": "sd-quantum-computational-advantage",
-       "title": "Quantum computational advantage",
-       "similarity": 0.682
-      },
-      {
-       "id": "wp-keller-s-conjecture-joshua-brakensiek-marijn-heule-john-mack",
-       "title": "Keller's conjecture (Joshua Brakensiek, Marijn Heule, John Mackey, David Narvaez, 2019)",
-       "similarity": 0.669
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
      "id": "dl-science-2005-what-is-the-biological-basis-of-consciousness",
      "title": "What is the Biological Basis of Consciousness?",
      "branch": "mind",
@@ -5986,26 +5916,6 @@
        "id": "sd-experience-driven-reorganisation-of-the-brain",
        "title": "Experience-driven reorganisation of the brain",
        "similarity": 0.665
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-origin-and-future-of-the-universe",
-     "title": "Origin and future of the universe",
-     "branch": "physics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.683,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 6,
-     "nearest": [
-      {
-       "id": "wp-missing-baryon-problem-19982017-proclaimed-solved-in-october",
-       "title": "Missing baryon problem (1998–2017): proclaimed solved in October 2017, with the missing baryons located in hot intergalactic gas",
-       "similarity": 0.683
       }
      ],
      "works": [],
@@ -6042,12 +5952,37 @@
      "atlas": false
     },
     {
-     "id": "dl-science-2021-what-is-the-ultimate-statistical-invariance-of-tur",
-     "title": "What is the ultimate statistical invariance of turbulence?",
-     "branch": "physics",
+     "id": "wp-is-the-hubble-tension-evidence-that-the-cosmological-princip",
+     "title": "Is the Hubble tension evidence that the cosmological principle is false?",
+     "branch": "cosmology",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.665,
+     "reach": 0.68,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 6,
+     "nearest": [
+      {
+       "id": "sd-dark-matter-in-spiral-galaxies",
+       "title": "Dark matter in spiral galaxies",
+       "similarity": 0.68
+      },
+      {
+       "id": "sd-baryon-acoustic-oscillations",
+       "title": "Baryon acoustic oscillations",
+       "similarity": 0.679
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-language",
+     "title": "Language",
+     "branch": "biophysics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.618,
      "zone": "beyond",
      "reachClass": "needs a new idea",
      "growth": 6,
@@ -6055,17 +5990,7 @@
       {
        "id": "fc-erdosproblems-298-erdos-298-natural-density",
        "title": "Erdős problem 298, natural density",
-       "similarity": 0.665
-      },
-      {
-       "id": "sd-baryon-acoustic-oscillations",
-       "title": "Baryon acoustic oscillations",
-       "similarity": 0.651
-      },
-      {
-       "id": "wp-eremenko-s-conjecture",
-       "title": "Eremenko's conjecture",
-       "similarity": 0.642
+       "similarity": 0.618
       }
      ],
      "works": [],
@@ -6102,66 +6027,6 @@
      "atlas": false
     },
     {
-     "id": "wp-is-pi-a-normal-number-i-e-is-each-digit-09-equally-frequent",
-     "title": "Is \\pi a normal number (i.e., is each digit 0–9 equally frequent)?",
-     "branch": "mathematics",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.752,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 5,
-     "nearest": [
-      {
-       "id": "fc-oeis-103662-conjecture",
-       "title": "OEIS A103662",
-       "similarity": 0.752
-      },
-      {
-       "id": "fc-erdosproblems-124-erdos124-converse",
-       "title": "Erdős problem 124, erdos124 converse",
-       "similarity": 0.736
-      },
-      {
-       "id": "fc-oeis-271591-maximal-run-lengths",
-       "title": "OEIS A271591, maximal run lengths",
-       "similarity": 0.73
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
-     "id": "wp-protein-design",
-     "title": "Protein design",
-     "branch": "chemistry",
-     "sourceKind": "sourced",
-     "status": "open",
-     "reach": 0.752,
-     "zone": "beyond",
-     "reachClass": "needs a new idea",
-     "growth": 5,
-     "nearest": [
-      {
-       "id": "dl-science-2005-can-we-predict-how-proteins-will-fold",
-       "title": "Can we predict how proteins will fold?",
-       "similarity": 0.752
-      },
-      {
-       "id": "sd-self-replicating-rna",
-       "title": "Self-replicating RNA",
-       "similarity": 0.732
-      },
-      {
-       "id": "protein",
-       "title": "Protein structure prediction",
-       "similarity": 0.682
-      }
-     ],
-     "works": [],
-     "atlas": false
-    },
-    {
      "id": "wp-quantum-chromodynamics",
      "title": "Quantum chromodynamics",
      "branch": "physics",
@@ -6192,60 +6057,80 @@
      "atlas": false
     },
     {
-     "id": "wp-quantum-field-theory-this-is-a-generalization-of-the-previou",
-     "title": "Quantum field theory (this is a generalization of the previous problem)",
+     "id": "wp-temperature",
+     "title": "Temperature",
      "branch": "physics",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.741,
+     "reach": 0.74,
      "zone": "beyond",
      "reachClass": "needs a new idea",
      "growth": 5,
      "nearest": [
       {
-       "id": "fc-paper-monochromaticquantumgraph-eqsystem4-no-solution-ge4-re",
-       "title": "Monochromatic Quantum Graph, eqSystem4 no solution ge4 real",
-       "similarity": 0.741
+       "id": "sd-quantum-computational-advantage",
+       "title": "Quantum computational advantage",
+       "similarity": 0.74
       },
       {
-       "id": "fc-paper-monochromaticquantumgraph-eqsystem4-no-solution-ge4-in",
-       "title": "Monochromatic Quantum Graph, eqSystem4 no solution ge4 int",
-       "similarity": 0.729
-      },
-      {
-       "id": "fc-paper-monochromaticquantumgraph-eqsystem4-no-solution-ge4-tr",
-       "title": "Monochromatic Quantum Graph, eqSystem4 no solution ge4 trinary int",
-       "similarity": 0.726
+       "id": "sd-bose-einstein-condensate-in-a-dilute-gas",
+       "title": "Bose-Einstein condensate in a dilute gas",
+       "similarity": 0.697
       }
      ],
      "works": [],
      "atlas": false
     },
     {
-     "id": "wp-solar-cycle",
-     "title": "Solar cycle",
-     "branch": "physics",
+     "id": "wp-are-all-fermat-numbers-square-free",
+     "title": "Are all Fermat numbers square-free?",
+     "branch": "mathematics",
      "sourceKind": "sourced",
      "status": "open",
-     "reach": 0.722,
+     "reach": 0.727,
      "zone": "beyond",
      "reachClass": "needs a new idea",
      "growth": 5,
      "nearest": [
       {
-       "id": "wp-solar-abundance-problem-19982022",
-       "title": "Solar abundance problem (1998–2022)",
-       "similarity": 0.722
+       "id": "fc-oeis-38552-starkheegner-classnumberone",
+       "title": "OEIS A38552, starkHeegner classNumberOne",
+       "similarity": 0.727
       },
       {
-       "id": "sd-planets-around-sun-like-stars",
-       "title": "Planets around Sun-like stars",
-       "similarity": 0.675
+       "id": "fermat",
+       "title": "Fermat's Last Theorem",
+       "similarity": 0.724
       },
       {
-       "id": "sd-distance-to-a-star",
-       "title": "Distance to a star",
-       "similarity": 0.668
+       "id": "fc-wikipedia-congruentnumber-tunnell-even",
+       "title": "Congruent Number, Tunnell even",
+       "similarity": 0.708
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "dl-holy-grails-holy-grails-for-computational-organic-chemistry-an",
+     "title": "Holy grails for computational organic chemistry and biochemistry",
+     "branch": "chemistry",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.726,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 5,
+     "nearest": [
+      {
+       "id": "dl-science-2005-can-we-predict-how-proteins-will-fold",
+       "title": "Can we predict how proteins will fold?",
+       "similarity": 0.726
+      },
+      {
+       "id": "sd-self-replicating-rna",
+       "title": "Self-replicating RNA",
+       "similarity": 0.652
       }
      ],
      "works": [],
@@ -6312,6 +6197,36 @@
      "atlas": false
     },
     {
+     "id": "smale-15",
+     "title": "Smale's 15th problem",
+     "branch": "mathematics",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.713,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 5,
+     "nearest": [
+      {
+       "id": "hilbert-19",
+       "title": "Hilbert's 19th problem: Are the solutions of regular problems in the calculus of variations always necessarily analytic?",
+       "similarity": 0.713
+      },
+      {
+       "id": "wp-eremenko-s-conjecture",
+       "title": "Eremenko's conjecture",
+       "similarity": 0.679
+      },
+      {
+       "id": "fc-paper-monochromaticquantumgraph-eqsystem-no-solution-nnreal",
+       "title": "Monochromatic Quantum Graph, eqSystem no solution nnreal even ge6 ge3",
+       "similarity": 0.677
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
      "id": "wp-cmb-dipole",
      "title": "CMB dipole",
      "branch": "cosmology",
@@ -6336,6 +6251,96 @@
        "id": "sd-weak-force-carriers",
        "title": "Weak force carriers",
        "similarity": 0.692
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-p-pspace-problem",
+     "title": "P = PSPACE problem",
+     "branch": "information",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.712,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 5,
+     "nearest": [
+      {
+       "id": "fc-erdosproblems-318-erdos-318-univ",
+       "title": "Erdős problem 318, univ",
+       "similarity": 0.712
+      },
+      {
+       "id": "fc-erdosproblems-116-erdos-116-polya",
+       "title": "Erdős problem 116, polya",
+       "similarity": 0.68
+      },
+      {
+       "id": "fc-oeis-129365-conjecture3",
+       "title": "OEIS A129365, conjecture3",
+       "similarity": 0.662
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "wp-modularity-of-mind",
+     "title": "Modularity of mind",
+     "branch": "mind",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.711,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 5,
+     "nearest": [
+      {
+       "id": "sd-experience-driven-reorganisation-of-the-brain",
+       "title": "Experience-driven reorganisation of the brain",
+       "similarity": 0.711
+      },
+      {
+       "id": "sd-cellular-basis-of-memory-storage",
+       "title": "Cellular basis of memory storage",
+       "similarity": 0.699
+      },
+      {
+       "id": "wp-blankenshipoporowski-conjecture",
+       "title": "Blankenship–Oporowski conjecture",
+       "similarity": 0.695
+      }
+     ],
+     "works": [],
+     "atlas": false
+    },
+    {
+     "id": "dl-science-2021-can-topological-quantum-computing-be-realized",
+     "title": "Can topological quantum computing be realized?",
+     "branch": "information",
+     "sourceKind": "sourced",
+     "status": "open",
+     "reach": 0.709,
+     "zone": "beyond",
+     "reachClass": "needs a new idea",
+     "growth": 5,
+     "nearest": [
+      {
+       "id": "fc-paper-claudescycles-cube-hamiltonian-arc-decomposition-impos",
+       "title": "Claudes Cycles, cube hamiltonian arc decomposition impossible m2",
+       "similarity": 0.709
+      },
+      {
+       "id": "fc-erdosproblems-180-erdos-180-counterexample",
+       "title": "Erdős problem 180, counterexample",
+       "similarity": 0.681
+      },
+      {
+       "id": "fc-paper-claudescycles-cube-hamiltonian-arc-decomposition-even",
+       "title": "Claudes Cycles, cube hamiltonian arc decomposition even",
+       "similarity": 0.676
       }
      ],
      "works": [],
@@ -6670,79 +6675,30 @@
     "atlas": true
    },
    {
-    "id": "abc",
-    "title": "abc conjecture",
-    "branch": "mathematics",
+    "id": "navier",
+    "title": "Navier-Stokes existence and smoothness",
+    "branch": "physics",
     "sourceKind": "problem",
     "status": "open",
-    "reach": 0.76,
-    "zone": "reachable",
-    "reachClass": "borderline",
-    "growth": 0,
-    "nearest": [
-     {
-      "id": "fc-erdosproblems-494-erdos-494-k-eq-3-card-gt-6",
-      "title": "Erdős problem 494, k eq 3 card gt 6",
-      "similarity": 0.76
-     },
-     {
-      "id": "fc-erdosproblems-418-erdos-418-conditional",
-      "title": "Erdős problem 418, conditional",
-      "similarity": 0.758
-     },
-     {
-      "id": "fc-oeis-382590-kthprimefactor-periodic",
-      "title": "OEIS A382590, kthPrimeFactor periodic",
-      "similarity": 0.755
-     }
-    ],
-    "works": [
-     {
-      "title": "Wieferich's criterion and the abc-conjecture",
-      "year": 1988,
-      "role": "posed",
-      "doi": "https://doi.org/10.1016/0022-314x(88)90019-4"
-     },
-     {
-      "title": "Heights in Diophantine Geometry",
-      "year": 2001,
-      "role": "partial",
-      "doi": "https://doi.org/10.1017/cbo9780511542879"
-     },
-     {
-      "title": "On the abc conjecture, II",
-      "year": 2001,
-      "role": "partial",
-      "doi": "https://doi.org/10.1215/s0012-7094-01-10815-6"
-     }
-    ],
-    "atlas": true
-   },
-   {
-    "id": "darkmatter",
-    "title": "Dark matter identity",
-    "branch": "cosmology",
-    "sourceKind": "problem",
-    "status": "open",
-    "reach": 0.678,
+    "reach": 0.671,
     "zone": "beyond",
     "reachClass": "needs a new idea",
     "growth": 5,
     "nearest": [
      {
-      "id": "sd-baryon-acoustic-oscillations",
-      "title": "Baryon acoustic oscillations",
-      "similarity": 0.678
+      "id": "fc-millennium-poincare-poincare-conjecture-smooth-known-cases",
+      "title": "Poincare, smooth known cases",
+      "similarity": 0.671
      },
      {
-      "id": "sd-dark-matter-in-spiral-galaxies",
-      "title": "Dark matter in spiral galaxies",
-      "similarity": 0.666
+      "id": "hilbert-19",
+      "title": "Hilbert's 19th problem: Are the solutions of regular problems in the calculus of variations always necessarily analytic?",
+      "similarity": 0.656
      },
      {
-      "id": "sd-distance-to-the-andromeda-nebula",
-      "title": "Distance to the Andromeda Nebula",
-      "similarity": 0.64
+      "id": "fc-erdosproblems-268-erdos-268",
+      "title": "Erdős problem 268",
+      "similarity": 0.646
      }
     ],
     "works": [],
@@ -6842,72 +6798,33 @@
     "atlas": true
    },
    {
-    "id": "navier",
-    "title": "Navier-Stokes existence and smoothness",
-    "branch": "physics",
+    "id": "darkmatter",
+    "title": "Dark matter identity",
+    "branch": "cosmology",
     "sourceKind": "problem",
     "status": "open",
-    "reach": 0.671,
+    "reach": 0.678,
     "zone": "beyond",
     "reachClass": "needs a new idea",
     "growth": 4,
     "nearest": [
      {
-      "id": "fc-millennium-poincare-poincare-conjecture-smooth-known-cases",
-      "title": "Poincare, smooth known cases",
-      "similarity": 0.671
+      "id": "sd-baryon-acoustic-oscillations",
+      "title": "Baryon acoustic oscillations",
+      "similarity": 0.678
      },
      {
-      "id": "hilbert-19",
-      "title": "Hilbert's 19th problem: Are the solutions of regular problems in the calculus of variations always necessarily analytic?",
-      "similarity": 0.656
+      "id": "sd-dark-matter-in-spiral-galaxies",
+      "title": "Dark matter in spiral galaxies",
+      "similarity": 0.666
      },
      {
-      "id": "fc-erdosproblems-268-erdos-268",
-      "title": "Erdős problem 268",
-      "similarity": 0.646
+      "id": "sd-distance-to-the-andromeda-nebula",
+      "title": "Distance to the Andromeda Nebula",
+      "similarity": 0.64
      }
     ],
     "works": [],
-    "atlas": true
-   },
-   {
-    "id": "aging",
-    "title": "Programmed versus stochastic aging",
-    "branch": "biophysics",
-    "sourceKind": "problem",
-    "status": "open",
-    "reach": 0.603,
-    "zone": "beyond",
-    "reachClass": "needs a new idea",
-    "growth": 4,
-    "nearest": [
-     {
-      "id": "sd-urea-synthesis-from-inorganic-reagents",
-      "title": "Urea synthesis from inorganic reagents",
-      "similarity": 0.603
-     }
-    ],
-    "works": [
-     {
-      "title": "Aging and Immortality: Quasi-Programmed Senescence and Its Pharmacologic Inhibition",
-      "year": 2006,
-      "role": "partial",
-      "doi": "https://doi.org/10.4161/cc.5.18.3288"
-     },
-     {
-      "title": "Superoxide is a mediator of an altruistic aging program in Saccharomyces cerevisiae",
-      "year": 2004,
-      "role": "partial",
-      "doi": "https://doi.org/10.1083/jcb.200404002"
-     },
-     {
-      "title": "Skin aging from mechanisms to interventions: focusing on dermal aging",
-      "year": 2023,
-      "role": "partial",
-      "doi": "https://doi.org/10.3389/fphys.2023.1195272"
-     }
-    ],
     "atlas": true
    },
    {
@@ -7137,50 +7054,40 @@
     "atlas": true
    },
    {
-    "id": "turbulence",
-    "title": "Turbulence closure",
-    "branch": "physics",
+    "id": "aging",
+    "title": "Programmed versus stochastic aging",
+    "branch": "biophysics",
     "sourceKind": "problem",
     "status": "open",
-    "reach": 0.617,
+    "reach": 0.603,
     "zone": "beyond",
     "reachClass": "needs a new idea",
     "growth": 3,
     "nearest": [
      {
-      "id": "fc-paper-voronovskajatypeformula-voronovskaja-theorem-bezier-be",
-      "title": "Voronovskaja Type Formula, bezier bernstein operators",
-      "similarity": 0.617
-     },
-     {
-      "id": "dl-darpa-darpa-chikungunya-challenge",
-      "title": "DARPA Chikungunya Challenge",
-      "similarity": 0.609
-     },
-     {
-      "id": "busybeaver",
-      "title": "Busy Beaver BB(5)",
-      "similarity": 0.608
+      "id": "sd-urea-synthesis-from-inorganic-reagents",
+      "title": "Urea synthesis from inorganic reagents",
+      "similarity": 0.603
      }
     ],
     "works": [
      {
-      "title": "On entropy method of turbulence closure problem",
-      "year": 1996,
+      "title": "Aging and Immortality: Quasi-Programmed Senescence and Its Pharmacologic Inhibition",
+      "year": 2006,
       "role": "partial",
-      "doi": "https://doi.org/10.1088/0305-4470/29/6/016"
+      "doi": "https://doi.org/10.4161/cc.5.18.3288"
      },
      {
-      "title": "Fundamentals of turbulence modeling",
-      "year": 1998,
+      "title": "Superoxide is a mediator of an altruistic aging program in Saccharomyces cerevisiae",
+      "year": 2004,
       "role": "partial",
-      "doi": null
+      "doi": "https://doi.org/10.1083/jcb.200404002"
      },
      {
-      "title": "Third-Order Transport and Nonlocal Turbulence Closures for Convective Boundary Layers*",
-      "year": 1999,
+      "title": "Skin aging from mechanisms to interventions: focusing on dermal aging",
+      "year": 2023,
       "role": "partial",
-      "doi": "https://doi.org/10.1175/1520-0469(1999)056<3463:totant>2.0.co;2"
+      "doi": "https://doi.org/10.3389/fphys.2023.1195272"
      }
     ],
     "atlas": true
@@ -7479,6 +7386,55 @@
     "atlas": true
    },
    {
+    "id": "ecc",
+    "title": "Elliptic curve discrete log hardness",
+    "branch": "information",
+    "sourceKind": "problem",
+    "status": "open",
+    "reach": 0.715,
+    "zone": "beyond",
+    "reachClass": "needs a new idea",
+    "growth": 2,
+    "nearest": [
+     {
+      "id": "fc-wikipedia-modularityconjecture-modularity-conjecture",
+      "title": "Modularity Conjecture",
+      "similarity": 0.715
+     },
+     {
+      "id": "fc-wikipedia-ellipticcurverank-exists-rank-ge-thirtyone",
+      "title": "Elliptic Curve Rank, exists rank ge thirtyone",
+      "similarity": 0.705
+     },
+     {
+      "id": "fc-wikipedia-satotateconjecture-satotate-conjecture",
+      "title": "Sato Tate Conjecture, satoTate",
+      "similarity": 0.696
+     }
+    ],
+    "works": [
+     {
+      "title": "Index calculus for abelian varieties of small dimension and the elliptic curve discrete logarithm problem",
+      "year": 2008,
+      "role": "partial",
+      "doi": "https://doi.org/10.1016/j.jsc.2008.08.005"
+     },
+     {
+      "title": "Recent progress on the elliptic curve discrete logarithm problem",
+      "year": 2015,
+      "role": "survey",
+      "doi": "https://doi.org/10.1007/s10623-015-0146-7"
+     },
+     {
+      "title": "Elliptic Curve Discrete Logarithms and the Index Calculus",
+      "year": 1998,
+      "role": "partial",
+      "doi": "https://doi.org/10.1007/3-540-49649-1_10"
+     }
+    ],
+    "atlas": true
+   },
+   {
     "id": "owf",
     "title": "Existence of one-way functions",
     "branch": "information",
@@ -7751,148 +7707,50 @@
     "atlas": true
    },
    {
-    "id": "climate",
-    "title": "Climate sensitivity bound",
+    "id": "turbulence",
+    "title": "Turbulence closure",
     "branch": "physics",
     "sourceKind": "problem",
     "status": "open",
-    "reach": 0.645,
+    "reach": 0.617,
     "zone": "beyond",
     "reachClass": "needs a new idea",
     "growth": 2,
     "nearest": [
-     {
-      "id": "sensitivity",
-      "title": "Sensitivity conjecture",
-      "similarity": 0.645
-     },
-     {
-      "id": "dl-darpa-darpa-forecasting-floats-in-turbulence-challenge",
-      "title": "DARPA Forecasting Floats in Turbulence Challenge",
-      "similarity": 0.591
-     },
-     {
-      "id": "dl-xprize-wendy-schmidt-ocean-health-xprize",
-      "title": "Wendy Schmidt Ocean Health XPRIZE",
-      "similarity": 0.587
-     }
-    ],
-    "works": [
-     {
-      "title": "Context for interpreting equilibrium climate sensitivity and transient climate response from the CMIP6 Earth system models",
-      "year": 2020,
-      "role": "partial",
-      "doi": "https://doi.org/10.1126/sciadv.aba1981"
-     },
-     {
-      "title": "Forcing, feedbacks and climate sensitivity in CMIP5 coupled atmosphere‐ocean climate models",
-      "year": 2012,
-      "role": "partial",
-      "doi": "https://doi.org/10.1029/2012gl051607"
-     },
-     {
-      "title": "Observational constraints on mixed-phase clouds imply higher climate sensitivity",
-      "year": 2016,
-      "role": "partial",
-      "doi": "https://doi.org/10.1126/science.aad5300"
-     }
-    ],
-    "atlas": true
-   },
-   {
-    "id": "mitoredox",
-    "title": "Mitochondrial redox and aging mechanism",
-    "branch": "biophysics",
-    "sourceKind": "problem",
-    "status": "open",
-    "reach": 0.645,
-    "zone": "beyond",
-    "reachClass": "needs a new idea",
-    "growth": 2,
-    "nearest": [
-     {
-      "id": "sd-carrier-of-hereditary-information",
-      "title": "Carrier of hereditary information",
-      "similarity": 0.645
-     },
-     {
-      "id": "sd-observation-of-carbocations",
-      "title": "Observation of carbocations",
-      "similarity": 0.607
-     },
-     {
-      "id": "protein",
-      "title": "Protein structure prediction",
-      "similarity": 0.596
-     }
-    ],
-    "works": [
-     {
-      "title": "The mitochondrial theory of aging and its relationship to reactive oxygen species damage and somatic mtDNA mutations",
-      "year": 2005,
-      "role": "partial",
-      "doi": "https://doi.org/10.1073/pnas.0509776102"
-     },
-     {
-      "title": "Is there more to aging than mitochondrial DNA and reactive oxygen species?",
-      "year": 2009,
-      "role": "partial",
-      "doi": "https://doi.org/10.1111/j.1742-4658.2009.07269.x"
-     },
-     {
-      "title": "Somatic mtDNA mutations cause aging phenotypes without affecting reactive oxygen species production",
-      "year": 2005,
-      "role": "partial",
-      "doi": "https://doi.org/10.1073/pnas.0508886102"
-     }
-    ],
-    "atlas": true
-   },
-   {
-    "id": "blackscholes",
-    "title": "Rough volatility pricing",
-    "branch": "mathematics",
-    "sourceKind": "problem",
-    "status": "open",
-    "reach": 0.626,
-    "zone": "beyond",
-    "reachClass": "needs a new idea",
-    "growth": 2,
-    "nearest": [
-     {
-      "id": "sd-pricing-of-options",
-      "title": "Pricing of options",
-      "similarity": 0.626
-     },
      {
       "id": "fc-paper-voronovskajatypeformula-voronovskaja-theorem-bezier-be",
       "title": "Voronovskaja Type Formula, bezier bernstein operators",
-      "similarity": 0.606
+      "similarity": 0.617
      },
      {
-      "id": "sd-regression-between-nonstationary-series",
-      "title": "Regression between nonstationary series",
-      "similarity": 0.604
+      "id": "dl-darpa-darpa-chikungunya-challenge",
+      "title": "DARPA Chikungunya Challenge",
+      "similarity": 0.609
+     },
+     {
+      "id": "busybeaver",
+      "title": "Busy Beaver BB(5)",
+      "similarity": 0.608
      }
     ],
     "works": [
      {
-      "title": "Pricing under rough volatility",
-      "year": 2015,
-      "role": "posed",
-      "doi": "https://doi.org/10.1080/14697688.2015.1099717"
+      "title": "On entropy method of turbulence closure problem",
+      "year": 1996,
+      "role": "partial",
+      "doi": "https://doi.org/10.1088/0305-4470/29/6/016"
      },
      {
-      "title": "Deep learning volatility: a deep neural network perspective on pricing and calibration in (rough) volatility models",
-      "year": 2020,
-      "role": "survey",
-      "doi": "https://doi.org/10.1080/14697688.2020.1817974"
+      "title": "Fundamentals of turbulence modeling",
+      "year": 1998,
+      "role": "partial",
+      "doi": null
      },
      {
-      "title": "Rough volatility: Evidence from option prices",
-      "year": 2018,
-      "role": "posed",
-      "doi": "https://doi.org/10.1080/24725854.2018.1444297"
+      "title": "Third-Order Transport and Nonlocal Turbulence Closures for Convective Boundary Layers*",
+      "year": 1999,
+      "role": "partial",
+      "doi": "https://doi.org/10.1175/1520-0469(1999)056<3463:totant>2.0.co;2"
      }
     ],
     "atlas": true
@@ -7981,6 +7839,55 @@
       "year": 1999,
       "role": "partial",
       "doi": "https://doi.org/10.1016/s0092-8674(00)80566-8"
+     }
+    ],
+    "atlas": true
+   },
+   {
+    "id": "abc",
+    "title": "abc conjecture",
+    "branch": "mathematics",
+    "sourceKind": "problem",
+    "status": "open",
+    "reach": 0.76,
+    "zone": "beyond",
+    "reachClass": "needs a new idea",
+    "growth": 1,
+    "nearest": [
+     {
+      "id": "fc-erdosproblems-494-erdos-494-k-eq-3-card-gt-6",
+      "title": "Erdős problem 494, k eq 3 card gt 6",
+      "similarity": 0.76
+     },
+     {
+      "id": "fc-erdosproblems-418-erdos-418-conditional",
+      "title": "Erdős problem 418, conditional",
+      "similarity": 0.758
+     },
+     {
+      "id": "fc-oeis-382590-kthprimefactor-periodic",
+      "title": "OEIS A382590, kthPrimeFactor periodic",
+      "similarity": 0.755
+     }
+    ],
+    "works": [
+     {
+      "title": "Wieferich's criterion and the abc-conjecture",
+      "year": 1988,
+      "role": "posed",
+      "doi": "https://doi.org/10.1016/0022-314x(88)90019-4"
+     },
+     {
+      "title": "Heights in Diophantine Geometry",
+      "year": 2001,
+      "role": "partial",
+      "doi": "https://doi.org/10.1017/cbo9780511542879"
+     },
+     {
+      "title": "On the abc conjecture, II",
+      "year": 2001,
+      "role": "partial",
+      "doi": "https://doi.org/10.1215/s0012-7094-01-10815-6"
      }
     ],
     "atlas": true
@@ -8158,55 +8065,6 @@
       "year": 2019,
       "role": "partial",
       "doi": "https://doi.org/10.1007/978-3-030-26954-8_23"
-     }
-    ],
-    "atlas": true
-   },
-   {
-    "id": "ecc",
-    "title": "Elliptic curve discrete log hardness",
-    "branch": "information",
-    "sourceKind": "problem",
-    "status": "open",
-    "reach": 0.715,
-    "zone": "beyond",
-    "reachClass": "needs a new idea",
-    "growth": 1,
-    "nearest": [
-     {
-      "id": "fc-wikipedia-modularityconjecture-modularity-conjecture",
-      "title": "Modularity Conjecture",
-      "similarity": 0.715
-     },
-     {
-      "id": "fc-wikipedia-ellipticcurverank-exists-rank-ge-thirtyone",
-      "title": "Elliptic Curve Rank, exists rank ge thirtyone",
-      "similarity": 0.705
-     },
-     {
-      "id": "fc-wikipedia-satotateconjecture-satotate-conjecture",
-      "title": "Sato Tate Conjecture, satoTate",
-      "similarity": 0.696
-     }
-    ],
-    "works": [
-     {
-      "title": "Index calculus for abelian varieties of small dimension and the elliptic curve discrete logarithm problem",
-      "year": 2008,
-      "role": "partial",
-      "doi": "https://doi.org/10.1016/j.jsc.2008.08.005"
-     },
-     {
-      "title": "Recent progress on the elliptic curve discrete logarithm problem",
-      "year": 2015,
-      "role": "survey",
-      "doi": "https://doi.org/10.1007/s10623-015-0146-7"
-     },
-     {
-      "title": "Elliptic Curve Discrete Logarithms and the Index Calculus",
-      "year": 1998,
-      "role": "partial",
-      "doi": "https://doi.org/10.1007/3-540-49649-1_10"
      }
     ],
     "atlas": true
@@ -8794,6 +8652,104 @@
     "atlas": true
    },
    {
+    "id": "climate",
+    "title": "Climate sensitivity bound",
+    "branch": "physics",
+    "sourceKind": "problem",
+    "status": "open",
+    "reach": 0.645,
+    "zone": "beyond",
+    "reachClass": "needs a new idea",
+    "growth": 1,
+    "nearest": [
+     {
+      "id": "sensitivity",
+      "title": "Sensitivity conjecture",
+      "similarity": 0.645
+     },
+     {
+      "id": "dl-darpa-darpa-forecasting-floats-in-turbulence-challenge",
+      "title": "DARPA Forecasting Floats in Turbulence Challenge",
+      "similarity": 0.591
+     },
+     {
+      "id": "dl-xprize-wendy-schmidt-ocean-health-xprize",
+      "title": "Wendy Schmidt Ocean Health XPRIZE",
+      "similarity": 0.587
+     }
+    ],
+    "works": [
+     {
+      "title": "Context for interpreting equilibrium climate sensitivity and transient climate response from the CMIP6 Earth system models",
+      "year": 2020,
+      "role": "partial",
+      "doi": "https://doi.org/10.1126/sciadv.aba1981"
+     },
+     {
+      "title": "Forcing, feedbacks and climate sensitivity in CMIP5 coupled atmosphere‐ocean climate models",
+      "year": 2012,
+      "role": "partial",
+      "doi": "https://doi.org/10.1029/2012gl051607"
+     },
+     {
+      "title": "Observational constraints on mixed-phase clouds imply higher climate sensitivity",
+      "year": 2016,
+      "role": "partial",
+      "doi": "https://doi.org/10.1126/science.aad5300"
+     }
+    ],
+    "atlas": true
+   },
+   {
+    "id": "mitoredox",
+    "title": "Mitochondrial redox and aging mechanism",
+    "branch": "biophysics",
+    "sourceKind": "problem",
+    "status": "open",
+    "reach": 0.645,
+    "zone": "beyond",
+    "reachClass": "needs a new idea",
+    "growth": 1,
+    "nearest": [
+     {
+      "id": "sd-carrier-of-hereditary-information",
+      "title": "Carrier of hereditary information",
+      "similarity": 0.645
+     },
+     {
+      "id": "sd-observation-of-carbocations",
+      "title": "Observation of carbocations",
+      "similarity": 0.607
+     },
+     {
+      "id": "protein",
+      "title": "Protein structure prediction",
+      "similarity": 0.596
+     }
+    ],
+    "works": [
+     {
+      "title": "The mitochondrial theory of aging and its relationship to reactive oxygen species damage and somatic mtDNA mutations",
+      "year": 2005,
+      "role": "partial",
+      "doi": "https://doi.org/10.1073/pnas.0509776102"
+     },
+     {
+      "title": "Is there more to aging than mitochondrial DNA and reactive oxygen species?",
+      "year": 2009,
+      "role": "partial",
+      "doi": "https://doi.org/10.1111/j.1742-4658.2009.07269.x"
+     },
+     {
+      "title": "Somatic mtDNA mutations cause aging phenotypes without affecting reactive oxygen species production",
+      "year": 2005,
+      "role": "partial",
+      "doi": "https://doi.org/10.1073/pnas.0508886102"
+     }
+    ],
+    "atlas": true
+   },
+   {
     "id": "hubbard",
     "title": "2D Hubbard model ground state",
     "branch": "physics",
@@ -8826,6 +8782,55 @@
       "year": 2022,
       "role": "partial",
       "doi": "https://doi.org/10.1103/physrevresearch.4.013239"
+     }
+    ],
+    "atlas": true
+   },
+   {
+    "id": "blackscholes",
+    "title": "Rough volatility pricing",
+    "branch": "mathematics",
+    "sourceKind": "problem",
+    "status": "open",
+    "reach": 0.626,
+    "zone": "beyond",
+    "reachClass": "needs a new idea",
+    "growth": 1,
+    "nearest": [
+     {
+      "id": "sd-pricing-of-options",
+      "title": "Pricing of options",
+      "similarity": 0.626
+     },
+     {
+      "id": "fc-paper-voronovskajatypeformula-voronovskaja-theorem-bezier-be",
+      "title": "Voronovskaja Type Formula, bezier bernstein operators",
+      "similarity": 0.606
+     },
+     {
+      "id": "sd-regression-between-nonstationary-series",
+      "title": "Regression between nonstationary series",
+      "similarity": 0.604
+     }
+    ],
+    "works": [
+     {
+      "title": "Pricing under rough volatility",
+      "year": 2015,
+      "role": "posed",
+      "doi": "https://doi.org/10.1080/14697688.2015.1099717"
+     },
+     {
+      "title": "Deep learning volatility: a deep neural network perspective on pricing and calibration in (rough) volatility models",
+      "year": 2020,
+      "role": "survey",
+      "doi": "https://doi.org/10.1080/14697688.2020.1817974"
+     },
+     {
+      "title": "Rough volatility: Evidence from option prices",
+      "year": 2018,
+      "role": "posed",
+      "doi": "https://doi.org/10.1080/24725854.2018.1444297"
      }
     ],
     "atlas": true

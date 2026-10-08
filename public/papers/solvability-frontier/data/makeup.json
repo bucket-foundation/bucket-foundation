@@ -1,16 +1,16 @@
 {
  "schema": "bucket.solvability-atlas.makeup/v1",
  "built": "2026-10-08",
- "rows": 5206,
+ "rows": 5209,
  "atlas_rows": 71,
- "sourced_rows": 5135,
- "threshold": 0.759,
+ "sourced_rows": 5138,
+ "threshold": 0.762,
  "labels": {
   "branch": {
    "title": "Branch",
    "counts": {
     "mathematics": 4112,
-    "physics": 275,
+    "physics": 278,
     "chemistry": 104,
     "information": 137,
     "biophysics": 218,
@@ -18,28 +18,28 @@
     "mind": 139,
     "applied": 82
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "status": {
    "title": "Status",
    "counts": {
-    "solved": 1690,
-    "partial": 903,
-    "open": 2613
+    "solved": 1694,
+    "partial": 907,
+    "open": 2608
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "form": {
    "title": "Form",
    "counts": {
     "variant": 2194,
-    "question": 1339,
+    "question": 1342,
     "problem": 1260,
     "conjecture": 413
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "source": {
@@ -59,7 +59,7 @@
     "Wikipedia, unsolved problems in biology": 96,
     "Wikipedia, unsolved problems in astronomy": 81,
     "atlas, problems.tsv": 71,
-    "Wikipedia, other pages": 57,
+    "Wikipedia, other pages": 60,
     "formal-conjectures, Written on the Wall II": 54,
     "Wikipedia, unsolved problems in computer science": 49,
     "formal-conjectures, open quantum problems": 49,
@@ -84,21 +84,21 @@
     "formal-conjectures, optimization constants": 5,
     "formal-conjectures, Litt problems": 3
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "licence": {
    "title": "Licence",
    "counts": {
     "Apache-2.0": 3557,
-    "CC BY-SA 4.0": 1280,
+    "CC BY-SA 4.0": 1283,
     "AAAS copyright, headline cited, statement paraphrased": 239,
     "MIT": 71,
     "ACS copyright, title cited, statement paraphrased": 26,
     "Library of Congress record, chapter titles cited": 23,
     "Apache-2.0 and CC BY-SA 4.0": 10
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "resolved_kind": {
@@ -106,20 +106,20 @@
    "counts": {
     "formal-conjectures status field": 1419,
     "posed question, curated timeline row": 157,
-    "Wikipedia status column or solved section": 65,
+    "Wikipedia status column or solved section": 69,
     "dated list, 2026 status check": 34,
     "curated, resolved year in problems.tsv": 15
    },
-   "present": 1690,
-   "absent": 3516
+   "present": 1694,
+   "absent": 3515
   },
   "posed_present": {
    "title": "Posed year",
    "counts": {
-    "posed year present": 662,
-    "posed year absent": 4544
+    "posed year present": 687,
+    "posed year absent": 4522
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "posed_decade": {
@@ -137,21 +137,21 @@
     "1880s": 5,
     "1890s": 9,
     "1900s": 34,
-    "1910s": 7,
-    "1920s": 18,
-    "1930s": 21,
+    "1910s": 8,
+    "1920s": 19,
+    "1930s": 23,
     "1940s": 9,
-    "1950s": 16,
-    "1960s": 30,
-    "1970s": 33,
-    "1980s": 30,
-    "1990s": 42,
-    "2000s": 166,
-    "2010s": 69,
+    "1950s": 18,
+    "1960s": 32,
+    "1970s": 39,
+    "1980s": 35,
+    "1990s": 43,
+    "2000s": 168,
+    "2010s": 72,
     "2020s": 134
    },
-   "present": 662,
-   "absent": 4544
+   "present": 687,
+   "absent": 4522
   },
   "resolved_decade": {
    "title": "Resolved year by decade, where present",
@@ -177,72 +177,72 @@
     "1980s": 6,
     "1990s": 16,
     "2000s": 29,
-    "2010s": 64,
-    "2020s": 57
+    "2010s": 66,
+    "2020s": 59
    },
-   "present": 305,
-   "absent": 4901
+   "present": 309,
+   "absent": 4900
   },
   "zone": {
    "title": "Zone",
    "counts": {
-    "solved": 1690,
-    "reachable": 2466,
-    "beyond": 1050
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 1081
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "prediction_class": {
    "title": "Prediction class",
    "counts": {
-    "close to known results": 277,
-    "borderline": 875,
-    "needs a new idea": 934,
-    "solved": 1690,
+    "close to known results": 268,
+    "borderline": 863,
+    "needs a new idea": 954,
+    "solved": 1694,
     "variant": 1430
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "level": {
    "title": "Variant or top-level",
    "counts": {
-    "top-level": 3012,
+    "top-level": 3015,
     "variant": 2194
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "text_kind": {
    "title": "Embedding text kind",
    "counts": {
-    "statement": 5135,
+    "statement": 5138,
     "record": 71
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   },
   "length_band": {
    "title": "Statement length band",
    "counts": {
     "under 20 words": 1956,
-    "20 to 40 words": 1891,
+    "20 to 40 words": 1894,
     "over 40 words": 1359
    },
-   "present": 5206,
+   "present": 5209,
    "absent": 0
   }
  },
  "status_by_branch": {
   "mathematics": {
-   "solved": 1473,
-   "partial": 762,
-   "open": 1877
+   "solved": 1475,
+   "partial": 765,
+   "open": 1872
   },
   "physics": {
-   "solved": 53,
-   "partial": 32,
+   "solved": 55,
+   "partial": 33,
    "open": 190
   },
   "chemistry": {
@@ -342,11 +342,12 @@
     "CC BY-SA 4.0": 524
    },
    "status": {
-    "open": 484,
-    "solved": 40
+    "open": 480,
+    "solved": 42,
+    "partial": 2
    },
-   "posed": 2,
-   "resolved": 39,
+   "posed": 21,
+   "resolved": 41,
    "statement": 524
   },
   "Wikipedia, unsolved problems in physics": {
@@ -492,10 +493,10 @@
    },
    "status": {
     "solved": 963,
-    "open": 643,
-    "partial": 451
+    "open": 642,
+    "partial": 452
    },
-   "posed": 33,
+   "posed": 36,
    "resolved": 12,
    "statement": 2057
   },
@@ -786,16 +787,18 @@
    "statement": 21
   },
   "Wikipedia, other pages": {
-   "rows": 57,
+   "rows": 60,
    "licences": {
-    "CC BY-SA 4.0": 57
+    "CC BY-SA 4.0": 60
    },
    "status": {
-    "open": 57
+    "open": 57,
+    "solved": 2,
+    "partial": 1
    },
-   "posed": 5,
-   "resolved": 0,
-   "statement": 57
+   "posed": 8,
+   "resolved": 2,
+   "statement": 60
   }
  }
 }

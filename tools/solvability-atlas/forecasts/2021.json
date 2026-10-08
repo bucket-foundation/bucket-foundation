@@ -5,8 +5,8 @@
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
- "input_hash": "a5b7b472d7a16905fedc6891d12b2cc65af024900df60948fafaf42900a9542c",
- "solved": 259,
+ "input_hash": "e2872875ea1f1cdd45fc307f1b4c468991fa351ffd8fc130aaa09058b2ee1a5a",
+ "solved": 261,
  "threshold_bounded": 12,
  "threshold": 0.665,
  "rows": [
@@ -708,7 +708,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 18,
-   "reach": 0.712,
+   "reach": 0.748,
    "bounded": false,
    "zone": "inside"
   },
@@ -2139,7 +2139,7 @@
    "branch": "physics",
    "posed": 2021,
    "words": 18,
-   "reach": 0.669,
+   "reach": 0.671,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2220,7 +2220,7 @@
    "branch": "physics",
    "posed": 2021,
    "words": 15,
-   "reach": 0.719,
+   "reach": 0.731,
    "bounded": false,
    "zone": "inside"
   },
@@ -2932,6 +2932,15 @@
    "posed": 1984,
    "words": 136,
    "reach": 0.828,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-19-erdos-19",
+   "branch": "mathematics",
+   "posed": 1972,
+   "words": 16,
+   "reach": 0.771,
    "bounded": false,
    "zone": "inside"
   },
@@ -3957,7 +3966,7 @@
    "branch": "cosmology",
    "posed": 1930,
    "words": 126,
-   "reach": 0.606,
+   "reach": 0.607,
    "bounded": true,
    "zone": "outside"
   },
@@ -3967,6 +3976,15 @@
    "posed": 1935,
    "words": 44,
    "reach": 0.785,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "rc-can-a-quantum-system-have-a-ground-state-in-perpetual-motion",
+   "branch": "physics",
+   "posed": 2012,
+   "words": 29,
+   "reach": 0.787,
    "bounded": false,
    "zone": "inside"
   },
@@ -4178,11 +4196,47 @@
    "zone": "outside"
   },
   {
+   "id": "wp-bunkbed-conjecture-nikita-gladkov-igor-pak-alexander-zimin-2",
+   "branch": "mathematics",
+   "posed": 1985,
+   "words": 9,
+   "reach": 0.843,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-caratheodory-conjecture-for-surfaces-of-smoothness-c-4-brend",
+   "branch": "mathematics",
+   "posed": 1924,
+   "words": 13,
+   "reach": 0.811,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-crouzeix-s-conjecture-shanmu-jin-using-gpt-5-6-sol-2026",
+   "branch": "mathematics",
+   "posed": 2004,
+   "words": 21,
+   "reach": 0.853,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
    "id": "wp-delta-conjecture-1978",
    "branch": "mathematics",
    "posed": 1978,
    "words": 64,
    "reach": 0.793,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-egan-conjecture-sergei-drozdov-2023",
+   "branch": "mathematics",
+   "posed": 2014,
+   "words": 5,
+   "reach": 0.877,
    "bounded": false,
    "zone": "inside"
   },
@@ -4196,6 +4250,24 @@
    "zone": "outside"
   },
   {
+   "id": "wp-kahnkalai-conjecture-jinyoung-park-and-huy-tuan-pham-2022",
+   "branch": "mathematics",
+   "posed": 2006,
+   "words": 9,
+   "reach": 0.876,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-kakeya-conjecture",
+   "branch": "mathematics",
+   "posed": 1917,
+   "words": 25,
+   "reach": 0.785,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
    "id": "wp-landau-s-problems",
    "branch": "mathematics",
    "posed": 1912,
@@ -4205,11 +4277,47 @@
    "zone": "inside"
   },
   {
+   "id": "wp-mckay-conjecture",
+   "branch": "mathematics",
+   "posed": 1971,
+   "words": 39,
+   "reach": 0.774,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
+   "branch": "mathematics",
+   "posed": 1959,
+   "words": 11,
+   "reach": 0.88,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
    "id": "wp-solar-abundance-problem-19982022",
    "branch": "physics",
    "posed": 1998,
    "words": 27,
    "reach": 0.701,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-telescope-conjecture",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 14,
+   "reach": 0.806,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-the-hadwigernelson-problem-on-the-chromatic-number-of-unit-d",
+   "branch": "mathematics",
+   "posed": 1950,
+   "words": 11,
+   "reach": 0.833,
    "bounded": false,
    "zone": "inside"
   },
