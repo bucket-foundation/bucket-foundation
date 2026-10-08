@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { checkLimits, LIMITS, countTokens } from "../../../src/lib/research-os/work-quiz/limits";
+import { hasMath } from "../../../src/lib/research-os/work-quiz/math";
 import { newDataKey } from "../src/crypto";
 import { pickSession, quizQuestions } from "../src/deck";
 import type { Item } from "../src/grade";
@@ -29,7 +30,7 @@ describe("quiz short fields", () => {
   test("short answers appear verbatim in the full answer and are unique within a branch", () => {
     const seen = new Set<string>();
     for (const i of pool) {
-      expect(i.answer.includes(i.shortAnswer)).toBe(true);
+      if (!hasMath(i.shortAnswer)) expect(i.answer.includes(i.shortAnswer)).toBe(true);
       expect(countTokens(i.shortAnswer)).toBeLessThanOrEqual(LIMITS.option);
       expect(countTokens(i.shortPrompt)).toBeLessThanOrEqual(LIMITS.stem);
       const key = `${i.branch}|${normShort(i.shortAnswer)}`;

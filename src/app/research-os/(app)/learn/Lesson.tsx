@@ -7,6 +7,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import katex from "katex";
 import "katex/dist/katex.min.css";
+import { InlineMath } from "@/components/math/InlineMath";
 import type { Atom } from "@/lib/academy/engine";
 
 const DEPTHS: { key: string; label: string }[] = [
@@ -39,7 +40,7 @@ export default function Lesson({ atom, full = true }: { atom: Atom; full?: boole
 
   return (
     <article className="max-w-[68ch]">
-      {atom.summary && <p className="text-[15px] leading-[1.7] text-[color:var(--basalt)]">{atom.summary}</p>}
+      {atom.summary && <p className="text-[15px] leading-[1.7] text-[color:var(--basalt)]"><InlineMath text={atom.summary} /></p>}
 
       {hasDepths && (
         <div className="mt-4">
@@ -60,7 +61,7 @@ export default function Lesson({ atom, full = true }: { atom: Atom; full?: boole
             ))}
           </div>
           <div role="tabpanel" className="pt-3 text-[14px] leading-[1.75] text-[color:var(--basalt-2)]">
-            <p>{depthText(atom, depth)}</p>
+            <p><InlineMath text={depthText(atom, depth)} /></p>
             {depth === "deep" && atom.equation && <Equation tex={atom.equation} />}
             {depth === "deep" && atom.note && <p className="mt-2 text-[13px] text-[color:var(--basalt-3)]">{atom.note}</p>}
           </div>

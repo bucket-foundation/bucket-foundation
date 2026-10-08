@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
+import { InlineMath } from "@/components/math/InlineMath";
+import "katex/dist/katex.min.css";
 import { DONE_EVENT, START_EVENT, STORAGE_KEY, TICK_MS, initialState, normalizeState, onWorkSurface, tick, type TriggerState } from "@/lib/research-os/work-quiz/trigger";
 import { choiceLang, textDir, wordCaption } from "@/lib/research-os/work-quiz/languages";
 import { TYPE_LABEL, retiredNotice, type PublicQuestion } from "@/lib/research-os/work-quiz/types";
@@ -193,11 +195,11 @@ export default function WorkQuiz({ enabled }: { enabled: boolean }) {
               {"issued" in phase && phase.issued.retired > 0 && (
                 <p role="status" className="mt-2 text-[12px] text-[color:var(--basalt-3)]">{retiredNotice(phase.issued.retired)}</p>
               )}
-              <p className="mt-3 text-[15px] leading-[1.5] text-[color:var(--basalt)]">{q.prompt}</p>
+              <p className="mt-3 text-[15px] leading-[1.5] text-[color:var(--basalt)]"><InlineMath text={q.prompt} /></p>
               {q.lines.length > 0 && (
                 <div className="mt-3 border-l-2 border-[color:var(--hairline)] pl-3 flex flex-col gap-1">
                   {q.lines.map((l, i) => (
-                    <div key={i} dir={textDir(l)} lang={q.word?.lang ?? undefined} className={`leading-[1.5] text-[color:var(--basalt-2)] ${q.word ? "text-[22px]" : "text-[14px]"}`}>{l}</div>
+                    <div key={i} dir={textDir(l)} lang={q.word?.lang ?? undefined} className={`leading-[1.5] text-[color:var(--basalt-2)] ${q.word ? "text-[22px]" : "text-[14px]"}`}><InlineMath text={l} /></div>
                   ))}
                 </div>
               )}
@@ -216,7 +218,7 @@ export default function WorkQuiz({ enabled }: { enabled: boolean }) {
                         className="flex items-start gap-3 text-left border border-[color:var(--hairline)] bg-white/50 hover:bg-[color:var(--bone-2)] px-3 py-2 rounded-sm min-h-[44px] disabled:opacity-60"
                       >
                         <span className="font-mono text-[11px] text-[color:var(--basalt-3)] pt-0.5">{i + 1}</span>
-                        <span dir={textDir(c)} lang={choiceLang(q)} className={`text-[color:var(--basalt)] ${choiceLang(q) ? "text-[18px]" : "text-[14px]"}`}>{c}</span>
+                        <span dir={textDir(c)} lang={choiceLang(q)} className={`text-[color:var(--basalt)] ${choiceLang(q) ? "text-[18px]" : "text-[14px]"}`}><InlineMath text={c} /></span>
                       </button>
                     ))}
                   </div>
@@ -287,10 +289,10 @@ function Outcome({ result }: { result: QuizResult }) {
         {verdict} · {(result.elapsedMs / 1000).toFixed(1)}s
       </div>
       <div className="mt-2 text-[14px] text-[color:var(--basalt)]">
-        answer: <span dir={textDir(result.answer)} className="font-medium">{result.answer}</span>
+        answer: <span dir={textDir(result.answer)} className="font-medium"><InlineMath text={result.answer} /></span>
         {result.response !== null && !result.correct ? <span className="text-[color:var(--basalt-3)]"> · you said {result.response}</span> : null}
       </div>
-      <p className="mt-1 text-[13px] leading-[1.5] text-[color:var(--basalt-2)]">{result.explain}</p>
+      <p className="mt-1 text-[13px] leading-[1.5] text-[color:var(--basalt-2)]"><InlineMath text={result.explain} /></p>
       {result.sources.length > 0 && (
         <ul className="mt-2 flex flex-col gap-1">
           {result.sources.slice(0, 1).map((s) => (

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { InlineMath } from "@/components/math/InlineMath";
 import { languagesByName, textDir, toggleLanguage, wordCaption } from "@ros/work-quiz/languages";
 import { QUIZ_QUESTIONS } from "@ros/work-quiz/limits";
 import { ApiError, type Api, type DailyAnswer, type DailyQuiz, type WorkAnswer, type WorkQuestion, type WorkStatus } from "../api";
@@ -85,12 +86,12 @@ export function WordCredit({ q }: { q: Pick<WorkQuestion, "word"> }) {
 export function QuestionBody({ q }: { q: WorkQuestion }) {
   return (
     <>
-      <p className="q">{q.prompt}</p>
+      <p className="q"><InlineMath text={q.prompt} /></p>
       {q.lines.length > 0 && (
         <ul className={`lines${q.word ? " word" : ""}`}>
           {q.lines.map((l, i) => (
             <li key={i} dir={textDir(l)} lang={q.word?.lang ?? undefined}>
-              {l}
+              <InlineMath text={l} />
             </li>
           ))}
         </ul>
@@ -103,7 +104,7 @@ export function QuestionBody({ q }: { q: WorkQuestion }) {
 export function Choice({ q, text }: { q: WorkQuestion; text: string }) {
   return (
     <span dir={textDir(text)} lang={q.word?.choicesLang ?? undefined} className={q.word?.choicesLang ? "word" : undefined}>
-      {text}
+      <InlineMath text={text} />
     </span>
   );
 }
@@ -119,7 +120,7 @@ export function Why({ result }: { result: WorkAnswer }) {
   const source = result.sources?.[0];
   return (
     <p className="muted why">
-      {result.explain}
+      <InlineMath text={result.explain} />
       {source && " "}
       {source &&
         (source.href?.startsWith("https://") ? (
@@ -238,7 +239,7 @@ export function WorkQuizView({ api }: { api: Api }) {
           {result && (
             <div className="after-block">
               <p>
-                <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer {result.answer}
+                <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer <InlineMath text={result.answer} />
               </p>
               <Why result={result} />
               <button className="primary" onClick={next}>
@@ -415,7 +416,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
           {result && (
             <div className="after-block">
               <p>
-                <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer {result.answer}
+                <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer <InlineMath text={result.answer} />
                 {result.log10Distance !== null ? ` · ${factorOff(result.log10Distance)}` : ""}
               </p>
               <Why result={result} />
