@@ -41,7 +41,7 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            bundles: deb,appimage
+            bundles: deb,rpm,appimage
             strict: "1"
           - os: macos-latest
             bundles: app,dmg
@@ -78,7 +78,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update -q
-          sudo apt-get install -yq --no-install-recommends libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf xvfb dbus-x11 gnome-keyring libsecret-tools libfuse2
+          sudo apt-get install -yq --no-install-recommends libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev patchelf xvfb dbus-x11 gnome-keyring libsecret-tools libfuse2 rpm
       - name: install
         working-directory: packages/bkt-desktop
         run: bun install --frozen-lockfile
@@ -144,6 +144,14 @@ jobs:
           app=$(ls "$BUNDLES"/*.AppImage)
           chmod +x "$app"
           APPIMAGE_EXTRACT_AND_RUN=1 xvfb-run -a dbus-run-session -- bash "$RUNNER_TEMP/smoke.sh" "$app"
+      - name: the rpm carries the app and the bkt sidecar
+        if: runner.os == 'Linux'
+        run: |
+          rpms=("$BUNDLES"/*.rpm)
+          [ "${#rpms[@]}" -eq 1 ] && [ -f "${rpms[0]}" ] || { echo "expected one rpm, found ${#rpms[@]}"; exit 1; }
+          files=$(rpm -qpl "${rpms[0]}")
+          grep -qx /usr/bin/bucket-desktop <<< "$files" || { echo "no /usr/bin/bucket-desktop in the rpm"; exit 1; }
+          grep -qx /usr/bin/bkt <<< "$files" || { echo "no bkt sidecar in the rpm"; exit 1; }
       - name: smoke the dmg
         if: runner.os == 'macOS'
         working-directory: packages/bkt-desktop
@@ -187,6 +195,25 @@ jobs:
           path: ${{ env.BUNDLES }}/*
           if-no-files-found: error
 
+  rpm-fedora:
+    needs: bundle
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: bkt-desktop-ubuntu-latest
+          path: bundles
+      - name: dnf installs the rpm with its dependencies and the sidecar runs
+        run: |
+          rpms=(bundles/*.rpm)
+          [ "${#rpms[@]}" -eq 1 ] && [ -f "${rpms[0]}" ] || { echo "expected one rpm, found ${#rpms[@]}"; exit 1; }
+          dnf install -yq "./${rpms[0]}"
+          rpm -q --whatprovides /usr/bin/bkt
+          test -x /usr/bin/bucket-desktop
+          ldd /usr/bin/bucket-desktop | grep -q "not found" && { ldd /usr/bin/bucket-desktop; exit 1; } || true
+          /usr/bin/bkt help >/dev/null
+
   attest:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     needs: bundle
@@ -209,7 +236,7 @@ jobs:
 
   release:
     if: startsWith(github.ref, 'refs/tags/bkt-v')
-    needs: attest
+    needs: [attest, rpm-fedora]
     runs-on: ubuntu-latest
     timeout-minutes: 130
     environment: bkt-release
@@ -235,7 +262,7 @@ jobs:
           BKT_DESKTOP_UNSIGNED_OK: ${{ vars.BKT_DESKTOP_UNSIGNED_OK }}
         run: |
           v=${GITHUB_REF_NAME#bkt-v}
-          for a in macos-arm64.dmg macos-x64.dmg windows-x64.msi linux-x64.AppImage linux-x64.deb; do
+          for a in macos-arm64.dmg macos-x64.dmg windows-x64.msi linux-x64.AppImage linux-x64.deb linux-x64.rpm; do
             for suffix in "" .sha256; do
               [ -s "bundles/Bucket-desktop-$v-$a$suffix" ] || { echo "missing Bucket-desktop-$v-$a$suffix" >&2; exit 1; }
             done
