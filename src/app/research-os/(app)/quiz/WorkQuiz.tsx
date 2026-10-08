@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 import { InlineMath } from "@/components/math/InlineMath";
-import "katex/dist/katex.min.css";
 import { DONE_EVENT, START_EVENT, STORAGE_KEY, TICK_MS, initialState, normalizeState, onWorkSurface, tick, type TriggerState } from "@/lib/research-os/work-quiz/trigger";
 import { choiceLang, textDir, wordCaption } from "@/lib/research-os/work-quiz/languages";
 import { TYPE_LABEL, retiredNotice, type PublicQuestion } from "@/lib/research-os/work-quiz/types";

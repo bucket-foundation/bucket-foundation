@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 import { InlineMath } from "@/components/math/InlineMath";
-import "katex/dist/katex.min.css";
 import { DONE_EVENT, START_EVENT } from "@/lib/research-os/work-quiz/trigger";
 import { resourceForQuestion } from "@/lib/research-os/work-quiz/resources";
 import { TYPE_LABEL } from "@/lib/research-os/work-quiz/types";
