@@ -48,6 +48,12 @@ describe("buildQuestion", () => {
     }
   });
 
+  test("an atom id shared across branches names one concept and stays out of the distractors", () => {
+    const twin = { ...item("m", "math", "M"), atomId: "a" };
+    const wide = [...pool, twin, item("f", "math", "F"), item("g", "math", "G")];
+    for (const seed of ["s1", "s2", "s3", "s4", "s5", "s6"]) expect(buildQuestion(pool[0], wide, seed, 6).choices).not.toContain("M");
+  });
+
   test("time limit stays within 20 to 90 seconds", () => {
     expect(limitFor({ prompt: "x", answer: "y" })).toBe(20);
     expect(limitFor({ prompt: "w ".repeat(500), answer: "y" })).toBe(90);
