@@ -21,4 +21,22 @@ describe("CLI math fallback", () => {
     expect(texToText("\\binom{6}{3} = \\frac{6!}{3!\\,3!} = 20")).toContain("= 20");
     expect(texToText("\\Delta x \\cdot \\Delta p \\ge \\hbar/2")).toBe("Δ x · Δ p ≥ ħ/2");
   });
+
+  test("exact outputs for the shipped conversions", () => {
+    const cases: [string, string][] = [
+      ["\\binom{6}{3} = \\frac{6!}{3!\\,3!} = 20", "C(6,3) = (6!)/(3! 3!) = 20"],
+      ["A = U\\Sigma V^{\\top}", "A = UΣ Vᵀ"],
+      ["H^2 = (\\dot a/a)^2", "H² = (a\u0307/a)²"],
+      ["k_BT/\\langle x^2\\rangle", "k_BT/⟨x²⟩"],
+      ["\\Delta(\\frac{1}{2}mv^2)", "Δ(1/2mv²)"],
+      ["E_n = -13.6\\ \\text{eV}/n^2", "E_n = -13.6 eV/n²"],
+      ["c = 1/\\sqrt{\\mu_0\\varepsilon_0}", "c = 1/√(μ₀ε₀)"],
+      ["n_1\\sin\\theta_1 = n_2\\sin\\theta_2", "n₁sinθ₁ = n₂sinθ₂"],
+      ["6.022\\times10^{23}", "6.022×10²³"],
+      ["1.0\\times10^{-14}", "1.0×10⁻¹⁴"],
+      ["\\mathrm{Ca}^{2+}", "Ca²⁺"],
+      ["p \\to -i\\hbar\\nabla", "p → -iħ∇"],
+    ];
+    for (const [tex, text] of cases) expect(texToText(tex)).toBe(text);
+  });
 });

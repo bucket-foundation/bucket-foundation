@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { checkLimits, LIMITS, countTokens } from "../../../src/lib/research-os/work-quiz/limits";
-import { hasMath } from "../../../src/lib/research-os/work-quiz/math";
+import { hasMath, mathToText } from "../../../src/lib/research-os/work-quiz/math";
 import { newDataKey } from "../src/crypto";
 import { pickSession, quizQuestions } from "../src/deck";
 import type { Item } from "../src/grade";
@@ -18,6 +18,7 @@ const items: Item[] = readdirSync(corpusDir)
     const c = JSON.parse(readFileSync(join(corpusDir, f), "utf8"));
     return Array.isArray(c.atoms) ? itemsFromCorpus(f.replace(/\.json$/, ""), c) : [];
   });
+const plainForm = (s: string) => s.normalize("NFC").replace(/[A-Z]/g, (c) => c.toLowerCase()).replace(/[\s·×*()[\]{}_^]+/g, "").replace(/−/g, "-").replace(/ℏ/g, "ħ").replace(/½/g, "1/2");
 const pool = items.map((i) => withShort(i)).filter(hasShort);
 
 describe("quiz short fields", () => {
@@ -31,6 +32,7 @@ describe("quiz short fields", () => {
     const seen = new Set<string>();
     for (const i of pool) {
       if (!hasMath(i.shortAnswer)) expect(i.answer.includes(i.shortAnswer)).toBe(true);
+      else expect(plainForm(i.answer).includes(plainForm(mathToText(i.shortAnswer)))).toBe(true);
       expect(countTokens(i.shortAnswer)).toBeLessThanOrEqual(LIMITS.option);
       expect(countTokens(i.shortPrompt)).toBeLessThanOrEqual(LIMITS.stem);
       const key = `${i.branch}|${normShort(i.shortAnswer)}`;

@@ -32,7 +32,7 @@ const SYMBOLS: Record<string, string> = {
   infty: "∞", pm: "±", mp: "∓", times: "×", cdot: "·", div: "÷", circ: "∘", ldots: "…", cdots: "⋯", partial: "∂", nabla: "∇",
   in: "∈", notin: "∉", subset: "⊂", subseteq: "⊆", cap: "∩", cup: "∪", emptyset: "∅", forall: "∀", exists: "∃", neg: "¬",
   land: "∧", lor: "∨", sum: "∑", prod: "∏", int: "∫", hbar: "ħ", ell: "ℓ", degree: "°", angle: "∠", perp: "⊥", parallel: "∥",
-  mathbb: "", mathrm: "", mathbf: "", mathcal: "", text: "", operatorname: "", left: "", right: "", ",": " ", ";": " ", ":": " ", "!": "",
+  langle: "⟨", rangle: "⟩", top: "ᵀ", mathbb: "", mathrm: "", mathbf: "", mathcal: "", text: "", operatorname: "", left: "", right: "", ",": " ", ";": " ", ":": " ", "!": "",
 };
 
 const SUPER: Record<string, string> = { "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹", "+": "⁺", "-": "⁻", n: "ⁿ", i: "ⁱ" };
@@ -82,6 +82,16 @@ export function texToText(tex: string): string {
         const b = operand(tex, a.end);
         out += `${wrap(texToText(a.body))}/${wrap(texToText(b.body))}`;
         i = b.end;
+      } else if (cmd === "binom") {
+        const a = operand(tex, i);
+        const b = operand(tex, a.end);
+        out += `C(${texToText(a.body)},${texToText(b.body)})`;
+        i = b.end;
+      } else if (cmd === "dot" || cmd === "ddot") {
+        while (tex[i] === " ") i += 1;
+        const a = operand(tex, i);
+        out += `${texToText(a.body)}${cmd === "dot" ? "\u0307" : "\u0308"}`;
+        i = a.end;
       } else if (cmd === "sqrt") {
         const a = operand(tex, i);
         const inner = texToText(a.body);
@@ -89,11 +99,17 @@ export function texToText(tex: string): string {
         i = a.end;
       } else if (cmd in SYMBOLS) {
         out += SYMBOLS[cmd];
+        if (cmd === "langle") while (tex[i] === " ") i += 1;
       } else {
         out += cmd;
       }
     } else if (c === "^" || c === "_") {
       const a = operand(tex, i + 1);
+      if (c === "^" && (a.body.trim() === "\\top" || a.body.trim() === "\\circ")) {
+        out += a.body.trim() === "\\top" ? "ᵀ" : "°";
+        i = a.end;
+        continue;
+      }
       out += script(texToText(a.body), c === "^" ? SUPER : SUB, c);
       i = a.end;
     } else if (c === "{" || c === "}") {
