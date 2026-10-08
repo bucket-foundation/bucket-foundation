@@ -3,6 +3,22 @@ import { LIMITS } from "../../../src/lib/research-os/work-quiz/limits";
 
 export type { Card, Rating };
 
+import { createHash } from "node:crypto";
+
+export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
+
+export function deckOf(branch: string): string {
+  return LEGACY_DECKS[branch] ?? branch;
+}
+
+export function promptHash(prompt: string, options: string[] = []): string {
+  return createHash("sha1").update(prompt.trim() + [...options].sort().join("")).digest("hex").slice(0, 10);
+}
+
+export function contentItemId(branch: string, atomId: string, prompt: string): string {
+  return `${deckOf(branch)}/${atomId}/${promptHash(prompt)}`;
+}
+
 export const GRACE_MS = 1500;
 export const FAST_FRACTION = 0.4;
 

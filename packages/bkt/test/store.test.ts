@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { newDataKey, open, seal } from "../src/crypto";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "../src/deck";
-import type { Item } from "../src/grade";
+import { contentItemId, type Item } from "../src/grade";
 import type { ShortFile } from "../src/short-fields";
 import { buildPack, itemsFromCorpus } from "../src/pack/export";
 import { CACHE_KIB, SCHEMA_VERSION, Store, WAL_CHECKPOINT_PAGES, WAL_LIMIT_BYTES } from "../src/store";
@@ -148,8 +148,8 @@ describe("content pack", () => {
       atoms: [{ id: "k", title: "K", quiz: [{ prompt: "p", answer: "a" }, { prompt: " ", answer: "x" }, { level: "apply", prompt: "p2", answer: "a2" }] }],
     });
     expect(out.map((i) => [i.id, i.level])).toEqual([
-      ["02-physics/k/0", "recall"],
-      ["02-physics/k/2", "apply"],
+      [contentItemId("02-physics", "k", "p"), "recall"],
+      [contentItemId("02-physics", "k", "p2"), "apply"],
     ]);
   });
 
@@ -162,5 +162,54 @@ describe("content pack", () => {
     expect(pack.decks!.find((d) => d.id === "05-biophysics")!.source).toBe("biophysics");
     expect(pack.decks!.every((d) => pack.atoms![d.id].length === d.atoms)).toBe(true);
     expect(Object.keys(pack.atoms!)).not.toContain("lang-core");
+  });
+});
+
+describe("content item ids", () => {
+  const mk = (prompts: string[], deck = "01-math", atom = "a") =>
+    prompts.map((p) => ({ id: contentItemId(deck, atom, p), atomId: atom, branch: deck, title: atom, level: "recall", prompt: p, answer: `ans ${p}` }));
+  const promptOf = (s: Store, itemId: string) => s.db.query<{ prompt: string }, [string]>("select prompt from items where id = ?").get(itemId)!.prompt;
+
+  function attempted(s: Store, items: ReturnType<typeof mk>) {
+    items.forEach((i, n) => s.recordAttempt({ itemId: i.id, mode: "quiz", response: null, correct: true, rating: 3, elapsedMs: 1, at: n + 1 }));
+  }
+
+  test("reorder keeps every attempt on its prompt", () => {
+    const s = new Store(":memory:", newDataKey());
+    const items = mk(["p1", "p2", "p3"]);
+    s.importPack("v1", items);
+    attempted(s, items);
+    s.importPack("v2", [...items].reverse());
+    expect(s.attempts().map((a) => promptOf(s, a.itemId))).toEqual(["p1", "p2", "p3"]);
+    s.close();
+  });
+
+  test("insert and delete keep every attempt on its prompt", () => {
+    const s = new Store(":memory:", newDataKey());
+    const items = mk(["p1", "p2", "p3"]);
+    s.importPack("v1", items);
+    attempted(s, items);
+    s.importPack("v2", [...mk(["new"]), items[0], items[2]]);
+    expect(s.attempts().map((a) => promptOf(s, a.itemId))).toEqual(["p1", "p2", "p3"]);
+    expect(s.items().map((i) => i.prompt).sort()).toEqual(["new", "p1", "p3"]);
+    s.close();
+  });
+
+  test("an absent item with no attempts is deleted", () => {
+    const s = new Store(":memory:", newDataKey());
+    const items = mk(["p1", "p2"]);
+    s.importPack("v1", items);
+    s.importPack("v2", [items[0]]);
+    expect(s.db.query<{ n: number }, []>("select count(*) n from items").get()!.n).toBe(1);
+    s.close();
+  });
+
+  test("a repeated atom id across decks yields distinct ids", () => {
+    const s = new Store(":memory:", newDataKey());
+    const both = [...mk(["same?"], "01-math", "nernst"), ...mk(["same?"], "02-physics", "nernst")];
+    expect(new Set(both.map((i) => i.id)).size).toBe(2);
+    s.importPack("v1", both);
+    expect(s.items()).toHaveLength(2);
+    s.close();
   });
 });

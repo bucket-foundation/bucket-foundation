@@ -4,21 +4,18 @@ import { dirname } from "node:path";
 import { randomUUID } from "node:crypto";
 import { open, seal } from "./crypto";
 import { ADAPTIVE, grade as engineGrade, normalizeState, updateProficiency, type Depth, type EncEdge, type EngineState } from "../../../src/lib/academy/engine";
-import type { Card, Item, Rating } from "./grade";
+import { contentItemId, deckOf, LEGACY_DECKS, type Card, type Item, type Rating } from "./grade";
+
 import { cardKey } from "../../../src/lib/research-os/work-quiz/fact";
 import type { Form } from "../../../src/lib/research-os/work-quiz/space";
 
-export const SCHEMA_VERSION = 12;
+export { deckOf, LEGACY_DECKS };
+
+export const SCHEMA_VERSION = 13;
 
 export const SYNC_TABLES = ["attempts"] as const;
 
 export const LOCAL_ONLY_TABLES = ["advisor_review", "advisor_rows", "prime_directions", "people_forget", "work_quiz_source", "work_quiz_attempts", "notes", "history_snapshot", "daily_quiz", "work_quiz_cards", "work_quiz_coverage", "ros_nodes", "ros_edges", "ros_items", "ros_state", "ros_profile", "work_quiz_languages"] as const;
-
-export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
-
-export function deckOf(branch: string): string {
-  return LEGACY_DECKS[branch] ?? branch;
-}
 
 const deckCase = `case branch ${Object.entries(LEGACY_DECKS)
   .map(([b, d]) => `when '${b}' then '${d}'`)
@@ -62,6 +59,28 @@ export function migrateLearn(db: Database) {
   const insProf = db.query("insert into learn_prof (deck, card_id, theta, n) values (?, ?, ?, ?)");
   for (const { deck, id, p } of prof.values()) insProf.run(deck, id, p.theta, p.n);
   db.run("drop index cards_due; drop table cards;");
+}
+
+export function migrateItemIds(db: Database) {
+  db.run("alter table items add column retired integer not null default 0");
+  type Row = { id: string; atom_id: string; branch: string; deck: string; title: string; level: string; prompt: string; answer: string; pack_version: string };
+  const rows = db.query<Row, []>("select id, atom_id, branch, deck, title, level, prompt, answer, pack_version from items order by id").all();
+  const alias = new Map<string, string>();
+  const insert = db.query(
+    "insert into items (id, atom_id, branch, deck, title, level, prompt, answer, pack_version) values (?, ?, ?, ?, ?, ?, ?, ?, ?) on conflict(id) do nothing",
+  );
+  for (const r of rows) {
+    const next = contentItemId(r.deck, r.atom_id, r.prompt);
+    if (next === r.id) continue;
+    alias.set(r.id, next);
+    insert.run(next, r.atom_id, r.branch, r.deck, r.title, r.level, r.prompt, r.answer, r.pack_version);
+  }
+  const move = db.query("update attempts set item_id = ? where item_id = ?");
+  const drop = db.query("delete from items where id = ?");
+  for (const [from, to] of alias) {
+    move.run(to, from);
+    drop.run(from);
+  }
 }
 
 export const MIGRATIONS: Migration[] = [
@@ -115,6 +134,7 @@ export const MIGRATIONS: Migration[] = [
    create table ros_state (node_id text primary key, stage text not null, confidence real, evidence text not null default '[]', updated_at integer not null);
    create table ros_profile (id integer primary key check (id = 1), role text, birth_year_bucket text, game text, updated_at integer not null);`,
   `create table if not exists work_quiz_languages (code text primary key check (length(code) between 2 and 3), added_at integer not null);`,
+  migrateItemIds,
 ];
 
 export interface AttemptInput {
@@ -213,10 +233,18 @@ export class Store {
     const ins = this.db.query(
       `insert into items (id, atom_id, branch, deck, title, level, prompt, answer, pack_version) values (?, ?, ?, ?, ?, ?, ?, ?, ?)
        on conflict(id) do update set atom_id = excluded.atom_id, branch = excluded.branch, deck = excluded.deck, title = excluded.title,
-       level = excluded.level, prompt = excluded.prompt, answer = excluded.answer, pack_version = excluded.pack_version`,
+       level = excluded.level, prompt = excluded.prompt, answer = excluded.answer, pack_version = excluded.pack_version, retired = 0`,
     );
     this.db.transaction(() => {
       for (const i of items) ins.run(i.id, i.atomId, i.branch, deckOf(i.branch), i.title, i.level, i.prompt, i.answer, version);
+      const live = new Set(items.map((i) => i.id));
+      const absent = this.db.query<{ id: string }, []>("select id from items").all().filter((r) => !live.has(r.id));
+      const drop = this.db.query("delete from items where id = ? and not exists (select 1 from attempts where item_id = ?)");
+      const retire = this.db.query("update items set retired = 1 where id = ?");
+      for (const { id } of absent) {
+        drop.run(id, id);
+        retire.run(id);
+      }
       this.setMeta("pack_version", version);
     })();
     return items.length;
@@ -225,7 +253,7 @@ export class Store {
   items(): Item[] {
     return this.db
       .query<{ id: string; atom_id: string; branch: string; title: string; level: string; prompt: string; answer: string }, []>(
-        "select id, atom_id, branch, title, level, prompt, answer from items order by id",
+        "select id, atom_id, branch, title, level, prompt, answer from items where retired = 0 order by id",
       )
       .all()
       .map((r) => ({ id: r.id, atomId: r.atom_id, branch: r.branch, title: r.title, level: r.level, prompt: r.prompt, answer: r.answer }));
@@ -246,8 +274,8 @@ export class Store {
   dueItemIds(now: number, limit: number): string[] {
     return this.db
       .query<{ id: string }, [number, number]>(
-        `select (select min(i.id) from items i where i.deck = c.deck and i.atom_id = c.card_id) id from learn_cards c
-         where c.due is not null and c.due <= ? and exists (select 1 from items i where i.deck = c.deck and i.atom_id = c.card_id)
+        `select (select min(i.id) from items i where i.retired = 0 and i.deck = c.deck and i.atom_id = c.card_id) id from learn_cards c
+         where c.due is not null and c.due <= ? and exists (select 1 from items i where i.retired = 0 and i.deck = c.deck and i.atom_id = c.card_id)
          order by c.due, c.deck, c.card_id limit ?`,
       )
       .all(now, limit)
@@ -257,7 +285,7 @@ export class Store {
   newItemIds(limit: number): string[] {
     return this.db
       .query<{ id: string }, [number]>(
-        `select min(i.id) id from items i where not exists (select 1 from learn_cards c where c.deck = i.deck and c.card_id = i.atom_id)
+        `select min(i.id) id from items i where i.retired = 0 and not exists (select 1 from learn_cards c where c.deck = i.deck and c.card_id = i.atom_id)
          group by i.deck, i.atom_id order by id limit ?`,
       )
       .all(limit)
@@ -367,7 +395,7 @@ export class Store {
   stats(now: number): { items: number; seen: number; due: number; attempts: number } {
     const q = (sql: string, ...args: number[]) => this.db.query<{ n: number }, number[]>(sql).get(...args)!.n;
     return {
-      items: q("select count(*) n from items"),
+      items: q("select count(*) n from items where retired = 0"),
       seen: q("select count(*) n from learn_cards"),
       due: q("select count(*) n from learn_cards where due <= ?", now),
       attempts: q("select count(*) n from attempts"),

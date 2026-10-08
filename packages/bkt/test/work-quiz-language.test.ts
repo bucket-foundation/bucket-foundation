@@ -75,8 +75,8 @@ describe("schema 11 languages", () => {
     db.close();
     const key = newDataKey();
     const s = new Store(path, key);
-    expect(SCHEMA_VERSION).toBe(12);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(12);
+    expect(SCHEMA_VERSION).toBe(13);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     expect(s.db.query("select cell from work_quiz_coverage").all()).toEqual([{ cell: "c" }]);
     expect(LOCAL_ONLY_TABLES).toContain("work_quiz_languages");
     const wq = new WorkQuizStore(s, key);

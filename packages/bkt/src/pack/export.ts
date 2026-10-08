@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { Atom } from "../../../../src/lib/academy/engine";
-import type { Item } from "../grade";
+import { contentItemId, type Item } from "../grade";
 
 export interface PackDeck {
   id: string;
@@ -48,11 +48,15 @@ function readIndex(corpusDir: string): Map<string, { id: string; title: string }
 
 export function itemsFromCorpus(branch: string, corpus: CorpusFile): Item[] {
   const out: Item[] = [];
+  const seen = new Set<string>();
   for (const atom of corpus.atoms ?? []) {
-    (atom.quiz ?? []).forEach((q, i) => {
+    (atom.quiz ?? []).forEach((q) => {
       if (!q.prompt?.trim() || !q.answer?.trim()) return;
+      let id = contentItemId(branch, atom.id, q.prompt);
+      if (seen.has(id)) id = contentItemId(branch, atom.id, `${q.prompt}\n${q.answer}`);
+      seen.add(id);
       out.push({
-        id: `${branch}/${atom.id}/${i}`,
+        id,
         atomId: atom.id,
         branch,
         title: atom.title,

@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { normalizeState } from "../../../src/lib/academy/engine";
 import { newDataKey } from "../src/crypto";
-import { schedule } from "../src/grade";
+import { contentItemId, promptHash, schedule } from "../src/grade";
 import { RosGraph, syncRosGraph } from "../src/ros";
 import { LOCAL_ONLY_TABLES, MIGRATIONS, SCHEMA_VERSION, Store } from "../src/store";
 
@@ -58,8 +58,8 @@ describe("migration 3", () => {
     expect(phys.prof.k.theta).toBeGreaterThan(0);
     expect(s.learnState("biophysics").cards).toEqual({});
     expect(s.items().map((i) => i.branch)).toContain("biophysics");
-    expect(s.newItemIds(10)).toEqual(["02-physics/new/0"]);
-    expect(s.dueItemIds(100 * DAY, 10).sort()).toEqual(["02-physics/k/0", "biophysics/mito/0"]);
+    expect(s.newItemIds(10)).toEqual([contentItemId("02-physics", "new", "pn")]);
+    expect(s.dueItemIds(100 * DAY, 10).sort()).toEqual([contentItemId("02-physics", "k", "pk"), contentItemId("05-biophysics", "mito", "p1")].sort());
     expect(s.attempts()).toHaveLength(3);
     s.close();
   });
@@ -122,7 +122,8 @@ describe("migration 11", () => {
     db.query("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at) values ('work1', 'daily:2026-10-01:1', 'recall', 1, 3, 500, 1)").run();
     db.query("insert into daily_quiz (day, body, created_at) values (?, ?, ?)").run("2026-10-01", '{"questions":[]}', 1);
     const kept = ["learn_cards", "learn_prof", "attempts", "notes", "work_quiz_cards", "work_quiz_coverage", "work_quiz_attempts", "daily_quiz"];
-    const snapshot = (database: Database) => kept.map((table) => database.query(`select * from ${table} order by rowid`).all());
+    const snapshot = (database: Database) =>
+      JSON.parse(JSON.stringify(kept.map((table) => database.query(`select * from ${table} order by rowid`).all())).replace(/"item_id":"[^"]*"/g, '"item_id":"-"'));
     const before = snapshot(db);
     db.close();
     const key = newDataKey();
@@ -147,5 +148,60 @@ describe("migration 11", () => {
     expect(new RosGraph(reopened.db).profileRow()).toEqual(profile);
     expect(new RosGraph(reopened.db).byId("physics:heat")?.title).toBe("Heat");
     reopened.close();
+  });
+});
+
+describe("migration 13", () => {
+  const quiz = (deck: string, atom: string, prompt: string) => ({ id: contentItemId(deck, atom, prompt), atomId: atom, branch: deck, title: atom, level: "recall", prompt, answer: `a:${prompt}` });
+
+  function v12Fixture(path: string) {
+    const db = new Database(path, { create: true, strict: true });
+    MIGRATIONS.slice(0, 12).forEach((m) => (typeof m === "string" ? db.run(m) : m(db)));
+    db.run("pragma user_version = 12");
+    const item = db.query("insert into items (id, atom_id, branch, deck, title, level, prompt, answer, pack_version) values (?, ?, ?, ?, ?, 'recall', ?, ?, 'v1')");
+    item.run("01-math/nernst/0", "nernst", "01-math", "01-math", "N", "first?", "a1");
+    item.run("01-math/nernst/1", "nernst", "01-math", "01-math", "N", "second?", "a2");
+    item.run("02-physics/nernst/0", "nernst", "02-physics", "02-physics", "N", "other deck?", "a3");
+    item.run("biophysics/mito/0", "mito", "biophysics", "05-biophysics", "M", "legacy?", "a4");
+    const at = db.query("insert into attempts (id, item_id, mode, response_enc, correct, rating, elapsed_ms, at) values (?, ?, 'quiz', null, 1, 3, 100, ?)");
+    at.run("t1", "01-math/nernst/0", 1);
+    at.run("t2", "01-math/nernst/1", 2);
+    at.run("t3", "02-physics/nernst/0", 3);
+    at.run("t4", "biophysics/mito/0", 4);
+    db.close();
+  }
+
+  test("rewrites stored attempts to content ids and keeps each on its prompt", () => {
+    const path = join(dir, "bkt.db");
+    v12Fixture(path);
+    const s = new Store(path, newDataKey());
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(13);
+    const rows = s.db.query<{ id: string; prompt: string }, []>("select i.id, i.prompt from attempts a join items i on i.id = a.item_id order by a.at").all();
+    expect(rows.map((r) => r.prompt)).toEqual(["first?", "second?", "other deck?", "legacy?"]);
+    expect(rows.map((r) => r.id)).toEqual([
+      contentItemId("01-math", "nernst", "first?"),
+      contentItemId("01-math", "nernst", "second?"),
+      contentItemId("02-physics", "nernst", "other deck?"),
+      "05-biophysics/mito/" + promptHash("legacy?"),
+    ]);
+    expect(s.db.query("select 1 from items where id like '%/0' or id like '%/1'").get()).toBeNull();
+    expect(s.db.query<{ n: number }, []>("select count(*) n from attempts").get()!.n).toBe(4);
+    s.close();
+  });
+
+  test("same atom id in two decks gets distinct ids", () => {
+    expect(contentItemId("01-math", "nernst", "q?")).not.toBe(contentItemId("02-physics", "nernst", "q?"));
+  });
+
+  test("a pack import after the migration reuses the migrated rows and retires what the pack dropped", () => {
+    const path = join(dir, "bkt.db");
+    v12Fixture(path);
+    const s = new Store(path, newDataKey());
+    s.importPack("v2", [quiz("01-math", "nernst", "second?"), quiz("01-math", "nernst", "inserted?")]);
+    const live = s.items().map((i) => i.prompt).sort();
+    expect(live).toEqual(["inserted?", "second?"]);
+    expect(s.db.query<{ retired: number }, [string]>("select retired from items where id = ?").get(contentItemId("01-math", "nernst", "first?"))!.retired).toBe(1);
+    expect(s.db.query<{ n: number }, []>("select count(*) n from attempts").get()!.n).toBe(4);
+    s.close();
   });
 });
