@@ -27,7 +27,7 @@ Canon Ingestion Index.
 ## Canon structure
 
 10 branches + 6 primary-axis bridges (time, music, light, information, sound, energy)
-+ 6 secondary bridges. See `bucket-canon/_bridges/INDEX.md` and `CANON-MASTER.md`.
++ 6 secondary bridges. See `bucket-canon/_bridges/INDEX.md` and `docs/canon/CANON-MASTER.md`.
 
 ## Session totals
 
@@ -152,11 +152,11 @@ full-text index.
 | Crosswalk: History Hypothesis Engine vs Quantum Algorithm Discovery | `_intake/hypothesis-engine/CROSSWALK-QUANTUM-ALGORITHM-DISCOVERY.md` | design spec | - |
 | Canon concept node, Hypothesis Address Space and Subjective-Logic Belief | `bucket-canon/04-information/concepts/hypothesis-engine-address-and-belief.md` | canon card | [10.5281/zenodo.22694649](https://doi.org/10.5281/zenodo.22694649) |
 
-Full context: `CANON-CONTRIBUTIONS-2026-09-10.md`.
+Full context: `docs/canon/CANON-CONTRIBUTIONS-2026-09-10.md`.
 
 ## Recent additions, 2026-09-10
 
-Build-history write-back. 0 hypothesis card(s) written from `hte.canon_writeback.write_back` over `sacred-history` run `sacred-history-20260910T180835Z`, `canon_tier: candidate` throughout. Promotion to canon stays a human review step, `GOVERNANCE.md`.
+Build-history write-back. 0 hypothesis card(s) written from `hte.canon_writeback.write_back` over `sacred-history` run `sacred-history-20260910T180835Z`, `canon_tier: candidate` throughout. Promotion to canon stays a human review step, `docs/foundation/GOVERNANCE.md`.
 
 | Title | Path | Type |
 |---|---|---|

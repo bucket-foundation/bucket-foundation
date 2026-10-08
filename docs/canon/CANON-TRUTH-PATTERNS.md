@@ -52,23 +52,23 @@ No keyword matching. No manual labeling. The structure emerged from semantic dis
 
 | # | Score | Branches | Name | Canonical form |
 |---:|---:|---:|---|---|
-| 1 | 10.00 | 5 | [Non-Symmetry Principle](bucket-canon/_bridges/detected/01-non-symmetry-principle/README.md) | Any physical system or theory must be symmetric under non-trivial transformations to produce a chiral world. |
-| 2 | 9.58 | 5 | [Multivalence](bucket-canon/_bridges/detected/02-multivalence/README.md) | The concept of multiple meanings or interpretations is a fundamental aspect of the subject matter. |
-| 3 | 7.52 | 5 | [Subjective Truth](bucket-canon/_bridges/detected/03-subjective-truth/README.md) | The truth is subject to change and interpretation based on new data or perspectives. |
-| 4 | 6.78 | 5 | [Wound Healing](bucket-canon/_bridges/detected/04-wound-healing/README.md) | Healing from injury or trauma is a natural process that leads to growth and regeneration. |
-| 5 | 6.35 | 3 | [Cold Increases Energy](bucket-canon/_bridges/detected/05-cold-increases-energy/README.md) | Cold increases the amount of energy available in a system. |
-| 6 | 6.05 | 5 | [Demonstration](bucket-canon/_bridges/detected/06-demonstration/README.md) | The act of explaining how to arrive at a conclusion through step-by-step explanation. |
-| 7 | 6.05 | 4 | [Extracurricular Learning](bucket-canon/_bridges/detected/07-extracurricular-learning/README.md) | Learning outside of formal education is a valuable and diverse way to acquire knowledge. |
-| 8 | 5.57 | 3 | [second law of thermodynamics](bucket-canon/_bridges/detected/08-second-law-of-thermodynamics/README.md) | the total entropy of an isolated system always increases over time. |
-| 9 | 5.14 | 3 | [Intrinsic Pressure](bucket-canon/_bridges/detected/09-intrinsic-pressure/README.md) | The universe exhibits a pervasive, intrinsic pressure driving objects towards their centers. |
-| 10 | 5.11 | 3 | [photoelectric effect](bucket-canon/_bridges/detected/10-photoelectric-effect/README.md) | The photoelectric effect is the process by which light energy is absorbed and converted into chemical energy. |
-| 11 | 5.06 | 4 | [Nonlinear Dynamical Systems](bucket-canon/_bridges/detected/11-nonlinear-dynamical-systems/README.md) | A system's behavior is sensitive to initial conditions and small changes, leading to unpredictable outcomes. |
-| 12 | 4.76 | 3 | [constant speed of light](bucket-canon/_bridges/detected/12-constant-speed-of-light/README.md) | The speed of light is always constant. |
-| 13 | 4.61 | 3 | [Global Causality](bucket-canon/_bridges/detected/13-global-causality/README.md) | Every event has a cause, and change occurs instantly everywhere. |
-| 14 | 4.60 | 3 | [Decentralized Operational Law](bucket-canon/_bridges/detected/14-decentralized-operational-law/README.md) | Operational laws and principles are decentralized. |
-| 15 | 4.47 | 3 | [Curvature is fundamental](bucket-canon/_bridges/detected/15-curvature-is-fundamental/README.md) | Curvature is a universal limit for massless particles and the geometry of fundamental particles. |
-| 16 | 4.34 | 3 | [Lack of Self-Reference](bucket-canon/_bridges/detected/16-lack-of-self-reference/README.md) | A system cannot be conscious if it lacks the ability to modify its own internal state. |
-| 17 | 3.44 | 3 | [Two-Story Narrative](bucket-canon/_bridges/detected/17-two-story-narrative/README.md) | There are two stories that need to be told: one about the event itself and another about the individual's experience. |
+| 1 | 10.00 | 5 | [Non-Symmetry Principle](../../bucket-canon/_bridges/detected/01-non-symmetry-principle/README.md) | Any physical system or theory must be symmetric under non-trivial transformations to produce a chiral world. |
+| 2 | 9.58 | 5 | [Multivalence](../../bucket-canon/_bridges/detected/02-multivalence/README.md) | The concept of multiple meanings or interpretations is a fundamental aspect of the subject matter. |
+| 3 | 7.52 | 5 | [Subjective Truth](../../bucket-canon/_bridges/detected/03-subjective-truth/README.md) | The truth is subject to change and interpretation based on new data or perspectives. |
+| 4 | 6.78 | 5 | [Wound Healing](../../bucket-canon/_bridges/detected/04-wound-healing/README.md) | Healing from injury or trauma is a natural process that leads to growth and regeneration. |
+| 5 | 6.35 | 3 | [Cold Increases Energy](../../bucket-canon/_bridges/detected/05-cold-increases-energy/README.md) | Cold increases the amount of energy available in a system. |
+| 6 | 6.05 | 5 | [Demonstration](../../bucket-canon/_bridges/detected/06-demonstration/README.md) | The act of explaining how to arrive at a conclusion through step-by-step explanation. |
+| 7 | 6.05 | 4 | [Extracurricular Learning](../../bucket-canon/_bridges/detected/07-extracurricular-learning/README.md) | Learning outside of formal education is a valuable and diverse way to acquire knowledge. |
+| 8 | 5.57 | 3 | [second law of thermodynamics](../../bucket-canon/_bridges/detected/08-second-law-of-thermodynamics/README.md) | the total entropy of an isolated system always increases over time. |
+| 9 | 5.14 | 3 | [Intrinsic Pressure](../../bucket-canon/_bridges/detected/09-intrinsic-pressure/README.md) | The universe exhibits a pervasive, intrinsic pressure driving objects towards their centers. |
+| 10 | 5.11 | 3 | [photoelectric effect](../../bucket-canon/_bridges/detected/10-photoelectric-effect/README.md) | The photoelectric effect is the process by which light energy is absorbed and converted into chemical energy. |
+| 11 | 5.06 | 4 | [Nonlinear Dynamical Systems](../../bucket-canon/_bridges/detected/11-nonlinear-dynamical-systems/README.md) | A system's behavior is sensitive to initial conditions and small changes, leading to unpredictable outcomes. |
+| 12 | 4.76 | 3 | [constant speed of light](../../bucket-canon/_bridges/detected/12-constant-speed-of-light/README.md) | The speed of light is always constant. |
+| 13 | 4.61 | 3 | [Global Causality](../../bucket-canon/_bridges/detected/13-global-causality/README.md) | Every event has a cause, and change occurs instantly everywhere. |
+| 14 | 4.60 | 3 | [Decentralized Operational Law](../../bucket-canon/_bridges/detected/14-decentralized-operational-law/README.md) | Operational laws and principles are decentralized. |
+| 15 | 4.47 | 3 | [Curvature is fundamental](../../bucket-canon/_bridges/detected/15-curvature-is-fundamental/README.md) | Curvature is a universal limit for massless particles and the geometry of fundamental particles. |
+| 16 | 4.34 | 3 | [Lack of Self-Reference](../../bucket-canon/_bridges/detected/16-lack-of-self-reference/README.md) | A system cannot be conscious if it lacks the ability to modify its own internal state. |
+| 17 | 3.44 | 3 | [Two-Story Narrative](../../bucket-canon/_bridges/detected/17-two-story-narrative/README.md) | There are two stories that need to be told: one about the event itself and another about the individual's experience. |
 
 ## Top-10 detailed cards
 

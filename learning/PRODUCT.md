@@ -126,7 +126,7 @@ screenshot-it-and-share viral loop Duolingo never fully exploited.
 
 > Nonprofit framing: foundations are free forever. Paid tiers sell **AI horsepower,
 > personalization, and exam tooling**, sitting above access to knowledge, consistent with
-> GOVERNANCE.md.
+> docs/foundation/GOVERNANCE.md.
 
 ---
 

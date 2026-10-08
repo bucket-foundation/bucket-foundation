@@ -267,7 +267,7 @@ export default function AccessPage() {
               Clone <code>bucket-foundation/bucket-foundation</code>. The
               canon claims live in <code>bucket-canon/</code>. The data
               pipeline is in <code>_intake/</code>. See{" "}
-              <a href="https://github.com/bucket-foundation/bucket-foundation/blob/main/REPRODUCE.md"
+              <a href="https://github.com/bucket-foundation/bucket-foundation/blob/main/docs/REPRODUCE.md"
                  className="underline" target="_blank" rel="noreferrer">
                 REPRODUCE.md
               </a>.

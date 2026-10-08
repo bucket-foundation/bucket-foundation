@@ -1,7 +1,7 @@
 # bucket v5, Voiceover Script
 
 **Total target:** ~90 seconds at 80 words/min (~120 words).
-**Voice:** Declarative. Carved. Zero filler. Match `MANIFESTO.md`.
+**Voice:** Declarative. Carved. Zero filler. Match `docs/foundation/MANIFESTO.md`.
 **Arc:** 8 stone cards, timed to the card cuts in `gen_stone_cards.py`.
 
 ---

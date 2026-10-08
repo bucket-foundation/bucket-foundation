@@ -2,7 +2,7 @@
 
 **Pillar:** Data · **Epic:** `bkt-2ea` (photon substrate) under `bkt-jh0` (Academy) · sister to `bkt-epic-kruse`
 **Author:** Data (Nucleus) · 2026-06-14
-**Reads beside:** `PHOTON-SPEC.md` (the photon contract), `POLINGUAL.md` (product vision + endpoints + comparison axes), `src/lib/photon-index.ts` (in-repo access lib), `polingual/src/lib/photon-db.ts` (the PostgREST client), `learning/app/corpus/lang-core.json` (the 107-word toy deck), `learning/research/ux/UX-CRAFT.md` (the craft layer this drill must meet).
+**Reads beside:** `docs/specs/PHOTON-SPEC.md` (the photon contract), `docs/specs/POLINGUAL.md` (product vision + endpoints + comparison axes), `src/lib/photon-index.ts` (in-repo access lib), `polingual/src/lib/photon-db.ts` (the PostgREST client), `learning/app/corpus/lang-core.json` (the 107-word toy deck), `learning/research/ux/UX-CRAFT.md` (the craft layer this drill must meet).
 
 > **Data sources are open & attributed.** Every lexical fact here comes from **Wiktionary via Kaikki**
 > (`kaikki.org`, CC-BY-SA 4.0; TatSoup/Tatuylonen's machine-readable Wiktionary extraction). Audio is
@@ -135,7 +135,7 @@ and what to do given the measured gaps.
 - **Data source:** **`kaikki-cache/*.jsonl` `etymology_templates` + `descendants`**, *not* the current
  index (which dropped them). This is the single biggest reason to re-ingest from the raw cache.
 - **Build:** a Python pass over the cache emitting an `etymology_edges` table (`from_id, to_id, predicate,
- proto_form, source_lang`). ~minutes per language file. Render as a vertical SVG tree (POLINGUAL.md v2).
+ proto_form, source_lang`). ~minutes per language file. Render as a vertical SVG tree (docs/specs/POLINGUAL.md v2).
 - **Answers:** `/api/photon/etymology?id=photon:word:en:entropy` (walk up) and
  `/api/photon/cognates?root=*lewk-` (walk down).
 
@@ -144,7 +144,7 @@ and what to do given the measured gaps.
 - **Query:** "say *light* in Sanskrit" → exact translation; "all words for *light*" → the cluster.
 - **Algorithm:** **two complementary sources, ranked.** (a) **Explicit**, Kaikki `translations[]` arrays
  (each entry: `{lang, code, sense, word, roman}`) materialized as **`translates` predicate edges**
- (fixes G2). This is *curated truth*, pre-cached, no model, POLINGUAL.md v0.5 exactly. Cluster = the
+ (fixes G2). This is *curated truth*, pre-cached, no model, docs/specs/POLINGUAL.md v0.5 exactly. Cluster = the
  connected component over `translates` edges, keyed by **shared sense**. (b) **Implicit fallback**, when
  no explicit edge exists, **semantic neighbors (§1.1) filtered to `to=` language** above a cosine
  threshold, flagged `inferred:true` in the response so the UI can mark it lower-confidence.
@@ -168,7 +168,7 @@ and what to do given the measured gaps.
 
 ## 2. API layer
 
-Flesh out the POLINGUAL.md endpoints. **One Python service** reads `index.sqlite` + memmapped `.bin`
+Flesh out the docs/specs/POLINGUAL.md endpoints. **One Python service** reads `index.sqlite` + memmapped `.bin`
 vectors; Next.js routes proxy it (or read sqlite directly in dev). JSON shapes match PHOTON-SPEC.
 
 | Endpoint | Does | Reads | Notes |
@@ -193,7 +193,7 @@ file is slow. **Decision (two-tier):**
 - **Vercel (`polingual.com` + `bucket.foundation`) → thin proxy + a trimmed starter subset baked in.**
  Word-lookup and the starter-guide work from a **15-25 MB starter index** shipped in the build artifact
  (instant, offline-capable, covers the common-words core). Anything needing the *full* cross-lingual
- vector search proxies to the Hetzner service. This matches POLINGUAL.md's "Vercel for surface, same disk
+ vector search proxies to the Hetzner service. This matches docs/specs/POLINGUAL.md's "Vercel for surface, same disk
  in dev" while respecting serverless limits. The existing `polingual/src/lib/photon-db.ts` PostgREST path
  to `db.agfarms.dev` is a **third** option, fine for metadata lookups, but vector search must not go
  through PostgREST (no ANN). **Pick one read path per query class:** metadata→PostgREST or starter-sqlite;
@@ -265,7 +265,7 @@ One substrate, two surfaces.
 - **Shared:** the photon DB + the Python photon service (§2) are the **single source of truth**. Academy
  and polingual.com are two *read surfaces*. Academy embeds lookup + comparison views inline in lessons
  ("the word *light*, hear it, see its cognates, drill it"); polingual.com is the standalone
- lexicographic explorer. POLINGUAL.md already commits to "one canon, two windows."
+ lexicographic explorer. docs/specs/POLINGUAL.md already commits to "one canon, two windows."
 - **Reconcile the two access libs:** `src/lib/photon-index.ts` (in-memory `all.json`, lexical only) and
  `polingual/src/lib/photon-db.ts` (PostgREST) should both become thin clients of the **same `/api/photon`
  service**. Keep the in-memory lib only as the **starter-subset** dev/offline path (§2). Document this so

@@ -96,7 +96,7 @@ The slice is the CPC classes that match the graph's branches, chosen in ros-pate
 | EPO, through OPS or the free bulk products | not in v1 | inside composed answers only, per #68 |
 | WIPO PATENTSCOPE | no | no, until a paid licence |
 
-**Where the fees go.** PROTOCOL.md sends a citation fee to the author's `payout_wallet`. A patent's inventors and assignees have no wallet on record and never signed up. The options are Bucket's operating costs with a public ledger, an escrow per inventor that a claim releases, or a donation to the open data sources. It is the founder's call. Until then patent fees go to operations with a public ledger; on testnet no real money moves.
+**Where the fees go.** docs/foundation/PROTOCOL.md sends a citation fee to the author's `payout_wallet`. A patent's inventors and assignees have no wallet on record and never signed up. The options are Bucket's operating costs with a public ledger, an escrow per inventor that a claim releases, or a donation to the open data sources. It is the founder's call. Until then patent fees go to operations with a public ledger; on testnet no real money moves.
 
 **Graph model by slice.**
 

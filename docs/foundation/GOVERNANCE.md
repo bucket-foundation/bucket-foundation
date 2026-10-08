@@ -12,9 +12,9 @@ Make primary research **paid-for-once and citeable-forever**, and route citation
 
 The concrete expression of this mission is:
 
-1. Maintain an open protocol spec (`PROTOCOL.md`) so anyone can run an interoperable bucket.
+1. Maintain an open protocol spec (`docs/foundation/PROTOCOL.md`) so anyone can run an interoperable bucket.
 2. Operate a reference bucket (the site at `bucket.foundation`) as a non-exclusive example of what a bucket looks like.
-3. Publish a conservative canon of foundation-tier research under the strict filter described in `PROTOCOL.md`.
+3. Publish a conservative canon of foundation-tier research under the strict filter described in `docs/foundation/PROTOCOL.md`.
 4. Return citation revenue to authors, minus verifiable operating costs.
 
 That's it. Everything else is implementation detail.
@@ -74,7 +74,7 @@ The Foundation will not:
 Until a formal board is seated:
 
 - **Maintainer authority.** The founding maintainer (@gianyrox) is the decision-maker of last resort for:
- - Merging changes to `PROTOCOL.md`
+ - Merging changes to `docs/foundation/PROTOCOL.md`
  - Allocating operating surplus
  - Accepting or declining partnerships, sponsorships, and grants
 - **Open process.** Every non-trivial decision is recorded as a GitHub issue tagged `governance`. Objections from the community are considered and responded to in the thread before a decision is finalized.

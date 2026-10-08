@@ -33,7 +33,7 @@ was never optional.
 |---|---|---|
 | **2022 (bucket 1.0, Dec 2022)** | **"build the past."** + *"let's make history a discussion."* | On the Landing Page of the original Figma prototype. Never made it into any current public artifact. Recovered 2026-04-15 from the prototype text. |
 | **2022-2025 interregnum** | **"build history."** | README.md header, CLAUDE.md. Called out as "the original slogan, still load-bearing", but it's the *second* original. "build the past" is older. |
-| **2026 revival** | **"bucket is the new renaissance."** | MANIFESTO.md, README.md, CLAUDE.md. The thesis that crystallized after 13 months of dormancy. |
+| **2026 revival** | **"bucket is the new renaissance."** | docs/foundation/MANIFESTO.md, README.md, CLAUDE.md. The thesis that crystallized after 13 months of dormancy. |
 
 The progression matters. **"build the past"** frames bucket as historical
 reconstruction, things that happened. **"build history"** frames it as
@@ -69,7 +69,7 @@ These four verbs were the whole product. Here's what each one *did* in
 | 2022 verb | 2022 meaning | 2026 fate |
 |---|---|---|
 | **build** | Multi-step "build evidence 1 → 2 → 3 → build theory → build Profile" flow. Users assembled evidence, chained it into a theory, and got a theory profile page. **13 of the 40 frames, one-third of the whole prototype, were dedicated to this pipeline.** | Survives as "contribute to the canon", now curated by the Foundation. The interactive pipeline is gone. |
-| **publish** | `publish 1 → 2 → 3` sub-flow. Terminal action. A representative piece of example content on `publish 3`: *"The Pyramids exist"*. | ✅ **Survived intact as the terminal action.** Meant Story Protocol IP NFT minting on Base until 2026-06. Citations now settle over x402 on Base and route fees to authors (see `PROTOCOL.md`). |
+| **publish** | `publish 1 → 2 → 3` sub-flow. Terminal action. A representative piece of example content on `publish 3`: *"The Pyramids exist"*. | ✅ **Survived intact as the terminal action.** Meant Story Protocol IP NFT minting on Base until 2026-06. Citations now settle over x402 on Base and route fees to authors (see `docs/foundation/PROTOCOL.md`). |
 | **discover** | `discover 1 → 2 → 3` cycle. Browse other people's theories. Had a search bar (*"Search for theories to discuss..."*) and a Filter. | ⚠️ **Degraded.** Now = "browse the gdrive folder tree at 1." No search, no filter, no ranking. Discoverability is an open problem. |
 | **discuss** | Had its own first-class `discuss 1 → 2 → 3` sub-flow. Treated as equal in weight to the other three verbs. | ❌ **Deleted.** No comment layer, no threads, no debate surface anywhere in the 2026 architecture. Discussion is explicitly not a feature. |
 
@@ -179,7 +179,7 @@ independent of AGFarms. Current state (~2026-04-15):
  into `bucket-canon/05-biophysics/sub-outcomes/longevity/`.
 - **Reference implementation:** Next.js on Vercel, Supabase, x402 on
  Base. Story Protocol, Walrus and Dynamic were removed in 2026-06. See
- `PROTOCOL.md` for the x402 data-protocol spec and `MANIFESTO.md` for
+ `docs/foundation/PROTOCOL.md` for the x402 data-protocol spec and `docs/foundation/MANIFESTO.md` for
  the public framing.
 - **Contributor index:** `canon-figures/` holds pass-1 seed of ~76
  canon-tier figures across 10 working branches, honoring the original
@@ -234,8 +234,8 @@ What is new in 2026 and has no 2022 precedent:
 
 1. **Nonprofit structure.** 2022 bucket was a would-be for-profit
  social network. 2026 bucket is an intended 501(c)(3).
-2. **Open-source protocol.** `PROTOCOL.md` (CC0-in-intent),
- `GOVERNANCE.md`, MIT code, public repo. 2022 bucket was
+2. **Open-source protocol.** `docs/foundation/PROTOCOL.md` (CC0-in-intent),
+ `docs/foundation/GOVERNANCE.md`, MIT code, public repo. 2022 bucket was
  closed-source and unreleased.
 3. **x402 micropayments.** x402 didn't meaningfully exist in 2022.
 4. **Story Protocol IP NFT minting.** Didn't exist in 2022.

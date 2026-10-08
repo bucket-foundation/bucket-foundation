@@ -81,7 +81,7 @@ def cmd_audit(args) -> int:
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(
         prog="signoff.py",
-        description="Human sign-off tool for bucket-canon/ provenance_signoff (GOVERNANCE.md).",
+        description="Human sign-off tool for bucket-canon/ provenance_signoff (docs/foundation/GOVERNANCE.md).",
     )
     sub = p.add_subparsers(dest="cmd", required=True)
 
@@ -103,7 +103,7 @@ def main(argv=None) -> int:
     p_rej.add_argument("--json", action="store_true")
     p_rej.set_defaults(func=cmd_reject)
 
-    p_aud = sub.add_parser("audit", help="print every signoff event recorded in CANON-INGESTION-INDEX.md")
+    p_aud = sub.add_parser("audit", help="print every signoff event recorded in docs/canon/CANON-INGESTION-INDEX.md")
     p_aud.add_argument("--json", action="store_true")
     p_aud.set_defaults(func=cmd_audit)
 

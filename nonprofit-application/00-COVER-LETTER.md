@@ -33,9 +33,9 @@ I am writing to apply for fiscal sponsorship of **bucket.foundation**, an open-s
 | `06-ARTICLES-OF-INCORPORATION-DRAFT.md` | Delaware nonprofit articles (alternate path) |
 | `07-FORM-1023-EZ-WORKSHEET.md` | IRS eligibility worksheet (alternate path) |
 
-The supporting governance document `GOVERNANCE.md` lives at the root of the repository and forms part of this application by reference.
+The supporting governance document `docs/foundation/GOVERNANCE.md` lives at the root of the repository and forms part of this application by reference.
 
-**One ask before you read further.** bucket.foundation has a real conflict-of-interest disclosure: the founding maintainer is also the founder of **AGFarms LLC**, a for-profit venture studio. AGFarms is **not** a parent or a funder, and does not own the Foundation's domain, wallet, or code. The COI policy in this packet (and `GOVERNANCE.md` § 7) is the primary mitigation. We want this disclosed up front so the review committee can decide whether the structure is acceptable before reading the rest.
+**One ask before you read further.** bucket.foundation has a real conflict-of-interest disclosure: the founding maintainer is also the founder of **AGFarms LLC**, a for-profit venture studio. AGFarms is **not** a parent or a funder, and does not own the Foundation's domain, wallet, or code. The COI policy in this packet (and `docs/foundation/GOVERNANCE.md` § 7) is the primary mitigation. We want this disclosed up front so the review committee can decide whether the structure is acceptable before reading the rest.
 
 If your sponsorship terms accept this packet as-is, the founding maintainer will sign the standard fiscal sponsorship agreement, transfer the `bucket.foundation` domain and the operating wallet to the sponsor's custody (or a sub-account thereof), and adopt the sponsor's grant-agreement and reporting templates. If your terms require modifications, we will respond to specific feedback rather than re-litigate the whole packet.
 

@@ -6,7 +6,7 @@ Market & Monetization.
 **Mandate:** Not fast, *correct and amazing.* Public/legal sources only; every number cited inline. Original analysis, no reproduced copy.
 **Builds on (does not duplicate):** `learning/research/revenue/MONETIZATION-GTM.md` (Duolingo, Whop, Quizlet, Brilliant, RemNote, Anki, MagicSchool, Khan, tiering, unit econ) and `learning/research/_synthesis/DECISIONS.md` (accepted by founder 2026-06-11).
 
-**Constraint that shapes everything:** Bucket Foundation is a **nonprofit**. *Foundations, the knowledge, are free forever* (GOVERNANCE.md). Paid value can only sell **AI horsepower, personalization, exam tooling, and verified credentials**, never access to the canon. Story Protocol routes citation fees to authors.
+**Constraint that shapes everything:** Bucket Foundation is a **nonprofit**. *Foundations, the knowledge, are free forever* (docs/foundation/GOVERNANCE.md). Paid value can only sell **AI horsepower, personalization, exam tooling, and verified credentials**, never access to the canon. Story Protocol routes citation fees to authors.
 
 > **The new thesis this doc adds:** the prior doc proved you can give the curriculum away and monetize AI (Duolingo) + a creator rail (Whop). This doc goes one layer deeper and finds the *second* revenue object that doesn't paywall knowledge: **the learner's mastery graph is a verifiable digital resume, and in every credentialing market the party who pays is the verifier (employer/recruiter/institution), never the learner.** That is the cleanest possible nonprofit revenue line, monetize the *proof*, give away the *learning*, and the credential is simultaneously the strongest viral loop in the whole field, because people *want* to broadcast it.
 

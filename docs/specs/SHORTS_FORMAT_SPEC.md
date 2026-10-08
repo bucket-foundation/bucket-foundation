@@ -1,6 +1,6 @@
 # Guess The Concept: Canonical Knowledge Shorts Format Spec
 
-**Status:** v1, locked until v2. Sibling spec to `PROTOCOL.md` and `MANIFESTO.md`.
+**Status:** v1, locked until v2. Sibling spec to `docs/foundation/PROTOCOL.md` and `docs/foundation/MANIFESTO.md`.
 **Owner:** Bucket Foundation. **Processor:** Longtail.
 **Bead epic:** `bkt-o62`.
 **Source of authority:** This doc. If pipeline disagrees with spec, pipeline is wrong.

@@ -27,7 +27,7 @@ If a sponsor or government office uses *reinstatement* to mean strictly "restora
 | 06 | `06-ARTICLES-OF-INCORPORATION-DRAFT.md` | Delaware nonstock nonprofit articles (alternate path, draft only) |
 | 07 | `07-FORM-1023-EZ-WORKSHEET.md` | IRS Form 1023-EZ eligibility self-assessment (alternate path, planning only) |
 
-The repository-root files **`GOVERNANCE.md`**, **`PROTOCOL.md`**, **`README.md`**, and **`LICENSE`** are part of this application by reference.
+The repository-root files **`docs/foundation/GOVERNANCE.md`**, **`docs/foundation/PROTOCOL.md`**, **`README.md`**, and **`LICENSE`** are part of this application by reference.
 
 ## Two parallel paths
 

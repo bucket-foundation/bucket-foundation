@@ -65,7 +65,7 @@ test("ROADMAP.md states the counts the list has", () => {
 });
 
 test("each AI row depends on what its pending bead record names", () => {
-  const pending = fs.readFileSync(path.join(__dirname, "..", "BEADS-PENDING.jsonl"), "utf8");
+  const pending = fs.readFileSync(path.join(__dirname, "..", ".beads", "BEADS-PENDING.jsonl"), "utf8");
   const records: { key: string; deps: string[] }[] = [];
   for (const line of pending.split("\n")) {
     if (!line.trim()) continue;

@@ -2,7 +2,7 @@
 
 **build the past. build history. bucket is the new renaissance.**
 
-Nonprofit reference implementation, primary research paid-for-once, citeable-forever. Live at bucket.foundation: free-to-read / paid-to-cite, a citation triggers a one-time author payment over x402 (HTTP-native micropayments on Base, EIP-3009); AI agents auto-discover and query the canon via the feed402 spec (/llms.txt). Built on Next.js/Vercel + Supabase Auth. Current release: `bkt-v0.4.0` (2026-09-30). Legally held in founder's personal capacity pending formal nonprofit filing (see `GOVERNANCE.md`).
+Nonprofit reference implementation, primary research paid-for-once, citeable-forever. Live at bucket.foundation: free-to-read / paid-to-cite, a citation triggers a one-time author payment over x402 (HTTP-native micropayments on Base, EIP-3009); AI agents auto-discover and query the canon via the feed402 spec (/llms.txt). Built on Next.js/Vercel + Supabase Auth. Current release: `bkt-v0.4.0` (2026-09-30). Legally held in founder's personal capacity pending formal nonprofit filing (see `docs/foundation/GOVERNANCE.md`).
 
 Canon thesis: AI + foundations + a small number of brilliant humans = the next layer of reality. Canon holds **only foundations**, axioms, real math, rules, laws, principles, primary derivations, across **seven branches**: mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind.
 
@@ -19,7 +19,7 @@ Set by the founder on 2026-09-18: Bucket runs on this machine first, and hosted 
 - **Database**: the local Supabase stack. `npm run db:local` starts it, `npm run db:local:status` prints the keys for `.env.local`, and `docs/AUTH.md` has the steps. Building and testing need no hosted Supabase project.
 - **App**: `npm run dev` against the local stack.
 - **Engine**: `hte-serve` runs as the `hte-serve.service` user unit on 127.0.0.1:8420 in live mode (`scripts/systemd/install-hte-serve.sh`). `.env.local` sets `HTE_SERVE_URL=http://127.0.0.1:8420` and `HTE_SERVE_TIMEOUT_S=600`, so `/api/research-os/hypothesize` and the MCP `hypothesize` tool answer locally.
-- **Beads**: local `bd` against the Dolt database at `.beads/dolt` (server on 127.0.0.1:3309). `npm run beads:export` snapshots it to the git-tracked `.beads/issues.jsonl`. An agent-proposed bead carries the labels `needs-founder` and `source-agent` and stays deferred until the founder clears it; a founder-sourced bead carries `source-founder` instead. `BEADS-PENDING.jsonl` is retired, its rows were imported on 2026-09-23, and the file stays frozen.
+- **Beads**: local `bd` against the Dolt database at `.beads/dolt` (server on 127.0.0.1:3309). `npm run beads:export` snapshots it to the git-tracked `.beads/issues.jsonl`. An agent-proposed bead carries the labels `needs-founder` and `source-agent` and stays deferred until the founder clears it; a founder-sourced bead carries `source-founder` instead. `.beads/BEADS-PENDING.jsonl` is retired, its rows were imported on 2026-09-23, and the file stays frozen.
 - **Public site**: still ships. `dev` promotes to `main`, and Vercel builds `main` for bucket.foundation.
 
 ## Known Infra Gaps
@@ -37,10 +37,10 @@ This venture is a single repo (cloned from `gianyrox/bucket-foundation`, pending
 
 ## Strategic Docs
 
-- `MANIFESTO.md`, thesis
-- `PROTOCOL.md`, the x402 data protocol spec
-- `GOVERNANCE.md`, nonprofit governance + COI disclosure
-- `HISTORY.md`, archaeology of bucket 1.0 (Dec 2022 Figma) → bucket 2026
+- `docs/foundation/MANIFESTO.md`, thesis
+- `docs/foundation/PROTOCOL.md`, the x402 data protocol spec
+- `docs/foundation/GOVERNANCE.md`, nonprofit governance + COI disclosure
+- `docs/foundation/HISTORY.md`, archaeology of bucket 1.0 (Dec 2022 Figma) → bucket 2026
 - `README.md`, project overview
 - `canon-figures/`, contributor index (~76 canon-tier figures across 7 branches, seed pass-1)
 - `nonprofit-application/`, 501(c)(3) reinstatement packet
@@ -168,7 +168,7 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 
 ### Polingual
 
-Language surface on the photon substrate. Contract and vision: `PHOTON-SPEC.md`, `POLINGUAL.md`. Axes: semantic, phonetic, spelling, etymology, translation.
+Language surface on the photon substrate. Contract and vision: `docs/specs/PHOTON-SPEC.md`, `docs/specs/POLINGUAL.md`. Axes: semantic, phonetic, spelling, etymology, translation.
 
 - Full index: 6,564,942 photons, 35 languages, LaBSE-768 plus 64-d phonetic vectors with HNSW, in local docker `bucket-pgvector` on 127.0.0.1:5433, table `photons_full`. API `services/photon-api/server_pg.py` on :8090.
 - The hosted fallback API and the store that held the authoritative `relations` jsonb metadata (translation and etymology edges) are gone for good. With `POLINGUAL_API_URL` and `POLINGUAL_FALLBACK_API_URL` unset, `src/app/api/polingual/route.ts` makes no network call and the app runs on the baked subset.

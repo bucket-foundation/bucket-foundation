@@ -297,7 +297,7 @@ def test_write_back_writes_cards_index_and_envelope(tmp_path, linking_run, monke
     assert "Lift-rank cutoff off (q=1.00)" in index_text
     assert "all 2 candidate(s) pass this gate" in index_text
 
-    ingestion_index = (fake_repo_root / "CANON-INGESTION-INDEX.md").read_text()
+    ingestion_index = (fake_repo_root / "docs" / "canon" / "CANON-INGESTION-INDEX.md").read_text()
     assert "Recent additions" in ingestion_index
     assert "Build-history write-back" in ingestion_index
 

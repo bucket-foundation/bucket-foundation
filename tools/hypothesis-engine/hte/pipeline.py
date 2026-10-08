@@ -189,7 +189,7 @@ def run_pipeline(config: dict[str, Any] | None = None) -> dict[str, Any]:
                     "writeback", pipeline_dir / "writeback",
                     "writeback=True but writeback_signoff was not given: a named human "
                     "approver is required before any write into bucket-canon/ (PLAN.md "
-                    "section 10, GOVERNANCE.md)",
+                    "section 10, docs/foundation/GOVERNANCE.md)",
                 )
             else:
                 from . import runner as runner_mod

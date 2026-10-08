@@ -77,7 +77,7 @@ figma-export/
 # …and the research-os Five States screenshots, rendered on /research-os.
 !public/research-os/**/*.png
 # Trained ML artifacts.
-# Large weights go to HuggingFace Hub for collaborators (see REPRODUCE.md):
+# Large weights go to HuggingFace Hub for collaborators (see docs/REPRODUCE.md):
 _intake/training/canon-bge-small-v1/model.safetensors
 _intake/training/canon-bge-small-v1/tokenizer.json
 # Smaller artifacts ARE committed so collaborators see the full knowledge
@@ -92,7 +92,7 @@ _intake/training/canon-bge-small-v1/tokenizer.json
 .venv-shorts/
 shorts-runs/
 # Photon index: sqlite + vector matrices are large; regenerate from
-# tools (see PHOTON-SPEC.md). The spec + tools + sample photons may be
+# tools (see docs/specs/PHOTON-SPEC.md). The spec + tools + sample photons may be
 # committed, but the full vector matrices are not.
 _intake/photons/index.sqlite
 _intake/photons/roots.sqlite*

@@ -24,7 +24,7 @@ After this is clean, the draft below is ready to copy-paste / paste into the for
 **Tagline:** Pay once. Cite forever. The patronage layer for the new Renaissance.
 **Website:** https://bucket.foundation
 **Repo:** https://github.com/gianyrox/bucket-foundation (MIT)
-**Protocol:** https://github.com/gianyrox/bucket-foundation/blob/main/PROTOCOL.md (CC0-in-intent)
+**Protocol:** https://github.com/gianyrox/bucket-foundation/blob/main/docs/foundation/PROTOCOL.md (CC0-in-intent)
 **Round target:** OSS / Public Goods (GG-round) [[FOUNDER: replace with exact round number + apply window from gitcoin.co/program]]
 **Chain:** Base (Ethereum L2) [[FOUNDER: confirm round's payout chain matches, some Gitcoin rounds pay on Optimism / Arbitrum instead of Base]]
 
@@ -46,7 +46,7 @@ The work also directly attacks the empty-supply problem on x402: today, x402 has
 
 This is not vapor. As of May 2026:
 
-- **Protocol spec** at draft v0.1 in `PROTOCOL.md` (CC0-in-intent), defining the sidecar schema, x402 fetch flow, and citation-receipt format.
+- **Protocol spec** at draft v0.1 in `docs/foundation/PROTOCOL.md` (CC0-in-intent), defining the sidecar schema, x402 fetch flow, and citation-receipt format.
 - **Seven canon branches**: mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind. The canon holds only foundations, axioms, real math, rules, laws, principles, primary derivations. Outcomes (longevity, disease, cognition) are downstream applications.
 - **Contributor index** (`canon-figures/`), ~76 canon-tier figures across 10 branches in pass-1 seed; this is the mechanism by which citation fees route to identified human authors.
 - **Live x402 supply side**, the open-source `x402-research-gateway` (MIT, same maintainer) operates 7 paid endpoints on Base Sepolia today across PubMed, Semantic Scholar, OpenAlex, ClinicalTrials, PubChem, and a curated longevity corpus of **17,211 indexed rows**.
@@ -69,14 +69,14 @@ Quadratic match received from this round goes directly into:
 - Number of canon-tier buckets live (target: 1,000 across the seven branches in 12 months).
 - Number of independent federated buckets operating under the same protocol (target: 3+).
 - Citation events with on-chain author payouts (target: 100+ in the first reporting period).
-- GitHub stars, issues, and external contributors to `bucket-foundation` and `PROTOCOL.md`.
+- GitHub stars, issues, and external contributors to `bucket-foundation` and `docs/foundation/PROTOCOL.md`.
 - Real x402 volume routed through the system on Base.
 
 All of these are publicly verifiable from the repo, the chain, and the transparency report.
 
 ## Team and governance
 
-Sole maintainer at present: **Gianangelo Dichio** (`github.com/gianyrox`), also author of the x402-research-gateway and feed402. The Foundation is operated as a nonprofit, no token, no equity, no investor, no exit. As of this writing, the project is held in the maintainer's personal capacity pending formal 501(c)(3) reinstatement, with Hack Club Bank in process as interim fiscal sponsor; this is disclosed in `GOVERNANCE.md`. Gitcoin matching funds, if awarded, will be received via HCB [[FOUNDER: confirm HCB can custody / withdraw from a Base wallet, Gitcoin pays on-chain rather than ACH]] and used exclusively for the deliverables above. [[FOUNDER: provide the project payout wallet address (Base mainnet) in the Builder profile form]] The contributor index (`canon-figures/CONTRIBUTORS.md`) is the active recruitment surface for editorial and review collaborators across the seven branches.
+Sole maintainer at present: **Gianangelo Dichio** (`github.com/gianyrox`), also author of the x402-research-gateway and feed402. The Foundation is operated as a nonprofit, no token, no equity, no investor, no exit. As of this writing, the project is held in the maintainer's personal capacity pending formal 501(c)(3) reinstatement, with Hack Club Bank in process as interim fiscal sponsor; this is disclosed in `docs/foundation/GOVERNANCE.md`. Gitcoin matching funds, if awarded, will be received via HCB [[FOUNDER: confirm HCB can custody / withdraw from a Base wallet, Gitcoin pays on-chain rather than ACH]] and used exclusively for the deliverables above. [[FOUNDER: provide the project payout wallet address (Base mainnet) in the Builder profile form]] The contributor index (`canon-figures/CONTRIBUTORS.md`) is the active recruitment surface for editorial and review collaborators across the seven branches.
 
 ## Why your contribution matters
 

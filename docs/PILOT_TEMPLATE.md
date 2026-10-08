@@ -56,7 +56,7 @@ Live metrics:
 - {{PARTNER}} owns the underlying research content.
 - {{PARTNER}} and the authors own the payout wallets and the USDC received.
 - Bucket owns the rail: the feed402 envelopes, the x402 endpoints, the EAS schema, the dashboard code.
-- All bucket code is **MIT**. All bucket spec is **CC-BY** (CC0-in-intent, see `PROTOCOL.md`).
+- All bucket code is **MIT**. All bucket spec is **CC-BY** (CC0-in-intent, see `docs/foundation/PROTOCOL.md`).
 - No PII, no private scrape data, no exclusive rights, ever.
 
 ## Contact + escalation
