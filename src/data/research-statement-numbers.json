@@ -1,0 +1,120 @@
+{
+  "builtFrom": "public/papers/solvability-frontier/data, built 2026-10-08",
+  "problems": 5209,
+  "threshold": 0.762,
+  "counts": {
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 1081
+  },
+  "classes": {
+    "close to known results": 268,
+    "borderline": 863,
+    "needs a new idea": 954
+  },
+  "branches": 8,
+  "branchRows": {
+    "mathematics": {
+      "solved": 1475,
+      "partial": 765,
+      "open": 1872
+    },
+    "physics": {
+      "solved": 55,
+      "partial": 33,
+      "open": 190
+    },
+    "chemistry": {
+      "solved": 22,
+      "partial": 8,
+      "open": 74
+    },
+    "information": {
+      "solved": 41,
+      "partial": 5,
+      "open": 91
+    },
+    "biophysics": {
+      "solved": 31,
+      "partial": 59,
+      "open": 128
+    },
+    "cosmology": {
+      "solved": 28,
+      "partial": 12,
+      "open": 99
+    },
+    "mind": {
+      "solved": 10,
+      "partial": 21,
+      "open": 108
+    },
+    "applied": {
+      "solved": 32,
+      "partial": 4,
+      "open": 46
+    }
+  },
+  "cutoffs": [
+    {
+      "cutoff": 2005,
+      "solvedAtCutoff": 170,
+      "tested": 319,
+      "settled": {
+        "name": "all",
+        "inside": 161,
+        "outside": 68,
+        "resolvedInside": 38,
+        "resolvedOutside": 4,
+        "rateInside": 0.236,
+        "rateOutside": 0.059,
+        "ratio": 4.012,
+        "pValue": 0.0024,
+        "belowFloor": false,
+        "auc": 0.799,
+        "undated": {
+          "rateInside": 0.18,
+          "rateOutside": 0.059,
+          "pValue": 0.0195
+        }
+      },
+      "advanced": {
+        "rateInside": 0.478,
+        "rateOutside": 0.588,
+        "ratio": 0.813,
+        "pValue": 0.1526,
+        "auc": 0.524
+      }
+    },
+    {
+      "cutoff": 2021,
+      "solvedAtCutoff": 261,
+      "tested": 482,
+      "settled": {
+        "name": "all",
+        "inside": 272,
+        "outside": 167,
+        "resolvedInside": 35,
+        "resolvedOutside": 1,
+        "rateInside": 0.129,
+        "rateOutside": 0.006,
+        "ratio": 21.489,
+        "pValue": 0.0001,
+        "belowFloor": false,
+        "auc": 0.906,
+        "undated": {
+          "rateInside": 0.056,
+          "rateOutside": 0.006,
+          "pValue": 0.0126
+        }
+      },
+      "advanced": {
+        "rateInside": 0.426,
+        "rateOutside": 0.401,
+        "ratio": 1.063,
+        "pValue": 0.6146,
+        "auc": 0.543
+      }
+    }
+  ]
+}
