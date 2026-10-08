@@ -19,7 +19,7 @@ def fixture_rows():
 
 def test_row_total_is_atlas_plus_sourced():
     rows = fixture_rows()
-    assert len(rows) == 71 + 5135
+    assert len(rows) == 71 + 5139
 
 
 def test_variant_of_open_parent_is_partial():

@@ -1,14 +1,14 @@
 {
  "schema": "bucket.solvability-atlas.forecast/v1",
  "cutoff": 2015,
- "built": "2026-10-07",
+ "built": "2026-10-08",
  "model": "BAAI/bge-small-en-v1.5",
  "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
  "k": 50,
- "input_hash": "2ac47f048a9217ae463aade5f490f491b20f03b10a4cf08ee082e54dd67a2a93",
- "solved": 145,
+ "input_hash": "1adcae4ddeda049a0e80e9ea7ec100bd798ec3159df524c69447ef18dd1ea23a",
+ "solved": 213,
  "threshold_bounded": 16,
- "threshold": 0.634,
+ "threshold": 0.639,
  "rows": [
   {
    "id": "abc",
@@ -23,8 +23,8 @@
    "id": "abiogenesis",
    "branch": "biophysics",
    "posed": 1924,
-   "words": 111,
-   "reach": 0.688,
+   "words": 186,
+   "reach": 0.686,
    "bounded": false,
    "zone": "inside"
   },
@@ -32,8 +32,8 @@
    "id": "aging",
    "branch": "biophysics",
    "posed": 1952,
-   "words": 119,
-   "reach": 0.602,
+   "words": 179,
+   "reach": 0.603,
    "bounded": false,
    "zone": "outside"
   },
@@ -41,8 +41,8 @@
    "id": "alignment",
    "branch": "information",
    "posed": 2014,
-   "words": 58,
-   "reach": 0.595,
+   "words": 142,
+   "reach": 0.616,
    "bounded": false,
    "zone": "outside"
   },
@@ -59,17 +59,17 @@
    "id": "bindingprob",
    "branch": "mind",
    "posed": 1981,
-   "words": 77,
-   "reach": 0.66,
+   "words": 138,
+   "reach": 0.661,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "bioelectric",
    "branch": "biophysics",
    "posed": 1938,
-   "words": 130,
-   "reach": 0.681,
+   "words": 222,
+   "reach": 0.677,
    "bounded": false,
    "zone": "inside"
   },
@@ -77,8 +77,8 @@
    "id": "blackscholes",
    "branch": "mathematics",
    "posed": 2014,
-   "words": 102,
-   "reach": 0.622,
+   "words": 165,
+   "reach": 0.626,
    "bounded": false,
    "zone": "outside"
   },
@@ -122,8 +122,8 @@
    "id": "catalysis",
    "branch": "chemistry",
    "posed": 1835,
-   "words": 102,
-   "reach": 0.598,
+   "words": 196,
+   "reach": 0.604,
    "bounded": false,
    "zone": "outside"
   },
@@ -131,17 +131,17 @@
    "id": "circadian",
    "branch": "biophysics",
    "posed": 1960,
-   "words": 112,
-   "reach": 0.584,
-   "bounded": true,
+   "words": 181,
+   "reach": 0.585,
+   "bounded": false,
    "zone": "outside"
   },
   {
    "id": "climate",
    "branch": "physics",
    "posed": 1896,
-   "words": 85,
-   "reach": 0.584,
+   "words": 175,
+   "reach": 0.587,
    "bounded": false,
    "zone": "outside"
   },
@@ -158,10 +158,10 @@
    "id": "consciousness",
    "branch": "mind",
    "posed": 1995,
-   "words": 109,
-   "reach": 0.633,
+   "words": 180,
+   "reach": 0.63,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "cosmiccensor",
@@ -194,8 +194,8 @@
    "id": "dftfunc",
    "branch": "chemistry",
    "posed": 1965,
-   "words": 114,
-   "reach": 0.661,
+   "words": 205,
+   "reach": 0.68,
    "bounded": false,
    "zone": "inside"
   },
@@ -204,7 +204,7 @@
    "branch": "information",
    "posed": 2014,
    "words": 22,
-   "reach": 0.694,
+   "reach": 0.713,
    "bounded": false,
    "zone": "inside"
   },
@@ -224,7 +224,7 @@
    "words": 26,
    "reach": 0.674,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-can-we-understand-the-action-of-brain-in-natural-e",
@@ -233,34 +233,34 @@
    "words": 16,
    "reach": 0.695,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-do-qualia-metaphor-language-and-abstract-thought-e",
    "branch": "mind",
    "posed": 2006,
    "words": 17,
-   "reach": 0.659,
+   "reach": 0.678,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-how-can-neural-systems-compute-in-the-time-domain",
    "branch": "mind",
    "posed": 2006,
    "words": 21,
-   "reach": 0.639,
+   "reach": 0.685,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-how-common-are-neural-codes",
    "branch": "mind",
    "posed": 2006,
    "words": 19,
-   "reach": 0.646,
+   "reach": 0.66,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-how-do-neurons-compute",
@@ -269,25 +269,25 @@
    "words": 15,
    "reach": 0.692,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-how-does-our-visual-system-achieve-shift-and-size",
    "branch": "mind",
    "posed": 2006,
    "words": 16,
-   "reach": 0.609,
-   "bounded": true,
-   "zone": "unsampled"
+   "reach": 0.613,
+   "bounded": false,
+   "zone": "outside"
   },
   {
    "id": "dl-neuro-23-how-does-the-hearing-system-perform-auditory-scene",
    "branch": "mind",
    "posed": 2006,
    "words": 15,
-   "reach": 0.604,
+   "reach": 0.612,
    "bounded": true,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-neuro-23-how-fast-is-neuronal-signal-transmission",
@@ -296,7 +296,7 @@
    "words": 19,
    "reach": 0.68,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-shall-we-even-understand-the-fly-s-brain",
@@ -305,7 +305,7 @@
    "words": 20,
    "reach": 0.643,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-to-what-extent-does-perception-depend-upon-action",
@@ -314,25 +314,25 @@
    "words": 18,
    "reach": 0.639,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-to-what-extent-is-the-brain-reconfigurable",
    "branch": "mind",
    "posed": 2006,
    "words": 16,
-   "reach": 0.658,
+   "reach": 0.686,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-are-the-neural-correlates-of-consciousness",
    "branch": "mind",
    "posed": 2006,
    "words": 18,
-   "reach": 0.673,
+   "reach": 0.684,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-are-the-projective-fields-of-cortical-neurons",
@@ -341,7 +341,7 @@
    "words": 20,
    "reach": 0.683,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-is-a-neuronal-map-how-does-it-arise-and-what",
@@ -350,7 +350,7 @@
    "words": 17,
    "reach": 0.681,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-is-reflected-in-sensory-neocortical-activity",
@@ -359,16 +359,16 @@
    "words": 21,
    "reach": 0.724,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-is-the-formal-computation-in-early-vision",
    "branch": "mind",
    "posed": 2006,
    "words": 19,
-   "reach": 0.657,
-   "bounded": true,
-   "zone": "unsampled"
+   "reach": 0.688,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-is-the-function-of-the-thalamus",
@@ -377,34 +377,34 @@
    "words": 22,
    "reach": 0.679,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-is-the-origin-and-function-of-irregular-neura",
    "branch": "mind",
    "posed": 2006,
    "words": 17,
-   "reach": 0.636,
-   "bounded": true,
-   "zone": "unsampled"
+   "reach": 0.673,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-is-the-other-85-percent-of-v1-doing",
    "branch": "mind",
    "posed": 2006,
    "words": 19,
-   "reach": 0.656,
+   "reach": 0.696,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-what-is-the-role-of-top-down-connections",
    "branch": "mind",
    "posed": 2006,
    "words": 19,
-   "reach": 0.641,
+   "reach": 0.68,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-where-are-the-switches-on-this-thing",
@@ -413,23 +413,23 @@
    "words": 20,
    "reach": 0.674,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-neuro-23-which-brain-functions-are-lateralized-and-why",
    "branch": "mind",
    "posed": 2006,
    "words": 17,
-   "reach": 0.632,
+   "reach": 0.639,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-are-neutrinos-their-own-antiparticles",
    "branch": "physics",
    "posed": 2005,
    "words": 20,
-   "reach": 0.716,
+   "reach": 0.766,
    "bounded": false,
    "zone": "inside"
   },
@@ -465,7 +465,7 @@
    "branch": "chemistry",
    "posed": 2005,
    "words": 25,
-   "reach": 0.681,
+   "reach": 0.687,
    "bounded": false,
    "zone": "inside"
   },
@@ -474,7 +474,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 18,
-   "reach": 0.712,
+   "reach": 0.748,
    "bounded": false,
    "zone": "inside"
   },
@@ -510,7 +510,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.658,
+   "reach": 0.66,
    "bounded": false,
    "zone": "inside"
   },
@@ -564,7 +564,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 20,
-   "reach": 0.651,
+   "reach": 0.655,
    "bounded": false,
    "zone": "inside"
   },
@@ -575,7 +575,7 @@
    "words": 19,
    "reach": 0.638,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-does-immunologic-memory-require-chronic-exposure-t",
@@ -611,7 +611,7 @@
    "words": 26,
    "reach": 0.697,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-how-can-genome-changes-other-than-mutations-be-inh",
@@ -645,7 +645,7 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.618,
+   "reach": 0.637,
    "bounded": false,
    "zone": "outside"
   },
@@ -699,9 +699,9 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 19,
-   "reach": 0.613,
+   "reach": 0.659,
    "bounded": false,
-   "zone": "outside"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-how-does-a-single-somatic-cell-become-a-whole-plan",
@@ -717,7 +717,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 25,
-   "reach": 0.617,
+   "reach": 0.619,
    "bounded": false,
    "zone": "outside"
   },
@@ -753,7 +753,7 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 19,
-   "reach": 0.537,
+   "reach": 0.601,
    "bounded": false,
    "zone": "outside"
   },
@@ -789,7 +789,7 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 18,
-   "reach": 0.57,
+   "reach": 0.581,
    "bounded": false,
    "zone": "outside"
   },
@@ -798,7 +798,7 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 24,
-   "reach": 0.592,
+   "reach": 0.633,
    "bounded": false,
    "zone": "outside"
   },
@@ -818,7 +818,7 @@
    "words": 21,
    "reach": 0.617,
    "bounded": true,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-how-will-big-pictures-emerge-from-a-sea-of-biologi",
@@ -843,7 +843,7 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 17,
-   "reach": 0.639,
+   "reach": 0.663,
    "bounded": false,
    "zone": "inside"
   },
@@ -861,18 +861,18 @@
    "branch": "physics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.629,
+   "reach": 0.693,
    "bounded": false,
-   "zone": "outside"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-is-morality-hardwired-into-the-brain",
    "branch": "mind",
    "posed": 2005,
    "words": 18,
-   "reach": 0.636,
-   "bounded": true,
-   "zone": "unsampled"
+   "reach": 0.642,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-is-ours-the-only-universe",
@@ -926,7 +926,7 @@
    "words": 20,
    "reach": 0.601,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-what-are-human-races-and-how-did-they-develop",
@@ -942,27 +942,27 @@
    "branch": "mind",
    "posed": 2005,
    "words": 17,
-   "reach": 0.623,
+   "reach": 0.666,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-what-are-the-limits-of-conventional-computing",
    "branch": "information",
    "posed": 2005,
    "words": 20,
-   "reach": 0.636,
-   "bounded": true,
-   "zone": "undecided"
+   "reach": 0.67,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-what-are-the-limits-of-learning-by-machines",
    "branch": "information",
    "posed": 2005,
    "words": 20,
-   "reach": 0.644,
-   "bounded": true,
-   "zone": "undecided"
+   "reach": 0.707,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-what-are-the-roots-of-human-culture",
@@ -971,7 +971,7 @@
    "words": 17,
    "reach": 0.612,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-what-can-replace-cheap-oil-and-when",
@@ -996,18 +996,18 @@
    "branch": "mind",
    "posed": 2005,
    "words": 16,
-   "reach": 0.559,
+   "reach": 0.617,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-what-causes-ice-ages",
    "branch": "physics",
    "posed": 2005,
    "words": 22,
-   "reach": 0.607,
+   "reach": 0.645,
    "bounded": false,
-   "zone": "outside"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-what-causes-reversals-in-earth-s-magnetic-field",
@@ -1023,18 +1023,18 @@
    "branch": "mind",
    "posed": 2005,
    "words": 17,
-   "reach": 0.551,
+   "reach": 0.56,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-what-controls-organ-regeneration",
    "branch": "biophysics",
    "posed": 2005,
    "words": 20,
-   "reach": 0.596,
+   "reach": 0.668,
    "bounded": false,
-   "zone": "outside"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-what-determines-species-diversity",
@@ -1068,7 +1068,7 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 19,
-   "reach": 0.662,
+   "reach": 0.735,
    "bounded": false,
    "zone": "inside"
   },
@@ -1077,9 +1077,9 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.602,
-   "bounded": true,
-   "zone": "outside"
+   "reach": 0.65,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-what-genetic-changes-made-us-uniquely-human",
@@ -1131,9 +1131,9 @@
    "branch": "mind",
    "posed": 2005,
    "words": 22,
-   "reach": 0.574,
+   "reach": 0.59,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-what-is-the-biological-basis-of-consciousness",
@@ -1142,7 +1142,7 @@
    "words": 21,
    "reach": 0.683,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "dl-science-2005-what-is-the-biological-root-of-sexual-orientation",
@@ -1151,7 +1151,7 @@
    "words": 18,
    "reach": 0.627,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-what-is-the-most-powerful-laser-researchers-can-bu",
@@ -1203,8 +1203,8 @@
    "branch": "physics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.599,
-   "bounded": false,
+   "reach": 0.6,
+   "bounded": true,
    "zone": "outside"
   },
   {
@@ -1221,7 +1221,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 20,
-   "reach": 0.581,
+   "reach": 0.591,
    "bounded": false,
    "zone": "outside"
   },
@@ -1232,14 +1232,14 @@
    "words": 23,
    "reach": 0.634,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-what-keeps-intracellular-traffic-on-course",
    "branch": "biophysics",
    "posed": 2005,
    "words": 24,
-   "reach": 0.595,
+   "reach": 0.611,
    "bounded": false,
    "zone": "outside"
   },
@@ -1268,7 +1268,7 @@
    "words": 18,
    "reach": 0.636,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-what-synchronizes-an-organism-s-circadian-clocks",
@@ -1284,7 +1284,7 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 21,
-   "reach": 0.56,
+   "reach": 0.571,
    "bounded": false,
    "zone": "outside"
   },
@@ -1293,7 +1293,7 @@
    "branch": "cosmology",
    "posed": 2005,
    "words": 20,
-   "reach": 0.609,
+   "reach": 0.616,
    "bounded": false,
    "zone": "outside"
   },
@@ -1329,9 +1329,9 @@
    "branch": "mind",
    "posed": 2005,
    "words": 18,
-   "reach": 0.574,
-   "bounded": true,
-   "zone": "unsampled"
+   "reach": 0.605,
+   "bounded": false,
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-why-aren-t-all-plants-immune-to-all-diseases",
@@ -1367,7 +1367,7 @@
    "words": 18,
    "reach": 0.579,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "dl-science-2005-why-does-lateral-transfer-occur-in-so-many-species",
@@ -1383,7 +1383,7 @@
    "branch": "biophysics",
    "posed": 2005,
    "words": 20,
-   "reach": 0.663,
+   "reach": 0.674,
    "bounded": false,
    "zone": "inside"
   },
@@ -1392,7 +1392,7 @@
    "branch": "applied",
    "posed": 2005,
    "words": 20,
-   "reach": 0.552,
+   "reach": 0.556,
    "bounded": false,
    "zone": "outside"
   },
@@ -1401,7 +1401,7 @@
    "branch": "physics",
    "posed": 2005,
    "words": 20,
-   "reach": 0.65,
+   "reach": 0.662,
    "bounded": false,
    "zone": "inside"
   },
@@ -1475,7 +1475,7 @@
    "words": 21,
    "reach": 0.636,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "dl-xprize-google-lunar-xprize",
@@ -1526,8 +1526,8 @@
    "id": "ecc",
    "branch": "information",
    "posed": 1985,
-   "words": 63,
-   "reach": 0.651,
+   "words": 144,
+   "reach": 0.667,
    "bounded": false,
    "zone": "inside"
   },
@@ -1618,6 +1618,24 @@
    "posed": 1984,
    "words": 136,
    "reach": 0.789,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-163-erdos-163",
+   "branch": "mathematics",
+   "posed": 1973,
+   "words": 95,
+   "reach": 0.816,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-19-erdos-19",
+   "branch": "mathematics",
+   "posed": 1972,
+   "words": 16,
+   "reach": 0.765,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2219,17 +2237,17 @@
    "id": "freeenergy",
    "branch": "mind",
    "posed": 2006,
-   "words": 113,
-   "reach": 0.649,
+   "words": 178,
+   "reach": 0.635,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
   },
   {
    "id": "fusion",
    "branch": "physics",
    "posed": 1950,
-   "words": 64,
-   "reach": 0.572,
+   "words": 124,
+   "reach": 0.573,
    "bounded": true,
    "zone": "outside"
   },
@@ -2391,7 +2409,7 @@
    "branch": "mathematics",
    "posed": 1900,
    "words": 7,
-   "reach": 0.714,
+   "reach": 0.715,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2481,7 +2499,7 @@
    "branch": "information",
    "posed": 1969,
    "words": 129,
-   "reach": 0.715,
+   "reach": 0.705,
    "bounded": false,
    "zone": "inside"
   },
@@ -2490,16 +2508,16 @@
    "branch": "physics",
    "posed": 1932,
    "words": 96,
-   "reach": 0.633,
+   "reach": 0.648,
    "bounded": false,
-   "zone": "outside"
+   "zone": "inside"
   },
   {
    "id": "mechdesign",
    "branch": "information",
    "posed": 1981,
-   "words": 76,
-   "reach": 0.649,
+   "words": 139,
+   "reach": 0.652,
    "bounded": false,
    "zone": "inside"
   },
@@ -2507,8 +2525,8 @@
    "id": "mitoredox",
    "branch": "biophysics",
    "posed": 1956,
-   "words": 141,
-   "reach": 0.634,
+   "words": 256,
+   "reach": 0.645,
    "bounded": false,
    "zone": "inside"
   },
@@ -2522,20 +2540,65 @@
    "zone": "inside"
   },
   {
+   "id": "op-is-every-real-time-computable-irrational-number-transcendent",
+   "branch": "information",
+   "posed": 1965,
+   "words": 22,
+   "reach": 0.769,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-do-national-savings-and-investment-rates-correlate",
+   "branch": "applied",
+   "posed": 1980,
+   "words": 22,
+   "reach": 0.673,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-does-capital-not-flow-from-rich-to-poor-countries",
+   "branch": "applied",
+   "posed": 1990,
+   "words": 24,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-is-consumption-uncorrelated-with-the-real-exchange-rate",
+   "branch": "applied",
+   "posed": 1993,
+   "words": 25,
+   "reach": 0.661,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-is-the-equity-risk-premium-so-high",
+   "branch": "applied",
+   "posed": 1985,
+   "words": 24,
+   "reach": 0.613,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
    "id": "optimalstop",
    "branch": "information",
    "posed": 2010,
-   "words": 66,
-   "reach": 0.643,
+   "words": 173,
+   "reach": 0.625,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "owf",
    "branch": "information",
    "posed": 1976,
    "words": 103,
-   "reach": 0.684,
+   "reach": 0.703,
    "bounded": false,
    "zone": "inside"
   },
@@ -2553,7 +2616,7 @@
    "branch": "information",
    "posed": 1971,
    "words": 125,
-   "reach": 0.732,
+   "reach": 0.722,
    "bounded": false,
    "zone": "inside"
   },
@@ -2564,14 +2627,14 @@
    "words": 123,
    "reach": 0.637,
    "bounded": false,
-   "zone": "inside"
+   "zone": "outside"
   },
   {
    "id": "qgravity",
    "branch": "cosmology",
    "posed": 1930,
    "words": 126,
-   "reach": 0.606,
+   "reach": 0.607,
    "bounded": true,
    "zone": "outside"
   },
@@ -2581,6 +2644,33 @@
    "posed": 1935,
    "words": 44,
    "reach": 0.732,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "rc-do-time-crystals-exist",
+   "branch": "physics",
+   "posed": 2012,
+   "words": 31,
+   "reach": 0.695,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "rc-how-many-colours-does-the-plane-need-so-that-no-two-points-a",
+   "branch": "mathematics",
+   "posed": 1950,
+   "words": 29,
+   "reach": 0.708,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "rc-what-is-the-charge-radius-of-the-proton",
+   "branch": "physics",
+   "posed": 2010,
+   "words": 27,
+   "reach": 0.726,
    "bounded": false,
    "zone": "inside"
   },
@@ -2603,11 +2693,29 @@
    "zone": "outside"
   },
   {
+   "id": "sd-grandmaster-level-in-starcraft-ii",
+   "branch": "information",
+   "posed": 2015,
+   "words": 29,
+   "reach": 0.688,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
    "id": "sd-indistinguishability-obfuscation-from-well-founded-assumptio",
    "branch": "information",
    "posed": 2001,
    "words": 28,
-   "reach": 0.679,
+   "reach": 0.7,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "sd-quantum-computational-advantage",
+   "branch": "information",
+   "posed": 1980,
+   "words": 30,
+   "reach": 0.68,
    "bounded": false,
    "zone": "inside"
   },
@@ -2706,9 +2814,9 @@
    "branch": "mathematics",
    "posed": 1998,
    "words": 20,
-   "reach": 0.614,
-   "bounded": true,
-   "zone": "outside"
+   "reach": 0.645,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "smale-4",
@@ -2768,10 +2876,10 @@
    "id": "smale18",
    "branch": "mind",
    "posed": 1998,
-   "words": 90,
-   "reach": 0.673,
+   "words": 145,
+   "reach": 0.656,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "inside"
   },
   {
    "id": "turbulence",
@@ -2819,11 +2927,74 @@
    "zone": "inside"
   },
   {
+   "id": "wp-andreoort-conjecture-jonathan-pila-ananth-shankar-jacob-tsim",
+   "branch": "mathematics",
+   "posed": 1989,
+   "words": 9,
+   "reach": 0.858,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-blankenshipoporowski-conjecture",
+   "branch": "mathematics",
+   "posed": 1999,
+   "words": 20,
+   "reach": 0.786,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-bunkbed-conjecture-nikita-gladkov-igor-pak-alexander-zimin-2",
+   "branch": "mathematics",
+   "posed": 1985,
+   "words": 9,
+   "reach": 0.826,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-caratheodory-conjecture-for-surfaces-of-smoothness-c-4-brend",
+   "branch": "mathematics",
+   "posed": 1924,
+   "words": 13,
+   "reach": 0.797,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-crouzeix-s-conjecture-shanmu-jin-using-gpt-5-6-sol-2026",
+   "branch": "mathematics",
+   "posed": 2004,
+   "words": 21,
+   "reach": 0.829,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
    "id": "wp-delta-conjecture-1978",
    "branch": "mathematics",
    "posed": 1978,
    "words": 64,
    "reach": 0.793,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-disproof-of-hedetniemi-s-conjecture-on-the-chromatic-number",
+   "branch": "mathematics",
+   "posed": 1966,
+   "words": 16,
+   "reach": 0.824,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-egan-conjecture-sergei-drozdov-2023",
+   "branch": "mathematics",
+   "posed": 2014,
+   "words": 5,
+   "reach": 0.85,
    "bounded": false,
    "zone": "inside"
   },
@@ -2852,7 +3023,43 @@
    "words": 5,
    "reach": 0.598,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
+  },
+  {
+   "id": "wp-kahnkalai-conjecture-jinyoung-park-and-huy-tuan-pham-2022",
+   "branch": "mathematics",
+   "posed": 2006,
+   "words": 9,
+   "reach": 0.876,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-kakeya-conjecture",
+   "branch": "mathematics",
+   "posed": 1917,
+   "words": 25,
+   "reach": 0.765,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-keller-s-conjecture-joshua-brakensiek-marijn-heule-john-mack",
+   "branch": "mathematics",
+   "posed": 1930,
+   "words": 11,
+   "reach": 0.819,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-kelmansseymour-conjecture-dawei-he-yan-wang-and-xingxing-yu",
+   "branch": "mathematics",
+   "posed": 1977,
+   "words": 10,
+   "reach": 0.863,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "wp-landau-s-problems",
@@ -2860,6 +3067,15 @@
    "posed": 1912,
    "words": 2,
    "reach": 0.682,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-mckay-conjecture",
+   "branch": "mathematics",
+   "posed": 1971,
+   "words": 39,
+   "reach": 0.774,
    "bounded": true,
    "zone": "undecided"
   },
@@ -2882,11 +3098,38 @@
    "zone": "inside"
   },
   {
+   "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
+   "branch": "mathematics",
+   "posed": 1959,
+   "words": 11,
+   "reach": 0.83,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
    "id": "wp-solar-abundance-problem-19982022",
    "branch": "physics",
    "posed": 1998,
    "words": 27,
    "reach": 0.701,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-telescope-conjecture",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 14,
+   "reach": 0.792,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-weibel-s-conjecture-moritz-kerz-florian-strunk-and-georg-tam",
+   "branch": "mathematics",
+   "posed": 1980,
+   "words": 10,
+   "reach": 0.853,
    "bounded": false,
    "zone": "inside"
   },
@@ -2897,7 +3140,16 @@
    "words": 4,
    "reach": 0.513,
    "bounded": false,
-   "zone": "unsampled"
+   "zone": "outside"
+  },
+  {
+   "id": "wp-yau-s-conjecture-antoine-song-2018",
+   "branch": "mathematics",
+   "posed": 1982,
+   "words": 5,
+   "reach": 0.802,
+   "bounded": false,
+   "zone": "inside"
   },
   {
    "id": "yangmills",
@@ -2912,10 +3164,10 @@
    "id": "zkp",
    "branch": "information",
    "posed": 1985,
-   "words": 96,
-   "reach": 0.66,
-   "bounded": true,
-   "zone": "undecided"
+   "words": 153,
+   "reach": 0.686,
+   "bounded": false,
+   "zone": "inside"
   }
  ]
 }
