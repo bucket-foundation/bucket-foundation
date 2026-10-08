@@ -69,7 +69,7 @@ export default function HomeVariant({ v }: { v: Variant }) {
       <Modules v={v} />
       <footer className="hv-foot">
         <span>{MODULES.length} modules. Tiles marked desktop open in the app you download; the rest open on the web.</span>
-        <Link href="/research-os">The five states →</Link>
+        <Link href="/research-os/workspace">Try it in the workspace →</Link>
       </footer>
     </main>
   );
