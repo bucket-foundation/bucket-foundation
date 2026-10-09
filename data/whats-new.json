@@ -2,6 +2,32 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "2026-10-09-knowledge-interaction-hierarchy",
+      "date": "2026-10-09",
+      "category": "site-feature",
+      "branch": null,
+      "title": "The knowledge interaction hierarchy",
+      "summary": "Research OS orders a person's relation to a node in five levels, each holding the ones before it the way a permission order does: Access, who can see and use the node; Awareness, knowing the directions beyond it; Understanding, learning the node itself; Internalization, the node meeting the rest of what the person holds; Production, a new node placed on the graph. The landing shows each level with the desktop view that serves it, and the app's home shows the five as the person's live state with one next action each.",
+      "commit": null,
+      "pr": null,
+      "url": null,
+      "discussion": "Each level has an operational test. Access is computed from the router: every prerequisite at Understanding or above. Awareness is a node opened. Understanding is one Check result that grounds the learner's own explanation against the node's quotes. Internalization is a transfer item followed by a teacher's approval, the one step a model cannot take. Production is a submitted node that passes the provenance guard and sign-off. The learner state model maps the five against ICAP, SOLO, Bloom, Perkins and the Recall-Apply-Derive-Teach ladder and names the logging gaps a pilot needs closed.",
+      "links": [
+        {
+          "label": "The five levels",
+          "href": "https://bucket.foundation/research-os#states"
+        },
+        {
+          "label": "Definition",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/learning/research-os/INTEGRATION-PLAN.md"
+        },
+        {
+          "label": "Learner state model",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/learning/research-os/LEARNER-STATE-MODEL.md"
+        }
+      ]
+    },
+    {
       "id": "2026-10-08-frontier-figure-explained",
       "date": "2026-10-08",
       "category": "production",
