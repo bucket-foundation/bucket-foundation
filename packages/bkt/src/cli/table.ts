@@ -109,10 +109,11 @@ export const TABLE: CommandSpec[] = [
     summary: "estimate, submit or collect the AI scoring batch",
     options: {
       ...HAI_TOOL_OPTIONS,
-      pilot: { type: "string", value: "N", help: "score N items" },
+      pilot: { type: "string", value: "N", help: "score N items; a full run needs a pilot of 100 answers at most 2% truncated" },
       yes: { type: "boolean", help: "submit the batch" },
       "dry-run": { type: "boolean", help: "print the estimate and stop" },
       collect: { type: "boolean", help: "collect a finished batch" },
+      abandon: { type: "boolean", help: "drop an expired or failed batch so a new one can be submitted" },
       "max-usd": { type: "string", value: "USD", help: "refuse a batch whose worst case costs more" },
     },
   },

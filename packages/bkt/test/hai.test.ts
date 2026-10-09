@@ -5,9 +5,10 @@ import { join } from "node:path";
 import { newDataKey } from "../src/crypto";
 import type { Item } from "../src/grade";
 import { eligibleIds, freezeBank, reviewBank, reviewItem, type FrozenItem } from "../src/hai/bank";
-import { loadSubmission, save } from "../src/hai/files";
+import { loadPilot, loadSubmission, save } from "../src/hai/files";
 import { aiVisible, displayOrder, malformedCount, pickPairs, retestDue, RETEST_MS, THINK_MS, type AiScores } from "../src/hai/probe";
-import { batchRequests, estimateCost, MODEL, parseAnswer, selectForScoring } from "../src/hai/score";
+import Anthropic from "@anthropic-ai/sdk";
+import { batchRequests, estimateCost, MAX_TOKENS, MODEL, parseAnswer, pilotGate, selectForScoring, type Submission } from "../src/hai/score";
 import { ProbeRun, report } from "../src/hai/session";
 import { bootstrapPairs, dependenceFlag, guessCorrect, halfWidthItems, point, summarize, type PairOutcome } from "../src/hai/stats";
 import { HaiStore } from "../src/hai/store";
@@ -282,7 +283,7 @@ describe("scorer", () => {
 
   test("a pending batch blocks resubmission until collected, and the cap blocks overspend", async () => {
     const a = { ...parseToolArgs(["--pilot", "20"]), dir };
-    freeze({ version: "p1", source: "t", items }, a, () => {});
+    freeze({ version: "p1", source: "t", items }, { ...a, clear: bank.items.map((i) => i.id) }, () => {});
     let created = 0;
     const fake = () => ({ messages: { batches: { create: async () => ({ id: `batch${++created}` }) } } }) as never;
     const env = { ANTHROPIC_API_KEY: "test" };
@@ -310,11 +311,135 @@ describe("scorer", () => {
   test("score without --yes never builds a client", async () => {
     const lines: string[] = [];
     const a = { ...parseToolArgs(["--pilot", "20"]), dir };
-    freeze({ version: "p1", source: "t", items }, a, (l) => lines.push(l));
+    freeze({ version: "p1", source: "t", items }, { ...a, clear: bank.items.map((i) => i.id) }, (l) => lines.push(l));
     await score(a, (l) => lines.push(l), {}, () => {
       throw new Error("client built");
     });
     expect(lines.at(-1)).toContain("dry run");
     await expect(score({ ...a, yes: true }, () => {}, {}, () => { throw new Error("client built"); })).rejects.toThrow("ANTHROPIC_API_KEY");
+  });
+
+  function batchClient(status: () => string, truncatedEvery: number, succeeded = () => 0) {
+    let created = 0;
+    const state = { created: () => created, sub: null as Submission | null };
+    const make = () =>
+      ({
+        messages: {
+          batches: {
+            create: async () => ({ id: `batch${++created}` }),
+            retrieve: async () => ({ processing_status: status(), request_counts: { succeeded: succeeded() } }),
+            results: async () =>
+              (async function* () {
+                const sub = loadSubmission(dir)!;
+                for (const [n, id] of sub.itemIds.entries()) {
+                  const item = bank.items.find((i) => i.id === id)!;
+                  const cut = truncatedEvery > 0 && n % truncatedEvery === 0;
+                  yield {
+                    custom_id: `i${n}`,
+                    result: {
+                      type: "succeeded",
+                      message: { stop_reason: cut ? "max_tokens" : "end_turn", content: [{ type: "text", text: cut ? "{\"choice\":" : JSON.stringify({ choice: "ABCD"[item.answerIndex], rationale: "r" }) }] },
+                    },
+                  };
+                }
+              })(),
+          },
+        },
+      }) as never;
+    return { make, state };
+  }
+
+  const env = { ANTHROPIC_API_KEY: "test" };
+
+  test("a pilot over the truncation gate blocks the full run, a clean pilot opens it", async () => {
+    const pilotArgs = { ...parseToolArgs(["--pilot", "100"]), dir };
+    const fullArgs = { ...parseToolArgs([]), dir };
+    freeze({ version: "p1", source: "t", items }, { ...pilotArgs, clear: bank.items.map((i) => i.id) }, () => {});
+    expect(pilotGate(bank, loadPilot(dir))).toContain("no collected pilot");
+    const lines: string[] = [];
+    await score(fullArgs, (l) => lines.push(l), env, () => { throw new Error("client built"); });
+    expect(lines.some((l) => l.startsWith("full run blocked: no collected pilot"))).toBe(true);
+    expect(lines.at(-1)).toContain("dry run");
+    await expect(score({ ...fullArgs, yes: true }, () => {}, env, () => { throw new Error("client built"); })).rejects.toThrow("no collected pilot");
+
+    const dirty = batchClient(() => "ended", 10);
+    await score({ ...pilotArgs, yes: true }, () => {}, env, dirty.make);
+    expect(loadSubmission(dir)!.pilot).toBe(true);
+    lines.length = 0;
+    await score({ ...pilotArgs, collect: true }, (l) => lines.push(l), env, dirty.make);
+    const p = loadPilot(dir)!;
+    expect(p.answered).toBe(loadSubmission(dir)!.itemIds.length);
+    expect(p.truncated).toBe(Math.ceil(p.answered / 10));
+    expect(lines.at(-1)).toContain("full run blocked");
+    await expect(score({ ...fullArgs, yes: true }, () => {}, env, dirty.make)).rejects.toThrow("above the 2% gate");
+    expect(dirty.state.created()).toBe(1);
+
+    await expect(score({ ...pilotArgs, pilot: 100_000, yes: true }, () => {}, env, dirty.make)).rejects.toThrow("full run blocked");
+    const clean = batchClient(() => "ended", 0);
+    await score({ ...pilotArgs, yes: true }, () => {}, env, clean.make);
+    expect(loadSubmission(dir)!.itemIds).toHaveLength(100);
+    lines.length = 0;
+    await score({ ...pilotArgs, collect: true }, (l) => lines.push(l), env, clean.make);
+    expect(loadPilot(dir)!.truncated).toBe(0);
+    expect(lines.at(-1)).toContain("full run allowed");
+    await score({ ...fullArgs, yes: true }, () => {}, env, clean.make);
+    expect(loadSubmission(dir)!.pilot).toBe(false);
+    expect(loadSubmission(dir)!.itemIds).toHaveLength(20);
+    expect(clean.state.created()).toBe(2);
+  });
+
+  test("a pilot for an older bank, another request shape or too few answers does not open the full run", () => {
+    const clean = { bankVersion: bank.version, model: MODEL, maxTokens: MAX_TOKENS, batchId: "b", answered: 100, truncated: 2, failed: 0, collectedAt: "now" };
+    expect(pilotGate(bank, clean)).toBeNull();
+    expect(pilotGate(bank, { ...clean, truncated: 3 })).toContain("3 of 100");
+    expect(pilotGate(bank, { ...clean, bankVersion: "old" })).toContain("no collected pilot");
+    expect(pilotGate(bank, { ...clean, answered: 0, truncated: 0 })).toContain("fewer than 100");
+    expect(pilotGate(bank, { ...clean, answered: 1, truncated: 0 })).toContain("fewer than 100");
+    expect(pilotGate(bank, { ...clean, maxTokens: MAX_TOKENS - 1 })).toContain("no collected pilot");
+    expect(pilotGate(bank, { ...clean, model: "other" })).toContain("no collected pilot");
+  });
+
+  test("--abandon drops an empty ended or missing batch and refuses a running or paid one", async () => {
+    expect(parseToolArgs(["--abandon"]).abandon).toBe(true);
+    const a = { ...parseToolArgs(["--pilot", "20"]), dir };
+    freeze({ version: "p1", source: "t", items }, { ...a, clear: bank.items.map((i) => i.id) }, () => {});
+    await expect(score({ ...a, abandon: true }, () => {}, env, () => { throw new Error("client built"); })).rejects.toThrow("no open batch");
+    let status = "in_progress";
+    let succeeded = 0;
+    const c = batchClient(() => status, 0, () => succeeded);
+    await score({ ...a, yes: true }, () => {}, env, c.make);
+    await expect(score({ ...a, abandon: true }, () => {}, env, c.make)).rejects.toThrow("in progress");
+    status = "canceling";
+    await expect(score({ ...a, abandon: true }, () => {}, env, c.make)).rejects.toThrow("canceling");
+    status = "ended";
+    succeeded = 5;
+    await expect(score({ ...a, abandon: true }, () => {}, env, c.make)).rejects.toThrow("5 paid answers");
+    expect(loadSubmission(dir)!.abandonedAt).toBeUndefined();
+    succeeded = 0;
+    const lines: string[] = [];
+    await score({ ...a, abandon: true }, (l) => lines.push(l), env, c.make);
+    expect(loadSubmission(dir)!.abandonedAt).toBeString();
+    expect(lines.at(-1)).toContain("abandoned (ended)");
+    await expect(score({ ...a, collect: true }, () => {}, env, c.make)).rejects.toThrow("was abandoned");
+    await expect(score({ ...a, abandon: true }, () => {}, env, c.make)).rejects.toThrow("no open batch");
+    await score({ ...a, yes: true }, () => {}, env, c.make);
+    expect(loadSubmission(dir)!.batchId).toBe("batch2");
+
+    const gone = () =>
+      ({
+        messages: {
+          batches: {
+            retrieve: async () => {
+              throw new Anthropic.NotFoundError(404, undefined, "not found", new Headers());
+            },
+          },
+        },
+      }) as never;
+    await score({ ...a, abandon: true }, (l) => lines.push(l), env, gone);
+    expect(lines.at(-1)).toContain("abandoned (not found)");
+    const broken = () => ({ messages: { batches: { retrieve: async () => { throw new Error("network down"); } } } }) as never;
+    await score({ ...a, yes: true }, () => {}, env, c.make);
+    await expect(score({ ...a, abandon: true }, () => {}, env, broken)).rejects.toThrow("network down");
+    expect(loadSubmission(dir)!.abandonedAt).toBeUndefined();
   });
 });
