@@ -11,10 +11,16 @@
   padding-block: 64px;
 }
 .ros-hero h1 {
-  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-size: clamp(2.4rem, 7.2vw, 7.2rem);
   line-height: 1;
   letter-spacing: 0.005em;
-  text-wrap: balance;
+  white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .ros-hero h1 {
+    white-space: normal;
+    text-wrap: balance;
+  }
 }
 .ros-hero .ros-sub {
   margin: 26px 0 0;
@@ -186,4 +192,41 @@
   align-items: center;
   gap: 14px;
   margin-top: 26px;
+}
+
+.ros-panel {
+  position: relative;
+  max-width: 1120px;
+  padding: 56px 96px;
+  isolation: isolate;
+}
+.ros-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(239, 232, 212, 0.34);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 120px, #000 calc(100% - 120px), transparent),
+    linear-gradient(to bottom, transparent, #000 80px, #000 calc(100% - 80px), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 120px, #000 calc(100% - 120px), transparent),
+    linear-gradient(to bottom, transparent, #000 80px, #000 calc(100% - 80px), transparent);
+  mask-composite: intersect;
+}
+.ros-panel-light::before {
+  background: rgba(239, 232, 212, 0.22);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.ros-hero .ros-panel {
+  max-width: none;
+  width: 100%;
+  padding: 48px 72px;
+}
+@media (max-width: 720px) {
+  .ros-panel {
+    padding: 28px 24px;
+  }
 }
