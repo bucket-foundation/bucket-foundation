@@ -187,3 +187,12 @@
   gap: 14px;
   margin-top: 26px;
 }
+
+.ros-panel {
+  background: rgba(239, 232, 212, 0.72);
+  -webkit-backdrop-filter: blur(14px) saturate(0.9);
+  backdrop-filter: blur(14px) saturate(0.9);
+  border: 1px solid rgba(31, 28, 22, 0.08);
+  border-radius: 12px;
+  padding: 28px 32px;
+}

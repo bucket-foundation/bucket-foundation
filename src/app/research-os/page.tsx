@@ -47,36 +47,11 @@ const STATES: { name: string; line: string }[] = [
 ];
 
 const STATE_SCREENSHOTS: { src: string; alt: string; route: string; label: string }[] = [
-  {
-    src: "/research-os/state-access.png",
-    alt: "The Research OS for K-12 overview page, reachable to any visitor.",
-    route: "/research-os",
-    label: "the overview",
-  },
-  {
-    src: "/research-os/state-awareness.png",
-    alt: "The canon search page, where a learner opens a node for the first time.",
-    route: "/canon/search",
-    label: "canon search",
-  },
-  {
-    src: "/research-os/state-understanding.png",
-    alt: "The Research OS workspace, where a learner writes and checks an explanation.",
-    route: "/research-os/workspace",
-    label: "the workspace",
-  },
-  {
-    src: "/research-os/state-internalization.png",
-    alt: "The Research OS class view, showing its unavailable message with no Supabase configured locally.",
-    route: "/research-os/class",
-    label: "the class view",
-  },
-  {
-    src: "/research-os/state-production.png",
-    alt: "The Research OS teacher review queue, showing its unavailable message with no Supabase configured locally.",
-    route: "/research-os/review",
-    label: "the review queue",
-  },
+  { src: "/research-os/app-access.png", alt: "The Data view of the Bucket desktop app: what is loaded on this computer.", route: "/download", label: "Data in the app" },
+  { src: "/research-os/app-awareness.png", alt: "The Knowledge graph view of the Bucket desktop app: every idea in your decks, linked to what it builds on.", route: "/download", label: "the Graph in the app" },
+  { src: "/research-os/app-understanding.png", alt: "The Learn view of the Bucket desktop app: decks and mastery per branch.", route: "/download", label: "Learn in the app" },
+  { src: "/research-os/app-internalization.png", alt: "The Progress view of the Bucket desktop app: how far each idea has gone, across branches.", route: "/download", label: "Progress in the app" },
+  { src: "/research-os/app-production.png", alt: "The Canon view of the Bucket desktop app: source excerpts on the globe.", route: "/download", label: "the Canon in the app" },
 ];
 
 const FIRST_TASK: string[] = [
@@ -109,19 +84,13 @@ export default function ResearchOsPage() {
               <Link className="ros-btn" href="/research-os/home">
                 Open Research OS →
               </Link>
-              <Link className="ros-btn ros-btn-quiet" href="/download">
-                Download →
-              </Link>
-              <a className="ros-btn ros-btn-quiet" href="#first-task">
-                Your first task
-              </a>
               <span className="ros-trust">{TRUST}</span>
             </div>
           </div>
         </section>
 
         <section id="first-task" className="ros-section">
-          <div className="ros-wrap">
+          <div className="ros-wrap ros-panel">
             <h2 className="ros-section-title font-display text-[color:var(--basalt)]">Your first task</h2>
             <p className="ros-section-sub">One concept, four steps. Research OS is in private testing.</p>
             <ol className="list-decimal pl-6 text-[16px] leading-[1.75] text-[color:var(--basalt-2)]">
@@ -133,15 +102,12 @@ export default function ResearchOsPage() {
               <Link className="ros-btn" href="/research-os/workspace">
                 Try it in the Workspace →
               </Link>
-              <Link className="ros-btn ros-btn-quiet" href="/download">
-                Download the desktop app →
-              </Link>
             </div>
           </div>
         </section>
 
         <section id="states" className="ros-section">
-          <div className="ros-wrap">
+          <div className="ros-wrap ros-panel">
             <h2 className="ros-section-title font-display text-[color:var(--basalt)]">Five States</h2>
             <p className="ros-section-sub">The same concept at five depths, from being allowed to open it to adding a new node beside it. Each depth holds the ones before it.</p>
             {STATES.map((s, i) => {
@@ -152,8 +118,8 @@ export default function ResearchOsPage() {
                     <Image
                       src={shot.src}
                       alt={shot.alt}
-                      width={960}
-                      height={600}
+                      width={1440}
+                      height={900}
                       sizes="(min-width: 768px) 55vw, 100vw"
                       priority={i === 0}
                     />
@@ -177,7 +143,7 @@ export default function ResearchOsPage() {
         </div>
 
         <section id="cta" className="ros-section ros-final">
-          <div className="ros-wrap">
+          <div className="ros-wrap ros-panel">
             <h2 className="ros-section-title font-display text-[color:var(--basalt)]" style={{ marginBottom: 0 }}>
               Start with one concept.
             </h2>
