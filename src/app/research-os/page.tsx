@@ -61,8 +61,6 @@ const FIRST_TASK: string[] = [
   "Run the check. It compares your sentence with the quotes and shows which claims a quote supports.",
 ];
 
-const TRUST = "Free · no login for the demo · every quote traces to a real source";
-
 export default function ResearchOsPage() {
   return (
     <>
@@ -72,7 +70,7 @@ export default function ResearchOsPage() {
       <FixedCanonGlobeBackground />
       <main className="stone-bone relative z-10 grain">
         <section className="ros-hero">
-          <div className="ros-wrap">
+          <div className="ros-wrap ros-panel ros-panel-light">
             <h1 className="font-display uppercase chisel text-[color:var(--basalt)]">
               Research OS for <span className="inlay-gold">K-12</span>
             </h1>
@@ -84,7 +82,6 @@ export default function ResearchOsPage() {
               <Link className="ros-btn" href="/research-os/home">
                 Open Research OS →
               </Link>
-              <span className="ros-trust">{TRUST}</span>
             </div>
           </div>
         </section>
@@ -151,7 +148,6 @@ export default function ResearchOsPage() {
               <Link className="ros-btn" href="/research-os/workspace">
                 Open the Workspace →
               </Link>
-              <span className="ros-trust">{TRUST}</span>
             </div>
           </div>
         </section>

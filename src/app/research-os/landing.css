@@ -209,6 +209,15 @@
     linear-gradient(to bottom, transparent, #000 80px, #000 calc(100% - 80px), transparent);
   mask-composite: intersect;
 }
+.ros-panel-light::before {
+  background: rgba(239, 232, 212, 0.22);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.ros-hero .ros-panel {
+  max-width: 1240px;
+  padding: 48px 96px;
+}
 @media (max-width: 720px) {
   .ros-panel {
     padding: 28px 24px;
