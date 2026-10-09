@@ -189,10 +189,28 @@
 }
 
 .ros-panel {
-  background: rgba(239, 232, 212, 0.72);
-  -webkit-backdrop-filter: blur(14px) saturate(0.9);
-  backdrop-filter: blur(14px) saturate(0.9);
-  border: 1px solid rgba(31, 28, 22, 0.08);
-  border-radius: 12px;
-  padding: 28px 32px;
+  position: relative;
+  max-width: 1040px;
+  padding: 40px 56px;
+  isolation: isolate;
+}
+.ros-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(239, 232, 212, 0.5);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent),
+    linear-gradient(to bottom, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent),
+    linear-gradient(to bottom, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  mask-composite: intersect;
+}
+@media (max-width: 720px) {
+  .ros-panel {
+    padding: 28px 24px;
+  }
 }
