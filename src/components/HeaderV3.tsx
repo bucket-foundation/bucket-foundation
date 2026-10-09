@@ -43,6 +43,18 @@ export default function HeaderV3({ launchList = false }: { launchList?: boolean 
             </span>
           </Link>
 
+          <nav className="hidden md:flex items-center gap-7 small-caps text-[11px] text-[color:var(--basalt-2)]">
+            {NAV.filter((n) => n.href !== "/download").map((n) => (
+              <Link
+                key={n.href}
+                href={n.href}
+                className="hover:text-[color:var(--aegean-deep)] transition border-y-2 border-transparent hover:border-b-[color:var(--gold)] h-11 flex items-center"
+              >
+                {n.label}
+              </Link>
+            ))}
+          </nav>
+
           <div className="flex items-center gap-2">
             <Link
               href="/download"
