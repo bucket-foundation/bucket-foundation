@@ -107,6 +107,7 @@ bkt hai review --clear <item-id>
 bkt hai score --pilot 200
 bkt hai score --pilot 200 --yes
 bkt hai score --collect
+bkt hai score --abandon
 bkt hai
 bkt hai export
 bkt hai wipe
@@ -115,6 +116,8 @@ bkt hai wipe
 Measures the multiplier from bead bkt-7v10. `freeze` writes `hai/bank.json`: each pack item with 3 distractors fixed under seed `hai-bank-v1`, versioned by hash. `review` writes `hai/review.json` and flags duplicate choices, distractors that contain or overlap the answer, answers twice as long as any distractor, and distractors drawn from the same atom. Flagged items stay out of probes and scoring until cleared with `--clear`.
 
 `score` prints the item count, a cost estimate and the worst case at `max_tokens` 400 for `claude-opus-5-5` at effort low, one run, and stops. `--yes` submits a Batches API job and needs `ANTHROPIC_API_KEY`; it refuses while an earlier batch is uncollected and when the worst case exceeds `--max-usd`, default 1.5 times the batched estimate. `--collect` writes `hai/ai-scores.json` when the batch ends; malformed or truncated replies are counted and left out of A and of probes.
+
+A pilot scores its whole seeded sample again on each run, and its collection writes `hai/pilot.json` with the answers and the replies cut at `max_tokens`. A full run with `--yes`, or a pilot as large as the eligible pool, is refused until a pilot for the same bank, model and `max_tokens` returns at least 100 answers with at most 2% cut. `--abandon` drops an uncollected batch that ended with no succeeded answers or that the API no longer finds, so a new batch can be submitted; it refuses a batch still running or canceling.
 
 A probe is 40 unseen items in 20 pairs matched on tier and AI correctness. One item of each pair is answered alone, the other with the AI answer shown after a 20 s think window. No scores are shown until the unaided retest 7 days later. Scores are guess-corrected, `(c - 1/4) / (3/4)`. The report gives D = J - max(H, A) first and m = J / max(H, A) beside it, retention R = H(t+7) - H(t), learning L = J(t+7) - H(t+7), and 95% CIs from a bootstrap over pairs. A is scored on the paired items only. Answers are sealed like attempts, and nothing leaves the device.
 
