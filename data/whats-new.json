@@ -2,6 +2,36 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "2026-10-08-frontier-figure-explained",
+      "date": "2026-10-08",
+      "category": "production",
+      "branch": null,
+      "title": "The frontier figure, with its zones named",
+      "summary": "Reach is the cosine similarity between a problem's statement and the closest solved problem's statement, both embedded with bge-small-en-v1.5. The circle sits at reach 0.762, the 10th percentile of reach among the 1,694 solved problems: nine in ten solved problems are at least that close to another solved one. An open problem at or above it has a close solved neighbour; one below it does not.",
+      "commit": null,
+      "pr": null,
+      "url": null,
+      "status": "merged",
+      "plot_title": "The solvability frontier: 5,209 research problems, reach threshold 0.762",
+      "image": "/whats-new/solvability-frontier-figure.webp",
+      "image_alt": "A disc with three shaded zones. 1,694 solved problems fill the green centre; 2,434 open problems with a close solved neighbour fill the white ring inside the solid circle at reach 0.762; 1,081 open problems that need a new idea sit on the sand ring beyond it, bunched on the left. A legend lists eight branches by colour with their problem counts.",
+      "discussion": "Radius is reach, 1 at the centre and 0 at the edge, so a point's distance from the circle is how far its reach stands from 0.762. The inner dotted circle is at 0.854, the 75th percentile of reach among inside open problems: above it, close to known results; between the circles, borderline. Angle is the problem's rank along the first two principal components of the embeddings, so neighbours in meaning sit at nearby angles; the beyond points bunch on the left where physics, biophysics, cosmology and mind have few solved problems. Colour is branch.",
+      "links": [
+        {
+          "label": "Paper",
+          "href": "https://bucket.foundation/research/papers/solvability-frontier"
+        },
+        {
+          "label": "Report",
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
+        },
+        {
+          "label": "Rule",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/src/lib/research-os/solvability-frontier.ts"
+        }
+      ]
+    },
+    {
       "id": "2026-10-08-frontier-records",
       "date": "2026-10-08",
       "category": "site-feature",
