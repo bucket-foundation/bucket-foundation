@@ -11,10 +11,16 @@
   padding-block: 64px;
 }
 .ros-hero h1 {
-  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-size: clamp(2.4rem, 7.2vw, 7.2rem);
   line-height: 1;
   letter-spacing: 0.005em;
-  text-wrap: balance;
+  white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .ros-hero h1 {
+    white-space: normal;
+    text-wrap: balance;
+  }
 }
 .ros-hero .ros-sub {
   margin: 26px 0 0;
@@ -215,8 +221,9 @@
   backdrop-filter: blur(6px);
 }
 .ros-hero .ros-panel {
-  max-width: 1240px;
-  padding: 48px 96px;
+  max-width: none;
+  width: 100%;
+  padding: 48px 72px;
 }
 @media (max-width: 720px) {
   .ros-panel {
