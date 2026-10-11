@@ -1,4 +1,5 @@
 import { plugin } from "bun";
+import "katex";
 import { dirname, resolve } from "node:path";
 import { exploreAliases } from "../explore-aliases";
 
