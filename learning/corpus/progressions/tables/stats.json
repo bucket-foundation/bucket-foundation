@@ -1,0 +1,148 @@
+{
+ "catalogue_edges_read": 16441,
+ "slice_textbook_rows_replaced": 1741,
+ "tables": {
+  "frameworks": {
+   "rows": 581,
+   "verified": 337,
+   "verified_share": 0.58,
+   "cip_mapped": 581,
+   "cip_mapping_verified": 0,
+   "cip_grain": {
+    "2": 27,
+    "4": 292,
+    "6": 262
+   },
+   "onet_soc_mapped": 229,
+   "onet_soc_mapping_verified": 0
+  },
+  "progression": {
+   "rows": 5350,
+   "verified": 3830,
+   "verified_share": 0.7159,
+   "cip_mapped": 5350,
+   "cip_mapping_verified": 0,
+   "cip_grain": {
+    "2": 189,
+    "4": 3245,
+    "6": 1916
+   },
+   "onet_soc_mapped": 1388,
+   "onet_soc_mapping_verified": 228
+  },
+  "edges": {
+   "rows": 22130,
+   "stated": 19207,
+   "stated_share": 0.8679,
+   "external": 690,
+   "by_type": {
+    "prerequisite": 20285,
+    "prerequisite_or_concurrent": 1147,
+    "corequisite": 698
+   }
+  },
+  "assessments": {
+   "rows": 490,
+   "verified": 262,
+   "verified_share": 0.5347,
+   "cip_mapped": 490,
+   "cip_mapping_verified": 0,
+   "cip_grain": {
+    "2": 13,
+    "4": 223,
+    "6": 254
+   },
+   "onet_soc_mapped": 264,
+   "onet_soc_mapping_verified": 0
+  },
+  "books": {
+   "rows": 1636,
+   "verified": 1300,
+   "verified_share": 0.7946,
+   "cip_mapped": 1636,
+   "cip_mapping_verified": 0,
+   "cip_grain": {
+    "2": 55,
+    "4": 964,
+    "6": 617
+   },
+   "onet_soc_mapped": 0,
+   "onet_soc_mapping_verified": 0
+  },
+  "resources": {
+   "rows": 53459,
+   "verified": 19419,
+   "verified_share": 0.3633,
+   "cip_mapped": 47988,
+   "cip_mapping_verified": 0,
+   "cip_grain": {
+    "2": 845,
+    "4": 47143
+   },
+   "onet_soc_mapped": 0,
+   "onet_soc_mapping_verified": 0
+  },
+  "programs": {
+   "rows": 843,
+   "verified": 843,
+   "verified_share": 1.0,
+   "cip_mapped": 812,
+   "cip_mapping_verified": 0,
+   "cip_grain": {
+    "6": 812
+   },
+   "onet_soc_mapped": 0,
+   "onet_soc_mapping_verified": 0
+  },
+  "courses": {
+   "rows": 25908,
+   "verified": 25908,
+   "verified_share": 1.0,
+   "cip_mapped": 25404,
+   "cip_mapping_verified": 0,
+   "cip_grain": {
+    "6": 25404
+   },
+   "onet_soc_mapped": 0,
+   "onet_soc_mapping_verified": 0
+  }
+ },
+ "files_bytes": {
+  "frameworks.jsonl": 431517,
+  "progression.jsonl.zst": 241998,
+  "edges.jsonl.zst": 201670,
+  "assessments.jsonl": 430487,
+  "books.jsonl": 1905641,
+  "resources.jsonl.zst": 1526284,
+  "programs.jsonl.zst": 497024,
+  "courses.jsonl.zst": 829987,
+  "cycles.jsonl": 417,
+  "backbone_codes.jsonl": 759079,
+  "cip_soc_crosswalk.jsonl": 211751,
+  "field_map.tsv": 13106
+ },
+ "total_bytes": 7048961,
+ "repairs": {
+  "courses_merged_into_catalogues": {
+   "round2-fields": 3337,
+   "land-health-service": 686
+  },
+  "sfia_rows_redacted": 8,
+  "school_us_course_rows_set_unstated": 6,
+  "round2_fields_rows_reparsed": {
+   "parsed": 653
+  },
+  "university_stem_rows_linked_to_catalogue": 155,
+  "prerequisite_ids_moved_to_external": 0,
+  "slice_textbooks_absent_from_books_added": 53,
+  "slice_textbooks_absent_from_books_folded": 16,
+  "resources_dropped_email_in_url": 1,
+  "resources_cip_guess_moved_to_series": 845,
+  "stated_edges_demoted_in_cycles": 0
+ },
+ "unmapped_field_labels": [],
+ "cycles": {
+  "components_through_or_alternatives": 3,
+  "components_on_mandatory_edges": 0
+ }
+}

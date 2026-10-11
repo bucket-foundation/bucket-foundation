@@ -56,6 +56,7 @@
     "mint-kruse-token": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/mint-kruse-token.ts",
     "revoke-kruse-token": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/revoke-kruse-token.ts",
     "beads:export": "node scripts/beads-export.mjs",
+    "test:progressions-corpus": "python3 -m unittest learning/corpus/progressions/tests/test_progressions_corpus.py",
     "test:polingual-roots": "python3 -m unittest scripts/photon/test_polingual_roots.py scripts/research-os/test_roots_v2.py scripts/research-os/test_oshb_verses.py scripts/research-os/test_arabic_root_gloss.py",
     "test:tools-ui": "node scripts/research-tools-ui.mjs",
     "test:nsm-exponents": "python3 -m unittest scripts/research-os/test_nsm_exponents.py scripts/research-os/test_clics_extract.py scripts/research-os/test_han_ids.py",
