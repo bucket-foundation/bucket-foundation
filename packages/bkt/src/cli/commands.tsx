@@ -64,7 +64,8 @@ import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
-import { Research, researchRoutes } from "../research";
+import { Research, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
+import { installLines, researchInstall } from "./research";
 import type { ResearchBlobs, ResearchIndex } from "../pack/research";
 import { startServe, type Route } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
@@ -108,6 +109,20 @@ async function analyzeCmd(argv: string[]): Promise<number> {
     return printResult(o, await run.done);
   } finally {
     process.off("SIGINT", onInt);
+  }
+}
+
+async function researchCmd(inv: Invocation, json: boolean): Promise<number> {
+  const home = dataDir();
+  try {
+    const done = await researchInstall(inv.positionals[0], home, await provenServer(home));
+    if (json) console.log(jsonLine("research install", done));
+    else for (const line of installLines(done)) console.log(line);
+    return EXIT.ok;
+  } catch (e) {
+    if (!(e instanceof ResearchError)) throw e;
+    console.error(`bkt: ${e.message}`);
+    return EXIT.failure;
   }
 }
 
@@ -293,7 +308,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
-      ...researchRoutes(new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }), (e) => console.error(`bkt serve: research: ${e.message}`)),
+      ...researchRoutes(new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, (e) => console.error(`bkt serve: research: ${e.message}`)), (e) => console.error(`bkt serve: research: ${e.message}`)),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
       ...servedWordRoutes(workQuiz),
       ...deckRoutes({ home: dir, book: wordBook, onError: (m) => console.error(`bkt serve: ${m}`) }),
@@ -305,6 +320,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
+      "POST /local/research/install": SIDE_PACK_BYTES,
       "POST /local/advisor/import": REVIEW_BODY_BYTES,
       "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
       "POST /local/jobs": JOB_BODY_BYTES,
@@ -504,6 +520,7 @@ export async function execute(inv: Invocation): Promise<number> {
   }
   if (name === "doctor") return doctor(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
+  if (name === "research install") return researchCmd(inv, json);
   if (name === "licences") {
     const l = wordBook().licence;
     for (const line of [l.credit.text, l.changes, `${l.title}: ${l.credit.licenceHref}`, "", l.text.trimEnd()]) console.log(line);
