@@ -4,8 +4,8 @@
  "tables": {
   "frameworks": {
    "rows": 581,
-   "verified": 290,
-   "verified_share": 0.4991,
+   "verified": 281,
+   "verified_share": 0.4836,
    "cip_mapped": 581,
    "cip_mapping_verified": 0,
    "cip_grain": {
@@ -18,8 +18,8 @@
   },
   "progression": {
    "rows": 5350,
-   "verified": 2742,
-   "verified_share": 0.5125,
+   "verified": 2711,
+   "verified_share": 0.5067,
    "cip_mapped": 5350,
    "cip_mapping_verified": 0,
    "cip_grain": {
@@ -43,8 +43,8 @@
   },
   "assessments": {
    "rows": 490,
-   "verified": 262,
-   "verified_share": 0.5347,
+   "verified": 231,
+   "verified_share": 0.4714,
    "cip_mapped": 490,
    "cip_mapping_verified": 0,
    "cip_grain": {
@@ -108,10 +108,10 @@
   }
  },
  "files_bytes": {
-  "frameworks.jsonl": 431320,
-  "progression.jsonl.zst": 214736,
+  "frameworks.jsonl": 431329,
+  "progression.jsonl.zst": 214757,
   "edges.jsonl.zst": 201670,
-  "assessments.jsonl": 430487,
+  "assessments.jsonl": 445596,
   "books.jsonl": 1905641,
   "resources.jsonl.zst": 1526284,
   "programs.jsonl.zst": 334442,
@@ -121,15 +121,16 @@
   "cip_soc_crosswalk.jsonl": 211751,
   "field_map.tsv": 13106
  },
- "total_bytes": 6714878,
+ "total_bytes": 6730017,
  "repairs": {
   "courses_merged_into_catalogues": {
    "round2-fields": 3337,
    "land-health-service": 686
   },
   "verified_cleared_notes_say_inferred_or_recalled": {
-   "frameworks": 47,
-   "progression": 1088
+   "frameworks": 56,
+   "assessments": 58,
+   "progression": 1119
   },
   "sfia_rows_redacted": 8,
   "school_us_course_rows_set_unstated": 6,

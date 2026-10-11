@@ -25,7 +25,7 @@ US_COURSES = {
 FLAG = {"courses": "page_fetched", "programs": "page_fetched"}
 SENTENCE_KEYS = {"prerequisite_text", "corequisite_text", "requirements_text", "recommended_text", "prerequisite_trailing_text", "description", "text"}
 LABEL_KEYS = {"notes", "title", "program", "page_title", "department", "institution"}
-UNSOURCED = re.compile(r"\binfer\w*|\brecall\w*|from memory", re.I)
+UNSOURCED = re.compile(r"\binfer\w*|\brecall\w*|from memory|not fetched|unfetched", re.I)
 CCSS_ROW = re.compile(r"^((?:K|\d)\.[A-Z]+\.[A-Z]\.\d+[a-z]?|[A-Z]-[A-Z]+\.[A-Z]): (.+)$")
 CACHE = {}
 
@@ -317,7 +317,7 @@ class Flags(unittest.TestCase):
             self.assertEqual(r["requirement_rows"] + r["plan_by_term"] + r["required_courses"], [], r["id"])
 
     def test_inferred_or_recalled_rows_are_unverified(self):
-        for name in ("frameworks", "progression"):
+        for name in ("frameworks", "progression", "assessments", "books", "resources"):
             bad = [r["id"] for r in table(name) if r["verified"] and UNSOURCED.search(r["notes"] or "")]
             self.assertEqual(bad, [], name)
 

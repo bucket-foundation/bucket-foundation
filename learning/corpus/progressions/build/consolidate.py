@@ -51,7 +51,7 @@ PR.NUM["kent"] = r"\d{5}"
 SEGMENT = re.compile(r"(Pre/corequisites?:|Corequisites?:)", re.I)
 SFIA_NOTE = "Text withheld: SFIA is proprietary and its wording stays out of this corpus."
 SFIA_FRAMEWORK_NOTE = "Seven levels of responsibility. A skill at a level is the unit a role profile cites. Licence terms confirmed at https://sfia-online.org/en/about-sfia/licensing-sfia; copying framework text onto another site needs a licence."
-UNSOURCED = re.compile(r"\binfer\w*|\brecall\w*|from memory", re.I)
+UNSOURCED = re.compile(r"\binfer\w*|\brecall\w*|from memory|not fetched|unfetched", re.I)
 PUBLIC = os.path.abspath(sys.argv[3]) if len(sys.argv) > 3 else os.path.join(HERE, "public")
 SENTENCE_KEYS = {"prerequisite_text", "corequisite_text", "requirements_text", "recommended_text", "prerequisite_trailing_text", "description"}
 CCSS_CODE = re.compile(r"^((K|\d)\.([A-Z]+)\.([A-Z])\.(\d+)([a-z]?)): ")
@@ -440,6 +440,7 @@ class Build:
             row["level_raw"] = level_raw
         self.demote_unsourced(row, "url")
         self.claim(row["id"], "assessments")
+        self.clear_inferred(row)
         return row
 
     def progression_row(self, s, r, subjects, code_index, reparsed):
@@ -587,6 +588,7 @@ class Build:
             }
             self.demote_unsourced(row, "url")
             self.claim(row["id"], "books")
+            self.clear_inferred(row)
             self.books.append(row)
             by_title[slug(row["title"])] = row
         covered = {sid for b in self.books for sid in b["source_ids"]}
@@ -619,6 +621,7 @@ class Build:
             }
             self.demote_unsourced(row, "url")
             self.claim(row["id"], "books")
+            self.clear_inferred(row)
             self.books.append(row)
             by_title[slug(row["title"])] = row
             added += 1

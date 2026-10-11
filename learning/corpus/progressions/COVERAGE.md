@@ -12,9 +12,9 @@ Rows counts frameworks, progression, assessments and courses. Verified counts th
 
 | Table | Rows | Verified or page fetched | Share | CIP mapped | Two-digit | Four-digit | Six-digit | CIP code stated by source | SOC mapped | SOC code stated by source |
 |---|---|---|---|---|---|---|---|---|---|---|
-| frameworks | 581 | 290 | 49.9% | 581 | 27 | 292 | 262 | 0 | 229 |  |
-| progression | 5,350 | 2,742 | 51.3% | 5,350 | 189 | 3,245 | 1,916 | 0 | 1,388 | 228 |
-| assessments | 490 | 262 | 53.5% | 490 | 13 | 223 | 254 | 0 | 264 |  |
+| frameworks | 581 | 281 | 48.4% | 581 | 27 | 292 | 262 | 0 | 229 |  |
+| progression | 5,350 | 2,711 | 50.7% | 5,350 | 189 | 3,245 | 1,916 | 0 | 1,388 | 228 |
+| assessments | 490 | 231 | 47.1% | 490 | 13 | 223 | 254 | 0 | 264 |  |
 | courses | 25,908 | 25,908 | 100.0% | 25,404 |  |  | 25,404 | 0 |  |  |
 | books | 1,636 | 1,300 | 79.5% | 1,636 | 55 | 964 | 617 | 0 |  |  |
 | resources | 53,459 | 19,419 | 36.3% | 47,988 | 845 | 47,143 |  | 0 |  |  |
@@ -35,29 +35,29 @@ Families counts four-digit groups in use. Series only counts items mapped at two
 | 05 | Area, Ethnic, Cultural, Gender, And Group Studies | 3 | 2 | 927 | 920 | 188 | 11 | 13 | 146 | 166 |
 | 09 | Communication, Journalism, And Related Programs | 6 | 4 | 766 | 720 | 548 | 24 | 28 | 572 |  |
 | 10 | Communications Technologies/Technicians And Support Services | 4 | 2 | 34 | 20 | 25 |  | 8 | 117 | 117 |
-| 11 | Computer And Information Sciences And Support Services | 11 | 7 | 1,219 | 977 | 1,765 | 27 | 62 | 15,760 |  |
+| 11 | Computer And Information Sciences And Support Services | 11 | 7 | 1,219 | 953 | 1,765 | 27 | 62 | 15,760 |  |
 | 12 | Culinary, Entertainment, And Personal Services | 5 | 5 | 75 | 23 | 24 |  | 10 | 65 | 10 |
-| 13 | Education | 15 | 11 | 1,724 | 1,666 | 723 | 40 | 24 | 562 |  |
+| 13 | Education | 15 | 11 | 1,724 | 1,667 | 723 | 40 | 24 | 562 |  |
 | 14 | Engineering | 41 | 22 | 2,436 | 2,425 | 2,927 | 94 | 19 | 3,003 |  |
 | 15 | Engineering/Engineering-Related Technologies/Technicians | 19 | 7 | 182 | 173 | 230 |  | 2 | 106 |  |
-| 16 | Foreign Languages, Literatures, And Linguistics | 19 | 15 | 1,871 | 1,745 | 770 | 35 | 86 | 1,400 | 170 |
+| 16 | Foreign Languages, Literatures, And Linguistics | 19 | 15 | 1,871 | 1,733 | 770 | 35 | 86 | 1,400 | 170 |
 | 19 | Family And Consumer Sciences/Human Sciences | 9 | 4 | 406 | 371 | 253 | 8 | 22 | 166 |  |
 | 21 | Reserved | 0 | 0 |  |  |  |  |  |  |  |
-| 22 | Legal Professions And Studies | 5 | 3 | 412 | 380 | 152 | 7 | 33 | 316 |  |
+| 22 | Legal Professions And Studies | 5 | 3 | 412 | 381 | 152 | 7 | 33 | 316 |  |
 | 23 | English Language And Literature/Letters | 4 | 3 | 909 | 806 | 364 | 13 | 38 | 963 | 15 |
 | 24 | Liberal Arts And Sciences, General Studies And Humanities | 1 | 1 | 194 | 162 | 28 | 8 | 6 | 304 |  |
 | 25 | Library Science | 3 | 1 | 63 | 50 | 14 | 1 | 10 | 133 |  |
 | 26 | Biological And Biomedical Sciences | 15 | 14 | 1,418 | 1,408 | 1,277 | 70 | 27 | 965 |  |
-| 27 | Mathematics And Statistics | 5 | 3 | 1,370 | 1,127 | 1,951 | 18 | 162 | 2,811 |  |
+| 27 | Mathematics And Statistics | 5 | 3 | 1,370 | 1,124 | 1,951 | 18 | 162 | 2,811 |  |
 | 28 | Military Science, Leadership And Operational Art | 7 | 3 | 144 | 122 | 96 |  | 14 | 5 | 47 |
 | 29 | Military Technologies And Applied Sciences | 5 | 0 |  |  |  |  |  |  |  |
 | 30 | Multi/Interdisciplinary Studies | 51 | 15 | 1,073 | 986 | 547 | 32 | 16 | 2,274 |  |
 | 31 | Parks, Recreation, Leisure, Fitness, And Kinesiology | 5 | 3 | 368 | 353 | 154 | 24 | 11 | 260 | 2 |
 | 32 | Basic Skills And Developmental/Remedial Education | 2 | 1 | 68 | 36 | 26 |  | 17 | 177 |  |
-| 33 | Citizenship Activities | 1 | 1 | 22 | 10 | 3 |  | 6 | 4 |  |
+| 33 | Citizenship Activities | 1 | 1 | 22 | 9 | 3 |  | 6 | 4 |  |
 | 34 | Health-Related Knowledge And Skills | 1 | 1 | 25 | 9 | 13 |  | 4 | 46 |  |
 | 35 | Interpersonal And Social Skills | 1 | 1 |  |  |  |  |  | 32 |  |
-| 36 | Leisure And Recreational Activities | 2 | 2 | 410 | 128 | 244 |  | 107 | 121 |  |
+| 36 | Leisure And Recreational Activities | 2 | 2 | 410 | 111 | 244 |  | 107 | 121 |  |
 | 37 | Personal Awareness And Self-Improvement | 1 | 1 | 14 | 3 | 8 |  | 6 | 441 |  |
 | 38 | Philosophy And Religious Studies | 4 | 2 | 585 | 540 | 94 | 11 | 25 | 2,234 |  |
 | 39 | Theology And Religious Vocations | 8 | 2 | 45 | 13 | 25 |  | 25 | 13 | 13 |
@@ -68,13 +68,13 @@ Families counts four-digit groups in use. Series only counts items mapped at two
 | 44 | Public Administration And Social Service Professions | 6 | 4 | 331 | 304 | 245 | 5 | 22 | 44 | 1 |
 | 45 | Social Sciences | 14 | 8 | 1,553 | 1,490 | 988 | 38 | 87 | 1,324 |  |
 | 46 | Construction Trades | 7 | 6 | 217 | 33 | 169 |  | 21 | 5 |  |
-| 47 | Mechanic And Repair Technologies/Technicians | 8 | 5 | 184 | 52 | 146 |  | 14 | 25 |  |
+| 47 | Mechanic And Repair Technologies/Technicians | 8 | 5 | 184 | 48 | 146 |  | 14 | 25 |  |
 | 48 | Precision Production | 6 | 3 | 57 | 9 | 41 |  | 14 | 35 |  |
-| 49 | Transportation And Materials Moving | 4 | 3 | 83 | 30 | 44 |  | 15 | 30 | 30 |
-| 50 | Visual And Performing Arts | 11 | 9 | 3,285 | 2,979 | 1,679 | 88 | 165 | 1,885 |  |
-| 51 | Health Professions And Related Programs | 31 | 23 | 2,639 | 2,378 | 1,747 | 68 | 162 | 1,105 | 6 |
-| 52 | Business, Management, Marketing, And Related Support Services | 22 | 16 | 2,015 | 1,760 | 1,289 | 58 | 73 | 6,672 | 7 |
-| 53 | High School/Secondary Diplomas And Certificates | 2 | 1 | 4 | 2 |  |  |  |  |  |
+| 49 | Transportation And Materials Moving | 4 | 3 | 83 | 29 | 44 |  | 15 | 30 | 30 |
+| 50 | Visual And Performing Arts | 11 | 9 | 3,285 | 2,977 | 1,679 | 88 | 165 | 1,885 |  |
+| 51 | Health Professions And Related Programs | 31 | 23 | 2,639 | 2,368 | 1,747 | 68 | 162 | 1,105 | 6 |
+| 52 | Business, Management, Marketing, And Related Support Services | 22 | 16 | 2,015 | 1,762 | 1,289 | 58 | 73 | 6,672 | 7 |
+| 53 | High School/Secondary Diplomas And Certificates | 2 | 1 | 4 | 1 |  |  |  |  |  |
 | 54 | History | 1 | 1 | 571 | 560 | 56 | 7 | 21 | 325 |  |
 | 55 | Reserved | 0 | 0 |  |  |  |  |  |  |  |
 | 60 | Health Professions Residency/Fellowship Programs | 6 | 0 |  |  |  |  |  |  |  |
@@ -133,13 +133,13 @@ CIP programs counts six-digit codes in use under the family.
 | 10.02 | Audiovisual Communications Technologies/Technicians | 5 | 9 | 2 | 5 |  | 5 |  |
 | 10.03 | Graphic Communications | 9 | 25 | 18 | 20 |  | 3 |  |
 | 10.99 | Communications Technologies/Technicians and Support Services, Other | 1 |  |  |  |  |  |  |
-| 11.01 | Computer and Information Sciences, General | 6 | 195 | 179 | 195 | 7 | 11 | 4,114 |
+| 11.01 | Computer and Information Sciences, General | 6 | 195 | 159 | 195 | 7 | 11 | 4,114 |
 | 11.02 | Computer Programming | 6 |  |  |  |  |  | 7,198 |
 | 11.03 | Data Processing | 1 |  |  |  |  |  |  |
 | 11.04 | Information Science/Studies | 1 | 173 | 173 | 60 | 4 |  |  |
 | 11.05 | Computer Systems Analysis | 1 |  |  |  |  |  |  |
 | 11.06 | Data Entry/Microcomputer Applications | 3 |  |  |  |  |  |  |
-| 11.07 | Computer Science | 1 | 807 | 592 | 1,471 | 14 | 46 | 1,689 |
+| 11.07 | Computer Science | 1 | 807 | 588 | 1,471 | 14 | 46 | 1,689 |
 | 11.08 | Computer Software and Media Applications | 5 |  |  |  |  |  | 1,958 |
 | 11.09 | Computer Systems Networking and Telecommunications | 3 | 21 | 11 | 7 |  | 5 |  |
 | 11.10 | Computer/Information Technology Administration and Management | 7 | 23 | 22 | 32 | 2 |  | 801 |
@@ -159,7 +159,7 @@ CIP programs counts six-digit codes in use under the family.
 | 13.09 | Social and Philosophical Foundations of Education | 1 |  |  |  |  |  |  |
 | 13.10 | Special Education and Teaching | 18 | 100 | 99 | 29 | 3 |  |  |
 | 13.11 | Student Counseling and Personnel Services | 3 | 102 | 102 | 11 | 5 |  |  |
-| 13.12 | Teacher Education and Professional Development, Specific Levels and Methods | 14 | 205 | 181 | 287 | 9 | 12 |  |
+| 13.12 | Teacher Education and Professional Development, Specific Levels and Methods | 14 | 205 | 182 | 287 | 9 | 12 |  |
 | 13.13 | Teacher Education and Professional Development, Specific Subject Areas | 38 | 149 | 137 | 89 | 12 | 1 |  |
 | 13.14 | Teaching English or French as a Second or Foreign Language | 3 | 3 |  |  |  | 3 |  |
 | 13.15 | Teaching Assistants/Aides | 3 |  |  |  |  |  |  |
@@ -226,7 +226,7 @@ CIP programs counts six-digit codes in use under the family.
 | 15.99 | Engineering/Engineering-Related Technologies/Technicians, Other | 1 |  |  |  |  |  |  |
 | 16.01 | Linguistic, Comparative, and Related Language Studies and Services | 6 | 451 | 446 | 167 | 15 | 11 | 1,192 |
 | 16.02 | African Languages, Literatures, and Linguistics | 1 | 29 | 29 | 14 |  | 1 |  |
-| 16.03 | East Asian Languages, Literatures, and Linguistics | 6 | 210 | 207 | 80 | 2 | 13 |  |
+| 16.03 | East Asian Languages, Literatures, and Linguistics | 6 | 210 | 195 | 80 | 2 | 13 |  |
 | 16.04 | Slavic, Baltic and Albanian Languages, Literatures, and Linguistics | 11 | 105 | 104 | 25 | 2 | 5 |  |
 | 16.05 | Germanic Languages, Literatures, and Linguistics | 8 | 156 | 153 | 39 | 2 | 8 |  |
 | 16.06 | Modern Greek Language and Literature | 1 |  |  |  |  | 1 |  |
@@ -253,7 +253,7 @@ CIP programs counts six-digit codes in use under the family.
 | 19.10 | Work and Family Studies | 1 |  |  |  |  |  |  |
 | 19.99 | Family and Consumer Sciences/Human Sciences, Other | 1 |  |  |  |  |  |  |
 | 22.00 | Non-Professional Legal Studies | 3 |  |  |  |  |  |  |
-| 22.01 | Law | 1 | 406 | 376 | 151 | 6 | 32 | 316 |
+| 22.01 | Law | 1 | 406 | 377 | 151 | 6 | 32 | 316 |
 | 22.02 | Legal Research and Advanced Professional Studies | 25 |  |  |  |  |  |  |
 | 22.03 | Legal Support Services | 6 | 6 | 4 | 1 |  | 1 |  |
 | 22.99 | Legal Professions and Studies, Other | 1 |  |  |  | 1 |  |  |
@@ -280,9 +280,9 @@ CIP programs counts six-digit codes in use under the family.
 | 26.14 | Molecular Medicine | 1 | 13 | 13 | 3 |  |  |  |
 | 26.15 | Neurobiology and Neurosciences | 5 | 59 | 56 | 31 | 3 | 9 | 169 |
 | 26.99 | Biological and Biomedical Sciences, Other | 1 |  |  |  |  |  |  |
-| 27.01 | Mathematics | 6 | 1,097 | 863 | 1,526 | 11 | 132 | 2,434 |
+| 27.01 | Mathematics | 6 | 1,097 | 861 | 1,526 | 11 | 132 | 2,434 |
 | 27.03 | Applied Mathematics | 6 | 15 | 10 | 15 | 1 | 14 |  |
-| 27.05 | Statistics | 4 | 258 | 254 | 410 | 6 | 16 | 377 |
+| 27.05 | Statistics | 4 | 258 | 253 | 410 | 6 | 16 | 377 |
 | 27.06 | Applied Statistics | 1 |  |  |  |  |  |  |
 | 27.99 | Mathematics and Statistics, Other | 1 |  |  |  |  |  |  |
 | 28.01 | Air Force ROTC, Air Science and Operations | 2 | 41 | 41 | 21 |  |  |  |
@@ -355,11 +355,11 @@ CIP programs counts six-digit codes in use under the family.
 | 31.99 | Parks, Recreation, Leisure, Fitness, and Kinesiology, Other | 1 |  |  |  |  |  |  |
 | 32.01 | Basic Skills and Developmental/Remedial Education | 10 | 68 | 36 | 26 |  | 17 | 177 |
 | 32.02 | General Exam Preparation and Test-Taking Skills | 6 |  |  |  |  |  |  |
-| 33.01 | Citizenship Activities | 7 | 22 | 10 | 3 |  | 6 | 4 |
+| 33.01 | Citizenship Activities | 7 | 22 | 9 | 3 |  | 6 | 4 |
 | 34.01 | Health-Related Knowledge and Skills | 5 | 25 | 9 | 13 |  | 4 | 46 |
 | 35.01 | Interpersonal and Social Skills | 5 |  |  |  |  |  | 32 |
-| 36.01 | Leisure and Recreational Activities | 22 | 373 | 115 | 224 |  | 97 | 121 |
-| 36.02 | Noncommercial Vehicle Operation | 7 | 37 | 13 | 20 |  | 10 |  |
+| 36.01 | Leisure and Recreational Activities | 22 | 373 | 101 | 224 |  | 97 | 121 |
+| 36.02 | Noncommercial Vehicle Operation | 7 | 37 | 10 | 20 |  | 10 |  |
 | 37.01 | Personal Awareness and Self-Improvement | 7 | 14 | 3 | 8 |  | 6 | 441 |
 | 38.00 | Philosophy and Religious Studies, General | 1 |  |  |  |  |  |  |
 | 38.01 | Philosophy | 5 | 230 | 229 | 29 | 6 | 9 | 2,144 |
@@ -425,10 +425,10 @@ CIP programs counts six-digit codes in use under the family.
 | 46.99 | Construction Trades, Other | 1 |  |  |  |  |  |  |
 | 47.00 | Mechanics and Repairers, General | 1 |  |  |  |  |  | 25 |
 | 47.01 | Electrical/Electronics Maintenance and Repair Technologies/Technicians | 8 | 1 |  |  |  |  |  |
-| 47.02 | Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR) | 1 | 50 | 4 | 46 |  | 3 |  |
+| 47.02 | Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR) | 1 | 50 | 3 | 46 |  | 3 |  |
 | 47.03 | Heavy/Industrial Equipment Maintenance Technologies/Technicians | 3 | 46 | 1 | 45 |  | 1 |  |
 | 47.04 | Precision Systems Maintenance and Repair Technologies/Technicians | 6 |  |  |  |  |  |  |
-| 47.06 | Vehicle Maintenance and Repair Technologies/Technicians | 18 | 87 | 47 | 55 |  | 10 |  |
+| 47.06 | Vehicle Maintenance and Repair Technologies/Technicians | 18 | 87 | 44 | 55 |  | 10 |  |
 | 47.07 | Energy Systems Maintenance and Repair Technologies/Technicians | 6 |  |  |  |  |  |  |
 | 47.99 | Mechanic and Repair Technologies/Technicians, Other | 1 |  |  |  |  |  |  |
 | 48.00 | Precision Production Trades, General | 1 |  |  |  |  |  | 35 |
@@ -437,33 +437,33 @@ CIP programs counts six-digit codes in use under the family.
 | 48.07 | Woodworking | 5 | 7 |  | 6 |  | 4 |  |
 | 48.08 | Boilermaking/Boilermaker | 1 |  |  |  |  |  |  |
 | 48.99 | Precision Production, Other | 1 |  |  |  |  |  |  |
-| 49.01 | Air Transportation | 8 | 35 | 22 | 14 |  | 12 |  |
+| 49.01 | Air Transportation | 8 | 35 | 21 | 14 |  | 12 |  |
 | 49.02 | Ground Transportation | 7 | 38 | 2 | 29 |  | 1 |  |
 | 49.03 | Marine Transportation | 4 | 10 | 6 | 1 |  | 2 |  |
 | 49.99 | Transportation and Materials Moving, Other | 1 |  |  |  |  |  |  |
 | 50.01 | Visual and Performing Arts, General | 2 | 45 | 15 | 42 |  | 6 |  |
 | 50.02 | Crafts/Craft Design, Folk Art and Artisanry | 1 | 20 | 4 | 10 |  | 7 | 29 |
-| 50.03 | Dance | 3 | 282 | 258 | 113 | 8 | 8 |  |
+| 50.03 | Dance | 3 | 282 | 257 | 113 | 8 | 8 |  |
 | 50.04 | Design and Applied Arts | 10 | 500 | 461 | 351 | 16 | 25 | 1,055 |
 | 50.05 | Drama/Theatre Arts and Stagecraft | 11 | 361 | 344 | 216 | 12 | 19 | 28 |
 | 50.06 | Film/Video and Photographic Arts | 5 | 244 | 228 | 253 | 6 | 21 | 91 |
 | 50.07 | Fine and Studio Arts | 13 | 727 | 687 | 246 | 25 | 27 | 220 |
-| 50.09 | Music | 17 | 1,102 | 981 | 446 | 21 | 51 | 462 |
+| 50.09 | Music | 17 | 1,102 | 980 | 446 | 21 | 51 | 462 |
 | 50.10 | Arts, Entertainment, and Media Management | 5 | 4 | 1 | 2 |  | 1 |  |
 | 50.11 | Community/Environmental/Socially-Engaged Art | 1 |  |  |  |  |  |  |
 | 50.99 | Visual and Performing Arts, Other | 1 |  |  |  |  |  |  |
 | 51.00 | Health Services/Allied Health/Health Sciences, General | 2 | 267 | 267 | 60 | 6 |  | 547 |
 | 51.01 | Chiropractic | 1 | 81 | 53 | 27 |  |  |  |
-| 51.02 | Communication Disorders Sciences and Services | 5 | 212 | 211 | 75 | 5 |  |  |
+| 51.02 | Communication Disorders Sciences and Services | 5 | 212 | 210 | 75 | 5 |  |  |
 | 51.04 | Dentistry | 1 | 49 | 37 | 7 | 1 | 16 | 21 |
 | 51.05 | Advanced/Graduate Dentistry and Oral Sciences | 15 | 167 | 167 | 77 | 5 |  |  |
 | 51.06 | Dental Support Services and Allied Professions | 4 | 54 | 52 | 64 |  | 1 |  |
-| 51.07 | Health and Medical Administrative Services | 24 | 61 | 57 | 32 | 4 | 3 |  |
-| 51.08 | Allied Health and Medical Assisting Services | 14 | 15 | 11 | 1 |  | 2 |  |
-| 51.09 | Allied Health Diagnostic, Intervention, and Treatment Professions | 24 | 334 | 283 | 275 | 11 | 22 |  |
+| 51.07 | Health and Medical Administrative Services | 24 | 61 | 55 | 32 | 4 | 3 |  |
+| 51.08 | Allied Health and Medical Assisting Services | 14 | 15 | 9 | 1 |  | 2 |  |
+| 51.09 | Allied Health Diagnostic, Intervention, and Treatment Professions | 24 | 334 | 282 | 275 | 11 | 22 |  |
 | 51.10 | Clinical/Medical Laboratory Science/Research and Allied Professions | 13 | 8 |  |  | 1 | 1 |  |
 | 51.11 | Health/Medical Preparatory Programs | 11 |  |  |  |  |  |  |
-| 51.12 | Medicine | 4 | 336 | 302 | 94 | 2 | 30 | 343 |
+| 51.12 | Medicine | 4 | 336 | 299 | 94 | 2 | 30 | 343 |
 | 51.14 | Medical Clinical Sciences/Graduate Medical Studies | 6 | 6 | 6 |  |  |  |  |
 | 51.15 | Mental and Social Health Services and Allied Professions | 14 | 23 | 13 | 68 | 1 | 12 |  |
 | 51.17 | Optometry | 1 | 2 | 1 |  |  |  |  |
@@ -480,17 +480,17 @@ CIP programs counts six-digit codes in use under the family.
 | 51.35 | Somatic Bodywork and Related Therapeutic Services | 4 | 4 | 3 |  |  | 2 |  |
 | 51.36 | Movement and Mind-Body Therapies and Education | 4 | 8 |  | 4 |  | 4 |  |
 | 51.37 | Energy and Biologically Based Therapies | 5 |  |  |  |  |  |  |
-| 51.38 | Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing | 23 | 496 | 473 | 742 | 2 | 17 | 93 |
+| 51.38 | Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing | 23 | 496 | 472 | 742 | 2 | 17 | 93 |
 | 51.39 | Practical Nursing, Vocational Nursing and Nursing Assistants | 3 | 12 | 12 | 12 |  | 1 |  |
 | 51.99 | Health Professions and Related Clinical Sciences, Other | 1 |  |  |  |  |  |  |
 | 52.01 | Business/Commerce, General | 1 | 136 | 120 | 152 | 3 | 12 |  |
 | 52.02 | Business Administration, Management and Operations | 17 | 534 | 446 | 169 | 13 | 16 | 3,867 |
-| 52.03 | Accounting and Related Services | 6 | 198 | 173 | 198 | 6 | 11 | 224 |
+| 52.03 | Accounting and Related Services | 6 | 198 | 174 | 198 | 6 | 11 | 224 |
 | 52.04 | Business Operations Support and Assistant Services | 9 | 53 | 7 | 1 |  | 1 |  |
 | 52.05 | Business/Corporate Communications | 3 |  |  |  |  |  |  |
 | 52.06 | Business/Managerial Economics | 1 |  |  |  | 1 |  |  |
 | 52.07 | Entrepreneurial and Small Business Operations | 5 | 102 | 102 | 58 | 5 |  | 185 |
-| 52.08 | Finance and Financial Management Services | 9 | 312 | 284 | 247 | 7 | 17 | 1,146 |
+| 52.08 | Finance and Financial Management Services | 9 | 312 | 285 | 247 | 7 | 17 | 1,146 |
 | 52.09 | Hospitality Administration/Management | 10 | 189 | 176 | 77 | 5 | 7 | 59 |
 | 52.10 | Human Resources Management and Services | 7 | 65 | 65 | 6 | 3 |  |  |
 | 52.11 | International Business | 1 |  |  |  |  |  |  |
@@ -505,7 +505,7 @@ CIP programs counts six-digit codes in use under the family.
 | 52.20 | Construction Management | 3 |  |  |  |  |  |  |
 | 52.21 | Telecommunications Management | 1 |  |  |  |  |  |  |
 | 52.99 | Business, Management, Marketing, and Related Support Services, Other | 1 |  |  |  |  |  |  |
-| 53.01 | High School/Secondary Diploma Programs | 6 | 4 | 2 |  |  |  |  |
+| 53.01 | High School/Secondary Diploma Programs | 6 | 4 | 1 |  |  |  |  |
 | 53.02 | High School/Secondary Certificate Programs | 4 |  |  |  |  |  |  |
 | 54.01 | History | 9 | 571 | 560 | 56 | 7 | 21 | 325 |
 | 60.01 | Dental Residency/Fellowship Programs | 11 |  |  |  |  |  |  |
@@ -779,7 +779,7 @@ Occupations counts SOC detailed occupations, then O*NET 31.0 occupations.
 | 11-3000 | Operations Specialties Managers | 10 / 19 | 19 |  |  | 72 | 124 | 16,027 |
 | 11-9000 | Other Management Occupations | 20 / 31 | 42 | 2 | 2 | 363 | 605 | 21,351 |
 | 13-1000 | Business Operations Specialists | 20 / 33 | 24 | 9 | 6 | 62 | 145 | 9,100 |
-| 13-2000 | Financial Specialists | 15 / 17 | 52 | 17 | 26 | 30 | 105 | 5,472 |
+| 13-2000 | Financial Specialists | 15 / 17 | 52 | 19 | 26 | 30 | 105 | 5,472 |
 | 15-1200 | Computer Occupations | 15 / 28 | 80 | 43 | 40 | 61 | 88 | 20,989 |
 | 15-2000 | Mathematical Science Occupations | 6 / 10 | 36 | 6 | 23 | 54 | 297 | 20,283 |
 | 17-1000 | Architects, Surveyors, and Cartographers | 4 / 5 | 41 | 26 | 25 | 10 | 58 | 392 |
@@ -792,10 +792,10 @@ Occupations counts SOC detailed occupations, then O*NET 31.0 occupations.
 | 19-5000 | Occupational Health and Safety Specialists and Technicians | 2 / 2 |  |  |  | 2 | 20 | 80 |
 | 21-1000 | Counselors, Social Workers, and Other Community and Social Service Specialists | 15 / 15 | 13 | 8 | 4 | 29 | 43 | 671 |
 | 21-2000 | Religious Workers | 3 / 3 | 19 | 7 | 12 |  | 25 |  |
-| 23-1000 | Lawyers, Judges, and Related Workers | 5 / 5 | 50 | 24 | 75 | 6 | 32 | 316 |
+| 23-1000 | Lawyers, Judges, and Related Workers | 5 / 5 | 50 | 25 | 75 | 6 | 32 | 316 |
 | 23-2000 | Legal Support Workers | 3 / 3 | 5 | 4 | 1 |  | 1 |  |
 | 25-1000 | Postsecondary Teachers | 37 / 37 | 8 | 7 | 5 | 727 | 1,267 | 44,264 |
-| 25-2000 | Preschool, Elementary, Middle, Secondary, and Special Education Teachers | 13 / 14 | 13 |  | 5 | 146 | 388 | 7,434 |
+| 25-2000 | Preschool, Elementary, Middle, Secondary, and Special Education Teachers | 13 / 14 | 13 | 1 | 5 | 146 | 388 | 7,434 |
 | 25-3000 | Other Teachers and Instructors | 5 / 5 |  |  |  |  | 4 |  |
 | 25-4000 | Librarians, Curators, and Archivists | 5 / 5 |  |  |  | 8 | 45 | 678 |
 | 25-9000 | Other Educational Instruction and Library Occupations | 7 / 7 |  |  |  | 44 | 51 | 562 |
@@ -803,12 +803,12 @@ Occupations counts SOC detailed occupations, then O*NET 31.0 occupations.
 | 27-2000 | Entertainers and Performers, Sports and Related Workers | 11 / 14 | 22 | 5 | 14 | 47 | 94 | 743 |
 | 27-3000 | Media and Communication Workers | 9 / 10 | 18 | 3 | 4 | 54 | 125 | 2,963 |
 | 27-4000 | Media and Communication Equipment Workers | 8 / 8 | 9 | 2 | 5 | 12 | 58 | 1,828 |
-| 29-1000 | Healthcare Diagnosing or Treating Practitioners | 45 / 61 | 382 | 232 | 200 | 54 | 170 | 889 |
-| 29-2000 | Health Technologists and Technicians | 22 / 29 | 31 | 9 | 8 | 24 | 30 | 127 |
+| 29-1000 | Healthcare Diagnosing or Treating Practitioners | 45 / 61 | 382 | 226 | 200 | 54 | 170 | 889 |
+| 29-2000 | Health Technologists and Technicians | 22 / 29 | 31 | 6 | 8 | 24 | 30 | 127 |
 | 29-9000 | Other Healthcare Practitioners and Technical Occupations | 5 / 6 |  |  |  | 4 | 23 | 242 |
 | 31-1100 | Home Health and Personal Care Aides; and Nursing Assistants, Orderlies, and Psychiatric Aides | 5 / 5 | 21 | 16 | 15 |  | 1 |  |
 | 31-2000 | Occupational Therapy and Physical Therapist Assistants and Aides | 4 / 4 | 4 |  |  |  |  |  |
-| 31-9000 | Other Healthcare Support Occupations | 9 / 11 | 36 | 22 | 5 |  | 5 |  |
+| 31-9000 | Other Healthcare Support Occupations | 9 / 11 | 36 | 21 | 5 |  | 5 |  |
 | 33-1000 | Supervisors of Protective Service Workers | 5 / 5 | 2 |  |  | 1 | 19 |  |
 | 33-2000 | Firefighting and Prevention Workers | 3 / 3 | 13 |  | 3 |  | 9 |  |
 | 33-3000 | Law Enforcement Workers | 7 / 10 | 9 |  | 3 |  | 10 |  |
@@ -851,8 +851,8 @@ Occupations counts SOC detailed occupations, then O*NET 31.0 occupations.
 | 47-5000 | Extraction Workers | 14 / 14 |  |  |  |  | 1 |  |
 | 49-1000 | Supervisors of Installation, Maintenance, and Repair Workers | 1 / 1 |  |  |  | 1 | 13 | 3,892 |
 | 49-2000 | Electrical and Electronic Equipment Mechanics, Installers, and Repairers | 11 / 11 |  |  |  |  | 14 | 193 |
-| 49-3000 | Vehicle and Mobile Equipment Mechanics, Installers, and Repairers | 14 / 14 | 87 | 47 | 55 |  | 10 |  |
-| 49-9000 | Other Installation, Maintenance, and Repair Occupations | 25 / 26 | 101 | 5 | 92 |  | 15 | 25 |
+| 49-3000 | Vehicle and Mobile Equipment Mechanics, Installers, and Repairers | 14 / 14 | 87 | 44 | 55 |  | 10 |  |
+| 49-9000 | Other Installation, Maintenance, and Repair Occupations | 25 / 26 | 101 | 4 | 92 |  | 15 | 25 |
 | 51-1000 | Supervisors of Production Workers | 1 / 1 |  |  |  | 1 | 12 | 3,867 |
 | 51-2000 | Assemblers and Fabricators | 10 / 10 |  |  |  |  | 5 |  |
 | 51-3000 | Food Processing Workers | 8 / 8 |  |  |  |  |  | 65 |
@@ -863,7 +863,7 @@ Occupations counts SOC detailed occupations, then O*NET 31.0 occupations.
 | 51-8000 | Plant and System Operators | 9 / 12 |  |  |  |  |  |  |
 | 51-9000 | Other Production Occupations | 30 / 34 | 4 | 3 | 1 |  | 2 | 220 |
 | 53-1000 | Supervisors of Transportation and Material Moving Workers | 5 / 6 |  |  |  |  | 4 |  |
-| 53-2000 | Air Transportation Workers | 5 / 5 | 35 | 22 | 14 |  | 12 |  |
+| 53-2000 | Air Transportation Workers | 5 / 5 | 35 | 21 | 14 |  | 12 |  |
 | 53-3000 | Motor Vehicle Operators | 9 / 9 | 9 | 1 | 6 |  |  |  |
 | 53-4000 | Rail Transportation Workers | 6 / 6 | 3 |  | 1 |  |  |  |
 | 53-5000 | Water Transportation Workers | 4 / 4 | 6 | 4 | 1 |  | 2 |  |

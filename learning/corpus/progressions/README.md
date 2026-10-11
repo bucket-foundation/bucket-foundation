@@ -8,9 +8,9 @@ Files sit in `tables/` as JSON Lines, one object per line. A file above 5 MB is 
 
 | Table | File | Rows | Flag | Flag true | Share | Content |
 |---|---|---|---|---|---|---|
-| frameworks | `frameworks.jsonl` | 581 | `verified` | 290 | 49.9% | Standards, curriculum guidelines, syllabus bodies, competency frameworks |
-| progression | `progression.jsonl.zst` | 5,350 | `verified` | 2,742 | 51.3% | One topic, course, stage or occupation profile in a sequence |
-| assessments | `assessments.jsonl` | 490 | `verified` | 262 | 53.5% | Exams, certifications, licences and interview formats with content outlines |
+| frameworks | `frameworks.jsonl` | 581 | `verified` | 281 | 48.4% | Standards, curriculum guidelines, syllabus bodies, competency frameworks |
+| progression | `progression.jsonl.zst` | 5,350 | `verified` | 2,711 | 50.7% | One topic, course, stage or occupation profile in a sequence |
+| assessments | `assessments.jsonl` | 490 | `verified` | 231 | 47.1% | Exams, certifications, licences and interview formats with content outlines |
 | books | `books.jsonl` | 1,636 | `verified` | 1,300 | 79.5% | Books deduplicated across slices and checked against Open Library, OpenStax and Crossref |
 | resources | `resources.jsonl.zst` | 53,459 | `verified` | 19,419 | 36.3% | Open and commercial courses, textbooks, practice sets and reading lists from 30 providers |
 | programs | `programs.jsonl.zst` | 1,058 | `page_fetched` | 843 | 79.7% | Degree program pages with required courses and term plans, plus 215 known pages left unfetched |
@@ -21,7 +21,7 @@ Support files: `cycles.jsonl`, `backbone_codes.jsonl`, `cip_soc_crosswalk.jsonl`
 
 ## Two Flags
 
-- `verified` is true when a research agent fetched the row's URL in its session, the row matches the page, and the row's notes claim no inference or recall. The build cleared the flag on 1,088 progression rows and 47 framework rows whose notes say inferred, recalled or from memory.
+- `verified` is true when a research agent fetched the row's URL in its session, the row matches the page, and the row's notes claim no inference or recall. The build cleared the flag on 1,119 progression rows, 56 framework rows and 58 assessment rows whose notes say inferred, recalled, from memory or not fetched. The same rule runs on books and resources.
 - `page_fetched` applies to courses and programs alone. It is true when a script downloaded the catalogue page and parsed the row from it. No person or agent compared the parsed row with the page, so the flag says less than `verified`. The 215 program rows with `page_fetched` false hold a URL and nothing else.
 
 ## Catalogue Scope
