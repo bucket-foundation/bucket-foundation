@@ -237,7 +237,7 @@ function empty(): Stub {
     notes: async () => [],
     history: async () => ({ snapshot: null, activity: days(() => 0) }),
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, languages: [], ready: false, answered: 0, correct: 0 }),
-    settings: async () => ({ version: "0.5.0", build: null, dataDir: "/home/ada/.local/share/bkt", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
+    settings: async () => ({ version: "0.5.0", build: null, dataDir: "/data/bucket", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
     wordDecks: async () => NO_WORD_DECKS,
@@ -278,7 +278,7 @@ function populated(over: Stub = {}): Stub {
     wordLesson: async () => LESSON_PAGE,
     wordConcepts: async () => CONCEPT_PAGE,
     wordQuiz: async () => ({ questions: [WORD_QUESTION], credit: WORD_CREDIT }),
-    settings: async () => ({ version: "0.5.0", build: { commit: "e61d7174b", date: "2026-10-08" }, dataDir: "/home/ada/.local/share/bkt", notify: { supported: true, on: true, at: "08:53" }, notifyDefault: "08:53" }),
+    settings: async () => ({ version: "0.5.0", build: { commit: "e61d7174b", date: "2026-10-08" }, dataDir: "/data/bucket", notify: { supported: true, on: true, at: "08:53" }, notifyDefault: "08:53" }),
     exploreSaved: async () => ({ v: 1, items: [SAVED_ITEM], noticeSeen: true }),
     putExploreSaved: async (s: unknown) => s,
     canonAbout: async () => ({ version: "c85d792ca773", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] }),
@@ -455,7 +455,7 @@ describe("navigation", () => {
     const setNotify = async (on: boolean, at?: string) => (sent.push([on, at]), { notify: { supported: true, on, at: on ? (at ?? "08:53") : null } });
     const on = await mount({ name: "settings" }, populated({ setNotify }));
     const text = on.text();
-    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/home/ada/.local/share/bkt", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
+    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/data/bucket", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
     expect(text).not.toContain("terminal");
     expect(text).not.toContain("bkt quiz");
     const box = on.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
