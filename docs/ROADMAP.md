@@ -32,7 +32,7 @@ A bead is ready only when it names a screen or API a user touches at launch. Eve
 
 | Item | Why it follows the mission |
 |---|---|
-| Author-side citation split | Reader-side settlement over x402 is live. The split that routes at least 80% of net receipts to the author completes the patronage rail. |
+| Author-side citation split | Reader-side settlement over x402 does not settle yet, and the site serves the canon at price 0. The split that routes at least 80% of net receipts to the author completes the patronage rail. |
 | Research OS stages | Bead bkt-oc8l stages every queued `ros-` slice as MVP, near-term or later for the founder to mark. The marks set the build order. |
 | Student productions as graph nodes | An accepted production enters the map as a citable contribution. The engine fuses it as evidence and routes learners toward gap nodes. |
 | Canon growth | Dossiers and concept nodes enter by the promotion checklist in [CONTRIBUTING.md](../CONTRIBUTING.md). The canon stays small and holds foundations only. |

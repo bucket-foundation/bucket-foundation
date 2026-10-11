@@ -39,7 +39,7 @@ Every response returns the same envelope:
 
 ```
 { data, citation,
-  receipt: { tier, status, price_usd: 0, paid_by },   // status: served_from_canon | settled (server-side)
+  receipt: { tier, status, price_usd: 0, paid_by },
   cite: { applies_to: "downstream_republication_in_a_paid_work",
           reader_owes: 0, price_usd, payout_wallet,
           license: "bucket.foundation/cite-forever/v0.1" },
