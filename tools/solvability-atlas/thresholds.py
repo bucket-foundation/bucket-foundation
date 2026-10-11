@@ -275,6 +275,34 @@ def stratum_auc(scores, labels, groups, names, n=BOOTSTRAPS):
     return rows
 
 
+def held_out_branch_tau(scores, labels, branch, groups, n=BOOTSTRAPS, seed=SEED):
+    branch = np.asarray(branch)
+    names = sorted(set(branch.tolist()))
+
+    def stat(idx):
+        s, y, b = scores[idx], labels[idx], branch[idx]
+        inside = np.zeros(len(idx), dtype=bool)
+        taus = []
+        for name in names:
+            test = b == name
+            tau = youden_tau(s[~test], y[~test]) if test.any() and y[~test].any() and (~y[~test]).any() else np.nan
+            taus.append(tau)
+            inside[test] = s[test] >= tau
+        tpr = (inside & y).sum() / max(1, y.sum())
+        fpr = (inside & ~y).sum() / max(1, (~y).sum())
+        return [*taus, tpr, fpr, tpr - fpr]
+
+    point = stat(np.arange(len(scores)))
+    draws = bootstrap(stat, groups, n, seed)
+    lo, hi = np.nanpercentile(draws, [2.5, 97.5], axis=0)
+    cell = lambda k: {"value": float(point[k]), "ci95": [float(lo[k]), float(hi[k])]}
+    k = len(names)
+    return {
+        "branches": [{"branch": name, "rows": int((branch == name).sum()), "tau": float(point[i]), "ci95": [float(lo[i]), float(hi[i])]} for i, name in enumerate(names)],
+        "pooled": {"tpr": cell(k), "fpr": cell(k + 1), "youden_j": cell(k + 2)},
+    }
+
+
 def cross_section(nodes, sim, n=BOOTSTRAPS):
     labels = np.array([bool(x["solved"]) for x in nodes])
     roots = family_roots(nodes)
@@ -333,6 +361,7 @@ def cross_section(nodes, sim, n=BOOTSTRAPS):
         "gain_over_branch_source_kind": gain,
         "gain_of_reach_over_branch_base_rate": over_branch,
         "leave_one_branch_out": held_out,
+        "held_out_branch_tau": held_out_branch_tau(r, labels, branch, groups, n),
         "calibration": calibration(r, labels, predictions["reach alone"]),
         "derived_tau": derived,
         "reach": r,
@@ -780,6 +809,8 @@ def tables(r):
     for title, key in (("AUC Within Branch", "by_branch"), ("AUC Within Source", "by_source"), ("AUC Within Kind", "by_kind")):
         parts += [f"## {title}", "", table(["stratum", "rows", "solved", "ROC AUC", "95% interval", "Youden tau", "quantile rule tau"], [[x["name"], x["rows"], x["solved"], x["auc"], x["ci95"], x["youden_tau"], x["quantile_tau"]] for x in c[key]]), ""]
     parts += ["## Leave One Branch Out", "", table(["held-out branch", "rows", "solved", "ROC AUC", "tau from the other branches", "solved inside", "open inside"], [[x["branch"], x["rows"], x["solved"], x["auc"], x["train_tau"], x["tpr"], x["fpr"]] for x in c["leave_one_branch_out"]]), ""]
+    h = c["held_out_branch_tau"]
+    parts += ["## Held-Out Branch Tau", "", "Each tau is Youden's J on the other seven branches, with a bootstrap interval. The pooled row scores every row at the tau fitted without its branch.", "", table(["held-out branch", "rows", "tau from the other branches", "95% interval"], [[x["branch"], x["rows"], x["tau"], x["ci95"]] for x in h["branches"]]), "", table(["pooled held-out measure", "value", "95% interval"], [[k, v["value"], v["ci95"]] for k, v in h["pooled"].items()]), ""]
     parts += ["## Calibration", "", table(["decile", "rows", "reach from", "reach to", "mean reach", "solved share", "predicted share"], [[k + 1, b["n"], b["reach_low"], b["reach_high"], b["mean_reach"], b["solved_share"], b["predicted_share"]] for k, b in enumerate(c["calibration"]["bins"])]), ""]
     parts += ["## Derived Tau", "", table(["criterion", "tau", "95% interval", "solved inside", "open inside", "Youden J", "precision"], [[k, v["tau"], v.get("ci95"), v["tpr"], v["fpr"], v["youden_j"], v["precision"]] for k, v in c["derived_tau"].items()]), ""]
     parts += ["## Shipped Frontier At Proposed Values", "", table(["proposal", *sweep_head], [[k, *[v[c] for c in sweep_cols]] for k, v in r["proposed"].items()]), ""]

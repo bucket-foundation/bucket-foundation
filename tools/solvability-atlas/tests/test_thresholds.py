@@ -276,6 +276,30 @@ def test_committed_intervals_hold_their_point_estimates(committed):
             assert d["ci95"][0] <= d["tau"] <= d["ci95"][1], name
 
 
+def test_headline_tau_values_are_pinned(committed):
+    derived = committed["cross_section"]["derived_tau"]
+    assert {k: round(v["tau"], 3) for k, v in derived.items()} == {"youden": 0.832, "fixed_fpr_0.1": 0.861, "fixed_fpr_0.2": 0.843, "quantile_rule": 0.752, "shipped": 0.762}
+    assert round(derived["youden"]["youden_j"], 3) == 0.254
+    held = committed["cross_section"]["held_out_branch_tau"]
+    taus = {b["branch"]: round(b["tau"], 3) for b in held["branches"]}
+    assert taus.pop("mathematics") == 0.697 and set(taus.values()) == {0.832}
+    assert round(held["pooled"]["youden_j"]["value"], 3) == 0.141
+    assert held["pooled"]["youden_j"]["ci95"][1] < derived["youden"]["youden_j"]
+
+
+def test_held_out_branch_tau_never_reads_the_held_out_branch():
+    rng = np.random.default_rng(4)
+    branch = np.array(["a"] * 200 + ["b"] * 200)
+    labels = rng.random(400) < 0.5
+    scores = rng.random(400) + 0.3 * labels
+    out = th.held_out_branch_tau(scores, labels, branch, np.arange(400), n=5)
+    assert out["branches"][0]["tau"] == th.youden_tau(scores[200:], labels[200:])
+    assert out["branches"][1]["tau"] == th.youden_tau(scores[:200], labels[:200])
+    moved = scores.copy()
+    moved[:200] = 1 - moved[:200]
+    assert th.held_out_branch_tau(moved, labels, branch, np.arange(400), n=5)["branches"][0]["tau"] == out["branches"][0]["tau"]
+
+
 @pytest.mark.skipif(not (CACHE / "vectors.npy").exists(), reason="needs the embedding cache that build.sh fills")
 def test_the_classifier_numbers_repeat_from_the_embedding_cache(data, committed):
     ids = [x["id"] for x in data["nodes"] if x["kind"] != "lean"]

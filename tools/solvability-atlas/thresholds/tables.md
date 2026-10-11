@@ -167,6 +167,27 @@ Written by `python3 thresholds.py`. Every figure in `THRESHOLDS.md` comes from `
 | mind | 139 | 10 | 0.621 | 0.832 | 0.000 | 0.000 |
 | physics | 278 | 55 | 0.690 | 0.832 | 0.018 | 0.000 |
 
+## Held-Out Branch Tau
+
+Each tau is Youden's J on the other seven branches, with a bootstrap interval. The pooled row scores every row at the tau fitted without its branch.
+
+| held-out branch | rows | tau from the other branches | 95% interval |
+|---|---|---|---|
+| applied | 82 | 0.832 | 0.800 to 0.841 |
+| biophysics | 218 | 0.832 | 0.823 to 0.841 |
+| chemistry | 104 | 0.832 | 0.801 to 0.841 |
+| cosmology | 139 | 0.832 | 0.801 to 0.841 |
+| information | 137 | 0.832 | 0.800 to 0.841 |
+| mathematics | 4,112 | 0.697 | 0.690 to 0.708 |
+| mind | 139 | 0.832 | 0.806 to 0.841 |
+| physics | 278 | 0.832 | 0.823 to 0.841 |
+
+| pooled held-out measure | value | 95% interval |
+|---|---|---|
+| tpr | 0.877 | 0.857 to 0.899 |
+| fpr | 0.736 | 0.709 to 0.757 |
+| youden_j | 0.141 | 0.113 to 0.174 |
+
 ## Calibration
 
 | decile | rows | reach from | reach to | mean reach | solved share | predicted share |

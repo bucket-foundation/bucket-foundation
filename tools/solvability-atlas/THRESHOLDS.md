@@ -4,7 +4,7 @@ Five constants shape the frontier and the solvability score. Each was set by han
 
 | Constant | Shipped | Where | Finding | Proposed |
 |---|---|---|---|---|
-| `REACH_QUANTILE` | 0.1, tau 0.762 | `solvability-frontier.ts`, `forecast.py` | Lets in 88% of solved rows and 69% of open rows | Tau 0.832 by Youden's J, with reach measured outside the variant family |
+| `REACH_QUANTILE` | 0.1, tau 0.762 | `solvability-frontier.ts`, `forecast.py` | Lets in 88% of solved rows and 69% of open rows | In-sample Youden tau 0.832; held out by branch it is 0.697 for mathematics and 0.832 for the rest. Reach measured outside the variant family |
 | `MIN_BRANCH_SOLVED` | 10 | same two files | Mind holds 10 solved rows, so the constant sits on the edge of a 129-row flip | 20 |
 | Ring radii | 0.6, 1.0, 1.5 | `solvability-frontier.ts` | No count or ranking depends on them | Keep as drawing constants, add the linear view |
 | Score weights | 0.55 resolved, 0.45 formal | `atlas.py` | Every weight from 0.474 to 1 gives the same order | Keep as a declared default |
@@ -33,7 +33,7 @@ Label: the row is solved. Score: reach, the highest similarity to a solved row. 
 
 ### Leakage
 
-The shipped reach excludes the row itself. A variant counts as solved when its parent is solved, so solved siblings sit beside each other and leak the label. 3,018 rows share a group with another row once variant families and pairs at similarity 0.95 or above are merged. Ten rows share an identical text with another row.
+The shipped reach excludes the row itself. A variant counts as solved when its parent is solved, so solved siblings sit beside each other and leak the label. 3,018 rows share a group with another row once variant families and pairs at similarity 0.95 or above are merged. The merge is union-find, so it chains: A joins C when A pairs with B and B pairs with C, even where A and C sit below 0.95. Ten rows share an identical text with another row.
 
 | Neighbours excluded | ROC AUC | 95% interval |
 |---|---|---|
@@ -42,11 +42,11 @@ The shipped reach excludes the row itself. A variant counts as solved when its p
 | Family and near duplicates at 0.95 | 0.675 | 0.656 to 0.696 |
 | Family and near duplicates at 0.90 | 0.672 | 0.649 to 0.695 |
 
-Family exclusion removes 0.09 of AUC. Near-duplicate exclusion past that changes the third decimal. Every number below uses family plus 0.95 exclusion. Intervals are 2,000 bootstrap draws that resample whole groups, seed 20261011.
+Family exclusion removes 0.09 of AUC. Near-duplicate exclusion past that changes the third decimal: the ladder at 0.98, 0.95 and 0.90 gives 0.676, 0.675 and 0.672 over 3,005, 2,968 and 2,722 groups. That flat ladder is the support for 0.95, and chaining at 0.90 costs 0.003. Every number below uses family plus 0.95 exclusion. Intervals are 2,000 bootstrap draws that resample whole groups, seed 20261011.
 
 ### Predictive Power
 
-Reach predicts solved status weakly. AUC is 0.675, 0.656 to 0.696.
+Reach is weak against current labels. AUC is 0.675, 0.656 to 0.696. Open rows are unlabelled: some will be solved later, and each such row counts here as a miss for reach. On dated rows scored against later outcomes the time split gives 0.738 to 0.830, with the source-list confound described there.
 
 | Model, five grouped folds | ROC AUC | 95% interval |
 |---|---|---|
@@ -79,11 +79,13 @@ Reach beats the branch base rate at all three cutoffs, by 0.27 to 0.31. Against 
 |---|---|---|---|---|---|
 | Shipped, 10th percentile of solved reach | 0.762 | | 88.4% | 69.0% | 0.195 |
 | Same rule on family-excluded reach | 0.752 | 0.732 to 0.763 | 90.0% | 71.8% | 0.182 |
-| Youden's J | 0.832 | 0.800 to 0.841 | 53.5% | 28.2% | 0.254 |
+| Youden's J, in-sample | 0.832 | 0.800 to 0.841 | 53.5% | 28.2% | 0.254 |
+| Youden's J, held out: mathematics | 0.697 | 0.690 to 0.708 | 99.3% | 97.7% | 0.016 |
+| Youden's J, held out: pooled over branches | 0.697 and 0.832 | | 87.7% | 73.6% | 0.141 |
 | False-positive rate 20% | 0.843 | 0.841 to 0.846 | 43.2% | 20.0% | 0.232 |
 | False-positive rate 10% | 0.861 | 0.859 to 0.865 | 25.3% | 10.0% | 0.153 |
 
-The shipped rule is a fixed true-positive rate of 90%. Open rows play no part in it, and seven in ten of them land inside. Youden's J puts tau at 0.832. On the shipped frontier that value leaves 2,789 inside and 2,420 outside, moves 1,339 rows and replaces the whole growth top 20.
+The shipped rule is a fixed true-positive rate of 90%. Open rows play no part in it, and seven in ten of them land inside. Youden's J puts tau at 0.832 in-sample: tau is picked and scored on the same rows, so the 53.5%, 28.2% and J 0.254 are upper estimates. The held-out figure is the headline. With each branch scored at the tau fitted on the other seven, mathematics, 79% of rows, gets 0.697 (0.690 to 0.708) and the other branches get 0.832 (0.800 to 0.841). Pooled, 87.7% of solved rows and 73.6% of open rows land inside, and J falls to 0.141 (0.113 to 0.174), below the shipped rule's 0.195. On the shipped frontier the in-sample that value leaves 2,789 inside and 2,420 outside, moves 1,339 rows and replaces the whole growth top 20.
 
 Branches need different taus. Mathematics holds 79% of the rows and its text sits closer together: its own Youden tau is 0.841, while the other seven branches fall between 0.670 and 0.752. A tau fitted on the other branches and applied to mathematics lets in 97.7% of its open rows. A tau fitted with mathematics lets in at most 25% of the solved rows of any other branch. The shipped frontier shows the same split: 2,350 of 2,637 open mathematics rows are inside, against 84 of 878 open rows elsewhere. The time split, whose reference set is thinner, puts Youden's tau near 0.70.
 
@@ -100,7 +102,7 @@ No outcome exists to fit them on. The score takes `resolved` as an input, so a r
 The switch stays with the founder. `thresholds/tables.md` shows the shipped frontier at each proposed value.
 
 1. **Reach.** Exclude a row's variant family when taking its nearest solved neighbour. This removes the leak worth 0.09 of AUC and needs the full similarity row, since 50 stored neighbours can all be family.
-2. **Tau.** 0.832 by Youden's J, or 0.861 for a 10% false-positive rate. A tau per branch fits the data better than either. Mind and information would carry one with no support, since their AUC intervals span chance.
+2. **Tau.** 0.832 by Youden's J in-sample (53.5% of solved and 28.2% of open rows inside, J 0.254), or 0.861 for a 10% false-positive rate. Held out by branch the tau is 0.697 (0.690 to 0.708) for mathematics and 0.832 for the rest, with J 0.141 (0.113 to 0.174), so a global 0.832 has no held-out support across branches. Reach is weak against current labels; open rows are unlabelled and some will be solved later, and the time split gives 0.738 to 0.830 on later outcomes. A tau per branch fits the data better than either. Mind and information would carry one with no support, since their AUC intervals span chance.
 3. **Branch minimum.** 20. Every value from 11 to 22 gives the same frontier, so the result stops depending on one mind row. Mind has 10 solved rows and an AUC interval of 0.383 to 0.839.
 4. **Radii and weights.** Keep both as declared defaults, and label them that way in the method text.
 
