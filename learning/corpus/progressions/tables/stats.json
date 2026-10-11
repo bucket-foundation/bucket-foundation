@@ -1,89 +1,172 @@
 {
  "catalogue_edges_read": 16441,
- "slice_textbook_rows_replaced": 1741,
+ "slice_textbook_rows_replaced": 2140,
  "tables": {
   "frameworks": {
-   "rows": 581,
-   "verified": 281,
-   "verified_share": 0.4836,
-   "cip_mapped": 581,
+   "rows": 970,
+   "facets_populated": {
+    "life_stage": 0.4639,
+    "purpose": 0.7588,
+    "kind": 0.1763,
+    "mode": 0.3165,
+    "region": 0.9701,
+    "language": 0.7247,
+    "era_from": 0.7144,
+    "era_to": 0.0526
+   },
+   "facets_stated": {
+    "life_stage": 0,
+    "purpose": 158,
+    "kind": 64,
+    "mode": 65,
+    "region": 941,
+    "language": 0,
+    "era_from": 693,
+    "era_to": 51
+   },
+   "verified": 581,
+   "verified_share": 0.599,
+   "cip_mapped": 709,
    "cip_mapping_verified": 0,
    "cip_grain": {
     "2": 27,
-    "4": 292,
-    "6": 262
+    "4": 419,
+    "6": 263
    },
-   "onet_soc_mapped": 229,
+   "onet_soc_mapped": 233,
    "onet_soc_mapping_verified": 0
   },
   "progression": {
-   "rows": 5350,
-   "verified": 2711,
-   "verified_share": 0.5067,
-   "cip_mapped": 5350,
+   "rows": 67753,
+   "facets_populated": {
+    "life_stage": 0.9787,
+    "purpose": 0.9886,
+    "kind": 0.0255,
+    "mode": 0.9482,
+    "region": 0.9947,
+    "language": 0.969,
+    "era_from": 0.0736,
+    "era_to": 0.0004
+   },
+   "facets_stated": {
+    "life_stage": 470,
+    "purpose": 727,
+    "kind": 665,
+    "mode": 484,
+    "region": 215,
+    "language": 0,
+    "era_from": 112,
+    "era_to": 24
+   },
+   "verified": 64619,
+   "verified_share": 0.9537,
+   "cip_mapped": 42889,
    "cip_mapping_verified": 0,
    "cip_grain": {
-    "2": 189,
-    "4": 3245,
-    "6": 1916
+    "2": 2490,
+    "4": 36559,
+    "6": 3840
    },
-   "onet_soc_mapped": 1388,
+   "onet_soc_mapped": 1409,
    "onet_soc_mapping_verified": 228
   },
   "edges": {
-   "rows": 22130,
-   "stated": 19207,
-   "stated_share": 0.8679,
+   "rows": 24088,
+   "stated": 20571,
+   "stated_share": 0.854,
    "external": 690,
    "by_type": {
-    "prerequisite": 20285,
+    "prerequisite": 21529,
     "prerequisite_or_concurrent": 1147,
-    "corequisite": 698
+    "corequisite": 776,
+    "recommended_prerequisite": 275,
+    "alternate_for": 245,
+    "related": 84,
+    "progression": 32
    }
   },
   "assessments": {
-   "rows": 490,
-   "verified": 231,
-   "verified_share": 0.4714,
-   "cip_mapped": 490,
+   "rows": 556,
+   "facets_populated": {
+    "life_stage": 0.7896,
+    "purpose": 0.9568,
+    "kind": 0.1727,
+    "mode": 0.2968,
+    "region": 0.4946,
+    "language": 0.3399,
+    "era_from": 0.009,
+    "era_to": 0.0
+   },
+   "facets_stated": {
+    "life_stage": 6,
+    "purpose": 29,
+    "kind": 17,
+    "mode": 17,
+    "region": 16,
+    "language": 0,
+    "era_from": 5,
+    "era_to": 0
+   },
+   "verified": 285,
+   "verified_share": 0.5126,
+   "cip_mapped": 531,
    "cip_mapping_verified": 0,
    "cip_grain": {
     "2": 13,
-    "4": 223,
-    "6": 254
+    "4": 261,
+    "6": 257
    },
-   "onet_soc_mapped": 264,
+   "onet_soc_mapped": 266,
    "onet_soc_mapping_verified": 0
   },
   "books": {
-   "rows": 1636,
-   "verified": 1300,
-   "verified_share": 0.7946,
-   "cip_mapped": 1636,
+   "rows": 2462,
+   "verified": 2081,
+   "verified_share": 0.8452,
+   "cip_mapped": 2323,
    "cip_mapping_verified": 0,
    "cip_grain": {
     "2": 55,
-    "4": 964,
-    "6": 617
+    "4": 1614,
+    "6": 654
    },
    "onet_soc_mapped": 0,
    "onet_soc_mapping_verified": 0
   },
   "resources": {
-   "rows": 53459,
-   "verified": 19419,
-   "verified_share": 0.3633,
-   "cip_mapped": 47988,
+   "rows": 55692,
+   "verified": 38575,
+   "verified_share": 0.6926,
+   "cip_mapped": 28139,
    "cip_mapping_verified": 0,
    "cip_grain": {
-    "2": 845,
-    "4": 47143
+    "4": 28139
    },
    "onet_soc_mapped": 0,
    "onet_soc_mapping_verified": 0
   },
   "programs": {
    "rows": 1058,
+   "facets_populated": {
+    "life_stage": 1.0,
+    "purpose": 1.0,
+    "kind": 0.0,
+    "mode": 1.0,
+    "region": 1.0,
+    "language": 1.0,
+    "era_from": 1.0,
+    "era_to": 1.0
+   },
+   "facets_stated": {
+    "life_stage": 0,
+    "purpose": 0,
+    "kind": 0,
+    "mode": 0,
+    "region": 0,
+    "language": 0,
+    "era_from": 0,
+    "era_to": 0
+   },
    "page_fetched": 843,
    "page_fetched_share": 0.7968,
    "cip_mapped": 812,
@@ -96,6 +179,26 @@
   },
   "courses": {
    "rows": 25908,
+   "facets_populated": {
+    "life_stage": 1.0,
+    "purpose": 1.0,
+    "kind": 0.0,
+    "mode": 1.0,
+    "region": 1.0,
+    "language": 1.0,
+    "era_from": 1.0,
+    "era_to": 1.0
+   },
+   "facets_stated": {
+    "life_stage": 0,
+    "purpose": 0,
+    "kind": 0,
+    "mode": 0,
+    "region": 0,
+    "language": 0,
+    "era_from": 0,
+    "era_to": 0
+   },
    "page_fetched": 25908,
    "page_fetched_share": 1.0,
    "cip_mapped": 25404,
@@ -105,32 +208,71 @@
    },
    "onet_soc_mapped": 0,
    "onet_soc_mapping_verified": 0
+  },
+  "activities": {
+   "rows": 1522
+  },
+  "occupation_history": {
+   "rows": 3994
+  },
+  "technologies": {
+   "rows": 698
   }
  },
+ "slices_loaded": [
+  "school",
+  "university-stem",
+  "university-other",
+  "career",
+  "interview",
+  "arts-media",
+  "land-health-service",
+  "trades-technical",
+  "everyday",
+  "round2-fields",
+  "round2-occupations",
+  "round2-arts-everyday",
+  "k12-full",
+  "history-occupations",
+  "history-technology",
+  "history-forecast",
+  "lifespan",
+  "beyond-school",
+  "round3-empty"
+ ],
+ "slices_pending": [
+  "world"
+ ],
+ "text_values_clipped": 60,
  "files_bytes": {
-  "frameworks.jsonl": 431329,
-  "progression.jsonl.zst": 214757,
-  "edges.jsonl.zst": 201670,
-  "assessments.jsonl": 445596,
-  "books.jsonl": 1905641,
-  "resources.jsonl.zst": 1526284,
-  "programs.jsonl.zst": 334442,
-  "courses.jsonl.zst": 685945,
+  "frameworks.jsonl": 1073255,
+  "progression.jsonl.zst": 1357323,
+  "edges.jsonl.zst": 234131,
+  "assessments.jsonl": 689316,
+  "books.jsonl": 2624985,
+  "resources.jsonl.zst": 1760400,
+  "programs.jsonl.zst": 336661,
+  "courses.jsonl.zst": 724869,
+  "activities.jsonl": 423930,
+  "occupation_history.jsonl": 2082708,
+  "technologies.jsonl": 249981,
   "cycles.jsonl": 417,
   "backbone_codes.jsonl": 759079,
   "cip_soc_crosswalk.jsonl": 211751,
-  "field_map.tsv": 13106
+  "soc_isco_crosswalk.jsonl": 57111,
+  "field_map.tsv": 13972
  },
- "total_bytes": 6730017,
+ "total_bytes": 12599889,
  "repairs": {
   "courses_merged_into_catalogues": {
    "round2-fields": 3337,
    "land-health-service": 686
   },
   "verified_cleared_notes_say_inferred_or_recalled": {
-   "frameworks": 56,
-   "assessments": 58,
-   "progression": 1119
+   "frameworks": 84,
+   "assessments": 63,
+   "progression": 1359,
+   "books": 1
   },
   "sfia_rows_redacted": 8,
   "school_us_course_rows_set_unstated": 6,
@@ -139,13 +281,584 @@
   },
   "university_stem_rows_linked_to_catalogue": 155,
   "prerequisite_ids_moved_to_external": 0,
-  "slice_textbooks_absent_from_books_added": 53,
-  "slice_textbooks_absent_from_books_folded": 16,
+  "k12_full_loaded": {
+   "standards": 60914,
+   "ap_already_in_standards": 42,
+   "cte_same_as_standard": 366,
+   "cte": 266,
+   "edges": 1362,
+   "edges_skipped": 73
+  },
+  "k12_labels_by_system": {
+   "actfl": {
+    "dropped": 378
+   },
+   "advance-cte": {
+    "dropped": 86
+   },
+   "ap": {
+    "dropped": 312
+   },
+   "australia-v9": {
+    "kept": 2678
+   },
+   "california": {
+    "dropped": 6010
+   },
+   "cambridge-as-a-level": {
+    "dropped": 52
+   },
+   "cambridge-igcse": {
+    "dropped": 103
+   },
+   "casel": {
+    "dropped": 90
+   },
+   "ccss": {
+    "dropped": 2586
+   },
+   "cctc": {
+    "dropped": 62
+   },
+   "cee": {
+    "dropped": 367
+   },
+   "civics-standards": {
+    "dropped": 21
+   },
+   "csta": {
+    "dropped": 269
+   },
+   "dlm-essential-elements": {
+    "dropped": 1317
+   },
+   "england-nc": {
+    "kept": 45
+   },
+   "finland": {
+    "dropped": 20
+   },
+   "geography-standards": {
+    "dropped": 18
+   },
+   "head-start-elof": {
+    "kept": 418
+   },
+   "ib-dp": {
+    "dropped": 34
+   },
+   "india-ncert": {
+    "dropped": 138
+   },
+   "iste": {
+    "dropped": 136
+   },
+   "japan": {
+    "dropped": 45
+   },
+   "jumpstart": {
+    "dropped": 532
+   },
+   "kenya-cbc": {
+    "dropped": 44
+   },
+   "ncas": {
+    "dropped": 2472
+   },
+   "ncss": {
+    "dropped": 487
+   },
+   "new-york": {
+    "dropped": 5279
+   },
+   "ngss": {
+    "dropped": 583
+   },
+   "nhes": {
+    "dropped": 144
+   },
+   "ontario": {
+    "dropped": 450
+   },
+   "shape-america": {
+    "dropped": 397
+   },
+   "singapore": {
+    "dropped": 17
+   },
+   "texas-teks": {
+    "dropped": 34361
+   },
+   "wida": {
+    "dropped": 963
+   }
+  },
+  "history_curricula_loaded": 94,
+  "technologies_dropped_no_technology_class": 6293,
+  "slice_textbooks_absent_from_books_added": 879,
+  "slice_textbooks_absent_from_books_folded": 415,
+  "resources_source": "resources-v2.jsonl",
+  "stated_edges_demoted_in_cycles": 0,
   "resources_dropped_email_in_url": 1,
-  "resources_cip_guess_moved_to_series": 845,
-  "stated_edges_demoted_in_cycles": 0
+  "resources_cip_guess_moved_to_series": 0
  },
- "unmapped_field_labels": [],
+ "unmapped_field_labels": [
+  {
+   "slice": "beyond-school",
+   "label": "artisanal fishing",
+   "rows": 1
+  },
+  {
+   "slice": "beyond-school",
+   "label": "artisanal mining",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "assistive technology",
+   "rows": 6
+  },
+  {
+   "slice": "beyond-school",
+   "label": "auditory training",
+   "rows": 5
+  },
+  {
+   "slice": "beyond-school",
+   "label": "augmentative and alternative communication",
+   "rows": 8
+  },
+  {
+   "slice": "beyond-school",
+   "label": "birth support",
+   "rows": 6
+  },
+  {
+   "slice": "beyond-school",
+   "label": "blindness skills",
+   "rows": 10
+  },
+  {
+   "slice": "beyond-school",
+   "label": "braille",
+   "rows": 8
+  },
+  {
+   "slice": "beyond-school",
+   "label": "braille mathematics",
+   "rows": 1
+  },
+  {
+   "slice": "beyond-school",
+   "label": "braille transcription",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "childcare",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "children's time allocation",
+   "rows": 1
+  },
+  {
+   "slice": "beyond-school",
+   "label": "children's work and play",
+   "rows": 3
+  },
+  {
+   "slice": "beyond-school",
+   "label": "craft apprenticeship",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "daily living skills",
+   "rows": 4
+  },
+  {
+   "slice": "beyond-school",
+   "label": "deafblind communication",
+   "rows": 9
+  },
+  {
+   "slice": "beyond-school",
+   "label": "domestic work",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "early and alternative communication",
+   "rows": 9
+  },
+  {
+   "slice": "beyond-school",
+   "label": "family caregiving",
+   "rows": 17
+  },
+  {
+   "slice": "beyond-school",
+   "label": "family caregiving, dementia",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "farming knowledge",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "fishing knowledge",
+   "rows": 1
+  },
+  {
+   "slice": "beyond-school",
+   "label": "food preservation",
+   "rows": 14
+  },
+  {
+   "slice": "beyond-school",
+   "label": "genealogy memorisation",
+   "rows": 1
+  },
+  {
+   "slice": "beyond-school",
+   "label": "growing food",
+   "rows": 3
+  },
+  {
+   "slice": "beyond-school",
+   "label": "herding",
+   "rows": 6
+  },
+  {
+   "slice": "beyond-school",
+   "label": "home and social care",
+   "rows": 4
+  },
+  {
+   "slice": "beyond-school",
+   "label": "home care",
+   "rows": 18
+  },
+  {
+   "slice": "beyond-school",
+   "label": "home economics",
+   "rows": 17
+  },
+  {
+   "slice": "beyond-school",
+   "label": "human activity backbone",
+   "rows": 3
+  },
+  {
+   "slice": "beyond-school",
+   "label": "hunting skill by age",
+   "rows": 1
+  },
+  {
+   "slice": "beyond-school",
+   "label": "informal apprenticeship",
+   "rows": 11
+  },
+  {
+   "slice": "beyond-school",
+   "label": "language revitalisation",
+   "rows": 8
+  },
+  {
+   "slice": "beyond-school",
+   "label": "learning in family and community",
+   "rows": 8
+  },
+  {
+   "slice": "beyond-school",
+   "label": "lip-reading",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "market arithmetic",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "memorised recitation",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "midwifery",
+   "rows": 14
+  },
+  {
+   "slice": "beyond-school",
+   "label": "navigation",
+   "rows": 11
+  },
+  {
+   "slice": "beyond-school",
+   "label": "oral epic",
+   "rows": 6
+  },
+  {
+   "slice": "beyond-school",
+   "label": "oral history and music",
+   "rows": 3
+  },
+  {
+   "slice": "beyond-school",
+   "label": "orientation and mobility",
+   "rows": 11
+  },
+  {
+   "slice": "beyond-school",
+   "label": "sign language",
+   "rows": 20
+  },
+  {
+   "slice": "beyond-school",
+   "label": "sign language interpreting",
+   "rows": 3
+  },
+  {
+   "slice": "beyond-school",
+   "label": "street vending and market trading",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "subsistence farming",
+   "rows": 1
+  },
+  {
+   "slice": "beyond-school",
+   "label": "subsistence skill acquisition",
+   "rows": 1
+  },
+  {
+   "slice": "beyond-school",
+   "label": "subsistence skills",
+   "rows": 19
+  },
+  {
+   "slice": "beyond-school",
+   "label": "tailoring",
+   "rows": 4
+  },
+  {
+   "slice": "beyond-school",
+   "label": "traditional ecological knowledge",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "waste picking",
+   "rows": 2
+  },
+  {
+   "slice": "beyond-school",
+   "label": "weaving",
+   "rows": 5
+  },
+  {
+   "slice": "history-forecast",
+   "label": "attainment",
+   "rows": 15
+  },
+  {
+   "slice": "history-forecast",
+   "label": "curriculum",
+   "rows": 41
+  },
+  {
+   "slice": "history-forecast",
+   "label": "licensing",
+   "rows": 22
+  },
+  {
+   "slice": "history-technology",
+   "label": "training response to technology",
+   "rows": 72
+  },
+  {
+   "slice": "k12-full",
+   "label": "career and technical education",
+   "rows": 24127
+  },
+  {
+   "slice": "k12-full",
+   "label": "other",
+   "rows": 42
+  },
+  {
+   "slice": "lifespan",
+   "label": "adult learning theory",
+   "rows": 8
+  },
+  {
+   "slice": "lifespan",
+   "label": "caring for ageing parents",
+   "rows": 11
+  },
+  {
+   "slice": "lifespan",
+   "label": "child development",
+   "rows": 173
+  },
+  {
+   "slice": "lifespan",
+   "label": "chores and independence",
+   "rows": 11
+  },
+  {
+   "slice": "lifespan",
+   "label": "cognitive development",
+   "rows": 11
+  },
+  {
+   "slice": "lifespan",
+   "label": "cognitive training",
+   "rows": 5
+  },
+  {
+   "slice": "lifespan",
+   "label": "digital and media habits",
+   "rows": 12
+  },
+  {
+   "slice": "lifespan",
+   "label": "early mathematics",
+   "rows": 21
+  },
+  {
+   "slice": "lifespan",
+   "label": "emergent literacy",
+   "rows": 10
+  },
+  {
+   "slice": "lifespan",
+   "label": "end-of-life preparation",
+   "rows": 7
+  },
+  {
+   "slice": "lifespan",
+   "label": "executive function",
+   "rows": 10
+  },
+  {
+   "slice": "lifespan",
+   "label": "first job",
+   "rows": 9
+  },
+  {
+   "slice": "lifespan",
+   "label": "first language acquisition",
+   "rows": 16
+  },
+  {
+   "slice": "lifespan",
+   "label": "health education",
+   "rows": 9
+  },
+  {
+   "slice": "lifespan",
+   "label": "health self-management",
+   "rows": 7
+  },
+  {
+   "slice": "lifespan",
+   "label": "housing",
+   "rows": 9
+  },
+  {
+   "slice": "lifespan",
+   "label": "learning in later life",
+   "rows": 4
+  },
+  {
+   "slice": "lifespan",
+   "label": "meta-learning",
+   "rows": 40
+  },
+  {
+   "slice": "lifespan",
+   "label": "mid-career change",
+   "rows": 19
+  },
+  {
+   "slice": "lifespan",
+   "label": "moral reasoning",
+   "rows": 8
+  },
+  {
+   "slice": "lifespan",
+   "label": "motor development",
+   "rows": 10
+  },
+  {
+   "slice": "lifespan",
+   "label": "parenting",
+   "rows": 13
+  },
+  {
+   "slice": "lifespan",
+   "label": "partnership",
+   "rows": 3
+  },
+  {
+   "slice": "lifespan",
+   "label": "play",
+   "rows": 10
+  },
+  {
+   "slice": "lifespan",
+   "label": "puberty and health education",
+   "rows": 7
+  },
+  {
+   "slice": "lifespan",
+   "label": "reading development",
+   "rows": 7
+  },
+  {
+   "slice": "lifespan",
+   "label": "retirement planning",
+   "rows": 12
+  },
+  {
+   "slice": "lifespan",
+   "label": "returning to study",
+   "rows": 4
+  },
+  {
+   "slice": "lifespan",
+   "label": "self-care",
+   "rows": 4
+  },
+  {
+   "slice": "lifespan",
+   "label": "sex education",
+   "rows": 8
+  },
+  {
+   "slice": "lifespan",
+   "label": "social and emotional development",
+   "rows": 33
+  },
+  {
+   "slice": "lifespan",
+   "label": "technology in later life",
+   "rows": 6
+  },
+  {
+   "slice": "lifespan",
+   "label": "theory of mind",
+   "rows": 7
+  }
+ ],
  "cycles": {
   "components_through_or_alternatives": 3,
   "components_on_mandatory_edges": 0
