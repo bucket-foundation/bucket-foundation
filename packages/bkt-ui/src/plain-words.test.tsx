@@ -54,7 +54,7 @@ const DENY: { name: string; re: RegExp }[] = [
   { name: "id: hex", re: /\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{8,}\b/ },
 ];
 
-const ALLOW = new Set<string>([]);
+const ALLOW = new Set<string>(["Token circle.", "Open Token circle."]);
 
 const ATTRS = ["title", "placeholder", "aria-label", "alt"];
 
@@ -226,8 +226,50 @@ const DATA_TABS = JSON.stringify({
   active: "set:canon",
 });
 
+const RESEARCH_ROWS = [
+  { slug: "solvability-frontier", title: "The Solvability Frontier: Which Open Problems Sit Next to Solved Ones", kind: "paper", status: "public", date: "2026-10-08", origin: "shipped", changed: 0, unreadable: null },
+  { slug: "funding-landscape", title: "The structure of public research funding", kind: "paper", status: "public", date: "2026-06-20", origin: "shipped", changed: 0, unreadable: "public/papers/x/paper.pdf does not match its hash in this build" },
+];
+const RESEARCH_FILE = { path: "public/papers/solvability-frontier/fig_frontier.webp", sha256: "c85d792ca773".repeat(5) + "abcd", size: 1200, audience: "public", role: "asset" };
+const RESEARCH_DETAIL = {
+  slug: "solvability-frontier",
+  origin: "shipped",
+  staff: false,
+  withheld: 7,
+  unreadable: null,
+  files: [RESEARCH_FILE, { ...RESEARCH_FILE, path: "public/atlas/big.webp", size: 9 * 1024 * 1024 }],
+  manifest: {
+    schema: "bucket.report/2",
+    slug: "solvability-frontier",
+    title: "The Solvability Frontier: Which Open Problems Sit Next to Solved Ones",
+    authors: ["Gianangelo Dichio"],
+    date: "2026-10-08",
+    status: "public",
+    kind: "paper",
+    abstract: "Embeds 5,206 problem statements across seven canon branches and draws a frontier at the 10th percentile of solved problems' reach.",
+    licence: "CC-BY-4.0",
+    source_path: "papers/solvability-frontier/main.tex",
+    source_hash: "c85d792ca773".repeat(5) + "abcd",
+    pdf_hash: "c85d792ca773".repeat(5) + "abce",
+    assets: [
+      { id: "fig-frontier", path: RESEARCH_FILE.path, caption: "The frontier on 5,209 rows: solved rows in the inner disc.", licence: "CC-BY-4.0", audience: "public" },
+      { id: "atlas-big", path: "public/atlas/big.webp", caption: "Token circle.", licence: "MIT code output over CC BY-SA 4.0 and Apache-2.0 data, attributed", audience: "public" },
+      { id: "atlas-gone", path: "public/atlas/gone.webp", caption: "Star chart.", licence: "MIT code output over CC BY-SA 4.0 and Apache-2.0 data, attributed", audience: "public" },
+    ],
+    attributions: [
+      { source: "formal-conjectures, Google DeepMind", url: "https://github.com/google-deepmind/formal-conjectures", licence: "Apache-2.0", rows: 3557, notice: "Statements from formal-conjectures by Google DeepMind, Apache License 2.0. Each row links its Lean source." },
+      { source: "Wikipedia, lists of unsolved problems", url: "https://en.wikipedia.org/wiki/Lists_of_unsolved_problems", licence: "CC BY-SA 4.0", rows: 1283, notice: "Text from Wikipedia under CC BY-SA 4.0. Each row links its page. Copies and edits keep this licence and this credit." },
+      { source: "Science, AAAS question lists", url: "https://web.archive.org/web/2023id_/https://www.science.org/do/10.1126/resource.2499249/full/sjtu-booklet.pdf", licence: "AAAS copyright; headline under 15 words cited, statement paraphrased", rows: 239, notice: "Headlines cited from two AAAS question lists. Each row links its list. Statements are paraphrased by Bucket Foundation." },
+    ],
+  },
+};
+
 function empty(): Stub {
   return {
+    researchList: async () => ({ outputs: [] }),
+    researchManifest: () => Promise.reject(new ApiError("no such output", 404)),
+    researchText: () => Promise.reject(new ApiError("the output does not list that file", 404)),
+    image: () => Promise.reject(new ApiError("the output does not list that file", 404)),
     data: async () => [],
     dataRecords: async () => ({ total: 0, offset: 0, limit: 50, records: [] }),
     dataRecord: () => Promise.reject(new ApiError("no such record", 404)),
@@ -268,6 +310,9 @@ function empty(): Stub {
 function populated(over: Stub = {}): Stub {
   return {
     ...empty(),
+    researchList: async () => ({ outputs: RESEARCH_ROWS }),
+    researchManifest: async () => RESEARCH_DETAIL,
+    image: async () => "data:image/webp;base64,AAAA",
     data: async () => DATASETS,
     dataRecords: async () => ({ total: DATA_ROWS.length, offset: 0, limit: 50, records: DATA_ROWS }),
     dataRecord: async (_set: string, id: string) => ({ record: DATA_ROWS.find((r) => r.id === id)!, fields: [{ label: "Branch", value: "physics" }, { label: "Text", value: "Entropy rises and entropy never falls." }] }),
@@ -323,6 +368,10 @@ function failing(): Stub {
   const fail = (code: string, status: number) => () => Promise.reject(new ApiError(code, status));
   return {
     progress: progress(null),
+    researchList: fail("the research files could not be read", 500),
+    researchManifest: fail("public/papers/x/paper.pdf does not match its hash in this build", 409),
+    researchText: fail("the path crosses a symlink", 403),
+    image: fail("the path crosses a symlink", 403),
     data: fail("data key does not match", 500),
     dataRecords: fail("no such dataset", 404),
     dataRecord: fail("no such record", 404),
@@ -391,7 +440,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -404,7 +453,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Profile"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -419,7 +468,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
@@ -581,7 +630,7 @@ describe("what the helper sends", () => {
       expect(violationsIn([e.message])).toEqual([]);
       const fail = () => Promise.reject(new ApiError(code, status));
       for (const route of COVERED.filter((r) => r.name !== "canon")) {
-        const v = await mount(route, { ...failing(), decks: fail, quiz: fail, due: fail, notes: fail, history: fail, workNext: fail, workStatus: fail, dailyQuiz: fail, canonAbout: fail, canonExcerpt: fail });
+        const v = await mount(route, { ...failing(), decks: fail, quiz: fail, due: fail, researchList: fail, researchManifest: fail, image: fail, notes: fail, history: fail, workNext: fail, workStatus: fail, dailyQuiz: fail, canonAbout: fail, canonExcerpt: fail });
         if (code) expect({ route: route.name, code, leaked: v.text().includes(code) }).toEqual({ route: route.name, code, leaked: false });
         expect(violations(v.host)).toEqual([]);
         await v.unmount();

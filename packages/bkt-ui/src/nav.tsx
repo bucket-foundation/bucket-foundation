@@ -16,6 +16,7 @@ import { NotesView } from "./views/Notes";
 import { PathView } from "./views/Path";
 import { PrimesView } from "./views/Primes";
 import { QuizView } from "./views/Quiz";
+import { ResearchView } from "./views/Research";
 import { ReviewView } from "./views/Review";
 import { RosMapView } from "./views/RosMap";
 import { RosNodeView } from "./views/RosNode";
@@ -39,6 +40,7 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "history" }, label: "History" },
   { route: { name: "jobs" }, label: "Analyze data" },
   { route: { name: "data" }, label: "Data" },
+  { route: { name: "research" }, label: "Research" },
   { route: { name: "profile" }, label: "Profile" },
 ];
 
@@ -71,6 +73,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "work") return <WorkQuizView api={api} />;
   if (route.name === "jobs") return <JobsView api={api} />;
   if (route.name === "data") return <DataView api={api} />;
+  if (route.name === "research") return <ResearchView key={route.slug ?? ""} api={api} slug={route.slug} tab={route.tab ?? "report"} />;
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
   if (route.name === "settings") return <SettingsView api={api} />;

@@ -5,6 +5,8 @@ import canonPack from "../../content/canon.json" with { type: "json" };
 import explorePack from "../../content/explore.json" with { type: "json" };
 import wordPack from "../../content/words.json" with { type: "json" };
 import deckCatalog from "../../content/deck-catalog.json" with { type: "json" };
+import researchIndex from "../../content/research-index.json" with { type: "json" };
+import researchBlobsFile from "../../content/research-blobs.json" with { type: "file" };
 import { join } from "node:path";
 import { App, type AppSources } from "../app";
 import { spawn } from "node:child_process";
@@ -62,6 +64,8 @@ import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
+import { Research, researchRoutes } from "../research";
+import type { ResearchBlobs, ResearchIndex } from "../pack/research";
 import { startServe, type Route } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
@@ -289,6 +293,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
+      ...researchRoutes(new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }), (e) => console.error(`bkt serve: research: ${e.message}`)),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
       ...servedWordRoutes(workQuiz),
       ...deckRoutes({ home: dir, book: wordBook, onError: (m) => console.error(`bkt serve: ${m}`) }),
