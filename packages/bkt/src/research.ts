@@ -429,10 +429,11 @@ export function researchRoutes(research: Research, onError: (e: Error) => void =
     "GET /local/research/table": (_req, url) => guarded(async () => json(await research.table(url.searchParams.get("slug"), url.searchParams.get("id"), parseQuery(url.searchParams)))),
     "POST /local/research/install": (req, _url, ctx) =>
       guarded(async () => {
+        const bytes = new Uint8Array(await req.arrayBuffer());
         if (ctx?.cli !== true) return json({ error: "a side pack installs from the terminal alone" }, 403);
         const dir = research.home;
         if (dir === null) return json({ error: "this server has no data folder" }, 409);
-        const done = installSidePack(dir, new Uint8Array(await req.arrayBuffer()));
+        const done = installSidePack(dir, bytes);
         research.reload();
         return json(done);
       }),
