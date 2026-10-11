@@ -4,11 +4,11 @@ import type { CanonGraph } from "@/lib/canon-graph-core";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
 import type { ProductionsSnapshot } from "@ros/productions-snapshot";
-import type { ConceptPage, LessonPage, WordCredit } from "../../bkt/src/core/words";
+import type { ConceptPage, LessonPage, WordCredit, WordLicence } from "../../bkt/src/core/words";
 import type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 import { siteFetch } from "./site-fetch";
 
-export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordView } from "../../bkt/src/core/words";
+export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordLicence, WordView } from "../../bkt/src/core/words";
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 export type { DeckRow as InstalledDeckRow } from "../../bkt/src/decks";
 export type { DecksBody } from "../../bkt/src/deck-routes";
@@ -16,7 +16,7 @@ export type { LinkHit, LinkMode, LinkSearch, LinkStatus } from "../../bkt/src/po
 import type { LinkMode, LinkSearch, LinkStatus } from "../../bkt/src/polingual-link";
 export type { DeckState, LibraryBody, LibraryRow } from "../../bkt/src/library";
 import type { LibraryBody } from "../../bkt/src/library";
-export type { WordHit, WordSearch } from "../../bkt/src/core/word-decks";
+export type { CreditWithDecks, DeckCredit, WordHit, WordSearch } from "../../bkt/src/core/word-decks";
 import type { DecksBody } from "../../bkt/src/deck-routes";
 import type { WordSearch } from "../../bkt/src/core/word-decks";
 
@@ -442,6 +442,10 @@ export class Api {
     return this.call<{ languages: string[] }>("/local/work-quiz/languages", { method: "POST", body: { languages } });
   }
 
+  wordLicence() {
+    return this.call<WordLicence>("/local/words/licence");
+  }
+
   wordDecks() {
     return this.call<WordDecks>("/local/words/decks");
   }
@@ -462,8 +466,14 @@ export class Api {
     return this.call<LibraryBody>("/local/library/remove", { method: "POST", body: { id } });
   }
 
-  libraryExport(id: string) {
-    return this.call<{ name: string; folder: string }>("/local/library/export", { method: "POST", body: { id } });
+  libraryExport(id: string, replace = false) {
+    return this.call<{ name: string; folder: string }>("/local/library/export", { method: "POST", body: { id, replace } });
+  }
+
+  async libraryExportBytes(id: string) {
+    const r = await fetch(`/local/library/export?id=${encodeURIComponent(id)}`, { headers: { authorization: `Bucket ${this.token}` } });
+    if (!r.ok) throw new ApiError("", r.status);
+    return r.blob();
   }
 
   async libraryImport(file: Blob) {

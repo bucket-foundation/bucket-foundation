@@ -1,9 +1,8 @@
 import { randomBytes } from "node:crypto";
 import { gradeAnswer, normalizeResponse, type GradeResult } from "../../../src/lib/research-os/work-quiz/grade";
-import { wordFactId, type WordCell } from "../../../src/lib/research-os/work-quiz/polingual-forms";
 import { toPublic, type PublicQuestion, type QuizQuestion } from "../../../src/lib/research-os/work-quiz/types";
 import { LearnError } from "./core/learn";
-import { LESSON_WORDS, type ConceptPage, type LessonPage, type WordBook, type WordCredit, type WordDeck, type WordLesson } from "./core/words";
+import { LESSON_WORDS, type ConceptPage, type LessonCell, type LessonPage, type WordBook, type WordCredit, type WordDeck, type WordLesson } from "./core/words";
 import type { Route } from "./serve";
 import type { WorkQuizStore } from "./work-quiz";
 
@@ -78,7 +77,7 @@ export class WordSession {
   }
 
   private withProgress(d: WordDeck, p: { started: Set<string>; due: Set<string> }): WordDeckProgress {
-    const ids = (this.book.set.byLang[d.lang] ?? []).map(wordFactId);
+    const ids = this.book.words(d.lang).filter((c) => c.quiz).map((c) => this.book.factId(c));
     return { ...d, started: ids.filter((id) => p.started.has(id)).length, due: ids.filter((id) => p.due.has(id)).length };
   }
 
@@ -87,7 +86,7 @@ export class WordSession {
     const p = this.progress();
     const lessons = this.book.lessons(lang).map((l): WordLessonProgress => {
       const cells = this.book.lessonCells(lang, l.n);
-      return { ...l, words: cells.map((c) => c.word), started: cells.filter((c) => p.started.has(wordFactId(c))).length };
+      return { ...l, words: cells.map((c) => c.word), started: cells.filter((c) => c.quiz && p.started.has(this.book.factId(c))).length };
     });
     return { deck: this.withProgress(this.book.deck(lang), p), lessons };
   }
@@ -102,7 +101,7 @@ export class WordSession {
     return this.book.concepts(this.chosen(), page);
   }
 
-  private cells(pick: WordQuizPick): WordCell[] {
+  private cells(pick: WordQuizPick): LessonCell[] {
     if ("concepts" in pick) return this.book.conceptCells(this.chosen(), pick.concepts).slice(0, CONCEPT_QUIZ_MAX);
     const lang = this.lang(pick.deck);
     if (pick.lesson !== undefined) {
@@ -155,6 +154,7 @@ function whole(raw: string | null, fallback: number | undefined, max: number): n
 export function wordRoutes(session: WordSession): Record<string, Route> {
   const credit = session.book.credit;
   return {
+    "GET /local/words/licence": () => json(session.book.licence),
     "GET /local/words/decks": () => guarded(() => ({ decks: session.decks(), chosen: session.chosen(), credit })),
     "GET /local/words/lessons": (_req, url) => guarded(() => ({ ...session.lessons(url.searchParams.get("deck")), credit })),
     "GET /local/words/lesson": (_req, url) => guarded(() => ({ ...session.lesson(url.searchParams.get("deck"), whole(url.searchParams.get("n"), 1, 9999)!), credit })),

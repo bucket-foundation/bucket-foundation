@@ -98,8 +98,8 @@ describe("search by meaning and by sound", () => {
   });
 
   test("a word the database lacks and a database that stops answering each read as one sentence", async () => {
-    const { WordSearchBox, LINK_NO_WORD, LINK_TROUBLE } = await import("./views/Decks");
-    for (const [status, want] of [[404, LINK_NO_WORD], [502, LINK_TROUBLE]] as [number, string][]) {
+    const { WordSearchBox, LINK_NO_WORD, LINK_TROUBLE, LINK_BUSY } = await import("./views/Decks");
+    for (const [status, want] of [[404, LINK_NO_WORD], [502, LINK_TROUBLE], [429, LINK_BUSY]] as [number, string][]) {
       const v = await render(<WordSearchBox api={{ wordSearch: async () => WORD_HITS, polingualLink: async () => LINKED, linkSearch: () => Promise.reject(new ApiError("canceling statement due to statement timeout", status)) }} />);
       await v.type(v.host.querySelector('input[type="search"]') as HTMLInputElement, "zzz");
       await v.press("Close in meaning");

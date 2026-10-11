@@ -15,7 +15,7 @@ afterEach(() => {
 
 const FORMAT_WORDS = /json|sqlite|sha256|\bzstd\b|polingual-(?!\w+\.bktdeck)|manifest|checksum|undefined|null|NaN|\b[0-9a-f]{12}\b/i;
 
-type LibApi = Pick<Api, "library" | "libraryRefresh" | "libraryInstall" | "libraryRemove" | "libraryExport" | "libraryImport">;
+type LibApi = Pick<Api, "library" | "libraryRefresh" | "libraryInstall" | "libraryRemove" | "libraryExport" | "libraryExportBytes" | "libraryImport">;
 
 function stub(over: Partial<LibApi> = {}, body: LibraryBody = LIBRARY): LibApi & { calls: string[] } {
   const calls: string[] = [];
@@ -26,7 +26,8 @@ function stub(over: Partial<LibApi> = {}, body: LibraryBody = LIBRARY): LibApi &
     libraryRefresh: () => note("refresh", { ...body, from: "refreshed" as const, refreshedAt: Date.UTC(2026, 9, 12) }),
     libraryInstall: (id) => note(`install ${id}`, { ...body, decks: body.decks.map((d) => (d.id === id ? { ...d, state: "downloading" as const, received: 0, error: null } : d)) }),
     libraryRemove: (id) => note(`remove ${id}`, { ...body, decks: body.decks.map((d) => (d.id === id ? { ...d, state: "available" as const } : d)) }),
-    libraryExport: (id) => note(`export ${id}`, { name: `${id}.bktdeck`, folder: "Downloads" }),
+    libraryExport: (id, replace) => note(`export ${id}${replace ? " replace" : ""}`, { name: `${id}.bktdeck`, folder: "Downloads" }),
+    libraryExportBytes: (id) => note(`bytes ${id}`, new Blob(["deck"])),
     libraryImport: () => note("import", { ...body, installed: "Arabic words" }),
     ...over,
   };
@@ -52,11 +53,13 @@ async function show(api: LibApi) {
 }
 
 describe("library screen", () => {
-  test("opens from its own address and sits in the menu", async () => {
+  test("opens from its own address, reached from Learn and Settings", async () => {
     expect(parseHash("#/library")).toEqual({ name: "library" });
     expect(href({ name: "library" })).toBe("#/library");
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toContain("Library");
+    expect(NAV.map((n) => n.label)).not.toContain("Library");
+    const { LIBRARY_LINK } = await import("./views/Decks");
+    expect(LIBRARY_LINK).toBe("Add more decks from the Library");
   });
 
   test("lists each deck with its size, card count, licence and curator, in plain words", async () => {
@@ -108,6 +111,65 @@ describe("library screen", () => {
     expect(v.host.textContent).toContain("List from bucket.foundation, read on 2026-10-12.");
     expect(v.host.textContent).not.toContain("This is the list that came with this copy of Bucket.");
     expect(api.calls).toEqual(["library", "install polingual-es", "install polingual-ja", "export polingual-de", "remove polingual-de", "refresh"]);
+    await v.unmount();
+  });
+
+  test("saving asks where through the window's own dialog when it has one, and cancelling writes nothing", async () => {
+    const api = stub();
+    const wrote: string[] = [];
+    const asked: string[] = [];
+    let cancel = false;
+    (window as unknown as { showSaveFilePicker?: unknown }).showSaveFilePicker = async (o: { suggestedName: string }) => {
+      asked.push(o.suggestedName);
+      if (cancel) throw new DOMException("cancelled", "AbortError");
+      return { createWritable: async () => ({ write: async (b: Blob) => void wrote.push(await b.text()), close: async () => void wrote.push("closed") }) };
+    };
+    try {
+      const v = await show(api);
+      await v.press(v.row("German words"), "Save as a file");
+      expect(asked).toEqual(["german-words.bktdeck"]);
+      expect(wrote).toEqual(["deck", "closed"]);
+      expect(v.host.querySelector(".status")!.textContent).toBe("Saved German words.");
+      cancel = true;
+      await v.press(v.row("German words"), "Save as a file");
+      expect(api.calls).toEqual(["library", "bytes polingual-de"]);
+      expect(v.host.querySelector(".status")).toBeNull();
+      await v.unmount();
+    } finally {
+      delete (window as unknown as { showSaveFilePicker?: unknown }).showSaveFilePicker;
+    }
+  });
+
+  test("without that dialog, a file that already exists is replaced only after a yes", async () => {
+    const { replaceQuestion, NOTHING_REPLACED } = await import("./views/Library");
+    const calls: string[] = [];
+    const questions: string[] = [];
+    let answer = false;
+    const keep = window.confirm;
+    window.confirm = (q?: string) => (questions.push(q ?? ""), answer);
+    try {
+      const api = stub({ libraryExport: (id, replace) => (calls.push(`${id}:${replace === true}`), replace ? Promise.resolve({ name: "polingual-de.bktdeck", folder: "Downloads" }) : Promise.reject(new ApiError("exists", 409))) });
+      const v = await show(api);
+      await v.press(v.row("German words"), "Save as a file");
+      expect(questions).toEqual([replaceQuestion({ title: "German words" })]);
+      expect(calls).toEqual(["polingual-de:false"]);
+      expect(v.host.querySelector(".status")!.textContent).toBe(NOTHING_REPLACED);
+      answer = true;
+      await v.press(v.row("German words"), "Save as a file");
+      expect(calls).toEqual(["polingual-de:false", "polingual-de:false", "polingual-de:true"]);
+      expect(v.host.querySelector(".status")!.textContent).toBe("Saved German words as polingual-de.bktdeck in Downloads.");
+      await v.unmount();
+    } finally {
+      window.confirm = keep;
+    }
+  });
+
+  test("an unsigned list shows no catalog deck and says why", async () => {
+    const { UNSIGNED_LIST } = await import("./views/Library");
+    const v = await show(stub({}, { ...EMPTY_LIBRARY, offline: false }));
+    expect(v.host.textContent).toContain(UNSIGNED_LIST);
+    expect(v.host.querySelectorAll(".library-row").length).toBe(0);
+    expect(v.host.querySelector('input[type="file"]')).not.toBeNull();
     await v.unmount();
   });
 

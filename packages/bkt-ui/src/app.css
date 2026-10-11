@@ -1483,6 +1483,15 @@ table.columns thead th {
   text-transform: capitalize;
 }
 
+.concept-word + .concept-word {
+  margin-top: 10px;
+}
+
+.licence-text {
+  white-space: pre-wrap;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
 .word-search {
   margin-bottom: 12px;
 }

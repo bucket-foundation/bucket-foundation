@@ -1,26 +1,22 @@
 import type { Database } from "bun:sqlite";
-import { CARD_KEY_SEPARATOR, FACT_JOIN } from "../../../../src/lib/research-os/work-quiz/fact";
+import { CARD_KEY_SEPARATOR, FACT_JOIN, factId } from "../../../../src/lib/research-os/work-quiz/fact";
 import type { SampledQuestion } from "../../../../src/lib/research-os/work-quiz/forms";
-import { seededRng } from "../../../../src/lib/research-os/work-quiz/generate";
 import { LANGUAGE_NAMES, languageDir, textDir, type Dir } from "../../../../src/lib/research-os/work-quiz/languages";
-import { checkLimits, countTokens, LIMITS } from "../../../../src/lib/research-os/work-quiz/limits";
-import { cleanIpa, fold, GLOSS_TOKENS, headword, languageMakers, MIN_GLOSS_TOKENS, scriptOf, VAGUE_GLOSS, wordFactId, WORD_TOKENS, type Script, type WordCell } from "../../../../src/lib/research-os/work-quiz/polingual-forms";
-import { LANGUAGE_FORMS } from "../../../../src/lib/research-os/work-quiz/space";
-import { deckMeta, listInstalled, openDeckDb, type DeckManifest, type InstalledDeck } from "../decks";
-import { SENSE_CHARS, SENSES_KEPT, type PackWord, type WordPack } from "../pack/words";
-import { LESSON_WORDS, POS_NAMES, WordBook, type WordCredit, type WordLesson } from "./words";
+import { countTokens, LIMITS } from "../../../../src/lib/research-os/work-quiz/limits";
+import { cleanIpa, fold, scriptOf, WORD_TOKENS, type Script } from "../../../../src/lib/research-os/work-quiz/polingual-forms";
+import { deckMeta, listInstalled, openCheckedDeck, SEARCH_ROW_CAP, type DeckManifest, type InstalledDeck } from "../decks";
+import { SENSE_CHARS, SENSES_KEPT, shortMeaning, type PackWord, type WordPack } from "../pack/words";
+import { POS_NAMES, WordBook, wordRef, type ConceptPage, type LessonCell, type LessonPage, type WordCredit, type WordDeck, type WordLesson, type WordView } from "./words";
 
 export const DECK_LESSON_WORDS = 2000;
 export const DECK_SCAN_FACTOR = 25;
-export const DECK_LESSON_TITLE = "Common words";
-export const SENSE_WORD_CHARS = 600;
 export const SENSE_JOIN = " · ";
 export const LESSON_POS: ReadonlySet<string> = new Set(["noun", "verb", "adj", "adv", "num", "pron", "prep"]);
-export const CONCEPT_SHAPE = /^[a-z][a-z' -]{0,31}$/;
 export const WORD_SEARCH_LIMIT = 20;
 export const WORD_SEARCH_MAX = 50;
 export const WORD_QUERY_CHARS = 80;
 export const BUNDLED_DECK = "bundled";
+export const BUNDLED_TITLE = "Words that came with Bucket";
 export const FORM_OF =
   /^(?:[\w'-]+[ /]){0,6}?(?:inflection|plural|singular|dual|forms?|participle|gerund|infinitive|imperative|indicative|subjunctive|supine|tense|person|genitive|dative|accusative|ablative|vocative|nominative|locative|instrumental|comparative|superlative|diminutive|augmentative|spelling|romanization|transliteration|abbreviation|initialism|acronym|synonym|misspelling|variant|contraction|clipping|ellipsis|degree|definite|indefinite|conjugation|declension) of\b/i;
 
@@ -35,6 +31,18 @@ export interface DeckWord {
   shared: number;
 }
 
+export interface DeckCredit {
+  deck: string;
+  title: string;
+  source: string;
+  sourceHref: string | null;
+  licence: string;
+  licenceHref: string | null;
+  curator: string | null;
+}
+
+export type CreditWithDecks = WordCredit & { also?: DeckCredit[] };
+
 export interface WordHit {
   lang: string;
   name: string;
@@ -44,8 +52,10 @@ export interface WordHit {
   ipa: string;
   pos: string;
   meaning: string;
-  href: string;
+  href: string | null;
   deck: string;
+  source: string;
+  licence: string;
 }
 
 export interface WordSearch {
@@ -53,15 +63,28 @@ export interface WordSearch {
   hits: WordHit[];
   languages: number;
   words: number;
-  credit: WordCredit;
+  credits: DeckCredit[];
 }
 
 const WORD_COLUMNS = "w.id, w.surface, w.folded, w.ipa, w.pos, w.meaning, w.head, w.shared";
+
+export function deckCredit(m: DeckManifest): DeckCredit {
+  return { deck: m.id, title: m.title, source: m.source, sourceHref: m.source_url, licence: m.licence, licenceHref: m.licence_url, curator: m.curator };
+}
+
+export function bundledCredit(c: WordCredit, source: string): DeckCredit {
+  return { deck: BUNDLED_DECK, title: BUNDLED_TITLE, source, sourceHref: c.sourceHref, licence: c.licence, licenceHref: c.licenceHref, curator: null };
+}
+
+export function creditLine(c: DeckCredit): string {
+  return `${c.title}: ${c.source}, ${c.licence}${c.curator ? `, curated by ${c.curator}` : ""}.`;
+}
 
 export class WordDeckFile {
   private db: Database | null = null;
   readonly lang: string;
   readonly name: string;
+  opens = 0;
 
   constructor(readonly installed: InstalledDeck) {
     this.lang = installed.manifest.language!;
@@ -72,8 +95,15 @@ export class WordDeckFile {
     return this.installed.manifest;
   }
 
+  get isOpen(): boolean {
+    return this.db !== null;
+  }
+
   private open(): Database {
-    this.db ??= openDeckDb(this.installed.db);
+    if (!this.db) {
+      this.db = openCheckedDeck(this.installed.db, this.manifest);
+      this.opens++;
+    }
     return this.db;
   }
 
@@ -82,28 +112,38 @@ export class WordDeckFile {
     this.db = null;
   }
 
+  credit(): DeckCredit {
+    return deckCredit(this.manifest);
+  }
+
+  entryHref(word: string): string | null {
+    const base = this.manifest.wiktionary_url;
+    return base ? `${base}/wiki/${encodeURIComponent(word)}` : null;
+  }
+
   meta(): Record<string, string> {
     return deckMeta(this.open());
   }
 
   *top(limit: number): Generator<DeckWord> {
     const q = this.open().query<DeckWord, [number]>(`select ${WORD_COLUMNS} from words w order by w.id limit ?`);
-    for (const row of q.iterate(limit)) yield row;
+    for (const row of q.iterate(Math.max(0, Math.min(limit, DECK_LESSON_WORDS * DECK_SCAN_FACTOR)))) yield row;
   }
 
   search(raw: string, limit: number): DeckWord[] {
     const tokens = searchTokens(raw);
     if (tokens.length === 0) return [];
+    const n = Math.max(1, Math.min(limit, WORD_SEARCH_MAX));
     const phrase = tokens.map((t, i) => `"${t}"${i === tokens.length - 1 ? "*" : ""}`).join(" ");
     const whole = tokens.join(" ");
-    const run = (match: string, n: number) =>
+    const run = (match: string) =>
       this.open()
-        .query<DeckWord, [string, string, number]>(`select ${WORD_COLUMNS} from words_fts f join words w on w.id = f.rowid where words_fts match ? order by (w.folded = ?) desc, w.id limit ?`)
-        .all(match, whole, n);
-    const byWord = run(`{surface folded} : ${phrase}`, limit);
-    if (byWord.length >= limit) return byWord;
+        .query<DeckWord, [string, number, string, number]>(`select ${WORD_COLUMNS} from (select rowid from words_fts where words_fts match ? limit ?) f join words w on w.id = f.rowid order by (w.folded = ?) desc, w.id limit ?`)
+        .all(match, SEARCH_ROW_CAP, whole, n);
+    const byWord = run(`{surface folded} : ${phrase}`);
+    if (byWord.length >= n) return byWord;
     const seen = new Set(byWord.map((r) => r.id));
-    return [...byWord, ...run(`meaning : ${phrase}`, limit).filter((r) => !seen.has(r.id))].slice(0, limit);
+    return [...byWord, ...run(`meaning : ${phrase}`).filter((r) => !seen.has(r.id))].slice(0, n);
   }
 }
 
@@ -122,20 +162,11 @@ export function senses(meaning: string): string[] {
   return meaning.split(SENSE_JOIN).map((s) => s.trim()).filter(Boolean);
 }
 
-const plain = (gloss: string) => gloss.replace(/\([^)]*\)/g, " ").replace(/\s+/g, " ").trim();
-const firstPart = (gloss: string) => plain(gloss).split(/[,;/]/)[0].trim().replace(/[.!?…]+$/, "").trim();
 const mentions = (gloss: string, concept: string) => new RegExp(`(^|[^a-z])${concept.replace(/[^a-z' -]/g, "")}`, "i").test(gloss);
-const refSafe = (s: string) => !s.includes(FACT_JOIN) && !s.includes(CARD_KEY_SEPARATOR) && !s.includes(":");
+const refSafe = (s: string) => !s.includes(FACT_JOIN) && !s.includes(CARD_KEY_SEPARATOR);
 
 export function deckIpa(raw: string): string {
   return cleanIpa(raw.trim().replace(/^[/[]+/, ""));
-}
-
-function englishGloss(first: string, concept: string): string {
-  const cut = plain(first).split(";")[0].trim().replace(/[.!?]+$/, "");
-  const tokens = countTokens(cut);
-  if (/[…":]/.test(cut) || VAGUE_GLOSS.test(cut) || tokens < MIN_GLOSS_TOKENS || tokens > GLOSS_TOKENS) return "";
-  return mentions(cut, concept) ? "" : cut;
 }
 
 export function lessonWord(lang: string, row: DeckWord): PackWord | null {
@@ -144,136 +175,190 @@ export function lessonWord(lang: string, row: DeckWord): PackWord | null {
   if (parts.length === 0 || !LESSON_POS.has(row.pos) || FORM_OF.test(parts[0])) return null;
   const script = scriptOf(word);
   if (word.length === 0 || word.length > LIMITS.tokenChars || script === "other" || countTokens(word) > WORD_TOKENS || !refSafe(word)) return null;
-  const concept = lang === "en" ? fold(word) : row.head.trim() || headword(parts[0]);
-  if (!CONCEPT_SHAPE.test(concept) || countTokens(concept) > WORD_TOKENS || !refSafe(concept)) return null;
-  const others = parts.slice(1);
-  if (lang !== "en" && !mentions(parts[0], concept)) return null;
-  if (lang !== "en" && others.length >= 2 && !others.some((s) => mentions(s, concept))) return null;
-  const short = firstPart(parts[0]).toLowerCase();
-  const gloss = lang === "en" ? englishGloss(parts[0], concept) : countTokens(short) <= GLOSS_TOKENS && short.length <= LIMITS.tokenChars * 2 ? short : "";
-  const senseWords = new Set<string>([concept]);
-  for (const m of row.meaning.slice(0, SENSE_WORD_CHARS).toLowerCase().match(/[a-z]+/g) ?? []) senseWords.add(m);
+  const short = shortMeaning(parts[0]);
+  const ipa = deckIpa(row.ipa);
   const kept: string[] = [];
-  for (const s of others) if (s !== parts[0] && !kept.includes(s) && s.length <= SENSE_CHARS && kept.length < SENSES_KEPT) kept.push(s);
-  return { lang, concept, word, pos: row.pos, gloss, ipa: deckIpa(row.ipa), script, shared: row.shared === 1, senseWords: [...senseWords].sort(), meaning: parts[0], senses: kept, etymology: "" };
-}
-
-function mode(xs: readonly Script[]): Script {
-  const n = new Map<Script, number>();
-  for (const x of xs) n.set(x, (n.get(x) ?? 0) + 1);
-  return Array.from(n).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0]?.[0] ?? "other";
-}
-
-export interface MergedWords {
-  pack: WordPack;
-  added: Map<string, PackWord[]>;
+  for (const s of parts.slice(1)) if (s !== parts[0] && !kept.includes(s) && s.length <= SENSE_CHARS && kept.length < SENSES_KEPT) kept.push(s);
+  return { lang, word, pos: row.pos, script, meaning: parts[0], ...(ipa ? { ipa } : {}), ...(kept.length ? { senses: kept } : {}), ...(short ? { short, quiz: true as const } : {}) };
 }
 
 const pairKey = (lang: string, concept: string) => `${lang}:${concept}`;
 
-export function mergeWordDecks(bundled: WordPack, decks: readonly { lang: string; rows: Iterable<DeckWord> }[], cap = DECK_LESSON_WORDS): MergedWords {
-  const pairs = new Set(bundled.words.map((w) => pairKey(w.lang, w.concept)));
-  const forms = new Set(bundled.words.map((w) => pairKey(w.lang, fold(w.word))));
-  const spoken = new Map<string, Set<string>>();
-  for (const w of bundled.words) spoken.set(fold(w.word), (spoken.get(fold(w.word)) ?? new Set()).add(w.lang));
-  const conceptPos: Record<string, string> = { ...bundled.conceptPos };
-  const added = new Map<string, PackWord[]>();
-  for (const deck of [...decks].sort((a, b) => a.lang.localeCompare(b.lang))) {
-    if (!LANGUAGE_NAMES[deck.lang] || added.has(deck.lang)) continue;
-    const kept: PackWord[] = [];
-    let scanned = 0;
-    for (const row of deck.rows) {
-      if (kept.length >= cap || scanned++ >= cap * DECK_SCAN_FACTOR) break;
-      const w = lessonWord(deck.lang, row);
-      if (!w) continue;
-      const folded = fold(w.word);
-      if (pairs.has(pairKey(w.lang, w.concept)) || forms.has(pairKey(w.lang, folded))) continue;
-      if ((conceptPos[w.concept] ?? w.pos) !== w.pos) continue;
-      conceptPos[w.concept] = w.pos;
-      pairs.add(pairKey(w.lang, w.concept));
-      forms.add(pairKey(w.lang, folded));
-      spoken.set(folded, (spoken.get(folded) ?? new Set()).add(w.lang));
-      kept.push(w);
+export function deckLessonWords(bundled: WordPack, lang: string, rows: Iterable<DeckWord>, cap = DECK_LESSON_WORDS): PackWord[] {
+  if (!LANGUAGE_NAMES[lang] || !bundled.languages.includes(lang)) return [];
+  const forms = new Set(bundled.words.filter((w) => w.lang === lang).map((w) => fold(w.word)));
+  const held = new Set(bundled.words.filter((w) => w.lang === lang && w.strict && w.concept).map((w) => w.concept!));
+  const kept: PackWord[] = [];
+  let scanned = 0;
+  for (const row of rows) {
+    if (kept.length >= cap || scanned++ >= cap * DECK_SCAN_FACTOR) break;
+    const w = lessonWord(lang, row);
+    if (!w) continue;
+    const folded = fold(w.word);
+    if (forms.has(folded)) continue;
+    forms.add(folded);
+    const head = row.head.trim();
+    if (lang !== "en" && head && bundled.conceptPos[head] === w.pos && !held.has(head) && refSafe(head) && mentions(w.meaning, head)) {
+      held.add(head);
+      w.concept = head;
+      w.strict = true;
     }
-    if (kept.length > 0) added.set(deck.lang, kept);
+    kept.push(w);
   }
-  if (added.size === 0) return { pack: bundled, added };
-  const extra = Array.from(added.values()).flat();
-  for (const w of extra) if ((spoken.get(fold(w.word))?.size ?? 0) > 1) w.shared = true;
-  const words = [...bundled.words.map((w) => ((spoken.get(fold(w.word))?.size ?? 0) > 1 && !w.shared ? { ...w, shared: true } : w)), ...extra];
-  const languages = [...bundled.languages, ...Array.from(added.keys()).filter((l) => !bundled.languages.includes(l))];
-  const names = { ...bundled.names };
-  const scripts = { ...bundled.scripts };
-  for (const l of languages) {
-    names[l] ??= LANGUAGE_NAMES[l];
-    if (!scripts[l] || scripts[l] === "other") scripts[l] = mode(words.filter((w) => w.lang === l).map((w) => w.script));
-  }
-  const counts = { ...bundled.counts, words: words.length, languages: languages.length, concepts: new Set(words.map((w) => w.concept)).size, withIpa: words.filter((w) => w.ipa).length };
-  return { pack: { ...bundled, languages, names, scripts, conceptPos, words, counts }, added };
-}
-
-function balanced<T>(xs: readonly T[], size: number): T[][] {
-  const parts = Math.ceil(xs.length / size);
-  const out: T[][] = [];
-  let at = 0;
-  for (let i = 0; i < parts; i++) {
-    const take = Math.ceil((xs.length - at) / (parts - i));
-    out.push(xs.slice(at, at + take));
-    at += take;
-  }
-  return out;
+  return kept;
 }
 
 export class DeckWordBook extends WordBook {
   readonly bundled: WordBook;
   readonly files: readonly WordDeckFile[];
-  private fromDecks = new Set<string>();
-  private deckPlans = new Map<string, { lesson: WordLesson; cells: WordCell[] }[]>();
-  private cellAt = new Map<string, WordCell>();
+  private inner: WordBook;
+  private added = new Map<string, PackWord[]>();
+  private byFact = new Map<string, WordDeckFile>();
+  private byLanguage = new Map<string, WordDeckFile>();
+  builds = 0;
 
-  constructor(bundled: WordPack, decks: readonly WordDeckFile[], cap = DECK_LESSON_WORDS, merged: MergedWords = mergeWordDecks(bundled, decks.map((d) => ({ lang: d.lang, rows: d.top(cap * DECK_SCAN_FACTOR) })), cap)) {
-    super(merged.pack);
-    this.bundled = new WordBook(bundled);
-    this.files = decks;
-    for (const c of this.set.cells) this.cellAt.set(pairKey(c.lang, c.concept), c);
-    for (const ws of merged.added.values()) for (const w of ws) this.fromDecks.add(wordFactId(this.cellAt.get(pairKey(w.lang, w.concept))!));
+  constructor(
+    private pack: WordPack,
+    files: readonly WordDeckFile[],
+    private cap = DECK_LESSON_WORDS,
+    private onError: (message: string) => void = () => {},
+  ) {
+    super(pack);
+    this.bundled = this;
+    this.inner = this;
+    this.files = files;
+    for (const f of files) if (LANGUAGE_NAMES[f.lang] && pack.languages.includes(f.lang) && !this.byLanguage.has(f.lang)) this.byLanguage.set(f.lang, f);
   }
 
-  fromDeck(cell: WordCell): boolean {
-    return this.fromDecks.has(wordFactId(cell));
-  }
-
-  protected override plan(lang: string): { lesson: WordLesson; cells: WordCell[] }[] {
-    const cached = this.deckPlans.get(lang);
-    if (cached) return cached;
-    const own = this.bundled.lessons(lang).map((lesson) => ({ lesson, cells: lesson.concepts.map((c) => this.cellAt.get(pairKey(lang, c))!) }));
-    const extra = (this.set.byLang[lang] ?? []).filter((c) => this.fromDeck(c));
-    const more = balanced(extra, LESSON_WORDS).map((cells, k, all) => ({
-      lesson: { n: own.length + k + 1, title: all.length > 1 ? `${DECK_LESSON_TITLE} ${k + 1}` : DECK_LESSON_TITLE, concepts: cells.map((c) => c.concept) },
-      cells,
-    }));
-    const out = [...own, ...more];
-    this.deckPlans.set(lang, out);
-    return out;
-  }
-
-  override questions(cells: readonly WordCell[], chosen: readonly string[], seed: string): SampledQuestion[] {
-    const prefer = this.known(chosen);
-    const out: SampledQuestion[] = [];
-    const seen = new Set<string>();
-    cells.forEach((cell, i) => {
-      const makers = languageMakers(this.set, [cell.lang], (c) => c === cell, prefer);
-      for (let k = 0; k < LANGUAGE_FORMS.length; k++) {
-        const form = LANGUAGE_FORMS[(i + k) % LANGUAGE_FORMS.length];
-        const q = makers[form]?.({ beads: [], prs: [], notes: [], repoUrl: null }, seededRng(`${seed}|${wordFactId(cell)}|${form}`), 1) ?? null;
-        if (!q || seen.has(q.id) || checkLimits(q).length > 0) continue;
-        if (form === "pair" && (!prefer.includes(q.word?.choicesLang ?? "") || q.factIds.some((id) => this.fromDecks.has(id)))) continue;
-        seen.add(q.id);
-        out.push(q);
-        return;
+  private ensure(langs: readonly string[]): WordBook {
+    let grew = false;
+    for (const lang of langs) {
+      const file = this.byLanguage.get(lang);
+      if (!file || this.added.has(lang)) continue;
+      let words: PackWord[] = [];
+      try {
+        words = deckLessonWords(this.pack, lang, file.top(this.cap * DECK_SCAN_FACTOR), this.cap);
+      } catch (e) {
+        file.close();
+        this.onError(`the installed ${file.manifest.title} deck did not open (${(e as Error).message}); run bkt doctor`);
       }
+      this.added.set(lang, words);
+      for (const w of words) this.byFact.set(factId("word", wordRef(w)), file);
+      grew ||= words.length > 0;
+    }
+    if (grew) {
+      this.inner = new WordBook({ ...this.pack, words: [...this.pack.words, ...Array.from(this.added.values()).flat()] });
+      this.builds++;
+    }
+    return this.inner;
+  }
+
+  private base<T>(own: (b: WordBook) => T, mine: () => T): T {
+    return this.inner === this ? mine() : own(this.inner);
+  }
+
+  loaded(): string[] {
+    return Array.from(this.added.keys()).sort();
+  }
+
+  deckOf(cell: Pick<LessonCell, "ref">): WordDeckFile | null {
+    return this.byFact.get(factId("word", cell.ref)) ?? null;
+  }
+
+  fromDeck(cell: Pick<LessonCell, "ref">): boolean {
+    return this.deckOf(cell) !== null;
+  }
+
+  creditsFor(langs: readonly string[]): DeckCredit[] {
+    return Array.from(new Set(langs)).flatMap((l) => {
+      const f = this.byLanguage.get(l);
+      return f && (this.added.get(l)?.length ?? 1) > 0 ? [f.credit()] : [];
     });
-    return out;
+  }
+
+  creditText(langs: readonly string[]): string {
+    return [this.credit.text, ...this.creditsFor(langs).map(creditLine)].join(" ");
+  }
+
+  override languages(): string[] {
+    return this.set.languages.filter((l) => super.words(l).length > 0);
+  }
+
+  override words(lang: string): LessonCell[] {
+    this.ensure([lang]);
+    return this.base((b) => b.words(lang), () => super.words(lang));
+  }
+
+  override deck(lang: string): WordDeck {
+    this.ensure([lang]);
+    return this.base((b) => b.deck(lang), () => super.deck(lang));
+  }
+
+  override decks(chosen: readonly string[]): WordDeck[] {
+    this.ensure(this.known(chosen));
+    return this.known(chosen).map((l) => this.deck(l));
+  }
+
+  override lessons(lang: string): WordLesson[] {
+    this.ensure([lang]);
+    return this.base((b) => b.lessons(lang), () => super.lessons(lang));
+  }
+
+  override lessonCells(lang: string, n: number): LessonCell[] {
+    this.ensure([lang]);
+    return this.base((b) => b.lessonCells(lang, n), () => super.lessonCells(lang, n));
+  }
+
+  override view(cell: LessonCell): WordView {
+    const v = super.view(cell);
+    const file = this.deckOf(cell);
+    return file ? { ...v, href: file.entryHref(cell.word) ?? file.manifest.source_url ?? v.href } : v;
+  }
+
+  override lesson(lang: string, n: number, chosen: readonly string[]): LessonPage | null {
+    this.ensure([lang, ...this.known(chosen)]);
+    const page = this.base((b) => b.lesson(lang, n, chosen), () => super.lesson(lang, n, chosen));
+    if (!page) return null;
+    const cells = this.lessonCells(lang, n);
+    return { ...page, words: page.words.map((w, i) => ({ ...w, href: this.view(cells[i]).href })) };
+  }
+
+  override conceptCount(): number {
+    return this.base((b) => b.conceptCount(), () => super.conceptCount());
+  }
+
+  override concepts(chosen: readonly string[], page: number): ConceptPage {
+    this.ensure(this.known(chosen));
+    return this.base((b) => b.concepts(chosen, page), () => super.concepts(chosen, page));
+  }
+
+  override conceptCells(chosen: readonly string[], page: number): LessonCell[] {
+    this.ensure(this.known(chosen));
+    return this.base((b) => b.conceptCells(chosen, page), () => super.conceptCells(chosen, page));
+  }
+
+  override meaningPick(cell: LessonCell, seed: string): SampledQuestion | null {
+    this.ensure([cell.lang]);
+    return this.credited(this.base((b) => b.meaningPick(cell, seed), () => super.meaningPick(cell, seed)));
+  }
+
+  override questions(cells: readonly LessonCell[], chosen: readonly string[], seed: string): SampledQuestion[] {
+    this.ensure(Array.from(new Set(cells.map((c) => c.lang))));
+    return this.base((b) => b.questions(cells, chosen, seed), () => super.questions(cells, chosen, seed)).map((q) => this.credited(q)!);
+  }
+
+  override studyCells(lang: string, size: number, started: ReadonlySet<string>, due: ReadonlySet<string>): LessonCell[] {
+    this.ensure([lang]);
+    return this.base((b) => b.studyCells(lang, size, started, due), () => super.studyCells(lang, size, started, due));
+  }
+
+  private credited(q: SampledQuestion | null): SampledQuestion | null {
+    if (!q) return null;
+    const file = q.factIds.map((id) => this.byFact.get(id)).find((f) => f !== undefined);
+    if (!file) return q;
+    const label = `${file.manifest.source}, ${file.manifest.licence}`;
+    const href = file.entryHref(q.type === "meaning" && q.lines[0] ? q.lines[0] : q.answer) ?? file.manifest.source_url ?? "";
+    return { ...q, sources: q.sources.map((s) => ({ ...s, label, href })), word: q.word ? { ...q.word, credit: label, href: file.manifest.wiktionary_url ?? file.manifest.source_url ?? q.word.href } : q.word };
   }
 
   close(): void {
@@ -282,53 +367,68 @@ export class DeckWordBook extends WordBook {
 }
 
 export function wordBookFor(bundled: WordPack, home: string, o: { cap?: number; onError?: (message: string) => void } = {}): DeckWordBook {
-  const cap = o.cap ?? DECK_LESSON_WORDS;
-  const decks = openWordDecks(home);
-  try {
-    return new DeckWordBook(bundled, decks, cap);
-  } catch (e) {
-    for (const d of decks) d.close();
-    o.onError?.(`an installed word deck did not open (${(e as Error).message}); run bkt doctor`);
-    return new DeckWordBook(bundled, [], cap);
-  }
+  return new DeckWordBook(bundled, openWordDecks(home), o.cap ?? DECK_LESSON_WORDS, o.onError);
 }
 
-function hitOf(book: WordBook, lang: string, name: string, w: { word: string; ipa: string; pos: string; meaning: string }, deck: string): WordHit {
-  return { lang, name, dir: LANGUAGE_NAMES[lang] ? languageDir(lang) : textDir(w.word), script: scriptOf(w.word), word: w.word, ipa: w.ipa, pos: POS_NAMES[w.pos] ?? w.pos.replace(/_/g, " "), meaning: w.meaning, href: `${book.set.wiktionaryUrl}/wiki/${encodeURIComponent(w.word)}`, deck };
-}
-
-export function searchWords(book: WordBook, decks: readonly WordDeckFile[], raw: string, o: { limit?: number; lang?: string | null } = {}): WordSearch {
+export function searchWords(book: WordBook, decks: readonly WordDeckFile[], raw: string, o: { limit?: number; lang?: string | null; onError?: (message: string) => void } = {}): WordSearch {
   const limit = Math.min(Math.max(1, o.limit ?? WORD_SEARCH_LIMIT), WORD_SEARCH_MAX);
   const query = raw.trim().slice(0, WORD_QUERY_CHARS);
   const tokens = searchTokens(query);
   const whole = tokens.join(" ");
   const want = o.lang?.trim().toLowerCase() || null;
   const inScope = (lang: string, name: string) => !want || lang === want || name.toLowerCase() === want;
-  const found: { hit: WordHit; exact: boolean; rank: number }[] = [];
+  const own = bundledCredit(book.credit, book.set.credit.split(",")[0]);
+  const found: { hit: WordHit; exact: boolean; rank: number; credit: DeckCredit }[] = [];
   const seen = new Set<string>();
-  const push = (hit: WordHit, rank: number) => {
+  const push = (hit: WordHit, rank: number, credit: DeckCredit) => {
     const key = pairKey(hit.lang, fold(hit.word));
     if (seen.has(key)) return;
     seen.add(key);
-    found.push({ hit, exact: fold(hit.word) === whole, rank });
+    found.push({ hit, exact: fold(hit.word) === whole, rank, credit });
   };
+  const shape = (lang: string, name: string, w: { word: string; ipa: string; pos: string; meaning: string }, href: string | null, c: DeckCredit): WordHit => ({
+    lang,
+    name,
+    dir: LANGUAGE_NAMES[lang] ? languageDir(lang) : textDir(w.word),
+    script: scriptOf(w.word),
+    word: w.word,
+    ipa: w.ipa,
+    pos: POS_NAMES[w.pos] ?? w.pos.replace(/_/g, " "),
+    meaning: w.meaning,
+    href,
+    deck: c.deck,
+    source: c.source,
+    licence: c.licence,
+  });
+  const searched = new Set<string>();
   if (tokens.length > 0) {
     for (const d of decks) {
       if (!inScope(d.lang, d.name)) continue;
-      for (const r of d.search(query, limit)) push(hitOf(book, d.lang, d.name, { word: r.surface, ipa: deckIpa(r.ipa), pos: r.pos, meaning: r.meaning }, d.manifest.id), r.id);
+      const credit = d.credit();
+      try {
+        for (const r of d.search(query, limit)) push(shape(d.lang, d.name, { word: r.surface, ipa: deckIpa(r.ipa), pos: r.pos, meaning: r.meaning }, d.entryHref(r.surface), credit), r.id, credit);
+        searched.add(d.lang);
+      } catch (e) {
+        d.close();
+        o.onError?.(`the installed ${d.manifest.title} deck did not open (${(e as Error).message}); run bkt doctor`);
+      }
     }
-    for (const c of book.set.cells) {
-      if (!inScope(c.lang, book.set.names[c.lang] ?? c.lang)) continue;
-      if (!(c.folded.startsWith(whole) || c.concept === whole || fold(c.gloss) === whole)) continue;
-      const v = book.view(c);
-      push(hitOf(book, c.lang, v.name, { word: v.word, ipa: v.ipa, pos: c.pos, meaning: v.meaning }, BUNDLED_DECK), 0);
+    for (const lang of book.set.languages) {
+      if (!inScope(lang, book.set.names[lang] ?? lang)) continue;
+      for (const c of WordBook.prototype.words.call(book, lang) as LessonCell[]) {
+        const folded = fold(c.word);
+        if (!(folded.startsWith(whole) || c.concept === whole || fold(c.short) === whole)) continue;
+        push(shape(lang, book.set.names[lang], { word: c.word, ipa: c.ipa, pos: c.pos, meaning: c.meaning }, `${book.set.wiktionaryUrl}/wiki/${encodeURIComponent(c.word)}`, own), 0, own);
+      }
     }
   }
   found.sort((a, b) => Number(b.exact) - Number(a.exact) || a.rank - b.rank || a.hit.lang.localeCompare(b.hit.lang) || a.hit.word.localeCompare(b.hit.word));
-  const langs = new Set([...book.languages(), ...decks.map((d) => d.lang)]);
+  const top = found.slice(0, limit);
   const deckLangs = new Set(decks.map((d) => d.lang));
-  const words = decks.reduce((n, d) => n + d.manifest.counts.cards, 0) + book.set.cells.filter((c) => !deckLangs.has(c.lang)).length;
-  return { query, hits: found.slice(0, limit).map((f) => f.hit), languages: langs.size, words, credit: book.credit };
+  const bundledWords = book.set.languages.reduce((n, l) => n + (deckLangs.has(l) ? 0 : (WordBook.prototype.words.call(book, l) as LessonCell[]).length), 0);
+  const credits: DeckCredit[] = [];
+  for (const f of top) if (!credits.some((c) => c.deck === f.credit.deck)) credits.push(f.credit);
+  return { query, hits: top.map((f) => f.hit), languages: new Set([...book.set.languages, ...deckLangs]).size, words: decks.reduce((n, d) => n + d.manifest.counts.cards, 0) + bundledWords, credits };
 }
 
 export function wordHitLine(h: WordHit): string {

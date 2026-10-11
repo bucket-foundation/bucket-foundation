@@ -24,6 +24,8 @@ export const NOT_LINKED = "no word database is linked";
 export const UNREACHABLE = "The word database did not answer. Check that it is running.";
 export const EMBED_WORKING = "working";
 export const EMBED_KEPT = 16;
+export const EMBED_QUEUE = 4;
+export const EMBED_BUSY = "The word database is busy with earlier searches. Try again in a moment.";
 export const NO_SEED = "That word is not in the word database. Try one word, as it is spelled.";
 export const BAD_MODE = "mode is meaning or sound";
 
@@ -47,11 +49,12 @@ export function checkLinkUrl(raw: unknown): string {
     throw new LinkError(LOOPBACK_ONLY);
   }
   if (url.protocol !== "postgres:" && url.protocol !== "postgresql:") throw new LinkError(LOOPBACK_ONLY);
-  if (!LOOPBACK.has(url.hostname)) throw new LinkError(LOOPBACK_ONLY);
+  const host = url.hostname.toLowerCase();
+  if (!LOOPBACK.has(host)) throw new LinkError(LOOPBACK_ONLY);
   if (url.search || url.hash) throw new LinkError("Leave options off the address; Bucket sets its own.");
   if (!url.username || url.pathname.length < 2 || !/^\/[A-Za-z0-9_.-]+$/.test(url.pathname)) throw new LinkError("The address needs a user and a database name, such as postgres://user:password@127.0.0.1:5433/polingual");
   if (url.port && !/^\d{1,5}$/.test(url.port)) throw new LinkError(LOOPBACK_ONLY);
-  return `postgres://${url.username}${url.password ? `:${url.password}` : ""}@${url.host}${url.pathname}`;
+  return `postgres://${url.username}${url.password ? `:${url.password}` : ""}@${host}${url.port ? `:${url.port}` : ""}${url.pathname}`;
 }
 
 export function linkPlace(url: string): string {
@@ -194,6 +197,8 @@ const nameOf = (lang: string) => LANGUAGE_NAMES[lang] ?? lang;
 export class PolingualLink {
   private db: LinkDb | null = null;
   private vectors = new Map<string, number[] | null | "working">();
+  private waiting: string[] = [];
+  private embedding = false;
   private url: string | null;
 
   constructor(
@@ -210,13 +215,34 @@ export class PolingualLink {
   private vectorFor(text: string): number[] | null | "working" {
     const held = this.vectors.get(text);
     if (held !== undefined) return held;
+    if (this.waiting.length >= EMBED_QUEUE) throw new LinkError(EMBED_BUSY, 429);
     this.vectors.set(text, "working");
-    if (this.vectors.size > EMBED_KEPT) this.vectors.delete(this.vectors.keys().next().value!);
-    void this.o.embed!(text).then(
-      (v) => this.vectors.set(text, v),
-      () => this.vectors.set(text, null),
-    );
+    for (const [k, v] of this.vectors) {
+      if (this.vectors.size <= EMBED_KEPT) break;
+      if (v !== "working") this.vectors.delete(k);
+    }
+    this.waiting.push(text);
+    void this.pump();
     return "working";
+  }
+
+  private async pump(): Promise<void> {
+    if (this.embedding) return;
+    this.embedding = true;
+    try {
+      for (let text = this.waiting[0]; text !== undefined; text = this.waiting[0]) {
+        let v: number[] | null = null;
+        try {
+          v = await this.o.embed!(text);
+        } catch {
+          v = null;
+        }
+        this.vectors.set(text, v);
+        this.waiting.shift();
+      }
+    } finally {
+      this.embedding = false;
+    }
   }
 
   private handle(): LinkDb {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ApiError, type Api, type DecksBody, type InstalledDeckRow, type LinkMode, type LinkSearch, type LinkStatus, type WordHit, type WordSearch } from "../api";
-import { Ipa, WordAttribution, WordForm } from "./Words";
+import { DeckCredits, Ipa, WordAttribution, WordForm } from "./Words";
 
 export const WORD_SEARCH_LABEL = "Search words";
 export const WORD_SEARCH_HINT = "A word or a meaning";
@@ -11,11 +11,13 @@ export const SOUND_LABEL = "Sounds like";
 export const LINK_WAIT = "Looking through the word database. A phrase can take half a minute.";
 export const LINK_NO_WORD = "That word is not in the word database. Try one word, as it is spelled.";
 export const LINK_TROUBLE = "The word database did not answer.";
+export const LINK_BUSY = "The word database is busy with earlier searches. Try again in a moment.";
 export const LINK_FIELD = "Word database address";
 export const LINK_HINT = "postgres://user:password@127.0.0.1:5433/polingual";
 export const LINK_NOTE = "Optional. Link a Polingual word database that runs on this computer and the Languages section gains search by meaning and by sound. Bucket only reads from it.";
 export const LINK_REFUSED = "Bucket links only to a database on this computer, at 127.0.0.1 or localhost.";
 export const LINK_FAILED = "The link setting did not load.";
+export const LIBRARY_LINK = "Add more decks from the Library";
 export const NO_DECKS = "No extra deck is installed. Bucket teaches from the words it ships with.";
 export const DECKS_FAILED = "The installed decks did not load.";
 export const DECKS_NOTE = "Installed decks add words to the Languages section of Learn.";
@@ -40,9 +42,11 @@ function Hit({ h }: { h: WordHit }) {
       <span className="word-hit-meaning" dir="ltr">
         {h.meaning}
       </span>
-      <a className="small" href={h.href} target="_blank" rel="noreferrer noopener">
-        Full entry
-      </a>
+      {h.href && (
+        <a className="small" href={h.href} target="_blank" rel="noreferrer noopener">
+          Full entry
+        </a>
+      )}
     </li>
   );
 }
@@ -120,7 +124,7 @@ export function WordSearchBox({ api }: { api: SearchApi }) {
       setNear(await api.linkSearch(text, mode));
       setSaid(null);
     } catch (e) {
-      setSaid(e instanceof ApiError && e.status === 404 ? LINK_NO_WORD : LINK_TROUBLE);
+      setSaid(e instanceof ApiError && e.status === 404 ? LINK_NO_WORD : e instanceof ApiError && e.status === 429 ? LINK_BUSY : LINK_TROUBLE);
     } finally {
       setBusy(false);
     }
@@ -186,7 +190,9 @@ export function WordSearchBox({ api }: { api: SearchApi }) {
               <Hit key={`${h.lang}:${h.word}`} h={h} />
             ))}
           </ul>
-          <WordAttribution credit={found.credit} />
+          <p className="muted small word-credit">
+            <DeckCredits credits={found.credits} />
+          </p>
         </div>
       )}
     </div>
@@ -213,6 +219,9 @@ export function InstalledDecks({ api }: { api: Pick<Api, "installedDecks"> }) {
       <h2>Installed decks</h2>
       {failed && <p className="error">{DECKS_FAILED}</p>}
       {body && body.decks.length === 0 && <p className="muted">{NO_DECKS}</p>}
+      <p className="muted small">
+        <a href="#/library">{LIBRARY_LINK}</a>
+      </p>
       {body && body.decks.length > 0 && (
         <>
           <ul className="deck-rows">
@@ -235,7 +244,6 @@ export function InstalledDecks({ api }: { api: Pick<Api, "installedDecks"> }) {
             ))}
           </ul>
           <p className="muted small">{DECKS_NOTE}</p>
-          <WordAttribution credit={body.credit} />
         </>
       )}
     </article>

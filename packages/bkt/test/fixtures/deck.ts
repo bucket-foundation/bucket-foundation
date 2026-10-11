@@ -13,7 +13,7 @@ export const FIXTURE_SOURCE = "Wiktionary via Kaikki (kaikki.org)";
 const sha = (path: string) => createHash("sha256").update(readFileSync(path)).digest("hex");
 const head = (meaning: string) => meaning.split(" · ")[0].replace(/\([^)]*\)/g, " ").split(/[,;/]/)[0].trim().toLowerCase().replace(/^(to|a|an|the)\s+/, "");
 
-export function buildDeck(root: string, lang: string, name: string, words: readonly FixtureWord[], o: { licence?: string | null; innerLicence?: string | null; id?: string } = {}): { dir: string; manifest: DeckManifest; packed: string } {
+export function buildDeck(root: string, lang: string, name: string, words: readonly FixtureWord[], o: { licence?: string | null; innerLicence?: string | null; id?: string; source?: string; curator?: string; sourceUrl?: string; wiktionaryUrl?: string | null; licenceUrl?: string; built?: string } = {}): { dir: string; manifest: DeckManifest; packed: string } {
   const id = o.id ?? `polingual-${lang}`;
   const dir = join(root, lang);
   mkdirSync(dir, { recursive: true });
@@ -25,8 +25,8 @@ export function buildDeck(root: string, lang: string, name: string, words: reado
   db.exec("create table words(id integer primary key, surface text not null, folded text not null, ipa text not null, pos text not null, meaning text not null, head text not null, tier text not null, kind text not null, shared integer not null, translations text not null, etymology text not null)");
   const insert = db.prepare("insert into words(surface, folded, ipa, pos, meaning, head, tier, kind, shared, translations, etymology) values (?, ?, ?, ?, ?, ?, 'functional', 'word', ?, '', '')");
   for (const [surface, ipa, pos, meaning, shared] of words) insert.run(surface, fold(surface), ipa, pos, meaning, lang === "en" ? fold(surface) : head(meaning), shared ? 1 : 0);
-  const inner = o.innerLicence === undefined ? FIXTURE_LICENCE : o.innerLicence;
-  const meta: Record<string, string> = { format: DECK_FORMAT, id, kind: "words", language: lang, source: FIXTURE_SOURCE, adaptation: "Adapted by Bucket Foundation. This pack is shared under the same licence.", rows: String(words.length) };
+  const inner = o.innerLicence === undefined ? (o.licence ?? FIXTURE_LICENCE) : o.innerLicence;
+  const meta: Record<string, string> = { format: DECK_FORMAT, id, kind: "words", language: lang, source: o.source ?? FIXTURE_SOURCE, adaptation: "Adapted by Bucket Foundation. This pack is shared under the same licence.", rows: String(words.length) };
   if (inner !== null) meta.licence = inner;
   for (const [k, v] of Object.entries(meta)) db.prepare("insert into meta values (?, ?)").run(k, v);
   db.exec("create index words_head on words(head, id)");
@@ -57,13 +57,13 @@ export function buildDeck(root: string, lang: string, name: string, words: reado
     sha256: sha(packed),
     db_bytes: raw.length,
     db_sha256: dbSha,
-    source: FIXTURE_SOURCE,
-    source_url: "https://kaikki.org",
-    wiktionary_url: "https://en.wiktionary.org",
-    licence_url: "https://creativecommons.org/licenses/by-sa/3.0/",
-    curator: "Bucket Foundation",
+    source: o.source ?? FIXTURE_SOURCE,
+    source_url: o.sourceUrl ?? "https://kaikki.org",
+    ...(o.wiktionaryUrl === null ? {} : { wiktionary_url: o.wiktionaryUrl ?? "https://en.wiktionary.org" }),
+    licence_url: o.licenceUrl ?? "https://creativecommons.org/licenses/by-sa/3.0/",
+    curator: o.curator ?? "Bucket Foundation",
     adaptation: "Adapted by Bucket Foundation. This pack is shared under the same licence.",
-    built: "2026-10-11",
+    built: o.built ?? "2026-10-11",
     ...(o.licence === null ? {} : { licence: o.licence ?? FIXTURE_LICENCE }),
   };
   writeFileSync(join(dir, "manifest.json"), JSON.stringify(manifest, null, 2));

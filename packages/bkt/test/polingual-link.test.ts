@@ -6,6 +6,8 @@ import { newDataKey } from "../src/crypto";
 import {
   BAD_MODE,
   checkLinkUrl,
+  EMBED_BUSY,
+  EMBED_QUEUE,
   LINK_FILE,
   LinkError,
   linkPlace,
@@ -89,6 +91,8 @@ describe("the address", () => {
     expect(checkLinkUrl(` ${GOOD} `)).toBe(GOOD);
     expect(checkLinkUrl("postgresql://u@localhost/db")).toBe("postgres://u@localhost/db");
     expect(checkLinkUrl("postgres://u:p@[::1]:5432/db")).toBe("postgres://u:p@[::1]:5432/db");
+    expect(checkLinkUrl("postgres://u:p@LOCALHOST:5433/db")).toBe("postgres://u:p@localhost:5433/db");
+    expect(checkLinkUrl("POSTGRES://u:p@LocalHost/db")).toBe("postgres://u:p@localhost/db");
     expect(linkPlace(GOOD)).toBe("127.0.0.1:5433/polingual");
     expect(STATEMENT_TIMEOUT_MS).toBe(5000);
   });
@@ -100,6 +104,8 @@ describe("the address", () => {
       "postgres://u:p@127.0.0.1.evil.test/polingual",
       "postgres://u:p@0.0.0.0/polingual",
       "postgres://u:p@localhost.evil.test/db",
+      "postgres://u:p@LOCALHOST.evil.test/db",
+      "postgres://u:p@EXAMPLE.COM/db",
       "postgres://u:p@127.0.0.1/db?host=db.example.com",
       "postgres://u:p@127.0.0.1/db?options=-c%20x",
       "postgres://u:p@127.0.0.1/db#x",
@@ -210,6 +216,42 @@ describe("link", () => {
     await new Promise((r) => setTimeout(r, 0));
     expect((await refusal(() => broken.l.search("zzz", "meaning", null))).message).toBe(NO_SEED);
     expect((await refusal(() => noModel.l.search("   ", "meaning", null))).message).toBe("type a word to search for");
+  });
+
+  test("one embedding runs at a time, a full queue is refused, and a failed one does not block the next", async () => {
+    let running = 0;
+    let peak = 0;
+    const started: string[] = [];
+    const release: (() => void)[] = [];
+    const x = link({
+      seed: false,
+      embed: async (text) => {
+        started.push(text);
+        running++;
+        peak = Math.max(peak, running);
+        await new Promise<void>((go) => release.push(go));
+        running--;
+        if (text === "p1") throw new Error("model crashed");
+        return Array.from({ length: 768 }, () => 0.01);
+      },
+    });
+    const ask = (q: string) => refusal(() => x.l.search(q, "meaning", null));
+    for (const q of ["p0", "p1", "p2", "p3"]) expect((await ask(q)).status).toBe(202);
+    expect((await ask("p0")).status).toBe(202);
+    const full = await ask("p4");
+    expect([full.status, full.message]).toEqual([429, EMBED_BUSY]);
+    expect(started).toEqual(["p0"]);
+    for (let i = 0; i < 4; i++) {
+      release[i]();
+      await new Promise((r) => setTimeout(r, 0));
+      await new Promise((r) => setTimeout(r, 0));
+    }
+    expect(started).toEqual(["p0", "p1", "p2", "p3"]);
+    expect(peak).toBe(1);
+    expect((await x.l.search("p0", "meaning", null)).hits.length).toBeGreaterThan(0);
+    expect((await ask("p1")).message).toBe(NO_SEED);
+    expect((await ask("p4")).status).toBe(202);
+    expect(EMBED_QUEUE).toBe(4);
   });
 
   test("setting an address checks it, seals it and reconnects; clearing it removes the file", async () => {

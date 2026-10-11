@@ -23,11 +23,10 @@ import { RosProfileView } from "./views/RosProfile";
 import { RosProgressView } from "./views/RosProgress";
 import { SettingsView } from "./views/Settings";
 import { DailyQuizView, WorkQuizView } from "./views/WorkQuiz";
-import { WordConceptsView, WordDeckView, WordLessonView } from "./views/Words";
+import { WordConceptsView, WordDeckView, WordLessonView, WordLicenceView } from "./views/Words";
 
 export const NAV: { route: Route; label: string }[] = [
   { route: { name: "learn" }, label: "Learn" },
-  { route: { name: "library" }, label: "Library" },
   { route: { name: "path" }, label: "Path" },
   { route: { name: "quiz" }, label: "Quiz" },
   { route: { name: "review" }, label: "Review" },
@@ -55,6 +54,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "deck") return <DeckView key={`${route.deck}/${route.atom ?? ""}`} api={api} deck={route.deck} focus={route.atom} />;
   if (route.name === "words" && route.lesson) return <WordLessonView key={`${route.deck}/${route.lesson}`} api={api} deck={route.deck} n={route.lesson} />;
   if (route.name === "words") return <WordDeckView key={route.deck} api={api} deck={route.deck} />;
+  if (route.name === "licence") return <WordLicenceView api={api} />;
   if (route.name === "concepts") return <WordConceptsView key={route.page ?? 1} api={api} page={route.page ?? 1} />;
   if (route.name === "path") return <PathView api={api} to={route.to} />;
   if (route.name === "quiz") return <QuizView api={api} />;

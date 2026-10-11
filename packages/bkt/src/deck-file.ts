@@ -1,10 +1,10 @@
 import { createHash } from "node:crypto";
-import { closeSync, createReadStream, createWriteStream, mkdirSync, openSync, readSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { closeSync, createReadStream, createWriteStream, existsSync, linkSync, mkdirSync, openSync, readSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { Transform } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { createZstdCompress } from "node:zlib";
-import { checkManifest, DECK_MANIFEST, DeckError, fileSha256, findInstalled, installDeck, MANIFEST_BYTES, type DeckManifest } from "./decks";
+import { checkManifest, DECK_MANIFEST, DeckError, fileSha256, findInstalled, installDeck, MANIFEST_BYTES, refuseLink, type DeckManifest } from "./decks";
 
 export const DECK_FILE_MAGIC = "BKTDECK1\n";
 export const DECK_FILE_EXT = ".bktdeck";
@@ -52,6 +52,7 @@ export function readDeckFileManifest(path: string): { manifest: DeckManifest; of
 }
 
 export async function unpackDeckFile(path: string, into: string): Promise<DeckManifest> {
+  refuseLink(path);
   const { manifest, offset } = readDeckFileManifest(path);
   mkdirSync(into, { recursive: true, mode: 0o700 });
   await pipeline(createReadStream(path, { start: offset }), createWriteStream(join(into, manifest.file), { mode: 0o600 }));
@@ -73,9 +74,17 @@ export async function installAny(home: string, source: string): Promise<DeckMani
   return isDeckFile(source) ? installDeckFile(home, source) : installDeck(home, source);
 }
 
-export async function exportDeck(home: string, deck: string, dest: string): Promise<{ manifest: DeckManifest; path: string; bytes: number }> {
+export class DeckExistsError extends DeckError {
+  constructor(readonly path: string) {
+    super(`${path} already exists; Bucket did not replace it`);
+  }
+}
+
+export async function exportDeck(home: string, deck: string, dest: string, o: { replace?: boolean } = {}): Promise<{ manifest: DeckManifest; path: string; bytes: number }> {
   const found = findInstalled(home, deck);
   if (!found) throw new DeckError(`no installed deck matches ${deck}`);
+  refuseLink(dest);
+  if (existsSync(dest) && !o.replace) throw new DeckExistsError(dest);
   mkdirSync(dirname(dest), { recursive: true });
   const packed = `${dest}.${process.pid}.zst`;
   const part = `${dest}.${process.pid}.part`;
@@ -98,7 +107,14 @@ export async function exportDeck(home: string, deck: string, dest: string): Prom
     head.writeUInt32BE(body.length, DECK_FILE_MAGIC.length);
     writeFileSync(part, Buffer.concat([head, body]), { mode: 0o600 });
     await pipeline(createReadStream(packed), createWriteStream(part, { flags: "a" }));
-    renameSync(part, dest);
+    if (o.replace) renameSync(part, dest);
+    else {
+      try {
+        linkSync(part, dest);
+      } catch {
+        throw new DeckExistsError(dest);
+      }
+    }
     return { manifest, path: dest, bytes: statSync(dest).size };
   } finally {
     rmSync(packed, { force: true });
