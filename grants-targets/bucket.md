@@ -1,6 +1,6 @@
 # Bucket Foundation, Grant Targets
 
-**Venture profile:** Open-source research infrastructure. Primary research paid-for-once, citeable-forever. Story Protocol IP NFTs, Walrus storage, x402-paid citation. Canon-tier knowledge graph across math/physics/chem/biophysics/cosmology/mind. MIT/CC0 licensed. Held in founder's personal capacity (gianyrox/bucket-foundation), filing for 501(c)(3); Hack Club Bank (HCB) lined up as fiscal sponsor in the interim.
+**Venture profile:** Open-source research infrastructure. Primary research paid-for-once, citeable-forever. x402 citation rail (specified, settlement pending). Canon-tier knowledge graph across math/physics/chem/biophysics/cosmology/mind. MIT/CC0 licensed. Held in founder's personal capacity (gianyrox/bucket-foundation), filing for 501(c)(3); Hack Club Bank (HCB) planned as fiscal sponsor in the interim, no application filed.
 
 **Today: 2026-05-03.** Determination letter not yet in hand. HCB onboarding takes ~1 week.
 
@@ -49,13 +49,13 @@ These accept fiscal sponsorship and can be pursued *immediately* once Bucket onb
 
 ## Pre-Application Prep Needed
 
-- **HCB onboarding** (~1 week): apply at hackclub.com/fiscal-sponsorship/apply. 7% donation fee. Gets us a c3 legal entity wrapper today.
+- **HCB onboarding** (~1 week): apply at hackclub.com/fiscal-sponsorship/apply. 7% of revenue. Gets us a c3 legal entity wrapper today.
 - **501(c)(3) determination filing**: separate track; 3-9 months IRS turnaround on Form 1023.
 - **SAM.gov registration**: required for any federal grant (NSF, USDA, NOAA). 4-8 week turnaround. Start now regardless, applies to AGFarms LLC and Bucket separately.
 - **Grants.gov registration**: requires SAM. Adds ~1 week.
 - **NSF Research.gov account**: for POSE submission.
 - **Biosketches** (NIH/NSF format) for Gian + any co-PIs.
-- **Data Management Plan**: NSF requires 2-page DMP. Bucket's Walrus + Story Protocol architecture *is* the DMP, easy to write.
+- **Data Management Plan**: NSF requires 2-page DMP. The DMP is written against the current Research OS storage design.
 - **Budget justification template**: standard NIH/NSF format.
 - **Letters of support / collaboration**: 2-3 from canon-tier figures (the contributor index in canon-figures/) would massively strengthen Templeton + NSF.
 

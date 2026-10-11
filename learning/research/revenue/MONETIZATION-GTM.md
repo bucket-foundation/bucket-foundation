@@ -1,5 +1,7 @@
 # Bucket Academy
 
+> Superseded 2026-06-14: Story Protocol minting and on-chain royalties were withdrawn (`learning/EPIC.md`). Story references below are historical.
+
 Monetization & GTM Deep Research.
 
 **Bead:** bkt-xo0 · **Pillar:** Revenue · **Date:** 2026-06-11 · **Author:** Revenue (Nucleus)
@@ -361,12 +363,12 @@ relevant TAM is the *consumer-pay* slice, **not** the ~$190B all-in EdTech headl
 
 | Component | $ | Source |
 |---|---|---|
-| Digital exam-prep + tutoring | $47B | [source: https://www.thebusinessresearchcompany.com/report/exam-preparation-and-tutoring-global-market-report] |
+| Exam prep + tutoring (global, 2025) | $70.71B | [source: https://www.thebusinessresearchcompany.com/report/exam-preparation-and-tutoring-global-market-report] |
 | Language-learning apps (proven consumer-pay) | $8B | [source: https://www.skyquestt.com/report/language-learning-app-market] |
 | AI tutors (fastest-growing, 30.5% CAGR) | $2B | [source: https://www.grandviewresearch.com/industry-analysis/ai-tutors-market-report] |
 | Consumer slice of lifelong/self-directed | $21B | [source: https://www.wiseguyreports.com/reports/lifelong-education-market] |
 | Consumer study tools (SRS/homework) | $5B | est. |
-| **TAM** | **~$80B** (~15% CAGR) | |
+| **TAM** | **~$107B** (est., sum of rows above; ~15% CAGR) | |
 
 **SAM derivation (bottom-up).** 269M global higher-ed students
 [source: https://www.unesco.org/en/articles/record-number-higher-education-students-highlights-global-need-recognition-qualifications]

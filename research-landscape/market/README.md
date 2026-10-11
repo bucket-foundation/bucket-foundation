@@ -5,6 +5,7 @@ Collected market research for Bucket Foundation, dated 2026-10-11.
 
 | File | Rows | Holds |
 |------|------|-------|
+| `RULINGS.md` | 8 | Founder-facing rulings on eight contradictions, with evidence and files to correct |
 | `market-analysis.md` | 65 | Summary of segments, size figures, pricing, funding and contradictions |
 | `market-analyses.jsonl` | 134 | One record per analysis document read in the repo and workspace |
 | `market-claims.jsonl` | 842 | One record per claim, tagged sourced, asserted, contradicted, estimated or stale |
