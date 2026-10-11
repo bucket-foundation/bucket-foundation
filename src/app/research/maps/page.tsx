@@ -10,7 +10,7 @@ export default function Page() {
           research <span className="inlay-gold">maps.</span>
         </h1>
         <p className="mt-7 max-w-2xl text-[17px] leading-[1.75] text-[color:var(--basalt-2)]">
-          Four figures drawn from the market research and the progressions corpus. Each page exports a 2400 pixel image and a PDF.
+          Figures drawn from the market research and the learning corpus. Each page exports a 2400 pixel image and a PDF.
         </p>
         <div className="carved-rule mt-10 max-w-xs" />
         <ul className="mt-10 grid gap-5 md:grid-cols-2">

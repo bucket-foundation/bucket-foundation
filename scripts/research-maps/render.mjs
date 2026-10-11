@@ -12,6 +12,13 @@ export const PAGES = [
   { name: "knowledge-coverage-map", path: "/research/maps/coverage" },
   { name: "progression-graphs", path: "/research/maps/progressions" },
   { name: "major-to-career-flow", path: "/research/maps/flow" },
+  { name: "occupations-through-time", path: "/research/maps/occupations-history" },
+  { name: "technology-waves", path: "/research/maps/technology-waves" },
+  { name: "completeness", path: "/research/maps/completeness" },
+  { name: "school-map", path: "/research/maps/school-map" },
+  { name: "lifespan", path: "/research/maps/lifespan" },
+  { name: "evidence-against-market", path: "/research/maps/evidence-market" },
+  { name: "forecast-backtest", path: "/research/maps/forecast-backtest" },
 ];
 
 function flag(name, fallback) {
@@ -23,9 +30,10 @@ async function main() {
   const base = flag("base", process.env.RESEARCH_MAPS_BASE ?? "http://localhost:3000");
   const out = flag("out", path.join(os.homedir(), "agfarms/.renders"));
   fs.mkdirSync(out, { recursive: true });
-  const browser = await chromium.launch();
-  const context = await browser.newContext({ viewport: { width: WIDTH, height: 1400 }, deviceScaleFactor: 1 });
-  for (const target of PAGES) {
+  const only = process.argv.slice(2).filter((a, i, all) => !a.startsWith("--") && !(all[i - 1] ?? "").startsWith("--"));
+  for (const target of PAGES.filter((p) => only.length === 0 || only.includes(p.name))) {
+    const browser = await chromium.launch();
+    const context = await browser.newContext({ viewport: { width: WIDTH, height: 1400 }, deviceScaleFactor: 1 });
     const page = await context.newPage();
     const response = await page.goto(base + target.path, { waitUntil: "networkidle", timeout: 120000 });
     if (!response || !response.ok()) throw new Error(`${target.path} returned ${response?.status()}`);
@@ -46,9 +54,8 @@ async function main() {
     await page.emulateMedia({ media: "screen" });
     await page.pdf({ path: pdf, width: `${WIDTH}px`, height: `${height + 1}px`, printBackground: true, pageRanges: "1" });
     console.log(`${target.name} ${WIDTH}x${height} ${png} ${pdf}`);
-    await page.close();
+    await browser.close();
   }
-  await browser.close();
 }
 
 if (process.argv[1] === new URL(import.meta.url).pathname) main().catch((err) => { console.error(err); process.exit(1); });
