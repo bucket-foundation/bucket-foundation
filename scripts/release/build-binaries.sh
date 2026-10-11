@@ -7,6 +7,7 @@ repo=$(cd "$(dirname "$0")/../.." && pwd)
 out=${1:-$repo/dist/release}
 targets=${BKT_TARGETS:-"linux-x64 linux-arm64 darwin-arm64 darwin-x64 windows-x64"}
 version=$(bash "$repo/scripts/release/version.sh")
+stamp=$(bash "$repo/scripts/release/build-stamp.sh")
 mkdir -p "$out"
 
 cd "$repo/packages/bkt"
@@ -18,7 +19,7 @@ for t in $targets; do
     windows-x64) name=bkt-$t.exe ;;
     *) fail "unknown target $t" ;;
   esac
-  bun build --compile --minify --define "BKT_BUILD_VERSION=\"$version\"" --target="bun-$t" src/cli.tsx --outfile "$out/$name" >/dev/null
+  bun build --compile --minify --define "BKT_BUILD_VERSION=\"$version\"" --define "BKT_BUILD_STAMP=\"$stamp\"" --target="bun-$t" src/cli.tsx --outfile "$out/$name" >/dev/null
   [ -s "$out/$name" ] || fail "no binary for $t"
   if [ "${BKT_INCLUDE_STAFF_DATA:-}" != "1" ]; then
     bun scripts/check-no-staff.ts "$out/$name" content/canon.json content/explore.json || fail "staff atlas data found in $name"

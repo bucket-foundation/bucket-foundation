@@ -55,6 +55,7 @@ import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from ".
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
+import { settingsRoutes } from "../settings";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { quizCommand, writeQuizRoots } from "../notify";
 
@@ -195,6 +196,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms) }),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
+      ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir() }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,

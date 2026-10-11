@@ -234,6 +234,7 @@ function empty(): Stub {
     notes: async () => [],
     history: async () => ({ snapshot: null, activity: days(() => 0) }),
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, languages: [], ready: false, answered: 0, correct: 0 }),
+    settings: async () => ({ version: "0.5.0", build: null, dataDir: "/home/ada/.local/share/bkt", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
     workNext: () => Promise.reject(new ApiError("no sources: pick a beads file, a repository or a language", 404)),
@@ -264,6 +265,7 @@ function populated(over: Stub = {}): Stub {
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, languages: ["he"], ready: true, answered: 2, correct: 1 }),
     workLanguages: async () => ({ languages: ["he"], available: [{ code: "he", name: "Hebrew" }] }),
+    settings: async () => ({ version: "0.5.0", build: { commit: "e61d7174b", date: "2026-10-08" }, dataDir: "/home/ada/.local/share/bkt", notify: { supported: true, on: true, at: "08:53" }, notifyDefault: "08:53" }),
     exploreSaved: async () => ({ v: 1, items: [SAVED_ITEM], noticeSeen: true }),
     putExploreSaved: async (s: unknown) => s,
     canonAbout: async () => ({ version: "c85d792ca773", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] }),
@@ -287,7 +289,7 @@ function populated(over: Stub = {}): Stub {
       day: DAY,
       answered: [],
       questions: [
-        { id: "chat-sessions", type: "estimate", prompt: "How many chat sessions did you run in the last two days?", lines: [], choices: null, limitSec: 60 },
+        { id: "chat-sessions", type: "estimate", prompt: "How many chat sessions did you run in the last two days?", lines: [], choices: null, limitSec: 60, origin: "chat" },
         { id: "chat-day-1", type: "recall", prompt: 'On which day did the session that began "Fix the review buttons" start?', lines: [], choices: ["2026-09-28", "2026-09-29", "2026-09-30"], limitSec: 30 },
       ],
     }),
@@ -309,6 +311,7 @@ function failing(): Stub {
     notes: fail("unauthorized", 401),
     history: fail("data key does not match", 500),
     workStatus: fail("git could not read that folder", 400),
+    settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
     workSetLanguages: fail("data key does not match", 500),
     workNext: fail("data key does not match", 500),
@@ -357,7 +360,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "setup" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -390,8 +393,9 @@ describe("navigation", () => {
   });
 
   test("no screen in the navigation needs a file or shows a format word", async () => {
-    const { navFor, FOOT_LINK } = await import("./nav");
+    const { navFor, FOOT_LINK, FOOT_LINKS } = await import("./nav");
     expect(FOOT_LINK.label).toBe("Add your own");
+    expect(FOOT_LINKS.map((l) => [l.label, l.route.name])).toEqual([["Add your own", "add"], ["Settings", "settings"]]);
     for (const n of navFor(true)) {
       for (const stub of [empty, populated, failing]) {
         const v = await mount(n.route, stub());
@@ -416,15 +420,32 @@ describe("navigation", () => {
     await imp.unmount();
   });
 
-  test("the work quiz links to its own setup page for someone who has it", async () => {
+  test("the work quiz links to Settings, and the old setup address opens Settings", async () => {
+    const { parseHash } = await import("./router");
     const work = await mount({ name: "work" }, populated());
-    expect(work.host.querySelector('a[href="#/setup"]')!.textContent).toBe("Work quiz setup");
+    expect(work.host.querySelector('a[href="#/settings"]')!.textContent).toBe("Settings");
     await work.unmount();
-    const setup = await mount({ name: "setup" }, populated());
-    expect(setup.host.querySelector("h1")!.textContent).toBe("Work quiz setup");
+    expect(parseHash("#/setup")).toEqual({ name: "settings" });
+    const setup = await mount(parseHash("#/setup"), populated());
+    expect(setup.host.querySelector("h1")!.textContent).toBe("Settings");
     expect(setup.text()).toContain("Choose tasks file");
-    expect(setup.host.querySelector('a[href="#/work"]')).not.toBeNull();
     await setup.unmount();
+  });
+
+  test("Settings holds the chat switches, the languages, the notification, the data folder and the version", async () => {
+    const on = await mount({ name: "settings" }, populated());
+    const text = on.text();
+    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "On, each day at 08:53.", "Data folder", "/home/ada/.local/share/bkt", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
+    expect(on.host.querySelectorAll('input[type="checkbox"]').length).toBe(2);
+    expect(violations(on.host)).toEqual([]);
+    await on.unmount();
+    const off = await mount({ name: "settings" }, empty());
+    expect(off.text()).toContain('Off. Type "bkt quiz schedule" in a terminal to turn it on at 08:53.');
+    expect(off.text()).toContain("0.5.0");
+    expect(violations(off.host)).toEqual([]);
+    await off.unmount();
+    const { notifyLine } = await import("./views/Settings");
+    expect(notifyLine({ notify: { supported: false, on: false, at: null }, notifyDefault: "08:53" })).toBe("The daily notification runs on Linux for now.");
   });
 
   test("the removed screens still open from their address", async () => {
@@ -928,7 +949,7 @@ describe("import", () => {
 
 describe("work quiz setup", () => {
   test("speaks of tasks, merged changes and chats", async () => {
-    const v = await mount({ name: "setup" }, populated());
+    const v = await mount({ name: "settings" }, populated());
     const text = v.text();
     expect(text).toContain("8 tasks, 3 merged changes.");
     expect(text).toContain("Bucket could not read that folder.");
@@ -940,7 +961,7 @@ describe("work quiz setup", () => {
   });
 
   test("a tasks file or folder the helper refuses reads in plain words", async () => {
-    const v = await mount({ name: "setup" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
+    const v = await mount({ name: "settings" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
     await v.pickFile(0, new File(["x"], "tasks"));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that file.");
     await v.act(async () => v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));

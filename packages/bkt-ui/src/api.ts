@@ -32,6 +32,14 @@ export interface WorkStatus {
   correct: number;
 }
 
+export interface AppSettings {
+  version: string;
+  build: { commit: string; date: string } | null;
+  dataDir: string;
+  notify: { supported: boolean; on: boolean; at: string | null };
+  notifyDefault: string;
+}
+
 export interface WorkWord {
   lang: string | null;
   choicesLang: string | null;
@@ -47,6 +55,7 @@ export interface WorkQuestion {
   choices: string[] | null;
   limitSec: number;
   word?: WorkWord;
+  origin?: string;
 }
 
 export interface WorkSource {
@@ -370,6 +379,10 @@ export class Api {
 
   deleteJob(id: string) {
     return this.call<{ deleted: string }>("/local/jobs/delete", { method: "POST", body: { id } });
+  }
+
+  settings() {
+    return this.call<AppSettings>("/local/settings");
   }
 
   workStatus() {

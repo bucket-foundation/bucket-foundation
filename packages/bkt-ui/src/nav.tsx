@@ -1,6 +1,6 @@
 import type { Api } from "./api";
 import type { Route } from "./router";
-import { AddView, WorkSetupView } from "./views/Add";
+import { AddView } from "./views/Add";
 import { AdvisorsView } from "./views/Advisors";
 import { AtlasesView } from "./views/Atlases";
 import { CanonSearchView } from "./views/CanonSearch";
@@ -20,6 +20,7 @@ import { RosMapView } from "./views/RosMap";
 import { RosNodeView } from "./views/RosNode";
 import { RosProfileView } from "./views/RosProfile";
 import { RosProgressView } from "./views/RosProgress";
+import { SettingsView } from "./views/Settings";
 import { DailyQuizView, WorkQuizView } from "./views/WorkQuiz";
 
 export const NAV: { route: Route; label: string }[] = [
@@ -40,6 +41,8 @@ export const NAV: { route: Route; label: string }[] = [
 ];
 
 export const FOOT_LINK: { route: Route; label: string } = { route: { name: "add" }, label: "Add your own" };
+export const SETTINGS_LINK: { route: Route; label: string } = { route: { name: "settings" }, label: "Settings" };
+export const FOOT_LINKS = [FOOT_LINK, SETTINGS_LINK];
 
 export function navFor(workReady: boolean) {
   return NAV.filter((n) => n.route.name !== "work" || workReady);
@@ -64,7 +67,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "data") return <DataView api={api} />;
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
-  if (route.name === "setup") return <WorkSetupView api={api} />;
+  if (route.name === "settings") return <SettingsView api={api} />;
   if (route.name === "graph") return <RosMapView branch={route.branch} />;
   if (route.name === "node") return <RosNodeView key={route.slug} slug={route.slug} />;
   if (route.name === "progress") return <RosProgressView />;

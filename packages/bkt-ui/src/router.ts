@@ -8,7 +8,7 @@ export type Route =
   | { name: "review" }
   | { name: "import" }
   | { name: "add" }
-  | { name: "setup" }
+  | { name: "settings" }
   | { name: "advisors" }
   | { name: "primes" }
   | { name: "jobs" }
@@ -26,7 +26,7 @@ export type Route =
   | { name: "progress" }
   | { name: "profile" };
 
-const SIMPLE = new Set(["quiz", "review", "add", "setup", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
+const SIMPLE = new Set(["quiz", "review", "add", "settings", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
 const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
 const NODE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,200}$/;
 
@@ -50,6 +50,7 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "search") return parts.length === 2 && /^\d{1,9}$/.test(parts[1]) ? { name: "search", id: Number(parts[1]) } : { name: "search" };
   if (parts[0] === "graph") return parts.length === 2 && BRANCH.test(parts[1]) ? { name: "graph", branch: parts[1] } : { name: "graph" };
   if (parts[0] === "node" && parts.length === 2 && NODE.test(parts[1])) return { name: "node", slug: parts[1] };
+  if (parts[0] === "setup") return { name: "settings" };
   if (SIMPLE.has(parts[0])) return { name: parts[0] } as Route;
   return { name: "learn" };
 }
