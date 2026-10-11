@@ -24,7 +24,9 @@ export function buildDeck(root: string, lang: string, name: string, words: reado
   db.exec("create table meta(k text primary key, v text not null) without rowid");
   db.exec("create table words(id integer primary key, surface text not null, folded text not null, ipa text not null, pos text not null, meaning text not null, head text not null, tier text not null, kind text not null, shared integer not null, translations text not null, etymology text not null)");
   const insert = db.prepare("insert into words(surface, folded, ipa, pos, meaning, head, tier, kind, shared, translations, etymology) values (?, ?, ?, ?, ?, ?, 'functional', 'word', ?, '', '')");
-  for (const [surface, ipa, pos, meaning, shared] of words) insert.run(surface, fold(surface), ipa, pos, meaning, lang === "en" ? fold(surface) : head(meaning), shared ? 1 : 0);
+  db.transaction(() => {
+    for (const [surface, ipa, pos, meaning, shared] of words) insert.run(surface, fold(surface), ipa, pos, meaning, lang === "en" ? fold(surface) : head(meaning), shared ? 1 : 0);
+  })();
   const inner = o.innerLicence === undefined ? (o.licence ?? FIXTURE_LICENCE) : o.innerLicence;
   const meta: Record<string, string> = { format: DECK_FORMAT, id, kind: "words", language: lang, source: o.source ?? FIXTURE_SOURCE, adaptation: "Adapted by Bucket Foundation. This pack is shared under the same licence.", rows: String(words.length) };
   if (inner !== null) meta.licence = inner;
