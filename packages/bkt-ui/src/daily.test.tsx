@@ -4,7 +4,6 @@ import { ApiError, type DailyAnswer, type DailyQuiz, type WorkStatus } from "./a
 
 beforeAll(() => {
   GlobalRegistrator.register();
-  Object.defineProperty(document, "compatMode", { value: "CSS1Compat", configurable: true });
   (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 });
 afterAll(() => GlobalRegistrator.unregister());
