@@ -38,6 +38,7 @@ export interface DeckManifest {
   counts: { cards: number } & Record<string, number>;
   version: string;
   file: string;
+  file_url: string | null;
   bytes: number;
   sha256: string;
   db_bytes: number;
@@ -130,6 +131,7 @@ export function checkManifest(raw: unknown): DeckManifest {
     counts: { ...numbers, cards },
     version: text(m.version),
     file,
+    file_url: httpsOrNull(m.file_url, "download link"),
     bytes: m.bytes as number,
     sha256: text(m.sha256),
     db_bytes: m.db_bytes as number,
