@@ -5,7 +5,7 @@ import { join, resolve as resolvePath } from "node:path";
 import { resolve } from "../src/cli/run";
 import { DECK_FILE_EXT, DECK_FILE_MAGIC, DeckExistsError, exportDeck, installAny, isDeckFile, readDeckFileManifest } from "../src/deck-file";
 import { DeckError, decksDir, installDeck, listInstalled } from "../src/decks";
-import { allowedCatalogUrl, buildCatalog, CATALOG_BYTES, CATALOG_DECKS_MAX, CATALOG_NAMESPACE, CATALOG_URL, checkCatalog, DECK_CATALOG_PUBKEY, DOWNLOAD_CHANGED, Library, libraryRoutes, NO_CATALOG_KEY, NOT_IN_CATALOG, OFFLINE_NOTE, UNSIGNED_REFRESH, verifyCatalog, type Catalog, type LibraryBody, type SignedCatalog } from "../src/library";
+import { allowedCatalogUrl, buildCatalog, CATALOG_BYTES, DECK_FILE_MOVED, DECK_FILE_PATH, DECK_FILE_REFUSED, DECK_FILE_TIMEOUT_MS, deckFileRedirect, deckFileUrl, CATALOG_DECKS_MAX, CATALOG_NAMESPACE, CATALOG_URL, checkCatalog, DECK_CATALOG_PUBKEY, DOWNLOAD_CHANGED, DOWNLOAD_FAILED, Library, libraryRoutes, NO_CATALOG_KEY, NOT_IN_CATALOG, OFFLINE_NOTE, UNSIGNED_REFRESH, verifyCatalog, type Catalog, type LibraryBody, type SignedCatalog } from "../src/library";
 import { bundledCatalog, catalogText, curatedCatalog } from "../src/pack/decks";
 import { ARABIC, buildDeck, CHINESE, FIXTURE_LICENCE, GERMAN } from "./fixtures/deck";
 
@@ -276,6 +276,99 @@ describe("updates", () => {
     const reuse = buildDeck(join(ROOT, "reuse"), "fr", "French", [["maison", "", "noun", "house"]], { id: "polingual-de", built: "2027-01-01" });
     expect(await refusal(() => installDeck(home, reuse.dir))).toContain("another deck cannot take that name");
     expect(listInstalled(home)[0].manifest.language).toBe("de");
+  });
+});
+
+describe("release downloads", () => {
+  const RELEASE = `https://github.com${DECK_FILE_PATH}decks-2026-10-11/`;
+  const STORE = "https://release-assets.githubusercontent.com/github-production-release-asset/1/de?sig=1";
+  const released = { ...DE.manifest, file_url: `${RELEASE}${DE.manifest.file}` };
+  const from = (answers: Record<string, () => Response>) => {
+    const asked: [string, RequestRedirect | undefined][] = [];
+    const home = join(ROOT, `home-${n++}`);
+    const l = new Library({
+      home,
+      bundled: signed(buildCatalog([released])),
+      pubkey: KEY.pub,
+      url: base,
+      offline: () => false,
+      fetch: async (url, init) => {
+        asked.push([url, init?.redirect]);
+        return answers[url]?.() ?? new Response("no", { status: 404 });
+      },
+    });
+    return { l, home, asked };
+  };
+  const moved = (to: string) => () => new Response(null, { status: 302, headers: { location: to } });
+  const bytes = (edit?: (b: Uint8Array) => void) => () => {
+    const b = new Uint8Array(readFileSync(DE.packed));
+    edit?.(b);
+    return new Response(new Blob([b as BlobPart]));
+  };
+
+  test("every committed deck names its file in the Bucket release on github.com", () => {
+    for (const d of curatedCatalog(REPO).decks) expect(deckFileUrl(d)?.href).toBe(`${RELEASE}${d.file}`);
+    expect(deckFileUrl(CATALOG.decks[0])).toBeNull();
+  });
+
+  test("a catalog whose deck link leaves the Bucket release path is refused whole", () => {
+    expect(checkCatalog(JSON.parse(JSON.stringify(buildCatalog([released])))).decks[0].file_url).toBe(released.file_url);
+    const elsewhere = [
+      `https://example.com${DECK_FILE_PATH}decks-2026-10-11/${DE.manifest.file}`,
+      `https://github.com.evil.test${DECK_FILE_PATH}decks-2026-10-11/${DE.manifest.file}`,
+      `https://github.com/someone/else/releases/download/decks-2026-10-11/${DE.manifest.file}`,
+      `https://github.com${DECK_FILE_PATH}decks-2026-10-11/../../../../../someone/else/${DE.manifest.file}`,
+      `https://github.com${DECK_FILE_PATH}decks-2026-10-11/polingual-ar.sqlite.zst`,
+      `https://github.com:8443${DECK_FILE_PATH}decks-2026-10-11/${DE.manifest.file}`,
+      `https://user@github.com${DECK_FILE_PATH}decks-2026-10-11/${DE.manifest.file}`,
+      `${RELEASE}${DE.manifest.file}?x=/${DE.manifest.file}`,
+    ];
+    for (const file_url of elsewhere) {
+      expect(() => buildCatalog([{ ...DE.manifest, file_url }])).toThrow(DECK_FILE_REFUSED);
+      const decks = [{ ...DE.manifest, file_url }];
+      expect(() => checkCatalog({ ...CATALOG, decks })).toThrow(DECK_FILE_REFUSED);
+    }
+    expect(() => buildCatalog([{ ...DE.manifest, file_url: `http://github.com${DECK_FILE_PATH}x/${DE.manifest.file}` }])).toThrow("no https link");
+    for (const to of [null, "nope", "/relative", "http://release-assets.githubusercontent.com/a", "https://release-assets.githubusercontent.com.evil.test/a", "https://example.com/a", "https://release-assets.githubusercontent.com:444/a"]) expect(() => deckFileRedirect(to)).toThrow(DECK_FILE_MOVED);
+  });
+
+  test("a released deck follows one redirect to the release store, is checked against the catalog, and installs", async () => {
+    const { l, home, asked } = from({ [released.file_url]: moved(STORE), [STORE]: bytes() });
+    l.start("polingual-de");
+    await l.wait("polingual-de");
+    expect(l.body().decks[0].state).toBe("installed");
+    expect(asked).toEqual([[released.file_url, "manual"], [STORE, "error"]]);
+    expect(listInstalled(home)[0].manifest.sha256).toBe(DE.manifest.sha256);
+  });
+
+  test("a deck file gets thirty minutes to arrive, and a download that outlasts its limit fails and installs nothing", async () => {
+    expect(DECK_FILE_TIMEOUT_MS).toBe(30 * 60_000);
+    const home = join(ROOT, `home-${n++}`);
+    const l = new Library({ home, bundled: signed(CATALOG), pubkey: KEY.pub, url: base, offline: () => false, fileTimeoutMs: 50 });
+    slow = true;
+    l.start("polingual-de");
+    await l.wait("polingual-de");
+    slow = false;
+    expect([l.body().decks.find((d) => d.id === "polingual-de")!.state, l.body().decks.find((d) => d.id === "polingual-de")!.error]).toEqual(["failed", DOWNLOAD_FAILED]);
+    expect(listInstalled(home)).toEqual([]);
+  });
+
+  test("a redirect to another host, a release that answers without one, a missing file and changed bytes all fail and install nothing", async () => {
+    const cases: [Record<string, () => Response>, string][] = [
+      [{ [released.file_url]: moved("https://example.com/de"), "https://example.com/de": bytes() }, DECK_FILE_MOVED],
+      [{ [released.file_url]: bytes() }, DECK_FILE_MOVED],
+      [{}, "github.com answered 404"],
+      [{ [released.file_url]: moved(STORE) }, "release-assets.githubusercontent.com answered 404"],
+      [{ [released.file_url]: moved(STORE), [STORE]: bytes((b) => (b[30] ^= 0xff)) }, DOWNLOAD_CHANGED],
+    ];
+    for (const [answers, error] of cases) {
+      const { l, home, asked } = from(answers);
+      l.start("polingual-de");
+      await l.wait("polingual-de");
+      expect([l.body().decks[0].state, l.body().decks[0].error]).toEqual(["failed", error]);
+      expect(listInstalled(home)).toEqual([]);
+      expect(asked.some(([url]) => url.startsWith("https://example.com"))).toBe(false);
+    }
   });
 });
 
