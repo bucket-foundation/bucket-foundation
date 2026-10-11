@@ -1,0 +1,2063 @@
+{
+ "schema": "bucket.solvability-atlas.thresholds/v1",
+ "model": "BAAI/bge-small-en-v1.5",
+ "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+ "seed": 20261011,
+ "bootstraps": 2000,
+ "shipped": {
+  "reach_quantile": 0.1,
+  "min_branch_solved": 10,
+  "core_radius": 0.6,
+  "frontier_radius": 1.0,
+  "outer_radius": 1.5,
+  "weight_resolved": 0.55,
+  "weight_formal": 0.45
+ },
+ "embedding_check": {
+  "rows": 5209,
+  "top_similarity_disagreements_over_0.0015": 0
+ },
+ "identical_texts": 10,
+ "dated": {
+  "solved": 1694,
+  "solved_with_year": 297,
+  "open_with_posed_year": 438
+ },
+ "sensitivity": {
+  "baseline": {
+   "threshold": 0.762,
+   "inside": 4128,
+   "outside": 1081,
+   "solved": 1694,
+   "reachable": 2434,
+   "beyond": 1081,
+   "unsampled": 0,
+   "rows_changing_zone": 0,
+   "branches_ranked": 8,
+   "branch_rank_correlation": 1.0,
+   "growth_top_overlap": 1.0,
+   "growth_top_kept": 20,
+   "edge_top_overlap": 1.0,
+   "edge_top_kept": 20,
+   "unsampled_branches": []
+  },
+  "baseline_branches": {
+   "applied": {
+    "total": 82,
+    "solved": 32,
+    "reachable": 1,
+    "beyond": 49,
+    "unsampled": 0
+   },
+   "biophysics": {
+    "total": 218,
+    "solved": 31,
+    "reachable": 4,
+    "beyond": 183,
+    "unsampled": 0
+   },
+   "chemistry": {
+    "total": 104,
+    "solved": 22,
+    "reachable": 5,
+    "beyond": 77,
+    "unsampled": 0
+   },
+   "cosmology": {
+    "total": 139,
+    "solved": 28,
+    "reachable": 4,
+    "beyond": 107,
+    "unsampled": 0
+   },
+   "information": {
+    "total": 137,
+    "solved": 41,
+    "reachable": 32,
+    "beyond": 64,
+    "unsampled": 0
+   },
+   "mathematics": {
+    "total": 4112,
+    "solved": 1475,
+    "reachable": 2350,
+    "beyond": 287,
+    "unsampled": 0
+   },
+   "mind": {
+    "total": 139,
+    "solved": 10,
+    "reachable": 0,
+    "beyond": 129,
+    "unsampled": 0
+   },
+   "physics": {
+    "total": 278,
+    "solved": 55,
+    "reachable": 38,
+    "beyond": 185,
+    "unsampled": 0
+   }
+  },
+  "baseline_growth_top": [
+   "dl-neuro-23-can-we-understand-the-action-of-brain-in-natural-e",
+   "wp-computational-neuroscience",
+   "wp-dynamical-neuroscience",
+   "wp-cosmological-principle",
+   "wp-connectionism",
+   "dl-neuro-23-to-what-extent-is-the-brain-reconfigurable",
+   "wp-free-will-particularly-the-neuroscience-of-free-will",
+   "wp-computational-theory-of-mind",
+   "wp-cognition-and-decisions",
+   "wp-consciousness",
+   "wp-mind-body-dualism",
+   "dl-holy-grails-computational-catalyst-design-feasible-or-fiction",
+   "wp-bayesian-mind",
+   "wp-free-will",
+   "wp-how-is-information-in-the-brain-processed-by-the-collective",
+   "wp-perception",
+   "wp-how-important-is-the-precise-timing-of-action-potentials-for",
+   "wp-is-there-a-canonical-computation-performed-by-cortical-colum",
+   "dl-holy-grails-ab-initio-reactive-computer-aided-molecular-design",
+   "wp-problem-of-representation"
+  ],
+  "baseline_edge_top": [
+   "fc-erdosproblems-100-erdos-100-kanold",
+   "fc-erdosproblems-354-erdos-354-parts-ii",
+   "fc-erdosproblems-501-erdos-501-closed-size3",
+   "fc-oeis-105210-conjecture",
+   "fc-wikipedia-irrational-irrational-e-to-e",
+   "wp-are-there-infinitely-many-cullen-primes",
+   "dl-science-2021-can-we-ever-overcome-antibiotic-resistance",
+   "dl-science-2021-where-do-we-put-all-the-excess-carbon-dioxide",
+   "fc-erdosproblems-918-erdos-918-all-subgraphs-parts-i",
+   "fc-greensopenproblems-40-green-40",
+   "fc-greensopenproblems-40-green-40-all-n",
+   "fc-greensopenproblems-40-green-40-arbitrary-subsets",
+   "fc-millennium-navierstokes-navier-stokes-existence-and-smoothne",
+   "fc-oeis-110566-conjecture",
+   "fc-oeis-92243-conjecture2",
+   "fc-wikipedia-determinantalconjecture-determinantal-conjecture",
+   "fc-wikipedia-irrational-irrational-e-times-pi",
+   "fc-wikipedia-localuniformization-local-uniformization",
+   "wp-banach-s-problem-is-there-an-ergodic-system-with-simple-lebe",
+   "wp-can-a-discrete-logarithm-on-a-elliptic-curve-be-computed-in"
+  ],
+  "reach_quantile": [
+   {
+    "reach_quantile": 0.01,
+    "threshold": 0.648,
+    "inside": 4946,
+    "outside": 263,
+    "solved": 1694,
+    "reachable": 3252,
+    "beyond": 263,
+    "unsampled": 0,
+    "rows_changing_zone": 818,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.9524,
+    "growth_top_overlap": 0.0526,
+    "growth_top_kept": 2,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.02,
+    "threshold": 0.67,
+    "inside": 4806,
+    "outside": 403,
+    "solved": 1694,
+    "reachable": 3112,
+    "beyond": 403,
+    "unsampled": 0,
+    "rows_changing_zone": 678,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.9048,
+    "growth_top_overlap": 0.1765,
+    "growth_top_kept": 6,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.05,
+    "threshold": 0.708,
+    "inside": 4519,
+    "outside": 690,
+    "solved": 1694,
+    "reachable": 2825,
+    "beyond": 690,
+    "unsampled": 0,
+    "rows_changing_zone": 391,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.9762,
+    "growth_top_overlap": 0.5385,
+    "growth_top_kept": 14,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.075,
+    "threshold": 0.732,
+    "inside": 4371,
+    "outside": 838,
+    "solved": 1694,
+    "reachable": 2677,
+    "beyond": 838,
+    "unsampled": 0,
+    "rows_changing_zone": 243,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 0.6,
+    "growth_top_kept": 15,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.1,
+    "threshold": 0.762,
+    "inside": 4128,
+    "outside": 1081,
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 1081,
+    "unsampled": 0,
+    "rows_changing_zone": 0,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 1.0,
+    "growth_top_kept": 20,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.125,
+    "threshold": 0.78,
+    "inside": 3937,
+    "outside": 1272,
+    "solved": 1694,
+    "reachable": 2243,
+    "beyond": 1272,
+    "unsampled": 0,
+    "rows_changing_zone": 191,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.9701,
+    "growth_top_overlap": 0.5385,
+    "growth_top_kept": 14,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.15,
+    "threshold": 0.79,
+    "inside": 3788,
+    "outside": 1421,
+    "solved": 1694,
+    "reachable": 2094,
+    "beyond": 1421,
+    "unsampled": 0,
+    "rows_changing_zone": 340,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.9271,
+    "growth_top_overlap": 0.1765,
+    "growth_top_kept": 6,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.2,
+    "threshold": 0.811,
+    "inside": 3380,
+    "outside": 1829,
+    "solved": 1694,
+    "reachable": 1686,
+    "beyond": 1829,
+    "unsampled": 0,
+    "rows_changing_zone": 748,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.9271,
+    "growth_top_overlap": 0.0256,
+    "growth_top_kept": 1,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.25,
+    "threshold": 0.824,
+    "inside": 3005,
+    "outside": 2204,
+    "solved": 1694,
+    "reachable": 1311,
+    "beyond": 2204,
+    "unsampled": 0,
+    "rows_changing_zone": 1123,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.9271,
+    "growth_top_overlap": 0.0,
+    "growth_top_kept": 0,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.3,
+    "threshold": 0.834,
+    "inside": 2737,
+    "outside": 2472,
+    "solved": 1694,
+    "reachable": 1043,
+    "beyond": 2472,
+    "unsampled": 0,
+    "rows_changing_zone": 1391,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.9271,
+    "growth_top_overlap": 0.0,
+    "growth_top_kept": 0,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.4,
+    "threshold": 0.85,
+    "inside": 2345,
+    "outside": 2864,
+    "solved": 1694,
+    "reachable": 651,
+    "beyond": 2864,
+    "unsampled": 0,
+    "rows_changing_zone": 1783,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.8729,
+    "growth_top_overlap": 0.0,
+    "growth_top_kept": 0,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   },
+   {
+    "reach_quantile": 0.5,
+    "threshold": 0.864,
+    "inside": 2114,
+    "outside": 3095,
+    "solved": 1694,
+    "reachable": 420,
+    "beyond": 3095,
+    "unsampled": 0,
+    "rows_changing_zone": 2014,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 0.8729,
+    "growth_top_overlap": 0.0,
+    "growth_top_kept": 0,
+    "edge_top_overlap": 0.0,
+    "edge_top_kept": 0,
+    "unsampled_branches": []
+   }
+  ],
+  "min_branch_solved": [
+   {
+    "min_branch_solved": 1,
+    "threshold": 0.762,
+    "inside": 4128,
+    "outside": 1081,
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 1081,
+    "unsampled": 0,
+    "rows_changing_zone": 0,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 1.0,
+    "growth_top_kept": 20,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": []
+   },
+   {
+    "min_branch_solved": 5,
+    "threshold": 0.762,
+    "inside": 4128,
+    "outside": 1081,
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 1081,
+    "unsampled": 0,
+    "rows_changing_zone": 0,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 1.0,
+    "growth_top_kept": 20,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": []
+   },
+   {
+    "min_branch_solved": 10,
+    "threshold": 0.762,
+    "inside": 4128,
+    "outside": 1081,
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 1081,
+    "unsampled": 0,
+    "rows_changing_zone": 0,
+    "branches_ranked": 8,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 1.0,
+    "growth_top_kept": 20,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": []
+   },
+   {
+    "min_branch_solved": 11,
+    "threshold": 0.762,
+    "inside": 4128,
+    "outside": 1081,
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 952,
+    "unsampled": 129,
+    "rows_changing_zone": 129,
+    "branches_ranked": 7,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 0.0811,
+    "growth_top_kept": 3,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": [
+     "mind"
+    ]
+   },
+   {
+    "min_branch_solved": 15,
+    "threshold": 0.762,
+    "inside": 4128,
+    "outside": 1081,
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 952,
+    "unsampled": 129,
+    "rows_changing_zone": 129,
+    "branches_ranked": 7,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 0.0811,
+    "growth_top_kept": 3,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": [
+     "mind"
+    ]
+   },
+   {
+    "min_branch_solved": 20,
+    "threshold": 0.762,
+    "inside": 4128,
+    "outside": 1081,
+    "solved": 1694,
+    "reachable": 2434,
+    "beyond": 952,
+    "unsampled": 129,
+    "rows_changing_zone": 129,
+    "branches_ranked": 7,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 0.0811,
+    "growth_top_kept": 3,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": [
+     "mind"
+    ]
+   },
+   {
+    "min_branch_solved": 25,
+    "threshold": 0.762,
+    "inside": 4123,
+    "outside": 1086,
+    "solved": 1694,
+    "reachable": 2429,
+    "beyond": 875,
+    "unsampled": 211,
+    "rows_changing_zone": 211,
+    "branches_ranked": 6,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 0.0256,
+    "growth_top_kept": 1,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": [
+     "chemistry",
+     "mind"
+    ]
+   },
+   {
+    "min_branch_solved": 30,
+    "threshold": 0.762,
+    "inside": 4119,
+    "outside": 1090,
+    "solved": 1694,
+    "reachable": 2425,
+    "beyond": 768,
+    "unsampled": 322,
+    "rows_changing_zone": 322,
+    "branches_ranked": 5,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 0.0256,
+    "growth_top_kept": 1,
+    "edge_top_overlap": 1.0,
+    "edge_top_kept": 20,
+    "unsampled_branches": [
+     "chemistry",
+     "cosmology",
+     "mind"
+    ]
+   },
+   {
+    "min_branch_solved": 35,
+    "threshold": 0.762,
+    "inside": 4114,
+    "outside": 1095,
+    "solved": 1694,
+    "reachable": 2420,
+    "beyond": 536,
+    "unsampled": 559,
+    "rows_changing_zone": 559,
+    "branches_ranked": 3,
+    "branch_rank_correlation": 1.0,
+    "growth_top_overlap": 0.0256,
+    "growth_top_kept": 1,
+    "edge_top_overlap": 0.8182,
+    "edge_top_kept": 18,
+    "unsampled_branches": [
+     "applied",
+     "biophysics",
+     "chemistry",
+     "cosmology",
+     "mind"
+    ]
+   },
+   {
+    "min_branch_solved": 45,
+    "threshold": 0.762,
+    "inside": 4082,
+    "outside": 1127,
+    "solved": 1694,
+    "reachable": 2388,
+    "beyond": 472,
+    "unsampled": 655,
+    "rows_changing_zone": 655,
+    "branches_ranked": 2,
+    "branch_rank_correlation": null,
+    "growth_top_overlap": 0.0256,
+    "growth_top_kept": 1,
+    "edge_top_overlap": 0.8182,
+    "edge_top_kept": 18,
+    "unsampled_branches": [
+     "applied",
+     "biophysics",
+     "chemistry",
+     "cosmology",
+     "information",
+     "mind"
+    ]
+   },
+   {
+    "min_branch_solved": 60,
+    "threshold": 0.762,
+    "inside": 4044,
+    "outside": 1165,
+    "solved": 1694,
+    "reachable": 2350,
+    "beyond": 287,
+    "unsampled": 878,
+    "rows_changing_zone": 878,
+    "branches_ranked": 1,
+    "branch_rank_correlation": null,
+    "growth_top_overlap": 0.0,
+    "growth_top_kept": 0,
+    "edge_top_overlap": 0.8182,
+    "edge_top_kept": 18,
+    "unsampled_branches": [
+     "applied",
+     "biophysics",
+     "chemistry",
+     "cosmology",
+     "information",
+     "mind",
+     "physics"
+    ]
+   },
+   {
+    "min_branch_solved": 100,
+    "threshold": 0.762,
+    "inside": 4044,
+    "outside": 1165,
+    "solved": 1694,
+    "reachable": 2350,
+    "beyond": 287,
+    "unsampled": 878,
+    "rows_changing_zone": 878,
+    "branches_ranked": 1,
+    "branch_rank_correlation": null,
+    "growth_top_overlap": 0.0,
+    "growth_top_kept": 0,
+    "edge_top_overlap": 0.8182,
+    "edge_top_kept": 18,
+    "unsampled_branches": [
+     "applied",
+     "biophysics",
+     "chemistry",
+     "cosmology",
+     "information",
+     "mind",
+     "physics"
+    ]
+   }
+  ],
+  "radii": [
+   {
+    "core_radius": 0.3,
+    "outer_radius": 1.25,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.64,
+    "disc_area_core": 0.0576,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.3,
+    "outer_radius": 1.5,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.4444,
+    "disc_area_core": 0.04,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.3,
+    "outer_radius": 2.0,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.25,
+    "disc_area_core": 0.0225,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.4,
+    "outer_radius": 1.25,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.64,
+    "disc_area_core": 0.1024,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.4,
+    "outer_radius": 1.5,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.4444,
+    "disc_area_core": 0.0711,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.4,
+    "outer_radius": 2.0,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.25,
+    "disc_area_core": 0.04,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.5,
+    "outer_radius": 1.25,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.64,
+    "disc_area_core": 0.16,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.5,
+    "outer_radius": 1.5,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.4444,
+    "disc_area_core": 0.1111,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.5,
+    "outer_radius": 2.0,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.25,
+    "disc_area_core": 0.0625,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.6,
+    "outer_radius": 1.25,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.64,
+    "disc_area_core": 0.2304,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.6,
+    "outer_radius": 1.5,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.4444,
+    "disc_area_core": 0.16,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.6,
+    "outer_radius": 2.0,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.25,
+    "disc_area_core": 0.09,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.7,
+    "outer_radius": 1.25,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.64,
+    "disc_area_core": 0.3136,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.7,
+    "outer_radius": 1.5,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.4444,
+    "disc_area_core": 0.2178,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.7,
+    "outer_radius": 2.0,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.25,
+    "disc_area_core": 0.1225,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.8,
+    "outer_radius": 1.25,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.64,
+    "disc_area_core": 0.4096,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.8,
+    "outer_radius": 1.5,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.4444,
+    "disc_area_core": 0.2844,
+    "rows_changing_zone": 0
+   },
+   {
+    "core_radius": 0.8,
+    "outer_radius": 2.0,
+    "rank_correlation_with_distance": 0.8478,
+    "inverted_pair_share": 0.1018,
+    "disc_area_inside_frontier": 0.25,
+    "disc_area_core": 0.16,
+    "rows_changing_zone": 0
+   }
+  ],
+  "linear_radius": {
+   "rank_correlation_with_distance": 1.0,
+   "inverted_pair_share": 0.0,
+   "frontier_radius": 0.238,
+   "largest_radius": 0.487
+  }
+ },
+ "cross_section": {
+  "rows": 5209,
+  "solved": 1694,
+  "duplicate_similarity": 0.95,
+  "groups": 2968,
+  "rows_in_a_shared_group": 3018,
+  "leakage_ladder": [
+   {
+    "rule": "self excluded only, the shipped rule",
+    "groups": 5209,
+    "auc": 0.7656,
+    "ci95": [
+     0.7519,
+     0.7795
+    ],
+    "primary": false
+   },
+   {
+    "rule": "variant family excluded",
+    "groups": 3015,
+    "auc": 0.6769,
+    "ci95": [
+     0.655,
+     0.6982
+    ],
+    "primary": false
+   },
+   {
+    "rule": "family and near duplicates at 0.98 excluded",
+    "groups": 3005,
+    "auc": 0.6759,
+    "ci95": [
+     0.6544,
+     0.6969
+    ],
+    "primary": false
+   },
+   {
+    "rule": "family and near duplicates at 0.95 excluded",
+    "groups": 2968,
+    "auc": 0.6753,
+    "ci95": [
+     0.6555,
+     0.6958
+    ],
+    "primary": true
+   },
+   {
+    "rule": "family and near duplicates at 0.9 excluded",
+    "groups": 2722,
+    "auc": 0.6722,
+    "ci95": [
+     0.649,
+     0.6948
+    ],
+    "primary": false
+   }
+  ],
+  "by_branch": [
+   {
+    "name": "applied",
+    "rows": 82,
+    "solved": 32,
+    "auc": 0.8013,
+    "ci95": [
+     0.6863,
+     0.9018
+    ],
+    "youden_tau": 0.7,
+    "quantile_tau": 0.6558
+   },
+   {
+    "name": "biophysics",
+    "rows": 218,
+    "solved": 31,
+    "auc": 0.8094,
+    "ci95": [
+     0.7305,
+     0.8774
+    ],
+    "youden_tau": 0.6698,
+    "quantile_tau": 0.6554
+   },
+   {
+    "name": "chemistry",
+    "rows": 104,
+    "solved": 22,
+    "auc": 0.8032,
+    "ci95": [
+     0.6655,
+     0.9135
+    ],
+    "youden_tau": 0.7055,
+    "quantile_tau": 0.6765
+   },
+   {
+    "name": "cosmology",
+    "rows": 139,
+    "solved": 28,
+    "auc": 0.7716,
+    "ci95": [
+     0.6609,
+     0.8695
+    ],
+    "youden_tau": 0.7083,
+    "quantile_tau": 0.6479
+   },
+   {
+    "name": "information",
+    "rows": 137,
+    "solved": 41,
+    "auc": 0.5856,
+    "ci95": [
+     0.4736,
+     0.6965
+    ],
+    "youden_tau": 0.7519,
+    "quantile_tau": 0.6796
+   },
+   {
+    "name": "mathematics",
+    "rows": 4112,
+    "solved": 1475,
+    "auc": 0.6439,
+    "ci95": [
+     0.6164,
+     0.6717
+    ],
+    "youden_tau": 0.8413,
+    "quantile_tau": 0.7839
+   },
+   {
+    "name": "mind",
+    "rows": 139,
+    "solved": 10,
+    "auc": 0.6209,
+    "ci95": [
+     0.3826,
+     0.8389
+    ],
+    "youden_tau": 0.6974,
+    "quantile_tau": 0.605
+   },
+   {
+    "name": "physics",
+    "rows": 278,
+    "solved": 55,
+    "auc": 0.6896,
+    "ci95": [
+     0.5942,
+     0.804
+    ],
+    "youden_tau": 0.7299,
+    "quantile_tau": 0.6734
+   }
+  ],
+  "by_source": [
+   {
+    "name": "formal-conjectures",
+    "rows": 3567,
+    "solved": 1419,
+    "auc": 0.6211,
+    "ci95": [
+     0.5908,
+     0.653
+    ],
+    "youden_tau": 0.8413,
+    "quantile_tau": 0.7864
+   },
+   {
+    "name": "other",
+    "rows": 359,
+    "solved": 19,
+    "auc": 0.8998,
+    "ci95": [
+     0.8373,
+     0.9559
+    ],
+    "youden_tau": 0.6995,
+    "quantile_tau": 0.6995
+   },
+   {
+    "name": "wikipedia",
+    "rows": 1283,
+    "solved": 256,
+    "auc": 0.5568,
+    "ci95": [
+     0.52,
+     0.5963
+    ],
+    "youden_tau": 0.6933,
+    "quantile_tau": 0.6618
+   }
+  ],
+  "by_kind": [
+   {
+    "name": "top-level",
+    "rows": 3015,
+    "solved": 930,
+    "auc": 0.7261,
+    "ci95": [
+     0.7075,
+     0.746
+    ],
+    "youden_tau": 0.8228,
+    "quantile_tau": 0.7117
+   },
+   {
+    "name": "variant",
+    "rows": 2194,
+    "solved": 764,
+    "auc": 0.5865,
+    "ci95": [
+     0.5464,
+     0.6316
+    ],
+    "youden_tau": 0.8413,
+    "quantile_tau": 0.7809
+   }
+  ],
+  "models": [
+   {
+    "model": "branch base rate",
+    "auc": 0.5483,
+    "ci95": [
+     0.5226,
+     0.5739
+    ],
+    "brier": 0.2145
+   },
+   {
+    "model": "branch, source and kind base rate",
+    "auc": 0.7143,
+    "ci95": [
+     0.6914,
+     0.7358
+    ],
+    "brier": 0.1824
+   },
+   {
+    "model": "reach alone",
+    "auc": 0.6739,
+    "ci95": [
+     0.6535,
+     0.6944
+    ],
+    "brier": 0.2015
+   },
+   {
+    "model": "branch, source and kind plus reach",
+    "auc": 0.758,
+    "ci95": [
+     0.7373,
+     0.7786
+    ],
+    "brier": 0.1767
+   }
+  ],
+  "gain_over_branch_source_kind": {
+   "value": 0.0437,
+   "ci95": [
+    0.0297,
+    0.0576
+   ]
+  },
+  "gain_of_reach_over_branch_base_rate": {
+   "value": 0.1269,
+   "ci95": [
+    0.0983,
+    0.1558
+   ]
+  },
+  "leave_one_branch_out": [
+   {
+    "branch": "applied",
+    "rows": 82,
+    "solved": 32,
+    "auc": 0.8013,
+    "train_tau": 0.8323,
+    "tpr": 0.25,
+    "fpr": 0.0
+   },
+   {
+    "branch": "biophysics",
+    "rows": 218,
+    "solved": 31,
+    "auc": 0.8094,
+    "train_tau": 0.8323,
+    "tpr": 0.0968,
+    "fpr": 0.0107
+   },
+   {
+    "branch": "chemistry",
+    "rows": 104,
+    "solved": 22,
+    "auc": 0.8032,
+    "train_tau": 0.8323,
+    "tpr": 0.2273,
+    "fpr": 0.0122
+   },
+   {
+    "branch": "cosmology",
+    "rows": 139,
+    "solved": 28,
+    "auc": 0.7716,
+    "train_tau": 0.8323,
+    "tpr": 0.0,
+    "fpr": 0.0
+   },
+   {
+    "branch": "information",
+    "rows": 137,
+    "solved": 41,
+    "auc": 0.5856,
+    "train_tau": 0.8323,
+    "tpr": 0.122,
+    "fpr": 0.0625
+   },
+   {
+    "branch": "mathematics",
+    "rows": 4112,
+    "solved": 1475,
+    "auc": 0.6439,
+    "train_tau": 0.6972,
+    "tpr": 0.9925,
+    "fpr": 0.9772
+   },
+   {
+    "branch": "mind",
+    "rows": 139,
+    "solved": 10,
+    "auc": 0.6209,
+    "train_tau": 0.8323,
+    "tpr": 0.0,
+    "fpr": 0.0
+   },
+   {
+    "branch": "physics",
+    "rows": 278,
+    "solved": 55,
+    "auc": 0.6896,
+    "train_tau": 0.8323,
+    "tpr": 0.0182,
+    "fpr": 0.0
+   }
+  ],
+  "calibration": {
+   "bins": [
+    {
+     "n": 521,
+     "reach_low": 0.5128,
+     "reach_high": 0.6794,
+     "mean_reach": 0.6364,
+     "solved_share": 0.0845,
+     "predicted_share": 0.0844
+    },
+    {
+     "n": 521,
+     "reach_low": 0.6795,
+     "reach_high": 0.7392,
+     "mean_reach": 0.708,
+     "solved_share": 0.2054,
+     "predicted_share": 0.1544
+    },
+    {
+     "n": 521,
+     "reach_low": 0.7392,
+     "reach_high": 0.7799,
+     "mean_reach": 0.7622,
+     "solved_share": 0.2438,
+     "predicted_share": 0.237
+    },
+    {
+     "n": 521,
+     "reach_low": 0.7799,
+     "reach_high": 0.8003,
+     "mean_reach": 0.791,
+     "solved_share": 0.2591,
+     "predicted_share": 0.2922
+    },
+    {
+     "n": 521,
+     "reach_low": 0.8004,
+     "reach_high": 0.8157,
+     "mean_reach": 0.8085,
+     "solved_share": 0.3455,
+     "predicted_share": 0.3296
+    },
+    {
+     "n": 521,
+     "reach_low": 0.8158,
+     "reach_high": 0.828,
+     "mean_reach": 0.8217,
+     "solved_share": 0.2726,
+     "predicted_share": 0.3582
+    },
+    {
+     "n": 521,
+     "reach_low": 0.828,
+     "reach_high": 0.8402,
+     "mean_reach": 0.8341,
+     "solved_share": 0.3436,
+     "predicted_share": 0.3876
+    },
+    {
+     "n": 521,
+     "reach_low": 0.8402,
+     "reach_high": 0.8531,
+     "mean_reach": 0.8464,
+     "solved_share": 0.4261,
+     "predicted_share": 0.4171
+    },
+    {
+     "n": 521,
+     "reach_low": 0.8531,
+     "reach_high": 0.8718,
+     "mean_reach": 0.8617,
+     "solved_share": 0.4914,
+     "predicted_share": 0.4539
+    },
+    {
+     "n": 520,
+     "reach_low": 0.8718,
+     "reach_high": 0.9498,
+     "mean_reach": 0.8952,
+     "solved_share": 0.5808,
+     "predicted_share": 0.5371
+    }
+   ],
+   "expected_calibration_error": 0.0327
+  },
+  "derived_tau": {
+   "youden": {
+    "tau": 0.8323,
+    "tpr": 0.5354,
+    "fpr": 0.2819,
+    "precision": 0.4779,
+    "inside": 1898,
+    "youden_j": 0.2535,
+    "ci95": [
+     0.8003,
+     0.8409
+    ]
+   },
+   "fixed_fpr_0.1": {
+    "tau": 0.8611,
+    "tpr": 0.2527,
+    "fpr": 0.0999,
+    "precision": 0.5494,
+    "inside": 779,
+    "youden_j": 0.1528,
+    "ci95": [
+     0.8585,
+     0.8647
+    ]
+   },
+   "fixed_fpr_0.2": {
+    "tau": 0.8431,
+    "tpr": 0.4315,
+    "fpr": 0.2,
+    "precision": 0.5098,
+    "inside": 1434,
+    "youden_j": 0.2315,
+    "ci95": [
+     0.8406,
+     0.8463
+    ]
+   },
+   "quantile_rule": {
+    "tau": 0.7519,
+    "tpr": 0.9002,
+    "fpr": 0.7183,
+    "precision": 0.3765,
+    "inside": 4050,
+    "youden_j": 0.1819,
+    "ci95": [
+     0.7319,
+     0.7632
+    ]
+   },
+   "shipped": {
+    "tau": 0.762,
+    "tpr": 0.8843,
+    "fpr": 0.6896,
+    "precision": 0.3819,
+    "inside": 3922,
+    "youden_j": 0.1947
+   }
+  }
+ },
+ "time_split": [
+  {
+   "cutoff": 2005,
+   "reference_solved": 170,
+   "tested": 319,
+   "tested_dated": 287,
+   "solved_later": 48,
+   "undated_solved_removed": 32,
+   "auc": {
+    "value": 0.7383,
+    "ci95": [
+     0.6615,
+     0.8113
+    ]
+   },
+   "auc_with_undated": 0.804,
+   "branch_base_rate_auc": {
+    "value": 0.4409,
+    "ci95": [
+     0.3582,
+     0.5264
+    ]
+   },
+   "gain_over_branch_base_rate": {
+    "value": 0.2974,
+    "ci95": [
+     0.1598,
+     0.4263
+    ]
+   },
+   "source_base_rate_auc": {
+    "value": 0.5568,
+    "ci95": [
+     0.4679,
+     0.6445
+    ]
+   },
+   "gain_over_source_base_rate": {
+    "value": 0.1815,
+    "ci95": [
+     0.077,
+     0.2879
+    ]
+   },
+   "sources": [
+    {
+     "source": "https://web.archive.org/web/2007/http://www.sciencemag.org/cgi/content/full/309/5731/78b",
+     "tested": 117,
+     "solved_later": 4
+    },
+    {
+     "source": "tools/solvability-atlas/problems.tsv",
+     "tested": 57,
+     "solved_later": 8
+    },
+    {
+     "source": "formal-conjectures",
+     "tested": 37,
+     "solved_later": 2
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+     "tested": 19,
+     "solved_later": 15
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Hilbert's_problems",
+     "tested": 17,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Smale's_problems",
+     "tested": 14,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+     "tested": 9,
+     "solved_later": 9
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_neuroscience",
+     "tested": 2,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/G%C3%B6del_Prize",
+     "tested": 2,
+     "solved_later": 2
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Rubik%27s_Cube",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Fully_homomorphic_encryption",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Indistinguishability_obfuscation",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Timeline_of_algorithms",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Timeline_of_information_theory",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Timeline_of_artificial_intelligence",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Quantum_supremacy",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Equity_premium_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Feldstein%E2%80%93Horioka_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Lucas_paradox",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Backus%E2%80%93Smith_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Hartmanis%E2%80%93Stearns_conjecture",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Pentaquark",
+     "tested": 1,
+     "solved_later": 1
+    }
+   ],
+   "train_tau": {
+    "youden": {
+     "tau": 0.705,
+     "tpr": 0.6667,
+     "fpr": 0.3138,
+     "precision": 0.2991,
+     "inside": 107,
+     "youden_j": 0.3529
+    },
+    "quantile_rule": {
+     "tau": 0.6388,
+     "tpr": 0.9167,
+     "fpr": 0.728,
+     "precision": 0.2018,
+     "inside": 218,
+     "youden_j": 0.1886
+    },
+    "fixed_fpr_0.1": {
+     "tau": 0.7845,
+     "tpr": 0.125,
+     "fpr": 0.0628,
+     "precision": 0.2857,
+     "inside": 21,
+     "youden_j": 0.0622
+    },
+    "fixed_fpr_0.2": {
+     "tau": 0.7578,
+     "tpr": 0.25,
+     "fpr": 0.1297,
+     "precision": 0.2791,
+     "inside": 43,
+     "youden_j": 0.1203
+    }
+   }
+  },
+  {
+   "cutoff": 2015,
+   "reference_solved": 213,
+   "tested": 351,
+   "tested_dated": 318,
+   "solved_later": 40,
+   "undated_solved_removed": 33,
+   "auc": {
+    "value": 0.7433,
+    "ci95": [
+     0.6599,
+     0.8218
+    ]
+   },
+   "auc_with_undated": 0.8095,
+   "branch_base_rate_auc": {
+    "value": 0.4724,
+    "ci95": [
+     0.3684,
+     0.5788
+    ]
+   },
+   "gain_over_branch_base_rate": {
+    "value": 0.2709,
+    "ci95": [
+     0.097,
+     0.4424
+    ]
+   },
+   "source_base_rate_auc": {
+    "value": 0.7913,
+    "ci95": [
+     0.7004,
+     0.8698
+    ]
+   },
+   "gain_over_source_base_rate": {
+    "value": -0.0479,
+    "ci95": [
+     -0.164,
+     0.0571
+    ]
+   },
+   "sources": [
+    {
+     "source": "https://web.archive.org/web/2007/http://www.sciencemag.org/cgi/content/full/309/5731/78b",
+     "tested": 114,
+     "solved_later": 1
+    },
+    {
+     "source": "tools/solvability-atlas/problems.tsv",
+     "tested": 60,
+     "solved_later": 7
+    },
+    {
+     "source": "formal-conjectures",
+     "tested": 43,
+     "solved_later": 1
+    },
+    {
+     "source": "https://catdir.loc.gov/catdir/toc/ecip057/2005003411.html",
+     "tested": 23,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+     "tested": 19,
+     "solved_later": 15
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Hilbert's_problems",
+     "tested": 17,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Smale's_problems",
+     "tested": 14,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Xprize_Foundation",
+     "tested": 8,
+     "solved_later": 5
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+     "tested": 5,
+     "solved_later": 5
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_neuroscience",
+     "tested": 2,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/DARPA_Prize_Competitions",
+     "tested": 2,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/XPRIZE",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Indistinguishability_obfuscation",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Timeline_of_artificial_intelligence",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Quantum_supremacy",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Equity_premium_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Feldstein%E2%80%93Horioka_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Lucas_paradox",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Backus%E2%80%93Smith_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Hartmanis%E2%80%93Stearns_conjecture",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Proton_radius_puzzle",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Time_crystal",
+     "tested": 1,
+     "solved_later": 0
+    }
+   ],
+   "train_tau": {
+    "youden": {
+     "tau": 0.7022,
+     "tpr": 0.7,
+     "fpr": 0.3561,
+     "precision": 0.2205,
+     "inside": 127,
+     "youden_j": 0.3439
+    },
+    "quantile_rule": {
+     "tau": 0.6388,
+     "tpr": 0.95,
+     "fpr": 0.7662,
+     "precision": 0.1514,
+     "inside": 251,
+     "youden_j": 0.1838
+    },
+    "fixed_fpr_0.1": {
+     "tau": 0.7979,
+     "tpr": 0.3,
+     "fpr": 0.0576,
+     "precision": 0.4286,
+     "inside": 28,
+     "youden_j": 0.2424
+    },
+    "fixed_fpr_0.2": {
+     "tau": 0.7706,
+     "tpr": 0.375,
+     "fpr": 0.1187,
+     "precision": 0.3125,
+     "inside": 48,
+     "youden_j": 0.2563
+    }
+   }
+  },
+  {
+   "cutoff": 2021,
+   "reference_solved": 261,
+   "tested": 482,
+   "tested_dated": 449,
+   "solved_later": 16,
+   "undated_solved_removed": 33,
+   "auc": {
+    "value": 0.8301,
+    "ci95": [
+     0.712,
+     0.9277
+    ]
+   },
+   "auc_with_undated": 0.8921,
+   "branch_base_rate_auc": {
+    "value": 0.5247,
+    "ci95": [
+     0.4269,
+     0.6288
+    ]
+   },
+   "gain_over_branch_base_rate": {
+    "value": 0.3054,
+    "ci95": [
+     0.1094,
+     0.4554
+    ]
+   },
+   "source_base_rate_auc": {
+    "value": 0.9319,
+    "ci95": [
+     0.8753,
+     0.9764
+    ]
+   },
+   "gain_over_source_base_rate": {
+    "value": -0.1018,
+    "ci95": [
+     -0.2295,
+     -0.0007
+    ]
+   },
+   "sources": [
+    {
+     "source": "https://web.archive.org/web/2023id_/https://www.science.org/do/10.1126/resource.2499249/full/sjtu-booklet.pdf",
+     "tested": 122,
+     "solved_later": 0
+    },
+    {
+     "source": "https://web.archive.org/web/2007/http://www.sciencemag.org/cgi/content/full/309/5731/78b",
+     "tested": 113,
+     "solved_later": 0
+    },
+    {
+     "source": "tools/solvability-atlas/problems.tsv",
+     "tested": 60,
+     "solved_later": 4
+    },
+    {
+     "source": "formal-conjectures",
+     "tested": 44,
+     "solved_later": 0
+    },
+    {
+     "source": "https://pubs.acs.org/toc/achre4/50/3",
+     "tested": 26,
+     "solved_later": 0
+    },
+    {
+     "source": "https://catdir.loc.gov/catdir/toc/ecip057/2005003411.html",
+     "tested": 23,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Hilbert's_problems",
+     "tested": 17,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Smale's_problems",
+     "tested": 14,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics",
+     "tested": 12,
+     "solved_later": 8
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Xprize_Foundation",
+     "tested": 7,
+     "solved_later": 3
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_neuroscience",
+     "tested": 2,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/DARPA_Prize_Competitions",
+     "tested": 2,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
+     "tested": 1,
+     "solved_later": 1
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Equity_premium_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Feldstein%E2%80%93Horioka_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Lucas_paradox",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Backus%E2%80%93Smith_puzzle",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Hartmanis%E2%80%93Stearns_conjecture",
+     "tested": 1,
+     "solved_later": 0
+    },
+    {
+     "source": "https://en.wikipedia.org/wiki/Time_crystal",
+     "tested": 1,
+     "solved_later": 0
+    }
+   ],
+   "train_tau": {
+    "youden": {
+     "tau": 0.6972,
+     "tpr": 0.875,
+     "fpr": 0.3811,
+     "precision": 0.0782,
+     "inside": 179,
+     "youden_j": 0.4939
+    },
+    "quantile_rule": {
+     "tau": 0.6655,
+     "tpr": 0.9375,
+     "fpr": 0.6051,
+     "precision": 0.0542,
+     "inside": 277,
+     "youden_j": 0.3324
+    },
+    "fixed_fpr_0.1": {
+     "tau": 0.7926,
+     "tpr": 0.4375,
+     "fpr": 0.0624,
+     "precision": 0.2059,
+     "inside": 34,
+     "youden_j": 0.3751
+    },
+    "fixed_fpr_0.2": {
+     "tau": 0.7595,
+     "tpr": 0.5625,
+     "fpr": 0.1409,
+     "precision": 0.1286,
+     "inside": 70,
+     "youden_j": 0.4216
+    }
+   }
+  }
+ ],
+ "weights": {
+  "rows": 5209,
+  "sweep": [
+   {
+    "weight_resolved": 0.0,
+    "row_rank_correlation": 0.8483,
+    "branch_rank_correlation": 0.3374,
+    "distinct_scores": 4
+   },
+   {
+    "weight_resolved": 0.05,
+    "row_rank_correlation": 0.9709,
+    "branch_rank_correlation": 0.9048,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.1,
+    "row_rank_correlation": 0.9709,
+    "branch_rank_correlation": 0.9048,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.15,
+    "row_rank_correlation": 0.9709,
+    "branch_rank_correlation": 0.9286,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.2,
+    "row_rank_correlation": 0.9994,
+    "branch_rank_correlation": 0.9286,
+    "distinct_scores": 5
+   },
+   {
+    "weight_resolved": 0.25,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 0.9286,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.3,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 0.9286,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.35,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 0.9762,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.4,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.45,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.5,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.55,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.6,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.65,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.7,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.75,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.8,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.85,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.9,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 0.95,
+    "row_rank_correlation": 1.0,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 7
+   },
+   {
+    "weight_resolved": 1.0,
+    "row_rank_correlation": 0.8917,
+    "branch_rank_correlation": 1.0,
+    "distinct_scores": 2
+   }
+  ],
+  "breakpoints": [
+   0.2,
+   0.2857,
+   0.3333,
+   0.3939,
+   0.4737
+  ],
+  "order_stable_interval": [
+   0.4737,
+   1.0
+  ],
+  "formal_by_solved": {
+   "proved": {
+    "rows": 793,
+    "solved": 793
+   },
+   "partial": {
+    "rows": 16,
+    "solved": 3
+   },
+   "statement": {
+    "rows": 2794,
+    "solved": 1407
+   },
+   "none": {
+    "rows": 1606,
+    "solved": 262
+   }
+  },
+  "logistic_solved_on_formal": {
+   "intercept": -2.3787,
+   "coefficient": 6.8784,
+   "auc_formal_alone": 0.7728
+  },
+  "verdict": "declared default"
+ },
+ "proposed": {
+  "tau_youden": {
+   "threshold": 0.832,
+   "inside": 2789,
+   "outside": 2420,
+   "solved": 1694,
+   "reachable": 1095,
+   "beyond": 2420,
+   "unsampled": 0,
+   "rows_changing_zone": 1339,
+   "branches_ranked": 8,
+   "branch_rank_correlation": 0.9271,
+   "growth_top_overlap": 0.0,
+   "growth_top_kept": 0,
+   "edge_top_overlap": 0.0,
+   "edge_top_kept": 0,
+   "unsampled_branches": []
+  },
+  "tau_fixed_fpr_0.1": {
+   "threshold": 0.861,
+   "inside": 2161,
+   "outside": 3048,
+   "solved": 1694,
+   "reachable": 467,
+   "beyond": 3048,
+   "unsampled": 0,
+   "rows_changing_zone": 1967,
+   "branches_ranked": 8,
+   "branch_rank_correlation": 0.8729,
+   "growth_top_overlap": 0.0,
+   "growth_top_kept": 0,
+   "edge_top_overlap": 0.0,
+   "edge_top_kept": 0,
+   "unsampled_branches": []
+  },
+  "min_branch_solved_20": {
+   "threshold": 0.762,
+   "inside": 4128,
+   "outside": 1081,
+   "solved": 1694,
+   "reachable": 2434,
+   "beyond": 952,
+   "unsampled": 129,
+   "rows_changing_zone": 129,
+   "branches_ranked": 7,
+   "branch_rank_correlation": 1.0,
+   "growth_top_overlap": 0.0811,
+   "growth_top_kept": 3,
+   "edge_top_overlap": 1.0,
+   "edge_top_kept": 20,
+   "unsampled_branches": [
+    "mind"
+   ]
+  }
+ }
+}
