@@ -1,6 +1,6 @@
 import { Database, constants } from "bun:sqlite";
 import { createHash } from "node:crypto";
-import { createReadStream, createWriteStream, existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { createReadStream, createWriteStream, existsSync, lstatSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { Transform } from "node:stream";
 import { pipeline } from "node:stream/promises";
@@ -17,6 +17,11 @@ export const DECK_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
 export const DECK_LANGUAGE = /^[a-z]{2,3}$/;
 export const SHA256 = /^[0-9a-f]{64}$/;
 export const MANIFEST_BYTES = 64 * 1024;
+export const MAX_DECK_FILE_BYTES = 256 * 1024 * 1024;
+export const MAX_DECK_DB_BYTES = 1024 * 1024 * 1024;
+export const MAX_DECK_CARDS = 5_000_000;
+export const MAX_INSTALLED_BYTES = 8 * 1024 * 1024 * 1024;
+export const SEARCH_ROW_CAP = 5000;
 export const RESTART_NOTE = "Restart Bucket to see it in Learn.";
 
 export type DeckKind = (typeof DECK_KINDS)[number];
@@ -106,6 +111,9 @@ export function checkManifest(raw: unknown): DeckManifest {
   if (!file || basename(file) !== file || file.startsWith(".")) throw new DeckError("the deck manifest names no deck file beside it");
   if (!SHA256.test(text(m.sha256)) || !SHA256.test(text(m.db_sha256))) throw new DeckError("the deck manifest gives no sha256 checksums");
   if (whole(m.bytes) <= 0 || whole(m.db_bytes) <= 0) throw new DeckError("the deck manifest gives no file sizes");
+  if ((m.bytes as number) > MAX_DECK_FILE_BYTES) throw new DeckError(`the deck file is declared at ${sizeText(m.bytes as number)}; Bucket takes deck files up to ${sizeText(MAX_DECK_FILE_BYTES)}`);
+  if ((m.db_bytes as number) > MAX_DECK_DB_BYTES) throw new DeckError(`the deck unpacks to ${sizeText(m.db_bytes as number)}; Bucket takes decks up to ${sizeText(MAX_DECK_DB_BYTES)}`);
+  if (cards > MAX_DECK_CARDS) throw new DeckError(`the deck declares ${cards} cards; Bucket takes decks up to ${MAX_DECK_CARDS}`);
   if (!text(m.version)) throw new DeckError("the deck manifest gives no version");
   if (!/^\d{4}-\d{2}-\d{2}$/.test(text(m.built))) throw new DeckError("the deck manifest gives no built date");
   const numbers: Record<string, number> = {};
@@ -137,8 +145,59 @@ export function checkManifest(raw: unknown): DeckManifest {
   };
 }
 
+export function isLink(path: string): boolean {
+  try {
+    return lstatSync(path).isSymbolicLink();
+  } catch {
+    return false;
+  }
+}
+
+export function refuseLink(path: string): void {
+  if (isLink(path)) throw new DeckError(`${path} is a link to another place; Bucket reads deck files and folders only where they are`);
+}
+
+const squash = (sql: string) => sql.replace(/\s+/g, " ").replace(/\s*([(),=])\s*/g, "$1").replace(/["'`]/g, "'").trim().toLowerCase();
+
+export interface SchemaObject {
+  type: string;
+  sql: string;
+}
+
+export const WORD_DECK_SCHEMA: Readonly<Record<string, SchemaObject>> = {
+  meta: { type: "table", sql: "create table meta(k text primary key, v text not null) without rowid" },
+  words: {
+    type: "table",
+    sql: "create table words(id integer primary key, surface text not null, folded text not null, ipa text not null, pos text not null, meaning text not null, head text not null, tier text not null, kind text not null, shared integer not null, translations text not null, etymology text not null)",
+  },
+  words_head: { type: "index", sql: "create index words_head on words(head, id)" },
+  words_folded: { type: "index", sql: "create index words_folded on words(folded, id)" },
+  words_fts: { type: "table", sql: "create virtual table words_fts using fts5(surface, folded, meaning, content='words', content_rowid='id', tokenize='unicode61 remove_diacritics 2')" },
+  words_fts_data: { type: "table", sql: "create table 'words_fts_data'(id integer primary key, block blob)" },
+  words_fts_idx: { type: "table", sql: "create table 'words_fts_idx'(segid, term, pgno, primary key(segid, term)) without rowid" },
+  words_fts_docsize: { type: "table", sql: "create table 'words_fts_docsize'(id integer primary key, sz blob)" },
+  words_fts_config: { type: "table", sql: "create table 'words_fts_config'(k primary key, v) without rowid" },
+};
+
+export const DECK_SCHEMAS: Readonly<Record<DeckKind, Readonly<Record<string, SchemaObject>> | null>> = { words: WORD_DECK_SCHEMA, cards: null };
+
+export function checkDeckSchema(db: Database, m: Pick<DeckManifest, "id" | "kind">): void {
+  const want = DECK_SCHEMAS[m.kind];
+  if (!want) throw new DeckError(`this Bucket does not read ${m.kind} decks yet; run bkt update`);
+  const found = db.query<{ type: string; name: string; sql: string | null }, []>("select type, name, sql from sqlite_master").all();
+  const seen = new Set<string>();
+  for (const o of found) {
+    const expected = want[o.name];
+    if (!expected || seen.has(o.name)) throw new DeckError(`the deck file for ${m.id} holds a ${o.type} named ${JSON.stringify(o.name).slice(0, 60)}, which a ${m.kind} deck does not have`);
+    if (o.type !== expected.type || squash(o.sql ?? "") !== squash(expected.sql)) throw new DeckError(`the deck file for ${m.id} defines ${o.name} in a way a ${m.kind} deck does not`);
+    seen.add(o.name);
+  }
+  for (const name of Object.keys(want)) if (!seen.has(name)) throw new DeckError(`the deck file for ${m.id} lacks ${name}`);
+}
+
 export function readManifest(path: string): DeckManifest {
   let raw: unknown;
+  refuseLink(path);
   try {
     if (statSync(path).size > MANIFEST_BYTES) throw new DeckError(`${path} is too large for a deck manifest`);
     raw = JSON.parse(readFileSync(path, "utf8"));
@@ -166,7 +225,22 @@ export async function fileSha256(path: string): Promise<string> {
 }
 
 export function openDeckDb(path: string): Database {
-  return new Database(`${pathToFileURL(path).href}?immutable=1`, constants.SQLITE_OPEN_READONLY | constants.SQLITE_OPEN_URI);
+  refuseLink(path);
+  const db = new Database(`${pathToFileURL(path).href}?immutable=1`, constants.SQLITE_OPEN_READONLY | constants.SQLITE_OPEN_URI);
+  db.exec("pragma trusted_schema = off");
+  db.exec("pragma query_only = on");
+  return db;
+}
+
+export function openCheckedDeck(path: string, m: Pick<DeckManifest, "id" | "kind">): Database {
+  const db = openDeckDb(path);
+  try {
+    checkDeckSchema(db, m);
+  } catch (e) {
+    db.close();
+    throw e;
+  }
+  return db;
 }
 
 export function deckMeta(db: Database): Record<string, string> {
@@ -181,32 +255,41 @@ function checkInside(path: string, m: DeckManifest): void {
     throw new DeckError(`the deck file for ${m.id} does not open as a database`);
   }
   try {
+    checkDeckSchema(db, m);
     const meta = deckMeta(db);
     if (!text(meta.licence)) throw new DeckError(`the deck file for ${m.id} carries no licence inside`);
     if (meta.licence !== m.licence) throw new DeckError(`the deck file for ${m.id} carries the licence ${meta.licence}; its manifest says ${m.licence}`);
     if (!text(meta.source)) throw new DeckError(`the deck file for ${m.id} carries no source inside`);
-    const table = m.kind === "words" ? "words" : "cards";
-    const n = db.query<{ n: number }, []>(`select count(*) n from ${table}`).get()!.n;
+    const n = db.query<{ n: number }, []>("select count(*) n from words").get()!.n;
     if (n !== m.counts.cards) throw new DeckError(`the deck file for ${m.id} holds ${n} cards; its manifest says ${m.counts.cards}`);
   } catch (e) {
     if (e instanceof DeckError) throw e;
-    throw new DeckError(`the deck file for ${m.id} does not have the tables a ${m.kind} deck needs`);
+    throw new DeckError(`the deck file for ${m.id} does not read as a ${m.kind} deck`);
   } finally {
     db.close();
   }
 }
 
 export async function installDeck(home: string, source: string): Promise<DeckManifest> {
+  refuseLink(source);
   const from = manifestPath(source);
+  refuseLink(dirname(from));
   if (!existsSync(from)) throw new DeckError(`no ${DECK_MANIFEST} beside ${source}; a deck is a folder with a manifest and one deck file`);
   const m = readManifest(from);
   const packed = join(dirname(from), m.file);
   if (!existsSync(packed)) throw new DeckError(`${m.file} is missing beside the manifest`);
+  refuseLink(packed);
+  if (!statSync(packed).isFile()) throw new DeckError(`${m.file} is not a file`);
   if (statSync(packed).size !== m.bytes) throw new DeckError(`${m.file} is ${statSync(packed).size} bytes; its manifest says ${m.bytes}. The file was changed or cut short.`);
   const sum = await fileSha256(packed);
   if (sum !== m.sha256) throw new DeckError(`${m.file} has checksum ${sum.slice(0, 12)}; its manifest says ${m.sha256.slice(0, 12)}. The file was changed, so Bucket left it alone.`);
   const root = decksDir(home);
+  refuseLink(home);
+  refuseLink(root);
   mkdirSync(root, { recursive: true, mode: 0o700 });
+  refuseLink(join(root, m.id));
+  const held = listInstalled(home).filter((d) => d.manifest.id !== m.id).reduce((n, d) => n + d.manifest.db_bytes, 0);
+  if (held + m.db_bytes > MAX_INSTALLED_BYTES) throw new DeckError(`installed decks would take ${sizeText(held + m.db_bytes)}; Bucket keeps up to ${sizeText(MAX_INSTALLED_BYTES)}. Remove a deck first.`);
   const tmp = join(root, `.${m.id}.${process.pid}.tmp`);
   rmSync(tmp, { recursive: true, force: true });
   mkdirSync(tmp, { mode: 0o700 });
@@ -251,6 +334,7 @@ export function listInstalled(home: string): InstalledDeck[] {
   for (const name of names) {
     const dir = join(root, name);
     try {
+      if (isLink(dir) || isLink(join(dir, DECK_DB))) continue;
       const manifest = readManifest(join(dir, DECK_MANIFEST));
       if (manifest.id === name && existsSync(join(dir, DECK_DB))) out.push({ manifest, dir, db: join(dir, DECK_DB) });
     } catch {
@@ -282,7 +366,7 @@ export function listAvailable(source: string): { manifest: DeckManifest; path: s
   const out: { manifest: DeckManifest; path: string }[] = [];
   for (const name of [".", ...names]) {
     const file = join(source, name, DECK_MANIFEST);
-    if (!existsSync(file)) continue;
+    if (!existsSync(file) || isLink(join(source, name)) || isLink(file)) continue;
     try {
       out.push({ manifest: readManifest(file), path: dirname(file) });
     } catch {

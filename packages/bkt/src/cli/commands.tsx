@@ -19,10 +19,9 @@ import { analysisRows, colorEnabled, interactive, JSON_SHAPES, jsonLine, pick, s
 import { countOf, keyringOptions, NoDataError, noteOptions, searchOptions, type Invocation, UsageError } from "./run";
 import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
 import { daily, learnDue, learnPath, learnWordPath, quizJson, reviewJson, screen, wordBackend } from "./learn";
-import { DeckWordBook, searchWords, wordBookFor, wordHitLine } from "../core/word-decks";
-import { wordCredit } from "../core/words";
+import { creditLine, DeckWordBook, searchWords, wordBookFor, wordHitLine } from "../core/word-decks";
 import { deckLine, deckRow, deckRows, DeckError, decksDir, installDeck, removeDeck, RESTART_NOTE } from "../decks";
-import { deckRoutes } from "../deck-routes";
+import { creditedWordRoutes, deckRoutes } from "../deck-routes";
 import type { WordPack } from "../pack/words";
 import { WordSession, wordRoutes } from "../words";
 import { localDay } from "../chat-sources";
@@ -59,7 +58,7 @@ import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
-import { startServe } from "../serve";
+import { startServe, type Route } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
 import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
@@ -107,8 +106,13 @@ async function analyzeCmd(argv: string[]): Promise<number> {
 let heldBook: DeckWordBook | null = null;
 
 function wordBook(): DeckWordBook {
-  heldBook ??= wordBookFor(wordPack as WordPack, dataDir(), { onError: (m) => console.error(`bkt: ${m}`) });
+  heldBook ??= wordBookFor(wordPack as unknown as WordPack, dataDir(), { onError: (m) => console.error(`bkt: ${m}`) });
   return heldBook;
+}
+
+function servedWordRoutes(workQuiz: WorkQuizStore): Record<string, Route> {
+  const session = new WordSession(wordBook(), workQuiz);
+  return creditedWordRoutes(wordRoutes(session), () => session, wordBook);
 }
 
 const DECK_COMMANDS: Record<string, "list" | "install" | "remove"> = {
@@ -123,15 +127,11 @@ const DECK_COMMANDS: Record<string, "list" | "install" | "remove"> = {
 async function decks(inv: Invocation, json: boolean): Promise<number> {
   const action = DECK_COMMANDS[inv.command.name];
   const home = dataDir();
-  const credit = wordCredit(wordPack as WordPack).text;
   try {
     if (action === "list") {
       const rows = deckRows(home, inv.positionals[0] ?? process.env.BKT_DECK_SOURCE ?? null);
-      if (json) console.log(jsonLine("decks list", { decks: rows, credit }));
-      else {
-        for (const r of rows) console.log(deckLine(r));
-        if (rows.length) console.log(credit);
-      }
+      if (json) console.log(jsonLine("decks list", { decks: rows }));
+      else for (const r of rows) console.log(deckLine(r));
       if (!rows.length) throw new NoDataError("no deck is installed; run bkt decks install <file-or-folder>");
       return EXIT.ok;
     }
@@ -182,9 +182,9 @@ async function learn(inv: Invocation, json: boolean): Promise<number> {
   const day = inv.positionals[0] ?? localDay(Date.now());
   const run = (b: LearnBackend) => {
     if (name === "learn due") return learnDue(b, size, json);
-    if (name === "learn path" && language) return learnWordPath(b, language, credit, json);
+    if (name === "learn path" && language) return learnWordPath(b, language, book.creditText([language]), json);
     if (name === "learn path") return learnPath(b, deck, deck ? (content.atoms?.[deck.id] ?? []) : [], json, undefined, credit);
-    if (name === "learn quiz" && language) return json ? quizJson(wordBackend(b, language), size, inv.command, undefined, credit) : screen("quiz", wordBackend(b, language), size, credit);
+    if (name === "learn quiz" && language) return json ? quizJson(wordBackend(b, language), size, inv.command, undefined, book.creditText([language])) : screen("quiz", wordBackend(b, language), size, book.creditText([language]));
     if (name === "learn quiz") return json ? quizJson(b, size, inv.command) : screen("quiz", b, size);
     if (name === "learn review") return json ? reviewJson(b, size, inv.command) : screen("review", b, size);
     return daily(b, day, json, inv.command);
@@ -267,8 +267,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
-      ...wordRoutes(new WordSession(wordBook(), workQuiz)),
-      ...deckRoutes({ home: dir, book: wordBook, decks: () => wordBook().files }),
+      ...servedWordRoutes(workQuiz),
+      ...deckRoutes({ home: dir, book: wordBook, onError: (m) => console.error(`bkt serve: ${m}`) }),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
@@ -356,7 +356,7 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
     keyring: () => platform.keyring(),
     pack: pack as Pack,
     explore: explorePack as unknown as ExplorePack,
-    words: wordPack as WordPack,
+    words: wordPack as unknown as WordPack,
     uiDir: uiDir(env),
     runtimeDir: runtimeDir(env),
     tty,
@@ -380,11 +380,11 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
 function wordSearch(inv: Invocation, json: boolean): number {
   const o = searchOptions(inv);
   const book = wordBook();
-  const found = searchWords(book, book.files, o.q, { limit: o.limit, lang: typeof inv.values.lang === "string" ? inv.values.lang : null });
-  if (json) console.log(jsonLine("search words", { ...found, credit: found.credit.text }));
+  const found = searchWords(book, book.files, o.q, { limit: o.limit, lang: typeof inv.values.lang === "string" ? inv.values.lang : null, onError: (m) => console.error(`bkt: ${m}`) });
+  if (json) console.log(jsonLine("search words", found));
   else if (found.hits.length) {
     for (const h of found.hits) console.log(wordHitLine(h));
-    console.log(found.credit.text);
+    for (const credit of found.credits) console.log(creditLine(credit));
   }
   if (!found.hits.length) throw new NoDataError(`no word matches ${o.q} in ${found.words.toLocaleString("en-US")} words across ${found.languages} languages`);
   return EXIT.ok;
@@ -472,6 +472,11 @@ export async function execute(inv: Invocation): Promise<number> {
   }
   if (name === "doctor") return doctor(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
+  if (name === "licences") {
+    const l = wordBook().licence;
+    for (const line of [l.credit.text, l.changes, `${l.title}: ${l.credit.licenceHref}`, "", l.text.trimEnd()]) console.log(line);
+    return EXIT.ok;
+  }
   if (name === "search") return search(inv, json);
   if (name === "canon show") return canonShow(inv, json);
   if (name === "atlas frontier") {

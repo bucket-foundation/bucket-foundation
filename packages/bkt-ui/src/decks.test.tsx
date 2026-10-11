@@ -12,7 +12,7 @@ afterEach(() => {
   document.body.innerHTML = "";
 });
 
-const FORMAT_WORDS = /json|sqlite|sha256|\bzstd\b|\bfts\b|\bid\b|polingual-|bundled|manifest|undefined|null|NaN|\b[0-9a-f]{12}\b|\/home\//i;
+const FORMAT_WORDS = /json|sqlite|sha256|\bzstd\b|\bfts\b|\bid\b|polingual-|\bbundled\b|open-ja|manifest|undefined|null|NaN|\b[0-9a-f]{12}\b|\/home\//i;
 
 async function render(node: React.ReactElement) {
   const { act } = await import("react");
@@ -74,8 +74,12 @@ describe("word search box", () => {
     const text = v.host.textContent!;
     expect(text).toContain("4 matches in 780,207 words across 27 languages");
     const credit = v.host.querySelector(".word-hits .word-credit")!;
-    expect(credit.textContent).toContain("Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0");
-    expect(Array.from(credit.querySelectorAll("a")).map((a) => a.getAttribute("href"))).toEqual(["https://en.wiktionary.org", "https://kaikki.org", "https://creativecommons.org/licenses/by-sa/3.0/"]);
+    expect(Array.from(credit.querySelectorAll(".deck-credit")).map((c) => c.textContent!.trim())).toEqual([
+      "Spanish words: Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, curated by Bucket Foundation.",
+      "Words that came with Bucket: Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0.",
+      "Japanese words: Open Word List, CC0 1.0, curated by Ada Example.",
+    ]);
+    expect(rows[3].querySelector("a")).toBeNull();
     expect(FORMAT_WORDS.test(text)).toBe(false);
     await v.unmount();
   });
@@ -83,13 +87,27 @@ describe("word search box", () => {
   test("no match and a failed search each read as one plain sentence, with the attribution kept on results", async () => {
     const none = await search({ wordSearch: async () => NO_WORD_HITS_BODY }, "qqq");
     expect(none.host.textContent).toContain("No word matches. Bucket looked in 780,207 words across 27 languages.");
-    expect(none.host.querySelector(".word-credit")).not.toBeNull();
+    expect(none.host.querySelectorAll(".deck-credit").length).toBe(0);
     expect(none.host.querySelectorAll(".word-hit").length).toBe(0);
     await none.unmount();
     const failed = await search({ wordSearch: () => Promise.reject(new ApiError("SQLITE_ERROR: fts5 syntax error near x", 500)) }, "x");
     expect(failed.host.querySelector(".error")!.textContent).toBe("Word search did not run.");
     expect(failed.host.textContent).not.toContain("SQLITE");
     await failed.unmount();
+  });
+});
+
+describe("attribution", () => {
+  test("a page with deck words lists each deck's own source and licence after the bundled credit", async () => {
+    const { WordAttribution } = await import("./views/Words");
+    const { WORD_CREDIT } = await import("./fixtures/word-lessons");
+    const v = await render(<WordAttribution credit={{ ...WORD_CREDIT, also: [WORD_HITS.credits[2], WORD_HITS.credits[0]] }} />);
+    expect(Array.from(v.host.querySelectorAll(".deck-credit")).map((c) => c.textContent!.trim())).toEqual(["Japanese words: Open Word List, CC0 1.0, curated by Ada Example.", "Spanish words: Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, curated by Bucket Foundation."]);
+    expect(Array.from(v.host.querySelectorAll(".deck-credit")).map((c) => c.querySelector("a")?.getAttribute("href") ?? null)).toEqual([null, "https://creativecommons.org/licenses/by-sa/3.0/"]);
+    await v.unmount();
+    const plain = await render(<WordAttribution credit={WORD_CREDIT} />);
+    expect(plain.host.querySelectorAll(".deck-credit").length).toBe(0);
+    await plain.unmount();
   });
 });
 
@@ -104,7 +122,7 @@ describe("installed decks in Settings", () => {
     expect(rows[0]).toContain("Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0 · curated by Bucket Foundation");
     expect(rows[1]).toContain("24,278 words · 5.0 MB");
     expect(v.host.querySelector(".deck-rows a")!.getAttribute("href")).toBe("https://creativecommons.org/licenses/by-sa/3.0/");
-    expect(v.host.querySelector(".word-credit")!.textContent).toContain("Wiktionary");
+    expect(v.host.querySelector(".word-credit")).toBeNull();
     expect(FORMAT_WORDS.test(v.host.textContent!)).toBe(false);
     await v.unmount();
   });

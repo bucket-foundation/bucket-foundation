@@ -10,7 +10,7 @@ import REPORT from "./fixtures/analysis-report.json";
 import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
 import { DECKS_BODY, NO_DECKS_BODY } from "./fixtures/decks";
-import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_QUESTION } from "./fixtures/word-lessons";
+import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_LICENCE, WORD_QUESTION } from "./fixtures/word-lessons";
 
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
 mock.module("@/components/research-os/views/SoftwareAtlas", () => ({ default: () => <div>software</div> }));
@@ -238,9 +238,10 @@ function empty(): Stub {
     notes: async () => [],
     history: async () => ({ snapshot: null, activity: days(() => 0) }),
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, languages: [], ready: false, answered: 0, correct: 0 }),
-    settings: async () => ({ version: "0.5.0", build: null, dataDir: "/home/ada/.local/share/bkt", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
+    settings: async () => ({ version: "0.5.0", build: null, dataDir: "/data/bucket", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
+    wordLicence: async () => WORD_LICENCE,
     wordDecks: async () => NO_WORD_DECKS,
     installedDecks: async () => NO_DECKS_BODY,
     wordLessons: async () => ({ ...WORD_LESSON_LIST, lessons: [] }),
@@ -281,7 +282,7 @@ function populated(over: Stub = {}): Stub {
     wordLesson: async () => LESSON_PAGE,
     wordConcepts: async () => CONCEPT_PAGE,
     wordQuiz: async () => ({ questions: [WORD_QUESTION], credit: WORD_CREDIT }),
-    settings: async () => ({ version: "0.5.0", build: { commit: "e61d7174b", date: "2026-10-08" }, dataDir: "/home/ada/.local/share/bkt", notify: { supported: true, on: true, at: "08:53" }, notifyDefault: "08:53" }),
+    settings: async () => ({ version: "0.5.0", build: { commit: "e61d7174b", date: "2026-10-08" }, dataDir: "/data/bucket", notify: { supported: true, on: true, at: "08:53" }, notifyDefault: "08:53" }),
     exploreSaved: async () => ({ v: 1, items: [SAVED_ITEM], noticeSeen: true }),
     putExploreSaved: async (s: unknown) => s,
     canonAbout: async () => ({ version: "c85d792ca773", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] }),
@@ -329,6 +330,7 @@ function failing(): Stub {
     workStatus: fail("git could not read that folder", 400),
     settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
+    wordLicence: fail("data key does not match", 500),
     wordDecks: fail("data key does not match", 500),
     installedDecks: fail("data key does not match", 500),
     wordLessons: fail("unknown language; run bkt learn path for the list", 404),
@@ -382,7 +384,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -459,9 +461,8 @@ describe("navigation", () => {
     const setNotify = async (on: boolean, at?: string) => (sent.push([on, at]), { notify: { supported: true, on, at: on ? (at ?? "08:53") : null } });
     const on = await mount({ name: "settings" }, populated({ setNotify }));
     const text = on.text();
-    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/home/ada/.local/share/bkt", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
+    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/data/bucket", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
     for (const want of ["Installed decks", "Spanish words", "755,090 words · 96.0 MB", "Arabic words", "24,278 words · 5.0 MB", "Wiktionary via Kaikki (kaikki.org)", "CC-BY-SA 3.0", "curated by Bucket Foundation"]) expect(text).toContain(want);
-    expect(on.host.querySelector(".installed-decks .word-credit")!.textContent).toContain("Wiktionary");
     expect(text).not.toContain("terminal");
     expect(text).not.toContain("bkt quiz");
     const box = on.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;

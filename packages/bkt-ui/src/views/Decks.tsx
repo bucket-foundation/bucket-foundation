@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Api, DecksBody, InstalledDeckRow, WordHit, WordSearch } from "../api";
-import { Ipa, WordAttribution, WordForm } from "./Words";
+import { DeckCredits, Ipa, WordForm } from "./Words";
 
 export const WORD_SEARCH_LABEL = "Search words";
 export const WORD_SEARCH_HINT = "A word or a meaning";
@@ -30,9 +30,11 @@ function Hit({ h }: { h: WordHit }) {
       <span className="word-hit-meaning" dir="ltr">
         {h.meaning}
       </span>
-      <a className="small" href={h.href} target="_blank" rel="noreferrer noopener">
-        Full entry
-      </a>
+      {h.href && (
+        <a className="small" href={h.href} target="_blank" rel="noreferrer noopener">
+          Full entry
+        </a>
+      )}
     </li>
   );
 }
@@ -85,7 +87,9 @@ export function WordSearchBox({ api }: { api: Pick<Api, "wordSearch"> }) {
               <Hit key={`${h.lang}:${h.word}`} h={h} />
             ))}
           </ul>
-          <WordAttribution credit={found.credit} />
+          <p className="muted small word-credit">
+            <DeckCredits credits={found.credits} />
+          </p>
         </div>
       )}
     </div>
@@ -134,7 +138,6 @@ export function InstalledDecks({ api }: { api: Pick<Api, "installedDecks"> }) {
             ))}
           </ul>
           <p className="muted small">{DECKS_NOTE}</p>
-          <WordAttribution credit={body.credit} />
         </>
       )}
     </article>

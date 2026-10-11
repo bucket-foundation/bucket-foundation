@@ -4,15 +4,15 @@ import type { CanonGraph } from "@/lib/canon-graph-core";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
 import type { ProductionsSnapshot } from "@ros/productions-snapshot";
-import type { ConceptPage, LessonPage, WordCredit } from "../../bkt/src/core/words";
+import type { ConceptPage, LessonPage, WordCredit, WordLicence } from "../../bkt/src/core/words";
 import type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 import { siteFetch } from "./site-fetch";
 
-export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordView } from "../../bkt/src/core/words";
+export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordLicence, WordView } from "../../bkt/src/core/words";
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 export type { DeckRow as InstalledDeckRow } from "../../bkt/src/decks";
 export type { DecksBody } from "../../bkt/src/deck-routes";
-export type { WordHit, WordSearch } from "../../bkt/src/core/word-decks";
+export type { CreditWithDecks, DeckCredit, WordHit, WordSearch } from "../../bkt/src/core/word-decks";
 import type { DecksBody } from "../../bkt/src/deck-routes";
 import type { WordSearch } from "../../bkt/src/core/word-decks";
 
@@ -436,6 +436,10 @@ export class Api {
 
   workSetLanguages(languages: string[]) {
     return this.call<{ languages: string[] }>("/local/work-quiz/languages", { method: "POST", body: { languages } });
+  }
+
+  wordLicence() {
+    return this.call<WordLicence>("/local/words/licence");
   }
 
   wordDecks() {
