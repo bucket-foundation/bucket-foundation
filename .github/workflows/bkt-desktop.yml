@@ -121,7 +121,7 @@ jobs:
             [ -n "${!v}" ] || unset "$v"
           done
           bun scripts/build-config.ts "$RUNNER_TEMP/tauri.release.json"
-          bunx tauri build --bundles ${{ matrix.bundles }} --config "$RUNNER_TEMP/tauri.release.json"
+          bunx tauri build --verbose --bundles ${{ matrix.bundles }} --config "$RUNNER_TEMP/tauri.release.json"
       - name: collect bundles under their release names
         working-directory: packages/bkt-desktop
         run: |
