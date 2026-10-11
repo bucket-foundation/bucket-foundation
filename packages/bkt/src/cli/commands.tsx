@@ -24,6 +24,7 @@ import { DeckWordBook, searchWords, wordBookFor, wordHitLine } from "../core/wor
 import { wordCredit } from "../core/words";
 import { deckLine, deckRow, deckRows, DeckError, decksDir, removeDeck, RESTART_NOTE } from "../decks";
 import { deckRoutes } from "../deck-routes";
+import { LINK_BODY_BYTES, PolingualLink, polingualLinkRoutes, pythonEmbedder } from "../polingual-link";
 import { exportDeck, installAny } from "../deck-file";
 import { IMPORT_BODY_BYTES as DECK_IMPORT_BYTES, Library, libraryRoutes, type Catalog } from "../library";
 import type { WordPack } from "../pack/words";
@@ -292,6 +293,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...liveWordRoutes(workQuiz),
       ...deckRoutes({ home: dir, book: wordBook, decks: () => wordBook().files }),
       ...libraryRoutes(new Library({ home: dir, bundled: deckCatalog as unknown as Catalog, url: process.env.BKT_DECK_CATALOG_URL, onChange: dropWordBook }), (m) => console.error(`bkt serve: deck library: ${m}`)),
+      ...polingualLinkRoutes(new PolingualLink({ dir, key: session.key, credit: wordCredit(wordPack as WordPack), embed: pythonEmbedder(platformFor().python()), onError: (m) => console.error(`bkt serve: word database: ${m.split("\n")[0].slice(0, 160)}`) })),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
@@ -303,6 +305,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/jobs": JOB_BODY_BYTES,
       "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
       "POST /local/settings/notify": NOTIFY_BODY_BYTES,
+      "POST /local/polingual-link": LINK_BODY_BYTES,
       "POST /local/library/import": DECK_IMPORT_BYTES,
       "POST /local/notes": NOTES_BODY_BYTES,
       "POST /local/explore/saved": SAVED_BODY_BYTES,
