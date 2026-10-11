@@ -9,7 +9,7 @@ import { KeyringHeldError, REMEDY, type Keyring } from "./keyring";
 import type { Pack } from "./pack/export";
 import type { ExplorePack } from "./pack/explore";
 import { SHARE_ALIKE, wordPackChecksum, type WordPack } from "./pack/words";
-import { brokenDecks, deckMeta, decksDir, listInstalled, openDeckDb, sizeText } from "./decks";
+import { brokenDecks, deckMeta, decksDir, listInstalled, openCheckedDeck, sizeText } from "./decks";
 import type { Env, ExecSync, Platform } from "./platform";
 import { SHORT_FIELDS } from "./short-fields";
 import { SCHEMA_VERSION } from "./store";
@@ -182,7 +182,7 @@ function installedDecks(d: DoctorDeps): Check {
     const size = statSync(deck.db).size;
     if (size !== m.db_bytes) return fail("installed-decks", name, `${m.id} is ${size} bytes; its manifest says ${m.db_bytes}.`, fix);
     try {
-      const db = openDeckDb(deck.db);
+      const db = openCheckedDeck(deck.db, m);
       try {
         const meta = deckMeta(db);
         if (!meta.licence || meta.licence !== m.licence) return fail("installed-decks", name, `${m.id} carries no licence that matches its manifest.`, fix);

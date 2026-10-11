@@ -26,6 +26,7 @@ export const LIBRARY: LibraryBody = {
   refreshedAt: null,
   offline: false,
   from: "bundled",
+  signed: true,
   decks: [
     row("polingual-es", "Spanish words", 755090, 30, "available"),
     row("polingual-de", "German words", 333622, 17, "installed"),
@@ -36,4 +37,4 @@ export const LIBRARY: LibraryBody = {
   ],
 };
 
-export const EMPTY_LIBRARY: LibraryBody = { built: "2026-10-11", refreshedAt: null, offline: true, from: "bundled", decks: [] };
+export const EMPTY_LIBRARY: LibraryBody = { built: "1970-01-01", refreshedAt: null, offline: true, from: "bundled", signed: false, decks: [] };

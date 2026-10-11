@@ -127,6 +127,7 @@ export const TABLE: CommandSpec[] = [
     options: { check: { type: "boolean", help: "check only; this is the default" } },
   },
   { name: "version", summary: "print the version", json: true },
+  { name: "licences", summary: "print the credit, the changes and the licence text of the bundled word list" },
   { name: "learn due", summary: "list the cards due now", session: true, json: true, options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
   { name: "learn path", summary: "show each deck's progress, or the topics of one deck in order; language decks hold word lessons", args: "[deck]", positionals: [0, 1], session: true, json: true },
   {
@@ -142,7 +143,7 @@ export const TABLE: CommandSpec[] = [
   { name: "decks list", summary: "list installed decks and the decks in a folder that are ready to install", args: "[folder]", positionals: [0, 1], json: true, options: { catalog: { type: "boolean", help: "add the curated decks from the catalog that came with bkt" } } },
   { name: "decks install", summary: "check a deck file or folder against its manifest and checksum, then install it", args: "<file-or-folder>", positionals: [1, 1], json: true },
   { name: "decks remove", summary: "remove an installed deck by id or language", args: "<deck>", positionals: [1, 1], json: true },
-  { name: "decks export", summary: "write an installed deck to one file you can share", args: "<deck> <file>", positionals: [2, 2], json: true },
+  { name: "decks export", summary: "write an installed deck to one file you can share", args: "<deck> <file>", positionals: [2, 2], json: true, options: { replace: { type: "boolean", help: "replace the file when it already exists" } } },
   { name: "words list", summary: "the same as decks list", args: "[folder]", positionals: [0, 1], json: true },
   { name: "words install", summary: "the same as decks install", args: "<file-or-folder>", positionals: [1, 1], json: true },
   { name: "words remove", summary: "the same as decks remove", args: "<language>", positionals: [1, 1], json: true },

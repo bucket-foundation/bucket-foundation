@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import type { Api, DecksBody, InstalledDeckRow, WordHit, WordSearch } from "../api";
-import { Ipa, WordAttribution, WordForm } from "./Words";
+import { DeckCredits, Ipa, WordForm } from "./Words";
 
 export const WORD_SEARCH_LABEL = "Search words";
 export const WORD_SEARCH_HINT = "A word or a meaning";
 export const NO_WORD_HITS = "No word matches.";
 export const WORD_SEARCH_FAILED = "Word search did not run.";
+export const LIBRARY_LINK = "Add more decks from the Library";
 export const NO_DECKS = "No extra deck is installed. Bucket teaches from the words it ships with.";
 export const DECKS_FAILED = "The installed decks did not load.";
 export const DECKS_NOTE = "Installed decks add words to the Languages section of Learn.";
@@ -30,9 +31,11 @@ function Hit({ h }: { h: WordHit }) {
       <span className="word-hit-meaning" dir="ltr">
         {h.meaning}
       </span>
-      <a className="small" href={h.href} target="_blank" rel="noreferrer noopener">
-        Full entry
-      </a>
+      {h.href && (
+        <a className="small" href={h.href} target="_blank" rel="noreferrer noopener">
+          Full entry
+        </a>
+      )}
     </li>
   );
 }
@@ -85,7 +88,9 @@ export function WordSearchBox({ api }: { api: Pick<Api, "wordSearch"> }) {
               <Hit key={`${h.lang}:${h.word}`} h={h} />
             ))}
           </ul>
-          <WordAttribution credit={found.credit} />
+          <p className="muted small word-credit">
+            <DeckCredits credits={found.credits} />
+          </p>
         </div>
       )}
     </div>
@@ -112,6 +117,9 @@ export function InstalledDecks({ api }: { api: Pick<Api, "installedDecks"> }) {
       <h2>Installed decks</h2>
       {failed && <p className="error">{DECKS_FAILED}</p>}
       {body && body.decks.length === 0 && <p className="muted">{NO_DECKS}</p>}
+      <p className="muted small">
+        <a href="#/library">{LIBRARY_LINK}</a>
+      </p>
       {body && body.decks.length > 0 && (
         <>
           <ul className="deck-rows">
@@ -134,7 +142,6 @@ export function InstalledDecks({ api }: { api: Pick<Api, "installedDecks"> }) {
             ))}
           </ul>
           <p className="muted small">{DECKS_NOTE}</p>
-          <WordAttribution credit={body.credit} />
         </>
       )}
     </article>

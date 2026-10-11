@@ -11,9 +11,24 @@ export const REFRESH_TROUBLE = "Bucket could not reach bucket.foundation. The li
 export const ACTION_TROUBLE = "That did not work. Try again.";
 export const IMPORT_TROUBLE = "Bucket could not use that file. It is not a deck file, or it was changed after it was made.";
 export const IMPORT_NO_LICENCE = "That deck does not say what licence it is shared under, so Bucket did not add it.";
+export const UNSIGNED_LIST = "The deck list in this copy of Bucket is not signed yet, so Bucket shows none of it. Adding a deck from a file still works.";
+export const NOTHING_REPLACED = "Nothing was replaced.";
 export const POLL_MS = 700;
 
-type LibraryApi = Pick<Api, "library" | "libraryRefresh" | "libraryInstall" | "libraryRemove" | "libraryExport" | "libraryImport">;
+interface SaveHandle {
+  createWritable(): Promise<{ write(data: Blob): Promise<void>; close(): Promise<void> }>;
+}
+type SavePicker = (o: { suggestedName: string }) => Promise<SaveHandle>;
+
+export function fileNameFor(d: Pick<LibraryRow, "title">): string {
+  return `${d.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "deck"}.bktdeck`;
+}
+
+export function replaceQuestion(d: Pick<LibraryRow, "title">): string {
+  return `A file for ${d.title} is already in your Downloads folder. Replace it?`;
+}
+
+type LibraryApi = Pick<Api, "library" | "libraryRefresh" | "libraryInstall" | "libraryRemove" | "libraryExport" | "libraryExportBytes" | "libraryImport">;
 
 const STATE_WORDS: Record<LibraryRow["state"], string> = { available: "Not added", installed: "Added", update: "Newer version ready", downloading: "Downloading", failed: "Did not finish" };
 
@@ -119,7 +134,27 @@ export function LibraryView({ api }: { api: LibraryApi }) {
   const act = (what: "install" | "remove" | "export", d: LibraryRow) =>
     void run(async () => {
       if (what === "export") {
-        const made = await api.libraryExport(d.id);
+        const picker = (window as unknown as { showSaveFilePicker?: SavePicker }).showSaveFilePicker;
+        if (picker) {
+          let handle: SaveHandle;
+          try {
+            handle = await picker({ suggestedName: fileNameFor(d) });
+          } catch {
+            return null;
+          }
+          const out = await handle.createWritable();
+          await out.write(await api.libraryExportBytes(d.id));
+          await out.close();
+          return `Saved ${d.title}.`;
+        }
+        let made: { name: string; folder: string };
+        try {
+          made = await api.libraryExport(d.id);
+        } catch (e) {
+          if (!(e instanceof ApiError) || e.status !== 409) throw e;
+          if (!window.confirm(replaceQuestion(d))) return NOTHING_REPLACED;
+          made = await api.libraryExport(d.id, true);
+        }
         return `Saved ${d.title} as ${made.name} in ${made.folder}.`;
       }
       setBody(what === "install" ? await api.libraryInstall(d.id) : await api.libraryRemove(d.id));
@@ -161,7 +196,7 @@ export function LibraryView({ api }: { api: LibraryApi }) {
       {body && (
         <>
           <article className="panel card">
-            <p className="muted">{body.offline ? OFFLINE_LIBRARY : body.from === "refreshed" ? REFRESHED_LIST : BUNDLED_LIST}</p>
+            <p className="muted">{!body.signed ? UNSIGNED_LIST : body.offline ? OFFLINE_LIBRARY : body.from === "refreshed" ? REFRESHED_LIST : BUNDLED_LIST}</p>
             <div className="toolbar">
               <button className="primary" disabled={busy || body.offline} onClick={refresh}>
                 Refresh

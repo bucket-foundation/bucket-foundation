@@ -6,6 +6,7 @@ export type Route =
   | { name: "path"; to?: string }
   | { name: "words"; deck: string; lesson?: number }
   | { name: "concepts"; page?: number }
+  | { name: "licence" }
   | { name: "quiz" }
   | { name: "review" }
   | { name: "import" }
@@ -49,6 +50,7 @@ export function parseHash(hash: string): Route {
     return { name: "learn" };
   }
   if (parts[0] === "learn" && parts[1]) return parts[2] ? { name: "deck", deck: parts[1], atom: parts[2] } : { name: "deck", deck: parts[1] };
+  if (parts[0] === "words" && parts[1] === "licence" && parts.length === 2) return { name: "licence" };
   if (parts[0] === "words" && parts[1] === "concepts") return parts.length === 3 && PAGE.test(parts[2]) ? { name: "concepts", page: Number(parts[2]) } : { name: "concepts" };
   if (parts[0] === "words" && parts[1] && LANGUAGE.test(parts[1])) return parts.length === 3 && PAGE.test(parts[2]) ? { name: "words", deck: parts[1], lesson: Number(parts[2]) } : { name: "words", deck: parts[1] };
   if (parts[0] === "path") return parts[1] ? { name: "path", to: parts[1] } : { name: "path" };
@@ -65,6 +67,7 @@ export function parseHash(hash: string): Route {
 export function href(r: Route): string {
   if (r.name === "deck") return `#/learn/${encodeURIComponent(r.deck)}${r.atom ? `/${encodeURIComponent(r.atom)}` : ""}`;
   if (r.name === "words") return `#/words/${r.deck}${r.lesson ? `/${r.lesson}` : ""}`;
+  if (r.name === "licence") return "#/words/licence";
   if (r.name === "concepts") return r.page && r.page > 1 ? `#/words/concepts/${r.page}` : "#/words/concepts";
   if (r.name === "path") return r.to ? `#/path/${encodeURIComponent(r.to)}` : "#/path";
   if (r.name === "daily") return `#/work/daily/${r.day}`;

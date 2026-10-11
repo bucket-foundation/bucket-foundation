@@ -80,9 +80,9 @@ export async function learnWordPath(b: LearnBackend, deck: string, credit: strin
   const { deck: d, lessons } = await b.wordLessons(deck);
   if (json) io.print(jsonLine("learn path", { deck: d.id, lessons, credit }));
   else {
-    io.print(`${d.name} word lessons: ${d.started} of ${d.words} words started, ${d.due} due.`);
+    io.print(`${d.name} word lessons: ${d.words} words, ${d.started} of ${d.quiz} quiz words started, ${d.due} due.`);
     for (const l of lessons) io.print(`  ${l.n}. ${l.title}: ${l.words.join(", ")}`);
-    io.print(credit);
+    io.print(`${credit} ${LICENCE_HINT}`);
   }
   return EXIT.ok;
 }
@@ -95,10 +95,10 @@ export async function learnPath(b: LearnBackend, deck: PackDeck | null, atoms: A
     else {
       const rows = [
         ...decks.map((d): [string, string] => [d.title, `${d.introduced} of ${d.atoms} topics started, ${d.due} due, ${d.xp} points`]),
-        ...wordDecks.map((d): [string, string] => [`${d.name} words`, `${d.started} of ${d.words} words started, ${d.due} due, ${d.lessons} word lessons`]),
+        ...wordDecks.map((d): [string, string] => [`${d.name} words`, `${d.started} of ${d.quiz} quiz words started, ${d.due} due, ${d.words} words in ${d.lessons} word lessons`]),
       ];
       if (rows.length) io.print(textRows(rows));
-      if (wordDecks.length && credit) io.print(credit);
+      if (wordDecks.length && credit) io.print(`${credit} ${LICENCE_HINT}`);
       if (!wordDecks.length && credit) io.print(NO_LANGUAGE_CHOSEN);
     }
     if (!decks.length && !wordDecks.length) throw new NoDataError("the content pack holds no decks");
@@ -149,13 +149,21 @@ export async function reviewJson(b: LearnBackend, size: number, spec: CommandSpe
   return EXIT.ok;
 }
 
+export const LICENCE_HINT = "Run bkt licences for the terms.";
+
+export function wordCreditLine(questions: readonly { word?: { credit: string } | null }[]): string | undefined {
+  const credit = questions.find((q) => q.word)?.word?.credit;
+  return credit ? `Word questions use ${credit}, shortened and filtered by Bucket. ${LICENCE_HINT}` : undefined;
+}
+
 export async function daily(b: LearnBackend, day: string, json: boolean, spec: CommandSpec, io: LearnIo = consoleIo): Promise<number> {
   const quiz = await b.daily(day);
   if (!quiz) {
     if (json) io.print(jsonLine("daily", { day, questions: [], answered: [] }));
     throw new NoDataError(`no daily quiz for ${day}`);
   }
-  if (json) io.print(jsonLine("daily", { day, ...quiz }));
+  const credit = quiz ? wordCreditLine(quiz.questions) : undefined;
+  if (json) io.print(jsonLine("daily", { day, ...quiz, credit }));
   else {
     io.print(`Daily quiz for ${day}: ${quiz.questions.length} questions, ${quiz.answered.length} answered.`);
     quiz.questions.forEach((q, i) => {
@@ -163,6 +171,7 @@ export async function daily(b: LearnBackend, day: string, json: boolean, spec: C
       for (const l of q.lines) io.print(`   ${l}`);
       (q.choices ?? []).forEach((c, k) => io.print(`   ${String.fromCharCode(97 + k)}) ${mathToText(c)}`));
     });
+    if (credit) io.print(credit);
     io.print("Answer in the Bucket window, or send answers with --json.");
     return EXIT.ok;
   }
@@ -173,7 +182,7 @@ export async function daily(b: LearnBackend, day: string, json: boolean, spec: C
     if (!q) throw new UsageError(`answer line ${n} has no question left to answer`, spec);
     matchId(row, "id", q.id, n, spec);
     const r = await b.answerDaily(day, q.id, row.response ?? null, row.elapsedMs as number);
-    io.print(jsonLine("daily answer", { id: q.id, ...r }));
+    io.print(jsonLine("daily answer", { id: q.id, ...r, credit: wordCreditLine([q]) }));
   }
   return EXIT.ok;
 }

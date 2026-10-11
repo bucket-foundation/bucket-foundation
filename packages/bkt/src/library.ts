@@ -2,8 +2,9 @@ import { createHash } from "node:crypto";
 import { createWriteStream, existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
-import { deckFileName, exportDeck, installDeckFile } from "./deck-file";
-import { checkManifest, DECK_MANIFEST, DeckError, decksDir, installDeck, listInstalled, removeDeck, type DeckKind, type DeckManifest } from "./decks";
+import { deckFileName, DeckExistsError, exportDeck, installDeckFile } from "./deck-file";
+import { checkManifest, DECK_MANIFEST, DeckError, decksDir, installDeck, listInstalled, newerThan, removeDeck, type DeckKind, type DeckManifest } from "./decks";
+import { verifySshSig } from "./sshsig";
 import { isOffline, LOOPBACK, type Route } from "./serve";
 
 export const CATALOG_FORMAT = "bkt-deck-catalog";
@@ -11,6 +12,14 @@ export const CATALOG_FORMAT_VERSION = 1;
 export const CATALOG_URL = "https://bucket.foundation/decks/catalog.json";
 export const CATALOG_HOST = "bucket.foundation";
 export const CATALOG_BYTES = 2 * 1024 * 1024;
+export const CATALOG_SIG_BYTES = 4096;
+export const CATALOG_DECKS_MAX = 500;
+export const CATALOG_SIG_SUFFIX = ".sig";
+export const CATALOG_NAMESPACE = "bucket-deck-catalog";
+export const DECK_CATALOG_PUBKEY = "";
+export const UNSIGNED_BUNDLE = "The deck list in this copy of Bucket is not signed yet, so Bucket shows none of it. Adding a deck from a file still works.";
+export const UNSIGNED_REFRESH = "The deck list from bucket.foundation did not carry Bucket's signature, so Bucket kept the list it had.";
+export const NO_CATALOG_KEY = "This copy of Bucket holds no key to check the deck list with, so it did not ask for one.";
 export const CATALOG_CACHE = ".catalog.json";
 export const IMPORT_BODY_BYTES = 512 * 1024 * 1024;
 export const LIBRARY_BODY_BYTES = 256;
@@ -19,6 +28,29 @@ export const REFRESH_FAILED = "Bucket could not reach the deck catalog. The list
 export const NOT_IN_CATALOG = "that deck is not in the catalog";
 export const DOWNLOAD_FAILED = "The download did not finish. Try again.";
 export const DOWNLOAD_CHANGED = "The downloaded file did not match the catalog, so Bucket did not install it.";
+
+export interface SignedCatalog {
+  text: string;
+  signature: string;
+}
+
+export function verifyCatalog(signed: SignedCatalog, pubkey: string = DECK_CATALOG_PUBKEY): Catalog | null {
+  if (!pubkey || !signed.signature || signed.text.length > CATALOG_BYTES || signed.signature.length > CATALOG_SIG_BYTES) return null;
+  let ok = false;
+  try {
+    ok = verifySshSig(signed.text, signed.signature, pubkey, CATALOG_NAMESPACE);
+  } catch {
+    ok = false;
+  }
+  if (!ok) return null;
+  try {
+    return checkCatalog(JSON.parse(signed.text));
+  } catch {
+    return null;
+  }
+}
+
+export const NO_CATALOG: Catalog = { format: "bkt-deck-catalog", format_version: 1, built: "1970-01-01", decks: [], sha256: "" };
 
 export interface Catalog {
   format: string;
@@ -56,6 +88,7 @@ export interface LibraryBody {
   refreshedAt: number | null;
   offline: boolean;
   from: "bundled" | "refreshed";
+  signed: boolean;
 }
 
 export function catalogChecksum(decks: readonly DeckManifest[], built: string): string {
@@ -74,6 +107,7 @@ export function checkCatalog(raw: unknown): Catalog {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw new DeckError("the deck catalog is not a JSON object");
   const c = raw as Record<string, unknown>;
   if (c.format !== CATALOG_FORMAT || c.format_version !== CATALOG_FORMAT_VERSION) throw new DeckError("the deck catalog is in a format this Bucket does not read; run bkt update");
+  if (Array.isArray(c.decks) && c.decks.length > CATALOG_DECKS_MAX) throw new DeckError(`the deck catalog lists more than ${CATALOG_DECKS_MAX} decks`);
   if (!Array.isArray(c.decks) || typeof c.built !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(c.built)) throw new DeckError("the deck catalog lists no decks");
   const decks = c.decks.map(checkManifest);
   if (new Set(decks.map((d) => d.id)).size !== decks.length) throw new DeckError("the deck catalog lists a deck twice");
@@ -98,7 +132,8 @@ export type Fetcher = (url: string, init?: RequestInit) => Promise<Response>;
 
 export interface LibraryOptions {
   home: string;
-  bundled: Catalog;
+  bundled: SignedCatalog;
+  pubkey?: string;
   url?: string;
   fetch?: Fetcher;
   offline?: () => boolean;
@@ -120,23 +155,27 @@ export class Library {
   private fetcher: Fetcher;
   private offline: () => boolean;
   private now: () => number;
+  private pubkey: string;
+  private bundled: Catalog | null;
 
   constructor(private o: LibraryOptions) {
+    this.pubkey = o.pubkey ?? DECK_CATALOG_PUBKEY;
+    this.bundled = verifyCatalog(o.bundled, this.pubkey);
     this.url = allowedCatalogUrl(o.url ?? CATALOG_URL);
     this.fetcher = o.fetch ?? ((url, init) => globalThis.fetch(url, init));
     this.offline = o.offline ?? (() => isOffline());
     this.now = o.now ?? Date.now;
     try {
-      const saved = JSON.parse(readFileSync(join(decksDir(o.home), CATALOG_CACHE), "utf8")) as { at?: unknown; catalog?: unknown };
-      const catalog = checkCatalog(saved.catalog);
-      if (typeof saved.at === "number" && catalog.built >= o.bundled.built) this.refreshed = { catalog, at: saved.at };
+      const saved = JSON.parse(readFileSync(join(decksDir(o.home), CATALOG_CACHE), "utf8")) as { at?: unknown; text?: unknown; signature?: unknown };
+      const catalog = typeof saved.text === "string" && typeof saved.signature === "string" ? verifyCatalog({ text: saved.text, signature: saved.signature }, this.pubkey) : null;
+      if (catalog && typeof saved.at === "number" && catalog.built >= (this.bundled?.built ?? "")) this.refreshed = { catalog, at: saved.at };
     } catch {
       this.refreshed = null;
     }
   }
 
   catalog(): Catalog {
-    return this.refreshed?.catalog ?? this.o.bundled;
+    return this.refreshed?.catalog ?? this.bundled ?? NO_CATALOG;
   }
 
   body(): LibraryBody {
@@ -145,7 +184,7 @@ export class Library {
     const row = (m: DeckManifest, inCatalog: boolean): LibraryRow => {
       const have = installed.get(m.id);
       const job = this.jobs.get(m.id);
-      const state: DeckState = job && !job.error ? "downloading" : job?.error ? "failed" : !have ? "available" : inCatalog && have.version !== m.version ? "update" : "installed";
+      const state: DeckState = job && !job.error ? "downloading" : job?.error ? "failed" : !have ? "available" : inCatalog && have.db_sha256 !== m.db_sha256 && have.kind === m.kind && have.language === m.language && newerThan(m, have) ? "update" : "installed";
       return {
         id: m.id,
         title: m.title,
@@ -168,7 +207,7 @@ export class Library {
     };
     const listed = new Set(catalog.decks.map((d) => d.id));
     const own = Array.from(installed.values()).filter((m) => !listed.has(m.id));
-    return { decks: [...catalog.decks.map((m) => row(m, true)), ...own.map((m) => row(m, false))], built: catalog.built, refreshedAt: this.refreshed?.at ?? null, offline: this.offline(), from: this.refreshed ? "refreshed" : "bundled" };
+    return { decks: [...catalog.decks.map((m) => row(m, true)), ...own.map((m) => row(m, false))], built: catalog.built, refreshedAt: this.refreshed?.at ?? null, offline: this.offline(), from: this.refreshed ? "refreshed" : "bundled", signed: this.refreshed !== null || this.bundled !== null };
   }
 
   private async get(url: URL): Promise<Response> {
@@ -178,20 +217,33 @@ export class Library {
     return r;
   }
 
-  async refresh(): Promise<LibraryBody> {
-    const r = await this.get(this.url);
-    const text = await r.text();
-    if (text.length > CATALOG_BYTES) throw new DeckError("the deck catalog is too large");
-    let raw: unknown;
-    try {
-      raw = JSON.parse(text);
-    } catch {
-      throw new DeckError("the deck catalog did not read as JSON");
+  private async read(url: URL, cap: number, what: string): Promise<string> {
+    const r = await this.get(url);
+    if (Number(r.headers.get("content-length") ?? "0") > cap) throw new DeckError(`${what} is too large`);
+    if (!r.body) return "";
+    const parts: Uint8Array[] = [];
+    let size = 0;
+    for await (const chunk of r.body as unknown as AsyncIterable<Uint8Array>) {
+      size += chunk.length;
+      if (size > cap) throw new DeckError(`${what} is too large`);
+      parts.push(chunk);
     }
-    const catalog = checkCatalog(raw);
+    return Buffer.concat(parts).toString("utf8");
+  }
+
+  async refresh(): Promise<LibraryBody> {
+    if (this.offline()) throw new DeckError(OFFLINE_NOTE);
+    if (!this.pubkey) throw new DeckError(NO_CATALOG_KEY);
+    const text = await this.read(this.url, CATALOG_BYTES, "the deck catalog");
+    const sigUrl = new URL(this.url.href);
+    sigUrl.pathname += CATALOG_SIG_SUFFIX;
+    const signature = await this.read(sigUrl, CATALOG_SIG_BYTES, "the deck catalog signature");
+    const catalog = verifyCatalog({ text, signature }, this.pubkey);
+    if (!catalog) throw new DeckError(UNSIGNED_REFRESH);
+    if (catalog.built < (this.refreshed?.catalog.built ?? this.bundled?.built ?? "")) throw new DeckError("The deck list from bucket.foundation is older than the one Bucket has, so Bucket kept its own.");
     this.refreshed = { catalog, at: this.now() };
     mkdirSync(decksDir(this.o.home), { recursive: true, mode: 0o700 });
-    writeFileSync(join(decksDir(this.o.home), CATALOG_CACHE), JSON.stringify({ at: this.refreshed.at, catalog }), { mode: 0o600 });
+    writeFileSync(join(decksDir(this.o.home), CATALOG_CACHE), JSON.stringify({ at: this.refreshed.at, text, signature }), { mode: 0o600 });
     return this.body();
   }
 
@@ -240,7 +292,7 @@ export class Library {
       try {
         await installDeck(this.o.home, tmp);
       } catch (e) {
-        throw e instanceof DeckError ? new DeckError(DOWNLOAD_CHANGED) : e;
+        throw e instanceof DeckError ? new DeckError(/newer one|cannot take that name/.test(e.message) ? e.message : DOWNLOAD_CHANGED) : e;
       }
     } finally {
       rmSync(tmp, { recursive: true, force: true });
@@ -257,13 +309,21 @@ export class Library {
     return this.body();
   }
 
-  async export(id: string): Promise<{ name: string; folder: string }> {
+  async export(id: string, replace = false): Promise<{ name: string; folder: string }> {
     const folder = (this.o.downloads ?? defaultDownloads)();
     const found = listInstalled(this.o.home).find((d) => d.manifest.id === id);
     if (!found) throw new DeckError("that deck is not installed");
     const name = deckFileName(found.manifest);
-    await exportDeck(this.o.home, id, join(folder, name));
+    await exportDeck(this.o.home, id, join(folder, name), { replace });
     return { name, folder };
+  }
+
+  async exportBytes(id: string): Promise<{ name: string; path: string; done: () => void }> {
+    const found = listInstalled(this.o.home).find((d) => d.manifest.id === id);
+    if (!found) throw new DeckError("that deck is not installed");
+    const path = join(decksDir(this.o.home), `.export.${process.pid}.${this.now()}.${id}`);
+    await exportDeck(this.o.home, id, path, { replace: true });
+    return { name: deckFileName(found.manifest), path, done: () => rmSync(path, { force: true }) };
   }
 
   async import(bytes: Uint8Array): Promise<DeckManifest> {
@@ -290,10 +350,10 @@ export function defaultDownloads(): string {
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json", "cache-control": "no-store" } });
 
-async function idOf(req: Request): Promise<string | null> {
+async function bodyOf(req: Request): Promise<{ id: string; replace: boolean } | null> {
   try {
-    const b = JSON.parse((await req.text()).slice(0, LIBRARY_BODY_BYTES)) as { id?: unknown };
-    return typeof b.id === "string" ? b.id : null;
+    const b = JSON.parse((await req.text()).slice(0, LIBRARY_BODY_BYTES)) as { id?: unknown; replace?: unknown };
+    return typeof b.id === "string" ? { id: b.id, replace: b.replace === true } : null;
   } catch {
     return null;
   }
@@ -303,6 +363,7 @@ async function guarded(run: () => unknown | Promise<unknown>, onError?: (m: stri
   try {
     return json(await run());
   } catch (e) {
+    if (e instanceof DeckExistsError) return json({ error: "exists" }, 409);
     if (e instanceof DeckError) return json({ error: e.message }, 400);
     onError?.((e as Error).message);
     return json({ error: REFRESH_FAILED }, 502);
@@ -310,17 +371,28 @@ async function guarded(run: () => unknown | Promise<unknown>, onError?: (m: stri
 }
 
 export function libraryRoutes(lib: Library, onError?: (m: string) => void): Record<string, Route> {
-  const withId = (run: (id: string) => unknown | Promise<unknown>): Route => async (req) => {
-    const id = await idOf(req);
-    if (!id) return json({ error: "id required" }, 400);
-    return guarded(() => run(id), onError);
+  const withId = (run: (id: string, replace: boolean) => unknown | Promise<unknown>): Route => async (req) => {
+    const b = await bodyOf(req);
+    if (!b) return json({ error: "id required" }, 400);
+    return guarded(() => run(b.id, b.replace), onError);
   };
   return {
     "GET /local/library": () => json(lib.body()),
     "POST /local/library/refresh": () => guarded(() => lib.refresh(), onError),
     "POST /local/library/install": withId((id) => (lib.forget(id), lib.start(id))),
     "POST /local/library/remove": withId((id) => lib.remove(id)),
-    "POST /local/library/export": withId((id) => lib.export(id)),
+    "POST /local/library/export": withId((id, replace) => lib.export(id, replace)),
+    "GET /local/library/export": async (_req, url) => {
+      try {
+        const made = await lib.exportBytes(url.searchParams.get("id") ?? "");
+        const bytes = await Bun.file(made.path).arrayBuffer();
+        made.done();
+        return new Response(bytes, { headers: { "content-type": "application/octet-stream", "content-disposition": `attachment; filename="${made.name}"`, "cache-control": "no-store" } });
+      } catch (e) {
+        if (e instanceof DeckError) return json({ error: e.message }, 400);
+        throw e;
+      }
+    },
     "POST /local/library/import": async (req) =>
       guarded(async () => {
         const m = await lib.import(new Uint8Array(await req.arrayBuffer()));

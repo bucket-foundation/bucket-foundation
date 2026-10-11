@@ -1,7 +1,7 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "bun:test";
 import type { Api, LessonWord } from "./api";
-import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, SCRIPT_WORDS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_QUESTION } from "./fixtures/word-lessons";
+import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, SCRIPT_WORDS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_LICENCE, WORD_QUESTION } from "./fixtures/word-lessons";
 import { href, parseHash } from "./router";
 
 beforeAll(() => {
@@ -82,6 +82,11 @@ describe("word lesson pages", () => {
     expect(Array.from(first.querySelectorAll(".word-other")).map((o) => o.textContent)).toEqual(["Arabicيد/jad/", "Hindiहाथ/ɦɑːt̪ʰ/"]);
     expect(first.querySelector(".word-other .word-form")!.getAttribute("dir")).toBe("rtl");
     expect(cards[1].querySelector(".word-others")).toBeNull();
+    const { LESSON_ONLY, LESSON_ONLY_NOTE } = await import("./views/Words");
+    expect(Array.from(cards[0].querySelectorAll(".tag")).map((t) => t.textContent)).toEqual(["noun"]);
+    expect(Array.from(cards[1].querySelectorAll(".tag")).map((t) => t.textContent)).toEqual(["noun", LESSON_ONLY]);
+    expect(v.host.textContent).toContain(LESSON_ONLY_NOTE);
+    expect(v.host.querySelector('.word-credit a[href="#/words/licence"]')!.textContent).toBe("Licence and changes");
     expect(v.host.querySelector(".word-credit")!.textContent).toContain(CREDIT);
     expect(v.host.textContent).not.toMatch(/course|fluent/i);
     await v.unmount();
@@ -126,7 +131,8 @@ describe("word lesson pages", () => {
     const v = await render(<WordConceptsView api={{ ...quiz, wordConcepts: async () => CONCEPT_PAGE } as unknown as Api} page={1} />);
     expect(Array.from(v.host.querySelectorAll("thead th")).map((t) => t.textContent)).toEqual(["Concept", "German", "Arabic", "Hindi"]);
     const rows = v.host.querySelectorAll("tbody tr");
-    expect(Array.from(rows[0].querySelectorAll("td .word-form")).map((w) => [w.textContent, w.getAttribute("dir")])).toEqual([["Hand", "ltr"], ["يد", "rtl"], ["हाथ", "ltr"]]);
+    expect(Array.from(rows[0].querySelectorAll("td .word-form")).map((w) => [w.textContent, w.getAttribute("dir")])).toEqual([["Hand", "ltr"], ["يد", "rtl"], ["كف", "rtl"], ["हाथ", "ltr"]]);
+    expect(rows[0].querySelectorAll("td")[1].querySelectorAll(".concept-word").length).toBe(2);
     expect(Array.from(rows[1].querySelectorAll("td")).map((t) => t.textContent)).toEqual(["Auge/ˈaʊ̯ɡə/", "no checked word", "no checked word"]);
     expect(rows[0].querySelector("td details summary")!.textContent).toBe("Etymology");
     expect(v.host.querySelector('a[href="#/words/concepts/2"]')!.textContent).toBe("Next page");
@@ -146,7 +152,7 @@ describe("word lesson pages", () => {
     expect(Array.from(v.host.querySelectorAll("h2")).map((h) => h.textContent)).toContain("Languages");
     expect(Array.from(v.host.querySelectorAll('a.deck[href^="#/words/"]')).map((a) => [a.getAttribute("href"), a.querySelector(".deck-title")!.textContent])).toEqual([["#/words/de", "German words"], ["#/words/ar", "Arabic words"]]);
     expect(v.host.querySelector('a[href="#/words/concepts"]')!.textContent).toBe("By concept");
-    expect(v.host.textContent).toContain("2 of 37 words started · 6 word lessons");
+    expect(v.host.textContent).toContain("2 of 37 quiz words started · 41 words in 6 word lessons");
     expect(v.host.querySelector(".word-credit")!.textContent).toContain(CREDIT);
     await v.unmount();
     const { PICK_LANGUAGES } = await import("./views/Words");
@@ -154,6 +160,23 @@ describe("word lesson pages", () => {
     expect(none.host.textContent).toContain(PICK_LANGUAGES);
     expect(none.host.querySelector('a[href="#/settings"]')).not.toBeNull();
     await none.unmount();
+  });
+});
+
+describe("word list licence", () => {
+  test("the licence page gives the credit, the changes and the full text behind a fold", async () => {
+    const { WordLicenceView } = await import("./views/Words");
+    const v = await render(<WordLicenceView api={{ wordLicence: async () => WORD_LICENCE }} />);
+    expect(v.host.querySelector("h1")!.textContent).toBe("Word list licence");
+    expect(v.host.textContent).toContain(CREDIT);
+    expect(v.host.textContent).toContain("Changes made by Bucket");
+    expect(v.host.querySelector('a[href="https://creativecommons.org/licenses/by-sa/3.0/"]')!.textContent).toBe("Creative Commons CC-BY-SA 3.0");
+    const fold = v.host.querySelector("details.fine")!;
+    expect(fold.hasAttribute("open")).toBe(false);
+    expect(fold.querySelector("pre")!.textContent).toContain("Attribution-ShareAlike 3.0 Unported");
+    expect(href({ name: "licence" })).toBe("#/words/licence");
+    expect(parseHash("#/words/licence")).toEqual({ name: "licence" });
+    await v.unmount();
   });
 });
 

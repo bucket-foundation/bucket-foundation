@@ -243,7 +243,8 @@ test("panel lists research and links, all https", async ({ page }) => {
 
 test("panel values are clickable: field filters, h-index sorts, name links out", async ({ page }) => {
   await page.goto(pageUrl);
-  const field = page.locator("#panel dd button.linkish").nth(1);
+  const field = page.locator("#panel dt", { hasText: /^Field$/ }).locator("xpath=following-sibling::dd[1]").locator("button.linkish");
+  await expect(field).toHaveCount(1);
   const value = (await field.textContent()) || "";
   await field.click();
   expect(await page.locator("#f-field").inputValue()).toBe(value);

@@ -151,8 +151,8 @@ describe("daily quiz fill", () => {
     expect(readCriticQuiz(DAY, critics).skipped).toEqual(["quiz.json is larger than 256 KB"]);
     expect(readCriticQuiz("2026-10-12", critics)).toEqual({ questions: [], skipped: [] });
     expect(readCriticQuiz("../etc", critics)).toEqual({ questions: [], skipped: [] });
-    expect(criticDir({ [CRITIC_DIR_ENV]: "/tmp/x" }, "/home/ada")).toBe("/tmp/x");
-    expect(criticDir({}, "/home/ada")).toBe("/home/ada/.local/share/bucket-daily");
+    expect(criticDir({ [CRITIC_DIR_ENV]: "/tmp/x" }, "/srv/ada")).toBe("/tmp/x");
+    expect(criticDir({}, "/srv/ada")).toBe("/srv/ada/.local/share/bucket-daily");
   });
 
   test("a critic file that arrives after the first build joins an unanswered quiz", async () => {
