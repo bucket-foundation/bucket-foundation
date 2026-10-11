@@ -114,11 +114,21 @@ def senses(meaning):
     return [s.strip() for s in meaning.split(SENSE_JOIN) if s.strip()]
 
 
-def head_of(lang, surface, meaning):
+def head_choices(gloss):
+    found = []
+    for part in re.split(r"[,;/]", plain(gloss)):
+        head = ARTICLE.sub("", PART_END.sub("", part.strip()).strip().lower())
+        if head and head not in found:
+            found.append(head)
+    return found
+
+
+def head_of(lang, surface, meaning, concepts=frozenset()):
     if lang == "en":
         return fold(surface)
     parts = senses(meaning)
-    return headword(parts[0]) if parts else ""
+    choices = head_choices(parts[0]) if parts else []
+    return next((h for h in choices if h in concepts), choices[0] if choices else "")
 
 
 def tier_rank(tier):
@@ -128,7 +138,7 @@ def tier_rank(tier):
 
 def rank_key(lang, surface, ipa, pos, meaning, tier, concepts):
     parts = senses(meaning)
-    head = head_of(lang, surface, meaning)
+    head = head_of(lang, surface, meaning, concepts)
     return (
         tier_rank(tier),
         1 if parts and FORM_OF.search(parts[0]) else 0,
@@ -335,7 +345,7 @@ def build_pack(lang, rows, out_dir, *, concepts=frozenset(), shared_db=None, bui
             counts["with_etymology"] += 1 if etymology else 0
             counts["with_ipa"] += 1 if ipa else 0
             key = rank_key(lang, surface, ipa, pos, meaning, tier, concepts)
-            batch.append((*key, surface, fold(surface), ipa, pos, meaning, head_of(lang, surface, meaning), (tier or "").strip(), (kind or "").strip(), links_text(translations), links_text(etymology)))
+            batch.append((*key, surface, fold(surface), ipa, pos, meaning, head_of(lang, surface, meaning, concepts), (tier or "").strip(), (kind or "").strip(), links_text(translations), links_text(etymology)))
             if len(batch) >= INSERT_ROWS:
                 stage.executemany(f"insert into stage values ({','.join('?' * 18)})", batch)
                 batch = []

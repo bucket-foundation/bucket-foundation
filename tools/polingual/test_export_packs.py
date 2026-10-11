@@ -88,6 +88,9 @@ class TextRules(unittest.TestCase):
         self.assertEqual(ep.headword("To eat (food); to dine."), "eat")
         self.assertEqual(ep.headword("the Azores"), "azores")
         self.assertEqual(ep.head_of("en", "Water", "a clear liquid"), "water")
+        self.assertEqual(ep.head_of("de", "Kind", "kid; child (young person) · offspring", frozenset({"child"})), "child")
+        self.assertEqual(ep.head_of("de", "Kind", "kid; child (young person) · offspring"), "kid")
+        self.assertEqual(ep.head_choices("to go, to walk / to go"), ["go", "walk"])
 
     def test_relation_links_read_lists_maps_and_text(self):
         self.assertEqual(ep.relation_links([{"predicate": "translates", "to": "photon:word:de:wasser"}, {"predicate": "derives_from", "to": "photon:word:la:aqua"}]), (["de:wasser"], ["la:aqua"]))
