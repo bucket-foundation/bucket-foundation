@@ -5,7 +5,7 @@ import { join, resolve as resolvePath } from "node:path";
 import { resolve } from "../src/cli/run";
 import { DECK_FILE_EXT, DECK_FILE_MAGIC, DeckExistsError, exportDeck, installAny, isDeckFile, readDeckFileManifest } from "../src/deck-file";
 import { DeckError, decksDir, installDeck, listInstalled } from "../src/decks";
-import { allowedCatalogUrl, buildCatalog, CATALOG_BYTES, DECK_FILE_MOVED, DECK_FILE_PATH, DECK_FILE_REFUSED, DECK_FILE_TIMEOUT_MS, deckFileRedirect, deckFileUrl, CATALOG_DECKS_MAX, CATALOG_NAMESPACE, CATALOG_URL, checkCatalog, DECK_CATALOG_PUBKEY, DOWNLOAD_CHANGED, DOWNLOAD_FAILED, Library, libraryRoutes, NO_CATALOG_KEY, NOT_IN_CATALOG, OFFLINE_NOTE, UNSIGNED_REFRESH, verifyCatalog, type Catalog, type LibraryBody, type SignedCatalog } from "../src/library";
+import { allowedCatalogUrl, buildCatalog, CATALOG_BYTES, DECK_FILE_MOVED, DECK_FILE_PATH, DECK_FILE_REFUSED, DECK_FILE_TIMEOUT_MS, deckFileRedirect, deckFileUrl, CATALOG_DECKS_MAX, CATALOG_NAMESPACE, CATALOG_URL, checkCatalog, DECK_CATALOG_PUBKEY, DOWNLOAD_CHANGED, DOWNLOAD_FAILED, Library, libraryRoutes, NO_CATALOG_KEY, NOT_IN_CATALOG, OFFLINE_NOTE, STALE_REFRESH, UNSIGNED_REFRESH, verifyCatalog, type Catalog, type LibraryBody, type SignedCatalog } from "../src/library";
 import { bundledCatalog, catalogText, curatedCatalog } from "../src/pack/decks";
 import { ARABIC, buildDeck, CHINESE, FIXTURE_LICENCE, GERMAN } from "./fixtures/deck";
 
@@ -108,11 +108,31 @@ describe("catalog", () => {
       expect(JSON.stringify(d)).not.toContain("/home/");
     }
     expect(built.decks.reduce((sum, d) => sum + d.counts.cards, 0)).toBe(6_564_942);
+    expect(built.serial).toBeGreaterThanOrEqual(1);
+    expect(curatedCatalog(REPO, { publish: true }).serial).toBe(built.serial);
     const bundle = bundledCatalog(REPO);
     expect(bundle.text).toBe(catalogText(built));
     if (DECK_CATALOG_PUBKEY) expect(verifyCatalog(bundle)?.sha256).toBe(built.sha256);
     else expect(verifyCatalog(bundle)).toBeNull();
     for (const file of readdirSync(join(REPO, "decks"))) expect(/key|\.pem$|ed25519/i.test(file)).toBe(false);
+  });
+
+  test("publishing raises the serial when the decks change and holds it when they do not", () => {
+    const repo = join(ROOT, "publish");
+    const put = (m: { id: string }) => {
+      mkdirSync(join(repo, "decks", m.id), { recursive: true });
+      writeFileSync(join(repo, "decks", m.id, "manifest.json"), JSON.stringify(m));
+    };
+    const publish = () => {
+      const c = curatedCatalog(repo, { publish: true });
+      writeFileSync(join(repo, "decks", "catalog.json"), catalogText(c));
+      return c;
+    };
+    put(DE.manifest);
+    expect([publish().serial, publish().serial]).toEqual([1, 1]);
+    put(AR.manifest);
+    expect(catalogText(curatedCatalog(repo))).not.toBe(readFileSync(join(repo, "decks", "catalog.json"), "utf8"));
+    expect([publish().serial, publish().serial, curatedCatalog(repo).decks.length]).toEqual([2, 2, 2]);
   });
 
   test("a catalog with a changed entry, a repeated deck or a deck with no licence is refused", () => {
@@ -128,9 +148,9 @@ describe("catalog", () => {
   });
 
   test("the catalog address is bucket.foundation over https, or loopback in tests", () => {
-    expect(allowedCatalogUrl(CATALOG_URL).hostname).toBe("bucket.foundation");
+    expect(allowedCatalogUrl(CATALOG_URL).href).toBe("https://www.bucket.foundation/decks/catalog.json");
     expect(allowedCatalogUrl("http://127.0.0.1:9/decks/catalog.json").port).toBe("9");
-    for (const bad of ["https://example.com/decks/catalog.json", "http://bucket.foundation/decks/catalog.json", "https://bucket.foundation.evil.test/c.json", "file:///etc/passwd", "nope"]) expect(() => allowedCatalogUrl(bad)).toThrow(DeckError);
+    for (const bad of ["https://example.com/decks/catalog.json", "https://bucket.foundation/decks/catalog.json", "http://www.bucket.foundation/decks/catalog.json", "https://www.bucket.foundation.evil.test/c.json", "https://bucket.foundation.evil.test/c.json", "file:///etc/passwd", "nope"]) expect(() => allowedCatalogUrl(bad)).toThrow(DeckError);
   });
 });
 
@@ -160,7 +180,7 @@ describe("library", () => {
   test("refresh reads the catalog once, keeps it for the next start, and lists a new deck", async () => {
     hits = [];
     const zh = buildDeck(SITE, "zh", "Chinese", CHINESE);
-    served = signed(buildCatalog([DE.manifest, AR.manifest, zh.manifest]));
+    served = signed(buildCatalog([DE.manifest, AR.manifest, zh.manifest], 2));
     const { lib: l, home } = lib();
     const body = await l.refresh();
     expect(hits).toEqual(["/decks/catalog.json", "/decks/catalog.json.sig"]);
@@ -427,23 +447,50 @@ describe("hostile catalogs", () => {
     served = signed(CATALOG);
   });
 
-  test("a redirect to another place and a list older than the one held are refused; a tampered saved copy is dropped", async () => {
+  test("a redirect to another place is refused, and a tampered saved copy is dropped", async () => {
     const { lib: l, home } = lib();
     redirect = "http://127.0.0.1:1/decks/catalog.json";
     await refusal(() => l.refresh()).catch(() => undefined);
     expect(l.body().from).toBe("bundled");
     redirect = null;
-    const old = buildDeck(join(ROOT, "hold"), "de", "German", GERMAN.slice(0, 3), { built: "2020-01-01" });
-    served = signed(buildCatalog([old.manifest]));
-    expect(await refusal(() => l.refresh())).toContain("older than the one Bucket has");
-    served = signed(CATALOG);
+    served = signed(buildCatalog([DE.manifest, AR.manifest], 2));
     await l.refresh();
+    served = signed(CATALOG);
     const cache = join(decksDir(home), ".catalog.json");
     const saved = JSON.parse(readFileSync(cache, "utf8")) as { at: number; text: string; signature: string };
     writeFileSync(cache, JSON.stringify({ ...saved, text: saved.text.replace("German words", "German w0rds") }));
     expect(lib({ home }).lib.body().from).toBe("bundled");
     writeFileSync(cache, JSON.stringify(saved));
     expect(lib({ home }).lib.body().from).toBe("refreshed");
+  });
+
+  test("refresh takes a signed list only when its serial is higher than the one held, so an old signed list cannot be replayed", async () => {
+    const zh = buildDeck(join(ROOT, "replay"), "zh", "Chinese", CHINESE);
+    const held = buildCatalog([DE.manifest, AR.manifest], 5);
+    const { lib: l, home } = lib({ bundled: held });
+    const cache = join(decksDir(home), ".catalog.json");
+    const ids = () => l.body().decks.map((d) => d.id);
+    for (const serial of [1, 4, 5]) {
+      served = signed(buildCatalog([zh.manifest], serial));
+      expect(await refusal(() => l.refresh())).toBe(STALE_REFRESH);
+      expect([l.body().from, ids(), existsSync(cache)]).toEqual(["bundled", ["polingual-ar", "polingual-de"], false]);
+    }
+    served = signed(held);
+    expect([(await l.refresh()).from, existsSync(cache)]).toEqual(["bundled", false]);
+    served = signed(buildCatalog([DE.manifest, AR.manifest, zh.manifest], 6));
+    expect((await l.refresh()).from).toBe("refreshed");
+    const kept = readFileSync(cache, "utf8");
+    for (const replayed of [held, buildCatalog([DE.manifest], 6), buildCatalog([DE.manifest], 3)]) {
+      served = signed(replayed);
+      expect(await refusal(() => l.refresh())).toBe(STALE_REFRESH);
+      expect([ids().length, readFileSync(cache, "utf8") === kept]).toEqual([3, true]);
+    }
+    expect(lib({ home, bundled: buildCatalog([DE.manifest], 7) }).lib.body().from).toBe("bundled");
+    expect(lib({ home, bundled: held }).lib.body().from).toBe("refreshed");
+    for (const serial of [0, -1, 1.5, "2", undefined]) expect(() => checkCatalog({ ...CATALOG, serial })).toThrow("gives no serial");
+    expect(() => checkCatalog({ ...CATALOG, serial: 2 })).toThrow("does not match its checksum");
+    expect(() => buildCatalog([DE.manifest], 0)).toThrow(DeckError);
+    served = signed(CATALOG);
   });
 });
 
@@ -571,7 +618,9 @@ describe("library routes", () => {
       return { status: r.status, body: (await r.json()) as LibraryBody & { error?: string; name?: string; installed?: string } };
     };
     expect((await call("GET /local/library")).body.decks.length).toBe(2);
+    served = signed(buildCatalog([DE.manifest, AR.manifest], 2));
     expect((await call("POST /local/library/refresh")).body.from).toBe("refreshed");
+    served = signed(CATALOG);
     expect((await call("POST /local/library/install", {})).status).toBe(400);
     expect((await call("POST /local/library/install", { id: "nope" })).body.error).toBe(NOT_IN_CATALOG);
     expect((await call("POST /local/library/install", { id: "polingual-ar" })).body.decks[0].state).toBe("downloading");

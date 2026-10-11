@@ -30,4 +30,10 @@ cd packages/bkt && bun run src/pack/decks.ts --publish
 scripts/release/sign-deck-catalog.sh
 ```
 
-Commit `catalog.json` and `catalog.json.sig`. The key path comes from `BUCKET_DECK_CATALOG_KEY` or the second argument.
+Commit `catalog.json` and `catalog.json.sig`.
+
+`--publish` raises `serial` by one whenever the decks change. The app takes a refreshed catalog only when its serial is higher than the one it holds, so an older signed catalog cannot be served again. Sign after every publish.
+
+## Refresh
+
+The site serves the two committed files at `https://www.bucket.foundation/decks/catalog.json` and `catalog.json.sig`, read from this folder by `src/app/decks/[file]/route.ts`. The signature path answers 404 until `catalog.json.sig` is committed, and the app keeps its bundled catalog. A change here reaches the app's refresh when `dev` is promoted to `main`. The key path comes from `BUCKET_DECK_CATALOG_KEY` or the second argument.
