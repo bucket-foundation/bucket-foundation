@@ -203,5 +203,38 @@ test("canonical bytes hold for v2", () => {
   assert.ok(validateRecord({ ...v2, attributions: [{ ...v2.attributions[0], rows: 1.5 }] }).some((e) => e.includes("rows")));
 });
 
-assert.equal(named, 9);
+test("a staff path cannot be made public through paper", () => {
+  const leak = { id: "leak", path: "tools/solvability-atlas/problems-sourced.tsv", format: "tsv", label: "Leak", licence: "mixed", licence_column: "licence", audience: "public" };
+  const critic = { ...atlas, paper: { ...atlas.paper, lean: "tools/solvability-atlas" }, tables: [...atlas.tables.filter((t) => t.path !== leak.path), leak] };
+  const found = validateRecord(critic);
+  assert.ok(found.includes("paper.lean: must sit inside papers/solvability-frontier"));
+  assert.ok(found.some((e) => e.endsWith(`.audience: ${leak.path} cannot be public`)));
+  assert.equal(localPaths(critic).find((entry) => entry.path === leak.path).audience, "staff");
+  const viaIncludes = { ...atlas, paper: { ...atlas.paper, includes: [...atlas.paper.includes, leak.path] }, tables: [...atlas.tables.filter((t) => t.path !== leak.path), leak] };
+  const includeErrors = validateRecord(viaIncludes);
+  assert.ok(includeErrors.includes(`paper.audience: ${leak.path} cannot be public`));
+  assert.ok(includeErrors.some((e) => e.startsWith("tables[") && e.endsWith(`${leak.path} cannot be public`)));
+  assert.equal(localPaths(viaIncludes).find((entry) => entry.path === leak.path).audience, "staff");
+  const wide = { ...atlas, paper: { ...atlas.paper, lean: "papers" }, tables: [...atlas.tables, { ...leak, id: "other", path: "papers/other-paper/private.tsv" }] };
+  const wideErrors = validateRecord(wide);
+  assert.ok(wideErrors.includes("paper.lean: must sit inside papers/solvability-frontier"));
+  assert.ok(wideErrors.some((e) => e.endsWith("papers/other-paper/private.tsv cannot be public")));
+  const viaSources = { ...atlas, tables: [...atlas.tables, { ...leak, id: "openalex-tool", path: "tools/solvability-atlas/openalex-sourced.json", format: "json", licence: "CC0-1.0" }] };
+  assert.ok(validateRecord(viaSources).some((e) => e.endsWith("tools/solvability-atlas/openalex-sourced.json cannot be public")));
+  assert.ok(validateRecord({ ...v2, paper: { ...v2.paper, lean: "reports/demo-report" } }).some((e) => e.startsWith("paper.lean")));
+  assert.deepEqual(validateRecord({ ...v2, paper: { ...v2.paper, lean: "reports/demo-report/lean" } }), []);
+  assert.ok(validateRecord({ ...v2, paper: { ...v2.paper, bib: ["data/outside.bib"] } }).includes("paper.audience: data/outside.bib cannot be public"));
+});
+
+test("localPaths gives one audience per path and staff wins", () => {
+  const shared = "public/papers/demo-report/data/rows.csv";
+  const twice = { ...v2, tables: [v2.tables[0], { ...v2.tables[0], id: "rows-staff", audience: "staff" }] };
+  assert.deepEqual(localPaths(twice).filter((entry) => entry.path === shared), [{ path: shared, audience: "staff", role: "table" }]);
+  const reversed = { ...v2, tables: [{ ...v2.tables[0], id: "rows-staff", audience: "staff" }, v2.tables[0]] };
+  assert.deepEqual(localPaths(reversed).filter((entry) => entry.path === shared), [{ path: shared, audience: "staff", role: "table" }]);
+  for (const record of [atlas, v2, twice]) assert.equal(new Set(localPaths(record).map((entry) => entry.path)).size, localPaths(record).length);
+  assert.equal(localPaths(v2).find((entry) => entry.path === shared).audience, "public");
+});
+
+assert.equal(named, 11);
 console.log("test-report-record: ok");

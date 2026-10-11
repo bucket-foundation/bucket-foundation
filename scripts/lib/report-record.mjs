@@ -137,11 +137,37 @@ function paperFiles(paper) {
   return ["includes", "bib", "style"].flatMap((key) => (isPathList(paper[key]) ? paper[key] : []));
 }
 
+function parentDir(path) {
+  return typeof path === "string" && path.includes("/") ? path.split("/").slice(0, -1).join("/") : null;
+}
+
+function paperRoots(record) {
+  const own = parentDir(record.source_path);
+  const shared = own === null ? null : parentDir(own);
+  return [own, shared === null ? null : `${shared}/bib`].filter((dir) => dir !== null);
+}
+
+function staffRoots(record) {
+  const roots = ["tools"];
+  if (isPlainObject(record.tool) && typeof record.tool.path === "string") roots.push(record.tool.path);
+  for (const set of Array.isArray(record.record_sets) ? record.record_sets : []) if (isPlainObject(set) && typeof set.dir === "string" && set.audience !== "public") roots.push(set.dir);
+  return roots;
+}
+
+function leanDir(record) {
+  const own = parentDir(record.source_path);
+  const lean = isPlainObject(record.paper) ? record.paper.lean : null;
+  return typeof lean === "string" && own !== null && lean !== own && under(lean, own) ? lean : null;
+}
+
 function publicRule(record) {
-  const exact = new Set([record.source_path, record.pdf_path, ...paperFiles(record.paper)]);
+  const staff = staffRoots(record);
+  const roots = paperRoots(record);
+  const exact = new Set([record.source_path, record.pdf_path]);
   for (const key of ["figures", "data_sources"]) for (const item of Array.isArray(record[key]) ? record[key] : []) if (isPlainObject(item) && typeof item.path === "string") exact.add(item.path);
-  const lean = isPlainObject(record.paper) && typeof record.paper.lean === "string" ? record.paper.lean : null;
-  return (path) => typeof path === "string" && (path.startsWith("public/") || exact.has(path) || (lean !== null && under(path, lean)));
+  for (const path of paperFiles(record.paper)) if (roots.some((dir) => under(path, dir))) exact.add(path);
+  const lean = leanDir(record);
+  return (path) => typeof path === "string" && !staff.some((dir) => under(path, dir)) && (path.startsWith("public/") || exact.has(path) || (lean !== null && under(path, lean)));
 }
 
 function listedRule(record) {
@@ -219,8 +245,11 @@ export function validateLocal(record, errors) {
         if (!isPathList(paper[key])) errors.push(`paper.${key}: must be a list of paths`);
         else paper[key].forEach((path, i) => checkPath(path, `paper.${key}[${i}]`, errors));
       }
-      if (paper.lean != null) checkPath(paper.lean, "paper.lean", errors);
-      checkAudience(paper, "paper", [], isPublic, errors);
+      if (paper.lean != null) {
+        checkPath(paper.lean, "paper.lean", errors);
+        if (typeof paper.lean === "string" && leanDir(record) === null) errors.push(`paper.lean: must sit inside ${parentDir(record.source_path) ?? "the paper folder"}`);
+      }
+      checkAudience(paper, "paper", [...paperFiles(paper), paper.lean], isPublic, errors);
     }
   }
   eachEntry(record, "record_sets", errors, (set, label) => {
@@ -268,9 +297,13 @@ export function validateLocal(record, errors) {
 
 export function localPaths(record) {
   const isPublic = publicRule(record);
-  const out = [];
+  const byPath = new Map();
   const add = (path, entry, role) => {
-    if (typeof path === "string" && path.length > 0) out.push({ path, audience: entry.audience === "public" && isPublic(path) ? "public" : "staff", role });
+    if (typeof path !== "string" || path.length === 0) return;
+    const audience = entry.audience === "public" && isPublic(path) ? "public" : "staff";
+    const seen = byPath.get(path);
+    if (!seen) byPath.set(path, { path, audience, role });
+    else if (audience === "staff") seen.audience = "staff";
   };
   const rows = (key) => (Array.isArray(record[key]) ? record[key].filter(isPlainObject) : []);
   for (const asset of rows("assets")) {
@@ -290,7 +323,7 @@ export function localPaths(record) {
     add(record.tool.path, record.tool, "tool");
     add(record.tool.readme, record.tool, "tool-readme");
   }
-  return out;
+  return [...byPath.values()];
 }
 
 export function registerRow(record, now) {

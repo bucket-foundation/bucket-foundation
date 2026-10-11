@@ -61,7 +61,10 @@ Rules the validator applies:
 
 - An `id` is kebab-case and unique within its list.
 - `audience` is `public` or `staff`. A reader that meets a missing value treats it as `staff`.
-- An entry may say `public` only when its path starts with `public/`, equals `source_path` or `pdf_path`, sits in `paper`, or matches a `figures` or `data_sources` path. A path under `tools/` cannot be public.
+- An entry may say `public` only when its path starts with `public/`, equals `source_path` or `pdf_path`, sits in `paper`, or matches a `figures` or `data_sources` path.
+- A `paper` file counts only inside the folder of `source_path` or the `bib/` folder beside it, and `paper.lean` must be a folder inside the folder of `source_path`. A public `paper` fails on any other path.
+- A path under `tools/`, under `tool.path` or under a staff record set is staff under every rule above.
+- `localPaths` returns each path once. A path listed as both `staff` and `public` comes out `staff`.
 - An asset's `source` script counts as `staff` unless the same rule admits it.
 - `check` adds one test per listed path: `local file missing: <path>`. A staff table needs no public copy.
 
