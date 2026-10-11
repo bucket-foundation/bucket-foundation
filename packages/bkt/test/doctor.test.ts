@@ -66,7 +66,7 @@ function deps(over: Partial<DoctorDeps> = {}): DoctorDeps {
     keyring: () => new MemoryKeyring(),
     pack: content,
     explore: explorePack as unknown as ExplorePack,
-    words: wordPack as WordPack,
+    words: wordPack as unknown as WordPack,
     uiDir: join(dir, "ui"),
     runtimeDir: join(dir, "run"),
     tty: { stdin: true, stdout: true },
@@ -213,7 +213,7 @@ describe("bkt doctor checks", () => {
   });
 
   test("the word pack check recomputes its checksum and names the licence", async () => {
-    const words = wordPack as WordPack;
+    const words = wordPack as unknown as WordPack;
     const good = byId(await runDoctor(deps()), "word-pack");
     expect(good.result).toBe(`Version ${words.version}, ${words.words.length} words in ${words.languages.length} languages, Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, checksum matches.`);
     const cut = byId(await runDoctor(deps({ words: { ...words, words: words.words.slice(1) } })), "word-pack");

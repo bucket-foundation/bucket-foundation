@@ -104,7 +104,7 @@ async function analyzeCmd(argv: string[]): Promise<number> {
 let heldBook: WordBook | null = null;
 
 function wordBook(): WordBook {
-  heldBook ??= new WordBook(wordPack as WordPack);
+  heldBook ??= new WordBook(wordPack as unknown as WordPack);
   return heldBook;
 }
 
@@ -303,7 +303,7 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
     keyring: () => platform.keyring(),
     pack: pack as Pack,
     explore: explorePack as unknown as ExplorePack,
-    words: wordPack as WordPack,
+    words: wordPack as unknown as WordPack,
     uiDir: uiDir(env),
     runtimeDir: runtimeDir(env),
     tty,

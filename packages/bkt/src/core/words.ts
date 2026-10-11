@@ -1,8 +1,9 @@
-import { checkLimits } from "../../../../src/lib/research-os/work-quiz/limits";
-import type { SampledQuestion } from "../../../../src/lib/research-os/work-quiz/forms";
+import { checkLimits, parityOk } from "../../../../src/lib/research-os/work-quiz/limits";
+import { factId } from "../../../../src/lib/research-os/work-quiz/fact";
+import { shuffle, stamp, type SampledQuestion } from "../../../../src/lib/research-os/work-quiz/forms";
 import { seededRng } from "../../../../src/lib/research-os/work-quiz/generate";
 import { languageDir, type Dir } from "../../../../src/lib/research-os/work-quiz/languages";
-import { fold, languageMakers, wordFactId, type Script, type WordCell, type WordSet } from "../../../../src/lib/research-os/work-quiz/polingual-forms";
+import { contentWords, fold, LANGUAGE_CHOICES, languageMakers, type Script, type WordCell, type WordSet } from "../../../../src/lib/research-os/work-quiz/polingual-forms";
 import { LANGUAGE_FORMS } from "../../../../src/lib/research-os/work-quiz/space";
 import type { PackWord, WordPack } from "../pack/words";
 
@@ -117,8 +118,29 @@ export interface ConceptPage {
   rows: ConceptRow[];
 }
 
+export interface LessonCell {
+  lang: string;
+  concept: string;
+  word: string;
+  pos: string;
+  ipa: string;
+  script: Script;
+  meaning: string;
+  senses: string[];
+  etymology: string;
+  short: string;
+  quiz: boolean;
+  strict: boolean;
+  common: number;
+  ref: string;
+  cell: WordCell | null;
+}
+
 export function wordSetFromPack(pack: WordPack): WordSet {
-  const cells: WordCell[] = pack.words.filter((w) => w.quiz).map((w) => ({ lang: w.lang, concept: w.concept, pos: w.pos, word: w.word, folded: fold(w.word), gloss: w.gloss, ipa: w.ipa, script: w.script, shared: w.shared, senseWords: new Set(w.senseWords) }));
+  const cells: WordCell[] = pack.words
+    .filter((w) => w.cell)
+    .sort((a, b) => (`${a.lang}:${a.concept}` < `${b.lang}:${b.concept}` ? -1 : 1))
+    .map((w) => ({ lang: w.lang, concept: w.concept!, pos: w.pos, word: w.word, folded: fold(w.word), gloss: w.cell!.gloss, ipa: w.ipa ?? "", script: w.script, shared: w.cell!.shared, senseWords: new Set(w.cell!.senseWords) }));
   const byLang: Record<string, WordCell[]> = {};
   const byConcept: Record<string, WordCell[]> = {};
   for (const c of cells) {
@@ -152,17 +174,22 @@ function balanced<T>(xs: readonly T[], size: number): T[][] {
 }
 
 const pairKey = (lang: string, concept: string) => `${lang}:${concept}`;
-const rowKey = (lang: string, concept: string, word: string) => `${lang}:${concept}:${word}`;
+const NO_SOURCES = { beads: [], prs: [], notes: [], repoUrl: null };
+const NAME_POS = "name";
+
+export function wordRef(w: Pick<PackWord, "lang" | "concept" | "word" | "cell">): string {
+  return w.cell ? `${w.lang}:${w.concept}` : `${w.lang}:${w.concept ?? "_"}:${w.word}`;
+}
 
 export class WordBook {
   readonly set: WordSet;
   readonly credit: WordCredit;
-  readonly version: string;
   readonly licence: WordLicence;
-  private rows = new Map<string, PackWord>();
-  private byLang: Record<string, WordCell[]> = {};
-  private byPair = new Map<string, WordCell[]>();
-  private plans = new Map<string, { lesson: WordLesson; cells: WordCell[] }[]>();
+  readonly version: string;
+  private byLang: Record<string, LessonCell[]> = {};
+  private byPair = new Map<string, LessonCell[]>();
+  private concepts_: string[];
+  private plans = new Map<string, { lesson: WordLesson; cells: LessonCell[] }[]>();
 
   constructor(pack: WordPack) {
     this.set = wordSetFromPack(pack);
@@ -170,19 +197,35 @@ export class WordBook {
     this.version = pack.version;
     this.licence = { credit: this.credit, changes: pack.changes, title: `Creative Commons ${pack.attribution.license}`, text: pack.licenceText };
     const checked = new Map(this.set.cells.map((c) => [pairKey(c.lang, c.concept), c]));
-    for (const w of pack.words) {
-      this.rows.set(rowKey(w.lang, w.concept, w.word), w);
-      const cell: WordCell = w.quiz ? checked.get(pairKey(w.lang, w.concept))! : { lang: w.lang, concept: w.concept, pos: w.pos, word: w.word, folded: fold(w.word), gloss: "", ipa: w.ipa, script: w.script, shared: false, senseWords: new Set() };
+    pack.words.forEach((w, i) => {
+      const cell: LessonCell = {
+        lang: w.lang,
+        concept: w.concept ?? "",
+        word: w.word,
+        pos: w.pos,
+        ipa: w.ipa ?? "",
+        script: w.script,
+        meaning: w.meaning,
+        senses: w.senses ?? [],
+        etymology: w.etymology ?? "",
+        short: w.short ?? "",
+        quiz: w.quiz === true,
+        strict: w.strict === true,
+        common: (w.strict ? 0 : w.pos === NAME_POS ? 2 : 1) * pack.words.length + i,
+        ref: wordRef(w),
+        cell: w.cell ? checked.get(pairKey(w.lang, w.concept!))! : null,
+      };
       (this.byLang[w.lang] ??= []).push(cell);
-      this.byPair.set(pairKey(w.lang, w.concept), [...(this.byPair.get(pairKey(w.lang, w.concept)) ?? []), cell]);
-    }
+      if (cell.strict) this.byPair.set(pairKey(w.lang, cell.concept), [...(this.byPair.get(pairKey(w.lang, cell.concept)) ?? []), cell]);
+    });
+    this.concepts_ = Array.from(new Set(pack.words.filter((w) => w.strict).map((w) => w.concept!)));
   }
 
-  inQuiz(cell: WordCell): boolean {
-    return this.rows.get(rowKey(cell.lang, cell.concept, cell.word))?.quiz === true;
+  factId(cell: Pick<LessonCell, "ref">): string {
+    return factId("word", cell.ref);
   }
 
-  words(lang: string): WordCell[] {
+  words(lang: string): LessonCell[] {
     return this.byLang[lang] ?? [];
   }
 
@@ -200,28 +243,27 @@ export class WordBook {
     return this.languages().find((l) => l === want || this.set.names[l].toLowerCase() === want) ?? null;
   }
 
-  private plan(lang: string): { lesson: WordLesson; cells: WordCell[] }[] {
+  private plan(lang: string): { lesson: WordLesson; cells: LessonCell[] }[] {
     const cached = this.plans.get(lang);
     if (cached) return cached;
-    const cells = this.words(lang)
-      .map((c, i) => ({ c, i }))
-      .sort((a, b) => themeIndex(a.c.concept) - themeIndex(b.c.concept) || a.c.concept.localeCompare(b.c.concept) || a.i - b.i)
-      .map((x) => x.c);
-    const groups: { title: string; cells: WordCell[] }[] = [];
-    const loose: WordCell[] = [];
+    const cells = [...this.words(lang)].sort((a, b) => a.common - b.common);
+    const groups: { title: string; round: number; theme: number; cells: LessonCell[] }[] = [];
+    const loose: LessonCell[] = [];
     THEMES.forEach((t, i) => {
       const own = cells.filter((c) => themeIndex(c.concept) === i);
       if (i === MIXED_INDEX || own.length < MIN_THEME_WORDS) loose.push(...own);
-      else balanced(own, LESSON_WORDS).forEach((part, k, all) => groups.push({ title: all.length > 1 ? `${t.title} ${k + 1}` : t.title, cells: part }));
+      else balanced(own, LESSON_WORDS).forEach((part, k, all) => groups.push({ title: all.length > 1 ? `${t.title} ${k + 1}` : t.title, round: k, theme: i, cells: part }));
     });
-    balanced(loose, LESSON_WORDS).forEach((part, k, all) => groups.push({ title: all.length > 1 ? `${THEMES[MIXED_INDEX].title} ${k + 1}` : THEMES[MIXED_INDEX].title, cells: part }));
-    const out = groups.map((g, i) => ({ lesson: { n: i + 1, title: g.title, concepts: g.cells.map((c) => c.concept), quiz: g.cells.filter((c) => this.inQuiz(c)).length }, cells: g.cells }));
+    loose.sort((a, b) => a.common - b.common);
+    balanced(loose, LESSON_WORDS).forEach((part, k, all) => groups.push({ title: all.length > 1 ? `${THEMES[MIXED_INDEX].title} ${k + 1}` : THEMES[MIXED_INDEX].title, round: k, theme: MIXED_INDEX, cells: part }));
+    groups.sort((a, b) => a.round - b.round || a.theme - b.theme);
+    const out = groups.map((g, i) => ({ lesson: { n: i + 1, title: g.title, concepts: g.cells.map((c) => c.concept), quiz: g.cells.filter((c) => c.quiz).length }, cells: g.cells }));
     this.plans.set(lang, out);
     return out;
   }
 
   deck(lang: string): WordDeck {
-    return { id: `${WORD_DECK_PREFIX}${lang}`, lang, name: this.set.names[lang], dir: languageDir(lang), words: this.words(lang).length, quiz: (this.set.byLang[lang] ?? []).length, lessons: this.plan(lang).length };
+    return { id: `${WORD_DECK_PREFIX}${lang}`, lang, name: this.set.names[lang], dir: languageDir(lang), words: this.words(lang).length, quiz: this.words(lang).filter((c) => c.quiz).length, lessons: this.plan(lang).length };
   }
 
   decks(chosen: readonly string[]): WordDeck[] {
@@ -232,12 +274,11 @@ export class WordBook {
     return this.plan(lang).map((p) => p.lesson);
   }
 
-  lessonCells(lang: string, n: number): WordCell[] {
+  lessonCells(lang: string, n: number): LessonCell[] {
     return this.plan(lang)[n - 1]?.cells ?? [];
   }
 
-  view(cell: WordCell): WordView {
-    const row = this.rows.get(rowKey(cell.lang, cell.concept, cell.word))!;
+  view(cell: LessonCell): WordView {
     return {
       lang: cell.lang,
       name: this.set.names[cell.lang],
@@ -247,15 +288,15 @@ export class WordBook {
       word: cell.word,
       ipa: cell.ipa,
       pos: POS_NAMES[cell.pos] ?? cell.pos,
-      meaning: row.meaning,
-      senses: row.senses,
-      etymology: row.etymology,
+      meaning: cell.meaning,
+      senses: cell.senses,
+      etymology: cell.etymology,
       href: `${this.set.wiktionaryUrl}/wiki/${encodeURIComponent(cell.word)}`,
-      quiz: row.quiz,
+      quiz: cell.quiz,
     };
   }
 
-  private inLanguage(concept: string, lang: string): WordCell[] {
+  private inLanguage(concept: string, lang: string): LessonCell[] {
     return this.byPair.get(pairKey(lang, concept)) ?? [];
   }
 
@@ -266,7 +307,7 @@ export class WordBook {
     const words = part.cells.map((c): LessonWord => ({
       ...this.view(c),
       theme: themeTitle(c.concept),
-      others: others.flatMap((l) => this.inLanguage(c.concept, l).map((o) => this.view(o))),
+      others: c.strict ? others.flatMap((l) => this.inLanguage(c.concept, l).map((o) => this.view(o))) : [],
     }));
     return { deck: this.deck(lang), n, of: this.plan(lang).length, title: part.lesson.title, words };
   }
@@ -274,9 +315,11 @@ export class WordBook {
   private conceptOrder(chosen: readonly string[]): string[] {
     const langs = this.known(chosen);
     const cover = (c: string) => langs.filter((l) => this.inLanguage(c, l).length > 0).length;
-    return Array.from(new Set(Array.from(this.rows.values(), (w) => w.concept)))
-      .filter((c) => cover(c) > 0)
-      .sort((a, b) => cover(b) - cover(a) || themeIndex(a) - themeIndex(b) || a.localeCompare(b));
+    return this.concepts_.filter((c) => cover(c) > 0).sort((a, b) => cover(b) - cover(a) || themeIndex(a) - themeIndex(b) || a.localeCompare(b));
+  }
+
+  conceptCount(): number {
+    return this.concepts_.length;
   }
 
   concepts(chosen: readonly string[], page: number): ConceptPage {
@@ -293,33 +336,74 @@ export class WordBook {
     return { page: at, of, concepts: order.length, languages: langs.map((l) => ({ code: l, name: this.set.names[l], dir: languageDir(l) })), rows };
   }
 
-  conceptCells(chosen: readonly string[], page: number): WordCell[] {
+  conceptCells(chosen: readonly string[], page: number): LessonCell[] {
     const langs = this.known(chosen);
     return this.concepts(chosen, page).rows.flatMap((r) => langs.flatMap((l) => this.inLanguage(r.concept, l)));
   }
 
-  questions(cells: readonly WordCell[], chosen: readonly string[], seed: string): SampledQuestion[] {
+  meaningPick(cell: LessonCell, seed: string): SampledQuestion | null {
+    if (!cell.quiz || !cell.short) return null;
+    const rng = seededRng(`${seed}|${cell.ref}|pick`);
+    const own = new Set(contentWords(cell.short));
+    const taken = [cell.short];
+    const lower = new Set([cell.short.toLowerCase()]);
+    for (const o of shuffle(rng, this.words(cell.lang))) {
+      if (taken.length === LANGUAGE_CHOICES) break;
+      if (o === cell || !o.short || o.pos !== cell.pos || o.concept === cell.concept || lower.has(o.short.toLowerCase())) continue;
+      if (contentWords(o.short).some((m) => own.has(m)) || !parityOk([...taken, o.short])) continue;
+      taken.push(o.short);
+      lower.add(o.short.toLowerCase());
+    }
+    if (taken.length < LANGUAGE_CHOICES) return null;
+    const name = this.set.names[cell.lang];
+    return stamp(
+      {
+        id: "",
+        type: "meaning",
+        prompt: `What does this ${name} word mean?`,
+        lines: [cell.word],
+        choices: shuffle(rng, taken),
+        answer: cell.short,
+        tolerance: 0,
+        limitSec: 0,
+        explain: `${cell.word} is ${name} for "${cell.short}".`,
+        sources: [{ kind: "word", ref: cell.ref, label: this.set.credit, href: `${this.set.wiktionaryUrl}/wiki/${encodeURIComponent(cell.word)}` }],
+        word: { lang: cell.lang, choicesLang: null, credit: this.set.credit, href: this.set.wiktionaryUrl },
+      },
+      "meaning",
+      1,
+      [this.factId(cell)],
+    );
+  }
+
+  private checkedForms(cell: WordCell, at: number, prefer: readonly string[], seed: string): SampledQuestion | null {
+    const makers = languageMakers(this.set, [cell.lang], (c) => c === cell, prefer);
+    for (let k = 0; k < LANGUAGE_FORMS.length; k++) {
+      const form = LANGUAGE_FORMS[(at + k) % LANGUAGE_FORMS.length];
+      const q = makers[form]?.(NO_SOURCES, seededRng(`${seed}|${cell.lang}:${cell.concept}|${form}`), 1) ?? null;
+      if (!q || checkLimits(q).length > 0) continue;
+      if (form === "pair" && !prefer.includes(q.word?.choicesLang ?? "")) continue;
+      return q;
+    }
+    return null;
+  }
+
+  questions(cells: readonly LessonCell[], chosen: readonly string[], seed: string): SampledQuestion[] {
     const prefer = this.known(chosen);
     const out: SampledQuestion[] = [];
     const seen = new Set<string>();
-    cells.filter((c) => this.inQuiz(c)).forEach((cell, i) => {
-      const makers = languageMakers(this.set, [cell.lang], (c) => c === cell, prefer);
-      for (let k = 0; k < LANGUAGE_FORMS.length; k++) {
-        const form = LANGUAGE_FORMS[(i + k) % LANGUAGE_FORMS.length];
-        const q = makers[form]?.({ beads: [], prs: [], notes: [], repoUrl: null }, seededRng(`${seed}|${wordFactId(cell)}|${form}`), 1) ?? null;
-        if (!q || seen.has(q.id) || checkLimits(q).length > 0) continue;
-        if (form === "pair" && !prefer.includes(q.word?.choicesLang ?? "")) continue;
-        seen.add(q.id);
-        out.push(q);
-        return;
-      }
+    cells.filter((c) => c.quiz).forEach((cell, i) => {
+      const q = (cell.cell && i % 2 === 1 ? this.checkedForms(cell.cell, i, prefer, seed) : null) ?? this.meaningPick(cell, seed) ?? (cell.cell ? this.checkedForms(cell.cell, i, prefer, seed) : null);
+      if (!q || seen.has(q.id)) return;
+      seen.add(q.id);
+      out.push(q);
     });
     return out;
   }
 
-  studyCells(lang: string, size: number, started: ReadonlySet<string>, due: ReadonlySet<string>): WordCell[] {
-    const all = this.plan(lang).flatMap((p) => p.cells).filter((c) => this.inQuiz(c));
-    const rank = (c: WordCell) => (due.has(wordFactId(c)) ? 0 : started.has(wordFactId(c)) ? 2 : 1);
+  studyCells(lang: string, size: number, started: ReadonlySet<string>, due: ReadonlySet<string>): LessonCell[] {
+    const all = this.plan(lang).flatMap((p) => p.cells).filter((c) => c.quiz);
+    const rank = (c: LessonCell) => (due.has(this.factId(c)) ? 0 : started.has(this.factId(c)) ? 2 : 1);
     return all.map((c, i) => ({ c, i })).sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i).slice(0, size).map((x) => x.c);
   }
 }

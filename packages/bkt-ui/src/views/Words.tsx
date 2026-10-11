@@ -11,7 +11,7 @@ export const NO_WORD_QUESTIONS = "Bucket has no question for these words yet.";
 export const IN_REVIEW = "These words are now in your review schedule.";
 export const WORDS_FAILED = "Word lessons did not load.";
 export const LESSON_ONLY = "lesson only";
-export const LESSON_ONLY_NOTE = "A word marked lesson only shares its concept with another word, so the quiz leaves it out.";
+export const LESSON_ONLY_NOTE = "A word marked lesson only has no short meaning for a question, so the quiz leaves it out.";
 export const LICENCE_LINK = "Licence and changes";
 
 export function WordAttribution({ credit }: { credit: WordCredit }) {

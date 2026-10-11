@@ -2,8 +2,8 @@ import { describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { join, resolve as resolvePath } from "node:path";
 import { cardKey } from "../../../src/lib/research-os/work-quiz/fact";
-import { checkLimits, LIMITS } from "../../../src/lib/research-os/work-quiz/limits";
-import { buildWordSet, conceptPos, rejection, rivalOrder, rivals, WRONG_PAIRS, wordFactId, type RawSubset, type Script, type WordCell } from "../../../src/lib/research-os/work-quiz/polingual-forms";
+import { checkLimits, countTokens, LIMITS } from "../../../src/lib/research-os/work-quiz/limits";
+import { buildWordSet, conceptPos, rejection, rivalOrder, rivals, WRONG_PAIRS, type RawSubset, type Script, type WordCell } from "../../../src/lib/research-os/work-quiz/polingual-forms";
 import { sampleQuiz } from "../../../src/lib/research-os/work-quiz/sampler";
 import { learnPath, learnWordPath, quizJson, wordBackend, type LearnIo } from "../src/cli/learn";
 import { resolve } from "../src/cli/run";
@@ -12,7 +12,7 @@ import { directBackend } from "../src/core/backend";
 import { LESSON_WORDS, THEMES, WordBook, wordSetFromPack } from "../src/core/words";
 import { newDataKey } from "../src/crypto";
 import { buildDenylist } from "../src/pack/rights";
-import { assembleWords, buildWordPack, cleanEtymology, LICENCE_FILE, SEVERAL_WORDS, WORD_PACK_BUDGET_BYTES, wordPackChecksum, WORDS_FILE, type RawWords, type WordPack } from "../src/pack/words";
+import { assembleWords, buildWordPack, cleanEtymology, FORM_OF, formOf, LICENCE_FILE, SEVERAL_WORDS, shortMeaning, WORD_PACK_BUDGET_BYTES, wordPackChecksum, WORDS_FILE, type RawWords, type WordPack } from "../src/pack/words";
 import { seededRng } from "../../../src/lib/research-os/work-quiz/generate";
 import { daily, wordCreditLine } from "../src/cli/learn";
 import { DailyQuizStore } from "../src/daily-quiz";
@@ -71,7 +71,8 @@ describe("the word pack", () => {
     expect(PACK.sha256.startsWith(PACK.version)).toBe(true);
     expect(wordPackChecksum({ ...back, words: back.words.slice(1) })).not.toBe(PACK.sha256);
     expect(Buffer.byteLength(text)).toBeLessThan(WORD_PACK_BUDGET_BYTES);
-    expect(WORD_PACK_BUDGET_BYTES).toBe(1024 * 1024);
+    expect(WORD_PACK_BUDGET_BYTES).toBe(4 * 1024 * 1024);
+    expect(Buffer.byteLength(text)).toBeGreaterThan(WORD_PACK_BUDGET_BYTES / 2);
     expect(buildWordPack(REPO, DENY).sha256).toBe(PACK.sha256);
   });
 
@@ -85,16 +86,15 @@ describe("the word pack", () => {
       expect(fromPack.scripts[l]).toBe(fromSource.scripts[l]);
       expect(cellRows(fromPack.byLang[l])).toEqual(cellRows(fromSource.byLang[l]));
     }
-    expect(PACK.counts).toMatchObject({ rows: RAW.words.length, quiz: fromSource.cells.length, words: PACK.words.length, languages: 27 });
-    expect(PACK.words.filter((w) => w.quiz).length).toBe(fromSource.cells.length);
+    expect(PACK.counts).toMatchObject({ rows: RAW.words.length, checked: fromSource.cells.length, words: PACK.words.length, languages: 27 });
+    expect(PACK.words.filter((w) => w.cell).length).toBe(fromSource.cells.length);
   });
 
   test("a source without the share-alike licence or with a denied name is refused", () => {
     expect(() => assembleWords({ ...RAW, attribution: { ...RAW.attribution, license: "MIT" } }, DENY, LICENCE)).toThrow("CC-BY-SA");
     expect(() => assembleWords({ ...RAW, attribution: { ...RAW.attribution, data: "A word list" } }, DENY, LICENCE)).toThrow("Wiktionary");
     expect(() => assembleWords(RAW, DENY, "Attribution-ShareAlike 3.0 Unported")).toThrow("full Attribution-ShareAlike 3.0 Unported licence text");
-    const at = RAW.words.findIndex((w) => w.l === PACK.words[0].lang && w.c === PACK.words[0].concept && w.s.trim() === PACK.words[0].word);
-    const words = RAW.words.map((w, i) => (i === at ? { ...w, e: "From the Kruse family name." } : w));
+    const words = RAW.words.map((w, i) => (i === 0 ? { ...w, e: "From the Kruse family name." } : w));
     expect(() => assembleWords({ ...RAW, words }, DENY, LICENCE)).toThrow("rights:");
   });
 
@@ -163,81 +163,79 @@ describe("the licence and the changes", () => {
 });
 
 describe("which words ship", () => {
-  test("every source row is kept or counted under the first check it fails", () => {
+  test("lessons hold every row with a word and a meaning, less the entries that only point to another word", () => {
     const c = PACK.counts;
-    const rejected = Object.values(c.rejected).reduce((a, b) => a + b, 0);
-    expect(rejected + c.quiz).toBe(c.rows);
-    expect(Object.values(c.rejected)).toEqual(Object.values(c.rejected).sort((a, b) => b - a));
-    expect(Object.keys(c.rejected).slice(0, 2)).toEqual(["gloss names another word", "other senses do not back the gloss"]);
-    expect(c.rejected[SEVERAL_WORDS]).toBe(c.lessonOnly);
-    expect(c.words).toBe(c.quiz + c.lessonOnly);
-    expect(c.lessonOnly).toBeGreaterThan(100);
+    const dropped = Object.values(c.dropped).reduce((a, b) => a + b, 0);
+    expect(c.words + dropped).toBe(c.rows);
+    expect(c.words).toBe(PACK.words.length);
+    expect(c.words).toBeGreaterThan(6400);
+    expect(c.dropped[FORM_OF]).toBeGreaterThan(10);
+    expect(c.quiz + c.lessonOnly).toBe(c.words);
+    expect(c.quiz).toBeGreaterThan(5000);
+    expect(c.strict).toBe(c.checked + c.rejected[SEVERAL_WORDS]);
+    expect(Object.values(c.rejected).reduce((a, b) => a + b, 0) + c.checked).toBe(c.rows);
+    expect(Object.keys(c.rejected)[0]).toBe("gloss names another word");
+    expect(PACK.words.every((w) => w.word.length > 0 && w.meaning.length > 0)).toBe(true);
+    const sizes = BOOK.languages().map((l) => BOOK.words(l).length);
+    expect([Math.min(...sizes), Math.max(...sizes)]).toEqual([c.fewest[1], c.most[1]]);
+    expect(c.fewest[1]).toBeGreaterThan(90);
+    for (const [lang, word] of [["cs", "dlouhý"], ["pt", "água"], ["la", "numerus"], ["tr", "saka"]]) expect(PACK.words.some((w) => w.lang === lang && w.word === word)).toBe(true);
   });
 
-  test("a word whose first gloss names a different concept is excluded, and so is a listed wrong pair", () => {
+  test("an entry that only names a form of another word is dropped by rule", () => {
+    for (const g of ["short neuter singular of живо́й (živój)", "definite plural of fall", "plural of casa", "inflection of vit:", "alternative spelling of foo"]) expect({ g, drop: formOf(g) }).toEqual({ g, drop: true });
+    for (const g of ["The hard white form of dentin which forms the tusks", "a type of blue cheese", "Name of Hindu goddess, a form of Durga", "two (short form of iki)", "water"]) expect({ g, drop: formOf(g) }).toEqual({ g, drop: false });
+    expect(PACK.words.some((w) => formOf(w.meaning))).toBe(false);
+  });
+
+  test("the meaning for a question is the first clause, and a long one leaves the word for lessons only", () => {
+    expect(shortMeaning("water (clear liquid)")).toBe("water");
+    expect(shortMeaning("long, lengthy")).toBe("long");
+    expect(shortMeaning("a person who carries and sells water in the streets of a town")).toBe("");
+    expect(shortMeaning("house.")).toBe("house");
+    for (const w of PACK.words.filter((x) => x.quiz && !x.cell)) expect(countTokens(w.short!)).toBeLessThanOrEqual(LIMITS.option);
+    expect(PACK.words.filter((w) => !w.quiz).every((w) => !w.cell)).toBe(true);
+  });
+
+  test("only a word that is its concept sits in the by-concept view and beside another language", () => {
     const pos = conceptPos(RAW.words);
     const base = RAW.words.find((w) => w.l === "sv" && w.s === "hand")!;
     expect(rejection(base, pos)).toBeNull();
     expect(rejection({ ...base, g: "egg white, white", c: "white" }, pos)).toBe("gloss names another word");
-    expect(rejection({ ...base, g: "sir, mister; a man", c: "man" }, pos)).toBe("gloss names another word");
+    expect(rejection({ ...base, g: "poached egg with yogurt", c: "egg" }, pos)).toBe("gloss names another word");
     expect(rejection({ ...base, c: undefined }, pos)).toBe("no concept");
     for (const pair of ["sv:vita:white", "pt:senhor:man", "ru:мужик:man", "de:Runde:round", "fr:œillet:eye"]) {
       const [l, s, c] = pair.split(":");
       expect(WRONG_PAIRS.has(pair)).toBe(true);
-      expect(RAW.words.some((w) => w.l === l && w.s === s && w.c === c)).toBe(true);
-      expect(PACK.words.some((w) => w.lang === l && w.word === s && w.concept === c)).toBe(false);
+      expect(PACK.words.find((w) => w.lang === l && w.word === s && w.concept === c)).toMatchObject({ lang: l });
+      expect(PACK.words.find((w) => w.lang === l && w.word === s && w.concept === c)!.strict).toBeUndefined();
     }
-    expect(BOOK.concepts(["sv", "pt", "ru"], 1).rows.concat(BOOK.concepts(["sv", "pt", "ru"], 2).rows).flatMap((r) => r.words.flat().map((w) => w.word))).not.toContain("vita");
-  });
-
-  test("a lesson-only word shows in lessons and by concept, carries a meaning, and the quiz skips it", () => {
-    const only = PACK.words.filter((w) => !w.quiz);
-    expect(only.every((w) => w.meaning.length > 0 && w.concept.length > 0 && w.gloss === "")).toBe(true);
-    const sample = only.find((w) => w.lang === "ar")!;
-    const lessons = BOOK.lessons(sample.lang);
-    const at = lessons.find((l) => BOOK.lessonCells(sample.lang, l.n).some((c) => c.word === sample.word))!;
-    const page = BOOK.lesson(sample.lang, at.n, [sample.lang])!;
-    expect(page.words.find((w) => w.word === sample.word)).toMatchObject({ quiz: false, meaning: sample.meaning });
-    const cells = BOOK.lessonCells(sample.lang, at.n);
-    const asked = BOOK.questions(cells, [sample.lang], "seed");
-    expect(asked.length).toBeLessThanOrEqual(at.quiz);
-    expect(at.quiz).toBe(cells.filter((c) => BOOK.inQuiz(c)).length);
-    const several = BOOK.concepts([sample.lang], 1).of;
-    const rows = Array.from({ length: several }, (_, i) => BOOK.concepts([sample.lang], i + 1).rows).flat();
-    const row = rows.find((r) => r.concept === sample.concept)!;
-    expect(row.words[0].map((w) => w.word)).toContain(sample.word);
-    expect(row.words[0].length).toBeGreaterThan(1);
-    expect(BOOK.studyCells(sample.lang, 50, new Set(), new Set()).every((c) => BOOK.inQuiz(c))).toBe(true);
-    expect(BOOK.deck(sample.lang).words).toBeGreaterThan(BOOK.deck(sample.lang).quiz);
+    const all = BOOK.languages();
+    const pages = BOOK.concepts(all, 1).of;
+    const rows = Array.from({ length: pages }, (_, i) => BOOK.concepts(all, i + 1).rows).flat();
+    expect(rows.length).toBe(BOOK.conceptCount());
+    expect(rows.length).toBe(PACK.counts.concepts);
+    const shown = rows.flatMap((r) => r.words.flat());
+    expect(shown.length).toBe(PACK.counts.strict);
+    const strict = new Set(PACK.words.filter((w) => w.strict).map((w) => `${w.lang}:${w.concept}:${w.word}`));
+    expect(shown.every((w) => strict.has(`${w.lang}:${w.concept}:${w.word}`))).toBe(true);
+    expect(shown.some((w) => (w.lang === "tr" && w.word === "saka") || (w.lang === "sv" && w.word === "vita"))).toBe(false);
+    const loose = BOOK.words("tr").find((c) => c.word === "saka")!;
+    expect(loose.strict).toBe(false);
+    const at = BOOK.lessons("tr").find((l) => BOOK.lessonCells("tr", l.n).includes(loose))!;
+    expect(BOOK.lesson("tr", at.n, all)!.words.find((w) => w.word === "saka")!.others).toEqual([]);
   });
 });
 
 describe("wrong choices", () => {
-  test("come from the answer's part of speech first, and from another only when too few remain", () => {
-    let slots = 0;
-    let other = 0;
+  test("come from the answer's part of speech first in the checked forms", () => {
     for (const a of BOOK.set.cells) {
-      const order = rivalOrder(BOOK.set, seededRng(`order|${wordFactId(a)}`), a);
+      const order = rivalOrder(BOOK.set, seededRng(`order|${a.lang}:${a.concept}`), a);
       const same = rivals(BOOK.set, a).filter((c) => c.pos === a.pos).length;
       expect(order.length).toBe(rivals(BOOK.set, a).length);
       expect(order.slice(0, same).every((c) => c.pos === a.pos)).toBe(true);
       expect(order.slice(same).every((c) => c.pos !== a.pos)).toBe(true);
     }
-    const posOf = (lang: string, word: string) => BOOK.set.byLang[lang].find((c) => c.word === word)!.pos;
-    for (const lang of BOOK.languages()) {
-      for (const l of BOOK.lessons(lang)) {
-        for (const q of BOOK.questions(BOOK.lessonCells(lang, l.n), CHOSEN, "seed")) {
-          if (q.type !== "meaning" && q.type !== "sound") continue;
-          const answer = BOOK.set.byLang[lang].find((c) => c.word === q.answer)!;
-          for (const c of q.choices!.filter((x) => x !== q.answer)) {
-            slots++;
-            if (posOf(lang, c) !== answer.pos) other++;
-          }
-        }
-      }
-    }
-    expect(slots).toBeGreaterThan(800);
-    expect(other / slots).toBeLessThan(0.1);
   });
 });
 
@@ -247,44 +245,49 @@ describe("lesson grouping", () => {
     for (const lang of BOOK.languages()) {
       const lessons = BOOK.lessons(lang);
       expect(other.lessons(lang)).toEqual(lessons);
-      const concepts = lessons.flatMap((l) => l.concepts);
-      expect([...concepts].sort()).toEqual(BOOK.words(lang).map((c) => c.concept).sort());
-      expect(lessons.flatMap((l) => BOOK.lessonCells(lang, l.n)).length).toBe(new Set(lessons.flatMap((l) => BOOK.lessonCells(lang, l.n))).size);
+      const cells = lessons.flatMap((l) => BOOK.lessonCells(lang, l.n));
+      expect(cells.length).toBe(BOOK.words(lang).length);
+      expect(new Set(cells).size).toBe(cells.length);
+      expect(new Set(cells.map((c) => c.ref)).size).toBe(cells.length);
       expect(lessons.every((l) => l.concepts.length >= 1 && l.concepts.length <= LESSON_WORDS)).toBe(true);
       expect(lessons.map((l) => l.n)).toEqual(lessons.map((_, i) => i + 1));
-      expect(BOOK.deck(lang)).toMatchObject({ id: `words-${lang}`, words: concepts.length, quiz: BOOK.set.byLang[lang].length, lessons: lessons.length });
+      expect(BOOK.deck(lang)).toMatchObject({ id: `words-${lang}`, words: cells.length, quiz: cells.filter((c) => c.quiz).length, lessons: lessons.length });
     }
   });
 
-  test("a themed lesson holds words of one theme", () => {
-    const titles = new Set(THEMES.map((t) => t.title));
+  test("a themed lesson holds words of one theme, and the words that are their concept come first", () => {
     for (const l of BOOK.lessons("en")) {
       const theme = THEMES.find((t) => l.title === t.title || l.title.startsWith(`${t.title} `))!;
-      expect(titles.has(theme.title)).toBe(true);
       if (theme.id !== "mixed") expect(l.concepts.every((c) => theme.concepts.includes(c))).toBe(true);
     }
     expect(new Set(THEMES.flatMap((t) => t.concepts)).size).toBe(THEMES.flatMap((t) => t.concepts).length);
+    for (const lang of ["de", "ar", "ja"]) {
+      const lessons = BOOK.lessons(lang);
+      const firstRound = lessons.filter((l) => !/ [2-9]\d*$/.test(l.title) || / 1$/.test(l.title));
+      expect(lessons.slice(0, firstRound.length).map((l) => l.n)).toEqual(firstRound.map((l) => l.n));
+      const body = lessons.filter((l) => l.title.startsWith("Body")).flatMap((l) => BOOK.lessonCells(lang, l.n));
+      const strictAt = body.map((c) => c.strict);
+      expect(strictAt.lastIndexOf(true)).toBeLessThan(strictAt.includes(false) ? strictAt.indexOf(false) : strictAt.length);
+    }
   });
 
   test("a lesson word carries its fields and the same concept in the other chosen languages", () => {
     const page = BOOK.lesson("de", 1, CHOSEN)!;
     expect(page.words.length).toBeGreaterThan(0);
     expect(page.words.length).toBeLessThanOrEqual(LESSON_WORDS);
-    let sideBySide = 0;
     for (const w of page.words) {
       expect(w.word.length).toBeGreaterThan(0);
       expect(w.meaning.length).toBeGreaterThan(0);
-      expect(["noun", "verb", "adjective"]).toContain(w.pos);
       expect(w.href).toStartWith("https://en.wiktionary.org/wiki/");
       for (const o of w.others) {
         expect(["ar", "hi"]).toContain(o.lang);
         expect(o.concept).toBe(w.concept);
-        sideBySide++;
       }
     }
     const all = BOOK.lessons("de").flatMap((l) => BOOK.lesson("de", l.n, CHOSEN)!.words);
-    expect(all.some((w) => w.others.length > 0) || sideBySide > 0).toBe(true);
+    expect(all.some((w) => w.others.length > 0)).toBe(true);
     expect(all.some((w) => w.ipa && w.etymology && w.senses.length > 0)).toBe(true);
+    expect(all.some((w) => !w.quiz)).toBe(true);
     expect(BOOK.lesson("de", 999, CHOSEN)).toBeNull();
   });
 
@@ -303,12 +306,12 @@ describe("lesson grouping", () => {
 
   test("one word per script reads in its direction", () => {
     for (const [lang, dir, script] of SCRIPTS) {
-      const cell = BOOK.set.byLang[lang].find((c) => c.script === script)!;
+      const cell = BOOK.words(lang).find((c) => c.script === script)!;
       const view = BOOK.view(cell);
       expect({ lang, dir: view.dir, script: view.script }).toEqual({ lang, dir, script });
       expect(view.word).toBe(cell.word);
     }
-    expect(BOOK.set.byLang.ja.some((c) => c.script === "kana")).toBe(true);
+    expect(BOOK.words("ja").some((c) => c.script === "kana")).toBe(true);
   });
 
   test("a deck is found by code, by name and by its id", () => {
@@ -322,28 +325,68 @@ describe("lesson grouping", () => {
 describe("questions on lesson words", () => {
   test("every question passes the limits, offers 3 choices and asks about a lesson word", () => {
     let asked = 0;
+    let picks = 0;
+    let ready = 0;
+    const types = new Set<string>();
     for (const lang of BOOK.languages()) {
       for (const l of BOOK.lessons(lang)) {
         const cells = BOOK.lessonCells(lang, l.n);
-        const ids = new Set(cells.map(wordFactId));
+        const ids = new Set(cells.filter((c) => c.quiz).map((c) => BOOK.factId(c)));
+        ready += ids.size;
         const qs = BOOK.questions(cells, CHOSEN, "seed");
-        expect(BOOK.questions(cells, CHOSEN, "seed")).toEqual(qs);
-        expect(qs.length).toBeLessThanOrEqual(cells.length);
+        expect(qs.length).toBeLessThanOrEqual(ids.size);
         for (const q of qs) {
           expect(checkLimits(q)).toEqual([]);
           expect(q.choices!.length).toBe(LIMITS.choices);
           expect(q.choices!.filter((c) => c === q.answer).length).toBe(1);
           expect(q.factIds.some((id) => ids.has(id))).toBe(true);
+          expect(q.cardKey).toBe(cardKey(q.factIds.join("+"), q.form));
           expect(q.sources[0].label).toContain("Wiktionary");
           expect(q.word!.credit).toContain("CC-BY-SA");
           if (q.type === "pair") expect(CHOSEN).toContain(q.word!.choicesLang!);
+          if (q.prompt.startsWith("What does this")) picks++;
+          types.add(q.type);
           asked++;
         }
       }
     }
-    expect(asked).toBeGreaterThan(PACK.counts.quiz / 2);
-    const german = BOOK.lessons("de").flatMap((l) => BOOK.questions(BOOK.lessonCells("de", l.n), CHOSEN, "seed"));
-    expect(new Set(german.map((q) => q.type)).size).toBeGreaterThanOrEqual(2);
+    expect(asked / ready).toBeGreaterThan(0.95);
+    expect(picks).toBeGreaterThan(4000);
+    expect(types.size).toBeGreaterThanOrEqual(3);
+    const cells = BOOK.lessonCells("de", 1);
+    expect(BOOK.questions(cells, CHOSEN, "seed")).toEqual(BOOK.questions(cells, CHOSEN, "seed"));
+  });
+
+  test("the meaning question shows the word and offers trimmed meanings of other words of its kind", () => {
+    const cell = BOOK.words("pt").find((c) => c.word === "água")!;
+    const q = BOOK.meaningPick(cell, "seed")!;
+    expect(q.prompt).toBe("What does this Portuguese word mean?");
+    expect(q.lines).toEqual(["água"]);
+    expect(q.answer).toBe(cell.short);
+    expect(q.word).toMatchObject({ lang: "pt", choicesLang: null });
+    const byShort = new Map(BOOK.words("pt").filter((c) => c.short && c.pos === cell.pos).map((c) => [c.short, c]));
+    for (const c of q.choices!.filter((x) => x !== q.answer)) {
+      expect(byShort.has(c)).toBe(true);
+      expect(BOOK.words("pt").some((o) => o.short === c && o.pos === cell.pos && o.concept !== cell.concept)).toBe(true);
+    }
+    const long = BOOK.words("de").find((c) => !c.quiz)!;
+    expect([long.quiz, BOOK.meaningPick(long, "seed")]).toEqual([false, null]);
+    expect(BOOK.questions([long], CHOSEN, "seed")).toEqual([]);
+    let slots = 0;
+    let other = 0;
+    for (const lang of BOOK.languages()) {
+      const pos = new Map(BOOK.words(lang).filter((c) => c.short).map((c) => [c.short, new Set<string>()]));
+      for (const c of BOOK.words(lang)) if (c.short) pos.get(c.short)!.add(c.pos);
+      for (const c of BOOK.words(lang).filter((x) => x.quiz)) {
+        const pick = BOOK.meaningPick(c, "seed");
+        for (const x of pick?.choices?.filter((y) => y !== pick.answer) ?? []) {
+          slots++;
+          if (!pos.get(x)!.has(c.pos)) other++;
+        }
+      }
+    }
+    expect(slots).toBeGreaterThan(9000);
+    expect(other).toBe(0);
   });
 });
 
@@ -364,7 +407,7 @@ describe("review of studied words", () => {
     expect(() => words.answer(q.id, full.answer, 1000)).toThrow("no open question");
     const key = cardKey(full.factIds.join("+"), full.form);
     expect(full.cardKey).toBe(key);
-    expect(key).toMatch(/^word:de:[a-z]+(\+word:[a-z]{2}:[a-z]+)?\|(meaning|sound|language|pair)$/);
+    expect(key).toMatch(/^word:de:[^|+]+(\+word:[a-z]{2}:[^|+]+)?\|(meaning|sound|language|pair)$/);
     const row = store.db.query<{ card_key: string; due: number }, []>("select card_key, due from work_quiz_cards").all();
     expect(row.map((r) => r.card_key)).toEqual([key]);
     expect(row[0].due).toBeGreaterThan(NOW);
@@ -399,10 +442,11 @@ describe("review of studied words", () => {
     const first = words.quiz({ deck: "German", size: 3 });
     expect(first.questions.length).toBeGreaterThan(0);
     expect(first.questions.length).toBeLessThanOrEqual(3);
-    const cells = BOOK.lessons("de").flatMap((l) => BOOK.lessonCells("de", l.n)).filter((c) => BOOK.inQuiz(c));
-    const due = new Set([wordFactId(cells[10])]);
+    const cells = BOOK.lessons("de").flatMap((l) => BOOK.lessonCells("de", l.n)).filter((c) => c.quiz);
+    const due = new Set([BOOK.factId(cells[10])]);
     expect(BOOK.studyCells("de", 2, due, due)[0]).toBe(cells[10]);
-    expect(BOOK.studyCells("de", 2, new Set([wordFactId(cells[0])]), new Set())[0]).toBe(cells[1]);
+    expect(BOOK.studyCells("de", 2, new Set([BOOK.factId(cells[0])]), new Set())[0]).toBe(cells[1]);
+    expect(BOOK.studyCells("de", 500, new Set(), new Set()).every((c) => c.quiz)).toBe(true);
     expect(() => words.quiz({ deck: "Klingon" })).toThrow("unknown language");
     expect(() => words.quiz({ deck: "de", lesson: 999 })).toThrow("no such lesson");
     store.close();

@@ -2,17 +2,35 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { LANGUAGE_NAMES } from "../../../../src/lib/research-os/work-quiz/languages";
-import { buildWordSet, cleanIpa, fold, rejection, scriptOf, usableWord, type RawSubset, type RawWord, type Script, type WordCell } from "../../../../src/lib/research-os/work-quiz/polingual-forms";
+import { countTokens, LIMITS } from "../../../../src/lib/research-os/work-quiz/limits";
+import { buildWordSet, cleanIpa, rejection, scriptOf, usableWord, type RawSubset, type RawWord, type Script, type WordCell } from "../../../../src/lib/research-os/work-quiz/polingual-forms";
 import { assertClean, buildDenylist, type Denylist } from "./rights";
 
-export const WORD_PACK_BUDGET_BYTES = 1024 * 1024;
+export const WORD_PACK_BUDGET_BYTES = 4 * 1024 * 1024;
 export const LICENCE_FILE = "packages/bkt/licences/CC-BY-SA-3.0.txt";
 export const LICENCE_TITLE = "Attribution-ShareAlike 3.0 Unported";
 export const WORD_CHANGES =
-  "Changes made by Bucket: the pack keeps the words that pass its checks, one short definition and up to four further senses for each word, one pronunciation, and a shortened etymology. Bucket offers the changed word list under the same licence.";
+  "Changes made by Bucket: the pack leaves out entries that only point to another word, and keeps one short definition and up to four further senses for each word, one pronunciation, and a shortened etymology. Bucket offers the changed word list under the same licence.";
 export const SEVERAL_WORDS = "several words for one concept";
 export const BAD_FORM = "word form the quiz cannot show";
 export const OUTSIDE_LANGUAGE = "language outside the set";
+export const FORM_OF = "form of another word";
+export const REPEATED = "repeated entry";
+const GRAMMAR = new Set(["short", "long", "definite", "indefinite", "neuter", "masculine", "feminine", "common", "plural", "singular", "dual", "past", "present", "future", "first", "second", "third", "person", "first-person", "second-person", "third-person", "alternative", "obsolete", "archaic", "dated", "nonstandard", "active", "passive", "strong", "weak", "mixed", "simple", "perfect", "imperfect", "verbal", "nominative", "genitive", "dative", "accusative", "vocative", "ablative", "locative", "instrumental", "comparative", "superlative", "positive", "inflection", "participle", "form", "tense", "spelling", "romanization", "abbreviation", "gerund", "infinitive", "imperative", "contraction", "misspelling", "variant", "stem", "and", "degree", "case"]);
+const FORM_HEADS = new Set(["plural", "singular", "dual", "inflection", "participle", "form", "tense", "spelling", "romanization", "abbreviation", "nominative", "genitive", "dative", "accusative", "vocative", "ablative", "locative", "instrumental", "comparative", "superlative", "gerund", "infinitive", "imperative", "contraction", "misspelling", "variant", "stem"]);
+
+export function formOf(gloss: string): boolean {
+  const at = gloss.toLowerCase().indexOf(" of ");
+  if (at < 0) return false;
+  const lead = gloss.toLowerCase().slice(0, at).split(/\s+/).filter(Boolean);
+  return lead.length > 0 && lead.length <= 5 && lead.every((t) => GRAMMAR.has(t)) && FORM_HEADS.has(lead[lead.length - 1]);
+}
+
+export function shortMeaning(gloss: string): string {
+  const cut = gloss.split(/[,;(]/)[0].replace(/\s+/g, " ").trim().replace(/[.!?:]+$/, "").trim();
+  if (!cut || /[…"|+]/.test(cut) || countTokens(cut) > LIMITS.option || cut.length > LIMITS.tokenChars) return "";
+  return cut;
+}
 export const WORDS_FILE = "learning/app/polingual/subset.json";
 export const SENSES_KEPT = 4;
 export const SENSE_CHARS = 160;
@@ -28,20 +46,26 @@ export interface WordAttribution {
   wiktionary_url: string;
 }
 
-export interface PackWord {
-  lang: string;
-  concept: string;
-  word: string;
-  pos: string;
+export interface PackCell {
   gloss: string;
-  ipa: string;
-  script: Script;
   shared: boolean;
   senseWords: string[];
+}
+
+export interface PackWord {
+  lang: string;
+  word: string;
+  pos: string;
+  script: Script;
   meaning: string;
-  senses: string[];
-  etymology: string;
-  quiz: boolean;
+  concept?: string;
+  ipa?: string;
+  senses?: string[];
+  etymology?: string;
+  short?: string;
+  quiz?: true;
+  strict?: true;
+  cell?: PackCell;
 }
 
 export interface WordCounts {
@@ -49,9 +73,14 @@ export interface WordCounts {
   words: number;
   quiz: number;
   lessonOnly: number;
+  checked: number;
+  strict: number;
+  dropped: Record<string, number>;
   rejected: Record<string, number>;
   languages: number;
   concepts: number;
+  fewest: [string, number];
+  most: [string, number];
   withIpa: number;
   withEtymology: number;
 }
@@ -101,28 +130,28 @@ export function checkAttribution(a: WordAttribution | undefined): WordAttributio
   return { data: a.data, license: a.license, credit: a.credit ?? "", source_url: a.source_url, wiktionary_url: a.wiktionary_url };
 }
 
-export function packWord(cell: WordCell, raw: RawEntry, languageName: string): PackWord {
-  return {
-    lang: cell.lang,
-    concept: cell.concept,
-    word: cell.word,
-    pos: cell.pos,
-    gloss: cell.gloss,
-    ipa: cell.ipa,
-    script: cell.script,
-    shared: cell.shared,
-    senseWords: [...cell.senseWords].sort(),
-    meaning: raw.g.trim(),
-    senses: otherSenses(raw),
-    etymology: cleanEtymology(raw.e, languageName, cell.word),
-    quiz: true,
-  };
-}
-
-export function lessonOnlyWord(raw: RawEntry, languageName: string): PackWord {
+export function packWord(raw: RawEntry, languageName: string, cell: WordCell | null, strict: boolean): PackWord {
   const word = raw.s.trim();
-  const cell: WordCell = { lang: raw.l, concept: raw.c!, pos: raw.p ?? "", word, folded: fold(word), gloss: "", ipa: cleanIpa(raw.ipa), script: scriptOf(word), shared: false, senseWords: new Set() };
-  return { ...packWord(cell, raw, languageName), quiz: false };
+  const meaning = raw.g.trim();
+  const short = shortMeaning(meaning);
+  const senses = otherSenses(raw);
+  const etymology = cleanEtymology(raw.e, languageName, word);
+  const ipa = cleanIpa(raw.ipa);
+  return {
+    lang: raw.l,
+    word,
+    pos: cell?.pos ?? raw.p ?? "",
+    script: scriptOf(word),
+    meaning,
+    ...(raw.c ? { concept: raw.c } : {}),
+    ...(ipa ? { ipa } : {}),
+    ...(senses.length ? { senses } : {}),
+    ...(etymology ? { etymology } : {}),
+    ...(short ? { short } : {}),
+    ...(cell || (short && usableWord(raw)) ? { quiz: true as const } : {}),
+    ...(strict ? { strict: true as const } : {}),
+    ...(cell ? { cell: { gloss: cell.gloss, shared: cell.shared, senseWords: [...cell.senseWords].sort() } } : {}),
+  };
 }
 
 export function checkLicenceText(text: string): string {
@@ -135,56 +164,65 @@ export function wordPackChecksum(pack: WordPack): string {
   return createHash("sha256").update(JSON.stringify(body)).digest("hex");
 }
 
+const sorted = (tally: Record<string, number>) => Object.fromEntries(Object.entries(tally).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])));
+
 export function assembleWords(raw: RawWords, deny: Denylist, licenceText: string): WordPack {
   const attribution = checkAttribution(raw.attribution);
   const set = buildWordSet(raw);
   const known = new Set(set.languages);
-  const tally: Record<string, number> = {};
-  const count = (why: string) => (tally[why] = (tally[why] ?? 0) + 1);
-  const groups = new Map<string, RawEntry[]>();
-  for (const w of raw.words) {
-    const why = known.has(w.l) ? rejection(w, set.conceptPos) : OUTSIDE_LANGUAGE;
-    if (why) count(why);
-    else groups.set(`${w.l}\u0000${w.c}`, [...(groups.get(`${w.l}\u0000${w.c}`) ?? []), w]);
-  }
+  const rejected: Record<string, number> = {};
+  const dropped: Record<string, number> = {};
+  const bump = (tally: Record<string, number>, why: string) => (tally[why] = (tally[why] ?? 0) + 1);
   const nameOf = (lang: string) => {
     const name = LANGUAGE_NAMES[lang];
     if (!name) throw new Error(`word pack: no language name for ${lang}`);
     return name;
   };
-  const sole = new Map<string, RawEntry>();
-  const extra: PackWord[] = [];
-  for (const [key, group] of groups) {
-    const usable = group.filter(usableWord);
-    for (let i = usable.length; i < group.length; i++) count(BAD_FORM);
-    if (group.length === 1 && usable.length === 1) sole.set(key, group[0]);
+  const clean = new Map<string, RawEntry[]>();
+  for (const w of raw.words) {
+    if (!known.has(w.l) || rejection(w, set.conceptPos)) continue;
+    clean.set(`${w.l}\u0000${w.c}`, [...(clean.get(`${w.l}\u0000${w.c}`) ?? []), w]);
+  }
+  const cells = new Map(set.cells.map((c) => [`${c.lang}\u0000${c.concept}`, c]));
+  const seen = new Set<string>();
+  const words: PackWord[] = [];
+  for (const w of raw.words) {
+    const word = w.s.trim();
+    const why = known.has(w.l) ? rejection(w, set.conceptPos) : OUTSIDE_LANGUAGE;
+    const group = why ? [] : clean.get(`${w.l}\u0000${w.c}`)!;
+    const cell = !why && group.length === 1 ? (cells.get(`${w.l}\u0000${w.c}`) ?? null) : null;
+    if (cell && cell.word !== word) throw new Error(`word pack: no single source row for ${cell.lang} ${cell.word}`);
+    const strict = !why && usableWord(w);
+    if (why) bump(rejected, why);
+    else if (!usableWord(w)) bump(rejected, BAD_FORM);
+    else if (!cell) bump(rejected, SEVERAL_WORDS);
+    if (!known.has(w.l) || !word || !w.g.trim()) bump(dropped, OUTSIDE_LANGUAGE);
+    else if (formOf(w.g)) bump(dropped, FORM_OF);
+    else if (seen.has(`${w.l}\u0000${w.c ?? ""}\u0000${word}`)) bump(dropped, REPEATED);
     else {
-      const seen = new Set<string>();
-      for (const w of usable) {
-        count(SEVERAL_WORDS);
-        if (seen.has(fold(w.s))) continue;
-        seen.add(fold(w.s));
-        extra.push(lessonOnlyWord(w, nameOf(w.l)));
-      }
+      seen.add(`${w.l}\u0000${w.c ?? ""}\u0000${word}`);
+      words.push(packWord(w, nameOf(w.l), cell, strict));
     }
   }
-  const checked = set.cells.map((cell) => {
-    const row = sole.get(`${cell.lang}\u0000${cell.concept}`);
-    if (!row || row.s.trim() !== cell.word) throw new Error(`word pack: no single source row for ${cell.lang} ${cell.word}`);
-    return packWord(cell, row, nameOf(cell.lang));
-  });
-  if (checked.length !== sole.size) throw new Error(`word pack: ${sole.size} rows pass the checks and the quiz set holds ${checked.length}`);
-  if (checked.length === 0) throw new Error(`word pack: ${WORDS_FILE} gave no word that passes the quiz checks`);
-  const words = [...checked, ...extra];
+  const checked = words.filter((w) => w.cell).length;
+  if (checked !== set.cells.length) throw new Error(`word pack: ${checked} checked words ship and the quiz set holds ${set.cells.length}`);
+  if (checked === 0) throw new Error(`word pack: ${WORDS_FILE} gave no word that passes the quiz checks`);
   const languages = set.languages.filter((l) => words.some((w) => w.lang === l));
+  const perLanguage = languages.map((l): [string, number] => [l, words.filter((w) => w.lang === l).length]).sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]));
+  const quiz = words.filter((w) => w.quiz).length;
   const counts: WordCounts = {
     rows: raw.words.length,
     words: words.length,
-    quiz: checked.length,
-    lessonOnly: extra.length,
-    rejected: Object.fromEntries(Object.entries(tally).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))),
+    quiz,
+    lessonOnly: words.length - quiz,
+    checked,
+    strict: words.filter((w) => w.strict).length,
+    dropped: sorted(dropped),
+    rejected: sorted(rejected),
     languages: languages.length,
-    concepts: new Set(words.map((w) => w.concept)).size,
+    concepts: new Set(words.filter((w) => w.strict).map((w) => w.concept)).size,
+    fewest: perLanguage[0],
+    most: perLanguage[perLanguage.length - 1],
     withIpa: words.filter((w) => w.ipa).length,
     withEtymology: words.filter((w) => w.etymology).length,
   };
@@ -203,12 +241,13 @@ export function buildWordPack(repo: string, deny: Denylist = buildDenylist(repo)
   return assembleWords(JSON.parse(readFileSync(join(repo, WORDS_FILE), "utf8")) as RawWords, deny, readFileSync(join(repo, LICENCE_FILE), "utf8"));
 }
 
-export function rejectionRows(c: WordCounts): [string, number][] {
-  return Object.entries(c.rejected);
-}
-
-export function describeWordCounts(c: WordCounts): string {
-  return `${c.words} words kept of ${c.rows} rows (${c.quiz} for lessons and the quiz, ${c.lessonOnly} for lessons only), ${c.languages} languages, ${c.concepts} concepts, ${c.withIpa} with IPA, ${c.withEtymology} with etymology`;
+export function describeWordCounts(c: WordCounts): string[] {
+  return [
+    `${c.words} words in lessons of ${c.rows} rows: ${c.quiz} quiz-ready, ${c.lessonOnly} lesson only; ${c.strict} in the by-concept view across ${c.concepts} concepts, ${c.checked} of them in the checked quiz set`,
+    `${c.languages} languages, from ${c.fewest[1]} words (${c.fewest[0]}) to ${c.most[1]} (${c.most[0]}); ${c.withIpa} with IPA, ${c.withEtymology} with etymology`,
+    `dropped: ${JSON.stringify(c.dropped)}`,
+    `kept out of the by-concept view: ${JSON.stringify(c.rejected)}`,
+  ];
 }
 
 if (import.meta.main) {
@@ -221,6 +260,5 @@ if (import.meta.main) {
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, "words.json"), text);
   console.log(`word pack ${pack.version}: ${bytes} bytes`);
-  console.log(`  ${describeWordCounts(pack.counts)}`);
-  for (const [why, n] of rejectionRows(pack.counts)) console.log(`  ${String(n).padStart(5)}  ${why}`);
+  for (const l of describeWordCounts(pack.counts)) console.log(`  ${l}`);
 }
