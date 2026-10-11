@@ -2,16 +2,64 @@ import { useEffect, useState } from "react";
 import type { Api, AppSettings } from "../api";
 import { WorkQuizSources } from "./WorkQuiz";
 
-export const NOTIFY_UNSUPPORTED = "The daily notification runs on Linux for now.";
-
-export function notifyLine(s: Pick<AppSettings, "notify" | "notifyDefault">): string {
-  if (!s.notify.supported) return NOTIFY_UNSUPPORTED;
-  if (!s.notify.on) return `Off. Type "bkt quiz schedule" in a terminal to turn it on at ${s.notifyDefault}.`;
-  return `On${s.notify.at ? `, each day at ${s.notify.at}` : ""}. Type "bkt quiz schedule --at 07:30" in a terminal to move it, or "bkt quiz unschedule" to turn it off.`;
-}
+export const NOTIFY_UNSUPPORTED = "The daily notification is not available on this system yet.";
+export const NOTIFY_NOTE = "Bucket tells you once a day when chats changed and a quiz is waiting.";
+export const NOTIFY_FAILED = "Bucket could not change the daily notification.";
+export const NOTIFY_LABEL = "Daily notification";
+export const TIME_LABEL = "Time of day";
 
 export function versionLine(s: Pick<AppSettings, "version" | "build">): string {
   return s.build ? `${s.version}, built from the work up to ${s.build.date}` : s.version;
+}
+
+type NotifyApi = Pick<Api, "setNotify">;
+
+export function NotifySwitch({ api, notify, fallback }: { api: NotifyApi; notify: AppSettings["notify"]; fallback: string }) {
+  const [state, setState] = useState(notify);
+  const [time, setTime] = useState(notify.at ?? fallback);
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<string | null>(null);
+
+  if (!state.supported) return <p className="muted">{NOTIFY_UNSUPPORTED}</p>;
+
+  const save = async (on: boolean, at: string) => {
+    setBusy(true);
+    try {
+      const next = (await api.setNotify(on, on ? at : undefined)).notify;
+      setState(next);
+      if (next.at) setTime(next.at);
+      setMsg(next.on ? `On, each day at ${next.at ?? at}.` : "Off.");
+    } catch {
+      setMsg(NOTIFY_FAILED);
+    } finally {
+      setBusy(false);
+    }
+  };
+  const valid = /^([01]\d|2[0-3]):[0-5]\d$/.test(time);
+
+  return (
+    <div className="notify">
+      <label className="row">
+        <input type="checkbox" checked={state.on} disabled={busy || !valid} onChange={(e) => void save(e.target.checked, time)} /> {NOTIFY_LABEL}
+      </label>
+      <form
+        className="toolbar"
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (valid && !busy) void save(true, time);
+        }}
+      >
+        <input type="time" aria-label={TIME_LABEL} value={time} disabled={busy} onChange={(e) => setTime(e.target.value)} />
+        {state.on && valid && time !== state.at && (
+          <button className="primary" disabled={busy}>
+            Use this time
+          </button>
+        )}
+      </form>
+      <p className="muted small">{NOTIFY_NOTE}</p>
+      {msg && <p className="status">{msg}</p>}
+    </div>
+  );
 }
 
 export function SettingsView({ api }: { api: Api }) {
@@ -40,14 +88,15 @@ export function SettingsView({ api }: { api: Api }) {
         <h2>This app</h2>
         {error && <p className="error">{error}</p>}
         {settings && (
-          <dl className="settings-rows">
-            <dt>Daily notification</dt>
-            <dd>{notifyLine(settings)}</dd>
-            <dt>Data folder</dt>
-            <dd className="path">{settings.dataDir}</dd>
-            <dt>Version</dt>
-            <dd>{versionLine(settings)}</dd>
-          </dl>
+          <>
+            <NotifySwitch api={api} notify={settings.notify} fallback={settings.notifyDefault} />
+            <dl className="settings-rows">
+              <dt>Data folder</dt>
+              <dd className="path">{settings.dataDir}</dd>
+              <dt>Version</dt>
+              <dd>{versionLine(settings)}</dd>
+            </dl>
+          </>
         )}
       </article>
     </section>

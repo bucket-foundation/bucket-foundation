@@ -98,6 +98,22 @@ describe("daily quiz view", () => {
     await v.unmount();
   });
 
+  test("a filled question renders its math, and a wrong answer links to the lesson", async () => {
+    const lesson: DailyQuiz = { ...QUIZ, questions: [{ id: "lesson.abc", type: "recall", prompt: "Which law does $E = mc^2$ state?", lines: [], choices: ["Mass is energy", "Force is mass", "Heat is work"], limitSec: 20, origin: "lesson" }] };
+    const resource = { label: "learn this", href: "/research-os/learn/02-physics/mass-energy" };
+    const v = await mount({
+      dailyQuiz: async () => lesson,
+      dailyAnswer: async () => graded({ correct: false, answer: "Mass is energy", explain: "", resource, sources: [{ kind: "atom", ref: "02-physics/mass-energy", label: "Mass and energy", href: null }] }),
+    });
+    expect(v.host.querySelector(".q .katex")).not.toBeNull();
+    expect(v.host.querySelector(".q")!.textContent).not.toContain("$");
+    await v.click(v.button("Force is mass"));
+    const link = v.host.querySelector(".why a.learn-this")!;
+    expect([link.textContent, link.getAttribute("href")]).toEqual(["learn this", "#/learn/02-physics/mass-energy"]);
+    expect(v.host.querySelector(".why .source")!.textContent).toBe("Mass and energy");
+    await v.unmount();
+  });
+
   test("a switch flipped after an answer keeps the questions on screen", async () => {
     let loads = 0;
     const v = await mount({ dailyQuiz: async () => (loads++, { ...QUIZ, answered: ["c1"] }), dailyAnswer: async () => graded({}) });

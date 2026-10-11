@@ -10,7 +10,9 @@ import { newDataKey } from "../src/crypto";
 import { CRITIC_DIR_ENV, criticDir, lessonFill, readCriticQuiz } from "../src/daily-fill";
 import { DAILY_MAX, DAILY_MIN } from "../src/daily-quiz";
 import type { Item } from "../src/grade";
-import { notifyState, settingsRoutes } from "../src/settings";
+import { platformFor, type ExecResult } from "../src/platform";
+import type { QuizDeps } from "../src/notify";
+import { NOTIFY_BAD_BODY, NOTIFY_EDITED, NOTIFY_FAILED, NOTIFY_UNAVAILABLE, notifyState, settingsRoutes } from "../src/settings";
 import { Store } from "../src/store";
 import { parseStamp, VERSION } from "../src/version";
 import { WorkQuizStore, workQuizRoutes, type WorkQuizOptions } from "../src/work-quiz";
@@ -196,6 +198,20 @@ describe("daily quiz fill", () => {
     expectValid(wq.daily.get("2026-10-14")!.questions);
   });
 
+  test("a wrong answer on a lesson question links to its lesson", async () => {
+    const { wq } = open();
+    const routes = routesFor(wq);
+    await daily(routes);
+    const q = wq.daily.get(DAY)!.questions.find((x) => x.origin === "lesson")!;
+    const wrong = q.choices!.find((c) => c !== q.answer)!;
+    const res = await routes["POST /local/work-quiz/answer"](new Request("http://x", { method: "POST", body: JSON.stringify({ day: DAY, id: q.id, response: wrong, elapsedMs: 2000 }) }), new URL("http://x/"));
+    const body = (await res.json()) as { correct: boolean; answer: string; resource: { label: string; href: string } | null; sources: { kind: string; ref: string }[] };
+    const [deck, atom] = q.sources[0].ref.split("/").map(decodeURIComponent);
+    expect([res.status, body.correct, body.answer]).toEqual([200, false, q.answer]);
+    expect(body.resource).toEqual({ label: "learn this", href: `/research-os/learn/${encodeURIComponent(deck)}/${encodeURIComponent(atom)}` });
+    expect(PACK.items.some((i) => i.atomId === atom)).toBe(true);
+  });
+
   test("a store with no lessons and no sources still builds nothing", async () => {
     const { wq } = open("empty.db", false);
     const got = await daily(routesFor(wq));
@@ -213,6 +229,50 @@ describe("settings route and version", () => {
     writeFileSync(join(timers, "bkt-quiz-notify.timer"), "[Timer]\nOnCalendar=*-*-* 07:30:00\nPersistent=true\n");
     expect(notifyState(timers)).toEqual({ supported: true, on: true, at: "07:30" });
     expect(notifyState(null)).toEqual({ supported: false, on: false, at: null });
+  });
+
+  test("the notification switch runs the schedule code with the exec stubbed", async () => {
+    const calls: string[][] = [];
+    let fail = false;
+    const quiz = (os = "linux"): QuizDeps => ({
+      platform: platformFor(os, { env: {}, home: dir, which: () => null, exists: () => false }),
+      exec: async (argv): Promise<ExecResult> => (calls.push(argv), { code: fail ? 1 : 0, stdout: "", stderr: fail ? "Failed to connect to bus" : "" }),
+      dataDir: dir,
+      self: ["/opt/bucket/bkt"],
+      home: dir,
+      now: AT,
+      start: () => {},
+      out: () => {},
+    });
+    const timers = join(dir, ".config/systemd/user");
+    const post = async (body: unknown, os = "linux") => {
+      const routes = settingsRoutes({ dataDir: dir, timerDir: timers, quiz: () => quiz(os) });
+      const res = await routes["POST /local/settings/notify"](new Request("http://x", { method: "POST", body: typeof body === "string" ? body : JSON.stringify(body) }), new URL("http://x/"));
+      return [res.status, await res.json()] as [number, { notify: { supported: boolean; on: boolean; at: string | null }; error?: string }];
+    };
+    expect(await post({ on: true, at: "07:30" })).toEqual([200, { notify: { supported: true, on: true, at: "07:30" } }]);
+    expect(calls).toEqual([
+      ["systemctl", "--user", "daemon-reload"],
+      ["systemctl", "--user", "enable", "--now", "bkt-quiz-notify.timer"],
+    ]);
+    expect(readFileSync(join(timers, "bkt-quiz-notify.service"), "utf8")).toContain('ExecStart="/opt/bucket/bkt" "quiz" "notify"');
+    expect((await post({ on: true }))[1].notify.at).toBe("07:30");
+    expect((await post({ on: true, at: "21:05" }))[1].notify.at).toBe("21:05");
+    for (const bad of [{ on: true, at: "25:00" }, { on: "yes" }, { at: "07:30" }, { on: true, at: 730 }, "{ not json"]) expect(await post(bad)).toEqual([400, expect.objectContaining({ error: NOTIFY_BAD_BODY })] as never);
+    expect(notifyState(timers).at).toBe("21:05");
+    writeFileSync(join(timers, "bkt-quiz-notify.service"), "edited by hand");
+    expect(await post({ on: true, at: "06:00" })).toEqual([500, { notify: { supported: true, on: true, at: "21:05" }, error: NOTIFY_EDITED }]);
+    calls.length = 0;
+    expect(await post({ on: false })).toEqual([200, { notify: { supported: true, on: false, at: null } }]);
+    expect(calls).toEqual([
+      ["systemctl", "--user", "disable", "--now", "bkt-quiz-notify.timer"],
+      ["systemctl", "--user", "daemon-reload"],
+    ]);
+    fail = true;
+    expect(await post({ on: true })).toEqual([500, { notify: { supported: true, on: true, at: "08:53" }, error: NOTIFY_FAILED }]);
+    for (const os of ["darwin", "win32"]) expect(await post({ on: true }, os)).toEqual([400, { notify: { supported: false, on: false, at: null }, error: NOTIFY_UNAVAILABLE }]);
+    const none = settingsRoutes({ dataDir: dir, timerDir: null });
+    expect((await none["POST /local/settings/notify"](new Request("http://x", { method: "POST", body: '{"on":true}' }), new URL("http://x/"))).status).toBe(400);
   });
 
   test("the version comes from the package file, every package agrees, and a build stamp parses", () => {

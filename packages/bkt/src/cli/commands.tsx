@@ -55,9 +55,9 @@ import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from ".
 import { startServe } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
-import { settingsRoutes } from "../settings";
+import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
-import { quizCommand, writeQuizRoots } from "../notify";
+import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
   const { code, report, stderr, cancelled } = r;
@@ -196,7 +196,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms) }),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
-      ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir() }),
+      ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
@@ -204,6 +204,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
       "POST /local/jobs": JOB_BODY_BYTES,
       "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
+      "POST /local/settings/notify": NOTIFY_BODY_BYTES,
       "POST /local/notes": NOTES_BODY_BYTES,
       "POST /local/explore/saved": SAVED_BODY_BYTES,
       "POST /local/history/import": HISTORY_BODY_BYTES,

@@ -385,6 +385,10 @@ export class Api {
     return this.call<AppSettings>("/local/settings");
   }
 
+  setNotify(on: boolean, at?: string) {
+    return this.call<{ notify: AppSettings["notify"] }>("/local/settings/notify", { method: "POST", body: at === undefined ? { on } : { on, at } });
+  }
+
   workStatus() {
     return this.call<WorkStatus>("/local/work-quiz/status");
   }

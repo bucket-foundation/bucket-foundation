@@ -432,20 +432,44 @@ describe("navigation", () => {
     await setup.unmount();
   });
 
-  test("Settings holds the chat switches, the languages, the notification, the data folder and the version", async () => {
-    const on = await mount({ name: "settings" }, populated());
+  test("Settings holds the chat switches, the languages, the notification switch, the data folder and the version", async () => {
+    const sent: [boolean, string | undefined][] = [];
+    const setNotify = async (on: boolean, at?: string) => (sent.push([on, at]), { notify: { supported: true, on, at: on ? (at ?? "08:53") : null } });
+    const on = await mount({ name: "settings" }, populated({ setNotify }));
     const text = on.text();
-    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "On, each day at 08:53.", "Data folder", "/home/ada/.local/share/bkt", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
-    expect(on.host.querySelectorAll('input[type="checkbox"]').length).toBe(2);
+    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/home/ada/.local/share/bkt", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
+    expect(text).not.toContain("terminal");
+    expect(text).not.toContain("bkt quiz");
+    const box = on.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
+    const time = on.host.querySelector(".notify input[type=time]") as HTMLInputElement;
+    expect([box.checked, time.value, time.getAttribute("aria-label")]).toEqual([true, "08:53", "Time of day"]);
+    expect(on.host.querySelectorAll('input[type="checkbox"]').length).toBe(3);
+    await on.act(async () => box.click());
+    await on.act(async () => new Promise((r) => setTimeout(r, 0)));
+    expect(sent).toEqual([[false, undefined]]);
+    expect(on.host.querySelector(".notify .status")!.textContent).toBe("Off.");
     expect(violations(on.host)).toEqual([]);
     await on.unmount();
+
     const off = await mount({ name: "settings" }, empty());
-    expect(off.text()).toContain('Off. Type "bkt quiz schedule" in a terminal to turn it on at 08:53.');
+    const offBox = off.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
+    expect([offBox.checked, (off.host.querySelector(".notify input[type=time]") as HTMLInputElement).value]).toEqual([false, "08:53"]);
     expect(off.text()).toContain("0.5.0");
     expect(violations(off.host)).toEqual([]);
     await off.unmount();
-    const { notifyLine } = await import("./views/Settings");
-    expect(notifyLine({ notify: { supported: false, on: false, at: null }, notifyDefault: "08:53" })).toBe("The daily notification runs on Linux for now.");
+
+    const refused = await mount({ name: "settings" }, { ...empty(), setNotify: () => Promise.reject(new ApiError("Bucket could not change the daily notification", 500)) });
+    await refused.act(async () => (refused.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement).click());
+    await refused.act(async () => new Promise((r) => setTimeout(r, 0)));
+    expect(refused.host.querySelector(".notify .status")!.textContent).toBe("Bucket could not change the daily notification.");
+    expect((refused.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement).checked).toBe(false);
+    await refused.unmount();
+
+    const other = await mount({ name: "settings" }, { ...empty(), settings: async () => ({ version: "0.5.0", build: null, dataDir: "/Users/ada/Library/bkt", notify: { supported: false, on: false, at: null }, notifyDefault: "08:53" }) });
+    expect(other.text()).toContain("The daily notification is not available on this system yet.");
+    expect(other.host.querySelector(".notify")).toBeNull();
+    expect(violations(other.host)).toEqual([]);
+    await other.unmount();
   });
 
   test("the removed screens still open from their address", async () => {
