@@ -1,16 +1,16 @@
 {
   "name": "@bucket/bkt",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "bin": {
     "bkt": "./src/cli.tsx"
   },
   "scripts": {
-    "pack:content": "bun run src/pack/export.ts && bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun run src/pack/canon.ts && bun run src/pack/explore.ts",
-    "test": "bun run src/pack/export.ts && bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun run src/pack/canon.ts && bun run src/pack/explore.ts && bun test",
+    "pack:content": "bun run src/pack/export.ts && bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun run src/pack/canon.ts && bun run src/pack/explore.ts && bun run src/pack/words.ts && bun run src/pack/decks.ts",
+    "test": "bun run src/pack/export.ts && bun run src/pack/pysrc.ts && bun run src/pack/staff.ts && bun run src/pack/canon.ts && bun run src/pack/explore.ts && bun run src/pack/words.ts && bun run src/pack/decks.ts && bun test",
     "typecheck": "tsc --noEmit",
-    "build": "bun run pack:content && bun build --compile --minify src/cli.tsx --outfile dist/bkt"
+    "build": "bun run pack:content && bun build --compile --minify --define \"BKT_BUILD_STAMP=\\\"$(bash ../../scripts/release/build-stamp.sh)\\\"\" src/cli.tsx --outfile dist/bkt"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.129.0",

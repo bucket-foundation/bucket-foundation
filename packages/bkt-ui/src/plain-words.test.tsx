@@ -9,6 +9,9 @@ import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type Da
 import REPORT from "./fixtures/analysis-report.json";
 import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
+import { DECKS_BODY, NO_DECKS_BODY } from "./fixtures/decks";
+import { EMPTY_LIBRARY, LIBRARY } from "./fixtures/library";
+import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_LICENCE, WORD_QUESTION } from "./fixtures/word-lessons";
 
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
 mock.module("@/components/research-os/views/SoftwareAtlas", () => ({ default: () => <div>software</div> }));
@@ -132,6 +135,8 @@ const WORK: WorkSources = {
 const SERVER_ERRORS: [string, number][] = [
   ["unauthorized", 401],
   ["unknown deck", 404],
+  ["unknown language; run bkt learn path for the list", 404],
+  ["no such lesson", 404],
   ["no open question", 404],
   ["bad elapsedMs", 400],
   ["rating must be 1..4", 400],
@@ -234,8 +239,18 @@ function empty(): Stub {
     notes: async () => [],
     history: async () => ({ snapshot: null, activity: days(() => 0) }),
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, languages: [], ready: false, answered: 0, correct: 0 }),
+    settings: async () => ({ version: "0.5.0", build: null, dataDir: "/data/bucket", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
+    wordLicence: async () => WORD_LICENCE,
+    wordDecks: async () => NO_WORD_DECKS,
+    installedDecks: async () => NO_DECKS_BODY,
+    library: async () => EMPTY_LIBRARY,
+    polingualLink: async () => ({ freeText: false, linked: false, place: null, reachable: false, words: null }),
+    wordLessons: async () => ({ ...WORD_LESSON_LIST, lessons: [] }),
+    wordLesson: () => Promise.reject(new ApiError("no such lesson", 404)),
+    wordConcepts: async () => NO_CONCEPTS,
+    wordQuiz: async () => ({ questions: [], credit: WORD_CREDIT }),
     workNext: () => Promise.reject(new ApiError("no sources: pick a beads file, a repository or a language", 404)),
     dailyQuiz: () => Promise.reject(new ApiError("no quiz for that day", 404)),
     jobs: async () => ({ kinds: ALL_KINDS, jobs: [] }),
@@ -264,6 +279,15 @@ function populated(over: Stub = {}): Stub {
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, languages: ["he"], ready: true, answered: 2, correct: 1 }),
     workLanguages: async () => ({ languages: ["he"], available: [{ code: "he", name: "Hebrew" }] }),
+    wordDecks: async () => WORD_DECKS,
+    installedDecks: async () => DECKS_BODY,
+    library: async () => LIBRARY,
+    polingualLink: async () => ({ freeText: true, linked: true, place: "127.0.0.1:5433/polingual", reachable: true, words: 6564942 }),
+    wordLessons: async () => WORD_LESSON_LIST,
+    wordLesson: async () => LESSON_PAGE,
+    wordConcepts: async () => CONCEPT_PAGE,
+    wordQuiz: async () => ({ questions: [WORD_QUESTION], credit: WORD_CREDIT }),
+    settings: async () => ({ version: "0.5.0", build: { commit: "e61d7174b", date: "2026-10-08" }, dataDir: "/data/bucket", notify: { supported: true, on: true, at: "08:53" }, notifyDefault: "08:53" }),
     exploreSaved: async () => ({ v: 1, items: [SAVED_ITEM], noticeSeen: true }),
     putExploreSaved: async (s: unknown) => s,
     canonAbout: async () => ({ version: "c85d792ca773", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] }),
@@ -287,7 +311,7 @@ function populated(over: Stub = {}): Stub {
       day: DAY,
       answered: [],
       questions: [
-        { id: "chat-sessions", type: "estimate", prompt: "How many chat sessions did you run in the last two days?", lines: [], choices: null, limitSec: 60 },
+        { id: "chat-sessions", type: "estimate", prompt: "How many chat sessions did you run in the last two days?", lines: [], choices: null, limitSec: 60, origin: "chat" },
         { id: "chat-day-1", type: "recall", prompt: 'On which day did the session that began "Fix the review buttons" start?', lines: [], choices: ["2026-09-28", "2026-09-29", "2026-09-30"], limitSec: 30 },
       ],
     }),
@@ -309,7 +333,17 @@ function failing(): Stub {
     notes: fail("unauthorized", 401),
     history: fail("data key does not match", 500),
     workStatus: fail("git could not read that folder", 400),
+    settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
+    wordLicence: fail("data key does not match", 500),
+    wordDecks: fail("data key does not match", 500),
+    installedDecks: fail("data key does not match", 500),
+    library: fail("data key does not match", 500),
+    polingualLink: fail("data key does not match", 500),
+    wordLessons: fail("unknown language; run bkt learn path for the list", 404),
+    wordLesson: fail("no such lesson", 404),
+    wordConcepts: fail("data key does not match", 500),
+    wordQuiz: fail("unknown language; run bkt learn path for the list", 404),
     workSetLanguages: fail("data key does not match", 500),
     workNext: fail("data key does not match", 500),
     dailyQuiz: fail("give a day written as YYYY-MM-DD", 400),
@@ -357,7 +391,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "setup" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -390,8 +424,9 @@ describe("navigation", () => {
   });
 
   test("no screen in the navigation needs a file or shows a format word", async () => {
-    const { navFor, FOOT_LINK } = await import("./nav");
+    const { navFor, FOOT_LINK, FOOT_LINKS } = await import("./nav");
     expect(FOOT_LINK.label).toBe("Add your own");
+    expect(FOOT_LINKS.map((l) => [l.label, l.route.name])).toEqual([["Add your own", "add"], ["Settings", "settings"]]);
     for (const n of navFor(true)) {
       for (const stub of [empty, populated, failing]) {
         const v = await mount(n.route, stub());
@@ -416,15 +451,58 @@ describe("navigation", () => {
     await imp.unmount();
   });
 
-  test("the work quiz links to its own setup page for someone who has it", async () => {
+  test("the work quiz links to Settings, and the old setup address opens Settings", async () => {
+    const { parseHash } = await import("./router");
     const work = await mount({ name: "work" }, populated());
-    expect(work.host.querySelector('a[href="#/setup"]')!.textContent).toBe("Work quiz setup");
+    expect(work.host.querySelector('a[href="#/settings"]')!.textContent).toBe("Settings");
     await work.unmount();
-    const setup = await mount({ name: "setup" }, populated());
-    expect(setup.host.querySelector("h1")!.textContent).toBe("Work quiz setup");
+    expect(parseHash("#/setup")).toEqual({ name: "settings" });
+    const setup = await mount(parseHash("#/setup"), populated());
+    expect(setup.host.querySelector("h1")!.textContent).toBe("Settings");
     expect(setup.text()).toContain("Choose tasks file");
-    expect(setup.host.querySelector('a[href="#/work"]')).not.toBeNull();
     await setup.unmount();
+  });
+
+  test("Settings holds the chat switches, the languages, the notification switch, the data folder and the version", async () => {
+    const sent: [boolean, string | undefined][] = [];
+    const setNotify = async (on: boolean, at?: string) => (sent.push([on, at]), { notify: { supported: true, on, at: on ? (at ?? "08:53") : null } });
+    const on = await mount({ name: "settings" }, populated({ setNotify }));
+    const text = on.text();
+    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/data/bucket", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
+    for (const want of ["Installed decks", "Spanish words", "755,090 words · 96.0 MB", "Arabic words", "24,278 words · 5.0 MB", "Wiktionary via Kaikki (kaikki.org)", "CC-BY-SA 3.0", "curated by Bucket Foundation"]) expect(text).toContain(want);
+    expect(text).not.toContain("terminal");
+    expect(text).not.toContain("bkt quiz");
+    const box = on.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
+    const time = on.host.querySelector(".notify input[type=time]") as HTMLInputElement;
+    expect([box.checked, time.value, time.getAttribute("aria-label")]).toEqual([true, "08:53", "Time of day"]);
+    expect(on.host.querySelectorAll('input[type="checkbox"]').length).toBe(3);
+    await on.act(async () => box.click());
+    await on.act(async () => new Promise((r) => setTimeout(r, 0)));
+    expect(sent).toEqual([[false, undefined]]);
+    expect(on.host.querySelector(".notify .status")!.textContent).toBe("Off.");
+    expect(violations(on.host)).toEqual([]);
+    await on.unmount();
+
+    const off = await mount({ name: "settings" }, empty());
+    const offBox = off.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
+    expect([offBox.checked, (off.host.querySelector(".notify input[type=time]") as HTMLInputElement).value]).toEqual([false, "08:53"]);
+    expect(off.text()).toContain("0.5.0");
+    expect(off.text()).toContain("No extra deck is installed. Bucket teaches from the words it ships with.");
+    expect(violations(off.host)).toEqual([]);
+    await off.unmount();
+
+    const refused = await mount({ name: "settings" }, { ...empty(), setNotify: () => Promise.reject(new ApiError("Bucket could not change the daily notification", 500)) });
+    await refused.act(async () => (refused.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement).click());
+    await refused.act(async () => new Promise((r) => setTimeout(r, 0)));
+    expect(refused.host.querySelector(".notify .status")!.textContent).toBe("Bucket could not change the daily notification.");
+    expect((refused.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement).checked).toBe(false);
+    await refused.unmount();
+
+    const other = await mount({ name: "settings" }, { ...empty(), settings: async () => ({ version: "0.5.0", build: null, dataDir: "/Users/ada/Library/bkt", notify: { supported: false, on: false, at: null }, notifyDefault: "08:53" }) });
+    expect(other.text()).toContain("The daily notification is not available on this system yet.");
+    expect(other.host.querySelector(".notify")).toBeNull();
+    expect(violations(other.host)).toEqual([]);
+    await other.unmount();
   });
 
   test("the removed screens still open from their address", async () => {
@@ -928,7 +1006,7 @@ describe("import", () => {
 
 describe("work quiz setup", () => {
   test("speaks of tasks, merged changes and chats", async () => {
-    const v = await mount({ name: "setup" }, populated());
+    const v = await mount({ name: "settings" }, populated());
     const text = v.text();
     expect(text).toContain("8 tasks, 3 merged changes.");
     expect(text).toContain("Bucket could not read that folder.");
@@ -940,7 +1018,7 @@ describe("work quiz setup", () => {
   });
 
   test("a tasks file or folder the helper refuses reads in plain words", async () => {
-    const v = await mount({ name: "setup" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
+    const v = await mount({ name: "settings" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
     await v.pickFile(0, new File(["x"], "tasks"));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that file.");
     await v.act(async () => v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));

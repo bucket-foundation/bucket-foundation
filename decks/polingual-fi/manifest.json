@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-fi",
+  "title": "Finnish words",
+  "kind": "words",
+  "language": "fi",
+  "language_name": "Finnish",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 236638,
+    "with_ipa": 158906,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 236638,
+  "version": "eb527b8a432b",
+  "file": "polingual-fi.sqlite.zst",
+  "bytes": 16561139,
+  "sha256": "90fc34966dbb0df2f69661c4ca84e8f8fa5a12ba798ebb2c47409a6c228be00e",
+  "db_bytes": 59781120,
+  "db_sha256": "eb527b8a432bbaafdc9e075c33d6a264a392b697fa3e2503125b6885194a5033",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

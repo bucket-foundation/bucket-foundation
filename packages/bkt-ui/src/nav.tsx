@@ -1,6 +1,6 @@
 import type { Api } from "./api";
 import type { Route } from "./router";
-import { AddView, WorkSetupView } from "./views/Add";
+import { AddView } from "./views/Add";
 import { AdvisorsView } from "./views/Advisors";
 import { AtlasesView } from "./views/Atlases";
 import { CanonSearchView } from "./views/CanonSearch";
@@ -11,6 +11,7 @@ import { HistoryView } from "./views/History";
 import { ImportView } from "./views/Import";
 import { JobsView } from "./views/Jobs";
 import { LearnHome } from "./views/LearnHome";
+import { LibraryView } from "./views/Library";
 import { NotesView } from "./views/Notes";
 import { PathView } from "./views/Path";
 import { PrimesView } from "./views/Primes";
@@ -20,7 +21,9 @@ import { RosMapView } from "./views/RosMap";
 import { RosNodeView } from "./views/RosNode";
 import { RosProfileView } from "./views/RosProfile";
 import { RosProgressView } from "./views/RosProgress";
+import { SettingsView } from "./views/Settings";
 import { DailyQuizView, WorkQuizView } from "./views/WorkQuiz";
+import { WordConceptsView, WordDeckView, WordLessonView, WordLicenceView } from "./views/Words";
 
 export const NAV: { route: Route; label: string }[] = [
   { route: { name: "learn" }, label: "Learn" },
@@ -40,6 +43,8 @@ export const NAV: { route: Route; label: string }[] = [
 ];
 
 export const FOOT_LINK: { route: Route; label: string } = { route: { name: "add" }, label: "Add your own" };
+export const SETTINGS_LINK: { route: Route; label: string } = { route: { name: "settings" }, label: "Settings" };
+export const FOOT_LINKS = [FOOT_LINK, SETTINGS_LINK];
 
 export function navFor(workReady: boolean) {
   return NAV.filter((n) => n.route.name !== "work" || workReady);
@@ -47,6 +52,10 @@ export function navFor(workReady: boolean) {
 
 export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "deck") return <DeckView key={`${route.deck}/${route.atom ?? ""}`} api={api} deck={route.deck} focus={route.atom} />;
+  if (route.name === "words" && route.lesson) return <WordLessonView key={`${route.deck}/${route.lesson}`} api={api} deck={route.deck} n={route.lesson} />;
+  if (route.name === "words") return <WordDeckView key={route.deck} api={api} deck={route.deck} />;
+  if (route.name === "licence") return <WordLicenceView api={api} />;
+  if (route.name === "concepts") return <WordConceptsView key={route.page ?? 1} api={api} page={route.page ?? 1} />;
   if (route.name === "path") return <PathView api={api} to={route.to} />;
   if (route.name === "quiz") return <QuizView api={api} />;
   if (route.name === "review") return <ReviewView api={api} />;
@@ -64,7 +73,8 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "data") return <DataView api={api} />;
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
-  if (route.name === "setup") return <WorkSetupView api={api} />;
+  if (route.name === "settings") return <SettingsView api={api} />;
+  if (route.name === "library") return <LibraryView api={api} />;
   if (route.name === "graph") return <RosMapView branch={route.branch} />;
   if (route.name === "node") return <RosNodeView key={route.slug} slug={route.slug} />;
   if (route.name === "progress") return <RosProgressView />;

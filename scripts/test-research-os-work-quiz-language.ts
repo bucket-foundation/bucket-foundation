@@ -26,9 +26,9 @@ const SOURCES: WorkSources = {
   notes: [],
 };
 const NONE: WorkSources = { beads: [], prs: [], notes: [], repoUrl: null };
-const STRICT_CELLS = 839;
+const STRICT_CELLS = 829;
 const STRICT_CONCEPTS = 144;
-const STRICT_PAIRS = 5136;
+const STRICT_PAIRS = 5018;
 const has = (lang: string, concept: string) => SET.cells.some((c) => c.lang === lang && c.concept === concept);
 const raw = (lang: string, word: string) => RAW.words.find((w) => w.l === lang && w.s === word)!;
 const TRIES = 40;

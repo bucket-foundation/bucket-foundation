@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-got",
+  "title": "Gothic words",
+  "kind": "words",
+  "language": "got",
+  "language_name": "Gothic",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 22286,
+    "with_ipa": 1814,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 22286,
+  "version": "36d13de48e84",
+  "file": "polingual-got.sqlite.zst",
+  "bytes": 1229802,
+  "sha256": "91cfa5777d63be9257ff247ef3aab48ac0049fd91a932d8817a97fa7d65e3fdd",
+  "db_bytes": 7491584,
+  "db_sha256": "36d13de48e840bb427cccb5298e555fd88f43781369c5f00542b8ac784d27c86",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

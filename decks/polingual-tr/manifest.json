@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-tr",
+  "title": "Turkish words",
+  "kind": "words",
+  "language": "tr",
+  "language_name": "Turkish",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 38083,
+    "with_ipa": 13447,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 38083,
+  "version": "c3a7e6ea859c",
+  "file": "polingual-tr.sqlite.zst",
+  "bytes": 2682184,
+  "sha256": "6cc35ae0cf898e18f4fe9c0c17af30db569d6a794eeca4b8fc776d409a3c6a28",
+  "db_bytes": 9211904,
+  "db_sha256": "c3a7e6ea859ce6fef11b09c65349cb17b1664e83442b44b4b79261cf56e20bc9",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

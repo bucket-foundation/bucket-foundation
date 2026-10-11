@@ -8,7 +8,7 @@ import type { LearnAtom } from "../../../src/lib/research-os/work-quiz/learn-mat
 import { resourceForQuestion } from "../../../src/lib/research-os/work-quiz/resources";
 import { cardFields } from "../../../src/lib/research-os/work-quiz/fact";
 import { dueFrom, sampleQuiz, splitFactId, usedOn, type CoverageRow, type DueCard, type SamplePick } from "../../../src/lib/research-os/work-quiz/sampler";
-import { gradeAnswer, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
+import { gradeAnswer, introduceCard, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
 import type { Card, Rating } from "../../../src/lib/academy/fsrs";
 import { githubUrl, parseBeads, parsePrLog } from "../../../src/lib/research-os/work-quiz/sources-parse";
 import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "../../../src/lib/research-os/work-quiz/types";
@@ -18,9 +18,13 @@ import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
 import { LANGUAGES_ERROR, languagesByName, parseLanguages } from "../../../src/lib/research-os/work-quiz/languages";
 import { answerDaily, LearnError } from "./core/learn";
 import { DAILY_MAX, DAILY_MIN, DailyQuizStore, overLength, TOO_FEW, validDay, type DailyQuiz } from "./daily-quiz";
+import { criticDir, lessonFill, originOf, readCriticQuiz } from "./daily-fill";
+import type { Item } from "./grade";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
+import { hasShort, withShort } from "./short-fields";
 import type { Route } from "./serve";
 import type { Store } from "./store";
+import type { WordSet } from "../../../src/lib/research-os/work-quiz/polingual-forms";
 
 export const GIT_TIMEOUT_MS = 3000;
 export const NO_QUIZ = "no quiz for that day";
@@ -130,6 +134,13 @@ export class WorkQuizStore {
     })();
   }
 
+  lessons(): Item[] {
+    return this.store
+      .items()
+      .map((i) => withShort(i))
+      .filter(hasShort);
+  }
+
   get daily(): DailyQuizStore {
     return new DailyQuizStore(this.store, this.key);
   }
@@ -143,12 +154,19 @@ export class WorkQuizStore {
     this.store.db.run("delete from work_quiz_languages");
   }
 
-  record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId?: string; log10Distance?: number | null } = {}) {
+  record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId?: string; log10Distance?: number | null; introduce?: boolean } = {}) {
     this.store.db
       .query("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at, log10_distance) values (?, ?, ?, ?, ?, ?, ?, ?)")
       .run(randomUUID(), extra.questionId ?? q.id, q.type, correct ? 1 : 0, rating, Math.round(elapsedMs), at, extra.log10Distance ?? null);
     if (!correct) this.recordMiss(q, localDay(at));
-    this.review(q, rating as Rating, at);
+    this.review(q, rating as Rating, at, extra.introduce === true);
+  }
+
+  wordCards(): { factIds: string[]; due: number }[] {
+    return this.store.db
+      .query<{ fact_id: string; due: number | null }, []>("select fact_id, due from work_quiz_cards where fact_id like 'word:%'")
+      .all()
+      .map((r) => ({ factIds: splitFactId(r.fact_id), due: r.due ?? 0 }));
   }
 
   coverage(): CoverageRow[] {
@@ -158,10 +176,11 @@ export class WorkQuizStore {
       .map((r) => ({ cell: r.cell, factId: r.fact_id, picks: r.picks, misses: r.misses, lastDay: r.last_day }));
   }
 
-  review(q: QuizQuestion, rating: Rating, at: number) {
+  review(q: QuizQuestion, rating: Rating, at: number, introduce = false) {
     const { fact_id, form, card_key } = cardFields(q);
     const prev = this.store.db.query<{ state: string }, [string]>("select state from work_quiz_cards where card_key = ?").get(card_key);
-    const card = nextCard(prev ? (JSON.parse(prev.state) as Card) : null, rating, at);
+    const held = prev ? (JSON.parse(prev.state) as Card) : null;
+    const card = introduce ? introduceCard(held, rating, at) : nextCard(held, rating, at);
     if (!card) return;
     this.store.db
       .query(
@@ -228,6 +247,8 @@ export interface WorkQuizOptions {
   log?: (line: string) => void;
   onChat?: (on: ChatToggles) => void;
   atoms?: readonly LearnAtom[];
+  criticDir?: string;
+  words?: WordSet;
 }
 
 export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Record<string, Route> {
@@ -239,13 +260,15 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
   const log = o.log ?? ((line: string) => console.error(line));
   const building = new Map<string, Promise<DailyQuiz | null>>();
   const empty = new Map<string, string>();
+  const refresh = new Set<string>();
+  const critics = o.criticDir ?? criticDir(process.env, o.home);
 
   const askable = (s: WorkSources) => !sourcesEmpty(s) || wq.languages().length > 0;
 
   async function build(day: string): Promise<DailyQuiz | null> {
-    const { sources: src } = await sources();
-    const languages = wq.languages();
-    const sampled = askable(src) ? sampleQuiz({ day, sources: src, coverage: wq.coverage(), due: wq.dueCards(now()), now: now(), exclude: usedOn(wq.coverage(), day), languages }) : null;
+    refresh.delete(day);
+    const critic = readCriticQuiz(day, critics);
+    for (const why of critic.skipped) log(`daily quiz ${day}: critic quiz skipped: ${why}`);
     const on = wq.chat();
     let chat: QuizQuestion[] = [];
     if (CHAT_ROOT_NAMES.some((r) => on[r])) {
@@ -253,26 +276,48 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const written = await writeDailyQuiz(day, stubs, { url: process.env.BKT_LLM_URL, model: process.env.BKT_LLM_MODEL, ...o.writer });
       const still = wq.chat();
       if (CHAT_ROOT_NAMES.some((r) => still[r] !== on[r])) return null;
-      chat = written.quiz?.questions ?? [];
+      chat = (written.quiz?.questions ?? []).map((q) => ({ ...q, origin: "chat" as const }));
       log(
         `daily quiz ${day}: ${counts.files} files, ${counts.bytes} bytes, ${stubs.length} sessions, ${counts.dropped} lines dropped, ${counts.skipped} skipped${counts.timedOut ? ", time cap reached" : ""}, ${chat.length} questions, writer ${written.writer}${written.modelError ? ` (${written.modelError})` : ""}`,
       );
     }
     const seen = new Set<string>();
-    const questions = [...(sampled?.questions ?? []), ...chat].filter((q) => !seen.has(q.id) && seen.add(q.id)).slice(0, DAILY_MAX);
+    const fresh = (q: QuizQuestion) => !seen.has(q.id) && !!seen.add(q.id);
+    const questions = [...critic.questions, ...chat].filter(fresh).slice(0, DAILY_MAX);
+    const { sources: src } = await sources();
+    const coverage = wq.coverage();
+    const exclude = usedOn(coverage, day);
+    const open = DAILY_MAX - questions.length;
+    const sampled = open > 0 ? sampleQuiz({ day, sources: src, coverage, due: wq.dueCards(now()), now: now(), slots: open, exclude, languages: wq.languages(), words: o.words }) : null;
+    const picks: SamplePick[] = [];
+    for (const [i, q] of (sampled?.questions ?? []).entries()) {
+      if (!fresh(q)) continue;
+      const reviewed = i < sampled!.reviewed;
+      questions.push({ ...q, origin: reviewed ? "review" : originOf(q) });
+      if (!reviewed) picks.push(sampled!.picks[i - sampled!.reviewed]);
+    }
+    const taken = [...exclude, ...(sampled?.questions ?? []).flatMap((q) => dueFrom(q, 0).factIds)];
+    const lessons = lessonFill({ day, items: questions.length < DAILY_MAX ? wq.lessons() : [], count: DAILY_MAX - questions.length, coverage, exclude: taken });
+    for (const [i, q] of lessons.questions.entries()) {
+      if (!fresh(q)) continue;
+      questions.push(q);
+      picks.push(lessons.picks[i]);
+    }
     if (questions.length < DAILY_MIN) {
       empty.set(day, questions.length === 0 ? NO_QUIZ : TOO_FEW);
       return null;
     }
     const quiz = wq.daily.put({ day, questions }, now());
-    if (sampled) wq.recordPicks(sampled.picks, day);
+    wq.recordPicks(picks, day);
     return quiz;
   }
 
   function daily(day: string): Promise<DailyQuiz | null> {
     const stored = wq.daily.get(day);
     const today = day === localDay(now());
-    const rebuild = today && stored !== null && overLength(stored) && wq.daily.answered(day).size === 0;
+    const untouched = today && stored !== null && wq.daily.answered(day).size === 0;
+    const criticWaiting = untouched && !stored!.questions.some((q) => q.origin === "critic") && readCriticQuiz(day, critics).questions.length > 0;
+    const rebuild = untouched && (overLength(stored!) || refresh.has(day) || criticWaiting);
     if ((stored && !rebuild) || !today || empty.has(day)) return Promise.resolve(stored);
     const running =
       building.get(day) ??
@@ -351,6 +396,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       wq.setChat({ claude: b.claude === true, codex: b.codex === true });
       o.onChat?.(wq.chat());
       empty.clear();
+      if (b.claude === true || b.codex === true) refresh.add(localDay(now()));
       return json({ chat: wq.chat() });
     },
     "POST /local/work-quiz/forget": () => {
@@ -366,7 +412,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const at = now();
       const today = localDay(at);
       const coverage = wq.coverage();
-      const picked = sampleQuiz({ day: today, sources: s, coverage, due: wq.dueCards(at), slots: 1, reviewSlots: 1, now: at, exclude: usedOn(coverage, today), languages: wq.languages() });
+      const picked = sampleQuiz({ day: today, sources: s, coverage, due: wq.dueCards(at), slots: 1, reviewSlots: 1, now: at, exclude: usedOn(coverage, today), languages: wq.languages(), words: o.words });
       const q = picked.questions[0] ?? generateQuestion(s, seed());
       if (!q) return json({ error: "the sources are too small for a question yet" }, 404);
       if (picked.picks.length > 0) wq.recordPicks(picked.picks, today);
