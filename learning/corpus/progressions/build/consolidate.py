@@ -1,8 +1,10 @@
 import collections
 import csv
+import itertools
 import json
 import os
 import re
+import resource
 import sqlite3
 import subprocess
 import sys
@@ -12,6 +14,8 @@ ROOT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.dirname(HE
 OUT = os.path.abspath(sys.argv[2]) if len(sys.argv) > 2 else os.path.join(HERE, "out")
 sys.path.insert(0, os.path.join(ROOT, "catalogues", "scripts"))
 import prereq as PR  # noqa: E402
+sys.path.insert(0, HERE)
+import facets as FC  # noqa: E402
 
 SLICES = [
     "school", "university-stem", "university-other", "career", "interview", "arts-media",
@@ -26,6 +30,17 @@ LEVEL_ALIASES = {"undergraduate": ("undergraduate-lower", "undergraduate-upper")
 VOCATIONAL_SLICES = {"career", "trades-technical", "round2-occupations"}
 PROFESSIONAL = {"professional-entry", "professional-advanced"}
 ZSTD_ABOVE = 5 * 1024 * 1024
+TECH_CLASS = re.compile(r"technolog|invention|\btool|machine|technique|process", re.I)
+LABEL_TERMS = {
+    "head-start-elof": "US federal work, public domain, Office of Head Start",
+    "australia-v9": "CC BY 4.0, copyright ACARA; https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+    "england-nc": "Open Government Licence v3.0; https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+}
+ICATUS_MAJOR = {
+    "1": "paid work", "2": "making goods for own use", "3": "unpaid household work", "4": "unpaid care of household members",
+    "5": "volunteering and unpaid help", "6": "learning", "7": "socialising, community and religious practice",
+    "8": "culture, leisure, media and sport", "9": "self-care and upkeep",
+}
 EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+")
 HOME_PATH = re.compile(r"(?<![\w/.])(?:/home/|/Users/)[A-Za-z0-9_.-]+|~/[A-Za-z0-9_.-]+")
 SIX_US_COURSES = {
@@ -62,18 +77,34 @@ NGSS_LABEL = {
 }
 CCSS_CLUSTER = re.compile(r"^(([A-Z])-([A-Z]+)\.([A-Z])): ")
 MAX_WORDS = 12
+NEW_SLICES = ["k12-full", "history-occupations", "history-technology", "history-forecast", "lifespan", "beyond-school", "world", "round3-empty"]
+RESOURCE_FOLDERS = ["resources", "resources-v2"]
+FINISH_MARKER = "SUMMARY.md"
+LOAD_UNFINISHED = bool(os.environ.get("PROGRESSIONS_LOAD_UNFINISHED"))
+TEXT_LIMITS = {"topic": 240, "name": 200, "title": 300, "notes": 700, "subfield": 120, "typical_age_or_year": 80, "program": 200, "page_title": 200, "body": 200, "department": 200}
+DEFAULT_TEXT_LIMIT = 300
+K12_EDGE_TYPE = {
+    "prerequisite": "prerequisite", "coherence prerequisite": "prerequisite", "recommended prerequisite": "recommended_prerequisite",
+    "corequisite": "corequisite", "recommended corequisite": "corequisite", "coherence related": "related",
+    "alternate standard for": "alternate_for", "dci grade-band progression": "progression",
+}
 
 
-def read_jsonl(path):
-    rows = []
+def iter_jsonl(path):
     if not os.path.exists(path):
-        return rows
+        return
     with open(path, encoding="utf-8") as fh:
         for line in fh:
             line = line.strip()
             if line:
-                rows.append(json.loads(line))
-    return rows
+                try:
+                    yield json.loads(line)
+                except ValueError:
+                    continue
+
+
+def read_jsonl(path):
+    return list(iter_jsonl(path))
 
 
 def scrub(value):
@@ -116,6 +147,8 @@ class Backbone:
         self.crosswalk = collections.defaultdict(set)
         for src, dst in db.execute("select src, dst from edges where type = 'major_to_occupation'"):
             self.crosswalk[dst.split(":")[1]].add(src.split(":")[1])
+        self.isco = [{"soc": s.split(":")[1], "isco": d.split(":")[1]} for s, d in db.execute("select src, dst from edges where type = 'classification_to_classification' and src like 'soc2018:%' and dst like 'isco08:%' order by 1, 2")]
+        self.isco += [{"isco_unit_group": c} for (c,) in db.execute("select code from occupations where scheme = 'isco08' and level = 'unit' order by 1")]
         db.close()
 
     def cip_for_soc(self, soc_code):
@@ -181,7 +214,7 @@ class Mapper:
         return {"code": code, "grain": self.backbone.soc[code]["grain"], "minor_group": self.backbone.minor_group(code), "method": method, "mapping_verified": verified}
 
     def label(self, slice_name, label, occupational):
-        hit = self.labels.get("%s|%s" % (slice_name, label)) or self.labels.get(label)
+        hit = self.labels.get("%s|%s" % (slice_name, label)) or self.labels.get(label) or self.labels.get(str(label).lower())
         if hit is None:
             self.unmapped[(slice_name, str(label))] += 1
             return self.cip(None, None), None
@@ -261,7 +294,7 @@ class Build:
         })
 
     def load_courses(self):
-        raw = read_jsonl(os.path.join(ROOT, "catalogues", "courses.jsonl"))
+        raw = iter_jsonl(os.path.join(ROOT, "catalogues", "courses.jsonl"))
         self.course_by_code = {}
         self.courses = []
         for r in raw:
@@ -299,7 +332,7 @@ class Build:
                         hit = self.course_by_code.get((row["institution_key"], atom["code"]))
                         atom["id"] = hit["id"] if hit else None
         kept = 0
-        for e in read_jsonl(os.path.join(ROOT, "catalogues", "edges.jsonl")):
+        for e in iter_jsonl(os.path.join(ROOT, "catalogues", "edges.jsonl")):
             if e["type"] not in ("prerequisite", "prerequisite_or_concurrent", "corequisite"):
                 continue
             src = e["src"] if e["src_in_catalogue"] and e["src"] in self.ids else None
@@ -310,7 +343,15 @@ class Build:
     def load_slices(self):
         self.frameworks, self.progression, self.assessments, self.slice_textbooks = [], [], [], []
         raw = {}
-        for s in SLICES:
+        self.slices = list(SLICES)
+        self.pending = []
+        for s in NEW_SLICES:
+            folder = os.path.join(ROOT, s)
+            if os.path.exists(os.path.join(folder, FINISH_MARKER)) or (LOAD_UNFINISHED and os.path.isdir(folder)):
+                self.slices.append(s)
+            else:
+                self.pending.append(s)
+        for s in self.slices:
             raw[s] = read_jsonl(os.path.join(ROOT, s, "progression.jsonl"))
         merged = collections.Counter()
         for s in ("round2-fields", "land-health-service"):
@@ -339,7 +380,7 @@ class Build:
             raw[s] = keep
         self.repairs["courses_merged_into_catalogues"] = dict(merged)
         same_as = 0
-        for s in SLICES:
+        for s in self.slices:
             for r in read_jsonl(os.path.join(ROOT, s, "frameworks.jsonl")):
                 self.frameworks.append(self.framework_row(s, r))
             for r in read_jsonl(os.path.join(ROOT, s, "assessments.jsonl")):
@@ -363,7 +404,7 @@ class Build:
                     code_index[(inst, code)] = r["id"]
         reparsed = collections.Counter()
         pending = []
-        for s in SLICES:
+        for s in self.slices:
             for r in raw[s]:
                 row = self.progression_row(s, r, subjects, code_index, reparsed)
                 if s == "university-stem" and "-uiuc-" in r["id"]:
@@ -382,6 +423,196 @@ class Build:
                 self.repairs["framework_ids_unresolved"] = self.repairs.get("framework_ids_unresolved", 0) + 1
             self.progression.append(row)
         self.progression_edges()
+
+    def slice_cip(self, r, cip):
+        code = r.get("cip4") or r.get("cip2020")
+        if isinstance(code, str) and code in self.backbone.cip:
+            return self.mapper.cip(code, "slice_assigned")
+        return cip
+
+    def blank_progression(self, row_id, s):
+        return {
+            "id": row_id, "slice": s, "system": None, "field": None, "subfield": None, "level": None, "topic": None,
+            "prerequisites": [], "prerequisite_groups": None, "prerequisite_text": None, "external_prerequisites": [],
+            "corequisites": [], "edges_stated": None, "edges_stated_basis": None, "term_order": None,
+            "typical_age_or_year": None, "age_from": None, "age_to": None, "framework_id": None, "source_url": None, "verified": False, "notes": None, "source_licence": None,
+            "same_as": None, "occupation_profile": None, "parse_status": None, "parse_flags": [],
+            "cip": self.mapper.cip(None, None), "onet_soc": None,
+        }
+
+    def grade_level(self, grade):
+        first = str(grade or "").split("-")[0].strip().upper()
+        if first in ("PK", "K"):
+            return "early"
+        if first.isdigit():
+            g = int(first)
+            return "primary" if g <= 5 else "lower-secondary" if g <= 8 else "upper-secondary" if g <= 12 else None
+        return None
+
+    def k12_standard_rows(self):
+        if "k12-full" not in self.slices:
+            return
+        for r in iter_jsonl(os.path.join(ROOT, "k12-full", "standards.jsonl")):
+            r = scrub(r)
+            row = self.blank_progression(r["id"], "k12-full")
+            strand = [x.strip() for x in str(r.get("strand") or "").split(" / ") if x.strip()]
+            cip, _ = self.mapper.label("k12-full", r.get("subject"), False)
+            row.update({
+                "system": r.get("system"), "field": r.get("subject"), "subfield": strand[-1] if strand else None,
+                "level": self.grade_level(r.get("grade")), "topic": ": ".join(x for x in (r.get("code"), r.get("label") if r.get("system") in LABEL_TERMS else None) if x) or "uncoded standard",
+                "typical_age_or_year": "grade %s" % r["grade"] if r.get("grade") else None,
+                "source_url": r.get("url"), "verified": bool(r.get("verified")) and bool(r.get("url")),
+                "source_licence": LABEL_TERMS.get(r.get("system")) or self.licence_or_unknown(r.get("licence")), "cip": cip,
+            })
+            row.update(FC.assign("progression", row))
+            yield row
+
+    def load_k12(self):
+        self.k12_unmapped = collections.Counter()
+        self.k12_labels = collections.Counter()
+        folder = os.path.join(ROOT, "k12-full")
+        if "k12-full" not in self.slices:
+            return
+        count = collections.Counter()
+        for r in iter_jsonl(os.path.join(folder, "standards.jsonl")):
+            self.claim(r["id"], "progression")
+            self.k12_labels[(r.get("system"), "kept" if r.get("system") in LABEL_TERMS and r.get("label") else "dropped" if r.get("label") else "none")] += 1
+            cip, _ = self.mapper.label("k12-full", r.get("subject"), False)
+            if not cip["code"]:
+                self.k12_unmapped[("k12-full", str(r.get("subject")))] += 1
+            count["standards"] += 1
+        for r in read_jsonl(os.path.join(folder, "ap.jsonl")):
+            if r["id"] in self.ids:
+                count["ap_already_in_standards"] += 1
+                continue
+            r = scrub(r)
+            row = self.blank_progression(r["id"], "k12-full")
+            cip, _ = self.mapper.label("k12-full", r.get("subject"), False)
+            row.update({
+                "system": "ap", "field": r.get("subject"), "subfield": "AP course", "level": "upper-secondary", "topic": r.get("course"),
+                "typical_age_or_year": "%s units" % r["n_units"] if r.get("n_units") else None,
+                "source_url": r.get("course_url") or r.get("url"), "verified": bool(r.get("verified")), "source_licence": self.licence_or_unknown(r.get("licence")), "cip": cip, "_stated": {},
+            })
+            self.demote_unsourced(row, "source_url")
+            self.claim(row["id"], "progression")
+            self.progression.append(row)
+            count["ap"] += 1
+        for r in read_jsonl(os.path.join(folder, "cte.jsonl")):
+            if r.get("standards_row") in self.ids:
+                self.alias[r["id"]] = r["standards_row"]
+                count["cte_same_as_standard"] += 1
+                continue
+            if r["id"] in self.ids:
+                continue
+            r = scrub(r)
+            row = self.blank_progression(r["id"], "k12-full")
+            cip, _ = self.mapper.label("k12-full", "career and technical education", False)
+            row.update({
+                "system": r.get("system"), "field": "career and technical education", "subfield": r.get("cluster") or r.get("kind"),
+                "level": self.grade_level(r.get("grades")) or "upper-secondary", "topic": " ".join(x for x in (r.get("code"), r.get("name")) if x),
+                "typical_age_or_year": "grade %s" % r["grades"] if r.get("grades") else None,
+                "source_url": r.get("url"), "verified": bool(r.get("verified")), "source_licence": self.licence_or_unknown(r.get("licence")), "cip": cip, "_stated": {},
+            })
+            self.demote_unsourced(row, "source_url")
+            self.claim(row["id"], "progression")
+            self.progression.append(row)
+            count["cte"] += 1
+        for e in read_jsonl(os.path.join(folder, "edges.jsonl")):
+            src, dst = self.alias.get(e.get("from_id"), e.get("from_id")), self.alias.get(e.get("to_id"), e.get("to_id"))
+            kind = K12_EDGE_TYPE.get(e.get("type"))
+            if kind is None or self.ids.get(src) != "progression" or self.ids.get(dst) != "progression":
+                count["edges_skipped"] += 1
+                continue
+            self.add_edge(src, dst, kind, bool(e.get("stated")), "slice_flag", e.get("source_url"), "progression", "k12-full")
+            count["edges"] += 1
+        self.repairs["k12_full_loaded"] = dict(count)
+        self.repairs["k12_labels_by_system"] = {s: {state: n for (sys_, state), n in self.k12_labels.items() if sys_ == s} for s in sorted({str(k[0]) for k in self.k12_labels})}
+
+    def licence_or_unknown(self, text):
+        return "unknown" if not text or re.search(r"not fetched|names only|recall", text, re.I) else text
+
+    def load_side_tables(self):
+        self.activities, self.occupation_history, self.technologies = [], [], []
+        self.tech_dropped = 0
+        if "beyond-school" in self.slices:
+            for r in iter_jsonl(os.path.join(ROOT, "beyond-school", "backbone-activities.jsonl")):
+                scheme = str(r.get("scheme") or "")
+                label = r.get("label") if scheme.startswith("ATUS") else ICATUS_MAJOR.get(str(r.get("code"))) if scheme.startswith("ICATUS") and r.get("level") == "major division" else None
+                row = {"id": r["id"], "slice": "beyond-school", "scheme": scheme, "code": r.get("code"), "level": r.get("level"), "parent": r.get("parent"), "label": label, "label_basis": "source" if scheme.startswith("ATUS") else "bucket" if label else "withheld", "source_url": r.get("source_url"), "verified": bool(r.get("verified"))}
+                self.claim(row["id"], "activities")
+                self.activities.append(scrub(row))
+        if "history-occupations" in self.slices:
+            for r in iter_jsonl(os.path.join(ROOT, "history-occupations", "lifecycles.jsonl")):
+                year = lambda v: int(v) if isinstance(v, (int, float)) else None
+                row = {
+                    "id": r["id"], "slice": "history-occupations", "title": r.get("title"), "scheme": r.get("scheme"), "code": r.get("code"), "kind": r.get("kind"),
+                    "lineage_codes": r.get("lineage_codes") or [], "era_from": year(r.get("first_attested_year")), "era_to": year(r.get("last_attested_year")),
+                    "peak_year": year(r.get("peak_year")), "peak_employment": r.get("peak_employment"), "last_employment": r.get("last_employment"),
+                    "status": r.get("status"), "near_extinct": r.get("near_extinct"), "projected_pct_change_2024_34": r.get("projected_pct_change_2024_34"),
+                    "successors": r.get("successors") or [], "source_url": r.get("source_url"),
+                }
+                self.claim(row["id"], "occupation_history")
+                self.occupation_history.append(scrub(row))
+        if "history-technology" in self.slices:
+            folder = os.path.join(ROOT, "history-technology")
+            for r in itertools.chain(iter_jsonl(os.path.join(folder, "waves.jsonl")), iter_jsonl(os.path.join(folder, "technologies.jsonl"))):
+                year = lambda v: v if isinstance(v, int) else None
+                classes = [str(x) for x in r.get("classes") or []]
+                wikidata_only = r.get("date_property") in ("P571", "P575")
+                if wikidata_only and not any(TECH_CLASS.search(x) for x in classes):
+                    self.tech_dropped += 1
+                    continue
+                row = {
+                    "id": r["id"], "slice": "history-technology", "name": r.get("name"), "kind": r.get("kind") or "wave", "field": r.get("field"), "wave": r.get("wave"),
+                    "era_from": year(r.get("era_from")), "era_to": year(r.get("era_to")), "source_url": r.get("source_url"),
+                    "verified": bool(r.get("verified")) and not wikidata_only,
+                    "evidence": "wikidata-id-only" if wikidata_only else "curated-source", "classes": classes,
+                }
+                if row["id"] in self.ids:
+                    continue
+                self.claim(row["id"], "technologies")
+                self.technologies.append(scrub(row))
+            for r in read_jsonl(os.path.join(folder, "training_response.jsonl")):
+                self.frameworks.append(self.framework_row("history-technology", {
+                    "id": r["id"], "name": r.get("name"), "body": None, "region": r.get("country"), "field": "training response to technology",
+                    "level_from": None, "level_to": None, "year": None, "url": r.get("source_url"), "licence": None, "verified": r.get("verified"),
+                    "notes": r.get("notes"), "era_from": r.get("year"), "mode": r.get("kind"),
+                }))
+
+        self.repairs["technologies_dropped_no_technology_class"] = self.tech_dropped
+
+    def load_history_curricula(self):
+        if "history-forecast" not in self.slices:
+            return
+        count = 0
+        for r in read_jsonl(os.path.join(ROOT, "history-forecast", "curricula.jsonl")):
+            levels = [x.strip() for x in str(r.get("level") or "").split(" to ")]
+            learning = [x for x in (r.get("required_learning") or []) if isinstance(x, str)]
+            self.frameworks.append(self.framework_row("history-forecast", {
+                "id": r["id"], "name": r.get("name"), "body": r.get("body"), "region": r.get("region"), "field": r.get("kind"),
+                "level_from": levels[0], "level_to": levels[-1], "year": None, "url": r.get("source_url"), "licence": None,
+                "verified": r.get("verified"), "notes": r.get("notes"), "era_from": r.get("era_from"), "era_to": r.get("era_to"),
+                "purpose": r.get("purpose"), "required_learning": learning,
+            }))
+            count += 1
+        self.repairs["history_curricula_loaded"] = count
+
+    def apply_facets(self):
+        frameworks = {}
+        bodies = collections.defaultdict(set)
+        for row in self.frameworks:
+            row.update(FC.assign("frameworks", row, row.pop("_stated", {})))
+            frameworks[row["id"]] = row
+            if row.get("body") and row["region"]:
+                bodies[row["body"]].add(row["region"])
+        for row in self.progression:
+            row.update(FC.assign("progression", row, row.pop("_stated", {}), frameworks.get(row["framework_id"])))
+        for row in self.assessments:
+            hit = bodies.get(row.get("body")) or set()
+            row.update(FC.assign("assessments", row, row.pop("_stated", {}), body_region=next(iter(hit)) if len(hit) == 1 else None))
+        for name, rows in (("programs", self.programs), ("courses", self.courses)):
+            for row in rows:
+                row.update(FC.assign(name, row))
 
     def occupational(self, slice_name, *levels):
         return slice_name in VOCATIONAL_SLICES or any(lv in PROFESSIONAL for lv in levels)
@@ -413,8 +644,11 @@ class Build:
         low, _, raw_low = norm_level(r.get("level_from"))
         high, _, raw_high = norm_level(r.get("level_to"))
         cip, soc = self.mapper.label(s, r.get("field"), self.occupational(s, low, high))
+        cip = self.slice_cip(r, cip)
         row = {
-            "id": r["id"], "slice": s, "name": r["name"], "body": r.get("body"), "region": r.get("region"),
+            "_stated": dict({f: r.get(f) for f in FC.FACETS if r.get(f) is not None}, region=r.get("region"), **({"era_from": r["year"]} if isinstance(r.get("year"), int) and r.get("era_from") is None else {})),
+            "region_raw": r.get("region"), "required_learning": r.get("required_learning"),
+            "id": r["id"], "slice": s, "name": r["name"], "body": r.get("body"), "region": None,
             "field": r.get("field"), "level_from": low, "level_to": high, "year": r.get("year"), "url": r.get("url"),
             "licence": r.get("licence"), "verified": bool(r.get("verified")), "notes": r.get("notes"),
             "cip": cip, "onet_soc": soc,
@@ -431,7 +665,9 @@ class Build:
         r = scrub(r)
         level, level_to, level_raw = norm_level(r.get("level"))
         cip, soc = self.mapper.label(s, r.get("field"), self.occupational(s, level))
+        cip = self.slice_cip(r, cip)
         row = {
+            "_stated": {f: r.get(f) for f in FC.FACETS if r.get(f) is not None},
             "id": r["id"], "slice": s, "name": r["name"], "body": r.get("body"), "field": r.get("field"),
             "level": level, "content_outline": r.get("content_outline") or [], "url": r.get("url"),
             "verified": bool(r.get("verified")), "notes": r.get("notes"), "cip": cip, "onet_soc": soc,
@@ -506,16 +742,21 @@ class Build:
             crosswalk = self.backbone.cip_for_soc(m.group(1))
             if crosswalk:
                 cip = self.mapper.cip(crosswalk, "cip_soc_crosswalk")
-        row = {
-            "id": r["id"], "slice": s, "field": r.get("field"), "subfield": r.get("subfield"), "level": level,
+        cip = self.slice_cip(r, cip)
+        row = self.blank_progression(r["id"], s)
+        row["_stated"] = {f: r.get(f) for f in FC.FACETS if r.get(f) is not None}
+        row.update({
+            "field": r.get("field"), "subfield": r.get("subfield"), "level": level,
             "topic": r.get("topic"), "prerequisites": prerequisites, "prerequisite_groups": groups,
             "prerequisite_text": text or None, "external_prerequisites": external, "corequisites": corequisites,
             "edges_stated": stated, "edges_stated_basis": basis, "term_order": r.get("term_order"),
             "typical_age_or_year": r.get("typical_age_or_year"), "framework_id": r.get("framework_id"),
+            "age_from": r.get("age_from") if isinstance(r.get("age_from"), (int, float)) else None,
+            "age_to": r.get("age_to") if isinstance(r.get("age_to"), (int, float)) else None,
             "source_url": r.get("source_url"), "verified": bool(r.get("verified")), "notes": notes,
             "same_as": None, "occupation_profile": profile, "parse_status": parse_status, "parse_flags": parse_flags,
             "cip": cip, "onet_soc": soc,
-        }
+        })
         if level_raw:
             row["level_raw"] = level_raw
         self.sfia(row, "topic")
@@ -630,16 +871,30 @@ class Build:
         self.stats["slice_textbook_rows_replaced"] = len(self.slice_textbooks) - added
 
     def load_resources(self):
-        self.resources = []
+        v2 = os.path.join(ROOT, "resources", "resources-v2.jsonl")
+        self.resource_paths = [v2 if os.path.exists(v2) else os.path.join(ROOT, "resources", "resources.jsonl"), os.path.join(ROOT, "resources-v2", "resources.jsonl")]
+        self.repairs["resources_source"] = "resources-v2.jsonl" if os.path.exists(v2) else "resources.jsonl"
+        self.resources_claimed = False
+
+    def resource_rows(self):
         dropped = 0
         bad_cip = 0
-        for r in read_jsonl(os.path.join(ROOT, "resources", "resources.jsonl")):
+        seen = set()
+        first = not self.resources_claimed
+        for r in itertools.chain.from_iterable(iter_jsonl(p) for p in self.resource_paths):
+            if r.get("id") in seen:
+                continue
+            seen.add(r.get("id"))
             if EMAIL.search(r.get("url") or ""):
                 dropped += 1
                 continue
             r = scrub(r)
             level, level_to, level_raw = norm_level(r.get("level"))
             code = r.get("cip_code_guess") or None
+            method = "resource_field_guess"
+            if "cip_method" in r:
+                code = r.get("cip4") if r.get("cip4") in self.backbone.cip else None
+                method = str(r.get("cip_method") or "none").replace("-", "_")
             if code and code not in self.backbone.cip:
                 bad_cip += 1
                 code = code[:2] if code.endswith(".00") and code[:2] in self.backbone.cip else None
@@ -648,11 +903,15 @@ class Build:
                 "field": r.get("field"), "level": level, "level_to": level_to, "level_raw": level_raw,
                 "language": r.get("language"), "licence": r.get("licence"), "cost": r.get("cost"), "url": r.get("url"),
                 "prerequisites_stated": r.get("prerequisites_stated"), "verified": bool(r.get("verified")), "notes": None,
-                "cip": self.mapper.cip(code, "resource_field_guess"), "onet_soc": None,
+                "provider_subject": r.get("provider_subject"), "partner": r.get("partner"),
+                "cip": self.mapper.cip(code, method), "onet_soc": None,
             }
-            self.demote_unsourced(row, "url")
-            self.claim(row["id"], "resources")
-            self.resources.append(row)
+            if not row["url"]:
+                row["verified"] = False
+            if first:
+                self.claim(row["id"], "resources")
+            yield row
+        self.resources_claimed = True
         self.repairs["resources_dropped_email_in_url"] = dropped
         self.repairs["resources_cip_guess_moved_to_series"] = bad_cip
 
@@ -771,7 +1030,21 @@ class Build:
     def strip_atoms(self, groups):
         return [[{k: v for k, v in atom.items() if k != "text"} for atom in group] for group in groups or []] if groups is not None else None
 
+    def clip(self, value, limit):
+        if isinstance(value, str) and len(value) > limit:
+            self.clipped += 1
+            return value[:limit - 3].rsplit(" ", 1)[0] + "..."
+        if isinstance(value, list):
+            return [self.clip(v, limit) for v in value]
+        if isinstance(value, dict):
+            return {k: (v if k in ("url", "source_url", "api_url") else self.clip(v, TEXT_LIMITS.get(k, limit))) for k, v in value.items()}
+        return value
+
     def public_row(self, name, row):
+        row = self.public_shape(name, row)
+        return {k: (v if k.endswith("url") else self.clip(v, TEXT_LIMITS.get(k, DEFAULT_TEXT_LIMIT))) for k, v in row.items()}
+
+    def public_shape(self, name, row):
         row = {k: v for k, v in row.items() if k not in SENTENCE_KEYS}
         if name in ("courses", "progression"):
             row["prerequisite_groups"] = self.strip_atoms(row.get("prerequisite_groups"))
@@ -829,41 +1102,60 @@ class Build:
         self.edges = [dict([("id", e["id"])] + [(k, v) for k, v in e.items() if k != "id"]) for e in self.edges]
 
     def write_to(self, OUT, public):
+        self.clipped = 0
         os.makedirs(OUT, exist_ok=True)
         for name in os.listdir(OUT):
             if name.endswith((".jsonl", ".zst", ".json", ".tsv")):
                 os.remove(os.path.join(OUT, name))
         tables = collections.OrderedDict([
-            ("frameworks", self.frameworks), ("progression", self.progression), ("edges", self.edges),
-            ("assessments", self.assessments), ("books", self.books), ("resources", self.resources),
-            ("programs", self.programs), ("courses", self.courses),
+            ("frameworks", lambda: self.frameworks), ("progression", lambda: itertools.chain(self.progression, self.k12_standard_rows())),
+            ("edges", lambda: self.edges), ("assessments", lambda: self.assessments), ("books", lambda: self.books),
+            ("resources", self.resource_rows), ("programs", lambda: self.programs), ("courses", lambda: self.courses),
+            ("activities", lambda: self.activities), ("occupation_history", lambda: self.occupation_history), ("technologies", lambda: self.technologies),
         ])
         counts = collections.OrderedDict()
         files = collections.OrderedDict()
-        for name, rows in tables.items():
+        for name, source in tables.items():
             path = os.path.join(OUT, name + ".jsonl")
+            c = collections.Counter()
+            populated, stated, grain, types = collections.Counter(), collections.Counter(), collections.Counter(), collections.Counter()
+            flag = "page_fetched" if name in ("courses", "programs") else "verified"
             with open(path, "w", encoding="utf-8") as fh:
-                for row in rows:
+                for row in source():
+                    c["rows"] += 1
+                    if "life_stage_method" in row:
+                        c["faceted"] += 1
+                        for f in FC.FACETS:
+                            populated[f] += row[f] is not None
+                            stated[f] += row[f + "_method"] == "stated"
+                    if name == "edges":
+                        c["stated"] += bool(row["stated"])
+                        c["external"] += bool(row["external"])
+                        types[row["type"]] += 1
+                    elif "cip" in row:
+                        c[flag] += bool(row[flag])
+                        c["cip_mapped"] += bool(row["cip"]["code"])
+                        c["cip_mapping_verified"] += bool(row["cip"]["mapping_verified"])
+                        if row["cip"]["code"]:
+                            grain[str(row["cip"]["grain"])] += 1
+                        c["onet_soc_mapped"] += bool(row["onet_soc"])
+                        c["onet_soc_mapping_verified"] += bool(row["onet_soc"] and row["onet_soc"]["mapping_verified"])
                     fh.write(json.dumps(self.public_row(name, row) if public else row, ensure_ascii=False, sort_keys=False) + "\n")
-            entry = collections.OrderedDict(rows=len(rows))
+            total = max(c["rows"], 1)
+            entry = collections.OrderedDict(rows=c["rows"])
+            if c["faceted"]:
+                entry["facets_populated"] = {f: round(populated[f] / total, 4) for f in FC.FACETS}
+                entry["facets_stated"] = {f: stated[f] for f in FC.FACETS}
             if name == "edges":
-                entry["stated"] = sum(1 for r in rows if r["stated"])
-                entry["stated_share"] = round(entry["stated"] / len(rows), 4)
-                entry["external"] = sum(1 for r in rows if r["external"])
-                entry["by_type"] = dict(collections.Counter(r["type"] for r in rows).most_common())
-            else:
-                flag = "page_fetched" if name in ("courses", "programs") else "verified"
-                entry[flag] = sum(1 for r in rows if r[flag])
-                entry[flag + "_share"] = round(entry[flag] / len(rows), 4)
-                entry["cip_mapped"] = sum(1 for r in rows if r["cip"]["code"])
-                entry["cip_mapping_verified"] = sum(1 for r in rows if r["cip"]["mapping_verified"])
-                entry["cip_grain"] = {str(k): v for k, v in sorted(collections.Counter(r["cip"]["grain"] for r in rows if r["cip"]["code"]).items())}
-                entry["onet_soc_mapped"] = sum(1 for r in rows if r["onet_soc"])
-                entry["onet_soc_mapping_verified"] = sum(1 for r in rows if r["onet_soc"] and r["onet_soc"]["mapping_verified"])
+                entry.update(stated=c["stated"], stated_share=round(c["stated"] / total, 4), external=c["external"], by_type=dict(types.most_common()))
+            elif name not in ("activities", "occupation_history", "technologies"):
+                entry[flag] = c[flag]
+                entry[flag + "_share"] = round(c[flag] / total, 4)
+                entry.update(cip_mapped=c["cip_mapped"], cip_mapping_verified=c["cip_mapping_verified"], cip_grain=dict(sorted(grain.items())), onet_soc_mapped=c["onet_soc_mapped"], onet_soc_mapping_verified=c["onet_soc_mapping_verified"])
             counts[name] = entry
             size = os.path.getsize(path)
             if size > ZSTD_ABOVE:
-                subprocess.run(["zstd", "-q", "-19", "-T0", "--rm", "-f", path], check=True)
+                subprocess.run(["zstd", "-q", "-19", "-T2", "--rm", "-f", path], check=True)
                 path += ".zst"
             files[os.path.basename(path)] = os.path.getsize(path)
         with open(os.path.join(OUT, "cycles.jsonl"), "w", encoding="utf-8") as fh:
@@ -874,17 +1166,30 @@ class Build:
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")
         with open(os.path.join(HERE, "field_map.tsv"), encoding="utf-8") as src, open(os.path.join(OUT, "field_map.tsv"), "w", encoding="utf-8") as dst:
             dst.write(src.read())
+        backtest = os.path.join(ROOT, "forecast-backtest", "results.json")
+        if os.path.exists(backtest):
+            with open(backtest, encoding="utf-8") as src, open(os.path.join(OUT, "forecast_backtest.json"), "w", encoding="utf-8") as dst:
+                json.dump(self.clip(scrub(json.load(src)), DEFAULT_TEXT_LIMIT), dst, indent=1)
+                dst.write("\n")
+        with open(os.path.join(OUT, "soc_isco_crosswalk.jsonl"), "w", encoding="utf-8") as fh:
+            for pair in self.backbone.isco:
+                fh.write(json.dumps(pair) + "\n")
         with open(os.path.join(OUT, "cip_soc_crosswalk.jsonl"), "w", encoding="utf-8") as fh:
             for soc_code in sorted(self.backbone.crosswalk):
                 for cip_code in sorted(self.backbone.crosswalk[soc_code]):
                     fh.write(json.dumps({"cip": cip_code, "soc": soc_code}) + "\n")
-        for extra in ("cycles.jsonl", "backbone_codes.jsonl", "cip_soc_crosswalk.jsonl", "field_map.tsv"):
+        for extra in ("cycles.jsonl", "backbone_codes.jsonl", "cip_soc_crosswalk.jsonl", "soc_isco_crosswalk.jsonl", "field_map.tsv"):
             files[extra] = os.path.getsize(os.path.join(OUT, extra))
         self.stats["tables"] = counts
+        self.stats["slices_loaded"] = self.slices
+        self.stats["slices_pending"] = self.pending
+        self.stats["text_values_clipped"] = self.clipped if public else 0
         self.stats["files_bytes"] = files
         self.stats["total_bytes"] = sum(files.values())
         self.stats["repairs"] = {k: dict(v) if isinstance(v, collections.Counter) else v for k, v in self.repairs.items()}
-        self.stats["unmapped_field_labels"] = [{"slice": s, "label": label, "rows": n} for (s, label), n in sorted(self.mapper.unmapped.items())]
+        missing = collections.Counter((r["slice"], str(r.get("field"))) for rows in (self.frameworks, self.progression, self.assessments) for r in rows if not r["cip"]["code"])
+        missing.update(self.k12_unmapped)
+        self.stats["unmapped_field_labels"] = [{"slice": s, "label": label, "rows": n} for (s, label), n in sorted(missing.items())]
         self.stats["cycles"] = {"components_through_or_alternatives": len(self.cycle_rows), "components_on_mandatory_edges": len(self.hard_cycles)}
         with open(os.path.join(OUT, "stats.json"), "w", encoding="utf-8") as fh:
             json.dump(self.stats, fh, indent=1, ensure_ascii=False)
@@ -893,14 +1198,19 @@ class Build:
     def run(self):
         self.load_courses()
         self.load_slices()
+        self.load_k12()
+        self.load_history_curricula()
+        self.load_side_tables()
         self.load_books()
         self.load_resources()
         self.load_programs()
+        self.apply_facets()
         self.cycles()
         self.write()
         if self.hard_cycles:
             raise SystemExit("cycle on mandatory stated edges: %s" % self.hard_cycles[:3])
         print(json.dumps({k: v["rows"] for k, v in self.stats["tables"].items()}), self.stats["total_bytes"])
+        print("peak memory MB", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024)
 
 
 if __name__ == "__main__":
