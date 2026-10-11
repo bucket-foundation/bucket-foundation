@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-ru",
+  "title": "Russian words",
+  "kind": "words",
+  "language": "ru",
+  "language_name": "Russian",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 422697,
+    "with_ipa": 420468,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 422697,
+  "version": "53f29abc6cd4",
+  "file": "polingual-ru.sqlite.zst",
+  "bytes": 24083850,
+  "sha256": "495a2c665446726a2ed7f29cf237370beb1fb8e37c0b3d15d5244b8c02aefe12",
+  "db_bytes": 160718848,
+  "db_sha256": "53f29abc6cd471840197ba4d31e5ef203c5cb12f47b5599dfde356bf5e4d587d",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

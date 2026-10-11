@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-it",
+  "title": "Italian words",
+  "kind": "words",
+  "language": "it",
+  "language_name": "Italian",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 574346,
+    "with_ipa": 78840,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 574346,
+  "version": "f77b8672ba60",
+  "file": "polingual-it.sqlite.zst",
+  "bytes": 26002022,
+  "sha256": "fc4ab3b3726064eb373c004d5bb1d60875e08efbba35abd8a3bf5c59b38edebb",
+  "db_bytes": 154193920,
+  "db_sha256": "f77b8672ba603ce5f7989730167bc0e3473661a5a28c11c29e4778f838ddaf5f",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

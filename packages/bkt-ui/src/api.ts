@@ -12,6 +12,8 @@ export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordV
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 export type { DeckRow as InstalledDeckRow } from "../../bkt/src/decks";
 export type { DecksBody } from "../../bkt/src/deck-routes";
+export type { DeckState, LibraryBody, LibraryRow } from "../../bkt/src/library";
+import type { LibraryBody } from "../../bkt/src/library";
 export type { WordHit, WordSearch } from "../../bkt/src/core/word-decks";
 import type { DecksBody } from "../../bkt/src/deck-routes";
 import type { WordSearch } from "../../bkt/src/core/word-decks";
@@ -440,6 +442,33 @@ export class Api {
 
   wordDecks() {
     return this.call<WordDecks>("/local/words/decks");
+  }
+
+  library() {
+    return this.call<LibraryBody>("/local/library");
+  }
+
+  libraryRefresh() {
+    return this.call<LibraryBody>("/local/library/refresh", { method: "POST", body: {} });
+  }
+
+  libraryInstall(id: string) {
+    return this.call<LibraryBody>("/local/library/install", { method: "POST", body: { id } });
+  }
+
+  libraryRemove(id: string) {
+    return this.call<LibraryBody>("/local/library/remove", { method: "POST", body: { id } });
+  }
+
+  libraryExport(id: string) {
+    return this.call<{ name: string; folder: string }>("/local/library/export", { method: "POST", body: { id } });
+  }
+
+  async libraryImport(file: Blob) {
+    const r = await fetch("/local/library/import", { method: "POST", headers: { authorization: `Bucket ${this.token}`, "content-type": "application/octet-stream" }, body: file });
+    const data = (await r.json().catch(() => ({}))) as LibraryBody & { installed?: string; error?: string };
+    if (!r.ok) throw new ApiError(data.error ?? "", r.status);
+    return data as LibraryBody & { installed: string };
   }
 
   installedDecks() {

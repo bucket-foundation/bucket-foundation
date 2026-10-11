@@ -10,6 +10,7 @@ import REPORT from "./fixtures/analysis-report.json";
 import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
 import { DECKS_BODY, NO_DECKS_BODY } from "./fixtures/decks";
+import { EMPTY_LIBRARY, LIBRARY } from "./fixtures/library";
 import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_QUESTION } from "./fixtures/word-lessons";
 
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
@@ -243,6 +244,7 @@ function empty(): Stub {
     workSetLanguages: async (languages: string[]) => ({ languages }),
     wordDecks: async () => NO_WORD_DECKS,
     installedDecks: async () => NO_DECKS_BODY,
+    library: async () => EMPTY_LIBRARY,
     wordLessons: async () => ({ ...WORD_LESSON_LIST, lessons: [] }),
     wordLesson: () => Promise.reject(new ApiError("no such lesson", 404)),
     wordConcepts: async () => NO_CONCEPTS,
@@ -277,6 +279,7 @@ function populated(over: Stub = {}): Stub {
     workLanguages: async () => ({ languages: ["he"], available: [{ code: "he", name: "Hebrew" }] }),
     wordDecks: async () => WORD_DECKS,
     installedDecks: async () => DECKS_BODY,
+    library: async () => LIBRARY,
     wordLessons: async () => WORD_LESSON_LIST,
     wordLesson: async () => LESSON_PAGE,
     wordConcepts: async () => CONCEPT_PAGE,
@@ -331,6 +334,7 @@ function failing(): Stub {
     workLanguages: fail("data key does not match", 500),
     wordDecks: fail("data key does not match", 500),
     installedDecks: fail("data key does not match", 500),
+    library: fail("data key does not match", 500),
     wordLessons: fail("unknown language; run bkt learn path for the list", 404),
     wordLesson: fail("no such lesson", 404),
     wordConcepts: fail("data key does not match", 500),
@@ -382,7 +386,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -395,7 +399,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Library", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -410,7 +414,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Library", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
@@ -421,7 +425,7 @@ describe("navigation", () => {
     for (const n of navFor(true)) {
       for (const stub of [empty, populated, failing]) {
         const v = await mount(n.route, stub());
-        expect({ screen: n.label, fileInputs: v.host.querySelectorAll('input[type="file"]').length, bad: violations(v.host) }).toEqual({ screen: n.label, fileInputs: n.label === "Analyze data" ? 1 : 0, bad: [] });
+        expect({ screen: n.label, fileInputs: v.host.querySelectorAll('input[type="file"]').length, bad: violations(v.host) }).toEqual({ screen: n.label, fileInputs: n.label === "Analyze data" || (n.label === "Library" && stub !== failing) ? 1 : 0, bad: [] });
         await v.unmount();
       }
     }

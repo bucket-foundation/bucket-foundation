@@ -476,7 +476,7 @@ describe("commands", () => {
     expect(decks.kind === "run" && [decks.command.name, decks.values.json]).toEqual(["decks remove", true]);
     expect(() => resolve(["decks", "install"])).toThrow("decks install needs <file-or-folder>");
     expect(() => resolve(["decks", "burn"])).toThrow("unknown decks command burn");
-    expect(CLI_COMMANDS.filter((c) => c.name.startsWith("decks ")).length).toBe(3);
+    expect(CLI_COMMANDS.filter((c) => c.name.startsWith("decks ")).length).toBe(4);
   });
 
   test("search --words takes a language and refuses the canon-only flags", () => {

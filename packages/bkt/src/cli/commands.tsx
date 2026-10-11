@@ -4,6 +4,7 @@ import pack from "../../content/pack.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
 import explorePack from "../../content/explore.json" with { type: "json" };
 import wordPack from "../../content/words.json" with { type: "json" };
+import deckCatalog from "../../content/deck-catalog.json" with { type: "json" };
 import { join } from "node:path";
 import { App, type AppSources } from "../app";
 import { spawn } from "node:child_process";
@@ -21,8 +22,10 @@ import { directBackend, findServer, writeServerRecord, type LearnBackend } from 
 import { daily, learnDue, learnPath, learnWordPath, quizJson, reviewJson, screen, wordBackend } from "./learn";
 import { DeckWordBook, searchWords, wordBookFor, wordHitLine } from "../core/word-decks";
 import { wordCredit } from "../core/words";
-import { deckLine, deckRow, deckRows, DeckError, decksDir, installDeck, removeDeck, RESTART_NOTE } from "../decks";
+import { deckLine, deckRow, deckRows, DeckError, decksDir, removeDeck, RESTART_NOTE } from "../decks";
 import { deckRoutes } from "../deck-routes";
+import { exportDeck, installAny } from "../deck-file";
+import { IMPORT_BODY_BYTES as DECK_IMPORT_BYTES, Library, libraryRoutes, type Catalog } from "../library";
 import type { WordPack } from "../pack/words";
 import { WordSession, wordRoutes } from "../words";
 import { localDay } from "../chat-sources";
@@ -59,7 +62,7 @@ import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
-import { startServe } from "../serve";
+import { startServe, type Route } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
 import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
@@ -111,7 +114,19 @@ function wordBook(): DeckWordBook {
   return heldBook;
 }
 
-const DECK_COMMANDS: Record<string, "list" | "install" | "remove"> = {
+function dropWordBook(): void {
+  heldBook?.close();
+  heldBook = null;
+}
+
+function liveWordRoutes(workQuiz: WorkQuizStore): Record<string, Route> {
+  let held: WordSession | null = null;
+  const session = () => (held && held.book === wordBook() ? held : (held = new WordSession(wordBook(), workQuiz)));
+  return Object.fromEntries(Object.keys(wordRoutes(session())).map((key): [string, Route] => [key, (req, url) => wordRoutes(session())[key](req, url)]));
+}
+
+const DECK_COMMANDS: Record<string, "list" | "install" | "remove" | "export"> = {
+  "decks export": "export",
   "decks list": "list",
   "decks install": "install",
   "decks remove": "remove",
@@ -127,6 +142,8 @@ async function decks(inv: Invocation, json: boolean): Promise<number> {
   try {
     if (action === "list") {
       const rows = deckRows(home, inv.positionals[0] ?? process.env.BKT_DECK_SOURCE ?? null);
+      const have = new Set(rows.map((r) => r.id));
+      if (inv.values.catalog === true) for (const m of (deckCatalog as unknown as Catalog).decks) if (!have.has(m.id)) rows.push(deckRow(m, false, null));
       if (json) console.log(jsonLine("decks list", { decks: rows, credit }));
       else {
         for (const r of rows) console.log(deckLine(r));
@@ -137,7 +154,7 @@ async function decks(inv: Invocation, json: boolean): Promise<number> {
     }
     if (action === "install") {
       ensureDataDir(home);
-      const m = await installDeck(home, inv.positionals[0]);
+      const m = await installAny(home, inv.positionals[0]);
       const row = deckRow(m, true, join(decksDir(home), m.id));
       if (json) console.log(jsonLine("decks install", row));
       else {
@@ -145,6 +162,11 @@ async function decks(inv: Invocation, json: boolean): Promise<number> {
         console.log(`${m.source}, ${m.licence}, curated by ${m.curator}.`);
         console.log(RESTART_NOTE);
       }
+      return EXIT.ok;
+    }
+    if (action === "export") {
+      const made = await exportDeck(home, inv.positionals[0], inv.positionals[1]);
+      console.log(json ? jsonLine("decks export", { id: made.manifest.id, title: made.manifest.title, path: made.path, bytes: made.bytes }) : `Wrote ${made.manifest.title} to ${made.path}. ${made.manifest.source}, ${made.manifest.licence}.`);
       return EXIT.ok;
     }
     const gone = removeDeck(home, inv.positionals[0]);
@@ -267,8 +289,9 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
-      ...wordRoutes(new WordSession(wordBook(), workQuiz)),
+      ...liveWordRoutes(workQuiz),
       ...deckRoutes({ home: dir, book: wordBook, decks: () => wordBook().files }),
+      ...libraryRoutes(new Library({ home: dir, bundled: deckCatalog as unknown as Catalog, url: process.env.BKT_DECK_CATALOG_URL, onChange: dropWordBook }), (m) => console.error(`bkt serve: deck library: ${m}`)),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
@@ -280,6 +303,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/jobs": JOB_BODY_BYTES,
       "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
       "POST /local/settings/notify": NOTIFY_BODY_BYTES,
+      "POST /local/library/import": DECK_IMPORT_BYTES,
       "POST /local/notes": NOTES_BODY_BYTES,
       "POST /local/explore/saved": SAVED_BODY_BYTES,
       "POST /local/history/import": HISTORY_BODY_BYTES,

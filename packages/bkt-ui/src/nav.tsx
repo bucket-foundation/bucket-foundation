@@ -11,6 +11,7 @@ import { HistoryView } from "./views/History";
 import { ImportView } from "./views/Import";
 import { JobsView } from "./views/Jobs";
 import { LearnHome } from "./views/LearnHome";
+import { LibraryView } from "./views/Library";
 import { NotesView } from "./views/Notes";
 import { PathView } from "./views/Path";
 import { PrimesView } from "./views/Primes";
@@ -26,6 +27,7 @@ import { WordConceptsView, WordDeckView, WordLessonView } from "./views/Words";
 
 export const NAV: { route: Route; label: string }[] = [
   { route: { name: "learn" }, label: "Learn" },
+  { route: { name: "library" }, label: "Library" },
   { route: { name: "path" }, label: "Path" },
   { route: { name: "quiz" }, label: "Quiz" },
   { route: { name: "review" }, label: "Review" },
@@ -72,6 +74,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
   if (route.name === "settings") return <SettingsView api={api} />;
+  if (route.name === "library") return <LibraryView api={api} />;
   if (route.name === "graph") return <RosMapView branch={route.branch} />;
   if (route.name === "node") return <RosNodeView key={route.slug} slug={route.slug} />;
   if (route.name === "progress") return <RosProgressView />;
