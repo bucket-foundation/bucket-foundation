@@ -7,7 +7,7 @@ import unittest
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PARENT = os.path.dirname(HERE)
-CANDIDATES = [os.environ.get("PROGRESSIONS_TABLES"), os.path.join(PARENT, "tables"), os.path.join(HERE, "out")]
+CANDIDATES = [os.environ.get("PROGRESSIONS_TABLES"), os.path.join(PARENT, "tables"), os.path.join(HERE, "public")]
 TABLES = next(p for p in CANDIDATES if p and os.path.exists(os.path.join(p, "stats.json")))
 PACKAGE = PARENT if os.path.basename(TABLES) == "tables" else TABLES
 ROW_TABLES = ["frameworks", "progression", "assessments", "books", "resources", "programs", "courses"]
@@ -22,7 +22,23 @@ US_COURSES = {
     "school-us-math-algebra-1", "school-us-math-geometry", "school-us-math-algebra-2",
     "school-us-math-precalculus", "school-us-math-calculus-1", "school-us-math-calculus-2",
 }
+FLAG = {"courses": "page_fetched", "programs": "page_fetched"}
+SENTENCE_KEYS = {"prerequisite_text", "corequisite_text", "requirements_text", "recommended_text", "prerequisite_trailing_text", "description", "text"}
+LABEL_KEYS = {"notes", "title", "program", "page_title", "department", "institution"}
+UNSOURCED = re.compile(r"\binfer\w*|\brecall\w*|from memory", re.I)
+CCSS_ROW = re.compile(r"^((?:K|\d)\.[A-Z]+\.[A-Z]\.\d+[a-z]?|[A-Z]-[A-Z]+\.[A-Z]): (.+)$")
 CACHE = {}
+
+
+def walk(value, key=None):
+    if isinstance(value, dict):
+        for k, v in value.items():
+            yield from walk(v, k)
+    elif isinstance(value, list):
+        for v in value:
+            yield from walk(v, key)
+    else:
+        yield key, value
 
 
 def text_of(path):
@@ -168,7 +184,7 @@ class Normalisation(unittest.TestCase):
     def test_progression_rows_share_one_key_set(self):
         keys = {frozenset(k for k in r if k != "level_raw") for r in table("progression")}
         self.assertEqual(len(keys), 1)
-        for key in ("notes", "edges_stated", "prerequisite_text", "prerequisite_groups", "external_prerequisites", "term_order"):
+        for key in ("notes", "edges_stated", "prerequisite_groups", "external_prerequisites", "term_order"):
             self.assertIn(key, next(iter(keys)))
             self.assertIn(key, table("courses")[0])
 
@@ -178,7 +194,7 @@ class Normalisation(unittest.TestCase):
                 self.assertFalse({"prereq_text", "prereq_codes_outside_slice"} & set(r), r["id"])
 
     def test_round2_fields_groups_regenerated(self):
-        rows = [r for r in table("progression") if r["slice"] == "round2-fields" and r["prerequisite_text"]]
+        rows = [r for r in table("progression") if r["slice"] == "round2-fields" and r["parse_status"]]
         self.assertTrue(rows)
         for r in rows:
             self.assertIsInstance(r["prerequisite_groups"], list, r["id"])
@@ -243,11 +259,75 @@ class Mapping(unittest.TestCase):
                 self.assertIn(soc, self.soc, label)
 
 
+class Rights(unittest.TestCase):
+    def test_catalogue_rows_hold_no_free_text_sentence(self):
+        for name in ("courses", "programs"):
+            for r in table(name):
+                for key, value in walk(r):
+                    self.assertNotIn(key, SENTENCE_KEYS, r["id"])
+                    if isinstance(value, str) and key not in LABEL_KEYS and not value.startswith("http"):
+                        self.assertLessEqual(len(value.split()), 12, (r["id"], key))
+
+    def test_no_prerequisite_sentence_in_any_table(self):
+        for name in ROW_TABLES:
+            for r in table(name):
+                self.assertNotIn("prerequisite_text", r, r["id"])
+                self.assertFalse(str(r.get("notes") or "").startswith("Catalogue prerequisite text"), r["id"])
+                for group in r.get("prerequisite_groups") or []:
+                    for atom in group:
+                        self.assertNotIn("text", atom, r["id"])
+
+    def test_common_core_rows_hold_code_label_and_link(self):
+        rows = [r for r in table("progression") if r["framework_id"] == "school-fw-ccss-math" and CCSS_ROW.match(r["topic"])]
+        self.assertEqual(len(rows), 371)
+        for r in rows:
+            label = CCSS_ROW.match(r["topic"]).group(2)
+            self.assertLessEqual(len(label.split()), 8, r["id"])
+            self.assertTrue(r["standard_url"].startswith("https://www.thecorestandards.org/Math/Content/"), r["id"])
+        for r in table("progression"):
+            if r["framework_id"] == "school-fw-ccss-math":
+                self.assertLessEqual(len(r["topic"].split()), 14, r["id"])
+
+    def test_no_verbatim_standards_text(self):
+        for r in table("progression"):
+            self.assertIsNone(re.search(r"<[a-z/][^>]*>|&[a-z]+;", r["topic"] or ""), r["id"])
+            self.assertNotIn("First standard:", r["topic"] or "", r["id"])
+            if r["framework_id"] in ("school-fw-ccss-math", "school-fw-ccss-ela", "school-fw-ngss-appendix-e") or r["id"].startswith("r2ae-cefr-"):
+                self.assertLessEqual(len((r["topic"] or "").split()), 16, r["id"])
+
+    def test_sfia_attribute_terms_removed(self):
+        for r in table("frameworks"):
+            if "sfia" in r["id"]:
+                self.assertIsNone(re.search(r"autonomy|influence|complexity|Follow|Assist", r["notes"] or ""), r["id"])
+
+
+class Flags(unittest.TestCase):
+    def test_catalogue_tables_use_page_fetched(self):
+        for name in ("courses", "programs"):
+            for r in table(name):
+                self.assertNotIn("verified", r, r["id"])
+                self.assertIsInstance(r["page_fetched"], bool)
+        for name in ("frameworks", "progression", "assessments", "books", "resources"):
+            self.assertNotIn("page_fetched", table(name)[0])
+
+    def test_unfetched_programs_are_flagged_and_empty(self):
+        rows = [r for r in table("programs") if not r["page_fetched"]]
+        self.assertEqual(len(rows), 215)
+        for r in rows:
+            self.assertEqual(r["requirement_rows"] + r["plan_by_term"] + r["required_courses"], [], r["id"])
+
+    def test_inferred_or_recalled_rows_are_unverified(self):
+        for name in ("frameworks", "progression"):
+            bad = [r["id"] for r in table(name) if r["verified"] and UNSOURCED.search(r["notes"] or "")]
+            self.assertEqual(bad, [], name)
+
+
 class Hygiene(unittest.TestCase):
     def test_verified_rows_carry_a_url(self):
         for name in ROW_TABLES:
             key = URL_KEY.get(name, "url")
-            bad = [r["id"] for r in table(name) if r["verified"] and not str(r.get(key) or "").startswith(("http://", "https://"))]
+            flag = FLAG.get(name, "verified")
+            bad = [r["id"] for r in table(name) if r[flag] and not str(r.get(key) or "").startswith(("http://", "https://"))]
             self.assertEqual(bad, [], name)
 
     def test_no_email_address_or_home_path(self):
@@ -267,9 +347,6 @@ class Hygiene(unittest.TestCase):
             self.assertNotIn('"ddc', body, path)
             self.assertIsNone(re.search(r"SFIA level \d:", body), path)
             self.assertNotIn("1 Follow, 2 Assist", body, path)
-
-    def test_course_descriptions_left_out(self):
-        self.assertNotIn("description", table("courses")[0])
 
     def test_size_limits(self):
         total = 0

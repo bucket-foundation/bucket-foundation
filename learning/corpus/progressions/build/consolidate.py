@@ -50,6 +50,18 @@ PR.NUM["odu"] = r"\d{3}[A-Z]{0,2}"
 PR.NUM["kent"] = r"\d{5}"
 SEGMENT = re.compile(r"(Pre/corequisites?:|Corequisites?:)", re.I)
 SFIA_NOTE = "Text withheld: SFIA is proprietary and its wording stays out of this corpus."
+SFIA_FRAMEWORK_NOTE = "Seven levels of responsibility. A skill at a level is the unit a role profile cites. Licence terms confirmed at https://sfia-online.org/en/about-sfia/licensing-sfia; copying framework text onto another site needs a licence."
+UNSOURCED = re.compile(r"\binfer\w*|\brecall\w*|from memory", re.I)
+PUBLIC = os.path.abspath(sys.argv[3]) if len(sys.argv) > 3 else os.path.join(HERE, "public")
+SENTENCE_KEYS = {"prerequisite_text", "corequisite_text", "requirements_text", "recommended_text", "prerequisite_trailing_text", "description"}
+CCSS_CODE = re.compile(r"^((K|\d)\.([A-Z]+)\.([A-Z])\.(\d+)([a-z]?)): ")
+NGSS_LABEL = {
+    "PS1": "matter", "PS2": "forces and motion", "PS3": "energy", "PS4": "waves", "LS1": "organisms",
+    "LS2": "ecosystems", "LS3": "heredity", "LS4": "evolution", "ESS1": "space", "ESS2": "earth systems",
+    "ESS3": "earth and people", "ETS1": "engineering design",
+}
+CCSS_CLUSTER = re.compile(r"^(([A-Z])-([A-Z]+)\.([A-Z])): ")
+MAX_WORDS = 12
 
 
 def read_jsonl(path):
@@ -273,7 +285,7 @@ class Build:
                 "parse_status": r["parse_status"], "parse_flags": r["parse_flags"],
                 "edges_stated": True if (r["prerequisites"] or r["external_prerequisites"]) else None,
                 "term_order": None, "notes": None, "merged_ids": [],
-                "source_url": r["source_url"], "verified": bool(r["verified"]),
+                "source_url": r["source_url"], "page_fetched": bool(r["verified"]),
                 "cip": self.mapper.cip(r["cip_code"], "catalogue_department"), "onet_soc": None,
             }
             row = scrub(row)
@@ -374,6 +386,12 @@ class Build:
     def occupational(self, slice_name, *levels):
         return slice_name in VOCATIONAL_SLICES or any(lv in PROFESSIONAL for lv in levels)
 
+    def clear_inferred(self, row):
+        if row["verified"] and UNSOURCED.search(row.get("notes") or ""):
+            row["verified"] = False
+            key = "verified_cleared_notes_say_inferred_or_recalled"
+            self.repairs.setdefault(key, collections.Counter())[self.ids.get(row["id"], "row")] += 1
+
     def demote_unsourced(self, row, url_key):
         if row["verified"] and not row.get(url_key):
             row["verified"] = False
@@ -387,7 +405,7 @@ class Build:
         m = re.search(r"level (\d)", row.get(text_key) or "", re.I)
         if text_key == "topic" and m:
             row["topic"] = "SFIA level %s" % m.group(1)
-        row["notes"] = SFIA_NOTE if text_key == "topic" else re.sub(r"Seven levels of responsibility:[^.]*\.", "Seven levels of responsibility.", row.get("notes") or "") + " " + SFIA_NOTE
+        row["notes"] = SFIA_NOTE if text_key == "topic" else SFIA_FRAMEWORK_NOTE + " " + SFIA_NOTE
         self.repairs["sfia_rows_redacted"] = self.repairs.get("sfia_rows_redacted", 0) + 1
 
     def framework_row(self, s, r):
@@ -406,6 +424,7 @@ class Build:
         self.sfia(row, "name")
         self.demote_unsourced(row, "url")
         self.claim(row["id"], "frameworks")
+        self.clear_inferred(row)
         return row
 
     def assessment_row(self, s, r):
@@ -501,6 +520,7 @@ class Build:
         self.sfia(row, "topic")
         self.demote_unsourced(row, "source_url")
         self.claim(row["id"], "progression")
+        self.clear_inferred(row)
         return row
 
     def progression_edges(self):
@@ -651,11 +671,24 @@ class Build:
                 "program": r["program"], "degree": r.get("degree") or None, "page_title": r.get("page_title"),
                 "required_courses": r.get("required_courses") or [], "required_course_ids": required,
                 "requirement_rows": r.get("requirement_rows") or [], "plan_by_term": r.get("plan_by_term") or [],
-                "url": r.get("url"), "verified": bool(r.get("verified")), "notes": None,
+                "award_level": r.get("award_level"), "source_section": r.get("source_section"),
+                "url": r.get("url"), "page_fetched": bool(r.get("verified")) and bool(r.get("url")), "notes": None,
                 "cip": dict(self.mapper.cip(r.get("cip_code"), r.get("cip_method") or "catalogue_program"), reported_in_ipeds=r.get("cip_reported_in_ipeds"), score=r.get("cip_score")),
                 "onet_soc": None,
             }
-            self.demote_unsourced(row, "url")
+            self.claim(row["id"], "programs")
+            self.programs.append(row)
+        for r in read_jsonl(os.path.join(ROOT, "catalogues", "programs_not_fetched.jsonl")):
+            r = scrub(r)
+            base = "prog-%s-unfetched-%s" % (r["institution_key"], slug(re.sub(r"^https?://[^/]+/", "", r["url"])))
+            seen[base] += 1
+            row = {
+                "id": base if seen[base] == 1 else "%s-%d" % (base, seen[base]), "slice": "catalogues",
+                "institution": r["institution"], "institution_key": r["institution_key"], "program": None, "degree": None,
+                "page_title": None, "required_courses": [], "required_course_ids": [], "requirement_rows": [], "plan_by_term": [],
+                "award_level": None, "source_section": None, "url": r["url"], "page_fetched": False, "notes": r.get("reason"),
+                "cip": dict(self.mapper.cip(None, None), reported_in_ipeds=None, score=None), "onet_soc": None,
+            }
             self.claim(row["id"], "programs")
             self.programs.append(row)
 
@@ -729,16 +762,74 @@ class Build:
         self.hard_cycles = components(lambda e: e["group_size"] is None or e["group_size"] == 1)
         self.cycle_rows = [{"members": comp, "size": len(comp), "through_or_alternative": True} for comp in components(lambda e: True)]
 
+    def short(self, value):
+        return value if isinstance(value, str) and len(value.split()) <= MAX_WORDS else None
+
+    def strip_atoms(self, groups):
+        return [[{k: v for k, v in atom.items() if k != "text"} for atom in group] for group in groups or []] if groups is not None else None
+
+    def public_row(self, name, row):
+        row = {k: v for k, v in row.items() if k not in SENTENCE_KEYS}
+        if name in ("courses", "progression"):
+            row["prerequisite_groups"] = self.strip_atoms(row.get("prerequisite_groups"))
+        if name == "courses":
+            row["corequisite_groups"] = self.strip_atoms(row.get("corequisite_groups"))
+        if name == "programs":
+            row["requirement_rows"] = [dict({k: v for k, v in item.items() if k != "title"}, section=self.short(item.get("section"))) for item in row["requirement_rows"]]
+            plan = []
+            for term in row["plan_by_term"]:
+                term = dict(term)
+                if isinstance(term.get("items"), list):
+                    term["items"] = [dict({k: v for k, v in item.items() if k != "text"}, label=None if item.get("codes") else self.short(item.get("text"))) for item in term["items"]]
+                plan.append(term)
+            row["plan_by_term"] = plan
+        if name == "progression":
+            row["standard_url"] = None
+            topic = row["topic"] or ""
+            if (row["notes"] or "").startswith("Catalogue prerequisite text: "):
+                row["notes"] = "Edges read from the catalogue prerequisite sentence, which stays off the repo."
+            m = CCSS_CODE.match(topic) if row["framework_id"] == "school-fw-ccss-math" else None
+            if m:
+                row["topic"] = "%s: %s" % (m.group(1), self.ccss[m.group(1)])
+                row["standard_url"] = "https://www.thecorestandards.org/Math/Content/%s/" % "/".join(x for x in m.group(2, 3, 4, 5, 6) if x)
+            elif row["framework_id"] == "school-fw-ccss-math" and CCSS_CLUSTER.match(topic):
+                c = CCSS_CLUSTER.match(topic)
+                row["topic"] = "%s: %s" % (c.group(1), self.ccss[c.group(1)])
+                row["standard_url"] = "https://www.thecorestandards.org/Math/Content/HS%s/%s/%s/" % c.group(2, 3, 4)
+            elif row["framework_id"] == "school-fw-ccss-math":
+                row["standard_url"] = "https://www.thecorestandards.org/Math/"
+            elif row["framework_id"] == "school-fw-ccss-ela":
+                row["topic"] = re.sub(r"\. First standard:.*$", "", topic, flags=re.S)
+                row["standard_url"] = "https://www.thecorestandards.org/ELA-Literacy/"
+            elif row["framework_id"] == "school-fw-ngss-appendix-e":
+                head = re.match(r"NGSS ([A-Z]+\d), (grades [^:]+):", topic)
+                if head:
+                    codes = sorted(set(re.findall(r"\b[A-Z]{2,3}\d\.[A-Z]\b", topic)))
+                    row["topic"] = "NGSS %s %s, %s: %s" % (head.group(1), NGSS_LABEL[head.group(1)], head.group(2), ", ".join(codes))
+                    row["standard_url"] = "https://www.nextgenscience.org/"
+            elif row["id"].startswith("r2ae-cefr-") and ":" in topic:
+                row["topic"] = "CEFR " + topic.split(":")[0]
+        return row
+
     def write(self):
-        os.makedirs(OUT, exist_ok=True)
-        for name in os.listdir(OUT):
-            if name.endswith((".jsonl", ".zst", ".json", ".tsv")):
-                os.remove(os.path.join(OUT, name))
+        with open(os.path.join(HERE, "ccss_labels.tsv"), encoding="utf-8") as fh:
+            self.ccss = {r["code"]: r["label"] for r in csv.DictReader(fh, delimiter="\t")}
+        self.finish_edges()
+        self.write_to(OUT, False)
+        self.write_to(PUBLIC, True)
+
+    def finish_edges(self):
         self.edges.sort(key=lambda e: (e["dst"], e["src"] or "~" + (e["src_code"] or ""), e["type"], -1 if e["group_index"] is None else e["group_index"]))
         for n, e in enumerate(self.edges, 1):
             e["id"] = "edge-%06d" % n
             self.claim(e["id"], "edges")
         self.edges = [dict([("id", e["id"])] + [(k, v) for k, v in e.items() if k != "id"]) for e in self.edges]
+
+    def write_to(self, OUT, public):
+        os.makedirs(OUT, exist_ok=True)
+        for name in os.listdir(OUT):
+            if name.endswith((".jsonl", ".zst", ".json", ".tsv")):
+                os.remove(os.path.join(OUT, name))
         tables = collections.OrderedDict([
             ("frameworks", self.frameworks), ("progression", self.progression), ("edges", self.edges),
             ("assessments", self.assessments), ("books", self.books), ("resources", self.resources),
@@ -750,7 +841,7 @@ class Build:
             path = os.path.join(OUT, name + ".jsonl")
             with open(path, "w", encoding="utf-8") as fh:
                 for row in rows:
-                    fh.write(json.dumps(row, ensure_ascii=False, sort_keys=False) + "\n")
+                    fh.write(json.dumps(self.public_row(name, row) if public else row, ensure_ascii=False, sort_keys=False) + "\n")
             entry = collections.OrderedDict(rows=len(rows))
             if name == "edges":
                 entry["stated"] = sum(1 for r in rows if r["stated"])
@@ -758,8 +849,9 @@ class Build:
                 entry["external"] = sum(1 for r in rows if r["external"])
                 entry["by_type"] = dict(collections.Counter(r["type"] for r in rows).most_common())
             else:
-                entry["verified"] = sum(1 for r in rows if r["verified"])
-                entry["verified_share"] = round(entry["verified"] / len(rows), 4)
+                flag = "page_fetched" if name in ("courses", "programs") else "verified"
+                entry[flag] = sum(1 for r in rows if r[flag])
+                entry[flag + "_share"] = round(entry[flag] / len(rows), 4)
                 entry["cip_mapped"] = sum(1 for r in rows if r["cip"]["code"])
                 entry["cip_mapping_verified"] = sum(1 for r in rows if r["cip"]["mapping_verified"])
                 entry["cip_grain"] = {str(k): v for k, v in sorted(collections.Counter(r["cip"]["grain"] for r in rows if r["cip"]["code"]).items())}
@@ -788,7 +880,7 @@ class Build:
         self.stats["tables"] = counts
         self.stats["files_bytes"] = files
         self.stats["total_bytes"] = sum(files.values())
-        self.stats["repairs"] = self.repairs
+        self.stats["repairs"] = {k: dict(v) if isinstance(v, collections.Counter) else v for k, v in self.repairs.items()}
         self.stats["unmapped_field_labels"] = [{"slice": s, "label": label, "rows": n} for (s, label), n in sorted(self.mapper.unmapped.items())]
         self.stats["cycles"] = {"components_through_or_alternatives": len(self.cycle_rows), "components_on_mandatory_edges": len(self.hard_cycles)}
         with open(os.path.join(OUT, "stats.json"), "w", encoding="utf-8") as fh:

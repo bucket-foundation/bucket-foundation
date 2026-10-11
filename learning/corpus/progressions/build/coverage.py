@@ -8,11 +8,11 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROW_TABLES = ["frameworks", "progression", "assessments", "courses"]
 ALL_TABLES = ROW_TABLES + ["books", "resources", "programs"]
-RETIRED = {"Deleted", "Moved to"}
+RETIRED = {"Deleted", "Moved from"}
 
 
 def find_tables(argv):
-    candidates = argv[1:2] + [os.path.join(os.path.dirname(HERE), "build", "out"), os.path.join(os.path.dirname(HERE), "tables")]
+    candidates = argv[1:2] + [os.path.join(os.path.dirname(HERE), "build", "public"), os.path.join(os.path.dirname(HERE), "tables")]
     for path in candidates:
         if os.path.exists(os.path.join(path, "backbone_codes.jsonl")):
             return path
@@ -29,6 +29,10 @@ def read_table(folder, name):
         text = subprocess.run(["zstd", "-dc", packed], check=True, capture_output=True).stdout.decode("utf-8")
         return [json.loads(line) for line in text.splitlines() if line.strip()]
     raise SystemExit("missing table %s in %s" % (name, folder))
+
+
+def flag(row):
+    return bool(row.get("verified", row.get("page_fetched")))
 
 
 def n(value):
@@ -90,7 +94,7 @@ def build(folder):
         column = name if name in ("books", "resources", "programs") else "rows"
         for r in rows:
             t["rows"] += 1
-            t["verified"] += bool(r["verified"])
+            t["verified"] += flag(r)
             code = r["cip"]["code"]
             t["cip"] += bool(code)
             t["cip_verified"] += bool(r["cip"]["mapping_verified"])
@@ -99,12 +103,12 @@ def build(folder):
                 t["grain%d" % r["cip"]["grain"]] += 1
                 s2[code[:2]][column] += 1
                 if column == "rows":
-                    s2[code[:2]]["verified"] += bool(r["verified"])
+                    s2[code[:2]]["verified"] += flag(r)
                 if len(code) >= 5:
                     family = code[:5]
                     g[family][column] += 1
                     if column == "rows":
-                        g[family]["verified"] += bool(r["verified"])
+                        g[family]["verified"] += flag(r)
                 else:
                     s2[code]["series_only"] += 1
             occ = r.get("onet_soc")
@@ -115,7 +119,7 @@ def build(folder):
                 minor = occ.get("minor_group")
                 if minor:
                     m[minor]["rows"] += 1
-                    m[minor]["verified"] += bool(r["verified"])
+                    m[minor]["verified"] += flag(r)
                 else:
                     major_only[occ["code"][:2]]["rows"] += 1
             elif column != "rows" and code:
@@ -140,6 +144,7 @@ def build(folder):
     keys = ["rows", "books", "resources", "programs"]
     covered = [c for c in groups if any(g[c][k] for k in keys)]
     empty = [c for c in groups if c not in covered]
+    outside = sorted(c for c in g if c not in groups and any(g[c][k] for k in keys))
     covered_minor = [c for c in minors if any(m[c][k] for k in keys)]
     empty_minor = [c for c in minors if c not in covered_minor]
     stats = json.load(open(os.path.join(folder, "stats.json"), encoding="utf-8"))
@@ -151,9 +156,9 @@ def build(folder):
     inventory(w)
     w("## Method\n")
     w("`build/consolidate.py` writes a `cip` object on every row and an `onet_soc` object on every occupation row. `coverage.py` reads those codes and holds no label rules of its own. The label to code table is `field_map.tsv`, an editorial mapping; catalogue courses and programs carry the code their department or program title matched; resources carry the provider field guess. `mapping_verified` is true only where the source prints the code, which holds for the O*NET profile rows.\n")
-    w("Rows counts frameworks, progression, assessments and courses. Verified counts the rows among them with `verified` true. Edges counts prerequisite edges whose dependent row sits in the family. A six-digit code rolls up to its four-digit family. A row mapped at two digits counts toward its series alone. In the SOC tables, programs, books and resources are those whose CIP code the NCES and BLS crosswalk joins to an occupation in the group, so one item can count toward several groups.\n")
+    w("Rows counts frameworks, progression, assessments and courses. Verified counts the rows among them with `verified` true, or `page_fetched` true for courses and programs. Edges counts prerequisite edges whose dependent row sits in the family. A six-digit code rolls up to its four-digit family. A row mapped at two digits counts toward its series alone. In the SOC tables, programs, books and resources are those whose CIP code the NCES and BLS crosswalk joins to an occupation in the group, so one item can count toward several groups.\n")
     w("## Tables\n")
-    w("| Table | Rows | Verified | Share | CIP mapped | Two-digit | Four-digit | Six-digit | CIP code stated by source | SOC mapped | SOC code stated by source |\n|---|---|---|---|---|---|---|---|---|---|---|")
+    w("| Table | Rows | Verified or page fetched | Share | CIP mapped | Two-digit | Four-digit | Six-digit | CIP code stated by source | SOC mapped | SOC code stated by source |\n|---|---|---|---|---|---|---|---|---|---|---|")
     for name, t in totals.items():
         w("| %s | %s | %s | %.1f%% | %s | %s | %s | %s | %s | %s | %s |" % (name, n(t["rows"]), n(t["verified"]), 100.0 * t["verified"] / max(t["rows"], 1), n(t["cip"]), n(t["grain2"]), n(t["grain4"]), n(t["grain6"]), t["cip_verified"], n(t["soc"]), n(t["soc_verified"])))
     w("| edges | %s | %s stated | %.1f%% | | | | | | | |" % (n(edge_totals["rows"]), n(edge_totals["stated"]), 100.0 * edge_totals["stated"] / max(edge_totals["rows"], 1)))
@@ -178,6 +183,13 @@ def build(folder):
     w("| Code | Family | CIP programs |\n|---|---|---|")
     for code in sorted(empty, key=lambda c: (-programs_in[c], c)):
         w("| %s | %s | %d |" % (code, cip[code]["title"], programs_in[code]))
+
+    w("\n## Codes Outside the Families in Use\n")
+    w("%d four-digit codes hold items and sit outside the %d families in use, because CIP 2020 moved or reserved them. They add to the %d covered families for a total of %d codes touched.\n" % (len(outside), len(groups), len(covered), len(covered) + len(outside)))
+    w("| Code | Title | CIP 2020 action | Rows | Programs | Books | Resources |\n|---|---|---|---|---|---|---|")
+    for code in outside:
+        c = g[code]
+        w("| %s | %s | %s | %s | %s | %s | %s |" % (code, cip.get(code, {}).get("title", ""), cip.get(code, {}).get("action", ""), n(c["rows"]), n(c["programs"]), n(c["books"]), n(c["resources"])))
 
     w("\n## SOC Minor Groups\n")
     w("Occupations counts SOC detailed occupations, then O*NET 31.0 occupations.\n")
@@ -209,7 +221,7 @@ def build(folder):
             w("| %s | %s | %d |" % (item["slice"], item["label"], item["rows"]))
     summary = {
         "cip_four_digit_in_use": len(groups), "cip_four_digit_covered": len(covered),
-        "soc_minor_groups": len(minors), "soc_minor_groups_covered": len(covered_minor),
+        "cip_four_digit_codes_outside_in_use": outside, "soc_minor_groups": len(minors), "soc_minor_groups_covered": len(covered_minor),
         "soc_minor_groups_with_occupation_row": len([c for c in minors if m[c]["rows"]]),
         "largest_empty_cip_families": [{"code": c, "title": cip[c]["title"], "cip_programs": programs_in[c]} for c in sorted(empty, key=lambda c: (-programs_in[c], c))[:10]],
     }

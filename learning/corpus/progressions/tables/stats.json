@@ -4,8 +4,8 @@
  "tables": {
   "frameworks": {
    "rows": 581,
-   "verified": 337,
-   "verified_share": 0.58,
+   "verified": 290,
+   "verified_share": 0.4991,
    "cip_mapped": 581,
    "cip_mapping_verified": 0,
    "cip_grain": {
@@ -18,8 +18,8 @@
   },
   "progression": {
    "rows": 5350,
-   "verified": 3830,
-   "verified_share": 0.7159,
+   "verified": 2742,
+   "verified_share": 0.5125,
    "cip_mapped": 5350,
    "cip_mapping_verified": 0,
    "cip_grain": {
@@ -83,9 +83,9 @@
    "onet_soc_mapping_verified": 0
   },
   "programs": {
-   "rows": 843,
-   "verified": 843,
-   "verified_share": 1.0,
+   "rows": 1058,
+   "page_fetched": 843,
+   "page_fetched_share": 0.7968,
    "cip_mapped": 812,
    "cip_mapping_verified": 0,
    "cip_grain": {
@@ -96,8 +96,8 @@
   },
   "courses": {
    "rows": 25908,
-   "verified": 25908,
-   "verified_share": 1.0,
+   "page_fetched": 25908,
+   "page_fetched_share": 1.0,
    "cip_mapped": 25404,
    "cip_mapping_verified": 0,
    "cip_grain": {
@@ -108,24 +108,28 @@
   }
  },
  "files_bytes": {
-  "frameworks.jsonl": 431517,
-  "progression.jsonl.zst": 241998,
+  "frameworks.jsonl": 431320,
+  "progression.jsonl.zst": 214736,
   "edges.jsonl.zst": 201670,
   "assessments.jsonl": 430487,
   "books.jsonl": 1905641,
   "resources.jsonl.zst": 1526284,
-  "programs.jsonl.zst": 497024,
-  "courses.jsonl.zst": 829987,
+  "programs.jsonl.zst": 334442,
+  "courses.jsonl.zst": 685945,
   "cycles.jsonl": 417,
   "backbone_codes.jsonl": 759079,
   "cip_soc_crosswalk.jsonl": 211751,
   "field_map.tsv": 13106
  },
- "total_bytes": 7048961,
+ "total_bytes": 6714878,
  "repairs": {
   "courses_merged_into_catalogues": {
    "round2-fields": 3337,
    "land-health-service": 686
+  },
+  "verified_cleared_notes_say_inferred_or_recalled": {
+   "frameworks": 47,
+   "progression": 1088
   },
   "sfia_rows_redacted": 8,
   "school_us_course_rows_set_unstated": 6,
