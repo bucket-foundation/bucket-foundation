@@ -9,7 +9,7 @@ SPEC.loader.exec_module(check_refs)
 
 INDEX = {
     "w": {"a-2020-x": {"id": "a-2020-x", "verification": "doi-confirmed", "withdrawn": False,
-                       "effect": [{"value": "d = .67; 46 samples; N = 2,136; -0.39 for words"}], "finding": "x", "population": "61 studies"},
+                       "effect": [{"value": "d = .67; 46 samples; N = 2,136; -0.39 for words; 61% vs 38% correct"}], "finding": "x", "population": "61 studies"},
           "t-2021-cut": {"id": "t-2021-cut", "verification": "doi-confirmed", "withdrawn": False,
                          "effect": [{"value": "Overall effect 0.67 (the fetched abstract is truncated)"}]},
           "b-2021-y": {"id": "b-2021-y", "verification": "unconfirmed", "withdrawn": False, "effect": [{"value": "g = 0.42"}]},
@@ -76,6 +76,16 @@ class CheckRefs(unittest.TestCase):
         errors = numbers("An effect of 0.67 [empirical: w:t-2021-cut, 2026-10-11, show].\n")
         self.assertEqual(len(errors), 1)
         self.assertIn("truncated", errors[0])
+
+    def test_swapped_pair_fails(self):
+        self.assertEqual(numbers("61% against 38% correct [empirical: w:a-2020-x, 2026-10-11, show].\n"), [])
+        self.assertEqual(len(numbers("38% against 61% correct [empirical: w:a-2020-x, 2026-10-11, show].\n")), 1)
+
+    def test_lost_sign_fails(self):
+        self.assertEqual(numbers("words -0.39 [empirical: w:a-2020-x, 2026-10-11, show].\n"), [])
+        self.assertEqual(numbers("0.39 lower for words [empirical: w:a-2020-x, 2026-10-11, show].\n"), [])
+        self.assertEqual(len(numbers("a gain of 0.39 for words [empirical: w:a-2020-x, 2026-10-11, show].\n")), 1)
+        self.assertEqual(len(numbers("d = -0.67 [empirical: w:a-2020-x, 2026-10-11, show].\n")), 1)
 
 
 if __name__ == "__main__":

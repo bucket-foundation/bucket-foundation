@@ -23,6 +23,8 @@ EMPIRICAL = re.compile(r"\[empirical:\s*([^\[\],]+),[^\[\]]*\]")
 NUMBER = re.compile(r"(?<![\w.:/-])-?(?:\d[\d,]*\.?\d*|\.\d+)")
 LIST_MARKER = re.compile(r"^\s*(?:\d+\.|[-*])\s+")
 TRAILING = re.compile(r"[\s,;.]*(?:and)?[\s,;.]*")
+PAIR = re.compile(r"(?<![\w.:/-])(-?\d[\d,]*\.?\d*)%?[^\d|]{0,60}?\b(?:against|versus|vs)\b[^\d|]{0,20}?(-?\d[\d,]*\.?\d*)")
+DOWNWARD = re.compile(r"lower|below|fell|fall|drop|declin|less|worse|revers|minus|negative|shorter|loss", re.I)
 RECORD_TEXT = {
     "w": ("effect", "finding", "population"),
     "c": ("statement", "effect"),
@@ -76,6 +78,42 @@ def numbers_in(text):
     return {canonical(t) for t in NUMBER.findall(text) if any(ch.isdigit() for ch in t)}
 
 
+def ordered(text):
+    return [(t.startswith("-"), canonical(t)) for t in NUMBER.findall(text) if any(ch.isdigit() for ch in t)]
+
+
+def pair_errors(text, records):
+    problems = []
+    for match in PAIR.finditer(text):
+        first, second = canonical(match.group(1)), canonical(match.group(2))
+        verdicts = []
+        for record in records:
+            values = [value for _, value in ordered(record)]
+            if first in values and second in values and first != second:
+                verdicts.append(values.index(first) < values.index(second))
+        if verdicts and not any(verdicts):
+            problems.append(f"{match.group(1)} against {match.group(2)} is in the other order in the record")
+    return problems
+
+
+def sign_errors(text, records):
+    seen = [item for record in records for item in ordered(record)]
+    negative = {value for minus, value in seen if minus}
+    positive = {value for minus, value in seen if not minus}
+    problems = []
+    for match in NUMBER.finditer(text):
+        token = match.group(0)
+        if not any(ch.isdigit() for ch in token):
+            continue
+        value = canonical(token)
+        near = text[max(0, match.start() - 40):match.end() + 40]
+        if value in negative - positive and not token.startswith("-") and not DOWNWARD.search(near):
+            problems.append(f"{token} is negative in the record and carries no sign or direction word")
+        if token.startswith("-") and value in positive - negative:
+            problems.append(f"{token} is positive in the record")
+    return problems
+
+
 def record_text(prefix, row):
     return json.dumps([row.get(k) for k in RECORD_TEXT[prefix]], ensure_ascii=False)
 
@@ -117,7 +155,11 @@ def check_numbers(paths, index):
                 known = set()
                 for prefix, row in rows:
                     known |= numbers_in(record_text(prefix, row))
-                cited = numbers_in(BRACKET.sub("", group["text"]))
+                plain = BRACKET.sub("", group["text"])
+                cited = numbers_in(plain)
+                records = [record_text(prefix, row) for prefix, row in rows]
+                for problem in pair_errors(plain, records) + sign_errors(plain, records):
+                    errors.append(f"{path}:{number}: {problem}, record of {names}")
                 for value in sorted(cited - known):
                     errors.append(f"{path}:{number}: {value} is absent from the record of {names}")
     return errors

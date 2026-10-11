@@ -300,6 +300,17 @@ Changed. Method [m:retrieval practice]; today [mech:self-rated-review], [mech:th
 | Logged | Produced or picked, option count, grader, correct, elapsed time |
 | Failure | Produced answers take longer, and a strict grader marks near misses wrong. People learned less from failure feedback than from success feedback in five studies of adults [w:eskreis-winkler-2019-not-learning-from-failure]. The grader accepts listed variants, and E3 measures the cost |
 
+Few stored answers can be graded by rule today. Of the 998 quiz items in the eight science decks, the shipped grader accepts 375: 370 because the stored answer contains a number and 5 because it is a short string. For most of the 370 the answer is a sentence that happens to hold a number, and the grader would compare that one number alone. Only 43 accepted items have an answer of 60 characters or fewer, on 39 of the 487 atoms, and 623 items have no rule at all [empirical: learning/app/corpus science decks, 2026-10-11, bun tools/learning-corpus/count_gradable.ts].
+
+| Case | What happens |
+|---|---|
+| An item no rule can grade | The person answers, sees the stored answer and checks themselves. The event feeds the scheduler and raises no level |
+| A sentence answer that holds a number | It counts as rule-gradable only when the deck marks the item `answer_format: number`. The grader stops inferring a key from a stray digit |
+| The three-option form | Graded by rule, and it reaches Recognised |
+| An atom with no rule-gradable produced item | It stops at Recognised. That is 448 of the 487 science atoms today [empirical: derived from the count above, 2026-10-11, 487-39] |
+| The way out | Each atom gains one or more produced items a rule can grade: a typed short answer from the short fields, a cloze, a number, an ordering. The curation checklist requires it, and the report shows per deck how many atoms can reach Recalled |
+| Word decks | A typed word is graded by string match, so word atoms can reach Retained now |
+
 ### Spacing and the Scheduler
 
 Changed. Methods [m:spacing] and [m:knowledge tracing and scheduling models]; today [mech:fsrs-scheduler].
@@ -507,7 +518,7 @@ Changed. Method [m:tutoring and the two-sigma claim]; today [mech:socratic-tutor
 | Step-based systems d = 0.76, human tutors 0.79, answer-based systems 0.31 | Studies of tutoring and tutoring systems | [empirical: w:vanlehn-2011-relative-effectiveness-tutoring, 2026-10-11, show] |
 | Unrestricted access: practice +48 percent and unassisted exam -17 percent against control. Hints only: exam -0.4 percent, a nonsignificant difference | About 1,000 high school students in Turkey | [empirical: w:bastani-et-al-2025-generative-ai-can-harm-learning, 2026-10-11, show] |
 | An AI tutor 0.63 to 1.3 SD above active learning, depending on the estimator | 194 college physics students, crossover | [empirical: w:kestin-et-al-2025-ai-tutoring-outperforms-active-learning, 2026-10-11, show] |
-| +0.06 to 0.08 SD per term and up to about 0.14 SD over a year for the platform, no better with the AI coach than without | 18 Tennessee middle schools | [empirical: w:oreopoulos-2026-one-click-away-ai, 2026-10-11, show] |
+| Assignment raised achievement by 1.3 national percentile ranks per term, about 0.06 to 0.08 SD over a school year; a full year of active participation implies 0.14 SD. The gains resemble those of the platform without the AI coach | 18 Tennessee middle schools | [empirical: w:oreopoulos-2026-one-click-away-ai, 2026-10-11, show] |
 | AI use impaired conceptual understanding; patterns that kept the learner engaged preserved learning | Developers learning a new programming library | [w:shen-2026-ai-skill-formation] |
 
 | Field | Content |
@@ -905,7 +916,7 @@ An experiment runs on one machine and no data leaves it.
 | Off switch | One control per experiment. Turning it off returns every atom to the default scheduler at once, records the run as stopped, and shows its figures marked incomplete |
 | Unit | The atom, or the closed task for E7 and E8. Units are assigned to two arms of equal size by a seeded hash of the seed and the unit id. A unit belongs to one experiment at a time |
 | Registration | The definition, with one primary outcome, the sample size, the margin and the analysis, is hashed into the log before the first assignment |
-| Outcome test | One produced, rule-graded question at the registered day, the same day in both arms. It gives no feedback and feeds no scheduler |
+| Outcome test | One produced, rule-graded question at the registered day, the same day in both arms. It gives no feedback and feeds no scheduler. Because a rule grades it, a correct unaided outcome, probe or transfer event is a qualifying event for the level, as any other is. An atom with no rule-gradable produced item cannot enter an experiment, so no outcome event is ever graded by the person |
 | Blinding | Items carry no arm label. The result panel shows counts and days left, and no outcome figures, until the run stops |
 | Stopping | At the registered sample or the registered stop date, whichever comes first, with no early look |
 | Analysis | The difference in proportions with a `95%` interval, and a permutation test that reshuffles arm labels among the units, which holds whatever the dependence between them |
@@ -938,9 +949,9 @@ E2 compares two policies from the day an atom reaches Recalled, day 0.
 | Secondary outcome | Reviews per atom between day 0 and the outcome test |
 | Margin | `10` points of the outcome proportion, registered before the first assignment |
 | Decision | A policy becomes this person's default when its outcome is not worse than the other's by the margin, at the one-sided `2.5%` level, and its review count is lower with an interval that excludes zero. Any other result changes nothing |
-| Stop | The registered sample, or `365 days` |
+| Stop | The registered sample, or `365 days`. At the stop date the app reports the interval and the margin the reached sample supports, and changes a default only if the registered margin is met |
 
-The ladder's gaps are 7 days before a 23-day wait and 23 days before a 60-day wait, 30% and 38% of the wait that follows [empirical: derived from the ladder, 2026-10-11, 7/23 and 23/60]. Both sit near the top of the band under Spacing and the Scheduler, and the best gap falls as the wait grows, so the ladder may space wider than the optimum. Showing that one arm is not worse by 10 points, at proportions near 0.6, takes 377 atoms per arm [empirical: derived from the noninferiority test, 2026-10-11, 7.84*0.48/0.10**2]. That is 754 atoms, 189 days of enrolment at four new atoms a day, and 90 more to the last outcome [empirical: derived from mech:daily-route, 2026-10-11, 754/4]. The eight science decks hold 487 atoms, so E2 needs word decks or more than one deck, and most people will reach the stop date first.
+The ladder's gaps are 7 days before a 23-day wait and 23 days before a 60-day wait, 30% and 38% of the wait that follows [empirical: derived from the ladder, 2026-10-11, 7/23 and 23/60]. Both sit near the top of the band under Spacing and the Scheduler, and the best gap falls as the wait grows, so the ladder may space wider than the optimum. Showing that one arm is not worse by 10 points, at proportions near 0.6, takes 377 atoms per arm [empirical: derived from the noninferiority test, 2026-10-11, 7.84*0.48/0.10**2]. That is 754 atoms, 189 days of enrolment at four new atoms a day, and 90 more to the last outcome, 279 days in all and inside the stop date [empirical: derived from mech:daily-route, 2026-10-11, 754/4 and 189+90]. The limit is supply. The science decks hold 39 atoms with a sound rule-gradable item, so E2 runs on word decks. A person at two new atoms a day has 550 atoms with an outcome by day 365, since enrolment must end 90 days earlier; at 275 per arm the test supports a margin of 12 points and no finer [empirical: derived from the noninferiority test, 2026-10-11, 2*275 and 2.8*sqrt(0.48/275)]. The conclusion allowed at that size is "not worse by more than 12 points", which does not meet the registered margin and changes no default.
 
 ### Power
 
@@ -1051,7 +1062,7 @@ A deck is the file format of bead `bkt-twjy`, as PR #719 builds it: `format` `bk
 | `confusable_with` | Atoms a learner mixes up with this one | Interleaving |
 | `worked_examples` | One or more with numbered steps, on atoms of type method or equation | Worked Examples and Fading |
 | `explain_prompt` and `key_points` | One prompt, two to four key points | Self-Explanation |
-| `quiz` | Item ids, each a `quiz-fact`. One or more must be gradable by rule, or the atom can never leave Unknown | Retrieval |
+| `quiz` | Item ids, each a `quiz-fact`. One or more must be a produced item gradable by rule, or the atom stops at Recognised | Retrieval |
 | `craft` | True when the atom needs a person | Apprenticeship |
 
 ### Item Fields
@@ -1120,7 +1131,7 @@ Measurement comes first, so every later slice lands with its own evidence. Each 
 | 3 | Predicted against observed outcomes, and report version 1 | A new Report view from `LearnHome.tsx` | new child | From a fixture log the report prints the binned plot data, Brier score and log loss that a reference script prints |
 | 4 | Confidence capture and calibration | `Review.tsx`, `Quiz.tsx` | new child | One tap stores a bin before reveal; the panel matches the reference script; with the switch off no bin is stored |
 | 5 | Levels and marks replace the mastery formula | `Path.tsx`, `TopicGraph.tsx`, `Grip.tsx` | new child; Lean under `bkt-k4ch` | The `Level` statements sit in `BucketMath.Open` with replay vectors passing; a property test shows no event graded by the person changes a level; the old formula is computed in shadow for `30 days` and then deleted |
-| 6 | Sealed transfer items and deck fields | The Library screen of PR #719, `Deck.tsx` | `bkt-twjy` | A `measured` deck fails validation with too few sealed items or an atom with no rule-gradable item; a sealed item never appears in practice across simulated sessions; a word pack from PR #719 still validates |
+| 6 | Sealed transfer items, deck fields, and rule-gradable keys for the science decks | The Library screen of PR #719, `Deck.tsx` | `bkt-twjy` | A `measured` deck fails validation with too few sealed items or an atom with no rule-gradable item; a sealed item never appears in practice across simulated sessions; a word pack from PR #719 still validates |
 | 7 | Removals: streak, points, hearts, speed bonus, random trigger, FIRe, encompassing weights, confidence band. The two mastery mechanisms go in slice 5 | `LearnHome.tsx`, `Lesson.tsx` | new child, after open questions 3, 4 and 18 | No code path reaches the seven removed mechanisms; stored counts remain; no due date moves earlier in migration; the reversal threshold is computed and shown |
 | 8 | Miss screen with the why line and logged link; produced answers first | `Quiz.tsx`, `WorkQuiz.tsx` | new child, after open question 17 | A miss writes the feedback and link fields; a gradable item renders the produced form; the grader accepts each listed variant |
 | 9 | Lessons: pretest question, worked example with fading, explanation prompt | `Lesson.tsx` | `bkt-twjy` for fields; new child for the view | One science deck passes the curation checklist; a lesson walks the fixed order; ticking key points writes a row graded by the person and changes no level |

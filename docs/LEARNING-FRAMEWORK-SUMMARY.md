@@ -6,7 +6,7 @@ Bead `bkt-0rsk.2`. Draft v2, 2026-10-11, revised after critic round 1. The full 
 
 Education is a change in a person that shows up in what they can do next, Dewey's definition [w:dewey-1916-democracy-and-education]. A thing is learned when the person can produce it without help, after a delay, on a question they have not memorised. Bucket measures skill and knowledge alone and says so on the report screen.
 
-Each topic sits at one of four levels: Unknown, Recognised, Recalled, Retained. Retained needs two correct produced answers a week or more apart. Only an answer a rule graded can raise a level. A self-rating, a ticked checklist and a read lesson earn nothing, and an answer given with AI help earns Recognised at most. Two marks sit beside the level: Understood, earned on a new question never seen in practice, and Used, earned in a debrief on the person's own work.
+Each topic sits at one of four levels: Unknown, Recognised, Recalled, Retained. Retained needs two correct produced answers a week or more apart. Only an answer a rule graded can raise a level. Today a rule can soundly grade 43 of the 998 science questions, on 39 of 487 topics [empirical: learning/app/corpus science decks, 2026-10-11, bun tools/learning-corpus/count_gradable.ts], so the science decks need typed-answer keys before their topics can pass Recognised. Word decks already grade a typed word. A self-rating, a ticked checklist and a read lesson earn nothing, and an answer given with AI help earns Recognised at most. Two marks sit beside the level: Understood, earned on a new question never seen in practice, and Used, earned in a debrief on the person's own work.
 
 ## What the Evidence Supports and for Whom
 
@@ -45,7 +45,7 @@ Bucket runs FSRS-6 from the public library, with the proved bounds applied to it
 
 ## Experiments
 
-Every experiment needs consent, has an off switch, assigns equal numbers to each arm, names one outcome and one test day for both arms before it starts, and hides its result until it stops. With `100` topics in each arm, one person can detect a difference of 19 points [empirical: derived from the two-proportion test, 2026-10-11, 2.8*sqrt(0.48/100)]. Comparing the adaptive scheduler with a fixed 7, 30 and 90 day ladder needs 377 topics in each arm [empirical: derived from the noninferiority test, 2026-10-11, 7.84*0.48/0.10**2], which most people will not reach inside a year. A claim about learners at large needs a study with other adults, 392 per group to detect 0.2 SD [empirical: derived from the two-sample test, 2026-10-11, 15.68/0.2**2].
+Every experiment needs consent, has an off switch, assigns equal numbers to each arm, names one outcome and one test day for both arms before it starts, and hides its result until it stops. With `100` topics in each arm, one person can detect a difference of 19 points [empirical: derived from the two-proportion test, 2026-10-11, 2.8*sqrt(0.48/100)]. Comparing the adaptive scheduler with a fixed 7, 30 and 90 day ladder needs 377 topics in each arm [empirical: derived from the noninferiority test, 2026-10-11, 7.84*0.48/0.10**2], which takes 279 days at four new topics a day and has to run on word decks. A claim about learners at large needs a study with other adults, 392 per group to detect 0.2 SD [empirical: derived from the two-sample test, 2026-10-11, 15.68/0.2**2].
 
 ## Counts
 
