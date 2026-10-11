@@ -25,10 +25,15 @@ export type Route =
   | { name: "notes" }
   | { name: "history" }
   | { name: "data" }
+  | { name: "research"; slug?: string; tab?: ResearchTab }
   | { name: "graph"; branch?: string }
   | { name: "node"; slug: string }
   | { name: "progress" }
   | { name: "profile" };
+
+export const RESEARCH_TABS = ["report", "figures"] as const;
+export type ResearchTab = (typeof RESEARCH_TABS)[number];
+const RESEARCH_SLUG = /^[a-z0-9][a-z0-9-]{0,63}$/;
 
 const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
 const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
@@ -59,6 +64,11 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "search") return parts.length === 2 && /^\d{1,9}$/.test(parts[1]) ? { name: "search", id: Number(parts[1]) } : { name: "search" };
   if (parts[0] === "graph") return parts.length === 2 && BRANCH.test(parts[1]) ? { name: "graph", branch: parts[1] } : { name: "graph" };
   if (parts[0] === "node" && parts.length === 2 && NODE.test(parts[1])) return { name: "node", slug: parts[1] };
+  if (parts[0] === "research") {
+    if (parts.length < 2 || parts.length > 3 || !RESEARCH_SLUG.test(parts[1])) return { name: "research" };
+    const tab = RESEARCH_TABS.find((t) => t === parts[2]);
+    return parts.length === 3 && !tab ? { name: "research" } : { name: "research", slug: parts[1], tab: tab ?? "report" };
+  }
   if (parts[0] === "setup") return { name: "settings" };
   if (SIMPLE.has(parts[0])) return { name: parts[0] } as Route;
   return { name: "learn" };
@@ -74,6 +84,7 @@ export function href(r: Route): string {
   if (r.name === "canon") return r.find ? `#/canon/find/${encodeURIComponent(r.find)}` : "#/canon";
   if (r.name === "search") return r.id === undefined ? "#/search" : `#/search/${r.id}`;
   if (r.name === "graph") return r.branch ? `#/graph/${encodeURIComponent(r.branch)}` : "#/graph";
+  if (r.name === "research") return r.slug ? `#/research/${r.slug}/${r.tab ?? "report"}` : "#/research";
   if (r.name === "node") return `#/node/${encodeURIComponent(r.slug)}`;
   return `#/${r.name}`;
 }

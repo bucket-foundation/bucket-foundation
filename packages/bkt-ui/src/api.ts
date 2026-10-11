@@ -19,6 +19,25 @@ import type { LibraryBody } from "../../bkt/src/library";
 export type { CreditWithDecks, DeckCredit, WordHit, WordSearch } from "../../bkt/src/core/word-decks";
 import type { DecksBody } from "../../bkt/src/deck-routes";
 import type { WordSearch } from "../../bkt/src/core/word-decks";
+export type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
+export type { PackedFile, ReportAsset, ReportAttribution, ReportRecord } from "../../bkt/src/pack/research";
+import type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
+
+export const IMAGE_TYPES = ["image/png", "image/webp", "image/jpeg", "image/svg+xml"];
+export const IMAGE_MAX_BYTES = 8 * 1024 * 1024;
+
+export function researchFileUrl(slug: string, path: string): string {
+  return `/local/research/file?slug=${encodeURIComponent(slug)}&path=${encodeURIComponent(path)}`;
+}
+
+function asDataUrl(blob: Blob): Promise<string> {
+  return new Promise((done, fail) => {
+    const reader = new FileReader();
+    reader.onload = () => done(String(reader.result));
+    reader.onerror = () => fail(new Error("The image could not be read."));
+    reader.readAsDataURL(blob);
+  });
+}
 
 export interface WordDecks {
   decks: WordDeckProgress[];
@@ -440,6 +459,33 @@ export class Api {
 
   workSetLanguages(languages: string[]) {
     return this.call<{ languages: string[] }>("/local/work-quiz/languages", { method: "POST", body: { languages } });
+  }
+
+  researchList() {
+    return this.call<{ outputs: ResearchRow[] }>("/local/research/list");
+  }
+
+  researchManifest(slug: string) {
+    return this.call<ResearchDetail>(`/local/research/manifest?slug=${encodeURIComponent(slug)}`);
+  }
+
+  private async researchFile(slug: string, path: string): Promise<Response> {
+    const r = await fetch(researchFileUrl(slug, path), { headers: { authorization: `Bucket ${this.token}` } });
+    if (!r.ok) throw new ApiError(((await r.json().catch(() => ({}))) as { error?: string }).error ?? "", r.status);
+    return r;
+  }
+
+  async researchText(slug: string, path: string): Promise<string> {
+    return (await this.researchFile(slug, path)).text();
+  }
+
+  async image(slug: string, path: string): Promise<string> {
+    const r = await this.researchFile(slug, path);
+    const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
+    if (!IMAGE_TYPES.includes(type)) throw new Error("That file is not an image this window shows.");
+    const blob = await r.blob();
+    if (blob.size > IMAGE_MAX_BYTES) throw new Error("That image is over 8 MB.");
+    return asDataUrl(blob.type === type ? blob : new Blob([blob], { type }));
   }
 
   wordLicence() {
