@@ -117,8 +117,9 @@ jobs:
           APPLE_ID: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_ID || '' }}
           APPLE_PASSWORD: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_PASSWORD || '' }}
           APPLE_TEAM_ID: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.APPLE_TEAM_ID || '' }}
+          NO_STRIP: ${{ runner.os == 'Linux' && 'true' || '' }}
         run: |
-          for v in TAURI_SIGNING_PRIVATE_KEY TAURI_SIGNING_PRIVATE_KEY_PASSWORD APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID; do
+          for v in NO_STRIP TAURI_SIGNING_PRIVATE_KEY TAURI_SIGNING_PRIVATE_KEY_PASSWORD APPLE_CERTIFICATE APPLE_CERTIFICATE_PASSWORD APPLE_SIGNING_IDENTITY APPLE_ID APPLE_PASSWORD APPLE_TEAM_ID; do
             [ -n "${!v}" ] || unset "$v"
           done
           bun scripts/build-config.ts "$RUNNER_TEMP/tauri.release.json"

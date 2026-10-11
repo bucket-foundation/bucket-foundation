@@ -10,6 +10,15 @@ import { siteFetch } from "./site-fetch";
 
 export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordLicence, WordView } from "../../bkt/src/core/words";
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
+export type { DeckRow as InstalledDeckRow } from "../../bkt/src/decks";
+export type { DecksBody } from "../../bkt/src/deck-routes";
+export type { LinkHit, LinkMode, LinkSearch, LinkStatus } from "../../bkt/src/polingual-link";
+import type { LinkMode, LinkSearch, LinkStatus } from "../../bkt/src/polingual-link";
+export type { DeckState, LibraryBody, LibraryRow } from "../../bkt/src/library";
+import type { LibraryBody } from "../../bkt/src/library";
+export type { CreditWithDecks, DeckCredit, WordHit, WordSearch } from "../../bkt/src/core/word-decks";
+import type { DecksBody } from "../../bkt/src/deck-routes";
+import type { WordSearch } from "../../bkt/src/core/word-decks";
 
 export interface WordDecks {
   decks: WordDeckProgress[];
@@ -439,6 +448,69 @@ export class Api {
 
   wordDecks() {
     return this.call<WordDecks>("/local/words/decks");
+  }
+
+  library() {
+    return this.call<LibraryBody>("/local/library");
+  }
+
+  libraryRefresh() {
+    return this.call<LibraryBody>("/local/library/refresh", { method: "POST", body: {} });
+  }
+
+  libraryInstall(id: string) {
+    return this.call<LibraryBody>("/local/library/install", { method: "POST", body: { id } });
+  }
+
+  libraryRemove(id: string) {
+    return this.call<LibraryBody>("/local/library/remove", { method: "POST", body: { id } });
+  }
+
+  libraryExport(id: string, replace = false) {
+    return this.call<{ name: string; folder: string }>("/local/library/export", { method: "POST", body: { id, replace } });
+  }
+
+  async libraryExportBytes(id: string) {
+    const r = await fetch(`/local/library/export?id=${encodeURIComponent(id)}`, { headers: { authorization: `Bucket ${this.token}` } });
+    if (!r.ok) throw new ApiError("", r.status);
+    return r.blob();
+  }
+
+  async libraryImport(file: Blob) {
+    const r = await fetch("/local/library/import", { method: "POST", headers: { authorization: `Bucket ${this.token}`, "content-type": "application/octet-stream" }, body: file });
+    const data = (await r.json().catch(() => ({}))) as LibraryBody & { installed?: string; error?: string };
+    if (!r.ok) throw new ApiError(data.error ?? "", r.status);
+    return data as LibraryBody & { installed: string };
+  }
+
+  polingualLink() {
+    return this.call<LinkStatus>("/local/polingual-link");
+  }
+
+  setPolingualLink(url: string) {
+    return this.call<LinkStatus>("/local/polingual-link", { method: "POST", body: { url } });
+  }
+
+  async linkSearch(q: string, mode: LinkMode, o: { waitMs?: number; tries?: number } = {}) {
+    for (let i = 0; i < (o.tries ?? 60); i++) {
+      const r = await fetch(`/local/polingual-link/search?q=${encodeURIComponent(q)}&mode=${mode}`, { headers: { authorization: `Bucket ${this.token}` } });
+      const data = (await r.json().catch(() => ({}))) as LinkSearch & { error?: string };
+      if (r.status === 202) {
+        await new Promise((go) => setTimeout(go, o.waitMs ?? 2000));
+        continue;
+      }
+      if (!r.ok) throw new ApiError(data.error ?? "", r.status);
+      return data;
+    }
+    throw new ApiError("the search took too long", 504);
+  }
+
+  installedDecks() {
+    return this.call<DecksBody>("/local/deck-files");
+  }
+
+  wordSearch(q: string) {
+    return this.call<WordSearch>(`/local/words/search?q=${encodeURIComponent(q)}`);
   }
 
   wordLessons(deck: string) {

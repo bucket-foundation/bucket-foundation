@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { InlineMath } from "@/components/math/InlineMath";
-import type { Api, ConceptPage, LessonPage, LessonWord, WordAnswerApi, WordCredit, WordLessons, WordQuizPick, WordView, WorkAnswer, WorkQuestion } from "../api";
+import type { Api, ConceptPage, DeckCredit, LessonPage, LessonWord, WordAnswerApi, WordCredit, WordLessons, WordQuizPick, WordView, WorkAnswer, WorkQuestion } from "../api";
 import { href } from "../router";
 import { Choice, QuestionBody, Why } from "./WorkQuiz";
 
@@ -14,7 +14,27 @@ export const LESSON_ONLY = "lesson only";
 export const LESSON_ONLY_NOTE = "A word marked lesson only has no short meaning for a question, so the quiz leaves it out.";
 export const LICENCE_LINK = "Licence and changes";
 
-export function WordAttribution({ credit }: { credit: WordCredit }) {
+export function DeckCredits({ credits }: { credits: readonly DeckCredit[] }) {
+  return (
+    <>
+      {credits.map((c) => (
+        <span key={c.deck} className="deck-credit">
+          {` ${c.title}: ${c.source}, `}
+          {c.licenceHref ? (
+            <a href={c.licenceHref} target="_blank" rel="noreferrer noopener">
+              {c.licence}
+            </a>
+          ) : (
+            c.licence
+          )}
+          {c.curator ? `, curated by ${c.curator}.` : "."}
+        </span>
+      ))}
+    </>
+  );
+}
+
+export function WordAttribution({ credit }: { credit: WordCredit & { also?: readonly DeckCredit[] } }) {
   return (
     <p className="muted small word-credit">
       {credit.text}{" "}
@@ -31,6 +51,7 @@ export function WordAttribution({ credit }: { credit: WordCredit }) {
       </a>
       {" · "}
       <a href={href({ name: "licence" })}>{LICENCE_LINK}</a>
+      {credit.also && <DeckCredits credits={credit.also} />}
     </p>
   );
 }

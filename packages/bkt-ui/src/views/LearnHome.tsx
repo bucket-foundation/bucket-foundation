@@ -4,6 +4,7 @@ import type { Api, DeckRow, WordDecks } from "../api";
 import { href } from "../router";
 import { GripPanel } from "./Grip";
 import { loadLearnData } from "./learn-data";
+import { LIBRARY_LINK, WordSearchBox } from "./Decks";
 import { PICK_LANGUAGES, WordAttribution, WORDS_FAILED } from "./Words";
 
 export function LearnHome({ api }: { api: Api }) {
@@ -54,6 +55,10 @@ export function LearnHome({ api }: { api: Api }) {
         ))}
       </div>
       <h2 className="section-title">Languages</h2>
+      <WordSearchBox api={api} />
+      <p className="muted small">
+        <a href={href({ name: "library" })}>{LIBRARY_LINK}</a>
+      </p>
       {wordsFailed && <p className="muted">{WORDS_FAILED}</p>}
       {words && (
         <>

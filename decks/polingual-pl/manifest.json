@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-pl",
+  "title": "Polish words",
+  "kind": "words",
+  "language": "pl",
+  "language_name": "Polish",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 156252,
+    "with_ipa": 156034,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 156252,
+  "version": "74ee0063dcb4",
+  "file": "polingual-pl.sqlite.zst",
+  "bytes": 10964549,
+  "sha256": "1f7ed86f08f875002c11567d410be77413f8203eb86c8beca6ce27a28b9e798f",
+  "db_bytes": 42131456,
+  "db_sha256": "74ee0063dcb4f7e9d6e12b35d44c8f20879b9b4ab89d378f893c68c7b3e5e652",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

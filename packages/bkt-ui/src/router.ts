@@ -12,6 +12,7 @@ export type Route =
   | { name: "import" }
   | { name: "add" }
   | { name: "settings" }
+  | { name: "library" }
   | { name: "advisors" }
   | { name: "primes" }
   | { name: "jobs" }
@@ -29,7 +30,7 @@ export type Route =
   | { name: "progress" }
   | { name: "profile" };
 
-const SIMPLE = new Set(["quiz", "review", "add", "settings", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
+const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
 const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
 const LANGUAGE = /^[a-z]{2,3}$/;
 const PAGE = /^[1-9]\d{0,3}$/;

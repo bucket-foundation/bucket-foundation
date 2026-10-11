@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Api, AppSettings } from "../api";
+import { InstalledDecks, WordDatabaseLink } from "./Decks";
 import { WorkQuizSources } from "./WorkQuiz";
 
 export const NOTIFY_UNSUPPORTED = "The daily notification is not available on this system yet.";
@@ -84,6 +85,8 @@ export function SettingsView({ api }: { api: Api }) {
         <p className="muted">Everything here stays on this computer.</p>
       </header>
       <WorkQuizSources api={api} />
+      <InstalledDecks api={api} />
+      <WordDatabaseLink api={api} />
       <article className="panel card">
         <h2>This app</h2>
         {error && <p className="error">{error}</p>}

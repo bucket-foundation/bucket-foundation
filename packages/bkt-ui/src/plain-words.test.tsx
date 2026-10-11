@@ -9,6 +9,8 @@ import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type Da
 import REPORT from "./fixtures/analysis-report.json";
 import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
+import { DECKS_BODY, NO_DECKS_BODY } from "./fixtures/decks";
+import { EMPTY_LIBRARY, LIBRARY } from "./fixtures/library";
 import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_LICENCE, WORD_QUESTION } from "./fixtures/word-lessons";
 
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
@@ -242,6 +244,9 @@ function empty(): Stub {
     workSetLanguages: async (languages: string[]) => ({ languages }),
     wordLicence: async () => WORD_LICENCE,
     wordDecks: async () => NO_WORD_DECKS,
+    installedDecks: async () => NO_DECKS_BODY,
+    library: async () => EMPTY_LIBRARY,
+    polingualLink: async () => ({ freeText: false, linked: false, place: null, reachable: false, words: null }),
     wordLessons: async () => ({ ...WORD_LESSON_LIST, lessons: [] }),
     wordLesson: () => Promise.reject(new ApiError("no such lesson", 404)),
     wordConcepts: async () => NO_CONCEPTS,
@@ -275,6 +280,9 @@ function populated(over: Stub = {}): Stub {
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, languages: ["he"], ready: true, answered: 2, correct: 1 }),
     workLanguages: async () => ({ languages: ["he"], available: [{ code: "he", name: "Hebrew" }] }),
     wordDecks: async () => WORD_DECKS,
+    installedDecks: async () => DECKS_BODY,
+    library: async () => LIBRARY,
+    polingualLink: async () => ({ freeText: true, linked: true, place: "127.0.0.1:5433/polingual", reachable: true, words: 6564942 }),
     wordLessons: async () => WORD_LESSON_LIST,
     wordLesson: async () => LESSON_PAGE,
     wordConcepts: async () => CONCEPT_PAGE,
@@ -329,6 +337,9 @@ function failing(): Stub {
     workLanguages: fail("data key does not match", 500),
     wordLicence: fail("data key does not match", 500),
     wordDecks: fail("data key does not match", 500),
+    installedDecks: fail("data key does not match", 500),
+    library: fail("data key does not match", 500),
+    polingualLink: fail("data key does not match", 500),
     wordLessons: fail("unknown language; run bkt learn path for the list", 404),
     wordLesson: fail("no such lesson", 404),
     wordConcepts: fail("data key does not match", 500),
@@ -380,7 +391,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -458,6 +469,7 @@ describe("navigation", () => {
     const on = await mount({ name: "settings" }, populated({ setNotify }));
     const text = on.text();
     for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/data/bucket", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
+    for (const want of ["Installed decks", "Spanish words", "755,090 words · 96.0 MB", "Arabic words", "24,278 words · 5.0 MB", "Wiktionary via Kaikki (kaikki.org)", "CC-BY-SA 3.0", "curated by Bucket Foundation"]) expect(text).toContain(want);
     expect(text).not.toContain("terminal");
     expect(text).not.toContain("bkt quiz");
     const box = on.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
@@ -475,6 +487,7 @@ describe("navigation", () => {
     const offBox = off.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
     expect([offBox.checked, (off.host.querySelector(".notify input[type=time]") as HTMLInputElement).value]).toEqual([false, "08:53"]);
     expect(off.text()).toContain("0.5.0");
+    expect(off.text()).toContain("No extra deck is installed. Bucket teaches from the words it ships with.");
     expect(violations(off.host)).toEqual([]);
     await off.unmount();
 
