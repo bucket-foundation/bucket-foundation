@@ -61,6 +61,7 @@ const SUITES = {
       "scripts/test-whats-new-timeline.ts",
       "scripts/test-whats-new-images.ts",
       "scripts/test-release-signing.mjs",
+      "scripts/test-deck-catalog-route.ts",
     ],
     commands: [
       ["bash", "scripts/test-release-install-linux.sh"],

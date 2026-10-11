@@ -23,6 +23,7 @@ const nextConfig = {
   },
 
   outputFileTracingIncludes: {
+    "/decks/[file]": ["./decks/catalog.json", "./decks/catalog.json.sig"],
     "/api/canon/search": [
       "./_intake/embeddings-v2/claims-vectors.npy",
       "./_intake/embeddings-v2/clusters.json",

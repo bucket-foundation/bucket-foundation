@@ -9,8 +9,8 @@ import { isOffline, LOOPBACK, type Route } from "./serve";
 
 export const CATALOG_FORMAT = "bkt-deck-catalog";
 export const CATALOG_FORMAT_VERSION = 1;
-export const CATALOG_URL = "https://bucket.foundation/decks/catalog.json";
-export const CATALOG_HOST = "bucket.foundation";
+export const CATALOG_URL = "https://www.bucket.foundation/decks/catalog.json";
+export const CATALOG_HOST = "www.bucket.foundation";
 export const DECK_FILE_HOST = "github.com";
 export const DECK_FILE_PATH = "/bucket-foundation/bucket-foundation/releases/download/";
 export const DECK_FILE_REDIRECT_HOST = "release-assets.githubusercontent.com";
@@ -31,6 +31,7 @@ export const IMPORT_BODY_BYTES = 512 * 1024 * 1024;
 export const LIBRARY_BODY_BYTES = 256;
 export const OFFLINE_NOTE = "Bucket is set to stay offline on this computer, so it did not contact bucket.foundation.";
 export const REFRESH_FAILED = "Bucket could not reach the deck catalog. The list below is the one that came with this copy.";
+export const STALE_REFRESH = "The deck list from bucket.foundation is no newer than the one Bucket has, so Bucket kept its own.";
 export const NOT_IN_CATALOG = "that deck is not in the catalog";
 export const DOWNLOAD_FAILED = "The download did not finish. Try again.";
 export const DOWNLOAD_CHANGED = "The downloaded file did not match the catalog, so Bucket did not install it.";
@@ -56,12 +57,13 @@ export function verifyCatalog(signed: SignedCatalog, pubkey: string = DECK_CATAL
   }
 }
 
-export const NO_CATALOG: Catalog = { format: "bkt-deck-catalog", format_version: 1, built: "1970-01-01", decks: [], sha256: "" };
+export const NO_CATALOG: Catalog = { format: "bkt-deck-catalog", format_version: 1, built: "1970-01-01", serial: 0, decks: [], sha256: "" };
 
 export interface Catalog {
   format: string;
   format_version: number;
   built: string;
+  serial: number;
   decks: DeckManifest[];
   sha256: string;
 }
@@ -97,17 +99,18 @@ export interface LibraryBody {
   signed: boolean;
 }
 
-export function catalogChecksum(decks: readonly DeckManifest[], built: string): string {
-  return createHash("sha256").update(JSON.stringify({ built, decks })).digest("hex");
+export function catalogChecksum(decks: readonly DeckManifest[], built: string, serial: number): string {
+  return createHash("sha256").update(JSON.stringify({ built, serial, decks })).digest("hex");
 }
 
-export function buildCatalog(manifests: readonly unknown[]): Catalog {
+export function buildCatalog(manifests: readonly unknown[], serial = 1): Catalog {
+  if (!Number.isSafeInteger(serial) || serial < 1) throw new DeckError("the deck catalog serial is a whole number from 1 up");
   const decks = manifests.map(checkManifest).sort((a, b) => a.id.localeCompare(b.id));
   const ids = new Set(decks.map((d) => d.id));
   if (ids.size !== decks.length) throw new DeckError("two curated decks share an id");
   decks.forEach(deckFileUrl);
   const built = decks.map((d) => d.built).sort().at(-1) ?? "1970-01-01";
-  return { format: CATALOG_FORMAT, format_version: CATALOG_FORMAT_VERSION, built, decks, sha256: catalogChecksum(decks, built) };
+  return { format: CATALOG_FORMAT, format_version: CATALOG_FORMAT_VERSION, built, serial, decks, sha256: catalogChecksum(decks, built, serial) };
 }
 
 export function checkCatalog(raw: unknown): Catalog {
@@ -119,9 +122,10 @@ export function checkCatalog(raw: unknown): Catalog {
   const decks = c.decks.map(checkManifest);
   if (new Set(decks.map((d) => d.id)).size !== decks.length) throw new DeckError("the deck catalog lists a deck twice");
   decks.forEach(deckFileUrl);
-  const sum = catalogChecksum(decks, c.built);
+  if (typeof c.serial !== "number" || !Number.isSafeInteger(c.serial) || c.serial < 1) throw new DeckError("the deck catalog gives no serial");
+  const sum = catalogChecksum(decks, c.built, c.serial);
   if (sum !== c.sha256) throw new DeckError("the deck catalog does not match its checksum");
-  return { format: CATALOG_FORMAT, format_version: CATALOG_FORMAT_VERSION, built: c.built, decks, sha256: sum };
+  return { format: CATALOG_FORMAT, format_version: CATALOG_FORMAT_VERSION, built: c.built, serial: c.serial, decks, sha256: sum };
 }
 
 export function allowedCatalogUrl(raw: string): URL {
@@ -201,7 +205,7 @@ export class Library {
     try {
       const saved = JSON.parse(readFileSync(join(decksDir(o.home), CATALOG_CACHE), "utf8")) as { at?: unknown; text?: unknown; signature?: unknown };
       const catalog = typeof saved.text === "string" && typeof saved.signature === "string" ? verifyCatalog({ text: saved.text, signature: saved.signature }, this.pubkey) : null;
-      if (catalog && typeof saved.at === "number" && catalog.built >= (this.bundled?.built ?? "")) this.refreshed = { catalog, at: saved.at };
+      if (catalog && typeof saved.at === "number" && catalog.serial >= (this.bundled?.serial ?? 0)) this.refreshed = { catalog, at: saved.at };
     } catch {
       this.refreshed = null;
     }
@@ -283,7 +287,9 @@ export class Library {
     const signature = await this.read(sigUrl, CATALOG_SIG_BYTES, "the deck catalog signature");
     const catalog = verifyCatalog({ text, signature }, this.pubkey);
     if (!catalog) throw new DeckError(UNSIGNED_REFRESH);
-    if (catalog.built < (this.refreshed?.catalog.built ?? this.bundled?.built ?? "")) throw new DeckError("The deck list from bucket.foundation is older than the one Bucket has, so Bucket kept its own.");
+    const held = this.refreshed?.catalog ?? this.bundled;
+    if (held && catalog.serial === held.serial && catalog.sha256 === held.sha256) return this.body();
+    if (held && catalog.serial <= held.serial) throw new DeckError(STALE_REFRESH);
     this.refreshed = { catalog, at: this.now() };
     mkdirSync(decksDir(this.o.home), { recursive: true, mode: 0o700 });
     writeFileSync(join(decksDir(this.o.home), CATALOG_CACHE), JSON.stringify({ at: this.refreshed.at, text, signature }), { mode: 0o600 });
