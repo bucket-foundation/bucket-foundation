@@ -12,7 +12,7 @@ function flag(name, fallback) {
   return i > 0 ? process.argv[i + 1] : fallback;
 }
 
-const PROGRESSIONS = flag("progressions", path.join(os.homedir(), "agfarms/.wt-progressions/learning/corpus/progressions"));
+const PROGRESSIONS = flag("progressions", path.join(ROOT, "learning/corpus/progressions"));
 const BACKBONE_EDGES = flag("backbone-edges", path.join(os.homedir(), "agfarms/.learning-corpus/progressions/backbone/edges.jsonl"));
 
 const jsonl = (text) => text.split("\n").filter(Boolean).map((l) => JSON.parse(l));
@@ -31,6 +31,7 @@ function write(name, value) {
 }
 
 const isoDate = (file) => fs.statSync(file).mtime.toISOString().slice(0, 10);
+const corpusDate = () => fs.readFileSync(path.join(PROGRESSIONS, "README.md"), "utf8").match(/Built on (\d{4}-\d{2}-\d{2})/)?.[1] ?? isoDate(path.join(PROGRESSIONS, "README.md"));
 const num = (cell) => (cell ? Number(cell.replace(/,/g, "")) : 0);
 
 function markdownTable(markdown, heading) {
@@ -92,7 +93,7 @@ function buildCoverage() {
   }));
   const majors = [...new Set(minors.map((m) => m.code.slice(0, 2)))].map((code) => ({ code, title: socMajor.get(code) ?? code }));
   write("coverage.json", {
-    date: isoDate(file),
+    date: corpusDate(),
     source: "learning/corpus/progressions/COVERAGE.md",
     cip: { series, families },
     soc: { majors, minors },
@@ -187,7 +188,7 @@ function buildProgressions() {
   };
 
   write("progressions.json", {
-    date: isoDate(path.join(PROGRESSIONS, "tables/edges.jsonl.zst")),
+    date: corpusDate(),
     source: "learning/corpus/progressions/tables",
     graphs: [mathematics, algorithms],
   });
