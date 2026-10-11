@@ -341,6 +341,16 @@ button {
   border: 1px solid var(--line);
 }
 
+.tag.origin {
+  margin-left: 6px;
+}
+
+.chat-line {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
 .mastery {
   margin-left: auto;
   font-size: 12px;
@@ -1335,8 +1345,12 @@ table.columns thead th {
   margin-top: 10px;
 }
 
-.foot-link {
+.foot-links {
   margin-top: auto;
+  display: grid;
+}
+
+.foot-link {
   padding: 8px;
   font-size: 14px;
   color: var(--ink-2, var(--ink));
@@ -1349,7 +1363,7 @@ table.columns thead th {
   background: var(--panel);
 }
 
-.foot-link + .foot {
+.foot-links + .foot {
   margin-top: 6px;
 }
 .ros-stack { display: grid; gap: 16px; }
@@ -1358,3 +1372,123 @@ table.columns thead th {
 .ros-links li { margin: 4px 0; }
 .ros-recall li { margin: 8px 0; }
 .ros-form label { display: flex; gap: 12px; align-items: center; margin: 8px 0; }
+
+.settings-rows { display: grid; grid-template-columns: max-content 1fr; gap: 8px 16px; margin: 0; }
+.settings-rows dt { color: var(--ink-3); }
+.settings-rows dd { margin: 0; }
+.settings-rows .path { font-family: ui-monospace, monospace; font-size: 13px; overflow-wrap: anywhere; }
+
+.section-title {
+  margin: 28px 0 10px;
+  font-size: 18px;
+}
+
+.word-form {
+  font-family: system-ui, "Noto Sans", "Noto Naskh Arabic", "Noto Sans Arabic", "Noto Sans Hebrew", "Noto Sans Devanagari", "Noto Sans Tamil", "Noto Sans Thai", "Noto Sans CJK SC", "Noto Sans CJK JP", "Noto Sans CJK KR", sans-serif;
+  font-size: 18px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.word-form.big {
+  font-size: 30px;
+}
+
+.ipa {
+  font-family: "Charis SIL", "Doulos SIL", "Noto Sans", system-ui, sans-serif;
+  color: var(--ink-2);
+  unicode-bidi: isolate;
+}
+
+.word-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.word-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.word-meaning {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+
+.word-more {
+  margin: 6px 0;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.word-more summary {
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.word-others {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.word-other {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-width: 96px;
+}
+
+.word-list {
+  font-size: 15px;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.concept-wrap {
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+
+.concept-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.concept-table th,
+.concept-table td {
+  text-align: start;
+  vertical-align: top;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.concept-table td .ipa {
+  display: block;
+}
+
+.concept-name {
+  display: block;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.concept-word + .concept-word {
+  margin-top: 10px;
+}
+
+.licence-text {
+  white-space: pre-wrap;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}

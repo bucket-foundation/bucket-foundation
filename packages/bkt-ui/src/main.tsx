@@ -2,7 +2,7 @@ import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
 import { firstRunHash, followRoutes, href, useRoute } from "./router";
-import { FOOT_LINK, navFor, Screen } from "./nav";
+import { FOOT_LINKS, navFor, Screen } from "./nav";
 
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
 import "katex/dist/katex.min.css";
@@ -48,7 +48,7 @@ function App() {
     return () => window.removeEventListener("pagehide", flush);
   }, [api]);
 
-  const active = route.name === "node" ? "graph" : route.name === "deck" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
+  const active = route.name === "node" ? "graph" : route.name === "deck" || route.name === "words" || route.name === "concepts" || route.name === "licence" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
   const canon = route.name === "canon" || route.name === "search" || route.name === "explore";
 
   return (
@@ -65,9 +65,13 @@ function App() {
             </a>
           ))}
         </nav>
-        <a className={route.name === FOOT_LINK.route.name ? "foot-link on" : "foot-link"} href={href(FOOT_LINK.route)}>
-          {FOOT_LINK.label}
-        </a>
+        <div className="foot-links">
+          {FOOT_LINKS.map((l) => (
+            <a key={l.label} className={route.name === l.route.name ? "foot-link on" : "foot-link"} href={href(l.route)}>
+              {l.label}
+            </a>
+          ))}
+        </div>
         <p className="foot">Offline on this computer</p>
       </aside>
       <main className={canon ? "main wide" : "main"}>
