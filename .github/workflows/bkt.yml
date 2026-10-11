@@ -25,6 +25,7 @@ on:
       - "packages/ros-contract/**"
       - "tools/helix/**"
       - "tools/prime-directions/**"
+      - "tools/polingual/**"
       - "learning/app/corpus/**"
       - "scripts/release/**"
       - "public/bucket_logo.webp"
@@ -65,6 +66,8 @@ jobs:
       - name: install
         working-directory: packages/bkt
         run: bun install --frozen-lockfile
+      - name: word deck exporter on a fixture source
+        run: python -m unittest tools/polingual/test_export_packs.py
       - name: engine guard, store, serve and routes
         working-directory: packages/bkt
         run: bun run pack:content && bun test

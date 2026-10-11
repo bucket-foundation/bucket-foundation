@@ -10,6 +10,11 @@ import { siteFetch } from "./site-fetch";
 
 export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordView } from "../../bkt/src/core/words";
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
+export type { DeckRow as InstalledDeckRow } from "../../bkt/src/decks";
+export type { DecksBody } from "../../bkt/src/deck-routes";
+export type { WordHit, WordSearch } from "../../bkt/src/core/word-decks";
+import type { DecksBody } from "../../bkt/src/deck-routes";
+import type { WordSearch } from "../../bkt/src/core/word-decks";
 
 export interface WordDecks {
   decks: WordDeckProgress[];
@@ -435,6 +440,14 @@ export class Api {
 
   wordDecks() {
     return this.call<WordDecks>("/local/words/decks");
+  }
+
+  installedDecks() {
+    return this.call<DecksBody>("/local/decks");
+  }
+
+  wordSearch(q: string) {
+    return this.call<WordSearch>(`/local/words/search?q=${encodeURIComponent(q)}`);
   }
 
   wordLessons(deck: string) {

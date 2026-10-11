@@ -171,7 +171,7 @@ export class WordBook {
     return this.languages().find((l) => l === want || this.set.names[l].toLowerCase() === want) ?? null;
   }
 
-  private plan(lang: string): { lesson: WordLesson; cells: WordCell[] }[] {
+  protected plan(lang: string): { lesson: WordLesson; cells: WordCell[] }[] {
     const cached = this.plans.get(lang);
     if (cached) return cached;
     const cells = [...(this.set.byLang[lang] ?? [])].sort((a, b) => themeIndex(a.concept) - themeIndex(b.concept) || a.concept.localeCompare(b.concept));

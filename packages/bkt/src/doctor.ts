@@ -9,6 +9,7 @@ import { KeyringHeldError, REMEDY, type Keyring } from "./keyring";
 import type { Pack } from "./pack/export";
 import type { ExplorePack } from "./pack/explore";
 import { SHARE_ALIKE, wordPackChecksum, type WordPack } from "./pack/words";
+import { brokenDecks, deckMeta, decksDir, listInstalled, openDeckDb, sizeText } from "./decks";
 import type { Env, ExecSync, Platform } from "./platform";
 import { SHORT_FIELDS } from "./short-fields";
 import { SCHEMA_VERSION } from "./store";
@@ -167,6 +168,39 @@ function wordPackCheck(d: DoctorDeps): Check {
   return ok("word-pack", name, `Version ${d.words.version}, ${d.words.words.length} words in ${d.words.languages.length} languages, ${d.words.attribution.data}, ${d.words.attribution.license}, checksum matches.`);
 }
 
+function installedDecks(d: DoctorDeps): Check {
+  const name = "Decks";
+  const fix = "Run bkt decks remove <deck>, then install the deck again.";
+  const decks = listInstalled(d.dir);
+  const broken = brokenDecks(d.dir);
+  if (broken.length) return fail("installed-decks", name, `${broken.join(", ")} in ${decksDir(d.dir)} ${broken.length === 1 ? "has" : "have"} no readable manifest and deck file.`, `Delete ${broken.map((b) => join(decksDir(d.dir), b)).join(" and ")}, then install the deck again.`);
+  if (decks.length === 0) return ok("installed-decks", name, "None installed. bkt decks install adds one.");
+  let cards = 0;
+  let bytes = 0;
+  for (const deck of decks) {
+    const m = deck.manifest;
+    const size = statSync(deck.db).size;
+    if (size !== m.db_bytes) return fail("installed-decks", name, `${m.id} is ${size} bytes; its manifest says ${m.db_bytes}.`, fix);
+    try {
+      const db = openDeckDb(deck.db);
+      try {
+        const meta = deckMeta(db);
+        if (!meta.licence || meta.licence !== m.licence) return fail("installed-decks", name, `${m.id} carries no licence that matches its manifest.`, fix);
+      } finally {
+        db.close();
+      }
+    } catch (e) {
+      return fail("installed-decks", name, `${m.id} does not open: ${message(e)}`, fix);
+    }
+    cards += m.counts.cards;
+    bytes += size;
+  }
+  const words = decks.filter((x) => x.manifest.kind === "words");
+  const langs = words.map((x) => x.manifest.language_name ?? x.manifest.language).join(", ");
+  const licences = Array.from(new Set(decks.map((x) => `${x.manifest.source}, ${x.manifest.licence}`))).join("; ");
+  return ok("installed-decks", name, `${decks.length} installed, ${cards.toLocaleString("en-US")} cards, ${sizeText(bytes)}${words.length ? `, word decks for ${langs}` : ""}. ${licences}. Each opens and matches its manifest.`);
+}
+
 function windowFiles(d: DoctorDeps): Check {
   const name = "Window files";
   if (existsSync(join(d.uiDir, "index.html"))) return ok("window-files", name, `Present in ${d.uiDir}.`);
@@ -205,7 +239,7 @@ function terminal(d: DoctorDeps): Check {
 
 export async function runDoctor(d: DoctorDeps): Promise<Check[]> {
   const db = dbState(d.dir);
-  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), wordPackCheck(d), windowFiles(d), openWindowCheck(d), python(d), terminal(d)];
+  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), wordPackCheck(d), installedDecks(d), windowFiles(d), openWindowCheck(d), python(d), terminal(d)];
 }
 
 export function doctorPassed(checks: Check[]): boolean {

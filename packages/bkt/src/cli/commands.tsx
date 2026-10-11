@@ -19,7 +19,10 @@ import { analysisRows, colorEnabled, interactive, JSON_SHAPES, jsonLine, pick, s
 import { countOf, keyringOptions, NoDataError, noteOptions, searchOptions, type Invocation, UsageError } from "./run";
 import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
 import { daily, learnDue, learnPath, learnWordPath, quizJson, reviewJson, screen, wordBackend } from "./learn";
-import { WordBook } from "../core/words";
+import { DeckWordBook, searchWords, wordBookFor, wordHitLine } from "../core/word-decks";
+import { wordCredit } from "../core/words";
+import { deckLine, deckRow, deckRows, DeckError, decksDir, installDeck, removeDeck, RESTART_NOTE } from "../decks";
+import { deckRoutes } from "../deck-routes";
 import type { WordPack } from "../pack/words";
 import { WordSession, wordRoutes } from "../words";
 import { localDay } from "../chat-sources";
@@ -101,11 +104,60 @@ async function analyzeCmd(argv: string[]): Promise<number> {
   }
 }
 
-let heldBook: WordBook | null = null;
+let heldBook: DeckWordBook | null = null;
 
-function wordBook(): WordBook {
-  heldBook ??= new WordBook(wordPack as WordPack);
+function wordBook(): DeckWordBook {
+  heldBook ??= wordBookFor(wordPack as WordPack, dataDir(), { onError: (m) => console.error(`bkt: ${m}`) });
   return heldBook;
+}
+
+const DECK_COMMANDS: Record<string, "list" | "install" | "remove"> = {
+  "decks list": "list",
+  "decks install": "install",
+  "decks remove": "remove",
+  "words list": "list",
+  "words install": "install",
+  "words remove": "remove",
+};
+
+async function decks(inv: Invocation, json: boolean): Promise<number> {
+  const action = DECK_COMMANDS[inv.command.name];
+  const home = dataDir();
+  const credit = wordCredit(wordPack as WordPack).text;
+  try {
+    if (action === "list") {
+      const rows = deckRows(home, inv.positionals[0] ?? process.env.BKT_DECK_SOURCE ?? null);
+      if (json) console.log(jsonLine("decks list", { decks: rows, credit }));
+      else {
+        for (const r of rows) console.log(deckLine(r));
+        if (rows.length) console.log(credit);
+      }
+      if (!rows.length) throw new NoDataError("no deck is installed; run bkt decks install <file-or-folder>");
+      return EXIT.ok;
+    }
+    if (action === "install") {
+      ensureDataDir(home);
+      const m = await installDeck(home, inv.positionals[0]);
+      const row = deckRow(m, true, join(decksDir(home), m.id));
+      if (json) console.log(jsonLine("decks install", row));
+      else {
+        console.log(`Installed ${m.title}: ${m.counts.cards.toLocaleString("en-US")} ${m.kind === "words" ? "words" : "cards"}, version ${m.version}, checksum matches.`);
+        console.log(`${m.source}, ${m.licence}, curated by ${m.curator}.`);
+        console.log(RESTART_NOTE);
+      }
+      return EXIT.ok;
+    }
+    const gone = removeDeck(home, inv.positionals[0]);
+    if (!gone) throw new NoDataError(`no installed deck matches ${inv.positionals[0]}; run bkt decks list`);
+    console.log(json ? jsonLine("decks remove", { id: gone.id, title: gone.title, removed: true }) : `Removed ${gone.title}. ${RESTART_NOTE.replace("see it in", "drop it from")}`);
+    return EXIT.ok;
+  } catch (e) {
+    if (e instanceof DeckError) {
+      console.error(`bkt: ${e.message}`);
+      return EXIT.failure;
+    }
+    throw e;
+  }
 }
 
 const LEARN = new Set(["learn due", "learn path", "learn quiz", "learn review", "daily"]);
@@ -214,8 +266,9 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
-      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().set }),
+      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
       ...wordRoutes(new WordSession(wordBook(), workQuiz)),
+      ...deckRoutes({ home: dir, book: wordBook, decks: () => wordBook().files }),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
@@ -324,7 +377,21 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
   return passed ? EXIT.ok : EXIT.failure;
 }
 
+function wordSearch(inv: Invocation, json: boolean): number {
+  const o = searchOptions(inv);
+  const book = wordBook();
+  const found = searchWords(book, book.files, o.q, { limit: o.limit, lang: typeof inv.values.lang === "string" ? inv.values.lang : null });
+  if (json) console.log(jsonLine("search words", { ...found, credit: found.credit.text }));
+  else if (found.hits.length) {
+    for (const h of found.hits) console.log(wordHitLine(h));
+    console.log(found.credit.text);
+  }
+  if (!found.hits.length) throw new NoDataError(`no word matches ${o.q} in ${found.words.toLocaleString("en-US")} words across ${found.languages} languages`);
+  return EXIT.ok;
+}
+
 function search(inv: Invocation, json: boolean): number {
+  if (inv.values.words === true) return wordSearch(inv, json);
   const o = searchOptions(inv);
   const found = searchCanon(packCanon(canonPack as CanonPack), searchParams(o.q, o), { matchedOnly: true });
   if (!found.ok) throw new NoDataError("this copy of bkt holds no canon; run bkt update");
@@ -404,6 +471,7 @@ export async function execute(inv: Invocation): Promise<number> {
     return EXIT.ok;
   }
   if (name === "doctor") return doctor(inv, json);
+  if (DECK_COMMANDS[name]) return decks(inv, json);
   if (name === "search") return search(inv, json);
   if (name === "canon show") return canonShow(inv, json);
   if (name === "atlas frontier") {

@@ -9,6 +9,7 @@ import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type Da
 import REPORT from "./fixtures/analysis-report.json";
 import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
+import { DECKS_BODY, NO_DECKS_BODY } from "./fixtures/decks";
 import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_QUESTION } from "./fixtures/word-lessons";
 
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
@@ -241,6 +242,7 @@ function empty(): Stub {
     workLanguages: async () => ({ languages: [], available: [] }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
     wordDecks: async () => NO_WORD_DECKS,
+    installedDecks: async () => NO_DECKS_BODY,
     wordLessons: async () => ({ ...WORD_LESSON_LIST, lessons: [] }),
     wordLesson: () => Promise.reject(new ApiError("no such lesson", 404)),
     wordConcepts: async () => NO_CONCEPTS,
@@ -274,6 +276,7 @@ function populated(over: Stub = {}): Stub {
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, languages: ["he"], ready: true, answered: 2, correct: 1 }),
     workLanguages: async () => ({ languages: ["he"], available: [{ code: "he", name: "Hebrew" }] }),
     wordDecks: async () => WORD_DECKS,
+    installedDecks: async () => DECKS_BODY,
     wordLessons: async () => WORD_LESSON_LIST,
     wordLesson: async () => LESSON_PAGE,
     wordConcepts: async () => CONCEPT_PAGE,
@@ -327,6 +330,7 @@ function failing(): Stub {
     settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
     wordDecks: fail("data key does not match", 500),
+    installedDecks: fail("data key does not match", 500),
     wordLessons: fail("unknown language; run bkt learn path for the list", 404),
     wordLesson: fail("no such lesson", 404),
     wordConcepts: fail("data key does not match", 500),
@@ -456,6 +460,8 @@ describe("navigation", () => {
     const on = await mount({ name: "settings" }, populated({ setNotify }));
     const text = on.text();
     for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/home/ada/.local/share/bkt", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
+    for (const want of ["Installed decks", "Spanish words", "755,090 words · 96.0 MB", "Arabic words", "24,278 words · 5.0 MB", "Wiktionary via Kaikki (kaikki.org)", "CC-BY-SA 3.0", "curated by Bucket Foundation"]) expect(text).toContain(want);
+    expect(on.host.querySelector(".installed-decks .word-credit")!.textContent).toContain("Wiktionary");
     expect(text).not.toContain("terminal");
     expect(text).not.toContain("bkt quiz");
     const box = on.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
@@ -473,6 +479,7 @@ describe("navigation", () => {
     const offBox = off.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
     expect([offBox.checked, (off.host.querySelector(".notify input[type=time]") as HTMLInputElement).value]).toEqual([false, "08:53"]);
     expect(off.text()).toContain("0.5.0");
+    expect(off.text()).toContain("No extra deck is installed. Bucket teaches from the words it ships with.");
     expect(violations(off.host)).toEqual([]);
     await off.unmount();
 
