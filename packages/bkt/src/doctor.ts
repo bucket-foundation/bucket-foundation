@@ -8,6 +8,7 @@ import { LEGACY_ACCOUNTS, scopedAccounts, type KeyAccounts } from "./device";
 import { KeyringHeldError, REMEDY, type Keyring } from "./keyring";
 import type { Pack } from "./pack/export";
 import type { ExplorePack } from "./pack/explore";
+import { SHARE_ALIKE, wordPackChecksum, type WordPack } from "./pack/words";
 import type { Env, ExecSync, Platform } from "./platform";
 import { SHORT_FIELDS } from "./short-fields";
 import { SCHEMA_VERSION } from "./store";
@@ -30,6 +31,7 @@ export interface DoctorDeps {
   keyring: () => Keyring | null;
   pack: Pick<Pack, "version" | "items" | "atoms">;
   explore: ExplorePack;
+  words: WordPack;
   uiDir: string;
   runtimeDir: string;
   tty: Tty;
@@ -156,6 +158,15 @@ function explorePackCheck(d: DoctorDeps, facts: DbFacts | null): Check {
   return ok("explore-pack", name, `Version ${d.explore.version}, ${d.explore.sources.length} sources, checksum matches.${held}`);
 }
 
+function wordPackCheck(d: DoctorDeps): Check {
+  const name = "Word pack";
+  const sum = wordPackChecksum(d.words);
+  if (sum !== d.words.sha256 || !sum.startsWith(d.words.version))
+    return fail("word-pack", name, `Version ${d.words.version} has checksum ${sum.slice(0, 12)}; the two should match.`, "Install bkt again: run bkt update.");
+  if (!SHARE_ALIKE.test(d.words.attribution.license)) return fail("word-pack", name, `Version ${d.words.version} names no CC-BY-SA licence.`, "Install bkt again: run bkt update.");
+  return ok("word-pack", name, `Version ${d.words.version}, ${d.words.words.length} words in ${d.words.languages.length} languages, ${d.words.attribution.data}, ${d.words.attribution.license}, checksum matches.`);
+}
+
 function windowFiles(d: DoctorDeps): Check {
   const name = "Window files";
   if (existsSync(join(d.uiDir, "index.html"))) return ok("window-files", name, `Present in ${d.uiDir}.`);
@@ -194,7 +205,7 @@ function terminal(d: DoctorDeps): Check {
 
 export async function runDoctor(d: DoctorDeps): Promise<Check[]> {
   const db = dbState(d.dir);
-  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), windowFiles(d), openWindowCheck(d), python(d), terminal(d)];
+  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), wordPackCheck(d), windowFiles(d), openWindowCheck(d), python(d), terminal(d)];
 }
 
 export function doctorPassed(checks: Check[]): boolean {

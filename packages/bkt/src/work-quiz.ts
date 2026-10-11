@@ -8,7 +8,7 @@ import type { LearnAtom } from "../../../src/lib/research-os/work-quiz/learn-mat
 import { resourceForQuestion } from "../../../src/lib/research-os/work-quiz/resources";
 import { cardFields } from "../../../src/lib/research-os/work-quiz/fact";
 import { dueFrom, sampleQuiz, splitFactId, usedOn, type CoverageRow, type DueCard, type SamplePick } from "../../../src/lib/research-os/work-quiz/sampler";
-import { gradeAnswer, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
+import { gradeAnswer, introduceCard, nextCard, normalizeResponse } from "../../../src/lib/research-os/work-quiz/grade";
 import type { Card, Rating } from "../../../src/lib/academy/fsrs";
 import { githubUrl, parseBeads, parsePrLog } from "../../../src/lib/research-os/work-quiz/sources-parse";
 import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "../../../src/lib/research-os/work-quiz/types";
@@ -24,6 +24,7 @@ import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import { hasShort, withShort } from "./short-fields";
 import type { Route } from "./serve";
 import type { Store } from "./store";
+import type { WordSet } from "../../../src/lib/research-os/work-quiz/polingual-forms";
 
 export const GIT_TIMEOUT_MS = 3000;
 export const NO_QUIZ = "no quiz for that day";
@@ -153,12 +154,19 @@ export class WorkQuizStore {
     this.store.db.run("delete from work_quiz_languages");
   }
 
-  record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId?: string; log10Distance?: number | null } = {}) {
+  record(q: QuizQuestion, correct: boolean, rating: number, elapsedMs: number, at: number, extra: { questionId?: string; log10Distance?: number | null; introduce?: boolean } = {}) {
     this.store.db
       .query("insert into work_quiz_attempts (id, question_id, type, correct, rating, elapsed_ms, at, log10_distance) values (?, ?, ?, ?, ?, ?, ?, ?)")
       .run(randomUUID(), extra.questionId ?? q.id, q.type, correct ? 1 : 0, rating, Math.round(elapsedMs), at, extra.log10Distance ?? null);
     if (!correct) this.recordMiss(q, localDay(at));
-    this.review(q, rating as Rating, at);
+    this.review(q, rating as Rating, at, extra.introduce === true);
+  }
+
+  wordCards(): { factIds: string[]; due: number }[] {
+    return this.store.db
+      .query<{ fact_id: string; due: number | null }, []>("select fact_id, due from work_quiz_cards where fact_id like 'word:%'")
+      .all()
+      .map((r) => ({ factIds: splitFactId(r.fact_id), due: r.due ?? 0 }));
   }
 
   coverage(): CoverageRow[] {
@@ -168,10 +176,11 @@ export class WorkQuizStore {
       .map((r) => ({ cell: r.cell, factId: r.fact_id, picks: r.picks, misses: r.misses, lastDay: r.last_day }));
   }
 
-  review(q: QuizQuestion, rating: Rating, at: number) {
+  review(q: QuizQuestion, rating: Rating, at: number, introduce = false) {
     const { fact_id, form, card_key } = cardFields(q);
     const prev = this.store.db.query<{ state: string }, [string]>("select state from work_quiz_cards where card_key = ?").get(card_key);
-    const card = nextCard(prev ? (JSON.parse(prev.state) as Card) : null, rating, at);
+    const held = prev ? (JSON.parse(prev.state) as Card) : null;
+    const card = introduce ? introduceCard(held, rating, at) : nextCard(held, rating, at);
     if (!card) return;
     this.store.db
       .query(
@@ -239,6 +248,7 @@ export interface WorkQuizOptions {
   onChat?: (on: ChatToggles) => void;
   atoms?: readonly LearnAtom[];
   criticDir?: string;
+  words?: WordSet;
 }
 
 export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Record<string, Route> {
@@ -278,7 +288,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
     const coverage = wq.coverage();
     const exclude = usedOn(coverage, day);
     const open = DAILY_MAX - questions.length;
-    const sampled = open > 0 ? sampleQuiz({ day, sources: src, coverage, due: wq.dueCards(now()), now: now(), slots: open, exclude, languages: wq.languages() }) : null;
+    const sampled = open > 0 ? sampleQuiz({ day, sources: src, coverage, due: wq.dueCards(now()), now: now(), slots: open, exclude, languages: wq.languages(), words: o.words }) : null;
     const picks: SamplePick[] = [];
     for (const [i, q] of (sampled?.questions ?? []).entries()) {
       if (!fresh(q)) continue;
@@ -402,7 +412,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const at = now();
       const today = localDay(at);
       const coverage = wq.coverage();
-      const picked = sampleQuiz({ day: today, sources: s, coverage, due: wq.dueCards(at), slots: 1, reviewSlots: 1, now: at, exclude: usedOn(coverage, today), languages: wq.languages() });
+      const picked = sampleQuiz({ day: today, sources: s, coverage, due: wq.dueCards(at), slots: 1, reviewSlots: 1, now: at, exclude: usedOn(coverage, today), languages: wq.languages(), words: o.words });
       const q = picked.questions[0] ?? generateQuestion(s, seed());
       if (!q) return json({ error: "the sources are too small for a question yet" }, 404);
       if (picked.picks.length > 0) wq.recordPicks(picked.picks, today);

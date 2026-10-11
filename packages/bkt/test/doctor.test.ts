@@ -6,6 +6,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import pack from "../content/pack.json" with { type: "json" };
 import explorePack from "../content/explore.json" with { type: "json" };
+import wordPack from "../content/words.json" with { type: "json" };
+import type { WordPack } from "../src/pack/words";
 import type { ExplorePack } from "../src/pack/explore";
 import { jsonLine } from "../src/cli/out";
 import { ANALYSIS_MODULES, doctorLines, doctorPassed, packChecksum, runDoctor, type Check, type DoctorDeps } from "../src/doctor";
@@ -64,6 +66,7 @@ function deps(over: Partial<DoctorDeps> = {}): DoctorDeps {
     keyring: () => new MemoryKeyring(),
     pack: content,
     explore: explorePack as unknown as ExplorePack,
+    words: wordPack as WordPack,
     uiDir: join(dir, "ui"),
     runtimeDir: join(dir, "run"),
     tty: { stdin: true, stdout: true },
@@ -97,6 +100,7 @@ describe("bkt doctor checks", () => {
       ["database", "ok"],
       ["content-pack", "ok"],
       ["explore-pack", "ok"],
+      ["word-pack", "ok"],
       ["window-files", "ok"],
       ["open-window", "ok"],
       ["python", "ok"],
@@ -124,7 +128,7 @@ describe("bkt doctor checks", () => {
     expect(c.fix).toBe(REMEDY.libsecret);
     expect(byId(checks, "database").status).toBe("ok");
     expect(doctorPassed(checks)).toBe(false);
-    expect(doctorLines(checks).at(-1)).toBe("1 of 9 checks failed.");
+    expect(doctorLines(checks).at(-1)).toBe("1 of 10 checks failed.");
     expect(locked.sets).toBe(0);
     expect(snapshot(dir)).toEqual(before);
   });
@@ -208,6 +212,18 @@ describe("bkt doctor checks", () => {
     expect([c.status, c.fix]).toEqual(["fail", "Install bkt again: run bkt update."]);
   });
 
+  test("the word pack check recomputes its checksum and names the licence", async () => {
+    const words = wordPack as WordPack;
+    const good = byId(await runDoctor(deps()), "word-pack");
+    expect(good.result).toBe(`Version ${words.version}, ${words.words.length} words in ${words.languages.length} languages, Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, checksum matches.`);
+    const cut = byId(await runDoctor(deps({ words: { ...words, words: words.words.slice(1) } })), "word-pack");
+    expect([cut.status, cut.fix]).toEqual(["fail", "Install bkt again: run bkt update."]);
+    const bare = { ...words, attribution: { ...words.attribution, license: "none" } };
+    const { wordPackChecksum } = await import("../src/pack/words");
+    const sha256 = wordPackChecksum(bare);
+    expect(byId(await runDoctor(deps({ words: { ...bare, sha256, version: sha256.slice(0, 12) } })), "word-pack").result).toContain("names no CC-BY-SA licence");
+  });
+
   test("the content pack check recomputes the checksum", async () => {
     expect(packChecksum(content)).toBe(content.version);
     const c = byId(await runDoctor(deps({ pack: { ...content, version: "000000000000" } })), "content-pack");
@@ -242,7 +258,7 @@ describe("bkt doctor checks", () => {
     expect(byId(stale, "open-window").result).toBe("No window is open.");
     expect(existsSync(record)).toBe(true);
     expect(byId(stale, "python")).toMatchObject({ status: "warn", fix: "Install Python 3 from python.org." });
-    expect(doctorLines(stale).at(-1)).toBe("No check failed. 2 of 9 carry a warning.");
+    expect(doctorLines(stale).at(-1)).toBe("No check failed. 2 of 10 carry a warning.");
   });
 
   test("the analysis modules match the analyzer's requirements", () => {
@@ -313,7 +329,7 @@ describe("bkt doctor through the command line", () => {
     expect(r.code).toBe(1);
     expect(r.err).toBe("");
     expect(r.out).toContain("fail  Database        No database yet. Fix: Run bkt init.");
-    expect(r.out.trimEnd().split("\n")).toHaveLength(10);
+    expect(r.out.trimEnd().split("\n")).toHaveLength(11);
     expect(existsSync(home)).toBe(false);
     expect(existsSync(join(dir, "run"))).toBe(false);
     expect(stores()).toBe(0);
@@ -332,7 +348,7 @@ describe("bkt doctor through the command line", () => {
     const body = JSON.parse(json.out) as { v: number; ok: boolean; checks: Check[] };
     expect(json.out.trimEnd().split("\n")).toHaveLength(1);
     expect([body.v, body.ok]).toEqual([1, true]);
-    expect(body.checks.map((c) => c.id)).toEqual(["data-folder", "key-store", "database", "content-pack", "explore-pack", "window-files", "open-window", "python", "terminal"]);
+    expect(body.checks.map((c) => c.id)).toEqual(["data-folder", "key-store", "database", "content-pack", "explore-pack", "word-pack", "window-files", "open-window", "python", "terminal"]);
     expect(Object.keys(body.checks[0])).toEqual(["id", "name", "status", "result", "fix"]);
     expect(snapshot(dir)).toEqual(before);
 
@@ -354,7 +370,7 @@ describe("bkt doctor through the command line", () => {
     const locked = bkt(["doctor"]);
     expect(locked.code).toBe(1);
     expect(locked.out).toContain(`fail  Key store       Locked: the login keyring holds the keys and would not release them. Fix: ${REMEDY.libsecret}`);
-    expect(locked.out.trimEnd().split("\n").at(-1)).toBe("1 of 9 checks failed.");
+    expect(locked.out.trimEnd().split("\n").at(-1)).toBe("1 of 10 checks failed.");
     expect(stores()).toBe(minted);
     const after = snapshot(dir);
     delete before["keyring.log"];

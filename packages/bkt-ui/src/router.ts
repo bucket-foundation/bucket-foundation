@@ -4,6 +4,8 @@ export type Route =
   | { name: "learn" }
   | { name: "deck"; deck: string; atom?: string }
   | { name: "path"; to?: string }
+  | { name: "words"; deck: string; lesson?: number }
+  | { name: "concepts"; page?: number }
   | { name: "quiz" }
   | { name: "review" }
   | { name: "import" }
@@ -28,6 +30,8 @@ export type Route =
 
 const SIMPLE = new Set(["quiz", "review", "add", "settings", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
 const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+const LANGUAGE = /^[a-z]{2,3}$/;
+const PAGE = /^[1-9]\d{0,3}$/;
 const NODE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,200}$/;
 
 export function isDay(day: string | undefined): day is string {
@@ -44,6 +48,8 @@ export function parseHash(hash: string): Route {
     return { name: "learn" };
   }
   if (parts[0] === "learn" && parts[1]) return parts[2] ? { name: "deck", deck: parts[1], atom: parts[2] } : { name: "deck", deck: parts[1] };
+  if (parts[0] === "words" && parts[1] === "concepts") return parts.length === 3 && PAGE.test(parts[2]) ? { name: "concepts", page: Number(parts[2]) } : { name: "concepts" };
+  if (parts[0] === "words" && parts[1] && LANGUAGE.test(parts[1])) return parts.length === 3 && PAGE.test(parts[2]) ? { name: "words", deck: parts[1], lesson: Number(parts[2]) } : { name: "words", deck: parts[1] };
   if (parts[0] === "path") return parts[1] ? { name: "path", to: parts[1] } : { name: "path" };
   if (parts[0] === "work" && parts[1] === "daily" && parts.length === 3 && isDay(parts[2])) return { name: "daily", day: parts[2] };
   if (parts[0] === "canon" && parts[1] === "find" && parts.length === 3 && parts[2].length <= 200) return { name: "canon", find: parts[2] };
@@ -57,6 +63,8 @@ export function parseHash(hash: string): Route {
 
 export function href(r: Route): string {
   if (r.name === "deck") return `#/learn/${encodeURIComponent(r.deck)}${r.atom ? `/${encodeURIComponent(r.atom)}` : ""}`;
+  if (r.name === "words") return `#/words/${r.deck}${r.lesson ? `/${r.lesson}` : ""}`;
+  if (r.name === "concepts") return r.page && r.page > 1 ? `#/words/concepts/${r.page}` : "#/words/concepts";
   if (r.name === "path") return r.to ? `#/path/${encodeURIComponent(r.to)}` : "#/path";
   if (r.name === "daily") return `#/work/daily/${r.day}`;
   if (r.name === "canon") return r.find ? `#/canon/find/${encodeURIComponent(r.find)}` : "#/canon";

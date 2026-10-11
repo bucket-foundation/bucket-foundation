@@ -4,7 +4,27 @@ import type { CanonGraph } from "@/lib/canon-graph-core";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
 import type { ProductionsSnapshot } from "@ros/productions-snapshot";
+import type { ConceptPage, LessonPage, WordCredit } from "../../bkt/src/core/words";
+import type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 import { siteFetch } from "./site-fetch";
+
+export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordView } from "../../bkt/src/core/words";
+export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
+
+export interface WordDecks {
+  decks: WordDeckProgress[];
+  chosen: string[];
+  credit: WordCredit;
+}
+
+export interface WordLessons {
+  deck: WordDeckProgress;
+  lessons: WordLessonProgress[];
+  credit: WordCredit;
+}
+
+export type WordQuizPick = { deck: string; lesson: number } | { concepts: number };
+export type WordAnswerApi = Pick<Api, "wordQuiz" | "wordAnswer">;
 
 export interface HistoryData {
   snapshot: (ProductionsSnapshot & { importedAt: number }) | null;
@@ -411,6 +431,31 @@ export class Api {
 
   workSetLanguages(languages: string[]) {
     return this.call<{ languages: string[] }>("/local/work-quiz/languages", { method: "POST", body: { languages } });
+  }
+
+  wordDecks() {
+    return this.call<WordDecks>("/local/words/decks");
+  }
+
+  wordLessons(deck: string) {
+    return this.call<WordLessons>(`/local/words/lessons?deck=${encodeURIComponent(deck)}`);
+  }
+
+  wordLesson(deck: string, n: number) {
+    return this.call<LessonPage & { credit: WordCredit }>(`/local/words/lesson?deck=${encodeURIComponent(deck)}&n=${n}`);
+  }
+
+  wordConcepts(page: number) {
+    return this.call<ConceptPage & { credit: WordCredit }>(`/local/words/concepts?page=${page}`);
+  }
+
+  wordQuiz(pick: WordQuizPick) {
+    const query = "concepts" in pick ? `concepts=${pick.concepts}` : `deck=${encodeURIComponent(pick.deck)}&lesson=${pick.lesson}`;
+    return this.call<{ questions: WorkQuestion[]; credit: WordCredit }>(`/local/words/quiz?${query}`);
+  }
+
+  wordAnswer(id: string, response: string, elapsedMs: number) {
+    return this.call<WorkAnswer>("/local/words/answer", { method: "POST", body: { id, response, elapsedMs } });
   }
 
   workForget() {

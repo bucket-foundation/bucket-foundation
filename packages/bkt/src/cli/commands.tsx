@@ -3,6 +3,7 @@ import { render } from "ink";
 import pack from "../../content/pack.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
 import explorePack from "../../content/explore.json" with { type: "json" };
+import wordPack from "../../content/words.json" with { type: "json" };
 import { join } from "node:path";
 import { App, type AppSources } from "../app";
 import { spawn } from "node:child_process";
@@ -17,7 +18,10 @@ import { atlasFrontier, fitWidth, frontierLines, frontierOptions, NO_ATLAS, writ
 import { analysisRows, colorEnabled, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
 import { countOf, keyringOptions, NoDataError, noteOptions, searchOptions, type Invocation, UsageError } from "./run";
 import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
-import { daily, learnDue, learnPath, quizJson, reviewJson, screen } from "./learn";
+import { daily, learnDue, learnPath, learnWordPath, quizJson, reviewJson, screen, wordBackend } from "./learn";
+import { WordBook } from "../core/words";
+import type { WordPack } from "../pack/words";
+import { WordSession, wordRoutes } from "../words";
 import { localDay } from "../chat-sources";
 import { randomBytes } from "node:crypto";
 import { excerptText, packCanon, parseId, searchCanon, searchParams, searchText, searchTsv, showExcerpt } from "../core/search";
@@ -97,21 +101,38 @@ async function analyzeCmd(argv: string[]): Promise<number> {
   }
 }
 
+let heldBook: WordBook | null = null;
+
+function wordBook(): WordBook {
+  heldBook ??= new WordBook(wordPack as WordPack);
+  return heldBook;
+}
+
 const LEARN = new Set(["learn due", "learn path", "learn quiz", "learn review", "daily"]);
 
 async function learn(inv: Invocation, json: boolean): Promise<number> {
   const name = inv.command.name;
   const content = pack as Pack;
   let deck: PackDeck | null = null;
+  let language: string | null = null;
+  const book = wordBook();
+  const credit = book.credit.text;
   if (name === "learn path" && inv.positionals[0] !== undefined) {
     deck = (content.decks ?? []).find((d) => d.id === inv.positionals[0]) ?? null;
-    if (!deck) throw new UsageError(`unknown deck ${inv.positionals[0]}; run bkt learn path for the list`, inv.command);
+    language = deck ? null : book.resolveDeck(inv.positionals[0]);
+    if (!deck && !language) throw new UsageError(`unknown deck ${inv.positionals[0]}; run bkt learn path for the list`, inv.command);
+  }
+  if (name === "learn quiz" && typeof inv.values.deck === "string") {
+    language = book.resolveDeck(inv.values.deck);
+    if (!language) throw new UsageError(`unknown language ${inv.values.deck}; --deck takes one of ${book.languages().map((l) => book.set.names[l]).join(", ")}`, inv.command);
   }
   const size = countOf(inv);
   const day = inv.positionals[0] ?? localDay(Date.now());
   const run = (b: LearnBackend) => {
     if (name === "learn due") return learnDue(b, size, json);
-    if (name === "learn path") return learnPath(b, deck, deck ? (content.atoms?.[deck.id] ?? []) : [], json);
+    if (name === "learn path" && language) return learnWordPath(b, language, credit, json);
+    if (name === "learn path") return learnPath(b, deck, deck ? (content.atoms?.[deck.id] ?? []) : [], json, undefined, credit);
+    if (name === "learn quiz" && language) return json ? quizJson(wordBackend(b, language), size, inv.command, undefined, credit) : screen("quiz", wordBackend(b, language), size, credit);
     if (name === "learn quiz") return json ? quizJson(b, size, inv.command) : screen("quiz", b, size);
     if (name === "learn review") return json ? reviewJson(b, size, inv.command) : screen("review", b, size);
     return daily(b, day, json, inv.command);
@@ -123,7 +144,7 @@ async function learn(inv: Invocation, json: boolean): Promise<number> {
   try {
     session.store.importPack(content.version, content.items);
     const wq = new WorkQuizStore(session.store, session.key);
-    return await run(directBackend({ store: session.store, content, daily: wq.daily, record: (...a) => wq.record(...a) }));
+    return await run(directBackend({ store: session.store, content, daily: wq.daily, record: (...a) => wq.record(...a), words: new WordSession(book, wq) }));
   } finally {
     session.store.close();
   }
@@ -193,7 +214,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
-      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms) }),
+      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().set }),
+      ...wordRoutes(new WordSession(wordBook(), workQuiz)),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
@@ -281,6 +303,7 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
     keyring: () => platform.keyring(),
     pack: pack as Pack,
     explore: explorePack as unknown as ExplorePack,
+    words: wordPack as WordPack,
     uiDir: uiDir(env),
     runtimeDir: runtimeDir(env),
     tty,

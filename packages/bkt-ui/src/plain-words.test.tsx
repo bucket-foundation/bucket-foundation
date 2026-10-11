@@ -9,6 +9,7 @@ import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type Da
 import REPORT from "./fixtures/analysis-report.json";
 import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
+import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_QUESTION } from "./fixtures/word-lessons";
 
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
 mock.module("@/components/research-os/views/SoftwareAtlas", () => ({ default: () => <div>software</div> }));
@@ -132,6 +133,8 @@ const WORK: WorkSources = {
 const SERVER_ERRORS: [string, number][] = [
   ["unauthorized", 401],
   ["unknown deck", 404],
+  ["unknown language; run bkt learn path for the list", 404],
+  ["no such lesson", 404],
   ["no open question", 404],
   ["bad elapsedMs", 400],
   ["rating must be 1..4", 400],
@@ -237,6 +240,11 @@ function empty(): Stub {
     settings: async () => ({ version: "0.5.0", build: null, dataDir: "/home/ada/.local/share/bkt", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
+    wordDecks: async () => NO_WORD_DECKS,
+    wordLessons: async () => ({ ...WORD_LESSON_LIST, lessons: [] }),
+    wordLesson: () => Promise.reject(new ApiError("no such lesson", 404)),
+    wordConcepts: async () => NO_CONCEPTS,
+    wordQuiz: async () => ({ questions: [], credit: WORD_CREDIT }),
     workNext: () => Promise.reject(new ApiError("no sources: pick a beads file, a repository or a language", 404)),
     dailyQuiz: () => Promise.reject(new ApiError("no quiz for that day", 404)),
     jobs: async () => ({ kinds: ALL_KINDS, jobs: [] }),
@@ -265,6 +273,11 @@ function populated(over: Stub = {}): Stub {
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, languages: ["he"], ready: true, answered: 2, correct: 1 }),
     workLanguages: async () => ({ languages: ["he"], available: [{ code: "he", name: "Hebrew" }] }),
+    wordDecks: async () => WORD_DECKS,
+    wordLessons: async () => WORD_LESSON_LIST,
+    wordLesson: async () => LESSON_PAGE,
+    wordConcepts: async () => CONCEPT_PAGE,
+    wordQuiz: async () => ({ questions: [WORD_QUESTION], credit: WORD_CREDIT }),
     settings: async () => ({ version: "0.5.0", build: { commit: "e61d7174b", date: "2026-10-08" }, dataDir: "/home/ada/.local/share/bkt", notify: { supported: true, on: true, at: "08:53" }, notifyDefault: "08:53" }),
     exploreSaved: async () => ({ v: 1, items: [SAVED_ITEM], noticeSeen: true }),
     putExploreSaved: async (s: unknown) => s,
@@ -313,6 +326,11 @@ function failing(): Stub {
     workStatus: fail("git could not read that folder", 400),
     settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
+    wordDecks: fail("data key does not match", 500),
+    wordLessons: fail("unknown language; run bkt learn path for the list", 404),
+    wordLesson: fail("no such lesson", 404),
+    wordConcepts: fail("data key does not match", 500),
+    wordQuiz: fail("unknown language; run bkt learn path for the list", 404),
     workSetLanguages: fail("data key does not match", 500),
     workNext: fail("data key does not match", 500),
     dailyQuiz: fail("give a day written as YYYY-MM-DD", 400),
@@ -360,7 +378,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 

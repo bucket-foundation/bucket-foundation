@@ -327,8 +327,11 @@ function wordChoices(set: WordSet, rng: Rng, answer: WordCell, depth: Depth, ok?
   return choose(rng, answer.word, shuffle(rng, rivals(set, answer, ok)).map((c) => c.word), LANGUAGE_CHOICES);
 }
 
-const meaning = (set: WordSet, languages: readonly string[]): FormMaker => (_src, rng, depth) => {
-  const pool = (set.byLang[pick(rng, languages)] ?? []).filter((c) => c.gloss);
+export type WordFilter = (c: WordCell) => boolean;
+const every: WordFilter = () => true;
+
+const meaning = (set: WordSet, languages: readonly string[], only: WordFilter): FormMaker => (_src, rng, depth) => {
+  const pool = (set.byLang[pick(rng, languages)] ?? []).filter((c) => c.gloss && only(c));
   if (pool.length === 0) return null;
   const a = pick(rng, pool);
   const choices = wordChoices(set, rng, a, depth);
@@ -336,8 +339,8 @@ const meaning = (set: WordSet, languages: readonly string[]): FormMaker => (_src
   return question("meaning", set, a, { prompt: `Which ${name} word means "${a.gloss}"?`, lines: [], choices, answer: a.word, explain: `${a.word} is ${name} for "${a.gloss}".` }, depth, [wordFactId(a)], wordMeta(set, null, a));
 };
 
-const sound = (set: WordSet, languages: readonly string[]): FormMaker => (_src, rng, depth) => {
-  const pool = (set.byLang[pick(rng, languages)] ?? []).filter((c) => c.ipa);
+const sound = (set: WordSet, languages: readonly string[], only: WordFilter): FormMaker => (_src, rng, depth) => {
+  const pool = (set.byLang[pick(rng, languages)] ?? []).filter((c) => c.ipa && only(c));
   if (pool.length === 0) return null;
   const a = pick(rng, pool);
   const choices = wordChoices(set, rng, a, depth, (c) => c.ipa !== "" && c.ipa !== a.ipa);
@@ -355,8 +358,8 @@ export function languageRivals(set: WordSet, a: WordCell): string[][] {
   return [sameScript.filter((l) => tier.includes(l)), sameScript.filter((l) => !tier.includes(l)), family, others.filter((l) => !near.includes(l))];
 }
 
-const language = (set: WordSet, languages: readonly string[]): FormMaker => (_src, rng, depth) => {
-  const pool = (set.byLang[pick(rng, languages)] ?? []).filter((c) => !c.shared && (c.lang !== "ja" || c.script === "kana"));
+const language = (set: WordSet, languages: readonly string[], only: WordFilter): FormMaker => (_src, rng, depth) => {
+  const pool = (set.byLang[pick(rng, languages)] ?? []).filter((c) => !c.shared && (c.lang !== "ja" || c.script === "kana") && only(c));
   if (pool.length === 0) return null;
   const a = pick(rng, pool);
   const name = set.names[a.lang];
@@ -365,13 +368,13 @@ const language = (set: WordSet, languages: readonly string[]): FormMaker => (_sr
   return question("language", set, a, { prompt: "Which language is this word?", lines: [a.word], choices, answer: name, explain: `${a.word} is ${name} for "${a.concept}".` }, depth, [wordFactId(a)], wordMeta(set, null, null));
 };
 
-const pair = (set: WordSet, languages: readonly string[]): FormMaker => (_src, rng, depth) => {
-  const pool = set.byLang[pick(rng, languages)] ?? [];
+const pair = (set: WordSet, languages: readonly string[], only: WordFilter, prefer: readonly string[] = languages): FormMaker => (_src, rng, depth) => {
+  const pool = (set.byLang[pick(rng, languages)] ?? []).filter(only);
   if (pool.length === 0) return null;
   const from = pick(rng, pool);
   const targets = pairTargets(set, from);
   if (targets.length === 0) return null;
-  const preferred = targets.filter((c) => languages.includes(c.lang));
+  const preferred = targets.filter((c) => prefer.includes(c.lang));
   const a = pick(rng, preferred.length > 0 ? preferred : targets);
   const choices = wordChoices(set, rng, a, depth, (c) => c.folded !== from.folded);
   const [fromName, name] = [set.names[from.lang], set.names[a.lang]];
@@ -386,12 +389,12 @@ const pair = (set: WordSet, languages: readonly string[]): FormMaker => (_src, r
   );
 };
 
-const LANGUAGE_MAKERS: Readonly<Record<LanguageForm, (set: WordSet, languages: readonly string[]) => FormMaker>> = { meaning, sound, language, pair };
+const LANGUAGE_MAKERS: Readonly<Record<LanguageForm, (set: WordSet, languages: readonly string[], only: WordFilter, prefer?: readonly string[]) => FormMaker>> = { meaning, sound, language, pair };
 
-export function languageMakers(set: WordSet, languages: readonly string[] | undefined): Partial<Record<LanguageForm, FormMaker>> {
+export function languageMakers(set: WordSet, languages: readonly string[] | undefined, only: WordFilter = every, prefer?: readonly string[]): Partial<Record<LanguageForm, FormMaker>> {
   const known = knownLanguages(set, languages);
   if (known.length === 0) return {};
   const out: Partial<Record<LanguageForm, FormMaker>> = {};
-  for (const form of LANGUAGE_FORMS) if (form !== "pair" || strictPairs(set) >= MIN_STRICT_PAIRS) out[form] = LANGUAGE_MAKERS[form](set, known);
+  for (const form of LANGUAGE_FORMS) if (form !== "pair" || strictPairs(set) >= MIN_STRICT_PAIRS) out[form] = LANGUAGE_MAKERS[form](set, known, only, prefer);
   return out;
 }
