@@ -1,4 +1,4 @@
-export type EfficacyLevel = "independent" | "company" | "none-found" | "not-searched";
+export type EfficacyLevel = "learning-controlled" | "learning-weak" | "tool-performance" | "company" | "none-found";
 
 export type Logo = { src: string; sourceUrl: string; tone: "light" | "dark"; kind: string };
 
@@ -31,13 +31,16 @@ export const SEGMENT_LABEL: Record<string, string> = {
 };
 
 export const EFFICACY_LABEL: Record<EfficacyLevel, string> = {
-  independent: "Independent study",
-  company: "Company study",
-  "none-found": "Searched, none found",
-  "not-searched": "Search pending",
+  "learning-controlled": "Independent controlled study of learning",
+  "learning-weak": "Independent study, weak design",
+  "tool-performance": "Independent test of the tool, no learning outcome",
+  company: "Company-run evidence alone",
+  "none-found": "None found",
 };
 
-export const EFFICACY_ORDER: EfficacyLevel[] = ["independent", "company", "none-found", "not-searched"];
+export const EFFICACY_ORDER: EfficacyLevel[] = ["learning-controlled", "learning-weak", "tool-performance", "company", "none-found"];
+
+export const SEARCH_METHOD = "Evidence search: one query per company in research databases, abstracts read.";
 
 export function panelSpans(counts: number[], rows = 3, columns = 24): number[][] {
   const total = counts.reduce((a, b) => a + b, 0);

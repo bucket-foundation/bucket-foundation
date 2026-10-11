@@ -47,8 +47,10 @@ function markdownTable(markdown, heading) {
 }
 
 function buildEdtech() {
-  const file = path.join(ROOT, "research-landscape/market/edtech-players.jsonl");
+  const updated = flag("players", path.join(os.homedir(), "agfarms/.learning-corpus/market/edtech-players.jsonl"));
+  const file = fs.existsSync(updated) ? updated : path.join(ROOT, "research-landscape/market/edtech-players.jsonl");
   const rows = readJsonl(file);
+  const evidence = (e) => (e.level === "independent" ? e.evidence_kind ?? "independent" : e.level);
   const players = rows.map((r) => ({
     id: r.id,
     name: r.name,
@@ -57,10 +59,10 @@ function buildEdtech() {
     learner: r.learner,
     mechanism: r.mechanism,
     price: r.price?.text ?? "",
-    efficacy: { level: r.efficacy.level, finding: r.efficacy.finding ?? "", design: r.efficacy.design ?? "" },
+    efficacy: { level: evidence(r.efficacy), finding: r.efficacy.finding ?? "", design: r.efficacy.design ?? "" },
   }));
   const date = rows.map((r) => r.retrieved).sort().at(-1);
-  write("edtech.json", { date, source: "research-landscape/market/edtech-players.jsonl", players });
+  write("edtech.json", { date, source: "market/edtech-players.jsonl", players });
 }
 
 function buildCoverage() {

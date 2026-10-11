@@ -2,10 +2,11 @@ import { EFFICACY_LABEL, EFFICACY_ORDER, panelSpans, type EfficacyLevel, type Pl
 import { LegendItem } from "../MapFigure";
 
 const DOT: Record<EfficacyLevel, React.CSSProperties> = {
-  independent: { background: "var(--aegean)", border: "1.5px solid var(--aegean)" },
+  "learning-controlled": { background: "var(--aegean-deep)", border: "1.5px solid var(--aegean-deep)" },
+  "learning-weak": { background: "#9FC4BC", border: "1.5px solid var(--aegean)" },
+  "tool-performance": { background: "transparent", border: "1.5px solid var(--aegean)" },
   company: { background: "var(--gold)", border: "1.5px solid var(--gold)" },
-  "none-found": { background: "transparent", border: "1.5px solid var(--basalt-3)" },
-  "not-searched": { background: "transparent", border: "1.5px dotted rgba(31,28,22,0.4)" },
+  "none-found": { background: "transparent", border: "1.5px dotted rgba(31,28,22,0.45)" },
 };
 
 function Dot({ level, size = 9 }: { level: EfficacyLevel; size?: number }) {

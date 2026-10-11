@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { SEARCH_METHOD } from "@/lib/research-maps/edtech";
 import { loadEdtech } from "@/lib/research-maps/edtech-data";
 import MapFigure from "../MapFigure";
 import EdtechMap from "./EdtechMap";
@@ -12,7 +13,7 @@ const TAB = "border border-[color:var(--hairline)] px-3 py-1 text-[13px]";
 export default function Page({ searchParams }: { searchParams?: { view?: string } }) {
   const data = loadEdtech();
   const table = searchParams?.view === "table";
-  const footer = `${data.date}. ${data.players.length} players in ${data.segments.length} categories. Logos are trademarks of their owners, shown for identification.`;
+  const footer = `${data.date}. ${data.players.length} players in ${data.segments.length} categories. ${SEARCH_METHOD} Logos are trademarks of their owners, shown for identification.`;
   return (
     <MapFigure
       eyebrow="Research map · market"

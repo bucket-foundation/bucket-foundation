@@ -69,8 +69,8 @@ test("the table filter narrows by segment, evidence level and text", () => {
   const { players } = loadEdtech();
   assert.equal(filterPlayers(players, { segment: "", level: "", text: "" }).length, 187);
   assert.equal(filterPlayers(players, { segment: "language", level: "", text: "" }).length, 15);
-  const independent = filterPlayers(players, { segment: "", level: "independent", text: "" });
-  assert.ok(independent.length > 0 && independent.every((p) => p.efficacy.level === "independent"));
+  const independent = filterPlayers(players, { segment: "", level: "learning-controlled", text: "" });
+  assert.equal(independent.length, 21);
   assert.deepEqual(filterPlayers(players, { segment: "language", level: "", text: "duolingo" }).map((p) => p.id), ["duolingo"]);
   assert.equal(filterPlayers(players, { segment: "test-prep", level: "", text: "duolingo" }).length, 0);
 });
@@ -164,8 +164,8 @@ test("the edtech map renders every player as a tile in its segment panel with th
   assert.equal(count(html, "data-segment="), 11);
   assert.equal(count(html, "data-text-tile"), 187 - data.logoCount);
   assert.equal(count(html, "<img "), data.logoCount);
-  assert.ok(html.includes("data-map-legend") && html.includes("Independent study") && html.includes("Search pending"));
-  assert.ok(html.includes(`${data.date}. 187 players in 11 categories. Logos are trademarks of their owners, shown for identification.`));
+  assert.ok(html.includes("data-map-legend") && html.includes("Independent controlled study of learning, 21") && html.includes("None found, 110") && !html.includes("Search pending"));
+  assert.ok(html.includes(`${data.date}. 187 players in 11 categories. Evidence search: one query per company in research databases, abstracts read. Logos are trademarks of their owners, shown for identification.`));
   assert.ok(html.indexOf('data-segment="researcher-knowledge-tools"') < html.indexOf('data-segment="moocs-credentials"'));
 });
 
