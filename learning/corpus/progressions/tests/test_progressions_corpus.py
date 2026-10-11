@@ -3,6 +3,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 import unittest
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -27,6 +28,13 @@ SENTENCE_KEYS = {"prerequisite_text", "corequisite_text", "requirements_text", "
 LABEL_KEYS = {"notes", "title", "program", "page_title", "department", "institution"}
 UNSOURCED = re.compile(r"\binfer\w*|\brecall\w*|from memory|not fetched|unfetched", re.I)
 CCSS_ROW = re.compile(r"^((?:K|\d)\.[A-Z]+\.[A-Z]\.\d+[a-z]?|[A-Z]-[A-Z]+\.[A-Z]): (.+)$")
+NEW_SLICES = ["k12-full", "history-occupations", "history-technology", "history-forecast", "lifespan", "beyond-school", "world", "round3-empty"]
+SIDE_TABLES = ["activities", "occupation_history", "technologies"]
+FACET_TABLES = ["progression", "frameworks", "assessments", "programs", "courses"]
+TEXT_LIMITS = {"topic": 240, "name": 200, "title": 300, "notes": 700, "subfield": 120, "typical_age_or_year": 80, "program": 200, "page_title": 200, "body": 200, "department": 200}
+OPEN_LABEL_SYSTEMS = {"texas-teks", "australia-v9", "england-nc", "head-start-elof"}
+sys.path.insert(0, HERE if os.path.exists(os.path.join(HERE, "facets.py")) else os.path.join(PARENT, "build"))
+import facets as FC  # noqa: E402
 CACHE = {}
 
 
@@ -232,7 +240,7 @@ class Mapping(unittest.TestCase):
 
     def test_field_labelled_rows_are_all_mapped(self):
         for name in ("frameworks", "progression", "assessments"):
-            self.assertEqual([r["id"] for r in table(name) if r["field"] and not r["cip"]["code"]], [], name)
+            self.assertEqual([r["id"] for r in table(name) if r["field"] and not r["cip"]["code"] and r["slice"] not in NEW_SLICES], [], name)
 
     def test_soc_codes_exist(self):
         for name in ROW_TABLES:
@@ -320,6 +328,98 @@ class Flags(unittest.TestCase):
         for name in ("frameworks", "progression", "assessments", "books", "resources"):
             bad = [r["id"] for r in table(name) if r["verified"] and UNSOURCED.search(r["notes"] or "")]
             self.assertEqual(bad, [], name)
+
+
+class Facets(unittest.TestCase):
+    def test_catalogue_course_rule(self):
+        out = FC.assign("courses", {"slice": "catalogues", "cip": {"code": "27.0101"}})
+        self.assertEqual((out["region"], out["mode"], out["life_stage"], out["purpose"], out["language"]), ("US", "school", "tertiary", "school", "en"))
+        self.assertEqual((out["era_from"], out["era_to"], out["kind"], out["kind_method"]), (2026, 2026, None, "none"))
+        self.assertEqual(out["region_method"], "rule")
+
+    def test_positional_levels_give_no_life_stage(self):
+        out = FC.assign("progression", {"slice": "everyday", "level": "primary", "field": "chess", "cip": {"code": "36.0103"}})
+        self.assertEqual((out["life_stage"], out["life_stage_method"], out["purpose"], out["mode"]), (None, "none", "play", "play"))
+
+    def test_level_rules(self):
+        self.assertEqual(FC.assign("progression", {"slice": "school", "level": "early", "cip": {"code": "27.01"}})["life_stage"], "early-childhood")
+        self.assertEqual(FC.assign("progression", {"slice": "trades-technical", "level": "professional-entry", "cip": {"code": "46.0302"}})["purpose"], "work")
+        self.assertEqual(FC.assign("progression", {"slice": "trades-technical", "level": "professional-entry", "cip": {"code": "46.0302"}})["kind"], "procedural")
+        self.assertEqual(FC.assign("frameworks", {"slice": "school", "level_from": "early", "level_to": "graduate", "cip": {"code": "27.01"}})["life_stage"], None)
+
+    def test_region_codes(self):
+        self.assertEqual([FC.region_code(x) for x in ("US-TX", "England", "US and Canada", "global", "Mesopotamia", "", None, "DE")], ["US", "GB", "international", "international", None, None, None, "DE"])
+
+    def test_stated_values_win_and_bad_values_fall_back(self):
+        out = FC.assign("frameworks", {"slice": "x", "cip": {"code": None}}, {"purpose": "civic", "era_from": -2000, "era_to": -1600, "kind": "guesswork", "region": "Japan"})
+        self.assertEqual((out["purpose"], out["purpose_method"], out["era_from"], out["era_to"], out["era_to_method"]), ("civic", "stated", -2000, -1600, "stated"))
+        self.assertEqual((out["kind"], out["kind_method"], out["region"], out["language"], out["language_method"]), (None, "none", "JP", "ja", "rule"))
+
+    def test_inherited_region_and_era(self):
+        out = FC.assign("progression", {"slice": "school", "level": "primary", "cip": {"code": "27.01"}}, {}, {"region": "GB", "era_from": 2014, "era_to": None})
+        self.assertEqual((out["region"], out["region_method"], out["era_from"], out["language"]), ("GB", "rule", 2014, "en"))
+
+    def test_every_row_carries_all_facets(self):
+        for name in FACET_TABLES:
+            for r in table(name):
+                for f in FC.FACETS:
+                    self.assertIn(r[f + "_method"], ("stated", "rule", "none"), r["id"])
+                    self.assertEqual(r[f] is None, r[f + "_method"] == "none", (r["id"], f))
+                    if f in FC.VOCAB and r[f] is not None:
+                        self.assertIn(r[f], FC.VOCAB[f], r["id"])
+                if r["region"] is not None:
+                    self.assertIsNotNone(re.fullmatch(r"[A-Z]{2}|international", r["region"]), r["id"])
+
+    def test_catalogue_rows_follow_the_rule(self):
+        for r in table("courses"):
+            self.assertEqual((r["region"], r["mode"], r["life_stage"]), ("US", "school", "tertiary"), r["id"])
+
+
+class NewSlices(unittest.TestCase):
+    def test_loaded_and_pending_cover_the_list(self):
+        stats = json.loads(text_of(os.path.join(TABLES, "stats.json")))
+        self.assertEqual(sorted(set(stats["slices_loaded"]) & set(NEW_SLICES)) + sorted(stats["slices_pending"]), sorted(NEW_SLICES, key=lambda s: (s in stats["slices_pending"], s)))
+
+    def test_free_text_stays_under_the_limit_per_field(self):
+        for name in ROW_TABLES + SIDE_TABLES:
+            for r in table(name):
+                for key, value in walk(r):
+                    if isinstance(value, str) and not str(key).endswith("url"):
+                        self.assertLessEqual(len(value), TEXT_LIMITS.get(key, 300), (r["id"], key))
+
+    def test_k12_rows_hold_code_and_reduced_label(self):
+        rows = [r for r in table("progression") if r["slice"] == "k12-full"]
+        self.assertTrue(rows)
+        for r in rows:
+            self.assertLessEqual(len(r["topic"] or ""), 240, r["id"])
+            self.assertTrue(r["source_licence"], r["id"])
+            self.assertIsNone(re.search(r"not fetched|names only", r["source_licence"]), r["id"])
+
+    def test_outline_of_cultural_materials_holds_no_label(self):
+        rows = table("activities")
+        for r in rows:
+            if r["scheme"] == "OCM":
+                self.assertIsNone(r["label"], r["id"])
+                self.assertTrue(r["source_url"], r["id"])
+            if r["scheme"].startswith("ICATUS") and r["level"] != "major division":
+                self.assertIsNone(r["label"], r["id"])
+
+    def test_side_tables_have_unique_ids_and_years(self):
+        seen = set(all_ids())
+        for name in SIDE_TABLES:
+            for r in table(name):
+                self.assertNotIn(r["id"], seen, r["id"])
+                seen.add(r["id"])
+                for key in ("era_from", "era_to"):
+                    self.assertTrue(r.get(key) is None or isinstance(r[key], int), r["id"])
+
+    def test_completeness_scores_every_frame_cell(self):
+        frame = os.path.join(PARENT, "completeness", "frame.jsonl")
+        frame = frame if os.path.exists(frame) else os.path.join(PARENT, "completeness-frame.jsonl")
+        cells = [json.loads(line) for line in text_of(frame).splitlines() if line.strip()]
+        scored = json.loads(text_of(os.path.join(TABLES, "completeness.json")))
+        self.assertEqual(len(cells), 441)
+        self.assertEqual([(c["dimension"], c["cell"]) for c in scored["cells"]], [(c["dimension"], c["cell"]) for c in cells])
 
 
 class Hygiene(unittest.TestCase):

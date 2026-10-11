@@ -1,6 +1,7 @@
 import collections
 import json
 import os
+import resource
 import sqlite3
 import subprocess
 import sys
@@ -23,12 +24,17 @@ def read_table(folder, name):
     plain = os.path.join(folder, name + ".jsonl")
     if os.path.exists(plain):
         with open(plain, encoding="utf-8") as fh:
-            return [json.loads(line) for line in fh if line.strip()]
-    packed = plain + ".zst"
-    if os.path.exists(packed):
-        text = subprocess.run(["zstd", "-dc", packed], check=True, capture_output=True).stdout.decode("utf-8")
-        return [json.loads(line) for line in text.splitlines() if line.strip()]
-    raise SystemExit("missing table %s in %s" % (name, folder))
+            for line in fh:
+                if line.strip():
+                    yield json.loads(line)
+        return
+    if not os.path.exists(plain + ".zst"):
+        raise SystemExit("missing table %s in %s" % (name, folder))
+    proc = subprocess.Popen(["zstd", "-dc", plain + ".zst"], stdout=subprocess.PIPE)
+    for line in proc.stdout:
+        if line.strip():
+            yield json.loads(line)
+    proc.wait()
 
 
 def flag(row):
@@ -64,7 +70,7 @@ def inventory(w):
 
 
 def build(folder):
-    codes = read_table(folder, "backbone_codes")
+    codes = list(read_table(folder, "backbone_codes"))
     cip = {c["code"]: c for c in codes if c["scheme"] == "cip2020"}
     soc = {c["code"]: c for c in codes if c["scheme"] != "cip2020"}
     live = lambda c: c["action"] not in RETIRED and c["title"].lower() != "reserved"
@@ -88,8 +94,8 @@ def build(folder):
     major_only = collections.defaultdict(collections.Counter)
     totals = collections.OrderedDict()
     home = {}
-    tables = {name: read_table(folder, name) for name in ALL_TABLES}
-    for name, rows in tables.items():
+    for name in ALL_TABLES:
+        rows = read_table(folder, name)
         t = totals[name] = collections.Counter()
         column = name if name in ("books", "resources", "programs") else "rows"
         for r in rows:
@@ -127,9 +133,8 @@ def build(folder):
                     m[reached][column] += 1
             if column == "rows":
                 home[r["id"]] = (code, family, minor)
-    edges = read_table(folder, "edges")
     edge_totals = collections.Counter()
-    for e in edges:
+    for e in read_table(folder, "edges"):
         edge_totals["rows"] += 1
         edge_totals["stated"] += bool(e["stated"])
         edge_totals["external"] += bool(e["external"])
@@ -238,6 +243,7 @@ def main():
         json.dump(summary, fh, indent=1)
         fh.write("\n")
     print(json.dumps(summary))
+    print("peak memory MB", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024)
 
 
 if __name__ == "__main__":
