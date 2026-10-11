@@ -429,7 +429,9 @@ describe("routes", () => {
       const r = await routes[`GET ${url.pathname}`](new Request(url), url);
       return { status: r.status, body: (await r.json()) as Record<string, unknown> };
     };
-    const list = await call("/local/decks");
+    const taken = Object.keys({ ...wordRoutes(session(book, ["de"])), "GET /local/decks": true, "GET /local/settings": true });
+    for (const key of Object.keys(routes)) expect(taken).not.toContain(key);
+    const list = await call("/local/deck-files");
     const body = list.body as unknown as DecksBody;
     expect(body.decks.map((d) => [d.languageName, d.cards, d.installed])).toEqual([
       ["Arabic", ARABIC.length, true],

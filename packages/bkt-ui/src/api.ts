@@ -443,7 +443,7 @@ export class Api {
   }
 
   installedDecks() {
-    return this.call<DecksBody>("/local/decks");
+    return this.call<DecksBody>("/local/deck-files");
   }
 
   wordSearch(q: string) {

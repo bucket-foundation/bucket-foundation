@@ -20,7 +20,7 @@ const json = (body: unknown, status = 200) => new Response(JSON.stringify(body),
 
 export function deckRoutes(o: DeckRouteOptions): Record<string, Route> {
   return {
-    "GET /local/decks": () => json({ decks: deckRows(o.home, null), credit: o.book().credit } satisfies DecksBody),
+    "GET /local/deck-files": () => json({ decks: deckRows(o.home, null), credit: o.book().credit } satisfies DecksBody),
     "GET /local/words/search": (_req, url) => {
       const q = (url.searchParams.get("q") ?? "").trim();
       if (!q) return json({ error: SEARCH_NEEDS_WORDS }, 400);
