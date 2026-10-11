@@ -42,7 +42,8 @@ describe("command table", () => {
     expect(new Set(TABLE.map((c) => c.name)).size).toBe(TABLE.length);
     for (const name of ["review", "home", "quit", "graph", "jobs", "frontier"]) expect(() => resolve([name])).toThrow(`unknown command ${name}`);
     expect(() => resolve(["research"])).toThrow("research needs a subcommand: install");
-    expect(resolve(["research", "install", "staff.json"]).command.name).toBe("research install");
+    const install = resolve(["research", "install", "staff.json"]);
+    expect("command" in install && install.command.name).toBe("research install");
     expect(() => resolve(["research", "install"])).toThrow("research install needs <file>");
     expect(() => resolve(["quiz"])).toThrow("quiz needs a subcommand: notify, schedule, unschedule");
   });
