@@ -48,7 +48,7 @@ function App() {
     return () => window.removeEventListener("pagehide", flush);
   }, [api]);
 
-  const active = route.name === "node" ? "graph" : route.name === "deck" || route.name === "words" || route.name === "concepts" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
+  const active = route.name === "node" ? "graph" : route.name === "deck" || route.name === "words" || route.name === "concepts" || route.name === "licence" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
   const canon = route.name === "canon" || route.name === "search" || route.name === "explore";
 
   return (

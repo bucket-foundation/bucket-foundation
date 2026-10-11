@@ -127,6 +127,7 @@ export const TABLE: CommandSpec[] = [
     options: { check: { type: "boolean", help: "check only; this is the default" } },
   },
   { name: "version", summary: "print the version", json: true },
+  { name: "licences", summary: "print the credit, the changes and the licence text of the bundled word list" },
   { name: "learn due", summary: "list the cards due now", session: true, json: true, options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
   { name: "learn path", summary: "show each deck's progress, or the topics of one deck in order; language decks hold word lessons", args: "[deck]", positionals: [0, 1], session: true, json: true },
   {

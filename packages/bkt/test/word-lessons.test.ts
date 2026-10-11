@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve as resolvePath } from "node:path";
 import { cardKey } from "../../../src/lib/research-os/work-quiz/fact";
 import { checkLimits, LIMITS } from "../../../src/lib/research-os/work-quiz/limits";
-import { buildWordSet, wordFactId, type RawSubset, type Script, type WordCell } from "../../../src/lib/research-os/work-quiz/polingual-forms";
+import { buildWordSet, conceptPos, rejection, rivalOrder, rivals, WRONG_PAIRS, wordFactId, type RawSubset, type Script, type WordCell } from "../../../src/lib/research-os/work-quiz/polingual-forms";
 import { sampleQuiz } from "../../../src/lib/research-os/work-quiz/sampler";
 import { learnPath, learnWordPath, quizJson, wordBackend, type LearnIo } from "../src/cli/learn";
 import { resolve } from "../src/cli/run";
@@ -12,13 +12,17 @@ import { directBackend } from "../src/core/backend";
 import { LESSON_WORDS, THEMES, WordBook, wordSetFromPack } from "../src/core/words";
 import { newDataKey } from "../src/crypto";
 import { buildDenylist } from "../src/pack/rights";
-import { assembleWords, buildWordPack, cleanEtymology, WORD_PACK_BUDGET_BYTES, wordPackChecksum, WORDS_FILE, type RawWords, type WordPack } from "../src/pack/words";
+import { assembleWords, buildWordPack, cleanEtymology, LICENCE_FILE, SEVERAL_WORDS, WORD_PACK_BUDGET_BYTES, wordPackChecksum, WORDS_FILE, type RawWords, type WordPack } from "../src/pack/words";
+import { seededRng } from "../../../src/lib/research-os/work-quiz/generate";
+import { daily, wordCreditLine } from "../src/cli/learn";
+import { DailyQuizStore } from "../src/daily-quiz";
 import { Store } from "../src/store";
 import { WordSession, wordRoutes } from "../src/words";
 import { WorkQuizStore } from "../src/work-quiz";
 
 const REPO = resolvePath(import.meta.dir, "../../..");
 const RAW = JSON.parse(readFileSync(join(REPO, WORDS_FILE), "utf8")) as RawWords;
+const LICENCE = readFileSync(join(REPO, LICENCE_FILE), "utf8");
 const DENY = buildDenylist(REPO);
 const PACK = buildWordPack(REPO, DENY);
 const BOOK = new WordBook(PACK);
@@ -67,6 +71,7 @@ describe("the word pack", () => {
     expect(PACK.sha256.startsWith(PACK.version)).toBe(true);
     expect(wordPackChecksum({ ...back, words: back.words.slice(1) })).not.toBe(PACK.sha256);
     expect(Buffer.byteLength(text)).toBeLessThan(WORD_PACK_BUDGET_BYTES);
+    expect(WORD_PACK_BUDGET_BYTES).toBe(1024 * 1024);
     expect(buildWordPack(REPO, DENY).sha256).toBe(PACK.sha256);
   });
 
@@ -80,15 +85,17 @@ describe("the word pack", () => {
       expect(fromPack.scripts[l]).toBe(fromSource.scripts[l]);
       expect(cellRows(fromPack.byLang[l])).toEqual(cellRows(fromSource.byLang[l]));
     }
-    expect(PACK.counts).toMatchObject({ rows: RAW.words.length, words: fromSource.cells.length, languages: 27 });
+    expect(PACK.counts).toMatchObject({ rows: RAW.words.length, quiz: fromSource.cells.length, words: PACK.words.length, languages: 27 });
+    expect(PACK.words.filter((w) => w.quiz).length).toBe(fromSource.cells.length);
   });
 
   test("a source without the share-alike licence or with a denied name is refused", () => {
-    expect(() => assembleWords({ ...RAW, attribution: { ...RAW.attribution, license: "MIT" } }, DENY)).toThrow("CC-BY-SA");
-    expect(() => assembleWords({ ...RAW, attribution: { ...RAW.attribution, data: "A word list" } }, DENY)).toThrow("Wiktionary");
+    expect(() => assembleWords({ ...RAW, attribution: { ...RAW.attribution, license: "MIT" } }, DENY, LICENCE)).toThrow("CC-BY-SA");
+    expect(() => assembleWords({ ...RAW, attribution: { ...RAW.attribution, data: "A word list" } }, DENY, LICENCE)).toThrow("Wiktionary");
+    expect(() => assembleWords(RAW, DENY, "Attribution-ShareAlike 3.0 Unported")).toThrow("full Attribution-ShareAlike 3.0 Unported licence text");
     const at = RAW.words.findIndex((w) => w.l === PACK.words[0].lang && w.c === PACK.words[0].concept && w.s.trim() === PACK.words[0].word);
     const words = RAW.words.map((w, i) => (i === at ? { ...w, e: "From the Kruse family name." } : w));
-    expect(() => assembleWords({ ...RAW, words }, DENY)).toThrow("rights:");
+    expect(() => assembleWords({ ...RAW, words }, DENY, LICENCE)).toThrow("rights:");
   });
 
   test("etymology drops the tree and the cognate list", () => {
@@ -99,8 +106,138 @@ describe("the word pack", () => {
   test("the pack and every lesson payload carry the attribution", () => {
     expect(PACK.attribution.data).toContain("Wiktionary");
     expect(PACK.attribution.license).toContain("CC-BY-SA");
-    expect(BOOK.credit.text).toBe("Words, definitions, IPA and etymology from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0. Full entries at en.wiktionary.org.");
+    expect(BOOK.credit.text).toBe("Words, definitions, IPA and etymology from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, shortened and filtered by Bucket. Full entries at en.wiktionary.org.");
     expect(BOOK.credit.licenceHref).toStartWith("https://creativecommons.org/licenses/by-sa/");
+  });
+});
+
+describe("the licence and the changes", () => {
+  test("the pack ships the full licence text and a note of what Bucket changed", () => {
+    expect(PACK.licenceText).toBe(LICENCE);
+    expect(PACK.licenceText).toContain("Attribution-ShareAlike 3.0 Unported");
+    expect(PACK.licenceText).toContain("You may Distribute or Publicly Perform an Adaptation only under the");
+    expect(PACK.changes).toStartWith("Changes made by Bucket:");
+    expect(PACK.changes).toContain("under the same licence");
+    expect(BOOK.licence).toMatchObject({ title: "Creative Commons CC-BY-SA 3.0", text: LICENCE, changes: PACK.changes });
+    const notice = readFileSync(join(REPO, "packages/bkt/NOTICE"), "utf8");
+    expect(notice).toContain("Wiktionary");
+    expect(notice).toContain("Changes made by Bucket");
+    expect(notice).toContain("licences/CC-BY-SA-3.0.txt");
+    expect(findCommand("licences")!.summary).toContain("licence text");
+  });
+
+  test("bkt licences prints the credit, the changes and the licence text", () => {
+    const r = Bun.spawnSync([process.execPath, join(REPO, "packages/bkt/src/cli.tsx"), "licences"], { env: { PATH: process.env.PATH ?? "", HOME: "/nonexistent", BKT_HOME: "/nonexistent/bkt" } });
+    const out = r.stdout.toString();
+    expect(r.exitCode).toBe(0);
+    expect(out.split("\n")[0]).toBe(BOOK.credit.text);
+    expect(out).toContain("Changes made by Bucket:");
+    expect(out).toContain("8. Miscellaneous");
+    const help = Bun.spawnSync([process.execPath, join(REPO, "packages/bkt/src/cli.tsx"), "help"], { env: { PATH: process.env.PATH ?? "", HOME: "/nonexistent", BKT_HOME: "/nonexistent/bkt" } });
+    expect(help.stdout.toString()).toMatch(/licences\s+print the credit, the changes and the licence text/);
+  });
+
+  test("bkt daily prints the credit when a question shows a word, in text and for scripts", async () => {
+    const { store, wq } = session();
+    const day = "2026-10-11";
+    const word = BOOK.questions(BOOK.lessonCells("de", 1), CHOSEN, "seed")[0];
+    const plain = { id: "plain", type: "recall" as const, prompt: "Which branch takes merges?", lines: [], choices: ["dev", "main", "ops"], answer: "dev", tolerance: 0, limitSec: 30, explain: "dev takes merges.", sources: [{ kind: "note" as const, ref: "a#b", label: "notes" }] };
+    const store2 = new DailyQuizStore(store, (wq as unknown as { key: Buffer }).key);
+    store2.put({ day, questions: [word, plain, { ...plain, id: "plain-2" }] }, NOW);
+    const b = directBackend({ store, content: {}, daily: store2, record: (...a) => wq.record(...a), now: () => NOW, seed: () => "seed" });
+    const text = io();
+    expect(await daily(b, day, false, findCommand("daily")!, text)).toBe(0);
+    expect(text.out.at(-2)).toBe("Word questions use Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, shortened and filtered by Bucket. Run bkt licences for the terms.");
+    const line = io([JSON.stringify({ response: word.answer, elapsedMs: 900 }), JSON.stringify({ response: "dev", elapsedMs: 900 })]);
+    await daily(b, day, true, findCommand("daily")!, line);
+    expect(JSON.parse(line.out[0]).credit).toContain("CC-BY-SA 3.0");
+    expect(JSON.parse(line.out[1]).credit).toContain("CC-BY-SA 3.0");
+    expect(JSON.parse(line.out[2]).credit).toBeUndefined();
+    store2.put({ day: "2026-10-12", questions: [plain, { ...plain, id: "plain-2" }, { ...plain, id: "plain-3" }] }, NOW);
+    const none = io();
+    await daily(b, "2026-10-12", false, findCommand("daily")!, none);
+    expect(none.out.join("\n")).not.toContain("Wiktionary");
+    expect(wordCreditLine([{ word: null }, {}])).toBeUndefined();
+    store.close();
+  });
+});
+
+describe("which words ship", () => {
+  test("every source row is kept or counted under the first check it fails", () => {
+    const c = PACK.counts;
+    const rejected = Object.values(c.rejected).reduce((a, b) => a + b, 0);
+    expect(rejected + c.quiz).toBe(c.rows);
+    expect(Object.values(c.rejected)).toEqual(Object.values(c.rejected).sort((a, b) => b - a));
+    expect(Object.keys(c.rejected).slice(0, 2)).toEqual(["gloss names another word", "other senses do not back the gloss"]);
+    expect(c.rejected[SEVERAL_WORDS]).toBe(c.lessonOnly);
+    expect(c.words).toBe(c.quiz + c.lessonOnly);
+    expect(c.lessonOnly).toBeGreaterThan(100);
+  });
+
+  test("a word whose first gloss names a different concept is excluded, and so is a listed wrong pair", () => {
+    const pos = conceptPos(RAW.words);
+    const base = RAW.words.find((w) => w.l === "sv" && w.s === "hand")!;
+    expect(rejection(base, pos)).toBeNull();
+    expect(rejection({ ...base, g: "egg white, white", c: "white" }, pos)).toBe("gloss names another word");
+    expect(rejection({ ...base, g: "sir, mister; a man", c: "man" }, pos)).toBe("gloss names another word");
+    expect(rejection({ ...base, c: undefined }, pos)).toBe("no concept");
+    for (const pair of ["sv:vita:white", "pt:senhor:man", "ru:мужик:man", "de:Runde:round", "fr:œillet:eye"]) {
+      const [l, s, c] = pair.split(":");
+      expect(WRONG_PAIRS.has(pair)).toBe(true);
+      expect(RAW.words.some((w) => w.l === l && w.s === s && w.c === c)).toBe(true);
+      expect(PACK.words.some((w) => w.lang === l && w.word === s && w.concept === c)).toBe(false);
+    }
+    expect(BOOK.concepts(["sv", "pt", "ru"], 1).rows.concat(BOOK.concepts(["sv", "pt", "ru"], 2).rows).flatMap((r) => r.words.flat().map((w) => w.word))).not.toContain("vita");
+  });
+
+  test("a lesson-only word shows in lessons and by concept, carries a meaning, and the quiz skips it", () => {
+    const only = PACK.words.filter((w) => !w.quiz);
+    expect(only.every((w) => w.meaning.length > 0 && w.concept.length > 0 && w.gloss === "")).toBe(true);
+    const sample = only.find((w) => w.lang === "ar")!;
+    const lessons = BOOK.lessons(sample.lang);
+    const at = lessons.find((l) => BOOK.lessonCells(sample.lang, l.n).some((c) => c.word === sample.word))!;
+    const page = BOOK.lesson(sample.lang, at.n, [sample.lang])!;
+    expect(page.words.find((w) => w.word === sample.word)).toMatchObject({ quiz: false, meaning: sample.meaning });
+    const cells = BOOK.lessonCells(sample.lang, at.n);
+    const asked = BOOK.questions(cells, [sample.lang], "seed");
+    expect(asked.length).toBeLessThanOrEqual(at.quiz);
+    expect(at.quiz).toBe(cells.filter((c) => BOOK.inQuiz(c)).length);
+    const several = BOOK.concepts([sample.lang], 1).of;
+    const rows = Array.from({ length: several }, (_, i) => BOOK.concepts([sample.lang], i + 1).rows).flat();
+    const row = rows.find((r) => r.concept === sample.concept)!;
+    expect(row.words[0].map((w) => w.word)).toContain(sample.word);
+    expect(row.words[0].length).toBeGreaterThan(1);
+    expect(BOOK.studyCells(sample.lang, 50, new Set(), new Set()).every((c) => BOOK.inQuiz(c))).toBe(true);
+    expect(BOOK.deck(sample.lang).words).toBeGreaterThan(BOOK.deck(sample.lang).quiz);
+  });
+});
+
+describe("wrong choices", () => {
+  test("come from the answer's part of speech first, and from another only when too few remain", () => {
+    let slots = 0;
+    let other = 0;
+    for (const a of BOOK.set.cells) {
+      const order = rivalOrder(BOOK.set, seededRng(`order|${wordFactId(a)}`), a);
+      const same = rivals(BOOK.set, a).filter((c) => c.pos === a.pos).length;
+      expect(order.length).toBe(rivals(BOOK.set, a).length);
+      expect(order.slice(0, same).every((c) => c.pos === a.pos)).toBe(true);
+      expect(order.slice(same).every((c) => c.pos !== a.pos)).toBe(true);
+    }
+    const posOf = (lang: string, word: string) => BOOK.set.byLang[lang].find((c) => c.word === word)!.pos;
+    for (const lang of BOOK.languages()) {
+      for (const l of BOOK.lessons(lang)) {
+        for (const q of BOOK.questions(BOOK.lessonCells(lang, l.n), CHOSEN, "seed")) {
+          if (q.type !== "meaning" && q.type !== "sound") continue;
+          const answer = BOOK.set.byLang[lang].find((c) => c.word === q.answer)!;
+          for (const c of q.choices!.filter((x) => x !== q.answer)) {
+            slots++;
+            if (posOf(lang, c) !== answer.pos) other++;
+          }
+        }
+      }
+    }
+    expect(slots).toBeGreaterThan(800);
+    expect(other / slots).toBeLessThan(0.1);
   });
 });
 
@@ -111,11 +248,11 @@ describe("lesson grouping", () => {
       const lessons = BOOK.lessons(lang);
       expect(other.lessons(lang)).toEqual(lessons);
       const concepts = lessons.flatMap((l) => l.concepts);
-      expect([...concepts].sort()).toEqual(BOOK.set.byLang[lang].map((c) => c.concept).sort());
-      expect(new Set(concepts).size).toBe(concepts.length);
+      expect([...concepts].sort()).toEqual(BOOK.words(lang).map((c) => c.concept).sort());
+      expect(lessons.flatMap((l) => BOOK.lessonCells(lang, l.n)).length).toBe(new Set(lessons.flatMap((l) => BOOK.lessonCells(lang, l.n))).size);
       expect(lessons.every((l) => l.concepts.length >= 1 && l.concepts.length <= LESSON_WORDS)).toBe(true);
       expect(lessons.map((l) => l.n)).toEqual(lessons.map((_, i) => i + 1));
-      expect(BOOK.deck(lang)).toMatchObject({ id: `words-${lang}`, words: concepts.length, lessons: lessons.length });
+      expect(BOOK.deck(lang)).toMatchObject({ id: `words-${lang}`, words: concepts.length, quiz: BOOK.set.byLang[lang].length, lessons: lessons.length });
     }
   });
 
@@ -155,10 +292,10 @@ describe("lesson grouping", () => {
     const first = BOOK.concepts(CHOSEN, 1);
     expect(first.languages.map((l) => l.code)).toEqual(CHOSEN);
     expect(first.rows.length).toBe(LESSON_WORDS);
-    const cover = first.rows.map((r) => r.words.filter(Boolean).length);
+    const cover = first.rows.map((r) => r.words.filter((w) => w.length > 0).length);
     expect(cover).toEqual([...cover].sort((a, b) => b - a));
     expect(cover[0]).toBeGreaterThanOrEqual(2);
-    for (const r of first.rows) r.words.forEach((w, i) => w && expect([w.lang, w.concept]).toEqual([CHOSEN[i], r.concept]));
+    for (const r of first.rows) r.words.forEach((ws, i) => ws.forEach((w) => expect([w.lang, w.concept]).toEqual([CHOSEN[i], r.concept])));
     expect(BOOK.concepts(CHOSEN, 1)).toEqual(first);
     expect(BOOK.concepts([], 1)).toMatchObject({ languages: [], rows: [], concepts: 0, of: 1 });
     expect(BOOK.concepts(CHOSEN, 9999).page).toBe(first.of);
@@ -204,7 +341,7 @@ describe("questions on lesson words", () => {
         }
       }
     }
-    expect(asked).toBeGreaterThan(PACK.words.length / 2);
+    expect(asked).toBeGreaterThan(PACK.counts.quiz / 2);
     const german = BOOK.lessons("de").flatMap((l) => BOOK.questions(BOOK.lessonCells("de", l.n), CHOSEN, "seed"));
     expect(new Set(german.map((q) => q.type)).size).toBeGreaterThanOrEqual(2);
   });
@@ -262,7 +399,7 @@ describe("review of studied words", () => {
     const first = words.quiz({ deck: "German", size: 3 });
     expect(first.questions.length).toBeGreaterThan(0);
     expect(first.questions.length).toBeLessThanOrEqual(3);
-    const cells = BOOK.lessons("de").flatMap((l) => BOOK.lessonCells("de", l.n));
+    const cells = BOOK.lessons("de").flatMap((l) => BOOK.lessonCells("de", l.n)).filter((c) => BOOK.inQuiz(c));
     const due = new Set([wordFactId(cells[10])]);
     expect(BOOK.studyCells("de", 2, due, due)[0]).toBe(cells[10]);
     expect(BOOK.studyCells("de", 2, new Set([wordFactId(cells[0])]), new Set())[0]).toBe(cells[1]);
@@ -324,8 +461,8 @@ describe("word lessons in the terminal", () => {
     expect(await learnPath(b, null, [], false, text, BOOK.credit.text)).toBe(0);
     expect(text.out[0]).toContain("German words");
     expect(text.out[0]).toContain("Arabic words");
-    expect(text.out[0]).toMatch(/0 of \d+ words started, 0 due, \d+ word lessons/);
-    expect(text.out[1]).toBe(BOOK.credit.text);
+    expect(text.out[0]).toMatch(/0 of \d+ quiz words started, 0 due, \d+ words in \d+ word lessons/);
+    expect(text.out[1]).toBe(`${BOOK.credit.text} Run bkt licences for the terms.`);
     const line = io();
     await learnPath(b, null, [], true, line, BOOK.credit.text);
     const body = JSON.parse(line.out[0]);
@@ -333,9 +470,9 @@ describe("word lessons in the terminal", () => {
     expect(body.credit).toContain("CC-BY-SA");
     const one = io();
     expect(await learnWordPath(b, "de", BOOK.credit.text, false, one)).toBe(0);
-    expect(one.out[0]).toMatch(/^German word lessons: 0 of \d+ words started, 0 due\.$/);
+    expect(one.out[0]).toMatch(/^German word lessons: \d+ words, 0 of \d+ quiz words started, 0 due\.$/);
     expect(one.out[1]).toMatch(/^  1\. [A-Z]/);
-    expect(one.out.at(-1)).toBe(BOOK.credit.text);
+    expect(one.out.at(-1)).toBe(`${BOOK.credit.text} Run bkt licences for the terms.`);
     const none = backend([]);
     const hint = io();
     await expect(learnPath(none.b, null, [], false, hint, BOOK.credit.text)).rejects.toThrow("no decks");

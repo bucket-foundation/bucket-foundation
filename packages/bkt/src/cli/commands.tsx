@@ -404,6 +404,11 @@ export async function execute(inv: Invocation): Promise<number> {
     return EXIT.ok;
   }
   if (name === "doctor") return doctor(inv, json);
+  if (name === "licences") {
+    const l = wordBook().licence;
+    for (const line of [l.credit.text, l.changes, `${l.title}: ${l.credit.licenceHref}`, "", l.text.trimEnd()]) console.log(line);
+    return EXIT.ok;
+  }
   if (name === "search") return search(inv, json);
   if (name === "canon show") return canonShow(inv, json);
   if (name === "atlas frontier") {

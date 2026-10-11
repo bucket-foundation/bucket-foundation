@@ -1482,3 +1482,13 @@ table.columns thead th {
   font-weight: 600;
   text-transform: capitalize;
 }
+
+.concept-word + .concept-word {
+  margin-top: 10px;
+}
+
+.licence-text {
+  white-space: pre-wrap;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}

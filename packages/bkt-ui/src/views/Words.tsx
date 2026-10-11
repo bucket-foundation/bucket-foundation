@@ -10,6 +10,9 @@ export const PICK_SECOND = "Pick a second language in Settings to see words side
 export const NO_WORD_QUESTIONS = "Bucket has no question for these words yet.";
 export const IN_REVIEW = "These words are now in your review schedule.";
 export const WORDS_FAILED = "Word lessons did not load.";
+export const LESSON_ONLY = "lesson only";
+export const LESSON_ONLY_NOTE = "A word marked lesson only shares its concept with another word, so the quiz leaves it out.";
+export const LICENCE_LINK = "Licence and changes";
 
 export function WordAttribution({ credit }: { credit: WordCredit }) {
   return (
@@ -26,6 +29,8 @@ export function WordAttribution({ credit }: { credit: WordCredit }) {
       <a href={credit.licenceHref} target="_blank" rel="noreferrer noopener">
         {credit.licence}
       </a>
+      {" · "}
+      <a href={href({ name: "licence" })}>{LICENCE_LINK}</a>
     </p>
   );
 }
@@ -64,6 +69,7 @@ export function WordCard({ w }: { w: LessonWord }) {
         <WordForm w={w} big />
         <Ipa ipa={w.ipa} />
         <span className="tag ghost">{w.pos}</span>
+        {!w.quiz && <span className="tag ghost">{LESSON_ONLY}</span>}
       </header>
       <p className="word-meaning" dir="ltr">
         <InlineMath text={w.meaning} />
@@ -84,7 +90,7 @@ export function WordCard({ w }: { w: LessonWord }) {
       {w.others.length > 0 && (
         <div className="word-others" role="group" aria-label="the same idea in your other languages">
           {w.others.map((o) => (
-            <div key={o.lang} className="word-other">
+            <div key={`${o.lang}:${o.word}`} className="word-other">
               <span className="muted small">{o.name}</span>
               <WordForm w={o} />
               <Ipa ipa={o.ipa} />
@@ -223,7 +229,7 @@ export function WordDeckView({ api, deck }: { api: Pick<Api, "wordLessons">; dec
       <header className="head">
         <h1>{d.name} word lessons</h1>
         <p className="muted">
-          {d.started} of {d.words} words started · {d.due} due
+          {d.words} words · {d.started} of {d.quiz} quiz words started · {d.due} due
         </p>
         <p className="muted small">
           <a href={href({ name: "learn" })}>Learn</a> · <a href={href({ name: "concepts" })}>By concept</a>
@@ -240,7 +246,7 @@ export function WordDeckView({ api, deck }: { api: Pick<Api, "wordLessons">; dec
               {l.words.join(" · ")}
             </span>
             <span className="deck-meta">
-              {l.started} of {l.words.length} started
+              {l.words.length} words · {l.started} of {l.quiz} quiz words started
             </span>
           </a>
         ))}
@@ -276,9 +282,10 @@ export function WordLessonView({ api, deck, n }: { api: Pick<Api, "wordLesson"> 
         <>
           <div className="word-cards">
             {value.words.map((w) => (
-              <WordCard key={w.concept} w={w} />
+              <WordCard key={`${w.concept}:${w.word}`} w={w} />
             ))}
           </div>
+          {value.words.some((w) => !w.quiz) && <p className="muted small">{LESSON_ONLY_NOTE}</p>}
           <button className="primary" onClick={() => setQuiz(true)}>
             Quiz me on these words
           </button>
@@ -289,14 +296,47 @@ export function WordLessonView({ api, deck, n }: { api: Pick<Api, "wordLesson"> 
   );
 }
 
-function ConceptCell({ w }: { w: WordView | null }) {
-  if (!w) return <td className="muted">no checked word</td>;
+function ConceptCell({ words }: { words: WordView[] }) {
+  if (words.length === 0) return <td className="muted">no checked word</td>;
   return (
     <td>
-      <WordForm w={w} big />
-      <Ipa ipa={w.ipa} />
-      <Etymology text={w.etymology} />
+      {words.map((w) => (
+        <div key={w.word} className="concept-word">
+          <WordForm w={w} big />
+          <Ipa ipa={w.ipa} />
+          <Etymology text={w.etymology} />
+        </div>
+      ))}
     </td>
+  );
+}
+
+export function WordLicenceView({ api }: { api: Pick<Api, "wordLicence"> }) {
+  const { value, error } = useLoad(() => api.wordLicence(), [api]);
+  if (error) return <p className="error">{error}</p>;
+  if (!value) return <p className="muted">Loading the licence…</p>;
+  return (
+    <section>
+      <header className="head">
+        <h1>Word list licence</h1>
+        <p className="muted small">
+          <a href={href({ name: "learn" })}>Learn</a>
+        </p>
+      </header>
+      <article className="panel card">
+        <p>{value.credit.text}</p>
+        <p>{value.changes}</p>
+        <p>
+          <a href={value.credit.licenceHref} target="_blank" rel="noreferrer noopener">
+            {value.title}
+          </a>
+        </p>
+        <details className="fine">
+          <summary>Full licence text</summary>
+          <pre className="licence-text">{value.text}</pre>
+        </details>
+      </article>
+    </section>
   );
 }
 
@@ -348,8 +388,8 @@ export function WordConceptsView({ api, page }: { api: Pick<Api, "wordConcepts">
                         {r.pos} · {r.theme}
                       </span>
                     </th>
-                    {r.words.map((w, i) => (
-                      <ConceptCell key={value.languages[i].code} w={w} />
+                    {r.words.map((words, i) => (
+                      <ConceptCell key={value.languages[i].code} words={words} />
                     ))}
                   </tr>
                 ))}

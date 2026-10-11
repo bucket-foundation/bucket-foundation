@@ -1,7 +1,7 @@
-import type { ConceptPage, LessonPage, LessonWord, WordCredit, WordDecks, WordLessons, WordView } from "../api";
+import type { ConceptPage, LessonPage, LessonWord, WordCredit, WordDecks, WordLessons, WordLicence, WordView } from "../api";
 
 export const WORD_CREDIT: WordCredit = {
-  text: "Words, definitions, IPA and etymology from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0. Full entries at en.wiktionary.org.",
+  text: "Words, definitions, IPA and etymology from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, shortened and filtered by Bucket. Full entries at en.wiktionary.org.",
   licence: "CC-BY-SA 3.0",
   licenceHref: "https://creativecommons.org/licenses/by-sa/3.0/",
   href: "https://en.wiktionary.org",
@@ -21,6 +21,7 @@ const view = (lang: string, name: string, dir: "rtl" | "ltr", script: WordView["
   senses: [],
   etymology: "",
   href: `https://en.wiktionary.org/wiki/${encodeURIComponent(word)}`,
+  quiz: true,
 });
 
 export const SCRIPT_WORDS: WordView[] = [
@@ -43,13 +44,21 @@ const HAND: LessonWord = {
   theme: "Body",
   others: [view("ar", "Arabic", "rtl", "arabic", "يد", "jad", "hand"), view("hi", "Hindi", "ltr", "devanagari", "हाथ", "ɦɑːt̪ʰ", "hand")],
 };
-const EYE: LessonWord = { ...view("de", "German", "ltr", "latin", "Auge", "ˈaʊ̯ɡə", "eye"), meaning: "eye", theme: "Body", others: [] };
+const EYE: LessonWord = { ...view("de", "German", "ltr", "latin", "Auge", "ˈaʊ̯ɡə", "eye"), meaning: "eye", theme: "Body", others: [], quiz: false };
+const PALM: WordView = { ...view("ar", "Arabic", "rtl", "arabic", "كف", "kaff", "hand"), quiz: false };
 
-const DECK = { id: "words-de", lang: "de", name: "German", dir: "ltr" as const, words: 37, lessons: 6, started: 2, due: 1 };
+export const WORD_LICENCE: WordLicence = {
+  credit: WORD_CREDIT,
+  changes: "Changes made by Bucket: the pack keeps the words that pass its checks. Bucket offers the changed word list under the same licence.",
+  title: "Creative Commons CC-BY-SA 3.0",
+  text: "Creative Commons Legal Code\n\nAttribution-ShareAlike 3.0 Unported\n\nLicense text.",
+};
 
-export const WORD_DECKS: WordDecks = { decks: [DECK, { id: "words-ar", lang: "ar", name: "Arabic", dir: "rtl", words: 29, lessons: 5, started: 0, due: 0 }], chosen: ["de", "ar", "hi"], credit: WORD_CREDIT };
+const DECK = { id: "words-de", lang: "de", name: "German", dir: "ltr" as const, words: 41, quiz: 37, lessons: 6, started: 2, due: 1 };
+
+export const WORD_DECKS: WordDecks = { decks: [DECK, { id: "words-ar", lang: "ar", name: "Arabic", dir: "rtl", words: 30, quiz: 29, lessons: 5, started: 0, due: 0 }], chosen: ["de", "ar", "hi"], credit: WORD_CREDIT };
 export const NO_WORD_DECKS: WordDecks = { decks: [], chosen: [], credit: WORD_CREDIT };
-export const WORD_LESSON_LIST: WordLessons = { deck: DECK, lessons: [{ n: 1, title: "Body", concepts: ["hand", "eye"], words: ["Hand", "Auge"], started: 2 }, { n: 2, title: "Mixed words", concepts: ["water"], words: ["Wasser"], started: 0 }], credit: WORD_CREDIT };
+export const WORD_LESSON_LIST: WordLessons = { deck: DECK, lessons: [{ n: 1, title: "Body", concepts: ["hand", "eye"], words: ["Hand", "Auge"], quiz: 1, started: 1 }, { n: 2, title: "Mixed words", concepts: ["water"], words: ["Wasser"], quiz: 1, started: 0 }], credit: WORD_CREDIT };
 export const LESSON_PAGE: LessonPage & { credit: WordCredit } = { deck: DECK, n: 1, of: 2, title: "Body", words: [HAND, EYE], credit: WORD_CREDIT };
 export const CONCEPT_PAGE: ConceptPage & { credit: WordCredit } = {
   page: 1,
@@ -57,8 +66,8 @@ export const CONCEPT_PAGE: ConceptPage & { credit: WordCredit } = {
   concepts: 12,
   languages: [{ code: "de", name: "German", dir: "ltr" }, { code: "ar", name: "Arabic", dir: "rtl" }, { code: "hi", name: "Hindi", dir: "ltr" }],
   rows: [
-    { concept: "hand", theme: "Body", pos: "noun", words: [HAND, HAND.others[0], HAND.others[1]] },
-    { concept: "eye", theme: "Body", pos: "noun", words: [EYE, null, null] },
+    { concept: "hand", theme: "Body", pos: "noun", words: [[HAND], [HAND.others[0], PALM], [HAND.others[1]]] },
+    { concept: "eye", theme: "Body", pos: "noun", words: [[EYE], [], []] },
   ],
   credit: WORD_CREDIT,
 };

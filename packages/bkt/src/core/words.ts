@@ -41,6 +41,13 @@ export function themeTitle(concept: string): string {
   return THEMES[themeIndex(concept)].title;
 }
 
+export interface WordLicence {
+  credit: WordCredit;
+  changes: string;
+  title: string;
+  text: string;
+}
+
 export interface WordCredit {
   text: string;
   licence: string;
@@ -62,6 +69,7 @@ export interface WordView {
   senses: string[];
   etymology: string;
   href: string;
+  quiz: boolean;
 }
 
 export interface LessonWord extends WordView {
@@ -75,6 +83,7 @@ export interface WordDeck {
   name: string;
   dir: Dir;
   words: number;
+  quiz: number;
   lessons: number;
 }
 
@@ -82,6 +91,7 @@ export interface WordLesson {
   n: number;
   title: string;
   concepts: string[];
+  quiz: number;
 }
 
 export interface LessonPage {
@@ -96,7 +106,7 @@ export interface ConceptRow {
   concept: string;
   theme: string;
   pos: string;
-  words: (WordView | null)[];
+  words: WordView[][];
 }
 
 export interface ConceptPage {
@@ -108,7 +118,7 @@ export interface ConceptPage {
 }
 
 export function wordSetFromPack(pack: WordPack): WordSet {
-  const cells: WordCell[] = pack.words.map((w) => ({ lang: w.lang, concept: w.concept, pos: w.pos, word: w.word, folded: fold(w.word), gloss: w.gloss, ipa: w.ipa, script: w.script, shared: w.shared, senseWords: new Set(w.senseWords) }));
+  const cells: WordCell[] = pack.words.filter((w) => w.quiz).map((w) => ({ lang: w.lang, concept: w.concept, pos: w.pos, word: w.word, folded: fold(w.word), gloss: w.gloss, ipa: w.ipa, script: w.script, shared: w.shared, senseWords: new Set(w.senseWords) }));
   const byLang: Record<string, WordCell[]> = {};
   const byConcept: Record<string, WordCell[]> = {};
   for (const c of cells) {
@@ -121,7 +131,7 @@ export function wordSetFromPack(pack: WordPack): WordSet {
 export function wordCredit(pack: Pick<WordPack, "attribution" | "licenceUrl">): WordCredit {
   const a = pack.attribution;
   return {
-    text: `Words, definitions, IPA and etymology from ${a.data}, ${a.license}. Full entries at ${a.wiktionary_url.replace(/^https:\/\//, "")}.`,
+    text: `Words, definitions, IPA and etymology from ${a.data}, ${a.license}, shortened and filtered by Bucket. Full entries at ${a.wiktionary_url.replace(/^https:\/\//, "")}.`,
     licence: a.license,
     licenceHref: pack.licenceUrl,
     href: a.wiktionary_url,
@@ -142,23 +152,42 @@ function balanced<T>(xs: readonly T[], size: number): T[][] {
 }
 
 const pairKey = (lang: string, concept: string) => `${lang}:${concept}`;
+const rowKey = (lang: string, concept: string, word: string) => `${lang}:${concept}:${word}`;
 
 export class WordBook {
   readonly set: WordSet;
   readonly credit: WordCredit;
   readonly version: string;
+  readonly licence: WordLicence;
   private rows = new Map<string, PackWord>();
+  private byLang: Record<string, WordCell[]> = {};
+  private byPair = new Map<string, WordCell[]>();
   private plans = new Map<string, { lesson: WordLesson; cells: WordCell[] }[]>();
 
   constructor(pack: WordPack) {
     this.set = wordSetFromPack(pack);
     this.credit = wordCredit(pack);
     this.version = pack.version;
-    for (const w of pack.words) this.rows.set(pairKey(w.lang, w.concept), w);
+    this.licence = { credit: this.credit, changes: pack.changes, title: `Creative Commons ${pack.attribution.license}`, text: pack.licenceText };
+    const checked = new Map(this.set.cells.map((c) => [pairKey(c.lang, c.concept), c]));
+    for (const w of pack.words) {
+      this.rows.set(rowKey(w.lang, w.concept, w.word), w);
+      const cell: WordCell = w.quiz ? checked.get(pairKey(w.lang, w.concept))! : { lang: w.lang, concept: w.concept, pos: w.pos, word: w.word, folded: fold(w.word), gloss: "", ipa: w.ipa, script: w.script, shared: false, senseWords: new Set() };
+      (this.byLang[w.lang] ??= []).push(cell);
+      this.byPair.set(pairKey(w.lang, w.concept), [...(this.byPair.get(pairKey(w.lang, w.concept)) ?? []), cell]);
+    }
+  }
+
+  inQuiz(cell: WordCell): boolean {
+    return this.rows.get(rowKey(cell.lang, cell.concept, cell.word))?.quiz === true;
+  }
+
+  words(lang: string): WordCell[] {
+    return this.byLang[lang] ?? [];
   }
 
   languages(): string[] {
-    return this.set.languages.filter((l) => (this.set.byLang[l] ?? []).length > 0);
+    return this.set.languages.filter((l) => this.words(l).length > 0);
   }
 
   known(chosen: readonly string[]): string[] {
@@ -174,7 +203,10 @@ export class WordBook {
   private plan(lang: string): { lesson: WordLesson; cells: WordCell[] }[] {
     const cached = this.plans.get(lang);
     if (cached) return cached;
-    const cells = [...(this.set.byLang[lang] ?? [])].sort((a, b) => themeIndex(a.concept) - themeIndex(b.concept) || a.concept.localeCompare(b.concept));
+    const cells = this.words(lang)
+      .map((c, i) => ({ c, i }))
+      .sort((a, b) => themeIndex(a.c.concept) - themeIndex(b.c.concept) || a.c.concept.localeCompare(b.c.concept) || a.i - b.i)
+      .map((x) => x.c);
     const groups: { title: string; cells: WordCell[] }[] = [];
     const loose: WordCell[] = [];
     THEMES.forEach((t, i) => {
@@ -183,13 +215,13 @@ export class WordBook {
       else balanced(own, LESSON_WORDS).forEach((part, k, all) => groups.push({ title: all.length > 1 ? `${t.title} ${k + 1}` : t.title, cells: part }));
     });
     balanced(loose, LESSON_WORDS).forEach((part, k, all) => groups.push({ title: all.length > 1 ? `${THEMES[MIXED_INDEX].title} ${k + 1}` : THEMES[MIXED_INDEX].title, cells: part }));
-    const out = groups.map((g, i) => ({ lesson: { n: i + 1, title: g.title, concepts: g.cells.map((c) => c.concept) }, cells: g.cells }));
+    const out = groups.map((g, i) => ({ lesson: { n: i + 1, title: g.title, concepts: g.cells.map((c) => c.concept), quiz: g.cells.filter((c) => this.inQuiz(c)).length }, cells: g.cells }));
     this.plans.set(lang, out);
     return out;
   }
 
   deck(lang: string): WordDeck {
-    return { id: `${WORD_DECK_PREFIX}${lang}`, lang, name: this.set.names[lang], dir: languageDir(lang), words: (this.set.byLang[lang] ?? []).length, lessons: this.plan(lang).length };
+    return { id: `${WORD_DECK_PREFIX}${lang}`, lang, name: this.set.names[lang], dir: languageDir(lang), words: this.words(lang).length, quiz: (this.set.byLang[lang] ?? []).length, lessons: this.plan(lang).length };
   }
 
   decks(chosen: readonly string[]): WordDeck[] {
@@ -205,7 +237,7 @@ export class WordBook {
   }
 
   view(cell: WordCell): WordView {
-    const row = this.rows.get(pairKey(cell.lang, cell.concept))!;
+    const row = this.rows.get(rowKey(cell.lang, cell.concept, cell.word))!;
     return {
       lang: cell.lang,
       name: this.set.names[cell.lang],
@@ -219,11 +251,12 @@ export class WordBook {
       senses: row.senses,
       etymology: row.etymology,
       href: `${this.set.wiktionaryUrl}/wiki/${encodeURIComponent(cell.word)}`,
+      quiz: row.quiz,
     };
   }
 
-  private inLanguage(concept: string, lang: string): WordCell | undefined {
-    return (this.set.byConcept[concept] ?? []).find((c) => c.lang === lang);
+  private inLanguage(concept: string, lang: string): WordCell[] {
+    return this.byPair.get(pairKey(lang, concept)) ?? [];
   }
 
   lesson(lang: string, n: number, chosen: readonly string[]): LessonPage | null {
@@ -233,18 +266,15 @@ export class WordBook {
     const words = part.cells.map((c): LessonWord => ({
       ...this.view(c),
       theme: themeTitle(c.concept),
-      others: others.flatMap((l) => {
-        const o = this.inLanguage(c.concept, l);
-        return o ? [this.view(o)] : [];
-      }),
+      others: others.flatMap((l) => this.inLanguage(c.concept, l).map((o) => this.view(o))),
     }));
     return { deck: this.deck(lang), n, of: this.plan(lang).length, title: part.lesson.title, words };
   }
 
   private conceptOrder(chosen: readonly string[]): string[] {
     const langs = this.known(chosen);
-    const cover = (c: string) => langs.filter((l) => this.inLanguage(c, l)).length;
-    return Object.keys(this.set.byConcept)
+    const cover = (c: string) => langs.filter((l) => this.inLanguage(c, l).length > 0).length;
+    return Array.from(new Set(Array.from(this.rows.values(), (w) => w.concept)))
       .filter((c) => cover(c) > 0)
       .sort((a, b) => cover(b) - cover(a) || themeIndex(a) - themeIndex(b) || a.localeCompare(b));
   }
@@ -258,24 +288,21 @@ export class WordBook {
       concept,
       theme: themeTitle(concept),
       pos: POS_NAMES[this.set.conceptPos[concept]] ?? this.set.conceptPos[concept] ?? "",
-      words: langs.map((l) => {
-        const c = this.inLanguage(concept, l);
-        return c ? this.view(c) : null;
-      }),
+      words: langs.map((l) => this.inLanguage(concept, l).map((c) => this.view(c))),
     }));
     return { page: at, of, concepts: order.length, languages: langs.map((l) => ({ code: l, name: this.set.names[l], dir: languageDir(l) })), rows };
   }
 
   conceptCells(chosen: readonly string[], page: number): WordCell[] {
     const langs = this.known(chosen);
-    return this.concepts(chosen, page).rows.flatMap((r) => langs.flatMap((l) => this.inLanguage(r.concept, l) ?? []));
+    return this.concepts(chosen, page).rows.flatMap((r) => langs.flatMap((l) => this.inLanguage(r.concept, l)));
   }
 
   questions(cells: readonly WordCell[], chosen: readonly string[], seed: string): SampledQuestion[] {
     const prefer = this.known(chosen);
     const out: SampledQuestion[] = [];
     const seen = new Set<string>();
-    cells.forEach((cell, i) => {
+    cells.filter((c) => this.inQuiz(c)).forEach((cell, i) => {
       const makers = languageMakers(this.set, [cell.lang], (c) => c === cell, prefer);
       for (let k = 0; k < LANGUAGE_FORMS.length; k++) {
         const form = LANGUAGE_FORMS[(i + k) % LANGUAGE_FORMS.length];
@@ -291,7 +318,7 @@ export class WordBook {
   }
 
   studyCells(lang: string, size: number, started: ReadonlySet<string>, due: ReadonlySet<string>): WordCell[] {
-    const all = this.plan(lang).flatMap((p) => p.cells);
+    const all = this.plan(lang).flatMap((p) => p.cells).filter((c) => this.inQuiz(c));
     const rank = (c: WordCell) => (due.has(wordFactId(c)) ? 0 : started.has(wordFactId(c)) ? 2 : 1);
     return all.map((c, i) => ({ c, i })).sort((a, b) => rank(a.c) - rank(b.c) || a.i - b.i).slice(0, size).map((x) => x.c);
   }

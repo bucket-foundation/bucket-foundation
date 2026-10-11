@@ -87,7 +87,7 @@ export class WordSession {
     const p = this.progress();
     const lessons = this.book.lessons(lang).map((l): WordLessonProgress => {
       const cells = this.book.lessonCells(lang, l.n);
-      return { ...l, words: cells.map((c) => c.word), started: cells.filter((c) => p.started.has(wordFactId(c))).length };
+      return { ...l, words: cells.map((c) => c.word), started: cells.filter((c) => this.book.inQuiz(c) && p.started.has(wordFactId(c))).length };
     });
     return { deck: this.withProgress(this.book.deck(lang), p), lessons };
   }
@@ -155,6 +155,7 @@ function whole(raw: string | null, fallback: number | undefined, max: number): n
 export function wordRoutes(session: WordSession): Record<string, Route> {
   const credit = session.book.credit;
   return {
+    "GET /local/words/licence": () => json(session.book.licence),
     "GET /local/words/decks": () => guarded(() => ({ decks: session.decks(), chosen: session.chosen(), credit })),
     "GET /local/words/lessons": (_req, url) => guarded(() => ({ ...session.lessons(url.searchParams.get("deck")), credit })),
     "GET /local/words/lesson": (_req, url) => guarded(() => ({ ...session.lesson(url.searchParams.get("deck"), whole(url.searchParams.get("n"), 1, 9999)!), credit })),

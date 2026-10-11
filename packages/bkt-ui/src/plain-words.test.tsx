@@ -9,7 +9,7 @@ import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type Da
 import REPORT from "./fixtures/analysis-report.json";
 import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
-import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_QUESTION } from "./fixtures/word-lessons";
+import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_LICENCE, WORD_QUESTION } from "./fixtures/word-lessons";
 
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
 mock.module("@/components/research-os/views/SoftwareAtlas", () => ({ default: () => <div>software</div> }));
@@ -240,6 +240,7 @@ function empty(): Stub {
     settings: async () => ({ version: "0.5.0", build: null, dataDir: "/data/bucket", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
+    wordLicence: async () => WORD_LICENCE,
     wordDecks: async () => NO_WORD_DECKS,
     wordLessons: async () => ({ ...WORD_LESSON_LIST, lessons: [] }),
     wordLesson: () => Promise.reject(new ApiError("no such lesson", 404)),
@@ -326,6 +327,7 @@ function failing(): Stub {
     workStatus: fail("git could not read that folder", 400),
     settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
+    wordLicence: fail("data key does not match", 500),
     wordDecks: fail("data key does not match", 500),
     wordLessons: fail("unknown language; run bkt learn path for the list", 404),
     wordLesson: fail("no such lesson", 404),
@@ -378,7 +380,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "settings" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 

@@ -70,7 +70,7 @@ export function LearnHome({ api }: { api: Api }) {
                   <span style={{ width: `${Math.round((100 * d.started) / Math.max(1, d.words))}%` }} />
                 </span>
                 <span className="deck-meta">
-                  {d.started} of {d.words} words started · {d.lessons} word lessons
+                  {d.started} of {d.quiz} quiz words started · {d.words} words in {d.lessons} word lessons
                   {d.due > 0 && <b className="pill">{d.due} due</b>}
                 </span>
               </a>
