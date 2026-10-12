@@ -23,11 +23,21 @@ export interface WorkspaceItem {
   explore: { data: string; modes: string[] } | null;
 }
 
+export interface RowSetInfo {
+  id: string;
+  label: string;
+  licence: string;
+  modes: string[];
+}
+
+export const GRAPH_MODES = ["graph"] as const;
+export const MAP_MODES = ["timeline", "map", "earth", "globe"] as const;
+
 export interface WorkspaceSources {
   research: Pick<Research, "list" | "detail">;
   changedPaths: (slug: string) => string[];
   datasets: () => DatasetInfo[];
-  rowSets: () => string[];
+  rowSets: () => RowSetInfo[];
 }
 
 function terms(info: DatasetInfo): string {
@@ -58,7 +68,7 @@ function fromOutputs(src: WorkspaceSources, type: "tables" | "records"): Workspa
 }
 
 function fromDatasets(src: WorkspaceSources): WorkspaceItem[] {
-  const rowSets = new Set(src.rowSets());
+  const rowSets = new Set(src.rowSets().map((s) => s.id));
   return src
     .datasets()
     .filter((info) => DATASET.test(info.id))
@@ -96,7 +106,19 @@ function figuresAndPapers(src: WorkspaceSources, type: "figures" | "papers"): Wo
   return items;
 }
 
+function fromRowSets(src: WorkspaceSources, type: "graphs" | "maps"): WorkspaceItem[] {
+  const wanted: readonly string[] = type === "graphs" ? GRAPH_MODES : MAP_MODES;
+  const items: WorkspaceItem[] = [];
+  for (const set of src.rowSets()) {
+    const modes = wanted.filter((m) => set.modes.includes(m));
+    if (!DATASET.test(set.id) || modes.length === 0) continue;
+    items.push({ type, key: `rowset:${set.id}:all`, title: set.label, from: { kind: "rowset", id: set.id, title: set.label }, origin: "shipped", licence: set.licence, changed: false, opens: `#/workspace/${type}/${set.id}`, explore: { data: set.id, modes } });
+  }
+  return items;
+}
+
 export function workspaceItems(src: WorkspaceSources, type: WorkspaceType): WorkspaceItem[] {
+  if (type === "graphs" || type === "maps") return fromRowSets(src, type);
   if (type === "figures" || type === "papers") return figuresAndPapers(src, type);
   if (type === "tables") return fromOutputs(src, "tables");
   if (type === "records") return [...fromOutputs(src, "records"), ...fromDatasets(src)];

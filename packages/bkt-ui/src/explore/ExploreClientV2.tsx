@@ -11,6 +11,7 @@ import { cutLine, drawableModes, expandRows, verifiedLine, type ExpandedRows, ty
 import type { FoundingCard } from "@/lib/explore/founding";
 import { unreadableScript } from "@/lib/explore/rank";
 import { MODES, modeById, ROW_MODE_IDS, type DesktopLayout } from "./modesV2";
+import { MARK_CAP, MARK_CAP_LINE, readMarks, toggleMark, writeMarks } from "../selection";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
 import { ORIGIN_LABEL, type AdvisorOrigin } from "@/lib/explore/advisor-origin";
@@ -135,6 +136,13 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
   const [structure, setStructure] = useState<{ text: string; format: "pdb" | "cif"; name: string } | null>(null);
   const [landmask, setLandmask] = useState<Landmask | null>(null);
   const saved = useSaved();
+  const [marked, setMarked] = useState<string[]>([]);
+
+  useEffect(() => {
+    setMarked(dataId === DEFAULT_DATASET ? [] : readMarks(dataId));
+  }, [dataId]);
+
+  const mark = (id: string | null) => setMarked((now) => writeMarks(dataId, id === null ? [] : toggleMark(now, id)));
 
   useEffect(() => {
     const m = initial?.mode ?? new URLSearchParams(window.location.search).get("mode");
@@ -571,6 +579,15 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
                 </button>
               )}
             </p>
+            {marked.length > 0 && (
+              <p data-testid="rows-marked">
+                {marked.length === 1 ? "1 row is marked." : `${marked.length.toLocaleString("en-US")} rows are marked.`}
+                {marked.length >= MARK_CAP && ` ${MARK_CAP_LINE}`}
+                <button data-testid="rows-unmark" className="underline ml-2" onClick={() => mark(null)}>
+                  Clear the marks
+                </button>
+              </p>
+            )}
             {cutLine(rows.packed.cut) && <p data-testid="rows-cut">{cutLine(rows.packed.cut)}</p>}
             {rows.packed.frame.edgeStated && <p data-testid="rows-edges">{EDGE_LINE}</p>}
             {verifiedLine(rows.packed.frame) && <p data-testid="rows-verified">{verifiedLine(rows.packed.frame)}</p>}
@@ -633,7 +650,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
             {visible.map((h) => {
               const fields = citeFieldsFromHit(h);
               return (
-              <li key={h.id} data-testid="explore-result">
+              <li key={h.id} data-testid="explore-result" data-marked={marked.includes(h.id) ? "yes" : undefined}>
                 <button
                   onClick={() => select(h.id)}
                   className="w-full text-left border hairline px-3 py-2"
@@ -643,6 +660,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
                     {kindLine(h)}
                   </span>
                   <span className="block">{h.title}</span>
+                  {marked.includes(h.id) && <span className="block text-xs uppercase" style={{ ...mono, color: "var(--gold, #D9A43A)" }}>Marked</span>}
                   <span className="block text-sm" style={{ color: "var(--parchment-dim)" }}>{h.subtitle}</span>
                   {h.type === "excerpt" && h.fragments?.map((f) => (
                     <span key={f.id} className="block text-sm mt-1">
@@ -686,6 +704,13 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
                       <dd className="inline">{rows.packed.attributions[rows.packed.si[rows.expanded.frame.at[current.id]]]?.source}</dd>
                     </div>
                   </dl>
+                )}
+                {current.type === "row" && rows && (
+                  <p className="text-sm mt-3">
+                    <button data-testid="row-mark" className="underline" aria-pressed={marked.includes(current.id)} disabled={!marked.includes(current.id) && marked.length >= MARK_CAP} onClick={() => mark(current.id)}>
+                      {marked.includes(current.id) ? "Unmark this row" : "Mark this row"}
+                    </button>
+                  </p>
                 )}
                 {currentFields && <ResultActions key={current.id} fields={currentFields} saved={saved} />}
                 {current.url && !isSourceHit(current) && (
