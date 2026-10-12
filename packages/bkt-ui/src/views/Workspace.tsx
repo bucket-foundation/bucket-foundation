@@ -90,7 +90,7 @@ function ItemPane({ api, type, tab }: { api: WorkspaceApi; type: BuiltType; tab:
       <div className="workspace-item-head">
         <h2>{table?.label ?? set?.label ?? figure?.caption ?? d.manifest.title}</h2>
         <a className="link" href={href({ name: "research", slug: d.slug, tab: RESEARCH_TAB[type] })}>
-          From {d.manifest.title}
+          {type === "papers" ? "Open the whole output" : `From ${d.manifest.title}`}
         </a>
       </div>
       {table && <TablePane api={api} d={d} table={table} />}
