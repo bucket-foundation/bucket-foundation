@@ -1,6 +1,6 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "bun:test";
-import type { PackedFile, ResearchDetail, ResearchRow } from "./api";
+import type { PackedFile, ResearchDetail, ResearchRow, TablePage } from "./api";
 import { href, parseHash } from "./router";
 import type { EngineImage } from "./use-engine-image";
 import type { ResearchApi } from "./views/Research";
@@ -109,17 +109,61 @@ const STAFF: ResearchDetail = {
   manifest: { ...V1.manifest, slug: "solver-gap-engine", title: "Solver Gap Engine", status: "private", kind: "memo", figures: [], source_path: "reports/2026-09-30-solver-gap-engine.md", tool: { path: "tools/solvability-atlas", readme: "tools/solvability-atlas/README.md", audience: "staff" } },
 };
 
-function fakeApi(over: Partial<ResearchApi> = {}): ResearchApi & { images: string[] } {
+const SOURCED_COLUMNS = ["id", "name", "branch", "source", "licence", "statement"];
+const SOURCED_ROWS = Array.from({ length: 5138 }, (_, i) => [`row-${i}`, i === 4000 ? "Riemann hypothesis" : `Problem ${String(i).padStart(4, "0")}`, i % 2 ? "physics" : "mathematics", `https://example.org/${i}`, i % 3 ? "Apache-2.0" : "CC BY-SA 4.0", `Statement ${i}`]);
+const RECORD_COLUMNS = ["id", "title", "branch", "level", "posed", "resolved", "path"];
+const RECORD_ROWS = [
+  ["goldbach", "Goldbach conjecture", "mathematics", "4", "1742", "", "tools/solvability-atlas/records/goldbach.json"],
+  ["riemann", "Riemann hypothesis", "mathematics", "5", "1859", "", "tools/solvability-atlas/records/riemann.json"],
+];
+const RIEMANN = {
+  schema: "bucket.solvability-atlas.record/v1",
+  id: "riemann",
+  title: "Riemann hypothesis",
+  statement: { text: "Every nontrivial zero of the zeta function has real part one half.", licence: "CC BY-SA 4.0" },
+  aliases: [],
+  industries: ["cryptography", "number theory"],
+  posed: 1859,
+  resolved: null,
+  key_works: [
+    { title: "On the Number of Primes Less Than a Given Magnitude", year: 1859 },
+    { title: "The Riemann Hypothesis and Hilbert's Tenth Problem", year: 1965 },
+  ],
+};
+
+function pageFrom(columns: string[], all: string[][], pinned: string[], query: { page?: number; q?: string; sort?: string }): TablePage {
+  let index = all.map((_, i) => i);
+  if (query.q) index = index.filter((i) => all[i].some((c) => c.toLowerCase().includes(query.q!.toLowerCase())));
+  if (query.sort) {
+    const down = query.sort.startsWith("-");
+    const at = columns.indexOf(down ? query.sort.slice(1) : query.sort);
+    index.sort((a, b) => (all[a][at] < all[b][at] ? -1 : all[a][at] > all[b][at] ? 1 : a - b) * (down ? -1 : 1));
+  }
+  const page = query.page ?? 1;
+  const shown = index.slice((page - 1) * 50, page * 50);
+  return { columns, rows: shown.map((i) => all[i]), index: shown, total: index.length, page, size: 50, pinned, truncated: false };
+}
+
+function fakeApi(over: Partial<ResearchApi> = {}): ResearchApi & { images: string[]; asked: { id: string; page?: number; q?: string; sort?: string }[] } {
   const images: string[] = [];
+  const asked: { id: string; page?: number; q?: string; sort?: string }[] = [];
   return {
     images,
+    asked,
+    researchTable: async (_slug, id, query = {}) => {
+      asked.push({ id, ...query });
+      if (id === "records") return pageFrom(RECORD_COLUMNS, RECORD_ROWS, [], query);
+      if (id === "problems-sourced") return pageFrom(SOURCED_COLUMNS, SOURCED_ROWS, ["licence", "source"], query);
+      if (id === "empty") return pageFrom(["id"], [], [], query);
+      return pageFrom(["id", "title", "sim_1"], [["goldbach", "Goldbach conjecture", "0.867"], ["twin", "Twin primes", "0.8"]], [], query);
+    },
     researchList: async () => ({ outputs: ROWS }),
     researchManifest: async (slug) => {
       const d = [V2, V1, STAFF].find((x) => x.slug === slug);
       if (!d) throw new Error("no such output");
       return d;
     },
-    researchText: async (_slug, path) => (path.endsWith("README.md") ? "## Tool\n\nReads $x^2$ rows." : "## Gap\n\nThe **engine** ranks problems."),
+    researchText: async (_slug, path) => (path.endsWith("riemann.json") ? JSON.stringify(RIEMANN, null, 1) : path.endsWith("goldbach.json") ? "[1, 2]" : path.endsWith("README.md") ? "## Tool\n\nReads $x^2$ rows." : "## Gap\n\nThe **engine** ranks problems."),
     image: async (_slug, path) => (images.push(path), DATA_URL),
     ...over,
   };
@@ -142,7 +186,7 @@ async function mount(node: React.ReactElement) {
   return { host, click, settle, unmount: () => act(async () => root.unmount()) };
 }
 
-async function view(api: ResearchApi, slug?: string, tab: "report" | "figures" = "report") {
+async function view(api: ResearchApi, slug?: string, tab: "report" | "figures" | "data" | "records" = "report") {
   const { ResearchView } = await import("./views/Research");
   return mount(<ResearchView api={api} slug={slug} tab={tab} />);
 }
@@ -155,6 +199,8 @@ describe("research routes", () => {
     expect(parseHash("#/research/solvability-frontier")).toEqual({ name: "research", slug: "solvability-frontier", tab: "report" });
     expect(parseHash("#/research/Bad_Slug/report")).toEqual({ name: "research" });
     expect(parseHash("#/research/solvability-frontier/changes")).toEqual({ name: "research" });
+    expect(parseHash("#/research/solvability-frontier/data")).toEqual({ name: "research", slug: "solvability-frontier", tab: "data" });
+    expect(parseHash("#/research/solvability-frontier/records")).toEqual({ name: "research", slug: "solvability-frontier", tab: "records" });
     expect(parseHash("#/research/..%2Fx/report")).toEqual({ name: "research" });
     expect(href({ name: "research" })).toBe("#/research");
     expect(href({ name: "research", slug: "solvability-frontier", tab: "figures" })).toBe("#/research/solvability-frontier/figures");
@@ -195,10 +241,11 @@ describe("research screen", () => {
     expect(rows.length).toBe(2);
     expect(v.host.querySelector(".staff-absent")!.textContent).toBe("Staff data is absent from this build.");
     expect(v.host.querySelectorAll(".research-attributions a").length).toBe(0);
-    expect(Array.from(v.host.querySelectorAll(".seg button")).map((b) => [b.textContent, b.className])).toEqual([["Report", "on"], ["Figures", ""]]);
+    expect(Array.from(v.host.querySelectorAll(".seg button")).map((b) => [b.textContent, b.className])).toEqual([["Report", "on"], ["Data", ""], ["Figures", ""], ["Records", ""]]);
     await v.unmount();
     const one = await view(fakeApi(), "funding-landscape");
     expect(one.host.querySelector(".staff-absent")).toBeNull();
+    expect(Array.from(one.host.querySelectorAll(".seg button")).map((b) => b.textContent)).toEqual(["Report", "Figures"]);
     expect(one.host.querySelector(".research-attributions")).toBeNull();
     expect(one.host.textContent).toContain("Second paragraph.");
     expect(one.host.textContent).toContain("Not stated");
@@ -293,6 +340,161 @@ describe("research screen", () => {
     expect(seen.at(-1)).toEqual({ status: "too-large" });
     expect(calls).toBe(1);
     await d.unmount();
+  });
+});
+
+const FULL: ResearchDetail = {
+  ...V2,
+  staff: true,
+  withheld: 0,
+  manifest: {
+    ...V2.manifest,
+    tables: [
+      { id: "predictions", path: "public/papers/solvability-frontier/data/predictions.csv", format: "csv", label: "Predictions", licence: "CC BY-SA 4.0", audience: "public" },
+      { id: "problems-sourced", path: "tools/solvability-atlas/problems-sourced.tsv", format: "tsv", label: "Sourced problems", licence: "mixed", licence_column: "licence", source_column: "source", audience: "staff" },
+      { id: "empty", path: "tools/solvability-atlas/empty.tsv", format: "tsv", label: "Empty", licence: "MIT", audience: "staff" },
+    ],
+    record_sets: [{ id: "records", dir: "tools/solvability-atlas/records", schema: "bucket.solvability-atlas.record/v1", label: "Problem records", licence: "CC BY-SA 4.0", audience: "staff" }],
+  },
+};
+const PUBLIC: ResearchDetail = { ...FULL, staff: false, withheld: 7, manifest: { ...FULL.manifest, tables: [FULL.manifest.tables![0]], record_sets: [] } };
+const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+describe("research data and records", () => {
+  const cells = (host: Element) => Array.from(host.querySelectorAll(".research-rows tbody tr")).map((tr) => Array.from(tr.querySelectorAll("td")).map((td) => td.textContent));
+  const heads = (host: Element) => Array.from(host.querySelectorAll(".research-rows thead th")).map((th) => th.textContent?.trim());
+  const press = (host: Element, label: string) => Array.from(host.querySelectorAll("button")).find((b) => b.textContent?.trim() === label);
+
+  test("the Data tab has one sub-tab per table and pages 50 rows at a time", async () => {
+    const api = fakeApi({ researchManifest: async () => FULL });
+    const v = await view(api, "solvability-frontier", "data");
+    expect(Array.from(v.host.querySelectorAll(".research-tables button")).map((b) => [b.textContent, b.className])).toEqual([["Predictions", "on"], ["Sourced problems", ""], ["Empty", ""]]);
+    expect(heads(v.host)).toEqual(["id", "title", "sim 1"]);
+    expect(v.host.querySelector(".licence-line")!.textContent).toBe("Licence: CC BY-SA 4.0");
+    await v.click(press(v.host, "Sourced problems"));
+    expect(v.host.querySelector(".licence-line")!.textContent).toBe("Each row carries its own licence and source.");
+    expect(cells(v.host).length).toBe(50);
+    expect(v.host.querySelector('[role="status"]')!.textContent).toBe("1 to 50 of 5,138 rows");
+    expect(v.host.querySelector(".pager .muted")!.textContent).toBe("Page 1 of 103");
+    expect((press(v.host, "Previous") as HTMLButtonElement).disabled).toBe(true);
+    await v.click(press(v.host, "Next"));
+    expect(v.host.querySelector('[role="status"]')!.textContent).toBe("51 to 100 of 5,138 rows");
+    expect(cells(v.host)[0][2]).toBe("row-50");
+    expect(api.asked.at(-1)).toEqual({ id: "problems-sourced", page: 2, q: undefined, sort: undefined });
+    expect(v.host.querySelectorAll(".research-rows tbody tr").length).toBe(50);
+    await v.click(press(v.host, "Empty"));
+    expect(v.host.textContent).toContain("This table holds no rows.");
+    await v.unmount();
+  });
+
+  test("licence and source columns stay pinned", async () => {
+    const v = await view(fakeApi({ researchManifest: async () => FULL }), "solvability-frontier", "data");
+    await v.click(press(v.host, "Sourced problems"));
+    expect(heads(v.host)).toEqual(["licence", "source", "id", "name", "branch", "statement"]);
+    const first = Array.from(v.host.querySelectorAll(".research-rows tbody tr")[0].querySelectorAll("td"));
+    expect(first.map((td) => td.className)).toEqual(["pinned", "pinned", "", "", "", ""]);
+    expect(first.slice(0, 3).map((td) => td.textContent)).toEqual(["CC BY-SA 4.0", "https://example.org/0", "row-0"]);
+    await v.click(press(v.host, "name"));
+    expect(heads(v.host).slice(0, 2)).toEqual(["licence", "source"]);
+    await v.unmount();
+  });
+
+  test("a filter waits a moment, goes back to page one, and a sort flips on a second press", async () => {
+    const api = fakeApi({ researchManifest: async () => FULL });
+    const v = await view(api, "solvability-frontier", "data");
+    await v.click(press(v.host, "Sourced problems"));
+    await v.click(press(v.host, "Next"));
+    const { act } = await import("react");
+    const input = v.host.querySelector("input.search") as HTMLInputElement;
+    expect(input.getAttribute("aria-label")).toBe("Filter Sourced problems");
+    await act(async () => {
+      const set = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")!.set!;
+      set.call(input, "riemann");
+      input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    });
+    const before = api.asked.length;
+    await act(async () => wait(260));
+    await v.settle();
+    expect(api.asked.length).toBe(before + 1);
+    expect(api.asked.at(-1)).toEqual({ id: "problems-sourced", page: 1, q: "riemann", sort: undefined });
+    expect(cells(v.host).map((r) => r[3])).toEqual(["Riemann hypothesis"]);
+    expect(v.host.querySelector('[role="status"]')!.textContent).toBe("1 to 1 of 1 rows");
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")!.set!.call(input, "zzzz");
+      input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    });
+    await act(async () => wait(260));
+    await v.settle();
+    expect(v.host.textContent).toContain("No row matches “zzzz”.");
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, "value")!.set!.call(input, "");
+      input.dispatchEvent(new window.Event("input", { bubbles: true }));
+    });
+    await act(async () => wait(260));
+    await v.settle();
+    await v.click(press(v.host, "name"));
+    expect(api.asked.at(-1)).toMatchObject({ sort: "name", page: 1 });
+    expect(v.host.querySelector('th[aria-sort="ascending"]')!.textContent).toContain("name");
+    await v.click(Array.from(v.host.querySelectorAll("th button")).find((b) => b.textContent?.includes("name")));
+    expect(api.asked.at(-1)).toMatchObject({ sort: "-name", page: 1 });
+    expect(v.host.querySelector('th[aria-sort="descending"]')!.textContent).toContain("name");
+    expect(cells(v.host)[0][3]).toBe("Riemann hypothesis");
+    await v.unmount();
+  });
+
+  test("record list and field view", async () => {
+    const api = fakeApi({ researchManifest: async () => FULL });
+    const v = await view(api, "solvability-frontier", "records");
+    expect(v.host.querySelector(".licence-line")!.textContent).toBe("Problem records. Licence: CC BY-SA 4.0");
+    expect(cells(v.host).map((r) => r[1])).toEqual(["Goldbach conjecture", "Riemann hypothesis"]);
+    expect((v.host.querySelector("input.search") as HTMLInputElement).getAttribute("aria-label")).toBe("Filter Problem records");
+    await v.click(Array.from(v.host.querySelectorAll("td button.link")).find((b) => b.textContent === "Riemann hypothesis"));
+    expect(v.host.querySelector(".research-record h2")!.textContent).toBe("Riemann hypothesis");
+    const fields = Array.from(v.host.querySelectorAll(".research-record > .record-fields > div")).map((div) => div.querySelector("dt")!.textContent);
+    expect(fields).toEqual(["schema", "id", "title", "statement", "aliases", "industries", "posed", "resolved", "key works"]);
+    expect(v.host.querySelectorAll(".record-items > li").length).toBe(2);
+    expect(v.host.textContent).toContain("On the Number of Primes Less Than a Given Magnitude");
+    expect(v.host.textContent).toContain("cryptography, number theory");
+    expect(v.host.querySelector(".record-raw")).toBeNull();
+    await v.click(press(v.host, "Show the stored text"));
+    expect(v.host.querySelector(".record-raw")!.textContent).toBe(JSON.stringify(RIEMANN, null, 1));
+    expect(v.host.querySelector(".research-record > .record-fields")).toBeNull();
+    await v.click(press(v.host, "Show the fields"));
+    expect(v.host.querySelector(".record-raw")).toBeNull();
+    await v.click(press(v.host, "All records"));
+    expect(cells(v.host).length).toBe(2);
+    await v.click(Array.from(v.host.querySelectorAll("td button.link")).find((b) => b.textContent === "Goldbach conjecture"));
+    expect(v.host.querySelector(".research-record .error")!.textContent).toBe("Bucket could not read this record.");
+    expect(press(v.host, "Show the stored text")).toBeUndefined();
+    await v.unmount();
+  });
+
+  test("a public build shows the staff notice", async () => {
+    const api = fakeApi({ researchManifest: async () => PUBLIC });
+    const data = await view(api, "solvability-frontier", "data");
+    expect(data.host.querySelector(".staff-absent")!.textContent).toBe("Staff data is absent from this build.");
+    expect(Array.from(data.host.querySelectorAll(".research-tables button")).map((b) => b.textContent)).toEqual(["Predictions"]);
+    expect(cells(data.host).length).toBe(2);
+    await data.unmount();
+    const records = await view(api, "solvability-frontier", "records");
+    expect(records.host.querySelector(".staff-absent")!.textContent).toBe("Staff data is absent from this build.");
+    expect(records.host.querySelector(".research-rows")).toBeNull();
+    expect(api.asked.filter((a) => a.id === "records")).toEqual([]);
+    await records.unmount();
+    const bare = { ...PUBLIC, withheld: 0, manifest: { ...PUBLIC.manifest, tables: [], record_sets: [] } };
+    const none = await view(fakeApi({ researchManifest: async () => bare }), "solvability-frontier", "data");
+    expect(none.host.textContent).toContain("This output lists no tables.");
+    await none.unmount();
+    const empty = await view(fakeApi({ researchManifest: async () => bare }), "solvability-frontier", "records");
+    expect(empty.host.textContent).toContain("This output lists no records.");
+    await empty.unmount();
+    const old = await view(fakeApi(), "funding-landscape", "data");
+    expect(old.host.querySelector(".research-rows")).toBeNull();
+    expect(old.host.textContent).toContain("Second paragraph.");
+    await old.unmount();
+    const failing = await view(fakeApi({ researchManifest: async () => FULL, researchTable: async () => Promise.reject(new Error("Bucket could not read that table.")) }), "solvability-frontier", "data");
+    expect(failing.host.querySelector('[role="alert"]')!.textContent).toBe("Bucket could not read that table.");
+    await failing.unmount();
   });
 });
 

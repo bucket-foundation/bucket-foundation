@@ -133,6 +133,13 @@ export interface ResearchBlobs {
   blobs: Record<string, ResearchBlob>;
 }
 
+export interface ResearchSidePack {
+  schema: "bucket.research-side-pack/1";
+  version: string;
+  outputs: ResearchOutput[];
+  blobs: Record<string, ResearchBlob>;
+}
+
 export interface ReportLib {
   validateRecord(record: unknown): string[];
   publicPaths(record: ReportRecord): { base: string; pdf: string; figures: string[]; data: string[] };
@@ -140,6 +147,7 @@ export interface ReportLib {
 }
 
 export const RESEARCH_SCHEMA = "bucket.research-pack/1";
+export const SIDE_SCHEMA = "bucket.research-side-pack/1";
 export const SLUG = /^[a-z0-9][a-z0-9-]{0,63}$/;
 export const SEGMENT = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
 export const MAX_DEPTH = 8;
@@ -357,6 +365,19 @@ export function buildResearchPack(repo: string, records: ReportRecord[], o: Pack
   return { index: { schema: RESEARCH_SCHEMA, version, staff, outputs }, blobs: { version, blobs }, encoded };
 }
 
+export function sidePack(full: ResearchPack): ResearchSidePack {
+  if (!full.index.staff) throw new Error(`research side pack: set ${STAFF_FLAG}=1, since a public build holds no staff entries`);
+  const blobs: Record<string, ResearchBlob> = {};
+  const outputs: ResearchOutput[] = [];
+  for (const output of full.index.outputs) {
+    const files = output.files.filter((file) => file.audience === "staff");
+    if (files.length === 0) continue;
+    for (const file of files) blobs[file.sha256] = full.blobs.blobs[file.sha256];
+    outputs.push({ ...output, files, withheld: 0 });
+  }
+  return { schema: SIDE_SCHEMA, version: sha256(JSON.stringify(outputs)).slice(0, 16), outputs, blobs };
+}
+
 export async function loadReportLib(repo: string): Promise<ReportLib> {
   return (await import(join(repo, "scripts/lib/report-record.mjs"))) as ReportLib;
 }
@@ -366,6 +387,15 @@ if (import.meta.main) {
   const out = resolve(import.meta.dir, "../../content");
   mkdirSync(out, { recursive: true });
   const pack = buildResearchPack(repo, readRecords(repo), { lib: await loadReportLib(repo) });
+  const flag = process.argv.indexOf("--side-pack");
+  if (flag >= 0) {
+    const file = process.argv[flag + 1];
+    if (!file) throw new Error("research side pack: --side-pack needs a file to write");
+    const side = sidePack(pack);
+    writeFileSync(resolve(file), JSON.stringify(side), { mode: 0o600 });
+    console.log(`research side pack ${side.version}: ${side.outputs.length} outputs, ${side.outputs.reduce((n, output) => n + output.files.length, 0)} staff files, written to ${resolve(file)}`);
+    process.exit(0);
+  }
   writeFileSync(join(out, "research-index.json"), JSON.stringify(pack.index));
   writeFileSync(join(out, "research-blobs.json"), JSON.stringify(pack.blobs));
   const files = pack.index.outputs.reduce((n, output) => n + output.files.length, 0);

@@ -20,6 +20,8 @@ export type { CreditWithDecks, DeckCredit, WordHit, WordSearch } from "../../bkt
 import type { DecksBody } from "../../bkt/src/deck-routes";
 import type { WordSearch } from "../../bkt/src/core/word-decks";
 export type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
+export type { TablePage } from "../../bkt/src/research-table";
+import type { TablePage } from "../../bkt/src/research-table";
 export type { PackedFile, ReportAsset, ReportAttribution, ReportRecord } from "../../bkt/src/pack/research";
 import type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
 
@@ -467,6 +469,13 @@ export class Api {
 
   researchManifest(slug: string) {
     return this.call<ResearchDetail>(`/local/research/manifest?slug=${encodeURIComponent(slug)}`);
+  }
+
+  researchTable(slug: string, id: string, query: { page?: number; q?: string; sort?: string } = {}) {
+    const params = new URLSearchParams({ slug, id, page: String(query.page ?? 1) });
+    if (query.q) params.set("q", query.q);
+    if (query.sort) params.set("sort", query.sort);
+    return this.call<TablePage>(`/local/research/table?${params.toString()}`);
   }
 
   private async researchFile(slug: string, path: string): Promise<Response> {

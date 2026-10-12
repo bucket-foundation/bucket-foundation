@@ -256,6 +256,8 @@ const RESEARCH_DETAIL = {
       { id: "atlas-big", path: "public/atlas/big.webp", caption: "Token circle.", licence: "MIT code output over CC BY-SA 4.0 and Apache-2.0 data, attributed", audience: "public" },
       { id: "atlas-gone", path: "public/atlas/gone.webp", caption: "Star chart.", licence: "MIT code output over CC BY-SA 4.0 and Apache-2.0 data, attributed", audience: "public" },
     ],
+    tables: [{ id: "predictions", path: "public/papers/solvability-frontier/data/predictions.csv", format: "csv", label: "Predictions, 2,085 ranked open problems", licence: "CC BY-SA 4.0", audience: "public" }],
+    record_sets: [],
     attributions: [
       { source: "formal-conjectures, Google DeepMind", url: "https://github.com/google-deepmind/formal-conjectures", licence: "Apache-2.0", rows: 3557, notice: "Statements from formal-conjectures by Google DeepMind, Apache License 2.0. Each row links its Lean source." },
       { source: "Wikipedia, lists of unsolved problems", url: "https://en.wikipedia.org/wiki/Lists_of_unsolved_problems", licence: "CC BY-SA 4.0", rows: 1283, notice: "Text from Wikipedia under CC BY-SA 4.0. Each row links its page. Copies and edits keep this licence and this credit." },
@@ -268,6 +270,7 @@ function empty(): Stub {
   return {
     researchList: async () => ({ outputs: [] }),
     researchManifest: () => Promise.reject(new ApiError("no such output", 404)),
+    researchTable: () => Promise.reject(new ApiError("the output has no such table", 404)),
     researchText: () => Promise.reject(new ApiError("the output does not list that file", 404)),
     image: () => Promise.reject(new ApiError("the output does not list that file", 404)),
     data: async () => [],
@@ -312,6 +315,7 @@ function populated(over: Stub = {}): Stub {
     ...empty(),
     researchList: async () => ({ outputs: RESEARCH_ROWS }),
     researchManifest: async () => RESEARCH_DETAIL,
+    researchTable: async () => ({ columns: ["title", "branch", "status", "class"], rows: [["Goldbach conjecture", "mathematics", "open", "close to known results"], ["Twin primes", "mathematics", "open", "borderline"]], index: [0, 1], total: 2, page: 1, size: 50, pinned: [], truncated: false }),
     image: async () => "data:image/webp;base64,AAAA",
     data: async () => DATASETS,
     dataRecords: async () => ({ total: DATA_ROWS.length, offset: 0, limit: 50, records: DATA_ROWS }),
@@ -370,6 +374,7 @@ function failing(): Stub {
     progress: progress(null),
     researchList: fail("the research files could not be read", 500),
     researchManifest: fail("public/papers/x/paper.pdf does not match its hash in this build", 409),
+    researchTable: fail("the table does not parse", 422),
     researchText: fail("the path crosses a symlink", 403),
     image: fail("the path crosses a symlink", 403),
     data: fail("data key does not match", 500),
@@ -440,7 +445,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 

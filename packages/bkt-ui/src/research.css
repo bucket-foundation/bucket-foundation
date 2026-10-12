@@ -115,3 +115,91 @@
   border-radius: 8px;
   font-size: 12px;
 }
+
+.research-tables {
+  flex-wrap: wrap;
+}
+
+.research-rows {
+  overflow-x: auto;
+  padding: 0;
+}
+
+.research-rows table {
+  min-width: 100%;
+  width: max-content;
+}
+
+.research-rows th,
+.research-rows td {
+  max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.research-rows td.pinned,
+.research-rows th:has(+ th) {
+  background: var(--panel);
+}
+
+.research-rows td.pinned {
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.research-record h2 {
+  margin: 12px 0;
+  font-size: 20px;
+}
+
+.record-fields {
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.record-fields > div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.record-fields.nested > div {
+  grid-template-columns: 130px 1fr;
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.record-fields dt {
+  font-size: 12px;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+.record-fields dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.record-items {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+}
+
+.record-raw {
+  margin: 0;
+  padding: 12px;
+  max-height: 560px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
