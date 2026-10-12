@@ -74,6 +74,12 @@ describe("explore, workspace and research item routes", () => {
     expect(href({ name: "workspace" })).toBe("#/workspace/tables");
     for (const hash of ["#/workspace", "#/workspace/", "#/workspace/nodes", "#/workspace/Tables", "#/workspace/tables/extra", "#/workspace/figures/x", "#/workspace/..%2F"]) expect(parseHash(hash)).toEqual({ name: "workspace", type: "tables" });
     for (const hash of ["#/desk", "#/desk/tables", "#/desks/tables"]) expect(parseHash(hash)).toEqual({ name: "learn" });
+    for (const type of ["graphs", "maps"] as const) {
+      expect(parseHash(`#/workspace/${type}/mathematics-chain`)).toEqual({ name: "workspace", type, item: "mathematics-chain" });
+      roundTrips({ name: "workspace", type, item: "occupations-time" });
+      for (const bad of ["Bad_Id", "..%2Fx", "a/b", "x".repeat(65)]) expect(parseHash(`#/workspace/${type}/${bad}`)).toEqual({ name: "workspace", type: "tables" });
+    }
+    expect(href({ name: "workspace", type: "tables", item: "rows" })).toBe("#/workspace/tables");
   });
 
   test("the research hash takes an item as its fourth part", () => {
