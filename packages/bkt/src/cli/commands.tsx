@@ -67,8 +67,8 @@ import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
 import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
-import { installLines, researchInstall } from "./research";
-import { FILE_BODY_BYTES, ResearchWork, researchWorkRoutes } from "../research-work";
+import { addLines, installLines, researchAdd, researchInstall } from "./research";
+import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
 import { ConsentStore } from "../research-consent";
 import { researchSpecs } from "../research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
@@ -121,6 +121,13 @@ async function analyzeCmd(argv: string[]): Promise<number> {
 async function researchCmd(inv: Invocation, json: boolean): Promise<number> {
   const home = dataDir();
   try {
+    if (inv.command.name === "research add") {
+      ensureDataDir(home);
+      const added = researchAdd(inv.positionals[0], home, (researchIndex as unknown as ResearchIndex).outputs.map((o) => o.slug));
+      if (json) console.log(jsonLine("research add", added));
+      else for (const line of addLines(added)) console.log(line);
+      return EXIT.ok;
+    }
     const done = await researchInstall(inv.positionals[0], home, await provenServer(home));
     if (json) console.log(jsonLine("research install", done));
     else for (const line of installLines(done)) console.log(line);
@@ -304,6 +311,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   ]);
   const researchTrouble = (e: Error) => console.error(`bkt serve: research: ${e.message}`);
   const research = new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, researchTrouble);
+  const ownOutputs = new LocalOutputs(dir, { taken: (slug) => (researchIndex as unknown as ResearchIndex).outputs.some((o) => o.slug === slug) || research.staffHas(slug) });
+  research.setLocal(ownOutputs);
   const pagesRunner = new JobRunner({ root: join(dir, "research", "jobs", "pages"), specs: researchSpecs({ os: platformFor().os }), keep: PAGES_KEEP, frozenOnly: true });
   const srv = startServe({
     cliToken,
@@ -320,7 +329,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...researchRoutes(research, researchTrouble),
-      ...researchWorkRoutes(new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() }), researchTrouble),
+      ...researchWorkRoutes(new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() }), researchTrouble, ownOutputs),
       ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os }), researchTrouble),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
       ...servedWordRoutes(workQuiz),
@@ -335,6 +344,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/import": IMPORT_BODY_BYTES,
       "POST /local/research/install": SIDE_PACK_BYTES,
       "POST /local/research/file": FILE_BODY_BYTES,
+      "POST /local/research/upload": UPLOAD_BODY_BYTES,
       "POST /local/advisor/import": REVIEW_BODY_BYTES,
       "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
       "POST /local/jobs": JOB_BODY_BYTES,
@@ -535,7 +545,7 @@ export async function execute(inv: Invocation): Promise<number> {
   }
   if (name === "doctor") return doctor(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
-  if (name === "research install") return researchCmd(inv, json);
+  if (name === "research install" || name === "research add") return researchCmd(inv, json);
   if (name === "licences") {
     const l = wordBook().licence;
     for (const line of [l.credit.text, l.changes, `${l.title}: ${l.credit.licenceHref}`, "", l.text.trimEnd()]) console.log(line);

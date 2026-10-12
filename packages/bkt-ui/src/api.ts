@@ -503,6 +503,21 @@ export class Api {
     return { state: "ready", pages, pdf: r.headers.get("x-bkt-pdf") ?? "", src: await asDataUrl(blob.type === type ? blob : new Blob([blob], { type })) };
   }
 
+  researchNew(input: { title: string; slug: string; kind: string }) {
+    return this.call<{ slug: string }>("/local/research/new", { method: "POST", body: input });
+  }
+
+  async researchUpload(slug: string, role: string, name: string, file: Blob): Promise<{ slug: string; path: string }> {
+    const r = await fetch(`/local/research/upload?slug=${encodeURIComponent(slug)}&role=${encodeURIComponent(role)}&name=${encodeURIComponent(name)}`, {
+      method: "POST",
+      headers: { authorization: `Bucket ${this.token}`, "content-type": "application/octet-stream" },
+      body: file,
+    });
+    const body = (await r.json().catch(() => ({}))) as { slug?: string; path?: string; error?: string };
+    if (!r.ok || typeof body.path !== "string") throw new ApiError(body.error ?? "", r.status);
+    return { slug: body.slug ?? slug, path: body.path };
+  }
+
   researchChanges(slug: string) {
     return this.call<{ notice: string; changes: Change[] }>(`/local/research/changes?slug=${encodeURIComponent(slug)}`);
   }

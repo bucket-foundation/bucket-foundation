@@ -364,3 +364,40 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 12px;
 }
+
+.research-new {
+  margin-top: 16px;
+  display: grid;
+  gap: 12px;
+  max-width: 560px;
+}
+
+.research-new h2,
+.research-add h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.research-new label {
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.research-new input,
+.research-new select,
+.research-add select {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.research-add {
+  margin: 14px 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}

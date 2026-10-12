@@ -110,7 +110,7 @@ export interface PackedFile {
 
 export interface ResearchOutput {
   slug: string;
-  origin: "shipped" | "staff";
+  origin: "shipped" | "staff" | "local";
   manifest: ReportRecord;
   files: PackedFile[];
   withheld: number;
