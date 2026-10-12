@@ -3,13 +3,17 @@ import type { Api, ResearchDetail, WorkspaceItem } from "../api";
 import { href, parseHash, type Route, type WorkspaceType } from "../router";
 import { activateTab, openTab, patchTab, readTabs, windowStorage, writeTabs, type Tab, type Tabs, type TabStorage } from "../tabs";
 import { FILTER_WAIT_MS, NOT_LOADED, Pager } from "./Data";
+import { InstalledDecks } from "./Decks";
+import { LibraryView, type LibraryApi } from "./Library";
 import { exploreHash, ExploreView, type ExploreApi } from "./Explore";
 import type { ExploreStart } from "../explore/ExploreClientV2";
 import { FigurePane, figureItems, ORIGIN_LABELS, Paper, RecordSetPane, TablePane, tabsFor, type ResearchApi } from "./Research";
 import { TabBar } from "./TabBar";
 import "../workspace.css";
 
-export type WorkspaceApi = ResearchApi & ExploreApi & Pick<Api, "workspaceItems">;
+export type WorkspaceApi = ResearchApi & ExploreApi & LibraryApi & Pick<Api, "workspaceItems" | "installedDecks">;
+
+export const DECKS_ABOUT = "The decks installed on this computer and the decks you can add, in one place.";
 
 export const workspaceTabsKey = (type: WorkspaceType) => `bucket.workspace.${type}.tabs`;
 
@@ -37,9 +41,8 @@ const RESEARCH_TAB = { tables: "data", records: "records", figures: "figures", p
 export const TO_EXPLORE = "Open in Explore";
 const MODES = /^[a-z]{3,12}$/;
 
-export const LATER: Record<Exclude<WorkspaceType, BuiltType>, { title: string; line: string; link: { label: string; route: Route } | null }> = {
+export const LATER: Record<Exclude<WorkspaceType, BuiltType | "decks">, { title: string; line: string; link: { label: string; route: Route } | null }> = {
   people: { title: "People", line: "This workspace is empty in this version of Bucket.", link: null },
-  decks: { title: "Decks", line: "Decks open from Learn for now.", link: { label: "Open Learn", route: { name: "learn" } } },
 };
 
 export const ON_DATA_SCREEN = "Opens on the Data screen";
@@ -264,9 +267,24 @@ function BuiltWorkspace({ api, type, words, storage, item, webgl }: { api: Works
   );
 }
 
+function DecksWorkspace({ api }: { api: WorkspaceApi }) {
+  const [installed, setInstalled] = useState("");
+  return (
+    <section className="workspace">
+      <header className="head">
+        <h1>Decks</h1>
+        <p className="muted">{DECKS_ABOUT}</p>
+      </header>
+      <InstalledDecks key={installed} api={api} libraryLink={false} />
+      <LibraryView api={api} embedded onBody={(b) => setInstalled(b.decks.filter((d) => d.state === "installed" || d.state === "update").map((d) => `${d.id}@${d.version}`).join(","))} />
+    </section>
+  );
+}
+
 export function WorkspaceView({ api, type, item, webgl, storage = windowStorage() }: { api: WorkspaceApi; type: WorkspaceType; item?: string; webgl?: boolean; storage?: TabStorage | null }) {
   const words = BUILT[type];
-  if (words && type !== "people" && type !== "decks") {
+  if (type === "decks") return <DecksWorkspace api={api} />;
+  if (words && type !== "people") {
     return (
       <section className="workspace data">
         <header className="head">
