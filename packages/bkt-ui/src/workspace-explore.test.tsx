@@ -7,7 +7,7 @@ import { siteFetch } from "./site-fetch";
 import type { TabStorage } from "./tabs";
 import type { WorkspaceApi } from "./views/Workspace";
 
-mock.module("@/components/explore/SceneHost", () => ({ default: () => <div>scene</div> }));
+mock.module("./explore/SceneHostV2", () => ({ default: (p: { marked?: ReadonlySet<string> }) => <div data-testid="scene" data-marked={[...(p.marked ?? [])].join(",")}>scene</div> }));
 
 beforeAll(() => {
   GlobalRegistrator.register({ url: "http://127.0.0.1:4100/" });
@@ -85,7 +85,11 @@ async function mount(node: React.ReactElement) {
 }
 
 const press = (host: Element, label: string) => Array.from(host.querySelectorAll("button")).find((b) => b.textContent?.trim() === label);
-const stored = () => JSON.parse(window.sessionStorage.getItem(SELECTION_KEY) ?? "null") as { set: string; ids: string[] } | null;
+const stored = (): { set: string; ids: string[] } | null => {
+  const all = JSON.parse(window.sessionStorage.getItem(SELECTION_KEY) ?? "null") as { sets: [string, string[]][] } | null;
+  return all ? { set: all.sets[0][0], ids: all.sets[0][1] } : null;
+};
+const storedSets = () => (JSON.parse(window.sessionStorage.getItem(SELECTION_KEY) ?? '{"sets":[]}') as { sets: [string, string[]][] }).sets;
 
 async function graphs(api: WorkspaceApi, storage: TabStorage, item?: string) {
   const { WorkspaceView } = await import("./views/Workspace");
@@ -163,6 +167,8 @@ describe("rows marked in a workspace and carried to Explore and back", () => {
     expect(stored()).toEqual({ set: "flow-set", ids: ["row:flow-set:one"] });
     await v.mark("Third row");
     expect(v.marked()).toEqual(["First row", "Third row"]);
+    expect(v.one("scene")!.getAttribute("data-marked")).toBe("row:flow-set:one,row:flow-set:three");
+    expect([v.one("row-mark")!.textContent, v.one("row-mark")!.getAttribute("aria-label"), v.one("row-mark")!.getAttribute("aria-pressed"), v.one("row-mark")!.className]).toEqual(["Unmark this row", "Unmark this row", "true", "row-mark"]);
     expect(stored()).toEqual({ set: "flow-set", ids: ["row:flow-set:one", "row:flow-set:three"] });
     const toExplore = v.host.querySelector(".workspace-item-head a")!.getAttribute("href")!;
     expect(toExplore).toBe("#/explore/flow-set/graph/row%3Aflow-set%3Athree");
@@ -174,6 +180,7 @@ describe("rows marked in a workspace and carried to Explore and back", () => {
     window.location.hash = toExplore;
     const e = await mount(<ExploreView api={w.api} webgl initial={{ data: route.data, mode: route.mode, sel: route.sel }} />);
     expect(e.marked()).toEqual(["First row", "Third row"]);
+    expect(e.one("scene")!.getAttribute("data-marked")).toBe("row:flow-set:one,row:flow-set:three");
     expect(e.one("rows-marked")!.textContent).toBe("2 rows are marked.Clear the marks");
     expect(e.one("row-mark")!.textContent).toBe("Unmark this row");
     const back = Array.from(e.host.querySelectorAll("a")).find((a) => a.textContent === TO_WORKSPACE)!;
@@ -245,12 +252,32 @@ describe("rows marked in a workspace and carried to Explore and back", () => {
     expect(maps.host.querySelectorAll('[data-testid="explore-result"]').length).toBe(3);
     expect(maps.marked()).toEqual([]);
     expect(maps.one("rows-marked")).toBeNull();
-    expect(stored()).toEqual({ set: "flow-set", ids: ["row:flow-set:one"] });
+    expect(maps.one("scene")!.getAttribute("data-marked")).toBe("");
+    expect(storedSets()).toEqual([["flow-set", ["row:flow-set:one"]]]);
     await maps.mark("First row");
-    expect(stored()).toEqual({ set: "time-set", ids: ["row:time-set:one"] });
+    expect(maps.one("scene")!.getAttribute("data-marked")).toBe("row:time-set:one");
+    expect(storedSets()).toEqual([["time-set", ["row:time-set:one"]], ["flow-set", ["row:flow-set:one"]]]);
     await maps.click(maps.one("rows-unmark"));
-    expect([maps.marked(), stored()]).toEqual([[], null]);
+    expect([maps.marked(), storedSets()]).toEqual([[], [["flow-set", ["row:flow-set:one"]]]]);
     await maps.unmount();
+    const flow = await graphs(w.api, memory(), "flow-set");
+    expect(flow.marked()).toEqual(["First row"]);
+    await flow.unmount();
+  });
+
+  test("a marked node draws with a ring and more weight, and an unmarked node draws as before", async () => {
+    const { markRing, MARK_RING } = await import("./explore/mark-ring");
+    const node = { id: "row:flow-set:one", size: 0.5 };
+    expect(markRing(node, new Set(["row:flow-set:one"]))).toEqual({ radius: 0.5 * MARK_RING.radius, tube: 0.5 * MARK_RING.tube, size: 0.5 * MARK_RING.grow });
+    expect(markRing(node, new Set(["row:flow-set:two"]))).toBeNull();
+    expect(markRing(node, new Set())).toBeNull();
+    expect(markRing(node, undefined)).toBeNull();
+    expect(MARK_RING.radius).toBeGreaterThan(1.5);
+    expect(MARK_RING.grow).toBeGreaterThan(1);
+    const css = await Bun.file(`${import.meta.dir}/explore.css`).text();
+    expect(css).toContain(".explore-site button.row-mark {");
+    expect(css).toMatch(/button\.row-mark\[aria-pressed="true"\] \{[^}]*color: var\(--accent-ink\)/);
+    expect(css).toMatch(/button\.row-mark \{[^}]*color: var\(--ink\)/);
   });
 
   test("Explore on the canon search offers no way to a workspace, and a timeline set points at Maps", async () => {

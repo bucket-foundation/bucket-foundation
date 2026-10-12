@@ -1,5 +1,6 @@
 export const SELECTION_KEY = "bucket.explore.selection";
 export const MARK_CAP = 200;
+export const MARK_SETS = 8;
 export const MARK_CAP_LINE = "200 rows are marked, which is the most a set holds. Unmark one to mark another.";
 
 const SET = /^[a-z0-9][a-z0-9-]{0,63}$/;
@@ -25,23 +26,37 @@ export function cleanMarks(set: string, ids: unknown): string[] {
   return [...seen];
 }
 
-export function readMarks(set: string, storage: MarkStorage | null = sessionMarks()): string[] {
+function readAll(storage: MarkStorage | null): [string, string[]][] {
   try {
     const raw = storage?.getItem(SELECTION_KEY);
     if (!raw) return [];
-    const stored = JSON.parse(raw) as { set?: unknown; ids?: unknown } | null;
-    if (!stored || stored.set !== set) return [];
-    return cleanMarks(set, stored.ids);
+    const stored = JSON.parse(raw) as { sets?: unknown } | null;
+    if (!stored || !Array.isArray(stored.sets)) return [];
+    const out: [string, string[]][] = [];
+    for (const entry of stored.sets) {
+      if (out.length >= MARK_SETS) break;
+      const [set, ids] = Array.isArray(entry) ? (entry as unknown[]) : [];
+      if (typeof set !== "string" || out.some(([s]) => s === set)) continue;
+      const kept = cleanMarks(set, ids);
+      if (kept.length) out.push([set, kept]);
+    }
+    return out;
   } catch {
     return [];
   }
 }
 
+export function readMarks(set: string, storage: MarkStorage | null = sessionMarks()): string[] {
+  return readAll(storage).find(([s]) => s === set)?.[1] ?? [];
+}
+
 export function writeMarks(set: string, ids: string[], storage: MarkStorage | null = sessionMarks()): string[] {
   const kept = cleanMarks(set, ids);
+  const rest = readAll(storage).filter(([s]) => s !== set);
+  const sets = (kept.length ? [[set, kept] as [string, string[]], ...rest] : rest).slice(0, MARK_SETS);
   try {
-    if (kept.length === 0) storage?.removeItem(SELECTION_KEY);
-    else storage?.setItem(SELECTION_KEY, JSON.stringify({ set, ids: kept }));
+    if (sets.length === 0) storage?.removeItem(SELECTION_KEY);
+    else storage?.setItem(SELECTION_KEY, JSON.stringify({ sets }));
   } catch {
     return kept;
   }

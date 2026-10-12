@@ -9,6 +9,7 @@ import { HaloV2 } from "./HaloV2";
 import { useSceneTheme } from "./useSceneTheme";
 import { isResting, onVisible, sceneDpr, spinStep, startSpinTicker } from "./frame-policy";
 import type { DesktopLayout } from "./modesV2";
+import { markRing } from "./mark-ring";
 import type { Guide, Vec3 } from "@/lib/explore/modes/types";
 import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
 
@@ -17,6 +18,7 @@ interface Props {
   selected: string | null;
   onSelect(id: string): void;
   onScroll?(delta: number): void;
+  marked?: ReadonlySet<string>;
 }
 
 function HorizontalCamera({ length }: { length: number }) {
@@ -110,7 +112,7 @@ function GuideView({ g, theme }: { g: Guide; theme: ReturnType<typeof useSceneTh
   }
 }
 
-function Scene({ layout, selected, onSelect, theme, active }: Props & { theme: ReturnType<typeof useSceneTheme>; active: { current: number } }) {
+function Scene({ layout, selected, onSelect, theme, active, marked }: Props & { theme: ReturnType<typeof useSceneTheme>; active: { current: number } }) {
   const group = useRef<THREE.Group>(null);
   const reduced = useReducedMotion();
   const pos = useMemo(() => new Map(layout.nodes.map((n) => [n.id, n.position])), [layout]);
@@ -130,7 +132,7 @@ function Scene({ layout, selected, onSelect, theme, active }: Props & { theme: R
   useEffect(() => {
     active.current = performance.now();
     invalidate();
-  }, [layout, selected, theme, reduced, invalidate, active]);
+  }, [layout, selected, theme, reduced, invalidate, active, marked]);
   useEffect(
     () =>
       onVisible(document, () => {
@@ -166,8 +168,14 @@ function Scene({ layout, selected, onSelect, theme, active }: Props & { theme: R
             onSelect(n.id);
           }}
         >
-          <sphereGeometry args={[n.id === selected ? n.size * 1.6 : n.size, 16, 12]} />
+          <sphereGeometry args={[n.id === selected ? n.size * 1.6 : (markRing(n, marked)?.size ?? n.size), 16, 12]} />
           <meshStandardMaterial color={n.color} emissive={n.id === selected ? n.color : "#000000"} emissiveIntensity={0.6} wireframe={hollow.has(n.id)} />
+          {markRing(n, marked) && (
+            <mesh>
+              <torusGeometry args={[markRing(n, marked)!.radius, markRing(n, marked)!.tube, 8, 28]} />
+              <meshBasicMaterial color={theme.ink} />
+            </mesh>
+          )}
           {n.id === selected && n.label && (
             <Html center position={[0, n.size * 3, 0]} style={{ pointerEvents: "none" }}>
               <span style={{ background: "var(--panel)", color: "var(--ink)", border: "1px solid var(--line)", borderRadius: 6, padding: "4px 8px", fontSize: 11, whiteSpace: "nowrap" }}>{n.label.slice(0, 60)}</span>

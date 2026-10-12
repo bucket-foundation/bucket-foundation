@@ -142,6 +142,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
     setMarked(dataId === DEFAULT_DATASET ? [] : readMarks(dataId));
   }, [dataId]);
 
+  const markedSet = useMemo(() => new Set(marked), [marked]);
   const mark = (id: string | null) => setMarked((now) => writeMarks(dataId, id === null ? [] : toggleMark(now, id)));
 
   useEffect(() => {
@@ -522,7 +523,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
           ) : mode.renderer === "protein" ? (
             <ProteinView protein={protein} focus={focus} onFocus={setFocus} upload={structure} />
           ) : (
-            <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={select} onScroll={(d) => setScroll((s) => s + d)} />
+            <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={select} onScroll={(d) => setScroll((s) => s + d)} marked={markedSet} />
           )}
           {mode.renderer === "protein" && (
             <div data-testid="protein-links" className="mt-3 text-sm space-y-2">
@@ -707,7 +708,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
                 )}
                 {current.type === "row" && rows && (
                   <p className="text-sm mt-3">
-                    <button data-testid="row-mark" className="underline" aria-pressed={marked.includes(current.id)} disabled={!marked.includes(current.id) && marked.length >= MARK_CAP} onClick={() => mark(current.id)}>
+                    <button data-testid="row-mark" className="row-mark" aria-label={marked.includes(current.id) ? "Unmark this row" : "Mark this row"} aria-pressed={marked.includes(current.id)} disabled={!marked.includes(current.id) && marked.length >= MARK_CAP} onClick={() => mark(current.id)}>
                       {marked.includes(current.id) ? "Unmark this row" : "Mark this row"}
                     </button>
                   </p>

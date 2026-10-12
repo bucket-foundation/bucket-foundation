@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { cleanMarks, MARK_CAP, readMarks, SELECTION_KEY, toggleMark, writeMarks, type MarkStorage } from "./selection";
+import { cleanMarks, MARK_CAP, MARK_SETS, readMarks, SELECTION_KEY, toggleMark, writeMarks, type MarkStorage } from "./selection";
 
 function memory(seed: Record<string, string> = {}): MarkStorage & { data: Record<string, string> } {
   const data = { ...seed };
@@ -19,21 +19,29 @@ describe("marked rows", () => {
     expect(MARK_CAP).toBe(200);
   });
 
-  test("marks written for one set read as none for another", () => {
+  test("each set keeps its own marks, and the ninth set drops the one touched longest ago", () => {
     const store = memory();
     writeMarks("flow-set", ids(3), store);
     expect(readMarks("other-set", store)).toEqual([]);
-    expect(readMarks("flow-set", store)).toEqual(ids(3));
     writeMarks("other-set", ids(2, "other-set"), store);
+    expect(readMarks("flow-set", store)).toEqual(ids(3));
+    expect(readMarks("other-set", store)).toEqual(ids(2, "other-set"));
+    expect(JSON.parse(store.data[SELECTION_KEY])).toEqual({ sets: [["other-set", ids(2, "other-set")], ["flow-set", ids(3)]] });
+    for (let i = 0; i < MARK_SETS - 1; i++) writeMarks(`set-${i}`, ids(1, `set-${i}`), store);
+    expect(JSON.parse(store.data[SELECTION_KEY]).sets.map((s: [string, string[]]) => s[0])).toEqual(["set-6", "set-5", "set-4", "set-3", "set-2", "set-1", "set-0", "other-set"]);
     expect(readMarks("flow-set", store)).toEqual([]);
-    expect(JSON.parse(store.data[SELECTION_KEY])).toEqual({ set: "other-set", ids: ids(2, "other-set") });
+    expect(readMarks("other-set", store)).toEqual(ids(2, "other-set"));
+    writeMarks("other-set", [], store);
+    expect(readMarks("other-set", store)).toEqual([]);
+    expect(readMarks("set-0", store)).toEqual(ids(1, "set-0"));
+    expect(MARK_SETS).toBe(8);
   });
 
   test("ids of another set, ids that are no row and repeats drop", () => {
     expect(cleanMarks("flow-set", ["row:flow-set:a", "row:other-set:a", "row:flow-set:a", "paper:d/10.1/x", "row:flow-set:../../etc", "/srv/data/file.csv", 7, null, "row:flow-set:b"])).toEqual(["row:flow-set:a", "row:flow-set:b"]);
     expect(cleanMarks("Bad_Set", ["row:Bad_Set:a"])).toEqual([]);
     expect(cleanMarks("flow-set", "row:flow-set:a")).toEqual([]);
-    const store = memory({ [SELECTION_KEY]: JSON.stringify({ set: "flow-set", ids: ["row:flow-set:a", "C:\\\\file", "row:flow-set:b"] }) });
+    const store = memory({ [SELECTION_KEY]: JSON.stringify({ sets: [["flow-set", ["row:flow-set:a", "C:\\\\file", "row:flow-set:b"]], ["flow-set", ["row:flow-set:z"]], ["Bad_Set", ["row:Bad_Set:a"]], "junk"] }) });
     expect(readMarks("flow-set", store)).toEqual(["row:flow-set:a", "row:flow-set:b"]);
   });
 
