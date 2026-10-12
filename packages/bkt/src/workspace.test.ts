@@ -2,7 +2,6 @@ import { afterAll, afterEach, describe, expect, test } from "bun:test";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { href, parseHash } from "../../bkt-ui/src/router";
 import type { DatasetInfo } from "./data";
 import { encodeBlob, RESEARCH_SCHEMA, sha256, type PackedFile, type ReportRecord, type ResearchBlobs, type ResearchIndex } from "./pack/research";
 import { Research } from "./research";
@@ -109,13 +108,11 @@ describe("workspace index", () => {
     for (const type of WORKSPACE_TYPES.filter((t) => t !== "tables" && t !== "records")) expect(workspaceItems(src, type)).toEqual([]);
   });
 
-  test("every opens address parses in the window router", () => {
+  test("every opens address has the shape the window router reads", () => {
     const { src } = setup();
     for (const item of [...workspaceItems(src, "tables"), ...workspaceItems(src, "records")]) {
-      const route = parseHash(item.opens);
-      expect(href(route)).toBe(item.opens);
-      if (item.from.kind === "output") expect(route).toEqual({ name: "research", slug: item.from.id, tab: item.type === "tables" ? "data" : "records", item: item.key.split(":")[2] });
-      else expect(route).toEqual({ name: "data" });
+      if (item.from.kind === "output") expect(item.opens).toMatch(new RegExp(`^#/research/${item.from.id}/${item.type === "tables" ? "data" : "records"}/[A-Za-z0-9][A-Za-z0-9._-]{0,127}$`));
+      else expect(item.opens).toBe("#/data");
     }
   });
 
@@ -132,7 +129,7 @@ describe("workspace index", () => {
     local.upload("mine", "data", "counts.csv", Buffer.from(CSV));
     const mine = workspaceItems(src, "tables").filter((i) => i.from.id === "mine");
     expect(mine.map((i) => [i.origin, i.from.title, i.changed])).toEqual([["local", "My own output", false]]);
-    expect(parseHash(mine[0].opens)).toMatchObject({ name: "research", slug: "mine", tab: "data" });
+    expect(mine[0].opens).toMatch(/^#\/research\/mine\/data\/[a-z0-9-]+$/);
     expect(JSON.stringify(workspaceItems(src, "tables"))).not.toContain("A Private Person");
   });
 

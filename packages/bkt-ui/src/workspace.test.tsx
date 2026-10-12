@@ -168,6 +168,12 @@ describe("workspace tab bar", () => {
 });
 
 describe("tables workspace", () => {
+  test("every address the index hands out parses in the router", () => {
+    for (const item of ITEMS) expect(href(parseHash(item.opens))).toBe(item.opens);
+    expect(parseHash("#/research/solvability-frontier/data/atlas-problems")).toEqual({ name: "research", slug: "solvability-frontier", tab: "data", item: "atlas-problems" });
+    expect(parseHash("#/research/mine/records/problems")).toEqual({ name: "research", slug: "mine", tab: "records", item: "problems" });
+  });
+
   test("lists tables across outputs, shipped and added by the person", async () => {
     const f = fakeApi();
     const v = await workspace(f.api, "tables");
