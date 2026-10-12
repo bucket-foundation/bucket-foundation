@@ -67,7 +67,8 @@ def dispatch(args, out) -> None:
     free_guard(home)
     if args.command == "build":
         wide = os.environ.get("BKT_AUTHORS_WIDE")
-        cov = build_mod.build(open_store(), home, Path(wide) if wide else None, log=lambda m: print(m, file=out))
+        taxonomy = os.environ.get("BKT_TOPIC_TAXONOMY")
+        cov = build_mod.build(open_store(), home, Path(wide) if wide else None, log=lambda m: print(m, file=out), taxonomy=Path(taxonomy) if taxonomy else None)
         build_mod.print_tables(cov, log=lambda m: print(m, file=out))
         return
     bdir = current_build(home)

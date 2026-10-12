@@ -15,6 +15,8 @@ from advisor_engine import cli, coverage, paths, query, reveal, scan, write_revi
 from advisor_engine.identity import SuppressionUnreadable, suppressed_clusters
 from advisor_engine.paths import EngineError, current_build, engine_key, open_engine
 
+from .conftest import TOPICS
+
 TOOL = Path(__file__).resolve().parents[1]
 RANK_WORDS = re.compile(r"\brank|percentile|\bscore|was tested|tested on", re.I)
 NUMBERED = re.compile(r"^\s*\d+[.)]\s", re.M)
@@ -197,6 +199,23 @@ def test_untested_order_sorts_by_topical_overlap(world):
     flags = [bool(row["shared_terms"]) for row in r.rows]
     assert any(flags) and not all(flags)
     assert flags == sorted(flags, reverse=True)
+
+
+def test_taxonomy_adds_the_subfield_level_and_description_words(world, monkeypatch):
+    subs = {"T1": "Sub Alpha", "T2": "Sub Alpha", "T3": "Sub Beta", "T4": "Sub Beta", "T5": "Sub Gamma", "T6": "Sub Gamma", "T7": "Sub Delta", "T8": "Sub Delta"}
+    words = {"T1": "estuary oscillation moon cycles", "T4": "lipid bilayer bending"}
+    rows = [{"id": t, "name": n, "field": f, "domain": "Domain X", "text": f"{n}. An invented description. {words.get(t, 'placeholder words')}. {subs[t]}. {f}. Domain X"} for t, (n, f) in TOPICS.items()]
+    path = world.root / "taxonomy.json"
+    path.write_text(json.dumps(rows))
+    monkeypatch.setenv("BKT_TOPIC_TAXONOMY", str(path))
+    assert run("build")[0] == 0
+    r = result(world, field="Field One", include=["XA"], text="estuary oscillation", limit=300)
+    assert r.lines[0] == "Query topics: Tidal Lattice Dynamics."
+    kinds = ["topic" if row["shared_terms"] else "subfield" if "Works in the subfield Sub Alpha." in row["reasons"] else "field" for row in r.rows]
+    assert set(kinds) == {"topic", "subfield", "field"}
+    assert kinds == sorted(kinds, key=["topic", "subfield", "field"].index)
+    assert all(row["reasons"] == ["Works in Field One."] for row, k in zip(r.rows, kinds) if k == "field")
+    assert not RANK_WORDS.search(query.render(r))
 
 
 def test_withheld_under_the_floor_shows_count_and_reason_in_name_order(world):
@@ -443,7 +462,12 @@ def test_free_space_floor_and_missing_inputs(world, monkeypatch):
     monkeypatch.setenv("ADVISOR_ENGINE_MIN_FREE_GB", "0")
     assert run("query") == (2, "")
     assert run("query", "--field", "No Such Field") == (2, "")
+    builds = sorted(p.name for p in (world.home / "builds").iterdir())
     monkeypatch.delenv("BKT_AUTHORS_WIDE")
     assert run("build")[0] == 2
+    monkeypatch.setenv("BKT_AUTHORS_WIDE", str(world.root / "empty"))
+    (world.root / "empty").mkdir()
+    assert run("build")[0] == 2
+    assert sorted(p.name for p in (world.home / "builds").iterdir()) == builds
     monkeypatch.delenv("BKT_CONTACT_STORE")
     assert run("query", "--field", "Field One") == (2, "")

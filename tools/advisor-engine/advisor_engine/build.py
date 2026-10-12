@@ -30,7 +30,7 @@ create table aid (aid integer primary key, rid integer not null, tier text not n
 create table identity_edge (a integer not null, b integer not null, kind text not null);
 create table member (person_id integer primary key, cluster integer not null);
 create table alias (key text not null, cluster integer not null);
-create table topic (id text primary key, name text, field text);
+create table topic (id text primary key, name text, field text, subfield text, body text);
 create table meta (k text primary key, v text);
 """
 
@@ -284,6 +284,20 @@ def read_years(wide: Path, wanted: set[str], log=print) -> dict[str, tuple[int, 
     return years
 
 
+def read_taxonomy(path: Path | None) -> dict[str, tuple[str, str]]:
+    if path is None:
+        return {}
+    if not path.is_file():
+        raise EngineError("BKT_TOPIC_TAXONOMY names no file")
+    out = {}
+    for t in json.loads(path.read_text(encoding="utf-8")):
+        parts = [p for p in (t.get("text") or "").split(". ") if p]
+        tail = [x for x in (t.get("field"), t.get("domain")) if x]
+        sub = parts[-len(tail) - 1] if len(parts) > len(tail) + 1 and parts[-len(tail):] == tail else ""
+        out[t["id"]] = (sub, t.get("text") or "")
+    return out
+
+
 def band(first_year: int | None) -> str:
     if first_year is None:
         return "no year"
@@ -306,19 +320,19 @@ def coverage_tables(pool_rows, medium_rows):
     return out
 
 
-def build(store: sqlite3.Connection, home: Path, wide: Path | None, log=print) -> dict:
+def build(store: sqlite3.Connection, home: Path, wide: Path | None, log=print, taxonomy: Path | None = None) -> dict:
     if wide is None or not wide.is_dir():
         raise EngineError("set BKT_AUTHORS_WIDE to the authors parquet directory, the recency gate needs activity years")
     build_id = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     bdir = inside(home, home / "builds" / build_id)
     try:
-        return run_build(store, home, wide, build_id, bdir, log)
+        return run_build(store, home, wide, build_id, bdir, log, read_taxonomy(taxonomy))
     except BaseException:
         shutil.rmtree(bdir, ignore_errors=True)
         raise
 
 
-def run_build(store: sqlite3.Connection, home: Path, wide: Path, build_id: str, bdir: Path, log) -> dict:
+def run_build(store: sqlite3.Connection, home: Path, wide: Path, build_id: str, bdir: Path, log, taxonomy: dict) -> dict:
     started = time.time()
     key = engine_key(home)
     bdir.mkdir(parents=True)
@@ -380,7 +394,10 @@ def run_build(store: sqlite3.Connection, home: Path, wide: Path, build_id: str, 
         rows.append((rid, tier_of[rid], find.root(rid), p["country"], p["field"], p["topics"], p["inst"], students[rid],
                      ";".join(sorted(sources[rid])), p["grants"], first, last, p["emeritus"], gated))
     eng.executemany("insert into advisor values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
-    eng.executemany("insert into topic values (?, ?, ?)", store.execute("select id, name, field from topic").fetchall())
+    eng.executemany(
+        "insert into topic values (?, ?, ?, ?, ?)",
+        [(t, name, fld, *taxonomy.get(t, ("", ""))) for t, name, fld in store.execute("select id, name, field from topic")],
+    )
     eng.executescript("create index alias_key on alias (key); create index member_cluster on member (cluster); create index advisor_cluster on advisor (cluster);")
 
     pool_gated = [(r[3], r[4]) for r in rows if r[13]]
@@ -391,7 +408,7 @@ def run_build(store: sqlite3.Connection, home: Path, wide: Path, build_id: str, 
         "totals": {
             "advisors": sum(tiers.values()), "name_only": tiers["none"], "tiers": dict(tiers), "pool_records": len(aids),
             "pool_people": len(people), "pool": gate["gated"], "failed_recency": gate["failed_recency"], "no_year": gate["no_year"],
-            "medium_people": len(medium_people), "medium": len(medium_gated), "barred_source": barred,
+            "medium_people": len(medium_people), "medium": len(medium_gated), "barred_source": barred, "taxonomy_topics": len(taxonomy),
         },
         "by_source": {s: dict(c) for s, c in sorted(by_source.items())},
         "seniority": dict(seniority),

@@ -52,7 +52,13 @@ class Result:
 
 
 def load_index(eng: sqlite3.Connection) -> Index:
-    topics = {t: (name or t, fld or "") for t, name, fld in eng.execute("select id, name, field from topic")}
+    topics, subfields, bodies = {}, {}, {}
+    for t, name, fld, sub, body in eng.execute("select id, name, field, subfield, body from topic"):
+        topics[t] = (name or t, fld or "")
+        if sub:
+            subfields[t] = sub
+        if body:
+            bodies[t] = body
     advisors = [
         Advisor(rid, tier, cluster, country, fld, tuple(t for t in (tp or "").split(";") if t), inst, students,
                 tuple(s for s in (sources or "").split(";") if s), grants, first, last)
@@ -61,7 +67,7 @@ def load_index(eng: sqlite3.Connection) -> Index:
             "from advisor where gated = 1 and emeritus = 0 and tier in ('own', 'high')"
         )
     ]
-    return Index(topics, advisors)
+    return Index(topics, advisors, subfields, bodies)
 
 
 def display(store: sqlite3.Connection, rids: list[int]) -> dict[int, tuple]:
@@ -76,7 +82,8 @@ def display(store: sqlite3.Connection, rids: list[int]) -> dict[int, tuple]:
 
 def reasons(index: Index, s: Scored) -> list[str]:
     out = [f"Shares the topic {index.topics[t][0]}." for t in s.shared_topics]
-    out += [f"Works in {f}." for f in s.shared_fields if not s.shared_topics]
+    out += [f"Works in the subfield {f}." for f in s.shared_subfields]
+    out += [f"Works in {f}." for f in s.shared_fields if not s.shared_topics and not s.shared_subfields]
     if not out:
         out.append("Shares no topic with the query and passed the field and country filters.")
     return out
