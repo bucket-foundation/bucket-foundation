@@ -1,8 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import { readdirSync, readFileSync } from "node:fs";
+import { join, resolve } from "node:path";
 import { validDatasetId } from "../../../../../src/lib/explore/datasets";
-import { MODES } from "../../../../../src/lib/explore/modes";
-import { bridgeLinks } from "../../../../../src/lib/explore/modes/graph";
-import type { Hit } from "../../../../../src/lib/explore/search";
 import { assembleRowSet, audienceOf, bodySha, checkRows, hitIds, KEY_CHARS, MODE_IDS, packRows, pageCount, pageRows, rowKey, rowKeys, ROWS_SCHEMA, type PackedRows, type RowDraft } from "./contract";
 import { fixtureContext, fixtureDraft } from "./test-fixtures";
 
@@ -48,13 +47,15 @@ describe("packed rows", () => {
   });
 
   test("the mode ids are the modes Explore draws", () => {
-    expect(MODES.map((m) => m.id)).toEqual([...MODE_IDS]);
-  });
-
-  test("row hits gain no bridge link", () => {
-    const rows = valid();
-    const hits: Hit[] = hitIds(rows).map((id, i) => ({ id, type: "row", title: rows.title[i], subtitle: rows.sub[i], text: "", score: 1, branch: rows.groups[rows.gi[i]].id, year: rows.year[i], url: rows.url[i], links: [] }));
-    expect(bridgeLinks(hits)).toEqual({ bridges: [], links: [] });
+    const dir = resolve(import.meta.dir, "../../../../../src/lib/explore/modes");
+    const index = readFileSync(join(dir, "index.ts"), "utf8");
+    const listed = /export const MODES: ExploreMode\[\] = \[([^\]]+)\];/.exec(index)?.[1].split(",").map((name) => name.trim()) ?? [];
+    const declared = new Map<string, string>();
+    for (const file of readdirSync(dir).filter((f) => f.endsWith(".ts") && !f.endsWith(".test.ts"))) {
+      for (const m of readFileSync(join(dir, file), "utf8").matchAll(/export const (\w+Mode): ExploreMode = \{\s*id: "([a-z]+)"/g)) declared.set(m[1], m[2]);
+    }
+    expect(listed).toHaveLength(12);
+    expect(listed.map((name) => declared.get(name))).toEqual([...MODE_IDS]);
   });
 });
 

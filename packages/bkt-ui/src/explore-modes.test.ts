@@ -2,6 +2,9 @@ import { describe, expect, test } from "bun:test";
 import { MODES as originals } from "../../../src/lib/explore/modes";
 import { DNA_SLOTS } from "../../../src/lib/explore/modes/dna";
 import { axisOrder, helixPoint, helixFrame } from "../../../src/lib/explore/modes/helix";
+import { bridgeLinks } from "../../../src/lib/explore/modes/graph";
+import { hitKind } from "../../../src/lib/explore/saved";
+import type { Hit } from "../../../src/lib/explore/search";
 import { SAMPLE_HITS } from "../../../scripts/lib/explore-hits";
 import { MODES, modeById, dnaRibbon, type DesktopLayout } from "./explore/modesV2";
 
@@ -146,4 +149,26 @@ test("Native score bounds preserve source ranking and bridge markers", () => {
       if (!hits.some((hit) => hit.id === node.id)) expect(node).toEqual(source.nodes[index]);
     });
   }
+});
+
+describe("row hits in the site modes", () => {
+  const rows: Hit[] = ["cip-11", "soc-15", "soc-11"].map((key, i) => ({
+    id: `row:major-to-career:${key}`, type: "row", title: key, subtitle: "", text: "", score: 1, branch: i === 0 ? "cip" : "soc", year: null, url: null,
+    links: i === 0 ? ["row:major-to-career:soc-15", "row:major-to-career:soc-11"] : [], source: "cip2020", license: "US federal work, public domain",
+  }));
+
+  test("row hits gain no bridge link", () => {
+    expect(bridgeLinks(rows)).toEqual({ bridges: [], links: [] });
+  });
+
+  test("the graph mode draws each row hit once with its own links and no frame", () => {
+    const layout = originals.find((mode) => mode.id === "graph")!.layout(rows, { selected: null, scroll: 0 });
+    expect(layout.nodes.map((node) => node.id).sort()).toEqual(rows.map((hit) => hit.id).sort());
+    expect(layout.nodes.every((node) => node.position.every(Number.isFinite) && /^#[0-9a-f]{6}$/i.test(node.color))).toBe(true);
+    expect(layout.links).toHaveLength(2);
+  });
+
+  test("a row hit has no saved kind", () => {
+    expect(rows.map((hit) => hitKind(hit))).toEqual([null, null, null]);
+  });
 });
