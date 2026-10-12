@@ -1,7 +1,6 @@
 import { chmodSync, existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, extname, join, sep } from "node:path";
 import { decodeBlob, MB, PACK_CAPS, pathProblem, sha256, SIDE_SCHEMA, SLUG, type PackedFile, type ReportRecord, type ResearchBlobs, type ResearchIndex, type ResearchOutput, type ResearchSidePack } from "./pack/research";
-import { DENIED_NAME } from "./pack/rights";
 import { platformFor } from "./platform";
 import { pageOf, parseQuery, parseTable, recordSetTable, TableCache, TableError, type TablePage, type TableQuery } from "./research-table";
 import type { Route } from "./serve";
@@ -125,7 +124,6 @@ export function checkSidePack(bytes: Uint8Array): ResearchSidePack {
   if (typeof pack.version !== "string" || !VERSION.test(pack.version)) refuse("the side pack has no valid version");
   const outputs = checkOutputs(pack.outputs);
   if (sha256(JSON.stringify(outputs)).slice(0, 16) !== pack.version) refuse("the side pack does not match its version");
-  if (DENIED_NAME.test(JSON.stringify(outputs))) refuse("the side pack names a denied source");
   if (pack.blobs === null || typeof pack.blobs !== "object") refuse("the side pack holds no files");
   let total = 0;
   for (const output of outputs) {
@@ -135,7 +133,6 @@ export function checkSidePack(bytes: Uint8Array): ResearchSidePack {
       if (!blob || typeof blob.data !== "string" || (blob.enc !== "utf8" && blob.enc !== "base64")) refuse(`${output.slug}: ${file.path} is missing from the side pack`);
       const body = decodeBlob(blob);
       if (body.length !== file.size || sha256(body) !== file.sha256) refuse(`${output.slug}: ${file.path} does not match its hash`);
-      if (blob.enc === "utf8" && DENIED_NAME.test(blob.data)) refuse(`${output.slug}: ${file.path} quotes a denied source`);
       size += blob.data.length;
     }
     if (size > PACK_CAPS.staff) refuse(`${output.slug} is over the ${PACK_CAPS.staff} byte cap`, 413);

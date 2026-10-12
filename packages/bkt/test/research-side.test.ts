@@ -6,12 +6,12 @@ import { installLines, readSidePack, researchInstall } from "../src/cli/research
 import { buildResearchPack, encodeBlob, loadReportLib, PACK_CAPS, readRecords, sha256, SIDE_SCHEMA, sidePack, type ResearchPack, type ResearchSidePack } from "../src/pack/research";
 import { checkSidePack, installSidePack, readInstalled, Research, ResearchError, researchRoutes, SIDE_PACK_BYTES, staffRoot } from "../src/research";
 import { pageOf, PAGE_ROWS, parseQuery, parseTable, recordSetTable, TABLE_ROW_CAP, TableCache, TableError } from "../src/research-table";
+import { DENIED_NAME } from "../src/pack/rights";
 import { startServe, type Serve } from "../src/serve";
 
 const REPO = resolve(import.meta.dir, "../../..");
 const ATLAS = "solvability-frontier";
 const SOURCED = "tools/solvability-atlas/problems-sourced.tsv";
-const DENIED = ["k", "r", "u", "s", "e"].join("");
 let open: ResearchPack;
 let full: ResearchPack;
 let side: ResearchSidePack;
@@ -125,6 +125,9 @@ describe("staff side pack", () => {
     expect(sideBytes.length).toBeLessThan(SIDE_PACK_BYTES);
     expect(() => sidePack(open)).toThrow("BKT_INCLUDE_STAFF_DATA=1");
     expect(checkSidePack(sideBytes).version).toBe(side.version);
+    expect(DENIED_NAME.test(JSON.stringify(side))).toBe(false);
+    expect(readFileSync(join(import.meta.dir, "../src/research.ts"), "utf8")).not.toContain("pack/rights");
+    expect(readFileSync(join(import.meta.dir, "../src/research-table.ts"), "utf8") + readFileSync(join(import.meta.dir, "../src/cli/research.ts"), "utf8")).not.toMatch(DENIED_NAME);
   });
 
   test("install writes under the data folder at 0600 and the engine then reads shipped plus side pack", async () => {
@@ -197,16 +200,6 @@ describe("staff side pack", () => {
     const shipped = clone();
     shipped.outputs[0].files[0].audience = "public";
     expect(refusal(() => installSidePack(home, bytesOf(restamp(shipped))))[1]).toContain("is not a staff entry");
-    const named = clone();
-    named.outputs[0].manifest.title = `Notes on ${DENIED}`;
-    expect(refusal(() => installSidePack(home, bytesOf(restamp(named))))[1]).toBe("the side pack names a denied source");
-    const quoted = clone();
-    const target = quoted.outputs[0].files.find((f) => quoted.blobs[f.sha256].enc === "utf8")!;
-    const body = Buffer.from(`${DENIED.toUpperCase()} text`);
-    quoted.blobs[sha256(body)] = encodeBlob(body);
-    target.sha256 = sha256(body);
-    target.size = body.length;
-    expect(refusal(() => installSidePack(home, bytesOf(restamp(quoted))))[1]).toContain("quotes a denied source");
     expect(existsSync(join(home, "research"))).toBe(false);
   });
 
