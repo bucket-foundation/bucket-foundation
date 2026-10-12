@@ -87,6 +87,9 @@ jobs:
       - name: bkt-ui build and bkt sidecar
         working-directory: packages/bkt-desktop
         run: bun run prepare:bundle
+      - name: shell tests
+        working-directory: packages/bkt-desktop/src-tauri
+        run: cargo test --locked
       - name: no staff data in the public bundle
         run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json packages/bkt/content/canon.json packages/bkt/content/explore.json packages/bkt/content/research-index.json packages/bkt/content/research-blobs.json
       - name: no denied source material in the public bundle

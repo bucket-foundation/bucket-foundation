@@ -296,7 +296,7 @@ export function approvalText(o: { title: string; build: ReportBuild; cls: "shipp
     }
   });
   const total = o.files.reduce((n, f) => n + f.added + f.removed, 0);
-  if (o.files.length > 5 || total > 40) lines.push("", `${o.files.length} files changed. Run bkt research approve in a terminal to read the full diff.`);
+  if (o.files.length > 5 || total > 40) lines.push("", `${o.files.length} ${o.files.length === 1 ? "file" : "files"} changed. Run bkt research approve in a terminal to read the full diff.`);
   return visibleText(lines.join("\n"));
 }
 
