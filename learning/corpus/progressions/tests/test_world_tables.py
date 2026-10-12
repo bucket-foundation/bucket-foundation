@@ -9,7 +9,8 @@ TABLES = os.path.join(PARENT, "tables")
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(PARENT)))
 WORLD = ["world_systems", "world_stages", "world_exams", "world_nqf", "world_occupations", "world_professions", "world_elements", "world_languages", "world_tvet_bodies", "world_indicators"]
 TECH = ["tech_occupation", "tech_training_response", "tech_lags"]
-NEW = WORLD + TECH + ["countries", "source_licences"]
+NEW = WORLD + TECH + ["countries", "source_licences", "attributions"]
+NEEDS_CREDIT = re.compile(r"CC BY|Open Government|Open Licence|Licence Ouverte|Standard Terms of Use|EU reuse", re.I)
 EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}")
 OPEN_LICENCE = re.compile(r"CC BY|CC0|Open Government|Open Licence|Licence Ouverte|Standard Terms of Use|public domain", re.I)
 NAME_KEYS = {"name_national", "name_english", "qualification_national", "qualification_english", "title", "title_english", "main_programmes", "main_programmes_national", "qualifications", "qualification_types", "languages_of_instruction", "framework"}
@@ -85,7 +86,7 @@ class WorldTables(unittest.TestCase):
                     self.assertIsNone(re.search(r"ipums", value, re.I), r["id"])
                     self.assertIsNone(EMAIL.search(value), r["id"])
                     if not str(key).endswith("url"):
-                        self.assertLessEqual(len(value), 300, (r["id"], key))
+                        self.assertLessEqual(len(value), 600 if key == "credit_line" else 300, (r["id"], key))
                     if key in NAME_KEYS and name != "world_tvet_bodies":
                         self.assertLessEqual(len(value.split()), 8, (r["id"], key))
                     self.assertIsNone(re.search(r"\bHRAF\b|Outline of Cultural Materials|Prop(?:a|ae)dia", value), r["id"])
@@ -134,6 +135,40 @@ class WorldTables(unittest.TestCase):
             if "NC" in r["licence"] or r["licence"] in ("restricted", "unknown"):
                 self.assertNotEqual(r["public"], "rows", r["id"])
         self.assertTrue(n)
+
+    def test_every_licence_that_asks_for_credit_has_a_line(self):
+        credits = list(rows("attributions"))
+        for c in credits:
+            self.assertTrue(c["credit_line"] and c["source"] and c["dataset"] and c["licence"], c["id"])
+            self.assertTrue(str(c["licence_url"]).startswith("https://"), c["id"])
+            self.assertIn(c["licence_url"].split("//")[1].split("/")[0], c["credit_line"] + c["licence_url"], c["id"])
+        seen = set()
+        for name in WORLD:
+            for r in rows(name):
+                key = (name, r["licence"], r.get("scheme") if name == "world_occupations" else None)
+                if key in seen or not NEEDS_CREDIT.search(r["licence"]):
+                    continue
+                seen.add(key)
+                hit = [c for c in credits if name in c["match"].get("table", []) and r["licence"] in c["match"].get("licence", []) and (key[2] is None or key[2] in c["match"].get("scheme", []))]
+                self.assertTrue(hit, key)
+        self.assertGreaterEqual(len(seen), 8)
+        ids = {c["id"] for c in credits}
+        for wanted in ("credit-onet-31", "credit-ccss", "credit-wikimedia", "credit-openstax", "credit-england-nc", "credit-australia-v9", "credit-statcan-noc-2021", "credit-world-bank-wdi"):
+            self.assertIn(wanted, ids)
+        statcan = next(c for c in credits if c["id"] == "credit-statcan-noc-2021")
+        self.assertIn("Adapted from Statistics Canada", statcan["credit_line"])
+        self.assertIn("does not constitute an endorsement", statcan["credit_line"])
+        ons = next(c for c in credits if c["id"] == "credit-ons-soc-2020")
+        self.assertIn("Contains public sector information licensed under the Open Government Licence v3.0", ons["credit_line"])
+
+    def test_cleared_sources_say_how_and_share_alike_stays_codes(self):
+        for r in rows("source_licences"):
+            self.assertIn(r["clearance"], ("terms read", "rule, terms unread", "none"), r["id"])
+            if r["public"] == "rows" and not r["fetched"]:
+                self.assertEqual(r["clearance"], "rule, terms unread", r["id"])
+                self.assertIn("Third-party", r["exception"], r["id"])
+            if r["licence"] == "CC-BY-SA-4.0":
+                self.assertNotEqual(r["public"], "rows", r["id"])
 
     def test_stats_match_tables(self):
         with open(os.path.join(TABLES, "world_stats.json"), encoding="utf-8") as fh:

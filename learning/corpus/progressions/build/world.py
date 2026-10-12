@@ -17,6 +17,44 @@ TEXT_LIMIT = 300
 LABEL_LIMIT = 240
 NATURAL_EARTH = "Natural Earth 1:50m Admin 0 Countries, label point"
 NATURAL_EARTH_URL = "https://www.naturalearthdata.com/about/terms-of-use/"
+CC_BY = "https://creativecommons.org/licenses/by/4.0/"
+ADAPTED = "Bucket Foundation selected and reformatted the data."
+NEEDS_CREDIT = re.compile(r"CC BY|Open Government|Open Licence|Licence Ouverte|Standard Terms of Use|EU reuse", re.I)
+RULE_EXCEPTION = "Cleared by the US federal works rule with the terms page unread. Third-party text, images and trademarks on the page stay under their owners' terms, and a row that reproduces such material is not cleared."
+ATTRIBUTIONS = [
+    ("abs-osca-2024", {"table": ["world_occupations"], "licence": ["CC BY 4.0"], "scheme": ["OSCA 2024"]}, "Australian Bureau of Statistics", "OSCA, Occupation Standard Classification for Australia, 2024", "CC-BY-4.0", CC_BY,
+     "Source: Australian Bureau of Statistics, OSCA - Occupation Standard Classification for Australia, 2024, licensed under CC BY 4.0 (%s). %s" % (CC_BY, ADAPTED)),
+    ("stats-nz-nol", {"table": ["world_occupations"], "licence": ["CC BY 4.0"], "scheme": ["NOL v1.0"]}, "Stats NZ", "National Occupation List v1.0", "CC-BY-4.0", CC_BY,
+     "This work includes Stats NZ's data, National Occupation List v1.0, which are licensed by Stats NZ for reuse under the Creative Commons Attribution 4.0 International licence (%s). %s" % (CC_BY, ADAPTED)),
+    ("ons-soc-2020", {"table": ["world_occupations"], "licence": ["Open Government Licence v3.0"], "scheme": ["SOC 2020"]}, "Office for National Statistics", "Standard Occupational Classification 2020 and its coding index", "OGL-UK-3.0", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+     "Source: Office for National Statistics, Standard Occupational Classification 2020. Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)."),
+    ("statcan-noc-2021", {"table": ["world_occupations"], "licence": ["Statistics Canada Open Licence"], "scheme": ["NOC 2021"]}, "Statistics Canada", "National Occupational Classification (NOC) 2021 Version 1.0", "Statistics Canada Open Licence", "https://www.statcan.gc.ca/en/reference/licence",
+     "Adapted from Statistics Canada, National Occupational Classification (NOC) 2021 Version 1.0, retrieved 2026-10-11. This does not constitute an endorsement by Statistics Canada of this product. Reproduced under the Statistics Canada Open Licence (https://www.statcan.gc.ca/en/reference/licence)."),
+    ("japan-jsco-2009", {"table": ["world_occupations"], "licence": ["Government of Japan Standard Terms of Use 2.0"], "scheme": ["JSCO 2009"]}, "Ministry of Internal Affairs and Communications, Japan", "Japan Standard Occupational Classification, revision 5 of 2009", "Government of Japan Standard Terms of Use 2.0", "https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html",
+     "Source: Japan Standard Occupational Classification (Rev. 5, December 2009), Ministry of Internal Affairs and Communications (https://www.soumu.go.jp/). Bucket Foundation created these rows by editing that classification, under the Government of Japan Standard Terms of Use (Version 2.0)."),
+    ("insee-pcs-2020", {"table": ["world_occupations"], "licence": ["Licence Ouverte 2.0"], "scheme": ["PCS 2020"]}, "INSEE", "Professions et catégories socioprofessionnelles, PCS 2020, correspondence with ISCO-08", "etalab-2.0", "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
+     "Source: INSEE, Professions et catégories socioprofessionnelles (PCS 2020), correspondence with ISCO-08, retrieved 2026-10-11, reused under the Licence Ouverte 2.0 (https://www.etalab.gouv.fr/licence-ouverte-open-licence/)."),
+    ("world-bank-wdi", {"table": ["world_indicators", "world_stages"], "licence": ["CC BY 4.0"]}, "World Bank", "World Development Indicators, education series", "CC-BY-4.0", CC_BY,
+     "Source: World Bank, World Development Indicators, licensed under CC BY 4.0 (%s). %s" % (CC_BY, ADAPTED)),
+    ("cedefop-nqf", {"table": ["world_nqf"], "licence": ["CC BY 4.0 (EU reuse policy, source to be credited)"]}, "Cedefop, European Centre for the Development of Vocational Training", "NQFs online tool and the European inventory of national qualifications frameworks", "CC-BY-4.0", "https://www.cedefop.europa.eu/en/copyright",
+     "Source: Cedefop, NQFs online tool and European inventory of NQFs. Copyright Cedefop; reuse is authorised provided the source is acknowledged (https://www.cedefop.europa.eu/en/copyright). %s" % ADAPTED),
+    ("eu-cedefop-eurydice", {"table": ["world_exams", "world_professions", "world_elements"], "licence": ["CC BY 4.0 (EU reuse policy, source to be credited)"]}, "European Union: Cedefop and Eurydice", "Cedefop country reports and Eurydice national education system pages", "CC-BY-4.0", "https://commission.europa.eu/legal-notice_en",
+     "Source: Cedefop and Eurydice, European Union. Reuse is authorised under CC BY 4.0 (%s) provided the source is acknowledged. %s" % (CC_BY, ADAPTED)),
+    ("gov-uk", {"table": ["world_exams"], "licence": ["Open Government Licence v3.0"]}, "UK Government", "GOV.UK guidance on qualification levels", "OGL-UK-3.0", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+     "Source: GOV.UK. Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)."),
+    ("onet-31", {"table": ["progression", "backbone_codes"], "scheme": ["onet31", "onet-soc"]}, "USDOL/ETA", "O*NET 31.0 Database", "CC-BY-4.0", CC_BY,
+     "This corpus includes information from the O*NET 31.0 Database (https://www.onetcenter.org/database.html) by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence (%s). O*NET is a trademark of USDOL/ETA. Bucket Foundation has modified all or some of this information. USDOL/ETA has not approved, endorsed or tested these modifications." % CC_BY),
+    ("ccss", {"table": ["progression"], "framework_id": ["school-fw-ccss-math", "school-fw-ccss-ela"]}, "NGA Center and CCSSO", "Common Core State Standards", "Common Core public licence", "https://www.thecorestandards.org/public-license/",
+     "Copyright 2010 National Governors Association Center for Best Practices and Council of Chief State School Officers. All rights reserved. Used under the public licence (https://www.thecorestandards.org/public-license/). The labels are Bucket's own wording and are no part of the standards."),
+    ("wikimedia", {"table": ["resources", "technologies", "tech_occupation", "tech_training_response"], "host": ["en.wikipedia.org", "en.wikibooks.org", "en.wikiversity.org"]}, "Wikimedia projects and their contributors", "English Wikipedia, Wikibooks, Wikiversity", "CC-BY-SA-4.0", "https://creativecommons.org/licenses/by-sa/4.0/",
+     "Names, dates and links come from pages of the Wikimedia projects and their contributors, under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Bucket selected and reformatted them, and these rows stay under CC BY-SA 4.0."),
+    ("openstax", {"table": ["books", "resources"], "host": ["openstax.org"]}, "OpenStax, Rice University", "OpenStax book catalogue", "CC-BY-4.0", CC_BY,
+     "Book records come from OpenStax (https://openstax.org/), Rice University, under CC BY 4.0 (%s). Bucket reformatted them. Each book's own licence is in its row." % CC_BY),
+    ("england-nc", {"table": ["progression"], "system": ["england-nc"]}, "Department for Education", "National curriculum in England", "OGL-UK-3.0", "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+     "Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)."),
+    ("australia-v9", {"table": ["progression"], "system": ["australia-v9"]}, "ACARA", "Australian Curriculum version 9", "CC-BY-4.0", "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
+     "Copyright Australian Curriculum, Assessment and Reporting Authority (ACARA) 2010 to present, licensed under CC BY 4.0 (%s). ACARA does not endorse this product. Bucket selected and shortened the material." % CC_BY),
+]
 WORLD_TABLES = [
     "world_systems", "world_stages", "world_exams", "world_nqf", "world_occupations", "world_professions",
     "world_elements", "world_languages", "world_tvet_bodies", "world_indicators",
@@ -71,6 +109,7 @@ class World:
         self.stats = collections.OrderedDict()
         self.ids = set()
         self.renamed = 0
+        self.credit = collections.Counter()
 
     def base(self, r, row_id=None):
         country = self.countries.get(r.get("iso3")) or {}
@@ -96,6 +135,8 @@ class World:
                 self.ids.add(row["id"])
                 n += 1
                 verified += bool(row.get("verified"))
+                if table in WORLD_TABLES and NEEDS_CREDIT.search(str(row.get("licence"))):
+                    self.credit[(table, row["licence"], row.get("scheme") if table == "world_occupations" else None)] += 1
                 fh.write(json.dumps(row, ensure_ascii=False) + "\n")
         self.stats[table] = {"rows": n, "verified": verified, "verified_share": round(verified / n, 4) if n else 0.0, "bytes": os.path.getsize(path)}
 
@@ -270,10 +311,24 @@ class World:
     def licences(self):
         for r in rows_of(os.path.join(HERE, "source_licences.jsonl")):
             r = collections.OrderedDict((k, clean(v)) if isinstance(v, str) else (k, v) for k, v in r.items())
-            if r.get("public") != "rows":
-                r["publishable"] = False
+            r["clearance"] = "terms read" if r.get("fetched") else "rule, terms unread" if r.get("public") == "rows" else "none"
+            r["exception"] = None
+            if r.get("licence") == "CC-BY-SA-4.0" and r.get("public") == "rows":
+                r["public"] = "codes"
+                r["notes"] = clean((r.get("notes") or "") + " Held as codes and links: the source is share-alike and the compilation is CC BY 4.0.")
+            if r["clearance"] == "rule, terms unread" and r.get("public") == "rows":
+                r["exception"] = RULE_EXCEPTION
+            r["publishable"] = r.get("public") == "rows"
             r["verified"] = bool(r.get("fetched"))
             yield r
+
+    def attributions(self):
+        for key, match, body, dataset, spdx, url, line in ATTRIBUTIONS:
+            n = sum(v for (table, lic, scheme), v in self.credit.items() if table in match.get("table", ()) and lic in match.get("licence", ()) and (scheme is None or scheme in match.get("scheme", ())))
+            yield collections.OrderedDict([
+                ("id", "credit-%s" % key), ("match", match), ("source", body), ("dataset", dataset), ("licence", spdx), ("licence_url", url),
+                ("requires_attribution", True), ("credit_line", line), ("terms_read", False), ("world_rows", n),
+            ])
 
     def run(self):
         os.makedirs(OUT, exist_ok=True)
@@ -288,6 +343,10 @@ class World:
         self.write("tech_lags", self.lags())
         if os.path.exists(os.path.join(HERE, "source_licences.jsonl")):
             self.write("source_licences", self.licences())
+        self.write("attributions", self.attributions())
+        uncredited = [k for k in self.credit if not any(k[0] in m.get("table", ()) and k[1] in m.get("licence", ()) and (k[2] is None or k[2] in m.get("scheme", ())) for _, m, *_ in ATTRIBUTIONS)]
+        if uncredited:
+            raise SystemExit("no credit line for %s" % uncredited)
         with open(os.path.join(OUT, "world_stats.json"), "w", encoding="utf-8") as fh:
             json.dump({"world_slice_loaded": present, "tables": self.stats, "rows_withheld_restricted_host": dict(self.withheld), "duplicate_ids_renumbered": self.renamed}, fh, indent=1)
             fh.write("\n")
