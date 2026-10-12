@@ -30,7 +30,7 @@ describe("marked rows", () => {
   });
 
   test("ids of another set, ids that are no row and repeats drop", () => {
-    expect(cleanMarks("flow-set", ["row:flow-set:a", "row:other-set:a", "row:flow-set:a", "paper:d/10.1/x", "row:flow-set:../../etc", "/home/someone/file.csv", 7, null, "row:flow-set:b"])).toEqual(["row:flow-set:a", "row:flow-set:b"]);
+    expect(cleanMarks("flow-set", ["row:flow-set:a", "row:other-set:a", "row:flow-set:a", "paper:d/10.1/x", "row:flow-set:../../etc", "/srv/data/file.csv", 7, null, "row:flow-set:b"])).toEqual(["row:flow-set:a", "row:flow-set:b"]);
     expect(cleanMarks("Bad_Set", ["row:Bad_Set:a"])).toEqual([]);
     expect(cleanMarks("flow-set", "row:flow-set:a")).toEqual([]);
     const store = memory({ [SELECTION_KEY]: JSON.stringify({ set: "flow-set", ids: ["row:flow-set:a", "C:\\\\file", "row:flow-set:b"] }) });
