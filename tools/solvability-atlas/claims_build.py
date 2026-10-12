@@ -22,6 +22,7 @@ CACHE = HERE / "cache" / "openai-math"
 MAP = HERE / "claims" / f"{BATCH}.map.tsv"
 LEDGER = HERE / "claims" / f"{BATCH}.json"
 FAMILIES = HERE / "claims" / f"{BATCH}.families.tsv"
+ROWS = HERE / "claims" / f"{BATCH}.rows.md"
 FETCH_CAP = 80
 ABSENT = (
     ("Erdős problem 293", "On the third-party list of 23 Erdős problems; the atlas has no row for it."),
@@ -120,12 +121,37 @@ def build(offline=False):
     return claims.validate(ledger), families
 
 
+MATCH_TITLE = {"problem": "Rows Marked Claimed", "special_case": "Special Cases", "related": "Related Statements", "unestablished": "Match Unestablished"}
+MATCH_LEDE = {
+    "problem": "The family claims the row's problem in full. Status `claimed`, counted as open.",
+    "special_case": "The family claims part of the row. Status unchanged; the entry is a note on the row.",
+    "related": "The family claims a neighbouring statement. Status unchanged.",
+    "unestablished": "The catalogue text does not show that the family settles the row. Status unchanged.",
+}
+SCOPE_WORD = {"full": "full", "narrower": "narrower", "none": "none"}
+
+
+def rows_markdown(ledger):
+    source = ledger["source"]
+    lines = ["<!-- voice-ignore-file: family titles are quoted from the claimant's catalogue -->", f"# Rows Of {ledger['batch']}", "", f"Built by `python3 claims_build.py` from `claims/{ledger['batch']}.map.tsv` and the catalogue of {source['url']} at commit `{source['commit'][:9]}`. Lean scope compares the machine-checked statement with the statement claimed for the row. No entry carries a confirmation.", ""]
+    for match in claims.MATCHES:
+        part = [e for e in ledger["claims"] if e["match"] == match]
+        lines += [f"## {MATCH_TITLE[match]}", "", f"{len(part)} rows. {MATCH_LEDE[match]}", "", "| Row | Family | Lean scope | Why |", "|---|---|---|---|"]
+        for e in part:
+            why = e["match_note"] + (" " + e["formal"]["note"] if e["formal"]["note"] else "")
+            lines.append(f"| `{e['id']}` | {e['family']} {e['family_title'].replace('|', '/')} | {SCOPE_WORD[e['formal']['scope']]} | {why.replace('|', '/')} |")
+        lines.append("")
+    lines += ["## Absent From The Atlas", ""] + [f"- {a['reference']}: {a['reason']}" for a in ledger["absent"]] + [""]
+    return "\n".join(lines)
+
+
 def main(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("--offline", action="store_true")
     args = parser.parse_args(argv)
     ledger, families = build(args.offline)
     LEDGER.write_text(json.dumps(ledger, indent=1, ensure_ascii=False) + "\n", encoding="utf8")
+    ROWS.write_text(rows_markdown(ledger), encoding="utf8")
     mapped = {e["family"] for e in ledger["claims"]}
     with open(FAMILIES, "w", newline="", encoding="utf8") as fh:
         w = csv.writer(fh, delimiter="\t", lineterminator="\n")

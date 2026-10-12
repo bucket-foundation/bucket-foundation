@@ -142,3 +142,17 @@ def test_the_headline_reading_holds_in_the_committed_result(committed):
     rates = [strict["classes"][c]["rate"] for c in cf.CLASSES]
     assert rates[0] == min(rates)
     assert committed["claimed_rows"]["claimed"]["already_solved_in_baseline"] == []
+
+
+def test_the_written_tables_are_the_computed_tables(committed):
+    doc = (HERE / "CLAIMS-2026-10.md").read_text(encoding="utf8")
+    for label, name in (("covered_branches", "claimed"), ("covered_branches", "claimed_formal_full"), ("erdos", "claimed")):
+        for line in cf.markdown_table(committed["tables"][label][name]).splitlines():
+            assert line in doc, line
+    paper = (REPO / "papers" / "solvability-frontier" / "main.tex").read_text(encoding="utf8")
+    full, strict = committed["tables"]["covered_branches"]["claimed"], committed["tables"]["covered_branches"]["claimed_formal_full"]
+    for c in cf.CLASSES:
+        a, b = full["classes"][c], strict["classes"][c]
+        row = f"{c} & {a['rows']} & {a['claimed']} & {100 * a['rate']:.1f}\\%, {100 * a['ci95'][0]:.1f} to {100 * a['ci95'][1]:.1f} & {b['claimed']} & {100 * b['rate']:.1f}\\%, {100 * b['ci95'][0]:.1f} to {100 * b['ci95'][1]:.1f} \\\\"
+        assert row in paper, row
+    assert "\\subsection{October 2026 claims}" in paper and "Added 2026-10-12" in paper

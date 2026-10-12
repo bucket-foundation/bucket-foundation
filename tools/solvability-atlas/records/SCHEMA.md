@@ -32,6 +32,7 @@ type Record = {
   sources: { url: string; licence: string; retrieved: string }[];
   retrieved: string;               // ISO date of the build
   quality: { status: "full" | "partial" | "weak" | "empty"; reason: string };
+  claims?: Claim[];                // ledger entries for this problem, absent when there are none
 };
 ```
 
@@ -44,6 +45,35 @@ Role rule for key works: a title matching survey, review, progress, overview, st
 Licences: the `statement` text and `aliases` come from Wikipedia and carry CC BY-SA 4.0 with attribution in the record, so the records directory is share-alike text. The code stays MIT. Derived numbers (counts, activity, relevance, embeddings) are CC0 in intent. OpenAlex metadata is CC0-1.0; arXiv API metadata is CC0-1.0. Requests to OpenAlex send `mailto` from the `OPENALEX_MAILTO` environment variable and `Authorization: Bearer` from `OPENALEX_API_KEY` when set; neither reaches a stored URL or cache key. `records/sources.tsv` maps each id to its Wikipedia title and its OpenAlex and arXiv query phrase. The repo corpora searched for mentions are `openalex-fanout/`, `pubmed/` and the research-atlas parquet tables named in `src/data/research-atlas-manifest.json` when they exist on disk.
 
 Build: `python3 records.py [--limit N] [--only id ...] [--force] [--offline]`. A record on disk is skipped unless `--force`. `--offline` reads the cache only. `INDEX.md` is rewritten on every run.
+
+## Claims
+
+A published claim of a solution is a ledger entry, and the ledger sets a fourth status, `claimed`, beside `solved`, `partial` and `open`. Ledgers live in `claims/<batch>.json`, schema id `bucket.solvability-atlas.claims/v1`; `claims.py` validates them and `atlas.mark_solved` applies them.
+
+```ts
+type Claim = {
+  id: string;                      // atlas row, dropped inside records/<id>.json
+  batch: string;                   // ledger name, added on load
+  family: string;                  // the claimant's own result number
+  family_title: string;
+  claimant: string;
+  date: string;                    // ISO date of publication
+  source_url: string;              // the claimant's catalogue at a pinned commit
+  manuscripts: string[];
+  statement: string;               // the statement claimed, copied from the catalogue
+  match: "problem" | "special_case" | "related" | "unestablished";
+  match_note: string;              // why the match holds, in one or two sentences
+  formal: { exists: boolean; scope: "full" | "narrower" | "none"; statement: string | null; url: string | null; note: string };
+  confirmation: { by: string; kind: "named_expert" | "refereed_venue"; url: string; date: string } | null;
+  withdrawn: { date: string; url: string } | null;
+};
+```
+
+Status rule: a row is `claimed` when an unwithdrawn entry has `match: "problem"` and `confirmation` is null. A claimed row has `solved: false` and no resolved year, so reach, the frontier, the backtest codings and every solved rate read it as open; `tests/test_claims_frontier.py` checks that the status moves no reach, zone or class. Recording a `confirmation` that names an expert or a refereed venue is the single path to `solved`, and the confirmation year becomes the resolved year. A `withdrawn` entry returns the row to open. The other three match values are notes: `special_case` and `related` record a partial result on a row that stays open, and `unestablished` lists a row whose match could not be shown from the catalogue.
+
+`formal.scope` compares the machine-checked statement with the statement claimed for the row: `full` when the scope note states it, `narrower` when the Lean file covers less or covers a neighbouring statement, `none` when the family has no scope note. `formal.statement` holds the scope note text and `formal.note` says what a narrower file leaves out.
+
+Build: `python3 claims_build.py` joins the hand map `claims/<batch>.map.tsv` (row, family, match, formal scope, notes) to the claimant's catalogue, fetched once into `cache/` with a cap of 80 requests, and writes the ledger and `claims/<batch>.families.tsv`, the index of every family with its count of mapped rows. `python3 claims.py --apply` then writes the status into the neighbour file, the entries into `records/<id>.json`, compact entries into the production cards and the full ledger into `src/lib/research-os/solvability-claims-data.json`. It refuses to run when a ledger changes the solved set, since reach moves then and `build.sh` must run. Packed rows carry `claims` as compact entries (batch, family, match, formal scope, confirmed, withdrawn). Catalogue text in the first ledger is Apache-2.0, from `github.com/openai/math`.
 
 ## Embedding
 
@@ -67,4 +97,4 @@ The highest AUC among the alternatives is `name_statement` at 0.892, against 0.8
 
 `python3 records.py --all` (or `python3 records_all.py`) writes `src/lib/research-os/solvability-records-data.json`, schema `bucket.solvability-atlas.records-packed/v1`, one packed record per row of `problems.tsv` and `problems-sourced.tsv` (5,209 today), under 3 MiB. `record_schema.row_errors` validates the unpacked form and `records_all.unpack` returns it.
 
-Per row: id, title, branch, form, variant_of, status, coding (settled for solved, advanced for partial), posed and resolved, posed_evidence, statement (cut at 200 characters with an ellipsis, the full text sits at `statement_source`), source and licence, status_source, keywords, market; computed from the embeddings: zone, reach (highest similarity to a solved row over the whole set), radius (the frontier drawing's band: core under 0.6, ring to 1, outer to 1.5), angle, the six nearest solved and six nearest open rows with similarity, and the loadings on the first three principal components of the embeddings. The file's `axes` name the 8 keywords at each end of each component. The 71 atlas problems keep the hand-written part of `records/<id>.json` under `hand` (aliases, level, history, formal status, related, the first four key works, the first three people and organizations, quality). The frontier threshold is the 10th percentile of solved reach, the rule of `solvability-frontier.ts`; `tests/test_records_all.py` checks it and the zone counts against the report data.
+Per row: id, title, branch, form, variant_of, status, coding (settled for solved, advanced for partial, open for open and claimed), posed and resolved, posed_evidence, statement (cut at 200 characters with an ellipsis, the full text sits at `statement_source`), source and licence, status_source, keywords, market; computed from the embeddings: zone, reach (highest similarity to a solved row over the whole set), radius (the frontier drawing's band: core under 0.6, ring to 1, outer to 1.5), angle, the six nearest solved and six nearest open rows with similarity, and the loadings on the first three principal components of the embeddings. The file's `axes` name the 8 keywords at each end of each component. The 71 atlas problems keep the hand-written part of `records/<id>.json` under `hand` (aliases, level, history, formal status, related, the first four key works, the first three people and organizations, quality). The frontier threshold is the 10th percentile of solved reach, the rule of `solvability-frontier.ts`; `tests/test_records_all.py` checks it and the zone counts against the report data.

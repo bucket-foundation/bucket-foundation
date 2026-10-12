@@ -28,6 +28,8 @@
 \newcommand{\bt}{\emp{output/solvability-frontier/report/backtest.json, 2026-10-08, \cmd}}
 \newcommand{\fr}{\emp{output/solvability-frontier/report/frontier.json, 2026-10-08, \cmd}}
 \newcommand{\pr}{\emp{output/solvability-frontier/report/predictions.json, 2026-10-08, \cmd}}
+\newcommand{\cl}{\emp{tools/solvability-atlas/claims/frontier-2026-10.json, 2026-10-12, python3 tools/solvability-atlas/claims\_frontier.py}}
+\newcommand{\ldg}{\emp{tools/solvability-atlas/claims/openai-math-2026-10.json, 2026-10-12, python3 tools/solvability-atlas/claims\_build.py}}
 \newcommand{\mk}{\emp{output/solvability-frontier/report/makeup/makeup.json, 2026-10-08, python3 tools/solvability-atlas/makeup.py --publish}}
 
 \glossentry{reach}{reach}%
@@ -279,6 +281,35 @@ The 90 undecided rows at 2005 resolve at 42\% settled and 61\% settled or advanc
 \end{figure}
 
 Under settled or advanced two strata reach $p$ below 0.05 and run against each other: at 2005 the 20 to 40 word band resolves at 54\% inside against 76\% outside ($p=0.045$), while at 2021 the over 40 word band resolves at 47\% inside against 0\% outside over 27 rows ($p<0.001$) \bt. The second is a cohort effect: the long statements outside at 2021 are the 2021 list's own longer paraphrases, all still open five years on \bt. Mathematics scores one row outside at 2005 and two at 2021 \bt, because nearly every dated mathematics row has a solved mathematics neighbour, so no mathematics rate is given.
+
+\subsection{October 2026 claims}
+\label{sec:october}
+
+Added 2026-10-12, after the text above was written. On 2026-10-06 OpenAI published 719 manuscripts in 372 result families, each a claimed result on an open problem, produced by an unreleased model \ldg. It is the first large batch of claimed settlements dated after the atlas was built, so it tests the rule on outcomes the embeddings never saw. The atlas records these rows under a status of its own, claimed, which every count in this paper reads as open: no named mathematician or refereed venue had confirmed a result of the batch by 2026-10-12, three manuscripts were withdrawn within a day, and the formalization catalogue marks its own review as unchecked \ldg. A hand mapping of the catalogue to the atlas finds 79 rows whose problem a family claims in full, 66 of them top-level rows of mathematics and information, the two branches the batch covers \cl.
+
+\Cref{tab:october} sets those 66 rows against the reach classes as they stood at the commit before the batch, with the embeddings, the threshold of 0.762 and the class boundary of 0.852 all frozen there \cl. Inside rows are claimed at 4.9\% and outside rows at 5.0\%, a difference of $-0.1$ points with a 95\% interval of $-3.3$ to $2.9$, permutation $p=1.0$, and reach ranks claimed rows above unclaimed ones with AUC 0.496, interval 0.426 to 0.573 \cl. Restricted to the 45 rows whose Lean statement covers the full problem, the class the atlas ranks first has the lowest rate, 2.6\% against 3.3\% and 4.1\%, with overlapping intervals \cl. The 13\% against 1\% of the 2021 backtest has no counterpart on this batch.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Rows claimed settled in the OpenAI release of 2026-10-06, by reach class at the commit before the batch. Open top-level rows of mathematics and information; 95\% intervals from 2,000 bootstrap draws over groups of related rows \cl.}
+  \label{tab:october}
+  \small
+  \begin{tabular}{lrrrrr}
+    \toprule
+    & & \multicolumn{2}{c}{every full claim} & \multicolumn{2}{c}{Lean covers the full problem} \\
+    Class before the batch & Open rows & Claimed & Rate, interval & Claimed & Rate, interval \\
+    \midrule
+    close to known results & 268 & 13 & 4.9\%, 2.5 to 7.7 & 7 & 2.6\%, 0.8 to 4.7 \\
+    borderline & 839 & 41 & 4.9\%, 3.3 to 6.6 & 28 & 3.3\%, 2.0 to 4.8 \\
+    needs a new idea & 241 & 12 & 5.0\%, 2.2 to 8.1 & 10 & 4.1\%, 1.8 to 6.8 \\
+    \midrule
+    inside the frontier & 1,107 & 54 & 4.9\%, 3.5 to 6.3 & 35 & 3.2\%, 2.0 to 4.4 \\
+    outside the frontier & 241 & 12 & 5.0\%, 2.2 to 8.1 & 10 & 4.1\%, 1.8 to 6.8 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Four limits bound the reading. The claims are unconfirmed, and a row leaves this table when its claim is withdrawn. One system attempted about 4,000 problems that its lab chose and has not listed, so the rows it claimed are a selected sample of what is solvable and the denominator here is the atlas, which the lab never saw. Ten of the 79 claimed rows carry a Lean file that covers less than the row, and 20 carry none \ldg. The mapping was made by hand from the catalogue text and misses problems the atlas lists under another name. Among the 358 Erd\H{o}s rows the top class is claimed at 6.2\% against 2.5\% for borderline, with 13 outside rows and none claimed, which is too few to read \cl. The reading changes if confirmed claims, once at least 30 are recorded, settle inside at a rate whose interval for the difference from outside excludes zero, or if the reach AUC interval on confirmed rows clears 0.5; \texttt{tools/solvability-atlas/CLAIMS-2026-10.md} holds the full tables and the rule.
 
 \subsection{Frozen forecasts}
 \label{sec:frozen}
