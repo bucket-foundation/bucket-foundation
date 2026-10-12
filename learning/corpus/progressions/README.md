@@ -88,6 +88,52 @@ The loader takes a slice when its folder holds `SUMMARY.md`, the mark that its a
 Every string in the committed tables is cut at a limit per field: 240 characters for a topic, 200 for a name, 700 for notes, 300 elsewhere. 60 values were cut. A test enforces the limits.
 
 
+## World and Technology Tables
+
+`build/world.py` writes these tables beside the eight main ones. It streams each slice file and peaks at 38 MB. `world_stats.json` holds the counts.
+
+| Table | Rows | Verified | Content |
+|---|---|---|---|
+| `countries.jsonl` | 237 | 100% | One row per ISO 3166 country: `iso2`, `iso3`, name, `lat` and `lng` of the Natural Earth label point |
+| `world_systems.jsonl` | 1,974 | 100% | Education programmes of 66 countries from the UIS ISCED mappings: ISCED codes, entry age, duration, orientation, programme and qualification names of eight words or fewer |
+| `world_stages.jsonl` | 561 | 100% | One row per country and ISCED level: entry age, duration, programme counts, compulsory ages, World Bank enrolment |
+| `world_exams.jsonl` | 269 | 21.6% | National examinations with level and body. `verified` covers the exam name; what the exam gates is recall and says so in `gates_basis` |
+| `world_nqf.jsonl` | 308 | 89.9% | Qualification framework levels with the EQF level where one exists |
+| `world_occupations.jsonl` | 6,005 | 98.9% | National occupation classifications with ISCO-08 links. Titles stay for the United Kingdom, Australia, New Zealand, Canada, France and Japan, whose terms allow reuse; Germany and Brazil hold codes alone |
+| `world_professions.jsonl` | 264 | 0% | Routes to doctor, lawyer, engineer and teacher in 66 countries. All recall: no regulator page was fetched, and every row reads `verified` false |
+| `world_elements.jsonl` | 330 | 0% | University admission, vocational route, apprenticeship, degree structure and lifelong learning per country, recall with counts read from data |
+| `world_languages.jsonl` | 66 | 0% | Languages of instruction per country, recall |
+| `world_tvet_bodies.jsonl` | 123 | 100% | Vocational training bodies from the UNEVOC directory |
+| `world_indicators.jsonl` | 1,598 | 100% | World Bank education indicators |
+| `tech_occupation.jsonl` | 52 | 84.6% | A technology creating, changing or ending an occupation, with year and source link. 11 cases that rest on an IPUMS-hosted file are left out |
+| `tech_training_response.jsonl` | 72 | 97.2% | The first school, apprenticeship or licence that answered a technology, with year and lag |
+| `tech_lags.jsonl` | 23 | | 13 case rows, each with its measure, both years and `n` of 1, and 10 summary rows giving the median and `n` per measure. 5 cases measured on census counts are left out |
+| `source_licences.jsonl` | 86 | | Licence facts per source for the lifespan set and the data structures and algorithms graph |
+
+Every world row carries `region` as an ISO 3166 two-letter code, `language` for the language of the row text, `national_language` for the system it describes, and `licence` as the source states it or `unknown`. Descriptions in the exam, profession and element tables are the research agent's own words. No sentence from a ministry page, a mapping file or a classification manual is committed.
+
+### Countries for the Explore Map
+
+The Explore place rule accepts a two-letter code that the country file lists. `src/data/world-indicators.json` holds `iso3` alone, so `countries.jsonl` supplies `iso2`, `iso3`, name, latitude and longitude for 237 countries. Points are the label points of Natural Earth 1:50m Admin 0 Countries, which is in the public domain; `terms_url` links its terms. The file itself is fetched to `build/ne/` at build time and stays off the repo.
+
+### Source Licences
+
+`source_licences.jsonl` is keyed the way `packages/bkt/src/pack/row-sets/licences.ts` matches a row: `match.host` holds the host of the row's URL, and `match.framework_id` covers rows with no URL. Each row gives `licence`, `share_alike`, `public` as rows, codes or none, the terms page, what it permits in our words, the date read and an attribution line. Of 86 sources, 57 terms pages were fetched on 2026-10-12. 14 sources clear for rows: 12 in the lifespan set, among them US federal pages, and 2 in the algorithms graph. 3 clear for codes and links. 69 are refused or unknown and their rows are marked unpublishable. The USACO Guide, the Competitive Programmer's Handbook and MIT OpenCourseWare are non-commercial share-alike, so the core of the algorithms graph stays out of public sets. 66 interview rows and 17 lifespan records cite no page and are unpublishable; their four entries carry an empty `match`, since the registry resolves a row with no URL to unknown.
+
+| Source of the world tables | Terms |
+|---|---|
+| UIS ISCED mappings | Unknown; files are offered for open download. Programme names are kept as names, at eight words or fewer |
+| Cedefop NQF tool | EU reuse policy, source credited |
+| World Bank indicators | CC BY 4.0 |
+| ONS SOC 2020 | Open Government Licence v3.0 |
+| ABS OSCA 2024, Stats NZ NOL | CC BY 4.0 |
+| Statistics Canada NOC 2021 | Statistics Canada Open Licence |
+| INSEE PCS 2020 | Licence Ouverte 2.0 |
+| Japan JSCO | Government of Japan Standard Terms of Use 2.0 |
+| KldB 2010, CBO 2002 | Unknown; codes alone |
+| UNEVOC directory | Unknown; names of bodies and links |
+| Natural Earth | Public domain |
+
 ## Stated Edges
 
 `stated` is true when a source states the edge. Catalogue edges come from the parsed prerequisite sentence. School rows keep the flag their slice set. For the other slices the flag is read from the wording of `notes` by rule: the words inferred, recalled or ordinal give false, a sentence saying the source states the edge gives true, and silence gives false. `stated_basis` names the rule that fired, so a consumer can drop the rule-based edges.
@@ -175,12 +221,14 @@ Raw pages, the backbone raw folder and the sqlite files stay on the build machin
 | Life stage by purpose | 72 | 33 | 15 | 18 | 39 | no field |
 | Kind of knowing | 7 | 2 | 0 | 2 | 5 | 7 |
 | Mode of transmission | 9 | 3 | 0 | 3 | 6 | 9, 1 thin |
-| Geography | 30 | 17 | 10 | 7 | 13 | 12, 8 thin |
+| Geography | 30 | 29 | 1 | 28 | 1 | 30, 1 thin |
 | Language | 30 | 25 | 11 | 14 | 5 | 3, 2 thin |
 | Era | 7 | 7 | 0 | 7 | 0 | 6, 3 thin |
 | Domain | 193 | 193 | 5 | 188 | 0 | no field |
 | Feared absences | 33 | 33 | 0 | 33 | 0 | no field |
 | ISCO-08 sub-major groups | 43 | 29 | 27 | 2 | 14 | no field |
+
+The world slice moved Geography from 17 held cells, 10 of them thin, to 29 held, 1 thin; by facet field from 12 to 30. One of the 30 largest countries still matches no verified row under the critic rule. Language is unchanged at 25 held and 11 thin, 3 by field: world rows describe other systems in English. `COMPLETENESS.md` lists each cell before and after.
 
 Held means one or more rows with `verified` true match the cell's keyword or code rule. Thin means one to nine. `page_fetched` rows count as unverified. Held says nothing of depth: the critic read 54 verified infancy rows and kept none, and scored Domain 5.0 at 98% held. The verdict in the first row stands until a critic reads the rows again.
 
@@ -190,6 +238,7 @@ The frame records no keyword list for 20 purpose, kind and mode cells, so their 
 
 ```bash
 python3 -I build/consolidate.py <slices-folder> <full-output> <public-output>
+python3 -I build/world.py <slices-folder> learning/corpus/progressions/tables
 python3 -I build/coverage.py
 python3 -I build/completeness.py
 python3 -m unittest learning/corpus/progressions/tests/test_progressions_corpus.py

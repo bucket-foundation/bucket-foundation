@@ -2,7 +2,7 @@
 
 **Independent critic verdict, 2026-10-11: 3.1 of 10, fail against the founder's standard.** That score weighs depth and survives a row-by-row reading. Nothing on this page replaces it.
 
-This page recounts the critic's 441 cells in `completeness/frame.jsonl` from the committed tables: 154,399 rows, 106,141 with `verified` true. Rows that carry `page_fetched`, the courses and programs, count as unverified here.
+This page recounts the critic's 441 cells in `completeness/frame.jsonl` from the committed tables: 164,299 rows, 115,073 with `verified` true. Rows that carry `page_fetched`, the courses and programs, count as unverified here.
 
 Held means one or more verified rows land in the cell. It says nothing of depth or of whether the rows describe the learner's own learning: the first review read 54 verified infancy rows and kept none. Thin means one to nine verified rows. Keyword rules overstate.
 
@@ -17,21 +17,96 @@ Two counts sit side by side. Critic rule applies the detection rule the frame re
 | life_stage_x_purpose | 72 | 55 | 33 | 15 | 18 | 39 | no field |  | 16 | 7 |
 | kind_of_knowing | 7 | 7 | 2 | 0 | 2 | 5 | 7 | 0 | 1 | 0 |
 | mode_of_transmission | 9 | 9 | 3 | 0 | 3 | 6 | 9 | 1 | 2 | 0 |
-| geography | 30 | 10 | 17 | 10 | 7 | 13 | 12 | 8 | 30 | 25 |
+| geography | 30 | 10 | 29 | 1 | 28 | 1 | 30 | 1 | 30 | 2 |
 | language | 30 | 23 | 25 | 11 | 14 | 5 | 3 | 2 | 30 | 16 |
 | era | 7 | 7 | 7 | 0 | 7 | 0 | 6 | 3 | 7 | 0 |
-| domain | 193 | 189 | 193 | 5 | 188 | 0 | no field |  | 193 | 22 |
-| named_absence_probe | 33 | 32 | 33 | 0 | 33 | 0 | no field |  | 33 | 4 |
+| domain | 193 | 189 | 193 | 5 | 188 | 0 | no field |  | 193 | 21 |
+| named_absence_probe | 33 | 32 | 33 | 0 | 33 | 0 | no field |  | 33 | 1 |
 | occupation_isco08 | 43 | 29 | 29 | 27 | 2 | 14 | no field |  | 43 | 43 |
 
 OCM and Propaedia cells show their code alone. Their category names belong to HRAF and Britannica and stay out of this repo.
+
+
+## Geography and Language Before and After the World Slice
+
+Geography, 30 cells. Critic rule: 17 held before, 10 of them thin; 29 held after, 1 thin. Facet field: 12 held before, 8 thin; 30 held after, 1 thin.
+
+| Cell | Critic rule before | Critic rule after | Facet field before | Facet field after |
+|---|---|---|---|---|
+| IN | 16 | 57 | 150 | 191 |
+| CN | 15 | 43 | 5 | 33 |
+| US | 3,609 | 3,639 | 61,169 | 61,199 |
+| ID | 0 | 36 | 0 | 36 |
+| PK | 1 | 34 | 1 | 34 |
+| NG | 2 | 36 | 0 | 34 |
+| BR | 3 | 663 | 1 | 661 |
+| BD | 0 | 45 | 0 | 45 |
+| RU | 1 | 27 | 0 | 26 |
+| ET | 0 | 30 | 0 | 30 |
+| MX | 6 | 33 | 0 | 27 |
+| JP | 10 | 438 | 1 | 429 |
+| EG | 0 | 28 | 0 | 28 |
+| PH | 0 | 25 | 0 | 25 |
+| CD | 0 | 33 | 0 | 33 |
+| VN | 0 | 27 | 0 | 27 |
+| IR | 0 | 28 | 0 | 28 |
+| TR | 0 | 0 | 0 | 53 |
+| DE | 11 | 1,456 | 7 | 1,452 |
+| TH | 0 | 37 | 0 | 37 |
+| TZ | 0 | 43 | 0 | 43 |
+| GB | 214 | 687 | 220 | 693 |
+| FR | 6 | 374 | 5 | 373 |
+| ZA | 0 | 18 | 0 | 18 |
+| IT | 14 | 66 | 1 | 53 |
+| KE | 2 | 39 | 10 | 47 |
+| MM | 3 | 9 | 0 | 6 |
+| CO | 2 | 51 | 0 | 49 |
+| KR | 1 | 55 | 1 | 55 |
+| SD | 0 | 27 | 0 | 27 |
+
+Language, 30 cells. Critic rule: 25 held before, 11 of them thin; 25 held after, 11 thin. Facet field: 3 held before, 2 thin; 3 held after, 2 thin.
+
+| Cell | Critic rule before | Critic rule after | Facet field before | Facet field after | World rows by national language |
+|---|---|---|---|---|---|
+| en | 33,155 | 33,155 | 64,068 | 73,000 | 3,744 |
+| zh | 303 | 303 | 0 | 0 | 28 |
+| hi | 26 | 26 | 0 | 0 | 41 |
+| es | 1,435 | 1,435 | 0 | 0 | 231 |
+| fr | 357 | 357 | 0 | 0 | 467 |
+| ar | 101 | 101 | 0 | 0 | 105 |
+| bn | 9 | 9 | 0 | 0 | 45 |
+| pt | 21 | 21 | 0 | 0 | 733 |
+| ru | 48 | 48 | 0 | 0 | 26 |
+| ur | 1 | 1 | 0 | 0 | 33 |
+| id | 45 | 45 | 0 | 0 | 36 |
+| de | 88 | 88 | 7 | 7 | 1,569 |
+| ja | 120 | 120 | 1 | 1 | 428 |
+| pcm | 0 | 0 | 0 | 0 | 0 |
+| mr | 1 | 1 | 0 | 0 | 0 |
+| te | 9 | 9 | 0 | 0 | 0 |
+| tr | 21 | 21 | 0 | 0 | 53 |
+| ta | 9 | 9 | 0 | 0 | 0 |
+| yue | 0 | 0 | 0 | 0 | 0 |
+| vi | 9 | 9 | 0 | 0 | 27 |
+| wuu | 0 | 0 | 0 | 0 | 0 |
+| tl | 9 | 9 | 0 | 0 | 0 |
+| ko | 144 | 144 | 0 | 0 | 54 |
+| fa | 1 | 1 | 0 | 0 | 60 |
+| ha | 0 | 0 | 0 | 0 | 0 |
+| sw | 1 | 1 | 0 | 0 | 43 |
+| jv | 0 | 0 | 0 | 0 | 0 |
+| it | 87 | 87 | 0 | 0 | 52 |
+| pa | 1 | 1 | 0 | 0 | 0 |
+| gu | 1 | 1 | 0 | 0 | 0 |
+
+The language field of a world row names the language of the row text, which is English for most rows. The last column counts verified world rows by the national language of the system they describe; those rows are about that system and are written in English.
 
 
 ## Differences from the First Review
 
 Run on first corpus commit, 88,267 rows, the tables the first review read, the scorer lands within tolerance on 351 of the 365 cells it can score. The cells it misses there are the tertiary by work cross and a dozen keyword cells where the first review matched text this scorer cannot see.
 
-- The first review read 88,267 rows. The tables now hold 154,399, after the merge of the k12-full, history-forecast and round3-empty slices and 215 unfetched program rows. Counts rise wherever those slices add rows.
+- The first review read 88,267 rows. The tables now hold 164,299, after the merge of the k12-full, history-forecast and round3-empty slices and 215 unfetched program rows. Counts rise wherever those slices add rows.
 - The `verified` flag was cleared on rows whose notes say inferred, recalled, from memory or not fetched, and courses and programs carry `page_fetched`, which this page counts as unverified. Verified counts fall in the cells those rows sat in, and the catalogue column reads zero.
 - Titles of Common Core, NGSS and CEFR rows were replaced by short labels, and catalogue sentences were removed, so some title keywords no longer match.
 - The frame records no keyword pattern for seven purpose cells, six kinds and seven modes. Their rule reads `title keywords` with no list. Cells marked `cip-part-only` are scored on the CIP half of the rule, and cells marked `no-pattern-in-frame` are left unscored by the critic rule.
@@ -43,21 +118,21 @@ Run on first corpus commit, 88,267 rows, the tables the first review read, the s
 
 | Cell | First review | Critic rule now | Curated | Catalogue | Resource | Rule status | Facet field rows | Facet field verified | Stated |
 |---|---|---|---|---|---|---|---|---|---|
-| infancy | 54 | 61 | 22 | 0 | 39 | full | 191 | 156 | 191 |
-| early-childhood | 97 | 5,878 | 5,878 | 0 | 0 | full | 5,741 | 5,683 | 98 |
-| primary | 516 | 11,684 | 11,558 | 0 | 126 | full | 11,639 | 11,430 | 42 |
-| secondary | 1,087 | 45,209 | 44,529 | 0 | 680 | full | 44,718 | 44,271 | 32 |
-| tertiary | 34,993 | 11,023 | 2,779 | 0 | 8,244 | full | 29,539 | 1,751 | 21 |
-| working-adult | 2,802 | 1,482 | 1,264 | 0 | 218 | full | 2,301 | 983 | 54 |
-| mid-career-change | 14 | 53 | 25 | 0 | 28 | full | 14 | 5 | 14 |
-| old-age | 138 | 136 | 112 | 0 | 24 | full | 24 | 17 | 24 |
+| infancy | 54 | 73 | 34 | 0 | 39 | full | 191 | 156 | 191 |
+| early-childhood | 97 | 6,103 | 6,103 | 0 | 0 | full | 5,741 | 5,683 | 98 |
+| primary | 516 | 11,897 | 11,771 | 0 | 126 | full | 11,639 | 11,430 | 42 |
+| secondary | 1,087 | 46,348 | 45,668 | 0 | 680 | full | 44,718 | 44,271 | 32 |
+| tertiary | 34,993 | 12,038 | 3,794 | 0 | 8,244 | full | 29,539 | 1,751 | 21 |
+| working-adult | 2,802 | 1,483 | 1,265 | 0 | 218 | full | 2,301 | 983 | 54 |
+| mid-career-change | 14 | 55 | 27 | 0 | 28 | full | 14 | 5 | 14 |
+| old-age | 138 | 146 | 122 | 0 | 24 | full | 24 | 17 | 24 |
 
 ## Purpose
 
 | Cell | First review | Critic rule now | Curated | Catalogue | Resource | Rule status | Facet field rows | Facet field verified | Stated |
 |---|---|---|---|---|---|---|---|---|---|
-| work | 3,138 | 1,538 | 1,320 | 0 | 218 | full | 26,970 | 25,360 | 144 |
-| school | 27,043 | 1,182 | 1,182 | 0 | 0 | full | 67,070 | 38,784 | 123 |
+| work | 3,138 | 1,539 | 1,321 | 0 | 218 | full | 33,941 | 31,981 | 144 |
+| school | 27,043 | 1,182 | 1,182 | 0 | 0 | full | 69,172 | 40,695 | 123 |
 | civic | 115 | 20 | 16 | 0 | 4 | cip-part-only | 81 | 41 | 58 |
 | personal-household | 398 | 82 | 9 | 0 | 73 | cip-part-only | 390 | 274 | 376 |
 | survival-safety | 130 |  |  |  |  | no-pattern-in-frame | 70 | 64 | 70 |
@@ -115,7 +190,7 @@ Run on first corpus commit, 88,267 rows, the tables the first review read, the s
 | tertiary|spiritual | 1,013 | 323 | 72 | 0 | 251 | cip-part-only |
 | tertiary|care-of-others | 27 |  |  |  |  | no-pattern-in-frame |
 | tertiary|health-of-self | 643 | 0 | 0 | 0 | 0 | cip-part-only |
-| working-adult|work | 2,802 | 1,482 | 1,264 | 0 | 218 | full |
+| working-adult|work | 2,802 | 1,483 | 1,265 | 0 | 218 | full |
 | working-adult|school | 0 | 0 | 0 | 0 | 0 | full |
 | working-adult|civic | 17 | 2 | 2 | 0 | 0 | cip-part-only |
 | working-adult|personal-household | 21 | 43 | 0 | 0 | 43 | cip-part-only |
@@ -147,7 +222,7 @@ Run on first corpus commit, 88,267 rows, the tables the first review read, the s
 
 | Cell | First review | Critic rule now | Curated | Catalogue | Resource | Rule status | Facet field rows | Facet field verified | Stated |
 |---|---|---|---|---|---|---|---|---|---|
-| declarative | 51,899 | 106,141 | 67,566 | 0 | 38,575 | full | 64 | 32 | 64 |
+| declarative | 51,899 | 115,073 | 76,498 | 0 | 38,575 | full | 64 | 32 | 64 |
 | procedural | 4,527 |  |  |  |  | no-pattern-in-frame | 863 | 288 | 261 |
 | motor | 427 |  |  |  |  | no-pattern-in-frame | 291 | 136 | 78 |
 | perceptual | 153 |  |  |  |  | no-pattern-in-frame | 55 | 45 | 55 |
@@ -173,42 +248,42 @@ Run on first corpus commit, 88,267 rows, the tables the first review read, the s
 
 | Cell | First review | Critic rule now | Curated | Catalogue | Resource | Rule status | Facet field rows | Facet field verified | Stated |
 |---|---|---|---|---|---|---|---|---|---|
-| IN | 16 | 16 | 16 | 0 | 0 | full | 166 | 150 | 8 |
-| CN | 26 | 15 | 15 | 0 | 0 | full | 5 | 5 | 5 |
-| US | 30,199 | 3,609 | 3,609 | 0 | 0 | full | 90,301 | 61,169 | 754 |
-| ID | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| PK | 5 | 1 | 1 | 0 | 0 | full | 8 | 1 | 1 |
-| NG | 0 | 2 | 2 | 0 | 0 | full | 0 | 0 | 0 |
-| BR | 0 | 3 | 3 | 0 | 0 | full | 1 | 1 | 1 |
-| BD | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| RU | 0 | 1 | 1 | 0 | 0 | full | 0 | 0 | 0 |
-| ET | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| MX | 0 | 6 | 6 | 0 | 0 | full | 0 | 0 | 0 |
-| JP | 18 | 10 | 10 | 0 | 0 | full | 51 | 1 | 3 |
-| EG | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| PH | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| CD | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| VN | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| IR | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| TR | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| DE | 16 | 11 | 11 | 0 | 0 | full | 13 | 7 | 6 |
-| TH | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| TZ | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| GB | 366 | 214 | 214 | 0 | 0 | full | 458 | 220 | 89 |
-| FR | 7 | 6 | 6 | 0 | 0 | full | 7 | 5 | 7 |
-| ZA | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
-| IT | 13 | 14 | 14 | 0 | 0 | full | 1 | 1 | 1 |
-| KE | 0 | 2 | 2 | 0 | 0 | full | 50 | 10 | 5 |
-| MM | 8 | 3 | 3 | 0 | 0 | full | 0 | 0 | 0 |
-| CO | 0 | 2 | 2 | 0 | 0 | full | 0 | 0 | 0 |
-| KR | 0 | 1 | 1 | 0 | 0 | full | 1 | 1 | 1 |
-| SD | 0 | 0 | 0 | 0 | 0 | full | 0 | 0 | 0 |
+| IN | 16 | 57 | 57 | 0 | 0 | full | 224 | 191 | 66 |
+| CN | 26 | 43 | 43 | 0 | 0 | full | 49 | 33 | 49 |
+| US | 30,199 | 3,639 | 3,639 | 0 | 0 | full | 90,347 | 61,199 | 800 |
+| ID | 0 | 36 | 36 | 0 | 0 | full | 51 | 36 | 51 |
+| PK | 5 | 34 | 34 | 0 | 0 | full | 57 | 34 | 50 |
+| NG | 0 | 36 | 36 | 0 | 0 | full | 47 | 34 | 47 |
+| BR | 0 | 663 | 663 | 0 | 0 | full | 676 | 661 | 676 |
+| BD | 0 | 45 | 45 | 0 | 0 | full | 62 | 45 | 62 |
+| RU | 0 | 27 | 27 | 0 | 0 | full | 41 | 26 | 41 |
+| ET | 0 | 30 | 30 | 0 | 0 | full | 45 | 30 | 45 |
+| MX | 0 | 33 | 33 | 0 | 0 | full | 41 | 27 | 41 |
+| JP | 18 | 438 | 438 | 0 | 0 | full | 494 | 429 | 446 |
+| EG | 0 | 28 | 28 | 0 | 0 | full | 43 | 28 | 43 |
+| PH | 0 | 25 | 25 | 0 | 0 | full | 42 | 25 | 42 |
+| CD | 0 | 33 | 33 | 0 | 0 | full | 48 | 33 | 48 |
+| VN | 0 | 27 | 27 | 0 | 0 | full | 42 | 27 | 42 |
+| IR | 0 | 28 | 28 | 0 | 0 | full | 43 | 28 | 43 |
+| TR | 0 | 0 | 0 | 0 | 0 | full | 66 | 53 | 66 |
+| DE | 16 | 1,456 | 1,456 | 0 | 0 | full | 1,474 | 1,452 | 1,467 |
+| TH | 0 | 37 | 37 | 0 | 0 | full | 51 | 37 | 51 |
+| TZ | 0 | 43 | 43 | 0 | 0 | full | 56 | 43 | 56 |
+| GB | 366 | 687 | 687 | 0 | 0 | full | 945 | 693 | 576 |
+| FR | 7 | 374 | 374 | 0 | 0 | full | 392 | 373 | 392 |
+| ZA | 0 | 18 | 18 | 0 | 0 | full | 35 | 18 | 35 |
+| IT | 13 | 66 | 66 | 0 | 0 | full | 68 | 53 | 68 |
+| KE | 0 | 39 | 39 | 0 | 0 | full | 102 | 47 | 57 |
+| MM | 8 | 9 | 9 | 0 | 0 | full | 20 | 6 | 20 |
+| CO | 0 | 51 | 51 | 0 | 0 | full | 63 | 49 | 63 |
+| KR | 0 | 55 | 55 | 0 | 0 | full | 70 | 55 | 70 |
+| SD | 0 | 27 | 27 | 0 | 0 | full | 42 | 27 | 42 |
 
 ## Language
 
 | Cell | First review | Critic rule now | Curated | Catalogue | Resource | Rule status | Facet field rows | Facet field verified | Stated |
 |---|---|---|---|---|---|---|---|---|---|
-| en | 18,407 | 33,155 | 0 | 0 | 33,155 | full | 93,448 | 64,068 | 0 |
+| en | 18,407 | 33,155 | 0 | 0 | 33,155 | full | 103,348 | 73,000 | 9,900 |
 | zh | 0 | 303 | 0 | 0 | 303 | full | 0 | 0 | 0 |
 | hi | 9 | 26 | 0 | 0 | 26 | full | 0 | 0 | 0 |
 | es | 56 | 1,435 | 0 | 0 | 1,435 | full | 0 | 0 | 0 |
@@ -246,10 +321,10 @@ Run on first corpus commit, 88,267 rows, the tables the first review read, the s
 | prehistoric | 11 | 26 | 15 | 0 | 11 | full | 0 | 0 | 0 |
 | ancient | 236 | 129 | 53 | 0 | 76 | full | 9 | 3 | 9 |
 | medieval | 164 | 117 | 59 | 0 | 58 | full | 13 | 8 | 13 |
-| early-modern | 106 | 90 | 49 | 0 | 41 | full | 15 | 10 | 15 |
+| early-modern | 106 | 92 | 51 | 0 | 41 | full | 15 | 10 | 15 |
 | industrial | 25 | 44 | 29 | 0 | 15 | full | 121 | 93 | 114 |
-| present | 51,899 | 106,141 | 67,566 | 0 | 38,575 | full | 32,525 | 3,407 | 692 |
-| emerging | 407 | 2,584 | 93 | 0 | 2,491 | full | 5 | 3 | 1 |
+| present | 51,899 | 115,073 | 76,498 | 0 | 38,575 | full | 32,525 | 3,407 | 692 |
+| emerging | 407 | 2,591 | 100 | 0 | 2,491 | full | 5 | 3 | 1 |
 
 ## Domain
 
@@ -325,39 +400,39 @@ Run on first corpus commit, 88,267 rows, the tables the first review read, the s
 | cip:60 | 0 | 27 | 27 | 0 | 0 | full |
 | cip:61 | 0 | 136 | 136 | 0 | 0 | full |
 | propaedia:1.1 | 1,988 | 1,656 | 227 | 0 | 1,429 | full |
-| propaedia:1.2 | 1,195 | 1,492 | 838 | 0 | 654 | full |
-| propaedia:1.3 | 273 | 205 | 97 | 0 | 108 | full |
+| propaedia:1.2 | 1,195 | 1,516 | 862 | 0 | 654 | full |
+| propaedia:1.3 | 273 | 206 | 98 | 0 | 108 | full |
 | propaedia:10.1 | 112 | 115 | 23 | 0 | 92 | full |
-| propaedia:10.2 | 4,414 | 8,293 | 5,100 | 0 | 3,193 | full |
+| propaedia:10.2 | 4,414 | 8,302 | 5,109 | 0 | 3,193 | full |
 | propaedia:10.3 | 24 | 10 | 0 | 0 | 10 | full |
-| propaedia:10.4 | 849 | 605 | 65 | 0 | 540 | full |
-| propaedia:10.5 | 2,495 | 2,402 | 160 | 0 | 2,242 | full |
-| propaedia:10.6 | 544 | 536 | 379 | 0 | 157 | full |
-| propaedia:2.1 | 303 | 124 | 13 | 0 | 111 | full |
-| propaedia:2.2 | 545 | 536 | 85 | 0 | 451 | full |
-| propaedia:2.3 | 122 | 133 | 88 | 0 | 45 | full |
+| propaedia:10.4 | 849 | 607 | 67 | 0 | 540 | full |
+| propaedia:10.5 | 2,495 | 2,410 | 168 | 0 | 2,242 | full |
+| propaedia:10.6 | 544 | 556 | 399 | 0 | 157 | full |
+| propaedia:2.1 | 303 | 133 | 22 | 0 | 111 | full |
+| propaedia:2.2 | 545 | 544 | 93 | 0 | 451 | full |
+| propaedia:2.3 | 122 | 135 | 90 | 0 | 45 | full |
 | propaedia:2.4 | 21 | 15 | 0 | 0 | 15 | full |
-| propaedia:3.1 | 464 | 421 | 176 | 0 | 245 | full |
-| propaedia:3.2 | 731 | 358 | 47 | 0 | 311 | full |
-| propaedia:3.3 | 617 | 262 | 139 | 0 | 123 | full |
+| propaedia:3.1 | 464 | 427 | 182 | 0 | 245 | full |
+| propaedia:3.2 | 731 | 362 | 51 | 0 | 311 | full |
+| propaedia:3.3 | 617 | 273 | 150 | 0 | 123 | full |
 | propaedia:3.4 | 23 | 5 | 0 | 0 | 5 | full |
-| propaedia:3.5 | 495 | 691 | 233 | 0 | 458 | full |
-| propaedia:4.1 | 408 | 974 | 714 | 0 | 260 | full |
-| propaedia:4.2 | 3,422 | 5,283 | 4,164 | 0 | 1,119 | full |
-| propaedia:4.3 | 2,019 | 5,824 | 3,064 | 0 | 2,760 | full |
-| propaedia:5.1 | 2,630 | 2,106 | 1,393 | 0 | 713 | full |
-| propaedia:5.2 | 979 | 753 | 399 | 0 | 354 | full |
-| propaedia:5.3 | 4,727 | 10,741 | 5,496 | 0 | 5,245 | full |
-| propaedia:5.4 | 858 | 1,225 | 858 | 0 | 367 | full |
-| propaedia:5.5 | 852 | 983 | 607 | 0 | 376 | full |
-| propaedia:5.6 | 2,770 | 27,435 | 26,852 | 0 | 583 | full |
-| propaedia:6.1 | 80 | 84 | 45 | 0 | 39 | full |
-| propaedia:6.2 | 4,865 | 2,970 | 1,334 | 0 | 1,636 | full |
+| propaedia:3.5 | 495 | 699 | 241 | 0 | 458 | full |
+| propaedia:4.1 | 408 | 980 | 720 | 0 | 260 | full |
+| propaedia:4.2 | 3,422 | 5,429 | 4,310 | 0 | 1,119 | full |
+| propaedia:4.3 | 2,019 | 5,858 | 3,098 | 0 | 2,760 | full |
+| propaedia:5.1 | 2,630 | 2,172 | 1,459 | 0 | 713 | full |
+| propaedia:5.2 | 979 | 771 | 417 | 0 | 354 | full |
+| propaedia:5.3 | 4,727 | 10,906 | 5,661 | 0 | 5,245 | full |
+| propaedia:5.4 | 858 | 1,247 | 880 | 0 | 367 | full |
+| propaedia:5.5 | 852 | 1,006 | 630 | 0 | 376 | full |
+| propaedia:5.6 | 2,770 | 28,007 | 27,424 | 0 | 583 | full |
+| propaedia:6.1 | 80 | 86 | 47 | 0 | 39 | full |
+| propaedia:6.2 | 4,865 | 3,060 | 1,424 | 0 | 1,636 | full |
 | propaedia:7.1 | 21 | 75 | 64 | 0 | 11 | full |
-| propaedia:7.2 | 1,247 | 3,516 | 637 | 0 | 2,879 | full |
-| propaedia:7.3 | 7,128 | 11,360 | 3,915 | 0 | 7,445 | full |
-| propaedia:8.1 | 612 | 280 | 141 | 0 | 139 | full |
-| propaedia:8.2 | 260 | 172 | 74 | 0 | 98 | full |
+| propaedia:7.2 | 1,247 | 3,580 | 701 | 0 | 2,879 | full |
+| propaedia:7.3 | 7,128 | 11,489 | 4,044 | 0 | 7,445 | full |
+| propaedia:8.1 | 612 | 286 | 147 | 0 | 139 | full |
+| propaedia:8.2 | 260 | 187 | 89 | 0 | 98 | full |
 | propaedia:9.1 | 90 | 57 | 32 | 0 | 25 | full |
 | propaedia:9.2 | 165 | 121 | 57 | 0 | 64 | full |
 | propaedia:9.3 | 165 | 36 | 1 | 0 | 35 | full |
@@ -366,125 +441,125 @@ Run on first corpus commit, 88,267 rows, the tables the first review read, the s
 | propaedia:9.6 | 190 | 248 | 169 | 0 | 79 | full |
 | propaedia:9.7 | 87 | 202 | 159 | 0 | 43 | full |
 | ocm:100 | 54 | 21 | 3 | 0 | 18 | full |
-| ocm:110 | 204 | 495 | 352 | 0 | 143 | full |
+| ocm:110 | 204 | 509 | 366 | 0 | 143 | full |
 | ocm:120 | 200 | 79 | 26 | 0 | 53 | full |
-| ocm:130 | 286 | 947 | 722 | 0 | 225 | full |
-| ocm:140 | 1,138 | 537 | 254 | 0 | 283 | full |
-| ocm:150 | 1,352 | 1,032 | 545 | 0 | 487 | full |
-| ocm:160 | 130 | 187 | 113 | 0 | 74 | full |
-| ocm:170 | 1,976 | 1,897 | 1,143 | 0 | 754 | full |
-| ocm:180 | 480 | 555 | 382 | 0 | 173 | full |
-| ocm:190 | 2,558 | 13,111 | 11,635 | 0 | 1,476 | full |
-| ocm:200 | 1,739 | 2,294 | 1,463 | 0 | 831 | full |
-| ocm:210 | 165 | 591 | 490 | 0 | 101 | full |
-| ocm:220 | 52 | 216 | 193 | 0 | 23 | full |
-| ocm:230 | 730 | 351 | 324 | 0 | 27 | full |
-| ocm:240 | 900 | 800 | 629 | 0 | 171 | full |
-| ocm:250 | 240 | 125 | 107 | 0 | 18 | full |
-| ocm:260 | 160 | 398 | 324 | 0 | 74 | full |
-| ocm:270 | 99 | 234 | 178 | 0 | 56 | full |
-| ocm:280 | 134 | 226 | 136 | 0 | 90 | full |
-| ocm:290 | 189 | 361 | 346 | 0 | 15 | full |
-| ocm:300 | 89 | 212 | 181 | 0 | 31 | full |
-| ocm:310 | 121 | 158 | 75 | 0 | 83 | full |
-| ocm:320 | 367 | 258 | 17 | 0 | 241 | full |
-| ocm:330 | 275 | 1,087 | 980 | 0 | 107 | full |
-| ocm:340 | 813 | 1,046 | 538 | 0 | 508 | full |
-| ocm:350 | 195 | 485 | 447 | 0 | 38 | full |
-| ocm:360 | 83 | 95 | 34 | 0 | 61 | full |
-| ocm:370 | 482 | 919 | 570 | 0 | 349 | full |
-| ocm:380 | 457 | 378 | 115 | 0 | 263 | full |
-| ocm:390 | 221 | 889 | 746 | 0 | 143 | full |
-| ocm:400 | 8,073 | 15,074 | 4,658 | 0 | 10,416 | full |
-| ocm:410 | 267 | 495 | 235 | 0 | 260 | full |
-| ocm:420 | 128 | 194 | 100 | 0 | 94 | full |
-| ocm:430 | 101 | 225 | 87 | 0 | 138 | full |
-| ocm:440 | 415 | 1,299 | 675 | 0 | 624 | full |
-| ocm:450 | 907 | 3,236 | 2,110 | 0 | 1,126 | full |
-| ocm:460 | 617 | 479 | 285 | 0 | 194 | full |
-| ocm:470 | 2,486 | 4,852 | 1,903 | 0 | 2,949 | full |
-| ocm:480 | 471 | 845 | 690 | 0 | 155 | full |
-| ocm:490 | 105 | 316 | 234 | 0 | 82 | full |
-| ocm:500 | 554 | 389 | 129 | 0 | 260 | full |
-| ocm:510 | 280 | 369 | 252 | 0 | 117 | full |
-| ocm:520 | 1,016 | 856 | 362 | 0 | 494 | full |
-| ocm:530 | 4,042 | 1,908 | 655 | 0 | 1,253 | full |
-| ocm:540 | 257 | 259 | 165 | 0 | 94 | full |
+| ocm:130 | 286 | 950 | 725 | 0 | 225 | full |
+| ocm:140 | 1,138 | 553 | 270 | 0 | 283 | full |
+| ocm:150 | 1,352 | 1,045 | 558 | 0 | 487 | full |
+| ocm:160 | 130 | 191 | 117 | 0 | 74 | full |
+| ocm:170 | 1,976 | 1,902 | 1,148 | 0 | 754 | full |
+| ocm:180 | 480 | 565 | 392 | 0 | 173 | full |
+| ocm:190 | 2,558 | 13,128 | 11,652 | 0 | 1,476 | full |
+| ocm:200 | 1,739 | 2,345 | 1,514 | 0 | 831 | full |
+| ocm:210 | 165 | 607 | 506 | 0 | 101 | full |
+| ocm:220 | 52 | 234 | 211 | 0 | 23 | full |
+| ocm:230 | 730 | 421 | 394 | 0 | 27 | full |
+| ocm:240 | 900 | 877 | 706 | 0 | 171 | full |
+| ocm:250 | 240 | 133 | 115 | 0 | 18 | full |
+| ocm:260 | 160 | 403 | 329 | 0 | 74 | full |
+| ocm:270 | 99 | 257 | 201 | 0 | 56 | full |
+| ocm:280 | 134 | 253 | 163 | 0 | 90 | full |
+| ocm:290 | 189 | 380 | 365 | 0 | 15 | full |
+| ocm:300 | 89 | 228 | 197 | 0 | 31 | full |
+| ocm:310 | 121 | 203 | 120 | 0 | 83 | full |
+| ocm:320 | 367 | 283 | 42 | 0 | 241 | full |
+| ocm:330 | 275 | 1,129 | 1,022 | 0 | 107 | full |
+| ocm:340 | 813 | 1,079 | 571 | 0 | 508 | full |
+| ocm:350 | 195 | 516 | 478 | 0 | 38 | full |
+| ocm:360 | 83 | 103 | 42 | 0 | 61 | full |
+| ocm:370 | 482 | 942 | 593 | 0 | 349 | full |
+| ocm:380 | 457 | 399 | 136 | 0 | 263 | full |
+| ocm:390 | 221 | 909 | 766 | 0 | 143 | full |
+| ocm:400 | 8,073 | 15,335 | 4,919 | 0 | 10,416 | full |
+| ocm:410 | 267 | 509 | 249 | 0 | 260 | full |
+| ocm:420 | 128 | 210 | 116 | 0 | 94 | full |
+| ocm:430 | 101 | 253 | 115 | 0 | 138 | full |
+| ocm:440 | 415 | 1,387 | 763 | 0 | 624 | full |
+| ocm:450 | 907 | 3,305 | 2,179 | 0 | 1,126 | full |
+| ocm:460 | 617 | 548 | 354 | 0 | 194 | full |
+| ocm:470 | 2,486 | 4,883 | 1,934 | 0 | 2,949 | full |
+| ocm:480 | 471 | 876 | 721 | 0 | 155 | full |
+| ocm:490 | 105 | 413 | 331 | 0 | 82 | full |
+| ocm:500 | 554 | 413 | 153 | 0 | 260 | full |
+| ocm:510 | 280 | 373 | 256 | 0 | 117 | full |
+| ocm:520 | 1,016 | 903 | 409 | 0 | 494 | full |
+| ocm:530 | 4,042 | 1,963 | 710 | 0 | 1,253 | full |
+| ocm:540 | 257 | 285 | 191 | 0 | 94 | full |
 | ocm:550 | 7 | 13 | 4 | 0 | 9 | full |
-| ocm:560 | 259 | 294 | 120 | 0 | 174 | full |
-| ocm:570 | 156 | 1,096 | 959 | 0 | 137 | full |
+| ocm:560 | 259 | 296 | 122 | 0 | 174 | full |
+| ocm:570 | 156 | 1,099 | 962 | 0 | 137 | full |
 | ocm:580 | 20 | 10 | 4 | 0 | 6 | full |
-| ocm:590 | 417 | 284 | 219 | 0 | 65 | full |
+| ocm:590 | 417 | 301 | 236 | 0 | 65 | full |
 | ocm:600 | 9 | 4 | 2 | 0 | 2 | full |
 | ocm:610 | 4 | 13 | 8 | 0 | 5 | full |
-| ocm:620 | 407 | 369 | 268 | 0 | 101 | full |
-| ocm:630 | 41 | 130 | 93 | 0 | 37 | full |
-| ocm:640 | 158 | 609 | 485 | 0 | 124 | full |
-| ocm:650 | 326 | 365 | 192 | 0 | 173 | full |
-| ocm:660 | 872 | 914 | 557 | 0 | 357 | full |
-| ocm:670 | 859 | 968 | 597 | 0 | 371 | full |
-| ocm:680 | 283 | 472 | 407 | 0 | 65 | full |
-| ocm:690 | 78 | 330 | 282 | 0 | 48 | full |
+| ocm:620 | 407 | 399 | 298 | 0 | 101 | full |
+| ocm:630 | 41 | 140 | 103 | 0 | 37 | full |
+| ocm:640 | 158 | 628 | 504 | 0 | 124 | full |
+| ocm:650 | 326 | 380 | 207 | 0 | 173 | full |
+| ocm:660 | 872 | 915 | 558 | 0 | 357 | full |
+| ocm:670 | 859 | 991 | 620 | 0 | 371 | full |
+| ocm:680 | 283 | 480 | 415 | 0 | 65 | full |
+| ocm:690 | 78 | 362 | 314 | 0 | 48 | full |
 | ocm:700 | 117 | 91 | 79 | 0 | 12 | full |
 | ocm:710 | 9 | 7 | 3 | 0 | 4 | full |
-| ocm:720 | 207 | 555 | 239 | 0 | 316 | full |
-| ocm:730 | 375 | 116 | 41 | 0 | 75 | full |
-| ocm:740 | 1,601 | 1,731 | 1,136 | 0 | 595 | full |
-| ocm:750 | 1,612 | 870 | 553 | 0 | 317 | full |
-| ocm:760 | 37 | 27 | 6 | 0 | 21 | full |
-| ocm:770 | 673 | 348 | 184 | 0 | 164 | full |
-| ocm:780 | 43 | 44 | 23 | 0 | 21 | full |
-| ocm:790 | 32 | 56 | 48 | 0 | 8 | full |
-| ocm:800 | 4,777 | 8,011 | 5,229 | 0 | 2,782 | full |
-| ocm:810 | 8,887 | 13,007 | 6,589 | 0 | 6,418 | full |
-| ocm:820 | 29 | 21 | 3 | 0 | 18 | full |
+| ocm:720 | 207 | 556 | 240 | 0 | 316 | full |
+| ocm:730 | 375 | 132 | 57 | 0 | 75 | full |
+| ocm:740 | 1,601 | 1,825 | 1,230 | 0 | 595 | full |
+| ocm:750 | 1,612 | 923 | 606 | 0 | 317 | full |
+| ocm:760 | 37 | 34 | 13 | 0 | 21 | full |
+| ocm:770 | 673 | 354 | 190 | 0 | 164 | full |
+| ocm:780 | 43 | 45 | 24 | 0 | 21 | full |
+| ocm:790 | 32 | 86 | 78 | 0 | 8 | full |
+| ocm:800 | 4,777 | 8,020 | 5,238 | 0 | 2,782 | full |
+| ocm:810 | 8,887 | 13,049 | 6,631 | 0 | 6,418 | full |
+| ocm:820 | 29 | 23 | 5 | 0 | 18 | full |
 | ocm:830 | 177 | 149 | 124 | 0 | 25 | full |
-| ocm:840 | 77 | 157 | 144 | 0 | 13 | full |
-| ocm:850 | 243 | 440 | 372 | 0 | 68 | full |
+| ocm:840 | 77 | 168 | 155 | 0 | 13 | full |
+| ocm:850 | 243 | 485 | 417 | 0 | 68 | full |
 | ocm:860 | 12 | 532 | 529 | 0 | 3 | full |
-| ocm:870 | 2,887 | 27,703 | 27,037 | 0 | 666 | full |
-| ocm:880 | 280 | 204 | 157 | 0 | 47 | full |
-| ocm:890 | 616 | 244 | 48 | 0 | 196 | full |
+| ocm:870 | 2,887 | 28,327 | 27,661 | 0 | 666 | full |
+| ocm:880 | 280 | 231 | 184 | 0 | 47 | full |
+| ocm:890 | 616 | 247 | 51 | 0 | 196 | full |
 | ocm:900 | 75 | 72 | 10 | 0 | 62 | full |
-| ocm:910 | 198 | 349 | 221 | 0 | 128 | full |
-| ocm:920 | 121 | 118 | 46 | 0 | 72 | full |
+| ocm:910 | 198 | 351 | 223 | 0 | 128 | full |
+| ocm:920 | 121 | 122 | 50 | 0 | 72 | full |
 
 ## Named Absence Probe
 
 | Cell | First review | Critic rule now | Curated | Catalogue | Resource | Rule status |
 |---|---|---|---|---|---|---|
-| developmental-milestones | 2 | 10 | 10 | 0 | 0 | full |
+| developmental-milestones | 2 | 11 | 11 | 0 | 0 | full |
 | first-language-acquisition | 32 | 90 | 85 | 0 | 5 | full |
-| self-care-adl | 6 | 31 | 19 | 0 | 12 | full |
+| self-care-adl | 6 | 32 | 20 | 0 | 12 | full |
 | braille | 0 | 12 | 12 | 0 | 0 | full |
-| sign-languages | 41 | 26 | 16 | 0 | 10 | full |
+| sign-languages | 41 | 28 | 18 | 0 | 10 | full |
 | orientation-mobility | 3 | 23 | 23 | 0 | 0 | full |
 | aac | 11 | 17 | 16 | 0 | 1 | full |
-| special-education-learner | 143 | 36 | 20 | 0 | 16 | full |
-| rehabilitation-relearning | 151 | 19 | 13 | 0 | 6 | full |
-| indigenous-knowledge | 111 | 131 | 106 | 0 | 25 | full |
-| subsistence | 22 | 52 | 38 | 0 | 14 | full |
+| special-education-learner | 143 | 56 | 40 | 0 | 16 | full |
+| rehabilitation-relearning | 151 | 28 | 22 | 0 | 6 | full |
+| indigenous-knowledge | 111 | 145 | 120 | 0 | 25 | full |
+| subsistence | 22 | 62 | 48 | 0 | 14 | full |
 | oral-tradition | 70 | 85 | 26 | 0 | 59 | full |
-| family-transmission | 2 | 41 | 39 | 0 | 2 | full |
-| care-work | 15 | 58 | 44 | 0 | 14 | full |
-| paid-care-work | 20 | 23 | 21 | 0 | 2 | full |
-| informal-illicit | 12 | 14 | 8 | 0 | 6 | full |
+| family-transmission | 2 | 43 | 41 | 0 | 2 | full |
+| care-work | 15 | 59 | 45 | 0 | 14 | full |
+| paid-care-work | 20 | 28 | 26 | 0 | 2 | full |
+| informal-illicit | 12 | 19 | 13 | 0 | 6 | full |
 | military | 136 | 95 | 79 | 0 | 16 | full |
-| religion-formation | 55 | 62 | 54 | 0 | 8 | full |
-| play | 27 | 133 | 122 | 0 | 11 | full |
-| games-sport-ladders | 208 | 146 | 89 | 0 | 57 | full |
+| religion-formation | 55 | 77 | 69 | 0 | 8 | full |
+| play | 27 | 134 | 123 | 0 | 11 | full |
+| games-sport-ladders | 208 | 156 | 99 | 0 | 57 | full |
 | metalearning | 51 | 107 | 56 | 0 | 51 | full |
-| historical-occupations | 10 | 18 | 12 | 0 | 6 | full |
-| historical-curricula | 7 | 12 | 12 | 0 | 0 | full |
-| emerging-occupations | 517 | 1,012 | 173 | 0 | 839 | full |
-| adult-basic-literacy | 204 | 271 | 58 | 0 | 213 | full |
+| historical-occupations | 10 | 28 | 22 | 0 | 6 | full |
+| historical-curricula | 7 | 13 | 13 | 0 | 0 | full |
+| emerging-occupations | 517 | 1,026 | 187 | 0 | 839 | full |
+| adult-basic-literacy | 204 | 295 | 82 | 0 | 213 | full |
 | prison-refugee | 18 | 15 | 3 | 0 | 12 | full |
-| death-grief | 44 | 31 | 7 | 0 | 24 | full |
-| sex-reproduction | 12 | 133 | 129 | 0 | 4 | full |
-| household-production | 82 | 151 | 87 | 0 | 64 | full |
+| death-grief | 44 | 37 | 13 | 0 | 24 | full |
+| sex-reproduction | 12 | 141 | 137 | 0 | 4 | full |
+| household-production | 82 | 169 | 105 | 0 | 64 | full |
 | emotional-regulation | 15 | 551 | 532 | 0 | 19 | full |
 | digital-everyday | 22 | 242 | 227 | 0 | 15 | full |
-| driving-transport | 30 | 41 | 10 | 0 | 31 | full |
+| driving-transport | 30 | 91 | 60 | 0 | 31 | full |
 | elite-performance | 51 | 20 | 12 | 0 | 8 | full |
 
 ## Occupation ISCO-08
