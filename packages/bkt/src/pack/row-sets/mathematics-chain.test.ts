@@ -42,7 +42,7 @@ describe("the school mathematics chain", () => {
     const [rows] = await mathematicsChain(memoryTables({ progression: ROWS }), ctx);
     const [again] = await mathematicsChain(memoryTables({ progression: ROWS }), ctx);
     expect(rows.sha256).toBe(again.sha256);
-    expect(rows.sha256).toBe("83bcf7e9c48e2c5fea48d84fd0423f23a4c5c372d6b682c2a730653a40253e6c");
+    expect(rows.sha256).toBe("0666f80ed31fbeb6af9b3d0e2448061c4f4435ee6f50c99eee8d87928f989e4c");
   });
 
   test("domains open the chain, a domain opens its standards, and each link carries the stated mark of its row", async () => {

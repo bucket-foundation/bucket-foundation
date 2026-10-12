@@ -24,7 +24,7 @@ beforeAll(async () => {
 describe("the public row set pack, built from the tables", () => {
   test("holds both sets under the set cap and the pack budget", () => {
     expect(pack.schema).toBe(ROW_SET_PACK_SCHEMA);
-    expect(pack.sets.map((s) => s.id)).toEqual(["occupations-time", "major-to-career", "mathematics-chain", "technology-waves"]);
+    expect(pack.sets.map((s) => s.id)).toEqual(["occupations-time", "major-to-career", "mathematics-chain", "technology-waves", "education-by-country", "coverage-by-country"]);
     for (const set of pack.sets) {
       expect(set.bytes).toBe(setBytes(set.pages));
       expect(set.bytes).toBeLessThan(SET_BYTES);
@@ -32,7 +32,7 @@ describe("the public row set pack, built from the tables", () => {
     expect(SET_BYTES).toBe(768 * 1024);
     expect(ROW_SET_PACK_BUDGET_BYTES).toBe(1.25 * 1024 * 1024);
     expect(packBytes(pack)).toBeLessThan(ROW_SET_PACK_BUDGET_BYTES);
-    expect(describeRowSets(pack)).toHaveLength(4);
+    expect(describeRowSets(pack)).toHaveLength(6);
     expect(pack.built).toMatch(/^tables-[0-9a-f]{12}$/);
   });
 
@@ -50,7 +50,7 @@ describe("the public row set pack, built from the tables", () => {
       }
       expect(replies(set.pages)).toHaveLength(set.pages.length);
     }
-    expect(seen).toBe(117);
+    expect(seen).toBe(119);
   });
 
   test("occupations open as 48 group hits: 22 SOC, 23 O*NET-SOC and 3 census lists", () => {
@@ -126,18 +126,33 @@ describe("the public row set pack, built from the tables", () => {
     }
   });
 
-  test("technology waves hold 14 waves, 97 curated technologies and 71 training responses on one page", () => {
+  test("technology waves hold waves, curated technologies, training responses and the occupations a technology changed", () => {
     const pages = setOf("technology-waves").pages;
     expect(pages).toHaveLength(1);
     const [opening] = pages;
     const count = (id: string) => opening.gi.filter((g) => opening.groups[g].id === id).length;
-    expect([opening.n, count("wave"), count("checked"), count("curated"), count("training")]).toEqual([182, 14, 34, 63, 71]);
+    expect([opening.n, count("wave"), count("checked"), count("curated"), count("training"), count("occupation")]).toEqual([217, 14, 34, 63, 71, 35]);
     expect(opening.frame.drill).toBeNull();
-    expect(opening.frame.verified?.filter(Boolean)).toHaveLength(14 + 34 + 69);
-    expect(new Set(opening.sources)).toEqual(new Set(["wikipedia", "wikidata", "arxiv"]));
+    expect(new Set(opening.sources)).toEqual(new Set(["wikipedia", "wikidata", "arxiv", "bls-publications"]));
     expect(opening.licence).toBe("CC-BY-SA-4.0");
-    expect(opening.links.every((l) => l.length === 0)).toBe(true);
-    expect(/archives\.gov/.test(JSON.stringify(opening))).toBe(false);
+    const keys = rowKeys(opening);
+    const group = (i: number) => opening.groups[opening.gi[i]].id;
+    opening.links.forEach((targets, i) => {
+      if (group(i) === "occupation") expect(targets.length).toBeGreaterThan(0);
+      targets.forEach((to) => expect(["checked", "curated"]).toContain(group(to)));
+      if (!["occupation", "training"].includes(group(i))) expect(targets).toEqual([]);
+    });
+    const stated = (opening.frame.edgeStated as boolean[][]).flat();
+    expect(stated.length).toBe(opening.links.flat().length);
+    expect(stated.filter(Boolean).length).toBeGreaterThan(0);
+    expect(stated.filter((s) => !s).length).toBeGreaterThan(0);
+    const operator = keys.indexOf("occ-telephone-operator");
+    expect(opening.sub[operator]).toContain("invention to peak share of employment: 74 years, n = 1");
+    const withLag = opening.sub.filter((s, i) => group(i) === "occupation" && / years?, n = \d+$/.test(s));
+    expect(withLag.length).toBeGreaterThan(3);
+    expect(opening.sub.filter((s) => /\d+ years?/.test(s) && /lag|peak|displac/.test(s)).every((s) => /, n = \d+$/.test(s))).toBe(true);
+    expect(opening.attributions.map((a) => a.source)).toContain("Bucket Foundation, progressions corpus");
+    expect(/archives\.gov|nber\.org|ourworldindata/.test(JSON.stringify(opening))).toBe(false);
   });
 
   test("no public row of any set has evidence wikidata-id-only", async () => {
@@ -168,8 +183,8 @@ describe("the public row set pack, built from the tables", () => {
     expect((rows.frame.edgeWeight as number[][]).flat().reduce((a, b) => a + b, 0)).toBe(5723);
   });
 
-  test("passes the nine rules, the denylist, the email scan and the image scan", () => {
-    const ctx = repoContext(REPO);
+  test("passes the nine rules, the denylist, the email scan and the image scan", async () => {
+    const ctx = await repoContext(REPO);
     const pages = pack.sets.flatMap((s) => s.pages);
     for (const page of pages) checkRows(page, ctx);
     assertClean(deny, pack, "the row set pack");
@@ -188,9 +203,56 @@ describe("the public row set pack, built from the tables", () => {
     for (const set of pack.sets) expect(reserved.has(set.id)).toBe(false);
   });
 
-  test("the country file holds no two-letter codes, so no set can carry a place yet", () => {
-    expect(countryCodes(REPO).size).toBe(0);
-    expect(pack.sets.every((s) => s.pages.every((p) => p.frame.place === null))).toBe(true);
+  test("the countries table gives 237 two-letter codes, and every placed row carries one of them with its point", async () => {
+    const codes = await countryCodes(fileTables(join(REPO, TABLES_DIR)));
+    expect(codes.size).toBe(237);
+    const placed = pack.sets.flatMap((s) => s.pages).filter((p) => p.frame.place !== null);
+    expect(placed.map((p) => p.id)).toEqual(["education-by-country", "coverage-by-country"]);
+    for (const page of placed) {
+      expect(page.frame.place?.every((code) => code !== null && codes.has(code))).toBe(true);
+      expect(page.frame.points?.every((point) => point !== null && Math.abs(point[0]) <= 90 && Math.abs(point[1]) <= 180)).toBe(true);
+      expect(page.attributions.map((a) => a.source)).toContain("Natural Earth, 1:50m Admin 0 Countries label points");
+      expect(page.modes).toEqual(["earth", "map"]);
+    }
+  });
+
+  test("education by country holds 66 countries from World Bank indicators alone", () => {
+    const [rows] = setOf("education-by-country").pages;
+    expect(rows.n).toBe(66);
+    expect(rows.sources).toEqual(["world-bank-wdi"]);
+    expect(rows.licence).toBe("CC-BY-4.0");
+    expect(rows.url.every((u) => u !== null && u.startsWith("https://api.worldbank.org/"))).toBe(true);
+    expect(rows.frame.verified?.every(Boolean)).toBe(true);
+    const india = rows.title.indexOf("India");
+    expect(rows.sub[india]).toMatch(/^Primary from age \d+ for \d+ years, secondary from age \d+ for \d+ years, \d+ years compulsory$/);
+    const text = JSON.stringify(rows);
+    expect(/uis\.unesco|unevoc|board examination|Abitur|gaokao|cedefop/i.test(text)).toBe(false);
+    expect(rows.attributions[0].notice).toContain("Data source: UNESCO Institute for Statistics");
+    expect(rows.attributions[0].termsRead).toBe(true);
+  });
+
+  test("coverage by country holds the 30 geography cells with their row counts", () => {
+    const [rows] = setOf("coverage-by-country").pages;
+    expect(rows.n).toBe(30);
+    expect(rows.sources).toEqual(["bucket-corpus"]);
+    const us = rows.frame.place?.indexOf("US") as number;
+    expect([rows.title[us], rows.sub[us], rows.frame.weight?.[us]]).toEqual(["United States of America", "32,898 rows, 3,639 checked", 32898]);
+    const turkey = rows.frame.place?.indexOf("TR") as number;
+    expect([rows.sub[turkey], rows.groups[rows.gi[turkey]].label, rows.frame.weight?.[turkey]]).toEqual(["0 rows, 0 checked", "No rows yet", null]);
+  });
+
+  test("no recall table, no programme row of unread terms and no exam name reaches the pack", async () => {
+    const keys = new Set(pack.sets.flatMap((s) => s.pages).flatMap(rowKeys));
+    const titles = new Set(pack.sets.flatMap((s) => s.pages).flatMap((p) => p.title));
+    let seen = 0;
+    for (const table of ["world_professions", "world_elements", "world_languages", "world_systems", "world_stages", "world_exams", "world_nqf", "world_tvet_bodies", "world_occupations"]) {
+      for await (const row of fileTables(join(REPO, TABLES_DIR)).rows(table)) {
+        seen++;
+        expect(keys.has(rowKey(String(row.id)))).toBe(false);
+        if (table === "world_exams" || table === "world_professions") expect(titles.has(String(row.name ?? row.profession ?? ""))).toBe(false);
+      }
+    }
+    expect(seen).toBeGreaterThan(9000);
   });
 });
 
@@ -252,7 +314,7 @@ describe("the public build checks", () => {
 
   test("the built pack holds no staff set, no restricted source and no person row", () => {
     const file = write("explore-rows.json", pack);
-    expect(readRowSetPack(file)?.sets).toHaveLength(4);
+    expect(readRowSetPack(file)?.sets).toHaveLength(6);
     expect(publicPackProblems(pack)).toEqual([]);
     expect(findStaffRowSets([file])).toEqual([]);
     expect(findKruse([file], [...deny.videoIds])).toEqual([]);

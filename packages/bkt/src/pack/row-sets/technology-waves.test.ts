@@ -2,14 +2,15 @@ import { describe, expect, test } from "bun:test";
 import { checkRows, hitIds, packedBytes, REPLY_BYTES, rowKeys } from "./contract";
 import { checkCaps, memoryTables } from "./index";
 import type { Row } from "./licences";
-import { STAFF_ONLY_EVIDENCE, technologyWaves, TECHNOLOGY_WAVES_ID, TRAINING_FIELD, yearLabel } from "./technology-waves";
+import { lagLine, occupationKey, STAFF_ONLY_EVIDENCE, technologyWaves, TECHNOLOGY_WAVES_ID, yearLabel } from "./technology-waves";
 import { repoFixtureContext } from "./test-fixtures";
 
 const ctx = repoFixtureContext();
 const WD = "https://www.wikidata.org/wiki/";
 const WP = "https://en.wikipedia.org/wiki/";
+const BLS = "https://www.bls.gov/opub/mlr/2016/article/x.htm";
 
-const tech = (id: string, name: string, kind: string, wave: string | null, from: number | null, to: number | null, url: string, verified: boolean, evidence: string, field: string | null = "computing"): Row => ({
+const tech = (id: string, name: string, kind: string, wave: string | null, from: number | null, to: number | null, url: string, verified: boolean, evidence: string | null, field: string | null = "computing"): Row => ({
   id, slice: "history-technology", name, kind, field, wave, era_from: from, era_to: to, source_url: url, verified, evidence, classes: ["invention"],
 });
 
@@ -17,80 +18,121 @@ const TECHNOLOGIES: Row[] = [
   tech("w00-foraging-toolkit", "Foraging toolkit", "wave", null, -3300000, -10001, `${WP}General-purpose_technology`, true, "curated-source", null),
   tech("w10-electronics", "Electronics and mainframes", "wave", null, 1945, 1970, `${WP}Kondratiev_wave`, true, "curated-source", null),
   tech("w13-machine-learning", "Machine learning", "wave", null, 2012, null, "https://arxiv.org/abs/2303.10130", true, "curated-source", null),
-  tech("ht-core-stone-tools", "Stone tools", "technology", "w00-foraging-toolkit", -3300000, null, `${WD}Q1`, true, "curated-source", "materials"),
-  tech("ht-core-transistor", "Transistor", "technology", "w10-electronics", 1947, null, `${WD}Q5339`, true, "curated-source"),
+  tech("ht-core-telephone", "Telephone", "technology", "w08", 1876, null, `${WD}Q11035`, true, "curated-source", "communication"),
+  tech("ht-core-exchange", "Automatic telephone exchange", "technology", "w08", 1891, null, `${WD}Q1`, true, "curated-source", "communication"),
   tech("ht-core-laser", "Laser", "technology", "w10-electronics", 1960, null, `${WD}Q38867`, false, "curated-source"),
   tech("ht-wd-q68", "computer", "technology", "w10-electronics", 1945, null, `${WD}Q68`, false, "wikidata-id-only"),
-  tech("ht-wd-q11016", "integrated circuit", "technology", "w10-electronics", 1958, null, `${WD}Q11016`, false, "wikidata-id-only"),
-  tech("ht-wd-q2539", "machine learning model", "technology", "w13-machine-learning", 2012, null, `${WD}Q2539`, false, "wikidata-id-only"),
-  tech("ht-wd-no-wave", "orphan item", "technology", null, 1900, null, `${WD}Q9`, false, "wikidata-id-only"),
+  tech("ht-wd-q2539", "machine learning model", "technology", "w13-machine-learning", 2012, null, `${WD}Q2539`, true, "wikidata-id-only"),
   tech("ht-wd-no-year", "undated item", "technology", "w10-electronics", null, null, `${WD}Q8`, false, "wikidata-id-only"),
+  tech("ht-no-evidence", "Unmarked item", "technology", "w10-electronics", 1950, null, `${WD}Q7`, true, null),
   tech("ht-other-host", "Borrowed item", "technology", "w10-electronics", 1950, null, "https://example.org/page", true, "curated-source"),
   tech("ht-no-link", "Unlinked item", "technology", "w10-electronics", 1950, null, "", true, "curated-source"),
 ];
 
-const response = (id: string, name: string, from: number, url: string, verified = true, over: Row = {}): Row => ({
-  id, slice: "history-technology", name, field: TRAINING_FIELD, region_raw: "United States", era_from: from, era_to: null, url, verified,
-  notes: "A sentence written about this response. It stays out of the pack.", ...over,
+const response = (id: string, name: string, year: number | null, url: string, technology: string | null, verified = true): Row => ({
+  id, slice: "history-technology", technology_id: technology, wave: "w08", name, kind: "institute", country: "United States", region: "US", year, lag_years: 3, source_url: url, verified,
 });
 
-const FRAMEWORKS: Row[] = [
-  response("ht-tr-mit", "Massachusetts Institute of Technology", 1861, `${WD}Q49108`),
-  response("ht-tr-bootcamps", "First coding bootcamps", 2011, `${WP}Coding_bootcamp`, false),
-  response("ht-tr-archives", "National Apprenticeship Act", 1937, "https://www.archives.gov/milestone-documents"),
-  response("fw-other", "Some framework", 1990, `${WD}Q7`, true, { slice: "school", field: "mathematics" }),
+const RESPONSES: Row[] = [
+  response("tech-tr-ire", "Institute of Radio Engineers", 1912, `${WD}Q1`, "ht-core-telephone"),
+  response("tech-tr-bootcamps", "First coding bootcamps", 2011, `${WP}Coding_bootcamp`, "ht-core-laser", false),
+  response("tech-tr-loose", "Loose response", 1900, `${WD}Q2`, "ht-wd-q68"),
+  response("tech-tr-archives", "National Apprenticeship Act", 1937, "https://www.archives.gov/milestone-documents", null),
+  response("tech-tr-undated", "Undated response", null, `${WD}Q3`, null),
 ];
 
-const tables = () => memoryTables({ technologies: TECHNOLOGIES, frameworks: FRAMEWORKS });
+const occupation = (id: string, technology: string, name: string, relation: string, year: number | null, url: string, verified: boolean, type = "primary"): Row => ({
+  id, slice: "history-technology", technology_id: technology, occupation: name, relation, year, years_after_technology: 2, source_type: type, source_url: url, verified,
+});
+
+const CASES: Row[] = [
+  occupation("tech-occ-001", "ht-core-telephone", "telephone operator", "created", 1878, `${WP}Switchboard_operator`, true, "pointer"),
+  occupation("tech-occ-002", "ht-core-exchange", "telephone operator", "shrank", 1920, BLS, true),
+  occupation("tech-occ-003", "ht-core-exchange", "telephone operator", "shrank", 1950, BLS, true),
+  occupation("tech-occ-004", "ht-core-laser", "laser technician", "created", 1965, BLS, false, "memory"),
+  occupation("tech-occ-005", "ht-core-laser", "paper author", "expanded", 1970, "https://www.nber.org/papers/w1", true),
+  occupation("tech-occ-006", "ht-core-laser", "chart maker", "expanded", 1970, "https://ourworldindata.org/grapher/x", true),
+  occupation("tech-occ-007", "ht-wd-q68", "computer operator", "created", 1950, BLS, true),
+  occupation("tech-occ-008", "ht-core-laser", "odd relation", "rumoured", 1970, BLS, true),
+  occupation("tech-occ-009", "ht-core-laser", "undated trade", "created", null, BLS, true),
+];
+
+const lag = (id: string, technology: string | null, name: string | null, measure: string, years: number, n: number, type = "case"): Row => ({
+  id, slice: "history-technology", row_type: type, technology_id: technology, occupation: name, measure, from_year: 1876, to_year: 1950, lag_years: years, n, basis: "A basis sentence that stays out. It names its source.", verified: true,
+});
+
+const LAGS: Row[] = [
+  lag("tech-lag-001", "ht-core-telephone", "telephone operator", "invention to peak share of employment", 74, 1),
+  lag("tech-lag-002", "ht-core-telephone", "telephone operator", "a second measure", 9, 1),
+  lag("tech-lag-003", "ht-core-laser", "paper author", "invention to peak count", 30, 1),
+  lag("tech-lag-summary-01", null, null, "invention to peak employment", 60, 2, "summary"),
+];
+
+const tables = () => memoryTables({ technologies: TECHNOLOGIES, tech_training_response: RESPONSES, tech_occupation: CASES, tech_lags: LAGS });
 
 describe("technology waves", () => {
   test("a fixture gives a stable sha256", async () => {
     const pages = await technologyWaves(tables(), ctx);
     expect((await technologyWaves(tables(), ctx)).map((p) => p.sha256)).toEqual(pages.map((p) => p.sha256));
-    expect(pages[0].sha256).toBe("1baca3b793b0753d04b3c66603384f728630260b2e3fd770e284ac4951fa1ad3");
+    expect(pages[0].sha256).toBe("a57e90663af79facb643cf247e58b3fa84ebf8dfd9a56a37741e6c3f1ba91a2e");
   });
 
-  test("waves, curated technologies and training responses open the set, checked and unchecked apart", async () => {
-    const [opening] = await technologyWaves(tables(), ctx);
-    expect(opening.id).toBe(TECHNOLOGY_WAVES_ID);
-    expect(rowKeys(opening)).toEqual(["w00-foraging-toolkit", "w10-electronics", "w13-machine-learning", "ht-core-stone-tools", "ht-core-transistor", "ht-core-laser", "ht-tr-mit", "ht-tr-bootcamps"]);
-    expect(opening.gi.map((g) => opening.groups[g].id)).toEqual(["wave", "wave", "wave", "checked", "checked", "curated", "training", "training"]);
-    expect(opening.groups.map((g) => g.label)).toEqual(["Waves", "Technologies checked against a source", "Curated technologies, unchecked", "Training responses"]);
-    expect(opening.frame.verified).toEqual([true, true, true, true, true, false, true, false]);
-    expect(opening.sub.slice(0, 3)).toEqual(["3,300,000 BCE to 10,001 BCE", "1945 to 1970", "from 2012"]);
-    expect(opening.sub[6]).toBe("United States");
-    expect(opening.frame.from).toEqual([-3300000, 1945, 2012, -3300000, 1947, 1960, 1861, 2011]);
-    expect(opening.frame.to).toEqual([-10001, 1970, null, null, null, null, null, null]);
-    expect(opening.frame.axis).toEqual({ from: -3300000, to: 2025, scale: "log", unit: "year" });
-    expect(opening.frame.drill).toBeNull();
-    expect(opening.links.every((l) => l.length === 0)).toBe(true);
-    expect([opening.modes, opening.audience, opening.licence]).toEqual([["timeline"], "public", "CC-BY-SA-4.0"]);
-    expect(opening.sources).toEqual(["wikipedia", "arxiv", "wikidata"]);
-    expect(opening.attributions.map((a) => a.url)).toEqual(["https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use", "https://info.arxiv.org/help/api/tou.html", "https://www.wikidata.org/wiki/Wikidata:Licensing"]);
-    expect(hitIds(opening)[4]).toBe("row:technology-waves:ht-core-transistor");
-    expect(JSON.stringify(opening)).not.toContain("A sentence written");
-  });
-
-  test("no public row has evidence wikidata-id-only, whatever its wave, year or link", async () => {
+  test("waves, curated technologies, training responses and changed occupations sit on one page, checked and unchecked apart", async () => {
     const pages = await technologyWaves(tables(), ctx);
     expect(pages).toHaveLength(1);
-    const keys = new Set(pages.flatMap(rowKeys));
-    const staffOnly = TECHNOLOGIES.filter((r) => r.evidence === STAFF_ONLY_EVIDENCE).map((r) => String(r.id));
-    expect(staffOnly).toHaveLength(5);
-    for (const id of staffOnly) expect(keys.has(id)).toBe(false);
-    const text = JSON.stringify(pages);
-    for (const name of ["computer", "integrated circuit", "machine learning model", "orphan item"]) expect(text).not.toContain(`"${name}"`);
-    const promoted = await technologyWaves(memoryTables({ technologies: TECHNOLOGIES.map((r) => (r.evidence === STAFF_ONLY_EVIDENCE ? { ...r, verified: true } : r)), frameworks: FRAMEWORKS }), ctx);
-    expect(promoted.flatMap(rowKeys)).toEqual([...keys]);
-    const unmarked = await technologyWaves(memoryTables({ technologies: [{ ...TECHNOLOGIES[4], id: "ht-no-evidence", evidence: null }] }), ctx);
-    expect(unmarked[0].n).toBe(0);
+    const [opening] = pages;
+    expect(opening.id).toBe(TECHNOLOGY_WAVES_ID);
+    expect(rowKeys(opening)).toEqual(["w00-foraging-toolkit", "w10-electronics", "w13-machine-learning", "ht-core-telephone", "ht-core-exchange", "ht-core-laser", "tech-tr-ire", "tech-tr-bootcamps", "tech-tr-loose", "occ-laser-technician", "occ-telephone-operator"]);
+    expect(opening.gi.map((g) => opening.groups[g].id)).toEqual(["wave", "wave", "wave", "checked", "checked", "curated", "training", "training", "training", "occupation", "occupation"]);
+    expect(opening.frame.verified).toEqual([true, true, true, true, true, false, true, false, true, false, true]);
+    expect(opening.sub.slice(0, 3)).toEqual(["3,300,000 BCE to 10,001 BCE", "1945 to 1970", "from 2012"]);
+    expect(opening.sub[6]).toBe("United States");
+    expect(opening.frame.axis).toEqual({ from: -3300000, to: 2025, scale: "log", unit: "year" });
+    expect(opening.frame.drill).toBeNull();
+    expect([opening.modes, opening.audience, opening.licence]).toEqual([["timeline"], "public", "CC-BY-SA-4.0"]);
+    expect(hitIds(opening)[3]).toBe("row:technology-waves:ht-core-telephone");
+    expect(JSON.stringify(opening)).not.toContain("A basis sentence");
   });
 
-  test("a row with no cleared source, no year, no wave or no link stays out", async () => {
+  test("a case links its occupation to the technology, stated when checked and inferred when written from memory", async () => {
+    const [opening] = await technologyWaves(tables(), ctx);
+    const at = (key: string) => rowKeys(opening).indexOf(key);
+    const stated = opening.frame.edgeStated as boolean[][];
+    expect(opening.links[at("occ-telephone-operator")]).toEqual([at("ht-core-telephone"), at("ht-core-exchange")]);
+    expect(stated[at("occ-telephone-operator")]).toEqual([true, true]);
+    expect(opening.links[at("occ-laser-technician")]).toEqual([at("ht-core-laser")]);
+    expect(stated[at("occ-laser-technician")]).toEqual([false]);
+    expect(opening.frame.from?.[at("occ-telephone-operator")]).toBe(1878);
+    expect(opening.sources[opening.si[at("occ-telephone-operator")]]).toBe("wikipedia");
+    expect(opening.sources[opening.si[at("occ-laser-technician")]]).toBe("bls-publications");
+    expect(opening.links[at("tech-tr-ire")]).toEqual([at("ht-core-telephone")]);
+    expect(stated[at("tech-tr-ire")]).toEqual([true]);
+    expect(stated[at("tech-tr-bootcamps")]).toEqual([false]);
+    expect(opening.links[at("tech-tr-loose")]).toEqual([]);
+    expect(opening.links.slice(0, 6).every((l) => l.length === 0)).toBe(true);
+  });
+
+  test("a lag prints with its n, one per occupation, and credits the corpus that computed it", async () => {
+    const [opening] = await technologyWaves(tables(), ctx);
+    const at = (key: string) => rowKeys(opening).indexOf(key);
+    expect(opening.sub[at("occ-telephone-operator")]).toBe("created, shrank; invention to peak share of employment: 74 years, n = 1");
+    expect(opening.sub[at("occ-laser-technician")]).toBe("created");
+    expect(lagLine({ measure: "patent to first use", years: 1, n: 3 })).toBe("patent to first use: 1 year, n = 3");
+    expect(JSON.stringify(opening)).not.toContain("a second measure");
+    expect(JSON.stringify(opening)).not.toContain("invention to peak employment: 60");
+    const credit = opening.attributions.find((a) => a.source === "Bucket Foundation, progressions corpus");
+    expect([credit?.rows, credit?.licence, credit?.termsRead]).toEqual([1, "CC-BY-4.0", true]);
+    expect(opening.sources).not.toContain("bucket-corpus");
+    expect(occupationKey("Telephone operator (manual)")).toBe("occ-telephone-operator-manual");
+  });
+
+  test("no public row has evidence wikidata-id-only, and no case of an uncleared source or unshipped technology draws", async () => {
     const pages = await technologyWaves(tables(), ctx);
-    const keys = pages.flatMap(rowKeys);
-    for (const out of ["ht-wd-q68", "ht-wd-no-wave", "ht-wd-no-year", "ht-other-host", "ht-no-link", "ht-tr-archives", "fw-other"]) expect(keys).not.toContain(out);
-    expect(keys).toHaveLength(8);
+    const keys = new Set(pages.flatMap(rowKeys));
+    const staffOnly = TECHNOLOGIES.filter((r) => r.evidence === STAFF_ONLY_EVIDENCE).map((r) => String(r.id));
+    expect(staffOnly).toHaveLength(3);
+    for (const id of [...staffOnly, "ht-no-evidence", "ht-other-host", "ht-no-link", "tech-tr-archives", "tech-tr-undated", "occ-paper-author", "occ-chart-maker", "occ-computer-operator", "occ-odd-relation", "occ-undated-trade"]) expect(keys.has(id)).toBe(false);
+    expect(/nber\.org|ourworldindata|archives\.gov|"computer"|machine learning model/.test(JSON.stringify(pages))).toBe(false);
   });
 
   test("the rules and the caps hold, and years before the common era read as BCE", async () => {
@@ -103,8 +145,11 @@ describe("technology waves", () => {
     expect([yearLabel(-3300000), yearLabel(-1), yearLabel(0), yearLabel(1999)]).toEqual(["3,300,000 BCE", "1 BCE", "0", "1999"]);
   });
 
-  test("no technology rows give a set with no hits", async () => {
-    const [opening] = await technologyWaves(memoryTables({ technologies: [] }), ctx);
-    expect([opening.n, opening.frame.axis, opening.frame.drill]).toEqual([0, null, null]);
+  test("technologies alone, with no case, lag or response table, still build, and no rows give an empty set", async () => {
+    const [alone] = await technologyWaves(memoryTables({ technologies: TECHNOLOGIES }), ctx);
+    expect(alone.n).toBe(6);
+    expect(alone.frame.edgeStated ?? null).toBeNull();
+    const [empty] = await technologyWaves(memoryTables({ technologies: [] }), ctx);
+    expect([empty.n, empty.frame.axis, empty.frame.drill]).toEqual([0, null, null]);
   });
 });
