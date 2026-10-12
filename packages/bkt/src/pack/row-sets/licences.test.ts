@@ -125,7 +125,8 @@ describe("the source tables", () => {
     for (const reason of Object.values(METADATA_TABLES)) expect(reason).toContain("no corpus row");
     for (const name of metadata) expect(resolveSource(name, { licence: "CC BY 4.0", source_url: "https://api.worldbank.org/x", host: "en.wikipedia.org" })).toBe(UNKNOWN);
     const { tech_lags: lagSources, ...rest } = Object.fromEntries(Object.entries(bySource).filter(([name]) => /^(world_|tech_|countries)/.test(name)));
-    expect([{ "bucket-corpus": 23 }, { wikipedia: 2, "bucket-corpus": 2 }]).toContainEqual(lagSources);
+    const lagStates: Record<string, number>[] = [{ "bucket-corpus": 23 }, { wikipedia: 2, "bucket-corpus": 2 }];
+    expect(lagStates).toContainEqual(lagSources);
     expect(rest).toEqual({
       countries: { "natural-earth": 237 },
       tech_occupation: { wikipedia: 20, "bls-publications": 25, [UNKNOWN]: 7 },
