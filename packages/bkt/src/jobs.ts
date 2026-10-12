@@ -18,7 +18,15 @@ export interface JobDirs {
   out: string;
 }
 
-export type JobPlan = { argv: string[]; env?: Record<string, string> } | { error: string; install?: string };
+export interface JobStep {
+  argv: string[];
+  env?: Record<string, string>;
+  cwd?: string;
+  before?: () => string | null;
+  skip?: () => boolean;
+}
+
+export type JobPlan = { argv: string[]; env?: Record<string, string>; cwd?: string } | { steps: JobStep[] } | { error: string; install?: string };
 
 export interface JobSpec {
   label: string;
@@ -27,7 +35,7 @@ export interface JobSpec {
   timeoutMs?: number;
   watch?: { everyMs: number; check(dirs: JobDirs): string | null };
   plan(dirs: JobDirs, options: Record<string, number>, params?: Record<string, string>): JobPlan;
-  after?(dirs: JobDirs): unknown;
+  after?(dirs: JobDirs, params?: Record<string, string>): unknown;
   failed?(dirs: JobDirs): unknown;
 }
 
@@ -164,12 +172,31 @@ export class JobRunner {
 
   freeze(files: Record<string, Uint8Array>): Frozen {
     if (!this.o.frozenOnly) throw new JobError("this runner takes no frozen folder", 404);
+    for (const name of Object.keys(files)) {
+      const parts = name.split("/");
+      if (parts.length > 10 || parts.some((part) => !/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(part)) || parts[0] === JOB_MARKER || parts[0] === "out") throw new JobError(`bad frozen file name ${name}`, 400);
+    }
     const made = this.makeDir();
     for (const [name, bytes] of Object.entries(files)) {
-      if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(name) || name === JOB_MARKER) throw new JobError(`bad frozen file name ${name}`, 400);
-      writeFileSync(join(made.dir, name), bytes, { mode: 0o400, flag: "wx" });
+      const parts = name.split("/");
+      let at = made.dir;
+      for (const part of parts.slice(0, -1)) {
+        at = join(at, part);
+        if (!existsSync(at)) mkdirSync(at, { mode: 0o700 });
+      }
+      writeFileSync(join(at, parts[parts.length - 1]), bytes, { mode: 0o400, flag: "wx" });
     }
     return made;
+  }
+
+  discard(frozenDir: string): void {
+    const dir = resolve(frozenDir);
+    const id = relative(this.root, dir);
+    if (!/^[0-9T]{15}-[0-9a-f]{8}$/.test(id) || !existsSync(dir) || lstatSync(dir).isSymbolicLink()) return;
+    const job = this.jobs.find((j) => j.view.id === id);
+    if (job?.view.state === "running") throw new JobError("cancel the job first", 409);
+    rmSync(dir, { recursive: true, force: true });
+    this.jobs = this.jobs.filter((j) => j.view.id !== id);
   }
 
   startFrozen(kind: string, frozenDir: string, grant: unknown, params: Record<string, string>): JobView {
@@ -260,26 +287,47 @@ export class JobRunner {
         stream.on("error", () => done());
       });
 
-    let proc: ChildProcess;
-    try {
-      proc = spawn(plan.argv[0], plan.argv.slice(1), {
-        cwd: dir,
-        env: { PATH: process.env.PATH ?? "/usr/bin:/bin", HOME: process.env.HOME ?? dir, LANG: "C.UTF-8", ...plan.env },
+    const steps: JobStep[] = "steps" in plan ? plan.steps : [plan];
+    if (steps.length === 0) {
+      finish("failed", "the job has no step to run");
+      return { ...view };
+    }
+    const begin = (step: JobStep): ChildProcess =>
+      spawn(step.argv[0], step.argv.slice(1), {
+        cwd: step.cwd ?? dir,
+        env: { PATH: process.env.PATH ?? "/usr/bin:/bin", HOME: process.env.HOME ?? dir, LANG: "C.UTF-8", ...step.env },
         stdio: ["ignore", "pipe", "pipe"],
         detached: true,
       });
+    const ended = (child: ChildProcess) =>
+      Promise.all([
+        new Promise<number | null>((done) => {
+          child.on("error", (e) => {
+            append(`could not start: ${e.message}`);
+            done(null);
+          });
+          child.on("exit", (code) => done(code));
+        }),
+        lines(child.stdout),
+        lines(child.stderr),
+      ]).then(([code]) => {
+        this.signalGroup(child, "SIGKILL");
+        return code;
+      });
+    let proc: ChildProcess;
+    try {
+      const veto = steps[0].before?.() ?? null;
+      if (veto !== null) {
+        finish("failed", veto);
+        return { ...view };
+      }
+      proc = begin(steps[0]);
     } catch (e) {
       finish("failed", `could not start: ${e instanceof Error ? e.message : String(e)}`);
       return { ...view };
     }
     job.proc = proc;
-    const exited = new Promise<number | null>((done) => {
-      proc.on("error", (e) => {
-        append(`could not start: ${e.message}`);
-        done(null);
-      });
-      proc.on("exit", (code) => done(code));
-    });
+    const first = ended(proc);
     job.timer = setTimeout(() => this.halt(job, "timeout"), spec.timeoutMs ?? this.o.timeoutMs ?? DEFAULT_TIMEOUT_MS);
     const watch = spec.watch;
     if (watch)
@@ -295,8 +343,24 @@ export class JobRunner {
         this.halt(job, "failed");
       }, watch.everyMs);
     void (async () => {
-      const [code] = await Promise.all([exited, lines(proc.stdout), lines(proc.stderr)]);
-      this.signalGroup(proc, "SIGKILL");
+      let code = await first;
+      for (let i = 1; i < steps.length && code === 0 && !job.stop; i++) {
+        let next: ChildProcess;
+        try {
+          if (steps[i].skip?.()) continue;
+          const veto = steps[i].before?.() ?? null;
+          if (veto !== null) {
+            view.code = code;
+            return finish("failed", veto);
+          }
+          next = begin(steps[i]);
+        } catch (e) {
+          view.code = code;
+          return finish("failed", `could not start: ${e instanceof Error ? e.message : String(e)}`);
+        }
+        job.proc = next;
+        code = await ended(next);
+      }
       view.code = code;
       if (job.stop) return finish(job.stop, job.stop === "timeout" ? "the job ran past its time limit" : job.limit);
       if (code !== 0) {
@@ -308,7 +372,7 @@ export class JobRunner {
         return finish("failed", code === null ? "the job could not start" : `exited with code ${code}`);
       }
       try {
-        view.result = spec.after ? ((await spec.after(dirs)) ?? null) : null;
+        view.result = spec.after ? ((await spec.after(dirs, params)) ?? null) : null;
         finish("done");
       } catch (e) {
         finish("failed", e instanceof Error ? e.message : String(e));

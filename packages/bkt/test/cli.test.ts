@@ -41,7 +41,7 @@ describe("command table", () => {
   test("every command name is unique and every palette-only entry stays off the command line", () => {
     expect(new Set(TABLE.map((c) => c.name)).size).toBe(TABLE.length);
     for (const name of ["review", "home", "quit", "graph", "jobs", "frontier"]) expect(() => resolve([name])).toThrow(`unknown command ${name}`);
-    expect(() => resolve(["research"])).toThrow("research needs a subcommand: add, install");
+    expect(() => resolve(["research"])).toThrow("research needs a subcommand: add, approve, builds, install");
     const install = resolve(["research", "install", "staff.json"]);
     expect("command" in install && install.command.name).toBe("research install");
     expect(() => resolve(["research", "install"])).toThrow("research install needs <file>");
