@@ -1,4 +1,4 @@
-import { createHash, randomBytes } from "node:crypto";
+import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { closeSync, fsyncSync, lstatSync, mkdirSync, openSync, readdirSync, readFileSync, renameSync, writeSync } from "node:fs";
 import { dirname, join } from "node:path";
 
@@ -13,6 +13,13 @@ export const DENY_WINDOW_MS = 600_000;
 export const DENY_LIMIT = 3;
 export const CONSENT_ID = /^[A-Za-z0-9_-]{22}$/;
 export const DIGEST = /^[0-9a-f]{64}$/;
+export const DIGEST_PREFIX = /^[0-9a-f]{12,64}$/;
+
+function same(a: string, b: string): boolean {
+  const x = Buffer.from(a);
+  const y = Buffer.from(b);
+  return x.length === y.length && timingSafeEqual(x, y);
+}
 
 export class Grant {
   spent = false;
@@ -171,11 +178,14 @@ export interface ConsentOptions {
   now?: () => number;
   onDrop?: (pending: Pending, why: "denied" | "expired" | "replaced") => void;
   switch?: BuildSwitch;
+  ttlMs?: number;
 }
 
 export class ConsentStore {
   private held: Pending | null = null;
+  private timer: ReturnType<typeof setTimeout> | null = null;
   private denials = new Map<string, number[]>();
+  private cooling = new Map<string, number>();
 
   constructor(private o: ConsentOptions = {}) {}
 
@@ -189,23 +199,34 @@ export class ConsentStore {
     return new Grant(MINT, kind, digest);
   }
 
+  private ttl(): number {
+    return this.o.ttlMs ?? CONSENT_TTL_MS;
+  }
+
+  private release(): void {
+    this.held = null;
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = null;
+  }
+
   private denied(slug: string): void {
     const at = this.now();
+    this.cooling.set(slug, at);
     const recent = [...(this.denials.get(slug) ?? []).filter((t) => at - t < DENY_WINDOW_MS), at];
     this.denials.set(slug, recent);
     if (recent.length >= DENY_LIMIT) this.o.switch?.turnOff(slug, "three build requests were denied in ten minutes", at);
   }
 
   cooldown(slug: string): number {
-    const last = (this.denials.get(slug) ?? []).at(-1);
+    const last = this.cooling.get(slug);
     return last === undefined ? 0 : Math.max(0, DENY_COOLDOWN_MS - (this.now() - last));
   }
 
   pending(): Pending | null {
     const p = this.held;
-    if (p && this.now() - p.created >= CONSENT_TTL_MS) {
-      this.held = null;
-      this.denied(p.slug);
+    if (p && this.now() - p.created >= this.ttl()) {
+      this.release();
+      this.cooling.set(p.slug, this.now());
       this.o.onDrop?.(p, "expired");
       return null;
     }
@@ -214,7 +235,7 @@ export class ConsentStore {
 
   view(): PendingView | null {
     const p = this.pending();
-    return p ? { id: p.id, slug: p.slug, build: p.build, class: p.cls, digest: p.digest, title: p.title, body: p.body, expiresAt: p.created + CONSENT_TTL_MS } : null;
+    return p ? { id: p.id, slug: p.slug, build: p.build, class: p.cls, digest: p.digest, title: p.title, body: p.body, expiresAt: p.created + this.ttl() } : null;
   }
 
   open(input: PendingInput): Pending {
@@ -223,24 +244,40 @@ export class ConsentStore {
     if (!DIGEST.test(input.digest)) throw new ConsentError("the request has no digest", 400);
     const p: Pending = { ...input, id: randomBytes(16).toString("base64url"), created: this.now() };
     this.held = p;
+    this.timer = setTimeout(() => {
+      if (this.held === p && this.pending() === p) {
+        this.release();
+        this.cooling.set(p.slug, this.now());
+        this.o.onDrop?.(p, "expired");
+      }
+    }, this.ttl() + 50);
+    (this.timer as { unref?: () => void }).unref?.();
     return p;
   }
 
   private match(id: unknown, digest: unknown): Pending {
     const p = this.pending();
-    if (typeof id !== "string" || typeof digest !== "string" || !CONSENT_ID.test(id) || !DIGEST.test(digest) || !p || p.id !== id || p.digest !== digest) throw new ConsentError("no build request matches that answer", 403);
+    const refuse = (): never => {
+      throw new ConsentError("no build request matches that answer", 403);
+    };
+    if (!p) return refuse();
+    const byId = id !== undefined && id !== null;
+    const byDigest = digest !== undefined && digest !== null;
+    if (!byId && !byDigest) throw new ConsentError("an answer names the request by its id or by at least 12 characters of its digest", 400);
+    if (byId && (typeof id !== "string" || !CONSENT_ID.test(id) || !same(id, p.id))) return refuse();
+    if (byDigest && (typeof digest !== "string" || !DIGEST_PREFIX.test(digest) || !same(digest, p.digest.slice(0, digest.length)))) return refuse();
     return p;
   }
 
   consume(id: unknown, digest: unknown): { grant: Grant; pending: Pending } {
     const p = this.match(id, digest);
-    this.held = null;
+    this.release();
     return { grant: new Grant(MINT, p.kind, p.digest), pending: p };
   }
 
   deny(id: unknown, digest: unknown): Pending {
     const p = this.match(id, digest);
-    this.held = null;
+    this.release();
     this.denied(p.slug);
     this.o.onDrop?.(p, "denied");
     return p;

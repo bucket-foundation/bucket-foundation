@@ -75,8 +75,23 @@ export async function researchWaiting(server: ServerRecord): Promise<Waiting> {
   return r.body;
 }
 
-export async function researchAnswer(server: ServerRecord, view: PendingView, allow: boolean): Promise<{ id?: string; state?: string; denied?: boolean }> {
-  const r = await call<{ id?: string; state?: string; denied?: boolean }>(server, "/local/research/consent", { id: view.id, digest: view.digest, allow });
+export interface AnswerKey {
+  id?: string;
+  digest?: string;
+}
+
+export function answerKey(values: { request?: unknown; digest?: unknown }): AnswerKey {
+  const id = typeof values.request === "string" ? values.request.trim() : undefined;
+  const digest = typeof values.digest === "string" ? values.digest.trim().toLowerCase() : undefined;
+  if (!id && !digest) throw new ResearchError("name the request you read: pass --digest with at least 12 characters of its digest, or --request with its id", 400);
+  if (digest !== undefined && !/^[0-9a-f]{12,64}$/.test(digest)) throw new ResearchError("the digest takes 12 to 64 hex characters", 400);
+  if (id !== undefined && !/^[A-Za-z0-9_-]{22}$/.test(id)) throw new ResearchError("the request id takes 22 characters", 400);
+  return { ...(id ? { id } : {}), ...(digest ? { digest } : {}) };
+}
+
+export async function researchAnswer(server: ServerRecord, key: AnswerKey, allow: boolean): Promise<{ id?: string; state?: string; denied?: boolean }> {
+  if (!key.id && !key.digest) throw new ResearchError("name the request you read: pass --digest with at least 12 characters of its digest, or --request with its id", 400);
+  const r = await call<{ id?: string; state?: string; denied?: boolean }>(server, "/local/research/consent", { ...key, allow });
   if (r.status !== 200) throw new ResearchError(r.body.error ?? `the running app refused the answer (${r.status})`, r.status);
   return r.body;
 }
@@ -84,7 +99,7 @@ export async function researchAnswer(server: ServerRecord, view: PendingView, al
 export function approvalLines(w: Waiting): string[] {
   if (!w.pending) return ["No build is waiting for approval."];
   const left = Math.max(0, Math.round((w.pending.expiresAt - Date.now()) / 1000));
-  return [w.pending.title, "", ...w.pending.body.split("\n"), "", `Full digest: ${w.pending.digest}`, ...(w.full ? ["", "Changes against the shipped version:", ...w.full.trimEnd().split("\n")] : []), "", `This request ends in ${left} seconds. Allow it with bkt research approve --yes, refuse it with bkt research approve --deny.`];
+  return [w.pending.title, "", ...w.pending.body.split("\n"), "", `Request: ${w.pending.id}`, `Full digest: ${w.pending.digest}`, ...(w.full ? ["", "Changes against the shipped version:", ...w.full.trimEnd().split("\n")] : []), "", `This request ends in ${left} seconds.`, `Allow it: bkt research approve --yes --digest ${w.pending.digest.slice(0, 12)}`, `Refuse it: bkt research approve --deny --digest ${w.pending.digest.slice(0, 12)}`];
 }
 
 export function researchBuilds(dataDir: string, action: string, slug: string): string {

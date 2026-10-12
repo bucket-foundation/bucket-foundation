@@ -2,7 +2,7 @@ import { afterAll, afterEach, describe, expect, test } from "bun:test";
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { approvalLines, researchBuilds } from "../src/cli/research";
+import { answerKey, approvalLines, researchBuilds } from "../src/cli/research";
 import { jobRoutes } from "../src/job-routes";
 import { JobError, JobRunner, type JobSpec, type JobView } from "../src/jobs";
 import { encodeBlob, RESEARCH_SCHEMA, sha256, SIDE_SCHEMA, type PackedFile, type ReportBuild, type ReportRecord, type ResearchBlobs, type ResearchIndex, type ResearchSidePack } from "../src/pack/research";
@@ -216,13 +216,96 @@ describe("build consent", () => {
     const view = await s.builds.request("demo", "pdf");
     expect(await refused(() => s.builds.answer(view.id, "0".repeat(64), true))).toEqual([403, "no build request matches that answer"]);
     expect(await refused(() => s.builds.answer("A".repeat(22), view.digest, true))).toEqual([403, "no build request matches that answer"]);
-    expect((await refused(() => s.builds.answer(null, null, true)))[0]).toBe(403);
+    expect(await refused(() => s.builds.answer(null, null, true))).toEqual([400, "an answer names the request by its id or by at least 12 characters of its digest"]);
     expect((await refused(() => s.builds.answer(view.id, view.digest.toUpperCase(), true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(null, view.digest.slice(0, 11), true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(null, `${view.digest.slice(0, 11)}${view.digest[11] === "0" ? "1" : "0"}`, true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(null, `${view.digest}0`, true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(view.id.slice(0, 21), null, true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(null, 12, true)))[0]).toBe(403);
     expect(s.runner.list()).toEqual([]);
     expect(s.consent.pending()!.id).toBe(view.id);
     const other = setup();
     const theirs = await other.builds.request("demo", "pdf");
     expect((await refused(() => s.builds.answer(theirs.id, theirs.digest, true)))[0]).toBe(403);
+  });
+
+  test("approve with a stale digest is refused", async () => {
+    const s = setup();
+    const read = await s.builds.request("demo", "pdf");
+    s.tick(CONSENT_TTL_MS);
+    expect(s.builds.pending()).toBeNull();
+    s.tick(DENY_COOLDOWN_MS);
+    await s.work.write("demo", MAIN, rev(TEX), Buffer.from(`${TEX}\\input{/etc/passwd}\n`));
+    const swapped = await s.builds.request("demo", "pdf");
+    expect(swapped.digest).not.toBe(read.digest);
+    expect(await refused(() => s.builds.answer(null, read.digest.slice(0, 12), true))).toEqual([403, "no build request matches that answer"]);
+    expect(await refused(() => s.builds.answer(null, read.digest, true))).toEqual([403, "no build request matches that answer"]);
+    expect(s.runner.list()).toEqual([]);
+    expect(existsSync(s.log)).toBe(false);
+    expect(s.consent.pending()!.id).toBe(swapped.id);
+  });
+
+  test("a request replaced after display is refused", async () => {
+    const s = setup();
+    const shown = await s.builds.request("demo", "pdf");
+    s.tick(CONSENT_TTL_MS + DENY_COOLDOWN_MS);
+    expect(s.builds.pending()).toBeNull();
+    s.tick(DENY_COOLDOWN_MS);
+    const same = await s.builds.request("demo", "pdf");
+    expect(same.digest).toBe(shown.digest);
+    expect(same.id).not.toBe(shown.id);
+    expect(await refused(() => s.builds.answer(shown.id, null, true))).toEqual([403, "no build request matches that answer"]);
+    expect(await refused(() => s.builds.answer(shown.id, shown.digest, true))).toEqual([403, "no build request matches that answer"]);
+    expect(s.runner.list()).toEqual([]);
+    expect(() => answerKey({})).toThrow("name the request you read");
+    expect(() => answerKey({ digest: "abc" })).toThrow("12 to 64 hex characters");
+    expect(() => answerKey({ request: "short" })).toThrow("22 characters");
+    expect(answerKey({ digest: shown.digest.slice(0, 12).toUpperCase() })).toEqual({ digest: shown.digest.slice(0, 12) });
+    expect(answerKey({ request: shown.id })).toEqual({ id: shown.id });
+  });
+
+  test("a correct digest is accepted once", async () => {
+    const s = setup();
+    const view = await s.builds.request("demo", "pdf");
+    const job = s.builds.answer(null, view.digest.slice(0, 12), true) as JobView;
+    expect(job.state).toBe("running");
+    expect(await refused(() => s.builds.answer(null, view.digest.slice(0, 12), true))).toEqual([403, "no build request matches that answer"]);
+    expect((await finished(s, job.id)).state).toBe("done");
+    const byId = setup();
+    const v = await byId.builds.request("demo", "pdf");
+    expect((byId.builds.answer(v.id, null, true) as JobView).state).toBe("running");
+    expect((await refused(() => byId.builds.answer(v.id, null, true)))[0]).toBe(403);
+  });
+
+  test("a declared output outside the built folder is refused", async () => {
+    for (const out of ["../../escape.txt", "/etc/escape.txt", "papers/../../escape.txt"]) {
+      const s = setup({ builds: [{ ...BUILDS[0], outputs: [out] }] });
+      expect((await refused(() => s.builds.request("demo", "pdf")))[0]).toBeGreaterThanOrEqual(400);
+      expect(s.consent.pending()).toBeNull();
+      expect(frozenDirs(s)).toEqual([]);
+    }
+    const linked = setup({ builds: [{ ...BUILDS[1], audience: "public", outputs: ["fig.txt"] }] });
+    const elsewhere = temp("elsewhere");
+    mkdirSync(join(linked.home, "research/outputs/demo"), { recursive: true });
+    symlinkSync(elsewhere, join(linked.home, "research/outputs/demo/built"));
+    const view = await linked.builds.request("demo", "figures");
+    const job = linked.builds.answer(view.id, view.digest, true) as JobView;
+    expect((await finished(linked, job.id)).state).toBe("failed");
+    expect(readdirSync(elsewhere)).toEqual([]);
+  });
+
+  test("a request expires on its own timer and its folder goes", async () => {
+    const home = temp("home");
+    const runner = new JobRunner({ root: join(home, "jobs"), specs: {}, frozenOnly: true });
+    runners.push(runner);
+    const dropped: string[] = [];
+    const consent = new ConsentStore({ ttlMs: 30, onDrop: (p, why) => dropped.push(`${p.id} ${why}`) });
+    const p = consent.open({ slug: "demo", build: "pdf", kind: PDF_KIND, digest: "a".repeat(64), cls: "shipped", files: [], frozenDir: join(home, "jobs", "x"), title: "T", body: "B", full: "", params: {} });
+    await new Promise((done) => setTimeout(done, 200));
+    expect(dropped).toEqual([`${p.id} expired`]);
+    expect(() => consent.consume(p.id, p.digest)).toThrow("no build request matches that answer");
+    expect(consent.cooldown("demo")).toBeGreaterThan(0);
   });
 
   test("startFrozen refuses a spent grant, a grant for another kind, a plain object and a folder outside the runner root", async () => {
@@ -274,7 +357,14 @@ describe("build consent", () => {
     const data = setup({ builds: [{ ...BUILDS[1], audience: "public" }] });
     await data.work.write("demo", "papers/demo/data.csv", rev(CSV), Buffer.from("id,value\n1,3\n"));
     const c = await data.builds.request("demo", "figures");
-    expect([c.class, data.consent.pending()!.files]).toEqual(["shipped", []]);
+    expect([c.class, data.consent.pending()!.files]).toEqual(["edited", [{ path: "papers/demo/data.csv", base: rev(CSV), now: rev("id,value\n1,3\n"), added: 1, removed: 1, lines: ["-1,2", "+1,3"] }]]);
+    expect(c.body).toContain(`papers/demo/data.csv: ${rev(CSV).slice(0, 12)} to ${rev("id,value\n1,3\n").slice(0, 12)}, 1 added, 1 removed`);
+    expect(data.consent.pending()!.full).toContain("--- a/papers/demo/data.csv");
+    const binary = setup({ builds: [{ ...BUILDS[1], audience: "public" }] });
+    await binary.work.write("demo", "papers/demo/data.csv", rev(CSV), Buffer.alloc(2 * 1024 * 1024 + 1, "a"));
+    const d = await binary.builds.request("demo", "figures");
+    expect([d.class, binary.consent.pending()!.files[0].lines]).toEqual(["edited", ["2097153 bytes, shown as sizes alone"]]);
+    expect(binary.consent.pending()!.full).toContain("2097153 bytes, shown as sizes alone");
     const plain = setup({ builds: [{ ...BUILDS[1], audience: "public" }] });
     expect((await plain.builds.request("demo", "figures")).digest).not.toBe(c.digest);
   });
@@ -295,10 +385,10 @@ describe("build consent", () => {
     ]);
     const many = Array.from({ length: 7 }, (_, i) => ({ path: `p/${i}.tex`, base: "a".repeat(64), now: "b".repeat(64), added: 9, removed: 0, lines: Array.from({ length: 9 }, (_, j) => `+${"x".repeat(130)}${j}`) }));
     const text = approvalText({ title: "T", build: BUILDS[0], cls: "edited", digest: "c".repeat(64), files: many }).split("\n");
-    expect(text.filter((l) => l.startsWith("p/")).length).toBe(5);
+    expect(text.filter((l) => l.startsWith("p/")).length).toBe(7);
     expect(text.filter((l) => l.startsWith("  +")).length).toBe(30);
     expect(text.filter((l) => l.startsWith("  +")).every((l) => l.length === 103 && l.endsWith("…"))).toBe(true);
-    expect(text.at(-1)).toBe("2 more files changed. Run bkt research approve in a terminal to read the full diff.");
+    expect(text.at(-1)).toBe("7 files changed. Run bkt research approve in a terminal to read the full diff.");
     expect(approvalText({ title: "T", build: BUILDS[0], cls: "shipped", digest: "c".repeat(64), files: [] })).toBe(`T\nBuild: Paper PDF (latex), entry ${MAIN}\nVersion: shipped version\nDigest: cccccccccccc`);
     const lines = approvalLines({ pending: view, full: s.consent.pending()!.full });
     expect(lines[0]).toBe("Allow this build?");
@@ -306,7 +396,8 @@ describe("build consent", () => {
     expect(lines).toContain("-Second paragraph.");
     expect(lines).toContain("+Second paragraph, rewritten here.");
     expect(lines).toContain(`--- a/${MAIN}`);
-    expect(lines.at(-1)).toContain("bkt research approve --yes");
+    expect(lines).toContain(`Request: ${view.id}`);
+    expect(lines.slice(-2)).toEqual([`Allow it: bkt research approve --yes --digest ${view.digest.slice(0, 12)}`, `Refuse it: bkt research approve --deny --digest ${view.digest.slice(0, 12)}`]);
     expect(approvalLines({ pending: null })).toEqual(["No build is waiting for approval."]);
   });
 
@@ -326,14 +417,18 @@ describe("build consent", () => {
     expect(CONSENT_TTL_MS).toBe(120_000);
   });
 
-  test("an expired request counts as a denial", async () => {
+  test("expiry starts the wait and never turns builds off", async () => {
     const s = setup();
-    await s.builds.request("demo", "pdf");
-    s.tick(CONSENT_TTL_MS);
-    expect(s.builds.pending()).toBeNull();
-    expect(s.consent.cooldown("demo")).toBe(DENY_COOLDOWN_MS);
-    expect(await refused(() => s.builds.request("demo", "pdf"))).toEqual([429, "a build for this output was denied; ask again in 30 seconds"]);
-    s.tick(DENY_COOLDOWN_MS);
+    for (let i = 0; i < 6; i++) {
+      await s.builds.request("demo", "pdf");
+      s.tick(CONSENT_TTL_MS);
+      expect(s.builds.pending()).toBeNull();
+      expect(s.consent.cooldown("demo")).toBe(DENY_COOLDOWN_MS);
+      expect((await refused(() => s.builds.request("demo", "pdf")))[0]).toBe(429);
+      s.tick(DENY_COOLDOWN_MS);
+    }
+    expect(s.gate.off("demo")).toBeNull();
+    expect(frozenDirs(s)).toEqual([]);
     expect((await s.builds.request("demo", "pdf")).class).toBe("shipped");
   });
 

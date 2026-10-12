@@ -65,7 +65,8 @@ import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
 import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
-import { addLines, approvalLines, installLines, researchAdd, researchAnswer, researchBuilds, researchInstall, researchWaiting } from "./research";
+import { addLines, answerKey, approvalLines, installLines, researchAdd, researchAnswer, researchBuilds, researchInstall, researchWaiting } from "./research";
+import { createInterface } from "node:readline";
 import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
 import { BuildSwitch, ConsentStore } from "../research-consent";
 import { researchBuildRoutes, ResearchBuilds, researchSpecs } from "../research-jobs";
@@ -134,11 +135,23 @@ async function researchCmd(inv: Invocation, json: boolean): Promise<number> {
     if (inv.command.name === "research approve") {
       const server = await provenServer(home);
       if (!server) throw new ResearchError("Bucket is not running here; open the app or run bkt serve, then ask for the build again", 409);
+      if (inv.values.yes === true || inv.values.deny === true) {
+        const answer = await researchAnswer(server, answerKey(inv.values), inv.values.yes === true && inv.values.deny !== true);
+        console.log(answer.denied ? "Refused. Nothing ran." : "Allowed. The build is running.");
+        return EXIT.ok;
+      }
       const waiting = await researchWaiting(server);
       for (const line of approvalLines(waiting)) console.log(line);
       if (!waiting.pending) return EXIT.noData;
-      if (inv.values.yes !== true && inv.values.deny !== true) return EXIT.ok;
-      const answer = await researchAnswer(server, waiting.pending, inv.values.yes === true && inv.values.deny !== true);
+      if (!process.stdin.isTTY || !process.stdout.isTTY) return EXIT.ok;
+      const typed = await new Promise<string>((done) => {
+        const rl = createInterface({ input: process.stdin, output: process.stdout });
+        rl.question("Allow this build? Type yes to allow, anything else to refuse: ", (line) => {
+          rl.close();
+          done(line.trim().toLowerCase());
+        });
+      });
+      const answer = await researchAnswer(server, { id: waiting.pending.id, digest: waiting.pending.digest }, typed === "yes");
       console.log(answer.denied ? "Refused. Nothing ran." : "Allowed. The build is running.");
       return EXIT.ok;
     }

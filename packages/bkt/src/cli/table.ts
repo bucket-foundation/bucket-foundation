@@ -145,7 +145,7 @@ export const TABLE: CommandSpec[] = [
   { name: "decks remove", summary: "remove an installed deck by id or language", args: "<deck>", positionals: [1, 1], json: true },
   { name: "decks export", summary: "write an installed deck to one file you can share", args: "<deck> <file>", positionals: [2, 2], json: true, options: { replace: { type: "boolean", help: "replace the file when it already exists" } } },
   { name: "research add", summary: "copy a folder that holds a report.json into your own research outputs", args: "<folder>", positionals: [1, 1], json: true },
-  { name: "research approve", summary: "show the build that waits for approval, with its digest and changes, and allow or refuse it", options: { yes: { type: "boolean", help: "allow the build" }, deny: { type: "boolean", help: "refuse the build" } } },
+  { name: "research approve", summary: "show the build that waits for approval, with its digest and changes, and allow or refuse it", options: { yes: { type: "boolean", help: "allow the build you name with --digest or --request" }, deny: { type: "boolean", help: "refuse the build you name with --digest or --request" }, digest: { type: "string", value: "HEX", help: "at least 12 characters of the digest the request showed" }, request: { type: "string", value: "ID", help: "the id the request showed" } } },
   { name: "research builds", summary: "turn builds on or off for one research output", args: "<on|off> <output>", positionals: [2, 2] },
   { name: "research install", summary: "check a staff research side pack against its checksums, then install it", args: "<file>", positionals: [1, 1], json: true },
   { name: "words list", summary: "the same as decks list", args: "[folder]", positionals: [0, 1], json: true },

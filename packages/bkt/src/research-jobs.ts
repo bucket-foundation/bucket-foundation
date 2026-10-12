@@ -1,9 +1,9 @@
-import { chmodSync, copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { chmodSync, copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSync } from "node:fs";
 import { dirname, extname, join, relative, resolve } from "node:path";
 import { diffLines, unifiedPatch } from "./diff";
 import { capJob } from "./job-specs";
 import { JobError, type JobDirs, type JobRunner, type JobSpec, type JobStep, type JobView } from "./jobs";
-import { SLUG, sha256, type ReportBuild } from "./pack/research";
+import { pathProblem, SLUG, sha256, type ReportBuild } from "./pack/research";
 import type { Os } from "./platform";
 import { type Research, ResearchError } from "./research";
 import { BuildSwitch, ConsentError, type ChangedFile, type ConsentStore, frozenDigest, type Pending, type PendingView } from "./research-consent";
@@ -111,6 +111,8 @@ export function bcfProblem(bcf: string, jobDir: string): string | null {
 }
 
 function place(root: string, rel: string, from: string): void {
+  const problem = pathProblem(rel);
+  if (problem) throw new Error(`the build names an output that is refused: ${problem}`);
   let at = root;
   const parts = rel.split("/");
   for (const part of parts.slice(0, -1)) {
@@ -119,6 +121,7 @@ function place(root: string, rel: string, from: string): void {
     if (lstatSync(at).isSymbolicLink() || !lstatSync(at).isDirectory()) throw new Error("the built folder crosses a symlink or a file");
   }
   const to = join(at, parts[parts.length - 1]);
+  if (!`${realpathSync(at)}/`.startsWith(`${realpathSync(root)}/`)) throw new Error("the build names an output outside the built folder");
   if (existsSync(to) && (lstatSync(to).isSymbolicLink() || !lstatSync(to).isFile())) throw new Error("the built folder holds a symlink or a folder at that path");
   copyFileSync(from, to);
   chmodSync(to, 0o600);
@@ -268,15 +271,15 @@ const cut = (line: string) => (line.length > 100 ? `${line.slice(0, 100)}…` : 
 export function approvalText(o: { title: string; build: ReportBuild; cls: "shipped" | "edited"; digest: string; files: ChangedFile[] }): string {
   const lines = [o.title, `Build: ${o.build.label} (${o.build.runner}), entry ${o.build.entry}`, `Version: ${o.cls === "shipped" ? "shipped version" : "edited on this computer"}`, `Digest: ${o.digest.slice(0, 12)}`];
   let shown = 0;
-  for (const f of o.files.slice(0, 5)) {
+  o.files.forEach((f, i) => {
     lines.push("", f.base === null ? `${f.path}: new file ${f.now.slice(0, 12)}` : `${f.path}: ${f.base.slice(0, 12)} to ${f.now.slice(0, 12)}, ${f.added} added, ${f.removed} removed`);
-    for (const l of f.lines.slice(0, Math.max(0, Math.min(6, 40 - shown)))) {
+    for (const l of i < 5 ? f.lines.slice(0, Math.max(0, Math.min(6, 40 - shown))) : []) {
       lines.push(`  ${cut(l)}`);
       shown += 1;
     }
-  }
+  });
   const total = o.files.reduce((n, f) => n + f.added + f.removed, 0);
-  if (o.files.length > 5 || total > 40) lines.push("", `${Math.max(0, o.files.length - 5)} more files changed. Run bkt research approve in a terminal to read the full diff.`);
+  if (o.files.length > 5 || total > 40) lines.push("", `${o.files.length} files changed. Run bkt research approve in a terminal to read the full diff.`);
   return lines.join("\n");
 }
 
@@ -334,12 +337,16 @@ export class ResearchBuilds {
     const block = this.blocked(detail.slug, detail.origin);
     if (block) throw new ResearchError(block, 403);
     const wait = this.o.consent.cooldown(detail.slug);
-    if (wait > 0) throw new ResearchError(`a build for this output was denied; ask again in ${Math.ceil(wait / 1000)} seconds`, 429);
+    if (wait > 0) throw new ResearchError(`a build request for this output just ended; ask again in ${Math.ceil(wait / 1000)} seconds`, 429);
     if (this.o.consent.pending()) throw new ResearchError("another build is waiting for approval", 409);
     if (this.active || this.o.runner.busy()) throw new ResearchError("another build is running; cancel it or wait", 409);
     const kind = kindOf(build);
     for (const tool of kind === PDF_KIND ? (["pdflatex", "biber"] as const) : [])
       if (!this.which(tool)) throw Object.assign(new ResearchError(`${tool} is missing, so the paper cannot be compiled`, 409), { install: toolInstall(tool, this.o.os) });
+    for (const path of [build.entry, ...(build.inputs ?? []), ...(build.outputs ?? [])]) {
+      const problem = pathProblem(path);
+      if (problem) throw new ResearchError(`the build names a path that is refused: ${problem}`, 409);
+    }
     const listed = new Map(detail.files.map((f) => [f.path, f]));
     const paths = [build.entry, ...(build.inputs ?? [])].filter((p, i, all) => all.indexOf(p) === i);
     const frozen: Record<string, Uint8Array> = {};
@@ -350,10 +357,16 @@ export class ResearchBuilds {
       if (!entry) throw new ResearchError(`this build of Bucket lacks ${path}, which the build reads`, 409);
       const bytes = (await this.o.research.read(detail.slug, path)).bytes;
       frozen[`${SRC}/${path}`] = bytes;
-      if (path !== build.entry && !EXECUTABLE_EXTS.includes(extname(path).toLowerCase())) continue;
       const now = sha256(bytes);
       const own = detail.origin === "local";
-      if (!own && now === entry.sha256) continue;
+      const code = path === build.entry || EXECUTABLE_EXTS.includes(extname(path).toLowerCase());
+      if (own ? !code : now === entry.sha256) continue;
+      const text = !bytes.includes(0) && bytes.length <= 2 * 1024 * 1024;
+      if (!text) {
+        files.push({ path, base: own ? null : entry.sha256, now, added: 0, removed: 0, lines: [`${bytes.length} bytes, shown as sizes alone`] });
+        full += `--- a/${path}\n+++ b/${path}\n${bytes.length} bytes, shown as sizes alone\n`;
+        continue;
+      }
       const before = own ? "" : (await this.o.research.read(detail.slug, path, { baseline: true })).bytes.toString("utf8");
       const d = diffLines(before, bytes.toString("utf8"));
       const lines = own ? bytes.toString("utf8").split("\n").slice(0, 6) : d.hunks.flatMap((h) => h.lines.filter((l) => l.op !== " ").map((l) => `${l.op}${l.text}`));
@@ -462,7 +475,7 @@ export function researchBuildRoutes(builds: ResearchBuilds, onError: (e: Error) 
       guarded(async () => {
         const b = await body(req);
         if (ctx?.cli !== true) return json({ error: "a build is approved from the terminal alone" }, 403);
-        return json(builds.answer(b.id, b.digest, b.allow));
+        return json(builds.answer(b.id ?? null, b.digest ?? null, b.allow));
       }),
     "GET /local/research/job": (_req, url) => guarded(() => json(builds.job(url.searchParams.get("id")))),
     "POST /local/research/job/cancel": (req) => guarded(async () => json(builds.cancel((await body(req)).id))),
