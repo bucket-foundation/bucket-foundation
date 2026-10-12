@@ -501,33 +501,39 @@ function Script({ api, slug, path }: { api: ResearchApi; slug: string; path: str
   return <pre>{state.data}</pre>;
 }
 
-function Figures({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+export function FigurePane({ api, d, item, onClose }: { api: ResearchApi; d: ResearchDetail; item: FigureItem; onClose?: () => void }) {
+  return (
+    <figure className="panel research-full">
+      {onClose && (
+        <div className="toolbar">
+          <button type="button" onClick={onClose}>
+            Close
+          </button>
+        </div>
+      )}
+      <Picture api={api} slug={d.slug} item={item} show />
+      <figcaption>
+        {item.caption}
+        <span className="licence">{item.licence}</span>
+      </figcaption>
+      {item.source && (
+        <details className="fine">
+          <summary>Script that draws it</summary>
+          {canEdit(d, item.source) ? <Editor api={api} slug={d.slug} path={item.source} /> : <Script api={api} slug={d.slug} path={item.source} />}
+        </details>
+      )}
+    </figure>
+  );
+}
+
+function Figures({ api, d, initial }: { api: ResearchApi; d: ResearchDetail; initial?: string }) {
   const items = figureItems(d);
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<string | null>(initial ?? null);
   const full = items.find((i) => i.id === open);
   if (items.length === 0) return <p className="muted">{NO_FIGURES}</p>;
   return (
     <>
-      {full && (
-        <figure className="panel research-full">
-          <div className="toolbar">
-            <button type="button" onClick={() => setOpen(null)}>
-              Close
-            </button>
-          </div>
-          <Picture api={api} slug={d.slug} item={full} show />
-          <figcaption>
-            {full.caption}
-            <span className="licence">{full.licence}</span>
-          </figcaption>
-          {full.source && (
-            <details className="fine">
-              <summary>Script that draws it</summary>
-              {canEdit(d, full.source) ? <Editor api={api} slug={d.slug} path={full.source} /> : <Script api={api} slug={d.slug} path={full.source} />}
-            </details>
-          )}
-        </figure>
-      )}
+      {full && <FigurePane api={api} d={d} item={full} onClose={() => setOpen(null)} />}
       <div className="research-figures">
         {items.map((item) => (
           <Thumb key={item.id} api={api} slug={d.slug} item={item} onOpen={() => setOpen(item.id)} />
@@ -647,9 +653,9 @@ export function TablePane({ api, d, table }: { api: ResearchApi; d: ResearchDeta
   );
 }
 
-function DataTab({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+function DataTab({ api, d, initial }: { api: ResearchApi; d: ResearchDetail; initial?: string }) {
   const tables = d.manifest.tables ?? [];
-  const [open, setOpen] = useState(tables[0]?.id ?? "");
+  const [open, setOpen] = useState(tables.find((t) => t.id === initial)?.id ?? tables[0]?.id ?? "");
   const table = tables.find((t) => t.id === open) ?? tables[0];
   return (
     <>
@@ -1039,7 +1045,7 @@ function BuildButton({ api, slug, build, label, onBuilt }: { api: ResearchApi; s
   );
 }
 
-function Paper({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+export function Paper({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   const compile = (d.manifest.builds ?? []).find((b) => b.runner === "latex");
   const [builds, setBuilds] = useState(0);
   const listed = new Set(d.files.map((f) => f.path));
@@ -1188,7 +1194,7 @@ function Changes({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   );
 }
 
-function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: ResearchTab }) {
+function Output({ api, slug, tab, item }: { api: ResearchApi; slug: string; tab: ResearchTab; item?: string }) {
   const [adds, setAdds] = useState(0);
   const state = useLoaded(() => api.researchManifest(slug), [api, slug, adds]);
   const [held, setHeld] = useState<ResearchDetail | null>(null);
@@ -1232,9 +1238,9 @@ function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: Resea
       {d.unreadable ? (
         <Unverified reason={d.unreadable} />
       ) : tab === "figures" ? (
-        <Figures api={api} d={d} />
+        <Figures key={item ?? ""} api={api} d={d} initial={item} />
       ) : tab === "data" && tabsFor(d).includes("data") ? (
-        <DataTab api={api} d={d} />
+        <DataTab key={item ?? ""} api={api} d={d} initial={item} />
       ) : tab === "changes" && tabsFor(d).includes("changes") ? (
         <Changes api={api} d={d} />
       ) : tab === "paper" && tabsFor(d).includes("paper") ? (
@@ -1248,6 +1254,6 @@ function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: Resea
   );
 }
 
-export function ResearchView({ api, slug, tab }: { api: ResearchApi; slug?: string; tab: ResearchTab }) {
-  return slug ? <Output api={api} slug={slug} tab={tab} /> : <List api={api} />;
+export function ResearchView({ api, slug, tab, item }: { api: ResearchApi; slug?: string; tab: ResearchTab; item?: string }) {
+  return slug ? <Output api={api} slug={slug} tab={tab} item={item} /> : <List api={api} />;
 }

@@ -271,6 +271,8 @@ const RESEARCH_DETAIL = {
 const WORKSPACE_ITEMS = [
   { type: "tables", key: "output:solvability-frontier:atlas-problems", title: "Atlas problems", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "shipped", licence: "mixed", changed: true, opens: "#/research/solvability-frontier/data/atlas-problems", explore: null },
   { type: "records", key: "output:solvability-frontier:problems", title: "Problem records", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "local", licence: "CC BY-SA 4.0", changed: false, opens: "#/research/solvability-frontier/records/problems", explore: null },
+  { type: "figures", key: "output:solvability-frontier:fig-frontier", title: "The frontier on 5,209 rows", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "staff", licence: "CC-BY-4.0", changed: true, opens: "#/research/solvability-frontier/figures/fig-frontier", explore: null },
+  { type: "papers", key: "output:solvability-frontier:paper", title: "The Solvability Frontier", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "shipped", licence: "", changed: false, opens: "#/research/solvability-frontier/paper", explore: null },
   { type: "records", key: "dataset:canon:all", title: "The canon", from: { kind: "dataset", id: "canon", title: "The canon" }, origin: "shipped", licence: "", changed: false, opens: "#/data", explore: null },
 ];
 

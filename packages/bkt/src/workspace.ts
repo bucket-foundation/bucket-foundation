@@ -68,7 +68,36 @@ function fromDatasets(src: WorkspaceSources): WorkspaceItem[] {
     });
 }
 
+const stem = (path: string) => path.split("/").pop()!.replace(/\.[a-z0-9]+$/i, "");
+
+function figuresAndPapers(src: WorkspaceSources, type: "figures" | "papers"): WorkspaceItem[] {
+  const items: WorkspaceItem[] = [];
+  for (const row of src.research.list()) {
+    if (row.unreadable !== null) continue;
+    const detail = src.research.detail(row.slug);
+    const m = detail.manifest;
+    const changed = row.changed > 0 ? src.changedPaths(row.slug) : [];
+    const from = { kind: "output" as const, id: row.slug, title: row.title };
+    if (type === "papers") {
+      if (!detail.files.some((f) => f.role === "pdf" || f.role === "public-pdf") && !m.source_path.endsWith(".tex")) continue;
+      const sources = [m.source_path, ...(m.paper?.includes ?? []), ...(m.paper?.bib ?? []), ...(m.paper?.style ?? [])];
+      items.push({ type, key: `output:${row.slug}:paper`, title: row.title, from, origin: row.origin, licence: m.licence ?? "", changed: changed.some((p) => sources.includes(p)), opens: `#/research/${row.slug}/paper`, explore: null });
+      continue;
+    }
+    const figure = (id: string, caption: string, licence: string, source: string | undefined) => {
+      if (ITEM.test(id)) items.push({ type, key: `output:${row.slug}:${id}`, title: caption, from, origin: row.origin, licence, changed: source !== undefined && changed.includes(source), opens: `#/research/${row.slug}/figures/${id}`, explore: null });
+    };
+    if (m.assets) for (const a of m.assets) figure(a.id, a.caption, a.licence, a.source);
+    else {
+      const copies = new Set(detail.files.filter((f) => f.role === "figure").map((f) => stem(f.path)));
+      (m.figures ?? []).forEach((f, i) => copies.has(stem(f.path)) && figure(`figure-${i + 1}`, f.caption, f.licence, undefined));
+    }
+  }
+  return items;
+}
+
 export function workspaceItems(src: WorkspaceSources, type: WorkspaceType): WorkspaceItem[] {
+  if (type === "figures" || type === "papers") return figuresAndPapers(src, type);
   if (type === "tables") return fromOutputs(src, "tables");
   if (type === "records") return [...fromOutputs(src, "records"), ...fromDatasets(src)];
   return [];

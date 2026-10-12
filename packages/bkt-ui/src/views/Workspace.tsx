@@ -3,7 +3,7 @@ import type { Api, ResearchDetail, WorkspaceItem } from "../api";
 import { href, type Route, type WorkspaceType } from "../router";
 import { activateTab, openTab, readTabs, windowStorage, writeTabs, type Tab, type Tabs, type TabStorage } from "../tabs";
 import { FILTER_WAIT_MS, NOT_LOADED, Pager } from "./Data";
-import { ORIGIN_LABELS, RecordSetPane, TablePane, type ResearchApi } from "./Research";
+import { FigurePane, figureItems, ORIGIN_LABELS, Paper, RecordSetPane, TablePane, tabsFor, type ResearchApi } from "./Research";
 import { TabBar } from "./TabBar";
 import "../workspace.css";
 
@@ -22,12 +22,15 @@ interface Built {
 
 export const BUILT: Partial<Record<WorkspaceType, Built>> = {
   tables: { title: "Tables", about: "Every table across your research outputs. Open one and it stays here as a tab.", home: "All tables", open: "Open tables", empty: "No output lists a table yet.", noMatch: "No table matches" },
+  figures: { title: "Figures", about: "Every figure across your research outputs. Open one and it stays here as a tab.", home: "All figures", open: "Open figures", empty: "No output lists a figure yet.", noMatch: "No figure matches" },
+  papers: { title: "Papers", about: "Every paper across your research outputs, with its source beside its pages.", home: "All papers", open: "Open papers", empty: "No output holds a paper yet.", noMatch: "No paper matches" },
   records: { title: "Records", about: "Every set of records across your research outputs and the data Bucket has loaded.", home: "All records", open: "Open record sets", empty: "No output lists a set of records yet.", noMatch: "No set of records matches" },
 };
 
-export const LATER: Record<Exclude<WorkspaceType, "tables" | "records">, { title: string; line: string; link: { label: string; route: Route } | null }> = {
-  figures: { title: "Figures", line: "Figures open from each output on the Research screen for now.", link: { label: "Open Research", route: { name: "research" } } },
-  papers: { title: "Papers", line: "Papers open from each output on the Research screen for now.", link: { label: "Open Research", route: { name: "research" } } },
+export type BuiltType = "tables" | "records" | "figures" | "papers";
+const RESEARCH_TAB = { tables: "data", records: "records", figures: "figures", papers: "paper" } as const;
+
+export const LATER: Record<Exclude<WorkspaceType, BuiltType>, { title: string; line: string; link: { label: string; route: Route } | null }> = {
   graphs: { title: "Graphs", line: "Graphs open in Explore for now.", link: { label: "Open Explore", route: { name: "explore" } } },
   people: { title: "People", line: "This workspace is empty in this version of Bucket.", link: null },
   decks: { title: "Decks", line: "Decks open from Learn for now.", link: { label: "Open Learn", route: { name: "learn" } } },
@@ -58,7 +61,7 @@ export function validItemTab(raw: unknown): ItemTab | null {
 
 type Loaded = { status: "loading" } | { status: "ready"; d: ResearchDetail } | { status: "gone" } | { status: "error"; error: string };
 
-function ItemPane({ api, type, tab }: { api: WorkspaceApi; type: "tables" | "records"; tab: ItemTab }) {
+function ItemPane({ api, type, tab }: { api: WorkspaceApi; type: BuiltType; tab: ItemTab }) {
   const [, slug, id] = KEY.exec(tab.id) ?? [];
   const [state, setState] = useState<Loaded>({ status: "loading" });
 
@@ -79,22 +82,26 @@ function ItemPane({ api, type, tab }: { api: WorkspaceApi; type: "tables" | "rec
   const d = state.status === "ready" ? state.d : null;
   const table = type === "tables" ? (d?.manifest.tables ?? []).find((t) => t.id === id) : undefined;
   const set = type === "records" ? (d?.manifest.record_sets ?? []).find((s) => s.id === id) : undefined;
-  if (!d || (!table && !set)) return <p className="muted">{NOT_LOADED}</p>;
+  const figure = type === "figures" && d ? figureItems(d).find((f) => f.id === id) : undefined;
+  const paper = type === "papers" && d !== null && id === "paper" && tabsFor(d).includes("paper");
+  if (!d || d.unreadable || (!table && !set && !figure && !paper)) return <p className="muted">{NOT_LOADED}</p>;
   return (
     <>
       <div className="workspace-item-head">
-        <h2>{table?.label ?? set?.label}</h2>
-        <a className="link" href={href({ name: "research", slug: d.slug, tab: type === "tables" ? "data" : "records" })}>
-          From {d.manifest.title}
+        <h2>{table?.label ?? set?.label ?? figure?.caption ?? d.manifest.title}</h2>
+        <a className="link" href={href({ name: "research", slug: d.slug, tab: RESEARCH_TAB[type] })}>
+          {type === "papers" ? "Open the whole output" : `From ${d.manifest.title}`}
         </a>
       </div>
       {table && <TablePane api={api} d={d} table={table} />}
       {set && <RecordSetPane api={api} d={d} set={set} />}
+      {figure && <FigurePane api={api} d={d} item={figure} />}
+      {paper && <Paper api={api} d={d} />}
     </>
   );
 }
 
-function ItemList({ api, type, words, onOpen }: { api: WorkspaceApi; type: "tables" | "records"; words: Built; onOpen: (item: WorkspaceItem) => void }) {
+function ItemList({ api, type, words, onOpen }: { api: WorkspaceApi; type: BuiltType; words: Built; onOpen: (item: WorkspaceItem) => void }) {
   const [typed, setTyped] = useState("");
   const [query, setQuery] = useState({ q: "", page: 1 });
   const [list, setList] = useState<{ items: WorkspaceItem[]; total: number; size: number } | null>(null);
@@ -174,7 +181,7 @@ function ItemList({ api, type, words, onOpen }: { api: WorkspaceApi; type: "tabl
   );
 }
 
-function BuiltWorkspace({ api, type, words, storage }: { api: WorkspaceApi; type: "tables" | "records"; words: Built; storage: TabStorage | null }) {
+function BuiltWorkspace({ api, type, words, storage }: { api: WorkspaceApi; type: BuiltType; words: Built; storage: TabStorage | null }) {
   const key = workspaceTabsKey(type);
   const [tabs, setTabs] = useState<Tabs<ItemTab>>(() => readTabs(storage, key, validItemTab));
 
@@ -204,7 +211,7 @@ function BuiltWorkspace({ api, type, words, storage }: { api: WorkspaceApi; type
 
 export function WorkspaceView({ api, type, storage = windowStorage() }: { api: WorkspaceApi; type: WorkspaceType; storage?: TabStorage | null }) {
   const words = BUILT[type];
-  if (words && (type === "tables" || type === "records")) {
+  if (words && (type === "tables" || type === "records" || type === "figures" || type === "papers")) {
     return (
       <section className="workspace data">
         <header className="head">

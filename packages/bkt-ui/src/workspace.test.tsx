@@ -15,6 +15,9 @@ afterEach(() => {
 });
 
 const TABLE_PATH = "public/papers/solvability-frontier/data/atlas-problems.csv";
+const TEX_PATH = "papers/solvability-frontier/main.tex";
+const FIG_PATH = "public/papers/solvability-frontier/fig_frontier.webp";
+const SCRIPT_PATH = "papers/solvability-frontier/fig_frontier.py";
 const file = (path: string, n: number): PackedFile => ({ path, sha256: String(n).padStart(64, "0"), size: 1200, audience: "public", role: "table" });
 const DETAIL: ResearchDetail = {
   slug: "solvability-frontier",
@@ -22,7 +25,7 @@ const DETAIL: ResearchDetail = {
   staff: false,
   withheld: 0,
   unreadable: null,
-  files: [file(TABLE_PATH, 1), file("tools/solvability-atlas/records/riemann.json", 2)],
+  files: [file(TABLE_PATH, 1), file("tools/solvability-atlas/records/riemann.json", 2), { ...file(TEX_PATH, 3), role: "source" }, { ...file(FIG_PATH, 4), role: "asset" }, { ...file(SCRIPT_PATH, 5), role: "asset-source" }],
   manifest: {
     schema: "bucket.report/2",
     slug: "solvability-frontier",
@@ -37,19 +40,28 @@ const DETAIL: ResearchDetail = {
       { id: "atlas-problems", path: TABLE_PATH, format: "csv", label: "Atlas problems", licence: "mixed", audience: "public" },
       { id: "atlas-branches", path: "public/papers/solvability-frontier/data/branches.csv", format: "csv", label: "Atlas branches", licence: "CC0-1.0", audience: "public" },
     ],
+    assets: [
+      { id: "fig-frontier", path: FIG_PATH, caption: "The frontier on 5,209 rows", licence: "CC-BY-4.0", audience: "public", source: SCRIPT_PATH },
+      { id: "atlas-helix", path: "public/atlas/04-helix.webp", caption: "Solvability helix", licence: "MIT code output", audience: "public" },
+    ],
+    builds: [{ id: "pdf", label: "Paper PDF", runner: "latex", entry: TEX_PATH, audience: "public" }],
     record_sets: [{ id: "problems", dir: "tools/solvability-atlas/records", schema: "bucket.problem/1", label: "Problem records", licence: "CC BY-SA 4.0", audience: "public" }],
   },
 };
 
-const output = (id: string, title: string, type: "tables" | "records", over: Partial<WorkspaceItem> = {}): WorkspaceItem => ({ type, key: `output:solvability-frontier:${id}`, title, from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "shipped", licence: "mixed", changed: false, opens: `#/research/solvability-frontier/${type === "tables" ? "data" : "records"}/${id}`, explore: null, ...over });
+const output = (id: string, title: string, type: "tables" | "records" | "figures" | "papers", over: Partial<WorkspaceItem> = {}): WorkspaceItem => ({ type, key: `output:solvability-frontier:${id}`, title, from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "shipped", licence: "mixed", changed: false, opens: type === "papers" ? "#/research/solvability-frontier/paper" : `#/research/solvability-frontier/${type === "tables" ? "data" : type}/${id}`, explore: null, ...over });
 const ITEMS: WorkspaceItem[] = [
   output("atlas-problems", "Atlas problems", "tables", { changed: true }),
   output("atlas-branches", "Atlas branches", "tables", { licence: "CC0-1.0" }),
   { ...output("counts", "My counts", "tables", { origin: "local", licence: "" }), key: "output:mine:counts", from: { kind: "output", id: "mine", title: "My own output" }, opens: "#/research/mine/data/counts" },
   output("problems", "Problem records", "records", { licence: "CC BY-SA 4.0" }),
+  output("fig-frontier", "The frontier on 5,209 rows", "figures", { licence: "CC-BY-4.0" }),
+  output("atlas-helix", "Solvability helix", "figures", { licence: "MIT code output" }),
+  output("paper", "The Solvability Frontier", "papers", { licence: "CC-BY-4.0", changed: true }),
   { type: "records", key: "dataset:canon:all", title: "The canon", from: { kind: "dataset", id: "canon", title: "The canon" }, origin: "shipped", licence: "CC0-1.0", changed: false, opens: "#/data", explore: null },
 ];
 
+const TEX = "\\begin{document}\\section{Method}First paragraph.\\end{document}";
 const page = (columns: string[], rows: string[][]): TablePage => ({ columns, pinned: [], rows, index: rows.map((_, i) => i), total: rows.length, page: 1, size: 50, truncated: false }) as TablePage;
 
 function fakeApi(over: Partial<WorkspaceApi> = {}) {
@@ -57,6 +69,8 @@ function fakeApi(over: Partial<WorkspaceApi> = {}) {
   const tables: { slug: string; id: string }[] = [];
   const saves: { slug: string; path: string; base: string; text: string }[] = [];
   const texts: string[] = [];
+  const images: string[] = [];
+  const builds: [string, string][] = [];
   const api = {
     workspaceItems: async (type: string, query: { q?: string; page?: number } = {}) => {
       listed.push({ type, ...query });
@@ -72,11 +86,15 @@ function fakeApi(over: Partial<WorkspaceApi> = {}) {
       return id === "problems" ? page(["title", "path"], [["Riemann hypothesis", "tools/solvability-atlas/records/riemann.json"]]) : page(["id", "title"], [["goldbach", "Goldbach conjecture"]]);
     },
     researchText: async (_slug: string, path: string) => (texts.push(path), '{"id":"riemann","title":"Riemann hypothesis"}'),
-    researchSource: async () => ({ text: "id,title\ngoldbach,Goldbach conjecture\n", rev: "rev-shipped" }),
+    researchSource: async (_slug: string, path: string) => ({ text: path.endsWith(".tex") ? TEX : path.endsWith(".py") ? "print('figure')\n" : "id,title\ngoldbach,Goldbach conjecture\n", rev: "rev-shipped" }),
+    image: async (_slug: string, path: string) => (images.push(path), "data:image/webp;base64,AAAA"),
+    researchPage: async () => ({ state: "preview", reason: "the page tool is missing, so the paper shows as a preview", install: "" }),
+    researchBuild: async (slug: string, build: string) => (builds.push([slug, build]), { state: "refused", reason: "builds are off for this output", install: null, status: 403 }),
+    researchBuildState: async () => ({ pending: null, job: null }),
     researchSave: async (slug: string, path: string, base: string, text: string): Promise<SaveResult> => (saves.push({ slug, path, base, text }), { saved: true, rev: "rev-next", changed: true }),
     ...over,
   } as unknown as WorkspaceApi;
-  return { api, listed, tables, saves, texts };
+  return { api, listed, tables, saves, texts, images, builds };
 }
 
 function memory(seed: Record<string, string> = {}): TabStorage & { data: Record<string, string> } {
@@ -103,7 +121,7 @@ async function mount(node: React.ReactElement) {
   return { host, click, settle, wait, act, unmount: () => act(async () => root.unmount()) };
 }
 
-async function workspace(api: WorkspaceApi, type: "tables" | "records" | "figures" | "people", storage: TabStorage | null = memory()) {
+async function workspace(api: WorkspaceApi, type: "tables" | "records" | "figures" | "papers" | "people" | "graphs", storage: TabStorage | null = memory()) {
   const { WorkspaceView } = await import("./views/Workspace");
   return mount(<WorkspaceView api={api} type={type} storage={storage} />);
 }
@@ -300,11 +318,11 @@ describe("records workspace", () => {
 
 describe("workspaces that are not built", () => {
   test("show one plain line and a link where a screen holds the items today", async () => {
-    const figures = await workspace(fakeApi().api, "figures");
-    expect(figures.host.querySelector("h1")!.textContent).toBe("Figures");
-    expect(figures.host.querySelector("p.muted")!.textContent).toBe("Figures open from each output on the Research screen for now.");
-    expect(figures.host.querySelector("a.link")!.getAttribute("href")).toBe("#/research");
-    await figures.unmount();
+    const graphs = await workspace(fakeApi().api, "graphs");
+    expect(graphs.host.querySelector("h1")!.textContent).toBe("Graphs");
+    expect(graphs.host.querySelector("p.muted")!.textContent).toBe("Graphs open in Explore for now.");
+    expect(graphs.host.querySelector("a.link")!.getAttribute("href")).toBe("#/explore");
+    await graphs.unmount();
     const f = fakeApi();
     const people = await workspace(f.api, "people");
     expect(people.host.querySelector("p.muted")!.textContent).toBe("This workspace is empty in this version of Bucket.");
@@ -466,14 +484,14 @@ describe("leaving a workspace editor inside the save pause", () => {
 });
 
 describe("workspace addresses and the tabs that are not built", () => {
-  test("each of the six shows one plain line, at most one link to a screen that exists, and no other control", async () => {
+  test("each of the four shows one plain line, at most one link to a screen that exists, and no other control", async () => {
     const { LATER } = await import("./views/Workspace");
     const { NAV } = await import("./nav");
     const screens = NAV.map((n) => href(n.route));
-    expect(Object.keys(LATER).sort()).toEqual(["decks", "figures", "graphs", "maps", "papers", "people"]);
+    expect(Object.keys(LATER).sort()).toEqual(["decks", "graphs", "maps", "people"]);
     for (const [type, words] of Object.entries(LATER)) {
       const f = fakeApi();
-      const v = await workspace(f.api, type as "figures");
+      const v = await workspace(f.api, type as "graphs");
       expect({ type, lines: Array.from(v.host.querySelectorAll("p")).map((p) => p.textContent) }).toEqual({ type, lines: [words.line] });
       expect({ type, controls: v.host.querySelectorAll("button, input, select, textarea, [role=tab]").length }).toEqual({ type, controls: 0 });
       const links = Array.from(v.host.querySelectorAll("a")).map((a) => a.getAttribute("href")!);
@@ -495,7 +513,7 @@ describe("workspace addresses and the tabs that are not built", () => {
       found.push(...Array.from(v.host.querySelectorAll("a")).map((a) => a.getAttribute("href") ?? ""));
       await v.unmount();
     }
-    expect(found.length).toBeGreaterThan(60);
+    expect(found.length).toBeGreaterThan(70);
     expect(found.filter((h) => /^#\/desks?\b/.test(h))).toEqual([]);
     expect(found.filter((h) => h.startsWith("#/") && href(parseHash(h)) !== h)).toEqual([]);
     const hits: string[] = [];
@@ -504,5 +522,186 @@ describe("workspace addresses and the tabs that are not built", () => {
       if (/#\/desk|DeskType|DESK_TYPES|name: "desk"/.test(await Bun.file(`${import.meta.dir}/${path}`).text())) hits.push(path);
     }
     expect(hits).toEqual([]);
+  });
+});
+
+describe("figures workspace", () => {
+  test("lists every figure across outputs and opens the picture view of the Figures tab", async () => {
+    const f = fakeApi();
+    const store = memory();
+    const v = await workspace(f.api, "figures", store);
+    expect(v.host.querySelector("h1")!.textContent).toBe("Figures");
+    expect(cells(v.host)).toEqual([
+      ["The frontier on 5,209 rows", "The Solvability Frontier", "Shipped", "CC-BY-4.0", ""],
+      ["Solvability helix", "The Solvability Frontier", "Shipped", "MIT code output", ""],
+    ]);
+    expect(f.images).toEqual([]);
+    await v.click(press(v.host, "The frontier on 5,209 rows"));
+    expect(f.images).toEqual([FIG_PATH]);
+    const full = v.host.querySelector(".research-full")!;
+    expect(full.querySelector("img")!.getAttribute("alt")).toBe("The frontier on 5,209 rows");
+    expect(full.querySelector("figcaption")!.textContent).toBe("The frontier on 5,209 rowsCC-BY-4.0");
+    expect(full.querySelector("details.fine summary")!.textContent).toBe("Script that draws it");
+    expect(press(v.host, "Close")).toBeUndefined();
+    expect(v.host.querySelector(".workspace-item-head a")!.getAttribute("href")).toBe("#/research/solvability-frontier/figures");
+    expect(JSON.parse(store.data["bucket.workspace.figures.tabs"]).active).toBe("output:solvability-frontier:fig-frontier");
+    await v.unmount();
+    const gone = await workspace(f.api, "figures", memory({ "bucket.workspace.figures.tabs": JSON.stringify({ tabs: [{ id: "output:solvability-frontier:dropped", title: "Dropped" }], active: "output:solvability-frontier:dropped" }) }));
+    const { NOT_LOADED } = await import("./views/Data");
+    expect(gone.host.querySelector('[role="tabpanel"]')!.textContent).toBe(NOT_LOADED);
+    await gone.unmount();
+  });
+
+  test("a figure opens from its four-part research address, and a table from its own", async () => {
+    const { Screen } = await import("./nav");
+    const f = fakeApi();
+    const figure = await mount(<Screen api={f.api as unknown as Api} route={parseHash("#/research/solvability-frontier/figures/fig-frontier")} />);
+    expect(figure.host.querySelector(".workspace-tabs")).toBeNull();
+    expect(figure.host.querySelector(".research-full figcaption")!.textContent).toBe("The frontier on 5,209 rowsCC-BY-4.0");
+    await figure.click(press(figure.host, "Close"));
+    expect(figure.host.querySelector(".research-full")).toBeNull();
+    await figure.unmount();
+    const helix = await mount(<Screen api={f.api as unknown as Api} route={parseHash("#/research/solvability-frontier/figures/atlas-helix")} />);
+    expect(helix.host.querySelector(".research-full figcaption")!.textContent).toBe("Solvability helixMIT code output");
+    await helix.unmount();
+    const none = await mount(<Screen api={f.api as unknown as Api} route={parseHash("#/research/solvability-frontier/figures/absent")} />);
+    expect(none.host.querySelector(".research-full")).toBeNull();
+    expect(none.host.querySelectorAll(".research-figure").length).toBe(2);
+    await none.unmount();
+    const table = await mount(<Screen api={f.api as unknown as Api} route={parseHash("#/research/solvability-frontier/data/atlas-branches")} />);
+    expect(table.host.querySelector(".research-tables button.on")!.textContent).toBe("Atlas branches");
+    expect(f.tables.at(-1)).toEqual({ slug: "solvability-frontier", id: "atlas-branches" });
+    await table.unmount();
+  });
+});
+
+describe("papers workspace", () => {
+  test("lists every paper and opens the Paper tab with its source and editor", async () => {
+    const f = fakeApi();
+    const v = await workspace(f.api, "papers");
+    expect(cells(v.host)).toEqual([["The Solvability Frontier", "The Solvability Frontier", "Shipped", "CC-BY-4.0", "Changed on this computer"]]);
+    await v.click(press(v.host, "The Solvability Frontier"));
+    expect(v.host.querySelector(".paper-split .paper-source")).not.toBeNull();
+    expect((v.host.querySelector(".paper-source textarea") as HTMLTextAreaElement).value).toBe(TEX);
+    expect(v.host.querySelector(".paper-source select")!.getAttribute("aria-label")).toBe("Source file");
+    expect(v.host.querySelector(".workspace-item-head a")!.getAttribute("href")).toBe("#/research/solvability-frontier/paper");
+    await v.unmount();
+  });
+
+  test("Compile asks the one build route the Research screen uses, and the workspace holds no other way to build", async () => {
+    const f = fakeApi();
+    const v = await workspace(f.api, "papers");
+    await v.click(press(v.host, "The Solvability Frontier"));
+    expect(f.builds).toEqual([]);
+    await v.click(press(v.host, "Compile the paper"));
+    expect(f.builds).toEqual([["solvability-frontier", "pdf"]]);
+    expect(v.host.textContent).toContain("builds are off for this output");
+    await v.unmount();
+    for (const name of ["views/Workspace.tsx", "views/WorkspaceTabs.tsx"]) {
+      const source = await Bun.file(`${import.meta.dir}/${name}`).text();
+      expect({ name, hits: source.match(/researchBuild|\/local\/|consent|fetch\(/g) }).toEqual({ name, hits: null });
+    }
+    const apiSource = await Bun.file(`${import.meta.dir}/api.ts`).text();
+    expect(apiSource.match(/\/local\/workspace\/[a-z]+/g)).toEqual(["/local/workspace/items"]);
+    expect(apiSource.match(/\/local\/research\/build\b/g)?.length).toBe(1);
+  });
+});
+
+describe("leaving a paper or a figure script inside the save pause", () => {
+  const FINAL = "\\begin{document}The final sentence.\\end{document}";
+
+  async function shell() {
+    const { useState } = await import("react");
+    const { Screen } = await import("./nav");
+    const { BackTrail } = await import("./back");
+    const f = fakeApi({ researchList: async () => ({ outputs: [] }) } as Partial<WorkspaceApi>);
+    let url = "#/research";
+    const stack: string[] = [];
+    const hist: { state: unknown; replaceState(state: unknown): void; pushState(state: unknown): void; back(): void } = {
+      state: null,
+      replaceState(state) {
+        hist.state = state;
+      },
+      pushState(state) {
+        hist.state = state;
+      },
+      back() {
+        url = stack.pop() ?? url;
+      },
+    };
+    const trail = new BackTrail(hist, (run) => run());
+    let show: (route: Route) => void = () => {};
+    function Shell() {
+      const [route, setRoute] = useState<Route>(parseHash(url));
+      show = setRoute;
+      return (
+        <main className="main">
+          <Screen api={f.api as unknown as Api} route={route} />
+        </main>
+      );
+    }
+    const v = await mount(<Shell />);
+    const go = async (hash: string) => {
+      stack.push(url);
+      url = hash;
+      hist.state = null;
+      trail.moved();
+      await v.act(async () => show(parseHash(hash)));
+      await v.settle();
+    };
+    const type = async (value: string) => {
+      const area = v.host.querySelector("textarea") as HTMLTextAreaElement;
+      await v.act(async () => {
+        Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")!.set!.call(area, value);
+        area.dispatchEvent(new window.Event("input", { bubbles: true }));
+      });
+    };
+    return { v, f, trail, go, type, url: () => url, show: (hash: string) => v.act(async () => show(parseHash(hash))) };
+  }
+
+  const saved = [{ slug: "solvability-frontier", path: TEX_PATH, base: "rev-shipped", text: FINAL }];
+
+  test("a switch from Papers to Figures in the tab bar sends the final text", async () => {
+    const s = await shell();
+    await s.go("#/workspace/papers");
+    await s.v.click(press(s.v.host, "The Solvability Frontier"));
+    await s.type("An earlier draft.");
+    await s.type(FINAL);
+    expect(s.f.saves).toEqual([]);
+    await s.go("#/workspace/figures");
+    expect(s.v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Figures");
+    expect(s.f.saves).toEqual(saved);
+    await s.v.wait(800);
+    expect(s.f.saves).toEqual(saved);
+    await s.v.unmount();
+  });
+
+  test("Back sends the final text of a paper before the screen changes", async () => {
+    const s = await shell();
+    await s.go("#/workspace/papers");
+    await s.v.click(press(s.v.host, "The Solvability Frontier"));
+    await s.type(FINAL);
+    expect(s.f.saves).toEqual([]);
+    await s.v.act(async () => void s.trail.back());
+    expect(s.f.saves).toEqual(saved);
+    await s.v.wait(800);
+    await s.v.unmount();
+    expect(s.f.saves).toEqual(saved);
+  });
+
+  test("a figure script typed in the Figures workspace is sent when the item closes, and Back from an open figure returns to the list", async () => {
+    const s = await shell();
+    await s.go("#/workspace/figures");
+    await s.v.click(press(s.v.host, "The frontier on 5,209 rows"));
+    expect(s.v.host.querySelector(".research-full")).not.toBeNull();
+    await s.type("print('redrawn')\n");
+    window.history.replaceState({}, "");
+    await s.v.act(async () => void window.dispatchEvent(new window.Event("popstate")));
+    await s.v.settle();
+    expect(s.f.saves).toEqual([{ slug: "solvability-frontier", path: SCRIPT_PATH, base: "rev-shipped", text: "print('redrawn')\n" }]);
+    expect(s.v.host.querySelector(".research-full")).toBeNull();
+    expect(cells(s.v.host)).toHaveLength(2);
+    expect(s.v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Figures");
+    await s.v.unmount();
   });
 });

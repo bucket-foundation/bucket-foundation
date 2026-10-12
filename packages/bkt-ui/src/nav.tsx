@@ -96,7 +96,7 @@ function Page({ api, route }: { api: Api; route: Route }) {
   if (route.name === "work") return <WorkQuizView api={api} />;
   if (route.name === "jobs") return <JobsView api={api} />;
   if (route.name === "data") return <DataView api={api} />;
-  if (route.name === "research") return <ResearchView key={route.slug ?? ""} api={api} slug={route.slug} tab={route.tab ?? "report"} />;
+  if (route.name === "research") return <ResearchView key={route.slug ?? ""} api={api} slug={route.slug} tab={route.tab ?? "report"} item={route.item} />;
   if (route.name === "workspace") return <WorkspaceView key={route.type ?? "tables"} api={api} type={route.type ?? "tables"} />;
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
