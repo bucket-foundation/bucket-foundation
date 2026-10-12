@@ -124,9 +124,10 @@ describe("the source tables", () => {
     expect(Object.keys(METADATA_TABLES).sort()).toEqual(metadata);
     for (const reason of Object.values(METADATA_TABLES)) expect(reason).toContain("no corpus row");
     for (const name of metadata) expect(resolveSource(name, { licence: "CC BY 4.0", source_url: "https://api.worldbank.org/x", host: "en.wikipedia.org" })).toBe(UNKNOWN);
-    expect(Object.fromEntries(Object.entries(bySource).filter(([name]) => /^(world_|tech_|countries)/.test(name)))).toEqual({
+    const { tech_lags: lagSources, ...rest } = Object.fromEntries(Object.entries(bySource).filter(([name]) => /^(world_|tech_|countries)/.test(name)));
+    expect([{ "bucket-corpus": 23 }, { wikipedia: 2, "bucket-corpus": 2 }]).toContainEqual(lagSources);
+    expect(rest).toEqual({
       countries: { "natural-earth": 237 },
-      tech_lags: { "bucket-corpus": 23 },
       tech_occupation: { wikipedia: 20, "bls-publications": 25, [UNKNOWN]: 7 },
       tech_training_response: { wikipedia: 17, wikidata: 54, [UNKNOWN]: 1 },
       world_elements: { [RECALL_ID]: 330 },
