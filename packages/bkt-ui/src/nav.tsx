@@ -68,7 +68,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "atlases") return <AtlasesView api={api} />;
   if (route.name === "canon") return <CanonSearchView api={api} page="globe" find={route.find} />;
   if (route.name === "search") return <CanonSearchView api={api} page="search" id={route.id} />;
-  if (route.name === "explore") return <ExploreView api={api} />;
+  if (route.name === "explore") return <ExploreView key={route.data ?? ""} api={api} initial={{ data: route.data, mode: route.mode, sel: route.sel }} />;
   if (route.name === "daily") return <DailyQuizView key={route.day} api={api} day={route.day} />;
   if (route.name === "work") return <WorkQuizView api={api} />;
   if (route.name === "jobs") return <JobsView api={api} />;

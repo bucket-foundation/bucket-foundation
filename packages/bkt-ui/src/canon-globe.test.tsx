@@ -235,8 +235,31 @@ describe("canon screen with the globe", () => {
 });
 
 describe("site requests in the window", () => {
+  test("a row set request goes to the local route with the session code, and a set this build lacks raises no alarm", async () => {
+    const sent: { url: string; auth: string | null }[] = [];
+    const base = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      sent.push({ url: String(input), auth: new Headers(init?.headers).get("authorization") });
+      return String(input).includes("id=gone") ? new Response("{}", { status: 404 }) : String(input).includes("id=bad") ? new Response("{}", { status: 400 }) : new Response(JSON.stringify({ datasets: [] }));
+    }) as typeof fetch;
+    const f = siteFetch(base, ORIGIN, TOKEN);
+    const alarms: number[] = [];
+    const on = (e: Event) => alarms.push((e as CustomEvent<{ status: number }>).detail.status);
+    window.addEventListener(CANON_TROUBLE, on);
+    expect(await (await f("/api/explore/rows")).json()).toEqual({ datasets: [] });
+    expect((await f("/api/explore/rows?id=gone")).status).toBe(404);
+    expect(alarms).toEqual([]);
+    expect((await f("/api/explore/rows?id=bad")).status).toBe(400);
+    expect(alarms).toEqual([400]);
+    window.removeEventListener(CANON_TROUBLE, on);
+    expect(sent).toEqual([
+      { url: "/local/explore/rows", auth: `Bucket ${TOKEN}` },
+      { url: "/local/explore/rows?id=gone", auth: `Bucket ${TOKEN}` },
+      { url: "/local/explore/rows?id=bad", auth: `Bucket ${TOKEN}` },
+    ]);
+  });
+
   test("only the listed site paths are rewritten, and the session code goes to this window alone", async () => {
-    expect(SITE_ROUTES).toEqual({ "/api/canon/search": "/local/canon/search", "/api/explore/search": "/local/explore/search" });
+    expect(SITE_ROUTES).toEqual({ "/api/canon/search": "/local/canon/search", "/api/explore/search": "/local/explore/search", "/api/explore/rows": "/local/explore/rows" });
     const sent: { url: string; auth: string | null; method: string }[] = [];
     const base = (async (input: RequestInfo | URL, init?: RequestInit) => {
       const req = input instanceof Request ? input : null;
