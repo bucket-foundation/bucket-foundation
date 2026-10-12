@@ -161,6 +161,19 @@ class WorldTables(unittest.TestCase):
         ons = next(c for c in credits if c["id"] == "credit-ons-soc-2020")
         self.assertIn("Contains public sector information licensed under the Open Government Licence v3.0", ons["credit_line"])
 
+    def test_every_cleared_source_has_a_credit_line(self):
+        credited = {i for c in rows("attributions") for i in c["source_ids"]}
+        cleared = [r["id"] for r in rows("source_licences") if r["public"] == "rows"]
+        self.assertTrue(cleared)
+        self.assertEqual([i for i in cleared if i not in credited], [])
+        read = {c["id"] for c in rows("attributions") if c["terms_read"]}
+        self.assertEqual(read, {"credit-" + k for k in ("ons-soc-2020", "gov-uk", "england-nc", "statcan-noc-2021", "wordbank", "tech-interview-handbook-site", "cdc", "japan-jsco-2009", "world-bank-wdi")})
+        lines = {c["id"]: c["credit_line"] for c in rows("attributions")}
+        self.assertIn("CDC has not endorsed this product", lines["credit-cdc"])
+        self.assertIn("MIT License", lines["credit-tech-interview-handbook-site"])
+        self.assertTrue(lines["credit-world-bank-wdi"].endswith("Data source: UNESCO Institute for Statistics"))
+        self.assertIn("Government Standard Terms of Use 2.0", lines["credit-japan-jsco-2009"])
+
     def test_cleared_sources_say_how_and_share_alike_stays_codes(self):
         for r in rows("source_licences"):
             self.assertIn(r["clearance"], ("terms read", "rule, terms unread", "none"), r["id"])

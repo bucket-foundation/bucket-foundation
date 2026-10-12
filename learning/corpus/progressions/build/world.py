@@ -31,11 +31,11 @@ ATTRIBUTIONS = [
     ("statcan-noc-2021", {"table": ["world_occupations"], "licence": ["Statistics Canada Open Licence"], "scheme": ["NOC 2021"]}, "Statistics Canada", "National Occupational Classification (NOC) 2021 Version 1.0", "Statistics Canada Open Licence", "https://www.statcan.gc.ca/en/reference/licence",
      "Adapted from Statistics Canada, National Occupational Classification (NOC) 2021 Version 1.0, retrieved 2026-10-11. This does not constitute an endorsement by Statistics Canada of this product. Reproduced under the Statistics Canada Open Licence (https://www.statcan.gc.ca/en/reference/licence)."),
     ("japan-jsco-2009", {"table": ["world_occupations"], "licence": ["Government of Japan Standard Terms of Use 2.0"], "scheme": ["JSCO 2009"]}, "Ministry of Internal Affairs and Communications, Japan", "Japan Standard Occupational Classification, revision 5 of 2009", "Government of Japan Standard Terms of Use 2.0", "https://www.soumu.go.jp/menu_kyotsuu/policy/tyosaku.html",
-     "Source: Japan Standard Occupational Classification (Rev. 5, December 2009), Ministry of Internal Affairs and Communications (https://www.soumu.go.jp/). Bucket Foundation created these rows by editing that classification, under the Government of Japan Standard Terms of Use (Version 2.0)."),
+     "Source: Ministry of Internal Affairs and Communications, Japan Standard Occupational Classification (Rev. 5, 2009), https://www.soumu.go.jp/main_content/000587432.csv (accessed 2026-10-11), Government Standard Terms of Use 2.0. Bucket Foundation edited the content."),
     ("insee-pcs-2020", {"table": ["world_occupations"], "licence": ["Licence Ouverte 2.0"], "scheme": ["PCS 2020"]}, "INSEE", "Professions et catégories socioprofessionnelles, PCS 2020, correspondence with ISCO-08", "etalab-2.0", "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
      "Source: INSEE, Professions et catégories socioprofessionnelles (PCS 2020), correspondence with ISCO-08, retrieved 2026-10-11, reused under the Licence Ouverte 2.0 (https://www.etalab.gouv.fr/licence-ouverte-open-licence/)."),
     ("world-bank-wdi", {"table": ["world_indicators", "world_stages"], "licence": ["CC BY 4.0"]}, "World Bank", "World Development Indicators, education series", "CC-BY-4.0", CC_BY,
-     "Source: World Bank, World Development Indicators, licensed under CC BY 4.0 (%s). %s" % (CC_BY, ADAPTED)),
+     "Source: World Bank, World Development Indicators, licensed under CC BY 4.0 (%s). %s Data source: UNESCO Institute for Statistics" % (CC_BY, ADAPTED)),
     ("cedefop-nqf", {"table": ["world_nqf"], "licence": ["CC BY 4.0 (EU reuse policy, source to be credited)"]}, "Cedefop, European Centre for the Development of Vocational Training", "NQFs online tool and the European inventory of national qualifications frameworks", "CC-BY-4.0", "https://www.cedefop.europa.eu/en/copyright",
      "Source: Cedefop, NQFs online tool and European inventory of NQFs. Copyright Cedefop; reuse is authorised provided the source is acknowledged (https://www.cedefop.europa.eu/en/copyright). %s" % ADAPTED),
     ("eu-cedefop-eurydice", {"table": ["world_exams", "world_professions", "world_elements"], "licence": ["CC BY 4.0 (EU reuse policy, source to be credited)"]}, "European Union: Cedefop and Eurydice", "Cedefop country reports and Eurydice national education system pages", "CC-BY-4.0", "https://commission.europa.eu/legal-notice_en",
@@ -55,6 +55,16 @@ ATTRIBUTIONS = [
     ("australia-v9", {"table": ["progression"], "system": ["australia-v9"]}, "ACARA", "Australian Curriculum version 9", "CC-BY-4.0", "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use",
      "Copyright Australian Curriculum, Assessment and Reporting Authority (ACARA) 2010 to present, licensed under CC BY 4.0 (%s). ACARA does not endorse this product. Bucket selected and shortened the material." % CC_BY),
 ]
+SOURCE_CREDITS = [
+    ("wordbank", {"host": ["wordbank.stanford.edu"]}, "Wordbank, Frank et al.", "Wordbank: An open repository for developmental vocabulary data", "CC-BY-4.0", CC_BY,
+     "Source: Wordbank, Frank et al., Wordbank: An open repository for developmental vocabulary data, https://langcog.github.io/wordbank-datapage/, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Bucket Foundation selected and reformatted the data."),
+    ("tech-interview-handbook-site", {"host": ["www.techinterviewhandbook.org"]}, "Yangshun Tay", "Tech Interview Handbook", "MIT", "https://github.com/yangshun/tech-interview-handbook/blob/main/LICENSE",
+     "Copyright (c) 2017-Present Yangshun Tay. MIT License, https://github.com/yangshun/tech-interview-handbook/blob/main/LICENSE."),
+    ("cdc", {"host": ["www.cdc.gov"]}, "Centers for Disease Control and Prevention", "Learn the Signs. Act Early. milestone material", "US federal work, public domain", "https://www.cdc.gov/other/agencymaterials.html",
+     "Source: Centers for Disease Control and Prevention. Bucket Foundation selected and shortened the content. CDC has not endorsed this product."),
+]
+TERMS_READ = {"ons-soc-2020", "gov-uk", "england-nc", "statcan-noc-2021", "wordbank", "tech-interview-handbook-site", "cdc", "japan-jsco-2009", "world-bank-wdi"}
+FEDERAL_URL = "https://www.usa.gov/government-copyright"
 WORLD_TABLES = [
     "world_systems", "world_stages", "world_exams", "world_nqf", "world_occupations", "world_professions",
     "world_elements", "world_languages", "world_tvet_bodies", "world_indicators",
@@ -325,10 +335,22 @@ class World:
     def attributions(self):
         for key, match, body, dataset, spdx, url, line in ATTRIBUTIONS:
             n = sum(v for (table, lic, scheme), v in self.credit.items() if table in match.get("table", ()) and lic in match.get("licence", ()) and (scheme is None or scheme in match.get("scheme", ())))
-            yield collections.OrderedDict([
-                ("id", "credit-%s" % key), ("match", match), ("source", body), ("dataset", dataset), ("licence", spdx), ("licence_url", url),
-                ("requires_attribution", True), ("credit_line", line), ("terms_read", False), ("world_rows", n),
-            ])
+            yield self.credit_row(key, match, body, dataset, spdx, url, line, n, [])
+        explicit = {key for key, *_ in SOURCE_CREDITS}
+        for key, match, body, dataset, spdx, url, line in SOURCE_CREDITS:
+            yield self.credit_row(key, match, body, dataset, spdx, url, line, 0, [key])
+        for r in rows_of(os.path.join(HERE, "source_licences.jsonl")):
+            if r.get("public") != "rows" or r["id"] in explicit or r.get("licence") == "CC-BY-SA-4.0":
+                continue
+            source = (r.get("attribution") or {}).get("source") or r["id"]
+            line = "Source: %s, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product." % source
+            yield self.credit_row(r["id"], r.get("match") or {}, source, source, r.get("licence"), FEDERAL_URL, line, 0, [r["id"]])
+
+    def credit_row(self, key, match, body, dataset, spdx, url, line, n, source_ids):
+        return collections.OrderedDict([
+            ("id", "credit-%s" % key), ("match", match), ("source_ids", source_ids), ("source", body), ("dataset", dataset), ("licence", spdx), ("licence_url", url),
+            ("requires_attribution", True), ("credit_line", line), ("terms_read", key in TERMS_READ), ("world_rows", n),
+        ])
 
     def run(self):
         os.makedirs(OUT, exist_ok=True)
