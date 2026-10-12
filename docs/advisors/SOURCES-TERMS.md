@@ -14,7 +14,7 @@ Draft. This document is not legal advice. Counsel confirms the reuse terms. C.
 
 ## Dated Copies
 
-The plan asks for a dated copy of each terms page beside this file. None is saved yet: the build machine had no route to those hosts on 2026-10-12. The founder saves them before signing `PURPOSE.md`.
+The plan asks for a dated copy of each terms page beside this file. None is saved yet. The founder saves them before signing `PURPOSE.md`.
 
 ## Attribution Line
 

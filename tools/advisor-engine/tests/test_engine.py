@@ -428,6 +428,10 @@ def test_output_paths_are_confined_to_the_engine_directory(world, tmp_path, monk
     with pytest.raises(EngineError):
         write_review.save(world.home, r, world.home / ".." / "escape.json")
     assert not (TOOL / "review.json").exists()
+    (world.home / "nested" / ".git").mkdir(parents=True)
+    with pytest.raises(EngineError):
+        write_review.save(world.home, r, world.home / "nested" / "review.json")
+    assert not (world.home / "nested" / "review.json").exists()
     repo = tmp_path / "repo"
     (repo / ".git").mkdir(parents=True)
     monkeypatch.setenv("ADVISOR_ENGINE_HOME", str(repo / "data"))

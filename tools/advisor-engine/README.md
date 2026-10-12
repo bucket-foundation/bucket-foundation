@@ -14,6 +14,7 @@ A founder-only command over the private contact store. It takes a field, topics 
 ```bash
 export BKT_CONTACT_STORE=~/.local/share/researcher-contacts/contacts.sqlite
 export BKT_AUTHORS_WIDE=~/agfarms/.wt-atlas-openalex-wide/data/processed/openalex_authors_wide
+export BKT_TOPIC_TAXONOMY=~/agfarms/bucket-foundation/openalex-topics.json
 tools/advisor-engine/advisor-engine build
 ```
 
@@ -52,7 +53,11 @@ The coverage statement under the heading gives the pool size, the count left out
 
 ## Topic Fit
 
-The score is topical fit alone: an idf-weighted overlap between the query topics and the OpenAlex topics the store holds for each advisor, at topic level and at field level, with fixed weights 1.0 and 0.25. A description is mapped to topics by matching its words against topic names. The store keeps three topics per person and no subfield, so the profile is coarse. This slice calls no external API. Admired works need an OpenAlex lookup and are refused.
+The score is topical fit alone: an idf-weighted overlap between the query topics and the OpenAlex topics the store holds for each advisor, at topic, subfield and field level, with fixed weights 1.0, 0.5 and 0.25. The store keeps three topics per person, so the profile is coarse.
+
+`BKT_TOPIC_TAXONOMY` names the topic taxonomy file that `prime_directions --basis-openalex` cached. It supplies the subfield of each topic and the words a description is matched against. Without it the build keeps two levels and matches a description against topic names alone.
+
+This slice calls no external API. Admired works need an OpenAlex lookup and are refused.
 
 ## Address Reveal
 
