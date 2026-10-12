@@ -216,13 +216,16 @@ describe("build consent", () => {
     const view = await s.builds.request("demo", "pdf");
     expect(await refused(() => s.builds.answer(view.id, "0".repeat(64), true))).toEqual([403, "no build request matches that answer"]);
     expect(await refused(() => s.builds.answer("A".repeat(22), view.digest, true))).toEqual([403, "no build request matches that answer"]);
-    expect(await refused(() => s.builds.answer(null, null, true))).toEqual([400, "an answer names the request by its id or by at least 12 characters of its digest"]);
+    expect(await refused(() => s.builds.answer(null, null, true))).toEqual([400, "an answer names the request by its id"]);
+    expect(await refused(() => s.builds.answer(null, view.digest, true))).toEqual([400, "an answer names the request by its id"]);
     expect((await refused(() => s.builds.answer(view.id, view.digest.toUpperCase(), true)))[0]).toBe(403);
-    expect((await refused(() => s.builds.answer(null, view.digest.slice(0, 11), true)))[0]).toBe(403);
-    expect((await refused(() => s.builds.answer(null, `${view.digest.slice(0, 11)}${view.digest[11] === "0" ? "1" : "0"}`, true)))[0]).toBe(403);
-    expect((await refused(() => s.builds.answer(null, `${view.digest}0`, true)))[0]).toBe(403);
+    expect(await refused(() => s.builds.answer(view.id, view.digest.slice(0, 12), true))).toEqual([403, "no build request matches that answer"]);
+    expect((await refused(() => s.builds.answer(view.id, view.digest.slice(0, 31), true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(view.id, `${view.digest.slice(0, 31)}${view.digest[31] === "0" ? "1" : "0"}`, true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(view.id, `${view.digest}0`, true)))[0]).toBe(403);
     expect((await refused(() => s.builds.answer(view.id.slice(0, 21), null, true)))[0]).toBe(403);
-    expect((await refused(() => s.builds.answer(null, 12, true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(view.id, 12, true)))[0]).toBe(403);
+    expect((await refused(() => s.builds.answer(view.id, "", true)))[0]).toBe(403);
     expect(s.runner.list()).toEqual([]);
     expect(s.consent.pending()!.id).toBe(view.id);
     const other = setup();
@@ -239,8 +242,10 @@ describe("build consent", () => {
     await s.work.write("demo", MAIN, rev(TEX), Buffer.from(`${TEX}\\input{/etc/passwd}\n`));
     const swapped = await s.builds.request("demo", "pdf");
     expect(swapped.digest).not.toBe(read.digest);
-    expect(await refused(() => s.builds.answer(null, read.digest.slice(0, 12), true))).toEqual([403, "no build request matches that answer"]);
-    expect(await refused(() => s.builds.answer(null, read.digest, true))).toEqual([403, "no build request matches that answer"]);
+    expect(await refused(() => s.builds.answer(swapped.id, read.digest, true))).toEqual([403, "no build request matches that answer"]);
+    expect(await refused(() => s.builds.answer(swapped.id, read.digest.slice(0, 32), true))).toEqual([403, "no build request matches that answer"]);
+    expect(await refused(() => s.builds.answer(read.id, read.digest, true))).toEqual([403, "no build request matches that answer"]);
+    expect(await refused(() => s.builds.answer(read.id, null, true))).toEqual([403, "no build request matches that answer"]);
     expect(s.runner.list()).toEqual([]);
     expect(existsSync(s.log)).toBe(false);
     expect(s.consent.pending()!.id).toBe(swapped.id);
@@ -259,23 +264,60 @@ describe("build consent", () => {
     expect(await refused(() => s.builds.answer(shown.id, shown.digest, true))).toEqual([403, "no build request matches that answer"]);
     expect(s.runner.list()).toEqual([]);
     expect(() => answerKey({})).toThrow("name the request you read");
-    expect(() => answerKey({ digest: "abc" })).toThrow("12 to 64 hex characters");
+    expect(() => answerKey({ digest: shown.digest })).toThrow("name the request you read");
+    expect(() => answerKey({ request: shown.id, digest: shown.digest.slice(0, 12) })).toThrow("32 to 64 hex characters");
+    expect(() => answerKey({ request: shown.id, digest: shown.digest.slice(0, 31) })).toThrow("32 to 64 hex characters");
     expect(() => answerKey({ request: "short" })).toThrow("22 characters");
-    expect(answerKey({ digest: shown.digest.slice(0, 12).toUpperCase() })).toEqual({ digest: shown.digest.slice(0, 12) });
+    expect(answerKey({ request: shown.id, digest: shown.digest.slice(0, 32).toUpperCase() })).toEqual({ id: shown.id, digest: shown.digest.slice(0, 32) });
     expect(answerKey({ request: shown.id })).toEqual({ id: shown.id });
   });
 
-  test("a correct digest is accepted once", async () => {
+  test("the right id is accepted once, alone or beside its digest", async () => {
     const s = setup();
     const view = await s.builds.request("demo", "pdf");
-    const job = s.builds.answer(null, view.digest.slice(0, 12), true) as JobView;
+    const job = s.builds.answer(view.id, null, true) as JobView;
     expect(job.state).toBe("running");
-    expect(await refused(() => s.builds.answer(null, view.digest.slice(0, 12), true))).toEqual([403, "no build request matches that answer"]);
+    expect(await refused(() => s.builds.answer(view.id, null, true))).toEqual([403, "no build request matches that answer"]);
+    expect(await refused(() => s.builds.answer(view.id, view.digest, true))).toEqual([403, "no build request matches that answer"]);
     expect((await finished(s, job.id)).state).toBe("done");
-    const byId = setup();
-    const v = await byId.builds.request("demo", "pdf");
-    expect((byId.builds.answer(v.id, null, true) as JobView).state).toBe("running");
-    expect((await refused(() => byId.builds.answer(v.id, null, true)))[0]).toBe(403);
+    for (const length of [32, 48, 64]) {
+      const both = setup();
+      const v = await both.builds.request("demo", "pdf");
+      expect((both.builds.answer(v.id, v.digest.slice(0, length), true) as JobView).state).toBe("running");
+      expect((await refused(() => both.builds.answer(v.id, v.digest.slice(0, length), true)))[0]).toBe(403);
+    }
+  });
+
+  test("two requests that share 12 characters of digest cannot be confused", () => {
+    let clock = 1_000_000;
+    const consent = new ConsentStore({ now: () => clock });
+    const input = (digest: string, build: string) => ({ slug: "demo", build, kind: PDF_KIND, digest, cls: "edited" as const, files: [], frozenDir: join(temp("frozen"), build), title: "T", body: "B", full: "", params: {} });
+    const shared = "abcdef012345";
+    const benign = consent.open(input(`${shared}${"0".repeat(52)}`, "benign"));
+    clock += CONSENT_TTL_MS + DENY_COOLDOWN_MS;
+    expect(consent.pending()).toBeNull();
+    clock += DENY_COOLDOWN_MS;
+    const hostile = consent.open(input(`${shared}${"1".repeat(52)}`, "hostile"));
+    expect(hostile.digest.slice(0, 12)).toBe(benign.digest.slice(0, 12));
+    expect(hostile.id).not.toBe(benign.id);
+    const tries: [unknown, unknown][] = [
+      [null, shared],
+      [null, benign.digest],
+      [benign.id, null],
+      [benign.id, shared],
+      [benign.id, benign.digest],
+      [hostile.id, shared],
+      [hostile.id, benign.digest],
+      [hostile.id, benign.digest.slice(0, 32)],
+      [hostile.id, `${shared}${"0".repeat(20)}`],
+    ];
+    for (const [id, digest] of tries) {
+      expect(() => consent.consume(id, digest)).toThrow();
+      expect(() => consent.deny(id, digest)).toThrow();
+    }
+    expect(consent.pending()!.id).toBe(hostile.id);
+    expect(consent.consume(hostile.id, hostile.digest).pending.build).toBe("hostile");
+    expect(() => consent.consume(hostile.id, hostile.digest)).toThrow("no build request matches that answer");
   });
 
   test("a declared output outside the built folder is refused", async () => {
@@ -397,7 +439,8 @@ describe("build consent", () => {
     expect(lines).toContain("+Second paragraph, rewritten here.");
     expect(lines).toContain(`--- a/${MAIN}`);
     expect(lines).toContain(`Request: ${view.id}`);
-    expect(lines.slice(-2)).toEqual([`Allow it: bkt research approve --yes --digest ${view.digest.slice(0, 12)}`, `Refuse it: bkt research approve --deny --digest ${view.digest.slice(0, 12)}`]);
+    expect(lines.slice(-2)).toEqual([`Allow it: bkt research approve --yes --request ${view.id}`, `Refuse it: bkt research approve --deny --request ${view.id}`]);
+    expect(lines.join("\n")).not.toContain("--digest");
     expect(approvalLines({ pending: null })).toEqual(["No build is waiting for approval."]);
   });
 

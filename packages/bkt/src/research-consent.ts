@@ -13,7 +13,7 @@ export const DENY_WINDOW_MS = 600_000;
 export const DENY_LIMIT = 3;
 export const CONSENT_ID = /^[A-Za-z0-9_-]{22}$/;
 export const DIGEST = /^[0-9a-f]{64}$/;
-export const DIGEST_PREFIX = /^[0-9a-f]{12,64}$/;
+export const DIGEST_GIVEN = /^[0-9a-f]{32,64}$/;
 
 function same(a: string, b: string): boolean {
   const x = Buffer.from(a);
@@ -261,11 +261,9 @@ export class ConsentStore {
       throw new ConsentError("no build request matches that answer", 403);
     };
     if (!p) return refuse();
-    const byId = id !== undefined && id !== null;
-    const byDigest = digest !== undefined && digest !== null;
-    if (!byId && !byDigest) throw new ConsentError("an answer names the request by its id or by at least 12 characters of its digest", 400);
-    if (byId && (typeof id !== "string" || !CONSENT_ID.test(id) || !same(id, p.id))) return refuse();
-    if (byDigest && (typeof digest !== "string" || !DIGEST_PREFIX.test(digest) || !same(digest, p.digest.slice(0, digest.length)))) return refuse();
+    if (id === undefined || id === null) throw new ConsentError("an answer names the request by its id", 400);
+    if (typeof id !== "string" || !CONSENT_ID.test(id) || !same(id, p.id)) return refuse();
+    if (digest !== undefined && digest !== null && (typeof digest !== "string" || !DIGEST_GIVEN.test(digest) || !same(digest, p.digest.slice(0, digest.length)))) return refuse();
     return p;
   }
 
