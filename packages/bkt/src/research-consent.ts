@@ -84,6 +84,13 @@ export interface PendingInput {
   body: string;
   full: string;
   params: Record<string, string>;
+  output?: string;
+  hidden?: Hidden;
+}
+
+export interface Hidden {
+  files: number;
+  lines: number;
 }
 
 export interface Pending extends PendingInput {
@@ -100,6 +107,8 @@ export interface PendingView {
   title: string;
   body: string;
   expiresAt: number;
+  output: string;
+  hidden: Hidden;
 }
 
 function plainFile(path: string): boolean {
@@ -177,6 +186,8 @@ export class BuildSwitch {
 export interface ConsentOptions {
   now?: () => number;
   onDrop?: (pending: Pending, why: "denied" | "expired" | "replaced") => void;
+  onOpen?: (view: PendingView) => void;
+  onSettled?: (id: string) => void;
   switch?: BuildSwitch;
   ttlMs?: number;
 }
@@ -204,7 +215,9 @@ export class ConsentStore {
   }
 
   private release(): void {
+    const id = this.held?.id;
     this.held = null;
+    if (id) this.o.onSettled?.(id);
     if (this.timer) clearTimeout(this.timer);
     this.timer = null;
   }
@@ -235,7 +248,7 @@ export class ConsentStore {
 
   view(): PendingView | null {
     const p = this.pending();
-    return p ? { id: p.id, slug: p.slug, build: p.build, class: p.cls, digest: p.digest, title: p.title, body: p.body, expiresAt: p.created + this.ttl() } : null;
+    return p ? { id: p.id, slug: p.slug, build: p.build, class: p.cls, digest: p.digest, title: p.title, body: p.body, expiresAt: p.created + this.ttl(), output: p.output ?? p.slug, hidden: p.hidden ?? { files: 0, lines: 0 } } : null;
   }
 
   open(input: PendingInput): Pending {
@@ -252,6 +265,8 @@ export class ConsentStore {
       }
     }, this.ttl() + 50);
     (this.timer as { unref?: () => void }).unref?.();
+    const view = this.view();
+    if (view) this.o.onOpen?.(view);
     return p;
   }
 
@@ -280,4 +295,98 @@ export class ConsentStore {
     this.o.onDrop?.(p, "denied");
     return p;
   }
+}
+
+export const CONSENT_PREFIX = "bkt-consent ";
+export const CONSENT_TITLE_CHARS = 200;
+export const CONSENT_BODY_CHARS = 4000;
+const ANSWER = /^consent ([A-Za-z0-9_-]{22}) ([0-9a-f]{64}) (allow|deny)$/;
+const UNSEEN = /[\u0000-\u0008\u000B-\u001F\u007F-\u009F\u061C\u200B-\u200F\u202A-\u202E\u2060-\u2069\uFEFF]/g;
+
+export function visibleText(text: string): string {
+  return text.replace(/\r\n?/g, "\n").replace(UNSEEN, (c) => `<U+${c.charCodeAt(0).toString(16).toUpperCase().padStart(4, "0")}>`);
+}
+
+export type ShellView = Pick<PendingView, "id" | "digest" | "slug" | "title" | "body" | "output" | "hidden">;
+
+export interface ShellRequest {
+  id: string;
+  digest: string;
+  slug: string;
+  output: string;
+  title: string;
+  body: string;
+  approvable: boolean;
+}
+
+export function terminalNote(hidden: Hidden, id: string): string {
+  const count = (n: number, one: string, many: string) => `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;
+  const what = hidden.files === 0 && hidden.lines === 0 ? "This request is longer than this window shows" : `${count(hidden.files, "file is", "files are")} not shown in full here, with ${count(hidden.lines, "changed line", "changed lines")} left out`;
+  return `${what}, so this window cannot approve the build. Run bkt research approve in a terminal: it shows every change and prints the line that allows request ${id}.`;
+}
+
+export function shellRequest(view: ShellView): ShellRequest {
+  const one = (text: string) => visibleText(text).replace(/\n/g, " ").slice(0, CONSENT_TITLE_CHARS);
+  const whole = visibleText(view.body);
+  const cut = view.hidden.files > 0 || view.hidden.lines > 0 || whole.length > CONSENT_BODY_CHARS;
+  const note = cut ? terminalNote(view.hidden, view.id) : "";
+  const body = cut ? `${whole.slice(0, CONSENT_BODY_CHARS - note.length - 2)}\n\n${note}` : whole;
+  return { id: view.id, digest: view.digest, slug: view.slug, output: one(view.output), title: one(view.title), body, approvable: !cut };
+}
+
+export function consentLine(view: ShellView): string {
+  return `${CONSENT_PREFIX}${JSON.stringify(shellRequest(view))}\n`;
+}
+
+export function emitConsent(write: (text: string) => unknown, view: ShellView): void {
+  write(consentLine(view));
+}
+
+export const CONSENT_DONE_PREFIX = "bkt-consent-done ";
+
+export function emitSettled(write: (text: string) => unknown, id: string): void {
+  if (/^[A-Za-z0-9_-]{22}$/.test(id)) write(`${CONSENT_DONE_PREFIX}${id}\n`);
+}
+
+export const TERMINAL_ALONE = "this request is approved from the terminal alone";
+
+export function shellDecides(view: () => ShellView | null, decide: (id: string, digest: string, allow: boolean) => unknown): (id: string, digest: string, allow: boolean) => unknown {
+  return (id, digest, allow) => {
+    const now = view();
+    if (allow && now && !shellRequest(now).approvable) throw new ConsentError(TERMINAL_ALONE, 403);
+    return decide(id, digest, allow);
+  };
+}
+
+export function parseAnswer(line: string): { id: string; digest: string; allow: boolean } | null {
+  const m = ANSWER.exec(line);
+  return m ? { id: m[1], digest: m[2], allow: m[3] === "allow" } : null;
+}
+
+export function answer(line: string, decide: (id: string, digest: string, allow: boolean) => unknown, onRefused: (e: Error) => void = () => {}): boolean {
+  const said = parseAnswer(line);
+  if (!said) return false;
+  try {
+    decide(said.id, said.digest, said.allow);
+    return true;
+  } catch (e) {
+    onRefused(e as Error);
+    return false;
+  }
+}
+
+export function guardConsentText(text: string): string {
+  return text.replace(/(^|\n)(?=bkt-consent)/g, "$1 ");
+}
+
+type Write = (chunk: unknown, ...rest: unknown[]) => boolean;
+
+export function guardStdout(out: { write: Write }): (text: string) => boolean {
+  const raw = out.write.bind(out) as Write;
+  out.write = ((chunk: unknown, ...rest: unknown[]) => {
+    if (typeof chunk === "string") return raw(guardConsentText(chunk), ...rest);
+    if (chunk instanceof Uint8Array) return raw(guardConsentText(Buffer.from(chunk).toString("utf8")), ...rest);
+    return raw(chunk, ...rest);
+  }) as Write;
+  return (text: string) => raw(text);
 }

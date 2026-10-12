@@ -7,8 +7,8 @@ import { jobRoutes } from "../src/job-routes";
 import { JobError, JobRunner, type JobSpec, type JobView } from "../src/jobs";
 import { encodeBlob, RESEARCH_SCHEMA, sha256, SIDE_SCHEMA, type PackedFile, type ReportBuild, type ReportRecord, type ResearchBlobs, type ResearchIndex, type ResearchSidePack } from "../src/pack/research";
 import { installSidePack, Research, ResearchError, researchRoutes } from "../src/research";
-import { BuildSwitch, CONSENT_TTL_MS, ConsentError, ConsentStore, DENY_COOLDOWN_MS, frozenDigest, Grant } from "../src/research-consent";
-import { approvalText, bcfProblem, BUILD_OVER, FIGURE_KIND, kindOf, LATEX_FLAGS, LATEX_TIMEOUT_MS, PDF_KIND, PYTHON_TIMEOUT_MS, researchBuildRoutes, ResearchBuilds, researchSpecs, TABLES_KIND, treeBytes } from "../src/research-jobs";
+import { answer, BuildSwitch, CONSENT_BODY_CHARS, CONSENT_DONE_PREFIX, CONSENT_PREFIX, CONSENT_TITLE_CHARS, CONSENT_TTL_MS, ConsentError, consentLine, ConsentStore, DENY_COOLDOWN_MS, emitConsent, emitSettled, frozenDigest, Grant, guardConsentText, guardStdout, shellDecides, shellRequest, TERMINAL_ALONE, terminalNote, visibleText } from "../src/research-consent";
+import { approvalHidden, approvalText, bcfProblem, BUILD_OVER, FIGURE_KIND, kindOf, LATEX_FLAGS, LATEX_TIMEOUT_MS, PDF_KIND, PYTHON_TIMEOUT_MS, researchBuildRoutes, ResearchBuilds, researchSpecs, TABLES_KIND, treeBytes } from "../src/research-jobs";
 import { ResearchPages } from "../src/research-pdf";
 import { LocalOutputs, ResearchWork, researchWorkRoutes } from "../src/research-work";
 import { startServe, type Serve } from "../src/serve";
@@ -151,6 +151,144 @@ describe("research build specs", () => {
     expect(bcfProblem(bcf, job)).toBe("the paper names a bibliography that is a symlink: link.bib");
     expect(bcfProblem(join(job, "none.bcf"), job)).toBeNull();
     expect(treeBytes(job)).toBeGreaterThan(BIB.length * 2);
+  });
+});
+
+describe("desktop shell channel", () => {
+  const shellView = (over: Record<string, unknown> = {}) => ({ id: "A".repeat(22), digest: "a".repeat(64), slug: "demo", output: "A demo paper", title: "Allow this build?", body: "A demo paper", hidden: { files: 0, lines: 0 }, ...over });
+
+  test("a log line starting with bkt-consent is written with a leading space", () => {
+    const written: string[] = [];
+    const out = { write: (chunk: unknown) => (written.push(String(chunk)), true) };
+    const direct = guardStdout(out);
+    out.write("bkt-consent {\"id\":\"forged\"}\n");
+    out.write("a plain line\nbkt-consent second line\nmore\n");
+    out.write(new TextEncoder().encode("bkt-consent as bytes\n"));
+    out.write("says bkt-consent in the middle\n");
+    expect(written).toEqual([" bkt-consent {\"id\":\"forged\"}\n", "a plain line\n bkt-consent second line\nmore\n", " bkt-consent as bytes\n", "says bkt-consent in the middle\n"]);
+    expect(written.flatMap((w) => w.split("\n")).filter((line) => line.startsWith("bkt-consent"))).toEqual([]);
+    emitConsent(direct, shellView());
+    expect(written.at(-1)).toBe(`bkt-consent {"id":"${"A".repeat(22)}","digest":"${"a".repeat(64)}","slug":"demo","output":"A demo paper","title":"Allow this build?","body":"A demo paper","approvable":true}\n`);
+    expect(guardConsentText("bkt-consent")).toBe(" bkt-consent");
+  });
+
+  test("the request line is one line, and a request the window cannot show in full is marked for the terminal", () => {
+    const small = JSON.parse(consentLine(shellView()).slice(CONSENT_PREFIX.length)) as Record<string, unknown>;
+    expect(Object.keys(small)).toEqual(["id", "digest", "slug", "output", "title", "body", "approvable"]);
+    expect(small.approvable).toBe(true);
+    const long = shellView({ id: "B".repeat(22), title: `A title\nwith a line feed ${"t".repeat(300)}`, output: `An output\n${"o".repeat(300)}`, body: `first\r\nsecond\n${"x".repeat(9000)}` });
+    const line = consentLine(long);
+    expect([line.endsWith("\n"), line.slice(0, -1).includes("\n"), line.startsWith(CONSENT_PREFIX)]).toEqual([true, false, true]);
+    const sent = JSON.parse(line.slice(CONSENT_PREFIX.length)) as Record<string, string | boolean>;
+    expect([(sent.title as string).length, (sent.title as string).includes("\n"), (sent.output as string).length]).toEqual([CONSENT_TITLE_CHARS, false, CONSENT_TITLE_CHARS]);
+    expect((sent.body as string).length).toBeLessThanOrEqual(CONSENT_BODY_CHARS);
+    expect((sent.body as string).startsWith("first\nsecond\n")).toBe(true);
+    expect(sent.approvable).toBe(false);
+    expect((sent.body as string).endsWith(`This request is longer than this window shows, so this window cannot approve the build. Run bkt research approve in a terminal: it shows every change and prints the line that allows request ${"B".repeat(22)}.`)).toBe(true);
+    const hidden = shellRequest(shellView({ hidden: { files: 2, lines: 31 } }));
+    expect(hidden.approvable).toBe(false);
+    expect(hidden.body).toContain("2 files are not shown in full here, with 31 changed lines left out, so this window cannot approve the build.");
+    expect(terminalNote({ files: 1, lines: 1 }, "x")).toContain("1 file is not shown in full here, with 1 changed line left out");
+    expect([CONSENT_TITLE_CHARS, CONSENT_BODY_CHARS]).toEqual([200, 4000]);
+  });
+
+  test("control and direction characters show as their code points in every string sent", () => {
+    const rlo = "\u202E";
+    expect(visibleText(`evil${rlo}txt.exe`)).toBe("evil<U+202E>txt.exe");
+    for (const c of ["\u0000", "\u0007", "\u001B", "\u007F", "\u0085", "\u061C", "\u200B", "\u200E", "\u200F", "\u202A", "\u202D", "\u2066", "\u2069", "\uFEFF"]) expect(visibleText(`a${c}b`)).toMatch(/^a<U\+[0-9A-F]{4}>b$/);
+    expect(visibleText("tab\tand line\nfeed, é, 数, …")).toBe("tab\tand line\nfeed, é, 数, …");
+    expect(visibleText("a\r\nb\rc")).toBe("a\nb\nc");
+    const sent = shellRequest(shellView({ title: `Allow${rlo}?`, output: `Paper${rlo}`, body: `papers/demo/${rlo}gpj.py\u0007` }));
+    expect([sent.title, sent.output, sent.body]).toEqual(["Allow<U+202E>?", "Paper<U+202E>", "papers/demo/<U+202E>gpj.py<U+0007>"]);
+    const text = approvalText({ title: `T${rlo}`, build: BUILDS[0], cls: "edited", digest: "c".repeat(64), files: [{ path: `p/${rlo}a.tex`, base: null, now: "b".repeat(64), added: 1, removed: 0, lines: [`+line${rlo}`] }] });
+    expect(text.includes(rlo)).toBe(false);
+    expect(text).toContain("p/<U+202E>a.tex: new file");
+  });
+
+  test("a small change can be approved from the shell, and a large one is refused there and approved in the terminal", async () => {
+    const make = () => {
+      const lines: string[] = [];
+      const s = setup();
+      const consent = new ConsentStore({ now: () => 1000, switch: s.gate, onDrop: (p) => s.runner.discard(p.frozenDir), onOpen: (view) => emitConsent((text) => lines.push(text), view) });
+      const builds = new ResearchBuilds({ research: s.research, runner: s.runner, consent, gate: s.gate, os: "linux", which: tools().which, ownBuilds: (slug) => s.local.buildsOn(slug) });
+      const refused: string[] = [];
+      const say = (line: string) => answer(line, shellDecides(() => consent.view(), (id, digest, allow) => builds.answer(id, digest, allow)), (e) => refused.push(e.message));
+      return { s, lines, consent, builds, refused, say };
+    };
+    const small = make();
+    await small.s.work.write("demo", MAIN, rev(TEX), Buffer.from(EDITED));
+    const view = await small.builds.request("demo", "pdf");
+    expect(small.lines.length).toBe(1);
+    const sent = JSON.parse(small.lines[0].slice(CONSENT_PREFIX.length)) as { id: string; digest: string; slug: string; output: string; body: string; approvable: boolean };
+    expect([sent.id, sent.digest, sent.slug, sent.output, sent.approvable]).toEqual([view.id, view.digest, "demo", "A demo paper", true]);
+    expect(sent.body).toContain("-Second paragraph.");
+    expect(small.consent.view()!.hidden).toEqual({ files: 0, lines: 0 });
+    expect(small.say(`consent ${"C".repeat(22)} ${view.digest} allow`)).toBe(false);
+    expect(small.say(`consent ${view.id} ${"0".repeat(64)} allow`)).toBe(false);
+    expect(small.refused).toEqual(["no build request matches that answer", "no build request matches that answer"]);
+    expect(small.s.runner.list()).toEqual([]);
+    expect(small.say(`consent ${view.id} ${view.digest} allow`)).toBe(true);
+    expect(small.say(`consent ${view.id} ${view.digest} allow`)).toBe(false);
+
+    const large = make();
+    const rewritten = `${Array.from({ length: 30 }, (_, i) => `A rewritten paragraph ${i}.`).join("\n\n")}\n`;
+    await large.s.work.write("demo", MAIN, rev(TEX), Buffer.from(rewritten));
+    const big = await large.builds.request("demo", "pdf");
+    const hidden = large.consent.view()!.hidden;
+    expect(hidden.files).toBe(1);
+    expect(hidden.lines).toBeGreaterThan(20);
+    const asked = JSON.parse(large.lines[0].slice(CONSENT_PREFIX.length)) as { body: string; approvable: boolean };
+    expect(asked.approvable).toBe(false);
+    expect(asked.body).toContain(`1 file is not shown in full here, with ${hidden.lines} changed lines left out, so this window cannot approve the build.`);
+    expect(asked.body).toContain(`prints the line that allows request ${big.id}.`);
+    expect(large.say(`consent ${big.id} ${big.digest} allow`)).toBe(false);
+    expect(large.refused).toEqual([TERMINAL_ALONE]);
+    expect([large.s.runner.list(), large.consent.pending()!.id]).toEqual([[], big.id]);
+    const terminal = approvalLines({ pending: big, full: large.consent.pending()!.full });
+    expect(terminal.filter((l) => l.startsWith("+A rewritten paragraph")).length).toBe(30);
+    expect(terminal).toContain(`Allow it: bkt research approve --yes --request ${big.id}`);
+    expect((large.builds.answer(big.id, null, true) as JobView).state).toBe("running");
+
+    const denied = make();
+    await denied.s.work.write("demo", MAIN, rev(TEX), Buffer.from(rewritten));
+    const v3 = await denied.builds.request("demo", "pdf");
+    expect(denied.say(`consent ${v3.id} ${v3.digest} deny`)).toBe(true);
+    expect([denied.consent.pending(), denied.s.runner.list()]).toEqual([null, []]);
+  });
+
+  test("a request that settles anywhere tells the shell once, so its window can close", async () => {
+    const lines: string[] = [];
+    const s = setup();
+    let clock = 1000;
+    const consent = new ConsentStore({ now: () => clock, switch: s.gate, onDrop: (p) => s.runner.discard(p.frozenDir), onOpen: (view) => emitConsent((t) => lines.push(t), view), onSettled: (id) => emitSettled((t) => lines.push(t), id) });
+    const builds = new ResearchBuilds({ research: s.research, runner: s.runner, consent, gate: s.gate, os: "linux", which: tools().which });
+    const first = await builds.request("demo", "pdf");
+    builds.answer(first.id, null, true);
+    expect(lines.at(-1)).toBe(`${CONSENT_DONE_PREFIX}${first.id}\n`);
+    expect(lines.filter((l) => l.startsWith(CONSENT_DONE_PREFIX)).length).toBe(1);
+    const denied = setup();
+    const out: string[] = [];
+    const c2 = new ConsentStore({ now: () => clock, switch: denied.gate, onDrop: (p) => denied.runner.discard(p.frozenDir), onSettled: (id) => emitSettled((t) => out.push(t), id) });
+    const b2 = new ResearchBuilds({ research: denied.research, runner: denied.runner, consent: c2, gate: denied.gate, os: "linux", which: tools().which });
+    const second = await b2.request("demo", "pdf");
+    clock += CONSENT_TTL_MS;
+    expect(b2.pending()).toBeNull();
+    expect(out).toEqual([`${CONSENT_DONE_PREFIX}${second.id}\n`]);
+    emitSettled((t) => out.push(t), "not an id");
+    expect(out.length).toBe(1);
+    expect(guardConsentText(`${CONSENT_DONE_PREFIX}x`)).toBe(` ${CONSENT_DONE_PREFIX}x`);
+  });
+
+  test("what is hidden counts files past five, lines past six a file and forty in all, long lines, new files and files shown as sizes", () => {
+    const file = (n: number, over: Partial<{ base: string | null; added: number; removed: number; lines: string[] }> = {}) => ({ path: `p/${n}.tex`, base: "a".repeat(64), now: "b".repeat(64), added: 2, removed: 0, lines: ["+one", "+two"], ...over });
+    expect(approvalHidden([])).toEqual({ files: 0, lines: 0 });
+    expect(approvalHidden([file(1), file(2), file(3), file(4), file(5)])).toEqual({ files: 0, lines: 0 });
+    expect(approvalHidden([file(1), file(2), file(3), file(4), file(5), file(6)])).toEqual({ files: 1, lines: 2 });
+    expect(approvalHidden([file(1, { added: 9, lines: Array.from({ length: 9 }, (_, i) => `+${i}`) })])).toEqual({ files: 1, lines: 3 });
+    expect(approvalHidden([file(1, { lines: ["+short", `+${"x".repeat(101)}`] })])).toEqual({ files: 1, lines: 1 });
+    expect(approvalHidden([file(1, { base: null, added: 30, lines: ["a", "b", "c", "d", "e", "f"] })])).toEqual({ files: 1, lines: 24 });
+    expect(approvalHidden([file(1, { base: null, added: 3, lines: ["a", "b", "c"] })])).toEqual({ files: 0, lines: 0 });
+    expect(approvalHidden([file(1, { added: 0, removed: 0, lines: ["2097153 bytes, shown as sizes alone"] })])).toEqual({ files: 1, lines: 0 });
   });
 });
 
