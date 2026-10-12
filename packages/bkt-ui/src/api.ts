@@ -25,6 +25,19 @@ import type { TablePage } from "../../bkt/src/research-table";
 export type { Change, Exported } from "../../bkt/src/research-work";
 import type { Change, Exported } from "../../bkt/src/research-work";
 
+export interface BuildWaiting {
+  id: string;
+  slug: string;
+  build: string;
+  class: "shipped" | "edited";
+  digest: string;
+  title: string;
+  body: string;
+  expiresAt: number;
+}
+
+export type BuildAsk = { state: "waiting"; pending: BuildWaiting } | { state: "refused"; reason: string; install: string | null; status: number };
+
 export type SaveResult = { saved: true; rev: string; changed: boolean } | { saved: false; current: string };
 export const EDIT_EXTS = [".md", ".tex", ".bib", ".sty", ".tsv", ".csv", ".json", ".jsonl", ".py", ".txt", ".lean"];
 export const EDIT_BYTES = 4 * 1024 * 1024;
@@ -503,6 +516,22 @@ export class Api {
     if (type !== "image/png" || !Number.isInteger(pages) || pages < 1) throw new Error("The page did not arrive as an image.");
     if (blob.size > IMAGE_MAX_BYTES) throw new Error("That page is over 8 MB.");
     return { state: "ready", pages, pdf: r.headers.get("x-bkt-pdf") ?? "", src: await asDataUrl(blob.type === type ? blob : new Blob([blob], { type })) };
+  }
+
+  async researchBuild(slug: string, build: string): Promise<BuildAsk> {
+    const r = await fetch(`/local/research/build?slug=${encodeURIComponent(slug)}&build=${encodeURIComponent(build)}`, { method: "POST", headers: { authorization: `Bucket ${this.token}`, "content-type": "application/json" }, body: "{}" });
+    const body = (await r.json().catch(() => ({}))) as BuildWaiting & { error?: string; install?: string | null };
+    if (r.status === 202) return { state: "waiting", pending: body };
+    if (r.status === 401) throw new ApiError(body.error ?? "", r.status);
+    return { state: "refused", reason: body.error ?? "", install: body.install ?? null, status: r.status };
+  }
+
+  researchBuildState() {
+    return this.call<{ pending: BuildWaiting | null; job: JobView | null }>("/local/research/consent/pending");
+  }
+
+  researchBuildCancel(id: string) {
+    return this.call<JobView>("/local/research/job/cancel", { method: "POST", body: { id } });
   }
 
   researchNew(input: { title: string; slug: string; kind: string }) {

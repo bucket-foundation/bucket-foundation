@@ -2,6 +2,7 @@ import { chmodSync, copyFileSync, existsSync, lstatSync, mkdirSync, readFileSync
 import { join } from "node:path";
 import { JobError, type JobRunner, type JobView } from "./jobs";
 import type { Os } from "./platform";
+import { sha256 } from "./pack/research";
 import { guardPath, type Research, ResearchError } from "./research";
 import { ConsentStore, frozenDigest } from "./research-consent";
 import { FROZEN_PDF, pageFiles, PAGES_KIND, PAGES_MAX, toolInstall, type Which } from "./research-jobs";
@@ -20,6 +21,7 @@ export interface PagesOptions {
   cache: string;
   os: Os;
   which?: Which;
+  built?: (slug: string, path: string) => Buffer | null;
 }
 
 export const PAGES_KEEP = 4;
@@ -40,7 +42,12 @@ export class ResearchPages {
   private pdfOf(slug: string | null): { slug: string; path: string; sha256: string } {
     const detail = this.o.research.detail(slug);
     if (detail.unreadable) throw new ResearchError(detail.unreadable, 409);
-    const file = PDF_ROLES.map((role) => detail.files.find((f) => f.role === role && f.path.endsWith(".pdf"))).find((f) => f !== undefined);
+    const pdfs = PDF_ROLES.map((role) => detail.files.find((f) => f.role === role && f.path.endsWith(".pdf"))).filter((f) => f !== undefined);
+    for (const f of [...pdfs].reverse()) {
+      const rebuilt = this.o.built?.(detail.slug, f.path) ?? null;
+      if (rebuilt) return { slug: detail.slug, path: f.path, sha256: sha256(rebuilt) };
+    }
+    const file = pdfs[0];
     if (!file || !HASH.test(file.sha256)) throw new ResearchError("the output holds no paper", 404);
     return { slug: detail.slug, path: file.path, sha256: file.sha256 };
   }

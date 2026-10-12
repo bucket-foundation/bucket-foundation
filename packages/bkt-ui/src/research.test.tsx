@@ -207,6 +207,9 @@ function fakeApi(over: Partial<ResearchApi> = {}): ResearchApi & { images: strin
     pagesAsked,
     ...workCopy({}).api,
     researchNew: async (input) => ({ slug: input.slug }),
+    researchBuild: async () => ({ state: "refused", reason: "builds are off for this output", install: null, status: 403 }),
+    researchBuildState: async () => ({ pending: null, job: null }),
+    researchBuildCancel: async (id) => ({ id, kind: "research-pdf", state: "cancelled", startedAt: 0, endedAt: 1, code: null, log: "", logTruncated: false, result: null, error: null }),
     researchUpload: async (slug, _role, name) => ({ slug, path: `reports/${slug}/figures/${name}` }),
     researchSource: async (_slug, path) => ({ text: path.endsWith(".tex") ? TEX : path.endsWith("riemann.json") ? JSON.stringify(RIEMANN, null, 1) : "id,title\n1,One\n", rev: "rev-shipped" }),
     openLink: async (url) => (opened.push(url), { opened: url }),
@@ -814,6 +817,72 @@ describe("research changes tab", () => {
     const down = await view(fakeApi({ researchChanges: async () => Promise.reject(new Error("Bucket could not read the changes.")) }), "solvability-frontier", "changes");
     expect(down.host.querySelector(".error")!.textContent).toBe("Bucket could not read the changes.");
     await down.unmount();
+  });
+});
+
+describe("compile from the Paper tab", () => {
+  const press = (host: Element, label: string) => Array.from(host.querySelectorAll("button")).find((b) => b.textContent?.trim() === label);
+  const WITH_BUILD: ResearchDetail = { ...V2, manifest: { ...V2.manifest, builds: [{ id: "pdf", label: "Paper PDF", runner: "latex", entry: "papers/solvability-frontier/main.tex", inputs: [], outputs: ["papers/solvability-frontier/main.pdf"], needs: ["pdflatex", "biber"], audience: "public" }] } };
+  const PENDING = { id: "A".repeat(22), slug: "solvability-frontier", build: "pdf", class: "edited" as const, digest: "d".repeat(64), title: "Allow this build?", body: "A demo paper\nVersion: edited on this computer\nDigest: dddddddddddd", expiresAt: Date.now() + 120_000 };
+  const job = (state: "running" | "done" | "failed", extra: object = {}) => ({ id: "j1", kind: "research-pdf", state, startedAt: Date.now() + 5000, endedAt: null, code: null, log: "", logTruncated: false, result: null, error: null, ...extra });
+
+  test("Compile waits for an approval from the terminal, then shows the build and reloads the pages", async () => {
+    const asked: [string, string][] = [];
+    let state: { pending: typeof PENDING | null; job: ReturnType<typeof job> | null } = { pending: PENDING, job: null };
+    const pages: number[] = [];
+    const api = fakeApi({ researchManifest: async () => WITH_BUILD, researchBuild: async (slug, build) => (asked.push([slug, build]), { state: "waiting", pending: PENDING }), researchBuildState: async () => state, researchPage: async (_s, n) => (pages.push(n), NO_TOOL) });
+    const v = await view(api, "solvability-frontier", "paper");
+    const { act } = await import("react");
+    const before = pages.length;
+    await v.click(press(v.host, "Compile the paper"));
+    expect(asked).toEqual([["solvability-frontier", "pdf"]]);
+    expect(v.host.querySelector('.research-build [role="status"]')!.textContent).toBe("Waiting for your approval. Open a terminal and run: bkt research approve");
+    const fold = v.host.querySelector(".research-build details.fine") as HTMLDetailsElement;
+    expect([fold.open, fold.querySelector("pre")!.textContent]).toEqual([false, PENDING.body]);
+    expect((press(v.host, "Compile the paper") as HTMLButtonElement).disabled).toBe(true);
+    await act(async () => wait(1100));
+    await v.settle();
+    expect(v.host.querySelector('.research-build [role="status"]')!.textContent).toContain("Waiting for your approval");
+    state = { pending: null, job: job("running") };
+    await act(async () => wait(1100));
+    await v.settle();
+    expect(v.host.querySelector('.research-build [role="status"]')!.textContent).toContain("Building…");
+    state = { pending: null, job: job("done") };
+    await act(async () => wait(1100));
+    await v.settle();
+    expect(v.host.querySelector('.research-build [role="status"]')!.textContent).toBe("Built on this computer. The pages now show your version.");
+    expect(pages.length).toBeGreaterThan(before);
+    expect((press(v.host, "Compile the paper") as HTMLButtonElement).disabled).toBe(false);
+    await v.unmount();
+  });
+
+  test("a refusal, a missing tool, a failed build and a denied request each read in plain words", async () => {
+    const { act } = await import("react");
+    const off = await view(fakeApi({ researchManifest: async () => WITH_BUILD }), "solvability-frontier", "paper");
+    await off.click(press(off.host, "Compile the paper"));
+    expect(off.host.querySelector('.research-build [role="alert"]')!.textContent).toBe("Bucket did not start the build.");
+    expect(off.host.querySelector(".research-build details.fine pre")!.textContent).toBe("builds are off for this output");
+    await off.unmount();
+    const tool = await view(fakeApi({ researchManifest: async () => WITH_BUILD, researchBuild: async () => ({ state: "refused", reason: "biber is missing, so the paper cannot be compiled", install: "sudo dnf install biber", status: 409 }) }), "solvability-frontier", "paper");
+    await tool.click(press(tool.host, "Compile the paper"));
+    expect(tool.host.querySelector('.research-build [role="alert"]')!.textContent).toBe("This computer lacks a tool the build needs.");
+    expect(tool.host.querySelector(".research-build details.fine pre")!.textContent).toBe("biber is missing, so the paper cannot be compiled\nsudo dnf install biber");
+    await tool.unmount();
+    for (const [state, text, detail] of [
+      [{ pending: null, job: job("failed", { error: "exited with code 1", log: "! Undefined control sequence." }) }, "The build did not finish.", "exited with code 1\n! Undefined control sequence."],
+      [{ pending: null, job: null }, "The build was refused, or the request ran out after two minutes.", null],
+    ] as const) {
+      const v = await view(fakeApi({ researchManifest: async () => WITH_BUILD, researchBuild: async () => ({ state: "waiting", pending: PENDING }), researchBuildState: async () => state }), "solvability-frontier", "paper");
+      await v.click(press(v.host, "Compile the paper"));
+      await act(async () => wait(1100));
+      await v.settle();
+      expect(v.host.querySelector('.research-build [role="alert"]')!.textContent).toBe(text);
+      expect(v.host.querySelector(".research-build details.fine pre")?.textContent ?? null).toBe(detail);
+      await v.unmount();
+    }
+    const plain = await view(fakeApi(), "solvability-frontier", "paper");
+    expect(press(plain.host, "Compile the paper")).toBeUndefined();
+    await plain.unmount();
   });
 });
 

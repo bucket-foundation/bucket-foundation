@@ -67,10 +67,11 @@ import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
 import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
-import { addLines, installLines, researchAdd, researchInstall } from "./research";
+import { addLines, answerKey, approvalLines, installLines, researchAdd, researchAnswer, researchBuilds, researchInstall, researchWaiting } from "./research";
+import { createInterface } from "node:readline";
 import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
-import { ConsentStore } from "../research-consent";
-import { researchSpecs } from "../research-jobs";
+import { BuildSwitch, ConsentStore } from "../research-consent";
+import { researchBuildRoutes, ResearchBuilds, researchSpecs } from "../research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
 import type { ResearchBlobs, ResearchIndex } from "../pack/research";
 import { startServe, type Route } from "../serve";
@@ -126,6 +127,34 @@ async function researchCmd(inv: Invocation, json: boolean): Promise<number> {
       const added = researchAdd(inv.positionals[0], home, (researchIndex as unknown as ResearchIndex).outputs.map((o) => o.slug));
       if (json) console.log(jsonLine("research add", added));
       else for (const line of addLines(added)) console.log(line);
+      return EXIT.ok;
+    }
+    if (inv.command.name === "research builds") {
+      ensureDataDir(home);
+      console.log(researchBuilds(home, inv.positionals[0], inv.positionals[1]));
+      return EXIT.ok;
+    }
+    if (inv.command.name === "research approve") {
+      const server = await provenServer(home);
+      if (!server) throw new ResearchError("Bucket is not running here; open the app or run bkt serve, then ask for the build again", 409);
+      if (inv.values.yes === true || inv.values.deny === true) {
+        const answer = await researchAnswer(server, answerKey(inv.values), inv.values.yes === true && inv.values.deny !== true);
+        console.log(answer.denied ? "Refused. Nothing ran." : "Allowed. The build is running.");
+        return EXIT.ok;
+      }
+      const waiting = await researchWaiting(server);
+      for (const line of approvalLines(waiting)) console.log(line);
+      if (!waiting.pending) return EXIT.noData;
+      if (!process.stdin.isTTY || !process.stdout.isTTY) return EXIT.ok;
+      const typed = await new Promise<string>((done) => {
+        const rl = createInterface({ input: process.stdin, output: process.stdout });
+        rl.question("Allow this build? Type yes to allow, anything else to refuse: ", (line) => {
+          rl.close();
+          done(line.trim().toLowerCase());
+        });
+      });
+      const answer = await researchAnswer(server, { id: waiting.pending.id, digest: waiting.pending.digest }, typed === "yes");
+      console.log(answer.denied ? "Refused. Nothing ran." : "Allowed. The build is running.");
       return EXIT.ok;
     }
     const done = await researchInstall(inv.positionals[0], home, await provenServer(home));
@@ -313,6 +342,11 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const research = new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, researchTrouble);
   const ownOutputs = new LocalOutputs(dir, { taken: (slug) => (researchIndex as unknown as ResearchIndex).outputs.some((o) => o.slug === slug) || research.staffHas(slug) });
   research.setLocal(ownOutputs);
+  const buildRunner = new JobRunner({ root: join(dir, "research", "jobs", "build"), specs: researchSpecs({ os: platformFor().os, dataDir: dir, python: platformFor().python() }), keep: 20, frozenOnly: true });
+  const buildGate = new BuildSwitch(dir);
+  const buildConsent = new ConsentStore({ switch: buildGate, onDrop: (pending) => buildRunner.discard(pending.frozenDir) });
+  const researchWork = new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() });
+  const builds = new ResearchBuilds({ research, runner: buildRunner, consent: buildConsent, gate: buildGate, os: platformFor().os, ownBuilds: (slug) => ownOutputs.buildsOn(slug) });
   const pagesRunner = new JobRunner({ root: join(dir, "research", "jobs", "pages"), specs: researchSpecs({ os: platformFor().os }), keep: PAGES_KEEP, frozenOnly: true });
   const srv = startServe({
     cliToken,
@@ -329,8 +363,9 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...researchRoutes(research, researchTrouble),
-      ...researchWorkRoutes(new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() }), researchTrouble, ownOutputs),
-      ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os }), researchTrouble),
+      ...researchWorkRoutes(researchWork, researchTrouble, ownOutputs),
+      ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os, built: (slug, path) => researchWork.built(slug, path) }), researchTrouble),
+      ...researchBuildRoutes(builds, researchTrouble),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
       ...servedWordRoutes(workQuiz),
       ...deckRoutes({ home: dir, book: wordBook, onError: (m) => console.error(`bkt serve: ${m}`) }),
@@ -390,6 +425,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   win.forget();
   runner.stopAll();
   pagesRunner.stopAll();
+  buildRunner.stopAll();
   release();
   releaseServer();
   srv.stop();
@@ -545,7 +581,7 @@ export async function execute(inv: Invocation): Promise<number> {
   }
   if (name === "doctor") return doctor(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
-  if (name === "research install" || name === "research add") return researchCmd(inv, json);
+  if (name.startsWith("research ")) return researchCmd(inv, json);
   if (name === "licences") {
     const l = wordBook().licence;
     for (const line of [l.credit.text, l.changes, `${l.title}: ${l.credit.licenceHref}`, "", l.text.trimEnd()]) console.log(line);
