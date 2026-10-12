@@ -28,6 +28,14 @@ export const LICENCE_RANK: Record<string, number> = {
   [RESTRICTED]: 3,
 };
 
+export const METADATA_TABLES: Record<string, string> = {
+  attributions: "Credit lines keyed by source for the app. It holds no corpus row, so no row of it resolves to a source.",
+  source_licences: "Licence facts per source. It holds no corpus row, so no row of it resolves to a source.",
+};
+
+export const RECALL_TABLES: readonly string[] = ["world_professions", "world_elements", "world_languages"];
+export const RECALL_ID = "world-recall";
+
 export const OPEN_K12_SYSTEMS = ["head-start-elof", "australia-v9", "england-nc"] as const;
 
 export const REGISTRY: LicenceEntry[] = [
@@ -144,6 +152,38 @@ export const REGISTRY: LicenceEntry[] = [
     attribution: { source: "arXiv record metadata", url: "https://info.arxiv.org/help/api/tou.html", notice: "The row links to an arXiv record. arXiv releases its record metadata under CC0 1.0, and the paper keeps its own licence." },
   },
   {
+    id: RECALL_ID,
+    match: { table: [...RECALL_TABLES] },
+    licence: RESTRICTED,
+    share_alike: false,
+    public: "none",
+    attribution: { source: "World rows written from recall, with no row checked against a source", url: "", notice: "" },
+  },
+  {
+    id: "world-bank-wdi",
+    match: { host: ["api.worldbank.org"] },
+    licence: "CC-BY-4.0",
+    share_alike: false,
+    public: "rows",
+    attribution: {
+      source: "World Bank, World Development Indicators, education series",
+      url: "https://creativecommons.org/licenses/by/4.0/",
+      notice: "Source: World Bank, World Development Indicators, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Bucket Foundation selected and reformatted the data. Data source: UNESCO Institute for Statistics",
+    },
+  },
+  {
+    id: "ons-soc-2020",
+    match: { host: ["www.ons.gov.uk"] },
+    licence: "OGL-UK-3.0",
+    share_alike: false,
+    public: "rows",
+    attribution: {
+      source: "Office for National Statistics, Standard Occupational Classification 2020 and its coding index",
+      url: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      notice: "Source: Office for National Statistics, Standard Occupational Classification 2020. Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).",
+    },
+  },
+  {
     id: "k12-restricted",
     match: { slice: ["k12-full"] },
     licence: RESTRICTED,
@@ -186,6 +226,8 @@ export function matchValue(key: MatchKey, table: string, row: Row): string | nul
 }
 
 export function resolveEntry(table: string, row: Row, registry: LicenceEntry[] = REGISTRY): LicenceEntry | null {
+  if (table in METADATA_TABLES) return null;
+  if (RECALL_TABLES.includes(table)) return registry.find((e) => e.id === RECALL_ID) ?? null;
   for (const key of MATCH_ORDER) {
     const value = matchValue(key, table, row);
     if (value === null) continue;
