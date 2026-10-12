@@ -310,6 +310,10 @@ describe("people stay out of every pack and every build step", () => {
       expect({ name, found: email.exec(text)?.[0] ?? null }).toEqual({ name, found: null });
       expect({ name, names: text.includes(store) }).toEqual({ name, names: false });
     }
+    const known = ["n@functools.lru"];
+    const source = await Bun.file(join(root, "content/pysrc.json")).text();
+    expect([...new Set(source.match(new RegExp(email.source, "g")) ?? [])].filter((m) => !known.includes(m))).toEqual([]);
+    expect(source.includes(store)).toBe(false);
     if (((await Bun.file(join(root, "content/research-index.json")).json()) as ResearchIndex).staff) return;
     const blobs = (await Bun.file(join(root, "content/research-blobs.json")).json()) as ResearchBlobs;
     const found: string[] = [];

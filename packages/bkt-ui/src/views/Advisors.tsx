@@ -7,7 +7,7 @@ const pct = (v: number) => `${Math.round(v * 100)}`;
 const text = (v: unknown) => (Array.isArray(v) ? v.join(", ") : v === null || v === undefined ? "" : String(v));
 
 export type AdvisorApi = Pick<Api, "advisor" | "importAdvisor" | "forgetAdvisor">;
-export const NO_PEOPLE_FILE = "Open the people file that a matching run wrote on this computer.";
+export const NO_PEOPLE_FILE = "Nothing is open yet. On the Analyze data screen, run Fit me to a people file with your research statement and your own list of people. It saves a ranked list of those people on this computer. Open that saved list here.";
 export const OPEN_PEOPLE_FILE = "Open a people file";
 export const OPEN_ANOTHER = "Open another people file";
 
