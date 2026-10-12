@@ -186,6 +186,15 @@ export class ResearchWork {
     }
   }
 
+  changedPaths(slug: string): string[] {
+    if (!SLUG.test(slug)) return [];
+    try {
+      return Object.keys(this.state(slug).files).sort();
+    } catch {
+      return [];
+    }
+  }
+
   overlay(slug: string, path: string): Buffer | null {
     if (!SLUG.test(slug) || pathProblem(path) !== null) return null;
     if (!this.state(slug).files[path]) return null;

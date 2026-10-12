@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { DESK_TYPES, EXPLORE_MODE_IDS, firstRunHash, followRoutes, href, parseHash, RESEARCH_TABS, type Route } from "./router";
+import { WORKSPACE_TYPES, EXPLORE_MODE_IDS, firstRunHash, followRoutes, href, parseHash, RESEARCH_TABS, type Route } from "./router";
 import { MODES } from "../../../src/lib/explore/modes";
 import { validDatasetId } from "../../../src/lib/explore/datasets";
 import { blocks } from "./views/Lesson";
@@ -26,7 +26,7 @@ describe("hash router", () => {
   });
 });
 
-describe("explore, desk and research item routes", () => {
+describe("explore, workspace and research item routes", () => {
   const roundTrips = (r: Route) => expect(parseHash(href(r))).toEqual(r);
 
   test("the router mode ids are the mode ids Explore draws", () => {
@@ -64,15 +64,16 @@ describe("explore, desk and research item routes", () => {
     }
   });
 
-  test("a desk route names one of eight types and opens tables otherwise", () => {
-    expect(DESK_TYPES).toHaveLength(8);
-    for (const type of DESK_TYPES) {
-      expect(parseHash(`#/desk/${type}`)).toEqual({ name: "desk", type });
-      roundTrips({ name: "desk", type });
+  test("a workspace route names one of eight types and opens tables otherwise", () => {
+    expect(WORKSPACE_TYPES).toHaveLength(8);
+    for (const type of WORKSPACE_TYPES) {
+      expect(parseHash(`#/workspace/${type}`)).toEqual({ name: "workspace", type });
+      roundTrips({ name: "workspace", type });
     }
-    expect(href({ name: "desk", type: "maps" })).toBe("#/desk/maps");
-    expect(href({ name: "desk" })).toBe("#/desk/tables");
-    for (const hash of ["#/desk", "#/desk/", "#/desk/nodes", "#/desk/Tables", "#/desk/tables/extra", "#/desk/figures/x", "#/desk/..%2F"]) expect(parseHash(hash)).toEqual({ name: "desk", type: "tables" });
+    expect(href({ name: "workspace", type: "maps" })).toBe("#/workspace/maps");
+    expect(href({ name: "workspace" })).toBe("#/workspace/tables");
+    for (const hash of ["#/workspace", "#/workspace/", "#/workspace/nodes", "#/workspace/Tables", "#/workspace/tables/extra", "#/workspace/figures/x", "#/workspace/..%2F"]) expect(parseHash(hash)).toEqual({ name: "workspace", type: "tables" });
+    for (const hash of ["#/desk", "#/desk/tables", "#/desks/tables"]) expect(parseHash(hash)).toEqual({ name: "learn" });
   });
 
   test("the research hash takes an item as its fourth part", () => {

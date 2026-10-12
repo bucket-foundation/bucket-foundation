@@ -26,7 +26,7 @@ export type Route =
   | { name: "history" }
   | { name: "data" }
   | { name: "research"; slug?: string; tab?: ResearchTab; item?: string }
-  | { name: "desk"; type?: DeskType }
+  | { name: "workspace"; type?: WorkspaceType }
   | { name: "graph"; branch?: string }
   | { name: "node"; slug: string }
   | { name: "progress" }
@@ -37,8 +37,8 @@ export type ResearchTab = (typeof RESEARCH_TABS)[number];
 const RESEARCH_SLUG = /^[a-z0-9][a-z0-9-]{0,63}$/;
 const RESEARCH_ITEM = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
 
-export const DESK_TYPES = ["tables", "figures", "papers", "records", "graphs", "people", "decks", "maps"] as const;
-export type DeskType = (typeof DESK_TYPES)[number];
+export const WORKSPACE_TYPES = ["tables", "figures", "papers", "records", "graphs", "people", "decks", "maps"] as const;
+export type WorkspaceType = (typeof WORKSPACE_TYPES)[number];
 
 export const EXPLORE_MODE_IDS = ["globe", "helix", "dna", "atom", "particle", "molecule", "reaction", "protein", "graph", "timeline", "earth", "map"] as const;
 const EXPLORE_DATA = /^[a-z0-9][a-z0-9-]{0,63}$/;
@@ -94,7 +94,7 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "node" && parts.length === 2 && NODE.test(parts[1])) return { name: "node", slug: parts[1] };
   if (parts[0] === "research") return parseResearch(parts);
   if (parts[0] === "explore") return parseExplore(parts);
-  if (parts[0] === "desk") return { name: "desk", type: (parts.length === 2 && DESK_TYPES.find((t) => t === parts[1])) || "tables" };
+  if (parts[0] === "workspace") return { name: "workspace", type: (parts.length === 2 && WORKSPACE_TYPES.find((t) => t === parts[1])) || "tables" };
   if (parts[0] === "setup") return { name: "settings" };
   if (SIMPLE.has(parts[0])) return { name: parts[0] } as Route;
   return { name: "learn" };
@@ -116,7 +116,7 @@ export function href(r: Route): string {
     if (!r.mode) return `#/explore/${r.data}`;
     return `#/explore/${r.data}/${r.mode}${r.sel ? `/${encodeURIComponent(r.sel)}` : ""}`;
   }
-  if (r.name === "desk") return `#/desk/${r.type ?? "tables"}`;
+  if (r.name === "workspace") return `#/workspace/${r.type ?? "tables"}`;
   if (r.name === "node") return `#/node/${encodeURIComponent(r.slug)}`;
   return `#/${r.name}`;
 }
