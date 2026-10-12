@@ -5,7 +5,9 @@ import { fixtureContext, fixtureDraft } from "../../bkt/src/pack/row-sets/test-f
 import { forceLayout } from "../../../src/lib/explore/modes/graph";
 import { FORCE_NODE_CAP, modeById, type DesktopLayout } from "./explore/modesV2";
 import { expandRows } from "./explore/rows";
-import { axisLabel, axisShare, axisTicks, axisTitle, fastForceLayout, labelClears, LANE_LABEL_RISE, RING_RADIUS, rowGraph, rowTimeline, STACK_GAP, STACK_ROWS, TIMELINE_WIDTH, UNDATED } from "./explore/rows-layout";
+import { globeProjection } from "../../../src/components/canon-globe/projections";
+import { GLOBE_RADIUS } from "../../../src/lib/explore/modes/globe";
+import { axisLabel, axisShare, axisTicks, axisTitle, fastForceLayout, labelClears, LANE_LABEL_RISE, RING_RADIUS, rowEarth, rowGraph, rowTimeline, UNPLACED_RADIUS, STACK_GAP, STACK_ROWS, TIMELINE_WIDTH, UNDATED } from "./explore/rows-layout";
 
 const ctx = fixtureContext();
 const open = (draft: Partial<RowSetDraft>) => expandRows(assembleRowSet([fixtureDraft(draft)], ctx)[0]);
@@ -155,5 +157,52 @@ describe("ring labels in the map view", () => {
 
   test("the check itself fails on a label that sits on a dot", () => {
     expect(labelClears({ kind: "text", text: "On the dot", position: [1, 0, 0], color: "#000000" }, [{ id: "n", position: [1.1, 0.02, 0], color: "#000000", size: 0.03 }])).toBe(false);
+  });
+});
+
+describe("placed rows on the earth", () => {
+  const places = fixtureContext({ places: new Set(["US", "CL", "IN"]) });
+  const rows: RowDraft[] = [
+    { key: "USA", title: "United States of America", sub: "", group: "a", source: "open", place: "US", point: [39.8, -98.6], weight: 32898 },
+    { key: "CHL", title: "Chile", sub: "", group: "b", source: "by", place: "CL", point: [-37.7, -71.4], weight: 66 },
+    { key: "IND", title: "India", sub: "", group: "a", source: "open", place: "IN", point: [22.9, 79.6] },
+    { key: "loose-1", title: "No place one", sub: "", group: "a", source: "open" },
+    { key: "loose-2", title: "No place two", sub: "", group: "b", source: "by" },
+  ];
+  const page = expandRows(assembleRowSet([fixtureDraft({ modes: ["earth", "map"], rows })], places)[0]);
+
+  test("a row with a point sits at its latitude and longitude on the globe, sized by its weight", () => {
+    const layout = rowEarth(page.hits, page.frame);
+    const at = (key: string) => layout.nodes.find((n) => n.id === `row:fixture-set:${key}`)!;
+    expect(at("CHL").position).toEqual(globeProjection.position({ id: "x", lat: -37.7, lng: -71.4, branch: "b" }, { radius: GLOBE_RADIUS, theta: () => 0 }));
+    for (const key of ["USA", "CHL", "IND"]) expect(Math.hypot(...at(key).position)).toBeCloseTo(GLOBE_RADIUS, 9);
+    expect(at("USA").position[1]).toBeGreaterThan(0);
+    expect(at("CHL").position[1]).toBeLessThan(0);
+    expect(at("USA").size).toBeGreaterThan(at("CHL").size);
+    expect(at("CHL").size).toBeGreaterThan(at("IND").size);
+    expect(layout.nodes.every((n) => n.position.every(Number.isFinite))).toBe(true);
+  });
+
+  test("a row with no point sits on a labelled ring beside the globe", () => {
+    const layout = rowEarth(page.hits, page.frame);
+    const loose = layout.nodes.filter((n) => n.id.includes("loose"));
+    expect(loose).toHaveLength(2);
+    for (const node of loose) expect(Math.hypot(...node.position)).toBeCloseTo(UNPLACED_RADIUS, 9);
+    expect(layout.guides.map((g) => g.kind)).toEqual(["ring", "text"]);
+    expect(layout.guides[1]).toMatchObject({ kind: "text", text: "No place on record" });
+    const placed = expandRows(assembleRowSet([fixtureDraft({ modes: ["earth"], rows: rows.slice(0, 3) })], places)[0]);
+    expect(rowEarth(placed.hits, placed.frame).guides).toEqual([]);
+  });
+
+  test("the earth and map modes both draw every placed row with its group colour and legend", () => {
+    for (const id of ["earth", "map"]) {
+      const drawn = modeById(id).layout(page.hits, { selected: null, scroll: 0, rows: page.frame }) as DesktopLayout;
+      expect(drawn.notice).toBeUndefined();
+      expect(drawn.nodes.map((n) => n.id).sort()).toEqual(page.hits.map((h) => h.id).sort());
+      expect(drawn.nodes.find((n) => n.id === "row:fixture-set:CHL")?.color).toBe("#8a5a2b");
+      expect(drawn.legend).toEqual([{ label: "Group A", color: "#2f6f8f" }, { label: "Group B", color: "#8a5a2b" }]);
+      expect(drawn.canonEarth === true).toBe(id === "earth");
+    }
+    expect((modeById("globe").layout(page.hits, { selected: null, scroll: 0, rows: page.frame }) as DesktopLayout).notice).toBe("Globe cannot draw this data.");
   });
 });

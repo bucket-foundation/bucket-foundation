@@ -8,7 +8,9 @@ import { allowedSets } from "../../../../../src/lib/explore/space-api";
 import { hasEmail } from "../../../../../src/lib/research-os/advisor-review";
 import { assertClean, buildDenylist, type Denylist } from "../rights";
 import { audienceOf, MODE_IDS, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowSetText, SET_BYTES, type AssembleContext, type PackedRows } from "./contract";
-import { entryById, REGISTRY, type LicenceEntry, type Row } from "./licences";
+import { entryById, readCreditLine, REGISTRY, withCorpusCredits, type CreditLine, type LicenceEntry, type Row } from "./licences";
+import { coverageByCountry } from "./coverage-by-country";
+import { educationByCountry } from "./education-by-country";
 import { majorToCareer } from "./major-to-career";
 import { mathematicsChain } from "./mathematics-chain";
 import { occupationsTime } from "./occupations-time";
@@ -18,13 +20,15 @@ export const ROW_SET_PACK_SCHEMA = "bucket.explore-rows-pack/1";
 export const ROW_SET_PACK_BUDGET_BYTES = 1_310_720;
 export const ROW_SET_PACK_FILE = "explore-rows.json";
 export const TABLES_DIR = "learning/corpus/progressions/tables";
-export const COUNTRY_FILE = "src/data/world-indicators.json";
+export const COUNTRY_TABLE = "countries";
+export const CREDIT_TABLE = "attributions";
 export const SPACE_REGISTRY_FILE = "tools/prime-directions/corpora.json";
 export const STAFF_SET_IDS = ["progression", "edtech-market"] as const;
 
 export interface TableReader {
   has(table: string): boolean;
   rows(table: string): AsyncIterable<Row>;
+  document(name: string): unknown;
 }
 
 export type RowSetAdapter = (tables: TableReader, ctx: AssembleContext) => Promise<PackedRows[]>;
@@ -34,6 +38,8 @@ export const ADAPTERS: Record<string, RowSetAdapter> = {
   "major-to-career": majorToCareer,
   "mathematics-chain": mathematicsChain,
   "technology-waves": technologyWaves,
+  "education-by-country": educationByCountry,
+  "coverage-by-country": coverageByCountry,
 };
 
 const TABLE_NAME = /^[a-z][a-z0-9_]{0,63}$/;
@@ -44,6 +50,10 @@ export function fileTables(dir: string): TableReader {
     return [join(dir, `${table}.jsonl`), join(dir, `${table}.jsonl.zst`)].find((f) => existsSync(f)) ?? null;
   };
   return {
+    document(name) {
+      if (!TABLE_NAME.test(name)) throw new Error(`row sets: ${name} is no table name`);
+      return JSON.parse(readFileSync(join(dir, `${name}.json`), "utf8"));
+    },
     has: (table) => fileOf(table) !== null,
     async *rows(table) {
       const file = fileOf(table);
@@ -55,8 +65,12 @@ export function fileTables(dir: string): TableReader {
   };
 }
 
-export function memoryTables(data: Record<string, Row[]>): TableReader {
+export function memoryTables(data: Record<string, Row[]>, documents: Record<string, unknown> = {}): TableReader {
   return {
+    document(name) {
+      if (!(name in documents)) throw new Error(`row sets: document ${name} is missing`);
+      return documents[name];
+    },
     has: (table) => table in data,
     async *rows(table) {
       if (!(table in data)) throw new Error(`row sets: table ${table} is missing`);
@@ -69,17 +83,28 @@ export function reservedIds(repo: string): Set<string> {
   return new Set([...BUNDLED_DATASETS.map((d) => d.id), ...allowedSets(join(repo, SPACE_REGISTRY_FILE)).map((s) => s.id)]);
 }
 
-export function countryCodes(repo: string): Set<string> {
-  const file = JSON.parse(readFileSync(join(repo, COUNTRY_FILE), "utf8")) as { countries?: { iso2?: unknown }[] };
-  return new Set((file.countries ?? []).map((c) => c.iso2).filter((c): c is string => typeof c === "string"));
+export async function countryCodes(tables: TableReader): Promise<Set<string>> {
+  const out = new Set<string>();
+  if (!tables.has(COUNTRY_TABLE)) return out;
+  for await (const row of tables.rows(COUNTRY_TABLE)) if (typeof row.iso2 === "string" && /^[A-Z]{2}$/.test(row.iso2)) out.add(row.iso2);
+  return out;
+}
+
+export async function corpusRegistry(tables: TableReader): Promise<LicenceEntry[]> {
+  const lines: CreditLine[] = [];
+  if (tables.has(CREDIT_TABLE)) for await (const row of tables.rows(CREDIT_TABLE)) {
+    const line = readCreditLine(row);
+    if (line) lines.push(line);
+  }
+  return withCorpusCredits(REGISTRY, lines);
 }
 
 export function tablesStamp(repo: string): string {
   return `tables-${createHash("sha256").update(readFileSync(join(repo, TABLES_DIR, "stats.json"))).digest("hex").slice(0, 12)}`;
 }
 
-export function repoContext(repo: string): AssembleContext {
-  return { registry: REGISTRY, modes: MODE_IDS, reserved: reservedIds(repo), places: countryCodes(repo), atoms: null, built: tablesStamp(repo) };
+export async function repoContext(repo: string, tables: TableReader = fileTables(join(repo, TABLES_DIR))): Promise<AssembleContext> {
+  return { registry: await corpusRegistry(tables), modes: MODE_IDS, reserved: reservedIds(repo), places: await countryCodes(tables), atoms: null, built: tablesStamp(repo) };
 }
 
 export interface RowSetEntry {
@@ -158,8 +183,8 @@ export function assembleRowSetPack(sets: PackedRows[][], deny: Denylist, built: 
 }
 
 export async function buildRowSetPack(repo: string, deny: Denylist = buildDenylist(repo), adapters: Record<string, RowSetAdapter> = ADAPTERS): Promise<RowSetPack> {
-  const ctx = repoContext(repo);
   const tables = fileTables(join(repo, TABLES_DIR));
+  const ctx = await repoContext(repo, tables);
   const sets: PackedRows[][] = [];
   for (const [id, adapter] of Object.entries(adapters)) {
     const pages = await adapter(tables, ctx);

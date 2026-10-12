@@ -27,6 +27,7 @@ export interface Attribution {
   licence: string;
   rows: number;
   notice: string;
+  termsRead: boolean;
 }
 
 export interface PackedRows {
@@ -71,6 +72,7 @@ export interface RowDraft {
   from?: number | null;
   to?: number | null;
   place?: string | null;
+  point?: [number, number] | null;
   weight?: number | null;
   atom?: string | null;
   verified?: boolean;
@@ -87,6 +89,7 @@ export interface RowSetDraft {
   layout?: RowFrame["layout"];
   cells?: RowFrame["cells"];
   drill?: RowFrame["drill"];
+  also?: { source: string; rows: number }[];
 }
 
 export interface AssembleContext {
@@ -148,6 +151,10 @@ function dictionary(values: string[]): { table: string[]; index: number[] } {
   return { table: [...at.keys()], index };
 }
 
+function credit(e: LicenceEntry, rows: number): Attribution {
+  return { source: e.attribution.source, url: e.attribution.url, licence: e.licence, rows, notice: e.attribution.notice, termsRead: e.attribution.terms_read === true };
+}
+
 export function packRows(draft: RowSetDraft, ctx: AssembleContext): PackedRows {
   const keys = draft.rows.map((r) => rowKey(r.key));
   const at = new Map<string, number>();
@@ -193,6 +200,7 @@ export function packRows(draft: RowSetDraft, ctx: AssembleContext): PackedRows {
       from: column(draft.rows, (r) => r.from),
       to: column(draft.rows, (r) => r.to),
       place: column(draft.rows, (r) => r.place),
+      points: column(draft.rows, (r) => r.point),
       weight: column(draft.rows, (r) => r.weight),
       edgeWeight: weighted ? draft.rows.map((r) => (r.links ?? []).map((l) => l.weight ?? 1)) : null,
       edgeStated: marked ? draft.rows.map((r) => (r.links ?? []).map((l) => l.stated === true)) : null,
@@ -202,7 +210,10 @@ export function packRows(draft: RowSetDraft, ctx: AssembleContext): PackedRows {
       verified: draft.rows.some((r) => r.verified !== undefined) ? draft.rows.map((r) => r.verified === true) : null,
       drill: draft.drill ?? null,
     },
-    attributions: entries.map((e, i) => ({ source: e.attribution.source, url: e.attribution.url, licence: e.licence, rows: sources.index.filter((s) => s === i).length, notice: e.attribution.notice })),
+    attributions: [
+      ...entries.map((e, i) => credit(e, sources.index.filter((s) => s === i).length)),
+      ...(draft.also ?? []).filter((a) => !sources.table.includes(a.source)).map((a) => credit(entryById(a.source, ctx.registry) ?? fail(draft.id, 4, `source ${a.source} is not in the licence registry`), a.rows)),
+    ],
     built: ctx.built,
   };
   return { ...body, sha256: bodySha(body) };
@@ -238,7 +249,7 @@ export function checkRows(rows: PackedRows, ctx: AssembleContext): void {
   if (typeof rows.idp !== "string" || !rows.idp.startsWith(`row:${rows.id}:`) || rows.idp.includes("/")) fail(id, 2, `the id prefix is ${rows.idp}`);
   const columns: Record<string, unknown[] | null> = {
     key: rows.key, title: rows.title, sub: rows.sub, gi: rows.gi, si: rows.si, li: rows.li, year: rows.year, url: rows.url, links: rows.links,
-    "frame.from": rows.frame.from, "frame.to": rows.frame.to, "frame.place": rows.frame.place, "frame.weight": rows.frame.weight,
+    "frame.from": rows.frame.from, "frame.to": rows.frame.to, "frame.place": rows.frame.place, "frame.points": rows.frame.points ?? null, "frame.weight": rows.frame.weight,
     "frame.edgeWeight": rows.frame.edgeWeight, "frame.edgeStated": rows.frame.edgeStated ?? null, "frame.atom": rows.frame.atom, "frame.verified": rows.frame.verified,
   };
   for (const [name, col] of Object.entries(columns)) {
@@ -269,9 +280,23 @@ export function checkRows(rows: PackedRows, ctx: AssembleContext): void {
   const entries = rows.sources.map((s) => entryById(s, ctx.registry) ?? fail(id, 4, `source ${s} is not in the licence registry`));
   rows.si.forEach((s, i) => rows.licences[rows.li[i]] === entries[s].licence || fail(id, 4, `row ${full[i]} carries ${rows.licences[rows.li[i]]}, and its source ${rows.sources[s]} is under ${entries[s].licence}`));
   const sources = new Set(entries.map((e) => e.attribution.source));
-  if (rows.attributions.length !== sources.size || !rows.attributions.every((a) => sources.has(a.source))) fail(id, 4, "the attribution rows do not match the sources");
+  const credited = new Set(rows.attributions.map((a) => a.source));
+  const creditable = new Map(ctx.registry.map((e) => [e.attribution.source, e]));
+  if (credited.size !== rows.attributions.length || ![...sources].every((s) => credited.has(s))) fail(id, 4, "the attribution rows do not match the sources");
+  rows.attributions.forEach((a) => {
+    const entry = creditable.get(a.source) ?? fail(id, 4, `the credit ${a.source} names no registry source`);
+    if (a.licence !== entry.licence || typeof a.termsRead !== "boolean" || (audienceOf(rows) === "public" && entry.public === "none" && !sources.has(a.source))) fail(id, 4, `the credit ${a.source} does not match its registry source`);
+  });
 
   if (rows.frame.place) rows.frame.place.forEach((p) => p === null || (PLACE.test(p) && ctx.places.has(p)) || fail(id, 5, `place ${p} is no ISO 3166 two-letter code in the country file`));
+  if (rows.frame.points) {
+    rows.frame.points.forEach((point, i) => {
+      if (point === null) return;
+      const [lat, lng] = Array.isArray(point) ? point : [Number.NaN, Number.NaN];
+      if (point.length !== 2 || !Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180) fail(id, 5, `row ${i} carries a point that is no latitude and longitude`);
+      if (!rows.frame.place?.[i]) fail(id, 5, `row ${i} carries a point and no place code`);
+    });
+  }
   if (rows.frame.atom) rows.frame.atom.forEach((a) => a === null || (ATOM.test(a) && ctx.atoms?.has(a)) || fail(id, 6, `atom ${a} is not in the alignment file`));
 
   const audience = audienceOf(rows);
@@ -366,7 +391,7 @@ function pickRows(rows: PackedRows, picked: number[], counts: { total: number; p
     links,
     frame: {
       ...rows.frame,
-      from: maybe(rows.frame.from), to: maybe(rows.frame.to), place: maybe(rows.frame.place), weight: maybe(rows.frame.weight),
+      from: maybe(rows.frame.from), to: maybe(rows.frame.to), place: maybe(rows.frame.place), points: maybe(rows.frame.points), weight: maybe(rows.frame.weight),
       edgeWeight: rows.frame.edgeWeight ? edgeWeight : null,
       edgeStated: rows.frame.edgeStated ? edgeStated : null,
       atom: maybe(rows.frame.atom), verified: maybe(rows.frame.verified),

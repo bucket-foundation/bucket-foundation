@@ -1,7 +1,7 @@
 export type PublicScope = "rows" | "codes" | "none";
 export type Row = Record<string, unknown>;
 
-export const MATCH_ORDER = ["licence", "source_licence", "system", "slice", "host", "framework_id", "scheme", "table"] as const;
+export const MATCH_ORDER = ["table_host", "licence", "source_licence", "system", "slice", "host", "framework_id", "scheme", "table"] as const;
 export type MatchKey = (typeof MATCH_ORDER)[number];
 
 export interface LicenceEntry {
@@ -10,16 +10,18 @@ export interface LicenceEntry {
   licence: string;
   share_alike: boolean;
   public: PublicScope;
-  attribution: { source: string; url: string; notice: string };
+  attribution: { source: string; url: string; notice: string; credit?: string; also?: string; terms_read?: boolean };
 }
 
 export const UNKNOWN = "unknown";
 export const FEDERAL = "US federal work, public domain";
 export const RESTRICTED = "restricted";
+export const PUBLIC_DOMAIN = "Public domain";
 export const CCSS_LICENCE = "Common Core public licence";
 
 export const LICENCE_RANK: Record<string, number> = {
   [FEDERAL]: 0,
+  [PUBLIC_DOMAIN]: 0,
   "CC0-1.0": 0,
   "CC-BY-4.0": 1,
   "OGL-UK-3.0": 1,
@@ -64,6 +66,7 @@ export const REGISTRY: LicenceEntry[] = [
     attribution: {
       source: "O*NET 31.0 Database, USDOL/ETA",
       url: "https://www.onetcenter.org/database.html",
+      credit: "credit-onet-31",
       notice: "This corpus includes information from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence. O*NET is a trademark of USDOL/ETA. Bucket Foundation has modified all or some of this information. USDOL/ETA has not approved, endorsed or tested these modifications.",
     },
   },
@@ -105,7 +108,7 @@ export const REGISTRY: LicenceEntry[] = [
     licence: "CC-BY-4.0",
     share_alike: false,
     public: "rows",
-    attribution: { source: "Australian Curriculum version 9, ACARA", url: "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use", notice: "Copyright Australian Curriculum, Assessment and Reporting Authority (ACARA), used under CC BY 4.0. Bucket Foundation selected and reformatted this material." },
+    attribution: { source: "Australian Curriculum version 9, ACARA", url: "https://www.australiancurriculum.edu.au/copyright-and-terms-of-use", credit: "credit-australia-v9", notice: "Copyright Australian Curriculum, Assessment and Reporting Authority (ACARA), used under CC BY 4.0. Bucket Foundation selected and reformatted this material." },
   },
   {
     id: "england-nc",
@@ -113,7 +116,7 @@ export const REGISTRY: LicenceEntry[] = [
     licence: "OGL-UK-3.0",
     share_alike: false,
     public: "rows",
-    attribution: { source: "National curriculum in England, Department for Education", url: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", notice: "Contains public sector information licensed under the Open Government Licence v3.0." },
+    attribution: { source: "National curriculum in England, Department for Education", url: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", credit: "credit-england-nc", notice: "Contains public sector information licensed under the Open Government Licence v3.0." },
   },
   {
     id: "ccss-math",
@@ -124,6 +127,9 @@ export const REGISTRY: LicenceEntry[] = [
     attribution: {
       source: "Common Core State Standards for Mathematics, with links from the Achieve the Core Coherence Map",
       url: "https://www.thecorestandards.org/public-license/",
+      terms_read: true,
+      credit: "credit-ccss",
+      also: "Links between standards come from the Coherence Map of Achieve the Core, whose authors dedicated it to the public domain under CC0 1.0.",
       notice: "© Copyright 2010. National Governors Association Center for Best Practices and Council of Chief State School Officers. All rights reserved. Used under the public licence in support of the standards. The labels are Bucket's own wording and are no part of the standards. Links between standards come from the Coherence Map of Achieve the Core, whose authors dedicated it to the public domain under CC0 1.0.",
     },
   },
@@ -133,7 +139,7 @@ export const REGISTRY: LicenceEntry[] = [
     licence: "CC0-1.0",
     share_alike: false,
     public: "rows",
-    attribution: { source: "Wikidata", url: "https://www.wikidata.org/wiki/Wikidata:Licensing", notice: "Names and dates come from Wikidata, whose structured data is released into the public domain under CC0 1.0. Each row here was picked by hand and links to its Wikidata item." },
+    attribution: { source: "Wikidata", url: "https://www.wikidata.org/wiki/Wikidata:Licensing", terms_read: true, notice: "Names and dates come from Wikidata, whose structured data is released into the public domain under CC0 1.0. Each row here was picked by hand and links to its Wikidata item." },
   },
   {
     id: "wikipedia",
@@ -141,7 +147,7 @@ export const REGISTRY: LicenceEntry[] = [
     licence: "CC-BY-SA-4.0",
     share_alike: true,
     public: "rows",
-    attribution: { source: "English Wikipedia and its contributors", url: "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use", notice: "Names, dates and links come from pages of the English Wikipedia and their contributors, under CC BY-SA 4.0. Each row links to its page. Bucket selected and reformatted them, and these rows stay under CC BY-SA 4.0." },
+    attribution: { source: "English Wikipedia and its contributors", url: "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use", terms_read: true, credit: "credit-wikimedia", notice: "Names, dates and links come from pages of the English Wikipedia and their contributors, under CC BY-SA 4.0. Each row links to its page. Bucket selected and reformatted them, and these rows stay under CC BY-SA 4.0." },
   },
   {
     id: "arxiv",
@@ -149,7 +155,7 @@ export const REGISTRY: LicenceEntry[] = [
     licence: "CC0-1.0",
     share_alike: false,
     public: "rows",
-    attribution: { source: "arXiv record metadata", url: "https://info.arxiv.org/help/api/tou.html", notice: "The row links to an arXiv record. arXiv releases its record metadata under CC0 1.0, and the paper keeps its own licence." },
+    attribution: { source: "arXiv record metadata", url: "https://info.arxiv.org/help/api/tou.html", terms_read: true, notice: "The row links to an arXiv record. arXiv releases its record metadata under CC0 1.0, and the paper keeps its own licence." },
   },
   {
     id: RECALL_ID,
@@ -168,6 +174,7 @@ export const REGISTRY: LicenceEntry[] = [
     attribution: {
       source: "World Bank, World Development Indicators, education series",
       url: "https://creativecommons.org/licenses/by/4.0/",
+      credit: "credit-world-bank-wdi",
       notice: "Source: World Bank, World Development Indicators, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Bucket Foundation selected and reformatted the data. Data source: UNESCO Institute for Statistics",
     },
   },
@@ -180,8 +187,33 @@ export const REGISTRY: LicenceEntry[] = [
     attribution: {
       source: "Office for National Statistics, Standard Occupational Classification 2020 and its coding index",
       url: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+      credit: "credit-ons-soc-2020",
       notice: "Source: Office for National Statistics, Standard Occupational Classification 2020. Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).",
     },
+  },
+  {
+    id: "natural-earth",
+    match: { host: ["www.naturalearthdata.com"] },
+    licence: PUBLIC_DOMAIN,
+    share_alike: false,
+    public: "rows",
+    attribution: { source: "Natural Earth, 1:50m Admin 0 Countries label points", url: "https://www.naturalearthdata.com/about/terms-of-use/", notice: "Country points are made with Natural Earth, whose map data is in the public domain.", terms_read: true },
+  },
+  {
+    id: "bls-publications",
+    match: { table_host: ["tech_occupation|www.bls.gov"] },
+    licence: FEDERAL,
+    share_alike: false,
+    public: "rows",
+    attribution: { source: "Publications of the US Bureau of Labor Statistics", url: "https://www.bls.gov/bls/linksite.htm", notice: "Source: US Bureau of Labor Statistics. Its published material is in the public domain.", terms_read: true },
+  },
+  {
+    id: "bucket-corpus",
+    match: { table: ["tech_lags", "completeness"] },
+    licence: "CC-BY-4.0",
+    share_alike: false,
+    public: "rows",
+    attribution: { source: "Bucket Foundation, progressions corpus", url: "https://creativecommons.org/licenses/by/4.0/", notice: "Counts and lag figures are computed by Bucket Foundation from the corpus and released under CC BY 4.0.", terms_read: true },
   },
   {
     id: "k12-restricted",
@@ -219,7 +251,8 @@ function hostOf(url: unknown): string | null {
 }
 
 export function matchValue(key: MatchKey, table: string, row: Row): string | null {
-  const raw = key === "table" ? table : key === "host" ? hostOf(row.source_url) ?? hostOf(row.url) : row[key];
+  const host = hostOf(row.source_url) ?? hostOf(row.url);
+  const raw = key === "table" ? table : key === "host" ? host : key === "table_host" ? (host ? `${table}|${host}` : null) : row[key];
   if (typeof raw !== "string") return null;
   const value = raw.trim();
   return value === "" || value.toLowerCase() === UNKNOWN ? null : value;
@@ -244,6 +277,32 @@ export function resolveSource(table: string, row: Row, registry: LicenceEntry[] 
 export function publicSource(table: string, row: Row, registry: LicenceEntry[] = REGISTRY): string | null {
   const entry = resolveEntry(table, row, registry);
   return entry && entry.public !== "none" ? entry.id : null;
+}
+
+export interface CreditLine {
+  id: string;
+  credit_line: string;
+  licence: string;
+  licence_url: string;
+  terms_read: boolean;
+}
+
+export function readCreditLine(row: Row): CreditLine | null {
+  const text = (v: unknown) => (typeof v === "string" ? v : "");
+  if (!text(row.id) || !text(row.credit_line)) return null;
+  return { id: text(row.id), credit_line: text(row.credit_line), licence: text(row.licence), licence_url: text(row.licence_url), terms_read: row.terms_read === true };
+}
+
+export function withCorpusCredits(registry: LicenceEntry[], lines: CreditLine[]): LicenceEntry[] {
+  const byId = new Map(lines.map((l) => [l.id, l]));
+  return registry.map((entry) => {
+    const id = entry.attribution.credit;
+    if (!id) return entry;
+    const line = byId.get(id);
+    if (!line) throw new Error(`row sets: source ${entry.id} names the credit line ${id}, and the corpus holds no such line`);
+    if (line.licence !== entry.licence) throw new Error(`row sets: source ${entry.id} is under ${entry.licence}, and its credit line ${id} says ${line.licence}`);
+    return { ...entry, attribution: { ...entry.attribution, notice: entry.attribution.also ? `${line.credit_line} ${entry.attribution.also}` : line.credit_line, terms_read: line.terms_read || entry.attribution.terms_read === true } };
+  });
 }
 
 export function entryById(id: string, registry: LicenceEntry[] = REGISTRY): LicenceEntry | null {

@@ -1,3 +1,5 @@
+import { globeProjection } from "../../../../src/components/canon-globe/projections";
+import { GLOBE_RADIUS } from "../../../../src/lib/explore/modes/globe";
 import { FORCE_STEPS, GRAPH_RADIUS } from "../../../../src/lib/explore/modes/graph";
 import { LANE_HEIGHT } from "../../../../src/lib/explore/modes/timeline";
 import { linksFromHits, type Guide, type RowFrame, type SceneLayout, type SceneNode, type Vec3 } from "../../../../src/lib/explore/modes/types";
@@ -109,6 +111,27 @@ export function fastForceLayout(ids: string[], edges: [string, string][], steps 
     }
   }
   return out();
+}
+
+export const UNPLACED_RADIUS = GLOBE_RADIUS * 1.45;
+export const EARTH_MARK = 0.018;
+
+export function rowEarth(hits: Hit[], scene: RowScene): SceneLayout {
+  const weights = hits.map((hit) => scene.weight?.[scene.at[hit.id]] ?? null).filter((w): w is number => w !== null && w > 0);
+  const heaviest = weights.length ? Math.log10(1 + Math.max(...weights)) : 1;
+  const size = (hit: Hit) => {
+    const weight = scene.weight?.[scene.at[hit.id]] ?? null;
+    return weight !== null && weight > 0 && heaviest > 0 ? EARTH_MARK * (0.8 + 1.4 * Math.log10(1 + weight) / heaviest) : EARTH_MARK;
+  };
+  const loose = hits.filter((hit) => !scene.points?.[scene.at[hit.id]]);
+  const nodes = hits.map((hit): SceneNode => {
+    const point = scene.points?.[scene.at[hit.id]] ?? null;
+    if (point) return { id: hit.id, position: globeProjection.position({ id: hit.id, lat: point[0], lng: point[1], branch: hit.branch }, { radius: GLOBE_RADIUS, theta: () => 0 }), color: AXIS_COLOR, size: size(hit), label: hit.title };
+    const angle = (loose.indexOf(hit) + 0.5) * Math.PI * 2 / loose.length;
+    return { id: hit.id, position: [UNPLACED_RADIUS * Math.cos(angle), UNPLACED_RADIUS * Math.sin(angle), 0], color: AXIS_COLOR, size: size(hit), label: hit.title };
+  });
+  const guides: Guide[] = loose.length ? [{ kind: "ring", radius: UNPLACED_RADIUS, color: AXIS_COLOR, tilt: 0 }, { kind: "text", position: [0, UNPLACED_RADIUS + 0.12, 0], text: "No place on record", color: AXIS_COLOR, size: 10 }] : [];
+  return { nodes, links: linksFromHits(hits, new Set(hits.map((hit) => hit.id))).filter((link) => link.from !== link.to), guides, legend: [], camera: globeProjection.camera, wheel: "zoom" };
 }
 
 export function rowGraph(hits: Hit[]): SceneLayout {

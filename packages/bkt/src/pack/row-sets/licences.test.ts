@@ -33,7 +33,7 @@ describe("the licence registry", () => {
   });
 
   test("tests a row in the stated order and the first match wins", () => {
-    expect([...MATCH_ORDER]).toEqual(["licence", "source_licence", "system", "slice", "host", "framework_id", "scheme", "table"]);
+    expect([...MATCH_ORDER]).toEqual(["table_host", "licence", "source_licence", "system", "slice", "host", "framework_id", "scheme", "table"]);
     const registry: LicenceEntry[] = MATCH_ORDER.map((key) => ({ ...FIXTURE_REGISTRY[0], id: `by-${key.replaceAll("_", "-")}`, match: { [key]: [key === "host" ? "example.org" : key === "table" ? "things" : "v"] } }));
     const row: Row = { licence: "v", source_licence: "v", system: "v", slice: "v", source_url: "https://example.org/a", framework_id: "v", scheme: "v" };
     const order = ["licence", "source_licence", "system", "slice", "source_url", "framework_id", "scheme"];
@@ -125,9 +125,9 @@ describe("the source tables", () => {
     for (const reason of Object.values(METADATA_TABLES)) expect(reason).toContain("no corpus row");
     for (const name of metadata) expect(resolveSource(name, { licence: "CC BY 4.0", source_url: "https://api.worldbank.org/x", host: "en.wikipedia.org" })).toBe(UNKNOWN);
     expect(Object.fromEntries(Object.entries(bySource).filter(([name]) => /^(world_|tech_|countries)/.test(name)))).toEqual({
-      countries: { [UNKNOWN]: 237 },
-      tech_lags: { wikipedia: 2, [UNKNOWN]: 2 },
-      tech_occupation: { wikipedia: 20, [UNKNOWN]: 32 },
+      countries: { "natural-earth": 237 },
+      tech_lags: { wikipedia: 2, "bucket-corpus": 2 },
+      tech_occupation: { wikipedia: 20, "bls-publications": 25, [UNKNOWN]: 7 },
       tech_training_response: { wikipedia: 17, wikidata: 54, [UNKNOWN]: 1 },
       world_elements: { [RECALL_ID]: 330 },
       world_exams: { [UNKNOWN]: 269 },
@@ -178,7 +178,6 @@ describe("the source tables", () => {
       { licence: "unknown", source_url: "https://connect.unevoc.unesco.org/x", url: "https://connect.unevoc.unesco.org/x", slice: "world" },
       { licence: "CC BY 4.0 (EU reuse policy, source to be credited)", source_url: "https://www.cedefop.europa.eu/en/x", slice: "world" },
       { licence: "CC BY 4.0", source_url: "https://www.abs.gov.au/x", scheme: "OSCA 2024", slice: "world" },
-      { licence: "public domain", source_url: "https://www.naturalearthdata.com/", slice: "world" },
     ] as Row[]) {
       expect(resolveSource("world_systems", row)).toBe(UNKNOWN);
       expect(publicSource("world_systems", row)).toBeNull();
@@ -254,6 +253,6 @@ describe("the source tables", () => {
 
   test("occupations carry the O*NET licence as a whole and major to career stays a federal work", () => {
     const licences = Object.fromEntries(pack.sets.map((s) => [s.id, [...new Set(s.pages.map((p) => p.licence))]]));
-    expect(licences).toEqual({ "occupations-time": ["CC-BY-4.0"], "major-to-career": [FEDERAL], "mathematics-chain": [CCSS_LICENCE], "technology-waves": ["CC-BY-SA-4.0"] });
+    expect(licences).toEqual({ "occupations-time": ["CC-BY-4.0"], "major-to-career": [FEDERAL], "mathematics-chain": [CCSS_LICENCE], "technology-waves": ["CC-BY-SA-4.0"], "education-by-country": ["CC-BY-4.0"], "coverage-by-country": ["CC-BY-4.0"] });
   });
 });

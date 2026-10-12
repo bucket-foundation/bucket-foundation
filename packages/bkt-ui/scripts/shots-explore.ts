@@ -11,7 +11,9 @@ const ROW_SHOTS: { hash: string; file: string; mode: string; rows: number }[] = 
   { hash: "#/explore/mathematics-chain/graph", file: "5-mathematics-chain-graph.png", mode: "graph", rows: 65 },
   { hash: "#/explore/occupations-time/map", file: "6-occupations-time-map.png", mode: "map", rows: 48 },
   { hash: "#/explore/occupations-time/timeline", file: "7-occupations-time-timeline.png", mode: "timeline", rows: 48 },
-  { hash: "#/explore/technology-waves/timeline", file: "8-technology-waves-timeline.png", mode: "timeline", rows: 182 },
+  { hash: "#/explore/education-by-country/earth", file: "9-education-by-country-earth.png", mode: "earth", rows: 66 },
+  { hash: "#/explore/coverage-by-country/map", file: "10-coverage-by-country-map.png", mode: "map", rows: 30 },
+  { hash: "#/explore/technology-waves/timeline", file: "11-technology-waves-links.png", mode: "timeline", rows: 217 },
 ];
 mkdirSync(out, { recursive: true });
 const home = mkdtempSync(join(process.env.BKT_SHOTS_TMP ?? tmpdir(), "bkt-explore-shots-"));

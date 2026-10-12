@@ -8,7 +8,7 @@ import type { Hit } from "../../../../src/lib/explore/search";
 import { circleLayout } from "./circle-layout";
 import type { CircleGraph } from "./chem-circle";
 import { isRowScene, type RowScene } from "./rows";
-import { ringLabels, rowGraph, rowTimeline } from "./rows-layout";
+import { ringLabels, rowEarth, rowGraph, rowTimeline } from "./rows-layout";
 import { hasMapAxes, sourceMap } from "./source-map";
 
 const horizontal = ([x, y, z]: Vec3): Vec3 => [y, -x, z];
@@ -29,7 +29,7 @@ export interface LinkStyle {
   dashed: boolean;
 }
 
-export const ROW_MODE_IDS: readonly string[] = ["graph", "map", "timeline"];
+export const ROW_MODE_IDS: readonly string[] = ["graph", "map", "timeline", "earth"];
 export const FORCE_NODE_CAP = 300;
 export const NO_ROWS = "No row matches.";
 
@@ -81,7 +81,7 @@ function rowLayout(mode: ExploreMode, hits: Hit[], context: Parameters<ExploreMo
   if (!hits.length) return note(NO_ROWS);
   if (mode.id === "graph" && hits.length > FORCE_NODE_CAP) return note(`Graph draws up to ${FORCE_NODE_CAP} rows, and this page holds ${hits.length}. Narrow the search.`);
   const groups = new Map(scene.groups.map((group) => [group.id, group]));
-  const base: SceneLayout = mode.id === "map" ? ringLabels(sourceMap(hits), groups) : mode.id === "timeline" ? rowTimeline(hits, scene) : rowGraph(hits);
+  const base: DesktopLayout = mode.id === "map" ? ringLabels(sourceMap(hits), groups) : mode.id === "timeline" ? rowTimeline(hits, scene) : mode.id === "earth" ? { ...rowEarth(hits, scene), canonEarth: true } : rowGraph(hits);
   const branch = new Map(hits.map((hit) => [hit.id, hit.branch]));
   const present = new Set(branch.values());
   const shown = new Set(branch.keys());

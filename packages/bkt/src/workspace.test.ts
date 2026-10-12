@@ -183,7 +183,7 @@ describe("workspace index", () => {
     const real = { ...src, rowSets: () => pack.sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0].modes })) };
     expect(pack.sets.every((s) => s.audience === "public")).toBe(true);
     expect(workspaceItems(real, "graphs").map((i) => i.from.id).sort()).toEqual(["major-to-career", "mathematics-chain"]);
-    expect(workspaceItems(real, "maps").map((i) => [i.from.id, i.explore!.modes])).toEqual([["occupations-time", ["timeline", "map"]], ["technology-waves", ["timeline"]]]);
+    expect(workspaceItems(real, "maps").map((i) => [i.from.id, i.explore!.modes])).toEqual([["occupations-time", ["timeline", "map"]], ["technology-waves", ["timeline"]], ["education-by-country", ["map", "earth"]], ["coverage-by-country", ["map", "earth"]]]);
     const text = JSON.stringify([...workspaceItems(real, "graphs"), ...workspaceItems(real, "maps")]);
     expect(text).not.toMatch(/row:|ipums|wikidata|@/i);
     expect(text.length).toBeLessThan(2500);
