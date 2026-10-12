@@ -2,6 +2,12 @@ export const TABLE_ROW_CAP = 200_000;
 export const PAGE_ROWS = 50;
 export const QUERY_CHARS = 200;
 export const CACHED_TABLES = 4;
+export const RECORD_SET_CAP = 2_000;
+export const CELL_CHARS = 2_000;
+
+export function clip(cell: string, cap = CELL_CHARS): string {
+  return cell.length > cap ? `${cell.slice(0, cap)}…` : cell;
+}
 
 export type TableFormat = "tsv" | "csv" | "json" | "jsonl";
 
@@ -124,7 +130,7 @@ export const RECORD_COLUMNS = ["id", "title", "branch", "level", "posed", "resol
 
 export function recordSetTable(files: { path: string; text: string }[]): ParsedTable {
   const rows: string[][] = [];
-  for (const file of files) {
+  for (const file of files.slice(0, RECORD_SET_CAP)) {
     let record: Record<string, unknown>;
     try {
       record = JSON.parse(file.text) as Record<string, unknown>;
@@ -135,7 +141,7 @@ export function recordSetTable(files: { path: string; text: string }[]): ParsedT
     const name = file.path.split("/").pop()!.replace(/\.json$/, "");
     rows.push([...RECORD_COLUMNS.map((c) => cellText(c === "id" ? (record.id ?? name) : c === "title" ? (record.title ?? record.name ?? name) : record[c])), file.path]);
   }
-  return { columns: [...RECORD_COLUMNS, "path"], rows, truncated: false };
+  return { columns: [...RECORD_COLUMNS, "path"], rows, truncated: files.length > RECORD_SET_CAP };
 }
 
 export function parseQuery(params: URLSearchParams): TableQuery {
@@ -173,7 +179,7 @@ export function pageOf(table: ParsedTable, query: TableQuery, pinned: string[] =
   }
   const start = (query.page - 1) * size;
   const shown = index.slice(start, start + size);
-  return { columns: table.columns, rows: shown.map((i) => table.rows[i]), index: shown, total: index.length, page: query.page, size, pinned: pinned.filter((c) => table.columns.includes(c)), truncated: table.truncated };
+  return { columns: table.columns, rows: shown.map((i) => table.rows[i].map((cell) => clip(cell))), index: shown, total: index.length, page: query.page, size, pinned: pinned.filter((c) => table.columns.includes(c)), truncated: table.truncated };
 }
 
 export class TableCache {

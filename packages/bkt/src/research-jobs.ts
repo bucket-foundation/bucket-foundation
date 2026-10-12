@@ -56,13 +56,24 @@ export function pageFiles(out: string): { n: number; file: string }[] {
     .sort((a, b) => a.n - b.n);
 }
 
-export function researchSpecs(o: { os: Os; which?: Which }): Record<string, JobSpec> {
+export const PAGES_WATCH_MS = 500;
+export const PAGES_OVER = "the pages are over the 256 MB limit";
+
+export function folderBytes(dir: string): number {
+  let sum = 0;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) if (entry.isFile()) sum += statSync(join(dir, entry.name)).size;
+  return sum;
+}
+
+export function researchSpecs(o: { os: Os; which?: Which; outBytes?: number; watchMs?: number }): Record<string, JobSpec> {
+  const outBytes = o.outBytes ?? PAGES_OUT_BYTES;
   const which = o.which ?? ((bin: string) => Bun.which(bin));
   return {
     [PAGES_KIND]: {
       label: "Render the pages of a paper",
       inputs: {},
       timeoutMs: PAGES_TIMEOUT_MS,
+      watch: { everyMs: o.watchMs ?? PAGES_WATCH_MS, check: (dirs) => (folderBytes(dirs.out) > outBytes ? PAGES_OVER : null) },
       plan(dirs) {
         const bin = which("pdftoppm");
         if (!bin) return { error: "pdftoppm is missing, so the paper shows as a preview", install: toolInstall("pdftoppm", o.os) };
@@ -71,8 +82,8 @@ export function researchSpecs(o: { os: Os; which?: Which }): Record<string, JobS
       after(dirs) {
         const pages = pageFiles(dirs.out);
         if (pages.length === 0) throw new Error("the paper produced no page");
-        const bytes = pages.reduce((sum, p) => sum + statSync(p.file).size, 0);
-        if (bytes > PAGES_OUT_BYTES) throw new Error("the pages are over the 256 MB limit");
+        const bytes = folderBytes(dirs.out);
+        if (bytes > outBytes) throw new Error(PAGES_OVER);
         return { pages: pages.length, bytes };
       },
     },

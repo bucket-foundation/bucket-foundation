@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Tex } from "@/components/math/InlineMath";
-import type { Api, PackedFile, PaperPage, ReportAsset, ResearchDetail, ResearchRow, TablePage } from "../api";
+import { EDIT_BYTES, EDIT_EXTS, type Api, type Change, type Exported, type PackedFile, type PaperPage, type ReportAsset, type ResearchDetail, type ResearchRow, type TablePage } from "../api";
 import { texPreview, type Block, type Inline } from "../tex-preview";
 import { href, RESEARCH_TABS, type ResearchTab } from "../router";
 import { useEngineImage, usePageImage } from "../use-engine-image";
@@ -8,7 +8,7 @@ import { FILTER_WAIT_MS, Pager, SortHead } from "./Data";
 import { Lesson } from "./Lesson";
 import "../research.css";
 
-export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "researchPage" | "image" | "openLink">;
+export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "researchPage" | "researchChanges" | "researchSource" | "researchSave" | "researchRevert" | "researchExport" | "image" | "openLink">;
 
 type Loaded<T> = { status: "loading" } | { status: "ready"; data: T } | { status: "error"; error: string };
 
@@ -42,10 +42,18 @@ export const PREVIEW_LABEL = "Preview";
 export const PAGES_MOUNTED = 6;
 export const PAGE_POLL_MS = 1000;
 export const PAGE_POLLS = 90;
-const TAB_LABELS: Record<ResearchTab, string> = { report: "Report", data: "Data", figures: "Figures", paper: "Paper", records: "Records" };
+const TAB_LABELS: Record<ResearchTab, string> = { report: "Report", data: "Data", figures: "Figures", paper: "Paper", records: "Records", changes: "Changes" };
 const SOURCE_EXTS = [".tex", ".bib", ".sty", ".md"];
 const count = (n: number) => n.toLocaleString("en-US");
 const heading = (column: string) => column.replace(/_/g, " ");
+
+export const SAVE_WAIT_MS = 700;
+export const NO_CHANGES = "Nothing is changed. The files match the shipped version.";
+const STATE_LABELS: Record<Change["state"], string> = { edited: "Edited here", "shipped-changed": "The shipped version changed", "base-unknown": "Edited before Bucket tracked it" };
+
+export function editable(d: ResearchDetail): PackedFile[] {
+  return d.files.filter((f) => EDIT_EXTS.some((ext) => f.path.toLowerCase().endsWith(ext)) && f.path.split("/").pop() !== "report.json" && f.size <= EDIT_BYTES);
+}
 
 export function tabsFor(d: ResearchDetail): ResearchTab[] {
   const local = d.manifest.schema !== "bucket.report/1";
@@ -138,11 +146,123 @@ function List({ api }: { api: ResearchApi }) {
   );
 }
 
+export const PLAIN_STORE = "Edits are kept on this computer as plain files, so the tools that build a paper can read them.";
+
+function Editor({ api, slug, path, onSaved, check }: { api: ResearchApi; slug: string; path: string; onSaved?: () => void; check?: (text: string) => string | null }) {
+  const [text, setText] = useState<string | null>(null);
+  const [status, setStatus] = useState<"loading" | "saved" | "typing" | "saving" | "conflict" | "error">("loading");
+  const [error, setError] = useState<string | null>(null);
+  const rev = useRef("");
+  const stored = useRef("");
+  const theirs = useRef("");
+
+  const load = () => {
+    setStatus("loading");
+    return api.researchSource(slug, path).then(
+      (r) => {
+        rev.current = r.rev;
+        stored.current = r.text;
+        setText(r.text);
+        setStatus("saved");
+      },
+      (e: Error) => {
+        setError(e.message);
+        setStatus("error");
+      },
+    );
+  };
+
+  useEffect(() => {
+    void load();
+  }, [api, slug, path]);
+
+  const save = (body: string, base: string) => {
+    setStatus("saving");
+    return api.researchSave(slug, path, base, body).then(
+      (r) => {
+        if (!r.saved) {
+          theirs.current = r.current;
+          setStatus("conflict");
+          return;
+        }
+        rev.current = r.rev;
+        stored.current = body;
+        setStatus("saved");
+        onSaved?.();
+      },
+      (e: Error) => {
+        setError(e.message);
+        setStatus("error");
+      },
+    );
+  };
+
+  useEffect(() => {
+    if (status !== "typing" || text === null || (check && check(text) !== null)) return;
+    const t = setTimeout(() => void save(text, rev.current), SAVE_WAIT_MS);
+    return () => clearTimeout(t);
+  }, [status, text]);
+
+  if (text === null) return status === "error" ? <p className="error">{error}</p> : <p className="muted">Loading…</p>;
+  return (
+    <div className="research-editor">
+      {status === "conflict" && (
+        <div className="banner" role="alert">
+          This file changed in another window.{" "}
+          <button type="button" onClick={() => void load()}>
+            Load that version
+          </button>{" "}
+          <button type="button" onClick={() => void save(text, theirs.current)}>
+            Keep mine
+          </button>
+        </div>
+      )}
+      {status === "error" && <p className="error">{error}</p>}
+      <textarea
+        value={text}
+        spellCheck={false}
+        aria-label="File text"
+        onChange={(e) => {
+          setText(e.target.value);
+          if (status !== "conflict") setStatus(e.target.value === stored.current ? "saved" : "typing");
+        }}
+      />
+      <p className="muted save-state" role="status">
+        {status === "typing" && check && check(text) !== null ? check(text) : status === "saved" ? "Saved" : status === "saving" ? "Saving…" : status === "typing" ? "Not saved yet" : ""}
+      </p>
+      <p className="muted plain-store">{PLAIN_STORE}</p>
+    </div>
+  );
+}
+
+function canEdit(d: ResearchDetail, path: string | null | undefined): path is string {
+  return typeof path === "string" && editable(d).some((f) => f.path === path);
+}
+
 function Markdown({ api, slug, path }: { api: ResearchApi; slug: string; path: string }) {
   const state = useLoaded(() => api.researchText(slug, path), [api, slug, path]);
   if (state.status === "loading") return <p className="muted">Loading…</p>;
   if (state.status === "error") return <p className="error">{state.error}</p>;
   return <Lesson text={state.data} />;
+}
+
+function ReportText({ api, d, path }: { api: ResearchApi; d: ResearchDetail; path: string }) {
+  const [editing, setEditing] = useState(false);
+  const [saves, setSaves] = useState(0);
+  return (
+    <>
+      <h2>Report text</h2>
+      {canEdit(d, path) && (
+        <div className="toolbar">
+          <button type="button" aria-pressed={editing} onClick={() => setEditing(!editing)}>
+            {editing ? "Close the editor" : "Edit the text"}
+          </button>
+        </div>
+      )}
+      {editing && <Editor api={api} slug={d.slug} path={path} onSaved={() => setSaves((n) => n + 1)} />}
+      <Markdown key={saves} api={api} slug={d.slug} path={path} />
+    </>
+  );
 }
 
 function Report({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
@@ -204,12 +324,7 @@ function Report({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
           </table>
         </>
       )}
-      {source && (
-        <>
-          <h2>Report text</h2>
-          <Markdown api={api} slug={d.slug} path={source} />
-        </>
-      )}
+      {source && <ReportText api={api} d={d} path={source} />}
       {readme && (
         <>
           <h2>Tool notes</h2>
@@ -286,7 +401,7 @@ function Figures({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
           {full.source && (
             <details className="fine">
               <summary>Script that draws it</summary>
-              <Script api={api} slug={d.slug} path={full.source} />
+              {canEdit(d, full.source) ? <Editor api={api} slug={d.slug} path={full.source} /> : <Script api={api} slug={d.slug} path={full.source} />}
             </details>
           )}
         </figure>
@@ -392,6 +507,8 @@ function DataTab({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   const tables = d.manifest.tables ?? [];
   const [open, setOpen] = useState(tables[0]?.id ?? "");
   const table = tables.find((t) => t.id === open) ?? tables[0];
+  const [editing, setEditing] = useState("");
+  const [saves, setSaves] = useState(0);
   return (
     <>
       {d.withheld > 0 && <p className="muted staff-absent">{STAFF_ABSENT}</p>}
@@ -408,7 +525,15 @@ function DataTab({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
             </div>
           </div>
           <p className="muted licence-line">{table.licence === "mixed" ? "Each row carries its own licence and source." : `Licence: ${table.licence}`}</p>
-          <Rows key={table.id} api={api} slug={d.slug} id={table.id} label={table.label} />
+          {canEdit(d, table.path) && (
+            <div className="toolbar">
+              <button type="button" aria-pressed={editing === table.id} onClick={() => setEditing(editing === table.id ? "" : table.id)}>
+                {editing === table.id ? "Close the editor" : "Edit the text"}
+              </button>
+            </div>
+          )}
+          {editing === table.id && canEdit(d, table.path) && <Editor key={table.id} api={api} slug={d.slug} path={table.path} onSaved={() => setSaves((n) => n + 1)} />}
+          <Rows key={`${table.id}:${saves}`} api={api} slug={d.slug} id={table.id} label={table.label} />
         </>
       )}
     </>
@@ -445,8 +570,18 @@ function Value({ value }: { value: unknown }) {
   );
 }
 
-function Record({ api, slug, path, title, onClose }: { api: ResearchApi; slug: string; path: string; title: string; onClose: () => void }) {
-  const state = useLoaded(() => api.researchText(slug, path), [api, slug, path]);
+function validJson(text: string): string | null {
+  try {
+    JSON.parse(text);
+    return null;
+  } catch {
+    return "This text does not parse yet, so it is not saved.";
+  }
+}
+
+function Record({ api, slug, path, title, onClose, canEditRecord }: { api: ResearchApi; slug: string; path: string; title: string; onClose: () => void; canEditRecord: boolean }) {
+  const [saves, setSaves] = useState(0);
+  const state = useLoaded(() => api.researchText(slug, path), [api, slug, path, saves]);
   const [raw, setRaw] = useState(false);
   let parsed: Record<string, unknown> | null = null;
   if (state.status === "ready") {
@@ -473,7 +608,7 @@ function Record({ api, slug, path, title, onClose }: { api: ResearchApi; slug: s
       {state.status === "loading" && <p className="muted">Loading…</p>}
       {state.status === "error" && <p className="error">{state.error}</p>}
       {state.status === "ready" && !parsed && <p className="error">Bucket could not read this record.</p>}
-      {state.status === "ready" && parsed && (raw ? <pre className="record-raw">{state.data}</pre> : <Value value={parsed} />)}
+      {state.status === "ready" && parsed && (raw ? canEditRecord ? <Editor api={api} slug={slug} path={path} check={validJson} onSaved={() => setSaves((n) => n + 1)} /> : <pre className="record-raw">{state.data}</pre> : <Value value={parsed} />)}
     </article>
   );
 }
@@ -483,7 +618,7 @@ function Records({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   const [open, setOpen] = useState<{ path: string; title: string } | null>(null);
   if (sets.length === 0) return <p className="muted staff-absent">{d.withheld > 0 ? STAFF_ABSENT : NO_RECORDS}</p>;
   const set = sets[0];
-  if (open) return <Record api={api} slug={d.slug} path={open.path} title={open.title} onClose={() => setOpen(null)} />;
+  if (open) return <Record api={api} slug={d.slug} path={open.path} title={open.title} onClose={() => setOpen(null)} canEditRecord={canEdit(d, open.path)} />;
   return (
     <>
       <p className="muted licence-line">
@@ -689,8 +824,9 @@ function Paper({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   const sources = [d.manifest.source_path, ...(paper?.includes ?? []), ...(paper?.bib ?? []), ...(paper?.style ?? [])].filter((p, i, all) => listed.has(p) && SOURCE_EXTS.some((ext) => p.endsWith(ext)) && all.indexOf(p) === i);
   const main = sources[0] === d.manifest.source_path && sources[0].endsWith(".tex") ? sources[0] : null;
   const [open, setOpen] = useState(sources[0] ?? "");
-  const text = useLoaded(() => (open ? api.researchText(d.slug, open) : Promise.resolve("")), [api, d.slug, open]);
-  const entry = useLoaded(() => (main ? api.researchText(d.slug, main) : Promise.resolve(null)), [api, d.slug, main]);
+  const [saves, setSaves] = useState(0);
+  const text = useLoaded(() => (open && !canEdit(d, open) ? api.researchText(d.slug, open) : Promise.resolve("")), [api, d.slug, open]);
+  const entry = useLoaded(() => (main ? api.researchText(d.slug, main) : Promise.resolve(null)), [api, d.slug, main, saves]);
   return (
     <div className={sources.length ? "paper-split" : "paper-single"}>
       {sources.length > 0 && (
@@ -704,12 +840,117 @@ function Paper({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
               ))}
             </select>
           </div>
-          {text.status === "loading" && <p className="muted">Loading…</p>}
-          {text.status === "error" && <p className="error">{text.error}</p>}
-          {text.status === "ready" && <pre>{text.data}</pre>}
+          {canEdit(d, open) ? (
+            <Editor key={open} api={api} slug={d.slug} path={open} onSaved={() => setSaves((n) => n + 1)} />
+          ) : (
+            <>
+              {text.status === "loading" && <p className="muted">Loading…</p>}
+              {text.status === "error" && <p className="error">{text.error}</p>}
+              {text.status === "ready" && <pre>{text.data}</pre>}
+            </>
+          )}
         </div>
       )}
       <div className="panel paper-view">{entry.status === "loading" ? <p className="muted">Loading…</p> : <Rendered api={api} d={d} source={entry.status === "ready" ? entry.data : null} />}</div>
+    </div>
+  );
+}
+
+function Diff({ change }: { change: Change }) {
+  if (!change.hunks) return <p className="muted">This file is too large or holds bytes that are no text, so only its size shows: {count(change.shippedSize)} bytes shipped, {count(change.size)} bytes now.</p>;
+  return (
+    <div className="research-diff">
+      {change.hunks.map((h, i) => (
+        <pre key={i}>
+          {h.lines.map((l, j) => (
+            <span key={j} className={l.op === "+" ? "add" : l.op === "-" ? "del" : undefined}>
+              {l.op}
+              {l.text}
+              {"\n"}
+            </span>
+          ))}
+        </pre>
+      ))}
+    </div>
+  );
+}
+
+function Changes({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+  const [tick, setTick] = useState(0);
+  const state = useLoaded(() => api.researchChanges(d.slug), [api, d.slug, tick]);
+  const [last, setLast] = useState<{ notice: string; changes: Change[] } | null>(null);
+  const [shown, setShown] = useState<string | null>(null);
+  const [exported, setExported] = useState<Exported | null>(null);
+  const [failed, setFailed] = useState<string | null>(null);
+  useEffect(() => {
+    if (state.status === "ready") setLast(state.data);
+  }, [state]);
+  const refresh = () => setTick((n) => n + 1);
+  const act = (run: () => Promise<unknown>) => {
+    setFailed(null);
+    void run().then(refresh, (e: Error) => setFailed(e.message));
+  };
+  if (state.status === "error" && !last) return <p className="error">{state.error}</p>;
+  if (!last) return <p className="muted">Loading…</p>;
+  return (
+    <div className="research-changes">
+      <p className="muted plain-store">{last.notice}</p>
+      <p className="muted">Edit a file in its own tab: the paper source under Paper, a table under Data, a record under Records.</p>
+      {failed && (
+        <p className="banner" role="alert">
+          {failed}
+        </p>
+      )}
+      <div className="panel">
+        <h2>Changed files</h2>
+        {last.changes.length === 0 ? (
+          <p className="muted">{NO_CHANGES}</p>
+        ) : (
+          <>
+            <ul className="change-list">
+              {last.changes.map((c) => (
+                <li key={c.path}>
+                  <div className="change-head">
+                    <span className="change-path">{c.path}</span>
+                    <span className="tag ghost">{STATE_LABELS[c.state]}</span>
+                    <span className="muted">
+                      {count(c.added)} added, {count(c.removed)} removed
+                    </span>
+                    <button type="button" onClick={() => setShown(shown === c.path ? null : c.path)}>
+                      {shown === c.path ? "Hide the changes" : "Show the changes"}
+                    </button>
+                    {c.state !== "edited" && (
+                      <button type="button" onClick={() => act(() => api.researchRevert(d.slug, c.path, true))}>
+                        Keep mine
+                      </button>
+                    )}
+                    <button type="button" onClick={() => act(() => api.researchRevert(d.slug, c.path))}>
+                      Take the shipped version
+                    </button>
+                  </div>
+                  {shown === c.path && <Diff change={c} />}
+                </li>
+              ))}
+            </ul>
+            <div className="toolbar">
+              <button type="button" className="primary" onClick={() => act(() => api.researchExport(d.slug).then(setExported))}>
+                Export the changes
+              </button>
+            </div>
+          </>
+        )}
+        {exported && (
+          <div className="research-export">
+            <p>The export is in this folder:</p>
+            <p className="hash">{exported.dir}</p>
+            <ul>
+              {exported.files.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -756,6 +997,8 @@ function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: Resea
         <Figures api={api} d={d} />
       ) : tab === "data" && tabsFor(d).includes("data") ? (
         <DataTab api={api} d={d} />
+      ) : tab === "changes" && tabsFor(d).includes("changes") ? (
+        <Changes api={api} d={d} />
       ) : tab === "paper" && tabsFor(d).includes("paper") ? (
         <Paper api={api} d={d} />
       ) : tab === "records" && tabsFor(d).includes("records") ? (

@@ -7,7 +7,7 @@ import { JobError, JobRunner, type JobSpec } from "../src/jobs";
 import { encodeBlob, RESEARCH_SCHEMA, sha256, type ResearchBlobs, type ResearchIndex } from "../src/pack/research";
 import { Research } from "../src/research";
 import { ConsentStore, frozenDigest, Grant } from "../src/research-consent";
-import { pagesArgv, PAGES_KIND, PAGES_TIMEOUT_MS, researchSpecs, toolInstall } from "../src/research-jobs";
+import { folderBytes, pagesArgv, PAGES_KIND, PAGES_OVER, PAGES_TIMEOUT_MS, PAGES_WATCH_MS, researchSpecs, toolInstall } from "../src/research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages, type PagesState } from "../src/research-pdf";
 import { startServe, type Serve } from "../src/serve";
 
@@ -184,6 +184,28 @@ describe("paper pages", () => {
     expect(pagesRunner.list()).toEqual([]);
     expect(readdirSync(pagesRunner.rootDir)).toEqual([]);
     expect(existsSync(cache) ? readdirSync(cache) : []).toEqual([]);
+  });
+
+  test("a render that passes the output cap is stopped while it runs", async () => {
+    const real = researchSpecs({ os: "linux", which: () => "/usr/bin/pdftoppm", outBytes: 100_000, watchMs: 40 })[PAGES_KIND];
+    const filler: JobSpec = { ...real, plan: (dirs) => ({ argv: ["sh", "-c", `head -c 400000 /dev/zero > "${dirs.out}/page-001.png"; sleep 20`] }) };
+    const { pages, pagesRunner, cache } = setup({ which: () => "/usr/bin/pdftoppm", specs: { [PAGES_KIND]: filler } });
+    const at = performance.now();
+    expect((await pages.status("demo")).state).toBe("rendering");
+    expect(await settled(pages)).toEqual({ state: "failed", reason: PAGES_OVER });
+    expect(performance.now() - at).toBeLessThan(5000);
+    expect(pagesRunner.list()).toEqual([]);
+    expect(readdirSync(pagesRunner.rootDir)).toEqual([]);
+    expect(existsSync(cache) ? readdirSync(cache) : []).toEqual([]);
+    expect([real.watch!.everyMs, PAGES_WATCH_MS, PAGES_OVER]).toEqual([40, 500, "the pages are over the 256 MB limit"]);
+    const dir = temp("bytes");
+    writeFileSync(join(dir, "a.png"), Buffer.alloc(70));
+    writeFileSync(join(dir, "b.png"), Buffer.alloc(30));
+    mkdirSync(join(dir, "sub"));
+    expect(folderBytes(dir)).toBe(100);
+    const under = researchSpecs({ os: "linux", which: () => "/usr/bin/pdftoppm" })[PAGES_KIND];
+    expect(under.watch!.check({ dir, inputs: {}, out: dir })).toBeNull();
+    expect(researchSpecs({ os: "linux", outBytes: 99 })[PAGES_KIND].watch!.check({ dir, inputs: {}, out: dir })).toBe(PAGES_OVER);
   });
 
   test("a missing tool yields the Preview tier with an install line", async () => {

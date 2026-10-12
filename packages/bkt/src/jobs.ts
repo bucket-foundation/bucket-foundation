@@ -25,6 +25,7 @@ export interface JobSpec {
   inputs: Record<string, { label: string; maxBytes: number; exts: string[] }>;
   options?: Record<string, { min: number; max: number; integer: boolean }>;
   timeoutMs?: number;
+  watch?: { everyMs: number; check(dirs: JobDirs): string | null };
   plan(dirs: JobDirs, options: Record<string, number>, params?: Record<string, string>): JobPlan;
   after?(dirs: JobDirs): unknown;
   failed?(dirs: JobDirs): unknown;
@@ -58,7 +59,9 @@ interface Running {
   proc: ChildProcess | null;
   timer: ReturnType<typeof setTimeout> | null;
   killTimer: ReturnType<typeof setTimeout> | null;
+  watch: ReturnType<typeof setInterval> | null;
   stop: JobState | null;
+  limit: string | null;
 }
 
 export interface JobRunnerOptions {
@@ -201,7 +204,7 @@ export class JobRunner {
     const now = this.o.now ?? Date.now;
     const { dir } = dirs;
     const view: JobView = { id, kind, state: "running", startedAt: now(), endedAt: null, code: null, log: "", logTruncated: false, result: null, error: null, install: null };
-    const job: Running = { view, proc: null, timer: null, killTimer: null, stop: null };
+    const job: Running = { view, proc: null, timer: null, killTimer: null, watch: null, stop: null, limit: null };
     this.jobs.push(job);
     this.jobs = this.jobs.slice(-(this.o.keep ?? 20));
 
@@ -209,6 +212,7 @@ export class JobRunner {
       if (inDir) rmSync(inDir, { recursive: true, force: true });
       if (job.timer) clearTimeout(job.timer);
       if (job.killTimer) clearTimeout(job.killTimer);
+      if (job.watch) clearInterval(job.watch);
       view.state = state;
       view.error = error;
       view.endedAt = now();
@@ -277,11 +281,24 @@ export class JobRunner {
       proc.on("exit", (code) => done(code));
     });
     job.timer = setTimeout(() => this.halt(job, "timeout"), spec.timeoutMs ?? this.o.timeoutMs ?? DEFAULT_TIMEOUT_MS);
+    const watch = spec.watch;
+    if (watch)
+      job.watch = setInterval(() => {
+        let over: string | null;
+        try {
+          over = watch.check(dirs);
+        } catch (e) {
+          over = e instanceof Error ? e.message : String(e);
+        }
+        if (over === null || job.stop) return;
+        job.limit = over;
+        this.halt(job, "failed");
+      }, watch.everyMs);
     void (async () => {
       const [code] = await Promise.all([exited, lines(proc.stdout), lines(proc.stderr)]);
       this.signalGroup(proc, "SIGKILL");
       view.code = code;
-      if (job.stop) return finish(job.stop, job.stop === "timeout" ? "the job ran past its time limit" : null);
+      if (job.stop) return finish(job.stop, job.stop === "timeout" ? "the job ran past its time limit" : job.limit);
       if (code !== 0) {
         try {
           view.result = code !== null && spec.failed ? ((await spec.failed(dirs)) ?? null) : null;

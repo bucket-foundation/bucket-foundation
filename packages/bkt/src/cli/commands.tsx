@@ -66,6 +66,7 @@ import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
 import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
 import { installLines, researchInstall } from "./research";
+import { FILE_BODY_BYTES, ResearchWork, researchWorkRoutes } from "../research-work";
 import { ConsentStore } from "../research-consent";
 import { researchSpecs } from "../research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
@@ -315,6 +316,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...researchRoutes(research, researchTrouble),
+      ...researchWorkRoutes(new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() }), researchTrouble),
       ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os }), researchTrouble),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
       ...servedWordRoutes(workQuiz),
@@ -328,6 +330,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
       "POST /local/research/install": SIDE_PACK_BYTES,
+      "POST /local/research/file": FILE_BODY_BYTES,
       "POST /local/advisor/import": REVIEW_BODY_BYTES,
       "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
       "POST /local/jobs": JOB_BODY_BYTES,

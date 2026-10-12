@@ -22,6 +22,12 @@ import type { WordSearch } from "../../bkt/src/core/word-decks";
 export type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
 export type { TablePage } from "../../bkt/src/research-table";
 import type { TablePage } from "../../bkt/src/research-table";
+export type { Change, Exported } from "../../bkt/src/research-work";
+import type { Change, Exported } from "../../bkt/src/research-work";
+
+export type SaveResult = { saved: true; rev: string; changed: boolean } | { saved: false; current: string };
+export const EDIT_EXTS = [".md", ".tex", ".bib", ".sty", ".tsv", ".csv", ".json", ".jsonl", ".py", ".txt", ".lean"];
+export const EDIT_BYTES = 4 * 1024 * 1024;
 export type { PackedFile, ReportAsset, ReportAttribution, ReportRecord } from "../../bkt/src/pack/research";
 import type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
 
@@ -495,6 +501,35 @@ export class Api {
     if (type !== "image/png" || !Number.isInteger(pages) || pages < 1) throw new Error("The page did not arrive as an image.");
     if (blob.size > IMAGE_MAX_BYTES) throw new Error("That page is over 8 MB.");
     return { state: "ready", pages, pdf: r.headers.get("x-bkt-pdf") ?? "", src: await asDataUrl(blob.type === type ? blob : new Blob([blob], { type })) };
+  }
+
+  researchChanges(slug: string) {
+    return this.call<{ notice: string; changes: Change[] }>(`/local/research/changes?slug=${encodeURIComponent(slug)}`);
+  }
+
+  async researchSource(slug: string, path: string): Promise<{ text: string; rev: string }> {
+    const r = await this.researchFile(slug, path);
+    return { text: await r.text(), rev: r.headers.get("x-bkt-sha256") ?? "" };
+  }
+
+  async researchSave(slug: string, path: string, baseRev: string, text: string): Promise<SaveResult> {
+    const r = await fetch(`/local/research/file?slug=${encodeURIComponent(slug)}&path=${encodeURIComponent(path)}&base_rev=${encodeURIComponent(baseRev)}`, {
+      method: "POST",
+      headers: { authorization: `Bucket ${this.token}`, "content-type": "text/plain; charset=utf-8" },
+      body: text,
+    });
+    const body = (await r.json().catch(() => ({}))) as { rev?: string; changed?: boolean; current?: string; error?: string };
+    if (r.status === 409 && typeof body.current === "string") return { saved: false, current: body.current };
+    if (!r.ok || typeof body.rev !== "string") throw new ApiError(body.error ?? "", r.status);
+    return { saved: true, rev: body.rev, changed: body.changed === true };
+  }
+
+  researchRevert(slug: string, path: string, keep = false) {
+    return this.call<{ path: string; changed: number }>("/local/research/revert", { method: "POST", body: { slug, path, keep } });
+  }
+
+  researchExport(slug: string) {
+    return this.call<Exported>("/local/research/export", { method: "POST", body: { slug } });
   }
 
   private async researchFile(slug: string, path: string): Promise<Response> {
