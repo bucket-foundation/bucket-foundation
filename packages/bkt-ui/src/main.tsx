@@ -57,7 +57,7 @@ function App() {
   }, [api]);
 
   const active = activeNav(route);
-  const canon = route.name === "canon" || route.name === "search" || route.name === "explore";
+  const canon = route.name === "canon" || route.name === "search" || route.name === "explore" || (route.name === "workspace" && (route.type === "graphs" || route.type === "maps"));
 
   return (
     <div className="shell">

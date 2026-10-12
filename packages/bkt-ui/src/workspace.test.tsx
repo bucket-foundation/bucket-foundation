@@ -121,7 +121,7 @@ async function mount(node: React.ReactElement) {
   return { host, click, settle, wait, act, unmount: () => act(async () => root.unmount()) };
 }
 
-async function workspace(api: WorkspaceApi, type: "tables" | "records" | "figures" | "papers" | "people" | "graphs", storage: TabStorage | null = memory()) {
+async function workspace(api: WorkspaceApi, type: "tables" | "records" | "figures" | "papers" | "people" | "decks", storage: TabStorage | null = memory()) {
   const { WorkspaceView } = await import("./views/Workspace");
   return mount(<WorkspaceView api={api} type={type} storage={storage} />);
 }
@@ -318,11 +318,11 @@ describe("records workspace", () => {
 
 describe("workspaces that are not built", () => {
   test("show one plain line and a link where a screen holds the items today", async () => {
-    const graphs = await workspace(fakeApi().api, "graphs");
-    expect(graphs.host.querySelector("h1")!.textContent).toBe("Graphs");
-    expect(graphs.host.querySelector("p.muted")!.textContent).toBe("Graphs open in Explore for now.");
-    expect(graphs.host.querySelector("a.link")!.getAttribute("href")).toBe("#/explore");
-    await graphs.unmount();
+    const decks = await workspace(fakeApi().api, "decks");
+    expect(decks.host.querySelector("h1")!.textContent).toBe("Decks");
+    expect(decks.host.querySelector("p.muted")!.textContent).toBe("Decks open from Learn for now.");
+    expect(decks.host.querySelector("a.link")!.getAttribute("href")).toBe("#/learn");
+    await decks.unmount();
     const f = fakeApi();
     const people = await workspace(f.api, "people");
     expect(people.host.querySelector("p.muted")!.textContent).toBe("This workspace is empty in this version of Bucket.");
@@ -484,14 +484,14 @@ describe("leaving a workspace editor inside the save pause", () => {
 });
 
 describe("workspace addresses and the tabs that are not built", () => {
-  test("each of the four shows one plain line, at most one link to a screen that exists, and no other control", async () => {
+  test("each of the two shows one plain line, at most one link to a screen that exists, and no other control", async () => {
     const { LATER } = await import("./views/Workspace");
     const { NAV } = await import("./nav");
     const screens = NAV.map((n) => href(n.route));
-    expect(Object.keys(LATER).sort()).toEqual(["decks", "graphs", "maps", "people"]);
+    expect(Object.keys(LATER).sort()).toEqual(["decks", "people"]);
     for (const [type, words] of Object.entries(LATER)) {
       const f = fakeApi();
-      const v = await workspace(f.api, type as "graphs");
+      const v = await workspace(f.api, type as "decks");
       expect({ type, lines: Array.from(v.host.querySelectorAll("p")).map((p) => p.textContent) }).toEqual({ type, lines: [words.line] });
       expect({ type, controls: v.host.querySelectorAll("button, input, select, textarea, [role=tab]").length }).toEqual({ type, controls: 0 });
       const links = Array.from(v.host.querySelectorAll("a")).map((a) => a.getAttribute("href")!);
@@ -522,6 +522,30 @@ describe("workspace addresses and the tabs that are not built", () => {
       if (/#\/desk|DeskType|DESK_TYPES|name: "desk"/.test(await Bun.file(`${import.meta.dir}/${path}`).text())) hits.push(path);
     }
     expect(hits).toEqual([]);
+  });
+});
+
+describe("records address", () => {
+  test("a records address that names a second set opens that set", async () => {
+    const { Screen } = await import("./nav");
+    const two: ResearchDetail = { ...DETAIL, manifest: { ...DETAIL.manifest, record_sets: [...DETAIL.manifest.record_sets!, { id: "branches", dir: "tools/solvability-atlas/branches", schema: "bucket.branch/1", label: "Branch records", licence: "CC0-1.0", audience: "public" }] } };
+    const f = fakeApi({ researchManifest: async () => two });
+    const second = await mount(<Screen api={f.api as unknown as Api} route={parseHash("#/research/solvability-frontier/records/branches")} />);
+    expect(second.host.querySelector(".research-sets button.on")!.textContent).toBe("Branch records");
+    expect(second.host.querySelector(".licence-line")!.textContent).toBe("Branch records. Licence: CC0-1.0");
+    expect(f.tables).toEqual([{ slug: "solvability-frontier", id: "branches" }]);
+    await second.click(press(second.host, "Problem records"));
+    expect(f.tables.at(-1)).toEqual({ slug: "solvability-frontier", id: "problems" });
+    await second.unmount();
+    const first = await mount(<Screen api={f.api as unknown as Api} route={parseHash("#/research/solvability-frontier/records")} />);
+    expect(first.host.querySelector(".research-sets button.on")!.textContent).toBe("Problem records");
+    await first.unmount();
+    const absent = await mount(<Screen api={f.api as unknown as Api} route={parseHash("#/research/solvability-frontier/records/absent")} />);
+    expect(absent.host.querySelector(".research-sets button.on")!.textContent).toBe("Problem records");
+    await absent.unmount();
+    const one = await mount(<Screen api={fakeApi().api as unknown as Api} route={parseHash("#/research/solvability-frontier/records/problems")} />);
+    expect(one.host.querySelector(".research-sets")).toBeNull();
+    await one.unmount();
   });
 });
 
