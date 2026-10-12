@@ -177,6 +177,7 @@ export class BuildSwitch {
 export interface ConsentOptions {
   now?: () => number;
   onDrop?: (pending: Pending, why: "denied" | "expired" | "replaced") => void;
+  onOpen?: (view: PendingView) => void;
   switch?: BuildSwitch;
   ttlMs?: number;
 }
@@ -252,6 +253,8 @@ export class ConsentStore {
       }
     }, this.ttl() + 50);
     (this.timer as { unref?: () => void }).unref?.();
+    const view = this.view();
+    if (view) this.o.onOpen?.(view);
     return p;
   }
 
@@ -280,4 +283,55 @@ export class ConsentStore {
     this.o.onDrop?.(p, "denied");
     return p;
   }
+}
+
+export const CONSENT_PREFIX = "bkt-consent ";
+export const CONSENT_TITLE_CHARS = 200;
+export const CONSENT_BODY_CHARS = 4000;
+export const CONSENT_BODY_CUT = "The request is longer than this window shows. Run bkt research approve in a terminal to read all of it.";
+const ANSWER = /^consent ([A-Za-z0-9_-]{22}) ([0-9a-f]{64}) (allow|deny)$/;
+
+export function consentLine(view: Pick<PendingView, "id" | "digest" | "title" | "body">): string {
+  const flat = (text: string) => text.replace(/\r/g, "");
+  const title = flat(view.title).replace(/\n/g, " ").slice(0, CONSENT_TITLE_CHARS);
+  const whole = flat(view.body);
+  const body = whole.length <= CONSENT_BODY_CHARS ? whole : `${whole.slice(0, CONSENT_BODY_CHARS - CONSENT_BODY_CUT.length - 2)}\n\n${CONSENT_BODY_CUT}`;
+  return `${CONSENT_PREFIX}${JSON.stringify({ id: view.id, digest: view.digest, title, body })}\n`;
+}
+
+export function emitConsent(write: (text: string) => unknown, view: Pick<PendingView, "id" | "digest" | "title" | "body">): void {
+  write(consentLine(view));
+}
+
+export function parseAnswer(line: string): { id: string; digest: string; allow: boolean } | null {
+  const m = ANSWER.exec(line);
+  return m ? { id: m[1], digest: m[2], allow: m[3] === "allow" } : null;
+}
+
+export function answer(line: string, decide: (id: string, digest: string, allow: boolean) => unknown, onRefused: (e: Error) => void = () => {}): boolean {
+  const said = parseAnswer(line);
+  if (!said) return false;
+  try {
+    decide(said.id, said.digest, said.allow);
+    return true;
+  } catch (e) {
+    onRefused(e as Error);
+    return false;
+  }
+}
+
+export function guardConsentText(text: string): string {
+  return text.replace(/(^|\n)(?=bkt-consent)/g, "$1 ");
+}
+
+type Write = (chunk: unknown, ...rest: unknown[]) => boolean;
+
+export function guardStdout(out: { write: Write }): (text: string) => boolean {
+  const raw = out.write.bind(out) as Write;
+  out.write = ((chunk: unknown, ...rest: unknown[]) => {
+    if (typeof chunk === "string") return raw(guardConsentText(chunk), ...rest);
+    if (chunk instanceof Uint8Array) return raw(guardConsentText(Buffer.from(chunk).toString("utf8")), ...rest);
+    return raw(chunk, ...rest);
+  }) as Write;
+  return (text: string) => raw(text);
 }

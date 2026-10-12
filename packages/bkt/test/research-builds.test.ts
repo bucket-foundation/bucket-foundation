@@ -7,7 +7,7 @@ import { jobRoutes } from "../src/job-routes";
 import { JobError, JobRunner, type JobSpec, type JobView } from "../src/jobs";
 import { encodeBlob, RESEARCH_SCHEMA, sha256, SIDE_SCHEMA, type PackedFile, type ReportBuild, type ReportRecord, type ResearchBlobs, type ResearchIndex, type ResearchSidePack } from "../src/pack/research";
 import { installSidePack, Research, ResearchError, researchRoutes } from "../src/research";
-import { BuildSwitch, CONSENT_TTL_MS, ConsentError, ConsentStore, DENY_COOLDOWN_MS, frozenDigest, Grant } from "../src/research-consent";
+import { answer, BuildSwitch, CONSENT_BODY_CHARS, CONSENT_BODY_CUT, CONSENT_PREFIX, CONSENT_TITLE_CHARS, CONSENT_TTL_MS, ConsentError, consentLine, ConsentStore, DENY_COOLDOWN_MS, emitConsent, frozenDigest, Grant, guardConsentText, guardStdout } from "../src/research-consent";
 import { approvalText, bcfProblem, BUILD_OVER, FIGURE_KIND, kindOf, LATEX_FLAGS, LATEX_TIMEOUT_MS, PDF_KIND, PYTHON_TIMEOUT_MS, researchBuildRoutes, ResearchBuilds, researchSpecs, TABLES_KIND, treeBytes } from "../src/research-jobs";
 import { ResearchPages } from "../src/research-pdf";
 import { LocalOutputs, ResearchWork, researchWorkRoutes } from "../src/research-work";
@@ -151,6 +151,67 @@ describe("research build specs", () => {
     expect(bcfProblem(bcf, job)).toBe("the paper names a bibliography that is a symlink: link.bib");
     expect(bcfProblem(join(job, "none.bcf"), job)).toBeNull();
     expect(treeBytes(job)).toBeGreaterThan(BIB.length * 2);
+  });
+});
+
+describe("desktop shell channel", () => {
+  test("a log line starting with bkt-consent is written with a leading space", () => {
+    const written: string[] = [];
+    const out = { write: (chunk: unknown) => (written.push(String(chunk)), true) };
+    const direct = guardStdout(out);
+    out.write("bkt-consent {\"id\":\"forged\"}\n");
+    out.write("a plain line\nbkt-consent second line\nmore\n");
+    out.write(new TextEncoder().encode("bkt-consent as bytes\n"));
+    out.write("says bkt-consent in the middle\n");
+    expect(written).toEqual([" bkt-consent {\"id\":\"forged\"}\n", "a plain line\n bkt-consent second line\nmore\n", " bkt-consent as bytes\n", "says bkt-consent in the middle\n"]);
+    expect(written.flatMap((w) => w.split("\n")).filter((line) => line.startsWith("bkt-consent"))).toEqual([]);
+    emitConsent(direct, { id: "A".repeat(22), digest: "a".repeat(64), title: "Allow this build?", body: "A demo paper" });
+    expect(written.at(-1)).toBe(`bkt-consent {"id":"${"A".repeat(22)}","digest":"${"a".repeat(64)}","title":"Allow this build?","body":"A demo paper"}\n`);
+    expect(guardConsentText("bkt-consent")).toBe(" bkt-consent");
+  });
+
+  test("the request line is one line, holds four fields, and a long request is cut with the way to read all of it", () => {
+    const view = { id: "B".repeat(22), digest: "b".repeat(64), title: `A title\nwith a line feed ${"t".repeat(300)}`, body: `first\r\nsecond\n${"x".repeat(9000)}` };
+    const line = consentLine(view);
+    expect(line.endsWith("\n")).toBe(true);
+    expect(line.slice(0, -1).includes("\n")).toBe(false);
+    expect(line.startsWith(CONSENT_PREFIX)).toBe(true);
+    const sent = JSON.parse(line.slice(CONSENT_PREFIX.length)) as Record<string, string>;
+    expect(Object.keys(sent)).toEqual(["id", "digest", "title", "body"]);
+    expect([sent.title.length, sent.title.includes("\n")]).toEqual([CONSENT_TITLE_CHARS, false]);
+    expect(sent.body.length).toBeLessThanOrEqual(CONSENT_BODY_CHARS);
+    expect(sent.body.startsWith("first\nsecond\n")).toBe(true);
+    expect(sent.body.endsWith(CONSENT_BODY_CUT)).toBe(true);
+    expect([CONSENT_TITLE_CHARS, CONSENT_BODY_CHARS]).toEqual([200, 4000]);
+  });
+
+  test("opening a request emits it once, and answer refuses an id and digest pair that is not pending", async () => {
+    const lines: string[] = [];
+    const s = setup();
+    const consent = new ConsentStore({ now: () => 1000, switch: s.gate, onDrop: (p) => s.runner.discard(p.frozenDir), onOpen: (view) => emitConsent((text) => lines.push(text), view) });
+    const builds = new ResearchBuilds({ research: s.research, runner: s.runner, consent, gate: s.gate, os: "linux", which: tools().which, ownBuilds: (slug) => s.local.buildsOn(slug) });
+    const view = await builds.request("demo", "pdf");
+    expect(lines.length).toBe(1);
+    const sent = JSON.parse(lines[0].slice(CONSENT_PREFIX.length)) as { id: string; digest: string; title: string; body: string };
+    expect(sent).toEqual({ id: view.id, digest: view.digest, title: view.title, body: view.body });
+    const refused: string[] = [];
+    const say = (line: string) => answer(line, (id, digest, allow) => builds.answer(id, digest, allow), (e) => refused.push(e.message));
+    expect(say(`consent ${"C".repeat(22)} ${view.digest} allow`)).toBe(false);
+    expect(say(`consent ${view.id} ${"0".repeat(64)} allow`)).toBe(false);
+    expect(say(`consent ${view.id} ${view.digest} maybe`)).toBe(false);
+    expect(refused).toEqual(["no build request matches that answer", "no build request matches that answer"]);
+    expect(s.runner.list()).toEqual([]);
+    expect(consent.pending()!.id).toBe(view.id);
+    expect(say(`consent ${view.id} ${view.digest} allow`)).toBe(true);
+    expect(s.runner.list().length + (s.runner.busy() ? 1 : 0)).toBeGreaterThan(0);
+    expect(say(`consent ${view.id} ${view.digest} allow`)).toBe(false);
+    expect(refused.length).toBe(3);
+    const denied = setup();
+    const consent2 = new ConsentStore({ now: () => 1000, switch: denied.gate, onDrop: (p) => denied.runner.discard(p.frozenDir) });
+    const builds2 = new ResearchBuilds({ research: denied.research, runner: denied.runner, consent: consent2, gate: denied.gate, os: "linux", which: tools().which });
+    const v2 = await builds2.request("demo", "pdf");
+    expect(answer(`consent ${v2.id} ${v2.digest} deny`, (id, digest, allow) => builds2.answer(id, digest, allow))).toBe(true);
+    expect([consent2.pending(), denied.runner.list()]).toEqual([null, []]);
   });
 });
 

@@ -71,7 +71,7 @@ import { addLines, answerKey, approvalLines, installLines, researchAdd, research
 import { createInterface } from "node:readline";
 import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
 import { workspaceRoutes } from "../workspace";
-import { BuildSwitch, ConsentStore } from "../research-consent";
+import { answer, BuildSwitch, ConsentStore, emitConsent, guardConsentText, guardStdout } from "../research-consent";
 import { researchBuildRoutes, ResearchBuilds, researchSpecs } from "../research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
 import type { ResearchBlobs, ResearchIndex } from "../pack/research";
@@ -346,7 +346,12 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   research.setLocal(ownOutputs);
   const buildRunner = new JobRunner({ root: join(dir, "research", "jobs", "build"), specs: researchSpecs({ os: platformFor().os, dataDir: dir, python: platformFor().python() }), keep: 20, frozenOnly: true });
   const buildGate = new BuildSwitch(dir);
-  const buildConsent = new ConsentStore({ switch: buildGate, onDrop: (pending) => buildRunner.discard(pending.frozenDir) });
+  const toShell = isSidecar(process.env) ? guardStdout(process.stdout as unknown as { write: (chunk: unknown, ...rest: unknown[]) => boolean }) : null;
+  if (toShell) {
+    const say = console.log.bind(console);
+    console.log = (...args: unknown[]) => say(...args.map((a) => (typeof a === "string" ? guardConsentText(a) : a)));
+  }
+  const buildConsent = new ConsentStore({ switch: buildGate, onDrop: (pending) => buildRunner.discard(pending.frozenDir), onOpen: (view) => toShell && emitConsent(toShell, view) });
   const researchWork = new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() });
   const builds = new ResearchBuilds({ research, runner: buildRunner, consent: buildConsent, gate: buildGate, os: platformFor().os, ownBuilds: (slug) => ownOutputs.buildsOn(slug) });
   const pagesRunner = new JobRunner({ root: join(dir, "research", "jobs", "pages"), specs: researchSpecs({ os: platformFor().os }), keep: PAGES_KEEP, frozenOnly: true });
@@ -417,7 +422,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   await new Promise<void>((done) => {
     process.once("SIGINT", done);
     process.once("SIGTERM", done);
-    void parentGone(process.env, () => Bun.stdin.stream()).then(() => {
+    void parentGone(process.env, () => Bun.stdin.stream(), (line) => answer(line, (id, digest, allow) => builds.answer(id, digest, allow), (e) => console.error(`bkt serve: build approval: ${e.message}`))).then(() => {
       console.error("bkt serve: the Bucket window process is gone; stopping");
       done();
     });
