@@ -114,6 +114,7 @@ function Scene({ layout, selected, onSelect, theme, active }: Props & { theme: R
   const group = useRef<THREE.Group>(null);
   const reduced = useReducedMotion();
   const pos = useMemo(() => new Map(layout.nodes.map((n) => [n.id, n.position])), [layout]);
+  const hollow = useMemo(() => new Set(layout.hollow ?? []), [layout]);
   const invalidate = useThree((state) => state.invalidate);
   const spinning = !!layout.spin && !reduced;
   useEffect(() => {
@@ -152,7 +153,9 @@ function Scene({ layout, selected, onSelect, theme, active }: Props & { theme: R
         const b = pos.get(l.to);
         if (!a || !b) return null;
         const hot = l.from === selected || l.to === selected;
-        return <Line key={`${l.from}|${l.to}`} points={[a, b]} color={hot ? theme.accent : l.color ?? theme.muted} lineWidth={hot ? 2 : 1} transparent opacity={hot ? 1 : 0.5} />;
+        const style = layout.linkStyles?.[`${l.from}|${l.to}`];
+        const width = style?.width ?? 1;
+        return <Line key={`${l.from}|${l.to}`} points={[a, b]} color={hot ? theme.accent : l.color ?? theme.muted} lineWidth={hot ? width + 1 : width} dashed={style?.dashed === true} dashSize={0.05} gapSize={0.04} transparent opacity={hot ? 1 : 0.5} />;
       })}
       {layout.nodes.map((n) => (
         <mesh
@@ -164,7 +167,7 @@ function Scene({ layout, selected, onSelect, theme, active }: Props & { theme: R
           }}
         >
           <sphereGeometry args={[n.id === selected ? n.size * 1.6 : n.size, 16, 12]} />
-          <meshStandardMaterial color={n.color} emissive={n.id === selected ? n.color : "#000000"} emissiveIntensity={0.6} />
+          <meshStandardMaterial color={n.color} emissive={n.id === selected ? n.color : "#000000"} emissiveIntensity={0.6} wireframe={hollow.has(n.id)} />
           {n.id === selected && n.label && (
             <Html center position={[0, n.size * 3, 0]} style={{ pointerEvents: "none" }}>
               <span style={{ background: "var(--panel)", color: "var(--ink)", border: "1px solid var(--line)", borderRadius: 6, padding: "4px 8px", fontSize: 11, whiteSpace: "nowrap" }}>{n.label.slice(0, 60)}</span>

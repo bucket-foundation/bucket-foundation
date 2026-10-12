@@ -110,8 +110,13 @@ describe("the row set route", () => {
     expect(flow.body.links.flat()).toHaveLength(240);
     checkRows(flow.body, ctx);
     const chainSet = await rows(t, "?id=mathematics-chain");
-    expect([chainSet.body.n, chainSet.body.links.flat().length]).toEqual([442, 699]);
+    expect([chainSet.body.n, chainSet.body.links.flat().length]).toEqual([65, 147]);
+    expect(chainSet.body.frame.edgeStated?.flat().filter(Boolean)).toHaveLength(112);
     checkRows(chainSet.body, ctx);
+    const domain = await rows(t, "?id=mathematics-chain&group=school-ccss-math-5-nbt");
+    expect(domain.status).toBe(200);
+    expect(domain.body.title.every((title) => title.startsWith("5.NBT."))).toBe(true);
+    checkRows(domain.body, ctx);
   });
 
   test("a drill set opens on its group hits and a group opens its lifecycles", async () => {
@@ -143,7 +148,7 @@ describe("the row set route", () => {
         seen++;
       }
     }
-    expect(seen).toBe(51);
+    expect(seen).toBe(116);
   });
 
   test("a result above 600 hits is paged, and links that leave the page are dropped and counted", async () => {
