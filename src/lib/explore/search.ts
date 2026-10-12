@@ -1,7 +1,7 @@
 import { idiv } from "./rank-kernel";
 import { indexDoc, queryTerms, rank, statsOf, terms, type IndexedDoc, type RankStats } from "./rank";
 
-export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you" | "canon-file";
+export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you" | "canon-file" | "row";
 
 export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"];
 
