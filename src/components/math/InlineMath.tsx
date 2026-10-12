@@ -4,7 +4,7 @@ import { useCallback, useSyncExternalStore } from "react";
 import katex from "katex";
 import { splitMath, texToText } from "@/lib/research-os/work-quiz/math";
 
-const OPTIONS = { throwOnError: false, output: "htmlAndMathml" } as const;
+const OPTIONS = { throwOnError: false, output: "htmlAndMathml", trust: false, strict: "ignore", maxExpand: 1000 } as const;
 const never = () => () => {};
 
 function markup(tex: string, display: boolean): string | null {
@@ -15,13 +15,34 @@ function markup(tex: string, display: boolean): string | null {
   }
 }
 
-function Tex({ tex, display }: { tex: string; display: boolean }) {
+function renderDom(tex: string, el: HTMLElement, display: boolean): void {
+  const proto = Element.prototype;
+  const setAttribute = proto.setAttribute;
+  let inside = false;
+  proto.setAttribute = function (this: Element, name: string, value: string) {
+    const styled = this as Element & { style?: CSSStyleDeclaration };
+    if (name !== "style" || !styled.style || inside) return setAttribute.call(this, name, value);
+    inside = true;
+    try {
+      styled.style.cssText = String(value);
+    } finally {
+      inside = false;
+    }
+  };
+  try {
+    katex.render(tex, el, { ...OPTIONS, displayMode: display });
+  } finally {
+    proto.setAttribute = setAttribute;
+  }
+}
+
+export function Tex({ tex, display }: { tex: string; display: boolean }) {
   const hydrating = useSyncExternalStore(never, () => false, () => true);
   const mount = useCallback(
     (el: HTMLSpanElement | null) => {
       if (!el) return;
       try {
-        katex.render(tex, el, { ...OPTIONS, displayMode: display });
+        renderDom(tex, el, display);
       } catch {
         el.textContent = texToText(tex);
       }

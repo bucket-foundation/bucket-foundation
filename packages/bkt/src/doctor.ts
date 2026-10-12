@@ -6,6 +6,7 @@ import { pathToFileURL } from "node:url";
 import { colorEnabled, interactive, KEY_STORES, type Tty } from "./cli/out";
 import { LEGACY_ACCOUNTS, scopedAccounts, type KeyAccounts } from "./device";
 import { KeyringHeldError, REMEDY, type Keyring } from "./keyring";
+import { TOOLS, TOOL_USE, toolInstall } from "./research-jobs";
 import type { Pack } from "./pack/export";
 import type { ExplorePack } from "./pack/explore";
 import { SHARE_ALIKE, wordPackChecksum, type WordPack } from "./pack/words";
@@ -39,6 +40,7 @@ export interface DoctorDeps {
   columns?: number;
   run: ExecSync;
   alive: (pid: number) => boolean;
+  which?: (bin: string) => string | null;
 }
 
 export const ANALYSIS_MODULES = ["numpy", "matplotlib", "pypdf", "pyarrow"];
@@ -230,6 +232,16 @@ function python(d: DoctorDeps): Check {
   return ok("python", name, `${bin} ${version} has ${ANALYSIS_MODULES.join(", ")}.`);
 }
 
+function paperTools(d: DoctorDeps): Check[] {
+  const which = d.which ?? ((bin: string) => Bun.which(bin));
+  return TOOLS.map((tool) => {
+    const at = which(tool);
+    if (at) return ok(`tool-${tool}`, TOOL_USE[tool], `${tool} is at ${at}.`);
+    const lost = tool === "pdftoppm" ? "Papers show as a preview." : "Papers cannot be compiled here.";
+    return warn(`tool-${tool}`, TOOL_USE[tool], `${tool} is missing. ${lost}`, `Run ${toolInstall(tool, d.platform.os)}`);
+  });
+}
+
 function terminal(d: DoctorDeps): Check {
   const real = interactive(d.env, d.tty);
   const width = d.columns ? `${d.columns} columns wide` : "width unknown";
@@ -239,7 +251,7 @@ function terminal(d: DoctorDeps): Check {
 
 export async function runDoctor(d: DoctorDeps): Promise<Check[]> {
   const db = dbState(d.dir);
-  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), wordPackCheck(d), installedDecks(d), windowFiles(d), openWindowCheck(d), python(d), terminal(d)];
+  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), wordPackCheck(d), installedDecks(d), windowFiles(d), openWindowCheck(d), python(d), ...paperTools(d), terminal(d)];
 }
 
 export function doctorPassed(checks: Check[]): boolean {
