@@ -3,7 +3,7 @@ import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import type { DatasetInfo } from "./data";
-import { encodeBlob, RESEARCH_SCHEMA, sha256, type PackedFile, type ReportRecord, type ResearchBlobs, type ResearchIndex } from "./pack/research";
+import { decodeBlob, encodeBlob, RESEARCH_SCHEMA, sha256, type PackedFile, type ReportRecord, type ResearchBlobs, type ResearchIndex } from "./pack/research";
 import { Research } from "./research";
 import { LocalOutputs, ResearchWork } from "./research-work";
 import { startServe, type Serve } from "./serve";
@@ -270,6 +270,60 @@ describe("workspace index", () => {
     expect(workspacePage(src, "tables", "another output", null).total).toBe(60);
     expect(workspacePage(src, "records", "occupations", null).items.map((i) => i.key)).toEqual(["rowset:occupations-time:all"]);
     for (const [type, q, page] of [["desks", null, null], [null, null, null], ["tables", "x".repeat(201), null], ["tables", null, "0"], ["tables", null, "1.5"], ["tables", null, "-1"]] as const) expect(() => workspacePage(src, type, q, page)).toThrow();
+  });
+});
+
+describe("people stay out of every pack and every build step", () => {
+  const store = ["researcher", "contacts"].join("-");
+  const root = join(import.meta.dir, "..");
+
+  test("the index lists no person, whatever the build holds", () => {
+    for (const staff of [false, true]) {
+      const { src } = setup({ staff });
+      expect(workspaceItems(src, "people")).toEqual([]);
+      expect(workspacePage(src, "people", null, null)).toEqual({ items: [], total: 0, page: 1, size: WORKSPACE_PAGE });
+    }
+  });
+
+  test("no pack builder, script or engine file names the private contact folder or reads a home folder for a pack", async () => {
+    const named: string[] = [];
+    for (const dir of ["src", "scripts", "test"]) {
+      for await (const path of new Bun.Glob("**/*.{ts,tsx,py,mjs,json,sh}").scan(join(root, dir))) {
+        if ((await Bun.file(join(root, dir, path)).text()).includes(store)) named.push(`${dir}/${path}`);
+      }
+    }
+    expect(named).toEqual([]);
+    expect((await Bun.file(join(root, "package.json")).text()).includes(store)).toBe(false);
+    const reaching: string[] = [];
+    for await (const path of new Bun.Glob("**/*.ts").scan(join(root, "src/pack"))) {
+      if (path.endsWith(".test.ts")) continue;
+      if (/homedir\(|\.local\/share|process\.env\.HOME\b|XDG_DATA_HOME/.test(await Bun.file(join(root, "src/pack", path)).text())) reaching.push(path);
+    }
+    expect(reaching).toEqual([]);
+  });
+
+  test("the packs that hold content carry nothing shaped like an email address", async () => {
+    const email = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+\.[a-z]{2,}/;
+    const packs = ["research-index.json", "explore-rows.json", "explore.json", "canon.json", "pack.json", "words.json", "deck-catalog.json", "staff-ros.json"];
+    for (const name of packs) {
+      const text = await Bun.file(join(root, "content", name)).text();
+      expect({ name, found: email.exec(text)?.[0] ?? null }).toEqual({ name, found: null });
+      expect({ name, names: text.includes(store) }).toEqual({ name, names: false });
+    }
+    const known = ["n@functools.lru"];
+    const source = await Bun.file(join(root, "content/pysrc.json")).text();
+    expect([...new Set(source.match(new RegExp(email.source, "g")) ?? [])].filter((m) => !known.includes(m))).toEqual([]);
+    expect(source.includes(store)).toBe(false);
+    if (((await Bun.file(join(root, "content/research-index.json")).json()) as ResearchIndex).staff) return;
+    const blobs = (await Bun.file(join(root, "content/research-blobs.json")).json()) as ResearchBlobs;
+    const found: string[] = [];
+    for (const [hash, blob] of Object.entries(blobs.blobs)) {
+      const bytes = decodeBlob(blob);
+      if (bytes.includes(0)) continue;
+      const hit = email.exec(bytes.toString("utf8"));
+      if (hit) found.push(`${hash.slice(0, 8)} ${hit[0]}`);
+    }
+    expect(found).toEqual([]);
   });
 });
 

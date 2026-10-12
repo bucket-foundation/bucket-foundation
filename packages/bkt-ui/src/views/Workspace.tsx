@@ -3,6 +3,7 @@ import type { Api, ResearchDetail, WorkspaceItem } from "../api";
 import { href, parseHash, type Route, type WorkspaceType } from "../router";
 import { activateTab, openTab, patchTab, readTabs, windowStorage, writeTabs, type Tab, type Tabs, type TabStorage } from "../tabs";
 import { FILTER_WAIT_MS, NOT_LOADED, Pager } from "./Data";
+import { AdvisorsView, type AdvisorApi } from "./Advisors";
 import { InstalledDecks } from "./Decks";
 import { LibraryView, type LibraryApi } from "./Library";
 import { exploreHash, ExploreView, type ExploreApi } from "./Explore";
@@ -11,7 +12,7 @@ import { FigurePane, figureItems, ORIGIN_LABELS, Paper, RecordSetPane, TablePane
 import { TabBar } from "./TabBar";
 import "../workspace.css";
 
-export type WorkspaceApi = ResearchApi & ExploreApi & LibraryApi & Pick<Api, "workspaceItems" | "installedDecks">;
+export type WorkspaceApi = ResearchApi & ExploreApi & LibraryApi & AdvisorApi & Pick<Api, "workspaceItems" | "installedDecks">;
 
 export const DECKS_ABOUT = "The decks installed on this computer and the decks you can add, in one place.";
 
@@ -40,10 +41,6 @@ export type BuiltType = OutputType | "graphs" | "maps";
 const RESEARCH_TAB = { tables: "data", records: "records", figures: "figures", papers: "paper" } as const;
 export const TO_EXPLORE = "Open in Explore";
 const MODES = /^[a-z]{3,12}$/;
-
-export const LATER: Record<Exclude<WorkspaceType, BuiltType | "decks">, { title: string; line: string; link: { label: string; route: Route } | null }> = {
-  people: { title: "People", line: "This workspace is empty in this version of Bucket.", link: null },
-};
 
 export const ON_DATA_SCREEN = "Opens on the Data screen";
 export const CHANGED_MARK = "Changed on this computer";
@@ -281,6 +278,20 @@ function DecksWorkspace({ api }: { api: WorkspaceApi }) {
   );
 }
 
+export const PEOPLE_ABOUT = "The people file you opened on this computer. It stays here, and Bucket ships no list of people.";
+
+function PeopleWorkspace({ api }: { api: WorkspaceApi }) {
+  return (
+    <section className="workspace">
+      <header className="head">
+        <h1>People</h1>
+        <p className="muted">{PEOPLE_ABOUT}</p>
+      </header>
+      <AdvisorsView api={api} embedded />
+    </section>
+  );
+}
+
 export function WorkspaceView({ api, type, item, webgl, storage = windowStorage() }: { api: WorkspaceApi; type: WorkspaceType; item?: string; webgl?: boolean; storage?: TabStorage | null }) {
   const words = BUILT[type];
   if (type === "decks") return <DecksWorkspace api={api} />;
@@ -295,18 +306,5 @@ export function WorkspaceView({ api, type, item, webgl, storage = windowStorage(
       </section>
     );
   }
-  const later = LATER[type as keyof typeof LATER];
-  return (
-    <section className="workspace">
-      <header className="head">
-        <h1>{later.title}</h1>
-        <p className="muted">{later.line}</p>
-      </header>
-      {later.link && (
-        <a className="link" href={href(later.link.route)}>
-          {later.link.label}
-        </a>
-      )}
-    </section>
-  );
+  return <PeopleWorkspace api={api} />;
 }
