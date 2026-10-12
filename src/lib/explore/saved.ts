@@ -71,7 +71,7 @@ export function hitAuthors(hit: Pick<Hit, "subtitle" | "source" | "branch" | "ty
 }
 
 export function hitKind(hit: Pick<Hit, "type" | "source">): SavedKind | null {
-  if (hit.type === "advisor" || hit.type === "you") return null;
+  if (hit.type === "advisor" || hit.type === "you" || hit.type === "row") return null;
   if (hit.type === "text") return hit.source === "Gutenberg" ? "book" : "text";
   return hit.type;
 }

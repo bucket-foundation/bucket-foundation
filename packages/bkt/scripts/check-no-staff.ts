@@ -1,6 +1,8 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { buildResearchPack, loadReportLib, readRecords, type ReportLib, type ReportRecord } from "../src/pack/research";
+import { rowSetText } from "../src/pack/row-sets/contract";
+import { publicPackProblems, readRowSetPack } from "../src/pack/row-sets/index";
 
 const REPO = resolve(import.meta.dir, "../../..");
 export const STAFF = ["solvability-atlas-data.json", "software-atlas-data.json", "patents-design-data.json", "solvability-similarity-data.json", "solvability-neighbors-data.json"].map((f) => join(REPO, "src/lib/research-os", f));
@@ -101,7 +103,9 @@ export function allMarkers(repo: string, lib: ReportLib): string[] {
 export function findStaff(targets: string[], markers = staffMarkers()): { file: string; marker: string }[] {
   const hits: { file: string; marker: string }[] = [];
   for (const file of targets.flatMap(files)) {
-    const body = readFileSync(file).toString("latin1");
+    const pack = readRowSetPack(file);
+    const expanded = pack ? Buffer.from(rowSetText(pack.sets.flatMap((set) => set.pages)), "utf8").toString("latin1") : "";
+    const body = `${readFileSync(file).toString("latin1")}\n${expanded}`;
     for (const m of markers) {
       const needle = Buffer.from(m, "utf8").toString("latin1");
       if (body.includes(needle) || body.includes(JSON.stringify(m).slice(1, -1))) hits.push({ file, marker: m.slice(0, 60) });
@@ -110,13 +114,20 @@ export function findStaff(targets: string[], markers = staffMarkers()): { file: 
   return hits;
 }
 
+export function findStaffRowSets(targets: string[]): { file: string; marker: string }[] {
+  return targets.flatMap(files).flatMap((file) => {
+    const pack = readRowSetPack(file);
+    return pack ? publicPackProblems(pack).map((marker) => ({ file, marker })) : [];
+  });
+}
+
 if (import.meta.main) {
   const targets = process.argv.slice(2);
   if (!targets.length) {
     console.error("usage: bun packages/bkt/scripts/check-no-staff.ts <file or dir>...");
     process.exit(2);
   }
-  const hits = findStaff(targets, allMarkers(REPO, await loadReportLib(REPO)));
+  const hits = [...findStaffRowSets(targets), ...findStaff(targets, allMarkers(REPO, await loadReportLib(REPO)))];
   if (hits.length) {
     for (const h of hits.slice(0, 10)) console.error(`staff data in ${h.file}: ${h.marker}`);
     process.exit(1);

@@ -11,6 +11,7 @@ on:
       - "src/lib/canon-index-loader.ts"
       - "src/lib/explore/**"
       - "src/data/explore-sources.json"
+      - "learning/corpus/progressions/tables/**"
       - "src/data/founding-works.json"
       - "src/data/explore/reference-basis.json"
       - "src/data/canon-timeline.json"
@@ -41,6 +42,7 @@ on:
       - "src/lib/canon-index-loader.ts"
       - "src/lib/explore/**"
       - "src/data/explore-sources.json"
+      - "learning/corpus/progressions/tables/**"
       - "src/data/founding-works.json"
       - "src/data/explore/reference-basis.json"
       - "src/data/canon-timeline.json"
@@ -73,7 +75,7 @@ jobs:
         run: bun run pack:content && bun test
       - name: no denied or staff material in the canon and explore packs
         working-directory: packages/bkt
-        run: bun scripts/check-no-kruse.ts content/canon.json content/explore.json content/research-index.json content/research-blobs.json && bun scripts/check-no-staff.ts content/canon.json content/explore.json content/research-index.json content/research-blobs.json
+        run: bun scripts/check-no-kruse.ts content/canon.json content/explore.json content/explore-rows.json content/research-index.json content/research-blobs.json && bun scripts/check-no-staff.ts content/canon.json content/explore.json content/explore-rows.json content/research-index.json content/research-blobs.json
       - name: typecheck
         working-directory: packages/bkt
         run: bun run typecheck
