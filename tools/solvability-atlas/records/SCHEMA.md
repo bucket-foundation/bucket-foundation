@@ -61,15 +61,15 @@ type Claim = {
   source_url: string;              // the claimant's catalogue at a pinned commit
   manuscripts: string[];
   statement: string;               // the statement claimed, copied from the catalogue
-  match: "problem" | "special_case" | "related" | "unestablished";
+  match: "problem" | "special_case" | "weaker_bound" | "related" | "unestablished";
   match_note: string;              // why the match holds, in one or two sentences
   formal: { exists: boolean; scope: "full" | "narrower" | "none"; statement: string | null; url: string | null; note: string };
-  confirmation: { by: string; kind: "named_expert" | "refereed_venue"; url: string; date: string } | null;
+  confirmation: { by: string; kind: "named_expert" | "refereed_venue"; url: string; date: string } | null;   // url is https and required whenever a confirmation is recorded
   withdrawn: { date: string; url: string } | null;
 };
 ```
 
-Status rule: a row is `claimed` when an unwithdrawn entry has `match: "problem"` and `confirmation` is null. A claimed row has `solved: false` and no resolved year, so reach, the frontier, the backtest codings and every solved rate read it as open; `tests/test_claims_frontier.py` checks that the status moves no reach, zone or class. Recording a `confirmation` that names an expert or a refereed venue is the single path to `solved`, and the confirmation year becomes the resolved year. A `withdrawn` entry returns the row to open. The other three match values are notes: `special_case` and `related` record a partial result on a row that stays open, and `unestablished` lists a row whose match could not be shown from the catalogue.
+Status rule: a row is `claimed` when an unwithdrawn entry has `match: "problem"` and `confirmation` is null. A claimed row has `solved: false` and no resolved year, so reach, the frontier, the backtest codings and every solved rate read it as open; `tests/test_claims_frontier.py` checks that the status moves no reach, zone or class. Recording a `confirmation` that names an expert or a refereed venue is the single path to `solved`, and the confirmation year becomes the resolved year. A `withdrawn` entry returns the row to open. The other four match values are notes: `special_case`, `weaker_bound` and `related` record a partial result on a row that stays open (a case of the row, a bound short of what the row asks, a neighbouring statement), and `unestablished` lists a row whose match could not be shown from the catalogue.
 
 `formal.scope` compares the machine-checked statement with the statement claimed for the row: `full` when the scope note states it, `narrower` when the Lean file covers less or covers a neighbouring statement, `none` when the family has no scope note. `formal.statement` holds the scope note text and `formal.note` says what a narrower file leaves out.
 

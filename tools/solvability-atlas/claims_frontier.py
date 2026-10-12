@@ -18,10 +18,22 @@ import thresholds
 HERE = Path(__file__).parent
 REPO = HERE.parent.parent
 BATCH = "openai-math-2026-10"
-BASELINE = "539c4d00482fe9ad8230962acf1dcd03039755bf"
+RELEASED = "2026-10-06T21:58:50Z"
+BASELINES = {
+    "pre_release": {"commit": "23230e8d318eb5fae0eb1d6cf03fdd3ff6408797", "committed": "2026-10-06T04:07:51Z", "role": "the last atlas state on dev committed before the release, 17 hours 51 minutes earlier"},
+    "work_parent": {"commit": "539c4d00482fe9ad8230962acf1dcd03039755bf", "committed": "2026-10-12T20:14:19Z", "role": "the parent of the ledger and of this analysis, six days after the release"},
+}
+PRIMARY = "pre_release"
+BASELINE = BASELINES["work_parent"]["commit"]
 NEIGHBORS_PATH = "src/lib/research-os/solvability-neighbors-data.json"
 PREDICTIONS_PATH = "public/papers/solvability-frontier/data/predictions.csv"
-FROZEN = HERE / "claims" / f"baseline-{BASELINE[:9]}.tsv"
+
+
+def frozen_path(name):
+    return HERE / "claims" / f"baseline-{BASELINES[name]['commit'][:9]}.tsv"
+
+
+FROZEN = frozen_path("work_parent")
 OUT = HERE / "claims" / "frontier-2026-10.json"
 TABLES = HERE / "claims" / "frontier-2026-10.tables.md"
 SEED = 20261012
@@ -35,6 +47,7 @@ OUTSIDE = CLASSES[2]
 COVERED = ("mathematics", "information")
 ERDOS_PREFIX = "fc-erdosproblems-"
 OUTCOMES = ("claimed", "claimed_formal_full")
+PERMUTATION_NOTE = "The permutation p shuffles rows one by one and ignores the groups the bootstrap resamples, so it reads a little small when related rows share an outcome."
 FIELDS = ("id", "branch", "kind", "status", "zone", "reach", "class", "group")
 
 
@@ -257,19 +270,34 @@ TITLES = {"covered_branches": "Mathematics And Information", "all_sampled_branch
 OUTCOME_TITLE = {"claimed": "every claim of the full problem", "claimed_formal_full": "claims with a Lean statement of the full problem"}
 
 
+BASELINE_TITLE = {"pre_release": "Baseline Before The Release", "work_parent": "Baseline At The Parent Of This Work"}
+
+
 def markdown(result):
     parts = []
-    for label, title in TITLES.items():
-        for name in OUTCOMES:
-            parts.append(f"## {title}: {OUTCOME_TITLE[name]}\n\n{markdown_table(result['tables'][label][name])}\n")
+    for base, tables in ([(b, r["tables"]) for b, r in result["baselines"].items()] if "baselines" in result else [(None, result["tables"])]):
+        if base:
+            b = result["baselines"][base]
+            parts.append(f"# {BASELINE_TITLE[base]}\n\nCommit `{b['commit'][:9]}`, committed {b['committed']}: {b['role']}. {b['rows']} rows.\n")
+        for label, title in TITLES.items():
+            for name in OUTCOMES:
+                parts.append(f"## {title}: {OUTCOME_TITLE[name]}\n\n{markdown_table(tables[label][name])}\n")
     return "\n".join(parts)
+
+
+def run_baseline(name, entries, n, permutations):
+    rows = load_frozen(frozen_path(name))
+    known = {r["id"] for r in rows}
+    present = [e for e in entries if e["id"] in known]
+    return {**BASELINES[name], "frozen": str(frozen_path(name).relative_to(REPO)), "rows": len(rows), "ledger_rows_absent": sorted({e["id"] for e in entries} - known), **analyse(rows, present, n, permutations)}
 
 
 def run(data=None, label=None, n=BOOTSTRAPS, permutations=PERMUTATIONS):
     entries = claims.entries()
     if data is None:
-        rows = load_frozen()
-        meta = {"embedding": "committed baseline", "frozen": str(FROZEN.relative_to(REPO)), "baseline_commit": BASELINE}
+        baselines = {name: run_baseline(name, entries, n, permutations) for name in BASELINES}
+        lead = baselines[PRIMARY]
+        return {"schema": "bucket.solvability-atlas.claims-frontier/v2", "batch": BATCH, "released": RELEASED, "seed": SEED, "bootstraps": n, "permutations": permutations, "duplicate_similarity": DUPLICATE_SIMILARITY, "covered_branches": list(COVERED), "permutation_note": PERMUTATION_NOTE, "primary": PRIMARY, "baselines": baselines, "claimed_rows": lead["claimed_rows"], "tables": lead["tables"]}
     else:
         classified = classify(data)
         rows = classified["rows"]
@@ -285,7 +313,7 @@ def main(argv):
     parser.add_argument("--label")
     args = parser.parse_args(argv)
     if args.freeze:
-        print(json.dumps(freeze()))
+        print(json.dumps({name: freeze(frozen_path(name), b["commit"]) for name, b in BASELINES.items()}))
         return 0
     if args.data:
         if not args.label:
@@ -294,9 +322,10 @@ def main(argv):
         out, tables = OUT.with_name(f"frontier-2026-10-{args.label}.json"), TABLES.with_name(f"frontier-2026-10-{args.label}.tables.md")
     else:
         result = run()
-        if baseline_available():
-            with tempfile.TemporaryDirectory() as scratch:
-                result["baseline"] = freeze(Path(scratch) / "baseline.tsv")
+        with tempfile.TemporaryDirectory() as scratch:
+            for name, b in BASELINES.items():
+                if baseline_available(b["commit"]):
+                    result["baselines"][name]["frontier"] = freeze(Path(scratch) / f"{name}.tsv", b["commit"])
         out, tables = OUT, TABLES
     out.write_text(json.dumps(result, indent=1) + "\n")
     tables.write_text(markdown(result))

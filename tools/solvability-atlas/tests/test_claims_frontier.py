@@ -97,7 +97,7 @@ def test_subsets_keep_top_level_rows_of_the_covered_branches():
     assert [r["id"] for r in s["covered_with_variants"]] == ["r0", "r2", "fc-erdosproblems-1-x"]
 
 
-def test_the_frozen_baseline_is_the_classification_of_the_commit_before_the_batch(frozen, tmp_path):
+def test_the_frozen_baseline_is_the_classification_of_the_parent_commit(frozen, tmp_path):
     if not cf.baseline_available():
         pytest.skip("the baseline commit is not in this clone")
     meta = cf.freeze(tmp_path / "again.tsv")
@@ -136,7 +136,7 @@ def test_the_committed_result_repeats(frozen, committed):
 
 
 def test_the_headline_reading_holds_in_the_committed_result(committed):
-    t = committed["tables"]["covered_branches"]["claimed"]
+    t = committed["baselines"]["work_parent"]["tables"]["covered_branches"]["claimed"]
     lo, hi = t["inside_minus_outside"]["ci95"]
     assert lo < 0 < hi
     lo, hi = t["reach_auc"]["ci95"]
@@ -149,13 +149,42 @@ def test_the_headline_reading_holds_in_the_committed_result(committed):
 
 def test_the_written_tables_are_the_computed_tables(committed):
     doc = (HERE / "CLAIMS-2026-10.md").read_text(encoding="utf8")
-    for label, name in (("covered_branches", "claimed"), ("covered_branches", "claimed_formal_full"), ("erdos", "claimed")):
-        for line in cf.markdown_table(committed["tables"][label][name]).splitlines():
-            assert line in doc, line
     paper = (REPO / "papers" / "solvability-frontier" / "main.tex").read_text(encoding="utf8")
-    full, strict = committed["tables"]["covered_branches"]["claimed"], committed["tables"]["covered_branches"]["claimed_formal_full"]
+    lead = committed["baselines"]["pre_release"]["tables"]
+    for name, b in committed["baselines"].items():
+        for label, outcome in (("covered_branches", "claimed"), ("covered_branches", "claimed_formal_full"), ("erdos", "claimed")):
+            t = b["tables"][label][outcome]
+            for c in [t["classes"][k] for k in cf.CLASSES] + [t["inside"], t["outside"]]:
+                assert f"{c['claimed']} of {c['rows']} | {cf.pct(c['rate'])} |" in doc, (name, label, c)
+            a = t["reach_auc"]
+            assert f"{a['value']:.3f}, {a['ci95'][0]:.3f} to {a['ci95'][1]:.3f}" in doc
+    full, strict = lead["covered_branches"]["claimed"], lead["covered_branches"]["claimed_formal_full"]
     for c in cf.CLASSES:
         a, b = full["classes"][c], strict["classes"][c]
-        row = f"{c} & {a['rows']} & {a['claimed']} & {100 * a['rate']:.1f}\\%, {100 * a['ci95'][0]:.1f} to {100 * a['ci95'][1]:.1f} & {b['claimed']} & {100 * b['rate']:.1f}\\%, {100 * b['ci95'][0]:.1f} to {100 * b['ci95'][1]:.1f} \\\\"
+        row = f"{c} & {a['rows']:,} & {a['claimed']} & {100 * a['rate']:.1f}\\%, {100 * a['ci95'][0]:.1f} to {100 * a['ci95'][1]:.1f} & {b['claimed']} & {100 * b['rate']:.1f}\\%, {100 * b['ci95'][0]:.1f} to {100 * b['ci95'][1]:.1f} \\\\"
         assert row in paper, row
     assert "\\subsection{October 2026 claims}" in paper and "\\paragraph{Status on 2026-10-12.}" in paper
+    for false_claim in ("dated after the atlas was built", "commit before the batch", "nothing was fitted after the batch"):
+        assert false_claim not in paper and false_claim not in doc
+
+
+def test_the_lead_baseline_was_committed_before_the_release_and_holds_every_claimed_row(committed):
+    from datetime import datetime
+
+    stamp = lambda text: datetime.fromisoformat(text.replace("Z", "+00:00"))
+    assert committed["primary"] == "pre_release"
+    assert stamp(cf.BASELINES["pre_release"]["committed"]) < stamp(cf.RELEASED) < stamp(cf.BASELINES["work_parent"]["committed"])
+    rows = {r["id"]: r for r in cf.load_frozen(cf.frozen_path("pre_release"))}
+    assert len(rows) == 5080
+    claimed = set(claims.governing(claims.entries()))
+    assert claimed <= set(rows) and all(rows[i]["zone"] != "solved" for i in claimed)
+    for name in cf.BASELINES:
+        t = committed["baselines"][name]["tables"]["covered_branches"]["claimed"]
+        lo, hi = t["inside_minus_outside"]["ci95"]
+        assert lo < 0 < hi
+        lo, hi = t["reach_auc"]["ci95"]
+        assert lo < 0.5 < hi
+    if cf.baseline_available(cf.BASELINES["pre_release"]["commit"]):
+        again = cf.classify(json.loads(cf.git_show(cf.NEIGHBORS_PATH, cf.BASELINES["pre_release"]["commit"])))
+        assert again["threshold"] == 0.781
+        assert [(r["id"], r["class"]) for r in again["rows"]] == [(i, r["class"]) for i, r in rows.items()]

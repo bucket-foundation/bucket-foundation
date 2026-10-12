@@ -5,8 +5,8 @@ fc-wikipedia-irrational-irrational-catalanconstant	005	problem	full	Irrationalit
 fc-wikipedia-ellipticcurverank-goldfeld-conjecture	006	problem	none	The claim is stated for analytic rank. The row uses Mordell-Weil rank, which equals analytic rank at rank zero and one by Gross-Zagier and Kolyvagin.	
 fc-wikipedia-ellipticcurverank-goldfeld-conjecture-squarefree	006	problem	none	The claim orders signed squarefree twists by absolute value, the convention of this row. Analytic rank is claimed; Mordell-Weil rank follows at rank zero and one by Gross-Zagier and Kolyvagin.	
 bsd	002	special_case	none	Full formula for curves whose Selmer group has corank zero or one at some prime. The conjecture in general stays open.	
-riemann	003	special_case	full	A zero-free half-plane to the right of 7/8. The critical line statement stays open.	
-wp-generalized-riemann-hypothesis	003	special_case	full	A zero-free half-plane to the right of 7/8 for every Dirichlet L-function. The hypothesis stays open.	
+riemann	003	weaker_bound	full	A zero-free half-plane to the right of 7/8. The critical line statement stays open.	
+wp-generalized-riemann-hypothesis	003	weaker_bound	full	A zero-free half-plane to the right of 7/8 for every Dirichlet L-function. The hypothesis stays open.	
 wp-do-siegel-zeros-exist	003	problem	full	The 7/8 half-plane and the companion paper on Landau-Siegel zeros exclude a real zero within c over log q of one.	SiegelZeros.lean states the uniform gap for every primitive real character. Real zeros elsewhere in the unit interval are outside it, and they are outside the row too.
 fc-wikipedia-flintcooksonhills-flint-hills-series-converges	017	problem	narrower	The catalogue lists convergence of the Flint Hills series as a consequence of the irrationality exponent of pi being two.	PiExponent.lean proves the irrationality exponent. The scope note places the convergence consequence outside the selected statement.
 wp-zilberpink-conjecture	016	special_case	none	Abelian varieties and the curve case in the Siegel threefold. The row covers mixed Shimura and semiabelian varieties.	
@@ -34,8 +34,8 @@ wp-mahler-s-conjecture-on-the-product-of-the-volumes-of-a-centr	087	problem	full
 wp-the-gnrs-conjecture-on-whether-minor-closed-graph-families-h	089	special_case	full	Planar and bounded-treewidth graphs. The row covers every minor-closed family.	
 uniquegames	102	problem	full	The catalogue claims Khot's conjecture.	UniqueGamesTheorem.lean states a polynomial-time reduction from 3SAT with completeness one minus epsilon and soundness delta over a fixed alphabet.
 wp-l-rl-problem	103	problem	full	Equality of L and RL is the row.	LogspaceEquality.lean states equality of the language classes in one explicit Turing machine model. The compiler and its running-time bounds are outside.
-matmul	107	special_case	full	An upper bound of 9/4 on the exponent over the complex numbers. The value of the exponent stays open.	
-wp-what-is-the-fastest-algorithm-for-matrix-multiplication	107	special_case	full	An upper bound of 9/4 on the exponent over the complex numbers. The fastest algorithm stays open.	
+matmul	107	weaker_bound	full	An upper bound of 9/4 on the exponent over the complex numbers. The value of the exponent stays open.	
+wp-what-is-the-fastest-algorithm-for-matrix-multiplication	107	weaker_bound	full	An upper bound of 9/4 on the exponent over the complex numbers. The fastest algorithm stays open.	
 op-is-the-k-server-conjecture-true	110	related	full	A randomized competitive ratio of order log squared k. The row is the deterministic conjecture with ratio exactly k.	
 wp-can-parity-games-be-solved-in-polynomial-time	104	related	full	Quasipolynomial algorithms. The row asks for polynomial time.	
 wp-can-the-edit-distance-between-two-strings-of-length-be-compu	121	related	full	An almost-linear approximation. The row asks for exact computation in strongly subquadratic time.	
@@ -48,18 +48,18 @@ wp-hilbertarnold-problem-is-there-a-uniform-bound-on-limit-cycl	143	related	narr
 wp-banach-s-problem-is-there-an-ergodic-system-with-simple-lebe	144	problem	full	An ergodic diffeomorphism of the three-torus with simple Lebesgue spectrum answers the row.	
 wp-rokhlin-s-multiple-mixing-problem-are-all-strongly-mixing-sy	145	problem	full	Mixing of all finite orders for every mixing transformation answers the row.	
 wp-birkhoff-conjecture-if-a-billiard-table-is-strictly-convex-a	147	special_case	none	The near-boundary form, which assumes a foliated annulus by invariant curves. The row assumes integrability alone.	
-wp-borsuk-s-problem-on-upper-and-lower-bounds-for-the-number-of	156	special_case	full	A counterexample in dimension nine. Bounds in other dimensions stay open.	
+wp-borsuk-s-problem-on-upper-and-lower-bounds-for-the-number-of	156	weaker_bound	full	A counterexample in dimension nine. Bounds in other dimensions stay open.	
 fc-wikipedia-borsukconjecture-borsuk-conjecture	156	special_case	full	A counterexample in dimension nine refutes one case of the range four to sixty-two. Dimensions four to eight stay open.	
 wp-the-hadwiger-conjecture-relating-coloring-to-clique-minors	157	problem	full	Graphs whose chromatic number exceeds their largest clique minor refute the row.	HadwigerCounterexample.lean covers the ordinary chromatic form. The fractional strengthening is outside.
-unitdist	158	special_case	full	A lower bound of six. The chromatic number of the plane is six or seven.	
-wp-the-hadwigernelson-problem-on-the-chromatic-number-of-unit-d	158	special_case	full	A lower bound of six. The chromatic number of the plane is six or seven.	
-fc-erdosproblems-508-hadwigernelsonproblem	158	special_case	full	A lower bound of six. The chromatic number of the plane is six or seven.	
+unitdist	158	weaker_bound	full	A lower bound of six. The chromatic number of the plane is six or seven.	
+wp-the-hadwigernelson-problem-on-the-chromatic-number-of-unit-d	158	weaker_bound	full	A lower bound of six. The chromatic number of the plane is six or seven.	
+fc-erdosproblems-508-hadwigernelsonproblem	158	weaker_bound	full	A lower bound of six. The chromatic number of the plane is six or seven.	
 fc-erdosproblems-3-erdos-3	159	problem	full	Arithmetic progressions of every length in a set with divergent reciprocal sum is the row.	ErdosReciprocal.lean states the reciprocal-sum consequence, which is the row. The paper's quantitative bound is outside it.
 fc-erdosproblems-142-erdos-142-lower	159	problem	narrower	The quantitative bound N exp(-c (log N)^e) is o(N / log N), which is the row.	The scope note places the quantitative bound outside the selected Lean statement.
-fc-erdosproblems-142-erdos-142	159	special_case	narrower	An upper bound for r_k(N). The row asks for an asymptotic formula.	The scope note places the quantitative bound outside the selected Lean statement.
-wp-determine-growth-rate-of-rk-n-see-szemeredi-s-theorem	159	special_case	narrower	An upper bound for r_k(N). The growth rate stays open.	The scope note places the quantitative bound outside the selected Lean statement.
+fc-erdosproblems-142-erdos-142	159	weaker_bound	narrower	An upper bound for r_k(N). The row asks for an asymptotic formula.	The scope note places the quantitative bound outside the selected Lean statement.
+wp-determine-growth-rate-of-rk-n-see-szemeredi-s-theorem	159	weaker_bound	narrower	An upper bound for r_k(N). The growth rate stays open.	The scope note places the quantitative bound outside the selected Lean statement.
 fc-erdosproblems-138-erdos-138	160	problem	full	The k-th root of the van der Waerden number tending to infinity is the row.	
-wp-the-values-of-the-van-der-waerden-numbers	160	special_case	full	A lower bound. The values stay open.	
+wp-the-values-of-the-van-der-waerden-numbers	160	weaker_bound	full	A lower bound. The values stay open.	
 wp-sidorenko-s-conjecture-on-homomorphism-densities-of-graphs-i	161	problem	full	A bipartite graph on 35 vertices with density below the random count refutes the row.	
 fc-wikipedia-sidorenkoconjecture-sidorenko-conjecture	161	problem	full	A finite host graph with density below the bound refutes the row.	
 fc-wikipedia-sidorenkoconjecture-sidorenko-conjecture-graphon	161	problem	narrower	A finite host graph is a step graphon, so the graph counterexample refutes the graphon form.	SidorenkoCounterexample.lean states the finite graph form. The passage to graphons is outside it.
@@ -68,8 +68,8 @@ fc-erdosproblems-172-erdos-172	164	problem	none	Monochromatic sets of every fini
 wp-turan-s-brick-factory-problem	165	problem	full	Zarankiewicz's formula for every complete bipartite graph answers the row.	
 wp-crossing-number	165	problem	full	Hill's formula for every complete graph answers the row.	
 fc-erdosproblems-1083-erdos-1083	166	problem	none	A lower bound of order n to the 2/d, which matches the grid upper bound, answers the row.	
-wp-how-many-unit-distances-can-be-determined-by-a-set-of-points	167	special_case	full	An upper bound of n to the 4/3 minus delta. The count stays open.	
-wp-finding-matching-upper-and-lower-bounds-for-k-sets-and-halvi	183	special_case	full	A power saving in the upper bound. Matching bounds stay open.	
+wp-how-many-unit-distances-can-be-determined-by-a-set-of-points	167	weaker_bound	full	An upper bound of n to the 4/3 minus delta. The count stays open.	
+wp-finding-matching-upper-and-lower-bounds-for-k-sets-and-halvi	183	weaker_bound	full	A power saving in the upper bound. Matching bounds stay open.	
 fc-erdosproblems-181-erdos-181	171	problem	none	A Ramsey number of the hypercube of order 2^n is the row.	
 wp-the-second-neighborhood-problem	173	problem	full	A vertex with second neighbourhood at least as large as the first in every oriented graph is the row.	
 wp-ryser-s-conjecture-on-circulant-hadamard-matrices	179	problem	full	Circulant Hadamard matrices exist in orders one and four alone, which is the row.	
@@ -78,7 +78,7 @@ fc-arxiv-2104-00502-barkersequence-barker-conjecture	179	problem	narrower	The ca
 wp-barnette-s-conjecture	180	problem	full	A Hamiltonian cycle in every cubic bipartite 3-connected planar graph is the row.	
 fc-erdosproblems-184-erdos-184	181	problem	full	A decomposition into O(n) cycles and edges is the row.	
 fc-erdosproblems-551-erdos-551	189	problem	full	The cycle-clique Ramsey formula for k at least n at least three is the row.	
-wp-improving-lower-and-upper-bounds-for-the-heilbronn-triangle	191	special_case	narrower	A power improvement in the lower bound. The exponent stays open.	The Lean construction covers an unbounded sequence of sizes. The scope note says the statement for every large n is broader.
+wp-improving-lower-and-upper-bounds-for-the-heilbronn-triangle	191	weaker_bound	narrower	A power improvement in the lower bound. The exponent stays open.	The Lean construction covers an unbounded sequence of sizes. The scope note says the statement for every large n is broader.
 wp-serre-s-positivity-conjecture	193	problem	none	Strict positivity over every regular local ring, mixed characteristic included, is the row.	
 fc-wikipedia-serremultiplicityconjectures-intersectionmultiplic-3	193	problem	none	Strict positivity for finitely generated modules is the row.	
 fc-wikipedia-serremultiplicityconjectures-intersectionmultiplic-4	193	problem	none	The prime ideal form is a case of the module statement the catalogue claims.	
@@ -129,7 +129,7 @@ fc-erdosproblems-431-erdos-431	013	problem	full	No finite modification of the pr
 fc-erdosproblems-821-erdos-821	011	problem	none	Infinitely many n with more than n^(1-e) totient preimages is the row.	
 fc-erdosproblems-968-erdos-968	026	problem	full	Positive lower density of the indices where p_n / n increases is the row.	
 fc-erdosproblems-304-upper-bound	025	problem	full	Every a/b is a sum of O(log log b) distinct unit fractions, which is the row.	
-fc-erdosproblems-148-erdos-148	025	special_case	full	log log F(k) of order k. The row asks for good estimates of F(k).	
-fc-erdosproblems-970-erdos-970	021	special_case	full	The bound h(k) of order at most k squared. The row also asks for the order of magnitude, which the scope note says is not determined.	
+fc-erdosproblems-148-erdos-148	025	weaker_bound	full	log log F(k) of order k. The row asks for good estimates of F(k).	
+fc-erdosproblems-970-erdos-970	021	weaker_bound	full	The bound h(k) of order at most k squared. The row also asks for the order of magnitude, which the scope note says is not determined.	
 fc-erdosproblems-1150-erdos-1150	076	problem	full	Sign polynomials with maximum modulus (1 + o(1)) sqrt(n) at every large length answer the row in the negative.	
 fc-erdosproblems-120-erdos-120	084	special_case	narrower	Geometric progressions. The row covers every infinite set.	DyadicAvoidance.lean covers ratio one half. The catalogue claims every ratio.

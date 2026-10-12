@@ -13,11 +13,11 @@ RECORDS = HERE / "records"
 SCHEMA = "bucket.solvability-atlas.claims/v1"
 SITE_SCHEMA = "bucket.solvability-atlas.claims-site/v1"
 CLAIMED = "claimed"
-MATCHES = ("problem", "special_case", "related", "unestablished")
+MATCHES = ("problem", "special_case", "weaker_bound", "related", "unestablished")
 SETTLING_MATCH = "problem"
 FORMAL_SCOPES = ("full", "narrower", "none")
 CONFIRMATION_KINDS = ("named_expert", "refereed_venue")
-STATUS_RULE = "A row is claimed when an unwithdrawn ledger entry states its problem in full and no independent confirmation is recorded. A claimed row is unsolved in every frontier, reach and solved-rate computation. A confirmation by a named expert or a refereed venue turns the row solved with the confirmation year as its resolved year. Entries that match a special case or a related statement are notes and leave the status alone."
+STATUS_RULE = "A row is claimed when an unwithdrawn ledger entry states its problem in full and no independent confirmation is recorded. A claimed row is unsolved in every frontier, reach and solved-rate computation. A confirmation by a named expert or a refereed venue turns the row solved with the confirmation year as its resolved year. Entries that match a special case, a weaker bound or a related statement are notes and leave the status alone."
 ENTRY = {"id": str, "family": str, "family_title": str, "claimant": str, "date": str, "source_url": str, "manuscripts": list, "statement": str, "match": str, "match_note": str, "formal": dict}
 FORMAL = {"exists": bool, "scope": str, "statement": (str, type(None)), "url": (str, type(None)), "note": str}
 CONFIRMATION = {"by": str, "kind": str, "url": str, "date": str}
@@ -72,6 +72,8 @@ def entry_errors(e, tag):
             out.append(f"{tag} confirmation kind {c.get('kind')}")
         if isinstance(c, dict) and isinstance(c.get("by"), str) and not c["by"].strip():
             out.append(f"{tag} confirmation names nobody")
+        if isinstance(c, dict) and isinstance(c.get("url"), str) and not c["url"].startswith("https://"):
+            out.append(f"{tag} confirmation without an https url")
         if isinstance(c, dict) and isinstance(c.get("date"), str) and not iso_date(c["date"]):
             out.append(f"{tag} confirmation date {c['date']}")
     w = e.get("withdrawn")

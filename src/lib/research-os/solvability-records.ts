@@ -13,7 +13,7 @@ export interface PackedRecords {
 }
 
 export const CLAIMED = "claimed";
-export const CLAIM_MATCHES = ["problem", "special_case", "related", "unestablished"] as const;
+export const CLAIM_MATCHES = ["problem", "special_case", "weaker_bound", "related", "unestablished"] as const;
 export const FORMAL_SCOPES = ["full", "narrower", "none"] as const;
 
 export interface RecordClaim {
@@ -205,6 +205,7 @@ export interface ClaimsData {
 export const MATCH_LABEL: Record<ClaimEntry["match"], string> = {
   problem: "claims this problem in full",
   special_case: "claims a special case",
+  weaker_bound: "claims a weaker bound",
   related: "claims a related statement",
   unestablished: "match with this row is unestablished",
 };

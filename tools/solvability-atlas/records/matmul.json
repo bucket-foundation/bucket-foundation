@@ -353,7 +353,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf"
    ],
    "statement": "Proves \\omega\\le9/4 over ℂ, giving O_\\varepsilon(n^{9/4+\\varepsilon}) arithmetic operations for square matrix multiplication. In characteristic zero, some inner dimension na with a > 0.465 permits n^{2+o(1)} rectangular multiplication. Further square bounds give ω < 2.258 outside finitely many positive characteristics and ω < 2.371054886006746 over every fixed field.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "An upper bound of 9/4 on the exponent over the complex numbers. The value of the exponent stays open.",
    "formal": {
     "exists": true,

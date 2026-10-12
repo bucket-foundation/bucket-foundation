@@ -87,7 +87,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/The-Euclidean-plane-is-not-five-colorable-September-23-2026/paper.pdf"
    ],
    "statement": "Proves that every five-coloring of the Euclidean plane has a monochromatic pair at distance one, with no restriction on the color classes. This advances the Hadwiger–Nelson problem: together with the classical seven-coloring, only six and seven remain possible chromatic numbers of the plane.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A lower bound of six. The chromatic number of the plane is six or seven.",
    "formal": {
     "exists": true,

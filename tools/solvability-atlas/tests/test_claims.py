@@ -67,6 +67,7 @@ def test_a_claim_of_the_full_problem_marks_the_row_claimed_and_unsolved():
 
 
 def test_special_case_related_and_unestablished_entries_leave_the_status_alone():
+    assert marked([entry("p", "weaker_bound")])["p"][1] == "open"
     out = marked([entry("p", "special_case"), entry("q", "related"), entry("s", "unestablished")])
     assert out["p"][1] == out["q"][1] == out["s"][1] == "open"
 
@@ -106,6 +107,7 @@ def test_the_validator_names_each_fault():
     assert "date" in broken(lambda e: e.update(date="October 6"))
     assert "missing confirmation" in broken(lambda e: e.pop("confirmation"))
     assert "names nobody" in broken(lambda e: e.update(confirmation={"by": " ", "kind": "named_expert", "url": "https://x", "date": "2027-01-01"}))
+    assert "without an https url" in broken(lambda e: e.update(confirmation={"by": "X", "kind": "named_expert", "url": "", "date": "2027-01-01"}))
     assert "confirmation kind" in broken(lambda e: e.update(confirmation={"by": "X", "kind": "press", "url": "https://x", "date": "2027-01-01"}))
     assert "exists disagrees" in broken(lambda e: e["formal"].update(exists=True))
     assert "without statement" in broken(lambda e: e["formal"].update(exists=True, scope="full"))

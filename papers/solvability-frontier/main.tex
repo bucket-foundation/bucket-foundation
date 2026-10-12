@@ -286,31 +286,31 @@ Under settled or advanced two strata reach $p$ below 0.05 and run against each o
 \label{sec:october}
 
 \paragraph{Status on 2026-10-12.}
-On 2026-10-06 OpenAI published 719 manuscripts in 372 result families, each a claimed result on an open problem, produced by an unreleased model \ldg. It is the first large batch of claimed settlements dated after the atlas was built, so it tests the rule on outcomes the embeddings never saw. The atlas records these rows under a status of its own, claimed, which every count in this paper reads as open: no named mathematician or refereed venue had confirmed a result of the batch by 2026-10-12, three manuscripts were withdrawn within a day, and the formalization catalogue marks its own review as unchecked \ldg. A hand mapping of the catalogue to the atlas finds 79 rows whose problem a family claims in full, 66 of them top-level rows of mathematics and information, the two branches the batch covers \cl.
+On 2026-10-06 OpenAI published 719 manuscripts in 372 result families, each a claimed result on an open problem, produced by an unreleased model \ldg. The first commit of that repository is stamped 2026-10-06 21:58 UTC. The last atlas state committed before it dates from 04:07 UTC the same day, 17 hours 51 minutes earlier, with 5,080 rows and a threshold of 0.781; the rows and neighbour file this paper reports were built and edited on 2026-10-07 and 2026-10-08, after the release \cl. The earlier state is therefore the one whose classes are a prediction made before the fact, and \Cref{tab:october} uses it, rebuilt from that commit with that commit's code \cl. The atlas records these rows under a status of its own, claimed, which every count in this paper reads as open: no named mathematician or refereed venue had confirmed a result of the batch by 2026-10-12, three manuscripts were withdrawn within a day, and the formalization catalogue marks its own review as unchecked \ldg. A hand mapping of the catalogue to the atlas finds 79 rows whose problem a family claims in full, 66 of them top-level rows of mathematics and information, the two branches the batch covers \cl.
 
-\Cref{tab:october} sets those 66 rows against the reach classes as they stood at the commit before the batch, with the embeddings, the threshold of 0.762 and the class boundary of 0.852 all frozen there \cl. Inside rows are claimed at 4.9\% and outside rows at 5.0\%, a difference of $-0.1$ points with a 95\% interval of $-3.3$ to $2.9$, permutation $p=1.0$, and reach ranks claimed rows above unclaimed ones with AUC 0.496, interval 0.426 to 0.573 \cl. Restricted to the 45 rows whose Lean statement covers the full problem, the class the atlas ranks first has the lowest rate, 2.6\% against 3.3\% and 4.1\%, with overlapping intervals \cl. The two tests measure different outcomes on different cohorts: the 2021 backtest counts dated rows that the source lists record as solved over five years, 13\% inside against 1\% outside, and this table counts rows one lab claimed in one release. On this batch the inside and outside rates are level.
+In the state before the release, inside rows are claimed at 5.2\% and outside rows at 4.2\%, a difference of $+1.0$ points with a 95\% interval of $-1.6$ to $3.4$, and reach ranks claimed rows above unclaimed ones with AUC 0.495, interval 0.426 to 0.574 \cl. Restricted to the 45 rows whose Lean statement covers the full problem, the class the atlas ranks first has the lowest rate, 2.4\% against 3.6\% and 3.6\%, with overlapping intervals \cl. The state this paper reports, frozen at the parent of the mapping six days after the release, with no commit or row that mentions the batch, gives the same reading as a comparison made after the fact: 4.9\% inside against 5.0\% outside, difference $-0.1$ points, interval $-3.3$ to $2.9$, AUC 0.496 \cl. The two tests measure different outcomes on different cohorts: the 2021 backtest counts dated rows that the source lists record as solved over five years, 13\% inside against 1\% outside, and this table counts rows one lab claimed in one release. On this batch the inside and outside rates are level.
 
 \begin{table}[htbp]
   \centering
-  \caption{Rows claimed settled in the OpenAI release of 2026-10-06, by reach class at the commit before the batch. Open top-level rows of mathematics and information; 95\% intervals from 2,000 bootstrap draws over groups of related rows \cl.}
+  \caption{Rows claimed settled in the OpenAI release of 2026-10-06, by reach class in the atlas state committed 17 hours 51 minutes before the release. Open top-level rows of mathematics and information; 95\% intervals from 2,000 bootstrap draws over groups of related rows \cl.}
   \label{tab:october}
   \small
   \begin{tabular}{lrrrrr}
     \toprule
     & & \multicolumn{2}{c}{every full claim} & \multicolumn{2}{c}{Lean covers the full problem} \\
-    Class before the batch & Open rows & Claimed & Rate, interval & Claimed & Rate, interval \\
+    Class before the release & Open rows & Claimed & Rate, interval & Claimed & Rate, interval \\
     \midrule
-    close to known results & 268 & 13 & 4.9\%, 2.5 to 7.7 & 7 & 2.6\%, 0.8 to 4.7 \\
-    borderline & 839 & 41 & 4.9\%, 3.3 to 6.6 & 28 & 3.3\%, 2.0 to 4.8 \\
-    needs a new idea & 241 & 12 & 5.0\%, 2.2 to 8.1 & 10 & 4.1\%, 1.8 to 6.8 \\
+    close to known results & 251 & 12 & 4.8\%, 2.4 to 7.6 & 6 & 2.4\%, 0.8 to 4.3 \\
+    borderline & 752 & 40 & 5.3\%, 3.6 to 7.1 & 27 & 3.6\%, 2.1 to 5.1 \\
+    needs a new idea & 337 & 14 & 4.2\%, 2.0 to 6.5 & 12 & 3.6\%, 1.7 to 5.6 \\
     \midrule
-    inside the frontier & 1,107 & 54 & 4.9\%, 3.5 to 6.3 & 35 & 3.2\%, 2.0 to 4.4 \\
-    outside the frontier & 241 & 12 & 5.0\%, 2.2 to 8.1 & 10 & 4.1\%, 1.8 to 6.8 \\
+    inside the frontier & 1,003 & 52 & 5.2\%, 3.8 to 6.7 & 33 & 3.3\%, 2.1 to 4.6 \\
+    outside the frontier & 337 & 14 & 4.2\%, 2.0 to 6.5 & 12 & 3.6\%, 1.7 to 5.6 \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-Four limits bound the reading. The claims are unconfirmed, and a row leaves this table when its claim is withdrawn. One system attempted about 4,000 problems that its lab chose and has not listed, so the rows it claimed are a selected sample of what is solvable and the denominator here is the atlas, which the lab never saw. Ten of the 79 claimed rows carry a Lean file that covers less than the row, and 20 carry none \ldg. The mapping was made by hand from the catalogue text and misses problems the atlas lists under another name. Among the 358 Erd\H{o}s rows the top class is claimed at 6.2\% against 2.5\% for borderline, with 13 outside rows and none claimed, which is too few to read \cl. The reading changes if confirmed claims, once at least 30 are recorded, settle inside at a rate whose interval for the difference from outside excludes zero, or if the reach AUC interval on confirmed rows clears 0.5; \texttt{tools/solvability-atlas/CLAIMS-2026-10.md} holds the full tables and the rule.
+Four limits bound the reading. The claims are unconfirmed, and a row leaves this table when its claim is withdrawn. One system attempted about 4,000 problems that its lab chose and has not listed, so the rows it claimed are a selected sample of what is solvable and the denominator here is the atlas, which the lab never saw. Ten of the 79 claimed rows carry a Lean file that covers less than the row, and 20 carry none \ldg. The mapping was made by hand from the catalogue text, after the release, and misses problems the atlas lists under another name. Among the 339 Erd\H{o}s rows inside the frontier before the release the top class is claimed at 6.1\% against 2.4\% for borderline, with 19 outside rows and one claimed, which is too few to read \cl. The reading changes if confirmed claims, once at least 30 are recorded, settle inside at a rate whose interval for the difference from outside excludes zero, or if the reach AUC interval on confirmed rows clears 0.5; \texttt{tools/solvability-atlas/CLAIMS-2026-10.md} holds both baselines and the rule.
 
 \subsection{Frozen forecasts}
 \label{sec:frozen}

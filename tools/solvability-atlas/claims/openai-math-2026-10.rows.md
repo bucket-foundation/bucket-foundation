@@ -91,14 +91,12 @@ Built by `python3 claims_build.py` from `claims/openai-math-2026-10.map.tsv` and
 
 ## Special Cases
 
-39 rows. The family claims part of the row. Status unchanged; the entry is a note on the row.
+23 rows. The family claims part of the row. Status unchanged; the entry is a note on the row.
 
 | Row | Family | Lean scope | Why |
 |---|---|---|---|
 | `wp-for-which-number-fields-does-hilbert-s-tenth-problem-hold` | 004 Hilbert’s tenth problem over ℚ | none | The claim covers the field of rationals. The row asks about every number field. |
 | `bsd` | 002 The full BSD formula from low Selmer corank | none | Full formula for curves whose Selmer group has corank zero or one at some prime. The conjecture in general stays open. |
-| `riemann` | 003 The quasi-Riemann hypothesis | full | A zero-free half-plane to the right of 7/8. The critical line statement stays open. |
-| `wp-generalized-riemann-hypothesis` | 003 The quasi-Riemann hypothesis | full | A zero-free half-plane to the right of 7/8 for every Dirichlet L-function. The hypothesis stays open. |
 | `wp-zilberpink-conjecture` | 016 Zilber–Pink in abelian varieties and the Siegel threefold | none | Abelian varieties and the curve case in the Siegel threefold. The row covers mixed Shimura and semiabelian varieties. |
 | `wp-section-conjecture` | 019 The local p-adic section conjecture and global consequences | none | The p-adic local statement and modular curves over the rationals. The row covers finitely generated fields. |
 | `fc-wikipedia-artinprimitiverootsconjecture-artin-primitive-root` | 029 Primitive roots for every admissible integer base | none | The row asks for positive density. The claim gives infinitude with a lower bound of order x over log squared x. |
@@ -109,13 +107,29 @@ Built by `python3 claims_build.py` from `claims/openai-math-2026-10.map.tsv` and
 | `wp-kakeya-conjecture` | 074 Kakeya in three and four dimensions | none | The maximal conjecture in dimension three and Hausdorff dimension in dimension four. Higher dimensions are unclaimed. |
 | `fc-wikipedia-kakeya-kakeya-set-conjecture` | 074 Kakeya in three and four dimensions | none | Hausdorff dimension in dimension four. The row covers every dimension. |
 | `wp-the-gnrs-conjecture-on-whether-minor-closed-graph-families-h` | 089 Bounded-distortion L1 embeddings of planar and bounded-treewidth graphs | full | Planar and bounded-treewidth graphs. The row covers every minor-closed family. |
-| `matmul` | 107 Matrix multiplication with exponent at most 9/4 | full | An upper bound of 9/4 on the exponent over the complex numbers. The value of the exponent stays open. |
-| `wp-what-is-the-fastest-algorithm-for-matrix-multiplication` | 107 Matrix multiplication with exponent at most 9/4 | full | An upper bound of 9/4 on the exponent over the complex numbers. The fastest algorithm stays open. |
 | `hilbert-16` | 143 Hilbert's sixteenth problem: uniform bounds for limit cycles | narrower | A uniform bound on limit cycles by degree. The oval-arrangement half and the value of the bound stay open. QuinticLienard.lean proves the count of two for quintic Lienard systems, which is a special case of the catalogue statement. |
 | `wp-hilbert-s-sixteenth-problem` | 143 Hilbert's sixteenth problem: uniform bounds for limit cycles | narrower | A uniform bound on limit cycles by degree. The row asks about configurations of ovals of M-curves. QuinticLienard.lean proves the count of two for quintic Lienard systems. |
 | `wp-birkhoff-conjecture-if-a-billiard-table-is-strictly-convex-a` | 147 The near-boundary Birkhoff conjecture | none | The near-boundary form, which assumes a foliated annulus by invariant curves. The row assumes integrability alone. |
-| `wp-borsuk-s-problem-on-upper-and-lower-bounds-for-the-number-of` | 156 Borsuk's conjecture fails in dimension nine | full | A counterexample in dimension nine. Bounds in other dimensions stay open. |
 | `fc-wikipedia-borsukconjecture-borsuk-conjecture` | 156 Borsuk's conjecture fails in dimension nine | full | A counterexample in dimension nine refutes one case of the range four to sixty-two. Dimensions four to eight stay open. |
+| `wp-kaplansky-s-conjectures` | 196 A counterexample to Kaplansky’s zero-divisor conjecture | full | The zero-divisor conjecture is one of several under this name. The row names no single statement. |
+| `fc-paper-eisenbudgreenharris-eisenbud-green-harris` | 200 Eisenbud–Green–Harris and lex-plus-powers | none | Fields of characteristic zero. The row names no restriction on the field. |
+| `fc-wikipedia-kaplansky-idempotent-conjecture` | 207 The ℓ¹-Bass conjecture for all discrete groups | full | Characteristic-zero domains. The row names no restriction on the field. |
+| `fc-arxiv-math-0703548-farrelljonesconsequences-bass-conjecture` | 207 The ℓ¹-Bass conjecture for all discrete groups | narrower | Characteristic-zero domains. The row covers every commutative integral domain. The Lean statement is the complex Bass trace conjecture. Other characteristic-zero domains are outside the note. |
+| `wp-the-cosmic-censorship-hypothesis-and-the-chronology-protecti` | 264 Strong cosmic censorship near two-ended Kerr data | none | A local genericity statement near two-ended Kerr data. The hypothesis in general stays open. |
+| `fc-paper-degiorgi-degiorgi-le-eight` | 375 De Giorgi's conjecture in dimension eight | none | Dimension eight. Dimensions four to seven are not named in the catalogue. |
+| `fc-erdosproblems-120-erdos-120` | 084 The geometric case of the Erdős similarity conjecture | narrower | Geometric progressions. The row covers every infinite set. DyadicAvoidance.lean covers ratio one half. The catalogue claims every ratio. |
+
+## Weaker Bounds
+
+16 rows. The family claims a bound short of the value or statement the row asks for. Status unchanged; the entry is a note on the row.
+
+| Row | Family | Lean scope | Why |
+|---|---|---|---|
+| `riemann` | 003 The quasi-Riemann hypothesis | full | A zero-free half-plane to the right of 7/8. The critical line statement stays open. |
+| `wp-generalized-riemann-hypothesis` | 003 The quasi-Riemann hypothesis | full | A zero-free half-plane to the right of 7/8 for every Dirichlet L-function. The hypothesis stays open. |
+| `matmul` | 107 Matrix multiplication with exponent at most 9/4 | full | An upper bound of 9/4 on the exponent over the complex numbers. The value of the exponent stays open. |
+| `wp-what-is-the-fastest-algorithm-for-matrix-multiplication` | 107 Matrix multiplication with exponent at most 9/4 | full | An upper bound of 9/4 on the exponent over the complex numbers. The fastest algorithm stays open. |
+| `wp-borsuk-s-problem-on-upper-and-lower-bounds-for-the-number-of` | 156 Borsuk's conjecture fails in dimension nine | full | A counterexample in dimension nine. Bounds in other dimensions stay open. |
 | `unitdist` | 158 The Euclidean plane cannot be colored with five colors | full | A lower bound of six. The chromatic number of the plane is six or seven. |
 | `wp-the-hadwigernelson-problem-on-the-chromatic-number-of-unit-d` | 158 The Euclidean plane cannot be colored with five colors | full | A lower bound of six. The chromatic number of the plane is six or seven. |
 | `fc-erdosproblems-508-hadwigernelsonproblem` | 158 The Euclidean plane cannot be colored with five colors | full | A lower bound of six. The chromatic number of the plane is six or seven. |
@@ -125,15 +139,8 @@ Built by `python3 claims_build.py` from `claims/openai-math-2026-10.map.tsv` and
 | `wp-how-many-unit-distances-can-be-determined-by-a-set-of-points` | 167 Planar distinct distances and unit-distance bounds | full | An upper bound of n to the 4/3 minus delta. The count stays open. |
 | `wp-finding-matching-upper-and-lower-bounds-for-k-sets-and-halvi` | 183 Power savings for planar halving lines and k-sets | full | A power saving in the upper bound. Matching bounds stay open. |
 | `wp-improving-lower-and-upper-bounds-for-the-heilbronn-triangle` | 191 A power improvement in the Heilbronn triangle lower bound | narrower | A power improvement in the lower bound. The exponent stays open. The Lean construction covers an unbounded sequence of sizes. The scope note says the statement for every large n is broader. |
-| `wp-kaplansky-s-conjectures` | 196 A counterexample to Kaplansky’s zero-divisor conjecture | full | The zero-divisor conjecture is one of several under this name. The row names no single statement. |
-| `fc-paper-eisenbudgreenharris-eisenbud-green-harris` | 200 Eisenbud–Green–Harris and lex-plus-powers | none | Fields of characteristic zero. The row names no restriction on the field. |
-| `fc-wikipedia-kaplansky-idempotent-conjecture` | 207 The ℓ¹-Bass conjecture for all discrete groups | full | Characteristic-zero domains. The row names no restriction on the field. |
-| `fc-arxiv-math-0703548-farrelljonesconsequences-bass-conjecture` | 207 The ℓ¹-Bass conjecture for all discrete groups | narrower | Characteristic-zero domains. The row covers every commutative integral domain. The Lean statement is the complex Bass trace conjecture. Other characteristic-zero domains are outside the note. |
-| `wp-the-cosmic-censorship-hypothesis-and-the-chronology-protecti` | 264 Strong cosmic censorship near two-ended Kerr data | none | A local genericity statement near two-ended Kerr data. The hypothesis in general stays open. |
-| `fc-paper-degiorgi-degiorgi-le-eight` | 375 De Giorgi's conjecture in dimension eight | none | Dimension eight. Dimensions four to seven are not named in the catalogue. |
 | `fc-erdosproblems-148-erdos-148` | 025 Short Egyptian fractions | full | log log F(k) of order k. The row asks for good estimates of F(k). |
 | `fc-erdosproblems-970-erdos-970` | 021 A quadratic bound for Jacobsthal’s function | full | The bound h(k) of order at most k squared. The row also asks for the order of magnitude, which the scope note says is not determined. |
-| `fc-erdosproblems-120-erdos-120` | 084 The geometric case of the Erdős similarity conjecture | narrower | Geometric progressions. The row covers every infinite set. DyadicAvoidance.lean covers ratio one half. The catalogue claims every ratio. |
 
 ## Related Statements
 

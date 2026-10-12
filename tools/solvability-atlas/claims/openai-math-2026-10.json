@@ -21,7 +21,7 @@
   "manuscripts": 719,
   "families_with_lean_note": 242
  },
- "rule": "A row is claimed when an unwithdrawn ledger entry states its problem in full and no independent confirmation is recorded. A claimed row is unsolved in every frontier, reach and solved-rate computation. A confirmation by a named expert or a refereed venue turns the row solved with the confirmation year as its resolved year. Entries that match a special case or a related statement are notes and leave the status alone.",
+ "rule": "A row is claimed when an unwithdrawn ledger entry states its problem in full and no independent confirmation is recorded. A claimed row is unsolved in every frontier, reach and solved-rate computation. A confirmation by a named expert or a refereed venue turns the row solved with the confirmation year as its resolved year. Entries that match a special case, a weaker bound or a related statement are notes and leave the status alone.",
  "claims": [
   {
    "id": "wp-hilbert-s-tenth-problem-over-the-field-of-rational-numbers",
@@ -180,7 +180,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Uniform-exclusion-of-Landau-Siegel-zeros-October-1-2026/paper.pdf"
    ],
    "statement": "Proves that every Dirichlet L-function, including \\zeta(s), is zero-free in \\Re s\\gt 7/8, resolving the quasi-Riemann hypothesis. The same half-plane is zero-free for every finite-order Hecke L-function over \\mathbb Q(\\sqrt{-3}). A companion gives a different proof of the zero-free half-plane \\Re s\\gt 11/12.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A zero-free half-plane to the right of 7/8. The critical line statement stays open.",
    "formal": {
     "exists": true,
@@ -205,7 +205,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Uniform-exclusion-of-Landau-Siegel-zeros-October-1-2026/paper.pdf"
    ],
    "statement": "Proves that every Dirichlet L-function, including \\zeta(s), is zero-free in \\Re s\\gt 7/8, resolving the quasi-Riemann hypothesis. The same half-plane is zero-free for every finite-order Hecke L-function over \\mathbb Q(\\sqrt{-3}). A companion gives a different proof of the zero-free half-plane \\Re s\\gt 11/12.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A zero-free half-plane to the right of 7/8 for every Dirichlet L-function. The hypothesis stays open.",
    "formal": {
     "exists": true,
@@ -896,7 +896,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf"
    ],
    "statement": "Proves \\omega\\le9/4 over ℂ, giving O_\\varepsilon(n^{9/4+\\varepsilon}) arithmetic operations for square matrix multiplication. In characteristic zero, some inner dimension na with a > 0.465 permits n^{2+o(1)} rectangular multiplication. Further square bounds give ω < 2.258 outside finitely many positive characteristics and ω < 2.371054886006746 over every fixed field.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "An upper bound of 9/4 on the exponent over the complex numbers. The value of the exponent stays open.",
    "formal": {
     "exists": true,
@@ -921,7 +921,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026/Staggered-extraction-for-exact-matrix-multiplication-over-every-field-September-24-2026.pdf"
    ],
    "statement": "Proves \\omega\\le9/4 over ℂ, giving O_\\varepsilon(n^{9/4+\\varepsilon}) arithmetic operations for square matrix multiplication. In characteristic zero, some inner dimension na with a > 0.465 permits n^{2+o(1)} rectangular multiplication. Further square bounds give ω < 2.258 outside finitely many positive characteristics and ω < 2.371054886006746 over every fixed field.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "An upper bound of 9/4 on the exponent over the complex numbers. The fastest algorithm stays open.",
    "formal": {
     "exists": true,
@@ -1231,7 +1231,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/A-nine-dimensional-counterexample-to-Borsuks-covering-assertion-September-23-2026/paper.pdf"
    ],
    "statement": "Constructs a compact subset of ℝ9 that cannot be covered by ten sets of strictly smaller diameter, disproving Borsuk's covering assertion already in dimension nine. The example consists of rank-one orthogonal projectors onto lines in ℝ4, with the Frobenius metric.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A counterexample in dimension nine. Bounds in other dimensions stay open.",
    "formal": {
     "exists": true,
@@ -1302,7 +1302,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/The-Euclidean-plane-is-not-five-colorable-September-23-2026/paper.pdf"
    ],
    "statement": "Proves that every five-coloring of the Euclidean plane has a monochromatic pair at distance one, with no restriction on the color classes. This advances the Hadwiger–Nelson problem: together with the classical seven-coloring, only six and seven remain possible chromatic numbers of the plane.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A lower bound of six. The chromatic number of the plane is six or seven.",
    "formal": {
     "exists": true,
@@ -1325,7 +1325,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/The-Euclidean-plane-is-not-five-colorable-September-23-2026/paper.pdf"
    ],
    "statement": "Proves that every five-coloring of the Euclidean plane has a monochromatic pair at distance one, with no restriction on the color classes. This advances the Hadwiger–Nelson problem: together with the classical seven-coloring, only six and seven remain possible chromatic numbers of the plane.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A lower bound of six. The chromatic number of the plane is six or seven.",
    "formal": {
     "exists": true,
@@ -1348,7 +1348,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/The-Euclidean-plane-is-not-five-colorable-September-23-2026/paper.pdf"
    ],
    "statement": "Proves that every five-coloring of the Euclidean plane has a monochromatic pair at distance one, with no restriction on the color classes. This advances the Hadwiger–Nelson problem: together with the classical seven-coloring, only six and seven remain possible chromatic numbers of the plane.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A lower bound of six. The chromatic number of the plane is six or seven.",
    "formal": {
     "exists": true,
@@ -1417,7 +1417,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/paper.pdf"
    ],
    "statement": "Proves Erdős's conjecture that every set of positive integers with divergent reciprocal sum contains arithmetic progressions of every finite length. Quantitatively, for each fixed k ≥ 3, every subset of \\{1,\\ldots,N\\} with no nonconstant k-term progression has size at most C_kN\\exp[-c_k(\\log N)^{\\varepsilon_k}], with positive constants depending only on k.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "An upper bound for r_k(N). The row asks for an asymptotic formula.",
    "formal": {
     "exists": true,
@@ -1440,7 +1440,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Quasipolynomial-Bounds-for-Arithmetic-Progressions-September-23-2026/paper.pdf"
    ],
    "statement": "Proves Erdős's conjecture that every set of positive integers with divergent reciprocal sum contains arithmetic progressions of every finite length. Quantitatively, for each fixed k ≥ 3, every subset of \\{1,\\ldots,N\\} with no nonconstant k-term progression has size at most C_kN\\exp[-c_k(\\log N)^{\\varepsilon_k}], with positive constants depending only on k.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "An upper bound for r_k(N). The growth rate stays open.",
    "formal": {
     "exists": true,
@@ -1486,7 +1486,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Quantitative-Superexponential-Bounds-for-van-der-Waerden-Numbers-September-23-2026/paper.pdf"
    ],
    "statement": "Resolves Erdős's superexponential-growth question for van der Waerden numbers. If W_r(k) is the least interval length forcing a monochromatic k-term progression in every r-coloring, then W_r(k)\\gt k^{ck\\lfloor\\log_2 r\\rfloor} for an absolute c > 0, all r ≥ 2 and sufficiently large k, uniformly in r. In particular, W_r(k)^{1/k}\\to\\infty for each fixed r.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A lower bound. The values stay open.",
    "formal": {
     "exists": true,
@@ -1697,7 +1697,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/A-power-saving-for-planar-unit-distances-September-23-2026/paper.pdf"
    ],
    "statement": "Proves the weak pinned Erdős distance conjecture: for every fixed ε > 0, all but o(n) points of any n-point planar set determine at least n^{1-\\varepsilon} distinct nonzero distances. A complementary theorem bounds the number of unit-distance pairs by O(n^{4/3-\\delta}) for an absolute δ > 0.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "An upper bound of n to the 4/3 minus delta. The count stays open.",
    "formal": {
     "exists": true,
@@ -1720,7 +1720,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/A-power-saving-for-planar-halving-lines-September-25-2026/main.pdf"
    ],
    "statement": "Improves the planar halving-line bound to O(n^{4/3-\\varepsilon}) for sets with no three collinear and an absolute ε > 0. More generally, an n-point set with no three collinear has O(n(k+1)^{1/3-\\varepsilon_0}) strictly separable k-subsets for 1\\le k\\le n/2, with an absolute \\varepsilon_0\\gt 0. The constants and positive exponents are nonquantitative.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A power saving in the upper bound. Matching bounds stay open.",
    "formal": {
     "exists": true,
@@ -1927,7 +1927,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/A-power-improvement-in-the-Heilbronn-triangle-lower-bound-September-25-2026/main.pdf"
    ],
    "statement": "For every sufficiently large n, constructs n points in the unit square such that every triangle has area at least n^{-2+c} for one absolute c > 0. This disproves the conjectured almost-n−2 upper bound in Heilbronn's triangle problem, which asks how large the smallest determined triangle can be.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "A power improvement in the lower bound. The exponent stays open.",
    "formal": {
     "exists": true,
@@ -3146,7 +3146,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Short-Egyptian-fractions-September-25-2026/Short-Egyptian-fractions-September-25-2026.pdf"
    ],
    "statement": "Every rational a/b with 1\\le a\\lt b is a sum of O(\\log\\log b) distinct positive unit fractions. The worst-case minimum number of terms has the same order, resolving Erdős’s conjecture on short Egyptian fractions.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "log log F(k) of order k. The row asks for good estimates of F(k).",
    "formal": {
     "exists": true,
@@ -3169,7 +3169,7 @@
     "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/A-quadratic-bound-for-Jacobsthals-function-September-25-2026/paper.pdf"
    ],
    "statement": "Answers Jacobsthal's quadratic-bound question: every interval of Ck^2 consecutive integers contains an integer coprime to any prescribed positive integer with at most k distinct prime divisors, for an absolute constant C. The bound is uniform over prime sets and interval positions and removes the classical logarithmic loss.",
-   "match": "special_case",
+   "match": "weaker_bound",
    "match_note": "The bound h(k) of order at most k squared. The row also asks for the order of magnitude, which the scope note says is not determined.",
    "formal": {
     "exists": true,

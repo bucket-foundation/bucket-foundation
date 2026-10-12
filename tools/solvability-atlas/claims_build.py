@@ -121,10 +121,11 @@ def build(offline=False):
     return claims.validate(ledger), families
 
 
-MATCH_TITLE = {"problem": "Rows Marked Claimed", "special_case": "Special Cases", "related": "Related Statements", "unestablished": "Match Unestablished"}
+MATCH_TITLE = {"problem": "Rows Marked Claimed", "special_case": "Special Cases", "weaker_bound": "Weaker Bounds", "related": "Related Statements", "unestablished": "Match Unestablished"}
 MATCH_LEDE = {
     "problem": "The family claims the row's problem in full. Status `claimed`, counted as open.",
     "special_case": "The family claims part of the row. Status unchanged; the entry is a note on the row.",
+    "weaker_bound": "The family claims a bound short of the value or statement the row asks for. Status unchanged; the entry is a note on the row.",
     "related": "The family claims a neighbouring statement. Status unchanged.",
     "unestablished": "The catalogue text does not show that the family settles the row. Status unchanged.",
 }
