@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Api, ResearchDetail, WorkspaceItem } from "../api";
-import { href, type Route, type WorkspaceType } from "../router";
+import { href, parseHash, type Route, type WorkspaceType } from "../router";
 import { activateTab, openTab, patchTab, readTabs, windowStorage, writeTabs, type Tab, type Tabs, type TabStorage } from "../tabs";
 import { FILTER_WAIT_MS, NOT_LOADED, Pager } from "./Data";
 import { exploreHash, ExploreView, type ExploreApi } from "./Explore";
@@ -242,10 +242,13 @@ function BuiltWorkspace({ api, type, words, storage, item, webgl }: { api: Works
   }, [storage, key, tabs]);
 
   useEffect(() => {
-    const onPop = () => setTabs((s) => activateTab(s, shownItem(window.history.state)));
+    const onPop = () => {
+      const here = parseHash(window.location.hash);
+      if (here.name === "workspace" && (here.type ?? "tables") === type && !here.item) setTabs((s) => activateTab(s, shownItem(window.history.state)));
+    };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
-  }, []);
+  }, [type]);
 
   const choose = (next: Tabs<ItemTab>) => {
     if (next.active !== tabs.active) window.history.pushState({ ...(window.history.state && typeof window.history.state === "object" ? window.history.state : {}), [ITEM_STATE]: next.active }, "");

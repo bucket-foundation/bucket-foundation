@@ -466,6 +466,7 @@ describe("leaving a workspace editor inside the save pause", () => {
       expect(s.v.host.querySelector(".research-table")).not.toBeNull();
       s.h.back();
       window.history.replaceState(s.h.state, "");
+      window.location.hash = "#/workspace/tables";
       await s.v.act(async () => void window.dispatchEvent(new window.Event("popstate")));
       await s.v.settle();
       expect(s.h.url).toBe("#/workspace/tables");
@@ -720,6 +721,7 @@ describe("leaving a paper or a figure script inside the save pause", () => {
     expect(s.v.host.querySelector(".research-full")).not.toBeNull();
     await s.type("print('redrawn')\n");
     window.history.replaceState({}, "");
+    window.location.hash = "#/workspace/figures";
     await s.v.act(async () => void window.dispatchEvent(new window.Event("popstate")));
     await s.v.settle();
     expect(s.f.saves).toEqual([{ slug: "solvability-frontier", path: SCRIPT_PATH, base: "rev-shipped", text: "print('redrawn')\n" }]);
