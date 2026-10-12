@@ -118,7 +118,7 @@ describe("Explore in the window", () => {
       fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "globe"], drill, rows: [{ key: "group-one", title: "Group one", sub: "700 rows", group: "a", source: "open" }] }),
       fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "globe"], drill, rows: leaves }),
     ], ctx);
-    const far = assembleRowSet([fixtureDraft({ id: "far-set", label: "Far set", modes: ["globe"] , rows: [{ key: "one", title: "Far row", sub: "", group: "a", source: "open" }] })], ctx)[0];
+    const far = assembleRowSet([fixtureDraft({ id: "far-set", label: "Far set", modes: ["globe"] , rows: [{ key: "one", title: "Far row", sub: "", group: "a", source: "open", place: "CL", point: [-37.7, -71.4] }] })], ctx)[0];
     const asked: string[] = [];
     const base = (async (input: RequestInfo | URL) => {
       const u = String(input);
@@ -175,8 +175,11 @@ describe("Explore in the window", () => {
     expect(one("rows-verified")!.textContent).toBe("1 of 2 rows are checked against their source. The rest are drawn hollow.");
     expect(one("rows-cut")).toBeNull();
     expect(one("rows-attribution")!.textContent).toContain("Licence for this set: CC-BY-4.0.");
-    expect(one("rows-attribution")!.textContent).toContain("Attributed source, 1 row, CC-BY-4.0. Used under CC BY 4.0. Bucket has yet to read this source's terms page.");
-    expect(host.querySelectorAll('[data-testid="rows-terms-unread"]')).toHaveLength(2);
+    expect(one("rows-attribution")!.textContent).toContain("Attributed source, 1 row, CC-BY-4.0. Used under CC BY 4.0.");
+    expect(one("rows-attribution")!.textContent).not.toMatch(/terms|unread/i);
+    expect([...one("rows-attribution")!.querySelectorAll("li")].map((li) => li.getAttribute("data-terms-read"))).toEqual(["no", "no"]);
+    expect(flow.attributions.every((a) => a.termsRead === false)).toBe(true);
+    expect(one("rows-points")).toBeNull();
     expect(one("rows-modes-note")!.textContent).toBe("This data draws in Graph. The other views stay off while it is open.");
     const modes = [...host.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
     expect(modes.filter((b) => !b.disabled).map((b) => b.textContent)).toEqual(["Graph"]);
@@ -232,6 +235,7 @@ describe("Explore in the window", () => {
 
     await choose("far-set");
     expect(one("rows-scene-note")!.textContent).toBe("No view in this copy of Bucket can draw this data.");
+    expect(one("rows-points")!.textContent).toBe("Each point is the label point of one country. It marks no border.");
     expect(one("rows-modes-note")).toBeNull();
     expect([...host.querySelectorAll<HTMLButtonElement>('[role="tab"]')].every((b) => b.disabled)).toBe(true);
     expect(results()).toHaveLength(1);

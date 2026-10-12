@@ -6,7 +6,7 @@ import { hasEmail } from "../../../../../src/lib/research-os/advisor-review";
 import { findKruse } from "../../../scripts/check-no-kruse";
 import { findStaff, findStaffRowSets } from "../../../scripts/check-no-staff";
 import { assertClean, buildDenylist } from "../rights";
-import { STAFF_ONLY_EVIDENCE } from "./technology-waves";
+import { figureUrl, occupationKey, STAFF_ONLY_EVIDENCE } from "./technology-waves";
 import { assembleRowSet, checkRows, hitIds, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowKey, rowKeys, rowSetText, SET_BYTES, type RowDraft } from "./contract";
 import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, packWarnings, countryCodes, describeRowSets, fileTables, packBytes, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
 import { fixtureContext, fixtureDraft } from "./test-fixtures";
@@ -146,13 +146,38 @@ describe("the public row set pack, built from the tables", () => {
     expect(stated.length).toBe(opening.links.flat().length);
     expect(stated.filter(Boolean).length).toBeGreaterThan(0);
     expect(stated.filter((s) => !s).length).toBeGreaterThan(0);
-    const operator = keys.indexOf("occ-telephone-operator");
-    expect(opening.sub[operator]).toContain("invention to peak share of employment: 74 years, n = 1");
-    const withLag = opening.sub.filter((s, i) => group(i) === "occupation" && / years?, n = \d+$/.test(s));
-    expect(withLag.length).toBeGreaterThan(3);
-    expect(opening.sub.filter((s) => /\d+ years?/.test(s) && /lag|peak|displac/.test(s)).every((s) => /, n = \d+$/.test(s))).toBe(true);
+    const withLag = keys.filter((_, i) => group(i) === "occupation" && / years?, n = \d+$/.test(opening.sub[i]));
+    expect(withLag).toEqual(["occ-bank-teller", "occ-manual-switchboard-operator", "occ-mechanic-and-repairer", "occ-railroad-worker"]);
+    expect(opening.sub[keys.indexOf("occ-elevator-operator")]).toBe("shrank, ended");
     expect(opening.attributions.map((a) => a.source)).toContain("Bucket Foundation, progressions corpus");
     expect(/archives\.gov|nber\.org|ourworldindata/.test(JSON.stringify(opening))).toBe(false);
+  });
+
+  test("no public lag or case carries a figure without a source address that IPUMS does not host", async () => {
+    const [opening] = setOf("technology-waves").pages;
+    const keys = rowKeys(opening);
+    const cases: Record<string, unknown>[] = [];
+    for await (const row of fileTables(join(REPO, TABLES_DIR)).rows("tech_occupation")) cases.push(row);
+    const lags: Record<string, unknown>[] = [];
+    for await (const row of fileTables(join(REPO, TABLES_DIR)).rows("tech_lags")) lags.push(row);
+    let checked = 0;
+    keys.forEach((key, i) => {
+      if (opening.groups[opening.gi[i]].id !== "occupation") return;
+      const url = opening.url[i] as string;
+      expect(figureUrl(url)).toBe(url);
+      expect(new URL(url).host.endsWith("ipums.org")).toBe(false);
+      const own = cases.filter((c) => occupationKey(String(c.occupation)) === key);
+      expect(own.some((c) => c.source_url === url)).toBe(true);
+      const printed = / (\d+) years?, n = (\d+)$/.exec(opening.sub[i]);
+      if (!printed) return;
+      checked++;
+      const lag = lags.find((l) => occupationKey(String(l.occupation)) === key && l.row_type === "case" && Number(l.lag_years) === Number(printed[1]) && Number(l.n) === Number(printed[2]));
+      expect(lag).toBeDefined();
+      expect(own.some((c) => c.technology_id === lag?.technology_id && c.year === lag?.to_year && c.source_url === url)).toBe(true);
+    });
+    expect(checked).toBe(4);
+    expect(/ipums/i.test(JSON.stringify(pack))).toBe(false);
+    expect(opening.sub.filter((s, i) => opening.groups[opening.gi[i]].id === "occupation" && /\d,\d{3}/.test(s))).toEqual([]);
   });
 
   test("no public row of any set has evidence wikidata-id-only", async () => {

@@ -55,7 +55,7 @@ export function drawableModes(packed: Pick<PackedRows, "modes">, drawn: readonly
   return packed.modes.filter((mode) => drawn.includes(mode));
 }
 
-export const TERMS_UNREAD = "Bucket has yet to read this source's terms page.";
+export const POINT_CAPTION = "Each point is the label point of one country. It marks no border.";
 
 export function cutLine(cut: number): string | null {
   if (cut <= 0) return null;

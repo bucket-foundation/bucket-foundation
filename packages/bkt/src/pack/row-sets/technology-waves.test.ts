@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { checkRows, hitIds, packedBytes, REPLY_BYTES, rowKeys } from "./contract";
 import { checkCaps, memoryTables } from "./index";
 import type { Row } from "./licences";
-import { lagLine, occupationKey, STAFF_ONLY_EVIDENCE, technologyWaves, TECHNOLOGY_WAVES_ID, yearLabel } from "./technology-waves";
+import { figureUrl, lagLine, lagSource, occupationKey, STAFF_ONLY_EVIDENCE, technologyWaves, TECHNOLOGY_WAVES_ID, yearLabel } from "./technology-waves";
 import { repoFixtureContext } from "./test-fixtures";
 
 const ctx = repoFixtureContext();
@@ -48,6 +48,7 @@ const occupation = (id: string, technology: string, name: string, relation: stri
 const CASES: Row[] = [
   occupation("tech-occ-001", "ht-core-telephone", "telephone operator", "created", 1878, `${WP}Switchboard_operator`, true, "pointer"),
   occupation("tech-occ-002", "ht-core-exchange", "telephone operator", "shrank", 1920, BLS, true),
+  occupation("tech-occ-010", "ht-core-laser", "ipums counter", "shrank", 1990, "https://usa.ipums.org/usa/resources/chapter4/occ_90-00.xls", true),
   occupation("tech-occ-003", "ht-core-exchange", "telephone operator", "shrank", 1950, BLS, true),
   occupation("tech-occ-004", "ht-core-laser", "laser technician", "created", 1965, BLS, false, "memory"),
   occupation("tech-occ-005", "ht-core-laser", "paper author", "expanded", 1970, "https://www.nber.org/papers/w1", true),
@@ -57,15 +58,17 @@ const CASES: Row[] = [
   occupation("tech-occ-009", "ht-core-laser", "undated trade", "created", null, BLS, true),
 ];
 
-const lag = (id: string, technology: string | null, name: string | null, measure: string, years: number, n: number, type = "case"): Row => ({
-  id, slice: "history-technology", row_type: type, technology_id: technology, occupation: name, measure, from_year: 1876, to_year: 1950, lag_years: years, n, basis: "A basis sentence that stays out. It names its source.", verified: true,
+const lag = (id: string, technology: string | null, name: string | null, measure: string, years: number, to: number | null, over: Row = {}): Row => ({
+  id, slice: "history-technology", row_type: "case", technology_id: technology, occupation: name, measure, from_year: 1876, to_year: to, lag_years: years, n: 1, basis: "A basis sentence that stays out. It names 89,185 workers.", verified: true, ...over,
 });
 
 const LAGS: Row[] = [
-  lag("tech-lag-001", "ht-core-telephone", "telephone operator", "invention to peak share of employment", 74, 1),
-  lag("tech-lag-002", "ht-core-telephone", "telephone operator", "a second measure", 9, 1),
-  lag("tech-lag-003", "ht-core-laser", "paper author", "invention to peak count", 30, 1),
-  lag("tech-lag-summary-01", null, null, "invention to peak employment", 60, 2, "summary"),
+  lag("tech-lag-001", "ht-core-telephone", "telephone operator", "invention to peak share of employment", 74, 1990),
+  lag("tech-lag-002", "ht-core-exchange", "telephone operator", "displacing invention to first mass displacement", 29, 1920),
+  lag("tech-lag-003", "ht-core-exchange", "telephone operator", "a later measure for the same pair", 59, 1950),
+  lag("tech-lag-004", "ht-core-laser", "laser technician", "invention to first count", 5, 1965, { source_url: "https://usa.ipums.org/usa/resources/chapter4/occ_90-00.xls" }),
+  lag("tech-lag-005", "ht-core-laser", "paper author", "invention to peak count", 30, 1970),
+  lag("tech-lag-summary-01", null, null, "invention to peak employment", 60, null, { row_type: "summary", n: 2 }),
 ];
 
 const tables = () => memoryTables({ technologies: TECHNOLOGIES, tech_training_response: RESPONSES, tech_occupation: CASES, tech_lags: LAGS });
@@ -74,7 +77,7 @@ describe("technology waves", () => {
   test("a fixture gives a stable sha256", async () => {
     const pages = await technologyWaves(tables(), ctx);
     expect((await technologyWaves(tables(), ctx)).map((p) => p.sha256)).toEqual(pages.map((p) => p.sha256));
-    expect(pages[0].sha256).toBe("a57e90663af79facb643cf247e58b3fa84ebf8dfd9a56a37741e6c3f1ba91a2e");
+    expect(pages[0].sha256).toBe("db448823d8615140b2bfeab6ea3a42e5cbb5bd56865b21f55e417de5b09f9ae4");
   });
 
   test("waves, curated technologies, training responses and changed occupations sit on one page, checked and unchecked apart", async () => {
@@ -112,18 +115,36 @@ describe("technology waves", () => {
     expect(opening.links.slice(0, 6).every((l) => l.length === 0)).toBe(true);
   });
 
-  test("a lag prints with its n, one per occupation, and credits the corpus that computed it", async () => {
+  test("a lag prints with its n only when a case of the same pair and year gives it a source that is not IPUMS", async () => {
     const [opening] = await technologyWaves(tables(), ctx);
     const at = (key: string) => rowKeys(opening).indexOf(key);
-    expect(opening.sub[at("occ-telephone-operator")]).toBe("created, shrank; invention to peak share of employment: 74 years, n = 1");
+    const operator = at("occ-telephone-operator");
+    expect(opening.sub[operator]).toBe("created, shrank; displacing invention to first mass displacement: 29 years, n = 1");
+    expect(opening.url[operator]).toBe(BLS);
+    expect(opening.sources[opening.si[operator]]).toBe("wikipedia");
     expect(opening.sub[at("occ-laser-technician")]).toBe("created");
+    const text = JSON.stringify(opening);
+    for (const gone of ["invention to peak share of employment", "a later measure", "invention to first count", "invention to peak employment", "89,185", "ipums"]) expect(text).not.toContain(gone);
     expect(lagLine({ measure: "patent to first use", years: 1, n: 3 })).toBe("patent to first use: 1 year, n = 3");
-    expect(JSON.stringify(opening)).not.toContain("a second measure");
-    expect(JSON.stringify(opening)).not.toContain("invention to peak employment: 60");
     const credit = opening.attributions.find((a) => a.source === "Bucket Foundation, progressions corpus");
     expect([credit?.rows, credit?.licence, credit?.termsRead]).toEqual([1, "CC-BY-4.0", true]);
-    expect(opening.sources).not.toContain("bucket-corpus");
     expect(occupationKey("Telephone operator (manual)")).toBe("occ-telephone-operator-manual");
+  });
+
+  test("a figure needs a source address on record that IPUMS does not host", () => {
+    const cases = [{ technology: "t", year: 1950, url: BLS }, { technology: "t", year: 1960, url: "https://usa.ipums.org/usa/x.xls" }, { technology: "u", year: 1950, url: BLS }];
+    const row = (over: Row): Row => ({ technology_id: "t", to_year: 1950, ...over });
+    expect(lagSource(row({}), cases)).toBe(BLS);
+    expect(lagSource(row({ source_url: "https://www.bls.gov/oes/tables.htm" }), cases)).toBe("https://www.bls.gov/oes/tables.htm");
+    expect(lagSource(row({ source_url: "https://usa.ipums.org/usa/x.xls" }), cases)).toBeNull();
+    expect(lagSource(row({ source_url: "https://cps.ipums.org/x" }), cases)).toBeNull();
+    expect(lagSource(row({ source_url: "" }), cases)).toBeNull();
+    expect(lagSource(row({ to_year: 1960 }), cases)).toBeNull();
+    expect(lagSource(row({ to_year: 1951 }), cases)).toBeNull();
+    expect(lagSource(row({ to_year: null }), cases)).toBeNull();
+    expect(lagSource(row({ technology_id: "v" }), cases)).toBeNull();
+    expect(lagSource(row({}), [])).toBeNull();
+    expect([figureUrl(BLS), figureUrl("http://www.bls.gov/x"), figureUrl("https://usa.ipums.org/x"), figureUrl("not a link"), figureUrl(null)]).toEqual([BLS, null, null, null, null]);
   });
 
   test("no public row has evidence wikidata-id-only, and no case of an uncleared source or unshipped technology draws", async () => {
@@ -131,7 +152,7 @@ describe("technology waves", () => {
     const keys = new Set(pages.flatMap(rowKeys));
     const staffOnly = TECHNOLOGIES.filter((r) => r.evidence === STAFF_ONLY_EVIDENCE).map((r) => String(r.id));
     expect(staffOnly).toHaveLength(3);
-    for (const id of [...staffOnly, "ht-no-evidence", "ht-other-host", "ht-no-link", "tech-tr-archives", "tech-tr-undated", "occ-paper-author", "occ-chart-maker", "occ-computer-operator", "occ-odd-relation", "occ-undated-trade"]) expect(keys.has(id)).toBe(false);
+    for (const id of [...staffOnly, "ht-no-evidence", "ht-other-host", "ht-no-link", "tech-tr-archives", "tech-tr-undated", "occ-paper-author", "occ-chart-maker", "occ-computer-operator", "occ-odd-relation", "occ-undated-trade", "occ-ipums-counter"]) expect(keys.has(id)).toBe(false);
     expect(/nber\.org|ourworldindata|archives\.gov|"computer"|machine learning model/.test(JSON.stringify(pages))).toBe(false);
   });
 

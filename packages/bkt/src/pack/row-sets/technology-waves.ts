@@ -41,6 +41,25 @@ export function occupationKey(name: string): string {
   return `occ-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
 }
 
+export const WITHHELD_FIGURE_HOST = "usa.ipums.org";
+
+export function figureUrl(url: unknown): string | null {
+  if (typeof url !== "string" || !url.startsWith("https://")) return null;
+  try {
+    return new URL(url).host.toLowerCase().endsWith("ipums.org") ? null : url;
+  } catch {
+    return null;
+  }
+}
+
+export function lagSource(row: Row, cases: { technology: string; year: number | null; url: string }[]): string | null {
+  if (row.source_url !== undefined && row.source_url !== null && figureUrl(row.source_url) === null) return null;
+  const end = year(row.to_year);
+  const held = cases.find((c) => c.technology === text(row.technology_id) && end !== null && c.year === end && figureUrl(c.url) !== null);
+  if (!held) return null;
+  return figureUrl(row.source_url) ?? held.url;
+}
+
 export function lagLine(lag: { measure: string; years: number; n: number }): string {
   return `${lag.measure}: ${lag.years} ${lag.years === 1 ? "year" : "years"}, n = ${lag.n}`;
 }
@@ -87,13 +106,13 @@ export async function technologyWaves(tables: TableReader, ctx: AssembleContext)
       const source = publicSource("tech_occupation", row, ctx.registry);
       const occupation = text(row.occupation);
       const url = text(row.source_url);
-      if (!source || !occupation || !technologies.has(text(row.technology_id)) || !url.startsWith("https://") || !RELATIONS.includes(text(row.relation))) continue;
+      if (!source || !occupation || !technologies.has(text(row.technology_id)) || figureUrl(url) === null || !RELATIONS.includes(text(row.relation))) continue;
       const list = cases.get(occupation) ?? [];
       list.push({ technology: text(row.technology_id), relation: text(row.relation), year: year(row.year), verified: row.verified === true, source, url });
       cases.set(occupation, list);
     }
   }
-  const lags = new Map<string, { measure: string; years: number; n: number }>();
+  const lags = new Map<string, { measure: string; years: number; n: number; url: string }>();
   let lagRows = 0;
   if (tables.has("tech_lags")) {
     for await (const row of tables.rows("tech_lags")) {
@@ -101,8 +120,8 @@ export async function technologyWaves(tables: TableReader, ctx: AssembleContext)
       const years = year(row.lag_years);
       const pair = `${text(row.technology_id)}|${text(row.occupation)}`;
       if (row.row_type !== "case" || !publicSource("tech_lags", row, ctx.registry) || n === null || n < 1 || years === null || !text(row.measure) || lags.has(pair)) continue;
-      if (!(cases.get(text(row.occupation)) ?? []).some((c) => c.technology === text(row.technology_id))) continue;
-      lags.set(pair, { measure: text(row.measure), years, n });
+      const sourced = lagSource(row, cases.get(text(row.occupation)) ?? []);
+      if (sourced) lags.set(pair, { measure: text(row.measure), years, n, url: sourced });
     }
   }
   for (const [occupation, list] of [...cases].sort(([a], [b]) => a.localeCompare(b))) {
@@ -114,7 +133,7 @@ export async function technologyWaves(tables: TableReader, ctx: AssembleContext)
     const relations = [...new Set(list.map((c) => c.relation))].join(", ");
     const seen = new Set<string>();
     opening.push({
-      key: occupationKey(occupation), title: occupation, sub: lag ? `${relations}; ${lagLine(lag)}` : relations, group: "occupation", source: shareAlike.source, url: shareAlike.url,
+      key: occupationKey(occupation), title: occupation, sub: lag ? `${relations}; ${lagLine(lag)}` : relations, group: "occupation", source: shareAlike.source, url: lag ? lag.url : shareAlike.url,
       from: Math.min(...dated), to: null, verified: list.every((c) => c.verified),
       links: list.filter((c) => !seen.has(c.technology) && seen.add(c.technology)).map((c) => ({ to: c.technology, stated: c.verified })),
     });

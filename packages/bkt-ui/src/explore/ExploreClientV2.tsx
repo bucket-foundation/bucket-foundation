@@ -7,7 +7,7 @@ import { circleChemReady, loadCircleChem } from "./chem-circle";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { coverage, tokens, type Hit, type HitType } from "@/lib/explore/search";
 import { dataParam, DEFAULT_DATASET, isRemote, listDatasets, type DatasetEntry } from "@/lib/explore/datasets";
-import { cutLine, drawableModes, expandRows, TERMS_UNREAD, verifiedLine, type ExpandedRows, type PackedRows } from "./rows";
+import { cutLine, drawableModes, expandRows, POINT_CAPTION, verifiedLine, type ExpandedRows, type PackedRows } from "./rows";
 import type { FoundingCard } from "@/lib/explore/founding";
 import { unreadableScript } from "@/lib/explore/rank";
 import { MODES, modeById, ROW_MODE_IDS, type DesktopLayout } from "./modesV2";
@@ -592,16 +592,17 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
             {cutLine(rows.packed.cut) && <p data-testid="rows-cut">{cutLine(rows.packed.cut)}</p>}
             {rows.packed.frame.edgeStated && <p data-testid="rows-edges">{EDGE_LINE}</p>}
             {verifiedLine(rows.packed.frame) && <p data-testid="rows-verified">{verifiedLine(rows.packed.frame)}</p>}
+            {rows.packed.frame.points && <p data-testid="rows-points">{POINT_CAPTION}</p>}
             <div data-testid="rows-attribution" style={{ color: "var(--parchment-dim)" }}>
               <p>Licence for this set: {rows.packed.licence}.</p>
               <ul className="space-y-1">
                 {rows.packed.attributions.map((a) => (
-                  <li key={a.source}>
+                  <li key={a.source} data-terms-read={a.termsRead ? "yes" : "no"}>
                     <a className="underline" href={a.url}>
                       {a.source}
                     </a>
                     , {a.rows.toLocaleString("en-US")} {a.rows === 1 ? "row" : "rows"}, {a.licence}. {a.notice}
-                    {!a.termsRead && <span data-testid="rows-terms-unread"> {TERMS_UNREAD}</span>}
+
                   </li>
                 ))}
               </ul>
