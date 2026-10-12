@@ -71,7 +71,7 @@ import { addLines, answerKey, approvalLines, installLines, researchAdd, research
 import { createInterface } from "node:readline";
 import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
 import { workspaceRoutes } from "../workspace";
-import { answer, BuildSwitch, ConsentStore, emitConsent, guardConsentText, guardStdout, shellDecides } from "../research-consent";
+import { answer, BuildSwitch, ConsentStore, emitConsent, emitSettled, guardConsentText, guardStdout, shellDecides } from "../research-consent";
 import { researchBuildRoutes, ResearchBuilds, researchSpecs } from "../research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
 import type { ResearchBlobs, ResearchIndex } from "../pack/research";
@@ -351,7 +351,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     const say = console.log.bind(console);
     console.log = (...args: unknown[]) => say(...args.map((a) => (typeof a === "string" ? guardConsentText(a) : a)));
   }
-  const buildConsent = new ConsentStore({ switch: buildGate, onDrop: (pending) => buildRunner.discard(pending.frozenDir), onOpen: (view) => toShell && emitConsent(toShell, view) });
+  const buildConsent = new ConsentStore({ switch: buildGate, onDrop: (pending) => buildRunner.discard(pending.frozenDir), onOpen: (view) => toShell && emitConsent(toShell, view), onSettled: (id) => toShell && emitSettled(toShell, id) });
   const researchWork = new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() });
   const builds = new ResearchBuilds({ research, runner: buildRunner, consent: buildConsent, gate: buildGate, os: platformFor().os, ownBuilds: (slug) => ownOutputs.buildsOn(slug) });
   const pagesRunner = new JobRunner({ root: join(dir, "research", "jobs", "pages"), specs: researchSpecs({ os: platformFor().os }), keep: PAGES_KEEP, frozenOnly: true });

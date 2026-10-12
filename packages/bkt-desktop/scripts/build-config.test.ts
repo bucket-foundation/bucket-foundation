@@ -62,9 +62,11 @@ test("no capability is granted to the page", async () => {
   expect(conf.app.withGlobalTauri).toBe(false);
   expect(conf.app.security?.capabilities).toEqual(["default"]);
   const cargo = await Bun.file(`${root}/Cargo.toml`).text();
-  expect(cargo).toContain('tauri-plugin-dialog = "2"');
+  expect(cargo).not.toContain("tauri-plugin-dialog");
   const shell = (await Bun.file(`${root}/src/lib.rs`).text()).split("#[cfg(test)]")[0];
-  expect(shell).toContain(".plugin(tauri_plugin_dialog::init())");
+  expect(shell).toContain(".register_uri_scheme_protocol(CONSENT_SCHEME,");
+  expect(shell).toContain("if label != CONSENT_WINDOW {");
+  expect(caps.windows).toEqual(["main"]);
   expect(shell).not.toContain("invoke_handler");
   expect(shell).not.toMatch(/dialog:(default|allow)/);
 });

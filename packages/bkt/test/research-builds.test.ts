@@ -7,7 +7,7 @@ import { jobRoutes } from "../src/job-routes";
 import { JobError, JobRunner, type JobSpec, type JobView } from "../src/jobs";
 import { encodeBlob, RESEARCH_SCHEMA, sha256, SIDE_SCHEMA, type PackedFile, type ReportBuild, type ReportRecord, type ResearchBlobs, type ResearchIndex, type ResearchSidePack } from "../src/pack/research";
 import { installSidePack, Research, ResearchError, researchRoutes } from "../src/research";
-import { answer, BuildSwitch, CONSENT_BODY_CHARS, CONSENT_PREFIX, CONSENT_TITLE_CHARS, CONSENT_TTL_MS, ConsentError, consentLine, ConsentStore, DENY_COOLDOWN_MS, emitConsent, frozenDigest, Grant, guardConsentText, guardStdout, shellDecides, shellRequest, TERMINAL_ALONE, terminalNote, visibleText } from "../src/research-consent";
+import { answer, BuildSwitch, CONSENT_BODY_CHARS, CONSENT_DONE_PREFIX, CONSENT_PREFIX, CONSENT_TITLE_CHARS, CONSENT_TTL_MS, ConsentError, consentLine, ConsentStore, DENY_COOLDOWN_MS, emitConsent, emitSettled, frozenDigest, Grant, guardConsentText, guardStdout, shellDecides, shellRequest, TERMINAL_ALONE, terminalNote, visibleText } from "../src/research-consent";
 import { approvalHidden, approvalText, bcfProblem, BUILD_OVER, FIGURE_KIND, kindOf, LATEX_FLAGS, LATEX_TIMEOUT_MS, PDF_KIND, PYTHON_TIMEOUT_MS, researchBuildRoutes, ResearchBuilds, researchSpecs, TABLES_KIND, treeBytes } from "../src/research-jobs";
 import { ResearchPages } from "../src/research-pdf";
 import { LocalOutputs, ResearchWork, researchWorkRoutes } from "../src/research-work";
@@ -254,6 +254,29 @@ describe("desktop shell channel", () => {
     const v3 = await denied.builds.request("demo", "pdf");
     expect(denied.say(`consent ${v3.id} ${v3.digest} deny`)).toBe(true);
     expect([denied.consent.pending(), denied.s.runner.list()]).toEqual([null, []]);
+  });
+
+  test("a request that settles anywhere tells the shell once, so its window can close", async () => {
+    const lines: string[] = [];
+    const s = setup();
+    let clock = 1000;
+    const consent = new ConsentStore({ now: () => clock, switch: s.gate, onDrop: (p) => s.runner.discard(p.frozenDir), onOpen: (view) => emitConsent((t) => lines.push(t), view), onSettled: (id) => emitSettled((t) => lines.push(t), id) });
+    const builds = new ResearchBuilds({ research: s.research, runner: s.runner, consent, gate: s.gate, os: "linux", which: tools().which });
+    const first = await builds.request("demo", "pdf");
+    builds.answer(first.id, null, true);
+    expect(lines.at(-1)).toBe(`${CONSENT_DONE_PREFIX}${first.id}\n`);
+    expect(lines.filter((l) => l.startsWith(CONSENT_DONE_PREFIX)).length).toBe(1);
+    const denied = setup();
+    const out: string[] = [];
+    const c2 = new ConsentStore({ now: () => clock, switch: denied.gate, onDrop: (p) => denied.runner.discard(p.frozenDir), onSettled: (id) => emitSettled((t) => out.push(t), id) });
+    const b2 = new ResearchBuilds({ research: denied.research, runner: denied.runner, consent: c2, gate: denied.gate, os: "linux", which: tools().which });
+    const second = await b2.request("demo", "pdf");
+    clock += CONSENT_TTL_MS;
+    expect(b2.pending()).toBeNull();
+    expect(out).toEqual([`${CONSENT_DONE_PREFIX}${second.id}\n`]);
+    emitSettled((t) => out.push(t), "not an id");
+    expect(out.length).toBe(1);
+    expect(guardConsentText(`${CONSENT_DONE_PREFIX}x`)).toBe(` ${CONSENT_DONE_PREFIX}x`);
   });
 
   test("what is hidden counts files past five, lines past six a file and forty in all, long lines, new files and files shown as sizes", () => {

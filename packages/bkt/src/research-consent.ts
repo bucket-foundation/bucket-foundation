@@ -187,6 +187,7 @@ export interface ConsentOptions {
   now?: () => number;
   onDrop?: (pending: Pending, why: "denied" | "expired" | "replaced") => void;
   onOpen?: (view: PendingView) => void;
+  onSettled?: (id: string) => void;
   switch?: BuildSwitch;
   ttlMs?: number;
 }
@@ -214,7 +215,9 @@ export class ConsentStore {
   }
 
   private release(): void {
+    const id = this.held?.id;
     this.held = null;
+    if (id) this.o.onSettled?.(id);
     if (this.timer) clearTimeout(this.timer);
     this.timer = null;
   }
@@ -337,6 +340,12 @@ export function consentLine(view: ShellView): string {
 
 export function emitConsent(write: (text: string) => unknown, view: ShellView): void {
   write(consentLine(view));
+}
+
+export const CONSENT_DONE_PREFIX = "bkt-consent-done ";
+
+export function emitSettled(write: (text: string) => unknown, id: string): void {
+  if (/^[A-Za-z0-9_-]{22}$/.test(id)) write(`${CONSENT_DONE_PREFIX}${id}\n`);
 }
 
 export const TERMINAL_ALONE = "this request is approved from the terminal alone";
