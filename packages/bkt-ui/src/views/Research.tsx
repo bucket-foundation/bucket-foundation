@@ -765,10 +765,27 @@ export function RecordSetPane({ api, d, set }: { api: ResearchApi; d: ResearchDe
   );
 }
 
-function Records({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+function Records({ api, d, initial }: { api: ResearchApi; d: ResearchDetail; initial?: string }) {
   const sets = d.manifest.record_sets ?? [];
+  const [open, setOpen] = useState(sets.find((s) => s.id === initial)?.id ?? sets[0]?.id ?? "");
   if (sets.length === 0) return <p className="muted staff-absent">{d.withheld > 0 ? STAFF_ABSENT : NO_RECORDS}</p>;
-  return <RecordSetPane api={api} d={d} set={sets[0]} />;
+  const set = sets.find((s) => s.id === open) ?? sets[0];
+  return (
+    <>
+      {sets.length > 1 && (
+        <div className="toolbar">
+          <div className="seg research-sets">
+            {sets.map((s) => (
+              <button key={s.id} type="button" className={s.id === set.id ? "on" : ""} onClick={() => setOpen(s.id)}>
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      <RecordSetPane key={set.id} api={api} d={d} set={set} />
+    </>
+  );
 }
 
 function Linked({ api, url, label }: { api: ResearchApi; url: string; label: string }) {
@@ -1246,7 +1263,7 @@ function Output({ api, slug, tab, item }: { api: ResearchApi; slug: string; tab:
       ) : tab === "paper" && tabsFor(d).includes("paper") ? (
         <Paper api={api} d={d} />
       ) : tab === "records" && tabsFor(d).includes("records") ? (
-        <Records api={api} d={d} />
+        <Records key={item ?? ""} api={api} d={d} initial={item} />
       ) : (
         <Report api={api} d={d} onAdded={() => setAdds((n) => n + 1)} />
       )}

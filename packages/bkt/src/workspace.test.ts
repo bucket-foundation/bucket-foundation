@@ -68,6 +68,15 @@ const DATASETS: DatasetInfo[] = [
   { id: "yours", name: "Your work", about: "", browsable: true, version: null, builtAt: null, checksum: null, counts: [], kinds: [], parts: [], leftOut: null },
 ];
 
+const ROW_SETS = [
+  { id: "mathematics-chain", label: "Mathematics chain", licence: "CC-BY-4.0", modes: ["graph"] },
+  { id: "major-to-career", label: "Major to career", licence: "US federal work", modes: ["graph"] },
+  { id: "occupations-time", label: "Occupations through time", licence: "US federal work", modes: ["map", "timeline"] },
+  { id: "technology-waves", label: "Technology waves", licence: "CC BY-SA 4.0", modes: ["timeline"] },
+  { id: "odd-set", label: "A set no workspace draws", licence: "CC0-1.0", modes: ["helix"] },
+  { id: "Bad_Id", label: "A set with a refused id", licence: "CC0-1.0", modes: ["graph", "timeline"] },
+];
+
 function setup(o: { staff?: boolean; tables?: number; outputs?: number } = {}) {
   const blobs: ResearchBlobs["blobs"] = {};
   const outputs = Array.from({ length: o.outputs ?? 2 }, (_, n) => {
@@ -86,7 +95,7 @@ function setup(o: { staff?: boolean; tables?: number; outputs?: number } = {}) {
   const local = new LocalOutputs(home, { taken: (slug) => outputs.some((x) => x.slug === slug) });
   research.setLocal(local);
   const work = new ResearchWork(research, home);
-  const src: WorkspaceSources = { research, changedPaths: (slug) => work.changedPaths(slug), datasets: () => DATASETS, rowSets: () => ["occupations-time"] };
+  const src: WorkspaceSources = { research, changedPaths: (slug) => work.changedPaths(slug), datasets: () => DATASETS, rowSets: () => ROW_SETS };
   return { research, work, local, src, home };
 }
 
@@ -113,7 +122,7 @@ describe("workspace index", () => {
     const all = [...tables, ...records];
     expect(new Set(all.map((i) => i.key)).size).toBe(all.length);
     expect(all.every((i) => i.explore === null)).toBe(true);
-    for (const type of WORKSPACE_TYPES.filter((t) => !["tables", "records", "figures", "papers"].includes(t))) expect(workspaceItems(src, type)).toEqual([]);
+    for (const type of WORKSPACE_TYPES.filter((t) => t === "people" || t === "decks")) expect(workspaceItems(src, type)).toEqual([]);
   });
 
   test("every opens address has the shape the window router reads", () => {
@@ -151,6 +160,33 @@ describe("workspace index", () => {
     expect(text).not.toContain("A Private Person");
     expect(text).not.toContain("Demo Author");
     expect(text).not.toContain(".webp");
+  });
+
+  test("graphs list the sets a graph draws and maps the sets a timeline or a map draws", () => {
+    const { src } = setup();
+    expect(workspaceItems(src, "graphs")).toEqual([
+      { type: "graphs", key: "rowset:mathematics-chain:all", title: "Mathematics chain", from: { kind: "rowset", id: "mathematics-chain", title: "Mathematics chain" }, origin: "shipped", licence: "CC-BY-4.0", changed: false, opens: "#/workspace/graphs/mathematics-chain", explore: { data: "mathematics-chain", modes: ["graph"] } },
+      { type: "graphs", key: "rowset:major-to-career:all", title: "Major to career", from: { kind: "rowset", id: "major-to-career", title: "Major to career" }, origin: "shipped", licence: "US federal work", changed: false, opens: "#/workspace/graphs/major-to-career", explore: { data: "major-to-career", modes: ["graph"] } },
+    ]);
+    expect(workspaceItems(src, "maps").map((i) => [i.key, i.opens, i.explore])).toEqual([
+      ["rowset:occupations-time:all", "#/workspace/maps/occupations-time", { data: "occupations-time", modes: ["timeline", "map"] }],
+      ["rowset:technology-waves:all", "#/workspace/maps/technology-waves", { data: "technology-waves", modes: ["timeline"] }],
+    ]);
+    expect(workspacePage(src, "maps", "waves", null).items.map((i) => i.from.id)).toEqual(["technology-waves"]);
+    const none = { ...src, rowSets: () => [] };
+    expect([workspaceItems(none, "graphs"), workspaceItems(none, "maps")]).toEqual([[], []]);
+  });
+
+  test("the row set index of the real pack holds public sets alone, with no row inside it", async () => {
+    const pack = (await import("../content/explore-rows.json")).default as unknown as { sets: { id: string; label: string; licence: string; audience: string; pages: { modes: string[] }[] }[] };
+    const { src } = setup();
+    const real = { ...src, rowSets: () => pack.sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0].modes })) };
+    expect(pack.sets.every((s) => s.audience === "public")).toBe(true);
+    expect(workspaceItems(real, "graphs").map((i) => i.from.id).sort()).toEqual(["major-to-career", "mathematics-chain"]);
+    expect(workspaceItems(real, "maps").map((i) => [i.from.id, i.explore!.modes])).toEqual([["occupations-time", ["timeline", "map"]], ["technology-waves", ["timeline"]]]);
+    const text = JSON.stringify([...workspaceItems(real, "graphs"), ...workspaceItems(real, "maps")]);
+    expect(text).not.toMatch(/row:|ipums|wikidata|@/i);
+    expect(text.length).toBeLessThan(2500);
   });
 
   test("the workspace adds one read route and no way to start a build", () => {

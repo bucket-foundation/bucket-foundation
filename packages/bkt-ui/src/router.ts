@@ -27,7 +27,7 @@ export type Route =
   | { name: "history" }
   | { name: "data" }
   | { name: "research"; slug?: string; tab?: ResearchTab; item?: string }
-  | { name: "workspace"; type?: WorkspaceType }
+  | { name: "workspace"; type?: WorkspaceType; item?: string }
   | { name: "graph"; branch?: string }
   | { name: "node"; slug: string }
   | { name: "progress" }
@@ -96,7 +96,10 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "node" && parts.length === 2 && NODE.test(parts[1])) return { name: "node", slug: parts[1] };
   if (parts[0] === "research") return parseResearch(parts);
   if (parts[0] === "explore") return parseExplore(parts);
-  if (parts[0] === "workspace") return { name: "workspace", type: (parts.length === 2 && WORKSPACE_TYPES.find((t) => t === parts[1])) || "tables" };
+  if (parts[0] === "workspace") {
+    if (parts.length === 3 && (parts[1] === "graphs" || parts[1] === "maps") && EXPLORE_DATA.test(parts[2])) return { name: "workspace", type: parts[1], item: parts[2] };
+    return { name: "workspace", type: (parts.length === 2 && WORKSPACE_TYPES.find((t) => t === parts[1])) || "tables" };
+  }
   if (parts[0] === "setup") return { name: "settings" };
   if (SIMPLE.has(parts[0])) return { name: parts[0] } as Route;
   return { name: "learn" };
@@ -119,7 +122,7 @@ export function href(r: Route): string {
     if (!r.mode) return `#/explore/${r.data}`;
     return `#/explore/${r.data}/${r.mode}${r.sel ? `/${encodeURIComponent(r.sel)}` : ""}`;
   }
-  if (r.name === "workspace") return `#/workspace/${r.type ?? "tables"}`;
+  if (r.name === "workspace") return `#/workspace/${r.type ?? "tables"}${r.item && (r.type === "graphs" || r.type === "maps") ? `/${r.item}` : ""}`;
   if (r.name === "node") return `#/node/${encodeURIComponent(r.slug)}`;
   return `#/${r.name}`;
 }
