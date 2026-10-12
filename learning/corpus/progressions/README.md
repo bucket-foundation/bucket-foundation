@@ -107,7 +107,7 @@ Every string in the committed tables is cut at a limit per field: 240 characters
 | `world_indicators.jsonl` | 1,598 | 100% | World Bank education indicators |
 | `tech_occupation.jsonl` | 52 | 84.6% | A technology creating, changing or ending an occupation, with year and source link. 11 cases that rest on an IPUMS-hosted file are left out |
 | `tech_training_response.jsonl` | 72 | 97.2% | The first school, apprenticeship or licence that answered a technology, with year and lag |
-| `tech_lags.jsonl` | 23 | | 13 case rows, each with its measure, both years and `n` of 1, and 10 summary rows giving the median and `n` per measure. 5 cases measured on census counts are left out |
+| `tech_lags.jsonl` | 4 | 100.0% | 4 case rows, each with its measure, both years, `n` of 1 and the source address of its figure. 5 cases measured on census counts were left out at the first build. On 2026-10-12 a further 19 rows were removed: 9 case rows whose figure has no source address on record, two of them equal to values of the withdrawn census lineage rows, and the 10 summary rows computed from them. A lag stays only when a `tech_occupation` case of the same technology, occupation and year gives its figure a source address that IPUMS does not host. The removed rows remain in the research folder on disk |
 | `attributions.jsonl` | 29 | | The credit line each source asks for, keyed for the app |
 | `source_licences.jsonl` | 86 | | Licence facts per source for the lifespan set and the data structures and algorithms graph |
 

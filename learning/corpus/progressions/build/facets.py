@@ -226,3 +226,26 @@ def occupation_row_cleared(row):
     for key in CENSUS_DERIVED_KEYS:
         out[key] = None
     return out
+
+
+FIGURE_WITHHELD_HOST = "ipums.org"
+
+
+def figure_url(url):
+    if not isinstance(url, str) or not url.startswith("https://"):
+        return None
+    host = re.sub(r"^https://([^/?#]+).*$", r"\1", url).lower()
+    return None if host == FIGURE_WITHHELD_HOST or host.endswith("." + FIGURE_WITHHELD_HOST) else url
+
+
+def lag_source(row, cases):
+    own = row.get("source_url")
+    if own is not None and figure_url(own) is None:
+        return None
+    end = row.get("to_year")
+    if not isinstance(end, int) or isinstance(end, bool):
+        return None
+    for case in cases:
+        if case.get("technology_id") == row.get("technology_id") and case.get("occupation") == row.get("occupation") and case.get("year") == end and figure_url(case.get("source_url")):
+            return figure_url(own) or case["source_url"]
+    return None
