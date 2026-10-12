@@ -188,6 +188,8 @@ describe("back keys", () => {
     expect(isBackKey(key({ altKey: true, shiftKey: true, key: "ArrowLeft" }))).toBe(false);
     expect(isBackKey(key({ altKey: true, ctrlKey: true, key: "ArrowLeft" }))).toBe(false);
     expect(isBackKey(key({ altKey: true, key: "ArrowLeft", target: input }))).toBe(false);
+    expect(isBackKey(key({ metaKey: true, key: "[", code: "BracketLeft", target: input }))).toBe(false);
+    expect(isBackKey(key({ key: "BrowserBack", target: input }))).toBe(false);
     expect(isBackKey(key({ altKey: true, key: "ArrowRight" }))).toBe(false);
   });
 
@@ -430,5 +432,156 @@ describe("math in review and in a deck", () => {
     expect(v.host.querySelectorAll(".prompt .a .katex").length).toBe(1);
     expect(v.host.querySelector(".card")!.textContent).not.toContain("$");
     await v.unmount();
+  });
+});
+
+describe("typing, then leaving inside the save pause", () => {
+  const FINAL = "\\section{Method} The final sentence.";
+
+  async function editor(depth = 1) {
+    const { Editor, SAVE_WAIT_MS } = await import("./views/Research");
+    const { focusScreen } = await import("./back");
+    const saves: { base: string; text: string }[] = [];
+    const api = {
+      researchSource: async () => ({ text: "Shipped.", rev: "r0" }),
+      researchSave: async (_slug: string, _path: string, base: string, text: string) => (saves.push({ base, text }), { saved: true, rev: `r${saves.length}`, changed: true }),
+    } as unknown as Api;
+    const h = fakeHistory();
+    const t = timers();
+    const trail = new BackTrail(h, t.later);
+    for (let i = 0; i < depth; i++) {
+      h.visit(`#/research/atlas/paper/${i}`);
+      trail.moved();
+    }
+    const detach = attachBack(trail, window);
+    const v = await mount(
+      <main className="main">
+        <h1>Paper</h1>
+        <Editor api={api as never} slug="atlas" path="main.tex" />
+      </main>,
+    );
+    const area = v.host.querySelector("textarea") as HTMLTextAreaElement;
+    const type = (value: string) =>
+      v.act(async () => {
+        Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")!.set!.call(area, value);
+        area.dispatchEvent(new window.Event("input", { bubbles: true }));
+      });
+    const pause = () => v.act(async () => new Promise((r) => setTimeout(r, SAVE_WAIT_MS + 100)));
+    return { v, h, t, trail, saves, area, type, pause, detach, focusScreen };
+  }
+
+  const KEYS: [string, KeyboardEventInit][] = [
+    ["Alt with the left arrow", { key: "ArrowLeft", altKey: true }],
+    ["Command with the left bracket", { key: "[", code: "BracketLeft", metaKey: true }],
+    ["the keyboard back key", { key: "BrowserBack" }],
+  ];
+
+  for (const [name, init] of KEYS) {
+    test(`${name} pressed in the text box stays on the page and the text saves`, async () => {
+      const e = await editor();
+      await e.type(FINAL);
+      const press = new KeyboardEvent("keydown", { ...init, bubbles: true, cancelable: true });
+      await e.v.act(async () => void e.area.dispatchEvent(press));
+      e.t.fire();
+      expect([press.defaultPrevented, e.h.backs, e.saves.length]).toEqual([false, 0, 0]);
+      await e.pause();
+      expect(e.saves).toEqual([{ base: "r0", text: FINAL }]);
+      e.detach();
+      await e.v.unmount();
+    });
+
+    test(`${name} pressed outside the text box saves the final text before it goes back`, async () => {
+      const e = await editor();
+      await e.type("An earlier draft.");
+      await e.type(FINAL);
+      await e.v.act(async () => void document.body.dispatchEvent(new KeyboardEvent("keydown", { ...init, bubbles: true, cancelable: true })));
+      expect(e.saves).toEqual([]);
+      await e.v.act(async () => e.t.fire());
+      expect([e.h.backs, e.saves]).toEqual([1, [{ base: "r0", text: FINAL }]]);
+      await e.v.unmount();
+      await e.pause();
+      expect(e.saves.length).toBe(1);
+      e.detach();
+    });
+  }
+
+  test("mouse button 3 saves the final text before it goes back", async () => {
+    const e = await editor();
+    await e.type(FINAL);
+    await e.v.act(async () => {
+      e.area.dispatchEvent(new MouseEvent("mousedown", { button: 3, bubbles: true, cancelable: true }));
+      e.area.dispatchEvent(new MouseEvent("mouseup", { button: 3, bubbles: true, cancelable: true }));
+      e.t.fire();
+    });
+    expect([e.h.backs, e.saves]).toEqual([1, [{ base: "r0", text: FINAL }]]);
+    await e.v.unmount();
+    await e.pause();
+    expect(e.saves.length).toBe(1);
+    e.detach();
+  });
+
+  test("the Back button saves the final text before it goes back, then focus lands on the heading", async () => {
+    const e = await editor();
+    await e.type(FINAL);
+    expect(e.trail.takeBack()).toBe(false);
+    await e.v.act(async () => void e.trail.back());
+    expect([e.h.backs, e.saves]).toEqual([1, [{ base: "r0", text: FINAL }]]);
+    expect(e.trail.takeBack()).toBe(true);
+    expect(e.trail.takeBack()).toBe(false);
+    e.focusScreen(document);
+    const h1 = e.v.host.querySelector("h1")!;
+    expect([document.activeElement === h1, h1.getAttribute("tabindex")]).toEqual([true, "-1"]);
+    await e.pause();
+    expect(e.saves.length).toBe(1);
+    await e.v.unmount();
+    expect(e.saves.length).toBe(1);
+    e.detach();
+  });
+
+  test("any other way off the page saves the final text as the editor closes, and text that matches the stored file sends nothing", async () => {
+    const e = await editor();
+    await e.type(FINAL);
+    await e.v.unmount();
+    expect(e.saves).toEqual([{ base: "r0", text: FINAL }]);
+    e.detach();
+
+    const same = await editor();
+    await same.type(FINAL);
+    await same.type("Shipped.");
+    await same.v.unmount();
+    expect(same.saves).toEqual([]);
+    same.detach();
+  });
+
+  test("a note typed just before leaving is saved with its final text, once", async () => {
+    const { NotesView } = await import("./views/Notes");
+    const sent: { id?: string; title: string; body: string }[] = [];
+    const note = { id: "n1", title: "Plan", body: "Old.", pinned: false, updatedAt: 1_791_792_000_000 };
+    const api = { notes: async () => [note], saveNote: async (n: { id?: string; title: string; body: string }) => (sent.push(n), { ...note, ...n }) } as unknown as Api;
+    const h = fakeHistory();
+    const trail = new BackTrail(h);
+    h.visit("#/notes");
+    trail.moved();
+    const v = await mount(<NotesView api={api} />);
+    const area = v.host.querySelector("textarea") as HTMLTextAreaElement;
+    for (const value of ["Draft.", "The final note."])
+      await v.act(async () => {
+        Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")!.set!.call(area, value);
+        area.dispatchEvent(new window.Event("input", { bubbles: true }));
+      });
+    await v.act(async () => void trail.back());
+    expect(sent.map((n) => [n.id, n.body])).toEqual([["n1", "The final note."]]);
+    await v.unmount();
+    await v.act(async () => new Promise((r) => setTimeout(r, 800)));
+    expect(sent.length).toBe(1);
+
+    const again = await mount(<NotesView api={api} />);
+    const box = again.host.querySelector("textarea") as HTMLTextAreaElement;
+    await again.act(async () => {
+      Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")!.set!.call(box, "Closed in a hurry.");
+      box.dispatchEvent(new window.Event("input", { bubbles: true }));
+    });
+    await again.unmount();
+    expect(sent.map((n) => n.body)).toEqual(["The final note.", "Closed in a hurry."]);
   });
 });

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { holdPendingSave } from "../pending-saves";
 import type { Api, Note } from "../api";
 import { Lesson } from "./Lesson";
 
@@ -47,18 +48,34 @@ export function NotesView({ api }: { api: Api }) {
     [api, load],
   );
 
+  const unsaved = useRef<{ note: Note | null; next: { title: string; body: string } } | null>(null);
+  const flush = useRef(() => {});
+  flush.current = () => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
+    const held = unsaved.current;
+    if (!held) return;
+    unsaved.current = null;
+    void persist(held.note, held.next);
+  };
+
+  useEffect(() => {
+    const release = holdPendingSave(() => flush.current());
+    return () => {
+      release();
+      flush.current();
+    };
+  }, []);
+
   const edit = (next: { title: string; body: string }) => {
     setDraft(next);
     if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => void persist(current, next), SAVE_MS);
+    unsaved.current = { note: current, next };
+    timer.current = setTimeout(() => flush.current(), SAVE_MS);
   };
 
   const pick = (n: Note) => {
-    if (timer.current) {
-      clearTimeout(timer.current);
-      timer.current = null;
-      void persist(current, draft);
-    }
+    flush.current();
     setCurrent(n);
     setDraft({ title: n.title, body: n.body });
   };

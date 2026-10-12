@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { flushPendingSaves } from "./pending-saves";
 
 export const BACK_LABEL = "Back";
 export const BACK_NAME = "Back to the last screen";
@@ -22,6 +23,7 @@ function withDepth(state: unknown, depth: number): Record<string, unknown> {
 export class BackTrail {
   private depth: number;
   private moves = 0;
+  private wentBack = false;
   private listeners = new Set<() => void>();
 
   constructor(
@@ -58,8 +60,16 @@ export class BackTrail {
 
   back(): boolean {
     if (!this.canGoBack) return false;
+    flushPendingSaves();
+    this.wentBack = true;
     this.history.back();
     return true;
+  }
+
+  takeBack(): boolean {
+    const went = this.wentBack;
+    this.wentBack = false;
+    return went;
   }
 
   backUnlessMoved(): void {
@@ -85,9 +95,10 @@ function editable(target: EventTarget | null): boolean {
 }
 
 export function isBackKey(e: Pick<KeyboardEvent, "key" | "code" | "altKey" | "metaKey" | "ctrlKey" | "shiftKey" | "target">): boolean {
+  if (editable(e.target)) return false;
   if (e.key === "BrowserBack") return true;
   if (e.ctrlKey || e.shiftKey) return false;
-  if (e.altKey && !e.metaKey && e.key === "ArrowLeft") return !editable(e.target);
+  if (e.altKey && !e.metaKey && e.key === "ArrowLeft") return true;
   return e.metaKey && !e.altKey && e.code === "BracketLeft";
 }
 
@@ -117,6 +128,13 @@ export function attachBack(trail: BackTrail, win: Pick<Window, "addEventListener
     win.removeEventListener("mousedown", mouse as EventListener);
     win.removeEventListener("mouseup", mouse as EventListener);
   };
+}
+
+export function focusScreen(doc: Pick<Document, "querySelector">): void {
+  const target = doc.querySelector<HTMLElement>(".main h1") ?? doc.querySelector<HTMLElement>(".main");
+  if (!target) return;
+  target.setAttribute("tabindex", "-1");
+  target.focus();
 }
 
 let shared: BackTrail | null = null;

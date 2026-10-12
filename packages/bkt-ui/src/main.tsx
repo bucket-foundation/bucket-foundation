@@ -1,7 +1,7 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
-import { attachBack, BackButton, replaceHash, windowTrail } from "./back";
+import { attachBack, BackButton, focusScreen, replaceHash, windowTrail } from "./back";
 import { firstRunHash, followRoutes, href, useRoute } from "./router";
 import { activeNav, FOOT_LINKS, navFor, Screen } from "./nav";
 
@@ -28,6 +28,10 @@ function App() {
   }, []);
 
   useEffect(() => attachBack(trail, window), [trail]);
+
+  useEffect(() => {
+    if (trail.takeBack()) focusScreen(document);
+  }, [route, trail]);
 
   useEffect(() => {
     if (!api) return;

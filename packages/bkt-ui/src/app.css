@@ -1630,3 +1630,7 @@ table.columns thead th {
 .equation .math-display {
   display: block;
 }
+
+.main h1:focus {
+  outline: none;
+}
