@@ -937,6 +937,18 @@ describe("own outputs in the window", () => {
     });
     await pick(new window.File(["x"], "more.csv") as unknown as File);
     expect(sent.at(-1)!.slice(0, 3)).toEqual(["renders", "data", "more.csv"]);
+    const texts: string[] = [];
+    let rev = 50;
+    const md = fakeApi({ researchManifest: async () => ({ ...OWN, files: [file("reports/renders/REPORT.md", "source", rev)] }), researchText: async () => (texts.push("read"), "## Mine\n\nBody."), researchUpload: async (slug) => ((rev += 1), { slug, path: `reports/${slug}/REPORT.md` }) });
+    const m = await view(md, "renders");
+    const reads = texts.length;
+    const mdInput = m.host.querySelector('.research-add input[type="file"]') as HTMLInputElement;
+    Object.defineProperty(mdInput, "files", { configurable: true, value: [new window.File(["# New"], "notes.md")] });
+    await act(async () => mdInput.dispatchEvent(new window.Event("change", { bubbles: true })));
+    await m.settle();
+    await m.settle();
+    expect(texts.length).toBeGreaterThan(reads);
+    await m.unmount();
     const big = new window.File(["x"], "big.png") as unknown as File;
     Object.defineProperty(big, "size", { value: 16 * 1024 * 1024 + 1 });
     await pick(big);

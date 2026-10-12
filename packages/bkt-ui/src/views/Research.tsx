@@ -361,7 +361,7 @@ function ReportText({ api, d, path }: { api: ResearchApi; d: ResearchDetail; pat
         </div>
       )}
       {editing && <Editor api={api} slug={d.slug} path={path} onSaved={() => setSaves((n) => n + 1)} />}
-      <Markdown key={saves} api={api} slug={d.slug} path={path} />
+      <Markdown key={`${saves}:${d.files.find((f) => f.path === path)?.sha256 ?? ""}`} api={api} slug={d.slug} path={path} />
     </>
   );
 }
