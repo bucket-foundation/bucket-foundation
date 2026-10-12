@@ -3,7 +3,7 @@ import { readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { assembleRowSet, type RowDraft } from "./contract";
 import { buildRowSetPack, fileTables, TABLES_DIR, type RowSetPack } from "./index";
-import { CCSS_LICENCE, entryById, FEDERAL, MATCH_ORDER, matchValue, OPEN_K12_SYSTEMS, publicSource, REGISTRY, registryProblems, resolveSource, strictest, UNKNOWN, type LicenceEntry, type Row } from "./licences";
+import { CCSS_LICENCE, entryById, FEDERAL, METADATA_TABLES, RECALL_ID, RECALL_TABLES, MATCH_ORDER, matchValue, OPEN_K12_SYSTEMS, publicSource, REGISTRY, registryProblems, resolveSource, strictest, UNKNOWN, type LicenceEntry, type Row } from "./licences";
 import { FIXTURE_REGISTRY, fixtureContext, fixtureDraft } from "./test-fixtures";
 
 const REPO = resolve(import.meta.dir, "../../../../..");
@@ -86,12 +86,15 @@ describe("the licence registry", () => {
 describe("the source tables", () => {
   const bySource: Record<string, Record<string, number>> = {};
   const k12: Record<string, { rows: number; open: number }> = {};
+  const metadata: string[] = [];
   let literalUnknown = 0;
   let pack: RowSetPack;
 
   beforeAll(async () => {
     const tables = fileTables(TABLES);
-    const names = readdirSync(TABLES).filter((f) => /\.jsonl(\.zst)?$/.test(f)).map((f) => f.replace(/\.jsonl(\.zst)?$/, "")).sort();
+    const found = readdirSync(TABLES).filter((f) => /\.jsonl(\.zst)?$/.test(f)).map((f) => f.replace(/\.jsonl(\.zst)?$/, "")).sort();
+    metadata.push(...found.filter((name) => name in METADATA_TABLES));
+    const names = found.filter((name) => !(name in METADATA_TABLES));
     for (const name of names) {
       const counts: Record<string, number> = {};
       for await (const row of tables.rows(name)) {
@@ -112,7 +115,31 @@ describe("the source tables", () => {
 
   test("every row of every table resolves to one registry entry or to unknown", () => {
     const ids = new Set([...REGISTRY.map((e) => e.id), UNKNOWN]);
-    expect(Object.keys(bySource)).toEqual(["activities", "assessments", "backbone_codes", "books", "cip_soc_crosswalk", "courses", "cycles", "edges", "frameworks", "occupation_history", "programs", "progression", "resources", "soc_isco_crosswalk", "technologies"]);
+    expect(Object.keys(bySource)).toEqual([
+      "activities", "assessments", "backbone_codes", "books", "cip_soc_crosswalk", "countries", "courses", "cycles", "edges", "frameworks", "occupation_history", "programs", "progression", "resources", "soc_isco_crosswalk",
+      "tech_lags", "tech_occupation", "tech_training_response", "technologies",
+      "world_elements", "world_exams", "world_indicators", "world_languages", "world_nqf", "world_occupations", "world_professions", "world_stages", "world_systems", "world_tvet_bodies",
+    ]);
+    expect(metadata).toEqual(["attributions", "source_licences"]);
+    expect(Object.keys(METADATA_TABLES).sort()).toEqual(metadata);
+    for (const reason of Object.values(METADATA_TABLES)) expect(reason).toContain("no corpus row");
+    for (const name of metadata) expect(resolveSource(name, { licence: "CC BY 4.0", source_url: "https://api.worldbank.org/x", host: "en.wikipedia.org" })).toBe(UNKNOWN);
+    expect(Object.fromEntries(Object.entries(bySource).filter(([name]) => /^(world_|tech_|countries)/.test(name)))).toEqual({
+      countries: { [UNKNOWN]: 237 },
+      tech_lags: { [UNKNOWN]: 23 },
+      tech_occupation: { wikipedia: 20, [UNKNOWN]: 32 },
+      tech_training_response: { wikipedia: 17, wikidata: 54, [UNKNOWN]: 1 },
+      world_elements: { [RECALL_ID]: 330 },
+      world_exams: { [UNKNOWN]: 269 },
+      world_indicators: { "world-bank-wdi": 1598 },
+      world_languages: { [RECALL_ID]: 66 },
+      world_nqf: { [UNKNOWN]: 308 },
+      world_occupations: { "ons-soc-2020": 412, [UNKNOWN]: 5593 },
+      world_professions: { [RECALL_ID]: 264 },
+      world_stages: { [UNKNOWN]: 556, "world-bank-wdi": 5 },
+      world_systems: { [UNKNOWN]: 1974 },
+      world_tvet_bodies: { [UNKNOWN]: 123 },
+    });
     for (const counts of Object.values(bySource)) for (const id of Object.keys(counts)) expect(ids.has(id)).toBe(true);
     const { ipums = 0, ...cleared } = bySource.occupation_history;
     expect(cleared).toEqual({ soc2018: 1020, onet: 1611, "census-occupations": 665 });
@@ -123,6 +150,54 @@ describe("the source tables", () => {
     expect(bySource.activities["hraf-ocm"]).toBe(736);
     expect(bySource.activities.icatus).toBe(230);
     expect(bySource.activities.atus).toBe(556);
+  });
+
+  test("recall tables never resolve to a public source, whatever a row claims", () => {
+    expect([...RECALL_TABLES]).toEqual(["world_professions", "world_elements", "world_languages"]);
+    expect(entryById(RECALL_ID)?.public).toBe("none");
+    const claims: Row[] = [
+      { licence: "CC BY 4.0", source_url: "https://api.worldbank.org/v2/x", verified: true },
+      { source_url: "https://en.wikipedia.org/wiki/Physician", scheme: "soc2018", system: "head-start-elof", framework_id: "school-fw-ccss-math" },
+      { source_url: "https://www.wikidata.org/wiki/Q1", slice: "world" },
+      {},
+    ];
+    for (const table of RECALL_TABLES) {
+      for (const row of claims) {
+        expect(resolveSource(table, row)).toBe(RECALL_ID);
+        expect(publicSource(table, row)).toBeNull();
+        expect(resolveSource(table, row, FIXTURE_REGISTRY)).toBe(UNKNOWN);
+        expect(publicSource(table, row, FIXTURE_REGISTRY)).toBeNull();
+      }
+    }
+    expect(publicSource("world_indicators", claims[0])).toBe("world-bank-wdi");
+  });
+
+  test("programme rows of unread terms resolve to unknown and stay out of public sets", () => {
+    for (const row of [
+      { licence: "unknown", source_url: "https://download.uis.unesco.org/bdds/isced.zip", slice: "world" },
+      { licence: "unknown", source_url: "https://connect.unevoc.unesco.org/x", url: "https://connect.unevoc.unesco.org/x", slice: "world" },
+      { licence: "CC BY 4.0 (EU reuse policy, source to be credited)", source_url: "https://www.cedefop.europa.eu/en/x", slice: "world" },
+      { licence: "CC BY 4.0", source_url: "https://www.abs.gov.au/x", scheme: "OSCA 2024", slice: "world" },
+      { licence: "public domain", source_url: "https://www.naturalearthdata.com/", slice: "world" },
+    ] as Row[]) {
+      expect(resolveSource("world_systems", row)).toBe(UNKNOWN);
+      expect(publicSource("world_systems", row)).toBeNull();
+    }
+  });
+
+  test("the two world sources cleared here carry the credit line and licence the corpus holds, with terms read", async () => {
+    const lines = new Map<string, Row>();
+    for await (const line of fileTables(TABLES).rows("attributions")) lines.set(String(line.id), line);
+    for (const [entry, credit] of [["world-bank-wdi", "credit-world-bank-wdi"], ["ons-soc-2020", "credit-ons-soc-2020"]]) {
+      const held = lines.get(credit) as Row;
+      const mine = entryById(entry) as LicenceEntry;
+      expect(held.terms_read).toBe(true);
+      expect(mine.licence).toBe(String(held.licence));
+      expect(mine.attribution.notice).toBe(String(held.credit_line));
+      expect(mine.attribution.url).toBe(String(held.licence_url));
+      expect(mine.attribution.source).toContain(String(held.source));
+    }
+    expect([...lines.values()].filter((l) => l.terms_read !== true && REGISTRY.some((e) => e.public !== "none" && e.attribution.notice === l.credit_line))).toEqual([]);
   });
 
   test("the 31 restricted K-12 systems yield zero public rows, and the three open systems yield 3,141", () => {

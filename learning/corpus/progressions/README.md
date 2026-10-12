@@ -88,6 +88,53 @@ The loader takes a slice when its folder holds `SUMMARY.md`, the mark that its a
 Every string in the committed tables is cut at a limit per field: 240 characters for a topic, 200 for a name, 700 for notes, 300 elsewhere. 60 values were cut. A test enforces the limits.
 
 
+## World and Technology Tables
+
+`build/world.py` writes these tables beside the eight main ones. It streams each slice file and peaks at 38 MB. `world_stats.json` holds the counts.
+
+| Table | Rows | Verified | Content |
+|---|---|---|---|
+| `countries.jsonl` | 237 | 100% | One row per ISO 3166 country: `iso2`, `iso3`, name, `lat` and `lng` of the Natural Earth label point |
+| `world_systems.jsonl` | 1,974 | 100% | Education programmes of 66 countries from the UIS ISCED mappings: ISCED codes, entry age, duration, orientation, programme and qualification names of eight words or fewer |
+| `world_stages.jsonl` | 561 | 100% | One row per country and ISCED level: entry age, duration, programme counts, compulsory ages, World Bank enrolment |
+| `world_exams.jsonl` | 269 | 21.6% | National examinations with level and body. `verified` covers the exam name; what the exam gates is recall and says so in `gates_basis` |
+| `world_nqf.jsonl` | 308 | 89.9% | Qualification framework levels with the EQF level where one exists |
+| `world_occupations.jsonl` | 6,005 | 98.9% | National occupation classifications with ISCO-08 links. Titles stay for the United Kingdom, Australia, New Zealand, Canada and Japan, whose terms allow reuse with credit. France holds codes and ISCO links, since its source file carries no titles. Germany and Brazil hold codes alone, their terms unknown |
+| `world_professions.jsonl` | 264 | 0% | Routes to doctor, lawyer, engineer and teacher in 66 countries. All recall: no regulator page was fetched, and every row reads `verified` false |
+| `world_elements.jsonl` | 330 | 0% | University admission, vocational route, apprenticeship, degree structure and lifelong learning per country, recall with counts read from data |
+| `world_languages.jsonl` | 66 | 0% | Languages of instruction per country, recall |
+| `world_tvet_bodies.jsonl` | 123 | 100% | Vocational training bodies from the UNEVOC directory |
+| `world_indicators.jsonl` | 1,598 | 100% | World Bank education indicators |
+| `tech_occupation.jsonl` | 52 | 84.6% | A technology creating, changing or ending an occupation, with year and source link. 11 cases that rest on an IPUMS-hosted file are left out |
+| `tech_training_response.jsonl` | 72 | 97.2% | The first school, apprenticeship or licence that answered a technology, with year and lag |
+| `tech_lags.jsonl` | 23 | | 13 case rows, each with its measure, both years and `n` of 1, and 10 summary rows giving the median and `n` per measure. 5 cases measured on census counts are left out |
+| `attributions.jsonl` | 29 | | The credit line each source asks for, keyed for the app |
+| `source_licences.jsonl` | 86 | | Licence facts per source for the lifespan set and the data structures and algorithms graph |
+
+Every world row carries `region` as an ISO 3166 two-letter code, `language` for the language of the row text, `national_language` for the system it describes, and `licence` as the source states it or `unknown`. Descriptions in the exam, profession and element tables are the research agent's own words. No sentence from a ministry page, a mapping file or a classification manual is committed.
+
+### Countries for the Explore Map
+
+The Explore place rule accepts a two-letter code that the country file lists. `src/data/world-indicators.json` holds `iso3` alone, so `countries.jsonl` supplies `iso2`, `iso3`, name, latitude and longitude for 237 countries. Points are the label points of Natural Earth 1:50m Admin 0 Countries, which is in the public domain; `terms_url` links its terms. The file itself is fetched to `build/ne/` at build time and stays off the repo.
+
+### Source Licences
+
+`source_licences.jsonl` is keyed the way `packages/bkt/src/pack/row-sets/licences.ts` matches a row: `match.host` holds the host of the row's URL, and `match.framework_id` covers rows with no URL. Each row gives `licence`, `share_alike`, `public` as rows, codes or none, the terms page, what it permits in our words, the date read and an attribution line. Of 86 sources, 57 terms pages were fetched on 2026-10-12. 13 sources clear for rows: 11 in the lifespan set and 2 in the algorithms graph. 3 of the 13 had their terms fetched; the other 10 are US federal pages cleared by the federal works rule with terms unread, marked `clearance: rule, terms unread`, and each carries the exception that third-party material on the page is not cleared. 4 clear for codes and links, Wikipedia among them. 69 are refused or unknown and their rows are marked unpublishable. The USACO Guide, the Competitive Programmer's Handbook and MIT OpenCourseWare are non-commercial share-alike, so the core of the algorithms graph stays out of public sets. 66 interview rows and 17 lifespan records cite no page and are unpublishable; their four entries carry an empty `match`, since the registry resolves a row with no URL to unknown.
+
+| Source of the world tables | Terms |
+|---|---|
+| UIS ISCED mappings | Unknown; files are offered for open download. Programme names are kept as names, at eight words or fewer |
+| Cedefop NQF tool | EU reuse policy, source credited |
+| World Bank indicators | CC BY 4.0 |
+| ONS SOC 2020 | Open Government Licence v3.0 |
+| ABS OSCA 2024, Stats NZ NOL | CC BY 4.0 |
+| Statistics Canada NOC 2021 | Statistics Canada Open Licence |
+| INSEE PCS 2020 | Licence Ouverte 2.0 |
+| Japan JSCO | Government of Japan Standard Terms of Use 2.0 |
+| KldB 2010, CBO 2002 | Unknown; codes alone |
+| UNEVOC directory | Unknown; names of bodies and links |
+| Natural Earth | Public domain |
+
 ## Stated Edges
 
 `stated` is true when a source states the edge. Catalogue edges come from the parsed prerequisite sentence. School rows keep the flag their slice set. For the other slices the flag is read from the wording of `notes` by rule: the words inferred, recalled or ordinal give false, a sentence saying the source states the edge gives true, and silence gives false. `stated_basis` names the rule that fired, so a consumer can drop the rule-based edges.
@@ -149,13 +196,43 @@ The build session opened one licence page, the O*NET one. The other rows state t
 
 698 lifecycle rows for the 1950 to 1990 census lists were read from crosswalk files at usa.ipums.org. They await a rights ruling, are absent from `occupation_history.jsonl` since 2026-10-12, and remain in the research folder on disk. The 665 rows for the 2002, 2010 and 2018 lists come from census.gov files and stay, with every value that ran through those crosswalks removed: lineage codes before 2000, the first attested year before 2000, peak year, peak and last employment, status and the near-extinct flag. On these rows `era_from` is the earliest census list from 2000 on that carries the code and `era_to` is the year of the row's own list, both read from the census.gov files; the last attested year the research slice gave had no stated source and is gone. `occupation_row_cleared` in `build/facets.py` applies the rule at build time and the corpus tests hold the table to it.
 
-Attribution lines:
+Attribution lines. `tables/attributions.jsonl` holds the same lines keyed by table, licence, scheme, system, framework or host, so the app can show the line where a set is drawn. A test fails when a world row carries a licence that asks for credit and no line matches it.
 
-- O*NET: this corpus includes information from the [O*NET 31.0 Database](https://www.onetcenter.org/database.html) by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licence. O*NET is a trademark of USDOL/ETA. Bucket Foundation has modified all or some of this information. USDOL/ETA has not approved, endorsed or tested these modifications.
-- Common Core: Copyright 2010 National Governors Association Center for Best Practices and Council of Chief State School Officers. All rights reserved. Used under the [public licence](https://www.thecorestandards.org/public-license/). The labels in this corpus are Bucket's own wording and are no part of the standards.
-- Wikimedia: titles and links for Wikibooks, Wikiversity and the English Wikipedia pages Harvard Classics and Category:Education-related YouTube channels come from the [Wikimedia projects](https://www.wikimedia.org/) and their contributors, under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Bucket selected and reformatted them, and those rows stay under CC BY-SA 4.0.
-- OpenStax: book records come from [OpenStax](https://openstax.org/), Rice University, under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Bucket reformatted them. Each book's own licence is in its row.
-- England: contains public sector information licensed under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+- Australian Bureau of Statistics, OSCA, Occupation Standard Classification for Australia, 2024: Source: Australian Bureau of Statistics, OSCA - Occupation Standard Classification for Australia, 2024, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Bucket Foundation selected and reformatted the data.
+- Stats NZ, National Occupation List v1.0: This work includes Stats NZ's data, National Occupation List v1.0, which are licensed by Stats NZ for reuse under the Creative Commons Attribution 4.0 International licence (https://creativecommons.org/licenses/by/4.0/). Bucket Foundation selected and reformatted the data.
+- Office for National Statistics, Standard Occupational Classification 2020 and its coding index: Source: Office for National Statistics, Standard Occupational Classification 2020. Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+- Statistics Canada, National Occupational Classification (NOC) 2021 Version 1.0: Adapted from Statistics Canada, National Occupational Classification (NOC) 2021 Version 1.0, retrieved 2026-10-11. This does not constitute an endorsement by Statistics Canada of this product. Reproduced under the Statistics Canada Open Licence (https://www.statcan.gc.ca/en/reference/licence).
+- Ministry of Internal Affairs and Communications, Japan, Japan Standard Occupational Classification, revision 5 of 2009: Source: Ministry of Internal Affairs and Communications, Japan Standard Occupational Classification (Rev. 5, 2009), https://www.soumu.go.jp/main_content/000587432.csv (accessed 2026-10-11), Government Standard Terms of Use 2.0. Bucket Foundation edited the content.
+- INSEE, Professions et catégories socioprofessionnelles, PCS 2020, correspondence with ISCO-08: Source: INSEE, Professions et catégories socioprofessionnelles (PCS 2020), correspondence with ISCO-08, retrieved 2026-10-11, reused under the Licence Ouverte 2.0 (https://www.etalab.gouv.fr/licence-ouverte-open-licence/).
+- World Bank, World Development Indicators, education series: Source: World Bank, World Development Indicators, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Bucket Foundation selected and reformatted the data. Data source: UNESCO Institute for Statistics
+- Cedefop, European Centre for the Development of Vocational Training, NQFs online tool and the European inventory of national qualifications frameworks: Source: Cedefop, NQFs online tool and European inventory of NQFs. Copyright Cedefop; reuse is authorised provided the source is acknowledged (https://www.cedefop.europa.eu/en/copyright). Bucket Foundation selected and reformatted the data.
+- European Union: Cedefop and Eurydice, Cedefop country reports and Eurydice national education system pages: Source: Cedefop and Eurydice, European Union. Reuse is authorised under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) provided the source is acknowledged. Bucket Foundation selected and reformatted the data.
+- UK Government, GOV.UK guidance on qualification levels: Source: GOV.UK. Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+- USDOL/ETA, O*NET 31.0 Database: This corpus includes information from the O*NET 31.0 Database (https://www.onetcenter.org/database.html) by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA), used under the CC BY 4.0 licence (https://creativecommons.org/licenses/by/4.0/). O*NET is a trademark of USDOL/ETA. Bucket Foundation has modified all or some of this information. USDOL/ETA has not approved, endorsed or tested these modifications.
+- NGA Center and CCSSO, Common Core State Standards: Copyright 2010 National Governors Association Center for Best Practices and Council of Chief State School Officers. All rights reserved. Used under the public licence (https://www.thecorestandards.org/public-license/). The labels are Bucket's own wording and are no part of the standards.
+- Wikimedia projects and their contributors, English Wikipedia, Wikibooks, Wikiversity: Names, dates and links come from pages of the Wikimedia projects and their contributors, under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Bucket selected and reformatted them, and these rows stay under CC BY-SA 4.0.
+- OpenStax, Rice University, OpenStax book catalogue: Book records come from OpenStax (https://openstax.org/), Rice University, under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Bucket reformatted them. Each book's own licence is in its row.
+- Department for Education, National curriculum in England: Contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
+- ACARA, Australian Curriculum version 9: Copyright Australian Curriculum, Assessment and Reporting Authority (ACARA) 2010 to present, licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). ACARA does not endorse this product. Bucket selected and shortened the material.
+- Wordbank, Frank et al., Wordbank: An open repository for developmental vocabulary data: Source: Wordbank, Frank et al., Wordbank: An open repository for developmental vocabulary data, https://langcog.github.io/wordbank-datapage/, CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). Bucket Foundation selected and reformatted the data.
+- Yangshun Tay, Tech Interview Handbook: Copyright (c) 2017-Present Yangshun Tay. MIT License, https://github.com/yangshun/tech-interview-handbook/blob/main/LICENSE.
+- Centers for Disease Control and Prevention, Learn the Signs. Act Early. milestone material: Source: Centers for Disease Control and Prevention. Bucket Foundation selected and shortened the content. CDC has not endorsed this product.
+- US Office of Personnel Management, structured interviews guidance, US Office of Personnel Management, structured interviews guidance: Source: US Office of Personnel Management, structured interviews guidance, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- Consumer Financial Protection Bureau, youth financial education, Consumer Financial Protection Bureau, youth financial education: Source: Consumer Financial Protection Bureau, youth financial education, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- National Institute on Deafness and Other Communication Disorders, National Institute on Deafness and Other Communication Disorders: Source: National Institute on Deafness and Other Communication Disorders, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- National Early Literacy Panel summary, National Institute for Literacy, National Early Literacy Panel summary, National Institute for Literacy: Source: National Early Literacy Panel summary, National Institute for Literacy, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- Head Start Early Learning Outcomes Framework, Office of Head Start, Head Start Early Learning Outcomes Framework, Office of Head Start: Source: Head Start Early Learning Outcomes Framework, Office of Head Start, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- consumer.gov, Federal Trade Commission, consumer.gov, Federal Trade Commission: Source: consumer.gov, Federal Trade Commission, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- US Citizenship and Immigration Services, naturalization study materials, US Citizenship and Immigration Services, naturalization study materials: Source: US Citizenship and Immigration Services, naturalization study materials, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- US Department of Labor, Employee Benefits Security Administration, US Department of Labor, Employee Benefits Security Administration: Source: US Department of Labor, Employee Benefits Security Administration, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- National Institute on Aging, National Institute on Aging: Source: National Institute on Aging, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+- US Social Security Administration, US Social Security Administration: Source: US Social Security Administration, a work of the US federal government. Bucket Foundation selected and shortened the content. The agency has not endorsed this product.
+
+The wording of nine lines was checked against the licence page: ONS, GOV.UK, the national curriculum in England, Statistics Canada, Japan, the World Bank, Wordbank, the Tech Interview Handbook and CDC. `terms_read` is true on those. The wording of the rest is unverified and `terms_read` is false: Stats NZ, ABS, INSEE, Cedefop and Eurydice, O*NET, OpenStax, ACARA, Common Core, Wikimedia, and the ten federal sources cleared by rule.
+
+The compilation is CC BY 4.0. Rows drawn from Wikimedia pages are share-alike: they keep CC BY-SA 4.0 and any set that includes them carries that licence for those rows. In `source_licences.jsonl` a share-alike source is held as codes and links.
+
+Rows whose source terms are unknown, the UIS mappings and the UNEVOC directory among them, are kept and labelled `licence: unknown`. The Explore licence registry resolves such rows to unknown and shows none of them publicly.
 
 Raw pages, the backbone raw folder and the sqlite files stay on the build machine.
 
@@ -175,12 +252,14 @@ Raw pages, the backbone raw folder and the sqlite files stay on the build machin
 | Life stage by purpose | 72 | 33 | 15 | 18 | 39 | no field |
 | Kind of knowing | 7 | 2 | 0 | 2 | 5 | 7 |
 | Mode of transmission | 9 | 3 | 0 | 3 | 6 | 9, 1 thin |
-| Geography | 30 | 17 | 10 | 7 | 13 | 12, 8 thin |
+| Geography | 30 | 29 | 1 | 28 | 1 | 30, 1 thin |
 | Language | 30 | 25 | 11 | 14 | 5 | 3, 2 thin |
 | Era | 7 | 7 | 0 | 7 | 0 | 6, 3 thin |
 | Domain | 193 | 193 | 5 | 188 | 0 | no field |
 | Feared absences | 33 | 33 | 0 | 33 | 0 | no field |
 | ISCO-08 sub-major groups | 43 | 29 | 27 | 2 | 14 | no field |
+
+The world slice moved Geography from 17 held cells, 10 of them thin, to 29 held, 1 thin; by facet field from 12 to 30. One of the 30 largest countries still matches no verified row under the critic rule. Language is unchanged at 25 held and 11 thin, 3 by field: world rows describe other systems in English. `COMPLETENESS.md` lists each cell before and after.
 
 Held means one or more rows with `verified` true match the cell's keyword or code rule. Thin means one to nine. `page_fetched` rows count as unverified. Held says nothing of depth: the critic read 54 verified infancy rows and kept none, and scored Domain 5.0 at 98% held. The verdict in the first row stands until a critic reads the rows again.
 
@@ -190,6 +269,7 @@ The frame records no keyword list for 20 purpose, kind and mode cells, so their 
 
 ```bash
 python3 -I build/consolidate.py <slices-folder> <full-output> <public-output>
+python3 -I build/world.py <slices-folder> learning/corpus/progressions/tables
 python3 -I build/coverage.py
 python3 -I build/completeness.py
 python3 -m unittest learning/corpus/progressions/tests/test_progressions_corpus.py

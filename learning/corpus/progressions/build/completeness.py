@@ -9,7 +9,9 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 CURATED = ["frameworks", "progression", "assessments", "books"]
 CATALOGUE = ["courses", "programs"]
-TABLES = CURATED + CATALOGUE + ["resources"]
+WORLD = ["world_systems", "world_stages", "world_exams", "world_nqf", "world_occupations", "world_professions", "world_elements", "world_languages", "world_tvet_bodies"]
+TABLES = CURATED + CATALOGUE + ["resources"] + WORLD
+WORLD_TITLE = ("name", "name_english", "name_national", "title", "profession", "element", "framework")
 TITLE_KEY = {"frameworks": "name", "progression": "topic", "assessments": "name", "books": "title", "resources": "title", "programs": "program", "courses": "title"}
 SCHOOL_LEVELS = {"early", "primary", "lower-secondary", "upper-secondary", "undergraduate-lower", "undergraduate-upper", "graduate"}
 PROFESSIONAL = {"professional-entry", "professional-advanced"}
@@ -74,9 +76,9 @@ class Row:
 
     def __init__(self, table, data, frameworks):
         self.table = table
-        self.group = "curated" if table in CURATED else "catalogue" if table in CATALOGUE else "resource"
+        self.group = "curated" if table in CURATED or table in WORLD else "catalogue" if table in CATALOGUE else "resource"
         self.verified = bool(data.get("verified"))
-        parts = [data.get(TITLE_KEY[table]), data.get("field"), data.get("subfield"), data.get("department")] + list(data.get("fields") or [])
+        parts = [data.get(TITLE_KEY[table]), data.get("field"), data.get("subfield"), data.get("department")] + list(data.get("fields") or []) if table in TITLE_KEY else [data.get(k) for k in WORLD_TITLE]
         self.title = " | ".join(str(x) for x in parts if x).lower()
         self.data = data
         self.level = data.get("level") or data.get("level_from")
@@ -91,6 +93,8 @@ class Row:
             text = "%s %s" % (data.get("body") or "", data.get("name") or "")
         elif table in CATALOGUE:
             text = "US"
+        elif table in WORLD:
+            text = "%s %s" % (data.get("country") or "", data.get("region") or "")
         self.region_text = text.lower()
 
 
@@ -196,7 +200,10 @@ def score(tables, frame_path):
         if check:
             fields.append((i, check, field))
     total = verified = 0
+    national = collections.Counter()
     for name in TABLES:
+        if name in WORLD and not (os.path.exists(os.path.join(tables, name + ".jsonl")) or os.path.exists(os.path.join(tables, name + ".jsonl.zst"))):
+            continue
         for data in read(tables, name):
             r = Row(name, data, frameworks)
             total += 1
@@ -215,7 +222,9 @@ def score(tables, frame_path):
                     reached_any.add(unit)
                     if r.verified:
                         reached_verified.add(unit)
-            if "life_stage_method" in data:
+            if name in WORLD and r.verified and data.get("national_language"):
+                national[data["national_language"]] += 1
+            if "life_stage_method" in data or "region_method" in data:
                 for i, check, field in fields:
                     if check(data):
                         add(by_field[i], r)
@@ -241,6 +250,8 @@ def score(tables, frame_path):
             out["field_rows"] = by_field[i]["rows_total"]
             out["field_verified"] = by_field[i]["rows_verified"]
             out["field_stated"] = by_field[i]["stated"]
+        if dimension == "language":
+            out["world_rows_national_language"] = national.get(cell["cell"], 0)
         if out["rows_verified"] is not None and out["critic_rows_verified"] is not None:
             out["within_tolerance"] = within(out["critic_rows_verified"], out["rows_verified"])
         results.append(out)
@@ -262,7 +273,32 @@ def validation_note(frame_path):
     return ""
 
 
-def render(results, total, verified, note=""):
+def before_after(results, frame_path):
+    path = os.path.join(os.path.dirname(frame_path), "before_world.json")
+    if not os.path.exists(path):
+        path = os.path.join(os.path.dirname(frame_path), "completeness-before-world.json")
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding="utf-8") as fh:
+        before = {(c["dimension"], c["cell"]): c for c in json.load(fh)["cells"]}
+    out = ["\n## Geography and Language Before and After the World Slice\n"]
+    for dimension, title in (("geography", "Geography"), ("language", "Language")):
+        cells = [r for r in results if r["dimension"] == dimension]
+        old = [before.get((dimension, r["cell"]), {}) for r in cells]
+        held = lambda rows, key: sum(1 for r in rows if (r.get(key) or 0) > 0)
+        thin = lambda rows, key: sum(1 for r in rows if 0 < (r.get(key) or 0) < THIN_BELOW)
+        out.append("%s, %d cells. Critic rule: %d held before, %d of them thin; %d held after, %d thin. Facet field: %d held before, %d thin; %d held after, %d thin.\n" % (title, len(cells), held(old, "rows_verified"), thin(old, "rows_verified"), held(cells, "rows_verified"), thin(cells, "rows_verified"), held(old, "field_verified"), thin(old, "field_verified"), held(cells, "field_verified"), thin(cells, "field_verified")))
+        extra = " World rows by national language |" if dimension == "language" else ""
+        out.append("| Cell | Critic rule before | Critic rule after | Facet field before | Facet field after |%s\n|---|---|---|---|---|%s" % (extra, "---|" if extra else ""))
+        for r, o in zip(cells, old):
+            line = "| %s | %s | %s | %s | %s |" % (r["cell"], format(o.get("rows_verified") or 0, ","), format(r["rows_verified"] or 0, ","), format(o.get("field_verified") or 0, ","), format(r.get("field_verified") or 0, ","))
+            out.append(line + (" %s |" % format(r.get("world_rows_national_language", 0), ",") if extra else ""))
+        out.append("")
+    out.append("The language field of a world row names the language of the row text, which is English for most rows. The last column counts verified world rows by the national language of the system they describe; those rows are about that system and are written in English.\n")
+    return out
+
+
+def render(results, total, verified, note="", extra=()):
     out = []
     w = out.append
     w("# Completeness\n")
@@ -288,6 +324,8 @@ def render(results, total, verified, note=""):
         }
         w("| %s | %d | %d | %d | %d | %d | %d | %s | %s | %d | %d |" % (dimension, s["cells"], s["held_first_review"], s["held_critic_rule"], s["thin_critic_rule"], s["ten_or_more_critic_rule"], s["empty_critic_rule"], s["held_facet_field"] if fielded else "no field", s["thin_facet_field"] if fielded else "", s["scorable"], s["within_tolerance"]))
     w("\nOCM and Propaedia cells show their code alone. Their category names belong to HRAF and Britannica and stay out of this repo.\n")
+    for line in extra:
+        w(line)
     w("\n## Differences from the First Review\n")
     if note:
         w(note)
@@ -312,7 +350,7 @@ def main():
         return
     tables, frame, target = locate()
     results, total, verified = score(tables, frame)
-    text, summary = render(results, total, verified, validation_note(frame))
+    text, summary = render(results, total, verified, validation_note(frame), before_after(results, frame))
     with open(target, "w", encoding="utf-8") as fh:
         fh.write(text)
     with open(os.path.join(tables, "completeness.json"), "w", encoding="utf-8") as fh:
