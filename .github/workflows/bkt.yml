@@ -109,6 +109,18 @@ jobs:
           path: packages/ros-contract/test/golden/*.actual.html
           if-no-files-found: ignore
 
+  explore-pinned:
+    if: github.event_name == 'pull_request' && (startsWith(github.head_ref, 'feat/explore-') || startsWith(github.head_ref, 'feat/desk-'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: the three pinned canon files carry no change
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: bash packages/bkt/scripts/check-pinned.sh "origin/$BASE_REF"
+
   bkt-ui:
     runs-on: ubuntu-latest
     steps:
