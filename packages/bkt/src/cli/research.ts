@@ -1,6 +1,7 @@
 import { readFileSync, statSync } from "node:fs";
 import type { ServerRecord } from "../core/backend";
 import { installSidePack, ResearchError, SIDE_PACK_BYTES, type Installed } from "../research";
+import { LocalOutputs, type Added } from "../research-work";
 
 export const INSTALL_MS = 60_000;
 
@@ -37,5 +38,16 @@ export function installLines(done: Installed & { live: boolean }): string[] {
   return [
     `Installed staff research ${done.version}: ${done.outputs} ${done.outputs === 1 ? "output" : "outputs"}, ${done.files.toLocaleString("en-US")} files, every checksum matches.`,
     done.live ? "The running app shows it now." : "Bucket shows it the next time it starts.",
+  ];
+}
+
+export function researchAdd(folder: string, dataDir: string, shipped: string[]): Added {
+  return new LocalOutputs(dataDir, { taken: (slug) => shipped.includes(slug) }).addFolder(folder);
+}
+
+export function addLines(done: Added): string[] {
+  return [
+    `Added ${done.slug}: ${done.files.toLocaleString("en-US")} files, ${done.figures} ${done.figures === 1 ? "figure" : "figures"}, ${done.tables} ${done.tables === 1 ? "table" : "tables"}.`,
+    "It opens under Research as a draft. Builds are off for it until you turn them on.",
   ];
 }

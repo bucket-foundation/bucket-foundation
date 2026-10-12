@@ -271,6 +271,8 @@ function empty(): Stub {
     researchList: async () => ({ outputs: [] }),
     researchManifest: () => Promise.reject(new ApiError("no such output", 404)),
     researchTable: () => Promise.reject(new ApiError("the output has no such table", 404)),
+    researchNew: () => Promise.reject(new ApiError("an output already has that short name", 409)),
+    researchUpload: () => Promise.reject(new ApiError("the file does not read as png", 415)),
     researchChanges: async () => ({ notice: "Edits are kept on this computer as plain files, so the tools that build a paper can read them.", changes: [] }),
     researchSource: () => Promise.reject(new ApiError("the output does not list that file", 404)),
     researchPage: async () => ({ state: "preview", reason: "pdftoppm is missing, so the paper shows as a preview", install: "sudo dnf install poppler-utils" }),

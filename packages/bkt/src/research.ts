@@ -55,7 +55,7 @@ export interface ResearchRow {
 
 export interface ResearchDetail {
   slug: string;
-  origin: "shipped" | "staff";
+  origin: "shipped" | "staff" | "local";
   staff: boolean;
   manifest: ReportRecord;
   files: PackedFile[];
@@ -253,8 +253,32 @@ export interface WorkHook {
   changed(slug: string): number;
 }
 
+export interface LocalHook {
+  signature(): string;
+  outputs(): ResearchOutput[];
+  dir(slug: string): string;
+  relative(slug: string, path: string): string;
+}
+
 export class Research {
   private work: WorkHook | null = null;
+  private local: LocalHook | null = null;
+  private localSeen = "";
+  private locals = new Set<string>();
+
+  setLocal(hook: LocalHook | null): void {
+    this.local = hook;
+    this.reload();
+  }
+
+  has(slug: string): boolean {
+    this.fresh();
+    return this.outputs.has(slug);
+  }
+
+  private fresh(): void {
+    if (this.local && this.local.signature() !== this.localSeen) this.reload();
+  }
 
   setWork(hook: WorkHook | null): void {
     this.work = hook;
@@ -296,6 +320,23 @@ export class Research {
       const files = [...(shipped?.files ?? []).filter((file) => !staffPaths.has(file.path)), ...extra.files].sort((x, y) => (x.path < y.path ? -1 : 1));
       outputs.set(extra.slug, { slug: extra.slug, origin: shipped ? shipped.origin : "staff", manifest: extra.manifest, files, withheld: 0 });
     }
+    const locals = new Set<string>();
+    if (this.local) {
+      try {
+        this.localSeen = this.local.signature();
+        for (const own of this.local.outputs()) {
+          if (outputs.has(own.slug)) {
+            this.onError(new Error(`your output ${own.slug} shares its name with a shipped one and is hidden`));
+            continue;
+          }
+          outputs.set(own.slug, own);
+          locals.add(own.slug);
+        }
+      } catch (e) {
+        this.onError(e as Error);
+      }
+    }
+    this.locals = locals;
     const unreadable = new Map<string, string>();
     for (const output of outputs.values()) {
       const problem = hashProblem(output);
@@ -311,11 +352,16 @@ export class Research {
     return this.dataDir;
   }
 
+  staffHas(slug: string): boolean {
+    return (this.side?.outputs ?? []).some((o) => o.slug === slug);
+  }
+
   get staffVersion(): string | null {
     return this.side?.version ?? null;
   }
 
   list(): ResearchRow[] {
+    this.fresh();
     return [...this.outputs.values()].map((output) => ({
       slug: output.slug,
       title: output.manifest.title,
@@ -330,6 +376,7 @@ export class Research {
 
   private output(slug: string | null): ResearchOutput {
     if (slug === null || !SLUG.test(slug)) throw new ResearchError("the output name is refused", 400);
+    this.fresh();
     const output = this.outputs.get(slug);
     if (!output) throw new ResearchError("no such output", 404);
     return output;
@@ -393,10 +440,11 @@ export class Research {
     const edited = o.baseline || !this.work ? null : this.work.overlay(output.slug, path);
     if (edited) return { bytes: edited, type, entry: { ...entry, sha256: sha256(edited), size: edited.length } };
     if (entry.size > VIEW_BYTES) throw new ResearchError("the file is over the 16 MB view limit", 413);
-    const root = this.side && this.sideFiles.has(`${output.slug}\n${path}`) ? this.side.root : await this.root();
+    const own = this.local !== null && this.locals.has(output.slug) ? this.local : null;
+    const root = own ? own.dir(output.slug) : this.side && this.sideFiles.has(`${output.slug}\n${path}`) ? this.side.root : await this.root();
     const reason = this.unreadable.get(output.slug);
     if (reason) throw new ResearchError(reason, 409);
-    const bytes = readFileSync(guardPath(root, path));
+    const bytes = readFileSync(guardPath(root, own ? own.relative(output.slug, path) : path));
     if (sha256(bytes) !== entry.sha256) {
       const changed = `${path} changed on disk after it was unpacked`;
       this.unreadable.set(output.slug, changed);
