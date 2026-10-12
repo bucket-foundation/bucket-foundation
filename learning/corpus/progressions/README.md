@@ -17,7 +17,7 @@ Files sit in `tables/` as JSON Lines, one object per line. A file above 5 MB is 
 | courses | `courses.jsonl.zst` | 25,908 | `page_fetched` | 25,908 | 100% | The course listings of Iowa State, Illinois Urbana-Champaign and Iowa with parsed prerequisites |
 | edges | `edges.jsonl.zst` | 24,088 | `stated` | 20,571 | 85.4% | One row per edge: prerequisite, concurrent, corequisite, recommended prerequisite, related, alternate standard, grade-band progression |
 | activities | `activities.jsonl` | 1,522 | | | | Activity codes of ATUS, ICATUS 2016 and the Outline of Cultural Materials |
-| occupation_history | `occupation_history.jsonl` | 3,994 | | | | One occupation lifecycle per row: first, peak and last attested year under census, SOC and OEWS series |
+| occupation_history | `occupation_history.jsonl` | 3,296 | | | | One occupation lifecycle per row: first, peak and last attested year under SOC, OEWS and O*NET series; title, code and list years alone for the 2002, 2010 and 2018 census lists |
 | technologies | `technologies.jsonl` | 698 | `verified` | 48 | 6.9% | 14 technology waves, 97 curated technologies with a source page, and 587 Wikidata items whose class names a technology, invention, tool, machine, technique or process. The 587 carry `evidence: wikidata-id-only` and `verified` false. 6,293 Wikidata items with no such class were dropped |
 
 The progression share rose because 60,914 K-12 standards rows arrived with `verified` true from their slice. That flag says a script read the standard from a published file, which is weaker than a person comparing the row with a page.
@@ -139,10 +139,15 @@ The build session opened one licence page, the O*NET one. The other rows state t
 | ATUS activity lexicon, BLS | Codes and labels | US federal work, public domain | Copying and redistribution |
 | ICATUS 2016, UN Statistics Division | Codes, with Bucket labels on the nine major divisions | United Nations copyright; terms unread in the build | Codes as facts. No UN label text is committed |
 | Outline of Cultural Materials, HRAF, and the Propaedia outline, Britannica | Category numbers and a link, in `activities.jsonl` and in the completeness frame | Copyright Human Relations Area Files | Numbers as facts. No HRAF label text is committed |
-| Census, SOC and OEWS occupation series | Titles, codes and years in `occupation_history` | US federal work, public domain | Copying and redistribution |
+| Census, SOC and OEWS occupation series | Titles, codes and years in `occupation_history`, from bls.gov, onetcenter.org and the census.gov code lists | US federal work, public domain; O*NET rows under CC BY 4.0 | Copying and redistribution |
+| IPUMS USA occupation crosswalks | Nothing. See Withheld Occupation Rows | Terms of IPUMS USA, which restrict redistribution | No row and no derived value is committed |
 | Wikidata | Technology names and dates | CC0 | Any use |
 | K-12 standards systems | Codes, grades, subjects and strand headings from 34 systems; labels from three | Head Start ELOF is a US federal work; the Australian Curriculum is CC BY 4.0, copyright ACARA, terms at https://www.australiancurriculum.edu.au/copyright-and-terms-of-use; England is OGL v3.0; the rest are unknown or restricted | Codes as facts. Labels only where the terms allow reuse with attribution |
 | Resource providers | Title, link, level and the licence string each provider states | Varies per row, see `licence` | The row is a pointer. The linked work keeps its own terms |
+
+### Withheld Occupation Rows
+
+698 lifecycle rows for the 1950 to 1990 census lists were read from crosswalk files at usa.ipums.org. They await a rights ruling, are absent from `occupation_history.jsonl` since 2026-10-12, and remain in the research folder on disk. The 665 rows for the 2002, 2010 and 2018 lists come from census.gov files and stay, with every value that ran through those crosswalks removed: lineage codes before 2000, the first attested year before 2000, peak year, peak and last employment, status and the near-extinct flag. `occupation_row_cleared` in `build/facets.py` applies the rule at build time and the corpus tests hold the table to it.
 
 Attribution lines:
 
@@ -190,7 +195,7 @@ python3 -I build/completeness.py
 python3 -m unittest learning/corpus/progressions/tests/test_progressions_corpus.py
 ```
 
-`consolidate.py` needs the slice folders, the backbone sqlite file and the catalogue parser, which stay off the repo. It writes a full copy for local use and the public copy committed here. `coverage.py`, `completeness.py` and the tests run on the committed tables and need the `zstd` command. The build streams the resources and K-12 standards files row by row and peaked at 297 MB; the scorer peaked at 16 MB, the coverage report at 43 MB and the tests at 1.3 GB. The 53 tests check unique ids, edge endpoints, cycles, URLs on flagged rows, the nine-level scale, CIP and SOC codes against the backbone, the two flags, the facet rules, the text limit per field, and the absence of catalogue sentences, standards text, email addresses, home paths, Dewey text and SFIA wording.
+`consolidate.py` needs the slice folders, the backbone sqlite file and the catalogue parser, which stay off the repo. It writes a full copy for local use and the public copy committed here. `coverage.py`, `completeness.py` and the tests run on the committed tables and need the `zstd` command. The build streams the resources and K-12 standards files row by row and peaked at 297 MB; the scorer peaked at 16 MB, the coverage report at 43 MB and the tests at 1.3 GB. The 55 tests check unique ids, the absence of IPUMS-sourced occupation rows and values, edge endpoints, cycles, URLs on flagged rows, the nine-level scale, CIP and SOC codes against the backbone, the two flags, the facet rules, the text limit per field, and the absence of catalogue sentences, standards text, email addresses, home paths, Dewey text and SFIA wording.
 
 ## Open Items
 

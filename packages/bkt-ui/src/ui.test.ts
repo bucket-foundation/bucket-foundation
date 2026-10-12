@@ -1,5 +1,7 @@
 import { describe, expect, test } from "bun:test";
-import { firstRunHash, followRoutes, href, parseHash } from "./router";
+import { DESK_TYPES, EXPLORE_MODE_IDS, firstRunHash, followRoutes, href, parseHash, RESEARCH_TABS, type Route } from "./router";
+import { MODES } from "../../../src/lib/explore/modes";
+import { validDatasetId } from "../../../src/lib/explore/datasets";
 import { blocks } from "./views/Lesson";
 
 describe("hash router", () => {
@@ -21,6 +23,72 @@ describe("hash router", () => {
     for (const broken of ["#/work/daily/%", "#/%E0%A4%A", "#/learn/%zz", "#/path/%"]) expect(parseHash(broken)).toEqual({ name: "learn" });
     expect(parseHash("#/work/other/2026-09-30")).toEqual({ name: "work" });
     for (const n of ["advisors", "primes", "jobs"] as const) expect(parseHash(`#/${n}`)).toEqual({ name: n });
+  });
+});
+
+describe("explore, desk and research item routes", () => {
+  const roundTrips = (r: Route) => expect(parseHash(href(r))).toEqual(r);
+
+  test("the router mode ids are the mode ids Explore draws", () => {
+    expect(MODES.map((m) => m.id)).toEqual([...EXPLORE_MODE_IDS]);
+  });
+
+  test("explore carries a data set, a mode and a selected row", () => {
+    expect(parseHash("#/explore")).toEqual({ name: "explore" });
+    expect(href({ name: "explore" })).toBe("#/explore");
+    expect(parseHash("#/explore/major-to-career")).toEqual({ name: "explore", data: "major-to-career" });
+    expect(parseHash("#/explore/major-to-career/graph")).toEqual({ name: "explore", data: "major-to-career", mode: "graph" });
+    expect(href({ name: "explore", data: "occupations-time", mode: "map", sel: "row:occupations-time:soc-15" })).toBe("#/explore/occupations-time/map/row%3Aoccupations-time%3Asoc-15");
+    expect(parseHash("#/explore/occupations-time/map/row:occupations-time:soc-15")).toEqual({ name: "explore", data: "occupations-time", mode: "map", sel: "row:occupations-time:soc-15" });
+    for (const mode of EXPLORE_MODE_IDS) roundTrips({ name: "explore", data: "canon", mode });
+    roundTrips({ name: "explore", data: "a" });
+    roundTrips({ name: "explore", data: "a".repeat(64), mode: "timeline", sel: `row:${"a".repeat(64)}:${"K".repeat(160)}` });
+    roundTrips({ name: "explore", data: "cip-coverage", mode: "map", sel: "row:cip-coverage:11.07_a-b.c" });
+    expect(href({ name: "explore", sel: "row:a:b" })).toBe("#/explore");
+    expect(href({ name: "explore", data: "a", sel: "row:a:b" })).toBe("#/explore/a");
+  });
+
+  test("a bad explore part falls back to the plain explore route", () => {
+    const bad = [
+      "Major", "-lead", "a".repeat(65), "a_b", "..%2F..%2Fetc", "%3Cscript%3E",
+      "canon/nope", "canon/Graph", "canon/graph/extra", "canon/graph/row:canon", "canon/graph/row:Canon:x", "canon/graph/row:canon:a%2Fb", "canon/graph/row:canon:a b",
+      `canon/graph/row:canon:${"k".repeat(161)}`, `canon/graph/row:${"a".repeat(65)}:k`, "canon/graph/row:canon:k/more", "canon/graph/atom:canon:k",
+    ];
+    for (const part of bad) expect(parseHash(`#/explore/${part}`)).toEqual({ name: "explore" });
+    expect(parseHash("#/explore/%")).toEqual({ name: "learn" });
+  });
+
+  test("the data part follows the data set id rule", () => {
+    for (const id of ["canon", "sample", "occupations-time", "a", "0-9", "Major", "-x", "a.b", "a".repeat(64), "a".repeat(65)]) {
+      expect(parseHash(`#/explore/${id}`)).toEqual(validDatasetId(id) ? { name: "explore", data: id } : { name: "explore" });
+    }
+  });
+
+  test("a desk route names one of eight types and opens tables otherwise", () => {
+    expect(DESK_TYPES).toHaveLength(8);
+    for (const type of DESK_TYPES) {
+      expect(parseHash(`#/desk/${type}`)).toEqual({ name: "desk", type });
+      roundTrips({ name: "desk", type });
+    }
+    expect(href({ name: "desk", type: "maps" })).toBe("#/desk/maps");
+    expect(href({ name: "desk" })).toBe("#/desk/tables");
+    for (const hash of ["#/desk", "#/desk/", "#/desk/nodes", "#/desk/Tables", "#/desk/tables/extra", "#/desk/figures/x", "#/desk/..%2F"]) expect(parseHash(hash)).toEqual({ name: "desk", type: "tables" });
+  });
+
+  test("the research hash takes an item as its fourth part", () => {
+    expect(parseHash("#/research")).toEqual({ name: "research" });
+    expect(parseHash("#/research/atlas")).toEqual({ name: "research", slug: "atlas", tab: "report" });
+    expect(href({ name: "research", slug: "atlas" })).toBe("#/research/atlas/report");
+    for (const tab of RESEARCH_TABS) {
+      roundTrips({ name: "research", slug: "atlas", tab });
+      roundTrips({ name: "research", slug: "atlas", tab, item: "fig-1.backtest_v2.png" });
+    }
+    expect(parseHash("#/research/atlas/figures/coverage.svg")).toEqual({ name: "research", slug: "atlas", tab: "figures", item: "coverage.svg" });
+    roundTrips({ name: "research", slug: "atlas", tab: "data", item: "A".repeat(128) });
+    for (const hash of [
+      "#/research/Atlas", "#/research/atlas/nope", "#/research/atlas/nope/item", "#/research/atlas/figures/.hidden", "#/research/atlas/figures/a%2Fb", "#/research/atlas/figures/a b",
+      `#/research/atlas/figures/${"A".repeat(129)}`, "#/research/atlas/figures/a/b", "#/research/atlas/figures/..",
+    ]) expect(parseHash(hash)).toEqual({ name: "research" });
   });
 });
 
