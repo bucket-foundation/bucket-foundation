@@ -91,6 +91,8 @@ function fakeApi(over: Partial<WorkspaceApi> = {}) {
     researchPage: async () => ({ state: "preview", reason: "the page tool is missing, so the paper shows as a preview", install: "" }),
     researchBuild: async (slug: string, build: string) => (builds.push([slug, build]), { state: "refused", reason: "builds are off for this output", install: null, status: 403 }),
     researchBuildState: async () => ({ pending: null, job: null }),
+    installedDecks: async () => ({ decks: [] }),
+    library: async () => ({ built: "1970-01-01", refreshedAt: null, offline: true, from: "bundled", signed: false, decks: [] }),
     researchSave: async (slug: string, path: string, base: string, text: string): Promise<SaveResult> => (saves.push({ slug, path, base, text }), { saved: true, rev: "rev-next", changed: true }),
     ...over,
   } as unknown as WorkspaceApi;
@@ -318,11 +320,6 @@ describe("records workspace", () => {
 
 describe("workspaces that are not built", () => {
   test("show one plain line and a link where a screen holds the items today", async () => {
-    const decks = await workspace(fakeApi().api, "decks");
-    expect(decks.host.querySelector("h1")!.textContent).toBe("Decks");
-    expect(decks.host.querySelector("p.muted")!.textContent).toBe("Decks open from Learn for now.");
-    expect(decks.host.querySelector("a.link")!.getAttribute("href")).toBe("#/learn");
-    await decks.unmount();
     const f = fakeApi();
     const people = await workspace(f.api, "people");
     expect(people.host.querySelector("p.muted")!.textContent).toBe("This workspace is empty in this version of Bucket.");
@@ -485,14 +482,14 @@ describe("leaving a workspace editor inside the save pause", () => {
 });
 
 describe("workspace addresses and the tabs that are not built", () => {
-  test("each of the two shows one plain line, at most one link to a screen that exists, and no other control", async () => {
+  test("the one left shows one plain line, at most one link to a screen that exists, and no other control", async () => {
     const { LATER } = await import("./views/Workspace");
     const { NAV } = await import("./nav");
     const screens = NAV.map((n) => href(n.route));
-    expect(Object.keys(LATER).sort()).toEqual(["decks", "people"]);
+    expect(Object.keys(LATER).sort()).toEqual(["people"]);
     for (const [type, words] of Object.entries(LATER)) {
       const f = fakeApi();
-      const v = await workspace(f.api, type as "decks");
+      const v = await workspace(f.api, type as "people");
       expect({ type, lines: Array.from(v.host.querySelectorAll("p")).map((p) => p.textContent) }).toEqual({ type, lines: [words.line] });
       expect({ type, controls: v.host.querySelectorAll("button, input, select, textarea, [role=tab]").length }).toEqual({ type, controls: 0 });
       const links = Array.from(v.host.querySelectorAll("a")).map((a) => a.getAttribute("href")!);
@@ -729,5 +726,89 @@ describe("leaving a paper or a figure script inside the save pause", () => {
     expect(cells(s.v.host)).toHaveLength(2);
     expect(s.v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Figures");
     await s.v.unmount();
+  });
+});
+
+describe("decks workspace", () => {
+  async function decks(over: Record<string, unknown> = {}, body?: import("./api").LibraryBody) {
+    const { LIBRARY } = await import("./fixtures/library");
+    const { DECKS_BODY } = await import("./fixtures/decks");
+    const shown = body ?? LIBRARY;
+    const calls: string[] = [];
+    let installed = DECKS_BODY;
+    const api = {
+      installedDecks: async () => (calls.push("installed"), installed),
+      library: async () => (calls.push("library"), shown),
+      libraryRefresh: async () => (calls.push("refresh"), shown),
+      libraryInstall: async (id: string) => (calls.push(`install ${id}`), { ...shown, decks: shown.decks.map((d) => (d.id === id ? { ...d, state: "installed" as const } : d)) }),
+      libraryRemove: async (id: string) => (calls.push(`remove ${id}`), { ...shown, decks: shown.decks.map((d) => (d.id === id ? { ...d, state: "available" as const } : d)) }),
+      libraryExport: async () => ({ name: "x.bktdeck", folder: "Downloads" }),
+      libraryExportBytes: async () => new Blob(["deck"]),
+      libraryImport: async () => ({ ...shown, installed: "Arabic words" }),
+      ...over,
+    } as unknown as WorkspaceApi;
+    const v = await workspace(api, "decks");
+    return { v, calls, setInstalled: (next: typeof DECKS_BODY) => (installed = next) };
+  }
+
+  test("shows the installed decks and the decks to add in one place, under one heading", async () => {
+    const { DECKS_ABOUT } = await import("./views/Workspace");
+    const { EMBEDDED_TITLE, LIBRARY_NOTE, BUNDLED_LIST } = await import("./views/Library");
+    const { v, calls } = await decks();
+    expect(Array.from(v.host.querySelectorAll("h1")).map((h) => h.textContent)).toEqual(["Decks"]);
+    expect(v.host.querySelector(".head .muted")!.textContent).toBe(DECKS_ABOUT);
+    expect(Array.from(v.host.querySelectorAll("h2")).map((h) => h.textContent)).toEqual(["Installed decks", EMBEDDED_TITLE]);
+    expect(v.host.querySelectorAll(".deck-rows li").length).toBe(2);
+    expect(Array.from(v.host.querySelectorAll(".library-row b")).map((b) => b.textContent)).toEqual(["Spanish words", "German words", "Japanese words", "Arabic words", "French words", "Kitchen French"]);
+    expect(v.host.textContent).toContain(LIBRARY_NOTE);
+    expect(v.host.textContent).toContain(BUNDLED_LIST);
+    expect(v.host.querySelector('a[href="#/library"]')).toBeNull();
+    expect(calls.filter((c) => c === "library").length).toBe(1);
+    await v.unmount();
+  });
+
+  test("an unsigned deck list still says so and offers none of it", async () => {
+    const { EMPTY_LIBRARY } = await import("./fixtures/library");
+    const { UNSIGNED_LIST } = await import("./views/Library");
+    const { v, calls } = await decks({}, EMPTY_LIBRARY);
+    expect(v.host.textContent).toContain(UNSIGNED_LIST);
+    expect(v.host.querySelectorAll(".library-row").length).toBe(0);
+    expect(v.host.querySelectorAll(".deck-rows li").length).toBe(2);
+    expect((press(v.host, "Refresh") as HTMLButtonElement).disabled).toBe(true);
+    expect(v.host.querySelector('input[type="file"]')!.getAttribute("accept")).toBe(".bktdeck");
+    expect(calls.some((c) => c.startsWith("install "))).toBe(false);
+    await v.unmount();
+  });
+
+  test("adding a deck goes through the Library's own call and the installed list reads again", async () => {
+    const { v, calls } = await decks();
+    const row = Array.from(v.host.querySelectorAll(".library-row")).find((r) => r.querySelector("b")!.textContent === "Spanish words")!;
+    const before = calls.filter((c) => c === "installed").length;
+    await v.click(Array.from(row.querySelectorAll("button")).find((b) => /Download|Add|Install/.test(b.textContent ?? "")));
+    expect(calls.filter((c) => c.startsWith("install ")).length).toBe(1);
+    expect(calls).toContain("install polingual-es");
+    expect(calls.filter((c) => c === "installed").length).toBe(before + 1);
+    await v.unmount();
+  });
+
+  test("the workspace files name no download address, no host and no call of their own", async () => {
+    for (const name of ["views/Workspace.tsx", "views/WorkspaceTabs.tsx"]) {
+      const source = await Bun.file(`${import.meta.dir}/${name}`).text();
+      expect({ name, hits: source.match(/https?:|fetch\(|\/local\/|bucket\.foundation|libraryInstall|libraryImport|libraryRefresh/g) }).toEqual({ name, hits: null });
+    }
+    const apiSource = await Bun.file(`${import.meta.dir}/api.ts`).text();
+    expect(apiSource.match(/\/local\/workspace\/[a-z]+/g)).toEqual(["/local/workspace/items"]);
+  });
+
+  test("the bar lights Decks and Back from Decks leaves the workspace", async () => {
+    const { Screen } = await import("./nav");
+    const { LIBRARY } = await import("./fixtures/library");
+    const { DECKS_BODY } = await import("./fixtures/decks");
+    const api = { installedDecks: async () => DECKS_BODY, library: async () => LIBRARY } as unknown as Api;
+    const v = await mount(<Screen api={api} route={parseHash("#/workspace/decks")} />);
+    expect(v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Decks");
+    expect(v.host.querySelector("h1")!.textContent).toBe("Decks");
+    expect(v.host.querySelector('[role="tablist"]')).toBeNull();
+    await v.unmount();
   });
 });

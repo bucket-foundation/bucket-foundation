@@ -28,7 +28,7 @@ export function replaceQuestion(d: Pick<LibraryRow, "title">): string {
   return `A file for ${d.title} is already in your Downloads folder. Replace it?`;
 }
 
-type LibraryApi = Pick<Api, "library" | "libraryRefresh" | "libraryInstall" | "libraryRemove" | "libraryExport" | "libraryExportBytes" | "libraryImport">;
+export type LibraryApi = Pick<Api, "library" | "libraryRefresh" | "libraryInstall" | "libraryRemove" | "libraryExport" | "libraryExportBytes" | "libraryImport">;
 
 const STATE_WORDS: Record<LibraryRow["state"], string> = { available: "Not added", installed: "Added", update: "Newer version ready", downloading: "Downloading", failed: "Did not finish" };
 
@@ -94,8 +94,13 @@ function Row({ d, busy, offline, act }: { d: LibraryRow; busy: boolean; offline:
   );
 }
 
-export function LibraryView({ api }: { api: LibraryApi }) {
+export const EMBEDDED_TITLE = "Decks you can add";
+
+export function LibraryView({ api, embedded, onBody }: { api: LibraryApi; embedded?: boolean; onBody?: (body: LibraryBody) => void }) {
   const [body, setBody] = useState<LibraryBody | null>(null);
+  useEffect(() => {
+    if (body) onBody?.(body);
+  }, [body]);
   const [failed, setFailed] = useState(false);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
@@ -188,10 +193,17 @@ export function LibraryView({ api }: { api: LibraryApi }) {
 
   return (
     <section>
-      <header className="head">
-        <h1>Library</h1>
-        <p className="muted">{LIBRARY_NOTE}</p>
-      </header>
+      {embedded ? (
+        <>
+          <h2>{EMBEDDED_TITLE}</h2>
+          <p className="muted">{LIBRARY_NOTE}</p>
+        </>
+      ) : (
+        <header className="head">
+          <h1>Library</h1>
+          <p className="muted">{LIBRARY_NOTE}</p>
+        </header>
+      )}
       {failed && <p className="error">{LIBRARY_FAILED}</p>}
       {body && (
         <>
