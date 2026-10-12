@@ -20,9 +20,9 @@
    "variants": 13,
    "unsampled": 0,
    "by_class": {
+    "needs a new idea": 12,
     "borderline": 41,
-    "close to known results": 13,
-    "needs a new idea": 12
+    "close to known results": 13
    },
    "by_branch": {
     "mathematics": 73,
@@ -36,9 +36,9 @@
    "variants": 4,
    "unsampled": 0,
    "by_class": {
+    "needs a new idea": 10,
     "borderline": 28,
-    "close to known results": 7,
-    "needs a new idea": 10
+    "close to known results": 7
    },
    "by_branch": {
     "mathematics": 45,
@@ -125,14 +125,16 @@
      "ci95": [
       -0.03259482561468292,
       0.028919802363697327
-     ]
+     ],
+     "estimable": true
     },
     "top_class_minus_outside": {
      "value": -0.0012850684337647814,
      "ci95": [
       -0.04076284226543091,
       0.037572461002663746
-     ]
+     ],
+     "estimable": true
     },
     "ratio": 0.9796747967479675,
     "permutation_p": 1.0,
@@ -221,14 +223,16 @@
      "ci95": [
       -0.03763377293822879,
       0.015891390162562177
-     ]
+     ],
+     "estimable": true
     },
     "top_class_minus_outside": {
      "value": -0.015374372948535331,
      "ci95": [
       -0.04742763900044662,
       0.01509427500997858
-     ]
+     ],
+     "estimable": true
     },
     "ratio": 0.7619692863595303,
     "permutation_p": 0.5504,
@@ -319,14 +323,16 @@
      "ci95": [
       0.02117126136438325,
       0.04918424499420235
-     ]
+     ],
+     "estimable": true
     },
     "top_class_minus_outside": {
      "value": 0.03592884633436591,
      "ci95": [
       0.010079581173204883,
       0.0631959503537392
-     ]
+     ],
+     "estimable": true
     },
     "ratio": 3.795755968169761,
     "permutation_p": 0.0001,
@@ -415,14 +421,16 @@
      "ci95": [
       0.008469646780591604,
       0.03258652705423872
-     ]
+     ],
+     "estimable": true
     },
     "top_class_minus_outside": {
      "value": 0.015637222691573575,
      "ci95": [
       -0.003529132964523709,
       0.03704524476112951
-     ]
+     ],
+     "estimable": true
     },
     "ratio": 2.952254641909814,
     "permutation_p": 0.0012,
@@ -510,17 +518,13 @@
     },
     "inside_minus_outside": {
      "value": 0.04057971014492753,
-     "ci95": [
-      0.020527859237536656,
-      0.06303724928366762
-     ]
+     "ci95": null,
+     "estimable": false
     },
     "top_class_minus_outside": {
      "value": 0.0625,
-     "ci95": [
-      0.02702249229094867,
-      0.1048951048951049
-     ]
+     "ci95": null,
+     "estimable": false
     },
     "ratio": null,
     "permutation_p": 0.679,
@@ -606,17 +610,13 @@
     },
     "inside_minus_outside": {
      "value": 0.028985507246376812,
-     "ci95": [
-      0.011797679910725872,
-      0.047065784893839155
-     ]
+     "ci95": null,
+     "estimable": false
     },
     "top_class_minus_outside": {
      "value": 0.034722222222222224,
-     "ci95": [
-      0.007090949955049446,
-      0.06849837916971659
-     ]
+     "ci95": null,
+     "estimable": false
     },
     "ratio": null,
     "permutation_p": 1.0,
@@ -707,14 +707,16 @@
      "ci95": [
       -0.03603239494368775,
       0.03140706785070333
-     ]
+     ],
+     "estimable": true
     },
     "top_class_minus_outside": {
      "value": -0.020373514431239387,
      "ci95": [
       -0.065726910353373,
       0.02798553795217432
-     ]
+     ],
+     "estimable": true
     },
     "ratio": 0.9973753280839895,
     "permutation_p": 1.0,
@@ -803,14 +805,16 @@
      "ci95": [
       -0.04145004401318972,
       0.017406502895982726
-     ]
+     ],
+     "estimable": true
     },
     "top_class_minus_outside": {
      "value": -0.0277306168647425,
      "ci95": [
       -0.06298700434437254,
       0.0079177249162128
-     ]
+     ],
+     "estimable": true
     },
     "ratio": 0.7480314960629921,
     "permutation_p": 0.5383,
@@ -901,14 +905,16 @@
      "ci95": [
       -0.02849067334077973,
       0.0136456845132204
-     ]
+     ],
+     "estimable": true
     },
     "top_class_minus_outside": {
      "value": -0.00448506389100449,
      "ci95": [
       -0.03201472103112627,
       0.019978594664858733
-     ]
+     ],
+     "estimable": true
     },
     "ratio": 0.8104534005037782,
     "permutation_p": 0.6075,
@@ -997,14 +1003,16 @@
      "ci95": [
       -0.031290764257152326,
       0.004496442504895884
-     ]
+     ],
+     "estimable": true
     },
     "top_class_minus_outside": {
      "value": -0.01693887337451694,
      "ci95": [
       -0.03814845787403203,
       0.0017653335715639331
-     ]
+     ],
+     "estimable": true
     },
     "ratio": 0.5746851385390428,
     "permutation_p": 0.1278,

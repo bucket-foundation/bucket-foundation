@@ -65,7 +65,10 @@ def test_a_toy_table_counts_rates_and_differences():
     assert round(t["inside_minus_outside"]["value"], 6) == 0.05
     assert round(t["ratio"], 6) == 2
     lo, hi = t["inside_minus_outside"]["ci95"]
-    assert lo < 0.05 < hi
+    assert lo < 0.05 < hi and t["inside_minus_outside"]["estimable"] is True
+    empty = cf.table(rows, {"r0", "r1"}, groups, n=50, permutations=50)
+    assert empty["inside_minus_outside"]["estimable"] is False and empty["inside_minus_outside"]["ci95"] is None
+    assert "no interval while a cell holds no claimed row" in cf.markdown_table(empty)
     assert 0.5 < t["reach_auc"]["value"] < 1
     assert 0 < t["permutation_p"] <= 1
 
@@ -155,4 +158,4 @@ def test_the_written_tables_are_the_computed_tables(committed):
         a, b = full["classes"][c], strict["classes"][c]
         row = f"{c} & {a['rows']} & {a['claimed']} & {100 * a['rate']:.1f}\\%, {100 * a['ci95'][0]:.1f} to {100 * a['ci95'][1]:.1f} & {b['claimed']} & {100 * b['rate']:.1f}\\%, {100 * b['ci95'][0]:.1f} to {100 * b['ci95'][1]:.1f} \\\\"
         assert row in paper, row
-    assert "\\subsection{October 2026 claims}" in paper and "Added 2026-10-12" in paper
+    assert "\\subsection{October 2026 claims}" in paper and "\\paragraph{Status on 2026-10-12.}" in paper

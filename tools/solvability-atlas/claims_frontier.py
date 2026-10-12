@@ -177,6 +177,11 @@ def table(rows, hit_ids, groups, n=BOOTSTRAPS, permutations=PERMUTATIONS):
 
     full = np.arange(len(rows))
     diff, top_diff = difference(r_in, r_out), difference(r_top, r_out)
+
+    def gap(stat, a, b):
+        estimable = bool((hit & a).any() and (hit & b).any())
+        return {"value": stat(full), "ci95": thresholds.interval(thresholds.bootstrap(stat, groups, n, SEED)) if estimable else None, "estimable": estimable}
+
     rate_in, rate_out = r_in(full), r_out(full)
     p = None
     if inside.any() and outside.any():
@@ -189,8 +194,8 @@ def table(rows, hit_ids, groups, n=BOOTSTRAPS, permutations=PERMUTATIONS):
         "classes": {c: cell(cls == c, hit, groups, n) for c in CLASSES},
         "inside": cell(inside, hit, groups, n),
         "outside": cell(outside, hit, groups, n),
-        "inside_minus_outside": {"value": diff(full), "ci95": thresholds.interval(thresholds.bootstrap(diff, groups, n, SEED))},
-        "top_class_minus_outside": {"value": top_diff(full), "ci95": thresholds.interval(thresholds.bootstrap(top_diff, groups, n, SEED))},
+        "inside_minus_outside": gap(diff, inside, outside),
+        "top_class_minus_outside": gap(top_diff, cls == CLASSES[0], outside),
         "ratio": None if not rate_out or rate_in is None else rate_in / rate_out,
         "permutation_p": p,
         "reach_auc": {"value": auc(full), "ci95": thresholds.interval(thresholds.bootstrap(auc, groups, n, SEED))},
@@ -243,7 +248,7 @@ def markdown_table(t):
     for name, c in [(k, t["classes"][k]) for k in CLASSES] + [("inside the frontier", t["inside"]), ("outside the frontier", t["outside"])]:
         lines.append(f"| {name} | {c['rows']} | {c['claimed']} | {pct(c['rate'])} | {span(c['ci95']) if c['claimed'] else span(c['wilson95']) + ', Wilson'} |")
     d, top, a = t["inside_minus_outside"], t["top_class_minus_outside"], t["reach_auc"]
-    points = lambda v: "" if v["value"] is None else f"{100 * v['value']:+.1f} points, {span(v['ci95'])}"
+    points = lambda v: "" if v["value"] is None else f"{100 * v['value']:+.1f} points, {span(v['ci95']) if v['estimable'] else 'no interval while a cell holds no claimed row'}"
     lines += ["", f"Inside minus outside: {points(d)}. Top class minus outside: {points(top)}. Permutation p {t['permutation_p']}. Reach AUC {'' if a['value'] is None else round(a['value'], 3)}, {'' if a['ci95'] is None else f'{a['ci95'][0]:.3f} to {a['ci95'][1]:.3f}'}. {t['claimed_groups']} claimed groups in {t['groups']}."]
     return "\n".join(lines)
 

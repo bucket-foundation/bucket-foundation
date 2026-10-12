@@ -73,24 +73,36 @@ Status rule: a row is `claimed` when an unwithdrawn entry has `match: "problem"`
 
 `formal.scope` compares the machine-checked statement with the statement claimed for the row: `full` when the scope note states it, `narrower` when the Lean file covers less or covers a neighbouring statement, `none` when the family has no scope note. `formal.statement` holds the scope note text and `formal.note` says what a narrower file leaves out.
 
-Build: `python3 claims_build.py` joins the hand map `claims/<batch>.map.tsv` (row, family, match, formal scope, notes) to the claimant's catalogue, fetched once into `cache/` with a cap of 80 requests, and writes the ledger and `claims/<batch>.families.tsv`, the index of every family with its count of mapped rows. `python3 claims.py --apply` then writes the status into the neighbour file, the entries into `records/<id>.json`, compact entries into the production cards and the full ledger into `src/lib/research-os/solvability-claims-data.json`. It refuses to run when a ledger changes the solved set, since reach moves then and `build.sh` must run. Packed rows carry `claims` as compact entries (batch, family, match, formal scope, confirmed, withdrawn). Catalogue text in the first ledger is Apache-2.0, from `github.com/openai/math`.
+Build: `python3 claims_build.py` joins the hand map `claims/<batch>.map.tsv` (row, family, match, formal scope, notes) to the claimant's catalogue, fetched once into `cache/` with a cap of 80 requests, and writes the ledger and `claims/<batch>.families.tsv`, the index of every family with its count of mapped rows. `python3 claims.py --apply` then writes the status into the neighbour file, the entries into `records/<id>.json`, compact entries into the production cards and the full ledger into `src/lib/research-os/solvability-claims-data.json`. It refuses to run when a ledger changes the solved set, since reach moves then and `build.sh` must run. Packed rows carry `claims` as compact entries (batch, family, match, formal scope, confirmed, withdrawn). Catalogue text in the first ledger is Apache-2.0, from `github.com/openai/math`. `makeup.py` counts the status each source list records, so its charts and the paper's make-up figure carry no claimed rows.
 
 ## Embedding
 
 Each node is embedded with `BAAI/bge-small-en-v1.5` (revision `5c38ec7c405ec4b44b94cc5a9bb96e735b38267a`). The rule in `atlas.full_text` is: the statement of a sourced row; the record text (name, aliases, statement, keywords and the titles of the kept key works) for a top-level atlas problem; name plus keywords for the rest. The branch word never enters the text. The rule is unchanged by the ablation below.
 
-`embed_ablation.py` embeds every node under six inputs, builds the neighbours and a 2021 forecast with `forecast.py` for each, and scores it with `scoring.py`, a Python port of `scoreForecast` in `src/lib/research-os/solvability-backtest.ts` that `tests/test_scoring.py` checks against the TypeScript numbers to three decimals. Coding is settled (solved only), 10,000 permutations, seed 20261006. Inputs: `name`; `name_keywords`; `name_statement`; `name_statement_keywords_branch` (`<name>. <branch>. <statement> Keywords: <keywords>.`); `statement_only`; `current` (the rule above). `bge-base` is not in the local Hugging Face cache, so only `bge-small` ran. The run writes `out/ablation-2021.json` and the table; `ablation/ablation-2021.json` keeps a committed copy.
+`embed_ablation.py` embeds every node under six inputs, builds the neighbours and a 2021 forecast with `forecast.py` for each, and scores it with `scoring.py`, a Python port of `scoreForecast` in `src/lib/research-os/solvability-backtest.ts` that `tests/test_scoring.py` checks against the TypeScript numbers to three decimals. Coding is settled (solved only), 10,000 permutations, seed 20261006. Inputs: `name`; `name_keywords`; `name_statement`; `name_statement_keywords_branch` (`<name>. <branch>. <statement> Keywords: <keywords>.`); `statement_only`; `current` (the rule above). The run writes `out/ablation-2021.json` and the table; `ablation/ablation-2021.json` keeps a committed copy.
 
 | model | input | mean words | threshold | AUC | AUC, undated solved removed | inside / outside | settled inside | settled outside | p |
 |---|---|---|---|---|---|---|---|---|---|
-| bge-small-en-v1.5 | `name` | 5.1 | 0.716 | 0.797 | 0.717 | 225 / 200 | 15 (0.067) | 3 (0.015) | 0.0113 |
-| bge-small-en-v1.5 | `name_keywords` | 6.1 | 0.699 | 0.763 | 0.782 | 274 / 152 | 15 (0.055) | 1 (0.007) | 0.0142 |
-| bge-small-en-v1.5 | `name_statement` | 37.9 | 0.670 | 0.892 | 0.741 | 233 / 185 | 23 (0.099) | 1 (0.005) | 0.0001 |
-| bge-small-en-v1.5 | `name_statement_keywords_branch` | 41.5 | 0.674 | 0.883 | 0.708 | 272 / 150 | 23 (0.085) | 1 (0.007) | 0.0002 |
-| bge-small-en-v1.5 | `statement_only` | 32.8 | 0.662 | 0.875 | 0.656 | 279 / 150 | 28 (0.1) | 1 (0.007) | 0.0003 |
-| bge-small-en-v1.5 | `current` | 33.9 | 0.665 | 0.89 | 0.709 | 261 / 167 | 28 (0.107) | 1 (0.006) | 0.0001 |
+| bge-small-en-v1.5 | `name` | 5.1 | 0.716 | 0.838 | 0.824 | 237 / 200 | 23 (0.097) | 3 (0.015) | 0.0003 |
+| bge-small-en-v1.5 | `name_keywords` | 6.1 | 0.700 | 0.821 | 0.86 | 284 / 154 | 23 (0.081) | 1 (0.006) | 0.0017 |
+| bge-small-en-v1.5 | `name_statement` | 37.9 | 0.670 | 0.91 | 0.85 | 243 / 185 | 30 (0.123) | 1 (0.005) | 0.0001 |
+| bge-small-en-v1.5 | `name_statement_keywords_branch` | 41.5 | 0.674 | 0.896 | 0.823 | 283 / 150 | 31 (0.11) | 1 (0.007) | 0.0002 |
+| bge-small-en-v1.5 | `statement_only` | 32.8 | 0.662 | 0.894 | 0.808 | 290 / 150 | 35 (0.121) | 1 (0.007) | 0.0001 |
+| bge-small-en-v1.5 | `current` | 33.9 | 0.665 | 0.906 | 0.836 | 272 / 167 | 35 (0.129) | 1 (0.006) | 0.0001 |
+| embeddinggemma-2 | `name` | 5.1 | 0.893 | 0.732 | 0.711 | 316 / 124 | 22 (0.07) | 4 (0.032) | 0.1772 |
+| embeddinggemma-2@256 | `name` | 5.1 | 0.902 | 0.765 | 0.726 | 307 / 131 | 21 (0.068) | 3 (0.023) | 0.0682 |
+| embeddinggemma-2 | `name_keywords` | 6.1 | 0.882 | 0.712 | 0.694 | 299 / 124 | 21 (0.07) | 1 (0.008) | 0.015 |
+| embeddinggemma-2@256 | `name_keywords` | 6.1 | 0.893 | 0.721 | 0.693 | 291 / 133 | 21 (0.072) | 2 (0.015) | 0.0192 |
+| embeddinggemma-2 | `name_statement` | 37.9 | 0.847 | 0.82 | 0.783 | 337 / 91 | 20 (0.059) | 1 (0.011) | 0.0952 |
+| embeddinggemma-2@256 | `name_statement` | 37.9 | 0.863 | 0.81 | 0.782 | 317 / 108 | 21 (0.066) | 1 (0.009) | 0.0228 |
+| embeddinggemma-2 | `name_statement_keywords_branch` | 41.5 | 0.858 | 0.719 | 0.711 | 307 / 124 | 22 (0.072) | 3 (0.024) | 0.0666 |
+| embeddinggemma-2@256 | `name_statement_keywords_branch` | 41.5 | 0.869 | 0.726 | 0.711 | 307 / 120 | 21 (0.068) | 2 (0.017) | 0.0534 |
+| embeddinggemma-2 | `statement_only` | 32.8 | 0.848 | 0.845 | 0.805 | 309 / 106 | 24 (0.078) | 1 (0.009) | 0.0155 |
+| embeddinggemma-2@256 | `statement_only` | 32.8 | 0.864 | 0.855 | 0.808 | 286 / 131 | 26 (0.091) | 1 (0.008) | 0.0023 |
+| embeddinggemma-2 | `current` | 33.9 | 0.849 | 0.884 | 0.871 | 306 / 109 | 24 (0.078) | 0 (0.0) | 0.0033 |
+| embeddinggemma-2@256 | `current` | 33.9 | 0.864 | 0.879 | 0.853 | 283 / 133 | 26 (0.092) | 0 (0.0) | 0.0006 |
 
-The highest AUC among the alternatives is `name_statement` at 0.892, against 0.89 for the current rule. The settled positives number 24 to 29 depending on the input (29 for the current rule), and most of them are solved rows with no resolved year that the scorer counts as resolved by the cutoff. With those removed about 8 positives remain and the AUC of the six inputs spreads from 0.656 to 0.782 in a different order, where `name_keywords` (0.782) sits above the current rule (0.709). AUC counts ties as half. The rule stays until a variant beats it by a margin larger than that dated-only spread (0.656 to 0.782) on both codings.
+Refreshed 2026-10-12 on the 5,209 rows of `dev`; the earlier table predated row additions. For bge-small the highest AUC among the alternatives is `name_statement` at 0.91, against 0.906 for the current rule, and with undated solved rows removed the six inputs spread from 0.808 to 0.86. `embeddinggemma-2` rows use `google/embeddinggemma-2` at revision `914f7f89` with the `Clustering` prefix, at 768 dimensions and truncated to 256; it is skipped when absent from the local Hugging Face cache. Under the current rule it gains 0.035 with undated rows removed and loses 0.022 overall, inside a permutation spread of 0.153, and it hits 14 of the 15 expected pairs, so the shipped model stays. `CLAIMS-2026-10.md`, EmbeddingGemma 2, holds speed, memory and the leakage controls.
 
 
 ## Records for every row

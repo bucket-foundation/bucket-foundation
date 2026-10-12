@@ -56,7 +56,7 @@ Inside minus outside: +2.0 points, 0.8 to 3.3. Top class minus outside: +1.6 poi
 | inside the frontier | 345 | 14 | 4.1% | 2.1 to 6.3 |
 | outside the frontier | 13 | 0 | 0.0% | 0.0 to 22.8, Wilson |
 
-Inside minus outside: +4.1 points, 2.1 to 6.3. Top class minus outside: +6.2 points, 2.7 to 10.5. Permutation p 0.679. Reach AUC 0.655, 0.497 to 0.809. 14 claimed groups in 354.
+Inside minus outside: +4.1 points, no interval while a cell holds no claimed row. Top class minus outside: +6.2 points, no interval while a cell holds no claimed row. Permutation p 0.679. Reach AUC 0.655, 0.497 to 0.809. 14 claimed groups in 354.
 
 ## Erdős Rows: claims with a Lean statement of the full problem
 
@@ -68,7 +68,7 @@ Inside minus outside: +4.1 points, 2.1 to 6.3. Top class minus outside: +6.2 poi
 | inside the frontier | 345 | 10 | 2.9% | 1.2 to 4.7 |
 | outside the frontier | 13 | 0 | 0.0% | 0.0 to 22.8, Wilson |
 
-Inside minus outside: +2.9 points, 1.2 to 4.7. Top class minus outside: +3.5 points, 0.7 to 6.8. Permutation p 1.0. Reach AUC 0.564, 0.363 to 0.752. 10 claimed groups in 354.
+Inside minus outside: +2.9 points, no interval while a cell holds no claimed row. Top class minus outside: +3.5 points, no interval while a cell holds no claimed row. Permutation p 1.0. Reach AUC 0.564, 0.363 to 0.752. 10 claimed groups in 354.
 
 ## Rows Outside The Erdős List: every claim of the full problem
 
