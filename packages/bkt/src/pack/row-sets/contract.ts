@@ -67,7 +67,7 @@ export interface RowDraft {
   source: string;
   year?: number | null;
   url?: string | null;
-  links?: { to: string; weight?: number }[];
+  links?: { to: string; weight?: number; stated?: boolean }[];
   from?: number | null;
   to?: number | null;
   place?: string | null;
@@ -162,6 +162,7 @@ export function packRows(draft: RowSetDraft, ctx: AssembleContext): PackedRows {
   const entries = sources.table.map((id) => entryById(id, ctx.registry) ?? fail(draft.id, 4, `source ${id} is not in the licence registry`));
   const licences = dictionary(draft.rows.map((r) => entries[sources.table.indexOf(r.source)].licence));
   const weighted = draft.rows.some((r) => r.links?.some((l) => l.weight !== undefined));
+  const marked = draft.rows.some((r) => r.links?.some((l) => l.stated !== undefined));
   const target = (row: RowDraft, to: string): number => at.get(rowKey(to)) ?? fail(draft.id, 3, `row ${row.key} links to ${to}, which the set lacks`);
   const body: Omit<PackedRows, "sha256"> = {
     schema: ROWS_SCHEMA,
@@ -194,6 +195,7 @@ export function packRows(draft: RowSetDraft, ctx: AssembleContext): PackedRows {
       place: column(draft.rows, (r) => r.place),
       weight: column(draft.rows, (r) => r.weight),
       edgeWeight: weighted ? draft.rows.map((r) => (r.links ?? []).map((l) => l.weight ?? 1)) : null,
+      edgeStated: marked ? draft.rows.map((r) => (r.links ?? []).map((l) => l.stated === true)) : null,
       cells: draft.cells ?? null,
       layout: draft.layout ?? null,
       atom: column(draft.rows, (r) => r.atom),
@@ -237,7 +239,7 @@ export function checkRows(rows: PackedRows, ctx: AssembleContext): void {
   const columns: Record<string, unknown[] | null> = {
     key: rows.key, title: rows.title, sub: rows.sub, gi: rows.gi, si: rows.si, li: rows.li, year: rows.year, url: rows.url, links: rows.links,
     "frame.from": rows.frame.from, "frame.to": rows.frame.to, "frame.place": rows.frame.place, "frame.weight": rows.frame.weight,
-    "frame.edgeWeight": rows.frame.edgeWeight, "frame.atom": rows.frame.atom, "frame.verified": rows.frame.verified,
+    "frame.edgeWeight": rows.frame.edgeWeight, "frame.edgeStated": rows.frame.edgeStated ?? null, "frame.atom": rows.frame.atom, "frame.verified": rows.frame.verified,
   };
   for (const [name, col] of Object.entries(columns)) {
     if (col === null && name.startsWith("frame.")) continue;
@@ -252,6 +254,8 @@ export function checkRows(rows: PackedRows, ctx: AssembleContext): void {
     list.forEach((to) => (inRange(to, n) && to !== i) || fail(id, 3, `links[${i}] names row ${to}`));
     const weights = rows.frame.edgeWeight?.[i];
     if (rows.frame.edgeWeight && (!Array.isArray(weights) || weights.length !== list.length || !weights.every((w) => Number.isFinite(w) && w > 0))) fail(id, 3, `edgeWeight[${i}] does not pair with links[${i}]`);
+    const stated = rows.frame.edgeStated?.[i];
+    if (rows.frame.edgeStated && (!Array.isArray(stated) || stated.length !== list.length || !stated.every((s) => typeof s === "boolean"))) fail(id, 3, `edgeStated[${i}] does not pair with links[${i}]`);
   });
 
   const seen = new Set<string>();
@@ -329,43 +333,61 @@ export function pageCount(rows: PackedRows, size = REPLY_HITS): number {
   return Math.max(1, Math.ceil(rows.total / size));
 }
 
-export function pageRows(rows: PackedRows, page: number, size = REPLY_HITS): PackedRows {
-  if (rows.page !== 0 || rows.n !== rows.total) throw new RangeError(`row set ${rows.id}: a page cannot be paged again`);
-  if (!Number.isInteger(page) || page < 0 || page >= pageCount(rows, size)) throw new RangeError(`row set ${rows.id}: page ${page} is past the end`);
-  if (rows.total <= size) return rows;
-  const start = page * size;
-  const end = Math.min(rows.total, start + size);
-  const cut = <T>(col: T[]): T[] => col.slice(start, end);
-  const maybe = <T>(col: T[] | null): T[] | null => (col ? cut(col) : null);
+function pickRows(rows: PackedRows, picked: number[], counts: { total: number; page: number; countCut: boolean }): PackedRows {
+  const at = new Map(picked.map((from, to) => [from, to]));
+  const cut = <T>(col: T[]): T[] => picked.map((i) => col[i]);
+  const maybe = <T>(col: T[] | null | undefined): T[] | null => (col ? cut(col) : null);
   let dropped = 0;
   const links: number[][] = [];
   const edgeWeight: number[][] = [];
-  for (let i = start; i < end; i++) {
+  const edgeStated: boolean[][] = [];
+  for (const i of picked) {
     const kept: number[] = [];
     const weights: number[] = [];
+    const stated: boolean[] = [];
     rows.links[i].forEach((to, j) => {
-      if (to < start || to >= end) return void dropped++;
-      kept.push(to - start);
+      const local = at.get(to);
+      if (local === undefined) return void dropped++;
+      kept.push(local);
       if (rows.frame.edgeWeight) weights.push(rows.frame.edgeWeight[i][j]);
+      if (rows.frame.edgeStated) stated.push(rows.frame.edgeStated[i][j]);
     });
     links.push(kept);
     edgeWeight.push(weights);
+    edgeStated.push(stated);
   }
   const body = {
     ...rows,
-    n: end - start,
-    page,
-    cut: dropped,
+    n: picked.length,
+    total: counts.total,
+    page: counts.page,
+    cut: counts.countCut ? dropped : 0,
     key: cut(rows.key), title: cut(rows.title), sub: cut(rows.sub), gi: cut(rows.gi), si: cut(rows.si), li: cut(rows.li), year: cut(rows.year), url: cut(rows.url),
     links,
     frame: {
       ...rows.frame,
       from: maybe(rows.frame.from), to: maybe(rows.frame.to), place: maybe(rows.frame.place), weight: maybe(rows.frame.weight),
       edgeWeight: rows.frame.edgeWeight ? edgeWeight : null,
+      edgeStated: rows.frame.edgeStated ? edgeStated : null,
       atom: maybe(rows.frame.atom), verified: maybe(rows.frame.verified),
     },
   };
   return { ...body, sha256: bodySha(body) };
+}
+
+export function pageRows(rows: PackedRows, page: number, size = REPLY_HITS): PackedRows {
+  if (rows.page !== 0 || rows.n !== rows.total) throw new RangeError(`row set ${rows.id}: a page cannot be paged again`);
+  if (!Number.isInteger(page) || page < 0 || page >= pageCount(rows, size)) throw new RangeError(`row set ${rows.id}: page ${page} is past the end`);
+  if (rows.total <= size) return rows;
+  const start = page * size;
+  const end = Math.min(rows.total, start + size);
+  return pickRows(rows, Array.from({ length: end - start }, (_, i) => start + i), { total: rows.total, page, countCut: true });
+}
+
+export function narrowRows(rows: PackedRows, keep: (title: string, sub: string, index: number) => boolean): PackedRows {
+  if (rows.page !== 0 || rows.n !== rows.total) throw new RangeError(`row set ${rows.id}: a page cannot be narrowed`);
+  const picked = rows.title.flatMap((title, i) => (keep(title, rows.sub[i], i) ? [i] : []));
+  return picked.length === rows.n ? rows : pickRows(rows, picked, { total: picked.length, page: 0, countCut: false });
 }
 
 export function hitIds(rows: PackedRows): string[] {

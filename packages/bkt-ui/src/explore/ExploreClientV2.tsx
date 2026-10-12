@@ -5,10 +5,12 @@ import AtomPlotV2 from "./AtomPlotV2";
 import CircleGraphV2 from "./CircleGraphV2";
 import { circleChemReady, loadCircleChem } from "./chem-circle";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { Hit, HitType } from "@/lib/explore/search";
+import { coverage, tokens, type Hit, type HitType } from "@/lib/explore/search";
+import { dataParam, DEFAULT_DATASET, isRemote, listDatasets, type DatasetEntry } from "@/lib/explore/datasets";
+import { cutLine, drawableModes, expandRows, verifiedLine, type ExpandedRows, type PackedRows } from "./rows";
 import type { FoundingCard } from "@/lib/explore/founding";
 import { unreadableScript } from "@/lib/explore/rank";
-import { MODES, modeById } from "./modesV2";
+import { MODES, modeById, ROW_MODE_IDS, type DesktopLayout } from "./modesV2";
 import { SNPS, type GenomeSummary } from "@/lib/explore/genome/parse";
 import DnaPanel from "@/components/explore/DnaPanel";
 import { ORIGIN_LABEL, type AdvisorOrigin } from "@/lib/explore/advisor-origin";
@@ -59,8 +61,39 @@ function kindLine(h: Hit): string {
   return [KIND[h.type], h.year !== null && h.type !== "excerpt" && h.type !== "work" ? String(h.year) : null, passages].filter(Boolean).join(" · ");
 }
 
-export default function ExploreClient() {
+export interface ExploreStart {
+  data?: string;
+  mode?: string;
+  sel?: string;
+}
+
+export interface ExploreClientProps {
+  initial?: ExploreStart;
+  onState?(state: ExploreStart): void;
+}
+
+export const MISSING_DATA = "This data is not in this copy of Bucket.";
+export const ROWS_TROUBLE = "Bucket could not read that data.";
+export const EDGE_LINE = "Solid links are stated by the source. Dashed links are inferred.";
+const ROW_PAGE = 600;
+
+function modeNames(ids: string[]): string {
+  const names = ids.map((id) => modeById(id).label);
+  return names.length > 1 ? `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}` : names[0] ?? "";
+}
+
+export default function ExploreClient({ initial, onState }: ExploreClientProps = {}) {
   const [q, setQ] = useState("light water mitochondria");
+  const [datasets, setDatasets] = useState<DatasetEntry[]>([]);
+  const [dataId, setDataId] = useState<string>(DEFAULT_DATASET);
+  const [rows, setRows] = useState<{ packed: PackedRows; expanded: ExpandedRows } | null>(null);
+  const [group, setGroup] = useState<string | null>(null);
+  const [rowPage, setRowPage] = useState(0);
+  const [rowQuery, setRowQuery] = useState("");
+  const [rowFilter, setRowFilter] = useState("");
+  const [dataNote, setDataNote] = useState<string | null>(null);
+  const [listed, setListed] = useState(false);
+  const [wantedSel, setWantedSel] = useState<string | null>(initial?.sel ?? null);
   const [types, setTypes] = useState<Set<HitType>>(new Set<HitType>(["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"]));
   const [hits, setHits] = useState<Hit[]>([]);
   const [pinned, setPinned] = useState<FoundingCard | null>(null);
@@ -89,9 +122,99 @@ export default function ExploreClient() {
   const saved = useSaved();
 
   useEffect(() => {
-    const m = new URLSearchParams(window.location.search).get("mode");
+    const m = initial?.mode ?? new URLSearchParams(window.location.search).get("mode");
     if (m) setModeId(modeById(m).id);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const rowsChosen = dataId !== DEFAULT_DATASET;
+
+  const chooseData = useCallback((id: string) => {
+    setDataId(id);
+    setGroup(null);
+    setRowPage(0);
+    setRowQuery("");
+    setRowFilter("");
+    setRows(null);
+    setSelected(null);
+    setDataNote(null);
+    setError(null);
+    if (id !== DEFAULT_DATASET) setQ("");
+    const u = new URL(window.location.href);
+    if (id === DEFAULT_DATASET) u.searchParams.delete("data");
+    else u.searchParams.set("data", id);
+    window.history.replaceState(null, "", u.toString());
   }, []);
+
+  useEffect(() => {
+    let live = true;
+    fetch("/api/explore/rows")
+      .then((r) => (r.ok ? r.json() : { datasets: [] }))
+      .then((b) => {
+        if (!live) return;
+        setListed(true);
+        const entries = listDatasets(Array.isArray(b?.datasets) ? b.datasets : [], [], false);
+        setDatasets(entries.some((e) => isRemote(e.id, entries)) ? entries : []);
+        const asked = initial?.data ?? new URLSearchParams(window.location.search).get("data");
+        if (!asked || asked === DEFAULT_DATASET) return;
+        const id = dataParam(asked, entries);
+        if (isRemote(id, entries)) chooseData(id);
+        else setDataNote(MISSING_DATA);
+      })
+      .catch(() => {
+        if (!live) return;
+        setListed(true);
+        setDatasets([]);
+      });
+    return () => {
+      live = false;
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!rowsChosen) return;
+    let live = true;
+    const ask = new URLSearchParams({ id: dataId });
+    if (group) ask.set("group", group);
+    if (rowPage) ask.set("page", String(rowPage));
+    if (rowQuery) ask.set("q", rowQuery);
+    setLoading(true);
+    fetch(`/api/explore/rows?${ask}`)
+      .then(async (r) => {
+        if (!live) return;
+        if (r.status === 404) {
+          chooseData(DEFAULT_DATASET);
+          setDataNote(MISSING_DATA);
+          return;
+        }
+        if (!r.ok) throw new Error(ROWS_TROUBLE);
+        const packed = (await r.json()) as PackedRows;
+        const expanded = expandRows(packed);
+        if (!live) return;
+        setError(null);
+        setRows({ packed, expanded });
+        const can = drawableModes(packed, ROW_MODE_IDS);
+        setModeId((now) => (can.includes(now) || !can.length ? now : can[0]));
+        setSelected((now) => {
+          const keep = wantedSel ?? now;
+          return keep && expanded.frame.at[keep] !== undefined ? keep : null;
+        });
+        setWantedSel(null);
+      })
+      .catch(() => {
+        if (!live) return;
+        setRows(null);
+        setError(ROWS_TROUBLE);
+      })
+      .finally(() => live && setLoading(false));
+    return () => {
+      live = false;
+    };
+  }, [rowsChosen, dataId, group, rowPage, rowQuery]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!listed) return;
+    onState?.({ data: rowsChosen ? dataId : undefined, mode: modeId, sel: rowsChosen && selected?.startsWith("row:") ? selected : undefined });
+  }, [listed, rowsChosen, dataId, modeId, selected]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const pickMode = (id: string) => {
     setModeId(id);
@@ -130,8 +253,28 @@ export default function ExploreClient() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const uploaded = useMemo(() => linkNearest([...uploadedPapers, ...(you ? [you] : [])], hits), [uploadedPapers, you, hits]);
-  const visible = useMemo(() => [...hits.filter((h) => types.has(h.type)), ...uploaded.filter((h) => types.has(h.type) || h.type === "you")], [hits, types, uploaded]);
-  const byId = useMemo(() => new Map([...matterHits, ...geneHits, ...hits, ...uploaded].map((h) => [h.id, h])), [matterHits, geneHits, hits, uploaded]);
+  const rowHits = useMemo(() => {
+    if (!rows) return [];
+    const asked = tokens(rowFilter);
+    return asked.size ? rows.expanded.hits.filter((h) => coverage(asked, tokens(`${h.title} ${h.subtitle}`)) > 0) : rows.expanded.hits;
+  }, [rows, rowFilter]);
+  const visible = useMemo(() => (rowsChosen ? rowHits : [...hits.filter((h) => types.has(h.type)), ...uploaded.filter((h) => types.has(h.type) || h.type === "you")]), [rowsChosen, rowHits, hits, types, uploaded]);
+  const byId = useMemo(() => new Map([...matterHits, ...geneHits, ...hits, ...uploaded, ...(rowsChosen ? rows?.expanded.hits ?? [] : [])].map((h) => [h.id, h])), [matterHits, geneHits, hits, uploaded, rowsChosen, rows]);
+  const rowModes = rows ? drawableModes(rows.packed, ROW_MODE_IDS) : [];
+  const drill = rows && !group ? rows.packed.frame.drill : null;
+  const select = (id: string | null) => {
+    const lead = `row:${dataId}:`;
+    if (id && drill && id.startsWith(lead) && drill.values.includes(id.slice(lead.length))) {
+      setGroup(id.slice(lead.length));
+      setRowPage(0);
+      setRowQuery("");
+      setRowFilter("");
+      setQ("");
+      setSelected(null);
+      return;
+    }
+    setSelected(id);
+  };
   const current = selected ? byId.get(selected) ?? null : null;
   const currentFields = current ? citeFieldsFromHit(current) : null;
   const mode = modeById(modeId);
@@ -179,10 +322,13 @@ export default function ExploreClient() {
   }, [mode.id, landmask]);
 
   const extraHits = mode.id === "dna" ? geneHits : matterQuery ? matterHits : undefined;
-  const layout = useMemo(
-    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction, landmask, map: mapModel, youText }),
-    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded, landmask, mapModel, youText],
+  const rowFrame = rowsChosen ? rows?.expanded.frame : undefined;
+  const layout: DesktopLayout = useMemo(
+    () => mode.layout(visible, { selected, scroll, genome, extraHits, element, molecule, reaction, landmask, map: mapModel, youText, rows: rowFrame }),
+    [mode, visible, selected, scroll, genome, extraHits, element, molecule, reaction, smilesLoaded, landmask, mapModel, youText, rowFrame],
   );
+  const rowsDrawn = !rowsChosen || (!!rows && rowModes.includes(mode.id) && !layout.notice);
+  const sceneNote = !rowsChosen ? null : !rows ? (loading ? "Opening this data…" : null) : !rowModes.length ? "No view in this copy of Bucket can draw this data." : !rowModes.includes(mode.id) ? `${mode.label} cannot draw this data. It draws in ${modeNames(rowModes)}.` : layout.notice ?? null;
   const selectedNode = selected && !current ? layout.nodes.find((n) => n.id === selected) ?? null : null;
 
   const handleUpload = useCallback((r: UploadResult) => {
@@ -230,22 +376,38 @@ export default function ExploreClient() {
           className="flex gap-2"
           onSubmit={(e) => {
             e.preventDefault();
-            run(q);
+            if (!rowsChosen) return void run(q);
+            setRowFilter(q);
+            if (rows && (rows.packed.total > rows.packed.n || rowQuery)) {
+              setRowQuery(q.trim());
+              setRowPage(0);
+            }
           }}
         >
           <input
             aria-label="Search"
             data-testid="explore-query"
+            data-rows={rowsChosen ? "on" : undefined}
             value={q}
             onChange={(e) => setQ(e.target.value)}
             className="flex-1 border hairline bg-transparent px-3 py-2"
-            placeholder="Search canon excerpts and advisors"
+            placeholder={rowsChosen ? "Filter these rows" : "Search papers, books, talks and canon excerpts"}
           />
+          {datasets.length > 0 && (
+            <select aria-label="Data" data-testid="explore-data" value={dataId} onChange={(e) => chooseData(e.target.value)} className="border hairline bg-transparent px-2 py-2" style={mono}>
+              {datasets.map((d) => (
+                <option key={d.id} value={d.id}>
+                  {d.id === DEFAULT_DATASET ? "Canon search" : d.label}
+                </option>
+              ))}
+            </select>
+          )}
           <button type="submit" className="border hairline px-4 py-2" style={mono}>
-            {loading ? "…" : "Search"}
+            {loading ? "…" : rowsChosen ? "Filter" : "Search"}
           </button>
         </form>
-        <div className="flex flex-wrap gap-3 mt-3 text-sm" style={mono}>
+        {dataNote && <p data-testid="explore-data-note" className="mt-3 text-sm">{dataNote}</p>}
+        <div className="flex flex-wrap gap-3 mt-3 text-sm" style={{ ...mono, display: rowsChosen ? "none" : undefined }} data-testid="explore-types">
           {TYPES.map((t) => (
             <label key={t.id} className="flex items-center gap-1">
               <input type="checkbox" checked={types.has(t.id)} onChange={() => toggle(t.id)} />
@@ -263,14 +425,28 @@ export default function ExploreClient() {
               aria-selected={m.id === mode.id}
               data-testid={`mode-${m.id}`}
               onClick={() => pickMode(m.id)}
+              disabled={rowsChosen && !!rows && !rowModes.includes(m.id)}
+              title={rowsChosen && rows && !rowModes.includes(m.id) ? `${m.label} cannot draw this data.` : undefined}
               className="border hairline px-3 py-1"
-              style={{ background: m.id === mode.id ? "var(--gold, #D9A43A)" : undefined }}
+              style={{ background: m.id === mode.id ? "var(--gold, #D9A43A)" : undefined, opacity: rowsChosen && rows && !rowModes.includes(m.id) ? 0.4 : undefined }}
             >
               {m.label}
             </button>
           ))}
         </div>
-        {mode.id === "map" && (
+        {rowsChosen && rows && rowModes.length > 0 && (
+          <p data-testid="rows-modes-note" className="mt-3 text-sm" style={{ color: "var(--parchment-dim)", ...mono }}>
+            This data draws in {modeNames(rowModes)}. The other views stay off while it is open.
+          </p>
+        )}
+        {group && (
+          <p className="mt-3 text-sm">
+            <button data-testid="rows-back" className="underline" onClick={() => { setGroup(null); setRowPage(0); setRowQuery(""); setRowFilter(""); setQ(""); setSelected(null); }}>
+              Back to groups
+            </button>
+          </p>
+        )}
+        {mode.id === "map" && !rowsChosen && (
           <p data-testid="map-note" className="mt-3 text-sm" style={{ color: "var(--parchment-dim)", ...mono }}>
             {hasMapAxes(mapModel) ? mapModel.split ? SPLIT_NOTE : "Positions follow the available map axes." : "Sources are grouped by their recorded category. Lines show connections between the displayed sources."}
           </p>
@@ -307,14 +483,16 @@ export default function ExploreClient() {
           </label>
         )}
         <div className="mt-3">
-          {mode.id === "atom" ? (
+          {sceneNote ? (
+            <p data-testid="rows-scene-note" className="border hairline px-3 py-6 text-sm">{sceneNote}</p>
+          ) : mode.id === "atom" ? (
             <AtomPlotV2 element={element} onElement={setElement} layout={layout} selected={selected} onSelect={setSelected} />
           ) : ["particle", "molecule", "reaction"].includes(mode.id) ? (
-            <CircleGraphV2 layout={layout} selected={selected} onSelect={setSelected} onPhase={setScroll} />
+            <CircleGraphV2 layout={layout} selected={selected} onSelect={select} onPhase={setScroll} />
           ) : mode.renderer === "protein" ? (
             <ProteinView protein={protein} focus={focus} onFocus={setFocus} upload={structure} />
           ) : (
-            <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={setSelected} onScroll={(d) => setScroll((s) => s + d)} />
+            <SceneHost key={mode.id} layout={layout} selected={selected} onSelect={select} onScroll={(d) => setScroll((s) => s + d)} />
           )}
           {mode.renderer === "protein" && (
             <div data-testid="protein-links" className="mt-3 text-sm space-y-2">
@@ -345,7 +523,7 @@ export default function ExploreClient() {
               </ul>
             </div>
           )}
-          <ul className="flex flex-wrap gap-3 mt-2 text-xs" style={{ ...mono, display: mode.id === "atom" ? "none" : undefined }}>
+          <ul className="flex flex-wrap gap-3 mt-2 text-xs" style={{ ...mono, display: mode.id === "atom" || !rowsDrawn ? "none" : undefined }}>
             {layout.legend.map((l) => (
               <li key={l.label} className="flex items-center gap-1">
                 <span style={{ width: 10, height: 10, borderRadius: 5, background: l.color, display: "inline-block" }} />
@@ -354,9 +532,44 @@ export default function ExploreClient() {
             ))}
           </ul>
         </div>
+        {rowsChosen && rows && (
+          <section data-testid="rows-notes" aria-label="About this data" className="mt-3 text-sm space-y-1">
+            <p data-testid="rows-count">
+              {rows.packed.total > rows.packed.n
+                ? `Rows ${(rows.packed.page * ROW_PAGE + 1).toLocaleString("en-US")} to ${(rows.packed.page * ROW_PAGE + rows.packed.n).toLocaleString("en-US")} of ${rows.packed.total.toLocaleString("en-US")}.`
+                : `${rows.packed.n.toLocaleString("en-US")} ${rows.packed.n === 1 ? "row" : "rows"}.`}
+              {rows.packed.page > 0 && (
+                <button data-testid="rows-earlier" className="underline ml-2" onClick={() => setRowPage(rows.packed.page - 1)}>
+                  Earlier rows
+                </button>
+              )}
+              {(rows.packed.page + 1) * ROW_PAGE < rows.packed.total && (
+                <button data-testid="rows-more" className="underline ml-2" onClick={() => setRowPage(rows.packed.page + 1)}>
+                  More
+                </button>
+              )}
+            </p>
+            {cutLine(rows.packed.cut) && <p data-testid="rows-cut">{cutLine(rows.packed.cut)}</p>}
+            {rows.packed.frame.edgeStated && <p data-testid="rows-edges">{EDGE_LINE}</p>}
+            {verifiedLine(rows.packed.frame) && <p data-testid="rows-verified">{verifiedLine(rows.packed.frame)}</p>}
+            <div data-testid="rows-attribution" style={{ color: "var(--parchment-dim)" }}>
+              <p>Licence for this set: {rows.packed.licence}.</p>
+              <ul className="space-y-1">
+                {rows.packed.attributions.map((a) => (
+                  <li key={a.source}>
+                    <a className="underline" href={a.url}>
+                      {a.source}
+                    </a>
+                    , {a.rows.toLocaleString("en-US")} {a.rows === 1 ? "row" : "rows"}, {a.licence}. {a.notice}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
         <div className="grid md:grid-cols-[1fr_320px] gap-6 mt-6">
           <div>
-          {pinned && (
+          {pinned && !rowsChosen && (
             <section data-testid="explore-pinned" aria-label={pinned.label} className="border hairline px-3 py-3 mb-4" style={{ borderColor: "var(--gold, #D9A43A)" }}>
               <p className="text-xs uppercase" style={{ ...mono, color: "var(--parchment-dim)" }}>
                 {pinned.label} on {pinned.concept}
@@ -389,7 +602,7 @@ export default function ExploreClient() {
               </div>
             </section>
           )}
-          {closest && visible.length > 0 && (
+          {closest && !rowsChosen && visible.length > 0 && (
             <p data-testid="explore-closest" className="text-sm mb-2">
               Closest matches. Few sources hold every word of that search, so these share some of its words.
             </p>
@@ -400,7 +613,7 @@ export default function ExploreClient() {
               return (
               <li key={h.id} data-testid="explore-result">
                 <button
-                  onClick={() => setSelected(h.id)}
+                  onClick={() => select(h.id)}
                   className="w-full text-left border hairline px-3 py-2"
                   style={{ outline: h.id === selected ? "1px solid var(--gold, #D9A43A)" : undefined }}
                 >
@@ -419,7 +632,7 @@ export default function ExploreClient() {
               </li>
               );
             })}
-            {!loading && !visible.length && !error && <li className="text-sm" data-testid="explore-empty">{unreadableScript(asked) ? "Bucket reads searches in Latin letters for now. Try the English name." : "Nothing in the canon matches that search."}</li>}
+            {!loading && !visible.length && !error && <li className="text-sm" data-testid="explore-empty">{rowsChosen ? "No row matches that filter." : unreadableScript(asked) ? "Bucket reads searches in Latin letters for now. Try the English name." : "Nothing in the canon matches that search."}</li>}
           </ol>
           </div>
           <aside data-testid="explore-panel" className="border hairline p-4 self-start md:sticky md:top-4">
@@ -430,21 +643,43 @@ export default function ExploreClient() {
                 <p className="text-sm mt-1" style={{ color: "var(--parchment-dim)" }}>{current.subtitle}</p>
                 {current.text && <p className="text-sm mt-3">{current.text}</p>}
                 <SourcePanel hit={current} />
+                {current.type === "row" && rows && (
+                  <dl data-testid="row-facts" className="text-sm mt-3 space-y-1">
+                    <div>
+                      <dt className="inline" style={{ color: "var(--parchment-dim)" }}>Group: </dt>
+                      <dd className="inline">{rows.packed.groups.find((g) => g.id === current.branch)?.label ?? current.branch}</dd>
+                    </div>
+                    {current.year !== null && (
+                      <div>
+                        <dt className="inline" style={{ color: "var(--parchment-dim)" }}>Year: </dt>
+                        <dd className="inline">{current.year}</dd>
+                      </div>
+                    )}
+                    <div>
+                      <dt className="inline" style={{ color: "var(--parchment-dim)" }}>Licence: </dt>
+                      <dd className="inline">{current.license}</dd>
+                    </div>
+                    <div>
+                      <dt className="inline" style={{ color: "var(--parchment-dim)" }}>Source: </dt>
+                      <dd className="inline">{rows.packed.attributions[rows.packed.si[rows.expanded.frame.at[current.id]]]?.source}</dd>
+                    </div>
+                  </dl>
+                )}
                 {currentFields && <ResultActions key={current.id} fields={currentFields} saved={saved} />}
                 {current.url && !isSourceHit(current) && (
                   <a className="text-sm underline mt-3 inline-block" href={current.url}>
-                    Open
+                    {current.type === "row" ? "Open the source" : "Open"}
                   </a>
                 )}
                 {current.links.some((id) => byId.has(id)) && (
                   <>
                     <p className="text-xs uppercase mt-4" style={{ ...mono, color: "var(--parchment-dim)" }}>
-                      {current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : isSourceHit(current) ? "Related" : "Nearest advisors"}
+                      {current.type === "row" ? "Linked rows" : current.type === "advisor" ? "Nearest excerpts" : current.type === "work" ? "Excerpts" : isSourceHit(current) ? "Related" : "Nearest advisors"}
                     </p>
                     <ul className="mt-1 space-y-1 text-sm">
                       {current.links.filter((id) => byId.has(id)).map((id) => (
                         <li key={id}>
-                          <button className="underline text-left" onClick={() => setSelected(id)}>
+                          <button className="underline text-left" onClick={() => select(id)}>
                             {byId.get(id)?.title}
                           </button>
                         </li>

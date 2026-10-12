@@ -147,7 +147,7 @@ The build session opened one licence page, the O*NET one. The other rows state t
 
 ### Withheld Occupation Rows
 
-698 lifecycle rows for the 1950 to 1990 census lists were read from crosswalk files at usa.ipums.org. They await a rights ruling, are absent from `occupation_history.jsonl` since 2026-10-12, and remain in the research folder on disk. The 665 rows for the 2002, 2010 and 2018 lists come from census.gov files and stay, with every value that ran through those crosswalks removed: lineage codes before 2000, the first attested year before 2000, peak year, peak and last employment, status and the near-extinct flag. `occupation_row_cleared` in `build/facets.py` applies the rule at build time and the corpus tests hold the table to it.
+698 lifecycle rows for the 1950 to 1990 census lists were read from crosswalk files at usa.ipums.org. They await a rights ruling, are absent from `occupation_history.jsonl` since 2026-10-12, and remain in the research folder on disk. The 665 rows for the 2002, 2010 and 2018 lists come from census.gov files and stay, with every value that ran through those crosswalks removed: lineage codes before 2000, the first attested year before 2000, peak year, peak and last employment, status and the near-extinct flag. On these rows `era_from` is the earliest census list from 2000 on that carries the code and `era_to` is the year of the row's own list, both read from the census.gov files; the last attested year the research slice gave had no stated source and is gone. `occupation_row_cleared` in `build/facets.py` applies the rule at build time and the corpus tests hold the table to it.
 
 Attribution lines:
 

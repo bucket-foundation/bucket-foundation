@@ -222,8 +222,7 @@ def occupation_row_cleared(row):
     out = dict(row)
     out["lineage_codes"] = kept
     out["era_from"] = min([year] + [int(c[:4]) for c in kept])
-    if out.get("era_to") is None or out["era_to"] < out["era_from"]:
-        out["era_to"] = year
+    out["era_to"] = year
     for key in CENSUS_DERIVED_KEYS:
         out[key] = None
     return out
