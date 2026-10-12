@@ -3,7 +3,7 @@ import { readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { assembleRowSet, type RowDraft } from "./contract";
 import { buildRowSetPack, fileTables, TABLES_DIR, type RowSetPack } from "./index";
-import { entryById, FEDERAL, MATCH_ORDER, matchValue, OPEN_K12_SYSTEMS, publicSource, REGISTRY, registryProblems, resolveSource, strictest, UNKNOWN, type LicenceEntry, type Row } from "./licences";
+import { CCSS_LICENCE, entryById, FEDERAL, MATCH_ORDER, matchValue, OPEN_K12_SYSTEMS, publicSource, REGISTRY, registryProblems, resolveSource, strictest, UNKNOWN, type LicenceEntry, type Row } from "./licences";
 import { FIXTURE_REGISTRY, fixtureContext, fixtureDraft } from "./test-fixtures";
 
 const REPO = resolve(import.meta.dir, "../../../../..");
@@ -33,16 +33,16 @@ describe("the licence registry", () => {
   });
 
   test("tests a row in the stated order and the first match wins", () => {
-    expect([...MATCH_ORDER]).toEqual(["licence", "source_licence", "system", "slice", "host", "scheme", "table"]);
-    const registry: LicenceEntry[] = MATCH_ORDER.map((key) => ({ ...FIXTURE_REGISTRY[0], id: `by-${key.replace("_", "-")}`, match: { [key]: [key === "host" ? "example.org" : key === "table" ? "things" : "v"] } }));
-    const row: Row = { licence: "v", source_licence: "v", system: "v", slice: "v", source_url: "https://example.org/a", scheme: "v" };
-    const order = ["licence", "source_licence", "system", "slice", "source_url", "scheme"];
+    expect([...MATCH_ORDER]).toEqual(["licence", "source_licence", "system", "slice", "host", "framework_id", "scheme", "table"]);
+    const registry: LicenceEntry[] = MATCH_ORDER.map((key) => ({ ...FIXTURE_REGISTRY[0], id: `by-${key.replaceAll("_", "-")}`, match: { [key]: [key === "host" ? "example.org" : key === "table" ? "things" : "v"] } }));
+    const row: Row = { licence: "v", source_licence: "v", system: "v", slice: "v", source_url: "https://example.org/a", framework_id: "v", scheme: "v" };
+    const order = ["licence", "source_licence", "system", "slice", "source_url", "framework_id", "scheme"];
     const seen: string[] = [];
     for (let i = 0; i <= order.length; i++) {
       seen.push(resolveSource("things", row, registry));
       delete row[order[i]];
     }
-    expect(seen).toEqual(["by-licence", "by-source-licence", "by-system", "by-slice", "by-host", "by-scheme", "by-table"]);
+    expect(seen).toEqual(["by-licence", "by-source-licence", "by-system", "by-slice", "by-host", "by-framework-id", "by-scheme", "by-table"]);
     expect(resolveSource("other", {}, registry)).toBe(UNKNOWN);
   });
 
@@ -179,6 +179,6 @@ describe("the source tables", () => {
 
   test("occupations carry the O*NET licence as a whole and major to career stays a federal work", () => {
     const licences = Object.fromEntries(pack.sets.map((s) => [s.id, [...new Set(s.pages.map((p) => p.licence))]]));
-    expect(licences).toEqual({ "occupations-time": ["CC-BY-4.0"], "major-to-career": [FEDERAL] });
+    expect(licences).toEqual({ "occupations-time": ["CC-BY-4.0"], "major-to-career": [FEDERAL], "mathematics-chain": [CCSS_LICENCE] });
   });
 });

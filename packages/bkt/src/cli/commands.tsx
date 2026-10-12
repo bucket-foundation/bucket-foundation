@@ -3,6 +3,7 @@ import { render } from "ink";
 import pack from "../../content/pack.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
 import explorePack from "../../content/explore.json" with { type: "json" };
+import rowSetPack from "../../content/explore-rows.json" with { type: "json" };
 import wordPack from "../../content/words.json" with { type: "json" };
 import deckCatalog from "../../content/deck-catalog.json" with { type: "json" };
 import researchIndex from "../../content/research-index.json" with { type: "json" };
@@ -46,9 +47,10 @@ import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
-import { exploreRoutes, ExploreStore, SAVED_BODY_BYTES, syncExplore } from "../explore";
+import { exploreRoutes, ExploreStore, SAVED_BODY_BYTES, syncExplore, syncRowSets } from "../explore";
+import type { RowSetPack } from "../pack/row-sets/index";
 import type { CanonPack } from "../pack/canon";
-import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter } from "../data";
+import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter, rowSetAdapter } from "../data";
 import type { ExplorePack } from "../pack/explore";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
@@ -286,6 +288,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   syncCanon(session.store.db, canonPack as CanonPack);
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
+  syncRowSets(session.store.db, rowSetPack as unknown as RowSetPack);
   syncRosGraph(session.store.db, content.version, content.atoms ?? {});
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
@@ -296,6 +299,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     learningAdapter(content),
     canonAdapter(canonPack as CanonPack),
     exploreAdapter(explorePack as unknown as ExplorePack),
+    ...(rowSetPack as unknown as RowSetPack).sets.map(rowSetAdapter),
     ownAdapter(session.store, { analyses: () => runner.list().length }),
   ]);
   const researchTrouble = (e: Error) => console.error(`bkt serve: research: ${e.message}`);

@@ -10,6 +10,7 @@ import { assertClean, buildDenylist, type Denylist } from "../rights";
 import { audienceOf, MODE_IDS, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowSetText, SET_BYTES, type AssembleContext, type PackedRows } from "./contract";
 import { entryById, REGISTRY, type LicenceEntry, type Row } from "./licences";
 import { majorToCareer } from "./major-to-career";
+import { mathematicsChain } from "./mathematics-chain";
 import { occupationsTime } from "./occupations-time";
 
 export const ROW_SET_PACK_SCHEMA = "bucket.explore-rows-pack/1";
@@ -30,6 +31,7 @@ export type RowSetAdapter = (tables: TableReader, ctx: AssembleContext) => Promi
 export const ADAPTERS: Record<string, RowSetAdapter> = {
   "occupations-time": occupationsTime,
   "major-to-career": majorToCareer,
+  "mathematics-chain": mathematicsChain,
 };
 
 const TABLE_NAME = /^[a-z][a-z0-9_]{0,63}$/;

@@ -49,14 +49,14 @@ interface Group {
 const text = (v: unknown): string => (typeof v === "string" ? v : "");
 const number = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
 
-export function censusSpan(row: { scheme?: unknown; lineage_codes?: unknown; era_to?: unknown }): { from: number; to: number } | null {
+export function censusSpan(row: { scheme?: unknown; lineage_codes?: unknown }): { from: number; to: number } | null {
   const list = /^census-(\d{4})$/.exec(text(row.scheme));
   if (!list) return null;
   const listed = Number(list[1]);
   const years = (Array.isArray(row.lineage_codes) ? row.lineage_codes : []).map((c) => Number(/^(\d{4}):/.exec(text(c))?.[1])).filter((y) => y >= CENSUS_OWN_FROM && y <= listed);
   const from = Math.min(listed, ...years);
   if (from < CENSUS_OWN_FROM) return null;
-  return { from, to: Math.max(from, number(row.era_to) ?? listed) };
+  return { from, to: listed };
 }
 
 function groupOf(row: Lifecycle, majors: Map<string, string>): Omit<Group, "rows"> | null {

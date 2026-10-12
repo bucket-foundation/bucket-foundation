@@ -1,7 +1,7 @@
 export type PublicScope = "rows" | "codes" | "none";
 export type Row = Record<string, unknown>;
 
-export const MATCH_ORDER = ["licence", "source_licence", "system", "slice", "host", "scheme", "table"] as const;
+export const MATCH_ORDER = ["licence", "source_licence", "system", "slice", "host", "framework_id", "scheme", "table"] as const;
 export type MatchKey = (typeof MATCH_ORDER)[number];
 
 export interface LicenceEntry {
@@ -16,12 +16,14 @@ export interface LicenceEntry {
 export const UNKNOWN = "unknown";
 export const FEDERAL = "US federal work, public domain";
 export const RESTRICTED = "restricted";
+export const CCSS_LICENCE = "Common Core public licence";
 
 export const LICENCE_RANK: Record<string, number> = {
   [FEDERAL]: 0,
   "CC0-1.0": 0,
   "CC-BY-4.0": 1,
   "OGL-UK-3.0": 1,
+  [CCSS_LICENCE]: 1,
   "CC-BY-SA-4.0": 2,
   [RESTRICTED]: 3,
 };
@@ -104,6 +106,18 @@ export const REGISTRY: LicenceEntry[] = [
     share_alike: false,
     public: "rows",
     attribution: { source: "National curriculum in England, Department for Education", url: "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/", notice: "Contains public sector information licensed under the Open Government Licence v3.0." },
+  },
+  {
+    id: "ccss-math",
+    match: { framework_id: ["school-fw-ccss-math"] },
+    licence: CCSS_LICENCE,
+    share_alike: false,
+    public: "rows",
+    attribution: {
+      source: "Common Core State Standards for Mathematics, with links from the Achieve the Core Coherence Map",
+      url: "https://www.thecorestandards.org/public-license/",
+      notice: "© Copyright 2010. National Governors Association Center for Best Practices and Council of Chief State School Officers. All rights reserved. Used under the public licence in support of the standards. The labels are Bucket's own wording and are no part of the standards. Links between standards come from the Coherence Map of Achieve the Core, whose authors dedicated it to the public domain under CC0 1.0.",
+    },
   },
   {
     id: "k12-restricted",

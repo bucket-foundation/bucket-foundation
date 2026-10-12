@@ -494,6 +494,7 @@ class NewSlices(unittest.TestCase):
             self.assertTrue(r["source_url"].startswith("https://www2.census.gov/"), r["id"])
             self.assertTrue(all(2000 <= int(c[:4]) <= listed for c in r["lineage_codes"]), r["id"])
             self.assertTrue(2000 <= r["era_from"] <= r["era_to"], r["id"])
+            self.assertEqual(r["era_to"], listed, r["id"])
             for key in FC.CENSUS_DERIVED_KEYS:
                 self.assertIsNone(r[key], (r["id"], key))
 
@@ -505,7 +506,7 @@ class NewSlices(unittest.TestCase):
         }
         cleared = FC.occupation_row_cleared(row)
         self.assertEqual(cleared["lineage_codes"], ["2000:300", "2002:3000", "2018:3000"])
-        self.assertEqual((cleared["era_from"], cleared["era_to"]), (2000, 2025))
+        self.assertEqual((cleared["era_from"], cleared["era_to"]), (2000, 2018))
         self.assertEqual([cleared[k] for k in FC.CENSUS_DERIVED_KEYS], [None] * 5)
         self.assertEqual(row["era_from"], 1930)
         self.assertIsNone(FC.occupation_row_cleared(dict(row, source_url="https://usa.ipums.org/usa/resources/chapter4/occ_90-00.xls")))

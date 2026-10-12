@@ -69,6 +69,7 @@ export interface RowFrame {
   place: (string | null)[] | null;
   weight: (number | null)[] | null;
   edgeWeight: number[][] | null;
+  edgeStated?: boolean[][] | null;
   cells: [x: string, y: string, state: 0 | 1 | 2][] | null;
   layout: "ring" | "grid" | "flow" | null;
   atom: (string | null)[] | null;
