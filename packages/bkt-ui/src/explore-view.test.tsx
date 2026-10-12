@@ -138,7 +138,7 @@ describe("Explore in the window", () => {
     const api = { exploreSaved: async () => ({ v: 1, items: [], noticeSeen: false }), putExploreSaved: async (s: unknown) => s, saveNote: async (n: unknown) => n, openLink: async (url: string) => (opened.push(url), { opened: url }) };
     const { act } = await import("react");
     const { createRoot } = await import("react-dom/client");
-    const { ExploreView } = await import("./views/Explore");
+    const { ExploreView, WINDOW_PLACEHOLDER } = await import("./views/Explore");
     const { MISSING_DATA, EDGE_LINE } = await import("./explore/ExploreClientV2");
     const host = document.createElement("div");
     document.body.appendChild(host);
@@ -164,6 +164,8 @@ describe("Explore in the window", () => {
     expect([...picker.options].map((o) => o.textContent)).toEqual(["Canon search", "Flow set", "Deep set", "Far set", "Gone set"]);
     expect(picker.value).toBe("flow-set");
     expect(one<HTMLElement>("explore-types")!.style.display).toBe("none");
+    expect(one<HTMLInputElement>("explore-query")!.placeholder).toBe("Filter these rows");
+    expect(one<HTMLInputElement>("explore-query")!.form!.querySelector("button")!.textContent).toBe("Filter");
     expect(results()).toHaveLength(2);
     expect(results().join(" ")).not.toContain(HIT.title);
     expect(one("explore-panel")!.textContent).toContain("Second row");
@@ -243,6 +245,7 @@ describe("Explore in the window", () => {
     await choose("flow-set");
     await choose("canon");
     expect(one("rows-notes")).toBeNull();
+    expect(one<HTMLInputElement>("explore-query")!.placeholder).toBe(WINDOW_PLACEHOLDER);
     expect([...host.querySelectorAll<HTMLButtonElement>('[role="tab"]')].every((b) => !b.disabled)).toBe(true);
     expect(results().join(" ")).toContain(HIT.title);
     expect(asked.filter((u) => u.startsWith("/api/"))).toEqual([]);

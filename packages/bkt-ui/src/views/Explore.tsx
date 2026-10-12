@@ -25,7 +25,7 @@ export function hideAdvisors(root: Element): void {
   const source = root.querySelector<HTMLElement>('[data-testid="advisor-source"]');
   if (source && source.style.display !== "none") source.style.display = "none";
   const box = root.querySelector<HTMLInputElement>('[data-testid="explore-query"]');
-  if (box && box.placeholder !== WINDOW_PLACEHOLDER) box.placeholder = WINDOW_PLACEHOLDER;
+  if (box && !box.dataset.rows && box.placeholder !== WINDOW_PLACEHOLDER) box.placeholder = WINDOW_PLACEHOLDER;
 }
 
 export const NOTES_TITLE = "Saved from Explore";

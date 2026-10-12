@@ -387,10 +387,11 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
           <input
             aria-label="Search"
             data-testid="explore-query"
+            data-rows={rowsChosen ? "on" : undefined}
             value={q}
             onChange={(e) => setQ(e.target.value)}
             className="flex-1 border hairline bg-transparent px-3 py-2"
-            placeholder={rowsChosen ? "Filter these rows" : "Search canon excerpts and advisors"}
+            placeholder={rowsChosen ? "Filter these rows" : "Search papers, books, talks and canon excerpts"}
           />
           {datasets.length > 0 && (
             <select aria-label="Data" data-testid="explore-data" value={dataId} onChange={(e) => chooseData(e.target.value)} className="border hairline bg-transparent px-2 py-2" style={mono}>
@@ -402,7 +403,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
             </select>
           )}
           <button type="submit" className="border hairline px-4 py-2" style={mono}>
-            {loading ? "…" : "Search"}
+            {loading ? "…" : rowsChosen ? "Filter" : "Search"}
           </button>
         </form>
         {dataNote && <p data-testid="explore-data-note" className="mt-3 text-sm">{dataNote}</p>}

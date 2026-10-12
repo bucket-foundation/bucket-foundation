@@ -4,7 +4,13 @@ import { join, resolve } from "node:path";
 import { chromium } from "playwright";
 
 const bin = process.argv[2] ?? resolve(import.meta.dir, "../../bkt/dist/bkt");
-const out = resolve(import.meta.dir, "../shots/explore");
+const out = process.env.BKT_SHOTS_OUT ? resolve(process.env.BKT_SHOTS_OUT) : resolve(import.meta.dir, "../shots/explore");
+const BLANK_CANVAS_BYTES = 6000;
+const ROW_SHOTS: { hash: string; file: string; mode: string; rows: number }[] = [
+  { hash: "#/explore/major-to-career/graph", file: "4-major-to-career-graph.png", mode: "graph", rows: 64 },
+  { hash: "#/explore/mathematics-chain/graph", file: "5-mathematics-chain-graph.png", mode: "graph", rows: 65 },
+  { hash: "#/explore/occupations-time/map", file: "6-occupations-time-map.png", mode: "map", rows: 48 },
+];
 mkdirSync(out, { recursive: true });
 const home = mkdtempSync(join(process.env.BKT_SHOTS_TMP ?? tmpdir(), "bkt-explore-shots-"));
 const env = { ...process.env, BKT_HOME: join(home, "data"), BKT_UI_DIR: resolve(import.meta.dir, "../dist"), BKT_KEYRING: "passphrase" };
@@ -57,7 +63,29 @@ try {
   await page.waitForTimeout(1000);
   await page.screenshot({ path: join(out, "3-explore-saved-after-return.png") });
   const kept = await page.locator('[data-testid="saved-panel"] li').count();
-  console.log(JSON.stringify({ url, saved_after_return: kept, problems }));
+  const drawn: Record<string, { rows: number; canvas_bytes: number; notes: string }> = {};
+  for (const shot of ROW_SHOTS) {
+    await page.evaluate(() => void (window.location.hash = "#/canon"));
+    await page.waitForTimeout(500);
+    await page.evaluate((hash) => void (window.location.hash = hash), shot.hash);
+    await page.waitForSelector('[data-testid="rows-attribution"]', { timeout: 30000 }).catch(async (e) => {
+      await page.screenshot({ path: join(out, "trouble.png") });
+      throw new Error(`${shot.hash}: ${(e as Error).message.split("\n")[0]}; problems: ${problems.join(" | ").slice(0, 600)}`);
+    });
+    await page.waitForSelector('[data-testid="explore-scene"] canvas', { timeout: 30000 });
+    await page.waitForTimeout(4000);
+    const rows = await page.locator('[data-testid="explore-result"]').count();
+    const selectedMode = await page.locator('[role="tab"][aria-selected="true"]').getAttribute("data-testid");
+    const canvas = await page.locator('[data-testid="explore-scene"] canvas').first().screenshot();
+    const notes = (await page.locator('[data-testid="rows-notes"]').innerText()).replace(/\s+/g, " ").slice(0, 160);
+    if (rows !== shot.rows) throw new Error(`${shot.hash} lists ${rows} rows, and ${shot.rows} were expected`);
+    if (selectedMode !== `mode-${shot.mode}`) throw new Error(`${shot.hash} opened in ${selectedMode}`);
+    if (canvas.byteLength < BLANK_CANVAS_BYTES) throw new Error(`${shot.hash} drew a blank canvas of ${canvas.byteLength} bytes`);
+    await page.locator('[data-testid="explore-scene"]').scrollIntoViewIfNeeded();
+    await page.screenshot({ path: join(out, shot.file) });
+    drawn[shot.hash] = { rows, canvas_bytes: canvas.byteLength, notes };
+  }
+  console.log(JSON.stringify({ url, saved_after_return: kept, drawn, problems }));
 } finally {
   await browser.close();
   serve.kill();
