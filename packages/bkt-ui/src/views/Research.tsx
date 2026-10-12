@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Tex } from "@/components/math/InlineMath";
-import { EDIT_BYTES, EDIT_EXTS, type Api, type Change, type Exported, type PackedFile, type PaperPage, type ReportAsset, type ResearchDetail, type ResearchRow, type TablePage } from "../api";
+import { EDIT_BYTES, EDIT_EXTS, type Api, type Change, type Exported, type PackedFile, type BuildWaiting, type PaperPage, type ReportAsset, type ResearchDetail, type ResearchRow, type TablePage } from "../api";
 import { texPreview, type Block, type Inline } from "../tex-preview";
 import { holdPendingSave } from "../pending-saves";
 import { href, RESEARCH_TABS, type ResearchTab } from "../router";
@@ -9,7 +9,7 @@ import { FILTER_WAIT_MS, Pager, SortHead } from "./Data";
 import { Lesson } from "./Lesson";
 import "../research.css";
 
-export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "researchPage" | "researchChanges" | "researchSource" | "researchSave" | "researchRevert" | "researchExport" | "researchNew" | "researchUpload" | "image" | "openLink">;
+export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "researchPage" | "researchChanges" | "researchSource" | "researchSave" | "researchRevert" | "researchExport" | "researchNew" | "researchUpload" | "researchBuild" | "researchBuildState" | "researchBuildCancel" | "image" | "openLink">;
 
 type Loaded<T> = { status: "loading" } | { status: "ready"; data: T } | { status: "error"; error: string };
 
@@ -954,7 +954,94 @@ function Rendered({ api, d, source }: { api: ResearchApi; d: ResearchDetail; sou
   );
 }
 
+export const BUILD_POLL_MS = 1000;
+export const APPROVE_HINT = "Waiting for your approval. Open a terminal and run: bkt research approve";
+
+type BuildPhase = { at: "idle" } | { at: "waiting"; pending: BuildWaiting } | { at: "running"; job: string } | { at: "done" } | { at: "stopped"; text: string; detail: string | null };
+
+function BuildButton({ api, slug, build, label, onBuilt }: { api: ResearchApi; slug: string; build: string; label: string; onBuilt: () => void }) {
+  const [phase, setPhase] = useState<BuildPhase>({ at: "idle" });
+  const since = useRef(0);
+  useEffect(() => {
+    if (phase.at !== "waiting" && phase.at !== "running") return;
+    let alive = true;
+    const timer = setInterval(() => {
+      void api.researchBuildState().then(
+        (s) => {
+          if (!alive) return;
+          const job = s.job && s.job.startedAt >= since.current ? s.job : null;
+          if (s.pending && s.pending.slug === slug) return;
+          if (!job) return setPhase({ at: "stopped", text: "The build was refused, or the request ran out after two minutes.", detail: null });
+          if (job.state === "running") return setPhase({ at: "running", job: job.id });
+          if (job.state === "done") {
+            setPhase({ at: "done" });
+            onBuilt();
+          } else setPhase({ at: "stopped", text: job.state === "cancelled" ? "The build was stopped." : "The build did not finish.", detail: [job.error ?? "", job.log].filter(Boolean).join("\n") || null });
+        },
+        (e: Error) => alive && setPhase({ at: "stopped", text: e.message, detail: null }),
+      );
+    }, BUILD_POLL_MS);
+    return () => {
+      alive = false;
+      clearInterval(timer);
+    };
+  }, [api, slug, phase.at]);
+  const ask = () => {
+    since.current = Date.now() - 1000;
+    void api.researchBuild(slug, build).then(
+      (r) => setPhase(r.state === "waiting" ? { at: "waiting", pending: r.pending } : { at: "stopped", text: r.install ? "This computer lacks a tool the build needs." : "Bucket did not start the build.", detail: r.install ? `${r.reason}\n${r.install}` : r.reason || null }),
+      (e: Error) => setPhase({ at: "stopped", text: e.message, detail: null }),
+    );
+  };
+  return (
+    <div className="research-build">
+      <button type="button" disabled={phase.at === "waiting" || phase.at === "running"} onClick={ask}>
+        {label}
+      </button>
+      {phase.at === "waiting" && (
+        <>
+          <p className="banner" role="status">
+            {APPROVE_HINT}
+          </p>
+          <details className="fine">
+            <summary>What will run</summary>
+            <pre>{phase.pending.body}</pre>
+          </details>
+        </>
+      )}
+      {phase.at === "running" && (
+        <p className="muted" role="status">
+          Building…{" "}
+          <button type="button" className="link" onClick={() => void api.researchBuildCancel(phase.job)}>
+            Stop
+          </button>
+        </p>
+      )}
+      {phase.at === "done" && (
+        <p className="muted" role="status">
+          Built on this computer. The pages now show your version.
+        </p>
+      )}
+      {phase.at === "stopped" && (
+        <>
+          <p className="banner" role="alert">
+            {phase.text}
+          </p>
+          {phase.detail && (
+            <details className="fine">
+              <summary>Details</summary>
+              <pre>{phase.detail}</pre>
+            </details>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
+
 function Paper({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+  const compile = (d.manifest.builds ?? []).find((b) => b.runner === "latex");
+  const [builds, setBuilds] = useState(0);
   const listed = new Set(d.files.map((f) => f.path));
   const paper = d.manifest.paper;
   const sources = [d.manifest.source_path, ...(paper?.includes ?? []), ...(paper?.bib ?? []), ...(paper?.style ?? [])].filter((p, i, all) => listed.has(p) && SOURCE_EXTS.some((ext) => p.endsWith(ext)) && all.indexOf(p) === i);
@@ -967,6 +1054,7 @@ function Paper({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
     <div className={sources.length ? "paper-split" : "paper-single"}>
       {sources.length > 0 && (
         <div className="panel paper-source">
+          {compile && <BuildButton api={api} slug={d.slug} build={compile.id} label="Compile the paper" onBuilt={() => setBuilds((n) => n + 1)} />}
           <div className="toolbar">
             <select value={open} onChange={(e) => setOpen(e.target.value)} aria-label="Source file">
               {sources.map((p) => (
@@ -987,7 +1075,7 @@ function Paper({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
           )}
         </div>
       )}
-      <div className="panel paper-view">{entry.status === "loading" ? <p className="muted">Loading…</p> : <Rendered api={api} d={d} source={entry.status === "ready" ? entry.data : null} />}</div>
+      <div className="panel paper-view">{entry.status === "loading" ? <p className="muted">Loading…</p> : <Rendered key={builds} api={api} d={d} source={entry.status === "ready" ? entry.data : null} />}</div>
     </div>
   );
 }

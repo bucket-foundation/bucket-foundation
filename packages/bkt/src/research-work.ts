@@ -195,13 +195,27 @@ export class ResearchWork {
     }
   }
 
+  builtDir(slug: string): string {
+    return join(this.outDir(slug), "built");
+  }
+
+  built(slug: string, path: string): Buffer | null {
+    if (!SLUG.test(slug) || pathProblem(path) !== null) return null;
+    try {
+      return readFileSync(guardPath(this.builtDir(slug), path));
+    } catch (e) {
+      if (e instanceof ResearchError) return null;
+      throw e;
+    }
+  }
+
   overlay(slug: string, path: string): Buffer | null {
     if (!SLUG.test(slug) || pathProblem(path) !== null) return null;
-    if (!this.state(slug).files[path]) return null;
+    if (!this.state(slug).files[path]) return this.built(slug, path);
     try {
       return readFileSync(guardPath(this.workDir(slug), path));
     } catch (e) {
-      if (e instanceof ResearchError && e.status === 404) return null;
+      if (e instanceof ResearchError && e.status === 404) return this.built(slug, path);
       throw e;
     }
   }
@@ -756,6 +770,12 @@ export class LocalOutputs {
 
   private setState(slug: string, state: { builds: boolean; origin: string }): void {
     writeAtomic(this.statePath(), Buffer.from(canonical({ ...this.states(), [slug]: state })));
+  }
+
+  setBuilds(slug: string, on: boolean): boolean {
+    if (!LOCAL_SLUG.test(slug) || this.manifest(slug) === null) return false;
+    this.setState(slug, { builds: on, origin: this.states()[slug]?.origin ?? "new" });
+    return true;
   }
 
   buildsOn(slug: string): boolean {
