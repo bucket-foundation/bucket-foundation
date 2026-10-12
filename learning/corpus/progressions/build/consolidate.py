@@ -551,6 +551,9 @@ class Build:
                     "status": r.get("status"), "near_extinct": r.get("near_extinct"), "projected_pct_change_2024_34": r.get("projected_pct_change_2024_34"),
                     "successors": r.get("successors") or [], "source_url": r.get("source_url"),
                 }
+                row = FC.occupation_row_cleared(row)
+                if row is None:
+                    continue
                 self.claim(row["id"], "occupation_history")
                 self.occupation_history.append(scrub(row))
         if "history-technology" in self.slices:
