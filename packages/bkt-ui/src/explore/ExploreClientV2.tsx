@@ -7,7 +7,7 @@ import { circleChemReady, loadCircleChem } from "./chem-circle";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { coverage, tokens, type Hit, type HitType } from "@/lib/explore/search";
 import { dataParam, DEFAULT_DATASET, isRemote, listDatasets, type DatasetEntry } from "@/lib/explore/datasets";
-import { cutLine, drawableModes, expandRows, verifiedLine, type ExpandedRows, type PackedRows } from "./rows";
+import { cutLine, drawableModes, expandRows, TERMS_UNREAD, verifiedLine, type ExpandedRows, type PackedRows } from "./rows";
 import type { FoundingCard } from "@/lib/explore/founding";
 import { unreadableScript } from "@/lib/explore/rank";
 import { MODES, modeById, ROW_MODE_IDS, type DesktopLayout } from "./modesV2";
@@ -583,6 +583,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
                       {a.source}
                     </a>
                     , {a.rows.toLocaleString("en-US")} {a.rows === 1 ? "row" : "rows"}, {a.licence}. {a.notice}
+                    {!a.termsRead && <span data-testid="rows-terms-unread"> {TERMS_UNREAD}</span>}
                   </li>
                 ))}
               </ul>

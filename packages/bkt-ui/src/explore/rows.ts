@@ -15,7 +15,7 @@ export interface ExpandedRows {
 }
 
 const COLUMNS = ["key", "title", "sub", "gi", "si", "li", "year", "url", "links"] as const;
-const FRAME_COLUMNS = ["from", "to", "place", "weight", "edgeWeight", "edgeStated", "atom", "verified"] as const;
+const FRAME_COLUMNS = ["from", "to", "place", "points", "weight", "edgeWeight", "edgeStated", "atom", "verified"] as const;
 
 export function expandRows(packed: PackedRows): ExpandedRows {
   const n = packed.n;
@@ -54,6 +54,8 @@ export function isRowScene(frame: RowFrame | undefined): frame is RowScene {
 export function drawableModes(packed: Pick<PackedRows, "modes">, drawn: readonly string[]): string[] {
   return packed.modes.filter((mode) => drawn.includes(mode));
 }
+
+export const TERMS_UNREAD = "Bucket has yet to read this source's terms page.";
 
 export function cutLine(cut: number): string | null {
   if (cut <= 0) return null;

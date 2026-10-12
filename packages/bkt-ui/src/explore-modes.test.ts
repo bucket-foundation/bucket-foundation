@@ -232,7 +232,7 @@ describe("row sets in the window modes", () => {
   });
 
   test("graph and map draw every row once with finite positions, group colours and links between drawn rows", () => {
-    expect([...ROW_MODE_IDS]).toEqual(["graph", "map", "timeline"]);
+    expect([...ROW_MODE_IDS]).toEqual(["graph", "map", "timeline", "earth"]);
     for (const id of ["graph", "map"]) {
       const layout = modeById(id).layout(hits, withFrame) as DesktopLayout;
       expect(layout.notice).toBeUndefined();
@@ -285,7 +285,7 @@ describe("row sets in the window modes", () => {
 
   test("a mode that cannot draw rows says so in one sentence and draws nothing", () => {
     const cannot = MODES.filter((mode) => !ROW_MODE_IDS.includes(mode.id));
-    expect(cannot.map((mode) => mode.id)).toEqual(["globe", "helix", "dna", "atom", "particle", "molecule", "reaction", "protein", "earth"]);
+    expect(cannot.map((mode) => mode.id)).toEqual(["globe", "helix", "dna", "atom", "particle", "molecule", "reaction", "protein"]);
     for (const mode of cannot) {
       const layout = mode.layout(hits, withFrame) as DesktopLayout;
       expect(layout.nodes).toEqual([]);

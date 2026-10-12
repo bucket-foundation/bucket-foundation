@@ -115,10 +115,10 @@ describe("Explore in the window", () => {
       { key: "two", title: "Second row", sub: "B-2", group: "b", source: "by", verified: false, links: [] },
     ] })], ctx)[0];
     const deep = assembleRowSet([
-      fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "earth"], drill, rows: [{ key: "group-one", title: "Group one", sub: "700 rows", group: "a", source: "open" }] }),
-      fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "earth"], drill, rows: leaves }),
+      fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "globe"], drill, rows: [{ key: "group-one", title: "Group one", sub: "700 rows", group: "a", source: "open" }] }),
+      fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "globe"], drill, rows: leaves }),
     ], ctx);
-    const far = assembleRowSet([fixtureDraft({ id: "far-set", label: "Far set", modes: ["earth"] , rows: [{ key: "one", title: "Far row", sub: "", group: "a", source: "open" }] })], ctx)[0];
+    const far = assembleRowSet([fixtureDraft({ id: "far-set", label: "Far set", modes: ["globe"] , rows: [{ key: "one", title: "Far row", sub: "", group: "a", source: "open" }] })], ctx)[0];
     const asked: string[] = [];
     const base = (async (input: RequestInfo | URL) => {
       const u = String(input);
@@ -175,11 +175,12 @@ describe("Explore in the window", () => {
     expect(one("rows-verified")!.textContent).toBe("1 of 2 rows are checked against their source. The rest are drawn hollow.");
     expect(one("rows-cut")).toBeNull();
     expect(one("rows-attribution")!.textContent).toContain("Licence for this set: CC-BY-4.0.");
-    expect(one("rows-attribution")!.textContent).toContain("Attributed source, 1 row, CC-BY-4.0. Used under CC BY 4.0.");
+    expect(one("rows-attribution")!.textContent).toContain("Attributed source, 1 row, CC-BY-4.0. Used under CC BY 4.0. Bucket has yet to read this source's terms page.");
+    expect(host.querySelectorAll('[data-testid="rows-terms-unread"]')).toHaveLength(2);
     expect(one("rows-modes-note")!.textContent).toBe("This data draws in Graph. The other views stay off while it is open.");
     const modes = [...host.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
     expect(modes.filter((b) => !b.disabled).map((b) => b.textContent)).toEqual(["Graph"]);
-    expect(modes.find((b) => b.textContent === "Earth")!.title).toBe("Earth cannot draw this data.");
+    expect(modes.find((b) => b.textContent === "Globe")!.title).toBe("Globe cannot draw this data.");
     expect(modes.find((b) => b.getAttribute("aria-selected") === "true")!.textContent).toBe("Graph");
     expect(one("rows-scene-note")).toBeNull();
     expect(window.location.hash).toBe("#/explore/flow-set/graph/row%3Aflow-set%3Atwo");
