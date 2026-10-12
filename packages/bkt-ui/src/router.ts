@@ -31,7 +31,7 @@ export type Route =
   | { name: "progress" }
   | { name: "profile" };
 
-export const RESEARCH_TABS = ["report", "data", "figures", "records"] as const;
+export const RESEARCH_TABS = ["report", "data", "figures", "records", "changes"] as const;
 export type ResearchTab = (typeof RESEARCH_TABS)[number];
 const RESEARCH_SLUG = /^[a-z0-9][a-z0-9-]{0,63}$/;
 

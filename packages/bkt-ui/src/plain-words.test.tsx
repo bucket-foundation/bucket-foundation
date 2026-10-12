@@ -271,6 +271,7 @@ function empty(): Stub {
     researchList: async () => ({ outputs: [] }),
     researchManifest: () => Promise.reject(new ApiError("no such output", 404)),
     researchTable: () => Promise.reject(new ApiError("the output has no such table", 404)),
+    researchChanges: async () => ({ notice: "Edits are kept on this computer as plain files, so the tools that build a paper can read them.", changes: [] }),
     researchText: () => Promise.reject(new ApiError("the output does not list that file", 404)),
     image: () => Promise.reject(new ApiError("the output does not list that file", 404)),
     data: async () => [],
@@ -315,6 +316,10 @@ function populated(over: Stub = {}): Stub {
     ...empty(),
     researchList: async () => ({ outputs: RESEARCH_ROWS }),
     researchManifest: async () => RESEARCH_DETAIL,
+    researchChanges: async () => ({
+      notice: "Edits are kept on this computer as plain files, so the tools that build a paper can read them.",
+      changes: [{ path: "papers/solvability-frontier/main.tex", state: "edited", base: null, shipped: "", current: "", size: 40, shippedSize: 38, added: 1, removed: 1, hunks: [] }],
+    }),
     researchTable: async () => ({ columns: ["title", "branch", "status", "class"], rows: [["Goldbach conjecture", "mathematics", "open", "close to known results"], ["Twin primes", "mathematics", "open", "borderline"]], index: [0, 1], total: 2, page: 1, size: 50, pinned: [], truncated: false }),
     image: async () => "data:image/webp;base64,AAAA",
     data: async () => DATASETS,
@@ -375,6 +380,7 @@ function failing(): Stub {
     researchList: fail("the research files could not be read", 500),
     researchManifest: fail("public/papers/x/paper.pdf does not match its hash in this build", 409),
     researchTable: fail("the table does not parse", 422),
+    researchChanges: fail("the working copy crosses a symlink or a file, so nothing is written", 403),
     researchText: fail("the path crosses a symlink", 403),
     image: fail("the path crosses a symlink", 403),
     data: fail("data key does not match", 500),
@@ -445,7 +451,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 

@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import type { Api, PackedFile, ReportAsset, ResearchDetail, ResearchRow, TablePage } from "../api";
+import { EDIT_BYTES, EDIT_EXTS, type Api, type Change, type Exported, type PackedFile, type ReportAsset, type ResearchDetail, type ResearchRow, type TablePage } from "../api";
 import { href, RESEARCH_TABS, type ResearchTab } from "../router";
 import { useEngineImage } from "../use-engine-image";
 import { FILTER_WAIT_MS, Pager, SortHead } from "./Data";
 import { Lesson } from "./Lesson";
 import "../research.css";
 
-export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "image">;
+export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "researchChanges" | "researchSource" | "researchSave" | "researchRevert" | "researchExport" | "image">;
 
 type Loaded<T> = { status: "loading" } | { status: "ready"; data: T } | { status: "error"; error: string };
 
@@ -36,7 +36,14 @@ function Unverified({ reason }: { reason: string }) {
 export const NO_ROWS = "This table holds no rows.";
 export const NO_TABLES = "This output lists no tables.";
 export const NO_RECORDS = "This output lists no records.";
-const TAB_LABELS: Record<ResearchTab, string> = { report: "Report", data: "Data", figures: "Figures", records: "Records" };
+export const SAVE_WAIT_MS = 700;
+export const NO_CHANGES = "Nothing is changed. The files match the shipped version.";
+const TAB_LABELS: Record<ResearchTab, string> = { report: "Report", data: "Data", figures: "Figures", records: "Records", changes: "Changes" };
+const STATE_LABELS: Record<Change["state"], string> = { edited: "Edited here", "shipped-changed": "The shipped version changed", "base-unknown": "Edited before Bucket tracked it" };
+
+export function editable(d: ResearchDetail): PackedFile[] {
+  return d.files.filter((f) => EDIT_EXTS.some((ext) => f.path.toLowerCase().endsWith(ext)) && f.path.split("/").pop() !== "report.json" && f.size <= EDIT_BYTES);
+}
 const count = (n: number) => n.toLocaleString("en-US");
 const heading = (column: string) => column.replace(/_/g, " ");
 
@@ -486,6 +493,210 @@ function Records({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   );
 }
 
+function Editor({ api, slug, path, onSaved }: { api: ResearchApi; slug: string; path: string; onSaved: () => void }) {
+  const [text, setText] = useState<string | null>(null);
+  const [status, setStatus] = useState<"loading" | "saved" | "typing" | "saving" | "conflict" | "error">("loading");
+  const [error, setError] = useState<string | null>(null);
+  const rev = useRef("");
+  const stored = useRef("");
+  const theirs = useRef("");
+
+  const load = () => {
+    setStatus("loading");
+    return api.researchSource(slug, path).then(
+      (r) => {
+        rev.current = r.rev;
+        stored.current = r.text;
+        setText(r.text);
+        setStatus("saved");
+      },
+      (e: Error) => {
+        setError(e.message);
+        setStatus("error");
+      },
+    );
+  };
+
+  useEffect(() => {
+    void load();
+  }, [api, slug, path]);
+
+  const save = (body: string, base: string) => {
+    setStatus("saving");
+    return api.researchSave(slug, path, base, body).then(
+      (r) => {
+        if (!r.saved) {
+          theirs.current = r.current;
+          setStatus("conflict");
+          return;
+        }
+        rev.current = r.rev;
+        stored.current = body;
+        setStatus("saved");
+        onSaved();
+      },
+      (e: Error) => {
+        setError(e.message);
+        setStatus("error");
+      },
+    );
+  };
+
+  useEffect(() => {
+    if (status !== "typing" || text === null) return;
+    const t = setTimeout(() => void save(text, rev.current), SAVE_WAIT_MS);
+    return () => clearTimeout(t);
+  }, [status, text]);
+
+  if (text === null) return status === "error" ? <p className="error">{error}</p> : <p className="muted">Loading…</p>;
+  return (
+    <div className="research-editor">
+      {status === "conflict" && (
+        <div className="banner" role="alert">
+          This file changed in another window.{" "}
+          <button type="button" onClick={() => void load()}>
+            Load that version
+          </button>{" "}
+          <button type="button" onClick={() => void save(text, theirs.current)}>
+            Keep mine
+          </button>
+        </div>
+      )}
+      {status === "error" && <p className="error">{error}</p>}
+      <textarea
+        value={text}
+        spellCheck={false}
+        aria-label="File text"
+        onChange={(e) => {
+          setText(e.target.value);
+          if (status !== "conflict") setStatus(e.target.value === stored.current ? "saved" : "typing");
+        }}
+      />
+      <p className="muted save-state" role="status">
+        {status === "saved" ? "Saved" : status === "saving" ? "Saving…" : status === "typing" ? "Not saved yet" : ""}
+      </p>
+    </div>
+  );
+}
+
+function Diff({ change }: { change: Change }) {
+  if (!change.hunks) return <p className="muted">This file is too large or holds bytes that are no text, so only its size shows: {count(change.shippedSize)} bytes shipped, {count(change.size)} bytes now.</p>;
+  return (
+    <div className="research-diff">
+      {change.hunks.map((h, i) => (
+        <pre key={i}>
+          {h.lines.map((l, j) => (
+            <span key={j} className={l.op === "+" ? "add" : l.op === "-" ? "del" : undefined}>
+              {l.op}
+              {l.text}
+              {"\n"}
+            </span>
+          ))}
+        </pre>
+      ))}
+    </div>
+  );
+}
+
+function Changes({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+  const [tick, setTick] = useState(0);
+  const state = useLoaded(() => api.researchChanges(d.slug), [api, d.slug, tick]);
+  const [last, setLast] = useState<{ notice: string; changes: Change[] } | null>(null);
+  const files = editable(d);
+  const [editing, setEditing] = useState("");
+  const [shown, setShown] = useState<string | null>(null);
+  const [exported, setExported] = useState<Exported | null>(null);
+  const [failed, setFailed] = useState<string | null>(null);
+  useEffect(() => {
+    if (state.status === "ready") setLast(state.data);
+  }, [state]);
+  const refresh = () => setTick((n) => n + 1);
+  const act = (run: () => Promise<unknown>) => {
+    setFailed(null);
+    void run().then(refresh, (e: Error) => setFailed(e.message));
+  };
+  if (state.status === "error" && !last) return <p className="error">{state.error}</p>;
+  if (!last) return <p className="muted">Loading…</p>;
+  return (
+    <div className="research-changes">
+      <p className="muted plain-store">{last.notice}</p>
+      {failed && (
+        <p className="banner" role="alert">
+          {failed}
+        </p>
+      )}
+      <div className="panel">
+        <h2>Edit a file</h2>
+        {files.length === 0 ? (
+          <p className="muted">This output ships no file that can be edited here.</p>
+        ) : (
+          <>
+            <select value={editing} onChange={(e) => setEditing(e.target.value)} aria-label="File to edit">
+              <option value="">Choose a file</option>
+              {files.map((f) => (
+                <option key={f.path} value={f.path}>
+                  {f.path}
+                </option>
+              ))}
+            </select>
+            {editing && <Editor key={editing} api={api} slug={d.slug} path={editing} onSaved={refresh} />}
+          </>
+        )}
+      </div>
+      <div className="panel">
+        <h2>Changed files</h2>
+        {last.changes.length === 0 ? (
+          <p className="muted">{NO_CHANGES}</p>
+        ) : (
+          <>
+            <ul className="change-list">
+              {last.changes.map((c) => (
+                <li key={c.path}>
+                  <div className="change-head">
+                    <span className="change-path">{c.path}</span>
+                    <span className="tag ghost">{STATE_LABELS[c.state]}</span>
+                    <span className="muted">
+                      {count(c.added)} added, {count(c.removed)} removed
+                    </span>
+                    <button type="button" onClick={() => setShown(shown === c.path ? null : c.path)}>
+                      {shown === c.path ? "Hide the changes" : "Show the changes"}
+                    </button>
+                    {c.state !== "edited" && (
+                      <button type="button" onClick={() => act(() => api.researchRevert(d.slug, c.path, true))}>
+                        Keep mine
+                      </button>
+                    )}
+                    <button type="button" onClick={() => act(() => api.researchRevert(d.slug, c.path).then(() => editing === c.path && setEditing("")))}>
+                      Take the shipped version
+                    </button>
+                  </div>
+                  {shown === c.path && <Diff change={c} />}
+                </li>
+              ))}
+            </ul>
+            <div className="toolbar">
+              <button type="button" className="primary" onClick={() => act(() => api.researchExport(d.slug).then(setExported))}>
+                Export the changes
+              </button>
+            </div>
+          </>
+        )}
+        {exported && (
+          <div className="research-export">
+            <p>The export is in this folder:</p>
+            <p className="hash">{exported.dir}</p>
+            <ul>
+              {exported.files.map((f) => (
+                <li key={f}>{f}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: ResearchTab }) {
   const state = useLoaded(() => api.researchManifest(slug), [api, slug]);
   if (state.status === "loading") return <p className="muted">Loading…</p>;
@@ -528,6 +739,8 @@ function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: Resea
         <Figures api={api} d={d} />
       ) : tab === "data" && tabsFor(d).includes("data") ? (
         <DataTab api={api} d={d} />
+      ) : tab === "changes" && tabsFor(d).includes("changes") ? (
+        <Changes api={api} d={d} />
       ) : tab === "records" && tabsFor(d).includes("records") ? (
         <Records api={api} d={d} />
       ) : (

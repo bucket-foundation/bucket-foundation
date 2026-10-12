@@ -1,6 +1,6 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "bun:test";
-import type { PackedFile, ResearchDetail, ResearchRow, TablePage } from "./api";
+import type { Change, PackedFile, ResearchDetail, ResearchRow, SaveResult, TablePage } from "./api";
 import { href, parseHash } from "./router";
 import type { EngineImage } from "./use-engine-image";
 import type { ResearchApi } from "./views/Research";
@@ -144,12 +144,57 @@ function pageFrom(columns: string[], all: string[][], pinned: string[], query: {
   return { columns, rows: shown.map((i) => all[i]), index: shown, total: index.length, page, size: 50, pinned, truncated: false };
 }
 
+const NOTICE = "Edits are kept on this computer as plain files, so the tools that build a paper can read them.";
+const SHIPPED_TEX = "First paragraph.\n\nSecond paragraph.\n";
+
+function workCopy(shipped: Record<string, string>) {
+  const edits = new Map<string, string>();
+  const saves: { path: string; base: string; text: string }[] = [];
+  const revOf = (text: string) => `rev:${text.length}:${text}`;
+  const current = (path: string) => edits.get(path) ?? shipped[path];
+  const change = (path: string, state: Change["state"] = "edited"): Change => ({
+    path,
+    state,
+    base: revOf(shipped[path]),
+    shipped: revOf(shipped[path]),
+    current: revOf(current(path)),
+    size: current(path).length,
+    shippedSize: shipped[path].length,
+    added: 1,
+    removed: 1,
+    hunks: [{ oldStart: 1, oldLines: 3, newStart: 1, newLines: 3, lines: [{ op: " ", text: "First paragraph.", eol: true }, { op: "-", text: "Second paragraph.", eol: true }, { op: "+", text: current(path).split("\n").at(-2) ?? "", eol: true }] }],
+  });
+  return {
+    edits,
+    saves,
+    revOf,
+    api: {
+      researchSource: async (_slug: string, path: string) => ({ text: current(path), rev: revOf(current(path)) }),
+      researchSave: async (_slug: string, path: string, base: string, text: string): Promise<SaveResult> => {
+        saves.push({ path, base, text });
+        if (base !== revOf(current(path))) return { saved: false, current: revOf(current(path)) };
+        if (text === shipped[path]) edits.delete(path);
+        else edits.set(path, text);
+        return { saved: true, rev: revOf(text), changed: text !== shipped[path] };
+      },
+      researchChanges: async () => ({ notice: NOTICE, changes: [...edits.keys()].sort().map((p) => change(p)) }),
+      researchRevert: async (_slug: string, path: string, keep?: boolean) => {
+        if (!keep) edits.delete(path);
+        return { path, changed: edits.size };
+      },
+      researchExport: async () => ({ dir: "/home/ada/bkt/research/exports/solvability-frontier-20261011T123005", files: ["CHANGES.patch", "LICENCES.md", ...[...edits.keys()].sort(), "report.json"] }),
+    },
+  };
+}
+
 function fakeApi(over: Partial<ResearchApi> = {}): ResearchApi & { images: string[]; asked: { id: string; page?: number; q?: string; sort?: string }[] } {
   const images: string[] = [];
+  const idle = workCopy({});
   const asked: { id: string; page?: number; q?: string; sort?: string }[] = [];
   return {
     images,
     asked,
+    ...idle.api,
     researchTable: async (_slug, id, query = {}) => {
       asked.push({ id, ...query });
       if (id === "records") return pageFrom(RECORD_COLUMNS, RECORD_ROWS, [], query);
@@ -186,7 +231,7 @@ async function mount(node: React.ReactElement) {
   return { host, click, settle, unmount: () => act(async () => root.unmount()) };
 }
 
-async function view(api: ResearchApi, slug?: string, tab: "report" | "figures" | "data" | "records" = "report") {
+async function view(api: ResearchApi, slug?: string, tab: "report" | "figures" | "data" | "records" | "changes" = "report") {
   const { ResearchView } = await import("./views/Research");
   return mount(<ResearchView api={api} slug={slug} tab={tab} />);
 }
@@ -198,7 +243,8 @@ describe("research routes", () => {
     expect(parseHash("#/research/solvability-frontier/figures")).toEqual({ name: "research", slug: "solvability-frontier", tab: "figures" });
     expect(parseHash("#/research/solvability-frontier")).toEqual({ name: "research", slug: "solvability-frontier", tab: "report" });
     expect(parseHash("#/research/Bad_Slug/report")).toEqual({ name: "research" });
-    expect(parseHash("#/research/solvability-frontier/changes")).toEqual({ name: "research" });
+    expect(parseHash("#/research/solvability-frontier/changes")).toEqual({ name: "research", slug: "solvability-frontier", tab: "changes" });
+    expect(parseHash("#/research/solvability-frontier/consent")).toEqual({ name: "research" });
     expect(parseHash("#/research/solvability-frontier/data")).toEqual({ name: "research", slug: "solvability-frontier", tab: "data" });
     expect(parseHash("#/research/solvability-frontier/records")).toEqual({ name: "research", slug: "solvability-frontier", tab: "records" });
     expect(parseHash("#/research/..%2Fx/report")).toEqual({ name: "research" });
@@ -241,7 +287,7 @@ describe("research screen", () => {
     expect(rows.length).toBe(2);
     expect(v.host.querySelector(".staff-absent")!.textContent).toBe("Staff data is absent from this build.");
     expect(v.host.querySelectorAll(".research-attributions a").length).toBe(0);
-    expect(Array.from(v.host.querySelectorAll(".seg button")).map((b) => [b.textContent, b.className])).toEqual([["Report", "on"], ["Data", ""], ["Figures", ""], ["Records", ""]]);
+    expect(Array.from(v.host.querySelectorAll(".seg button")).map((b) => [b.textContent, b.className])).toEqual([["Report", "on"], ["Data", ""], ["Figures", ""], ["Records", ""], ["Changes", ""]]);
     await v.unmount();
     const one = await view(fakeApi(), "funding-landscape");
     expect(one.host.querySelector(".staff-absent")).toBeNull();
@@ -495,6 +541,138 @@ describe("research data and records", () => {
     const failing = await view(fakeApi({ researchManifest: async () => FULL, researchTable: async () => Promise.reject(new Error("Bucket could not read that table.")) }), "solvability-frontier", "data");
     expect(failing.host.querySelector('[role="alert"]')!.textContent).toBe("Bucket could not read that table.");
     await failing.unmount();
+  });
+});
+
+describe("research changes tab", () => {
+  const MAIN = "papers/solvability-frontier/main.tex";
+  const DETAIL: ResearchDetail = {
+    ...V2,
+    files: [...V2.files, file("public/papers/solvability-frontier/data/predictions.csv", "table", 20), file("reports/solvability-frontier/report.json", "record", 21), file("papers/solvability-frontier/huge.tex", "paper-include", 22, 5 * 1024 * 1024)],
+  };
+  const press = (host: Element, label: string) => Array.from(host.querySelectorAll("button")).find((b) => b.textContent?.trim() === label);
+
+  async function type(v: Awaited<ReturnType<typeof mount>>, value: string, waitMs = 800) {
+    const { act } = await import("react");
+    const area = v.host.querySelector("textarea") as HTMLTextAreaElement;
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")!.set!.call(area, value);
+      area.dispatchEvent(new window.Event("input", { bubbles: true }));
+    });
+    await act(async () => wait(waitMs));
+    await v.settle();
+  }
+
+  async function choose(v: Awaited<ReturnType<typeof mount>>, path: string) {
+    const { act } = await import("react");
+    const select = v.host.querySelector('select[aria-label="File to edit"]') as HTMLSelectElement;
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(window.HTMLSelectElement.prototype, "value")!.set!.call(select, path);
+      select.dispatchEvent(new window.Event("change", { bubbles: true }));
+    });
+    await v.settle();
+  }
+
+  test("an edit saves after a pause, shows in the changed files with its diff, and reverts", async () => {
+    const copy = workCopy({ [MAIN]: SHIPPED_TEX });
+    const v = await view(fakeApi({ ...copy.api, researchManifest: async () => DETAIL }), "solvability-frontier", "changes");
+    expect(v.host.querySelector(".plain-store")!.textContent).toBe(NOTICE);
+    expect(v.host.textContent).toContain("Nothing is changed. The files match the shipped version.");
+    expect(Array.from(v.host.querySelectorAll('select[aria-label="File to edit"] option')).map((o) => o.textContent)).toEqual(["Choose a file", MAIN, "public/papers/solvability-frontier/data/predictions.csv"]);
+    expect(v.host.querySelector("textarea")).toBeNull();
+    await choose(v, MAIN);
+    expect((v.host.querySelector("textarea") as HTMLTextAreaElement).value).toBe(SHIPPED_TEX);
+    expect(v.host.querySelector(".save-state")!.textContent).toBe("Saved");
+    const edited = SHIPPED_TEX.replace("Second paragraph.", "Second paragraph, rewritten.");
+    await type(v, edited, 100);
+    expect(v.host.querySelector(".save-state")!.textContent).toBe("Not saved yet");
+    expect(copy.saves).toEqual([]);
+    const { act } = await import("react");
+    await act(async () => wait(750));
+    await v.settle();
+    expect(copy.saves).toEqual([{ path: MAIN, base: copy.revOf(SHIPPED_TEX), text: edited }]);
+    expect(v.host.querySelector(".save-state")!.textContent).toBe("Saved");
+    const row = v.host.querySelector(".change-list li")!;
+    expect(row.querySelector(".change-path")!.textContent).toBe(MAIN);
+    expect(row.querySelector(".tag")!.textContent).toBe("Edited here");
+    expect(row.textContent).toContain("1 added, 1 removed");
+    expect(press(v.host, "Keep mine")).toBeUndefined();
+    await v.click(press(v.host, "Show the changes"));
+    expect(Array.from(v.host.querySelectorAll(".research-diff span")).map((sp) => [sp.className, sp.textContent])).toEqual([["", " First paragraph.\n"], ["del", "-Second paragraph.\n"], ["add", "+Second paragraph, rewritten.\n"]]);
+    await v.click(press(v.host, "Hide the changes"));
+    expect(v.host.querySelector(".research-diff")).toBeNull();
+    await type(v, `${edited}More.\n`);
+    expect(copy.saves.at(-1)).toEqual({ path: MAIN, base: copy.revOf(edited), text: `${edited}More.\n` });
+    await v.click(press(v.host, "Take the shipped version"));
+    expect(copy.edits.size).toBe(0);
+    expect(v.host.textContent).toContain("Nothing is changed. The files match the shipped version.");
+    expect(v.host.querySelector("textarea")).toBeNull();
+    await v.unmount();
+  });
+
+  test("a save from a stale window offers the other version or mine", async () => {
+    const copy = workCopy({ [MAIN]: SHIPPED_TEX });
+    const v = await view(fakeApi({ ...copy.api, researchManifest: async () => DETAIL }), "solvability-frontier", "changes");
+    await choose(v, MAIN);
+    copy.edits.set(MAIN, `${SHIPPED_TEX}From the other window.\n`);
+    await type(v, `${SHIPPED_TEX}Mine.\n`);
+    expect(v.host.querySelector('[role="alert"]')!.textContent).toContain("This file changed in another window.");
+    expect(copy.edits.get(MAIN)).toBe(`${SHIPPED_TEX}From the other window.\n`);
+    await v.click(press(v.host, "Keep mine"));
+    expect(copy.edits.get(MAIN)).toBe(`${SHIPPED_TEX}Mine.\n`);
+    expect(v.host.querySelector('[role="alert"]')).toBeNull();
+    copy.edits.set(MAIN, `${SHIPPED_TEX}Theirs again.\n`);
+    await type(v, `${SHIPPED_TEX}Mine twice.\n`);
+    await v.click(press(v.host, "Load that version"));
+    expect((v.host.querySelector("textarea") as HTMLTextAreaElement).value).toBe(`${SHIPPED_TEX}Theirs again.\n`);
+    expect(v.host.querySelector('[role="alert"]')).toBeNull();
+    await v.unmount();
+  });
+
+  test("a file whose shipped version changed offers keep mine, and a large file shows sizes", async () => {
+    const copy = workCopy({ [MAIN]: SHIPPED_TEX });
+    copy.edits.set(MAIN, `${SHIPPED_TEX}Mine.\n`);
+    const kept: [string, boolean | undefined][] = [];
+    const drifted: Change = { ...(await copy.api.researchChanges()).changes[0], state: "shipped-changed" };
+    const large: Change = { ...drifted, path: "public/papers/solvability-frontier/data/predictions.csv", state: "base-unknown", hunks: null, size: 3_000_000, shippedSize: 2_900_000, added: 0, removed: 0 };
+    const v = await view(fakeApi({ ...copy.api, researchManifest: async () => DETAIL, researchChanges: async () => ({ notice: NOTICE, changes: [drifted, large] }), researchRevert: async (_s, path, keep) => (kept.push([path, keep]), { path, changed: 1 }) }), "solvability-frontier", "changes");
+    expect(Array.from(v.host.querySelectorAll(".change-list .tag")).map((t) => t.textContent)).toEqual(["The shipped version changed", "Edited before Bucket tracked it"]);
+    await v.click(press(v.host, "Keep mine"));
+    expect(kept).toEqual([[MAIN, true]]);
+    await v.click(Array.from(v.host.querySelectorAll(".change-list li")[1].querySelectorAll("button")).find((b) => b.textContent?.trim() === "Show the changes"));
+    expect(v.host.textContent).toContain("2,900,000 bytes shipped, 3,000,000 bytes now.");
+    await v.unmount();
+  });
+
+  test("export lists the folder and its files, and a refusal shows in plain words", async () => {
+    const copy = workCopy({ [MAIN]: SHIPPED_TEX });
+    copy.edits.set(MAIN, `${SHIPPED_TEX}Mine.\n`);
+    const v = await view(fakeApi({ ...copy.api, researchManifest: async () => DETAIL }), "solvability-frontier", "changes");
+    expect(v.host.querySelector(".research-export")).toBeNull();
+    await v.click(press(v.host, "Export the changes"));
+    expect(v.host.querySelector(".research-export .hash")!.textContent).toBe("/home/ada/bkt/research/exports/solvability-frontier-20261011T123005");
+    expect(Array.from(v.host.querySelectorAll(".research-export li")).map((li) => li.textContent)).toEqual(["CHANGES.patch", "LICENCES.md", MAIN, "report.json"]);
+    await v.unmount();
+    const refusing = await view(fakeApi({ ...copy.api, researchManifest: async () => DETAIL, researchExport: async () => Promise.reject(new Error("Bucket could not write the export.")) }), "solvability-frontier", "changes");
+    await refusing.click(press(refusing.host, "Export the changes"));
+    expect(refusing.host.querySelector('[role="alert"]')!.textContent).toBe("Bucket could not write the export.");
+    await refusing.unmount();
+  });
+
+  test("a v1 output has no Changes tab, and only text files under 4 MB can be edited", async () => {
+    const { editable } = await import("./views/Research");
+    expect(editable(DETAIL).map((f) => f.path)).toEqual([MAIN, "public/papers/solvability-frontier/data/predictions.csv"]);
+    expect(editable(V1)).toEqual([]);
+    const old = await view(fakeApi(), "funding-landscape", "changes");
+    expect(old.host.querySelector(".research-changes")).toBeNull();
+    expect(old.host.textContent).toContain("Second paragraph.");
+    await old.unmount();
+    const bare = await view(fakeApi({ researchManifest: async () => ({ ...V2, files: V2.files.filter((f) => !f.path.endsWith(".tex")) }) }), "solvability-frontier", "changes");
+    expect(bare.host.textContent).toContain("This output ships no file that can be edited here.");
+    await bare.unmount();
+    const down = await view(fakeApi({ researchChanges: async () => Promise.reject(new Error("Bucket could not read the changes.")) }), "solvability-frontier", "changes");
+    expect(down.host.querySelector(".error")!.textContent).toBe("Bucket could not read the changes.");
+    await down.unmount();
   });
 });
 

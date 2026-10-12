@@ -203,3 +203,73 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+
+.research-changes {
+  display: grid;
+  gap: 16px;
+}
+
+.research-changes h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+
+.research-editor textarea {
+  width: 100%;
+  min-height: 320px;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  resize: vertical;
+}
+
+.change-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.change-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.change-path {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+}
+
+.research-diff pre {
+  margin: 10px 0 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+.research-diff .add {
+  background: #e3f1e4;
+  color: var(--ok);
+}
+
+.research-diff .del {
+  background: #f6e1dc;
+  color: var(--bad);
+}
+
+.research-export ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+}
