@@ -125,7 +125,7 @@ export const REGISTRY: LicenceEntry[] = [
     licence: "CC0-1.0",
     share_alike: false,
     public: "rows",
-    attribution: { source: "Wikidata", url: "https://www.wikidata.org/wiki/Wikidata:Licensing", notice: "Names and dates come from Wikidata, whose structured data is released into the public domain under CC0 1.0. A row marked unchecked holds a Wikidata item that no reviewer has read against a second source." },
+    attribution: { source: "Wikidata", url: "https://www.wikidata.org/wiki/Wikidata:Licensing", notice: "Names and dates come from Wikidata, whose structured data is released into the public domain under CC0 1.0. Each row here was picked by hand and links to its Wikidata item." },
   },
   {
     id: "wikipedia",

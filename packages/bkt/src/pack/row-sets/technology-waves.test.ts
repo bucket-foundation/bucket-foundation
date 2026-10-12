@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { checkRows, hitIds, packedBytes, REPLY_BYTES, rowKeys } from "./contract";
 import { checkCaps, memoryTables } from "./index";
 import type { Row } from "./licences";
-import { technologyWaves, TECHNOLOGY_WAVES_ID, TRAINING_FIELD, yearLabel } from "./technology-waves";
+import { STAFF_ONLY_EVIDENCE, technologyWaves, TECHNOLOGY_WAVES_ID, TRAINING_FIELD, yearLabel } from "./technology-waves";
 import { repoFixtureContext } from "./test-fixtures";
 
 const ctx = repoFixtureContext();
@@ -47,7 +47,7 @@ describe("technology waves", () => {
   test("a fixture gives a stable sha256", async () => {
     const pages = await technologyWaves(tables(), ctx);
     expect((await technologyWaves(tables(), ctx)).map((p) => p.sha256)).toEqual(pages.map((p) => p.sha256));
-    expect(pages[0].sha256).toBe("8d80a402e2d0077e69d8415f1574db8c2006390f02b1db7a6d846486f45d0b62");
+    expect(pages[0].sha256).toBe("1baca3b793b0753d04b3c66603384f728630260b2e3fd770e284ac4951fa1ad3");
   });
 
   test("waves, curated technologies and training responses open the set, checked and unchecked apart", async () => {
@@ -62,7 +62,7 @@ describe("technology waves", () => {
     expect(opening.frame.from).toEqual([-3300000, 1945, 2012, -3300000, 1947, 1960, 1861, 2011]);
     expect(opening.frame.to).toEqual([-10001, 1970, null, null, null, null, null, null]);
     expect(opening.frame.axis).toEqual({ from: -3300000, to: 2025, scale: "log", unit: "year" });
-    expect(opening.frame.drill).toEqual({ param: "group", values: ["w10-electronics", "w13-machine-learning"] });
+    expect(opening.frame.drill).toBeNull();
     expect(opening.links.every((l) => l.length === 0)).toBe(true);
     expect([opening.modes, opening.audience, opening.licence]).toEqual([["timeline"], "public", "CC-BY-SA-4.0"]);
     expect(opening.sources).toEqual(["wikipedia", "arxiv", "wikidata"]);
@@ -71,24 +71,26 @@ describe("technology waves", () => {
     expect(JSON.stringify(opening)).not.toContain("A sentence written");
   });
 
-  test("a wave opens its unchecked Wikidata items, each marked unchecked and under CC0", async () => {
-    const [, electronics, learning] = await technologyWaves(tables(), ctx);
-    expect(rowKeys(electronics)).toEqual(["ht-wd-q68", "ht-wd-q11016"]);
-    expect(rowKeys(learning)).toEqual(["ht-wd-q2539"]);
-    for (const page of [electronics, learning]) {
-      expect(page.groups).toEqual([{ id: "wikidata", label: "Wikidata items, unchecked", color: "#6b6252" }]);
-      expect(page.frame.verified?.every((v) => v === false)).toBe(true);
-      expect(page.licences).toEqual(["CC0-1.0"]);
-      expect(page.licence).toBe("CC-BY-SA-4.0");
-      expect(page.url.every((u) => u?.startsWith(WD))).toBe(true);
-    }
+  test("no public row has evidence wikidata-id-only, whatever its wave, year or link", async () => {
+    const pages = await technologyWaves(tables(), ctx);
+    expect(pages).toHaveLength(1);
+    const keys = new Set(pages.flatMap(rowKeys));
+    const staffOnly = TECHNOLOGIES.filter((r) => r.evidence === STAFF_ONLY_EVIDENCE).map((r) => String(r.id));
+    expect(staffOnly).toHaveLength(5);
+    for (const id of staffOnly) expect(keys.has(id)).toBe(false);
+    const text = JSON.stringify(pages);
+    for (const name of ["computer", "integrated circuit", "machine learning model", "orphan item"]) expect(text).not.toContain(`"${name}"`);
+    const promoted = await technologyWaves(memoryTables({ technologies: TECHNOLOGIES.map((r) => (r.evidence === STAFF_ONLY_EVIDENCE ? { ...r, verified: true } : r)), frameworks: FRAMEWORKS }), ctx);
+    expect(promoted.flatMap(rowKeys)).toEqual([...keys]);
+    const unmarked = await technologyWaves(memoryTables({ technologies: [{ ...TECHNOLOGIES[4], id: "ht-no-evidence", evidence: null }] }), ctx);
+    expect(unmarked[0].n).toBe(0);
   });
 
   test("a row with no cleared source, no year, no wave or no link stays out", async () => {
     const pages = await technologyWaves(tables(), ctx);
     const keys = pages.flatMap(rowKeys);
-    for (const out of ["ht-wd-no-wave", "ht-wd-no-year", "ht-other-host", "ht-no-link", "ht-tr-archives", "fw-other"]) expect(keys).not.toContain(out);
-    expect(keys).toHaveLength(11);
+    for (const out of ["ht-wd-q68", "ht-wd-no-wave", "ht-wd-no-year", "ht-other-host", "ht-no-link", "ht-tr-archives", "fw-other"]) expect(keys).not.toContain(out);
+    expect(keys).toHaveLength(8);
   });
 
   test("the rules and the caps hold, and years before the common era read as BCE", async () => {
@@ -103,6 +105,6 @@ describe("technology waves", () => {
 
   test("no technology rows give a set with no hits", async () => {
     const [opening] = await technologyWaves(memoryTables({ technologies: [] }), ctx);
-    expect([opening.n, opening.frame.axis, opening.frame.drill]).toEqual([0, null, { param: "group", values: [] }]);
+    expect([opening.n, opening.frame.axis, opening.frame.drill]).toEqual([0, null, null]);
   });
 });

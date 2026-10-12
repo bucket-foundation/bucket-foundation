@@ -6,6 +6,7 @@ import { hasEmail } from "../../../../../src/lib/research-os/advisor-review";
 import { findKruse } from "../../../scripts/check-no-kruse";
 import { findStaff, findStaffRowSets } from "../../../scripts/check-no-staff";
 import { assertClean, buildDenylist } from "../rights";
+import { STAFF_ONLY_EVIDENCE } from "./technology-waves";
 import { assembleRowSet, checkRows, hitIds, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowKey, rowKeys, rowSetText, SET_BYTES, type RowDraft } from "./contract";
 import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, packWarnings, countryCodes, describeRowSets, fileTables, packBytes, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
 import { fixtureContext, fixtureDraft } from "./test-fixtures";
@@ -49,7 +50,7 @@ describe("the public row set pack, built from the tables", () => {
       }
       expect(replies(set.pages)).toHaveLength(set.pages.length);
     }
-    expect(seen).toBe(128);
+    expect(seen).toBe(117);
   });
 
   test("occupations open as 48 group hits: 22 SOC, 23 O*NET-SOC and 3 census lists", () => {
@@ -91,12 +92,18 @@ describe("the public row set pack, built from the tables", () => {
     for (const page of census) {
       expect(page.sources).toEqual(["census-occupations"]);
       expect(page.url.every((u) => u !== null && new URL(u).host === "www2.census.gov")).toBe(true);
-      expect((page.frame.from as number[]).every((y) => y >= 2000)).toBe(true);
+      const listed = Number(/census-(\d{4})/.exec(rowKeys(page)[0])?.[1]);
+      expect((page.frame.from as number[]).every((y) => y === listed)).toBe(true);
+      expect(page.frame.to).toBeNull();
       expect(page.frame.weight).toBeNull();
       expect(page.year.every((y) => y === null)).toBe(true);
       expect(page.groups.map((g) => g.id)).toEqual(["listed"]);
     }
-    rowKeys(opening).forEach((k, i) => k.startsWith("census-") && expect((opening.frame.from as number[])[i]).toBeGreaterThanOrEqual(2000));
+    rowKeys(opening).forEach((k, i) => {
+      if (!k.startsWith("census-")) return;
+      expect((opening.frame.from as number[])[i]).toBe(Number(k.slice(7)));
+      expect((opening.frame.to as (number | null)[])[i]).toBeNull();
+    });
   });
 
   test("no reply passes 90% of the reply cap, no set passes 90% of the set cap and the pack stays under 90% of its budget", () => {
@@ -119,24 +126,37 @@ describe("the public row set pack, built from the tables", () => {
     }
   });
 
-  test("technology waves hold 14 waves, 97 curated technologies, 71 training responses and 587 unchecked Wikidata items by wave", () => {
-    const [opening, ...waves] = setOf("technology-waves").pages;
+  test("technology waves hold 14 waves, 97 curated technologies and 71 training responses on one page", () => {
+    const pages = setOf("technology-waves").pages;
+    expect(pages).toHaveLength(1);
+    const [opening] = pages;
     const count = (id: string) => opening.gi.filter((g) => opening.groups[g].id === id).length;
-    expect([count("wave"), count("checked"), count("curated"), count("training")]).toEqual([14, 34, 63, 71]);
-    expect(waves).toHaveLength(11);
-    expect(waves.reduce((sum, p) => sum + p.n, 0)).toBe(587);
-    expect(waves.every((p) => p.frame.verified?.every((v) => !v) && p.sources.join() === "wikidata")).toBe(true);
+    expect([opening.n, count("wave"), count("checked"), count("curated"), count("training")]).toEqual([182, 14, 34, 63, 71]);
+    expect(opening.frame.drill).toBeNull();
     expect(opening.frame.verified?.filter(Boolean)).toHaveLength(14 + 34 + 69);
-    expect(new Set(setOf("technology-waves").pages.flatMap((p) => p.sources))).toEqual(new Set(["wikipedia", "wikidata", "arxiv"]));
-    expect(setOf("technology-waves").pages.every((p) => p.licence === "CC-BY-SA-4.0" && p.links.every((l) => l.length === 0))).toBe(true);
-    expect(/archives\.gov/.test(JSON.stringify(setOf("technology-waves")))).toBe(false);
+    expect(new Set(opening.sources)).toEqual(new Set(["wikipedia", "wikidata", "arxiv"]));
+    expect(opening.licence).toBe("CC-BY-SA-4.0");
+    expect(opening.links.every((l) => l.length === 0)).toBe(true);
+    expect(/archives\.gov/.test(JSON.stringify(opening))).toBe(false);
+  });
+
+  test("no public row of any set has evidence wikidata-id-only", async () => {
+    const staffOnly = new Map<string, string>();
+    for await (const row of fileTables(join(REPO, TABLES_DIR)).rows("technologies")) if (row.evidence === STAFF_ONLY_EVIDENCE) staffOnly.set(rowKey(String(row.id)), String(row.name));
+    expect(staffOnly.size).toBe(587);
+    const pages = pack.sets.flatMap((s) => s.pages);
+    const keys = new Set(pages.flatMap(rowKeys));
+    for (const id of staffOnly.keys()) expect(keys.has(id)).toBe(false);
+    expect(pages.flatMap(rowKeys).filter((k) => k.startsWith("ht-wd-"))).toEqual([]);
+    const titles = new Set(setOf("technology-waves").pages.flatMap((p) => p.title));
+    for (const name of ["Sala do Futuro", "Sprechgesang", "flowkey", "LearnLink", "Thermomix", "Kids Play City", "Rosetta Stone", "Lumina University", "Ugatech Uganda Limited"]) expect(titles.has(name)).toBe(false);
   });
 
   test("occupations declare the map and the timeline, and census groups say they hold list years only", () => {
     const pages = setOf("occupations-time").pages;
     expect(pages.every((p) => p.modes.join() === "map,timeline")).toBe(true);
-    expect(pages[0].groups.find((g) => g.id === "census")?.label).toBe("Census lists, list years only");
-    expect(pages.at(-1)?.groups).toEqual([{ id: "listed", label: "Census list, list years only", color: "#5b7a3a" }]);
+    expect(pages[0].groups.find((g) => g.id === "census")?.label).toBe("Census lists, marked at the list year");
+    expect(pages.at(-1)?.groups).toEqual([{ id: "listed", label: "Census list, marked at its list year", color: "#5b7a3a" }]);
   });
 
   test("major to career holds 64 hits and 240 weighted links", () => {

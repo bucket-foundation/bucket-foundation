@@ -1,4 +1,4 @@
-import { assembleRowSet, type AssembleContext, type PackedRows, type RowDraft, type RowGroup, type RowSetDraft } from "./contract";
+import { assembleRowSet, type AssembleContext, type PackedRows, type RowDraft, type RowGroup } from "./contract";
 import type { TableReader } from "./index";
 import { publicSource, type Row } from "./licences";
 
@@ -12,8 +12,8 @@ const GROUPS: RowGroup[] = [
   { id: "checked", label: "Technologies checked against a source", color: "#2f6f8f" },
   { id: "curated", label: "Curated technologies, unchecked", color: "#5b7a3a" },
   { id: "training", label: "Training responses", color: "#8f3f3f" },
-  { id: "wikidata", label: "Wikidata items, unchecked", color: "#6b6252" },
 ];
+export const STAFF_ONLY_EVIDENCE = "wikidata-id-only";
 
 const text = (v: unknown): string => (typeof v === "string" ? v : "");
 const year = (v: unknown): number | null => (typeof v === "number" && Number.isInteger(v) ? v : null);
@@ -28,8 +28,6 @@ function span(from: number, to: number | null): string {
 
 export async function technologyWaves(tables: TableReader, ctx: AssembleContext): Promise<PackedRows[]> {
   const opening: RowDraft[] = [];
-  const byWave = new Map<string, RowDraft[]>();
-  const waves: string[] = [];
   let earliest = Number.POSITIVE_INFINITY;
   const keep = (table: string, row: Row, name: string): { source: string; from: number; to: number | null; url: string } | null => {
     const source = publicSource(table, row, ctx.registry);
@@ -44,15 +42,11 @@ export async function technologyWaves(tables: TableReader, ctx: AssembleContext)
     const held = keep("technologies", row, name);
     if (!held) continue;
     const base = { key: text(row.id), title: name, source: held.source, url: held.url, from: held.from, to: held.to, verified: row.verified === true };
+    if (row.evidence !== "curated-source") continue;
     if (row.kind === "wave") {
-      waves.push(text(row.id));
       opening.push({ ...base, sub: span(held.from, held.to), group: "wave" });
-    } else if (row.kind === "technology" && row.evidence === "curated-source") {
+    } else if (row.kind === "technology") {
       opening.push({ ...base, sub: text(row.field), group: row.verified === true ? "checked" : "curated" });
-    } else if (row.kind === "technology" && row.evidence === "wikidata-id-only" && text(row.wave)) {
-      const page = byWave.get(text(row.wave)) ?? [];
-      page.push({ ...base, sub: text(row.field), group: "wikidata", verified: false });
-      byWave.set(text(row.wave), page);
     }
   }
   if (tables.has("frameworks")) {
@@ -63,9 +57,6 @@ export async function technologyWaves(tables: TableReader, ctx: AssembleContext)
       if (held) opening.push({ key: text(row.id), title: name, sub: text(row.region_raw), group: "training", source: held.source, url: held.url, from: held.from, to: held.to, verified: row.verified === true });
     }
   }
-  const drill = { param: "group" as const, values: waves.filter((w) => (byWave.get(w) ?? []).length > 0) };
   const axis = opening.length ? { from: earliest, to: THIS_YEAR_CAP, scale: "log" as const, unit: "year" as const } : null;
-  const shared = { id: TECHNOLOGY_WAVES_ID, label: LABEL, audience: "public" as const, modes: ["timeline"], groups: GROUPS, axis, drill };
-  const pages = drill.values.map((w): RowSetDraft => ({ ...shared, rows: byWave.get(w) as RowDraft[] }));
-  return assembleRowSet([{ ...shared, rows: opening }, ...pages], ctx);
+  return assembleRowSet([{ id: TECHNOLOGY_WAVES_ID, label: LABEL, audience: "public", modes: ["timeline"], groups: GROUPS, axis, rows: opening }], ctx);
 }

@@ -148,7 +148,7 @@ describe("the row set route", () => {
         seen++;
       }
     }
-    expect(seen).toBe(128);
+    expect(seen).toBe(117);
   });
 
   test("a result above 600 hits is paged, and links that leave the page are dropped and counted", async () => {

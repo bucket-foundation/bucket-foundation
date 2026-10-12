@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { checkRows, hitIds, packedBytes, REPLY_BYTES, REPLY_HITS, rowKeys, SET_BYTES } from "./contract";
 import { checkCaps, memoryTables, setBytes } from "./index";
 import type { Row } from "./licences";
-import { censusSpan, occupationsTime, OCCUPATIONS_ID } from "./occupations-time";
+import { censusListYear, occupationsTime, OCCUPATIONS_ID } from "./occupations-time";
 import { repoFixtureContext } from "./test-fixtures";
 
 const ctx = repoFixtureContext();
@@ -52,8 +52,8 @@ describe("occupations through time", () => {
     const pages = await occupationsTime(tables(), ctx);
     const again = await occupationsTime(tables(), ctx);
     expect(pages.map((p) => p.sha256)).toEqual(again.map((p) => p.sha256));
-    expect(pages[0].sha256).toBe("39d6b9b84893941a315efe7ffae28c3c2531dc59ba3274da3709c2326287e4ca");
-    expect(pages[5].sha256).toBe("1ce89785f9350d8ced6a7fbc516185d924ad49b063ec1d5b29433553c86e5b82");
+    expect(pages[0].sha256).toBe("89896f7362217f9a3fdc5b9897ccf66ad52e27584c42e8543eaffd5b7a840fe5");
+    expect(pages[5].sha256).toBe("c6af3d495f2f8e9d1944baf8385d3b15ccc353870670744909135b71a93ae9df");
   });
 
   test("the opening page holds one hit per major group and census year, and each opens its lifecycles", async () => {
@@ -66,8 +66,8 @@ describe("occupations through time", () => {
     expect(opening.sub).toEqual(["SOC 11, 3 occupations", "SOC 15, 3 occupations", "O*NET-SOC 11, 3 occupations", "O*NET-SOC 15, 3 occupations", "4 occupations"]);
     expect(opening.groups.map((g) => g.id)).toEqual(["soc", "onet-soc", "census"]);
     expect(opening.frame.weight).toEqual([3, 3, 3, 3, 4]);
-    expect(opening.frame.from).toEqual([1999, 1999, 2000, 2000, 2000]);
-    expect(opening.frame.to).toEqual([2025, 2025, 2025, 2025, 2018]);
+    expect(opening.frame.from).toEqual([1999, 1999, 2000, 2000, 2018]);
+    expect(opening.frame.to).toEqual([2025, 2025, 2025, 2025, null]);
     expect(opening.frame.axis).toEqual({ from: 1999, to: 2025, scale: "linear", unit: "year" });
     expect(opening.frame.layout).toBe("ring");
     expect(opening.sources).toEqual(["soc2018", "onet", "census-occupations"]);
@@ -93,16 +93,12 @@ describe("occupations through time", () => {
     expect(pages.flatMap((p) => p.sources)).not.toContain("ipums");
     const census = pages[5];
     expect(rowKeys(census)).toEqual(["histocc-life-census-2018-0010", "histocc-life-census-2018-0020", "histocc-life-census-2018-1006", "histocc-life-census-2018-1200"]);
-    expect(census.frame.from).toEqual([2000, 2010, 2018, 2018]);
-    expect(census.frame.to).toEqual([2018, 2018, 2018, 2018]);
+    expect(census.frame.from).toEqual([2018, 2018, 2018, 2018]);
+    expect(census.frame.to).toBeNull();
     expect(census.frame.weight).toBeNull();
     expect(census.year).toEqual([null, null, null, null]);
-    expect(census.groups).toEqual([{ id: "listed", label: "Census list, list years only", color: "#5b7a3a" }]);
-    expect(censusSpan({ scheme: "census-2018", lineage_codes: ["1950:290", "1990:004", "2000:001", "2018:0010"] })).toEqual({ from: 2000, to: 2018 });
-    expect(censusSpan({ scheme: "census-2002", lineage_codes: ["1980:027", "1990:027"] })).toEqual({ from: 2002, to: 2002 });
-    expect(censusSpan({ scheme: "census-2010", lineage_codes: ["2030:1"] })).toEqual({ from: 2010, to: 2010 });
-    expect(censusSpan({ scheme: "census-1990", lineage_codes: ["1990:183"] })).toBeNull();
-    expect(censusSpan({ scheme: "soc" })).toBeNull();
+    expect(census.groups).toEqual([{ id: "listed", label: "Census list, marked at its list year", color: "#5b7a3a" }]);
+    expect([censusListYear({ scheme: "census-2018" }), censusListYear({ scheme: "census-2002" }), censusListYear({ scheme: "census-1990" }), censusListYear({ scheme: "soc" }), censusListYear({})]).toEqual([2018, 2002, null, null, null]);
   });
 
   test("the caps hold", async () => {

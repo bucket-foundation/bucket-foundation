@@ -127,7 +127,12 @@ export function axisShare(axis: NonNullable<RowFrame["axis"]>, value: number): n
 
 export function axisLabel(axis: NonNullable<RowFrame["axis"]>, value: number): string {
   if (axis.unit === "age") return `age ${value}`;
+  if (axis.scale === "log") return value >= axis.to ? String(axis.to) : `${(axis.to - value).toLocaleString("en-US")} years ago`;
   return value < 0 ? `${(-value).toLocaleString("en-US")} BCE` : String(value);
+}
+
+export function axisTitle(axis: NonNullable<RowFrame["axis"]>): string | null {
+  return axis.scale === "log" && axis.unit === "year" ? `Years before ${axis.to}, on a log scale` : null;
 }
 
 export function axisTicks(axis: NonNullable<RowFrame["axis"]>): number[] {
@@ -135,7 +140,7 @@ export function axisTicks(axis: NonNullable<RowFrame["axis"]>): number[] {
   if (axis.scale === "log") {
     const out = [axis.to];
     for (let back = 10; axis.to - back > axis.from; back *= 10) out.push(axis.to - back);
-    return [...out, axis.from].sort((a, b) => a - b);
+    return out.sort((a, b) => a - b);
   }
   const span = axis.to - axis.from;
   const step = [1, 2, 5, 10, 20, 25, 50, 100, 200, 500, 1000].find((s) => span / s <= 8) ?? Math.ceil(span / 8);
@@ -204,6 +209,8 @@ export function rowTimeline(hits: Hit[], scene: RowScene): SceneLayout & { axisL
       moved.push({ kind: "text", position: [x, baseline - 0.2, 0], text: axisLabel(axis, tick), color: AXIS_COLOR, size: 10 });
     }
   }
+  const title = axis ? axisTitle(axis) : null;
+  if (title) moved.push({ kind: "text", position: [0, baseline - 0.42, 0], text: title, color: AXIS_COLOR, size: 10 });
   if (undated) moved.push({ kind: "text", position: [left - 0.6, baseline - 0.2, 0], text: UNDATED, color: AXIS_COLOR, size: 10 });
   const shown = new Set(hits.map((hit) => hit.id));
   return {

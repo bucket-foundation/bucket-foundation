@@ -5,7 +5,7 @@ import { fixtureContext, fixtureDraft } from "../../bkt/src/pack/row-sets/test-f
 import { forceLayout } from "../../../src/lib/explore/modes/graph";
 import { FORCE_NODE_CAP, modeById, type DesktopLayout } from "./explore/modesV2";
 import { expandRows } from "./explore/rows";
-import { axisLabel, axisShare, axisTicks, fastForceLayout, labelClears, LANE_LABEL_RISE, RING_RADIUS, rowGraph, rowTimeline, STACK_GAP, STACK_ROWS, TIMELINE_WIDTH, UNDATED } from "./explore/rows-layout";
+import { axisLabel, axisShare, axisTicks, axisTitle, fastForceLayout, labelClears, LANE_LABEL_RISE, RING_RADIUS, rowGraph, rowTimeline, STACK_GAP, STACK_ROWS, TIMELINE_WIDTH, UNDATED } from "./explore/rows-layout";
 
 const ctx = fixtureContext();
 const open = (draft: Partial<RowSetDraft>) => expandRows(assembleRowSet([fixtureDraft(draft)], ctx)[0]);
@@ -109,9 +109,15 @@ describe("the row timeline", () => {
     expect(axisShare(deep, 1945)).toBeLessThan(axisShare(deep, 2012));
     expect(axisShare(deep, 9999)).toBe(1);
     expect(axisShare({ ...deep, from: 5, to: 5 }, 5)).toBe(0.5);
-    expect(axisTicks(deep)).toEqual([-3300000, -997975, -97975, -7975, 1025, 1925, 2015, 2025]);
-    expect(axisLabel(deep, -7975)).toBe("7,975 BCE");
-    expect(axisLabel(deep, 1925)).toBe("1925");
+    expect(axisTicks(deep).map((tick) => axisLabel(deep, tick))).toEqual(["1,000,000 years ago", "100,000 years ago", "10,000 years ago", "1,000 years ago", "100 years ago", "10 years ago", "2025"]);
+    expect(axisTitle(deep)).toBe("Years before 2025, on a log scale");
+    expect(axisTitle(YEARS)).toBeNull();
+    expect(axisLabel(YEARS, -44)).toBe("44 BCE");
+    const drawn = open({ modes: ["timeline"], axis: deep, rows: [{ key: "old", title: "Old", sub: "", group: "a", source: "open", from: -9000 }] });
+    const texts = rowTimeline(drawn.hits, drawn.frame).guides.flatMap((g) => (g.kind === "text" ? [g.text] : []));
+    expect(texts.filter((t) => t === "Years before 2025, on a log scale")).toHaveLength(1);
+    expect(texts).toEqual(expect.arrayContaining(["10,000 years ago", "100 years ago", "2025"]));
+    expect(texts.some((t) => /BCE|\d,\d{3} BCE|975/.test(t))).toBe(false);
     expect(axisLabel({ from: 0, to: 90, scale: "linear", unit: "age" }, 18)).toBe("age 18");
     expect(axisTicks(YEARS)).toEqual([1880, 1900, 1920, 1940, 1960, 1980, 2000, 2020]);
   });
