@@ -5,6 +5,8 @@ import { publicSource } from "./licences";
 export const OCCUPATIONS_ID = "occupations-time";
 const LABEL = "Occupations through time";
 const TABLE = "occupation_history";
+const LISTED = "listed";
+export const CENSUS_OWN_FROM = 2000;
 
 const SCHEMES: RowGroup[] = [
   { id: "soc", label: "SOC 2018 major groups", color: "#2f6f8f" },
@@ -18,6 +20,7 @@ const STATUSES: RowGroup[] = [
   { id: "stable", label: "Stable", color: "#2f6f8f" },
   { id: "declining", label: "Declining", color: "#b07a2a" },
   { id: "extinct", label: "Extinct", color: "#8f3f3f" },
+  { id: LISTED, label: "Listed", color: "#5b7a3a" },
 ];
 
 interface Lifecycle {
@@ -46,6 +49,16 @@ interface Group {
 const text = (v: unknown): string => (typeof v === "string" ? v : "");
 const number = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
 
+export function censusSpan(row: { scheme: unknown; lineage_codes?: unknown; era_to?: unknown }): { from: number; to: number } | null {
+  const list = /^census-(\d{4})$/.exec(text(row.scheme));
+  if (!list) return null;
+  const listed = Number(list[1]);
+  const years = (Array.isArray(row.lineage_codes) ? row.lineage_codes : []).map((c) => Number(/^(\d{4}):/.exec(text(c))?.[1])).filter((y) => y >= CENSUS_OWN_FROM && y <= listed);
+  const from = Math.min(listed, ...years);
+  if (from < CENSUS_OWN_FROM) return null;
+  return { from, to: Math.max(from, number(row.era_to) ?? listed) };
+}
+
 function groupOf(row: Lifecycle, majors: Map<string, string>): Omit<Group, "rows"> | null {
   if (row.scheme === "soc" || row.scheme === "onet-soc") {
     const major = row.code.slice(0, 2);
@@ -66,10 +79,15 @@ export async function occupationsTime(tables: TableReader, ctx: AssembleContext)
   const groups = new Map<string, Group>();
   for await (const row of tables.rows(TABLE)) {
     const source = publicSource(TABLE, row, ctx.registry);
-    const from = number(row.era_from);
-    const to = number(row.era_to);
+    const census = text(row.scheme).startsWith("census-");
+    const span = census ? censusSpan(row) : null;
+    const from = census ? span?.from ?? null : number(row.era_from);
+    const to = census ? span?.to ?? null : number(row.era_to);
     if (!source || from === null || to === null || !text(row.id) || !text(row.title)) continue;
-    const life: Lifecycle = { id: text(row.id), title: text(row.title), scheme: text(row.scheme), code: text(row.code), status: text(row.status), from, to, peakYear: number(row.peak_year), peak: number(row.peak_employment), url: text(row.source_url) || null, source };
+    const life: Lifecycle = {
+      id: text(row.id), title: text(row.title), scheme: text(row.scheme), code: text(row.code), status: census ? LISTED : text(row.status), from, to,
+      peakYear: census ? null : number(row.peak_year), peak: census ? null : number(row.peak_employment), url: text(row.source_url) || null, source,
+    };
     const group = groupOf(life, majors);
     if (!group || !STATUSES.some((s) => s.id === life.status)) continue;
     const held = groups.get(group.key) ?? { ...group, rows: [] };

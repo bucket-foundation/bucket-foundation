@@ -251,6 +251,12 @@ describe("rule 8, labels and links", () => {
     for (const title of ["HRAF category 221", "Outline of Cultural Materials", "Propaedia part one", "Propædia"]) expect(() => assembleRowSet([titled(title)], ctx)).toThrow(/rule 8: a string holds withheld label text/);
   });
 
+  test("a public row that cites IPUMS fails, and a staff row passes", () => {
+    const rows: RowDraft[] = [{ key: "one", title: "T", sub: "", group: "a", source: "open", url: "https://usa.ipums.org/usa/resources/chapter4/occ_90-00.xls" }];
+    expect(() => assembleRowSet([fixtureDraft({ rows })], ctx)).toThrow(/rule 8: a public string cites IPUMS/);
+    expect(assembleRowSet([fixtureDraft({ rows, audience: "staff" })], ctx)[0].n).toBe(1);
+  });
+
   test("a group colour that is no hex colour fails", () => {
     expect(() => assembleRowSet([fixtureDraft({ groups: [{ id: "a", label: "A", color: "teal" }, { id: "b", label: "B", color: "#000000" }] })], ctx)).toThrow(/rule 8: group a/);
   });

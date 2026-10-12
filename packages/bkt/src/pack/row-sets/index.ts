@@ -113,6 +113,21 @@ export function checkCaps(id: string, pages: PackedRows[]): void {
   }
 }
 
+export const WARN_SHARE = 0.9;
+
+export function capWarnings(sets: { id: string; pages: PackedRows[] }[]): string[] {
+  const out: string[] = [];
+  for (const set of sets) {
+    const bytes = setBytes(set.pages);
+    if (bytes > SET_BYTES * WARN_SHARE) out.push(`${set.id}: ${bytes} bytes is past 90% of the ${SET_BYTES} byte set cap`);
+    for (const reply of replies(set.pages)) {
+      const size = packedBytes(reply);
+      if (size > REPLY_BYTES * WARN_SHARE) out.push(`${set.id}: a reply of ${reply.n} hits and ${size} bytes is past 90% of the ${REPLY_BYTES} byte reply cap`);
+    }
+  }
+  return out;
+}
+
 export function assembleRowSetPack(sets: PackedRows[][], deny: Denylist, built: string): RowSetPack {
   const ids = new Set<string>();
   const entries: RowSetEntry[] = [];
@@ -170,7 +185,9 @@ export function publicPackProblems(pack: RowSetPack, registry: LicenceEntry[] = 
         else if (entry.public === "none") out.push(`${set.id}: source ${source} is restricted`);
       }
     }
-    if (hasEmail(rowSetText(set.pages ?? []))) out.push(`${set.id}: an email address`);
+    const text = rowSetText(set.pages ?? []);
+    if (hasEmail(text)) out.push(`${set.id}: an email address`);
+    if (/ipums/i.test(text)) out.push(`${set.id}: a row that cites IPUMS`);
   }
   return [...new Set(out)];
 }
@@ -196,4 +213,5 @@ if (import.meta.main) {
   writeFileSync(join(outDir, ROW_SET_PACK_FILE), JSON.stringify(pack));
   console.log(`row set pack ${pack.version}: ${bytes} bytes of ${ROW_SET_PACK_BUDGET_BYTES}`);
   for (const line of describeRowSets(pack)) console.log(`  ${line}`);
+  for (const line of capWarnings(pack.sets)) console.warn(`  warning: ${line}`);
 }

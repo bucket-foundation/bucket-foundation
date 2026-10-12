@@ -293,6 +293,7 @@ export function checkRows(rows: PackedRows, ctx: AssembleContext): void {
   });
   everyString({ ...rows, attributions: audience === "public" ? rows.attributions : [] }, (s) => {
     if (WITHHELD_LABEL.test(s)) fail(id, 8, `a string holds withheld label text: ${s.slice(0, 60)}`);
+    if (audience === "public" && /ipums/i.test(s)) fail(id, 8, `a public string cites IPUMS: ${s.slice(0, 60)}`);
   });
 
   if (!rows.modes.length || !rows.modes.every((m) => ctx.modes.includes(m))) fail(id, 9, `modes ${rows.modes.join(", ")} are not all Explore modes`);

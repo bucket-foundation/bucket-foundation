@@ -4,7 +4,7 @@ import { DNA_SLOTS } from "../../../src/lib/explore/modes/dna";
 import { axisOrder, helixPoint, helixFrame } from "../../../src/lib/explore/modes/helix";
 import { bridgeLinks } from "../../../src/lib/explore/modes/graph";
 import { hitKind } from "../../../src/lib/explore/saved";
-import type { Hit } from "../../../src/lib/explore/search";
+import { coverage, HIT_TYPES, tokens, unify, type Hit } from "../../../src/lib/explore/search";
 import { SAMPLE_HITS } from "../../../scripts/lib/explore-hits";
 import { MODES, modeById, dnaRibbon, type DesktopLayout } from "./explore/modesV2";
 
@@ -166,6 +166,39 @@ describe("row hits in the site modes", () => {
     expect(layout.nodes.map((node) => node.id).sort()).toEqual(rows.map((hit) => hit.id).sort());
     expect(layout.nodes.every((node) => node.position.every(Number.isFinite) && /^#[0-9a-f]{6}$/i.test(node.color))).toBe(true);
     expect(layout.links).toHaveLength(2);
+  });
+
+  test("every site mode and every window mode lays out row hits", () => {
+    const ids = new Set(rows.map((hit) => hit.id));
+    const context = { selected: rows[1].id, scroll: 0 };
+    expect(originals).toHaveLength(12);
+    expect(MODES).toHaveLength(12);
+    for (const mode of [...originals, ...MODES]) {
+      for (const hits of [rows, []]) {
+        const layout = mode.layout(hits, context);
+        expect(layout.nodes.every((node) => node.position.every(Number.isFinite) && Number.isFinite(node.size))).toBe(true);
+        const drawn = layout.nodes.filter((node) => ids.has(node.id));
+        expect(new Set(drawn.map((node) => node.id)).size).toBe(drawn.length);
+        const nodes = new Set(layout.nodes.map((node) => node.id));
+        expect(layout.links.every((link) => nodes.has(link.from) && nodes.has(link.to))).toBe(true);
+      }
+    }
+    const drawing = (modes: typeof originals) => modes.filter((mode) => mode.layout(rows, context).nodes.filter((node) => ids.has(node.id)).length === rows.length).map((mode) => mode.id);
+    expect(drawing(originals)).toEqual(["globe", "helix", "graph", "timeline"]);
+    expect(drawing(MODES)).toEqual(["globe", "helix", "graph", "timeline", "map"]);
+  });
+
+  test("the keyword search filters row hits by their titles and keeps them out of the canon type filter", () => {
+    const named = rows.map((hit, i) => ({ ...hit, title: ["Computer and Information Sciences", "Computer and Mathematical Occupations", "Management Occupations"][i] }));
+    const match = (query: string) => named.filter((hit) => coverage(tokens(query), tokens(`${hit.title} ${hit.subtitle}`)) > 0).map((hit) => hit.id);
+    expect(match("computer")).toEqual([named[0].id, named[1].id]);
+    expect(match("management")).toEqual([named[2].id]);
+    expect(match("zebra")).toEqual([]);
+    expect(HIT_TYPES).not.toContain("row");
+    const unified = unify({ query: "computer", excerpts: [], advisors: [], sources: named });
+    expect(unified.every((hit) => hit.type !== "row")).toBe(true);
+    const asked = unify({ query: "computer", excerpts: [], advisors: [], sources: named, types: ["row"] });
+    expect(asked.filter((hit) => hit.type === "row").map((hit) => hit.id).sort()).toEqual(named.map((hit) => hit.id).sort());
   });
 
   test("a row hit has no saved kind", () => {

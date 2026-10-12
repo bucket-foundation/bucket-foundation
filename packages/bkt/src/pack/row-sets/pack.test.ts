@@ -7,7 +7,7 @@ import { findKruse } from "../../../scripts/check-no-kruse";
 import { findStaff, findStaffRowSets } from "../../../scripts/check-no-staff";
 import { assertClean, buildDenylist } from "../rights";
 import { assembleRowSet, checkRows, hitIds, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowKey, rowKeys, rowSetText, SET_BYTES, type RowDraft } from "./contract";
-import { assembleRowSetPack, buildRowSetPack, checkCaps, countryCodes, describeRowSets, fileTables, packBytes, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, type RowSetPack } from "./index";
+import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, countryCodes, describeRowSets, fileTables, packBytes, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
 import { fixtureContext, fixtureDraft } from "./test-fixtures";
 
 const REPO = resolve(import.meta.dir, "../../../../..");
@@ -49,23 +49,23 @@ describe("the public row set pack, built from the tables", () => {
       }
       expect(replies(set.pages)).toHaveLength(set.pages.length);
     }
-    expect(seen).toBe(55);
+    expect(seen).toBe(50);
   });
 
-  test("occupations open as 53 group hits: 22 SOC, 23 O*NET-SOC and 8 census years", () => {
+  test("occupations open as 48 group hits: 22 SOC, 23 O*NET-SOC and 3 census lists", () => {
     const set = setOf("occupations-time");
     const [opening, ...groups] = set.pages;
-    expect(opening.n).toBe(53);
+    expect(opening.n).toBe(48);
     const keys = rowKeys(opening);
     expect(keys.filter((k) => k.startsWith("soc-"))).toHaveLength(22);
     expect(keys.filter((k) => k.startsWith("onet-soc-"))).toHaveLength(23);
-    expect(keys.filter((k) => k.startsWith("census-"))).toEqual(["census-1950", "census-1960", "census-1970", "census-1980", "census-1990", "census-2002", "census-2010", "census-2018"]);
+    expect(keys.filter((k) => k.startsWith("census-"))).toEqual(["census-2002", "census-2010", "census-2018"]);
     expect(opening.frame.drill?.values).toEqual(keys);
-    expect(groups).toHaveLength(53);
-    expect(groups.reduce((sum, p) => sum + p.n, 0)).toBe(3994);
-    expect(set.hits).toBe(3994 + 53);
+    expect(groups).toHaveLength(48);
+    expect(groups.reduce((sum, p) => sum + p.n, 0)).toBe(3296);
+    expect(set.hits).toBe(3296 + 48);
     expect(opening.frame.weight).toEqual(groups.map((p) => p.n));
-    expect(opening.frame.axis).toEqual({ from: 1880, to: 2025, scale: "linear", unit: "year" });
+    expect(opening.frame.axis).toEqual({ from: 1999, to: 2025, scale: "linear", unit: "year" });
     expect(new Set(set.pages.flatMap(hitIds)).size).toBe(set.hits);
   });
 
@@ -76,9 +76,31 @@ describe("the public row set pack, built from the tables", () => {
     expect(rowKeys(largest)[0]).toStartWith("histocc-life-census-2018-");
     expect(pageCount(largest)).toBe(1);
     const bytes = packedBytes(largest);
-    expect(bytes).toBeGreaterThan(96 * 1024);
     expect(bytes).toBeLessThan(REPLY_BYTES);
     expect(Math.max(...replies(set.pages).map(packedBytes))).toBe(bytes);
+  });
+
+  test("no public row cites IPUMS, and no census row carries a value derived from its crosswalks", () => {
+    const pages = pack.sets.flatMap((s) => s.pages);
+    expect(/ipums/i.test(JSON.stringify(pack))).toBe(false);
+    expect(/ipums/i.test(rowSetText(pages))).toBe(false);
+    expect(pages.flatMap((p) => p.sources)).not.toContain("ipums");
+    const [opening, ...groups] = setOf("occupations-time").pages;
+    const census = groups.filter((p) => rowKeys(p)[0].startsWith("histocc-life-census-"));
+    expect(census.map((p) => p.n)).toEqual([10, 85, 570]);
+    for (const page of census) {
+      expect(page.sources).toEqual(["census-occupations"]);
+      expect(page.url.every((u) => u !== null && new URL(u).host === "www2.census.gov")).toBe(true);
+      expect((page.frame.from as number[]).every((y) => y >= 2000)).toBe(true);
+      expect(page.frame.weight).toBeNull();
+      expect(page.year.every((y) => y === null)).toBe(true);
+      expect(page.groups.map((g) => g.id)).toEqual(["listed"]);
+    }
+    rowKeys(opening).forEach((k, i) => k.startsWith("census-") && expect((opening.frame.from as number[])[i]).toBeGreaterThanOrEqual(2000));
+  });
+
+  test("no reply passes 90% of the reply cap and no set passes 90% of the set cap", () => {
+    expect(capWarnings(pack.sets)).toEqual([]);
   });
 
   test("major to career holds 64 hits and 240 weighted links", () => {
@@ -140,6 +162,24 @@ describe("pack assembly", () => {
     expect(() => checkCaps("fixture-set", heavy)).toThrow(/byte set cap/);
   });
 
+  test("a reply past 90% of 128 KB and a set past 90% of 768 KB each raise a warning", () => {
+    expect(WARN_SHARE).toBe(0.9);
+    const near = assembleRowSet([fixtureDraft({ rows: big(600, "t".repeat(170)) })], ctx);
+    const size = packedBytes(near[0]);
+    expect(size).toBeGreaterThan(REPLY_BYTES * 0.9);
+    expect(size).toBeLessThan(REPLY_BYTES);
+    checkCaps("fixture-set", near);
+    expect(capWarnings([{ id: "fixture-set", pages: near }])).toEqual([`fixture-set: a reply of 600 hits and ${size} bytes is past 90% of the 131072 byte reply cap`]);
+    const drill = { param: "group" as const, values: Array.from({ length: 8 }, (_, i) => `k${i}`) };
+    const full = assembleRowSet([fixtureDraft({ drill, rows: big(8, "g") }), ...drill.values.map((v) => fixtureDraft({ drill, rows: big(600, `${v} ${"t".repeat(120)}`).map((r) => ({ ...r, key: `${v}-${r.key}` })) }))], ctx);
+    const bytes = setBytes(full);
+    expect(bytes).toBeGreaterThan(SET_BYTES * 0.9);
+    expect(bytes).toBeLessThan(SET_BYTES);
+    checkCaps("fixture-set", full);
+    expect(capWarnings([{ id: "fixture-set", pages: full }])).toEqual([`fixture-set: ${bytes} bytes is past 90% of the 786432 byte set cap`]);
+    expect(capWarnings([{ id: "fixture-set", pages: assembleRowSet([fixtureDraft()], ctx) }])).toEqual([]);
+  });
+
   test("a denied name in a title fails the pack", () => {
     const named = assembleRowSet([fixtureDraft({ rows: [{ key: "one", title: "Kruse notes", sub: "", group: "a", source: "open" }] })], ctx);
     expect(() => assembleRowSetPack([named], deny, "fixture")).toThrow(/rights: .* denied rows left in the row set pack/);
@@ -178,6 +218,8 @@ describe("the public build checks", () => {
     expect(forged((p) => void delete (p.sets[0].pages[0] as { audience?: string }).audience)).toContain("fixture-set: a page with no public audience");
     expect(forged((p) => void (p.sets[0].pages[0].sources[0] = "k12-restricted"))).toContain("fixture-set: source k12-restricted is restricted");
     expect(forged((p) => void (p.sets[0].pages[0].title[0] = "write to someone@example.org"))).toContain("fixture-set: an email address");
+    expect(forged((p) => void (p.sets[0].pages[0].url[0] = "https://usa.ipums.org/usa/resources/chapter4/occ_90-00.xls"))).toContain("fixture-set: a row that cites IPUMS");
+    expect(forged((p) => void (p.sets[0].pages[0].sources[0] = "ipums"))).toContain("fixture-set: source ipums is restricted");
   });
 
   test("a marker split across the id prefix and a key is still found", () => {
@@ -222,6 +264,7 @@ describe("hit keys of the staff course table", () => {
       rows++;
       keys.add(rowKey(String(row.id)));
     }
-    expect([rows, keys.size]).toEqual([3994, 3994]);
+    expect(keys.size).toBe(rows);
+    expect([3296, 3994]).toContain(rows);
   });
 });

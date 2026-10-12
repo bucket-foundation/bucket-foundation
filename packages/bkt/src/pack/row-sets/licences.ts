@@ -58,12 +58,20 @@ export const REGISTRY: LicenceEntry[] = [
     },
   },
   {
+    id: "ipums",
+    match: { host: ["usa.ipums.org"] },
+    licence: RESTRICTED,
+    share_alike: false,
+    public: "none",
+    attribution: { source: "IPUMS USA crosswalks and harmonised variables", url: "", notice: "" },
+  },
+  {
     id: "census-occupations",
     match: { scheme: ["census-1950", "census-1960", "census-1970", "census-1980", "census-1990", "census-2002", "census-2010", "census-2018"] },
     licence: FEDERAL,
     share_alike: false,
     public: "rows",
-    attribution: { source: "Census occupation classification, US Census Bureau", url: "https://www.census.gov/topics/employment/industry-occupation/guidance/code-lists.html", notice: "Occupation titles, codes and years of the US Census Bureau lists. The crosswalk files for 1950 to 1990 were read from IPUMS USA." },
+    attribution: { source: "Census occupation classification, US Census Bureau", url: "https://www.census.gov/topics/employment/industry-occupation/guidance/code-lists.html", notice: "Occupation titles and codes from the code lists the US Census Bureau publishes for 2002, 2010 and 2018." },
   },
   {
     id: "atus",

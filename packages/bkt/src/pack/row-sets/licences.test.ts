@@ -63,6 +63,10 @@ describe("the licence registry", () => {
     expect(publicSource("courses", { id: "x", source_url: "https://catalog.example.edu/course" })).toBeNull();
     expect(publicSource("activities", { scheme: "OCM", source_url: "https://hraf.yale.edu/ocm.pdf" })).toBeNull();
     expect(publicSource("activities", { scheme: "ICATUS 2016" })).toBeNull();
+    expect(resolveSource("occupation_history", { scheme: "census-1990", source_url: "https://usa.ipums.org/usa/resources/chapter4/occ_90-00.xls" })).toBe("ipums");
+    expect(publicSource("occupation_history", { scheme: "census-1990", source_url: "https://usa.ipums.org/usa/resources/chapter4/occ_90-00.xls" })).toBeNull();
+    expect(publicSource("occupation_history", { scheme: "soc", source_url: "https://USA.IPUMS.ORG/x" })).toBeNull();
+    expect(publicSource("occupation_history", { scheme: "census-2018", source_url: "https://www2.census.gov/list.xlsx" })).toBe("census-occupations");
     expect(publicSource("activities", { scheme: "ATUS lexicon 2003-2023" })).toBe("atus");
   });
 
@@ -110,7 +114,9 @@ describe("the source tables", () => {
     const ids = new Set([...REGISTRY.map((e) => e.id), UNKNOWN]);
     expect(Object.keys(bySource)).toEqual(["activities", "assessments", "backbone_codes", "books", "cip_soc_crosswalk", "courses", "cycles", "edges", "frameworks", "occupation_history", "programs", "progression", "resources", "soc_isco_crosswalk", "technologies"]);
     for (const counts of Object.values(bySource)) for (const id of Object.keys(counts)) expect(ids.has(id)).toBe(true);
-    expect(bySource.occupation_history).toEqual({ soc2018: 1020, onet: 1611, "census-occupations": 1363 });
+    const { ipums = 0, ...cleared } = bySource.occupation_history;
+    expect(cleared).toEqual({ soc2018: 1020, onet: 1611, "census-occupations": 665 });
+    expect([0, 698]).toContain(ipums);
     expect(bySource.cip_soc_crosswalk).toEqual({ cip2020: 5723 });
     expect(bySource.backbone_codes).toEqual({ cip2020: 2848, soc2018: 1447, onet: 1016 });
     expect(bySource.courses).toEqual({ [UNKNOWN]: 25908 });
