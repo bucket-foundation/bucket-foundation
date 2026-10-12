@@ -8,7 +8,7 @@ import { FILTER_WAIT_MS, Pager, SortHead } from "./Data";
 import { Lesson } from "./Lesson";
 import "../research.css";
 
-export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "researchPage" | "researchChanges" | "researchSource" | "researchSave" | "researchRevert" | "researchExport" | "image" | "openLink">;
+export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "researchPage" | "researchChanges" | "researchSource" | "researchSave" | "researchRevert" | "researchExport" | "researchNew" | "researchUpload" | "image" | "openLink">;
 
 type Loaded<T> = { status: "loading" } | { status: "ready"; data: T } | { status: "error"; error: string };
 
@@ -98,6 +98,106 @@ export function figureItems(d: ResearchDetail): FigureItem[] {
   });
 }
 
+export const KIND_LABELS: Record<string, string> = { memo: "Memo", brief: "Brief", paper: "Paper", "dataset-report": "Dataset report" };
+export const ROLE_LABELS: Record<string, string> = { report: "Report text", figure: "Figure", data: "Data table", paper: "Paper" };
+export const UPLOAD_MAX_BYTES = 16 * 1024 * 1024;
+
+export function shortName(title: string): string {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 64)
+    .replace(/-+$/, "");
+}
+
+function NewOutput({ api }: { api: ResearchApi }) {
+  const [title, setTitle] = useState("");
+  const [slug, setSlug] = useState<string | null>(null);
+  const [kind, setKind] = useState("memo");
+  const [failed, setFailed] = useState<string | null>(null);
+  const name = slug ?? shortName(title);
+  const create = () => {
+    setFailed(null);
+    void api.researchNew({ title: title.trim(), slug: name, kind }).then(
+      (made) => (window.location.hash = href({ name: "research", slug: made.slug, tab: "report" })),
+      (e: Error) => setFailed(e.message),
+    );
+  };
+  return (
+    <div className="panel research-new">
+      <h2>New output</h2>
+      <label>
+        Title
+        <input type="text" value={title} maxLength={500} onChange={(e) => setTitle(e.target.value)} />
+      </label>
+      <label>
+        Short name
+        <input type="text" value={name} maxLength={64} onChange={(e) => setSlug(e.target.value)} />
+      </label>
+      <label>
+        Kind
+        <select value={kind} onChange={(e) => setKind(e.target.value)}>
+          {Object.entries(KIND_LABELS).map(([id, label]) => (
+            <option key={id} value={id}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </label>
+      <button type="button" className="primary" disabled={title.trim() === "" || name === ""} onClick={create}>
+        Create the output
+      </button>
+      {failed && (
+        <p className="banner" role="alert">
+          {failed}
+        </p>
+      )}
+      <p className="muted">It starts as a draft that stays on this computer.</p>
+    </div>
+  );
+}
+
+function AddFile({ api, slug, onAdded }: { api: ResearchApi; slug: string; onAdded: () => void }) {
+  const [role, setRole] = useState("figure");
+  const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
+  const add = (file: File | undefined) => {
+    if (!file) return;
+    if (file.size > UPLOAD_MAX_BYTES) return setNote({ ok: false, text: "That file is over 16 MB." });
+    setNote(null);
+    void api.researchUpload(slug, role, file.name, file).then(
+      () => {
+        setNote({ ok: true, text: `Added ${file.name}.` });
+        onAdded();
+      },
+      (e: Error) => setNote({ ok: false, text: e.message }),
+    );
+  };
+  return (
+    <div className="research-add">
+      <h2>Add a file</h2>
+      <div className="toolbar">
+        <select value={role} onChange={(e) => setRole(e.target.value)} aria-label="What the file is">
+          {Object.entries(ROLE_LABELS).map(([id, label]) => (
+            <option key={id} value={id}>
+              {label}
+            </option>
+          ))}
+        </select>
+        <label className="file">
+          <input type="file" onChange={(e) => (add(e.target.files?.[0]), (e.target.value = ""))} />
+          <span>Choose a file</span>
+        </label>
+      </div>
+      {note && (
+        <p className={note.ok ? "muted" : "banner"} role={note.ok ? "status" : "alert"}>
+          {note.text}
+        </p>
+      )}
+    </div>
+  );
+}
+
 function List({ api }: { api: ResearchApi }) {
   const state = useLoaded(() => api.researchList(), [api]);
   return (
@@ -109,6 +209,7 @@ function List({ api }: { api: ResearchApi }) {
       {state.status === "loading" && <p className="muted">Loading…</p>}
       {state.status === "error" && <p className="error">{state.error}</p>}
       {state.status === "ready" && state.data.outputs.length === 0 && <p className="muted">This build holds no research outputs.</p>}
+      {state.status !== "loading" && <NewOutput api={api} />}
       {state.status === "ready" && state.data.outputs.length > 0 && (
         <div className="panel">
           <table className="research-list">
@@ -265,7 +366,7 @@ function ReportText({ api, d, path }: { api: ResearchApi; d: ResearchDetail; pat
   );
 }
 
-function Report({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+function Report({ api, d, onAdded }: { api: ResearchApi; d: ResearchDetail; onAdded: () => void }) {
   const m = d.manifest;
   const listed = new Set(d.files.map((f) => f.path));
   const paragraphs = m.abstract_paragraphs ?? (m.abstract ? [m.abstract] : []);
@@ -274,6 +375,7 @@ function Report({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   return (
     <div className="panel research-report">
       <p className="muted">{m.authors.join(", ")}</p>
+      {d.origin === "local" && <AddFile api={api} slug={d.slug} onAdded={onAdded} />}
       {paragraphs.map((p, i) => (
         <p key={i}>{p}</p>
       ))}
@@ -904,7 +1006,16 @@ function Changes({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
       <div className="panel">
         <h2>Changed files</h2>
         {last.changes.length === 0 ? (
-          <p className="muted">{NO_CHANGES}</p>
+          <>
+            <p className="muted">{NO_CHANGES}</p>
+            {d.origin === "local" && (
+              <div className="toolbar">
+                <button type="button" className="primary" onClick={() => act(() => api.researchExport(d.slug).then(setExported))}>
+                  Export this output
+                </button>
+              </div>
+            )}
+          </>
         ) : (
           <>
             <ul className="change-list">
@@ -956,8 +1067,13 @@ function Changes({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
 }
 
 function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: ResearchTab }) {
-  const state = useLoaded(() => api.researchManifest(slug), [api, slug]);
-  if (state.status === "loading") return <p className="muted">Loading…</p>;
+  const [adds, setAdds] = useState(0);
+  const state = useLoaded(() => api.researchManifest(slug), [api, slug, adds]);
+  const [held, setHeld] = useState<ResearchDetail | null>(null);
+  useEffect(() => {
+    if (state.status === "ready") setHeld(state.data);
+  }, [state]);
+  if (state.status === "loading" && !held) return <p className="muted">Loading…</p>;
   if (state.status === "error")
     return (
       <section>
@@ -967,7 +1083,7 @@ function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: Resea
         </a>
       </section>
     );
-  const d = state.data;
+  const d = state.status === "ready" ? state.data : (held as ResearchDetail);
   return (
     <section>
       <header className="head">
@@ -1004,7 +1120,7 @@ function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: Resea
       ) : tab === "records" && tabsFor(d).includes("records") ? (
         <Records api={api} d={d} />
       ) : (
-        <Report api={api} d={d} />
+        <Report api={api} d={d} onAdded={() => setAdds((n) => n + 1)} />
       )}
     </section>
   );

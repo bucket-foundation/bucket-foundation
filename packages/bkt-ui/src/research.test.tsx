@@ -206,6 +206,8 @@ function fakeApi(over: Partial<ResearchApi> = {}): ResearchApi & { images: strin
     opened,
     pagesAsked,
     ...workCopy({}).api,
+    researchNew: async (input) => ({ slug: input.slug }),
+    researchUpload: async (slug, _role, name) => ({ slug, path: `reports/${slug}/figures/${name}` }),
     researchSource: async (_slug, path) => ({ text: path.endsWith(".tex") ? TEX : path.endsWith("riemann.json") ? JSON.stringify(RIEMANN, null, 1) : "id,title\n1,One\n", rev: "rev-shipped" }),
     openLink: async (url) => (opened.push(url), { opened: url }),
     researchPage: async (_slug, n) => (pagesAsked.push(n), NO_TOOL),
@@ -812,6 +814,142 @@ describe("research changes tab", () => {
     const down = await view(fakeApi({ researchChanges: async () => Promise.reject(new Error("Bucket could not read the changes.")) }), "solvability-frontier", "changes");
     expect(down.host.querySelector(".error")!.textContent).toBe("Bucket could not read the changes.");
     await down.unmount();
+  });
+});
+
+describe("own outputs in the window", () => {
+  const press = (host: Element, label: string) => Array.from(host.querySelectorAll("button")).find((b) => b.textContent?.trim() === label);
+  const OWN: ResearchDetail = {
+    slug: "renders",
+    origin: "local",
+    staff: false,
+    withheld: 0,
+    unreadable: null,
+    files: [file("reports/renders/REPORT.md", "source", 40), file("reports/renders/01-helix.png", "asset", 41), file("reports/renders/02-sphere.png", "asset", 42), file("reports/renders/03-network.png", "asset", 43), file("reports/renders/01-helix.pdf", "file", 44)],
+    manifest: {
+      schema: "bucket.report/2",
+      slug: "renders",
+      title: "Twelve renders",
+      authors: ["Ada Lovelace"],
+      date: "2026-10-12",
+      status: "draft",
+      kind: "memo",
+      source_path: "reports/renders/REPORT.md",
+      source_hash: "d".repeat(64),
+      assets: [
+        { id: "01-helix", path: "reports/renders/01-helix.png", caption: "01 helix", licence: "CC-BY-4.0", audience: "staff", source: "reports/renders/01-helix.pdf" },
+        { id: "02-sphere", path: "reports/renders/02-sphere.png", caption: "02 sphere", licence: "CC-BY-4.0", audience: "staff" },
+        { id: "03-network", path: "reports/renders/03-network.png", caption: "03 network", licence: "CC-BY-4.0", audience: "staff" },
+      ],
+      tables: [],
+    },
+  };
+
+  async function fill(v: Awaited<ReturnType<typeof mount>>, label: string, value: string) {
+    const { act } = await import("react");
+    const input = Array.from(v.host.querySelectorAll(".research-new label")).find((l) => l.textContent?.startsWith(label))!.querySelector("input, select") as HTMLInputElement;
+    const proto = input.tagName === "SELECT" ? window.HTMLSelectElement.prototype : window.HTMLInputElement.prototype;
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(proto, "value")!.set!.call(input, value);
+      input.dispatchEvent(new window.Event(input.tagName === "SELECT" ? "change" : "input", { bubbles: true }));
+    });
+    await v.settle();
+    return input;
+  }
+
+  test("New output takes a title, a short name and a kind, and opens the new draft", async () => {
+    const { shortName } = await import("./views/Research");
+    expect(shortName("  My First Output: Notes & Figures!  ")).toBe("my-first-output-notes-figures");
+    expect(shortName("Größe ∑ 12")).toBe("gr-e-12");
+    expect(shortName("x".repeat(80)).length).toBe(64);
+    expect(shortName("???")).toBe("");
+    const made: { title: string; slug: string; kind: string }[] = [];
+    const v = await view(fakeApi({ researchNew: async (input) => (made.push(input), { slug: input.slug }) }));
+    expect(v.host.querySelector(".research-new h2")!.textContent).toBe("New output");
+    expect((press(v.host, "Create the output") as HTMLButtonElement).disabled).toBe(true);
+    await fill(v, "Title", "Twelve Renders");
+    expect((Array.from(v.host.querySelectorAll(".research-new input"))[1] as HTMLInputElement).value).toBe("twelve-renders");
+    expect(Array.from(v.host.querySelectorAll(".research-new option")).map((o) => o.textContent)).toEqual(["Memo", "Brief", "Paper", "Dataset report"]);
+    await fill(v, "Kind", "dataset-report");
+    await v.click(press(v.host, "Create the output"));
+    expect(made).toEqual([{ title: "Twelve Renders", slug: "twelve-renders", kind: "dataset-report" }]);
+    expect(window.location.hash).toBe("#/research/twelve-renders/report");
+    await fill(v, "Short name", "renders");
+    await v.click(press(v.host, "Create the output"));
+    expect(made.at(-1)!.slug).toBe("renders");
+    expect(v.host.querySelectorAll('.research-new input[type="file"]').length).toBe(0);
+    await v.unmount();
+    const refusing = await view(fakeApi({ researchNew: async () => Promise.reject(new Error("An output already has that short name.")) }));
+    await fill(refusing, "Title", "Taken");
+    await refusing.click(press(refusing.host, "Create the output"));
+    expect(refusing.host.querySelector('.research-new [role="alert"]')!.textContent).toBe("An output already has that short name.");
+    await refusing.unmount();
+    const empty = await view(fakeApi({ researchList: async () => ({ outputs: [] }) }));
+    expect(empty.host.querySelector(".research-new")).not.toBeNull();
+    await empty.unmount();
+  });
+
+  test("an own output shows the same tabs, its three figures, and an export with nothing changed", async () => {
+    const api = fakeApi({ researchManifest: async () => OWN });
+    const report = await view(api, "renders");
+    expect(Array.from(report.host.querySelectorAll(".seg button")).map((b) => b.textContent)).toEqual(["Report", "Data", "Figures", "Records", "Changes"]);
+    expect(Array.from(report.host.querySelectorAll(".research-meta .tag")).map((t) => t.textContent)).toEqual(["memo", "draft", "2026-10-12", "Local"]);
+    expect(report.host.querySelector(".research-add h2")!.textContent).toBe("Add a file");
+    await report.unmount();
+    const figures = await view(api, "renders", "figures");
+    expect(Array.from(figures.host.querySelectorAll(".research-figure img")).map((i) => [i.getAttribute("src"), i.getAttribute("alt")])).toEqual([[DATA_URL, "01 helix"], [DATA_URL, "02 sphere"], [DATA_URL, "03 network"]]);
+    expect(api.images).toEqual(["reports/renders/01-helix.png", "reports/renders/02-sphere.png", "reports/renders/03-network.png"]);
+    await figures.unmount();
+    const changes = await view(api, "renders", "changes");
+    await changes.click(press(changes.host, "Export this output"));
+    expect(changes.host.querySelector(".research-export .hash")!.textContent).toContain("/research/exports/");
+    await changes.unmount();
+    const shipped = await view(fakeApi(), "solvability-frontier");
+    expect(shipped.host.querySelector(".research-add")).toBeNull();
+    await shipped.unmount();
+    const shippedChanges = await view(fakeApi(), "solvability-frontier", "changes");
+    expect(press(shippedChanges.host, "Export this output")).toBeUndefined();
+    await shippedChanges.unmount();
+  });
+
+  test("Add a file sends the file with its role and reloads the output; a file over 16 MB stays out", async () => {
+    const sent: [string, string, string, number][] = [];
+    let loads = 0;
+    const api = fakeApi({ researchManifest: async () => (loads++, OWN), researchUpload: async (slug, role, name, blob) => (sent.push([slug, role, name, blob.size]), { slug, path: `reports/${slug}/data/${name}` }) });
+    const v = await view(api, "renders");
+    const { act } = await import("react");
+    expect(Array.from(v.host.querySelectorAll(".research-add option")).map((o) => o.textContent)).toEqual(["Report text", "Figure", "Data table", "Paper"]);
+    const pick = async (f: File) => {
+      const input = v.host.querySelector('.research-add input[type="file"]') as HTMLInputElement;
+      Object.defineProperty(input, "files", { configurable: true, value: [f] });
+      await act(async () => input.dispatchEvent(new window.Event("change", { bubbles: true })));
+      await v.settle();
+    };
+    const before = loads;
+    await pick(new window.File(["id,title\n1,One\n"], "rows.csv") as unknown as File);
+    expect(sent).toEqual([["renders", "figure", "rows.csv", 15]]);
+    expect(v.host.querySelector('.research-add [role="status"]')!.textContent).toBe("Added rows.csv.");
+    expect(loads).toBeGreaterThan(before);
+    const select = v.host.querySelector(".research-add select") as HTMLSelectElement;
+    await act(async () => {
+      Object.getOwnPropertyDescriptor(window.HTMLSelectElement.prototype, "value")!.set!.call(select, "data");
+      select.dispatchEvent(new window.Event("change", { bubbles: true }));
+    });
+    await pick(new window.File(["x"], "more.csv") as unknown as File);
+    expect(sent.at(-1)!.slice(0, 3)).toEqual(["renders", "data", "more.csv"]);
+    const big = new window.File(["x"], "big.png") as unknown as File;
+    Object.defineProperty(big, "size", { value: 16 * 1024 * 1024 + 1 });
+    await pick(big);
+    expect(sent.length).toBe(2);
+    expect(v.host.querySelector('.research-add [role="alert"]')!.textContent).toBe("That file is over 16 MB.");
+    await v.unmount();
+    const refusing = await view(fakeApi({ researchManifest: async () => OWN, researchUpload: async () => Promise.reject(new Error("Bucket does not take that kind of file.")) }), "renders");
+    const input = refusing.host.querySelector('.research-add input[type="file"]') as HTMLInputElement;
+    Object.defineProperty(input, "files", { configurable: true, value: [new window.File(["x"], "a.gif")] });
+    await act(async () => input.dispatchEvent(new window.Event("change", { bubbles: true })));
+    await refusing.settle();
+    expect(refusing.host.querySelector('.research-add [role="alert"]')!.textContent).toBe("Bucket does not take that kind of file.");
+    await refusing.unmount();
   });
 });
 
