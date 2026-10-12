@@ -50,6 +50,7 @@ const KIND: Record<HitType, string> = {
   talk: "Talk",
   "canon-file": "Canon file",
   you: "Your document",
+  row: "Data row",
 };
 
 function kindLine(h: Hit): string {
