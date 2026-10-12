@@ -1,11 +1,11 @@
 import { afterAll, afterEach, describe, expect, test } from "bun:test";
-import { cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, symlinkSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, statSync, symlinkSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { addLines, researchAdd } from "../src/cli/research";
 import { RESEARCH_SCHEMA, sha256, type ReportRecord, type ResearchIndex } from "../src/pack/research";
 import { Research, ResearchError, researchRoutes } from "../src/research";
-import { KINDS, LocalOutputs, NOT_STATED, ResearchWork, researchWorkRoutes, ROLES, UPLOAD_BODY_BYTES, UPLOAD_BYTES, UPLOAD_EXTS } from "../src/research-work";
+import { FOLDER_CAP, FOLDER_DEPTH, KINDS, LocalOutputs, NOT_STATED, ResearchWork, researchWorkRoutes, ROLES, UPLOAD_BODY_BYTES, UPLOAD_BYTES, UPLOAD_EXTS } from "../src/research-work";
 import { startServe, type Serve } from "../src/serve";
 
 const REPO = resolve(import.meta.dir, "../../..");
@@ -100,6 +100,7 @@ describe("own outputs", () => {
     expect((await research.read("my-first-output", "reports/my-first-output/REPORT.md")).bytes.toString("utf8")).toBe("# My first output\n");
     await expect(research.read("my-first-output", "reports/my-first-output/report.json")).rejects.toThrow("the output does not list that file");
     expect(local.buildsOn("my-first-output")).toBe(true);
+    expect(JSON.parse(readFileSync(join(home, "research/local-state.json"), "utf8"))).toEqual({ "my-first-output": { builds: true, origin: "new" } });
   });
 
   test("upload type and size refusals", () => {
@@ -232,6 +233,60 @@ describe("bkt research add", () => {
     const repo = fixtureRepo();
     cpSync(join(out.dir, "reports"), join(repo, "reports"), { recursive: true });
     expect(check(repo)).toEqual({ code: 0, out: "ok   renders\n" });
+  });
+
+  test("builds stay off when the state is missing, unreadable, or the add stops between its two steps", () => {
+    const dir = folder({ "report.json": JSON.stringify({ slug: "renders", title: "Renders" }), "a.png": PNG });
+    const first = setup();
+    researchAdd(dir, first.home, []);
+    const state = join(first.home, "research/local-state.json");
+    expect(first.local.buildsOn("renders")).toBe(false);
+    rmSync(state);
+    expect(first.local.buildsOn("renders")).toBe(false);
+    expect(first.research.detail("renders").origin).toBe("local");
+    writeFileSync(state, "{broken");
+    expect(first.local.buildsOn("renders")).toBe(false);
+    writeFileSync(state, JSON.stringify({ renders: { builds: "yes" }, other: { builds: true } }));
+    expect([first.local.buildsOn("renders"), first.local.buildsOn("other"), first.local.buildsOn("never-seen")]).toEqual([false, true, false]);
+    rmSync(state);
+    symlinkSync(join(first.home, "research/elsewhere.json"), state);
+    writeFileSync(join(first.home, "research/elsewhere.json"), JSON.stringify({ renders: { builds: true } }));
+    expect(first.local.buildsOn("renders")).toBe(false);
+
+    const home = temp("home");
+    const crashing = new LocalOutputs(home, {
+      rename: () => {
+        throw new Error("power lost");
+      },
+    });
+    expect(() => crashing.addFolder(dir)).toThrow("power lost");
+    expect(JSON.parse(readFileSync(join(home, "research/local-state.json"), "utf8"))).toEqual({ renders: { builds: false, origin: "added" } });
+    expect(existsSync(join(home, "research/local/renders"))).toBe(false);
+    expect(readdirSync(join(home, "research/local"))).toEqual([]);
+    const after = new LocalOutputs(home);
+    expect(after.buildsOn("renders")).toBe(false);
+    expect(after.addFolder(dir).builds).toBe(false);
+    expect(after.buildsOn("renders")).toBe(false);
+    after.create({ title: "Made here", slug: "made-here", kind: "memo" });
+    expect([after.buildsOn("made-here"), after.buildsOn("renders")]).toEqual([true, false]);
+  });
+
+  test("the list notices a record rewritten with the same size and time, and a folder too deep or with too many folders is refused", () => {
+    const { local, home, research } = setup();
+    local.create({ title: "Alpha", slug: "alpha", kind: "memo" });
+    const file = join(home, "research/local/alpha/report.json");
+    const before = local.signature();
+    const stat = statSync(file);
+    writeFileSync(file, readFileSync(file, "utf8").replace('"title":"Alpha"', '"title":"Omega"'));
+    utimesSync(file, stat.atime, stat.mtime);
+    expect(statSync(file).size).toBe(stat.size);
+    expect(local.signature()).not.toBe(before);
+    expect(research.detail("alpha").manifest.title).toBe("Omega");
+    expect(refused(() => researchAdd(folder({ "report.json": JSON.stringify({ slug: "deep", title: "Deep" }), "a/b/c/d/e/f/g.png": PNG }), home, []))).toEqual([400, "a/b/c/d/e/f sits deeper than 5 folders"]);
+    expect(researchAdd(folder({ "report.json": JSON.stringify({ slug: "level", title: "Level" }), "a/b/c/d/e/f.png": PNG }), home, []).figures).toBe(1);
+    const many = Object.fromEntries(Array.from({ length: FOLDER_CAP + 1 }, (_, i) => [`d${i}/a.png`, PNG]));
+    expect(refused(() => researchAdd(folder({ "report.json": JSON.stringify({ slug: "wide", title: "Wide" }), ...many }), home, []))).toEqual([413, "the folder holds over 200 folders"]);
+    expect([FOLDER_CAP, FOLDER_DEPTH]).toEqual([200, 5]);
   });
 
   test("bkt research add refuses a symlink inside the folder", () => {

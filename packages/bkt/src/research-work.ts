@@ -527,7 +527,11 @@ export interface LocalOptions {
   taken?: (slug: string) => boolean;
   now?: () => number;
   caps?: { files: number; bytes: number };
+  rename?: (from: string, to: string) => void;
 }
+
+export const FOLDER_CAP = 200;
+export const FOLDER_DEPTH = 5;
 
 export class LocalOutputs {
   private root: string;
@@ -569,8 +573,9 @@ export class LocalOutputs {
     return this.slugs()
       .map((slug) => {
         try {
-          const stat = lstatSync(join(this.dir(slug), "report.json"));
-          return `${slug}:${stat.mtimeMs}:${stat.size}`;
+          const file = join(this.dir(slug), "report.json");
+          if (!lstatSync(file).isFile()) return `${slug}:none`;
+          return `${slug}:${sha256(readFileSync(file))}`;
         } catch {
           return `${slug}:none`;
         }
@@ -660,6 +665,7 @@ export class LocalOutputs {
     const author = typeof input.author === "string" && input.author.trim() ? input.author.trim().slice(0, 200) : "Author not set";
     if (this.o.taken?.(slug) || lstatExists(this.dir(slug))) throw new ResearchError("an output already has that short name", 409);
     this.ensureRoot();
+    this.setState(slug, { builds: true, origin: "new" });
     mkdirSync(this.dir(slug), { mode: 0o700 });
     const source = Buffer.from(`# ${title}\n`);
     writeAtomic(join(this.dir(slug), "REPORT.md"), source);
@@ -739,9 +745,12 @@ export class LocalOutputs {
     }
   }
 
+  private setState(slug: string, state: { builds: boolean; origin: string }): void {
+    writeAtomic(this.statePath(), Buffer.from(canonical({ ...this.states(), [slug]: state })));
+  }
+
   buildsOn(slug: string): boolean {
-    const state = this.states()[slug];
-    return state ? state.builds : true;
+    return this.states()[slug]?.builds === true;
   }
 
   addFolder(folder: string): Added {
@@ -755,12 +764,16 @@ export class LocalOutputs {
     const caps = this.o.caps ?? { files: WORK_FILES, bytes: WORK_BYTES };
     const found: { rel: string; bytes: Buffer }[] = [];
     let total = 0;
+    let folders = 0;
     const walk = (rel: string) => {
+      if (rel !== "" && rel.split("/").length > FOLDER_DEPTH) throw new ResearchError(`${rel} sits deeper than ${FOLDER_DEPTH} folders`, 400);
       for (const entry of readdirSync(join(folder, rel), { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1))) {
         const path = rel ? `${rel}/${entry.name}` : entry.name;
         if (entry.isSymbolicLink()) throw new ResearchError(`${path} is a symlink, so the folder is refused`, 403);
         if (entry.isDirectory()) {
           if (!FILE_NAME.test(entry.name)) throw new ResearchError(`the folder name ${path} is refused`, 400);
+          folders += 1;
+          if (folders > FOLDER_CAP) throw new ResearchError(`the folder holds over ${FOLDER_CAP} folders`, 413);
           walk(path);
           continue;
         }
@@ -854,8 +867,8 @@ export class LocalOutputs {
         manifest.pdf_hash = sha256(paper.bytes);
       }
       writeAtomic(join(tmp, "report.json"), Buffer.from(`${canonical(manifest)}\n`));
-      renameSync(tmp, this.dir(slug));
-      writeAtomic(this.statePath(), Buffer.from(canonical({ ...this.states(), [slug]: { builds: false, origin: "added" } })));
+      this.setState(slug, { builds: false, origin: "added" });
+      (this.o.rename ?? renameSync)(tmp, this.dir(slug));
       return { slug, files: files.length, figures: manifest.assets.length, tables: manifest.tables.length, builds: false };
     } catch (e) {
       rmSync(tmp, { recursive: true, force: true });
