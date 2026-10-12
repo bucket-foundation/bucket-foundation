@@ -34,7 +34,7 @@ def engine_home(create: bool = True) -> Path:
         home.mkdir(parents=True, exist_ok=True)
         os.chmod(home, 0o700)
     elif not home.is_dir():
-        raise EngineError("no engine directory yet, run build first")
+        raise EngineError(f"no engine directory at {home}. The founder creates it at mode 0700 with {ACK_FILE} inside, see the README")
     return home
 
 
@@ -57,6 +57,24 @@ def write_private(home: Path, target: Path, data: bytes, append: bool = False) -
         f.write(data)
     os.chmod(t, 0o600)
     return t
+
+
+ACK_FILE = "founder-acknowledgement.txt"
+ACK_DOCUMENTS = "docs/advisors"
+ACK_LINES = (
+    "I have read the slice 0 documents in docs/advisors.",
+    "This tool is for my own use on this machine.",
+)
+
+
+def require_acknowledgement(home: Path) -> None:
+    p = home / ACK_FILE
+    text = " ".join(p.read_text(encoding="utf-8", errors="replace").split()) if p.is_file() else ""
+    if not all(line in text for line in ACK_LINES):
+        raise EngineError(
+            f"the founder has not acknowledged the governance drafts. Read every document in {ACK_DOCUMENTS}, "
+            f"then create {p} yourself holding these two lines: {' '.join(ACK_LINES)} This tool never writes that file."
+        )
 
 
 def free_guard(home: Path) -> None:

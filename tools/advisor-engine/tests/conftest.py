@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from advisor_engine import build as build_mod  # noqa: E402
-from advisor_engine.paths import norm_name  # noqa: E402
+from advisor_engine.paths import ACK_FILE, ACK_LINES, norm_name  # noqa: E402
 
 GIVEN = ["Avel", "Brisa", "Corin", "Dessa", "Eldan", "Fira", "Galen", "Hesta", "Ivor", "Junia", "Kell", "Lorna", "Mavis", "Nolan", "Orla", "Pryce"]
 FAMILY = ["Quillfeather", "Rookwood", "Stonebarrow", "Thistledown", "Umberfield", "Vandermoor", "Wexcombe", "Yarrowby", "Zephyrine", "Ashgrove",
@@ -92,6 +92,10 @@ class Maker:
         )
 
 
+def acknowledge(home: Path) -> None:
+    (home / ACK_FILE).write_text("\n".join(ACK_LINES) + "\n")
+
+
 def make_world(root: Path) -> World:
     w = World(root)
     w.store_path.parent.mkdir(parents=True)
@@ -148,6 +152,7 @@ def make_world(root: Path) -> World:
     })
     pq.write_table(table, w.wide / "country=XA" / "part-0.parquet")
     w.home.mkdir(mode=0o700)
+    acknowledge(w.home)
     ro = w.ro()
     build_mod.build(ro, w.home, w.wide, log=lambda _: None)
     ro.close()

@@ -828,15 +828,24 @@ describe("people workspace", () => {
     await w.unmount();
   });
 
-  test("a tested ranking and a file with no order status keep rank and percentile", async () => {
+  test("a tested ranking keeps rank and percentile, and a file with no order status counts as untested", async () => {
+    const { UNTESTED_ORDER } = await import("./views/Advisors");
     const tested = { ...person(1, "Ada Example", "Invented Institute"), fields: { institution: "Invented Institute", order_status: "tested" } };
-    for (const rows of [[tested], REVIEW.rows]) {
-      const v = await workspace(peopleApi({ ...REVIEW, rows }).api, "people");
-      expect(v.host.querySelector(".people .rank")!.textContent).toBe("1");
-      expect(v.host.querySelector(".people .score")!.textContent).toBe("98th");
-      expect(v.host.querySelector(".person .tag")!.textContent).toBe("rank 1");
-      expect(v.host.textContent).toContain("people ranked against your statement");
-      await v.unmount();
+    const v = await workspace(peopleApi({ ...REVIEW, rows: [tested] }).api, "people");
+    expect(v.host.querySelector(".people .rank")!.textContent).toBe("1");
+    expect(v.host.querySelector(".people .score")!.textContent).toBe("98th");
+    expect(v.host.querySelector(".person .tag")!.textContent).toBe("rank 1");
+    expect(v.host.textContent).toContain("people ranked against your statement");
+    await v.unmount();
+    for (const order_status of [undefined, "ranked", 1]) {
+      const row = { ...person(1, "Ada Example", "Invented Institute"), fields: { institution: "Invented Institute", ...(order_status === undefined ? {} : { order_status }) } };
+      const w = await workspace(peopleApi({ ...REVIEW, rows: [row] }).api, "people");
+      expect(w.host.textContent).toContain(`${UNTESTED_ORDER}. 1 people.`);
+      expect(w.host.querySelector(".people .rank")).toBeNull();
+      expect(w.host.querySelector(".people .score")).toBeNull();
+      expect(w.host.querySelector(".person .tag")).toBeNull();
+      expect(w.host.textContent).not.toMatch(/ranked against|rank \d|\dth\b/);
+      await w.unmount();
     }
   });
 
@@ -887,7 +896,7 @@ describe("people workspace", () => {
     await empty.unmount();
     const full = await mount(<AdvisorsView api={peopleApi(REVIEW).api} embedded />);
     expect(full.host.querySelector("h1")).toBeNull();
-    expect(full.host.textContent).toContain("2 people ranked against your statement");
+    expect(full.host.textContent).toContain("Untested order. 2 people.");
     expect(format.test(full.host.textContent ?? "")).toBe(false);
     await full.unmount();
   });

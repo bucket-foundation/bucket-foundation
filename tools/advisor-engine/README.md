@@ -9,6 +9,17 @@ A founder-only command over the private contact store. It takes a field, topics 
 - The engine database holds ids, topics, counts and keyed hashes. It holds no name and no address. Names are read from the store when a result is shown.
 - Tests run on a synthetic store of invented people that `tests/conftest.py` generates.
 
+## Founder Acknowledgement
+
+The governance drafts in `docs/advisors/` are unsigned. Every command refuses to run until the founder has read them and created, by hand, the file `~/.local/share/advisor-engine/founder-acknowledgement.txt` holding these two lines:
+
+```
+I have read the slice 0 documents in docs/advisors.
+This tool is for my own use on this machine.
+```
+
+The tool never writes that file. The refusal names the documents and the file.
+
 ## Setup
 
 ```bash
@@ -28,17 +39,19 @@ advisor-engine query --topic "Photoreceptor and optogenetics research" --exclude
 advisor-engine query --query-file my-query.json --review
 ```
 
-`--review` saves a `bucket.advisor-review/1` file under `out/` in the engine directory. Open it in the People workspace.
+`--review` saves a `bucket.advisor-review/1` file under `out/` in the engine directory. Open it in the People workspace. Rows of an untested or withheld result carry no rank, score or percentile.
 
 Each result opens with one of three headings.
 
 | Heading | When | What shows |
 |---|---|---|
-| Order withheld | Under 50 candidates after the filters | The count, the reason, and the candidates in name order with their reasons |
+| Order withheld | Under 50 candidates after the filters | The count, the reason, and a filtered directory: the candidates in name order |
 | Untested order | 50 or more candidates, and no passed retrieval test for the country and field | Rows sorted by topical overlap, with reasons, and no rank number or percentile |
 | Tested ranking | The country and field passed the slice 2 test, recorded in `strata-tests.json` | Rank and percentile |
 
-No stratum has a test today, so every result is one of the first two.
+No stratum has a test today, so every result is one of the first two. `strata-tests.json` has no writer yet. Slice 2 adds the test that fills it.
+
+A withheld result is a directory of people filtered by field and country. It carries no recommendation. It passes the same listing checks as an ordered result, the do-not-list check and both gates among them, and it carries the same coverage statement. It is for the founder alone and needs its own review before any student sees one.
 
 The coverage statement under the heading gives the pool size, the count left out as unreviewed identity matches, and the share left out for the country and for the country and field together. It warns when the share passes 50% and when the pool is under 100.
 
@@ -47,7 +60,7 @@ The coverage statement under the heading gives the pool size, the count left out
 - An advisor is rankable when the record carries its own OpenAlex id, or a high-confidence match to one. Medium and low matches stay out of the features and out of every result.
 - The person has an affiliation year of 2018 or later, and no emeritus or retired title.
 - No CSrankings-derived row feeds any feature.
-- The do-not-contact table and `removal-list.txt` are read fresh on every query and every reveal, and widened to the whole identity cluster: matches in both directions, merged ids, shared ORCID or OpenAlex ids, and stored cross-ids. If either cannot be read, the command exits non-zero and prints no list.
+- The do-not-contact table and `removal-list.txt` are read fresh on every query, and widened to the whole identity cluster: matches in both directions, merged ids, shared ORCID or OpenAlex ids, and stored cross-ids. If either cannot be read, the command exits non-zero and prints no list.
 
 `removal-list.txt` sits in the engine directory. One entry per line: `person:<id>`, `orcid:<id>`, `openalex:<id>`, `email:<address>` or `name:<name>`.
 
@@ -59,17 +72,9 @@ The score is topical fit alone: an idf-weighted overlap between the query topics
 
 This slice calls no external API. Admired works need an OpenAlex lookup and are refused.
 
-## Address Reveal
+## Addresses
 
-Addresses never print in a query. One address prints with an explicit flag, for one advisor per call:
-
-```bash
-advisor-engine reveal a123 --show-address
-```
-
-It needs a direct or high identity match and a high-confidence contact with a public source, and it prints the source, the URL and the date seen. Contacts matched by name and institution, and contacts with no public source, are refused. The cap is 20 a day. Each call, granted or refused, appends the time, a keyed hash and the outcome to `reveal.log`. The log holds no address and no name.
-
-`docs/advisors/COUNSEL-CHECKLIST.md` item C5 covers the founder's own use of stored addresses. The plan places this command behind that item.
+The tool prints no address under any flag. The query output and the review file pass an address scan, and a hit aborts the command with nothing written. A reveal command belongs to slice 5 of the plan, behind counsel items C5 and F8 in `docs/advisors/COUNSEL-CHECKLIST.md`.
 
 ## Tests
 

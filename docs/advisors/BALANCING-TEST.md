@@ -33,7 +33,7 @@ The store holds about 21.8 million researcher records and about 460,000 recorded
 | Interest | The applicant acts on a list. A list with reasons and stated limits serves them better than a bare search. |
 | Necessity | The row shows name, institution, country, field, topics, lineage counts and one public profile link. |
 | Impact on the person | More applicant mail. Being listed after asking to leave would be a harm, so removal is honoured on every query. |
-| Safeguards | Founder-only in slice 1. Addresses hidden by default. One address at a time, by explicit request, logged. A coverage statement on every result. An untested order carries a plain label and no rank number. |
+| Safeguards | Founder-only in slice 1. No address is printed. A logged reveal of one address at a time waits for slice 5 and counsel. A coverage statement on every result. An untested order carries a plain label and no rank number. |
 | Open point | Disclosure of a list to students is a later step with its own test. F and C. |
 
 ## Address Disclosure
@@ -48,9 +48,9 @@ This step is open. `PURPOSE.md` lists options A, B and C. Each option changes th
 
 The founder's own use of a stored address for his own applications is a separate item in `COUNSEL-CHECKLIST.md`.
 
-## Draft Conclusion
+## Founder's Proposal
 
-Storage and ranking on the founder's machine, with the safeguards above, are proposed as proportionate. Listing to anyone other than the founder waits for counsel. F signs, C confirms.
+The founder proposes to treat storage and ranking on his own machine, with the safeguards above, as proportionate. This is a proposal pending counsel and no conclusion has been reached. Listing to anyone other than the founder waits for counsel. F signs, C confirms.
 
 ## Signature
 

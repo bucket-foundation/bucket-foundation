@@ -16,7 +16,9 @@ ROW_KEYS = ("institution", "country", "field", "order_status", "identity", "rese
 def review(r: Result) -> dict:
     rows = []
     for row in r.rows:
-        out = {"rank": row["position"], "name": row["name"], "score": row["score"], "percentile": row["percentile"]}
+        out = {"name": row["name"]}
+        if r.mode == "tested":
+            out.update({"rank": row["position"], "score": row["score"], "percentile": row["percentile"]})
         out.update({k: row[k] for k in ROW_KEYS if row[k] not in ("", [])})
         out["coverage"] = r.warnings or ["No coverage warning for this search."]
         rows.append(out)

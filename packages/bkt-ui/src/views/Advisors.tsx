@@ -17,7 +17,7 @@ export const ROW_LISTS = { reasons: "Reasons", recent_works: "Recent works", lin
 type OrderStatus = "tested" | "untested" | "withheld";
 export const orderStatus = (row: AdvisorRow | undefined): OrderStatus => {
   const status = row?.fields.order_status;
-  return status === "untested" || status === "withheld" ? status : "tested";
+  return status === "tested" || status === "withheld" ? status : "untested";
 };
 const headline = (review: StoredReview) => {
   const status = orderStatus(review.rows[0]);

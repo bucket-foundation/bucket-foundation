@@ -10,8 +10,9 @@ import time
 from pathlib import Path
 
 from . import build as build_mod
-from . import coverage, query, reveal, write_review
-from .paths import EngineError, current_build, engine_home, free_guard, open_engine, open_store
+from . import coverage, query, write_review
+from .scan import assert_clean
+from .paths import EngineError, current_build, engine_home, free_guard, open_engine, open_store, require_acknowledgement
 
 QUERY_SCHEMA = "bucket.advisor-query/1"
 
@@ -35,9 +36,6 @@ def parser() -> argparse.ArgumentParser:
     q.add_argument("--query-file")
     q.add_argument("--review", action="store_true", help="save a review file inside the engine directory")
     q.add_argument("--quiet", action="store_true", help="print counts alone")
-    r = sub.add_parser("reveal", help="print one address for one advisor")
-    r.add_argument("advisor")
-    r.add_argument("--show-address", action="store_true")
     return p
 
 
@@ -63,7 +61,8 @@ def query_from(args) -> query.Query:
 
 
 def dispatch(args, out) -> None:
-    home = engine_home(create=args.command == "build")
+    home = engine_home(create=False)
+    require_acknowledgement(home)
     free_guard(home)
     if args.command == "build":
         wide = os.environ.get("BKT_AUTHORS_WIDE")
@@ -76,17 +75,14 @@ def dispatch(args, out) -> None:
         build_mod.print_tables(coverage.load(bdir, home), log=lambda m: print(m, file=out))
         return
     store, eng = open_store(), open_engine(bdir)
-    if args.command == "query":
-        result = query.run(query_from(args), store, eng, home, bdir)
-        text = query.render(result)
-        if args.review:
-            path = write_review.save(home, result)
-            text += f"\n\nReview file: {path}"
-        if args.quiet:
-            text = f"{query.HEADINGS[result.mode]}. {result.candidates} candidates, {len(result.rows)} rows."
-        print(text, file=out)
-        return
-    print(reveal.reveal(args.advisor, store, eng, home, args.show_address), file=out)
+    result = query.run(query_from(args), store, eng, home, bdir)
+    text = query.render(result)
+    if args.review:
+        path = write_review.save(home, result)
+        text += f"\n\nReview file: {path}"
+    if args.quiet:
+        text = f"{query.HEADINGS[result.mode]}. {result.candidates} candidates, {len(result.rows)} rows."
+    print(assert_clean(text), file=out)
 
 
 def main(argv: list[str] | None = None, out=None) -> int:

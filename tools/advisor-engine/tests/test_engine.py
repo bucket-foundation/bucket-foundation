@@ -11,7 +11,8 @@ from pathlib import Path
 
 import pytest
 
-from advisor_engine import cli, coverage, paths, query, reveal, scan, write_review
+from advisor_engine import build as build_mod
+from advisor_engine import cli, coverage, paths, query, scan, write_review
 from advisor_engine.identity import SuppressionUnreadable, suppressed_clusters
 from advisor_engine.paths import EngineError, current_build, engine_key, open_engine
 
@@ -169,9 +170,6 @@ def test_unreadable_do_not_list_fails_closed(world, capsys):
     code, out = run("query", "--field", "Field One")
     assert code == 2
     assert out == ""
-    code, out = run("reveal", f"a{world.ids['reveal_high']}", "--show-address")
-    assert code == 2
-    assert out == ""
 
 
 def test_unreadable_removal_list_fails_closed(world):
@@ -308,9 +306,9 @@ def test_query_never_prints_an_address(world):
     assert code == 0
     assert "@" not in out
     assert "example.org" not in out
-    parser = cli.parser()
-    with pytest.raises(SystemExit):
-        parser.parse_args(["query", "--field", "Field One", "--show-address"])
+    for argv in (["query", "--field", "Field One", "--show-address"], ["reveal", "a1"], ["reveal", "a1", "--show-address"]):
+        with pytest.raises(SystemExit):
+            cli.parser().parse_args(argv)
 
 
 def test_address_scan_aborts_the_output(world):
@@ -324,70 +322,6 @@ def test_address_scan_aborts_the_output(world):
     assert scan.has_address("a.b at example dot org") and not scan.has_address("works at the institute")
 
 
-def test_reveal_needs_the_flag_and_one_advisor(world, capsys):
-    handle = f"a{world.ids['reveal_high']}"
-    code, out = run("reveal", handle)
-    assert (code, out) == (2, "")
-    with pytest.raises(SystemExit):
-        cli.parser().parse_args(["reveal", handle, f"a{world.ids['mailed']}", "--show-address"])
-    code, out = run("reveal", f"{handle},a{world.ids['mailed']}", "--show-address")
-    assert (code, out) == (2, "")
-
-
-def test_reveal_prints_one_high_address_with_source_and_logs_it(world):
-    rid = world.ids["reveal_high"]
-    code, out = run("reveal", f"a{rid}", "--show-address")
-    assert code == 0
-    assert "Address: newer.address@example.org" in out
-    assert "Source: synthetic, https://directory.example.org/people" in out
-    assert "older.address" not in out and "guess.address" not in out
-    assert out.count("@") == 1
-    log = world.home / reveal.LOG
-    assert stat.S_IMODE(log.stat().st_mode) == 0o600
-    text = log.read_text()
-    entry = json.loads(text.splitlines()[-1])
-    assert set(entry) == {"at", "who", "outcome"} and entry["outcome"] == "revealed"
-    assert "@" not in text and str(rid) not in entry["who"] and world.names[rid] not in text
-    assert entry["who"] == paths.keyed(engine_key(world.home), "reveal", str(rid))
-
-
-def test_reveal_through_a_high_match_reads_the_advisor_record(world):
-    code, out = run("reveal", f"a{world.ids['high_target']}", "--show-address")
-    assert code == 0 and "Address: high.aid@example.org" in out and "Identity match: high." in out
-
-
-@pytest.mark.parametrize("tag, outcome", [
-    ("reveal_medium", "refused_no_high_contact"),
-    ("reveal_unsourced", "refused_no_high_contact"),
-    ("medium_target", "refused_identity"),
-    ("low_target", "refused_identity"),
-    ("medium", "refused_identity"),
-])
-def test_reveal_refuses_below_high(world, tag, outcome):
-    code, out = run("reveal", f"a{world.ids[tag]}", "--show-address")
-    assert (code, out) == (2, "")
-    assert json.loads((world.home / reveal.LOG).read_text().splitlines()[-1])["outcome"] == outcome
-
-
-def test_reveal_refuses_a_suppressed_person_and_a_spent_cap(world):
-    rid = world.ids["reveal_high"]
-    for _ in range(reveal.DAILY_CAP):
-        assert run("reveal", f"a{rid}", "--show-address")[0] == 0
-    assert run("reveal", f"a{rid}", "--show-address") == (2, "")
-    (world.home / reveal.LOG).unlink()
-    (world.home / "removal-list.txt").write_text(f"person:{rid}\n")
-    assert run("reveal", f"a{rid}", "--show-address") == (2, "")
-    assert json.loads((world.home / reveal.LOG).read_text().splitlines()[-1])["outcome"] == "refused_suppressed"
-
-
-def test_contact_confidence_classes():
-    assert reveal.contact_confidence("orcid_public_record", "https://x.example") == "high"
-    assert reveal.contact_confidence("pubmed_affiliation_name_institution", "https://x.example") == "medium"
-    assert reveal.contact_confidence("founder_tracker_no_public_source", "https://x.example") == "unsourced"
-    assert reveal.contact_confidence("pattern_guess_unverified", "https://x.example") == "unsourced"
-    assert reveal.contact_confidence("orcid_public_record", "") == "unsourced"
-
-
 def test_review_file_shape_and_location(world):
     r = wide_open(world)
     path = write_review.save(world.home, r)
@@ -396,7 +330,8 @@ def test_review_file_shape_and_location(world):
     assert body["schema"] == "bucket.advisor-review/1"
     assert "The order has not been tested." in body["context"]["summary"]
     row = body["rows"][0]
-    assert row["percentile"] is None and row["score"] == 0.0 and row["order_status"] == "untested"
+    assert row["order_status"] == "untested"
+    assert not {"rank", "score", "percentile"} & set().union(*body["rows"])
     for k in ("reasons", "lineage", "unknowns", "coverage"):
         assert isinstance(row[k], list) and row[k] and len(row[k]) <= 32
     assert not any(re.search(r"email|tracker|image|^id$|statement|note|h_index|works_count", k) for k in row)
@@ -412,7 +347,6 @@ def test_no_command_writes_into_the_repo_tree(world, tmp_path, monkeypatch):
     monkeypatch.chdir(TOOL)
     assert run("build")[0] == 0
     assert run("query", "--field", "Field One", "--country", "XA", "--review")[0] == 0
-    assert run("reveal", f"a{world.ids['reveal_high']}", "--show-address")[0] == 0
     assert run("status")[0] == 0
     assert tree(TOOL) == before
     assert len(list((world.home / "builds").iterdir())) == 2
@@ -475,3 +409,105 @@ def test_free_space_floor_and_missing_inputs(world, monkeypatch):
     assert sorted(p.name for p in (world.home / "builds").iterdir()) == builds
     monkeypatch.delenv("BKT_CONTACT_STORE")
     assert run("query", "--field", "Field One") == (2, "")
+
+
+EMAIL_SHAPE = re.compile(r"[A-Za-z0-9._%+-]+\s*(?:@|\[at\]|\(at\))\s*[A-Za-z0-9-]+(?:\.|\s*\[dot\]\s*)[A-Za-z]{2,}", re.I)
+
+
+def emitted(world, capsys) -> str:
+    texts = []
+    for argv in (
+        ["status"],
+        ["query", "--field", "Field One", "--country", "XA", "--limit", "300", "--review"],
+        ["query", "--field", "Field One", "--country", "XC", "--review"],
+        ["query", "--text", "tidal lattice dynamics", "--limit", "300", "--review"],
+        ["query", "--field", "Field One", "--country", "XA", "--quiet"],
+        ["query", "--field", "No Such Field"],
+        ["build"],
+    ):
+        texts.append(run(*argv)[1])
+    captured = capsys.readouterr()
+    texts += [captured.out, captured.err]
+    for p in world.home.rglob("*"):
+        if p.is_file() and p.suffix != ".sqlite" and p.name != "key":
+            texts.append(p.read_text(errors="replace"))
+    return "\n".join(texts)
+
+
+def test_no_output_path_emits_an_email_shaped_string(world, capsys):
+    (world.home / coverage.TESTS_FILE).write_text(json.dumps({"XA|Field One": {"passed": True, "pairs": 250}}))
+    text = emitted(world, capsys)
+    assert "Tested ranking" in text and "Order withheld" in text and "Untested order" in text
+    assert not EMAIL_SHAPE.search(text) and "example.org" not in text
+    assert world.store().execute("select count(*) from contact where kind = 'email'").fetchone()[0] > 0
+
+
+def test_addresses_planted_in_every_shown_column_never_reach_an_output(world, capsys):
+    con = world.store()
+    con.execute("update person set name = name || ' planted.name@example.org' where id = ?", (world.ids["named"],))
+    con.execute("update person set institution = 'Planted [at] example [dot] org' where id = ?", (world.ids["merged"],))
+    con.execute("update topic set name = 'Tidal planted.topic@example.org' where id = 'T1'")
+    con.commit()
+    con.close()
+    text = emitted(world, capsys)
+    assert not EMAIL_SHAPE.search(text) and "example.org" not in text and "planted." not in text.lower()
+
+
+def test_no_module_reads_an_address_value_from_the_store():
+    sources = {p.name: p.read_text() for p in (TOOL / "advisor_engine").glob("*.py")}
+    assert "reveal.py" not in sources
+    readers = {name for name, text in sources.items() if re.search(r"from contact\b|page_contact", text)}
+    assert readers == {"build.py"}
+    assert re.findall(r"select ([a-z_, ]+) from contact", sources["build.py"]) == ["value_norm, person_id"]
+    assert "homepage" not in "".join(sources.values())
+
+
+def test_commands_refuse_without_the_founder_acknowledgement(world, capsys):
+    ack = world.home / paths.ACK_FILE
+    for body in (None, "", "I have read the slice 0 documents in docs/advisors.\n", "acknowledged\n"):
+        ack.unlink(missing_ok=True)
+        if body is not None:
+            ack.write_text(body)
+        builds = sorted(p.name for p in (world.home / "builds").iterdir())
+        for argv in (["build"], ["status"], ["query", "--field", "Field One"], ["query", "--field", "Field One", "--review"]):
+            assert run(*argv) == (2, "")
+            err = capsys.readouterr().err
+            assert "docs/advisors" in err and str(ack) in err and paths.ACK_LINES[1] in err
+        assert sorted(p.name for p in (world.home / "builds").iterdir()) == builds
+        assert not (world.home / "out").exists()
+        assert (ack.read_text() if ack.exists() else None) == body
+    with pytest.raises(EngineError):
+        wide_open(world)
+    with pytest.raises(EngineError):
+        build_mod.build(world.ro(), world.home, world.wide, log=lambda _: None)
+
+
+def test_commands_run_with_the_acknowledgement_and_never_write_it(world, tmp_path, monkeypatch):
+    ack = world.home / paths.ACK_FILE
+    ack.write_text("  I have read the slice 0 documents\n in docs/advisors.\n\nThis tool is for my own use on this machine.\n")
+    before = ack.read_bytes()
+    assert run("build")[0] == 0
+    assert run("query", "--field", "Field One", "--country", "XA")[0] == 0
+    assert ack.read_bytes() == before
+    fresh = tmp_path / "fresh"
+    monkeypatch.setenv("ADVISOR_ENGINE_HOME", str(fresh))
+    assert run("build") == (2, "")
+    assert not fresh.exists()
+    fresh.mkdir(mode=0o700)
+    assert run("build") == (2, "")
+    assert list(fresh.iterdir()) == []
+    writers = [p.name for p in (TOOL / "advisor_engine").glob("*.py") if "ACK_FILE" in p.read_text()]
+    assert writers == ["paths.py"]
+
+
+def test_withheld_list_gets_the_listing_checks_and_the_coverage_statement(world):
+    r = result(world, field="Field One", include=["XC"])
+    assert r.mode == "withheld" and r.summary.startswith("Bucket holds") and r.warnings
+    hidden = int(r.rows[0]["handle"][1:])
+    dnc(world, person_id=hidden)
+    after = result(world, field="Field One", include=["XC"])
+    assert after.candidates == 11 and hidden not in handles(after)
+    assert all(row["order_status"] == "withheld" and row["percentile"] is None and row["score"] == 0.0 for row in after.rows)
+    body = write_review.review(after)
+    assert not {"rank", "score", "percentile"} & set().union(*body["rows"])
+    assert body["context"]["summary"].startswith("Bucket holds")

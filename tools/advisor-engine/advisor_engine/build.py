@@ -11,7 +11,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from . import __version__
-from .paths import EngineError, chunks, engine_key, inside, keyed, keyset, marks, norm_openalex, norm_orcid, write_private
+from .paths import EngineError, chunks, engine_key, inside, keyed, require_acknowledgement, keyset, marks, norm_openalex, norm_orcid, write_private
 
 RECENCY_YEAR = 2018
 KEEP_BUILDS = 2
@@ -107,68 +107,6 @@ def copy_edges(store: sqlite3.Connection, eng: sqlite3.Connection) -> int:
     for batch in keyset(store, sql):
         eng.executemany("insert into identity_edge values (?, ?, 'match')", batch)
         n += len(batch)
-    eng.commit()
-    return n
-
-
-def close_clusters(store: sqlite3.Connection, eng: sqlite3.Connection, seeds: set[int], find: Find, rounds: int = 12) -> set[int]:
-    seen = set(seeds)
-    frontier = set(seeds)
-    for _ in range(rounds):
-        if not frontier:
-            break
-        found: set[int] = set()
-        for part in chunks(sorted(frontier)):
-            q = marks(len(part))
-            for a, b in eng.execute(f"select a, b from identity_edge where a in ({q}) union all select a, b from identity_edge where b in ({q})", part + part):
-                find.join(a, b)
-                found.update((a, b))
-            ids = store.execute(f"select id, orcid, openalex_id from person where id in ({q})", part).fetchall()
-            for column, values in (("orcid", {r[1]: r[0] for r in ids if r[1]}), ("openalex_id", {r[2]: r[0] for r in ids if r[2]})):
-                for sub in chunks(sorted(values)):
-                    for pid, value in store.execute(f"select id, {column} from person where {column} in ({marks(len(sub))})", sub):
-                        find.join(pid, values[value])
-                        found.add(pid)
-        frontier = found - seen
-        seen |= frontier
-    if frontier:
-        raise EngineError("identity clusters did not close, so the build stops")
-    return seen
-
-
-def write_aliases(store: sqlite3.Connection, eng: sqlite3.Connection, members: set[int], find: Find, key: bytes) -> int:
-    n = 0
-
-    def put(rows):
-        nonlocal n
-        rows = [(keyed(key, s, v), find.root(pid)) for s, v, pid in rows if v]
-        eng.executemany("insert into alias values (?, ?)", rows)
-        n += len(rows)
-
-    for part in chunks(sorted(members)):
-        q = marks(len(part))
-        out = []
-        for pid, orcid, oa, name_norm in store.execute(f"select id, orcid, openalex_id, name_norm from person where id in ({q})", part):
-            out += [("orcid", norm_orcid(orcid), pid), ("openalex", norm_openalex(oa), pid), ("name", name_norm, pid)]
-        for scheme, value, pid in store.execute(f"select scheme, value, person_id from person_xid where person_id in ({q})", part):
-            if scheme == "email":
-                out.append(("email", (value or "").lower(), pid))
-            elif scheme.startswith("openalex"):
-                out.append(("openalex", norm_openalex(value), pid))
-            elif scheme == "orcid":
-                out.append(("orcid", norm_orcid(value), pid))
-        for value, pid in store.execute(f"select value_norm, person_id from contact where kind = 'email' and person_id in ({q})", part):
-            out.append(("email", value, pid))
-        put(out)
-    last = ("", "")
-    while True:
-        batch = store.execute(
-            "select old_key, reason, person_id from person_merge where (old_key, reason) > (?, ?) order by old_key, reason limit 5000", last
-        ).fetchall()
-        if not batch:
-            break
-        put(merge_alias(batch, members))
-        last = batch[-1][:2]
     eng.commit()
     return n
 
@@ -321,6 +259,7 @@ def coverage_tables(pool_rows, medium_rows):
 
 
 def build(store: sqlite3.Connection, home: Path, wide: Path | None, log=print, taxonomy: Path | None = None) -> dict:
+    require_acknowledgement(home)
     if wide is None or not wide.is_dir():
         raise EngineError("set BKT_AUTHORS_WIDE to the authors parquet directory, the recency gate needs activity years")
     build_id = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")

@@ -8,7 +8,7 @@ from pathlib import Path
 
 from . import coverage
 from .identity import suppressed_clusters
-from .paths import EngineError, chunks, engine_key, marks, norm_name
+from .paths import EngineError, chunks, engine_key, marks, norm_name, require_acknowledgement
 from .rank import Advisor, Index, Scored, order
 from .scan import assert_clean
 
@@ -102,6 +102,7 @@ def lineage(a: Advisor) -> list[str]:
 
 
 def run(q: Query, store: sqlite3.Connection, eng: sqlite3.Connection, home: Path, build: Path) -> Result:
+    require_acknowledgement(home)
     suppressed = suppressed_clusters(store, eng, home, engine_key(home))
     cov = coverage.load(build, home)
     index = load_index(eng)
@@ -163,7 +164,7 @@ def render(r: Result) -> str:
     for row in r.rows:
         lead = f"{row['position']}." if r.mode == "tested" else "-"
         where = ", ".join(x for x in (row["institution"], row["country"]) if x)
-        out.append(f"{lead} {row['name']}, {where} [{row['handle']}]")
+        out.append(f"{lead} {row['name']}, {where}")
         if r.mode == "tested":
             out.append(f"    Percentile {row['percentile']}.")
         if row["field"]:

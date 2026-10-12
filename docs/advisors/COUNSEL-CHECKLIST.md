@@ -19,7 +19,7 @@ Draft. This document is not legal advice. It lists what counsel must confirm and
 | C11 | Retention periods in `RETENTION.md` | Founder signature |
 | C12 | Whether the founder holding the data in a personal capacity changes any answer above | Any list leaving the machine |
 
-C5 has a consequence today. The plan places the reveal command behind this item. The slice 1 tool carries the command so it can be reviewed. The founder should leave it unused until C5 is confirmed.
+C5 and F8 gate the reveal command. The slice 1 tool has no such command and prints no address under any flag. The command arrives in slice 5 once both items are settled.
 
 ## Founder Decides
 
@@ -36,4 +36,4 @@ C5 has a consequence today. The plan places the reveal command behind this item.
 
 ## Gate
 
-The plan says no later slice starts before F7. Slice 1 was built alongside these drafts, before F7, and stays on his machine.
+The plan says no later slice starts before F7. Slice 1 was built alongside these drafts, before F7. A code gate stands in for the signature: every command refuses to run until the founder creates an acknowledgement file by hand in the engine's private directory, stating that he has read these documents and that the tool is for his own use on this machine. `tools/advisor-engine/README.md` gives the file name and its text.
