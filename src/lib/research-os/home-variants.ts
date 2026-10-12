@@ -16,6 +16,7 @@ export const MODULES: Module[] = [
   { label: "Analyze data", verb: "Own", line: "Find patterns in a table of your own. The copy is removed when done.", route: "/download", where: "desktop" },
   { label: "Data", verb: "Own", line: "What Bucket has loaded on this computer, each dataset a tab.", route: "/download", where: "desktop" },
   { label: "Research", verb: "Hold", line: "Reports and their figures, shipped with the app and read offline.", route: "/download", where: "desktop" },
+  { label: "Workspaces", verb: "Hold", line: "A tab for each kind of thing you work on, tables and records first.", route: "/research-os/workspace", where: "web" },
   { label: "Profile", verb: "Own", line: "Level, XP, streak and badges. Kept on this computer only.", route: "/research-os/profile", where: "web" },
 ];
 

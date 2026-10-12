@@ -23,6 +23,8 @@ export type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
 export type { TablePage } from "../../bkt/src/research-table";
 import type { TablePage } from "../../bkt/src/research-table";
 export type { Change, Exported } from "../../bkt/src/research-work";
+export type { WorkspaceItem } from "../../bkt/src/workspace";
+import type { WorkspaceItem } from "../../bkt/src/workspace";
 import type { Change, Exported } from "../../bkt/src/research-work";
 
 export type SaveResult = { saved: true; rev: string; changed: boolean } | { saved: false; current: string };
@@ -545,6 +547,12 @@ export class Api {
 
   researchExport(slug: string) {
     return this.call<Exported>("/local/research/export", { method: "POST", body: { slug } });
+  }
+
+  workspaceItems(type: string, query: { q?: string; page?: number } = {}) {
+    const params = new URLSearchParams({ type, page: String(query.page ?? 1) });
+    if (query.q) params.set("q", query.q);
+    return this.call<{ items: WorkspaceItem[]; total: number; page: number; size: number }>(`/local/workspace/items?${params.toString()}`);
   }
 
   private async researchFile(slug: string, path: string): Promise<Response> {

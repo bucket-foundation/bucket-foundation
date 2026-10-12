@@ -24,6 +24,8 @@ import { RosProfileView } from "./views/RosProfile";
 import { RosProgressView } from "./views/RosProgress";
 import { SettingsView } from "./views/Settings";
 import { DailyQuizView, WorkQuizView } from "./views/WorkQuiz";
+import { WorkspaceView } from "./views/Workspace";
+import { WorkspaceTabs, workspaceTabFor } from "./views/WorkspaceTabs";
 import { WordConceptsView, WordDeckView, WordLessonView, WordLicenceView } from "./views/Words";
 
 export const NAV: { route: Route; label: string }[] = [
@@ -41,6 +43,7 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "jobs" }, label: "Analyze data" },
   { route: { name: "data" }, label: "Data" },
   { route: { name: "research" }, label: "Research" },
+  { route: { name: "workspace" }, label: "Workspaces" },
   { route: { name: "profile" }, label: "Profile" },
 ];
 
@@ -53,6 +56,17 @@ export function navFor(workReady: boolean) {
 }
 
 export function Screen({ api, route }: { api: Api; route: Route }) {
+  const lit = workspaceTabFor(route);
+  if (lit === null) return <Page api={api} route={route} />;
+  return (
+    <>
+      <WorkspaceTabs lit={lit} />
+      <Page api={api} route={route} />
+    </>
+  );
+}
+
+function Page({ api, route }: { api: Api; route: Route }) {
   if (route.name === "deck") return <DeckView key={`${route.deck}/${route.atom ?? ""}`} api={api} deck={route.deck} focus={route.atom} />;
   if (route.name === "words" && route.lesson) return <WordLessonView key={`${route.deck}/${route.lesson}`} api={api} deck={route.deck} n={route.lesson} />;
   if (route.name === "words") return <WordDeckView key={route.deck} api={api} deck={route.deck} />;
@@ -74,6 +88,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "jobs") return <JobsView api={api} />;
   if (route.name === "data") return <DataView api={api} />;
   if (route.name === "research") return <ResearchView key={route.slug ?? ""} api={api} slug={route.slug} tab={route.tab ?? "report"} />;
+  if (route.name === "workspace") return <WorkspaceView key={route.type ?? "tables"} api={api} type={route.type ?? "tables"} />;
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
   if (route.name === "settings") return <SettingsView api={api} />;
