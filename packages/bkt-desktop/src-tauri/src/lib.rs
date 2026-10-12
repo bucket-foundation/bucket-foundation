@@ -1,6 +1,7 @@
 use std::sync::Mutex;
 use tauri::{Manager, RunEvent, Url};
 use tauri_plugin_deep_link::DeepLinkExt;
+use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 use tauri_plugin_shell::process::{CommandChild, CommandEvent};
 use tauri_plugin_shell::ShellExt;
 use tauri_plugin_updater::UpdaterExt;
@@ -160,6 +161,147 @@ struct Link(Mutex<LinkState>);
 
 struct Sidecar(Mutex<Option<CommandChild>>);
 
+pub const STDOUT_CAP: usize = 64 * 1024;
+pub const CONSENT_PREFIX: &str = "bkt-consent ";
+pub const CONSENT_TITLE_CHARS: usize = 200;
+pub const CONSENT_BODY_CHARS: usize = 4000;
+
+#[derive(Default)]
+pub struct LineBuffer(Vec<u8>);
+
+impl LineBuffer {
+    pub fn push(&mut self, bytes: &[u8]) -> Vec<String> {
+        self.0.extend_from_slice(bytes);
+        let mut lines = Vec::new();
+        while let Some(at) = self.0.iter().position(|b| *b == b'\n') {
+            let line: Vec<u8> = self.0.drain(..=at).collect();
+            lines.push(String::from_utf8_lossy(&line[..line.len() - 1]).trim_end_matches('\r').to_string());
+        }
+        if self.0.len() > STDOUT_CAP {
+            self.0.clear();
+        }
+        lines
+    }
+
+    pub fn held(&self) -> usize {
+        self.0.len()
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, serde::Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ConsentRequest {
+    pub id: String,
+    pub digest: String,
+    pub title: String,
+    pub body: String,
+}
+
+pub fn consent_request(line: &str) -> Option<ConsentRequest> {
+    let value: serde_json::Value = serde_json::from_str(line.strip_prefix(CONSENT_PREFIX)?).ok()?;
+    if !value.is_object() {
+        return None;
+    }
+    let request: ConsentRequest = serde_json::from_value(value).ok()?;
+    let id = request.id.len() == 22 && request.id.bytes().all(|b| b.is_ascii_alphanumeric() || b == b'-' || b == b'_');
+    let digest = request.digest.len() == 64 && request.digest.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b));
+    let sized = request.title.chars().count() <= CONSENT_TITLE_CHARS && request.body.chars().count() <= CONSENT_BODY_CHARS;
+    (id && digest && sized).then_some(request)
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub enum Read {
+    Url(Url),
+    Consent(ConsentRequest),
+}
+
+pub fn read_stdout(buffer: &mut LineBuffer, opened: bool, bytes: &[u8]) -> Vec<Read> {
+    let mut open = opened;
+    let mut out = Vec::new();
+    for line in buffer.push(bytes) {
+        if !open {
+            if let Some(url) = serve_url(&line) {
+                out.push(Read::Url(url));
+                open = true;
+            }
+        } else if let Some(request) = consent_request(&line) {
+            out.push(Read::Consent(request));
+        }
+    }
+    out
+}
+
+pub fn consent_answer(id: &str, digest: &str, allow: bool) -> String {
+    format!("consent {id} {digest} {}\n", if allow { "allow" } else { "deny" })
+}
+
+#[derive(Default)]
+pub struct ConsentGate(Mutex<Option<String>>);
+
+impl ConsentGate {
+    pub fn begin(&self, id: &str) -> bool {
+        let mut open = self.0.lock().unwrap();
+        if open.is_some() {
+            return false;
+        }
+        *open = Some(id.to_string());
+        true
+    }
+
+    pub fn end(&self, id: &str) {
+        let mut open = self.0.lock().unwrap();
+        if open.as_deref() == Some(id) {
+            *open = None;
+        }
+    }
+
+    pub fn open(&self) -> Option<String> {
+        self.0.lock().unwrap().clone()
+    }
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub enum Decision {
+    Ask(ConsentRequest),
+    Deny(String),
+}
+
+pub fn consent_decision(gate: &ConsentGate, request: ConsentRequest) -> Decision {
+    if gate.begin(&request.id) {
+        Decision::Ask(request)
+    } else {
+        Decision::Deny(consent_answer(&request.id, &request.digest, false))
+    }
+}
+
+struct Consent(ConsentGate);
+
+fn tell_sidecar(app: &tauri::AppHandle, line: &str) {
+    if let Some(child) = app.state::<Sidecar>().0.lock().unwrap().as_mut() {
+        if let Err(e) = child.write(line.as_bytes()) {
+            eprintln!("bucket could not answer the build request: {e}");
+        }
+    }
+}
+
+fn ask_consent(app: &tauri::AppHandle, request: ConsentRequest) {
+    match consent_decision(&app.state::<Consent>().0, request) {
+        Decision::Deny(line) => tell_sidecar(app, &line),
+        Decision::Ask(request) => {
+            let handle = app.clone();
+            let (id, digest) = (request.id, request.digest);
+            app.dialog()
+                .message(request.body)
+                .title(request.title)
+                .buttons(MessageDialogButtons::OkCancelCustom("Allow".into(), "Deny".into()))
+                .show(move |allowed| {
+                    handle.state::<Consent>().0.end(&id);
+                    tell_sidecar(&handle, &consent_answer(&id, &digest, allowed));
+                });
+        }
+    }
+}
+
 fn show_error(app: &tauri::AppHandle, message: &str) {
     if let Some(w) = app.get_webview_window("main") {
         let text = serde_json::Value::from(message).to_string();
@@ -187,12 +329,15 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
     tauri::async_runtime::spawn(async move {
         let mut opened = false;
         let mut tail = String::new();
+        let mut buffer = LineBuffer::default();
         while let Some(event) = rx.recv().await {
             match event {
-                CommandEvent::Stdout(bytes) if !opened => {
-                    let text = String::from_utf8_lossy(&bytes).to_string();
-                    if let Some(url) = text.lines().find_map(serve_url) {
-                        opened = sidecar_ready(&Shell(handle.clone()), &handle.state::<Link>().0, url);
+                CommandEvent::Stdout(bytes) => {
+                    for read in read_stdout(&mut buffer, opened, &bytes) {
+                        match read {
+                            Read::Url(url) => opened = sidecar_ready(&Shell(handle.clone()), &handle.state::<Link>().0, url),
+                            Read::Consent(request) => ask_consent(&handle, request),
+                        }
                     }
                 }
                 CommandEvent::Stderr(bytes) => {
@@ -228,8 +373,10 @@ pub fn run() {
         .plugin(tauri_plugin_single_instance::init(|app, args, _cwd| second_launch(&Shell(app.clone()), &app.state::<Link>().0, &args)))
         .plugin(tauri_plugin_deep_link::init())
         .plugin(tauri_plugin_shell::init())
+        .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_updater::Builder::new().build())
         .manage(Sidecar(Mutex::new(None)))
+        .manage(Consent(ConsentGate::default()))
         .manage(Link(Mutex::new(LinkState::default())))
         .setup(|app| {
             let links = app.handle().clone();
@@ -527,6 +674,134 @@ mod tests {
         let shipped = include_str!("lib.rs").split("#[cfg(test)]").next().unwrap();
         let first = shipped.find(".plugin(").unwrap();
         assert!(shipped[first..].starts_with(".plugin(tauri_plugin_single_instance::init("));
+    }
+
+    const ID: &str = "AbCdEfGhIjKlMnOpQrSt-_";
+
+    fn digest() -> String {
+        "a1".repeat(32)
+    }
+
+    fn line(id: &str, digest: &str, title: &str, body: &str) -> String {
+        format!("{CONSENT_PREFIX}{}", serde_json::json!({ "id": id, "digest": digest, "title": title, "body": body }))
+    }
+
+    fn request() -> ConsentRequest {
+        ConsentRequest { id: ID.to_string(), digest: digest(), title: "Allow this build?".to_string(), body: "A demo paper\nBuild: Paper PDF".to_string() }
+    }
+
+    #[test]
+    fn consent_request_accepts_the_one_line_form() {
+        assert_eq!(consent_request(&line(ID, &digest(), "Allow this build?", "A demo paper\nBuild: Paper PDF")), Some(request()));
+        assert!(consent_request(&line(ID, &digest(), &"t".repeat(CONSENT_TITLE_CHARS), &"b".repeat(CONSENT_BODY_CHARS))).is_some());
+        assert!(consent_request(&line(ID, &digest(), "", "")).is_some());
+    }
+
+    #[test]
+    fn consent_request_rejects_a_wrong_prefix_an_unknown_field_a_short_id_and_an_over_long_body() {
+        let good = line(ID, &digest(), "T", "B");
+        let json = good.strip_prefix(CONSENT_PREFIX).unwrap();
+        for bad in [
+            format!(" {good}"),
+            format!("bkt-consent{json}"),
+            format!("BKT-CONSENT {json}"),
+            format!("consent {json}"),
+            json.to_string(),
+            format!("{CONSENT_PREFIX}{}", serde_json::json!({ "id": ID, "digest": digest(), "title": "T", "body": "B", "remember": true })),
+            format!("{CONSENT_PREFIX}{}", serde_json::json!({ "id": ID, "digest": digest(), "title": "T" })),
+            format!("{CONSENT_PREFIX}{}", serde_json::json!([ID, digest(), "T", "B"])),
+            format!("{CONSENT_PREFIX}{}", serde_json::json!({ "id": 7, "digest": digest(), "title": "T", "body": "B" })),
+            format!("{CONSENT_PREFIX}not json"),
+            line(&ID[1..], &digest(), "T", "B"),
+            line(&format!("{ID}x"), &digest(), "T", "B"),
+            line("AbCdEfGhIjKlMnOpQrSt+/", &digest(), "T", "B"),
+            line(ID, &digest()[1..], "T", "B"),
+            line(ID, &digest().to_uppercase(), "T", "B"),
+            line(ID, &"g".repeat(64), "T", "B"),
+            line(ID, &digest(), &"t".repeat(CONSENT_TITLE_CHARS + 1), "B"),
+            line(ID, &digest(), "T", &"b".repeat(CONSENT_BODY_CHARS + 1)),
+            String::new(),
+            "http://127.0.0.1:41234/".to_string(),
+        ] {
+            assert_eq!(consent_request(&bad), None, "{bad:?}");
+        }
+    }
+
+    #[test]
+    fn a_line_split_across_two_chunks_is_read_once() {
+        let whole = format!("{}\n", line(ID, &digest(), "Allow this build?", "A demo paper\nBuild: Paper PDF"));
+        let (first, second) = whole.as_bytes().split_at(40);
+        let mut buffer = LineBuffer::default();
+        assert_eq!(read_stdout(&mut buffer, true, first), vec![]);
+        assert_eq!(buffer.held(), 40);
+        assert_eq!(read_stdout(&mut buffer, true, second), vec![Read::Consent(request())]);
+        assert_eq!(buffer.held(), 0);
+        assert_eq!(read_stdout(&mut buffer, true, b""), vec![]);
+        let mut bytewise = LineBuffer::default();
+        let read: Vec<Read> = whole.as_bytes().iter().flat_map(|b| read_stdout(&mut bytewise, true, &[*b])).collect();
+        assert_eq!(read, vec![Read::Consent(request())]);
+        let mut two = LineBuffer::default();
+        assert_eq!(two.push(b"one\r\ntwo\nthr"), vec!["one".to_string(), "two".to_string()]);
+        assert_eq!(two.push(b"ee\n"), vec!["three".to_string()]);
+    }
+
+    #[test]
+    fn a_64_kb_chunk_with_no_line_feed_clears_the_buffer() {
+        let mut buffer = LineBuffer::default();
+        assert_eq!(buffer.push(&vec![b'x'; STDOUT_CAP]), Vec::<String>::new());
+        assert_eq!(buffer.held(), STDOUT_CAP);
+        assert_eq!(buffer.push(b"y"), Vec::<String>::new());
+        assert_eq!(buffer.held(), 0);
+        let good = format!("{}\n", line(ID, &digest(), "T", "B"));
+        assert_eq!(read_stdout(&mut buffer, true, good.as_bytes()).len(), 1);
+        let mut flood = LineBuffer::default();
+        let mut forged = vec![b'x'; STDOUT_CAP + 1];
+        forged.extend_from_slice(good.as_bytes());
+        assert_eq!(read_stdout(&mut flood, true, &forged), vec![]);
+    }
+
+    #[test]
+    fn a_second_request_while_a_dialog_is_open_is_denied() {
+        let gate = ConsentGate::default();
+        assert_eq!(consent_decision(&gate, request()), Decision::Ask(request()));
+        assert_eq!(gate.open().as_deref(), Some(ID));
+        let other = ConsentRequest { id: "Zz".repeat(11), ..request() };
+        assert_eq!(consent_decision(&gate, other.clone()), Decision::Deny(format!("consent {} {} deny\n", other.id, other.digest)));
+        assert_eq!(consent_decision(&gate, request()), Decision::Deny(format!("consent {ID} {} deny\n", digest())));
+        gate.end(&other.id);
+        assert_eq!(gate.open().as_deref(), Some(ID));
+        gate.end(ID);
+        assert_eq!(gate.open(), None);
+        assert_eq!(consent_decision(&gate, other.clone()), Decision::Ask(other));
+        assert_eq!(consent_answer(ID, &digest(), true), format!("consent {ID} {} allow\n", digest()));
+        assert_eq!(consent_answer(ID, &digest(), false), format!("consent {ID} {} deny\n", digest()));
+    }
+
+    #[test]
+    fn stdout_after_open_still_reaches_the_reader() {
+        let mut buffer = LineBuffer::default();
+        let ask = format!("{}\n", line(ID, &digest(), "Allow this build?", "A demo paper\nBuild: Paper PDF"));
+        assert_eq!(read_stdout(&mut buffer, false, ask.as_bytes()), vec![]);
+        assert_eq!(read_stdout(&mut buffer, false, b"bkt serve: pack v3\nhttp://127.0.0.1:41234/\n"), vec![Read::Url(base())]);
+        assert_eq!(read_stdout(&mut buffer, true, b"http://127.0.0.1:41234/\na log line\n"), vec![]);
+        assert_eq!(read_stdout(&mut buffer, true, ask.as_bytes()), vec![Read::Consent(request())]);
+        let together = format!("http://127.0.0.1:41234/\n{ask}");
+        assert_eq!(read_stdout(&mut LineBuffer::default(), false, together.as_bytes()), vec![Read::Url(base()), Read::Consent(request())]);
+        let shipped = include_str!("lib.rs").split("#[cfg(test)]").next().unwrap();
+        assert!(shipped.contains("CommandEvent::Stdout(bytes) => {"));
+        assert!(!shipped.contains("if !opened =>"));
+    }
+
+    #[test]
+    fn the_dialog_is_native_with_two_buttons_and_the_page_gains_no_call() {
+        let shipped = include_str!("lib.rs").split("#[cfg(test)]").next().unwrap();
+        assert!(shipped.contains(".plugin(tauri_plugin_dialog::init())"));
+        assert!(shipped.contains("MessageDialogButtons::OkCancelCustom(\"Allow\".into(), \"Deny\".into())"));
+        assert!(shipped.contains(".show(move |allowed|"));
+        assert!(!shipped.contains("invoke_handler"));
+        assert!(!shipped.contains("blocking_show"));
+        let caps: serde_json::Value = serde_json::from_str(include_str!("../capabilities/default.json")).unwrap();
+        assert_eq!(caps["permissions"], serde_json::json!([]));
     }
 
     #[test]

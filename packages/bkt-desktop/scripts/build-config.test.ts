@@ -49,3 +49,22 @@ test("the version comes from BKT_VERSION, then a bkt-v tag, then packages/bkt", 
   expect(releaseVersion({ GITHUB_REF_TYPE: "branch", GITHUB_REF_NAME: "bkt-v0.5.0" }, "0.4.0")).toBe("0.4.0");
   expect(releaseVersion({}, "0.4.0")).toBe("0.4.0");
 });
+
+test("no capability is granted to the page", async () => {
+  const root = `${import.meta.dir}/../src-tauri`;
+  const caps = (await Bun.file(`${root}/capabilities/default.json`).json()) as { permissions: unknown[]; remote?: unknown; windows: string[] };
+  expect(caps.permissions).toEqual([]);
+  expect(caps.remote).toBeUndefined();
+  const files: string[] = [];
+  for await (const path of new Bun.Glob("*.json").scan(`${root}/capabilities`)) files.push(path);
+  expect(files).toEqual(["default.json"]);
+  const conf = (await Bun.file(`${root}/tauri.conf.json`).json()) as { app: { withGlobalTauri: boolean; security?: { capabilities?: unknown } } };
+  expect(conf.app.withGlobalTauri).toBe(false);
+  expect(conf.app.security?.capabilities).toEqual(["default"]);
+  const cargo = await Bun.file(`${root}/Cargo.toml`).text();
+  expect(cargo).toContain('tauri-plugin-dialog = "2"');
+  const shell = (await Bun.file(`${root}/src/lib.rs`).text()).split("#[cfg(test)]")[0];
+  expect(shell).toContain(".plugin(tauri_plugin_dialog::init())");
+  expect(shell).not.toContain("invoke_handler");
+  expect(shell).not.toMatch(/dialog:(default|allow)/);
+});
