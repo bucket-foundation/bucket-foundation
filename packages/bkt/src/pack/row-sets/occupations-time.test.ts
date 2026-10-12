@@ -52,8 +52,8 @@ describe("occupations through time", () => {
     const pages = await occupationsTime(tables(), ctx);
     const again = await occupationsTime(tables(), ctx);
     expect(pages.map((p) => p.sha256)).toEqual(again.map((p) => p.sha256));
-    expect(pages[0].sha256).toBe("4062c46564bee2e2a195bfdda28697cf2337e2d2b49bc2f3b578e019ce1cd362");
-    expect(pages[5].sha256).toBe("a10d339bd2c08d7f3425bc47e1c1db35c26e3bee554a25d4621139a718f323e3");
+    expect(pages[0].sha256).toBe("39d6b9b84893941a315efe7ffae28c3c2531dc59ba3274da3709c2326287e4ca");
+    expect(pages[5].sha256).toBe("1ce89785f9350d8ced6a7fbc516185d924ad49b063ec1d5b29433553c86e5b82");
   });
 
   test("the opening page holds one hit per major group and census year, and each opens its lifecycles", async () => {
@@ -75,7 +75,7 @@ describe("occupations through time", () => {
     expect(groups.map((p) => p.n)).toEqual([3, 3, 3, 3, 4]);
     expect(groups.reduce((sum, p) => sum + p.n, 0)).toBe(OCCUPATION_ROWS.length - 4);
     expect(pages.every((p) => p.links.every((l) => l.length === 0))).toBe(true);
-    expect(pages.every((p) => p.licence === "CC-BY-4.0" && p.audience === "public" && p.modes.join() === "map")).toBe(true);
+    expect(pages.every((p) => p.licence === "CC-BY-4.0" && p.audience === "public" && p.modes.join() === "map,timeline")).toBe(true);
     expect(hitIds(groups[0])).toEqual(["row:occupations-time:histocc-life-soc-11-1011", "row:occupations-time:histocc-life-soc-11-1021", "row:occupations-time:histocc-life-soc-11-2011"]);
     expect(groups[0].sub).toEqual(["11-1011", "11-1021", "11-2011"]);
     expect(groups[0].groups.map((g) => g.id)).toEqual(["stable", "growing", "declining"]);
@@ -97,7 +97,7 @@ describe("occupations through time", () => {
     expect(census.frame.to).toEqual([2018, 2018, 2018, 2018]);
     expect(census.frame.weight).toBeNull();
     expect(census.year).toEqual([null, null, null, null]);
-    expect(census.groups).toEqual([{ id: "listed", label: "Listed", color: "#5b7a3a" }]);
+    expect(census.groups).toEqual([{ id: "listed", label: "Census list, list years only", color: "#5b7a3a" }]);
     expect(censusSpan({ scheme: "census-2018", lineage_codes: ["1950:290", "1990:004", "2000:001", "2018:0010"] })).toEqual({ from: 2000, to: 2018 });
     expect(censusSpan({ scheme: "census-2002", lineage_codes: ["1980:027", "1990:027"] })).toEqual({ from: 2002, to: 2002 });
     expect(censusSpan({ scheme: "census-2010", lineage_codes: ["2030:1"] })).toEqual({ from: 2010, to: 2010 });

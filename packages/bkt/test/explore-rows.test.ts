@@ -75,7 +75,7 @@ describe("the row set route", () => {
     const t = await token();
     const list = await rows(t, "");
     expect(list.status).toBe(200);
-    expect(list.body as unknown).toEqual({ datasets: [{ id: "occupations-time", label: "Occupations through time" }, { id: "major-to-career", label: "Major to career" }, { id: "mathematics-chain", label: "School mathematics chain" }] });
+    expect(list.body as unknown).toEqual({ datasets: [{ id: "occupations-time", label: "Occupations through time" }, { id: "major-to-career", label: "Major to career" }, { id: "mathematics-chain", label: "School mathematics chain" }, { id: "technology-waves", label: "Technology waves" }] });
   });
 
   test("a build with no row set pack lists nothing and knows no set", async () => {
@@ -148,7 +148,7 @@ describe("the row set route", () => {
         seen++;
       }
     }
-    expect(seen).toBe(116);
+    expect(seen).toBe(128);
   });
 
   test("a result above 600 hits is paged, and links that leave the page are dropped and counted", async () => {
@@ -196,7 +196,7 @@ describe("the row set store", () => {
     expect(syncRowSets(db, pack)).toBe(false);
     expect(db.query<{ v: string }, [string]>("select v from meta where k = ?").get(ROWS_META_KEY)?.v).toBe(pack.version);
     const store = new RowSetStore(db);
-    expect(store.list()).toHaveLength(3);
+    expect(store.list()).toHaveLength(4);
     expect(store.page("major-to-career", 0)?.n).toBe(64);
     expect(store.page("major-to-career", 1)).toBeNull();
     expect(syncRowSets(db, fixturePack())).toBe(true);

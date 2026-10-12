@@ -120,6 +120,30 @@ export const REGISTRY: LicenceEntry[] = [
     },
   },
   {
+    id: "wikidata",
+    match: { host: ["www.wikidata.org"] },
+    licence: "CC0-1.0",
+    share_alike: false,
+    public: "rows",
+    attribution: { source: "Wikidata", url: "https://www.wikidata.org/wiki/Wikidata:Licensing", notice: "Names and dates come from Wikidata, whose structured data is released into the public domain under CC0 1.0. A row marked unchecked holds a Wikidata item that no reviewer has read against a second source." },
+  },
+  {
+    id: "wikipedia",
+    match: { host: ["en.wikipedia.org"] },
+    licence: "CC-BY-SA-4.0",
+    share_alike: true,
+    public: "rows",
+    attribution: { source: "English Wikipedia and its contributors", url: "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use", notice: "Names, dates and links come from pages of the English Wikipedia and their contributors, under CC BY-SA 4.0. Each row links to its page. Bucket selected and reformatted them, and these rows stay under CC BY-SA 4.0." },
+  },
+  {
+    id: "arxiv",
+    match: { host: ["arxiv.org"] },
+    licence: "CC0-1.0",
+    share_alike: false,
+    public: "rows",
+    attribution: { source: "arXiv record metadata", url: "https://info.arxiv.org/help/api/tou.html", notice: "The row links to an arXiv record. arXiv releases its record metadata under CC0 1.0, and the paper keeps its own licence." },
+  },
+  {
     id: "k12-restricted",
     match: { slice: ["k12-full"] },
     licence: RESTRICTED,
@@ -155,7 +179,7 @@ function hostOf(url: unknown): string | null {
 }
 
 export function matchValue(key: MatchKey, table: string, row: Row): string | null {
-  const raw = key === "table" ? table : key === "host" ? hostOf(row.source_url) : row[key];
+  const raw = key === "table" ? table : key === "host" ? hostOf(row.source_url) ?? hostOf(row.url) : row[key];
   if (typeof raw !== "string") return null;
   const value = raw.trim();
   return value === "" || value.toLowerCase() === UNKNOWN ? null : value;

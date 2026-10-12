@@ -7,7 +7,7 @@ import { findKruse } from "../../../scripts/check-no-kruse";
 import { findStaff, findStaffRowSets } from "../../../scripts/check-no-staff";
 import { assertClean, buildDenylist } from "../rights";
 import { assembleRowSet, checkRows, hitIds, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowKey, rowKeys, rowSetText, SET_BYTES, type RowDraft } from "./contract";
-import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, countryCodes, describeRowSets, fileTables, packBytes, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
+import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, packWarnings, countryCodes, describeRowSets, fileTables, packBytes, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
 import { fixtureContext, fixtureDraft } from "./test-fixtures";
 
 const REPO = resolve(import.meta.dir, "../../../../..");
@@ -23,7 +23,7 @@ beforeAll(async () => {
 describe("the public row set pack, built from the tables", () => {
   test("holds both sets under the set cap and the pack budget", () => {
     expect(pack.schema).toBe(ROW_SET_PACK_SCHEMA);
-    expect(pack.sets.map((s) => s.id)).toEqual(["occupations-time", "major-to-career", "mathematics-chain"]);
+    expect(pack.sets.map((s) => s.id)).toEqual(["occupations-time", "major-to-career", "mathematics-chain", "technology-waves"]);
     for (const set of pack.sets) {
       expect(set.bytes).toBe(setBytes(set.pages));
       expect(set.bytes).toBeLessThan(SET_BYTES);
@@ -31,7 +31,7 @@ describe("the public row set pack, built from the tables", () => {
     expect(SET_BYTES).toBe(768 * 1024);
     expect(ROW_SET_PACK_BUDGET_BYTES).toBe(1.25 * 1024 * 1024);
     expect(packBytes(pack)).toBeLessThan(ROW_SET_PACK_BUDGET_BYTES);
-    expect(describeRowSets(pack)).toHaveLength(3);
+    expect(describeRowSets(pack)).toHaveLength(4);
     expect(pack.built).toMatch(/^tables-[0-9a-f]{12}$/);
   });
 
@@ -49,7 +49,7 @@ describe("the public row set pack, built from the tables", () => {
       }
       expect(replies(set.pages)).toHaveLength(set.pages.length);
     }
-    expect(seen).toBe(116);
+    expect(seen).toBe(128);
   });
 
   test("occupations open as 48 group hits: 22 SOC, 23 O*NET-SOC and 3 census lists", () => {
@@ -99,8 +99,10 @@ describe("the public row set pack, built from the tables", () => {
     rowKeys(opening).forEach((k, i) => k.startsWith("census-") && expect((opening.frame.from as number[])[i]).toBeGreaterThanOrEqual(2000));
   });
 
-  test("no reply passes 90% of the reply cap and no set passes 90% of the set cap", () => {
+  test("no reply passes 90% of the reply cap, no set passes 90% of the set cap and the pack stays under 90% of its budget", () => {
     expect(capWarnings(pack.sets)).toEqual([]);
+    expect(packWarnings(pack)).toEqual([]);
+    expect(packWarnings({ ...pack, sets: [...pack.sets, ...pack.sets] })).toEqual([expect.stringContaining("past 90% of the 1310720 byte budget")]);
   });
 
   test("the mathematics chain holds 65 domains with 147 links, 112 of them stated, and 371 standards inside", () => {
@@ -115,6 +117,26 @@ describe("the public row set pack, built from the tables", () => {
       expect(page.url.every((u) => u !== null && u.startsWith("https://www.thecorestandards.org/"))).toBe(true);
       expect(page.title.every((t) => t.split(/\s+/).length <= 12)).toBe(true);
     }
+  });
+
+  test("technology waves hold 14 waves, 97 curated technologies, 71 training responses and 587 unchecked Wikidata items by wave", () => {
+    const [opening, ...waves] = setOf("technology-waves").pages;
+    const count = (id: string) => opening.gi.filter((g) => opening.groups[g].id === id).length;
+    expect([count("wave"), count("checked"), count("curated"), count("training")]).toEqual([14, 34, 63, 71]);
+    expect(waves).toHaveLength(11);
+    expect(waves.reduce((sum, p) => sum + p.n, 0)).toBe(587);
+    expect(waves.every((p) => p.frame.verified?.every((v) => !v) && p.sources.join() === "wikidata")).toBe(true);
+    expect(opening.frame.verified?.filter(Boolean)).toHaveLength(14 + 34 + 69);
+    expect(new Set(setOf("technology-waves").pages.flatMap((p) => p.sources))).toEqual(new Set(["wikipedia", "wikidata", "arxiv"]));
+    expect(setOf("technology-waves").pages.every((p) => p.licence === "CC-BY-SA-4.0" && p.links.every((l) => l.length === 0))).toBe(true);
+    expect(/archives\.gov/.test(JSON.stringify(setOf("technology-waves")))).toBe(false);
+  });
+
+  test("occupations declare the map and the timeline, and census groups say they hold list years only", () => {
+    const pages = setOf("occupations-time").pages;
+    expect(pages.every((p) => p.modes.join() === "map,timeline")).toBe(true);
+    expect(pages[0].groups.find((g) => g.id === "census")?.label).toBe("Census lists, list years only");
+    expect(pages.at(-1)?.groups).toEqual([{ id: "listed", label: "Census list, list years only", color: "#5b7a3a" }]);
   });
 
   test("major to career holds 64 hits and 240 weighted links", () => {
@@ -210,7 +232,7 @@ describe("the public build checks", () => {
 
   test("the built pack holds no staff set, no restricted source and no person row", () => {
     const file = write("explore-rows.json", pack);
-    expect(readRowSetPack(file)?.sets).toHaveLength(3);
+    expect(readRowSetPack(file)?.sets).toHaveLength(4);
     expect(publicPackProblems(pack)).toEqual([]);
     expect(findStaffRowSets([file])).toEqual([]);
     expect(findKruse([file], [...deny.videoIds])).toEqual([]);

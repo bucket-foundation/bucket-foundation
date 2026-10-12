@@ -11,7 +11,7 @@ export const CENSUS_OWN_FROM = 2000;
 const SCHEMES: RowGroup[] = [
   { id: "soc", label: "SOC 2018 major groups", color: "#2f6f8f" },
   { id: "onet-soc", label: "O*NET-SOC major groups", color: "#8a5a2b" },
-  { id: "census", label: "Census occupation lists", color: "#5b7a3a" },
+  { id: "census", label: "Census lists, list years only", color: "#5b7a3a" },
 ];
 
 const STATUSES: RowGroup[] = [
@@ -20,7 +20,7 @@ const STATUSES: RowGroup[] = [
   { id: "stable", label: "Stable", color: "#2f6f8f" },
   { id: "declining", label: "Declining", color: "#b07a2a" },
   { id: "extinct", label: "Extinct", color: "#8f3f3f" },
-  { id: LISTED, label: "Listed", color: "#5b7a3a" },
+  { id: LISTED, label: "Census list, list years only", color: "#5b7a3a" },
 ];
 
 interface Lifecycle {
@@ -98,7 +98,7 @@ export async function occupationsTime(tables: TableReader, ctx: AssembleContext)
   const all = ordered.flatMap((g) => g.rows);
   const axis = all.length ? { from: Math.min(...all.map((r) => r.from)), to: Math.max(...all.map((r) => r.to)), scale: "linear" as const, unit: "year" as const } : null;
   const drill = { param: "group" as const, values: ordered.map((g) => g.key) };
-  const shared = { id: OCCUPATIONS_ID, label: LABEL, audience: "public" as const, modes: ["map"], axis, layout: "ring" as const, drill };
+  const shared = { id: OCCUPATIONS_ID, label: LABEL, audience: "public" as const, modes: ["map", "timeline"], axis, layout: "ring" as const, drill };
   const opening: RowSetDraft = {
     ...shared,
     groups: SCHEMES,
