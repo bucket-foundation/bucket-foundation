@@ -225,13 +225,15 @@ export function LibraryView({ api, embedded, onBody }: { api: LibraryApi; embedd
               </p>
             )}
           </article>
-          <article className="panel card">
-            <ul className="library-rows">
-              {body.decks.map((d) => (
-                <Row key={d.id} d={d} busy={busy} offline={body.offline} act={act} />
-              ))}
-            </ul>
-          </article>
+          {body.decks.length > 0 && (
+            <article className="panel card">
+              <ul className="library-rows">
+                {body.decks.map((d) => (
+                  <Row key={d.id} d={d} busy={busy} offline={body.offline} act={act} />
+                ))}
+              </ul>
+            </article>
+          )}
         </>
       )}
     </section>

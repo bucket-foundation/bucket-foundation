@@ -6,7 +6,12 @@ import { readJsonFile } from "./file";
 const pct = (v: number) => `${Math.round(v * 100)}`;
 const text = (v: unknown) => (Array.isArray(v) ? v.join(", ") : v === null || v === undefined ? "" : String(v));
 
-export function AdvisorsView({ api }: { api: Api }) {
+export type AdvisorApi = Pick<Api, "advisor" | "importAdvisor" | "forgetAdvisor">;
+export const NO_PEOPLE_FILE = "Open the people file that a matching run wrote on this computer.";
+export const OPEN_PEOPLE_FILE = "Open a people file";
+export const OPEN_ANOTHER = "Open another people file";
+
+export function AdvisorsView({ api, embedded }: { api: AdvisorApi; embedded?: boolean }) {
   const [review, setReview] = useState<StoredReview | null | undefined>(undefined);
   const [forgotten, setForgotten] = useState(0);
   const [pending, setPending] = useState<unknown>(null);
@@ -58,18 +63,22 @@ export function AdvisorsView({ api }: { api: Api }) {
   }, [review, q]);
   const person = review?.rows.find((r) => r.rank === picked) ?? null;
 
-  if (review === undefined) return <p className="muted">Loading advisors…</p>;
+  if (review === undefined) return <p className="muted">{status ?? "Loading…"}</p>;
 
   return (
     <section>
-      <header className="head">
-        <h1>Advisors</h1>
-        <p className="muted">{review ? `${review.rows.length} people ranked against your statement` : "Open the review.json that advisor-review or fit-me wrote."}</p>
-      </header>
+      {embedded ? (
+        <p className="muted">{review ? `${review.rows.length} people ranked against your statement` : NO_PEOPLE_FILE}</p>
+      ) : (
+        <header className="head">
+          <h1>Advisors</h1>
+          <p className="muted">{review ? `${review.rows.length} people ranked against your statement` : NO_PEOPLE_FILE}</p>
+        </header>
+      )}
       <div className="toolbar">
         <label className="file">
-          <input type="file" accept="application/json,.json" onChange={(e) => void onFile(e.target.files?.[0])} />
-          <span>{review ? "Open another review" : "Open review.json"}</span>
+          <input type="file" accept="application/json,.json" aria-label={review ? OPEN_ANOTHER : OPEN_PEOPLE_FILE} onChange={(e) => void onFile(e.target.files?.[0])} />
+          <span>{review ? OPEN_ANOTHER : OPEN_PEOPLE_FILE}</span>
         </label>
         {review && (
           <button className="ghost" onClick={() => void forget()}>

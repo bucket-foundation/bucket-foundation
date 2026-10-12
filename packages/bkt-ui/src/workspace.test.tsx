@@ -92,6 +92,7 @@ function fakeApi(over: Partial<WorkspaceApi> = {}) {
     researchBuild: async (slug: string, build: string) => (builds.push([slug, build]), { state: "refused", reason: "builds are off for this output", install: null, status: 403 }),
     researchBuildState: async () => ({ pending: null, job: null }),
     installedDecks: async () => ({ decks: [] }),
+    advisor: async () => ({ review: null, forgotten: 0 }),
     library: async () => ({ built: "1970-01-01", refreshedAt: null, offline: true, from: "bundled", signed: false, decks: [] }),
     researchSave: async (slug: string, path: string, base: string, text: string): Promise<SaveResult> => (saves.push({ slug, path, base, text }), { saved: true, rev: "rev-next", changed: true }),
     ...over,
@@ -318,17 +319,6 @@ describe("records workspace", () => {
   });
 });
 
-describe("workspaces that are not built", () => {
-  test("show one plain line and a link where a screen holds the items today", async () => {
-    const f = fakeApi();
-    const people = await workspace(f.api, "people");
-    expect(people.host.querySelector("p.muted")!.textContent).toBe("This workspace is empty in this version of Bucket.");
-    expect(people.host.querySelector("a")).toBeNull();
-    expect(f.listed).toEqual([]);
-    await people.unmount();
-  });
-});
-
 describe("leaving a workspace editor inside the save pause", () => {
   const FINAL = "id,title\ngoldbach,Goldbach, the final text\n";
 
@@ -482,25 +472,6 @@ describe("leaving a workspace editor inside the save pause", () => {
 });
 
 describe("workspace addresses and the tabs that are not built", () => {
-  test("the one left shows one plain line, at most one link to a screen that exists, and no other control", async () => {
-    const { LATER } = await import("./views/Workspace");
-    const { NAV } = await import("./nav");
-    const screens = NAV.map((n) => href(n.route));
-    expect(Object.keys(LATER).sort()).toEqual(["people"]);
-    for (const [type, words] of Object.entries(LATER)) {
-      const f = fakeApi();
-      const v = await workspace(f.api, type as "people");
-      expect({ type, lines: Array.from(v.host.querySelectorAll("p")).map((p) => p.textContent) }).toEqual({ type, lines: [words.line] });
-      expect({ type, controls: v.host.querySelectorAll("button, input, select, textarea, [role=tab]").length }).toEqual({ type, controls: 0 });
-      const links = Array.from(v.host.querySelectorAll("a")).map((a) => a.getAttribute("href")!);
-      expect(links.length).toBeLessThanOrEqual(1);
-      for (const link of links) expect(screens).toContain(link);
-      expect(/[–—]/.test(words.line)).toBe(false);
-      expect(f.listed).toEqual([]);
-      await v.unmount();
-    }
-  });
-
   test("no link and no source line points at the old desk address", async () => {
     const { WORKSPACE_TABS } = await import("./views/WorkspaceTabs");
     const { Screen } = await import("./nav");
@@ -809,6 +780,103 @@ describe("decks workspace", () => {
     expect(v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Decks");
     expect(v.host.querySelector("h1")!.textContent).toBe("Decks");
     expect(v.host.querySelector('[role="tablist"]')).toBeNull();
+    await v.unmount();
+  });
+});
+
+describe("people workspace", () => {
+  const person = (rank: number, name: string, institution: string) => ({ rank, name, score: 0.9 - rank / 100, percentile: 99 - rank, fields: { institution, field: "Made-up studies" }, links: {}, star_prime: [], star_ours: [], complement: null, complement_directions: [], theta: null, radius: null });
+  const REVIEW = { key: "k", prime_axes: [], our_axes: [], star_query_prime: [], star_query_ours: [], summary: "", imported_at: 1, rows: [person(1, "Ada Example", "Invented Institute"), person(2, "Brook Sample", "Placeholder College")] };
+
+  function peopleApi(start: unknown = null) {
+    const calls: string[] = [];
+    let review = start;
+    const base = fakeApi().api as unknown as Record<string, unknown>;
+    const guarded = Object.fromEntries(Object.keys(base).map((name) => [name, (...args: unknown[]) => (calls.push(name), (base[name] as (...a: unknown[]) => unknown)(...args))]));
+    const api = {
+      ...guarded,
+      advisor: async () => (calls.push("advisor"), { review, forgotten: 0 }),
+      importAdvisor: async (file: unknown) => (calls.push(`import ${JSON.stringify(file).length}`), (review = REVIEW), { imported: 2, forgotten: 0 }),
+      forgetAdvisor: async () => (calls.push("forget"), (review = null), { forgotten: 2 }),
+    } as unknown as WorkspaceApi;
+    return { api, calls };
+  }
+
+  test("reads the person's own imported file alone, and nothing else", async () => {
+    const { PEOPLE_ABOUT } = await import("./views/Workspace");
+    const { NO_PEOPLE_FILE, OPEN_PEOPLE_FILE } = await import("./views/Advisors");
+    const f = peopleApi();
+    const v = await workspace(f.api, "people");
+    expect(Array.from(v.host.querySelectorAll("h1")).map((h) => h.textContent)).toEqual(["People"]);
+    expect(Array.from(v.host.querySelectorAll("p.muted")).map((p) => p.textContent)).toEqual([PEOPLE_ABOUT, NO_PEOPLE_FILE]);
+    expect(v.host.querySelector('input[type="file"]')!.getAttribute("aria-label")).toBe(OPEN_PEOPLE_FILE);
+    expect(v.host.querySelectorAll(".people li").length).toBe(0);
+    expect(f.calls).toEqual(["advisor"]);
+    await v.unmount();
+  });
+
+  test("a file the person opens is sent whole to the import call and its people show, and Forget clears them", async () => {
+    const f = peopleApi();
+    const v = await workspace(f.api, "people");
+    const input = v.host.querySelector('input[type="file"]') as HTMLInputElement;
+    const file = new File([JSON.stringify({ rows: REVIEW.rows })], "people.json", { type: "application/json" });
+    Object.defineProperty(input, "files", { value: [file], configurable: true });
+    await v.act(async () => input.dispatchEvent(new Event("change", { bubbles: true })));
+    await v.settle();
+    expect(f.calls.filter((c) => c.startsWith("import ")).length).toBe(1);
+    expect(Array.from(v.host.querySelectorAll(".people .who")).map((w) => w.firstChild!.textContent)).toEqual(["Ada Example", "Brook Sample"]);
+    expect(v.host.querySelector(".status")!.textContent).toContain("Imported 2 people.");
+    const confirm = window.confirm;
+    window.confirm = () => true;
+    try {
+      await v.click(press(v.host, "Forget these people"));
+    } finally {
+      window.confirm = confirm;
+    }
+    expect(v.host.querySelectorAll(".people li").length).toBe(0);
+    expect(f.calls.filter((c) => c !== "advisor" && !c.startsWith("import ") && c !== "forget")).toEqual([]);
+    await v.unmount();
+  });
+
+  test("the words name no file format, in the workspace and on the Advisors screen", async () => {
+    const { AdvisorsView, NO_PEOPLE_FILE, OPEN_PEOPLE_FILE, OPEN_ANOTHER } = await import("./views/Advisors");
+    const { PEOPLE_ABOUT } = await import("./views/Workspace");
+    const format = /json|\.csv|\.md\b|review\.|advisor-review|fit-me|\bfile format\b/i;
+    for (const words of [NO_PEOPLE_FILE, OPEN_PEOPLE_FILE, OPEN_ANOTHER, PEOPLE_ABOUT]) expect({ words, bad: format.test(words) || /[\u2013\u2014]/.test(words) }).toEqual({ words, bad: false });
+    const empty = await mount(<AdvisorsView api={peopleApi().api} />);
+    expect(empty.host.querySelector("h1")!.textContent).toBe("Advisors");
+    expect(format.test(empty.host.textContent ?? "")).toBe(false);
+    await empty.unmount();
+    const full = await mount(<AdvisorsView api={peopleApi(REVIEW).api} embedded />);
+    expect(full.host.querySelector("h1")).toBeNull();
+    expect(full.host.textContent).toContain("2 people ranked against your statement");
+    expect(format.test(full.host.textContent ?? "")).toBe(false);
+    await full.unmount();
+  });
+
+  test("the bar lights People, every tab is built, and the workspace files name no person store", async () => {
+    const { Screen } = await import("./nav");
+    const { BUILT } = await import("./views/Workspace");
+    const { WORKSPACE_TABS } = await import("./views/WorkspaceTabs");
+    const v = await mount(<Screen api={peopleApi().api as unknown as Api} route={parseHash("#/workspace/people")} />);
+    expect(v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("People");
+    expect(v.host.querySelector("h1")!.textContent).toBe("People");
+    await v.unmount();
+    expect(WORKSPACE_TABS.map((t) => t.id).filter((id) => id !== "nodes" && id !== "people" && id !== "decks" && !(id in BUILT))).toEqual([]);
+    const store = ["researcher", "contacts"].join("-");
+    for await (const path of new Bun.Glob("**/*.{ts,tsx,css}").scan(import.meta.dir)) {
+      const source = await Bun.file(`${import.meta.dir}/${path}`).text();
+      expect({ path, names: source.includes(store) }).toEqual({ path, names: false });
+    }
+  });
+});
+
+describe("decks workspace with an unsigned list", () => {
+  test("shows no empty card under the Library card", async () => {
+    const v = await workspace(fakeApi().api, "decks");
+    expect(v.host.querySelector(".library-rows")).toBeNull();
+    expect(Array.from(v.host.querySelectorAll("article.panel")).filter((a) => (a.textContent ?? "").trim() === "")).toEqual([]);
+    expect(v.host.querySelectorAll("article.panel").length).toBe(2);
     await v.unmount();
   });
 });
