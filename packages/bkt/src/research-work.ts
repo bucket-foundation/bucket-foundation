@@ -4,6 +4,7 @@ import { dirname, extname, join } from "node:path";
 import { diffLines, DIFF_BYTES, unifiedPatch, type Hunk } from "./diff";
 import { MB, pathProblem, sha256, SLUG, type ReportRecord } from "./pack/research";
 import { guardPath, type Research, ResearchError } from "./research";
+import { parseTable } from "./research-table";
 import type { Route } from "./serve";
 
 export const EDIT_BYTES = 4 * MB;
@@ -311,8 +312,14 @@ export class ResearchWork {
       for (const table of detail.manifest.tables ?? []) {
         const text = texts.get(table.path);
         if (text === undefined || (table.format !== "tsv" && table.format !== "csv")) continue;
-        const header = (text.split("\n")[0] ?? "").replace(/\r$/, "").split(table.format === "tsv" ? "\t" : ",").map((c) => c.replace(/^"|"$/g, ""));
-        for (const column of [table.licence_column, table.source_column]) if (column && !header.includes(column)) throw new ResearchError(`${table.label} lost its ${column} column, and each row must keep its licence and source`, 422);
+        const parsed = parseTable(table.format, text);
+        for (const column of [table.licence_column, table.source_column]) {
+          if (!column) continue;
+          const at = parsed.columns.indexOf(column);
+          if (at < 0) throw new ResearchError(`${table.label} lost its ${column} column, and each row must keep its licence and source`, 422);
+          const blank = parsed.rows.findIndex((row) => row[at].trim() === "");
+          if (blank >= 0) throw new ResearchError(`${table.label} has no ${column} on row ${blank + 1}, and each row must keep its licence and source`, 422);
+        }
       }
       plainDir(this.root);
       plainDir(join(this.root, "exports"));

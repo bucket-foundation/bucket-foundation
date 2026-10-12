@@ -311,6 +311,18 @@ describe("export", () => {
     expect(existsSync(join(home, "research/exports"))).toBe(false);
     await work.write("demo", ROWS, rev("id,title,licence\n1,Goldbach,CC0-1.0\n"), bytes('"id","licence","source","title"\n1,CC0-1.0,u,Goldbach\n'));
     expect((await work.exportOutput("demo")).files).toContain(ROWS);
+    const quoted = setup();
+    await quoted.work.write("demo", ROWS, rev(CSV), bytes('id,"title, with a comma","licence","source"\n1,"Goldbach, strong",CC0-1.0,https://example.org/a\n'));
+    expect((await quoted.work.exportOutput("demo")).files).toContain(ROWS);
+    const hidden = setup();
+    await hidden.work.write("demo", ROWS, rev(CSV), bytes('id,"title, licence, source",notes\n1,x,y\n'));
+    expect((await refused(() => hidden.work.exportOutput("demo")))[1]).toBe("Public rows lost its licence column, and each row must keep its licence and source");
+    const blank = setup();
+    await blank.work.write("demo", ROWS, rev(CSV), bytes("id,title,licence,source\n1,Goldbach,CC0-1.0,https://example.org/a\n2,Twin primes,,https://example.org/b\n"));
+    expect(await refused(() => blank.work.exportOutput("demo"))).toEqual([422, "Public rows has no licence on row 2, and each row must keep its licence and source"]);
+    const unsourced = setup();
+    await unsourced.work.write("demo", ROWS, rev(CSV), bytes('id,title,licence,source\n1,Goldbach,CC0-1.0," "\n'));
+    expect((await refused(() => unsourced.work.exportOutput("demo")))[1]).toBe("Public rows has no source on row 1, and each row must keep its licence and source");
     const staff = setup();
     await staff.work.write("demo", "tools/demo/rows.tsv", rev(TSV), bytes("id\tstatement\n1\tx\n"));
     expect((await refused(() => staff.work.exportOutput("demo")))[1]).toBe("Staff rows lost its licence column, and each row must keep its licence and source");

@@ -75,6 +75,7 @@ function deps(over: Partial<DoctorDeps> = {}): DoctorDeps {
     columns: 120,
     run: () => pythonOk(),
     alive: () => false,
+    which: (bin) => `/usr/bin/${bin}`,
     ...over,
   };
 }
@@ -107,6 +108,9 @@ describe("bkt doctor checks", () => {
       ["window-files", "ok"],
       ["open-window", "ok"],
       ["python", "ok"],
+      ["tool-pdflatex", "ok"],
+      ["tool-biber", "ok"],
+      ["tool-pdftoppm", "ok"],
       ["terminal", "ok"],
     ]);
     expect(byId(checks, "database").result).toBe(`It opens at version ${SCHEMA_VERSION}.`);
@@ -131,7 +135,7 @@ describe("bkt doctor checks", () => {
     expect(c.fix).toBe(REMEDY.libsecret);
     expect(byId(checks, "database").status).toBe("ok");
     expect(doctorPassed(checks)).toBe(false);
-    expect(doctorLines(checks).at(-1)).toBe("1 of 11 checks failed.");
+    expect(doctorLines(checks).at(-1)).toBe("1 of 14 checks failed.");
     expect(locked.sets).toBe(0);
     expect(snapshot(dir)).toEqual(before);
   });
@@ -261,7 +265,7 @@ describe("bkt doctor checks", () => {
     expect(byId(stale, "open-window").result).toBe("No window is open.");
     expect(existsSync(record)).toBe(true);
     expect(byId(stale, "python")).toMatchObject({ status: "warn", fix: "Install Python 3 from python.org." });
-    expect(doctorLines(stale).at(-1)).toBe("No check failed. 2 of 11 carry a warning.");
+    expect(doctorLines(stale).at(-1)).toBe("No check failed. 2 of 14 carry a warning.");
   });
 
   test("the analysis modules match the analyzer's requirements", () => {
@@ -278,6 +282,19 @@ describe("bkt doctor checks", () => {
     expect(jsonLine("doctor", { ok: false, checks: checks.map((c) => ({ ...c, secret: "x" })) })).toBe(
       '{"v":1,"ok":false,"checks":[{"id":"data-folder","name":"Data folder","status":"ok","result":"It is private to you.","fix":null},{"id":"database","name":"Database","status":"fail","result":"No database yet.","fix":"Run bkt init."}]}',
     );
+  });
+  test("each missing paper tool is a warning with its install command, and the rest still pass", async () => {
+    const kr = await madeHome();
+    const checks = await runDoctor(deps({ keyring: () => kr, which: (bin) => (bin === "biber" ? "/usr/bin/biber" : null), platform: platformFor("linux", { env: {} }) }));
+    expect(byId(checks, "tool-pdftoppm")).toEqual({ id: "tool-pdftoppm", name: "Paper pages", status: "warn", result: "pdftoppm is missing. Papers show as a preview.", fix: "Run sudo dnf install poppler-utils, or sudo apt install poppler-utils" });
+    expect(byId(checks, "tool-pdflatex")).toMatchObject({ status: "warn", result: "pdflatex is missing. Papers cannot be compiled here.", fix: "Run sudo dnf install texlive-scheme-medium, or sudo apt install texlive-latex-extra" });
+    expect(byId(checks, "tool-biber")).toEqual({ id: "tool-biber", name: "Bibliography", status: "ok", result: "biber is at /usr/bin/biber.", fix: null });
+    expect(doctorPassed(checks)).toBe(true);
+    expect(doctorLines(checks).some((l) => l.includes("Fix: Run sudo dnf install poppler-utils"))).toBe(true);
+    const mac = await runDoctor(deps({ keyring: () => kr, which: () => null, platform: platformFor("darwin", { env: {} }) }));
+    expect(byId(mac, "tool-pdftoppm").fix).toBe("Run brew install poppler");
+    const win = await runDoctor(deps({ keyring: () => kr, which: () => null, platform: platformFor("win32", { env: {} }) }));
+    expect(byId(win, "tool-pdftoppm").fix).toBe("Run winget install oschwartz10612.Poppler");
   });
 });
 
@@ -366,7 +383,7 @@ describe("bkt doctor through the command line", () => {
     expect(r.code).toBe(1);
     expect(r.err).toBe("");
     expect(r.out).toContain("fail  Database        No database yet. Fix: Run bkt init.");
-    expect(r.out.trimEnd().split("\n")).toHaveLength(12);
+    expect(r.out.trimEnd().split("\n")).toHaveLength(15);
     expect(existsSync(home)).toBe(false);
     expect(existsSync(join(dir, "run"))).toBe(false);
     expect(stores()).toBe(0);
@@ -385,7 +402,7 @@ describe("bkt doctor through the command line", () => {
     const body = JSON.parse(json.out) as { v: number; ok: boolean; checks: Check[] };
     expect(json.out.trimEnd().split("\n")).toHaveLength(1);
     expect([body.v, body.ok]).toEqual([1, true]);
-    expect(body.checks.map((c) => c.id)).toEqual(["data-folder", "key-store", "database", "content-pack", "explore-pack", "word-pack", "installed-decks", "window-files", "open-window", "python", "terminal"]);
+    expect(body.checks.map((c) => c.id)).toEqual(["data-folder", "key-store", "database", "content-pack", "explore-pack", "word-pack", "installed-decks", "window-files", "open-window", "python", "tool-pdflatex", "tool-biber", "tool-pdftoppm", "terminal"]);
     expect(Object.keys(body.checks[0])).toEqual(["id", "name", "status", "result", "fix"]);
     expect(snapshot(dir)).toEqual(before);
 
@@ -407,7 +424,7 @@ describe("bkt doctor through the command line", () => {
     const locked = bkt(["doctor"]);
     expect(locked.code).toBe(1);
     expect(locked.out).toContain(`fail  Key store       Locked: the login keyring holds the keys and would not release them. Fix: ${REMEDY.libsecret}`);
-    expect(locked.out.trimEnd().split("\n").at(-1)).toBe("1 of 11 checks failed.");
+    expect(locked.out.trimEnd().split("\n").at(-1)).toBe("1 of 14 checks failed.");
     expect(stores()).toBe(minted);
     const after = snapshot(dir);
     delete before["keyring.log"];

@@ -64,9 +64,12 @@ import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
-import { Research, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
+import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
 import { installLines, researchInstall } from "./research";
 import { FILE_BODY_BYTES, ResearchWork, researchWorkRoutes } from "../research-work";
+import { ConsentStore } from "../research-consent";
+import { researchSpecs } from "../research-jobs";
+import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
 import type { ResearchBlobs, ResearchIndex } from "../pack/research";
 import { startServe, type Route } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
@@ -297,6 +300,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   ]);
   const researchTrouble = (e: Error) => console.error(`bkt serve: research: ${e.message}`);
   const research = new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, researchTrouble);
+  const pagesRunner = new JobRunner({ root: join(dir, "research", "jobs", "pages"), specs: researchSpecs({ os: platformFor().os }), keep: PAGES_KEEP, frozenOnly: true });
   const srv = startServe({
     cliToken,
     cliSecret,
@@ -313,6 +317,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...jobRoutes(runner),
       ...researchRoutes(research, researchTrouble),
       ...researchWorkRoutes(new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() }), researchTrouble),
+      ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os }), researchTrouble),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
       ...servedWordRoutes(workQuiz),
       ...deckRoutes({ home: dir, book: wordBook, onError: (m) => console.error(`bkt serve: ${m}`) }),
@@ -370,6 +375,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   clearInterval(asked);
   win.forget();
   runner.stopAll();
+  pagesRunner.stopAll();
   release();
   releaseServer();
   srv.stop();

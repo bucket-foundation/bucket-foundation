@@ -21,15 +21,17 @@ import type { DecksBody } from "../../bkt/src/deck-routes";
 import type { WordSearch } from "../../bkt/src/core/word-decks";
 export type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
 export type { TablePage } from "../../bkt/src/research-table";
+import type { TablePage } from "../../bkt/src/research-table";
 export type { Change, Exported } from "../../bkt/src/research-work";
 import type { Change, Exported } from "../../bkt/src/research-work";
 
 export type SaveResult = { saved: true; rev: string; changed: boolean } | { saved: false; current: string };
 export const EDIT_EXTS = [".md", ".tex", ".bib", ".sty", ".tsv", ".csv", ".json", ".jsonl", ".py", ".txt", ".lean"];
 export const EDIT_BYTES = 4 * 1024 * 1024;
-import type { TablePage } from "../../bkt/src/research-table";
 export type { PackedFile, ReportAsset, ReportAttribution, ReportRecord } from "../../bkt/src/pack/research";
 import type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
+
+export type PaperPage = { state: "ready"; pages: number; pdf: string; src: string } | { state: "rendering" } | { state: "preview"; reason: string; install: string | null };
 
 export const IMAGE_TYPES = ["image/png", "image/webp", "image/jpeg", "image/svg+xml"];
 export const IMAGE_MAX_BYTES = 8 * 1024 * 1024;
@@ -482,6 +484,23 @@ export class Api {
     if (query.q) params.set("q", query.q);
     if (query.sort) params.set("sort", query.sort);
     return this.call<TablePage>(`/local/research/table?${params.toString()}`);
+  }
+
+  async researchPage(slug: string, n: number): Promise<PaperPage> {
+    const r = await fetch(`/local/research/page?slug=${encodeURIComponent(slug)}&n=${n}`, { headers: { authorization: `Bucket ${this.token}` } });
+    if (r.status === 202 || r.status === 409) {
+      const body = (await r.json().catch(() => ({}))) as { state?: string; reason?: string; install?: string | null; error?: string };
+      if (body.state === "rendering") return { state: "rendering" };
+      if (body.state === "preview" || body.state === "failed") return { state: "preview", reason: body.reason ?? "", install: body.install ?? null };
+      throw new ApiError(body.error ?? "", r.status);
+    }
+    if (!r.ok) throw new ApiError(((await r.json().catch(() => ({}))) as { error?: string }).error ?? "", r.status);
+    const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
+    const pages = Number(r.headers.get("x-bkt-pages") ?? "0");
+    const blob = await r.blob();
+    if (type !== "image/png" || !Number.isInteger(pages) || pages < 1) throw new Error("The page did not arrive as an image.");
+    if (blob.size > IMAGE_MAX_BYTES) throw new Error("That page is over 8 MB.");
+    return { state: "ready", pages, pdf: r.headers.get("x-bkt-pdf") ?? "", src: await asDataUrl(blob.type === type ? blob : new Blob([blob], { type })) };
   }
 
   researchChanges(slug: string) {

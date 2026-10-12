@@ -204,6 +204,66 @@
   overflow-wrap: anywhere;
 }
 
+.paper-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.paper-source,
+.paper-view {
+  padding: 16px;
+  max-height: 78vh;
+  overflow: auto;
+}
+
+.paper-source pre {
+  margin: 12px 0 0;
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.pdf-pane {
+  display: grid;
+  gap: 12px;
+}
+
+.pdf-page {
+  aspect-ratio: 17 / 22;
+  border: 1px solid var(--line);
+  background: #fff;
+  display: grid;
+  place-items: center;
+}
+
+.pdf-page img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.preview-label {
+  display: inline-block;
+  margin: 0 0 10px;
+}
+
+.tex-display {
+  overflow-x: auto;
+  padding: 6px 0;
+}
+
+.tex-link .link {
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .paper-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .research-changes {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -212,6 +272,10 @@
 
 .research-changes .panel {
   min-width: 0;
+}
+
+.paper-source .research-editor textarea {
+  min-height: 60vh;
 }
 
 .research-changes select {

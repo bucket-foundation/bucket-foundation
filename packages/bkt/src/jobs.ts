@@ -3,6 +3,7 @@ import { randomBytes } from "node:crypto";
 import { chmodSync, existsSync, lstatSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 import { LogGuard } from "./log-guard";
+import { frozenDigest, Grant } from "./research-consent";
 
 export const JOB_MARKER = ".bkt-job";
 export const DEFAULT_TIMEOUT_MS = 30 * 60_000;
@@ -23,7 +24,9 @@ export interface JobSpec {
   label: string;
   inputs: Record<string, { label: string; maxBytes: number; exts: string[] }>;
   options?: Record<string, { min: number; max: number; integer: boolean }>;
-  plan(dirs: JobDirs, options: Record<string, number>): JobPlan;
+  timeoutMs?: number;
+  watch?: { everyMs: number; check(dirs: JobDirs): string | null };
+  plan(dirs: JobDirs, options: Record<string, number>, params?: Record<string, string>): JobPlan;
   after?(dirs: JobDirs): unknown;
   failed?(dirs: JobDirs): unknown;
 }
@@ -56,7 +59,9 @@ interface Running {
   proc: ChildProcess | null;
   timer: ReturnType<typeof setTimeout> | null;
   killTimer: ReturnType<typeof setTimeout> | null;
+  watch: ReturnType<typeof setInterval> | null;
   stop: JobState | null;
+  limit: string | null;
 }
 
 export interface JobRunnerOptions {
@@ -67,6 +72,12 @@ export interface JobRunnerOptions {
   now?: () => number;
   keep?: number;
   killGraceMs?: number;
+  frozenOnly?: boolean;
+}
+
+export interface Frozen {
+  id: string;
+  dir: string;
 }
 
 const INPUT_NAME = /^[a-z][a-z0-9-]{0,31}$/;
@@ -83,7 +94,12 @@ export class JobRunner {
     chmodSync(this.root, 0o700);
   }
 
+  get rootDir(): string {
+    return this.root;
+  }
+
   kinds() {
+    if (this.o.frozenOnly) return [];
     return Object.entries(this.o.specs).map(([kind, s]) => ({ kind, label: s.label, inputs: Object.entries(s.inputs).map(([name, i]) => ({ name, label: i.label, exts: i.exts })) }));
   }
 
@@ -101,7 +117,7 @@ export class JobRunner {
   }
 
   start(kind: string, files: Record<string, JobFile>, options: Record<string, unknown> = {}): JobView {
-    const spec = Object.hasOwn(this.o.specs, kind) ? this.o.specs[kind] : undefined;
+    const spec = !this.o.frozenOnly && Object.hasOwn(this.o.specs, kind) ? this.o.specs[kind] : undefined;
     if (!spec) throw new JobError(`unknown job ${kind}`, 404);
     if (this.busy()) throw new JobError("another job is running; cancel it or wait", 409);
     for (const name of Object.keys(files)) if (!Object.hasOwn(spec.inputs, name)) throw new JobError(`${kind} takes no input named ${name}`, 400);
@@ -124,11 +140,7 @@ export class JobRunner {
       if (!input.exts.includes(ext)) throw new JobError(`${input.label} must be one of ${input.exts.join(", ")}`, 400);
       named[name] = { text, file: `${name}${ext}` };
     }
-    const now = this.o.now ?? Date.now;
-    const id = `${new Date(now()).toISOString().replace(/[-:]/g, "").slice(0, 15)}-${randomBytes(4).toString("hex")}`;
-    const dir = join(this.root, id);
-    mkdirSync(dir, { mode: 0o700 });
-    writeFileSync(join(dir, JOB_MARKER), `${id}\n`, { mode: 0o600, flag: "wx" });
+    const { id, dir } = this.makeDir();
     const inDir = join(dir, "inputs");
     const out = join(dir, "out");
     mkdirSync(inDir, { mode: 0o700 });
@@ -138,16 +150,69 @@ export class JobRunner {
       inputs[name] = join(inDir, file);
       writeFileSync(inputs[name], text, { mode: 0o600, flag: "wx" });
     }
-    const dirs: JobDirs = { dir, inputs, out };
+    return this.run(id, kind, spec, { dir, inputs, out }, opts, {}, Object.values(named).map((n) => n.text), inDir);
+  }
+
+  private makeDir(): Frozen {
+    const now = this.o.now ?? Date.now;
+    const id = `${new Date(now()).toISOString().replace(/[-:]/g, "").slice(0, 15)}-${randomBytes(4).toString("hex")}`;
+    const dir = join(this.root, id);
+    mkdirSync(dir, { mode: 0o700 });
+    writeFileSync(join(dir, JOB_MARKER), `${id}\n`, { mode: 0o600, flag: "wx" });
+    return { id, dir };
+  }
+
+  freeze(files: Record<string, Uint8Array>): Frozen {
+    if (!this.o.frozenOnly) throw new JobError("this runner takes no frozen folder", 404);
+    const made = this.makeDir();
+    for (const [name, bytes] of Object.entries(files)) {
+      if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(name) || name === JOB_MARKER) throw new JobError(`bad frozen file name ${name}`, 400);
+      writeFileSync(join(made.dir, name), bytes, { mode: 0o400, flag: "wx" });
+    }
+    return made;
+  }
+
+  startFrozen(kind: string, frozenDir: string, grant: unknown, params: Record<string, string>): JobView {
+    if (!this.o.frozenOnly) throw new JobError("this runner takes no frozen folder", 404);
+    const spec = Object.hasOwn(this.o.specs, kind) ? this.o.specs[kind] : undefined;
+    if (!spec) throw new JobError(`unknown job ${kind}`, 404);
+    if (!(grant instanceof Grant)) throw new JobError("a frozen job needs a grant from the consent store", 403);
+    if (grant.spent) throw new JobError("the grant is spent", 403);
+    if (grant.kind !== kind) throw new JobError("the grant is for another kind of job", 403);
+    const dir = resolve(frozenDir);
+    const id = relative(this.root, dir);
+    if (!/^[0-9T]{15}-[0-9a-f]{8}$/.test(id)) throw new JobError("the frozen folder sits outside this runner", 403);
+    if (!existsSync(dir) || lstatSync(dir).isSymbolicLink()) throw new JobError("the frozen folder is missing or a symlink", 403);
+    const marker = join(dir, JOB_MARKER);
+    if (!existsSync(marker) || lstatSync(marker).isSymbolicLink() || readFileSync(marker, "utf8").trim() !== id) throw new JobError("the folder has no matching job marker", 403);
+    if (this.jobs.some((j) => j.view.id === id)) throw new JobError("the frozen folder already ran", 409);
+    let digest: string;
+    try {
+      digest = frozenDigest(dir);
+    } catch (e) {
+      throw new JobError(e instanceof Error ? e.message : String(e), 403);
+    }
+    if (digest !== grant.digest) throw new JobError("the frozen folder does not match the grant", 403);
+    if (this.busy()) throw new JobError("another job is running; cancel it or wait", 409);
+    grant.spent = true;
+    const out = join(dir, "out");
+    mkdirSync(out, { mode: 0o700 });
+    return this.run(id, kind, spec, { dir, inputs: {}, out }, {}, { ...params }, [], null);
+  }
+
+  private run(id: string, kind: string, spec: JobSpec, dirs: JobDirs, opts: Record<string, number>, params: Record<string, string>, secrets: string[], inDir: string | null): JobView {
+    const now = this.o.now ?? Date.now;
+    const { dir } = dirs;
     const view: JobView = { id, kind, state: "running", startedAt: now(), endedAt: null, code: null, log: "", logTruncated: false, result: null, error: null, install: null };
-    const job: Running = { view, proc: null, timer: null, killTimer: null, stop: null };
+    const job: Running = { view, proc: null, timer: null, killTimer: null, watch: null, stop: null, limit: null };
     this.jobs.push(job);
     this.jobs = this.jobs.slice(-(this.o.keep ?? 20));
 
     const finish = (state: JobState, error: string | null = null) => {
-      rmSync(inDir, { recursive: true, force: true });
+      if (inDir) rmSync(inDir, { recursive: true, force: true });
       if (job.timer) clearTimeout(job.timer);
       if (job.killTimer) clearTimeout(job.killTimer);
+      if (job.watch) clearInterval(job.watch);
       view.state = state;
       view.error = error;
       view.endedAt = now();
@@ -155,7 +220,7 @@ export class JobRunner {
 
     let plan: JobPlan;
     try {
-      plan = spec.plan(dirs, opts);
+      plan = spec.plan(dirs, opts, params);
     } catch (e) {
       plan = { error: e instanceof Error ? e.message : String(e) };
     }
@@ -166,7 +231,7 @@ export class JobRunner {
     }
 
     const cap = this.o.logBytes ?? DEFAULT_LOG_BYTES;
-    const guard = new LogGuard(Object.values(named).map((n) => n.text));
+    const guard = new LogGuard(secrets);
     const append = (line: string) => {
       const next = view.log + guard.line(line) + "\n";
       if (Buffer.byteLength(next) > cap) {
@@ -215,12 +280,25 @@ export class JobRunner {
       });
       proc.on("exit", (code) => done(code));
     });
-    job.timer = setTimeout(() => this.halt(job, "timeout"), this.o.timeoutMs ?? DEFAULT_TIMEOUT_MS);
+    job.timer = setTimeout(() => this.halt(job, "timeout"), spec.timeoutMs ?? this.o.timeoutMs ?? DEFAULT_TIMEOUT_MS);
+    const watch = spec.watch;
+    if (watch)
+      job.watch = setInterval(() => {
+        let over: string | null;
+        try {
+          over = watch.check(dirs);
+        } catch (e) {
+          over = e instanceof Error ? e.message : String(e);
+        }
+        if (over === null || job.stop) return;
+        job.limit = over;
+        this.halt(job, "failed");
+      }, watch.everyMs);
     void (async () => {
       const [code] = await Promise.all([exited, lines(proc.stdout), lines(proc.stderr)]);
       this.signalGroup(proc, "SIGKILL");
       view.code = code;
-      if (job.stop) return finish(job.stop, job.stop === "timeout" ? "the job ran past its time limit" : null);
+      if (job.stop) return finish(job.stop, job.stop === "timeout" ? "the job ran past its time limit" : job.limit);
       if (code !== 0) {
         try {
           view.result = code !== null && spec.failed ? ((await spec.failed(dirs)) ?? null) : null;
