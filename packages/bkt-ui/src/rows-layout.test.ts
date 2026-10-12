@@ -5,7 +5,7 @@ import { fixtureContext, fixtureDraft } from "../../bkt/src/pack/row-sets/test-f
 import { forceLayout } from "../../../src/lib/explore/modes/graph";
 import { FORCE_NODE_CAP, modeById, type DesktopLayout } from "./explore/modesV2";
 import { expandRows } from "./explore/rows";
-import { axisLabel, axisShare, axisTicks, fastForceLayout, labelClears, RING_RADIUS, rowGraph, rowTimeline, STACK_GAP, STACK_ROWS, TIMELINE_WIDTH, UNDATED } from "./explore/rows-layout";
+import { axisLabel, axisShare, axisTicks, fastForceLayout, labelClears, LANE_LABEL_RISE, RING_RADIUS, rowGraph, rowTimeline, STACK_GAP, STACK_ROWS, TIMELINE_WIDTH, UNDATED } from "./explore/rows-layout";
 
 const ctx = fixtureContext();
 const open = (draft: Partial<RowSetDraft>) => expandRows(assembleRowSet([fixtureDraft(draft)], ctx)[0]);
@@ -78,6 +78,13 @@ describe("the row timeline", () => {
   test("the lanes are labelled, the axis carries year ticks and an undated row sits under its own label", () => {
     const texts = layout.guides.flatMap((g) => (g.kind === "text" ? [g.text] : []));
     expect(texts).toEqual(expect.arrayContaining(["Group A", "Group B", "1900", "2000", UNDATED]));
+    for (const lane of layout.guides) {
+      if (lane.kind !== "text" || !lane.text.startsWith("Group")) continue;
+      const below = layout.nodes.filter((n) => n.position[1] < lane.position[1]).map((n) => lane.position[1] - n.position[1]);
+      expect(Math.min(...below)).toBeGreaterThanOrEqual(LANE_LABEL_RISE - 1e-9);
+      expect(layout.nodes.every((n) => Math.abs(n.position[1] - lane.position[1]) >= LANE_LABEL_RISE - 1e-9)).toBe(true);
+      expect(lane.position[0]).toBeGreaterThan(-TIMELINE_WIDTH / 2);
+    }
     expect(at("b-none").position[0]).toBeLessThan(-TIMELINE_WIDTH / 2);
     expect(layout.axisLength).toBeGreaterThanOrEqual(TIMELINE_WIDTH + 2);
     const dated = open({ modes: ["timeline"], axis: YEARS, rows: rows.slice(0, 4) });
@@ -132,10 +139,11 @@ describe("ring labels in the map view", () => {
       expect(labels).toHaveLength(count);
       for (const label of labels) {
         if (label.kind !== "text") continue;
-        expect(labelClears(label, drawn.nodes)).toBe(true);
+        expect(labelClears(label, drawn.nodes, drawn.camera[2])).toBe(true);
         expect(Math.hypot(label.position[0], label.position[1])).toBeGreaterThan(RING_RADIUS);
       }
       expect(drawn.camera[2]).toBeGreaterThanOrEqual(5.8);
+      if (count <= 3) expect(drawn.camera[2]).toBe(5.8);
     }
   });
 

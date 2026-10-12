@@ -10,6 +10,8 @@ export const STACK_GAP = LANE_HEIGHT * 0.22;
 export const LANE_GAP = LANE_HEIGHT * 0.9;
 export const MARK_GAP = 0.05;
 export const UNDATED = "No year";
+export const LANE_LABEL_RISE = 0.2;
+export const LANE_LABEL_UNITS_PER_CHAR = 0.075;
 export const RING_RADIUS = 1.35;
 export const LABEL_CLEARANCE = 0.2;
 export const LABEL_UNITS_PER_CHAR = 0.062;
@@ -160,6 +162,7 @@ export function rowTimeline(hits: Hit[], scene: RowScene): SceneLayout & { axisL
   const guides: Guide[] = [];
   let top = 0;
   let undated = false;
+  const first = LANE_LABEL_RISE;
   for (const group of lanes) {
     const placed: Placed[] = [];
     for (const hit of hits) {
@@ -184,12 +187,12 @@ export function rowTimeline(hits: Hit[], scene: RowScene): SceneLayout & { axisL
       nodes.push({ id: item.hit.id, position: [item.start, y, 0], color: group.color, size, label: item.hit.title });
       if (item.end !== null) guides.push({ kind: "line", points: [[item.start, y, 0], [item.end, y, 0]], color: group.color });
     });
-    guides.push({ kind: "text", position: [left - 0.2, top + STACK_GAP * 1.6, 0], text: group.label, color: group.color, size: 11 });
-    top -= (used - 1) * STACK_GAP + LANE_GAP + STACK_GAP * 2;
+    guides.push({ kind: "text", position: [left + (group.label.length * LANE_LABEL_UNITS_PER_CHAR) / 2, top + LANE_LABEL_RISE, 0], text: group.label, color: group.color, size: 11 });
+    top -= (used - 1) * STACK_GAP + LANE_GAP + LANE_LABEL_RISE;
   }
   const bottom = top + STACK_GAP;
-  const height = -bottom + LANE_GAP;
-  const shift = height / 2 - LANE_GAP / 2;
+  const height = first - bottom + LANE_GAP;
+  const shift = height / 2 - first - LANE_GAP / 2;
   const lift = ([px, py, pz]: Vec3): Vec3 => [px, py + shift, pz];
   const moved = guides.map((guide): Guide => (guide.kind === "line" ? { ...guide, points: guide.points.map(lift) } : guide.kind === "text" ? { ...guide, position: lift(guide.position) } : guide));
   const baseline = bottom + shift;
@@ -214,23 +217,35 @@ export function rowTimeline(hits: Hit[], scene: RowScene): SceneLayout & { axisL
   };
 }
 
-export function ringLabels(layout: SceneLayout, labels: Map<string, { label: string; color: string }>): SceneLayout {
+export const RING_CAMERA = 5.8;
+const RING_HALF_VIEW = 4.4;
+
+function ringPass(layout: SceneLayout, labels: Map<string, { label: string; color: string }>, scale: number): { guides: Guide[]; reach: number } {
   let reach = RING_RADIUS;
   const guides = layout.guides.map((guide): Guide => {
     if (guide.kind !== "text") return guide;
     const named = labels.get(guide.text);
     const text = named?.label ?? guide.text;
     const angle = Math.atan2(guide.position[1], guide.position[0]);
-    const half = (text.length * LABEL_UNITS_PER_CHAR) / 2;
-    const radius = RING_RADIUS + LABEL_CLEARANCE + half * Math.abs(Math.cos(angle)) + 0.12 * Math.abs(Math.sin(angle));
-    reach = Math.max(reach, radius + half * Math.abs(Math.cos(angle)) + 0.2);
+    const half = (text.length * LABEL_UNITS_PER_CHAR * scale) / 2;
+    const radius = RING_RADIUS + LABEL_CLEARANCE * scale + half * Math.abs(Math.cos(angle)) + 0.14 * scale * Math.abs(Math.sin(angle));
+    reach = Math.max(reach, Math.abs(radius * Math.cos(angle)) + half + 0.2);
     return { ...guide, text, color: named?.color ?? guide.color, position: [radius * Math.cos(angle), radius * Math.sin(angle), 0] };
   });
-  return { ...layout, guides, camera: [0, 0, Math.max(5.8, reach * 2.75)] };
+  return { guides, reach };
 }
 
-export function labelClears(guide: Extract<Guide, { kind: "text" }>, nodes: SceneNode[]): boolean {
-  const half = (guide.text.length * LABEL_UNITS_PER_CHAR) / 2;
+export function ringLabels(layout: SceneLayout, labels: Map<string, { label: string; color: string }>): SceneLayout {
+  const first = ringPass(layout, labels, 1);
+  const scale = Math.max(1, first.reach / RING_HALF_VIEW);
+  const fitted = scale === 1 ? first : ringPass(layout, labels, scale * Math.max(1, ringPass(layout, labels, scale).reach / (RING_HALF_VIEW * scale)));
+  const zoom = Math.max(1, fitted.reach / RING_HALF_VIEW);
+  return { ...layout, guides: fitted.guides, camera: [0, 0, RING_CAMERA * zoom] };
+}
+
+export function labelClears(guide: Extract<Guide, { kind: "text" }>, nodes: SceneNode[], cameraZ = RING_CAMERA): boolean {
+  const scale = cameraZ / RING_CAMERA;
+  const half = (guide.text.length * LABEL_UNITS_PER_CHAR * scale) / 2;
   const [gx, gy] = guide.position;
-  return nodes.every((node) => Math.abs(node.position[0] - gx) > half + node.size || Math.abs(node.position[1] - gy) > 0.09 + node.size);
+  return nodes.every((node) => Math.abs(node.position[0] - gx) > half + node.size || Math.abs(node.position[1] - gy) > 0.09 * scale + node.size);
 }

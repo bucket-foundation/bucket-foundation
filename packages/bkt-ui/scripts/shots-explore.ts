@@ -10,6 +10,8 @@ const ROW_SHOTS: { hash: string; file: string; mode: string; rows: number }[] = 
   { hash: "#/explore/major-to-career/graph", file: "4-major-to-career-graph.png", mode: "graph", rows: 64 },
   { hash: "#/explore/mathematics-chain/graph", file: "5-mathematics-chain-graph.png", mode: "graph", rows: 65 },
   { hash: "#/explore/occupations-time/map", file: "6-occupations-time-map.png", mode: "map", rows: 48 },
+  { hash: "#/explore/occupations-time/timeline", file: "7-occupations-time-timeline.png", mode: "timeline", rows: 48 },
+  { hash: "#/explore/technology-waves/timeline", file: "8-technology-waves-timeline.png", mode: "timeline", rows: 182 },
 ];
 mkdirSync(out, { recursive: true });
 const home = mkdtempSync(join(process.env.BKT_SHOTS_TMP ?? tmpdir(), "bkt-explore-shots-"));
