@@ -37,6 +37,13 @@ function output(slug: string, title: string, staff: boolean, tables: number): { 
     files[`tools/${slug}/staff.tsv`] = "id\tname\n1\tA staff row\n";
     list.push({ id: "staff-rows", path: `tools/${slug}/staff.tsv`, format: "tsv", label: "Staff rows", licence: "mixed", audience: "staff" });
   }
+  files[`papers/${slug}/fig.py`] = "print('figure')\n";
+  files[`public/papers/${slug}/fig.webp`] = "RIFF";
+  const assets: ReportRecord["assets"] = [{ id: "fig-frontier", path: `public/papers/${slug}/fig.webp`, caption: `${title} frontier`, licence: "CC-BY-4.0", audience: "public", source: `papers/${slug}/fig.py` }];
+  if (staff) {
+    files[`tools/${slug}/plot.webp`] = "RIFF2";
+    assets.push({ id: "staff-plot", path: `tools/${slug}/plot.webp`, caption: "Staff plot", licence: "MIT code output", audience: "staff" });
+  }
   const manifest: ReportRecord = {
     schema: "bucket.report/2",
     slug,
@@ -49,6 +56,7 @@ function output(slug: string, title: string, staff: boolean, tables: number): { 
     source_path: `papers/${slug}/main.tex`,
     source_hash: sha256(Buffer.from(files[`papers/${slug}/main.tex`])),
     tables: list,
+    assets,
     record_sets: [{ id: "problems", dir: `reports/${slug}/records`, schema: "bucket.problem/1", label: `${title} problems`, licence: "CC BY-SA 4.0", audience: "public" }],
   };
   return { manifest, files };
@@ -105,7 +113,7 @@ describe("workspace index", () => {
     const all = [...tables, ...records];
     expect(new Set(all.map((i) => i.key)).size).toBe(all.length);
     expect(all.every((i) => i.explore === null)).toBe(true);
-    for (const type of WORKSPACE_TYPES.filter((t) => t !== "tables" && t !== "records")) expect(workspaceItems(src, type)).toEqual([]);
+    for (const type of WORKSPACE_TYPES.filter((t) => !["tables", "records", "figures", "papers"].includes(t))) expect(workspaceItems(src, type)).toEqual([]);
   });
 
   test("every opens address has the shape the window router reads", () => {
@@ -114,6 +122,40 @@ describe("workspace index", () => {
       if (item.from.kind === "output") expect(item.opens).toMatch(new RegExp(`^#/research/${item.from.id}/${item.type === "tables" ? "data" : "records"}/[A-Za-z0-9][A-Za-z0-9._-]{0,127}$`));
       else expect(item.opens).toBe("#/data");
     }
+  });
+
+  test("figures list every image of every output and papers list every output with a paper", async () => {
+    const { src, work, local } = setup({ staff: true });
+    const figures = workspaceItems(src, "figures");
+    expect(figures.map((i) => [i.key, i.title, i.licence, i.changed, i.opens])).toEqual([
+      ["output:demo:fig-frontier", "A demo output frontier", "CC-BY-4.0", false, "#/research/demo/figures/fig-frontier"],
+      ["output:demo:staff-plot", "Staff plot", "MIT code output", false, "#/research/demo/figures/staff-plot"],
+      ["output:other-1:fig-frontier", "Another output 1 frontier", "CC-BY-4.0", false, "#/research/other-1/figures/fig-frontier"],
+      ["output:other-1:staff-plot", "Staff plot", "MIT code output", false, "#/research/other-1/figures/staff-plot"],
+    ]);
+    expect(workspaceItems(setup().src, "figures").map((i) => i.key)).toEqual(["output:demo:fig-frontier", "output:other-1:fig-frontier"]);
+    const papers = workspaceItems(src, "papers");
+    expect(papers.map((i) => [i.key, i.title, i.from.title, i.licence, i.changed, i.opens])).toEqual([
+      ["output:demo:paper", "A demo output", "A demo output", "CC-BY-4.0", false, "#/research/demo/paper"],
+      ["output:other-1:paper", "Another output 1", "Another output 1", "CC-BY-4.0", false, "#/research/other-1/paper"],
+    ]);
+    await work.write("demo", "papers/demo/fig.py", rev("print('figure')\n"), Buffer.from("print('redrawn')\n"));
+    await work.write("other-1", "papers/other-1/main.tex", rev("\\title{Another output 1}\n"), Buffer.from("\\title{Edited}\n"));
+    expect(workspaceItems(src, "figures").filter((i) => i.changed).map((i) => i.key)).toEqual(["output:demo:fig-frontier"]);
+    expect(workspaceItems(src, "papers").filter((i) => i.changed).map((i) => i.key)).toEqual(["output:other-1:paper"]);
+    local.create({ slug: "memo", title: "A memo with no paper", kind: "memo", author: "A Private Person" });
+    local.upload("memo", "figure", "plot.png", Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+    expect(workspaceItems(src, "papers").map((i) => i.from.id)).toEqual(["demo", "other-1"]);
+    expect(workspaceItems(src, "figures").filter((i) => i.from.id === "memo").map((i) => [i.origin, i.opens.startsWith("#/research/memo/figures/")])).toEqual([["local", true]]);
+    const text = JSON.stringify([...workspaceItems(src, "figures"), ...workspaceItems(src, "papers")]);
+    expect(text).not.toContain("A Private Person");
+    expect(text).not.toContain("Demo Author");
+    expect(text).not.toContain(".webp");
+  });
+
+  test("the workspace adds one read route and no way to start a build", () => {
+    const { src } = setup();
+    expect(Object.keys(workspaceRoutes(src))).toEqual(["GET /local/workspace/items"]);
   });
 
   test("a public build lists no staff item and a staff build lists them as staff entries of their output", () => {
