@@ -29,7 +29,7 @@ export interface LinkStyle {
 }
 
 export const ROW_MODE_IDS: readonly string[] = ["graph", "map"];
-export const FORCE_NODE_CAP = 600;
+export const FORCE_NODE_CAP = 300;
 export const NO_ROWS = "No row matches.";
 
 function note(text: string): DesktopLayout {
@@ -58,28 +58,39 @@ export function rowStyles(hits: Hit[], scene: RowScene): { linkStyles: Record<st
 }
 
 export function withRows(mode: ExploreMode): ExploreMode {
+  const drawn = new WeakMap<Hit[], { scene: RowScene; layout: DesktopLayout }>();
+  const draw = (hits: Hit[], context: Parameters<ExploreMode["layout"]>[1], scene: RowScene): DesktopLayout => {
+    const held = drawn.get(hits);
+    if (held?.scene === scene) return held.layout;
+    const layout = rowLayout(mode, hits, context, scene);
+    drawn.set(hits, { scene, layout });
+    return layout;
+  };
   return {
     ...mode,
     layout(hits, context): DesktopLayout {
       const scene = context.rows;
-      if (!isRowScene(scene)) return mode.layout(hits, context);
-      if (!ROW_MODE_IDS.includes(mode.id)) return note(`${mode.label} cannot draw this data.`);
-      if (!hits.length) return note(NO_ROWS);
-      if (mode.id === "graph" && hits.length > FORCE_NODE_CAP) return note(`Graph draws up to ${FORCE_NODE_CAP} rows, and this page holds ${hits.length}. Narrow the search.`);
-      const base = mode.id === "map" ? sourceMap(hits) : mode.layout(hits, context);
-      const groups = new Map(scene.groups.map((group) => [group.id, group]));
-      const branch = new Map(hits.map((hit) => [hit.id, hit.branch]));
-      const present = new Set(branch.values());
-      const drawn = new Set(branch.keys());
-      return {
-        ...base,
-        nodes: base.nodes.filter((node) => drawn.has(node.id)).map((node) => ({ ...node, color: groups.get(branch.get(node.id) ?? "")?.color ?? node.color })),
-        links: base.links.filter((link) => drawn.has(link.from) && drawn.has(link.to)),
-        guides: base.guides.map((guide) => guide.kind === "text" && groups.has(guide.text) ? { ...guide, text: groups.get(guide.text)!.label, color: groups.get(guide.text)!.color } : guide),
-        legend: scene.groups.filter((group) => present.has(group.id)).map((group) => ({ label: group.label, color: group.color })),
-        ...rowStyles(hits, scene),
-      };
+      return isRowScene(scene) ? draw(hits, context, scene) : mode.layout(hits, context);
     },
+  };
+}
+
+function rowLayout(mode: ExploreMode, hits: Hit[], context: Parameters<ExploreMode["layout"]>[1], scene: RowScene): DesktopLayout {
+  if (!ROW_MODE_IDS.includes(mode.id)) return note(`${mode.label} cannot draw this data.`);
+  if (!hits.length) return note(NO_ROWS);
+  if (mode.id === "graph" && hits.length > FORCE_NODE_CAP) return note(`Graph draws up to ${FORCE_NODE_CAP} rows, and this page holds ${hits.length}. Narrow the search.`);
+  const base = mode.id === "map" ? sourceMap(hits) : mode.layout(hits, context);
+  const groups = new Map(scene.groups.map((group) => [group.id, group]));
+  const branch = new Map(hits.map((hit) => [hit.id, hit.branch]));
+  const present = new Set(branch.values());
+  const shown = new Set(branch.keys());
+  return {
+    ...base,
+    nodes: base.nodes.filter((node) => shown.has(node.id)).map((node) => ({ ...node, color: groups.get(branch.get(node.id) ?? "")?.color ?? node.color })),
+    links: base.links.filter((link) => shown.has(link.from) && shown.has(link.to)),
+    guides: base.guides.map((guide) => guide.kind === "text" && groups.has(guide.text) ? { ...guide, text: groups.get(guide.text)!.label, color: groups.get(guide.text)!.color } : guide),
+    legend: scene.groups.filter((group) => present.has(group.id)).map((group) => ({ label: group.label, color: group.color })),
+    ...rowStyles(hits, scene),
   };
 }
 

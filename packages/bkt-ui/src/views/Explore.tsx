@@ -1,6 +1,5 @@
-import { Component, useEffect, useRef, useState, type ComponentType, type MouseEvent, type ReactNode } from "react";
-import ExploreClient from "@/app/explore/ExploreClient";
-import type { ExploreClientProps, ExploreStart } from "../explore/ExploreClientV2";
+import { Component, useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
+import ExploreClient, { type ExploreStart } from "../explore/ExploreClientV2";
 import { href } from "../router";
 import { SAVED_KEY, parseStored, serializeSaved, type SavedState } from "@/lib/explore/saved";
 import { CANON_TROUBLE, windowHref } from "../site-fetch";
@@ -91,8 +90,6 @@ class Guard extends Component<{ children: ReactNode }, { failed: boolean }> {
     return this.state.failed ? <p className="muted">{NO_GRAPHICS}</p> : this.props.children;
   }
 }
-
-const Client = ExploreClient as ComponentType<ExploreClientProps>;
 
 export function exploreHash(state: ExploreStart): string {
   return href({ name: "explore", data: state.data, mode: state.data ? state.mode : undefined, sel: state.data ? state.sel : undefined });
@@ -190,7 +187,7 @@ export function ExploreView({ api, webgl, initial }: { api: ExploreApi; webgl?: 
         </p>
       )}
       <div className="explore-site" ref={frame} onClickCapture={onLink}>
-        {!drawable ? <p className="muted">{NO_GRAPHICS}</p> : ready ? <Guard><Client initial={initial} onState={keepHash} /></Guard> : <p className="muted">Opening Explore…</p>}
+        {!drawable ? <p className="muted">{NO_GRAPHICS}</p> : ready ? <Guard><ExploreClient initial={initial} onState={keepHash} /></Guard> : <p className="muted">Opening Explore…</p>}
       </div>
     </section>
   );

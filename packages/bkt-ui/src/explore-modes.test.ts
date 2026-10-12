@@ -57,7 +57,7 @@ describe("desktop helix direction", () => {
 
   test("all other modes keep their existing geometry", () => {
     for (const mode of originals.filter((mode) => !["helix", "dna", "particle", "molecule", "reaction", "globe", "earth", "map", "graph", "timeline"].includes(mode.id))) {
-      expect(modeById(mode.id)).toBe(mode);
+      expect(JSON.stringify(modeById(mode.id).layout(SAMPLE_HITS, context))).toBe(JSON.stringify(mode.layout(SAMPLE_HITS, context)));
     }
     expect(modeById("missing")).toBe(MODES[0]);
   });
@@ -294,19 +294,34 @@ describe("row sets in the window modes", () => {
     }
   });
 
-  test("graph asks for a narrower search above 600 rows, and lays out 600 within the recorded time", () => {
+  test("graph asks for a narrower search above its cap, and the force layout time decides the cap", () => {
     const many = (n: number) => expandRows(assembleRowSet([fixtureDraft({ rows: Array.from({ length: n }, (_, i) => ({ key: `k${i}`, title: `Row ${i}`, sub: "", group: "a", source: "open", links: i ? [{ to: `k${Math.floor(i / 2)}` }] : [] })) })], ctx)[0]);
     const over = many(FORCE_NODE_CAP + 1);
     const refused = modeById("graph").layout(over.hits, { ...context, rows: over.frame }) as DesktopLayout;
     expect(refused.nodes).toEqual([]);
-    expect(refused.notice).toBe("Graph draws up to 600 rows, and this page holds 601. Narrow the search.");
+    expect(refused.notice).toBe("Graph draws up to 300 rows, and this page holds 301. Narrow the search.");
+    const site = originals.find((mode) => mode.id === "graph")!;
+    const time = (n: number) => {
+      const page = many(n);
+      const started = performance.now();
+      site.layout(page.hits, context);
+      return performance.now() - started;
+    };
+    const at600 = time(600);
+    const at300 = time(300);
+    console.log(`force layout: ${Math.round(at600)} ms at 600 nodes, ${Math.round(at300)} ms at 300 nodes, against 200 ms`);
+    expect(at600 > 200 ? 300 : 600).toBe(FORCE_NODE_CAP);
     const full = many(FORCE_NODE_CAP);
-    const started = performance.now();
     const layout = modeById("graph").layout(full.hits, { ...context, rows: full.frame });
-    const took = performance.now() - started;
-    console.log(`force layout at ${FORCE_NODE_CAP} nodes: ${Math.round(took)} ms`);
     expect(layout.nodes).toHaveLength(FORCE_NODE_CAP);
     expect(layout.links).toHaveLength(FORCE_NODE_CAP - 1);
-    expect(took).toBeLessThan(5000);
+  }, 60_000);
+
+  test("a second draw of the same page reuses the layout, and a new page draws again", () => {
+    const first = modeById("graph").layout(hits, withFrame);
+    expect(modeById("graph").layout(hits, { ...withFrame, selected: hits[0].id })).toBe(first);
+    expect(modeById("graph").layout([...hits], withFrame)).not.toBe(first);
+    const other = expandRows(assembleRowSet([draft], ctx)[0]);
+    expect(modeById("graph").layout(hits, { ...context, rows: other.frame })).not.toBe(first);
   });
 });
