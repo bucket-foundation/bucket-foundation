@@ -82,7 +82,7 @@ jobs:
       - name: window build and chromium for the offline Learn run
         working-directory: packages/bkt-ui
         run: bun install --frozen-lockfile && bun run build && bunx playwright install --with-deps chromium
-      - name: seven Learn views pass with the network denied
+      - name: eight Learn views pass with the network denied
         working-directory: packages/bkt
         run: bun scripts/smoke.ts --learn-offline
 
