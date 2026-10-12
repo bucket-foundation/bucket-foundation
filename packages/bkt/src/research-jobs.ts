@@ -405,6 +405,12 @@ export class ResearchBuilds {
     }
   }
 
+  latest(): JobView | null {
+    this.settle();
+    if (this.active) return this.o.runner.get(this.active.jobId);
+    return [...this.done.values()].at(-1) ?? null;
+  }
+
   job(id: string | null): JobView {
     this.settle();
     const job = id === null ? null : (this.o.runner.get(id) ?? this.done.get(id) ?? null);
@@ -450,7 +456,7 @@ export function researchBuildRoutes(builds: ResearchBuilds, onError: (e: Error) 
     "GET /local/research/consent/pending": (_req, _url, ctx) =>
       guarded(() => {
         const d = builds.detail();
-        return json({ pending: d ? d.view : null, ...(ctx?.cli === true && d ? { full: d.full } : {}) });
+        return json({ pending: d ? d.view : null, job: builds.latest(), ...(ctx?.cli === true && d ? { full: d.full } : {}) });
       }),
     "POST /local/research/consent": (req, _url, ctx) =>
       guarded(async () => {

@@ -401,3 +401,14 @@
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
+
+.research-build {
+  margin-bottom: 12px;
+}
+
+.research-build pre {
+  margin: 8px 0 0;
+  font-size: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
