@@ -5,6 +5,8 @@ from pathlib import Path
 
 from PIL import Image
 
+import claims
+
 HERE = Path(__file__).parent
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "out"
 MINT = {"proved": "minted", "partial": "pending", "statement": "draft", "none": "unminted"}
@@ -65,6 +67,7 @@ def site(repo):
     json.dump({"producer": "bucket.foundation", "generator": "tools/solvability-atlas", "productions": cards, "summary": s, "plots": plots}, open(lib / "solvability-atlas-data.json", "w"), indent=1)
     (lib / "solvability-similarity-data.json").write_text((OUT / "similarity.json").read_text())
     (lib / "solvability-neighbors-data.json").write_text((OUT / "neighbors.json").read_text())
+    claims.SITE.write_text(json.dumps(claims.site_payload(), indent=1, ensure_ascii=False) + "\n", encoding="utf8")
 
 
 if __name__ == "__main__":

@@ -8,8 +8,21 @@ export interface PackedRecords {
   threshold: number;
   neighbours: number;
   axes: { component: number; explained: number; positive: string[]; negative: string[] }[];
-  tables: { branch: string[]; form: string[]; status: string[]; zone: Zone[]; source: { 0: string; 1: string }[]; text: string[] };
+  tables: { branch: string[]; form: string[]; status: string[]; zone: Zone[]; source: { 0: string; 1: string }[]; text: string[]; claim?: RecordClaim[] };
   rows: PackedRow[];
+}
+
+export const CLAIMED = "claimed";
+export const CLAIM_MATCHES = ["problem", "special_case", "related", "unestablished"] as const;
+export const FORMAL_SCOPES = ["full", "narrower", "none"] as const;
+
+export interface RecordClaim {
+  batch: string;
+  family: string;
+  match: (typeof CLAIM_MATCHES)[number];
+  formal_scope: (typeof FORMAL_SCOPES)[number];
+  confirmed: boolean;
+  withdrawn: boolean;
 }
 
 export interface PackedRow {
@@ -37,6 +50,7 @@ export interface PackedRow {
   no: number[];
   cut?: 1;
   h?: HandFields;
+  c?: number[];
 }
 
 export interface HandFields {
@@ -91,9 +105,10 @@ export interface ProblemRecord {
   nearestSolved: NeighbourRef[];
   nearestOpen: NeighbourRef[];
   hand: HandFields | null;
+  claims: RecordClaim[];
 }
 
-export const CODING_OF: Record<string, Coding> = { solved: "settled", partial: "advanced", open: "open" };
+export const CODING_OF: Record<string, Coding> = { solved: "settled", partial: "advanced", open: "open", [CLAIMED]: "open" };
 export const NEIGHBOUR_STRIDE = 1024;
 
 const indexes = new WeakMap<PackedRecords, Map<string, number>>();
@@ -147,6 +162,7 @@ export function recordAt(data: PackedRecords, i: number): ProblemRecord {
     nearestSolved: neighbours(data, r.ns),
     nearestOpen: neighbours(data, r.no),
     hand: r.h ?? null,
+    claims: (r.c ?? []).map((j) => (t.claim ?? [])[j]),
   };
 }
 
@@ -161,4 +177,49 @@ export function neighbourPositions(data: PackedRecords, record: ProblemRecord): 
     const row = data.rows[index.get(n.id)!];
     return { id: n.id, theta: row.th, radius: row.ra, solved: n.zone === "solved" };
   });
+}
+
+export interface ClaimEntry {
+  batch: string;
+  family: string;
+  family_title: string;
+  claimant: string;
+  date: string;
+  source_url: string;
+  manuscripts: string[];
+  statement: string;
+  match: (typeof CLAIM_MATCHES)[number];
+  match_note: string;
+  formal: { exists: boolean; scope: (typeof FORMAL_SCOPES)[number]; statement: string | null; url: string | null; note: string };
+  confirmation: { by: string; kind: string; url: string; date: string } | null;
+  withdrawn: { date: string; url: string } | null;
+}
+
+export interface ClaimsData {
+  schema: string;
+  rule: string;
+  batches: { batch: string; source: { url: string; commit: string; licence: string; retrieved: string; claimant: string; date: string; review: string }; counts: Record<string, number>; absent: { reference: string; reason: string }[] }[];
+  rows: Record<string, ClaimEntry[]>;
+}
+
+export const MATCH_LABEL: Record<ClaimEntry["match"], string> = {
+  problem: "claims this problem in full",
+  special_case: "claims a special case",
+  related: "claims a related statement",
+  unestablished: "match with this row is unestablished",
+};
+
+export const FORMAL_LABEL: Record<ClaimEntry["formal"]["scope"], string> = {
+  full: "a Lean statement covers the claimed statement",
+  narrower: "a Lean statement covers less than the claimed statement",
+  none: "no Lean statement",
+};
+
+export function claimsFor(data: ClaimsData, id: string): ClaimEntry[] {
+  return data.rows[id] ?? [];
+}
+
+export function awaitingConfirmation(entries: readonly Pick<ClaimEntry, "match" | "confirmation" | "withdrawn">[]): boolean {
+  const settling = entries.filter((e) => e.match === "problem" && e.withdrawn === null);
+  return settling.length > 0 && settling.every((e) => e.confirmation === null);
 }
