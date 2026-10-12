@@ -126,7 +126,7 @@ describe("the source tables", () => {
     for (const name of metadata) expect(resolveSource(name, { licence: "CC BY 4.0", source_url: "https://api.worldbank.org/x", host: "en.wikipedia.org" })).toBe(UNKNOWN);
     expect(Object.fromEntries(Object.entries(bySource).filter(([name]) => /^(world_|tech_|countries)/.test(name)))).toEqual({
       countries: { [UNKNOWN]: 237 },
-      tech_lags: { [UNKNOWN]: 4 },
+      tech_lags: { wikipedia: 2, [UNKNOWN]: 2 },
       tech_occupation: { wikipedia: 20, [UNKNOWN]: 32 },
       tech_training_response: { wikipedia: 17, wikidata: 54, [UNKNOWN]: 1 },
       world_elements: { [RECALL_ID]: 330 },
