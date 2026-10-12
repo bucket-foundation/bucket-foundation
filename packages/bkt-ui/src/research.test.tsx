@@ -182,7 +182,7 @@ function workCopy(shipped: Record<string, string>) {
         if (!keep) edits.delete(path);
         return { path, changed: edits.size };
       },
-      researchExport: async () => ({ dir: "/home/ada/bkt/research/exports/solvability-frontier-20261011T123005", files: ["CHANGES.patch", "LICENCES.md", ...[...edits.keys()].sort(), "report.json"] }),
+      researchExport: async () => ({ dir: "/srv/bucket/research/exports/solvability-frontier-20261011T123005", files: ["CHANGES.patch", "LICENCES.md", ...[...edits.keys()].sort(), "report.json"] }),
     },
   };
 }
@@ -650,7 +650,7 @@ describe("research changes tab", () => {
     const v = await view(fakeApi({ ...copy.api, researchManifest: async () => DETAIL }), "solvability-frontier", "changes");
     expect(v.host.querySelector(".research-export")).toBeNull();
     await v.click(press(v.host, "Export the changes"));
-    expect(v.host.querySelector(".research-export .hash")!.textContent).toBe("/home/ada/bkt/research/exports/solvability-frontier-20261011T123005");
+    expect(v.host.querySelector(".research-export .hash")!.textContent).toBe("/srv/bucket/research/exports/solvability-frontier-20261011T123005");
     expect(Array.from(v.host.querySelectorAll(".research-export li")).map((li) => li.textContent)).toEqual(["CHANGES.patch", "LICENCES.md", MAIN, "report.json"]);
     await v.unmount();
     const refusing = await view(fakeApi({ ...copy.api, researchManifest: async () => DETAIL, researchExport: async () => Promise.reject(new Error("Bucket could not write the export.")) }), "solvability-frontier", "changes");
