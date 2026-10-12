@@ -10,6 +10,20 @@ export type AdvisorApi = Pick<Api, "advisor" | "importAdvisor" | "forgetAdvisor"
 export const NO_PEOPLE_FILE = "Nothing is open yet. On the Analyze data screen, run Fit me to a people file with your research statement and your own list of people. It saves a ranked list of those people on this computer. Open that saved list here.";
 export const OPEN_PEOPLE_FILE = "Open a people file";
 export const OPEN_ANOTHER = "Open another people file";
+export const UNTESTED_ORDER = "Untested order";
+export const ORDER_WITHHELD = "Order withheld";
+export const ROW_LISTS = { reasons: "Reasons", recent_works: "Recent works", lineage: "Lineage", unknowns: "What Bucket does not know", coverage: "Coverage" } as const;
+
+type OrderStatus = "tested" | "untested" | "withheld";
+export const orderStatus = (row: AdvisorRow | undefined): OrderStatus => {
+  const status = row?.fields.order_status;
+  return status === "tested" || status === "withheld" ? status : "untested";
+};
+const headline = (review: StoredReview) => {
+  const status = orderStatus(review.rows[0]);
+  if (status === "tested") return `${review.rows.length} people ranked against your statement`;
+  return `${status === "untested" ? UNTESTED_ORDER : ORDER_WITHHELD}. ${review.rows.length} people.`;
+};
 
 export function AdvisorsView({ api, embedded }: { api: AdvisorApi; embedded?: boolean }) {
   const [review, setReview] = useState<StoredReview | null | undefined>(undefined);
@@ -68,11 +82,11 @@ export function AdvisorsView({ api, embedded }: { api: AdvisorApi; embedded?: bo
   return (
     <section>
       {embedded ? (
-        <p className="muted">{review ? `${review.rows.length} people ranked against your statement` : NO_PEOPLE_FILE}</p>
+        <p className="muted">{review ? headline(review) : NO_PEOPLE_FILE}</p>
       ) : (
         <header className="head">
           <h1>Advisors</h1>
-          <p className="muted">{review ? `${review.rows.length} people ranked against your statement` : NO_PEOPLE_FILE}</p>
+          <p className="muted">{review ? headline(review) : NO_PEOPLE_FILE}</p>
         </header>
       )}
       <div className="toolbar">
@@ -97,6 +111,7 @@ export function AdvisorsView({ api, embedded }: { api: AdvisorApi; embedded?: bo
           )}
         </p>
       )}
+      {review?.summary && <p className="summary">{review.summary}</p>}
       {review && (
         <div className="split">
           <div className="panel list">
@@ -105,12 +120,12 @@ export function AdvisorsView({ api, embedded }: { api: AdvisorApi; embedded?: bo
               {rows.slice(0, 300).map((r) => (
                 <li key={r.rank}>
                   <button className={r.rank === picked ? "on" : ""} onClick={() => setPicked(r.rank)}>
-                    <span className="rank">{r.rank}</span>
+                    {orderStatus(r) === "tested" && <span className="rank">{r.rank}</span>}
                     <span className="who">
                       {r.name}
                       <span className="muted small">{text(r.fields.institution)}</span>
                     </span>
-                    <span className="score">{r.percentile === null ? r.score.toFixed(2) : `${Math.round(r.percentile)}th`}</span>
+                    {orderStatus(r) === "tested" && <span className="score">{r.percentile === null ? r.score.toFixed(2) : `${Math.round(r.percentile)}th`}</span>}
                   </button>
                 </li>
               ))}
@@ -130,7 +145,7 @@ function Person({ row, review }: { row: AdvisorRow; review: StoredReview }) {
     .filter(([, v]) => v);
   return (
     <article className="panel card person">
-      <span className="tag">rank {row.rank}</span>
+      {orderStatus(row) === "tested" && <span className="tag">rank {row.rank}</span>}
       <h2>{row.name}</h2>
       <dl className="facts">
         {facts.map(([k, v]) => (
@@ -140,6 +155,19 @@ function Person({ row, review }: { row: AdvisorRow; review: StoredReview }) {
           </div>
         ))}
       </dl>
+      {(Object.keys(ROW_LISTS) as (keyof typeof ROW_LISTS)[]).map((k) => {
+        const items = row.fields[k];
+        return Array.isArray(items) && items.length > 0 ? (
+          <div key={k} className={`row-list ${k}`}>
+            <h3>{ROW_LISTS[k]}</h3>
+            <ul>
+              {items.map((item, i) => (
+                <li key={i}>{String(item)}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null;
+      })}
       {row.star_prime.length > 0 && (
         <>
           <h3>Prime directions</h3>

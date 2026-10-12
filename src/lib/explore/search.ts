@@ -53,7 +53,11 @@ export interface AdvisorSource {
   score: number;
   url: string | null;
   star?: number[];
+  key?: string;
+  order?: "untested" | "withheld";
 }
+
+export const UNTESTED_ORDERING = "untested ordering";
 
 export interface UnifyOptions {
   query: string;
@@ -100,8 +104,8 @@ export function excerptId(e: Pick<ExcerptSource, "branch" | "concept" | "slug">)
   return `excerpt:${e.branch}/${e.concept}/${e.slug}`;
 }
 
-export function advisorId(a: Pick<AdvisorSource, "rank">): string {
-  return `advisor:${a.rank}`;
+export function advisorId(a: Pick<AdvisorSource, "rank" | "key">): string {
+  return `advisor:${a.key ?? a.rank}`;
 }
 
 function nearest<T extends { id: string; bag: Set<string> }>(bag: Set<string>, pool: T[], k: number): string[] {
@@ -208,7 +212,7 @@ export function unify(opts: UnifyOptions): Hit[] {
       id: x.id,
       type: "advisor",
       title: x.a.name,
-      subtitle: x.a.field,
+      subtitle: x.a.order ? [x.a.field, UNTESTED_ORDERING].filter(Boolean).join(", ") : x.a.field,
       text: x.a.text.slice(0, 400),
       score: x.score,
       branch: x.a.field,
