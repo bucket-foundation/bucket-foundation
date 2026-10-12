@@ -61,7 +61,7 @@ export function tabsFor(d: ResearchDetail): ResearchTab[] {
   const paper = d.files.some((f) => f.role === "pdf" || f.role === "public-pdf") || d.manifest.source_path.endsWith(".tex");
   return RESEARCH_TABS.filter((t) => t === "report" || t === "figures" || (t === "paper" ? paper : local));
 }
-const ORIGIN_LABELS: Record<ResearchRow["origin"], string> = { shipped: "Shipped", staff: "Staff", local: "Local" };
+export const ORIGIN_LABELS: Record<ResearchRow["origin"], string> = { shipped: "Shipped", staff: "Staff", local: "Local" };
 
 function useLoaded<T>(load: () => Promise<T>, deps: unknown[]): Loaded<T> {
   const [state, setState] = useState<Loaded<T>>({ status: "loading" });
@@ -543,7 +543,7 @@ interface PageState {
   page: number;
 }
 
-function Rows({ api, slug, id, label, pick }: { api: ResearchApi; slug: string; id: string; label: string; pick?: { column: string; onPick: (row: Record<string, string>) => void } }) {
+export function Rows({ api, slug, id, label, pick }: { api: ResearchApi; slug: string; id: string; label: string; pick?: { column: string; onPick: (row: Record<string, string>) => void } }) {
   const [state, setState] = useState<PageState>({ q: "", sort: "", page: 1 });
   const [typed, setTyped] = useState("");
   const [page, setPage] = useState<TablePage | null>(null);
@@ -625,12 +625,32 @@ function Rows({ api, slug, id, label, pick }: { api: ResearchApi; slug: string; 
   );
 }
 
+type TableEntry = NonNullable<ResearchDetail["manifest"]["tables"]>[number];
+type RecordSetEntry = NonNullable<ResearchDetail["manifest"]["record_sets"]>[number];
+
+export function TablePane({ api, d, table }: { api: ResearchApi; d: ResearchDetail; table: TableEntry }) {
+  const [editing, setEditing] = useState(false);
+  const [saves, setSaves] = useState(0);
+  return (
+    <>
+      <p className="muted licence-line">{table.licence === "mixed" ? "Each row carries its own licence and source." : `Licence: ${table.licence}`}</p>
+      {canEdit(d, table.path) && (
+        <div className="toolbar">
+          <button type="button" aria-pressed={editing} onClick={() => setEditing(!editing)}>
+            {editing ? "Close the editor" : "Edit the text"}
+          </button>
+        </div>
+      )}
+      {editing && canEdit(d, table.path) && <Editor api={api} slug={d.slug} path={table.path} onSaved={() => setSaves((n) => n + 1)} />}
+      <Rows key={saves} api={api} slug={d.slug} id={table.id} label={table.label} />
+    </>
+  );
+}
+
 function DataTab({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   const tables = d.manifest.tables ?? [];
   const [open, setOpen] = useState(tables[0]?.id ?? "");
   const table = tables.find((t) => t.id === open) ?? tables[0];
-  const [editing, setEditing] = useState("");
-  const [saves, setSaves] = useState(0);
   return (
     <>
       {d.withheld > 0 && <p className="muted staff-absent">{STAFF_ABSENT}</p>}
@@ -646,16 +666,7 @@ function DataTab({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
               ))}
             </div>
           </div>
-          <p className="muted licence-line">{table.licence === "mixed" ? "Each row carries its own licence and source." : `Licence: ${table.licence}`}</p>
-          {canEdit(d, table.path) && (
-            <div className="toolbar">
-              <button type="button" aria-pressed={editing === table.id} onClick={() => setEditing(editing === table.id ? "" : table.id)}>
-                {editing === table.id ? "Close the editor" : "Edit the text"}
-              </button>
-            </div>
-          )}
-          {editing === table.id && canEdit(d, table.path) && <Editor key={table.id} api={api} slug={d.slug} path={table.path} onSaved={() => setSaves((n) => n + 1)} />}
-          <Rows key={`${table.id}:${saves}`} api={api} slug={d.slug} id={table.id} label={table.label} />
+          <TablePane key={table.id} api={api} d={d} table={table} />
         </>
       )}
     </>
@@ -701,7 +712,7 @@ function validJson(text: string): string | null {
   }
 }
 
-function Record({ api, slug, path, title, onClose, canEditRecord }: { api: ResearchApi; slug: string; path: string; title: string; onClose: () => void; canEditRecord: boolean }) {
+export function Record({ api, slug, path, title, onClose, canEditRecord }: { api: ResearchApi; slug: string; path: string; title: string; onClose: () => void; canEditRecord: boolean }) {
   const [saves, setSaves] = useState(0);
   const state = useLoaded(() => api.researchText(slug, path), [api, slug, path, saves]);
   const [raw, setRaw] = useState(false);
@@ -735,11 +746,8 @@ function Record({ api, slug, path, title, onClose, canEditRecord }: { api: Resea
   );
 }
 
-function Records({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
-  const sets = d.manifest.record_sets ?? [];
+export function RecordSetPane({ api, d, set }: { api: ResearchApi; d: ResearchDetail; set: RecordSetEntry }) {
   const [open, setOpen] = useState<{ path: string; title: string } | null>(null);
-  if (sets.length === 0) return <p className="muted staff-absent">{d.withheld > 0 ? STAFF_ABSENT : NO_RECORDS}</p>;
-  const set = sets[0];
   if (open) return <Record api={api} slug={d.slug} path={open.path} title={open.title} onClose={() => setOpen(null)} canEditRecord={canEdit(d, open.path)} />;
   return (
     <>
@@ -749,6 +757,12 @@ function Records({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
       <Rows api={api} slug={d.slug} id={set.id} label={set.label} pick={{ column: "title", onPick: (row) => setOpen({ path: row.path, title: row.title }) }} />
     </>
   );
+}
+
+function Records({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+  const sets = d.manifest.record_sets ?? [];
+  if (sets.length === 0) return <p className="muted staff-absent">{d.withheld > 0 ? STAFF_ABSENT : NO_RECORDS}</p>;
+  return <RecordSetPane api={api} d={d} set={sets[0]} />;
 }
 
 function Linked({ api, url, label }: { api: ResearchApi; url: string; label: string }) {

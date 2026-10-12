@@ -268,9 +268,16 @@ const RESEARCH_DETAIL = {
   },
 };
 
+const WORKSPACE_ITEMS = [
+  { type: "tables", key: "output:solvability-frontier:atlas-problems", title: "Atlas problems", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "shipped", licence: "mixed", changed: true, opens: "#/research/solvability-frontier/data/atlas-problems", explore: null },
+  { type: "records", key: "output:solvability-frontier:problems", title: "Problem records", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "local", licence: "CC BY-SA 4.0", changed: false, opens: "#/research/solvability-frontier/records/problems", explore: null },
+  { type: "records", key: "dataset:canon:all", title: "The canon", from: { kind: "dataset", id: "canon", title: "The canon" }, origin: "shipped", licence: "", changed: false, opens: "#/data", explore: null },
+];
+
 function empty(): Stub {
   return {
     researchList: async () => ({ outputs: [] }),
+    workspaceItems: async () => ({ items: [], total: 0, page: 1, size: 50 }),
     researchManifest: () => Promise.reject(new ApiError("no such output", 404)),
     researchTable: () => Promise.reject(new ApiError("the output has no such table", 404)),
     researchNew: () => Promise.reject(new ApiError("an output already has that short name", 409)),
@@ -323,6 +330,7 @@ function populated(over: Stub = {}): Stub {
   return {
     ...empty(),
     researchList: async () => ({ outputs: RESEARCH_ROWS }),
+    workspaceItems: async (type: string) => ({ items: WORKSPACE_ITEMS.filter((i) => i.type === type), total: WORKSPACE_ITEMS.filter((i) => i.type === type).length, page: 1, size: 50 }),
     researchManifest: async () => RESEARCH_DETAIL,
     researchChanges: async () => ({
       notice: "Edits are kept on this computer as plain files, so the tools that build a paper can read them.",
@@ -389,6 +397,7 @@ function failing(): Stub {
   return {
     progress: progress(null),
     researchList: fail("the research files could not be read", 500),
+    workspaceItems: fail("the workspace list could not be read", 500),
     researchManifest: fail("public/papers/x/paper.pdf does not match its hash in this build", 409),
     researchTable: fail("the table does not parse", 422),
     researchChanges: fail("the working copy crosses a symlink or a file, so nothing is written", 403),
@@ -464,7 +473,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -477,7 +486,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Profile"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -530,7 +539,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Profile"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
@@ -1258,7 +1267,8 @@ describe("Research OS views on the local store", () => {
     const { NODE_MISSING } = await import("./views/RosNode");
     const v = await mount({ name: "node", slug: "nope" }, empty());
     await v.act(async () => new Promise((r) => setTimeout(r, 60)));
-    expect(v.text()).toBe(NODE_MISSING);
+    expect(v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Nodes");
+    expect(v.text().split("\n").slice(10)).toEqual([NODE_MISSING]);
     await v.unmount();
   });
 

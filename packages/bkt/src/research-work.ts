@@ -186,6 +186,15 @@ export class ResearchWork {
     }
   }
 
+  changedPaths(slug: string): string[] {
+    if (!SLUG.test(slug)) return [];
+    try {
+      return Object.keys(this.state(slug).files).sort();
+    } catch {
+      return [];
+    }
+  }
+
   builtDir(slug: string): string {
     return join(this.outDir(slug), "built");
   }

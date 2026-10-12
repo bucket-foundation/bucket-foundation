@@ -70,6 +70,7 @@ import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_B
 import { addLines, answerKey, approvalLines, installLines, researchAdd, researchAnswer, researchBuilds, researchInstall, researchWaiting } from "./research";
 import { createInterface } from "node:readline";
 import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
+import { workspaceRoutes } from "../workspace";
 import { BuildSwitch, ConsentStore } from "../research-consent";
 import { researchBuildRoutes, ResearchBuilds, researchSpecs } from "../research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
@@ -331,13 +332,14 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const cliToken = randomBytes(32).toString("base64url");
   const cliSecret = randomBytes(32).toString("base64url");
   const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
-  const data = dataRoutes([
+  const adapters = [
     learningAdapter(content),
     canonAdapter(canonPack as CanonPack),
     exploreAdapter(explorePack as unknown as ExplorePack),
     ...(rowSetPack as unknown as RowSetPack).sets.map(rowSetAdapter),
     ownAdapter(session.store, { analyses: () => runner.list().length }),
-  ]);
+  ];
+  const data = dataRoutes(adapters);
   const researchTrouble = (e: Error) => console.error(`bkt serve: research: ${e.message}`);
   const research = new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, researchTrouble);
   const ownOutputs = new LocalOutputs(dir, { taken: (slug) => (researchIndex as unknown as ResearchIndex).outputs.some((o) => o.slug === slug) || research.staffHas(slug) });
@@ -364,6 +366,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...jobRoutes(runner),
       ...researchRoutes(research, researchTrouble),
       ...researchWorkRoutes(researchWork, researchTrouble, ownOutputs),
+      ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => (rowSetPack as unknown as RowSetPack).sets.map((s) => s.id) }, researchTrouble),
       ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os, built: (slug, path) => researchWork.built(slug, path) }), researchTrouble),
       ...researchBuildRoutes(builds, researchTrouble),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
