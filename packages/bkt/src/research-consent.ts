@@ -84,6 +84,13 @@ export interface PendingInput {
   body: string;
   full: string;
   params: Record<string, string>;
+  output?: string;
+  hidden?: Hidden;
+}
+
+export interface Hidden {
+  files: number;
+  lines: number;
 }
 
 export interface Pending extends PendingInput {
@@ -100,6 +107,8 @@ export interface PendingView {
   title: string;
   body: string;
   expiresAt: number;
+  output: string;
+  hidden: Hidden;
 }
 
 function plainFile(path: string): boolean {
@@ -236,7 +245,7 @@ export class ConsentStore {
 
   view(): PendingView | null {
     const p = this.pending();
-    return p ? { id: p.id, slug: p.slug, build: p.build, class: p.cls, digest: p.digest, title: p.title, body: p.body, expiresAt: p.created + this.ttl() } : null;
+    return p ? { id: p.id, slug: p.slug, build: p.build, class: p.cls, digest: p.digest, title: p.title, body: p.body, expiresAt: p.created + this.ttl(), output: p.output ?? p.slug, hidden: p.hidden ?? { files: 0, lines: 0 } } : null;
   }
 
   open(input: PendingInput): Pending {
@@ -288,19 +297,56 @@ export class ConsentStore {
 export const CONSENT_PREFIX = "bkt-consent ";
 export const CONSENT_TITLE_CHARS = 200;
 export const CONSENT_BODY_CHARS = 4000;
-export const CONSENT_BODY_CUT = "The request is longer than this window shows. Run bkt research approve in a terminal to read all of it.";
 const ANSWER = /^consent ([A-Za-z0-9_-]{22}) ([0-9a-f]{64}) (allow|deny)$/;
+const UNSEEN = /[\u0000-\u0008\u000B-\u001F\u007F-\u009F\u061C\u200B-\u200F\u202A-\u202E\u2060-\u2069\uFEFF]/g;
 
-export function consentLine(view: Pick<PendingView, "id" | "digest" | "title" | "body">): string {
-  const flat = (text: string) => text.replace(/\r/g, "");
-  const title = flat(view.title).replace(/\n/g, " ").slice(0, CONSENT_TITLE_CHARS);
-  const whole = flat(view.body);
-  const body = whole.length <= CONSENT_BODY_CHARS ? whole : `${whole.slice(0, CONSENT_BODY_CHARS - CONSENT_BODY_CUT.length - 2)}\n\n${CONSENT_BODY_CUT}`;
-  return `${CONSENT_PREFIX}${JSON.stringify({ id: view.id, digest: view.digest, title, body })}\n`;
+export function visibleText(text: string): string {
+  return text.replace(/\r\n?/g, "\n").replace(UNSEEN, (c) => `<U+${c.charCodeAt(0).toString(16).toUpperCase().padStart(4, "0")}>`);
 }
 
-export function emitConsent(write: (text: string) => unknown, view: Pick<PendingView, "id" | "digest" | "title" | "body">): void {
+export type ShellView = Pick<PendingView, "id" | "digest" | "slug" | "title" | "body" | "output" | "hidden">;
+
+export interface ShellRequest {
+  id: string;
+  digest: string;
+  slug: string;
+  output: string;
+  title: string;
+  body: string;
+  approvable: boolean;
+}
+
+export function terminalNote(hidden: Hidden, id: string): string {
+  const count = (n: number, one: string, many: string) => `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;
+  const what = hidden.files === 0 && hidden.lines === 0 ? "This request is longer than this window shows" : `${count(hidden.files, "file is", "files are")} not shown in full here, with ${count(hidden.lines, "changed line", "changed lines")} left out`;
+  return `${what}, so this window cannot approve the build. Run bkt research approve in a terminal: it shows every change and prints the line that allows request ${id}.`;
+}
+
+export function shellRequest(view: ShellView): ShellRequest {
+  const one = (text: string) => visibleText(text).replace(/\n/g, " ").slice(0, CONSENT_TITLE_CHARS);
+  const whole = visibleText(view.body);
+  const cut = view.hidden.files > 0 || view.hidden.lines > 0 || whole.length > CONSENT_BODY_CHARS;
+  const note = cut ? terminalNote(view.hidden, view.id) : "";
+  const body = cut ? `${whole.slice(0, CONSENT_BODY_CHARS - note.length - 2)}\n\n${note}` : whole;
+  return { id: view.id, digest: view.digest, slug: view.slug, output: one(view.output), title: one(view.title), body, approvable: !cut };
+}
+
+export function consentLine(view: ShellView): string {
+  return `${CONSENT_PREFIX}${JSON.stringify(shellRequest(view))}\n`;
+}
+
+export function emitConsent(write: (text: string) => unknown, view: ShellView): void {
   write(consentLine(view));
+}
+
+export const TERMINAL_ALONE = "this request is approved from the terminal alone";
+
+export function shellDecides(view: () => ShellView | null, decide: (id: string, digest: string, allow: boolean) => unknown): (id: string, digest: string, allow: boolean) => unknown {
+  return (id, digest, allow) => {
+    const now = view();
+    if (allow && now && !shellRequest(now).approvable) throw new ConsentError(TERMINAL_ALONE, 403);
+    return decide(id, digest, allow);
+  };
 }
 
 export function parseAnswer(line: string): { id: string; digest: string; allow: boolean } | null {

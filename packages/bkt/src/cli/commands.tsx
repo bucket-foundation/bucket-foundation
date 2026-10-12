@@ -71,7 +71,7 @@ import { addLines, answerKey, approvalLines, installLines, researchAdd, research
 import { createInterface } from "node:readline";
 import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
 import { workspaceRoutes } from "../workspace";
-import { answer, BuildSwitch, ConsentStore, emitConsent, guardConsentText, guardStdout } from "../research-consent";
+import { answer, BuildSwitch, ConsentStore, emitConsent, guardConsentText, guardStdout, shellDecides } from "../research-consent";
 import { researchBuildRoutes, ResearchBuilds, researchSpecs } from "../research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
 import type { ResearchBlobs, ResearchIndex } from "../pack/research";
@@ -422,7 +422,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   await new Promise<void>((done) => {
     process.once("SIGINT", done);
     process.once("SIGTERM", done);
-    void parentGone(process.env, () => Bun.stdin.stream(), (line) => answer(line, (id, digest, allow) => builds.answer(id, digest, allow), (e) => console.error(`bkt serve: build approval: ${e.message}`))).then(() => {
+    void parentGone(process.env, () => Bun.stdin.stream(), (line) => answer(line, shellDecides(() => buildConsent.view(), (id, digest, allow) => builds.answer(id, digest, allow)), (e) => console.error(`bkt serve: build approval: ${e.message}`))).then(() => {
       console.error("bkt serve: the Bucket window process is gone; stopping");
       done();
     });

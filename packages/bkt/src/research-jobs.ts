@@ -6,7 +6,7 @@ import { JobError, type JobDirs, type JobRunner, type JobSpec, type JobStep, typ
 import { pathProblem, SLUG, sha256, type ReportBuild } from "./pack/research";
 import type { Os } from "./platform";
 import { type Research, ResearchError } from "./research";
-import { BuildSwitch, ConsentError, type ChangedFile, type ConsentStore, frozenDigest, type Pending, type PendingView } from "./research-consent";
+import { BuildSwitch, ConsentError, type ChangedFile, type ConsentStore, frozenDigest, type Pending, type PendingView, visibleText, type Hidden } from "./research-consent";
 import type { Route } from "./serve";
 
 export type Which = (bin: string) => string | null;
@@ -268,6 +268,23 @@ export function kindOf(build: ReportBuild): string {
 
 const cut = (line: string) => (line.length > 100 ? `${line.slice(0, 100)}…` : line);
 
+const SIZES_ALONE = /bytes, shown as sizes alone$/;
+
+export function approvalHidden(files: ChangedFile[]): Hidden {
+  let shown = 0;
+  const hidden = { files: 0, lines: 0 };
+  files.forEach((f, i) => {
+    const sizes = f.lines.length === 1 && f.added === 0 && f.removed === 0 && SIZES_ALONE.test(f.lines[0]);
+    const total = sizes ? 0 : f.base === null ? Math.max(f.added, f.lines.length) : f.lines.length;
+    const take = i < 5 ? Math.max(0, Math.min(6, 40 - shown, f.lines.length)) : 0;
+    shown += take;
+    const missing = sizes ? 0 : total - take + f.lines.slice(0, take).filter((l) => l.length > 100).length;
+    if (missing > 0 || sizes) hidden.files += 1;
+    hidden.lines += missing;
+  });
+  return hidden;
+}
+
 export function approvalText(o: { title: string; build: ReportBuild; cls: "shipped" | "edited"; digest: string; files: ChangedFile[] }): string {
   const lines = [o.title, `Build: ${o.build.label} (${o.build.runner}), entry ${o.build.entry}`, `Version: ${o.cls === "shipped" ? "shipped version" : "edited on this computer"}`, `Digest: ${o.digest.slice(0, 12)}`];
   let shown = 0;
@@ -280,7 +297,7 @@ export function approvalText(o: { title: string; build: ReportBuild; cls: "shipp
   });
   const total = o.files.reduce((n, f) => n + f.added + f.removed, 0);
   if (o.files.length > 5 || total > 40) lines.push("", `${o.files.length} files changed. Run bkt research approve in a terminal to read the full diff.`);
-  return lines.join("\n");
+  return visibleText(lines.join("\n"));
 }
 
 export interface BuildsOptions {
@@ -380,7 +397,7 @@ export class ResearchBuilds {
       const digest = frozenDigest(made.dir);
       const cls = files.length === 0 ? "shipped" : "edited";
       const body = approvalText({ title: detail.manifest.title, build, cls, digest, files });
-      this.o.consent.open({ slug: detail.slug, build: build.id, kind, digest, cls, files, frozenDir: made.dir, title: "Allow this build?", body, full, params });
+      this.o.consent.open({ slug: detail.slug, build: build.id, kind, digest, cls, files, frozenDir: made.dir, title: "Allow this build?", body, full, params, output: detail.manifest.title, hidden: approvalHidden(files) });
     } catch (e) {
       this.o.runner.discard(made.dir);
       throw e;
