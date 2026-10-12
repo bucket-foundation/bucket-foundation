@@ -1,6 +1,6 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "bun:test";
-import type { PackedFile, ResearchDetail, ResearchRow, TablePage } from "./api";
+import type { PackedFile, PaperPage, ResearchDetail, ResearchRow, TablePage } from "./api";
 import { href, parseHash } from "./router";
 import type { EngineImage } from "./use-engine-image";
 import type { ResearchApi } from "./views/Research";
@@ -8,8 +8,12 @@ import type { ResearchApi } from "./views/Research";
 let autoSee = true;
 const watchers: { fire: () => void }[] = [];
 
+const paneObservers: ((entries: { isIntersecting: boolean; target: Element }[]) => void)[] = [];
+
 class FakeObserver {
-  constructor(private notify: (entries: { isIntersecting: boolean }[]) => void) {}
+  constructor(private notify: (entries: { isIntersecting: boolean; target?: Element }[]) => void) {
+    paneObservers.push(notify as (entries: { isIntersecting: boolean; target: Element }[]) => void);
+  }
   observe() {
     const fire = () => this.notify([{ isIntersecting: true }]);
     watchers.push({ fire });
@@ -144,12 +148,22 @@ function pageFrom(columns: string[], all: string[][], pinned: string[], query: {
   return { columns, rows: shown.map((i) => all[i]), index: shown, total: index.length, page, size: 50, pinned, truncated: false };
 }
 
-function fakeApi(over: Partial<ResearchApi> = {}): ResearchApi & { images: string[]; asked: { id: string; page?: number; q?: string; sort?: string }[] } {
+const TEX = "\\begin{document}\\section{Method}We embed with $\\frac{a}{b}$ and cite \\href{https://example.org/paper}{the paper}.\n\n\\includegraphics{figures/fig_frontier.pdf}\n\\includegraphics{figures/fig_absent.pdf}\n\\input{tables/branches.tex}\\end{document}";
+const PAGE_URL = "data:image/png;base64,AAAA";
+const NO_TOOL: PaperPage = { state: "preview", reason: "pdftoppm is missing, so the paper shows as a preview", install: "sudo dnf install poppler-utils, or sudo apt install poppler-utils" };
+
+function fakeApi(over: Partial<ResearchApi> = {}): ResearchApi & { images: string[]; opened: string[]; pagesAsked: number[]; asked: { id: string; page?: number; q?: string; sort?: string }[] } {
   const images: string[] = [];
+  const opened: string[] = [];
+  const pagesAsked: number[] = [];
   const asked: { id: string; page?: number; q?: string; sort?: string }[] = [];
   return {
     images,
     asked,
+    opened,
+    pagesAsked,
+    openLink: async (url) => (opened.push(url), { opened: url }),
+    researchPage: async (_slug, n) => (pagesAsked.push(n), NO_TOOL),
     researchTable: async (_slug, id, query = {}) => {
       asked.push({ id, ...query });
       if (id === "records") return pageFrom(RECORD_COLUMNS, RECORD_ROWS, [], query);
@@ -163,7 +177,7 @@ function fakeApi(over: Partial<ResearchApi> = {}): ResearchApi & { images: strin
       if (!d) throw new Error("no such output");
       return d;
     },
-    researchText: async (_slug, path) => (path.endsWith("riemann.json") ? JSON.stringify(RIEMANN, null, 1) : path.endsWith("goldbach.json") ? "[1, 2]" : path.endsWith("README.md") ? "## Tool\n\nReads $x^2$ rows." : "## Gap\n\nThe **engine** ranks problems."),
+    researchText: async (_slug, path) => (path.endsWith(".tex") ? TEX : path.endsWith("riemann.json") ? JSON.stringify(RIEMANN, null, 1) : path.endsWith("goldbach.json") ? "[1, 2]" : path.endsWith("README.md") ? "## Tool\n\nReads $x^2$ rows." : "## Gap\n\nThe **engine** ranks problems."),
     image: async (_slug, path) => (images.push(path), DATA_URL),
     ...over,
   };
@@ -186,7 +200,7 @@ async function mount(node: React.ReactElement) {
   return { host, click, settle, unmount: () => act(async () => root.unmount()) };
 }
 
-async function view(api: ResearchApi, slug?: string, tab: "report" | "figures" | "data" | "records" = "report") {
+async function view(api: ResearchApi, slug?: string, tab: "report" | "figures" | "data" | "records" | "paper" = "report") {
   const { ResearchView } = await import("./views/Research");
   return mount(<ResearchView api={api} slug={slug} tab={tab} />);
 }
@@ -199,6 +213,7 @@ describe("research routes", () => {
     expect(parseHash("#/research/solvability-frontier")).toEqual({ name: "research", slug: "solvability-frontier", tab: "report" });
     expect(parseHash("#/research/Bad_Slug/report")).toEqual({ name: "research" });
     expect(parseHash("#/research/solvability-frontier/changes")).toEqual({ name: "research" });
+    expect(parseHash("#/research/solvability-frontier/paper")).toEqual({ name: "research", slug: "solvability-frontier", tab: "paper" });
     expect(parseHash("#/research/solvability-frontier/data")).toEqual({ name: "research", slug: "solvability-frontier", tab: "data" });
     expect(parseHash("#/research/solvability-frontier/records")).toEqual({ name: "research", slug: "solvability-frontier", tab: "records" });
     expect(parseHash("#/research/..%2Fx/report")).toEqual({ name: "research" });
@@ -241,11 +256,11 @@ describe("research screen", () => {
     expect(rows.length).toBe(2);
     expect(v.host.querySelector(".staff-absent")!.textContent).toBe("Staff data is absent from this build.");
     expect(v.host.querySelectorAll(".research-attributions a").length).toBe(0);
-    expect(Array.from(v.host.querySelectorAll(".seg button")).map((b) => [b.textContent, b.className])).toEqual([["Report", "on"], ["Data", ""], ["Figures", ""], ["Records", ""]]);
+    expect(Array.from(v.host.querySelectorAll(".seg button")).map((b) => [b.textContent, b.className])).toEqual([["Report", "on"], ["Data", ""], ["Figures", ""], ["Paper", ""], ["Records", ""]]);
     await v.unmount();
     const one = await view(fakeApi(), "funding-landscape");
     expect(one.host.querySelector(".staff-absent")).toBeNull();
-    expect(Array.from(one.host.querySelectorAll(".seg button")).map((b) => b.textContent)).toEqual(["Report", "Figures"]);
+    expect(Array.from(one.host.querySelectorAll(".seg button")).map((b) => b.textContent)).toEqual(["Report", "Figures", "Paper"]);
     expect(one.host.querySelector(".research-attributions")).toBeNull();
     expect(one.host.textContent).toContain("Second paragraph.");
     expect(one.host.textContent).toContain("Not stated");
@@ -495,6 +510,102 @@ describe("research data and records", () => {
     const failing = await view(fakeApi({ researchManifest: async () => FULL, researchTable: async () => Promise.reject(new Error("Bucket could not read that table.")) }), "solvability-frontier", "data");
     expect(failing.host.querySelector('[role="alert"]')!.textContent).toBe("Bucket could not read that table.");
     await failing.unmount();
+  });
+});
+
+describe("research paper tab", () => {
+  const press = (host: Element, label: string) => Array.from(host.querySelectorAll("button")).find((b) => b.textContent?.trim() === label);
+
+  test("a missing tool yields the Preview tier with an install line", async () => {
+    const api = fakeApi();
+    const v = await view(api, "solvability-frontier", "paper");
+    expect(v.host.querySelector(".preview-label")!.textContent).toBe("Preview");
+    expect(v.host.querySelector(".paper-view")!.textContent).toContain("This computer lacks the tool that draws the pages");
+    const fold = v.host.querySelector(".paper-view details.fine") as HTMLDetailsElement;
+    expect([fold.open, fold.querySelector("summary")!.textContent, fold.querySelector("pre")!.textContent]).toEqual([false, "How to get the pages", "sudo dnf install poppler-utils, or sudo apt install poppler-utils"]);
+    expect(v.host.querySelector(".tex-preview h3")!.textContent).toBe("Method");
+    expect(v.host.querySelector(".tex-preview .katex")).not.toBeNull();
+    expect(v.host.querySelector(".tex-preview .katex-html .mfrac")).not.toBeNull();
+    expect(v.host.querySelector(".paper-source pre")!.textContent).toBe(TEX);
+    expect(Array.from(v.host.querySelectorAll(".paper-source option")).map((o) => o.textContent)).toEqual(["solvability-frontier/main.tex"]);
+    expect(v.host.querySelector(".pdf-pane")).toBeNull();
+    expect(api.pagesAsked).toEqual([1]);
+    await v.unmount();
+  });
+
+  test("href renders as text plus an Open button", async () => {
+    const api = fakeApi();
+    const v = await view(api, "solvability-frontier", "paper");
+    const link = v.host.querySelector(".tex-link")!;
+    expect(link.textContent).toBe("the paper Open");
+    expect(v.host.querySelectorAll('.tex-preview a[href^="http"]').length).toBe(0);
+    expect(v.host.innerHTML).not.toContain('href="https://example.org/paper"');
+    await v.click(link.querySelector("button"));
+    expect(api.opened).toEqual(["https://example.org/paper"]);
+    await v.unmount();
+    const refusing = fakeApi({ openLink: async () => Promise.reject(new Error("Bucket does not open that site.")) });
+    const w = await view(refusing, "solvability-frontier", "paper");
+    await w.click(w.host.querySelector(".tex-link button"));
+    expect(w.host.querySelector(".tex-link .error")!.textContent).toBe(" Bucket does not open that site.");
+    await w.unmount();
+  });
+
+  test("includegraphics outside assets shows a placeholder", async () => {
+    const api = fakeApi();
+    const v = await view(api, "solvability-frontier", "paper");
+    expect(Array.from(v.host.querySelectorAll(".tex-missing")).map((p) => p.textContent)).toEqual(["A figure sits here in the paper. This build holds no copy of it."]);
+    const shown = Array.from(v.host.querySelectorAll(".tex-preview img"));
+    expect(shown.map((i) => i.getAttribute("src"))).toEqual([DATA_URL]);
+    expect(v.host.querySelector(".tex-table a")!.getAttribute("href")).toBe("#/research/solvability-frontier/data");
+    for (const el of Array.from(v.host.querySelectorAll("*"))) for (const attr of ["src", "href"]) expect(el.getAttribute(attr) ?? "").not.toContain("/local");
+    await v.unmount();
+  });
+
+  test("PDF pane mounts at most 6 pages", async () => {
+    autoSee = false;
+    const api = fakeApi({ researchPage: async (_slug, n) => (api.pagesAsked.push(n), { state: "ready", pages: 20, pdf: "f".repeat(64), src: PAGE_URL }) });
+    const v = await view(api, "solvability-frontier", "paper");
+    expect(v.host.querySelectorAll(".pdf-page").length).toBe(20);
+    const mounted = () => Array.from(v.host.querySelectorAll(".pdf-page img")).map((i) => Number(i.parentElement!.getAttribute("data-page")));
+    expect(mounted()).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(v.host.querySelector(".pdf-page img")!.getAttribute("src")).toBe(PAGE_URL);
+    const { act } = await import("react");
+    const { PdfPane } = await import("./views/Research");
+    const pane = await mount(<PdfPane api={api} slug="solvability-frontier" pdf={"e".repeat(64)} pages={20} />);
+    const observed: { isIntersecting: boolean; target: Element }[] = Array.from(pane.host.querySelectorAll(".pdf-page")).map((target, i) => ({ isIntersecting: i === 11 || i === 12, target }));
+    await act(async () => paneObservers.at(-1)!(observed));
+    await pane.settle();
+    const now = Array.from(pane.host.querySelectorAll(".pdf-page img")).map((i) => Number(i.parentElement!.getAttribute("data-page")));
+    expect(now).toEqual([10, 11, 12, 13, 14, 15]);
+    await act(async () => paneObservers.at(-1)!(observed.map((o, i) => ({ ...o, isIntersecting: i === 19 }))));
+    await pane.settle();
+    expect(Array.from(pane.host.querySelectorAll(".pdf-page img")).length).toBe(6);
+    expect(Number(pane.host.querySelectorAll(".pdf-page img")[5].parentElement!.getAttribute("data-page"))).toBe(20);
+    expect(pane.host.innerHTML).not.toContain("/local");
+    await pane.unmount();
+    await v.unmount();
+  });
+
+  test("a v1 output shows the pages with no source pane, and waits while they render", async () => {
+    let calls = 0;
+    const api = fakeApi({ researchPage: async (): Promise<PaperPage> => (calls++ === 0 ? { state: "rendering" } : { state: "ready", pages: 2, pdf: "d".repeat(64), src: PAGE_URL }) });
+    const v = await view(api, "funding-landscape", "paper");
+    expect(v.host.querySelector(".paper-source")).toBeNull();
+    expect(v.host.querySelector(".paper-single")).not.toBeNull();
+    expect(v.host.textContent).toContain("Drawing the pages…");
+    const { act } = await import("react");
+    await act(async () => wait(1100));
+    await v.settle();
+    expect(v.host.querySelectorAll(".pdf-page img").length).toBe(2);
+    await v.unmount();
+    const none = await view(fakeApi(), "funding-landscape", "paper");
+    expect(none.host.querySelector(".preview-label")!.textContent).toBe("Preview");
+    expect(none.host.textContent).toContain("This output ships its paper without the source, so there is no preview.");
+    await none.unmount();
+    const broken = await view(fakeApi({ researchPage: async () => Promise.reject(new Error("Bucket could not read the pages.")) }), "solvability-frontier", "paper");
+    expect(broken.host.querySelector(".paper-view .error")!.textContent).toBe("Bucket could not read the pages.");
+    expect(broken.host.querySelector(".tex-preview h3")!.textContent).toBe("Method");
+    await broken.unmount();
   });
 });
 

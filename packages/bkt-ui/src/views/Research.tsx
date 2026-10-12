@@ -613,7 +613,7 @@ export function PdfPane({ api, slug, pdf, pages }: { api: ResearchApi; slug: str
     const el = box.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
     const watch = new IntersectionObserver((entries) => {
-      const seen = entries.filter((e) => e.isIntersecting).map((e) => Number((e.target as HTMLElement).dataset.page));
+      const seen = entries.filter((e) => e.isIntersecting).map((e) => Number((e.target as HTMLElement | undefined)?.dataset?.page)).filter((n) => Number.isInteger(n) && n >= 1);
       if (seen.length) setAt(Math.min(...seen));
     });
     for (const child of Array.from(el.children)) watch.observe(child);
