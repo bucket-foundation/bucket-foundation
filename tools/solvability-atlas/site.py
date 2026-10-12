@@ -28,6 +28,7 @@ def productions():
     fsrc = {r["id"]: {"label": r["source"], "url": r["url"]} for r in csv.DictReader(open(HERE / "formal_sources.tsv"), delimiter="\t")}
     desc = {r["id"]: r["description"] for r in csv.DictReader(open(HERE / "descriptions.tsv"), delimiter="\t")}
     cards = []
+    ledger = claims.by_id(claims.entries())
     for n in g["nodes"]:
         if n["kind"] == "token":
             continue
@@ -48,6 +49,7 @@ def productions():
             "sources": [{"label": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Special:Search?search=" + n["name"].replace(" ", "+")}] if n["kind"] == "problem" else [{"label": "lean/manifest.json"}],
             "source_kind": n["kind"],
         })
+        claims.attach(cards[-1], ledger)
     json.dump({"schema": "bucket.solvability-atlas.productions/v1", "productions": cards}, open(OUT / "productions.json", "w"), indent=1)
     return cards, g["summary"]
 

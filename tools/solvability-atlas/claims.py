@@ -8,6 +8,7 @@ REPO = HERE.parent.parent
 LEDGERS = HERE / "claims"
 SITE = REPO / "src" / "lib" / "research-os" / "solvability-claims-data.json"
 NEIGHBORS = REPO / "src" / "lib" / "research-os" / "solvability-neighbors-data.json"
+CARDS = REPO / "src" / "lib" / "research-os" / "solvability-atlas-data.json"
 RECORDS = HERE / "records"
 SCHEMA = "bucket.solvability-atlas.claims/v1"
 SITE_SCHEMA = "bucket.solvability-atlas.claims-site/v1"
@@ -163,6 +164,15 @@ def compact(e):
     return {"batch": e["batch"], "family": e["family"], "match": e["match"], "formal_scope": e["formal"]["scope"], "confirmed": e["confirmation"] is not None, "withdrawn": not active(e)}
 
 
+def attach(card, ledger):
+    mine = [compact(e) for e in ledger.get(card["id"], [])] if card.get("source_kind") != "lean" else []
+    if mine:
+        card["published_claims"] = mine
+    else:
+        card.pop("published_claims", None)
+    return card
+
+
 def record_claims(pid, items):
     return [{k: v for k, v in e.items() if k != "id"} for e in items if e["id"] == pid]
 
@@ -177,7 +187,7 @@ def site_payload(directory=LEDGERS):
     return {"schema": SITE_SCHEMA, "rule": STATUS_RULE, "batches": batches, "rows": rows}
 
 
-def apply(neighbors=NEIGHBORS, records=RECORDS, site=SITE, directory=LEDGERS):
+def apply(neighbors=NEIGHBORS, records=RECORDS, site=SITE, directory=LEDGERS, cards=CARDS):
     import atlas
     import record_schema
 
@@ -213,6 +223,11 @@ def apply(neighbors=NEIGHBORS, records=RECORDS, site=SITE, directory=LEDGERS):
         path.write_text(json.dumps(rec, indent=1, ensure_ascii=False), encoding="utf8")
         written += 1
     Path(site).write_text(json.dumps(site_payload(directory), indent=1, ensure_ascii=False) + "\n", encoding="utf8")
+    deck = json.loads(Path(cards).read_text())
+    ledger = by_id(items)
+    for card in deck["productions"]:
+        attach(card, ledger)
+    Path(cards).write_text(json.dumps(deck, indent=1))
     return {"neighbour_rows_changed": changed, "records_written": written, "claimed": sum(1 for n in nodes if n["status"] == CLAIMED)}
 
 

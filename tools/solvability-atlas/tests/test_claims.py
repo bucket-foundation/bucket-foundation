@@ -201,6 +201,16 @@ def test_hand_records_carry_their_ledger_entries_and_validate():
     assert any("match" in e for e in record_schema.errors(broken))
 
 
+def test_production_cards_carry_compact_claims_and_keep_their_resolved_year():
+    deck = json.load(open(claims.CARDS))
+    ledger = claims.by_id(claims.entries())
+    tagged = {c["id"]: c for c in deck["productions"] if "published_claims" in c}
+    assert set(tagged) == {c["id"] for c in deck["productions"] if c["id"] in ledger and c["source_kind"] != "lean"}
+    assert tagged["uniquegames"]["resolved"] is None
+    assert tagged["uniquegames"]["published_claims"] == [claims.compact(e) for e in ledger["uniquegames"]]
+    assert claims.attach({"id": "uniquegames", "source_kind": "lean"}, ledger) == {"id": "uniquegames", "source_kind": "lean"}
+
+
 def test_the_site_payload_lists_every_ledger_row():
     payload = json.load(open(claims.SITE))
     assert payload == claims.site_payload()
