@@ -2,7 +2,7 @@ import { chmodSync, existsSync, lstatSync, mkdirSync, readFileSync, realpathSync
 import { dirname, extname, join, sep } from "node:path";
 import { decodeBlob, MB, PACK_CAPS, pathProblem, sha256, SIDE_SCHEMA, SLUG, type PackedFile, type ReportRecord, type ResearchBlobs, type ResearchIndex, type ResearchOutput, type ResearchSidePack } from "./pack/research";
 import { platformFor } from "./platform";
-import { pageOf, parseQuery, parseTable, recordSetTable, TableCache, TableError, type TablePage, type TableQuery } from "./research-table";
+import { pageOf, parseQuery, parseTable, RECORD_SET_CAP, recordSetTable, TableCache, TableError, type TablePage, type TableQuery } from "./research-table";
 import type { Route } from "./serve";
 
 export const VIEW_BYTES = 16 * MB;
@@ -248,7 +248,22 @@ function hashProblem(output: ResearchOutput): string | null {
   return null;
 }
 
+export interface WorkHook {
+  overlay(slug: string, path: string): Buffer | null;
+  changed(slug: string): number;
+}
+
 export class Research {
+  private work: WorkHook | null = null;
+
+  setWork(hook: WorkHook | null): void {
+    this.work = hook;
+  }
+
+  get version(): string {
+    return this.source.index.version;
+  }
+
   private outputs = new Map<string, ResearchOutput>();
   private unreadable = new Map<string, string>();
   private unpacked: Promise<string> | null = null;
@@ -308,7 +323,7 @@ export class Research {
       status: output.manifest.status,
       date: output.manifest.date,
       origin: output.origin,
-      changed: 0,
+      changed: this.work?.changed(output.slug) ?? 0,
       unreadable: this.unreadable.get(output.slug) ?? null,
     }));
   }
@@ -367,7 +382,7 @@ export class Research {
     return dest;
   }
 
-  async read(slug: string | null, path: string | null): Promise<ResearchFile> {
+  async read(slug: string | null, path: string | null, o: { baseline?: boolean } = {}): Promise<ResearchFile> {
     const output = this.output(slug);
     if (path === null) throw new ResearchError("the path is empty", 400);
     const problem = pathProblem(path);
@@ -375,6 +390,8 @@ export class Research {
     const entry = output.files.find((file) => file.path === path);
     if (!entry) throw new ResearchError("the output does not list that file", 404);
     const type = CONTENT_TYPES[extname(path).toLowerCase()] ?? "application/octet-stream";
+    const edited = o.baseline || !this.work ? null : this.work.overlay(output.slug, path);
+    if (edited) return { bytes: edited, type, entry: { ...entry, sha256: sha256(edited), size: edited.length } };
     if (entry.size > VIEW_BYTES) throw new ResearchError("the file is over the 16 MB view limit", 413);
     const root = this.side && this.sideFiles.has(`${output.slug}\n${path}`) ? this.side.root : await this.root();
     const reason = this.unreadable.get(output.slug);
@@ -399,7 +416,7 @@ export class Research {
     }
     const set = (output.manifest.record_sets ?? []).find((s) => s.id === id);
     if (!set) throw new ResearchError("the output has no such table", 404);
-    const members = output.files.filter((file) => file.path.startsWith(`${set.dir}/`) && file.path.endsWith(".json") && !file.path.slice(set.dir.length + 1).includes("/"));
+    const members = output.files.filter((file) => file.path.startsWith(`${set.dir}/`) && file.path.endsWith(".json") && !file.path.slice(set.dir.length + 1).includes("/")).slice(0, RECORD_SET_CAP + 1);
     const key = sha256(members.map((file) => file.sha256).join("\n"));
     const loaded: { path: string; text: string }[] = [];
     if (!this.tables.has(key)) for (const file of members) loaded.push({ path: file.path, text: (await this.read(slug, file.path)).bytes.toString("utf8") });

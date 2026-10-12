@@ -66,6 +66,7 @@ import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
 import { Research, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
 import { installLines, researchInstall } from "./research";
+import { FILE_BODY_BYTES, ResearchWork, researchWorkRoutes } from "../research-work";
 import type { ResearchBlobs, ResearchIndex } from "../pack/research";
 import { startServe, type Route } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
@@ -294,6 +295,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     exploreAdapter(explorePack as unknown as ExplorePack),
     ownAdapter(session.store, { analyses: () => runner.list().length }),
   ]);
+  const researchTrouble = (e: Error) => console.error(`bkt serve: research: ${e.message}`);
+  const research = new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, researchTrouble);
   const srv = startServe({
     cliToken,
     cliSecret,
@@ -308,7 +311,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
-      ...researchRoutes(new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, (e) => console.error(`bkt serve: research: ${e.message}`)), (e) => console.error(`bkt serve: research: ${e.message}`)),
+      ...researchRoutes(research, researchTrouble),
+      ...researchWorkRoutes(new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() }), researchTrouble),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
       ...servedWordRoutes(workQuiz),
       ...deckRoutes({ home: dir, book: wordBook, onError: (m) => console.error(`bkt serve: ${m}`) }),
@@ -321,6 +325,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
       "POST /local/research/install": SIDE_PACK_BYTES,
+      "POST /local/research/file": FILE_BODY_BYTES,
       "POST /local/advisor/import": REVIEW_BODY_BYTES,
       "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
       "POST /local/jobs": JOB_BODY_BYTES,
