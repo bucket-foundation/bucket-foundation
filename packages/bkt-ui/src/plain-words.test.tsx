@@ -1225,7 +1225,8 @@ describe("Research OS views on the local store", () => {
     const { NODE_MISSING } = await import("./views/RosNode");
     const v = await mount({ name: "node", slug: "nope" }, empty());
     await v.act(async () => new Promise((r) => setTimeout(r, 60)));
-    expect(v.text()).toBe(NODE_MISSING);
+    expect(v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Nodes");
+    expect(v.text().split("\n").slice(10)).toEqual([NODE_MISSING]);
     await v.unmount();
   });
 
