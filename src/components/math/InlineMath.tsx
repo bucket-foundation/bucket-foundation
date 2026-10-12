@@ -4,7 +4,7 @@ import { useCallback, useSyncExternalStore } from "react";
 import katex from "katex";
 import { splitMath, texToText } from "@/lib/research-os/work-quiz/math";
 
-const OPTIONS = { throwOnError: false, output: "htmlAndMathml" } as const;
+const OPTIONS = { throwOnError: false, output: "htmlAndMathml", trust: false, strict: "ignore", maxExpand: 1000 } as const;
 const never = () => () => {};
 
 function markup(tex: string, display: boolean): string | null {
@@ -15,7 +15,7 @@ function markup(tex: string, display: boolean): string | null {
   }
 }
 
-function Tex({ tex, display }: { tex: string; display: boolean }) {
+export function Tex({ tex, display }: { tex: string; display: boolean }) {
   const hydrating = useSyncExternalStore(never, () => false, () => true);
   const mount = useCallback(
     (el: HTMLSpanElement | null) => {

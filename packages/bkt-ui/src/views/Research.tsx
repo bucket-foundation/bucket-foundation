@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import type { Api, PackedFile, ReportAsset, ResearchDetail, ResearchRow, TablePage } from "../api";
+import { Tex } from "@/components/math/InlineMath";
+import type { Api, PackedFile, PaperPage, ReportAsset, ResearchDetail, ResearchRow, TablePage } from "../api";
+import { texPreview, type Block, type Inline } from "../tex-preview";
 import { href, RESEARCH_TABS, type ResearchTab } from "../router";
-import { useEngineImage } from "../use-engine-image";
+import { useEngineImage, usePageImage } from "../use-engine-image";
 import { FILTER_WAIT_MS, Pager, SortHead } from "./Data";
 import { Lesson } from "./Lesson";
 import "../research.css";
 
-export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "image">;
+export type ResearchApi = Pick<Api, "researchList" | "researchManifest" | "researchText" | "researchTable" | "researchPage" | "image" | "openLink">;
 
 type Loaded<T> = { status: "loading" } | { status: "ready"; data: T } | { status: "error"; error: string };
 
@@ -36,13 +38,19 @@ function Unverified({ reason }: { reason: string }) {
 export const NO_ROWS = "This table holds no rows.";
 export const NO_TABLES = "This output lists no tables.";
 export const NO_RECORDS = "This output lists no records.";
-const TAB_LABELS: Record<ResearchTab, string> = { report: "Report", data: "Data", figures: "Figures", records: "Records" };
+export const PREVIEW_LABEL = "Preview";
+export const PAGES_MOUNTED = 6;
+export const PAGE_POLL_MS = 1000;
+export const PAGE_POLLS = 90;
+const TAB_LABELS: Record<ResearchTab, string> = { report: "Report", data: "Data", figures: "Figures", paper: "Paper", records: "Records" };
+const SOURCE_EXTS = [".tex", ".bib", ".sty", ".md"];
 const count = (n: number) => n.toLocaleString("en-US");
 const heading = (column: string) => column.replace(/_/g, " ");
 
 export function tabsFor(d: ResearchDetail): ResearchTab[] {
   const local = d.manifest.schema !== "bucket.report/1";
-  return RESEARCH_TABS.filter((t) => t === "report" || t === "figures" || local);
+  const paper = d.files.some((f) => f.role === "pdf" || f.role === "public-pdf") || d.manifest.source_path.endsWith(".tex");
+  return RESEARCH_TABS.filter((t) => t === "report" || t === "figures" || (t === "paper" ? paper : local));
 }
 const ORIGIN_LABELS: Record<ResearchRow["origin"], string> = { shipped: "Shipped", staff: "Staff", local: "Local" };
 
@@ -486,6 +494,226 @@ function Records({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
   );
 }
 
+function Linked({ api, url, label }: { api: ResearchApi; url: string; label: string }) {
+  const [note, setNote] = useState<string | null>(null);
+  return (
+    <span className="tex-link">
+      {label}{" "}
+      <button type="button" className="link" onClick={() => void api.openLink(url).then(() => setNote(null), (e: Error) => setNote(e.message))}>
+        Open
+      </button>
+      {note && <span className="error"> {note}</span>}
+    </span>
+  );
+}
+
+function Inlines({ api, items }: { api: ResearchApi; items: Inline[] }) {
+  return (
+    <>
+      {items.map((x, i) =>
+        x.t === "math" ? (
+          <Tex key={i} tex={x.tex} display={false} />
+        ) : x.t === "link" ? (
+          <Linked key={i} api={api} url={x.url} label={x.v} />
+        ) : x.t === "em" ? (
+          <em key={i}>{x.v}</em>
+        ) : x.t === "strong" ? (
+          <strong key={i}>{x.v}</strong>
+        ) : x.t === "code" ? (
+          <code key={i}>{x.v}</code>
+        ) : (
+          <span key={i}>{x.v}</span>
+        ),
+      )}
+    </>
+  );
+}
+
+function PreviewFigure({ api, d, name }: { api: ResearchApi; d: ResearchDetail; name: string }) {
+  const stem = name.replace(/\.[A-Za-z0-9]+$/, "");
+  const item = figureItems(d).find((f) => f.file !== null && f.file.path.split("/").pop()!.replace(/\.[A-Za-z0-9]+$/, "") === stem);
+  const [ref, seen] = useSeen();
+  if (!item) return <p className="muted tex-missing">A figure sits here in the paper. This build holds no copy of it.</p>;
+  return (
+    <figure className="research-figure" ref={ref}>
+      <Picture api={api} slug={d.slug} item={item} show={seen} />
+      <figcaption>{item.caption}</figcaption>
+    </figure>
+  );
+}
+
+export function TexBlocks({ api, d, blocks }: { api: ResearchApi; d: ResearchDetail; blocks: Block[] }) {
+  return (
+    <div className="lesson tex-preview">
+      {blocks.map((b, i) =>
+        b.k === "heading" ? (
+          b.level === 1 ? (
+            <h2 key={i}>
+              <Inlines api={api} items={b.inline} />
+            </h2>
+          ) : (
+            <h3 key={i}>
+              <Inlines api={api} items={b.inline} />
+            </h3>
+          )
+        ) : b.k === "para" ? (
+          <p key={i}>
+            <Inlines api={api} items={b.inline} />
+          </p>
+        ) : b.k === "list" ? (
+          b.ordered ? (
+            <ol key={i}>
+              {b.items.map((it, j) => (
+                <li key={j}>
+                  <Inlines api={api} items={it} />
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <ul key={i}>
+              {b.items.map((it, j) => (
+                <li key={j}>
+                  <Inlines api={api} items={it} />
+                </li>
+              ))}
+            </ul>
+          )
+        ) : b.k === "math" ? (
+          <div key={i} className="tex-display">
+            <Tex tex={b.tex} display />
+          </div>
+        ) : b.k === "figure" ? (
+          <PreviewFigure key={i} api={api} d={d} name={b.name} />
+        ) : (
+          <p key={i} className="tex-table">
+            A table sits here in the paper.{" "}
+            <a className="link" href={href({ name: "research", slug: d.slug, tab: "data" })}>
+              Open the Data tab
+            </a>
+          </p>
+        ),
+      )}
+    </div>
+  );
+}
+
+function PdfPage({ api, slug, pdf, n, show }: { api: ResearchApi; slug: string; pdf: string; n: number; show: boolean }) {
+  const image = usePageImage(api, slug, pdf, n, show);
+  return (
+    <div className="pdf-page" data-page={n}>
+      {image.status === "ready" ? <img src={image.src} alt={`Page ${n}`} /> : image.status === "error" ? <p className="error">{image.error}</p> : <p className="muted">Page {n}</p>}
+    </div>
+  );
+}
+
+export function PdfPane({ api, slug, pdf, pages }: { api: ResearchApi; slug: string; pdf: string; pages: number }) {
+  const [at, setAt] = useState(1);
+  const box = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = box.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const watch = new IntersectionObserver((entries) => {
+      const seen = entries.filter((e) => e.isIntersecting).map((e) => Number((e.target as HTMLElement).dataset.page));
+      if (seen.length) setAt(Math.min(...seen));
+    });
+    for (const child of Array.from(el.children)) watch.observe(child);
+    return () => watch.disconnect();
+  }, [pages]);
+  const first = Math.max(1, Math.min(at - 2, pages - PAGES_MOUNTED + 1));
+  return (
+    <div className="pdf-pane" ref={box}>
+      {Array.from({ length: pages }, (_, i) => i + 1).map((n) => (
+        <PdfPage key={n} api={api} slug={slug} pdf={pdf} n={n} show={n >= first && n < first + PAGES_MOUNTED} />
+      ))}
+    </div>
+  );
+}
+
+function Rendered({ api, d, source }: { api: ResearchApi; d: ResearchDetail; source: string | null }) {
+  const [page, setPage] = useState<PaperPage | { state: "error"; error: string } | null>(null);
+  useEffect(() => {
+    let alive = true;
+    let tries = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const ask = () =>
+      api.researchPage(d.slug, 1).then(
+        (p) => {
+          if (!alive) return;
+          if (p.state === "rendering" && tries++ < PAGE_POLLS) timer = setTimeout(ask, PAGE_POLL_MS);
+          else setPage(p.state === "rendering" ? { state: "preview", reason: "", install: null } : p);
+        },
+        (e: Error) => alive && setPage({ state: "error", error: e.message }),
+      );
+    setPage(null);
+    void ask();
+    return () => {
+      alive = false;
+      if (timer) clearTimeout(timer);
+    };
+  }, [api, d.slug]);
+  if (page === null || page.state === "rendering") return <p className="muted">Drawing the pages…</p>;
+  if (page.state === "ready") return <PdfPane api={api} slug={d.slug} pdf={page.pdf} pages={page.pages} />;
+  const preview = source === null ? null : texPreview(source);
+  return (
+    <>
+      <p className="tag ghost preview-label">{PREVIEW_LABEL}</p>
+      {page.state === "error" ? (
+        <p className="error">{page.error}</p>
+      ) : (
+        <>
+          <p className="muted">This computer lacks the tool that draws the pages, so the paper shows as plain text and math.</p>
+          {page.install && (
+            <details className="fine">
+              <summary>How to get the pages</summary>
+              <p>Run this in a terminal, then open the paper again:</p>
+              <pre>{page.install}</pre>
+            </details>
+          )}
+        </>
+      )}
+      {preview ? (
+        <>
+          <TexBlocks api={api} d={d} blocks={preview.blocks} />
+          {preview.truncated && <p className="muted">The paper is longer than the preview shows.</p>}
+        </>
+      ) : (
+        <p className="muted">This output ships its paper without the source, so there is no preview.</p>
+      )}
+    </>
+  );
+}
+
+function Paper({ api, d }: { api: ResearchApi; d: ResearchDetail }) {
+  const listed = new Set(d.files.map((f) => f.path));
+  const paper = d.manifest.paper;
+  const sources = [d.manifest.source_path, ...(paper?.includes ?? []), ...(paper?.bib ?? []), ...(paper?.style ?? [])].filter((p, i, all) => listed.has(p) && SOURCE_EXTS.some((ext) => p.endsWith(ext)) && all.indexOf(p) === i);
+  const main = sources[0] === d.manifest.source_path && sources[0].endsWith(".tex") ? sources[0] : null;
+  const [open, setOpen] = useState(sources[0] ?? "");
+  const text = useLoaded(() => (open ? api.researchText(d.slug, open) : Promise.resolve("")), [api, d.slug, open]);
+  const entry = useLoaded(() => (main ? api.researchText(d.slug, main) : Promise.resolve(null)), [api, d.slug, main]);
+  return (
+    <div className={sources.length ? "paper-split" : "paper-single"}>
+      {sources.length > 0 && (
+        <div className="panel paper-source">
+          <div className="toolbar">
+            <select value={open} onChange={(e) => setOpen(e.target.value)} aria-label="Source file">
+              {sources.map((p) => (
+                <option key={p} value={p}>
+                  {p.split("/").slice(-2).join("/")}
+                </option>
+              ))}
+            </select>
+          </div>
+          {text.status === "loading" && <p className="muted">Loading…</p>}
+          {text.status === "error" && <p className="error">{text.error}</p>}
+          {text.status === "ready" && <pre>{text.data}</pre>}
+        </div>
+      )}
+      <div className="panel paper-view">{entry.status === "loading" ? <p className="muted">Loading…</p> : <Rendered api={api} d={d} source={entry.status === "ready" ? entry.data : null} />}</div>
+    </div>
+  );
+}
+
 function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: ResearchTab }) {
   const state = useLoaded(() => api.researchManifest(slug), [api, slug]);
   if (state.status === "loading") return <p className="muted">Loading…</p>;
@@ -528,6 +756,8 @@ function Output({ api, slug, tab }: { api: ResearchApi; slug: string; tab: Resea
         <Figures api={api} d={d} />
       ) : tab === "data" && tabsFor(d).includes("data") ? (
         <DataTab api={api} d={d} />
+      ) : tab === "paper" && tabsFor(d).includes("paper") ? (
+        <Paper api={api} d={d} />
       ) : tab === "records" && tabsFor(d).includes("records") ? (
         <Records api={api} d={d} />
       ) : (

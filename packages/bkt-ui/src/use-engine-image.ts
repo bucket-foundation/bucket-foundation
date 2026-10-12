@@ -81,3 +81,26 @@ export function useEngineImage(api: Pick<Api, "image">, slug: string, file: Imag
   }, [api, slug, path, sha, size, show, cache]);
   return state;
 }
+
+export function usePageImage(api: Pick<Api, "researchPage">, slug: string, pdf: string, n: number, show = true, cache: ImageCache = imageCache): EngineImage {
+  const [state, setState] = useState<EngineImage>({ status: "idle" });
+  useEffect(() => {
+    if (!show) return setState({ status: "idle" });
+    const key = `${pdf}:${n}`;
+    const held = cache.get(key);
+    if (held !== undefined) return setState({ status: "ready", src: held });
+    let alive = true;
+    setState({ status: "loading" });
+    api.researchPage(slug, n).then(
+      (page) => {
+        if (page.state !== "ready" || !page.src.startsWith("data:image/png")) throw new Error("The page did not arrive as an image.");
+        cache.set(key, page.src);
+        if (alive) setState({ status: "ready", src: page.src });
+      },
+    ).catch((e: Error) => alive && setState({ status: "error", error: e.message }));
+    return () => {
+      alive = false;
+    };
+  }, [api, slug, pdf, n, show, cache]);
+  return state;
+}
