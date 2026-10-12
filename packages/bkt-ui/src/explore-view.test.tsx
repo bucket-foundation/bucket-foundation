@@ -115,8 +115,8 @@ describe("Explore in the window", () => {
       { key: "two", title: "Second row", sub: "B-2", group: "b", source: "by", verified: false, links: [] },
     ] })], ctx)[0];
     const deep = assembleRowSet([
-      fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "timeline"], drill, rows: [{ key: "group-one", title: "Group one", sub: "700 rows", group: "a", source: "open" }] }),
-      fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "timeline"], drill, rows: leaves }),
+      fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "earth"], drill, rows: [{ key: "group-one", title: "Group one", sub: "700 rows", group: "a", source: "open" }] }),
+      fixtureDraft({ id: "deep-set", label: "Deep set", modes: ["map", "earth"], drill, rows: leaves }),
     ], ctx);
     const far = assembleRowSet([fixtureDraft({ id: "far-set", label: "Far set", modes: ["earth"] , rows: [{ key: "one", title: "Far row", sub: "", group: "a", source: "open" }] })], ctx)[0];
     const asked: string[] = [];
@@ -252,6 +252,108 @@ describe("Explore in the window", () => {
     expect(strings(host).flatMap((s) => DENY.filter((d) => d.test(s)).map((d) => `${d}: ${s}`))).toEqual([]);
     await act(async () => root.unmount());
     window.location.hash = "";
+  });
+
+  test("an opened result joins history, so Back returns to the results list with nothing opened", async () => {
+    const { assembleRowSet } = await import("../../bkt/src/pack/row-sets/contract");
+    const { fixtureContext, fixtureDraft } = await import("../../bkt/src/pack/row-sets/test-fixtures");
+    const flow = assembleRowSet([fixtureDraft({ id: "flow-set", label: "Flow set" })], fixtureContext())[0];
+    const second = { ...HIT, id: "paper:d/10.1000/second", title: "A Second Paper" };
+    const base = (async (input: RequestInfo | URL) => {
+      const u = String(input);
+      if (u === "/local/explore/rows") return new Response(JSON.stringify({ datasets: [{ id: "flow-set", label: "Flow set" }] }));
+      if (u.startsWith("/local/explore/rows?id=flow-set")) return new Response(JSON.stringify(flow));
+      if (u.startsWith("/local/explore/search")) return new Response(JSON.stringify({ query: "x", top_k: 60, mode: "lexical", n_results: 2, advisors_sample: false, advisors_source: "none", pinned: null, closest: false, results: [HIT, second], took_ms: 1 }));
+      return new Response("{}", { status: 404 });
+    }) as typeof fetch;
+    window.fetch = siteFetch(base, window.location.origin, "t".repeat(43));
+    const api = { exploreSaved: async () => ({ v: 1, items: [], noticeSeen: false }), putExploreSaved: async (s: unknown) => s, saveNote: async (n: unknown) => n, openLink: async (url: string) => ({ opened: url }) };
+    const { act } = await import("react");
+    const { createRoot } = await import("react-dom/client");
+    const { ExploreView } = await import("./views/Explore");
+    const { OPENED_KEY, openedIn, rememberOpened } = await import("./explore/ExploreClientV2");
+    const host = document.createElement("div");
+    document.body.appendChild(host);
+    const root = createRoot(host);
+    const settle = async () => {
+      for (let i = 0; i < 30; i++) await act(async () => new Promise((r) => setTimeout(r, 0)));
+    };
+    const back = async () => {
+      const pushed = entries.pop();
+      expect(pushed).toBeDefined();
+      const to = entries.at(-1)!;
+      real.replace(to.state, to.url);
+      await act(async () => window.dispatchEvent(new PopStateEvent("popstate", { state: to.state })));
+      await settle();
+    };
+    const real = { push: window.history.pushState.bind(window.history), replace: (state: unknown, url: string) => window.history.replaceState(state, "", url) };
+    const entries: { state: unknown; url: string }[] = [{ state: null, url: `${window.location.origin}/#/explore` }];
+    window.history.replaceState(null, "", "/#/explore");
+    const push = window.history.pushState;
+    const replace = window.history.replaceState;
+    window.history.pushState = (state: unknown, title: string, url?: string | URL | null) => {
+      entries.push({ state, url: String(url ?? window.location.href) });
+      real.push(state, title, url);
+    };
+    window.history.replaceState = (state: unknown, title: string, url?: string | URL | null) => {
+      entries[entries.length - 1] = { state, url: String(url ?? window.location.href) };
+      replace.call(window.history, state, title, url);
+    };
+    await act(async () => root.render(<ExploreView api={api} webgl />));
+    await settle();
+    const panel = () => host.querySelector('[data-testid="explore-panel"]')!.textContent ?? "";
+    const buttons = () => [...host.querySelectorAll<HTMLButtonElement>('[data-testid="explore-result"] > button')];
+    expect(buttons()).toHaveLength(2);
+    expect(entries).toHaveLength(1);
+    expect(panel()).toContain(HIT.title);
+
+    await act(async () => buttons()[1].click());
+    await settle();
+    expect(panel()).toContain("A Second Paper");
+    expect(entries).toHaveLength(2);
+    expect(openedIn(entries[1].state)).toBe(second.id);
+    await act(async () => buttons()[0].click());
+    await settle();
+    expect(entries).toHaveLength(2);
+    expect(openedIn(entries[1].state)).toBe(HIT.id);
+    expect(panel()).toContain(HIT.title);
+    await act(async () => buttons()[0].click());
+    expect(entries).toHaveLength(2);
+
+    await back();
+    expect(entries).toHaveLength(1);
+    expect(panel()).toBe("Select a result.");
+    expect(buttons()).toHaveLength(2);
+    expect(window.location.hash).toBe("#/explore");
+
+    const picker = host.querySelector<HTMLSelectElement>('[data-testid="explore-data"]')!;
+    await act(async () => {
+      picker.value = "flow-set";
+      picker.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+    await settle();
+    expect(entries).toHaveLength(1);
+    expect(entries[0].url).toContain("#/explore/flow-set/graph");
+    await act(async () => buttons()[1].click());
+    await settle();
+    expect(entries).toHaveLength(2);
+    expect(entries[1].url).toEndWith("#/explore/flow-set/graph/row%3Aflow-set%3Atwo");
+    expect(entries[0].url).toEndWith("#/explore/flow-set/graph");
+    expect(panel()).toContain("Second row");
+    await back();
+    expect(panel()).toBe("Select a result.");
+    expect(buttons()).toHaveLength(3);
+    expect(window.location.hash).toBe("#/explore/flow-set/graph");
+
+    expect(openedIn(null)).toBeNull();
+    expect(openedIn({ [OPENED_KEY]: 7 })).toBeNull();
+    rememberOpened("x");
+    rememberOpened("x");
+    expect(entries).toHaveLength(2);
+    window.history.pushState = push;
+    window.history.replaceState = replace;
+    await act(async () => root.unmount());
+    window.history.replaceState(null, "", "/");
   });
 
   test("a set named in the hash that this build lacks shows one sentence and the canon search", async () => {

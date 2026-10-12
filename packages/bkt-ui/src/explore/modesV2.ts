@@ -8,6 +8,7 @@ import type { Hit } from "../../../../src/lib/explore/search";
 import { circleLayout } from "./circle-layout";
 import type { CircleGraph } from "./chem-circle";
 import { isRowScene, type RowScene } from "./rows";
+import { ringLabels, rowGraph, rowTimeline } from "./rows-layout";
 import { hasMapAxes, sourceMap } from "./source-map";
 
 const horizontal = ([x, y, z]: Vec3): Vec3 => [y, -x, z];
@@ -28,7 +29,7 @@ export interface LinkStyle {
   dashed: boolean;
 }
 
-export const ROW_MODE_IDS: readonly string[] = ["graph", "map"];
+export const ROW_MODE_IDS: readonly string[] = ["graph", "map", "timeline"];
 export const FORCE_NODE_CAP = 300;
 export const NO_ROWS = "No row matches.";
 
@@ -79,8 +80,8 @@ function rowLayout(mode: ExploreMode, hits: Hit[], context: Parameters<ExploreMo
   if (!ROW_MODE_IDS.includes(mode.id)) return note(`${mode.label} cannot draw this data.`);
   if (!hits.length) return note(NO_ROWS);
   if (mode.id === "graph" && hits.length > FORCE_NODE_CAP) return note(`Graph draws up to ${FORCE_NODE_CAP} rows, and this page holds ${hits.length}. Narrow the search.`);
-  const base = mode.id === "map" ? sourceMap(hits) : mode.layout(hits, context);
   const groups = new Map(scene.groups.map((group) => [group.id, group]));
+  const base: SceneLayout = mode.id === "map" ? ringLabels(sourceMap(hits), groups) : mode.id === "timeline" ? rowTimeline(hits, scene) : rowGraph(hits);
   const branch = new Map(hits.map((hit) => [hit.id, hit.branch]));
   const present = new Set(branch.values());
   const shown = new Set(branch.keys());
@@ -88,7 +89,6 @@ function rowLayout(mode: ExploreMode, hits: Hit[], context: Parameters<ExploreMo
     ...base,
     nodes: base.nodes.filter((node) => shown.has(node.id)).map((node) => ({ ...node, color: groups.get(branch.get(node.id) ?? "")?.color ?? node.color })),
     links: base.links.filter((link) => shown.has(link.from) && shown.has(link.to)),
-    guides: base.guides.map((guide) => guide.kind === "text" && groups.has(guide.text) ? { ...guide, text: groups.get(guide.text)!.label, color: groups.get(guide.text)!.color } : guide),
     legend: scene.groups.filter((group) => present.has(group.id)).map((group) => ({ label: group.label, color: group.color })),
     ...rowStyles(hits, scene),
   };

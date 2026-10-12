@@ -179,6 +179,6 @@ describe("the source tables", () => {
 
   test("occupations carry the O*NET licence as a whole and major to career stays a federal work", () => {
     const licences = Object.fromEntries(pack.sets.map((s) => [s.id, [...new Set(s.pages.map((p) => p.licence))]]));
-    expect(licences).toEqual({ "occupations-time": ["CC-BY-4.0"], "major-to-career": [FEDERAL], "mathematics-chain": [CCSS_LICENCE] });
+    expect(licences).toEqual({ "occupations-time": ["CC-BY-4.0"], "major-to-career": [FEDERAL], "mathematics-chain": [CCSS_LICENCE], "technology-waves": ["CC-BY-SA-4.0"] });
   });
 });

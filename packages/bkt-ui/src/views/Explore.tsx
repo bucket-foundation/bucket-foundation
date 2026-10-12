@@ -100,7 +100,7 @@ function keepHash(state: ExploreStart): void {
   const next = exploreHash(state);
   if (!u.hash.startsWith("#/explore") || u.hash === next) return;
   u.hash = next;
-  window.history.replaceState(null, "", u.toString());
+  window.history.replaceState(window.history.state, "", u.toString());
 }
 
 export function ExploreView({ api, webgl, initial }: { api: ExploreApi; webgl?: boolean; initial?: ExploreStart }) {

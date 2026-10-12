@@ -72,6 +72,21 @@ export interface ExploreClientProps {
   onState?(state: ExploreStart): void;
 }
 
+export const OPENED_KEY = "exploreOpened";
+
+export function rememberOpened(id: string): void {
+  const state = (window.history.state ?? {}) as Record<string, unknown>;
+  if (state[OPENED_KEY] === id) return;
+  const next = { ...state, [OPENED_KEY]: id };
+  if (typeof state[OPENED_KEY] === "string") window.history.replaceState(next, "", window.location.href);
+  else window.history.pushState(next, "", window.location.href);
+}
+
+export function openedIn(state: unknown): string | null {
+  const id = (state as Record<string, unknown> | null)?.[OPENED_KEY];
+  return typeof id === "string" ? id : null;
+}
+
 export const MISSING_DATA = "This data is not in this copy of Bucket.";
 export const ROWS_TROUBLE = "Bucket could not read that data.";
 export const EDGE_LINE = "Solid links are stated by the source. Dashed links are inferred.";
@@ -142,7 +157,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
     const u = new URL(window.location.href);
     if (id === DEFAULT_DATASET) u.searchParams.delete("data");
     else u.searchParams.set("data", id);
-    window.history.replaceState(null, "", u.toString());
+    window.history.replaceState(window.history.state, "", u.toString());
   }, []);
 
   useEffect(() => {
@@ -221,7 +236,7 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
     setScroll(0);
     const u = new URL(window.location.href);
     u.searchParams.set("mode", id);
-    window.history.replaceState(null, "", u.toString());
+    window.history.replaceState(window.history.state, "", u.toString());
   };
 
   const run = useCallback(async (query: string) => {
@@ -274,7 +289,14 @@ export default function ExploreClient({ initial, onState }: ExploreClientProps =
       return;
     }
     setSelected(id);
+    if (id) rememberOpened(id);
   };
+
+  useEffect(() => {
+    const back = (e: PopStateEvent) => setSelected(openedIn(e.state));
+    window.addEventListener("popstate", back);
+    return () => window.removeEventListener("popstate", back);
+  }, []);
   const current = selected ? byId.get(selected) ?? null : null;
   const currentFields = current ? citeFieldsFromHit(current) : null;
   const mode = modeById(modeId);
