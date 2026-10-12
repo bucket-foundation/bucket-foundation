@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Tex } from "@/components/math/InlineMath";
 import { EDIT_BYTES, EDIT_EXTS, type Api, type Change, type Exported, type PackedFile, type PaperPage, type ReportAsset, type ResearchDetail, type ResearchRow, type TablePage } from "../api";
 import { texPreview, type Block, type Inline } from "../tex-preview";
+import { holdPendingSave } from "../pending-saves";
 import { href, RESEARCH_TABS, type ResearchTab } from "../router";
 import { useEngineImage, usePageImage } from "../use-engine-image";
 import { FILTER_WAIT_MS, Pager, SortHead } from "./Data";
@@ -298,11 +299,30 @@ export function Editor({ api, slug, path, onSaved, check }: { api: ResearchApi; 
     );
   };
 
+  const unsaved = useRef<string | null>(null);
+  const flush = useRef(() => {});
+  flush.current = () => {
+    const body = unsaved.current;
+    if (body === null) return;
+    unsaved.current = null;
+    void save(body, rev.current);
+  };
+
   useEffect(() => {
+    unsaved.current = null;
     if (status !== "typing" || text === null || (check && check(text) !== null)) return;
-    const t = setTimeout(() => void save(text, rev.current), SAVE_WAIT_MS);
+    unsaved.current = text;
+    const t = setTimeout(() => flush.current(), SAVE_WAIT_MS);
     return () => clearTimeout(t);
   }, [status, text]);
+
+  useEffect(() => {
+    const release = holdPendingSave(() => flush.current());
+    return () => {
+      release();
+      flush.current();
+    };
+  }, []);
 
   if (text === null) return status === "error" ? <p className="error">{error}</p> : <p className="muted">Loading…</p>;
   return (

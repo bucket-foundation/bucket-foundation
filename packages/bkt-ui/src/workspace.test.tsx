@@ -313,3 +313,196 @@ describe("workspaces that are not built", () => {
     await people.unmount();
   });
 });
+
+describe("leaving a workspace editor inside the save pause", () => {
+  const FINAL = "id,title\ngoldbach,Goldbach, the final text\n";
+
+  function fakeHistory(first: string) {
+    let entries: { state: unknown; url: string }[] = [{ state: null, url: first }];
+    let at = 0;
+    return {
+      get state() {
+        return entries[at].state;
+      },
+      replaceState(state: unknown, _unused: string, url?: string | URL | null) {
+        entries[at] = { state, url: url ? String(url) : entries[at].url };
+      },
+      pushState(state: unknown, _unused: string, url?: string | URL | null) {
+        entries = [...entries.slice(0, at + 1), { state, url: url ? String(url) : entries[at].url }];
+        at += 1;
+      },
+      back() {
+        if (at > 0) at -= 1;
+      },
+      visit(url: string) {
+        entries = [...entries.slice(0, at + 1), { state: null, url }];
+        at += 1;
+      },
+      get url() {
+        return entries[at].url;
+      },
+    };
+  }
+
+  async function shell() {
+    const { useState } = await import("react");
+    const { Screen } = await import("./nav");
+    const { BackTrail } = await import("./back");
+    const f = fakeApi({ researchList: async () => ({ outputs: [] }) } as Partial<WorkspaceApi>);
+    const h = fakeHistory("#/research");
+    const trail = new BackTrail(h, (run) => run());
+    let show: (route: Route) => void = () => {};
+    function Shell() {
+      const [route, setRoute] = useState<Route>(parseHash(h.url));
+      show = setRoute;
+      return (
+        <main className="main">
+          <Screen api={f.api as unknown as Api} route={route} />
+        </main>
+      );
+    }
+    const v = await mount(<Shell />);
+    const go = async (hash: string) => {
+      h.visit(hash);
+      trail.moved();
+      await v.act(async () => show(parseHash(hash)));
+      await v.settle();
+    };
+    const back = async () => {
+      await v.act(async () => void trail.back());
+      await v.act(async () => show(parseHash(h.url)));
+      await v.settle();
+    };
+    const type = async (value: string) => {
+      const area = v.host.querySelector("textarea") as HTMLTextAreaElement;
+      await v.act(async () => {
+        Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value")!.set!.call(area, value);
+        area.dispatchEvent(new window.Event("input", { bubbles: true }));
+      });
+    };
+    const openEditor = async () => {
+      await go("#/workspace/tables");
+      await v.click(press(v.host, "Atlas problems"));
+      await v.click(press(v.host, "Edit the text"));
+    };
+    return { v, f, h, trail, go, back, type, openEditor };
+  }
+
+  const saved = [{ slug: "solvability-frontier", path: TABLE_PATH, base: "rev-shipped", text: FINAL }];
+
+  test("a switch to Records in the tab bar sends the final text to the write route", async () => {
+    const s = await shell();
+    await s.openEditor();
+    await s.type("id,title\ngoldbach,An earlier draft\n");
+    await s.type(FINAL);
+    expect(s.f.saves).toEqual([]);
+    await s.go("#/workspace/records");
+    expect(s.v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Records");
+    expect(s.v.host.querySelector("textarea")).toBeNull();
+    expect(s.f.saves).toEqual(saved);
+    await s.v.wait(800);
+    expect(s.f.saves).toEqual(saved);
+    await s.v.unmount();
+  });
+
+  test("Back sends the final text before the screen changes", async () => {
+    const s = await shell();
+    await s.openEditor();
+    await s.type(FINAL);
+    expect(s.f.saves).toEqual([]);
+    await s.v.act(async () => void s.trail.back());
+    expect(s.f.saves).toEqual(saved);
+    expect(s.v.host.querySelector("textarea")).not.toBeNull();
+    await s.v.wait(800);
+    expect(s.f.saves).toEqual(saved);
+    await s.v.unmount();
+    expect(s.f.saves).toEqual(saved);
+  });
+
+  test("closing the open item and moving to another open item each send the final text", async () => {
+    const s = await shell();
+    await s.openEditor();
+    await s.type(FINAL);
+    await s.v.click(s.v.host.querySelector('[role="tab"]'));
+    expect(s.f.saves).toEqual(saved);
+    expect(cells(s.v.host)).toHaveLength(3);
+    await s.v.unmount();
+  });
+
+  test("Back from an opened item returns to the list with Tables lit, and Back again leaves the workspace", async () => {
+    const { ITEM_STATE } = await import("./views/Workspace");
+    const s = await shell();
+    const pushed: unknown[] = [];
+    const push = window.history.pushState.bind(window.history);
+    window.history.pushState = (state: unknown, unused: string, url?: string | URL | null) => {
+      pushed.push(state);
+      s.h.pushState(state, unused, url);
+      push(state, unused, url);
+    };
+    try {
+      await s.go("#/workspace/tables");
+      expect(pushed).toEqual([]);
+      await s.v.click(press(s.v.host, "Atlas problems"));
+      expect(pushed.map((p) => (p as Record<string, unknown>)[ITEM_STATE])).toEqual(["output:solvability-frontier:atlas-problems"]);
+      expect(s.h.url).toBe("#/workspace/tables");
+      expect(s.v.host.querySelector(".research-table")).not.toBeNull();
+      s.h.back();
+      window.history.replaceState(s.h.state, "");
+      await s.v.act(async () => void window.dispatchEvent(new window.Event("popstate")));
+      await s.v.settle();
+      expect(s.h.url).toBe("#/workspace/tables");
+      expect(s.v.host.querySelector(".research-table")).toBeNull();
+      expect(cells(s.v.host)).toHaveLength(3);
+      expect(s.v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Tables");
+      expect(Array.from(s.v.host.querySelectorAll('[role="tab"]')).map((t) => [t.textContent, t.getAttribute("aria-selected")])).toEqual([["All tables", "true"], ["Atlas problems", "false"]]);
+      await s.back();
+      expect(s.h.url).toBe("#/research");
+      expect(s.v.host.querySelector(".workspace-tabs")).toBeNull();
+    } finally {
+      window.history.pushState = push;
+    }
+    await s.v.unmount();
+  });
+});
+
+describe("workspace addresses and the tabs that are not built", () => {
+  test("each of the six shows one plain line, at most one link to a screen that exists, and no other control", async () => {
+    const { LATER } = await import("./views/Workspace");
+    const { NAV } = await import("./nav");
+    const screens = NAV.map((n) => href(n.route));
+    expect(Object.keys(LATER).sort()).toEqual(["decks", "figures", "graphs", "maps", "papers", "people"]);
+    for (const [type, words] of Object.entries(LATER)) {
+      const f = fakeApi();
+      const v = await workspace(f.api, type as "figures");
+      expect({ type, lines: Array.from(v.host.querySelectorAll("p")).map((p) => p.textContent) }).toEqual({ type, lines: [words.line] });
+      expect({ type, controls: v.host.querySelectorAll("button, input, select, textarea, [role=tab]").length }).toEqual({ type, controls: 0 });
+      const links = Array.from(v.host.querySelectorAll("a")).map((a) => a.getAttribute("href")!);
+      expect(links.length).toBeLessThanOrEqual(1);
+      for (const link of links) expect(screens).toContain(link);
+      expect(/[–—]/.test(words.line)).toBe(false);
+      expect(f.listed).toEqual([]);
+      await v.unmount();
+    }
+  });
+
+  test("no link and no source line points at the old desk address", async () => {
+    const { WORKSPACE_TABS } = await import("./views/WorkspaceTabs");
+    const { Screen } = await import("./nav");
+    const { api } = fakeApi();
+    const found: string[] = [];
+    for (const t of WORKSPACE_TABS.filter((x) => x.id !== "nodes")) {
+      const v = await mount(<Screen api={api as unknown as Api} route={t.route} />);
+      found.push(...Array.from(v.host.querySelectorAll("a")).map((a) => a.getAttribute("href") ?? ""));
+      await v.unmount();
+    }
+    expect(found.length).toBeGreaterThan(60);
+    expect(found.filter((h) => /^#\/desks?\b/.test(h))).toEqual([]);
+    expect(found.filter((h) => h.startsWith("#/") && href(parseHash(h)) !== h)).toEqual([]);
+    const hits: string[] = [];
+    for await (const path of new Bun.Glob("**/*.{ts,tsx,css}").scan(import.meta.dir)) {
+      if (path.endsWith(".test.ts") || path.endsWith(".test.tsx")) continue;
+      if (/#\/desk|DeskType|DESK_TYPES|name: "desk"/.test(await Bun.file(`${import.meta.dir}/${path}`).text())) hits.push(path);
+    }
+    expect(hits).toEqual([]);
+  });
+});

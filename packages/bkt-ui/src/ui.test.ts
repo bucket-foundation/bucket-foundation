@@ -94,10 +94,10 @@ describe("explore, workspace and research item routes", () => {
 });
 
 describe("first run", () => {
-  test("sends a new user with no progress to the quiz", () => {
+  test("sends a new user with no progress to the practice quiz", () => {
     const fresh = [{ introduced: 0, xp: 0 }, { introduced: 0, xp: 0 }];
-    expect(firstRunHash("", fresh)).toBe("#/quiz");
-    expect(firstRunHash("#/", fresh)).toBe("#/quiz");
+    expect(firstRunHash("", fresh)).toBe("#/quiz/practice");
+    expect(firstRunHash("#/", fresh)).toBe("#/quiz/practice");
     expect(firstRunHash("#/review", fresh)).toBeNull();
     expect(firstRunHash("", [{ introduced: 3, xp: 0 }])).toBeNull();
     expect(firstRunHash("", [{ introduced: 0, xp: 12 }])).toBeNull();

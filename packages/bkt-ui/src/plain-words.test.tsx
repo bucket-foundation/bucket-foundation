@@ -54,6 +54,8 @@ const DENY: { name: string; re: RegExp }[] = [
   { name: "id: hex", re: /\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{8,}\b/ },
 ];
 
+const VOICE = /\b(genuinely|genuine|honest|honestly|truly|really|actually|basically|essentially|literally|obviously|clearly|certainly|absolutely|definitely|simply|merely|very|quite|extremely|quickly|easily|seamless|robust|navigate|leverage)\b/i;
+
 const ALLOW = new Set<string>(["Token circle.", "Open Token circle."]);
 
 const ATTRS = ["title", "placeholder", "aria-label", "alt"];
@@ -469,7 +471,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -493,6 +495,44 @@ describe("navigation", () => {
     expect(COVERED_NAMES.filter((n) => pending.includes(n))).toEqual([]);
     expect(PENDING.length).toBeLessThanOrEqual(3);
     expect(PENDING.every((p) => p.fixedBy.length > 0)).toBe(true);
+  });
+
+  test("Quiz opens the daily quiz, lights up for every quiz address and offers the practice quiz in one click", async () => {
+    const { activeNav, NAV } = await import("./nav");
+    const { parseHash } = await import("./router");
+    expect(NAV.filter((n) => /quiz/i.test(n.label)).map((n) => [n.label, n.route.name])).toEqual([["Quiz", "quiz"], ["Work quiz", "work"]]);
+    expect(["#/quiz", "#/quiz/practice", `#/work/daily/${DAY}`, "#/work"].map((h) => activeNav(parseHash(h)))).toEqual(["quiz", "quiz", "quiz", "work"]);
+    const quiz = await mount({ name: "quiz" }, populated());
+    expect(quiz.host.querySelector("h1")!.textContent).toBe("Daily quiz");
+    expect(Array.from(quiz.host.querySelectorAll(".quiz-kinds a")).map((a) => [a.textContent, a.getAttribute("href")])).toEqual([["Daily quiz", "#/quiz"], ["Practice quiz", "#/quiz/practice"]]);
+    await quiz.unmount();
+    const practice = await mount(parseHash("#/quiz/practice"), populated());
+    expect(practice.host.querySelector("h1")!.textContent).toBe("Practice quiz");
+    expect(practice.text()).toContain("What moves when heat flows?");
+    expect(violations(practice.host)).toEqual([]);
+    await practice.unmount();
+    const old = await mount(parseHash(`#/work/daily/${DAY}`), populated());
+    expect(old.host.querySelector("h1")!.textContent).toBe("Daily quiz");
+    expect(old.host.querySelector(".head .muted")!.textContent).toContain(DAY);
+    await old.unmount();
+  });
+
+  test("the Back button and the quiz kinds read in plain words", async () => {
+    const { BackButton, BackTrail, BACK_HINT, BACK_LABEL, BACK_NAME } = await import("./back");
+    const { PRACTICE_NOTE, QUIZ_KINDS, QUIZ_KINDS_NAME } = await import("./views/Quiz");
+    const { act } = await import("react");
+    const { createRoot } = await import("react-dom/client");
+    const host = document.createElement("div");
+    document.body.appendChild(host);
+    const root = createRoot(host);
+    const history = { state: null as unknown, replaceState(state: unknown) { this.state = state; }, pushState(state: unknown) { this.state = state; }, back() {} };
+    await act(async () => root.render(<BackButton trail={new BackTrail(history)} />));
+    expect(strings(host).sort()).toEqual([BACK_HINT, BACK_LABEL, BACK_NAME].sort());
+    expect(violations(host)).toEqual([]);
+    const words = [BACK_HINT, BACK_LABEL, BACK_NAME, PRACTICE_NOTE, QUIZ_KINDS_NAME, "Open the lesson on", ...QUIZ_KINDS.map((k) => k.label)];
+    expect(violationsIn(words)).toEqual([]);
+    expect(words.filter((w) => /[\u2013\u2014]/.test(w) || VOICE.test(w))).toEqual([]);
+    await act(async () => root.unmount());
   });
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {

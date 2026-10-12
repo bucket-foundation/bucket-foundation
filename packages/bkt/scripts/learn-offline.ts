@@ -60,7 +60,7 @@ export async function learnOffline(): Promise<ViewResult[]> {
 
   const serverRefused: string[] = [];
   const srv = startServe({
-    routes: { ...localRoutes(store, { content }), ...workQuizRoutes(wq, { seed: () => "offline" }), ...notesRoutes(notes), ...historyRoutes(hist) },
+    routes: { ...localRoutes(store, { content }), ...workQuizRoutes(wq, { seed: () => "offline", home, criticDir: join(home, "critic") }), ...notesRoutes(notes), ...historyRoutes(hist) },
     uiDir: process.env.BKT_UI_DIR ?? resolve(pkg, "../bkt-ui/dist"),
     onError: (e) => serverRefused.push(e.message),
   });
@@ -113,12 +113,27 @@ export async function learnOffline(): Promise<ViewResult[]> {
         await page.click(".matches a >> nth=0");
         await page.waitForSelector(".steps-list, .path p");
       }],
-      ["Quiz", "answer one question; an attempt is stored", async () => {
+      ["Quiz", "open #/quiz, the daily quiz shows, answer one question; an attempt is stored", async () => {
         await page.evaluate(() => (window.location.hash = "#/quiz"));
+        await page.waitForSelector('.quiz-kinds a[aria-current="page"][href="#/quiz"]');
+        await page.waitForSelector(".card .q");
+        const heading = await page.evaluate(() => document.querySelector("main h1")?.textContent ?? "");
+        if (heading !== "Daily quiz") throw new Error(`the Quiz tab opened ${heading}, expected the daily quiz`);
+        const before = tally();
+        if (await page.locator(".card .choice").count()) await page.click(".card .choice >> nth=0");
+        else {
+          await page.fill(".card .search", "4000");
+          await page.click(".card .toolbar button.primary");
+        }
+        await page.waitForSelector(".after-block");
+        await changed("work", before);
+      }],
+      ["Practice quiz", "open #/quiz/practice, answer one question; an attempt is stored", async () => {
+        await page.evaluate(() => (window.location.hash = "#/quiz/practice"));
         await page.waitForSelector(".choice");
         const before = tally();
         await page.click(".choice >> nth=1");
-        await page.waitForSelector(".after");
+        await page.waitForSelector(".after-block");
         await changed("attempts", before);
       }],
       ["Review", "show answer and grade a due card; learn cards change", async () => {

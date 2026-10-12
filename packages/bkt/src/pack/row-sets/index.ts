@@ -12,6 +12,7 @@ import { entryById, REGISTRY, type LicenceEntry, type Row } from "./licences";
 import { majorToCareer } from "./major-to-career";
 import { mathematicsChain } from "./mathematics-chain";
 import { occupationsTime } from "./occupations-time";
+import { technologyWaves } from "./technology-waves";
 
 export const ROW_SET_PACK_SCHEMA = "bucket.explore-rows-pack/1";
 export const ROW_SET_PACK_BUDGET_BYTES = 1_310_720;
@@ -32,6 +33,7 @@ export const ADAPTERS: Record<string, RowSetAdapter> = {
   "occupations-time": occupationsTime,
   "major-to-career": majorToCareer,
   "mathematics-chain": mathematicsChain,
+  "technology-waves": technologyWaves,
 };
 
 const TABLE_NAME = /^[a-z][a-z0-9_]{0,63}$/;
@@ -130,6 +132,11 @@ export function capWarnings(sets: { id: string; pages: PackedRows[] }[]): string
   return out;
 }
 
+export function packWarnings(pack: RowSetPack): string[] {
+  const bytes = packBytes(pack);
+  return bytes > ROW_SET_PACK_BUDGET_BYTES * WARN_SHARE ? [`the pack is ${bytes} bytes, past 90% of the ${ROW_SET_PACK_BUDGET_BYTES} byte budget`] : [];
+}
+
 export function assembleRowSetPack(sets: PackedRows[][], deny: Denylist, built: string): RowSetPack {
   const ids = new Set<string>();
   const entries: RowSetEntry[] = [];
@@ -215,5 +222,5 @@ if (import.meta.main) {
   writeFileSync(join(outDir, ROW_SET_PACK_FILE), JSON.stringify(pack));
   console.log(`row set pack ${pack.version}: ${bytes} bytes of ${ROW_SET_PACK_BUDGET_BYTES}`);
   for (const line of describeRowSets(pack)) console.log(`  ${line}`);
-  for (const line of capWarnings(pack.sets)) console.warn(`  warning: ${line}`);
+  for (const line of [...capWarnings(pack.sets), ...packWarnings(pack)]) console.warn(`  warning: ${line}`);
 }

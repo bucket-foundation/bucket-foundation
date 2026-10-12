@@ -334,6 +334,8 @@ export interface QuizResult {
   timedOut: boolean;
   rating: number;
   answer: string;
+  explain?: string | null;
+  lesson?: { deck: string; atom: string; title: string } | null;
 }
 
 export interface ReviewItem {

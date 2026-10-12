@@ -8,6 +8,7 @@ export type Route =
   | { name: "concepts"; page?: number }
   | { name: "licence" }
   | { name: "quiz" }
+  | { name: "practice" }
   | { name: "review" }
   | { name: "import" }
   | { name: "add" }
@@ -87,6 +88,7 @@ export function parseHash(hash: string): Route {
   if (parts[0] === "words" && parts[1] === "concepts") return parts.length === 3 && PAGE.test(parts[2]) ? { name: "concepts", page: Number(parts[2]) } : { name: "concepts" };
   if (parts[0] === "words" && parts[1] && LANGUAGE.test(parts[1])) return parts.length === 3 && PAGE.test(parts[2]) ? { name: "words", deck: parts[1], lesson: Number(parts[2]) } : { name: "words", deck: parts[1] };
   if (parts[0] === "path") return parts[1] ? { name: "path", to: parts[1] } : { name: "path" };
+  if (parts[0] === "quiz" && parts[1] === "practice" && parts.length === 2) return { name: "practice" };
   if (parts[0] === "work" && parts[1] === "daily" && parts.length === 3 && isDay(parts[2])) return { name: "daily", day: parts[2] };
   if (parts[0] === "canon" && parts[1] === "find" && parts.length === 3 && parts[2].length <= 200) return { name: "canon", find: parts[2] };
   if (parts[0] === "search") return parts.length === 2 && /^\d{1,9}$/.test(parts[1]) ? { name: "search", id: Number(parts[1]) } : { name: "search" };
@@ -106,6 +108,7 @@ export function href(r: Route): string {
   if (r.name === "licence") return "#/words/licence";
   if (r.name === "concepts") return r.page && r.page > 1 ? `#/words/concepts/${r.page}` : "#/words/concepts";
   if (r.name === "path") return r.to ? `#/path/${encodeURIComponent(r.to)}` : "#/path";
+  if (r.name === "practice") return "#/quiz/practice";
   if (r.name === "daily") return `#/work/daily/${r.day}`;
   if (r.name === "canon") return r.find ? `#/canon/find/${encodeURIComponent(r.find)}` : "#/canon";
   if (r.name === "search") return r.id === undefined ? "#/search" : `#/search/${r.id}`;
@@ -123,7 +126,7 @@ export function href(r: Route): string {
 
 export function firstRunHash(hash: string, decks: { introduced: number; xp: number }[]): string | null {
   if (hash.replace(/^#\/?/, "") !== "") return null;
-  return decks.every((d) => d.introduced === 0 && d.xp === 0) ? href({ name: "quiz" }) : null;
+  return decks.every((d) => d.introduced === 0 && d.xp === 0) ? href({ name: "practice" }) : null;
 }
 
 export function useRoute(): Route {

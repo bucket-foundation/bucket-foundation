@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Api, ResearchDetail, WorkspaceItem } from "../api";
 import { href, type Route, type WorkspaceType } from "../router";
-import { openTab, readTabs, windowStorage, writeTabs, type Tab, type Tabs, type TabStorage } from "../tabs";
+import { activateTab, openTab, readTabs, windowStorage, writeTabs, type Tab, type Tabs, type TabStorage } from "../tabs";
 import { FILTER_WAIT_MS, NOT_LOADED, Pager } from "./Data";
 import { ORIGIN_LABELS, RecordSetPane, TablePane, type ResearchApi } from "./Research";
 import { TabBar } from "./TabBar";
@@ -38,6 +38,13 @@ export const ON_DATA_SCREEN = "Opens on the Data screen";
 export const CHANGED_MARK = "Changed on this computer";
 
 const KEY = /^output:([a-z0-9][a-z0-9-]{0,63}):([A-Za-z0-9][A-Za-z0-9._-]{0,127})$/;
+
+export const ITEM_STATE = "bucketWorkspaceItem";
+
+function shownItem(state: unknown): string | null {
+  const id = state && typeof state === "object" ? (state as Record<string, unknown>)[ITEM_STATE] : null;
+  return typeof id === "string" && KEY.test(id) ? id : null;
+}
 
 interface ItemTab extends Tab {
   title: string;
@@ -175,11 +182,22 @@ function BuiltWorkspace({ api, type, words, storage }: { api: WorkspaceApi; type
     writeTabs(storage, key, tabs);
   }, [storage, key, tabs]);
 
+  useEffect(() => {
+    const onPop = () => setTabs((s) => activateTab(s, shownItem(window.history.state)));
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  const choose = (next: Tabs<ItemTab>) => {
+    if (next.active !== tabs.active) window.history.pushState({ ...(window.history.state && typeof window.history.state === "object" ? window.history.state : {}), [ITEM_STATE]: next.active }, "");
+    setTabs(next);
+  };
+
   const active = tabs.tabs.find((t) => t.id === tabs.active) ?? null;
   return (
     <>
-      <TabBar label={words.open} home={words.home} state={tabs} onChange={setTabs} />
-      <div role="tabpanel">{active ? <ItemPane key={active.id} api={api} type={type} tab={active} /> : <ItemList api={api} type={type} words={words} onOpen={(item) => setTabs((s) => openTab(s, { id: item.key, title: item.title }))} />}</div>
+      <TabBar label={words.open} home={words.home} state={tabs} onChange={choose} />
+      <div role="tabpanel">{active ? <ItemPane key={active.id} api={api} type={type} tab={active} /> : <ItemList api={api} type={type} words={words} onOpen={(item) => choose(openTab(tabs, { id: item.key, title: item.title }))} />}</div>
     </>
   );
 }
