@@ -609,6 +609,52 @@ describe("research paper tab", () => {
   });
 });
 
+describe("math under the page CSP", () => {
+  test("KaTeX never writes a style attribute as markup, for tall delimiters and for errors", async () => {
+    const { Tex } = await import("@/components/math/InlineMath");
+    const real = window.Element.prototype.setAttribute;
+    const css = Object.getOwnPropertyDescriptor(window.CSSStyleDeclaration.prototype, "cssText")!;
+    let viaCssom = 0;
+    let depth = 0;
+    const asMarkup: string[] = [];
+    Object.defineProperty(window.CSSStyleDeclaration.prototype, "cssText", {
+      configurable: true,
+      get: css.get,
+      set(value: string) {
+        viaCssom += 1;
+        depth += 1;
+        try {
+          css.set!.call(this, value);
+        } finally {
+          depth -= 1;
+        }
+      },
+    });
+    window.Element.prototype.setAttribute = function (name: string, value: string) {
+      if (name === "style" && depth === 0) asMarkup.push(value);
+      real.call(this, name, value);
+    };
+    try {
+      const v = await mount(
+        <div>
+          <Tex tex={"f(x) = \\begin{cases} \\dfrac{a}{b} & x > 0 \\\\ \\sqrt{\\dfrac{c}{d}} & x \\le 0 \\end{cases}"} display />
+          <Tex tex={"\\notacommand{x} + \\pmb{y} + \\fcolorbox{red}{white}{z}"} display={false} />
+        </div>,
+      );
+      expect(v.host.querySelectorAll(".katex").length).toBe(2);
+      expect(asMarkup).toEqual([]);
+      expect(viaCssom).toBeGreaterThan(0);
+      await v.unmount();
+    } finally {
+      window.Element.prototype.setAttribute = real;
+      Object.defineProperty(window.CSSStyleDeclaration.prototype, "cssText", css);
+    }
+    const probe = document.createElement("span");
+    probe.setAttribute("style", "color: red");
+    expect(probe.getAttribute("style")).toContain("red");
+  });
+});
+
 describe("image cache", () => {
   test("image cache evicts past 48 MB", async () => {
     const held = await import("./use-engine-image");

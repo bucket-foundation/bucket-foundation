@@ -15,13 +15,34 @@ function markup(tex: string, display: boolean): string | null {
   }
 }
 
+function renderDom(tex: string, el: HTMLElement, display: boolean): void {
+  const proto = Element.prototype;
+  const setAttribute = proto.setAttribute;
+  let inside = false;
+  proto.setAttribute = function (this: Element, name: string, value: string) {
+    const styled = this as Element & { style?: CSSStyleDeclaration };
+    if (name !== "style" || !styled.style || inside) return setAttribute.call(this, name, value);
+    inside = true;
+    try {
+      styled.style.cssText = String(value);
+    } finally {
+      inside = false;
+    }
+  };
+  try {
+    katex.render(tex, el, { ...OPTIONS, displayMode: display });
+  } finally {
+    proto.setAttribute = setAttribute;
+  }
+}
+
 export function Tex({ tex, display }: { tex: string; display: boolean }) {
   const hydrating = useSyncExternalStore(never, () => false, () => true);
   const mount = useCallback(
     (el: HTMLSpanElement | null) => {
       if (!el) return;
       try {
-        katex.render(tex, el, { ...OPTIONS, displayMode: display });
+        renderDom(tex, el, display);
       } catch {
         el.textContent = texToText(tex);
       }
