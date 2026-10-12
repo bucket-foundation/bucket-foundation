@@ -206,7 +206,21 @@
 
 .research-changes {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
+}
+
+.research-changes .panel {
+  min-width: 0;
+}
+
+.research-changes select {
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
 }
 
 .research-changes h2 {
@@ -226,6 +240,9 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 12px;
   resize: vertical;
+  box-sizing: border-box;
+  white-space: pre;
+  overflow: auto;
 }
 
 .change-list {
@@ -233,7 +250,17 @@
   margin: 0;
   padding: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 12px;
+}
+
+.change-list li {
+  min-width: 0;
+}
+
+.research-diff {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .change-head {
