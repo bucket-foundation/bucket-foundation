@@ -134,8 +134,8 @@ def test_do_not_contact_by_shared_orcid_merged_alias_email_and_name(world):
     before = handles(wide_open(world))
     tags = ("twin", "merged", "mailed", "xid", "named")
     assert all(world.ids[t] in before for t in tags)
-    dnc(world, orcid="https://orcid.org/0000-0001-0000-0011")
-    dnc(world, openalex_id="A799999999")
+    dnc(world, orcid="https://orcid.org/0000-0000-0000-0011")
+    dnc(world, openalex_id="A999999999999")
     dnc(world, email_norm="mailed.person@example.org")
     dnc(world, email_norm="xid.person@example.org")
     dnc(world, name="Wilhelmina  ODDFELLOW Kite")
@@ -455,7 +455,7 @@ def test_engine_database_holds_no_name_or_address(world):
     assert "@" not in dump
     for pid in (world.ids["named"], world.ids["mailed"], world.ids["high_target"]):
         assert world.names[pid] not in dump
-    assert "0000-0001-0000-0011" not in dump
+    assert "0000-0000-0000-0011" not in dump
     cov = (current_build(world.home) / "coverage.json").read_text()
     assert "@" not in cov and world.names[world.ids["named"]] not in cov
 

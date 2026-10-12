@@ -54,7 +54,7 @@ class Maker:
         self.n += 1
         i = self.n
         name = name or f"{GIVEN[i % len(GIVEN)]} {FAMILY[(i // len(GIVEN)) % len(FAMILY)]} {i}"
-        oa = f"A{700000000 + i}" if openalex else None
+        oa = f"A{999900000000 + i}" if openalex else None
         self.con.execute(
             "insert into person (id, name, name_norm, openalex_id, orcid, institution, institution_ror, country, position, field, topics, grant_count, first_source) "
             "values (?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -117,10 +117,10 @@ def make_world(root: Path) -> World:
     m.advisor(tag="noyear", last=None, topics="T1;T2;T3")
     m.advisor(tag="emeritus", position="Professor Emeritus", topics="T1;T2;T3")
     m.advisor(tag="barred", first_source="csrankings", topics="T1;T2;T3")
-    m.advisor(tag="twin", orcid="0000-0001-0000-0011", topics="T1;T2;T3")
-    m.person(tag="twin_other", orcid="0000-0001-0000-0011", topics="T5")
+    m.advisor(tag="twin", orcid="0000-0000-0000-0011", topics="T1;T2;T3")
+    m.person(tag="twin_other", orcid="0000-0000-0000-0011", topics="T5")
     merged = m.advisor(tag="merged", topics="T1;T2;T3")
-    con.execute("insert into person_merge values ('openalex:A799999999', ?, 'same_orcid')", (merged,))
+    con.execute("insert into person_merge values ('openalex:A999999999999', ?, 'same_orcid')", (merged,))
     mailed = m.advisor(tag="mailed", topics="T1;T2;T3")
     m.contact(mailed, "mailed.person@example.org", "official_directory_page")
     xid = m.advisor(tag="xid", topics="T1;T2;T3")
