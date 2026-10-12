@@ -49,7 +49,7 @@ interface Group {
 const text = (v: unknown): string => (typeof v === "string" ? v : "");
 const number = (v: unknown): number | null => (typeof v === "number" && Number.isFinite(v) ? v : null);
 
-export function censusSpan(row: { scheme: unknown; lineage_codes?: unknown; era_to?: unknown }): { from: number; to: number } | null {
+export function censusSpan(row: { scheme?: unknown; lineage_codes?: unknown; era_to?: unknown }): { from: number; to: number } | null {
   const list = /^census-(\d{4})$/.exec(text(row.scheme));
   if (!list) return null;
   const listed = Number(list[1]);
