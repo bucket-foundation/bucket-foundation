@@ -201,3 +201,29 @@ def assign(table, row, stated=None, framework=None, body_region=None):
         if guess:
             out["language"], out["language_method"] = guess, "rule"
     return out
+
+
+WITHHELD_HOST = "usa.ipums.org"
+CENSUS_OWN_FROM = 2000
+CENSUS_DERIVED_KEYS = ("peak_year", "peak_employment", "last_employment", "status", "near_extinct")
+
+
+def occupation_row_cleared(row):
+    url = row.get("source_url") or ""
+    if WITHHELD_HOST in url.lower():
+        return None
+    listed = re.match(r"^census-(\d{4})$", row.get("scheme") or "")
+    if not listed:
+        return row
+    year = int(listed.group(1))
+    if year < CENSUS_OWN_FROM:
+        return None
+    kept = [c for c in row.get("lineage_codes") or [] if re.match(r"^\d{4}:", str(c)) and CENSUS_OWN_FROM <= int(str(c)[:4]) <= year]
+    out = dict(row)
+    out["lineage_codes"] = kept
+    out["era_from"] = min([year] + [int(c[:4]) for c in kept])
+    if out.get("era_to") is None or out["era_to"] < out["era_from"]:
+        out["era_to"] = year
+    for key in CENSUS_DERIVED_KEYS:
+        out[key] = None
+    return out

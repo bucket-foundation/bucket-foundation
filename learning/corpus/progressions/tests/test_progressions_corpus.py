@@ -479,6 +479,43 @@ class NewSlices(unittest.TestCase):
             if r["scheme"].startswith("ICATUS") and r["level"] != "major division":
                 self.assertIsNone(r["label"], r["id"])
 
+    def test_no_occupation_row_or_value_comes_from_ipums(self):
+        rows = table("occupation_history")
+        self.assertEqual(len(rows), 3296)
+        self.assertNotIn("ipums", text_of(os.path.join(TABLES, "occupation_history.jsonl")).lower())
+        self.assertEqual(collections.Counter(r["kind"] for r in rows), {"onet_soc": 1611, "soc_oews": 1020, "census_lineage": 665})
+        for r in rows:
+            self.assertEqual(FC.occupation_row_cleared(r), r, r["id"])
+            self.assertTrue(r["source_url"].startswith("https://"), r["id"])
+            if r["kind"] != "census_lineage":
+                continue
+            listed = int(r["scheme"].split("-")[1])
+            self.assertIn(listed, (2002, 2010, 2018), r["id"])
+            self.assertTrue(r["source_url"].startswith("https://www2.census.gov/"), r["id"])
+            self.assertTrue(all(2000 <= int(c[:4]) <= listed for c in r["lineage_codes"]), r["id"])
+            self.assertTrue(2000 <= r["era_from"] <= r["era_to"], r["id"])
+            for key in FC.CENSUS_DERIVED_KEYS:
+                self.assertIsNone(r[key], (r["id"], key))
+
+    def test_the_ipums_rule_drops_rows_and_strips_derived_values(self):
+        row = {
+            "id": "x", "scheme": "census-2018", "kind": "census_lineage", "lineage_codes": ["1950:008", "1990:089", "2000:300", "2002:3000", "2018:3000"],
+            "era_from": 1930, "era_to": 2025, "peak_year": 1990, "peak_employment": 47114.0, "last_employment": 57200, "status": "growing", "near_extinct": False,
+            "source_url": "https://www2.census.gov/programs-surveys/demo/guidance/industry-occupation/2018-occupation-code-list-and-crosswalk.xlsx",
+        }
+        cleared = FC.occupation_row_cleared(row)
+        self.assertEqual(cleared["lineage_codes"], ["2000:300", "2002:3000", "2018:3000"])
+        self.assertEqual((cleared["era_from"], cleared["era_to"]), (2000, 2025))
+        self.assertEqual([cleared[k] for k in FC.CENSUS_DERIVED_KEYS], [None] * 5)
+        self.assertEqual(row["era_from"], 1930)
+        self.assertIsNone(FC.occupation_row_cleared(dict(row, source_url="https://usa.ipums.org/usa/resources/chapter4/occ_90-00.xls")))
+        self.assertIsNone(FC.occupation_row_cleared(dict(row, source_url="https://USA.IPUMS.ORG/x", scheme="soc")))
+        self.assertIsNone(FC.occupation_row_cleared(dict(row, scheme="census-1990")))
+        soc = {"id": "s", "scheme": "soc", "era_from": 1999, "peak_employment": 5.0, "source_url": "https://www.bls.gov/oes/tables.htm"}
+        self.assertIs(FC.occupation_row_cleared(soc), soc)
+        late = FC.occupation_row_cleared(dict(row, scheme="census-2002", lineage_codes=["1980:027"], era_to=None))
+        self.assertEqual((late["lineage_codes"], late["era_from"], late["era_to"]), ([], 2002, 2002))
+
     def test_side_tables_have_unique_ids_and_years(self):
         seen = set(all_ids())
         for name in SIDE_TABLES:
