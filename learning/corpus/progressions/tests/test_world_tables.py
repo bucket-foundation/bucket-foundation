@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import sys
 import unittest
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -15,6 +16,9 @@ EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-
 OPEN_LICENCE = re.compile(r"CC BY|CC0|Open Government|Open Licence|Licence Ouverte|Standard Terms of Use|public domain", re.I)
 NAME_KEYS = {"name_national", "name_english", "qualification_national", "qualification_english", "title", "title_english", "main_programmes", "main_programmes_national", "qualifications", "qualification_types", "languages_of_instruction", "framework"}
 LICENCES = {"CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-NC-SA-4.0", "CC-BY-NC-4.0", "CC-BY-NC-ND-4.0", "CC-BY-3.0", "CC0-1.0", "MIT", "OGL-UK-3.0", "US federal work, public domain", "restricted", "unknown"}
+sys.path.insert(0, os.path.join(PARENT, "build"))
+import facets as FC  # noqa: E402
+
 MATCH_KEYS = {"licence", "source_licence", "system", "slice", "host", "framework_id", "scheme", "table"}
 
 
@@ -102,18 +106,44 @@ class WorldTables(unittest.TestCase):
         self.assertTrue(kept)
 
     def test_lag_rows_carry_n_and_measure(self):
-        cases = summaries = 0
+        cases = 0
         for r in rows("tech_lags"):
             self.assertTrue(isinstance(r["n"], int) and r["n"] >= 1 and r["measure"], r["id"])
             self.assertIsNone(re.search(r"census", r["measure"], re.I), r["id"])
-            if r["row_type"] == "summary":
-                summaries += 1
-                self.assertFalse(r["verified"])
-            else:
-                cases += 1
-                self.assertEqual(r["n"], 1)
-                self.assertTrue(isinstance(r["from_year"], int) and isinstance(r["to_year"], int), r["id"])
-        self.assertTrue(cases and summaries)
+            self.assertEqual(r["row_type"], "case", r["id"])
+            cases += 1
+            self.assertEqual(r["n"], 1)
+            self.assertTrue(isinstance(r["from_year"], int) and isinstance(r["to_year"], int), r["id"])
+        self.assertEqual(cases, 4)
+
+    def test_every_figure_in_the_technology_tables_has_a_source_address_ipums_does_not_host(self):
+        cases = list(rows("tech_occupation"))
+        self.assertEqual(len(cases), 52)
+        for r in cases:
+            self.assertEqual(FC.figure_url(r["source_url"]), r["source_url"], r["id"])
+            self.assertNotIn("ipums", json.dumps(r).lower(), r["id"])
+        lags = list(rows("tech_lags"))
+        for r in lags:
+            self.assertEqual(FC.figure_url(r["source_url"]), r["source_url"], r["id"])
+            self.assertEqual(FC.lag_source(r, cases), r["source_url"], r["id"])
+            self.assertTrue(any(c["technology_id"] == r["technology_id"] and c["occupation"] == r["occupation"] and c["year"] == r["to_year"] and c["source_url"] == r["source_url"] for c in cases), r["id"])
+            self.assertNotIn("ipums", json.dumps(r).lower(), r["id"])
+        with open(os.path.join(TABLES, "world_stats.json"), encoding="utf-8") as fh:
+            self.assertEqual(json.load(fh)["rows_withheld_no_figure_source"], {"tech_lags": 19})
+
+    def test_the_figure_rule_refuses_missing_and_ipums_hosted_addresses(self):
+        case = {"technology_id": "t", "occupation": "o", "year": 1950, "source_url": "https://www.bls.gov/oes/tables.htm"}
+        lag = {"technology_id": "t", "occupation": "o", "to_year": 1950}
+        self.assertEqual(FC.lag_source(lag, [case]), case["source_url"])
+        self.assertEqual(FC.lag_source(dict(lag, source_url="https://www.bls.gov/x"), [case]), "https://www.bls.gov/x")
+        for broken in (dict(lag, to_year=1951), dict(lag, to_year=None), dict(lag, occupation="p"), dict(lag, technology_id="u"), dict(lag, source_url="https://usa.ipums.org/x.xls"), dict(lag, source_url="")):
+            self.assertIsNone(FC.lag_source(broken, [case]), broken)
+        self.assertIsNone(FC.lag_source(lag, [dict(case, source_url="https://usa.ipums.org/usa/x.xls")]))
+        self.assertIsNone(FC.lag_source(lag, [dict(case, source_url=None)]))
+        self.assertIsNone(FC.lag_source(lag, []))
+        for url in ("https://usa.ipums.org/x", "https://cps.ipums.org/x", "https://ipums.org/x", "http://www.bls.gov/x", "", None, 7):
+            self.assertIsNone(FC.figure_url(url), url)
+        self.assertEqual(FC.figure_url("https://www.census.gov/x"), "https://www.census.gov/x")
 
     def test_source_licences_match_the_registry_shape(self):
         n = 0

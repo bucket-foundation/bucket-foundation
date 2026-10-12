@@ -3,8 +3,10 @@ import json
 import os
 import re
 import resource
-import statistics
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import facets as FC  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.dirname(HERE)
@@ -276,6 +278,7 @@ class World:
                 self.withheld["tech_occupation"] += 1
                 continue
             n += 1
+            self.cases.append({"technology_id": r.get("technology_id"), "occupation": clean(r.get("occupation"), 120), "year": r.get("year"), "source_url": r.get("source_url")})
             yield collections.OrderedDict([
                 ("id", "tech-occ-%03d" % n), ("slice", "history-technology"), ("technology_id", r.get("technology_id")), ("occupation", clean(r.get("occupation"), 120)),
                 ("relation", r.get("relation")), ("year", r.get("year")), ("years_after_technology", r.get("years_after_technology")),
@@ -297,25 +300,20 @@ class World:
 
     def lags(self):
         folder = os.path.join(ROOT, "history-technology")
-        groups = collections.defaultdict(list)
         n = 0
         for r in rows_of(os.path.join(folder, "lags.jsonl")):
             if RESTRICTED_HOST.search(json.dumps(r)) or re.search(r"census", str(r.get("measure")) + str(r.get("basis")), re.I):
                 self.withheld["tech_lags"] += 1
                 continue
+            source = FC.lag_source({"technology_id": r.get("technology_id"), "occupation": clean(r.get("occupation"), 120), "to_year": r.get("to_year"), "source_url": r.get("source_url")}, self.cases)
+            if source is None:
+                self.unsourced["tech_lags"] += 1
+                continue
             n += 1
-            groups[r.get("measure")].append(r.get("lag_years"))
             yield collections.OrderedDict([
                 ("id", "tech-lag-%03d" % n), ("slice", "history-technology"), ("row_type", "case"), ("technology_id", r.get("technology_id")),
                 ("occupation", clean(r.get("occupation"), 120)), ("measure", clean(r.get("measure"), 120)), ("from_year", r.get("from_year")), ("to_year", r.get("to_year")),
-                ("lag_years", r.get("lag_years")), ("n", 1), ("basis", clean(r.get("basis"), 160)), ("verified", bool(r.get("both_ends_fetched"))),
-            ])
-        for i, (measure, values) in enumerate(sorted(groups.items()), 1):
-            values = [v for v in values if isinstance(v, (int, float))]
-            yield collections.OrderedDict([
-                ("id", "tech-lag-summary-%02d" % i), ("slice", "history-technology"), ("row_type", "summary"), ("technology_id", None), ("occupation", None),
-                ("measure", clean(measure, 120)), ("from_year", None), ("to_year", None), ("lag_years", statistics.median(values) if values else None),
-                ("n", len(values)), ("basis", "median of the case rows with this measure; min %s, max %s" % (min(values), max(values)) if values else None), ("verified", False),
+                ("lag_years", r.get("lag_years")), ("n", 1), ("basis", clean(r.get("basis"), 160)), ("verified", bool(r.get("both_ends_fetched"))), ("source_url", source),
             ])
 
     def licences(self):
@@ -355,6 +353,8 @@ class World:
     def run(self):
         os.makedirs(OUT, exist_ok=True)
         self.withheld = collections.Counter()
+        self.unsourced = collections.Counter()
+        self.cases = []
         present = os.path.isdir(self.folder) and bool(self.countries)
         if present:
             for table, source in zip(WORLD_TABLES, (self.systems, self.stages, self.exams, self.nqf, self.occupations, self.professions, self.elements, self.languages, self.tvet, self.indicators)):
@@ -370,7 +370,7 @@ class World:
         if uncredited:
             raise SystemExit("no credit line for %s" % uncredited)
         with open(os.path.join(OUT, "world_stats.json"), "w", encoding="utf-8") as fh:
-            json.dump({"world_slice_loaded": present, "tables": self.stats, "rows_withheld_restricted_host": dict(self.withheld), "duplicate_ids_renumbered": self.renamed}, fh, indent=1)
+            json.dump({"world_slice_loaded": present, "tables": self.stats, "rows_withheld_restricted_host": dict(self.withheld), "rows_withheld_no_figure_source": dict(self.unsourced), "duplicate_ids_renumbered": self.renamed}, fh, indent=1)
             fh.write("\n")
         print(json.dumps({k: (v["rows"], v["verified_share"]) for k, v in self.stats.items()}), dict(self.withheld))
         print("peak memory MB", resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024)
