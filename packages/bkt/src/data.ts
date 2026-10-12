@@ -3,6 +3,8 @@ import type { Atom } from "../../../src/lib/academy/engine";
 import { openable } from "./canon";
 import { NOTICE_KIND, type CanonPack } from "./pack/canon";
 import type { Pack } from "./pack/export";
+import { hitIds, type PackedRows } from "./pack/row-sets/contract";
+import type { RowSetEntry } from "./pack/row-sets/index";
 import type { Route } from "./serve";
 import { deckOf, type Store } from "./store";
 
@@ -261,6 +263,45 @@ export function exploreAdapter(pack: ExplorePackLike): DatasetAdapter {
 export interface OwnDataOptions {
   analyses?: () => number;
 }
+
+export function rowSetAdapter(set: Pick<RowSetEntry, "id" | "label" | "pages">): DatasetAdapter {
+  const opening = set.pages[0];
+  const pages = set.pages.length > 1 ? set.pages.slice(1) : set.pages;
+  const located = new Map<string, { page: PackedRows; i: number }>();
+  for (const page of pages) hitIds(page).forEach((id, i) => located.set(id, { page, i }));
+  const groups = new Map(pages.flatMap((p) => p.groups).map((g) => [g.id, g.label]));
+  const sources = new Map<string, { licence: string; url: string; notice: string; rows: number }>();
+  for (const page of pages) for (const a of page.attributions) sources.set(a.source, { licence: a.licence, url: a.url, notice: a.notice, rows: (sources.get(a.source)?.rows ?? 0) + a.rows });
+  let list: DataRecord[] | null = null;
+  return {
+    info() {
+      return {
+        id: set.id,
+        name: set.label,
+        about: `Rows that Explore draws as ${opening.modes.join(" and ")}. The set as a whole is under ${opening.licence}.`,
+        browsable: true,
+        version: opening.built,
+        builtAt: null,
+        checksum: opening.sha256,
+        counts: [...groups].map(([kind, label]) => ({ kind, label, n: pages.reduce((sum, p) => sum + p.gi.filter((g) => p.groups[g].id === kind).length, 0) })),
+        kinds: [...groups].map(([id, label]) => ({ id, label })),
+        parts: [...sources].map(([name, a]) => part(name, a.rows, "rows", `${a.licence}. ${a.notice}`, a.url)),
+        leftOut: null,
+      };
+    },
+    records() {
+      list ??= [...located].map(([id, { page, i }]) => ({ id, title: page.title[i], creators: page.sub[i] || null, year: page.year[i], kind: page.groups[page.gi[i]].id, source: page.url[i] }));
+      return list;
+    },
+    fields(id) {
+      const at = located.get(id);
+      if (!at) return null;
+      const { page, i } = at;
+      return [...field("Group", page.groups[page.gi[i]].label), ...field("Detail", page.sub[i]), ...field("Year", page.year[i]), ...field("From", page.frame.from?.[i]), ...field("To", page.frame.to?.[i]), ...field("Licence", page.licences[page.li[i]]), ...field("Source", page.attributions[page.si[i]]?.source)];
+    },
+  };
+}
+
 
 export function ownAdapter(store: Store, opts: OwnDataOptions = {}): DatasetAdapter {
   const n = (sql: string) => store.db.query<{ n: number }, []>(sql).get()!.n;

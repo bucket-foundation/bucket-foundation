@@ -23,7 +23,7 @@ beforeAll(async () => {
 describe("the public row set pack, built from the tables", () => {
   test("holds both sets under the set cap and the pack budget", () => {
     expect(pack.schema).toBe(ROW_SET_PACK_SCHEMA);
-    expect(pack.sets.map((s) => s.id)).toEqual(["occupations-time", "major-to-career"]);
+    expect(pack.sets.map((s) => s.id)).toEqual(["occupations-time", "major-to-career", "mathematics-chain"]);
     for (const set of pack.sets) {
       expect(set.bytes).toBe(setBytes(set.pages));
       expect(set.bytes).toBeLessThan(SET_BYTES);
@@ -31,7 +31,7 @@ describe("the public row set pack, built from the tables", () => {
     expect(SET_BYTES).toBe(768 * 1024);
     expect(ROW_SET_PACK_BUDGET_BYTES).toBe(1.25 * 1024 * 1024);
     expect(packBytes(pack)).toBeLessThan(ROW_SET_PACK_BUDGET_BYTES);
-    expect(describeRowSets(pack)).toHaveLength(2);
+    expect(describeRowSets(pack)).toHaveLength(3);
     expect(pack.built).toMatch(/^tables-[0-9a-f]{12}$/);
   });
 
@@ -49,7 +49,7 @@ describe("the public row set pack, built from the tables", () => {
       }
       expect(replies(set.pages)).toHaveLength(set.pages.length);
     }
-    expect(seen).toBe(50);
+    expect(seen).toBe(116);
   });
 
   test("occupations open as 48 group hits: 22 SOC, 23 O*NET-SOC and 3 census lists", () => {
@@ -101,6 +101,20 @@ describe("the public row set pack, built from the tables", () => {
 
   test("no reply passes 90% of the reply cap and no set passes 90% of the set cap", () => {
     expect(capWarnings(pack.sets)).toEqual([]);
+  });
+
+  test("the mathematics chain holds 65 domains with 147 links, 112 of them stated, and 371 standards inside", () => {
+    const [opening, ...domains] = setOf("mathematics-chain").pages;
+    expect([opening.n, opening.links.flat().length, opening.frame.edgeStated?.flat().filter(Boolean).length]).toEqual([65, 147, 112]);
+    expect(domains).toHaveLength(65);
+    expect(domains.reduce((sum, p) => sum + p.n, 0)).toBe(371);
+    const text = JSON.stringify(setOf("mathematics-chain"));
+    expect(/collegeboard|school-us-math/i.test(text)).toBe(false);
+    for (const page of [opening, ...domains]) {
+      expect(page.sources).toEqual(["ccss-math"]);
+      expect(page.url.every((u) => u !== null && u.startsWith("https://www.thecorestandards.org/"))).toBe(true);
+      expect(page.title.every((t) => t.split(/\s+/).length <= 12)).toBe(true);
+    }
   });
 
   test("major to career holds 64 hits and 240 weighted links", () => {
@@ -196,7 +210,7 @@ describe("the public build checks", () => {
 
   test("the built pack holds no staff set, no restricted source and no person row", () => {
     const file = write("explore-rows.json", pack);
-    expect(readRowSetPack(file)?.sets).toHaveLength(2);
+    expect(readRowSetPack(file)?.sets).toHaveLength(3);
     expect(publicPackProblems(pack)).toEqual([]);
     expect(findStaffRowSets([file])).toEqual([]);
     expect(findKruse([file], [...deny.videoIds])).toEqual([]);
