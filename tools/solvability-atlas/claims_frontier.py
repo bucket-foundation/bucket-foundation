@@ -19,8 +19,10 @@ HERE = Path(__file__).parent
 REPO = HERE.parent.parent
 BATCH = "openai-math-2026-10"
 RELEASED = "2026-10-06T21:58:50Z"
+ANNOUNCED = "2026-10-06T12:00:00Z"
+ANNOUNCED_SOURCE = "https://openai.com/news/rss.xml"
 BASELINES = {
-    "pre_release": {"commit": "23230e8d318eb5fae0eb1d6cf03fdd3ff6408797", "committed": "2026-10-06T04:07:51Z", "role": "the last atlas state on dev committed before the release, 17 hours 51 minutes earlier"},
+    "pre_release": {"commit": "23230e8d318eb5fae0eb1d6cf03fdd3ff6408797", "committed": "2026-10-06T04:07:51Z", "role": "the last atlas state on dev committed before the release: 7 hours 53 minutes before the announcement's feed timestamp and 17 hours 51 minutes before the repository's first commit"},
     "work_parent": {"commit": "539c4d00482fe9ad8230962acf1dcd03039755bf", "committed": "2026-10-12T20:14:19Z", "role": "the parent of the ledger and of this analysis, six days after the release"},
 }
 PRIMARY = "pre_release"
@@ -297,7 +299,7 @@ def run(data=None, label=None, n=BOOTSTRAPS, permutations=PERMUTATIONS):
     if data is None:
         baselines = {name: run_baseline(name, entries, n, permutations) for name in BASELINES}
         lead = baselines[PRIMARY]
-        return {"schema": "bucket.solvability-atlas.claims-frontier/v2", "batch": BATCH, "released": RELEASED, "seed": SEED, "bootstraps": n, "permutations": permutations, "duplicate_similarity": DUPLICATE_SIMILARITY, "covered_branches": list(COVERED), "permutation_note": PERMUTATION_NOTE, "primary": PRIMARY, "baselines": baselines, "claimed_rows": lead["claimed_rows"], "tables": lead["tables"]}
+        return {"schema": "bucket.solvability-atlas.claims-frontier/v2", "batch": BATCH, "released": RELEASED, "announced": ANNOUNCED, "announced_source": ANNOUNCED_SOURCE, "seed": SEED, "bootstraps": n, "permutations": permutations, "duplicate_similarity": DUPLICATE_SIMILARITY, "covered_branches": list(COVERED), "permutation_note": PERMUTATION_NOTE, "primary": PRIMARY, "baselines": baselines, "claimed_rows": lead["claimed_rows"], "tables": lead["tables"]}
     else:
         classified = classify(data)
         rows = classified["rows"]

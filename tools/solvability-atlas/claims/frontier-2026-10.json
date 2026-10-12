@@ -2,6 +2,8 @@
  "schema": "bucket.solvability-atlas.claims-frontier/v2",
  "batch": "openai-math-2026-10",
  "released": "2026-10-06T21:58:50Z",
+ "announced": "2026-10-06T12:00:00Z",
+ "announced_source": "https://openai.com/news/rss.xml",
  "seed": 20261012,
  "bootstraps": 2000,
  "permutations": 10000,
@@ -16,7 +18,7 @@
   "pre_release": {
    "commit": "23230e8d318eb5fae0eb1d6cf03fdd3ff6408797",
    "committed": "2026-10-06T04:07:51Z",
-   "role": "the last atlas state on dev committed before the release, 17 hours 51 minutes earlier",
+   "role": "the last atlas state on dev committed before the release: 7 hours 53 minutes before the announcement's feed timestamp and 17 hours 51 minutes before the repository's first commit",
    "frozen": "tools/solvability-atlas/claims/baseline-23230e8d3.tsv",
    "rows": 5080,
    "ledger_rows_absent": [
@@ -30,14 +32,14 @@
      "variants": 13,
      "unsampled": 0,
      "by_class": {
-      "needs a new idea": 14,
       "borderline": 40,
+      "needs a new idea": 14,
       "close to known results": 12
      },
      "by_branch": {
       "mathematics": 73,
-      "information": 5,
-      "physics": 1
+      "physics": 1,
+      "information": 5
      }
     },
     "claimed_formal_full": {
@@ -46,9 +48,9 @@
      "variants": 4,
      "unsampled": 0,
      "by_class": {
+      "close to known results": 6,
       "needs a new idea": 12,
-      "borderline": 27,
-      "close to known results": 6
+      "borderline": 27
      },
      "by_branch": {
       "mathematics": 45,
@@ -1076,14 +1078,14 @@
      "variants": 13,
      "unsampled": 0,
      "by_class": {
-      "needs a new idea": 12,
       "borderline": 41,
+      "needs a new idea": 12,
       "close to known results": 13
      },
      "by_branch": {
       "mathematics": 73,
-      "information": 5,
-      "physics": 1
+      "physics": 1,
+      "information": 5
      }
     },
     "claimed_formal_full": {
@@ -1092,9 +1094,9 @@
      "variants": 4,
      "unsampled": 0,
      "by_class": {
+      "close to known results": 7,
       "needs a new idea": 10,
-      "borderline": 28,
-      "close to known results": 7
+      "borderline": 28
      },
      "by_branch": {
       "mathematics": 45,
@@ -2103,14 +2105,14 @@
    "variants": 13,
    "unsampled": 0,
    "by_class": {
-    "needs a new idea": 14,
     "borderline": 40,
+    "needs a new idea": 14,
     "close to known results": 12
    },
    "by_branch": {
     "mathematics": 73,
-    "information": 5,
-    "physics": 1
+    "physics": 1,
+    "information": 5
    }
   },
   "claimed_formal_full": {
@@ -2119,9 +2121,9 @@
    "variants": 4,
    "unsampled": 0,
    "by_class": {
+    "close to known results": 6,
     "needs a new idea": 12,
-    "borderline": 27,
-    "close to known results": 6
+    "borderline": 27
    },
    "by_branch": {
     "mathematics": 45,

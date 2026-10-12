@@ -1,6 +1,6 @@
 # Baseline Before The Release
 
-Commit `23230e8d3`, committed 2026-10-06T04:07:51Z: the last atlas state on dev committed before the release, 17 hours 51 minutes earlier. 5080 rows.
+Commit `23230e8d3`, committed 2026-10-06T04:07:51Z: the last atlas state on dev committed before the release: 7 hours 53 minutes before the announcement's feed timestamp and 17 hours 51 minutes before the repository's first commit. 5080 rows.
 
 ## Mathematics And Information: every claim of the full problem
 

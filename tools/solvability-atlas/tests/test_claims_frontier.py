@@ -173,7 +173,7 @@ def test_the_lead_baseline_was_committed_before_the_release_and_holds_every_clai
 
     stamp = lambda text: datetime.fromisoformat(text.replace("Z", "+00:00"))
     assert committed["primary"] == "pre_release"
-    assert stamp(cf.BASELINES["pre_release"]["committed"]) < stamp(cf.RELEASED) < stamp(cf.BASELINES["work_parent"]["committed"])
+    assert stamp(cf.BASELINES["pre_release"]["committed"]) < stamp(cf.ANNOUNCED) < stamp(cf.RELEASED) < stamp(cf.BASELINES["work_parent"]["committed"])
     rows = {r["id"]: r for r in cf.load_frozen(cf.frozen_path("pre_release"))}
     assert len(rows) == 5080
     claimed = set(claims.governing(claims.entries()))
