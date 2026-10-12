@@ -1576,3 +1576,61 @@ table.columns thead th {
   flex: 1;
   min-width: 0;
 }
+
+.go-back {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink-2);
+}
+
+.go-back::before {
+  content: "\2190  ";
+}
+
+.go-back:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.go-back:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.go-back:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.quiz-kinds {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.quiz-kinds a {
+  background: var(--panel);
+  padding: 8px 14px;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.quiz-kinds a.on {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.equation .math-display {
+  display: block;
+}
+
+.main h1:focus {
+  outline: none;
+}

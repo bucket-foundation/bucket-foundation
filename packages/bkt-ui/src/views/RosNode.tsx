@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { InlineMath } from "@/components/math/InlineMath";
 import { STAGE_LABEL } from "@/components/ui";
 import { href } from "../router";
 import { windowHref } from "../site-fetch";
@@ -87,7 +88,9 @@ export function RosNodeView({ slug }: { slug: string }) {
         {stage && <p className="muted">You are at {STAGE_LABEL[stage] ?? stage}.</p>}
       </header>
       <article className="panel card">
-        <p>{data.node.summary ?? "No summary yet."}</p>
+        <p>
+          <InlineMath text={data.node.summary ?? "No summary yet."} />
+        </p>
         {practice && (
           <p>
             <a className="primary" href={practice}>
@@ -107,11 +110,15 @@ export function RosNodeView({ slug }: { slug: string }) {
           <ol className="ros-recall">
             {recall.items.map((it, i) => (
               <li key={i}>
-                <p>{it.prompt}</p>
+                <p>
+                  <InlineMath text={it.prompt ?? ""} />
+                </p>
                 {it.answer && (
                   <details>
                     <summary>Show answer</summary>
-                    <p>{it.answer}</p>
+                    <p>
+                      <InlineMath text={it.answer} />
+                    </p>
                   </details>
                 )}
               </li>
@@ -121,7 +128,9 @@ export function RosNodeView({ slug }: { slug: string }) {
       )}
       <article className="panel card">
         <h2>Carry it further</h2>
-        <p className="muted">{data.transfer.prompt}</p>
+        <p className="muted">
+          <InlineMath text={data.transfer.prompt} />
+        </p>
       </article>
     </section>
   );

@@ -71,7 +71,7 @@ export function wordBackend(b: LearnBackend, deck: string): LearnBackend {
     },
     async answerQuiz(itemId, choice, elapsedMs) {
       const r = await b.answerWord(itemId, choice === null ? null : (choices.get(itemId)?.[choice] ?? null), elapsedMs);
-      return { correct: r.correct, timedOut: r.timedOut, rating: r.rating as Rating, answer: r.answer };
+      return { correct: r.correct, timedOut: r.timedOut, rating: r.rating as Rating, answer: r.answer, explain: null, lesson: null };
     },
   };
 }

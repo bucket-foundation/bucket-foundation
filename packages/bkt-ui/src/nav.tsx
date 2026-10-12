@@ -15,7 +15,7 @@ import { LibraryView } from "./views/Library";
 import { NotesView } from "./views/Notes";
 import { PathView } from "./views/Path";
 import { PrimesView } from "./views/Primes";
-import { QuizView } from "./views/Quiz";
+import { DailyScreen, PracticeQuizView, QuizView } from "./views/Quiz";
 import { ResearchView } from "./views/Research";
 import { ReviewView } from "./views/Review";
 import { RosMapView } from "./views/RosMap";
@@ -23,7 +23,7 @@ import { RosNodeView } from "./views/RosNode";
 import { RosProfileView } from "./views/RosProfile";
 import { RosProgressView } from "./views/RosProgress";
 import { SettingsView } from "./views/Settings";
-import { DailyQuizView, WorkQuizView } from "./views/WorkQuiz";
+import { WorkQuizView } from "./views/WorkQuiz";
 import { WordConceptsView, WordDeckView, WordLessonView, WordLicenceView } from "./views/Words";
 
 export const NAV: { route: Route; label: string }[] = [
@@ -48,6 +48,14 @@ export const FOOT_LINK: { route: Route; label: string } = { route: { name: "add"
 export const SETTINGS_LINK: { route: Route; label: string } = { route: { name: "settings" }, label: "Settings" };
 export const FOOT_LINKS = [FOOT_LINK, SETTINGS_LINK];
 
+export function activeNav(route: Route): Route["name"] {
+  if (route.name === "node") return "graph";
+  if (route.name === "deck" || route.name === "words" || route.name === "concepts" || route.name === "library" || route.name === "licence") return "learn";
+  if (route.name === "daily" || route.name === "practice") return "quiz";
+  if (route.name === "search") return "canon";
+  return route.name;
+}
+
 export function navFor(workReady: boolean) {
   return NAV.filter((n) => n.route.name !== "work" || workReady);
 }
@@ -60,6 +68,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "concepts") return <WordConceptsView key={route.page ?? 1} api={api} page={route.page ?? 1} />;
   if (route.name === "path") return <PathView api={api} to={route.to} />;
   if (route.name === "quiz") return <QuizView api={api} />;
+  if (route.name === "practice") return <PracticeQuizView api={api} />;
   if (route.name === "review") return <ReviewView api={api} />;
   if (route.name === "advisors") return <AdvisorsView api={api} />;
   if (route.name === "primes") return <PrimesView api={api} />;
@@ -69,7 +78,7 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
   if (route.name === "canon") return <CanonSearchView api={api} page="globe" find={route.find} />;
   if (route.name === "search") return <CanonSearchView api={api} page="search" id={route.id} />;
   if (route.name === "explore") return <ExploreView key={route.data ?? ""} api={api} initial={{ data: route.data, mode: route.mode, sel: route.sel }} />;
-  if (route.name === "daily") return <DailyQuizView key={route.day} api={api} day={route.day} />;
+  if (route.name === "daily") return <DailyScreen api={api} day={route.day} />;
   if (route.name === "work") return <WorkQuizView api={api} />;
   if (route.name === "jobs") return <JobsView api={api} />;
   if (route.name === "data") return <DataView api={api} />;
