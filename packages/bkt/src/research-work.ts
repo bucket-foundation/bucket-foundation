@@ -49,7 +49,7 @@ export class WorkConflict extends ResearchError {
 
 const HASH = /^[0-9a-f]{64}$/;
 
-function writeAtomic(file: string, bytes: Uint8Array): void {
+function writeAtomic(file: string, bytes: Uint8Array, rename: (from: string, to: string) => void = renameSync): void {
   const tmp = `${file}.tmp-${process.pid}-${randomBytes(4).toString("hex")}`;
   const fd = openSync(tmp, "wx", 0o600);
   try {
@@ -58,7 +58,12 @@ function writeAtomic(file: string, bytes: Uint8Array): void {
   } finally {
     closeSync(fd);
   }
-  renameSync(tmp, file);
+  try {
+    rename(tmp, file);
+  } catch (e) {
+    rmSync(tmp, { force: true });
+    throw e;
+  }
   const dir = openSync(dirname(file), "r");
   try {
     fsyncSync(dir);
@@ -111,6 +116,7 @@ export interface WorkOptions {
   now?: () => number;
   open?: (dir: string) => void;
   caps?: { files: number; bytes: number };
+  rename?: (from: string, to: string) => void;
 }
 
 export class ResearchWork {
@@ -183,6 +189,15 @@ export class ResearchWork {
       return Object.keys(this.state(slug).files).length;
     } catch {
       return 0;
+    }
+  }
+
+  backup(slug: string, path: string): Buffer | null {
+    if (!SLUG.test(slug) || pathProblem(path) !== null) return null;
+    try {
+      return readFileSync(guardPath(join(this.outDir(slug), "backup"), path));
+    } catch {
+      return null;
     }
   }
 
@@ -276,7 +291,18 @@ export class ResearchWork {
       const caps = this.o.caps ?? { files: WORK_FILES, bytes: WORK_BYTES };
       if (!state.files[path] && Object.keys(state.files).length >= caps.files) throw new ResearchError("the working copy holds 2,000 files, which is its limit", 413);
       if (this.workBytes(slug, path) + bytes.length > caps.bytes) throw new ResearchError("the working copy is over the 256 MB limit", 413);
-      writeAtomic(this.target(slug, path), bytes);
+      const before = this.overlay(slug, path);
+      if (before) {
+        let at = join(this.outDir(slug), "backup");
+        plainDir(at);
+        const parts = path.split("/");
+        for (const part of parts.slice(0, -1)) {
+          at = join(at, part);
+          plainDir(at);
+        }
+        writeAtomic(join(at, parts[parts.length - 1]), before);
+      }
+      writeAtomic(this.target(slug, path), bytes, this.o.rename);
       this.save(slug, { schema: WORK_SCHEMA, pack: this.research.version, files: { ...state.files, [path]: { base: state.files[path] ? state.files[path].base : shipped } } });
       return { path, rev: next, changed: true };
     });

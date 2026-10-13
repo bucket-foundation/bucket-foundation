@@ -118,7 +118,7 @@ describe("staff side pack", () => {
   test("the side pack holds the staff entries alone, and a public build cannot make one", () => {
     expect(side.schema).toBe(SIDE_SCHEMA);
     expect(side.outputs.flatMap((o) => o.files).every((f) => f.audience === "staff")).toBe(true);
-    expect(side.outputs.map((o) => o.slug).sort()).toEqual(["learning-system-brief", ATLAS, "solver-gap-engine"].sort());
+    expect(side.outputs.map((o) => o.slug).sort()).toEqual(["atom-alignment", "learning-system-brief", ATLAS, "solver-gap-engine"].sort());
     const shipped = new Set(open.index.outputs.flatMap((o) => o.files.map((f) => f.path)));
     expect(side.outputs.flatMap((o) => o.files).filter((f) => shipped.has(f.path))).toEqual([]);
     expect(Object.keys(side.blobs).length).toBeLessThan(Object.keys(full.blobs.blobs).length);
@@ -137,7 +137,7 @@ describe("staff side pack", () => {
     expect(before.detail(ATLAS).withheld).toBeGreaterThan(0);
     await expect(before.read(ATLAS, SOURCED)).rejects.toThrow("the output does not list that file");
     const done = installSidePack(home, sideBytes);
-    expect(done).toEqual({ version: side.version, outputs: 3, files: side.outputs.reduce((n, o) => n + o.files.length, 0) });
+    expect(done).toEqual({ version: side.version, outputs: 4, files: side.outputs.reduce((n, o) => n + o.files.length, 0) });
     const dest = join(staffRoot(home), side.version);
     expect(statSync(dest).mode & 0o777).toBe(0o700);
     expect(statSync(join(dest, "files", SOURCED)).mode & 0o777).toBe(0o600);
@@ -369,9 +369,9 @@ describe("research routes with a side pack", () => {
     writeFileSync(file, sideBytes);
     const home = temp("home");
     const direct = await researchInstall(file, home, null);
-    expect(direct).toEqual({ version: side.version, outputs: 3, files: direct.files, live: false });
+    expect(direct).toEqual({ version: side.version, outputs: 4, files: direct.files, live: false });
     expect(existsSync(join(staffRoot(home), side.version, ".complete"))).toBe(true);
-    expect(installLines(direct)).toEqual([`Installed staff research ${side.version}: 3 outputs, ${direct.files.toLocaleString("en-US")} files, every checksum matches.`, "Bucket shows it the next time it starts."]);
+    expect(installLines(direct)).toEqual([`Installed staff research ${side.version}: 4 outputs, ${direct.files.toLocaleString("en-US")} files, every checksum matches.`, "Bucket shows it the next time it starts."]);
     const served2 = await served(temp("home"));
     const live = await researchInstall(file, "/nonexistent", { pid: process.pid, port: served2.port, token: served2.cliToken, secret: "" });
     expect(live.live).toBe(true);

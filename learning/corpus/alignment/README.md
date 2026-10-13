@@ -7,7 +7,7 @@
 | Independent, 5 per deck | First | Critic | 40 | 16, 40% | 13, 32% | 11, 28% |
 | Blind to score, 5 per deck | Tightened, this one | Builder | 40 | 16, 40% | 18, 45% | 6, 15% |
 
-The tightened build halved the wrong share and left the right share at 40%. That is under the 70% a usable queue needs. A reviewer should expect to confirm two links in five, rework two and delete one in seven. Levels, queued edges, resource links, occupation groups and gaps all inherit that error, and each row of each table carries `status: unreviewed-proposal`. `tables/QUALITY.json` holds the same note per file, and a test fails if code under `packages/`, `src/` or `scripts/` reads this folder.
+The tightened build halved the wrong share and left the right share at 40%. That is under the 70% a usable queue needs. A reviewer should expect to confirm two links in five, rework two and delete one in seven. Levels, queued edges, resource links, occupation groups and gaps all inherit that error, and each row of each table carries `status: unreviewed-proposal`. `tables/QUALITY.json` holds the same note per file, and a test fails if code under `packages/`, `src/` or `scripts/` reads this folder, with one exception: `packages/bkt/src/pack/alignment-review.ts` packs the links for the review workspace of a staff build, and a public build gets an empty file from it. `review/decisions.jsonl` holds a reviewer's decisions once a review is exported.
 
 `tables/alignments.jsonl` joins Bucket's learning atoms to the progressions corpus: 1,947 proposed links for 368 of the 487 science atoms. Built on 2026-10-12 for bead bkt-khfw.9 from the decks in `learning/app/corpus/` and the tables in `learning/corpus/progressions/tables/`.
 

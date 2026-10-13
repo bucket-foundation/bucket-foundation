@@ -595,7 +595,7 @@ describe("papers workspace", () => {
       expect({ name, hits: source.match(/researchBuild|\/local\/|consent|fetch\(/g) }).toEqual({ name, hits: null });
     }
     const apiSource = await Bun.file(`${import.meta.dir}/api.ts`).text();
-    expect(apiSource.match(/\/local\/workspace\/[a-z]+/g)).toEqual(["/local/workspace/items"]);
+    expect(apiSource.match(/\/local\/workspace\/[a-z/]+/g)).toEqual(["/local/workspace/alignment/rows", "/local/workspace/alignment/search", "/local/workspace/items"]);
     expect(apiSource.match(/\/local\/research\/build\b/g)?.length).toBe(1);
   });
 });
@@ -768,7 +768,7 @@ describe("decks workspace", () => {
       expect({ name, hits: source.match(/https?:|fetch\(|\/local\/|bucket\.foundation|libraryInstall|libraryImport|libraryRefresh/g) }).toEqual({ name, hits: null });
     }
     const apiSource = await Bun.file(`${import.meta.dir}/api.ts`).text();
-    expect(apiSource.match(/\/local\/workspace\/[a-z]+/g)).toEqual(["/local/workspace/items"]);
+    expect(apiSource.match(/\/local\/workspace\/[a-z/]+/g)).toEqual(["/local/workspace/alignment/rows", "/local/workspace/alignment/search", "/local/workspace/items"]);
   });
 
   test("the bar lights Decks and Back from Decks leaves the workspace", async () => {

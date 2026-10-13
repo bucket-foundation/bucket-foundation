@@ -17,6 +17,7 @@ TABLES = os.path.join(PACKAGE, "tables")
 DERIVED = ["atom_levels.jsonl", "edge_agreement.jsonl", "atom_careers.jsonl", "gaps.jsonl", "stats.json", "QUALITY.json"]
 ROW_TABLES = ["alignments.jsonl", "atom_levels.jsonl", "edge_agreement.jsonl", "atom_resources.jsonl", "atom_careers.jsonl", "gaps.jsonl"]
 READERS = ["packages", "src", "scripts", "learning/app", "learning/corpus/progressions"]
+REVIEW_PACKER = "packages/bkt/src/pack/alignment-review.ts"
 ALIGNMENT_KEYS = {
     "schema", "id", "progression_id", "table", "framework_id", "course_code", "field", "cip", "level", "atom",
     "match", "score", "method", "rows_collapsed", "prerequisites", "prerequisite_source", "source_url",
@@ -249,12 +250,15 @@ class Status(unittest.TestCase):
             self.assertEqual(note["independent_sample_first_build"]["links"], 40)
         self.assertEqual(json.load(open(os.path.join(TABLES, "stats.json"), encoding="utf-8"))["status"], "unreviewed-proposal")
 
-    def test_no_app_engine_or_pack_code_reads_this_folder(self):
+    def test_only_the_staff_review_packer_reads_this_folder(self):
         found = subprocess.run(
             ["git", "grep", "-l", "-I", "-e", "corpus/alignment", "-e", "atom_levels", "-e", "edge_agreement", "--", *READERS],
             cwd=A.REPO, capture_output=True, text=True,
         )
-        self.assertEqual(found.stdout.strip(), "")
+        self.assertEqual(set(found.stdout.split()) - {REVIEW_PACKER}, set())
+        packer = open(os.path.join(A.REPO, REVIEW_PACKER), encoding="utf-8").read()
+        self.assertIn('if (env[REVIEW_FLAG] !== "1" || !existsSync(links)) return EMPTY_REVIEW;', packer)
+        self.assertIn('export const REVIEW_FLAG = "BKT_INCLUDE_STAFF_DATA";', packer)
 
     def test_readme_opens_with_the_status_and_the_independent_sample(self):
         head = open(os.path.join(PACKAGE, "README.md"), encoding="utf-8").read().split("## Files")[0]
