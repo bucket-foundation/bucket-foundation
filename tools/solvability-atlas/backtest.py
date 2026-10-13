@@ -1,4 +1,4 @@
-import argparse, csv, json, pathlib
+import argparse, csv, hashlib, json, pathlib
 import numpy as np
 
 import claims
@@ -35,7 +35,12 @@ def claimed_ids(rows, ledger=None):
     return sorted(r["id"] for r in rows if ruling.get(r["id"], {}).get("status") == claims.CLAIMED)
 
 
-def compute(rows, ledger=None):
+def ledger_hashes(directory=claims.LEDGERS):
+    paths = sorted(pathlib.Path(directory).glob("*.json"))
+    return {path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in paths if json.loads(path.read_text(encoding="utf8")).get("schema") == claims.SCHEMA}
+
+
+def compute(rows, ledger=None, hashes=None):
     rng = np.random.default_rng(0)
     y = [bool(r["resolved"]) for r in rows]
     level = [int(r["level"]) for r in rows]
@@ -51,7 +56,8 @@ def compute(rows, ledger=None):
             "years_to_resolution": {"n": len(wait), "median": float(np.median(wait)), "min": min(wait), "max": max(wait)},
             "resolved_since_2000": sum(1 for r in rows if r["resolved"] and int(r["resolved"]) >= 2000),
             "posed_before_resolved_check": all(int(r["resolved"]) >= int(r["posed"]) for r in rows if r["resolved"]),
-            "claimed_counted_open": claimed_ids(rows, ledger)}
+            "claimed_counted_open": claimed_ids(rows, ledger),
+            "claims_ledger_sha256": ledger_hashes() if hashes is None else hashes}
 
 
 def plot(result, path):

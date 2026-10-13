@@ -22,7 +22,7 @@ Two features exist before a resolution. Newer problems have a lower resolved sha
 
 ## Claimed Rows
 
-Resolved means a resolved year in `problems.tsv`. A row with status `claimed` in the claims ledger has no resolved year and counts as open here, the rule in `claims.py`. One catalog problem is claimed today, `uniquegames`, and `backtest.json` lists it under `claimed_counted_open` [empirical: tools/solvability-atlas/backtest.json, 2026-10-13, python3 backtest.py].
+Resolved means a resolved year in `problems.tsv`. A row with status `claimed` in the claims ledger has no resolved year and counts as open here, the rule in `claims.py`. One catalog problem is claimed today, `uniquegames`, and `backtest.json` lists it under `claimed_counted_open` beside `claims_ledger_sha256`, the SHA-256 of each ledger file read [empirical: tools/solvability-atlas/backtest.json, 2026-10-13, python3 backtest.py].
 
 ## Resolved Problems
 
@@ -42,6 +42,7 @@ Resolved means a resolved year in `problems.tsv`. A row with status `claimed` in
 - The hand catalog has one version, so it has no past snapshot to score and then check. Every number here is in-sample.
 - 71 rows, 15 resolved [empirical: tools/solvability-atlas/backtest.json, 2026-10-13, python3 backtest.py]. The intervals are wide.
 - The catalog is hand-picked and holds famous problems, which skews it toward long waits.
+- Year posed and market count are confounded by the time available to resolve. A problem posed in 1900 has had 126 years to be settled and one posed in 2010 has had 16, so an older problem has a higher chance of being resolved at any difficulty, and market count may track age too. Both AUC values mix difficulty with exposure time. A survival model with open rows censored at 2026, as in `SURFACE.md`, separates the two.
 
 ## Dated Tests
 
