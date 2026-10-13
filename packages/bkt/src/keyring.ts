@@ -13,7 +13,7 @@ export const SERVICE = "bucket-bkt";
 
 export class KeyringError extends Error {}
 
-const REMEDY: Record<Keyring["kind"], string> = {
+export const REMEDY: Record<Keyring["kind"], string> = {
   libsecret: "Unlock the login keyring by signing in to the desktop session, then run bkt again.",
   keychain: "Unlock the login keychain with security unlock-keychain, then run bkt again.",
   dpapi: "Sign in as the Windows user who made the database, then run bkt again.",
@@ -33,6 +33,8 @@ export class KeyringLockedError extends KeyringError {
     );
   }
 }
+
+export class KeyringHeldError extends KeyringError {}
 
 export function refuseOverwrite(account: string): never {
   throw new KeyringError(`keyring already holds ${account}; refusing to overwrite`);
@@ -63,7 +65,7 @@ export class SecretToolKeyring implements Keyring {
     const [out, err, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
     if (code === 0 && out.length) return out;
     if (code !== 1 || err.trim()) throw new KeyringError(`secret-tool lookup failed (exit ${code}): ${err.trim() || "empty output"}`);
-    if (await this.listed(account)) throw new KeyringError(`keyring locked: the keyring holds ${account} and would not release it. ${REMEDY.libsecret} bkt stored no new key.`);
+    if (await this.listed(account)) throw new KeyringHeldError(`keyring locked: the keyring holds ${account} and would not release it. ${REMEDY.libsecret} bkt stored no new key.`);
     return null;
   }
 

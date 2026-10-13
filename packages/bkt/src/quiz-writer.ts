@@ -1,15 +1,17 @@
 import { createHash } from "node:crypto";
+import { LIMITS, shortTitle, withinLimits } from "../../../src/lib/research-os/work-quiz/limits";
 import type { QuizQuestion, SourceRef } from "../../../src/lib/research-os/work-quiz/types";
 import type { FactStub } from "./chat-sources";
-import { fermi, parseDailyQuiz, type DailyQuiz } from "./daily-quiz";
+import { DAILY_MAX, fermi, parseQuestion, type DailyQuiz } from "./daily-quiz";
 import { secretLine } from "./secret-scan";
 
-export const DAILY_COUNT = 5;
+export const DAILY_COUNT: number = DAILY_MAX;
 export const LLM_URL = "http://127.0.0.1:11435";
 export const LLM_MODEL = "qwen2.5-coder-7b";
 export const LLM_TIMEOUT_MS = 30_000;
 export const LLM_MAX_STUBS = 24;
 export const LLM_MAX_REPLY = 64 * 1024;
+export const SESSION_TITLE_TOKENS = 6;
 
 const TOOL: Record<FactStub["root"], string> = { claude: "Claude", codex: "Codex" };
 
@@ -54,32 +56,20 @@ export function templateQuestions(day: string, stubs: FactStub[], count = DAILY_
   const safe = safeStubs(stubs).sort((a, b) => rank(day, a.id).localeCompare(rank(day, b.id)));
   if (!safe.length) return [];
   const out: QuizQuestion[] = [
-    fermi({ id: "chat-sessions", prompt: "How many chat sessions did you run in the last two days?", answer: safe.length, explain: `${safe.length} sessions held a message from you.` }),
+    fermi({ id: "chat-sessions", prompt: "How many chat sessions in two days?", answer: safe.length, explain: `${safe.length} sessions held a message from you.` }),
   ];
   const turns = safe.reduce((n, s) => n + s.turns, 0);
-  out.push(fermi({ id: "chat-messages", prompt: "How many messages did you send across your chat sessions in the last two days?", answer: turns, explain: `${turns} messages across ${safe.length} sessions.` }));
-  const tools = new Set(safe.map((s) => s.root));
+  out.push(fermi({ id: "chat-messages", prompt: "How many messages did you send in two days?", answer: turns, explain: `${turns} messages across ${safe.length} sessions.` }));
   const days = new Set(safe.map((s) => s.date));
   for (const [i, s] of safe.entries()) {
     const per: QuizQuestion[] = [];
-    if (tools.size > 1)
-      per.push({
-        id: `chat-tool-${s.id}`,
-        type: "recall",
-        prompt: `Which tool ran the session that began "${s.label}"?`,
-        lines: [],
-        choices: Object.values(TOOL),
-        answer: TOOL[s.root],
-        tolerance: 0,
-        limitSec: 30,
-        explain: `It ran in ${TOOL[s.root]} on ${s.date}.`,
-        sources: [ref(s)],
-      });
-    if (days.size > 1)
+    const short = shortTitle(s.label.replace(/…$/, ""), SESSION_TITLE_TOKENS);
+    if (!short) continue;
+    if (days.size === LIMITS.choices)
       per.push({
         id: `chat-day-${s.id}`,
         type: "recall",
-        prompt: `On which day did the session that began "${s.label}" start?`,
+        prompt: `Which day did "${short}" start?`,
         lines: [],
         choices: [...days].sort(),
         answer: s.date,
@@ -88,10 +78,10 @@ export function templateQuestions(day: string, stubs: FactStub[], count = DAILY_
         explain: `It started on ${s.date}.`,
         sources: [ref(s)],
       });
-    per.push(fermi({ id: `chat-turns-${s.id}`, prompt: `How many messages did you send in the session that began "${s.label}"?`, answer: s.turns, explain: `You sent ${s.turns}.`, sources: [ref(s)] }));
+    per.push(fermi({ id: `chat-turns-${s.id}`, prompt: `How many messages in "${short}"?`, answer: s.turns, explain: `You sent ${s.turns}.`, sources: [ref(s)] }));
     out.push(per[i % per.length]);
   }
-  return out.slice(0, count);
+  return out.filter(withinLimits).slice(0, count);
 }
 
 export function modelPrompt(stubs: FactStub[], count: number): string {
@@ -101,7 +91,8 @@ export function modelPrompt(stubs: FactStub[], count: number): string {
   return [
     `Write ${count} multiple-choice recall questions about the work sessions listed below.`,
     "Each row is: id | day | tool | message count | first line of the session.",
-    "Use the rows alone. Each question has four distinct choices and one answer copied from its choices.",
+    `Use the rows alone. Each question has ${LIMITS.choices} distinct choices and one answer copied from its choices.`,
+    `Keep it short: the prompt at most ${LIMITS.stem} words, each choice at most ${LIMITS.option} words and all choices about the same length, the explain line at most ${LIMITS.why} words.`,
     'Reply with JSON alone: {"questions":[{"stub":"<id>","prompt":"...","choices":["..."],"answer":"...","explain":"..."}]}',
     "",
     ...rows,
@@ -123,12 +114,7 @@ function modelQuestions(reply: string, stubs: FactStub[], count: number): QuizQu
     const strings = [r.prompt, r.answer, r.explain ?? "", ...(Array.isArray(r.choices) ? r.choices : [])];
     if (!stub || strings.some((s) => typeof s !== "string" || secretLine(s))) continue;
     try {
-      out.push(
-        parseDailyQuiz({
-          day: "2000-01-01",
-          questions: [{ id: `chat-model-${i}`, type: "recall", prompt: r.prompt, choices: r.choices, answer: r.answer, explain: r.explain ?? "", limitSec: 60, sources: [ref(stub)] }],
-        }).questions[0],
-      );
+      out.push(parseQuestion({ id: `chat-model-${i}`, type: "recall", prompt: r.prompt, choices: r.choices, answer: r.answer, explain: r.explain ?? "", limitSec: 60, sources: [ref(stub)] }));
     } catch {
       continue;
     }
@@ -176,5 +162,5 @@ export async function writeDailyQuiz(day: string, stubs: FactStub[], o: WriterOp
   } catch (e) {
     modelError = e instanceof WriterError ? e.message : e instanceof SyntaxError ? "the model reply is not JSON" : "the model did not answer";
   }
-  return { quiz: parseDailyQuiz({ day, questions }), writer, modelError };
+  return { quiz: { day, questions: questions.map((q) => parseQuestion(q)) }, writer, modelError };
 }

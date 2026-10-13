@@ -194,7 +194,7 @@ describe("bounded wait", () => {
 describe("bkt quiz schedule", () => {
   test("the unit carries BKT_HOME when it is set at schedule time", async () => {
     expect(unitFiles(["/opt/bucket/bkt"], "08:53", { BKT_HOME: '/h/my "data" 50%' }).service).toBe(
-      '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nEnvironment="BKT_HOME=/h/my \\"data\\" 50%%"\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\n',
+      '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nEnvironment="BKT_HOME=/h/my \\"data\\" 50%%"\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\nKillMode=process\n',
     );
     expect(unitFiles(["/h/$x/bkt"], "08:53", { BKT_HOME: "/h/$data/100%" }).service).toContain('Environment="BKT_HOME=/h/$data/100%%"\nExecStart="/h/$$x/bkt" "quiz" "notify"\n');
     expect(unitFiles(["/b"], "08:53", { BKT_HOME: "" }).service).not.toContain("Environment");
@@ -205,7 +205,7 @@ describe("bkt quiz schedule", () => {
 
   test("the unit files are fixed text around the bkt path and the time", () => {
     expect(unitFiles(["/opt/bucket/bkt"])).toEqual({
-      service: '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\n',
+      service: '[Unit]\nDescription=Bucket daily quiz notification\n\n[Service]\nType=oneshot\nExecStart="/opt/bucket/bkt" "quiz" "notify"\nTimeoutStartSec=15min\nKillMode=process\n',
       timer: "[Unit]\nDescription=Bucket daily quiz notification, once a day\n\n[Timer]\nOnCalendar=*-*-* 08:53:00\nPersistent=true\n\n[Install]\nWantedBy=timers.target\n",
     });
     expect(unitFiles(['/h/my "apps"/50%/$x/bkt'], "7:05").service).toContain('ExecStart="/h/my \\"apps\\"/50%%/$$x/bkt" "quiz" "notify"');
@@ -290,7 +290,7 @@ describe("bkt quiz schedule", () => {
 describe("bkt app --route", () => {
   test("a route is a plain path", () => {
     expect(checkRoute("/work/daily/2026-10-01")).toBe("/work/daily/2026-10-01");
-    for (const ok of ["/work", "/import", "/learn", "/work/daily/2028-02-29"]) expect(checkRoute(ok)).toBe(ok);
+    for (const ok of ["/work", "/import", "/learn", "/quiz", "/quiz/practice", "/work/daily/2028-02-29"]) expect(checkRoute(ok)).toBe(ok);
     for (const bad of ["work", "/a/../b", "//evil.test", "/work?x=1", "/work#b", "/work ", "/a%2f", "javascript:alert(1)", "http://evil.test", "/unknown", "/work/daily", "/work/daily/2026-13-40", "/work/daily/2026-10-01/x", "/work/daily/../import", "/learn/deck", "/WORK", "", null, 5])
       expect(() => checkRoute(bad)).toThrow("--route takes /work/daily/YYYY-MM-DD");
     expect(routeUrl("http://127.0.0.1:5/", "/work/daily/2026-10-01")).toBe("http://127.0.0.1:5/#/work/daily/2026-10-01");

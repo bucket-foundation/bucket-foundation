@@ -26,16 +26,25 @@ describe("command table", () => {
     expect(COMMANDS.map((c) => [c.name, c.run, c.hint])).toEqual([
       ["quiz", "quiz", "timed multiple choice"],
       ["review", "review", "due cards, self rated"],
-      ["stats", "stats", "counts and device"],
+      ["stats", "stats", "your counts"],
       ["home", "home", "main menu"],
       ["help", "help", "key bindings"],
       ["quit", "quit", "exit bkt"],
+      ["search", "search", "search the canon"],
+      ["graph", "graph", "knowledge graph"],
+      ["research", "research", "notes and saved results"],
+      ["jobs", "jobs", "saved analyses"],
+      ["frontier", "frontier", "solvability frontier circle"],
     ]);
   });
 
   test("every command name is unique and every palette-only entry stays off the command line", () => {
     expect(new Set(TABLE.map((c) => c.name)).size).toBe(TABLE.length);
-    for (const name of ["review", "home", "quit"]) expect(() => resolve([name])).toThrow(`unknown command ${name}`);
+    for (const name of ["review", "home", "quit", "graph", "jobs", "frontier"]) expect(() => resolve([name])).toThrow(`unknown command ${name}`);
+    expect(() => resolve(["research"])).toThrow("research needs a subcommand: add, approve, builds, install");
+    const install = resolve(["research", "install", "staff.json"]);
+    expect("command" in install && install.command.name).toBe("research install");
+    expect(() => resolve(["research", "install"])).toThrow("research install needs <file>");
     expect(() => resolve(["quiz"])).toThrow("quiz needs a subcommand: notify, schedule, unschedule");
   });
 
@@ -89,7 +98,7 @@ describe("resolve", () => {
       [["stats", "extra"], "unexpected argument extra"],
       [["version", "--keyring", "passphrase"], "unknown option --keyring"],
       [["stats", "--version"], "unknown option --version"],
-      [["hai", "bogus"], "unknown hai command bogus; try freeze, review, score, export, wipe"],
+      [["hai", "bogus"], "unknown hai command bogus; try freeze, review, score, report, export, wipe"],
       [["forget"], "forget needs a subcommand: people"],
       [["forget", "pets"], "unknown forget command pets"],
       [["analyze"], "analyze needs <file>"],

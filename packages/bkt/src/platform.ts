@@ -52,6 +52,7 @@ export interface Platform {
   readonly nativeKeyring: string;
   keyring(): Keyring | null;
   windowCommand(url: string, profile: string): string[];
+  commandLine(pid: number): string | null;
   secureDir(path: string): string;
   self(): Owner;
   readonly peerTools: string[];
@@ -64,14 +65,40 @@ export interface Platform {
   timerDir(): string | null;
 }
 
+export const WINDOW_DISK_CACHE_BYTES = 64 * 1024 * 1024;
+
+export const LEAN_WINDOW_FLAGS = [
+  "--disable-component-update",
+  "--disable-background-networking",
+  "--disable-sync",
+  `--disk-cache-size=${WINDOW_DISK_CACHE_BYTES}`,
+  `--media-cache-size=${WINDOW_DISK_CACHE_BYTES / 4}`,
+];
+
 export const CHROMIUM_FLAGS = (url: string, profile: string) => [
   `--app=${url}`,
   `--user-data-dir=${profile}`,
   "--disable-extensions",
   "--no-first-run",
   "--no-default-browser-check",
+  ...LEAN_WINDOW_FLAGS,
   "--window-size=1280,860",
 ];
+
+export function procCommandLine(pid: number, root = "/proc"): string | null {
+  try {
+    return readFileSync(posix.join(root, String(pid), "cmdline"), "utf8").replace(/\0/g, " ").trim() || null;
+  } catch {
+    return null;
+  }
+}
+
+export const PS = "/bin/ps";
+
+export function psCommandLine(run: ExecSync, pid: number): string | null {
+  const r = run([PS, "-ww", "-o", "command=", "-p", String(pid)]);
+  return r.code === 0 ? r.stdout.trim() || null : null;
+}
 
 const LINUX_BROWSERS = ["chromium-browser", "chromium", "google-chrome", "google-chrome-stable", "brave-browser"];
 const MAC_BROWSERS = ["Google Chrome", "Chromium", "Brave Browser", "Microsoft Edge"];
@@ -255,6 +282,7 @@ function linux(d: PlatformDeps): Platform {
       }
       return ["xdg-open", url];
     },
+    commandLine: (pid) => procCommandLine(pid),
     secureDir: (path) => unixSecure(path),
     self: () => d.uid(),
     peerTools: ["/proc/net/tcp"],
@@ -277,11 +305,12 @@ function darwin(d: PlatformDeps): Platform {
     windowCommand(url, profile) {
       for (const name of MAC_BROWSERS) {
         for (const root of ["/Applications", posix.join(d.home, "Applications")]) {
-          if (d.exists(posix.join(root, `${name}.app`))) return ["open", "-na", name, "--args", ...CHROMIUM_FLAGS(url, profile)];
+          if (d.exists(posix.join(root, `${name}.app`))) return ["open", "-W", "-na", name, "--args", ...CHROMIUM_FLAGS(url, profile)];
         }
       }
       return ["open", url];
     },
+    commandLine: (pid) => psCommandLine(d.execSync, pid),
     secureDir: (path) => unixSecure(path),
     self: () => d.uid(),
     peerTools: [LSOF],
@@ -312,6 +341,10 @@ function windows(d: PlatformDeps): Platform {
       const bin = browsers.find((b) => d.exists(b));
       if (bin) return [bin, ...CHROMIUM_FLAGS(url, profile)];
       return ["cmd.exe", "/d", "/c", "start", '""', url.replace(/[&|<>^]/g, "^$&")];
+    },
+    commandLine(pid) {
+      const r = d.execSync([powershell, ...PS_FLAGS, `(Get-CimInstance Win32_Process -Filter "ProcessId=${Math.trunc(pid)}").CommandLine`]);
+      return r.code === 0 ? r.stdout.trim() || null : null;
     },
     secureDir: (path) => windowsSecure(d, path),
     self: () => windowsUser(d),

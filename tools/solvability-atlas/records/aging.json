@@ -1,0 +1,472 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "aging",
+ "title": "Programmed versus stochastic aging",
+ "statement": {
+  "text": "Senescence or biological aging is the gradual deterioration of functional characteristics in living organisms. Whole organism senescence involves an increase in death rates or a decrease in fecundity with increasing age, at least in the later part of an organism's life cycle. However, the effects of senescence can be delayed. The 1934 discovery that calorie restriction can extend lifespans by 50% in rats, the existence of species having negligible senescence, and the existence of potentially immortal organisms such as members of the genus Hydra have motivated research into delaying senescence and thus age-related diseases. Rare human mutations can cause accelerated aging diseases.",
+  "source": "https://en.wikipedia.org/wiki/Senescence",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Senescence",
+   "url": "https://en.wikipedia.org/wiki/Senescence"
+  }
+ },
+ "aliases": [
+  "Senescence",
+  "biological aging"
+ ],
+ "branch": "biophysics",
+ "level": 5,
+ "industries": [
+  "longevity",
+  "pharma",
+  "aging",
+  "dermatology"
+ ],
+ "posed": 1952,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1952,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2018283061",
+   "title": "Aging and Immortality: Quasi-Programmed Senescence and Its Pharmacologic Inhibition",
+   "year": 2006,
+   "cited_by_count": 384,
+   "doi": "https://doi.org/10.4161/cc.5.18.3288",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2081490071",
+   "title": "Superoxide is a mediator of an altruistic aging program in Saccharomyces cerevisiae",
+   "year": 2004,
+   "cited_by_count": 356,
+   "doi": "https://doi.org/10.1083/jcb.200404002",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4378515677",
+   "title": "Skin aging from mechanisms to interventions: focusing on dermal aging",
+   "year": 2023,
+   "cited_by_count": 290,
+   "doi": "https://doi.org/10.3389/fphys.2023.1195272",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4254256886",
+   "title": "Photoaging",
+   "year": 2013,
+   "cited_by_count": 216,
+   "doi": "https://doi.org/10.1038/skinbio.2013.176",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2099469300",
+   "title": "Prevention and Treatment of Skin Aging",
+   "year": 2006,
+   "cited_by_count": 172,
+   "doi": "https://doi.org/10.1196/annals.1354.044",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2509947049",
+   "title": "Can aging be programmed? A critical literature review",
+   "year": 2016,
+   "cited_by_count": 159,
+   "doi": "https://doi.org/10.1111/acel.12510",
+   "role": "survey",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1983977241",
+   "title": "Aging is not programmed",
+   "year": 2013,
+   "cited_by_count": 149,
+   "doi": "https://doi.org/10.4161/cc.27188",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1985002063",
+   "title": "COPD as a Disease of Accelerated Lung Aging",
+   "year": 2009,
+   "cited_by_count": 657,
+   "doi": "https://doi.org/10.1378/chest.08-1419",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1988248325",
+   "title": "The pineal gland and melatonin in relation to aging: A summary of the theories and of the data",
+   "year": 1995,
+   "cited_by_count": 286,
+   "doi": "https://doi.org/10.1016/0531-5565(94)00045-5",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1938310987",
+   "title": "A mutation in the age-1 gene in Caenorhabditis elegans lengthens life and reduces hermaphrodite fertility.",
+   "year": 1988,
+   "cited_by_count": 1028,
+   "doi": "https://doi.org/10.1093/genetics/118.1.75",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2567186731",
+   "title": "Volumetric breast density affects performance of digital screening mammography",
+   "year": 2016,
+   "cited_by_count": 166,
+   "doi": "https://doi.org/10.1007/s10549-016-4090-7",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 9,
+  "off-field": 5
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1951": 1,
+   "1961": 1,
+   "1966": 1,
+   "1971": 1,
+   "1974": 1,
+   "1976": 2,
+   "1977": 1,
+   "1978": 1,
+   "1979": 4,
+   "1980": 3,
+   "1981": 3,
+   "1982": 1,
+   "1983": 2,
+   "1984": 4,
+   "1985": 7,
+   "1986": 6,
+   "1987": 3,
+   "1988": 8,
+   "1989": 5,
+   "1990": 4,
+   "1991": 5,
+   "1992": 2,
+   "1993": 9,
+   "1994": 6,
+   "1995": 6,
+   "1996": 10,
+   "1997": 7,
+   "1998": 5,
+   "1999": 5,
+   "2000": 8,
+   "2001": 17,
+   "2002": 13,
+   "2003": 7,
+   "2004": 17,
+   "2005": 10,
+   "2006": 10,
+   "2007": 17,
+   "2008": 17,
+   "2009": 15,
+   "2010": 21,
+   "2011": 21,
+   "2012": 24,
+   "2013": 34,
+   "2014": 35,
+   "2015": 49,
+   "2016": 27,
+   "2017": 49,
+   "2018": 37,
+   "2019": 49,
+   "2020": 42,
+   "2021": 59,
+   "2022": 36,
+   "2023": 56,
+   "2024": 51,
+   "2025": 83,
+   "2026": 75
+  },
+  "openalex_total": 993,
+  "arxiv_total": 7,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22programmed+aging%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5110552037",
+   "name": "Mikhail V. Blagosklonny",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5068528892",
+   "name": "Paola Fabrizio",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5001018706",
+   "name": "Luisa Battistella",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5057102932",
+   "name": "Raffaello Vardavas",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5029869734",
+   "name": "Cristina Gattazzo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5056968019",
+   "name": "Lee-Loung Liou",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5022450636",
+   "name": "Alberto Diaspro",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5016119761",
+   "name": "Janis W. Dossen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5111749095",
+   "name": "Edith Butler Gralla",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5073120806",
+   "name": "Valter Daniel Longo",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5041356901",
+   "name": "Sun Hye Shin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5012781165",
+   "name": "Yoon Hwan Lee",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5060916627",
+   "name": "Nark‐Kyoung Rho",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5018285744",
+   "name": "Kui Young Park",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5032356095",
+   "name": "Barbara A. Gilchrest",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I204250578",
+   "name": "University of California, Irvine",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I47508984",
+   "name": "Imperial College London",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1174212",
+   "name": "University of Southern California",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I161318765",
+   "name": "University of California, Los Angeles",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I83816512",
+   "name": "University of Genoa",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I67900169",
+   "name": "Chung-Ang University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I111088046",
+   "name": "Boston University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210150491",
+   "name": "Newcastle Hospitals - Campus for Ageing and Vitality",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I84884186",
+   "name": "Newcastle University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I124055696",
+   "name": "University of Copenhagen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1292894508",
+   "name": "Roswell Park Comprehensive Cancer Center",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I165951966",
+   "name": "The University of Texas at San Antonio Health Science Center",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I193662353",
+   "name": "Utrecht University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I3018483916",
+   "name": "University Medical Center Utrecht",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I145872427",
+   "name": "Radboud University Nijmegen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "mitoredox",
+   "why": "shared markets: longevity, pharma; same branch"
+  },
+  {
+   "id": "pfr",
+   "why": "shared keywords: entropy"
+  },
+  {
+   "id": "bioelectric",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "circadian",
+   "why": "shared markets: longevity; same branch"
+  },
+  {
+   "id": "foldpath",
+   "why": "shared markets: pharma; same branch"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID41811567",
+   "title": "Interplay Between Autophagy, Cellular Senescence, and Brain Aging: Neuroprotective Implications of Intermittent Fasting.",
+   "source": "pubmed/PMID-41811567-interplay-between-autophagy-cellular-senescence-and-brain-ag"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Senescence",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22programmed+aging%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22programmed+aging%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "11 relevant works of 25 considered, 993 works with the phrase"
+ }
+}

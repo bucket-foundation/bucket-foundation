@@ -336,21 +336,20 @@ export default function Page() {
         <H3>5.1 · A zero-key path: the agent never holds a wallet</H3>
         <p>
           bucket.foundation operates a public, budget-capped, server-side proxy
-          at <code>/api/research</code>. Any x402 settlement happens{" "}
+          at <code>/api/research</code>. Today the server signs no x402 payment
+          and no fee settles: the proxy answers from the bucket.foundation canon
+          index with <code>receipt.status: &quot;served_from_canon&quot;</code>{" "}
+          and <code>price_usd: 0</code>. The design places any x402 settlement{" "}
           <strong className="text-[color:var(--parchment)]">entirely
-          server-side</strong>, between bucket.foundation&apos;s own funded
-          wallet and the upstream gateway, before the caller sees anything. If
-          the server cannot settle — wallet not yet funded, upstream down, daily
-          cap reached — it does <strong className="text-[color:var(--parchment)]">not</strong>{" "}
-          hand the caller a challenge to execute. It transparently answers from
-          the already-paid bucket.foundation canon index and sets{" "}
-          <code>receipt.status: &quot;served_from_canon&quot;</code>. The caller
-          still gets a real, populated, citeable envelope. In neither state is
-          there a payment step for the caller.
+          server-side</strong>, between bucket.foundation&apos;s own wallet and
+          the upstream gateway, before the caller sees anything. The proxy
+          never hands the caller a challenge to execute. The caller gets a
+          real, populated, citeable envelope, and there is no payment step for
+          the caller.
         </p>
         <p>
-          The funded-wallet path is held to the same caller-facing shape:
-          settlement is performed only by a server-side signer, and the gateway
+          The gateway path is held to the same caller-facing shape:
+          settlement is reserved for a server-side signer, and the gateway
           envelope is passed through a merge step that{" "}
           <strong className="text-[color:var(--parchment)]">deletes any{" "}
           <code>challenge</code></strong> the upstream might leak before the

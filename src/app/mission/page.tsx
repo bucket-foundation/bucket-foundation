@@ -44,7 +44,7 @@ export default function Page() {
           <p className="text-[16px] leading-[1.7] text-[color:var(--basalt-2)]">
             <strong className="text-[color:var(--basalt)]">In short.</strong> Schools taught the world to read and left
             producing knowledge to a few. Bucket makes the foundations free to read, gives anyone tools to do research on
-            them, and pays the author each time a work is cited. The canon and the research tools are live and Research OS
+            them, and is building the rail that pays the author each time a work is cited. That rail does not settle yet. The canon and the research tools are live and Research OS
             is in private testing. The research below is why.
           </p>
           <p className="mt-4 text-[16px] leading-[1.7] text-[color:var(--basalt-2)]">
@@ -247,7 +247,7 @@ export default function Page() {
             title="cite-forever / feed402 · author-routed economics"
             href="/cite-forever/v0.1"
             cta="the cite-forever license"
-            body="Paid-to-cite, routed to the author — not the publisher. Attacks the one gate the open-access movement left fully standing: academic publishers earning ~38% margins on donated labor, selling publicly funded work back to the public."
+            body="A license that prices citation and routes the fee to the author. The fee rail is specified and does not settle yet. It targets the one gate the open-access movement left fully standing: academic publishers earning ~38% margins on donated labor, selling publicly funded work back to the public."
           />
           <Lever
             n="04"

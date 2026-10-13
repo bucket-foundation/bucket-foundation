@@ -1,0 +1,58 @@
+{
+  "schema": "bucket.analysis/1",
+  "name": "bad",
+  "created": "2026-10-01T15:30:40",
+  "forced": false,
+  "form": {
+    "file": "in/bad.csv",
+    "format": "csv",
+    "rows": 1,
+    "columns": [
+      {
+        "name": "name",
+        "base": "name",
+        "unit": null,
+        "type": "string",
+        "type_share": 1.0,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "distinct": 1
+      },
+      {
+        "name": "name.1",
+        "base": "name.1",
+        "unit": null,
+        "type": "string",
+        "type_share": 1.0,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "distinct": 1
+      }
+    ],
+    "errors": [
+      {
+        "code": "E_DUP_COLUMN",
+        "where": "header",
+        "message": "duplicate columns ['name']"
+      },
+      {
+        "code": "E_NO_NUMERIC",
+        "where": "columns",
+        "message": "no numeric columns to analyze"
+      }
+    ],
+    "warnings": [
+      {
+        "code": "W_NO_TIME",
+        "where": "header",
+        "message": "no time index found; trend, seasonality and helix skipped"
+      }
+    ],
+    "truncated": false,
+    "time_index": null,
+    "duplicates": 0,
+    "numeric": [],
+    "ok": false
+  },
+  "dir": "out/bad-2026-10-01"
+}

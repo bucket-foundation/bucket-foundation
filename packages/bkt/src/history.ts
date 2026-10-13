@@ -1,5 +1,6 @@
 import { parseProductionsSnapshot, SnapshotError, type ProductionsSnapshot } from "../../../src/lib/research-os/productions-snapshot";
 import { open, seal } from "./crypto";
+import { HISTORY_DEFAULT_DAYS, HISTORY_MAX_DAYS, studyHistory, type StudyHistory } from "./core/history";
 import type { Route } from "./serve";
 import type { Store } from "./store";
 
@@ -35,6 +36,10 @@ export class HistoryStore {
       .run(seal(this.key, doc, "history_snapshot"), now);
   }
 
+  study(now: number, days?: number): StudyHistory {
+    return studyHistory(this.store.db, now, days);
+  }
+
   forget() {
     this.store.db.run("delete from history_snapshot");
   }
@@ -62,7 +67,11 @@ const json = (body: unknown, status = 200) =>
 
 export function historyRoutes(h: HistoryStore, now: () => number = Date.now): Record<string, Route> {
   return {
-    "GET /local/history": () => json({ snapshot: h.snapshot(), activity: h.activity(now()) }),
+    "GET /local/history": (_req, url) => {
+      const raw = url.searchParams.get("days");
+      const days = raw !== null && /^\d{1,4}$/.test(raw) && Number(raw) >= 1 && Number(raw) <= HISTORY_MAX_DAYS ? Number(raw) : HISTORY_DEFAULT_DAYS;
+      return json({ snapshot: h.snapshot(), activity: h.activity(now()), study: h.study(now(), days) });
+    },
     "POST /local/history/import": async (req) => {
       let raw: unknown;
       try {

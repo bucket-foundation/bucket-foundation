@@ -110,7 +110,7 @@ test("the map is the graph", async () => {
   const page = staff;
   await page.goto("/research-os/map?branch=02-physics");
   await expect(page.getByRole("heading", { name: /the graph/i })).toBeVisible();
-  await expect(page.getByRole("img", { name: /02-physics graph/i })).toBeVisible();
+  await expect(page.getByRole("img", { name: "physics graph", exact: true })).toBeVisible();
   await expect(page.getByText(/nodes · /)).toBeVisible();
 });
 

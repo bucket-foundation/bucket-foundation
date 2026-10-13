@@ -15,9 +15,9 @@ const item = (id: string, branch: string, answer: string): Item => ({
 const pool = [item("a", "physics", "A"), item("b", "physics", "B"), item("c", "physics", "C"), item("d", "physics", "D"), item("e", "math", "E")];
 
 describe("buildQuestion", () => {
-  test("has the answer once and three same-branch distractors", () => {
+  test("has the answer once and two same-branch distractors", () => {
     const q = buildQuestion(pool[0], pool, "s1");
-    expect(q.choices).toHaveLength(4);
+    expect(q.choices).toHaveLength(3);
     expect(q.choices[q.answerIndex]).toBe("A");
     expect(q.choices.filter((c) => c === "A")).toHaveLength(1);
     expect(q.choices).not.toContain("E");
@@ -29,7 +29,7 @@ describe("buildQuestion", () => {
 
   test("falls back to other branches when a branch is short", () => {
     const q = buildQuestion(pool[4], pool, "s2");
-    expect(q.choices).toHaveLength(4);
+    expect(q.choices).toHaveLength(3);
     expect(q.choices[q.answerIndex]).toBe("E");
   });
 
@@ -37,6 +37,21 @@ describe("buildQuestion", () => {
     const dup = [item("x", "p", "same"), item("y", "p", "same"), item("z", "p", "other")];
     const q = buildQuestion(dup[0], dup, "s");
     expect(q.choices.sort()).toEqual(["other", "same"]);
+  });
+
+  test("never offers the answer of another question on the same atom", () => {
+    const sibling = { ...item("a2", "physics", "A2"), atomId: "a" };
+    for (const seed of ["s1", "s2", "s3", "s4", "s5", "s6"]) {
+      const q = buildQuestion(pool[0], [...pool, sibling], seed);
+      expect(q.choices).toHaveLength(3);
+      expect(q.choices).not.toContain("A2");
+    }
+  });
+
+  test("an atom id shared across branches names one concept and stays out of the distractors", () => {
+    const twin = { ...item("m", "math", "M"), atomId: "a" };
+    const wide = [...pool, twin, item("f", "math", "F"), item("g", "math", "G")];
+    for (const seed of ["s1", "s2", "s3", "s4", "s5", "s6"]) expect(buildQuestion(pool[0], wide, seed, 6).choices).not.toContain("M");
   });
 
   test("time limit stays within 20 to 90 seconds", () => {

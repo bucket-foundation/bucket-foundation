@@ -4,8 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
+import { InlineMath } from "@/components/math/InlineMath";
 import { DONE_EVENT, START_EVENT, STORAGE_KEY, TICK_MS, initialState, normalizeState, onWorkSurface, tick, type TriggerState } from "@/lib/research-os/work-quiz/trigger";
-import { TYPE_LABEL, type PublicQuestion } from "@/lib/research-os/work-quiz/types";
+import { choiceLang, textDir, wordCaption } from "@/lib/research-os/work-quiz/languages";
+import { TYPE_LABEL, retiredNotice, type PublicQuestion } from "@/lib/research-os/work-quiz/types";
 import type { IssueResult, QuizResult } from "@/lib/research-os/work-quiz/service";
 
 const API = "/api/research-os/work-quiz";
@@ -59,7 +61,7 @@ export default function WorkQuiz({ enabled }: { enabled: boolean }) {
       }
       const body = (await res.json()) as IssueResult;
       if (body.status !== "issued") {
-        if (mode !== "surprise") setPhase({ kind: "error", message: body.reason === "nothing_due" ? "Nothing is due for review." : "No work sources were found on this machine." });
+        if (mode !== "surprise") setPhase({ kind: "error", message: [body.reason === "nothing_due" ? "Nothing is due for review." : "No work sources were found on this machine.", retiredNotice(body.retired)].filter(Boolean).join(" ") });
         return;
       }
       setNumeric("");
@@ -189,14 +191,18 @@ export default function WorkQuiz({ enabled }: { enabled: boolean }) {
                   </div>
                 )}
               </div>
-              <p className="mt-3 text-[15px] leading-[1.5] text-[color:var(--basalt)]">{q.prompt}</p>
+              {"issued" in phase && phase.issued.retired > 0 && (
+                <p role="status" className="mt-2 text-[12px] text-[color:var(--basalt-3)]">{retiredNotice(phase.issued.retired)}</p>
+              )}
+              <p className="mt-3 text-[15px] leading-[1.5] text-[color:var(--basalt)]"><InlineMath text={q.prompt} /></p>
               {q.lines.length > 0 && (
                 <div className="mt-3 border-l-2 border-[color:var(--hairline)] pl-3 flex flex-col gap-1">
                   {q.lines.map((l, i) => (
-                    <div key={i} className="text-[14px] leading-[1.5] text-[color:var(--basalt-2)]">{l}</div>
+                    <div key={i} dir={textDir(l)} lang={q.word?.lang ?? undefined} className={`leading-[1.5] text-[color:var(--basalt-2)] ${q.word ? "text-[22px]" : "text-[14px]"}`}><InlineMath text={l} /></div>
                   ))}
                 </div>
               )}
+              <WordCredit q={q} />
 
               {phase.kind === "asking" || phase.kind === "sending" ? (
                 q.choices ? (
@@ -211,7 +217,7 @@ export default function WorkQuiz({ enabled }: { enabled: boolean }) {
                         className="flex items-start gap-3 text-left border border-[color:var(--hairline)] bg-white/50 hover:bg-[color:var(--bone-2)] px-3 py-2 rounded-sm min-h-[44px] disabled:opacity-60"
                       >
                         <span className="font-mono text-[11px] text-[color:var(--basalt-3)] pt-0.5">{i + 1}</span>
-                        <span className="text-[14px] text-[color:var(--basalt)]">{c}</span>
+                        <span dir={textDir(c)} lang={choiceLang(q)} className={`text-[color:var(--basalt)] ${choiceLang(q) ? "text-[18px]" : "text-[14px]"}`}><InlineMath text={c} /></span>
                       </button>
                     ))}
                   </div>
@@ -258,6 +264,21 @@ export default function WorkQuiz({ enabled }: { enabled: boolean }) {
   );
 }
 
+export function WordCredit({ q }: { q: Pick<PublicQuestion, "word"> }) {
+  const caption = wordCaption(q);
+  if (!caption) return null;
+  return (
+    <p className="mt-2 text-[12px] text-[color:var(--basalt-3)]" data-testid="word-credit">
+      {caption.language ? `${caption.language} · ` : ""}
+      {caption.href ? (
+        <a href={caption.href} target="_blank" rel="noreferrer" className="underline underline-offset-4">{caption.credit}</a>
+      ) : (
+        caption.credit
+      )}
+    </p>
+  );
+}
+
 function Outcome({ result }: { result: QuizResult }) {
   const verdict = result.skipped ? "skipped" : result.timedOut ? "out of time" : result.correct ? "right" : "missed";
   const tone = result.correct ? "text-[color:var(--aegean-deep)]" : "text-[color:var(--basalt)]";
@@ -267,13 +288,13 @@ function Outcome({ result }: { result: QuizResult }) {
         {verdict} · {(result.elapsedMs / 1000).toFixed(1)}s
       </div>
       <div className="mt-2 text-[14px] text-[color:var(--basalt)]">
-        answer: <span className="font-medium">{result.answer}</span>
+        answer: <span dir={textDir(result.answer)} className="font-medium"><InlineMath text={result.answer} /></span>
         {result.response !== null && !result.correct ? <span className="text-[color:var(--basalt-3)]"> · you said {result.response}</span> : null}
       </div>
-      <p className="mt-1 text-[13px] leading-[1.5] text-[color:var(--basalt-2)]">{result.explain}</p>
+      <p className="mt-1 text-[13px] leading-[1.5] text-[color:var(--basalt-2)]"><InlineMath text={result.explain} /></p>
       {result.sources.length > 0 && (
         <ul className="mt-2 flex flex-col gap-1">
-          {result.sources.map((s) => (
+          {result.sources.slice(0, 1).map((s) => (
             <li key={s.ref} className="text-[12px] text-[color:var(--basalt-3)]">
               {s.href ? (
                 <a href={s.href} target="_blank" rel="noreferrer" className="underline underline-offset-4">{s.label}</a>
@@ -284,7 +305,14 @@ function Outcome({ result }: { result: QuizResult }) {
           ))}
         </ul>
       )}
-      {!result.correct && !result.skipped && result.learn && (
+      {!result.correct && !result.skipped && result.resource && (
+        <div className="mt-3 text-[13px]">
+          <Link href={result.resource.href} className="underline underline-offset-4 text-[color:var(--aegean-deep)]">
+            {result.resource.label}
+          </Link>
+        </div>
+      )}
+      {!result.correct && !result.skipped && !result.resource && result.learn && (
         <div className="mt-3 text-[13px]">
           <Link href={result.learn.href} className="underline underline-offset-4 text-[color:var(--aegean-deep)]">
             related lesson: {result.learn.title}

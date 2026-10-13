@@ -1,0 +1,4352 @@
+{
+ "schema": "bucket.solvability-atlas.forecast/v1",
+ "cutoff": 2021,
+ "built": "2026-10-08",
+ "model": "BAAI/bge-small-en-v1.5",
+ "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+ "k": 50,
+ "input_hash": "e2872875ea1f1cdd45fc307f1b4c468991fa351ffd8fc130aaa09058b2ee1a5a",
+ "solved": 261,
+ "threshold_bounded": 12,
+ "threshold": 0.665,
+ "rows": [
+  {
+   "id": "abc",
+   "branch": "mathematics",
+   "posed": 1985,
+   "words": 163,
+   "reach": 0.738,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "abiogenesis",
+   "branch": "biophysics",
+   "posed": 1924,
+   "words": 186,
+   "reach": 0.686,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "aging",
+   "branch": "biophysics",
+   "posed": 1952,
+   "words": 179,
+   "reach": 0.603,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "alignment",
+   "branch": "information",
+   "posed": 2014,
+   "words": 142,
+   "reach": 0.651,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "autoform",
+   "branch": "information",
+   "posed": 2018,
+   "words": 189,
+   "reach": 0.628,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "bhinfo",
+   "branch": "cosmology",
+   "posed": 1975,
+   "words": 199,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "bindingprob",
+   "branch": "mind",
+   "posed": 1981,
+   "words": 138,
+   "reach": 0.661,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "bioelectric",
+   "branch": "biophysics",
+   "posed": 1938,
+   "words": 222,
+   "reach": 0.677,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "blackscholes",
+   "branch": "mathematics",
+   "posed": 2014,
+   "words": 165,
+   "reach": 0.626,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "bqp",
+   "branch": "information",
+   "posed": 1993,
+   "words": 64,
+   "reach": 0.693,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "bsd",
+   "branch": "mathematics",
+   "posed": 1965,
+   "words": 175,
+   "reach": 0.722,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "busybeaver",
+   "branch": "information",
+   "posed": 1962,
+   "words": 182,
+   "reach": 0.731,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "catalysis",
+   "branch": "chemistry",
+   "posed": 1835,
+   "words": 196,
+   "reach": 0.604,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "circadian",
+   "branch": "biophysics",
+   "posed": 1960,
+   "words": 181,
+   "reach": 0.585,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "climate",
+   "branch": "physics",
+   "posed": 1896,
+   "words": 175,
+   "reach": 0.645,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "collatz",
+   "branch": "mathematics",
+   "posed": 1937,
+   "words": 193,
+   "reach": 0.754,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "consciousness",
+   "branch": "mind",
+   "posed": 1995,
+   "words": 180,
+   "reach": 0.63,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "cosmiccensor",
+   "branch": "cosmology",
+   "posed": 1969,
+   "words": 159,
+   "reach": 0.659,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "darkenergy",
+   "branch": "cosmology",
+   "posed": 1917,
+   "words": 119,
+   "reach": 0.651,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "darkmatter",
+   "branch": "cosmology",
+   "posed": 1933,
+   "words": 141,
+   "reach": 0.678,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dftfunc",
+   "branch": "chemistry",
+   "posed": 1965,
+   "words": 205,
+   "reach": 0.68,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-darpa-darpa-launch-challenge",
+   "branch": "applied",
+   "posed": 2018,
+   "words": 25,
+   "reach": 0.709,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-darpa-darpa-uavforge-challenge",
+   "branch": "applied",
+   "posed": 2011,
+   "words": 24,
+   "reach": 0.76,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-ab-initio-reactive-computer-aided-molecular-design",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 20,
+   "reach": 0.732,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-ammonia-as-an-ultimate-amino-source-in-transition",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 16,
+   "reach": 0.686,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-catalysts-by-design-the-power-of-theory",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 19,
+   "reach": 0.689,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-characterizing-the-conformationome",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 19,
+   "reach": 0.775,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-chemistry-enabling-an-economically-viable-co2-capt",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 17,
+   "reach": 0.8,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-computational-catalyst-design-feasible-or-fiction",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 16,
+   "reach": 0.655,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-controlling-silica-in-its-crystalline-and-amorphou",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 20,
+   "reach": 0.663,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-cost-effective-and-sustainable-use-of-precious-met",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 18,
+   "reach": 0.668,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-designing-polymer-electrolytes-for-safe-and-high-c",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 16,
+   "reach": 0.63,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-efficient-and-stable-perovskite-solar-cells",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 15,
+   "reach": 0.628,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-fast-electron-and-cation-coupled-transport-within",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 21,
+   "reach": 0.688,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-future-porous-materials",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 18,
+   "reach": 0.654,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-holy-grails-for-computational-organic-chemistry-an",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 19,
+   "reach": 0.726,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-large-scale-selective-functionalization-of-alkanes",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 15,
+   "reach": 0.685,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-living-biomaterials",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 18,
+   "reach": 0.718,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-nanomedicine-2-0",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 17,
+   "reach": 0.627,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-sea-spray-aerosol-as-the-chemical-link-between-oce",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 19,
+   "reach": 0.652,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-self-repairing-energy-materials",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 19,
+   "reach": 0.636,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-semiconductor-surface-chemistry-in-photocatalysis",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 18,
+   "reach": 0.663,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-site-selective-bond-activation-under-catalyst-cont",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 17,
+   "reach": 0.678,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-solar-fuels-and-solar-chemicals-industry",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 19,
+   "reach": 0.739,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-swallowing-a-surgeon-toward-clinical-nanorobots",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 15,
+   "reach": 0.699,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-toward-a-chemistry-of-consciousness",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 16,
+   "reach": 0.727,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-transition-from-prebiotic-chemistry-to-protobiolog",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 15,
+   "reach": 0.723,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-holy-grails-two-dimensional-conjugated-polymers-based-on-c-c-c",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 17,
+   "reach": 0.638,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-holy-grails-ultrasensitive-molecular-and-cellular-analysis-to",
+   "branch": "chemistry",
+   "posed": 2017,
+   "words": 17,
+   "reach": 0.663,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-neuro-23-are-single-cortical-neurons-independent-or-members",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 26,
+   "reach": 0.674,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-can-we-understand-the-action-of-brain-in-natural-e",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 16,
+   "reach": 0.695,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-do-qualia-metaphor-language-and-abstract-thought-e",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 17,
+   "reach": 0.678,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-how-can-neural-systems-compute-in-the-time-domain",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 21,
+   "reach": 0.685,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-how-common-are-neural-codes",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 19,
+   "reach": 0.66,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-neuro-23-how-do-neurons-compute",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 15,
+   "reach": 0.692,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-how-does-our-visual-system-achieve-shift-and-size",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 16,
+   "reach": 0.613,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-neuro-23-how-does-the-hearing-system-perform-auditory-scene",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 15,
+   "reach": 0.616,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-neuro-23-how-fast-is-neuronal-signal-transmission",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 19,
+   "reach": 0.68,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-shall-we-even-understand-the-fly-s-brain",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 20,
+   "reach": 0.643,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-neuro-23-to-what-extent-does-perception-depend-upon-action",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 18,
+   "reach": 0.639,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-neuro-23-to-what-extent-is-the-brain-reconfigurable",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 16,
+   "reach": 0.686,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-are-the-neural-correlates-of-consciousness",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 18,
+   "reach": 0.684,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-are-the-projective-fields-of-cortical-neurons",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 20,
+   "reach": 0.683,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-is-a-neuronal-map-how-does-it-arise-and-what",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 17,
+   "reach": 0.681,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-is-reflected-in-sensory-neocortical-activity",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 21,
+   "reach": 0.724,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-is-the-formal-computation-in-early-vision",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 19,
+   "reach": 0.688,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-is-the-function-of-the-thalamus",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 22,
+   "reach": 0.679,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-is-the-origin-and-function-of-irregular-neura",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 17,
+   "reach": 0.673,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-is-the-other-85-percent-of-v1-doing",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 19,
+   "reach": 0.696,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-what-is-the-role-of-top-down-connections",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 19,
+   "reach": 0.68,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-where-are-the-switches-on-this-thing",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 20,
+   "reach": 0.674,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-neuro-23-which-brain-functions-are-lateralized-and-why",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 17,
+   "reach": 0.639,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-are-neutrinos-their-own-antiparticles",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.766,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-are-political-and-economic-freedom-closely-tied",
+   "branch": "applied",
+   "posed": 2005,
+   "words": 15,
+   "reach": 0.682,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-are-stem-cells-at-the-heart-of-all-cancers",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.748,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-are-there-earthquake-precursors-that-can-lead-to-u",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.726,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-are-there-limits-to-rational-chemical-synthesis",
+   "branch": "chemistry",
+   "posed": 2005,
+   "words": 25,
+   "reach": 0.687,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-are-there-smaller-building-blocks-than-quarks",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.748,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-are-there-stable-high-atomic-number-elements",
+   "branch": "chemistry",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.696,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-are-we-alone-in-the-universe",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.681,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-can-cancers-be-controlled-rather-than-cured",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.694,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-can-researchers-make-a-perfect-optical-lens",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.66,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-can-the-laws-of-physics-be-unified",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.678,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-can-we-develop-a-general-theory-of-turbulent-flows",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.698,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-can-we-prevent-extinction",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.586,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-can-we-selectively-shut-off-immune-responses",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 26,
+   "reach": 0.753,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-do-deeper-principles-underlie-quantum-uncertainty",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.655,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-do-pheromones-influence-human-behavior",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.638,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-does-immunologic-memory-require-chronic-exposure-t",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-does-the-proton-decay",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 16,
+   "reach": 0.742,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-and-where-did-life-on-earth-arise",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.701,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-are-memories-stored-and-retrieved",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 26,
+   "reach": 0.697,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-can-genome-changes-other-than-mutations-be-inh",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.665,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-did-cooperative-behavior-evolve",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.626,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-did-flowers-evolve",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 16,
+   "reach": 0.609,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-do-limbs-fins-and-faces-develop-and-evolve",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.637,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-do-migrating-organisms-find-their-way",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.599,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-do-organs-and-whole-organisms-know-when-to-sto",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.591,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-do-planets-form",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 25,
+   "reach": 0.608,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-do-plants-make-cell-walls",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.594,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-do-prion-diseases-work",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.595,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-do-proteins-find-their-partners",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.659,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-does-a-single-somatic-cell-become-a-whole-plan",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.716,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-does-earth-s-interior-work",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 25,
+   "reach": 0.619,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-far-can-we-push-chemical-self-assembly",
+   "branch": "chemistry",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.711,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-hot-will-the-greenhouse-world-be",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.645,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-is-asymmetry-determined-in-the-embryo",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.663,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-is-plant-growth-controlled",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.601,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-many-forms-of-cell-death-are-there",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.627,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-many-kinds-of-humans-coexisted-in-the-recent-p",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.556,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-many-proteins-are-there-in-humans",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.736,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-many-species-are-there-on-earth",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.581,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-much-can-human-life-span-be-extended",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.633,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-much-do-vertebrates-depend-on-the-innate-immun",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.724,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-much-of-personality-is-genetic",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.617,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-how-will-big-pictures-emerge-from-a-sea-of-biologi",
+   "branch": "information",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.738,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-how-will-ecosystems-respond-to-global-warming",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.654,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-is-an-effective-hiv-vaccine-feasible",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.663,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-is-inflammation-a-major-factor-in-all-chronic-dise",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.66,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-is-it-possible-to-create-magnetic-semiconductors-t",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.693,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-is-morality-hardwired-into-the-brain",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.642,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-is-ours-the-only-universe",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.676,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-is-superfluidity-possible-in-a-solid",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.662,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-is-there-a-unified-theory-explaining-all-correlate",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.671,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-is-there-or-was-there-life-elsewhere-in-the-solar",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.647,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-to-what-extent-are-genetic-variation-and-personal",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.613,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-to-what-extent-can-we-stave-off-alzheimer-s",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.64,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-are-human-races-and-how-did-they-develop",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.666,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-are-the-evolutionary-roots-of-language-and-mu",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.666,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-are-the-limits-of-conventional-computing",
+   "branch": "information",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.703,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-are-the-limits-of-learning-by-machines",
+   "branch": "information",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.707,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-are-the-roots-of-human-culture",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.612,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-can-replace-cheap-oil-and-when",
+   "branch": "applied",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.69,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-caused-mass-extinctions",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.573,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-causes-autism",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 16,
+   "reach": 0.617,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-causes-ice-ages",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.645,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-causes-reversals-in-earth-s-magnetic-field",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.703,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-causes-schizophrenia",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 17,
+   "reach": 0.56,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-controls-organ-regeneration",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.668,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-determines-species-diversity",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.605,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-drives-the-solar-magnetic-cycle",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.701,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-drove-cosmic-inflation",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.695,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-enables-cellular-components-to-copy-themselve",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.735,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-gave-rise-to-modern-human-behavior",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.65,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-genetic-changes-made-us-uniquely-human",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.618,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-impact-do-large-government-deficits-have-on-i",
+   "branch": "applied",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.682,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-is-a-species",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.595,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-all-that-junk-doing-in-our-genomes",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.701,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-basis-of-variation-in-stress-tolerance",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.557,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-biological-basis-of-addiction",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.59,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-biological-basis-of-consciousness",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.683,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-biological-root-of-sexual-orientation",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.627,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-most-powerful-laser-researchers-can-bu",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.669,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-nature-of-black-holes",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.643,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-nature-of-gravity",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.643,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-nature-of-the-glassy-state",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.65,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-origin-of-homochirality-in-nature",
+   "branch": "chemistry",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.671,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-pairing-mechanism-behind-high-temperat",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.6,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-structure-of-water",
+   "branch": "chemistry",
+   "posed": 2005,
+   "words": 23,
+   "reach": 0.658,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-ultimate-efficiency-of-photovoltaic-ce",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.68,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-is-the-universe-made-of",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 23,
+   "reach": 0.634,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-keeps-intracellular-traffic-on-course",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.611,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-powers-quasars",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 25,
+   "reach": 0.737,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-role-do-telomeres-and-centromeres-play-in-gen",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.728,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-what-roles-do-different-forms-of-rna-play-in-genom",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.636,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-synchronizes-an-organism-s-circadian-clocks",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 23,
+   "reach": 0.624,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-what-triggers-puberty",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.571,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-when-and-how-did-the-first-stars-and-galaxies-form",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.677,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-where-do-ultrahigh-energy-cosmic-rays-come-from",
+   "branch": "cosmology",
+   "posed": 2005,
+   "words": 21,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-who-was-luca-the-last-universal-common-ancestor",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 23,
+   "reach": 0.608,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-why-are-some-genomes-big-and-others-compact",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 22,
+   "reach": 0.667,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-why-are-there-critical-periods-for-language-learni",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.605,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-why-aren-t-all-plants-immune-to-all-diseases",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 16,
+   "reach": 0.673,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-why-do-humans-have-so-few-genes",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 24,
+   "reach": 0.688,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-why-do-some-countries-grow-and-others-stagnate",
+   "branch": "applied",
+   "posed": 2005,
+   "words": 15,
+   "reach": 0.702,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-why-do-we-sleep",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.579,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-why-does-lateral-transfer-occur-in-so-many-species",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.721,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-why-doesn-t-a-pregnant-woman-reject-her-fetus",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.674,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-why-has-poverty-increased-and-life-expectancy-decl",
+   "branch": "applied",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.558,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-why-is-there-more-matter-than-antimatter",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.662,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-why-is-time-different-from-other-dimensions",
+   "branch": "physics",
+   "posed": 2005,
+   "words": 20,
+   "reach": 0.655,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-why-were-some-dinosaurs-so-large",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 25,
+   "reach": 0.596,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-will-fusion-always-be-the-energy-source-of-the-fut",
+   "branch": "applied",
+   "posed": 2005,
+   "words": 19,
+   "reach": 0.711,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2005-will-malthus-continue-to-be-wrong",
+   "branch": "applied",
+   "posed": 2005,
+   "words": 25,
+   "reach": 0.64,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2005-will-there-ever-be-a-tree-of-life-that-systematist",
+   "branch": "biophysics",
+   "posed": 2005,
+   "words": 18,
+   "reach": 0.7,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-are-there-any-particles-that-behave-oppositely-to",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.719,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-are-there-more-color-pigments-to-discover",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 25,
+   "reach": 0.64,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-are-we-alone-in-the-universe-2021-list",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.659,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-a-cell-be-artificially-synthesized",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.743,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-a-human-tissue-or-organ-be-fully-regenerated",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 24,
+   "reach": 0.682,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-ai-replace-a-doctor",
+   "branch": "information",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.729,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-dna-act-as-an-information-storage-medium",
+   "branch": "information",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.724,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-human-memory-be-stored-manipulated-and-transpl",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.7,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-humans-hibernate",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.652,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-humans-make-intense-lasers-with-incoherence-co",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.65,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-quantum-artificial-intelligence-imitate-the-hu",
+   "branch": "information",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.758,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-robots-or-ais-have-human-creativity",
+   "branch": "information",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.735,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-topological-quantum-computing-be-realized",
+   "branch": "information",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.669,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "dl-science-2021-can-we-accurately-simulate-the-macro-and-microworl",
+   "branch": "information",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.734,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-we-achieve-a-situation-where-every-material-ca",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.646,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-we-better-diagnose-and-treat-complex-mental-di",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.638,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-we-create-an-environmentally-friendly-replacem",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.638,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-we-cure-neurodegenerative-diseases",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.644,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-we-design-and-manufacture-medicines-customized",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 22,
+   "reach": 0.751,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-we-ever-overcome-antibiotic-resistance",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.761,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-we-make-a-real-human-size-invisibility-cloak",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.644,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-we-predict-the-next-pandemic",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.71,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-can-we-stop-global-climate-change",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.639,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-we-stop-ourselves-from-aging",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.653,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-can-xenotransplantation-solve-the-shortage-of-dono",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.73,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-could-we-integrate-with-computers-to-form-a-human",
+   "branch": "information",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.716,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-could-we-live-in-a-fossil-fuel-free-world",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.636,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-how-are-biomolecules-organized-in-cells-to-functio",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.672,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-how-are-pulsars-formed",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.729,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-how-can-matter-be-programmed-into-living-materials",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.707,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-how-can-we-better-manage-the-world-s-plastic-waste",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.614,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-how-can-we-break-the-current-limit-on-energy-conve",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.709,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-how-can-we-develop-manufacturing-systems-on-mars",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.644,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-how-can-we-measure-interface-phenomena-on-the-micr",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.667,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-how-did-speech-evolve-and-what-parts-of-the-brain",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.659,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-how-do-migratory-animals-know-where-they-re-going",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.647,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-how-do-organisms-evolve",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.65,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-how-does-group-intelligence-emerge",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.685,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-how-is-immune-homeostasis-maintained-and-regulated",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.724,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-how-many-dimensions-are-there-in-space",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.67,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "dl-science-2021-how-many-species-are-there-on-earth-2021-list",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.594,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-how-might-genome-editing-be-used-to-cure-disease",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.686,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-how-smart-are-nonhuman-animals",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.63,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-how-will-the-next-generation-of-vaccines-be-made",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.638,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-is-a-future-of-only-self-driving-cars-realistic",
+   "branch": "information",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.815,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-is-de-extinction-possible",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 22,
+   "reach": 0.648,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-is-einstein-s-general-theory-of-relativity-correct",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 23,
+   "reach": 0.664,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-is-it-possible-to-live-permanently-on-another-plan",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.676,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-is-it-possible-to-predict-the-future",
+   "branch": "information",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.698,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-is-it-possible-to-understand-the-structure-of-comp",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 22,
+   "reach": 0.697,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-is-our-milky-way-galaxy-special",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.741,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-is-quantum-many-body-entanglement-more-fundamental",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.671,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "dl-science-2021-is-there-a-diffraction-limit",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.659,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-is-there-a-limit-to-human-intelligence",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.66,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-is-there-a-scientific-basis-to-the-meridian-system",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.615,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-is-there-an-upper-limit-to-computer-processing-spe",
+   "branch": "information",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.695,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-is-water-necessary-for-all-life-in-the-universe-or",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.696,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-are-the-coding-principles-embedded-in-neurona",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.696,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-are-the-fundamental-principles-of-collective",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.688,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-are-the-limits-of-heat-transfer-in-matter",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.676,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-are-the-smallest-building-blocks-of-matter",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.731,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-could-help-conservation-of-the-oceans",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.649,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-creates-the-earth-s-magnetic-field",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.694,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-drives-reproduction-in-living-systems",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.723,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-genes-make-us-uniquely-human",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.6,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-happens-if-all-the-ice-on-the-planet-melts",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 23,
+   "reach": 0.602,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-addiction-and-how-does-it-work",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.625,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-dark-matter",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.697,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-is-gravity",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.614,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-preventing-humans-from-carrying-out-deep-s",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.601,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-quantum-uncertainty-and-why-is-it-importan",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.627,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-etiology-of-autism",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.595,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-future-for-energy-storage",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 22,
+   "reach": 0.665,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-future-of-hydrogen-energy",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.719,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-maximum-speed-to-which-we-can-accelera",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.701,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-microscopic-mechanism-for-high-tempera",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.626,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-optimum-hardware-for-quantum-computers",
+   "branch": "information",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.663,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-origin-of-cosmic-rays",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.641,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-origin-of-high-energy-cosmic-neutrinos",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.675,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-origin-of-mass",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.658,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-shape-of-the-universe",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.667,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-smallest-scale-of-space-time",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.702,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-ultimate-statistical-invariance-of-tur",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.651,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-universe-made-of-2021-list",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.644,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-is-the-volume-composition-and-significance-of",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 22,
+   "reach": 0.559,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-what-makes-prime-numbers-so-special",
+   "branch": "mathematics",
+   "posed": 2021,
+   "words": 23,
+   "reach": 0.703,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "dl-science-2021-what-role-does-our-microbiome-play-in-health-and-d",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.687,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-when-will-the-universe-die-will-it-continue-to-exp",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.653,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-where-did-the-big-bang-start",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 23,
+   "reach": 0.679,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-where-do-human-emotions-originate",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.628,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-where-do-the-heavy-elements-in-the-universe-come-f",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.671,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-where-do-we-put-all-the-excess-carbon-dioxide",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.763,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-where-does-consciousness-lie",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.686,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-why-are-most-people-right-handed",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 20,
+   "reach": 0.575,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-why-are-some-genomes-so-big-and-others-so-small",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.697,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-why-can-only-some-cells-become-other-cells",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 22,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-why-did-dinosaurs-grow-to-be-so-big",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.596,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-why-do-black-holes-exist",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.702,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-why-do-humans-get-so-attached-to-dogs-and-cats",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.578,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-why-do-we-fall-in-love",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.641,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-why-do-we-need-sleep",
+   "branch": "mind",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.624,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-why-do-we-stop-growing",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.589,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-why-does-life-require-chirality",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 23,
+   "reach": 0.684,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-why-does-time-seem-to-flow-in-only-one-direction",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.651,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-why-don-t-the-orbits-of-planets-decay-and-cause-co",
+   "branch": "cosmology",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.682,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-why-were-there-species-explosions-and-mass-extinct",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.581,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-will-ai-redefine-the-future-of-chemistry",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.692,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-artificial-intelligence-replace-humans",
+   "branch": "information",
+   "posed": 2021,
+   "words": 16,
+   "reach": 0.787,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-bose-einstein-condensates-see-wide-use-in-the",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.727,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-cold-fusion-ever-be-possible",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.701,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-humans-look-physically-different-in-the-futur",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.614,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-will-humans-one-day-have-to-leave-the-planet",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.633,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-will-injectable-disease-fighting-nanobots-ever-be",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.696,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-it-be-possible-to-create-sentient-robots",
+   "branch": "information",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.626,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-will-it-be-possible-to-cure-all-cancers",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 18,
+   "reach": 0.783,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-the-periodic-table-ever-be-complete",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 22,
+   "reach": 0.77,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-the-world-s-population-keep-growing-indefinit",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.63,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-will-there-ever-be-a-theory-of-everything",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.75,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-we-be-able-to-predict-catastrophic-weather-ev",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 17,
+   "reach": 0.715,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-we-ever-find-a-cure-for-the-common-cold",
+   "branch": "biophysics",
+   "posed": 2021,
+   "words": 19,
+   "reach": 0.633,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-science-2021-will-we-ever-travel-at-the-speed-of-light",
+   "branch": "physics",
+   "posed": 2021,
+   "words": 21,
+   "reach": 0.755,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-science-2021-will-we-soon-see-the-end-of-monocultures-like-whea",
+   "branch": "applied",
+   "posed": 2021,
+   "words": 15,
+   "reach": 0.639,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-xprize-ana-avatar-xprize",
+   "branch": "information",
+   "posed": 2018,
+   "words": 24,
+   "reach": 0.653,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "dl-xprize-archon-genomics-xprize",
+   "branch": "biophysics",
+   "posed": 2006,
+   "words": 28,
+   "reach": 0.834,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-xprize-google-lunar-xprize",
+   "branch": "applied",
+   "posed": 2007,
+   "words": 21,
+   "reach": 0.742,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-xprize-longitude-prize-on-antimicrobial-resistance",
+   "branch": "biophysics",
+   "posed": 2014,
+   "words": 21,
+   "reach": 0.67,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-xprize-qualcomm-tricorder-xprize",
+   "branch": "biophysics",
+   "posed": 2011,
+   "words": 24,
+   "reach": 0.726,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-xprize-xprize-carbon-removal",
+   "branch": "chemistry",
+   "posed": 2021,
+   "words": 26,
+   "reach": 0.75,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "dl-xprize-xprize-feed-the-next-billion",
+   "branch": "chemistry",
+   "posed": 2020,
+   "words": 17,
+   "reach": 0.597,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "ecc",
+   "branch": "information",
+   "posed": 1985,
+   "words": 144,
+   "reach": 0.667,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "factoring",
+   "branch": "information",
+   "posed": 1977,
+   "words": 163,
+   "reach": 0.695,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-1025-erdos-1025",
+   "branch": "mathematics",
+   "posed": 1958,
+   "words": 87,
+   "reach": 0.785,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-1026-erdos-1026",
+   "branch": "mathematics",
+   "posed": 1971,
+   "words": 166,
+   "reach": 0.785,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-1113-erdos-1113-filaseta-finch-kozek",
+   "branch": "mathematics",
+   "posed": 2008,
+   "words": 19,
+   "reach": 0.816,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-113-erdos-113",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 87,
+   "reach": 0.812,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-1134-erdos-1134",
+   "branch": "mathematics",
+   "posed": 1972,
+   "words": 177,
+   "reach": 0.83,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-1214-erdos-1214",
+   "branch": "mathematics",
+   "posed": 1988,
+   "words": 49,
+   "reach": 0.776,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-123-erdos-123-powers-2-3",
+   "branch": "mathematics",
+   "posed": 1992,
+   "words": 94,
+   "reach": 0.809,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-124-erdos124-zero",
+   "branch": "mathematics",
+   "posed": 1997,
+   "words": 67,
+   "reach": 0.8,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-147-erdos-147",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 136,
+   "reach": 0.828,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-19-erdos-19",
+   "branch": "mathematics",
+   "posed": 1972,
+   "words": 16,
+   "reach": 0.771,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-21-erdos-21",
+   "branch": "mathematics",
+   "posed": 1975,
+   "words": 179,
+   "reach": 0.801,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-29-erdos-29",
+   "branch": "mathematics",
+   "posed": 1932,
+   "words": 82,
+   "reach": 0.776,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-326-erdos-326",
+   "branch": "mathematics",
+   "posed": 1980,
+   "words": 85,
+   "reach": 0.781,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-384-erdos-384",
+   "branch": "mathematics",
+   "posed": 1980,
+   "words": 110,
+   "reach": 0.817,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-405-erdos-405",
+   "branch": "mathematics",
+   "posed": 1980,
+   "words": 37,
+   "reach": 0.813,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-493-erdos-493",
+   "branch": "mathematics",
+   "posed": 1961,
+   "words": 75,
+   "reach": 0.784,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-501-erdos-501-erdoshajnal-finite",
+   "branch": "mathematics",
+   "posed": 1960,
+   "words": 50,
+   "reach": 0.789,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-501-erdos-501-gladysz-size2",
+   "branch": "mathematics",
+   "posed": 1962,
+   "words": 59,
+   "reach": 0.763,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-501-erdos-501-hechler-ch",
+   "branch": "mathematics",
+   "posed": 1972,
+   "words": 46,
+   "reach": 0.761,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-501-erdos-501-newelski-pawlikowski-seredynski",
+   "branch": "mathematics",
+   "posed": 1987,
+   "words": 43,
+   "reach": 0.75,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-53-erdos-53",
+   "branch": "mathematics",
+   "posed": 1983,
+   "words": 111,
+   "reach": 0.798,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-57-erdos-57",
+   "branch": "mathematics",
+   "posed": 1966,
+   "words": 84,
+   "reach": 0.77,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-595-erdos-595",
+   "branch": "mathematics",
+   "posed": 1987,
+   "words": 31,
+   "reach": 0.822,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-617-erdos-617",
+   "branch": "mathematics",
+   "posed": 1999,
+   "words": 43,
+   "reach": 0.797,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-803-erdos-803",
+   "branch": "mathematics",
+   "posed": 1970,
+   "words": 117,
+   "reach": 0.816,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-806-erdos-806",
+   "branch": "mathematics",
+   "posed": 1977,
+   "words": 86,
+   "reach": 0.8,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-814-erdos-814",
+   "branch": "mathematics",
+   "posed": 1991,
+   "words": 102,
+   "reach": 0.832,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-83-erdos-83",
+   "branch": "mathematics",
+   "posed": 1961,
+   "words": 150,
+   "reach": 0.82,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-871-erdos-871",
+   "branch": "mathematics",
+   "posed": 1988,
+   "words": 117,
+   "reach": 0.759,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-894-erdos-894",
+   "branch": "mathematics",
+   "posed": 1987,
+   "words": 134,
+   "reach": 0.849,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-898-erdos-898",
+   "branch": "mathematics",
+   "posed": 1932,
+   "words": 58,
+   "reach": 0.781,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-904-erdos-904",
+   "branch": "mathematics",
+   "posed": 1975,
+   "words": 103,
+   "reach": 0.837,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-erdosproblems-944-erdos-944-dirac-conjecture",
+   "branch": "mathematics",
+   "posed": 1970,
+   "words": 36,
+   "reach": 0.785,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-erdosproblems-986-erdos-986",
+   "branch": "mathematics",
+   "posed": 1947,
+   "words": 73,
+   "reach": 0.815,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-hilbertproblems-5-hilbert-smith-conjecture-dimension-three",
+   "branch": "mathematics",
+   "posed": 2013,
+   "words": 13,
+   "reach": 0.81,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-littproblems-1-lam-litt-eisenstein",
+   "branch": "mathematics",
+   "posed": 1852,
+   "words": 23,
+   "reach": 0.791,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-millennium-bsd-weak-birch-swinnerton-dyer-conjecture",
+   "branch": "mathematics",
+   "posed": 1965,
+   "words": 8,
+   "reach": 0.831,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-bsd-weak-birch-swinnerton-dyer-conjecture-rat",
+   "branch": "mathematics",
+   "posed": 1965,
+   "words": 13,
+   "reach": 0.83,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-navierstokes-navier-stokes-breakdown-periodic",
+   "branch": "mathematics",
+   "posed": 2000,
+   "words": 19,
+   "reach": 0.694,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-navierstokes-navier-stokes-breakdown-r3",
+   "branch": "mathematics",
+   "posed": 2000,
+   "words": 19,
+   "reach": 0.688,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-navierstokes-navier-stokes-existence-and-smoothne",
+   "branch": "mathematics",
+   "posed": 2000,
+   "words": 10,
+   "reach": 0.723,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-navierstokes-navier-stokes-existence-and-smoothne-2",
+   "branch": "mathematics",
+   "posed": 2000,
+   "words": 10,
+   "reach": 0.716,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-poincare-poincare-conjecture-smooth-dimension-fou",
+   "branch": "mathematics",
+   "posed": 1904,
+   "words": 16,
+   "reach": 0.799,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-poincare-poincare-conjecture-smooth-known-cases",
+   "branch": "mathematics",
+   "posed": 1904,
+   "words": 23,
+   "reach": 0.819,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-poincare-poincare-conjecture-smooth-other-cases",
+   "branch": "mathematics",
+   "posed": 1904,
+   "words": 33,
+   "reach": 0.806,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-pvsnp-p-ne-np",
+   "branch": "mathematics",
+   "posed": 1971,
+   "words": 15,
+   "reach": 0.823,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-riemannhypothesis-generalized-riemann-hypothesis",
+   "branch": "mathematics",
+   "posed": 1884,
+   "words": 26,
+   "reach": 0.771,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-millennium-riemannhypothesis-riemannhypothesis",
+   "branch": "mathematics",
+   "posed": 1859,
+   "words": 96,
+   "reach": 0.753,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-oeis-110835-conjecture",
+   "branch": "mathematics",
+   "posed": 1958,
+   "words": 12,
+   "reach": 0.789,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-oeis-11545-conjecture1",
+   "branch": "mathematics",
+   "posed": 1977,
+   "words": 28,
+   "reach": 0.734,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-openquantumproblems-35-ame-4-2-not-exists",
+   "branch": "physics",
+   "posed": 2000,
+   "words": 14,
+   "reach": 0.75,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-openquantumproblems-35-ame-4-3-exists",
+   "branch": "physics",
+   "posed": 2012,
+   "words": 17,
+   "reach": 0.788,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-openquantumproblems-35-ame-7-2-not-exists",
+   "branch": "physics",
+   "posed": 2017,
+   "words": 14,
+   "reach": 0.729,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-other-schurtruncatedexponential-schur-truncatedexp-galoisgro",
+   "branch": "mathematics",
+   "posed": 1924,
+   "words": 59,
+   "reach": 0.793,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-paper-conjugacyclasssizes-conjclasssizes-iff-sym-three",
+   "branch": "mathematics",
+   "posed": 1973,
+   "words": 26,
+   "reach": 0.788,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-wikipedia-cernyconjecture-shitov-upper-bound",
+   "branch": "mathematics",
+   "posed": 2019,
+   "words": 45,
+   "reach": 0.774,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-wikipedia-dedekindnumber-m-eq-kisielewiczformula",
+   "branch": "mathematics",
+   "posed": 1988,
+   "words": 57,
+   "reach": 0.79,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-lovaszplummerconjecture-lovasz-plummer-conjecture-2",
+   "branch": "mathematics",
+   "posed": 2011,
+   "words": 21,
+   "reach": 0.933,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-lovaszplummerconjecture-sheehan-conjecture",
+   "branch": "mathematics",
+   "posed": 1977,
+   "words": 61,
+   "reach": 0.779,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-lovaszplummerconjecture-sheehan-conjecture-thomass",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 22,
+   "reach": 0.759,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-moserworm-convex-mosers-worm-problem-upper-bound",
+   "branch": "mathematics",
+   "posed": 2006,
+   "words": 32,
+   "reach": 0.743,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-riemannzetavalues-exists-irrational-of-five-seven",
+   "branch": "mathematics",
+   "posed": 2001,
+   "words": 31,
+   "reach": 0.751,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-wikipedia-riemannzetavalues-infinite-irrational-at-odd",
+   "branch": "mathematics",
+   "posed": 2000,
+   "words": 42,
+   "reach": 0.807,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "fc-wikipedia-riemannzetavalues-irrational-three",
+   "branch": "mathematics",
+   "posed": 1979,
+   "words": 15,
+   "reach": 0.755,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-sidorenkoconjecture-sidorenko-conjecture",
+   "branch": "mathematics",
+   "posed": 1993,
+   "words": 34,
+   "reach": 0.833,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-sidorenkoconjecture-sidorenko-conjecture-graphon",
+   "branch": "mathematics",
+   "posed": 1993,
+   "words": 50,
+   "reach": 0.824,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-sidorenkoconjecture-sidorenko-conjecture-path-blak",
+   "branch": "mathematics",
+   "posed": 1965,
+   "words": 46,
+   "reach": 0.807,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-steinersystem-infinitely-many-steiner-t4",
+   "branch": "mathematics",
+   "posed": 2014,
+   "words": 125,
+   "reach": 0.776,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-steinersystem-infinitely-many-steiner-t5",
+   "branch": "mathematics",
+   "posed": 2014,
+   "words": 119,
+   "reach": 0.781,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-surjunctivegroup-gottschalk-surjunctivity-conjectu",
+   "branch": "mathematics",
+   "posed": 1973,
+   "words": 27,
+   "reach": 0.765,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-transcendental-transcendental-gamma-one-div-four",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 14,
+   "reach": 0.767,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-transcendental-transcendental-gamma-one-div-six",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 14,
+   "reach": 0.76,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-transcendental-transcendental-gamma-one-div-three",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 14,
+   "reach": 0.771,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-transcendental-transcendental-gamma-one-div-two",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 14,
+   "reach": 0.767,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-vizingconjecture-vizing-conjecture",
+   "branch": "mathematics",
+   "posed": 1968,
+   "words": 25,
+   "reach": 0.804,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-vizingconjecture-vizing-conjecture-clark-suen",
+   "branch": "mathematics",
+   "posed": 2000,
+   "words": 30,
+   "reach": 0.815,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "fc-wikipedia-vizingconjecture-vizing-conjecture-suen-tarr",
+   "branch": "mathematics",
+   "posed": 2012,
+   "words": 26,
+   "reach": 0.803,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "foldpath",
+   "branch": "biophysics",
+   "posed": 1968,
+   "words": 80,
+   "reach": 0.721,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "freeenergy",
+   "branch": "mind",
+   "posed": 2006,
+   "words": 178,
+   "reach": 0.643,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "fusion",
+   "branch": "physics",
+   "posed": 1950,
+   "words": 124,
+   "reach": 0.573,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "geomlanglands",
+   "branch": "mathematics",
+   "posed": 1980,
+   "words": 161,
+   "reach": 0.719,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "glass",
+   "branch": "chemistry",
+   "posed": 1920,
+   "words": 145,
+   "reach": 0.601,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "goldbach",
+   "branch": "mathematics",
+   "posed": 1742,
+   "words": 124,
+   "reach": 0.752,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "graphiso",
+   "branch": "information",
+   "posed": 1970,
+   "words": 34,
+   "reach": 0.833,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hadamard",
+   "branch": "mathematics",
+   "posed": 1893,
+   "words": 121,
+   "reach": 0.688,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-1",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 22,
+   "reach": 0.807,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-12",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 19,
+   "reach": 0.792,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-13",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 41,
+   "reach": 0.698,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-14",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 22,
+   "reach": 0.752,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "hilbert-15",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 6,
+   "reach": 0.777,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-16",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 23,
+   "reach": 0.678,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "hilbert-18",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 14,
+   "reach": 0.728,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "hilbert-2",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 8,
+   "reach": 0.736,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "hilbert-20",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 10,
+   "reach": 0.812,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-21",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 18,
+   "reach": 0.725,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "hilbert-22",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 9,
+   "reach": 0.754,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-23",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 7,
+   "reach": 0.802,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-24",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 7,
+   "reach": 0.772,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-4",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 12,
+   "reach": 0.755,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-5",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 6,
+   "reach": 0.674,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-6",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 21,
+   "reach": 0.747,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hilbert-9",
+   "branch": "mathematics",
+   "posed": 1900,
+   "words": 10,
+   "reach": 0.692,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hodge",
+   "branch": "mathematics",
+   "posed": 1950,
+   "words": 93,
+   "reach": 0.714,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "hubbard",
+   "branch": "physics",
+   "posed": 1963,
+   "words": 64,
+   "reach": 0.64,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "hubble",
+   "branch": "cosmology",
+   "posed": 2016,
+   "words": 168,
+   "reach": 0.707,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "invsubspace",
+   "branch": "mathematics",
+   "posed": 1935,
+   "words": 157,
+   "reach": 0.699,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "jacobian",
+   "branch": "mathematics",
+   "posed": 1939,
+   "words": 113,
+   "reach": 0.742,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "langlands",
+   "branch": "mathematics",
+   "posed": 1967,
+   "words": 132,
+   "reach": 0.667,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "llmreason",
+   "branch": "information",
+   "posed": 2017,
+   "words": 200,
+   "reach": 0.659,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "matmul",
+   "branch": "information",
+   "posed": 1969,
+   "words": 129,
+   "reach": 0.705,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "measurement",
+   "branch": "physics",
+   "posed": 1932,
+   "words": 96,
+   "reach": 0.648,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "mechdesign",
+   "branch": "information",
+   "posed": 1981,
+   "words": 139,
+   "reach": 0.652,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "mitoredox",
+   "branch": "biophysics",
+   "posed": 1956,
+   "words": 256,
+   "reach": 0.645,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "navier",
+   "branch": "physics",
+   "posed": 1934,
+   "words": 127,
+   "reach": 0.656,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "op-is-every-real-time-computable-irrational-number-transcendent",
+   "branch": "information",
+   "posed": 1965,
+   "words": 22,
+   "reach": 0.769,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-do-national-savings-and-investment-rates-correlate",
+   "branch": "applied",
+   "posed": 1980,
+   "words": 22,
+   "reach": 0.673,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-does-capital-not-flow-from-rich-to-poor-countries",
+   "branch": "applied",
+   "posed": 1990,
+   "words": 24,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "op-why-is-consumption-uncorrelated-with-the-real-exchange-rate",
+   "branch": "applied",
+   "posed": 1993,
+   "words": 25,
+   "reach": 0.661,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "op-why-is-the-equity-risk-premium-so-high",
+   "branch": "applied",
+   "posed": 1985,
+   "words": 24,
+   "reach": 0.613,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "optimalstop",
+   "branch": "information",
+   "posed": 2010,
+   "words": 173,
+   "reach": 0.625,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "owf",
+   "branch": "information",
+   "posed": 1976,
+   "words": 103,
+   "reach": 0.703,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "pfr",
+   "branch": "mathematics",
+   "posed": 1990,
+   "words": 120,
+   "reach": 0.755,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "pnp",
+   "branch": "information",
+   "posed": 1971,
+   "words": 125,
+   "reach": 0.722,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "qgravity",
+   "branch": "cosmology",
+   "posed": 1930,
+   "words": 126,
+   "reach": 0.607,
+   "bounded": true,
+   "zone": "outside"
+  },
+  {
+   "id": "ramsey",
+   "branch": "mathematics",
+   "posed": 1935,
+   "words": 44,
+   "reach": 0.785,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "rc-can-a-quantum-system-have-a-ground-state-in-perpetual-motion",
+   "branch": "physics",
+   "posed": 2012,
+   "words": 29,
+   "reach": 0.787,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "riemann",
+   "branch": "mathematics",
+   "posed": 1859,
+   "words": 161,
+   "reach": 0.771,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "roomtemp",
+   "branch": "physics",
+   "posed": 1986,
+   "words": 66,
+   "reach": 0.603,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "signproblem",
+   "branch": "physics",
+   "posed": 1990,
+   "words": 185,
+   "reach": 0.657,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "smale-10",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 7,
+   "reach": 0.765,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale-11",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 45,
+   "reach": 0.702,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale-12",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 64,
+   "reach": 0.731,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "smale-13",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 52,
+   "reach": 0.742,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "smale-14",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 13,
+   "reach": 0.664,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "smale-15",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 33,
+   "reach": 0.713,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale-17",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 10,
+   "reach": 0.796,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale-18",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 20,
+   "reach": 0.684,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale-4",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 47,
+   "reach": 0.771,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "smale-5",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 33,
+   "reach": 0.805,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale-6",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 27,
+   "reach": 0.718,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "smale-7",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 33,
+   "reach": 0.748,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale-8",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 62,
+   "reach": 0.723,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale-9",
+   "branch": "mathematics",
+   "posed": 1998,
+   "words": 23,
+   "reach": 0.833,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "smale18",
+   "branch": "mind",
+   "posed": 1998,
+   "words": 145,
+   "reach": 0.656,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "turbulence",
+   "branch": "physics",
+   "posed": 1941,
+   "words": 180,
+   "reach": 0.609,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "twinprime",
+   "branch": "mathematics",
+   "posed": 1849,
+   "words": 165,
+   "reach": 0.721,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "uniquegames",
+   "branch": "information",
+   "posed": 2002,
+   "words": 202,
+   "reach": 0.751,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "unitdist",
+   "branch": "mathematics",
+   "posed": 1950,
+   "words": 89,
+   "reach": 0.734,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "water",
+   "branch": "chemistry",
+   "posed": 1892,
+   "words": 185,
+   "reach": 0.659,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "wp-bunkbed-conjecture-nikita-gladkov-igor-pak-alexander-zimin-2",
+   "branch": "mathematics",
+   "posed": 1985,
+   "words": 9,
+   "reach": 0.843,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-caratheodory-conjecture-for-surfaces-of-smoothness-c-4-brend",
+   "branch": "mathematics",
+   "posed": 1924,
+   "words": 13,
+   "reach": 0.811,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-crouzeix-s-conjecture-shanmu-jin-using-gpt-5-6-sol-2026",
+   "branch": "mathematics",
+   "posed": 2004,
+   "words": 21,
+   "reach": 0.853,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-delta-conjecture-1978",
+   "branch": "mathematics",
+   "posed": 1978,
+   "words": 64,
+   "reach": 0.793,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-egan-conjecture-sergei-drozdov-2023",
+   "branch": "mathematics",
+   "posed": 2014,
+   "words": 5,
+   "reach": 0.877,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-how-do-general-anesthetics-work",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 5,
+   "reach": 0.598,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "wp-kahnkalai-conjecture-jinyoung-park-and-huy-tuan-pham-2022",
+   "branch": "mathematics",
+   "posed": 2006,
+   "words": 9,
+   "reach": 0.876,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-kakeya-conjecture",
+   "branch": "mathematics",
+   "posed": 1917,
+   "words": 25,
+   "reach": 0.785,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-landau-s-problems",
+   "branch": "mathematics",
+   "posed": 1912,
+   "words": 2,
+   "reach": 0.691,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-mckay-conjecture",
+   "branch": "mathematics",
+   "posed": 1971,
+   "words": 39,
+   "reach": 0.774,
+   "bounded": true,
+   "zone": "undecided"
+  },
+  {
+   "id": "wp-sendov-s-conjecture-and-phelpsrodriguez-conjecture-lech-mazu",
+   "branch": "mathematics",
+   "posed": 1959,
+   "words": 11,
+   "reach": 0.88,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-solar-abundance-problem-19982022",
+   "branch": "physics",
+   "posed": 1998,
+   "words": 27,
+   "reach": 0.701,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-telescope-conjecture",
+   "branch": "mathematics",
+   "posed": 1984,
+   "words": 14,
+   "reach": 0.806,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-the-hadwigernelson-problem-on-the-chromatic-number-of-unit-d",
+   "branch": "mathematics",
+   "posed": 1950,
+   "words": 11,
+   "reach": 0.833,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "wp-why-do-we-dream",
+   "branch": "mind",
+   "posed": 2005,
+   "words": 4,
+   "reach": 0.513,
+   "bounded": false,
+   "zone": "outside"
+  },
+  {
+   "id": "yangmills",
+   "branch": "physics",
+   "posed": 1954,
+   "words": 188,
+   "reach": 0.692,
+   "bounded": false,
+   "zone": "inside"
+  },
+  {
+   "id": "zkp",
+   "branch": "information",
+   "posed": 1985,
+   "words": 153,
+   "reach": 0.686,
+   "bounded": false,
+   "zone": "inside"
+  }
+ ]
+}

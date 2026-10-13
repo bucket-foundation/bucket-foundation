@@ -1,12 +1,13 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
+import { mkdtempSync, readFileSync, readdirSync, rmSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { newDataKey, open, seal } from "../src/crypto";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "../src/deck";
-import type { Item } from "../src/grade";
+import { contentItemId, type Item } from "../src/grade";
+import type { ShortFile } from "../src/short-fields";
 import { buildPack, itemsFromCorpus } from "../src/pack/export";
-import { SCHEMA_VERSION, Store } from "../src/store";
+import { CACHE_KIB, SCHEMA_VERSION, Store, WAL_CHECKPOINT_PAGES, WAL_LIMIT_BYTES } from "../src/store";
 
 const items: Item[] = ["a", "b", "c", "d", "e"].map((id) => ({
   id: `phys/${id}/0`,
@@ -17,6 +18,8 @@ const items: Item[] = ["a", "b", "c", "d", "e"].map((id) => ({
   prompt: `what is ${id}`,
   answer: `answer ${id}`,
 }));
+
+const shorts: ShortFile = { version: "t", items: Object.fromEntries(items.map((i) => [i.id, { short_stem: i.prompt, short_answer: i.answer, source: "rule" as const }])) };
 
 let dir: string;
 beforeEach(() => {
@@ -36,6 +39,31 @@ describe("crypto", () => {
 });
 
 describe("Store", () => {
+  test("bounds the page cache and the checkpoint interval", () => {
+    const s = new Store(join(dir, "bkt.db"), newDataKey());
+    const one = (q: string) => Object.values(s.db.query<Record<string, number>, []>(q).get()!)[0];
+    expect(one("pragma wal_autocheckpoint")).toBe(WAL_CHECKPOINT_PAGES);
+    expect(one("pragma journal_size_limit")).toBe(WAL_LIMIT_BYTES);
+    expect(one("pragma cache_size")).toBe(-CACHE_KIB);
+    expect(WAL_LIMIT_BYTES).toBeLessThanOrEqual(8 * 1024 * 1024);
+    expect(CACHE_KIB).toBeLessThanOrEqual(16 * 1024);
+    s.close();
+  });
+
+  test("the WAL shrinks back under its limit after a large write", () => {
+    const path = join(dir, "bkt.db");
+    const s = new Store(path, newDataKey());
+    s.db.run("create table wal_probe (id integer primary key, body text)");
+    const insert = s.db.query("insert into wal_probe (body) values (?)");
+    s.db.transaction(() => {
+      for (let i = 0; i < 5000; i++) insert.run("x".repeat(4000));
+    })();
+    expect(statSync(`${path}-wal`).size).toBeGreaterThan(4 * WAL_LIMIT_BYTES);
+    for (let i = 0; i < 3; i++) insert.run("y");
+    expect(statSync(`${path}-wal`).size).toBeLessThanOrEqual(WAL_LIMIT_BYTES);
+    s.close();
+  });
+
   test("runs in WAL mode and migrates once", () => {
     const key = newDataKey();
     const path = join(dir, "bkt.db");
@@ -90,13 +118,13 @@ describe("Store", () => {
     const s = new Store(":memory:", newDataKey());
     s.importPack("v1", items);
     const now = 10_000_000;
-    const session = pickSession(s, now, 3, "seed");
+    const session = pickSession(s, now, 3, "seed", shorts);
     expect(session).toHaveLength(3);
-    const [q] = quizQuestions(s, session, "seed");
+    const [q] = quizQuestions(s, session, "seed", shorts);
     const r = answerQuiz(s, q, q.answerIndex, 1000, now);
     expect(r.correct).toBe(true);
     expect(s.card(q.itemId)!.due!).toBeGreaterThan(now);
-    const wrong = quizQuestions(s, session, "seed")[1];
+    const wrong = quizQuestions(s, session, "seed", shorts)[1];
     answerQuiz(s, wrong, (wrong.answerIndex + 1) % wrong.choices.length, 1000, now);
     expect(s.dueItemIds(now + 86_400_000, 10)).toContain(wrong.itemId);
     expect(s.attempts()).toHaveLength(2);
@@ -107,7 +135,7 @@ describe("Store", () => {
     const s = new Store(":memory:", newDataKey());
     s.importPack("v1", items);
     answerReview(s, items[4].id, 1, 500, 0);
-    const picked = pickSession(s, 86_400_000, 2, "x");
+    const picked = pickSession(s, 86_400_000, 2, "x", shorts);
     expect(picked[0].id).toBe(items[4].id);
     expect(s.stats(86_400_000)).toEqual({ items: 5, seen: 1, due: 1, attempts: 1 });
     s.close();
@@ -120,8 +148,8 @@ describe("content pack", () => {
       atoms: [{ id: "k", title: "K", quiz: [{ prompt: "p", answer: "a" }, { prompt: " ", answer: "x" }, { level: "apply", prompt: "p2", answer: "a2" }] }],
     });
     expect(out.map((i) => [i.id, i.level])).toEqual([
-      ["02-physics/k/0", "recall"],
-      ["02-physics/k/2", "apply"],
+      [contentItemId("02-physics", "k", "p"), "recall"],
+      [contentItemId("02-physics", "k", "p2"), "apply"],
     ]);
   });
 
@@ -134,5 +162,62 @@ describe("content pack", () => {
     expect(pack.decks!.find((d) => d.id === "05-biophysics")!.source).toBe("biophysics");
     expect(pack.decks!.every((d) => pack.atoms![d.id].length === d.atoms)).toBe(true);
     expect(Object.keys(pack.atoms!)).not.toContain("lang-core");
+  });
+});
+
+describe("content item ids", () => {
+  const mk = (prompts: string[], deck = "01-math", atom = "a") =>
+    prompts.map((p) => ({ id: contentItemId(deck, atom, p), atomId: atom, branch: deck, title: atom, level: "recall", prompt: p, answer: `ans ${p}` }));
+  const promptOf = (s: Store, itemId: string) => s.db.query<{ prompt: string }, [string]>("select prompt from items where id = ?").get(itemId)!.prompt;
+
+  function attempted(s: Store, items: ReturnType<typeof mk>) {
+    items.forEach((i, n) => s.recordAttempt({ itemId: i.id, mode: "quiz", response: null, correct: true, rating: 3, elapsedMs: 1, at: n + 1 }));
+  }
+
+  test("reorder keeps every attempt on its prompt", () => {
+    const s = new Store(":memory:", newDataKey());
+    const items = mk(["p1", "p2", "p3"]);
+    s.importPack("v1", items);
+    attempted(s, items);
+    s.importPack("v2", [...items].reverse());
+    expect(s.attempts().map((a) => promptOf(s, a.itemId))).toEqual(["p1", "p2", "p3"]);
+    s.close();
+  });
+
+  test("insert and delete keep every attempt on its prompt", () => {
+    const s = new Store(":memory:", newDataKey());
+    const items = mk(["p1", "p2", "p3"]);
+    s.importPack("v1", items);
+    attempted(s, items);
+    s.importPack("v2", [...mk(["new"]), items[0], items[2]]);
+    expect(s.attempts().map((a) => promptOf(s, a.itemId))).toEqual(["p1", "p2", "p3"]);
+    expect(s.items().map((i) => i.prompt).sort()).toEqual(["new", "p1", "p3"]);
+    s.close();
+  });
+
+  test("an absent item with no attempts is deleted", () => {
+    const s = new Store(":memory:", newDataKey());
+    const items = mk(["p1", "p2"]);
+    s.importPack("v1", items);
+    s.importPack("v2", [items[0]]);
+    expect(s.db.query<{ n: number }, []>("select count(*) n from items").get()!.n).toBe(1);
+    s.close();
+  });
+
+  test("a repeated atom id across decks yields distinct ids", () => {
+    const s = new Store(":memory:", newDataKey());
+    const both = [...mk(["same?"], "01-math", "nernst"), ...mk(["same?"], "02-physics", "nernst")];
+    expect(new Set(both.map((i) => i.id)).size).toBe(2);
+    s.importPack("v1", both);
+    expect(s.items()).toHaveLength(2);
+    s.close();
+  });
+
+  test("same-prompt items get ids that do not depend on order", () => {
+    const quiz = [{ prompt: "same?", answer: "one" }, { prompt: "same?", answer: "two" }];
+    const a = itemsFromCorpus("01-math", { atoms: [{ id: "x", title: "X", quiz }] } as never);
+    const b = itemsFromCorpus("01-math", { atoms: [{ id: "x", title: "X", quiz: [...quiz].reverse() }] } as never);
+    expect(new Set(a.map((i) => i.id)).size).toBe(2);
+    expect(Object.fromEntries(a.map((i) => [i.answer, i.id]))).toEqual(Object.fromEntries(b.map((i) => [i.answer, i.id])));
   });
 });

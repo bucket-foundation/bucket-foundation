@@ -1,0 +1,21 @@
+{
+ "id": "fc-solved-conjecture-02a3f8",
+ "kind": "generation",
+ "category": "generation",
+ "date": "2026-09-22",
+ "source": "own",
+ "machine_generated": true,
+ "title": "Upstream marked solved: conjecture",
+ "claim": "formal-conjectures tagged conjecture solved. Docstring while it was tagged open: Let $\\zeta$ be a primitive $(2n+1)$-th root of unity. Then the permanent of the $2n \\times 2n$ matrix $[m(j,k)]_{j,k=1..2n}$ is $a(n)/(2n+1) = ((2n)!!)^2/(2n+1)$, where $m(j,k)$ is $1$ or $(1+\\zeta^{j-k})/(1-\\zeta^{j-k})$ according as $j = k$ or not. - Zhi-Wei Sun, Dec 21 2021",
+ "tool": "solver-gap-engine watch.py",
+ "run_id": "fc-7d1a8c99-137aec5c",
+ "state": "candidate",
+ "score": {
+  "value": 0,
+  "meaning": "1 when the upstream tag carries a formal-proof link; the proof was not read here"
+ },
+ "evidence": [
+  "https://github.com/google-deepmind/formal-conjectures/commit/ad6e5df136da7c40c662d1a559e056a35a5872c7",
+  "https://github.com/google-deepmind/formal-conjectures/blob/137aec5c7abd3aa61f7a73138a97279acfc79e93/FormalConjectures/OEIS/2454.lean"
+ ]
+}

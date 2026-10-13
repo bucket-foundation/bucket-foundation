@@ -1,6 +1,5 @@
-import type { GuidanceLevel, Stage } from "./types";
+import type { GuidanceLevel, LearnerConfidence, Stage } from "./types";
 import { stageAtLeast } from "./types";
-import type { LearnerConfidence } from "./forcing";
 
 export type EvidenceKind =
   | "open"

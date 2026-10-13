@@ -1,0 +1,2 @@
+class QuotaSpent(RuntimeError):
+    pass

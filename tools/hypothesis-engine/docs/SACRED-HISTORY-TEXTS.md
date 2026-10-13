@@ -313,7 +313,7 @@ addresses that is roughly 1.0 to 1.4 linked items per address, still
 short of the "three linked items" a single hypothesis needs on its own.
 
 The average is the wrong number to read this against: `docs/BUILD-
-HISTORY.md`'s own meta-review already found this frontier's evidence
+docs/foundation/HISTORY.md`'s own meta-review already found this frontier's evidence
 concentrated on a handful of figure pairs (Manu-Confucius, Manu-
 Deucalion) rather than spread evenly, and this ingest's own attestation
 table above concentrates the same way, by construction (krishna 2,106,

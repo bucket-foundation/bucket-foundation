@@ -1,6 +1,6 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "bun:test";
-import { ApiError, type DailyAnswer, type DailyQuiz } from "./api";
+import { ApiError, type DailyAnswer, type DailyQuiz, type WorkStatus } from "./api";
 
 beforeAll(() => {
   GlobalRegistrator.register();
@@ -21,7 +21,17 @@ const graded = (over: Partial<DailyAnswer>): DailyAnswer => ({ correct: true, ti
 
 type Call = { day: string; id: string; response: string; elapsedMs: number };
 
-async function mount(api: { dailyQuiz: (day: string) => Promise<DailyQuiz>; dailyAnswer: (day: string, id: string, response: string, elapsedMs: number) => Promise<DailyAnswer> }) {
+type Chat = { claude: boolean; codex: boolean };
+type Stub = {
+  dailyQuiz: (day: string) => Promise<DailyQuiz>;
+  dailyAnswer: (day: string, id: string, response: string, elapsedMs: number) => Promise<DailyAnswer>;
+  workStatus?: () => Promise<WorkStatus>;
+  workChat?: (chat: Chat) => Promise<{ chat: Chat }>;
+};
+const status = (chat: Chat): WorkStatus => ({ beads: 0, prs: 0, repo: null, repoError: null, chat, languages: [], ready: false, answered: 0, correct: 0 });
+
+async function mount(stub: Stub) {
+  const api = { workStatus: async () => status({ claude: false, codex: false }), workChat: async (chat: Chat) => ({ chat }), ...stub };
   const { act } = await import("react");
   const { createRoot } = await import("react-dom/client");
   const { DailyQuizView } = await import("./views/WorkQuiz");
@@ -47,6 +57,79 @@ afterEach(() => {
 });
 
 describe("daily quiz view", () => {
+  test("a filled quiz names where each question came from and carries the chat switches as a small line", async () => {
+    const { CHAT_NOTE, CHAT_ON } = await import("./views/WorkQuiz");
+    const sent: Chat[] = [];
+    let loads = 0;
+    const filled: DailyQuiz = { ...QUIZ, questions: [{ ...QUIZ.questions[0], choices: ["dev", "main", "ops"], origin: "lesson" }, { ...QUIZ.questions[1], origin: "critic" }] };
+    const v = await mount({
+      dailyQuiz: async () => (loads++, filled),
+      dailyAnswer: async () => graded({}),
+      workChat: async (chat) => (sent.push(chat), { chat }),
+    });
+    expect(v.host.querySelector(".tag.origin")!.textContent).toBe("lessons");
+    const line = v.host.querySelector(".chat-line")!;
+    expect(line.textContent).toContain(CHAT_NOTE);
+    const boxes = Array.from(line.querySelectorAll('input[type="checkbox"]')) as HTMLInputElement[];
+    expect(boxes.map((b) => [b.parentElement!.textContent!.trim(), b.checked])).toEqual([["Claude chats", false], ["Codex chats", false]]);
+    expect(sent).toEqual([]);
+    await v.click(boxes[0]);
+    expect(sent).toEqual([{ claude: true, codex: false }]);
+    expect(loads).toBe(2);
+    expect(v.host.querySelector(".status")!.textContent).toBe(CHAT_ON);
+    expect((v.host.querySelector('.chat-line input[type="checkbox"]') as HTMLInputElement).checked).toBe(true);
+    await v.unmount();
+  });
+
+  test("an empty day offers the chat switches as the main action and one click loads the quiz", async () => {
+    const sent: Chat[] = [];
+    const v = await mount({
+      dailyQuiz: () => (sent.length ? Promise.resolve({ ...QUIZ, questions: [{ ...QUIZ.questions[0], origin: "chat" }] }) : Promise.reject(new ApiError("no quiz for that day", 404))),
+      dailyAnswer: async () => graded({}),
+      workChat: async (chat) => (sent.push(chat), { chat }),
+    });
+    const boxes = Array.from(v.host.querySelectorAll('.panel.empty input[type="checkbox"]')) as HTMLInputElement[];
+    expect(boxes).toHaveLength(2);
+    expect(v.host.querySelector("article")).toBeNull();
+    await v.click(boxes[1]);
+    expect(sent).toEqual([{ claude: false, codex: true }]);
+    expect(v.host.textContent).not.toContain("No quiz for");
+    expect(v.host.querySelector(".tag.origin")!.textContent).toBe("chats");
+    await v.unmount();
+  });
+
+  test("a filled question renders its math, and a wrong answer links to the lesson", async () => {
+    const lesson: DailyQuiz = { ...QUIZ, questions: [{ id: "lesson.abc", type: "recall", prompt: "Which law does $E = mc^2$ state?", lines: [], choices: ["Mass is energy", "Force is mass", "Heat is work"], limitSec: 20, origin: "lesson" }] };
+    const resource = { label: "learn this", href: "/research-os/learn/02-physics/mass-energy" };
+    const v = await mount({
+      dailyQuiz: async () => lesson,
+      dailyAnswer: async () => graded({ correct: false, answer: "Mass is energy", explain: "", resource, sources: [{ kind: "atom", ref: "02-physics/mass-energy", label: "Mass and energy", href: null }] }),
+    });
+    expect(v.host.querySelector(".q .katex")).not.toBeNull();
+    expect(v.host.querySelector(".q")!.textContent).not.toContain("$");
+    await v.click(v.button("Force is mass"));
+    const link = v.host.querySelector(".why a.learn-this")!;
+    expect([link.textContent, link.getAttribute("href")]).toEqual(["learn this", "#/learn/02-physics/mass-energy"]);
+    expect(v.host.querySelector(".why .source")!.textContent).toBe("Mass and energy");
+    await v.unmount();
+  });
+
+  test("a switch flipped after an answer keeps the questions on screen", async () => {
+    let loads = 0;
+    const v = await mount({ dailyQuiz: async () => (loads++, { ...QUIZ, answered: ["c1"] }), dailyAnswer: async () => graded({}) });
+    await v.click(v.host.querySelector('.chat-line input[type="checkbox"]'));
+    expect(loads).toBe(1);
+    await v.unmount();
+  });
+
+  test("too few questions reads in plain words with the switches in place", async () => {
+    const { TOO_FEW, TOO_FEW_SHOWN } = await import("./views/WorkQuiz");
+    const v = await mount({ dailyQuiz: () => Promise.reject(new ApiError(TOO_FEW, 404)), dailyAnswer: async () => graded({}) });
+    expect(v.host.textContent).toContain(TOO_FEW_SHOWN);
+    expect(v.host.querySelectorAll('.panel.empty input[type="checkbox"]')).toHaveLength(2);
+    await v.unmount();
+  });
+
   test("a day with no quiz says so in plain words and asks for nothing", async () => {
     const calls: Call[] = [];
     const v = await mount({
@@ -55,9 +138,10 @@ describe("daily quiz view", () => {
     });
     const text = v.host.textContent ?? "";
     expect(text).toContain(`No quiz for ${DAY}`);
-    expect(text).toContain("Bucket has no quiz saved for this day");
-    expect(text).toContain("nothing was built for this one");
-    expect(text).toContain("held no line Bucket could ask about");
+    expect(text).toContain("Bucket saved no quiz for this day");
+    expect(text).toContain("Claude chats");
+    expect(text).toContain("Codex chats");
+    expect(text).not.toContain("Import");
     expect(v.host.querySelector(".error")).toBeNull();
     expect(v.host.querySelector("article")).toBeNull();
     expect(v.host.querySelector('a[href="#/work"]')).not.toBeNull();
@@ -129,7 +213,7 @@ describe("daily quiz view", () => {
 
   test("a server failure shows the error and never the empty state", async () => {
     const v = await mount({ dailyQuiz: () => Promise.reject(new ApiError("data key does not match", 500)), dailyAnswer: async () => graded({}) });
-    expect(v.host.querySelector(".error")!.textContent).toBe("data key does not match");
+    expect(v.host.querySelector(".error")!.textContent).toBe("Bucket ran into a problem. Try again.");
     expect(v.host.textContent).not.toContain("No quiz for");
     await v.unmount();
   });
@@ -208,7 +292,7 @@ describe("daily quiz view", () => {
   test("a failed answer that is no refusal keeps the question open", async () => {
     const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: () => Promise.reject(new ApiError("elapsedMs required", 400)) });
     await v.click(v.button("dev"));
-    expect(v.host.querySelector(".error")!.textContent).toBe("elapsedMs required");
+    expect(v.host.querySelector(".error")!.textContent).toBe("Bucket could not use that. Check it and try again.");
     expect(v.host.textContent).toContain("0 of 2 answered");
     expect((v.button("dev") as HTMLButtonElement).disabled).toBe(false);
     await v.unmount();
@@ -216,6 +300,62 @@ describe("daily quiz view", () => {
 });
 
 describe("factor wording", () => {
+  test("a question at the length limits shows every word, then the why line and one source link", async () => {
+    const words = (n: number, w: string) => Array.from({ length: n }, (_, i) => `${w}${i}`).join(" ");
+    const choices = [words(5, "a"), words(5, "b"), words(5, "c"), words(5, "d")];
+    const full: DailyQuiz = { day: DAY, answered: [], questions: [{ id: "w1", type: "recall", prompt: words(10, "p"), lines: [words(5, "l")], choices, limitSec: 30 }] };
+    const sources = [
+      { kind: "pr", ref: "#504", label: "PR #504", href: "https://github.com/example/repo/pull/504" },
+      { kind: "pr", ref: "#505", label: "PR #505", href: "https://github.com/example/repo/pull/505" },
+    ];
+    const v = await mount({ dailyQuiz: async () => full, dailyAnswer: async () => graded({ answer: choices[0], explain: words(20, "e"), sources }) });
+    const card = v.host.querySelector("article")!;
+    for (const text of [words(10, "p"), words(5, "l"), ...choices]) expect(card.textContent).toContain(text);
+    expect(card.textContent).not.toContain("…");
+    expect(card.querySelector(".why")).toBeNull();
+    await v.click(v.host.querySelector(".choice"));
+    expect(card.querySelector(".why")!.textContent).toBe(`${words(20, "e")} PR #504`);
+    const links = card.querySelectorAll(".why a");
+    expect(links.length).toBe(1);
+    expect(links[0].getAttribute("href")).toBe("https://github.com/example/repo/pull/504");
+    await v.unmount();
+  });
+
+  test("a miss shows one learn this link and a right answer shows none", async () => {
+    const resource = { label: "learn this", href: "/research-os/learn/02-physics/entropy" };
+    const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: async (_d, id) => (id === "c1" ? graded({ correct: false, resource }) : graded({ resource })) });
+    await v.click(v.host.querySelector(".choice"));
+    const links = v.host.querySelectorAll(".why a.learn-this");
+    expect(links.length).toBe(1);
+    expect(links[0].textContent).toBe("learn this");
+    expect(links[0].getAttribute("href")).toBe("#/learn/02-physics/entropy");
+    await v.unmount();
+  });
+
+  test("resourceHref keeps absolute links, maps lessons to window routes and sends the rest to the site", async () => {
+    const { resourceHref, SITE_ORIGIN } = await import("./views/WorkQuiz");
+    expect(resourceHref("https://doi.org/10.1/x")).toBe("https://doi.org/10.1/x");
+    expect(resourceHref("/research-os/learn/02-physics/entropy")).toBe("#/learn/02-physics/entropy");
+    expect(resourceHref("/excerpts/a/b#evidence")).toBe(`${SITE_ORIGIN}/excerpts/a/b#evidence`);
+  });
+
+  test("a source without an https link shows as plain text", async () => {
+    const v = await mount({ dailyQuiz: async () => QUIZ, dailyAnswer: async () => graded({ sources: [{ kind: "chat", ref: "aa", label: "Claude session, 2026-09-30", href: null }] }) });
+    await v.click(v.host.querySelector(".choice"));
+    expect(v.host.querySelector(".why a")).toBeNull();
+    expect(v.host.querySelector(".why .source")!.textContent).toBe("Claude session, 2026-09-30");
+    await v.unmount();
+  });
+
+  test("the quiz card styles wrap text and never clip it", async () => {
+    const { readFileSync } = await import("node:fs");
+    const css = readFileSync(new URL("./app.css", import.meta.url), "utf8");
+    const rules = Array.from(css.matchAll(/([^{}]+)\{([^{}]*)\}/g)).filter((m) => /(^|[\s,])\.(q|choice|lines|why)\b/.test(m[1]));
+    expect(rules.length).toBeGreaterThan(3);
+    for (const m of rules) expect(m[2]).not.toMatch(/text-overflow|line-clamp|nowrap/);
+    expect(css).toMatch(/\.why\s*\{[^}]*overflow-wrap: anywhere/);
+  });
+
   test("names the factor in plain numbers", async () => {
     const { factorOff } = await import("./views/WorkQuiz");
     expect(factorOff(0)).toBe("on the mark");

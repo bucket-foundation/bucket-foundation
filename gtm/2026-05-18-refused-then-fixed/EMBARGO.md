@@ -89,8 +89,8 @@ the corresponding fact is verifiably true on the publish date.
 - The hero of the story is the *objection*. We thank the
  refusal. We do not dunk on anyone.
 - Every factual claim traces to: `live-402-envelope.json`,
- `claude-verbatim-refusal.md`, or this venture's own `MANIFESTO.md` /
- `PROTOCOL.md` / `README.md`. Nothing else.
+ `claude-verbatim-refusal.md`, or this venture's own `docs/foundation/MANIFESTO.md` /
+ `docs/foundation/PROTOCOL.md` / `README.md`. Nothing else.
 
 ---
 

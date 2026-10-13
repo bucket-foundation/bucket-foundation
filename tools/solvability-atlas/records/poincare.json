@@ -1,0 +1,572 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "poincare",
+ "title": "Poincare conjecture",
+ "statement": {
+  "text": "In the mathematical field of geometric topology, the Poincaré conjecture is a theorem about the characterization of the 3-sphere.",
+  "source": "https://en.wikipedia.org/wiki/Poincar%C3%A9_conjecture",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Poincaré conjecture",
+   "url": "https://en.wikipedia.org/wiki/Poincar%C3%A9_conjecture"
+  }
+ },
+ "aliases": [
+  "Poincaré conjecture"
+ ],
+ "branch": "mathematics",
+ "level": 5,
+ "industries": [
+  "geometry and topology",
+  "applied mathematics"
+ ],
+ "posed": 1904,
+ "resolved": 2003,
+ "history": [
+  {
+   "year": 1904,
+   "event": "conjectured by Henri Poincaré",
+   "source": "https://en.wikipedia.org/wiki/Poincar%C3%A9_conjecture"
+  },
+  {
+   "year": 1904,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 2002,
+   "event": "first proof by Grigori Perelman",
+   "source": "https://en.wikipedia.org/wiki/Poincar%C3%A9_conjecture"
+  },
+  {
+   "year": 2003,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W1629107677",
+   "title": "Ricci flow with surgery on four-manifolds with positive isotropic curvature",
+   "year": 2006,
+   "cited_by_count": 61,
+   "doi": "https://doi.org/10.4310/jdg/1175266204",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2052634042",
+   "title": "Man and machine thinking about the smooth 4-dimensional Poincaré conjecture",
+   "year": 2010,
+   "cited_by_count": 66,
+   "doi": "https://doi.org/10.4171/qt/5",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2072153084",
+   "title": "Recent progress on the Poincaré conjecture and the classification of 3-manifolds",
+   "year": 2004,
+   "cited_by_count": 62,
+   "doi": "https://doi.org/10.1090/s0273-0979-04-01045-6",
+   "role": "survey",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2002080519",
+   "title": "The generalized Poincaré conjecture in higher dimensions",
+   "year": 1960,
+   "cited_by_count": 58,
+   "doi": "https://doi.org/10.1090/s0002-9904-1960-10458-2",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2120401926",
+   "title": "Lectures on the Ricci Flow",
+   "year": 2006,
+   "cited_by_count": 258,
+   "doi": "https://doi.org/10.1017/cbo9780511721465",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1992903401",
+   "title": "Recent developments on the Hamilton’s Ricci Flow",
+   "year": 2007,
+   "cited_by_count": 88,
+   "doi": "https://doi.org/10.4310/sdg.2007.v12.n1.a3",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1533366856",
+   "title": "Discrete Surface Ricci Flow: Theory and Applications",
+   "year": 2007,
+   "cited_by_count": 61,
+   "doi": "https://doi.org/10.1007/978-3-540-73843-5_13",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2597608666",
+   "title": "Three-Dimensional Geometry and Topology, Volume 1",
+   "year": 1997,
+   "cited_by_count": 771,
+   "doi": "https://doi.org/10.1515/9781400865321",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1967759674",
+   "title": "SEIFERT FIBERED SPACES IN 3-MANIFOLDS",
+   "year": 1979,
+   "cited_by_count": 412,
+   "doi": "https://doi.org/10.1016/b978-0-12-158860-1.50013-7",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2029906779",
+   "title": "Twisting spun knots",
+   "year": 1965,
+   "cited_by_count": 269,
+   "doi": "https://doi.org/10.1090/s0002-9947-1965-0195085-8",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4298067916",
+   "title": "Geometrisation of 3-Manifolds",
+   "year": 2010,
+   "cited_by_count": 90,
+   "doi": "https://doi.org/10.4171/082",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2008091340",
+   "title": "Heegaard splittings of branched coverings of 𝑆³",
+   "year": 1975,
+   "cited_by_count": 87,
+   "doi": "https://doi.org/10.1090/s0002-9947-1975-0380765-8",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2150533832",
+   "title": "Classification of prime 3-manifold with Yamabe invariant greater than ℝℙ3",
+   "year": 2004,
+   "cited_by_count": 81,
+   "doi": "https://doi.org/10.4007/annals.2004.159.407",
+   "role": "resolved",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2501079762",
+   "title": "Some Open Problems and Research Directions in the Mathematical Study of Fluid Dynamics",
+   "year": 2001,
+   "cited_by_count": 64,
+   "doi": "https://doi.org/10.1007/978-3-642-56478-9_15",
+   "role": "survey",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2246149825",
+   "title": "Hyperbolic geometry and 3-manifolds",
+   "year": 1982,
+   "cited_by_count": 60,
+   "doi": "https://doi.org/10.1017/cbo9780511758935.003",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3100861405",
+   "title": "A knot characterization and 1-connected nonnegatively curved 4-manifolds with circle symmetry",
+   "year": 2013,
+   "cited_by_count": 58,
+   "doi": null,
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2016831973",
+   "title": "Non-linear circle actions on the 4-sphere and twisting spun knots",
+   "year": 1978,
+   "cited_by_count": 55,
+   "doi": "https://doi.org/10.1016/0040-9383(78)90033-2",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2101375736",
+   "title": "Cartesian products of contractible open manifolds",
+   "year": 1961,
+   "cited_by_count": 53,
+   "doi": "https://doi.org/10.1090/s0002-9904-1961-10662-9",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2047255080",
+   "title": "The global structure of simple space-times",
+   "year": 1989,
+   "cited_by_count": 51,
+   "doi": "https://doi.org/10.1007/bf01244016",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2079803861",
+   "title": "On detecting open collars",
+   "year": 1969,
+   "cited_by_count": 51,
+   "doi": "https://doi.org/10.1090/s0002-9947-1969-0246301-9",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1620556779",
+   "title": "The only genus zero 𝑛-manifold is 𝑆ⁿ",
+   "year": 1982,
+   "cited_by_count": 50,
+   "doi": "https://doi.org/10.1090/s0002-9939-1982-0660620-5",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 3,
+  "off-field": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1960": 2,
+   "1961": 2,
+   "1962": 1,
+   "1963": 1,
+   "1965": 1,
+   "1967": 2,
+   "1969": 3,
+   "1970": 1,
+   "1972": 1,
+   "1973": 1,
+   "1974": 2,
+   "1975": 6,
+   "1976": 1,
+   "1977": 1,
+   "1978": 2,
+   "1979": 3,
+   "1980": 2,
+   "1981": 4,
+   "1982": 5,
+   "1983": 4,
+   "1984": 1,
+   "1985": 2,
+   "1986": 3,
+   "1988": 1,
+   "1989": 2,
+   "1990": 2,
+   "1991": 1,
+   "1992": 2,
+   "1993": 3,
+   "1994": 6,
+   "1995": 1,
+   "1996": 2,
+   "1997": 3,
+   "1998": 3,
+   "1999": 1,
+   "2000": 6,
+   "2001": 3,
+   "2002": 4,
+   "2003": 5,
+   "2004": 8,
+   "2005": 1,
+   "2006": 18,
+   "2007": 14,
+   "2008": 10,
+   "2009": 11,
+   "2010": 19,
+   "2011": 11,
+   "2012": 9,
+   "2013": 15,
+   "2014": 9,
+   "2015": 5,
+   "2016": 8,
+   "2017": 9,
+   "2018": 2,
+   "2019": 5,
+   "2020": 7,
+   "2021": 12,
+   "2022": 6,
+   "2023": 10,
+   "2024": 12,
+   "2025": 156,
+   "2026": 598
+  },
+  "openalex_total": 1051,
+  "arxiv_total": 58,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22Poincar%C3%A9+conjecture%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5040489403",
+   "name": "William P.HG Thurston",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5065298790",
+   "name": "Bing-Long Chen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100515102",
+   "name": "Xi-Ping Zhu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5064155719",
+   "name": "Michael Hartley Freedman",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5021651153",
+   "name": "Robert E. Gompf",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5082777109",
+   "name": "Scott Morrison",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5102013134",
+   "name": "Kevin Walker",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5067091290",
+   "name": "John S. Morgan",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5055489898",
+   "name": "Stephen T. Smale",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5028405963",
+   "name": "Peter M. Topping",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5090602195",
+   "name": "Huai-Dong Cao",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "B.-L. Chen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5101859661",
+   "name": "Xiaohua Zhu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100675221",
+   "name": "Miao Jin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100659574",
+   "name": "Junho Kim",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I78577930",
+   "name": "Columbia University",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I154570441",
+   "name": "University of California, Santa Barbara",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I86519309",
+   "name": "The University of Texas at Austin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I95457486",
+   "name": "University of California, Berkeley",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I39555362",
+   "name": "University of Warwick",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I59553526",
+   "name": "Stony Brook University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I74775410",
+   "name": "Rice University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I177483745",
+   "name": "Université Joseph Fourier",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I134560555",
+   "name": "Université Toulouse III - Paul Sabatier",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4387154756",
+   "name": "Université Montpellier 2",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I123044942",
+   "name": "Universitat Autònoma de Barcelona",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I117965899",
+   "name": "University of Hawaiʻi at Mānoa",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1331384533",
+   "name": "University of Hawaii System",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4387152517",
+   "name": "Instituto Superior Técnico",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [],
+ "repo_mentions": [],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Poincar%C3%A9_conjecture",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Poincar%C3%A9+conjecture%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22Poincar%C3%A9+conjecture%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "21 relevant works of 25 considered, 1051 works with the phrase"
+ }
+}

@@ -5,6 +5,8 @@ from pathlib import Path
 
 from PIL import Image
 
+import claims
+
 HERE = Path(__file__).parent
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "out"
 MINT = {"proved": "minted", "partial": "pending", "statement": "draft", "none": "unminted"}
@@ -26,6 +28,7 @@ def productions():
     fsrc = {r["id"]: {"label": r["source"], "url": r["url"]} for r in csv.DictReader(open(HERE / "formal_sources.tsv"), delimiter="\t")}
     desc = {r["id"]: r["description"] for r in csv.DictReader(open(HERE / "descriptions.tsv"), delimiter="\t")}
     cards = []
+    ledger = claims.by_id(claims.entries())
     for n in g["nodes"]:
         if n["kind"] == "token":
             continue
@@ -46,6 +49,7 @@ def productions():
             "sources": [{"label": "Wikipedia", "url": "https://en.wikipedia.org/wiki/Special:Search?search=" + n["name"].replace(" ", "+")}] if n["kind"] == "problem" else [{"label": "lean/manifest.json"}],
             "source_kind": n["kind"],
         })
+        claims.attach(cards[-1], ledger)
     json.dump({"schema": "bucket.solvability-atlas.productions/v1", "productions": cards}, open(OUT / "productions.json", "w"), indent=1)
     return cards, g["summary"]
 
@@ -63,6 +67,9 @@ def site(repo):
     lib.mkdir(parents=True, exist_ok=True)
     plots = [{"src": "/atlas/" + f.replace(".png", ".webp"), "title": t, "caption": d} for f, t, d in PLOTS]
     json.dump({"producer": "bucket.foundation", "generator": "tools/solvability-atlas", "productions": cards, "summary": s, "plots": plots}, open(lib / "solvability-atlas-data.json", "w"), indent=1)
+    (lib / "solvability-similarity-data.json").write_text((OUT / "similarity.json").read_text())
+    (lib / "solvability-neighbors-data.json").write_text((OUT / "neighbors.json").read_text())
+    claims.SITE.write_text(json.dumps(claims.site_payload(), indent=1, ensure_ascii=False) + "\n", encoding="utf8")
 
 
 if __name__ == "__main__":

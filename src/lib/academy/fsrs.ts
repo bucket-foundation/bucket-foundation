@@ -77,13 +77,14 @@ export class FSRS {
       out.lapses = 0;
     } else {
       const elapsedDays = Math.max(0, (now - (card.lastReview || now)) / DAY_MS);
-      const R = this.retrievability(elapsedDays, card.stability);
-      const D = card.difficulty ?? this.initDifficulty(3);
+      const S = clampS(card.stability);
+      const R = this.retrievability(elapsedDays, S);
+      const D = clampD(card.difficulty ?? this.initDifficulty(3));
       if (g === 1) {
-        out.stability = this.stabilityForget(D, card.stability, R);
+        out.stability = this.stabilityForget(D, S, R);
         out.lapses = (card.lapses || 0) + 1;
       } else {
-        out.stability = this.stabilityRecall(D, card.stability, R, g);
+        out.stability = this.stabilityRecall(D, S, R, g);
       }
       out.difficulty = this.nextDifficulty(D, g);
       out.reps = (card.reps || 0) + 1;

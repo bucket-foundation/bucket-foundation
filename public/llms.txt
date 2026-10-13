@@ -7,8 +7,9 @@
 ## What this is
 
 Bucket.foundation is an open research protocol, primary research
-paid-for-once, citeable-forever. Citation fees route to authors, not
-publishers, over the x402 rail on Base (USDC).
+paid-for-once, citeable-forever. The citation fee rail to authors over x402
+on Base (USDC) is specified and does not settle yet. The site serves the canon
+at price 0, and the author split is planned work.
 
 License: https://www.bucket.foundation/cite-forever/v0.1
 
@@ -29,17 +30,18 @@ GET https://www.bucket.foundation/api/research?q=<query>&tier=<raw|query|insight
 - tier=raw, full records
 
 The `tier` only selects how much detail you get back. **It is not a price you
-pay.** You pay nothing. Any settlement happens entirely server-side, invisibly,
-Between bucket.foundation's own wallet and the upstream gateway, you never see
-It, sign it, or relay it. If the server can't settle, it transparently serves
-already-paid canon content instead. Either way you get a real, citeable
-answer and you do nothing.
+pay.** You pay nothing. Today the server signs no x402 payment and no fee
+settles: every answer comes from the bucket.foundation canon with
+`receipt.status: "served_from_canon"` and `price_usd: 0`. The design keeps any
+future settlement server-side, between bucket.foundation's own wallet and the
+upstream gateway, where you never see it, sign it, or relay it. You get a
+real, citeable answer and you do nothing.
 
 Every response returns the same envelope:
 
 ```
 { data, citation,
-  receipt: { tier, status, price_usd: 0, paid_by },   // status: served_from_canon | settled (server-side)
+  receipt: { tier, status, price_usd: 0, paid_by },
   cite: { applies_to: "downstream_republication_in_a_paid_work",
           reader_owes: 0, price_usd, payout_wallet,
           license: "bucket.foundation/cite-forever/v0.1" },

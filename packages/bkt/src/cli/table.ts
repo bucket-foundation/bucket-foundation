@@ -6,7 +6,7 @@ export interface OptionSpec {
   help: string;
 }
 
-export type PaletteTarget = "quiz" | "review" | "stats" | "home" | "help" | "quit";
+export type PaletteTarget = "quiz" | "review" | "stats" | "home" | "help" | "quit" | "search" | "graph" | "research" | "jobs" | "frontier";
 
 export interface CommandSpec {
   name: string;
@@ -16,9 +16,10 @@ export interface CommandSpec {
   options?: Record<string, OptionSpec>;
   session?: boolean;
   json?: boolean;
-  terminal?: "always" | "with-tui-flag";
+  terminal?: "always" | "with-tui-flag" | "without-json";
   palette?: { run: PaletteTarget; hint: string; order: number };
   tuiOnly?: boolean;
+  data?: boolean;
 }
 
 export const EXIT = { ok: 0, failure: 1, usage: 2, noData: 3, cancelled: 130 } as const;
@@ -34,7 +35,7 @@ export const VERSION_OPTION: Record<string, OptionSpec> = {
 };
 
 export const JSON_OPTION: Record<string, OptionSpec> = {
-  json: { type: "boolean", help: 'print one line of JSON shaped {"v":1,...}' },
+  json: { type: "boolean", help: 'for scripts: print one line of JSON shaped {"v":1,...}' },
 };
 
 export const KEYRING_OPTIONS: Record<string, OptionSpec> = {
@@ -57,7 +58,7 @@ export const TABLE: CommandSpec[] = [
     summary: "print item, seen, due and attempt counts",
     session: true,
     json: true,
-    palette: { run: "stats", hint: "counts and device", order: 3 },
+    palette: { run: "stats", hint: "your counts", order: 3 },
   },
   { name: "home", summary: "main menu", tuiOnly: true, palette: { run: "home", hint: "main menu", order: 4 } },
   { name: "serve", summary: "start the local server and print its URL", session: true },
@@ -83,12 +84,19 @@ export const TABLE: CommandSpec[] = [
       horizon: { type: "string", value: "N", help: "forecast horizon, a whole number" },
       "max-rows": { type: "string", value: "N", help: "stop reading after N rows" },
       out: { type: "string", value: "DIR", help: "report folder" },
-      json: { type: "boolean", help: "print the report as JSON" },
+      json: { type: "boolean", help: "for scripts: print the report as JSON" },
       tui: { type: "boolean", help: "show progress and the report in the terminal app" },
       dev: { type: "boolean", help: "use the analyzer from the checkout" },
     },
   },
-  { name: "analyses", summary: "list saved analyses; in a terminal, browse them", args: "[dir]", positionals: [0, 1], json: true },
+  {
+    name: "analyses",
+    summary: "list saved analyses by name and date; in a terminal, browse them",
+    args: "[dir]",
+    positionals: [0, 1],
+    json: true,
+    options: { where: { type: "boolean", help: "also print the folder of each analysis" } },
+  },
   { name: "hai", summary: "open the human and AI probe", session: true, terminal: "always" },
   { name: "hai freeze", summary: "write the frozen item bank", options: HAI_TOOL_OPTIONS },
   {
@@ -108,7 +116,8 @@ export const TABLE: CommandSpec[] = [
       "max-usd": { type: "string", value: "USD", help: "refuse a batch whose worst case costs more" },
     },
   },
-  { name: "hai export", summary: "print the probe data as JSON", session: true, json: true },
+  { name: "hai report", summary: "print the probe results as sentences", session: true },
+  { name: "hai export", summary: "for scripts: print the probe data as JSON", session: true, json: true, data: true },
   { name: "hai wipe", summary: "delete the probe data", session: true },
   { name: "forget people", summary: "forget imported people", session: true },
   {
@@ -118,6 +127,42 @@ export const TABLE: CommandSpec[] = [
     options: { check: { type: "boolean", help: "check only; this is the default" } },
   },
   { name: "version", summary: "print the version", json: true },
+  { name: "licences", summary: "print the credit, the changes and the licence text of the bundled word list" },
+  { name: "learn due", summary: "list the cards due now", session: true, json: true, options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
+  { name: "learn path", summary: "show each deck's progress, or the topics of one deck in order; language decks hold word lessons", args: "[deck]", positionals: [0, 1], session: true, json: true },
+  {
+    name: "learn quiz",
+    summary: "timed multiple choice; scripts send answers on standard input",
+    session: true,
+    json: true,
+    terminal: "without-json",
+    options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" }, deck: { type: "string", value: "LANGUAGE", help: "quiz the words of one language, such as German" } },
+  },
+  { name: "learn review", summary: "rate the cards due now; scripts send ratings on standard input", session: true, json: true, terminal: "without-json", options: { count: { type: "string", value: "N", help: "how many, from 1 to 50" } } },
+  { name: "daily", summary: "print a day's quiz, today when no day is given; scripts send answers on standard input", args: "[day]", positionals: [0, 1], session: true, json: true },
+  { name: "decks list", summary: "list installed decks and the decks in a folder that are ready to install", args: "[folder]", positionals: [0, 1], json: true, options: { catalog: { type: "boolean", help: "add the curated decks from the catalog that came with bkt" } } },
+  { name: "decks install", summary: "check a deck file or folder against its manifest and checksum, then install it", args: "<file-or-folder>", positionals: [1, 1], json: true },
+  { name: "decks remove", summary: "remove an installed deck by id or language", args: "<deck>", positionals: [1, 1], json: true },
+  { name: "decks export", summary: "write an installed deck to one file you can share", args: "<deck> <file>", positionals: [2, 2], json: true, options: { replace: { type: "boolean", help: "replace the file when it already exists" } } },
+  { name: "research add", summary: "copy a folder that holds a report.json into your own research outputs", args: "<folder>", positionals: [1, 1], json: true },
+  { name: "research approve", summary: "show the build that waits for approval, with its digest and changes, and allow or refuse it", options: { yes: { type: "boolean", help: "allow the build you name with --request" }, deny: { type: "boolean", help: "refuse the build you name with --request" }, digest: { type: "string", value: "HEX", help: "the digest the request showed, 32 to 64 characters, checked beside the id" }, request: { type: "string", value: "ID", help: "the id the request showed" } } },
+  { name: "research builds", summary: "turn builds on or off for one research output", args: "<on|off> <output>", positionals: [2, 2] },
+  { name: "research install", summary: "check a staff research side pack against its checksums, then install it", args: "<file>", positionals: [1, 1], json: true },
+  { name: "words list", summary: "the same as decks list", args: "[folder]", positionals: [0, 1], json: true },
+  { name: "words install", summary: "the same as decks install", args: "<file-or-folder>", positionals: [1, 1], json: true },
+  { name: "words remove", summary: "the same as decks remove", args: "<language>", positionals: [1, 1], json: true },
+  {
+    name: "doctor",
+    summary: "check this install and name the fix for each problem; writes nothing",
+    json: true,
+    options: { keyring: { type: "string", value: "KIND", help: "key store to check: native or passphrase" } },
+  },
+  {
+    name: "completion",
+    summary: "print a shell completion script",
+    args: "<bash|zsh|fish>",
+    positionals: [1, 1],
+  },
   {
     name: "help",
     summary: "show help for bkt or one command",
@@ -126,6 +171,77 @@ export const TABLE: CommandSpec[] = [
     palette: { run: "help", hint: "key bindings", order: 5 },
   },
   { name: "quit", summary: "exit bkt", tuiOnly: true, palette: { run: "quit", hint: "exit bkt", order: 6 } },
+  {
+    name: "search",
+    summary: "search the canon held on this device",
+    args: "<words>",
+    positionals: [1, 64],
+    json: true,
+    palette: { run: "search", hint: "search the canon", order: 7 },
+    options: {
+      limit: { type: "string", value: "N", help: "show at most N results, 1 to 50; 20 when omitted" },
+      branch: { type: "string", value: "BRANCH", help: "keep results from one branch, such as 05-biophysics" },
+      tsv: { type: "boolean", help: "for scripts: one tab separated row per result: number, score, branch, title, passages, link" },
+      words: { type: "boolean", help: "search words in the bundled set and in installed word decks" },
+      lang: { type: "string", value: "LANGUAGE", help: "with --words: keep one language, such as German or de" },
+    },
+  },
+  { name: "canon show", summary: "print one canon excerpt with its evidence passages", args: "<number>", positionals: [1, 1], json: true },
+  { name: "graph", summary: "knowledge graph", tuiOnly: true, palette: { run: "graph", hint: "knowledge graph", order: 8 } },
+  { name: "research", summary: "notes and saved results", tuiOnly: true, palette: { run: "research", hint: "notes and saved results", order: 9 } },
+  { name: "jobs", summary: "saved analyses", tuiOnly: true, palette: { run: "jobs", hint: "saved analyses", order: 10 } },
+  { name: "frontier", summary: "solvability frontier circle", tuiOnly: true, palette: { run: "frontier", hint: "solvability frontier circle", order: 11 } },
+  {
+    name: "atlas frontier",
+    summary: "draw the solvability frontier: solved and close-to-solved problems inside one circle, the rest outside",
+    json: true,
+    options: {
+      reach: { type: "string", value: "R", help: "put the circle at this similarity, above 0 and below 1; the stated rule picks it when omitted" },
+      svg: { type: "string", value: "FILE", help: "also write the drawing to FILE as SVG" },
+      width: { type: "string", value: "N", help: "drawing width in columns, 41 to 200; the terminal width when omitted" },
+      full: { type: "boolean", help: "use the full problem set, 71 atlas problems plus the sourced rows; the default whenever this build holds it" },
+    },
+  },
+  {
+    name: "notes ls",
+    summary: "list your notes, pinned first, by number",
+    session: true,
+    json: true,
+    options: { tsv: { type: "boolean", help: "for scripts: one tab separated row per note: number, pinned, updated, title" } },
+  },
+  {
+    name: "notes add",
+    summary: "save a note; the text comes from --body or --file",
+    args: "<title>",
+    positionals: [1, 1],
+    session: true,
+    json: true,
+    options: {
+      body: { type: "string", value: "TEXT", help: "the note's text" },
+      file: { type: "string", value: "FILE", help: "read the note's text from a file" },
+      pin: { type: "boolean", help: "pin the note to the top" },
+    },
+  },
+  { name: "notes show", summary: "print one note by its number in bkt notes ls", args: "<number>", positionals: [1, 1], session: true, json: true },
+  {
+    name: "history",
+    summary: "print study days, reviews and accuracy for each question form",
+    session: true,
+    json: true,
+    options: {
+      days: { type: "string", value: "N", help: "how many days back, 30 when omitted" },
+      tsv: { type: "boolean", help: "for scripts: one tab separated row per study day: day, reviews, answered, correct" },
+    },
+  },
+  {
+    name: "import",
+    summary: "bring over your progress file from the website's Learn page",
+    args: "<file>",
+    positionals: [1, 1],
+    session: true,
+    json: true,
+    options: { force: { type: "boolean", help: "merge again when progress was already brought over" } },
+  },
 ];
 
 export const CLI_COMMANDS = TABLE.filter((c) => !c.tuiOnly);

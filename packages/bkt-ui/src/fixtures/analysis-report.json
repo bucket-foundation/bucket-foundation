@@ -1,0 +1,398 @@
+{
+  "schema": "bucket.analysis/1",
+  "name": "data",
+  "created": "2026-10-01T15:30:36",
+  "forced": false,
+  "form": {
+    "file": "in/data.csv",
+    "format": "csv",
+    "rows": 40,
+    "columns": [
+      {
+        "name": "day",
+        "base": "day",
+        "unit": null,
+        "type": "datetime",
+        "type_share": 1.0,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "distinct": 28
+      },
+      {
+        "name": "sleep_h",
+        "base": "sleep",
+        "unit": "h",
+        "type": "float",
+        "type_share": 1.0,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "distinct": 5
+      },
+      {
+        "name": "focus",
+        "base": "focus",
+        "unit": null,
+        "type": "integer",
+        "type_share": 1.0,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "distinct": 40
+      },
+      {
+        "name": "mood",
+        "base": "mood",
+        "unit": null,
+        "type": "string",
+        "type_share": 1.0,
+        "missing": 5,
+        "missing_pct": 12.5,
+        "distinct": 1
+      },
+      {
+        "name": "note",
+        "base": "note",
+        "unit": null,
+        "type": "string",
+        "type_share": 1.0,
+        "missing": 0,
+        "missing_pct": 0.0,
+        "distinct": 1
+      }
+    ],
+    "errors": [],
+    "warnings": [
+      {
+        "code": "W_MISSING",
+        "where": "mood",
+        "message": "5 missing (12.5%)"
+      },
+      {
+        "code": "W_TIME_ORDER",
+        "where": "day",
+        "message": "time index is not sorted; analysis sorts it"
+      },
+      {
+        "code": "W_TIME_DUP",
+        "where": "day",
+        "message": "12 repeated time values"
+      }
+    ],
+    "truncated": false,
+    "time_index": {
+      "column": "day",
+      "kind": "datetime"
+    },
+    "duplicates": 0,
+    "numeric": [
+      "sleep_h",
+      "focus"
+    ],
+    "ok": true
+  },
+  "analysis": {
+    "summary": {
+      "sleep_h": {
+        "n": 40,
+        "mean": 7.0,
+        "sd": 0.7161148740394329,
+        "min": 6.0,
+        "q1": 6.5,
+        "median": 7.0,
+        "q3": 7.5,
+        "max": 8.0,
+        "skew": 2.7755575615628915e-18,
+        "kurtosis": -1.3839375000000005
+      },
+      "focus": {
+        "n": 40,
+        "mean": 69.5,
+        "sd": 11.69045194450012,
+        "min": 50.0,
+        "q1": 59.75,
+        "median": 69.5,
+        "q3": 79.25,
+        "max": 89.0,
+        "skew": -2.2204460492503132e-17,
+        "kurtosis": -1.2903018292682922
+      }
+    },
+    "distributions": {
+      "sleep_h": {
+        "counts": [
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "edges": [
+          6.0,
+          6.4,
+          6.8,
+          7.2,
+          7.6,
+          8.0
+        ],
+        "spark": "\u2588\u2588\u2588\u2588\u2588"
+      },
+      "focus": {
+        "counts": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "edges": [
+          50.0,
+          53.9,
+          57.8,
+          61.7,
+          65.6,
+          69.5,
+          73.4,
+          77.3,
+          81.2,
+          85.1,
+          89.0
+        ],
+        "spark": "\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588"
+      }
+    },
+    "outliers": {
+      "sleep_h": {
+        "iqr_fences": [
+          5.0,
+          9.0
+        ],
+        "iqr_count": 0,
+        "iqr_rows": [],
+        "z3_count": 0,
+        "z3_rows": []
+      },
+      "focus": {
+        "iqr_fences": [
+          30.5,
+          108.5
+        ],
+        "iqr_count": 0,
+        "iqr_rows": [],
+        "z3_count": 0,
+        "z3_rows": []
+      }
+    },
+    "warnings": [],
+    "correlations": {
+      "columns": [
+        "sleep_h",
+        "focus"
+      ],
+      "rows": 40,
+      "pearson": [
+        [
+          1.0,
+          0.0613
+        ],
+        [
+          0.0613,
+          1.0
+        ]
+      ],
+      "spearman": [
+        [
+          1.0,
+          0.0613
+        ],
+        [
+          0.0613,
+          1.0
+        ]
+      ],
+      "top_pairs": [
+        {
+          "a": "sleep_h",
+          "b": "focus",
+          "pearson": 0.06125638918316889,
+          "spearman": 0.06125638918316889
+        }
+      ]
+    },
+    "pca": {
+      "columns": [
+        "sleep_h",
+        "focus"
+      ],
+      "rows": 40,
+      "components": [
+        {
+          "component": 1,
+          "singular_value": 6.43342826012256,
+          "variance_ratio": 0.5306281945915845,
+          "loadings": {
+            "focus": 0.707106781186549,
+            "sleep_h": 0.7071067811865459
+          }
+        },
+        {
+          "component": 2,
+          "singular_value": 6.050702506474468,
+          "variance_ratio": 0.4693718054084155,
+          "loadings": {
+            "sleep_h": 0.707106781186549,
+            "focus": -0.7071067811865459
+          }
+        }
+      ],
+      "k90": 2,
+      "orthogonality_error": 2.220446049250313e-16,
+      "sign_convention": "tools/prime-directions",
+      "reconstruction_residual": {
+        "mean": 3.9608864069977646e-16,
+        "max": 8.95090418262362e-16,
+        "worst_rows": [
+          1,
+          29,
+          28,
+          0,
+          5
+        ]
+      }
+    },
+    "trends": {
+      "sleep_h": {
+        "slope": -0.29111501057461114,
+        "intercept": 596.9769504895298,
+        "r2": 7.975753709477118e-05,
+        "direction": "down",
+        "regular": false,
+        "acf_bound": 0.31622776601683794,
+        "season": null,
+        "acf": [
+          -0.313,
+          -0.1,
+          -0.1494,
+          -0.3121,
+          0.7501,
+          -0.3129,
+          0.0252,
+          -0.0244,
+          -0.3119,
+          0.5002,
+          -0.3127,
+          0.1503,
+          0.1008,
+          -0.3118,
+          0.2504,
+          -0.3127,
+          0.237,
+          0.137,
+          -0.2504,
+          0.1252
+        ],
+        "residuals": {
+          "sd": 0.7160863156906705,
+          "durbin_watson": 2.575046723080988,
+          "largest": [
+            {
+              "row": 36,
+              "t": 2026.6465753424657,
+              "residual": 1.0102887222915262
+            },
+            {
+              "row": 0,
+              "t": 2026.5808219178082,
+              "residual": -1.0088530866229553
+            },
+            {
+              "row": 5,
+              "t": 2026.5863013698631,
+              "residual": -1.0072579358800375
+            },
+            {
+              "row": 31,
+              "t": 2026.6328767123289,
+              "residual": 1.0063008454343976
+            },
+            {
+              "row": 10,
+              "t": 2026.5945205479452,
+              "residual": -1.0048652097657609
+            }
+          ]
+        }
+      },
+      "focus": {
+        "slope": 48.03397670754834,
+        "intercept": -97276.69675525583,
+        "r2": 0.008147838451124323,
+        "direction": "up",
+        "regular": false,
+        "acf_bound": 0.31622776601683794,
+        "season": null,
+        "acf": [
+          0.0277,
+          -0.0529,
+          -0.0858,
+          -0.2486,
+          0.1096,
+          -0.0803,
+          -0.0392,
+          -0.2773,
+          0.0526,
+          0.0958,
+          0.0278,
+          0.3315,
+          -0.1016,
+          -0.1119,
+          -0.0595,
+          -0.0005,
+          -0.1081,
+          0.0099,
+          0.0429,
+          -0.0177
+        ],
+        "residuals": {
+          "sd": 11.642728578173289,
+          "durbin_watson": 1.872717738612402,
+          "largest": [
+            {
+              "row": 35,
+              "t": 2026.6438356164383,
+              "residual": -20.066039240591834
+            },
+            {
+              "row": 13,
+              "t": 2026.5972602739726,
+              "residual": 19.17115967455446
+            },
+            {
+              "row": 29,
+              "t": 2026.627397260274,
+              "residual": 18.72356037651798
+            },
+            {
+              "row": 0,
+              "t": 2026.5808219178082,
+              "residual": -18.039240708335726
+            },
+            {
+              "row": 1,
+              "t": 2026.5808219178082,
+              "residual": 17.960759291664274
+            }
+          ]
+        }
+      }
+    }
+  },
+  "helix": {
+    "status": "skipped",
+    "reason": "--no-helix"
+  },
+  "dir": "out/data-2026-10-01"
+}

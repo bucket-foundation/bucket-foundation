@@ -2,7 +2,7 @@
 
 > **What counts as canon-tier in art.** A foundational form (epic, sonnet, fugue, ukiyo-e print, novel-of-consciousness), a technical innovation that becomes the substrate of subsequent work (perspective, equal temperament, modernist montage), or an individual work whose influence so reorganizes its medium that the medium afterward is recognizably *post-X*. Refining a style is not canon-tier; the figures below each forced or enabled a structural reframing of their medium.
 >
-> **Editorial note.** This branch is added in pass 1 to honor the *build history* slogan; the strict canon defined in `PROTOCOL.md` is foundations-only and does not include the arts. Inclusion here is for the contributor index alone.
+> **Editorial note.** This branch is added in pass 1 to honor the *build history* slogan; the strict canon defined in `docs/foundation/PROTOCOL.md` is foundations-only and does not include the arts. Inclusion here is for the contributor index alone.
 
 ---
 

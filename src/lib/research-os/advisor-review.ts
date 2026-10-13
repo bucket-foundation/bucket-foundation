@@ -13,6 +13,8 @@ export interface AdvisorRow {
   links: Record<string, string>;
   star_prime: number[];
   star_ours: number[];
+  complement: number | null;
+  complement_directions: string[];
   theta: number | null;
   radius: number | null;
 }
@@ -64,7 +66,7 @@ export function hasEmail(s: string): boolean {
 }
 const PRIVATE_KEY = /email|tracker|image|^id$|statement|note/i;
 const LINK_KEYS = new Set(["profile_url", "program_url"]);
-const ROW_CORE = new Set(["rank", "name", "score", "percentile", "star_prime", "star_ours", "theta", "radius"]);
+const ROW_CORE = new Set(["rank", "name", "score", "percentile", "star_prime", "star_ours", "complement", "complement_directions", "theta", "radius"]);
 const MAX_TEXT = 2_000;
 
 const obj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
@@ -93,8 +95,10 @@ function https(v: unknown): string | null {
   }
 }
 
-export function publicRow(raw: unknown): AdvisorRow | null {
-  if (!obj(raw) || !num(raw.rank) || typeof raw.name !== "string" || !num(raw.score)) return null;
+export function publicRow(raw: unknown, position = 0): AdvisorRow | null {
+  if (!obj(raw) || typeof raw.name !== "string") return null;
+  const unranked = raw.order_status === "untested" || raw.order_status === "withheld";
+  if (!unranked && (!num(raw.rank) || !num(raw.score))) return null;
   const fields: AdvisorRow["fields"] = {};
   const links: AdvisorRow["links"] = {};
   for (const [k, v] of Object.entries(raw)) {
@@ -112,14 +116,16 @@ export function publicRow(raw: unknown): AdvisorRow | null {
     }
   }
   return {
-    rank: raw.rank,
+    rank: unranked || !num(raw.rank) ? position : raw.rank,
     name: clean(raw.name),
-    score: raw.score,
-    percentile: num(raw.percentile) ? raw.percentile : null,
+    score: unranked || !num(raw.score) ? 0 : raw.score,
+    percentile: !unranked && num(raw.percentile) ? raw.percentile : null,
     fields,
     links,
     star_prime: nums(raw.star_prime),
     star_ours: nums(raw.star_ours),
+    complement: num(raw.complement) ? raw.complement : null,
+    complement_directions: strs(raw.complement_directions, 3),
     theta: num(raw.theta) ? raw.theta : null,
     radius: num(raw.radius) ? raw.radius : null,
   };
@@ -130,7 +136,7 @@ export function parseAdvisorReview(raw: unknown): AdvisorReview {
   if (!Array.isArray(raw.rows) || raw.rows.length === 0) throw new ReviewFileError("the review has no rows");
   if (raw.rows.length > MAX_REVIEW_ROWS) throw new ReviewFileError(`the review has more than ${MAX_REVIEW_ROWS} rows`);
   const ctx = obj(raw.context) ? raw.context : {};
-  const rows = raw.rows.map(publicRow).filter((r): r is AdvisorRow => r !== null);
+  const rows = raw.rows.map((r, i) => publicRow(r, i + 1)).filter((r): r is AdvisorRow => r !== null);
   if (!rows.length) throw new ReviewFileError("no row has a rank, a name and a score");
   return {
     schema: ADVISOR_REVIEW_SCHEMA,

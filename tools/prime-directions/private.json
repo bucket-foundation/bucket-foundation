@@ -1,0 +1,16 @@
+{
+  "patterns": [
+    "kruse"
+  ],
+  "corpora": {
+    "kruse": {
+      "kind": "folder",
+      "path": "~/jackkruse/articles",
+      "private": true,
+      "description": "Jack Kruse blog, local scrape; outputs stay on this machine",
+      "clean": {
+        "min_chars": 1000
+      }
+    }
+  }
+}

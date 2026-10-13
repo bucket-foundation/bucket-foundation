@@ -86,5 +86,69 @@
     "body": {
       "error": "not_found"
     }
+  },
+  "PUT unconfigured": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
+  },
+  "PUT anonymous": {
+    "status": 401,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized"
+    }
+  },
+  "PUT signed in, store down": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "not_found"
+    }
+  },
+  "PUT signed in, malformed json": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "not_found"
+    }
+  },
+  "PUT signed in, consent unavailable": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "not_found"
+    }
+  },
+  "PUT signed in, consent refused": {
+    "status": 404,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "not_found"
+    }
+  },
+  "PUT staff, malformed json": {
+    "status": 400,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "bad_json"
+    }
+  },
+  "PUT staff, store down": {
+    "status": 503,
+    "cache": "no-store",
+    "type": "application/json",
+    "body": {
+      "error": "research_os_unavailable"
+    }
   }
 }

@@ -33,7 +33,7 @@ export class SignoffError extends Error {
 
 const REPO_ROOT = path.resolve(process.cwd());
 const CANON_ROOT = path.join(REPO_ROOT, "bucket-canon");
-const INGESTION_INDEX = path.join(REPO_ROOT, "CANON-INGESTION-INDEX.md");
+const INGESTION_INDEX = path.join(REPO_ROOT, "docs", "canon", "CANON-INGESTION-INDEX.md");
 
 export function statusOf(value: string | null | undefined): SignoffStatus {
   if (typeof value !== "string") return "ungated";

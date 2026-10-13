@@ -11,6 +11,7 @@ test("every tauri bundle gets one release name per os and architecture", () => {
   expect(releaseName("Bucket_0.1.0_x64-setup.exe", "0.5.0", "windows", "x64")).toBe("Bucket-desktop-0.5.0-windows-x64.exe");
   expect(releaseName("Bucket_0.1.0_amd64.AppImage", "0.5.0", "linux", "x64")).toBe("Bucket-desktop-0.5.0-linux-x64.AppImage");
   expect(releaseName("Bucket_0.1.0_amd64.deb", "0.5.0", "linux", "x64")).toBe("Bucket-desktop-0.5.0-linux-x64.deb");
+  expect(releaseName("Bucket-0.1.0-1.x86_64.rpm", "0.5.0", "linux", "x64")).toBe("Bucket-desktop-0.5.0-linux-x64.rpm");
 });
 
 test("updater archives and signatures keep their suffix", () => {

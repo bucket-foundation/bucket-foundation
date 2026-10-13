@@ -101,8 +101,8 @@ export default function Page() {
           <p className="mt-3 text-[14px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
             An agent asks for an insight and gets the envelope back. The receipt
             shows the reader paid 0. The cite block states what a paid work owes
-            when it republishes the result: $0.002 at the insight tier, paid to
-            the author over x402 on Base.
+            when it republishes the result: $0.002 at the insight tier, owed to
+            the author over x402 on Base. No payment runs on it yet.
           </p>
           <pre className="mt-4 overflow-x-auto text-[12px] leading-[1.6] text-[color:var(--basalt)] bg-[color:var(--bone-3,var(--bone))] border border-[color:var(--hairline)] p-4">
             <code>{CITE_CALL}</code>

@@ -1,0 +1,694 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "bindingprob",
+ "title": "Neural binding problem",
+ "statement": {
+  "text": "The unity of consciousness and (cognitive) binding problem is the problem of how objects, background, and abstract or emotional features are combined into a single experience. The binding problem refers to the overall encoding of our brain circuits for the combination of decisions, actions, and perception. It is considered a \"problem\" because no complete model exists.",
+  "source": "https://en.wikipedia.org/wiki/Binding_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Binding problem",
+   "url": "https://en.wikipedia.org/wiki/Binding_problem"
+  }
+ },
+ "aliases": [
+  "Binding problem",
+  "unity of consciousness and",
+  "cognitive",
+  "binding problem"
+ ],
+ "branch": "mind",
+ "level": 4,
+ "industries": [
+  "ai",
+  "cognitive neuroscience"
+ ],
+ "posed": 1981,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1981,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2111990464",
+   "title": "Feature binding, attention and object perception",
+   "year": 1998,
+   "cited_by_count": 778,
+   "doi": "https://doi.org/10.1098/rstb.1998.0284",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2066877541",
+   "title": "The Temporal Correlation Hypothesis of Visual Feature Integration",
+   "year": 1999,
+   "cited_by_count": 550,
+   "doi": "https://doi.org/10.1016/s0896-6273(00)80820-x",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2120435942",
+   "title": "The Role of Neural Mechanisms of Attention in Solving the Binding Problem",
+   "year": 1999,
+   "cited_by_count": 374,
+   "doi": "https://doi.org/10.1016/s0896-6273(00)80819-3",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2037899511",
+   "title": "Consciousness and the Binding Problem",
+   "year": 2001,
+   "cited_by_count": 370,
+   "doi": "https://doi.org/10.1111/j.1749-6632.2001.tb05712.x",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1992849131",
+   "title": "Binding, spatial attention and perceptual awareness",
+   "year": 2003,
+   "cited_by_count": 339,
+   "doi": "https://doi.org/10.1038/nrn1030",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2049236887",
+   "title": "The binding problem",
+   "year": 1996,
+   "cited_by_count": 1164,
+   "doi": "https://doi.org/10.1016/s0959-4388(96)80070-5",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2021742211",
+   "title": "Parietal Contributions to Visual Feature Binding: Evidence from a Patient with Bilateral Lesions",
+   "year": 1995,
+   "cited_by_count": 554,
+   "doi": "https://doi.org/10.1126/science.7638604",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2119132304",
+   "title": "Temporal Binding, Binocular Rivalry, and Consciousness",
+   "year": 1999,
+   "cited_by_count": 389,
+   "doi": "https://doi.org/10.1006/ccog.1999.0389",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2107344926",
+   "title": "How the brain solves the binding problem for language: a neurocomputational model of syntactic processing",
+   "year": 2003,
+   "cited_by_count": 359,
+   "doi": "https://doi.org/10.1016/j.neuroimage.2003.09.013",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2095265457",
+   "title": "Synchronized oscillations in interneuron networks driven by metabotropic glutamate receptor activation",
+   "year": 1995,
+   "cited_by_count": 1645,
+   "doi": "https://doi.org/10.1038/373612a0",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2000777473",
+   "title": "Executive control of visual attention in dual-task situations.",
+   "year": 2001,
+   "cited_by_count": 764,
+   "doi": "https://doi.org/10.1037/0033-295x.108.2.393",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1543794893",
+   "title": "Synchrony Unbound",
+   "year": 1999,
+   "cited_by_count": 624,
+   "doi": "https://doi.org/10.1016/s0896-6273(00)80822-3",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2002815682",
+   "title": "Spatial‐temporal structures of human alpha rhythms: Theory, microcurrent sources, multiscale measurements, and global binding of local networks",
+   "year": 2001,
+   "cited_by_count": 524,
+   "doi": "https://doi.org/10.1002/hbm.1030",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1967465676",
+   "title": "The What and Why of Binding",
+   "year": 1999,
+   "cited_by_count": 509,
+   "doi": "https://doi.org/10.1016/s0896-6273(00)80825-9",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2011996713",
+   "title": "Reentry and the Problem of Integrating Multiple Cortical Areas: Simulation of Dynamic Integration in the Visual System",
+   "year": 1992,
+   "cited_by_count": 443,
+   "doi": "https://doi.org/10.1093/cercor/2.4.310",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2010927954",
+   "title": "Crossmodal correspondences: A tutorial review",
+   "year": 2011,
+   "cited_by_count": 1637,
+   "doi": "https://doi.org/10.3758/s13414-010-0073-7",
+   "role": "survey",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2093867260",
+   "title": "Dynamic binding in a neural network for shape recognition.",
+   "year": 1992,
+   "cited_by_count": 941,
+   "doi": "https://doi.org/10.1037/0033-295x.99.3.480",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1569282152",
+   "title": "Inner presence consciousness as a biological phenomenon",
+   "year": 2006,
+   "cited_by_count": 388,
+   "doi": null,
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2158506047",
+   "title": "The Brain Binds Entities and Events by Multiregional Activation from Convergence Zones",
+   "year": 1989,
+   "cited_by_count": 790,
+   "doi": "https://doi.org/10.1162/neco.1989.1.1.123",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1971828433",
+   "title": "Episodic multiregional cortical coherence at multiple frequencies during visual task performance",
+   "year": 1993,
+   "cited_by_count": 544,
+   "doi": "https://doi.org/10.1038/366153a0",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2099424603",
+   "title": "Human Cortical Muscle Coherence Is Directly Related to Specific Motor Parameters",
+   "year": 2000,
+   "cited_by_count": 427,
+   "doi": "https://doi.org/10.1523/jneurosci.20-23-08838.2000",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 2,
+  "off-field": 1,
+  "duplicate": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1937": 1,
+   "1956": 1,
+   "1961": 1,
+   "1971": 3,
+   "1978": 1,
+   "1979": 2,
+   "1980": 4,
+   "1981": 4,
+   "1982": 1,
+   "1983": 4,
+   "1984": 1,
+   "1985": 3,
+   "1986": 1,
+   "1987": 2,
+   "1988": 3,
+   "1989": 6,
+   "1990": 6,
+   "1991": 12,
+   "1992": 18,
+   "1993": 13,
+   "1994": 17,
+   "1995": 16,
+   "1996": 28,
+   "1997": 14,
+   "1998": 22,
+   "1999": 35,
+   "2000": 29,
+   "2001": 41,
+   "2002": 36,
+   "2003": 35,
+   "2004": 30,
+   "2005": 35,
+   "2006": 38,
+   "2007": 32,
+   "2008": 42,
+   "2009": 30,
+   "2010": 37,
+   "2011": 39,
+   "2012": 40,
+   "2013": 23,
+   "2014": 23,
+   "2015": 31,
+   "2016": 34,
+   "2017": 38,
+   "2018": 31,
+   "2019": 40,
+   "2020": 29,
+   "2021": 32,
+   "2022": 40,
+   "2023": 34,
+   "2024": 44,
+   "2025": 93,
+   "2026": 237
+  },
+  "openalex_total": 1412,
+  "arxiv_total": 61,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22binding+problem%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5003957507",
+   "name": "Anne Treisman",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5044809786",
+   "name": "Wolf Singer",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5110873460",
+   "name": "Lynn C. Robertson",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5102123491",
+   "name": "Charles Montgomery Gray",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031223249",
+   "name": "John H. Reynolds",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5081911616",
+   "name": "Robert Desimone",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5110096935",
+   "name": "Stacia R. Friedman‐Hill",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5006579933",
+   "name": "Andreas Karl Engel",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5065034707",
+   "name": "Pascal Henry Fries",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5024328042",
+   "name": "Peter König",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5078089610",
+   "name": "Michael Brecht",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031285239",
+   "name": "Peter Hagoort",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5022994404",
+   "name": "Miles A. Whittington",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5057780747",
+   "name": "Roger D. Traub",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5000878141",
+   "name": "John G. R. Jefferys",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I20089843",
+   "name": "Princeton University",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I84218800",
+   "name": "University of California, Davis",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1299303238",
+   "name": "National Institutes of Health",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210158500",
+   "name": "National Institute of Mental Health",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210127408",
+   "name": "Max Planck Institute for Brain Research",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210103967",
+   "name": "Martinez VA Medical Center",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I95457486",
+   "name": "University of California, Berkeley",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I202697423",
+   "name": "University of Zurich",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I35440088",
+   "name": "ETH Zurich",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405256566",
+   "name": "Institute of Neuroinformatics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405259014",
+   "name": "Donders Centre for Cognitive Neuroimaging",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210106957",
+   "name": "St Mary's Hospital",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I47508984",
+   "name": "Imperial College London",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1341412227",
+   "name": "IBM (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210114115",
+   "name": "IBM Research - Thomas J. Watson Research Center",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "llmreason",
+   "why": "shared keywords: attention; shared markets: ai"
+  },
+  {
+   "id": "consciousness",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "freeenergy",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "smale18",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "alignment",
+   "why": "shared markets: ai"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W1558366326",
+   "title": "Cognitive biases potentially affecting judgement of global risks",
+   "source": "openalex-fanout/W1558366326-cognitive-biases-potentially-affecting-judgement-of-global-r"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2024595034",
+   "title": "Cognitive Foundations of Musical Pitch",
+   "source": "openalex-fanout/W2024595034-cognitive-foundations-of-musical-pitch"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2048701323",
+   "title": "The Embodied Mind: Cognitive Science and Human Experience",
+   "source": "openalex-fanout/W2048701323-the-embodied-mind-cognitive-science-and-human-experience"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2118373646",
+   "title": "Connectionism and cognitive architecture: A critical analysis",
+   "source": "openalex-fanout/W2118373646-connectionism-and-cognitive-architecture-a-critical-analysis"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2119909013",
+   "title": "Cognitive Enhancement: Methods, Ethics, Regulatory Challenges",
+   "source": "openalex-fanout/W2119909013-cognitive-enhancement-methods-ethics-regulatory-challenges"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2128493489",
+   "title": "Perspectives on Cognitive Neuroscience",
+   "source": "openalex-fanout/W2128493489-perspectives-on-cognitive-neuroscience"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2319171828",
+   "title": "Cognitive Foundations of Musical Pitch",
+   "source": "openalex-fanout/W2319171828-cognitive-foundations-of-musical-pitch"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2549247608",
+   "title": "Cognitive Influences on the Evolution of New Languages",
+   "source": "openalex-fanout/W2549247608-cognitive-influences-on-the-evolution-of-new-languages"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10822042",
+   "title": "Cross-cultural music cognition: cognitive methodology applied to North Sami yoiks.",
+   "source": "pubmed/PMID-10822042-cross-cultural-music-cognition-cognitive-methodology-applied"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12015230",
+   "title": "Motor and cognitive functions of the ventral premotor cortex.",
+   "source": "pubmed/PMID-12015230-motor-and-cognitive-functions-of-the-ventral-premotor-cortex"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12413574",
+   "title": "Degeneracy and cognitive anatomy.",
+   "source": "pubmed/PMID-12413574-degeneracy-and-cognitive-anatomy"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12587094",
+   "title": "Use of multivariate linkage analysis for dissection of a complex cognitive trait.",
+   "source": "pubmed/PMID-12587094-use-of-multivariate-linkage-analysis-for-dissection-of-a-com"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID13406145",
+   "title": "The effect on affective and cognitive behavior in the dog of lesions of the pyriformamygdala-hippocampal complex.",
+   "source": "pubmed/PMID-13406145-the-effect-on-affective-and-cognitive-behavior-in-the-dog-of"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID15100724",
+   "title": "Neurocognitive enhancement: what can we do and what should we do?",
+   "source": "pubmed/PMID-15100724-neurocognitive-enhancement-what-can-we-do-and-what-should-we"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID15207239",
+   "title": "Chromatin acetylation, memory, and LTP are impaired in CBP+/- mice: a model for the cognitive deficit in Rubinstein-Taybi syndrome and its amelioration.",
+   "source": "pubmed/PMID-15207239-chromatin-acetylation-memory-and-ltp-are-impaired-in-cbp-mic"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID15355167",
+   "title": "Genetic and environmental contributions to general cognitive ability through the first 16 years of life.",
+   "source": "pubmed/PMID-15355167-genetic-and-environmental-contributions-to-general-cognitive"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID1596255",
+   "title": "Differential heritability across levels of cognitive ability.",
+   "source": "pubmed/PMID-1596255-differential-heritability-across-levels-of-cognitive-ability"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID17312260",
+   "title": "Converging cognitive enhancements.",
+   "source": "pubmed/PMID-17312260-converging-cognitive-enhancements"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID17588775",
+   "title": "Post-decision wagering measures metacognitive content, not sensory consciousness.",
+   "source": "pubmed/PMID-17588775-post-decision-wagering-measures-metacognitive-content-not-se"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID18633786",
+   "title": "Getting a grip on other minds: mirror neurons, intention understanding, and cognitive empathy.",
+   "source": "pubmed/PMID-18633786-getting-a-grip-on-other-minds-mirror-neurons-intention-under"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Binding_problem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22binding+problem%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22binding+problem%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "21 relevant works of 25 considered, 1412 works with the phrase"
+ }
+}

@@ -1,0 +1,103 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "sensitivity",
+ "title": "Sensitivity conjecture",
+ "statement": {
+  "text": "In computational complexity, the sensitivity theorem, proved by Hao Huang in 2019, states that the sensitivity of a Boolean function  is at least the square root of its degree, thus settling a conjecture posed by Nisan and Szegedy in 1992. The proof is notably succinct, given that prior progress had been limited.",
+  "source": "https://en.wikipedia.org/wiki/Sensitivity_theorem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Sensitivity theorem",
+   "url": "https://en.wikipedia.org/wiki/Sensitivity_theorem"
+  }
+ },
+ "aliases": [
+  "Sensitivity theorem",
+  "sensitivity theorem"
+ ],
+ "branch": "information",
+ "level": 3,
+ "industries": [
+  "ai"
+ ],
+ "posed": 1992,
+ "resolved": 2019,
+ "history": [
+  {
+   "year": 1992,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 2019,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [],
+ "key_works_considered": 0,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {},
+  "openalex_total": 0,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22sensitivity+conjecture+Boolean+functions%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22sensitivity+conjecture+Boolean+functions%22&max_results=1"
+ },
+ "people": [],
+ "organizations": [],
+ "related": [
+  {
+   "id": "alignment",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "autoform",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "llmreason",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "matmul",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "pnp",
+   "why": "shared markets: ai; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "proved",
+  "source": "Mathlib Archive, Sensitivity.lean",
+  "url": "https://github.com/leanprover-community/mathlib4/blob/master/Archive/Sensitivity.lean"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Sensitivity_theorem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22sensitivity+conjecture+Boolean+functions%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22sensitivity+conjecture+Boolean+functions%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22sensitivity+conjecture+Boolean+functions%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 0 works, 0 kept; refine the query phrase in sources.tsv"
+ }
+}

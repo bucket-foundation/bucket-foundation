@@ -1,40 +1,23 @@
 import fs from "fs";
 import path from "path";
+import { buildCanonGraph, NO_CENTRALITY, type CanonGraph, type Centrality, type RawGraph } from "./canon-graph-core";
 
-export type GraphNode = { id: string; name: string; group: string; centrality: number; edges: number };
-export type GraphEdge = { source: string; target: string; weight: number };
-export type CanonGraph = { nodes: GraphNode[]; edges: GraphEdge[] };
+export type { CanonGraph, GraphEdge, GraphNode } from "./canon-graph-core";
 
-const REPO_ROOT = path.resolve(process.cwd());
+export const GRAPH_FILE = path.join("_intake", "connections", "graph.json");
+export const CENTRALITY_FILE = path.join("_intake", "connections", "centrality.json");
 
-export function getCanonGraph(): CanonGraph {
-  const graphPath = path.join(REPO_ROOT, "_intake", "connections", "graph.json");
-  const centPath = path.join(REPO_ROOT, "_intake", "connections", "centrality.json");
-  if (!fs.existsSync(graphPath)) return { nodes: [], edges: [] };
-
-  const graph = JSON.parse(fs.readFileSync(graphPath, "utf-8")) as {
-    nodes: { id: string; name: string; group: string }[];
-    edges: { source: string; target: string; weight: number }[];
+export function readCanonGraphInputs(root: string): { graph: RawGraph; centrality: Centrality } | null {
+  const graphPath = path.join(root, GRAPH_FILE);
+  if (!fs.existsSync(graphPath)) return null;
+  const centPath = path.join(root, CENTRALITY_FILE);
+  return {
+    graph: JSON.parse(fs.readFileSync(graphPath, "utf-8")) as RawGraph,
+    centrality: fs.existsSync(centPath) ? (JSON.parse(fs.readFileSync(centPath, "utf-8")) as Centrality) : NO_CENTRALITY,
   };
-  const cent = fs.existsSync(centPath)
-    ? (JSON.parse(fs.readFileSync(centPath, "utf-8")) as { degree: Record<string, number>; weighted: Record<string, number> })
-    : { degree: {}, weighted: {} };
+}
 
-  const inEdge = new Set<string>();
-  for (const e of graph.edges) {
-    inEdge.add(e.source);
-    inEdge.add(e.target);
-  }
-
-  const nodes: GraphNode[] = graph.nodes
-    .filter((n) => inEdge.has(n.id))
-    .map((n) => ({
-      id: n.id,
-      name: n.name,
-      group: n.group,
-      centrality: cent.weighted[n.id] || 0,
-      edges: cent.degree[n.id] || 0,
-    }));
-
-  return { nodes, edges: graph.edges };
+export function getCanonGraph(root: string = process.cwd()): CanonGraph {
+  const inputs = readCanonGraphInputs(root);
+  return inputs ? buildCanonGraph(inputs.graph, inputs.centrality) : { nodes: [], edges: [] };
 }

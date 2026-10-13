@@ -2,7 +2,7 @@
 
 **Draft. Not legal advice. Counsel review required before this text is published or shown to a school, district, parent, or learner.**
 
-Bead `ros-07`, minors compliance pack part A. Written against `_intake/research-os-k12/04-compliance-distribution.md` section 1 (COPPA, FERPA) and section 2 (US state law), and against `learning/research-os/compliance/DATA-INVENTORY.md` for what the product collects. Bucket Foundation's nonprofit status is pending; see `GOVERNANCE.md` for the disclosure this document's own "Our status" section carries forward.
+Bead `ros-07`, minors compliance pack part A. Written against `_intake/research-os-k12/04-compliance-distribution.md` section 1 (COPPA, FERPA) and section 2 (US state law), and against `learning/research-os/compliance/DATA-INVENTORY.md` for what the product collects. Bucket Foundation's nonprofit status is pending; see `docs/foundation/GOVERNANCE.md` for the disclosure this document's own "Our status" section carries forward.
 
 ---
 
@@ -56,7 +56,7 @@ Deletion is permanent and cannot be undone. A production that has already been a
 
 ## 9. Our status
 
-Bucket Foundation is a nonprofit organization with a 501(c)(3) determination pending from the IRS. We do not describe ourselves as tax-exempt until that determination arrives. See `GOVERNANCE.md` for our current legal structure and conflict-of-interest disclosure.
+Bucket Foundation is a nonprofit organization with a 501(c)(3) determination pending from the IRS. We do not describe ourselves as tax-exempt until that determination arrives. See `docs/foundation/GOVERNANCE.md` for our current legal structure and conflict-of-interest disclosure.
 
 ## 10. Contact
 

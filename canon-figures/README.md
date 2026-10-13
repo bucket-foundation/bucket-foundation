@@ -31,7 +31,7 @@ The bucket canon is foundations-only. The contributor index is the human side of
 | **09-art** *(new)* | Visual art, music, literature, drama | Homer, Bach, Hokusai, Borges |
 | **10-earth** *(new)* | Geology, oceanography, atmosphere | Steno, Hutton, Wegener, Milankovitch |
 
-The first seven branches mirror the strict canon defined in `PROTOCOL.md` § Foundations. The last three branches are **expansion branches** added on 2026-04-14 to honor the *build history* slogan, which scopes the contributor index broader than the strict canon. They are flagged in `TAXONOMY_NOTES.md` so the canon team knows the contributor index is a superset of the canon proper.
+The first seven branches mirror the strict canon defined in `docs/foundation/PROTOCOL.md` § Foundations. The last three branches are **expansion branches** added on 2026-04-14 to honor the *build history* slogan, which scopes the contributor index broader than the strict canon. They are flagged in `TAXONOMY_NOTES.md` so the canon team knows the contributor index is a superset of the canon proper.
 
 ## What's in this folder
 

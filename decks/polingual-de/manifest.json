@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-de",
+  "title": "German words",
+  "kind": "words",
+  "language": "de",
+  "language_name": "German",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 333622,
+    "with_ipa": 69548,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 333622,
+  "version": "c2645d3e3971",
+  "file": "polingual-de.sqlite.zst",
+  "bytes": 17566303,
+  "sha256": "f9292be69cd2a53df7da6cc861741bab662f1d9a2bfb35b9eca5dbc2b6619698",
+  "db_bytes": 90533888,
+  "db_sha256": "c2645d3e397117b7ea03b317bbef63491fc625f59e08b43420ed1963aec86784",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

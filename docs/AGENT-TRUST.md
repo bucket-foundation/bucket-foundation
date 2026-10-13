@@ -11,7 +11,7 @@ Then fixed, the agent-trust design of a paid research protocol.
 
 bucket.foundation · nonprofit reference implementation of feed402 · MIT code · CC0-intent spec
 Permanent home of this document: <https://www.bucket.foundation/protocol/agent-trust>
-Spec sibling: feed402 `SPEC.md §3.1` · normative rule: [`PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/PROTOCOL.md) · trust model: [`/llms-full.txt §4`](https://www.bucket.foundation/llms-full.txt)
+Spec sibling: feed402 `SPEC.md §3.1` · normative rule: [`docs/foundation/PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/docs/foundation/PROTOCOL.md) · trust model: [`/llms-full.txt §4`](https://www.bucket.foundation/llms-full.txt)
 
 ---
 
@@ -148,17 +148,17 @@ verifiable from a single response.
 ### 5.1 A zero-key path: the agent never holds a wallet
 
 bucket.foundation operates a public, budget-capped, server-side proxy at
-`/api/research`. Any x402 settlement happens **entirely server-side**, between
-bucket.foundation's own funded wallet and the upstream gateway, before the
-caller sees anything. If the server cannot settle, wallet not yet funded,
-Upstream down, daily cap reached, it does **not** hand the caller a challenge
-To execute. It transparently answers from the already-paid bucket.foundation
-canon index and sets `receipt.status: "served_from_canon"`. The caller still
-gets a real, populated, citeable envelope. In neither state is there a payment
-step for the caller.
+`/api/research`. Today the server signs no x402 payment and no fee settles:
+`signX402ServerSide` in `src/lib/x402-pay.ts` returns no header, and the proxy
+answers from the bucket.foundation canon index with
+`receipt.status: "served_from_canon"` and `price_usd: 0`. The design places
+any x402 settlement **entirely server-side**, between bucket.foundation's own
+wallet and the upstream gateway, before the caller sees anything. The proxy
+never hands the caller a challenge to execute. The caller gets a real,
+populated, citeable envelope, and there is no payment step for the caller.
 
-The funded-wallet path is held to the same caller-facing shape: settlement is
-performed only by a server-side signer, and the gateway envelope is passed
+The gateway path is held to the same caller-facing shape: settlement is
+reserved for a server-side signer, and the gateway envelope is passed
 through a merge step that **deletes any `challenge`** the upstream might leak
 before the response is serialized. So the guarantee holds whether or not the
 server has a funded wallet.
@@ -212,8 +212,8 @@ as pay-to-proceed. It is now scoped so it cannot be misread:
 
 `cite` describes what a future **publisher** would owe the original author if
 that publisher re-publishes this content in a *paid* downstream work. It is
-the "fees route to authors" mechanism, expressed as a
-forward-looking license notice. It is never a charge to the reading agent and
+the "fees route to authors" design, expressed as a
+forward-looking license notice; no fee settles on it today. It is never a charge to the reading agent and
 echoing it is never an action. `cite.reader_owes` is `0` and
 `cite.applies_to` declares the scope explicitly.
 
@@ -224,7 +224,7 @@ without objecting") states the model precisely: the difference between
 paid-to-cite and pay-to-proceed, the zero-key guarantee as a verifiable
 Invariant, where settlement happens, and that the entire citation
 action is "copy the `citation` block verbatim, no payment, no signature, no
-follow-up." This is normative in `PROTOCOL.md §3.1` and mirrored in feed402
+follow-up." This is normative in `docs/foundation/PROTOCOL.md §3.1` and mirrored in feed402
 `SPEC.md §3.1`.
 
 ### 5.6 The before/after envelope
@@ -342,7 +342,7 @@ not a risk to manage, it is the work.
 
 ---
 
-*Reference: normative rule, [`PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/PROTOCOL.md);
+*Reference: normative rule, [`docs/foundation/PROTOCOL.md §3.1`](https://github.com/gianyrox/bucket-foundation/blob/main/docs/foundation/PROTOCOL.md);
 Agent trust model, [`/llms-full.txt §4`](https://www.bucket.foundation/llms-full.txt);
 Envelope shape, [`/protocol/envelope`](https://www.bucket.foundation/protocol/envelope);
 Spec sibling, feed402 `SPEC.md §3.1`. Source: `gianyrox/bucket-foundation`,

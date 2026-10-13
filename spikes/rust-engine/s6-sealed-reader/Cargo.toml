@@ -1,0 +1,14 @@
+[package]
+name = "s6-sealed-reader"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+license.workspace = true
+
+[dependencies]
+rusqlite.workspace = true
+serde_json.workspace = true
+base64.workspace = true
+aes-gcm = "0.10"
+scrypt = { version = "0.11", default-features = false }
+unicode-normalization = "0.1"

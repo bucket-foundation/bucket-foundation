@@ -24,9 +24,9 @@ bucket.foundation introduces a single convention on top of the existing HTTP and
 
 The convention is implemented as:
 
-- **`PROTOCOL.md`**, an open specification (CC0-in-intent) defining the bucket folder layout, the `canon.json` sidecar schema, the x402 fetch flow, and the citation receipt format.
+- **`docs/foundation/PROTOCOL.md`**, an open specification (CC0-in-intent) defining the bucket folder layout, the `canon.json` sidecar schema, the x402 fetch flow, and the citation receipt format.
 - **A reference implementation**, an MIT-licensed Next.js site that fetches papers from x402-gated research APIs, writes them into buckets, and exposes a public registry.
-- **A canon**, a curated, conservative collection of foundation-tier research (axioms, principles, primary derivations, landmark studies) maintained under the editorial filter described in `PROTOCOL.md`.
+- **A canon**, a curated, conservative collection of foundation-tier research (axioms, principles, primary derivations, landmark studies) maintained under the editorial filter described in `docs/foundation/PROTOCOL.md`.
 
 There is **nothing technically novel** about any of these pieces in isolation. The novelty is the convention, the license, and the citation economics. The protocol is designed so that **no single party, including the Foundation itself, is structurally necessary** for the system to function. Anyone may run a bucket. The Foundation runs *a* bucket, not *the* bucket.
 
@@ -51,7 +51,7 @@ The next 12 months.
 
 The Foundation will pursue the following activities in its first operating year as a sponsored project:
 
-1. **Protocol stewardship.** Maintain `PROTOCOL.md` at version 0.1 → 0.3, accept community pull requests, publish at least one round of test vectors so independent implementations can verify conformance.
+1. **Protocol stewardship.** Maintain `docs/foundation/PROTOCOL.md` at version 0.1 → 0.3, accept community pull requests, publish at least one round of test vectors so independent implementations can verify conformance.
 2. **Reference site reactivation.** Bring the dormant Next.js reference implementation back to a deployable state, audit its dependencies, ship a minimal demo at `bucket.foundation` that fetches and displays at least one bucketed paper end-to-end.
 3. **Canon seeding.** Mirror an initial conservative canon of approximately 50 foundation-tier artifacts from public open-access sources (where the source license permits), so that the protocol has real content to demonstrate against. No paid acquisitions in year one until the operating wallet has been transferred to the sponsor.
 4. **Author payout pipeline.** Build and document the on-chain payout flow so that any future citation fee collected through the reference bucket is routed to the author's recorded payout address with no manual intervention by the Foundation.
@@ -85,10 +85,10 @@ These metrics, taken together, are the answer to the question *"is the Foundatio
 
 | Risk | Mitigation |
 |---|---|
-| The x402 ecosystem stalls or fragments. | The protocol does not depend on any single x402 implementation; any HTTP 402 endpoint that satisfies `PROTOCOL.md` § 4 works. |
+| The x402 ecosystem stalls or fragments. | The protocol does not depend on any single x402 implementation; any HTTP 402 endpoint that satisfies `docs/foundation/PROTOCOL.md` § 4 works. |
 | Publishers issue legal challenges over mirroring. | The Foundation only mirrors content for which a valid x402 purchase receipt exists or for which the source license explicitly permits redistribution. The canon record (`canon.json`) preserves the license string verbatim. |
 | Founder dependency / bus factor of one. | The first formal governance task is recruiting two advisors / interim board members. The protocol and code are open such that any party can fork and continue without permission. |
-| Conflict of interest with AGFarms LLC. | Documented in `GOVERNANCE.md` § 7 and `05-CONFLICT-OF-INTEREST-POLICY.md`. Recusal, disclosure, and arm's-length terms apply. |
+| Conflict of interest with AGFarms LLC. | Documented in `docs/foundation/GOVERNANCE.md` § 7 and `05-CONFLICT-OF-INTEREST-POLICY.md`. Recusal, disclosure, and arm's-length terms apply. |
 | The operating wallet is compromised. | Wallet custody is transferred to the sponsor or to a multi-sig with the sponsor as a co-signer as soon as the sponsorship agreement is signed. |
 | The Foundation cannot demonstrate impact in year one. | The Foundation operates on volunteer labor and minimal cash burn (see `03-BUDGET.md`). A quiet year one is acceptable; a dishonest year one is not. |
 

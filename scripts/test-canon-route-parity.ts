@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import { NextRequest } from "next/server";
 import { GET } from "../src/app/api/canon/search/route";
 import { canonSearch, parseCanonSearchParams } from "../src/lib/canon-search";
@@ -78,4 +80,18 @@ test("a non-numeric top_k: the route returns nothing with top_k null, canonSearc
   assert.equal(lib.top_k, 10);
   assert.equal(lib.hits.length, 10);
   assert.deepEqual(lib, viaCanonSearch({ q: "energy light" }));
+});
+
+function shapeOf(row: Record<string, unknown>): Record<string, string> {
+  return Object.fromEntries(Object.keys(row).sort().map((k) => [k, Array.isArray(row[k]) ? "array" : typeof row[k]]));
+}
+
+test("the route's field names and types match the fixture the desktop search route is held to", async () => {
+  const fixture = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/canon-search-shape.json"), "utf8")) as { query: Params; body: Record<string, string>; result: Record<string, string> };
+  const res = await GET(new NextRequest(url(fixture.query).toString()));
+  assert.equal(res.status, 200);
+  const body = JSON.parse(await res.text()) as { results: Record<string, unknown>[] };
+  assert.deepEqual(shapeOf(body), fixture.body);
+  assert.ok(body.results.length > 0);
+  for (const row of body.results) assert.deepEqual(shapeOf(row), fixture.result);
 });
