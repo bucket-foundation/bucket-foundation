@@ -8,6 +8,7 @@ import watch
 
 OPEN = '/-- Every even number above two is a sum of two primes, stated for the fixture. -/\n@[category research open, AMS 11]\ntheorem goldbach_fixture : True := by\n  sorry\n'
 SOLVED = OPEN.replace("research open", "research solved, formal_proof using lean4 at \"https://example.org/proof\"")
+BOTH = {"BUCKET_WHATS_NEW_URL": "https://example.org/api", "BUCKET_WHATS_NEW_TOKEN": "fixture-token"}
 OTHER = '/-- A second fixture problem that stays open across both commits. -/\n@[category research open, AMS 5]\ntheorem stays_open : True := by\n  sorry\n'
 
 
@@ -38,12 +39,12 @@ class WatchTest(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def run_watch(self, *extra, env=None):
+    def run_watch(self, *extra, env=None, post=None):
         argv = ["watch.py", "--repo", str(self.repo), "--state", str(self.state), "--outbox", str(self.outbox), "--no-fetch", *extra]
         clean = {k: v for k, v in os.environ.items() if not k.startswith("BUCKET_WHATS_NEW_")}
         out, err = io.StringIO(), io.StringIO()
         with mock.patch.object(sys, "argv", argv), mock.patch.dict(os.environ, {**clean, **(env or {})}, clear=True), \
-                mock.patch.object(watch, "post", side_effect=AssertionError("no post without both settings")), \
+                mock.patch.object(watch, "post", side_effect=post or AssertionError("no post without --publish and both settings")), \
                 contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
             watch.main()
         return json.loads(out.getvalue()), err.getvalue()
@@ -92,12 +93,36 @@ class WatchTest(unittest.TestCase):
         self.assertEqual((result["solved"], result["staged"]), (0, 0))
         self.assertEqual(self.staged(), [])
 
-    def test_one_posting_setting_alone_stages_and_never_posts(self):
+    def test_both_settings_without_the_publish_flag_stage_and_never_post(self):
         self.run_watch()
         commit(self.repo, "2026-09-10", {"Demo/Goldbach.lean": SOLVED}, "solved")
-        result, err = self.run_watch(env={"BUCKET_WHATS_NEW_URL": "https://example.org/api"})
+        result, _ = self.run_watch(env=BOTH)
+        self.assertEqual((result["staged"], result["posted"]), (1, 0))
+        self.assertNotIn("posted_at", json.loads(self.staged()[0].read_text()))
+
+    def test_the_publish_flag_with_one_setting_stages_and_never_posts(self):
+        self.run_watch()
+        commit(self.repo, "2026-09-10", {"Demo/Goldbach.lean": SOLVED}, "solved")
+        result, err = self.run_watch("--publish", env={"BUCKET_WHATS_NEW_URL": BOTH["BUCKET_WHATS_NEW_URL"]})
         self.assertIn("staging only", err)
         self.assertEqual((result["staged"], result["posted"]), (1, 0))
+
+    def test_the_publish_flag_with_both_settings_posts_each_entry_once(self):
+        self.run_watch()
+        commit(self.repo, "2026-09-10", {"Demo/Goldbach.lean": SOLVED}, "solved")
+        sent = []
+        result, _ = self.run_watch("--publish", env=BOTH, post=lambda url, token, body: sent.append((url, token, body["id"])))
+        self.assertEqual((result["staged"], result["posted"], result["post_failed"]), (1, 1, 0))
+        self.assertEqual([s[:2] for s in sent], [(BOTH["BUCKET_WHATS_NEW_URL"], BOTH["BUCKET_WHATS_NEW_TOKEN"])])
+        self.assertIn("posted_at", json.loads(self.staged()[0].read_text()))
+        again, _ = self.run_watch("--publish", "--since", self.first, env=BOTH, post=lambda url, token, body: sent.append((url, token, body["id"])))
+        self.assertEqual((again["posted"], len(sent)), (0, 1))
+
+    def test_fetch_never_forces_a_local_ref(self):
+        source = (ENGINE / "watch.py").read_text()
+        self.assertIn('"refs/heads/*:refs/heads/*"', source)
+        self.assertNotIn("+refs", source)
+        self.assertNotIn("--force", source)
 
     def test_slug_is_stable_and_distinct_per_problem(self):
         a, b = watch.slug("Demo/A.lean::erdos_1.variants.x"), watch.slug("Demo/B.lean::erdos_1.variants.x")

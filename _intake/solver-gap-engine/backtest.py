@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer
 MODEL = "all-MiniLM-L6-v2"
 PAT = re.compile(r'(/--(?P<doc>(?:(?!-/).)*?)-/\s*)?@\[category research (?P<st>open|solved)(?P<tags>[^\]]*)\]\s*(?:theorem|lemma)\s+(?P<name>\S+)', re.S)
 ROOT = "FormalConjectures/"
-CUTOFF = "T16:45:00+00:00"
+CUTOFF = "T00:00:00+00:00"
 
 
 def git(repo, *args):

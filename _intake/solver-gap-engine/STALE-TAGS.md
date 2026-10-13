@@ -2,6 +2,8 @@
 
 Bead bkt-c32x. Two public records track the same Erdős problems: the `@[category research open|solved]` tags in formal-conjectures at `137aec5c`, dated 2026-09-30, and the status field of the Erdős problems database at `b916d95`, dated 2026-09-28. This check lists where they disagree.
 
+Sources: formal-conjectures, https://github.com/google-deepmind/formal-conjectures, software Apache-2.0 and other materials CC BY 4.0. Erdős problems database, https://github.com/teorth/erdosproblems, Apache-2.0, by the Erdős problems database contributors. Both licences permit reproducing the status fields, dates and repository names listed here with attribution. Full terms and limits: `SOURCES.md`.
+
 ## Method
 
 A problem's upstream state comes from every theorem in `ErdosProblems/<n>.lean` whose name has no `.variants.` part. It counts as open upstream when all of those are tagged open and as solved upstream when all are tagged solved. The database counts as resolved for the states proved, disproved, solved and independent, with or without a Lean mark. The 2 problems in the states not provable and not disprovable are left out of the comparison.

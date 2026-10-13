@@ -25,7 +25,7 @@ Reproduction steps and pinned versions: `_intake/solver-gap-engine/README.md`.
 
 ## Limits
 
-Similarity measures wording and says nothing about difficulty. A backtest against later upstream retagging gives AUC 0.583, 0.585, 0.528 and 0.441 at the snapshots of 2025-09-01, 2025-12-01, 2026-03-01 and 2026-06-01, where 0.5 is chance [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c]. The backtest, its method and its limits: `_intake/solver-gap-engine/BACKTEST.md`.
+Similarity measures wording and says nothing about difficulty. A backtest against later upstream retagging gives AUC 0.583, 0.585, 0.526 and 0.441 at the snapshots of 2025-09-01, 2025-12-01, 2026-03-01 and 2026-06-01, where 0.5 is chance, with 53, 75, 110 and 39 open problems dropped as absent at the head commit [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 backtest.py --repo fc-history.git --head 137aec5c]. Text published before 2026-10-13 gave 0.528 for 2026-03-01, from a 16:45 UTC snapshot cutoff; the cutoff is now 00:00 UTC. The backtest, its method and its limits: `_intake/solver-gap-engine/BACKTEST.md`.
 
 ## Next
 

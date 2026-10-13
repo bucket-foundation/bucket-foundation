@@ -26,7 +26,7 @@ python3 match.py
 | Median nearest cross-file similarity | 0.586 |
 | Closest match in the same file, excluded | 455 |
 
-Similarity measures wording and says nothing about difficulty. A backtest against later upstream retagging gives AUC 0.583, 0.585, 0.528 and 0.441 at the snapshots of 2025-09-01, 2025-12-01, 2026-03-01 and 2026-06-01, where 0.5 is chance [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c]. `backtest/backtest.json` is the source for those four values, and `scripts/test-solver-gap-backtest-numbers.mjs` fails when a copy drifts.
+Similarity measures wording and says nothing about difficulty. A backtest against later upstream retagging gives AUC 0.583, 0.585, 0.526 and 0.441 at the snapshots of 2025-09-01, 2025-12-01, 2026-03-01 and 2026-06-01, where 0.5 is chance, with 53, 75, 110 and 39 open problems dropped as absent at the head commit [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 backtest.py --repo fc-history.git --head 137aec5c]. `backtest/backtest.json` is the source for those four values, and `scripts/test-solver-gap-backtest-numbers.mjs` fails when a copy drifts.
 
 ## Follow-up Studies
 
@@ -36,4 +36,5 @@ Similarity measures wording and says nothing about difficulty. A backtest agains
 | `RETAGS.md` | What the September 2026 retags were | `retags.py` |
 | `STALE-TAGS.md` | Which open tags disagree with the Erdős problems database | `stale_tags.py` |
 | `LEAN-RANK.md` | Whether features of the Lean statement rank better, and which problems fix every parameter | `lean_features.py`, `finite_sweep.py` |
+| `SOURCES.md` | URL, commit and licence of every outside source, and the basis for each committed file derived from one | none |
 | `WATCH.md` | How to diff upstream by hand and stage one generation per newly solved problem | `watch.py` |

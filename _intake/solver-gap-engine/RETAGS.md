@@ -1,10 +1,10 @@
 # Retags
 
-Bead `bkt-ct7v`. September 2026 moved 159 open problems in google-deepmind/formal-conjectures to solved (Resolution Rate in `BACKTEST.md`) [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 rates.py --repo fc-history.git --head 137aec5c]. Each move is classified here by the commit that made it.
+Bead `bkt-ct7v`. September 2026 moved 159 open problems in google-deepmind/formal-conjectures to solved (Resolution Rate in `BACKTEST.md`) [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 rates.py --repo fc-history.git --head 137aec5c]. Each move is classified here by the commit that made it.
 
 ## Method
 
-`retags.py` lists every theorem open at `edccffec` (the last commit before 16:45 UTC on 2026-09-01, the cutoff in `BACKTEST.md`) and solved at head `137aec5c`, then walks the file history to the first commit where the tag flips. `backtest/retags-raw.jsonl` holds that commit's date, author, subject, body and the docstring and attribute diff. All 159 resolve: 104 commits by 21 authors on 18 days [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 retags.py --repo fc-history.git --head 137aec5c].
+`retags.py` lists every theorem open at `858d0e73` (the last commit before 00:00 UTC on 2026-09-01, the cutoff in `BACKTEST.md`) and solved at head `137aec5c`, then walks the file history to the first commit where the tag flips. `backtest/retags-raw.jsonl` holds that commit's date, author, subject, body and the docstring and attribute diff. All 159 resolve: 104 commits by 21 authors on 18 days [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 retags.py --repo fc-history.git --head 137aec5c].
 
 `backtest/retags.jsonl` holds the classes, assigned by hand from the diff with the deciding quote in `reason`.
 
@@ -74,6 +74,10 @@ Erdős 486 lists two links. 9 problems have a proof in the repository with no li
 - A commit body covers the whole pull request and can name an AI system that worked on a neighbouring declaration.
 - No proof was run or checked. Authorship is read from the text.
 - The 104 commits and 21 authors differ from the 117 and 24 in `BACKTEST.md`, which counted changed tag lines [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 retags.py --summarize].
+
+## Sources
+
+Source URL, commit and licence for formal-conjectures, and the basis for the commit metadata and docstring diffs held in `backtest/retags-raw.jsonl`: `SOURCES.md`.
 
 ## Reproduce
 

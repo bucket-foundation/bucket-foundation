@@ -5,38 +5,38 @@
  "snapshots": [
   {
    "date": "2025-09-01",
-   "commit": "bf6630d",
-   "problems": 689,
-   "open": 366,
-   "solved": 271,
+   "commit": "ed41ca1",
+   "problems": 684,
+   "open": 364,
+   "solved": 268,
    "open_missing_at_head": 53,
-   "tracked": 313,
+   "tracked": 311,
    "solved_later": 43,
-   "base_rate": 0.1374,
+   "base_rate": 0.1383,
    "auc": 0.583,
    "auc_ci95": [
-    0.484,
-    0.679
+    0.476,
+    0.68
    ],
-   "p_permutation": 0.0442,
-   "auc_within_collection": 0.567,
-   "auc_any_file": 0.515,
-   "auc_docstring_length": 0.707,
+   "p_permutation": 0.044,
+   "auc_within_collection": 0.564,
+   "auc_any_file": 0.517,
+   "auc_docstring_length": 0.709,
    "top": {
     "25": {
      "solved_later": 7,
      "precision": 0.28,
-     "lift": 2.04
+     "lift": 2.03
     },
     "50": {
      "solved_later": 12,
      "precision": 0.24,
-     "lift": 1.75
+     "lift": 1.74
     },
     "100": {
      "solved_later": 20,
      "precision": 0.2,
-     "lift": 1.46
+     "lift": 1.45
     }
    },
    "by_collection": {
@@ -51,9 +51,9 @@
      "auc": null
     },
     "ErdosProblems": {
-     "tracked": 169,
+     "tracked": 167,
      "solved_later": 30,
-     "auc": 0.565
+     "auc": 0.562
     },
     "Mathoverflow": {
      "tracked": 10,
@@ -94,10 +94,10 @@
    "base_rate": 0.1523,
    "auc": 0.585,
    "auc_ci95": [
-    0.507,
-    0.657
+    0.506,
+    0.659
    ],
-   "p_permutation": 0.0138,
+   "p_permutation": 0.0134,
    "auc_within_collection": 0.567,
    "auc_any_file": 0.5,
    "auc_docstring_length": 0.658,
@@ -168,38 +168,38 @@
   },
   {
    "date": "2026-03-01",
-   "commit": "62ce01b",
-   "problems": 1431,
-   "open": 762,
-   "solved": 575,
-   "open_missing_at_head": 109,
-   "tracked": 653,
-   "solved_later": 97,
-   "base_rate": 0.1485,
-   "auc": 0.528,
+   "commit": "173821a",
+   "problems": 1430,
+   "open": 764,
+   "solved": 572,
+   "open_missing_at_head": 110,
+   "tracked": 654,
+   "solved_later": 98,
+   "base_rate": 0.1498,
+   "auc": 0.526,
    "auc_ci95": [
-    0.467,
-    0.592
+    0.463,
+    0.59
    ],
-   "p_permutation": 0.182,
-   "auc_within_collection": 0.522,
-   "auc_any_file": 0.485,
-   "auc_docstring_length": 0.623,
+   "p_permutation": 0.1998,
+   "auc_within_collection": 0.517,
+   "auc_any_file": 0.482,
+   "auc_docstring_length": 0.618,
    "top": {
     "25": {
      "solved_later": 4,
      "precision": 0.16,
-     "lift": 1.08
+     "lift": 1.07
     },
     "50": {
      "solved_later": 8,
      "precision": 0.16,
-     "lift": 1.08
+     "lift": 1.07
     },
     "100": {
      "solved_later": 17,
      "precision": 0.17,
-     "lift": 1.14
+     "lift": 1.13
     }
    },
    "by_collection": {
@@ -214,9 +214,9 @@
      "auc": null
     },
     "ErdosProblems": {
-     "tracked": 390,
-     "solved_later": 64,
-     "auc": 0.524
+     "tracked": 391,
+     "solved_later": 65,
+     "auc": 0.518
     },
     "GreensOpenProblems": {
      "tracked": 35,
@@ -257,28 +257,28 @@
   },
   {
    "date": "2026-06-01",
-   "commit": "729af54",
-   "problems": 2001,
-   "open": 1054,
-   "solved": 880,
+   "commit": "b194fe3",
+   "problems": 1999,
+   "open": 1053,
+   "solved": 879,
    "open_missing_at_head": 39,
-   "tracked": 1015,
+   "tracked": 1014,
    "solved_later": 150,
-   "base_rate": 0.1478,
+   "base_rate": 0.1479,
    "auc": 0.441,
    "auc_ci95": [
     0.389,
     0.494
    ],
-   "p_permutation": 0.9886,
+   "p_permutation": 0.9906,
    "auc_within_collection": 0.497,
-   "auc_any_file": 0.555,
+   "auc_any_file": 0.556,
    "auc_docstring_length": 0.511,
    "top": {
     "25": {
      "solved_later": 8,
      "precision": 0.32,
-     "lift": 2.17
+     "lift": 2.16
     },
     "50": {
      "solved_later": 10,
@@ -353,9 +353,9 @@
      "auc": 0.467
     },
     "Wikipedia": {
-     "tracked": 195,
+     "tracked": 194,
      "solved_later": 4,
-     "auc": 0.476
+     "auc": 0.474
     },
     "WrittenOnTheWallII": {
      "tracked": 11,

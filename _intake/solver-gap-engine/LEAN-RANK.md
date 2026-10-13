@@ -4,7 +4,7 @@ Beads bkt-gqq7 and bkt-t5ir. Two questions: do features of the Lean statement ma
 
 ## Verdict
 
-The backtest of statement features alone is null: AUC 0.488, at chance. Added to the metadata model they move AUC from 0.544 to 0.566, and the interval of that gain includes zero. The cheap tactic sweep proved none of the 58 problems it reached [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c].
+The backtest of statement features alone is null: AUC 0.487, at chance. Added to the metadata model they move AUC from 0.543 to 0.566, and the interval of that gain includes zero. The cheap tactic sweep proved none of the 58 problems it reached [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 lean_features.py --repo fc-history.git --head 137aec5c].
 
 ## Features
 
@@ -12,32 +12,32 @@ The backtest of statement features alone is null: AUC 0.488, at chance. Added to
 
 ## Backtest
 
-Same split as `predict.py`: train on the 2025-12-01 snapshot with labels at 2026-06-01, test on the 2026-06-01 snapshot with labels at `137aec5c`. Same rows, 464 train with 37 solved later, 1,015 test with 150 solved later, base rate 14.8% [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c]. Same logistic regression, same seed, 2,000 bootstrap resamples, 5,000 label permutations.
+Same split as `predict.py`: train on the 2025-12-01 snapshot with labels at 2026-06-01, test on the 2026-06-01 snapshot with labels at `137aec5c`. Same rows, 464 train with 37 solved later, 1,014 test with 150 solved later, base rate 14.8% [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 lean_features.py --repo fc-history.git --head 137aec5c]. Same logistic regression, same seed, 2,000 bootstrap resamples, 5,000 label permutations.
 
 | Model | Features | Test AUC | 95% interval | p | Top 25 | Top 50 | Top 100 |
 |---|---|---|---|---|---|---|---|
-| Metadata, from `predict.py` | 32 | 0.544 | 0.488 to 0.597 | 0.043 | 8, 32% | 15, 30% | 25, 25% |
-| Lean statement | 23 | 0.488 | 0.435 to 0.538 | 0.680 | 8, 32% | 11, 22% | 16, 16% |
-| Metadata plus Lean | 55 | 0.566 | 0.509 to 0.618 | 0.005 | 6, 24% | 13, 26% | 22, 22% |
+| Metadata, from `predict.py` | 32 | 0.543 | 0.486 to 0.596 | 0.042 | 8, 32% | 15, 30% | 25, 25% |
+| Lean statement | 23 | 0.487 | 0.436 to 0.539 | 0.696 | 8, 32% | 11, 22% | 16, 16% |
+| Metadata plus Lean | 55 | 0.566 | 0.508 to 0.619 | 0.004 | 6, 24% | 11, 22% | 22, 22% |
 
-Top columns give the count solved later and the precision [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c].
+Top columns give the count solved later and the precision [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 lean_features.py --repo fc-history.git --head 137aec5c].
 
-Paired on the test rows, the Lean model sits 0.056 below metadata, interval -0.105 to -0.010, and the combined model 0.023 above it, interval -0.006 to +0.050 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c].
+Paired on the test rows, the Lean model sits 0.057 below metadata, interval -0.107 to -0.008, and the combined model 0.022 above it, interval -0.006 to +0.049 [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 lean_features.py --repo fc-history.git --head 137aec5c].
 
-The combined model has a higher AUC than metadata and a lower precision in its top 25, top 50 and top 100, so it gives no better shortlist than metadata [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c]. Its p of 0.005 tests the combined model against chance; the paired row tests the Lean features, and that row is null.
+The combined model has a higher AUC than metadata and a lower precision in its top 25, top 50 and top 100, so it gives no better shortlist than metadata [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 lean_features.py --repo fc-history.git --head 137aec5c]. Its p of 0.004 tests the combined model against chance; the paired row tests the Lean features, and that row is null.
 
 ## Single Features
 
 | Feature | Test AUC | Train AUC |
 |---|---|---|
-| Largest numeric literal | 0.658 | 0.459 |
+| Largest numeric literal | 0.659 | 0.459 |
 | Numeric literal count | 0.650 | 0.589 |
-| Statement length | 0.505 | 0.765 |
-| Mathlib identifiers | 0.471 | 0.721 |
+| Statement length | 0.502 | 0.765 |
+| Mathlib identifiers | 0.470 | 0.721 |
 
-[empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c]
+[empirical: formal-conjectures 137aec5c, 2026-10-13, python3 lean_features.py --repo fc-history.git --head 137aec5c]
 
-The features that ranked best on the train window, length and identifier counts, sit at chance on the test window. Two features sit above 0.55 in both windows: numeric literal count and the presence of `↔`, the latter at 0.696 on train and 0.576 on test. Both were picked from 23 after the test labels were read, so each is a lead for the next snapshot and carries no claim [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c].
+The features that ranked best on the train window, length and identifier counts, sit at chance on the test window. Two features sit above 0.55 in both windows: numeric literal count and the presence of `↔`, the latter at 0.696 on train and 0.576 on test. Both were picked from 23 after the test labels were read, so each is a lead for the next snapshot and carries no claim [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 lean_features.py --repo fc-history.git --head 137aec5c].
 
 ## Fixed-Parameter Cases
 

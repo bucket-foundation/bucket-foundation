@@ -52,6 +52,33 @@ def rates():
     fig.savefig("backtest/resolution-rate.png")
 
 
+def lean_rank():
+    data = json.load(open("backtest/lean-rank.json"))
+    names = [("metadata", "Metadata"), ("lean", "Lean statement"), ("metadata_plus_lean", "Metadata plus Lean")]
+    counts = {"metadata": data["feature_count"]["metadata"], "lean": data["feature_count"]["lean"], "metadata_plus_lean": data["feature_count"]["metadata"] + data["feature_count"]["lean"]}
+    fig, ax = plt.subplots(figsize=(9, 3.8), dpi=160)
+    for i, (key, _) in enumerate(names):
+        m = data["models"][key]
+        y = len(names) - 1 - i
+        ax.plot(m["ci95"], [y, y], color=BLUE, lw=2, solid_capstyle="round")
+        ax.plot(m["auc"], y, "o", color=BLUE, ms=9, mec="white", mew=2)
+        ax.annotate(f'{m["auc"]:.3f}', (m["auc"], y), xytext=(0, 10), textcoords="offset points", ha="center", color=INK, fontsize=11)
+    ax.axvline(0.5, color=MUTE, lw=1, ls=(0, (4, 3)))
+    ax.annotate("chance, 0.50", (0.5, len(names) - 0.4), xytext=(-6, 0), textcoords="offset points", ha="right", color=MUTE, fontsize=10)
+    ax.set_yticks(range(len(names)))
+    ax.set_yticklabels([f"{label}, {counts[key]} features" for key, label in reversed(names)], color=MUTE, fontsize=10)
+    ax.set_ylim(-0.6, len(names) - 0.2)
+    ax.set_xlim(0.38, 0.68)
+    ax.set_xlabel("test AUC with 95% bootstrap interval", color=MUTE, fontsize=10)
+    ax.set_title(f'Which features rank the problems solved later? {data["test"]["snapshot"]} snapshot', color=INK, fontsize=12, loc="left")
+    frame(ax)
+    ax.grid(axis="y", lw=0)
+    ax.grid(axis="x", color=GRID, lw=1)
+    fig.tight_layout()
+    fig.savefig("backtest/lean-rank.png")
+
+
 if __name__ == "__main__":
     backtest()
     rates()
+    lean_rank()

@@ -11,8 +11,8 @@ const backtest = JSON.parse(read(`${ENGINE}/backtest/backtest.json`));
 const snapshots = backtest.snapshots;
 const fixed = (n) => n.toFixed(3);
 const series = (items) => `${items.slice(0, -1).join(", ")} and ${items.at(-1)}`;
-const sentence = `AUC ${series(snapshots.map((s) => fixed(s.auc)))} at the snapshots of ${series(snapshots.map((s) => s.date))}, where 0.5 is chance`;
-const tag = `[empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c]`;
+const sentence = `AUC ${series(snapshots.map((s) => fixed(s.auc)))} at the snapshots of ${series(snapshots.map((s) => s.date))}, where 0.5 is chance, with ${series(snapshots.map((s) => String(s.open_missing_at_head)))} open problems dropped as absent at the head commit`;
+const tag = `[empirical: formal-conjectures 137aec5c, 2026-10-13, python3 backtest.py --repo fc-history.git --head 137aec5c]`;
 
 const whatsNew = JSON.parse(read("data/whats-new.json"));
 const entry = whatsNew.entries.find((e) => e.category === "production" && e.title === "Solver gap engine");
@@ -27,6 +27,20 @@ test("the backtest head matches the commit the source tag names", () => {
   assert.equal(snapshots.length, 4);
 });
 
+test("every snapshot reports its dropped problems and the cutoff is midnight UTC", () => {
+  for (const s of snapshots) assert.equal(s.open - s.open_missing_at_head, s.tracked, s.date);
+  assert.match(read(`${ENGINE}/backtest.py`), /^CUTOFF = "T00:00:00\+00:00"$/m);
+});
+
+test("the Erdős tag check and the sources page name each source with its URL and licence", () => {
+  const sources = read(`${ENGINE}/SOURCES.md`);
+  const stale = read(`${ENGINE}/STALE-TAGS.md`);
+  for (const text of [sources, stale]) {
+    for (const needle of ["https://github.com/google-deepmind/formal-conjectures", "https://github.com/teorth/erdosproblems", "Apache-2.0", "CC BY 4.0"]) assert.ok(text.includes(needle), needle);
+  }
+  for (const needle of ["137aec5c", "b916d95", "CC BY-SA 4.0"]) assert.ok(sources.includes(needle), needle);
+});
+
 test("every prose copy quotes the AUC values in backtest.json with the source tag", () => {
   for (const [name, text] of Object.entries(COPIES)) {
     assert.ok(text.includes(`${sentence} ${tag}`), `${name} must contain: ${sentence} ${tag}`);
@@ -36,7 +50,7 @@ test("every prose copy quotes the AUC values in backtest.json with the source ta
 test("BACKTEST.md carries one table row per snapshot with the values in backtest.json", () => {
   const doc = read(`${ENGINE}/BACKTEST.md`);
   for (const s of snapshots) {
-    const row = `| ${s.date} | ${s.tracked.toLocaleString("en-US")} | ${s.solved_later} | ${fixed(s.auc)} | ${fixed(s.auc_ci95[0])} to ${fixed(s.auc_ci95[1])} | ${fixed(s.p_permutation)} | ${fixed(s.auc_within_collection)} | ${fixed(s.auc_docstring_length)} |`;
+    const row = `| ${s.date} | ${s.tracked.toLocaleString("en-US")} | ${s.open_missing_at_head} | ${s.solved_later} | ${fixed(s.auc)} | ${fixed(s.auc_ci95[0])} to ${fixed(s.auc_ci95[1])} | ${fixed(s.p_permutation)} | ${fixed(s.auc_within_collection)} | ${fixed(s.auc_docstring_length)} |`;
     assert.ok(doc.includes(row), `BACKTEST.md must contain: ${row}`);
   }
 });

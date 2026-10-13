@@ -62,12 +62,13 @@ def main():
     ap.add_argument("--outbox", required=True)
     ap.add_argument("--since")
     ap.add_argument("--no-fetch", action="store_true")
+    ap.add_argument("--publish", action="store_true")
     a = ap.parse_args()
     state_path, outbox = pathlib.Path(a.state), pathlib.Path(a.outbox)
     outbox.mkdir(parents=True, exist_ok=True)
     state = json.loads(state_path.read_text()) if state_path.exists() else {}
     if not a.no_fetch:
-        git(a.repo, "fetch", "--quiet", "origin", "+refs/heads/*:refs/heads/*")
+        git(a.repo, "fetch", "--quiet", "origin", "refs/heads/*:refs/heads/*")
     new = git(a.repo, "rev-parse", "HEAD").decode().strip()
     old = a.since and git(a.repo, "rev-parse", a.since).decode().strip() or state.get("last")
     today = datetime.date.today().isoformat()
@@ -77,9 +78,10 @@ def main():
         return
     before, after = snapshot(a.repo, old), snapshot(a.repo, new)
     solved, reopened, added_open = changes(before, after)
-    url, token = os.environ.get("BUCKET_WHATS_NEW_URL"), os.environ.get("BUCKET_WHATS_NEW_TOKEN")
-    if bool(url) != bool(token):
-        print("BUCKET_WHATS_NEW_URL and BUCKET_WHATS_NEW_TOKEN must both be set to post; staging only", file=sys.stderr)
+    url, token = (os.environ.get("BUCKET_WHATS_NEW_URL"), os.environ.get("BUCKET_WHATS_NEW_TOKEN")) if a.publish else (None, None)
+    if a.publish and not (url and token):
+        print("--publish needs BUCKET_WHATS_NEW_URL and BUCKET_WHATS_NEW_TOKEN; staging only", file=sys.stderr)
+        url = token = None
     staged = posted = failed = 0
     pending = {json.loads(f.read_text())["id"]: f for f in outbox.glob("fc-solved-*.json") if "posted_at" not in json.loads(f.read_text())}
     for pid in solved:

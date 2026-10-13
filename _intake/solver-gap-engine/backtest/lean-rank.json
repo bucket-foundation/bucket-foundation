@@ -9,11 +9,11 @@
  },
  "test": {
   "snapshot": "2026-06-01",
-  "commit": "729af541",
+  "commit": "b194fe36",
   "labels_at": "2026-09-30",
-  "n": 1015,
+  "n": 1014,
   "solved_later": 150,
-  "base_rate": 0.1478
+  "base_rate": 0.1479
  },
  "feature_count": {
   "metadata": 32,
@@ -21,17 +21,17 @@
  },
  "models": {
   "metadata": {
-   "auc": 0.544,
+   "auc": 0.543,
    "ci95": [
-    0.488,
-    0.597
+    0.486,
+    0.596
    ],
-   "p_permutation": 0.0426,
+   "p_permutation": 0.042,
    "top": {
     "25": {
      "solved_later": 8,
      "precision": 0.32,
-     "lift": 2.17
+     "lift": 2.16
     },
     "50": {
      "solved_later": 15,
@@ -46,17 +46,17 @@
    }
   },
   "lean": {
-   "auc": 0.488,
+   "auc": 0.487,
    "ci95": [
-    0.435,
-    0.538
+    0.436,
+    0.539
    ],
-   "p_permutation": 0.6797,
+   "p_permutation": 0.6955,
    "top": {
     "25": {
      "solved_later": 8,
      "precision": 0.32,
-     "lift": 2.17
+     "lift": 2.16
     },
     "50": {
      "solved_later": 11,
@@ -73,10 +73,10 @@
   "metadata_plus_lean": {
    "auc": 0.566,
    "ci95": [
-    0.509,
-    0.618
+    0.508,
+    0.619
    ],
-   "p_permutation": 0.005,
+   "p_permutation": 0.0044,
    "top": {
     "25": {
      "solved_later": 6,
@@ -84,9 +84,9 @@
      "lift": 1.62
     },
     "50": {
-     "solved_later": 13,
-     "precision": 0.26,
-     "lift": 1.76
+     "solved_later": 11,
+     "precision": 0.22,
+     "lift": 1.49
     },
     "100": {
      "solved_later": 22,
@@ -98,24 +98,24 @@
  },
  "gain_over_metadata": {
   "lean": {
-   "gain": -0.056,
+   "gain": -0.057,
    "ci95": [
-    -0.105,
-    -0.01
+    -0.107,
+    -0.008
    ]
   },
   "metadata_plus_lean": {
-   "gain": 0.023,
+   "gain": 0.022,
    "ci95": [
     -0.006,
-    0.05
+    0.049
    ]
   }
  },
  "single_feature": [
   {
    "feature": "log_max_literal",
-   "auc_test": 0.658,
+   "auc_test": 0.659,
    "auc_train": 0.459,
    "share_or_mean_test": 0.484
   },
@@ -123,13 +123,13 @@
    "feature": "numeric_literals",
    "auc_test": 0.65,
    "auc_train": 0.589,
-   "share_or_mean_test": 0.875
+   "share_or_mean_test": 0.874
   },
   {
    "feature": "local_definitions",
-   "auc_test": 0.593,
+   "auc_test": 0.592,
    "auc_train": 0.467,
-   "share_or_mean_test": 0.733
+   "share_or_mean_test": 0.734
   },
   {
    "feature": "iff",
@@ -151,9 +151,9 @@
   },
   {
    "feature": "mathlib_identifiers",
-   "auc_test": 0.471,
+   "auc_test": 0.47,
    "auc_train": 0.721,
-   "share_or_mean_test": 1.098
+   "share_or_mean_test": 1.096
   },
   {
    "feature": "answer_sorry",
@@ -165,19 +165,19 @@
    "feature": "explicit_binders",
    "auc_test": 0.476,
    "auc_train": 0.471,
-   "share_or_mean_test": 0.524
+   "share_or_mean_test": 0.525
   },
   {
    "feature": "set_finiteness",
    "auc_test": 0.477,
    "auc_train": 0.527,
-   "share_or_mean_test": 0.105
+   "share_or_mean_test": 0.106
   },
   {
    "feature": "log_tokens",
-   "auc_test": 0.521,
+   "auc_test": 0.522,
    "auc_train": 0.722,
-   "share_or_mean_test": 3.064
+   "share_or_mean_test": 3.063
   },
   {
    "feature": "existential",
@@ -211,9 +211,9 @@
   },
   {
    "feature": "mentions_real",
-   "auc_test": 0.51,
+   "auc_test": 0.511,
    "auc_train": 0.623,
-   "share_or_mean_test": 0.363
+   "share_or_mean_test": 0.362
   },
   {
    "feature": "bounded_quantifiers",
@@ -229,15 +229,15 @@
   },
   {
    "feature": "log_statement_length",
-   "auc_test": 0.505,
+   "auc_test": 0.502,
    "auc_train": 0.765,
-   "share_or_mean_test": 4.445
+   "share_or_mean_test": 4.443
   },
   {
    "feature": "distinct_identifiers",
    "auc_test": 0.498,
    "auc_train": 0.729,
-   "share_or_mean_test": 1.78
+   "share_or_mean_test": 1.779
   },
   {
    "feature": "type_of",

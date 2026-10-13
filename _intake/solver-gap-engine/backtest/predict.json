@@ -9,17 +9,17 @@
  "test": {
   "snapshot": "2026-06-01",
   "labels_at": "2026-09-30",
-  "n": 1015,
+  "n": 1014,
   "solved_later": 150,
-  "base_rate": 0.1478
+  "base_rate": 0.1479
  },
  "auc": {
-  "model": 0.544,
+  "model": 0.543,
   "model_ci95": [
-   0.488,
-   0.597
+   0.486,
+   0.596
   ],
-  "model_p": 0.0426,
+  "model_p": 0.042,
   "gap_score": 0.441,
   "docstring_length": 0.511
  },
@@ -28,12 +28,12 @@
    "model": {
     "solved_later": 8,
     "precision": 0.32,
-    "lift": 2.17
+    "lift": 2.16
    },
    "gap_score": {
     "solved_later": 8,
     "precision": 0.32,
-    "lift": 2.17
+    "lift": 2.16
    }
   },
   "50": {
