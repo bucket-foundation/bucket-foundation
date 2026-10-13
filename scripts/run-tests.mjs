@@ -62,6 +62,7 @@ const SUITES = {
       "scripts/test-whats-new-timeline.ts",
       "scripts/test-whats-new-images.ts",
       "scripts/test-release-signing.mjs",
+      "scripts/test-provenance-packet.ts",
     ],
     commands: [
       ["bash", "scripts/test-release-install-linux.sh"],
@@ -157,8 +158,12 @@ function orphanCheck(tests, suites) {
   return problems;
 }
 
+const ESM_TS = new Set(["scripts/test-provenance-packet.ts"]);
+const TSX = "tsx@4.21.0";
+
 function stepFor(file) {
   if (file.endsWith(".mjs")) return { argv: [process.execPath, "--test", file], env: {} };
+  if (ESM_TS.has(file)) return { argv: ["npx", "--yes", TSX, "--test", file], env: {} };
   return {
     argv: [
       process.execPath,
