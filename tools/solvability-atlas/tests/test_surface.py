@@ -292,3 +292,21 @@ def test_committed_survival_results_carry_the_gain_over_posed_year():
                 assert lo <= hi
             assert g["concordance_gain"] == pytest.approx(block["scores"][f"{family}:map_year"]["concordance"] - block["scores"][f"{family}:year"]["concordance"])
     assert len(result["temporal"]) >= 5
+    mixed = cv["mixed_sources"]
+    assert mixed["rows"] == result["source_mix"]["rows_in_mixed_sources"]
+    assert mixed["events"] == result["source_mix"]["events_in_mixed_sources"]
+    assert mixed["sources"] == result["source_mix"]["mixed_sources"]
+    for family in ss.FAMILIES:
+        lo, hi = mixed["gain_over_posed_year"][family]["within_source_gain_interval"]
+        assert lo <= hi
+
+
+def test_mixed_rows_come_from_lists_with_both_outcomes(frame):
+    rows = ss.mixed_rows(frame)
+    for s in np.unique(frame["source"][rows]):
+        events = frame["event"][frame["source"] == s]
+        assert events.any() and not events.all()
+    outside = np.setdiff1d(np.arange(len(frame["time"])), rows)
+    for s in np.unique(frame["source"][outside]):
+        events = frame["event"][frame["source"] == s]
+        assert events.all() or not events.any()

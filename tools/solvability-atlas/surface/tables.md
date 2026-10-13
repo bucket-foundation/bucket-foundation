@@ -67,6 +67,8 @@ Map and year minus posed year alone. A negative Brier gain is an improvement.
 |---|---|---|---|---|---|---|---|
 | cox | folds | 0.252 | 0.188 to 0.313 | -0.133 | -0.265 to 0.011 | -0.047 | -0.062 to -0.029 |
 | forest | folds | 0.137 | 0.085 to 0.190 | 0.160 | 0.025 to 0.292 | -0.061 | -0.078 to -0.044 |
+| cox | folds, the 7 mixed lists, 273 rows | 0.047 | -0.040 to 0.152 | -0.141 | -0.306 to 0.037 | -0.046 | -0.064 to -0.027 |
+| forest | folds, the 7 mixed lists, 273 rows | 0.202 | 0.107 to 0.302 | 0.201 | 0.044 to 0.349 | -0.058 | -0.078 to -0.038 |
 | cox | posed 1950 or later | 0.128 | 0.057 to 0.202 | -0.119 | -0.280 to 0.043 | -0.040 | -0.071 to -0.005 |
 | forest | posed 1950 or later | 0.168 | 0.115 to 0.219 | 0.009 | -0.070 to 0.091 | -0.064 | -0.088 to -0.041 |
 | cox | posed 1960 or later | 0.101 | 0.026 to 0.176 | -0.040 | -0.229 to 0.118 | -0.023 | -0.063 to 0.021 |

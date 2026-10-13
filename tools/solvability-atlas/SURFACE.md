@@ -11,7 +11,8 @@ The map and graph features add no signal beyond the posed year that survives a p
 | Gain over posed year, years to resolve, repeated folds | Graph-smoothed 0.075 in R squared, interval 0.043 to 0.109. Linear 0.047, Gaussian process 0.014 and boosted trees 0.068, each with an interval that covers zero |
 | Same gain on the posed-year sweep | Graph-smoothed between 0.000 and 0.027 at the six cutoffs from 1950 to 2000, every interval covering zero; 0.104 at 2010, interval 0.009 to 0.231, where the model's own R squared is -1.221 on 33 test rows. The other three models lose to the posed year at 1950 through 1980 |
 | Gain over posed year, survival, pooled concordance | Cox 0.252, interval 0.188 to 0.313, and forest 0.137, interval 0.085 to 0.190, in folds |
-| Same gain within a source list | Cox -0.133, interval -0.265 to 0.011; forest 0.160, interval 0.025 to 0.292, in folds. On the sweep all 14 intervals cover zero |
+| Same gain within a source list | Cox -0.133, interval -0.265 to 0.011, in folds. Forest 0.160, interval 0.025 to 0.292, against a posed-year baseline that scores below chance. On the sweep all 14 intervals cover zero |
+| Score on the 7 lists that mix outcomes, 273 rows | Within-source concordance 0.526 for Cox, interval 0.415 to 0.630, and 0.551 for the forest, interval 0.441 to 0.658. Both include 0.5 |
 | Does a surface beat the circle | The circle is constant on these targets. The graph surface sits 0.100 above it in folds, interval 0.064 to 0.138. On the sweep both are negative at every cutoff, from -0.133 at 1950 to -6.014 for the surface and -6.541 for the circle at 2010 |
 | Does the surface rank the October claims | No. AUC 0.437, interval 0.373 to 0.504, against 0.496 for reach on the same 1,348 rows |
 
@@ -105,12 +106,25 @@ The scores fall with the cutoff because a later test set holds shorter times tha
 | forest | map and year | 0.798 | 0.760 to 0.835 | 0.543 | 0.451 to 0.628 | 0.131 | 0.115 to 0.147 |
 | Kaplan-Meier | none | | | | | 0.192 | 0.177 to 0.208 |
 
+The same within-source concordance on the 7 lists that mix outcomes, 273 rows with 74 resolved:
+
+| Model | Features | Within source, mixed lists | 95% interval |
+|---|---|---|---|
+| Cox | posed year | 0.667 | 0.528 to 0.791 |
+| Cox | map and year | 0.526 | 0.415 to 0.630 |
+| forest | posed year | 0.350 | 0.252 to 0.464 |
+| forest | map and year | 0.551 | 0.441 to 0.658 |
+
+On those lists the map-and-year models score 0.526 and 0.551, and both intervals include 0.5.
+
 Gain of map and year over the posed year alone. A negative Brier gain is an improvement.
 
 | Model | Split | Concordance gain | 95% interval | Within-source gain | 95% interval | Brier gain | 95% interval |
 |---|---|---|---|---|---|---|---|
 | Cox | folds | 0.252 | 0.188 to 0.313 | -0.133 | -0.265 to 0.011 | -0.047 | -0.062 to -0.029 |
 | forest | folds | 0.137 | 0.085 to 0.190 | 0.160 | 0.025 to 0.292 | -0.061 | -0.078 to -0.044 |
+| Cox | folds, the 7 mixed lists, 273 rows | | | -0.141 | -0.306 to 0.037 | | |
+| forest | folds, the 7 mixed lists, 273 rows | | | 0.201 | 0.044 to 0.349 | | |
 | Cox | posed 1950 or later | 0.128 | 0.057 to 0.202 | -0.119 | -0.280 to 0.043 | -0.040 | -0.071 to -0.005 |
 | forest | posed 1950 or later | 0.168 | 0.115 to 0.219 | 0.009 | -0.070 to 0.091 | -0.064 | -0.088 to -0.041 |
 | Cox | posed 1970 or later | 0.079 | 0.007 to 0.149 | -0.036 | -0.217 to 0.079 | 0.004 | -0.055 to 0.069 |
@@ -120,7 +134,7 @@ Gain of map and year over the posed year alone. A negative Brier gain is an impr
 | Cox | posed 2010 or later | 0.424 | 0.321 to 0.524 | -0.036 | -0.270 to 0.214 | -0.210 | -0.294 to -0.126 |
 | forest | posed 2010 or later | 0.103 | 0.005 to 0.196 | -0.144 | -0.320 to 0.038 | -0.127 | -0.171 to -0.083 |
 
-The pooled concordance and Brier gains are real as predictions on this table and come from the source lists. The within-source column was added after the pooled result came in, on the measured fact that 89 of 96 lists hold one outcome. The forest's within-source gain in folds is measured against a posed-year forest that scores 0.383, below chance, and it does not repeat on any cutoff. The forest on the posed year alone scores 0.500 on every cutoff because each test year lies beyond the training years.
+The pooled concordance and Brier gains are real as predictions on this table and come from the source lists. The within-source column was added after the pooled result came in, on the measured fact that 89 of 96 lists hold one outcome. The forest's within-source gain in folds, 0.160 overall and 0.201 on the mixed lists, rests on an unreliable baseline: the posed-year forest scores 0.383 and 0.350 there, below chance, so the gain measures that baseline's failure as much as any map signal. It does not repeat on any cutoff. The forest on the posed year alone scores 0.500 on every cutoff because each test year lies beyond the training years.
 
 ## Other Checks
 

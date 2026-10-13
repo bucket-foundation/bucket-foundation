@@ -195,6 +195,9 @@ def cross_validate(frame, repeats=REPEATS, bootstraps=surface.BOOTSTRAPS, seed=S
     runs = Parallel(n_jobs=jobs)(delayed(fold_predictions)(frame, r, seed) for r in range(repeats))
     rows = np.arange(len(frame["time"]))
     block = summarise(frame, rows, [r[0] for r in runs], [r[1] for r in runs], bootstraps, seed)
+    mixed = mixed_rows(frame)
+    inside = summarise(frame, mixed, [r[0] for r in runs], [r[1] for r in runs], bootstraps, seed)
+    block["mixed_sources"] = {"rows": int(len(mixed)), "events": int(frame["event"][mixed].sum()), "sources": int(len(np.unique(frame["source"][mixed]))), **inside}
     return {"rows": int(len(rows)), "events": int(frame["event"].sum()), "censored": int((~frame["event"]).sum()), "folds": FOLDS, "repeats": repeats, **block}
 
 
@@ -219,6 +222,12 @@ def sweep(frame, cutoffs=surface.CUTOFFS, bootstraps=surface.BOOTSTRAPS, seed=SE
     usable = [c for c in cutoffs if known_at(frame, c)[2].sum() >= MIN_TEST_EVENTS and frame["event"][frame["posed"] >= c].sum() >= MIN_TEST_EVENTS]
     blocks = Parallel(n_jobs=jobs)(delayed(cutoff_block)(frame, c, bootstraps, seed) for c in usable)
     return {str(b["cutoff"]): b for b in blocks}
+
+
+def mixed_rows(frame):
+    sources = np.unique(frame["source"])
+    share = np.array([frame["event"][frame["source"] == s].mean() for s in sources])
+    return np.flatnonzero(np.isin(frame["source"], sources[(share > 0) & (share < 1)]))
 
 
 def source_mix(frame):
@@ -261,7 +270,8 @@ def tables_markdown(result):
         out.append(f"| {family} | {kind[features]} | {fmt(s['concordance'])} | {span(s['concordance_interval'])} | {fmt(s['concordance_within_source'])} | {span(s['concordance_within_source_interval'])} | {fmt(s['brier_mean'])} | {span(s['brier_mean_interval'])} |")
     m = cv["scores"]["marginal"]
     out += [f"| Kaplan-Meier | none | | | | | {fmt(m['brier_mean'])} | {span(m['brier_mean_interval'])} |", "", "## Survival Gain Over Posed Year", "", "Map and year minus posed year alone. A negative Brier gain is an improvement.", "", "| Model | Split | Concordance gain | 95% interval | Within-source gain | 95% interval | Brier gain | 95% interval |", "|---|---|---|---|---|---|---|---|"]
-    blocks = [("folds", cv)] + [(f"posed {c} or later", b) for c, b in result["temporal"].items()]
+    mixed = cv["mixed_sources"]
+    blocks = [("folds", cv), (f"folds, the {mixed['sources']} mixed lists, {mixed['rows']} rows", mixed)] + [(f"posed {c} or later", b) for c, b in result["temporal"].items()]
     for split, block in blocks:
         for family in FAMILIES:
             g = block["gain_over_posed_year"][family]

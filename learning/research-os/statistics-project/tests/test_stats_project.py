@@ -23,9 +23,18 @@ def y(c):
     return c["cleaned"][sp.Y].to_numpy(dtype=float)
 
 
+def version(folder):
+    parts = folder.name.split("-")
+    return ("-".join(parts[:3]), int(parts[3]) if len(parts) > 3 else 1)
+
+
 def latest_folder():
-    folders = sorted((p for p in HERE.iterdir() if p.is_dir() and (p / "sample_50.csv").exists()), key=lambda p: p.stat().st_mtime)
-    return folders[-1]
+    return max((p for p in HERE.iterdir() if p.is_dir() and (p / "sample_50.csv").exists()), key=version)
+
+
+def test_latest_folder_is_the_highest_version():
+    assert version(Path("2026-10-13")) < version(Path("2026-10-13-2")) < version(Path("2026-10-13-10")) < version(Path("2026-10-14"))
+    assert latest_folder().name == max((p.name for p in HERE.iterdir() if (p / "sample_50.csv").exists()), key=lambda n: version(Path(n)))
 
 
 def test_one_copy_of_the_script():
