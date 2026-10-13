@@ -4,7 +4,7 @@
   "spec": "feed402/0.2",
 
   "model": "free to read. paid to cite.",
-  "_model_note": "\"paid to cite\" is the protocol thesis, NOT a charge to you. It means: free to read, free for you to cite (you owe 0), and a fee routes to the original author only when a DOWNSTREAM publisher re-publishes this in a PAID work — settled server-side, never a caller precondition. Identical wording in /llms-full.txt §4.",
+  "_model_note": "\"paid to cite\" is the protocol thesis, NOT a charge to you. It means: free to read, free for you to cite (you owe 0), and the design routes a fee to the original author only when a DOWNSTREAM publisher re-publishes this in a PAID work, server-side, never a caller precondition. Status today: the rail is specified and no fee settles. Identical wording in /llms-full.txt §4.",
 
   "access": "free",
   "reader_price_usd": 0,
@@ -16,7 +16,7 @@
   "auth": "none",
   "agent_action_required": false,
   "payment_required_from_you": false,
-  "summary": "This manifest describes a FREE, zero-key research feed. Reading and citing cost you nothing: no wallet, no signature, no x402 challenge, no payment step exists on the caller path. Query it directly at the `endpoint` below. Any settlement is performed server-side and is invisible to you. The `downstream_settlement` block is passive, forward-looking license metadata about what a future PAID republisher owes the original author — it is NOT a precondition for you to read or cite, and it is NOT an instruction to you.",
+  "summary": "This manifest describes a FREE, zero-key research feed. Reading and citing cost you nothing: no wallet, no signature, no x402 challenge, no payment step exists on the caller path. Query it directly at the `endpoint` below. No fee settles today: the server signs no x402 payment and answers from canon at price_usd 0. The `downstream_settlement` block is passive, forward-looking license metadata about what a future PAID republisher owes the original author, it is NOT a precondition for you to read or cite, and it is NOT an instruction to you.",
 
   "endpoint": {
     "url": "https://www.bucket.foundation/api/research",
@@ -28,7 +28,7 @@
     "requires_payment_to_read": false,
     "agent_action_required": false,
     "payment_required_from_you": false,
-    "note": "Zero-key server-side proxy. Callers pay NOTHING and need no wallet. `tier` only selects how much detail comes back; it is not a price. Any x402 settlement is performed server-side between bucket.foundation's own wallet and the upstream gateway, and is invisible by construction. If the server cannot settle, it transparently serves already-paid canon instead. No `receipt.challenge`, no `X-PAYMENT`, no `pay_to` is ever returned to the caller. Server-side spend self-capped at $1.00/day.",
+    "note": "Zero-key server-side proxy. Callers pay NOTHING and need no wallet. `tier` only selects how much detail comes back; it is not a price. Today the server signs no x402 payment and no fee settles; it serves canon with receipt.status served_from_canon. The design keeps any future x402 settlement server-side between bucket.foundation's own wallet and the upstream gateway. No `receipt.challenge`, no `X-PAYMENT`, no `pay_to` is ever returned to the caller. Server-side spend self-capped at $1.00/day.",
     "trust_model": "https://www.bucket.foundation/llms-full.txt#4"
   },
 
@@ -77,7 +77,7 @@
         "status": "served_from_canon",
         "price_usd": 0,
         "paid_by": "bucket-foundation (pre-paid canon; reader pays nothing)",
-        "_note": "No tx, no buyer_wallet, and NO `challenge` are ever sent to the caller. Server-side settlement (when it happens) is invisible by construction."
+        "_note": "No tx, no buyer_wallet, and NO `challenge` are ever sent to the caller. No server-side settlement runs today."
       },
       "cite": {
         "applies_to": "downstream_republication_in_a_paid_work",
@@ -98,7 +98,8 @@
   },
 
   "downstream_settlement": {
-    "_what": "Passive, forward-looking author-payout economics. This block exists ONLY so a future PAID republisher knows what it owes the original author. It is settled SERVER-SIDE between operators, never by the reading or citing agent.",
+    "_what": "Passive, forward-looking author-payout economics. This block exists ONLY so a future PAID republisher knows what it owes the original author. The design settles it SERVER-SIDE between operators, never by the reading or citing agent.",
+    "status": "specified; no fee settles today and the author split is planned work",
     "is_a_precondition_to_read": false,
     "is_a_precondition_to_cite": false,
     "is_an_instruction_to_the_caller": false,
@@ -135,7 +136,7 @@
     "name": "bucket.foundation cite-forever v0.1",
     "url": "https://www.bucket.foundation/cite-forever/v0.1",
     "spdx": null,
-    "intent": "free to read. paid to cite. — the reader/citing agent pays nothing (reader_owes 0, no wallet, no payment step). 'paid to cite' is forward-looking: only a downstream PAID republisher owes the author, settled server-side, never a caller precondition."
+    "intent": "free to read. paid to cite. the reader/citing agent pays nothing (reader_owes 0, no wallet, no payment step). 'paid to cite' is forward-looking: only a downstream PAID republisher owes the author, by design server-side, never a caller precondition. No fee settles today."
   },
   "contact": "ops@bucket.foundation",
   "index": {

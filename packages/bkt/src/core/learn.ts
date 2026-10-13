@@ -42,8 +42,16 @@ export interface DeckProgress extends PackDeck {
   xp: number;
 }
 
+export interface QuizLesson {
+  deck: string;
+  atom: string;
+  title: string;
+}
+
 export interface QuizOutcome extends GradeResult {
   answer: string;
+  explain: string | null;
+  lesson: QuizLesson | null;
 }
 
 export interface DailyOutcome extends GradeResult {
@@ -84,8 +92,12 @@ export class Encompassing {
 
 export function gradeQuiz(store: Store, enc: Encompassing, q: Question, choice: unknown, elapsedMs: number, now: number): QuizOutcome {
   if (choice !== null && (typeof choice !== "number" || !Number.isInteger(choice) || choice < 0 || choice >= q.choices.length)) throw new LearnError("bad choice", 400);
+  const item = store.items().find((i) => i.id === q.itemId);
   const r = answerQuiz(store, q, choice as number | null, elapsedMs, now, enc.forItem(q.itemId));
-  return { ...r, answer: q.choices[q.answerIndex] };
+  const answer = q.choices[q.answerIndex];
+  const deck = item ? deckOf(item.branch) : "";
+  const taught = !!item && !!enc.deckAtoms(deck)?.some((a) => a.id === item.atomId);
+  return { ...r, answer, explain: item && item.answer !== answer ? item.answer : null, lesson: taught ? { deck, atom: item!.atomId, title: item!.title } : null };
 }
 
 export function dueCards(store: Store, now: number, size: number): ReviewCard[] {

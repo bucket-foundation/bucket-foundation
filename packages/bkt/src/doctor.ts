@@ -6,8 +6,11 @@ import { pathToFileURL } from "node:url";
 import { colorEnabled, interactive, KEY_STORES, type Tty } from "./cli/out";
 import { LEGACY_ACCOUNTS, scopedAccounts, type KeyAccounts } from "./device";
 import { KeyringHeldError, REMEDY, type Keyring } from "./keyring";
+import { TOOLS, TOOL_USE, toolInstall } from "./research-jobs";
 import type { Pack } from "./pack/export";
 import type { ExplorePack } from "./pack/explore";
+import { SHARE_ALIKE, wordPackChecksum, type WordPack } from "./pack/words";
+import { brokenDecks, deckMeta, decksDir, listInstalled, openCheckedDeck, sizeText } from "./decks";
 import type { Env, ExecSync, Platform } from "./platform";
 import { SHORT_FIELDS } from "./short-fields";
 import { SCHEMA_VERSION } from "./store";
@@ -30,12 +33,14 @@ export interface DoctorDeps {
   keyring: () => Keyring | null;
   pack: Pick<Pack, "version" | "items" | "atoms">;
   explore: ExplorePack;
+  words: WordPack;
   uiDir: string;
   runtimeDir: string;
   tty: Tty;
   columns?: number;
   run: ExecSync;
   alive: (pid: number) => boolean;
+  which?: (bin: string) => string | null;
 }
 
 export const ANALYSIS_MODULES = ["numpy", "matplotlib", "pypdf", "pyarrow"];
@@ -156,6 +161,48 @@ function explorePackCheck(d: DoctorDeps, facts: DbFacts | null): Check {
   return ok("explore-pack", name, `Version ${d.explore.version}, ${d.explore.sources.length} sources, checksum matches.${held}`);
 }
 
+function wordPackCheck(d: DoctorDeps): Check {
+  const name = "Word pack";
+  const sum = wordPackChecksum(d.words);
+  if (sum !== d.words.sha256 || !sum.startsWith(d.words.version))
+    return fail("word-pack", name, `Version ${d.words.version} has checksum ${sum.slice(0, 12)}; the two should match.`, "Install bkt again: run bkt update.");
+  if (!SHARE_ALIKE.test(d.words.attribution.license)) return fail("word-pack", name, `Version ${d.words.version} names no CC-BY-SA licence.`, "Install bkt again: run bkt update.");
+  return ok("word-pack", name, `Version ${d.words.version}, ${d.words.words.length} words in ${d.words.languages.length} languages, ${d.words.attribution.data}, ${d.words.attribution.license}, checksum matches.`);
+}
+
+function installedDecks(d: DoctorDeps): Check {
+  const name = "Decks";
+  const fix = "Run bkt decks remove <deck>, then install the deck again.";
+  const decks = listInstalled(d.dir);
+  const broken = brokenDecks(d.dir);
+  if (broken.length) return fail("installed-decks", name, `${broken.join(", ")} in ${decksDir(d.dir)} ${broken.length === 1 ? "has" : "have"} no readable manifest and deck file.`, `Delete ${broken.map((b) => join(decksDir(d.dir), b)).join(" and ")}, then install the deck again.`);
+  if (decks.length === 0) return ok("installed-decks", name, "None installed. bkt decks install adds one.");
+  let cards = 0;
+  let bytes = 0;
+  for (const deck of decks) {
+    const m = deck.manifest;
+    const size = statSync(deck.db).size;
+    if (size !== m.db_bytes) return fail("installed-decks", name, `${m.id} is ${size} bytes; its manifest says ${m.db_bytes}.`, fix);
+    try {
+      const db = openCheckedDeck(deck.db, m);
+      try {
+        const meta = deckMeta(db);
+        if (!meta.licence || meta.licence !== m.licence) return fail("installed-decks", name, `${m.id} carries no licence that matches its manifest.`, fix);
+      } finally {
+        db.close();
+      }
+    } catch (e) {
+      return fail("installed-decks", name, `${m.id} does not open: ${message(e)}`, fix);
+    }
+    cards += m.counts.cards;
+    bytes += size;
+  }
+  const words = decks.filter((x) => x.manifest.kind === "words");
+  const langs = words.map((x) => x.manifest.language_name ?? x.manifest.language).join(", ");
+  const licences = Array.from(new Set(decks.map((x) => `${x.manifest.source}, ${x.manifest.licence}`))).join("; ");
+  return ok("installed-decks", name, `${decks.length} installed, ${cards.toLocaleString("en-US")} cards, ${sizeText(bytes)}${words.length ? `, word decks for ${langs}` : ""}. ${licences}. Each opens and matches its manifest.`);
+}
+
 function windowFiles(d: DoctorDeps): Check {
   const name = "Window files";
   if (existsSync(join(d.uiDir, "index.html"))) return ok("window-files", name, `Present in ${d.uiDir}.`);
@@ -185,6 +232,16 @@ function python(d: DoctorDeps): Check {
   return ok("python", name, `${bin} ${version} has ${ANALYSIS_MODULES.join(", ")}.`);
 }
 
+function paperTools(d: DoctorDeps): Check[] {
+  const which = d.which ?? ((bin: string) => Bun.which(bin));
+  return TOOLS.map((tool) => {
+    const at = which(tool);
+    if (at) return ok(`tool-${tool}`, TOOL_USE[tool], `${tool} is at ${at}.`);
+    const lost = tool === "pdftoppm" ? "Papers show as a preview." : "Papers cannot be compiled here.";
+    return warn(`tool-${tool}`, TOOL_USE[tool], `${tool} is missing. ${lost}`, `Run ${toolInstall(tool, d.platform.os)}`);
+  });
+}
+
 function terminal(d: DoctorDeps): Check {
   const real = interactive(d.env, d.tty);
   const width = d.columns ? `${d.columns} columns wide` : "width unknown";
@@ -194,7 +251,7 @@ function terminal(d: DoctorDeps): Check {
 
 export async function runDoctor(d: DoctorDeps): Promise<Check[]> {
   const db = dbState(d.dir);
-  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), windowFiles(d), openWindowCheck(d), python(d), terminal(d)];
+  return [dataFolder(d), await keyStore(d, db), database(db), contentPack(d, db.facts), explorePackCheck(d, db.facts), wordPackCheck(d), installedDecks(d), windowFiles(d), openWindowCheck(d), python(d), ...paperTools(d), terminal(d)];
 }
 
 export function doctorPassed(checks: Check[]): boolean {

@@ -1,5 +1,6 @@
 import { Component, useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
-import ExploreClient from "@/app/explore/ExploreClient";
+import ExploreClient, { type ExploreStart } from "../explore/ExploreClientV2";
+import { href } from "../router";
 import { SAVED_KEY, parseStored, serializeSaved, type SavedState } from "@/lib/explore/saved";
 import { CANON_TROUBLE, windowHref } from "../site-fetch";
 import { plainError } from "../api";
@@ -24,7 +25,7 @@ export function hideAdvisors(root: Element): void {
   const source = root.querySelector<HTMLElement>('[data-testid="advisor-source"]');
   if (source && source.style.display !== "none") source.style.display = "none";
   const box = root.querySelector<HTMLInputElement>('[data-testid="explore-query"]');
-  if (box && box.placeholder !== WINDOW_PLACEHOLDER) box.placeholder = WINDOW_PLACEHOLDER;
+  if (box && !box.dataset.rows && box.placeholder !== WINDOW_PLACEHOLDER) box.placeholder = WINDOW_PLACEHOLDER;
 }
 
 export const NOTES_TITLE = "Saved from Explore";
@@ -90,7 +91,33 @@ class Guard extends Component<{ children: ReactNode }, { failed: boolean }> {
   }
 }
 
-export function ExploreView({ api, webgl }: { api: ExploreApi; webgl?: boolean }) {
+export function exploreHash(state: ExploreStart): string {
+  return href({ name: "explore", data: state.data, mode: state.data ? state.mode : undefined, sel: state.data ? state.sel : undefined });
+}
+
+function keepHash(state: ExploreStart): void {
+  const u = new URL(window.location.href);
+  const next = exploreHash(state);
+  if (!u.hash.startsWith("#/explore") || u.hash === next) return;
+  u.hash = next;
+  window.history.replaceState(window.history.state, "", u.toString());
+}
+
+export const TO_WORKSPACE = "Open in workspace";
+
+export function workspaceFor(state: ExploreStart): string | null {
+  if (!state.data) return null;
+  return href({ name: "workspace", type: state.mode === "graph" ? "graphs" : "maps", item: state.data });
+}
+
+export function ExploreView({ api, webgl, initial, embedded, onState }: { api: ExploreApi; webgl?: boolean; initial?: ExploreStart; embedded?: boolean; onState?: (state: ExploreStart) => void }) {
+  const [shown, setShown] = useState<ExploreStart>(initial ?? {});
+  const report = (state: ExploreStart) => {
+    setShown(state);
+    if (embedded) onState?.(state);
+    else keepHash(state);
+  };
+  const back = embedded ? null : workspaceFor(shown);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [sent, setSent] = useState<string | null>(null);
@@ -158,23 +185,30 @@ export function ExploreView({ api, webgl }: { api: ExploreApi; webgl?: boolean }
 
   return (
     <section>
-      <header className="head slim">
-        <h1>Explore</h1>
-        <p className="muted">Papers, books, talks and canon excerpts on this computer. Search works with the network off.</p>
-        <p className="links">
-          <button className="link" onClick={() => void toNotes()}>
-            Send my saved list to Notes
-          </button>
-          {sent && <span className="muted"> {sent}</span>}
-        </p>
-      </header>
+      {!embedded && (
+        <header className="head slim">
+          <h1>Explore</h1>
+          <p className="muted">Papers, books, talks and canon excerpts on this computer. Search works with the network off.</p>
+          <p className="links">
+            <button className="link" onClick={() => void toNotes()}>
+              Send my saved list to Notes
+            </button>
+            {sent && <span className="muted"> {sent}</span>}
+            {back && (
+              <a className="link to-workspace" href={back}>
+                {TO_WORKSPACE}
+              </a>
+            )}
+          </p>
+        </header>
+      )}
       {error && (
         <p className="banner" role="alert">
           {error}
         </p>
       )}
       <div className="explore-site" ref={frame} onClickCapture={onLink}>
-        {!drawable ? <p className="muted">{NO_GRAPHICS}</p> : ready ? <Guard><ExploreClient /></Guard> : <p className="muted">Opening Explore…</p>}
+        {!drawable ? <p className="muted">{NO_GRAPHICS}</p> : ready ? <Guard><ExploreClient initial={initial} onState={report} /></Guard> : <p className="muted">Opening Explore…</p>}
       </div>
     </section>
   );

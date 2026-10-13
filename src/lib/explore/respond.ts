@@ -1,7 +1,7 @@
 import { parseCanonSearchParams, type CanonSearchParams, type CanonSearchResult } from "../canon-rank";
 import type { LoadedAdvisors } from "./advisors";
 import { ANY_TERM, type Floor, type RankStats } from "./rank";
-import { HIT_TYPES, advisorId, unify, type ExcerptSource, type Hit, type HitType, type Talk } from "./search";
+import { HIT_TYPES, UNTESTED_ORDERING, advisorId, unify, type ExcerptSource, type Hit, type HitType, type Talk } from "./search";
 import { searchSources, sourceToHit, type Prepared } from "./source-index";
 
 export const EXPLORE_DEFAULT_TOP_K = 40;
@@ -42,16 +42,20 @@ export interface ExploreReply {
   body: unknown;
 }
 
+export function advisorsOrder(sources: LoadedAdvisors["sources"]): { advisors_order?: string } {
+  return sources.some((a) => a.order) ? { advisors_order: UNTESTED_ORDERING } : {};
+}
+
 export async function exploreSearch(deps: ExploreSearchDeps, url: URL): Promise<ExploreReply> {
   const t0 = Date.now();
   if (url.searchParams.get("map") === "1") {
     const { sources, sample, axes, origin } = deps.advisors();
     const advisors = sources
       .filter((a) => a.star?.length)
-      .sort((a, b) => b.score - a.score || a.rank - b.rank)
+      .sort((a, b) => b.score - a.score || a.rank - b.rank || (advisorId(a) < advisorId(b) ? -1 : 1))
       .slice(0, MAP_ADVISOR_CAP)
       .map((a) => ({ id: advisorId(a), name: a.name, field: a.field, score: a.score, star: a.star }));
-    return { status: 200, body: { advisors_sample: sample, advisors_source: origin, axes_split: origin === "bundle", axes, advisors } };
+    return { status: 200, body: { advisors_sample: sample, advisors_source: origin, ...advisorsOrder(sources), axes_split: origin === "bundle", axes, advisors } };
   }
   const params = parseCanonSearchParams(url, EXPLORE_DEFAULT_TOP_K);
   const types = (url.searchParams.get("types") || "")
@@ -85,6 +89,7 @@ export async function exploreSearch(deps: ExploreSearchDeps, url: URL): Promise<
       n_results: results.length,
       advisors_sample: sample,
       advisors_source: origin,
+      ...advisorsOrder(sources),
       results,
       took_ms: Date.now() - t0,
     },
@@ -132,6 +137,7 @@ async function rankedSearch(
       n_results: results.length,
       advisors_sample: sample,
       advisors_source: origin,
+      ...advisorsOrder(sources),
       pinned: founding?.card ?? null,
       closest,
       results,

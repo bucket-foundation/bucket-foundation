@@ -26,4 +26,4 @@ python3 match.py
 | Median nearest cross-file similarity | 0.586 |
 | Closest match in the same file, excluded | 455 |
 
-Similarity measures wording. A high score marks a problem worth handing to a prover and says nothing about its difficulty.
+Similarity measures wording and says nothing about difficulty. A backtest against later upstream retagging gives AUC 0.583, 0.585, 0.528 and 0.441 at the snapshots of 2025-09-01, 2025-12-01, 2026-03-01 and 2026-06-01, where 0.5 is chance [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c]. The backtest is in PR 519, which is unmerged.

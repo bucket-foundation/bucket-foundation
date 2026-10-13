@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { alignmentReview } from "./alignment-review";
 
 export const STAFF_FLAG = "BKT_INCLUDE_STAFF_DATA";
 export const STAFF_FILES = { solvability: "solvability-atlas-data.json", software: "software-atlas-data.json", patents: "patents-design-data.json", similarity: "solvability-similarity-data.json", neighbors: "solvability-neighbors-data.json" } as const;
@@ -17,4 +18,7 @@ if (import.meta.main) {
   const data = staffData(repo);
   writeFileSync(join(out, "staff-ros.json"), JSON.stringify(data));
   console.log(`staff data: ${Object.keys(data).length ? Object.keys(data).join(", ") : "excluded"}`);
+  const review = await alignmentReview(repo);
+  writeFileSync(join(out, "alignment-review.json"), JSON.stringify(review));
+  console.log(`alignment review: ${review.staff ? `${review.rows.length} corpus rows` : "excluded"}`);
 }

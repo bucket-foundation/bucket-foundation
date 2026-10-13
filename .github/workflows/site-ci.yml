@@ -8,6 +8,8 @@ on:
       - "scripts/**"
       - "tools/evidence-search/**"
       - "learning/app/**"
+      - "reports/**"
+      - "learning/corpus/alignment/**"
       - "supabase/migrations/**"
       - "tests/**"
       - "package.json"
@@ -28,7 +30,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -46,6 +48,8 @@ jobs:
         run: python3 -m pip install --quiet numpy==2.5.1
       - name: unit tests
         run: npm test
+      - name: research report records
+        run: node scripts/report.mjs check
       - name: research os tests
         run: npm run test:research-os
       - name: build

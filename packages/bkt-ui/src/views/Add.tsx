@@ -1,6 +1,4 @@
 import { href } from "../router";
-import type { Api } from "../api";
-import { WorkQuizSources } from "./WorkQuiz";
 
 export function AddView() {
   return (
@@ -19,21 +17,6 @@ export function AddView() {
           <span className="deck-meta">Find patterns in a table of your own.</span>
         </a>
       </div>
-    </section>
-  );
-}
-
-export function WorkSetupView({ api }: { api: Api }) {
-  return (
-    <section>
-      <header className="head">
-        <h1>Work quiz setup</h1>
-        <p className="muted">Choose what the work quiz asks about.</p>
-        <p className="muted small">
-          <a href={href({ name: "work" })}>Back to the work quiz</a>
-        </p>
-      </header>
-      <WorkQuizSources api={api} />
     </section>
   );
 }

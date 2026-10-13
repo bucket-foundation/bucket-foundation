@@ -114,7 +114,7 @@ test("the scene host keeps the demand frame loop, the ticker and the rest policy
   expect(host).toContain("startSpinTicker({");
   expect(host).toContain("onVisible(document,");
   expect(host).toContain("spinStep(layout.spin, dt)");
-  expect(host).toMatch(/\[layout, selected, theme, reduced, invalidate, active\]/);
+  expect(host).toMatch(/\[layout, selected, theme, reduced, invalidate, active, marked\]/);
 });
 
 test("the protein view releases its WebGL context on unmount", () => {
