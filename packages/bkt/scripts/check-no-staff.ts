@@ -128,10 +128,11 @@ export const REVIEW_MARKERS: { name: string; re: RegExp }[] = [
   { name: "an unreviewed alignment row", re: /"?status"?:\s?"unreviewed-proposal"/ },
 ];
 
+export const REVIEW_PACK_ROWS = /"?schema"?:"bucket\.alignment-review\/1","?staff"?:[^,{}\[\]]{1,8},"?rows"?:\[\s*[^\]\s]/;
+
 export function reviewProblems(text: string): string[] {
   const hits = REVIEW_MARKERS.filter((m) => m.re.test(text)).map((m) => m.name);
-  const pack = /"?schema"?:"bucket\.alignment-review\/1"/.test(text) && /"?rows"?:\[\s*\{/.test(text);
-  return pack ? [...hits, "an alignment review pack that holds rows"] : hits;
+  return REVIEW_PACK_ROWS.test(text) ? [...hits, "an alignment review pack that holds rows"] : hits;
 }
 
 export function findStaffReview(targets: string[]): { file: string; marker: string }[] {

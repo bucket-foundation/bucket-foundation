@@ -34,6 +34,29 @@ describe("alignment review check", () => {
     rmSync(dir, { recursive: true });
   }, 60_000);
 
+  test("a compiled public binary passes and a binary compiled with the staff pack fails", async () => {
+    const { alignmentReview, EMPTY_REVIEW, REVIEW_FLAG } = await import("../src/pack/alignment-review");
+    const repo = join(import.meta.dir, "../../..");
+    const dir = mkdtempSync(join(tmpdir(), "bkt-staff-binary-"));
+    const compile = (name: string, pack: unknown) => {
+      writeFileSync(join(dir, `${name}.json`), JSON.stringify(pack));
+      writeFileSync(join(dir, `${name}.ts`), `import pack from "./${name}.json" with { type: "json" };\nconst decoy = { schema: "bucket.other/1", rows: [{ concept: "category theory", aliases: ["categories"] }] };\nconsole.log(pack.schema, pack.rows.length, decoy.rows.length);\n`);
+      const built = Bun.spawnSync([process.execPath, "build", "--compile", "--minify", join(dir, `${name}.ts`), "--outfile", join(dir, name)], { stdout: "pipe", stderr: "pipe" });
+      expect({ name, code: built.exitCode, err: built.stderr.toString().slice(0, 200) }).toEqual({ name, code: 0, err: "" });
+      return join(dir, name);
+    };
+    const open = compile("open", EMPTY_REVIEW);
+    expect(Bun.spawnSync([open], { stdout: "pipe" }).stdout.toString().trim()).toBe("bucket.alignment-review/1 0 1");
+    expect(findStaffReview([open])).toEqual([]);
+    const staff = await alignmentReview(repo, { [REVIEW_FLAG]: "1" });
+    expect(staff.rows.length).toBeGreaterThan(18000);
+    const held = compile("held", staff);
+    expect(findStaffReview([held]).map((h) => h.marker).sort()).toEqual(["an alignment review corpus row", "an alignment review pack marked staff", "an alignment review pack that holds rows"]);
+    const few = compile("few", { ...EMPTY_REVIEW, rows: staff.rows.slice(0, 1) });
+    expect(findStaffReview([few]).map((h) => h.marker)).toContain("an alignment review pack that holds rows");
+    rmSync(dir, { recursive: true });
+  }, 240_000);
+
   test("the public content this checkout built carries none of it", async () => {
     if (process.env.BKT_INCLUDE_STAFF_DATA === "1") return;
     const content = join(import.meta.dir, "../content");
