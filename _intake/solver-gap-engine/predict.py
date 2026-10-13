@@ -4,7 +4,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from backtest import MODEL, auc, git, interval, permutation_p, snapshot
+from backtest import MODEL, auc, commit_before, git, interval, permutation_p, snapshot
 
 WORDS = ["proved", "proven", "showed", "shown", "known", "improved", "bound", "conjecture", "counterexample", "arxiv", "disproved", "true", "false"]
 COLLECTIONS = ["ErdosProblems", "Wikipedia", "GreensOpenProblems", "Paper", "OEIS", "Arxiv", "Mathoverflow", "WrittenOnTheWallII", "Books", "OpenQuantumProblems"]
@@ -60,7 +60,7 @@ def main():
     ap.add_argument("--out", default="backtest")
     ap.add_argument("--head", default="HEAD")
     a = ap.parse_args()
-    at = lambda d: git(a.repo, "rev-list", "-1", f"--before={d}", a.head).decode().strip()
+    at = lambda d: commit_before(a.repo, d, a.head)
     model = SentenceTransformer(MODEL)
     rng = np.random.default_rng(0)
     head = git(a.repo, "rev-parse", a.head).decode().strip()

@@ -1,6 +1,6 @@
 import argparse, json, pathlib
 import numpy as np
-from backtest import auc, git, interval, permutation_p, snapshot
+from backtest import auc, commit_before, git, interval, permutation_p, snapshot
 
 
 def main():
@@ -11,7 +11,7 @@ def main():
     ap.add_argument("--head", default="HEAD")
     a = ap.parse_args()
     head = git(a.repo, "rev-parse", a.head).decode().strip()
-    commits = [git(a.repo, "rev-list", "-1", f"--before={d}", a.head).decode().strip() for d in a.dates] + [head]
+    commits = [commit_before(a.repo, d, a.head) for d in a.dates] + [head]
     labels = a.dates + [git(a.repo, "show", "-s", "--format=%cs", head).decode().strip()]
     snaps = [snapshot(a.repo, c) for c in commits]
     rng = np.random.default_rng(0)

@@ -1,5 +1,5 @@
 import argparse, collections, json, pathlib
-from backtest import git, snapshot
+from backtest import CUTOFF, commit_before, git, snapshot
 
 
 def main():
@@ -10,7 +10,7 @@ def main():
     ap.add_argument("--out", default="backtest")
     a = ap.parse_args()
     head = git(a.repo, "rev-parse", a.head).decode().strip()
-    commits = [git(a.repo, "rev-list", "-1", f"--before={d}", head).decode().strip() for d in a.dates] + [head]
+    commits = [commit_before(a.repo, d, head) for d in a.dates] + [head]
     labels = a.dates + [git(a.repo, "show", "-s", "--format=%cs", head).decode().strip()]
     snaps = [snapshot(a.repo, c) for c in commits]
     out = []
@@ -23,7 +23,7 @@ def main():
                     "rate": round(len(solved) / len(tracked), 4), "with_lean_proof": sum(end[p]["lean_proof"] for p in solved),
                     "by_collection": dict(collections.Counter(start[p]["collection"] for p in solved).most_common())})
         print(json.dumps(out[-1]))
-    log = git(a.repo, "log", f"--since={a.dates[-1]}", "--format=#C#%h %cs %an", "-p", "-U0", head, "--", "FormalConjectures").decode(errors="ignore")
+    log = git(a.repo, "log", f"--since={a.dates[-1]}{CUTOFF}","--format=#C#%h %cs %an", "-p", "-U0", head, "--", "FormalConjectures").decode(errors="ignore")
     removed, added, meta, commit = collections.Counter(), collections.Counter(), {}, None
     for line in log.split("\n"):
         if line.startswith("#C#"):

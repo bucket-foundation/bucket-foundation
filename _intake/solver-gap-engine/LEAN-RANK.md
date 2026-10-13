@@ -4,7 +4,7 @@ Beads bkt-gqq7 and bkt-t5ir. Two questions: do features of the Lean statement ma
 
 ## Verdict
 
-The backtest of statement features alone is null: AUC 0.488, at chance. Added to the metadata model they move AUC from 0.544 to 0.566, and the interval of that gain includes zero. The cheap tactic sweep proved none of the 58 problems it reached.
+The backtest of statement features alone is null: AUC 0.488, at chance. Added to the metadata model they move AUC from 0.544 to 0.566, and the interval of that gain includes zero. The cheap tactic sweep proved none of the 58 problems it reached [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c].
 
 ## Features
 
@@ -12,7 +12,7 @@ The backtest of statement features alone is null: AUC 0.488, at chance. Added to
 
 ## Backtest
 
-Same split as `predict.py`: train on the 2025-12-01 snapshot with labels at 2026-06-01, test on the 2026-06-01 snapshot with labels at `137aec5c`. Same rows, 464 train with 37 solved later, 1,015 test with 150 solved later, base rate 14.8%. Same logistic regression, same seed, 2,000 bootstrap resamples, 5,000 label permutations.
+Same split as `predict.py`: train on the 2025-12-01 snapshot with labels at 2026-06-01, test on the 2026-06-01 snapshot with labels at `137aec5c`. Same rows, 464 train with 37 solved later, 1,015 test with 150 solved later, base rate 14.8% [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c]. Same logistic regression, same seed, 2,000 bootstrap resamples, 5,000 label permutations.
 
 | Model | Features | Test AUC | 95% interval | p | Top 25 | Top 50 | Top 100 |
 |---|---|---|---|---|---|---|---|
@@ -20,11 +20,11 @@ Same split as `predict.py`: train on the 2025-12-01 snapshot with labels at 2026
 | Lean statement | 23 | 0.488 | 0.435 to 0.538 | 0.680 | 8, 32% | 11, 22% | 16, 16% |
 | Metadata plus Lean | 55 | 0.566 | 0.509 to 0.618 | 0.005 | 6, 24% | 13, 26% | 22, 22% |
 
-Top columns give the count solved later and the precision. [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c]
+Top columns give the count solved later and the precision [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c].
 
-Paired on the test rows, the Lean model sits 0.056 below metadata, interval -0.105 to -0.010, and the combined model 0.023 above it, interval -0.006 to +0.050. [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c]
+Paired on the test rows, the Lean model sits 0.056 below metadata, interval -0.105 to -0.010, and the combined model 0.023 above it, interval -0.006 to +0.050 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c].
 
-The combined model has a higher AUC than metadata and a lower precision in its top 25, top 50 and top 100, so it gives no better shortlist than metadata. Its p of 0.005 tests the combined model against chance; the paired row tests the Lean features, and that row is null.
+The combined model has a higher AUC than metadata and a lower precision in its top 25, top 50 and top 100, so it gives no better shortlist than metadata [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c]. Its p of 0.005 tests the combined model against chance; the paired row tests the Lean features, and that row is null.
 
 ## Single Features
 
@@ -37,11 +37,11 @@ The combined model has a higher AUC than metadata and a lower precision in its t
 
 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c]
 
-The features that ranked best on the train window, length and identifier counts, sit at chance on the test window. Two features sit above 0.55 in both windows: numeric literal count and the presence of `↔`, the latter at 0.696 on train and 0.576 on test. Both were picked from 23 after the test labels were read, so each is a lead for the next snapshot and carries no claim.
+The features that ranked best on the train window, length and identifier counts, sit at chance on the test window. Two features sit above 0.55 in both windows: numeric literal count and the presence of `↔`, the latter at 0.696 on train and 0.576 on test. Both were picked from 23 after the test labels were read, so each is a lead for the next snapshot and carries no claim [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 lean_features.py --repo fc-history.git --head 137aec5c].
 
 ## Fixed-Parameter Cases
 
-`finite_sweep.py` scans the 1,402 open problems at `137aec5c` for statements that fix every parameter to a numeral or a finite type. It rejects 1,341 on the first failed test: an infinite object in the statement 381, asymptotic notation 333, a free variable 324, an unbounded quantifier 154, `answer(sorry)` standing for data 118, no numeral 31.
+`finite_sweep.py` scans the 1,402 open problems at `137aec5c` for statements that fix every parameter to a numeral or a finite type. It rejects 1,341 on the first failed test: an infinite object in the statement 381, asymptotic notation 333, a free variable 324, an unbounded quantifier 154, `answer(sorry)` standing for data 118, no numeral 31 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 finite_sweep.py --repo fc-history.git --head 137aec5c].
 
 | Group | Count |
 |---|---|
@@ -60,7 +60,7 @@ The features that ranked best on the train window, length and identifier counts,
 
 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 finite_sweep.py --repo fc-history.git --head 137aec5c]
 
-Every bounded case sits beyond enumeration; each needs a SAT encoding or a symmetry argument. The other 51 fixed instances carry an unbounded search or an infinite object inside a definition: SIC-POVM existence in 11 dimensions, 9 AME states, Lychrel 196, the solitary number 10, De Giorgi in dimensions 4 to 8. `finite-cases.json` lists all 61 with tier, definitions flagged and size.
+Every bounded case sits beyond enumeration; each needs a SAT encoding or a symmetry argument. The other 51 fixed instances carry an unbounded search or an infinite object inside a definition: SIC-POVM existence in 11 dimensions, 9 AME states, Lychrel 196, the solitary number 10, De Giorgi in dimensions 4 to 8. `finite-cases.json` lists all 61 with tier, definitions flagged and size [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 finite_sweep.py --repo fc-history.git --head 137aec5c].
 
 ## Tactic Sweep
 
@@ -76,13 +76,13 @@ Every bounded case sits beyond enumeration; each needs a SAT encoding or a symme
 
 [empirical: formal-conjectures 7d450ef, Lean 4.33.1, 2026-10-01, python3 finite_sweep.py --repo fc-history.git --head 137aec5c --build fc-pin --scratch attempts]
 
-58 problems reached the tactics, 42 of them under both answers, 9 of them bounded cases. Two got no attempt: `conway99Graph` and `poisson_conjecture.variants.dimension_one` hit the 60 s cap during import, on a machine where other jobs pushed one import to 119 s. `--resume` reruns those two alone. Controls: 8 upstream test theorems that upstream proves with one of these tactics, 8 reproduced by the same scratch setup with axioms limited to `propext`, `Classical.choice` and `Quot.sound`. All 8 controls use `decide`; the other four tactics have no positive control. No open problem was proved, so nothing awaits human review. `attempts.jsonl` holds 583 rows with the Lean message for each.
+58 problems reached the tactics, 42 of them under both answers, 9 of them bounded cases. Two got no attempt: `conway99Graph` and `poisson_conjecture.variants.dimension_one` hit the 60 s cap during import, on a machine where other jobs pushed one import to 119 s. `--resume` reruns those two alone. Controls: 8 upstream test theorems that upstream proves with one of these tactics, 8 reproduced by the same scratch setup with axioms limited to `propext`, `Classical.choice` and `Quot.sound`. All 8 controls use `decide`; the other four tactics have no positive control. No open problem was proved, so nothing awaits human review. `attempts.jsonl` holds 583 rows with the Lean message for each [empirical: formal-conjectures 7d450ef, Lean 4.33.1, 2026-10-01, python3 finite_sweep.py --repo fc-history.git --head 137aec5c --build fc-pin --scratch attempts].
 
 ## Limits
 
-- Value-finding problems are left out. The 118 statements rejected for `answer(sorry)` include fixed finite computations such as `Dedekind_10`, `snake_dim_nine` and `ramsey_number_six_six`, so the 61 undercount the problems a bounded computation could settle.
-- Of the 61 fixed-parameter statements, 1 is closed and 10 are bounded searches. About 20 of the rest fix their parameters and still range over real numbers or infinite objects.
-- Most tactic failures are a missing `Decidable` instance or a `decide` that did not reduce. The 0 of 58 measures these five tactics and says little about the problems.
+- Value-finding problems are left out. The 118 statements rejected for `answer(sorry)` include fixed finite computations such as `Dedekind_10`, `snake_dim_nine` and `ramsey_number_six_six`, so the 61 undercount the problems a bounded computation could settle [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 finite_sweep.py --repo fc-history.git --head 137aec5c].
+- Of the 61 fixed-parameter statements, 1 is closed and 10 are bounded searches. About 20 of the rest fix their parameters and still range over real numbers or infinite objects [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 finite_sweep.py --repo fc-history.git --head 137aec5c].
+- Most tactic failures are a missing `Decidable` instance or a `decide` that did not reduce. The 0 of 58 measures these five tactics and says little about the problems [empirical: formal-conjectures 7d450ef, Lean 4.33.1, 2026-10-01, python3 finite_sweep.py --repo fc-history.git --head 137aec5c --build fc-pin --scratch attempts].
 - The label is an upstream retag, as in `BACKTEST.md`. One split, one test window, 150 positives.
 - Features come from regular expressions over source text. Notation, `variable` blocks and definitions imported from other files are invisible to them.
 - The finite scan reads the statement and the definitions in the same file. A Mathlib term such as `finrank` is caught by a word list; that list is short.

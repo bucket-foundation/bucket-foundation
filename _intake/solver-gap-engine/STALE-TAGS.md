@@ -21,7 +21,7 @@ A problem's upstream state comes from every theorem in `ErdosProblems/<n>.lean` 
 
 [empirical: formal-conjectures 137aec5c and erdosproblems b916d95, 2026-10-01, python3 stale_tags.py --repo fc-history.git --head 137aec5c --database erdosproblems]
 
-The two records agree on 749 of 772 problems. Upstream lags on 2. The database lags, or declines the claim, on 21.
+The two records agree on 749 of 772 problems. Upstream lags on 2. The database lags, or declines the claim, on 21 [empirical: formal-conjectures 137aec5c and erdosproblems b916d95, 2026-10-01, python3 stale_tags.py --repo fc-history.git --head 137aec5c --database erdosproblems].
 
 ## Open Upstream
 
@@ -58,14 +58,14 @@ Problem 547 upstream splits the statement: the all-n form stays open and the lar
 | 1097 | open | 2025-10-18 | mo271/formal-conjectures |
 | 1188 | open | 2026-04-04 | williamjblair/lean-proofs |
 
-19 of these 21 cite a Lean proof in a third-party repository on a main theorem, and 14 of the links point to two repositories. The database had not accepted them by 2026-09-28. Upstream narrows some statements: for problem 130 the solved theorem covers the chromatic number and leaves the clique number out. This list is a queue of proof claims to audit. No proof here was compiled or read.
+19 of these 21 cite a Lean proof in a third-party repository on a main theorem, and 14 of the links point to two repositories. The database had not accepted them by 2026-09-28. Upstream narrows some statements: for problem 130 the solved theorem covers the chromatic number and leaves the clique number out. This list is a queue of proof claims to audit. No proof here was compiled or read [empirical: formal-conjectures 137aec5c and erdosproblems b916d95, 2026-10-01, python3 stale_tags.py --repo fc-history.git --head 137aec5c --database erdosproblems].
 
 ## Checkable And Open
 
-The database marks these 31 problems as falsifiable, decidable or verifiable, meaning a finite computation or one example could prove or disprove each, and upstream still tags a main theorem open: 7 verifiable, 19 decidable, 23 falsifiable, 64 falsifiable, 97 falsifiable, 107 falsifiable, 128 falsifiable, 242 falsifiable, 287 falsifiable, 307 verifiable, 364 verifiable, 366 verifiable, 375 falsifiable, 398 falsifiable, 458 falsifiable, 488 falsifiable, 506 decidable, 551 decidable, 583 falsifiable, 617 falsifiable, 628 falsifiable, 647 verifiable, 672 verifiable, 699 falsifiable, 723 falsifiable, 742 decidable, 779 falsifiable, 835 verifiable, 982 falsifiable, 1020 falsifiable, 1082 falsifiable.
+The database marks these 31 problems as falsifiable, decidable or verifiable, meaning a finite computation or one example could prove or disprove each, and upstream still tags a main theorem open: 7 verifiable, 19 decidable, 23 falsifiable, 64 falsifiable, 97 falsifiable, 107 falsifiable, 128 falsifiable, 242 falsifiable, 287 falsifiable, 307 verifiable, 364 verifiable, 366 verifiable, 375 falsifiable, 398 falsifiable, 458 falsifiable, 488 falsifiable, 506 decidable, 551 decidable, 583 falsifiable, 617 falsifiable, 628 falsifiable, 647 verifiable, 672 verifiable, 699 falsifiable, 723 falsifiable, 742 decidable, 779 falsifiable, 835 verifiable, 982 falsifiable, 1020 falsifiable, 1082 falsifiable [empirical: formal-conjectures 137aec5c and erdosproblems b916d95, 2026-10-01, python3 stale_tags.py --repo fc-history.git --head 137aec5c --database erdosproblems].
 
 ## Limits
 
 - The rule reads tags and names. A file that formalizes a narrower statement than the database entry shows as a disagreement.
-- 11 files had no main theorem under the naming rule or no database entry.
+- 11 files had no main theorem under the naming rule or no database entry [empirical: formal-conjectures 137aec5c and erdosproblems b916d95, 2026-10-01, python3 stale_tags.py --repo fc-history.git --head 137aec5c --database erdosproblems].
 - The database commit is two days older than the upstream commit.

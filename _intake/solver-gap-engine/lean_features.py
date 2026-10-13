@@ -1,6 +1,6 @@
 import argparse, json, pathlib, re, subprocess
 import numpy as np
-from backtest import PAT, ROOT, auc, git, interval, permutation_p, snapshot
+from backtest import PAT, ROOT, auc, commit_before, git, interval, permutation_p, snapshot
 
 OPENERS, CLOSERS = "([{⟨", ")]}⟩"
 DECL = re.compile(r"^(?:@\[[^\]]*\]\s*)?(?:noncomputable\s+|private\s+|protected\s+|scoped\s+)*(?:def|abbrev|structure|class|inductive|instance|notation|local notation)\s+(?P<name>[^\s(:\[{]+)(?P<body>.*?)(?=\n\s*\n|\Z)", re.S | re.M)
@@ -157,7 +157,7 @@ def main():
     ap.add_argument("--out", default="backtest")
     ap.add_argument("--head", default="HEAD")
     a = ap.parse_args()
-    at = lambda d: git(a.repo, "rev-list", "-1", f"--before={d}", a.head).decode().strip()
+    at = lambda d: commit_before(a.repo, d, a.head)
     head = git(a.repo, "rev-parse", a.head).decode().strip()
     model = SentenceTransformer(MODEL)
     c_train, c_test = at(a.train), at(a.test)

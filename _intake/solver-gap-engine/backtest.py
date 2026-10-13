@@ -5,10 +5,15 @@ from sentence_transformers import SentenceTransformer
 MODEL = "all-MiniLM-L6-v2"
 PAT = re.compile(r'(/--(?P<doc>(?:(?!-/).)*?)-/\s*)?@\[category research (?P<st>open|solved)(?P<tags>[^\]]*)\]\s*(?:theorem|lemma)\s+(?P<name>\S+)', re.S)
 ROOT = "FormalConjectures/"
+CUTOFF = "T16:45:00+00:00"
 
 
 def git(repo, *args):
     return subprocess.run(["git", "-C", repo, *args], check=True, capture_output=True).stdout
+
+
+def commit_before(repo, date, head):
+    return git(repo, "rev-list", "-1", f"--before={date}{CUTOFF}", head).decode().strip()
 
 
 def snapshot(repo, commit):
@@ -81,7 +86,7 @@ def stratified_auc(scores, labels, groups):
 
 
 def run(repo, model, date, head_rows, head, rng):
-    commit = git(repo, "rev-list", "-1", f"--before={date}", head).decode().strip()
+    commit = commit_before(repo, date, head)
     rows = snapshot(repo, commit)
     ids = [i for i, r in rows.items() if len(r["text"]) > 30]
     emb = model.encode([rows[i]["text"] for i in ids], normalize_embeddings=True, batch_size=64)

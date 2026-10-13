@@ -1,5 +1,5 @@
 import argparse, collections, difflib, json, pathlib, re
-from backtest import git, snapshot, PAT, ROOT
+from backtest import commit_before, git, snapshot, PAT, ROOT
 
 FIELDS = "\x1f"
 RECORD = "\x1e"
@@ -78,7 +78,7 @@ def main():
     if a.summarize:
         return summarize(pathlib.Path(a.out))
     head = git(a.repo, "rev-parse", a.head).decode().strip()
-    base = git(a.repo, "rev-list", "-1", f"--before={a.before}", head).decode().strip()
+    base = commit_before(a.repo, a.before, head)
     start, end = snapshot(a.repo, base), snapshot(a.repo, head)
     ids = sorted(p for p, r in start.items() if r["status"] == "open" and p in end and end[p]["status"] == "solved")
     byfile = {}

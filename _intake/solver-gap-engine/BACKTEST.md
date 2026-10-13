@@ -4,7 +4,7 @@ Bead bkt-gz71. The gap score ranks an open problem by the cosine similarity of i
 
 ## Method
 
-Each snapshot is the last formal-conjectures commit before its date. Scores use that snapshot alone. The label is the tag of the same theorem name at upstream `137aec5c`, dated 2026-09-30. An open problem whose name is absent at that commit is dropped. Tags come from `@[category research open|solved]`, so the label means "upstream retagged it solved", which covers new proofs, new counterexamples and corrections of a wrong tag.
+Each snapshot is the last formal-conjectures commit before 16:45 UTC on its date, the `CUTOFF` constant in `backtest.py`. Scores use that snapshot alone. The label is the tag of the same theorem name at upstream `137aec5c`, dated 2026-09-30. An open problem whose name is absent at that commit is dropped. Tags come from `@[category research open|solved]`, so the label means "upstream retagged it solved", which covers new proofs, new counterexamples and corrections of a wrong tag.
 
 AUC is the chance that a problem later tagged solved outscored one that stayed open. 0.5 is chance. Intervals are 2,000 bootstrap resamples; p values are 5,000 label permutations, one-sided, seed 0.
 
@@ -19,9 +19,9 @@ AUC is the chance that a problem later tagged solved outscored one that stayed o
 
 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c]
 
-The score shows a weak signal at the 2025-12 snapshot alone, with p values uncorrected for four tests, and none in 2026. At the June 2026 snapshot it ranked later-solved problems below the rest; the within-collection figure of 0.497 is consistent with high-scoring collections having few resolutions. Docstring length, a feature with no model behind it, beat the score at all four snapshots. The top 50 by score held 10 later-solved problems at the June snapshot against 7.4 expected from the 14.8% base rate.
+The score shows a weak signal at the 2025-12 snapshot alone, with p values uncorrected for four tests, and none in 2026. At the June 2026 snapshot it ranked later-solved problems below the rest; the within-collection figure of 0.497 is consistent with high-scoring collections having few resolutions. Docstring length, a feature with no model behind it, beat the score at all four snapshots. The top 50 by score held 10 later-solved problems at the June snapshot against 7.4 expected from the 14.8% base rate [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c].
 
-The earlier report said a high score marks a problem worth handing to a prover. These numbers give no support for that reading.
+These numbers give no support for reading a high score as the mark of a problem to hand to a prover.
 
 ## Metadata Model
 
@@ -37,7 +37,7 @@ A logistic regression on 32 features known at the snapshot: both similarity scor
 
 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 predict.py --repo fc-history.git --head 137aec5c]
 
-The interval includes 0.5. The top-50 count is one split and one list, so it is a lead and stays out of any claim. `backtest/candidates-head.json` ranks today's 1,363 open problems with this model refit on the train and test rows together; its first 15 rows are 4 single problems and 11 cases from one file, which shows the model learned which files resolve in batches.
+The interval includes 0.5. The top-50 count is one split and one list, so it is a lead and stays out of any claim. `backtest/candidates-head.json` ranks today's 1,363 open problems with this model refit on the train and test rows together; its first 15 rows are 4 single problems and 11 cases from one file, which shows the model learned which files resolve in batches [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 predict.py --repo fc-history.git --head 137aec5c].
 
 ## Sibling Momentum
 
@@ -51,7 +51,7 @@ Hypothesis: an open problem whose file had another problem move to solved in the
 
 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 momentum.py --repo fc-history.git --head 137aec5c]
 
-No effect detected, and the test is underpowered: one window has 21 problems with a recent solved sibling, the other two have 4 and 1.
+No effect detected, and the test is underpowered: one window has 21 problems with a recent solved sibling, the other two have 4 and 1 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 momentum.py --repo fc-history.git --head 137aec5c].
 
 ## Resolution Rate
 
@@ -65,14 +65,16 @@ No effect detected, and the test is underpowered: one window has 21 problems wit
 
 [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 rates.py --repo fc-history.git --head 137aec5c]
 
-September 2026 moved 159 open problems to solved, against 41 in the three months before it. The moves sit in about 117 commits by about 24 authors on 18 days, and the largest single commit moved about 12, so one bulk retag does not explain the month. The commit figures count changed tag lines and sum to 165 against the 159 tracked by name. 88 of the 159 carry a `formal_proof` tag, a link to a proof, in several cases in a third-party repository. The count measures upstream tags; this backtest read no proof.
+September 2026 moved 159 open problems to solved, against 41 in the three months before it. The moves sit in about 117 commits by about 24 authors on 18 days, and the largest single commit moved about 12, so one bulk retag does not explain the month. The commit figures count changed tag lines and sum to 165 against the 159 tracked by name. 88 of the 159 carry a `formal_proof` tag, a link to a proof, in several cases in a third-party repository. The count measures upstream tags; this backtest read no proof [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 rates.py --repo fc-history.git --head 137aec5c].
 
 ## Limits
 
 - A retag is a proxy for a resolution. A problem solved in the literature years ago and tagged late counts as solved later.
-- Problems renamed or removed between snapshot and head are dropped: 53, 75, 109 and 39 across the four snapshots.
+- Problems renamed or removed between snapshot and head are dropped: 53, 75, 109 and 39 across the four snapshots [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c].
 - Snapshots overlap, so the four AUC rows share problems and are four views of one history.
-- The tag pattern misses 6 of 3,605 declarations at head.
+- The first run passed a bare date to `git rev-list --before`, which takes the missing time from the wall clock, so each snapshot commit moved with the hour of the run. The cutoff is now fixed at 16:45 UTC, inside the window from 16:32 to 16:55 UTC that reproduces every committed result file byte for byte [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 backtest.py, predict.py, momentum.py, rates.py, lean_features.py and retags.py --repo fc-history.git --head 137aec5c].
+- The AUC values move by at most 0.003 with the cutoff: 0.583, 0.585, 0.526 and 0.441 at 00:00 UTC, and 0.586, 0.585, 0.526 and 0.441 at 23:59:59 UTC [empirical: formal-conjectures 137aec5c, 2026-10-13, python3 backtest.py --repo fc-history.git --head 137aec5c with CUTOFF set to T00:00:00+00:00, then T23:59:59+00:00].
+- The tag pattern misses 6 of 3,605 declarations at head [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c].
 - One embedding model, all-MiniLM-L6-v2, on docstrings. A model that reads the Lean statement may behave differently.
 
 ## Reproduce
@@ -84,4 +86,4 @@ for s in backtest predict momentum rates; do python3 $s.py --repo fc-history.git
 python3 plot.py
 ```
 
-Outputs land in `backtest/`, which stays out of git apart from the two plots and the four result files.
+Outputs land in `backtest/`. `.gitignore` keeps `items-*.jsonl`, `predict-test.jsonl` and `candidates-head.json` out of git; the result files and plots are committed. `backtest/backtest.json` is the source for every gap score AUC quoted in the report, the README and What's New, and `scripts/test-solver-gap-backtest-numbers.mjs` fails when a copy drifts.
