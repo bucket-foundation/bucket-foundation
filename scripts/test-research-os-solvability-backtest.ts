@@ -31,6 +31,20 @@ function toy(): NeighborData {
   return { schema: "t", model: "m", revision: "r", k: 5, note: "", solved_rule: "", text_counts: {}, ids, solved: ["a", "b", "c"], nodes };
 }
 
+test("a claimed row counts as open under both codings", () => {
+  const base = toy();
+  const claimed = { ...base, nodes: base.nodes.map((n) => (n.id === "e" || n.id === "d" ? { ...n, status: "claimed" } : n)) };
+  const c = backtestCutoff(claimed, 2000, { permutations: 200, minBranchSolved: 2, floor: 1 });
+  const byId = Object.fromEntries(c.rows.map((r) => [r.id, r]));
+  assert.equal(byId.d.settled, false);
+  assert.equal(byId.d.advanced, false);
+  assert.equal(byId.e.settled, false);
+  assert.equal(byId.e.advanced, false);
+  assert.equal(c.codings[0].all.resolvedInside + c.codings[0].all.resolvedOutside, 1);
+  assert.equal(c.codings[1].all.resolvedInside + c.codings[1].all.resolvedOutside, 1);
+  assert.equal(c.solvedAtCutoff, 2);
+});
+
 test("length bands split at 20 and 40 words", () => {
   assert.equal(lengthBand(19), LENGTH_BANDS[0]);
   assert.equal(lengthBand(20), LENGTH_BANDS[1]);

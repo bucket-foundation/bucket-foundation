@@ -1,3 +1,5 @@
+import claims
+
 SCHEMA = "bucket.solvability-atlas.record/v1"
 BRANCHES = {"mathematics", "physics", "chemistry", "information", "biophysics", "cosmology", "mind"}
 ROLES = {"posed", "partial", "resolved", "survey"}
@@ -74,6 +76,21 @@ def errors(r):
             out.append("source url carries a mailto address")
     for i, s in enumerate(r["sources"]):
         out += [f"sources[{i}] {m}" for m in keys(s, {"url": str, "licence": str, "retrieved": str})]
+    out += claim_errors(r)
+    return out
+
+
+def claim_errors(r):
+    if "claims" not in r:
+        return []
+    if not isinstance(r["claims"], list) or not r["claims"]:
+        return ["claims is not a non-empty list"]
+    out = []
+    for i, c in enumerate(r["claims"]):
+        if not isinstance(c, dict) or "id" in c or not isinstance(c.get("batch"), str):
+            out.append(f"claims[{i}] is not a ledger entry of this record")
+            continue
+        out += claims.entry_errors({**c, "id": r["id"]}, f"claims[{i}]")
     return out
 
 
@@ -99,7 +116,8 @@ def validate(r):
 ROW_SCHEMA = "bucket.solvability-atlas.records/v1"
 ROW_ZONES = {"solved", "reachable", "beyond", "unsampled"}
 ROW_CODINGS = {"settled", "advanced", "open"}
-ROW_STATUSES = {"solved", "partial", "open"}
+ROW_STATUSES = {"solved", "partial", "open", claims.CLAIMED}
+ROW_CLAIM = {"batch": str, "family": str, "match": str, "formal_scope": str, "confirmed": bool, "withdrawn": bool}
 ROW_FIELDS = {
     "id": str, "title": str, "branch": str, "form": str, "variant_of": (str, type(None)), "status": str, "coding": str,
     "posed": (int, type(None)), "resolved": (int, type(None)), "posed_evidence": str, "statement": str, "source": str,
@@ -134,6 +152,17 @@ def row_errors(data):
             out.append(f"{tag} status or coding")
         if (r["status"] == "solved") != (r["zone"] == "solved"):
             out.append(f"{tag} zone disagrees with status")
+        if r["status"] == claims.CLAIMED and r["coding"] != "open":
+            out.append(f"{tag} a claimed row is coded {r['coding']}")
+        row_claims = r.get("claims", [])
+        for j, c in enumerate(row_claims):
+            out += [f"{tag} claims[{j}] {m}" for m in keys(c, ROW_CLAIM)]
+            if isinstance(c, dict) and (c.get("match") not in claims.MATCHES or c.get("formal_scope") not in claims.FORMAL_SCOPES):
+                out.append(f"{tag} claims[{j}] match or formal scope")
+        settling = [c for c in row_claims if isinstance(c, dict) and c.get("match") == claims.SETTLING_MATCH and not c.get("withdrawn")]
+        awaiting = bool(settling) and not any(c.get("confirmed") for c in settling)
+        if (r["status"] == claims.CLAIMED and not awaiting) or (awaiting and r["status"] == "open"):
+            out.append(f"{tag} status disagrees with its claims")
         if len(r["pc"]) != 3:
             out.append(f"{tag} needs three loadings")
         if r["resolved"] is not None and r["posed"] is not None and r["resolved"] < r["posed"]:
