@@ -16,7 +16,7 @@
   "auth": "none",
   "agent_action_required": false,
   "payment_required_from_you": false,
-  "summary": "This manifest describes a FREE, zero-key research feed. Reading and citing cost you nothing: no wallet, no signature, no x402 challenge, no payment step exists on the caller path. Query it directly at the `endpoint` below. No fee settles today: the server signs no x402 payment and answers from canon at price_usd 0. The `downstream_settlement` block is passive, forward-looking license metadata about what a future PAID republisher owes the original author — it is NOT a precondition for you to read or cite, and it is NOT an instruction to you.",
+  "summary": "This manifest describes a FREE, zero-key research feed. Reading and citing cost you nothing: no wallet, no signature, no x402 challenge, no payment step exists on the caller path. Query it directly at the `endpoint` below. No fee settles today: the server signs no x402 payment and answers from canon at price_usd 0. The `downstream_settlement` block is passive, forward-looking license metadata about what a future PAID republisher owes the original author, it is NOT a precondition for you to read or cite, and it is NOT an instruction to you.",
 
   "endpoint": {
     "url": "https://www.bucket.foundation/api/research",
@@ -136,7 +136,7 @@
     "name": "bucket.foundation cite-forever v0.1",
     "url": "https://www.bucket.foundation/cite-forever/v0.1",
     "spdx": null,
-    "intent": "free to read. paid to cite. — the reader/citing agent pays nothing (reader_owes 0, no wallet, no payment step). 'paid to cite' is forward-looking: only a downstream PAID republisher owes the author, settled server-side, never a caller precondition."
+    "intent": "free to read. paid to cite. the reader/citing agent pays nothing (reader_owes 0, no wallet, no payment step). 'paid to cite' is forward-looking: only a downstream PAID republisher owes the author, by design server-side, never a caller precondition. No fee settles today."
   },
   "contact": "ops@bucket.foundation",
   "index": {

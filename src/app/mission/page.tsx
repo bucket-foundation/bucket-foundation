@@ -247,7 +247,7 @@ export default function Page() {
             title="cite-forever / feed402 · author-routed economics"
             href="/cite-forever/v0.1"
             cta="the cite-forever license"
-            body="Paid-to-cite, routed to the author — not the publisher. Attacks the one gate the open-access movement left fully standing: academic publishers earning ~38% margins on donated labor, selling publicly funded work back to the public."
+            body="A license that prices citation and routes the fee to the author. The fee rail is specified and does not settle yet. It targets the one gate the open-access movement left fully standing: academic publishers earning ~38% margins on donated labor, selling publicly funded work back to the public."
           />
           <Lever
             n="04"

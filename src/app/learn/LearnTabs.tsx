@@ -12,13 +12,13 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "corpus", label: "Take the corpus" },
 ];
 
-const SYSTEM_PREAMBLE = `You are helping someone learn from bucket.foundation — a nonprofit building reformative education infrastructure. Primary research should be free to read, paid only when cited, with fees routing to the original author forever. Teach them not just what bucket does but why the incumbent publishing system is structurally extractive. Use the provided llms-full.txt + MANIFESTO + PROTOCOL + ENVELOPE docs as ground truth. Cite the sources they can re-open. Be declarative, honest about tradeoffs, and treat the reader as capable of genius work.`;
+const SYSTEM_PREAMBLE = `You are helping someone learn from bucket.foundation, a nonprofit building reformative education infrastructure. Primary research should be free to read and paid only when cited, with fees routed to the original author. That fee rail is specified and does not settle yet, so present it as planned work. Teach them not just what bucket does but why the incumbent publishing system is structurally extractive. Use the provided llms-full.txt + MANIFESTO + PROTOCOL + ENVELOPE docs as ground truth. Cite the sources they can re-open. Be declarative, honest about tradeoffs, and treat the reader as capable of genius work.`;
 
 const LESSONS = [
   "How does gated academic publishing extract from authors?",
   "What does 'free to read, paid to cite' actually change?",
   "What are the 7 canon branches and why only foundations?",
-  "How does feed402 let an agent pay the original author, not a publisher?",
+  "How is feed402 designed to let an agent pay the original author?",
   "Why is bucket a nonprofit and not a startup?",
   "What is the cite-forever license?",
 ];
@@ -261,7 +261,7 @@ function ChatPanel() {
               Bring your own Anthropic key. It never touches our servers.
               Bucket is a nonprofit — we route zero economics through your
               learning. Everything you read, every question you ask, the
-              models you run — yours. The only thing we gate is citation. The fee
+              models you run are yours. The only thing we gate is citation. The fee
               rail to authors is specified and does not settle yet.
             </p>
             <input

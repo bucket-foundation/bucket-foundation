@@ -15,7 +15,7 @@ const SITE_URL = "https://www.bucket.foundation";
 const SITE_NAME = "bucket.foundation";
 const TAGLINE = "free to read. paid to cite.";
 const DESCRIPTION =
-  "A nonprofit canon of foundations — axioms, laws, first principles — carved into stone by the small number of people who can do genius work with AI. Free to read, free to cite. The reader pays nothing. The rail that routes a fee to the author when a paid work re-publishes it is specified and does not settle yet.";
+  "A nonprofit canon of foundations, axioms, laws, first principles, carved into stone by the small number of people who can do genius work with AI. Free to read, free to cite. The reader pays nothing. The rail that routes a fee to the author when a paid work re-publishes it is specified and does not settle yet.";
 const KEYWORDS = [
   "decentralized research",
   "x402",
@@ -150,7 +150,7 @@ const JSON_LD = {
       image: `${SITE_URL}/opengraph-image.png`,
       nonprofitStatus: "Nonprofit501c3",
       description:
-        "A nonprofit canon of foundations — axioms, real math, laws, principles, primary derivations — built by the small number of people who can do genius work with AI.",
+        "A nonprofit canon of foundations, axioms, real math, laws, principles, primary derivations, built by the small number of people who can do genius work with AI.",
       slogan: "build the past. build history. bucket is the new renaissance.",
       license: `${SITE_URL}/cite-forever/v0.1`,
       foundingDate: "2022",

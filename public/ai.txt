@@ -1,13 +1,13 @@
 # ai.txt: AI agent discovery for bucket.foundation
 # Spec: https://site.spawning.ai/ai-txt
-# Status: All AI agents are welcome to read and train. Citation is paid.
+# Status: All AI agents are welcome to read and train. Reading and citing cost the agent nothing today.
 
 User-Agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/kruse/
 
-# Read: free. Train: free. Cite: paid forever, to the author.
+# Read: free. Train: free. Cite: the license prices citation for the author. No fee is collected yet.
 License: https://www.bucket.foundation/cite-forever/v0.1
 Protocol: feed402/0.2
 Discovery: https://www.bucket.foundation/.well-known/feed402.json
@@ -18,8 +18,9 @@ Sitemap: https://www.bucket.foundation/sitemap.xml
 Feed: https://www.bucket.foundation/feed.xml
 Contact: https://www.bucket.foundation/join
 
-# Payment rail: x402 on Base. Settlement is automatic and cryptographically
-# verified. No API key required. Pay per query.
-Pricing-Raw: $0.010 USD
-Pricing-Query: $0.005 USD
+# Payment rail: x402 on Base, specified. No fee settles today and the author
+# split is planned work. No API key required. /api/research answers at price 0.
+# The rates are the specified rates in src/app/api/research/route.ts.
+Pricing-Raw: $0.050 USD
+Pricing-Query: $0.010 USD
 Pricing-Insight: $0.002 USD
