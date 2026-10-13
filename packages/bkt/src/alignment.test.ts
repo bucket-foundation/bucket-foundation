@@ -56,6 +56,8 @@ describe("review pack", () => {
     expect(reviewRow("progression", open, []).label).toBe("Geometry");
     const course = { id: "cat-x-1", slice: "catalogues", institution: "Example University", code: "MATH 101", title: "Calculus I", level: "undergraduate-lower", source_url: "https://example.org/catalog", cip: { code: "27.0101" } };
     expect(reviewRow("courses", course, ["01-mathematics"])).toEqual({ id: "cat-x-1", table: "courses", code: "MATH 101", label: "Calculus I", level: "undergraduate-lower", where: "Example University", url: "https://example.org/catalog", cip: "27.0101", decks: ["01-mathematics"] });
+    const syllabus = { id: "uni-x-1", slice: "university-stem", topic: "Groups, rings and fields", level: "undergraduate-lower", source_url: "https://example.org/syllabus", framework_id: "an-example-syllabus", cip: { code: "27.01" } };
+    expect([labelAllowed("progression", syllabus), reviewRow("progression", syllabus, []).label]).toEqual([true, "Groups, rings and fields"]);
     expect(splitTopic("3.MD.C.7d: area of joined rectangles")).toEqual({ code: "3.MD.C.7d", label: "area of joined rectangles" });
     expect(splitTopic("Counting and Cardinality, Kindergarten")).toEqual({ code: null, label: "Counting and Cardinality, Kindergarten" });
     expect(splitTopic("Note: a label with a colon")).toEqual({ code: null, label: "Note: a label with a colon" });

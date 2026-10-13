@@ -42,8 +42,8 @@ export function splitTopic(topic: string): { code: string | null; label: string 
 export function labelAllowed(table: "courses" | "progression", row: Raw): boolean {
   if (table === "progression" && row.slice === "k12-full" && !(OPEN_K12_SYSTEMS as readonly string[]).includes(String(row.system ?? ""))) return false;
   const entry = resolveEntry(table, row);
-  if (entry?.public === "rows") return true;
-  if (entry?.public === "codes") return false;
+  if (entry === null || entry.public === "rows") return true;
+  if (entry.public === "codes") return false;
   return table === "courses";
 }
 
