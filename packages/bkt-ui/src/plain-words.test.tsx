@@ -521,6 +521,14 @@ describe("navigation", () => {
     await old.unmount();
   });
 
+  test("the review workspace reads in plain words", async () => {
+    const { UNREVIEWED, QUALITY_MISSING, qualityLine, REASONS } = await import("./alignment");
+    const { NO_QUEUE, NEED_NAME, NO_LABEL, KEYS_HINT, QUEUE_LABELS } = await import("./views/Alignment");
+    const words = [UNREVIEWED, QUALITY_MISSING, qualityLine([{ links: 40, right: 16, partly: 13, wrong: 11 }, { links: 40, right: 16, partly: 18, wrong: 6 }]), qualityLine([{ links: 5, right: 3, partly: 1, wrong: 1 }]), NO_QUEUE, NEED_NAME, NO_LABEL, KEYS_HINT, ...Object.values(QUEUE_LABELS), ...REASONS, "Proposed link, unreviewed", "Proposed relation", "Match score", "Level of the row", "Course or framework", "Bring in another review", "Export the review", "No match exists", "Search the corpus to add a link", "Brought in 1 decision. 1 link was decided differently: yours stay, and the other decision is kept beside each as an earlier one."];
+    expect(violationsIn(words)).toEqual([]);
+    expect(words.filter((w) => /[\u2013\u2014]/.test(w) || VOICE.test(w))).toEqual([]);
+  });
+
   test("the Back button and the quiz kinds read in plain words", async () => {
     const { BackButton, BackTrail, BACK_HINT, BACK_LABEL, BACK_NAME } = await import("./back");
     const { PRACTICE_NOTE, QUIZ_KINDS, QUIZ_KINDS_NAME } = await import("./views/Quiz");

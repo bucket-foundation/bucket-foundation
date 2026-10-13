@@ -1,6 +1,6 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "bun:test";
-import { applyDecision, atomParts, atomState, cleanReviewer, decisionKey, deckProgress, parseDecisions, parseEdges, parseLinks, queuedAtoms, REASONS, REVIEW_SCHEMA, REVIEW_SLUG, serializeDecisions, today, verifiedTable, type Decision } from "./alignment";
+import { applyDecision, atomParts, atomState, cleanReviewer, decisionKey, deckProgress, mergeDecisions, qualityLine, qualitySamples, UNREVIEWED, QUALITY_MISSING, parseDecisions, parseEdges, parseLinks, queuedAtoms, REASONS, REVIEW_SCHEMA, REVIEW_SLUG, serializeDecisions, today, verifiedTable, type Decision } from "./alignment";
 import type { Api, ResearchDetail, ReviewRow, SaveResult } from "./api";
 import { parseHash } from "./router";
 import type { AlignmentApi } from "./views/Alignment";
@@ -18,6 +18,8 @@ afterEach(() => {
 const LINKS_PATH = "data/review/links.jsonl";
 const EDGES_PATH = "data/review/edges.jsonl";
 const NOTES_PATH = "data/review/decisions.jsonl";
+const QUALITY_PATH = "data/review/QUALITY.json";
+const QUALITY = JSON.stringify({ "links.jsonl": { status: "unreviewed-proposal", quality_note: "x", first: { links: 40, right: 16, partly: 13, wrong: 11, judged_by: "critic" }, second: { right: 16, partly: 18, wrong: 6 } }, "other.jsonl": { a: { right: 1, partly: 1, wrong: 1 } } });
 const link = (row: string, atom: string, score: number, over = "") =>
   `{"schema": "bucket.alignment/1", "id": "align:${row}~${atom}", "progression_id": "${row}", "table": "courses", "framework_id": null, "course_code": "C ${row}", "level": "graduate", "atom": "atom:${atom}", "match": "broader", "score": ${score}, "method": "embedding+rule", "source_url": "https://example.org/${row}", "status": "unreviewed-proposal", "verified": false, "verification": {"status": "asserted", "by": "agent", "at": "2026-10-12"}, "note": ""${over}}`;
 const LINKS = `${[
@@ -43,12 +45,12 @@ const DETAIL = {
   withheld: 0,
   unreadable: null,
   files: [],
-  manifest: { schema: "bucket.report/2", slug: REVIEW_SLUG, title: "Atom alignment, review queue", authors: [], date: "2026-10-12", status: "private", kind: "dataset-report", source_path: "data/review/README.md", source_hash: "a".repeat(64), tables: [{ id: "alignments", path: LINKS_PATH, format: "jsonl", label: "Links", licence: "CC-BY-4.0", audience: "staff" }, { id: "edges", path: EDGES_PATH, format: "jsonl", label: "Edges", licence: "CC-BY-4.0", audience: "staff" }, { id: "decisions", path: NOTES_PATH, format: "jsonl", label: "Decisions", licence: "CC-BY-4.0", audience: "staff", editable: true }] },
+  manifest: { schema: "bucket.report/2", slug: REVIEW_SLUG, title: "Atom alignment, review queue", authors: [], date: "2026-10-12", status: "private", kind: "dataset-report", source_path: "data/review/README.md", source_hash: "a".repeat(64), tables: [{ id: "alignments", path: LINKS_PATH, format: "jsonl", label: "Links", licence: "CC-BY-4.0", audience: "staff" }, { id: "edges", path: EDGES_PATH, format: "jsonl", label: "Edges", licence: "CC-BY-4.0", audience: "staff" }, { id: "decisions", path: NOTES_PATH, format: "jsonl", label: "Decisions", licence: "CC-BY-4.0", audience: "staff", editable: true }, { id: "quality", path: QUALITY_PATH, format: "json", label: "Quality", licence: "CC-BY-4.0", audience: "staff" }] },
 } as unknown as ResearchDetail;
 
-function fakeApi(start = "") {
+function fakeApi(start = "", o: { links?: string; quality?: string; delay?: number } = {}) {
   const calls: string[] = [];
-  const files: Record<string, string> = { [LINKS_PATH]: LINKS, [EDGES_PATH]: EDGES, [NOTES_PATH]: start };
+  const files: Record<string, string> = { [LINKS_PATH]: o.links ?? LINKS, [EDGES_PATH]: EDGES, [NOTES_PATH]: start, [QUALITY_PATH]: o.quality ?? QUALITY };
   const changed = new Set<string>();
   const rev = (text: string) => `rev-${text.length}-${text.slice(-12)}`;
   const api = {
@@ -60,6 +62,7 @@ function fakeApi(start = "") {
     researchSource: async (_slug: string, path: string) => ({ text: files[path], rev: rev(files[path]) }),
     researchSave: async (_slug: string, path: string, base: string, text: string): Promise<SaveResult> => {
       calls.push(`save ${path}`);
+      if (o.delay) await new Promise((r) => setTimeout(r, o.delay));
       if (base !== rev(files[path])) return { saved: false, current: rev(files[path]) };
       files[path] = text;
       changed.add(path);
@@ -135,7 +138,8 @@ describe("review decisions", () => {
     expect(parseDecisions(text).length).toBe(3);
     expect(text.endsWith("\n")).toBe(true);
     expect(serializeDecisions([])).toBe("");
-    expect(text.split("\n")[0]).toBe(`{"schema":"${REVIEW_SCHEMA}","atom":"${a}","link":"align:c1~x","row":null,"decision":"right","reason":null,"reviewer":"Ada Example","at":"2026-10-13"}`);
+    expect(text.split("\n")[0]).toBe(`{"schema":"${REVIEW_SCHEMA}","atom":"${a}","link":"align:c1~x","row":null,"decision":"right","reason":null,"reviewer":"Ada Example","at":"2026-10-13","previous":[{"decision":"wrong","reason":null,"reviewer":"Ada Example","at":"2026-10-13"}]}`);
+    expect(text.split("\n")[1]).toBe(`{"schema":"${REVIEW_SCHEMA}","atom":"${a}","link":"align:c2~x","row":null,"decision":"partly","reason":"broader","reviewer":"Ada Example","at":"2026-10-13"}`);
   });
 
   test("a line with no reviewer, no date, an unknown decision, or partly with no reason is dropped", () => {
@@ -182,7 +186,134 @@ describe("review decisions", () => {
   });
 });
 
+describe("review history, merging and the quality line", () => {
+  const a = "atom:01-mathematics/limits";
+
+  test("two decisions on one link keep the later one, with the earlier one recorded", () => {
+    let text = applyDecision("", made("l1", a, "wrong", { at: "2026-10-13" }));
+    text = applyDecision(text, made("l1", a, "partly", { reason: "narrower", at: "2026-10-14" }));
+    text = applyDecision(text, made("l1", a, "right", { reviewer: "Brook Sample", at: "2026-10-15" }));
+    text = applyDecision(text, made("l1", a, "right", { reviewer: "Brook Sample", at: "2026-10-16" }));
+    const [kept] = parseDecisions(text);
+    expect([kept.decision, kept.reviewer, kept.at]).toEqual(["right", "Brook Sample", "2026-10-16"]);
+    expect(kept.previous).toEqual([{ decision: "partly", reason: "narrower", reviewer: "Ada Example", at: "2026-10-14" }, { decision: "wrong", reason: null, reviewer: "Ada Example", at: "2026-10-13" }]);
+    expect(parseDecisions(text).length).toBe(1);
+    let long = "";
+    for (let i = 0; i < 30; i++) long = applyDecision(long, made("l1", a, i % 2 ? "right" : "wrong", { at: `2026-10-${String(1 + (i % 28)).padStart(2, "0")}` }));
+    expect(parseDecisions(long)[0].previous!.length).toBe(10);
+  });
+
+  test("another reviewer's file adds its decisions, and where two reviewers differ yours stays and theirs is kept as an earlier one", () => {
+    const mine = [made("l1", a, "right"), made("l2", a, "wrong")].reduce((t, d) => applyDecision(t, d), "");
+    const theirs = [made("l1", a, "right", { reviewer: "Brook Sample" }), made("l2", a, "partly", { reason: "broader", reviewer: "Brook Sample", at: "2026-10-14" }), made("l3", a, "wrong", { reviewer: "Brook Sample" }), made(null, "atom:01-mathematics/sets", "no-match", { reviewer: "Brook Sample" })].reduce((t, d) => applyDecision(t, d), "");
+    const out = mergeDecisions(mine, theirs);
+    expect([out.added, out.differing]).toEqual([2, 1]);
+    const by = new Map(parseDecisions(out.text).map((d) => [decisionKey(d), d]));
+    expect(by.size).toBe(4);
+    expect([by.get(`${a}|l2`)!.decision, by.get(`${a}|l2`)!.reviewer]).toEqual(["wrong", "Ada Example"]);
+    expect(by.get(`${a}|l2`)!.previous).toEqual([{ decision: "partly", reason: "broader", reviewer: "Brook Sample", at: "2026-10-14" }]);
+    expect(by.get(`${a}|l1`)!.previous).toEqual([{ decision: "right", reason: null, reviewer: "Brook Sample", at: "2026-10-13" }]);
+    expect(by.get(`${a}|l3`)!.reviewer).toBe("Brook Sample");
+    expect(mergeDecisions(out.text, theirs)).toEqual({ text: out.text, added: 0, differing: 0 });
+    expect(mergeDecisions(mine, "not a review\n{broken")).toEqual({ text: mine, added: 0, differing: 0 });
+    expect(verifiedTable(LINKS, parseDecisions(out.text)).verified).toBe(0);
+  });
+
+  test("the quality line is read from the quality file, so its counts follow the data", () => {
+    expect(qualitySamples(QUALITY, LINKS_PATH)).toEqual([{ links: 40, right: 16, partly: 13, wrong: 11 }, { links: 40, right: 16, partly: 18, wrong: 6 }]);
+    expect(qualityLine(qualitySamples(QUALITY, LINKS_PATH))).toBe("Two samples were judged by hand: 16 of 40 and 16 of 40 right, 13 of 40 and 18 of 40 partly right, 11 of 40 and 6 of 40 wrong. These counts come from the quality file kept beside the links.");
+    const moved = QUALITY.replace('"right":16,"partly":18,"wrong":6', '"right":30,"partly":8,"wrong":2');
+    expect(qualityLine(qualitySamples(moved, LINKS_PATH))).toContain("16 of 40 and 30 of 40 right");
+    expect(qualityLine(qualitySamples(JSON.stringify({ "links.jsonl": { only: { right: 3, partly: 1, wrong: 1 } } }), LINKS_PATH))).toBe("One sample was judged by hand: 3 of 5 right, 1 of 5 partly right, 1 of 5 wrong. These counts come from the quality file kept beside the links.");
+    for (const bad of ["", "{broken", "{}", JSON.stringify({ "links.jsonl": { a: { right: -1, partly: 1, wrong: 1 }, b: { right: "9" } } })]) expect(qualityLine(qualitySamples(bad, LINKS_PATH))).toBe(QUALITY_MISSING);
+    expect(UNREVIEWED).toBe("Unreviewed proposals. Nobody has checked these links yet, and none is a fact until you mark it.");
+  });
+});
+
 describe("review workspace", () => {
+  test("the deck list and every atom view say these are unreviewed proposals and state the measured quality", async () => {
+    const f = fakeApi();
+    const v = await pane(f);
+    const banner = () => v.host.querySelector(".alignment-quality")!.textContent;
+    const said = `${UNREVIEWED} Two samples were judged by hand: 16 of 40 and 16 of 40 right, 13 of 40 and 18 of 40 partly right, 11 of 40 and 6 of 40 wrong. These counts come from the quality file kept beside the links.`;
+    expect(banner()).toBe(said);
+    expect(v.host.querySelector(".alignment-quality")!.getAttribute("role")).toBe("note");
+    await v.click(press(v.host, "Mathematics"));
+    expect(banner()).toBe(said);
+    await v.click(v.host.querySelector(".alignment-atoms li button"));
+    expect(banner()).toBe(said);
+    expect(Array.from(v.host.querySelectorAll(".alignment-kind")).map((p) => p.textContent)).toEqual(["Proposed link, unreviewed", "Proposed link, unreviewed", "Proposed link, unreviewed"]);
+    expect(v.host.textContent).not.toMatch(/\bverified\b|is a prerequisite|teaches this/i);
+    await v.unmount();
+    const none = await pane(fakeApi("", { quality: "{}" }));
+    expect(none.host.querySelector(".alignment-quality")!.textContent).toBe(`${UNREVIEWED} ${QUALITY_MISSING}`);
+    await none.unmount();
+  });
+
+  test("fifty decisions keyed in a burst are all in the file afterwards, while saves are slow", async () => {
+    const atom = "01-mathematics/limits";
+    const links = `${Array.from({ length: 50 }, (_, i) => link(`b${String(i).padStart(2, "0")}`, atom, 0.9 - i / 1000)).join("\n")}\n`;
+    const f = fakeApi("", { links, delay: 25 });
+    const v = await pane(f);
+    await v.click(press(v.host, "Mathematics"));
+    await v.click(v.host.querySelector(".alignment-atoms li button"));
+    const root = v.host.querySelector(".alignment")!;
+    for (let i = 0; i < 50; i++) {
+      await v.act(async () => void root.dispatchEvent(new window.KeyboardEvent("keydown", { key: i % 2 ? "3" : "1", bubbles: true })));
+      await v.act(async () => void root.dispatchEvent(new window.KeyboardEvent("keydown", { key: "j", bubbles: true })));
+    }
+    await v.act(async () => new Promise((r) => setTimeout(r, 900)));
+    const saved = parseDecisions(f.files[NOTES_PATH]);
+    expect(saved.length).toBe(50);
+    expect(new Set(saved.map((d) => d.link)).size).toBe(50);
+    expect(saved.filter((d) => d.decision === "right").length).toBe(25);
+    expect(f.calls.filter((c) => c === `save ${NOTES_PATH}`).length).toBeLessThanOrEqual(50);
+    expect(v.host.querySelector('[role="status"]')!.textContent).toBe("50 of 50 links decided");
+    expect(v.host.querySelector('[role="alert"]')).toBeNull();
+    await v.unmount();
+  });
+
+  test("Back and leaving the screen each start the save of whatever is not saved yet", async () => {
+    const { flushPendingSaves } = await import("./pending-saves");
+    const f = fakeApi("", { delay: 30 });
+    const v = await pane(f);
+    await v.click(press(v.host, "Mathematics"));
+    await v.click(v.host.querySelector(".alignment-atoms li button"));
+    const root = v.host.querySelector(".alignment")!;
+    for (const key of ["1", "j", "3"]) await v.act(async () => void root.dispatchEvent(new window.KeyboardEvent("keydown", { key, bubbles: true })));
+    expect(parseDecisions(f.files[NOTES_PATH]).length).toBe(0);
+    flushPendingSaves();
+    await v.unmount();
+    await new Promise((r) => setTimeout(r, 200));
+    expect(parseDecisions(f.files[NOTES_PATH]).map((d) => [d.link, d.decision])).toEqual([["align:c1~01-mathematics/limits", "right"], ["align:c2~01-mathematics/limits", "wrong"]]);
+    flushPendingSaves();
+    const before = f.calls.length;
+    await new Promise((r) => setTimeout(r, 60));
+    expect(f.calls.length).toBe(before);
+  });
+
+  test("a second decision on a link shows the earlier one, and another review can be brought in", async () => {
+    const f = fakeApi();
+    const v = await pane(f);
+    await v.click(press(v.host, "Mathematics"));
+    await v.click(v.host.querySelector(".alignment-atoms li button"));
+    await v.key("3");
+    await v.key("1");
+    expect(Array.from(v.host.querySelectorAll(".alignment-earlier")).map((p) => p.textContent)).toEqual([`Earlier: wrong, by Ada Example on ${today()}`]);
+    const theirs = [made("align:c1~01-mathematics/limits", "atom:01-mathematics/limits", "wrong", { reviewer: "Brook Sample" }), made("align:c3~01-mathematics/series", "atom:01-mathematics/series", "right", { reviewer: "Brook Sample" })].reduce((t, d) => applyDecision(t, d), "");
+    const input = v.host.querySelector('input[type="file"]') as HTMLInputElement;
+    expect(input.getAttribute("aria-label")).toBe("Bring in another review");
+    Object.defineProperty(input, "files", { value: [new File([theirs], "decisions.jsonl")], configurable: true });
+    await v.act(async () => void input.dispatchEvent(new window.Event("change", { bubbles: true })));
+    await v.settle();
+    expect(v.host.querySelector(".alignment-note")!.textContent).toBe("Brought in 1 decision. 1 link was decided differently: yours stay, and the other decision is kept beside each as an earlier one.");
+    const saved = new Map(parseDecisions(f.files[NOTES_PATH]).map((d) => [d.link, d]));
+    expect([saved.get("align:c1~01-mathematics/limits")!.decision, saved.get("align:c1~01-mathematics/limits")!.reviewer]).toEqual(["right", "Ada Example"]);
+    expect(saved.get("align:c3~01-mathematics/series")!.reviewer).toBe("Brook Sample");
+    expect(v.host.querySelectorAll(".alignment-earlier").length).toBe(2);
+    await v.unmount();
+  });
+
   test("a build with no review queue shows one plain line and reads nothing else", async () => {
     const { NO_QUEUE } = await import("./views/Alignment");
     const f = fakeApi();
@@ -208,9 +339,9 @@ describe("review workspace", () => {
     expect(f.calls).toContain("rows c1,c2,k1");
     const cards = Array.from(v.host.querySelectorAll(".alignment-links > li"));
     expect(cards.map((c) => c.querySelector(".alignment-label")!.textContent)).toEqual(["Calculus I", "Real Analysis", NO_LABEL]);
-    expect(Array.from(cards[0].querySelectorAll(".alignment-facts div")).map((d) => d.textContent)).toEqual(["CodeMATH 101", "Levelgraduate", "Course or frameworkExample University", "Score0.810", "Relationbroader"]);
+    expect(Array.from(cards[0].querySelectorAll(".alignment-facts div")).map((d) => d.textContent)).toEqual(["CodeMATH 101", "Level of the rowgraduate", "Course or frameworkExample University", "Match score0.810", "Proposed relationbroader"]);
     expect(cards[0].querySelector("details.fine")!.textContent).toBe("How it was proposedembedding+rule");
-    expect(Array.from(cards[2].querySelectorAll(".alignment-facts div")).map((d) => d.textContent).slice(0, 3)).toEqual(["CodeHS.F.1", "Levelgraduate", "Course or frameworka-closed-system"]);
+    expect(Array.from(cards[2].querySelectorAll(".alignment-facts div")).map((d) => d.textContent).slice(0, 3)).toEqual(["CodeHS.F.1", "Level of the rowgraduate", "Course or frameworka-closed-system"]);
     expect(Array.from(cards[0].querySelectorAll(".alignment-actions button")).map((b) => b.textContent)).toEqual(["Right", "Partly", "Wrong"]);
     await v.click(press(cards[2], "Open the source"));
     expect(f.calls).toContain("open https://example.org/k1");

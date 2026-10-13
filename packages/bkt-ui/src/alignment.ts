@@ -29,7 +29,17 @@ export interface Decision {
   reason: Reason | null;
   reviewer: string;
   at: string;
+  previous?: Earlier[];
 }
+
+export interface Earlier {
+  decision: DecisionKind;
+  reason: Reason | null;
+  reviewer: string;
+  at: string;
+}
+
+export const HISTORY_CAP = 10;
 
 export interface Edge {
   prerequisite: string;
@@ -87,9 +97,19 @@ export function parseDecisions(text: string): Decision[] {
     if (r.schema !== REVIEW_SCHEMA || !atom || !atomParts(atom) || !decision || !reviewer || !at || !DAY.test(at)) return null;
     const reason = REASONS.find((x) => x === r.reason) ?? null;
     if (decision === "partly" && !reason) return null;
-    return { schema: REVIEW_SCHEMA, atom, link: str(r.link), row: str(r.row), decision, reason: decision === "partly" ? reason : null, reviewer, at };
+    const previous = (Array.isArray(r.previous) ? r.previous : []).flatMap((raw): Earlier[] => {
+      const e = raw as Record<string, unknown> | null;
+      const kind = DECISIONS.find((d) => d === e?.decision);
+      const who = str(e?.reviewer);
+      const when = str(e?.at);
+      return kind && who && when && DAY.test(when) ? [{ decision: kind, reason: REASONS.find((x) => x === e?.reason) ?? null, reviewer: who, at: when }] : [];
+    });
+    return { schema: REVIEW_SCHEMA, atom, link: str(r.link), row: str(r.row), decision, reason: decision === "partly" ? reason : null, reviewer, at, ...(previous.length ? { previous: previous.slice(0, HISTORY_CAP) } : {}) };
   });
 }
+
+const earlier = (d: Decision): Earlier => ({ decision: d.decision, reason: d.reason, reviewer: d.reviewer, at: d.at });
+const sameCall = (a: Earlier, b: Earlier) => a.decision === b.decision && a.reason === b.reason && a.reviewer === b.reviewer;
 
 export const decisionKey = (d: Pick<Decision, "atom" | "link" | "row" | "decision">): string => `${d.atom}|${d.decision === "no-match" ? "none" : (d.link ?? `row:${d.row ?? ""}`)}`;
 
@@ -99,14 +119,67 @@ export function cleanReviewer(name: string): string {
 
 export function serializeDecisions(all: Decision[]): string {
   const sorted = [...all].sort((a, b) => (decisionKey(a) < decisionKey(b) ? -1 : decisionKey(a) > decisionKey(b) ? 1 : 0));
-  return sorted.map((d) => JSON.stringify({ schema: d.schema, atom: d.atom, link: d.link, row: d.row, decision: d.decision, reason: d.reason, reviewer: d.reviewer, at: d.at })).join("\n") + (sorted.length ? "\n" : "");
+  return sorted.map((d) => JSON.stringify({ schema: d.schema, atom: d.atom, link: d.link, row: d.row, decision: d.decision, reason: d.reason, reviewer: d.reviewer, at: d.at, ...(d.previous?.length ? { previous: d.previous } : {}) })).join("\n") + (sorted.length ? "\n" : "");
 }
 
 export function applyDecision(text: string, next: Decision | { remove: string }): string {
   const all = parseDecisions(text);
   const key = "remove" in next ? next.remove : decisionKey(next);
   const kept = all.filter((d) => decisionKey(d) !== key);
-  return serializeDecisions("remove" in next ? kept : [...kept, next]);
+  if ("remove" in next) return serializeDecisions(kept);
+  const old = all.find((d) => decisionKey(d) === key);
+  const history = old ? [...(sameCall(earlier(old), earlier(next)) ? [] : [earlier(old)]), ...(old.previous ?? [])].slice(0, HISTORY_CAP) : [];
+  return serializeDecisions([...kept, { ...next, ...(history.length ? { previous: history } : {}) }]);
+}
+
+export function mergeDecisions(mine: string, theirs: string): { text: string; added: number; differing: number } {
+  const own = new Map(parseDecisions(mine).map((d) => [decisionKey(d), d]));
+  let added = 0;
+  let differing = 0;
+  for (const d of parseDecisions(theirs)) {
+    const key = decisionKey(d);
+    const kept = own.get(key);
+    if (!kept) {
+      own.set(key, d);
+      added += 1;
+    } else if (!sameCall(earlier(kept), earlier(d)) && !(kept.previous ?? []).some((p) => sameCall(p, earlier(d)) && p.at === d.at)) {
+      if (kept.decision !== d.decision || kept.reason !== d.reason) differing += 1;
+      own.set(key, { ...kept, previous: [...(kept.previous ?? []), earlier(d)].slice(0, HISTORY_CAP) });
+    }
+  }
+  return { text: serializeDecisions([...own.values()]), added, differing };
+}
+
+export interface Sample {
+  links: number;
+  right: number;
+  partly: number;
+  wrong: number;
+}
+
+export function qualitySamples(text: string, table: string): Sample[] {
+  try {
+    const entry = (JSON.parse(text) as Record<string, Record<string, unknown> | undefined>)[table.split("/").pop() ?? ""];
+    if (!entry) return [];
+    return Object.values(entry).flatMap((v): Sample[] => {
+      const s = v as Record<string, unknown> | null;
+      if (!s || typeof s !== "object" || ![s.right, s.partly, s.wrong].every((n) => Number.isInteger(n) && (n as number) >= 0)) return [];
+      const sum = (s.right as number) + (s.partly as number) + (s.wrong as number);
+      return sum > 0 ? [{ links: sum, right: s.right as number, partly: s.partly as number, wrong: s.wrong as number }] : [];
+    });
+  } catch {
+    return [];
+  }
+}
+
+export const UNREVIEWED = "Unreviewed proposals. Nobody has checked these links yet, and none is a fact until you mark it.";
+export const QUALITY_MISSING = "The measured quality of these proposals is missing from this copy of Bucket.";
+
+export function qualityLine(samples: Sample[]): string {
+  if (samples.length === 0) return QUALITY_MISSING;
+  const each = (pick: (s: Sample) => number) => samples.map((s) => `${pick(s)} of ${s.links}`).join(" and ");
+  const lead = samples.length === 1 ? "One sample was judged by hand" : `${samples.length === 2 ? "Two" : samples.length} samples were judged by hand`;
+  return `${lead}: ${each((s) => s.right)} right, ${each((s) => s.partly)} partly right, ${each((s) => s.wrong)} wrong. These counts come from the quality file kept beside the links.`;
 }
 
 export interface AtomState {

@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import type { Atom } from "@academy/engine";
 import type { Api, ResearchDetail, ReviewRow } from "../api";
-import { applyDecision, atomParts, atomState, cleanReviewer, decisionKey, deckProgress, parseDecisions, parseEdges, parseLinks, queuedAtoms, QUEUES, REASONS, REVIEW_SCHEMA, REVIEW_SLUG, today, verifiedTable, type Decision, type DecisionKind, type Edge, type Link, type Queue, type Reason } from "../alignment";
+import { applyDecision, atomParts, atomState, cleanReviewer, decisionKey, deckProgress, mergeDecisions, parseDecisions, parseEdges, parseLinks, qualityLine, qualitySamples, queuedAtoms, QUEUES, REASONS, REVIEW_SCHEMA, REVIEW_SLUG, today, UNREVIEWED, verifiedTable, type Decision, type DecisionKind, type Edge, type Link, type Queue, type Reason } from "../alignment";
+import { holdPendingSave } from "../pending-saves";
 import type { ResearchApi } from "./Research";
 
 export type AlignmentApi = ResearchApi & Pick<Api, "decks" | "atoms" | "alignmentRows" | "alignmentSearch">;
@@ -19,6 +20,7 @@ interface Loaded {
   links: Link[];
   edges: Edge[];
   paths: { links: string; decisions: string };
+  quality: string;
 }
 
 function nameStore(): Pick<Storage, "getItem" | "setItem"> | null {
@@ -34,6 +36,7 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
   const [absent, setAbsent] = useState<string | null>(null);
   const [text, setText] = useState("");
   const [status, setStatus] = useState<string | null>(null);
+  const [note, setNote] = useState<string | null>(null);
   const [titles, setTitles] = useState<Record<string, string>>({});
   const [deck, setDeck] = useState<string | null>(null);
   const [atoms, setAtoms] = useState<Atom[]>([]);
@@ -46,8 +49,34 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<ReviewRow[] | null>(null);
   const [exported, setExported] = useState<{ dir: string; files: string[]; verified: number } | null>(null);
-  const held = useRef({ text: "", rev: "" });
+  const held = useRef({ text: "", rev: "", saved: "", path: "" });
   const chain = useRef<Promise<void>>(Promise.resolve());
+
+  const pump = () => {
+    chain.current = chain.current.then(async () => {
+      while (held.current.path && held.current.text !== held.current.saved) {
+        const body = held.current.text;
+        try {
+          let r = await api.researchSave(REVIEW_SLUG, held.current.path, held.current.rev, body);
+          if (!r.saved) r = await api.researchSave(REVIEW_SLUG, held.current.path, r.current, body);
+          if (!r.saved) return setStatus("This review changed in another window. Open the queue again.");
+          held.current = { ...held.current, rev: r.rev, saved: body };
+          setStatus(null);
+        } catch (e) {
+          return setStatus((e as Error).message);
+        }
+      }
+    });
+    return chain.current;
+  };
+
+  useEffect(() => {
+    const release = holdPendingSave(() => void pump());
+    return () => {
+      release();
+      void pump();
+    };
+  }, []);
   const root = useRef<HTMLDivElement>(null);
   const search = useRef<HTMLInputElement>(null);
 
@@ -58,12 +87,13 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
       const path = (id: string) => (d.manifest.tables ?? []).find((t) => t.id === id)?.path;
       const paths = { links: path("alignments"), edges: path("edges"), decisions: path("decisions") };
       if (!paths.links || !paths.edges || !paths.decisions) throw new Error(NO_QUEUE);
-      const [linksText, edgesText, own, decks] = await Promise.all([api.researchText(REVIEW_SLUG, paths.links), api.researchText(REVIEW_SLUG, paths.edges), api.researchSource(REVIEW_SLUG, paths.decisions), api.decks()]);
+      const measured = path("quality");
+      const [linksText, edgesText, own, decks, qualityText] = await Promise.all([api.researchText(REVIEW_SLUG, paths.links), api.researchText(REVIEW_SLUG, paths.edges), api.researchSource(REVIEW_SLUG, paths.decisions), api.decks(), measured ? api.researchText(REVIEW_SLUG, measured).catch(() => "") : Promise.resolve("")]);
       if (!live) return;
-      held.current = { text: own.text, rev: own.rev };
+      held.current = { text: own.text, rev: own.rev, saved: own.text, path: paths.decisions };
       setText(own.text);
       setTitles(Object.fromEntries(decks.map((x) => [x.id, x.title])));
-      setLoaded({ d, links: parseLinks(linksText), edges: parseEdges(edgesText), paths: { links: paths.links, decisions: paths.decisions } });
+      setLoaded({ d, links: parseLinks(linksText), edges: parseEdges(edgesText), paths: { links: paths.links, decisions: paths.decisions }, quality: qualityLine(qualitySamples(qualityText, paths.links)) });
     })().catch((e: Error & { status?: number }) => live && setAbsent(e.status === 404 || e.message === NO_QUEUE ? NO_QUEUE : e.message));
     return () => {
       live = false;
@@ -118,23 +148,21 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
   if (absent) return <p className="muted">{absent}</p>;
   if (!loaded) return <p className="muted">Opening the review queue…</p>;
 
-  const save = (next: Decision | { remove: string }) => {
-    const body = applyDecision(held.current.text, next);
+  const put = (body: string) => {
     held.current = { ...held.current, text: body };
     setText(body);
     setExported(null);
-    chain.current = chain.current.then(async () => {
-      try {
-        let r = await api.researchSave(REVIEW_SLUG, loaded.paths.decisions, held.current.rev, held.current.text);
-        if (!r.saved) r = await api.researchSave(REVIEW_SLUG, loaded.paths.decisions, r.current, held.current.text);
-        if (r.saved) {
-          held.current = { ...held.current, rev: r.rev };
-          setStatus(null);
-        } else setStatus("This review changed in another window. Open the queue again.");
-      } catch (e) {
-        setStatus((e as Error).message);
-      }
-    });
+    void pump();
+  };
+
+  const save = (next: Decision | { remove: string }) => put(applyDecision(held.current.text, next));
+
+  const bringIn = async (file: File | undefined) => {
+    if (!file) return;
+    if (file.size > 4 * 1024 * 1024) return setStatus("That file is larger than a review can be.");
+    const merged = mergeDecisions(held.current.text, await file.text());
+    put(merged.text);
+    setNote(`Brought in ${merged.added.toLocaleString("en-US")} ${merged.added === 1 ? "decision" : "decisions"}. ${merged.differing.toLocaleString("en-US")} ${merged.differing === 1 ? "link was" : "links were"} decided differently: yours stay, and the other decision is kept beside each as an earlier one.`);
   };
 
   const decide = (kind: DecisionKind, target: { link: string | null; row: string | null }, reason: Reason | null = null) => {
@@ -190,7 +218,7 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
   const exportReview = async () => {
     setStatus(null);
     try {
-      await chain.current;
+      await pump();
       const all = parseDecisions(held.current.text);
       const changes = await api.researchChanges(REVIEW_SLUG);
       if (changes.changes.some((c) => c.path === loaded.paths.links)) await api.researchRevert(REVIEW_SLUG, loaded.paths.links);
@@ -241,13 +269,25 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
         <button type="button" onClick={() => void exportReview()} disabled={decisions.size === 0}>
           Export the review
         </button>
+        <label className="file">
+          <input type="file" accept=".jsonl,application/x-ndjson,text/plain" aria-label="Bring in another review" onChange={(e) => void bringIn(e.target.files?.[0])} />
+          <span>Bring in another review</span>
+        </label>
         <span className="muted" role="status">
           {decided.toLocaleString("en-US")} of {total.toLocaleString("en-US")} links decided
         </span>
       </div>
+      <p className="banner alignment-quality" role="note">
+        {UNREVIEWED} {loaded.quality}
+      </p>
       {status && (
         <p className="banner" role="alert">
           {status}
+        </p>
+      )}
+      {note && (
+        <p className="muted alignment-note" role="status">
+          {note}
         </p>
       )}
       {exported && (
@@ -335,13 +375,14 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
                     const made = decisions.get(`${atom}|${l.id}`);
                     return (
                       <li key={l.id} className={i === cursor ? "on" : ""} aria-current={i === cursor ? "true" : undefined} onClick={() => setCursor(i)}>
+                        <p className="muted small alignment-kind">Proposed link, unreviewed</p>
                         <p className="alignment-label">{row?.label ?? <span className="muted">{NO_LABEL}</span>}</p>
                         <dl className="alignment-facts">
                           <div><dt>Code</dt><dd>{row?.code ?? l.code ?? "None"}</dd></div>
-                          <div><dt>Level</dt><dd>{l.level ?? "None"}</dd></div>
+                          <div><dt>Level of the row</dt><dd>{l.level ?? "None"}</dd></div>
                           <div><dt>Course or framework</dt><dd>{row?.where ?? "None"}</dd></div>
-                          <div><dt>Score</dt><dd>{l.score.toFixed(3)}</dd></div>
-                          <div><dt>Relation</dt><dd>{l.match}</dd></div>
+                          <div><dt>Match score</dt><dd>{l.score.toFixed(3)}</dd></div>
+                          <div><dt>Proposed relation</dt><dd>{l.match}</dd></div>
                         </dl>
                         <details className="fine">
                           <summary>How it was proposed</summary>
@@ -377,6 +418,11 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
                             {made.decision === "partly" ? `Partly: ${made.reason}` : made.decision === "right" ? "Right" : "Wrong"}, by {made.reviewer} on {made.at}
                           </p>
                         )}
+                        {made?.previous?.map((e, n) => (
+                          <p key={n} className="muted small alignment-earlier">
+                            Earlier: {e.decision === "partly" ? `partly, ${e.reason}` : e.decision}, by {e.reviewer} on {e.at}
+                          </p>
+                        ))}
                       </li>
                     );
                   })}

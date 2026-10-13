@@ -252,7 +252,7 @@ describe("saving decisions", () => {
     const again = fixture(true, undefined, home);
     expect(again.work.changedPaths(again.slug)).toEqual([NOTES]);
     expect(parseDecisions((await again.research.read(again.slug, NOTES)).bytes.toString("utf8")).map((d) => d.link)).toEqual(many.slice(0, 5).map((d) => d.link).sort());
-    expect(parseDecisions(again.work.backup(again.slug, NOTES)!.toString("utf8")).length).toBe(4);
+    expect(parseDecisions(again.work.backup(again.slug, NOTES)!.toString("utf8")).length).toBe(5);
     fail = false;
     await again.work.write(again.slug, NOTES, sha256(Buffer.from(text)), Buffer.from(sixth));
     expect(parseDecisions((await again.research.read(again.slug, NOTES)).bytes.toString("utf8")).length).toBe(6);
