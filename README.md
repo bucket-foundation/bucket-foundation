@@ -2,7 +2,7 @@
 
 **build the past. build history. bucket is the new renaissance.**
 
-Bucket is a nonprofit reference implementation of research that is paid for once and citeable forever. Reading is free. A citation triggers a one-time author payment over [x402](https://x402.org/) (HTTP-native micropayments on Base), so citation fees route to authors. The canon holds foundations only: axioms, real math, laws, principles and primary derivations across seven branches. AI agents discover and query it through the feed402 spec. No equity, no investors, no exit.
+Bucket is a nonprofit reference implementation of research that is paid for once and citeable forever. Reading is free. The citation fee rail over [x402](https://x402.org/) on Base (HTTP-native micropayments) is specified and does not settle yet. The site serves the canon at price 0. The canon holds foundations only: axioms, real math, laws, principles and primary derivations across seven branches. AI agents discover and query it through the feed402 spec. No equity, no investors, no exit.
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![protocol](https://img.shields.io/badge/protocol-x402-purple.svg)](docs/foundation/PROTOCOL.md)

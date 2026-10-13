@@ -21,7 +21,7 @@ is an editorial board.**
 
 The thing that survived both iterations: **publish is always the terminal
 action.** In 2022 that meant "your theory is now live on the platform." In
-2026 it meant "your axiom is minted as a Story Protocol IP NFT on Base." Story Protocol minting was removed in 2026-06; citations settle over x402 on Base.
+2026 it meant "your axiom is minted as a Story Protocol IP NFT on Base." Story Protocol minting was removed in 2026-06; the citation fee rail over x402 on Base is specified and does not settle yet.
 Discussion was optional in 2022 and has been deleted in 2026. Publication
 was never optional.
 
@@ -69,7 +69,7 @@ These four verbs were the whole product. Here's what each one *did* in
 | 2022 verb | 2022 meaning | 2026 fate |
 |---|---|---|
 | **build** | Multi-step "build evidence 1 → 2 → 3 → build theory → build Profile" flow. Users assembled evidence, chained it into a theory, and got a theory profile page. **13 of the 40 frames, one-third of the whole prototype, were dedicated to this pipeline.** | Survives as "contribute to the canon", now curated by the Foundation. The interactive pipeline is gone. |
-| **publish** | `publish 1 → 2 → 3` sub-flow. Terminal action. A representative piece of example content on `publish 3`: *"The Pyramids exist"*. | ✅ **Survived intact as the terminal action.** Meant Story Protocol IP NFT minting on Base until 2026-06. Citations now settle over x402 on Base and route fees to authors (see `docs/foundation/PROTOCOL.md`). |
+| **publish** | `publish 1 → 2 → 3` sub-flow. Terminal action. A representative piece of example content on `publish 3`: *"The Pyramids exist"*. | ✅ **Survived intact as the terminal action.** Meant Story Protocol IP NFT minting on Base until 2026-06. The citation fee rail over x402 on Base is specified and does not settle yet; the author split is planned work (see `docs/foundation/PROTOCOL.md`). |
 | **discover** | `discover 1 → 2 → 3` cycle. Browse other people's theories. Had a search bar (*"Search for theories to discuss..."*) and a Filter. | ⚠️ **Degraded.** Now = "browse the gdrive folder tree at 1." No search, no filter, no ranking. Discoverability is an open problem. |
 | **discuss** | Had its own first-class `discuss 1 → 2 → 3` sub-flow. Treated as equal in weight to the other three verbs. | ❌ **Deleted.** No comment layer, no threads, no debate surface anywhere in the 2026 architecture. Discussion is explicitly not a feature. |
 

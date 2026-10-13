@@ -27,7 +27,7 @@ Written in the Data Standard canonical form: UTF-8, keys `[a-z0-9_]+` sorted byt
 
 | Field | Meaning |
 |---|---|
-| `schema` | `bucket.report/1` |
+| `schema` | `bucket.report/1`, or `bucket.report/2` when the record carries the keys under Version 2 |
 | `slug`, `title`, `authors`, `date` | `authors` is a list; `date` is `YYYY-MM-DD` |
 | `status` | `draft`, `private` or `public` |
 | `kind` | `paper`, `brief`, `memo` or `dataset-report` |
@@ -43,6 +43,33 @@ Written in the Data Standard canonical form: UTF-8, keys `[a-z0-9_]+` sorted byt
 | `public_path` | Override for a legacy public folder, such as `public/papers/01-funding-landscape` |
 | `affiliation`, `version`, `venue`, `doi`, `github_url`, `licence`, `corpus_line`, `highlights`, `bibtex` | Site fields, copied into the `src/lib/papers.ts` entry |
 
+## Version 2
+
+`bucket.report/2` keeps every version 1 field with its version 1 meaning and the same canonical byte form. `figures` and `data_sources` stay the lists published with the paper, each with a public copy under `public/papers/<slug>/`. The site, `publish`, `build` and `graph.reports` read those two lists alone. The desktop Research screen reads seven more keys. A version 1 record that carries one of them fails `check` with `<key>: needs bucket.report/2`.
+
+| Key | Shape | Meaning |
+|---|---|---|
+| `assets` | `[{id, path, caption, licence, audience, source, build}]` | An image the window shows. `source` names the script that draws it and `build` the build that remakes it; both are optional |
+| `tables` | `[{id, path, format, label, licence, audience, editable, licence_column, source_column}]` | A data table. `format` is `tsv`, `csv`, `json` or `jsonl`. `licence` may be `mixed` when `licence_column` names the column that holds each row's licence |
+| `paper` | `{includes, bib, style, lean, audience}` | Every file the entry file reads. `source_path` stays the entry file |
+| `record_sets` | `[{id, dir, schema, label, licence, index, audience}]` | A folder of one-record JSON files |
+| `tool` | `{path, readme, audience}` | The code folder and its README |
+| `builds` | `[{id, label, runner, entry, inputs, outputs, needs, audience}]` | `runner` is `latex` or `python`. `entry` and every input must be a path the manifest lists under `assets`, `tables`, `paper`, `tool` or `record_sets` |
+| `attributions` | `[{source, url, licence, rows, notice}]` | One row per upstream source |
+
+Rules the validator applies:
+
+- An `id` is kebab-case and unique within its list.
+- `audience` is `public` or `staff`. A reader that meets a missing value treats it as `staff`.
+- An entry may say `public` only when its path starts with `public/`, equals `source_path` or `pdf_path`, sits in `paper`, or matches a `figures` or `data_sources` path.
+- A `paper` file counts only inside the folder of `source_path` or the `bib/` folder beside it, and `paper.lean` must be a folder inside the folder of `source_path`. A public `paper` fails on any other path.
+- A path under `tools/`, under `tool.path` or under a staff record set is staff under every rule above.
+- `localPaths` returns each path once. A path listed as both `staff` and `public` comes out `staff`.
+- An asset's `source` script counts as `staff` unless the same rule admits it.
+- `check` adds one test per listed path: `local file missing: <path>`. A staff table needs no public copy.
+
+`solvability-frontier` is the first version 2 record. Its `figures` build and `tables` build are absent until the manifest has a key that lists `papers/solvability-frontier/figures/tables.py` and `common.py`.
+
 ## Database
 
 `graph.reports` in `supabase/migrations/20261007120000_reports.sql`, one row per slug with the same columns minus the site fields. Service role only, like `graph.marketing_reports`; the site never reads it. Apply locally with `npx supabase@2.117.0 migration up --local`.
@@ -57,7 +84,7 @@ node scripts/report.mjs list              slug, status, kind, date, source
 node scripts/report.mjs check             every record valid, hashes match, public copies and papers entry present
 ```
 
-`scripts/test-report-record.mjs` runs in `npm test` and covers the validator, the hash rule and the papers entry generator. Figure conversion uses `sharp`; a PDF figure goes through `pdftoppm` first.
+`scripts/test-report-record.mjs` runs in `npm test` and covers the validator, the version 2 keys, the hash rule, `checkRecord`, `registerRow` and the papers entry generator. Figure conversion uses `sharp`; a PDF figure goes through `pdftoppm` first.
 
 ## Migrated Reports
 

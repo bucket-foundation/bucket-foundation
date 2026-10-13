@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-th",
+  "title": "Thai words",
+  "kind": "words",
+  "language": "th",
+  "language_name": "Thai",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 15963,
+    "with_ipa": 15872,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 15963,
+  "version": "e7b30cef3003",
+  "file": "polingual-th.sqlite.zst",
+  "bytes": 1481557,
+  "sha256": "81ce1da5b768e24f829d5de78a3ad65d95f0f5e9a17cb3e9ae59bdccd378d138",
+  "db_bytes": 4866048,
+  "db_sha256": "e7b30cef3003e4bb4f9267b860178c4132345b664de3e8b573c2559005ecf1a4",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

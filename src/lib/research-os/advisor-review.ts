@@ -95,8 +95,10 @@ function https(v: unknown): string | null {
   }
 }
 
-export function publicRow(raw: unknown): AdvisorRow | null {
-  if (!obj(raw) || !num(raw.rank) || typeof raw.name !== "string" || !num(raw.score)) return null;
+export function publicRow(raw: unknown, position = 0): AdvisorRow | null {
+  if (!obj(raw) || typeof raw.name !== "string") return null;
+  const unranked = raw.order_status === "untested" || raw.order_status === "withheld";
+  if (!unranked && (!num(raw.rank) || !num(raw.score))) return null;
   const fields: AdvisorRow["fields"] = {};
   const links: AdvisorRow["links"] = {};
   for (const [k, v] of Object.entries(raw)) {
@@ -114,10 +116,10 @@ export function publicRow(raw: unknown): AdvisorRow | null {
     }
   }
   return {
-    rank: raw.rank,
+    rank: unranked || !num(raw.rank) ? position : raw.rank,
     name: clean(raw.name),
-    score: raw.score,
-    percentile: num(raw.percentile) ? raw.percentile : null,
+    score: unranked || !num(raw.score) ? 0 : raw.score,
+    percentile: !unranked && num(raw.percentile) ? raw.percentile : null,
     fields,
     links,
     star_prime: nums(raw.star_prime),
@@ -134,7 +136,7 @@ export function parseAdvisorReview(raw: unknown): AdvisorReview {
   if (!Array.isArray(raw.rows) || raw.rows.length === 0) throw new ReviewFileError("the review has no rows");
   if (raw.rows.length > MAX_REVIEW_ROWS) throw new ReviewFileError(`the review has more than ${MAX_REVIEW_ROWS} rows`);
   const ctx = obj(raw.context) ? raw.context : {};
-  const rows = raw.rows.map(publicRow).filter((r): r is AdvisorRow => r !== null);
+  const rows = raw.rows.map((r, i) => publicRow(r, i + 1)).filter((r): r is AdvisorRow => r !== null);
   if (!rows.length) throw new ReviewFileError("no row has a rank, a name and a score");
   return {
     schema: ADVISOR_REVIEW_SCHEMA,

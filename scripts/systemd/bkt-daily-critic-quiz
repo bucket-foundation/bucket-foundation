@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$HOME/agfarms/bucket-foundation"
+day=$(date +%F)
+out="$HOME/.local/share/bucket-daily/$day"
+mkdir -p "$out"
+claude -p --model sonnet --permission-mode acceptEdits --add-dir "$out" "$HOME/agfarms" "$HOME/.local/share/bucket-profiles" --allowedTools "Read" "Write" "Edit" "Glob" "Grep" "Bash(git:*)" "Bash(bd:*)" "Bash(df:*)" "Bash(ls:*)" "Bash(mkdir:*)" "Bash(cat:*)" "Bash(date:*)" -- "You are the bkt-nuc daily critic and quiz run for $day. Read the last 24 hours of work: git log --since=24.hours in ~/agfarms/bucket-foundation, ~/agfarms/research-atlas, ~/agfarms/gianyrox, ~/agfarms/qec-neural-decoder; beads created or closed (bd list --json); new files under _intake/ideas and ~/.local/share/bucket-profiles/versions. Write $out/critic.md: each shipped item scored /10 with its lowest dimension and top finding, then the single most valuable next step. Write $out/quiz.md: 3 Fermi estimates with worked answers at the bottom, 1 recall question, 1 intent question for the founder. Write $out/quiz.json, the same day as questions the Bucket app can grade: one JSON object {\"day\": \"$day\", \"questions\": [...]} holding 3 to 5 questions. A choice question is {\"id\", \"type\": \"recall\", \"prompt\", \"choices\": [three strings], \"answer\": one of the choices, \"limitSec\": 30, \"explain\"}. An estimate is {\"id\", \"type\": \"estimate\", \"prompt\", \"answer\": a positive number written as a string, \"log10Tolerance\": 1, \"limitSec\": 60, \"explain\"}. Limits the app enforces: ids use letters, digits, dot, dash and underscore and start with critic-; a prompt has at most 15 words; a choice question has exactly 3 choices of at most 5 words each, within one word and 30 percent of each other in length; explain has at most 20 words; no question may need text typed as its answer. Leave the intent question out of quiz.json. Follow the voice rules in CLAUDE.md. Append one JSON line per new result to ~/agfarms/provenance/lab-notebook/$day.jsonl with fields id, date, kind (theorem, measured, estimate, design), claim, value, uncertainty, method, source, source_sha256, verification, status, following docs/agents/MATH-CONTRACT.md when present. Report disk free from df -h ~. Under 400 words per file." > "$out/run.log" 2>&1 || true
+rclone copy "$out" "gdrive:AGFarms/Nucleus/founder-review/daily/$day/" >> "$out/run.log" 2>&1 || true
+if { [ -f "$out/quiz.md" ] || [ -f "$out/quiz.json" ]; } && command -v notify-send >/dev/null; then
+  "$HOME/.local/bin/bkt-daily-quiz-notify" "$day" >> "$out/run.log" 2>&1 || true
+fi
+nb="$HOME/agfarms/provenance/lab-notebook/$day.jsonl"
+if [ -f "$nb" ]; then
+  ssh-keygen -Y sign -f "$HOME/.ssh/id_ed25519" -n bucket-lab-notebook "$nb" </dev/null >/dev/null 2>&1 || true
+  rclone copy "$HOME/agfarms/provenance/lab-notebook" "gdrive:AGFarms/Nucleus/founder-review/lab-notebook/" >/dev/null 2>&1 || true
+fi

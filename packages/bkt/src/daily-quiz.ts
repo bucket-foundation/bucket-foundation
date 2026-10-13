@@ -1,6 +1,6 @@
 import { FERMI_LOG10_TOLERANCE } from "../../../src/lib/research-os/work-quiz/grade";
 import { checkLimits, LIMITS, QUIZ_QUESTIONS, withinLimits } from "../../../src/lib/research-os/work-quiz/limits";
-import { ALL_QUIZ_TYPES, SOURCE_KINDS, type QuestionWord, type QuizQuestion, type QuizType, type SourceRef } from "../../../src/lib/research-os/work-quiz/types";
+import { ALL_QUIZ_TYPES, QUESTION_ORIGINS, SOURCE_KINDS, type QuestionOrigin, type QuestionWord, type QuizQuestion, type QuizType, type SourceRef } from "../../../src/lib/research-os/work-quiz/types";
 import { LANGUAGE_CODES } from "../../../src/lib/research-os/work-quiz/languages";
 import { open, seal } from "./crypto";
 import type { Store } from "./store";
@@ -82,6 +82,7 @@ function question(v: unknown, limits: boolean): QuizQuestion {
   if (typeof explain !== "string" || explain.length > MAX_TEXT) throw new DailyQuizError(`the explanation of question ${id} must be text of at most ${MAX_TEXT} characters`);
   const sources = r.sources === undefined ? [] : r.sources;
   if (!Array.isArray(sources) || sources.length > MAX_SOURCES) throw new DailyQuizError(`question ${id} takes at most ${MAX_SOURCES} sources`);
+  if (r.origin !== undefined && !QUESTION_ORIGINS.includes(r.origin as QuestionOrigin)) throw new DailyQuizError(`question ${id} has an unknown origin`);
   const base = {
     id,
     type: r.type as QuizType,
@@ -92,6 +93,7 @@ function question(v: unknown, limits: boolean): QuizQuestion {
     explain,
     sources: sources.map(source),
     ...(r.word === undefined || r.word === null ? {} : { word: word(r.word) }),
+    ...(r.origin === undefined ? {} : { origin: r.origin as QuestionOrigin }),
   };
   if (r.choices !== null && r.choices !== undefined) {
     if (!Array.isArray(r.choices) || r.choices.length < 2 || r.choices.length > MAX_CHOICES) throw new DailyQuizError(`question ${id} needs between 2 and ${MAX_CHOICES} choices`);

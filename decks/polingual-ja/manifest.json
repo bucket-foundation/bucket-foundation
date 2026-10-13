@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-ja",
+  "title": "Japanese words",
+  "kind": "words",
+  "language": "ja",
+  "language_name": "Japanese",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 113923,
+    "with_ipa": 52813,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 113923,
+  "version": "366a5d386999",
+  "file": "polingual-ja.sqlite.zst",
+  "bytes": 8282866,
+  "sha256": "033cdff96ad6d67d685692c663927168a65d6420343ed55742df9b282ad3e19b",
+  "db_bytes": 28594176,
+  "db_sha256": "366a5d386999f724c50c840a685498f439baf466e9d435a35ac2e9d5f7aa39c5",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

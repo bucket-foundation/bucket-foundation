@@ -8,6 +8,9 @@ export const LANGUAGE_QUIZ_TYPES: readonly LanguageQuizType[] = ["meaning", "sou
 export const ALL_QUIZ_TYPES: readonly QuizType[] = [...QUIZ_TYPES, ...RETIRED_QUIZ_TYPES, ...LANGUAGE_QUIZ_TYPES];
 export const SOURCE_KINDS = ["bead", "pr", "note", "chat", "word", "atom", "excerpt", "work"] as const;
 
+export const QUESTION_ORIGINS = ["critic", "chat", "review", "work", "word", "lesson"] as const;
+export type QuestionOrigin = (typeof QUESTION_ORIGINS)[number];
+
 export function isWorkQuizType(type: QuizType): type is WorkQuizType {
   return (QUIZ_TYPES as readonly QuizType[]).includes(type) || (RETIRED_QUIZ_TYPES as readonly QuizType[]).includes(type);
 }
@@ -78,12 +81,13 @@ export interface QuizQuestion {
   sources: SourceRef[];
   learn?: LearnLink | null;
   word?: QuestionWord;
+  origin?: QuestionOrigin;
 }
 
 export type PublicQuestion = Omit<QuizQuestion, "answer" | "tolerance" | "log10Tolerance" | "explain" | "learn" | "sources">;
 
 export function toPublic(q: QuizQuestion): PublicQuestion {
-  return { id: q.id, type: q.type, prompt: q.prompt, lines: q.lines, choices: q.choices, limitSec: q.limitSec, ...(q.word ? { word: q.word } : {}) };
+  return { id: q.id, type: q.type, prompt: q.prompt, lines: q.lines, choices: q.choices, limitSec: q.limitSec, ...(q.word ? { word: q.word } : {}), ...(q.origin ? { origin: q.origin } : {}) };
 }
 
 export const TYPE_LABEL: Record<QuizType, string> = {

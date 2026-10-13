@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 import records from "../src/lib/research-os/solvability-records-data.json";
 import neighbors from "../src/lib/research-os/solvability-neighbors-data.json";
 import { buildFrontier, frontierRows, type NeighborData } from "../src/lib/research-os/solvability-frontier";
-import { NEIGHBOUR_STRIDE, neighbourPositions, recordAt, recordFor, recordIndex, type PackedRecords } from "../src/lib/research-os/solvability-records";
+import claims from "../src/lib/research-os/solvability-claims-data.json";
+import { CLAIMED, CODING_OF, NEIGHBOUR_STRIDE, awaitingConfirmation, claimsFor, neighbourPositions, recordAt, recordFor, recordIndex, type ClaimEntry, type ClaimsData, type PackedRecords } from "../src/lib/research-os/solvability-records";
 import { recordGlyph } from "../src/lib/research-os/solvability-record-render";
 
 const data = records as unknown as PackedRecords;
@@ -79,4 +80,48 @@ test("the glyph draws the three rings, the point and every neighbour, and escape
   assert.equal((svg.match(/<line/g) ?? []).length, rec.nearestSolved.length + rec.nearestOpen.length);
   const odd = recordGlyph({ title: "A <b> & c", zone: "beyond", theta: 1, radius: 1.2 }, []);
   assert.ok(odd.includes("A &lt;b&gt; &amp; c") && !odd.includes("<b>"));
+});
+
+const ledger = claims as unknown as ClaimsData;
+
+test("a claimed row reads as open, stays out of the solved zone and carries an unconfirmed claim with its source", () => {
+  assert.equal(CODING_OF[CLAIMED], "open");
+  const claimed = data.rows.filter((r) => data.tables.status[r.s] === CLAIMED);
+  assert.ok(claimed.length > 0);
+  const solved = new Set(nb.solved);
+  for (const r of claimed) {
+    const rec = recordFor(data, r.id, index)!;
+    assert.equal(rec.coding, "open", r.id);
+    assert.notEqual(rec.zone, "solved", r.id);
+    assert.equal(rec.resolved, null, r.id);
+    assert.ok(!solved.has(r.id), r.id);
+    assert.ok(rec.claims.some((c) => c.match === "problem" && !c.confirmed && !c.withdrawn), r.id);
+    const entries = claimsFor(ledger, r.id);
+    assert.ok(awaitingConfirmation(entries), r.id);
+    for (const e of entries) {
+      assert.ok(e.source_url.startsWith("https://") && e.statement.length > 0 && e.claimant.length > 0 && /^\d{4}-\d{2}-\d{2}$/.test(e.date), r.id);
+      assert.equal(e.formal.exists, e.formal.scope !== "none", r.id);
+      assert.equal(e.confirmation, null, r.id);
+    }
+  }
+});
+
+test("the claim ledger and the packed records agree on which rows are claimed, and no row turned solved", () => {
+  const claimedInLedger = Object.entries(ledger.rows).filter(([, entries]) => awaitingConfirmation(entries)).map(([id]) => id).sort();
+  const claimedInRecords = data.rows.filter((r) => data.tables.status[r.s] === CLAIMED).map((r) => r.id).sort();
+  assert.deepEqual(claimedInRecords, claimedInLedger);
+  const claimedInNeighbours = nb.nodes.filter((n) => n.status === CLAIMED).map((n) => n.id).sort();
+  assert.deepEqual(claimedInNeighbours, claimedInLedger);
+  for (const n of nb.nodes) if (n.status === CLAIMED) assert.equal(n.solved, false, n.id);
+  for (const id of Object.keys(ledger.rows)) assert.ok(index.has(id), id);
+  for (const p of frontier.points) if (ledger.rows[p.id]) assert.notEqual(p.zone, "solved", p.id);
+});
+
+test("confirmation and withdrawal change what a claim awaits", () => {
+  const base: Pick<ClaimEntry, "match" | "confirmation" | "withdrawn"> = { match: "problem", confirmation: null, withdrawn: null };
+  assert.equal(awaitingConfirmation([base]), true);
+  assert.equal(awaitingConfirmation([{ ...base, match: "special_case" }]), false);
+  assert.equal(awaitingConfirmation([{ ...base, withdrawn: { date: "2026-10-07", url: "https://example.org" } }]), false);
+  assert.equal(awaitingConfirmation([{ ...base, confirmation: { by: "A referee", kind: "refereed_venue", url: "https://example.org", date: "2027-01-01" } }]), false);
+  assert.equal(awaitingConfirmation([]), false);
 });

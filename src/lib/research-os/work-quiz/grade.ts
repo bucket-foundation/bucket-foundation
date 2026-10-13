@@ -61,3 +61,7 @@ export function nextCard(existing: Card | null, rating: Rating, now: number): Ca
   if (!existing && rating > 1) return null;
   return fsrs.review(existing, rating, now);
 }
+
+export function introduceCard(existing: Card | null, rating: Rating, now: number): Card {
+  return fsrs.review(existing, rating, now);
+}

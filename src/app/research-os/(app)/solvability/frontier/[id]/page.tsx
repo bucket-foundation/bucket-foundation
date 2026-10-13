@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader, Panel } from "@/components/ui";
 import records from "@/lib/research-os/solvability-records-data.json";
-import { neighbourPositions, recordFor, type NeighbourRef, type PackedRecords } from "@/lib/research-os/solvability-records";
+import claimsData from "@/lib/research-os/solvability-claims-data.json";
+import { FORMAL_LABEL, MATCH_LABEL, claimsFor, neighbourPositions, recordFor, type ClaimEntry, type ClaimsData, type NeighbourRef, type PackedRecords } from "@/lib/research-os/solvability-records";
 import { recordGlyph } from "@/lib/research-os/solvability-record-render";
 import { ZONE_LABEL } from "@/lib/research-os/solvability-frontier";
 
@@ -35,12 +36,37 @@ function Neighbours({ rows }: { rows: readonly NeighbourRef[] }) {
   );
 }
 
+function Claims({ rows }: { rows: readonly ClaimEntry[] }) {
+  return (
+    <ul className="flex flex-col gap-3">
+      {rows.map((c) => (
+        <li key={`${c.batch}-${c.family}`} className="border-b border-[color:var(--hairline)] pb-3">
+          <p className="text-[12px] text-[color:var(--basalt)]">
+            {c.claimant}, {c.date}, family {c.family}: {MATCH_LABEL[c.match]}.{" "}
+            <a href={c.source_url} className="underline underline-offset-4 text-[color:var(--aegean-deep)]">source</a>
+          </p>
+          <p className={P}>{c.statement}</p>
+          {c.match_note && <p className="text-[12px] text-[color:var(--basalt-2)]">{c.match_note}</p>}
+          <p className="text-[12px] text-[color:var(--basalt-2)]">
+            Formal proof: {FORMAL_LABEL[c.formal.scope]}.{c.formal.note ? ` ${c.formal.note}` : ""}{" "}
+            {c.formal.url && <a href={c.formal.url} className="underline underline-offset-4 text-[color:var(--aegean-deep)]">scope note</a>}
+          </p>
+          <p className="text-[12px] text-[color:var(--basalt-2)]">
+            {c.withdrawn ? `Withdrawn ${c.withdrawn.date}.` : c.confirmation ? `Confirmed by ${c.confirmation.by}, ${c.confirmation.date}.` : "Independent confirmation: none recorded."}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default async function SolvabilityRecordPage({ params }: { params: Promise<{ id: string }> | { id: string } }) {
   const { id } = await params;
   const data = records as unknown as PackedRecords;
   const rec = recordFor(data, id);
   if (!rec) notFound();
   const svg = recordGlyph(rec, neighbourPositions(data, rec));
+  const claimRows = claimsFor(claimsData as unknown as ClaimsData, rec.id);
   return (
     <div className="flex flex-col gap-6">
       <PageHeader
@@ -87,6 +113,11 @@ export default async function SolvabilityRecordPage({ params }: { params: Promis
           </dl>
         </Panel>
       </div>
+      {claimRows.length > 0 && (
+        <Panel title="published claims" meta={rec.status === "claimed" ? "claimed, counted as open" : "notes, status unchanged"}>
+          <Claims rows={claimRows} />
+        </Panel>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Panel title="nearest solved" meta="cosine similarity">
           <Neighbours rows={rec.nearestSolved} />

@@ -13,6 +13,10 @@ import { prepare, type Prepared, type SourceKind } from "../../../src/lib/explor
 import type { CanonStore } from "./canon";
 import type { Licence } from "./pack/canon";
 import type { ExplorePack, FoundingRow } from "./pack/explore";
+import { validDatasetId } from "../../../src/lib/explore/datasets";
+import { coverage, tokens } from "../../../src/lib/explore/search";
+import { narrowRows, packedBytes, pageCount, pageRows, REPLY_BYTES, type PackedRows } from "./pack/row-sets/contract";
+import type { RowSetPack } from "./pack/row-sets/index";
 import type { Route } from "./serve";
 
 export const EXPLORE_META_KEY = "explore_pack_version";
@@ -40,6 +44,77 @@ export function syncExplore(db: Database, pack: ExplorePack): boolean {
     db.query("insert into meta (k, v) values (?, ?) on conflict (k) do update set v = excluded.v").run(EXPLORE_META_KEY, pack.version);
   })();
   return true;
+}
+
+export const ROWS_META_KEY = "explore_rows_version";
+export const ROWS_QUERY_MAX = 200;
+
+export function syncRowSets(db: Database, pack: Pick<RowSetPack, "version" | "sets"> | null): boolean {
+  const version = pack?.version ?? "none";
+  if (db.query<{ v: string }, [string]>("select v from meta where k = ?").get(ROWS_META_KEY)?.v === version) return false;
+  db.transaction(() => {
+    db.run(`drop table if exists explore_row_sets; drop table if exists explore_row_pages;
+      create table explore_row_sets (n integer primary key, id text not null unique, label text not null);
+      create table explore_row_pages (id text not null, page integer not null, body text not null, primary key (id, page));`);
+    const set = db.query("insert into explore_row_sets (n, id, label) values (?, ?, ?)");
+    const page = db.query("insert into explore_row_pages (id, page, body) values (?, ?, ?)");
+    (pack?.sets ?? []).forEach((s, n) => {
+      set.run(n, s.id, s.label);
+      s.pages.forEach((p, i) => page.run(s.id, i, JSON.stringify(p)));
+    });
+    db.query("insert into meta (k, v) values (?, ?) on conflict (k) do update set v = excluded.v").run(ROWS_META_KEY, version);
+  })();
+  return true;
+}
+
+export class RowSetStore {
+  constructor(private db: Database) {}
+
+  private ready(): boolean {
+    return this.db.query<{ n: number }, []>("select count(*) as n from sqlite_master where type = 'table' and name = 'explore_row_sets'").get()!.n > 0;
+  }
+
+  list(): { id: string; label: string }[] {
+    return this.ready() ? this.db.query<{ id: string; label: string }, []>("select id, label from explore_row_sets order by n").all() : [];
+  }
+
+  has(id: string): boolean {
+    return this.ready() && this.db.query<{ n: number }, [string]>("select count(*) as n from explore_row_sets where id = ?").get(id)!.n > 0;
+  }
+
+  page(id: string, page: number): PackedRows | null {
+    if (!this.ready()) return null;
+    const row = this.db.query<{ body: string }, [string, number]>("select body from explore_row_pages where id = ? and page = ?").get(id, page);
+    return row ? (JSON.parse(row.body) as PackedRows) : null;
+  }
+}
+
+export function rowSetReply(store: RowSetStore, url: URL): { status: number; body: unknown } {
+  const params = url.searchParams;
+  const id = params.get("id");
+  if (id === null) return { status: 200, body: { datasets: store.list() } };
+  const bad = { status: 400, body: { error: "bad_request" } };
+  if (!validDatasetId(id)) return bad;
+  const opening = store.has(id) ? store.page(id, 0) : null;
+  if (!opening) return { status: 404, body: { error: "not_found" } };
+  const group = params.get("group");
+  let rows = opening;
+  if (group !== null) {
+    const at = opening.frame.drill?.values.indexOf(group) ?? -1;
+    const held = at < 0 ? null : store.page(id, at + 1);
+    if (!held) return bad;
+    rows = held;
+  }
+  const rawPage = params.get("page") ?? "0";
+  if (!/^\d{1,6}$/.test(rawPage)) return bad;
+  const q = (params.get("q") ?? "").slice(0, ROWS_QUERY_MAX);
+  const asked = tokens(q);
+  if (asked.size) rows = narrowRows(rows, (title, sub) => coverage(asked, tokens(`${title} ${sub}`)) > 0);
+  const page = Number(rawPage);
+  if (page >= pageCount(rows)) return bad;
+  const reply = pageRows(rows, page);
+  if (packedBytes(reply) > REPLY_BYTES) return { status: 500, body: { error: "reply_too_large" } };
+  return { status: 200, body: reply };
 }
 
 type SourceRecord = { kind: SourceKind; id: string; title: string; year: number | null; by: string };
@@ -160,7 +235,12 @@ const json = (body: unknown, status = 200) => new Response(JSON.stringify(body),
 
 export function exploreRoutes(explore: ExploreStore, canon: CanonStore, saved: SavedStore = new SavedStore(explore.database())): Record<string, Route> {
   const deps = exploreDeps(explore, canon);
+  const rowSets = new RowSetStore(explore.database());
   return {
+    "GET /local/explore/rows": (_req, url) => {
+      const { status, body } = rowSetReply(rowSets, url);
+      return json(body, status);
+    },
     "GET /local/explore/saved": () => json(saved.get()),
     "POST /local/explore/saved": async (req) => {
       const state = saved.put(await req.text());
