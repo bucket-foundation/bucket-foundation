@@ -11,6 +11,7 @@ on:
       - "src/lib/canon-index-loader.ts"
       - "src/lib/explore/**"
       - "src/data/explore-sources.json"
+      - "learning/corpus/progressions/tables/**"
       - "src/data/founding-works.json"
       - "src/data/explore/reference-basis.json"
       - "src/data/canon-timeline.json"
@@ -41,6 +42,7 @@ on:
       - "src/lib/canon-index-loader.ts"
       - "src/lib/explore/**"
       - "src/data/explore-sources.json"
+      - "learning/corpus/progressions/tables/**"
       - "src/data/founding-works.json"
       - "src/data/explore/reference-basis.json"
       - "src/data/canon-timeline.json"
@@ -73,14 +75,14 @@ jobs:
         run: bun run pack:content && bun test
       - name: no denied or staff material in the canon and explore packs
         working-directory: packages/bkt
-        run: bun scripts/check-no-kruse.ts content/canon.json content/explore.json && bun scripts/check-no-staff.ts content/canon.json content/explore.json
+        run: bun scripts/check-no-kruse.ts content/canon.json content/explore.json content/explore-rows.json content/research-index.json content/research-blobs.json && bun scripts/check-no-staff.ts content/canon.json content/explore.json content/explore-rows.json content/research-index.json content/research-blobs.json content/alignment-review.json
       - name: typecheck
         working-directory: packages/bkt
         run: bun run typecheck
       - name: window build and chromium for the offline Learn run
         working-directory: packages/bkt-ui
         run: bun install --frozen-lockfile && bun run build && bunx playwright install --with-deps chromium
-      - name: seven Learn views pass with the network denied
+      - name: eight Learn views pass with the network denied
         working-directory: packages/bkt
         run: bun scripts/smoke.ts --learn-offline
 
@@ -109,11 +111,25 @@ jobs:
           path: packages/ros-contract/test/golden/*.actual.html
           if-no-files-found: ignore
 
+  explore-pinned:
+    if: github.event_name == 'pull_request' && (startsWith(github.head_ref, 'feat/explore-') || startsWith(github.head_ref, 'feat/desk-'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: the three pinned canon files carry no change
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: bash packages/bkt/scripts/check-pinned.sh "origin/$BASE_REF"
+
   bkt-ui:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+        with:
+          bun-version: 1.4.2
       - name: install
         working-directory: packages/bkt-ui
         run: bun install --frozen-lockfile

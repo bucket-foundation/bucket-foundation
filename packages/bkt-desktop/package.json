@@ -6,6 +6,7 @@
   "scripts": {
     "ui": "cd ../bkt-ui && bun install --frozen-lockfile && bun run build",
     "sidecar": "bun run scripts/sidecar.ts",
+    "math-csp": "bun run scripts/math-csp.ts",
     "prepare:bundle": "bun run ui && bun run sidecar",
     "dev": "tauri dev",
     "build": "tauri build",

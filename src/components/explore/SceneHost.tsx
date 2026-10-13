@@ -83,7 +83,7 @@ function Scene({ layout, selected, onSelect }: Props) {
         const b = pos.get(l.to);
         if (!a || !b) return null;
         const hot = l.from === selected || l.to === selected;
-        return <Line key={`${l.from}|${l.to}`} points={[a, b]} color={l.color ?? (hot ? "#D9A43A" : "#6B6252")} lineWidth={hot ? 2 : 1} transparent opacity={hot ? 1 : 0.5} />;
+        return <Line key={`${l.from}|${l.to}`} points={[a, b]} color={l.color ?? (hot ? layout.stage?.hot ?? "#D9A43A" : layout.stage?.link ?? "#6B6252")} lineWidth={hot ? 2 : 1} transparent opacity={hot ? 1 : 0.5} />;
       })}
       {layout.nodes.map((n) => (
         <mesh
@@ -114,7 +114,7 @@ export default function SceneHost(props: Props) {
     <div
       data-testid="explore-scene"
       className="w-full h-[420px] md:h-[520px] border hairline"
-      style={{ background: "#141311" }}
+      style={{ background: layout.stage?.background ?? "#141311" }}
       onWheel={scrollMode && onScroll ? (e) => onScroll(e.deltaY) : undefined}
     >
       <Canvas camera={{ position: layout.camera, fov: 45 }} dpr={[1, 2]}>

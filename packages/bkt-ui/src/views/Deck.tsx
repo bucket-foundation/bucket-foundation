@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { buildEncompassingMap, grade, masteryFor, normalizeState, pickLevel, route, summary, withLeverage, type Atom, type EngineState } from "@academy/engine";
 import type { Rating } from "@academy/fsrs";
+import { InlineMath, Tex } from "@/components/math/InlineMath";
 import type { Api } from "../api";
 import { href } from "../router";
 import { Lesson } from "./Lesson";
@@ -94,15 +95,29 @@ export function DeckView({ api, deck, focus }: { api: Api; deck: string; focus?:
             <span className="tag ghost">{level}</span>
             <span className="mastery">mastery {Math.round(100 * masteryFor(state, next.id))}%</span>
           </div>
-          <h2>{next.title}</h2>
-          {next.equation && <p className="equation">{next.equation}</p>}
-          {head!.kind === "new" && (next.lesson ? <Lesson text={next.lesson} /> : next.summary && <p>{next.summary}</p>)}
+          <h2>
+            <InlineMath text={next.title} />
+          </h2>
+          {next.equation && (
+            <p className="equation">
+              <Tex tex={next.equation} display />
+            </p>
+          )}
+          {head!.kind === "new" && (next.lesson ? <Lesson text={next.lesson} /> : next.summary && (
+              <p>
+                <InlineMath text={next.summary} />
+              </p>
+            ))}
           {q && (
             <div className="prompt">
-              <p className="q">{q.prompt}</p>
+              <p className="q">
+                <InlineMath text={q.prompt} />
+              </p>
               {revealed ? (
                 <>
-                  <p className="a">{q.answer}</p>
+                  <p className="a">
+                    <InlineMath text={q.answer} />
+                  </p>
                   <div className="rate">
                     {RATINGS.map(({ r, label }) => (
                       <button key={r} className={`r${r}`} onClick={() => rate(r)}>

@@ -1,0 +1,233 @@
+{
+ "limits": {
+  "threshold": 0.68,
+  "school_threshold": 0.72,
+  "floor": 0.5,
+  "set_from": "review/sample-60.jsonl",
+  "set_at": "2026-10-12"
+ },
+ "atoms": 487,
+ "atoms_matched": 368,
+ "alignments": 1947,
+ "decks": {
+  "00-learning-to-learn": {
+   "atoms": 10,
+   "matched": 8,
+   "unmatched": 2,
+   "alignments": 31
+  },
+  "01-mathematics": {
+   "atoms": 55,
+   "matched": 51,
+   "unmatched": 4,
+   "alignments": 313
+  },
+  "02-physics": {
+   "atoms": 55,
+   "matched": 48,
+   "unmatched": 7,
+   "alignments": 260
+  },
+  "03-chemistry": {
+   "atoms": 55,
+   "matched": 37,
+   "unmatched": 18,
+   "alignments": 197
+  },
+  "04-information": {
+   "atoms": 60,
+   "matched": 54,
+   "unmatched": 6,
+   "alignments": 379
+  },
+  "05-biophysics": {
+   "atoms": 133,
+   "matched": 90,
+   "unmatched": 43,
+   "alignments": 400
+  },
+  "06-cosmology": {
+   "atoms": 59,
+   "matched": 38,
+   "unmatched": 21,
+   "alignments": 158
+  },
+  "07-mind": {
+   "atoms": 60,
+   "matched": 42,
+   "unmatched": 18,
+   "alignments": 209
+  }
+ },
+ "match": {
+  "broader": 1817,
+  "none": 119,
+  "exact": 18,
+  "prerequisite-of": 102,
+  "narrower": 10
+ },
+ "tables": {
+  "courses": 1308,
+  "progression": 639
+ },
+ "level": {
+  "early": 0,
+  "primary": 0,
+  "lower-secondary": 0,
+  "upper-secondary": 10,
+  "undergraduate-lower": 36,
+  "undergraduate-upper": 146,
+  "graduate": 176,
+  "professional-entry": 0,
+  "professional-advanced": 0
+ },
+ "level_none": 119,
+ "level_spread": {
+  "0": 103,
+  "1": 149,
+  "2": 103,
+  "3": 13
+ },
+ "level_schema_rule": 13,
+ "edges": {
+  "00-learning-to-learn": {
+   "no-corpus-path": 16
+  },
+  "all": {
+   "no-corpus-path": 677,
+   "review-second": 38,
+   "review-first": 36,
+   "review-later": 69
+  },
+  "level_order": {
+   "consistent": 413,
+   "inverted": 98,
+   "None": 309
+  },
+  "exact_rows_only": {
+   "no-corpus-path": 820
+  },
+  "01-mathematics": {
+   "no-corpus-path": 69,
+   "review-second": 9,
+   "review-first": 4,
+   "review-later": 16
+  },
+  "02-physics": {
+   "no-corpus-path": 69,
+   "review-later": 12,
+   "review-second": 13,
+   "review-first": 6
+  },
+  "03-chemistry": {
+   "no-corpus-path": 65,
+   "review-later": 10,
+   "review-first": 3,
+   "review-second": 7
+  },
+  "04-information": {
+   "no-corpus-path": 57,
+   "review-later": 18,
+   "review-first": 6
+  },
+  "05-biophysics": {
+   "review-later": 7,
+   "review-second": 5,
+   "no-corpus-path": 204,
+   "review-first": 4
+  },
+  "06-cosmology": {
+   "no-corpus-path": 99,
+   "review-later": 2,
+   "review-first": 9,
+   "review-second": 2
+  },
+  "07-mind": {
+   "no-corpus-path": 98,
+   "review-later": 4,
+   "review-first": 4,
+   "review-second": 2
+  }
+ },
+ "resources": {
+  "links": 774,
+  "atoms": 247,
+  "licence_unverified": 0
+ },
+ "careers": {
+  "atoms": 368
+ },
+ "status": "unreviewed-proposal",
+ "gaps": {
+  "families": 312,
+  "levels": 21,
+  "rows_without_cip": 25368
+ },
+ "sample": {
+  "0.50-0.65": {
+   "partly": 3,
+   "right": 2,
+   "wrong": 5
+  },
+  "0.65-0.68": {
+   "partly": 2,
+   "right": 1,
+   "wrong": 7
+  },
+  "0.68-0.70": {
+   "partly": 4,
+   "right": 5,
+   "wrong": 1
+  },
+  "0.70-0.72": {
+   "partly": 5,
+   "right": 3,
+   "wrong": 2
+  },
+  "0.72-0.75": {
+   "partly": 5,
+   "right": 4,
+   "wrong": 1
+  },
+  "0.75-1.00": {
+   "partly": 4,
+   "right": 5,
+   "wrong": 1
+  },
+  "accepted": {
+   "partly": 17,
+   "right": 17,
+   "wrong": 3
+  },
+  "kind:course": {
+   "partly": 17,
+   "right": 13,
+   "wrong": 4
+  },
+  "kind:strand": {
+   "partly": 3,
+   "right": 1,
+   "wrong": 7
+  },
+  "kind:topic": {
+   "partly": 3,
+   "right": 6,
+   "wrong": 6
+  },
+  "rejected": {
+   "partly": 6,
+   "right": 3,
+   "wrong": 14
+  }
+ },
+ "holdout_first_build": {
+  "partly": 7,
+  "right": 13,
+  "wrong": 4
+ },
+ "blind_tightened": {
+  "partly": 18,
+  "right": 16,
+  "wrong": 6
+ }
+}

@@ -199,7 +199,7 @@ export function WordSearchBox({ api }: { api: SearchApi }) {
   );
 }
 
-export function InstalledDecks({ api }: { api: Pick<Api, "installedDecks"> }) {
+export function InstalledDecks({ api, libraryLink = true }: { api: Pick<Api, "installedDecks">; libraryLink?: boolean }) {
   const [body, setBody] = useState<DecksBody | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -219,9 +219,11 @@ export function InstalledDecks({ api }: { api: Pick<Api, "installedDecks"> }) {
       <h2>Installed decks</h2>
       {failed && <p className="error">{DECKS_FAILED}</p>}
       {body && body.decks.length === 0 && <p className="muted">{NO_DECKS}</p>}
-      <p className="muted small">
-        <a href="#/library">{LIBRARY_LINK}</a>
-      </p>
+      {libraryLink && (
+        <p className="muted small">
+          <a href="#/library">{LIBRARY_LINK}</a>
+        </p>
+      )}
       {body && body.decks.length > 0 && (
         <>
           <ul className="deck-rows">

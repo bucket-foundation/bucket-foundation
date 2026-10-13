@@ -65,6 +65,14 @@ const nextConfig = {
         headers: SECURITY_HEADERS,
       },
       {
+        source: "/research/maps/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noimageindex" }],
+      },
+      {
+        source: "/research/maps",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noimageindex" }],
+      },
+      {
         source: "/download",
         headers: [
           { key: "Accept-CH", value: "Sec-CH-UA-Arch" },

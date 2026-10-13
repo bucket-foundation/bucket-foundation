@@ -39,6 +39,13 @@ export interface SceneLayout {
   camera: Vec3;
   spin?: number;
   wheel?: "zoom" | "scroll";
+  stage?: SceneStage;
+}
+
+export interface SceneStage {
+  background: string;
+  link: string;
+  hot: string;
 }
 
 export interface ModeContext {
@@ -52,6 +59,23 @@ export interface ModeContext {
   map?: MapModel | null;
   youText?: string;
   landmask?: { isLand(lat: number, lng: number): boolean } | null;
+  rows?: RowFrame;
+}
+
+export interface RowFrame {
+  axis: { from: number; to: number; scale: "linear" | "log"; unit: "year" | "age" } | null;
+  from: (number | null)[] | null;
+  to: (number | null)[] | null;
+  place: (string | null)[] | null;
+  points?: ([lat: number, lng: number] | null)[] | null;
+  weight: (number | null)[] | null;
+  edgeWeight: number[][] | null;
+  edgeStated?: boolean[][] | null;
+  cells: [x: string, y: string, state: 0 | 1 | 2][] | null;
+  layout: "ring" | "grid" | "flow" | null;
+  atom: (string | null)[] | null;
+  verified: boolean[] | null;
+  drill: { param: "group"; values: string[] } | null;
 }
 
 export interface ExploreMode {
