@@ -4,11 +4,16 @@ import { existsSync } from "node:fs";
 import { readFileSync } from "node:fs";
 import { MODULES, VARIANTS, generateVariants } from "../src/lib/research-os/home-variants";
 
-const NAV_LABELS = Array.from(readFileSync("packages/bkt-ui/src/nav.tsx", "utf8").matchAll(/label: "([^"]+)"/g), (m) => m[1]);
+const NAV_SOURCE = readFileSync("packages/bkt-ui/src/nav.tsx", "utf8");
+const NAV_LABELS = Array.from(NAV_SOURCE.matchAll(/label: "([^"]+)"/g), (m) => m[1]);
+const FOOT_LABELS = Array.from(NAV_SOURCE.matchAll(/^export const \w+_LINK\b.*label: "([^"]+)"/gm), (m) => m[1]);
 
 test("every desktop module appears once", () => {
   const labels = MODULES.map((m) => m.label);
-  for (const l of NAV_LABELS.filter((l) => l !== "Add your own")) assert.ok(labels.includes(l), l);
+  assert.deepEqual(FOOT_LABELS, ["Add your own", "Settings"]);
+  assert.equal(NAV_LABELS.length - FOOT_LABELS.length, 16);
+  for (const l of NAV_LABELS.filter((l) => !FOOT_LABELS.includes(l))) assert.ok(labels.includes(l), l);
+  for (const l of FOOT_LABELS) assert.ok(!labels.includes(l), l);
   assert.equal(new Set(labels).size, labels.length);
 });
 

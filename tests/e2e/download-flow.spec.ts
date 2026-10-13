@@ -58,7 +58,9 @@ test.describe("download flow on linux", () => {
     const blocks = page.locator("[data-install-blocks] [data-os]");
     await expect(blocks.first()).toHaveAttribute("data-os", "linux");
     await expect(blocks.first()).toContainText("install.sh");
-    await expect(blocks.first().getByRole("note")).toHaveText("Open it from a terminal, never with Disks.");
+    await expect(blocks.first().locator("[data-primary-install]")).toContainText("install.sh");
+    await expect(blocks.first().locator('[role="note"]')).toHaveText("Open it from a terminal, never with Disks.");
+    await expect(blocks.first().locator('a[href$=".AppImage"]:visible')).toHaveCount(0);
     await expect(page.locator("[data-other-platforms]")).not.toHaveAttribute("open", "");
 
     expect(posts).toHaveLength(1);

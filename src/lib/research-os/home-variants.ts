@@ -4,7 +4,7 @@ export type Verb = "Learn" | "Check" | "Hold" | "Own";
 export const MODULES: Module[] = [
   { label: "Learn", verb: "Learn", line: "487 science atoms in 8 decks, each lesson at three depths.", route: "/research-os/learn", where: "web" },
   { label: "Path", verb: "Learn", line: "Every topic and what it rests on. See what to learn first.", route: "/research-os/learn/path", where: "web" },
-  { label: "Quiz", verb: "Check", line: "Deck questions with a score at the end.", route: "/research-os/quiz", where: "web" },
+  { label: "Quiz", verb: "Check", line: "The daily quiz on desktop. Deck questions with a score on the web.", route: "/research-os/quiz", where: "web" },
   { label: "Review", verb: "Check", line: "Reviews come back as their intervals run out.", route: "/research-os/practice", where: "web" },
   { label: "Work quiz", verb: "Check", line: "A daily quiz built from your beads, repos and chats.", route: "/download", where: "desktop" },
   { label: "Graph", verb: "Hold", line: "1,903 nodes across 14 branches. Drag to move, scroll to zoom.", route: "/research-os/map", where: "web" },
@@ -15,6 +15,8 @@ export const MODULES: Module[] = [
   { label: "History", verb: "Own", line: "Your last 60 days on this computer.", route: "/download", where: "desktop" },
   { label: "Analyze data", verb: "Own", line: "Find patterns in a table of your own. The copy is removed when done.", route: "/download", where: "desktop" },
   { label: "Data", verb: "Own", line: "What Bucket has loaded on this computer, each dataset a tab.", route: "/download", where: "desktop" },
+  { label: "Research", verb: "Hold", line: "Reports and their figures, shipped with the app and read offline.", route: "/download", where: "desktop" },
+  { label: "Workspaces", verb: "Hold", line: "A tab for each kind of thing you work on, tables and records first.", route: "/research-os/workspace", where: "web" },
   { label: "Profile", verb: "Own", line: "Level, XP, streak and badges. Kept on this computer only.", route: "/research-os/profile", where: "web" },
 ];
 

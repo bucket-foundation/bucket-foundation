@@ -1,6 +1,6 @@
 export const BUCKET_GROUND_TRUTH = `bucket.foundation — "build the past. build history. bucket is the new renaissance."
 
-THESIS. A nonprofit reference implementation of feed402, an open protocol for paid, citeable research endpoints. One sentence: pay once per paper, cite it forever, fees route to the original author — not the publisher — over the x402 rail on Base (USDC). The gated-journal model is structurally extractive: authors pay to publish, readers pay to read, publishers own the citation. Bucket inverts this: free to read, paid to cite.
+THESIS. A nonprofit reference implementation of feed402, an open protocol for paid, citeable research endpoints. One sentence: pay once per paper, cite it forever. The rail that routes fees to the original author over x402 on Base (USDC) is specified and does not settle yet; the site serves the canon at price 0. The gated-journal model is structurally extractive: authors pay to publish, readers pay to read, publishers own the citation. Bucket inverts this: free to read, paid to cite.
 
 PROTOCOL (feed402/0.2). Three tiers, three prices, one envelope shape:
   - raw     $0.050/row   full records + citations + metadata
@@ -14,9 +14,9 @@ ENVELOPE SHAPE (every paid response):
     tags, canon_tier, foundation_branches, provenance }
 "Cite the envelope" — the envelope itself is the citation unit.
 
-ZERO-KEY PROXY. bucket.foundation operates a public server-side proxy at /api/research. Callers do NOT need a wallet. The proxy holds a Base Sepolia wallet, signs x402, and passes the envelope through. Daily budget cap: $1.00 USD across all callers (raise by self-deploying).
+ZERO-KEY PROXY. bucket.foundation operates a public server-side proxy at /api/research. Callers do NOT need a wallet. Today the proxy signs no x402 payment and settles nothing: it answers from the canon with receipt.status served_from_canon and price_usd 0. Server-side signing is planned work. Daily budget cap in the code: $1.00 USD across all callers.
 
-CITE-FOREVER LICENSE v0.1. Read for free. Pay per citation. Citation fees route to the author's wallet forever (no publisher rent extraction). Machine-checkable; the license lives at /cite-forever/v0.1 and is referenced in every envelope's cite.license field.
+CITE-FOREVER LICENSE v0.1. Read for free. Pay per citation. The license routes citation fees to the author's wallet (no publisher rent extraction); that payment does not run yet and the author split is planned work. Machine-checkable; the license lives at /cite-forever/v0.1 and is referenced in every envelope's cite.license field.
 
 CANON — 7 BRANCHES (foundations only: axioms, real math, laws, principles, primary derivations):
   01 mathematics · 02 physics · 03 chemistry · 04 information & computation ·

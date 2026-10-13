@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { fetchLatestReleaseV2, hasDesktop, installersForV2, pickLatestV2, preferArch, windowedInstallers } from "../src/lib/download/release-v2";
+import { fetchLatestReleaseV2, hasDesktop, installersForV2, isBareExecutable, pickLatestV2, preferArch, windowedInstallers } from "../src/lib/download/release-v2";
 import type { GitHubRelease, ReleaseAsset } from "../src/lib/download/release";
 
 const fixture = (name: string): ReleaseAsset[] => JSON.parse(fs.readFileSync(path.join(__dirname, "../src/lib/download/__fixtures__", name), "utf8"));
@@ -75,12 +75,13 @@ test("a release with the Tauri bundles hands each system its windowed installer"
     "macos/arm64/dmg/Bucket-desktop-0.5.0-macos-arm64.dmg",
     "macos/x64/dmg/Bucket-desktop-0.5.0-macos-x64.dmg",
     "windows/x64/msi/Bucket-desktop-0.5.0-windows-x64.msi",
+    "linux/x64/deb/Bucket-desktop-0.5.0-linux-x64.deb",
     "linux/x64/AppImage/Bucket-desktop-0.5.0-linux-x64.AppImage",
   ]);
   for (const w of windowedInstallers(tauri)) assert.equal(w.checksumUrl, `${w.url}.sha256`);
-  assert.deepEqual(windowedInstallers(tauri).map((w) => w.signed), [false, false, false, true]);
+  assert.deepEqual(windowedInstallers(tauri).map((w) => w.signed), [false, false, false, true, true]);
   const signed = tauri.filter((a) => !a.name.endsWith(".unsigned"));
-  assert.deepEqual(windowedInstallers(signed).map((w) => w.signed), [true, true, true, true]);
+  assert.deepEqual(windowedInstallers(signed).map((w) => w.signed), [true, true, true, true, true]);
   for (const i of installersForV2(tauri)) assert.doesNotMatch(i.name, /\.unsigned$/);
 });
 
@@ -90,7 +91,16 @@ test("the Tauri bundles leave the terminal installers and the signed AppImage co
   assert.deepEqual(windowedInstallers(desktop), []);
 });
 
+test("linux lists every package format with the bare AppImage last", () => {
+  const rpm = tauri.filter((a) => /linux-x64\.deb(\.sha256)?$/.test(a.name)).map((a) => ({ ...a, name: a.name.replace(".deb", ".rpm"), browser_download_url: a.browser_download_url.replace(".deb", ".rpm") }));
+  const linux = windowedInstallers([...rpm, ...tauri]).filter((w) => w.os === "linux");
+  assert.deepEqual(linux.map((w) => w.format), ["deb", "rpm", "AppImage"]);
+  assert.deepEqual(linux.map(isBareExecutable), [false, false, true]);
+  assert.equal(linux[1].checksumUrl, `${linux[1].url}.sha256`);
+  assert.ok(windowedInstallers(tauri).filter((w) => w.os !== "linux").every((w) => !isBareExecutable(w)));
+});
+
 test("pickLatestV2 carries the windowed installers of the release it picks", () => {
   const got = pickLatestV2([{ tag_name: "bkt-v0.5.0", name: "Bucket 0.5.0", html_url: "https://example.org", draft: false, prerelease: false, assets: tauri }]);
-  assert.equal(got?.windowed.length, 4);
+  assert.equal(got?.windowed.length, 5);
 });

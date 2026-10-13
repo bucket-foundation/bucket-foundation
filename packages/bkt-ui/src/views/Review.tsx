@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { InlineMath } from "@/components/math/InlineMath";
 import type { Api, ReviewItem } from "../api";
 
 const RATINGS = [
@@ -51,11 +52,17 @@ export function ReviewView({ api }: { api: Api }) {
         </div>
       ) : (
         <article className="panel card">
-          <span className="tag ghost">{item.title}</span>
-          <p className="q">{item.prompt}</p>
+          <span className="tag ghost">
+            <InlineMath text={item.title} />
+          </span>
+          <p className="q">
+            <InlineMath text={item.prompt} />
+          </p>
           {shown ? (
             <>
-              <p className="a">{item.answer}</p>
+              <p className="a">
+                <InlineMath text={item.answer} />
+              </p>
               <div className="rate">
                 {RATINGS.map(({ r, label }) => (
                   <button key={r} className={`r${r}`} onClick={() => rate(r)}>

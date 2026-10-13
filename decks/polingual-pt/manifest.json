@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-pt",
+  "title": "Portuguese words",
+  "kind": "words",
+  "language": "pt",
+  "language_name": "Portuguese",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 399783,
+    "with_ipa": 59499,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 399783,
+  "version": "ad884fe81498",
+  "file": "polingual-pt.sqlite.zst",
+  "bytes": 18166500,
+  "sha256": "419a460652224b1ce311626fad7bd92d7608274b6a7545ef5964c368bb21fbbc",
+  "db_bytes": 113070080,
+  "db_sha256": "ad884fe8149801ecf788a61b2343ead15049ffdf2d5f917a88174ae4950c0679",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}
