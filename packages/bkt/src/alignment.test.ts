@@ -118,7 +118,7 @@ const NOTES = "data/review-fixture/decisions.jsonl";
 const line = (id: string, atom: string) => `{"schema": "bucket.alignment/1", "id": "${id}", "progression_id": "${id.split("~")[0].replace("align:", "")}", "table": "courses", "level": "graduate", "atom": "${atom}", "match": "broader", "score": 0.717, "source_url": "https://example.org/c", "status": "unreviewed-proposal", "verified": false, "verification": {"status": "asserted", "by": "agent", "at": "2026-10-12"}, "note": ""}`;
 const SHIPPED = `${[line("align:c1~01-mathematics/limits", "atom:01-mathematics/limits"), line("align:c2~01-mathematics/limits", "atom:01-mathematics/limits"), line("align:c3~01-mathematics/series", "atom:01-mathematics/series"), line("align:c4~01-mathematics/series", "atom:01-mathematics/series")].join("\n")}\n`;
 
-function fixture(withQueue: boolean) {
+function fixture(withQueue: boolean, rename?: (from: string, to: string) => void, at?: string) {
   const files: Record<string, string> = { "data/review-fixture/README.md": "# Review fixture\n", [LINKS]: SHIPPED, [NOTES]: "" };
   const blobs: Record<string, ReturnType<typeof encodeBlob>> = {};
   const packed: PackedFile[] = Object.entries(files).map(([path, body]) => {
@@ -143,9 +143,9 @@ function fixture(withQueue: boolean) {
   };
   const version = sha256(JSON.stringify(packed)).slice(0, 16);
   const index: ResearchIndex = { schema: RESEARCH_SCHEMA, version, staff: true, outputs: [{ slug: manifest.slug, origin: "staff", manifest, files: packed.sort((a, b) => (a.path < b.path ? -1 : 1)), withheld: 0 }] };
-  const home = temp("home");
+  const home = at ?? temp("home");
   const research = new Research({ index, blobs: async () => ({ version, blobs }) }, temp("cache"), home);
-  const work = new ResearchWork(research, home, { now: () => Date.UTC(2026, 9, 12, 12, 0, 0), open: () => {} });
+  const work = new ResearchWork(research, home, { now: () => Date.UTC(2026, 9, 12, 12, 0, 0), open: () => {}, rename });
   const src: WorkspaceSources = { research, changedPaths: (slug) => work.changedPaths(slug), datasets: () => [], rowSets: () => [] };
   return { research, work, src, home, slug: manifest.slug };
 }
@@ -203,5 +203,58 @@ describe("review queue in the workspace index and its export", () => {
       ["c3", "wrong", null, "Ada Example", "2026-10-13"],
       ["c4", "wrong", null, "Ada Example", "2026-10-13"],
     ]);
+  });
+});
+
+describe("saving decisions", () => {
+  const many = Array.from({ length: 50 }, (_, i) => ({ ...decision("align:c1~01-mathematics/limits", i % 2 ? "right" : "wrong"), link: `align:r${String(i).padStart(2, "0")}~01-mathematics/limits` }));
+
+  test("fifty decisions written one after another are all present, and the file before the last write is kept as a backup", async () => {
+    const { work, research, slug, home } = fixture(true);
+    let text = "";
+    const writes: Promise<unknown>[] = [];
+    for (const d of many) {
+      const before = text;
+      text = applyDecision(text, d);
+      writes.push(work.write(slug, NOTES, sha256(Buffer.from(before)), Buffer.from(text)));
+    }
+    await Promise.all(writes);
+    const saved = parseDecisions((await research.read(slug, NOTES)).bytes.toString("utf8"));
+    expect(saved.length).toBe(50);
+    expect(saved.map((d) => d.link).sort()).toEqual(many.map((d) => d.link).sort());
+    expect(parseDecisions(work.backup(slug, NOTES)!.toString("utf8")).length).toBe(49);
+    expect(work.changedPaths(slug)).toEqual([NOTES]);
+    expect(work.backup(slug, "../x")).toBeNull();
+    expect(work.backup(slug, LINKS)).toBeNull();
+    expect(readFileSync(join(home, "research/outputs", slug, "backup", NOTES), "utf8")).toBe(work.backup(slug, NOTES)!.toString("utf8"));
+  });
+
+  test("a write that dies between the temp file and the rename loses that one decision and never the file", async () => {
+    const home = temp("crash");
+    let fail = false;
+    const { renameSync } = await import("node:fs");
+    const first = fixture(true, (from, to) => {
+      if (fail && to.endsWith("decisions.jsonl") && !to.includes("/backup/")) throw new Error("the machine stopped");
+      renameSync(from, to);
+    }, home);
+    let text = "";
+    for (const d of many.slice(0, 5)) {
+      const before = text;
+      text = applyDecision(text, d);
+      await first.work.write(first.slug, NOTES, sha256(Buffer.from(before)), Buffer.from(text));
+    }
+    fail = true;
+    const sixth = applyDecision(text, many[5]);
+    await expect(first.work.write(first.slug, NOTES, sha256(Buffer.from(text)), Buffer.from(sixth))).rejects.toThrow("the machine stopped");
+    expect(parseDecisions((await first.research.read(first.slug, NOTES)).bytes.toString("utf8")).length).toBe(5);
+    const file = join(home, "research/outputs", first.slug, "work", NOTES);
+    writeFileSync(`${file}.tmp-4242-0a1b2c3d`, sixth.slice(0, 40));
+    const again = fixture(true, undefined, home);
+    expect(again.work.changedPaths(again.slug)).toEqual([NOTES]);
+    expect(parseDecisions((await again.research.read(again.slug, NOTES)).bytes.toString("utf8")).map((d) => d.link)).toEqual(many.slice(0, 5).map((d) => d.link).sort());
+    expect(parseDecisions(again.work.backup(again.slug, NOTES)!.toString("utf8")).length).toBe(4);
+    fail = false;
+    await again.work.write(again.slug, NOTES, sha256(Buffer.from(text)), Buffer.from(sixth));
+    expect(parseDecisions((await again.research.read(again.slug, NOTES)).bytes.toString("utf8")).length).toBe(6);
   });
 });

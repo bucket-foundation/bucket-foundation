@@ -121,13 +121,30 @@ export function findStaffRowSets(targets: string[]): { file: string; marker: str
   });
 }
 
+export const REVIEW_MARKERS: { name: string; re: RegExp }[] = [
+  { name: "an alignment review pack marked staff", re: /"?schema"?:"bucket\.alignment-review\/1","?staff"?:(?:true|!0)/ },
+  { name: "an alignment review corpus row", re: /"?table"?:"(?:courses|progression)","?level"?:[^{}]{0,400}"?decks"?:\[/ },
+  { name: "the alignment review output", re: /"?slug"?:"atom-alignment"/ },
+  { name: "an unreviewed alignment row", re: /"?status"?:\s?"unreviewed-proposal"/ },
+];
+
+export function reviewProblems(text: string): string[] {
+  const hits = REVIEW_MARKERS.filter((m) => m.re.test(text)).map((m) => m.name);
+  const pack = /"?schema"?:"bucket\.alignment-review\/1"/.test(text) && /"?rows"?:\[\s*\{/.test(text);
+  return pack ? [...hits, "an alignment review pack that holds rows"] : hits;
+}
+
+export function findStaffReview(targets: string[]): { file: string; marker: string }[] {
+  return targets.flatMap(files).flatMap((file) => reviewProblems(readFileSync(file).toString("latin1")).map((marker) => ({ file, marker })));
+}
+
 if (import.meta.main) {
   const targets = process.argv.slice(2);
   if (!targets.length) {
     console.error("usage: bun packages/bkt/scripts/check-no-staff.ts <file or dir>...");
     process.exit(2);
   }
-  const hits = [...findStaffRowSets(targets), ...findStaff(targets, allMarkers(REPO, await loadReportLib(REPO)))];
+  const hits = [...findStaffReview(targets), ...findStaffRowSets(targets), ...findStaff(targets, allMarkers(REPO, await loadReportLib(REPO)))];
   if (hits.length) {
     for (const h of hits.slice(0, 10)) console.error(`staff data in ${h.file}: ${h.marker}`);
     process.exit(1);

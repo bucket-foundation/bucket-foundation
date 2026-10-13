@@ -2,7 +2,44 @@ import { describe, expect, test } from "bun:test";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { findStaff, ID_LIST_FILES, ID_RUN, idListMarkers, markersOf, STAFF, staffMarkers } from "../scripts/check-no-staff";
+import { findStaff, findStaffReview, reviewProblems, ID_LIST_FILES, ID_RUN, idListMarkers, markersOf, STAFF, staffMarkers } from "../scripts/check-no-staff";
+
+describe("alignment review check", () => {
+  test("flags a staff alignment pack however it is carried, and passes the empty public one", async () => {
+    const { alignmentReview, EMPTY_REVIEW, REVIEW_FLAG } = await import("../src/pack/alignment-review");
+    const repo = join(import.meta.dir, "../../..");
+    const dir = mkdtempSync(join(tmpdir(), "bkt-staff-review-"));
+    const open = join(dir, "public.json");
+    writeFileSync(open, JSON.stringify(await alignmentReview(repo, {})));
+    expect(JSON.parse(JSON.stringify(await alignmentReview(repo, {})))).toEqual(EMPTY_REVIEW);
+    expect(findStaffReview([open])).toEqual([]);
+    const staff = await alignmentReview(repo, { [REVIEW_FLAG]: "1" });
+    expect(staff.staff).toBe(true);
+    expect(staff.rows.length).toBeGreaterThan(600);
+    expect(staff.rows.every((r) => typeof r.id === "string" && Array.isArray(r.decks))).toBe(true);
+    const held = join(dir, "staff.json");
+    writeFileSync(held, JSON.stringify(staff));
+    expect(findStaffReview([held]).map((h) => h.marker)).toEqual(["an alignment review pack marked staff", "an alignment review corpus row", "an alignment review pack that holds rows"]);
+    const bundle = join(dir, "bundle.js");
+    writeFileSync(bundle, `var pack={schema:"bucket.alignment-review/1",staff:!0,rows:[${JSON.stringify(staff.rows[0]).replace(/"(\w+)":/g, "$1:")}]};`);
+    expect(findStaffReview([bundle]).length).toBeGreaterThanOrEqual(2);
+    const lone = join(dir, "rows.json");
+    writeFileSync(lone, JSON.stringify({ anything: staff.rows.slice(0, 3) }));
+    expect(findStaffReview([lone]).map((h) => h.marker)).toEqual(["an alignment review corpus row"]);
+    expect(reviewProblems(JSON.stringify({ outputs: [{ slug: "atom-alignment" }] }))).toEqual(["the alignment review output"]);
+    expect(reviewProblems('{"id": "align:x~y", "status": "unreviewed-proposal", "verified": false}')).toEqual(["an unreviewed alignment row"]);
+    expect(reviewProblems(JSON.stringify({ schema: "bucket.alignment-review/1", staff: false, rows: [] }))).toEqual([]);
+    expect(reviewProblems("export const x = 1;")).toEqual([]);
+    expect(findStaffReview([dir]).map((h) => h.file.split("/").pop()).filter((f, i, all) => all.indexOf(f) === i).sort()).toEqual(["bundle.js", "rows.json", "staff.json"]);
+    rmSync(dir, { recursive: true });
+  }, 60_000);
+
+  test("the public content this checkout built carries none of it", async () => {
+    if (process.env.BKT_INCLUDE_STAFF_DATA === "1") return;
+    const content = join(import.meta.dir, "../content");
+    expect(findStaffReview(["alignment-review.json", "research-index.json", "research-blobs.json", "explore-rows.json", "pack.json"].map((f) => join(content, f)))).toEqual([]);
+  });
+});
 
 describe("staff data check", () => {
   test("finds staff atlas strings in a build and passes a clean one", () => {
