@@ -93,7 +93,12 @@ export function toolRoute<B = Record<string, unknown>>(config: ToolRouteConfig<B
       }
       return json(err, resp.status);
     }
-    return json(await resp.json(), 200);
+    const text = await resp.text();
+    try {
+      return json(JSON.parse(text), 200);
+    } catch {
+      return json({ error: { code: "upstream_error", message: "gateway returned a non-JSON body" } }, 502);
+    }
   };
 
   const submitInit = async (req: NextRequest): Promise<RequestInit | NextResponse> => {
@@ -115,7 +120,14 @@ export function toolRoute<B = Record<string, unknown>>(config: ToolRouteConfig<B
       if (config.invalidJson !== "empty") return badRequest("invalid JSON body");
       body = {} as B;
     }
-    const payload = config.prepare ? config.prepare(body) : body;
+    let payload: unknown;
+    try {
+      payload = config.prepare ? config.prepare(body) : body;
+    } catch (err) {
+      console.error(`research-tools ${tool}: prepare threw ${err instanceof Error ? err.name : typeof err}`);
+      if (err instanceof TypeError) return badRequest("invalid request body");
+      throw err;
+    }
     if (payload instanceof Rejection) return badRequest(payload.message);
     return {
       method: "POST",

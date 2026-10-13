@@ -1,0 +1,51 @@
+"use client";
+
+import { mailto } from "@/lib/support";
+
+const TOOL_OFFLINE_MAILTO_V2 = mailto(
+  "bucket.foundation research tool is not answering",
+  "I tried a bucket.foundation research tool and it did not answer. Tool name and time:\n\n",
+);
+
+export function detectToolOffline(status: number | null, msg: string): boolean {
+  if (status === 503 || status === 502 || status === 504) return true;
+  const m = (msg || "").toLowerCase();
+  return (
+    m.includes("offline") ||
+    m.includes("could not reach") ||
+    m.includes("lost connection") ||
+    m.includes("not reachable") ||
+    m.includes("tool_offline")
+  );
+}
+
+export function ToolOfflineNoticeV2({ toolName }: { toolName?: string }) {
+  return (
+    <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-6 md:p-8 shadow-[inset_0_1px_0_rgba(239,232,212,0.6),inset_0_-1px_0_rgba(31,28,22,0.18)]">
+      <div className="flex items-center gap-3 mb-3">
+        <span className="inline-block w-2.5 h-2.5 rounded-full bg-[color:var(--gold-deep,var(--basalt-3))]" />
+        <div className="small-caps tracking-[0.16em] text-[color:var(--basalt-3)]">
+          local engine · not answering
+        </div>
+      </div>
+      <p className="text-[15px] leading-[1.8] text-[color:var(--basalt)]">
+        {toolName ? `${toolName} ` : "This tool "}
+        runs on the Bucket engine, which did not answer this request.
+      </p>
+      <p className="mt-3 text-[14px] leading-[1.75] text-[color:var(--basalt-2)]">
+        Try again in a minute. If it keeps failing, write to us below.
+      </p>
+
+      <div className="carved-rule max-w-xs mt-7 mb-6" />
+
+      <div className="flex flex-wrap items-center gap-4">
+        <a
+          href={TOOL_OFFLINE_MAILTO_V2}
+          className="font-display uppercase text-[13px] tracking-[0.06em] px-5 py-2.5 border border-[color:var(--basalt)] text-[color:var(--basalt)] hover:bg-[color:var(--basalt)] hover:text-[color:var(--bone)] transition-colors"
+        >
+          contact →
+        </a>
+      </div>
+    </div>
+  );
+}

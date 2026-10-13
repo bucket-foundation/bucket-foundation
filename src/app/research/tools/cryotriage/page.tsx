@@ -35,7 +35,7 @@ export default function Page() {
           with documented thresholds.
         </p>
         <p className="mt-4 text-[13px] small-caps tracking-[0.12em] text-[color:var(--basalt-3)]">
-          demo mode — synthetic micrographs until a GPU compute plan lands
+          demo mode — synthetic micrographs until long-job compute is available
         </p>
         <div className="carved-rule max-w-xs mt-10" />
         <div className="mt-12">

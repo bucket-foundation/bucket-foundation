@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-ang",
+  "title": "Old English words",
+  "kind": "words",
+  "language": "ang",
+  "language_name": "Old English",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 55969,
+    "with_ipa": 51271,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 55969,
+  "version": "2841255fc0c4",
+  "file": "polingual-ang.sqlite.zst",
+  "bytes": 3260304,
+  "sha256": "dd610680cd18772d543679df1d9eaf95aa8351ab168671a2bc2793daceb73624",
+  "db_bytes": 14327808,
+  "db_sha256": "2841255fc0c44b6f1392d5cb7223be8741d91642b184d519e67bb891bdbb43cd",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

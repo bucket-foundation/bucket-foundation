@@ -9,3 +9,9 @@ import BucketMath.Learning
 import BucketMath.Learning.Diamond
 import BucketMath.Open
 import BucketMath.Helix
+import BucketMath.Marketing
+import BucketMath.Ranking
+import BucketMath.Atom
+import BucketMath.Grade
+import BucketMath.Fsrs
+import BucketMath.Split

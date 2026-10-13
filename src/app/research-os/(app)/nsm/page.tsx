@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { configured } from "@/lib/research-os/db";
-import { loadNsm } from "@/lib/research-os/nsm-db";
+import { loadApprovedNsmLinks, loadNsm } from "@/lib/research-os/nsm-db";
+import type { PrimeIdeas } from "@/lib/research-os/nsm-links";
 import { byCategory, CLICS_ATTRIBUTION, HIDE_BELOW, NSM_CITATION, UNCERTAIN_BELOW, NSM_LANGS, parseLang, type NsmExponent, type NsmPrime } from "@/lib/research-os/nsm";
 import { KAIKKI_ATTRIBUTION, OSHB_ATTRIBUTION, glossFormLabel, langName } from "@/lib/research-os/node-words";
 import RootTexts from "../RootTexts";
@@ -167,7 +168,25 @@ function Picker({ lang, hidden }: { lang: string | null; hidden: boolean }) {
   );
 }
 
-function Table({ primes, lang }: { primes: NsmPrime[]; lang: string | null }) {
+function Ideas({ ideas }: { ideas: PrimeIdeas | undefined }) {
+  if (!ideas || ideas.shown.length === 0) return null;
+  return (
+    <p className="mt-2 text-[12px] text-[color:var(--basalt-3)]">
+      <span className={LABEL}>linked ideas </span>
+      {ideas.shown.map((i, n) => (
+        <span key={i.slug}>
+          {n ? ", " : ""}
+          <Link href={`/research-os/n/${encodeURIComponent(i.slug)}`} className="underline underline-offset-4">
+            {i.title}
+          </Link>
+        </span>
+      ))}
+      {ideas.more > 0 && <span>, and {ideas.more} more</span>}
+    </p>
+  );
+}
+
+function Table({ primes, lang, ideas }: { primes: NsmPrime[]; lang: string | null; ideas: Map<string, PrimeIdeas> | null }) {
   const labels: Labels = new Map(primes.map((p) => [p.id, p.label]));
   return (
     <>
@@ -184,6 +203,7 @@ function Table({ primes, lang }: { primes: NsmPrime[]; lang: string | null }) {
                   </p>
                   {lang ? <OneLanguage p={p} labels={labels} /> : <AllLanguages p={p} labels={labels} />}
                   <Merges p={p} />
+                  <Ideas ideas={ideas?.get(p.id)} />
                 </div>
               </li>
             ))}
@@ -206,6 +226,14 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
     } catch (err) {
       console.error("[nsm] read failed:", err instanceof Error ? err.message : err);
       failed = true;
+    }
+  }
+  let ideas: Map<string, PrimeIdeas> | null = null;
+  if (primes && primes.length > 0) {
+    try {
+      ideas = await loadApprovedNsmLinks();
+    } catch (err) {
+      console.error("[nsm] links read failed:", err instanceof Error ? err.message : err);
     }
   }
 
@@ -233,7 +261,16 @@ export default async function NsmPage({ searchParams }: { searchParams?: Record<
       ) : primes.length === 0 ? (
         <p className="mt-6 text-[13px] text-[color:var(--basalt-2)]">The primes have not been loaded into this graph yet.</p>
       ) : (
-        <Table primes={primes} lang={lang} />
+        <>
+          {ideas === null ? (
+            <p role="alert" className="mt-6 text-[13px] text-[color:var(--gold-deep)]">
+              The reviewed links between primes and ideas were not read this minute, so none are shown.
+            </p>
+          ) : ideas.size === 0 ? (
+            <p className="mt-6 text-[13px] text-[color:var(--basalt-2)]">No link between a prime and an idea has been approved yet.</p>
+          ) : null}
+          <Table primes={primes} lang={lang} ideas={ideas} />
+        </>
       )}
       <footer className="mt-10 border-t border-[color:var(--hairline)] pt-3 text-[11px] leading-relaxed text-[color:var(--basalt-3)] max-w-[70ch]">
         <p>

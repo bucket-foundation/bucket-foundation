@@ -1,4 +1,4 @@
-import { tokenRank } from "@/lib/canon-search-index";
+import { canonTokenRank, type CanonHit } from "@/lib/canon-search";
 
 export type SourceKind = "canon" | "openalex" | "pubmed" | "atlas" | "methods";
 
@@ -73,9 +73,9 @@ async function postJson(url: string, body: unknown): Promise<unknown> {
 
 export function retrieveCanon(query: string, topK = 4): RetrievalResult {
   const call = `canon-search-index.tokenRank(${JSON.stringify(query)}, topK=${topK})`;
-  let ranked: ReturnType<typeof tokenRank> = [];
+  let ranked: CanonHit[] = [];
   try {
-    ranked = tokenRank(query, topK).filter((r) => r.score > 0);
+    ranked = canonTokenRank(query, topK).filter((r) => r.score > 0);
   } catch {
     return { sources: [], log: [{ retriever: "canon", call, ok: false, count: 0, note: "canon index unavailable" }] };
   }

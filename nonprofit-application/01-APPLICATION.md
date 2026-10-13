@@ -46,12 +46,12 @@ The Foundation will **not** be operated for the benefit of any private interest.
 
 The Foundation will engage in the following activities to advance its mission:
 
-1. **Maintain the open protocol specification** (`PROTOCOL.md`), published under a CC0-in-intent dedication so that any party may implement an interoperable bucket without permission or fee.
+1. **Maintain the open protocol specification** (`docs/foundation/PROTOCOL.md`), published under a CC0-in-intent dedication so that any party may implement an interoperable bucket without permission or fee.
 2. **Operate a reference bucket** at the domain `bucket.foundation`, comprising:
  - Purchased canonical copies of papers acquired via x402 micropayments through the Foundation's operating wallet;
  - The `canon.json` sidecar registry that records provenance, license, citation metadata, and author payout addresses;
  - A public website that allows readers to discover, read, and cite bucketed research.
-3. **Publish a conservative canon** of foundation-tier research (axioms, principles, primary derivations, landmark studies) under the strict editorial filter described in `PROTOCOL.md`.
+3. **Publish a conservative canon** of foundation-tier research (axioms, principles, primary derivations, landmark studies) under the strict editorial filter described in `docs/foundation/PROTOCOL.md`.
 4. **Distribute citation revenue** to authors at a default rate of ≥80% of net receipts, with the balance retained for verifiable operating costs.
 5. **Document and promote** the protocol through written materials, conference presentations, and direct engagement with research groups, libraries, and open-science organizations.
 6. **Support derivative buckets**, anyone (nonprofit, for-profit, individual, university, lab) may run a bucket implementing the protocol; the Foundation will provide non-binding technical support and reference test vectors at no cost.
@@ -101,7 +101,7 @@ The founding maintainer, **Gian Dichio**, is also the founder of **AGFarms LLC**
 3. Any commercial agreement between AGFarms and the Foundation must be at arm's length, on the same terms offered to any other consumer, and approved by a board member who is not financially interested in AGFarms (or, until the board is seated, disclosed publicly in advance).
 4. The founding maintainer recuses from any vote on AGFarms-related transactions.
 
-See `GOVERNANCE.md` § 7.
+See `docs/foundation/GOVERNANCE.md` § 7.
 
 ## 10. What the Foundation is asking the sponsor to do
 

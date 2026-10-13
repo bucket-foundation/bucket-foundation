@@ -37,6 +37,11 @@ jobs:
           use-mathlib-cache: false
       - name: Build, axiom gate and manifest drift
         run: python3 tools/bucketmath/bm.py check
+      - name: Vectors match the Lean definitions
+        run: |
+          cd lean
+          for script in scripts/*Vectors.lean; do lake env lean --run "$script"; done
+          git diff --exit-code -- vectors
       - name: Unit tests
         run: |
           python -m pip install --quiet pytest

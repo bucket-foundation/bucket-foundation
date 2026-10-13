@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "types": ["bun"],
+    "baseUrl": ".",
+    "paths": { "@ros/*": ["../../src/lib/research-os/*"], "@/*": ["../../src/*"] }
+  },
+  "include": ["src/adapter.ts", "src/adapter.test.ts", "src/token.ts", "capacitor.config.ts"]
+}

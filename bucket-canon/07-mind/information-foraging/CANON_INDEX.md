@@ -43,6 +43,6 @@ Inherited from `bucket-canon/README.md` and `_intake/2026-05-19-canon-intake/RUB
 
 The record reports a formal theory with testable predictions, and clears the outcome and application exclusion at E7 on that basis: it states no intervention effect size.
 
-**PROTOCOL.md §4.1 envelope field mapping.** Citation-only mapping, same convention as the other pass-2 dossiers: `foundation_branches` = `["04-information"]`, `provenance_signoff` carried alongside as the pending-approval marker this pass adds.
+**docs/foundation/PROTOCOL.md §4.1 envelope field mapping.** Citation-only mapping, same convention as the other pass-2 dossiers: `foundation_branches` = `["04-information"]`, `provenance_signoff` carried alongside as the pending-approval marker this pass adds.
 
 _last updated: 2026-09-10 by canon-pipeline (intake/ros-canon-promotion-2)_

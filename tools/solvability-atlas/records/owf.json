@@ -1,0 +1,136 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "owf",
+ "title": "Existence of one-way functions",
+ "statement": {
+  "text": "In computer science, a one-way function is a function that is easy to compute on every input, but hard to invert given the image of a random input. Here, \"easy\" and \"hard\" are to be understood in the sense of computational complexity theory, specifically the theory of polynomial time problems. This has nothing to do with whether the function is one-to-one; finding any one input with the desired image is considered a successful inversion.",
+  "source": "https://en.wikipedia.org/wiki/One-way_function",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "One-way function",
+   "url": "https://en.wikipedia.org/wiki/One-way_function"
+  }
+ },
+ "aliases": [
+  "One-way function",
+  "one-way function"
+ ],
+ "branch": "information",
+ "level": 5,
+ "industries": [
+  "cryptography",
+  "finance"
+ ],
+ "posed": 1976,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1976,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W3013833912",
+   "title": "Black-Box Use of One-Way Functions is Useless for Optimal Fair Coin-Tossing",
+   "year": 2020,
+   "cited_by_count": 7,
+   "doi": "https://doi.org/10.1007/978-3-030-56880-1_21",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 2,
+ "key_works_dropped": {
+  "uncited": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "2008": 1,
+   "2020": 1
+  },
+  "openalex_total": 2,
+  "arxiv_total": 33,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22one-way+functions+existence%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5082365034",
+   "name": "Hemanta K. Maji",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100692035",
+   "name": "Mingyuan Wang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I219193219",
+   "name": "Purdue University West Lafayette",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "ecc",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "zkp",
+   "why": "shared markets: cryptography, finance; same branch"
+  },
+  {
+   "id": "mechdesign",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "nash",
+   "why": "shared markets: finance; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/One-way_function",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22one-way+functions+existence%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22one-way+functions+existence%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 2 works, 1 kept; refine the query phrase in sources.tsv"
+ }
+}

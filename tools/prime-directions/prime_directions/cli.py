@@ -1,14 +1,16 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import os
 import sys
 import time
 from pathlib import Path
 
 import numpy as np
 
-from . import canon, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
+from . import fitme, reference, advisors, canon, ror, charts, clean, corpora, export, gaps, graph, model, neighbors, render, space
 
 class PrivacyError(RuntimeError):
     pass
@@ -79,6 +81,9 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--no-png", dest="png", action="store_false")
     r.add_argument("--mp4", action="store_true")
     r.add_argument("--no-docs", action="store_true")
+    r.add_argument("--space", action="store_true", help="write .data/explore/<name>.space.json for corpora marked publish, projected on the reference basis, and skip the fit")
+    r.add_argument("--space-out", type=Path)
+    r.add_argument("--basis-file", type=Path)
     r.add_argument("--gaps", action="store_true")
     r.add_argument("--gap-alpha", type=float, default=0.5)
     r.add_argument("--pick", action="append", default=[])
@@ -122,7 +127,198 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--backends", default=",".join(neighbors.BACKENDS))
     b.add_argument("--queries", type=int, default=500)
     b.add_argument("--threads", type=int, default=1)
+    a = sub.add_parser("advisor-review")
+    a.add_argument("--people", type=Path, required=True)
+    a.add_argument("--query", type=Path, required=True)
+    a.add_argument("--out", type=Path, required=True)
+    review_args(a)
+    rb = sub.add_parser("reference-basis")
+    rb.add_argument("--out", type=Path, required=True)
+    rb.add_argument("--basis", type=Path, help="JSON list of {name, text} documents; default is the cached OpenAlex topic taxonomy")
+    rb.add_argument("--k", type=int, default=12)
+    rb.add_argument("--max-features", type=int, default=6000)
+    rb.add_argument("--seed", type=int, default=0)
+    es = sub.add_parser("explore-space")
+    es.add_argument("kind", choices=["advisors"])
+    es.add_argument("--bundle", type=Path, required=True)
+    es.add_argument("--basis-file", type=Path, required=True)
+    es.add_argument("--out", type=Path, required=True)
+    f = sub.add_parser("fit-me")
+    f.add_argument("--statement", type=Path)
+    f.add_argument("--cv", type=Path)
+    f.add_argument("--people", type=Path)
+    f.add_argument("--out", type=Path, required=True)
+    f.add_argument("--forget", action="store_true")
+    review_args(f)
     return p
+
+def review_args(a) -> None:
+    a.add_argument("--k", type=int, default=64)
+    a.add_argument("--top", type=int, default=300)
+    a.add_argument("--directions", type=Path, default=None)
+    a.add_argument("--extra-people", type=Path, action="append", help="more people files; a person already present (ORCID, then OpenAlex, then ROR plus name) keeps the first record")
+    a.add_argument("--suppress", type=Path, help="opt-out and tombstone list: one ORCID, OpenAlex id or sha256:<hex of 'name|institution' lowercased> per line; required with --extra-people")
+    a.add_argument("--publishable", action="store_true")
+    a.add_argument("--images", action="store_true", help="load portrait images from image_url hosts; off shows the knowledge chart")
+    a.add_argument("--basis", type=Path, help="JSON list of {name, text} reference documents that define the prime directions")
+    a.add_argument("--basis-openalex", action="store_true", help="fit the prime directions on the OpenAlex topic taxonomy, cached under the data root")
+    a.add_argument("--cap", type=int, default=5)
+    a.add_argument("--cap-window", type=int, default=50)
+    a.add_argument("--label", type=int, default=25)
+    a.add_argument("--min-df", type=int, default=3)
+    a.add_argument("--max-df", type=float, default=0.2)
+    a.add_argument("--min-chars", type=int, default=200)
+    a.add_argument("--seed", type=int, default=0)
+    a.add_argument("--min-rows", type=int, default=0)
+    a.add_argument("--bench-k", type=int, default=25)
+    a.add_argument("--stop-heading", default="## References")
+    a.add_argument("--text-keys", help="comma-separated record paths to use as text, e.g. author_topics.name,works")
+    a.add_argument("--scoring", choices=advisors.SCORINGS, default="whitened")
+    a.add_argument("--ror-cache", type=Path, help="cache file for ROR lookups; enables country and profile checks")
+    a.add_argument("--ror-offline", action="store_true")
+    a.add_argument("--watch", type=float, default=0.0)
+    a.add_argument("--max-runs", type=int, default=0)
+
+def cmd_fit_me(args) -> int:
+    repo = corpora.TOOL_REPO_ROOT
+    try:
+        if args.forget:
+            fitme.forget(args.out, repo, corpora.data_root())
+            print(f"deleted {args.out}")
+            return 0
+        if args.statement is None or args.people is None:
+            print("fit-me needs --statement and --people (the public advisor export is not published yet)", file=sys.stderr)
+            return 2
+        out = check_private_out(args.out, [repo, corpora.data_root()])
+        text = fitme.read_text(args.statement)
+        if args.cv:
+            text = text + "\n\n" + fitme.read_text(args.cv)
+        fitme.prepare_out(out, corpora.data_root())
+    except (fitme.FitError, PrivacyError) as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    ns = argparse.Namespace(**{**vars(args), "query": args.statement, "query_text": text[:fitme.MAX_CHARS], "publishable": True,
+                                "directions_from_statement": args.directions is None})
+    people = advisors.load_people(args.people, text_keys=tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS)
+    advisor_run(ns, out, people)
+    print("wrote " + ", ".join(sorted(p.name for p in out.iterdir() if p.name != fitme.MARKER)) + f" to {out}; delete with --forget")
+    return 0
+
+def cmd_advisor_review(args) -> int:
+    out = check_private_out(args.out, [corpora.TOOL_REPO_ROOT, corpora.data_root()])
+    last = None
+    runs = 0
+    while True:
+        sig = None
+        if args.people.exists():
+            st = args.people.stat()
+            sig = (st.st_size, st.st_mtime_ns)
+        if sig is not None and sig != last:
+            keys = tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS
+            people = advisors.load_people(args.people, text_keys=keys)
+            if len(people) >= args.min_rows:
+                advisor_run(args, out, people)
+                runs += 1
+                last = sig
+            else:
+                print(f"{len(people)} people, waiting for {args.min_rows}", flush=True)
+                last = sig
+        if not args.watch or (args.max_runs and runs >= args.max_runs):
+            break
+        time.sleep(args.watch)
+    if runs == 0:
+        print("no run: input missing or below --min-rows", file=sys.stderr)
+        return 3
+    return 0
+
+def merge_extra_people(args, people: list) -> list:
+    paths = getattr(args, "extra_people", None) or []
+    for p in paths:
+        if not p.exists():
+            print(f"WARNING: --extra-people {p} does not exist; building without it", file=sys.stderr, flush=True)
+    extra = [p for p in paths if p.exists()]
+    if not extra:
+        return people
+    if not getattr(args, "suppress", None):
+        raise SystemExit("--extra-people needs --suppress FILE: opt-outs and tombstones must be applied to merged people (an empty file is allowed)")
+    blocked = advisors.load_suppress(args.suppress)
+    keys = tuple(k.strip() for k in args.text_keys.split(",")) if args.text_keys else advisors.TEXT_KEYS
+    merged, seen = [], set()
+    for person in people + [q for path in extra for q in advisors.load_people(path, text_keys=keys, allow_partial_tail=True)]:
+        if advisors.suppressed(person, blocked):
+            continue
+        k = advisors.person_key(person)
+        if k in seen:
+            continue
+        seen.add(k)
+        merged.append(person)
+    return merged
+
+def advisor_run(args, out: Path, people: list) -> None:
+    people = merge_extra_people(args, people)
+    timings: dict = {"load_s": 0.0}
+    checks = None
+    if args.ror_cache:
+        client = ror.RorClient(args.ror_cache, offline=args.ror_offline)
+        checks = _time(timings, "ror_s", ror.validate, people, client)
+    query_text = getattr(args, "query_text", None) or args.query.read_text(encoding="utf-8")
+    query = advisors.statement_body(query_text, args.stop_heading)
+    basis = None
+    if getattr(args, "basis", None):
+        basis = reference.load_basis(args.basis)
+    elif getattr(args, "basis_openalex", False):
+        basis = reference.fetch_topics(corpora.data_root() / "openalex-topics.json", os.environ.get("PRIME_CONTACT"))
+    if basis is not None:
+        model_ = _time(timings, "fit_s", advisors.fit_people_on_basis, people, basis, k=args.k, min_chars=args.min_chars, seed=args.seed)
+    else:
+        model_ = _time(timings, "fit_s", advisors.fit_people, people, k=args.k, min_df=args.min_df, max_df=args.max_df,
+                       min_chars=args.min_chars, seed=args.seed)
+    rows, qraw, scored = _time(timings, "rank_s", advisors.rank, model_, query, top=None, scoring=args.scoring)
+    phd = [row for row in rows if not advisors.is_source(row, "stevens")]
+    mixes = {
+        "all_sources": advisors.institution_mix(rows),
+        "phd_view": advisors.institution_mix(phd),
+        "phd_view_capped": advisors.institution_mix(advisors.diversify(phd, args.cap, args.cap_window)),
+    }
+    space, qspace = advisors.score_space(model_.result.raw_scores, qraw, args.scoring)
+    bench = advisors.index_benchmark(space, np.vstack([qspace[None, :], space[:199]]), k=args.bench_k)
+    advisors.write_csv(rows[: args.top], out / "ranked.csv")
+    _, axes = _time(timings, "plot_s", advisors.plot, model_, qraw, rows, out / "pca.png", label=args.label)
+    r = model_.result
+    sp_ = scored["score_spread"]
+    context = {
+        "key": hashlib.sha256(query.encode("utf-8")).hexdigest()[:12],
+        "summary": (f"{r.shape[0]:,} of {len(people):,} professors ranked against the research statement. "
+                    f"PhD advisors view by default; Stevens contacts in their own view."),
+        "method": (f"Each professor's topics become a term vector, weighted by rarity and scaled to unit length. "
+                   f"A truncated SVD keeps {r.k} orthogonal components, {r.variance_ratio.sum() * 100:.0f}% of the variance. "
+                   f"The statement is projected into the same components. Scores are cosine similarity after "
+                   f"{'centering on the mean professor and scaling each component to unit spread' if args.scoring == 'whitened' else args.scoring + ' scores'}, "
+                   f"so each component counts equally. The percentile compares a score with all {r.shape[0]:,} professors."),
+        "plot": (f"The plot uses components {axes['components'][0]} and {axes['components'][1]} because the statement "
+                 f"sits farthest from the average professor on them ({axes['statement_sd'][0]:+.1f} and "
+                 f"{axes['statement_sd'][1]:+.1f} sd), which together carry {axes['share_of_statement'] * 100:.0f}% of "
+                 f"the statement's position. Numbers mark the top {args.label} ranks."),
+        "spread": sp_,
+        "cap": args.cap,
+        "cap_window": args.cap_window,
+    }
+    directions = advisors.load_directions(args.directions) if args.directions else (
+        fitme.statement_directions(model_, query_text) if getattr(args, "directions_from_statement", False) else [])
+    context.update(advisors.direction_profiles(model_, rows, query, directions, args.scoring))
+    advisors.write_page(rows, out / "pca.png", context, out / "index.html", publishable=args.publishable, images=getattr(args, "images", False))
+    advisors.write_review_json(rows, context, out / "review.json")
+    report = {
+        "people": len(people), "fitted": r.shape[0], "terms": r.shape[1], "k": r.k,
+        "orthogonality": r.orthogonality, "variance_explained": float(r.variance_ratio.sum()),
+        "scoring": args.scoring, "score_spread": sp_, "plot": axes, "timings": timings,
+        "index_benchmark": bench, "checks": checks, "institution_mix_top100": mixes,
+        "statement_scores": [round(float(v), 5) for v in qraw],
+        "components": [{"index": c + 1, "top_terms": [t for t, _ in r.top_terms(c, 8)]} for c in range(r.k)],
+    }
+    export.write_json(report, out / "report.json")
+    print(json.dumps({k: report[k] for k in ("people", "fitted", "terms", "k", "score_spread", "checks", "institution_mix_top100", "timings")}), flush=True)
+    print(f"open: xdg-open {out / 'index.html'}", flush=True)
 
 def _print_neighbors(found: list) -> None:
     for nb in found:
@@ -243,7 +439,24 @@ def cmd_list(registry: dict[str, corpora.CorpusSpec]) -> int:
         print(f"{spec.name:18} {spec.kind:11} {flag:8} {'ok' if path.exists() else 'missing':8} {spec.description}")
     return 0
 
+def cmd_run_space(args, registry: dict[str, corpora.CorpusSpec]) -> int:
+    from . import explore_space
+
+    names = list(registry) if args.all else args.names
+    unknown = [n for n in names if n not in registry]
+    if not names or unknown:
+        print(f"unknown or missing corpora: {', '.join(unknown) or 'none named'}", file=sys.stderr)
+        return 2
+    basis_path = args.basis_file or corpora.TOOL_REPO_ROOT / "src" / "data" / "explore" / "reference-basis.json"
+    basis_file = json.loads(basis_path.read_text(encoding="utf-8"))
+    out_dir = args.space_out or corpora.data_root() / ".data" / "explore"
+    for name, status in explore_space.export_corpora([registry[n] for n in names], basis_file, out_dir).items():
+        print(f"[{name}] {status}")
+    return 0
+
 def cmd_run(args, registry: dict[str, corpora.CorpusSpec]) -> int:
+    if args.space:
+        return cmd_run_space(args, registry)
     names = list(registry) if args.all else args.names
     if not names:
         print("name at least one corpus, or pass --all", file=sys.stderr)
@@ -314,14 +527,42 @@ def cmd_run(args, registry: dict[str, corpora.CorpusSpec]) -> int:
         export.write_json({"corpora": summary, "failures": failures}, private_out / "summary.json")
     return 1 if failures else 0
 
+def cmd_reference_basis(args) -> int:
+    if args.basis:
+        rows = reference.load_basis(args.basis)
+    else:
+        rows = reference.fetch_topics(corpora.data_root() / "openalex-topics.json", os.environ.get("PRIME_CONTACT"))
+    data = reference.build_reference_basis(rows, k=args.k, max_features=args.max_features, seed=args.seed)
+    export.write_json(data, args.out)
+    print(f"wrote {args.out}: {len(data['vocab'])} terms, {args.k} components")
+    return 0
+
+def cmd_explore_space(args) -> int:
+    from . import explore_space
+
+    basis_file = json.loads(args.basis_file.read_text(encoding="utf-8"))
+    bundle = json.loads(args.bundle.read_text(encoding="utf-8"))
+    data = explore_space.advisors_space(basis_file, bundle)
+    explore_space.write_space(data, args.out)
+    print(f"wrote {args.out}: {len(data['obs'])} advisors, {len(data['components'])} components")
+    return 0
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if args.cmd == "reference-basis":
+        return cmd_reference_basis(args)
+    if args.cmd == "explore-space":
+        return cmd_explore_space(args)
     registry = corpora.load_registry(args.registry)
     if args.cmd == "list":
         return cmd_list(registry)
     try:
         if args.cmd == "canon":
             return cmd_canon(args)
+        if args.cmd == "fit-me":
+            return cmd_fit_me(args)
+        if args.cmd == "advisor-review":
+            return cmd_advisor_review(args)
         if args.cmd == "neighbors":
             return cmd_neighbors(args)
         if args.cmd == "neighbors-bench":

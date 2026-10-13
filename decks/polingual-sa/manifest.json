@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-sa",
+  "title": "Sanskrit words",
+  "kind": "words",
+  "language": "sa",
+  "language_name": "Sanskrit",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 10677,
+    "with_ipa": 9349,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 10677,
+  "version": "299111fa6409",
+  "file": "polingual-sa.sqlite.zst",
+  "bytes": 1031875,
+  "sha256": "5fa5e4b8c17a7aec39b2871c85c399725370fefcccc4e5dd5f6e59d1e6fa7b4e",
+  "db_bytes": 3325952,
+  "db_sha256": "299111fa6409fd3dce97563265a5a3fa489ba829fde81fb32e528c0861d7ac96",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

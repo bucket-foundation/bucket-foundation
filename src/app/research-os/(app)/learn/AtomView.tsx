@@ -9,6 +9,7 @@ import type { Rating } from "@/lib/academy/fsrs";
 import { deckLabel } from "@/lib/academy/corpus-client";
 import Lesson from "./Lesson";
 import Drill from "./Drill";
+import PracticePanel from "../practice/PracticePanel";
 import { BTN_PRIMARY, BTN_SECONDARY, ErrorState, LoadingState } from "@/components/ui";
 
 export default function AtomView({ branch, atomId }: { branch: string; atomId: string }) {
@@ -75,6 +76,8 @@ export default function AtomView({ branch, atomId }: { branch: string; atomId: s
       ) : (
         <Drill atom={atom} level={level} onRate={onRate} />
       )}
+
+      <PracticePanel node={`academy-${branch}-${atomId}`} compact />
 
       {unlocks.length > 0 && (
         <p className="text-[12px] text-[color:var(--basalt-3)]">

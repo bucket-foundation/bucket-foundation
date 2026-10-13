@@ -1,0 +1,495 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "hilbert10",
+ "title": "Hilbert's tenth problem",
+ "statement": {
+  "text": "Hilbert's tenth problem is the tenth on the list of mathematical problems that the German mathematician David Hilbert posed in 1900. It is the challenge to provide a general algorithm that, for any given Diophantine equation, can decide whether the equation has a solution with all unknowns taking integer values.",
+  "source": "https://en.wikipedia.org/wiki/Hilbert's_tenth_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Hilbert's tenth problem",
+   "url": "https://en.wikipedia.org/wiki/Hilbert's_tenth_problem"
+  }
+ },
+ "aliases": [],
+ "branch": "mathematics",
+ "level": 3,
+ "industries": [
+  "computational theory and mathematics",
+  "theoretical computer science"
+ ],
+ "posed": 1900,
+ "resolved": 1970,
+ "history": [
+  {
+   "year": 1900,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 1970,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W757085332",
+   "title": "David Hilbert. Mathematical problems. Lecture delivered before the International Congress of Mathematicians at Paris in 1900. A reprint of 1084 (English translation of 1087 by Mary Winston Newsom). Mathematical developments arising from Hilbert problems, Proceedings of the Symposium in Pure Mathematics of the American Mathematical Society, held at Northern Illinois University, De Kalb, Illinois, May 1974, edited by Felix E. Browder, Proceedings of symposia in pure mathematics, vol. 28, American Mathematical Society, Providence1976, pp. 1–34. - Donald A. Martin. Hilbert's first problem: the continuum hypothesis. A reprint of 1084 (English translation of 1087 by Mary Winston Newsom). Mathematical developments arising from Hilbert problems, Proceedings of the Symposium in Pure Mathematics of the American Mathematical Society, held at Northern Illinois University, De Kalb, Illinois, May 1974, edited by Felix E. Browder, Proceedings of symposia in pure mathematics, vol. 28, American Mathematical Society, Providence1976, pp. 81–92. - G. Kreisel. What have we learnt from Hilbert's second problem? A reprint of 1084 (English translation of 1087 by Mary Winston Newsom). Mathematical developments arising from Hilbert problems, Proceedings of the Symposium in Pure Mathematics of the American Mathematical Society, held at Northern Illinois University, De Kalb, Illinois, May 1974, edited by Felix E. Browder, Proceedings of symposia in pure mathematics, vol. 28, American Mathematical Society, Providence1976, pp. 93–130. - Martin Davis, Yuri Matijasevic, and Julia Robinson. Hilbert's tenth problem. Diophantine equations: positive aspects of a negative solution. A reprint of 1084 (English translation of 1087 by Mary Winston Newsom). Mathematical developments arising from Hilbert problems, Proceedings of the Symposium in Pure Mathematics of the American Mathematical Society, held at Northern Illinois University, De Kalb, Illinois, May 1974, edited by Felix E. Browder, Proceedings of symposia in pure mathematics, vol. 28, American Mathematical Society, Providence1976, pp. 323–378.",
+   "year": 1979,
+   "cited_by_count": 103,
+   "doi": "https://doi.org/10.2307/2273711",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W645693063",
+   "title": "Hilbert's tenth problem: Diophantine classes and extensions of global fields",
+   "year": 2008,
+   "cited_by_count": 55,
+   "doi": "https://doi.org/10.5860/choice.45-3248",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2031266134",
+   "title": "The Riemann Hypothesis and Hilbert's Tenth Problem.",
+   "year": 1966,
+   "cited_by_count": 130,
+   "doi": "https://doi.org/10.2307/2314216",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2107308446",
+   "title": "Hilbert's Tenth Problem.",
+   "year": 1995,
+   "cited_by_count": 453,
+   "doi": "https://doi.org/10.2307/2974971",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2004193076",
+   "title": "Hilbert's Tenth Problem is Unsolvable",
+   "year": 1973,
+   "cited_by_count": 374,
+   "doi": "https://doi.org/10.1080/00029890.1973.11993265",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2089555907",
+   "title": "Quantum Algorithm for Hilbert's Tenth Problem",
+   "year": 2003,
+   "cited_by_count": 71,
+   "doi": "https://doi.org/10.1023/a:1025780028846",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2034614286",
+   "title": "Proof of Recursive Unsolvability of Hilbert's Tenth Problem",
+   "year": 1991,
+   "cited_by_count": 68,
+   "doi": "https://doi.org/10.2307/2324421",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2056133231",
+   "title": "Hilbert's Tenth Problem for fields of rational functions over finite fields",
+   "year": 1991,
+   "cited_by_count": 64,
+   "doi": "https://doi.org/10.1007/bf01239506",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2053487557",
+   "title": "Public Channel Cryptography: Chaos Synchronization and Hilbert’s Tenth Problem",
+   "year": 2008,
+   "cited_by_count": 63,
+   "doi": "https://doi.org/10.1103/physrevlett.101.084102",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1978114483",
+   "title": "Extension of Hilbert's tenth problem to some algebraic number fields",
+   "year": 1989,
+   "cited_by_count": 55,
+   "doi": "https://doi.org/10.1002/cpa.3160420703",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1997517079",
+   "title": "Register machine proof of the theorem on exponential diophantine representation of enumerable sets",
+   "year": 1984,
+   "cited_by_count": 84,
+   "doi": "https://doi.org/10.2307/2274135",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2078890952",
+   "title": "Questions of decidability and undecidability in Number Theory",
+   "year": 1994,
+   "cited_by_count": 69,
+   "doi": "https://doi.org/10.2307/2275395",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1506247181",
+   "title": "Mathematical Developments Arising from Hilbert Problems",
+   "year": 1976,
+   "cited_by_count": 229,
+   "doi": "https://doi.org/10.1090/pspum/028.2",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2000047385",
+   "title": "Universal diophantine equation",
+   "year": 1982,
+   "cited_by_count": 109,
+   "doi": "https://doi.org/10.2307/2273588",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1975261774",
+   "title": "The Complexity of the Finite Containment Problem for Petri Nets",
+   "year": 1981,
+   "cited_by_count": 101,
+   "doi": "https://doi.org/10.1145/322261.322271",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1964691638",
+   "title": "Arithmetical problems and recursively enumerable predicates",
+   "year": 1953,
+   "cited_by_count": 67,
+   "doi": "https://doi.org/10.2307/2266325",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "duplicate": 3,
+  "no keyword hit": 5,
+  "off-field": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1953": 1,
+   "1958": 1,
+   "1960": 1,
+   "1963": 2,
+   "1964": 1,
+   "1966": 4,
+   "1968": 1,
+   "1971": 1,
+   "1972": 8,
+   "1973": 3,
+   "1975": 3,
+   "1976": 3,
+   "1977": 2,
+   "1979": 2,
+   "1981": 1,
+   "1982": 1,
+   "1984": 1,
+   "1985": 1,
+   "1987": 1,
+   "1988": 2,
+   "1989": 5,
+   "1990": 5,
+   "1991": 4,
+   "1992": 4,
+   "1993": 4,
+   "1994": 5,
+   "1995": 5,
+   "1996": 2,
+   "1997": 8,
+   "1998": 3,
+   "1999": 1,
+   "2000": 10,
+   "2001": 12,
+   "2002": 9,
+   "2003": 12,
+   "2004": 8,
+   "2005": 7,
+   "2006": 14,
+   "2007": 5,
+   "2008": 10,
+   "2009": 8,
+   "2010": 4,
+   "2011": 5,
+   "2012": 8,
+   "2013": 5,
+   "2014": 4,
+   "2015": 4,
+   "2016": 3,
+   "2017": 8,
+   "2018": 4,
+   "2019": 9,
+   "2020": 4,
+   "2021": 9,
+   "2022": 3,
+   "2023": 7,
+   "2024": 10,
+   "2025": 15,
+   "2026": 27
+  },
+  "openalex_total": 310,
+  "arxiv_total": 106,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22Hilbert%27s+tenth+problem%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5061685616",
+   "name": "Martin D. Davis",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5054306957",
+   "name": "James Pickett Jones",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5004263789",
+   "name": "C. Smoryński",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5072073027",
+   "name": "L. Carlitz",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5017102742",
+   "name": "Sarvadaman Chowla",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5053052255",
+   "name": "Yuri Matiyasevich",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5018514823",
+   "name": "Tien D. Kieu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5049425516",
+   "name": "Yu. V. Matijasevič",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5001270560",
+   "name": "Thanases Pheidas",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5048983044",
+   "name": "Ido Kanter",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5044845315",
+   "name": "Evi Kopelowitz",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5011735310",
+   "name": "Wolfgang Kinzel",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5020820702",
+   "name": "Alexandra Shlapentokh",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5089803309",
+   "name": "Yuri Matijasevič",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5108245950",
+   "name": "Barry Mazur",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I168635309",
+   "name": "University of Calgary",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I36672615",
+   "name": "Courant Institute of Mathematical Sciences",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2801160905",
+   "name": "Steklov Mathematical Institute",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1313323035",
+   "name": "Russian Academy of Sciences",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I57093077",
+   "name": "Swinburne University of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I19700959",
+   "name": "Florida International University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I13955877",
+   "name": "Bar-Ilan University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I25974101",
+   "name": "University of Würzburg",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I136199984",
+   "name": "Harvard University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I102322142",
+   "name": "Rutgers, The State University of New Jersey",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I157725225",
+   "name": "University of Illinois Urbana-Champaign",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I20089843",
+   "name": "Princeton University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "halting",
+   "why": "shared keywords: computability, undecidability"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "proved",
+  "source": "Bayer et al., A formal proof of the MRDP theorem in Isabelle, 2019",
+  "url": "https://www.isa-afp.org/entries/DPRM_Theorem.html"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Hilbert's_tenth_problem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22Hilbert%27s+tenth+problem%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22Hilbert%27s+tenth+problem%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "16 relevant works of 25 considered, 310 works with the phrase"
+ }
+}

@@ -1,3 +1,5 @@
+import { TOOLS } from "@/lib/tools";
+
 export type DepthLevel = "L0" | "L1" | "L2" | "L3" | "L4" | "L5";
 
 export type LadderMode = "consume" | "frontier" | "produce";
@@ -35,8 +37,8 @@ export const DEPTH_LADDER: DepthRung[] = [
     surfaces: [
       {
         label: "Academy",
-        href: "/research-os/learn",
-        note: "Spaced-repetition mastery over the foundations of each branch — the consume rung, done honestly.",
+        href: "/academy",
+        note: "Spaced-repetition mastery over the foundations of each branch: the consume rung.",
       },
     ],
   },
@@ -49,8 +51,8 @@ export const DEPTH_LADDER: DepthRung[] = [
     surfaces: [
       {
         label: "Academy mastery",
-        href: "/research-os/learn",
-        note: "Push a branch to high honest mastery (M = proficiency^α · retention^β) — the top of the consume side.",
+        href: "/academy",
+        note: "Push a branch to high mastery (M = proficiency^α · retention^β), the top of the consume side.",
       },
     ],
   },
@@ -83,7 +85,7 @@ export const DEPTH_LADDER: DepthRung[] = [
       {
         label: "research tools",
         href: "/research/tools",
-        note: "40 instruments that let a motivated person DO frontier research, not only read about it.",
+        note: `${TOOLS.length} instruments that let a motivated person DO frontier research and read about it.`,
       },
     ],
   },
@@ -97,7 +99,7 @@ export const DEPTH_LADDER: DepthRung[] = [
       {
         label: "research agent",
         href: "/research/agent",
-        note: "The terminal rung: a grounded plan→retrieve→synthesize→cite agent over the canon, literature, and the 40 tools — produce-side work, cited and reproducible.",
+        note: `The terminal rung: a grounded plan→retrieve→synthesize→cite agent over the canon, literature, and the ${TOOLS.length} tools: produce-side work, cited and reproducible.`,
       },
     ],
   },

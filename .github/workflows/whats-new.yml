@@ -6,6 +6,11 @@ on:
 
 permissions:
   contents: write
+  pull-requests: read
+
+concurrency:
+  group: whats-new-main
+  cancel-in-progress: false
 
 jobs:
   whats-new:
@@ -16,6 +21,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Leak filter and production tests
+        run: node --test scripts/test-whats-new.mjs
 
       - name: Determine SHA range
         id: shas
@@ -33,7 +45,13 @@ jobs:
         env:
           FROM_SHA: ${{ steps.shas.outputs.from }}
           TO_SHA:   ${{ steps.shas.outputs.to }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WHATS_NEW_PRIVATE_TERMS: ${{ vars.WHATS_NEW_PRIVATE_TERMS }}
+          WHATS_NEW_INTERNAL_HOSTS: ${{ vars.WHATS_NEW_INTERNAL_HOSTS }}
         run: node scripts/build-whats-new-entry.mjs
+
+      - name: Leak filter over the written file
+        run: node --test scripts/test-whats-new.mjs
 
       - name: Commit changes
         run: |
@@ -44,5 +62,11 @@ jobs:
           git config user.name  "bucket-bot"
           git config user.email "bot@bucket.foundation"
           git add data/whats-new.json
-          git commit -m "whats-new: append milestone entries [skip ci]"
-          git push
+          git commit -m "whats-new: append merged PR entries [skip ci]"
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            echo "push attempt $attempt failed, rebasing on origin/main"
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+          done
+          exit 1

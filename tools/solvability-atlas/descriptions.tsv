@@ -1,0 +1,72 @@
+id	description
+pnp	Asks whether every problem whose answer can be checked in polynomial time can also be solved in polynomial time. A proof either way reshapes cryptography, optimization and AI search.
+riemann	Claims every nontrivial zero of the Riemann zeta function lies on the line with real part one half. It controls the error term in the distribution of primes.
+navier	Asks whether smooth initial data for the 3D incompressible Navier-Stokes equations always gives a smooth solution for all time, or whether blow-up can occur.
+yangmills	Asks for a rigorous construction of 4D quantum Yang-Mills theory with a positive lower bound on the mass of its excitations.
+hodge	Claims that on a projective complex manifold, certain cohomology classes are rational combinations of classes of algebraic subvarieties.
+bsd	Links the rank of an elliptic curve's group of rational points to the order of vanishing of its L-function at s = 1.
+poincare	Every simply connected closed 3-manifold is the 3-sphere. Perelman proved it in 2003 with Ricci flow with surgery.
+fermat	No positive integers satisfy a^n + b^n = c^n for n above 2. Wiles proved it in 1994 through modularity of semistable elliptic curves.
+fourcolor	Four colors suffice for any planar map. Proved by computer in 1976 and checked in Coq by Gonthier in 2005.
+kepler	Face-centered cubic packing is the densest packing of equal spheres. Hales proved it in 1998, and the Flyspeck project checked the proof formally in 2014.
+twinprime	Claims infinitely many primes p have p + 2 also prime. Zhang, Maynard and Polymath bounded the gap at 246.
+goldbach	Claims every even integer above 2 is a sum of two primes. Verified to 4 x 10^18, and the weak ternary version was proved by Helfgott in 2013.
+collatz	Claims that iterating n to n/2 or 3n+1 reaches 1 from every start. Tao showed almost all orbits attain almost bounded values.
+abc	Bounds c by the radical of abc for coprime a + b = c. Mochizuki's claimed proof is not accepted by most number theorists.
+langlands	A web of conjectures matching Galois representations with automorphic forms, a grand unified theory for number theory.
+geomlanglands	The geometric form of Langlands, proved in 2024 by Gaitsgory, Raskin and collaborators across a series of papers near 1000 pages long.
+sensitivity	Boolean sensitivity is polynomially related to block sensitivity. Huang proved it in 2019 with a two page argument on the hypercube.
+capset	Bounds the largest subset of F_3^n with no three-term progression. Ellenberg and Gijswijt proved an exponential bound in 2016 with the polynomial method.
+pfr	Sets with small doubling in F_2^n are covered by few cosets of a subgroup. Gowers, Green, Manners and Tao proved it in 2023, formalized in Lean within three weeks.
+ramsey	Campos, Griffiths, Morris and Sahasrabudhe improved the 1935 upper bound of 4^k on diagonal Ramsey numbers by an exponential factor in 2023.
+unitdist	Asks for the fewest colors so no two points at unit distance share one. The answer lies between 5 and 7 after de Grey's 2018 graph.
+busybeaver	BB(5) = 47,176,870, settled in 2024 by the bbchallenge collaboration with a Coq proof.
+graphiso	Asks whether graph isomorphism is in P. Babai gave a quasipolynomial algorithm in 2015.
+matmul	Asks for the exponent omega of matrix multiplication. The bound sits near 2.371 and could be 2.
+uniquegames	Khot's conjecture that approximating unique games is NP-hard. It would pin the exact approximation thresholds of many problems.
+bqp	Asks whether quantum computers solve problems classical randomized machines cannot, in the unrelativized world.
+factoring	Asks for the classical complexity of factoring integers. RSA rests on its hardness, and Shor's algorithm breaks it on a quantum machine.
+owf	Asks whether functions exist that are easy to compute and hard to invert on average. All private-key cryptography depends on them.
+halting	No algorithm decides whether an arbitrary program halts. Turing proved it by diagonalization in 1936.
+hilbert10	No algorithm decides whether a Diophantine equation has integer solutions. Matiyasevich completed the proof in 1970.
+continuum	The continuum hypothesis is independent of ZFC. Godel showed consistency in 1940 and Cohen showed independence by forcing in 1963.
+invsubspace	Asks whether every bounded operator on a separable Hilbert space has a nontrivial closed invariant subspace.
+jacobian	Claims a polynomial map with constant nonzero Jacobian determinant has a polynomial inverse.
+hadamard	Claims a Hadamard matrix exists for every order divisible by 4. Order 668 is the smallest open case.
+protein	Predict 3D protein structure from sequence. AlphaFold 2 reached experimental accuracy in CASP14 in 2020.
+foldpath	Explain how and how fast a chain finds its native fold, the kinetic side left open by structure prediction.
+turbulence	Close the Reynolds-averaged equations from first principles, and derive Kolmogorov scaling and its intermittency corrections.
+qgravity	Find a consistent quantum theory of gravity that reduces to general relativity at low energy.
+darkmatter	Identify the matter that shapes rotation curves, lensing and the CMB but emits no light.
+darkenergy	Explain why the measured vacuum energy sits about 120 orders of magnitude below the field theory estimate.
+hubble	The local distance ladder gives H0 near 73 km/s/Mpc while the CMB gives near 67. Systematics or new physics.
+cosmiccensor	Claims generic gravitational collapse hides every singularity behind an event horizon.
+bhinfo	Asks whether black hole evaporation destroys information. Island calculations reproduce a unitary Page curve.
+measurement	Asks how definite outcomes and the Born rule arise from unitary quantum evolution.
+roomtemp	Explain the pairing mechanism of high-temperature superconductors well enough to design one that works at room temperature.
+hubbard	Find the ground state phase diagram of the 2D Hubbard model, the minimal model for cuprates.
+signproblem	Quantum Monte Carlo for fermions suffers exponential cancellation. Troyer and Wiese showed a general fix is NP-hard.
+glass	Explain why liquids cooled past freezing stiffen into amorphous solids without a clear thermodynamic transition.
+water	Explain water's density maximum, heat capacity and interface structure from its hydrogen bond network.
+catalysis	Predict the best catalyst for a reaction from first principles, past the limits of linear scaling relations.
+dftfunc	Find the exact exchange-correlation functional that makes Kohn-Sham DFT exact. It exists by the Hohenberg-Kohn theorem.
+abiogenesis	Derive a chemical path from prebiotic molecules to self-replicating, evolving cells.
+mitoredox	Explain how electron transport, redox state and membrane potential in mitochondria set the rate of aging.
+circadian	Quantify how light timing and spectrum drive clock genes, melatonin and metabolism.
+bioelectric	Explain how membrane voltage patterns store and control anatomical form during development and regeneration.
+aging	Decide whether aging is a program, accumulated damage or an entropy process, and which clock measures it.
+consciousness	Explain why physical processes give rise to subjective experience.
+bindingprob	Explain how the brain combines features processed in separate areas into one percept.
+freeenergy	Friston's claim that self-organizing systems minimize variational free energy. Formal status and falsifiability are debated.
+alignment	Verify that a learned system pursues the objectives its designers intend, with guarantees.
+llmreason	Bound what fixed-depth transformers compute, with and without chain of thought, in circuit complexity terms.
+autoform	Translate informal mathematics into Lean or other formal languages automatically and at scale.
+smale18	Smale's 18th problem asks for the limits of intelligence, human and artificial.
+optimalstop	Maymin argued weak-form market efficiency holds if and only if P = NP. The link between hardness and arbitrage stays open.
+nash	Computing a Nash equilibrium is PPAD-complete. Daskalakis, Goldberg and Papadimitriou proved it in 2006.
+mechdesign	Myerson solved single-item revenue-optimal auctions in 1981. The multi-item case has no closed form.
+blackscholes	Volatility is rough, with Hurst exponent near 0.1. Pricing and hedging under rough volatility lacks closed forms.
+ecc	Asks whether the elliptic curve discrete log problem has a subexponential classical algorithm. Bitcoin and TLS rely on it.
+zkp	Asks for the optimal proof size and verifier time for transparent succinct arguments.
+climate	Narrow equilibrium climate sensitivity, now 2.5 to 4 degrees per CO2 doubling, mostly through cloud feedback.
+fusion	Predict and suppress plasma instabilities in magnetic confinement well enough for net energy gain.

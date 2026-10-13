@@ -220,7 +220,7 @@ export default function Page({ params }: { params: { slug: string; figure: strin
             edit metadata (figures.json) ↗
           </a>
           <Link
-            href="/join"
+            href="/contribute"
             className="text-[color:var(--parchment)] hover:text-[color:var(--gold)]"
           >
             contribute canon →

@@ -5,14 +5,60 @@ All notable changes to **bucket.foundation** are documented here.
 Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning: [SemVer 2.0.0](https://semver.org/).
 
+Story Protocol minting was removed in 2026-06; citations settle over x402 on Base.
+
 Versions <1.0.0 mean the protocol + UI are still actively mutating. `0.MAJOR.MINOR` bumps on any user-visible change.
 
 ## [Unreleased]
 
+### 2026-10-01
+- The website now serves the desktop app download; sign-in is closed in production (#505, #512, #541).
+- Canon search with the globe, drawer and circle runs offline on a local pack of 364 of 599 excerpts (#530, #531); Path shows a grip sphere and topic graph (#548).
+- Plain words on every app screen, no file dialogs on the default screens (#523, #538, #544).
+- Quiz stems capped at 15 tokens, options at 5, with six short forms (#528, #556).
+- `bkt search`, `bkt canon show`, `bkt doctor` and TUI screens 1 to 5 (#537, #558); `bkt learn` and `bkt daily` in review (#554).
+- Lean specs for ranking, grading, scheduling and the payment split (#536, #545, #547, #550); data standard `bucket.data/1` draft (#551); What's New drafts for machine posts (#552).
+
+### Changed
+- `bkt` names the key store entries of a new data folder with a random id, kept in `keyring-scope` and in `bkt.db`, so a second `BKT_HOME` gets its own keys and device. A 0.4.0 folder is left as it is: bkt reads its unscoped entries and never writes them. `bkt hai export` and `bkt analyze --json` print only the fields in their shapes.
+- `bkt whoami` and `bkt stats` print text rows unless `--json` is passed; `bkt init` keeps its JSON record.
+
 ### Added
 - **Research OS for K-12**, iteration 1: plan, learner-state model, frontier-backward routing, the four-tool student workspace, the production schema shared with the hypothesis engine, and phases (`learning/research-os/`). Intake of the vendor and data-source map and the funding and people map (`_intake/research-os-k12/`). Public page at `/research-os`, linked from the research hub. Ten `ros-` beads queued in `BEADS-PENDING.jsonl`.
 
-## [0.2.0]: 2026-04-23 · *Mobile awakening*
+## [0.4.0]: 2026-09-30 · *Terminal installers*
+
+### Added
+- Signed `bkt` binaries for five targets: Linux and macOS on x64 and arm64, Windows on x64.
+- `scripts/install.sh` and `scripts/install.ps1`: pick the architecture, verify the checksum and the release signature, refuse downgrades.
+- Download button and direct installers on `/download`, and a first-run quiz in the app.
+- History view with local activity and a productions snapshot, and workspace notes in the window.
+- Academy courses absorbed into the graph, What's new entries generated from merged PRs, and approved NSM links on `/research-os/nsm`.
+
+### Fixed
+- Research tool routes return 400 on bad bodies and 502 on non-JSON gateway replies.
+
+## [0.3.0]: 2026-09-30 · *Research OS in the window*
+
+### Added
+- Research OS inside the desktop window: learning path, grip sphere, work quiz from local beads and git, canon circle and globe, solvability, software and patents atlases, advisors, prime directions, host-Python jobs, notes and history.
+- Desktop window over `bkt serve`, with launch auth and local quiz and review routes, sharing one engine review store.
+- Advisor review by PCA distance to a research statement, fit-me with a local PDF statement and CV, and PI fit maps.
+- Prime directions fitted on the OpenAlex topic taxonomy.
+- Human and AI probe, `bkt hai`.
+- Backward prerequisite path to any concept, and per-branch mastery bars.
+
+## [0.2.0]: 2026-09-30 · *Desktop AppImage*
+
+### Added
+- Bucket AppImage build with a size gate, a signed manifest and checksum, and an installer that verifies them.
+
+## [0.1.0]: 2026-09-29 · *First signed release*
+
+### Added
+- Signed offline `bkt` terminal app, distributed through `/download`.
+
+## [Site 0.2.0]: 2026-04-23 · *Mobile awakening*
 
 ### Added
 - **Versioning**, `CHANGELOG.md`, `VERSION` file, `0.x.0` convention while pre-1.0. Version surfaces in footer (`v0.2.0`).
@@ -32,7 +78,7 @@ Versions <1.0.0 mean the protocol + UI are still actively mutating. `0.MAJOR.MIN
 - Fixed-attachment stone bg was causing jank on iOS Safari, scoped to md+ only.
 - Touch-target size on "all branches →" and nav links (was <32px).
 
-## [0.1.0]: 2026-04-23 · *Written in stone*
+## [Site 0.1.0]: 2026-04-23 · *Written in stone*
 
 ### Added
 - Full KALA Earth Ambient V06.1 palette + carved-stone CSS design system.
@@ -42,7 +88,7 @@ Versions <1.0.0 mean the protocol + UI are still actively mutating. `0.MAJOR.MIN
 - Full metadata, OG, Twitter, JSON-LD (Organization, WebSite, CreativeWork, SoftwareApplication).
 - `icon.svg` vector favicon + PNG fallback set.
 - Canon page (8 branches), About, Manifesto, Protocol, Governance, Join, /canon/[slug]/figures/[figure].
-- Story Protocol IP NFT integration, Walrus storage, Dynamic web3 auth, Supabase.
+- Supabase backend. Story Protocol minting, Walrus storage and Dynamic auth shipped here and were removed later.
 - `feed402` protocol endpoint + spec.
 - PageShell pattern for interior pages.
 

@@ -120,6 +120,13 @@ async function post(req: NextRequest) {
 
     const written = await recordImportFile(svc, body.importId, record.value);
     if (!written.ok) {
+      if (written.error === "object_shared" || written.error === "object_marketing") {
+        const message =
+          written.error === "object_marketing"
+            ? "These bytes belong to a private marketing import. Delete that import first, or upload a different file."
+            : "These bytes are already recorded under an import others can read, so a private marketing import cannot hold them.";
+        return answer(409, { error: written.error, message });
+      }
       return answer(written.error === "import_not_found" ? 404 : 500, { error: written.error, message: "The file could not be recorded." });
     }
     return answer(written.repeat ? 200 : 201, {

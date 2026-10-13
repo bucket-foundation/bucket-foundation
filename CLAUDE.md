@@ -2,7 +2,7 @@
 
 **build the past. build history. bucket is the new renaissance.**
 
-Nonprofit reference implementation, primary research paid-for-once, citeable-forever. Live at bucket.foundation: free-to-read / paid-to-cite, a citation triggers a one-time author payment over x402 (HTTP-native micropayments on Base, EIP-3009); AI agents auto-discover and query the canon via the feed402 spec (/llms.txt). Built on Next.js/Vercel + Supabase + Dynamic auth. Legally held in founder's personal capacity pending formal nonprofit filing (see `GOVERNANCE.md`).
+Nonprofit reference implementation, primary research paid-for-once, citeable-forever. Live at bucket.foundation: free-to-read / paid-to-cite, the citation fee rail over x402 on Base (HTTP-native micropayments, EIP-3009) is specified and does not settle yet, and the site serves the canon at price 0; AI agents auto-discover and query the canon via the feed402 spec (/llms.txt). Built on Next.js/Vercel + Supabase Auth. Current release: `bkt-v0.4.0` (2026-09-30). Legally held in founder's personal capacity pending formal nonprofit filing (see `docs/foundation/GOVERNANCE.md`).
 
 Canon thesis: AI + foundations + a small number of brilliant humans = the next layer of reality. Canon holds **only foundations**, axioms, real math, rules, laws, principles, primary derivations, across **seven branches**: mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind.
 
@@ -19,7 +19,7 @@ Set by the founder on 2026-09-18: Bucket runs on this machine first, and hosted 
 - **Database**: the local Supabase stack. `npm run db:local` starts it, `npm run db:local:status` prints the keys for `.env.local`, and `docs/AUTH.md` has the steps. Building and testing need no hosted Supabase project.
 - **App**: `npm run dev` against the local stack.
 - **Engine**: `hte-serve` runs as the `hte-serve.service` user unit on 127.0.0.1:8420 in live mode (`scripts/systemd/install-hte-serve.sh`). `.env.local` sets `HTE_SERVE_URL=http://127.0.0.1:8420` and `HTE_SERVE_TIMEOUT_S=600`, so `/api/research-os/hypothesize` and the MCP `hypothesize` tool answer locally.
-- **Beads**: local `bd` against the Dolt database at `.beads/dolt` (server on 127.0.0.1:3309). `npm run beads:export` snapshots it to the git-tracked `.beads/issues.jsonl`. An agent-proposed bead carries the labels `needs-founder` and `source-agent` and stays deferred until the founder clears it; a founder-sourced bead carries `source-founder` instead. `BEADS-PENDING.jsonl` is retired, its rows were imported on 2026-09-23, and the file stays frozen.
+- **Beads**: local `bd` against the Dolt database at `.beads/dolt` (server on 127.0.0.1:3309). `npm run beads:export` snapshots it to the git-tracked `.beads/issues.jsonl`. An agent-proposed bead carries the labels `needs-founder` and `source-agent` and stays deferred until the founder clears it; a founder-sourced bead carries `source-founder` instead. `.beads/BEADS-PENDING.jsonl` is retired, its rows were imported on 2026-09-23, and the file stays frozen.
 - **Public site**: still ships. `dev` promotes to `main`, and Vercel builds `main` for bucket.foundation.
 
 ## Known Infra Gaps
@@ -30,19 +30,17 @@ Set by the founder on 2026-09-18: Bucket runs on this machine first, and hosted 
 
 This venture is a single repo (cloned from `gianyrox/bucket-foundation`, pending transfer to `AGFarms/bucket-foundation` on formal nonprofit filing or a proper nonprofit legal entity).
 
-- **Next.js 14** app on Vercel (`src/app`, `src/components`, `src/context`, `src/lib`, `src/providers`)
+- **Next.js 14** app on Vercel, released as `bkt-v0.4.0` (`src/app`, `src/components`, `src/lib`, `src/providers`)
 - **Supabase Auth** for the one site session (`docs/AUTH.md`): email one-time code at `/sign-in`, cookies through `@supabase/ssr`, `bucket.identities` per person
 - **Research OS** is the product (`docs/RESEARCH-OS-APP.md`, `learning/research-os/INTEGRATION-PLAN.md`); the app lives under `src/app/research-os/(app)`
-- **Story Protocol** SDK for IP NFT minting and **Walrus** for content storage, on the bucket 1.0 publish path only
-- **Dynamic** for wallet linking under `/knowledge`, `/library`, `/research`, `/assets`
 - **Supabase** for off-chain metadata
 
 ## Strategic Docs
 
-- `MANIFESTO.md`, thesis
-- `PROTOCOL.md`, the x402 data protocol spec
-- `GOVERNANCE.md`, nonprofit governance + COI disclosure
-- `HISTORY.md`, archaeology of bucket 1.0 (Dec 2022 Figma) → bucket 2026
+- `docs/foundation/MANIFESTO.md`, thesis
+- `docs/foundation/PROTOCOL.md`, the x402 data protocol spec
+- `docs/foundation/GOVERNANCE.md`, nonprofit governance + COI disclosure
+- `docs/foundation/HISTORY.md`, archaeology of bucket 1.0 (Dec 2022 Figma) → bucket 2026
 - `README.md`, project overview
 - `canon-figures/`, contributor index (~76 canon-tier figures across 7 branches, seed pass-1)
 - `nonprofit-application/`, 501(c)(3) reinstatement packet
@@ -98,25 +96,25 @@ Manual control commands: `docs/internal/OPERATIONS.md`.
 
 ## Bead Tracking
 
-Local `bd` against the Dolt database (see Local First). The founder's Hetzner server that hosted `bd-remote` and the Nucleus instance is gone; both are retired.
+Local `bd` against the Dolt database (see Local First). `bd-remote` and the Nucleus instance are retired.
 
 ## Code Conventions
 
 - TypeScript strict mode
 - Conventional commits: `type(scope): description`
 - Next.js App Router conventions (`src/app/<route>/page.tsx`)
-- Use existing context providers in `src/context/` before creating new ones
+- Use existing context providers in `src/providers/` before creating new ones
 - No secrets in repo, `.env` is gitignored, `.env.example` documents required vars
 - All public-facing copy should honor the slogans in order: **build the past. Build history. Bucket is the new renaissance.**
 - No code comments and no docstrings. Names and tests carry the meaning. Keep only tool directives: `eslint-disable*`, `@ts-expect-error`, `@ts-ignore`, `/// <reference`, `voice-ignore*`, `# noqa`, `# type: ignore`, `# pragma`, shebangs, SPDX lines, and `/*#__PURE__*/`. A comment on any other line fails review.
 
 ## Rules
 
-- Every code change needs a bead FIRST (file via fallback dispatch until cert issued)
+- Every code change needs a bead FIRST (local `bd`)
 - Do NOT modify `~/agfarms/viatika/` (read-only vendor reference)
 - Do NOT modify `~/jackkruse/` without re-scrape integrity check
 - Cross-venture work (`dbt-`, `eai-`, etc.) gets filed in the HOME instance, not `bkt-`, with a link back
-- Kruse corpus is private until author permission is given (see `TIMELOG.md` entry for Kruse pitch)
+- Kruse corpus is private until author permission is given (see the Kruse pitch entry in `docs/internal/archive/TIMELOG.md`)
 
 ## Agent Work Rules
 
@@ -125,7 +123,7 @@ Set by the founder on 2026-09-22 after a week where 17% of added lines reached a
 - **Launch gate.** Until the launch list opens, a bead is ready only when it names a screen or API a user touches at launch. Everything else carries the label `post-launch` and gets no agent time.
 - **Founder-sourced queue.** A bead or roadmap row an agent writes carries the labels `needs-founder` and `source-agent` and is not worked until the founder approves it. Rows the founder asked for carry `source-founder` instead.
 - **Ops work stays off dev.** Gates, load measurements, runbooks, watch ledgers, build scripts and bead tooling go on `ops/*` branches into `ops/integration` (Branch Policy).
-- **No per-change logs.** `learning/research-os/CHANGE-LEDGER.md` and `TIMELOG.md` are frozen. The PR is the record.
+- **No per-change logs.** `learning/research-os/CHANGE-LEDGER.md` and `docs/internal/archive/TIMELOG.md` are frozen. The PR is the record.
 - **Memos need a question.** A memo over 200 lines needs a founder question named in its bead. Agent process docs go in `docs/internal/`, and no page renders them.
 - **CLAUDE.md budget.** This file stays under 300 lines. A new rule replaces an old one.
 - **Output budget.** Commit bodies three lines at most. PR bodies ten lines at most: what changed, how it was tested. No recap in replies.
@@ -146,14 +144,13 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
 **bucket.foundation/academy**. Validate: `learning/app/validate.sh`. Design+research:
 `learning/EPIC.md` + `learning/research/` (now on main).
 
-- **Content:** 358 science atoms across the 7 canon branches, each with a full markdown
+- **Content:** 487 science atoms in 8 decks (count from `graph.academy_course_counts`), each with a full markdown
  `lesson` + 3-depth + quiz + `resources` (Wikipedia/open, link) + deterministic
  procedural-SVG art. Branch manifest = `learning/app/corpus/index.json`.
 - **Engine:** FSRS-5 + two-layer graph + FIRe + mastery (`M=proficiency^α·retention^β`).
  ALEKS-style diagnostic placement. "Test yourself" assessment w/ deterministic grader.
-- **Auth + profile:** email-OTP via a hosted Supabase project. The prior host,
- **db.agfarms.dev** (`agf-supabase-*` on the founder's Hetzner box), is gone
- for good; a replacement is pending the founder's decision, and
+- **Auth + profile:** email-OTP via a hosted Supabase project. The prior host is gone
+ for good; a replacement is pending the founder's decision (`bkt-x23u`), and
  `NEXT_PUBLIC_SUPABASE_URL` plus the Academy auth code stay as they are until
  then. Tables `bucket.academy_progress` + `bucket.academy_profiles` (in the
  **private `bucket` schema**, sealed off from PostgREST; reached via
@@ -164,17 +161,17 @@ onboarding,library,haptic,polingual,lang-audio,app}.js` + `art/art-gen.js` +
  tutor (`src/app/api/academy/tutor`, S1, S7 safety: closed-set citations, abstain, fail-safe).
 
 **Product decisions (final):**
-- **NO Story Protocol** anywhere. Credentials = Open Badges 3.0 / W3C VC (issuer-signed, no blockchain). (2026-06-14)
+- **No IP-NFT minting** anywhere. Credentials = Open Badges 3.0 / W3C VC (issuer-signed, no blockchain). (2026-06-14)
 - **Any-topic AI generation REMOVED**; the rest of the product stays. (2026-06-15)
 - **AI tutor = FREE, no paywall**, focus on getting users. (2026-06-15)
 - **Languages status:** working *pieces* short of a finished course (small deck, TTS-not-recorded audio, residual sense-noise). Don't oversell.
 
 ### Polingual
 
-Language surface on the photon substrate. Contract and vision: `PHOTON-SPEC.md`, `POLINGUAL.md`. Axes: semantic, phonetic, spelling, etymology, translation.
+Language surface on the photon substrate. Contract and vision: `docs/specs/PHOTON-SPEC.md`, `docs/specs/POLINGUAL.md`. Axes: semantic, phonetic, spelling, etymology, translation.
 
 - Full index: 6,564,942 photons, 35 languages, LaBSE-768 plus 64-d phonetic vectors with HNSW, in local docker `bucket-pgvector` on 127.0.0.1:5433, table `photons_full`. API `services/photon-api/server_pg.py` on :8090.
-- The `polingual.agfarms.dev` fallback and the Hetzner Supabase that held the authoritative `relations` jsonb metadata (translation and etymology edges) are gone for good. With `POLINGUAL_API_URL` and `POLINGUAL_FALLBACK_API_URL` unset, `src/app/api/polingual/route.ts` makes no network call and the app runs on the baked subset.
+- The hosted fallback API and the store that held the authoritative `relations` jsonb metadata (translation and etymology edges) are gone for good. With `POLINGUAL_API_URL` and `POLINGUAL_FALLBACK_API_URL` unset, `src/app/api/polingual/route.ts` makes no network call and the app runs on the baked subset.
 - Data is Wiktionary via Kaikki, CC-BY-SA, and must be attributed.
 - Build pipeline, sizing, gotchas and infra history: `docs/internal/OPERATIONS.md`.
 

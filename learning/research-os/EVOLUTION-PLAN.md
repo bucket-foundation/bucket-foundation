@@ -104,7 +104,7 @@ Adoption shares and counts per CPC or topic and year go in `graph.evolution_seri
 
 An occupation factors into tasks and tools as a concept factors into primes. In the work layer, DWAs, or IWAs for tractability, are the primes, irreducible in O*NET's taxonomy and provisional like Leibniz's primitives (`PRIMES.md`). An occupation's Leibniz number divides another's exactly when the second does every activity of the first (`PRIME-ALGEBRA.md` M2). `decompose` in `primes.ts:135` gains an optional factor-edge map, defaulting to `FACTOR_EDGES`, so `decompose(nodes, edges, { performs: "to" })` builds the work layer over exact DWA sets; tools join only through the factor pipelines of section 6. `attend`, `coverage`, `frontier`, `nullFrontier`, `pmiPairs` and `implications` in `prime-algebra.ts` then run on it unchanged. A work-layer minimal nonface, a task combination no occupation holds while every smaller subset occurs, is a candidate new job. The idea layer keeps its 41 primes.
 
-`src/lib/research-os/primes-report.ts:209` and `scripts/research-os/primes-report.ts:37` exclude `event`; both switch to one exported `NON_IDEA_REPORT_KINDS` in `idea.ts`, and `scripts/test-research-os-primes-report.ts` pins `unfactoredByKind` with a node of each new kind. `isIdeaNode` (`idea.ts:7-9`) already excludes them from attention and decompose-further.
+`src/lib/research-os/primes-report.ts:167` and `scripts/research-os/primes-report.ts:37` exclude `event`; both switch to one exported `NON_IDEA_REPORT_KINDS` in `idea.ts`, and `scripts/test-research-os-primes-report.ts` pins `unfactoredByKind` with a node of each new kind. `isIdeaNode` (`idea.ts:7-9`) already excludes them from attention and decompose-further.
 
 ## 4. Storage and Scale
 

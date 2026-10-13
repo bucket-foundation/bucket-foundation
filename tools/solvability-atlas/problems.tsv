@@ -1,0 +1,72 @@
+id	name	branch	level	lean	posed	resolved	market	keywords
+pnp	P vs NP	information	5	statement	1971		cryptography;optimization;ai	complexity class,polynomial time,nondeterminism,reduction,SAT,circuit lower bound
+riemann	Riemann hypothesis	mathematics	5	statement	1859		cryptography	zeta function,nontrivial zeros,prime distribution,critical line,analytic number theory
+navier	Navier-Stokes existence and smoothness	physics	5	partial	1934		aerospace;energy;climate	fluid dynamics,blow-up,regularity,PDE,turbulence,energy estimate
+yangmills	Yang-Mills mass gap	physics	5	none	1954		energy;semiconductors	gauge theory,quantum field theory,mass gap,confinement,lattice QCD
+hodge	Hodge conjecture	mathematics	5	statement	1950		none	algebraic cycles,cohomology,projective variety,Kahler manifold
+bsd	Birch and Swinnerton-Dyer conjecture	mathematics	5	statement	1965		cryptography	elliptic curve,L-function,rank,Mordell-Weil group,rational points
+poincare	Poincare conjecture	mathematics	5	partial	1904	2003	none	Ricci flow,three-manifold,topology,surgery,geometrization
+fermat	Fermat's Last Theorem	mathematics	5	partial	1637	1994	cryptography	modularity,elliptic curve,Galois representation,Diophantine equation
+fourcolor	Four color theorem	mathematics	3	proved	1852	1976	logistics	graph coloring,planar graph,computer-assisted proof,discharging
+kepler	Kepler conjecture	mathematics	4	proved	1611	1998	materials	sphere packing,density,Flyspeck,formal proof,lattice
+twinprime	Twin prime conjecture	mathematics	5	statement	1849		cryptography	prime gaps,sieve theory,bounded gaps,Zhang,Maynard
+goldbach	Goldbach conjecture	mathematics	4	statement	1742		none	additive number theory,sum of primes,circle method,sieve
+collatz	Collatz conjecture	mathematics	4	statement	1937		none	iteration,dynamical system,3n+1,stopping time
+abc	abc conjecture	mathematics	5	statement	1985		cryptography	radical,Diophantine,inter-universal Teichmuller,height
+langlands	Langlands program	mathematics	5	partial	1967		none	automorphic forms,Galois representation,reciprocity,geometric Langlands
+geomlanglands	Geometric Langlands conjecture	mathematics	5	none	1980	2024	none	D-modules,moduli of bundles,categorical equivalence,geometric Langlands
+sensitivity	Sensitivity conjecture	information	3	proved	1992	2019	ai	boolean function,sensitivity,block sensitivity,hypercube
+capset	Cap set problem	mathematics	3	proved	1970	2016	ai	polynomial method,additive combinatorics,finite field,FunSearch
+pfr	Polynomial Freiman-Ruzsa conjecture	mathematics	4	proved	1990	2023	none	additive combinatorics,entropy,doubling constant,Lean blueprint
+ramsey	Diagonal Ramsey exponential improvement	mathematics	4	partial	1935	2023	none	Ramsey number,graph coloring,probabilistic method,book algorithm
+unitdist	Hadwiger-Nelson problem	mathematics	3	partial	1950		none	chromatic number of the plane,unit distance graph,SAT solver
+busybeaver	Busy Beaver BB(5)	information	3	proved	1962	2024	none	Turing machine,halting,Coq proof,collaborative verification
+graphiso	Graph isomorphism complexity	information	4	partial	1970		cybersecurity	quasipolynomial,Babai,group theory,canonical labeling
+matmul	Matrix multiplication exponent omega	information	4	partial	1969		ai;semiconductors	tensor rank,laser method,AlphaTensor,bilinear complexity
+uniquegames	Unique Games Conjecture	information	5	none	2002		optimization	hardness of approximation,PCP,semidefinite programming,label cover
+bqp	BQP vs BPP separation	information	5	none	1993		quantum computing	quantum complexity,oracle separation,Shor,sampling advantage
+factoring	Integer factoring complexity	information	4	partial	1977		cryptography;finance	RSA,number field sieve,Shor algorithm,one-way function
+owf	Existence of one-way functions	information	5	none	1976		cryptography;finance	pseudorandomness,Kolmogorov complexity,average-case hardness
+halting	Halting problem	information	2	proved	1936	1936	none	undecidability,diagonalization,Turing machine,computability
+hilbert10	Hilbert's tenth problem	mathematics	3	proved	1900	1970	none	Diophantine sets,undecidability,MRDP theorem,computability
+continuum	Continuum hypothesis independence	mathematics	4	proved	1878	1963	none	forcing,set theory,ZFC independence,cardinality
+invsubspace	Invariant subspace problem	mathematics	4	none	1935		none	operator theory,Hilbert space,bounded operator,functional analysis
+jacobian	Jacobian conjecture	mathematics	4	statement	1939		none	polynomial map,invertibility,affine space,algebraic geometry
+hadamard	Hadamard matrix conjecture	mathematics	3	statement	1893		telecom	orthogonal design,combinatorial design,coding theory
+protein	Protein structure prediction	biophysics	4	none	1972	2020	pharma;biotech	folding,AlphaFold,energy landscape,Levinthal paradox,contact map
+foldpath	Protein folding pathway kinetics	biophysics	4	none	1968		pharma;biotech	folding funnel,kinetics,molten globule,chaperone,free energy
+turbulence	Turbulence closure	physics	5	none	1941		aerospace;energy;climate	Kolmogorov scaling,closure problem,intermittency,Reynolds stress
+qgravity	Quantum gravity	cosmology	5	none	1930		none	quantization,spacetime,holography,loop quantum gravity,string theory
+darkmatter	Dark matter identity	cosmology	5	none	1933		none	rotation curves,WIMP,axion,galaxy clusters,lensing
+darkenergy	Cosmological constant problem	cosmology	5	none	1917		none	vacuum energy,fine tuning,dark energy,renormalization
+hubble	Hubble tension	cosmology	4	none	2016		none	expansion rate,CMB,distance ladder,Cepheid,systematic error
+cosmiccensor	Weak cosmic censorship	cosmology	5	none	1969		none	naked singularity,black hole,general relativity,Einstein equations
+bhinfo	Black hole information paradox	cosmology	5	none	1975		quantum computing	Hawking radiation,unitarity,Page curve,island formula,entanglement
+measurement	Quantum measurement problem	physics	5	none	1932		quantum computing	wavefunction collapse,decoherence,Born rule,interpretation
+roomtemp	Room-temperature superconductivity mechanism	physics	5	none	1986		energy;semiconductors	cuprates,pairing mechanism,Hubbard model,critical temperature
+hubbard	2D Hubbard model ground state	physics	5	none	1963		semiconductors;energy	strongly correlated electrons,d-wave,DMRG,sign problem
+signproblem	Fermion sign problem	physics	5	none	1990		quantum computing	quantum Monte Carlo,NP-hardness,fermions,sampling
+glass	Glass transition	chemistry	5	none	1920		materials	jamming,dynamical arrest,Kauzmann paradox,viscosity,amorphous solid
+water	Anomalous properties of water	chemistry	4	none	1892		biotech;energy	hydrogen bond network,exclusion zone,liquid-liquid transition,density maximum
+catalysis	Rational catalyst design	chemistry	4	none	1835		energy;materials	transition state,Sabatier principle,scaling relations,DFT
+dftfunc	Exact exchange-correlation functional	chemistry	5	none	1965		materials;pharma	density functional theory,Kohn-Sham,exchange-correlation,electron density
+abiogenesis	Origin of life	biophysics	5	none	1924		none	RNA world,prebiotic chemistry,autocatalysis,chirality,protocell
+mitoredox	Mitochondrial redox and aging mechanism	biophysics	4	none	1956		longevity;pharma	electron transport,reactive oxygen species,NAD,membrane potential,redox
+circadian	Light, circadian biology and metabolism	biophysics	3	none	1960		longevity;consumer health	melatonin,retina,clock genes,photobiology,metabolic rate
+bioelectric	Bioelectric pattern control	biophysics	4	none	1938		biotech;longevity	membrane voltage,morphogenesis,gap junctions,regeneration,ion channels
+aging	Programmed versus stochastic aging	biophysics	5	none	1952		longevity;pharma	senescence,epigenetic clock,entropy,telomere,damage accumulation
+consciousness	Hard problem of consciousness	mind	5	none	1995		ai	qualia,integrated information,global workspace,neural correlates
+bindingprob	Neural binding problem	mind	4	none	1981		ai	synchrony,gamma oscillation,feature integration,attention
+freeenergy	Free energy principle formalization	mind	4	partial	2006		ai	variational inference,Markov blanket,active inference,predictive coding
+alignment	AI alignment verification	information	5	none	2014		ai	reward specification,interpretability,formal verification,corrigibility
+llmreason	Formal reasoning limits of transformers	information	4	partial	2017		ai	circuit complexity,expressivity,chain of thought,attention
+autoform	Autoformalization of mathematics	information	4	partial	2018		ai	Lean,Mathlib,theorem proving,proof search,formal verification
+smale18	Smale's 18th problem limits of intelligence	mind	5	none	1998		ai	intelligence limits,computation,learning theory
+optimalstop	Market efficiency as computational hardness	information	4	partial	2010		finance	efficient market hypothesis,P vs NP,arbitrage,pricing
+nash	Complexity of computing Nash equilibria	information	4	proved	1951	2006	finance;optimization	PPAD-complete,game theory,fixed point,equilibrium
+mechdesign	Optimal multi-item auction design	information	4	partial	1981		finance;advertising	mechanism design,revenue maximization,incentive compatibility
+blackscholes	Rough volatility pricing	mathematics	3	partial	2014		finance	stochastic volatility,fractional Brownian motion,option pricing
+ecc	Elliptic curve discrete log hardness	information	4	none	1985		cryptography;finance	discrete logarithm,elliptic curve,pairing,blockchain
+zkp	Succinct proofs without trusted setup optimality	information	3	partial	1985		cryptography;finance	zero knowledge,SNARK,polynomial commitment,interactive proof
+climate	Climate sensitivity bound	physics	4	none	1896		climate;energy	radiative forcing,feedback,cloud,equilibrium climate sensitivity
+fusion	Plasma confinement stability	physics	4	none	1950		energy	tokamak,magnetohydrodynamics,instability,stellarator

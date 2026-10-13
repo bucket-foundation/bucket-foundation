@@ -1,0 +1,518 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "glass",
+ "title": "Glass transition",
+ "statement": {
+  "text": "The glass–liquid transition, or glass transition, is the gradual and reversible transition in amorphous materials from a hard and relatively brittle \"glassy\" state into a viscous or \"rubbery\" state as the temperature is increased. An amorphous solid that exhibits a glass transition is called a glass. The reverse transition, achieved by supercooling a viscous liquid into the glass state, is called vitrification.",
+  "source": "https://en.wikipedia.org/wiki/Glass_transition",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Glass transition",
+   "url": "https://en.wikipedia.org/wiki/Glass_transition"
+  }
+ },
+ "aliases": [
+  "glass–liquid transition"
+ ],
+ "branch": "chemistry",
+ "level": 5,
+ "industries": [
+  "materials",
+  "materials chemistry",
+  "mechanical engineering"
+ ],
+ "posed": 1920,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1920,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W1976227579",
+   "title": "Relaxation in glassforming liquids and amorphous solids",
+   "year": 2000,
+   "cited_by_count": 2251,
+   "doi": "https://doi.org/10.1063/1.1286035",
+   "role": "partial",
+   "relevance": 8,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2114479908",
+   "title": "Supercooled liquids and the glass transition",
+   "year": 2001,
+   "cited_by_count": 4673,
+   "doi": "https://doi.org/10.1038/35065704",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2088447333",
+   "title": "Dynamics of viscoplastic deformation in amorphous solids",
+   "year": 1998,
+   "cited_by_count": 2247,
+   "doi": "https://doi.org/10.1103/physreve.57.7192",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2094132409",
+   "title": "Theoretical perspective on the glass transition and amorphous materials",
+   "year": 2011,
+   "cited_by_count": 2142,
+   "doi": "https://doi.org/10.1103/revmodphys.83.587",
+   "role": "survey",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2085655915",
+   "title": "Nature of the Glass Transition and the Glassy State",
+   "year": 1958,
+   "cited_by_count": 2039,
+   "doi": "https://doi.org/10.1063/1.1744141",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2043592906",
+   "title": "Characterization and comparison of hydrophilic and hydrophobic room temperature ionic liquids incorporating the imidazolium cation",
+   "year": 2001,
+   "cited_by_count": 3709,
+   "doi": "https://doi.org/10.1039/b103275p",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2048421180",
+   "title": "Formation of Glasses from Liquids and Biopolymers",
+   "year": 1995,
+   "cited_by_count": 4823,
+   "doi": "https://doi.org/10.1126/science.267.5206.1924",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1996016803",
+   "title": "Molecular Transport in Liquids and Glasses",
+   "year": 1959,
+   "cited_by_count": 3968,
+   "doi": "https://doi.org/10.1063/1.1730566",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2050945279",
+   "title": "Relaxation processes in supercooled liquids",
+   "year": 1992,
+   "cited_by_count": 2866,
+   "doi": "https://doi.org/10.1088/0034-4885/55/3/001",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2045137012",
+   "title": "Relaxation in liquids, polymers and plastic crystals — strong/fragile patterns and problems",
+   "year": 1991,
+   "cited_by_count": 2189,
+   "doi": "https://doi.org/10.1016/0022-3093(91)90266-9",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2011240043",
+   "title": "Plastic deformation in metallic glasses",
+   "year": 1979,
+   "cited_by_count": 2737,
+   "doi": "https://doi.org/10.1016/0001-6160(79)90055-5",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2088918906",
+   "title": "A highly processable metallic glass: Zr41.2Ti13.8Cu12.5Ni10.0Be22.5",
+   "year": 1993,
+   "cited_by_count": 2452,
+   "doi": "https://doi.org/10.1063/1.110520",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2001746858",
+   "title": "Bulk Glass-Forming Metallic Alloys: Science and Technology",
+   "year": 1999,
+   "cited_by_count": 2445,
+   "doi": "https://doi.org/10.1557/s0883769400053252",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 12
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1827": 1,
+   "1832": 1,
+   "1846": 1,
+   "1850": 1,
+   "1872": 1,
+   "1894": 1,
+   "1903": 1,
+   "1910": 1,
+   "1911": 2,
+   "1914": 1,
+   "1915": 1,
+   "1916": 1,
+   "1918": 1,
+   "1919": 1,
+   "1920": 1,
+   "1924": 1,
+   "1934": 2,
+   "1936": 2,
+   "1940": 2,
+   "1945": 2,
+   "1947": 1,
+   "1949": 2,
+   "1951": 2,
+   "1952": 1,
+   "1953": 3,
+   "1954": 1,
+   "1955": 6,
+   "1956": 11,
+   "1957": 9,
+   "1958": 24,
+   "1959": 32,
+   "1960": 40,
+   "1961": 36,
+   "1962": 52,
+   "1963": 63,
+   "1964": 66,
+   "1965": 91,
+   "1966": 88,
+   "1967": 122,
+   "1968": 119,
+   "1969": 107,
+   "1970": 144,
+   "1971": 152,
+   "1972": 175,
+   "1973": 199,
+   "1974": 183,
+   "1975": 218,
+   "1976": 245,
+   "1977": 288,
+   "1978": 275,
+   "1979": 323,
+   "1980": 369,
+   "1981": 396,
+   "1982": 414,
+   "1983": 413,
+   "1984": 440,
+   "1985": 535,
+   "1986": 524,
+   "1987": 577,
+   "1988": 686,
+   "1989": 697,
+   "1990": 804,
+   "1991": 909,
+   "1992": 1045,
+   "1993": 1104,
+   "1994": 1370,
+   "1995": 1343,
+   "1996": 1859,
+   "1997": 1755,
+   "1998": 1907,
+   "1999": 2008,
+   "2000": 2205,
+   "2001": 2204,
+   "2002": 2477,
+   "2003": 2514,
+   "2004": 2609,
+   "2005": 2628,
+   "2006": 2963,
+   "2007": 3144,
+   "2008": 3029,
+   "2009": 3213,
+   "2010": 3447,
+   "2011": 3611,
+   "2012": 3670,
+   "2013": 3842,
+   "2014": 3549,
+   "2015": 3634,
+   "2016": 3378,
+   "2017": 3639,
+   "2018": 3752,
+   "2019": 3895,
+   "2020": 3758,
+   "2021": 3763,
+   "2022": 3739,
+   "2023": 3861,
+   "2024": 4318,
+   "2025": 4652,
+   "2026": 4303
+  },
+  "openalex_total": 114055,
+  "arxiv_total": 2718,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22glass+transition%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5029691316",
+   "name": "Charles Austen Angell",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5063628099",
+   "name": "William L. Johnson",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5042185480",
+   "name": "Kia Ling Ngai",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5082965591",
+   "name": "Gregory B. McKenna",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5044875056",
+   "name": "Paul Francis McMillan",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5015751758",
+   "name": "Steve W. Martin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5088416663",
+   "name": "Pablo G. Debenedetti",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5043714146",
+   "name": "Frank H. Stillinger",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5059162717",
+   "name": "Michael L. Falk",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5042149300",
+   "name": "James S. Langer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5036561939",
+   "name": "Ludovic Berthier",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5002294199",
+   "name": "Giulio Biroli",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5037389363",
+   "name": "Julian H. Gibbs",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5078849594",
+   "name": "Edmund A. DiMarzio",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5051769166",
+   "name": "Jonathan G. Huddleston",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I55732556",
+   "name": "Arizona State University",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1288214837",
+   "name": "United States Naval Research Laboratory",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I12315562",
+   "name": "Texas Tech University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I173911158",
+   "name": "Iowa State University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I20089843",
+   "name": "Princeton University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I154570441",
+   "name": "University of California, Santa Barbara",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1294671590",
+   "name": "Centre National de la Recherche Scientifique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210128986",
+   "name": "Laboratoire Charles Coulomb",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4387154756",
+   "name": "Université Montpellier 2",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2738703131",
+   "name": "Commissariat à l'Énergie Atomique et aux Énergies Alternatives",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210163633",
+   "name": "Institut de Physique Théorique",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I17301866",
+   "name": "University of Alabama",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I40347166",
+   "name": "University of Chicago",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1332737386",
+   "name": "General Electric (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I62916508",
+   "name": "Technical University of Munich",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "catalysis",
+   "why": "shared markets: materials; same branch"
+  },
+  {
+   "id": "dftfunc",
+   "why": "shared markets: materials; same branch"
+  },
+  {
+   "id": "kepler",
+   "why": "shared markets: materials"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Glass_transition",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22glass+transition%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22glass+transition%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "13 relevant works of 25 considered, 114055 works with the phrase"
+ }
+}

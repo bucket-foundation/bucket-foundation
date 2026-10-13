@@ -1,0 +1,402 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "water",
+ "title": "Anomalous properties of water",
+ "statement": {
+  "text": "Water is a polar inorganic compound that is, at room temperature, a tasteless and odorless liquid, which is nearly colorless apart from an inherent hint of blue. It is by far the most studied chemical compound and is described as the \"universal solvent\" and the \"solvent of life\". It is the most abundant substance on the surface of Earth and the only common substance to exist as a solid, liquid, and gas on Earth's surface. It is also the third most abundant molecule in the universe.",
+  "source": "https://en.wikipedia.org/wiki/Properties_of_water",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Properties of water",
+   "url": "https://en.wikipedia.org/wiki/Properties_of_water"
+  }
+ },
+ "aliases": [
+  "Properties of water"
+ ],
+ "branch": "chemistry",
+ "level": 4,
+ "industries": [
+  "biotech",
+  "energy",
+  "materials chemistry"
+ ],
+ "posed": 1892,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1892,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2038995122",
+   "title": "Metastable liquid–liquid transition in a molecular model of water",
+   "year": 2014,
+   "cited_by_count": 548,
+   "doi": "https://doi.org/10.1038/nature13405",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1977871662",
+   "title": "Core-softened potentials and the anomalous properties of water",
+   "year": 1999,
+   "cited_by_count": 283,
+   "doi": "https://doi.org/10.1063/1.480241",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2011747708",
+   "title": "A New Interpretation of Anomalous Properties of Water Based on Stillinger's Postulate",
+   "year": 2001,
+   "cited_by_count": 50,
+   "doi": "https://doi.org/10.1021/jp003639y",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2051765324",
+   "title": "Widom line and the liquid–liquid critical point for the TIP4P/2005 water model",
+   "year": 2010,
+   "cited_by_count": 332,
+   "doi": "https://doi.org/10.1063/1.3506860",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2088941011",
+   "title": "The distribution of rings of hydrogen-bonded molecules in a model of liquid water",
+   "year": 1987,
+   "cited_by_count": 131,
+   "doi": "https://doi.org/10.1063/1.452545",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2137373239",
+   "title": "Transition from one-dimensional water to ferroelectric ice within a supramolecular architecture",
+   "year": 2011,
+   "cited_by_count": 99,
+   "doi": "https://doi.org/10.1073/pnas.1010310108",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2730854784",
+   "title": "Berezinskii–Kosterlitz–Thouless transition and two-dimensional melting*",
+   "year": 2017,
+   "cited_by_count": 97,
+   "doi": "https://doi.org/10.3367/ufne.2017.06.038161",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1904511128",
+   "title": "The puzzling first-order phase transition in water–glycerol mixtures",
+   "year": 2015,
+   "cited_by_count": 66,
+   "doi": "https://doi.org/10.1039/c5cp02851e",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 16,
+  "off-field": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1967": 1,
+   "1973": 1,
+   "1980": 2,
+   "1985": 2,
+   "1987": 1,
+   "1989": 1,
+   "1990": 1,
+   "1991": 1,
+   "1993": 2,
+   "1994": 1,
+   "1995": 2,
+   "1997": 1,
+   "1998": 1,
+   "1999": 1,
+   "2000": 4,
+   "2001": 2,
+   "2003": 1,
+   "2004": 3,
+   "2005": 1,
+   "2006": 2,
+   "2007": 1,
+   "2008": 2,
+   "2009": 2,
+   "2010": 8,
+   "2011": 3,
+   "2012": 4,
+   "2013": 3,
+   "2014": 6,
+   "2015": 4,
+   "2016": 3,
+   "2017": 6,
+   "2018": 1,
+   "2019": 6,
+   "2020": 6,
+   "2021": 2,
+   "2022": 4,
+   "2023": 10,
+   "2024": 3,
+   "2025": 4,
+   "2026": 16
+  },
+  "openalex_total": 125,
+  "arxiv_total": 10,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22anomalous+properties+of+water%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5074060789",
+   "name": "Jeremy C. Palmer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5001510099",
+   "name": "Fausto Martelli",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100355964",
+   "name": "Yang Liu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5007841515",
+   "name": "Roberto Car",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5053607565",
+   "name": "Athanassios Z. Panagiotopoulos",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5088416663",
+   "name": "Pablo G. Debenedetti",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "E. A. Jagla",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5007627443",
+   "name": "Hitoshi Kanno",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5111594928",
+   "name": "Haruhiko Yokoyama",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5024272758",
+   "name": "Yukihiro Yoshimura",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5025265446",
+   "name": "J. L. F. Abascal",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5088034473",
+   "name": "Carlos Vega",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5090592244",
+   "name": "Alan C. Belch",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5020706311",
+   "name": "Stuart A. Rice",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5034764937",
+   "name": "Hai-Xia Zhao",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I20089843",
+   "name": "Princeton University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210113028",
+   "name": "Air Products (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I12323705",
+   "name": "The Abdus Salam International Centre for Theoretical Physics (ICTP)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I443798",
+   "name": "National Defense Academy of Japan",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I89630735",
+   "name": "Yokohama City University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I121748325",
+   "name": "Universidad Complutense de Madrid",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I40347166",
+   "name": "University of Chicago",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I191208505",
+   "name": "Xiamen University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I114395901",
+   "name": "University of Nebraska–Lincoln",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I197251160",
+   "name": "Hebrew University of Jerusalem",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I21203515",
+   "name": "Kazan Federal University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1289243028",
+   "name": "Oak Ridge National Laboratory",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I75027704",
+   "name": "University of Tennessee at Knoxville",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "catalysis",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "bioelectric",
+   "why": "shared markets: biotech"
+  },
+  {
+   "id": "climate",
+   "why": "shared markets: energy"
+  },
+  {
+   "id": "foldpath",
+   "why": "shared markets: biotech"
+  },
+  {
+   "id": "fusion",
+   "why": "shared markets: energy"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Properties_of_water",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22anomalous+properties+of+water%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22anomalous+properties+of+water%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "8 relevant works of 25 considered, 125 works with the phrase"
+ }
+}

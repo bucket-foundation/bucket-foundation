@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { ToolOfflineNotice, detectToolOffline } from "../_shared/ToolOfflineNotice";
+import { ToolOfflineNoticeV2, detectToolOffline } from "../_shared/ToolOfflineNoticeV2";
 import { FieldLabel } from "../_shared/FieldLabel";
 import { SubmitButton } from "../_shared/SubmitButton";
 
@@ -175,7 +175,7 @@ export default function LabBrainClient() {
       )}
 
       {phase === "error" && detectToolOffline(errorStatus, errorMsg) && (
-        <ToolOfflineNotice toolName="LabBrain" />
+        <ToolOfflineNoticeV2 toolName="LabBrain" />
       )}
 
       {phase === "error" && !detectToolOffline(errorStatus, errorMsg) && (

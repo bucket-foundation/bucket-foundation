@@ -68,8 +68,8 @@ export default function Page() {
         </p>
         <p className="mt-4 text-[13px] text-[color:var(--basalt-3)] max-w-2xl">
           A Bucket Foundation research corpus / working papers. DOI:{" "}
-          <span className="text-[color:var(--basalt-2)]">pending</span> (no
-          minted Zenodo record yet). Source:{" "}
+          <span className="text-[color:var(--basalt-2)]">pending</span>. No
+          Zenodo deposit exists yet. Source:{" "}
           <a
             href={EDUCATION_GITHUB}
             target="_blank"

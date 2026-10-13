@@ -7,7 +7,7 @@ import {
   RunError,
   PublishToCanon,
   type ResultEnvelope,
-} from "../_shared/runner";
+} from "../_shared/runner-v2";
 import { DemoButton } from "../_shared/DemoButton";
 import { FieldLabel } from "../_shared/FieldLabel";
 import { SubmitButton } from "../_shared/SubmitButton";

@@ -1,7 +1,7 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { get, list, put } from "@vercel/blob";
+import { del, get, list, put } from "@vercel/blob";
 import { mergeEntry, parseEntry, sortEntries, type SignupInput, type WaitlistEntry } from "./core";
 
 type Env = Record<string, string | undefined>;
@@ -12,6 +12,7 @@ export interface WaitlistStore {
   read(key: string): Promise<WaitlistEntry | null>;
   write(key: string, entry: WaitlistEntry): Promise<void>;
   keys(): Promise<string[]>;
+  remove(key: string): Promise<void>;
 }
 
 export function emailKey(email: string): string {
@@ -69,6 +70,9 @@ export function blobStore(prefix: string): WaitlistStore {
       } while (cursor);
       return out;
     },
+    async remove(key) {
+      await del(`${prefix}${key}.json`);
+    },
   };
 }
 
@@ -101,11 +105,16 @@ export function fileStore(root: string, prefix: string): WaitlistStore {
         throw err;
       }
     },
+    async remove(key) {
+      await fs.rm(path.join(dir, `${key}.json`), { force: true });
+    },
   };
 }
 
-export function getWaitlistStore(env: Env = process.env, part: "list" | "suspect" = "list"): WaitlistStore | null {
-  const prefix = waitlistPrefix(env) + (part === "suspect" ? "suspect/" : "");
+export type StorePart = "list" | "suspect" | "downloads" | "downloads/suspect";
+
+export function getWaitlistStore(env: Env = process.env, part: StorePart = "list"): WaitlistStore | null {
+  const prefix = waitlistPrefix(env) + (part === "list" ? "" : `${part}/`);
   if (env.BLOB_READ_WRITE_TOKEN?.trim() || env.BLOB_STORE_ID?.trim()) return blobStore(prefix);
   if (!env.VERCEL_ENV && !env.VERCEL) return fileStore(path.join(process.cwd(), ".data"), prefix);
   return null;

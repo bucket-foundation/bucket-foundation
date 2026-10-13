@@ -1,0 +1,44 @@
+{
+  "currencies": {
+    "unknown": {
+      "blended": {
+        "cac": null,
+        "ltv_hist": null,
+        "ltv_window": null,
+        "range": null,
+        "reason": "CAC and blended ROAS need an ad spend file in the same analysis",
+        "roas": null
+      },
+      "channels": [
+        "direct",
+        "email",
+        "organic_search",
+        "paid_search_google",
+        "paid_social_meta"
+      ],
+      "cohorts": 0,
+      "funnel": {
+        "clicks": null,
+        "conversions": 1973.0,
+        "cpa": null,
+        "cpc": null,
+        "ctr": null,
+        "impressions": null,
+        "revenue": 98650.0,
+        "roas": null,
+        "sessions": 104613.0,
+        "spend": null
+      },
+      "orders": null,
+      "series": [
+        "conversions",
+        "revenue",
+        "sessions"
+      ]
+    }
+  },
+  "platforms": [
+    "ga4"
+  ],
+  "warnings": []
+}

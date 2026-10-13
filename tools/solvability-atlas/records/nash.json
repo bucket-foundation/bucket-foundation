@@ -1,0 +1,545 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "nash",
+ "title": "Complexity of computing Nash equilibria",
+ "statement": {
+  "text": "In computer science, PPAD is a complexity class introduced by Christos Papadimitriou in 1994. PPAD is a subclass of TFNP based on functions that can be shown to be total by a parity argument. The class attracted significant attention in the field of algorithmic game theory because it contains the problem of computing a Nash equilibrium: this problem was shown to be complete for PPAD by Daskalakis, Goldberg and Papadimitriou with at least 3 players and later extended by Chen and Deng to 2 players.",
+  "source": "https://en.wikipedia.org/wiki/PPAD_(complexity)",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "PPAD (complexity)",
+   "url": "https://en.wikipedia.org/wiki/PPAD_(complexity)"
+  }
+ },
+ "aliases": [
+  "PPAD (complexity)",
+  "PPAD"
+ ],
+ "branch": "information",
+ "level": 4,
+ "industries": [
+  "finance",
+  "optimization",
+  "management science and operations research"
+ ],
+ "posed": 1951,
+ "resolved": 2006,
+ "history": [
+  {
+   "year": 1951,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 2006,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W1991624978",
+   "title": "On the Complexity of Nash Equilibria and Other Fixed Points",
+   "year": 2010,
+   "cited_by_count": 254,
+   "doi": "https://doi.org/10.1137/080720826",
+   "role": "partial",
+   "relevance": 9,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1549469597",
+   "title": "Computing Nash equilibria of action-graph games",
+   "year": 2004,
+   "cited_by_count": 68,
+   "doi": "https://doi.org/10.5555/1036843.1036848",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1498333122",
+   "title": "Computing Nash Equilibria: Approximation and Smoothed Complexity",
+   "year": 2006,
+   "cited_by_count": 165,
+   "doi": "https://doi.org/10.1109/focs.2006.20",
+   "role": "resolved",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1980392196",
+   "title": "Smoothing Techniques for Computing Nash Equilibria of Sequential Games",
+   "year": 2010,
+   "cited_by_count": 130,
+   "doi": "https://doi.org/10.1287/moor.1100.0452",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2103802594",
+   "title": "Computing Nash equilibria for scheduling on restricted parallel links",
+   "year": 2004,
+   "cited_by_count": 107,
+   "doi": "https://doi.org/10.1145/1007352.1007446",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1970717464",
+   "title": "Computing Nash equilibria through computational intelligence methods",
+   "year": 2004,
+   "cited_by_count": 100,
+   "doi": "https://doi.org/10.1016/j.cam.2004.06.005",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2002373723",
+   "title": "The Complexity of Computing a Nash Equilibrium",
+   "year": 2009,
+   "cited_by_count": 953,
+   "doi": "https://doi.org/10.1137/070699652",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3123286829",
+   "title": "Computing equilibria for two-person games",
+   "year": 2002,
+   "cited_by_count": 198,
+   "doi": null,
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1544688354",
+   "title": "Homotopy methods to compute equilibria in game theory",
+   "year": 2009,
+   "cited_by_count": 107,
+   "doi": "https://doi.org/10.1007/s00199-009-0441-5",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1560568216",
+   "title": "Chapter 45 Computing equilibria for two-person games",
+   "year": 2002,
+   "cited_by_count": 73,
+   "doi": "https://doi.org/10.1016/s1574-0005(02)03008-4",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2110667918",
+   "title": "Game theory: analysis of conflict",
+   "year": 1992,
+   "cited_by_count": 3358,
+   "doi": "https://doi.org/10.5860/choice.29-2753",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2160135758",
+   "title": "Graphical Models for Game Theory",
+   "year": 2013,
+   "cited_by_count": 560,
+   "doi": "https://doi.org/10.48550/arxiv.1301.2281",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2035681301",
+   "title": "A global Newton method to compute Nash equilibria",
+   "year": 2003,
+   "cited_by_count": 199,
+   "doi": "https://doi.org/10.1016/s0022-0531(03)00005-x",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1512531990",
+   "title": "Chapter 2 Computation of equilibria in finite games",
+   "year": 1996,
+   "cited_by_count": 163,
+   "doi": "https://doi.org/10.1016/s1574-0021(96)01004-0",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2800205258",
+   "title": "Selfish Decentralized Computation Offloading for Mobile Cloud Computing in Dense Wireless Networks",
+   "year": 2018,
+   "cited_by_count": 121,
+   "doi": "https://doi.org/10.1109/tmc.2018.2829874",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2166225451",
+   "title": "A dynamic homotopy interpretation of the logistic quantal response equilibrium correspondence",
+   "year": 2004,
+   "cited_by_count": 97,
+   "doi": "https://doi.org/10.1016/j.geb.2004.04.003",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2141259493",
+   "title": "A Continuation Method for Nash Equilibria in Structured Games",
+   "year": 2006,
+   "cited_by_count": 75,
+   "doi": "https://doi.org/10.1613/jair.1947",
+   "role": "resolved",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2152897361",
+   "title": "Analyzing Complex Strategic Interactions in Multi-Agent Systems",
+   "year": 2002,
+   "cited_by_count": 120,
+   "doi": null,
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2159970817",
+   "title": "To vote or not to vote: The paradox of nonvoting",
+   "year": 1984,
+   "cited_by_count": 107,
+   "doi": "https://doi.org/10.1007/bf00124949",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W157305692",
+   "title": "Congestion Games: Optimization in Competition.",
+   "year": 2006,
+   "cited_by_count": 70,
+   "doi": null,
+   "role": "resolved",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 5
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1978": 1,
+   "1979": 1,
+   "1984": 2,
+   "1992": 1,
+   "1996": 2,
+   "1998": 2,
+   "1999": 1,
+   "2000": 2,
+   "2001": 5,
+   "2002": 7,
+   "2003": 4,
+   "2004": 9,
+   "2005": 6,
+   "2006": 12,
+   "2007": 11,
+   "2008": 13,
+   "2009": 11,
+   "2010": 15,
+   "2011": 11,
+   "2012": 11,
+   "2013": 6,
+   "2014": 7,
+   "2015": 11,
+   "2016": 9,
+   "2017": 9,
+   "2018": 13,
+   "2019": 10,
+   "2020": 7,
+   "2021": 12,
+   "2022": 13,
+   "2023": 17,
+   "2024": 14,
+   "2025": 32,
+   "2026": 18
+  },
+  "openalex_total": 305,
+  "arxiv_total": 80,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22computing+Nash+equilibria%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5074380214",
+   "name": "Bernhard von Stengel",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5003946901",
+   "name": "Kousha Etessami",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5043084405",
+   "name": "Mihalis Yannakakis",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031029479",
+   "name": "Navin A. R. Bhat",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5089807699",
+   "name": "Kevin Leyton‐Brown",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100329834",
+   "name": "Xi Chen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100638710",
+   "name": "Xiaotie Deng",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5102005063",
+   "name": "Shang‐Hua Teng",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5017406977",
+   "name": "Samid Hoda",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "Andrew Gilpin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5016340912",
+   "name": "Javier Peña",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5023571961",
+   "name": "Tüomas Sandholm",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5046658423",
+   "name": "Martin Gairing",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5041351482",
+   "name": "Thomas Lücking",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5066537602",
+   "name": "Marios Mavronicolas",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I95457486",
+   "name": "University of California, Berkeley",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I185261750",
+   "name": "University of Toronto",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I141945490",
+   "name": "University of British Columbia",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I99065089",
+   "name": "Tsinghua University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I168719708",
+   "name": "City University of Hong Kong",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I111088046",
+   "name": "Boston University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I74973139",
+   "name": "Carnegie Mellon University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I206945453",
+   "name": "Paderborn University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I34771391",
+   "name": "University of Cyprus",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I174878644",
+   "name": "University of Patras",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I146655781",
+   "name": "University of Liverpool",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I34352273",
+   "name": "Maastricht University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I909854389",
+   "name": "London School of Economics and Political Science",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1283103587",
+   "name": "AT&T (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "ecc",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "factoring",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "mechdesign",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "optimalstop",
+   "why": "shared markets: finance; same branch"
+  },
+  {
+   "id": "owf",
+   "why": "shared markets: finance; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "proved",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/PPAD_(complexity)",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22computing+Nash+equilibria%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22computing+Nash+equilibria%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "20 relevant works of 25 considered, 305 works with the phrase"
+ }
+}

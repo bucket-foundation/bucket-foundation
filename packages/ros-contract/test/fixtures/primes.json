@@ -1,0 +1,267 @@
+{
+ "generatedAt": "2026-09-30T00:00:00.000Z",
+ "summary": {
+  "nodes": 8,
+  "prime": 4,
+  "composite": 3,
+  "unfactored": 1,
+  "inCycle": 0,
+  "maxDepth": 1,
+  "tiers": [
+   4,
+   3
+  ]
+ },
+ "unfactoredByKind": [
+  {
+   "kind": "constant",
+   "count": 1
+  }
+ ],
+ "penetrating": [
+  {
+   "slug": "energy",
+   "title": "energy",
+   "kind": "concept",
+   "branch": "02-physics",
+   "composites": 2,
+   "branches": 2,
+   "spread": 0.6309297535714574
+  },
+  {
+   "slug": "entropy",
+   "title": "entropy",
+   "kind": "concept",
+   "branch": "03-chemistry",
+   "composites": 2,
+   "branches": 2,
+   "spread": 0.6309297535714574
+  },
+  {
+   "slug": "information",
+   "title": "information",
+   "kind": "concept",
+   "branch": "04-information",
+   "composites": 1,
+   "branches": 1,
+   "spread": 0
+  },
+  {
+   "slug": "mass",
+   "title": "mass",
+   "kind": "concept",
+   "branch": "02-physics",
+   "composites": 1,
+   "branches": 1,
+   "spread": 0
+  }
+ ],
+ "deepest": [
+  {
+   "slug": "free-energy",
+   "title": "free energy",
+   "kind": "law",
+   "branch": "03-chemistry",
+   "depth": 1,
+   "primes": 2
+  },
+  {
+   "slug": "landauer",
+   "title": "landauer",
+   "kind": "law",
+   "branch": "04-information",
+   "depth": 1,
+   "primes": 2
+  },
+  {
+   "slug": "mass-energy",
+   "title": "mass energy",
+   "kind": "law",
+   "branch": "02-physics",
+   "depth": 1,
+   "primes": 2
+  }
+ ],
+ "widest": [
+  {
+   "slug": "free-energy",
+   "title": "free energy",
+   "kind": "law",
+   "branch": "03-chemistry",
+   "depth": 1,
+   "primes": 2
+  },
+  {
+   "slug": "landauer",
+   "title": "landauer",
+   "kind": "law",
+   "branch": "04-information",
+   "depth": 1,
+   "primes": 2
+  },
+  {
+   "slug": "mass-energy",
+   "title": "mass energy",
+   "kind": "law",
+   "branch": "02-physics",
+   "depth": 1,
+   "primes": 2
+  }
+ ],
+ "confirmedIrreducible": {
+  "count": 2,
+  "of": 4,
+  "sample": [
+   {
+    "slug": "energy",
+    "title": "energy",
+    "kind": "concept",
+    "branch": "02-physics"
+   },
+   {
+    "slug": "entropy",
+    "title": "entropy",
+    "kind": "concept",
+    "branch": "03-chemistry"
+   }
+  ]
+ },
+ "reviewAgain": [],
+ "algebra": {
+  "coverage": [
+   {
+    "s": 1,
+    "coverage": 0.174863387978142,
+    "supports": 3
+   },
+   {
+    "s": 2,
+    "coverage": 0.07875598086124402,
+    "supports": 3
+   }
+  ],
+  "frontier": {
+   "pairs": 3,
+   "triples": 0,
+   "expectedAtLeastOne": 0,
+   "withinBranch": 0,
+   "top": [
+    {
+     "primes": [
+      {
+       "slug": "energy",
+       "title": "energy",
+       "kind": "concept",
+       "branch": "02-physics"
+      },
+      {
+       "slug": "information",
+       "title": "information",
+       "kind": "concept",
+       "branch": "04-information"
+      }
+     ],
+     "expected": 0.6666666666666666,
+     "p": "0.49",
+     "gap": "chance"
+    },
+    {
+     "primes": [
+      {
+       "slug": "entropy",
+       "title": "entropy",
+       "kind": "concept",
+       "branch": "03-chemistry"
+      },
+      {
+       "slug": "mass",
+       "title": "mass",
+       "kind": "concept",
+       "branch": "02-physics"
+      }
+     ],
+     "expected": 0.6666666666666666,
+     "p": "0.49",
+     "gap": "chance"
+    },
+    {
+     "primes": [
+      {
+       "slug": "information",
+       "title": "information",
+       "kind": "concept",
+       "branch": "04-information"
+      },
+      {
+       "slug": "mass",
+       "title": "mass",
+       "kind": "concept",
+       "branch": "02-physics"
+      }
+     ],
+     "expected": 0.3333333333333333,
+     "p": "0.78",
+     "gap": "chance"
+    }
+   ],
+   "topWithinBranch": [],
+   "gaps": {
+    "draws": 50,
+    "counts": {
+     "missing_edge": 0,
+     "chance": 3,
+     "real": 0
+    },
+    "counterfactualPairs": 0
+   }
+  },
+  "together": [],
+  "implied": [],
+  "reach": [
+   {
+    "slug": "energy",
+    "title": "energy",
+    "kind": "concept",
+    "branch": "02-physics",
+    "coefficients": [
+     0,
+     2
+    ],
+    "meanDepth": 1
+   },
+   {
+    "slug": "entropy",
+    "title": "entropy",
+    "kind": "concept",
+    "branch": "03-chemistry",
+    "coefficients": [
+     0,
+     2
+    ],
+    "meanDepth": 1
+   },
+   {
+    "slug": "information",
+    "title": "information",
+    "kind": "concept",
+    "branch": "04-information",
+    "coefficients": [
+     0,
+     1
+    ],
+    "meanDepth": 1
+   },
+   {
+    "slug": "mass",
+    "title": "mass",
+    "kind": "concept",
+    "branch": "02-physics",
+    "coefficients": [
+     0,
+     1
+    ],
+    "meanDepth": 1
+   }
+  ]
+ }
+}

@@ -1,0 +1,7444 @@
+{
+ "producer": "bucket.foundation",
+ "generator": "tools/solvability-atlas",
+ "productions": [
+  {
+   "id": "pnp",
+   "kind": "production",
+   "title": "P vs NP",
+   "claim": "Asks whether every problem whose answer can be checked in polynomial time can also be solved in polynomial time. A proof either way reshapes cryptography, optimization and AI search.",
+   "branch": "information",
+   "level": 5,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures, Millennium/PvsNP.lean, P_ne_NP",
+    "url": "https://github.com/google-deepmind/formal-conjectures/blob/d838afa7a62f66dc034c96fb011c10b9bde3f44c/FormalConjectures/Millennium/PvsNP.lean"
+   },
+   "posed": 1971,
+   "resolved": null,
+   "markets": [
+    "cryptography",
+    "optimization",
+    "ai"
+   ],
+   "tokens": [
+    "complexity class",
+    "polynomial time",
+    "nondeterminism",
+    "reduction",
+    "SAT",
+    "circuit lower bound"
+   ],
+   "solvability": 0.158,
+   "theta": 3.2569,
+   "community": 0,
+   "betweenness": 0.00052,
+   "pagerank": 0.00383,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=P+vs+NP"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "riemann",
+   "kind": "production",
+   "title": "Riemann hypothesis",
+   "claim": "Claims every nontrivial zero of the Riemann zeta function lies on the line with real part one half. It controls the error term in the distribution of primes.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Mathlib, RiemannHypothesis",
+    "url": "https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/NumberTheory/LSeries/RiemannZeta.lean"
+   },
+   "posed": 1859,
+   "resolved": null,
+   "markets": [
+    "cryptography"
+   ],
+   "tokens": [
+    "zeta function",
+    "nontrivial zeros",
+    "prime distribution",
+    "critical line",
+    "analytic number theory"
+   ],
+   "solvability": 0.158,
+   "theta": 3.0839,
+   "community": 0,
+   "betweenness": 0.01302,
+   "pagerank": 0.00429,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Riemann+hypothesis"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "003",
+     "match": "weaker_bound",
+     "formal_scope": "full",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "navier",
+   "kind": "production",
+   "title": "Navier-Stokes existence and smoothness",
+   "claim": "Asks whether smooth initial data for the 3D incompressible Navier-Stokes equations always gives a smooth solution for all time, or whether blow-up can occur.",
+   "branch": "physics",
+   "level": 5,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1934,
+   "resolved": null,
+   "markets": [
+    "aerospace",
+    "energy",
+    "climate"
+   ],
+   "tokens": [
+    "fluid dynamics",
+    "blow-up",
+    "regularity",
+    "PDE",
+    "turbulence",
+    "energy estimate"
+   ],
+   "solvability": 0.27,
+   "theta": 4.208,
+   "community": 0,
+   "betweenness": 0.08556,
+   "pagerank": 0.00537,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Navier-Stokes+existence+and+smoothness"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "376",
+     "match": "related",
+     "formal_scope": "full",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "yangmills",
+   "kind": "production",
+   "title": "Yang-Mills mass gap",
+   "claim": "Asks for a rigorous construction of 4D quantum Yang-Mills theory with a positive lower bound on the mass of its excitations.",
+   "branch": "physics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1954,
+   "resolved": null,
+   "markets": [
+    "energy",
+    "semiconductors"
+   ],
+   "tokens": [
+    "gauge theory",
+    "quantum field theory",
+    "mass gap",
+    "confinement",
+    "lattice QCD"
+   ],
+   "solvability": 0.045,
+   "theta": 3.4586,
+   "community": 0,
+   "betweenness": 0.0649,
+   "pagerank": 0.00354,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Yang-Mills+mass+gap"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "hodge",
+   "kind": "production",
+   "title": "Hodge conjecture",
+   "claim": "Claims that on a projective complex manifold, certain cohomology classes are rational combinations of classes of algebraic subvarieties.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1950,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "algebraic cycles",
+    "cohomology",
+    "projective variety",
+    "Kahler manifold"
+   ],
+   "solvability": 0.158,
+   "theta": 2.6228,
+   "community": 0,
+   "betweenness": 8e-05,
+   "pagerank": 0.0035,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Hodge+conjecture"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "032",
+     "match": "special_case",
+     "formal_scope": "none",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "bsd",
+   "kind": "production",
+   "title": "Birch and Swinnerton-Dyer conjecture",
+   "claim": "Links the rank of an elliptic curve's group of rational points to the order of vanishing of its L-function at s = 1.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures, Millennium/BSD.lean, weak_birch_swinnerton_dyer_conjecture",
+    "url": "https://github.com/google-deepmind/formal-conjectures/blob/d838afa7a62f66dc034c96fb011c10b9bde3f44c/FormalConjectures/Millennium/BSD.lean"
+   },
+   "posed": 1965,
+   "resolved": null,
+   "markets": [
+    "cryptography"
+   ],
+   "tokens": [
+    "elliptic curve",
+    "L-function",
+    "rank",
+    "Mordell-Weil group",
+    "rational points"
+   ],
+   "solvability": 0.158,
+   "theta": 2.594,
+   "community": 0,
+   "betweenness": 0.00062,
+   "pagerank": 0.00476,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Birch+and+Swinnerton-Dyer+conjecture"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "002",
+     "match": "special_case",
+     "formal_scope": "none",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "poincare",
+   "kind": "production",
+   "title": "Poincare conjecture",
+   "claim": "Every simply connected closed 3-manifold is the 3-sphere. Perelman proved it in 2003 with Ricci flow with surgery.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1904,
+   "resolved": 2003,
+   "markets": [],
+   "tokens": [
+    "Ricci flow",
+    "three-manifold",
+    "topology",
+    "surgery",
+    "geometrization"
+   ],
+   "solvability": 0.82,
+   "theta": 2.8246,
+   "community": 0,
+   "betweenness": 0.01956,
+   "pagerank": 0.00381,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Poincare+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "fermat",
+   "kind": "production",
+   "title": "Fermat's Last Theorem",
+   "claim": "No positive integers satisfy a^n + b^n = c^n for n above 2. Wiles proved it in 1994 through modularity of semistable elliptic curves.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Buzzard, FLT formalization project in Lean",
+    "url": "https://github.com/ImperialCollegeLondon/FLT"
+   },
+   "posed": 1637,
+   "resolved": 1994,
+   "markets": [
+    "cryptography"
+   ],
+   "tokens": [
+    "modularity",
+    "elliptic curve",
+    "Galois representation",
+    "Diophantine equation"
+   ],
+   "solvability": 0.82,
+   "theta": 2.8534,
+   "community": 0,
+   "betweenness": 0.00262,
+   "pagerank": 0.00434,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Fermat's+Last+Theorem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "fourcolor",
+   "kind": "production",
+   "title": "Four color theorem",
+   "claim": "Four colors suffice for any planar map. Proved by computer in 1976 and checked in Coq by Gonthier in 2005.",
+   "branch": "mathematics",
+   "level": 3,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Gonthier, Formal proof of the four color theorem in Coq, Notices AMS 2008",
+    "url": "https://www.ams.org/notices/200811/tx081101382p.pdf"
+   },
+   "posed": 1852,
+   "resolved": 1976,
+   "markets": [
+    "logistics"
+   ],
+   "tokens": [
+    "graph coloring",
+    "planar graph",
+    "computer-assisted proof",
+    "discharging"
+   ],
+   "solvability": 1.0,
+   "theta": 3.0263,
+   "community": 0,
+   "betweenness": 0.00091,
+   "pagerank": 0.00335,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Four+color+theorem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "kepler",
+   "kind": "production",
+   "title": "Kepler conjecture",
+   "claim": "Face-centered cubic packing is the densest packing of equal spheres. Hales proved it in 1998, and the Flyspeck project checked the proof formally in 2014.",
+   "branch": "mathematics",
+   "level": 4,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Hales et al., A formal proof of the Kepler conjecture, Forum of Mathematics Pi 2017",
+    "url": "https://doi.org/10.1017/fmp.2017.1"
+   },
+   "posed": 1611,
+   "resolved": 1998,
+   "markets": [
+    "materials"
+   ],
+   "tokens": [
+    "sphere packing",
+    "density",
+    "Flyspeck",
+    "formal proof",
+    "lattice"
+   ],
+   "solvability": 1.0,
+   "theta": 2.7957,
+   "community": 0,
+   "betweenness": 0.00482,
+   "pagerank": 0.00705,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Kepler+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "twinprime",
+   "kind": "production",
+   "title": "Twin prime conjecture",
+   "claim": "Claims infinitely many primes p have p + 2 also prime. Zhang, Maynard and Polymath bounded the gap at 246.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures, Wikipedia/TwinPrimes.lean, twin_primes",
+    "url": "https://github.com/google-deepmind/formal-conjectures/blob/d838afa7a62f66dc034c96fb011c10b9bde3f44c/FormalConjectures/Wikipedia/TwinPrimes.lean"
+   },
+   "posed": 1849,
+   "resolved": null,
+   "markets": [
+    "cryptography"
+   ],
+   "tokens": [
+    "prime gaps",
+    "sieve theory",
+    "bounded gaps",
+    "Zhang",
+    "Maynard"
+   ],
+   "solvability": 0.158,
+   "theta": 2.7093,
+   "community": 0,
+   "betweenness": 0.02022,
+   "pagerank": 0.00478,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Twin+prime+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "goldbach",
+   "kind": "production",
+   "title": "Goldbach conjecture",
+   "claim": "Claims every even integer above 2 is a sum of two primes. Verified to 4 x 10^18, and the weak ternary version was proved by Helfgott in 2013.",
+   "branch": "mathematics",
+   "level": 4,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures, Wikipedia/GoldbachConjecture.lean, goldbach",
+    "url": "https://github.com/google-deepmind/formal-conjectures/blob/d838afa7a62f66dc034c96fb011c10b9bde3f44c/FormalConjectures/Wikipedia/GoldbachConjecture.lean"
+   },
+   "posed": 1742,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "additive number theory",
+    "sum of primes",
+    "circle method",
+    "sieve"
+   ],
+   "solvability": 0.158,
+   "theta": 2.6804,
+   "community": 0,
+   "betweenness": 0.00082,
+   "pagerank": 0.00528,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Goldbach+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "collatz",
+   "kind": "production",
+   "title": "Collatz conjecture",
+   "claim": "Claims that iterating n to n/2 or 3n+1 reaches 1 from every start. Tao showed almost all orbits attain almost bounded values.",
+   "branch": "mathematics",
+   "level": 4,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures, Wikipedia/CollatzConjecture.lean, collatz_conjecture",
+    "url": "https://github.com/google-deepmind/formal-conjectures/blob/d838afa7a62f66dc034c96fb011c10b9bde3f44c/FormalConjectures/Wikipedia/CollatzConjecture.lean"
+   },
+   "posed": 1937,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "iteration",
+    "dynamical system",
+    "3n+1",
+    "stopping time"
+   ],
+   "solvability": 0.158,
+   "theta": 2.9687,
+   "community": 0,
+   "betweenness": 0.02237,
+   "pagerank": 0.00517,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Collatz+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "abc",
+   "kind": "production",
+   "title": "abc conjecture",
+   "claim": "Bounds c by the radical of abc for coprime a + b = c. Mochizuki's claimed proof is not accepted by most number theorists.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures, Wikipedia/ABC.lean, abc",
+    "url": "https://github.com/google-deepmind/formal-conjectures/blob/d838afa7a62f66dc034c96fb011c10b9bde3f44c/FormalConjectures/Wikipedia/ABC.lean"
+   },
+   "posed": 1985,
+   "resolved": null,
+   "markets": [
+    "cryptography"
+   ],
+   "tokens": [
+    "radical",
+    "Diophantine",
+    "inter-universal Teichmuller",
+    "height"
+   ],
+   "solvability": 0.158,
+   "theta": 2.6516,
+   "community": 0,
+   "betweenness": 0.00519,
+   "pagerank": 0.00851,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=abc+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "langlands",
+   "kind": "production",
+   "title": "Langlands program",
+   "claim": "A web of conjectures matching Galois representations with automorphic forms, a grand unified theory for number theory.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1967,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "automorphic forms",
+    "Galois representation",
+    "reciprocity",
+    "geometric Langlands"
+   ],
+   "solvability": 0.27,
+   "theta": 2.7381,
+   "community": 0,
+   "betweenness": 0.00311,
+   "pagerank": 0.00534,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Langlands+program"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "geomlanglands",
+   "kind": "production",
+   "title": "Geometric Langlands conjecture",
+   "claim": "The geometric form of Langlands, proved in 2024 by Gaitsgory, Raskin and collaborators across a series of papers near 1000 pages long.",
+   "branch": "mathematics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1980,
+   "resolved": 2024,
+   "markets": [],
+   "tokens": [
+    "D-modules",
+    "moduli of bundles",
+    "categorical equivalence",
+    "geometric Langlands"
+   ],
+   "solvability": 0.595,
+   "theta": 2.5363,
+   "community": 0,
+   "betweenness": 0.0001,
+   "pagerank": 0.00391,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Geometric+Langlands+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "sensitivity",
+   "kind": "production",
+   "title": "Sensitivity conjecture",
+   "claim": "Boolean sensitivity is polynomially related to block sensitivity. Huang proved it in 2019 with a two page argument on the hypercube.",
+   "branch": "information",
+   "level": 3,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Mathlib Archive, Sensitivity.lean",
+    "url": "https://github.com/leanprover-community/mathlib4/blob/master/Archive/Sensitivity.lean"
+   },
+   "posed": 1992,
+   "resolved": 2019,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "boolean function",
+    "sensitivity",
+    "block sensitivity",
+    "hypercube"
+   ],
+   "solvability": 1.0,
+   "theta": 3.4875,
+   "community": 0,
+   "betweenness": 0.01111,
+   "pagerank": 0.00526,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Sensitivity+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "capset",
+   "kind": "production",
+   "title": "Cap set problem",
+   "claim": "Bounds the largest subset of F_3^n with no three-term progression. Ellenberg and Gijswijt proved an exponential bound in 2016 with the polynomial method.",
+   "branch": "mathematics",
+   "level": 3,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Dahmen, Holzl, Lewis, Formalizing the solution to the cap set problem, ITP 2019",
+    "url": "https://doi.org/10.4230/LIPIcs.ITP.2019.15"
+   },
+   "posed": 1970,
+   "resolved": 2016,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "polynomial method",
+    "additive combinatorics",
+    "finite field",
+    "FunSearch"
+   ],
+   "solvability": 1.0,
+   "theta": 2.911,
+   "community": 0,
+   "betweenness": 0.00229,
+   "pagerank": 0.0056,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Cap+set+problem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "pfr",
+   "kind": "production",
+   "title": "Polynomial Freiman-Ruzsa conjecture",
+   "claim": "Sets with small doubling in F_2^n are covered by few cosets of a subgroup. Gowers, Green, Manners and Tao proved it in 2023, formalized in Lean within three weeks.",
+   "branch": "mathematics",
+   "level": 4,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Tao et al., PFR project in Lean",
+    "url": "https://github.com/teorth/pfr"
+   },
+   "posed": 1990,
+   "resolved": 2023,
+   "markets": [],
+   "tokens": [
+    "additive combinatorics",
+    "entropy",
+    "doubling constant",
+    "Lean blueprint"
+   ],
+   "solvability": 1.0,
+   "theta": 2.8822,
+   "community": 0,
+   "betweenness": 0.00063,
+   "pagerank": 0.00472,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Polynomial+Freiman-Ruzsa+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "ramsey",
+   "kind": "production",
+   "title": "Diagonal Ramsey exponential improvement",
+   "claim": "Campos, Griffiths, Morris and Sahasrabudhe improved the 1935 upper bound of 4^k on diagonal Ramsey numbers by an exponential factor in 2023.",
+   "branch": "mathematics",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1935,
+   "resolved": 2023,
+   "markets": [],
+   "tokens": [
+    "Ramsey number",
+    "graph coloring",
+    "probabilistic method",
+    "book algorithm"
+   ],
+   "solvability": 0.82,
+   "theta": 3.1128,
+   "community": 0,
+   "betweenness": 0.00366,
+   "pagerank": 0.00377,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Diagonal+Ramsey+exponential+improvement"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "unitdist",
+   "kind": "production",
+   "title": "Hadwiger-Nelson problem",
+   "claim": "Asks for the fewest colors so no two points at unit distance share one. The answer lies between 5 and 7 after de Grey's 2018 graph.",
+   "branch": "mathematics",
+   "level": 3,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1950,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "chromatic number of the plane",
+    "unit distance graph",
+    "SAT solver"
+   ],
+   "solvability": 0.27,
+   "theta": 2.5652,
+   "community": 0,
+   "betweenness": 0.00049,
+   "pagerank": 0.00327,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Hadwiger-Nelson+problem"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "158",
+     "match": "weaker_bound",
+     "formal_scope": "full",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "busybeaver",
+   "kind": "production",
+   "title": "Busy Beaver BB(5)",
+   "claim": "BB(5) = 47,176,870, settled in 2024 by the bbchallenge collaboration with a Coq proof.",
+   "branch": "information",
+   "level": 3,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "bbchallenge, Coq proof of BB(5)",
+    "url": "https://github.com/ccz181078/Coq-BB5"
+   },
+   "posed": 1962,
+   "resolved": 2024,
+   "markets": [],
+   "tokens": [
+    "Turing machine",
+    "halting",
+    "Coq proof",
+    "collaborative verification"
+   ],
+   "solvability": 1.0,
+   "theta": 3.6027,
+   "community": 0,
+   "betweenness": 0.00236,
+   "pagerank": 0.0067,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Busy+Beaver+BB(5)"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "graphiso",
+   "kind": "production",
+   "title": "Graph isomorphism complexity",
+   "claim": "Asks whether graph isomorphism is in P. Babai gave a quasipolynomial algorithm in 2015.",
+   "branch": "information",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1970,
+   "resolved": null,
+   "markets": [
+    "cybersecurity"
+   ],
+   "tokens": [
+    "quasipolynomial",
+    "Babai",
+    "group theory",
+    "canonical labeling"
+   ],
+   "solvability": 0.27,
+   "theta": 3.3145,
+   "community": 0,
+   "betweenness": 0.0063,
+   "pagerank": 0.00525,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Graph+isomorphism+complexity"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "matmul",
+   "kind": "production",
+   "title": "Matrix multiplication exponent omega",
+   "claim": "Asks for the exponent omega of matrix multiplication. The bound sits near 2.371 and could be 2.",
+   "branch": "information",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1969,
+   "resolved": null,
+   "markets": [
+    "ai",
+    "semiconductors"
+   ],
+   "tokens": [
+    "tensor rank",
+    "laser method",
+    "AlphaTensor",
+    "bilinear complexity"
+   ],
+   "solvability": 0.27,
+   "theta": 3.1416,
+   "community": 0,
+   "betweenness": 0.00078,
+   "pagerank": 0.00329,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Matrix+multiplication+exponent+omega"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "107",
+     "match": "weaker_bound",
+     "formal_scope": "full",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "uniquegames",
+   "kind": "production",
+   "title": "Unique Games Conjecture",
+   "claim": "Khot's conjecture that approximating unique games is NP-hard. It would pin the exact approximation thresholds of many problems.",
+   "branch": "information",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 2002,
+   "resolved": null,
+   "markets": [
+    "optimization"
+   ],
+   "tokens": [
+    "hardness of approximation",
+    "PCP",
+    "semidefinite programming",
+    "label cover"
+   ],
+   "solvability": 0.045,
+   "theta": 3.4298,
+   "community": 0,
+   "betweenness": 0.00456,
+   "pagerank": 0.00625,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Unique+Games+Conjecture"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "102",
+     "match": "problem",
+     "formal_scope": "full",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "bqp",
+   "kind": "production",
+   "title": "BQP vs BPP separation",
+   "claim": "Asks whether quantum computers solve problems classical randomized machines cannot, in the unrelativized world.",
+   "branch": "information",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1993,
+   "resolved": null,
+   "markets": [
+    "quantum computing"
+   ],
+   "tokens": [
+    "quantum complexity",
+    "oracle separation",
+    "Shor",
+    "sampling advantage"
+   ],
+   "solvability": 0.045,
+   "theta": 3.891,
+   "community": 0,
+   "betweenness": 0.00086,
+   "pagerank": 0.00431,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=BQP+vs+BPP+separation"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "factoring",
+   "kind": "production",
+   "title": "Integer factoring complexity",
+   "claim": "Asks for the classical complexity of factoring integers. RSA rests on its hardness, and Shor's algorithm breaks it on a quantum machine.",
+   "branch": "information",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1977,
+   "resolved": null,
+   "markets": [
+    "cryptography",
+    "finance"
+   ],
+   "tokens": [
+    "RSA",
+    "number field sieve",
+    "Shor algorithm",
+    "one-way function"
+   ],
+   "solvability": 0.27,
+   "theta": 3.0551,
+   "community": 0,
+   "betweenness": 0.00208,
+   "pagerank": 0.00431,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Integer+factoring+complexity"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "owf",
+   "kind": "production",
+   "title": "Existence of one-way functions",
+   "claim": "Asks whether functions exist that are easy to compute and hard to invert on average. All private-key cryptography depends on them.",
+   "branch": "information",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1976,
+   "resolved": null,
+   "markets": [
+    "cryptography",
+    "finance"
+   ],
+   "tokens": [
+    "pseudorandomness",
+    "Kolmogorov complexity",
+    "average-case hardness"
+   ],
+   "solvability": 0.045,
+   "theta": 3.3722,
+   "community": 0,
+   "betweenness": 0.00452,
+   "pagerank": 0.00664,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Existence+of+one-way+functions"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "halting",
+   "kind": "production",
+   "title": "Halting problem",
+   "claim": "No algorithm decides whether an arbitrary program halts. Turing proved it by diagonalization in 1936.",
+   "branch": "information",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Mathlib, ComputablePred.halting_problem",
+    "url": "https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/Computability/Halting.lean"
+   },
+   "posed": 1936,
+   "resolved": 1936,
+   "markets": [],
+   "tokens": [
+    "undecidability",
+    "diagonalization",
+    "Turing machine",
+    "computability"
+   ],
+   "solvability": 1.0,
+   "theta": 3.401,
+   "community": 0,
+   "betweenness": 0.05863,
+   "pagerank": 0.00947,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Halting+problem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "hilbert10",
+   "kind": "production",
+   "title": "Hilbert's tenth problem",
+   "claim": "No algorithm decides whether a Diophantine equation has integer solutions. Matiyasevich completed the proof in 1970.",
+   "branch": "mathematics",
+   "level": 3,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Bayer et al., A formal proof of the MRDP theorem in Isabelle, 2019",
+    "url": "https://www.isa-afp.org/entries/DPRM_Theorem.html"
+   },
+   "posed": 1900,
+   "resolved": 1970,
+   "markets": [],
+   "tokens": [
+    "Diophantine sets",
+    "undecidability",
+    "MRDP theorem",
+    "computability"
+   ],
+   "solvability": 1.0,
+   "theta": 2.9398,
+   "community": 0,
+   "betweenness": 0.00493,
+   "pagerank": 0.00564,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Hilbert's+tenth+problem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "continuum",
+   "kind": "production",
+   "title": "Continuum hypothesis independence",
+   "claim": "The continuum hypothesis is independent of ZFC. Godel showed consistency in 1940 and Cohen showed independence by forcing in 1963.",
+   "branch": "mathematics",
+   "level": 4,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "Han, van Doorn, Flypitch: independence of the continuum hypothesis in Lean, 2019",
+    "url": "https://flypitch.github.io/"
+   },
+   "posed": 1878,
+   "resolved": 1963,
+   "markets": [],
+   "tokens": [
+    "forcing",
+    "set theory",
+    "ZFC independence",
+    "cardinality"
+   ],
+   "solvability": 1.0,
+   "theta": 3.2281,
+   "community": 0,
+   "betweenness": 0.01322,
+   "pagerank": 0.00375,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Continuum+hypothesis+independence"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "invsubspace",
+   "kind": "production",
+   "title": "Invariant subspace problem",
+   "claim": "Asks whether every bounded operator on a separable Hilbert space has a nontrivial closed invariant subspace.",
+   "branch": "mathematics",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1935,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "operator theory",
+    "Hilbert space",
+    "bounded operator",
+    "functional analysis"
+   ],
+   "solvability": 0.045,
+   "theta": 3.2857,
+   "community": 0,
+   "betweenness": 0.01612,
+   "pagerank": 0.00369,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Invariant+subspace+problem"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "293",
+     "match": "related",
+     "formal_scope": "full",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "jacobian",
+   "kind": "production",
+   "title": "Jacobian conjecture",
+   "claim": "Claims a polynomial map with constant nonzero Jacobian determinant has a polynomial inverse.",
+   "branch": "mathematics",
+   "level": 4,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1939,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "polynomial map",
+    "invertibility",
+    "affine space",
+    "algebraic geometry"
+   ],
+   "solvability": 0.158,
+   "theta": 2.7669,
+   "community": 0,
+   "betweenness": 0.00074,
+   "pagerank": 0.00483,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Jacobian+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "hadamard",
+   "kind": "production",
+   "title": "Hadamard matrix conjecture",
+   "claim": "Claims a Hadamard matrix exists for every order divisible by 4. Order 668 is the smallest open case.",
+   "branch": "mathematics",
+   "level": 3,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "google-deepmind formal-conjectures, Wikipedia/Hadamard.lean, HadamardConjecture",
+    "url": "https://github.com/google-deepmind/formal-conjectures/blob/d838afa7a62f66dc034c96fb011c10b9bde3f44c/FormalConjectures/Wikipedia/Hadamard.lean"
+   },
+   "posed": 1893,
+   "resolved": null,
+   "markets": [
+    "telecom"
+   ],
+   "tokens": [
+    "orthogonal design",
+    "combinatorial design",
+    "coding theory"
+   ],
+   "solvability": 0.158,
+   "theta": 2.9975,
+   "community": 0,
+   "betweenness": 0.00564,
+   "pagerank": 0.00654,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Hadamard+matrix+conjecture"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "protein",
+   "kind": "production",
+   "title": "Protein structure prediction",
+   "claim": "Predict 3D protein structure from sequence. AlphaFold 2 reached experimental accuracy in CASP14 in 2020.",
+   "branch": "biophysics",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1972,
+   "resolved": 2020,
+   "markets": [
+    "pharma",
+    "biotech"
+   ],
+   "tokens": [
+    "folding",
+    "AlphaFold",
+    "energy landscape",
+    "Levinthal paradox",
+    "contact map"
+   ],
+   "solvability": 0.595,
+   "theta": 3.9486,
+   "community": 0,
+   "betweenness": 0.00876,
+   "pagerank": 0.00573,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Protein+structure+prediction"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "foldpath",
+   "kind": "production",
+   "title": "Protein folding pathway kinetics",
+   "claim": "Explain how and how fast a chain finds its native fold, the kinetic side left open by structure prediction.",
+   "branch": "biophysics",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1968,
+   "resolved": null,
+   "markets": [
+    "pharma",
+    "biotech"
+   ],
+   "tokens": [
+    "folding funnel",
+    "kinetics",
+    "molten globule",
+    "chaperone",
+    "free energy"
+   ],
+   "solvability": 0.045,
+   "theta": 4.4386,
+   "community": 7,
+   "betweenness": 0.00677,
+   "pagerank": 0.00385,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Protein+folding+pathway+kinetics"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "turbulence",
+   "kind": "production",
+   "title": "Turbulence closure",
+   "claim": "Close the Reynolds-averaged equations from first principles, and derive Kolmogorov scaling and its intermittency corrections.",
+   "branch": "physics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1941,
+   "resolved": null,
+   "markets": [
+    "aerospace",
+    "energy",
+    "climate"
+   ],
+   "tokens": [
+    "Kolmogorov scaling",
+    "closure problem",
+    "intermittency",
+    "Reynolds stress"
+   ],
+   "solvability": 0.045,
+   "theta": 4.0063,
+   "community": 0,
+   "betweenness": 0.08484,
+   "pagerank": 0.0044,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Turbulence+closure"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "qgravity",
+   "kind": "production",
+   "title": "Quantum gravity",
+   "claim": "Find a consistent quantum theory of gravity that reduces to general relativity at low energy.",
+   "branch": "cosmology",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1930,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "quantization",
+    "spacetime",
+    "holography",
+    "loop quantum gravity",
+    "string theory"
+   ],
+   "solvability": 0.045,
+   "theta": 3.6316,
+   "community": 7,
+   "betweenness": 0.00457,
+   "pagerank": 0.0045,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Quantum+gravity"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "darkmatter",
+   "kind": "production",
+   "title": "Dark matter identity",
+   "claim": "Identify the matter that shapes rotation curves, lensing and the CMB but emits no light.",
+   "branch": "cosmology",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1933,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "rotation curves",
+    "WIMP",
+    "axion",
+    "galaxy clusters",
+    "lensing"
+   ],
+   "solvability": 0.045,
+   "theta": 3.8045,
+   "community": 7,
+   "betweenness": 0.00129,
+   "pagerank": 0.00371,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Dark+matter+identity"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "darkenergy",
+   "kind": "production",
+   "title": "Cosmological constant problem",
+   "claim": "Explain why the measured vacuum energy sits about 120 orders of magnitude below the field theory estimate.",
+   "branch": "cosmology",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1917,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "vacuum energy",
+    "fine tuning",
+    "dark energy",
+    "renormalization"
+   ],
+   "solvability": 0.045,
+   "theta": 3.718,
+   "community": 7,
+   "betweenness": 0.00433,
+   "pagerank": 0.0044,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Cosmological+constant+problem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "hubble",
+   "kind": "production",
+   "title": "Hubble tension",
+   "claim": "The local distance ladder gives H0 near 73 km/s/Mpc while the CMB gives near 67. Systematics or new physics.",
+   "branch": "cosmology",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 2016,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "expansion rate",
+    "CMB",
+    "distance ladder",
+    "Cepheid",
+    "systematic error"
+   ],
+   "solvability": 0.045,
+   "theta": 3.6604,
+   "community": 7,
+   "betweenness": 0.00471,
+   "pagerank": 0.00436,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Hubble+tension"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "cosmiccensor",
+   "kind": "production",
+   "title": "Weak cosmic censorship",
+   "claim": "Claims generic gravitational collapse hides every singularity behind an event horizon.",
+   "branch": "cosmology",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1969,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "naked singularity",
+    "black hole",
+    "general relativity",
+    "Einstein equations"
+   ],
+   "solvability": 0.045,
+   "theta": 3.6892,
+   "community": 7,
+   "betweenness": 0.0024,
+   "pagerank": 0.00391,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Weak+cosmic+censorship"
+    }
+   ],
+   "source_kind": "problem",
+   "published_claims": [
+    {
+     "batch": "openai-math-2026-10",
+     "family": "264",
+     "match": "related",
+     "formal_scope": "none",
+     "confirmed": false,
+     "withdrawn": false
+    }
+   ]
+  },
+  {
+   "id": "bhinfo",
+   "kind": "production",
+   "title": "Black hole information paradox",
+   "claim": "Asks whether black hole evaporation destroys information. Island calculations reproduce a unitary Page curve.",
+   "branch": "cosmology",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1975,
+   "resolved": null,
+   "markets": [
+    "quantum computing"
+   ],
+   "tokens": [
+    "Hawking radiation",
+    "unitarity",
+    "Page curve",
+    "island formula",
+    "entanglement"
+   ],
+   "solvability": 0.045,
+   "theta": 3.8621,
+   "community": 7,
+   "betweenness": 0.00121,
+   "pagerank": 0.00443,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Black+hole+information+paradox"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "measurement",
+   "kind": "production",
+   "title": "Quantum measurement problem",
+   "claim": "Asks how definite outcomes and the Born rule arise from unitary quantum evolution.",
+   "branch": "physics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1932,
+   "resolved": null,
+   "markets": [
+    "quantum computing"
+   ],
+   "tokens": [
+    "wavefunction collapse",
+    "decoherence",
+    "Born rule",
+    "interpretation"
+   ],
+   "solvability": 0.045,
+   "theta": 3.5451,
+   "community": 0,
+   "betweenness": 0.00312,
+   "pagerank": 0.0036,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Quantum+measurement+problem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "roomtemp",
+   "kind": "production",
+   "title": "Room-temperature superconductivity mechanism",
+   "claim": "Explain the pairing mechanism of high-temperature superconductors well enough to design one that works at room temperature.",
+   "branch": "physics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1986,
+   "resolved": null,
+   "markets": [
+    "energy",
+    "semiconductors"
+   ],
+   "tokens": [
+    "cuprates",
+    "pairing mechanism",
+    "Hubbard model",
+    "critical temperature"
+   ],
+   "solvability": 0.045,
+   "theta": 3.9198,
+   "community": 0,
+   "betweenness": 0.0006,
+   "pagerank": 0.00363,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Room-temperature+superconductivity+mechanism"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "hubbard",
+   "kind": "production",
+   "title": "2D Hubbard model ground state",
+   "claim": "Find the ground state phase diagram of the 2D Hubbard model, the minimal model for cuprates.",
+   "branch": "physics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1963,
+   "resolved": null,
+   "markets": [
+    "semiconductors",
+    "energy"
+   ],
+   "tokens": [
+    "strongly correlated electrons",
+    "d-wave",
+    "DMRG",
+    "sign problem"
+   ],
+   "solvability": 0.045,
+   "theta": 3.5163,
+   "community": 0,
+   "betweenness": 0.00231,
+   "pagerank": 0.0043,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=2D+Hubbard+model+ground+state"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "signproblem",
+   "kind": "production",
+   "title": "Fermion sign problem",
+   "claim": "Quantum Monte Carlo for fermions suffers exponential cancellation. Troyer and Wiese showed a general fix is NP-hard.",
+   "branch": "physics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1990,
+   "resolved": null,
+   "markets": [
+    "quantum computing"
+   ],
+   "tokens": [
+    "quantum Monte Carlo",
+    "NP-hardness",
+    "fermions",
+    "sampling"
+   ],
+   "solvability": 0.045,
+   "theta": 3.3433,
+   "community": 0,
+   "betweenness": 0.00789,
+   "pagerank": 0.00411,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Fermion+sign+problem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "glass",
+   "kind": "production",
+   "title": "Glass transition",
+   "claim": "Explain why liquids cooled past freezing stiffen into amorphous solids without a clear thermodynamic transition.",
+   "branch": "chemistry",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1920,
+   "resolved": null,
+   "markets": [
+    "materials"
+   ],
+   "tokens": [
+    "jamming",
+    "dynamical arrest",
+    "Kauzmann paradox",
+    "viscosity",
+    "amorphous solid"
+   ],
+   "solvability": 0.045,
+   "theta": 4.1504,
+   "community": 0,
+   "betweenness": 0.09452,
+   "pagerank": 0.00557,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Glass+transition"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "water",
+   "kind": "production",
+   "title": "Anomalous properties of water",
+   "claim": "Explain water's density maximum, heat capacity and interface structure from its hydrogen bond network.",
+   "branch": "chemistry",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1892,
+   "resolved": null,
+   "markets": [
+    "biotech",
+    "energy"
+   ],
+   "tokens": [
+    "hydrogen bond network",
+    "exclusion zone",
+    "liquid-liquid transition",
+    "density maximum"
+   ],
+   "solvability": 0.045,
+   "theta": 4.0927,
+   "community": 0,
+   "betweenness": 0.00401,
+   "pagerank": 0.0041,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Anomalous+properties+of+water"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "catalysis",
+   "kind": "production",
+   "title": "Rational catalyst design",
+   "claim": "Predict the best catalyst for a reaction from first principles, past the limits of linear scaling relations.",
+   "branch": "chemistry",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1835,
+   "resolved": null,
+   "markets": [
+    "energy",
+    "materials"
+   ],
+   "tokens": [
+    "transition state",
+    "Sabatier principle",
+    "scaling relations",
+    "DFT"
+   ],
+   "solvability": 0.045,
+   "theta": 3.7757,
+   "community": 0,
+   "betweenness": 0.00244,
+   "pagerank": 0.00412,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Rational+catalyst+design"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "dftfunc",
+   "kind": "production",
+   "title": "Exact exchange-correlation functional",
+   "claim": "Find the exact exchange-correlation functional that makes Kohn-Sham DFT exact. It exists by the Hohenberg-Kohn theorem.",
+   "branch": "chemistry",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1965,
+   "resolved": null,
+   "markets": [
+    "materials",
+    "pharma"
+   ],
+   "tokens": [
+    "density functional theory",
+    "Kohn-Sham",
+    "exchange-correlation",
+    "electron density"
+   ],
+   "solvability": 0.045,
+   "theta": 4.0639,
+   "community": 0,
+   "betweenness": 0.0037,
+   "pagerank": 0.00432,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Exact+exchange-correlation+functional"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "abiogenesis",
+   "kind": "production",
+   "title": "Origin of life",
+   "claim": "Derive a chemical path from prebiotic molecules to self-replicating, evolving cells.",
+   "branch": "biophysics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1924,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "RNA world",
+    "prebiotic chemistry",
+    "autocatalysis",
+    "chirality",
+    "protocell"
+   ],
+   "solvability": 0.045,
+   "theta": 4.2368,
+   "community": 7,
+   "betweenness": 0.0025,
+   "pagerank": 0.00423,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Origin+of+life"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "mitoredox",
+   "kind": "production",
+   "title": "Mitochondrial redox and aging mechanism",
+   "claim": "Explain how electron transport, redox state and membrane potential in mitochondria set the rate of aging.",
+   "branch": "biophysics",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1956,
+   "resolved": null,
+   "markets": [
+    "longevity",
+    "pharma"
+   ],
+   "tokens": [
+    "electron transport",
+    "reactive oxygen species",
+    "NAD",
+    "membrane potential",
+    "redox"
+   ],
+   "solvability": 0.045,
+   "theta": 4.4674,
+   "community": 7,
+   "betweenness": 0.00021,
+   "pagerank": 0.00389,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Mitochondrial+redox+and+aging+mechanism"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "circadian",
+   "kind": "production",
+   "title": "Light, circadian biology and metabolism",
+   "claim": "Quantify how light timing and spectrum drive clock genes, melatonin and metabolism.",
+   "branch": "biophysics",
+   "level": 3,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1960,
+   "resolved": null,
+   "markets": [
+    "longevity",
+    "consumer health"
+   ],
+   "tokens": [
+    "melatonin",
+    "retina",
+    "clock genes",
+    "photobiology",
+    "metabolic rate"
+   ],
+   "solvability": 0.045,
+   "theta": 4.4962,
+   "community": 7,
+   "betweenness": 0.0001,
+   "pagerank": 0.00394,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Light,+circadian+biology+and+metabolism"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "bioelectric",
+   "kind": "production",
+   "title": "Bioelectric pattern control",
+   "claim": "Explain how membrane voltage patterns store and control anatomical form during development and regeneration.",
+   "branch": "biophysics",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1938,
+   "resolved": null,
+   "markets": [
+    "biotech",
+    "longevity"
+   ],
+   "tokens": [
+    "membrane voltage",
+    "morphogenesis",
+    "gap junctions",
+    "regeneration",
+    "ion channels"
+   ],
+   "solvability": 0.045,
+   "theta": 4.2656,
+   "community": 7,
+   "betweenness": 0.00712,
+   "pagerank": 0.00382,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Bioelectric+pattern+control"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "aging",
+   "kind": "production",
+   "title": "Programmed versus stochastic aging",
+   "claim": "Decide whether aging is a program, accumulated damage or an entropy process, and which clock measures it.",
+   "branch": "biophysics",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1952,
+   "resolved": null,
+   "markets": [
+    "longevity",
+    "pharma"
+   ],
+   "tokens": [
+    "senescence",
+    "epigenetic clock",
+    "entropy",
+    "telomere",
+    "damage accumulation"
+   ],
+   "solvability": 0.045,
+   "theta": 4.3809,
+   "community": 7,
+   "betweenness": 0.00084,
+   "pagerank": 0.00387,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Programmed+versus+stochastic+aging"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "consciousness",
+   "kind": "production",
+   "title": "Hard problem of consciousness",
+   "claim": "Explain why physical processes give rise to subjective experience.",
+   "branch": "mind",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1995,
+   "resolved": null,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "qualia",
+    "integrated information",
+    "global workspace",
+    "neural correlates"
+   ],
+   "solvability": 0.045,
+   "theta": 4.1215,
+   "community": 0,
+   "betweenness": 0.00094,
+   "pagerank": 0.00343,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Hard+problem+of+consciousness"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "bindingprob",
+   "kind": "production",
+   "title": "Neural binding problem",
+   "claim": "Explain how the brain combines features processed in separate areas into one percept.",
+   "branch": "mind",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1981,
+   "resolved": null,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "synchrony",
+    "gamma oscillation",
+    "feature integration",
+    "attention"
+   ],
+   "solvability": 0.045,
+   "theta": 4.3521,
+   "community": 0,
+   "betweenness": 0.00017,
+   "pagerank": 0.00326,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Neural+binding+problem"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "freeenergy",
+   "kind": "production",
+   "title": "Free energy principle formalization",
+   "claim": "Friston's claim that self-organizing systems minimize variational free energy. Formal status and falsifiability are debated.",
+   "branch": "mind",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 2006,
+   "resolved": null,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "variational inference",
+    "Markov blanket",
+    "active inference",
+    "predictive coding"
+   ],
+   "solvability": 0.27,
+   "theta": 4.2945,
+   "community": 0,
+   "betweenness": 0.04758,
+   "pagerank": 0.0077,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Free+energy+principle+formalization"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "alignment",
+   "kind": "production",
+   "title": "AI alignment verification",
+   "claim": "Verify that a learned system pursues the objectives its designers intend, with guarantees.",
+   "branch": "information",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 2014,
+   "resolved": null,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "reward specification",
+    "interpretability",
+    "formal verification",
+    "corrigibility"
+   ],
+   "solvability": 0.045,
+   "theta": 4.0351,
+   "community": 0,
+   "betweenness": 0.00035,
+   "pagerank": 0.00372,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=AI+alignment+verification"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "llmreason",
+   "kind": "production",
+   "title": "Formal reasoning limits of transformers",
+   "claim": "Bound what fixed-depth transformers compute, with and without chain of thought, in circuit complexity terms.",
+   "branch": "information",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 2017,
+   "resolved": null,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "circuit complexity",
+    "expressivity",
+    "chain of thought",
+    "attention"
+   ],
+   "solvability": 0.27,
+   "theta": 3.8333,
+   "community": 0,
+   "betweenness": 0.00059,
+   "pagerank": 0.00479,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Formal+reasoning+limits+of+transformers"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "autoform",
+   "kind": "production",
+   "title": "Autoformalization of mathematics",
+   "claim": "Translate informal mathematics into Lean or other formal languages automatically and at scale.",
+   "branch": "information",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 2018,
+   "resolved": null,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "Lean",
+    "Mathlib",
+    "theorem proving",
+    "proof search",
+    "formal verification"
+   ],
+   "solvability": 0.27,
+   "theta": 3.1992,
+   "community": 0,
+   "betweenness": 0.00188,
+   "pagerank": 0.00333,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Autoformalization+of+mathematics"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "smale18",
+   "kind": "production",
+   "title": "Smale's 18th problem limits of intelligence",
+   "claim": "Smale's 18th problem asks for the limits of intelligence, human and artificial.",
+   "branch": "mind",
+   "level": 5,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1998,
+   "resolved": null,
+   "markets": [
+    "ai"
+   ],
+   "tokens": [
+    "intelligence limits",
+    "computation",
+    "learning theory"
+   ],
+   "solvability": 0.045,
+   "theta": 3.9774,
+   "community": 0,
+   "betweenness": 0.00044,
+   "pagerank": 0.00381,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Smale's+18th+problem+limits+of+intelligence"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "optimalstop",
+   "kind": "production",
+   "title": "Market efficiency as computational hardness",
+   "claim": "Maymin argued weak-form market efficiency holds if and only if P = NP. The link between hardness and arbitrage stays open.",
+   "branch": "information",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 2010,
+   "resolved": null,
+   "markets": [
+    "finance"
+   ],
+   "tokens": [
+    "efficient market hypothesis",
+    "P vs NP",
+    "arbitrage",
+    "pricing"
+   ],
+   "solvability": 0.27,
+   "theta": 4.525,
+   "community": 0,
+   "betweenness": 0.00161,
+   "pagerank": 0.00391,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Market+efficiency+as+computational+hardness"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "nash",
+   "kind": "production",
+   "title": "Complexity of computing Nash equilibria",
+   "claim": "Computing a Nash equilibrium is PPAD-complete. Daskalakis, Goldberg and Papadimitriou proved it in 2006.",
+   "branch": "information",
+   "level": 4,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1951,
+   "resolved": 2006,
+   "markets": [
+    "finance",
+    "optimization"
+   ],
+   "tokens": [
+    "PPAD-complete",
+    "game theory",
+    "fixed point",
+    "equilibrium"
+   ],
+   "solvability": 1.0,
+   "theta": 3.7469,
+   "community": 0,
+   "betweenness": 0.00398,
+   "pagerank": 0.00436,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Complexity+of+computing+Nash+equilibria"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "mechdesign",
+   "kind": "production",
+   "title": "Optimal multi-item auction design",
+   "claim": "Myerson solved single-item revenue-optimal auctions in 1981. The multi-item case has no closed form.",
+   "branch": "information",
+   "level": 4,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1981,
+   "resolved": null,
+   "markets": [
+    "finance",
+    "advertising"
+   ],
+   "tokens": [
+    "mechanism design",
+    "revenue maximization",
+    "incentive compatibility"
+   ],
+   "solvability": 0.27,
+   "theta": 4.3233,
+   "community": 0,
+   "betweenness": 0.00038,
+   "pagerank": 0.00321,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Optimal+multi-item+auction+design"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "blackscholes",
+   "kind": "production",
+   "title": "Rough volatility pricing",
+   "claim": "Volatility is rough, with Hurst exponent near 0.1. Pricing and hedging under rough volatility lacks closed forms.",
+   "branch": "mathematics",
+   "level": 3,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 2014,
+   "resolved": null,
+   "markets": [
+    "finance"
+   ],
+   "tokens": [
+    "stochastic volatility",
+    "fractional Brownian motion",
+    "option pricing"
+   ],
+   "solvability": 0.27,
+   "theta": 4.5539,
+   "community": 0,
+   "betweenness": 0.01661,
+   "pagerank": 0.0032,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Rough+volatility+pricing"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "ecc",
+   "kind": "production",
+   "title": "Elliptic curve discrete log hardness",
+   "claim": "Asks whether the elliptic curve discrete log problem has a subexponential classical algorithm. Bitcoin and TLS rely on it.",
+   "branch": "information",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1985,
+   "resolved": null,
+   "markets": [
+    "cryptography",
+    "finance"
+   ],
+   "tokens": [
+    "discrete logarithm",
+    "elliptic curve",
+    "pairing",
+    "blockchain"
+   ],
+   "solvability": 0.045,
+   "theta": 3.1704,
+   "community": 0,
+   "betweenness": 0.00214,
+   "pagerank": 0.00419,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Elliptic+curve+discrete+log+hardness"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "zkp",
+   "kind": "production",
+   "title": "Succinct proofs without trusted setup optimality",
+   "claim": "Asks for the optimal proof size and verifier time for transparent succinct arguments.",
+   "branch": "information",
+   "level": 3,
+   "formal": "partial",
+   "mint_state": "pending",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1985,
+   "resolved": null,
+   "markets": [
+    "cryptography",
+    "finance"
+   ],
+   "tokens": [
+    "zero knowledge",
+    "SNARK",
+    "polynomial commitment",
+    "interactive proof"
+   ],
+   "solvability": 0.27,
+   "theta": 3.5739,
+   "community": 0,
+   "betweenness": 0.00271,
+   "pagerank": 0.00617,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Succinct+proofs+without+trusted+setup+optimality"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "climate",
+   "kind": "production",
+   "title": "Climate sensitivity bound",
+   "claim": "Narrow equilibrium climate sensitivity, now 2.5 to 4 degrees per CO2 doubling, mostly through cloud feedback.",
+   "branch": "physics",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1896,
+   "resolved": null,
+   "markets": [
+    "climate",
+    "energy"
+   ],
+   "tokens": [
+    "radiative forcing",
+    "feedback",
+    "cloud",
+    "equilibrium climate sensitivity"
+   ],
+   "solvability": 0.045,
+   "theta": 4.4098,
+   "community": 0,
+   "betweenness": 0.03901,
+   "pagerank": 0.00388,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Climate+sensitivity+bound"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "fusion",
+   "kind": "production",
+   "title": "Plasma confinement stability",
+   "claim": "Predict and suppress plasma instabilities in magnetic confinement well enough for net energy gain.",
+   "branch": "physics",
+   "level": 4,
+   "formal": "none",
+   "mint_state": "unminted",
+   "mint_basis": "formal proof status",
+   "formal_source": null,
+   "posed": 1950,
+   "resolved": null,
+   "markets": [
+    "energy"
+   ],
+   "tokens": [
+    "tokamak",
+    "magnetohydrodynamics",
+    "instability",
+    "stellarator"
+   ],
+   "solvability": 0.045,
+   "theta": 4.1792,
+   "community": 0,
+   "betweenness": 0.36832,
+   "pagerank": 0.00338,
+   "sources": [
+    {
+     "label": "Wikipedia",
+     "url": "https://en.wikipedia.org/wiki/Special:Search?search=Plasma+confinement+stability"
+    }
+   ],
+   "source_kind": "problem"
+  },
+  {
+   "id": "lean:Bucket.Address.encode_injective",
+   "kind": "production",
+   "title": "Bucket.Address.encode_injective",
+   "claim": "BucketMath theorem in module Address, stated in Lean with the proof open.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "statement",
+   "mint_state": "draft",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": null,
+   "markets": [],
+   "tokens": [
+    "encode injective",
+    "Address"
+   ],
+   "solvability": 0.1575,
+   "theta": 1.1529,
+   "community": 1,
+   "betweenness": 0.01666,
+   "pagerank": 0.00335,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Atom.neutral",
+   "kind": "production",
+   "title": "BucketMath.Atom.neutral",
+   "claim": "BucketMath theorem in module Atom, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "neutral",
+    "Atom"
+   ],
+   "solvability": 1.0,
+   "theta": 0.3459,
+   "community": 1,
+   "betweenness": 0.11753,
+   "pagerank": 0.00354,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Atom.nucleons",
+   "kind": "production",
+   "title": "BucketMath.Atom.nucleons",
+   "claim": "BucketMath theorem in module Atom, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "nucleons",
+    "Atom"
+   ],
+   "solvability": 1.0,
+   "theta": 1.787,
+   "community": 1,
+   "betweenness": 0.04976,
+   "pagerank": 0.00414,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Atom.total",
+   "kind": "production",
+   "title": "BucketMath.Atom.total",
+   "claim": "BucketMath theorem in module Atom, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "total",
+    "Atom"
+   ],
+   "solvability": 1.0,
+   "theta": 1.0376,
+   "community": 1,
+   "betweenness": 0.03064,
+   "pagerank": 0.00365,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Directions.modularity_single_cluster",
+   "kind": "production",
+   "title": "BucketMath.Directions.modularity_single_cluster",
+   "claim": "BucketMath theorem in module Directions, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "modularity single cluster",
+    "Directions"
+   ],
+   "solvability": 1.0,
+   "theta": 2.104,
+   "community": 1,
+   "betweenness": 0.01838,
+   "pagerank": 0.00342,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Directions.pagerank_step_mass",
+   "kind": "production",
+   "title": "BucketMath.Directions.pagerank_step_mass",
+   "claim": "BucketMath theorem in module Directions, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "pagerank step mass",
+    "Directions"
+   ],
+   "solvability": 1.0,
+   "theta": 6.1103,
+   "community": 5,
+   "betweenness": 0.01841,
+   "pagerank": 0.00394,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Directions.pythagoras_unit",
+   "kind": "production",
+   "title": "BucketMath.Directions.pythagoras_unit",
+   "claim": "BucketMath theorem in module Directions, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "pythagoras unit",
+    "Directions"
+   ],
+   "solvability": 1.0,
+   "theta": 2.0752,
+   "community": 1,
+   "betweenness": 0.02958,
+   "pagerank": 0.00358,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Discovery.expected_append",
+   "kind": "production",
+   "title": "BucketMath.Discovery.expected_append",
+   "claim": "BucketMath theorem in module Discovery, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "expected append",
+    "Discovery"
+   ],
+   "solvability": 1.0,
+   "theta": 0.0865,
+   "community": 1,
+   "betweenness": 0.06279,
+   "pagerank": 0.00378,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Discovery.expected_mono",
+   "kind": "production",
+   "title": "BucketMath.Discovery.expected_mono",
+   "claim": "BucketMath theorem in module Discovery, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "expected mono",
+    "Discovery"
+   ],
+   "solvability": 1.0,
+   "theta": 5.6203,
+   "community": 4,
+   "betweenness": 0.39792,
+   "pagerank": 0.00428,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Discovery.expected_nil",
+   "kind": "production",
+   "title": "BucketMath.Discovery.expected_nil",
+   "claim": "BucketMath theorem in module Discovery, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "expected nil",
+    "Discovery"
+   ],
+   "solvability": 1.0,
+   "theta": 6.0526,
+   "community": 3,
+   "betweenness": 0.13934,
+   "pagerank": 0.00393,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Discovery.expected_nonneg",
+   "kind": "production",
+   "title": "BucketMath.Discovery.expected_nonneg",
+   "claim": "BucketMath theorem in module Discovery, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "expected nonneg",
+    "Discovery"
+   ],
+   "solvability": 1.0,
+   "theta": 5.7932,
+   "community": 4,
+   "betweenness": 0.08268,
+   "pagerank": 0.00382,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.clampD_bounds",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.clampD_bounds",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "clampD bounds",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 1.8158,
+   "community": 4,
+   "betweenness": 0.06638,
+   "pagerank": 0.00588,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.clampS_bounds",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.clampS_bounds",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "clampS bounds",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 2.3634,
+   "community": 4,
+   "betweenness": 0.00069,
+   "pagerank": 0.00488,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.clamp_bounds",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.clamp_bounds",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "clamp bounds",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 2.0175,
+   "community": 4,
+   "betweenness": 0.06638,
+   "pagerank": 0.00588,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.clamp_idem",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.clamp_idem",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "clamp idem",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 0.7782,
+   "community": 4,
+   "betweenness": 0.00014,
+   "pagerank": 0.00518,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.clamp_mono",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.clamp_mono",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "clamp mono",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 0.4035,
+   "community": 4,
+   "betweenness": 0.2107,
+   "pagerank": 0.00567,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.clamp_of_mem",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.clamp_of_mem",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "clamp of mem",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 1.3258,
+   "community": 4,
+   "betweenness": 0.03234,
+   "pagerank": 0.00515,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.floorAt_ge",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.floorAt_ge",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "floorAt ge",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 0.9799,
+   "community": 4,
+   "betweenness": 0.06256,
+   "pagerank": 0.00414,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.floorAt_of_ge",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.floorAt_of_ge",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "floorAt of ge",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 0.9223,
+   "community": 4,
+   "betweenness": 0.06253,
+   "pagerank": 0.00357,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.interval_bounds",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.interval_bounds",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "interval bounds",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 1.6717,
+   "community": 4,
+   "betweenness": 0.03422,
+   "pagerank": 0.00432,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.interval_mono",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.interval_mono",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "interval mono",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 0.2882,
+   "community": 4,
+   "betweenness": 0.17568,
+   "pagerank": 0.00509,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.review_bounds",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.review_bounds",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "review bounds",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 6.1679,
+   "community": 4,
+   "betweenness": 9e-05,
+   "pagerank": 0.00377,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.review_inputs_positive",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.review_inputs_positive",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "review inputs positive",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 5.5626,
+   "community": 4,
+   "betweenness": 0.0329,
+   "pagerank": 0.00351,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.schedule_bounds",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.schedule_bounds",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "schedule bounds",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 1.1817,
+   "community": 4,
+   "betweenness": 0.0006,
+   "pagerank": 0.00377,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Fsrs.stabilityFloor_hundredth",
+   "kind": "production",
+   "title": "BucketMath.Fsrs.stabilityFloor_hundredth",
+   "claim": "BucketMath theorem in module Fsrs, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "stabilityFloor hundredth",
+    "Fsrs"
+   ],
+   "solvability": 1.0,
+   "theta": 0.5476,
+   "community": 4,
+   "betweenness": 0.36974,
+   "pagerank": 0.00447,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.boundary_examples",
+   "kind": "production",
+   "title": "BucketMath.Grade.boundary_examples",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "boundary examples",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.1441,
+   "community": 8,
+   "betweenness": 0.00066,
+   "pagerank": 0.00368,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.close_correct",
+   "kind": "production",
+   "title": "BucketMath.Grade.close_correct",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "close correct",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.0,
+   "community": 8,
+   "betweenness": 0.00928,
+   "pagerank": 0.00386,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.correct_accepted_with_epsilon",
+   "kind": "production",
+   "title": "BucketMath.Grade.correct_accepted_with_epsilon",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "correct accepted with epsilon",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.2306,
+   "community": 8,
+   "betweenness": 0.00121,
+   "pagerank": 0.00379,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.correct_strict",
+   "kind": "production",
+   "title": "BucketMath.Grade.correct_strict",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "correct strict",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.2018,
+   "community": 8,
+   "betweenness": 0.00188,
+   "pagerank": 0.00385,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.no_exact_boundary",
+   "kind": "production",
+   "title": "BucketMath.Grade.no_exact_boundary",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "no exact boundary",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 1.297,
+   "community": 8,
+   "betweenness": 0.01894,
+   "pagerank": 0.00476,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.within_of_closer",
+   "kind": "production",
+   "title": "BucketMath.Grade.within_of_closer",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "within of closer",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.7205,
+   "community": 8,
+   "betweenness": 0.00332,
+   "pagerank": 0.00553,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.within_refine",
+   "kind": "production",
+   "title": "BucketMath.Grade.within_refine",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "within refine",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.2594,
+   "community": 8,
+   "betweenness": 0.00801,
+   "pagerank": 0.00605,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.within_scale",
+   "kind": "production",
+   "title": "BucketMath.Grade.within_scale",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "within scale",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.317,
+   "community": 8,
+   "betweenness": 0.00054,
+   "pagerank": 0.00401,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.within_self",
+   "kind": "production",
+   "title": "BucketMath.Grade.within_self",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "within self",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.5764,
+   "community": 8,
+   "betweenness": 0.0042,
+   "pagerank": 0.005,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.within_symm",
+   "kind": "production",
+   "title": "BucketMath.Grade.within_symm",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "within symm",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.6053,
+   "community": 8,
+   "betweenness": 0.0047,
+   "pagerank": 0.00551,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Grade.within_tolerance_mono",
+   "kind": "production",
+   "title": "BucketMath.Grade.within_tolerance_mono",
+   "claim": "BucketMath theorem in module Grade, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "within tolerance mono",
+    "Grade"
+   ],
+   "solvability": 1.0,
+   "theta": 0.1729,
+   "community": 8,
+   "betweenness": 0.03711,
+   "pagerank": 0.00491,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Graph.acyclic_of_rank",
+   "kind": "production",
+   "title": "BucketMath.Graph.acyclic_of_rank",
+   "claim": "BucketMath theorem in module Graph, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "acyclic of rank",
+    "Graph"
+   ],
+   "solvability": 1.0,
+   "theta": 1.9599,
+   "community": 5,
+   "betweenness": 0.00111,
+   "pagerank": 0.00359,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Graph.prereq_rank_lt",
+   "kind": "production",
+   "title": "BucketMath.Graph.prereq_rank_lt",
+   "claim": "BucketMath theorem in module Graph, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "prereq rank lt",
+    "Graph"
+   ],
+   "solvability": 1.0,
+   "theta": 6.0814,
+   "community": 5,
+   "betweenness": 0.00679,
+   "pagerank": 0.00532,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Graph.prereq_trans",
+   "kind": "production",
+   "title": "BucketMath.Graph.prereq_trans",
+   "claim": "BucketMath theorem in module Graph, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "prereq trans",
+    "Graph"
+   ],
+   "solvability": 1.0,
+   "theta": 0.0576,
+   "community": 5,
+   "betweenness": 0.02336,
+   "pagerank": 0.00356,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Graph.reach_rank_lt",
+   "kind": "production",
+   "title": "BucketMath.Graph.reach_rank_lt",
+   "claim": "BucketMath theorem in module Graph, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "reach rank lt",
+    "Graph"
+   ],
+   "solvability": 1.0,
+   "theta": 6.2255,
+   "community": 5,
+   "betweenness": 0.00348,
+   "pagerank": 0.00471,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Graph.required_rank_le",
+   "kind": "production",
+   "title": "BucketMath.Graph.required_rank_le",
+   "claim": "BucketMath theorem in module Graph, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "required rank le",
+    "Graph"
+   ],
+   "solvability": 1.0,
+   "theta": 0.1153,
+   "community": 5,
+   "betweenness": 0.06605,
+   "pagerank": 0.00425,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Graph.required_rank_lt",
+   "kind": "production",
+   "title": "BucketMath.Graph.required_rank_lt",
+   "claim": "BucketMath theorem in module Graph, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "required rank lt",
+    "Graph"
+   ],
+   "solvability": 1.0,
+   "theta": 6.1967,
+   "community": 5,
+   "betweenness": 0.0027,
+   "pagerank": 0.00428,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.basis_orth",
+   "kind": "production",
+   "title": "BucketMath.Helix.basis_orth",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "basis orth",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 1.6429,
+   "community": 6,
+   "betweenness": 0.00017,
+   "pagerank": 0.00362,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.basis_unit",
+   "kind": "production",
+   "title": "BucketMath.Helix.basis_unit",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "basis unit",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 0.6341,
+   "community": 6,
+   "betweenness": 0.01195,
+   "pagerank": 0.00406,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.dot_basis",
+   "kind": "production",
+   "title": "BucketMath.Helix.dot_basis",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot basis",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 1.1241,
+   "community": 6,
+   "betweenness": 0.00629,
+   "pagerank": 0.00567,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.dot_zeros",
+   "kind": "production",
+   "title": "BucketMath.Helix.dot_zeros",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot zeros",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 2.421,
+   "community": 6,
+   "betweenness": 0.03821,
+   "pagerank": 0.00756,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.length_lerp",
+   "kind": "production",
+   "title": "BucketMath.Helix.length_lerp",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "length lerp",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 2.3922,
+   "community": 6,
+   "betweenness": 0.00362,
+   "pagerank": 0.00414,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.lerp_nonneg",
+   "kind": "production",
+   "title": "BucketMath.Helix.lerp_nonneg",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "lerp nonneg",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 1.3546,
+   "community": 6,
+   "betweenness": 0.01906,
+   "pagerank": 0.0047,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.lerp_one",
+   "kind": "production",
+   "title": "BucketMath.Helix.lerp_one",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "lerp one",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 0.6917,
+   "community": 6,
+   "betweenness": 0.00106,
+   "pagerank": 0.00521,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.lerp_simplex",
+   "kind": "production",
+   "title": "BucketMath.Helix.lerp_simplex",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "lerp simplex",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 0.8935,
+   "community": 6,
+   "betweenness": 0.00075,
+   "pagerank": 0.00419,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.lerp_sum",
+   "kind": "production",
+   "title": "BucketMath.Helix.lerp_sum",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "lerp sum",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 1.7293,
+   "community": 6,
+   "betweenness": 0.00927,
+   "pagerank": 0.0072,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.lerp_zero",
+   "kind": "production",
+   "title": "BucketMath.Helix.lerp_zero",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "lerp zero",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 2.3058,
+   "community": 6,
+   "betweenness": 0.01783,
+   "pagerank": 0.00621,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.phase_period",
+   "kind": "production",
+   "title": "BucketMath.Helix.phase_period",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "phase period",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 1.4987,
+   "community": 6,
+   "betweenness": 0.01846,
+   "pagerank": 0.00464,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.phase_shift",
+   "kind": "production",
+   "title": "BucketMath.Helix.phase_shift",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "phase shift",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 0.8647,
+   "community": 6,
+   "betweenness": 9e-05,
+   "pagerank": 0.00357,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Helix.phase_spacing",
+   "kind": "production",
+   "title": "BucketMath.Helix.phase_spacing",
+   "claim": "BucketMath theorem in module Helix, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "phase spacing",
+    "Helix"
+   ],
+   "solvability": 1.0,
+   "theta": 2.1616,
+   "community": 6,
+   "betweenness": 9e-05,
+   "pagerank": 0.00353,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.after_closed",
+   "kind": "production",
+   "title": "BucketMath.Learning.after_closed",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "after closed",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.505,
+   "community": 3,
+   "betweenness": 0.00654,
+   "pagerank": 0.00389,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.coverage_monotone",
+   "kind": "production",
+   "title": "BucketMath.Learning.coverage_monotone",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "coverage monotone",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 4.698,
+   "community": 3,
+   "betweenness": 0.0001,
+   "pagerank": 0.00389,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.diamond_chain_insufficient",
+   "kind": "production",
+   "title": "BucketMath.Learning.diamond_chain_insufficient",
+   "claim": "BucketMath theorem in module Diamond, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "diamond chain insufficient",
+    "Diamond"
+   ],
+   "solvability": 1.0,
+   "theta": 0.4323,
+   "community": 3,
+   "betweenness": 0.02302,
+   "pagerank": 0.00401,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.diamond_enumerates",
+   "kind": "production",
+   "title": "BucketMath.Learning.diamond_enumerates",
+   "claim": "BucketMath theorem in module Diamond, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "diamond enumerates",
+    "Diamond"
+   ],
+   "solvability": 1.0,
+   "theta": 1.7581,
+   "community": 3,
+   "betweenness": 0.01506,
+   "pagerank": 0.00393,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.diamond_minimum",
+   "kind": "production",
+   "title": "BucketMath.Learning.diamond_minimum",
+   "claim": "BucketMath theorem in module Diamond, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "diamond minimum",
+    "Diamond"
+   ],
+   "solvability": 1.0,
+   "theta": 6.2544,
+   "community": 3,
+   "betweenness": 0.00438,
+   "pagerank": 0.0042,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.diamond_ready",
+   "kind": "production",
+   "title": "BucketMath.Learning.diamond_ready",
+   "claim": "BucketMath theorem in module Diamond, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "diamond ready",
+    "Diamond"
+   ],
+   "solvability": 1.0,
+   "theta": 5.4185,
+   "community": 3,
+   "betweenness": 0.0021,
+   "pagerank": 0.00404,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.diamond_required",
+   "kind": "production",
+   "title": "BucketMath.Learning.diamond_required",
+   "claim": "BucketMath theorem in module Diamond, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "diamond required",
+    "Diamond"
+   ],
+   "solvability": 1.0,
+   "theta": 0.0288,
+   "community": 3,
+   "betweenness": 0.0021,
+   "pagerank": 0.00418,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.distance_antitone",
+   "kind": "production",
+   "title": "BucketMath.Learning.distance_antitone",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "distance antitone",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.9085,
+   "community": 3,
+   "betweenness": 0.00078,
+   "pagerank": 0.00443,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.earlier_path",
+   "kind": "production",
+   "title": "BucketMath.Learning.earlier_path",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "earlier path",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.7644,
+   "community": 3,
+   "betweenness": 0.01361,
+   "pagerank": 0.00485,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.effort_subset",
+   "kind": "production",
+   "title": "BucketMath.Learning.effort_subset",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "effort subset",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.3321,
+   "community": 3,
+   "betweenness": 0.00599,
+   "pagerank": 0.00443,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.minimum_unit_distance",
+   "kind": "production",
+   "title": "BucketMath.Learning.minimum_unit_distance",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "minimum unit distance",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.6779,
+   "community": 3,
+   "betweenness": 0.00791,
+   "pagerank": 0.00498,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.minimum_weighted_effort",
+   "kind": "production",
+   "title": "BucketMath.Learning.minimum_weighted_effort",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "minimum weighted effort",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.2744,
+   "community": 3,
+   "betweenness": 0.00091,
+   "pagerank": 0.00396,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.remaining_antitone",
+   "kind": "production",
+   "title": "BucketMath.Learning.remaining_antitone",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "remaining antitone",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.6491,
+   "community": 3,
+   "betweenness": 0.00098,
+   "pagerank": 0.0045,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.remaining_necessary",
+   "kind": "production",
+   "title": "BucketMath.Learning.remaining_necessary",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "remaining necessary",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.5338,
+   "community": 3,
+   "betweenness": 0.00517,
+   "pagerank": 0.00613,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.required_known",
+   "kind": "production",
+   "title": "BucketMath.Learning.required_known",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "required known",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.5915,
+   "community": 3,
+   "betweenness": 0.11661,
+   "pagerank": 0.00548,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.restricted_closed",
+   "kind": "production",
+   "title": "BucketMath.Learning.restricted_closed",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "restricted closed",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.3609,
+   "community": 3,
+   "betweenness": 0.0061,
+   "pagerank": 0.00499,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.restricted_remaining",
+   "kind": "production",
+   "title": "BucketMath.Learning.restricted_remaining",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "restricted remaining",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.4473,
+   "community": 3,
+   "betweenness": 0.01609,
+   "pagerank": 0.00614,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Learning.squared_extent_monotone",
+   "kind": "production",
+   "title": "BucketMath.Learning.squared_extent_monotone",
+   "claim": "BucketMath theorem in module Learning, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "squared extent monotone",
+    "Learning"
+   ],
+   "solvability": 1.0,
+   "theta": 5.3897,
+   "community": 3,
+   "betweenness": 6e-05,
+   "pagerank": 0.00388,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.cpa_mul",
+   "kind": "production",
+   "title": "BucketMath.Marketing.cpa_mul",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "cpa mul",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 4.9574,
+   "community": 2,
+   "betweenness": 0.00015,
+   "pagerank": 0.00511,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.credit_conserves",
+   "kind": "production",
+   "title": "BucketMath.Marketing.credit_conserves",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "credit conserves",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 4.7268,
+   "community": 2,
+   "betweenness": 0.00011,
+   "pagerank": 0.00366,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.ctr_le_one",
+   "kind": "production",
+   "title": "BucketMath.Marketing.ctr_le_one",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "ctr le one",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 5.0727,
+   "community": 2,
+   "betweenness": 0.00095,
+   "pagerank": 0.00671,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.last_touch_conserves",
+   "kind": "production",
+   "title": "BucketMath.Marketing.last_touch_conserves",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "last touch conserves",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 4.6403,
+   "community": 2,
+   "betweenness": 5e-05,
+   "pagerank": 0.00363,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.last_touch_path_one",
+   "kind": "production",
+   "title": "BucketMath.Marketing.last_touch_path_one",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "last touch path one",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 4.8997,
+   "community": 2,
+   "betweenness": 2e-05,
+   "pagerank": 0.00356,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.linear_conserves",
+   "kind": "production",
+   "title": "BucketMath.Marketing.linear_conserves",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "linear conserves",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 4.7844,
+   "community": 2,
+   "betweenness": 0.00017,
+   "pagerank": 0.00371,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.linear_path_one",
+   "kind": "production",
+   "title": "BucketMath.Marketing.linear_path_one",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "linear path one",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 4.9286,
+   "community": 2,
+   "betweenness": 0.00038,
+   "pagerank": 0.00468,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.mix_sum_one",
+   "kind": "production",
+   "title": "BucketMath.Marketing.mix_sum_one",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "mix sum one",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 5.015,
+   "community": 2,
+   "betweenness": 0.00126,
+   "pagerank": 0.00669,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.ratio_le_one",
+   "kind": "production",
+   "title": "BucketMath.Marketing.ratio_le_one",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "ratio le one",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 5.188,
+   "community": 2,
+   "betweenness": 0.0005,
+   "pagerank": 0.00571,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.ratio_mul",
+   "kind": "production",
+   "title": "BucketMath.Marketing.ratio_mul",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "ratio mul",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 5.1591,
+   "community": 2,
+   "betweenness": 6e-05,
+   "pagerank": 0.00416,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.retention_le_one",
+   "kind": "production",
+   "title": "BucketMath.Marketing.retention_le_one",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "retention le one",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 4.8133,
+   "community": 2,
+   "betweenness": 0.00013,
+   "pagerank": 0.0051,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.roas_ge_one_iff",
+   "kind": "production",
+   "title": "BucketMath.Marketing.roas_ge_one_iff",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "roas ge one iff",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 4.8709,
+   "community": 2,
+   "betweenness": 0.00207,
+   "pagerank": 0.00482,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.sum_map_div",
+   "kind": "production",
+   "title": "BucketMath.Marketing.sum_map_div",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "sum map div",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 5.3032,
+   "community": 2,
+   "betweenness": 0.0,
+   "pagerank": 0.00362,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Marketing.sum_replicate",
+   "kind": "production",
+   "title": "BucketMath.Marketing.sum_replicate",
+   "claim": "BucketMath theorem in module Marketing, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "sum replicate",
+    "Marketing"
+   ],
+   "solvability": 1.0,
+   "theta": 5.0438,
+   "community": 2,
+   "betweenness": 0.00249,
+   "pagerank": 0.00682,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.classify_above_iff",
+   "kind": "production",
+   "title": "BucketMath.Markets.classify_above_iff",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "classify above iff",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 5.2168,
+   "community": 2,
+   "betweenness": 0.00015,
+   "pagerank": 0.004,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.classify_efficient_iff",
+   "kind": "production",
+   "title": "BucketMath.Markets.classify_efficient_iff",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "classify efficient iff",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 4.6692,
+   "community": 2,
+   "betweenness": 0.00022,
+   "pagerank": 0.00468,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.compete_bound",
+   "kind": "production",
+   "title": "BucketMath.Markets.compete_bound",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "compete bound",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 4.8421,
+   "community": 2,
+   "betweenness": 0.00069,
+   "pagerank": 0.00444,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.compete_reaches_efficiency",
+   "kind": "production",
+   "title": "BucketMath.Markets.compete_reaches_efficiency",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "compete reaches efficiency",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 4.5827,
+   "community": 2,
+   "betweenness": 0.00037,
+   "pagerank": 0.00394,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.efficient_spread_bounded",
+   "kind": "production",
+   "title": "BucketMath.Markets.efficient_spread_bounded",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "efficient spread bounded",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 4.7556,
+   "community": 2,
+   "betweenness": 0.00037,
+   "pagerank": 0.00403,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.eva_pos_iff",
+   "kind": "production",
+   "title": "BucketMath.Markets.eva_pos_iff",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "eva pos iff",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 5.1015,
+   "community": 2,
+   "betweenness": 0.00029,
+   "pagerank": 0.0047,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.eva_zero_iff",
+   "kind": "production",
+   "title": "BucketMath.Markets.eva_zero_iff",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "eva zero iff",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 4.9862,
+   "community": 2,
+   "betweenness": 0.00018,
+   "pagerank": 0.00416,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.excess_zero_iff",
+   "kind": "production",
+   "title": "BucketMath.Markets.excess_zero_iff",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "excess zero iff",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 5.2456,
+   "community": 2,
+   "betweenness": 0.00018,
+   "pagerank": 0.0041,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.spread_entry",
+   "kind": "production",
+   "title": "BucketMath.Markets.spread_entry",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "spread entry",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 5.1303,
+   "community": 2,
+   "betweenness": 0.00029,
+   "pagerank": 0.00399,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Markets.zero_spread_is_efficient",
+   "kind": "production",
+   "title": "BucketMath.Markets.zero_spread_is_efficient",
+   "claim": "BucketMath theorem in module Markets, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "zero spread is efficient",
+    "Markets"
+   ],
+   "solvability": 1.0,
+   "theta": 4.6115,
+   "community": 2,
+   "betweenness": 0.00018,
+   "pagerank": 0.00407,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.coil_energy",
+   "kind": "production",
+   "title": "BucketMath.Profile.coil_energy",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "coil energy",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 5.4762,
+   "community": 1,
+   "betweenness": 0.018,
+   "pagerank": 0.00369,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.coil_length",
+   "kind": "production",
+   "title": "BucketMath.Profile.coil_length",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "coil length",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 0.9511,
+   "community": 1,
+   "betweenness": 0.00315,
+   "pagerank": 0.00359,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.quarter_four",
+   "kind": "production",
+   "title": "BucketMath.Profile.quarter_four",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "quarter four",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 1.2393,
+   "community": 10,
+   "betweenness": 0.0092,
+   "pagerank": 0.00444,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.quarter_norm",
+   "kind": "production",
+   "title": "BucketMath.Profile.quarter_norm",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "quarter norm",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 1.4699,
+   "community": 10,
+   "betweenness": 0.00733,
+   "pagerank": 0.00397,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.quarter_perpendicular",
+   "kind": "production",
+   "title": "BucketMath.Profile.quarter_perpendicular",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "quarter perpendicular",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 1.5852,
+   "community": 10,
+   "betweenness": 0.0019,
+   "pagerank": 0.00499,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.quarter_twice",
+   "kind": "production",
+   "title": "BucketMath.Profile.quarter_twice",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "quarter twice",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 1.2105,
+   "community": 10,
+   "betweenness": 0.00065,
+   "pagerank": 0.00453,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.rotate_energy",
+   "kind": "production",
+   "title": "BucketMath.Profile.rotate_energy",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "rotate energy",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 5.7067,
+   "community": 10,
+   "betweenness": 0.00117,
+   "pagerank": 0.00385,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.rotate_period",
+   "kind": "production",
+   "title": "BucketMath.Profile.rotate_period",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "rotate period",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 0.7494,
+   "community": 10,
+   "betweenness": 0.00289,
+   "pagerank": 0.00389,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.turns_norm",
+   "kind": "production",
+   "title": "BucketMath.Profile.turns_norm",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "turns norm",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 0.6629,
+   "community": 10,
+   "betweenness": 0.00065,
+   "pagerank": 0.00444,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Profile.turns_period",
+   "kind": "production",
+   "title": "BucketMath.Profile.turns_period",
+   "claim": "BucketMath theorem in module Profile, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "turns period",
+    "Profile"
+   ],
+   "solvability": 1.0,
+   "theta": 0.49,
+   "community": 10,
+   "betweenness": 0.00461,
+   "pagerank": 0.00497,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.dot_add_left",
+   "kind": "production",
+   "title": "BucketMath.Project.dot_add_left",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot add left",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 1.614,
+   "community": 1,
+   "betweenness": 0.00082,
+   "pagerank": 0.00411,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.dot_basis_project",
+   "kind": "production",
+   "title": "BucketMath.Project.dot_basis_project",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot basis project",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 0.8358,
+   "community": 1,
+   "betweenness": 0.0105,
+   "pagerank": 0.00559,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.dot_project_left",
+   "kind": "production",
+   "title": "BucketMath.Project.dot_project_left",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot project left",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 1.4411,
+   "community": 1,
+   "betweenness": 0.02077,
+   "pagerank": 0.00513,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.dot_zeros",
+   "kind": "production",
+   "title": "BucketMath.Project.dot_zeros",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot zeros",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 1.9887,
+   "community": 1,
+   "betweenness": 0.00453,
+   "pagerank": 0.0051,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.length_add",
+   "kind": "production",
+   "title": "BucketMath.Project.length_add",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "length add",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 1.7005,
+   "community": 1,
+   "betweenness": 0.02581,
+   "pagerank": 0.00559,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.length_project",
+   "kind": "production",
+   "title": "BucketMath.Project.length_project",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "length project",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 1.8446,
+   "community": 1,
+   "betweenness": 0.00289,
+   "pagerank": 0.00513,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.pythagoras_orthonormal",
+   "kind": "production",
+   "title": "BucketMath.Project.pythagoras_orthonormal",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "pythagoras orthonormal",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 2.5075,
+   "community": 1,
+   "betweenness": 0.01012,
+   "pagerank": 0.00403,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.sum_delta",
+   "kind": "production",
+   "title": "BucketMath.Project.sum_delta",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "sum delta",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 1.5276,
+   "community": 1,
+   "betweenness": 0.00505,
+   "pagerank": 0.00516,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Project.sum_delta_absent",
+   "kind": "production",
+   "title": "BucketMath.Project.sum_delta_absent",
+   "claim": "BucketMath theorem in module Project, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "sum delta absent",
+    "Project"
+   ],
+   "solvability": 1.0,
+   "theta": 1.8734,
+   "community": 1,
+   "betweenness": 0.01122,
+   "pagerank": 0.00455,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.before_asymm",
+   "kind": "production",
+   "title": "BucketMath.Ranking.before_asymm",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "before asymm",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 5.8797,
+   "community": 5,
+   "betweenness": 0.00086,
+   "pagerank": 0.00524,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.before_trans",
+   "kind": "production",
+   "title": "BucketMath.Ranking.before_trans",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "before trans",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 5.7356,
+   "community": 5,
+   "betweenness": 0.00332,
+   "pagerank": 0.00372,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.before_trichotomy",
+   "kind": "production",
+   "title": "BucketMath.Ranking.before_trichotomy",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "before trichotomy",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 6.1391,
+   "community": 5,
+   "betweenness": 0.00179,
+   "pagerank": 0.00412,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.insert_ordered",
+   "kind": "production",
+   "title": "BucketMath.Ranking.insert_ordered",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "insert ordered",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 5.9661,
+   "community": 5,
+   "betweenness": 0.0,
+   "pagerank": 0.00374,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.insert_perm",
+   "kind": "production",
+   "title": "BucketMath.Ranking.insert_perm",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "insert perm",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 6.0238,
+   "community": 5,
+   "betweenness": 0.0,
+   "pagerank": 0.00375,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.ordered_perm_unique",
+   "kind": "production",
+   "title": "BucketMath.Ranking.ordered_perm_unique",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "ordered perm unique",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 5.995,
+   "community": 5,
+   "betweenness": 2e-05,
+   "pagerank": 0.0043,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.rank_ordered",
+   "kind": "production",
+   "title": "BucketMath.Ranking.rank_ordered",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "rank ordered",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 5.822,
+   "community": 5,
+   "betweenness": 0.03532,
+   "pagerank": 0.00784,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.rank_perm",
+   "kind": "production",
+   "title": "BucketMath.Ranking.rank_perm",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "rank perm",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 5.9373,
+   "community": 5,
+   "betweenness": 0.0051,
+   "pagerank": 0.00679,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Ranking.rank_unique",
+   "kind": "production",
+   "title": "BucketMath.Ranking.rank_unique",
+   "claim": "BucketMath theorem in module Ranking, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "rank unique",
+    "Ranking"
+   ],
+   "solvability": 1.0,
+   "theta": 5.8509,
+   "community": 5,
+   "betweenness": 2e-05,
+   "pagerank": 0.00418,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.author_floor",
+   "kind": "production",
+   "title": "BucketMath.Split.author_floor",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "author floor",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 1.0952,
+   "community": 9,
+   "betweenness": 0.00092,
+   "pagerank": 0.00528,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.author_tight",
+   "kind": "production",
+   "title": "BucketMath.Split.author_tight",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "author tight",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 0.5188,
+   "community": 9,
+   "betweenness": 0.00024,
+   "pagerank": 0.00427,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.dust_to_author",
+   "kind": "production",
+   "title": "BucketMath.Split.dust_to_author",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dust to author",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 0.4612,
+   "community": 9,
+   "betweenness": 1e-05,
+   "pagerank": 0.00367,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.intermediates_fit",
+   "kind": "production",
+   "title": "BucketMath.Split.intermediates_fit",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "intermediates fit",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 0.3747,
+   "community": 9,
+   "betweenness": 0.00066,
+   "pagerank": 0.00411,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.nodePart_le",
+   "kind": "production",
+   "title": "BucketMath.Split.nodePart_le",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "nodePart le",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 1.4123,
+   "community": 9,
+   "betweenness": 0.00095,
+   "pagerank": 0.00585,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.nodePart_without_overflow",
+   "kind": "production",
+   "title": "BucketMath.Split.nodePart_without_overflow",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "nodePart without overflow",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 1.9022,
+   "community": 9,
+   "betweenness": 0.00087,
+   "pagerank": 0.00421,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.node_share_le",
+   "kind": "production",
+   "title": "BucketMath.Split.node_share_le",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "node share le",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 1.0664,
+   "community": 9,
+   "betweenness": 0.00067,
+   "pagerank": 0.00425,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.node_zero_below_floor",
+   "kind": "production",
+   "title": "BucketMath.Split.node_zero_below_floor",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "node zero below floor",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 2.3346,
+   "community": 9,
+   "betweenness": 0.00024,
+   "pagerank": 0.00415,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.nonAuthor_eq_div_five",
+   "kind": "production",
+   "title": "BucketMath.Split.nonAuthor_eq_div_five",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "nonAuthor eq div five",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 1.3835,
+   "community": 9,
+   "betweenness": 0.00066,
+   "pagerank": 0.00362,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.nonAuthor_le",
+   "kind": "production",
+   "title": "BucketMath.Split.nonAuthor_le",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "nonAuthor le",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 1.0088,
+   "community": 9,
+   "betweenness": 0.05381,
+   "pagerank": 0.0058,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Split.split_total",
+   "kind": "production",
+   "title": "BucketMath.Split.split_total",
+   "claim": "BucketMath theorem in module Split, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "split total",
+    "Split"
+   ],
+   "solvability": 1.0,
+   "theta": 0.807,
+   "community": 9,
+   "betweenness": 0.02103,
+   "pagerank": 0.00573,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.centered_sum_zero",
+   "kind": "production",
+   "title": "BucketMath.Vec.centered_sum_zero",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "centered sum zero",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 2.4499,
+   "community": 1,
+   "betweenness": 0.00092,
+   "pagerank": 0.00355,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.dot_comm",
+   "kind": "production",
+   "title": "BucketMath.Vec.dot_comm",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot comm",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 1.2682,
+   "community": 1,
+   "betweenness": 0.06676,
+   "pagerank": 0.00824,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.dot_smul_left",
+   "kind": "production",
+   "title": "BucketMath.Vec.dot_smul_left",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot smul left",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 2.2193,
+   "community": 1,
+   "betweenness": 0.0067,
+   "pagerank": 0.0058,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.dot_smul_right",
+   "kind": "production",
+   "title": "BucketMath.Vec.dot_smul_right",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot smul right",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 2.1328,
+   "community": 1,
+   "betweenness": 0.00205,
+   "pagerank": 0.00433,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.dot_sub_left",
+   "kind": "production",
+   "title": "BucketMath.Vec.dot_sub_left",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot sub left",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 2.0464,
+   "community": 1,
+   "betweenness": 0.00222,
+   "pagerank": 0.00481,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.dot_sub_right",
+   "kind": "production",
+   "title": "BucketMath.Vec.dot_sub_right",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "dot sub right",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 1.9311,
+   "community": 1,
+   "betweenness": 4e-05,
+   "pagerank": 0.00384,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.length_smul",
+   "kind": "production",
+   "title": "BucketMath.Vec.length_smul",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "length smul",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 2.4787,
+   "community": 1,
+   "betweenness": 0.00241,
+   "pagerank": 0.00421,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.length_sub",
+   "kind": "production",
+   "title": "BucketMath.Vec.length_sub",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "length sub",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 2.2769,
+   "community": 1,
+   "betweenness": 0.00332,
+   "pagerank": 0.00474,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.sum_add",
+   "kind": "production",
+   "title": "BucketMath.Vec.sum_add",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "sum add",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 1.5564,
+   "community": 1,
+   "betweenness": 0.02769,
+   "pagerank": 0.00514,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.sum_smul",
+   "kind": "production",
+   "title": "BucketMath.Vec.sum_smul",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "sum smul",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 2.2481,
+   "community": 1,
+   "betweenness": 0.01001,
+   "pagerank": 0.00484,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  },
+  {
+   "id": "lean:BucketMath.Vec.sum_sub_const",
+   "kind": "production",
+   "title": "BucketMath.Vec.sum_sub_const",
+   "claim": "BucketMath theorem in module Vec, proved in Lean.",
+   "branch": "bucketmath",
+   "level": 2,
+   "formal": "proved",
+   "mint_state": "minted",
+   "mint_basis": "formal proof status",
+   "formal_source": {
+    "label": "lean/manifest.json"
+   },
+   "posed": 2026,
+   "resolved": 2026,
+   "markets": [],
+   "tokens": [
+    "sum sub const",
+    "Vec"
+   ],
+   "solvability": 1.0,
+   "theta": 2.1905,
+   "community": 1,
+   "betweenness": 0.0011,
+   "pagerank": 0.00425,
+   "sources": [
+    {
+     "label": "lean/manifest.json"
+    }
+   ],
+   "source_kind": "lean"
+  }
+ ],
+ "summary": {
+  "nodes": 218,
+  "edges": 856,
+  "k": 6,
+  "components": 2,
+  "density": 0.0362,
+  "avg_clustering": 0.4423,
+  "communities": 11,
+  "modularity": 0.7932,
+  "branch_assortativity": 0.8087,
+  "solvability_neighbor_corr": 0.8764,
+  "solvability_neighbor_corr_perm_p": 0.0,
+  "spearman_level_vs_solvability": -0.4662,
+  "spearman_markets_vs_level": 0.0676,
+  "top_bridges_betweenness": [
+   [
+    "Plasma confinement stability",
+    0.3683
+   ],
+   [
+    "Glass transition",
+    0.0945
+   ],
+   [
+    "Navier-Stokes existence and smoothness",
+    0.0856
+   ],
+   [
+    "Turbulence closure",
+    0.0848
+   ],
+   [
+    "Yang-Mills mass gap",
+    0.0649
+   ],
+   [
+    "Halting problem",
+    0.0586
+   ],
+   [
+    "Free energy principle formalization",
+    0.0476
+   ],
+   [
+    "Climate sensitivity bound",
+    0.039
+   ],
+   [
+    "Collatz conjecture",
+    0.0224
+   ],
+   [
+    "Twin prime conjecture",
+    0.0202
+   ]
+  ]
+ },
+ "plots": [
+  {
+   "src": "/atlas/01-token-circle.webp",
+   "title": "Token circle",
+   "caption": "Every keyword and market token sits on the circle in the order of its embedding similarity. Distance from the centre is the mean solvability of the problems that use it."
+  },
+  {
+   "src": "/atlas/02-star-chart.webp",
+   "title": "Star chart",
+   "caption": "Angle is semantic position. Radius grows with level and with distance from a solution. Star size counts the markets a problem touches."
+  },
+  {
+   "src": "/atlas/03-star-chart-time.webp",
+   "title": "Star chart through time",
+   "caption": "Radius is the year a problem was posed. A line runs out to a black dot at the year it was resolved."
+  },
+  {
+   "src": "/atlas/04-helix.webp",
+   "title": "Solvability helix",
+   "caption": "One turn per level. Angle is semantic rank, radius is solvability."
+  },
+  {
+   "src": "/atlas/05-sphere.webp",
+   "title": "Sphere map",
+   "caption": "The top three principal directions of the embeddings, projected onto the unit sphere. Opacity is solvability."
+  },
+  {
+   "src": "/atlas/06-network.webp",
+   "title": "Similarity network",
+   "caption": "Each node links to its six most similar nodes. Node size is betweenness centrality."
+  },
+  {
+   "src": "/atlas/07-similarity-matrix.webp",
+   "title": "Problem similarity matrix",
+   "caption": "Cosine similarity between problems, ordered by network community."
+  },
+  {
+   "src": "/atlas/08-matrices.webp",
+   "title": "Branch, status and market matrices",
+   "caption": "Branch against branch mean similarity, level against formal status, and market against branch."
+  },
+  {
+   "src": "/atlas/09-token-matrix.webp",
+   "title": "Token similarity matrix",
+   "caption": "Cosine similarity between tokens, ordered by their position on the circle."
+  }
+ ]
+}

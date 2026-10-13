@@ -46,10 +46,10 @@ set -e
 assert_exit "generic username shape fails" 1 "$rc"
 
 set +e
-$CHECK PRODUCTION_LOG.md >/tmp/hygiene-test-out-4 2>&1
+$CHECK docs/internal/archive/PRODUCTION_LOG.md >/tmp/hygiene-test-out-4 2>&1
 rc=$?
 set -e
-assert_exit "allowlisted file (PRODUCTION_LOG.md) passes" 0 "$rc"
+assert_exit "allowlisted file (docs/internal/archive/PRODUCTION_LOG.md) passes" 0 "$rc"
 
 if [ "$fail" -ne 0 ]; then
   echo

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useSession } from "@/providers/SessionProvider";
-import { ToolOfflineNotice, detectToolOffline } from "../tools/_shared/ToolOfflineNotice";
+import { ToolOfflineNoticeV2, detectToolOffline } from "../tools/_shared/ToolOfflineNoticeV2";
 
 type Citation = { id: string; title: string; url?: string; doi?: string };
 type Finding = { statement: string; citations: Citation[] };
@@ -146,8 +146,7 @@ export default function ResearchAgentClient() {
       {busy && (
         <div className="mt-8 text-[14px] text-[color:var(--basalt-2)] flex items-center gap-3">
           <span className="inline-block w-3 h-3 rounded-full bg-[color:var(--gold)] animate-pulse" />
-          Planning, retrieving, and synthesizing on the GPU… (this can take a
-          minute — local inference is slow but free).
+          Planning, retrieving, and synthesizing. This can take a minute.
         </div>
       )}
 
@@ -164,7 +163,7 @@ export default function ResearchAgentClient() {
             to run the research agent.
           </div>
         ) : detectToolOffline(errStatus, errMsg) ? (
-          <ToolOfflineNotice toolName="The research agent" />
+          <ToolOfflineNoticeV2 toolName="The research agent" />
         ) : (
           <div className="mt-8 border border-[color:var(--hairline)] bg-[color:var(--bone)] p-5 text-[14px] text-[color:var(--basalt)]">
             <div className="small-caps tracking-[0.14em] text-[color:var(--basalt-3)] mb-2">
@@ -202,7 +201,7 @@ function BriefView({ brief }: { brief: Brief }) {
           </span>
         )}
         <span className="text-[color:var(--basalt-3)]">
-          synthesized on: {brief.provider === "local" ? "founder GPU (local llama.cpp)" : "hosted fallback"}
+          synthesized on: {brief.provider === "local" ? "local engine" : "hosted fallback"}
         </span>
         <span className="text-[color:var(--basalt-3)]">{brief.sources.length} sources retrieved</span>
       </div>

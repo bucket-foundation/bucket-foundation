@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { buildEncompassingMap, grade, masteryFor, normalizeState, route, summary, type Atom, type Depth, type EncEdge, type EngineState, type RouteItem, type Summary } from "@/lib/academy/engine";
 import type { Rating } from "@/lib/academy/fsrs";
 import { loadCorpus, type LoadedCorpus } from "@/lib/academy/corpus-client";
-import { loadBranch, saveBranch } from "@/lib/academy/progress-store";
+import { webProgressStore, type ProgressStore } from "@/lib/academy/progress-store";
 
 export type AcademyStatus = "loading" | "ready" | "missing" | "error";
 
@@ -20,7 +20,7 @@ export interface Academy {
   gradeAtom: (id: string, rating: Rating, level: Depth) => void;
 }
 
-export function useAcademy(branch: string): Academy {
+export function useAcademy(branch: string, store: ProgressStore = webProgressStore): Academy {
   const [status, setStatus] = useState<AcademyStatus>("loading");
   const [corpus, setCorpus] = useState<LoadedCorpus | null>(null);
   const [state, setState] = useState<EngineState>(() => normalizeState(null));
@@ -30,7 +30,7 @@ export function useAcademy(branch: string): Academy {
   useEffect(() => {
     let alive = true;
     setStatus("loading");
-    Promise.all([loadCorpus(branch), loadBranch(branch)])
+    Promise.all([loadCorpus(branch), store.load(branch)])
       .then(([c, s]) => {
         if (!alive) return;
         if (!c) {
@@ -45,7 +45,7 @@ export function useAcademy(branch: string): Academy {
     return () => {
       alive = false;
     };
-  }, [branch]);
+  }, [branch, store]);
 
   const atoms = useMemo(() => corpus?.atoms ?? [], [corpus]);
   const byId = useMemo(() => new Map(atoms.map((a) => [a.id, a])), [atoms]);
@@ -59,9 +59,9 @@ export function useAcademy(branch: string): Academy {
       const next = grade(stateRef.current, atoms, encompassing, id, rating, level);
       stateRef.current = next;
       setState(next);
-      saveBranch(branch, next);
+      store.save(branch, next);
     },
-    [atoms, encompassing, branch]
+    [atoms, encompassing, branch, store]
   );
 
   return { status, corpus, byId, state, encompassing, routeItems, summaryNow, mastery, gradeAtom };

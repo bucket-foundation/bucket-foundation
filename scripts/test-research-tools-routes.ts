@@ -377,6 +377,40 @@ if (CHILD) {
     });
   }
 
+  const errorOf = (o: Outcome) => {
+    assert.ok(!("threw" in o), "handler threw");
+    return { status: o.status, code: (JSON.parse(o.body) as { error?: { code?: string } }).error?.code };
+  };
+
+  test("a null JSON body answers 400 bad_request", async () => {
+    const o = await run(() => load("citationgraph").POST!(post("citationgraph", "null", { "content-type": "application/json" })), "ok");
+    assert.deepEqual(errorOf(o), { status: 400, code: "bad_request" });
+    assert.equal(o.fetches.length, 0);
+  });
+
+  for (const tool of ["citationgraph", "labbrain", "trajmine"]) {
+    test(`${tool} answers 400 bad_request on a non-string field`, async () => {
+      const o = await run(() => load(tool).POST!(post(tool, fill([1]), { "content-type": "application/json" })), "ok");
+      assert.deepEqual(errorOf(o), { status: 400, code: "bad_request" });
+    });
+  }
+
+  test("trajmine answers 400 bad_request on demo: true", async () => {
+    const o = await run(() => load("trajmine").POST!(post("trajmine", JSON.stringify({ demo: true }), { "content-type": "application/json" })), "ok");
+    assert.deepEqual(errorOf(o), { status: 400, code: "bad_request" });
+  });
+
+  test("a gateway 200 with a non-JSON body answers 502 upstream_error", async () => {
+    const mod = load("trajmine");
+    for (const call of [
+      () => mod.POST!(post("trajmine", "{}", { "content-type": "application/json" })),
+      () => mod.GET!(new NextRequest(`${BASE}/trajmine?job=j1`)),
+      () => mod.GET!(new NextRequest(`${BASE}/trajmine?job=j1&result=1`)),
+    ]) {
+      assert.deepEqual(errorOf(await run(call, "ok-non-json")), { status: 502, code: "upstream_error" });
+    }
+  });
+
   test("a fresh process reads the gateway URL and timeout from env at module load", () => {
     const got = runEnvChild();
     if (RECORDING) {

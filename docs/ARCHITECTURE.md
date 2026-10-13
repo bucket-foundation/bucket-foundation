@@ -1,76 +1,77 @@
 # Architecture
 
-Target design. Updated as rows in `docs/PROBLEM-REGISTER.md` close. Current-state findings live in dated `docs/internal/ARCHITECTURE-REVIEW-*.md`.
+How bucket.foundation is built today. `docs/AUTH.md` covers sign-in, `docs/RESEARCH-OS-APP.md` covers the application, `docs/MCP.md` covers the agent endpoint.
 
 ## Product
 
-Research OS is the product (founder decision, 2026-09-15, `learning/research-os/INTEGRATION-PLAN.md`). Every surface built lives inside it. The canon and the citation rail are its backbone: read canon, cite, the author gets paid over x402 on Base, agents discover via feed402. K-12 is the first audience, libraries the first venue, and the five words (Access, Awareness, Understanding, Internalization, Production) are levels of interaction with one graph. The first release runs without a model.
+Research OS is the product. The canon and the citation envelope are its backbone: read canon, cite it, and let agents discover the graph through feed402. A learner, a teacher and an agent see one graph at different levels of interaction: Access, Awareness, Understanding, Internalization and Production. The first release runs without a model.
 
-One account per person (`app.identities` keyed on `auth.users.id`, unique wallet and handle) carries identity facts rather than product tiers:
+## Runtime
 
-| Fact on the account | Grants |
-|---|---|
-| email verified | learner surfaces, the workspace, the Academy, the map |
-| class membership with a role | teacher, librarian, parent, peer, reviewer, researcher surfaces (`learning/research-os/CLASS.md`) |
-| wallet linked | payouts as an author; citations settled to the wallet |
-| agent key | free capped `/api/research`; paid insight tier with receipts |
-| admin role | accept canon, fund payouts, mint Story IP as an optional post-payment step |
-
-One citation economy: feed402 envelope + x402 EIP-3009 settlement on Base, signed server-side. The Story Iliad testnet + Walrus + `public.*` path from bucket 1.0 retires along with `/library`, `/knowledge`, `AuthorContext`, `CiteTokensContext`, and `IpMetadataContext`. `apps/labs` holds only what INTEGRATION-PLAN.md section 9 freezes.
-
-The Academy stack is the reference pattern for every user-data route: verified caller (a cookie session read server-side, or a Bearer token from an agent), service-role client, private schema PostgREST never exposes, per-user filter enforced in code, RLS as second layer, documented 503 when the DB is paused. The Research OS routes follow it.
-
-## Repo layout
-
-```
-apps/web           canon, protocol, kruse, access, academy, learn, ladder, sacred-history, author, agent, contribute, support
-apps/labs          40 research tools + proxies, chat, research/agent, legacy web3 archive
-services/gateway   one FastAPI: research-tools + photon + hte-serve; shared auth header, limit_req, otel
-services/canon-pipeline
-tools/             hypothesis-engine, canon-pipeline, feed, agf-* scripts
-supabase/migrations
-bucket-canon/      canonical content, git-tracked, served at request time
-docs/              every root markdown except README, CONTRIBUTING, AGENTS, CLAUDE, LICENSE
-```
-
-Extract to own repos: `grants-gateway/`, `polingual/`. Move to `gdrive:AGFarms/Nucleus/bucket-foundation/` with a pointer README: `archaeology/`, `blog/`, `gtm/`, `manifesto-source/`, `museum/`, `figma-export/`, `checkpoints/`, `yt/`, `archive/`, `openalex*/`, `pubmed/`, `quantum/`, `arxiv/`, `gutenberg/`, `wikisource/`, `_intake/` bulk.
-
-Branches: `main` is production and takes merges from `dev` only; `dev` is the PR target; engine work targets `hte/integration`, which Vercel never builds.
-
-## Canonical storage map
-
-| Data class | Store | Notes |
+| Part | Where it runs | Job |
 |---|---|---|
-| Identity | `app.identities` in Supabase | id = `auth.users.id`; unique wallet, unique handle; replaces `author` + `academy_profiles` |
-| Canon content | `bucket-canon/` in git | Request-time reads via `canon-fs.ts`; gdrive is a generated export; build asserts tracing covers every read dir |
-| Canon metadata and graph | `app.canon_entries`, `app.canon_edges` | Pointers, hashes, branch, slug; bodies stay in git |
-| Branch list | `src/data/branches.json` | Single source for layout, `canon.ts`, `canon-fs.ts`, JSON-LD, CLAUDE.md |
-| Citations, receipts, payouts | `app.citations`, `app.payouts` | One row per envelope: hash, Arweave tx, EAS uid, price, payee; chain is the record, Postgres is the index |
-| Academy | `app.academy_progress`, `app.academy_credentials`, `app.academy_profiles` | Current shape, FK to identities; localStorage stays primary when signed out |
-| Agent keys, quotas, spend | `app.agent_keys`, `app.spend_ledger` now; Viatika ledger when wired | Atomic upsert per day and scope; replaces every in-memory counter and `Map` |
-| Audit | `app.audit_log` | Actor, action, target, diff; 90-day prune; keep-alive cron writes here |
-| Research corpora | flat files under `_intake/`, gdrive-mirrored | `photon-index.ts` reads `all.json` only; pgvector and sqlite are laptop research backends with nightly dump to gdrive |
-| Embeddings | `_intake/embeddings-v2/` small files in git; weights on HF Hub | |
-| Job state and logs | `_intake/**/.status.json`, runner logs, mirrored on completion | |
+| Web app | Next.js on Vercel, `src/app` | Canon, protocol, download, Research OS, Academy, `/api/*` routes |
+| Database | Local Supabase first, hosted project on the same migrations | Auth, Research OS graph, Academy progress, identities |
+| Canon content | `bucket-canon/` in git | Read at request time through `src/lib/canon-fs.ts` |
+| Research tools | `services/research-tools` (FastAPI `gateway.py`) | The tool proxies under `/api/research/*` |
+| Photon API | `services/photon-api` | Polingual photon index |
+| Engine | `hte-serve` from `tools/hypothesis-engine` | Hypothesis campaigns over HTTP |
+| Terminal and desktop app | `packages/bkt`, `packages/bkt-ui` | Offline study on the learner's computer |
 
-## Supabase free tier
+Branches: `main` is production and takes merges from `dev` only. `dev` is the PR target. Engine work targets `hte/integration`, which Vercel never builds.
 
-500 MB DB, 1 GB storage, 50k MAU, pause after 7 idle days. Postgres holds pointers, hashes, metadata. Schema `app`, absent from `PGRST_DB_SCHEMAS`. RLS on every table. Migration per change via `supabase migration new`; CI fails a PR when a new `.from("t")` has no `CREATE TABLE`. Keep-alive: GitHub Actions cron every 5 days calls an authenticated route that writes `audit_log`.
+## Database
+
+`supabase/config.toml` defines the local stack: Postgres, Auth, PostgREST and Inbucket. `npm run db:local` starts it, `npm run db:local:status` prints the keys for `.env.local`, and building or testing needs no hosted project. Migrations live in `supabase/migrations`. The hosted project takes the same files through `npx supabase db push`.
+
+Schemas `graph` and `bucket` are exposed to PostgREST. Handlers reach private tables through the service-role client after `verifyRequestUser` (`src/lib/auth/verify.ts`) has named the caller, and RLS stays on as a second layer.
+
+| Data | Store |
+|---|---|
+| Identity | `bucket.identities`, keyed on `auth.users.id`, unique handle and wallet |
+| Research OS graph, edges, productions, classes | `graph.*` through `src/lib/research-os/db.ts` |
+| Academy credentials | `bucket.academy_credentials` behind `/api/academy/*` |
+| Download and launch-list signups | Vercel Blob through `src/lib/waitlist/store.ts` |
+| Canon claims and evidence | files under `bucket-canon/`, never the database |
+
+## Research OS
+
+The landing is `/research-os`; the application sits under `/research-os/(app)` and reads `/api/research-os/*`. One node graph holds Academy atoms, canon claims, papers, figures and productions, each with a `provenance.type`. The shared wire shape is `src/lib/research-os/contract.ts`. Requests from an agent carry a Bearer token and go through the same verifier as a browser session.
+
+## Packages
+
+| Package | Job |
+|---|---|
+| `packages/bkt` | The `bkt` terminal app: quiz and FSRS review over an encrypted local SQLite store, `bkt analyze`, and `bkt serve`, which listens on 127.0.0.1 behind a per-launch nonce |
+| `packages/bkt-ui` | The desktop window: a Vite and React build of the Research OS views that `bkt serve` serves and `bkt app` opens in a browser window |
+| `packages/ros-contract` | Tests that hold the contract shared by the site and the window: golden fixtures, mocks and a check that the shared views import nothing from Next, Supabase or `localStorage` |
+
+The desktop window is the `bkt-ui` build packaged with the `bkt` binary as an AppImage (`scripts/release/build-appimage.sh`). No `bkt-mobile` package exists yet. The runtime-neutral test in `ros-contract` keeps the shared views loadable outside Next, which a mobile client would need.
+
+## Release pipeline
+
+A tag `bkt-vX.Y.Z` triggers `.github/workflows/bkt.yml`:
+
+1. `bkt`, `ros-contract` and `bkt-ui` jobs run tests and typechecks.
+2. `binaries` compiles `bkt` for linux-x64, linux-arm64, darwin-arm64, darwin-x64 and windows-x64; `appimage` builds the unsigned AppImage.
+3. `sign` signs every artifact with the release key (`scripts/release/ci-sign.sh`) and writes `.sha256`, `.manifest` and `.manifest.sig` beside it. Runs outside a tag use a throwaway key.
+4. `install` runs `scripts/install.sh` and `scripts/install.ps1` on five runners, rejects a tampered binary, and smokes the result against the platform keystore.
+5. `publish` attests provenance and uploads to a prerelease with `scripts/release/publish.sh`. `verify-release` reinstalls from the public release, then `promote` marks the release as latest.
+
+The public key is `public/.well-known/bucket-release.pub`. The installers check the checksum and the signature before they write anything.
+
+## Download and updates
+
+`/download` reads the latest release through `src/lib/download/release-v2.ts`, which maps assets by name and skips checksum and manifest files. A reader signs up with email, name and computer, and the page shows the install command. `/api/download` stores the request in Blob and emails a 24-hour link through Resend. Retention is 12 months, enforced by the `download-retention` cron. The daily What's New digest is a `vercel.json` cron group at `/api/cron/whats-new-daily`, fed by `data/whats-new.json`, which the `whats-new` workflow rewrites on every merge to `main`.
+
+## hte-serve
+
+`hte-serve` is `python3 -m hte.serve` on 127.0.0.1:8420, installed as the `hte-serve.service` user unit by `scripts/systemd/install-hte-serve.sh`. The site reaches it through `HTE_SERVE_URL`, from `/api/research-os/hypothesize` and from the MCP `hypothesize` tool. A deployment without that variable reports the engine offline. Contracts are in `tools/hypothesis-engine/docs/PRODUCTION-SCHEMA-ALIGNMENT.md`.
+
+## Citation envelopes
+
+`/api/research` answers with a feed402/0.2 envelope: data, citation, and a receipt with tier, status and `price_usd`. Canon answers carry `price_usd: 0`. Server-side x402 signing is not implemented in `src/lib/x402-pay.ts`, so no settlement runs today. The manifest is `public/.well-known/feed402.json`.
 
 ## Secrets
 
-Server-only names: `STORY_WALLET_PRIVATE_KEY` (renamed from `NEXT_PUBLIC_WALLET_PRIVATE_KEY`), `BUCKET_WALLET_PRIVATE_KEY`, `SUPABASE_SERVICE_ROLE_KEY` (one name everywhere), `NEXTAUTH_SECRET` (throw when unset in production), `VIATIKA_API_KEY`, `GATEWAY_SHARED_SECRET`. `NEXT_PUBLIC_*` holds only the anon key, site URL, Dynamic env id, feature flags. Laptop systemd units read from `~/.bashrc`; K3s from namespace secrets; nothing on disk in the repo.
-
-## Ordered plan
-
-1. Lock down: rename and server-side the Story key, delete the log; deny-by-default RLS on `public.*`; gateway shared secret + `limit_req`; per-IP bucket on every proxy.
-2. Migrations hygiene: `academy_profiles.sql` into migrations; pull the 16 `graph` migrations; one service-role env name; branch policy merged to `main`.
-3. `app.identities` with backfill; retire `/library`, `/knowledge`, legacy contexts, Story/Walrus path.
-4. `app.spend_ledger` behind `/api/research`, `/api/chat`, tutor, hte campaigns; chat stays flagged off until then.
-5. Real x402: server-side EIP-3009 signing, `app.citations` row per receipt, real `receipt.status`.
-6. Collapse 40 proxies; CI gate with lint, tsc, build, pytest; re-enable ESLint.
-7. Data out of git, `git filter-repo` once open branches land; extract grants-gateway and polingual.
-8. `app.payouts`, `app.agent_keys`; author earnings, rate card, agent receipts pages. First revenue.
-9. `apps/labs` split; merge duplicate page clusters; one `branches.json`; sitemap from data libs.
-10. Laptop services to Hetzner or graceful degradation; wire hte into MCP; `hte-serve` under systemd.
-11. NextAuth v5; `docs/` fold; one roadmap; mastery parity test.
+Server-only: `SUPABASE_SERVICE_ROLE_KEY`, `BUCKET_WALLET_PRIVATE_KEY`, `RESEND_API_KEY`, `DOWNLOAD_LINK_SECRET`, `CRON_SECRET`, `WAITLIST_ADMIN_KEY`, `WHATS_NEW_UNSUBSCRIBE_SECRET`. `NEXT_PUBLIC_*` holds the anon key, the site URL and feature flags. `scripts/check-client-bundle-secrets.mjs` fails a build that leaks a server name into the client bundle.

@@ -2,7 +2,7 @@ import { BRANCHES } from "../canon";
 import { getAllBridges, getBridge } from "../canon-bridges";
 import { getClaim } from "../canon-claims";
 import { getEvidenceFor } from "../canon-evidence";
-import { buildIndex, tokenRank } from "../canon-search-index";
+import { canonSearch } from "../canon-search";
 import bucketMathManifest from "../../../lean/manifest.json";
 
 export const PROTOCOL_VERSION = "2025-06-18";
@@ -24,16 +24,14 @@ function asInt(v: unknown, fallback: number, min: number, max: number): number {
 
 const DOI_RE = /10\.\d{4,9}\/[^\s"<>]+/i;
 
-async function canonSearch(args: Json): Promise<Json> {
+async function canonSearchTool(args: Json): Promise<Json> {
   const q = asString(args.q).trim();
   if (!q) return { ok: false, error: "q required" };
   const topK = asInt(args.top_k, 10, 1, 50);
   const branch = asString(args.branch);
-  const idx = buildIndex();
-  if (!idx.length) return { ok: false, error: "canon search index not built" };
-  let results = tokenRank(q, topK * 3);
-  if (branch) results = results.filter((r) => r.entry.branch === branch);
-  const out = results.slice(0, topK).map((r) => {
+  const found = canonSearch({ q, qvec: null, topK, tier: "all", branch, mode: "lexical" });
+  if (!found.ok) return { ok: false, error: found.message };
+  const out = found.results.map((r) => {
     const ev = getEvidenceFor(r.entry.concept, r.entry.slug);
     return {
       claim_id: r.entry.rowid,
@@ -165,7 +163,7 @@ export const TOOLS: ToolSpec[] = [
       },
       required: ["q"],
     },
-    handler: canonSearch,
+    handler: canonSearchTool,
   },
   {
     name: "canon_get_claim",

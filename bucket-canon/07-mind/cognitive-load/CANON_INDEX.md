@@ -38,6 +38,6 @@ Inherited from `bucket-canon/README.md` and `_intake/2026-05-19-canon-intake/RUB
 
 The record states a mechanism of human cognitive architecture (working-memory capacity and its allocation between task-intrinsic and extraneous load) and its primary experimental evidence, clearing E7 as foundation-tier and staying out of `sub-outcomes/`.
 
-**PROTOCOL.md §4.1 envelope field mapping.** Same citation-only mapping as `07-mind/memory-systems/CANON_INDEX.md`, `07-mind/curiosity-and-motivation/CANON_INDEX.md`, and `07-mind/cognition-and-automation/CANON_INDEX.md` document; `foundation_branches` = `["07-mind"]`, `provenance_signoff` carried alongside as the pending-approval marker this pass adds.
+**docs/foundation/PROTOCOL.md §4.1 envelope field mapping.** Same citation-only mapping as `07-mind/memory-systems/CANON_INDEX.md`, `07-mind/curiosity-and-motivation/CANON_INDEX.md`, and `07-mind/cognition-and-automation/CANON_INDEX.md` document; `foundation_branches` = `["07-mind"]`, `provenance_signoff` carried alongside as the pending-approval marker this pass adds.
 
 _last updated: 2026-09-11 by canon-pipeline (intake/ros-canon-promotion-3)_

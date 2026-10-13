@@ -11,10 +11,10 @@ import scipy.sparse as sp
 
 from .clean import scrub, strip_boilerplate
 from .corpora import Doc
-from .corpora import resolve_path
+from .corpora import private_patterns, resolve_path
 from .model import PrimeResult, TermStats, fit_matrix, vectorize
 
-PRIVATE_PATTERNS = ("kruse",)
+PRIVATE_PATTERNS = private_patterns()
 
 LOCAL_DSN = "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
 

@@ -15,7 +15,7 @@ function allUrls(): string[] {
   const top = [
     "", "/canon", "/manifesto", "/protocol", "/protocol/envelope",
     "/build", "/learn", "/cite-forever/v0.1", "/governance", "/about",
-    "/join", "/research", "/kruse", "/kruse/search",
+    "/download", "/research",
     "/contributors", "/whats-new",
   ];
   const branch = BRANCHES.map((b) => `/canon/${b.slug}`);

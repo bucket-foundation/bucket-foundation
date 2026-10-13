@@ -19,9 +19,9 @@ This is the reference pilot one-pager. One page. Stone-tablet terms. Paste into 
 ## What bucket does
 
 1. **Mint a feed402 envelope** for each of the {{N_ARTIFACTS}} artifacts, canonical URL, artifact hash, canon-branch tag, payout-wallet address.
-2. **Attach a payout wallet** supplied by {{PARTNER}} (DAO treasury, author EOA, or multisig). Every citation routes USDC directly to that address on Base.
+2. **Attach a payout wallet** supplied by {{PARTNER}} (DAO treasury, author EOA, or multisig). The design routes USDC for each paid citation to that address on Base. That rail is specified and does not settle yet, so a pilot starts at price 0.
 3. **Serve the feed402 endpoint**, AI agents discover, pay, and cite via x402. Three tiers: raw ($0.010), query ($0.005), insight ($0.002).
-4. **Dual-write the permanence layer**, every citation is attested to Ethereum Attestation Service and archived to Arweave, per `docs/PERMANENCE_LAYER.md`. Paid for once, cited forever.
+4. **Dual-write the permanence layer**, every citation is attested to Ethereum Attestation Service and archived to Arweave, per `docs/internal/archive/PERMANENCE_LAYER.md`. Paid for once, cited forever.
 5. **Publish the live dashboard**, read-only metrics URL, shared with {{PARTNER}} on day one.
 
 ## What {{PARTNER}} provides
@@ -56,7 +56,7 @@ Live metrics:
 - {{PARTNER}} owns the underlying research content.
 - {{PARTNER}} and the authors own the payout wallets and the USDC received.
 - Bucket owns the rail: the feed402 envelopes, the x402 endpoints, the EAS schema, the dashboard code.
-- All bucket code is **MIT**. All bucket spec is **CC-BY** (CC0-in-intent, see `PROTOCOL.md`).
+- All bucket code is **MIT**. All bucket spec is **CC-BY** (CC0-in-intent, see `docs/foundation/PROTOCOL.md`).
 - No PII, no private scrape data, no exclusive rights, ever.
 
 ## Contact + escalation

@@ -84,4 +84,4 @@ def test_write_back_resolves_a_relative_out_root_against_repo_root(linking_run):
     assert len(paths) == 5
     for p in paths[:3]:
         assert str(p).startswith(str(expected_prefix)), p
-    assert paths[3] == canon_writeback.REPO_ROOT / "CANON-INGESTION-INDEX.md"
+    assert paths[3] == canon_writeback.REPO_ROOT / "docs" / "canon" / "CANON-INGESTION-INDEX.md"

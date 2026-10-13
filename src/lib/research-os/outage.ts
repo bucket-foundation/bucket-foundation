@@ -16,7 +16,7 @@ export const TRANSIENT_CODES: ReadonlySet<string> = new Set([
   "purge_unavailable",
 ]);
 
-export const PERMANENT_CODES: ReadonlySet<string> = new Set([UNCONFIGURED, "corpus_unavailable"]);
+export const PERMANENT_CODES: ReadonlySet<string> = new Set([UNCONFIGURED, "corpus_unavailable", "seal_key_missing", "analysis_local_only"]);
 
 export const PERMANENT_MESSAGE = /enabled yet|credentials are invalid|not_configured/;
 

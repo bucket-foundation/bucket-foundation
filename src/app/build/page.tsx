@@ -28,10 +28,10 @@ x-bucket-source: canon
   },
   "citation": {
     "type":          "source",
-    "source_id":     "canon:mitochondria/peter-mitchell-1961",
+    "source_id":     "canon:mitochondria/019-don-t-have-to-make-a-lot-of-heat-because-it-s-hot-all-the-ti",
     "provider":      "bucket-foundation",
     "license":       "CC-BY-4.0",
-    "canonical_url": "https://www.bucket.foundation/excerpts/mitochondria/peter-mitchell-1961"
+    "canonical_url": "https://www.bucket.foundation/excerpts/mitochondria/019-don-t-have-to-make-a-lot-of-heat-because-it-s-hot-all-the-ti"
   },
   "receipt": {
     "tier":      "insight",
@@ -107,7 +107,7 @@ const MANIFEST_JSON = `{
   "endpoint": { "url": "https://your-domain.com/api/research", "price_usd": 0 },
 
   "downstream_settlement": {
-    "_what":                 "Forward-looking author-payout economics, settled SERVER-SIDE. NOT a precondition for the caller to read or cite.",
+    "_what":                 "Forward-looking author-payout economics. The design settles it SERVER-SIDE. NOT a precondition for the caller to read or cite.",
     "is_a_precondition":     false,
     "chain":                 "base-sepolia",
     "wallet":                "0xYOUR_BASE_WALLET_ADDRESS",

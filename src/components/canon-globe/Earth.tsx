@@ -15,9 +15,12 @@ interface EarthProps {
   children?: React.ReactNode;
   sampleCount?: number;
   dotRadius?: number;
+  visibility?: number;
+  instantFade?: boolean;
 }
 
 const RADIUS = 1;
+const EARTH_TILT = 0.35;
 
 function damp(current: number, target: number, lambda: number, dt: number) {
   return current + (target - current) * (1 - Math.exp(-lambda * dt));
@@ -50,7 +53,11 @@ export function Earth({
   children,
   sampleCount = 36000,
   dotRadius = 0.0038,
+  visibility = 1,
+  instantFade = false,
 }: EarthProps) {
+  const fadeRef = useRef(visibility);
+  const shellMatRef = useRef<THREE.MeshBasicMaterial>(null);
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const [count, setCount] = useState(0);
@@ -126,13 +133,19 @@ export function Earth({
     return () => { cancelled = true; };
   }, [landmaskUrl, sampleCount, transforms, invalidate]);
 
+  useEffect(() => { invalidate(); }, [visibility, invalidate]);
+
   useFrame((_state, delta) => {
     if (!groupRef.current) return;
+    const prevFade = fadeRef.current;
+    const nextFade = instantFade ? visibility : damp(prevFade, visibility, 5, Math.min(delta, 0.1));
+    fadeRef.current = Math.abs(nextFade - visibility) < 1e-3 ? visibility : nextFade;
+    const f = fadeRef.current;
     if (reducedMotion) {
-      groupRef.current.rotation.y = targetRotationY;
+      groupRef.current.rotation.y = targetRotationY * f;
     } else {
       const auto = 0.03 * delta;
-      const blendedTarget = targetRotationY + auto * 12;
+      const blendedTarget = (targetRotationY + auto * 12) * f;
       groupRef.current.rotation.y = damp(
         groupRef.current.rotation.y,
         blendedTarget,
@@ -140,6 +153,12 @@ export function Earth({
         delta
       );
     }
+    groupRef.current.rotation.x = EARTH_TILT * f;
+    dotMat.opacity = dotOpacity * f;
+    dotMat.transparent = dotOpacity * f < 1;
+    if (meshRef.current) meshRef.current.visible = f > 0.01;
+    if (shellMatRef.current) shellMatRef.current.opacity = 0.04 * f;
+    if (f !== visibility) invalidate();
   });
 
   const dotGeo = useMemo(
@@ -175,10 +194,11 @@ export function Earth({
   }, [dotOpacity, dotColor, limbScale]);
 
   return (
-    <group ref={groupRef} rotation={[0.35, 0, 0]}>
+    <group ref={groupRef} rotation={[EARTH_TILT, 0, 0]}>
       <mesh>
         <sphereGeometry args={[RADIUS * 0.998, 64, 64]} />
         <meshBasicMaterial
+          ref={shellMatRef}
           color={0xefe8d4}
           transparent
           opacity={0.04}

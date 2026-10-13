@@ -1,0 +1,14 @@
+{
+  "molecules": [
+    { "id": "ethanol", "name": "Ethanol", "smiles": "CCO" },
+    { "id": "acetic-acid", "name": "Acetic acid", "smiles": "CC(=O)O" },
+    { "id": "aspirin", "name": "Aspirin", "smiles": "CC(=O)OC1=CC=CC=C1C(=O)O" },
+    { "id": "caffeine", "name": "Caffeine", "smiles": "CN1C=NC2=C1C(=O)N(C(=O)N2C)C" },
+    { "id": "glucose", "name": "Glucose", "smiles": "OCC1OC(O)C(O)C(O)C1O" }
+  ],
+  "reactions": [
+    { "id": "esterification", "name": "Fischer esterification", "smiles": "CC(=O)O.OCC>>CC(=O)OCC.O" },
+    { "id": "combustion", "name": "Methane combustion", "smiles": "C.O=O.O=O>>O=C=O.O.O" },
+    { "id": "hydration", "name": "Ethene hydration", "smiles": "C=C.O>>CCO" }
+  ]
+}

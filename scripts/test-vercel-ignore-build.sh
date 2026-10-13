@@ -63,6 +63,9 @@ SHA_DOCS="$(sha_of HEAD)"
 commit_file "src/app/page.tsx" "feat(site): update homepage copy"
 SHA_SITE="$(sha_of HEAD)"
 
+commit_file "docs/foundation/MANIFESTO.md" "docs(foundation): manifesto wording"
+SHA_FOUNDATION="$(sha_of HEAD)"
+
 git -C "$REPO" mv src/app/page.tsx papers/page-draft.tsx
 git -C "$REPO" commit -q -m "chore: move a file"
 SHA_MOVE="$(sha_of HEAD)"
@@ -101,6 +104,12 @@ run_case "site change on feature branch builds" build \
   "VERCEL_GIT_COMMIT_MESSAGE=feat(site): reposition education" \
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
+
+run_case "a foundation doc the site renders builds" build \
+  "VERCEL_GIT_COMMIT_REF=feat/site-manifesto-wording" \
+  "VERCEL_GIT_COMMIT_MESSAGE=docs(foundation): manifesto wording" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_SITE" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_FOUNDATION"
 
 run_case "docs-only change skips" skip \
   "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \

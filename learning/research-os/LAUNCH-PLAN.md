@@ -61,7 +61,7 @@ Tutor gaps block the tutor, which is outside the day-one loop:
 
 Free-plan terms: 500 MB database, 50,000 monthly active users, 1 GB file storage, 5 GB egress, two free projects per organization (supabase.com/pricing). A free project pauses after seven days of low activity and can be restored for 90 days (supabase.com/docs/guides/platform/free-project-pausing). The Free plan carries no automated backups (pricing page, UNVERIFIED this session), so an ops job runs a nightly `pg_dump`. 
 
-Migration replay: 53 files in `supabase/migrations`. CI already replays all of them on a fresh stack (`.github/workflows/site-ci.yml:107-109`), so `npx supabase link` then `npx supabase db push` is the path (`docs/AUTH.md:48`). Add `graph` and `bucket` to exposed schemas in Settings, API.
+Migration replay: 53 files in `supabase/migrations`. CI already replays all of them on a fresh stack (`.github/workflows/site-ci.yml:111-113`), so `npx supabase link` then `npx supabase db push` is the path (`docs/AUTH.md:48`). Add `graph` and `bucket` to exposed schemas in Settings, API.
 
 Auth email: the default sender delivers only to the organization's team members; any other address fails with "Email address not authorized". After custom SMTP is saved, Auth sends at 30 messages an hour until raised (supabase.com/docs/guides/auth/auth-smtp). Resend's free tier lists 3,000 a month and 100 a day (resend.com/pricing, UNVERIFIED this session). At 100 a day, waves stay at 50 invites so returning sign-ins fit. Paste `supabase/templates/magic-link.html`, which uses `{{ .Token }}`, and add an invite template. Site URL `https://www.bucket.foundation`, redirect `https://www.bucket.foundation/**`.
 
@@ -71,7 +71,7 @@ RLS audit: 42 tables are created across the migrations, 41 enable RLS; `graph.im
 
 ### Vercel Env Vars
 
-`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `BUCKET_SIGNIN_OPEN=1` (read at build, so a redeploy follows, `docs/AUTH.md:52`), `RESEARCH_OS_REVIEWER_EMAILS`, `RESEARCH_OS_HASH_SALT` as a secret (today it falls back to the public Supabase URL, `consent/route.ts:12`), `RESEARCH_OS_DAILY_TOOL_CAP=20`. `ANTHROPIC_API_KEY` comes later.
+`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SIGN_IN_OPEN=1` (read at build, so a redeploy follows, `docs/AUTH.md:52`), `RESEARCH_OS_REVIEWER_EMAILS`, `RESEARCH_OS_HASH_SALT` as a secret (today it falls back to the public Supabase URL, `consent/route.ts:12`), `RESEARCH_OS_DAILY_TOOL_CAP=20`. `ANTHROPIC_API_KEY` comes later.
 
 ### Anthropic Key
 
@@ -171,7 +171,7 @@ Sizes: S under half a day, M one to two days, L three to five days. Beads carry 
 
 The pending edge and NSM review queues feed staff-only surfaces and wait until after wave 1.
 
-Rollback: `BUCKET_SIGNIN_OPEN=0` and a redeploy restore the launch list; the Supabase sign-up switch closes new accounts.
+Rollback: unsetting `SIGN_IN_OPEN` and a redeploy restore the launch list; the Supabase sign-up switch closes new accounts.
 
 Removing the tutor key returns the tutor to its 503 fail-safe (`tutor/handler.ts:195`, "Tutor isn't enabled yet").
 

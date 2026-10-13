@@ -152,6 +152,7 @@ test("sign-in opens off production and on the flag", () => {
   assert.equal(signInOpen({}), true);
   assert.equal(signInOpen({ VERCEL_ENV: "preview" }), true);
   assert.equal(signInOpen({ VERCEL_ENV: "production" }), false);
-  assert.equal(signInOpen({ VERCEL_ENV: "production", BUCKET_SIGNIN_OPEN: "1" }), true);
+  assert.equal(signInOpen({ VERCEL_ENV: "production", SIGN_IN_OPEN: "1" }), true);
+  assert.equal(signInOpen({ VERCEL_ENV: "production", BUCKET_SIGNIN_OPEN: "1" }), false);
   assert.equal(signInOpen({ BUCKET_SIGNIN_OPEN: "0" }), false);
 });

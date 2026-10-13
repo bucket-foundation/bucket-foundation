@@ -1,0 +1,647 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "catalysis",
+ "title": "Rational catalyst design",
+ "statement": {
+  "text": "Catalysis is the increase in rate of a chemical reaction due to an added substance known as a catalyst. Catalysts are not consumed by the reaction and remain unchanged after the reaction. If the reaction is rapid and the catalyst is recycled quickly, a very small amount of catalyst often suffices; mixing, surface area, and temperature are important factors in reaction rate. Catalysts generally react with one or more reactants to form intermediates that subsequently give the final reaction product, in the process of regenerating the catalyst.",
+  "source": "https://en.wikipedia.org/wiki/Catalysis",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Catalysis",
+   "url": "https://en.wikipedia.org/wiki/Catalysis"
+  }
+ },
+ "aliases": [
+  "Catalysis",
+  "catalyst"
+ ],
+ "branch": "chemistry",
+ "level": 4,
+ "industries": [
+  "energy",
+  "materials",
+  "renewable energy, sustainability and the environment",
+  "catalysis"
+ ],
+ "posed": 1835,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1835,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2907318745",
+   "title": "First-Row Transition Metal (De)Hydrogenation Catalysis Based On Functional Pincer Ligands",
+   "year": 2018,
+   "cited_by_count": 912,
+   "doi": "https://doi.org/10.1021/acs.chemrev.8b00555",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3100541053",
+   "title": "Microkinetic Modeling: A Tool for Rational Catalyst Design",
+   "year": 2020,
+   "cited_by_count": 507,
+   "doi": "https://doi.org/10.1021/acs.chemrev.0c00394",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3030614241",
+   "title": "Rational Catalyst Design for N2 Reduction under Ambient Conditions: Strategies toward Enhanced Conversion Efficiency",
+   "year": 2020,
+   "cited_by_count": 418,
+   "doi": "https://doi.org/10.1021/acscatal.0c01081",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2149975615",
+   "title": "Enabling electrochemical reduction of nitrogen to ammonia at ambient conditions through rational catalyst design",
+   "year": 2014,
+   "cited_by_count": 317,
+   "doi": "https://doi.org/10.1039/c4cp04838e",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2953216585",
+   "title": "Palladium-Catalyzed Amination of Aryl Halides: Mechanism and Rational Catalyst Design",
+   "year": 1997,
+   "cited_by_count": 301,
+   "doi": "https://doi.org/10.1055/s-1997-789",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2074367136",
+   "title": "Rational Catalyst Design via Imprinted Nanostructured Materials",
+   "year": 1996,
+   "cited_by_count": 217,
+   "doi": "https://doi.org/10.1021/cm960019u",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2340212768",
+   "title": "Rational design of carbon nitride photocatalysts by identification of cyanamide defects as catalytically relevant sites",
+   "year": 2016,
+   "cited_by_count": 843,
+   "doi": "https://doi.org/10.1038/ncomms12165",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2263166478",
+   "title": "Quantifying the density and utilization of active sites in non-precious metal oxygen electroreduction catalysts",
+   "year": 2015,
+   "cited_by_count": 575,
+   "doi": "https://doi.org/10.1038/ncomms9618",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3015251006",
+   "title": "Surface Composition Dependent Ligand Effect in Tuning the Activity of Nickel–Copper Bimetallic Electrocatalysts toward Hydrogen Evolution in Alkaline",
+   "year": 2020,
+   "cited_by_count": 413,
+   "doi": "https://doi.org/10.1021/jacs.9b12005",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2083716543",
+   "title": "Developments in operando studies and in situ characterization of heterogeneous catalysts",
+   "year": 2003,
+   "cited_by_count": 365,
+   "doi": "https://doi.org/10.1016/s0021-9517(02)00133-1",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2321991700",
+   "title": "Role of Electronic Perturbation in Stability and Activity of Pt-Based Alloy Nanocatalysts for Oxygen Reduction",
+   "year": 2012,
+   "cited_by_count": 313,
+   "doi": "https://doi.org/10.1021/ja307951y",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3029614928",
+   "title": "Chain Mail for Catalysts",
+   "year": 2020,
+   "cited_by_count": 296,
+   "doi": "https://doi.org/10.1002/anie.202007604",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W110947629",
+   "title": "Multifunctionality of Active Centers in (Amm)oxidation Catalysts: From Bi–Mo–O x to Mo–V–Nb–(Te, Sb)–O x",
+   "year": 2003,
+   "cited_by_count": 287,
+   "doi": "https://doi.org/10.1023/a:1024859917786",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4210834172",
+   "title": "Tuning Two‐Electron Oxygen‐Reduction Pathways for H2O2 Electrosynthesis via Engineering Atomically Dispersed Single Metal Site Catalysts",
+   "year": 2022,
+   "cited_by_count": 235,
+   "doi": "https://doi.org/10.1002/adma.202107954",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4393056858",
+   "title": "Spin-mediated promotion of Co catalysts for ammonia synthesis",
+   "year": 2024,
+   "cited_by_count": 213,
+   "doi": "https://doi.org/10.1126/science.adn0558",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2969586973",
+   "title": "Revealing Energetics of Surface Oxygen Redox from Kinetic Fingerprint in Oxygen Electrocatalysis",
+   "year": 2019,
+   "cited_by_count": 209,
+   "doi": "https://doi.org/10.1021/jacs.9b01834",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2790636298",
+   "title": "Unravelling structure sensitivity in CO2 hydrogenation over nickel",
+   "year": 2018,
+   "cited_by_count": 648,
+   "doi": "https://doi.org/10.1038/s41929-017-0016-y",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2153270257",
+   "title": "Carbon Nanomaterials in Catalysis: Proton Affinity, Chemical and Electronic Properties, and their Catalytic Consequences",
+   "year": 2013,
+   "cited_by_count": 295,
+   "doi": "https://doi.org/10.1002/cctc.201200471",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3184647120",
+   "title": "Manipulating Redox Kinetics of Sulfur Species Using Mott–Schottky Electrocatalysts for Advanced Lithium–Sulfur Batteries",
+   "year": 2021,
+   "cited_by_count": 238,
+   "doi": "https://doi.org/10.1021/acs.nanolett.1c02161",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W824790012",
+   "title": "Low temperature propane oxidation over Co3O4 based nano-array catalysts: Ni dopant effect, reaction mechanism and structural stability",
+   "year": 2015,
+   "cited_by_count": 234,
+   "doi": "https://doi.org/10.1016/j.apcatb.2015.04.021",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2466353001",
+   "title": "Ligand-Controlled Cobalt-Catalyzed Transfer Hydrogenation of Alkynes: Stereodivergent Synthesis of Z- and E-Alkenes",
+   "year": 2016,
+   "cited_by_count": 333,
+   "doi": "https://doi.org/10.1021/jacs.6b04271",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2519460947",
+   "title": "Direct Synthesis of Functionalized High‐Molecular‐Weight Polyethylene by Copolymerization of Ethylene with Polar Monomers",
+   "year": 2016,
+   "cited_by_count": 310,
+   "doi": "https://doi.org/10.1002/anie.201607152",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "off-field": 1,
+  "no keyword hit": 2
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1986": 1,
+   "1995": 1,
+   "1996": 3,
+   "1997": 4,
+   "1998": 2,
+   "1999": 2,
+   "2000": 3,
+   "2001": 2,
+   "2003": 3,
+   "2004": 2,
+   "2005": 2,
+   "2006": 3,
+   "2007": 5,
+   "2008": 6,
+   "2009": 6,
+   "2010": 3,
+   "2011": 12,
+   "2012": 9,
+   "2013": 13,
+   "2014": 13,
+   "2015": 15,
+   "2016": 26,
+   "2017": 20,
+   "2018": 29,
+   "2019": 34,
+   "2020": 24,
+   "2021": 48,
+   "2022": 65,
+   "2023": 59,
+   "2024": 59,
+   "2025": 237,
+   "2026": 348
+  },
+  "openalex_total": 1059,
+  "arxiv_total": 3,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22rational+catalyst+design%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5046507720",
+   "name": "Jiazang Chen",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5034358731",
+   "name": "Jingguang G. Chen",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5081613061",
+   "name": "Lukas Alig",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5062167654",
+   "name": "Maximilian Fritz",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5067235857",
+   "name": "Sven Schneider",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5089712587",
+   "name": "Ali Hussain Motagamwala",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5060489151",
+   "name": "James A. Dumesic",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100607785",
+   "name": "Lei Shi",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5078069217",
+   "name": "Yu Yin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100338047",
+   "name": "Shaobin Wang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5089558604",
+   "name": "Hongqi Sun",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5073238551",
+   "name": "Younes Abghoui",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5089291681",
+   "name": "Anna Louise Garden",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5077050520",
+   "name": "Valtýr Freyr Hlynsson",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5075458777",
+   "name": "Snædís Björgvinsdóttir",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I19820366",
+   "name": "Chinese Academy of Sciences",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I8204097",
+   "name": "Ludwig-Maximilians-Universität München",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I172675005",
+   "name": "Nanyang Technological University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I126520041",
+   "name": "University of Science and Technology of China",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I55712492",
+   "name": "Zhejiang University of Technology",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I74656192",
+   "name": "University of Göttingen",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I135310074",
+   "name": "University of Wisconsin–Madison",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I12079687",
+   "name": "Edith Cowan University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210096899",
+   "name": "Jiangsu University of Science and Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I5681781",
+   "name": "The University of Adelaide",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I165368041",
+   "name": "University of Iceland",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I32971472",
+   "name": "Yale University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I122411786",
+   "name": "California Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210088365",
+   "name": "Max Planck Institute for Solid State Research",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I170897317",
+   "name": "Duke University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "dftfunc",
+   "why": "shared markets: materials; same branch"
+  },
+  {
+   "id": "glass",
+   "why": "shared markets: materials; same branch"
+  },
+  {
+   "id": "water",
+   "why": "shared markets: energy; same branch"
+  },
+  {
+   "id": "climate",
+   "why": "shared markets: energy"
+  },
+  {
+   "id": "fusion",
+   "why": "shared markets: energy"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2953538730",
+   "title": "Moving from acridinium to pyridinium: From complex to simple. 2,4,6-Triphenylpyridine and 2,4,6-triphenylpyrilium perchlorate as “metal-free” electrocatalysts of hydrogen evolution reaction (HER): The influence of the nature of the heteroatom and acid on the pathway HER",
+   "source": "openalex-fanout/W2953538730-moving-from-acridinium-to-pyridinium-from-complex-to-simple-"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID11607036",
+   "title": "Uracil-DNA glycosylase acts by substrate autocatalysis.",
+   "source": "pubmed/PMID-11607036-uracil-dna-glycosylase-acts-by-substrate-autocatalysis"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID11947013",
+   "title": "Chlorophyll catalysis and Einstein's photochemical law in photosynthesis.",
+   "source": "pubmed/PMID-11947013-chlorophyll-catalysis-and-einstein-s-photochemical-law-in-ph"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12592398",
+   "title": "Product-assisted catalysis in base-excision DNA repair.",
+   "source": "pubmed/PMID-12592398-product-assisted-catalysis-in-base-excision-dna-repair"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID15920483",
+   "title": "Movements of the epsilon-subunit during catalysis and activation in single membrane-bound H(+)-ATP synthase.",
+   "source": "pubmed/PMID-15920483-movements-of-the-epsilon-subunit-during-catalysis-and-activa"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID18026087",
+   "title": "A hierarchy of timescales in protein dynamics is linked to enzyme catalysis.",
+   "source": "pubmed/PMID-18026087-a-hierarchy-of-timescales-in-protein-dynamics-is-linked-to-e"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID20133745",
+   "title": "PR65, the HEAT-repeat scaffold of phosphatase PP2A, is an elastic connector that links force and catalysis.",
+   "source": "pubmed/PMID-20133745-pr65-the-heat-repeat-scaffold-of-phosphatase-pp2a-is-an-elas"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID21686171",
+   "title": "Required levels of catalysis for emergence of autocatalytic sets in models of chemical reaction systems.",
+   "source": "pubmed/PMID-21686171-required-levels-of-catalysis-for-emergence-of-autocatalytic"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID31165752",
+   "title": "Novel Green Biomimetic Approach for Synthesis of ZnO-Ag Nanocomposite; Antimicrobial Activity against Food-borne Pathogen, Biocompatibility and Solar Photocatalysis.",
+   "source": "pubmed/PMID-31165752-novel-green-biomimetic-approach-for-synthesis-of-zno-ag-nano"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID31337085",
+   "title": "Visible Light Driven Heterojunction Photocatalyst of CuO-Cu",
+   "source": "pubmed/PMID-31337085-visible-light-driven-heterojunction-photocatalyst-of-cuo-cu"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID40744487",
+   "title": "In-Cell NAD(P)H Photocatalysis with a Metal Complex for Photocatalytic Anticancer Therapy.",
+   "source": "pubmed/PMID-40744487-in-cell-nad-p-h-photocatalysis-with-a-metal-complex-for-phot"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID4391365",
+   "title": "[Chlorophyll catalysis of photosynthesis].",
+   "source": "pubmed/PMID-4391365-chlorophyll-catalysis-of-photosynthesis"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID4509308",
+   "title": "Sulfhydryl group catalysis of charge transfer.",
+   "source": "pubmed/PMID-4509308-sulfhydryl-group-catalysis-of-charge-transfer"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID6048801",
+   "title": "Acid-base titration across the membrane system of rat-liver mitochondria. Catalysis by uncouplers.",
+   "source": "pubmed/PMID-6048801-acid-base-titration-across-the-membrane-system-of-rat-liver"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Catalysis",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22rational+catalyst+design%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22rational+catalyst+design%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "22 relevant works of 25 considered, 1059 works with the phrase"
+ }
+}

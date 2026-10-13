@@ -1,0 +1,1689 @@
+{
+ "schema": "bucket.solvability-atlas.embedding-compare/v1",
+ "seed": 20261012,
+ "bootstraps": 2000,
+ "permutations": 10000,
+ "input": "current",
+ "rule": "Switch when the AUC with undated solved rows removed rises by more than the permutation spread and every expected pair still hits.",
+ "baseline": "bge-small-en-v1.5",
+ "models": {
+  "bge-small-en-v1.5": {
+   "model": "BAAI/bge-small-en-v1.5",
+   "revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+   "fresh_embeddings": 0,
+   "dims": {
+    "bge-small-en-v1.5": {
+     "dimensions": 384,
+     "leakage_ladder": [
+      {
+       "excluded": "the row itself, the shipped rule",
+       "groups": 5209,
+       "auc": 0.7656,
+       "ci95": [
+        0.7519,
+        0.7795
+       ]
+      },
+      {
+       "excluded": "its variant family",
+       "groups": 3015,
+       "auc": 0.6769,
+       "ci95": [
+        0.655,
+        0.6982
+       ]
+      },
+      {
+       "excluded": "family and near duplicates at 0.95",
+       "groups": 2968,
+       "auc": 0.6753,
+       "ci95": [
+        0.6555,
+        0.6958
+       ]
+      },
+      {
+       "excluded": "family and near duplicates at 0.9",
+       "groups": 2722,
+       "auc": 0.6722,
+       "ci95": [
+        0.649,
+        0.6948
+       ]
+      }
+     ],
+     "time_split": [
+      {
+       "cutoff": 2005,
+       "reference_solved": 170,
+       "tested": 319,
+       "solved_later": 48,
+       "auc": {
+        "value": 0.7383,
+        "ci95": [
+         0.6615,
+         0.8113
+        ]
+       }
+      },
+      {
+       "cutoff": 2015,
+       "reference_solved": 213,
+       "tested": 351,
+       "solved_later": 40,
+       "auc": {
+        "value": 0.7433,
+        "ci95": [
+         0.6599,
+         0.8218
+        ]
+       }
+      },
+      {
+       "cutoff": 2021,
+       "reference_solved": 261,
+       "tested": 482,
+       "solved_later": 16,
+       "auc": {
+        "value": 0.8301,
+        "ci95": [
+         0.712,
+         0.9277
+        ]
+       }
+      }
+     ],
+     "forecast_2021": {
+      "threshold": 0.665,
+      "auc": 0.906,
+      "auc_undated_removed": 0.836,
+      "all": {
+       "name": "all",
+       "inside": 272,
+       "outside": 167,
+       "resolvedInside": 35,
+       "resolvedOutside": 1,
+       "rateInside": 0.129,
+       "rateOutside": 0.006,
+       "ratio": 21.489,
+       "pValue": 0.0001,
+       "belowFloor": false
+      },
+      "undated_removed": {
+       "name": "all, undated solved rows removed",
+       "inside": 251,
+       "outside": 167,
+       "resolvedInside": 14,
+       "resolvedOutside": 1,
+       "rateInside": 0.056,
+       "rateOutside": 0.006,
+       "ratio": 9.315,
+       "pValue": 0.0126,
+       "belowFloor": false
+      }
+     },
+     "permutation": {
+      "rows": 418,
+      "positives": 15,
+      "auc": 0.8363,
+      "null_95": [
+       0.3459,
+       0.6482
+      ],
+      "spread": 0.1512,
+      "p_one_sided": 0.0001
+     },
+     "frontier": {
+      "threshold": 0.762,
+      "upper_reach": 0.852,
+      "counts": {
+       "solved": 1694,
+       "reachable": 2434,
+       "beyond": 1081,
+       "unsampled": 0
+      }
+     },
+     "october": {
+      "covered_branches": {
+       "claimed": {
+        "rows": 1348,
+        "claimed": 66,
+        "classes": {
+         "close to known results": {
+          "rows": 268,
+          "claimed": 13,
+          "rate": 0.0485,
+          "ci95": [
+           0.0248,
+           0.0766
+          ],
+          "wilson95": [
+           0.0286,
+           0.0812
+          ]
+         },
+         "borderline": {
+          "rows": 839,
+          "claimed": 41,
+          "rate": 0.0489,
+          "ci95": [
+           0.0328,
+           0.0655
+          ],
+          "wilson95": [
+           0.0362,
+           0.0656
+          ]
+         },
+         "needs a new idea": {
+          "rows": 241,
+          "claimed": 12,
+          "rate": 0.0498,
+          "ci95": [
+           0.0222,
+           0.081
+          ],
+          "wilson95": [
+           0.0287,
+           0.085
+          ]
+         }
+        },
+        "inside": {
+         "rows": 1107,
+         "claimed": 54,
+         "rate": 0.0488,
+         "ci95": [
+          0.0353,
+          0.0629
+         ],
+         "wilson95": [
+          0.0376,
+          0.0631
+         ]
+        },
+        "outside": {
+         "rows": 241,
+         "claimed": 12,
+         "rate": 0.0498,
+         "ci95": [
+          0.0222,
+          0.081
+         ],
+         "wilson95": [
+          0.0287,
+          0.085
+         ]
+        },
+        "inside_minus_outside": {
+         "value": -0.001,
+         "ci95": [
+          -0.0326,
+          0.0289
+         ],
+         "estimable": true
+        },
+        "top_class_minus_outside": {
+         "value": -0.0013,
+         "ci95": [
+          -0.0408,
+          0.0376
+         ],
+         "estimable": true
+        },
+        "permutation_p": 1.0,
+        "reach_auc": {
+         "value": 0.4965,
+         "ci95": [
+          0.4262,
+          0.5733
+         ]
+        }
+       },
+       "claimed_formal_full": {
+        "rows": 1348,
+        "claimed": 45,
+        "classes": {
+         "close to known results": {
+          "rows": 268,
+          "claimed": 7,
+          "rate": 0.0261,
+          "ci95": [
+           0.0081,
+           0.0469
+          ],
+          "wilson95": [
+           0.0127,
+           0.0529
+          ]
+         },
+         "borderline": {
+          "rows": 839,
+          "claimed": 28,
+          "rate": 0.0334,
+          "ci95": [
+           0.0198,
+           0.0478
+          ],
+          "wilson95": [
+           0.0232,
+           0.0478
+          ]
+         },
+         "needs a new idea": {
+          "rows": 241,
+          "claimed": 10,
+          "rate": 0.0415,
+          "ci95": [
+           0.0179,
+           0.0675
+          ],
+          "wilson95": [
+           0.0227,
+           0.0747
+          ]
+         }
+        },
+        "inside": {
+         "rows": 1107,
+         "claimed": 35,
+         "rate": 0.0316,
+         "ci95": [
+          0.0201,
+          0.0437
+         ],
+         "wilson95": [
+          0.0228,
+          0.0437
+         ]
+        },
+        "outside": {
+         "rows": 241,
+         "claimed": 10,
+         "rate": 0.0415,
+         "ci95": [
+          0.0179,
+          0.0675
+         ],
+         "wilson95": [
+          0.0227,
+          0.0747
+         ]
+        },
+        "inside_minus_outside": {
+         "value": -0.0099,
+         "ci95": [
+          -0.0376,
+          0.0159
+         ],
+         "estimable": true
+        },
+        "top_class_minus_outside": {
+         "value": -0.0154,
+         "ci95": [
+          -0.0474,
+          0.0151
+         ],
+         "estimable": true
+        },
+        "permutation_p": 0.5504,
+        "reach_auc": {
+         "value": 0.4819,
+         "ci95": [
+          0.3964,
+          0.5677
+         ]
+        }
+       }
+      },
+      "erdos": {
+       "claimed": {
+        "rows": 358,
+        "claimed": 14,
+        "classes": {
+         "close to known results": {
+          "rows": 144,
+          "claimed": 9,
+          "rate": 0.0625,
+          "ci95": [
+           0.027,
+           0.1049
+          ],
+          "wilson95": [
+           0.0332,
+           0.1145
+          ]
+         },
+         "borderline": {
+          "rows": 201,
+          "claimed": 5,
+          "rate": 0.0249,
+          "ci95": [
+           0.005,
+           0.0495
+          ],
+          "wilson95": [
+           0.0107,
+           0.0569
+          ]
+         },
+         "needs a new idea": {
+          "rows": 13,
+          "claimed": 0,
+          "rate": 0.0,
+          "ci95": [
+           0.0,
+           0.0
+          ],
+          "wilson95": [
+           0.0,
+           0.2281
+          ]
+         }
+        },
+        "inside": {
+         "rows": 345,
+         "claimed": 14,
+         "rate": 0.0406,
+         "ci95": [
+          0.0205,
+          0.063
+         ],
+         "wilson95": [
+          0.0243,
+          0.067
+         ]
+        },
+        "outside": {
+         "rows": 13,
+         "claimed": 0,
+         "rate": 0.0,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "wilson95": [
+          0.0,
+          0.2281
+         ]
+        },
+        "inside_minus_outside": {
+         "value": 0.0406,
+         "ci95": null,
+         "estimable": false
+        },
+        "top_class_minus_outside": {
+         "value": 0.0625,
+         "ci95": null,
+         "estimable": false
+        },
+        "permutation_p": 0.679,
+        "reach_auc": {
+         "value": 0.6549,
+         "ci95": [
+          0.4967,
+          0.8094
+         ]
+        }
+       },
+       "claimed_formal_full": {
+        "rows": 358,
+        "claimed": 10,
+        "classes": {
+         "close to known results": {
+          "rows": 144,
+          "claimed": 5,
+          "rate": 0.0347,
+          "ci95": [
+           0.0071,
+           0.0685
+          ],
+          "wilson95": [
+           0.0149,
+           0.0787
+          ]
+         },
+         "borderline": {
+          "rows": 201,
+          "claimed": 5,
+          "rate": 0.0249,
+          "ci95": [
+           0.005,
+           0.0495
+          ],
+          "wilson95": [
+           0.0107,
+           0.0569
+          ]
+         },
+         "needs a new idea": {
+          "rows": 13,
+          "claimed": 0,
+          "rate": 0.0,
+          "ci95": [
+           0.0,
+           0.0
+          ],
+          "wilson95": [
+           0.0,
+           0.2281
+          ]
+         }
+        },
+        "inside": {
+         "rows": 345,
+         "claimed": 10,
+         "rate": 0.029,
+         "ci95": [
+          0.0118,
+          0.0471
+         ],
+         "wilson95": [
+          0.0158,
+          0.0525
+         ]
+        },
+        "outside": {
+         "rows": 13,
+         "claimed": 0,
+         "rate": 0.0,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "wilson95": [
+          0.0,
+          0.2281
+         ]
+        },
+        "inside_minus_outside": {
+         "value": 0.029,
+         "ci95": null,
+         "estimable": false
+        },
+        "top_class_minus_outside": {
+         "value": 0.0347,
+         "ci95": null,
+         "estimable": false
+        },
+        "permutation_p": 1.0,
+        "reach_auc": {
+         "value": 0.5638,
+         "ci95": [
+          0.3628,
+          0.752
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   "pair_hits": [
+    {
+     "model": "bge-small-en-v1.5",
+     "variant": "keywords",
+     "hits": 15,
+     "pairs": 15,
+     "missed": []
+    },
+    {
+     "model": "bge-small-en-v1.5",
+     "variant": "statement",
+     "hits": 14,
+     "pairs": 15,
+     "missed": [
+      "ramsey+capset"
+     ]
+    },
+    {
+     "model": "bge-small-en-v1.5",
+     "variant": "statement_titles",
+     "hits": 12,
+     "pairs": 15,
+     "missed": [
+      "fermat+abc",
+      "riemann+twinprime",
+      "factoring+ecc"
+     ]
+    },
+    {
+     "model": "bge-small-en-v1.5",
+     "variant": "statement_titles_aliases",
+     "hits": 13,
+     "pairs": 15,
+     "missed": [
+      "riemann+twinprime",
+      "factoring+ecc"
+     ]
+    }
+   ]
+  },
+  "embeddinggemma-2": {
+   "model": "google/embeddinggemma-2",
+   "revision": "914f7f89142e33e77833254d9c9b90c3cef7303b",
+   "fresh_embeddings": 0,
+   "dims": {
+    "embeddinggemma-2": {
+     "dimensions": 768,
+     "leakage_ladder": [
+      {
+       "excluded": "the row itself, the shipped rule",
+       "groups": 5209,
+       "auc": 0.7434,
+       "ci95": [
+        0.7291,
+        0.7568
+       ]
+      },
+      {
+       "excluded": "its variant family",
+       "groups": 3015,
+       "auc": 0.6331,
+       "ci95": [
+        0.6073,
+        0.6588
+       ]
+      },
+      {
+       "excluded": "family and near duplicates at 0.95",
+       "groups": 2358,
+       "auc": 0.6326,
+       "ci95": [
+        0.6016,
+        0.6748
+       ]
+      },
+      {
+       "excluded": "family and near duplicates at 0.9",
+       "groups": 537,
+       "auc": 0.5642,
+       "ci95": [
+        0.5518,
+        0.6911
+       ]
+      }
+     ],
+     "time_split": [
+      {
+       "cutoff": 2005,
+       "reference_solved": 170,
+       "tested": 319,
+       "solved_later": 48,
+       "auc": {
+        "value": 0.5982,
+        "ci95": [
+         0.5046,
+         0.6886
+        ]
+       }
+      },
+      {
+       "cutoff": 2015,
+       "reference_solved": 213,
+       "tested": 351,
+       "solved_later": 40,
+       "auc": {
+        "value": 0.6704,
+        "ci95": [
+         0.5261,
+         0.7872
+        ]
+       }
+      },
+      {
+       "cutoff": 2021,
+       "reference_solved": 261,
+       "tested": 482,
+       "solved_later": 16,
+       "auc": {
+        "value": 0.8194,
+        "ci95": [
+         0.7086,
+         0.9056
+        ]
+       }
+      }
+     ],
+     "forecast_2021": {
+      "threshold": 0.849,
+      "auc": 0.884,
+      "auc_undated_removed": 0.871,
+      "all": {
+       "name": "all",
+       "inside": 306,
+       "outside": 109,
+       "resolvedInside": 24,
+       "resolvedOutside": 0,
+       "rateInside": 0.078,
+       "rateOutside": 0.0,
+       "ratio": null,
+       "pValue": 0.0033,
+       "belowFloor": false
+      },
+      "undated_removed": {
+       "name": "all, undated solved rows removed",
+       "inside": 296,
+       "outside": 109,
+       "resolvedInside": 14,
+       "resolvedOutside": 0,
+       "rateInside": 0.047,
+       "rateOutside": 0.0,
+       "ratio": null,
+       "pValue": 0.0259,
+       "belowFloor": false
+      }
+     },
+     "permutation": {
+      "rows": 405,
+      "positives": 14,
+      "auc": 0.8709,
+      "null_95": [
+       0.3475,
+       0.6538
+      ],
+      "spread": 0.1532,
+      "p_one_sided": 0.0001
+     },
+     "frontier": {
+      "threshold": 0.899,
+      "upper_reach": 0.937,
+      "counts": {
+       "solved": 1694,
+       "reachable": 2335,
+       "beyond": 1180,
+       "unsampled": 0
+      }
+     },
+     "october": {
+      "covered_branches": {
+       "claimed": {
+        "rows": 1348,
+        "claimed": 66,
+        "classes": {
+         "close to known results": {
+          "rows": 273,
+          "claimed": 10,
+          "rate": 0.0366,
+          "ci95": [
+           0.0165,
+           0.0795
+          ],
+          "wilson95": [
+           0.02,
+           0.0661
+          ]
+         },
+         "borderline": {
+          "rows": 758,
+          "claimed": 39,
+          "rate": 0.0515,
+          "ci95": [
+           0.0352,
+           0.0711
+          ],
+          "wilson95": [
+           0.0379,
+           0.0696
+          ]
+         },
+         "needs a new idea": {
+          "rows": 317,
+          "claimed": 17,
+          "rate": 0.0536,
+          "ci95": [
+           0.0279,
+           0.0833
+          ],
+          "wilson95": [
+           0.0337,
+           0.0842
+          ]
+         }
+        },
+        "inside": {
+         "rows": 1031,
+         "claimed": 49,
+         "rate": 0.0475,
+         "ci95": [
+          0.0336,
+          0.068
+         ],
+         "wilson95": [
+          0.0361,
+          0.0623
+         ]
+        },
+        "outside": {
+         "rows": 317,
+         "claimed": 17,
+         "rate": 0.0536,
+         "ci95": [
+          0.0279,
+          0.0833
+         ],
+         "wilson95": [
+          0.0337,
+          0.0842
+         ]
+        },
+        "inside_minus_outside": {
+         "value": -0.0061,
+         "ci95": [
+          -0.0365,
+          0.0247
+         ],
+         "estimable": true
+        },
+        "top_class_minus_outside": {
+         "value": -0.017,
+         "ci95": [
+          -0.0524,
+          0.0342
+         ],
+         "estimable": true
+        },
+        "permutation_p": 0.759,
+        "reach_auc": {
+         "value": 0.4462,
+         "ci95": [
+          0.3793,
+          0.5274
+         ]
+        }
+       },
+       "claimed_formal_full": {
+        "rows": 1348,
+        "claimed": 45,
+        "classes": {
+         "close to known results": {
+          "rows": 273,
+          "claimed": 7,
+          "rate": 0.0256,
+          "ci95": [
+           0.0107,
+           0.0585
+          ],
+          "wilson95": [
+           0.0125,
+           0.052
+          ]
+         },
+         "borderline": {
+          "rows": 758,
+          "claimed": 29,
+          "rate": 0.0383,
+          "ci95": [
+           0.0231,
+           0.0557
+          ],
+          "wilson95": [
+           0.0268,
+           0.0544
+          ]
+         },
+         "needs a new idea": {
+          "rows": 317,
+          "claimed": 9,
+          "rate": 0.0284,
+          "ci95": [
+           0.0123,
+           0.0493
+          ],
+          "wilson95": [
+           0.015,
+           0.0531
+          ]
+         }
+        },
+        "inside": {
+         "rows": 1031,
+         "claimed": 36,
+         "rate": 0.0349,
+         "ci95": [
+          0.0226,
+          0.0522
+         ],
+         "wilson95": [
+          0.0253,
+          0.048
+         ]
+        },
+        "outside": {
+         "rows": 317,
+         "claimed": 9,
+         "rate": 0.0284,
+         "ci95": [
+          0.0123,
+          0.0493
+         ],
+         "wilson95": [
+          0.015,
+          0.0531
+         ]
+        },
+        "inside_minus_outside": {
+         "value": 0.0065,
+         "ci95": [
+          -0.016,
+          0.0285
+         ],
+         "estimable": true
+        },
+        "top_class_minus_outside": {
+         "value": -0.0028,
+         "ci95": [
+          -0.0284,
+          0.0334
+         ],
+         "estimable": true
+        },
+        "permutation_p": 0.6029,
+        "reach_auc": {
+         "value": 0.4634,
+         "ci95": [
+          0.3845,
+          0.5537
+         ]
+        }
+       }
+      },
+      "erdos": {
+       "claimed": {
+        "rows": 358,
+        "claimed": 14,
+        "classes": {
+         "close to known results": {
+          "rows": 128,
+          "claimed": 7,
+          "rate": 0.0547,
+          "ci95": [
+           0.0231,
+           0.1191
+          ],
+          "wilson95": [
+           0.0267,
+           0.1086
+          ]
+         },
+         "borderline": {
+          "rows": 209,
+          "claimed": 7,
+          "rate": 0.0335,
+          "ci95": [
+           0.006,
+           0.0565
+          ],
+          "wilson95": [
+           0.0163,
+           0.0675
+          ]
+         },
+         "needs a new idea": {
+          "rows": 21,
+          "claimed": 0,
+          "rate": 0.0,
+          "ci95": [
+           0.0,
+           0.0
+          ],
+          "wilson95": [
+           0.0,
+           0.1546
+          ]
+         }
+        },
+        "inside": {
+         "rows": 337,
+         "claimed": 14,
+         "rate": 0.0415,
+         "ci95": [
+          0.0215,
+          0.061
+         ],
+         "wilson95": [
+          0.0249,
+          0.0685
+         ]
+        },
+        "outside": {
+         "rows": 21,
+         "claimed": 0,
+         "rate": 0.0,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "wilson95": [
+          0.0,
+          0.1546
+         ]
+        },
+        "inside_minus_outside": {
+         "value": 0.0415,
+         "ci95": null,
+         "estimable": false
+        },
+        "top_class_minus_outside": {
+         "value": 0.0547,
+         "ci95": null,
+         "estimable": false
+        },
+        "permutation_p": 0.6195,
+        "reach_auc": {
+         "value": 0.6261,
+         "ci95": [
+          0.5028,
+          0.7823
+         ]
+        }
+       },
+       "claimed_formal_full": {
+        "rows": 358,
+        "claimed": 10,
+        "classes": {
+         "close to known results": {
+          "rows": 128,
+          "claimed": 5,
+          "rate": 0.0391,
+          "ci95": [
+           0.0139,
+           0.0842
+          ],
+          "wilson95": [
+           0.0168,
+           0.0882
+          ]
+         },
+         "borderline": {
+          "rows": 209,
+          "claimed": 5,
+          "rate": 0.0239,
+          "ci95": [
+           0.0056,
+           0.042
+          ],
+          "wilson95": [
+           0.0103,
+           0.0548
+          ]
+         },
+         "needs a new idea": {
+          "rows": 21,
+          "claimed": 0,
+          "rate": 0.0,
+          "ci95": [
+           0.0,
+           0.0
+          ],
+          "wilson95": [
+           0.0,
+           0.1546
+          ]
+         }
+        },
+        "inside": {
+         "rows": 337,
+         "claimed": 10,
+         "rate": 0.0297,
+         "ci95": [
+          0.0129,
+          0.0452
+         ],
+         "wilson95": [
+          0.0162,
+          0.0538
+         ]
+        },
+        "outside": {
+         "rows": 21,
+         "claimed": 0,
+         "rate": 0.0,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "wilson95": [
+          0.0,
+          0.1546
+         ]
+        },
+        "inside_minus_outside": {
+         "value": 0.0297,
+         "ci95": null,
+         "estimable": false
+        },
+        "top_class_minus_outside": {
+         "value": 0.0391,
+         "ci95": null,
+         "estimable": false
+        },
+        "permutation_p": 0.6514,
+        "reach_auc": {
+         "value": 0.5966,
+         "ci95": [
+          0.4007,
+          0.7799
+         ]
+        }
+       }
+      }
+     }
+    },
+    "embeddinggemma-2@256": {
+     "dimensions": 256,
+     "leakage_ladder": [
+      {
+       "excluded": "the row itself, the shipped rule",
+       "groups": 5209,
+       "auc": 0.7437,
+       "ci95": [
+        0.7292,
+        0.7573
+       ]
+      },
+      {
+       "excluded": "its variant family",
+       "groups": 3015,
+       "auc": 0.6377,
+       "ci95": [
+        0.6125,
+        0.6629
+       ]
+      },
+      {
+       "excluded": "family and near duplicates at 0.95",
+       "groups": 2098,
+       "auc": 0.6311,
+       "ci95": [
+        0.6014,
+        0.6849
+       ]
+      },
+      {
+       "excluded": "family and near duplicates at 0.9",
+       "groups": 329,
+       "auc": 0.515,
+       "ci95": [
+        0.5079,
+        0.6932
+       ]
+      }
+     ],
+     "time_split": [
+      {
+       "cutoff": 2005,
+       "reference_solved": 170,
+       "tested": 319,
+       "solved_later": 48,
+       "auc": {
+        "value": 0.5798,
+        "ci95": [
+         0.4881,
+         0.6713
+        ]
+       }
+      },
+      {
+       "cutoff": 2015,
+       "reference_solved": 213,
+       "tested": 351,
+       "solved_later": 40,
+       "auc": {
+        "value": 0.6754,
+        "ci95": [
+         0.545,
+         0.7797
+        ]
+       }
+      },
+      {
+       "cutoff": 2021,
+       "reference_solved": 261,
+       "tested": 482,
+       "solved_later": 16,
+       "auc": {
+        "value": 0.8086,
+        "ci95": [
+         0.6944,
+         0.9023
+        ]
+       }
+      }
+     ],
+     "forecast_2021": {
+      "threshold": 0.864,
+      "auc": 0.879,
+      "auc_undated_removed": 0.853,
+      "all": {
+       "name": "all",
+       "inside": 283,
+       "outside": 133,
+       "resolvedInside": 26,
+       "resolvedOutside": 0,
+       "rateInside": 0.092,
+       "rateOutside": 0.0,
+       "ratio": null,
+       "pValue": 0.0006,
+       "belowFloor": false
+      },
+      "undated_removed": {
+       "name": "all, undated solved rows removed",
+       "inside": 271,
+       "outside": 133,
+       "resolvedInside": 14,
+       "resolvedOutside": 0,
+       "rateInside": 0.052,
+       "rateOutside": 0.0,
+       "ratio": null,
+       "pValue": 0.0065,
+       "belowFloor": false
+      }
+     },
+     "permutation": {
+      "rows": 404,
+      "positives": 14,
+      "auc": 0.8527,
+      "null_95": [
+       0.3454,
+       0.6527
+      ],
+      "spread": 0.1536,
+      "p_one_sided": 0.0001
+     },
+     "frontier": {
+      "threshold": 0.907,
+      "upper_reach": 0.943,
+      "counts": {
+       "solved": 1694,
+       "reachable": 2405,
+       "beyond": 1110,
+       "unsampled": 0
+      }
+     },
+     "october": {
+      "covered_branches": {
+       "claimed": {
+        "rows": 1348,
+        "claimed": 66,
+        "classes": {
+         "close to known results": {
+          "rows": 282,
+          "claimed": 9,
+          "rate": 0.0319,
+          "ci95": [
+           0.018,
+           0.1061
+          ],
+          "wilson95": [
+           0.0169,
+           0.0595
+          ]
+         },
+         "borderline": {
+          "rows": 780,
+          "claimed": 40,
+          "rate": 0.0513,
+          "ci95": [
+           0.0348,
+           0.0753
+          ],
+          "wilson95": [
+           0.0379,
+           0.0691
+          ]
+         },
+         "needs a new idea": {
+          "rows": 286,
+          "claimed": 17,
+          "rate": 0.0594,
+          "ci95": [
+           0.0304,
+           0.0933
+          ],
+          "wilson95": [
+           0.0374,
+           0.0931
+          ]
+         }
+        },
+        "inside": {
+         "rows": 1062,
+         "claimed": 49,
+         "rate": 0.0461,
+         "ci95": [
+          0.0321,
+          0.075
+         ],
+         "wilson95": [
+          0.0351,
+          0.0605
+         ]
+        },
+        "outside": {
+         "rows": 286,
+         "claimed": 17,
+         "rate": 0.0594,
+         "ci95": [
+          0.0304,
+          0.0933
+         ],
+         "wilson95": [
+          0.0374,
+          0.0931
+         ]
+        },
+        "inside_minus_outside": {
+         "value": -0.0133,
+         "ci95": [
+          -0.0479,
+          0.026
+         ],
+         "estimable": true
+        },
+        "top_class_minus_outside": {
+         "value": -0.0275,
+         "ci95": [
+          -0.0618,
+          0.0508
+         ],
+         "estimable": true
+        },
+        "permutation_p": 0.4398,
+        "reach_auc": {
+         "value": 0.4354,
+         "ci95": [
+          0.3773,
+          0.545
+         ]
+        }
+       },
+       "claimed_formal_full": {
+        "rows": 1348,
+        "claimed": 45,
+        "classes": {
+         "close to known results": {
+          "rows": 282,
+          "claimed": 6,
+          "rate": 0.0213,
+          "ci95": [
+           0.0,
+           0.0568
+          ],
+          "wilson95": [
+           0.0098,
+           0.0456
+          ]
+         },
+         "borderline": {
+          "rows": 780,
+          "claimed": 29,
+          "rate": 0.0372,
+          "ci95": [
+           0.023,
+           0.0592
+          ],
+          "wilson95": [
+           0.026,
+           0.0529
+          ]
+         },
+         "needs a new idea": {
+          "rows": 286,
+          "claimed": 10,
+          "rate": 0.035,
+          "ci95": [
+           0.0148,
+           0.0584
+          ],
+          "wilson95": [
+           0.0191,
+           0.0632
+          ]
+         }
+        },
+        "inside": {
+         "rows": 1062,
+         "claimed": 35,
+         "rate": 0.033,
+         "ci95": [
+          0.0218,
+          0.0552
+         ],
+         "wilson95": [
+          0.0238,
+          0.0455
+         ]
+        },
+        "outside": {
+         "rows": 286,
+         "claimed": 10,
+         "rate": 0.035,
+         "ci95": [
+          0.0148,
+          0.0584
+         ],
+         "wilson95": [
+          0.0191,
+          0.0632
+         ]
+        },
+        "inside_minus_outside": {
+         "value": -0.002,
+         "ci95": [
+          -0.0261,
+          0.027
+         ],
+         "estimable": true
+        },
+        "top_class_minus_outside": {
+         "value": -0.0137,
+         "ci95": [
+          -0.0446,
+          0.0244
+         ],
+         "estimable": true
+        },
+        "permutation_p": 1.0,
+        "reach_auc": {
+         "value": 0.4539,
+         "ci95": [
+          0.3903,
+          0.5585
+         ]
+        }
+       }
+      },
+      "erdos": {
+       "claimed": {
+        "rows": 358,
+        "claimed": 14,
+        "classes": {
+         "close to known results": {
+          "rows": 131,
+          "claimed": 6,
+          "rate": 0.0458,
+          "ci95": [
+           0.0234,
+           0.1516
+          ],
+          "wilson95": [
+           0.0212,
+           0.0963
+          ]
+         },
+         "borderline": {
+          "rows": 210,
+          "claimed": 8,
+          "rate": 0.0381,
+          "ci95": [
+           0.0149,
+           0.0657
+          ],
+          "wilson95": [
+           0.0194,
+           0.0734
+          ]
+         },
+         "needs a new idea": {
+          "rows": 17,
+          "claimed": 0,
+          "rate": 0.0,
+          "ci95": [
+           0.0,
+           0.0
+          ],
+          "wilson95": [
+           0.0,
+           0.1843
+          ]
+         }
+        },
+        "inside": {
+         "rows": 341,
+         "claimed": 14,
+         "rate": 0.0411,
+         "ci95": [
+          0.0241,
+          0.0732
+         ],
+         "wilson95": [
+          0.0246,
+          0.0677
+         ]
+        },
+        "outside": {
+         "rows": 17,
+         "claimed": 0,
+         "rate": 0.0,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "wilson95": [
+          0.0,
+          0.1843
+         ]
+        },
+        "inside_minus_outside": {
+         "value": 0.0411,
+         "ci95": null,
+         "estimable": false
+        },
+        "top_class_minus_outside": {
+         "value": 0.0458,
+         "ci95": null,
+         "estimable": false
+        },
+        "permutation_p": 0.6321,
+        "reach_auc": {
+         "value": 0.6215,
+         "ci95": [
+          0.5044,
+          0.8265
+         ]
+        }
+       },
+       "claimed_formal_full": {
+        "rows": 358,
+        "claimed": 10,
+        "classes": {
+         "close to known results": {
+          "rows": 131,
+          "claimed": 4,
+          "rate": 0.0305,
+          "ci95": [
+           0.0,
+           0.077
+          ],
+          "wilson95": [
+           0.0119,
+           0.0759
+          ]
+         },
+         "borderline": {
+          "rows": 210,
+          "claimed": 6,
+          "rate": 0.0286,
+          "ci95": [
+           0.0079,
+           0.0551
+          ],
+          "wilson95": [
+           0.0132,
+           0.0609
+          ]
+         },
+         "needs a new idea": {
+          "rows": 17,
+          "claimed": 0,
+          "rate": 0.0,
+          "ci95": [
+           0.0,
+           0.0
+          ],
+          "wilson95": [
+           0.0,
+           0.1843
+          ]
+         }
+        },
+        "inside": {
+         "rows": 341,
+         "claimed": 10,
+         "rate": 0.0293,
+         "ci95": [
+          0.012,
+          0.052
+         ],
+         "wilson95": [
+          0.016,
+          0.0531
+         ]
+        },
+        "outside": {
+         "rows": 17,
+         "claimed": 0,
+         "rate": 0.0,
+         "ci95": [
+          0.0,
+          0.0
+         ],
+         "wilson95": [
+          0.0,
+          0.1843
+         ]
+        },
+        "inside_minus_outside": {
+         "value": 0.0293,
+         "ci95": null,
+         "estimable": false
+        },
+        "top_class_minus_outside": {
+         "value": 0.0305,
+         "ci95": null,
+         "estimable": false
+        },
+        "permutation_p": 1.0,
+        "reach_auc": {
+         "value": 0.5914,
+         "ci95": [
+          0.3302,
+          0.7569
+         ]
+        }
+       }
+      }
+     }
+    }
+   },
+   "pair_hits": [
+    {
+     "model": "embeddinggemma-2",
+     "variant": "keywords",
+     "hits": 14,
+     "pairs": 15,
+     "missed": [
+      "ramsey+capset"
+     ]
+    },
+    {
+     "model": "embeddinggemma-2@256",
+     "variant": "keywords",
+     "hits": 14,
+     "pairs": 15,
+     "missed": [
+      "pnp+bqp"
+     ]
+    },
+    {
+     "model": "embeddinggemma-2",
+     "variant": "statement",
+     "hits": 15,
+     "pairs": 15,
+     "missed": []
+    },
+    {
+     "model": "embeddinggemma-2@256",
+     "variant": "statement",
+     "hits": 15,
+     "pairs": 15,
+     "missed": []
+    },
+    {
+     "model": "embeddinggemma-2",
+     "variant": "statement_titles",
+     "hits": 14,
+     "pairs": 15,
+     "missed": [
+      "ramsey+capset"
+     ]
+    },
+    {
+     "model": "embeddinggemma-2@256",
+     "variant": "statement_titles",
+     "hits": 14,
+     "pairs": 15,
+     "missed": [
+      "ramsey+capset"
+     ]
+    },
+    {
+     "model": "embeddinggemma-2",
+     "variant": "statement_titles_aliases",
+     "hits": 14,
+     "pairs": 15,
+     "missed": [
+      "ramsey+capset"
+     ]
+    },
+    {
+     "model": "embeddinggemma-2@256",
+     "variant": "statement_titles_aliases",
+     "hits": 13,
+     "pairs": 15,
+     "missed": [
+      "ramsey+capset",
+      "factoring+ecc"
+     ]
+    }
+   ]
+  }
+ },
+ "paired_auc_difference": {
+  "embeddinggemma-2": {
+   "rows": 395,
+   "positives": 14,
+   "difference": 0.0158,
+   "ci95": [
+    -0.0445,
+    0.0926
+   ]
+  },
+  "embeddinggemma-2@256": {
+   "rows": 394,
+   "positives": 14,
+   "difference": -0.0013,
+   "ci95": [
+    -0.0683,
+    0.0819
+   ]
+  }
+ },
+ "verdict": {
+  "embeddinggemma-2": {
+   "gain_undated_removed": 0.035,
+   "permutation_spread": 0.1532,
+   "pair_hits": 14,
+   "pair_target": 15,
+   "switch": false
+  },
+  "embeddinggemma-2@256": {
+   "gain_undated_removed": 0.017,
+   "permutation_spread": 0.1536,
+   "pair_hits": 14,
+   "pair_target": 15,
+   "switch": false
+  }
+ }
+}

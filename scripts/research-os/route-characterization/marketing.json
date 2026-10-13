@@ -1,0 +1,356 @@
+{
+  "GET unconfigured": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "GET anonymous": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "GET signed in, store down": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "GET signed in, consent unavailable": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable",
+      "message": "Consent could not be checked right now. Try again in a moment."
+    }
+  },
+  "GET signed in, consent refused": {
+    "status": 403,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile",
+      "message": "",
+      "needsProfile": true
+    }
+  },
+  "GET get, no import param": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "GET get, no seal key": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "seal_key_missing",
+      "message": "Reports are sealed before they are saved, and this server has no sealing key. Nothing was analyzed."
+    }
+  },
+  "GET get, import missing": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "not_found",
+      "message": "No marketing import of yours has that id."
+    }
+  },
+  "GET get, no report": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_report",
+      "message": "This import has no saved analysis yet."
+    }
+  },
+  "POST unconfigured": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "POST anonymous": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "POST signed in, store down": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "The actions are create and analyze."
+    }
+  },
+  "POST signed in, malformed json": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "The body is a small JSON object."
+    }
+  },
+  "POST signed in, consent unavailable": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable",
+      "message": "Consent could not be checked right now. Try again in a moment."
+    }
+  },
+  "POST signed in, consent refused": {
+    "status": 403,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile",
+      "message": "",
+      "needsProfile": true
+    }
+  },
+  "POST create": {
+    "status": 201,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "importId": "import-1"
+    }
+  },
+  "POST create, blank title": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_title",
+      "message": "Give the analysis a title of 1 to 200 characters."
+    }
+  },
+  "POST create, store down": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_unavailable",
+      "message": "The import could not be read."
+    }
+  },
+  "POST null body": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "The body is a small JSON object."
+    }
+  },
+  "POST unknown action": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "The actions are create and analyze."
+    }
+  },
+  "POST analyze, no import id": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "POST analyze, no seal key": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "seal_key_missing",
+      "message": "Reports are sealed before they are saved, and this server has no sealing key. Nothing was analyzed."
+    }
+  },
+  "POST analyze, import missing": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "not_found",
+      "message": "No marketing import of yours has that id."
+    }
+  },
+  "POST analyze, no files": {
+    "status": 409,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_files",
+      "message": "Attach at least one file before analyzing."
+    }
+  },
+  "POST analyze, unsupported type": {
+    "status": 415,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unsupported_type",
+      "message": "Marketing analysis reads CSV, TSV, XLSX, JSON, JSONL, Parquet and PDF files."
+    }
+  },
+  "POST analyze, file too large": {
+    "status": 413,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "file_too_large",
+      "message": "A file is at most 16 MB for analysis."
+    }
+  },
+  "POST analyze, path shared": {
+    "status": 409,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "path_shared",
+      "message": "A file here is also recorded under an import others can read. Remove it from this analysis."
+    }
+  },
+  "POST analyze, store down": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_unavailable",
+      "message": "The import could not be read."
+    }
+  },
+  "DELETE unconfigured": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "DELETE anonymous": {
+    "status": 401,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "unauthorized",
+      "message": "Sign in to analyze a file."
+    }
+  },
+  "DELETE signed in, store down": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "DELETE signed in, malformed json": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "DELETE signed in, consent unavailable": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "consent_unavailable",
+      "message": "Consent could not be checked right now. Try again in a moment."
+    }
+  },
+  "DELETE signed in, consent refused": {
+    "status": 403,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "no_profile",
+      "message": "",
+      "needsProfile": true
+    }
+  },
+  "DELETE delete, no import param": {
+    "status": 400,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "invalid_request",
+      "message": "Name the import."
+    }
+  },
+  "DELETE delete, import missing": {
+    "status": 404,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "not_found",
+      "message": "No marketing import of yours has that id."
+    }
+  },
+  "DELETE delete": {
+    "status": 200,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "deleted": true,
+      "files": 2,
+      "objectsRemoved": 2
+    }
+  },
+  "DELETE delete, storage failed": {
+    "status": 502,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "storage_failed",
+      "message": "Storage did not delete the files. Nothing else was removed, so deleting again finishes the job."
+    }
+  },
+  "DELETE delete, write failed": {
+    "status": 503,
+    "cache": "private, no-store",
+    "type": "application/json",
+    "body": {
+      "error": "graph_unavailable",
+      "message": "The import could not be deleted."
+    }
+  }
+}

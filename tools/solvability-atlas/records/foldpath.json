@@ -1,0 +1,241 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "foldpath",
+ "title": "Protein folding pathway kinetics",
+ "statement": {
+  "text": "Protein folding is the physical process by which a protein, after synthesis by a ribosome as a linear chain of amino acids, changes from an unstable random coil into a more ordered three-dimensional structure. This structure permits the protein to become biologically functional or active.",
+  "source": "https://en.wikipedia.org/wiki/Protein_folding",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Protein folding",
+   "url": "https://en.wikipedia.org/wiki/Protein_folding"
+  }
+ },
+ "aliases": [
+  "Protein folding"
+ ],
+ "branch": "biophysics",
+ "level": 4,
+ "industries": [
+  "pharma",
+  "biotech"
+ ],
+ "posed": 1968,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1968,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2077285561",
+   "title": "Recognition of protein folding kinetics pathways based on amino acid properties information derived from primary sequence",
+   "year": 2013,
+   "cited_by_count": 4,
+   "doi": "https://doi.org/10.1016/j.chemolab.2013.04.019",
+   "role": "partial",
+   "relevance": 12,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 1,
+ "key_works_dropped": {},
+ "activity": {
+  "openalex_by_year": {
+   "2013": 1
+  },
+  "openalex_total": 1,
+  "arxiv_total": 0,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22protein+folding+kinetics+pathway%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5090917542",
+   "name": "Lili Xi",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100669298",
+   "name": "Shuyan Li",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5025441318",
+   "name": "Yuhui Wei",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5036421260",
+   "name": "Xinan Wu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5054987508",
+   "name": "Huanxiang Liu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5037785133",
+   "name": "Xiaojun Yao",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I4210163492",
+   "name": "First Hospital of Lanzhou University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4391768068",
+   "name": "State Key Laboratory of Applied Organic Chemistry",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I76214153",
+   "name": "Lanzhou University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "protein",
+   "why": "shared markets: biotech, pharma; same branch"
+  },
+  {
+   "id": "aging",
+   "why": "shared markets: pharma; same branch"
+  },
+  {
+   "id": "bioelectric",
+   "why": "shared markets: biotech; same branch"
+  },
+  {
+   "id": "mitoredox",
+   "why": "shared markets: pharma; same branch"
+  },
+  {
+   "id": "dftfunc",
+   "why": "shared markets: pharma"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID10044213",
+   "title": "Protein folding bottlenecks: A lattice Monte Carlo simulation.",
+   "source": "pubmed/PMID-10044213-protein-folding-bottlenecks-a-lattice-monte-carlo-simulation"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10047588",
+   "title": "The fundamentals of protein folding: bringing together theory and experiment.",
+   "source": "pubmed/PMID-10047588-the-fundamentals-of-protein-folding-bringing-together-theory"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10871884",
+   "title": "Understanding protein folding via free-energy surfaces from theory and experiment.",
+   "source": "pubmed/PMID-10871884-understanding-protein-folding-via-free-energy-surfaces-from"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID11135664",
+   "title": "The roles of stability and contact order in determining protein folding rates.",
+   "source": "pubmed/PMID-11135664-the-roles-of-stability-and-contact-order-in-determining-prot"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID11214326",
+   "title": "Three key residues form a critical contact network in a protein folding transition state.",
+   "source": "pubmed/PMID-11214326-three-key-residues-form-a-critical-contact-network-in-a-prot"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID12188762",
+   "title": "Small-world view of the amino acids that play a key role in protein folding.",
+   "source": "pubmed/PMID-12188762-small-world-view-of-the-amino-acids-that-play-a-key-role-in"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID16120445",
+   "title": "Transition state contact orders correlate with protein folding rates.",
+   "source": "pubmed/PMID-16120445-transition-state-contact-orders-correlate-with-protein-foldi"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID24710212",
+   "title": "Protein folding absent selection.",
+   "source": "pubmed/PMID-24710212-protein-folding-absent-selection"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID29711488",
+   "title": "Protein Folding: A Perspective from Theory and Experiment.",
+   "source": "pubmed/PMID-29711488-protein-folding-a-perspective-from-theory-and-experiment"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID8003983",
+   "title": "Protein folding dynamics: the diffusion-collision model and experimental data.",
+   "source": "pubmed/PMID-8003983-protein-folding-dynamics-the-diffusion-collision-model-and-e"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID8107095",
+   "title": "Kinetics of protein folding. A lattice model study of the requirements for folding to the native state.",
+   "source": "pubmed/PMID-8107095-kinetics-of-protein-folding-a-lattice-model-study-of-the-req"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID9395391",
+   "title": "\"New view\" of protein folding reconciled with the old through multiple unfolding simulations.",
+   "source": "pubmed/PMID-9395391-new-view-of-protein-folding-reconciled-with-the-old-through"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Protein_folding",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22protein+folding+kinetics+pathway%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22protein+folding+kinetics+pathway%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "weak",
+  "reason": "query matched 1 works, 1 kept; refine the query phrase in sources.tsv"
+ }
+}

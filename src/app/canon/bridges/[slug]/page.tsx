@@ -4,6 +4,11 @@ import { getAllBridges, getBridge } from "@/lib/canon-bridges";
 
 export const dynamic = "force-static";
 
+const LEADS: Record<string, string> = {
+  light:
+    "Light is the bridge from Maxwell's electromagnetism and Einstein's photon to cytochrome c oxidase absorption, biophoton emission and the illumination traditions of sacred texts and art. Four branches meet here, and the notes at the bottom record where the overlap is mechanistic.",
+};
+
 export function generateStaticParams() {
   return getAllBridges().map((b) => ({ slug: b.slug }));
 }
@@ -40,6 +45,15 @@ export default function Page({ params }: { params: { slug: string } }) {
       >
         {b.tier} · {b.mass.toLocaleString()} hits · {b.spans} branches
       </p>
+
+      {LEADS[b.slug] && (
+        <p
+          className="mt-8 text-lg leading-relaxed"
+          style={{ fontFamily: "var(--font-fraunces)" }}
+        >
+          {LEADS[b.slug]}
+        </p>
+      )}
 
       <section className="mt-12">
         <h2

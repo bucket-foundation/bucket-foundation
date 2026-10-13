@@ -15,6 +15,8 @@
 
 **Total opportunities surveyed: 52.**
 
+Storage and database credits for Bucket, surveyed 2026-09-30: [storage-credits-2026-09-30.md](storage-credits-2026-09-30.md). Top six: Hugging Face Datasets, Source Cooperative, AWS Open Data Sponsorship, Cloudflare Project Alexandria, Zenodo, Open Storage Network. Beads bkt-jgim, bkt-udrf, bkt-wlfz, bkt-9hlt, bkt-397v, bkt-68s7.
+
 ## The Single Best Pick Across the Portfolio
 
 **NOAA Saltonstall-Kennedy + NOAA Citizen Science for Stock Assessments, for DerbyFish/Kala under AGFarms LLC.**

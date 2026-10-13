@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-non",
+  "title": "Old Norse words",
+  "kind": "words",
+  "language": "non",
+  "language_name": "Old Norse",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 9255,
+    "with_ipa": 254,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 9255,
+  "version": "e46aea1a45f2",
+  "file": "polingual-non.sqlite.zst",
+  "bytes": 585329,
+  "sha256": "f5401742ea279caf67101c5f4f745bd80020e8fa693d276749fe45a4ab38280b",
+  "db_bytes": 2134016,
+  "db_sha256": "e46aea1a45f29c5fca2017990038c69ec1b335318b9c9914c6a402c9171be727",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

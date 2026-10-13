@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+here=$(dirname "$(readlink -f "$0")")
+export BKT_UI_DIR="$here/usr/share/bucket/ui"
+if [ $# -eq 0 ]; then set -- app; fi
+exec "$here/usr/bin/bkt" "$@"

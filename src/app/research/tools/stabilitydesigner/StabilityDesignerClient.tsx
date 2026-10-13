@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { PublishToCanon, RunError, RunStatus, useToolRun } from "../_shared/runner";
+import { PublishToCanon, RunError, RunStatus, useToolRun } from "../_shared/runner-v2";
 import { FieldLabel } from "../_shared/FieldLabel";
 import { SubmitButton } from "../_shared/SubmitButton";
 

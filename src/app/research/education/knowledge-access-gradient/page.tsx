@@ -76,6 +76,18 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }}
       />
 
+      <section aria-labelledby="kag-abstract" className="mb-8">
+        <h2
+          id="kag-abstract"
+          className="small-caps text-[11px] tracking-[0.18em] text-[color:var(--gold)] mb-3"
+        >
+          Abstract
+        </h2>
+        <p className="text-[16px] leading-[1.75] text-[color:var(--parchment)] max-w-2xl">
+          Five thousand years of knowledge technology widened access to consume knowledge and never widened access to produce it. Measured against UN Sustainable Development Goal 4, the record shows three stacked crises. 48.3% of 10-year-olds worldwide cannot read a simple text. 51 million primary-age and 61 million lower-secondary-age children are out of school. World education spend is 3.6% of GDP, below the agreed 4% floor. The deepest inequity is depth. Access falls from 82.5% at basic literacy to 0.14% at the research frontier, a drop of about 270 times. About 99.86% of humanity only ever consumes knowledge. Seven dimensions describe the gradient: history, cost, field coverage, trend, the leaky pipeline, geography and modality. Biomedicine has about 133 times more researchers than mathematics, and ten countries hold 69.3% of researcher capacity. AI is the first technology in the arc whose effect on production is not yet settled. Sources are cited throughout.
+        </p>
+      </section>
+
       <div className="mb-8 p-5 border hairline bg-[color:var(--bone-3)] text-sm text-[color:var(--parchment-dim)]">
         <div className="flex flex-wrap gap-x-5 gap-y-1 small-caps text-[11px] text-[color:var(--gold)] mb-3">
           <span>{FLAGSHIP.authors}</span>

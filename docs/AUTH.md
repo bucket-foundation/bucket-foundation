@@ -1,6 +1,6 @@
 # Auth
 
-One session for the whole site. A person signs in once at `/sign-in` with an email one-time code and is signed in on every page, every API route, and the framed Academy app until they sign out.
+One session for the whole site. A person signs in once at `/sign-in` with an email one-time code and is signed in on every page and every API route until they sign out. The session gates Research OS (`docs/RESEARCH-OS-APP.md`), the product behind `/download` and the canon.
 
 ## Pieces
 
@@ -18,7 +18,7 @@ One session for the whole site. A person signs in once at `/sign-in` with an ema
 | Identity | `supabase/migrations/20260916000000_bucket_identities.sql`, `src/lib/auth/identity.ts` | `bucket.identities` keyed on `auth.users.id`: unique handle, unique wallet. `getIdentity` creates the row on a person's first read (no trigger on the shared `auth.users`). Reached through the service-role client bound to the private `bucket` schema. |
 | Header | `src/components/auth/UserMenu.tsx` | Sign in, or the person's name and sign out. |
 | Page gate | `src/components/auth/SignInGate.tsx` | Rendered by app pages for the moment before the browser client hydrates. |
-| Academy bridge | `src/app/academy/AcademyFrame.tsx`, `learning/app/js/auth.js` `adoptSession` | The site posts its session into the frame on load, on request, and on every change; the frame's own sign-in link goes to the site's `/sign-in` when framed. Same origin only. |
+| Academy | `src/app/academy/page.tsx`, `learning/app/js/auth.js` `adoptSession` | `/academy` redirects to `/research-os/learn`. The standalone Academy build adopts a session posted by a same-origin parent frame. |
 
 ## Flows
 
@@ -26,7 +26,7 @@ Sign in: `/sign-in` → `signInWithOtp` → code → `verifyOtp` → cookies wri
 
 A page request: middleware reads the cookies, refreshes an expired access token, and either serves the page or redirects to `/sign-in`. The `(app)` layout under `/research-os` checks again with `getSessionUser()` and loads the identity row and staff roles for the shell.
 
-An API call from a page: `fetch("/api/...")` sends the cookies; the handler calls `verifyRequestUser`. A Bearer header still works, so agents, scripts, and the framed Academy app are unchanged.
+An API call from a page: `fetch("/api/...")` sends the cookies; the handler calls `verifyRequestUser`. A Bearer header still works, so agents and scripts are unchanged.
 
 Sign out: a POST to `/auth/sign-out` from the header, the account page, or the app shell.
 
@@ -47,9 +47,13 @@ npm run db:local:stop
 
 Put the local `API_URL`, `ANON_KEY`, and `SERVICE_ROLE_KEY` from `db:local:status` into `.env.local` as `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`. Sign-in codes land in Inbucket at http://localhost:54324. The hosted project gets the same migrations with `npx supabase link` and `npx supabase db push`; `graph` and `bucket` must be in its exposed schemas (Settings → API), which `config.toml` sets for the local stack.
 
+## Marketing Data
+
+`/research-os/import/marketing` stores uploads in the private `research-os-imports` bucket under imports with no node, so only the owner reaches them, and seals each saved report with AES-256-GCM under `MARKETING_SEAL_KEYS`. The raw files rely on storage encryption at rest: hosted Supabase encrypts storage, and the local stack needs an encrypted host disk, which no code checks. Delete removes the files and the report at once; hosted backups keep them until the backup window ends, and the local stack keeps no backups. `BKT_ANALYZE_PYTHON` names the interpreter that runs `packages/bkt/analyze/marketing/bounded.py`.
+
 ## Launch List
 
-Until Research OS opens, production `/sign-in` shows a launch list: email, an optional name, an optional role, and one email promised on launch day. Preview deployments and local dev keep the sign-in form. `src/lib/launch.ts` decides: `BUCKET_SIGNIN_OPEN=1` opens sign-in on production at launch, and `0` shows the launch list anywhere. The flag is read at build time, so a change needs a redeploy.
+Until Research OS opens, production `/sign-in` shows a launch list: email, an optional name, an optional role, and one email promised on launch day. Preview deployments and local dev keep the sign-in form. `src/lib/launch.ts` and `src/lib/sign-in-gate.ts` decide: on production `SIGN_IN_OPEN=1` opens sign-in and any other value closes it. The middleware sends `/sign-in` and every signed-out protected route to `/download` with a 307 while closed. Existing sessions keep working. Preview and local stay open, and `BUCKET_SIGNIN_OPEN=0` shows the launch list there. A flag change needs a redeploy. The Supabase OTP endpoint stays reachable with the anon key, so closing new accounts also needs the GoTrue signup switch.
 
 | Piece | File | Job |
 |---|---|---|
@@ -59,7 +63,7 @@ Until Research OS opens, production `/sign-in` shows a launch list: email, an op
 | List | `src/app/admin/waitlist/` | `/admin/waitlist`: count, roles, every entry, CSV download, copy all emails, and the signups the bot filter held. Asks for the list key. |
 | Accounts | `src/app/sign-in/page.tsx` | `/sign-in?account=1` asks Supabase to sign in existing accounts only (`shouldCreateUser` off) and answers the same for a known and an unknown address. The flag comes from the browser; whether the project accepts new accounts is GoTrue's signup setting (`GOTRUE_DISABLE_SIGNUP` on the self-hosted stack), which is the server-side control. |
 
-The Blob store keeps every object until someone deletes it; it lives on the Vercel account, apart from the Hetzner box. Connecting it to the project sets `BLOB_READ_WRITE_TOKEN`. `WAITLIST_ADMIN_KEY` (16 characters or more) turns the list view on. From a terminal:
+The Blob store keeps every object until someone deletes it; it lives on the Vercel account. Connecting it to the project sets `BLOB_READ_WRITE_TOKEN`. `WAITLIST_ADMIN_KEY` (16 characters or more) turns the list view on. From a terminal:
 
 ```bash
 curl -H "Authorization: Bearer $WAITLIST_ADMIN_KEY" "https://www.bucket.foundation/api/waitlist?format=csv" -o launch-list.csv
@@ -67,7 +71,7 @@ curl -H "Authorization: Bearer $WAITLIST_ADMIN_KEY" "https://www.bucket.foundati
 
 ## Retired
 
-NextAuth v4 (`src/lib/auth.ts`, `src/app/api/auth/[...nextauth]`, `next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`): `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/research`, the bucket 1.0 publish path; a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.
+NextAuth v4 (`next-auth`, `@auth/supabase-adapter`, `NEXTAUTH_*`, `EMAIL_SERVER`, `EMAIL_FROM`) and its route and helper files are removed: `/api/chat` now reads `getSessionUser()`. The seven per-page one-time-code forms (six Research OS pages and `canon/signoff`). The Dynamic wallet providers now mount only under `/research`, the bucket 1.0 publish path; a wallet becomes an identity fact on `bucket.identities.wallet` when that flow links it.
 
 ## Register
 

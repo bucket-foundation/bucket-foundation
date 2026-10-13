@@ -1,4 +1,5 @@
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
+import { cookieDomainFor } from "../research-host";
 import type { NextRequest, NextResponse } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import type { SupabaseClient, User } from "@supabase/supabase-js";
@@ -10,9 +11,21 @@ export function authConfigured(): boolean {
   return Boolean(URL && ANON);
 }
 
+function sharedCookieOptions(host: string | null): { cookieOptions?: { domain: string } } {
+  const domain = cookieDomainFor(host);
+  return domain ? { cookieOptions: { domain } } : {};
+}
+
 export function getServerSupabase(): SupabaseClient {
   const store = cookies();
+  let host: string | null = null;
+  try {
+    host = headers().get("host");
+  } catch {
+    host = null;
+  }
   return createServerClient(URL as string, ANON as string, {
+    ...sharedCookieOptions(host),
     cookies: {
       get(name: string) {
         return store.get(name)?.value;
@@ -48,6 +61,7 @@ export function getRequestSupabase(req: NextRequest): SupabaseClient {
 
 export function getMiddlewareSupabase(req: NextRequest, res: NextResponse): SupabaseClient {
   return createServerClient(URL as string, ANON as string, {
+    ...sharedCookieOptions(req.headers.get("host")),
     cookies: {
       get(name: string) {
         return req.cookies.get(name)?.value;

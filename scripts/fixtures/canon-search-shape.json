@@ -1,0 +1,15 @@
+{
+  "query": { "q": "entropy", "top_k": "3" },
+  "body": { "mode": "string", "n_results": "number", "query": "string", "results": "array", "took_ms": "number", "top_k": "number" },
+  "result": {
+    "branch": "string",
+    "claim_id": "number",
+    "concept": "string",
+    "evidence_count": "number",
+    "excerpt": "string",
+    "score": "number",
+    "slug": "string",
+    "title": "string",
+    "url": "string"
+  }
+}

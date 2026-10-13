@@ -72,7 +72,16 @@ export default function Presentation() {
             year of school to the research frontier.
           </p>
 
-          <div className="mt-10 carve-in-5 flex justify-center">
+          <div className="mt-10 carve-in-5 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/download"
+              className="group relative px-8 py-4 bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px]"
+            >
+              <span className="flex items-center gap-3">
+                Download
+                <span className="group-hover:translate-y-0.5 transition">↓</span>
+              </span>
+            </Link>
             <Link
               href="/research-os"
               className="group relative px-8 py-4 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px] shadow-[inset_0_-2px_0_rgba(0,0,0,0.4),inset_0_1px_0_rgba(247,244,236,0.12)]"

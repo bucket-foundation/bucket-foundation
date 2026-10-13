@@ -1,0 +1,527 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "autoform",
+ "title": "Autoformalization of mathematics",
+ "statement": {
+  "text": "Logic translation is the process of representing a text in the formal language of a logical system. If the original text is formulated in ordinary language then the term natural language formalization is often used. An example is the translation of the English sentence \"some men are bald\" into first-order logic as . The purpose is to reveal the logical structure of arguments. This makes it possible to use the precise rules of formal logic to assess whether these arguments are correct. It can also guide reasoning by arriving at new conclusions.",
+  "source": "https://en.wikipedia.org/wiki/Logic_translation",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Logic translation",
+   "url": "https://en.wikipedia.org/wiki/Logic_translation"
+  }
+ },
+ "aliases": [
+  "Logic translation",
+  "natural language formalization"
+ ],
+ "branch": "information",
+ "level": 4,
+ "industries": [
+  "ai",
+  "computational theory and mathematics",
+  "information systems"
+ ],
+ "posed": 2018,
+ "resolved": null,
+ "history": [
+  {
+   "year": 2018,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2994190437",
+   "title": "Exploration of neural machine translation in autoformalization of mathematics in Mizar",
+   "year": 2020,
+   "cited_by_count": 18,
+   "doi": "https://doi.org/10.1145/3372885.3373827",
+   "role": "posed",
+   "relevance": 11,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4385574125",
+   "title": "Towards Autoformalization of Mathematics and Code Correctness: Experiments with Elementary Proofs",
+   "year": 2022,
+   "cited_by_count": 8,
+   "doi": "https://doi.org/10.18653/v1/2022.mathnlp-1.4",
+   "role": "posed",
+   "relevance": 11,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4416235998",
+   "title": "A Neurosymbolic Approach to Natural Language Formalization and Verification",
+   "year": 2026,
+   "cited_by_count": 1,
+   "doi": "https://doi.org/10.1007/978-3-032-32526-6_28",
+   "role": "partial",
+   "relevance": 10,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4282045675",
+   "title": "Autoformalization with Large Language Models",
+   "year": 2022,
+   "cited_by_count": 42,
+   "doi": "https://doi.org/10.48550/arxiv.2205.12615",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4322616316",
+   "title": "ProofNet: Autoformalizing and Formally Proving Undergraduate-Level Mathematics",
+   "year": 2023,
+   "cited_by_count": 14,
+   "doi": "https://doi.org/10.48550/arxiv.2302.12433",
+   "role": "posed",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4415002704",
+   "title": "Position: Vibe Coding Needs Vibe Reasoning: Improving Vibe Coding with Formal Verification",
+   "year": 2025,
+   "cited_by_count": 8,
+   "doi": "https://doi.org/10.1145/3759425.3763390",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4396786902",
+   "title": "Autoformalizing Natural Language to First-Order Logic: A Case Study in Logical Fallacy Detection",
+   "year": 2024,
+   "cited_by_count": 5,
+   "doi": "https://doi.org/10.48550/arxiv.2405.02318",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4411173309",
+   "title": "AI-Assisted Autoformalization of Combinatorics Problems in Proof Assistants",
+   "year": 2025,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.1109/icse-nier66352.2025.00006",
+   "role": "partial",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4405737871",
+   "title": "FGeo-Parser: Autoformalization and Solution of Plane Geometric Problems",
+   "year": 2024,
+   "cited_by_count": 7,
+   "doi": "https://doi.org/10.3390/sym17010008",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W7125925625",
+   "title": "PAT-Agent: Autoformalization for Model Checking",
+   "year": 2025,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.1109/ase63991.2025.00176",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W7157558513",
+   "title": "Faithful Autoformalization via Roundtrip Verification and Repair",
+   "year": 2026,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.48550/arxiv.2604.25031",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3042499904",
+   "title": "A Promising Path Towards Autoformalization and General Artificial Intelligence",
+   "year": 2020,
+   "cited_by_count": 29,
+   "doi": "https://doi.org/10.1007/978-3-030-53518-6_1",
+   "role": "posed",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4394868324",
+   "title": "A Survey on Deep Learning for Theorem Proving",
+   "year": 2024,
+   "cited_by_count": 8,
+   "doi": "https://doi.org/10.48550/arxiv.2404.09939",
+   "role": "survey",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4404783316",
+   "title": "Consistent Autoformalization for Constructing Mathematical Libraries",
+   "year": 2024,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.18653/v1/2024.emnlp-main.233",
+   "role": "partial",
+   "relevance": 5,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4416472889",
+   "title": "VeriSafe Agent: Safeguarding Mobile GUI Agent via Logic-based Action Verification",
+   "year": 2025,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.1145/3680207.3765248",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4393299873",
+   "title": "Don't Trust: Verify -- Grounding LLM Quantitative Reasoning with Autoformalization",
+   "year": 2024,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.48550/arxiv.2403.18120",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2531823033",
+   "title": "Information Security and Expert's Knowledge Autoformalization",
+   "year": 2016,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.1016/j.procs.2016.07.437",
+   "role": "posed",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W7139113671",
+   "title": "LeanTutor: Towards a Verified AI Mathematical Proof Tutor",
+   "year": 2026,
+   "cited_by_count": 1,
+   "doi": "https://doi.org/10.1609/aaai.v40i47.41514",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W7140138055",
+   "title": "Adaptive LLM-Symbolic Reasoning via Dynamic Logical Solver Composition",
+   "year": 2026,
+   "cited_by_count": 1,
+   "doi": "https://doi.org/10.18653/v1/2026.eacl-long.54",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4405715707",
+   "title": "Formal Mathematical Reasoning: A New Frontier in AI",
+   "year": 2024,
+   "cited_by_count": 3,
+   "doi": "https://doi.org/10.48550/arxiv.2412.16075",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W4415797512",
+   "title": "Autoformalize Mathematical Statements by Symbolic Equivalence and Semantic Consistency",
+   "year": 2024,
+   "cited_by_count": 2,
+   "doi": "https://doi.org/10.52202/079017-1697",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "duplicate": 3,
+  "no keyword hit": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "2009": 1,
+   "2010": 1,
+   "2016": 1,
+   "2020": 2,
+   "2022": 3,
+   "2023": 5,
+   "2024": 22,
+   "2025": 61,
+   "2026": 206
+  },
+  "openalex_total": 302,
+  "arxiv_total": 198,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22autoformalization%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5100761702",
+   "name": "Wenda Li",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5002183320",
+   "name": "Christian Szegedy",
+   "works": 3,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5024901763",
+   "name": "Yuhuai Wu",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5058579129",
+   "name": "Charles Staats",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100726724",
+   "name": "Zhaoyu Li",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100438847",
+   "name": "Xian Zhang",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5100986021",
+   "name": "Kaiyu Yang",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5126966564",
+   "name": "André Freitas",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5101413909",
+   "name": "Qingxiang Wang",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031812667",
+   "name": "Chad E. Brown",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5070698573",
+   "name": "Cezary Kaliszyk",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5031019731",
+   "name": "Josef Urban",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5081782209",
+   "name": "Garett Cunningham",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5020435927",
+   "name": "Răzvan Bunescu",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5020524364",
+   "name": "David W. Juedes",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I97018004",
+   "name": "Stanford University",
+   "works": 4,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4654613",
+   "name": "University of Warsaw",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I185261750",
+   "name": "University of Toronto",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1291425158",
+   "name": "Google (United States)",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I98677209",
+   "name": "University of Edinburgh",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I95457486",
+   "name": "University of California, Berkeley",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I190249584",
+   "name": "Universität Innsbruck",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I44504214",
+   "name": "Czech Technical University in Prague",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210106879",
+   "name": "Ohio University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I102149020",
+   "name": "University of North Carolina at Charlotte",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I1311688040",
+   "name": "Amazon (United States)",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I45129253",
+   "name": "University College London",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I166337079",
+   "name": "Queen Mary University of London",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I241749",
+   "name": "University of Cambridge",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I32971472",
+   "name": "Yale University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "alignment",
+   "why": "shared keywords: formal verification; shared markets: ai; same branch"
+  },
+  {
+   "id": "llmreason",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "matmul",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "pnp",
+   "why": "shared markets: ai; same branch"
+  },
+  {
+   "id": "sensitivity",
+   "why": "shared markets: ai; same branch"
+  }
+ ],
+ "repo_mentions": [],
+ "formal": {
+  "status": "partial",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Logic_translation",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22autoformalization%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-06"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22autoformalization%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-06"
+  }
+ ],
+ "retrieved": "2026-10-06",
+ "quality": {
+  "status": "full",
+  "reason": "21 relevant works of 25 considered, 302 works with the phrase"
+ }
+}

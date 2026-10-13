@@ -17,7 +17,7 @@ This is the first **primary-method** node under 04-information: a combinatorial
 address scheme plus an evidence-fusion belief calculus, both stated and Lean-
 proved, in place of one more claim card extracted from a transcript. The PDF
 and Lean sources stay in `papers/` and `papers/.../lean/`; this card is the
-canon-side pointer, per the sidecar-manifest convention in `PROTOCOL.md` §4:
+canon-side pointer, per the sidecar-manifest convention in `docs/foundation/PROTOCOL.md` §4:
 the artifact lives at its source path, the card records provenance and
 carries the primary derivations into the branch index.
 

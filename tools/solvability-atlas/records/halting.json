@@ -1,0 +1,500 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "halting",
+ "title": "Halting problem",
+ "statement": {
+  "text": "In computability theory, the halting problem is the decision problem of, given an arbitrary computer program and an input, determining whether said program will eventually finish running and halt, or will continue to run forever. Alan Turing proved in 1937 that the halting problem is undecidable, meaning that no general algorithm exists that can correctly solve the problem for all possible program–input pairs. The problem comes up often in discussions of computability since it demonstrates that some functions are mathematically definable but not computable.",
+  "source": "https://en.wikipedia.org/wiki/Halting_problem",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Halting problem",
+   "url": "https://en.wikipedia.org/wiki/Halting_problem"
+  }
+ },
+ "aliases": [],
+ "branch": "information",
+ "level": 2,
+ "industries": [
+  "computational theory and mathematics",
+  "ai"
+ ],
+ "posed": 1936,
+ "resolved": 1936,
+ "history": [
+  {
+   "year": 1936,
+   "event": "posed",
+   "source": "problems.tsv"
+  },
+  {
+   "year": 1936,
+   "event": "resolved",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W4388314152",
+   "title": "The Universal Turing Machine: A Half-Century Survey",
+   "year": 1990,
+   "cited_by_count": 90,
+   "doi": "https://doi.org/10.1093/oso/9780198537748.001.0001",
+   "role": "survey",
+   "relevance": 7,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W196782186",
+   "title": "On the Uniform Halting Problem for Term Rewriting Systems",
+   "year": 1978,
+   "cited_by_count": 176,
+   "doi": null,
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1481054359",
+   "title": "Randomness and Undecidability in Physics",
+   "year": 1993,
+   "cited_by_count": 174,
+   "doi": "https://doi.org/10.1142/1524",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1569223466",
+   "title": "A Programming Approach to Computability",
+   "year": 1982,
+   "cited_by_count": 88,
+   "doi": "https://doi.org/10.1007/978-1-4612-5749-3",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2074373676",
+   "title": "The Turing way to parameterized complexity",
+   "year": 2003,
+   "cited_by_count": 86,
+   "doi": "https://doi.org/10.1016/s0022-0000(03)00073-4",
+   "role": "partial",
+   "relevance": 3,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2192149141",
+   "title": "Undecidability of the spectral gap",
+   "year": 2015,
+   "cited_by_count": 272,
+   "doi": "https://doi.org/10.1038/nature16059",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2027661786",
+   "title": "Chemical implementation of finite-state machines.",
+   "year": 1992,
+   "cited_by_count": 100,
+   "doi": "https://doi.org/10.1073/pnas.89.1.383",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1896223321",
+   "title": "Cornerstones of undecidability",
+   "year": 1994,
+   "cited_by_count": 82,
+   "doi": null,
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1562473198",
+   "title": "Phase Transitions in Combinatorial Optimization Problems",
+   "year": 2005,
+   "cited_by_count": 271,
+   "doi": "https://doi.org/10.1002/3527606734",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W3209192400",
+   "title": "MIP* = RE",
+   "year": 2021,
+   "cited_by_count": 169,
+   "doi": "https://doi.org/10.1145/3485628",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2011042573",
+   "title": "A low and a high hierarchy within NP",
+   "year": 1983,
+   "cited_by_count": 165,
+   "doi": "https://doi.org/10.1016/0022-0000(83)90027-2",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2792739471",
+   "title": "Bounded Quantification Is Undecidable",
+   "year": 1994,
+   "cited_by_count": 108,
+   "doi": "https://doi.org/10.1006/inco.1994.1055",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2108585502",
+   "title": "Power from Random Strings",
+   "year": 2006,
+   "cited_by_count": 94,
+   "doi": "https://doi.org/10.1137/050628994",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2149216329",
+   "title": "An Approach to the Problem of Detranslation of Computer Programs",
+   "year": 1980,
+   "cited_by_count": 85,
+   "doi": "https://doi.org/10.1093/comjnl/23.3.223",
+   "role": "partial",
+   "relevance": 1,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 7,
+  "off-field": 3,
+  "duplicate": 1
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1964": 1,
+   "1965": 3,
+   "1966": 2,
+   "1967": 1,
+   "1968": 4,
+   "1969": 5,
+   "1970": 5,
+   "1971": 5,
+   "1972": 4,
+   "1973": 7,
+   "1974": 3,
+   "1975": 3,
+   "1976": 2,
+   "1977": 4,
+   "1978": 5,
+   "1979": 2,
+   "1980": 2,
+   "1982": 7,
+   "1983": 6,
+   "1984": 9,
+   "1985": 1,
+   "1986": 6,
+   "1987": 5,
+   "1988": 2,
+   "1989": 2,
+   "1990": 7,
+   "1991": 6,
+   "1992": 8,
+   "1993": 15,
+   "1994": 18,
+   "1995": 9,
+   "1996": 10,
+   "1997": 10,
+   "1998": 13,
+   "1999": 11,
+   "2000": 5,
+   "2001": 15,
+   "2002": 31,
+   "2003": 25,
+   "2004": 26,
+   "2005": 23,
+   "2006": 35,
+   "2007": 32,
+   "2008": 25,
+   "2009": 40,
+   "2010": 18,
+   "2011": 30,
+   "2012": 34,
+   "2013": 26,
+   "2014": 23,
+   "2015": 32,
+   "2016": 38,
+   "2017": 27,
+   "2018": 28,
+   "2019": 27,
+   "2020": 30,
+   "2021": 26,
+   "2022": 25,
+   "2023": 31,
+   "2024": 43,
+   "2025": 157,
+   "2026": 654
+  },
+  "openalex_total": 1709,
+  "arxiv_total": 185,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22halting+problem%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5110064289",
+   "name": "Gérard Huet",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5048189936",
+   "name": "Karl Svozil",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5090898185",
+   "name": "Assaf J. Kfoury",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5054551127",
+   "name": "Robert N. Moll",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5039686801",
+   "name": "Michael A. Arbib",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5061589069",
+   "name": "Marco Cesati",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5002382493",
+   "name": "Toby S. Cubitt",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5037099975",
+   "name": "David Pérez-Garcı́a",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5109239575",
+   "name": "Michael M. Wolf",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "A Hjelmfelt",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5073003691",
+   "name": "Edward D. Weinberger",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5089206820",
+   "name": "John R. Ross",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5110486000",
+   "name": "Grzegorz Rozenberg",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5113495698",
+   "name": "Arto K. Salomaa",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5005760050",
+   "name": "Alexander K. Hartmann",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I5023651",
+   "name": "McGill University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I145847075",
+   "name": "TU Wien",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I111088046",
+   "name": "Boston University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I24603500",
+   "name": "University of Massachusetts Amherst",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I116067653",
+   "name": "University of Rome Tor Vergata",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I241749",
+   "name": "University of Cambridge",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I45129253",
+   "name": "University College London",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I121748325",
+   "name": "Universidad Complutense de Madrid",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210157032",
+   "name": "Institute of Mathematical Sciences",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I62916508",
+   "name": "Technical University of Munich",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210131661",
+   "name": "Max Planck Institute for Biophysical Chemistry",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I114017466",
+   "name": "University of Technology Sydney",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I63966007",
+   "name": "Massachusetts Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I122411786",
+   "name": "California Institute of Technology",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I86519309",
+   "name": "The University of Texas at Austin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [
+  {
+   "id": "hilbert10",
+   "why": "shared keywords: computability, undecidability"
+  },
+  {
+   "id": "busybeaver",
+   "why": "shared keywords: turing machine; same branch"
+  }
+ ],
+ "repo_mentions": [
+  {
+   "corpus": "pubmed",
+   "id": "PMID30655222",
+   "title": "Self-referential basis of undecidable dynamics: From the Liar paradox and the halting problem to the edge of chaos.",
+   "source": "pubmed/PMID-30655222-self-referential-basis-of-undecidable-dynamics-from-the-liar"
+  }
+ ],
+ "formal": {
+  "status": "proved",
+  "source": "Mathlib, ComputablePred.halting_problem",
+  "url": "https://github.com/leanprover-community/mathlib4/blob/master/Mathlib/Computability/Halting.lean"
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Halting_problem",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22halting+problem%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22halting+problem%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "14 relevant works of 25 considered, 1709 works with the phrase"
+ }
+}
