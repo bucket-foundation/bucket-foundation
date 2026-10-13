@@ -28,6 +28,7 @@ def atom_levels(atoms, by_atom):
             "level": None, "level_first": None, "level_last": None, "spread": None, "levels": {},
             "level_schema_rule": None, "rows": 0,
         })
+        row["status"] = A.STATUS
         row["verified"] = False
         out.append(row)
     return out
@@ -52,7 +53,7 @@ def edge_agreement(atoms, by_atom, levels, forward):
             reverse_pairs = [[l, b] for b in rows_before for l in rows_later if b != l and b in after(l)]
             tight_before = {r["progression_id"] for r in by_atom.get(before, []) if r["match"] in A.TIGHT_MATCHES}
             tight_later = {r["progression_id"] for r in by_atom.get(later, []) if r["match"] in A.TIGHT_MATCHES}
-            strict = A.edge_verdict(
+            strict = A.edge_queue(
                 [p for p in forward_pairs if p[0] in tight_before and p[1] in tight_later],
                 [p for p in reverse_pairs if p[1] in tight_before and p[0] in tight_later],
             )
@@ -62,14 +63,14 @@ def edge_agreement(atoms, by_atom, levels, forward):
                 order = "consistent" if A.LEVEL_RANK[lb] <= A.LEVEL_RANK[ll] else "inverted"
             out.append({
                 "deck": atom["deck"], "prerequisite": before, "dependent": later,
-                "verdict": A.edge_verdict(forward_pairs, reverse_pairs),
-                "verdict_exact_rows_only": strict,
+                "queue": A.edge_queue(forward_pairs, reverse_pairs),
+                "queue_exact_rows_only": strict,
                 "forward_pairs": len(forward_pairs), "reverse_pairs": len(reverse_pairs),
                 "shared_rows": len(set(rows_before) & set(rows_later)),
                 "rows_prerequisite": len(rows_before), "rows_dependent": len(rows_later),
                 "forward_examples": forward_pairs[:EXAMPLES], "reverse_examples": reverse_pairs[:EXAMPLES],
                 "level_prerequisite": lb, "level_dependent": ll, "level_order": order,
-                "verified": False,
+                "status": A.STATUS, "verified": False,
             })
     return out
 
@@ -107,7 +108,7 @@ def atom_careers(atoms, by_atom, minor):
             "cip_families": [{"cip": c, "rows": n} for c, n in sorted(families.items(), key=lambda p: (-p[1], p[0]))],
             "soc_minor_groups": [{"soc": c, "links": n} for c, n in sorted(groups.items(), key=lambda p: (-p[1], p[0]))],
             "method": "rule:cip-of-matched-rows+cip-soc-crosswalk",
-            "verified": False,
+            "status": A.STATUS, "verified": False,
         })
     return out
 
@@ -145,17 +146,39 @@ def gaps(by_atom, forward):
             if missing:
                 out.append({"kind": "level", "cip_family": family, "cip_series": family[:2], "rows": sum(missing.values()),
                             "sequenced_rows": None, "levels": missing})
-    out.sort(key=lambda r: (r["kind"], -(r["sequenced_rows"] or 0), -r["rows"], r["cip_family"]))
-    rank = collections.Counter()
+    series = collections.Counter()
+    for family, levels in cells.items():
+        series[family[:2]] += sum(levels.values())
+    total = sum(series.values())
     for row in out:
-        rank[row["kind"]] += 1
-        row["rank"] = rank[row["kind"]]
+        family_rows = sum(cells[row["cip_family"]].values())
+        row["share_of_corpus"] = round(family_rows / total, 5)
+        row["share_of_field"] = round(family_rows / series[row["cip_series"]], 4)
+        row["status"] = A.STATUS
+    for key, name in (("rows", "rank_rows"), ("share_of_field", "rank_share_of_field")):
+        place = collections.Counter()
+        for row in sorted(out, key=lambda r: (r["kind"], -r[key], -r["rows"], r["cip_family"])):
+            place[row["kind"]] += 1
+            row[name] = place[row["kind"]]
+    out.sort(key=lambda r: (r["kind"], r["rank_rows"]))
     return out, no_cip
 
 
-def holdout_rates():
-    rows = A.read_jsonl(os.path.join(A.PACKAGE, "review", "holdout-24.jsonl"))
+def judged(name):
+    rows = A.read_jsonl(os.path.join(A.PACKAGE, "review", name))
     return dict(sorted(collections.Counter(row["judgement"] for row in rows).items()))
+
+
+def quality():
+    critic = json.load(open(os.path.join(A.PACKAGE, "review", "critic-40.json"), encoding="utf-8"))
+    blind = judged("blind-40.jsonl")
+    note = (
+        f"Unreviewed proposal. An independent critic judged {critic['links']} links of the first build: "
+        f"{critic['right']} right, {critic['partly']} partly, {critic['wrong']} wrong. After tightening, the builder "
+        f"judged 40 links blind to score: {blind['right']} right, {blind['partly']} partly, {blind['wrong']} wrong. "
+        "No person has verified a row. Use this file as a review queue and for nothing else."
+    )
+    return {"status": A.STATUS, "quality_note": note, "independent_sample_first_build": critic, "blind_sample_tightened_build": blind}
 
 
 def sample_rates():
@@ -181,10 +204,10 @@ def stats(atoms, records, levels, edges, resources, careers, gap_rows, no_cip):
             decks[record["atom"].split(":")[1].split("/")[0]]["alignments"] += 1
     verdicts = collections.defaultdict(collections.Counter)
     for edge in edges:
-        verdicts[edge["deck"]][edge["verdict"]] += 1
-        verdicts["all"][edge["verdict"]] += 1
+        verdicts[edge["deck"]][edge["queue"]] += 1
+        verdicts["all"][edge["queue"]] += 1
         verdicts["level_order"][str(edge["level_order"])] += 1
-        verdicts["exact_rows_only"][edge["verdict_exact_rows_only"]] += 1
+        verdicts["exact_rows_only"][edge["queue_exact_rows_only"]] += 1
     with_resources = {r["atom"] for r in resources}
     return {
         "limits": A.thresholds(),
@@ -202,10 +225,12 @@ def stats(atoms, records, levels, edges, resources, careers, gap_rows, no_cip):
         "resources": {"links": len(resources), "atoms": len(with_resources),
                       "licence_unverified": sum(1 for r in resources if not r["licence_verified"])},
         "careers": {"atoms": len(careers)},
+        "status": A.STATUS,
         "gaps": {"families": sum(1 for g in gap_rows if g["kind"] == "family"),
                  "levels": sum(1 for g in gap_rows if g["kind"] == "level"), "rows_without_cip": no_cip},
         "sample": sample_rates(),
-        "holdout": holdout_rates(),
+        "holdout_first_build": judged("holdout-24.jsonl"),
+        "blind_tightened": judged("blind-40.jsonl"),
     }
 
 
@@ -228,6 +253,11 @@ def main():
     A.write_jsonl(os.path.join(args.out, "edge_agreement.jsonl"), edges)
     A.write_jsonl(os.path.join(args.out, "atom_careers.jsonl"), careers)
     A.write_jsonl(os.path.join(args.out, "gaps.jsonl"), gap_rows)
+    note = quality()
+    files = ["alignments.jsonl", "atom_levels.jsonl", "edge_agreement.jsonl", "atom_resources.jsonl", "atom_careers.jsonl", "gaps.jsonl"]
+    with open(os.path.join(args.out, "QUALITY.json"), "w", encoding="utf-8") as handle:
+        json.dump({name: note for name in files}, handle, indent=1)
+        handle.write("\n")
     with open(os.path.join(args.out, "stats.json"), "w", encoding="utf-8") as handle:
         json.dump(stats(atoms, records, levels, edges, resources, careers, gap_rows, no_cip), handle, indent=1)
         handle.write("\n")

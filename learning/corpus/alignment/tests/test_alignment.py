@@ -14,14 +14,16 @@ sys.path.insert(0, os.path.join(PACKAGE, "build"))
 import alignlib as A  # noqa: E402
 
 TABLES = os.path.join(PACKAGE, "tables")
-DERIVED = ["atom_levels.jsonl", "edge_agreement.jsonl", "atom_careers.jsonl", "gaps.jsonl", "stats.json"]
+DERIVED = ["atom_levels.jsonl", "edge_agreement.jsonl", "atom_careers.jsonl", "gaps.jsonl", "stats.json", "QUALITY.json"]
+ROW_TABLES = ["alignments.jsonl", "atom_levels.jsonl", "edge_agreement.jsonl", "atom_resources.jsonl", "atom_careers.jsonl", "gaps.jsonl"]
+READERS = ["packages", "src", "scripts", "learning/app", "learning/corpus/progressions"]
 ALIGNMENT_KEYS = {
     "schema", "id", "progression_id", "table", "framework_id", "course_code", "field", "cip", "level", "atom",
     "match", "score", "method", "rows_collapsed", "prerequisites", "prerequisite_source", "source_url",
-    "verified", "verification", "note",
+    "status", "verified", "verification", "note",
 }
 RESOURCE_KEYS = {
-    "atom", "resource_id", "url", "licence", "licence_verified", "kind", "level", "cip", "score", "method", "verified",
+    "atom", "resource_id", "url", "licence", "licence_verified", "kind", "level", "cip", "score", "method", "status", "verified",
 }
 TEXT_KEYS = {"topic", "title", "subfield", "label", "text", "name", "summary", "description", "notes"}
 EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}")
@@ -46,7 +48,8 @@ def corpus_levels():
         rows = {}
         for name in ("progression", "courses"):
             for row in A.read_jsonl(os.path.join(A.CORPUS, f"{name}.jsonl.zst")):
-                rows[row["id"]] = (name, row.get("level"), (row.get("cip") or {}).get("code"))
+                label, kind = A.row_label(name, row)
+                rows[row["id"]] = (name, row.get("level"), (row.get("cip") or {}).get("code"), label, kind)
         CACHE["corpus"] = rows
     return CACHE["corpus"]
 
@@ -89,11 +92,26 @@ class Rules(unittest.TestCase):
         self.assertFalse(A.licence_linkable("CC BY", "unknown"))
         self.assertTrue(A.licence_linkable("CC BY-NC-SA 4.0", "CC-BY-NC-SA-4.0"))
 
-    def test_edge_verdict(self):
-        self.assertEqual(A.edge_verdict([1], []), "agree")
-        self.assertEqual(A.edge_verdict([], [1]), "disagree")
-        self.assertEqual(A.edge_verdict([1], [1]), "mixed")
-        self.assertEqual(A.edge_verdict([], []), "silent")
+    def test_edge_queue_names_no_finding(self):
+        self.assertEqual(A.edge_queue([1], []), "review-later")
+        self.assertEqual(A.edge_queue([], [1]), "review-first")
+        self.assertEqual(A.edge_queue([1], [1]), "review-second")
+        self.assertEqual(A.edge_queue([], []), "no-corpus-path")
+
+    def test_lexical_check(self):
+        lesson = "Faraday found that a changing magnetic flux drives an electric current."
+        self.assertTrue(A.lexical_check("Faraday's law", lesson, "Electricity and Magnetism", "course")[0])
+        self.assertFalse(A.lexical_check("Faraday's law", lesson, "Organic Chemistry", "course")[0])
+        self.assertEqual(A.lexical_check("Faraday's law", lesson, "Physics II", "course"), (False, "label-generic"))
+        self.assertFalse(A.lexical_check("Hashing and data structures", "stacks and queues", "Stacks", "topic")[0])
+        self.assertTrue(A.lexical_check("Greedy algorithms", "", "Greedy Algorithms with Sorting", "topic")[0])
+
+    def test_level_band(self):
+        rule = {"level_from": ["undergraduate-lower"], "level_to": ["graduate"]}
+        self.assertTrue(A.in_band(rule, "graduate"))
+        self.assertFalse(A.in_band(rule, "upper-secondary"))
+        self.assertFalse(A.in_band(rule, "professional-entry"))
+        self.assertFalse(A.in_band(rule, None))
 
     def test_reachable_follows_chains_and_skips_the_start(self):
         forward = {"a": {"b"}, "b": {"c"}, "c": {"a"}}
@@ -156,7 +174,7 @@ class Alignments(unittest.TestCase):
             if row["progression_id"] is None:
                 self.assertEqual(row["match"], "none")
                 continue
-            name, level, cip = corpus[row["progression_id"]]
+            name, level, cip = corpus[row["progression_id"]][:3]
             self.assertEqual((row["table"], row["level"], row["cip"]), (name, level, cip))
             self.assertIn(row["level"], A.LEVELS + [None])
 
@@ -172,12 +190,23 @@ class Alignments(unittest.TestCase):
         for row in table("alignments.jsonl"):
             if row["progression_id"]:
                 self.assertTrue(A.accepts(row["score"], row["level"], limits), row["id"])
-            elif row["score"] is not None:
-                self.assertLess(row["score"], limits["school_threshold"])
+
+    def test_accepted_links_pass_the_band_relation_and_lexical_rules(self):
+        rules, corpus = A.deck_fields(), corpus_levels()
+        by_atom = {atom["atom"]: atom for atom in atoms()}
+        for row in table("alignments.jsonl"):
+            if not row["progression_id"]:
+                continue
+            atom = by_atom[row["atom"]]
+            label, kind = corpus[row["progression_id"]][3:]
+            self.assertIn(row["match"], A.ACCEPTED_MATCHES, row["id"])
+            self.assertTrue(A.in_band(rules[atom["deck"]], row["level"]), row["id"])
+            if row["match"] != "exact":
+                self.assertTrue(A.lexical_check(atom["title"], atom["statement"], label, kind)[0], row["id"])
 
     def test_method_names_the_repo_model_and_a_rule(self):
         for row in table("alignments.jsonl"):
-            self.assertRegex(row["method"], r"^embedding:BAAI/bge-small-en-v1\.5\+rule:[a-z-]+$")
+            self.assertRegex(row["method"], r"^embedding:BAAI/bge-small-en-v1\.5\+rule:[a-z-]+(\+lexical:[a-z-]+)?$")
 
     def test_no_source_text_is_copied(self):
         for name in ("alignments.jsonl", "atom_resources.jsonl", "atom_levels.jsonl", "edge_agreement.jsonl", "atom_careers.jsonl", "gaps.jsonl"):
@@ -201,6 +230,38 @@ class Alignments(unittest.TestCase):
                 source = open(os.path.join(PACKAGE, "build", name), encoding="utf-8").read()
                 self.assertNotIn("occupation_history", source)
                 self.assertNotIn("ipums", source.lower())
+
+
+class Status(unittest.TestCase):
+    def test_every_row_of_every_table_is_marked_unreviewed(self):
+        for name in ROW_TABLES:
+            rows = table(name)
+            self.assertTrue(rows, name)
+            for row in rows:
+                self.assertEqual(row.get("status"), "unreviewed-proposal", name)
+
+    def test_every_table_has_a_quality_note(self):
+        notes = json.load(open(os.path.join(TABLES, "QUALITY.json"), encoding="utf-8"))
+        self.assertEqual(set(notes), set(ROW_TABLES))
+        for name, note in notes.items():
+            self.assertEqual(note["status"], "unreviewed-proposal")
+            self.assertIn("review queue", note["quality_note"])
+            self.assertEqual(note["independent_sample_first_build"]["links"], 40)
+        self.assertEqual(json.load(open(os.path.join(TABLES, "stats.json"), encoding="utf-8"))["status"], "unreviewed-proposal")
+
+    def test_no_app_engine_or_pack_code_reads_this_folder(self):
+        found = subprocess.run(
+            ["git", "grep", "-l", "-I", "-e", "corpus/alignment", "-e", "atom_levels", "-e", "edge_agreement", "--", *READERS],
+            cwd=A.REPO, capture_output=True, text=True,
+        )
+        self.assertEqual(found.stdout.strip(), "")
+
+    def test_readme_opens_with_the_status_and_the_independent_sample(self):
+        head = open(os.path.join(PACKAGE, "README.md"), encoding="utf-8").read().split("## Files")[0]
+        self.assertIn("unreviewed proposal", head)
+        self.assertIn("Do not use", head)
+        self.assertLess(head.index("Critic"), head.index("Builder"))
+        self.assertIn("16, 40% | 13, 32% | 11, 28%", head)
 
 
 class Resources(unittest.TestCase):
@@ -254,8 +315,9 @@ class Derived(unittest.TestCase):
         self.assertEqual(len(rows), 820)
         self.assertEqual({(row["prerequisite"], row["dependent"]) for row in rows}, want)
         for row in rows:
-            self.assertIn(row["verdict"], {"agree", "disagree", "mixed", "silent"})
-            self.assertEqual(row["verdict"], A.edge_verdict(row["forward_pairs"], row["reverse_pairs"]))
+            self.assertNotIn("verdict", row)
+            self.assertIn(row["queue"], {"review-first", "review-second", "review-later", "no-corpus-path"})
+            self.assertEqual(row["queue"], A.edge_queue(row["forward_pairs"], row["reverse_pairs"]))
 
     def test_edge_examples_are_stated_corpus_paths(self):
         forward = A.stated_edges()
@@ -278,9 +340,14 @@ class Derived(unittest.TestCase):
         families = [row for row in table("gaps.jsonl") if row["kind"] == "family"]
         self.assertTrue(families)
         self.assertFalse({row["cip_family"] for row in families} & covered)
-        self.assertEqual([row["rank"] for row in families], list(range(1, len(families) + 1)))
-        ranked = [(row["sequenced_rows"], row["rows"]) for row in families]
-        self.assertEqual(ranked, sorted(ranked, reverse=True))
+        count = list(range(1, len(families) + 1))
+        self.assertEqual([row["rank_rows"] for row in families], count)
+        self.assertEqual(sorted(row["rank_share_of_field"] for row in families), count)
+        self.assertEqual([row["rows"] for row in families], sorted((row["rows"] for row in families), reverse=True))
+        by_share = sorted(families, key=lambda row: row["rank_share_of_field"])
+        self.assertEqual([r["share_of_field"] for r in by_share], sorted((r["share_of_field"] for r in by_share), reverse=True))
+        for row in families:
+            self.assertTrue(0 < row["share_of_field"] <= 1)
 
 
 class Review(unittest.TestCase):
@@ -302,13 +369,25 @@ class Review(unittest.TestCase):
         self.assertLess(wrong(kept), 0.15)
         self.assertGreater(wrong(dropped), 0.5)
 
+    def test_blind_sample_holds_five_links_per_deck_judged_without_scores(self):
+        rows = list(A.read_jsonl(os.path.join(PACKAGE, "review", "blind-40.jsonl")))
+        self.assertEqual(len(rows), 40)
+        self.assertEqual(set(collections.Counter(row["atom"].split("/")[0] for row in rows).values()), {5})
+        links = {(row["atom"], row["progression_id"]) for row in table("alignments.jsonl")}
+        for row in rows:
+            self.assertIs(row["blind_to_score"], True)
+            self.assertIn(row["judgement"], {"right", "partly", "wrong"})
+            self.assertIn((row["atom"], row["progression_id"]), links)
+
     def test_readme_states_the_counts_in_stats(self):
         stats = json.load(open(os.path.join(TABLES, "stats.json"), encoding="utf-8"))
         readme = open(os.path.join(PACKAGE, "README.md"), encoding="utf-8").read()
         for deck, counts in stats["decks"].items():
             self.assertIn(f"| {deck} | {counts['atoms']} | {counts['matched']} | {counts['unmatched']} |", readme)
         edges = stats["edges"]["all"]
-        self.assertIn(f"| All | {edges['agree']} | {edges['disagree']} | {edges['mixed']} | {edges['silent']} |", readme)
+        self.assertIn(f"| All | {edges['review-first']} | {edges['review-second']} | {edges['review-later']} | {edges['no-corpus-path']} |", readme)
+        blind = stats["blind_tightened"]
+        self.assertIn(f"| 40 | {blind['right']}, 40% | {blind['partly']}, 45% | {blind['wrong']}, 15% |", readme)
 
 
 if __name__ == "__main__":

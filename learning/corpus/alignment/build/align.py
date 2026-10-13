@@ -15,10 +15,8 @@ import alignlib as A  # noqa: E402
 
 CACHE = os.path.join(A.HERE, ".cache")
 EMBED_SCRIPT = os.path.join(A.REPO, "scripts", "research-os", "embed-texts.py")
-BANDS = [0.50, 0.65, 0.68, 0.70, 0.72, 0.75, 1.01]
 PER_ATOM = 10
 PER_ATOM_RESOURCES = 5
-TEXT_POOL = 60
 
 
 def repo_model_name():
@@ -92,7 +90,7 @@ def collapse(rows):
     return kept
 
 
-def candidates(atoms, rows, rules, model_name, floor):
+def candidates(atoms, rows, rules, model_name, limits):
     texts = sorted({r["text"] for r in rows})
     text_index = {t: i for i, t in enumerate(texts)}
     text_vecs = embed(texts, model_name)
@@ -101,7 +99,7 @@ def candidates(atoms, rows, rules, model_name, floor):
     for row in rows:
         for deck in row["decks"]:
             by_deck_text[deck][row["text"]].append(row)
-    out = []
+    out, best, dropped = [], {}, collections.Counter()
     for deck in sorted(rules):
         pool_texts = sorted(by_deck_text[deck])
         pool = text_vecs[[text_index[t] for t in pool_texts]]
@@ -109,18 +107,32 @@ def candidates(atoms, rows, rules, model_name, floor):
             if atom["deck"] != deck:
                 continue
             scores = pool @ atom_vecs[i]
+            best[atom["atom"]] = round(float(scores.max()), 3)
             picked = []
-            for j in np.argsort(-scores)[:TEXT_POOL]:
+            for j in np.argsort(-scores):
                 score = round(float(scores[j]), 3)
-                if score < floor:
+                if score < limits["threshold"]:
                     break
                 for row, count in collapse(by_deck_text[deck][pool_texts[j]]):
-                    picked.append((score, row, count))
-            picked.sort(key=lambda item: (-item[0], item[1]["id"]))
-            for score, row, count in picked[:PER_ATOM]:
-                match, rule = A.relation(atom["title"], row["label"], row["kind"])
-                out.append({"atom": atom, "row": row, "score": score, "rows_collapsed": count, "match": match, "rule": rule})
-    return out
+                    if not A.accepts(score, row["level"], limits):
+                        dropped["below-school-threshold"] += 1
+                        continue
+                    if not A.in_band(rules[deck], row["level"]):
+                        dropped["outside-level-band"] += 1
+                        continue
+                    match, rule = A.relation(atom["title"], row["label"], row["kind"])
+                    if match not in A.ACCEPTED_MATCHES:
+                        dropped["related-only"] += 1
+                        continue
+                    lexical_ok, lexical = A.lexical_check(atom["title"], atom["statement"], row["label"], row["kind"])
+                    if match != "exact" and not lexical_ok:
+                        dropped["lexical:" + lexical] += 1
+                        continue
+                    picked.append({"atom": atom, "row": row, "score": score, "rows_collapsed": count,
+                                   "match": match, "rule": rule, "lexical": lexical})
+            picked.sort(key=lambda c: (-c["score"], c["row"]["id"]))
+            out.extend(picked[:PER_ATOM])
+    return out, best, dict(sorted(dropped.items()))
 
 
 def mark_prerequisites(cands, forward):
@@ -152,11 +164,12 @@ def alignment_record(cand, model_name, incoming, date):
         "atom": atom["atom"],
         "match": cand["match"],
         "score": cand["score"],
-        "method": f"embedding:{model_name}+rule:{cand['rule']}",
+        "method": f"embedding:{model_name}+rule:{cand['rule']}+lexical:{cand['lexical']}",
         "rows_collapsed": cand["rows_collapsed"],
         "prerequisites": prerequisites,
         "prerequisite_source": "stated" if prerequisites else None,
         "source_url": row["source_url"],
+        "status": A.STATUS,
         "verified": False,
         "verification": {"status": "asserted", "by": "agent", "at": date},
         "note": "",
@@ -174,6 +187,7 @@ def unmatched_record(atom, best, model_name, date):
         "score": best,
         "method": f"embedding:{model_name}+rule:below-threshold",
         "rows_collapsed": 0, "prerequisites": [], "prerequisite_source": None, "source_url": None,
+        "status": A.STATUS,
         "verified": False,
         "verification": {"status": "asserted", "by": "agent", "at": date},
         "note": "",
@@ -189,6 +203,8 @@ def resource_rows(rules, registry):
             continue
         if not A.licence_linkable(row.get("licence"), registry.get(A.host_of(url))):
             continue
+        if row.get("level") not in A.LEVEL_RANK:
+            continue
         decks = [deck for deck, rule in rules.items() if A.in_field(rule, cip, None)]
         if decks:
             seen.add(url)
@@ -196,7 +212,7 @@ def resource_rows(rules, registry):
     return rows
 
 
-def atom_resources(atoms, accepted, resources, model_name, threshold):
+def atom_resources(atoms, accepted, resources, rules, model_name, threshold):
     families = collections.defaultdict(set)
     for record in accepted:
         if record["match"] in A.LEVEL_MATCHES and record["cip"]:
@@ -212,6 +228,8 @@ def atom_resources(atoms, accepted, resources, model_name, threshold):
         idx = [
             j for j, r in enumerate(resources)
             if any(A.cip_family(r["cip"]).startswith(f) or f.startswith(A.cip_family(r["cip"])) for f in fams)
+            and A.in_band(rules[atom["deck"]], r["row"]["level"])
+            and A.lexical_check(atom["title"], atom["statement"], r["row"]["title"], "course")[0]
         ]
         if not idx:
             continue
@@ -225,45 +243,28 @@ def atom_resources(atoms, accepted, resources, model_name, threshold):
                 "atom": atom["atom"], "resource_id": row["id"], "url": row["url"], "licence": row["licence"],
                 "licence_verified": "unverified" not in row["licence"].lower() and bool(row.get("verified")),
                 "kind": row.get("kind"), "level": row.get("level"), "cip": resources[j]["cip"],
-                "score": score, "method": f"embedding:{model_name}+rule:cip-of-matched-rows+licence-open",
-                "verified": False,
+                "score": score, "method": f"embedding:{model_name}+rule:cip-of-matched-rows+licence-open+lexical:label-terms-in-statement",
+                "status": A.STATUS, "verified": False,
             })
     return out
 
 
-def band_of(score):
-    for low, high in zip(BANDS, BANDS[1:]):
-        if low <= score < high:
-            return f"{low:.2f}-{min(high, 1.0):.2f}"
-    return None
-
-
-def draw_sample(cands, size, seed):
+def draw_blind(cands, per_deck, seed):
     rng = random.Random(seed)
-    by_band = collections.defaultdict(lambda: collections.defaultdict(list))
+    by_deck = collections.defaultdict(list)
     for cand in cands:
-        by_band[band_of(cand["score"])][cand["atom"]["deck"]].append(cand)
-    bands = sorted(b for b in by_band if b)
-    per_band = size // len(bands)
+        by_deck[cand["atom"]["deck"]].append(cand)
     picked = []
-    for band in bands:
-        decks = sorted(by_band[band])
-        for deck in decks:
-            by_band[band][deck].sort(key=lambda c: (c["atom"]["atom"], c["row"]["id"]))
-            rng.shuffle(by_band[band][deck])
-        taken, turn = 0, 0
-        while taken < per_band and any(by_band[band][d] for d in decks):
-            pile = by_band[band][decks[turn % len(decks)]]
-            turn += 1
-            if pile:
-                picked.append((band, pile.pop()))
-                taken += 1
+    for deck in sorted(by_deck):
+        pile = sorted(by_deck[deck], key=lambda c: (c["atom"]["atom"], c["row"]["id"]))
+        rng.shuffle(pile)
+        picked.extend(pile[:per_deck])
+    rng.shuffle(picked)
     return picked
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--floor", type=float, default=0.50)
     parser.add_argument("--date", default="2026-10-12")
     parser.add_argument("--sample", type=int, default=0)
     parser.add_argument("--seed", type=int, default=20261012)
@@ -279,32 +280,23 @@ def main():
     rules = A.deck_fields()
     atoms = A.load_atoms()
     rows = corpus_rows(rules)
-    cands = candidates(atoms, rows, rules, model_name, args.floor)
+    accepted, best, dropped = candidates(atoms, rows, rules, model_name, limits)
     os.makedirs(CACHE, exist_ok=True)
-    A.write_jsonl(os.path.join(CACHE, "candidates.jsonl"), (
-        {"atom": c["atom"]["atom"], "title": c["atom"]["title"], "row": c["row"]["id"], "text": c["row"]["text"],
-         "level": c["row"]["level"], "kind": c["row"]["kind"], "score": c["score"], "match": c["match"]}
-        for c in cands
-    ))
     if args.sample:
-        A.write_jsonl(os.path.join(CACHE, "sample.jsonl"), (
-            {"n": n + 1, "band": band, "atom": c["atom"]["atom"], "progression_id": c["row"]["id"], "table": c["row"]["table"],
-             "score": c["score"], "match": c["match"], "atom_title": c["atom"]["title"], "summary": c["atom"]["summary"],
-             "row_text": c["row"]["text"], "row_level": c["row"]["level"]}
-            for n, (band, c) in enumerate(draw_sample(cands, args.sample, args.seed))
+        A.write_jsonl(os.path.join(CACHE, "blind.jsonl"), (
+            {"n": n + 1, "atom": c["atom"]["atom"], "progression_id": c["row"]["id"], "table": c["row"]["table"],
+             "kind": c["row"]["kind"], "row_level": c["row"]["level"], "score": c["score"], "match": c["match"],
+             "atom_title": c["atom"]["title"], "summary": c["atom"]["summary"], "row_text": c["row"]["text"]}
+            for n, c in enumerate(draw_blind(accepted, args.sample, args.seed))
         ))
     forward = A.stated_edges()
     incoming = collections.defaultdict(set)
     for src, dsts in forward.items():
         for dst in dsts:
             incoming[dst].add(src)
-    accepted = [c for c in cands if A.accepts(c["score"], c["row"]["level"], limits)]
     mark_prerequisites(accepted, forward)
     records = [alignment_record(c, model_name, incoming, args.date) for c in accepted]
     matched = {r["atom"] for r in records}
-    best = collections.defaultdict(float)
-    for cand in cands:
-        best[cand["atom"]["atom"]] = max(best[cand["atom"]["atom"]], cand["score"])
     for atom in atoms:
         if atom["atom"] not in matched:
             records.append(unmatched_record(atom, best.get(atom["atom"]) or None, model_name, args.date))
@@ -313,10 +305,10 @@ def main():
     os.makedirs(A.OUT, exist_ok=True)
     A.write_jsonl(os.path.join(A.OUT, "alignments.jsonl"), records)
     resources = resource_rows(rules, A.registry_by_host())
-    A.write_jsonl(os.path.join(A.OUT, "atom_resources.jsonl"), atom_resources(atoms, records, resources, model_name, threshold))
+    A.write_jsonl(os.path.join(A.OUT, "atom_resources.jsonl"), atom_resources(atoms, records, resources, rules, model_name, threshold))
     print(json.dumps({
         "model": model_name, "limits": limits, "atoms": len(atoms), "corpus_rows_in_field": len(rows),
-        "candidates": len(cands), "alignments": len(accepted), "atoms_matched": len(matched),
+        "alignments": len(accepted), "atoms_matched": len(matched), "dropped": dropped,
         "resources_in_field": len(resources),
     }))
 

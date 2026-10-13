@@ -30,6 +30,14 @@ STOPWORDS = {
 COURSE_CODE = re.compile(
     r"^(.*?\b(?:[A-Z]{2,6} ?\d{2,5}[A-Z]{0,2}|\d{1,2}\.[0-9A-Z]{2,5}|Part I[IAB]*)\b)\s+(.+)$"
 )
+GENERIC_STEMS = {
+    "physi", "chemi", "mathe", "biolo", "scien", "princ", "theor", "metho", "appli", "topic", "studi", "cours",
+    "syste", "found", "eleme", "colle", "unive", "moder", "resea", "pract", "conce", "probl", "techn", "part",
+    "unit", "lectu", "chapt", "handb", "honor", "major", "engin", "analy", "model", "struc", "proce", "prope",
+}
+STEM = 5
+ACCEPTED_MATCHES = {"exact", "broader", "narrower", "prerequisite-of"}
+STATUS = "unreviewed-proposal"
 CONJUNCTION = re.compile(r"\band\b|[,;&/]")
 OPEN_LICENCE = re.compile(r"^(CC0|CC BY|Public domain|MIT$|GNU |Free Documentation License|Copyright SEP, free to read)")
 CLOSED_REGISTRY = {"unknown", "restricted"}
@@ -58,8 +66,27 @@ def write_jsonl(path, rows):
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=False) + "\n")
 
 
+def stems(text):
+    return frozenset(t[:STEM] for t in tokens(text)) - GENERIC_STEMS
+
+
+def lexical_check(title, statement, label, kind):
+    label_stems = stems(label)
+    if not label_stems:
+        return False, "label-generic"
+    if kind == "topic":
+        return bool(stems(title) & label_stems), "title-term-in-label"
+    return label_stems <= stems(f"{title} {statement}"), "label-terms-in-statement"
+
+
+def in_band(rule, level):
+    if level not in LEVEL_RANK:
+        return False
+    return LEVEL_RANK[rule["level_from"][0]] <= LEVEL_RANK[level] <= LEVEL_RANK[rule["level_to"][0]]
+
+
 def deck_fields(path=None):
-    rules = collections.defaultdict(lambda: {"cip": [], "field": []})
+    rules = collections.defaultdict(lambda: {"cip": [], "field": [], "level_from": [], "level_to": []})
     with open(path or os.path.join(HERE, "deck_fields.tsv"), encoding="utf-8") as handle:
         next(handle)
         for line in handle:
@@ -90,6 +117,9 @@ def load_atoms():
                 "slug": atom["id"],
                 "title": atom["title"],
                 "summary": atom.get("summary") or "",
+                "statement": " ".join(filter(None, [
+                    atom.get("summary"), *(atom.get("depths") or {}).values(), atom.get("note"), atom.get("lesson"),
+                ])),
                 "deck_title": deck_title,
                 "requires": list(atom.get("requires") or []),
             })
@@ -208,14 +238,14 @@ def reachable(forward, start, limit=100000):
     return seen
 
 
-def edge_verdict(forward_pairs, reverse_pairs):
+def edge_queue(forward_pairs, reverse_pairs):
     if forward_pairs and reverse_pairs:
-        return "mixed"
-    if forward_pairs:
-        return "agree"
+        return "review-second"
     if reverse_pairs:
-        return "disagree"
-    return "silent"
+        return "review-first"
+    if forward_pairs:
+        return "review-later"
+    return "no-corpus-path"
 
 
 def level_summary(rows):
