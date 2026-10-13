@@ -2,7 +2,6 @@ import argparse
 import datetime as dt
 import json
 import math
-import shutil
 import subprocess
 from pathlib import Path
 
@@ -210,9 +209,10 @@ def style(ax):
 
 
 def save(fig, folder, name):
-    fig.savefig(folder / f"{name}.pdf", bbox_inches="tight")
-    fig.savefig(folder / f"{name}.png", dpi=140, bbox_inches="tight")
+    path = Path(folder) / f"{name}.pdf"
+    fig.savefig(path, bbox_inches="tight")
     plt.close(fig)
+    return path
 
 
 def stem_lines(values):
@@ -224,87 +224,123 @@ def stem_lines(values):
     return out
 
 
-def figures(cleaned, table, edges, s, reg, sim_means, m, folder):
-    y = cleaned[Y].to_numpy(dtype=float)
-    unit = "years from posed to resolved"
-    branch = cleaned[CAT1].value_counts()
+UNIT = "years from posed to resolved"
 
+
+def branch_counts(c):
+    return c["cleaned"][CAT1].value_counts()
+
+
+def bar_axes(branch, base=0):
     fig, ax = plt.subplots(figsize=(7, 4))
-    ax.bar(branch.index, branch.values, color=BLUE, width=0.7)
-    for i, v in enumerate(branch.values):
-        ax.text(i, v + 0.6, str(v), ha="center", fontsize=9, color=INK)
+    ax.bar(branch.index, branch.values - base, bottom=base, color=BLUE, width=0.7)
     ax.set_ylabel("problems, count")
     ax.set_xlabel("branch")
-    ax.set_title("Graph 1. Bar chart of branch: problems per branch, largest first", loc="left", fontsize=10)
     plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
     style(ax)
-    save(fig, folder, "01-bar")
+    return fig, ax
 
+
+def graph_bar(c, folder, name="01-bar"):
+    branch = branch_counts(c)
+    fig, ax = bar_axes(branch)
+    for i, v in enumerate(branch.values):
+        ax.text(i, v + 0.6, str(v), ha="center", fontsize=9, color=INK)
+    ax.set_title("Graph 1. Bar chart of branch: problems per branch, largest first", loc="left", fontsize=10)
+    return save(fig, folder, name)
+
+
+def graph_pie(c, folder, name="02-pie"):
+    branch = branch_counts(c)
     fig, ax = plt.subplots(figsize=(6, 5))
     ax.pie(branch.values, labels=[f"{b} {v / branch.sum():.1%}" for b, v in branch.items()], colors=SLICES[: len(branch)], startangle=90, counterclock=False, wedgeprops={"edgecolor": "white", "linewidth": 2}, textprops={"color": INK, "fontsize": 9})
     ax.set_title("Graph 2. Pie chart of branch: share of problems per branch", loc="left", fontsize=10)
-    save(fig, folder, "02-pie")
+    return save(fig, folder, name)
 
+
+def graph_histogram(c, folder, name="03-histogram"):
     fig, ax = plt.subplots(figsize=(7, 4))
-    ax.hist(y, bins=edges, color=BLUE, edgecolor="white", linewidth=2)
-    ax.set_xticks(edges)
-    ax.set_xlabel(f"{unit}, classes of {BIN_WIDTH} years")
+    ax.hist(c["cleaned"][Y], bins=c["edges"], color=BLUE, edgecolor="white", linewidth=2)
+    ax.set_xticks(c["edges"])
+    ax.set_xlabel(f"{UNIT}, classes of {BIN_WIDTH} years")
     ax.set_ylabel("problems, count")
     ax.set_title("Graph 3. Histogram of years to resolve", loc="left", fontsize=10)
     style(ax)
-    save(fig, folder, "03-histogram")
+    return save(fig, folder, name)
 
+
+def graph_dotplot(c, folder, name="04-dotplot"):
+    y = c["cleaned"][Y].to_numpy(dtype=float)
     fig, ax = plt.subplots(figsize=(9, 4.2))
     values, counts = np.unique(y, return_counts=True)
-    for v, c in zip(values, counts):
-        ax.scatter(np.full(c, v), np.arange(1, c + 1), s=9, color=BLUE, linewidths=0)
-    ax.set_xlabel(unit)
+    for v, k in zip(values, counts):
+        ax.scatter(np.full(k, v), np.arange(1, k + 1), s=9, color=BLUE, linewidths=0)
+    ax.set_xlabel(UNIT)
     ax.set_ylabel("problems stacked at each value, count")
     ax.set_title(f"Graph 4. Dotplot of years to resolve, one dot per problem, n = {len(y)}", loc="left", fontsize=10)
     style(ax)
-    save(fig, folder, "04-dotplot")
+    return save(fig, folder, name)
 
+
+def graph_stem(c, folder, name="05-stem"):
+    path = Path(folder) / f"{name}.txt"
+    path.write_text("Graph 5. Stem plot of years to resolve. Key: 12 | 3 means 123 years.\n" + "\n".join(stem_lines(c["cleaned"][Y])) + "\n")
+    return path
+
+
+def graph_polygon(c, folder, name="06-polygon"):
+    table = c["grouped"]
     fig, ax = plt.subplots(figsize=(7, 4))
     mids = np.concatenate([[table["midpoint"].iloc[0] - BIN_WIDTH], table["midpoint"], [table["midpoint"].iloc[-1] + BIN_WIDTH]])
-    freq = np.concatenate([[0], table["count"], [0]])
-    ax.plot(mids, freq, color=BLUE, lw=2, marker="o", ms=6)
+    ax.plot(mids, np.concatenate([[0], table["count"], [0]]), color=BLUE, lw=2, marker="o", ms=6)
     ax.set_xticks(mids)
-    ax.set_xlabel(f"class midpoint, {unit}")
+    ax.set_xlabel(f"class midpoint, {UNIT}")
     ax.set_ylabel("problems, count")
     ax.set_title("Graph 6. Frequency polygon of years to resolve", loc="left", fontsize=10)
     style(ax)
-    save(fig, folder, "06-polygon")
+    return save(fig, folder, name)
 
+
+def graph_ogive(c, folder, name="07-ogive"):
     fig, ax = plt.subplots(figsize=(7, 4))
-    ax.plot(edges, np.concatenate([[0], table["cumulative_relative"]]), color=BLUE, lw=2, marker="o", ms=6)
-    ax.set_xticks(edges)
+    ax.plot(c["edges"], np.concatenate([[0], c["grouped"]["cumulative_relative"]]), color=BLUE, lw=2, marker="o", ms=6)
+    ax.set_xticks(c["edges"])
     ax.set_ylim(0, 1.03)
-    ax.set_xlabel(f"upper class boundary, {unit}")
+    ax.set_xlabel(f"upper class boundary, {UNIT}")
     ax.set_ylabel("cumulative proportion of problems")
     ax.set_title("Graph 7. Ogive of years to resolve", loc="left", fontsize=10)
     style(ax)
-    save(fig, folder, "07-ogive")
+    return save(fig, folder, name)
 
+
+def graph_boxplot(c, folder, name="08-boxplot"):
+    s = c["summary"]
     fig, ax = plt.subplots(figsize=(8, 2.8))
-    ax.boxplot(y, orientation="horizontal", widths=0.5, patch_artist=True, boxprops={"facecolor": "#c9d9f2", "edgecolor": INK}, medianprops={"color": ORANGE, "lw": 2}, flierprops={"marker": "o", "markersize": 5, "markerfacecolor": "white", "markeredgecolor": INK})
+    ax.boxplot(c["cleaned"][Y], orientation="horizontal", widths=0.5, patch_artist=True, boxprops={"facecolor": "#c9d9f2", "edgecolor": INK}, medianprops={"color": ORANGE, "lw": 2}, flierprops={"marker": "o", "markersize": 5, "markerfacecolor": "white", "markeredgecolor": INK})
     ax.set_yticks([])
-    ax.set_xlabel(unit)
+    ax.set_xlabel(UNIT)
     ax.set_title(f"Graph 8. Boxplot of years to resolve: median {s['median']:.0f}, quartiles {s['q1']:.0f} and {s['q3']:.0f}, {len(s['flagged_ids'])} outliers", loc="left", fontsize=10)
     style(ax)
-    save(fig, folder, "08-boxplot")
+    return save(fig, folder, name)
 
-    x = cleaned[X].to_numpy(dtype=float)
+
+def graph_scatter(c, folder, name="09-scatter"):
+    reg = c["regression"]
+    x, y = c["cleaned"][X].to_numpy(dtype=float), c["cleaned"][Y].to_numpy(dtype=float)
     fig, ax = plt.subplots(figsize=(7, 4.4))
     ax.scatter(x, y, s=18, color=BLUE, edgecolors="white", linewidths=0.6)
     line = np.array([x.min(), x.max()])
     ax.plot(line, reg["intercept"] + reg["slope"] * line, color=ORANGE, lw=2)
     ax.text(line[0] + 5, reg["intercept"] + reg["slope"] * line[0] + 12, f"y = {reg['intercept']:.2f} + ({reg['slope']:.2f})x", color=INK, fontsize=9)
     ax.set_xlabel("year posed, calendar year")
-    ax.set_ylabel(unit)
+    ax.set_ylabel(UNIT)
     ax.set_title("Graph 9. Scatterplot of year posed against years to resolve, with the fitted line", loc="left", fontsize=10)
     style(ax)
-    save(fig, folder, "09-scatter")
+    return save(fig, folder, name)
 
+
+def graph_residuals(c, folder, name="10-residuals"):
+    reg = c["regression"]
     fig, ax = plt.subplots(figsize=(7, 4.4))
     ax.scatter(reg["fitted"], reg["resid"], s=18, color=BLUE, edgecolors="white", linewidths=0.6)
     ax.axhline(0, color=INK, lw=1)
@@ -312,32 +348,67 @@ def figures(cleaned, table, edges, s, reg, sim_means, m, folder):
     ax.set_ylabel("residual, observed minus fitted, years")
     ax.set_title("Graph 10. Residuals against fitted years to resolve", loc="left", fontsize=10)
     style(ax)
-    save(fig, folder, "10-residuals")
+    return save(fig, folder, name)
 
-    floor = int(branch.min()) - 2
-    for name, base, title in (("11-misleading", floor, f"Graph 11. Misleading bar chart of branch. Distortion: the count axis starts at {floor}"), ("12-corrected", 0, "Graph 12. Corrected bar chart of branch: the count axis starts at 0")):
-        fig, ax = plt.subplots(figsize=(7, 4))
-        ax.bar(branch.index, branch.values - base, bottom=base, color=BLUE, width=0.7)
-        ax.set_ylim(base, branch.max() * 1.05)
-        ax.set_ylabel("problems, count")
-        ax.set_xlabel("branch")
-        ax.set_title(title, loc="left", fontsize=10)
-        if base:
-            ax.text(0.98, 0.95, f"DISTORTION: axis truncated at {base}", transform=ax.transAxes, ha="right", va="top", fontsize=9, color=INK, bbox={"facecolor": "white", "edgecolor": ORANGE})
-        plt.setp(ax.get_xticklabels(), rotation=30, ha="right")
-        style(ax)
-        save(fig, folder, name)
 
+def misleading_base(c):
+    return int(branch_counts(c).min()) - 2
+
+
+def graph_misleading(c, folder, name="11-misleading"):
+    branch = branch_counts(c)
+    base = misleading_base(c)
+    fig, ax = bar_axes(branch, base)
+    ax.set_ylim(base, branch.max() * 1.05)
+    ax.set_title(f"Graph 11. Misleading bar chart of branch. Distortion: the count axis starts at {base}", loc="left", fontsize=10)
+    ax.text(0.98, 0.95, f"DISTORTION: axis truncated at {base}", transform=ax.transAxes, ha="right", va="top", fontsize=9, color=INK, bbox={"facecolor": "white", "edgecolor": ORANGE})
+    return save(fig, folder, name)
+
+
+def graph_corrected(c, folder, name="12-corrected"):
+    branch = branch_counts(c)
+    fig, ax = bar_axes(branch)
+    ax.set_ylim(0, branch.max() * 1.05)
+    ax.set_title("Graph 12. Corrected bar chart of branch: the count axis starts at 0", loc="left", fontsize=10)
+    return save(fig, folder, name)
+
+
+def graph_sampling(c, folder, name="13-sampling"):
+    means = c["simulation_means"]
     fig, axes = plt.subplots(1, 2, figsize=(10, 3.8), sharex=True, sharey=True)
-    bins = np.linspace(sim_means["mean"].min(), sim_means["mean"].max(), 31)
+    bins = np.linspace(means["mean"].min(), means["mean"].max(), 31)
     for ax, size in zip(axes, SIM_SIZES):
-        ax.hist(sim_means[sim_means["size"] == size]["mean"], bins=bins, color=BLUE, edgecolor="white", linewidth=1)
-        ax.axvline(m["mu"], color=ORANGE, lw=2)
+        ax.hist(means[means["size"] == size]["mean"], bins=bins, color=BLUE, edgecolor="white", linewidth=1)
+        ax.axvline(c["models"]["mu"], color=ORANGE, lw=2)
         ax.set_title(f"{SIM_GROUPS} sample means of years to resolve, n = {size}", loc="left", fontsize=10)
         ax.set_xlabel("sample mean, years")
         style(ax)
     axes[0].set_ylabel("samples, count")
-    save(fig, folder, "13-sampling")
+    return save(fig, folder, name)
+
+
+GRAPH_FUNCTIONS = {
+    "01-bar": graph_bar,
+    "02-pie": graph_pie,
+    "03-histogram": graph_histogram,
+    "04-dotplot": graph_dotplot,
+    "05-stem": graph_stem,
+    "06-polygon": graph_polygon,
+    "07-ogive": graph_ogive,
+    "08-boxplot": graph_boxplot,
+    "09-scatter": graph_scatter,
+    "10-residuals": graph_residuals,
+    "11-misleading": graph_misleading,
+    "12-corrected": graph_corrected,
+    "13-sampling": graph_sampling,
+}
+REQUIRED_GRAPHS = tuple(sorted(GRAPH_FUNCTIONS))[:12]
+
+
+def render(name, c, folder):
+    if name not in GRAPH_FUNCTIONS:
+        raise KeyError(f"no graph named {name}; known: {sorted(GRAPH_FUNCTIONS)}")
+    return GRAPH_FUNCTIONS[name](c, Path(folder))
 
 
 def tabular(frame, formats, header):
@@ -506,43 +577,52 @@ def plain(value):
     return value
 
 
-def build(root=HERE, date=None, pdf=True):
-    date = date or dt.date.today().isoformat()
-    folder = new_folder(root, date)
-    (folder / "data").mkdir()
-    (folder / "figures").mkdir()
-    original = load_original()
+def analyse(original):
     cleaned, excluded, rule_counts = clean(original)
     if len(cleaned) < 100:
         raise ValueError(f"only {len(cleaned)} complete rows; the assignment needs 100")
-    original.to_csv(folder / "data" / "original.csv", index=False)
-    cleaned.to_csv(folder / "data" / "cleaned.csv", index=False)
-    excluded.to_csv(folder / "data" / "excluded_rows.csv", index=False)
     table, edges = grouped(cleaned[Y].to_numpy(dtype=float))
     s = summaries(cleaned)
     gmean, gsd = grouped_estimates(table, s["n"])
-    reg = regression(cleaned)
     pr = probability(cleaned)
     m = models(cleaned, pr["p_a"])
     sample = draw_sample(cleaned)
-    sample.to_csv(folder / "sample_50.csv", index=False)
     draws, means = simulate(cleaned)
-    draws.to_csv(folder / "simulation_draws.csv", index=False)
-    means.to_csv(folder / "simulation_means.csv", index=False)
     sim = {size: {"mean": float(g["mean"].mean()), "sd": float(g["mean"].std(ddof=1))} for size, g in means.groupby("size")}
-    inf = inference(sample, m["mu"])
-    figures(cleaned, table, edges, s, reg, means, m, folder / "figures")
-    stem = stem_lines(cleaned[Y])
-    (folder / "figures" / "05-stem.txt").write_text("Graph 5. Stem plot of years to resolve. Key: 12 | 3 means 123 years.\n" + "\n".join(stem) + "\n")
-    c = {"date": date, "seed": SEED, "mu0": MU0, "original_rows": len(original), "rule_counts": rule_counts, "cleaned": cleaned, "grouped": table, "summary": s, "grouped_mean": gmean, "grouped_sd": gsd, "regression": reg, "probability": pr, "models": m, "simulation": sim, "inference": inf, "stem": stem, "stem_low": int((cleaned[Y] < 100).sum())}
-    calc = plain({k: v for k, v in c.items() if k not in ("cleaned", "grouped", "stem", "stem_low")})
-    calc["grouped_table"] = table.to_dict(orient="records")
+    return {
+        "seed": SEED, "mu0": MU0, "original_rows": len(original), "rule_counts": rule_counts, "cleaned": cleaned, "excluded": excluded, "grouped": table, "edges": edges,
+        "summary": s, "grouped_mean": gmean, "grouped_sd": gsd, "regression": regression(cleaned), "probability": pr, "models": m, "sample": sample,
+        "simulation_draws": draws, "simulation_means": means, "simulation": sim, "inference": inference(sample, m["mu"]), "stem": stem_lines(cleaned[Y]), "stem_low": int((cleaned[Y] < 100).sum()),
+    }
+
+
+FRAMES = ("cleaned", "excluded", "grouped", "edges", "sample", "simulation_draws", "simulation_means", "stem", "stem_low")
+
+
+def build(root=HERE, date=None, pdf=True):
+    date = date or dt.date.today().isoformat()
+    folder = new_folder(Path(root), date)
+    (folder / "data").mkdir()
+    (folder / "figures").mkdir()
+    original = load_original()
+    c = analyse(original)
+    c["date"] = date
+    original.to_csv(folder / "data" / "original.csv", index=False)
+    c["cleaned"].to_csv(folder / "data" / "cleaned.csv", index=False)
+    c["excluded"].to_csv(folder / "data" / "excluded_rows.csv", index=False)
+    c["sample"].to_csv(folder / "sample_50.csv", index=False)
+    c["simulation_draws"].to_csv(folder / "simulation_draws.csv", index=False)
+    c["simulation_means"].to_csv(folder / "simulation_means.csv", index=False)
+    for name in GRAPH_FUNCTIONS:
+        render(name, c, folder / "figures")
+    calc = plain({k: v for k, v in c.items() if k not in FRAMES})
+    calc["grouped_table"] = c["grouped"].to_dict(orient="records")
+    calc["script"] = "learning/research-os/statistics-project/stats_project.py"
     (folder / "calculations.json").write_text(json.dumps(calc, indent=1) + "\n")
     (folder / "report.tex").write_text(report(c))
-    shutil.copy(Path(__file__), folder / "stats_project.py")
     if pdf:
         for _ in range(2):
-            subprocess.run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "report.tex"], cwd=folder, check=True, capture_output=True)
+            subprocess.run(["pdflatex", "-interaction=nonstopmode", "report.tex"], cwd=folder, check=True, capture_output=True)
         for ext in ("aux", "log", "out"):
             (folder / f"report.{ext}").unlink(missing_ok=True)
     return folder, c

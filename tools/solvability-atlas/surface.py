@@ -31,8 +31,9 @@ FOLDS = 5
 REPEATS = 20
 PERMUTATIONS = 200
 BOOTSTRAPS = 2000
-CUTOFFS = (2000, 2010, 2015)
-PRIMARY_CUTOFF = 2010
+CUTOFFS = (1950, 1960, 1970, 1980, 1990, 2000, 2010)
+MIN_TEST_ROWS = 20
+SURFACE_DEFAULT = "graph"
 RIDGE_ALPHAS = tuple(10.0 ** k for k in range(-2, 4))
 KERNEL_RIDGES = (0.001, 0.01, 0.1, 1.0)
 KERNEL_NOISE = (0.001, 0.01, 0.1, 1.0, 10.0, 100.0)
@@ -287,32 +288,41 @@ def cross_validate(ctx, repeats=REPEATS, permutations=PERMUTATIONS, bootstraps=B
 
 
 def temporal_split(ctx, cutoff):
+    posed = ctx.table["posed"].to_numpy(dtype=float)[ctx.labelled]
     resolved = ctx.table["resolved"].to_numpy(dtype=float)[ctx.labelled]
-    return np.flatnonzero(resolved < cutoff), np.flatnonzero(resolved >= cutoff)
+    return np.flatnonzero((posed < cutoff) & (resolved < cutoff)), np.flatnonzero(posed >= cutoff)
 
 
-def temporal_permutation(ctx, train, test, draw, seed=SEED):
-    y = ctx.y.copy()
-    y[train] = np.random.default_rng(seed + 200000 + draw).permutation(y[train])
-    return {label(n, fs): r_squared(ctx.y[test], predict(n, fs, ctx, train, test, y, seed)) for n, fs in entries() if n in MODELS}
-
-
-def temporal(ctx, cutoff, permutations=PERMUTATIONS, bootstraps=BOOTSTRAPS, seed=SEED, jobs=-1):
+def temporal(ctx, cutoff, bootstraps=BOOTSTRAPS, seed=SEED):
     train, test = temporal_split(ctx, cutoff)
     y = ctx.y
     predicted = {label(n, fs): predict(n, fs, ctx, train, test, y, seed) for n, fs in entries()}
     stacked = {name: p[None, :] for name, p in predicted.items()}
     draws = bootstrap_draws(y[test], stacked, ctx.groups[test], bootstraps, seed)
-    null_runs = Parallel(n_jobs=jobs)(delayed(temporal_permutation)(ctx, train, test, d, seed) for d in range(permutations))
-    null = {name: [run[name] for run in null_runs] for name in (null_runs[0] if null_runs else {})}
     return {
         "cutoff": cutoff,
         "train_rows": int(len(train)),
         "test_rows": int(len(test)),
         "train_mean_years": float(np.expm1(y[train]).mean()),
         "test_mean_years": float(np.expm1(y[test]).mean()),
-        "scores": summarise(y[test], stacked, draws, null, BASELINES),
+        "scores": summarise(y[test], stacked, draws, None, BASELINES),
     }
+
+
+def sweep(ctx, cutoffs=CUTOFFS, bootstraps=BOOTSTRAPS, seed=SEED, jobs=-1):
+    usable = [c for c in cutoffs if len(temporal_split(ctx, c)[1]) >= MIN_TEST_ROWS and len(temporal_split(ctx, c)[0]) >= MIN_TEST_ROWS]
+    blocks = Parallel(n_jobs=jobs)(delayed(temporal)(ctx, c, bootstraps, seed) for c in usable)
+    return {str(b["cutoff"]): b for b in blocks}
+
+
+def year_from_map(ctx, seed=SEED):
+    fold = grouped_folds(ctx.groups, FOLDS, seed)
+    predicted = np.zeros(len(ctx.y))
+    for k in range(FOLDS):
+        train, test = np.flatnonzero(fold != k), np.flatnonzero(fold == k)
+        xtr, xte = standardise(ctx.full["map"][train], ctx.full["map"][test])
+        predicted[test] = RidgeCV(alphas=RIDGE_ALPHAS).fit(xtr, ctx.year[train]).predict(xte)
+    return {"r2": r_squared(ctx.year, predicted), "rows": int(len(ctx.y))}
 
 
 def density_check(table, repeats=3, seed=SEED):
@@ -354,7 +364,7 @@ class Surface:
         return np.expm1(self.predict(ids))
 
 
-def frontier_surface(table=None, weights=None, model="graph", target=TARGET, cutoff=None, seed=SEED):
+def frontier_surface(table=None, weights=None, model=SURFACE_DEFAULT, target=TARGET, cutoff=None, seed=SEED):
     if model not in SURFACE_MODELS:
         raise ValueError(f"model must be one of {SURFACE_MODELS}")
     if table is None or weights is None:
@@ -514,19 +524,15 @@ def render(name, surface, table, root=RENDERS, now=None):
     return folder
 
 
-def best_map_model(cv):
-    return max(MODELS, key=lambda m: cv["scores"][f"{m}:map"]["r2"])
-
-
 def run(repeats=REPEATS, permutations=PERMUTATIONS, bootstraps=BOOTSTRAPS, seed=SEED, jobs=-1, surface_model=None):
+    import surface_survival
+
     built = st.build()
     st.write(built["rows"])
     table = st.load()
     ctx = context(table, built["weights"])
     cv = cross_validate(ctx, repeats, permutations, bootstraps, seed, jobs)
-    splits = {str(c): temporal(ctx, c, permutations, bootstraps, seed, jobs) for c in CUTOFFS}
-    chosen = surface_model or best_map_model(cv)
-    surface = frontier_surface(table, built["weights"], model=chosen, seed=seed)
+    surface = frontier_surface(table, built["weights"], model=surface_model or SURFACE_DEFAULT, seed=seed)
     result = {
         "schema": SCHEMA,
         "built": dt.date.today().isoformat(),
@@ -537,10 +543,12 @@ def run(repeats=REPEATS, permutations=PERMUTATIONS, bootstraps=BOOTSTRAPS, seed=
         "excluded_as_post_outcome": list(st.POST_OUTCOME),
         "circle_threshold": built["threshold"],
         "cross_validation": cv,
-        "temporal": splits,
-        "primary_cutoff": PRIMARY_CUTOFF,
+        "temporal_rule": "train on rows posed and resolved before the cutoff, test on rows posed in the cutoff year or later",
+        "temporal": sweep(ctx, CUTOFFS, bootstraps, seed, jobs),
+        "posed_year_from_map": year_from_map(ctx, seed),
+        "survival": surface_survival.run(table, bootstraps=bootstraps, seed=seed, jobs=jobs),
         "density_check": density_check(table, seed=seed),
-        "surface": {"params": surface.params, "fit": surface.fit, "trained_rows": len(surface.trained_on)},
+        "surface": {"params": surface.params, "fit": surface.fit, "trained_rows": len(surface.trained_on), "model_fixed_before_scoring": SURFACE_DEFAULT},
         "claims_check": claims_check(table, surface, bootstraps, seed),
     }
     return result, surface, table
@@ -554,25 +562,51 @@ def span(pair, digits=3):
     return f"{pair[0]:.{digits}f} to {pair[1]:.{digits}f}"
 
 
+NAMES = {"mean": "none", "circle": "inside or outside", "reach": "reach", "year": "posed year"}
+
+
 def score_table(block, against):
-    head = "| Model | Features | R squared | 95% interval | MAE, log years | MAE, years | R squared minus " + against + " | Permutation R squared, 95% | p |"
-    lines = [head, "|---|---|---|---|---|---|---|---|---|"]
+    lines = ["| Model | Features | R squared | 95% interval | MAE, log years | MAE, years | R squared minus " + against + " | Shuffled-target R squared, 95% |", "|---|---|---|---|---|---|---|---|"]
     for n, fs in entries():
         s = block["scores"][label(n, fs)]
         diff = s.get(f"r2_minus_{against}")
         perm = s.get("permutation")
         lines.append(
-            f"| {n} | {'none' if n == 'mean' else 'inside or outside' if n == 'circle' else 'reach' if n == 'reach' else 'posed year' if n == 'year' else fs} | {fmt(s['r2'])} | {span(s['r2_interval'])} | {fmt(s['mae_log'])} | {fmt(s['mae_years'], 1)} | "
-            f"{(fmt(diff['value']) + ', ' + span(diff['interval'])) if diff else ''} | {span(perm['interval']) if perm else ''} | {fmt(perm['p'], 4) if perm else ''} |"
+            f"| {n} | {NAMES.get(n, fs)} | {fmt(s['r2'])} | {span(s['r2_interval'])} | {fmt(s['mae_log'])} | {fmt(s['mae_years'], 1)} | "
+            f"{(fmt(diff['value']) + ', ' + span(diff['interval'])) if diff else ''} | {span(perm['interval']) if perm else ''} |"
         )
     return "\n".join(lines)
 
 
+def sweep_table(blocks):
+    cutoffs = list(blocks)
+    lines = ["| Model | Features | " + " | ".join(cutoffs) + " |", "|---|---|" + "---|" * len(cutoffs)]
+    lines.append("| train rows | | " + " | ".join(str(blocks[c]["train_rows"]) for c in cutoffs) + " |")
+    lines.append("| test rows | | " + " | ".join(str(blocks[c]["test_rows"]) for c in cutoffs) + " |")
+    for n, fs in entries():
+        lines.append(f"| {n} | {NAMES.get(n, fs)} | " + " | ".join(fmt(blocks[c]["scores"][label(n, fs)]["r2"]) for c in cutoffs) + " |")
+    return "\n".join(lines)
+
+
+def gain_table(blocks):
+    cutoffs = list(blocks)
+    lines = ["| Model, map and year | " + " | ".join(cutoffs) + " |", "|---|" + "---|" * len(cutoffs)]
+    for n in MODELS:
+        cells = []
+        for c in cutoffs:
+            d = blocks[c]["scores"][label(n, "map_year")]["r2_minus_year"]
+            cells.append(f"{fmt(d['value'])}, {span(d['interval'])}")
+        lines.append(f"| {n} | " + " | ".join(cells) + " |")
+    return "\n".join(lines)
+
+
 def tables_markdown(result):
-    cv = result["cross_validation"]
-    out = ["## Repeated Grouped Folds", "", score_table(cv, "year"), ""]
-    for c, block in result["temporal"].items():
-        out += [f"## Temporal Split At {c}", "", f"Train {block['train_rows']} rows resolved before {c}, test {block['test_rows']} rows resolved in {c} or later.", "", score_table(block, "year"), ""]
+    import surface_survival
+
+    out = ["## Repeated Grouped Folds", "", score_table(result["cross_validation"], "year"), ""]
+    out += ["## Posed-Year Sweep", "", result["temporal_rule"].capitalize() + ". R squared on the test rows.", "", sweep_table(result["temporal"]), ""]
+    out += ["## Gain Over Posed Year In The Sweep", "", "R squared minus the posed-year baseline, with a 95% bootstrap interval over test families.", "", gain_table(result["temporal"]), ""]
+    out += [surface_survival.tables_markdown(result["survival"])]
     d = result["density_check"]
     out += ["## Neighbour-Solved Density", "", "| Model | R squared | Range over repeats |", "|---|---|---|"]
     out += [f"| {k} | {fmt(v['r2'])} | {span(v['r2_repeat_range'])} |" for k, v in d["scores"].items()]
@@ -592,7 +626,7 @@ def main():
     if args.render_only:
         built = st.build()
         table = st.frame(built["rows"])
-        surface = frontier_surface(table, built["weights"], model=args.model or "graph")
+        surface = frontier_surface(table, built["weights"], model=args.model or SURFACE_DEFAULT)
         print(render(args.render or "frontier-surface-map", surface, table))
         return
     result, surface, table = run(args.repeats, args.permutations, args.bootstraps, jobs=args.jobs, surface_model=args.model)

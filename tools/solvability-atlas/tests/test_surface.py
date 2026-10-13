@@ -9,6 +9,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 import surface
+import surface_survival as ss
 import surface_table as st
 
 ATLAS = Path(__file__).parent.parent
@@ -112,16 +113,19 @@ def test_folds_keep_a_family_together(ctx):
     assert set(fold) == set(range(surface.FOLDS))
 
 
-def test_temporal_split_trains_before_the_cutoff(ctx):
-    train, test = surface.temporal_split(ctx, surface.PRIMARY_CUTOFF)
-    resolved = ctx.table["resolved"].to_numpy(dtype=float)[ctx.labelled]
-    assert (resolved[train] < surface.PRIMARY_CUTOFF).all()
-    assert (resolved[test] >= surface.PRIMARY_CUTOFF).all()
-    assert len(train) + len(test) == len(ctx.y)
+def test_temporal_split_cuts_on_posed_year(ctx):
+    for cutoff in surface.CUTOFFS:
+        train, test = surface.temporal_split(ctx, cutoff)
+        posed = ctx.table["posed"].to_numpy(dtype=float)[ctx.labelled]
+        resolved = ctx.table["resolved"].to_numpy(dtype=float)[ctx.labelled]
+        assert (posed[train] < cutoff).all()
+        assert (resolved[train] < cutoff).all()
+        assert (posed[test] >= cutoff).all()
+        assert not set(train) & set(test)
 
 
 def test_test_rows_cannot_change_a_prediction(ctx):
-    train, test = surface.temporal_split(ctx, surface.PRIMARY_CUTOFF)
+    train, test = surface.temporal_split(ctx, 1990)
     y = ctx.y.copy()
     scrambled = y.copy()
     scrambled[test] = 99.0
@@ -201,10 +205,90 @@ def test_committed_results_report_every_model_and_baseline():
     result = json.loads(surface.RESULTS.read_text())
     names = {surface.label(n, fs) for n, fs in surface.entries()}
     assert set(result["cross_validation"]["scores"]) == names
+    assert result["cross_validation"]["repeats"] == surface.REPEATS
+    assert len(result["temporal"]) >= 5
     for block in [result["cross_validation"], *result["temporal"].values()]:
         for name, s in block["scores"].items():
             assert s["r2_interval"][0] <= s["r2_interval"][1]
-            if name.split(":")[0] in surface.MODELS:
-                assert 0 < s["permutation"]["p"] <= 1
-    assert result["cross_validation"]["repeats"] == surface.REPEATS
-    assert result["temporal"][str(surface.PRIMARY_CUTOFF)]["test_rows"] > 30
+    for cutoff, block in result["temporal"].items():
+        assert block["test_rows"] >= surface.MIN_TEST_ROWS
+        for model in surface.MODELS:
+            gain = block["scores"][f"{model}:map_year"]["r2_minus_year"]
+            assert gain["interval"][0] <= gain["interval"][1]
+            assert gain["value"] == pytest.approx(block["scores"][f"{model}:map_year"]["r2"] - block["scores"]["year"]["r2"])
+    assert result["surface"]["params"]["model"] == surface.SURFACE_DEFAULT
+
+
+@pytest.fixture(scope="module")
+def frame(table):
+    return ss.survival_frame(table)
+
+
+def test_survival_frame_counts(frame, table):
+    posed = table["posed"].notna()
+    undated = posed & (table["solved"] == 1) & table["resolved"].isna()
+    assert len(frame["time"]) == int(posed.sum() - undated.sum())
+    assert frame["dropped_undated_solved"] == int(undated.sum())
+    assert int(frame["event"].sum()) == int(table["log_years"].notna().sum())
+    assert (frame["time"] >= 0).all()
+    assert (frame["time"][~frame["event"]] == frame["follow_up"][~frame["event"]]).all()
+
+
+def test_status_known_at_a_cutoff_ignores_later_resolutions(frame):
+    cutoff = 1990
+    rows, time, event = ss.known_at(frame, cutoff)
+    assert (frame["posed"][rows] < cutoff).all()
+    assert (frame["resolved"][rows][event] < cutoff).all()
+    assert (time[~event] == cutoff - frame["posed"][rows][~event]).all()
+    changed = dict(frame)
+    changed["resolved"] = np.where(frame["resolved"] >= cutoff, frame["resolved"] + 11, frame["resolved"])
+    rows2, time2, event2 = ss.known_at(changed, cutoff)
+    assert (rows == rows2).all() and (time == time2).all() and (event == event2).all()
+
+
+def test_concordance_within_source_ignores_pairs_across_sources():
+    time = np.array([1.0, 2.0, 10.0, 20.0])
+    event = np.array([True, True, True, True])
+    source = np.array([0, 0, 1, 1])
+    across_only = np.array([4.0, 3.0, 9.0, 8.0])
+    assert ss.concordance_within(time, event, across_only, source) == 1.0
+    assert ss.concordance_within(time, event, -across_only, source) == 0.0
+    mixed = np.array([1.0, 2.0, 9.0, 8.0])
+    assert ss.concordance_within(time, event, mixed, source) == 0.5
+    assert ss.concordance(time, event, mixed) < 0.5
+
+
+def test_brier_scores_only_rows_with_full_follow_up():
+    toy = {"follow_up": np.array([60.0, 60.0, 5.0]), "event": np.array([True, False, False]), "time": np.array([8.0, 60.0, 5.0])}
+    rows = np.arange(3)
+    perfect = np.array([[1.0, 1.0, 1.0], [0.0, 0.0, 0.0], [1.0, 1.0, 1.0]])
+    assert ss.brier(toy, rows, perfect) == [0.0, 0.0, 0.0]
+    assert ss.brier(toy, rows, 1 - perfect) == [1.0, 1.0, 1.0]
+
+
+def test_survival_models_recover_a_planted_hazard():
+    rng = np.random.default_rng(3)
+    x = rng.standard_normal((300, 3))
+    time = rng.exponential(np.exp(-1.5 * x[:, 0]) * 20)
+    event = time < 40
+    time = np.minimum(time, 40)
+    for family in ss.FAMILIES:
+        model = ss.fit(family, x[:200], time[:200], event[:200])
+        assert ss.concordance(time[200:], event[200:], model.predict(x[200:])) > 0.7
+        probability = ss.event_probability(model, x[200:])
+        assert ((probability >= 0) & (probability <= 1)).all()
+        assert (np.diff(probability, axis=1) >= -1e-9).all()
+
+
+def test_committed_survival_results_carry_the_gain_over_posed_year():
+    result = json.loads(surface.RESULTS.read_text())["survival"]
+    cv = result["cross_validation"]
+    assert cv["events"] + cv["censored"] == cv["rows"]
+    for block in [cv, *result["temporal"].values()]:
+        for family in ss.FAMILIES:
+            g = block["gain_over_posed_year"][family]
+            for key in ("concordance_gain", "within_source_gain", "brier_gain"):
+                lo, hi = g[f"{key}_interval"]
+                assert lo <= hi
+            assert g["concordance_gain"] == pytest.approx(block["scores"][f"{family}:map_year"]["concordance"] - block["scores"][f"{family}:year"]["concordance"])
+    assert len(result["temporal"]) >= 5

@@ -8,7 +8,8 @@ from pathlib import Path
 
 import numpy as np
 from scipy.sparse import coo_matrix, diags, identity
-from scipy.sparse.linalg import eigsh, splu
+from scipy.linalg import cho_factor, cho_solve
+from scipy.sparse.linalg import eigsh
 
 import thresholds
 
@@ -26,13 +27,13 @@ DIMS = 8
 SEED = 20261013
 COORDS = tuple(f"x{k + 1}" for k in range(DIMS))
 TARGETS = ("years_to_resolve", "log_years", "time_open", "event", "solved_share")
-POST_OUTCOME = ("status", "solved", "resolved", "formal", "reach_2026", "zone", "inside", "disc_radius", "level", "openalex_works")
+POST_OUTCOME = ("source", "source_class", "status", "solved", "resolved", "formal", "reach_2026", "zone", "inside", "disc_radius", "level", "openalex_works")
 MAP_FEATURES = COORDS + ("theta_sin", "theta_cos", "in_degree", "sim_mean", "sim_top", "log_words")
 POSED_FEATURES = ("reach_at_posed", "solved_before_posed", "posed_before_posed")
 CATEGORICAL = ("branch", "form")
 YEAR = ("posed",)
 FIELDS = (
-    ("id", "title", "branch", "kind", "form", "variant_of", "source_class", "licence", "status", "solved", "formal", "level", "posed", "resolved")
+    ("id", "title", "branch", "kind", "form", "variant_of", "source_class", "source", "licence", "status", "solved", "formal", "level", "posed", "resolved")
     + TARGETS
     + ("words", "theta")
     + MAP_FEATURES
@@ -81,11 +82,11 @@ def spectral_coordinates(weights, dims=DIMS, seed=SEED):
 def graph_kernel(weights, columns, ridge):
     degree = np.asarray(weights.sum(1)).ravel()
     scale = diags(1.0 / np.sqrt(degree))
-    laplacian = identity(weights.shape[0]) - scale @ weights @ scale
-    solver = splu((laplacian + ridge * identity(weights.shape[0])).tocsc())
+    laplacian = (identity(weights.shape[0]) - scale @ weights @ scale).toarray()
+    laplacian[np.diag_indices_from(laplacian)] += ridge
     unit = np.zeros((weights.shape[0], len(columns)))
     unit[columns, np.arange(len(columns))] = 1.0
-    return solver.solve(unit)
+    return cho_solve(cho_factor(laplacian, overwrite_a=True, check_finite=False), unit, check_finite=False)
 
 
 def posed_features(arrays):
@@ -170,6 +171,7 @@ def build(data=None):
             "form": n["form"],
             "variant_of": n["variant_of"] or "",
             "source_class": thresholds.source_class(n["source"]),
+            "source": n["source"],
             "licence": n["licence"],
             "status": n["status"],
             "solved": int(bool(n["solved"])),
