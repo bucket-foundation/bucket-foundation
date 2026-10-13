@@ -2,6 +2,184 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "production-daily-quiz-3-to-5",
+      "date": "2026-10-11",
+      "category": "production",
+      "branch": null,
+      "title": "The daily quiz always holds 3 to 5 questions",
+      "summary": "Every daily quiz in the desktop app now holds at least 3 questions and at most 5.",
+      "commit": null,
+      "pr": 716,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/716",
+      "status": "merged",
+      "plot_title": "Daily quiz length: 3 questions every day, up to 5",
+      "image": "/whats-new/daily-quiz-3-to-5.webp",
+      "image_alt": "Five numbered cards in a row. The first three are filled and marked every day, the last two are outlined and marked some days.",
+      "discussion": "The limit is one constant, shared by the site and the desktop app. A day with few chats still gets three questions, and a busy day stops at five. The change shipped inside the word lessons release.",
+      "links": [
+        {
+          "label": "Limits",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/main/src/lib/research-os/work-quiz/limits.ts"
+        },
+        {
+          "label": "Download",
+          "href": "https://bucket.foundation/download"
+        }
+      ]
+    },
+    {
+      "id": "production-bkt-settings",
+      "date": "2026-10-11",
+      "category": "production",
+      "branch": null,
+      "title": "A Settings page in the desktop app",
+      "summary": "The desktop app has a Settings page with four panels: work quiz sources, installed decks, the word database link and the app itself.",
+      "commit": null,
+      "pr": 716,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/716",
+      "status": "merged",
+      "plot_title": "Settings: four panels, all kept on this computer",
+      "image": "/whats-new/bkt-settings.webp",
+      "image_alt": "A diagram of the Settings page as four stacked panels: work quiz sources, installed decks, word database link and this app.",
+      "discussion": "The last panel holds the daily notification switch with its time of day, the data folder and the version. The page states that everything on it stays on this computer. The image is a diagram of the page.",
+      "links": [
+        {
+          "label": "Settings view",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/main/packages/bkt-ui/src/views/Settings.tsx"
+        },
+        {
+          "label": "Download",
+          "href": "https://bucket.foundation/download"
+        }
+      ]
+    },
+    {
+      "id": "production-word-lessons",
+      "date": "2026-10-11",
+      "category": "production",
+      "branch": null,
+      "title": "Word lessons in 27 languages",
+      "summary": "Learn in the desktop app now teaches single words in 27 languages, with sound, part of speech, meaning and origin.",
+      "commit": null,
+      "pr": 716,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/716",
+      "status": "merged",
+      "plot_title": "Word lessons: 27 languages, up to 8 words a lesson",
+      "image": "/whats-new/word-lessons-27-languages.webp",
+      "image_alt": "The number 27 beside the word languages, and a list of the five things shown for every word: the word, its sound in IPA, part of speech, meaning and origin.",
+      "discussion": "A lesson holds up to 8 words. Each language chosen in Settings gets a deck in Learn, and the terminal has the same lessons. The words come from Wiktionary through Kaikki under CC BY-SA, and the credit shows on every lesson. This release has no audio.",
+      "links": [
+        {
+          "label": "Lesson size",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/main/packages/bkt/src/core/words.ts"
+        },
+        {
+          "label": "Download",
+          "href": "https://bucket.foundation/download"
+        }
+      ]
+    },
+    {
+      "id": "production-word-decks",
+      "date": "2026-10-11",
+      "category": "production",
+      "branch": null,
+      "title": "35 word decks with 6.56 million words",
+      "summary": "A deck library lists 35 word decks, one per language, holding 6,564,942 words in total.",
+      "commit": null,
+      "pr": 721,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/721",
+      "status": "merged",
+      "plot_title": "Words per deck across 35 languages, 6,564,942 in total",
+      "image": "/whats-new/word-decks-35.webp",
+      "image_alt": "Horizontal bars for 35 languages sorted by word count, from English at 1,199,990 down to Akkadian at 1,133.",
+      "discussion": "English is the largest deck at 1,199,990 words, then Latin at 825,329 and Spanish at 755,090. The smallest are Akkadian at 1,133 and Sumerian at 1,836. Bar length follows the square root of the count so the small decks stay visible. Words come from Wiktionary through Kaikki, CC BY-SA.",
+      "links": [
+        {
+          "label": "Catalog",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/main/decks/catalog.json"
+        },
+        {
+          "label": "Decks",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/main/decks"
+        }
+      ]
+    },
+    {
+      "id": "production-explore-globe-parchment",
+      "date": "2026-10-11",
+      "category": "production",
+      "branch": null,
+      "title": "The globe sits on the page background",
+      "summary": "The Explore globe now draws on the parchment of the page in place of a dark stage.",
+      "commit": null,
+      "pr": 571,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/571",
+      "status": "merged",
+      "plot_title": "Explore globe on the parchment background",
+      "image": "/whats-new/explore-globe-parchment.webp",
+      "image_alt": "A wireframe sphere in dark ink on a parchment background, with a few gold lines joining points on its surface.",
+      "discussion": "The globe stage is transparent, so the page shows through. The sphere guide and edges use basalt ink and highlights use deep gold. The other Explore modes keep their dark stage.",
+      "links": [
+        {
+          "label": "Explore",
+          "href": "https://bucket.foundation/explore"
+        }
+      ]
+    },
+    {
+      "id": "production-solvability-thresholds",
+      "date": "2026-10-11",
+      "category": "production",
+      "branch": null,
+      "title": "How much the frontier depends on its five constants",
+      "summary": "A sweep of the five hand-set constants behind the solvability frontier, and a test of reach as a predictor of solved problems. The shipped constants are unchanged.",
+      "commit": null,
+      "pr": 732,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/732",
+      "status": "merged",
+      "plot_title": "Reach as a predictor of solved, by which neighbours are left out: ROC AUC with 95% intervals over 5,209 problems",
+      "image": "/whats-new/solvability-thresholds.webp",
+      "image_alt": "Five rows of dots with interval bars on an axis from 0.50 to 0.80. The shipped rule sits at 0.766 and the four stricter rules sit near 0.675.",
+      "discussion": "Reach scores 0.766 under the shipped rule, which leaves out only the row itself. Leaving out a row's variant family drops it to 0.677, and near copies change the third decimal. So 0.09 of the score came from solved siblings sitting beside each other. Reach is a weak predictor of current labels at 0.675, 0.656 to 0.696. This work is on dev.",
+      "links": [
+        {
+          "label": "Write-up",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/THRESHOLDS.md"
+        },
+        {
+          "label": "Numbers",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/tools/solvability-atlas/thresholds/thresholds.json"
+        }
+      ]
+    },
+    {
+      "id": "production-progressions-corpus",
+      "date": "2026-10-11",
+      "category": "production",
+      "branch": null,
+      "title": "A corpus of how learning progresses",
+      "summary": "One corpus of standards, course sequences, prerequisite edges, exams, books, resources and degree programs. It holds something for 248 of the 457 CIP major families.",
+      "commit": null,
+      "pr": 738,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/738",
+      "status": "merged",
+      "plot_title": "Majors by CIP series and family: 248 of 457 families hold a row, a program, a book or a resource",
+      "image": "/whats-new/progressions-coverage.webp",
+      "image_alt": "A treemap of 457 major families grouped by series. 194 cells are dark for covered, 54 are light for thin and 209 are pale for empty.",
+      "discussion": "The tables hold 5,350 progression rows, 25,908 courses from three university catalogues, 53,459 resources, 1,636 books, 1,058 programs and 22,130 prerequisite edges, 19,207 of them stated by a source. 209 of 457 major families hold nothing. On the career side, 93 of 98 SOC minor groups are reached. No source prints a CIP code, so every mapping to a major is inferred. This work is on dev.",
+      "links": [
+        {
+          "label": "Corpus",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/tree/dev/learning/corpus/progressions"
+        },
+        {
+          "label": "Coverage",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/learning/corpus/progressions/COVERAGE.md"
+        }
+      ]
+    },
+    {
       "id": "pr-730",
       "date": "2026-10-11",
       "category": "pr-merged",

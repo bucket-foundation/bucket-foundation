@@ -3,6 +3,8 @@ import { join, resolve } from "node:path";
 import { claimMeta, readInputs } from "../src/pack/canon";
 import { deniedSourceMarkers, readExploreInputs, splitSources } from "../src/pack/explore";
 import { buildDenylist, DENIED_NAME, DENIED_PREFIXES, denyRow, marker, withDeniedFiles } from "../src/pack/rights";
+import { rowSetText } from "../src/pack/row-sets/contract";
+import { readRowSetPack } from "../src/pack/row-sets/index";
 
 const REPO = resolve(import.meta.dir, "../../..");
 function files(p: string): string[] {
@@ -34,7 +36,9 @@ export function kruseMarkers(repo: string = REPO): string[] {
 export function findKruse(targets: string[], markers: string[]): { file: string; marker: string }[] {
   const hits: { file: string; marker: string }[] = [];
   for (const file of targets.flatMap(files)) {
-    const body = readFileSync(file).toString("latin1");
+    const pack = readRowSetPack(file);
+    const expanded = pack ? Buffer.from(rowSetText(pack.sets.flatMap((set) => set.pages)), "utf8").toString("latin1") : "";
+    const body = `${readFileSync(file).toString("latin1")}\n${expanded}`;
     if (DENIED_NAME.test(body)) hits.push({ file, marker: "the denied name" });
     for (const m of markers) {
       const needle = Buffer.from(m, "utf8").toString("latin1");

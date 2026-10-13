@@ -1,7 +1,7 @@
 import { rosLiveLocal } from "@ros/contract";
 import { href } from "./router";
 
-export const SITE_ROUTES: Readonly<Record<string, string>> = { "/api/canon/search": "/local/canon/search", "/api/explore/search": "/local/explore/search" };
+export const SITE_ROUTES: Readonly<Record<string, string>> = { "/api/canon/search": "/local/canon/search", "/api/explore/search": "/local/explore/search", "/api/explore/rows": "/local/explore/rows" };
 export const CANON_TROUBLE = "bkt:canon-trouble";
 
 const seen = new Map<string, number>();
@@ -96,7 +96,7 @@ export function siteFetch(base: typeof fetch, origin: string, token: string, off
       throw e;
     }
     if (!r.ok) {
-      trouble(r.status);
+      if (!(url.pathname === "/api/explore/rows" && r.status === 404)) trouble(r.status);
       return r;
     }
     if (url.pathname !== "/api/canon/search") return r;

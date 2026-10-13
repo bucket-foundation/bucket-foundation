@@ -1,8 +1,9 @@
 import { StrictMode, useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
+import { attachBack, BackButton, focusScreen, replaceHash, windowTrail } from "./back";
 import { firstRunHash, followRoutes, href, useRoute } from "./router";
-import { FOOT_LINKS, navFor, Screen } from "./nav";
+import { activeNav, FOOT_LINKS, navFor, Screen } from "./nav";
 
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
 import "katex/dist/katex.min.css";
@@ -14,16 +15,23 @@ function App() {
   const [fatal, setFatal] = useState<string | null>(null);
   const [warn, setWarn] = useState<string | null>(null);
   const [workReady, setWorkReady] = useState(false);
+  const trail = windowTrail();
 
   useEffect(() => {
     Api.connect((e) => setWarn(e.message))
       .then(async (a) => {
         const next = await a.decks().then((d) => firstRunHash(window.location.hash, d), () => null);
-        if (next) window.location.hash = next;
+        if (next) replaceHash(next);
         setApi(a);
       })
       .catch((e: Error) => setFatal(e.message));
   }, []);
+
+  useEffect(() => attachBack(trail, window), [trail]);
+
+  useEffect(() => {
+    if (trail.takeBack()) focusScreen(document);
+  }, [route, trail]);
 
   useEffect(() => {
     if (!api) return;
@@ -48,8 +56,8 @@ function App() {
     return () => window.removeEventListener("pagehide", flush);
   }, [api]);
 
-  const active = route.name === "node" ? "graph" : route.name === "deck" || route.name === "words" || route.name === "concepts" || route.name === "library" || route.name === "licence" ? "learn" : route.name === "daily" ? "work" : route.name === "search" ? "canon" : route.name;
-  const canon = route.name === "canon" || route.name === "search" || route.name === "explore";
+  const active = activeNav(route);
+  const canon = route.name === "canon" || route.name === "search" || route.name === "explore" || (route.name === "workspace" && (route.type === "graphs" || route.type === "maps"));
 
   return (
     <div className="shell">
@@ -57,6 +65,7 @@ function App() {
         <div className="brand">
           <span className="mark" aria-hidden />
           <span>Bucket</span>
+          <BackButton trail={trail} />
         </div>
         <nav>
           {navFor(workReady).map((n) => (

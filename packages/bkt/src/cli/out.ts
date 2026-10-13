@@ -63,6 +63,8 @@ export const JSON_SHAPES = {
   "decks list": [["decks", ["id", "title", "kind", "language", "languageName", "cards", "bytes", "version", "source", "licence", "curator", "built", "installed", "path"]]],
   "decks install": ["id", "title", "kind", "language", "cards", "version", "source", "licence", "curator", "installed", "path"],
   "decks remove": ["id", "title", "removed"],
+  "research install": ["version", "outputs", "files", "live"],
+  "research add": ["slug", "files", "figures", "tables", "builds"],
   "decks export": ["id", "title", "path", "bytes"],
   "words list": [["decks", ["id", "title", "kind", "language", "languageName", "cards", "bytes", "version", "source", "licence", "curator", "built", "installed", "path"]]],
   "words install": ["id", "title", "kind", "language", "cards", "version", "source", "licence", "curator", "installed", "path"],

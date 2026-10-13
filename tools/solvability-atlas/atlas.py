@@ -16,6 +16,8 @@ import numpy as np
 from networkx.algorithms import community
 from sentence_transformers import SentenceTransformer
 
+import claims
+
 HERE = Path(__file__).parent
 REPO = HERE.parent.parent
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "out"
@@ -126,10 +128,11 @@ def load_sourced():
     return rows
 
 
-SOLVED_RULE = "A top-level row is solved when its status is solved (a resolved year for the 71 atlas problems). A variant is solved only when its own status and the status of the problem it varies are both solved; a proved special case of an open problem stays open as partial progress on it."
+SOLVED_RULE = "A top-level row is solved when its status is solved (a resolved year for the 71 atlas problems). A variant is solved only when its own status and the status of the problem it varies are both solved; a proved special case of an open problem stays open as partial progress on it. A row with a published claim of a full solution and no independent confirmation is claimed: it is unsolved here, and its reach, zone and every solved rate treat it as open."
 
 
-def mark_solved(nodes):
+def mark_solved(nodes, ledger=None):
+    ruling = claims.governing(claims.entries() if ledger is None else ledger)
     status = {}
     for n in nodes:
         if n["kind"] == "problem":
@@ -138,6 +141,13 @@ def mark_solved(nodes):
             status[n["id"]] = "solved" if n["resolved"] is not None else "open"
         else:
             status[n["id"]] = n["status"]
+    for n in nodes:
+        rule = ruling.get(n["id"])
+        if rule is None or n["kind"] == "lean" or status[n["id"]] == "solved":
+            continue
+        status[n["id"]] = rule["status"]
+        if rule["status"] == "solved" and n["resolved"] is None:
+            n["resolved"] = rule["resolved"]
     for n in nodes:
         own = status[n["id"]] == "solved"
         parent = n.get("variant_of")
@@ -363,7 +373,7 @@ def main():
     full(model, problems, lean)
 
 
-def full_nodes(problems, lean, sourced=None):
+def full_nodes(problems, lean, sourced=None, ledger=None):
     sourced = load_sourced() if sourced is None else sourced
     nodes = [dict(n) for n in problems] + [dict(n) for n in sourced] + [dict(n) for n in lean]
     seen = set()
@@ -371,7 +381,7 @@ def full_nodes(problems, lean, sourced=None):
         if n["id"] in seen:
             raise ValueError(f"duplicate id {n['id']}")
         seen.add(n["id"])
-    return mark_solved(nodes)
+    return mark_solved(nodes, ledger)
 
 
 def project_angles(problem_emb, emb):

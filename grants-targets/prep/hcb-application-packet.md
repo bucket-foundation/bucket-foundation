@@ -5,7 +5,7 @@
 **Submit at:** https://hcb.hackclub.com/applications/new
 **Sponsor:** The Hack Foundation (DBA Hack Club Bank), 501(c)(3), EIN 81-2908499
 **Expected turnaround:** within 1 weekday for first contact + Zoom call; full onboarding ~1 week.
-**Fee:** 0% on standard tier (no upfront, no per-donation cut; HCB relies on float + donor cover).
+**Fee:** 7% of revenue, no other fees.
 
 ---
 
@@ -107,7 +107,7 @@ Until formal 501(c)(3) determination, Bucket runs under **maintainer authority**
 - **Open-source culture fit.** HCB is built by hackers; the platform itself is open-source (github.com/hackclub/hcb). Aligns with Bucket's MIT-code / CC0-protocol ethos.
 - **Web3 / crypto donations supported natively.** Bucket's payment rail is x402 on Base L2, we need a sponsor who can receive ETH/USDC donations and bridge to fiat, well past flinching at crypto.
 - **Transparent ledger by default**, Bucket's docs/foundation/GOVERNANCE.md §5 commits to "transparency default"; HCB is the only major fiscal sponsor whose entire ledger is public.
-- **0% fee** on standard tier vs 6-10% at PPF / Social Good Fund / CS&S, every dollar of fee saved goes to author payouts.
+- **7% of revenue** at HCB vs 6% at PPF, so HCB saves no fee against PPF.
 - **Speed**, days-to-weeks intake vs months at CS&S/SFC. We need to be able to receive Sloan / Gitcoin / ESP funds in June 2026.
 
 ### Risk disclosures

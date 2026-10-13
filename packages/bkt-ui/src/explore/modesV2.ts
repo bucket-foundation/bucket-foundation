@@ -3,9 +3,12 @@ import { DNA_SLOTS } from "../../../../src/lib/explore/modes/dna";
 import { helixFrame, helixPoint, HELIX_RADIUS, HELIX_STEP } from "../../../../src/lib/explore/modes/helix";
 import { ribbonMesh } from "../../../../src/lib/explore/helicoid";
 import type { ExploreMode, Guide, SceneLayout, Vec3 } from "../../../../src/lib/explore/modes/types";
+import type { Hit } from "../../../../src/lib/explore/search";
 
 import { circleLayout } from "./circle-layout";
 import type { CircleGraph } from "./chem-circle";
+import { isRowScene, type RowScene } from "./rows";
+import { ringLabels, rowEarth, rowGraph, rowTimeline } from "./rows-layout";
 import { hasMapAxes, sourceMap } from "./source-map";
 
 const horizontal = ([x, y, z]: Vec3): Vec3 => [y, -x, z];
@@ -16,6 +19,79 @@ export interface DesktopLayout extends SceneLayout {
   circleError?: string;
   axisLength?: number;
   helicoid?: ReturnType<typeof dnaRibbon>;
+  linkStyles?: Record<string, LinkStyle>;
+  hollow?: string[];
+  notice?: string;
+}
+
+export interface LinkStyle {
+  width: number;
+  dashed: boolean;
+}
+
+export const ROW_MODE_IDS: readonly string[] = ["graph", "map", "timeline", "earth"];
+export const FORCE_NODE_CAP = 300;
+export const NO_ROWS = "No row matches.";
+
+function note(text: string): DesktopLayout {
+  return { nodes: [], links: [], guides: [{ kind: "text", position: [0, 0, 0], text, color: "#6B6252", size: 13 }], legend: [], camera: [0, 0, 5], wheel: "zoom", notice: text };
+}
+
+export function rowStyles(hits: Hit[], scene: RowScene): { linkStyles: Record<string, LinkStyle>; hollow: string[] } {
+  const shown = new Set(hits.map((hit) => hit.id));
+  const weights = (scene.edgeWeight ?? []).flat();
+  const heaviest = weights.length ? Math.max(...weights) : 1;
+  const linkStyles: Record<string, LinkStyle> = {};
+  const hollow: string[] = [];
+  for (const hit of hits) {
+    const i = scene.at[hit.id];
+    if (i === undefined) continue;
+    if (scene.verified && scene.verified[i] === false) hollow.push(hit.id);
+    hit.links.forEach((to, j) => {
+      if (!shown.has(to)) return;
+      const weight = scene.edgeWeight?.[i]?.[j];
+      const style = { width: weight === undefined ? 1 : 1 + 3 * weight / heaviest, dashed: scene.edgeStated ? scene.edgeStated[i]?.[j] !== true : false };
+      linkStyles[`${hit.id}|${to}`] = style;
+      linkStyles[`${to}|${hit.id}`] ??= style;
+    });
+  }
+  return { linkStyles, hollow };
+}
+
+export function withRows(mode: ExploreMode): ExploreMode {
+  const drawn = new WeakMap<Hit[], { scene: RowScene; layout: DesktopLayout }>();
+  const draw = (hits: Hit[], context: Parameters<ExploreMode["layout"]>[1], scene: RowScene): DesktopLayout => {
+    const held = drawn.get(hits);
+    if (held?.scene === scene) return held.layout;
+    const layout = rowLayout(mode, hits, context, scene);
+    drawn.set(hits, { scene, layout });
+    return layout;
+  };
+  return {
+    ...mode,
+    layout(hits, context): DesktopLayout {
+      const scene = context.rows;
+      return isRowScene(scene) ? draw(hits, context, scene) : mode.layout(hits, context);
+    },
+  };
+}
+
+function rowLayout(mode: ExploreMode, hits: Hit[], context: Parameters<ExploreMode["layout"]>[1], scene: RowScene): DesktopLayout {
+  if (!ROW_MODE_IDS.includes(mode.id)) return note(`${mode.label} cannot draw this data.`);
+  if (!hits.length) return note(NO_ROWS);
+  if (mode.id === "graph" && hits.length > FORCE_NODE_CAP) return note(`Graph draws up to ${FORCE_NODE_CAP} rows, and this page holds ${hits.length}. Narrow the search.`);
+  const groups = new Map(scene.groups.map((group) => [group.id, group]));
+  const base: DesktopLayout = mode.id === "map" ? ringLabels(sourceMap(hits), groups) : mode.id === "timeline" ? rowTimeline(hits, scene) : mode.id === "earth" ? { ...rowEarth(hits, scene), canonEarth: true } : rowGraph(hits);
+  const branch = new Map(hits.map((hit) => [hit.id, hit.branch]));
+  const present = new Set(branch.values());
+  const shown = new Set(branch.keys());
+  return {
+    ...base,
+    nodes: base.nodes.filter((node) => shown.has(node.id)).map((node) => ({ ...node, color: groups.get(branch.get(node.id) ?? "")?.color ?? node.color })),
+    links: base.links.filter((link) => shown.has(link.from) && shown.has(link.to)),
+    legend: scene.groups.filter((group) => present.has(group.id)).map((group) => ({ label: group.label, color: group.color })),
+    ...rowStyles(hits, scene),
+  };
 }
 
 export function dnaRibbon(scroll: number) {
@@ -59,7 +135,7 @@ const desktopModes = originalModes.map((mode): ExploreMode => markerRanges[mode.
   },
 } : mode);
 
-export const MODES: ExploreMode[] = desktopModes.map((mode) => mode.id === "map" ? { ...mode, layout: (hits, context) => hasMapAxes(context.map) ? mode.layout(hits, context) : sourceMap(hits) } : ["globe", "earth"].includes(mode.id) ? { ...mode, layout(hits, context): DesktopLayout { const base = mode.layout(hits, context); return { ...base, canonEarth: true, guides: [] }; } } : ["particle", "molecule", "reaction"].includes(mode.id) ? { ...mode, layout: (hits, context) => circleLayout(mode, hits, context) } : !["helix", "dna"].includes(mode.id) ? mode : {
+const sceneModes: ExploreMode[] = desktopModes.map((mode) => mode.id === "map" ? { ...mode, layout: (hits, context) => hasMapAxes(context.map) ? mode.layout(hits, context) : sourceMap(hits) } : ["globe", "earth"].includes(mode.id) ? { ...mode, layout(hits, context): DesktopLayout { const base = mode.layout(hits, context); return { ...base, canonEarth: true, guides: [] }; } } : ["particle", "molecule", "reaction"].includes(mode.id) ? { ...mode, layout: (hits, context) => circleLayout(mode, hits, context) } : !["helix", "dna"].includes(mode.id) ? mode : {
   ...mode,
   layout(hits, context): DesktopLayout {
     const layout = mode.layout(hits, context);
@@ -72,6 +148,8 @@ export const MODES: ExploreMode[] = desktopModes.map((mode) => mode.id === "map"
     };
   },
 });
+
+export const MODES: ExploreMode[] = sceneModes.map(withRows);
 
 export function modeById(id: string | null | undefined): ExploreMode {
   return MODES.find((mode) => mode.id === id) ?? MODES[0];
