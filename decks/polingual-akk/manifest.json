@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-akk",
+  "title": "Akkadian words",
+  "kind": "words",
+  "language": "akk",
+  "language_name": "Akkadian",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 1133,
+    "with_ipa": 631,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 1133,
+  "version": "f9e03a0b4e87",
+  "file": "polingual-akk.sqlite.zst",
+  "bytes": 102692,
+  "sha256": "da4d89a5b78b55335255f08a5ce8c42020166d470399bbed1aa24942fd56079f",
+  "db_bytes": 327680,
+  "db_sha256": "f9e03a0b4e873c6db9c99cea0b82e6b0c24b48769fa8a8bfcad5698f5d46d040",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

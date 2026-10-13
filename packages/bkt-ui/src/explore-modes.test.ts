@@ -2,8 +2,14 @@ import { describe, expect, test } from "bun:test";
 import { MODES as originals } from "../../../src/lib/explore/modes";
 import { DNA_SLOTS } from "../../../src/lib/explore/modes/dna";
 import { axisOrder, helixPoint, helixFrame } from "../../../src/lib/explore/modes/helix";
+import { bridgeLinks } from "../../../src/lib/explore/modes/graph";
+import { hitKind } from "../../../src/lib/explore/saved";
+import { coverage, HIT_TYPES, tokens, unify, type Hit } from "../../../src/lib/explore/search";
 import { SAMPLE_HITS } from "../../../scripts/lib/explore-hits";
-import { MODES, modeById, dnaRibbon, type DesktopLayout } from "./explore/modesV2";
+import { assembleRowSet } from "../../bkt/src/pack/row-sets/contract";
+import { fixtureContext, fixtureDraft } from "../../bkt/src/pack/row-sets/test-fixtures";
+import { expandRows } from "./explore/rows";
+import { FORCE_NODE_CAP, MODES, modeById, dnaRibbon, NO_ROWS, ROW_MODE_IDS, type DesktopLayout } from "./explore/modesV2";
 
 describe("desktop helix direction", () => {
   const context = { selected: null, scroll: 0 };
@@ -51,7 +57,7 @@ describe("desktop helix direction", () => {
 
   test("all other modes keep their existing geometry", () => {
     for (const mode of originals.filter((mode) => !["helix", "dna", "particle", "molecule", "reaction", "globe", "earth", "map", "graph", "timeline"].includes(mode.id))) {
-      expect(modeById(mode.id)).toBe(mode);
+      expect(JSON.stringify(modeById(mode.id).layout(SAMPLE_HITS, context))).toBe(JSON.stringify(mode.layout(SAMPLE_HITS, context)));
     }
     expect(modeById("missing")).toBe(MODES[0]);
   });
@@ -146,4 +152,165 @@ test("Native score bounds preserve source ranking and bridge markers", () => {
       if (!hits.some((hit) => hit.id === node.id)) expect(node).toEqual(source.nodes[index]);
     });
   }
+});
+
+describe("row hits in the site modes", () => {
+  const rows: Hit[] = ["cip-11", "soc-15", "soc-11"].map((key, i) => ({
+    id: `row:major-to-career:${key}`, type: "row", title: key, subtitle: "", text: "", score: 1, branch: i === 0 ? "cip" : "soc", year: null, url: null,
+    links: i === 0 ? ["row:major-to-career:soc-15", "row:major-to-career:soc-11"] : [], source: "cip2020", license: "US federal work, public domain",
+  }));
+
+  test("row hits gain no bridge link", () => {
+    expect(bridgeLinks(rows)).toEqual({ bridges: [], links: [] });
+  });
+
+  test("the graph mode draws each row hit once with its own links and no frame", () => {
+    const layout = originals.find((mode) => mode.id === "graph")!.layout(rows, { selected: null, scroll: 0 });
+    expect(layout.nodes.map((node) => node.id).sort()).toEqual(rows.map((hit) => hit.id).sort());
+    expect(layout.nodes.every((node) => node.position.every(Number.isFinite) && /^#[0-9a-f]{6}$/i.test(node.color))).toBe(true);
+    expect(layout.links).toHaveLength(2);
+  });
+
+  test("every site mode and every window mode lays out row hits", () => {
+    const ids = new Set(rows.map((hit) => hit.id));
+    const context = { selected: rows[1].id, scroll: 0 };
+    expect(originals).toHaveLength(12);
+    expect(MODES).toHaveLength(12);
+    for (const mode of [...originals, ...MODES]) {
+      for (const hits of [rows, []]) {
+        const layout = mode.layout(hits, context);
+        expect(layout.nodes.every((node) => node.position.every(Number.isFinite) && Number.isFinite(node.size))).toBe(true);
+        const drawn = layout.nodes.filter((node) => ids.has(node.id));
+        expect(new Set(drawn.map((node) => node.id)).size).toBe(drawn.length);
+        const nodes = new Set(layout.nodes.map((node) => node.id));
+        expect(layout.links.every((link) => nodes.has(link.from) && nodes.has(link.to))).toBe(true);
+      }
+    }
+    const drawing = (modes: typeof originals) => modes.filter((mode) => mode.layout(rows, context).nodes.filter((node) => ids.has(node.id)).length === rows.length).map((mode) => mode.id);
+    expect(drawing(originals)).toEqual(["globe", "helix", "graph", "timeline"]);
+    expect(drawing(MODES)).toEqual(["globe", "helix", "graph", "timeline", "map"]);
+  });
+
+  test("the keyword search filters row hits by their titles and keeps them out of the canon type filter", () => {
+    const named = rows.map((hit, i) => ({ ...hit, title: ["Computer and Information Sciences", "Computer and Mathematical Occupations", "Management Occupations"][i] }));
+    const match = (query: string) => named.filter((hit) => coverage(tokens(query), tokens(`${hit.title} ${hit.subtitle}`)) > 0).map((hit) => hit.id);
+    expect(match("computer")).toEqual([named[0].id, named[1].id]);
+    expect(match("management")).toEqual([named[2].id]);
+    expect(match("zebra")).toEqual([]);
+    expect(HIT_TYPES).not.toContain("row");
+    const unified = unify({ query: "computer", excerpts: [], advisors: [], sources: named });
+    expect(unified.every((hit) => hit.type !== "row")).toBe(true);
+    const asked = unify({ query: "computer", excerpts: [], advisors: [], sources: named, types: ["row"] });
+    expect(asked.filter((hit) => hit.type === "row").map((hit) => hit.id).sort()).toEqual(named.map((hit) => hit.id).sort());
+  });
+
+  test("a row hit has no saved kind", () => {
+    expect(rows.map((hit) => hitKind(hit))).toEqual([null, null, null]);
+  });
+});
+
+describe("row sets in the window modes", () => {
+  const ctx = fixtureContext();
+  const context = { selected: null, scroll: 0 };
+  const draft = fixtureDraft({
+    rows: [
+      { key: "one", title: "First row", sub: "", group: "a", source: "open", verified: true, links: [{ to: "two", weight: 4, stated: true }, { to: "three", weight: 1, stated: false }] },
+      { key: "two", title: "Second row", sub: "", group: "b", source: "by", verified: false, links: [{ to: "three", weight: 2, stated: true }] },
+      { key: "three", title: "Third row", sub: "", group: "a", source: "open", verified: true, links: [] },
+    ],
+  });
+  const { hits, frame } = expandRows(assembleRowSet([draft], ctx)[0]);
+  const withFrame = { ...context, rows: frame };
+
+  test("with no frame every window mode gives the layout it gave before", () => {
+    for (const mode of MODES) {
+      const site = SAMPLE_HITS;
+      expect(JSON.stringify(mode.layout(site, context))).toBe(JSON.stringify(mode.layout(site, { ...context, rows: undefined })));
+    }
+    const graph = originals.find((mode) => mode.id === "graph")!.layout(SAMPLE_HITS, context);
+    expect(modeById("graph").layout(SAMPLE_HITS, context).links).toEqual(graph.links);
+  });
+
+  test("graph and map draw every row once with finite positions, group colours and links between drawn rows", () => {
+    expect([...ROW_MODE_IDS]).toEqual(["graph", "map", "timeline", "earth"]);
+    for (const id of ["graph", "map"]) {
+      const layout = modeById(id).layout(hits, withFrame) as DesktopLayout;
+      expect(layout.notice).toBeUndefined();
+      expect(layout.nodes.map((node) => node.id).sort()).toEqual(hits.map((hit) => hit.id).sort());
+      expect(layout.nodes.every((node) => node.position.every(Number.isFinite) && Number.isFinite(node.size))).toBe(true);
+      const nodes = new Set(layout.nodes.map((node) => node.id));
+      expect(layout.links).toHaveLength(3);
+      expect(layout.links.every((link) => nodes.has(link.from) && nodes.has(link.to))).toBe(true);
+      expect(layout.nodes.find((node) => node.id === "row:fixture-set:two")?.color).toBe("#8a5a2b");
+      expect(layout.nodes.find((node) => node.id === "row:fixture-set:one")?.color).toBe("#2f6f8f");
+      expect(layout.legend).toEqual([{ label: "Group A", color: "#2f6f8f" }, { label: "Group B", color: "#8a5a2b" }]);
+    }
+    const ring = modeById("map").layout(hits, withFrame);
+    expect(ring.guides.filter((guide) => guide.kind === "text").map((guide) => guide.kind === "text" && guide.text).sort()).toEqual(["Group A", "Group B"]);
+  });
+
+  test("stated links are solid, inferred links are dashed, weight sets the width and an unchecked row is hollow", () => {
+    const layout = modeById("graph").layout(hits, withFrame) as DesktopLayout;
+    const style = (from: string, to: string) => layout.linkStyles?.[`row:fixture-set:${from}|row:fixture-set:${to}`];
+    expect(style("one", "two")).toEqual({ width: 4, dashed: false });
+    expect(style("one", "three")).toEqual({ width: 1.75, dashed: true });
+    expect(style("two", "three")).toEqual({ width: 2.5, dashed: false });
+    expect(style("two", "one")).toEqual(style("one", "two"));
+    expect(layout.hollow).toEqual(["row:fixture-set:two"]);
+    for (const link of layout.links) expect(layout.linkStyles?.[`${link.from}|${link.to}`]).toBeDefined();
+    const plain = expandRows(assembleRowSet([fixtureDraft({ rows: draft.rows.map((row) => ({ ...row, verified: undefined, links: (row.links ?? []).map((link) => ({ to: link.to })) })) })], ctx)[0]);
+    const unmarked = modeById("graph").layout(plain.hits, { ...context, rows: plain.frame }) as DesktopLayout;
+    expect(Object.values(unmarked.linkStyles ?? {}).every((s) => s.width === 1 && !s.dashed)).toBe(true);
+    expect(unmarked.hollow).toEqual([]);
+  });
+
+  test("a filtered page keeps each row beside its own frame values", () => {
+    const kept = hits.filter((hit) => hit.id !== "row:fixture-set:one");
+    const layout = modeById("graph").layout(kept, withFrame) as DesktopLayout;
+    expect(layout.nodes.map((node) => node.id).sort()).toEqual(kept.map((hit) => hit.id).sort());
+    expect(layout.links).toEqual([{ from: "row:fixture-set:two", to: "row:fixture-set:three", color: undefined }]);
+    expect(layout.linkStyles?.["row:fixture-set:two|row:fixture-set:three"]).toEqual({ width: 2.5, dashed: false });
+    expect(layout.hollow).toEqual(["row:fixture-set:two"]);
+  });
+
+  test("an empty set gives one text guide", () => {
+    for (const id of ROW_MODE_IDS) {
+      const layout = modeById(id).layout([], withFrame) as DesktopLayout;
+      expect(layout.nodes).toEqual([]);
+      expect(layout.guides).toHaveLength(1);
+      expect(layout.guides[0]).toMatchObject({ kind: "text", text: NO_ROWS });
+      expect(layout.notice).toBe(NO_ROWS);
+    }
+  });
+
+  test("a mode that cannot draw rows says so in one sentence and draws nothing", () => {
+    const cannot = MODES.filter((mode) => !ROW_MODE_IDS.includes(mode.id));
+    expect(cannot.map((mode) => mode.id)).toEqual(["globe", "helix", "dna", "atom", "particle", "molecule", "reaction", "protein"]);
+    for (const mode of cannot) {
+      const layout = mode.layout(hits, withFrame) as DesktopLayout;
+      expect(layout.nodes).toEqual([]);
+      expect(layout.notice).toBe(`${mode.label} cannot draw this data.`);
+      expect(layout.guides).toHaveLength(1);
+    }
+  });
+
+  test("graph asks for a narrower search above its cap", () => {
+    const many = (n: number) => expandRows(assembleRowSet([fixtureDraft({ rows: Array.from({ length: n }, (_, i) => ({ key: `k${i}`, title: `Row ${i}`, sub: "", group: "a", source: "open", links: i ? [{ to: `k${Math.floor(i / 2)}` }] : [] })) })], ctx)[0]);
+    const over = many(FORCE_NODE_CAP + 1);
+    const refused = modeById("graph").layout(over.hits, { ...context, rows: over.frame }) as DesktopLayout;
+    expect(refused.nodes).toEqual([]);
+    expect(refused.notice).toBe("Graph draws up to 300 rows, and this page holds 301. Narrow the search.");
+    const full = many(FORCE_NODE_CAP);
+    const layout = modeById("graph").layout(full.hits, { ...context, rows: full.frame });
+    expect(layout.nodes).toHaveLength(FORCE_NODE_CAP);
+    expect(layout.links).toHaveLength(FORCE_NODE_CAP - 1);
+  });
+
+  test("a second draw of the same page reuses the layout, and a new page draws again", () => {
+    const first = modeById("graph").layout(hits, withFrame);
+    expect(modeById("graph").layout(hits, { ...withFrame, selected: hits[0].id })).toBe(first);
+    expect(modeById("graph").layout([...hits], withFrame)).not.toBe(first);
+    const other = expandRows(assembleRowSet([draft], ctx)[0]);
+    expect(modeById("graph").layout(hits, { ...context, rows: other.frame })).not.toBe(first);
+  });
 });

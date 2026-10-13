@@ -22,10 +22,10 @@ function archOf(name: string): Arch {
   return /arm64|aarch64/i.test(name) ? "arm64" : "x64";
 }
 
-const WINDOWED = /^Bucket-desktop-\d+\.\d+\.\d+-(macos|windows|linux)-(arm64|x64)\.(dmg|msi|exe|AppImage|deb)$/;
-const FORMAT_ORDER: WindowedFormat[] = ["dmg", "msi", "exe", "AppImage", "deb"];
+const WINDOWED = /^Bucket-desktop-\d+\.\d+\.\d+-(macos|windows|linux)-(arm64|x64)\.(dmg|msi|exe|AppImage|deb|rpm)$/;
+const FORMAT_ORDER: WindowedFormat[] = ["dmg", "msi", "exe", "deb", "rpm", "AppImage"];
 
-export type WindowedFormat = "dmg" | "msi" | "exe" | "AppImage" | "deb";
+export type WindowedFormat = "dmg" | "msi" | "exe" | "AppImage" | "deb" | "rpm";
 
 export interface WindowedInstaller {
   os: Os;
@@ -44,18 +44,22 @@ export function windowedInstallers(assets: ReleaseAsset[]): WindowedInstaller[] 
     const m = WINDOWED.exec(asset.name);
     if (!m) continue;
     const format = m[3] as WindowedFormat;
-    const key = `${m[1]}/${m[2]}`;
+    const key = m[1] === "linux" ? `${m[1]}/${m[2]}/${format}` : `${m[1]}/${m[2]}`;
     const held = best.get(key);
     if (held && FORMAT_ORDER.indexOf(held.format) <= FORMAT_ORDER.indexOf(format)) continue;
     const sidecar = assets.find((a) => a.name === `${asset.name}.sha256`);
     best.set(key, { os: m[1] as Os, arch: m[2] as Arch, format, name: asset.name, url: asset.browser_download_url, size: asset.size, checksumUrl: sidecar?.browser_download_url ?? null, signed: !assets.some((a) => a.name === `${asset.name}.unsigned`) });
   }
   const out: WindowedInstaller[] = [];
-  for (const os of OSES) for (const arch of ARCH_ORDER) {
-    const e = best.get(`${os}/${arch}`);
+  for (const os of OSES) for (const arch of ARCH_ORDER) for (const key of os === "linux" ? FORMAT_ORDER.map((f) => `${os}/${arch}/${f}`) : [`${os}/${arch}`]) {
+    const e = best.get(key);
     if (e) out.push(e);
   }
   return out;
+}
+
+export function isBareExecutable(w: WindowedInstaller): boolean {
+  return w.format === "AppImage";
 }
 
 function classify(asset: ReleaseAsset): Omit<InstallerV2, "checksumUrl" | "url" | "size" | "name"> | null {

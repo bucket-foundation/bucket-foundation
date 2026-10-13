@@ -1,5 +1,7 @@
 # Bucket Academy
 
+> Superseded 2026-06-14: Story Protocol minting and on-chain royalties were withdrawn (`learning/EPIC.md`). Story references below are historical.
+
 Market & Monetization.
 
 **Bead:** bkt-jh0 (epic) · **Pillar:** Revenue · **Date:** 2026-06-14 · **Author:** Revenue (Nucleus)
@@ -257,7 +259,7 @@ The prior doc sized TAM ~$80B (consumer slice) / SAM ~$1.5B / SOM ~$4-8M ARR. Th
 | Global EdTech *(mostly institutional, context only)* | $187B (2025) → $437.5B (2033) | ~10.8-13.9% | [source: https://www.grandviewresearch.com/industry-analysis/education-technology-market] [source: https://market.us/report/edtech-market/] |
 | E-learning / online | $293.6B (2025) → $808.7B (2033) | 13.5% | [source: https://www.skyquestt.com/report/e-learning-market] |
 | Language learning apps (B2C, proven WTP) | $7.91B (2025) | 17.6% | [source: https://www.skyquestt.com/report/language-learning-app-market] |
-| Test prep & tutoring | $70.7-79.0B (2025) | 5-8% *(slow/shrinking, don't position here)* | [source: https://www.thebusinessresearchcompany.com/report/exam-preparation-and-tutoring-global-market-report] |
+| Test prep & tutoring | $70.71B (2025, global) | 4.9-5.3% *(slow/shrinking, don't position here)* | [source: https://www.thebusinessresearchcompany.com/report/exam-preparation-and-tutoring-global-market-report] |
 | **★ AI in education / AI tutors** | **$8.3B (2025) → $57.2B (2033)** | **~26-43% (mid ~30-35%)** | [source: https://www.grandviewresearch.com/industry-analysis/artificial-intelligence-ai-education-market-report] [source: https://www.mordorintelligence.com/industry-reports/ai-in-education-market] |
 | MOOC / online degrees | $10.3B (2025) → $31B (2033) | ~15% | [source: https://www.businessresearchinsights.com/market-reports/massive-open-online-course-mooc-market-122947] |
 | Corporate L&D (B2B context) | $412.5B (2025) | 7.6% | [source: https://finance.yahoo.com/news/corporate-training-market-reach-805-143000704.html] |

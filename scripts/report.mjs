@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync, copyFi
 import { dirname, join, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { canonicalBytes, checkHashes, publicPaths, sha256, upsertPapersSource, validateRecord, webpName } from "./lib/report-record.mjs";
+import { canonicalBytes, checkHashes, checkRecord, publicPaths, registerRow, sha256, upsertPapersSource, validateRecord, webpName } from "./lib/report-record.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const REPORTS = join(ROOT, "reports");
@@ -122,25 +122,7 @@ async function register(slug) {
   const { NEXT_PUBLIC_SUPABASE_URL: url, SUPABASE_SERVICE_ROLE_KEY: key } = env();
   if (!url || !key) throw new Error("NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY missing from .env.local");
   if (!isLocalHost(url) && !process.argv.includes("--remote")) throw new Error(`${slug}: ${url} is not local; pass --remote to register there`);
-  const row = {
-    slug: record.slug,
-    title: record.title,
-    authors: record.authors,
-    date: record.date,
-    status: record.status,
-    kind: record.kind,
-    abstract: record.abstract ?? (record.abstract_paragraphs ?? []).join("\n\n"),
-    bead: record.bead ?? null,
-    source_path: record.source_path,
-    pdf_path: record.pdf_path ?? null,
-    figures: record.figures ?? [],
-    data_sources: record.data_sources ?? [],
-    source_hash: record.source_hash,
-    pdf_hash: record.pdf_hash ?? null,
-    built_at: record.built_at ?? null,
-    published_at: record.published_at ?? null,
-    updated_at: now(),
-  };
+  const row = registerRow(record, now());
   const res = await fetch(`${url}/rest/v1/reports?on_conflict=slug`, {
     method: "POST",
     headers: {
@@ -192,19 +174,10 @@ function list() {
 
 function check() {
   let failed = 0;
+  const papersSource = readFileSync(PAPERS_TS, "utf8");
   for (const slug of slugs()) {
     const record = JSON.parse(readFileSync(recordPath(slug), "utf8"));
-    const errors = validateRecord(record);
-    if (!errors.length) {
-      if (record.slug !== slug) errors.push(`slug: ${record.slug} does not match folder ${slug}`);
-      errors.push(...checkHashes(record, readRepoBytes));
-      if (!readFileSync(recordPath(slug)).equals(canonicalBytes(record))) errors.push("report.json: not in canonical byte form");
-      if (record.status === "public") {
-        const paths = publicPaths(record);
-        for (const p of [paths.pdf, ...paths.figures, ...paths.data]) if (!existsSync(join(ROOT, p))) errors.push(`public copy missing: ${p}`);
-        if (!readFileSync(PAPERS_TS, "utf8").includes(`slug: ${JSON.stringify(slug)},`)) errors.push("src/lib/papers.ts: no entry");
-      }
-    }
+    const errors = checkRecord(record, { slug, bytes: readRepoBytes, exists: (path) => existsSync(join(ROOT, path)), papersSource });
     if (errors.length) {
       failed += 1;
       console.log(`FAIL ${slug}\n  ${errors.join("\n  ")}`);

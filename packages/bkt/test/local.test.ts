@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { newDataKey } from "../src/crypto";
 import type { Item } from "../src/grade";
 import type { ShortFile } from "../src/short-fields";
+import { Encompassing, gradeQuiz } from "../src/core/learn";
 import { localRoutes } from "../src/local";
 import { startServe, type Serve } from "../src/serve";
 import { Store } from "../src/store";
@@ -77,6 +78,17 @@ describe("local routes", () => {
     expect(g.correct).toBe(true);
     expect(store.attempts()).toHaveLength(1);
     expect(store.card(q.itemId)!.due!).toBeGreaterThan(clock);
+  });
+
+  test("a graded answer names its lesson, and gives the full answer when the choice was a short form", async () => {
+    const r = (await (await req("/local/quiz?n=1", { headers: auth })).json()) as { questions: { itemId: string }[] };
+    const item = items.find((i) => i.id === r.questions[0].itemId)!;
+    const g = (await (await req("/local/quiz", { method: "POST", headers: auth, body: { itemId: item.id, choice: 0, elapsedMs: 900 } })).json()) as { explain: string | null; lesson: unknown };
+    expect(g.lesson).toEqual({ deck: "phys", atom: item.atomId, title: item.title });
+    expect(g.explain).toBeNull();
+    const short = { itemId: items[0].id, prompt: "a?", choices: ["short a", "short b"], answerIndex: 0, limitSec: 30 };
+    expect(gradeQuiz(store, new Encompassing(store, content), short, 1, 10, clock)).toMatchObject({ correct: false, answer: "short a", explain: "answer a", lesson: { deck: "phys", atom: "a", title: "a" } });
+    expect(gradeQuiz(store, new Encompassing(store), short, 0, 10, clock).lesson).toBeNull();
   });
 
   test("a question answers once", async () => {

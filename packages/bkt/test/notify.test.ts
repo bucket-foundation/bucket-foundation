@@ -290,7 +290,7 @@ describe("bkt quiz schedule", () => {
 describe("bkt app --route", () => {
   test("a route is a plain path", () => {
     expect(checkRoute("/work/daily/2026-10-01")).toBe("/work/daily/2026-10-01");
-    for (const ok of ["/work", "/import", "/learn", "/work/daily/2028-02-29"]) expect(checkRoute(ok)).toBe(ok);
+    for (const ok of ["/work", "/import", "/learn", "/quiz", "/quiz/practice", "/work/daily/2028-02-29"]) expect(checkRoute(ok)).toBe(ok);
     for (const bad of ["work", "/a/../b", "//evil.test", "/work?x=1", "/work#b", "/work ", "/a%2f", "javascript:alert(1)", "http://evil.test", "/unknown", "/work/daily", "/work/daily/2026-13-40", "/work/daily/2026-10-01/x", "/work/daily/../import", "/learn/deck", "/WORK", "", null, 5])
       expect(() => checkRoute(bad)).toThrow("--route takes /work/daily/YYYY-MM-DD");
     expect(routeUrl("http://127.0.0.1:5/", "/work/daily/2026-10-01")).toBe("http://127.0.0.1:5/#/work/daily/2026-10-01");

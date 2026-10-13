@@ -42,6 +42,18 @@ export function executableStep(distro: Distro | null): string {
 
 export const APPIMAGE_RUN_STEPS = ["chmod +x Bucket-*.AppImage", "./Bucket-*.AppImage"] as const;
 
+export function appImageRunSteps(name: string): string {
+  return `chmod +x ~/Downloads/${name}\n~/Downloads/${name}`;
+}
+
+export const LINUX_INSTALL_NOTE = "Verifies the file, then installs Bucket to your app menu.";
+
+export const LINUX_PACKAGE_LABEL: Record<"deb" | "rpm", string> = { deb: "Download the .deb, Debian and Ubuntu", rpm: "Download the .rpm, Fedora and openSUSE" };
+
+export const DIRECT_FILE_SUMMARY = "Direct file";
+
+export const DIRECT_FILE_STEP = "The AppImage arrives without permission to run. Run these two lines after it downloads.";
+
 export const APPIMAGE_WARNING = "Open the AppImage from a terminal. Opening it with Disks offers to overwrite your whole drive.";
 
 export const APPIMAGE_WARNING_SHORT = "Open it from a terminal, never with Disks.";

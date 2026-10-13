@@ -15,7 +15,7 @@ const SITE_URL = "https://www.bucket.foundation";
 const SITE_NAME = "bucket.foundation";
 const TAGLINE = "free to read. paid to cite.";
 const DESCRIPTION =
-  "A nonprofit canon of foundations — axioms, laws, first principles — carved into stone by the small number of people who can do genius work with AI. Free to read, free to cite — the reader pays nothing. When a paid work re-publishes it, the fee routes to the author, not the publisher, forever.";
+  "A nonprofit canon of foundations, axioms, laws, first principles, carved into stone by the small number of people who can do genius work with AI. Free to read, free to cite. The reader pays nothing. The rail that routes a fee to the author when a paid work re-publishes it is specified and does not settle yet.";
 const KEYWORDS = [
   "decentralized research",
   "x402",
@@ -150,7 +150,7 @@ const JSON_LD = {
       image: `${SITE_URL}/opengraph-image.png`,
       nonprofitStatus: "Nonprofit501c3",
       description:
-        "A nonprofit canon of foundations — axioms, real math, laws, principles, primary derivations — built by the small number of people who can do genius work with AI.",
+        "A nonprofit canon of foundations, axioms, real math, laws, principles, primary derivations, built by the small number of people who can do genius work with AI.",
       slogan: "build the past. build history. bucket is the new renaissance.",
       license: `${SITE_URL}/cite-forever/v0.1`,
       foundingDate: "2022",
@@ -202,7 +202,7 @@ const JSON_LD = {
       name: "bucket.foundation cite-forever license v0.1",
       url: `${SITE_URL}/cite-forever/v0.1`,
       description:
-        "Free to read. Free to cite. The reader pays nothing. On downstream paid re-publication, the fee routes to the original author — not the publisher — over the x402 rail, settled server-side, forever.",
+        "Free to read. Free to cite. The reader pays nothing. The license routes the fee on downstream paid re-publication to the original author over the x402 rail. The rail is specified and does not settle yet.",
       license: `${SITE_URL}/cite-forever/v0.1`,
     },
     {
@@ -213,7 +213,7 @@ const JSON_LD = {
       operatingSystem: "Web",
       url: `${SITE_URL}/protocol`,
       description:
-        "Open standard for free, zero-key research endpoints. Discover and query with no wallet, no signature, and no payment step for the caller; receive a citeable envelope (data + citation + receipt, price_usd 0). Author payouts settle server-side only on downstream paid re-publication — never a charge to the reading agent.",
+        "Open standard for free, zero-key research endpoints. Discover and query with no wallet, no signature, and no payment step for the caller; receive a citeable envelope (data + citation + receipt, price_usd 0). Author payouts on downstream paid re-publication are specified and do not settle yet. The reading agent is never charged.",
       offers: {
         "@type": "Offer",
         priceCurrency: "USD",
