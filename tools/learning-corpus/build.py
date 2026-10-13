@@ -35,6 +35,7 @@ TERMS = ["education", "knowledge", "learning", "mastery", "understanding"]
 TITLE_MATCH_FLOOR = 0.6
 ABSTRACTS_NAME = "abstracts.local.jsonl"
 SQLITE_NAME = "corpus.sqlite"
+LICENCES_NAME = "LICENCES.md"
 
 
 def read_jsonl(path):
@@ -174,7 +175,7 @@ def import_inventories(source_dir, links):
     report = {}
     for name in SUMMARY_FILES:
         summary = (source_dir / f"{name}.md").read_text(encoding="utf-8")
-        summary = re.sub(r"^(#+ [^\n(]*?)\s*\([^)\n]*\)\s*$", r"\1", summary, flags=re.M)
+        summary = re.sub(r"^(#+ [^\n(]*?)[ \t]*\([^)\n]*\)[ \t]*$", r"\1", summary, flags=re.M)
         (SOURCES / f"{name}.md").write_text(summary, encoding="utf-8")
     abstracts = []
     for name in INVENTORY_FILES:
@@ -846,6 +847,7 @@ def run_checks(corpus_dir):
         failures.append(f"methods count is {len(methods)}, expected 32")
     if len(mechanisms) != 39:
         failures.append(f"mechanisms count is {len(mechanisms)}, expected 39")
+    failures += licence_gaps(links, corpus_dir / "sources")
     return {
         "failures": failures,
         "works": len(works),
@@ -1014,6 +1016,36 @@ def write_gaps(corpus_dir, works, claims, methods, definitions, data, loose, mat
     (Path(corpus_dir) / "gaps.md").write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
 
 
+def dataset_ids(sources_dir):
+    found = []
+    for name in INVENTORY_FILES:
+        path = Path(sources_dir) / f"{name}.jsonl"
+        if path.exists():
+            found.extend(r["id"] for r in read_jsonl(path) if r.get("kind") == "dataset")
+    return found
+
+
+def licence_gaps(links, sources_dir):
+    held = links.get("source_licences") or {}
+    inventories = held.get("inventories") or {}
+    datasets = held.get("datasets") or {}
+    known = dataset_ids(sources_dir)
+    gaps = [f"inventory {name} has no licence" for name in INVENTORY_FILES if not inventories.get(name)]
+    gaps += [f"dataset {name} has no licence" for name in known if not datasets.get(name)]
+    gaps += [f"licence names unknown inventory {name}" for name in inventories if name not in INVENTORY_FILES]
+    gaps += [f"licence names unknown dataset {name}" for name in datasets if name not in known]
+    return gaps
+
+
+def write_licences(sources_dir, links):
+    held = links["source_licences"]
+    lines = ["# Source Licences", "", "## Inventories", "", "| File | Licence |", "|---|---|"]
+    lines += [f"| `{name}.jsonl` | {cell(held['inventories'][name])} |" for name in INVENTORY_FILES]
+    lines += ["", "## Datasets", "", "| Dataset | Licence |", "|---|---|"]
+    lines += [f"| `{name}` | {cell(held['datasets'][name])} |" for name in dataset_ids(sources_dir)]
+    (Path(sources_dir) / LICENCES_NAME).write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def write_readme(corpus_dir, summary, import_note):
     status = ", ".join(f"{name} {count}" for name, count in summary["status_counts"].items())
     founder = ", ".join(f"{name} {count['confirmed']}" for name, count in summary["founder_topics"].items())
@@ -1046,7 +1078,7 @@ A founder topic groups the tags `links.json` lists. The methods topic adds every
 
 ## Build
 
-`tools/learning-corpus/build.py` reads `sources/` and writes every file here. Works merge on normalised DOI, then on normalised title with first author and year; a short title contained in a longer one counts as the same title. A claim's `supports` come from its `cited_works` alone. `links.json` beside the script holds the hand-made joins: weak ideas with their claims, definition terms with traditions, method aliases, topic groups.
+`tools/learning-corpus/build.py` reads `sources/` and writes the files above; `progressions/` and `alignment/` are separate corpora. Works merge on normalised DOI, then on normalised title with first author and year; a short title contained in a longer one counts as the same title. A claim's `supports` come from its `cited_works` alone. `links.json` beside the script holds the hand-made joins and the source licences.
 
 ```
 python3 tools/learning-corpus/build.py
@@ -1075,7 +1107,7 @@ The first two states count as confirmed unless the work is withdrawn.
 
 ## Licence
 
-Records and summaries are Bucket's own, under the repository licence. Abstracts come from OpenAlex and stay under their publishers' terms, so the build keeps them in `{ABSTRACTS_NAME}`, which git ignores; `works.jsonl` marks each work that has one. `{SQLITE_NAME}` is ignored too. {import_note}
+Records and summaries are Bucket's own, under the repository licence; `sources/{LICENCES_NAME}` gives the licence of each source. Abstracts come from OpenAlex and stay under their publishers' terms, so the build keeps them in `{ABSTRACTS_NAME}`, which git ignores; `works.jsonl` marks each work that has one. `{SQLITE_NAME}` is ignored too. {import_note}
 """
     (Path(corpus_dir) / "README.md").write_text(text, encoding="utf-8")
     return len(re.findall(r"\S+", text))
@@ -1114,6 +1146,8 @@ def build():
                 abstracts[work_id] = row["abstract"]
                 rows.append({"work_id": work_id, "source": "openalex", "abstract": row["abstract"]})
         write_jsonl(CORPUS / ABSTRACTS_NAME, sorted(rows, key=lambda r: r["work_id"]))
+    if not licence_gaps(links, SOURCES):
+        write_licences(SOURCES, links)
     summary = run_checks(CORPUS)
     dropped = sum(len(ids) for ids in links["excluded_personal"].values())
     import_note = f"The import leaves out {dropped} career-work dataset rows that describe private profiles and named people."
