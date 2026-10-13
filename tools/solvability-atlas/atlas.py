@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 from networkx.algorithms import community
-from sentence_transformers import SentenceTransformer
 
 import claims
 
@@ -337,6 +336,8 @@ def main():
     problems = load_problems()
     lean = load_bucketmath()
     nodes = problems + lean
+    from sentence_transformers import SentenceTransformer
+
     model = SentenceTransformer(MODEL, revision=MODEL_REVISION)
     texts = []
     for n in nodes:

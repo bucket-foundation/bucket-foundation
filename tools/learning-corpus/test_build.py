@@ -108,8 +108,8 @@ class CorpusChecks(unittest.TestCase):
 
     def test_tracked_files_hold_no_contact_data(self):
         contact = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+|orcid\.org/\d{4}-|linkedin\.com/in/|\b\d{4}-\d{4}-\d{4}-\d{3}[\dX]\b", re.I)
-        tracked = [p for p in build.CORPUS.glob("*") if p.is_file()] + [p for p in build.SOURCES.glob("*") if p.is_file()]
-        self.assertGreaterEqual(len(tracked), 25)
+        tracked = [p for folder in (build.CORPUS, build.SOURCES, build.CORPUS / "market") for p in folder.glob("*") if p.is_file()]
+        self.assertGreaterEqual(len(tracked), 28)
         for path in tracked:
             if path.name in (build.ABSTRACTS_NAME, build.SQLITE_NAME):
                 continue
