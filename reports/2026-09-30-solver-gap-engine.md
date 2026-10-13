@@ -25,7 +25,7 @@ Reproduction steps and pinned versions: `_intake/solver-gap-engine/README.md`.
 
 ## Limits
 
-Similarity measures wording. A high score marks a candidate for a prover and says nothing about difficulty.
+Similarity measures wording and says nothing about difficulty. A backtest against later upstream retagging gives the score an AUC of 0.44 at the 2026-06-01 snapshot, 95% interval 0.39 to 0.49, where 0.5 is chance [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c]. The backtest is in PR 519.
 
 ## Next
 

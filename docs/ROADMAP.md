@@ -1,6 +1,6 @@
 # Roadmap
 
-Bucket reforms education. Research OS is the product, the canon holds the foundations, and citation fees route to authors ([docs/foundation/MANIFESTO.md](foundation/MANIFESTO.md)). This file lists the current release and the work queued behind it. The bead queue is the source of truth for status: `bd ready`.
+Bucket reforms education. Research OS is the product, the canon holds the foundations, and the rail that routes citation fees to authors is specified and does not settle yet ([docs/foundation/MANIFESTO.md](foundation/MANIFESTO.md)). This file lists the current release and the work queued behind it. The bead queue is the source of truth for status: `bd ready`.
 
 ## Current release
 

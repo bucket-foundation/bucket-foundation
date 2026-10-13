@@ -44,7 +44,7 @@ export default function Page() {
           <p className="text-[16px] leading-[1.7] text-[color:var(--basalt-2)]">
             <strong className="text-[color:var(--basalt)]">In short.</strong> Schools taught the world to read and left
             producing knowledge to a few. Bucket makes the foundations free to read, gives anyone tools to do research on
-            them, and pays the author each time a work is cited. The canon and the research tools are live and Research OS
+            them, and is building the rail that pays the author each time a work is cited. That rail does not settle yet. The canon and the research tools are live and Research OS
             is in private testing. The research below is why.
           </p>
           <p className="mt-4 text-[16px] leading-[1.7] text-[color:var(--basalt-2)]">
