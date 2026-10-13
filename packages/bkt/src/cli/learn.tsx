@@ -3,6 +3,7 @@ import { Box, render, Text, useApp, useInput } from "ink";
 import { mathToText } from "../../../../src/lib/research-os/work-quiz/math";
 import type { LearnBackend } from "../core/backend";
 import { LearnError, type PublicQuestion, type QuizOutcome, type ReviewCard } from "../core/learn";
+import type { Rating } from "../grade";
 import type { PackDeck } from "../pack/export";
 import type { Atom } from "../../../../src/lib/academy/engine";
 import { jsonLine, textRows } from "./out";
@@ -56,12 +57,51 @@ export async function learnDue(b: LearnBackend, size: number, json: boolean, io:
   return EXIT.ok;
 }
 
-export async function learnPath(b: LearnBackend, deck: PackDeck | null, atoms: Atom[], json: boolean, io: LearnIo = consoleIo): Promise<number> {
+export const NO_LANGUAGE_CHOSEN = "Word lessons: no language chosen yet. Pick languages in Settings in the Bucket window, or name one, such as bkt learn quiz --deck German.";
+
+export function wordBackend(b: LearnBackend, deck: string): LearnBackend {
+  const choices = new Map<string, string[]>();
+  return {
+    ...b,
+    async quiz(size) {
+      const { questions } = await b.wordQuiz(deck, size);
+      choices.clear();
+      for (const q of questions) choices.set(q.id, q.choices ?? []);
+      return questions.map((q) => ({ itemId: q.id, prompt: [q.prompt, ...q.lines].join(" "), choices: q.choices ?? [], limitSec: q.limitSec, long: false }));
+    },
+    async answerQuiz(itemId, choice, elapsedMs) {
+      const r = await b.answerWord(itemId, choice === null ? null : (choices.get(itemId)?.[choice] ?? null), elapsedMs);
+      return { correct: r.correct, timedOut: r.timedOut, rating: r.rating as Rating, answer: r.answer, explain: null, lesson: null };
+    },
+  };
+}
+
+export async function learnWordPath(b: LearnBackend, deck: string, credit: string, json: boolean, io: LearnIo = consoleIo): Promise<number> {
+  const { deck: d, lessons } = await b.wordLessons(deck);
+  if (json) io.print(jsonLine("learn path", { deck: d.id, lessons, credit }));
+  else {
+    io.print(`${d.name} word lessons: ${d.words} words, ${d.started} of ${d.quiz} quiz words started, ${d.due} due.`);
+    for (const l of lessons) io.print(`  ${l.n}. ${l.title}: ${l.words.join(", ")}`);
+    io.print(`${credit} ${LICENCE_HINT}`);
+  }
+  return EXIT.ok;
+}
+
+export async function learnPath(b: LearnBackend, deck: PackDeck | null, atoms: Atom[], json: boolean, io: LearnIo = consoleIo, credit = ""): Promise<number> {
   const decks = await b.decks();
   if (!deck) {
-    if (json) io.print(jsonLine("learn path", { decks }));
-    else io.print(textRows(decks.map((d): [string, string] => [d.title, `${d.introduced} of ${d.atoms} topics started, ${d.due} due, ${d.xp} points`])));
-    if (!decks.length) throw new NoDataError("the content pack holds no decks");
+    const wordDecks = await b.wordDecks();
+    if (json) io.print(jsonLine("learn path", { decks, wordDecks, credit: wordDecks.length ? credit : undefined }));
+    else {
+      const rows = [
+        ...decks.map((d): [string, string] => [d.title, `${d.introduced} of ${d.atoms} topics started, ${d.due} due, ${d.xp} points`]),
+        ...wordDecks.map((d): [string, string] => [`${d.name} words`, `${d.started} of ${d.quiz} quiz words started, ${d.due} due, ${d.words} words in ${d.lessons} word lessons`]),
+      ];
+      if (rows.length) io.print(textRows(rows));
+      if (wordDecks.length && credit) io.print(`${credit} ${LICENCE_HINT}`);
+      if (!wordDecks.length && credit) io.print(NO_LANGUAGE_CHOSEN);
+    }
+    if (!decks.length && !wordDecks.length) throw new NoDataError("the content pack holds no decks");
     return EXIT.ok;
   }
   const titles = new Map(atoms.map((a) => [a.id, a.title]));
@@ -75,9 +115,9 @@ export async function learnPath(b: LearnBackend, deck: PackDeck | null, atoms: A
   return EXIT.ok;
 }
 
-export async function quizJson(b: LearnBackend, size: number, spec: CommandSpec, io: LearnIo = consoleIo): Promise<number> {
+export async function quizJson(b: LearnBackend, size: number, spec: CommandSpec, io: LearnIo = consoleIo, credit?: string): Promise<number> {
   const questions = await b.quiz(size);
-  io.print(jsonLine("learn quiz", { questions }));
+  io.print(jsonLine("learn quiz", { questions, credit }));
   if (!questions.length) throw new NoDataError("no questions yet; the store holds no items");
   let at = 0;
   for await (const { n, row } of answers(io, spec)) {
@@ -109,13 +149,21 @@ export async function reviewJson(b: LearnBackend, size: number, spec: CommandSpe
   return EXIT.ok;
 }
 
+export const LICENCE_HINT = "Run bkt licences for the terms.";
+
+export function wordCreditLine(questions: readonly { word?: { credit: string } | null }[]): string | undefined {
+  const credit = questions.find((q) => q.word)?.word?.credit;
+  return credit ? `Word questions use ${credit}, shortened and filtered by Bucket. ${LICENCE_HINT}` : undefined;
+}
+
 export async function daily(b: LearnBackend, day: string, json: boolean, spec: CommandSpec, io: LearnIo = consoleIo): Promise<number> {
   const quiz = await b.daily(day);
   if (!quiz) {
     if (json) io.print(jsonLine("daily", { day, questions: [], answered: [] }));
     throw new NoDataError(`no daily quiz for ${day}`);
   }
-  if (json) io.print(jsonLine("daily", { day, ...quiz }));
+  const credit = quiz ? wordCreditLine(quiz.questions) : undefined;
+  if (json) io.print(jsonLine("daily", { day, ...quiz, credit }));
   else {
     io.print(`Daily quiz for ${day}: ${quiz.questions.length} questions, ${quiz.answered.length} answered.`);
     quiz.questions.forEach((q, i) => {
@@ -123,6 +171,7 @@ export async function daily(b: LearnBackend, day: string, json: boolean, spec: C
       for (const l of q.lines) io.print(`   ${l}`);
       (q.choices ?? []).forEach((c, k) => io.print(`   ${String.fromCharCode(97 + k)}) ${mathToText(c)}`));
     });
+    if (credit) io.print(credit);
     io.print("Answer in the Bucket window, or send answers with --json.");
     return EXIT.ok;
   }
@@ -133,7 +182,7 @@ export async function daily(b: LearnBackend, day: string, json: boolean, spec: C
     if (!q) throw new UsageError(`answer line ${n} has no question left to answer`, spec);
     matchId(row, "id", q.id, n, spec);
     const r = await b.answerDaily(day, q.id, row.response ?? null, row.elapsedMs as number);
-    io.print(jsonLine("daily answer", { id: q.id, ...r }));
+    io.print(jsonLine("daily answer", { id: q.id, ...r, credit: wordCreditLine([q]) }));
   }
   return EXIT.ok;
 }
@@ -149,7 +198,7 @@ function useAsync<T>(load: () => Promise<T>): { value: T | null; error: string |
   return state;
 }
 
-export function QuizScreen({ backend, size, onExit }: { backend: LearnBackend; size: number; onExit: (code: number) => void }) {
+export function QuizScreen({ backend, size, onExit, credit }: { backend: LearnBackend; size: number; onExit: (code: number) => void; credit?: string }) {
   const { exit } = useApp();
   const { value: questions, error } = useAsync(() => backend.quiz(size));
   const [idx, setIdx] = useState(0);
@@ -207,6 +256,7 @@ export function QuizScreen({ backend, size, onExit }: { backend: LearnBackend; s
         </Text>
       ))}
       {last ? <Text color={last.correct ? "green" : "red"}>{last.timedOut ? "Time ran out" : last.correct ? "Correct" : `Wrong. The answer: ${mathToText(last.answer)}`}. Enter for the next one.</Text> : <Text dimColor>1-{q.choices.length} to answer, q to leave</Text>}
+      {credit ? <Text dimColor>{credit}</Text> : null}
     </Box>
   );
 }
@@ -264,10 +314,10 @@ export function ReviewScreen({ backend, size, onExit }: { backend: LearnBackend;
   );
 }
 
-export async function screen(kind: "quiz" | "review", backend: LearnBackend, size: number): Promise<number> {
+export async function screen(kind: "quiz" | "review", backend: LearnBackend, size: number, credit?: string): Promise<number> {
   let code: number = EXIT.ok;
-  const Screen = kind === "quiz" ? QuizScreen : ReviewScreen;
-  await render(<Screen backend={backend} size={size} onExit={(c) => (code = c)} />, { exitOnCtrlC: false }).waitUntilExit();
+  const node = kind === "quiz" ? <QuizScreen backend={backend} size={size} credit={credit} onExit={(c) => (code = c)} /> : <ReviewScreen backend={backend} size={size} onExit={(c) => (code = c)} />;
+  await render(node, { exitOnCtrlC: false }).waitUntilExit();
   if (code === EXIT.cancelled) throw new CancelledError();
   return code;
 }

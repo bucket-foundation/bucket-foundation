@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-cs",
+  "title": "Czech words",
+  "kind": "words",
+  "language": "cs",
+  "language_name": "Czech",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 65266,
+    "with_ipa": 64391,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 65266,
+  "version": "d8cfc490847b",
+  "file": "polingual-cs.sqlite.zst",
+  "bytes": 4225186,
+  "sha256": "716761cc163270f87c0909af99c5d781b4cacc07e8b8138771785945d69eb000",
+  "db_bytes": 14508032,
+  "db_sha256": "d8cfc490847b8fb59369def443973d194018da10aec77c88ccb62d2f16fe3921",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

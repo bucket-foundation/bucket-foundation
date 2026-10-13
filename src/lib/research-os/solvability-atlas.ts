@@ -33,6 +33,7 @@ export interface AtlasProduction {
   pagerank: number;
   sources: { label: string; url?: string }[];
   source_kind: "problem" | "lean";
+  published_claims?: { batch: string; family: string; match: string; formal_scope: string; confirmed: boolean; withdrawn: boolean }[];
 }
 
 export interface AtlasSummary {

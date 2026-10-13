@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-he",
+  "title": "Hebrew words",
+  "kind": "words",
+  "language": "he",
+  "language_name": "Hebrew",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 13108,
+    "with_ipa": 2861,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 13108,
+  "version": "8d62ff9b0f3a",
+  "file": "polingual-he.sqlite.zst",
+  "bytes": 1124932,
+  "sha256": "8fba84e34c0b8d864006989b916be1a01b39e3a3ff313f11d65cacceb2664fcd",
+  "db_bytes": 3342336,
+  "db_sha256": "8d62ff9b0f3ad2631e35533fe342c14626121514f700804c2b51e77290ccca68",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

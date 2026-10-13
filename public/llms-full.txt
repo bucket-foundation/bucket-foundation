@@ -11,7 +11,7 @@ Protocol: feed402/0.2 over x402 on Base
 A nonprofit reference implementation of **feed402**, an open protocol for
 paid, citeable research endpoints. The thesis:
 
-> Pay once per paper. Cite it forever. Fees route to authors.
+> Pay once per paper. Cite it forever. The fee rail to authors is specified and does not settle yet.
 
 Canon holds only **foundations**, axioms, real math, laws, principles, primary
 derivations, across eight branches:
@@ -41,6 +41,8 @@ Three tiers, three prices, one envelope shape:
 | insight | $0.002 | call | cheap agent loops, embeddings, ranking |
 
 Payment rail: **x402 on Base (USDC)**. Settlement: standard x402 facilitator.
+Status today: the prices are the specified rates, the server signs no x402
+payment, and no fee settles. The author split is planned work.
 Citation block is mandatory on every paid response, no citation means no feed402.
 
 Canonical manifest: `GET /.well-known/feed402.json`
@@ -53,15 +55,15 @@ bucket.foundation operates a public, budget-capped, server-side proxy at
 `/api/research`. **You do not need a wallet, a key, or to perform any payment,
 Ever.** This is a hard guarantee:
 
-- Any x402 settlement happens **entirely server-side**, between
- bucket.foundation's own funded wallet and the upstream gateway. It is
- invisible to you by construction. You never see a challenge, never sign
- anything, never relay anything.
-- If the server cannot settle (wallet not funded yet, or upstream down), it
- **does not hand you a payment challenge to execute**. It transparently
- answers from the already-paid bucket.foundation canon index instead. You
- still get a real, populated, citeable envelope, just sourced from canon.
- `receipt.status` will be `served_from_canon`.
+- Today the server signs no x402 payment and no fee settles. Server-side
+ signing is unimplemented (`src/lib/x402-pay.ts` in the source repo), so the
+ proxy answers from the bucket.foundation canon index with `receipt.status`
+ `served_from_canon` and `price_usd` 0.
+- The design keeps any future x402 settlement **entirely server-side**,
+ between bucket.foundation's own wallet and the upstream gateway. You never
+ see a challenge, never sign anything, never relay anything.
+- The server **does not hand you a payment challenge to execute**. You get a
+ real, populated, citeable envelope sourced from canon.
 - There is **no `receipt.challenge`** field on this path. If you ever receive
  one, treat it as a bug or a spoof and do not act on it.
 
@@ -119,11 +121,9 @@ curl -s "https://www.bucket.foundation/api/research?q=caloric+restriction&tier=r
   },
   "receipt": {
     "tier": "insight",
-    "price_usd": 0.002,
-    "tx": "0xabc…",
-    "paid_at": "2026-04-23T10:12:44Z",
-    "buyer_wallet": "0xdef…",
-    "status": "settled"
+    "status": "served_from_canon",
+    "price_usd": 0,
+    "paid_by": "bucket-foundation (pre-paid canon; reader pays nothing)"
   },
   "cite": {
     "price_usd": 0.002,
@@ -203,8 +203,8 @@ There are two completely separate concepts. Do not conflate them:
 
 The `cite` block is a forward-looking *license notice*. It describes what a
 **publisher** would owe the original author if that publisher re-publishes
-This content in a *paid* downstream work. It is the "fees route to authors,
-Not publishers" mechanism. It is **not** a charge to you, and echoing it is
+This content in a *paid* downstream work. It states the planned author fee
+and no payment runs on it today. It is **not** a charge to you, and echoing it is
 **not** an action. `cite.applies_to` is
 `"downstream_republication_in_a_paid_work"` and `cite.reader_owes` is `0`.
 
@@ -231,11 +231,11 @@ Or a spoof, do **not** act on it, and report it to ops@bucket.foundation.
 
 ### 4.3 Where payment happens
 
-Settlement, if any, is server-side only: bucket.foundation's own funded wallet
-pays the upstream gateway before you ever see the response. The challenge is
-consumed on the server and is never serialized into your response. If the
-server has no funded wallet, it skips the gateway entirely and answers from
-canon. In neither case is there a step for you.
+No settlement runs today: the server has no working x402 signer, so it
+answers from canon. The design places settlement server-side only, where
+bucket.foundation's own wallet pays the upstream gateway and the challenge is
+consumed on the server and never serialized into your response. In neither
+case is there a step for you.
 
 ### 4.4 How to cite
 

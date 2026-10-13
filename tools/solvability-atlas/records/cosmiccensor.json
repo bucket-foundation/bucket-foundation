@@ -566,5 +566,32 @@
  "quality": {
   "status": "full",
   "reason": "25 relevant works of 25 considered, 370 works with the phrase"
- }
+ },
+ "claims": [
+  {
+   "family": "264",
+   "family_title": "Strong cosmic censorship near two-ended Kerr data",
+   "claimant": "OpenAI, unreleased internal model",
+   "date": "2026-10-06",
+   "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/CONTENTS.md",
+   "manuscripts": [
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Generic-Future-Inextendibility-with-Square-Integrable-Connection-Near-a-Fixed-Kerr-Spacetime-September-23-2026/paper.pdf",
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Generic-C1-Future-Inextendibility-Near-Rotating-Subextremal-Kerr-Spacetimes-September-23-2026/paper.pdf",
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Quantitative-Near-Kerr-Evolution-and-Generic-C2-Future-Inextendibility-September-23-2026/paper.pdf"
+   ],
+   "statement": "Proves local strong cosmic censorship near each fixed rotating subextremal Kerr bridge. A dense Gδ subset of a weighted smooth neighborhood of smooth complete two-ended asymptotically flat vacuum data has full maximal globally hyperbolic developments with no future continuous nondegenerate extension whose weak connection is locally square-integrable. No symmetry is imposed; extensions need not satisfy the vacuum equations.",
+   "match": "related",
+   "match_note": "Strong cosmic censorship near Kerr. The row is weak cosmic censorship.",
+   "formal": {
+    "exists": false,
+    "scope": "none",
+    "statement": null,
+    "url": null,
+    "note": ""
+   },
+   "confirmation": null,
+   "withdrawn": null,
+   "batch": "openai-math-2026-10"
+  }
+ ]
 }

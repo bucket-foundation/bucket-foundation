@@ -50,7 +50,7 @@ export default function OG() {
               marginTop: 16,
             }}
           >
-            citation fees route to the author, over x402 on Base, forever.
+            the license routes citation fees to the author over x402 on Base. the rail does not settle yet.
           </div>
         </div>
 

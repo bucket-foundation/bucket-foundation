@@ -1,0 +1,52 @@
+{
+ "tables": "first corpus commit, 88,267 rows, the tables the first review read",
+ "rows": 88267,
+ "dimensions": {
+  "life_stage": {
+   "scorable": 8,
+   "within_tolerance": 8
+  },
+  "purpose": {
+   "scorable": 2,
+   "within_tolerance": 2
+  },
+  "life_stage_x_purpose": {
+   "scorable": 16,
+   "within_tolerance": 14
+  },
+  "kind_of_knowing": {
+   "scorable": 1,
+   "within_tolerance": 1
+  },
+  "mode_of_transmission": {
+   "scorable": 2,
+   "within_tolerance": 2
+  },
+  "geography": {
+   "scorable": 30,
+   "within_tolerance": 30
+  },
+  "language": {
+   "scorable": 30,
+   "within_tolerance": 30
+  },
+  "era": {
+   "scorable": 7,
+   "within_tolerance": 7
+  },
+  "domain": {
+   "scorable": 193,
+   "within_tolerance": 182
+  },
+  "named_absence_probe": {
+   "scorable": 33,
+   "within_tolerance": 32
+  },
+  "occupation_isco08": {
+   "scorable": 43,
+   "within_tolerance": 43
+  }
+ },
+ "scorable": 365,
+ "within_tolerance": 351
+}

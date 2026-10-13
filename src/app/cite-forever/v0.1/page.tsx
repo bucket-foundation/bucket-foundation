@@ -8,14 +8,14 @@ const URL = "https://www.bucket.foundation/cite-forever/v0.1";
 export const metadata: Metadata = {
   title: "cite-forever · v0.1",
   description:
-    "Free to read. Paid to cite. The bucket.foundation license that routes citation fees to authors, over x402 on Base, forever.",
+    "Free to read. Paid to cite. The bucket.foundation license for routing citation fees to authors over x402 on Base. The rail is specified and does not settle yet.",
   alternates: { canonical: "/cite-forever/v0.1" },
   openGraph: {
     type: "article",
     url: URL,
     title: "cite-forever · v0.1 — bucket.foundation",
     description:
-      "Free to read. Paid to cite. Citation fees route to authors, not publishers, over the x402 rail on Base, forever.",
+      "Free to read. Paid to cite. The license routes citation fees to authors over the x402 rail on Base. The rail is specified and does not settle yet.",
   },
   twitter: {
     card: "summary_large_image",
@@ -37,7 +37,7 @@ const JSON_LD = {
   license: URL,
   isAccessibleForFree: true,
   description:
-    "Free to read. Paid to cite. Every citation routes fees to the author, over x402 on Base, forever.",
+    "Free to read. Paid to cite. The license routes citation fees to the author over x402 on Base. The rail is specified and does not settle yet.",
   publisher: {
     "@type": "NGO",
     name: "bucket.foundation",
@@ -76,6 +76,12 @@ export default function Page() {
           work cites a bucket canon artifact, the citation fee (typically $0.002–$0.050
           USDC, per feed402 tier) routes to the <em>author&apos;s payout wallet</em> on
           Base, not to a publisher, not to bucket. Forever.
+        </p>
+        <p>
+          <strong className="text-[color:var(--parchment)]">Status today.</strong> These
+          terms describe the design. The fee rail does not settle yet: the site serves
+          the canon at price 0, no citation payment runs, and the author split is
+          planned work.
         </p>
 
         <h2 className="font-serif-display text-3xl text-[color:var(--parchment)] mt-12 mb-4">
@@ -136,8 +142,8 @@ export default function Page() {
           discovery happens — it must be free. Citing is where value is asserted — the
           cite is the proof that your work depends on theirs, and that dependency is
           exactly what deserves a royalty. We flip the direction, micro-price it, and
-          route it on a rail that actually settles (x402 on Base, USDC, sub-cent
-          atomic).
+          route it on a rail built for sub-cent payments (x402 on Base, USDC). That
+          rail is specified and does not settle yet.
         </p>
 
         <div className="mt-12 p-6 border hairline bg-[color:var(--bone-3)] text-sm">

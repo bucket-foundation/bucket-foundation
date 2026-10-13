@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+here="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+runner=()
+if command -v memrun >/dev/null 2>&1; then runner=(memrun); elif [ -x "$HOME/bin/memrun" ]; then runner=("$HOME/bin/memrun"); fi
+PYTHONPATH="$here${PYTHONPATH:+:$PYTHONPATH}" exec "${runner[@]}" python3 -m advisor_engine "$@"

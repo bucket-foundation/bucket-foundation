@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-vi",
+  "title": "Vietnamese words",
+  "kind": "words",
+  "language": "vi",
+  "language_name": "Vietnamese",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 35806,
+    "with_ipa": 26190,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 35806,
+  "version": "8be81ee54a32",
+  "file": "polingual-vi.sqlite.zst",
+  "bytes": 2845915,
+  "sha256": "f83195016004501ebabc1cd19b54afc97b89ad10e6e31fa64ef12049b0f38683",
+  "db_bytes": 9043968,
+  "db_sha256": "8be81ee54a32622464ff2714acf714082d7b1e14c0d2a809d9d0304f9bcb2421",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}
