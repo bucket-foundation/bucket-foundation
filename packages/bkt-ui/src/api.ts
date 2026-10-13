@@ -24,6 +24,8 @@ export type { TablePage } from "../../bkt/src/research-table";
 import type { TablePage } from "../../bkt/src/research-table";
 export type { Change, Exported } from "../../bkt/src/research-work";
 export type { WorkspaceItem } from "../../bkt/src/workspace";
+export type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
+import type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
 import type { WorkspaceItem } from "../../bkt/src/workspace";
 import type { Change, Exported } from "../../bkt/src/research-work";
 
@@ -578,6 +580,14 @@ export class Api {
 
   researchExport(slug: string) {
     return this.call<Exported>("/local/research/export", { method: "POST", body: { slug } });
+  }
+
+  alignmentRows(ids: string[]) {
+    return this.call<{ staff: boolean; rows: ReviewRow[] }>(`/local/workspace/alignment/rows?ids=${ids.map(encodeURIComponent).join(",")}`);
+  }
+
+  alignmentSearch(deck: string, q: string) {
+    return this.call<{ staff: boolean; rows: ReviewRow[] }>(`/local/workspace/alignment/search?${new URLSearchParams({ deck, q }).toString()}`);
   }
 
   workspaceItems(type: string, query: { q?: string; page?: number } = {}) {

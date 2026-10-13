@@ -4,6 +4,8 @@ import { href, parseHash, type Route, type WorkspaceType } from "../router";
 import { activateTab, openTab, patchTab, readTabs, windowStorage, writeTabs, type Tab, type Tabs, type TabStorage } from "../tabs";
 import { FILTER_WAIT_MS, NOT_LOADED, Pager } from "./Data";
 import { AdvisorsView, type AdvisorApi } from "./Advisors";
+import { AlignmentPane, type AlignmentApi } from "./Alignment";
+import { REVIEW_SLUG } from "../alignment";
 import { InstalledDecks } from "./Decks";
 import { LibraryView, type LibraryApi } from "./Library";
 import { exploreHash, ExploreView, type ExploreApi } from "./Explore";
@@ -12,7 +14,7 @@ import { FigurePane, figureItems, ORIGIN_LABELS, Paper, RecordSetPane, TablePane
 import { TabBar } from "./TabBar";
 import "../workspace.css";
 
-export type WorkspaceApi = ResearchApi & ExploreApi & LibraryApi & AdvisorApi & Pick<Api, "workspaceItems" | "installedDecks">;
+export type WorkspaceApi = ResearchApi & ExploreApi & LibraryApi & AdvisorApi & AlignmentApi & Pick<Api, "workspaceItems" | "installedDecks">;
 
 export const DECKS_ABOUT = "The decks installed on this computer and the decks you can add, in one place.";
 
@@ -48,7 +50,8 @@ export const CHANGED_MARK = "Changed on this computer";
 const KEY = /^output:([a-z0-9][a-z0-9-]{0,63}):([A-Za-z0-9][A-Za-z0-9._-]{0,127})$/;
 const SET_KEY = /^rowset:([a-z0-9][a-z0-9-]{0,63}):all$/;
 const anyKey = (id: string) => KEY.test(id) || SET_KEY.test(id);
-export const setKey = (id: string) => `rowset:${id}:all`;
+export const REVIEW_KEY = `output:${REVIEW_SLUG}:review`;
+export const setKey = (id: string) => (id === REVIEW_SLUG ? REVIEW_KEY : `rowset:${id}:all`);
 
 export const ITEM_STATE = "bucketWorkspaceItem";
 
@@ -90,6 +93,7 @@ function RowSetPane({ api, type, tab, webgl }: { api: WorkspaceApi; type: "graph
 }
 
 function ItemPane({ api, type, tab, webgl }: { api: WorkspaceApi; type: BuiltType; tab: ItemTab; webgl?: boolean }) {
+  if (type === "graphs" && tab.id === REVIEW_KEY) return <AlignmentPane api={api} />;
   if (type === "graphs" || type === "maps") return SET_KEY.test(tab.id) ? <RowSetPane api={api} type={type} tab={tab} webgl={webgl} /> : <p className="muted">{NOT_LOADED}</p>;
   if (!KEY.test(tab.id)) return <p className="muted">{NOT_LOADED}</p>;
   return <OutputPane api={api} type={type} tab={tab} />;

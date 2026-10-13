@@ -91,7 +91,7 @@ jobs:
         working-directory: packages/bkt-desktop/src-tauri
         run: cargo test --locked
       - name: no staff data in the public bundle
-        run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json packages/bkt/content/canon.json packages/bkt/content/explore.json packages/bkt/content/research-index.json packages/bkt/content/research-blobs.json
+        run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries packages/bkt/content/staff-ros.json packages/bkt/content/canon.json packages/bkt/content/explore.json packages/bkt/content/research-index.json packages/bkt/content/research-blobs.json packages/bkt/content/alignment-review.json
       - name: no denied source material in the public bundle
         run: bun packages/bkt/scripts/check-no-kruse.ts packages/bkt/content/canon.json packages/bkt/content/explore.json packages/bkt/content/research-index.json packages/bkt/content/research-blobs.json packages/bkt-ui/dist packages/bkt-desktop/src-tauri/binaries
       - name: import the Windows signing certificate
