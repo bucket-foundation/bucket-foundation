@@ -92,7 +92,7 @@ export default function Page() {
         </h1>
         <p className="mt-5 text-[16px] leading-[1.7] text-[color:var(--basalt-2)] max-w-2xl">
           Each research-atlas table is an open dataset with provenance on every
-          row. Free to read, priced once to cite over x402, and each has a real
+          row. Free to read, priced once to cite over x402 with no fee collected yet, and each has a real
           DOI through Zenodo.
         </p>
 

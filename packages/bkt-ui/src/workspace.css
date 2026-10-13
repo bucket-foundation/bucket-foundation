@@ -1,0 +1,163 @@
+.workspace-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 0 0 18px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  overflow-x: auto;
+}
+
+.workspace-tabs a {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border-radius: 7px;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.workspace-tabs a:hover {
+  color: var(--ink);
+}
+
+.workspace-tabs a.on {
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.workspace-tabs a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.workspace-list td.changed {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.workspace-item-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0 0 8px;
+}
+
+.workspace-item-head h2 {
+  margin: 0;
+}
+
+.alignment:focus {
+  outline: none;
+}
+
+.alignment-split {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.alignment-atoms ol,
+.alignment-links,
+.alignment-hits,
+.alignment-added {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.alignment-atoms li button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+}
+
+.alignment-atoms li button.on {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.alignment-atoms li button.on .muted {
+  color: var(--accent-ink);
+}
+
+.alignment-statement {
+  max-width: 70ch;
+}
+
+.alignment-links > li {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.alignment-links > li.on {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.alignment-label {
+  margin: 0 0 6px;
+  font-weight: 600;
+}
+
+.alignment-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0 0 6px;
+}
+
+.alignment-facts div {
+  display: flex;
+  gap: 6px;
+}
+
+.alignment-facts dt {
+  color: var(--ink-2);
+}
+
+.alignment-facts dd {
+  margin: 0;
+}
+
+.alignment-actions {
+  margin-top: 8px;
+}
+
+.alignment-reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.alignment-hits li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  padding: 6px 0;
+  border-top: 1px solid var(--line);
+}
+
+.alignment-decks progress {
+  margin-left: 10px;
+  width: 120px;
+}
+
+.alignment-actions {
+  display: flex;
+  width: fit-content;
+}

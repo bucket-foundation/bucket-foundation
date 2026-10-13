@@ -2,7 +2,7 @@
 
 **build the past. build history. bucket is the new renaissance.**
 
-Nonprofit reference implementation, primary research paid-for-once, citeable-forever. Live at bucket.foundation: free-to-read / paid-to-cite, a citation triggers a one-time author payment over x402 (HTTP-native micropayments on Base, EIP-3009); AI agents auto-discover and query the canon via the feed402 spec (/llms.txt). Built on Next.js/Vercel + Supabase Auth. Current release: `bkt-v0.4.0` (2026-09-30). Legally held in founder's personal capacity pending formal nonprofit filing (see `docs/foundation/GOVERNANCE.md`).
+Nonprofit reference implementation, primary research paid-for-once, citeable-forever. Live at bucket.foundation: free-to-read / paid-to-cite, the citation fee rail over x402 on Base (HTTP-native micropayments, EIP-3009) is specified and does not settle yet, and the site serves the canon at price 0; AI agents auto-discover and query the canon via the feed402 spec (/llms.txt). Built on Next.js/Vercel + Supabase Auth. Current release: `bkt-v0.4.0` (2026-09-30). Legally held in founder's personal capacity pending formal nonprofit filing (see `docs/foundation/GOVERNANCE.md`).
 
 Canon thesis: AI + foundations + a small number of brilliant humans = the next layer of reality. Canon holds **only foundations**, axioms, real math, rules, laws, principles, primary derivations, across **seven branches**: mathematics, physics, chemistry, information & computation, biophysics, cosmology, mind.
 

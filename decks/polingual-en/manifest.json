@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-en",
+  "title": "English words",
+  "kind": "words",
+  "language": "en",
+  "language_name": "English",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 1199990,
+    "with_ipa": 91385,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 1199990,
+  "version": "dacae365c12a",
+  "file": "polingual-en.sqlite.zst",
+  "bytes": 82443747,
+  "sha256": "7cb375f4043b27d29b5851e45f580a948327e3f5c26c028d4a33559ce2cdbfa9",
+  "db_bytes": 294305792,
+  "db_sha256": "dacae365c12ac20ece3b9f6099ac7aa5d4dd680cabc6c9a95b5f131e85835aa2",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

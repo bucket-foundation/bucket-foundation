@@ -547,5 +547,34 @@
  "quality": {
   "status": "full",
   "reason": "22 relevant works of 25 considered, 2105 works with the phrase"
- }
+ },
+ "claims": [
+  {
+   "family": "032",
+   "family_title": "The rational Hodge conjecture for CM abelian varieties",
+   "claimant": "OpenAI, unreleased internal model",
+   "date": "2026-10-06",
+   "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/CONTENTS.md",
+   "manuscripts": [
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/The-rational-Hodge-conjecture-for-CM-abelian-varieties-October-6-2026/paper.pdf",
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Algebraic-Kuga-Satake-correspondences-and-Hodge-conjectures-on-a-K3-quadratic-locus-September-30-2026/paper.pdf",
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Weil-classes-and-Hodge-classes-on-abelian-powers-October-6-2026/paper.pdf",
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Abelian-covers-Gale-correspondences-and-the-Hodge-conjecture-for-powers-October-6-2026/paper.pdf",
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/A-Conditional-Reduction-for-Algebraic-Kuga-Satake-Correspondences-September-10-2026/paper.pdf"
+   ],
+   "statement": "Proves the rational Hodge conjecture for every complex CM abelian variety, in every dimension and codimension. Through Milne's theorems, this also gives the Tate conjecture for all abelian varieties over finite fields and the Hodge standard conjecture for abelian varieties in every characteristic.",
+   "match": "special_case",
+   "match_note": "The rational Hodge conjecture for CM abelian varieties. The conjecture in general stays open. Three manuscripts on Weil classes and K3 surfaces were withdrawn on 2026-10-07.",
+   "formal": {
+    "exists": false,
+    "scope": "none",
+    "statement": null,
+    "url": null,
+    "note": ""
+   },
+   "confirmation": null,
+   "withdrawn": null,
+   "batch": "openai-math-2026-10"
+  }
+ ]
 }

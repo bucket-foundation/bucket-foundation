@@ -15,6 +15,7 @@ import urllib.request
 from collections import Counter
 from pathlib import Path
 
+import claims
 import record_schema
 
 HERE = Path(__file__).parent
@@ -449,6 +450,9 @@ def build(p, problems, titles, offline):
         "sources": sources, "retrieved": today(),
     }
     rec["quality"] = quality(rec)
+    mine = claims.record_claims(p["id"], claims.entries())
+    if mine:
+        rec["claims"] = mine
     return record_schema.validate(rec)
 
 

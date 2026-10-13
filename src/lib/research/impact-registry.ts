@@ -36,7 +36,7 @@ const EDUCATION_FIGURES: { file: string; title: string }[] = [
 const DOCS: { path: string; title: string; summary: string; impact: ImpactLine }[] = [
   { path: "/mission", title: "Mission", summary: "Why Bucket exists and who it serves.", impact: "education" },
   { path: "/manifesto", title: "Manifesto", summary: "The thesis: foundations, axioms and a small number of brilliant humans with AI.", impact: "capable" },
-  { path: "/protocol", title: "Protocol", summary: "The x402 data protocol that pays authors once per citation.", impact: "discovery" },
+  { path: "/protocol", title: "Protocol", summary: "The x402 data protocol for paying authors once per citation. Settlement is planned work.", impact: "discovery" },
   { path: "/protocol/envelope", title: "Envelope specification", summary: "The citeable envelope: data, metadata and receipt.", impact: "discovery" },
   { path: "/governance", title: "Governance", summary: "Nonprofit governance and conflict-of-interest disclosure.", impact: "discovery" },
 ];

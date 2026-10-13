@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "bucket.foundation — learn with Claude",
     description:
-      "BYO Anthropic key. BYO Claude. BYO corpus. The only thing we gate is citation, and citation pays the author forever.",
+      "BYO Anthropic key. BYO Claude. BYO corpus. The only thing we gate is citation. The fee rail to authors is specified and does not settle yet.",
     url: "https://www.bucket.foundation/learn",
     type: "website",
   },
@@ -29,7 +29,7 @@ const LEARNING_RESOURCE_JSONLD = {
   "@id": "https://www.bucket.foundation/learn",
   name: "Learn with Claude — reformative education",
   description:
-    "A hands-on entry point to bucket.foundation: learn why the incumbent publishing system is structurally extractive, and how feed402 pays original authors forever.",
+    "A hands-on entry point to bucket.foundation: learn why the incumbent publishing system is structurally extractive, and how feed402 is designed to pay original authors.",
   url: "https://www.bucket.foundation/learn",
   learningResourceType: [
     "InteractiveTutorial",
