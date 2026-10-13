@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-fa",
+  "title": "Persian words",
+  "kind": "words",
+  "language": "fa",
+  "language_name": "Persian",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 15434,
+    "with_ipa": 11145,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 15434,
+  "version": "9425064bdb28",
+  "file": "polingual-fa.sqlite.zst",
+  "bytes": 1203951,
+  "sha256": "7a67f26d96bb9deebfe713f45906bef5a850ad095696e8ec0a8fbbcf8e1353cc",
+  "db_bytes": 3588096,
+  "db_sha256": "9425064bdb280b297966f5282f163b8e93dc6baafb9b1d1e4864475c514a6614",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

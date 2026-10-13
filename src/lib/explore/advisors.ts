@@ -10,8 +10,10 @@ import {
   type AdvisorRow,
   type PrimeDirections,
 } from "../research-os/advisor-review";
+import { createHash } from "crypto";
 import type { AdvisorSource } from "./search";
 import type { AdvisorOrigin } from "./advisor-origin";
+import { samplesAllowed, type Env } from "./sample-gate";
 import sampleReview from "./fixtures/advisors.sample.json";
 import samplePrime from "./fixtures/prime.sample.json";
 
@@ -37,14 +39,27 @@ export function primeTerms(row: AdvisorRow, prime: PrimeDirections, n = 2): stri
   return order.flatMap(({ i }) => prime.components[i]?.top_terms ?? []);
 }
 
+export function unrankedOrder(row: AdvisorRow): "untested" | "withheld" | undefined {
+  const status = row.fields.order_status;
+  return status === "untested" || status === "withheld" ? status : undefined;
+}
+
 export function advisorSources(review: AdvisorReview, prime: PrimeDirections): AdvisorSource[] {
+  const seen = new Map<string, number>();
+  const keyOf = (row: AdvisorRow) => {
+    const digest = createHash("sha256").update(`${row.name}\u0000${flat(row.fields.institution)}\u0000${flat(row.fields.field)}`).digest("hex").slice(0, 12);
+    const n = (seen.get(digest) ?? 0) + 1;
+    seen.set(digest, n);
+    return n === 1 ? `u${digest}` : `u${digest}-${n}`;
+  };
   return review.rows.map((row) => {
+    const order = unrankedOrder(row);
     const field = typeof row.fields.field === "string" ? scrubEmails(row.fields.field) : "";
     const year = typeof row.fields.year === "number" ? row.fields.year : null;
     const text = scrubEmails(
       [
         ...Object.entries(row.fields)
-          .filter(([k]) => k !== "field" && k !== "year")
+          .filter(([k]) => k !== "field" && k !== "year" && k !== "order_status")
           .map(([, v]) => flat(v)),
         ...primeTerms(row, prime),
       ]
@@ -53,12 +68,13 @@ export function advisorSources(review: AdvisorReview, prime: PrimeDirections): A
     );
     const url = row.links.profile_url ?? row.links.program_url ?? null;
     return {
-      rank: row.rank,
+      rank: order ? 0 : row.rank,
+      ...(order ? { key: keyOf(row), order } : {}),
       name: scrubEmails(row.name),
       field,
       text,
       year,
-      score: row.score,
+      score: order ? 0 : row.score,
       star: row.star_prime,
       url: url && !hasEmail(url) && !/^mailto:/i.test(url) ? url : null,
     };
@@ -183,9 +199,9 @@ export function bundleAxes(bundle: AdvisorBundle, n = BUNDLE_COMPONENTS): PrimeA
   return axes;
 }
 
-function bundlePath(): string | null {
-  if (process.env.BUCKET_ADVISOR_REVIEW) return null;
-  return process.env.BUCKET_ADVISOR_BUNDLE || DEFAULT_BUNDLE_PATH;
+function bundlePath(env: Env): string | null {
+  if (env.BUCKET_ADVISOR_REVIEW) return null;
+  return env.BUCKET_ADVISOR_BUNDLE || DEFAULT_BUNDLE_PATH;
 }
 
 export function loadBundle(file: string | null): { sources: AdvisorSource[]; axes: PrimeAxis[] } | null {
@@ -205,35 +221,37 @@ export interface LoadedAdvisors {
   axes: PrimeAxis[];
 }
 
-let cache: LoadedAdvisors | null = null;
+const NO_ADVISORS: LoadedAdvisors = { sources: [], sample: false, origin: "none", axes: [] };
+const ENV_KEYS = ["VERCEL_ENV", "NODE_ENV", "BUCKET_ADVISOR_REVIEW", "BUCKET_ADVISOR_BUNDLE", "BUCKET_PRIME_DIRECTIONS"];
+
+let cache: { key: string; value: LoadedAdvisors } | null = null;
 
 export function resetAdvisors(): void {
   cache = null;
 }
 
-export function loadAdvisors(): LoadedAdvisors {
-  if (cache) return cache;
-  const bundle = loadBundle(bundlePath());
-  if (bundle) {
-    cache = { ...bundle, sample: false, origin: "bundle" };
-    return cache;
-  }
-  const rawReview = readJson(process.env.BUCKET_ADVISOR_REVIEW);
-  const rawPrime = readJson(process.env.BUCKET_PRIME_DIRECTIONS);
-  let review: AdvisorReview;
-  let sample = false;
+function parsed<T>(parse: (raw: unknown) => T, raw: unknown): T | null {
   try {
-    review = parseAdvisorReview(rawReview);
+    return parse(raw);
   } catch {
-    review = parseAdvisorReview(sampleReview);
-    sample = true;
+    return null;
   }
-  let prime: PrimeDirections;
-  try {
-    prime = parsePrimeDirections(rawPrime);
-  } catch {
-    prime = parsePrimeDirections(samplePrime);
-  }
-  cache = { sources: advisorSources(review, prime), sample, origin: sample ? "sample" : "review", axes: primeAxes(review, prime) };
-  return cache;
+}
+
+function read(env: Env): LoadedAdvisors {
+  const bundle = loadBundle(bundlePath(env));
+  if (bundle) return { ...bundle, sample: false, origin: "bundle" };
+  const realReview = parsed(parseAdvisorReview, readJson(env.BUCKET_ADVISOR_REVIEW));
+  const realPrime = parsed(parsePrimeDirections, readJson(env.BUCKET_PRIME_DIRECTIONS));
+  if (!samplesAllowed(env) && !(realReview && realPrime)) return NO_ADVISORS;
+  const review = realReview ?? parseAdvisorReview(sampleReview);
+  const prime = realPrime ?? parsePrimeDirections(samplePrime);
+  return { sources: advisorSources(review, prime), sample: !realReview, origin: realReview ? "review" : "sample", axes: primeAxes(review, prime) };
+}
+
+export function loadAdvisors(env: Env = process.env): LoadedAdvisors {
+  const key = ENV_KEYS.map((k) => env[k] ?? "").join("\n");
+  if (cache?.key === key) return cache.value;
+  cache = { key, value: read(env) };
+  return cache.value;
 }

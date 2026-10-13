@@ -314,7 +314,7 @@ canon, so a learner's path runs **learn → master → (Scholar) author → mint
 provenance layer. "Build the past. Build history." becomes literal: your profile is the
 accreting, citeable, permanent record of the foundations you rebuilt in your own mind.
 
-**Nonprofit-consistent (GOVERNANCE.md).** The credential is **free**, Bucket never sells *access
+**Nonprofit-consistent (docs/foundation/GOVERNANCE.md).** The credential is **free**, Bucket never sells *access
 To knowledge* or *the proof of knowing it*. Paid tiers sell AI horsepower / exam tooling, never the
 Mastery Profile. Anchoring is optional and learner-controlled.
 
@@ -442,7 +442,7 @@ wrappers (Phase 2-3) are interoperability and durability, added once the signal 
 - `research/_synthesis/UX-SPEC.md` (Profile / Knowledge Portfolio view, map encoding, accessibility)
 - `research/_synthesis/DECISIONS.md` (#11 BKT×FSRS×IRT, #19 accessibility, #20 can't-be-farmed rule)
 - `KNOWLEDGE-ARCHITECTURE.md` §2 (Concept Atom = markdown + stable ID + canon_ref = the skill descriptor)
-- CLAUDE.md / GOVERNANCE.md (mission: genius work with AI; nonprofit, knowledge & its proof are free)
+- CLAUDE.md / docs/foundation/GOVERNANCE.md (mission: genius work with AI; nonprofit, knowledge & its proof are free)
 
 ---
 

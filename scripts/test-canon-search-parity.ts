@@ -110,7 +110,12 @@ async function captureCanonRoute(p: Params): Promise<Captured> {
 
 async function captureExploreRoute(p: Params): Promise<Captured> {
   const { GET } = await import("../src/app/api/explore/search/route");
-  const res = await GET(new NextRequest(href("http://x/api/explore/search", p)));
+  const before = process.env.VERCEL_ENV;
+  process.env.VERCEL_ENV = "production";
+  const res = await GET(new NextRequest(href("http://x/api/explore/search", p))).finally(() => {
+    if (before === undefined) delete process.env.VERCEL_ENV;
+    else process.env.VERCEL_ENV = before;
+  });
   const body = JSON.parse(await res.text());
   if (res.status !== 200) return { status: res.status, error: body.error };
   return {

@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 
 export interface ProbeResult {
@@ -9,9 +9,10 @@ export interface ProbeResult {
   noTokenRejected: boolean;
 }
 
-export function appRecordPath(env: Record<string, string | undefined>, uid: number | undefined): string {
-  const base = env.XDG_RUNTIME_DIR ?? join(env.TMPDIR ?? tmpdir(), `bucket-${uid ?? "user"}`);
-  return join(base, "bucket", "app.json");
+export function appRecordPath(env: Record<string, string | undefined>, uid: number | undefined, os: string = process.platform, home = homedir()): string {
+  if (env.XDG_RUNTIME_DIR !== undefined) return join(env.XDG_RUNTIME_DIR, "bucket", "app.json");
+  if (os === "linux") return join(env.XDG_CACHE_HOME ?? join(home, ".cache"), "bkt", "run", "app.json");
+  return join(env.TMPDIR ?? tmpdir(), `bucket-${uid ?? "user"}`, "bucket", "app.json");
 }
 
 export interface AppRecord {

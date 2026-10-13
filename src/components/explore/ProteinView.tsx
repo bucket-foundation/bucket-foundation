@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { GLViewer } from "3dmol";
+
+export const PROTEIN_OFFLINE = "The protein viewer could not start here, so this structure is hidden.";
 import { formatOf, summarize, type ProteinEntry, type ResidueLink, type StructureSummary } from "@/lib/explore/protein";
 
 interface Props {
@@ -28,9 +30,9 @@ export default function ProteinView({ protein, focus, onFocus, upload }: Props) 
     let live = true;
     setData(null);
     fetch(protein.file)
-      .then((r) => (r.ok ? r.text() : Promise.reject(new Error(`fixture ${r.status}`))))
+      .then((r) => (r.ok ? r.text() : Promise.reject(new Error(PROTEIN_OFFLINE))))
       .then((text) => live && setData({ text, format: "pdb", name: protein.pdb }))
-      .catch((e) => live && setError(String(e.message ?? e)));
+      .catch(() => live && setError(PROTEIN_OFFLINE));
     return () => {
       live = false;
     };
@@ -67,7 +69,7 @@ export default function ProteinView({ protein, focus, onFocus, upload }: Props) 
       v.zoomTo(focus && data.name === protein.pdb ? { chain: focus.chain, resi: focus.resi } : undefined);
       if (focus && data.name === protein.pdb) v.zoom(0.35);
       v.render();
-    });
+    }, () => live && setError(PROTEIN_OFFLINE));
     return () => {
       live = false;
     };

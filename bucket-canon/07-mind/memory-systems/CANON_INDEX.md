@@ -54,7 +54,7 @@ un-promoted there per the source intake file's own branch assignment
 a psychological effect the paper measures experimentally rather than a formal
 information-theoretic bound (see `07-mind/README.md` § vs `04-information/`).
 
-**PROTOCOL.md §4.1 envelope field mapping.** `bucket-canon/` holds citations
+**docs/foundation/PROTOCOL.md §4.1 envelope field mapping.** `bucket-canon/` holds citations
 only. It carries no `paper.<ext>` and no local bytes (see `tools/canon-pipeline/README.md`'s Non-Redistribution
 Policy), so the `sha256`, `purchase`, and `cite.payout_wallet` fields that anchor a full
 `bucket/<sha256>/canon.json` sidecar do not apply here; a citation-only record satisfies the

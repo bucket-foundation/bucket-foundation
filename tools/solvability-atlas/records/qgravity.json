@@ -1,0 +1,640 @@
+{
+ "schema": "bucket.solvability-atlas.record/v1",
+ "id": "qgravity",
+ "title": "Quantum gravity",
+ "statement": {
+  "text": "Quantum gravity (QG) is a field of theoretical physics that seeks unification of the theory of gravity with the principles of quantum mechanics. It deals with environments in which neither gravitational nor quantum effects can be ignored, such as in the vicinity of black holes or similar compact astrophysical objects, as well as in the early stages of the universe moments after the Big Bang.",
+  "source": "https://en.wikipedia.org/wiki/Quantum_gravity",
+  "licence": "CC BY-SA 4.0",
+  "attribution": {
+   "title": "Quantum gravity",
+   "url": "https://en.wikipedia.org/wiki/Quantum_gravity"
+  }
+ },
+ "aliases": [],
+ "branch": "cosmology",
+ "level": 5,
+ "industries": [
+  "statistical and nonlinear physics",
+  "nuclear and high energy physics"
+ ],
+ "posed": 1930,
+ "resolved": null,
+ "history": [
+  {
+   "year": 1930,
+   "event": "posed",
+   "source": "problems.tsv"
+  }
+ ],
+ "key_works": [
+  {
+   "openalex": "W2070707213",
+   "title": "Background independent quantum gravity: a status report",
+   "year": 2004,
+   "cited_by_count": 1960,
+   "doi": "https://doi.org/10.1088/0264-9381/21/15/r01",
+   "role": "survey",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2098989214",
+   "title": "New Variables for Classical and Quantum Gravity",
+   "year": 1986,
+   "cited_by_count": 1680,
+   "doi": "https://doi.org/10.1103/physrevlett.57.2244",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1993079947",
+   "title": "FRACTAL STRUCTURE OF 2d—QUANTUM GRAVITY",
+   "year": 1988,
+   "cited_by_count": 1389,
+   "doi": "https://doi.org/10.1142/s0217732388000982",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2104041846",
+   "title": "Discreteness of area and volume in quantum gravity",
+   "year": 1995,
+   "cited_by_count": 1375,
+   "doi": "https://doi.org/10.1016/0550-3213(95)00150-q",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2170399496",
+   "title": "QUANTUM GRAVITY AND MINIMUM LENGTH",
+   "year": 1995,
+   "cited_by_count": 1357,
+   "doi": "https://doi.org/10.1142/s0217751x95000085",
+   "role": "partial",
+   "relevance": 6,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2144012213",
+   "title": "Action integrals and partition functions in quantum gravity",
+   "year": 1977,
+   "cited_by_count": 3466,
+   "doi": "https://doi.org/10.1103/physrevd.15.2752",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2984224373",
+   "title": "Quantum Gravity",
+   "year": 2004,
+   "cited_by_count": 2708,
+   "doi": null,
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2158117921",
+   "title": "Quantum gravity at a Lifshitz point",
+   "year": 2009,
+   "cited_by_count": 2681,
+   "doi": "https://doi.org/10.1103/physrevd.79.084008",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": true,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2157606627",
+   "title": "Renormalization of higher-derivative quantum gravity",
+   "year": 1977,
+   "cited_by_count": 2579,
+   "doi": "https://doi.org/10.1103/physrevd.16.953",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2108973526",
+   "title": "Phenomenology, astrophysics, and cosmology of theories with submillimeter dimensions and TeV scale quantum gravity",
+   "year": 1999,
+   "cited_by_count": 2400,
+   "doi": "https://doi.org/10.1103/physrevd.59.086004",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1968833481",
+   "title": "Quasinormal modes of black holes: From astrophysics to string theory",
+   "year": 2011,
+   "cited_by_count": 1571,
+   "doi": "https://doi.org/10.1103/revmodphys.83.793",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2142595523",
+   "title": "Tests of quantum gravity from observations of γ-ray bursts",
+   "year": 1998,
+   "cited_by_count": 1436,
+   "doi": "https://doi.org/10.1038/31647",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2136697405",
+   "title": "The string landscape, black holes and gravity as the weakest force",
+   "year": 2007,
+   "cited_by_count": 1341,
+   "doi": "https://doi.org/10.1088/1126-6708/2007/06/060",
+   "role": "partial",
+   "relevance": 4,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2091262560",
+   "title": "Extended Theories of Gravity",
+   "year": 2011,
+   "cited_by_count": 3325,
+   "doi": "https://doi.org/10.1016/j.physrep.2011.09.003",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2025148421",
+   "title": "2 + 1 dimensional gravity as an exactly soluble system",
+   "year": 1988,
+   "cited_by_count": 2578,
+   "doi": "https://doi.org/10.1016/0550-3213(88)90143-5",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W1947273351",
+   "title": "Modern Canonical Quantum General Relativity",
+   "year": 2007,
+   "cited_by_count": 2009,
+   "doi": "https://doi.org/10.1017/cbo9780511755682",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "W2142397325",
+   "title": "Hilbert space representation of the minimal length uncertainty relation",
+   "year": 1995,
+   "cited_by_count": 1974,
+   "doi": "https://doi.org/10.1103/physrevd.52.1108",
+   "role": "partial",
+   "relevance": 2,
+   "in_embedding": false,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "key_works_considered": 25,
+ "key_works_dropped": {
+  "no keyword hit": 6,
+  "duplicate": 2
+ },
+ "activity": {
+  "openalex_by_year": {
+   "1926": 1,
+   "1947": 1,
+   "1955": 1,
+   "1956": 4,
+   "1957": 1,
+   "1959": 1,
+   "1962": 1,
+   "1966": 1,
+   "1967": 4,
+   "1968": 1,
+   "1969": 2,
+   "1970": 3,
+   "1972": 1,
+   "1973": 5,
+   "1974": 14,
+   "1975": 23,
+   "1976": 11,
+   "1977": 22,
+   "1978": 14,
+   "1979": 32,
+   "1980": 26,
+   "1981": 44,
+   "1982": 67,
+   "1983": 59,
+   "1984": 84,
+   "1985": 57,
+   "1986": 81,
+   "1987": 70,
+   "1988": 102,
+   "1989": 122,
+   "1990": 184,
+   "1991": 265,
+   "1992": 350,
+   "1993": 344,
+   "1994": 292,
+   "1995": 279,
+   "1996": 299,
+   "1997": 308,
+   "1998": 309,
+   "1999": 313,
+   "2000": 326,
+   "2001": 315,
+   "2002": 363,
+   "2003": 337,
+   "2004": 436,
+   "2005": 444,
+   "2006": 606,
+   "2007": 504,
+   "2008": 569,
+   "2009": 616,
+   "2010": 573,
+   "2011": 669,
+   "2012": 642,
+   "2013": 699,
+   "2014": 697,
+   "2015": 749,
+   "2016": 838,
+   "2017": 878,
+   "2018": 830,
+   "2019": 908,
+   "2020": 919,
+   "2021": 1118,
+   "2022": 986,
+   "2023": 1266,
+   "2024": 1367,
+   "2025": 4856,
+   "2026": 15758,
+   "2027": 1,
+   "2028": 2,
+   "2029": 1
+  },
+  "openalex_total": 42071,
+  "arxiv_total": 13688,
+  "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&group_by=publication_year ; http://export.arxiv.org/api/query?search_query=all%3A%22quantum+gravity%22&max_results=1"
+ },
+ "people": [
+  {
+   "openalex": "A5058351261",
+   "name": "Abhay Ashtekar",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5110069395",
+   "name": "Nima Arkani-hamed A",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5008426386",
+   "name": "Jerzy Lewandowski",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5052947542",
+   "name": "V.G. Knizhnik",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5112205033",
+   "name": "Alexander M. Polyakov",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5112579619",
+   "name": "A. B. Zamolodchikov",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5050105545",
+   "name": "Carlo Rovelli",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5033243912",
+   "name": "Lee Smolin",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": null,
+   "name": "LUIS J. GARAY",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5011180999",
+   "name": "Gary William Gibbons",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5066175077",
+   "name": "Stephen William Hawking",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5009384351",
+   "name": "Claus Kiefer",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5044450135",
+   "name": "Petr Hořava",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5052932442",
+   "name": "Kellogg S. Stelle",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "A5063730019",
+   "name": "Savas Dimopoulos",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "organizations": [
+  {
+   "openalex": "I130769515",
+   "name": "Pennsylvania State University",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4210127646",
+   "name": "Max Planck Institute for Gravitational Physics",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I241749",
+   "name": "University of Cambridge",
+   "works": 2,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I149899117",
+   "name": "Max Planck Society",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4654613",
+   "name": "University of Warsaw",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I154570441",
+   "name": "University of California, Santa Barbara",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I4405259940",
+   "name": "Kavli Institute for Theoretical Physics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I70983195",
+   "name": "Syracuse University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I196576671",
+   "name": "Landau Institute for Theoretical Physics",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I170201317",
+   "name": "University of Pittsburgh",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I47508984",
+   "name": "Imperial College London",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I148283060",
+   "name": "Lawrence Berkeley National Laboratory",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I95457486",
+   "name": "University of California, Berkeley",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I6902469",
+   "name": "Brandeis University",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  },
+  {
+   "openalex": "I2801935854",
+   "name": "SLAC National Accelerator Laboratory",
+   "works": 1,
+   "source": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic"
+  }
+ ],
+ "related": [],
+ "repo_mentions": [
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2104041846",
+   "title": "Discreteness of area and volume in quantum gravity",
+   "source": "openalex-fanout/W2104041846-discreteness-of-area-and-volume-in-quantum-gravity"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2107246682",
+   "title": "Spin networks and quantum gravity",
+   "source": "openalex-fanout/W2107246682-spin-networks-and-quantum-gravity"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2108973526",
+   "title": "Phenomenology, astrophysics, and cosmology of theories with submillimeter dimensions and TeV scale quantum gravity",
+   "source": "openalex-fanout/W2108973526-phenomenology-astrophysics-and-cosmology-of-theories-with-su"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2143201073",
+   "title": "Black Hole Entropy from Loop Quantum Gravity",
+   "source": "openalex-fanout/W2143201073-black-hole-entropy-from-loop-quantum-gravity"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W2144012213",
+   "title": "Action integrals and partition functions in quantum gravity",
+   "source": "openalex-fanout/W2144012213-action-integrals-and-partition-functions-in-quantum-gravity"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W3105538099",
+   "title": "Minimal Length Scale Scenarios for Quantum Gravity",
+   "source": "openalex-fanout/W3105538099-minimal-length-scale-scenarios-for-quantum-gravity"
+  },
+  {
+   "corpus": "openalex-fanout",
+   "id": "W4233500204",
+   "title": "Quantum Gravity",
+   "source": "openalex-fanout/W4233500204-quantum-gravity"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10013403",
+   "title": "Time in quantum gravity: An hypothesis.",
+   "source": "pubmed/PMID-10013403-time-in-quantum-gravity-an-hypothesis"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10014000",
+   "title": "Quantum evolving constants. Reply to \"Comment on 'Time in quantum gravity: An hypothesis' \".",
+   "source": "pubmed/PMID-10014000-quantum-evolving-constants-reply-to-comment-on-time-in-quant"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10017407",
+   "title": "Finite diffeomorphism-invariant observables in quantum gravity.",
+   "source": "pubmed/PMID-10017407-finite-diffeomorphism-invariant-observables-in-quantum-gravi"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10019107",
+   "title": "Spin networks and quantum gravity.",
+   "source": "pubmed/PMID-10019107-spin-networks-and-quantum-gravity"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10020945",
+   "title": "Geometry eigenvalues and the scalar product from recoupling theory in loop quantum gravity.",
+   "source": "pubmed/PMID-10020945-geometry-eigenvalues-and-the-scalar-product-from-recoupling"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10038716",
+   "title": "Knot theory and quantum gravity.",
+   "source": "pubmed/PMID-10038716-knot-theory-and-quantum-gravity"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10041657",
+   "title": "Nonperturbative two-dimensional quantum gravity.",
+   "source": "pubmed/PMID-10041657-nonperturbative-two-dimensional-quantum-gravity"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10056253",
+   "title": "Fermions in quantum gravity.",
+   "source": "pubmed/PMID-10056253-fermions-in-quantum-gravity"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10056435",
+   "title": "The physical Hamiltonian in nonperturbative quantum gravity.",
+   "source": "pubmed/PMID-10056435-the-physical-hamiltonian-in-nonperturbative-quantum-gravity"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID10062183",
+   "title": "Black Hole Entropy from Loop Quantum Gravity.",
+   "source": "pubmed/PMID-10062183-black-hole-entropy-from-loop-quantum-gravity"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID17155315",
+   "title": "Graviton propagator from background-independent quantum gravity.",
+   "source": "pubmed/PMID-17155315-graviton-propagator-from-background-independent-quantum-grav"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID24033021",
+   "title": "Evidence for maximal acceleration and singularity resolution in covariant loop quantum gravity.",
+   "source": "pubmed/PMID-24033021-evidence-for-maximal-acceleration-and-singularity-resolution"
+  },
+  {
+   "corpus": "pubmed",
+   "id": "PMID28880282",
+   "title": "Quantum gravity: Quantum effects in the gravitational field.",
+   "source": "pubmed/PMID-28880282-quantum-gravity-quantum-effects-in-the-gravitational-field"
+  }
+ ],
+ "formal": {
+  "status": "none",
+  "source": null,
+  "url": null
+ },
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/Quantum_gravity",
+   "licence": "CC-BY-SA-4.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&sort=cited_by_count%3Adesc&per-page=25&select=id%2Ctitle%2Cpublication_year%2Ccited_by_count%2Cdoi%2Cauthorships%2Cprimary_topic",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "https://api.openalex.org/works?filter=title_and_abstract.search%3A%22quantum+gravity%22&group_by=publication_year",
+   "licence": "CC0-1.0",
+   "retrieved": "2026-10-05"
+  },
+  {
+   "url": "http://export.arxiv.org/api/query?search_query=all%3A%22quantum+gravity%22&max_results=1",
+   "licence": "arXiv API terms, metadata CC0-1.0",
+   "retrieved": "2026-10-05"
+  }
+ ],
+ "retrieved": "2026-10-05",
+ "quality": {
+  "status": "full",
+  "reason": "17 relevant works of 25 considered, 42071 works with the phrase"
+ }
+}

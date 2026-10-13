@@ -56,7 +56,7 @@ export function cosineRank(index: ClaimIndexEntry[], q: Float32Array, topK = 10)
     for (let j = 0; j < q.length; j++) s += q[j] * v[j];
     scores[i] = { entry: index[i], score: s };
   }
-  scores.sort((a, b) => b.score - a.score);
+  scores.sort((a, b) => b.score - a.score || a.entry.rowid - b.entry.rowid);
   return scores.slice(0, topK);
 }
 
@@ -75,7 +75,7 @@ export function tokenRank(index: ClaimIndexEntry[], query: string, topK = 10): C
     }
     return { entry: e, score: s };
   });
-  scores.sort((a, b) => b.score - a.score);
+  scores.sort((a, b) => b.score - a.score || a.entry.rowid - b.entry.rowid);
   return scores.slice(0, topK);
 }
 

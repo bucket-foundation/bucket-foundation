@@ -213,3 +213,23 @@ export function readChatSources(on: ChatToggles, o: ChatReadOptions = {}): ChatS
   }
   return { stubs, counts };
 }
+
+export const CHANGED_WINDOW_MS = 86_400_000;
+
+export function changedChatFiles(on: ChatToggles, o: ChatReadOptions = {}): { files: number; timedOut: boolean } {
+  const caps = { ...CHAT_CAPS, ...o.caps };
+  const clock = o.clock ?? Date.now;
+  const started = clock();
+  const counts: ChatCounts = { files: 0, bytes: 0, dropped: 0, skipped: 0, timedOut: false };
+  const expired = () => {
+    if (clock() - started >= caps.ms) counts.timedOut = true;
+    return counts.timedOut;
+  };
+  const found: Candidate[] = [];
+  for (const root of CHAT_ROOT_NAMES) {
+    if (!on[root]) continue;
+    const dir = chatRoot(root, o.home);
+    if (dir) walk(dir, root, 0, (o.now ?? Date.now()) - CHANGED_WINDOW_MS, caps.fileBytes, () => expired() || found.length >= caps.files, found, counts);
+  }
+  return { files: Math.min(found.length, caps.files), timedOut: counts.timedOut };
+}

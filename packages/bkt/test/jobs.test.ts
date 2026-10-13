@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { newDataKey } from "../src/crypto";
 import { jobRoutes } from "../src/job-routes";
-import { checkModules, jobSpecs } from "../src/job-specs";
+import { capJob, checkModules, JOB_ADDRESS_BYTES, JOB_NICE, JOB_THREADS, jobSpecs, THREAD_VARS, type AnalysisCard } from "../src/job-specs";
 import { JOB_MARKER, JobRunner, type JobSpec, type JobView } from "../src/jobs";
 import { buildPySource } from "../src/pack/pysrc";
 import { PeopleStore } from "../src/people";
@@ -233,6 +233,59 @@ describe("real job specs", () => {
     rmSync(cache, { recursive: true, force: true });
   }, 150_000);
 
+  const HAS_NUMPY = checkModules("python3", ["numpy"]) === null;
+  const TABLE = ["day,sleep_h,focus,mood"].concat(Array.from({ length: 40 }, (_, i) => `2026-08-${String((i % 28) + 1).padStart(2, "0")},${(6 + (i % 5) * 0.5).toFixed(1)},${50 + ((i * 7) % 40)},${i % 9 === 0 ? "" : "ok"}`)).join("\n");
+
+  async function analyzed(text: string) {
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    const cache = mkdtempSync(join(tmpdir(), "bkt-py-"));
+    const r = new JobRunner({ root, timeoutMs: 120_000, specs: jobSpecs({ src: buildPySource(join(import.meta.dir, ".."), REPO), cacheRoot: join(cache, "bkt", "py"), dataRoot: root, people: new PeopleStore(store, key) }) });
+    let done = r.start("analyze", { data: { text, ext: ".csv" } });
+    for (let i = 0; i < 1200 && done.state === "running"; i++) {
+      await Bun.sleep(100);
+      done = r.get(done.id)!;
+    }
+    store.close();
+    rmSync(cache, { recursive: true, force: true });
+    return done;
+  }
+
+  test.skipIf(!HAS_NUMPY)("analyze returns a card of rows, columns and warnings", async () => {
+    const done = await analyzed(TABLE);
+    expect(done.state).toBe("done");
+    const { card } = done.result as { card: AnalysisCard };
+    expect(card.rows).toBe(40);
+    expect(card.time).toBe("day");
+    expect(card.columns).toEqual([
+      { name: "day", kind: "datetime", unit: null, missing: 0, low: null, high: null },
+      { name: "sleep", kind: "float", unit: "h", missing: 0, low: 6, high: 8 },
+      { name: "focus", kind: "integer", unit: null, missing: 0, low: 50, high: 89 },
+      { name: "mood", kind: "string", unit: null, missing: 5, low: null, high: null },
+    ]);
+    expect(card.warnings.map((w) => w.code)).toEqual(["W_MISSING", "W_TIME_ORDER", "W_TIME_DUP"]);
+    expect(card.problems).toEqual([]);
+  }, 150_000);
+
+  test.skipIf(!HAS_NUMPY)("an analysis that stops on the table's form still returns its problems", async () => {
+    const done = await analyzed("name,name\na,b\n");
+    expect(done.state).toBe("failed");
+    expect(done.error).toBe("exited with code 2");
+    const { card } = done.result as { card: AnalysisCard };
+    expect(card.problems.map((p) => p.code)).toEqual(["E_DUP_COLUMN", "E_NO_NUMERIC"]);
+  }, 150_000);
+
+  test("analyze names the install line when its module is missing", () => {
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    const specs = jobSpecs({ src: { version: "x", files: {} }, cacheRoot: root, dataRoot: root, people: new PeopleStore(store, key), python: "python3", check: () => "this job needs numpy: python3 -m pip install --user numpy" });
+    const j = new JobRunner({ root, specs }).start("analyze", { data: "a,b\n1,2\n" });
+    expect(j.state).toBe("failed");
+    expect(j.install).toBe("python3 -m pip install --user numpy");
+    expect(j.result).toBeNull();
+    store.close();
+  });
+
   test("fit-me refuses with an install hint when Python modules are missing", () => {
     const key = newDataKey();
     const store = new Store(":memory:", key);
@@ -241,6 +294,41 @@ describe("real job specs", () => {
     expect(r.start("fit-me", { statement: "s", people: "p" }).error).toBe("this job needs scikit-learn");
     expect(() => r.start("fit-me", { statement: "s", people: "p" }, { k: 1 })).toThrow("k must be a whole number from 2 to 256");
     expect(() => r.start("fit-me", { statement: "s", people: "p" }, { shell: 1 })).toThrow("takes no option shell");
+    store.close();
+  });
+});
+
+describe("job resource caps", () => {
+  test("the caps stay small enough for a shared machine", () => {
+    expect(JOB_THREADS).toBeLessThanOrEqual(4);
+    expect(JOB_ADDRESS_BYTES).toBeLessThanOrEqual(8 * 1024 ** 3);
+    expect(JOB_NICE).toBeGreaterThanOrEqual(10);
+  });
+
+  test("capJob wraps the command in prlimit and nice and pins every thread pool", () => {
+    const capped = capJob(["python3", "x.py"], { PYTHONPATH: "/py" }, (b) => `/usr/bin/${b}`);
+    expect(capped.argv).toEqual(["/usr/bin/prlimit", `--as=${JOB_ADDRESS_BYTES}`, "/usr/bin/nice", "-n", String(JOB_NICE), "python3", "x.py"]);
+    expect(capped.env.PYTHONPATH).toBe("/py");
+    for (const v of THREAD_VARS) expect(capped.env[v]).toBe(String(JOB_THREADS));
+    expect([...THREAD_VARS]).toEqual(["OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"]);
+  });
+
+  test("capJob keeps the thread caps where prlimit and nice are missing", () => {
+    const capped = capJob(["python3", "x.py"], {}, () => null);
+    expect(capped.argv).toEqual(["python3", "x.py"]);
+    expect(capped.env.OPENBLAS_NUM_THREADS).toBe(String(JOB_THREADS));
+  });
+
+  test("both python specs plan a capped command", () => {
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    const specs = jobSpecs({ src: { version: "x", files: { "bkt_analyze.py": "" } }, cacheRoot: join(root, "py"), dataRoot: root, people: new PeopleStore(store, key), python: "python3", check: () => null, which: (b) => `/usr/bin/${b}` });
+    const dirs = { dir: root, inputs: { data: "d.csv", statement: "s.md", people: "p.jsonl" }, out: join(root, "out") };
+    for (const kind of ["analyze", "fit-me"]) {
+      const plan = specs[kind].plan(dirs, {}) as { argv: string[]; env: Record<string, string> };
+      expect(plan.argv.slice(0, 6)).toEqual(["/usr/bin/prlimit", `--as=${JOB_ADDRESS_BYTES}`, "/usr/bin/nice", "-n", String(JOB_NICE), "python3"]);
+      expect(plan.env.OMP_NUM_THREADS).toBe(String(JOB_THREADS));
+    }
     store.close();
   });
 });

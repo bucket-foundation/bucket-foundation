@@ -225,7 +225,7 @@ export default function GraphMap({ initialBranch, initialQuery }: { initialBranc
         <ErrorState body="Could not load the branch." />
       ) : (
         <div className="relative overflow-auto border border-[color:var(--hairline)] bg-[color:var(--bone)]/60 rounded-sm" style={{ maxHeight: "calc(100vh - 20rem)", minHeight: 360 }}>
-          <svg width={layout.width} height={layout.height} role="img" aria-label={`${branch} graph`} style={{ display: "block", fontFamily: "inherit" }}>
+          <svg width={layout.width} height={layout.height} role="img" aria-label={`${branchLabel(branch)} graph`} style={{ display: "block", fontFamily: "inherit" }}>
             {layout.columns.map((t, i) => (
               <text key={t} x={40 + i * 220} y={16} fontSize="10" fill="var(--basalt-3)" letterSpacing="0.15em">
                 TIER {t}

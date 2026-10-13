@@ -1,4 +1,7 @@
-export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you" | "canon-file";
+import { idiv } from "./rank-kernel";
+import { indexDoc, queryTerms, rank, statsOf, terms, type IndexedDoc, type RankStats } from "./rank";
+
+export type HitType = "excerpt" | "advisor" | "work" | "paper" | "text" | "talk" | "you" | "canon-file" | "row";
 
 export const HIT_TYPES: HitType[] = ["excerpt", "advisor", "work", "paper", "text", "talk", "canon-file"];
 
@@ -15,6 +18,19 @@ export interface Hit {
   links: string[];
   source?: string;
   license?: string;
+  also?: string[];
+  fragments?: Fragment[];
+}
+
+export interface Fragment {
+  id: string;
+  text: string;
+  url: string;
+}
+
+export interface Talk {
+  id: string;
+  title: string;
 }
 
 export interface ExcerptSource {
@@ -25,6 +41,7 @@ export interface ExcerptSource {
   text: string;
   score: number;
   year?: number | null;
+  talk?: Talk | null;
 }
 
 export interface AdvisorSource {
@@ -36,7 +53,11 @@ export interface AdvisorSource {
   score: number;
   url: string | null;
   star?: number[];
+  key?: string;
+  order?: "untested" | "withheld";
 }
+
+export const UNTESTED_ORDERING = "untested ordering";
 
 export interface UnifyOptions {
   query: string;
@@ -47,7 +68,12 @@ export interface UnifyOptions {
   topK?: number;
   linksPerHit?: number;
   extraHits?: Hit[];
+  stats?: RankStats;
 }
+
+export const FRAGMENTS_PER_TALK = 3;
+export const TOPIC_WEIGHT_NUM = 19;
+export const TOPIC_WEIGHT_DEN = 20;
 
 const STOP = new Set(["the", "and", "for", "with", "that", "this", "from", "are", "was", "his", "her", "its", "not", "but", "you", "all", "any", "can", "has", "have", "into", "our", "out", "who", "why", "how", "what"]);
 
@@ -78,8 +104,8 @@ export function excerptId(e: Pick<ExcerptSource, "branch" | "concept" | "slug">)
   return `excerpt:${e.branch}/${e.concept}/${e.slug}`;
 }
 
-export function advisorId(a: Pick<AdvisorSource, "rank">): string {
-  return `advisor:${a.rank}`;
+export function advisorId(a: Pick<AdvisorSource, "rank" | "key">): string {
+  return `advisor:${a.key ?? a.rank}`;
 }
 
 function nearest<T extends { id: string; bag: Set<string> }>(bag: Set<string>, pool: T[], k: number): string[] {
@@ -96,24 +122,48 @@ export function rankNormalized<T extends { id: string; raw: number }>(items: T[]
   return sorted.map((x, i) => ({ ...x, score: (sorted.length - i) / sorted.length }));
 }
 
+const advisorDocs = new WeakMap<AdvisorSource[], IndexedDoc[]>();
+
+function indexAdvisors(advisors: AdvisorSource[]): IndexedDoc[] {
+  const hit = advisorDocs.get(advisors);
+  if (hit) return hit;
+  const docs = advisors.map((a) => indexDoc({ id: advisorId(a), title: "", author: a.name, concept: a.field, body: a.text }));
+  advisorDocs.set(advisors, docs);
+  return docs;
+}
+
+function excerptDoc(e: ExcerptSource): IndexedDoc {
+  return indexDoc({ id: excerptId(e), title: e.talk?.title ?? e.title, author: "", concept: e.concept.replace(/-/g, " "), body: e.text });
+}
+
+const byScore = <T extends { id: string; score: number }>(a: T, b: T) => b.score - a.score || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+
 export function unify(opts: UnifyOptions): Hit[] {
-  const q = tokens(opts.query);
+  const q = queryTerms(opts.query);
   const types = new Set(opts.types?.length ? opts.types : HIT_TYPES);
   const topK = opts.topK ?? 30;
   const k = opts.linksPerHit ?? 3;
-  const excerpts = rankNormalized(
-    opts.excerpts.map((e) => ({ e, bag: tokens(`${e.title} ${e.text}`), id: excerptId(e), raw: e.score })),
-  );
+  const fragments = opts.excerpts
+    .filter((e) => !q.length || e.score > 0)
+    .map((e) => ({ e, id: excerptId(e), score: Math.round(e.score), bag: tokens(`${e.title} ${e.text}`) }))
+    .sort(byScore);
 
-  const advisors = rankNormalized(
-    opts.advisors
-      .map((a) => {
-        const bag = tokens(`${a.name} ${a.field} ${a.text}`);
-        const cov = coverage(q, bag);
-        return { a, bag, id: advisorId(a), raw: cov > 0 ? cov * 0.8 + Math.max(0, Math.min(1, a.score)) * 0.2 : 0 };
-      })
-      .filter((x) => x.raw > 0),
-  );
+  const talks = new Map<string, typeof fragments>();
+  for (const f of fragments) {
+    const key = f.e.talk?.id ? `talk:${f.e.talk.id}` : f.id;
+    const group = talks.get(key);
+    if (group) group.push(f);
+    else talks.set(key, [f]);
+  }
+  const excerpts = Array.from(talks.values()).map((group) => ({ ...group[0], group }));
+
+  const advisorIndex = indexAdvisors(opts.advisors);
+  const stats = opts.stats ?? statsOf([...advisorIndex, ...opts.excerpts.map(excerptDoc)]);
+  const advisorById = new Map(opts.advisors.map((a) => [advisorId(a), a]));
+  const advisors = rank(opts.query, advisorIndex, stats).map((s) => {
+    const a = advisorById.get(s.doc.id)!;
+    return { a, id: s.doc.id, score: s.score, bag: tokens(`${a.name} ${a.field} ${a.text}`) };
+  });
 
   const links = new Map<string, Set<string>>();
   const link = (from: string, to: string) => {
@@ -145,14 +195,16 @@ export function unify(opts: UnifyOptions): Hit[] {
     hits.push({
       id: x.id,
       type: "excerpt",
-      title: x.e.title || x.e.slug,
-      subtitle: `${x.e.branch.replace(/^\d+-/, "")} · ${x.e.concept}`,
+      title: x.e.talk?.title ?? x.e.title ?? x.e.slug,
+      subtitle: `${x.e.branch.replace(/^\d+-/, "")} · ${x.e.concept.replace(/-/g, " ")}`,
       text: x.e.text.slice(0, 400),
       score: x.score,
       branch: x.e.branch,
       year: x.e.year ?? null,
       url: `/excerpts/${x.e.concept}/${x.e.slug}`,
       links: Array.from(links.get(x.id) ?? []),
+      also: x.group.slice(1).map((f) => f.id),
+      fragments: x.group.slice(0, FRAGMENTS_PER_TALK).map((f) => ({ id: f.id, text: f.e.text.slice(0, 200), url: `/excerpts/${f.e.concept}/${f.e.slug}` })),
     });
   }
   for (const x of advisors) {
@@ -160,7 +212,7 @@ export function unify(opts: UnifyOptions): Hit[] {
       id: x.id,
       type: "advisor",
       title: x.a.name,
-      subtitle: x.a.field,
+      subtitle: x.a.order ? [x.a.field, UNTESTED_ORDERING].filter(Boolean).join(", ") : x.a.field,
       text: x.a.text.slice(0, 400),
       score: x.score,
       branch: x.a.field,
@@ -170,7 +222,7 @@ export function unify(opts: UnifyOptions): Hit[] {
     });
   }
   const works = new Map<string, { e: ExcerptSource; ids: string[]; score: number }>();
-  for (const x of excerpts) {
+  for (const x of fragments) {
     const key = `${x.e.branch}/${x.e.concept}`;
     const w = works.get(key);
     if (w) {
@@ -178,14 +230,16 @@ export function unify(opts: UnifyOptions): Hit[] {
       w.score = Math.max(w.score, x.score);
     } else works.set(key, { e: x.e, ids: [x.id], score: x.score });
   }
+  const wanted = new Set(q);
   for (const [key, w] of Array.from(works)) {
+    if (q.length && !terms(w.e.concept).some((t) => wanted.has(t))) continue;
     hits.push({
       id: `work:${key}`,
       type: "work",
-      title: w.e.concept,
+      title: w.e.concept.replace(/-/g, " "),
       subtitle: `${w.e.branch.replace(/^\d+-/, "")} · ${w.ids.length} excerpt${w.ids.length === 1 ? "" : "s"}`,
       text: "",
-      score: w.score * 0.95,
+      score: idiv(w.score * TOPIC_WEIGHT_NUM, TOPIC_WEIGHT_DEN),
       branch: w.e.branch,
       year: w.e.year ?? null,
       url: `/excerpts/${w.e.concept}`,
@@ -194,6 +248,6 @@ export function unify(opts: UnifyOptions): Hit[] {
   }
   return [...hits, ...(opts.extraHits ?? [])]
     .filter((h) => types.has(h.type))
-    .sort((a, b) => b.score - a.score || (a.id < b.id ? -1 : 1))
+    .sort(byScore)
     .slice(0, topK);
 }

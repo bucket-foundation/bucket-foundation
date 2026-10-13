@@ -1,6 +1,31 @@
 import { FSRS, type Card, type Rating } from "../../../src/lib/academy/fsrs";
+import { LIMITS } from "../../../src/lib/research-os/work-quiz/limits";
 
 export type { Card, Rating };
+
+import { createHash } from "node:crypto";
+
+export const LEGACY_DECKS: Record<string, string> = { biophysics: "05-biophysics" };
+
+export function deckOf(branch: string): string {
+  return LEGACY_DECKS[branch] ?? branch;
+}
+
+export function promptHash(prompt: string): string {
+  return createHash("sha1").update(prompt.trim()).digest("hex").slice(0, 10);
+}
+
+export function contentItemId(branch: string, atomId: string, prompt: string, answer?: string): string {
+  const hash = answer === undefined ? promptHash(prompt) : promptHash(`${prompt.trim()}\n${answer.trim()}`);
+  return `${deckOf(branch)}/${atomId}/${hash}`;
+}
+
+export function contentItemIds(rows: { branch: string; atomId: string; prompt: string; answer: string }[]): string[] {
+  const count = new Map<string, number>();
+  const key = (r: { branch: string; atomId: string; prompt: string }) => JSON.stringify([deckOf(r.branch), r.atomId, r.prompt.trim()]);
+  for (const r of rows) count.set(key(r), (count.get(key(r)) ?? 0) + 1);
+  return rows.map((r) => (count.get(key(r))! > 1 ? contentItemId(r.branch, r.atomId, r.prompt, r.answer) : contentItemId(r.branch, r.atomId, r.prompt)));
+}
 
 export const GRACE_MS = 1500;
 export const FAST_FRACTION = 0.4;
@@ -13,6 +38,8 @@ export interface Item {
   level: string;
   prompt: string;
   answer: string;
+  shortPrompt?: string;
+  shortAnswer?: string;
 }
 
 export interface Question {
@@ -21,6 +48,7 @@ export interface Question {
   choices: string[];
   answerIndex: number;
   limitSec: number;
+  long?: boolean;
 }
 
 export interface GradeResult {
@@ -54,9 +82,9 @@ export function limitFor(item: Pick<Item, "answer" | "prompt">): number {
   return Math.min(90, Math.max(20, Math.round(words * 0.6)));
 }
 
-export function buildQuestion(item: Item, pool: Item[], seed: string, choiceCount = 4): Question {
+export function buildQuestion(item: Item, pool: Item[], seed: string, choiceCount: number = LIMITS.choices): Question {
   const rand = seededRandom(seed + ":" + item.id);
-  const others = pool.filter((o) => o.id !== item.id && o.answer !== item.answer);
+  const others = pool.filter((o) => o.id !== item.id && o.atomId !== item.atomId && o.answer !== item.answer);
   const sameBranch = others.filter((o) => o.branch === item.branch);
   const source = sameBranch.length >= choiceCount - 1 ? sameBranch : others;
   const distractors: string[] = [];

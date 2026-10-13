@@ -7,7 +7,6 @@ import CircleChart, { type ChartSeries } from "./CircleChart";
 import Scrubber from "./Scrubber";
 import { useWheelStep } from "./useWheelStep";
 import type { SpaceViewId } from "./space-views";
-import { sampleDataset } from "@/lib/explore/space-sample";
 import { makeSlices, type Slice } from "@/lib/explore/slices";
 import { visibleAt } from "@/lib/explore/surface";
 import { clampIndex, describeItem, yearSteps } from "@/lib/explore/scrub";
@@ -21,7 +20,7 @@ const SliceStack = dynamic(() => import("./SliceStack"), { ssr: false, loading: 
 
 interface Props {
   view: SpaceViewId;
-  dataset?: Dataset;
+  dataset: Dataset;
   embedded?: boolean;
   index?: number;
   onIndex?(i: number): void;
@@ -64,7 +63,7 @@ function Components({ ds }: { ds: Dataset }) {
 
 export default function SpaceView({ view, dataset, embedded = false, index: controlled, onIndex, lowCoverage = 0.3, scrubberHost = null, chrome = "full", onEntity }: Props) {
   const place = (node: ReactNode) => (scrubberHost ? createPortal(node, scrubberHost) : node);
-  const ds = useMemo(() => dataset ?? sampleDataset(), [dataset]);
+  const ds = dataset;
   const [local, setLocal] = useState(0);
   const [activeSlice, setActiveSlice] = useState(0);
   const [opened, setOpened] = useState<number | null>(null);

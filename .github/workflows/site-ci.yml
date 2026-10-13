@@ -8,6 +8,8 @@ on:
       - "scripts/**"
       - "tools/evidence-search/**"
       - "learning/app/**"
+      - "reports/**"
+      - "learning/corpus/alignment/**"
       - "supabase/migrations/**"
       - "tests/**"
       - "package.json"
@@ -28,7 +30,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -46,6 +48,8 @@ jobs:
         run: python3 -m pip install --quiet numpy==2.5.1
       - name: unit tests
         run: npm test
+      - name: research report records
+        run: node scripts/report.mjs check
       - name: research os tests
         run: npm run test:research-os
       - name: build
@@ -203,6 +207,17 @@ jobs:
           done
       - name: e2e
         run: npx playwright test
+      - name: production gate server
+        run: |
+          pkill -f "next dev" || true
+          sleep 3
+          (VERCEL_ENV=production npx next dev -p 3100 > dev-production.log 2>&1 &)
+          for i in $(seq 1 90); do
+            if wget -q -O /dev/null http://localhost:3100/sign-in; then break; fi
+            sleep 2
+          done
+      - name: e2e under the production gate
+        run: E2E_SAMPLE_GATE=production npx playwright test tests/e2e/explore-production-gate.spec.ts
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

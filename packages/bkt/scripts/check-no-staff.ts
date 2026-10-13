@@ -1,8 +1,15 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
+import { buildResearchPack, loadReportLib, readRecords, type ReportLib, type ReportRecord } from "../src/pack/research";
+import { rowSetText } from "../src/pack/row-sets/contract";
+import { publicPackProblems, readRowSetPack } from "../src/pack/row-sets/index";
 
 const REPO = resolve(import.meta.dir, "../../..");
-const STAFF = ["solvability-atlas-data.json", "software-atlas-data.json", "patents-design-data.json"].map((f) => join(REPO, "src/lib/research-os", f));
+export const STAFF = ["solvability-atlas-data.json", "software-atlas-data.json", "patents-design-data.json", "solvability-similarity-data.json", "solvability-neighbors-data.json"].map((f) => join(REPO, "src/lib/research-os", f));
+export const ID_LIST_FILES = new Set(["solvability-similarity-data.json", "solvability-neighbors-data.json"]);
+export const ID_RUN = 6;
+export const MIN_MARKERS = 3;
+export const MIN_ID_MARKERS = 1;
 const CODE = [join(REPO, "src/components/research-os/views"), join(REPO, "src/components/ui"), join(REPO, "packages/bkt-ui/src")];
 
 function strings(v: unknown, out: string[]) {
@@ -17,25 +24,88 @@ function files(p: string): string[] {
   return readdirSync(p).flatMap((n) => files(join(p, n)));
 }
 
-export function staffMarkers(perFile = 12): string[] {
-  const code = CODE.flatMap(files)
-    .map((f) => readFileSync(f, "utf8"))
-    .join("\n");
+export function idListMarkers(ids: readonly string[], perFile: number, run = ID_RUN): string[] {
   const out: string[] = [];
-  for (const f of STAFF) {
-    const all: string[] = [];
-    strings(JSON.parse(readFileSync(f, "utf8")), all);
-    const picked = [...new Set(all)].filter((s) => s.length >= 25 && s.length <= 160 && s.includes(" ") && !code.includes(s)).slice(0, perFile);
-    if (picked.length < 3) throw new Error(`too few markers in ${f}`);
-    out.push(...picked);
-  }
+  for (let i = 0; i + run <= ids.length && out.length < perFile; i += Math.max(run, Math.floor(ids.length / perFile)))
+    out.push(ids.slice(i, i + run).map((id) => JSON.stringify(id)).join(","));
   return out;
+}
+
+export function markersOf(file: string, data: unknown, code: string, perFile: number): string[] {
+  const name = file.split(/[\\/]/).pop() as string;
+  if (ID_LIST_FILES.has(name)) {
+    const ids = (data as { ids?: unknown }).ids;
+    if (!Array.isArray(ids) || !ids.every((x) => typeof x === "string")) throw new Error(`${file} holds no ids array`);
+    const picked = idListMarkers(ids, perFile).filter((s) => !code.includes(s));
+    if (picked.length < MIN_ID_MARKERS) throw new Error(`too few markers in ${file}`);
+    return picked;
+  }
+  const all: string[] = [];
+  strings(data, all);
+  const picked = [...new Set(all)].filter((s) => s.length >= 25 && s.length <= 160 && s.includes(" ") && !code.includes(s)).slice(0, perFile);
+  if (picked.length < MIN_MARKERS) throw new Error(`too few markers in ${file}`);
+  return picked;
+}
+
+export function staffMarkers(perFile = 12, published = ""): string[] {
+  const code = [published, ...CODE.flatMap(files).map((f) => readFileSync(f, "utf8"))].join("\n");
+  return STAFF.flatMap((f) => markersOf(f, JSON.parse(readFileSync(f, "utf8")), code, perFile));
+}
+
+export const RESEARCH_MARKERS = 24;
+export const MIN_RESEARCH_MARKERS = 12;
+
+function markerSized(s: string): boolean {
+  return s.length >= 25 && s.length <= 160 && s.includes(" ");
+}
+
+export function researchCandidates(repo: string, records: ReportRecord[]): string[] {
+  const out: string[] = [];
+  for (const record of records) {
+    for (const table of record.tables ?? []) {
+      if (table.audience === "public" || table.format !== "tsv") continue;
+      const lines = readFileSync(join(repo, table.path), "utf8").split("\n");
+      const at = lines[0].split("\t").indexOf("statement");
+      if (at < 0) continue;
+      for (const line of lines.slice(1)) out.push((line.split("\t")[at] ?? "").trim());
+    }
+    for (const set of record.record_sets ?? []) {
+      if (set.audience === "public") continue;
+      for (const name of readdirSync(join(repo, set.dir)).sort()) {
+        if (!name.endsWith(".json")) continue;
+        const text = (JSON.parse(readFileSync(join(repo, set.dir, name), "utf8")) as { statement?: { text?: unknown } }).statement?.text;
+        if (typeof text === "string") out.push(...text.split(/(?<=[.!?])\s+/).map((sentence) => sentence.trim()));
+      }
+    }
+  }
+  return [...new Set(out)].filter(markerSized);
+}
+
+export function publicResearchText(repo: string, records: ReportRecord[], lib: ReportLib): string {
+  const pack = buildResearchPack(repo, records, { lib, env: {} });
+  return [JSON.stringify(pack.index), ...Object.values(pack.blobs.blobs).map((blob) => (blob.enc === "utf8" ? blob.data : ""))].join("\n");
+}
+
+export function researchMarkers(repo: string, published: string, records: ReportRecord[] = readRecords(repo), keep = RESEARCH_MARKERS): string[] {
+  const open = [published, ...CODE.flatMap(files).map((f) => readFileSync(f, "utf8"))].join("\n");
+  const free = researchCandidates(repo, records).filter((s) => !open.includes(s));
+  const step = Math.max(1, Math.floor(free.length / keep));
+  const picked = free.filter((_, i) => i % step === 0).slice(0, keep);
+  if (picked.length < MIN_RESEARCH_MARKERS) throw new Error(`too few research markers: ${picked.length}`);
+  return picked;
+}
+
+export function allMarkers(repo: string, lib: ReportLib): string[] {
+  const published = publicResearchText(repo, readRecords(repo), lib);
+  return [...staffMarkers(12, published), ...researchMarkers(repo, published)];
 }
 
 export function findStaff(targets: string[], markers = staffMarkers()): { file: string; marker: string }[] {
   const hits: { file: string; marker: string }[] = [];
   for (const file of targets.flatMap(files)) {
-    const body = readFileSync(file).toString("latin1");
+    const pack = readRowSetPack(file);
+    const expanded = pack ? Buffer.from(rowSetText(pack.sets.flatMap((set) => set.pages)), "utf8").toString("latin1") : "";
+    const body = `${readFileSync(file).toString("latin1")}\n${expanded}`;
     for (const m of markers) {
       const needle = Buffer.from(m, "utf8").toString("latin1");
       if (body.includes(needle) || body.includes(JSON.stringify(m).slice(1, -1))) hits.push({ file, marker: m.slice(0, 60) });
@@ -44,13 +114,38 @@ export function findStaff(targets: string[], markers = staffMarkers()): { file: 
   return hits;
 }
 
+export function findStaffRowSets(targets: string[]): { file: string; marker: string }[] {
+  return targets.flatMap(files).flatMap((file) => {
+    const pack = readRowSetPack(file);
+    return pack ? publicPackProblems(pack).map((marker) => ({ file, marker })) : [];
+  });
+}
+
+export const REVIEW_MARKERS: { name: string; re: RegExp }[] = [
+  { name: "an alignment review pack marked staff", re: /"?schema"?:"bucket\.alignment-review\/1","?staff"?:(?:true|!0)/ },
+  { name: "an alignment review corpus row", re: /"?table"?:"(?:courses|progression)","?level"?:[^{}]{0,400}"?decks"?:\[/ },
+  { name: "the alignment review output", re: /"?slug"?:"atom-alignment"/ },
+  { name: "an unreviewed alignment row", re: /"?status"?:\s?"unreviewed-proposal"/ },
+];
+
+export const REVIEW_PACK_ROWS = /"?schema"?:"bucket\.alignment-review\/1","?staff"?:[^,{}\[\]]{1,8},"?rows"?:\[\s*[^\]\s]/;
+
+export function reviewProblems(text: string): string[] {
+  const hits = REVIEW_MARKERS.filter((m) => m.re.test(text)).map((m) => m.name);
+  return REVIEW_PACK_ROWS.test(text) ? [...hits, "an alignment review pack that holds rows"] : hits;
+}
+
+export function findStaffReview(targets: string[]): { file: string; marker: string }[] {
+  return targets.flatMap(files).flatMap((file) => reviewProblems(readFileSync(file).toString("latin1")).map((marker) => ({ file, marker })));
+}
+
 if (import.meta.main) {
   const targets = process.argv.slice(2);
   if (!targets.length) {
     console.error("usage: bun packages/bkt/scripts/check-no-staff.ts <file or dir>...");
     process.exit(2);
   }
-  const hits = findStaff(targets);
+  const hits = [...findStaffReview(targets), ...findStaffRowSets(targets), ...findStaff(targets, allMarkers(REPO, await loadReportLib(REPO)))];
   if (hits.length) {
     for (const h of hits.slice(0, 10)) console.error(`staff data in ${h.file}: ${h.marker}`);
     process.exit(1);

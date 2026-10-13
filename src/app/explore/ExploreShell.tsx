@@ -16,9 +16,11 @@ import { SPACE_VIEWS, type SpaceViewId } from "@/components/explore/space-views"
 import { LOW_COVERAGE, loadReferenceBasis, projectText, type ReferenceBasis } from "@/lib/explore/reference";
 import { SPACE_SCHEMA, parseDataset, type Dataset, type SpaceObservation } from "@/lib/explore/space";
 import canonSpace from "@/data/explore/canon.space.json";
-import { dataParam, isRemote, listDatasets, validDatasetId, type DatasetEntry } from "@/lib/explore/datasets";
+import { SAMPLE_DATASET, dataParam, isRemote, listDatasets, validDatasetId, type DatasetEntry } from "@/lib/explore/datasets";
 import { ParseTokens, sizeError, type SpaceReply } from "@/lib/explore/genome/job";
 import { sampleDataset } from "@/lib/explore/space-sample";
+import { DrawerSave } from "@/components/explore/SaveCite";
+import { markerCiteFields } from "@/lib/explore/saved";
 
 type TimelineEvent = {
   id: string; title: string; lat: number; lng: number;
@@ -157,7 +159,7 @@ const DNA_UPLOAD: DatasetEntry = { id: "dna-upload", label: "DNA: your file…",
 
 const NORMAL_CLASS = "relative max-w-7xl mx-auto my-6 md:my-8 px-4 md:px-6 md:h-[calc(100vh-7rem)] md:max-h-[900px] md:pr-[440px] md:overflow-hidden md:flex md:flex-col rounded-lg border border-[color:var(--hairline)] bg-[color:var(--bone)]/70 shadow-[0_2px_24px_-6px_rgba(31,28,22,0.12)]";
 
-export default function ExploreShell({ workspaceLinks = false, initialView = "circle" }: { workspaceLinks?: boolean; initialView?: SpaceViewId }) {
+export default function ExploreShell({ workspaceLinks = false, initialView = "circle", samples = false, saveInPlace = false }: { workspaceLinks?: boolean; initialView?: SpaceViewId; samples?: boolean; saveInPlace?: boolean }) {
   const [selected, setSelected] = useState<CanonMarker | null>(null);
   const explorer = useExplorerState({ minYear: MIN_YEAR_BOUND, maxYear: new Date().getFullYear(), defaultYear: DEFAULT_YEAR, branches: EXPLORER_BRANCHES });
   const { sort, q, branch: branchFilter } = explorer.state;
@@ -250,8 +252,8 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const ordered = useMemo(() => sortResults(results, sort), [results, sort]);
   const canon = useMemo(() => parseDataset(canonSpace), []);
   const [remoteList, setRemoteList] = useState<{ id: string; label?: string }[]>([]);
-  const entries = useMemo<DatasetEntry[]>(() => listDatasets(remoteList, [DNA_SAMPLE, DNA_UPLOAD]), [remoteList]);
-  const persistable = useMemo<DatasetEntry[]>(() => listDatasets(remoteList, [DNA_SAMPLE]), [remoteList]);
+  const entries = useMemo<DatasetEntry[]>(() => listDatasets(remoteList, [DNA_SAMPLE, DNA_UPLOAD], samples), [remoteList, samples]);
+  const persistable = useMemo<DatasetEntry[]>(() => listDatasets(remoteList, [DNA_SAMPLE], samples), [remoteList, samples]);
   const [genomeSets, setGenomeSets] = useState<Record<string, Dataset>>({});
   const [genomeStatus, setGenomeStatus] = useState("Genome files are parsed in this browser and never uploaded.");
   const worker = useRef<Worker | null>(null);
@@ -260,22 +262,22 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const [dataId, setDataIdState] = useState("canon");
   const [remoteSets, setRemoteSets] = useState<Record<string, Dataset>>({});
   const [dataError, setDataError] = useState<string | null>(null);
-  const sample = useMemo(() => sampleDataset(), []);
+  const sample = useMemo(() => (samples ? sampleDataset() : null), [samples]);
   const dataFromUrl = useRef<string | null>(null);
 
   useEffect(() => {
     dataFromUrl.current = new URLSearchParams(window.location.search).get("data");
-    setDataIdState(dataParam(dataFromUrl.current, listDatasets([], [DNA_SAMPLE])));
+    setDataIdState(dataParam(dataFromUrl.current, listDatasets([], [DNA_SAMPLE], samples)));
     fetch("/api/explore/space")
       .then(async (r) => {
         if (!r.ok) return;
         const body = (await r.json()) as { datasets?: { id: string; label?: string }[] };
         const list = (body.datasets ?? []).filter((d) => validDatasetId(d.id));
         setRemoteList(list);
-        setDataIdState((cur) => (dataParam(dataFromUrl.current, listDatasets(list, [DNA_SAMPLE])) !== "canon" ? dataParam(dataFromUrl.current, listDatasets(list, [DNA_SAMPLE])) : cur));
+        setDataIdState((cur) => (dataParam(dataFromUrl.current, listDatasets(list, [DNA_SAMPLE], samples)) !== "canon" ? dataParam(dataFromUrl.current, listDatasets(list, [DNA_SAMPLE], samples)) : cur));
       })
       .catch(() => undefined);
-  }, []);
+  }, [samples]);
 
   useEffect(() => {
     if (!isRemote(dataId, entries) || remoteSets[dataId]) return;
@@ -351,7 +353,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
   const searching_ = basis !== null && ordered.length > 0;
   const dataset = useMemo<Dataset>(() => {
     if (searching_ && basis) return datasetFromResults(ordered, basis);
-    if (dataId === "sample") return sample;
+    if (dataId === SAMPLE_DATASET && sample) return sample;
     if (dataId.startsWith("dna-")) return genomeSets[dataId] ?? canon;
     return remoteSets[dataId] ?? canon;
   }, [searching_, basis, ordered, dataId, remoteSets, genomeSets, canon, sample]);
@@ -551,6 +553,7 @@ export default function ExploreShell({ workspaceLinks = false, initialView = "ci
         onClose={() => setSelected(null)}
         onSelectMarker={selectEntity}
         workspaceLinks={workspaceLinks}
+        saveInPlace={saveInPlace}
       />
     </div>
   );
@@ -562,6 +565,7 @@ function Drawer({
   datasetInfo,
   transparent = false,
   workspaceLinks = false,
+  saveInPlace = false,
   onClose,
   onSelectMarker,
 }: {
@@ -570,6 +574,7 @@ function Drawer({
   datasetInfo?: { label: string; count: number; license?: string };
   transparent?: boolean;
   workspaceLinks?: boolean;
+  saveInPlace?: boolean;
   onClose: () => void;
   onSelectMarker?: (id: string) => void;
 }) {
@@ -758,7 +763,13 @@ function Drawer({
               </p>
 
               <div className="flex flex-wrap gap-1.5">
-                {workspaceLinks && (
+                {saveInPlace ? (
+                  <DrawerSave
+                    key={selected.id}
+                    fields={markerCiteFields({ id: selected.id, title: search ? search.title : selected.title, year: selected.year ?? null, path: search ? `/excerpts/${search.concept}/${search.slug}` : pageUrl, excerpt: !!search })}
+                    className="small-caps text-[10px] tracking-[0.18em] bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] px-3 py-1.5 transition"
+                  />
+                ) : workspaceLinks && (
                   <Link
                     href={`/research-os/workspace?q=${encodeURIComponent(search ? search.title : selected.title)}`}
                     className="small-caps text-[10px] tracking-[0.18em] bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] px-3 py-1.5 transition"

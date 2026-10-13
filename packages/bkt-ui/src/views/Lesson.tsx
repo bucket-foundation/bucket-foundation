@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { InlineMath } from "@/components/math/InlineMath";
 
 const TOKEN = /(\*\*[^*]+\*\*|\*[^*\s][^*]*\*|`[^`]+`|\$[^$]+\$)/g;
 
@@ -7,7 +8,7 @@ export function inline(text: string): ReactNode[] {
     if (part.length > 4 && part.startsWith("**") && part.endsWith("**")) return <strong key={i}>{part.slice(2, -2)}</strong>;
     if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) return <em key={i}>{part.slice(1, -1)}</em>;
     if (part.length > 2 && part.startsWith("`") && part.endsWith("`")) return <code key={i}>{part.slice(1, -1)}</code>;
-    if (part.length > 2 && part.startsWith("$") && part.endsWith("$")) return <span key={i} className="math">{part.slice(1, -1)}</span>;
+    if (part.length > 2 && part.startsWith("$") && part.endsWith("$")) return <InlineMath key={i} text={part} />;
     return part;
   });
 }

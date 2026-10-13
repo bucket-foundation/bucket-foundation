@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { newDataKey } from "../src/crypto";
 import type { Item } from "../src/grade";
+import type { ShortFile } from "../src/short-fields";
+import { Encompassing, gradeQuiz } from "../src/core/learn";
 import { localRoutes } from "../src/local";
 import { startServe, type Serve } from "../src/serve";
 import { Store } from "../src/store";
@@ -16,6 +18,8 @@ const items: Item[] = ["a", "b", "c", "d", "e"].map((id) => ({
   prompt: `what is ${id}`,
   answer: `answer ${id}`,
 }));
+
+const shorts: ShortFile = { version: "t", items: Object.fromEntries(items.map((i) => [i.id, { short_stem: i.prompt, short_answer: i.answer, source: "rule" as const }])) };
 
 const content = {
   decks: [{ id: "phys", source: "phys", title: "Physics", atoms: 5 }],
@@ -40,7 +44,7 @@ beforeEach(async () => {
   store = new Store(":memory:", newDataKey());
   store.importPack("v1", items);
   const uid = 7;
-  s = startServe({ uid, resolvePeerUid: () => uid, now: () => clock, routes: localRoutes(store, { now: () => clock, seed: () => "seed", content }) });
+  s = startServe({ uid, resolvePeerUid: () => uid, now: () => clock, routes: localRoutes(store, { now: () => clock, seed: () => "seed", content, shorts }) });
   const nonce = (await (await req("/")).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
   const r = await req("/session", { method: "POST", body: { nonce }, headers: { origin: `http://127.0.0.1:${s.port}` } });
   auth = { authorization: `Bucket ${((await r.json()) as { token: string }).token}` };
@@ -74,6 +78,17 @@ describe("local routes", () => {
     expect(g.correct).toBe(true);
     expect(store.attempts()).toHaveLength(1);
     expect(store.card(q.itemId)!.due!).toBeGreaterThan(clock);
+  });
+
+  test("a graded answer names its lesson, and gives the full answer when the choice was a short form", async () => {
+    const r = (await (await req("/local/quiz?n=1", { headers: auth })).json()) as { questions: { itemId: string }[] };
+    const item = items.find((i) => i.id === r.questions[0].itemId)!;
+    const g = (await (await req("/local/quiz", { method: "POST", headers: auth, body: { itemId: item.id, choice: 0, elapsedMs: 900 } })).json()) as { explain: string | null; lesson: unknown };
+    expect(g.lesson).toEqual({ deck: "phys", atom: item.atomId, title: item.title });
+    expect(g.explain).toBeNull();
+    const short = { itemId: items[0].id, prompt: "a?", choices: ["short a", "short b"], answerIndex: 0, limitSec: 30 };
+    expect(gradeQuiz(store, new Encompassing(store, content), short, 1, 10, clock)).toMatchObject({ correct: false, answer: "short a", explain: "answer a", lesson: { deck: "phys", atom: "a", title: "a" } });
+    expect(gradeQuiz(store, new Encompassing(store), short, 0, 10, clock).lesson).toBeNull();
   });
 
   test("a question answers once", async () => {
@@ -216,7 +231,7 @@ describe("import round 2", () => {
     const nonce = (await (await req("/")).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
     const t = ((await (await req("/session", { method: "POST", body: { nonce }, headers: { origin: `http://127.0.0.1:${s.port}` } })).json()) as { token: string }).token;
     const h = { authorization: `Bucket ${t}` };
-    const big = { ...web(), stats: { xp: 1, streak: 0, lastStudyDay: null, history: Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`2026-1-${i}`, { new: 1, reviews: 1 }])) } };
+    const big = { ...web(), stats: { xp: 1, streak: 0, lastStudyDay: null, history: Object.fromEntries(Array.from({ length: 400 }, (_, i) => [`${2000 + i}-1-1`, { new: 1, reviews: 1 }])) } };
     expect(JSON.stringify(big).length).toBeGreaterThan(1024);
     expect((await req("/local/progress", { method: "POST", headers: h, body: { branch: "phys", data: big } })).status).toBe(413);
     expect((await req("/local/import", { method: "POST", headers: h, body: { branches: { phys: big } } })).status).toBe(200);

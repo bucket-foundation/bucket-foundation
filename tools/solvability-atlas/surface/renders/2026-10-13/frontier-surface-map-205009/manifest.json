@@ -1,0 +1,28 @@
+{
+ "schema": "bucket.solvability-atlas.surface/v1",
+ "render": "frontier-surface-map",
+ "function": "surface.render_surface_map",
+ "surface": {
+  "function": "surface.frontier_surface",
+  "params": {
+   "model": "graph",
+   "target": "log_years",
+   "cutoff": null,
+   "seed": 20261013,
+   "feature_set": "map",
+   "dims": 8
+  },
+  "fit": {
+   "ridge": 0.001,
+   "noise": 0.001
+  },
+  "trained_rows": 217
+ },
+ "inputs": [
+  "src/lib/research-os/solvability-neighbors-data.json",
+  "tools/solvability-atlas/problems.tsv",
+  "tools/solvability-atlas/problems-sourced.tsv"
+ ],
+ "commit": "1c416157d",
+ "command": "python3 surface.py --render frontier-surface-map --model graph"
+}

@@ -33,11 +33,10 @@ test.describe("download flow on linux", () => {
     await expect(button).toBeEnabled();
   });
 
-  test("the page body stays under 70 words and links the privacy page once", async ({ page }) => {
+  test("the demo keeps one signup form and one privacy link", async ({ page }) => {
     await page.goto("/download");
-    const text = await page.locator("main").innerText();
-    const words = text.split(/\s+/).filter(Boolean);
-    expect(words.length).toBeLessThan(70);
+    await expect(page.locator("[data-download-form]")).toHaveCount(1);
+    await expect(page.locator("[data-product-demo]")).toHaveCount(1);
     await expect(page.locator('main a[href="/privacy"]')).toHaveCount(1);
   });
 
@@ -50,6 +49,7 @@ test.describe("download flow on linux", () => {
     await page.goto("/download");
     await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
     await page.getByLabel("Name", { exact: true }).fill("Ada Lovelace");
+    await page.getByText("Research interests and email updates", { exact: true }).click();
     await page.getByLabel("What do you research?").fill("protein folding");
     await page.getByLabel("Release notes").check();
     await page.getByLabel("Agree to the privacy terms").check();
@@ -58,7 +58,9 @@ test.describe("download flow on linux", () => {
     const blocks = page.locator("[data-install-blocks] [data-os]");
     await expect(blocks.first()).toHaveAttribute("data-os", "linux");
     await expect(blocks.first()).toContainText("install.sh");
-    await expect(blocks.first().getByRole("note")).toHaveText("Open it from a terminal, never with Disks.");
+    await expect(blocks.first().locator("[data-primary-install]")).toContainText("install.sh");
+    await expect(blocks.first().locator('[role="note"]')).toHaveText("Open it from a terminal, never with Disks.");
+    await expect(blocks.first().locator('a[href$=".AppImage"]:visible')).toHaveCount(0);
     await expect(page.locator("[data-other-platforms]")).not.toHaveAttribute("open", "");
 
     expect(posts).toHaveLength(1);

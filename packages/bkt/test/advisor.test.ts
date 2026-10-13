@@ -82,6 +82,25 @@ describe("advisor review parsing", () => {
     expect(r.rows[0].fields.field).toBe("look at cells. Then at scale");
   });
 
+  test("an untested or withheld row needs no rank, and any rank, score or percentile it carries is dropped", () => {
+    const r = parseAdvisorReview({
+      schema: "bucket.advisor-review/1",
+      rows: [
+        { name: "Avery Stone", order_status: "untested", reasons: ["Shares a made-up topic."] },
+        { name: "Rowan Hale", order_status: "withheld", rank: 9, score: 0.8, percentile: 97 },
+        { name: "Kai Mercer", order_status: "tested", rank: 7, score: 0.5, percentile: 80 },
+        { name: "No Status", reasons: ["x"] },
+        { name: "Tested Without Rank", order_status: "tested" },
+      ],
+    });
+    expect(r.rows.map((x) => [x.name, x.rank, x.score, x.percentile])).toEqual([
+      ["Avery Stone", 1, 0, null],
+      ["Rowan Hale", 2, 0, null],
+      ["Kai Mercer", 7, 0.5, 80],
+    ]);
+    expect(r.rows[0].fields).toEqual({ order_status: "untested", reasons: ["Shares a made-up topic."] });
+  });
+
   test("rejects other files with a message", () => {
     expect(() => parseAdvisorReview({ rows: [] })).toThrow(ReviewFileError);
     expect(() => parseAdvisorReview({ schema: "bucket.advisor-review/1", rows: [] })).toThrow("no rows");

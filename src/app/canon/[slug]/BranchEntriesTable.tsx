@@ -93,7 +93,6 @@ export default function BranchEntriesTable({
               type="button"
               disabled
               className="small-caps text-[9px] tracking-[0.12em] text-[color:var(--parchment-dim)] border border-[color:var(--hairline)] px-2 py-1 cursor-not-allowed"
-              title="Story Protocol IP NFT minting — coming soon"
             >
               mint as IP NFT
             </button>

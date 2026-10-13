@@ -11,6 +11,14 @@ Versions <1.0.0 mean the protocol + UI are still actively mutating. `0.MAJOR.MIN
 
 ## [Unreleased]
 
+### 2026-10-01
+- The website now serves the desktop app download; sign-in is closed in production (#505, #512, #541).
+- Canon search with the globe, drawer and circle runs offline on a local pack of 364 of 599 excerpts (#530, #531); Path shows a grip sphere and topic graph (#548).
+- Plain words on every app screen, no file dialogs on the default screens (#523, #538, #544).
+- Quiz stems capped at 15 tokens, options at 5, with six short forms (#528, #556).
+- `bkt search`, `bkt canon show`, `bkt doctor` and TUI screens 1 to 5 (#537, #558); `bkt learn` and `bkt daily` in review (#554).
+- Lean specs for ranking, grading, scheduling and the payment split (#536, #545, #547, #550); data standard `bucket.data/1` draft (#551); What's New drafts for machine posts (#552).
+
 ### Changed
 - `bkt` names the key store entries of a new data folder with a random id, kept in `keyring-scope` and in `bkt.db`, so a second `BKT_HOME` gets its own keys and device. A 0.4.0 folder is left as it is: bkt reads its unscoped entries and never writes them. `bkt hai export` and `bkt analyze --json` print only the fields in their shapes.
 - `bkt whoami` and `bkt stats` print text rows unless `--json` is passed; `bkt init` keeps its JSON record.

@@ -317,9 +317,9 @@ github.com/bucket-foundation/bucket-foundation (public, MIT)</div>
 <div class="grid2">
 <div><h3>Reading order</h3>
 <ul class="check">
-<li><code>MANIFESTO.md</code>, voice + thesis</li>
-<li><code>PROTOCOL.md</code>, what Bucket builds</li>
-<li><code>GOVERNANCE.md</code>, COI disclosure (founder personal capacity)</li>
+<li><code>docs/foundation/MANIFESTO.md</code>, voice + thesis</li>
+<li><code>docs/foundation/PROTOCOL.md</code>, what Bucket builds</li>
+<li><code>docs/foundation/GOVERNANCE.md</code>, COI disclosure (founder personal capacity)</li>
 <li><code>grants-targets/INDEX.md</code>, portfolio strategy</li>
 <li><code>grants-targets/{{venture}}.md</code>, per-venture rationale</li>
 <li><code>grants-targets/drafts/*.md</code>, current drafts (Sloan/EF/Gitcoin)</li>

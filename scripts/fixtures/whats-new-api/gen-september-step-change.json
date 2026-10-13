@@ -1,0 +1,21 @@
+{
+  "id": "gen-september-step-change",
+  "kind": "generation",
+  "category": "generation",
+  "date": "2026-10-01",
+  "source": "own",
+  "machine_generated": true,
+  "title": "September step change",
+  "claim": "The September 2026 jump in formal-conjectures resolutions comes from new proofs and counterexamples, with corrected tags a minority.",
+  "tool": "solver-gap-engine rates.py",
+  "run_id": "fc-137aec5c-2026-10-01",
+  "state": "candidate",
+  "score": {
+    "value": 88,
+    "meaning": "of 159 retagged problems carry a formal-proof link; the other 71 are unclassified"
+  },
+  "evidence": [
+    "https://github.com/bucket-foundation/bucket-foundation/pull/519"
+  ],
+  "parent": "formal-conjectures-september-2026"
+}

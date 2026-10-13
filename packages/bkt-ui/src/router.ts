@@ -4,20 +4,71 @@ export type Route =
   | { name: "learn" }
   | { name: "deck"; deck: string; atom?: string }
   | { name: "path"; to?: string }
+  | { name: "words"; deck: string; lesson?: number }
+  | { name: "concepts"; page?: number }
+  | { name: "licence" }
   | { name: "quiz" }
+  | { name: "practice" }
   | { name: "review" }
   | { name: "import" }
+  | { name: "add" }
+  | { name: "settings" }
+  | { name: "library" }
   | { name: "advisors" }
   | { name: "primes" }
   | { name: "jobs" }
   | { name: "work" }
   | { name: "daily"; day: string }
-  | { name: "canon" }
+  | { name: "canon"; find?: string }
+  | { name: "search"; id?: number }
+  | { name: "explore"; data?: string; mode?: string; sel?: string }
   | { name: "atlases" }
   | { name: "notes" }
-  | { name: "history" };
+  | { name: "history" }
+  | { name: "data" }
+  | { name: "research"; slug?: string; tab?: ResearchTab; item?: string }
+  | { name: "workspace"; type?: WorkspaceType; item?: string }
+  | { name: "graph"; branch?: string }
+  | { name: "node"; slug: string }
+  | { name: "progress" }
+  | { name: "profile" };
 
-const SIMPLE = new Set(["quiz", "review", "import", "advisors", "primes", "jobs", "work", "canon", "atlases", "notes", "history"]);
+export const RESEARCH_TABS = ["report", "data", "figures", "paper", "records", "changes"] as const;
+export type ResearchTab = (typeof RESEARCH_TABS)[number];
+const RESEARCH_SLUG = /^[a-z0-9][a-z0-9-]{0,63}$/;
+const RESEARCH_ITEM = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
+
+export const WORKSPACE_TYPES = ["tables", "figures", "papers", "records", "graphs", "people", "decks", "maps"] as const;
+export type WorkspaceType = (typeof WORKSPACE_TYPES)[number];
+
+export const EXPLORE_MODE_IDS = ["globe", "helix", "dna", "atom", "particle", "molecule", "reaction", "protein", "graph", "timeline", "earth", "map"] as const;
+const EXPLORE_DATA = /^[a-z0-9][a-z0-9-]{0,63}$/;
+const EXPLORE_SEL = /^row:[a-z0-9-]{1,64}:[A-Za-z0-9._-]{1,160}$/;
+
+function parseExplore(parts: string[]): Route {
+  const [, data, mode, sel] = parts;
+  if (parts.length === 1) return { name: "explore" };
+  if (parts.length > 4 || !EXPLORE_DATA.test(data)) return { name: "explore" };
+  if (mode === undefined) return { name: "explore", data };
+  if (!EXPLORE_MODE_IDS.some((m) => m === mode)) return { name: "explore" };
+  if (sel === undefined) return { name: "explore", data, mode };
+  return EXPLORE_SEL.test(sel) ? { name: "explore", data, mode, sel } : { name: "explore" };
+}
+
+function parseResearch(parts: string[]): Route {
+  if (parts.length < 2 || parts.length > 4 || !RESEARCH_SLUG.test(parts[1])) return { name: "research" };
+  const tab = RESEARCH_TABS.find((t) => t === parts[2]);
+  if (parts.length === 2) return { name: "research", slug: parts[1], tab: "report" };
+  if (!tab) return { name: "research" };
+  if (parts.length === 3) return { name: "research", slug: parts[1], tab };
+  return RESEARCH_ITEM.test(parts[3]) ? { name: "research", slug: parts[1], tab, item: parts[3] } : { name: "research" };
+}
+
+const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
+const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+const LANGUAGE = /^[a-z]{2,3}$/;
+const PAGE = /^[1-9]\d{0,3}$/;
+const NODE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,200}$/;
 
 export function isDay(day: string | undefined): day is string {
   if (!day || !/^\d{4}-\d{2}-\d{2}$/.test(day)) return false;
@@ -33,22 +84,52 @@ export function parseHash(hash: string): Route {
     return { name: "learn" };
   }
   if (parts[0] === "learn" && parts[1]) return parts[2] ? { name: "deck", deck: parts[1], atom: parts[2] } : { name: "deck", deck: parts[1] };
+  if (parts[0] === "words" && parts[1] === "licence" && parts.length === 2) return { name: "licence" };
+  if (parts[0] === "words" && parts[1] === "concepts") return parts.length === 3 && PAGE.test(parts[2]) ? { name: "concepts", page: Number(parts[2]) } : { name: "concepts" };
+  if (parts[0] === "words" && parts[1] && LANGUAGE.test(parts[1])) return parts.length === 3 && PAGE.test(parts[2]) ? { name: "words", deck: parts[1], lesson: Number(parts[2]) } : { name: "words", deck: parts[1] };
   if (parts[0] === "path") return parts[1] ? { name: "path", to: parts[1] } : { name: "path" };
+  if (parts[0] === "quiz" && parts[1] === "practice" && parts.length === 2) return { name: "practice" };
   if (parts[0] === "work" && parts[1] === "daily" && parts.length === 3 && isDay(parts[2])) return { name: "daily", day: parts[2] };
+  if (parts[0] === "canon" && parts[1] === "find" && parts.length === 3 && parts[2].length <= 200) return { name: "canon", find: parts[2] };
+  if (parts[0] === "search") return parts.length === 2 && /^\d{1,9}$/.test(parts[1]) ? { name: "search", id: Number(parts[1]) } : { name: "search" };
+  if (parts[0] === "graph") return parts.length === 2 && BRANCH.test(parts[1]) ? { name: "graph", branch: parts[1] } : { name: "graph" };
+  if (parts[0] === "node" && parts.length === 2 && NODE.test(parts[1])) return { name: "node", slug: parts[1] };
+  if (parts[0] === "research") return parseResearch(parts);
+  if (parts[0] === "explore") return parseExplore(parts);
+  if (parts[0] === "workspace") {
+    if (parts.length === 3 && (parts[1] === "graphs" || parts[1] === "maps") && EXPLORE_DATA.test(parts[2])) return { name: "workspace", type: parts[1], item: parts[2] };
+    return { name: "workspace", type: (parts.length === 2 && WORKSPACE_TYPES.find((t) => t === parts[1])) || "tables" };
+  }
+  if (parts[0] === "setup") return { name: "settings" };
   if (SIMPLE.has(parts[0])) return { name: parts[0] } as Route;
   return { name: "learn" };
 }
 
 export function href(r: Route): string {
   if (r.name === "deck") return `#/learn/${encodeURIComponent(r.deck)}${r.atom ? `/${encodeURIComponent(r.atom)}` : ""}`;
+  if (r.name === "words") return `#/words/${r.deck}${r.lesson ? `/${r.lesson}` : ""}`;
+  if (r.name === "licence") return "#/words/licence";
+  if (r.name === "concepts") return r.page && r.page > 1 ? `#/words/concepts/${r.page}` : "#/words/concepts";
   if (r.name === "path") return r.to ? `#/path/${encodeURIComponent(r.to)}` : "#/path";
+  if (r.name === "practice") return "#/quiz/practice";
   if (r.name === "daily") return `#/work/daily/${r.day}`;
+  if (r.name === "canon") return r.find ? `#/canon/find/${encodeURIComponent(r.find)}` : "#/canon";
+  if (r.name === "search") return r.id === undefined ? "#/search" : `#/search/${r.id}`;
+  if (r.name === "graph") return r.branch ? `#/graph/${encodeURIComponent(r.branch)}` : "#/graph";
+  if (r.name === "research") return r.slug ? `#/research/${r.slug}/${r.tab ?? "report"}${r.item ? `/${encodeURIComponent(r.item)}` : ""}` : "#/research";
+  if (r.name === "explore") {
+    if (!r.data) return "#/explore";
+    if (!r.mode) return `#/explore/${r.data}`;
+    return `#/explore/${r.data}/${r.mode}${r.sel ? `/${encodeURIComponent(r.sel)}` : ""}`;
+  }
+  if (r.name === "workspace") return `#/workspace/${r.type ?? "tables"}${r.item && (r.type === "graphs" || r.type === "maps") ? `/${r.item}` : ""}`;
+  if (r.name === "node") return `#/node/${encodeURIComponent(r.slug)}`;
   return `#/${r.name}`;
 }
 
 export function firstRunHash(hash: string, decks: { introduced: number; xp: number }[]): string | null {
   if (hash.replace(/^#\/?/, "") !== "") return null;
-  return decks.every((d) => d.introduced === 0 && d.xp === 0) ? href({ name: "quiz" }) : null;
+  return decks.every((d) => d.introduced === 0 && d.xp === 0) ? href({ name: "practice" }) : null;
 }
 
 export function useRoute(): Route {
@@ -59,4 +140,25 @@ export function useRoute(): Route {
     return () => window.removeEventListener("hashchange", on);
   }, []);
   return route;
+}
+
+export async function followRoutes(
+  next: () => Promise<{ route: string | null; superseded: boolean }>,
+  go: (route: string) => void,
+  live: () => boolean,
+  wait: (ms: number) => Promise<unknown> = (ms) => new Promise((r) => setTimeout(r, ms)),
+): Promise<void> {
+  while (live()) {
+    let answer: { route: string | null; superseded: boolean };
+    try {
+      answer = await next();
+    } catch (e) {
+      const status = (e as { status?: number }).status;
+      if (status === 401 || status === 404) return;
+      await wait(5000);
+      continue;
+    }
+    if (answer.superseded) return;
+    if (answer.route !== null && live()) go(answer.route);
+  }
 }

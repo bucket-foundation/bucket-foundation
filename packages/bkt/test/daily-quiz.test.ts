@@ -5,14 +5,14 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { FERMI_LOG10_TOLERANCE } from "../../../src/lib/research-os/work-quiz/grade";
 import { newDataKey } from "../src/crypto";
-import { attemptId, DailyQuizError, DailyQuizStore, fermi, MAX_DAILY_QUESTIONS, parseDailyQuiz, validDay } from "../src/daily-quiz";
+import { attemptId, DAILY_MAX, DailyQuizError, DailyQuizStore, fermi, MAX_DAILY_QUESTIONS, parseDailyQuiz, validDay } from "../src/daily-quiz";
 import { startServe, type Serve } from "../src/serve";
 import { LOCAL_ONLY_TABLES, MIGRATIONS, SCHEMA_VERSION, Store, SYNC_TABLES } from "../src/store";
 import { WorkQuizStore, workQuizRoutes } from "../src/work-quiz";
 
 const DAY = "2026-09-30";
 const FERMI = { id: "f1", prompt: "How many lines did the canary transcript hold?", answer: 1000, explain: "About a thousand lines." };
-const CHOICE = { id: "c1", type: "recall", prompt: "Which branch takes desktop PRs?", choices: ["dev", "main"], answer: "dev", limitSec: 30, explain: "Desktop work targets dev." };
+const CHOICE = { id: "c1", type: "recall", prompt: "Which branch takes desktop PRs?", choices: ["dev", "main", "ops"], answer: "dev", limitSec: 30, explain: "Desktop work targets dev." };
 const quiz = () => ({ day: DAY, questions: [fermi(FERMI), CHOICE] });
 
 let dir: string;
@@ -44,12 +44,15 @@ describe("daily quiz parsing", () => {
     const bad = (questions: unknown, day: unknown = DAY) => () => parseDailyQuiz({ day, questions });
     expect(bad([CHOICE], "2026-02-30")).toThrow(DailyQuizError);
     expect(bad([])).toThrow("between 1 and");
-    expect(bad(Array.from({ length: MAX_DAILY_QUESTIONS + 1 }, (_, i) => ({ ...CHOICE, id: `c${i}` })))).toThrow("between 1 and");
+    expect(bad(Array.from({ length: DAILY_MAX + 1 }, (_, i) => ({ ...CHOICE, id: `c${i}` })))).toThrow("between 1 and 5");
+    expect(bad([{ ...CHOICE, choices: ["dev", "main"] }])).toThrow("needs exactly 3 choices");
+    expect(bad([{ ...CHOICE, choices: ["dev", "main", "ops", "hte"] }])).toThrow("needs exactly 3 choices");
+    expect(parseDailyQuiz({ day: DAY, questions: Array.from({ length: MAX_DAILY_QUESTIONS }, (_, i) => ({ ...CHOICE, id: `c${i}`, choices: ["dev", "main"] })) }, { limits: false }).questions).toHaveLength(MAX_DAILY_QUESTIONS);
     expect(bad([CHOICE, CHOICE])).toThrow("repeats a question id");
     expect(bad([{ ...CHOICE, id: "a/b" }])).toThrow("question id");
     expect(bad([{ ...CHOICE, type: "essay" }])).toThrow("unknown type");
-    expect(bad([{ ...CHOICE, answer: "ops" }])).toThrow("missing from its choices");
-    expect(bad([{ ...CHOICE, choices: ["dev", "dev"] }])).toThrow("repeats a choice");
+    expect(bad([{ ...CHOICE, answer: "prod" }])).toThrow("missing from its choices");
+    expect(bad([{ ...CHOICE, choices: ["dev", "dev", "ops"] }])).toThrow("repeats a choice");
     expect(bad([{ ...CHOICE, limitSec: 0 }])).toThrow("limit");
     expect(bad([{ ...CHOICE, prompt: "x".repeat(601) }])).toThrow("at most 600");
     expect(bad([{ ...CHOICE, choices: null, answer: "dev" }])).toThrow("numeric answer");
@@ -64,7 +67,20 @@ describe("daily quiz parsing", () => {
     const ref = { kind: "pr", ref: "1", label: "one", href: null };
     expect(bad([{ ...CHOICE, sources: Array.from({ length: 9 }, () => ref) }])).toThrow("at most 8 sources");
     expect(bad([{ ...CHOICE, sources: "pr 1" }])).toThrow("at most 8 sources");
-    expect(parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, explain: "x".repeat(600), sources: Array.from({ length: 8 }, () => ref) }] }).questions[0].sources).toHaveLength(8);
+    expect(parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, explain: "x".repeat(600), sources: Array.from({ length: 8 }, () => ref) }] }, { limits: false }).questions[0].sources).toHaveLength(8);
+  });
+
+  test("refuses a question over a length limit and names the limit", () => {
+    const bad = (over: Record<string, unknown>) => () => parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, ...over }] });
+    const ref = { kind: "pr", ref: "1", label: "one", href: null };
+    expect(bad({ prompt: "Which of the four long-lived branches in this repository takes the pull requests for the desktop app?" })).toThrow("the stem has 17 tokens, the limit is 15");
+    expect(bad({ prompt: "Which branch?", lines: ["one two three four five six seven", "eight nine ten eleven twelve thirteen fourteen"] })).toThrow("the stem has 16 tokens");
+    expect(bad({ choices: ["dev", "main", "the branch every pull request targets"] })).toThrow("an option has 6 tokens, the limit is 5");
+    expect(bad({ choices: ["dev", "hte/integration", "main"] })).toThrow("the options differ");
+    expect(bad({ explain: Array.from({ length: 21 }, (_, i) => `w${i}`).join(" ") })).toThrow("the why line has 21 tokens, the limit is 20");
+    expect(bad({ sources: [ref, ref] })).toThrow("2 sources, the limit is 1 link");
+    expect(() => fermi({ ...FERMI, prompt: Array.from({ length: 16 }, (_, i) => `w${i}`).join(" ") })).toThrow("the stem has 16 tokens");
+    expect(parseDailyQuiz({ day: DAY, questions: [{ ...CHOICE, choices: ["dev", "the branch that takes every desktop pull request today"] , answer: "dev" }] }, { limits: false }).questions).toHaveLength(1);
   });
 });
 
@@ -83,7 +99,7 @@ describe("schema 8", () => {
   }
 
   test("the version constant matches the migration list and daily_quiz stays local", () => {
-    expect(SCHEMA_VERSION).toBe(8);
+    expect(SCHEMA_VERSION).toBeGreaterThanOrEqual(9);
     expect(MIGRATIONS.length).toBe(SCHEMA_VERSION);
     expect(LOCAL_ONLY_TABLES).toContain("daily_quiz");
     expect((SYNC_TABLES as readonly string[]).includes("daily_quiz")).toBe(false);
@@ -94,7 +110,7 @@ describe("schema 8", () => {
     v7Fixture(path);
     const key = newDataKey();
     const s = new Store(path, key);
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(8);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     expect(s.db.query("select name from sqlite_master where name = 'daily_quiz'").get()).not.toBeNull();
     expect(s.db.query("select id, question_id, type, correct, rating, elapsed_ms, at, log10_distance from work_quiz_attempts order by at").all()).toEqual([
       { id: "a1", question_id: "estimate-beads-status-open", type: "estimate", correct: 1, rating: 4, elapsed_ms: 9000, at: 100, log10_distance: null },

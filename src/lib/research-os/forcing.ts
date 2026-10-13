@@ -1,8 +1,7 @@
-import type { GradeResult } from "./grounding";
-import type { Stage } from "./types";
+import { LEARNER_CONFIDENCE_VALUES, type GradeResult, type LearnerConfidence, type Stage } from "./types";
 
-export const LEARNER_CONFIDENCE_VALUES = ["not_sure", "a_little", "fairly", "certain"] as const;
-export type LearnerConfidence = (typeof LEARNER_CONFIDENCE_VALUES)[number];
+export { LEARNER_CONFIDENCE_VALUES };
+export type { LearnerConfidence };
 
 export function isValidLearnerConfidence(value: unknown): value is LearnerConfidence {
   return typeof value === "string" && (LEARNER_CONFIDENCE_VALUES as readonly string[]).includes(value);

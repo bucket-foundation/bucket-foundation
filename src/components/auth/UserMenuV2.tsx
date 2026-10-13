@@ -17,7 +17,7 @@ export default function UserMenuV2({ drawer = false, onNavigate, launchList = fa
   const signIn = useSignInHref(pathname === "/" ? "/research-os/home" : pathname);
 
   if (!user) {
-    const cta = closed ? "Download" : launchList ? "Notify me" : "Sign in";
+    const cta = launchList && !closed ? "Notify me" : "Sign in";
     const href = closed ? signIn : launchList ? "/sign-in" : signIn;
     if (drawer) {
       return (

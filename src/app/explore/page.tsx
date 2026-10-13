@@ -1,5 +1,7 @@
 import ExploreClient from "./ExploreClient";
 import ExploreShell from "./ExploreShell";
+import { samplesAllowed } from "@/lib/explore/sample-gate";
+import { signInClosed } from "@/lib/sign-in-gate";
 
 export const metadata = {
   title: "Explore · bucket.foundation",
@@ -7,6 +9,6 @@ export const metadata = {
 };
 
 export default function Page({ searchParams }: { searchParams: { view?: string; space?: string } }) {
-  if (searchParams.view === "circle" || searchParams.view === "slices" || searchParams.space) return <ExploreShell />;
+  if (searchParams.view === "circle" || searchParams.view === "slices" || searchParams.space) return <ExploreShell samples={samplesAllowed()} workspaceLinks={!signInClosed()} saveInPlace={signInClosed()} />;
   return <ExploreClient />;
 }

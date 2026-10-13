@@ -43,7 +43,7 @@ bun run build
 ./dist/bkt
 ```
 
-`bun run build` exports the content pack from `learning/app/corpus` into `content/pack.json` and compiles one binary to `dist/bkt`.
+`bun run build` exports the content pack from `learning/app/corpus` into `content/pack.json`, the word pack into `content/words.json`, and compiles one binary to `dist/bkt`.
 
 ## Commands
 
@@ -54,7 +54,11 @@ bkt stats --json
 bkt whoami --json
 ```
 
-`bkt --help`, `-h` and `help` print the command list; `bkt help <command>` and `bkt <command> --help` print one command's flags. The list comes from the table in `src/cli/table.ts`, which also drives parsing and the `:` palette. `whoami`, `init`, `stats`, `analyses`, `update` and `version` take `--json` and print one line shaped `{"v":1,...}` with keys, tokens and sealed content left out.
+`bkt --help`, `-h` and `help` print the command list; `bkt help <command>` and `bkt <command> --help` print one command's flags. The list comes from the table in `src/cli/table.ts`, which also drives parsing and the `:` palette. `whoami`, `init`, `stats`, `analyses`, `update` and `version` take `--json` and print one line shaped `{"v":1,...}` with keys, tokens and sealed content left out. `--json` is for scripts. Without it every command prints plain text: `init`, `whoami` and `stats` print labelled rows, `analyses` prints name and date with the folder behind `--where`, and `hai report` prints the probe results as sentences. `hai export` is the one data command and prints JSON for scripts.
+
+`bkt doctor` checks the data folder, key store, database, content pack, explore pack, word pack, window files, open window, analysis tools and terminal, one line each with the fix on a problem. It writes nothing, exits 1 when a check fails, and takes `--json`. `bkt completion bash`, `zsh` or `fish` prints a completion script generated from the same table; load it with `source <(bkt completion bash)`.
+
+`bkt learn due`, `learn path [deck]`, `learn quiz`, `learn review` and `daily [day]` share one core, `src/core/learn.ts`, with the window's routes. Word lessons: `learn path` also lists one deck per language chosen in Settings, `learn path German` lists that deck's lessons, and `learn quiz --deck German` asks the language questions on its words through `src/core/words.ts` and `src/words.ts`, the same code the window's Languages section calls. Every answered word gets a review card under its card key. The words come from `content/words.json`, built by `src/pack/words.ts` from `learning/app/polingual/subset.json`: every row with a word and a meaning, less the entries that only name a form of another word. A word is quiz-ready when the first clause of its meaning fits the option limit; the question shows the word and offers 3 meanings from words of the same language and part of speech. Only a word whose meaning is its concept sits in the by-concept view and beside another language. The exporter prints the counts. Each screen and command that shows a word prints the Wiktionary via Kaikki, CC-BY-SA credit, `bkt licences` prints the credit, Bucket's changes and the licence text from `licences/CC-BY-SA-3.0.txt`, and `NOTICE` carries the same note. The lessons have no audio. `learn quiz` and `learn review` open a screen; with `--json` they print the questions as one line and read one answer per line from standard input, such as `{"choice":0,"elapsedMs":900}` or `{"rating":3,"elapsedMs":900}`, and `daily --json` reads `{"response":"42","elapsedMs":900}`. Generated questions, such as the daily quiz, print only when they pass the length limits. Recall and cloze items from the content pack print as they are, with `long: true` in the JSON and a "long" marker in text, until the shortened corpus lands. Writes beside a running server: `bkt serve` and `bkt app` write `serve.json` into the data folder with their port and a token for the command line, and remove it on exit. While that file names a live process that answers, these commands send every read and write through the server and open neither `bkt.db` nor the key store. With no server they open `bkt.db` themselves in WAL mode with a five-second busy timeout and write directly.
 
 Exit codes: 0 ok, 1 failure, 2 usage, 3 no data, 130 cancelled. A usage error exits before bkt creates the data folder or calls the key store. `NO_COLOR` turns colour off. Without a terminal, or with `TERM=dumb`, the terminal app, `bkt hai` and `bkt analyze --tui` print usage and exit 2, and `bkt analyses` prints a plain list.
 
@@ -126,6 +130,16 @@ Every line a chat session yields passes `secret-scan.ts` before any other use. A
 
 `GET /local/work-quiz/daily` builds today's quiz on first open when a chat switch is on. Templates write the questions by default. When `bkt-llm-server` answers on `http://127.0.0.1:11435` (`BKT_LLM_URL`, `BKT_LLM_MODEL`), the local model writes recall questions from the stubs and templates fill the rest. The address must be `http` on `127.0.0.1` or `[::1]`, redirects are refused, the reply is scanned for secrets and validated, and any failure or a 30 second timeout falls back to templates. Transcript text can steer the model's wording, so a model-written question can mislead; template questions carry counts, days and tool names the code computed.
 
+## Quiz notification
+
+Linux only for now. `bkt quiz schedule` writes `bkt-quiz-notify.service` and `bkt-quiz-notify.timer` under `~/.config/systemd/user` and enables the timer: once a day at 08:53, or at `--at HH:MM`. When `BKT_HOME` is set at schedule time the service carries it. A unit file that differs from what `bkt` would write is left alone unless `--force` is given. `bkt quiz unschedule` removes both. On macOS and Windows the three `bkt quiz` commands print that they are Linux only and exit 2.
+
+`bkt quiz notify` is one shot. It opens no database and reads no file content: it reads the two switches from `quiz-roots.json` in the data folder, which `bkt serve` writes, and stats the chat roots that are on under the caps above. It stays silent, and prints one line with the reason, when both switches are off, when no session file changed in the last 24 hours, or when it already fired today (`--force` skips that check). The notification is a fixed line plus the count of changed session files; it promises a build on open, since the notifier cannot see the sealed quiz. It waits at most 10 minutes for a click, and the service times out at 15 minutes. A click on Open quiz runs `xdg-open bucket://quiz/<day>` when a handler for `bucket://` is registered, and `bkt app --route /work/daily/<day>` otherwise. When the build finds nothing to ask about, the quiz page says so.
+
+`quiz-roots.json` is plain and owned by the user. Another process running as the same user can flip the switches in it and cause a notification that carries a count; it gains no transcript text that way, and the sealed switches in `bkt.db` still decide what `bkt serve` reads.
+
+`bkt app --route <path>` opens the window on a view: `/work/daily/YYYY-MM-DD` with a valid date, or one of the named views such as `/work` and `/import`. The path reaches the window as the URL fragment. `bkt app` keeps one window per profile: with a window open, a second run opens nothing and prints that the window is open, and a `--route` reaches the open window through `GET /local/window/route`, which the page polls. With no Chromium-family browser the window is an untracked browser tab, and a second run prints the address and opens nothing. The window counts as open while the process in `window.json` beside `app.json`, or the one named by the browser's `SingletonLock` in the profile, runs with this profile's `--user-data-dir`. The server stops once the window process is gone and no job is running.
+
 ## Daily quiz
 
 `bkt serve` keeps each day's quiz sealed in the `daily_quiz` table of `bkt.db`, one row a day, at most 20 questions and 256 KB. The table is local and never syncs. `GET /local/work-quiz/daily?day=YYYY-MM-DD` returns the questions without answers; `POST /local/work-quiz/answer` with `day` grades one question once. A Fermi question is right when the answer sits within half an order of magnitude: `abs(log10(got / want))` at or under 0.5. The distance is stored beside the attempt in `log10_distance`; attempts from before schema 8 keep their grades and hold no distance. A zero or negative estimate is wrong. Forgetting the work quiz sources deletes the stored quizzes.
@@ -133,3 +147,7 @@ Every line a chat session yields passes `secret-scan.ts` before any other use. A
 ## History snapshot
 
 The window reads productions from a file the user saves on the web: sign in at bucket.foundation, open `/api/research-os/production`, save the JSON, then open it under History. `bkt serve` keeps the last snapshot sealed in `bkt.db` (at most 4 MB after cleaning, 5000 productions), so History stays readable while the web or its API is down. A new export replaces it; Remove snapshot deletes it.
+
+## Canon pack quotations
+
+The pack holds short quotations from third-party talks, abstracts and texts with a link to each source. Whether these ship in a release is a founder decision recorded on bead bkt-6wjd.

@@ -232,7 +232,7 @@ Is what makes a backlink from a serious source possible at all.
  mixing content retrieval with payment."* No ask, no metric, no
  endorsement language.
  - **x402 / feed402 / agentic-payments community**, it is the reference
- implementation of the agent-trust rule (`PROTOCOL.md §3.1`, feed402
+ implementation of the agent-trust rule (`docs/foundation/PROTOCOL.md §3.1`, feed402
  `SPEC.md §3.1`). Pitch is the spec linkage, factual.
  - **Open-science / scholarly-publishing critics**, the "fees to authors not
  publishers" framing, anchored by the candor of having published a refusal.
@@ -318,10 +318,10 @@ A raw query, and use precise, non-hype anchor text.
 
 | From → To | Link target | Anchor text (exact) | Notes |
 |---|---|---|---|
-| **gianyrox.com** (founder site) → bucket | `/manifesto` then `/protocol/agent-trust` | "bucket.foundation, the nonprofit research-canon protocol I maintain" | Founder/COI is already disclosed in `GOVERNANCE.md`; the link must mirror that disclosure. |
+| **gianyrox.com** (founder site) → bucket | `/manifesto` then `/protocol/agent-trust` | "bucket.foundation, the nonprofit research-canon protocol I maintain" | Founder/COI is already disclosed in `docs/foundation/GOVERNANCE.md`; the link must mirror that disclosure. |
 | **Book, *Your Money Is Broken*** (gianyrox.com book page / back-matter) → bucket | `/protocol` and `/cite-forever/v0.1` | "the x402 research-payment rail (open feed402 protocol)" | The book is about stablecoins/x402 on Base, feed402 is a concrete, application. Link the *protocol* until P0; the canon comes later. |
 | **x402-research-gateway** (`README`) → bucket | `/.well-known/feed402.json` and `/protocol` | "bucket.foundation, a live feed402 merchant built on this gateway" | This is the upstream this proxy calls server-side; the relationship is factual and reciprocal. |
-| **feed402 spec** (`SPEC.md`, `README`) → bucket | `/protocol/agent-trust` and `PROTOCOL.md §3.1` | "reference implementation of the agent-trust rule (SPEC.md §3.1)" | Already cross-referenced in `PROTOCOL.md`/`AGENT-TRUST.md`; make it bidirectional. |
+| **feed402 spec** (`SPEC.md`, `README`) → bucket | `/protocol/agent-trust` and `docs/foundation/PROTOCOL.md §3.1` | "reference implementation of the agent-trust rule (SPEC.md §3.1)" | Already cross-referenced in `docs/foundation/PROTOCOL.md`/`AGENT-TRUST.md`; make it bidirectional. |
 | **canon-figures pages** (`/contributors`, `/canon/.../figures/*`) → §6 provenance page | `/canon` provenance/epistemics page (§6) | "How a figure enters the canon, sourcing & epistemics" | canon-figures honors *build history*; the link makes the curation criteria legible. |
 | **MANIFESTO** (`/manifesto`) → §6 + §3 | §6 provenance page; `/protocol/agent-trust` | "what counts as a foundation, and how the canon is sourced" / "the refusal that became the spec" | The manifesto asserts "foundations only / Kruse is one partial source"; §6 is where that assertion is operationalised. |
 | **bucket → out** (reciprocal, in `llms.txt` "Source" + footers) | feed402, x402-research-gateway, gianyrox.com | existing factual anchors (already present in `llms.txt`) | Keep reciprocal so the graph is corroborating rather than circular-looking. |
@@ -367,7 +367,7 @@ Kruse-as-one-partial-source bead and the `MANIFESTO §4` / `CLAUDE.md` thesis.)
  such, no conflation.
 - **How a claim is sourced**: provenance chain (fetched → reviewed → tiered),
  the `canon_tier` ladder (`draft` / `candidate` / `canon`) from
- `PROTOCOL.md §4.3`, and that **auto-transcript-derived material is
+ `docs/foundation/PROTOCOL.md §4.3`, and that **auto-transcript-derived material is
  `candidate` at most, labelled one-partial-source, and is never a flagship
  answer or citation**. This sentence is the public commitment that P0 must
  make true before this page can ship.

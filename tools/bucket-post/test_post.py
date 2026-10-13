@@ -8,7 +8,8 @@ class PostTest(unittest.TestCase):
         self.root = pathlib.Path(tempfile.mkdtemp())
         (self.root / "data").mkdir()
         (self.root / "data" / "whats-new.json").write_text(json.dumps({"version": 1, "entries": [{"id": "old", "date": "2026-01-01"}]}))
-        (self.root / "HISTORY.md").write_text("# History\n\ntext\n\n---\n\n## Recovery metadata\n\n- x\n")
+        (self.root / "docs" / "foundation").mkdir(parents=True)
+        (self.root / "docs" / "foundation" / "HISTORY.md").write_text("# History\n\ntext\n\n---\n\n## Recovery metadata\n\n- x\n")
 
     def args(self, argv):
         import argparse
@@ -29,7 +30,7 @@ class PostTest(unittest.TestCase):
     def test_history_adds_section_once_before_recovery_metadata(self):
         post.history(self.args({"title": "One", "summary": "a"}), self.root)
         post.history(self.args({"title": "Two", "summary": "b"}), self.root)
-        t = (self.root / "HISTORY.md").read_text()
+        t = (self.root / "docs" / "foundation" / "HISTORY.md").read_text()
         self.assertEqual(t.count(post.HISTORY_HEAD), 1)
         self.assertLess(t.index("One"), t.index("Two"))
         self.assertLess(t.index("Two"), t.index("## Recovery metadata"))

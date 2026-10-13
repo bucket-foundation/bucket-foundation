@@ -1,0 +1,103 @@
+.page { background: #eeeadf; color: #1f1c16; padding: 40px 28px 56px; }
+.layout { max-width: 1480px; margin: auto; display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; align-items: start; }
+.intro { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 24px; }
+.intro h1 { font-family: var(--font-display), Georgia, serif; font-size: clamp(36px, 4vw, 60px); line-height: 1.05; margin: 10px 0; letter-spacing: -.04em; }
+.intro p { font-size: 15px; color: #625c50; max-width: 440px; }
+.eyebrow { display: block; font: 10px/1.5 system-ui, sans-serif; letter-spacing: .15em; text-transform: uppercase; color: #655b48; }
+.modes { display: flex; gap: 4px; background: #ded8c9; padding: 4px; border-radius: 5px; flex-shrink: 0; }
+.modes button { padding: 9px 13px; font: 12px system-ui, sans-serif; white-space: nowrap; }
+.modes button[aria-pressed=true] { background: #faf7ef; box-shadow: 0 1px 3px #1f1c1620; }
+.downloadPane { position: sticky; top: 90px; border-top: 3px solid #b8861e; background: #e5dfcf; padding: 24px; max-height: calc(100dvh - 110px); overflow-y: auto; scrollbar-width: thin; }
+.downloadPane h2 { font: 30px/1.08 Georgia, serif; letter-spacing: -.025em; margin: 10px 0; }
+.downloadPane > p { font-size: 13px; line-height: 1.5; color: #655b48; }
+.workspace { border: 1px solid #d0c7b5; background: #faf7ef; box-shadow: 0 10px 40px #4935150a; border-radius: 7px; overflow: hidden; }
+.workspaceBar { display: flex; justify-content: space-between; padding: 13px 20px; gap: 12px; border-bottom: 1px solid #dcd5c7; font: 11px system-ui, sans-serif; color: #6b6150; }
+.workspaceBar span { display: flex; align-items: center; gap: 7px; }
+.workspaceBar i { width: 6px; height: 6px; background: #46715e; border-radius: 50%; }
+.workspaceBar button { text-decoration: underline; text-underline-offset: 3px; }
+.workspaceBody { display: grid; grid-template-columns: 120px minmax(0,1fr); min-height: 570px; }
+.toolNav { border-right: 1px solid #dcd5c7; padding: 14px 8px; background: #f2eee4; display: flex; flex-direction: column; gap: 3px; }
+.toolNav button { text-align: left; padding: 10px 12px; font: 12px system-ui, sans-serif; border-radius: 3px; }
+.toolNav button[aria-pressed=true] { background: #315e50; color: #fffdf7; }
+.toolContent { padding: 26px 32px; min-width: 0; }
+.toolHeading { display: flex; gap: 14px; align-items: center; margin-bottom: 20px; }
+.toolHeading p { color: #847663; font: 11px system-ui, sans-serif; }
+.toolContent h2 { font: 30px/1.12 Georgia, serif; letter-spacing: -.02em; max-width: 480px; margin: 0 0 24px; }
+.toolContent h3 { font: 21px/1.25 Georgia, serif; margin: 8px 0; }
+.coinRow { display: flex; justify-content: center; gap: 25px; align-items: center; text-align: center; }
+.coin { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; border: 1px solid #ac7920; background: #cfaa55; box-shadow: inset 0 0 0 4px #ead394; font: 24px Georgia, serif; }
+.coinTail { background: #315e50; color: #fff7df; border-color: #224b3e; box-shadow: inset 0 0 0 4px #557d65; }
+.coinRow strong { font: 40px/1.1 Georgia, serif; font-variant-numeric: tabular-nums; }
+.coinRow small { font-size: 16px; }
+.coinRow p { font-size: 11px; color: #655b48; margin-top: 5px; }
+.plot { width: 100%; max-height: 240px; margin: 10px auto 0; }
+.plot text { font: 11px system-ui, sans-serif; fill: #766956; }
+.sliderLabel { display: flex; flex-wrap: wrap; justify-content: space-between; font: 12px system-ui, sans-serif; gap: 10px; }
+.sliderLabel input { width: 100%; accent-color: #315e50; cursor: pointer; }
+.formula { text-align: center; font: italic 17px Georgia, serif; margin: 18px 0 8px; }
+.small, .workspaceFoot { font: 11px/1.6 system-ui, sans-serif; color: #726650; margin: 14px 0; }
+.small a, .sourceActions a { text-decoration: underline; text-underline-offset: 3px; }
+.workspaceFoot { border-top: 1px solid #dcd5c7; margin: 0; padding: 12px 20px; }
+.primary { background: #315e50; color: #fffdf7; padding: 12px 18px; margin-top: 14px; font: 12px system-ui, sans-serif; border-radius: 3px; }
+.textButton { font: 12px system-ui, sans-serif; text-decoration: underline; text-underline-offset: 4px; margin-top: 24px; }
+.paper { border: 1px solid #ded5c4; padding: 20px; background: #fffcf5; border-radius: 3px; }
+.paper p { font-size: 14px; line-height: 1.6; color: #655b48; }
+.path { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin-bottom: 20px; }
+.path button { text-align: left; border: 1px solid #d0c7b5; padding: 16px; font-size: 14px; }
+.path button[aria-pressed=true] { border-color: #315e50; background: #e7ece3; }
+.path span { display: block; font: 10px system-ui, sans-serif; color: #827253; margin-bottom: 10px; }
+.answers { display: flex; flex-direction: column; gap: 10px; }
+.answers button { text-align: left; border: 1px solid #d0c7b5; padding: 18px; font-size: 15px; display: flex; justify-content: space-between; gap: 12px; }
+.answers button[aria-pressed=true] { background: #e7ece3; border-color: #315e50; }
+.feedback { font-size: 14px; line-height: 1.6; background: #e7ece3; padding: 16px; margin-top: 16px; }
+.field { display: flex; flex-direction: column; gap: 8px; font: 12px system-ui, sans-serif; }
+.field input, .field textarea { padding: 12px; width: 100%; border: 1px solid #d0c7b5; background: #fffdf8; color: #1f1c16; }
+.field textarea { font: 13px/1.6 ui-monospace, monospace; resize: vertical; }
+.fileInput { margin-top: 22px; }
+.sources { display: grid; gap: 14px; margin-top: 20px; }
+.sourceActions { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; margin-top: 16px; font: 11px system-ui, sans-serif; }
+.sourceActions button { border-bottom: 1px solid #b8861e; padding: 6px 0; }
+.sourceActions button:disabled { opacity: .65; }
+.history { list-style: none; padding: 0; }
+.history li { padding: 18px 0; border-bottom: 1px solid #ded5c4; font-size: 14px; display: flex; gap: 14px; }
+.history span { color: #9b813e; }
+.metrics { display: flex; gap: 35px; margin-bottom: 20px; }
+.metrics strong { display: block; font: 32px Georgia, serif; }
+.metrics span { font: 11px system-ui, sans-serif; color: #726650; }
+.tableWrap { overflow-x: auto; }
+.tableWrap table { width: 100%; font: 12px/1.6 system-ui, sans-serif; text-align: left; }
+.tableWrap caption { text-align: left; font-size: 11px; color: #726650; margin-bottom: 12px; }
+.tableWrap th, .tableWrap td { padding: 8px; border-bottom: 1px solid #ded5c4; }
+.notice { font: 11px/1.5 system-ui, sans-serif; color: #315e50; margin-top: 12px; }
+.watch { background: #1f261f; color: #fff9e7; border-radius: 7px; overflow: hidden; }
+.watch video { width: 100%; aspect-ratio: 16/9; background: #1f261f; }
+.watchText { padding: 25px; }
+.watchText h2 { font: 27px Georgia, serif; margin-bottom: 12px; }
+.watchText p { font-size: 14px; color: #d1c9b5; line-height: 1.6; }
+.watchText a { text-decoration: underline; text-underline-offset: 3px; }
+.page button:focus-visible, .page input:focus-visible, .page textarea:focus-visible, .page select:focus-visible, .page a:focus-visible, .page summary:focus-visible { outline: 2px solid #9f7118; outline-offset: 3px; }
+@media (max-width: 1100px) { .layout { grid-template-columns: minmax(0,1fr) 300px; gap: 20px; } .toolContent { padding: 24px 20px; } .intro { display: block; } .modes { width: fit-content; margin-top: 18px; } .downloadPane { padding: 20px; } }
+@media (max-width: 760px) {
+  .page { padding: 0; }
+  .layout { height: calc(100dvh - 69px); min-height: 260px; display: flex; flex-direction: column; gap: 0; }
+  .demoPane { width: 100%; flex: 1 1 55%; min-height: 100px; overflow-y: auto; padding: 20px 16px; }
+  .intro { margin-bottom: 16px; }
+  .intro h1 { font-size: 36px; }
+  .intro p { font-size: 13px; }
+  .downloadPane { position: static; flex: 0 1 45%; width: 100%; min-height: 140px; max-height: 45%; padding: 16px; border-top-width: 2px; overscroll-behavior: contain; }
+  .downloadPane h2 { font-size: 24px; margin: 0 0 8px; }
+  .downloadPane > .eyebrow, .downloadPane > p { display: none; }
+  .workspaceBody { display: block; min-height: 450px; }
+  .toolNav { display: flex; flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid #dcd5c7; padding: 8px; }
+  .toolNav button { flex-shrink: 0; }
+  .toolContent { padding: 22px 16px; }
+  .toolContent h2 { font-size: 26px; }
+  .toolHeading { display: block; }
+  .toolHeading p { margin-top: 4px; }
+  .workspaceBar { padding: 12px; }
+  .coinRow { gap: 12px; }
+  .coin { flex-shrink: 0; width: 36px; height: 36px; font-size: 19px; }
+  .coinRow strong { font-size: 32px; }
+  .coinRow p { max-width: 120px; }
+  .formula { font-size: 14px; }
+}
