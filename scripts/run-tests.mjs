@@ -63,6 +63,7 @@ const SUITES = {
       "scripts/test-whats-new-images.ts",
       "scripts/test-release-signing.mjs",
       "scripts/test-solver-gap-backtest-numbers.mjs",
+      "scripts/test-provenance-packet.ts",
     ],
     commands: [
       ["python3", "-m", "unittest", "_intake/solver-gap-engine/tests/test_watch.py"],
@@ -159,8 +160,12 @@ function orphanCheck(tests, suites) {
   return problems;
 }
 
+const ESM_TS = new Set(["scripts/test-provenance-packet.ts"]);
+const TSX = "tsx@4.21.0";
+
 function stepFor(file) {
   if (file.endsWith(".mjs")) return { argv: [process.execPath, "--test", file], env: {} };
+  if (ESM_TS.has(file)) return { argv: ["npx", "--yes", TSX, "--test", file], env: {} };
   return {
     argv: [
       process.execPath,
