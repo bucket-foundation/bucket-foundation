@@ -112,7 +112,7 @@ export default function Page({ params }: { params: { concept: string; slug: stri
         </dl>
 
         {evidence && evidence.evidence.length > 0 && (
-          <section className="mt-16">
+          <section id="evidence" className="mt-16">
             <h2
               className="mb-4 text-xs uppercase tracking-[0.22em]"
               style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}

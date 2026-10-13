@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Box, Text, useApp, useInput } from "ink";
+import { mathToText } from "../../../src/lib/research-os/work-quiz/math";
 import { answerQuiz, answerReview, pickSession, quizQuestions } from "./deck";
 import { selfRating, type GradeResult, type Item, type Question } from "./grade";
 import { statRows } from "./cli/out";
@@ -168,14 +169,14 @@ function Quiz({ session, onDone, keys }: { session: Session; onDone: () => void;
         {idx + 1}/{questions.length} score {score} {last ? "" : `${remaining}s`}
       </Text>
       <Box marginY={1}>
-        <Text bold>{q.prompt}</Text>
+        <Text bold>{mathToText(q.prompt)}</Text>
       </Box>
       {q.choices.map((c, i) => {
         const mark = last ? (i === q.answerIndex ? "green" : undefined) : i === cursor ? "cyan" : undefined;
         return (
           <Text key={i} color={mark}>
             {i === cursor && !last ? "> " : "  "}
-            {i + 1}. {c}
+            {i + 1}. {mathToText(c)}
           </Text>
         );
       })}
@@ -223,7 +224,7 @@ function Review({ session, onDone, keys }: { session: Session; onDone: () => voi
         {idx + 1}/{items.length} {item.title}
       </Text>
       <Box marginY={1}>
-        <Text bold>{item.prompt}</Text>
+        <Text bold>{mathToText(item.prompt)}</Text>
       </Box>
       {shown ? (
         <Box flexDirection="column">

@@ -3,6 +3,7 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { RELEASE_PUBKEY, verifySshSig } from "../src/sshsig";
+import { parseStamp } from "../src/version";
 import { assetName, checkUpdate, describeUpdate, newer, parseManifest } from "../src/update";
 
 let dir: string;
@@ -96,5 +97,21 @@ describe("update check", () => {
     expect(newer("0.10.0", "0.9.9")).toBe(true);
     expect(newer("0.4.0", "0.4.0")).toBe(false);
     expect(() => parseManifest("version=1\n")).toThrow("malformed");
+  });
+
+  test("a 0.5.0 build with a stamp equals the 0.5.0 tag and is older than 0.5.1", async () => {
+    const stamp = parseStamp("e61d7174b 2026-10-08");
+    expect(stamp).toEqual({ commit: "e61d7174b", date: "2026-10-08" });
+    const at = (tag: string) => {
+      const m = manifest(tag);
+      const base = BASE.replace("bkt-v0.4.0", `bkt-v${tag}`);
+      const files: Record<string, string> = { [API]: JSON.stringify([{ tag_name: `bkt-v${tag}`, draft: false, prerelease: false }]), [`${base}.manifest`]: m, [`${base}.manifest.sig`]: sign(m) };
+      const f = (async (url: string) => new Response(files[String(url)] ?? "missing", { status: files[String(url)] === undefined ? 404 : 200 })) as unknown as typeof fetch;
+      return checkUpdate({ fetch: f, now: () => 1_000, current: "0.5.0", asset: "bkt-linux-x64", pubkey: pub });
+    };
+    expect(await at("0.5.0")).toEqual({ status: "current", version: "0.5.0" });
+    expect(await at("0.4.0")).toEqual({ status: "current", version: "0.5.0" });
+    expect(await at("0.5.1")).toMatchObject({ status: "available", version: "0.5.1", tag: "bkt-v0.5.1" });
+    expect([newer("0.5.0", "0.5.0"), newer("0.5.1", "0.5.0"), newer("0.5.0", "0.5.1"), newer("0.10.0", "0.5.0")]).toEqual([false, true, false, true]);
   });
 });

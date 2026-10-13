@@ -118,9 +118,9 @@ export default function Page() {
               The canon holds only foundations: axioms, real math, laws,
               principles, primary derivations. Submit your work through Research
               OS. A reviewer signs off, the work becomes a canon entry with a
-              canonical URL, and every paid citation routes a fee to{" "}
-              <em>you</em>, the author, over x402 on Base. Reading stays free;
-              paid re-publication pays.
+              canonical URL. The license routes the fee on every paid citation to{" "}
+              <em>you</em>, the author, over x402 on Base. That rail is specified
+              and does not settle yet. Reading stays free.
             </p>
             <div className="mt-4 flex flex-wrap gap-4">
               <Link

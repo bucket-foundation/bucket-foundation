@@ -36,7 +36,7 @@ learning/
 ## Hard rule
 No vk.com / PDF Drive / shadow libraries. Corpus = open access (arXiv, PMC, LibreTexts,
 OpenStax, MIT OCW, NCBI Bookshelf, Gutenberg, Wikisource) + Bucket's own x402 gateway +
-any PDF the user **legally owns** (Pro import). Consistent with GOVERNANCE.md.
+any PDF the user **legally owns** (Pro import). Consistent with docs/foundation/GOVERNANCE.md.
 
 ## Deep research
 Cross-pillar research replicating Apple / Duolingo / Whop UX case studies. Read order:

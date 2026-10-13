@@ -53,13 +53,13 @@ Deferred until the 501(c)(3) letter: Azure $2,000 a year, Google for Nonprofits,
 
 ## Application Answers
 
-Repo facts cited: `CLAUDE.md` (photon index: 6,564,942 vectors, 35 languages, LaBSE-768 plus 64-d phonetic, HNSW, local `bucket-pgvector`), `LICENSE` (MIT), `PROTOCOL.md` (CC0-in-intent spec), `GOVERNANCE.md` (COI disclosure, founder custody), `nonprofit-application/00-BASE-INFO-MEMO.md` (legal status), `openalex/` (about 1 GB of OpenAlex author records on disk today). The 1.4M researcher count and the 100 GB to several TB range come from the founder's brief and are `[UNVERIFIED]` in the repo.
+Repo facts cited: `CLAUDE.md` (photon index: 6,564,942 vectors, 35 languages, LaBSE-768 plus 64-d phonetic, HNSW, local `bucket-pgvector`), `LICENSE` (MIT), `docs/foundation/PROTOCOL.md` (CC0-in-intent spec), `docs/foundation/GOVERNANCE.md` (COI disclosure, founder custody), `nonprofit-application/00-BASE-INFO-MEMO.md` (legal status), `openalex/` (about 1 GB of OpenAlex author records on disk today). The 1.4M researcher count and the 100 GB to several TB range come from the founder's brief and are `[UNVERIFIED]` in the repo.
 
 ### 1. Hugging Face Datasets
 
 Contact: datasets@huggingface.co, org at https://huggingface.co/organizations/new
 
-**Project.** Bucket is an open research atlas. It joins OpenAlex, ORCID, PubMed and DBLP into one researcher graph, about 1.4M researchers today `[UNVERIFIED]`, headed for tens of millions. The code is MIT (`LICENSE`); the protocol spec is CC0 in intent (`PROTOCOL.md`).
+**Project.** Bucket is an open research atlas. It joins OpenAlex, ORCID, PubMed and DBLP into one researcher graph, about 1.4M researchers today `[UNVERIFIED]`, headed for tens of millions. The code is MIT (`LICENSE`); the protocol spec is CC0 in intent (`docs/foundation/PROTOCOL.md`).
 
 **Data.** Parquet shards, under 200 GB per file and under 10k files per folder, with a dataset card. Second dataset: 6,564,942 multilingual word vectors across 35 languages, LaBSE-768 plus a 64-d phonetic vector (`CLAUDE.md`, photon index).
 
@@ -97,7 +97,7 @@ Apply: https://application.opendata.aws/ (review cycle starting October 2026)
 
 **License.** CC0 for Bucket-authored columns; source licenses carried per column.
 
-**Users.** Bibliometrics researchers, funders mapping fields, and AI agents that query the Bucket canon over the feed402 interface (`PROTOCOL.md`).
+**Users.** Bibliometrics researchers, funders mapping fields, and AI agents that query the Bucket canon over the feed402 interface (`docs/foundation/PROTOCOL.md`).
 
 **Maintainer.** Gianangelo Dichio, individual; Bucket Foundation pending 501(c)(3) (`nonprofit-application/00-BASE-INFO-MEMO.md`).
 
@@ -105,13 +105,13 @@ Apply: https://application.opendata.aws/ (review cycle starting October 2026)
 
 Apply: https://www.cloudflare.com/lp/project-alexandria/
 
-**Project.** bucket.foundation, MIT-licensed (`LICENSE`), run with no equity and no investors (`GOVERNANCE.md`).
+**Project.** bucket.foundation, MIT-licensed (`LICENSE`), run with no equity and no investors (`docs/foundation/GOVERNANCE.md`).
 
 **Need.** R2 for public atlas shards and the site's static canon, with zero egress so readers and agents can pull parquet without a bill landing on the project.
 
 **Usage estimate.** 200 GB to 2 TB stored, 1 to 10 TB egress a month `[UNVERIFIED]`, Workers for the feed402 discovery endpoint.
 
-**Non-profit basis.** Bucket routes citation fees to authors over x402 (`PROTOCOL.md`); it takes no investment. 501(c)(3) packet drafted in `nonprofit-application/`.
+**Non-profit basis.** Bucket routes citation fees to authors over x402 (`docs/foundation/PROTOCOL.md`); it takes no investment. 501(c)(3) packet drafted in `nonprofit-application/`.
 
 ### 5. Zenodo
 

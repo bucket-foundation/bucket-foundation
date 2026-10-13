@@ -38,6 +38,6 @@ Inherited from `bucket-canon/README.md` and `_intake/2026-05-19-canon-intake/RUB
 
 The record reports a theoretical and observational mechanism of skill and attention under partial automation, and clears the outcome and application exclusion at E7 on that basis: it states no intervention effect size.
 
-**PROTOCOL.md §4.1 envelope field mapping.** Same citation-only mapping as `07-mind/memory-systems/CANON_INDEX.md` and `07-mind/curiosity-and-motivation/CANON_INDEX.md` document; `foundation_branches` = `["07-mind"]`, `provenance_signoff` carried alongside as the pending-approval marker this pass adds.
+**docs/foundation/PROTOCOL.md §4.1 envelope field mapping.** Same citation-only mapping as `07-mind/memory-systems/CANON_INDEX.md` and `07-mind/curiosity-and-motivation/CANON_INDEX.md` document; `foundation_branches` = `["07-mind"]`, `provenance_signoff` carried alongside as the pending-approval marker this pass adds.
 
 _last updated: 2026-09-10 by canon-pipeline (intake/ros-canon-promotion-2)_

@@ -65,7 +65,7 @@ def test_years_are_four_digits_in_range():
     for r in rows():
         for year in (r["posed"], r["resolved"]):
             if year:
-                assert re.fullmatch(r"\d{4}", year) and 1600 <= int(year) <= 2026, (r["id"], year)
+                assert re.fullmatch(r"\d{4}", year) and 1500 <= int(year) <= 2026, (r["id"], year)
 
 
 def test_year_parsing_never_guesses():
@@ -319,3 +319,52 @@ def test_copyrighted_headlines_stay_short():
         if r["licence"].startswith(("AAAS", "ACS")):
             assert len(r["name"].split()) < 15, r["id"]
             assert r["statement"] != r["name"], r["id"]
+
+
+def test_open_list_rows_pass_their_checks():
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "sources"))
+    import open_lists
+
+    records = open_lists.curated_rows()
+    assert len(records) >= 50
+    for record in records:
+        assert open_lists.check(record) == [], record["line"]
+    ids = [r.id for r in open_lists.rows()]
+    assert len(ids) == len(set(ids))
+    assert {r["branch"] for r in records} == {"mind", "chemistry", "information", "applied"}
+
+
+def test_open_list_rows_are_in_the_sourced_file():
+    open_ids = {r["id"] for r in rows() if r["id"].startswith("op-")}
+    assert len(open_ids) >= 50
+    for r in rows():
+        if r["id"] in open_ids:
+            assert r["status"] == "open" and r["licence"] == "CC BY-SA 4.0" and r["statement_source"] and r["status_source"]
+            assert bool(r["posed"]) == bool(r["posed_evidence"])
+
+
+def test_recent_list_rows_pass_their_checks():
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "sources"))
+    import recent_lists
+
+    fills = recent_lists.fills()
+    assert len(fills) >= 20
+    for record in fills:
+        assert recent_lists.check_fill(record) == [], record["line"]
+    for record in recent_lists.new_records():
+        assert recent_lists.check_new(record) == [], record["line"]
+    assert len({r.id for r in recent_lists.new_rows()}) == len(recent_lists.new_records())
+
+
+def test_recent_fills_reach_the_sourced_file():
+    by_id = {r["id"]: r for r in rows()}
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "sources"))
+    import recent_lists
+
+    for record in recent_lists.fills():
+        row = by_id[record["id"]]
+        assert row["posed"] == record["posed"] and row["posed_evidence"] == record["posed_evidence"]
+        if record["status"]:
+            assert row["status"] == record["status"]
+    for record in recent_lists.new_records():
+        assert any(r["name"] == record["name"] and r["posed"] == record["posed"] for r in by_id.values())

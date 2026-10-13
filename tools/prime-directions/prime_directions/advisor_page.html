@@ -317,8 +317,9 @@ const SORTS = {
   saved: (a, b) => ({shortlist: 0, maybe: 1, none: 2, skip: 3}[statusOf(a)] - {shortlist: 0, maybe: 1, none: 2, skip: 3}[statusOf(b)]) || a.rank - b.rank,
 };
 OURS.forEach((l, k) => { SORTS["ours" + k] = (a, b) => ((b.star_ours || [])[k] ?? -1) - ((a.star_ours || [])[k] ?? -1) || a.rank - b.rank; });
+SORTS.complement = (a, b) => (b.complement ?? -1) - (a.complement ?? -1) || a.rank - b.rank;
 AXES.forEach((l, k) => { SORTS["prime" + k] = (a, b) => ((b.star_prime || [])[k] ?? -1) - ((a.star_prime || [])[k] ?? -1) || a.rank - b.rank; });
-const sortOpts = [["rank", "Sort: best match"], ["h", "Sort: h-index"], ["funded", "Sort: active grant first"], ["saved", "Sort: my decisions"], ["institution", "Sort: institution"], ["country", "Sort: country"], ["field", "Sort: field"], ["name", "Sort: name"]]
+const sortOpts = [["rank", "Sort: best match"], ["complement", "Sort: most complement"], ["h", "Sort: h-index"], ["funded", "Sort: active grant first"], ["saved", "Sort: my decisions"], ["institution", "Sort: institution"], ["country", "Sort: country"], ["field", "Sort: field"], ["name", "Sort: name"]]
   .concat(OURS.map((l, k) => ["ours" + k, "Sort: closest to " + l]))
   .concat(AXES.map((l, k) => ["prime" + k, "Sort: highest on " + l]));
 for (const [v, t] of sortOpts) $("sort").append(make("option", {value: v, text: t}));
@@ -486,6 +487,7 @@ function panel(r) {
     dl.append(make("dt", {text: k}), dd);
   };
   add("Rank", "#" + r.rank + ", top " + fmt(Math.max(100 - r.percentile, 0.1), 1) + "%", () => setSort("rank"), "Sort by best match");
+  add("Complement", r.complement == null ? "" : fmt(r.complement * 100, 0) + (r.complement_directions && r.complement_directions.length ? " on " + r.complement_directions.join(", ") : ""), () => setSort("complement"), "Sort by most complement");
   add("Field", r.field, () => applyFilter("field", r.field), "Show everyone in " + r.field);
   add("Funding", r.funding, () => applyFilter("funding", r.funding), "Show everyone with " + r.funding);
   add("h-index", r.h_index, () => setSort("h"), "Sort by h-index");
@@ -736,11 +738,12 @@ function knowledgeChart(r) {
   g.setAttribute("aria-label", "Knowledge chart for " + r.name);
   return g;
 }
-const SORT_DIR = {rank: "ascending", score: "ascending", name: "ascending", institution: "ascending", country: "ascending", field: "ascending", h: "descending", funded: "descending", saved: "ascending"};
+const SORT_DIR = {rank: "ascending", score: "ascending", name: "ascending", institution: "ascending", country: "ascending", field: "ascending", h: "descending", funded: "descending", complement: "descending", saved: "ascending"};
 const COLS = [
   ["rank", "#", (r) => r.rank, "num"], ["name", "Name", (r) => r.name], ["institution", "Institution", (r) => r.institution || ""],
   ["country", "Country", (r) => r.country || ""], ["field", "Field", (r) => r.field || ""], ["h", "h", (r) => r.h_index ?? "", "num"],
-  ["score", "Score", (r) => fmt(r.score, 3), "num"], ["rank", "Top %", (r) => fmt(Math.max(100 - r.percentile, 0.1), 1), "num"],
+  ["score", "Fit", (r) => fmt(r.score, 3), "num"], ["rank", "Top %", (r) => fmt(Math.max(100 - r.percentile, 0.1), 1), "num"],
+  ["complement", "Complement", (r) => r.complement == null ? "" : fmt(r.complement * 100, 0), "num"],
   ["funded", "Funding", (r) => r.funding || ""], ["saved", "Decision", (r) => ({shortlist: "shortlist", maybe: "saved", skip: "skip", none: ""})[statusOf(r)]],
   ["", "Shared topic", (r) => ((r.shared_topics || [])[0] || "")],
 ];
@@ -788,7 +791,8 @@ function card(r, tag = "li") {
   const topics = (r.shared_topics && r.shared_topics.length ? r.shared_topics : (r.shared_terms || "").split(" ").filter(Boolean)).slice(0, 2);
   if (topics.length) c.append(make("ul", {class: "chips", "aria-label": "Topics shared with the statement"}, topics.map((t) => make("li", {text: t}))));
   const tags = make("div", {class: "tags"});
-  tags.append(make("span", {text: "score " + fmt(r.score, 3)}));
+  tags.append(make("span", {text: "fit " + fmt(r.score, 3)}));
+  if (r.complement != null) tags.append(make("span", {title: (r.complement_directions || []).join(", "), text: "complement " + fmt(r.complement * 100, 0)}));
   if (r.field) tags.append(make("span", {text: r.field}));
   if (r.funding) tags.append(make("span", {text: r.funding}));
   if (r.h_index !== "" && r.h_index != null) tags.append(make("span", {text: "h " + r.h_index}));

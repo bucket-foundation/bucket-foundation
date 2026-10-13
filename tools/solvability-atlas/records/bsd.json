@@ -494,8 +494,8 @@
  "repo_mentions": [],
  "formal": {
   "status": "statement",
-  "source": null,
-  "url": null
+  "source": "google-deepmind formal-conjectures, Millennium/BSD.lean, weak_birch_swinnerton_dyer_conjecture",
+  "url": "https://github.com/google-deepmind/formal-conjectures/blob/d838afa7a62f66dc034c96fb011c10b9bde3f44c/FormalConjectures/Millennium/BSD.lean"
  },
  "sources": [
   {
@@ -523,5 +523,32 @@
  "quality": {
   "status": "full",
   "reason": "18 relevant works of 25 considered, 615 works with the phrase"
- }
+ },
+ "claims": [
+  {
+   "family": "002",
+   "family_title": "The full BSD formula from low Selmer corank",
+   "claimant": "OpenAI, unreleased internal model",
+   "date": "2026-10-06",
+   "source_url": "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/CONTENTS.md",
+   "manuscripts": [
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/Exact-Birch-Swinnerton-Dyer-Formula-from-Low-Selmer-Corank-October-7-2026/exact-bsd-low-selmer-corank.pdf",
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/The-Selmer-converse-for-elliptic-curves-at-every-prime-October-7-2026/main.pdf",
+    "https://github.com/openai/math/blob/fd4aeeb2ee4fc729c18d98444fed42fd0529eeeb/preprints/The-two-primary-Birch-Swinnerton-Dyer-formula-in-Selmer-corank-at-most-one-October-6-2026/paper.pdf"
+   ],
+   "statement": "Proves the full Birch–Swinnerton-Dyer leading-term formula for every elliptic curve over ℚ whose full q-power Selmer group has corank zero or one for some prime q, including finiteness of the Tate–Shafarevich group. With result 006, this gives full BSD for a density-one set of quadratic twists of every elliptic curve over ℚ.",
+   "match": "special_case",
+   "match_note": "Full formula for curves whose Selmer group has corank zero or one at some prime. The conjecture in general stays open.",
+   "formal": {
+    "exists": false,
+    "scope": "none",
+    "statement": null,
+    "url": null,
+    "note": ""
+   },
+   "confirmation": null,
+   "withdrawn": null,
+   "batch": "openai-math-2026-10"
+  }
+ ]
 }

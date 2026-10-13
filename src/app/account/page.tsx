@@ -41,7 +41,7 @@ export default async function AccountPage() {
             {identity?.wallet ? (
               <span className="font-mono text-[13px]">{identity.wallet}</span>
             ) : (
-              <>None linked. A wallet is linked from the canon publish flow when you first sign a citation payout.</>
+              <>None linked. Wallet linking arrives with citation payouts, which are planned work.</>
             )}
           </div>
         </div>

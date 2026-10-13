@@ -59,8 +59,8 @@ describe("app record", () => {
   });
 
   test("runtime dir on Linux stays off the temp filesystem when XDG_RUNTIME_DIR is unset", () => {
-    expect(runtimeDir({ TMPDIR: "/tmp" }, "linux", "/home/u")).toBe("/home/u/.cache/bkt/run");
-    expect(runtimeDir({ XDG_CACHE_HOME: "/c", TMPDIR: "/tmp" }, "linux", "/home/u")).toBe("/c/bkt/run");
+    expect(runtimeDir({ TMPDIR: "/tmp" }, "linux", "/h/u")).toBe("/h/u/.cache/bkt/run");
+    expect(runtimeDir({ XDG_CACHE_HOME: "/c", TMPDIR: "/tmp" }, "linux", "/h/u")).toBe("/c/bkt/run");
     expect(runtimeDir({ TMPDIR: "/t" }, "darwin", "/Users/u")).toStartWith("/t/bucket-");
   });
 });

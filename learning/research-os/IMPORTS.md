@@ -121,7 +121,7 @@ This is the rule the code can check. An import's `source.license` is currently w
 
 **What a citation over x402 may carry.** `src/lib/feed402-client.ts:22` defines `CitationSource` with `source_id`, `provider`, `retrieved_at`, an optional `license` at `:27` and an optional `canonical_url` at `:28`. Those four fields are exactly the pointer-shaped citation an unlicensed import can produce. The envelope's optional `snippet` is the field that must stay empty for an import at unknown licence.
 
-`PROTOCOL.md` §4.2 requires `sha256` on a sidecar and says it "must match the hash of `paper.<ext>`", and §4.1's schema carries `source.url` and `source.license`. An import that records its bytes' hash is already sidecar-shaped. What `PROTOCOL.md` does not do is say what happens when the bytes are not Bucket's to redistribute: §4.3 grades a record by `canon_tier` and states the tiers are "advisory", and the word licence appears three times in the document, twice as a field value. The protocol has no rights model. That gap is the founder's, and it is question 1 below.
+`docs/foundation/PROTOCOL.md` §4.2 requires `sha256` on a sidecar and says it "must match the hash of `paper.<ext>`", and §4.1's schema carries `source.url` and `source.license`. An import that records its bytes' hash is already sidecar-shaped. What `docs/foundation/PROTOCOL.md` does not do is say what happens when the bytes are not Bucket's to redistribute: §4.3 grades a record by `canon_tier` and states the tiers are "advisory", and the word licence appears three times in the document, twice as a field value. The protocol has no rights model. That gap is the founder's, and it is question 1 below.
 
 ## Identity
 
@@ -195,7 +195,7 @@ Silence is the wrong default here for the same reason `hasUnverifiedSource` at `
 | # | Question | Why it is yours |
 |---|---|---|
 | 1 | May Bucket store a full fetched copy of a source it holds no licence to, or only an excerpt and a hash? The code stores 6,000 characters today and nobody decided that number. | It sets Bucket's exposure and it is a legal posture, which a memo cannot pick. |
-| 2 | What may a citation over x402 carry from an unlicensed import? This memo proposes the pointer, the metadata and the hash, with `snippet` empty. A stricter answer is that an unlicensed import produces no priced citation at all. | `PROTOCOL.md` has no rights model, and the answer changes what the protocol promises a buyer. |
+| 2 | What may a citation over x402 carry from an unlicensed import? This memo proposes the pointer, the metadata and the hash, with `snippet` empty. A stricter answer is that an unlicensed import produces no priced citation at all. | `docs/foundation/PROTOCOL.md` has no rights model, and the answer changes what the protocol promises a buyer. |
 | 3 | Should Bucket push an imported URL to a public web archive at import time, so a later reader can reach the state that was read? It makes citations durable and it republishes someone else's page. | It is a redistribution decision with a running cost. |
 | 4 | Does a citation to an import pay anyone? The cite-forever rail routes a fee to an author. The author of an imported paper has no wallet in Bucket and did not consent. | Paying out on work Bucket holds no rights to is a governance decision, and the schema follows whatever you decide. |
 | 5 | May a learner import from a source that forbids it in its terms of use, and does Bucket check? This memo says Bucket does not adjudicate a learner's own reading, and says nothing about terms of use. | It is the line between a tool and a publisher. |
@@ -210,7 +210,7 @@ Silence is the wrong default here for the same reason `hasUnverifiedSource` at `
 - Council of Science Editors. CSE Citation Quick Guide, csemanual.org/Tools/CSE-Citation-Quick-Guide.html, reflecting *The CSE Manual: Scientific Style and Format for Authors, Editors, and Publishers*, 9th edition. Quoted from the free quick guide; the Manual itself is paywalled and was not read. The 9th edition supersedes the 8th.
 - Crossref. Content negotiation, crossref.org/documentation/retrieve-metadata/content-negotiation/. The supported types and the doi.org redirect behaviour.
 - DataCite. DataCite Content Resolver, support.datacite.org/docs/datacite-content-resolver. The ten supported types and the `data.crosscite.org` host.
-- `PROTOCOL.md` in this repository, sections 4.1, 4.2 and 4.3.
+- `docs/foundation/PROTOCOL.md` in this repository, sections 4.1, 4.2 and 4.3.
 - `src/lib/research-os/quote-receipt.ts` and `supabase/migrations/20260921030000_research_os_quote_receipts.sql` on branch `feat/ros-ai-receipts`, PR #196, read at `09324bac3`. Both are unmerged at `083ead80b` and every claim about them is marked as being from that branch.
 
 **Unverified.** Crossref's polite-pool and User-Agent etiquette was not found on either the content-negotiation page or the REST API tips page during this work, so no claim about it appears above. The maximum redirect depth of five and the per-origin re-fetch rate are this memo's proposals and rest on no external standard.

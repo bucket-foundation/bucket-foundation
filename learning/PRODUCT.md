@@ -1,5 +1,7 @@
 # Bucket Learning, Product Design
 
+> Superseded 2026-06-14: Story Protocol minting and on-chain royalties were withdrawn (`learning/EPIC.md`). Story references below are historical.
+
 **Bead:** bkt-xo0 · **Working name:** *Bucket Academy* (codename **Polymath**) · 2026-06-11
 
 A learning product built on Bucket's canon corpus. Personal study tool first (Gian's
@@ -126,7 +128,7 @@ screenshot-it-and-share viral loop Duolingo never fully exploited.
 
 > Nonprofit framing: foundations are free forever. Paid tiers sell **AI horsepower,
 > personalization, and exam tooling**, sitting above access to knowledge, consistent with
-> GOVERNANCE.md.
+> docs/foundation/GOVERNANCE.md.
 
 ---
 

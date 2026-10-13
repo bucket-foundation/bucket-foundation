@@ -221,6 +221,19 @@ export function backtestCutoff(data: NeighborData, cutoff: number, opts: Options
       };
     })
     .sort((a, b) => a.id.localeCompare(b.id));
+  return scoreRows({ cutoff, solvedAtCutoff: solved.size, threshold, thresholdBounded: solvedReach.filter((r) => r.bounded).length }, rows, { permutations, seed, floor: opts.floor });
+}
+
+interface Scored {
+  cutoff: number;
+  solvedAtCutoff: number;
+  threshold: number;
+  thresholdBounded: number;
+}
+
+export function scoreRows(head: Scored, rows: BacktestRow[], opts: { permutations: number; seed: number; floor?: number }): CutoffBacktest {
+  const { permutations, seed } = opts;
+  const { cutoff } = head;
   const sampled = rows.filter((r) => r.sampled && r.decided);
   const undecided = rows.filter((r) => r.sampled && !r.decided);
   const dated = sampled.filter((r) => !r.undatedSolved);
@@ -252,9 +265,9 @@ export function backtestCutoff(data: NeighborData, cutoff: number, opts: Options
   });
   return {
     cutoff,
-    solvedAtCutoff: solved.size,
-    threshold: round3(threshold),
-    thresholdBounded: solvedReach.filter((r) => r.bounded).length,
+    solvedAtCutoff: head.solvedAtCutoff,
+    threshold: round3(head.threshold),
+    thresholdBounded: head.thresholdBounded,
     tested: rows.length,
     unsampled: rows.filter((r) => !r.sampled).length,
     reachBounded: rows.filter((r) => r.sampled && r.reachBounded).length,
@@ -264,6 +277,74 @@ export function backtestCutoff(data: NeighborData, cutoff: number, opts: Options
     codings,
     rows,
   };
+}
+
+
+export type ForecastZone = "inside" | "outside" | "undecided" | "unsampled";
+
+export interface ForecastRow {
+  id: string;
+  branch: string;
+  posed: number;
+  words: number;
+  reach: number;
+  bounded: boolean;
+  zone: ForecastZone;
+}
+
+export interface Forecast {
+  schema: "bucket.solvability-atlas.forecast/v1";
+  cutoff: number;
+  built: string;
+  model: string;
+  revision: string;
+  k: number;
+  input_hash: string;
+  solved: number;
+  threshold_bounded: number;
+  threshold: number;
+  rows: ForecastRow[];
+}
+
+export interface CurrentStatus {
+  title: string;
+  status: string;
+  solved: boolean;
+  resolved: number | null;
+}
+
+export function statusMap(data: NeighborData): Map<string, CurrentStatus> {
+  return new Map(data.nodes.map((n) => [n.id, { title: n.title, status: n.status, solved: n.solved, resolved: n.resolved }]));
+}
+
+export function scoreForecast(forecast: Forecast, status: ReadonlyMap<string, CurrentStatus>, opts: { permutations?: number; seed?: number; floor?: number } = {}): CutoffBacktest {
+  const rows = forecast.rows
+    .map((f): BacktestRow => {
+      const s = status.get(f.id);
+      if (!s) throw new Error(`forecast ${forecast.cutoff} names ${f.id}, which has no current status`);
+      return {
+        id: f.id,
+        title: s.title,
+        branch: f.branch,
+        posed: f.posed,
+        words: f.words,
+        reach: f.reach,
+        reachBounded: f.bounded,
+        inside: f.zone === "inside",
+        decided: f.zone !== "undecided",
+        sampled: f.zone !== "unsampled",
+        undatedSolved: s.solved && s.resolved === null,
+        settled: CODING_STATUSES.settled.includes(s.status),
+        advanced: CODING_STATUSES.advanced.includes(s.status),
+        status: s.status,
+      };
+    })
+    .sort((a, b) => a.id.localeCompare(b.id));
+  return scoreRows(
+    { cutoff: forecast.cutoff, solvedAtCutoff: forecast.solved, threshold: forecast.threshold, thresholdBounded: forecast.threshold_bounded },
+    rows,
+    { permutations: opts.permutations ?? PERMUTATIONS, seed: opts.seed ?? SEED, floor: opts.floor },
+  );
 }
 
 export function backtest(data: NeighborData, cutoffs: readonly number[] = CUTOFFS, opts: Options = {}): Backtest {

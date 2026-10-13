@@ -2,11 +2,12 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import { SPLIT_NOTE } from "../src/lib/explore/modes/map";
-import { BundleError, isPublished, DEFAULT_BUNDLE_PATH, bundleAxes, bundleSources, bundleStar, loadAdvisors, loadBundle, parseAdvisorBundle, resetAdvisors } from "../src/lib/explore/advisors";
+import { advisorSources, BundleError, isPublished, DEFAULT_BUNDLE_PATH, bundleAxes, bundleSources, bundleStar, loadAdvisors, loadBundle, parseAdvisorBundle, resetAdvisors } from "../src/lib/explore/advisors";
 import { ORIGIN_LABEL } from "../src/lib/explore/advisor-origin";
-import { hasEmail } from "../src/lib/research-os/advisor-review";
+import { hasEmail, parseAdvisorReview, parsePrimeDirections, publicRow } from "../src/lib/research-os/advisor-review";
+import { advisorsOrder, exploreSearch } from "../src/lib/explore/respond";
 import { mapLayout } from "../src/lib/explore/modes/map";
-import { unify } from "../src/lib/explore/search";
+import { UNTESTED_ORDERING, advisorId, unify } from "../src/lib/explore/search";
 import fixture from "../src/lib/explore/fixtures/advisor-bundle.sample.json";
 import sampleReview from "../src/lib/explore/fixtures/advisors.sample.json";
 import samplePrime from "../src/lib/explore/fixtures/prime.sample.json";
@@ -136,8 +137,52 @@ check("default path points at the local advisor review folder", DEFAULT_BUNDLE_P
 check("origin labels read as the UI strings", ORIGIN_LABEL.bundle === "source: local advisor bundle" && ORIGIN_LABEL.sample === "source: sample" && ORIGIN_LABEL.none === "no advisors published");
 check("no real bundle is committed", !fs.existsSync("src/data/advisor-bundle.json") && fs.statSync("src/lib/explore/fixtures/advisor-bundle.sample.json").size < 5000);
 
+const withComplement = publicRow({ rank: 1, name: "A", score: 0.5, star_prime: [0.9, 0.2], complement: 0.35, complement_directions: ["alpha", "beta", "c", "d"], note: "x" });
+check("complement and its directions survive parsing, capped at three", withComplement?.complement === 0.35 && withComplement.complement_directions.length === 3 && !("complement" in withComplement.fields));
+const withoutComplement = publicRow({ rank: 1, name: "A", score: 0.5, complement: "high" });
+check("a row without a numeric complement parses to null and no directions", withoutComplement?.complement === null && withoutComplement.complement_directions.length === 0);
+
+const unrankedRows = [
+  { name: "Invented Person One", order_status: "untested", institution: "Made-up Institute", field: "Made-up studies", reasons: ["Shares the topic lantern optics."], star_prime: [0.9, 0.1] },
+  { name: "Invented Person Two", order_status: "untested", institution: "Made-up Institute", field: "Made-up studies", reasons: ["Shares the topic lantern optics."], star_prime: [0.2, 0.8] },
+  { name: "Invented Person Three", order_status: "withheld", institution: "Placeholder College", field: "Made-up studies", rank: 4, score: 0.9, percentile: 99, star_prime: [0.5, 0.5] },
+  { name: "Invented Person Two", order_status: "untested", institution: "Made-up Institute", field: "Made-up studies", star_prime: [0.4, 0.4] },
+];
+const prime = parsePrimeDirections(samplePrime);
+const unrankedReview = (rows: unknown[]) => parseAdvisorReview({ schema: "bucket.advisor-review/1", rows });
+const unranked = advisorSources(unrankedReview(unrankedRows), prime);
+check("the parser stores a position for unranked rows, and the Explore reader drops it", unrankedReview(unrankedRows).rows.map((r) => r.rank).join() === "1,2,3,4" && unranked.every((s) => s.rank === 0 && s.score === 0));
+check("unranked rows carry their order and a key that holds no position", unranked.map((s) => s.order).join() === "untested,untested,withheld,untested" && unranked.every((s) => /^u[0-9a-f]{12}(-\d+)?$/.test(s.key ?? "")) && new Set(unranked.map(advisorId)).size === 4 && !unranked.some((s) => /^advisor:\d+$/.test(advisorId(s))));
+const reversed = advisorSources(unrankedReview([unrankedRows[2], unrankedRows[1], unrankedRows[0]]), prime);
+check("an unranked id does not change with the row's place in the file", advisorId(reversed[0]) === advisorId(unranked[2]) && advisorId(reversed[2]) === advisorId(unranked[0]));
+check("the order status stays out of the searchable text", unranked.every((s) => !/untested|withheld/.test(s.text)));
+const unrankedHits = unify({ query: "lantern optics", excerpts: [], advisors: unranked }).filter((h) => h.type === "advisor");
+check("an unranked advisor hit says untested ordering and shows no position", unrankedHits.length >= 2 && unrankedHits.every((h) => h.subtitle === `Made-up studies, ${UNTESTED_ORDERING}` && !/^advisor:\d+$/.test(h.id) && !/\brank\b|percentile/i.test(JSON.stringify(h))));
+const ranked = advisorSources(unrankedReview([{ name: "Invented Person Four", order_status: "tested", rank: 7, score: 0.6, field: "Made-up studies" }, { name: "Invented Person Five", rank: 2, score: 0.4, field: "Made-up studies" }]), prime);
+check("tested rows and rows with no status keep their rank and id", ranked.map(advisorId).join() === "advisor:2,advisor:7" && ranked.every((s) => s.order === undefined && s.key === undefined && s.score > 0));
+check("a ranked advisor hit carries no untested wording", unify({ query: "made-up studies", excerpts: [], advisors: ranked }).filter((h) => h.type === "advisor").every((h) => h.subtitle === "Made-up studies"));
+check("the reply names the untested ordering only when unranked rows are present", advisorsOrder(unranked).advisors_order === UNTESTED_ORDERING && !("advisors_order" in advisorsOrder(ranked)));
+
+const reviewDir = fs.mkdtempSync(path.join(os.tmpdir(), "advisor-unranked-"));
+fs.writeFileSync(path.join(reviewDir, "review.json"), JSON.stringify({ schema: "bucket.advisor-review/1", rows: unrankedRows }));
+fs.writeFileSync(path.join(reviewDir, "prime.json"), JSON.stringify(samplePrime));
+resetAdvisors();
+const supplied = loadAdvisors({ NODE_ENV: "production", BUCKET_ADVISOR_REVIEW: path.join(reviewDir, "review.json"), BUCKET_PRIME_DIRECTIONS: path.join(reviewDir, "prime.json") });
+check("a founder-supplied review of unranked rows loads with no position", supplied.origin === "review" && supplied.sources.length === 4 && supplied.sources.every((s) => s.rank === 0 && s.score === 0 && s.order !== undefined));
+const unrankedDeps = { canon: () => ({ ok: true as const, mode: "lexical" as const, results: [] }), advisors: () => supplied, sources: () => [], yearOf: () => null, canonFiles: () => [] };
+void (async () => {
+  const mapReply = (await exploreSearch(unrankedDeps as never, new URL("http://local/x?map=1"))).body as { advisors_order?: string; advisors: { id: string }[] };
+  const ids = mapReply.advisors.map((a) => a.id);
+  check("the map reply names the untested ordering and lists unranked advisors by key", mapReply.advisors_order === UNTESTED_ORDERING && ids.length === 4 && ids.join() === ids.slice().sort().join() && !ids.some((id) => /^advisor:\d+$/.test(id)) && !/"rank"/.test(JSON.stringify(mapReply)));
+  resetAdvisors();
+  fs.rmSync(reviewDir, { recursive: true, force: true });
+  finish();
+})();
+
+function finish() {
 if (failed) {
   console.error(`${failed} failed`);
   process.exit(1);
 }
 console.log("all passed");
+}

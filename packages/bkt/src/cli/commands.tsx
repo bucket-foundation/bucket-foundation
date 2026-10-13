@@ -3,6 +3,11 @@ import { render } from "ink";
 import pack from "../../content/pack.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
 import explorePack from "../../content/explore.json" with { type: "json" };
+import rowSetPack from "../../content/explore-rows.json" with { type: "json" };
+import wordPack from "../../content/words.json" with { type: "json" };
+import deckCatalog from "../../content/deck-catalog.json" with { type: "json" };
+import researchIndex from "../../content/research-index.json" with { type: "json" };
+import researchBlobsFile from "../../content/research-blobs.json" with { type: "file" };
 import { join } from "node:path";
 import { App, type AppSources } from "../app";
 import { spawn } from "node:child_process";
@@ -17,7 +22,15 @@ import { atlasFrontier, fitWidth, frontierLines, frontierOptions, NO_ATLAS, writ
 import { analysisRows, colorEnabled, interactive, JSON_SHAPES, jsonLine, pick, statRows, textRows, whoRows } from "./out";
 import { countOf, keyringOptions, NoDataError, noteOptions, searchOptions, type Invocation, UsageError } from "./run";
 import { directBackend, findServer, writeServerRecord, type LearnBackend } from "../core/backend";
-import { daily, learnDue, learnPath, quizJson, reviewJson, screen } from "./learn";
+import { daily, learnDue, learnPath, learnWordPath, quizJson, reviewJson, screen, wordBackend } from "./learn";
+import { creditLine, DeckWordBook, searchWords, wordBookFor, wordHitLine } from "../core/word-decks";
+import { deckLine, deckRow, deckRows, DeckError, decksDir, removeDeck, RESTART_NOTE } from "../decks";
+import { creditedWordRoutes, deckRoutes } from "../deck-routes";
+import { LINK_BODY_BYTES, PolingualLink, polingualLinkRoutes, pythonEmbedder } from "../polingual-link";
+import { exportDeck, installAny } from "../deck-file";
+import { IMPORT_BODY_BYTES as DECK_IMPORT_BYTES, Library, libraryRoutes, UNSIGNED_BUNDLE, verifyCatalog, type SignedCatalog } from "../library";
+import type { WordPack } from "../pack/words";
+import { WordSession, wordRoutes } from "../words";
 import { localDay } from "../chat-sources";
 import { randomBytes } from "node:crypto";
 import { excerptText, packCanon, parseId, searchCanon, searchParams, searchText, searchTsv, showExcerpt } from "../core/search";
@@ -34,9 +47,10 @@ import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
-import { exploreRoutes, ExploreStore, SAVED_BODY_BYTES, syncExplore } from "../explore";
+import { exploreRoutes, ExploreStore, SAVED_BODY_BYTES, syncExplore, syncRowSets } from "../explore";
+import type { RowSetPack } from "../pack/row-sets/index";
 import type { CanonPack } from "../pack/canon";
-import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter } from "../data";
+import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter, rowSetAdapter } from "../data";
 import type { ExplorePack } from "../pack/explore";
 import { advisorRoutes, REVIEW_BODY_BYTES } from "../advisor";
 import { PeopleStore } from "../people";
@@ -44,6 +58,7 @@ import { JOB_BODY_BYTES, jobRoutes } from "../job-routes";
 import { jobSpecs } from "../job-specs";
 import { JobRunner } from "../jobs";
 import { isSidecar, parentGone } from "../parent";
+import { packLearnAtoms } from "../../../../src/lib/research-os/work-quiz/resources";
 import { BEADS_BODY_BYTES, WorkQuizStore, workQuizRoutes } from "../work-quiz";
 import { MAX_BODY, NOTES_BODY_BYTES, NotesStore, notesRoutes } from "../notes";
 import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
@@ -51,11 +66,24 @@ import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
 import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
-import { startServe } from "../serve";
+import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
+import { addLines, answerKey, approvalLines, installLines, researchAdd, researchAnswer, researchBuilds, researchInstall, researchWaiting } from "./research";
+import { createInterface } from "node:readline";
+import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
+import { workspaceRoutes } from "../workspace";
+import { alignmentRoutes } from "../alignment";
+import alignmentReview from "../../content/alignment-review.json" with { type: "json" };
+import type { AlignmentReviewPack } from "../pack/alignment-review";
+import { answer, BuildSwitch, ConsentStore, emitConsent, emitSettled, guardConsentText, guardStdout, shellDecides } from "../research-consent";
+import { researchBuildRoutes, ResearchBuilds, researchSpecs } from "../research-jobs";
+import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
+import type { ResearchBlobs, ResearchIndex } from "../pack/research";
+import { startServe, type Route } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
+import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
-import { quizCommand, writeQuizRoots } from "../notify";
+import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
   const { code, report, stderr, cancelled } = r;
@@ -95,21 +123,156 @@ async function analyzeCmd(argv: string[]): Promise<number> {
   }
 }
 
+async function researchCmd(inv: Invocation, json: boolean): Promise<number> {
+  const home = dataDir();
+  try {
+    if (inv.command.name === "research add") {
+      ensureDataDir(home);
+      const added = researchAdd(inv.positionals[0], home, (researchIndex as unknown as ResearchIndex).outputs.map((o) => o.slug));
+      if (json) console.log(jsonLine("research add", added));
+      else for (const line of addLines(added)) console.log(line);
+      return EXIT.ok;
+    }
+    if (inv.command.name === "research builds") {
+      ensureDataDir(home);
+      console.log(researchBuilds(home, inv.positionals[0], inv.positionals[1]));
+      return EXIT.ok;
+    }
+    if (inv.command.name === "research approve") {
+      const server = await provenServer(home);
+      if (!server) throw new ResearchError("Bucket is not running here; open the app or run bkt serve, then ask for the build again", 409);
+      if (inv.values.yes === true || inv.values.deny === true) {
+        const answer = await researchAnswer(server, answerKey(inv.values), inv.values.yes === true && inv.values.deny !== true);
+        console.log(answer.denied ? "Refused. Nothing ran." : "Allowed. The build is running.");
+        return EXIT.ok;
+      }
+      const waiting = await researchWaiting(server);
+      for (const line of approvalLines(waiting)) console.log(line);
+      if (!waiting.pending) return EXIT.noData;
+      if (!process.stdin.isTTY || !process.stdout.isTTY) return EXIT.ok;
+      const typed = await new Promise<string>((done) => {
+        const rl = createInterface({ input: process.stdin, output: process.stdout });
+        rl.question("Allow this build? Type yes to allow, anything else to refuse: ", (line) => {
+          rl.close();
+          done(line.trim().toLowerCase());
+        });
+      });
+      const answer = await researchAnswer(server, { id: waiting.pending.id, digest: waiting.pending.digest }, typed === "yes");
+      console.log(answer.denied ? "Refused. Nothing ran." : "Allowed. The build is running.");
+      return EXIT.ok;
+    }
+    const done = await researchInstall(inv.positionals[0], home, await provenServer(home));
+    if (json) console.log(jsonLine("research install", done));
+    else for (const line of installLines(done)) console.log(line);
+    return EXIT.ok;
+  } catch (e) {
+    if (!(e instanceof ResearchError)) throw e;
+    console.error(`bkt: ${e.message}`);
+    return EXIT.failure;
+  }
+}
+
+let heldBook: DeckWordBook | null = null;
+
+function wordBook(): DeckWordBook {
+  heldBook ??= wordBookFor(wordPack as unknown as WordPack, dataDir(), { onError: (m) => console.error(`bkt: ${m}`) });
+  return heldBook;
+}
+
+function dropWordBook(): void {
+  heldBook?.close();
+  heldBook = null;
+}
+
+function servedWordRoutes(workQuiz: WorkQuizStore): Record<string, Route> {
+  let held: WordSession | null = null;
+  const session = () => (held && held.book === wordBook() ? held : (held = new WordSession(wordBook(), workQuiz)));
+  const keys = Object.keys(wordRoutes(session()));
+  return creditedWordRoutes(Object.fromEntries(keys.map((key): [string, Route] => [key, (req, url) => wordRoutes(session())[key](req, url)])), session, wordBook);
+}
+
+const DECK_COMMANDS: Record<string, "list" | "install" | "remove" | "export"> = {
+  "decks export": "export",
+  "decks list": "list",
+  "decks install": "install",
+  "decks remove": "remove",
+  "words list": "list",
+  "words install": "install",
+  "words remove": "remove",
+};
+
+async function decks(inv: Invocation, json: boolean): Promise<number> {
+  const action = DECK_COMMANDS[inv.command.name];
+  const home = dataDir();
+  try {
+    if (action === "list") {
+      const rows = deckRows(home, inv.positionals[0] ?? process.env.BKT_DECK_SOURCE ?? null);
+      const have = new Set(rows.map((r) => r.id));
+      if (inv.values.catalog === true) {
+        const catalog = verifyCatalog(deckCatalog as SignedCatalog);
+        if (!catalog) console.error(`bkt: ${UNSIGNED_BUNDLE}`);
+        for (const m of catalog?.decks ?? []) if (!have.has(m.id)) rows.push(deckRow(m, false, null));
+      }
+      if (json) console.log(jsonLine("decks list", { decks: rows }));
+      else for (const r of rows) console.log(deckLine(r));
+      if (!rows.length) throw new NoDataError("no deck is installed; run bkt decks install <file-or-folder>");
+      return EXIT.ok;
+    }
+    if (action === "install") {
+      ensureDataDir(home);
+      const m = await installAny(home, inv.positionals[0]);
+      const row = deckRow(m, true, join(decksDir(home), m.id));
+      if (json) console.log(jsonLine("decks install", row));
+      else {
+        console.log(`Installed ${m.title}: ${m.counts.cards.toLocaleString("en-US")} ${m.kind === "words" ? "words" : "cards"}, version ${m.version}, checksum matches.`);
+        console.log(`${m.source}, ${m.licence}, curated by ${m.curator}.`);
+        console.log(RESTART_NOTE);
+      }
+      return EXIT.ok;
+    }
+    if (action === "export") {
+      const made = await exportDeck(home, inv.positionals[0], inv.positionals[1], { replace: inv.values.replace === true });
+      console.log(json ? jsonLine("decks export", { id: made.manifest.id, title: made.manifest.title, path: made.path, bytes: made.bytes }) : `Wrote ${made.manifest.title} to ${made.path}. ${made.manifest.source}, ${made.manifest.licence}.`);
+      return EXIT.ok;
+    }
+    const gone = removeDeck(home, inv.positionals[0]);
+    if (!gone) throw new NoDataError(`no installed deck matches ${inv.positionals[0]}; run bkt decks list`);
+    console.log(json ? jsonLine("decks remove", { id: gone.id, title: gone.title, removed: true }) : `Removed ${gone.title}. ${RESTART_NOTE.replace("see it in", "drop it from")}`);
+    return EXIT.ok;
+  } catch (e) {
+    if (e instanceof DeckError) {
+      console.error(`bkt: ${e.message}`);
+      return EXIT.failure;
+    }
+    throw e;
+  }
+}
+
 const LEARN = new Set(["learn due", "learn path", "learn quiz", "learn review", "daily"]);
 
 async function learn(inv: Invocation, json: boolean): Promise<number> {
   const name = inv.command.name;
   const content = pack as Pack;
   let deck: PackDeck | null = null;
+  let language: string | null = null;
+  const book = wordBook();
+  const credit = book.credit.text;
   if (name === "learn path" && inv.positionals[0] !== undefined) {
     deck = (content.decks ?? []).find((d) => d.id === inv.positionals[0]) ?? null;
-    if (!deck) throw new UsageError(`unknown deck ${inv.positionals[0]}; run bkt learn path for the list`, inv.command);
+    language = deck ? null : book.resolveDeck(inv.positionals[0]);
+    if (!deck && !language) throw new UsageError(`unknown deck ${inv.positionals[0]}; run bkt learn path for the list`, inv.command);
+  }
+  if (name === "learn quiz" && typeof inv.values.deck === "string") {
+    language = book.resolveDeck(inv.values.deck);
+    if (!language) throw new UsageError(`unknown language ${inv.values.deck}; --deck takes one of ${book.languages().map((l) => book.set.names[l]).join(", ")}`, inv.command);
   }
   const size = countOf(inv);
   const day = inv.positionals[0] ?? localDay(Date.now());
   const run = (b: LearnBackend) => {
     if (name === "learn due") return learnDue(b, size, json);
-    if (name === "learn path") return learnPath(b, deck, deck ? (content.atoms?.[deck.id] ?? []) : [], json);
+    if (name === "learn path" && language) return learnWordPath(b, language, book.creditText([language]), json);
+    if (name === "learn path") return learnPath(b, deck, deck ? (content.atoms?.[deck.id] ?? []) : [], json, undefined, credit);
+    if (name === "learn quiz" && language) return json ? quizJson(wordBackend(b, language), size, inv.command, undefined, book.creditText([language])) : screen("quiz", wordBackend(b, language), size, book.creditText([language]));
     if (name === "learn quiz") return json ? quizJson(b, size, inv.command) : screen("quiz", b, size);
     if (name === "learn review") return json ? reviewJson(b, size, inv.command) : screen("review", b, size);
     return daily(b, day, json, inv.command);
@@ -121,7 +284,7 @@ async function learn(inv: Invocation, json: boolean): Promise<number> {
   try {
     session.store.importPack(content.version, content.items);
     const wq = new WorkQuizStore(session.store, session.key);
-    return await run(directBackend({ store: session.store, content, daily: wq.daily, record: (...a) => wq.record(...a) }));
+    return await run(directBackend({ store: session.store, content, daily: wq.daily, record: (...a) => wq.record(...a), words: new WordSession(book, wq) }));
   } finally {
     session.store.close();
   }
@@ -165,18 +328,36 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   syncCanon(session.store.db, canonPack as CanonPack);
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
+  syncRowSets(session.store.db, rowSetPack as unknown as RowSetPack);
   syncRosGraph(session.store.db, content.version, content.atoms ?? {});
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
   const cliToken = randomBytes(32).toString("base64url");
   const cliSecret = randomBytes(32).toString("base64url");
   const win = new AppWindow(runtimeDir(), join(dir, "window-profile"));
-  const data = dataRoutes([
+  const adapters = [
     learningAdapter(content),
     canonAdapter(canonPack as CanonPack),
     exploreAdapter(explorePack as unknown as ExplorePack),
+    ...(rowSetPack as unknown as RowSetPack).sets.map(rowSetAdapter),
     ownAdapter(session.store, { analyses: () => runner.list().length }),
-  ]);
+  ];
+  const data = dataRoutes(adapters);
+  const researchTrouble = (e: Error) => console.error(`bkt serve: research: ${e.message}`);
+  const research = new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, researchTrouble);
+  const ownOutputs = new LocalOutputs(dir, { taken: (slug) => (researchIndex as unknown as ResearchIndex).outputs.some((o) => o.slug === slug) || research.staffHas(slug) });
+  research.setLocal(ownOutputs);
+  const buildRunner = new JobRunner({ root: join(dir, "research", "jobs", "build"), specs: researchSpecs({ os: platformFor().os, dataDir: dir, python: platformFor().python() }), keep: 20, frozenOnly: true });
+  const buildGate = new BuildSwitch(dir);
+  const toShell = isSidecar(process.env) ? guardStdout(process.stdout as unknown as { write: (chunk: unknown, ...rest: unknown[]) => boolean }) : null;
+  if (toShell) {
+    const say = console.log.bind(console);
+    console.log = (...args: unknown[]) => say(...args.map((a) => (typeof a === "string" ? guardConsentText(a) : a)));
+  }
+  const buildConsent = new ConsentStore({ switch: buildGate, onDrop: (pending) => buildRunner.discard(pending.frozenDir), onOpen: (view) => toShell && emitConsent(toShell, view), onSettled: (id) => toShell && emitSettled(toShell, id) });
+  const researchWork = new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() });
+  const builds = new ResearchBuilds({ research, runner: buildRunner, consent: buildConsent, gate: buildGate, os: platformFor().os, ownBuilds: (slug) => ownOutputs.buildsOn(slug) });
+  const pagesRunner = new JobRunner({ root: join(dir, "research", "jobs", "pages"), specs: researchSpecs({ os: platformFor().os }), keep: PAGES_KEEP, frozenOnly: true });
   const srv = startServe({
     cliToken,
     cliSecret,
@@ -191,16 +372,33 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
-      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on) }),
+      ...researchRoutes(research, researchTrouble),
+      ...researchWorkRoutes(researchWork, researchTrouble, ownOutputs),
+      ...alignmentRoutes(alignmentReview as unknown as AlignmentReviewPack),
+      ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => (rowSetPack as unknown as RowSetPack).sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0]?.modes ?? [] })) }, researchTrouble),
+      ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os, built: (slug, path) => researchWork.built(slug, path) }), researchTrouble),
+      ...researchBuildRoutes(builds, researchTrouble),
+      ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
+      ...servedWordRoutes(workQuiz),
+      ...deckRoutes({ home: dir, book: wordBook, onError: (m) => console.error(`bkt serve: ${m}`) }),
+      ...libraryRoutes(new Library({ home: dir, bundled: deckCatalog as SignedCatalog, url: process.env.BKT_DECK_CATALOG_URL, onChange: dropWordBook }), (m) => console.error(`bkt serve: deck library: ${m}`)),
+      ...polingualLinkRoutes(new PolingualLink({ dir, key: session.key, credit: wordBook().credit, embed: pythonEmbedder(platformFor().python()), onError: (m) => console.error(`bkt serve: word database: ${m.split("\n")[0].slice(0, 160)}`) })),
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
+      ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
+      "POST /local/research/install": SIDE_PACK_BYTES,
+      "POST /local/research/file": FILE_BODY_BYTES,
+      "POST /local/research/upload": UPLOAD_BODY_BYTES,
       "POST /local/advisor/import": REVIEW_BODY_BYTES,
       "POST /local/prime-directions/import": REVIEW_BODY_BYTES,
       "POST /local/jobs": JOB_BODY_BYTES,
       "POST /local/work-quiz/beads": BEADS_BODY_BYTES,
+      "POST /local/settings/notify": NOTIFY_BODY_BYTES,
+      "POST /local/polingual-link": LINK_BODY_BYTES,
+      "POST /local/library/import": DECK_IMPORT_BYTES,
       "POST /local/notes": NOTES_BODY_BYTES,
       "POST /local/explore/saved": SAVED_BODY_BYTES,
       "POST /local/history/import": HISTORY_BODY_BYTES,
@@ -228,7 +426,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   await new Promise<void>((done) => {
     process.once("SIGINT", done);
     process.once("SIGTERM", done);
-    void parentGone(process.env, () => Bun.stdin.stream()).then(() => {
+    void parentGone(process.env, () => Bun.stdin.stream(), (line) => answer(line, shellDecides(() => buildConsent.view(), (id, digest, allow) => builds.answer(id, digest, allow)), (e) => console.error(`bkt serve: build approval: ${e.message}`))).then(() => {
       console.error("bkt serve: the Bucket window process is gone; stopping");
       done();
     });
@@ -238,6 +436,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   clearInterval(asked);
   win.forget();
   runner.stopAll();
+  pagesRunner.stopAll();
+  buildRunner.stopAll();
   release();
   releaseServer();
   srv.stop();
@@ -277,6 +477,7 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
     keyring: () => platform.keyring(),
     pack: pack as Pack,
     explore: explorePack as unknown as ExplorePack,
+    words: wordPack as unknown as WordPack,
     uiDir: uiDir(env),
     runtimeDir: runtimeDir(env),
     tty,
@@ -297,7 +498,21 @@ async function doctor(inv: Invocation, json: boolean): Promise<number> {
   return passed ? EXIT.ok : EXIT.failure;
 }
 
+function wordSearch(inv: Invocation, json: boolean): number {
+  const o = searchOptions(inv);
+  const book = wordBook();
+  const found = searchWords(book, book.files, o.q, { limit: o.limit, lang: typeof inv.values.lang === "string" ? inv.values.lang : null, onError: (m) => console.error(`bkt: ${m}`) });
+  if (json) console.log(jsonLine("search words", found));
+  else if (found.hits.length) {
+    for (const h of found.hits) console.log(wordHitLine(h));
+    for (const credit of found.credits) console.log(creditLine(credit));
+  }
+  if (!found.hits.length) throw new NoDataError(`no word matches ${o.q} in ${found.words.toLocaleString("en-US")} words across ${found.languages} languages`);
+  return EXIT.ok;
+}
+
 function search(inv: Invocation, json: boolean): number {
+  if (inv.values.words === true) return wordSearch(inv, json);
   const o = searchOptions(inv);
   const found = searchCanon(packCanon(canonPack as CanonPack), searchParams(o.q, o), { matchedOnly: true });
   if (!found.ok) throw new NoDataError("this copy of bkt holds no canon; run bkt update");
@@ -377,6 +592,13 @@ export async function execute(inv: Invocation): Promise<number> {
     return EXIT.ok;
   }
   if (name === "doctor") return doctor(inv, json);
+  if (DECK_COMMANDS[name]) return decks(inv, json);
+  if (name.startsWith("research ")) return researchCmd(inv, json);
+  if (name === "licences") {
+    const l = wordBook().licence;
+    for (const line of [l.credit.text, l.changes, `${l.title}: ${l.credit.licenceHref}`, "", l.text.trimEnd()]) console.log(line);
+    return EXIT.ok;
+  }
   if (name === "search") return search(inv, json);
   if (name === "canon show") return canonShow(inv, json);
   if (name === "atlas frontier") {

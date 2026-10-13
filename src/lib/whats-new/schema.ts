@@ -13,7 +13,14 @@ export interface HostRule {
   paths: readonly RegExp[];
 }
 
+const SITE_RULE: HostRule = {
+  reservedFirstSegments: ["api", "auth", "sign-in", "account", "admin"],
+  paths: [/^(?:\/[A-Za-z0-9._~-]{1,100}){1,8}\/?$/],
+};
+
 export const LINK_RULES: Readonly<Record<string, HostRule>> = {
+  "bucket.foundation": SITE_RULE,
+  "www.bucket.foundation": SITE_RULE,
   "github.com": {
     reservedFirstSegments: [
       "login", "logout", "session", "sessions", "join", "signup", "auth", "oauth", "redirect", "settings", "account", "orgs", "users", "apps",

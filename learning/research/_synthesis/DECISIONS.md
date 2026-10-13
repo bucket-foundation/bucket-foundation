@@ -1,5 +1,7 @@
 # Bucket Learning
 
+> Superseded 2026-06-14: Story Protocol minting and on-chain royalties were withdrawn (`learning/EPIC.md`). Story references below are historical.
+
 Cross-Pillar Decision Log.
 
 **Bead:** bkt-xo0 · 2026-06-11 · Synthesized by Nucleus from all 7 pillar deliverables.

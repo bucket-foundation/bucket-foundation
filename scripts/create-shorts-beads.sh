@@ -26,8 +26,8 @@ Hard rule: human reviews 4-up batches in Longtail chisel until template policy i
 echo "EPIC=$EPIC"
 
 echo "--- creating children ---"
-B1=$(mk  "Format spec doc: SHORTS_FORMAT_SPEC.md" \
-"Write bucket-foundation/SHORTS_FORMAT_SPEC.md. Immutable until v2. Locks: 35-45s structure (hook/tease/reveal/stack/outro), accuracy contract (substance = Manim/RDKit/scipy; shell = local SDXL OK), sub-brand palette per branch (7 variants), CTA priority order, 4-variant RLHF loop, seed/reroll semantics. Research citations included (Loewenstein info-gap, PACE, OpusClip retention, 2026 length data). Parent: $EPIC" task 1)
+B1=$(mk  "Format spec doc: docs/specs/SHORTS_FORMAT_SPEC.md" \
+"Write bucket-foundation/docs/specs/SHORTS_FORMAT_SPEC.md. Immutable until v2. Locks: 35-45s structure (hook/tease/reveal/stack/outro), accuracy contract (substance = Manim/RDKit/scipy; shell = local SDXL OK), sub-brand palette per branch (7 variants), CTA priority order, 4-variant RLHF loop, seed/reroll semantics. Research citations included (Loewenstein info-gap, PACE, OpusClip retention, 2026 length data). Parent: $EPIC" task 1)
 B2=$(mk  "Install render deps: manim CE, rdkit, diffusers, accelerate" \
 "pip install manim rdkit diffusers accelerate transformers safetensors. Verify ROCm PyTorch is used by diffusers (already installed: torch 2.9.1+rocm6.4). Download Kokoro voice model if Longtail tts-cascade needs it locally. Verify ffmpeg drawtext + ass subtitle support. Parent: $EPIC" task 0)
 B3=$(mk  "Audit bucket-canon-mcp.py for shorts-selection needs; add canon.pick_unshorts helper" \

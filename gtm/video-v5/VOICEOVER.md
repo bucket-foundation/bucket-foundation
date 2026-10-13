@@ -1,7 +1,7 @@
 # bucket v5, Voiceover Script
 
 **Total target:** ~90 seconds at 80 words/min (~120 words).
-**Voice:** Declarative. Carved. Zero filler. Match `MANIFESTO.md`.
+**Voice:** Declarative. Carved. Zero filler. Match `docs/foundation/MANIFESTO.md`.
 **Arc:** 8 stone cards, timed to the card cuts in `gen_stone_cards.py`.
 
 ---
@@ -60,7 +60,7 @@ Claude, always researching.
 ## 05: the feed402 stack
 
 > feed402 is the protocol. x402 is the rail. Base is the chain. USDC is the unit.
-> Five-tenths of a cent per citation. Wallet-signed. Verifier-checked. Routed to the author.
+> Reading and citing cost the caller nothing. Wallet-signed. Verifier-checked. Routed to the author.
 > Open source. CC-zero spec. No middleman.
 
 *(38 words. ~11s.)*

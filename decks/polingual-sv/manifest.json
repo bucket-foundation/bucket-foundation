@@ -1,0 +1,45 @@
+{
+  "format": "bkt-deck",
+  "format_version": 1,
+  "id": "polingual-sv",
+  "title": "Swedish words",
+  "kind": "words",
+  "language": "sv",
+  "language_name": "Swedish",
+  "fields": [
+    "surface",
+    "ipa",
+    "pos",
+    "meaning",
+    "tier",
+    "kind",
+    "translations",
+    "etymology"
+  ],
+  "counts": {
+    "cards": 297795,
+    "with_ipa": 5172,
+    "with_translations": 0,
+    "with_etymology": 0
+  },
+  "rows": 297795,
+  "version": "e0637a9c8417",
+  "file": "polingual-sv.sqlite.zst",
+  "bytes": 14886591,
+  "sha256": "84c6089137ffc8f53b3b8e9c38221089ec70641e893a7ce93d891d4d80a01a3f",
+  "db_bytes": 74723328,
+  "db_sha256": "e0637a9c8417fa1205995b294072aeb4d82717fdcca04bef40bd74ad897e231b",
+  "source": "Wiktionary via Kaikki (kaikki.org)",
+  "source_url": "https://kaikki.org",
+  "wiktionary_url": "https://en.wiktionary.org",
+  "licence": "CC-BY-SA 3.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "curator": "Bucket Foundation",
+  "adaptation": "Adapted by Bucket Foundation from Wiktionary entries extracted by Kaikki: each entry is cut down to the word, its IPA, its part of speech and its English senses, and the words are put in order with the common ones first. This pack is shared under the same licence.",
+  "built": "2026-10-11",
+  "exporter_commit": "86469fdce78f6e2d8e5a6fecfe93690e3044f159",
+  "dropped": {
+    "empty_surface": 0,
+    "empty_meaning": 0
+  }
+}

@@ -8,7 +8,10 @@ export const HOSTNAME = "127.0.0.1";
 export const MAX_BODY_BYTES = 256 * 1024;
 
 export type PeerUidResolver = (peerPort: number, serverPort: number) => Owner | null | undefined;
-export type Route = (req: Request, url: URL) => Response | Promise<Response>;
+export interface RouteContext {
+  cli: boolean;
+}
+export type Route = (req: Request, url: URL, ctx?: RouteContext) => Response | Promise<Response>;
 
 export interface ServeOptions {
   cliToken?: string;
@@ -285,7 +288,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
         if (declared === null || !/^\d+$/.test(declared)) return deny(411);
         if (Number(declared) > cap) return deny(413);
       }
-      return route(req, url);
+      return route(req, url, { cli });
     },
   });
 

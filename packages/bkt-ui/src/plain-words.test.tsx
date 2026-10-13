@@ -9,6 +9,9 @@ import { ApiError, plainError, PROGRESS_TROUBLE, type Api, type Dataset, type Da
 import REPORT from "./fixtures/analysis-report.json";
 import STOPPED from "./fixtures/analysis-stopped.json";
 import { href, type Route } from "./router";
+import { DECKS_BODY, NO_DECKS_BODY } from "./fixtures/decks";
+import { EMPTY_LIBRARY, LIBRARY } from "./fixtures/library";
+import { CONCEPT_PAGE, LESSON_PAGE, NO_CONCEPTS, NO_WORD_DECKS, WORD_CREDIT, WORD_DECKS, WORD_LESSON_LIST, WORD_LICENCE, WORD_QUESTION } from "./fixtures/word-lessons";
 
 mock.module("@/components/research-os/views/PatentsView", () => ({ PatentsView: () => <div>patents</div> }));
 mock.module("@/components/research-os/views/SoftwareAtlas", () => ({ default: () => <div>software</div> }));
@@ -51,7 +54,9 @@ const DENY: { name: string; re: RegExp }[] = [
   { name: "id: hex", re: /\b(?=[0-9a-f]*\d)(?=[0-9a-f]*[a-f])[0-9a-f]{8,}\b/ },
 ];
 
-const ALLOW = new Set<string>([]);
+const VOICE = /\b(genuinely|genuine|honest|honestly|truly|really|actually|basically|essentially|literally|obviously|clearly|certainly|absolutely|definitely|simply|merely|very|quite|extremely|quickly|easily|seamless|robust|navigate|leverage)\b/i;
+
+const ALLOW = new Set<string>(["Token circle.", "Open Token circle."]);
 
 const ATTRS = ["title", "placeholder", "aria-label", "alt"];
 
@@ -132,6 +137,8 @@ const WORK: WorkSources = {
 const SERVER_ERRORS: [string, number][] = [
   ["unauthorized", 401],
   ["unknown deck", 404],
+  ["unknown language; run bkt learn path for the list", 404],
+  ["no such lesson", 404],
   ["no open question", 404],
   ["bad elapsedMs", 400],
   ["rating must be 1..4", 400],
@@ -221,8 +228,69 @@ const DATA_TABS = JSON.stringify({
   active: "set:canon",
 });
 
+const RESEARCH_ROWS = [
+  { slug: "solvability-frontier", title: "The Solvability Frontier: Which Open Problems Sit Next to Solved Ones", kind: "paper", status: "public", date: "2026-10-08", origin: "shipped", changed: 0, unreadable: null },
+  { slug: "funding-landscape", title: "The structure of public research funding", kind: "paper", status: "public", date: "2026-06-20", origin: "shipped", changed: 0, unreadable: "public/papers/x/paper.pdf does not match its hash in this build" },
+];
+const RESEARCH_FILE = { path: "public/papers/solvability-frontier/fig_frontier.webp", sha256: "c85d792ca773".repeat(5) + "abcd", size: 1200, audience: "public", role: "asset" };
+const RESEARCH_DETAIL = {
+  slug: "solvability-frontier",
+  origin: "shipped",
+  staff: false,
+  withheld: 7,
+  unreadable: null,
+  files: [RESEARCH_FILE, { ...RESEARCH_FILE, path: "public/atlas/big.webp", size: 9 * 1024 * 1024 }],
+  manifest: {
+    schema: "bucket.report/2",
+    slug: "solvability-frontier",
+    title: "The Solvability Frontier: Which Open Problems Sit Next to Solved Ones",
+    authors: ["Gianangelo Dichio"],
+    date: "2026-10-08",
+    status: "public",
+    kind: "paper",
+    abstract: "Embeds 5,206 problem statements across seven canon branches and draws a frontier at the 10th percentile of solved problems' reach.",
+    licence: "CC-BY-4.0",
+    source_path: "papers/solvability-frontier/main.tex",
+    source_hash: "c85d792ca773".repeat(5) + "abcd",
+    pdf_hash: "c85d792ca773".repeat(5) + "abce",
+    assets: [
+      { id: "fig-frontier", path: RESEARCH_FILE.path, caption: "The frontier on 5,209 rows: solved rows in the inner disc.", licence: "CC-BY-4.0", audience: "public" },
+      { id: "atlas-big", path: "public/atlas/big.webp", caption: "Token circle.", licence: "MIT code output over CC BY-SA 4.0 and Apache-2.0 data, attributed", audience: "public" },
+      { id: "atlas-gone", path: "public/atlas/gone.webp", caption: "Star chart.", licence: "MIT code output over CC BY-SA 4.0 and Apache-2.0 data, attributed", audience: "public" },
+    ],
+    tables: [{ id: "predictions", path: "public/papers/solvability-frontier/data/predictions.csv", format: "csv", label: "Predictions, 2,085 ranked open problems", licence: "CC BY-SA 4.0", audience: "public" }],
+    record_sets: [],
+    attributions: [
+      { source: "formal-conjectures, Google DeepMind", url: "https://github.com/google-deepmind/formal-conjectures", licence: "Apache-2.0", rows: 3557, notice: "Statements from formal-conjectures by Google DeepMind, Apache License 2.0. Each row links its Lean source." },
+      { source: "Wikipedia, lists of unsolved problems", url: "https://en.wikipedia.org/wiki/Lists_of_unsolved_problems", licence: "CC BY-SA 4.0", rows: 1283, notice: "Text from Wikipedia under CC BY-SA 4.0. Each row links its page. Copies and edits keep this licence and this credit." },
+      { source: "Science, AAAS question lists", url: "https://web.archive.org/web/2023id_/https://www.science.org/do/10.1126/resource.2499249/full/sjtu-booklet.pdf", licence: "AAAS copyright; headline under 15 words cited, statement paraphrased", rows: 239, notice: "Headlines cited from two AAAS question lists. Each row links its list. Statements are paraphrased by Bucket Foundation." },
+    ],
+  },
+};
+
+const WORKSPACE_ITEMS = [
+  { type: "tables", key: "output:solvability-frontier:atlas-problems", title: "Atlas problems", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "shipped", licence: "mixed", changed: true, opens: "#/research/solvability-frontier/data/atlas-problems", explore: null },
+  { type: "records", key: "output:solvability-frontier:problems", title: "Problem records", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "local", licence: "CC BY-SA 4.0", changed: false, opens: "#/research/solvability-frontier/records/problems", explore: null },
+  { type: "figures", key: "output:solvability-frontier:fig-frontier", title: "The frontier on 5,209 rows", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "staff", licence: "CC-BY-4.0", changed: true, opens: "#/research/solvability-frontier/figures/fig-frontier", explore: null },
+  { type: "papers", key: "output:solvability-frontier:paper", title: "The Solvability Frontier", from: { kind: "output", id: "solvability-frontier", title: "The Solvability Frontier" }, origin: "shipped", licence: "", changed: false, opens: "#/research/solvability-frontier/paper", explore: null },
+  { type: "records", key: "dataset:canon:all", title: "The canon", from: { kind: "dataset", id: "canon", title: "The canon" }, origin: "shipped", licence: "", changed: false, opens: "#/data", explore: null },
+];
+
 function empty(): Stub {
   return {
+    researchList: async () => ({ outputs: [] }),
+    workspaceItems: async () => ({ items: [], total: 0, page: 1, size: 50 }),
+    researchManifest: () => Promise.reject(new ApiError("no such output", 404)),
+    researchTable: () => Promise.reject(new ApiError("the output has no such table", 404)),
+    researchNew: () => Promise.reject(new ApiError("an output already has that short name", 409)),
+    researchBuild: async () => ({ state: "refused", reason: "builds are off for this output", install: null, status: 403 }),
+    researchBuildState: async () => ({ pending: null, job: null }),
+    researchUpload: () => Promise.reject(new ApiError("the file does not read as png", 415)),
+    researchChanges: async () => ({ notice: "Edits are kept on this computer as plain files, so the tools that build a paper can read them.", changes: [] }),
+    researchSource: () => Promise.reject(new ApiError("the output does not list that file", 404)),
+    researchPage: async () => ({ state: "preview", reason: "pdftoppm is missing, so the paper shows as a preview", install: "sudo dnf install poppler-utils" }),
+    researchText: () => Promise.reject(new ApiError("the output does not list that file", 404)),
+    image: () => Promise.reject(new ApiError("the output does not list that file", 404)),
     data: async () => [],
     dataRecords: async () => ({ total: 0, offset: 0, limit: 50, records: [] }),
     dataRecord: () => Promise.reject(new ApiError("no such record", 404)),
@@ -234,8 +302,18 @@ function empty(): Stub {
     notes: async () => [],
     history: async () => ({ snapshot: null, activity: days(() => 0) }),
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, languages: [], ready: false, answered: 0, correct: 0 }),
+    settings: async () => ({ version: "0.5.0", build: null, dataDir: "/data/bucket", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
+    wordLicence: async () => WORD_LICENCE,
+    wordDecks: async () => NO_WORD_DECKS,
+    installedDecks: async () => NO_DECKS_BODY,
+    library: async () => EMPTY_LIBRARY,
+    polingualLink: async () => ({ freeText: false, linked: false, place: null, reachable: false, words: null }),
+    wordLessons: async () => ({ ...WORD_LESSON_LIST, lessons: [] }),
+    wordLesson: () => Promise.reject(new ApiError("no such lesson", 404)),
+    wordConcepts: async () => NO_CONCEPTS,
+    wordQuiz: async () => ({ questions: [], credit: WORD_CREDIT }),
     workNext: () => Promise.reject(new ApiError("no sources: pick a beads file, a repository or a language", 404)),
     dailyQuiz: () => Promise.reject(new ApiError("no quiz for that day", 404)),
     jobs: async () => ({ kinds: ALL_KINDS, jobs: [] }),
@@ -253,6 +331,18 @@ function empty(): Stub {
 function populated(over: Stub = {}): Stub {
   return {
     ...empty(),
+    researchList: async () => ({ outputs: RESEARCH_ROWS }),
+    workspaceItems: async (type: string) => ({ items: WORKSPACE_ITEMS.filter((i) => i.type === type), total: WORKSPACE_ITEMS.filter((i) => i.type === type).length, page: 1, size: 50 }),
+    researchManifest: async () => RESEARCH_DETAIL,
+    researchChanges: async () => ({
+      notice: "Edits are kept on this computer as plain files, so the tools that build a paper can read them.",
+      changes: [{ path: "papers/solvability-frontier/main.tex", state: "edited", base: null, shipped: "", current: "", size: 40, shippedSize: 38, added: 1, removed: 1, hunks: [] }],
+    }),
+    researchSource: async () => ({ text: "\\section{Method} We embed each statement and rank the open problems.", rev: "" }),
+    researchPage: async () => ({ state: "ready", pages: 2, pdf: "c85d792ca773".repeat(5) + "abcd", src: "data:image/png;base64,AAAA" }),
+    researchText: async () => "\\section{Method} We embed each statement and rank the open problems.",
+    researchTable: async () => ({ columns: ["title", "branch", "status", "class"], rows: [["Goldbach conjecture", "mathematics", "open", "close to known results"], ["Twin primes", "mathematics", "open", "borderline"]], index: [0, 1], total: 2, page: 1, size: 50, pinned: [], truncated: false }),
+    image: async () => "data:image/webp;base64,AAAA",
     data: async () => DATASETS,
     dataRecords: async () => ({ total: DATA_ROWS.length, offset: 0, limit: 50, records: DATA_ROWS }),
     dataRecord: async (_set: string, id: string) => ({ record: DATA_ROWS.find((r) => r.id === id)!, fields: [{ label: "Branch", value: "physics" }, { label: "Text", value: "Entropy rises and entropy never falls." }] }),
@@ -264,6 +354,15 @@ function populated(over: Stub = {}): Stub {
     history: async () => ({ snapshot: null, activity: days((i) => i % 4) }),
     workStatus: async () => ({ beads: 8, prs: 3, repo: "work/project", repoError: "git log did not run in that folder", chat: { claude: true, codex: false }, languages: ["he"], ready: true, answered: 2, correct: 1 }),
     workLanguages: async () => ({ languages: ["he"], available: [{ code: "he", name: "Hebrew" }] }),
+    wordDecks: async () => WORD_DECKS,
+    installedDecks: async () => DECKS_BODY,
+    library: async () => LIBRARY,
+    polingualLink: async () => ({ freeText: true, linked: true, place: "127.0.0.1:5433/polingual", reachable: true, words: 6564942 }),
+    wordLessons: async () => WORD_LESSON_LIST,
+    wordLesson: async () => LESSON_PAGE,
+    wordConcepts: async () => CONCEPT_PAGE,
+    wordQuiz: async () => ({ questions: [WORD_QUESTION], credit: WORD_CREDIT }),
+    settings: async () => ({ version: "0.5.0", build: { commit: "e61d7174b", date: "2026-10-08" }, dataDir: "/data/bucket", notify: { supported: true, on: true, at: "08:53" }, notifyDefault: "08:53" }),
     exploreSaved: async () => ({ v: 1, items: [SAVED_ITEM], noticeSeen: true }),
     putExploreSaved: async (s: unknown) => s,
     canonAbout: async () => ({ version: "c85d792ca773", excerpts: 364, branches: ["02-physics", "07-mind"], licences: [{ kind: "pubmed", name: "PubMed abstracts", terms: "Publisher copyright.", url: "https://pubmed.ncbi.nlm.nih.gov", works: 1 }] }),
@@ -287,7 +386,7 @@ function populated(over: Stub = {}): Stub {
       day: DAY,
       answered: [],
       questions: [
-        { id: "chat-sessions", type: "estimate", prompt: "How many chat sessions did you run in the last two days?", lines: [], choices: null, limitSec: 60 },
+        { id: "chat-sessions", type: "estimate", prompt: "How many chat sessions did you run in the last two days?", lines: [], choices: null, limitSec: 60, origin: "chat" },
         { id: "chat-day-1", type: "recall", prompt: 'On which day did the session that began "Fix the review buttons" start?', lines: [], choices: ["2026-09-28", "2026-09-29", "2026-09-30"], limitSec: 30 },
       ],
     }),
@@ -299,6 +398,16 @@ function failing(): Stub {
   const fail = (code: string, status: number) => () => Promise.reject(new ApiError(code, status));
   return {
     progress: progress(null),
+    researchList: fail("the research files could not be read", 500),
+    workspaceItems: fail("the workspace list could not be read", 500),
+    advisor: fail("the people file could not be read", 500),
+    researchManifest: fail("public/papers/x/paper.pdf does not match its hash in this build", 409),
+    researchTable: fail("the table does not parse", 422),
+    researchChanges: fail("the working copy crosses a symlink or a file, so nothing is written", 403),
+    researchSource: fail("the path crosses a symlink", 403),
+    researchPage: fail("the pages could not be read", 500),
+    researchText: fail("the path crosses a symlink", 403),
+    image: fail("the path crosses a symlink", 403),
     data: fail("data key does not match", 500),
     dataRecords: fail("no such dataset", 404),
     dataRecord: fail("no such record", 404),
@@ -309,7 +418,17 @@ function failing(): Stub {
     notes: fail("unauthorized", 401),
     history: fail("data key does not match", 500),
     workStatus: fail("git could not read that folder", 400),
+    settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
+    wordLicence: fail("data key does not match", 500),
+    wordDecks: fail("data key does not match", 500),
+    installedDecks: fail("data key does not match", 500),
+    library: fail("data key does not match", 500),
+    polingualLink: fail("data key does not match", 500),
+    wordLessons: fail("unknown language; run bkt learn path for the list", 404),
+    wordLesson: fail("no such lesson", 404),
+    wordConcepts: fail("data key does not match", 500),
+    wordQuiz: fail("unknown language; run bkt learn path for the list", 404),
     workSetLanguages: fail("data key does not match", 500),
     workNext: fail("data key does not match", 500),
     dailyQuiz: fail("give a day written as YYYY-MM-DD", 400),
@@ -357,20 +476,19 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "path" }, { name: "quiz" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "import" }, { name: "add" }, { name: "setup" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "advisors" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
   { name: "primes", fixedBy: "slice 6, Themes" },
-  { name: "advisors", fixedBy: "slice 7, Advisors action" },
   { name: "atlases", fixedBy: "bkt-cfcs, staff atlases" },
 ];
 
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -383,15 +501,62 @@ describe("navigation", () => {
     expect(PENDING.every((p) => p.fixedBy.length > 0)).toBe(true);
   });
 
+  test("Quiz opens the daily quiz, lights up for every quiz address and offers the practice quiz in one click", async () => {
+    const { activeNav, NAV } = await import("./nav");
+    const { parseHash } = await import("./router");
+    expect(NAV.filter((n) => /quiz/i.test(n.label)).map((n) => [n.label, n.route.name])).toEqual([["Quiz", "quiz"], ["Work quiz", "work"]]);
+    expect(["#/quiz", "#/quiz/practice", `#/work/daily/${DAY}`, "#/work"].map((h) => activeNav(parseHash(h)))).toEqual(["quiz", "quiz", "quiz", "work"]);
+    const quiz = await mount({ name: "quiz" }, populated());
+    expect(quiz.host.querySelector("h1")!.textContent).toBe("Daily quiz");
+    expect(Array.from(quiz.host.querySelectorAll(".quiz-kinds a")).map((a) => [a.textContent, a.getAttribute("href")])).toEqual([["Daily quiz", "#/quiz"], ["Practice quiz", "#/quiz/practice"]]);
+    await quiz.unmount();
+    const practice = await mount(parseHash("#/quiz/practice"), populated());
+    expect(practice.host.querySelector("h1")!.textContent).toBe("Practice quiz");
+    expect(practice.text()).toContain("What moves when heat flows?");
+    expect(violations(practice.host)).toEqual([]);
+    await practice.unmount();
+    const old = await mount(parseHash(`#/work/daily/${DAY}`), populated());
+    expect(old.host.querySelector("h1")!.textContent).toBe("Daily quiz");
+    expect(old.host.querySelector(".head .muted")!.textContent).toContain(DAY);
+    await old.unmount();
+  });
+
+  test("the review workspace reads in plain words", async () => {
+    const { UNREVIEWED, QUALITY_MISSING, qualityLine, REASONS } = await import("./alignment");
+    const { NO_QUEUE, NEED_NAME, NO_LABEL, KEYS_HINT, QUEUE_LABELS } = await import("./views/Alignment");
+    const words = [UNREVIEWED, QUALITY_MISSING, qualityLine([{ links: 40, right: 16, partly: 13, wrong: 11 }, { links: 40, right: 16, partly: 18, wrong: 6 }]), qualityLine([{ links: 5, right: 3, partly: 1, wrong: 1 }]), NO_QUEUE, NEED_NAME, NO_LABEL, KEYS_HINT, ...Object.values(QUEUE_LABELS), ...REASONS, "Proposed link, unreviewed", "Proposed relation", "Match score", "Level of the row", "Course or framework", "Bring in another review", "Export the review", "No match exists", "Search the corpus to add a link", "Brought in 2 opinions from another review. Each shows beside its link and decides nothing: a link counts only when you mark it yourself. 1 differs from a decision of yours.", "Another reviewer said right: Brook Sample on 2026-10-13", "Another reviewer said no match exists"];
+    expect(violationsIn(words)).toEqual([]);
+    expect(words.filter((w) => /[\u2013\u2014]/.test(w) || VOICE.test(w))).toEqual([]);
+  });
+
+  test("the Back button and the quiz kinds read in plain words", async () => {
+    const { BackButton, BackTrail, BACK_HINT, BACK_LABEL, BACK_NAME } = await import("./back");
+    const { PRACTICE_NOTE, QUIZ_KINDS, QUIZ_KINDS_NAME } = await import("./views/Quiz");
+    const { act } = await import("react");
+    const { createRoot } = await import("react-dom/client");
+    const host = document.createElement("div");
+    document.body.appendChild(host);
+    const root = createRoot(host);
+    const history = { state: null as unknown, replaceState(state: unknown) { this.state = state; }, pushState(state: unknown) { this.state = state; }, back() {} };
+    await act(async () => root.render(<BackButton trail={new BackTrail(history)} />));
+    expect(strings(host).sort()).toEqual([BACK_HINT, BACK_LABEL, BACK_NAME].sort());
+    expect(violations(host)).toEqual([]);
+    const words = [BACK_HINT, BACK_LABEL, BACK_NAME, PRACTICE_NOTE, QUIZ_KINDS_NAME, "Open the lesson on", ...QUIZ_KINDS.map((k) => k.label)];
+    expect(violationsIn(words)).toEqual([]);
+    expect(words.filter((w) => /[\u2013\u2014]/.test(w) || VOICE.test(w))).toEqual([]);
+    await act(async () => root.unmount());
+  });
+
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Profile"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 
   test("no screen in the navigation needs a file or shows a format word", async () => {
-    const { navFor, FOOT_LINK } = await import("./nav");
+    const { navFor, FOOT_LINK, FOOT_LINKS } = await import("./nav");
     expect(FOOT_LINK.label).toBe("Add your own");
+    expect(FOOT_LINKS.map((l) => [l.label, l.route.name])).toEqual([["Add your own", "add"], ["Settings", "settings"]]);
     for (const n of navFor(true)) {
       for (const stub of [empty, populated, failing]) {
         const v = await mount(n.route, stub());
@@ -416,15 +581,58 @@ describe("navigation", () => {
     await imp.unmount();
   });
 
-  test("the work quiz links to its own setup page for someone who has it", async () => {
+  test("the work quiz links to Settings, and the old setup address opens Settings", async () => {
+    const { parseHash } = await import("./router");
     const work = await mount({ name: "work" }, populated());
-    expect(work.host.querySelector('a[href="#/setup"]')!.textContent).toBe("Work quiz setup");
+    expect(work.host.querySelector('a[href="#/settings"]')!.textContent).toBe("Settings");
     await work.unmount();
-    const setup = await mount({ name: "setup" }, populated());
-    expect(setup.host.querySelector("h1")!.textContent).toBe("Work quiz setup");
+    expect(parseHash("#/setup")).toEqual({ name: "settings" });
+    const setup = await mount(parseHash("#/setup"), populated());
+    expect(setup.host.querySelector("h1")!.textContent).toBe("Settings");
     expect(setup.text()).toContain("Choose tasks file");
-    expect(setup.host.querySelector('a[href="#/work"]')).not.toBeNull();
     await setup.unmount();
+  });
+
+  test("Settings holds the chat switches, the languages, the notification switch, the data folder and the version", async () => {
+    const sent: [boolean, string | undefined][] = [];
+    const setNotify = async (on: boolean, at?: string) => (sent.push([on, at]), { notify: { supported: true, on, at: on ? (at ?? "08:53") : null } });
+    const on = await mount({ name: "settings" }, populated({ setNotify }));
+    const text = on.text();
+    for (const want of ["Claude chats", "Codex chats", "Hebrew", "Daily notification", "Data folder", "/data/bucket", "Version", "0.5.0, built from the work up to 2026-10-08"]) expect(text).toContain(want);
+    for (const want of ["Installed decks", "Spanish words", "755,090 words · 96.0 MB", "Arabic words", "24,278 words · 5.0 MB", "Wiktionary via Kaikki (kaikki.org)", "CC-BY-SA 3.0", "curated by Bucket Foundation"]) expect(text).toContain(want);
+    expect(text).not.toContain("terminal");
+    expect(text).not.toContain("bkt quiz");
+    const box = on.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
+    const time = on.host.querySelector(".notify input[type=time]") as HTMLInputElement;
+    expect([box.checked, time.value, time.getAttribute("aria-label")]).toEqual([true, "08:53", "Time of day"]);
+    expect(on.host.querySelectorAll('input[type="checkbox"]').length).toBe(3);
+    await on.act(async () => box.click());
+    await on.act(async () => new Promise((r) => setTimeout(r, 0)));
+    expect(sent).toEqual([[false, undefined]]);
+    expect(on.host.querySelector(".notify .status")!.textContent).toBe("Off.");
+    expect(violations(on.host)).toEqual([]);
+    await on.unmount();
+
+    const off = await mount({ name: "settings" }, empty());
+    const offBox = off.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement;
+    expect([offBox.checked, (off.host.querySelector(".notify input[type=time]") as HTMLInputElement).value]).toEqual([false, "08:53"]);
+    expect(off.text()).toContain("0.5.0");
+    expect(off.text()).toContain("No extra deck is installed. Bucket teaches from the words it ships with.");
+    expect(violations(off.host)).toEqual([]);
+    await off.unmount();
+
+    const refused = await mount({ name: "settings" }, { ...empty(), setNotify: () => Promise.reject(new ApiError("Bucket could not change the daily notification", 500)) });
+    await refused.act(async () => (refused.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement).click());
+    await refused.act(async () => new Promise((r) => setTimeout(r, 0)));
+    expect(refused.host.querySelector(".notify .status")!.textContent).toBe("Bucket could not change the daily notification.");
+    expect((refused.host.querySelector(".notify input[type=checkbox]") as HTMLInputElement).checked).toBe(false);
+    await refused.unmount();
+
+    const other = await mount({ name: "settings" }, { ...empty(), settings: async () => ({ version: "0.5.0", build: null, dataDir: "/Users/ada/Library/bkt", notify: { supported: false, on: false, at: null }, notifyDefault: "08:53" }) });
+    expect(other.text()).toContain("The daily notification is not available on this system yet.");
+    expect(other.host.querySelector(".notify")).toBeNull();
+    expect(violations(other.host)).toEqual([]);
+    await other.unmount();
   });
 
   test("the removed screens still open from their address", async () => {
@@ -503,7 +711,7 @@ describe("what the helper sends", () => {
       expect(violationsIn([e.message])).toEqual([]);
       const fail = () => Promise.reject(new ApiError(code, status));
       for (const route of COVERED.filter((r) => r.name !== "canon")) {
-        const v = await mount(route, { ...failing(), decks: fail, quiz: fail, due: fail, notes: fail, history: fail, workNext: fail, workStatus: fail, dailyQuiz: fail, canonAbout: fail, canonExcerpt: fail });
+        const v = await mount(route, { ...failing(), decks: fail, quiz: fail, due: fail, researchList: fail, researchManifest: fail, image: fail, notes: fail, history: fail, workNext: fail, workStatus: fail, dailyQuiz: fail, canonAbout: fail, canonExcerpt: fail });
         if (code) expect({ route: route.name, code, leaked: v.text().includes(code) }).toEqual({ route: route.name, code, leaked: false });
         expect(violations(v.host)).toEqual([]);
         await v.unmount();
@@ -928,7 +1136,7 @@ describe("import", () => {
 
 describe("work quiz setup", () => {
   test("speaks of tasks, merged changes and chats", async () => {
-    const v = await mount({ name: "setup" }, populated());
+    const v = await mount({ name: "settings" }, populated());
     const text = v.text();
     expect(text).toContain("8 tasks, 3 merged changes.");
     expect(text).toContain("Bucket could not read that folder.");
@@ -940,7 +1148,7 @@ describe("work quiz setup", () => {
   });
 
   test("a tasks file or folder the helper refuses reads in plain words", async () => {
-    const v = await mount({ name: "setup" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
+    const v = await mount({ name: "settings" }, populated({ workBeads: () => Promise.reject(new ApiError("no beads found; pick a .beads/issues.jsonl file", 400)), workRepo: () => Promise.reject(new ApiError("git could not read that folder", 400)) }));
     await v.pickFile(0, new File(["x"], "tasks"));
     expect(v.host.querySelectorAll(".status")[0].textContent).toBe("Bucket could not read that file.");
     await v.act(async () => v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
@@ -1069,7 +1277,8 @@ describe("Research OS views on the local store", () => {
     const { NODE_MISSING } = await import("./views/RosNode");
     const v = await mount({ name: "node", slug: "nope" }, empty());
     await v.act(async () => new Promise((r) => setTimeout(r, 60)));
-    expect(v.text()).toBe(NODE_MISSING);
+    expect(v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Nodes");
+    expect(v.text().split("\n").slice(10)).toEqual([NODE_MISSING]);
     await v.unmount();
   });
 

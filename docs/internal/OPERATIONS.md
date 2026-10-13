@@ -75,7 +75,7 @@ index today.
 
 Language surface on the photon substrate.
 
-`PHOTON-SPEC.md` + `POLINGUAL.md` are the contract/vision. Comparison axes:
+`docs/specs/PHOTON-SPEC.md` + `docs/specs/POLINGUAL.md` are the contract/vision. Comparison axes:
 Semantic / phonetic / spelling / etymology / translation.
 
 **Two photon copies, RECONCILE; the Hetzner one is authoritative:**

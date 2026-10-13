@@ -31,7 +31,7 @@
 
 - `~/jackkruse/`, 460 articles scraped, FTS5 + MiniLM-L6-v2 + RRF hybrid retrieval, local server on `:8765/search`
 - Bucket Foundation Next.js app scaffold (`src/app`, contexts, providers)
-- Bucket strategic docs (`MANIFESTO.md`, `PROTOCOL.md`, `GOVERNANCE.md`, `HISTORY.md`, `canon-figures/`)
+- Bucket strategic docs (`docs/foundation/MANIFESTO.md`, `docs/foundation/PROTOCOL.md`, `docs/foundation/GOVERNANCE.md`, `docs/foundation/HISTORY.md`, `canon-figures/`)
 - feed402 SPEC v0.0.1 (`~/freelance/viatika-x402-data-standard/SPEC.md`), citation envelope, three tiers, VDS extension already carves out `derbyfish.bhrv.v2`
 
 ### 🚧 To build

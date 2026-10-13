@@ -53,6 +53,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   productions: [{ columns: ["id"], nullable: [] }],
   purged_factoids: [{ columns: ["id"], nullable: [] }],
   purged_gold_lineage: [{ columns: ["id"], nullable: [] }],
+  reports: [{ columns: ["slug"], nullable: [] }],
   reviewer_candidates: [{ columns: ["id"], nullable: [] }, { columns: ["source_system", "sourced_id"], nullable: [] }],
   silver_items: [{ columns: ["id"], nullable: [] }, { columns: ["source_id", "source_revision", "parser", "parser_revision", "kind", "span_start", "span_end", "subject"], nullable: [] }],
   source_quote_receipts: [{ columns: ["id"], nullable: [] }, { columns: ["learner_id", "idempotency_key"], nullable: [] }],
@@ -61,6 +62,7 @@ export const GRAPH_UNIQUE_KEYS: Record<string, readonly UniqueKey[]> = {
   work_quiz_attempts: [{ columns: ["id"], nullable: [] }],
   work_quiz_cards: [{ columns: ["learner_id", "question_id"], nullable: [] }],
   work_quiz_coverage: [{ columns: ["learner_id", "cell", "fact_id"], nullable: [] }],
+  work_quiz_languages: [{ columns: ["learner_id"], nullable: [] }],
 };
 
 export function orderIsTotal(table: string, ordered: readonly string[], pinned: readonly string[]): boolean {

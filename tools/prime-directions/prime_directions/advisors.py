@@ -412,6 +412,16 @@ def load_directions(path: Path | None) -> list[tuple[str, str]]:
     return out
 
 
+def complement(advisor: np.ndarray, user: np.ndarray, labels: list[str], n: int = 3) -> tuple[float, list[str]]:
+    gaps = np.asarray(advisor, dtype=float) - np.asarray(user, dtype=float)
+    above = [(i, float(g)) for i, g in enumerate(gaps) if g > 0]
+    if not above:
+        return 0.0, []
+    above.sort(key=lambda t: -t[1])
+    score = round(float(np.mean([g for _, g in above])), 3)
+    return score, [labels[i] for i, _ in above[:n] if i < len(labels)]
+
+
 def direction_profiles(model: AdvisorModel, rows: list[dict], query_text: str, directions: list[tuple[str, str]],
                        scoring: str = "whitened", ref_n: int = 200) -> dict:
     raw = model.result.raw_scores
@@ -449,6 +459,7 @@ def direction_profiles(model: AdvisorModel, rows: list[dict], query_text: str, d
         if i is None:
             continue
         r["star_prime"] = [round(float(v), 3) for v in pct[i]]
+        r["complement"], r["complement_directions"] = complement(pct[i], qpct, context["prime_axes"])
         r["theta"] = round(float(theta[i]), 4)
         r["radius"] = round(float(radius[i]), 4)
         if ours is not None:

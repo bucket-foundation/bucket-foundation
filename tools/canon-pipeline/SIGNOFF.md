@@ -1,6 +1,6 @@
 # Canon sign-off
 
-The human sign-off tool for `bucket-canon/`, implementing `GOVERNANCE.md`'s
+The human sign-off tool for `bucket-canon/`, implementing `docs/foundation/GOVERNANCE.md`'s
 "Canon sign-off" section.
 
 ## Policy
@@ -24,7 +24,7 @@ This tool is the only sanctioned way to move a record out of `pending`:
 
 Approving or rejecting edits only the target record's `provenance_signoff:`
 line, in place. Every decision also appends one entry to
-`CANON-INGESTION-INDEX.md` under a `## Canon sign-off, <date>` heading,
+`docs/canon/CANON-INGESTION-INDEX.md` under a `## Canon sign-off, <date>` heading,
 so the audit trail lives in the same file the ingestion pipeline itself
 writes to.
 
@@ -48,7 +48,7 @@ state ever lands on disk from that path. Nothing it writes is `pending` in
 this tool's sense, so `list`
 never surfaces it and `approve`/`reject` never touch it. This is deliberate:
 that gate's semantics are untouched by this tool. `audit` still surfaces
-those write-back events (they land in the same `CANON-INGESTION-INDEX.md`
+those write-back events (they land in the same `docs/canon/CANON-INGESTION-INDEX.md`
 file), tagged separately as "hypothesis-engine write-back," so the audit
 trail stays complete without conflating the two vocabularies.
 
@@ -88,7 +88,7 @@ python3 tools/canon-pipeline/signoff.py approve bkt-xxxx --by gianyrox --offline
 # reject, with a required one-line reason
 python3 tools/canon-pipeline/signoff.py reject bkt-xxxx --by gianyrox --reason "broken DOI, superseded by a 2024 edition"
 
-# every signoff event recorded in CANON-INGESTION-INDEX.md
+# every signoff event recorded in docs/canon/CANON-INGESTION-INDEX.md
 python3 tools/canon-pipeline/signoff.py audit
 
 # machine-readable output on any subcommand
@@ -125,7 +125,7 @@ file.
 
 ## Audit trail
 
-`CANON-INGESTION-INDEX.md` carries a `## Canon sign-off, <date>` heading per
+`docs/canon/CANON-INGESTION-INDEX.md` carries a `## Canon sign-off, <date>` heading per
 decision, each with one line: `- **approved**: \`<path>#<id>\` "<title>" by
 <name> on <date> (DOI verified)` or the `rejected` equivalent with `--
 reason: <text>` appended. `audit` reads them back, plus the hypothesis
@@ -158,7 +158,7 @@ levels below its branch directory. `src/lib/canon-primary.ts`'s own
 that file at all: those eleven records are not served by `/api/research`
 today regardless of sign-off status. This tool's own file discovery walks
 the full tree at any depth, so `list` still surfaces all twenty. This depth
-limit matches policy: `GOVERNANCE.md`'s mission scopes the citeable
+limit matches policy: `docs/foundation/GOVERNANCE.md`'s mission scopes the citeable
 canon envelope to foundation-tier research, `sub-outcomes/` dossiers are
 outcome tier by definition, and no `primary-papers.yaml` outside
 `sub-outcomes/` sits two levels below its branch today, so `findPrimaryFiles`
@@ -174,7 +174,7 @@ excludes exactly the outcome-tier set and nothing else; widening it to serve
 3. `python3 tools/canon-pipeline/signoff.py approve <path>#<id> --by gianyrox`
    for each one that passes review, or `reject ... --reason "..."` for one
    that does not.
-4. Commit the result: `git add bucket-canon/ CANON-INGESTION-INDEX.md && git commit`.
+4. Commit the result: `git add bucket-canon/ docs/canon/CANON-INGESTION-INDEX.md && git commit`.
    Nothing here auto-commits; the sign-off itself is a plain file edit like
    any other change to `bucket-canon/`.
 5. `python3 tools/canon-pipeline/signoff.py audit` any time, to see the full

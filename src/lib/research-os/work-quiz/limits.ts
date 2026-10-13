@@ -1,3 +1,5 @@
+import { mathToText, splitMath } from "./math";
+
 export const LIMITS = {
   stem: 15,
   intentStem: 20,
@@ -85,6 +87,10 @@ function formulaRun(chunks: string[], start: number): number {
 }
 
 export function tokenize(text: string): string[] {
+  return splitMath(text).flatMap((s) => (s.kind === "math" ? [`$${s.value}$`] : tokenizePlain(s.value)));
+}
+
+function tokenizePlain(text: string): string[] {
   const chunks = text.trim().split(/\s+/).filter(Boolean);
   const out: string[] = [];
   let i = 0;
@@ -111,6 +117,7 @@ export function tokenize(text: string): string[] {
 }
 
 export function tokenWeight(token: string): number {
+  if (token.length > 1 && token.startsWith("$") && token.endsWith("$")) return 1;
   return Math.max(1, ...token.split(" ").map(chunkWeight));
 }
 
@@ -119,7 +126,7 @@ export function countTokens(text: string): number {
 }
 
 export function longestToken(text: string): number {
-  return tokenize(text).reduce((n, t) => Math.max(n, t.length), 0);
+  return tokenize(text).reduce((n, t) => Math.max(n, mathToText(t).length), 0);
 }
 
 export function shortTitle(title: string, cap: number): string {
@@ -138,7 +145,7 @@ export function shortTitle(title: string, cap: number): string {
 export function parityOk(options: readonly string[]): boolean {
   if (options.length < 2) return true;
   const tokens = options.map(countTokens);
-  const chars = options.map((o) => o.trim().length);
+  const chars = options.map((o) => mathToText(o).trim().length);
   if (Math.max(...tokens) - Math.min(...tokens) > LIMITS.parityTokens) return false;
   return Math.min(...chars) >= Math.max(...chars) * (1 - LIMITS.parityShare);
 }
@@ -179,9 +186,9 @@ export function checkLimits(q: Limited, o: { intent?: boolean } = {}): string[] 
   const shown = [q.prompt, ...(q.lines ?? []), ...choices];
   const longest = Math.max(0, ...[...shown, q.explain ?? ""].map(longestToken));
   if (longest > LIMITS.tokenChars) found.push(`a token has ${longest} characters, the limit is ${LIMITS.tokenChars}`);
-  const chars = shown.reduce((n, t) => n + t.trim().length, 0);
+  const chars = shown.reduce((n, t) => n + mathToText(t).trim().length, 0);
   if (chars > LIMITS.screenChars) found.push(`${chars} characters on screen before answering, the limit is ${LIMITS.screenChars}`);
-  const whyChars = (q.explain ?? "").trim().length;
+  const whyChars = mathToText(q.explain ?? "").trim().length;
   if (whyChars > LIMITS.whyChars) found.push(`the why line has ${whyChars} characters, the limit is ${LIMITS.whyChars}`);
   if ((q.sources ?? []).length > LIMITS.sources) found.push(`${(q.sources ?? []).length} sources, the limit is ${LIMITS.sources} link`);
   return found;

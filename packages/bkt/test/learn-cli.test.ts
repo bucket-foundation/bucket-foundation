@@ -119,7 +119,7 @@ describe("learn commands over the core module", () => {
     expect(Object.keys(JSON.parse(rated.out[1]))).toEqual(["v", "itemId", "due"]);
     const path = io();
     await expect(learnPath(later, null, [], true, path)).rejects.toBeInstanceOf(NoDataError);
-    expect(path.out).toEqual(['{"v":1,"decks":[]}']);
+    expect(path.out).toEqual(['{"v":1,"decks":[],"wordDecks":[]}']);
     store.close();
   });
 
@@ -135,6 +135,18 @@ describe("learn commands over the core module", () => {
     expect(await daily(backend(store, key), "2026-10-01", true, spec("daily"), json)).toBe(0);
     expect(JSON.parse(json.out[1])).toMatchObject({ v: 1, id: "q1", correct: true });
     await expect(daily(backend(store, key), "2026-10-02", true, spec("daily"), io())).rejects.toThrow("no daily quiz for 2026-10-02");
+    store.close();
+  });
+
+  test("a wrong daily answer carries the link to the resource that teaches it", async () => {
+    const key = newDataKey();
+    const store = new Store(":memory:", key);
+    const d = new DailyQuizStore(store, key);
+    const sources = [{ kind: "atom" as const, ref: "02-physics/entropy", label: "Entropy", href: null }];
+    d.put({ day: "2026-10-01", questions: [fermi({ id: "q1", prompt: "How many days in a year?", answer: 365, explain: "Earth's orbit.", sources })] }, 1);
+    const out = io(['{"response":"3","elapsedMs":4000}']);
+    expect(await daily(backend(store, key), "2026-10-01", true, spec("daily"), out)).toBe(0);
+    expect(JSON.parse(out.out[1])).toMatchObject({ correct: false, resource: { label: "learn this", href: "/research-os/learn/02-physics/entropy" } });
     store.close();
   });
 

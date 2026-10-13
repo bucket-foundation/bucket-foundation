@@ -68,7 +68,7 @@ export default function Page() {
           embeddings) ships in this repo at{" "}
           <code>_intake/training/kg.gpickle</code> +{" "}
           <code>kg-embeddings.npy</code>. See{" "}
-          <Link href="https://github.com/bucket-foundation/bucket-foundation/blob/main/REPRODUCE.md" className="underline">
+          <Link href="https://github.com/bucket-foundation/bucket-foundation/blob/main/docs/REPRODUCE.md" className="underline">
             REPRODUCE.md
           </Link>{" "}
           for collaborator access.

@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { InlineMath } from "@/components/math/InlineMath";
 import { languagesByName, textDir, toggleLanguage, wordCaption } from "@ros/work-quiz/languages";
 import { QUIZ_QUESTIONS } from "@ros/work-quiz/limits";
 import { ApiError, type Api, type DailyAnswer, type DailyQuiz, type WorkAnswer, type WorkQuestion, type WorkStatus } from "../api";
 import { href } from "../router";
+import { windowHref } from "../site-fetch";
 import { FILE_UNREADABLE } from "./file";
 
 export const WORK_QUIZ_CHANGED = "bkt-work-quiz-changed";
@@ -84,12 +86,12 @@ export function WordCredit({ q }: { q: Pick<WorkQuestion, "word"> }) {
 export function QuestionBody({ q }: { q: WorkQuestion }) {
   return (
     <>
-      <p className="q">{q.prompt}</p>
+      <p className="q"><InlineMath text={q.prompt} /></p>
       {q.lines.length > 0 && (
         <ul className={`lines${q.word ? " word" : ""}`}>
           {q.lines.map((l, i) => (
             <li key={i} dir={textDir(l)} lang={q.word?.lang ?? undefined}>
-              {l}
+              <InlineMath text={l} />
             </li>
           ))}
         </ul>
@@ -102,16 +104,23 @@ export function QuestionBody({ q }: { q: WorkQuestion }) {
 export function Choice({ q, text }: { q: WorkQuestion; text: string }) {
   return (
     <span dir={textDir(text)} lang={q.word?.choicesLang ?? undefined} className={q.word?.choicesLang ? "word" : undefined}>
-      {text}
+      <InlineMath text={text} />
     </span>
   );
+}
+
+export const SITE_ORIGIN = "https://www.bucket.foundation";
+
+export function resourceHref(path: string): string {
+  if (/^https:\/\//.test(path)) return path;
+  return windowHref(path.replace(/#evidence$/, "")) ?? `${SITE_ORIGIN}${path}`;
 }
 
 export function Why({ result }: { result: WorkAnswer }) {
   const source = result.sources?.[0];
   return (
     <p className="muted why">
-      {result.explain}
+      <InlineMath text={result.explain} />
       {source && " "}
       {source &&
         (source.href?.startsWith("https://") ? (
@@ -121,6 +130,14 @@ export function Why({ result }: { result: WorkAnswer }) {
         ) : (
           <span className="source">{source.label}</span>
         ))}
+      {!result.correct && result.resource && (
+        <>
+          {" "}
+          <a className="learn-this" href={resourceHref(result.resource.href)}>
+            {result.resource.label}
+          </a>
+        </>
+      )}
     </p>
   );
 }
@@ -172,7 +189,7 @@ export function WorkQuizView({ api }: { api: Api }) {
         <p className="muted">Questions from your own tasks, merged changes and the languages you pick.</p>
         {q && (
           <p className="muted small">
-            <a href={href({ name: "setup" })}>Work quiz setup</a>
+            <a href={href({ name: "settings" })}>Settings</a>
           </p>
         )}
       </header>
@@ -222,7 +239,7 @@ export function WorkQuizView({ api }: { api: Api }) {
           {result && (
             <div className="after-block">
               <p>
-                <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer {result.answer}
+                <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer <InlineMath text={result.answer} />
               </p>
               <Why result={result} />
               <button className="primary" onClick={next}>
@@ -237,11 +254,48 @@ export function WorkQuizView({ api }: { api: Api }) {
   );
 }
 
+export const CHAT_NOTE = "The daily quiz can read your last two days of chats. The text stays on this computer.";
+export const CHAT_ON = "The daily quiz reads your recent chats on this computer.";
+export const CHAT_OFF = "Chats are off.";
+export const CHAT_LABELS = { claude: "Claude chats", codex: "Codex chats" } as const;
+
+type Chat = { claude: boolean; codex: boolean };
+type ChatApi = Pick<Api, "workChat">;
+
+export function ChatSwitches({ api, chat, disabled, onSaved, onError }: { api: ChatApi; chat: Chat; disabled?: boolean; onSaved: (chat: Chat) => void; onError?: (message: string) => void }) {
+  const set = async (next: Chat) => {
+    try {
+      onSaved((await api.workChat(next)).chat);
+    } catch (e) {
+      onError?.((e as Error).message);
+    }
+  };
+  return (
+    <>
+      <p className="muted small">{CHAT_NOTE}</p>
+      {(Object.keys(CHAT_LABELS) as (keyof Chat)[]).map((root) => (
+        <label className="row" key={root}>
+          <input type="checkbox" checked={chat[root]} disabled={disabled} onChange={(e) => void set({ ...chat, [root]: e.target.checked })} /> {CHAT_LABELS[root]}
+        </label>
+      ))}
+    </>
+  );
+}
+
+export const ORIGIN_WORD: Readonly<Record<string, string>> = { critic: "critic", chat: "chats", review: "review", work: "work", word: "words", lesson: "lessons" };
+export const NO_QUIZ_SHOWN = "Bucket found nothing to ask about today. Turn on a chat source and Bucket builds the quiz from your last two days of chats.";
+export const NO_QUIZ_PAST = "Bucket saved no quiz for this day. Turn on a chat source to give the next quiz more to ask about.";
+
+export function localDay(ms: number): string {
+  const d = new Date(ms);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
 export const NO_QUIZ = "no quiz for that day";
 export const DAILY_MIN = QUIZ_QUESTIONS.min;
 export const DAILY_MAX = QUIZ_QUESTIONS.max;
 export const TOO_FEW = `fewer than ${DAILY_MIN} questions could be built for that day`;
-export const TOO_FEW_SHOWN = `A daily quiz holds ${DAILY_MIN} to ${DAILY_MAX} questions. Your sources gave fewer than ${DAILY_MIN} today, so Bucket built none. Add a beads file or a repository, or turn on a chat source, then open this page again.`;
+export const TOO_FEW_SHOWN = `A daily quiz holds ${DAILY_MIN} to ${DAILY_MAX} questions. Your sources gave fewer than ${DAILY_MIN} today, so Bucket built none. Turn on a chat source to give it more.`;
 export const OUTDATED = "This copy of Bucket is older than the daily quiz. Update Bucket, then open this page again.";
 export const QUIZ_CHANGED = "This quiz changed while the page was open. Reload the page to get the current questions.";
 export const GRADED_ONCE = "This question was already graded. Each daily question is graded once.";
@@ -251,7 +305,7 @@ export function factorOff(log10Distance: number): string {
   return f < 1.05 ? "on the mark" : `off by a factor of ${f >= 100 ? Math.round(f).toLocaleString("en-US") : f.toFixed(1)}`;
 }
 
-type DailyApi = Pick<Api, "dailyQuiz" | "dailyAnswer">;
+type DailyApi = Pick<Api, "dailyQuiz" | "dailyAnswer" | "workStatus" | "workChat">;
 
 export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
   const [quiz, setQuiz] = useState<DailyQuiz | null>(null);
@@ -266,8 +320,22 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
   const [stale, setStale] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [chat, setChat] = useState<Chat | null>(null);
+  const [round, setRound] = useState(0);
+  const [saved, setSaved] = useState<string | null>(null);
   const started = useRef(Date.now());
   const busy = useRef(false);
+
+  useEffect(() => {
+    let live = true;
+    api.workStatus().then(
+      (s) => live && setChat(s.chat ?? { claude: false, codex: false }),
+      () => undefined,
+    );
+    return () => {
+      live = false;
+    };
+  }, [api]);
 
   useEffect(() => {
     let live = true;
@@ -275,6 +343,8 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       (x) => {
         if (!live) return;
         const answered = new Set(x.answered);
+        setMissing(false);
+        setTooFew(false);
         setQuiz(x);
         setDone(answered);
         setAt(x.questions.find((q) => !answered.has(q.id))?.id ?? null);
@@ -291,7 +361,20 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
     return () => {
       live = false;
     };
-  }, [api, day]);
+  }, [api, day, round]);
+
+  const chatSaved = (next: Chat) => {
+    setChat(next);
+    setError(null);
+    setSaved(next.claude || next.codex ? CHAT_ON : CHAT_OFF);
+    if (done.size > 0) return;
+    setResult(null);
+    setRefused(false);
+    setStale(false);
+    setValue("");
+    setRound((n) => n + 1);
+  };
+  const switches = chat && <ChatSwitches api={api} chat={chat} onSaved={chatSaved} onError={setError} />;
 
   const q = quiz?.questions.find((x) => x.id === at) ?? null;
   const settled = !!result || refused || stale;
@@ -335,7 +418,8 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       {missing && (
         <div className="panel empty">
           <h2>No quiz for {day}</h2>
-          <p>Bucket has no quiz saved for this day. A daily quiz is built from your recent chats on the day itself, and nothing was built for this one. Either reading your chats was turned off, or the chats from those two days held nothing Bucket could ask about.</p>
+          <p>{day === localDay(Date.now()) ? NO_QUIZ_SHOWN : NO_QUIZ_PAST}</p>
+          {switches}
           <p>
             <a href={href({ name: "work" })}>Open the work quiz</a>
           </p>
@@ -345,6 +429,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
         <div className="panel empty">
           <h2>No quiz for {day}</h2>
           <p>{TOO_FEW_SHOWN}</p>
+          {switches}
           <p>
             <a href={href({ name: "work" })}>Open the work quiz</a>
           </p>
@@ -367,6 +452,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
       {q && (
         <article className="panel card">
           <span className="tag ghost">{q.type.replace(/_/g, " ")}</span>
+          {q.origin && ORIGIN_WORD[q.origin] && <span className="tag ghost origin">{ORIGIN_WORD[q.origin]}</span>}
           <QuestionBody q={q} />
           {q.choices ? (
             <ol className="choices">
@@ -399,7 +485,7 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
           {result && (
             <div className="after-block">
               <p>
-                <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer {result.answer}
+                <b className={result.correct ? "ok" : "bad"}>{result.correct ? "Correct" : result.timedOut ? "Out of time" : "Not quite"}</b> · answer <InlineMath text={result.answer} />
                 {result.log10Distance !== null ? ` · ${factorOff(result.log10Distance)}` : ""}
               </p>
               <Why result={result} />
@@ -426,6 +512,8 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
           <p className="muted small">{q.limitSec}s limit</p>
         </article>
       )}
+      {quiz && switches && <div className="chat-line">{switches}</div>}
+      {saved && <p className="status">{saved}</p>}
     </section>
   );
 }
@@ -470,14 +558,9 @@ export function WorkQuizSources({ api }: { api: Api }) {
   };
 
   const chat = status?.chat ?? { claude: false, codex: false };
-  const setChat = async (next: { claude: boolean; codex: boolean }) => {
-    try {
-      await api.workChat(next);
-      setMsg(next.claude || next.codex ? "The daily quiz reads your recent chats on this computer." : "Chats are off.");
-      load();
-    } catch (e) {
-      setMsg((e as Error).message);
-    }
+  const chatSaved = (next: Chat) => {
+    setMsg(next.claude || next.codex ? CHAT_ON : CHAT_OFF);
+    load();
   };
 
   return (
@@ -507,13 +590,7 @@ export function WorkQuizSources({ api }: { api: Api }) {
           </button>
         )}
       </form>
-      <p className="muted small">The daily quiz can read your last two days of chats. The text stays on this computer.</p>
-      <label className="row">
-        <input type="checkbox" checked={chat.claude} disabled={!status} onChange={(e) => void setChat({ ...chat, claude: e.target.checked })} /> Claude chats
-      </label>
-      <label className="row">
-        <input type="checkbox" checked={chat.codex} disabled={!status} onChange={(e) => void setChat({ ...chat, codex: e.target.checked })} /> Codex chats
-      </label>
+      <ChatSwitches api={api} chat={chat} disabled={!status} onSaved={chatSaved} onError={setMsg} />
       <LanguageChips api={api} onSaved={load} />
       {status && (status.beads > 0 || status.repo || chat.claude || chat.codex || (status.languages ?? []).length > 0) && (
         <button className="ghost" onClick={() => window.confirm("Remove everything the work quiz reads from this computer?") && void api.workForget().then(load)}>

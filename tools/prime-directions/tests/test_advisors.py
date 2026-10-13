@@ -393,3 +393,27 @@ def test_person_key_prefers_orcid_then_openalex_then_ror_name():
     assert advisors.person_key(P("src-9", "Jane Doe", "", {})) == "id:src-9"
     pub = advisors.publishable_rows([{"id": "A1", "email": "x@y"}])[0]
     assert pub["id"] != "A1" and pub["id"].startswith("p")
+
+
+def test_complement_is_the_mean_gap_where_the_advisor_exceeds_the_user():
+    score, dirs = advisors.complement(np.array([0.9, 0.2, 0.7, 0.5]), np.array([0.5, 0.6, 0.4, 0.5]), ["a", "b", "c", "d"])
+    assert score == 0.35 and dirs == ["a", "c"]
+
+
+def test_complement_is_zero_when_the_user_holds_every_direction():
+    assert advisors.complement(np.array([0.1, 0.2]), np.array([0.5, 0.6]), ["a", "b"]) == (0.0, [])
+
+
+def test_complement_names_only_the_top_three_directions():
+    score, dirs = advisors.complement(np.array([1.0, 0.9, 0.8, 0.7]), np.zeros(4), ["a", "b", "c", "d"])
+    assert dirs == ["a", "b", "c"] and score == 0.85
+
+
+def test_direction_profiles_add_complement_to_every_row():
+    model = small_model()
+    query = advisors.statement_body(STATEMENT.read_text())
+    rows, _, _ = advisors.rank(model, query, top=None)
+    ctx = advisors.direction_profiles(model, rows, query, [])
+    for r in rows:
+        assert 0 <= r["complement"] <= 1 and len(r["complement_directions"]) <= 3
+        assert set(r["complement_directions"]) <= set(ctx["prime_axes"])

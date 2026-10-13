@@ -1,9 +1,9 @@
 import { graphService } from "./db";
 import { effectiveConsent, type ClassConsent, type ConsentRequestRecord, type EffectiveConsent } from "./consent-paths";
 
-export type LearnerRole = "student" | "teacher" | "independent";
-export type BirthYearBucket = "under13" | "13to17" | "18plus";
-export type ConsentStatus = "none" | "school" | "parent" | "self";
+import type { BirthYearBucket, ConsentStatus, LearnerRole } from "./types";
+
+export type { BirthYearBucket, ConsentStatus, LearnerRole };
 
 export interface LearnerProfile {
   learnerId: string;

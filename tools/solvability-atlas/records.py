@@ -15,6 +15,7 @@ import urllib.request
 from collections import Counter
 from pathlib import Path
 
+import claims
 import record_schema
 
 HERE = Path(__file__).parent
@@ -449,6 +450,9 @@ def build(p, problems, titles, offline):
         "sources": sources, "retrieved": today(),
     }
     rec["quality"] = quality(rec)
+    mine = claims.record_claims(p["id"], claims.entries())
+    if mine:
+        rec["claims"] = mine
     return record_schema.validate(rec)
 
 
@@ -518,7 +522,12 @@ def main():
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--only", nargs="*", default=None)
     ap.add_argument("--retry-empty", action="store_true")
+    ap.add_argument("--all", action="store_true")
     a = ap.parse_args()
+    if a.all:
+        import records_all
+
+        return records_all.main([])
     migrate_cache()
     problems = load_problems()
     todo = [p for p in problems if a.only is None or p["id"] in a.only]

@@ -133,17 +133,22 @@ export type RosLiveRoute = "graph" | "search" | "node" | "state" | "directions" 
 
 export const ROS_LIVE_ROUTES: RosLiveRoute[] = ["graph", "search", "node", "state", "directions", "connections", "loop", "profile", "modules", "route"];
 
+const WEB_PREFIX = "/api/research-os/";
+const LOCAL_PREFIX = "/local/ros/";
+
+const livePath = (route: RosLiveRoute, methods: ("GET" | "POST")[]) => ({ web: WEB_PREFIX + route, local: LOCAL_PREFIX + route, methods });
+
 export const ROS_LIVE_PATHS: Record<RosLiveRoute, { web: string; local: string; methods: ("GET" | "POST")[] }> = {
-  graph: { web: "/api/research-os/graph", local: "/local/ros/graph", methods: ["GET"] },
-  search: { web: "/api/research-os/search", local: "/local/ros/search", methods: ["GET"] },
-  node: { web: "/api/research-os/node", local: "/local/ros/node", methods: ["GET"] },
-  state: { web: "/api/research-os/state", local: "/local/ros/state", methods: ["GET", "POST"] },
-  directions: { web: "/api/research-os/directions", local: "/local/ros/directions", methods: ["GET"] },
-  connections: { web: "/api/research-os/connections", local: "/local/ros/connections", methods: ["GET"] },
-  loop: { web: "/api/research-os/loop", local: "/local/ros/loop", methods: ["GET"] },
-  profile: { web: "/api/research-os/profile", local: "/local/ros/profile", methods: ["GET", "POST"] },
-  modules: { web: "/api/research-os/modules", local: "/local/ros/modules", methods: ["GET"] },
-  route: { web: "/api/research-os/route", local: "/local/ros/route", methods: ["GET"] },
+  graph: livePath("graph", ["GET"]),
+  search: livePath("search", ["GET"]),
+  node: livePath("node", ["GET"]),
+  state: livePath("state", ["GET", "POST"]),
+  directions: livePath("directions", ["GET"]),
+  connections: livePath("connections", ["GET"]),
+  loop: livePath("loop", ["GET"]),
+  profile: livePath("profile", ["GET", "POST"]),
+  modules: livePath("modules", ["GET"]),
+  route: livePath("route", ["GET"]),
 };
 
 const bool: Check = (v) => typeof v === "boolean";

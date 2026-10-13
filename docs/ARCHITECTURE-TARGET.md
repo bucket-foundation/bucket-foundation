@@ -387,7 +387,7 @@ Phase 3 is the point of no return, when the Rust store becomes the single writer
 
 All of this is proposed and none of it is evidenced. Parts drawn from general knowledge of peer-to-peer networks are marked.
 
-The smallest first node is a verified mirror: it holds signed packs, checks hash, signature and licence allowlist, and serves pack bytes by content hash to peers. It answers no queries and earns nothing. `PROTOCOL.md` section 6 describes this as federation by mirroring content hashes. Query answering and earnings come after it, each as a separate opt-in.
+The smallest first node is a verified mirror: it holds signed packs, checks hash, signature and licence allowlist, and serves pack bytes by content hash to peers. It answers no queries and earns nothing. `docs/foundation/PROTOCOL.md` section 6 describes this as federation by mirroring content hashes. Query answering and earnings come after it, each as a separate opt-in.
 
 Gate: the node phase starts when a measured user need exists, such as pack downloads that the release host cannot serve or users without access to it. No such measurement exists today.
 
@@ -450,7 +450,7 @@ Proposed, each user-set with a default:
 
 Three facts shape earnings:
 
-- Reading is free under `PROTOCOL.md` section 3.1, so a read has no payer and serving volume cannot be the basis of pay.
+- Reading is free under `docs/foundation/PROTOCOL.md` section 3.1, so a read has no payer and serving volume cannot be the basis of pay.
 - A payer can wash trade with a node it runs and take the node share back.
 - A payer who names the payee picks the node.
 
@@ -459,7 +459,7 @@ Proposed rules:
 | Rule | Effect |
 |---|---|
 | Node pay comes from the citation fee alone | A wash trade returns less than it spends |
-| The node is named by a serving receipt signed before payment, bound to the record hash and a nonce. This is an extension: `PROTOCOL.md` section 5.2 receipts are optional and carry no node signature | The payer cannot name a node afterwards |
+| The node is named by a serving receipt signed before payment, bound to the record hash and a nonce. This is an extension: `docs/foundation/PROTOCOL.md` section 5.2 receipts are optional and carry no node signature | The payer cannot name a node afterwards |
 | Node pay needs a payer unrelated to the node, by wallet, funding path and operator registration | Removes the direct rebate |
 | A per-payer cap on the fraction of a node's pay per period | Bounds one colluding payer |
 | A payment floor below which no node share is paid | Removes dust farming |
@@ -542,14 +542,14 @@ Today nothing settles:
 | `signX402ServerSide` returns null with a key and without one | `src/lib/x402-pay.ts` lines 7 and 15 |
 | `meterUsage` is a stub that returns balance 999 | `src/lib/meter.ts` |
 | The feed402 client sends a header `x402 stub-signed` or `x402 unsigned` | `src/lib/feed402-client.ts` lines 65 to 68 |
-| `PROTOCOL.md` section 3.1 limits the fee to a downstream publisher who republishes in a paid work, and sets `cite.reader_owes` to 0 | `PROTOCOL.md` lines 64 to 68 |
-| `PROTOCOL.md` section 5.2 receipts are optional and carry no node signature | `PROTOCOL.md` lines 186 to 203 |
+| `docs/foundation/PROTOCOL.md` section 3.1 limits the fee to a downstream publisher who republishes in a paid work, and sets `cite.reader_owes` to 0 | `docs/foundation/PROTOCOL.md` lines 64 to 68 |
+| `docs/foundation/PROTOCOL.md` section 5.2 receipts are optional and carry no node signature | `docs/foundation/PROTOCOL.md` lines 186 to 203 |
 
 Public claims the code does not meet, tracked in `bkt-r3rg`:
 
 | File | Claim |
 |---|---|
-| `MANIFESTO.md` line 41 | Reader-side settlement is live today |
+| `docs/foundation/MANIFESTO.md` line 41 | Reader-side settlement is live today |
 | `README.md` line 64 | Citations route fees to the author through an on-chain receipt |
 | `public/llms.txt` line 42 | A receipt status of `settled` server-side |
 | `public/llms-full.txt` line 14 | Fees route to authors |
@@ -751,12 +751,12 @@ Replaced: the Ink terminal app and the `bun:sqlite` store.
 
 ## Open Questions
 
-Today no legal entity exists: the packet is unfiled (`nonprofit-application/README.md` lines 5 and 11), no EIN exists (`nonprofit-application/00-BASE-INFO-MEMO.md` line 15, row G-1: Form SS-4 not filed), and `GOVERNANCE.md` line 5 calls itself a statement of intent. "The Foundation" here names a project held by the founder in a personal capacity (`GOVERNANCE.md` line 99). Each row is a question. This document answers none.
+Today no legal entity exists: the packet is unfiled (`nonprofit-application/README.md` lines 5 and 11), no EIN exists (`nonprofit-application/00-BASE-INFO-MEMO.md` line 15, row G-1: Form SS-4 not filed), and `docs/foundation/GOVERNANCE.md` line 5 calls itself a statement of intent. "The Foundation" here names a project held by the founder in a personal capacity (`docs/foundation/GOVERNANCE.md` line 99). Each row is a question. This document answers none.
 
 | Question | Blocks |
 |---|---|
 | Can anything be deployed or held in the Foundation's name before filing, and if the founder deploys, who answers for the contract? | Contract deployment |
-| Which formalization trigger in `GOVERNANCE.md` lines 87 to 92 fires first, and does a takedown notice fire it? | Entity choice, First Decision 2 |
+| Which formalization trigger in `docs/foundation/GOVERNANCE.md` lines 87 to 92 fires first, and does a takedown notice fire it? | Entity choice, First Decision 2 |
 | Does a party that deploys the splitter or runs the facilitator need to screen payers, authors and operators, and against which lists? | Mainnet settlement |
 | Does routing a payer's USDC to authors and operators raise money-transmission duties anywhere it operates? | Mainnet settlement |
 | Does paying node operators raise private-benefit, employment or reporting duties, and what does an operator owe in tax? | Operator payouts |

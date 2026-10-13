@@ -3,10 +3,12 @@ import { proveServer } from "../serve";
 import { chmodSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import type { PublicQuestion as DailyQuestion } from "../../../../src/lib/research-os/work-quiz/types";
+import { packLearnAtoms } from "../../../../src/lib/research-os/work-quiz/resources";
 import type { DailyQuizStore } from "../daily-quiz";
 import type { Pack, PackDeck } from "../pack/export";
 import type { Store } from "../store";
 import type { Question } from "../grade";
+import type { WordDeckProgress, WordLessonProgress, WordOutcome, WordQuiz, WordSession } from "../words";
 import {
   answerDaily,
   dailyQuestions,
@@ -35,13 +37,20 @@ export interface LearnBackend {
   decks(): Promise<DeckProgress[]>;
   daily(day: string): Promise<{ questions: DailyQuestion[]; answered: string[] } | null>;
   answerDaily(day: string, id: string, response: unknown, elapsedMs: number): Promise<DailyOutcome>;
+  wordDecks(): Promise<WordDeckProgress[]>;
+  wordLessons(deck: string): Promise<{ deck: WordDeckProgress; lessons: WordLessonProgress[] }>;
+  wordQuiz(deck: string, size: number): Promise<WordQuiz>;
+  answerWord(id: string, response: unknown, elapsedMs: number): Promise<WordOutcome>;
 }
+
+export const NO_WORD_PACK = "this build holds no word lessons";
 
 export interface DirectParts {
   store: Store;
   content: Pick<Pack, "atoms" | "decks">;
   daily: DailyQuizStore;
   record: Recorder;
+  words?: WordSession;
   now?: () => number;
   seed?: () => string;
 }
@@ -51,8 +60,24 @@ export function directBackend(p: DirectParts): LearnBackend {
   const seed = p.seed ?? (() => randomBytes(8).toString("hex"));
   const enc = new Encompassing(p.store, p.content);
   const open = new Map<string, Question>();
+  const words = (): WordSession => {
+    if (!p.words) throw new LearnError(NO_WORD_PACK, 404);
+    return p.words;
+  };
   return {
     kind: "direct",
+    async wordDecks() {
+      return p.words?.decks() ?? [];
+    },
+    async wordLessons(deck) {
+      return words().lessons(deck);
+    },
+    async wordQuiz(deck, size) {
+      return words().quiz({ deck, size });
+    },
+    async answerWord(id, response, elapsedMs) {
+      return words().answer(id, response, Math.min(elapsedMs, 3_600_000));
+    },
     async quiz(size) {
       const qs = quizSession(p.store, now(), size, seed());
       open.clear();
@@ -79,7 +104,7 @@ export function directBackend(p: DirectParts): LearnBackend {
       return dailyQuestions(p.daily, day, { fit: true });
     },
     async answerDaily(day, id, response, elapsedMs) {
-      return answerDaily(p.daily, p.record, day, id, response, Math.min(elapsedMs, 3_600_000), now());
+      return answerDaily(p.daily, p.record, day, id, response, Math.min(elapsedMs, 3_600_000), now(), packLearnAtoms(p.content.atoms));
     },
   };
 }
@@ -167,6 +192,10 @@ export function serverBackend(rec: ServerRecord): LearnBackend {
   };
   return {
     kind: "server",
+    wordDecks: async () => (await call<{ decks: WordDeckProgress[] }>("/local/words/decks")).decks,
+    wordLessons: (deck) => call<{ deck: WordDeckProgress; lessons: WordLessonProgress[] }>(`/local/words/lessons?deck=${encodeURIComponent(deck)}`),
+    wordQuiz: (deck, size) => call<WordQuiz>(`/local/words/quiz?deck=${encodeURIComponent(deck)}&n=${size}`),
+    answerWord: (id, response, elapsedMs) => call<WordOutcome>("/local/words/answer", { id, response, elapsedMs }),
     quiz: async (size) => (await call<{ questions: PublicQuestion[] }>(`/local/quiz?n=${size}`)).questions,
     answerQuiz: (itemId, choice, elapsedMs) => call<QuizOutcome>("/local/quiz", { itemId, choice, elapsedMs }),
     review: async (size) => (await call<{ items: ReviewCard[] }>(`/local/review?n=${size}`)).items,

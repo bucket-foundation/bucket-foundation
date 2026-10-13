@@ -50,6 +50,15 @@ describe("bkt serve fails closed", () => {
     expect(s.hostname).toBe("127.0.0.1");
   });
 
+  test("page CSP is unchanged", async () => {
+    boot();
+    const csp = (await req("/")).headers.get("content-security-policy") ?? "";
+    expect(csp.replace(/'sha256-[A-Za-z0-9+/=]+'/, "'sha256-HASH'")).toBe(
+      "default-src 'none'; script-src 'self' 'sha256-HASH'; connect-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+    );
+    expect(csp).not.toContain("blob:");
+  });
+
   test("page carries a strict CSP with a script hash and no cookies", async () => {
     boot();
     const r = await req("/");

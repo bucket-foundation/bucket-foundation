@@ -2,7 +2,7 @@
 
 > **What counts as canon-tier in earth sciences.** A foundational identification of a planetary process (deep time, plate tectonics, glacial cycles, the carbon cycle), a stratigraphic principle that organizes the geological record, a quantitative model of an earth system, or an observational dataset that forces such a model. Refining a measurement is not canon-tier; the figures below each forced or enabled a structural reframing of how the planet is understood.
 >
-> **Editorial note.** This branch is added in pass 1 to honor the *build history* slogan and to absorb the *geological / oceanographic / atmospheric* domains explicitly named in the seed-pass scope. The strict canon defined in `PROTOCOL.md` is not yet committed to including this branch; if it stays separate, this folder is a useful sister-canon. If it folds in, the branch label remains as a sub-categorization.
+> **Editorial note.** This branch is added in pass 1 to honor the *build history* slogan and to absorb the *geological / oceanographic / atmospheric* domains explicitly named in the seed-pass scope. The strict canon defined in `docs/foundation/PROTOCOL.md` is not yet committed to including this branch; if it stays separate, this folder is a useful sister-canon. If it folds in, the branch label remains as a sub-categorization.
 
 ---
 

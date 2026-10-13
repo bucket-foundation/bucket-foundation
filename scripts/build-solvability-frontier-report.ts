@@ -3,12 +3,13 @@ import path from "node:path";
 import neighbors from "../src/lib/research-os/solvability-neighbors-data.json";
 import { buildFrontier, frontierRows, type NeighborData } from "../src/lib/research-os/solvability-frontier";
 import { frontierSvg } from "../src/lib/research-os/solvability-frontier-render";
-import { backtest } from "../src/lib/research-os/solvability-backtest";
+import { backtest, scoreForecast, statusMap, type Forecast } from "../src/lib/research-os/solvability-backtest";
 import { buildPredictions, predictionsCsv, topPerClass, type StartingWork, type WorksIndex } from "../src/lib/research-os/solvability-predictions";
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "output", "solvability-frontier", "report");
 const LIB = path.join(ROOT, "src", "lib", "research-os");
+const FORECASTS = path.join(ROOT, "tools", "solvability-atlas", "forecasts");
 const RECORDS = path.join(ROOT, "tools", "solvability-atlas", "records");
 
 interface RecordWork {
@@ -35,6 +36,19 @@ function worksIndex(): WorksIndex {
   return out;
 }
 
+function frozenCutoffs(data: NeighborData) {
+  if (!existsSync(FORECASTS)) return [];
+  const status = statusMap(data);
+  return readdirSync(FORECASTS)
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => JSON.parse(readFileSync(path.join(FORECASTS, f), "utf8")) as Forecast)
+    .sort((a, b) => a.cutoff - b.cutoff)
+    .map((f) => {
+      const { rows: _rows, ...c } = scoreForecast(f, status);
+      return { ...c, inputHash: f.input_hash, forecastBuilt: f.built };
+    });
+}
+
 function main(): void {
   const data = neighbors as unknown as NeighborData;
   const frontier = buildFrontier(frontierRows(data), data);
@@ -56,6 +70,7 @@ function main(): void {
     k: data.k,
     frontier: { threshold: frontier.threshold, rule: frontier.rule, counts: frontier.counts, inside: frontier.inside, outside: frontier.outside, branches: frontier.branches, gaps: frontier.gaps },
     backtest: { ...bt, cutoffs: bt.cutoffs.map(({ rows: _rows, ...c }) => c) },
+    frozen: frozenCutoffs(data),
     predictions: { ...predictionSummary, top: topPerClass(predictions), atlas: rows.filter((r) => r.atlas) },
   };
   writeFileSync(path.join(LIB, "solvability-frontier-report-data.json"), JSON.stringify(page, null, 1));

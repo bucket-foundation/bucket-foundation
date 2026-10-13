@@ -75,7 +75,7 @@ def check(record):
             problems.append(f"missing {column}")
     if record["resolved"] and not (re.fullmatch(r"\d{4}", record["resolved"]) and 1600 <= int(record["resolved"]) <= 2026):
         problems.append(f"resolved year {record['resolved']!r}")
-    if record["posed"] and not (re.fullmatch(r"\d{4}", record["posed"]) and 1600 <= int(record["posed"]) <= 2026):
+    if record["posed"] and not (re.fullmatch(r"\d{4}", record["posed"]) and 1500 <= int(record["posed"]) <= 2026):
         problems.append(f"posed year {record['posed']!r}")
     if record["posed"] and record["resolved"] and int(record["posed"]) > int(record["resolved"]):
         problems.append("posed after resolved")
