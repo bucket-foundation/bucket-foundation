@@ -303,9 +303,9 @@ export default function Page({ params }: { params: { slug: string } }) {
           <p className="text-[14px] leading-[1.7] text-[color:var(--basalt-2)]">
             A published dataset gets a DOI through Zenodo. The content-addressed
             parquet is deposited and the DOI is recorded beside its feed402/0.2
-            cite-forever block. Reading and downloading cost nothing. A paid
-            work that republishes the dataset pays the authors over x402 on
-            Base. No wallet is required to read, download or cite.
+            cite-forever block. Reading and downloading cost nothing. The
+            license asks a paid work that republishes the dataset to pay the
+            authors over x402 on Base, and that rail does not settle yet. No wallet is required to read, download or cite.
           </p>
         </Section>
 

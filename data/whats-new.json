@@ -2055,7 +2055,7 @@
       "plot_title": "Open problems by similarity to the nearest solved problem in another file, all-MiniLM-L6-v2 over docstrings",
       "image": "/whats-new/production-solver-gap-engine.webp",
       "image_alt": "Histogram of 1,364 open problems by cosine similarity to the nearest solved problem in another file, peaking near 0.58, with 31 at 0.8 or above, 5 at 0.9 or above.",
-      "discussion": "Matches inside the same file are excluded, since those are variants of one problem; 455 open problems had their closest match there. The top cross-file pairs join related conjectures, such as Kotzig's conjecture with Ringel's, and neighbouring Erdos problems. Similarity measures wording, so a high score marks a problem worth handing to a prover and says nothing about difficulty. Next: run DeepSeek-Prover V2 on the top 50 once a GPU host is set, and fund labs to replicate the empirical checks.",
+      "discussion": "Matches inside the same file are excluded, since those are variants of one problem; 455 open problems had their closest match there. Similarity measures wording and says nothing about difficulty. A backtest against later upstream retagging, in unmerged PR 519, gives AUC 0.583, 0.585, 0.528 and 0.441 at the snapshots of 2025-09-01, 2025-12-01, 2026-03-01 and 2026-06-01, where 0.5 is chance [empirical: formal-conjectures 137aec5c, 2026-10-01, python3 backtest.py --repo fc-history.git --head 137aec5c]. Next: run DeepSeek-Prover V2 on the top 50 once a GPU host is set, and fund labs to replicate the empirical checks.",
       "links": [
         {
           "label": "PR 470",
@@ -2064,6 +2064,10 @@
         {
           "label": "Report",
           "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/reports/2026-09-30-solver-gap-engine.md"
+        },
+        {
+          "label": "Backtest, PR 519, unmerged",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/pull/519"
         }
       ]
     },

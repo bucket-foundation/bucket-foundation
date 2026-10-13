@@ -12,20 +12,20 @@ import {
 export const metadata = {
   title: "Support · host Research OS",
   description:
-    "Donations pay to host Research OS, the research tools and the canon for free. Citation fees go to authors. A nonprofit ask with no checkout.",
+    "Donations pay to host Research OS, the research tools and the canon for free. Citation fees are designed to go to authors, and none are collected yet. A nonprofit ask with no checkout.",
   alternates: { canonical: "/support" },
   openGraph: {
     type: "website",
     url: "https://www.bucket.foundation/support",
     title: "Support · host Research OS — bucket.foundation",
     description:
-      "Donations host Research OS and the free research tools. Citation fees go to authors. A nonprofit with no equity, no investors, no exit.",
+      "Donations host Research OS and the free research tools. Citation fees are designed to go to authors, and none are collected yet. A nonprofit with no equity, no investors, no exit.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Support · host Research OS — bucket.foundation",
     description:
-      "Donations host Research OS. Citation fees go to authors.",
+      "Donations host Research OS. No citation fees are collected yet.",
   },
 };
 
