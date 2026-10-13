@@ -2,312 +2,60 @@
   "version": "0.1",
   "entries": [
     {
-      "id": "pr-817",
-      "date": "2026-10-13",
-      "category": "pr-merged",
+      "id": "2026-10-09-knowledge-interaction-hierarchy",
+      "date": "2026-10-09",
+      "category": "site-feature",
       "branch": null,
-      "title": "Lead Linux downloads with the install command (bkt-1jig)",
-      "summary": "Fix in site: lead Linux downloads with the install command (bkt-1jig).",
-      "commit": "efe167e",
-      "pr": 817,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/817"
+      "title": "The knowledge interaction hierarchy",
+      "summary": "Research OS orders a person's relation to a node in five levels, each holding the ones before it the way a permission order does: Access, who can see and use the node; Awareness, knowing the directions beyond it; Understanding, learning the node itself; Internalization, the node meeting the rest of what the person holds; Production, a new node placed on the graph. The landing shows each level with the desktop view that serves it, and the app's home shows the five as the person's live state with one next action each.",
+      "commit": null,
+      "pr": null,
+      "url": null,
+      "discussion": "Each level has an operational test. Access is computed from the router: every prerequisite at Understanding or above. Awareness is a node opened. Understanding is one Check result that grounds the learner's own explanation against the node's quotes. Internalization is a transfer item followed by a teacher's approval, the one step a model cannot take. Production is a submitted node that passes the provenance guard and sign-off. The learner state model maps the five against ICAP, SOLO, Bloom, Perkins and the Recall-Apply-Derive-Teach ladder and names the logging gaps a pilot needs closed.",
+      "links": [
+        {
+          "label": "The five levels",
+          "href": "https://bucket.foundation/research-os#states"
+        },
+        {
+          "label": "Definition",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/learning/research-os/INTEGRATION-PLAN.md"
+        },
+        {
+          "label": "Learner state model",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/learning/research-os/LEARNER-STATE-MODEL.md"
+        }
+      ]
     },
     {
-      "id": "pr-816",
-      "date": "2026-10-13",
-      "category": "pr-merged",
+      "id": "2026-10-08-frontier-figure-explained",
+      "date": "2026-10-08",
+      "category": "production",
       "branch": null,
-      "title": "Merge main into dev ahead of the release",
-      "summary": "Upkeep in site: merge main into dev ahead of the release.",
-      "commit": "1c41615",
-      "pr": 816,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/816"
-    },
-    {
-      "id": "pr-795",
-      "date": "2026-10-13",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Review workspace for the atom alignment (bkt-khfw B8)",
-      "summary": "New in workspace: review workspace for the atom alignment (bkt-khfw B8).",
-      "commit": "84322bf",
-      "pr": 795,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/795"
-    },
-    {
-      "id": "pr-794",
-      "date": "2026-10-13",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Align learning atoms to the progressions corpus (bkt-khfw.9)",
-      "summary": "New in corpus: align learning atoms to the progressions corpus (bkt-khfw.9).",
-      "commit": "64dd413",
-      "pr": 794,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/794"
-    },
-    {
-      "id": "pr-790",
-      "date": "2026-10-13",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Claimed status, October 2026 frontier test (bkt-0lw7)",
-      "summary": "New in atlas: claimed status, October 2026 frontier test (bkt-0lw7).",
-      "commit": "1937aba",
-      "pr": 790,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/790"
-    },
-    {
-      "id": "pr-819",
-      "date": "2026-10-13",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Correct settlement and gap score claims (bkt-r3rg, bkt-p15r)",
-      "summary": "Fix in site: correct settlement and gap score claims (bkt-r3rg, bkt-p15r).",
-      "commit": "9bd4b18",
-      "pr": 819,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/819"
-    },
-    {
-      "id": "pr-789",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Governance drafts and founder-only local tool (bkt-l28u slices 0 and 1)",
-      "summary": "New in advisor-engine: governance drafts and founder-only local tool (bkt-l28u slices 0 and 1).",
-      "commit": "5f640e2",
-      "pr": 789,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/789"
-    },
-    {
-      "id": "pr-786",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Native approval dialog for research builds (bkt-4y3z slice 7b)",
-      "summary": "New in desktop: native approval dialog for research builds (bkt-4y3z slice 7b).",
-      "commit": "d336cb5",
-      "pr": 786,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/786"
-    },
-    {
-      "id": "pr-784",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "People workspace (bkt-khfw B5)",
-      "summary": "New in workspace: People workspace (bkt-khfw B5).",
-      "commit": "539c4d0",
-      "pr": 784,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/784"
-    },
-    {
-      "id": "pr-780",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Country sets on the earth, corpus credit lines, technology links and lags (bkt-khfw.6)",
-      "summary": "New in explore: country sets on the earth, corpus credit lines, technology links and lags (bkt-khfw.6).",
-      "commit": "2b16700",
-      "pr": 780,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/780"
-    },
-    {
-      "id": "pr-781",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Decks workspace (bkt-khfw B4)",
-      "summary": "New in workspace: Decks workspace (bkt-khfw B4).",
-      "commit": "7543ced",
-      "pr": 781,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/781"
-    },
-    {
-      "id": "pr-782",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Keep a technology lag only when its figure has a source address on record (bkt-khfw.7)",
-      "summary": "Fix in corpus: keep a technology lag only when its figure has a source address on record (bkt-khfw.7).",
-      "commit": "c6f5513",
-      "pr": 782,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/782"
-    },
-    {
-      "id": "pr-777",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Graphs and Maps workspaces, marked rows carried to Explore and back (bkt-khfw B3)",
-      "summary": "New in workspace: Graphs and Maps workspaces, marked rows carried to Explore and back (bkt-khfw B3).",
-      "commit": "addbce2",
-      "pr": 777,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/777"
-    },
-    {
-      "id": "pr-778",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "World tables, technology to occupation, country points and source licences (bkt-q0l1)",
-      "summary": "New in learning: world tables, technology to occupation, country points and source licences (bkt-q0l1).",
-      "commit": "b63e8ae",
-      "pr": 778,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/778"
-    },
-    {
-      "id": "pr-775",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Figures and Papers workspaces, item addresses (bkt-khfw B2)",
-      "summary": "New in workspace: Figures and Papers workspaces, item addresses (bkt-khfw B2).",
-      "commit": "6e17d1f",
-      "pr": 775,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/775"
-    },
-    {
-      "id": "pr-772",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Tab bar with Tables and Records workspaces (bkt-khfw B1)",
-      "summary": "New in workspace: tab bar with Tables and Records workspaces (bkt-khfw B1).",
-      "commit": "260145e",
-      "pr": 772,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/772"
-    },
-    {
-      "id": "pr-767",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Build runner, engine consent, terminal approval (bkt-4y3z slice 7a)",
-      "summary": "New in research: build runner, engine consent, terminal approval (bkt-4y3z slice 7a).",
-      "commit": "08ad045",
-      "pr": 767,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/767"
-    },
-    {
-      "id": "pr-771",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Row timeline, technology waves, faster graph layout (bkt-khfw.5)",
-      "summary": "New in explore: row timeline, technology waves, faster graph layout (bkt-khfw.5).",
-      "commit": "37eb100",
-      "pr": 771,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/771"
-    },
-    {
-      "id": "pr-770",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Back button, Quiz tab opens the daily quiz, math in the practice quiz (bkt-jhzl)",
-      "summary": "New in bkt-ui: back button, Quiz tab opens the daily quiz, math in the practice quiz (bkt-jhzl).",
-      "commit": "031406f",
-      "pr": 770,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/770"
-    },
-    {
-      "id": "pr-768",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Row set route, picker and graph mode in the window (bkt-khfw.4)",
-      "summary": "New in explore: row set route, picker and graph mode in the window (bkt-khfw.4).",
-      "commit": "33adf61",
-      "pr": 768,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/768"
-    },
-    {
-      "id": "pr-761",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Founder-created outputs (bkt-4y3z slice 6)",
-      "summary": "New in research: founder-created outputs (bkt-4y3z slice 6).",
-      "commit": "7138b0a",
-      "pr": 761,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/761"
-    },
-    {
-      "id": "pr-764",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Row set contract, licence registry and the public pack (bkt-khfw.2)",
-      "summary": "New in bkt: row set contract, licence registry and the public pack (bkt-khfw.2).",
-      "commit": "9e8619b",
-      "pr": 764,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/764"
-    },
-    {
-      "id": "pr-765",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Withhold IPUMS-sourced occupation rows and derived values (bkt-khfw.3)",
-      "summary": "Fix in corpus: withhold IPUMS-sourced occupation rows and derived values (bkt-khfw.3).",
-      "commit": "de97e12",
-      "pr": 765,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/765"
-    },
-    {
-      "id": "pr-762",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Route shapes for row sets, desks and research items (bkt-khfw.1)",
-      "summary": "New in bkt-ui: route shapes for row sets, desks and research items (bkt-khfw.1).",
-      "commit": "f97ee41",
-      "pr": 762,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/762"
-    },
-    {
-      "id": "pr-749",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Working copy, Changes, export (bkt-4y3z slice 5)",
-      "summary": "New in research: working copy, Changes, export (bkt-4y3z slice 5).",
-      "commit": "7db4e24",
-      "pr": 749,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/749"
-    },
-    {
-      "id": "pr-748",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Paper tab view and pages runner (bkt-4y3z slice 4)",
-      "summary": "New in research: Paper tab view and pages runner (bkt-4y3z slice 4).",
-      "commit": "a6a3811",
-      "pr": 748,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/748"
-    },
-    {
-      "id": "pr-746",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Side pack install, Data and Records tabs (bkt-4y3z slice 3)",
-      "summary": "New in research: side pack install, Data and Records tabs (bkt-4y3z slice 3).",
-      "commit": "11ed837",
-      "pr": 746,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/746"
-    },
-    {
-      "id": "pr-745",
-      "date": "2026-10-12",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Research maps under /research/maps (bkt-k7jv)",
-      "summary": "New in site: research maps under /research/maps (bkt-k7jv).",
-      "commit": "72c5a76",
-      "pr": 745,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/745"
+      "title": "The frontier figure, with its zones named",
+      "summary": "Reach is the cosine similarity between a problem's statement and the closest solved problem's statement, both embedded with bge-small-en-v1.5. The circle sits at reach 0.762, the 10th percentile of reach among the 1,694 solved problems: nine in ten solved problems are at least that close to another solved one. An open problem at or above it has a close solved neighbour; one below it does not.",
+      "commit": null,
+      "pr": null,
+      "url": null,
+      "status": "merged",
+      "plot_title": "The solvability frontier: 5,209 research problems, reach threshold 0.762",
+      "image": "/whats-new/solvability-frontier-figure.webp",
+      "image_alt": "A disc with three shaded zones. 1,694 solved problems fill the green centre; 2,434 open problems with a close solved neighbour fill the white ring inside the solid circle at reach 0.762; 1,081 open problems that need a new idea sit on the sand ring beyond it, bunched on the left. A legend lists eight branches by colour with their problem counts.",
+      "discussion": "Radius is reach, 1 at the centre and 0 at the edge, so a point's distance from the circle is how far its reach stands from 0.762. The inner dotted circle is at 0.854, the 75th percentile of reach among inside open problems: above it, close to known results; between the circles, borderline. Angle is the problem's rank along the first two principal components of the embeddings, so neighbours in meaning sit at nearby angles; the beyond points bunch on the left where physics, biophysics, cosmology and mind have few solved problems. Colour is branch.",
+      "links": [
+        {
+          "label": "Paper",
+          "href": "https://bucket.foundation/research/papers/solvability-frontier"
+        },
+        {
+          "label": "Report",
+          "href": "https://bucket.foundation/research-os/solvability/frontier"
+        },
+        {
+          "label": "Rule",
+          "href": "https://github.com/bucket-foundation/bucket-foundation/blob/dev/src/lib/research-os/solvability-frontier.ts"
+        }
+      ]
     },
     {
       "id": "production-daily-quiz-3-to-5",
@@ -541,61 +289,6 @@
       "commit": "2cea8a3",
       "pr": 723,
       "url": "https://github.com/bucket-foundation/bucket-foundation/pull/723"
-    },
-    {
-      "id": "pr-744",
-      "date": "2026-10-11",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Progressions schema v2, completeness scorer and new slices (bkt-q0l1)",
-      "summary": "New in learning: progressions schema v2, completeness scorer and new slices (bkt-q0l1).",
-      "commit": "b719990",
-      "pr": 744,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/744"
-    },
-    {
-      "id": "pr-739",
-      "date": "2026-10-11",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Pack, read routes, image loading, Report and Figures tabs (bkt-4y3z slice 2)",
-      "summary": "New in research: pack, read routes, image loading, Report and Figures tabs (bkt-4y3z slice 2).",
-      "commit": "acad2a9",
-      "pr": 739,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/739"
-    },
-    {
-      "id": "pr-735",
-      "date": "2026-10-11",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Manifest version 2 and report tooling (bkt-4y3z slice 1)",
-      "summary": "New in reports: manifest version 2 and report tooling (bkt-4y3z slice 1).",
-      "commit": "c313400",
-      "pr": 735,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/735"
-    },
-    {
-      "id": "pr-734",
-      "date": "2026-10-11",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "KaTeX renders through the DOM under the page CSP (bkt-4y3z slice 0)",
-      "summary": "Fix in math: KaTeX renders through the DOM under the page CSP (bkt-4y3z slice 0).",
-      "commit": "fbf1854",
-      "pr": 734,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/734"
-    },
-    {
-      "id": "pr-733",
-      "date": "2026-10-11",
-      "category": "pr-merged",
-      "branch": null,
-      "title": "Add RULINGS and apply settled corrections",
-      "summary": "Docs in market: add RULINGS and apply settled corrections.",
-      "commit": "d09b36a",
-      "pr": 733,
-      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/733"
     },
     {
       "id": "2026-10-08-frontier-records",
@@ -5419,6 +5112,369 @@
       "title": "Canon site refactor",
       "summary": "Branch grid + interactive armillary globe at /canon. Filesystem-driven entry tables. The private corpus left the top nav and became one of several sources under biophysics. Pattern-B changelog (this file) introduced.",
       "commit": "afec2ed"
+    },
+    {
+      "id": "pr-817",
+      "date": "2026-10-13",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Lead Linux downloads with the install command (bkt-1jig)",
+      "summary": "Fix in site: lead Linux downloads with the install command (bkt-1jig).",
+      "commit": "efe167e",
+      "pr": 817,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/817"
+    },
+    {
+      "id": "pr-816",
+      "date": "2026-10-13",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Merge main into dev ahead of the release",
+      "summary": "Upkeep in site: merge main into dev ahead of the release.",
+      "commit": "1c41615",
+      "pr": 816,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/816"
+    },
+    {
+      "id": "pr-795",
+      "date": "2026-10-13",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Review workspace for the atom alignment (bkt-khfw B8)",
+      "summary": "New in workspace: review workspace for the atom alignment (bkt-khfw B8).",
+      "commit": "84322bf",
+      "pr": 795,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/795"
+    },
+    {
+      "id": "pr-794",
+      "date": "2026-10-13",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Align learning atoms to the progressions corpus (bkt-khfw.9)",
+      "summary": "New in corpus: align learning atoms to the progressions corpus (bkt-khfw.9).",
+      "commit": "64dd413",
+      "pr": 794,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/794"
+    },
+    {
+      "id": "pr-790",
+      "date": "2026-10-13",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Claimed status, October 2026 frontier test (bkt-0lw7)",
+      "summary": "New in atlas: claimed status, October 2026 frontier test (bkt-0lw7).",
+      "commit": "1937aba",
+      "pr": 790,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/790"
+    },
+    {
+      "id": "pr-819",
+      "date": "2026-10-13",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Correct settlement and gap score claims (bkt-r3rg, bkt-p15r)",
+      "summary": "Fix in site: correct settlement and gap score claims (bkt-r3rg, bkt-p15r).",
+      "commit": "9bd4b18",
+      "pr": 819,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/819"
+    },
+    {
+      "id": "pr-789",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Governance drafts and founder-only local tool (bkt-l28u slices 0 and 1)",
+      "summary": "New in advisor-engine: governance drafts and founder-only local tool (bkt-l28u slices 0 and 1).",
+      "commit": "5f640e2",
+      "pr": 789,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/789"
+    },
+    {
+      "id": "pr-786",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Native approval dialog for research builds (bkt-4y3z slice 7b)",
+      "summary": "New in desktop: native approval dialog for research builds (bkt-4y3z slice 7b).",
+      "commit": "d336cb5",
+      "pr": 786,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/786"
+    },
+    {
+      "id": "pr-784",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "People workspace (bkt-khfw B5)",
+      "summary": "New in workspace: People workspace (bkt-khfw B5).",
+      "commit": "539c4d0",
+      "pr": 784,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/784"
+    },
+    {
+      "id": "pr-780",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Country sets on the earth, corpus credit lines, technology links and lags (bkt-khfw.6)",
+      "summary": "New in explore: country sets on the earth, corpus credit lines, technology links and lags (bkt-khfw.6).",
+      "commit": "2b16700",
+      "pr": 780,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/780"
+    },
+    {
+      "id": "pr-781",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Decks workspace (bkt-khfw B4)",
+      "summary": "New in workspace: Decks workspace (bkt-khfw B4).",
+      "commit": "7543ced",
+      "pr": 781,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/781"
+    },
+    {
+      "id": "pr-782",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Keep a technology lag only when its figure has a source address on record (bkt-khfw.7)",
+      "summary": "Fix in corpus: keep a technology lag only when its figure has a source address on record (bkt-khfw.7).",
+      "commit": "c6f5513",
+      "pr": 782,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/782"
+    },
+    {
+      "id": "pr-777",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Graphs and Maps workspaces, marked rows carried to Explore and back (bkt-khfw B3)",
+      "summary": "New in workspace: Graphs and Maps workspaces, marked rows carried to Explore and back (bkt-khfw B3).",
+      "commit": "addbce2",
+      "pr": 777,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/777"
+    },
+    {
+      "id": "pr-778",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "World tables, technology to occupation, country points and source licences (bkt-q0l1)",
+      "summary": "New in learning: world tables, technology to occupation, country points and source licences (bkt-q0l1).",
+      "commit": "b63e8ae",
+      "pr": 778,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/778"
+    },
+    {
+      "id": "pr-775",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Figures and Papers workspaces, item addresses (bkt-khfw B2)",
+      "summary": "New in workspace: Figures and Papers workspaces, item addresses (bkt-khfw B2).",
+      "commit": "6e17d1f",
+      "pr": 775,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/775"
+    },
+    {
+      "id": "pr-772",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Tab bar with Tables and Records workspaces (bkt-khfw B1)",
+      "summary": "New in workspace: tab bar with Tables and Records workspaces (bkt-khfw B1).",
+      "commit": "260145e",
+      "pr": 772,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/772"
+    },
+    {
+      "id": "pr-767",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Build runner, engine consent, terminal approval (bkt-4y3z slice 7a)",
+      "summary": "New in research: build runner, engine consent, terminal approval (bkt-4y3z slice 7a).",
+      "commit": "08ad045",
+      "pr": 767,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/767"
+    },
+    {
+      "id": "pr-771",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Row timeline, technology waves, faster graph layout (bkt-khfw.5)",
+      "summary": "New in explore: row timeline, technology waves, faster graph layout (bkt-khfw.5).",
+      "commit": "37eb100",
+      "pr": 771,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/771"
+    },
+    {
+      "id": "pr-770",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Back button, Quiz tab opens the daily quiz, math in the practice quiz (bkt-jhzl)",
+      "summary": "New in bkt-ui: back button, Quiz tab opens the daily quiz, math in the practice quiz (bkt-jhzl).",
+      "commit": "031406f",
+      "pr": 770,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/770"
+    },
+    {
+      "id": "pr-768",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Row set route, picker and graph mode in the window (bkt-khfw.4)",
+      "summary": "New in explore: row set route, picker and graph mode in the window (bkt-khfw.4).",
+      "commit": "33adf61",
+      "pr": 768,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/768"
+    },
+    {
+      "id": "pr-761",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Founder-created outputs (bkt-4y3z slice 6)",
+      "summary": "New in research: founder-created outputs (bkt-4y3z slice 6).",
+      "commit": "7138b0a",
+      "pr": 761,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/761"
+    },
+    {
+      "id": "pr-764",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Row set contract, licence registry and the public pack (bkt-khfw.2)",
+      "summary": "New in bkt: row set contract, licence registry and the public pack (bkt-khfw.2).",
+      "commit": "9e8619b",
+      "pr": 764,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/764"
+    },
+    {
+      "id": "pr-765",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Withhold IPUMS-sourced occupation rows and derived values (bkt-khfw.3)",
+      "summary": "Fix in corpus: withhold IPUMS-sourced occupation rows and derived values (bkt-khfw.3).",
+      "commit": "de97e12",
+      "pr": 765,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/765"
+    },
+    {
+      "id": "pr-762",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Route shapes for row sets, desks and research items (bkt-khfw.1)",
+      "summary": "New in bkt-ui: route shapes for row sets, desks and research items (bkt-khfw.1).",
+      "commit": "f97ee41",
+      "pr": 762,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/762"
+    },
+    {
+      "id": "pr-749",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Working copy, Changes, export (bkt-4y3z slice 5)",
+      "summary": "New in research: working copy, Changes, export (bkt-4y3z slice 5).",
+      "commit": "7db4e24",
+      "pr": 749,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/749"
+    },
+    {
+      "id": "pr-748",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Paper tab view and pages runner (bkt-4y3z slice 4)",
+      "summary": "New in research: Paper tab view and pages runner (bkt-4y3z slice 4).",
+      "commit": "a6a3811",
+      "pr": 748,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/748"
+    },
+    {
+      "id": "pr-746",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Side pack install, Data and Records tabs (bkt-4y3z slice 3)",
+      "summary": "New in research: side pack install, Data and Records tabs (bkt-4y3z slice 3).",
+      "commit": "11ed837",
+      "pr": 746,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/746"
+    },
+    {
+      "id": "pr-745",
+      "date": "2026-10-12",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Research maps under /research/maps (bkt-k7jv)",
+      "summary": "New in site: research maps under /research/maps (bkt-k7jv).",
+      "commit": "72c5a76",
+      "pr": 745,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/745"
+    },
+    {
+      "id": "pr-744",
+      "date": "2026-10-11",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Progressions schema v2, completeness scorer and new slices (bkt-q0l1)",
+      "summary": "New in learning: progressions schema v2, completeness scorer and new slices (bkt-q0l1).",
+      "commit": "b719990",
+      "pr": 744,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/744"
+    },
+    {
+      "id": "pr-739",
+      "date": "2026-10-11",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Pack, read routes, image loading, Report and Figures tabs (bkt-4y3z slice 2)",
+      "summary": "New in research: pack, read routes, image loading, Report and Figures tabs (bkt-4y3z slice 2).",
+      "commit": "acad2a9",
+      "pr": 739,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/739"
+    },
+    {
+      "id": "pr-735",
+      "date": "2026-10-11",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Manifest version 2 and report tooling (bkt-4y3z slice 1)",
+      "summary": "New in reports: manifest version 2 and report tooling (bkt-4y3z slice 1).",
+      "commit": "c313400",
+      "pr": 735,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/735"
+    },
+    {
+      "id": "pr-734",
+      "date": "2026-10-11",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "KaTeX renders through the DOM under the page CSP (bkt-4y3z slice 0)",
+      "summary": "Fix in math: KaTeX renders through the DOM under the page CSP (bkt-4y3z slice 0).",
+      "commit": "fbf1854",
+      "pr": 734,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/734"
+    },
+    {
+      "id": "pr-733",
+      "date": "2026-10-11",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Add RULINGS and apply settled corrections",
+      "summary": "Docs in market: add RULINGS and apply settled corrections.",
+      "commit": "d09b36a",
+      "pr": 733,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/733"
     }
   ]
 }

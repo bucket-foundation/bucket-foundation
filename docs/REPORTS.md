@@ -53,7 +53,7 @@ Written in the Data Standard canonical form: UTF-8, keys `[a-z0-9_]+` sorted byt
 | `tables` | `[{id, path, format, label, licence, audience, editable, licence_column, source_column}]` | A data table. `format` is `tsv`, `csv`, `json` or `jsonl`. `licence` may be `mixed` when `licence_column` names the column that holds each row's licence |
 | `paper` | `{includes, bib, style, lean, audience}` | Every file the entry file reads. `source_path` stays the entry file |
 | `record_sets` | `[{id, dir, schema, label, licence, index, audience}]` | A folder of one-record JSON files |
-| `tool` | `{path, readme, audience}` | The code folder and its README |
+| `tool` | `{path, readme, audience}` | The code folder and its README. A `.packignore` file in any folder under it lists, one name per line, the files and folders of that folder the research pack leaves out; use it for outputs a command rebuilds |
 | `builds` | `[{id, label, runner, entry, inputs, outputs, needs, audience}]` | `runner` is `latex` or `python`. `entry` and every input must be a path the manifest lists under `assets`, `tables`, `paper`, `tool` or `record_sets` |
 | `attributions` | `[{source, url, licence, rows, notice}]` | One row per upstream source |
 
