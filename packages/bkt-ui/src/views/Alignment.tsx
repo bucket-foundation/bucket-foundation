@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import type { Atom } from "@academy/engine";
 import type { Api, ResearchDetail, ReviewRow } from "../api";
-import { applyDecision, atomParts, atomState, cleanReviewer, decisionKey, deckProgress, mergeDecisions, parseDecisions, parseEdges, parseLinks, qualityLine, qualitySamples, queuedAtoms, QUEUES, REASONS, REVIEW_SCHEMA, REVIEW_SLUG, today, UNREVIEWED, verifiedTable, type Decision, type DecisionKind, type Edge, type Link, type Queue, type Reason } from "../alignment";
+import { applyDecision, atomParts, atomState, cleanReviewer, decisionKey, deckProgress, mergeDecisions, parseDecisions, parseOpinions, parseEdges, parseLinks, qualityLine, qualitySamples, queuedAtoms, QUEUES, REASONS, REVIEW_SCHEMA, REVIEW_SLUG, today, UNREVIEWED, verifiedTable, type Decision, type DecisionKind, type Edge, type Link, type Queue, type Reason } from "../alignment";
 import { holdPendingSave } from "../pending-saves";
 import type { ResearchApi } from "./Research";
 
@@ -113,6 +113,7 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
   }, [api, deck]);
 
   const decisions = useMemo(() => new Map(parseDecisions(text).map((d) => [decisionKey(d), d])), [text]);
+  const opinions = useMemo(() => parseOpinions(text), [text]);
   const progress = useMemo(() => (loaded ? deckProgress(loaded.links, decisions) : []), [loaded, decisions]);
   const queued = useMemo(() => (loaded && queue !== "all" ? queuedAtoms(loaded.edges, queue) : null), [loaded, queue]);
   const deckAtoms = useMemo(() => {
@@ -162,7 +163,7 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
     if (file.size > 4 * 1024 * 1024) return setStatus("That file is larger than a review can be.");
     const merged = mergeDecisions(held.current.text, await file.text());
     put(merged.text);
-    setNote(`Brought in ${merged.added.toLocaleString("en-US")} ${merged.added === 1 ? "decision" : "decisions"}. ${merged.differing.toLocaleString("en-US")} ${merged.differing === 1 ? "link was" : "links were"} decided differently: yours stay, and the other decision is kept beside each as an earlier one.`);
+    setNote(`Brought in ${merged.added.toLocaleString("en-US")} ${merged.added === 1 ? "opinion" : "opinions"} from another review. Each shows beside its link and decides nothing: a link counts only when you mark it yourself. ${merged.differing.toLocaleString("en-US")} ${merged.differing === 1 ? "differs" : "differ"} from a decision of yours.`);
   };
 
   const decide = (kind: DecisionKind, target: { link: string | null; row: string | null }, reason: Reason | null = null) => {
@@ -418,6 +419,11 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
                             {made.decision === "partly" ? `Partly: ${made.reason}` : made.decision === "right" ? "Right" : "Wrong"}, by {made.reviewer} on {made.at}
                           </p>
                         )}
+                        {(opinions.get(`${atom}|${l.id}`) ?? []).map((o, n) => (
+                          <p key={`o${n}`} className="muted small alignment-other">
+                            Another reviewer said {o.decision === "partly" ? `partly, ${o.reason}` : o.decision}: {o.reviewer} on {o.at}
+                          </p>
+                        ))}
                         {made?.previous?.map((e, n) => (
                           <p key={n} className="muted small alignment-earlier">
                             Earlier: {e.decision === "partly" ? `partly, ${e.reason}` : e.decision}, by {e.reviewer} on {e.at}
@@ -441,6 +447,13 @@ export function AlignmentPane({ api }: { api: AlignmentApi }) {
                       ))}
                     </ul>
                   </>
+                )}
+                {[...opinions.entries()].filter(([key]) => key === `${atom}|none` || key.startsWith(`${atom}|row:`)).flatMap(([key, list]) =>
+                  list.map((o, n) => (
+                    <p key={`${key}${n}`} className="muted small alignment-other">
+                      Another reviewer {key.endsWith("|none") ? "said no match exists" : `added the row ${key.split("|row:")[1]}`}: {o.reviewer} on {o.at}
+                    </p>
+                  )),
                 )}
                 <div className="toolbar">
                   <button type="button" aria-pressed={state.none} className={state.none ? "on" : ""} onClick={() => (state.none ? save({ remove: `${atom}|none` }) : decide("no-match", { link: null, row: null }))}>

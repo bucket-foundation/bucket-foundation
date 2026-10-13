@@ -30,6 +30,7 @@ export interface Decision {
   reviewer: string;
   at: string;
   previous?: Earlier[];
+  others?: Earlier[];
 }
 
 export interface Earlier {
@@ -88,6 +89,16 @@ export function parseEdges(text: string): Edge[] {
   });
 }
 
+function parseCalls(raw: unknown): Earlier[] {
+  return (Array.isArray(raw) ? raw : []).flatMap((item): Earlier[] => {
+    const e = item as Record<string, unknown> | null;
+    const kind = DECISIONS.find((d) => d === e?.decision);
+    const who = str(e?.reviewer);
+    const when = str(e?.at);
+    return kind && who && when && DAY.test(when) ? [{ decision: kind, reason: REASONS.find((x) => x === e?.reason) ?? null, reviewer: who, at: when }] : [];
+  });
+}
+
 export function parseDecisions(text: string): Decision[] {
   return lines(text, (r) => {
     const atom = str(r.atom);
@@ -97,57 +108,80 @@ export function parseDecisions(text: string): Decision[] {
     if (r.schema !== REVIEW_SCHEMA || !atom || !atomParts(atom) || !decision || !reviewer || !at || !DAY.test(at)) return null;
     const reason = REASONS.find((x) => x === r.reason) ?? null;
     if (decision === "partly" && !reason) return null;
-    const previous = (Array.isArray(r.previous) ? r.previous : []).flatMap((raw): Earlier[] => {
-      const e = raw as Record<string, unknown> | null;
-      const kind = DECISIONS.find((d) => d === e?.decision);
-      const who = str(e?.reviewer);
-      const when = str(e?.at);
-      return kind && who && when && DAY.test(when) ? [{ decision: kind, reason: REASONS.find((x) => x === e?.reason) ?? null, reviewer: who, at: when }] : [];
-    });
-    return { schema: REVIEW_SCHEMA, atom, link: str(r.link), row: str(r.row), decision, reason: decision === "partly" ? reason : null, reviewer, at, ...(previous.length ? { previous: previous.slice(0, HISTORY_CAP) } : {}) };
+    const previous = parseCalls(r.previous).slice(0, HISTORY_CAP);
+    const others = parseCalls(r.others).slice(0, HISTORY_CAP);
+    return { schema: REVIEW_SCHEMA, atom, link: str(r.link), row: str(r.row), decision, reason: decision === "partly" ? reason : null, reviewer, at, ...(previous.length ? { previous } : {}), ...(others.length ? { others } : {}) };
   });
 }
 
-const earlier = (d: Decision): Earlier => ({ decision: d.decision, reason: d.reason, reviewer: d.reviewer, at: d.at });
+const earlier = (d: Earlier): Earlier => ({ decision: d.decision, reason: d.reason, reviewer: d.reviewer, at: d.at });
 const sameCall = (a: Earlier, b: Earlier) => a.decision === b.decision && a.reason === b.reason && a.reviewer === b.reviewer;
 
 export const decisionKey = (d: Pick<Decision, "atom" | "link" | "row" | "decision">): string => `${d.atom}|${d.decision === "no-match" ? "none" : (d.link ?? `row:${d.row ?? ""}`)}`;
 
 export function cleanReviewer(name: string): string {
-  return name.replace(/[\u0000-\u001F\u007F-\u009F؜​-‏‪-‮⁠-⁩﻿]/g, "").replace(/\s+/g, " ").trim().slice(0, 80);
+  return name.replace(/[\u0000-\u001F\u007F-\u009F\u061C\u200B-\u200F\u202A-\u202E\u2060-\u2069\uFEFF]/g, "").replace(/\s+/g, " ").trim().slice(0, 80);
+}
+
+export function parseOpinions(text: string): Map<string, Earlier[]> {
+  const out = new Map<string, Earlier[]>();
+  for (const d of parseDecisions(text)) if (d.others?.length) out.set(decisionKey(d), d.others);
+  for (const held of lines(text, (r) => {
+    const key = str(r.key);
+    const others = parseCalls(r.others).slice(0, HISTORY_CAP);
+    return r.schema === REVIEW_SCHEMA && r.decision === null && key && atomParts(key.split("|")[0]) && others.length ? { key, others } : null;
+  }))
+    if (!out.has(held.key)) out.set(held.key, held.others);
+  return out;
+}
+
+function rebuild(locals: Decision[], opinions: Map<string, Earlier[]>): string {
+  const rows: { key: string; line: string }[] = [];
+  const local = new Set<string>();
+  for (const d of locals) {
+    const key = decisionKey(d);
+    local.add(key);
+    const others = opinions.get(key) ?? [];
+    rows.push({ key, line: JSON.stringify({ schema: d.schema, atom: d.atom, link: d.link, row: d.row, decision: d.decision, reason: d.reason, reviewer: d.reviewer, at: d.at, ...(d.previous?.length ? { previous: d.previous } : {}), ...(others.length ? { others } : {}) }) });
+  }
+  for (const [key, others] of opinions) if (!local.has(key) && others.length) rows.push({ key, line: JSON.stringify({ schema: REVIEW_SCHEMA, atom: key.split("|")[0], key, decision: null, others }) });
+  rows.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+  return rows.map((r) => r.line).join("\n") + (rows.length ? "\n" : "");
 }
 
 export function serializeDecisions(all: Decision[]): string {
-  const sorted = [...all].sort((a, b) => (decisionKey(a) < decisionKey(b) ? -1 : decisionKey(a) > decisionKey(b) ? 1 : 0));
-  return sorted.map((d) => JSON.stringify({ schema: d.schema, atom: d.atom, link: d.link, row: d.row, decision: d.decision, reason: d.reason, reviewer: d.reviewer, at: d.at, ...(d.previous?.length ? { previous: d.previous } : {}) })).join("\n") + (sorted.length ? "\n" : "");
+  return rebuild(all, new Map(all.filter((d) => d.others?.length).map((d) => [decisionKey(d), d.others as Earlier[]])));
 }
 
 export function applyDecision(text: string, next: Decision | { remove: string }): string {
   const all = parseDecisions(text);
+  const opinions = parseOpinions(text);
   const key = "remove" in next ? next.remove : decisionKey(next);
   const kept = all.filter((d) => decisionKey(d) !== key);
-  if ("remove" in next) return serializeDecisions(kept);
+  if ("remove" in next) return rebuild(kept, opinions);
   const old = all.find((d) => decisionKey(d) === key);
   const history = old ? [...(sameCall(earlier(old), earlier(next)) ? [] : [earlier(old)]), ...(old.previous ?? [])].slice(0, HISTORY_CAP) : [];
-  return serializeDecisions([...kept, { ...next, ...(history.length ? { previous: history } : {}) }]);
+  const { others: _claimed, previous: _past, ...own } = next;
+  return rebuild([...kept, { ...own, ...(history.length ? { previous: history } : {}) }], opinions);
 }
 
 export function mergeDecisions(mine: string, theirs: string): { text: string; added: number; differing: number } {
-  const own = new Map(parseDecisions(mine).map((d) => [decisionKey(d), d]));
+  const locals = parseDecisions(mine);
+  const own = new Map(locals.map((d) => [decisionKey(d), d]));
+  const opinions = parseOpinions(mine);
   let added = 0;
   let differing = 0;
   for (const d of parseDecisions(theirs)) {
     const key = decisionKey(d);
+    const said = earlier(d);
+    const list = opinions.get(key) ?? [];
+    if (list.some((o) => sameCall(o, said) && o.at === said.at)) continue;
+    opinions.set(key, [...list, said].slice(-HISTORY_CAP));
+    added += 1;
     const kept = own.get(key);
-    if (!kept) {
-      own.set(key, d);
-      added += 1;
-    } else if (!sameCall(earlier(kept), earlier(d)) && !(kept.previous ?? []).some((p) => sameCall(p, earlier(d)) && p.at === d.at)) {
-      if (kept.decision !== d.decision || kept.reason !== d.reason) differing += 1;
-      own.set(key, { ...kept, previous: [...(kept.previous ?? []), earlier(d)].slice(0, HISTORY_CAP) });
-    }
+    if (kept && (kept.decision !== d.decision || kept.reason !== d.reason)) differing += 1;
   }
-  return { text: serializeDecisions([...own.values()]), added, differing };
+  return { text: rebuild(locals, opinions), added, differing };
 }
 
 export interface Sample {
@@ -246,7 +280,10 @@ export function verifiedTable(shipped: string, decisions: Decision[]): { text: s
     const by = id ? right.get(JSON.parse(id) as string) : undefined;
     if (!by || !STATE.test(line)) return line;
     verified += 1;
-    return line.replace(STATE, `"verified": true, "verification": {"status": "verified", "by": ${ascii(by.reviewer)}, "at": ${ascii(by.at)}}`);
+    const names = (list: Earlier[]) => `[${[...new Set(list.map((o) => o.reviewer))].map(ascii).join(", ")}]`;
+    const agreed = (by.others ?? []).filter((o) => o.decision === "right");
+    const disagreed = (by.others ?? []).filter((o) => o.decision !== "right");
+    return line.replace(STATE, `"verified": true, "verification": {"status": "verified", "by": ${ascii(by.reviewer)}, "at": ${ascii(by.at)}${agreed.length ? `, "agreed": ${names(agreed)}` : ""}${disagreed.length ? `, "disagreed": ${names(disagreed)}` : ""}}`);
   });
   return { text: out.join("\n"), verified };
 }

@@ -1,6 +1,6 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "bun:test";
-import { applyDecision, atomParts, atomState, cleanReviewer, decisionKey, deckProgress, mergeDecisions, qualityLine, qualitySamples, UNREVIEWED, QUALITY_MISSING, parseDecisions, parseEdges, parseLinks, queuedAtoms, REASONS, REVIEW_SCHEMA, REVIEW_SLUG, serializeDecisions, today, verifiedTable, type Decision } from "./alignment";
+import { applyDecision, atomParts, atomState, cleanReviewer, decisionKey, deckProgress, mergeDecisions, parseOpinions, qualityLine, qualitySamples, UNREVIEWED, QUALITY_MISSING, parseDecisions, parseEdges, parseLinks, queuedAtoms, REASONS, REVIEW_SCHEMA, REVIEW_SLUG, serializeDecisions, today, verifiedTable, type Decision } from "./alignment";
 import type { Api, ResearchDetail, ReviewRow, SaveResult } from "./api";
 import { parseHash } from "./router";
 import type { AlignmentApi } from "./views/Alignment";
@@ -203,20 +203,67 @@ describe("review history, merging and the quality line", () => {
     expect(parseDecisions(long)[0].previous!.length).toBe(10);
   });
 
-  test("another reviewer's file adds its decisions, and where two reviewers differ yours stays and theirs is kept as an earlier one", () => {
-    const mine = [made("l1", a, "right"), made("l2", a, "wrong")].reduce((t, d) => applyDecision(t, d), "");
-    const theirs = [made("l1", a, "right", { reviewer: "Brook Sample" }), made("l2", a, "partly", { reason: "broader", reviewer: "Brook Sample", at: "2026-10-14" }), made("l3", a, "wrong", { reviewer: "Brook Sample" }), made(null, "atom:01-mathematics/sets", "no-match", { reviewer: "Brook Sample" })].reduce((t, d) => applyDecision(t, d), "");
+  const row = (id: string) => `align:${id}~01-mathematics/limits`;
+  const verifiedIds = (text: string) => text.trim().split("\n").map((l) => JSON.parse(l) as { id: string; verified: boolean; verification: Record<string, unknown> }).filter((r) => r.verified).map((r) => [r.id, r.verification]);
+
+  test("a decision from another reviewer's file is stored as an opinion, never as a current decision, and counts toward nothing", () => {
+    const mine = applyDecision("", made(row("c2"), a, "wrong"));
+    const theirs = [made(row("c1"), a, "right", { reviewer: "Brook Sample" }), made(row("c2"), a, "right", { reviewer: "Brook Sample", at: "2026-10-14" }), made(null, "atom:01-mathematics/sets", "no-match", { reviewer: "Brook Sample" })].reduce((t, d) => applyDecision(t, d), "");
     const out = mergeDecisions(mine, theirs);
-    expect([out.added, out.differing]).toEqual([2, 1]);
-    const by = new Map(parseDecisions(out.text).map((d) => [decisionKey(d), d]));
-    expect(by.size).toBe(4);
-    expect([by.get(`${a}|l2`)!.decision, by.get(`${a}|l2`)!.reviewer]).toEqual(["wrong", "Ada Example"]);
-    expect(by.get(`${a}|l2`)!.previous).toEqual([{ decision: "partly", reason: "broader", reviewer: "Brook Sample", at: "2026-10-14" }]);
-    expect(by.get(`${a}|l1`)!.previous).toEqual([{ decision: "right", reason: null, reviewer: "Brook Sample", at: "2026-10-13" }]);
-    expect(by.get(`${a}|l3`)!.reviewer).toBe("Brook Sample");
+    expect([out.added, out.differing]).toEqual([3, 1]);
+    const locals = parseDecisions(out.text);
+    expect(locals.map((d) => [d.link, d.decision, d.reviewer])).toEqual([[row("c2"), "wrong", "Ada Example"]]);
+    expect(locals[0].others).toEqual([{ decision: "right", reason: null, reviewer: "Brook Sample", at: "2026-10-14" }]);
+    const opinions = parseOpinions(out.text);
+    expect([...opinions.keys()].sort()).toEqual([`${a}|${row("c1")}`, `${a}|${row("c2")}`, "atom:01-mathematics/sets|none"].sort());
+    expect(opinions.get(`${a}|${row("c1")}`)).toEqual([{ decision: "right", reason: null, reviewer: "Brook Sample", at: "2026-10-13" }]);
+    const links = parseLinks(LINKS);
+    const map = new Map(locals.map((d) => [decisionKey(d), d]));
+    expect(deckProgress(links, map)[0]).toEqual({ deck: "01-mathematics", atoms: 3, done: 0, links: 4, decided: 1, right: 0 });
+    expect(atomState("atom:01-mathematics/sets", links, map).done).toBe(false);
     expect(mergeDecisions(out.text, theirs)).toEqual({ text: out.text, added: 0, differing: 0 });
     expect(mergeDecisions(mine, "not a review\n{broken")).toEqual({ text: mine, added: 0, differing: 0 });
-    expect(verifiedTable(LINKS, parseDecisions(out.text)).verified).toBe(0);
+    const again = applyDecision(out.text, made(row("c2"), a, "partly", { reason: "broader", at: "2026-10-15" }));
+    expect(parseDecisions(again)[0].others).toEqual(locals[0].others);
+    const cleared = applyDecision(again, { remove: `${a}|${row("c2")}` });
+    expect(parseDecisions(cleared)).toEqual([]);
+    expect(parseOpinions(cleared).get(`${a}|${row("c2")}`)).toEqual(locals[0].others);
+  });
+
+  test("merge, then export a right that only the other reviewer gave: the row stays unverified", () => {
+    const theirs = applyDecision("", made(row("c1"), a, "right", { reviewer: "Brook Sample" }));
+    const merged = mergeDecisions("", theirs);
+    expect(parseDecisions(merged.text)).toEqual([]);
+    expect(verifiedTable(LINKS, parseDecisions(merged.text))).toEqual({ text: LINKS, verified: 0 });
+    const withOther = mergeDecisions(applyDecision("", made(row("k1"), a, "wrong")), theirs);
+    expect(verifiedTable(LINKS, parseDecisions(withOther.text))).toEqual({ text: LINKS, verified: 0 });
+  });
+
+  test("an imported file that carries the local reviewer's own name is an opinion all the same", () => {
+    const forged = [made(row("c1"), a, "right", { reviewer: "Ada Example" }), made(row("c2"), a, "right", { reviewer: "Ada Example" })].reduce((t, d) => applyDecision(t, d), "");
+    const planted = `${forged}${JSON.stringify({ schema: REVIEW_SCHEMA, atom: a, key: `${a}|${row("k1")}`, decision: null, others: [{ decision: "right", reason: null, reviewer: "Ada Example", at: "2026-10-13" }] })}\n`;
+    const merged = mergeDecisions(applyDecision("", made(row("c2"), a, "right", { reviewer: "Ada Example", at: "2026-10-12" })), planted);
+    expect(parseDecisions(merged.text).map((d) => [d.link, d.decision, d.at])).toEqual([[row("c2"), "right", "2026-10-12"]]);
+    expect(verifiedIds(verifiedTable(LINKS, parseDecisions(merged.text)).text).map(([id]) => id)).toEqual([row("c2")]);
+    expect(parseOpinions(merged.text).get(`${a}|${row("c1")}`)![0].reviewer).toBe("Ada Example");
+    expect(parseOpinions(merged.text).has(`${a}|${row("k1")}`)).toBe(false);
+    const smuggled = applyDecision("", { ...made(row("c1"), a, "wrong"), others: [{ decision: "right", reason: null, reviewer: "Nobody", at: "2026-10-13" }] });
+    expect(parseDecisions(smuggled)[0].others).toBeUndefined();
+  });
+
+  test("your right with another reviewer's wrong exports verified with the disagreement recorded, and your wrong with their right exports unverified", () => {
+    const mine = [made(row("c1"), a, "right", { at: "2026-10-13" }), made(row("c2"), a, "wrong"), made(row("k1"), a, "right")].reduce((t, d) => applyDecision(t, d), "");
+    const theirs = [made(row("c1"), a, "wrong", { reviewer: "Brook Sample" }), made(row("c2"), a, "right", { reviewer: "Brook Sample" }), made(row("k1"), a, "right", { reviewer: "Brook Sample" })].reduce((t, d) => applyDecision(t, d), "");
+    const third = applyDecision("", made(row("k1"), a, "right", { reviewer: "Casey Placeholder" }));
+    const merged = mergeDecisions(mergeDecisions(mine, theirs).text, third);
+    const out = verifiedTable(LINKS, parseDecisions(merged.text));
+    expect(out.verified).toBe(2);
+    expect(verifiedIds(out.text)).toEqual([
+      [row("c1"), { status: "verified", by: "Ada Example", at: "2026-10-13", disagreed: ["Brook Sample"] }],
+      [row("k1"), { status: "verified", by: "Ada Example", at: "2026-10-13", agreed: ["Brook Sample", "Casey Placeholder"] }],
+    ]);
+    expect(out.text.split("\n")[1]).toBe(LINKS.split("\n")[1]);
+    expect(verifiedTable(out.text, parseDecisions(merged.text)).text).toBe(out.text);
   });
 
   test("the quality line is read from the quality file, so its counts follow the data", () => {
@@ -306,11 +353,17 @@ describe("review workspace", () => {
     Object.defineProperty(input, "files", { value: [new File([theirs], "decisions.jsonl")], configurable: true });
     await v.act(async () => void input.dispatchEvent(new window.Event("change", { bubbles: true })));
     await v.settle();
-    expect(v.host.querySelector(".alignment-note")!.textContent).toBe("Brought in 1 decision. 1 link was decided differently: yours stay, and the other decision is kept beside each as an earlier one.");
+    expect(v.host.querySelector(".alignment-note")!.textContent).toBe("Brought in 2 opinions from another review. Each shows beside its link and decides nothing: a link counts only when you mark it yourself. 1 differs from a decision of yours.");
     const saved = new Map(parseDecisions(f.files[NOTES_PATH]).map((d) => [d.link, d]));
+    expect([...saved.keys()]).toEqual(["align:c1~01-mathematics/limits"]);
     expect([saved.get("align:c1~01-mathematics/limits")!.decision, saved.get("align:c1~01-mathematics/limits")!.reviewer]).toEqual(["right", "Ada Example"]);
-    expect(saved.get("align:c3~01-mathematics/series")!.reviewer).toBe("Brook Sample");
-    expect(v.host.querySelectorAll(".alignment-earlier").length).toBe(2);
+    expect(Array.from(v.host.querySelectorAll(".alignment-other")).map((p) => p.textContent)).toEqual(["Another reviewer said wrong: Brook Sample on 2026-10-13"]);
+    expect(v.host.querySelector('[role="status"]')!.textContent).toBe("1 of 5 links decided");
+    expect(v.host.querySelectorAll(".alignment-atoms li button")[1].textContent).toBe("Series0 of 1");
+    f.calls.length = 0;
+    await v.click(press(v.host, "Export the review"));
+    const rows = f.files[LINKS_PATH].trim().split("\n").map((l) => JSON.parse(l) as { id: string; verified: boolean; verification: Record<string, unknown> });
+    expect(rows.filter((r) => r.verified).map((r) => [r.id, r.verification])).toEqual([["align:c1~01-mathematics/limits", { status: "verified", by: "Ada Example", at: today(), disagreed: ["Brook Sample"] }]]);
     await v.unmount();
   });
 
