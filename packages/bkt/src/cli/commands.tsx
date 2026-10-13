@@ -71,6 +71,9 @@ import { addLines, answerKey, approvalLines, installLines, researchAdd, research
 import { createInterface } from "node:readline";
 import { FILE_BODY_BYTES, LocalOutputs, ResearchWork, researchWorkRoutes, UPLOAD_BODY_BYTES } from "../research-work";
 import { workspaceRoutes } from "../workspace";
+import { alignmentRoutes } from "../alignment";
+import alignmentReview from "../../content/alignment-review.json" with { type: "json" };
+import type { AlignmentReviewPack } from "../pack/alignment-review";
 import { answer, BuildSwitch, ConsentStore, emitConsent, emitSettled, guardConsentText, guardStdout, shellDecides } from "../research-consent";
 import { researchBuildRoutes, ResearchBuilds, researchSpecs } from "../research-jobs";
 import { PAGES_KEEP, researchPageRoutes, ResearchPages } from "../research-pdf";
@@ -371,6 +374,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...jobRoutes(runner),
       ...researchRoutes(research, researchTrouble),
       ...researchWorkRoutes(researchWork, researchTrouble, ownOutputs),
+      ...alignmentRoutes(alignmentReview as unknown as AlignmentReviewPack),
       ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => (rowSetPack as unknown as RowSetPack).sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0]?.modes ?? [] })) }, researchTrouble),
       ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os, built: (slug, path) => researchWork.built(slug, path) }), researchTrouble),
       ...researchBuildRoutes(builds, researchTrouble),

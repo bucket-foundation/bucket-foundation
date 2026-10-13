@@ -117,8 +117,18 @@ function fromRowSets(src: WorkspaceSources, type: "graphs" | "maps"): WorkspaceI
   return items;
 }
 
+export const REVIEW_SLUG = "atom-alignment";
+export const REVIEW_ITEM = "review";
+
+function reviewQueue(src: WorkspaceSources): WorkspaceItem[] {
+  const row = src.research.list().find((r) => r.slug === REVIEW_SLUG && r.unreadable === null);
+  if (!row) return [];
+  return [{ type: "graphs", key: `output:${REVIEW_SLUG}:${REVIEW_ITEM}`, title: "Atom alignment, review queue", from: { kind: "output", id: row.slug, title: row.title }, origin: row.origin, licence: "", changed: row.changed > 0, opens: `#/workspace/graphs/${REVIEW_SLUG}`, explore: null }];
+}
+
 export function workspaceItems(src: WorkspaceSources, type: WorkspaceType): WorkspaceItem[] {
-  if (type === "graphs" || type === "maps") return fromRowSets(src, type);
+  if (type === "graphs") return [...reviewQueue(src), ...fromRowSets(src, type)];
+  if (type === "maps") return fromRowSets(src, type);
   if (type === "figures" || type === "papers") return figuresAndPapers(src, type);
   if (type === "tables") return fromOutputs(src, "tables");
   if (type === "records") return [...fromOutputs(src, "records"), ...fromDatasets(src)];
