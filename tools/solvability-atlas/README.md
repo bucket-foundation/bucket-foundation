@@ -67,6 +67,10 @@ The frontier circle sits at reach 0.795, the 10th percentile of each solved prob
 
 A published claim of a solution sets the status `claimed`, which every frontier and solved-rate computation reads as open until a named expert or a refereed venue confirms it. `claims/` holds one ledger per batch with the source URL, date, claimant, the statement claimed, the formal proof and its scope, and an empty confirmation field. Schema and build commands: `records/SCHEMA.md`, Claims. `CLAIMS-2026-10.md` holds the first batch, the OpenAI release of 2026-10-06, and the frontier test on it.
 
+## Surface
+
+`SURFACE.md` holds the regression that follows the circle: one table with a row per problem, four models scored out of sample on years from posed to resolved, and the stored `frontier_surface` function with its render. `python3 surface.py --render frontier-surface-map` rebuilds `surface/` and writes one new render folder.
+
 ## Make-up
 
 `python3 makeup.py [out] --publish` reads `problems.tsv`, `problems-sourced.tsv`, the latest `output/solvability-frontier/report/{frontier,predictions}.json`, the committed neighbour file and `openalex-sourced.json` when present, and writes one horizontal bar chart per label (branch, status, form, source, licence, resolved kind, posed year present, posed and resolved year by decade, zone, prediction class, variant or top-level, embedding text kind, statement length band), a stacked status by branch chart, an OpenAlex works by branch chart and `makeup.json` with every count to `out/makeup/`. `--publish` also copies them to `output/solvability-frontier/report/makeup/`, the webp charts to `public/atlas/makeup/`, the combined figure to `papers/solvability-frontier/figures/fig_makeup.pdf` and the counts to `src/lib/research-os/solvability-makeup-data.json`, which the report page reads for its provenance section. `tests/test_makeup.py` checks that every label sums to the row total.

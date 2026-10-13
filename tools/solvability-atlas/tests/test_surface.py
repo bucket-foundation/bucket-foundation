@@ -1,0 +1,210 @@
+import datetime as dt
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import pytest
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+import surface
+import surface_table as st
+
+ATLAS = Path(__file__).parent.parent
+
+
+@pytest.fixture(scope="module")
+def built():
+    return st.build()
+
+
+@pytest.fixture(scope="module")
+def table(built):
+    return st.frame(built["rows"])
+
+
+@pytest.fixture(scope="module")
+def ctx(table, built):
+    return surface.context(table, built["weights"])
+
+
+def test_one_row_per_problem(built):
+    data = json.loads(st.NEIGHBORS.read_text())
+    expected = [n["id"] for n in data["nodes"] if n["kind"] != "lean"]
+    assert [r["id"] for r in built["rows"]] == expected
+    assert len(set(expected)) == len(expected)
+
+
+def test_target_counts_match_the_committed_results(built):
+    carry = st.carry_counts(built["rows"])
+    assert carry["years_to_resolve"] <= carry["time_open"] <= carry["rows"]
+    assert carry["solved_share"] == carry["rows"]
+    assert carry["time_open"] - carry["years_to_resolve"] == carry["time_open_censored"]
+    committed = json.loads(surface.RESULTS.read_text())
+    assert committed["carry"] == carry
+    assert committed["target"]["rows"] == carry["years_to_resolve"]
+
+
+def test_committed_table_matches_a_rebuild(built):
+    committed = st.load()
+    assert committed["id"].tolist() == [r["id"] for r in built["rows"]]
+    fresh = pd.DataFrame(built["rows"])
+    for name in st.COORDS + ("reach_2026", "solved_share"):
+        assert np.allclose(committed[name].to_numpy(dtype=float), fresh[name].to_numpy(dtype=float), atol=1e-4)
+
+
+def test_target_is_log_of_years(table):
+    has = table["log_years"].notna()
+    years = (table["resolved"] - table["posed"])[has]
+    assert (years >= 0).all()
+    assert np.allclose(np.expm1(table["log_years"][has].astype(float)), years.astype(float), atol=1e-3)
+
+
+def test_feature_sets_hold_no_target_or_post_outcome_column():
+    banned = set(st.TARGETS) | set(st.POST_OUTCOME)
+    for name, spec in surface.FEATURE_SETS.items():
+        assert not banned & (set(surface.feature_names(name)) | set(spec["coords"]))
+        surface.assert_leak_free(name)
+    assert "posed" not in surface.feature_names("map")
+    assert not set(st.POSED_FEATURES) & set(surface.feature_names("map"))
+
+
+def test_leak_guard_rejects_a_post_outcome_feature(monkeypatch):
+    spec = dict(surface.FEATURE_SETS["map"])
+    spec["numeric"] = spec["numeric"] + ("reach_2026",)
+    monkeypatch.setitem(surface.FEATURE_SETS, "leaky", spec)
+    with pytest.raises(ValueError):
+        surface.assert_leak_free("leaky")
+
+
+def test_coordinates_ignore_every_label():
+    data = json.loads(st.NEIGHBORS.read_text())
+    plain = st.build(data)
+    for n in data["nodes"]:
+        if n["kind"] != "lean" and n["id"] not in ("poincare",):
+            n["status"] = "solved" if n["status"] != "solved" else n["status"]
+            n["solved"] = True
+            if n["posed"] is not None:
+                n["resolved"] = n["posed"] + 7
+    changed = st.build(data)
+    for name in st.MAP_FEATURES:
+        assert [r[name] for r in plain["rows"]] == [r[name] for r in changed["rows"]]
+
+
+def test_posed_features_use_only_neighbours_resolved_before_posing(built):
+    arrays = built["arrays"]
+    nodes = arrays["nodes"]
+    checked = 0
+    for i, r in enumerate(built["rows"]):
+        if r["posed"] == "":
+            continue
+        earlier = [nodes[j]["resolved"] for j in arrays["neighbour"][i] if j >= 0 and nodes[j]["resolved"] is not None and nodes[j]["resolved"] < r["posed"]]
+        assert r["solved_before_posed"] == len(earlier)
+        checked += 1
+    assert checked == st.carry_counts(built["rows"])["posed"]
+
+
+def test_folds_keep_a_family_together(ctx):
+    fold = surface.grouped_folds(ctx.groups, surface.FOLDS, 1)
+    for g in np.unique(ctx.groups):
+        assert len(set(fold[ctx.groups == g])) == 1
+    assert set(fold) == set(range(surface.FOLDS))
+
+
+def test_temporal_split_trains_before_the_cutoff(ctx):
+    train, test = surface.temporal_split(ctx, surface.PRIMARY_CUTOFF)
+    resolved = ctx.table["resolved"].to_numpy(dtype=float)[ctx.labelled]
+    assert (resolved[train] < surface.PRIMARY_CUTOFF).all()
+    assert (resolved[test] >= surface.PRIMARY_CUTOFF).all()
+    assert len(train) + len(test) == len(ctx.y)
+
+
+def test_test_rows_cannot_change_a_prediction(ctx):
+    train, test = surface.temporal_split(ctx, surface.PRIMARY_CUTOFF)
+    y = ctx.y.copy()
+    scrambled = y.copy()
+    scrambled[test] = 99.0
+    for name, fs in surface.entries():
+        if name == "gp":
+            continue
+        assert np.allclose(surface.predict(name, fs, ctx, train, test, y), surface.predict(name, fs, ctx, train, test, scrambled))
+
+
+def test_models_recover_a_planted_surface(ctx):
+    planted = 2.0 + 1.5 * np.tanh(ctx.coords["map"][:, 0]) + 0.8 * ctx.coords["map"][:, 1]
+    fold = surface.grouped_folds(ctx.groups, surface.FOLDS, 3)
+    for name, floor in (("linear", 0.5), ("gp", 0.5), ("gbt", 0.5), ("graph", 0.3)):
+        score = surface.r_squared(planted, surface.out_of_fold(name, "map", ctx, planted, fold))
+        assert score > floor, name
+    assert surface.r_squared(planted, surface.out_of_fold("mean", "map", ctx, planted, fold)) <= 0
+
+
+def test_shuffled_target_scores_at_or_below_zero(ctx):
+    shuffled = np.random.default_rng(5).permutation(ctx.y)
+    fold = surface.grouped_folds(ctx.groups, surface.FOLDS, 5)
+    for name in ("linear", "graph"):
+        assert surface.r_squared(shuffled, surface.out_of_fold(name, "map", ctx, shuffled, fold)) < 0.1
+
+
+def test_r_squared_matches_its_definition():
+    y = np.array([1.0, 2.0, 3.0, 4.0])
+    assert surface.r_squared(y, y) == 1.0
+    assert surface.r_squared(y, np.full(4, 2.5)) == 0.0
+    assert surface.r_squared(y, y[::-1]) == pytest.approx(-3.0)
+
+
+def test_surface_function_repeats_and_covers_every_row(table, built):
+    a = surface.frontier_surface(table, built["weights"], model="graph")
+    b = surface.frontier_surface(table, built["weights"], model="graph")
+    assert np.array_equal(a.values, b.values)
+    assert a.ids == table["id"].tolist()
+    assert np.isfinite(a.values).all()
+    assert len(a.trained_on) == int(table["log_years"].notna().sum())
+    assert a.predict(a.ids[:3]).tolist() == a.values[:3].tolist()
+    assert a.values.std() > 0
+
+
+def test_surface_cutoff_drops_later_rows(table, built):
+    s = surface.frontier_surface(table, built["weights"], model="graph", cutoff=2010)
+    resolved = table.set_index("id")["resolved"]
+    assert (resolved[s.trained_on] < 2010).all()
+    assert s.params["cutoff"] == 2010
+
+
+def test_surface_rejects_an_unknown_model(table, built):
+    with pytest.raises(ValueError):
+        surface.frontier_surface(table, built["weights"], model="circle")
+
+
+def test_render_writes_a_new_folder_each_time(table, built, tmp_path):
+    s = surface.frontier_surface(table, built["weights"], model="graph")
+    now = dt.datetime(2026, 10, 13, 12, 0, 0, tzinfo=dt.timezone.utc)
+    first = surface.render("frontier-surface-map", s, table, tmp_path, now)
+    second = surface.render("frontier-surface-map", s, table, tmp_path, now)
+    assert first != second
+    assert first.parent.name == "2026-10-13"
+    for folder in (first, second):
+        assert (folder / "frontier-surface-map.png").stat().st_size > 10000
+        manifest = json.loads((folder / "manifest.json").read_text())
+        assert manifest["surface"]["params"] == s.params
+        assert manifest["function"] == "surface.render_surface_map"
+
+
+def test_render_registry_rejects_an_unknown_name(table, built, tmp_path):
+    s = surface.frontier_surface(table, built["weights"], model="graph")
+    with pytest.raises(KeyError):
+        surface.render("polygon", s, table, tmp_path)
+
+
+def test_committed_results_report_every_model_and_baseline():
+    result = json.loads(surface.RESULTS.read_text())
+    names = {surface.label(n, fs) for n, fs in surface.entries()}
+    assert set(result["cross_validation"]["scores"]) == names
+    for block in [result["cross_validation"], *result["temporal"].values()]:
+        for name, s in block["scores"].items():
+            assert s["r2_interval"][0] <= s["r2_interval"][1]
+            if name.split(":")[0] in surface.MODELS:
+                assert 0 < s["permutation"]["p"] <= 1
+    assert result["cross_validation"]["repeats"] == surface.REPEATS
+    assert result["temporal"][str(surface.PRIMARY_CUTOFF)]["test_rows"] > 30
