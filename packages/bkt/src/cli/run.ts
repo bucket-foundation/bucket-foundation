@@ -152,6 +152,8 @@ export function searchOptions(inv: Invocation): { q: string; limit: number; bran
   const limit = typeof raw === "string" ? Number(raw) : SEARCH_DEFAULT_LIMIT;
   if (!Number.isInteger(limit) || limit < 1 || limit > CANON_TOP_K_MAX) throw new Error(`--limit takes a whole number from 1 to ${CANON_TOP_K_MAX}`);
   if (inv.values.tsv === true && inv.values.json === true) throw new Error("pick one of --json and --tsv");
+  if (inv.values.words === true && (inv.values.tsv === true || typeof inv.values.branch === "string")) throw new Error("--words takes --limit, --lang and --json");
+  if (inv.values.words !== true && inv.values.lang !== undefined) throw new Error("--lang goes with --words");
   const q = inv.positionals.join(" ").trim();
   if (!q) throw new Error("search needs words to look for");
   return { q, limit, branch: typeof inv.values.branch === "string" ? inv.values.branch : "", tsv: inv.values.tsv === true };

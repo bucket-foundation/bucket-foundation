@@ -368,3 +368,20 @@ def test_recent_fills_reach_the_sourced_file():
             assert row["status"] == record["status"]
     for record in recent_lists.new_records():
         assert any(r["name"] == record["name"] and r["posed"] == record["posed"] for r in by_id.values())
+
+
+def test_resolved_year_only_on_solved_rows_and_never_before_posed():
+    for r in rows():
+        if r["resolved"]:
+            assert r["status"] == "solved", r["id"]
+        if r["posed"] and r["resolved"]:
+            assert int(r["resolved"]) >= int(r["posed"]), r["id"]
+
+
+def test_hand_rows_are_never_resolved_before_posed():
+    with (ATLAS / "problems.tsv").open(encoding="utf8") as handle:
+        data = list(csv.DictReader(handle, delimiter="\t"))
+    assert data
+    for r in data:
+        if r["posed"] and r["resolved"]:
+            assert int(r["resolved"]) >= int(r["posed"]), r["id"]

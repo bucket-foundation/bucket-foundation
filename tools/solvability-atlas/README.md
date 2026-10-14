@@ -40,7 +40,7 @@ Embeddings come from `BAAI/bge-small-en-v1.5`. Four text variants exist (`atlas.
 
 `atlas.py` ends with the full set: the 71 atlas problems, the 5,009 rows of `problems-sourced.tsv` (top-level rows and variants, with `form` and `variant_of` kept) and the Lean theorems as a separate kind that the frontier leaves off by default. The embedding text is the statement when present, else the problem record text, else name plus keywords; the branch word is never in the text. Embeddings are cached under `~/.cache/bucket-atlas` (`ATLAS_CACHE` overrides) keyed by model revision and text hash, so a rerun with no new text encodes nothing. Angle comes from the first two principal components of the problem embeddings alone; Lean theorems are projected on the same axes.
 
-Solved rule: a top-level row is solved when its status is solved. A variant is solved only when its own status and its parent's status are both solved; a proved special case of an open problem is `partial` and stays open, so a problem cannot be pulled inside by its own fragments. Growth pulls are bounded by the 50 stored neighbours.
+Solved rule: a top-level row is solved when its status is solved. A claimed row is unsolved. A variant is solved only when its own status and its parent's status are both solved; a proved special case of an open problem is `partial` and stays open, so a problem cannot be pulled inside by its own fragments. Growth pulls are bounded by the 50 stored neighbours.
 
 ```bash
 ./build.sh                                   # atlas.py then site.py, full set included
@@ -55,9 +55,25 @@ The frontier circle sits at reach 0.795, the 10th percentile of each solved prob
 
 `out/` stays out of git; its PNGs, graph.json, graph.cypher and stats.json are mirrored to `gdrive:AGFarms/Nucleus/bucket-foundation/solvability-atlas/`.
 
+## Thresholds
+
+`THRESHOLDS.md` holds the sensitivity sweep of the frontier and score constants, the test of reach as a classifier and the proposed values. `python3 thresholds.py` rebuilds `thresholds/`.
+
+## Score Backtest
+
+`BACKTEST.md` checks the solvability score against the resolved flag on the 71 catalog problems. The score contains the outcome, so it describes the present state of a problem and carries no forecast. `python3 backtest.py --plot` rebuilds `backtest.json` and `backtest.png`.
+
 ## Problem records
 
 `records.py` builds one JSON record per problem in `records/` from OpenAlex, Wikipedia, arXiv and the repo's own corpora, with every network field carrying its source URL and licence. Schema, relevance filter and build flags: `records/SCHEMA.md`. Per-problem counts, a status per record and the neighbour shift between keyword and record embeddings: `records/INDEX.md` (`python3 neighbour_shift.py` rebuilds the shift section). Responses cache under `cache/`, which stays out of git. Records hold Wikipedia text under CC BY-SA 4.0 with attribution; the code is MIT and the derived numbers are CC0 in intent.
+
+## Claims
+
+A published claim of a solution sets the status `claimed`, which every frontier and solved-rate computation reads as open until a named expert or a refereed venue confirms it. `claims/` holds one ledger per batch with the source URL, date, claimant, the statement claimed, the formal proof and its scope, and an empty confirmation field. Schema and build commands: `records/SCHEMA.md`, Claims. `CLAIMS-2026-10.md` holds the first batch, the OpenAI release of 2026-10-06, and the frontier test on it.
+
+## Surface
+
+`SURFACE.md` holds the regression that follows the circle: one table with a row per problem, four models scored out of sample on years from posed to resolved, and the stored `frontier_surface` function with its render. `python3 surface.py --render frontier-surface-map` rebuilds `surface/` and writes one new render folder.
 
 ## Make-up
 

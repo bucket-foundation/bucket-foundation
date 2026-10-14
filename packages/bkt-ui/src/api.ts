@@ -4,7 +4,82 @@ import type { CanonGraph } from "@/lib/canon-graph-core";
 import type { AdvisorRow, PrimeDirections } from "@ros/advisor-review";
 import { parseRos, ROS_PATHS, type RosPayloads, type RosResource } from "@ros/contract";
 import type { ProductionsSnapshot } from "@ros/productions-snapshot";
+import type { ConceptPage, LessonPage, WordCredit, WordLicence } from "../../bkt/src/core/words";
+import type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 import { siteFetch } from "./site-fetch";
+
+export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordLicence, WordView } from "../../bkt/src/core/words";
+export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
+export type { DeckRow as InstalledDeckRow } from "../../bkt/src/decks";
+export type { DecksBody } from "../../bkt/src/deck-routes";
+export type { LinkHit, LinkMode, LinkSearch, LinkStatus } from "../../bkt/src/polingual-link";
+import type { LinkMode, LinkSearch, LinkStatus } from "../../bkt/src/polingual-link";
+export type { DeckState, LibraryBody, LibraryRow } from "../../bkt/src/library";
+import type { LibraryBody } from "../../bkt/src/library";
+export type { CreditWithDecks, DeckCredit, WordHit, WordSearch } from "../../bkt/src/core/word-decks";
+import type { DecksBody } from "../../bkt/src/deck-routes";
+import type { WordSearch } from "../../bkt/src/core/word-decks";
+export type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
+export type { TablePage } from "../../bkt/src/research-table";
+import type { TablePage } from "../../bkt/src/research-table";
+export type { Change, Exported } from "../../bkt/src/research-work";
+export type { WorkspaceItem } from "../../bkt/src/workspace";
+export type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
+import type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
+import type { WorkspaceItem } from "../../bkt/src/workspace";
+import type { Change, Exported } from "../../bkt/src/research-work";
+
+export interface BuildWaiting {
+  id: string;
+  slug: string;
+  build: string;
+  class: "shipped" | "edited";
+  digest: string;
+  title: string;
+  body: string;
+  expiresAt: number;
+}
+
+export type BuildAsk = { state: "waiting"; pending: BuildWaiting } | { state: "refused"; reason: string; install: string | null; status: number };
+
+export type SaveResult = { saved: true; rev: string; changed: boolean } | { saved: false; current: string };
+export const EDIT_EXTS = [".md", ".tex", ".bib", ".sty", ".tsv", ".csv", ".json", ".jsonl", ".py", ".txt", ".lean"];
+export const EDIT_BYTES = 4 * 1024 * 1024;
+export type { PackedFile, ReportAsset, ReportAttribution, ReportRecord } from "../../bkt/src/pack/research";
+import type { ResearchDetail, ResearchRow } from "../../bkt/src/research";
+
+export type PaperPage = { state: "ready"; pages: number; pdf: string; src: string } | { state: "rendering" } | { state: "preview"; reason: string; install: string | null };
+
+export const IMAGE_TYPES = ["image/png", "image/webp", "image/jpeg", "image/svg+xml"];
+export const IMAGE_MAX_BYTES = 8 * 1024 * 1024;
+
+export function researchFileUrl(slug: string, path: string): string {
+  return `/local/research/file?slug=${encodeURIComponent(slug)}&path=${encodeURIComponent(path)}`;
+}
+
+function asDataUrl(blob: Blob): Promise<string> {
+  return new Promise((done, fail) => {
+    const reader = new FileReader();
+    reader.onload = () => done(String(reader.result));
+    reader.onerror = () => fail(new Error("The image could not be read."));
+    reader.readAsDataURL(blob);
+  });
+}
+
+export interface WordDecks {
+  decks: WordDeckProgress[];
+  chosen: string[];
+  credit: WordCredit;
+}
+
+export interface WordLessons {
+  deck: WordDeckProgress;
+  lessons: WordLessonProgress[];
+  credit: WordCredit;
+}
+
+export type WordQuizPick = { deck: string; lesson: number } | { concepts: number };
+export type WordAnswerApi = Pick<Api, "wordQuiz" | "wordAnswer">;
 
 export interface HistoryData {
   snapshot: (ProductionsSnapshot & { importedAt: number }) | null;
@@ -32,6 +107,14 @@ export interface WorkStatus {
   correct: number;
 }
 
+export interface AppSettings {
+  version: string;
+  build: { commit: string; date: string } | null;
+  dataDir: string;
+  notify: { supported: boolean; on: boolean; at: string | null };
+  notifyDefault: string;
+}
+
 export interface WorkWord {
   lang: string | null;
   choicesLang: string | null;
@@ -47,6 +130,7 @@ export interface WorkQuestion {
   choices: string[] | null;
   limitSec: number;
   word?: WorkWord;
+  origin?: string;
 }
 
 export interface WorkSource {
@@ -265,6 +349,8 @@ export interface QuizResult {
   timedOut: boolean;
   rating: number;
   answer: string;
+  explain?: string | null;
+  lesson?: { deck: string; atom: string; title: string } | null;
 }
 
 export interface ReviewItem {
@@ -372,6 +458,14 @@ export class Api {
     return this.call<{ deleted: string }>("/local/jobs/delete", { method: "POST", body: { id } });
   }
 
+  settings() {
+    return this.call<AppSettings>("/local/settings");
+  }
+
+  setNotify(on: boolean, at?: string) {
+    return this.call<{ notify: AppSettings["notify"] }>("/local/settings/notify", { method: "POST", body: at === undefined ? { on } : { on, at } });
+  }
+
   workStatus() {
     return this.call<WorkStatus>("/local/work-quiz/status");
   }
@@ -394,6 +488,223 @@ export class Api {
 
   workSetLanguages(languages: string[]) {
     return this.call<{ languages: string[] }>("/local/work-quiz/languages", { method: "POST", body: { languages } });
+  }
+
+  researchList() {
+    return this.call<{ outputs: ResearchRow[] }>("/local/research/list");
+  }
+
+  researchManifest(slug: string) {
+    return this.call<ResearchDetail>(`/local/research/manifest?slug=${encodeURIComponent(slug)}`);
+  }
+
+  researchTable(slug: string, id: string, query: { page?: number; q?: string; sort?: string } = {}) {
+    const params = new URLSearchParams({ slug, id, page: String(query.page ?? 1) });
+    if (query.q) params.set("q", query.q);
+    if (query.sort) params.set("sort", query.sort);
+    return this.call<TablePage>(`/local/research/table?${params.toString()}`);
+  }
+
+  async researchPage(slug: string, n: number): Promise<PaperPage> {
+    const r = await fetch(`/local/research/page?slug=${encodeURIComponent(slug)}&n=${n}`, { headers: { authorization: `Bucket ${this.token}` } });
+    if (r.status === 202 || r.status === 409) {
+      const body = (await r.json().catch(() => ({}))) as { state?: string; reason?: string; install?: string | null; error?: string };
+      if (body.state === "rendering") return { state: "rendering" };
+      if (body.state === "preview" || body.state === "failed") return { state: "preview", reason: body.reason ?? "", install: body.install ?? null };
+      throw new ApiError(body.error ?? "", r.status);
+    }
+    if (!r.ok) throw new ApiError(((await r.json().catch(() => ({}))) as { error?: string }).error ?? "", r.status);
+    const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
+    const pages = Number(r.headers.get("x-bkt-pages") ?? "0");
+    const blob = await r.blob();
+    if (type !== "image/png" || !Number.isInteger(pages) || pages < 1) throw new Error("The page did not arrive as an image.");
+    if (blob.size > IMAGE_MAX_BYTES) throw new Error("That page is over 8 MB.");
+    return { state: "ready", pages, pdf: r.headers.get("x-bkt-pdf") ?? "", src: await asDataUrl(blob.type === type ? blob : new Blob([blob], { type })) };
+  }
+
+  async researchBuild(slug: string, build: string): Promise<BuildAsk> {
+    const r = await fetch(`/local/research/build?slug=${encodeURIComponent(slug)}&build=${encodeURIComponent(build)}`, { method: "POST", headers: { authorization: `Bucket ${this.token}`, "content-type": "application/json" }, body: "{}" });
+    const body = (await r.json().catch(() => ({}))) as BuildWaiting & { error?: string; install?: string | null };
+    if (r.status === 202) return { state: "waiting", pending: body };
+    if (r.status === 401) throw new ApiError(body.error ?? "", r.status);
+    return { state: "refused", reason: body.error ?? "", install: body.install ?? null, status: r.status };
+  }
+
+  researchBuildState() {
+    return this.call<{ pending: BuildWaiting | null; job: JobView | null }>("/local/research/consent/pending");
+  }
+
+  researchBuildCancel(id: string) {
+    return this.call<JobView>("/local/research/job/cancel", { method: "POST", body: { id } });
+  }
+
+  researchNew(input: { title: string; slug: string; kind: string }) {
+    return this.call<{ slug: string }>("/local/research/new", { method: "POST", body: input });
+  }
+
+  async researchUpload(slug: string, role: string, name: string, file: Blob): Promise<{ slug: string; path: string }> {
+    const r = await fetch(`/local/research/upload?slug=${encodeURIComponent(slug)}&role=${encodeURIComponent(role)}&name=${encodeURIComponent(name)}`, {
+      method: "POST",
+      headers: { authorization: `Bucket ${this.token}`, "content-type": "application/octet-stream" },
+      body: file,
+    });
+    const body = (await r.json().catch(() => ({}))) as { slug?: string; path?: string; error?: string };
+    if (!r.ok || typeof body.path !== "string") throw new ApiError(body.error ?? "", r.status);
+    return { slug: body.slug ?? slug, path: body.path };
+  }
+
+  researchChanges(slug: string) {
+    return this.call<{ notice: string; changes: Change[] }>(`/local/research/changes?slug=${encodeURIComponent(slug)}`);
+  }
+
+  async researchSource(slug: string, path: string): Promise<{ text: string; rev: string }> {
+    const r = await this.researchFile(slug, path);
+    return { text: await r.text(), rev: r.headers.get("x-bkt-sha256") ?? "" };
+  }
+
+  async researchSave(slug: string, path: string, baseRev: string, text: string): Promise<SaveResult> {
+    const r = await fetch(`/local/research/file?slug=${encodeURIComponent(slug)}&path=${encodeURIComponent(path)}&base_rev=${encodeURIComponent(baseRev)}`, {
+      method: "POST",
+      headers: { authorization: `Bucket ${this.token}`, "content-type": "text/plain; charset=utf-8" },
+      body: text,
+    });
+    const body = (await r.json().catch(() => ({}))) as { rev?: string; changed?: boolean; current?: string; error?: string };
+    if (r.status === 409 && typeof body.current === "string") return { saved: false, current: body.current };
+    if (!r.ok || typeof body.rev !== "string") throw new ApiError(body.error ?? "", r.status);
+    return { saved: true, rev: body.rev, changed: body.changed === true };
+  }
+
+  researchRevert(slug: string, path: string, keep = false) {
+    return this.call<{ path: string; changed: number }>("/local/research/revert", { method: "POST", body: { slug, path, keep } });
+  }
+
+  researchExport(slug: string) {
+    return this.call<Exported>("/local/research/export", { method: "POST", body: { slug } });
+  }
+
+  alignmentRows(ids: string[]) {
+    return this.call<{ staff: boolean; rows: ReviewRow[] }>(`/local/workspace/alignment/rows?ids=${ids.map(encodeURIComponent).join(",")}`);
+  }
+
+  alignmentSearch(deck: string, q: string) {
+    return this.call<{ staff: boolean; rows: ReviewRow[] }>(`/local/workspace/alignment/search?${new URLSearchParams({ deck, q }).toString()}`);
+  }
+
+  workspaceItems(type: string, query: { q?: string; page?: number } = {}) {
+    const params = new URLSearchParams({ type, page: String(query.page ?? 1) });
+    if (query.q) params.set("q", query.q);
+    return this.call<{ items: WorkspaceItem[]; total: number; page: number; size: number }>(`/local/workspace/items?${params.toString()}`);
+  }
+
+  private async researchFile(slug: string, path: string): Promise<Response> {
+    const r = await fetch(researchFileUrl(slug, path), { headers: { authorization: `Bucket ${this.token}` } });
+    if (!r.ok) throw new ApiError(((await r.json().catch(() => ({}))) as { error?: string }).error ?? "", r.status);
+    return r;
+  }
+
+  async researchText(slug: string, path: string): Promise<string> {
+    return (await this.researchFile(slug, path)).text();
+  }
+
+  async image(slug: string, path: string): Promise<string> {
+    const r = await this.researchFile(slug, path);
+    const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
+    if (!IMAGE_TYPES.includes(type)) throw new Error("That file is not an image this window shows.");
+    const blob = await r.blob();
+    if (blob.size > IMAGE_MAX_BYTES) throw new Error("That image is over 8 MB.");
+    return asDataUrl(blob.type === type ? blob : new Blob([blob], { type }));
+  }
+
+  wordLicence() {
+    return this.call<WordLicence>("/local/words/licence");
+  }
+
+  wordDecks() {
+    return this.call<WordDecks>("/local/words/decks");
+  }
+
+  library() {
+    return this.call<LibraryBody>("/local/library");
+  }
+
+  libraryRefresh() {
+    return this.call<LibraryBody>("/local/library/refresh", { method: "POST", body: {} });
+  }
+
+  libraryInstall(id: string) {
+    return this.call<LibraryBody>("/local/library/install", { method: "POST", body: { id } });
+  }
+
+  libraryRemove(id: string) {
+    return this.call<LibraryBody>("/local/library/remove", { method: "POST", body: { id } });
+  }
+
+  libraryExport(id: string, replace = false) {
+    return this.call<{ name: string; folder: string }>("/local/library/export", { method: "POST", body: { id, replace } });
+  }
+
+  async libraryExportBytes(id: string) {
+    const r = await fetch(`/local/library/export?id=${encodeURIComponent(id)}`, { headers: { authorization: `Bucket ${this.token}` } });
+    if (!r.ok) throw new ApiError("", r.status);
+    return r.blob();
+  }
+
+  async libraryImport(file: Blob) {
+    const r = await fetch("/local/library/import", { method: "POST", headers: { authorization: `Bucket ${this.token}`, "content-type": "application/octet-stream" }, body: file });
+    const data = (await r.json().catch(() => ({}))) as LibraryBody & { installed?: string; error?: string };
+    if (!r.ok) throw new ApiError(data.error ?? "", r.status);
+    return data as LibraryBody & { installed: string };
+  }
+
+  polingualLink() {
+    return this.call<LinkStatus>("/local/polingual-link");
+  }
+
+  setPolingualLink(url: string) {
+    return this.call<LinkStatus>("/local/polingual-link", { method: "POST", body: { url } });
+  }
+
+  async linkSearch(q: string, mode: LinkMode, o: { waitMs?: number; tries?: number } = {}) {
+    for (let i = 0; i < (o.tries ?? 60); i++) {
+      const r = await fetch(`/local/polingual-link/search?q=${encodeURIComponent(q)}&mode=${mode}`, { headers: { authorization: `Bucket ${this.token}` } });
+      const data = (await r.json().catch(() => ({}))) as LinkSearch & { error?: string };
+      if (r.status === 202) {
+        await new Promise((go) => setTimeout(go, o.waitMs ?? 2000));
+        continue;
+      }
+      if (!r.ok) throw new ApiError(data.error ?? "", r.status);
+      return data;
+    }
+    throw new ApiError("the search took too long", 504);
+  }
+
+  installedDecks() {
+    return this.call<DecksBody>("/local/deck-files");
+  }
+
+  wordSearch(q: string) {
+    return this.call<WordSearch>(`/local/words/search?q=${encodeURIComponent(q)}`);
+  }
+
+  wordLessons(deck: string) {
+    return this.call<WordLessons>(`/local/words/lessons?deck=${encodeURIComponent(deck)}`);
+  }
+
+  wordLesson(deck: string, n: number) {
+    return this.call<LessonPage & { credit: WordCredit }>(`/local/words/lesson?deck=${encodeURIComponent(deck)}&n=${n}`);
+  }
+
+  wordConcepts(page: number) {
+    return this.call<ConceptPage & { credit: WordCredit }>(`/local/words/concepts?page=${page}`);
+  }
+
+  wordQuiz(pick: WordQuizPick) {
+    const query = "concepts" in pick ? `concepts=${pick.concepts}` : `deck=${encodeURIComponent(pick.deck)}&lesson=${pick.lesson}`;
+    return this.call<{ questions: WorkQuestion[]; credit: WordCredit }>(`/local/words/quiz?${query}`);
+  }
+
+  wordAnswer(id: string, response: string, elapsedMs: number) {
+    return this.call<WorkAnswer>("/local/words/answer", { method: "POST", body: { id, response, elapsedMs } });
   }
 
   workForget() {

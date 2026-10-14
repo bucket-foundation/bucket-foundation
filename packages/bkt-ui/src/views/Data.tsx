@@ -150,6 +150,33 @@ function DatasetCard({ api, d, onOpen, onError }: { api: DataApi; d: Dataset; on
   );
 }
 
+export function SortHead({ label, active, dir, onSort }: { label: string; active: boolean; dir: "asc" | "desc"; onSort: () => void }) {
+  return (
+    <th scope="col" aria-sort={active ? (dir === "asc" ? "ascending" : "descending") : "none"}>
+      <button className="sort" onClick={onSort}>
+        {label}
+        {active && <span aria-hidden> {dir === "asc" ? "▲" : "▼"}</span>}
+      </button>
+    </th>
+  );
+}
+
+export function Pager({ at, pages, onPrev, onNext }: { at: number; pages: number; onPrev: () => void; onNext: () => void }) {
+  return (
+    <div className="pager">
+      <button disabled={at <= 1} onClick={onPrev}>
+        Previous
+      </button>
+      <span className="muted">
+        Page {fmt(at)} of {fmt(pages)}
+      </span>
+      <button disabled={at >= pages} onClick={onNext}>
+        Next
+      </button>
+    </div>
+  );
+}
+
 function TablePane({ api, d, table, onTable, onRecord, onError }: { api: DataApi; d: Dataset; table: TableState; onTable: (t: TableState) => void; onRecord: (r: DataRow) => void; onError: (m: string) => void }) {
   const [typed, setTyped] = useState(table.q);
   const [page, setPage] = useState<DataPage | null>(null);
@@ -212,12 +239,7 @@ function TablePane({ api, d, table, onTable, onRecord, onError }: { api: DataApi
               <thead>
                 <tr>
                   {COLUMNS.map((c) => (
-                    <th key={c.sort} scope="col" aria-sort={table.sort === c.sort ? (table.dir === "asc" ? "ascending" : "descending") : "none"}>
-                      <button className="sort" onClick={() => sortBy(c.sort)}>
-                        {c.label}
-                        {table.sort === c.sort && <span aria-hidden> {table.dir === "asc" ? "▲" : "▼"}</span>}
-                      </button>
-                    </th>
+                    <SortHead key={c.sort} label={c.label} active={table.sort === c.sort} dir={table.dir} onSort={() => sortBy(c.sort)} />
                   ))}
                   <th scope="col">Source</th>
                 </tr>
@@ -245,17 +267,7 @@ function TablePane({ api, d, table, onTable, onRecord, onError }: { api: DataApi
               </tbody>
             </table>
           </div>
-          <div className="pager">
-            <button disabled={at <= 1} onClick={() => onTable({ ...table, offset: Math.max(0, table.offset - PAGE_ROWS) })}>
-              Previous
-            </button>
-            <span className="muted">
-              Page {fmt(at)} of {fmt(pages)}
-            </span>
-            <button disabled={at >= pages} onClick={() => onTable({ ...table, offset: table.offset + PAGE_ROWS })}>
-              Next
-            </button>
-          </div>
+          <Pager at={at} pages={pages} onPrev={() => onTable({ ...table, offset: Math.max(0, table.offset - PAGE_ROWS) })} onNext={() => onTable({ ...table, offset: table.offset + PAGE_ROWS })} />
         </>
       )}
     </div>

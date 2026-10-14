@@ -1,0 +1,130 @@
+{
+ "problems": 159,
+ "commits": 104,
+ "authors": 21,
+ "by_class": {
+  "new_proof": 75,
+  "corrected_tag": 44,
+  "counterexample": 23,
+  "unclear": 9,
+  "partial_or_variant": 8
+ },
+ "by_collection": {
+  "ErdosProblems": {
+   "counterexample": 9,
+   "partial_or_variant": 4,
+   "corrected_tag": 14,
+   "new_proof": 15,
+   "unclear": 3
+  },
+  "OEIS": {
+   "new_proof": 18,
+   "partial_or_variant": 2,
+   "corrected_tag": 4,
+   "counterexample": 9,
+   "unclear": 2
+  },
+  "GreensOpenProblems": {
+   "new_proof": 4,
+   "corrected_tag": 21,
+   "unclear": 2,
+   "partial_or_variant": 2,
+   "counterexample": 2
+  },
+  "Paper": {
+   "new_proof": 20
+  },
+  "Arxiv": {
+   "corrected_tag": 2,
+   "new_proof": 3,
+   "counterexample": 1
+  },
+  "OpenQuantumProblems": {
+   "new_proof": 5,
+   "unclear": 1
+  },
+  "Books": {
+   "counterexample": 1,
+   "new_proof": 2,
+   "corrected_tag": 2
+  },
+  "Wikipedia": {
+   "corrected_tag": 1,
+   "new_proof": 4
+  },
+  "WrittenOnTheWallII": {
+   "new_proof": 2,
+   "unclear": 1,
+   "counterexample": 1
+  },
+  "Mathoverflow": {
+   "new_proof": 1
+  },
+  "Other": {
+   "new_proof": 1
+  }
+ },
+ "by_cited_year": {
+  "before_2025": {
+   "corrected_tag": 44,
+   "partial_or_variant": 3,
+   "new_proof": 1
+  },
+  "2025_or_later": {
+   "new_proof": 30,
+   "counterexample": 9
+  },
+  "none": {
+   "new_proof": 44,
+   "counterexample": 14,
+   "partial_or_variant": 5,
+   "unclear": 9
+  }
+ },
+ "formal_proof_added_in_retag_commit": 85,
+ "formal_proof_at_head": 88,
+ "proof_in_repo_without_link": 9,
+ "by_proof_host": {
+  "github.com/KitaKen1": 41,
+  "github.com/epoch-research": 14,
+  "github.com/mo271": 6,
+  "github.com/niketp03": 4,
+  "github.com/plby": 4,
+  "github.com/tadamcz": 3,
+  "github.com/SamuelSchlesinger": 2,
+  "gist.github.com/DaryxXx": 1,
+  "github.com/wcook04": 1,
+  "github.com/ekalvi": 1,
+  "github.com/Hanziwww": 1,
+  "github.com/Konamiu": 1,
+  "github.com/williamjblair": 1,
+  "github.com/DomTheDeveloper": 1,
+  "github.com/robzilla1738": 1,
+  "github.com/algal": 1,
+  "github.com/teorth": 1,
+  "github.com/anagnorisis2peripeteia": 1,
+  "github.com/glyaea": 1
+ },
+ "by_proof_kind": {
+  "lean4": 78,
+  "formal_conjectures": 9
+ },
+ "by_class_with_proof_link": {
+  "new_proof": 61,
+  "counterexample": 21,
+  "corrected_tag": 2,
+  "partial_or_variant": 1
+ },
+ "ai_attributed": {
+  "named_in_docstring_diff_or_link": 15,
+  "named_in_commit_body": 78,
+  "either": 82,
+  "by_class_either": {
+   "new_proof": 54,
+   "counterexample": 17,
+   "partial_or_variant": 6,
+   "unclear": 4,
+   "corrected_tag": 1
+  }
+ }
+}

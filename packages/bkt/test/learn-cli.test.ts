@@ -119,7 +119,7 @@ describe("learn commands over the core module", () => {
     expect(Object.keys(JSON.parse(rated.out[1]))).toEqual(["v", "itemId", "due"]);
     const path = io();
     await expect(learnPath(later, null, [], true, path)).rejects.toBeInstanceOf(NoDataError);
-    expect(path.out).toEqual(['{"v":1,"decks":[]}']);
+    expect(path.out).toEqual(['{"v":1,"decks":[],"wordDecks":[]}']);
     store.close();
   });
 

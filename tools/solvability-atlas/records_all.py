@@ -10,6 +10,7 @@ import numpy as np
 HERE = Path(__file__).parent
 
 import atlas
+import claims
 import record_schema
 
 OUTPUT = HERE.parent.parent / "src" / "lib" / "research-os" / "solvability-records-data.json"
@@ -23,7 +24,7 @@ OUTER_RADIUS = 1.5
 MIN_BRANCH_SOLVED = 10
 DIRECTION_TOKENS = 8
 ZONES = ("solved", "reachable", "beyond", "unsampled")
-CODINGS = {"solved": "settled", "partial": "advanced", "open": "open"}
+CODINGS = {"solved": "settled", "partial": "advanced", "open": "open", claims.CLAIMED: "open"}
 HAND_KEYS = ("aliases", "level", "history", "formal", "quality", "related")
 HAND_WORKS = 4
 HAND_PEOPLE = 3
@@ -110,7 +111,7 @@ def compute(nodes, emb, tokens, tok_emb):
     return {"tau": round(float(tau), 3), "directions": directions, "loadings": loadings, "theta": theta, "reach": reach, "zones": zr, "near_solved": near_solved, "near_open": near_open}
 
 
-def row_of(node, computed, i):
+def row_of(node, computed, i, ledger=None):
     zone, radius = computed["zones"][i]
     hand, record_statement = hand_fields(node["id"])
     out = {
@@ -141,6 +142,9 @@ def row_of(node, computed, i):
     }
     if hand is not None:
         out["hand"] = hand
+    mine = [claims.compact(e) for e in (ledger or {}).get(node["id"], [])]
+    if mine:
+        out["claims"] = mine
     return out
 
 
@@ -159,7 +163,8 @@ def build(model=None):
     tokens = sorted({k.lower() for n in nodes for k in n["keywords"]} | {m for n in nodes for m in n["market"]})
     tok_emb, _ = atlas.cached_encode(model, tokens)
     computed = compute(nodes, emb, tokens, tok_emb)
-    rows = [row_of(node, computed, i) for i, node in enumerate(nodes)]
+    ledger = claims.by_id(claims.entries())
+    rows = [row_of(node, computed, i, ledger) for i, node in enumerate(nodes)]
     return {
         "schema": SCHEMA,
         "built": date.today().isoformat(),
@@ -185,7 +190,7 @@ def intern(table, index, value):
 
 def pack(data):
     at = {r["id"]: i for i, r in enumerate(data["rows"])}
-    tables = {"branch": [], "form": [], "status": [], "zone": [], "source": [], "text": []}
+    tables = {"branch": [], "form": [], "status": [], "zone": [], "source": [], "text": [], "claim": []}
     index = {k: {} for k in tables}
     rows = []
     for r in data["rows"]:
@@ -221,8 +226,11 @@ def pack(data):
             out["cut"] = 1
         if "hand" in r:
             out["h"] = r["hand"]
+        if r.get("claims"):
+            out["c"] = [intern(tables["claim"], index["claim"], json.dumps(c, sort_keys=True)) for c in r["claims"]]
         rows.append(out)
     tables["source"] = [json.loads(x) for x in tables["source"]]
+    tables["claim"] = [json.loads(x) for x in tables["claim"]]
     return {"schema": PACKED_SCHEMA, **{k: data[k] for k in ("built", "model", "revision", "threshold", "neighbours", "axes")}, "tables": tables, "rows": rows}
 
 
@@ -242,6 +250,7 @@ def unpack(packed):
                 "zone": t["zone"][r["z"]], "reach": r["re"], "radius": r["ra"], "theta": r["th"], "pc": r["pc"],
                 "near_solved": [[x // 1024, (x % 1024) / 1000] for x in r["ns"]], "near_open": [[x // 1024, (x % 1024) / 1000] for x in r["no"]],
                 **({"hand": r["h"]} if "h" in r else {}),
+                **({"claims": [t["claim"][j] for j in r["c"]]} if "c" in r else {}),
             }
         )
     return {"schema": SCHEMA, **{k: packed[k] for k in ("built", "model", "revision", "threshold", "neighbours", "axes")}, "rows": rows}

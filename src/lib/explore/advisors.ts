@@ -10,6 +10,7 @@ import {
   type AdvisorRow,
   type PrimeDirections,
 } from "../research-os/advisor-review";
+import { createHash } from "crypto";
 import type { AdvisorSource } from "./search";
 import type { AdvisorOrigin } from "./advisor-origin";
 import { samplesAllowed, type Env } from "./sample-gate";
@@ -38,14 +39,27 @@ export function primeTerms(row: AdvisorRow, prime: PrimeDirections, n = 2): stri
   return order.flatMap(({ i }) => prime.components[i]?.top_terms ?? []);
 }
 
+export function unrankedOrder(row: AdvisorRow): "untested" | "withheld" | undefined {
+  const status = row.fields.order_status;
+  return status === "untested" || status === "withheld" ? status : undefined;
+}
+
 export function advisorSources(review: AdvisorReview, prime: PrimeDirections): AdvisorSource[] {
+  const seen = new Map<string, number>();
+  const keyOf = (row: AdvisorRow) => {
+    const digest = createHash("sha256").update(`${row.name}\u0000${flat(row.fields.institution)}\u0000${flat(row.fields.field)}`).digest("hex").slice(0, 12);
+    const n = (seen.get(digest) ?? 0) + 1;
+    seen.set(digest, n);
+    return n === 1 ? `u${digest}` : `u${digest}-${n}`;
+  };
   return review.rows.map((row) => {
+    const order = unrankedOrder(row);
     const field = typeof row.fields.field === "string" ? scrubEmails(row.fields.field) : "";
     const year = typeof row.fields.year === "number" ? row.fields.year : null;
     const text = scrubEmails(
       [
         ...Object.entries(row.fields)
-          .filter(([k]) => k !== "field" && k !== "year")
+          .filter(([k]) => k !== "field" && k !== "year" && k !== "order_status")
           .map(([, v]) => flat(v)),
         ...primeTerms(row, prime),
       ]
@@ -54,12 +68,13 @@ export function advisorSources(review: AdvisorReview, prime: PrimeDirections): A
     );
     const url = row.links.profile_url ?? row.links.program_url ?? null;
     return {
-      rank: row.rank,
+      rank: order ? 0 : row.rank,
+      ...(order ? { key: keyOf(row), order } : {}),
       name: scrubEmails(row.name),
       field,
       text,
       year,
-      score: row.score,
+      score: order ? 0 : row.score,
       star: row.star_prime,
       url: url && !hasEmail(url) && !/^mailto:/i.test(url) ? url : null,
     };

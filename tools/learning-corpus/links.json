@@ -1,0 +1,187 @@
+{
+  "excluded_personal": {
+    "career-work": ["bucket-profiles-local", "phd-cockpit-advisors-ranked"]
+  },
+  "source_licences": {
+    "inventories": {
+      "core": "Bucket's own records and summaries, under the repository licence",
+      "literature": "Bucket's own records and summaries, under the repository licence",
+      "literature-enriched": "OpenAlex metadata, CC0. Abstracts stay under their publishers' terms and out of git",
+      "career-work": "Bucket's own records and summaries, under the repository licence",
+      "epistemics-impact": "Bucket's own records and summaries, under the repository licence",
+      "mechanisms": "Bucket's own records and summaries, under the repository licence",
+      "gap-workplace-career": "Bucket's own records and summaries, under the repository licence",
+      "gap-methods-epistemics": "Bucket's own records and summaries, under the repository licence",
+      "methods-table": "Bucket's own records and summaries, under the repository licence"
+    },
+    "datasets": {
+      "80k-ea-longtermism-corpus": "No licence granted. Rights unreviewed, source text stays local",
+      "80k-podcast-transcripts": "No licence granted. Rights unreviewed, transcripts stay local",
+      "research-atlas-researchers-public": "CC-BY-4.0",
+      "research-atlas-grant-pi-person": "CC-BY-4.0",
+      "research-atlas-graph": "CC-BY-4.0, with each upstream source under its own terms",
+      "education-atlas-observations": "CC-BY-4.0",
+      "education-atlas-solutions-landscape": "CC-BY-4.0",
+      "education-yt-adjunct-transcripts": "YouTube platform terms. No redistribution licence, transcripts stay local",
+      "k12-student-research-experience-notes": "Bucket's own summaries, under the repository licence"
+    }
+  },
+  "founder_topics": {
+    "methods": ["practice", "memory", "feedback", "metacognition", "mastery", "transfer", "inquiry", "motivation"],
+    "definitions of education": ["definition-of-education"],
+    "workplace learning": ["workplace", "apprenticeship"],
+    "career learning": ["career"],
+    "theory of knowledge": ["epistemics"],
+    "impact": ["impact"]
+  },
+  "weak_ideas": [
+    {
+      "idea": "learning styles",
+      "works": ["gap-methods-epistemics:pashler-2008-learning-styles-evidence", "gap-methods-epistemics:clinton-lisell-2024-learning-styles-matching-meta"],
+      "claims": []
+    },
+    {
+      "idea": "two sigma",
+      "works": ["gap-methods-epistemics:von-hippel-2024-two-sigma-tutoring", "gap-methods-epistemics:nickow-2024-promise-of-tutoring-meta"],
+      "claims": ["core:bloom-two-sigma", "epistemics-impact:two-sigma-problem", "career-work:bloom-two-sigma-and-deflation"]
+    },
+    {
+      "idea": "70-20-10",
+      "works": ["gap-workplace-career:clardy-2018-70-20-10-evidence", "gap-workplace-career:johnson-2018-70-20-10-transfer"],
+      "claims": []
+    },
+    {
+      "idea": "growth mindset",
+      "works": ["gap-methods-epistemics:macnamara-2023-growth-mindset-best-practices-meta", "gap-methods-epistemics:sisk-2018-growth-mindset-two-meta", "gap-methods-epistemics:li-2019-growth-mindset-failed-replication", "gap-methods-epistemics:foliano-2019-changing-mindsets-trial"],
+      "claims": []
+    },
+    {
+      "idea": "expanding intervals",
+      "works": ["gap-methods-epistemics:latimier-2021-spaced-retrieval-meta", "gap-methods-epistemics:kim-2022-spaced-practice-l2-meta"],
+      "claims": []
+    },
+    {
+      "idea": "far transfer",
+      "works": ["gap-methods-epistemics:sala-2019-near-far-transfer-second-order-meta", "gap-methods-epistemics:sala-2017-does-far-transfer-exist", "gap-methods-epistemics:melby-lervag-2016-working-memory-training-far-transfer", "gap-methods-epistemics:simons-2016-brain-training-review"],
+      "claims": []
+    },
+    {
+      "idea": "feedback at d near 0.79",
+      "works": ["gap-methods-epistemics:wisniewski-2020-power-of-feedback-revisited"],
+      "claims": ["core:feedback-power-and-variance"]
+    },
+    {
+      "idea": "formative assessment at 0.4 to 0.7 SD",
+      "works": ["gap-methods-epistemics:kingston-2011-formative-assessment-meta", "gap-methods-epistemics:bennett-2011-formative-assessment-critical-review"],
+      "claims": []
+    },
+    {
+      "idea": "mastery learning at 0.5 SD",
+      "works": ["gap-methods-epistemics:slavin-1987-mastery-learning-reconsidered"],
+      "claims": ["core:mastery-learning-effect", "epistemics-impact:mastery-learning-meta-analysis"]
+    },
+    {
+      "idea": "deliberate practice explains expertise",
+      "works": ["gap-workplace-career:macnamara-2016-deliberate-practice-sports", "gap-workplace-career:macnamara-2019-ericsson-1993-replication"],
+      "claims": ["core:deliberate-practice", "career-work:deliberate-practice"]
+    },
+    {
+      "idea": "mentoring drives careers",
+      "works": ["gap-workplace-career:allen-2004-mentoring-career-benefits-meta", "gap-workplace-career:eby-2008-does-mentoring-matter-meta"],
+      "claims": ["career-work:mentorship-into-a-domain"]
+    },
+    {
+      "idea": "research experiences build scientists",
+      "works": ["gap-workplace-career:linn-2015-undergraduate-research-experiences-review"],
+      "claims": ["career-work:research-apprenticeship-review-sadler-2010", "epistemics-impact:research-apprenticeships"]
+    }
+  ],
+  "related_gap_works": {
+    "core:teach-back-protege-effect": ["gap-methods-epistemics:chase-2009-protege-effect", "gap-methods-epistemics:kobayashi-2019-learning-by-teaching-meta"],
+    "career-work:apprenticeship-transfers-tacit-knowledge": ["gap-methods-epistemics:polanyi-1966-tacit-dimension", "gap-methods-epistemics:reber-1989-implicit-learning-tacit-knowledge", "gap-workplace-career:collins-2001-tacit-knowledge-q-sapphire"]
+  },
+  "definitions": {
+    "claims": {
+      "epistemics-impact:education-schooling-training-distinction": {"term": "education", "tradition": "Bucket internal"},
+      "epistemics-impact:educated-person-peters": {"term": "education", "tradition": "analytic philosophy of education"},
+      "epistemics-impact:education-as-growth-dewey": {"term": "education", "tradition": "pragmatism"},
+      "epistemics-impact:bucket-definition-of-education": {"term": "education", "tradition": "Bucket internal"},
+      "career-work:premodern-education-as-apprenticeship": {"term": "education", "tradition": "Bucket internal"},
+      "epistemics-impact:aristotle-demonstrative-knowledge": {"term": "knowledge", "tradition": "Aristotelian"},
+      "epistemics-impact:canon-holds-foundations": {"term": "knowledge", "tradition": "Bucket internal"},
+      "epistemics-impact:knowledge-state-closed-set": {"term": "knowledge", "tradition": "knowledge space theory"},
+      "epistemics-impact:claim-standing-by-how-known": {"term": "knowledge", "tradition": "Bucket internal"},
+      "core:concept-atom": {"term": "knowledge", "tradition": "Bucket internal"},
+      "epistemics-impact:learning-l": {"term": "learning", "tradition": "Bucket internal"},
+      "epistemics-impact:research-os-five-levels": {"term": "learning", "tradition": "Bucket internal"},
+      "core:mastered-means-retained": {"term": "mastery", "tradition": "Bucket internal"},
+      "core:mastery-fusion-score": {"term": "mastery", "tradition": "Bucket internal"},
+      "core:operational-mastery-policy": {"term": "mastery", "tradition": "Bucket internal"},
+      "core:mastery-attainment-unknown": {"term": "mastery", "tradition": "Bucket internal"},
+      "core:radt-mastery-ladder": {"term": "mastery", "tradition": "Bucket internal"},
+      "epistemics-impact:mastery-formula": {"term": "mastery", "tradition": "Bucket internal"}
+    },
+    "works": {
+      "gap-methods-epistemics:peters-1966-ethics-and-education": {"term": "education", "tradition": "analytic philosophy of education"},
+      "gap-methods-epistemics:dewey-1916-democracy-and-education": {"term": "education", "tradition": "pragmatism"},
+      "gap-methods-epistemics:dewey-1897-my-pedagogic-creed": {"term": "education", "tradition": "pragmatism"},
+      "gap-methods-epistemics:biesta-2009-good-education-age-of-measurement": {"term": "education", "tradition": "continental educational theory"},
+      "gap-methods-epistemics:biesta-2015-what-is-education-for": {"term": "education", "tradition": "continental educational theory"},
+      "gap-methods-epistemics:biesta-2020-risking-ourselves-in-education": {"term": "education", "tradition": "continental educational theory"},
+      "gap-methods-epistemics:freire-1970-pedagogy-of-the-oppressed": {"term": "education", "tradition": "critical pedagogy"},
+      "gap-methods-epistemics:sen-1999-development-as-freedom": {"term": "education", "tradition": "capability approach"},
+      "gap-methods-epistemics:nussbaum-2011-creating-capabilities": {"term": "education", "tradition": "capability approach"},
+      "gap-methods-epistemics:robeyns-2006-three-models-of-education": {"term": "education", "tradition": "capability approach"},
+      "gap-methods-epistemics:un-1948-udhr-article-26": {"term": "education", "tradition": "human rights law"},
+      "gap-methods-epistemics:uis-2012-isced-2011": {"term": "education", "tradition": "international statistics"},
+      "gap-methods-epistemics:oecd-2019-learning-compass-2030": {"term": "education", "tradition": "policy framework"},
+      "gap-methods-epistemics:labaree-1997-public-goods-private-goods": {"term": "education", "tradition": "sociology of education"},
+      "gap-methods-epistemics:spence-1973-job-market-signaling": {"term": "education", "tradition": "economics of signalling"},
+      "gap-methods-epistemics:caplan-2018-case-against-education": {"term": "education", "tradition": "economics of signalling"},
+      "gap-methods-epistemics:gettier-1963-justified-true-belief": {"term": "knowledge", "tradition": "analytic epistemology"},
+      "gap-methods-epistemics:goldman-1979-reliabilism-justified-belief": {"term": "knowledge", "tradition": "reliabilism"},
+      "gap-methods-epistemics:ryle-1945-knowing-how-knowing-that": {"term": "knowledge", "tradition": "ordinary language philosophy"},
+      "gap-methods-epistemics:polanyi-1966-tacit-dimension": {"term": "knowledge", "tradition": "tacit knowledge"},
+      "gap-methods-epistemics:coady-1992-testimony-philosophical-study": {"term": "knowledge", "tradition": "epistemology of testimony"},
+      "gap-methods-epistemics:kvanvig-2003-value-of-knowledge-understanding": {"term": "understanding", "tradition": "analytic epistemology"},
+      "literature:de-regt-2017-understanding-scientific-understanding": {"term": "understanding", "tradition": "philosophy of science"},
+      "literature:krenn-et-al-2022-scientific-understanding-with-ai": {"term": "understanding", "tradition": "philosophy of science"},
+      "literature:perkins-1993-teaching-for-understanding": {"term": "understanding", "tradition": "teaching for understanding"},
+      "gap-methods-epistemics:soderstrom-2015-learning-versus-performance": {"term": "learning", "tradition": "cognitive psychology"}
+    }
+  },
+  "method_aliases": {
+    "retrieval practice": "retrieval|testing effect|practice test|test-enhanced",
+    "spacing": "spacing|spaced|distributed practice|forgetting curve",
+    "interleaving": "interleav",
+    "elaborative interrogation": "elaborative interrogation",
+    "self-explanation": "self-explan",
+    "worked examples and fading": "worked example|fading|expertise reversal",
+    "generation": "generation effect",
+    "desirable difficulties": "desirable difficult",
+    "productive failure": "productive failure",
+    "feedback timing and type": "feedback",
+    "mastery learning": "mastery learning|mastery gat",
+    "tutoring and the two-sigma claim": "tutoring|sigma|2σ",
+    "formative assessment": "formative",
+    "peer instruction": "peer instruction",
+    "problem-based and inquiry learning": "problem-based|inquiry|minimal guidance|project-based",
+    "cognitive load management": "cognitive load|seductive detail|multimedia",
+    "dual coding": "dual coding|picture superiority",
+    "concept mapping": "concept map",
+    "analogical learning and comparison": "analog|case comparison",
+    "metacognitive monitoring and calibration": "metacogn|calibration|judgments? of learning",
+    "successive relearning": "successive relearning",
+    "pretesting": "pretest",
+    "teaching others": "teach-back|teaching others|protégé|learning by teaching",
+    "sleep and consolidation": "sleep",
+    "motivation: self-determination theory": "self-determination|intrinsic motivation|crowding",
+    "motivation: expectancy-value": "expectancy",
+    "motivation: growth mindset": "mindset",
+    "gamification and streaks": "gamif|streak|leaderboard",
+    "adaptive learning and intelligent tutoring systems": "intelligent tutoring|adaptive|ALEKS|knowledge space",
+    "knowledge tracing and scheduling models": "knowledge tracing|BKT|FSRS|half-life|Elo",
+    "learning styles": "learning styles|meshing",
+    "highlighting and rereading": "highlight|reread"
+  }
+}
