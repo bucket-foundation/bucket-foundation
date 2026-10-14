@@ -99,17 +99,45 @@ export function modelPrompt(stubs: FactStub[], count: number): string {
   ].join("\n");
 }
 
+export const REPLY_EXCERPT = 200;
+
+export const excerpt = (text: string) => JSON.stringify(text.slice(0, REPLY_EXCERPT));
+
+export function replyObjects(reply: string): Record<string, unknown>[] {
+  const out: Record<string, unknown>[] = [];
+  const opens: number[] = [];
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < reply.length; i++) {
+    const c = reply[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (c === "\\") escaped = true;
+      else if (c === '"') inString = false;
+    } else if (c === '"') inString = true;
+    else if (c === "{") opens.push(i);
+    else if (c === "}" && opens.length) {
+      const start = opens.pop()!;
+      try {
+        const v = JSON.parse(reply.slice(start, i + 1)) as unknown;
+        if (v && typeof v === "object" && !Array.isArray(v) && "stub" in v) out.push(v as Record<string, unknown>);
+      } catch {
+        continue;
+      }
+    }
+  }
+  return out;
+}
+
 function modelQuestions(reply: string, stubs: FactStub[], count: number): QuizQuestion[] {
-  const start = reply.indexOf("{");
-  const end = reply.lastIndexOf("}");
-  if (start < 0 || end <= start) throw new WriterError("the model reply holds no JSON");
-  const doc = JSON.parse(reply.slice(start, end + 1)) as { questions?: unknown };
-  if (!Array.isArray(doc.questions)) throw new WriterError("the model reply holds no questions");
+  if (!reply.includes("{")) throw new WriterError(`the model reply holds no JSON: ${excerpt(reply)}`);
+  const found = replyObjects(reply);
+  if (!found.length) throw new WriterError(`the model reply holds no questions: ${excerpt(reply)}`);
   const byId = new Map(stubs.map((s) => [s.id, s]));
   const out: QuizQuestion[] = [];
-  for (const [i, raw] of doc.questions.entries()) {
+  for (const [i, raw] of found.entries()) {
     if (out.length >= count) break;
-    const r = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
+    const r = raw;
     const stub = byId.get(String(r.stub));
     const strings = [r.prompt, r.answer, r.explain ?? "", ...(Array.isArray(r.choices) ? r.choices : [])];
     if (!stub || strings.some((s) => typeof s !== "string" || secretLine(s))) continue;
@@ -141,10 +169,16 @@ export async function askModel(stubs: FactStub[], o: WriterOptions = {}): Promis
   if (!res.ok) throw new WriterError(`the model answered ${res.status}`);
   const text = await res.text();
   if (text.length > LLM_MAX_REPLY) throw new WriterError("the model reply is too large");
-  const content = (JSON.parse(text) as { choices?: { message?: { content?: unknown } }[] }).choices?.[0]?.message?.content;
+  let body: { choices?: { message?: { content?: unknown } }[] };
+  try {
+    body = JSON.parse(text);
+  } catch {
+    throw new WriterError(`the model reply is not JSON: ${excerpt(text)}`);
+  }
+  const content = body.choices?.[0]?.message?.content;
   if (typeof content !== "string") throw new WriterError("the model reply holds no text");
   const questions = modelQuestions(content, safeStubs(stubs), count);
-  if (!questions.length) throw new WriterError("the model wrote no usable question");
+  if (!questions.length) throw new WriterError(`the model wrote no usable question: ${excerpt(content)}`);
   return questions;
 }
 
@@ -160,7 +194,7 @@ export async function writeDailyQuiz(day: string, stubs: FactStub[], o: WriterOp
     questions = [...written, ...templates].slice(0, count);
     writer = "model";
   } catch (e) {
-    modelError = e instanceof WriterError ? e.message : e instanceof SyntaxError ? "the model reply is not JSON" : "the model did not answer";
+    modelError = e instanceof WriterError ? e.message : "the model did not answer";
   }
   return { quiz: { day, questions: questions.map((q) => parseQuestion(q)) }, writer, modelError };
 }
