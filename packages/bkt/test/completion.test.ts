@@ -89,7 +89,7 @@ describe("bkt completion", () => {
       expect(r.stdout.toString().trimEnd().split("\n")).toEqual([
         "doctor",
         "freeze review score report export wipe",
-        "--dir --pilot --yes --dry-run --collect --max-usd --help",
+        "--dir --pilot --yes --dry-run --collect --abandon --max-usd --help",
         "--keyring --json --help",
         "bash zsh fish",
         "--where",
