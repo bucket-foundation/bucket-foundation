@@ -7,7 +7,8 @@ Where open and solved problems can be sourced, with count, status coverage, lice
 | Source | URL | Count | Status recorded | Licence | Access | Verdict |
 |---|---|---|---|---|---|---|
 | formal-conjectures (DeepMind) | https://github.com/google-deepmind/formal-conjectures | 3,598 statements in `_intake/solver-gap-engine/problem_map.jsonl` (2,196 solved, 1,403 open; 2,062 Erdős, 496 Wikipedia, 319 OEIS, 230 Green, 147 papers) | yes, plus Lean proof flag | Apache-2.0 | git, Lean, local jsonl | ingest |
-| Erdős Problems | https://www.erdosproblems.com | 1,221 problems | yes, FAQ says not fully current | none stated | HTML, no API found | metadata only; statements reach the atlas through formal-conjectures |
+| Erdős Problems | https://www.erdosproblems.com | 1,221 problems | the site stopped showing statuses on 2026-06-30, per the README of the dump | none stated on the site; no `robots.txt` (404 on 2026-10-13) | HTML, no API found | site left unread; statements reach the atlas through formal-conjectures |
+| Erdős Problems community database | https://github.com/teorth/erdosproblems | 1,221 problems in `data/problems.yaml` | yes, with the date of the last change; no posed or resolved year | Apache-2.0 | one YAML file | ingest status; see Erdős years |
 | Open Problem Garden | http://www.openproblemgarden.org | about 613 (algebra 297, graph theory 228, number theory 49, topology 40, combinatorics 35) | open only, solved ones marked | GFDL | HTML | metadata only; names could be ingested as facts with attribution |
 | Wikipedia, unsolved problems in mathematics | https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics | 644 bullets, 63 sections, "Problems solved since 2015" section | yes | CC BY-SA 4.0 | MediaWiki API | ingest facts, cite page |
 | Hilbert's problems | https://en.wikipedia.org/wiki/Hilbert%27s_problems | 23 plus the 24th, table with status and year | yes | CC BY-SA 4.0 | MediaWiki API | ingest |
@@ -109,6 +110,43 @@ Rules for these rows:
 
 Not read: the Science pages themselves return 403 to scripts, so the 2005 list came from the 2007 Wayback copy of the article and the 2021 list from the 2023 Wayback copy of the booklet PDF; the Oxford University Press and ACS tables of contents return 403, so the neuroscience chapters came from the Library of Congress record and the chemistry titles from PubMed. Knuth's open problems and the 2000 "Computing the future" lists had no freely readable dated list and were skipped. Physics Today and Nature open-problem lists were skipped for the same reason.
 
+## Erdős years
+
+Fourth ingest, 2026-10-13, bead `bkt-go2p`: posed and resolved years for the Erdős rows the atlas already holds, so the Erdős list mixes solved and open problems that carry dates. `python3 sources/erdos_problems.py --fetch` rebuilds `sources/erdos/problems.tsv`, one line per problem in the dump; with no flag the script prints the plan.
+
+The years stay in `sources/erdos/problems.tsv`. `surface_table.py` joins them onto the regression table and marks each joined posed year in the `posed_bound` column. `problems-sourced.tsv` is unchanged, for two reasons: its posed column holds years a source states, and these are bounds; and the neighbour file, the dated forecasts in `forecasts/` and `thresholds/` are all built from that column, and the paper links the forecasts.
+
+| Input | Pinned at | Licence | Gives |
+|---|---|---|---|
+| `teorth/erdosproblems`, `data/problems.yaml` | commit `86c3dc3` | Apache-2.0 | `informal_status.state` per problem and the problem url |
+| `google-deepmind/formal-conjectures`, `FormalConjectures/ErdosProblems/*.lean` | commit `e47a327` | Apache-2.0 | citation keys such as `[ErGr80]` in the docstrings |
+
+Rules:
+
+- Posed year: the earliest citation key in the Lean file with Erdős among its authors (`Er` or `Erd` as an author token), read as 19yy for 1932 to 1999. It is the year of the earliest dated Erdős paper the file cites on the problem, so it is an upper bound on the year the problem was posed. `posed_kind` is `stated` when the main docstring attaches that key to a posing verb and `cited` otherwise: 28 stated, 388 cited over the 416 files with a year.
+- Resolved year: read from the docstring of `theorem erdos_N` alone, from a sentence of the form "proved by Name [Key]" or "by Name in 2019". A sentence that names a case, a weaker or stronger form, or a generalisation is passed over. When the docstring holds resolving references from two different years the year stays empty.
+- Status: the atlas row keeps its status. A row is filled only when the dump agrees with it, `proved`, `disproved` or `solved` against a solved row and `open` against an open or partial row.
+- Guard: a row whose resolved year would fall before its posed year is skipped whole.
+- Variants are left alone. A year the atlas row already carries is kept. `sources/erdos/problems.tsv` holds the key behind each year and the erdosproblems.com url.
+
+Counts over the 1,221 problems of the dump `[empirical: tools/solvability-atlas/sources/erdos/problems.tsv, 2026-10-13, python3 sources/erdos_problems.py]`:
+
+| Outcome | Problems |
+|---|---|
+| Open, posed year | 104 |
+| Solved, posed and resolved year | 83 |
+| Solved, posed year only, no single resolving reference | 159 |
+| Skipped: no formal-conjectures file, so no statement under a stated licence | 357 |
+| Skipped: no dated Erdős reference in the file | 362 |
+| Skipped: Lean file newer than `problem_map.jsonl`, so the atlas has no row | 79 |
+| Skipped: atlas status and dump state disagree | 36 |
+| Skipped: dump state is neither open nor solved (`falsifiable`, `verifiable`, `decidable`, `independent`, `not provable`, `not disprovable`) | 36 |
+| Skipped: resolved year before posed year | 5 |
+
+875 problems are skipped. On the regression table 321 rows gain a bound posed year and 81 gain a resolved year; 25 of the 346 rows already carried a posed year. No row was added to `problems-sourced.tsv`.
+
+Limits. The posed year is late by construction: problem 999, the Duffin and Schaeffer conjecture of 1941, reads 1964 from `[Er64]`. The dump records when a status changed in the database, which is later than the year of the proof for problems found solved in the literature, so `last_update` is never used as a resolved year. Solved rows enter the survival table only when their docstring names one resolving reference, 83 of 242 solved rows with a posed year, so the dated solved rows are a selected third.
+
 ## OpenAlex activity
 
 `python3 openalex_sourced.py` runs one title-and-abstract search per sourced row against the OpenAlex works index (`https://api.openalex.org/works`, metadata CC0-1.0): the query is the problem name, or the first clause of the statement when the name is a numbered label such as "Erdős problem 403", cleaned of LaTeX, citation keys and links and cut to 10 words. Two requests per row, one for the match count and the three most cited works, one grouped by year for the last 30 years. Results go to `openalex-sourced.json`, keyed by row id: `query`, `works_total`, `by_year` (30 years), `top` (OpenAlex id, title, year, cited_by_count) and `retrieved`. Responses cache under `cache/` with the mailto address stripped, and the key stays in the `Authorization` header from `OPENALEX_API_KEY`. The run is resumable: a stored row is never queried again, `--limit N` takes the next N rows, and the rows still to query are taken in an order that interleaves the branches, so each resumed run adds rows to every branch.
@@ -144,5 +182,5 @@ Branch skew: mathematics holds 4,088 of 4,596 rows (89%), physics 186, biophysic
 ## Founder calls
 
 - Open Problem Garden names under GFDL: ingest as facts with attribution, or keep metadata only.
-- Erdős Problems has no stated licence; the 2,062 Apache rows in formal-conjectures cover most of it. Ask the maintainer before scraping the site itself.
+- Erdős Problems has no stated licence; the 2,062 Apache rows in formal-conjectures cover most of it. Ask the maintainer before scraping the site itself. The 2026-10-13 ingest read the Apache-2.0 dump and formal-conjectures and left the site unread; the origin reference each problem page shows would replace the upper-bound posed year, and needs that permission. With stated years the Erdős rows could move into `problems-sourced.tsv`, which rebuilds the dated forecasts the paper links: a founder call.
 - Industry roadmaps and prizes (IRDS, Earthshots, XPRIZE, NAE) need hand-curated rows; none has a machine-readable problem list.

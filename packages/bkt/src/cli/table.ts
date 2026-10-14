@@ -123,9 +123,9 @@ export const TABLE: CommandSpec[] = [
   { name: "forget people", summary: "forget imported people", session: true },
   {
     name: "update",
-    summary: "check for a newer signed release",
+    summary: "check for a newer signed release, or install it",
     json: true,
-    options: { check: { type: "boolean", help: "check only; this is the default" } },
+    options: { check: { type: "boolean", help: "check only; this is the default" }, install: { type: "boolean", help: "download the newer release, verify it and replace this copy" } },
   },
   { name: "version", summary: "print the version", json: true },
   { name: "licences", summary: "print the credit, the changes and the licence text of the bundled word list" },

@@ -240,6 +240,8 @@ const STUBS: FactStub[] = [
 const POISON: FactStub = { id: "dddddddddddddddd", root: "claude", label: "push with ghp_FAKEfixture00000000000000000000", date: "2026-09-30", turns: 1 };
 
 const reply = (questions: unknown): Fetcher => async () => new Response(JSON.stringify({ choices: [{ message: { content: JSON.stringify({ questions }) } }] }));
+const head = (e: string | null) => e?.split(": ")[0] ?? null;
+const raw = (content: string): Fetcher => async () => new Response(JSON.stringify({ choices: [{ message: { content } }] }));
 const GOOD = {
   stub: "aaaaaaaaaaaaaaaa",
   prompt: "Which grader did the session wire into the daily quiz route?",
@@ -298,7 +300,7 @@ describe("question writer", () => {
       { ...GOOD, explain: Array.from({ length: 21 }, (_, i) => `word${i}`).join(" ") },
     ];
     const w = await writeDailyQuiz(DAY, STUBS, { fetch: reply(long) });
-    expect([w.writer, w.modelError]).toEqual(["templates", "the model wrote no usable question"]);
+    expect([w.writer, head(w.modelError)]).toEqual(["templates", "the model wrote no usable question"]);
     expect(w.quiz!.questions).toEqual(templateQuestions(DAY, STUBS));
     const mixed = await writeDailyQuiz(DAY, STUBS, { fetch: reply([long[0], GOOD]) });
     expect(mixed.quiz!.questions.map((q) => q.id.startsWith("chat-model-"))).toEqual([true, false, false, false, false]);
@@ -344,7 +346,7 @@ describe("question writer", () => {
 
   test("a secret in the model reply drops that question", async () => {
     const w = await writeDailyQuiz(DAY, STUBS, { fetch: reply([{ ...GOOD, explain: "token sk-FAKEfixture0000000000000000" }]) });
-    expect([w.writer, w.modelError]).toEqual(["templates", "the model wrote no usable question"]);
+    expect([w.writer, head(w.modelError)]).toEqual(["templates", "the model wrote no usable question"]);
     expect(clean(JSON.stringify(w.quiz))).toEqual([]);
   });
 
@@ -369,12 +371,47 @@ describe("question writer", () => {
     ];
     for (const [fetcher, extra, error] of cases) {
       const w = await writeDailyQuiz(DAY, STUBS, { fetch: fetcher, ...extra });
-      expect([w.writer, w.modelError]).toEqual(["templates", error]);
+      expect([w.writer, head(w.modelError)]).toEqual(["templates", error]);
       expect(w.quiz!.questions).toEqual(want);
     }
     expect(called).toBe(0);
     await expect(askModel(STUBS, { fetch: down })).rejects.toThrow();
     expect(await writeDailyQuiz(DAY, [], { fetch: counted })).toEqual({ quiz: null, writer: "none", modelError: null });
+  });
+
+  test("a fenced reply yields its questions", async () => {
+    const w = await writeDailyQuiz(DAY, STUBS, { fetch: raw("```json\n" + JSON.stringify({ questions: [GOOD] }, null, 2) + "\n```") });
+    expect([w.writer, w.modelError]).toEqual(["model", null]);
+    expect(w.quiz!.questions[0]).toMatchObject({ id: "chat-model-0", answer: "Fermi" });
+  });
+
+  test("a bare array in prose yields its questions", async () => {
+    const text = "Here are the questions:\n```json\n" + JSON.stringify([GOOD, { ...GOOD, prompt: "Which grader did the route use {first}?" }]) + "\n```\nHope this helps.";
+    const w = await writeDailyQuiz(DAY, STUBS, { fetch: raw(text) });
+    expect([w.writer, w.modelError]).toEqual(["model", null]);
+    expect(w.quiz!.questions.filter((q) => q.id.startsWith("chat-model-")).length).toBe(2);
+  });
+
+  test("a truncated reply keeps every complete question", async () => {
+    const full = JSON.stringify({ questions: [GOOD, { ...GOOD, answer: "Exact" }] });
+    const cut = full.slice(0, full.lastIndexOf('"answer"') + 12);
+    const w = await writeDailyQuiz(DAY, STUBS, { fetch: raw(cut) });
+    expect([w.writer, w.modelError]).toEqual(["model", null]);
+    expect(w.quiz!.questions.filter((q) => q.id.startsWith("chat-model-")).map((q) => q.answer)).toEqual(["Fermi"]);
+  });
+
+  test("a partly valid reply keeps the valid questions", async () => {
+    const w = await writeDailyQuiz(DAY, STUBS, { fetch: reply([{ ...GOOD, answer: "Absent" }, GOOD, { ...GOOD, choices: "Fermi" }, { ...GOOD, answer: "Exact" }]) });
+    expect([w.writer, w.modelError]).toEqual(["model", null]);
+    expect(w.quiz!.questions.filter((q) => q.id.startsWith("chat-model-")).map((q) => q.answer)).toEqual(["Fermi", "Exact"]);
+  });
+
+  test("an unparseable reply logs its first 200 characters", async () => {
+    const text = "Sorry, " + "x".repeat(400);
+    const w = await writeDailyQuiz(DAY, STUBS, { fetch: raw(text) });
+    expect(w.modelError).toBe(`the model reply holds no JSON: ${JSON.stringify(text.slice(0, 200))}`);
+    const body = await writeDailyQuiz(DAY, STUBS, { fetch: async () => new Response("<html>" + "y".repeat(300)) });
+    expect(body.modelError).toBe(`the model reply is not JSON: ${JSON.stringify(("<html>" + "y".repeat(300)).slice(0, 200))}`);
   });
 });
 

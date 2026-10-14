@@ -57,6 +57,18 @@ afterEach(() => {
 });
 
 describe("daily quiz view", () => {
+  test("shows a building message while the quiz request is pending and drops it once the quiz arrives", async () => {
+    const { BUILDING } = await import("./views/WorkQuiz");
+    let resolve: (q: DailyQuiz) => void = () => undefined;
+    const pending = new Promise<DailyQuiz>((r) => (resolve = r));
+    const { host } = await mount({ dailyQuiz: () => pending, dailyAnswer: async () => graded({}) });
+    expect(host.querySelector('[role="status"]')?.textContent).toBe(BUILDING);
+    const { act } = await import("react");
+    await act(async () => resolve(QUIZ));
+    expect(host.textContent).not.toContain(BUILDING);
+    expect(host.textContent).toContain("0 of 2 answered");
+  });
+
   test("a filled quiz names where each question came from and carries the chat switches as a small line", async () => {
     const { CHAT_NOTE, CHAT_ON } = await import("./views/WorkQuiz");
     const sent: Chat[] = [];
