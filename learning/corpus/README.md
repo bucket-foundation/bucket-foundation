@@ -25,7 +25,7 @@ A founder topic groups the tags `links.json` lists. The methods topic adds every
 
 ## Build
 
-`tools/learning-corpus/build.py` reads `sources/` and writes every file here. Works merge on normalised DOI, then on normalised title with first author and year; a short title contained in a longer one counts as the same title. A claim's `supports` come from its `cited_works` alone. `links.json` beside the script holds the hand-made joins: weak ideas with their claims, definition terms with traditions, method aliases, topic groups.
+`tools/learning-corpus/build.py` reads `sources/` and writes the files above; `progressions/` and `alignment/` are separate corpora. Works merge on normalised DOI, then on normalised title with first author and year; a short title contained in a longer one counts as the same title. A claim's `supports` come from its `cited_works` alone. `links.json` beside the script holds the hand-made joins and the source licences.
 
 ```
 python3 tools/learning-corpus/build.py
@@ -54,4 +54,4 @@ The first two states count as confirmed unless the work is withdrawn.
 
 ## Licence
 
-Records and summaries are Bucket's own, under the repository licence. Abstracts come from OpenAlex and stay under their publishers' terms, so the build keeps them in `abstracts.local.jsonl`, which git ignores; `works.jsonl` marks each work that has one. `corpus.sqlite` is ignored too. The import leaves out 2 career-work dataset rows that describe private profiles and named people.
+Records and summaries are Bucket's own, under the repository licence; `sources/LICENCES.md` gives the licence of each source. Abstracts come from OpenAlex and stay under their publishers' terms, so the build keeps them in `abstracts.local.jsonl`, which git ignores; `works.jsonl` marks each work that has one. `corpus.sqlite` is ignored too. The import leaves out 2 career-work dataset rows that describe private profiles and named people.
