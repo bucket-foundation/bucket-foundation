@@ -2,6 +2,30 @@
   "excluded_personal": {
     "career-work": ["bucket-profiles-local", "phd-cockpit-advisors-ranked"]
   },
+  "source_licences": {
+    "inventories": {
+      "core": "Bucket's own records and summaries, under the repository licence",
+      "literature": "Bucket's own records and summaries, under the repository licence",
+      "literature-enriched": "OpenAlex metadata, CC0. Abstracts stay under their publishers' terms and out of git",
+      "career-work": "Bucket's own records and summaries, under the repository licence",
+      "epistemics-impact": "Bucket's own records and summaries, under the repository licence",
+      "mechanisms": "Bucket's own records and summaries, under the repository licence",
+      "gap-workplace-career": "Bucket's own records and summaries, under the repository licence",
+      "gap-methods-epistemics": "Bucket's own records and summaries, under the repository licence",
+      "methods-table": "Bucket's own records and summaries, under the repository licence"
+    },
+    "datasets": {
+      "80k-ea-longtermism-corpus": "No licence granted. Rights unreviewed, source text stays local",
+      "80k-podcast-transcripts": "No licence granted. Rights unreviewed, transcripts stay local",
+      "research-atlas-researchers-public": "CC-BY-4.0",
+      "research-atlas-grant-pi-person": "CC-BY-4.0",
+      "research-atlas-graph": "CC-BY-4.0, with each upstream source under its own terms",
+      "education-atlas-observations": "CC-BY-4.0",
+      "education-atlas-solutions-landscape": "CC-BY-4.0",
+      "education-yt-adjunct-transcripts": "YouTube platform terms. No redistribution licence, transcripts stay local",
+      "k12-student-research-experience-notes": "Bucket's own summaries, under the repository licence"
+    }
+  },
   "founder_topics": {
     "methods": ["practice", "memory", "feedback", "metacognition", "mastery", "transfer", "inquiry", "motivation"],
     "definitions of education": ["definition-of-education"],

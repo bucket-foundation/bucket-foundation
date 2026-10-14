@@ -1,0 +1,644 @@
+{
+ "head": "137aec5c",
+ "database_commit": "b916d95",
+ "database_date": "2026-09-28",
+ "erdos_files": 785,
+ "compared": 772,
+ "not_compared": 11,
+ "half_settled_excluded": 2,
+ "agree_open_or_partial": 362,
+ "agree_resolved_or_partial": 387,
+ "stale_open_upstream": 2,
+ "stale_by_state": {
+  "solved": 1,
+  "proved": 1
+ },
+ "upstream_solved_database_open": 21,
+ "ahead_by_state": {
+  "open": 17,
+  "open (Lean)": 2,
+  "decidable": 1,
+  "falsifiable": 1
+ },
+ "ahead_with_formal_proof_link": 19,
+ "ahead_by_repository": {
+  "williamjblair/lean-proofs": 9,
+  "plby/lean-proofs": 5,
+  "Hanziwww/erdos260": 1,
+  "Konamiu/formal-conjectures": 1,
+  "KitaKen1/erdos-522-strong-law": 1,
+  "chreia/erdos-522": 1,
+  "AlperTheKing/formal-conjectures": 1,
+  "wcook04/plectis-erdos": 1,
+  "mo271/formal-conjectures": 1
+ },
+ "checkable_and_open": 31,
+ "stale": [
+  {
+   "number": 321,
+   "database_state": "solved",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_321"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/321",
+   "proof_repositories": []
+  },
+  {
+   "number": 547,
+   "database_state": "proved",
+   "database_updated": "2026-09-03",
+   "open_theorems": [
+    "erdos_547"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/547",
+   "proof_repositories": []
+  }
+ ],
+ "ahead": [
+  {
+   "number": 130,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/130",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  },
+  {
+   "number": 254,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/254",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  },
+  {
+   "number": 260,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/260",
+   "proof_repositories": [
+    "Hanziwww/erdos260"
+   ]
+  },
+  {
+   "number": 267,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/267",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  },
+  {
+   "number": 341,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/341",
+   "proof_repositories": [
+    "plby/lean-proofs"
+   ]
+  },
+  {
+   "number": 394,
+   "database_state": "open",
+   "database_updated": "2025-10-28",
+   "open_theorems": [],
+   "main_theorems": 2,
+   "url": "https://www.erdosproblems.com/394",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  },
+  {
+   "number": 424,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/424",
+   "proof_repositories": [
+    "plby/lean-proofs"
+   ]
+  },
+  {
+   "number": 486,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/486",
+   "proof_repositories": [
+    "Konamiu/formal-conjectures",
+    "plby/lean-proofs"
+   ]
+  },
+  {
+   "number": 489,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/489",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  },
+  {
+   "number": 520,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/520",
+   "proof_repositories": [
+    "plby/lean-proofs"
+   ]
+  },
+  {
+   "number": 521,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/521",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  },
+  {
+   "number": 522,
+   "database_state": "open (Lean)",
+   "database_updated": "2026-09-25",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/522",
+   "proof_repositories": [
+    "KitaKen1/erdos-522-strong-law",
+    "chreia/erdos-522"
+   ]
+  },
+  {
+   "number": 550,
+   "database_state": "open (Lean)",
+   "database_updated": "2026-09-11",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/550",
+   "proof_repositories": [
+    "plby/lean-proofs"
+   ]
+  },
+  {
+   "number": 655,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/655",
+   "proof_repositories": [
+    "AlperTheKing/formal-conjectures"
+   ]
+  },
+  {
+   "number": 769,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/769",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  },
+  {
+   "number": 796,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/796",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  },
+  {
+   "number": 848,
+   "database_state": "decidable",
+   "database_updated": "2025-10-19",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/848",
+   "proof_repositories": []
+  },
+  {
+   "number": 973,
+   "database_state": "open",
+   "database_updated": "2025-08-31",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/973",
+   "proof_repositories": []
+  },
+  {
+   "number": 1041,
+   "database_state": "falsifiable",
+   "database_updated": "2025-09-15",
+   "open_theorems": [],
+   "main_theorems": 2,
+   "url": "https://www.erdosproblems.com/1041",
+   "proof_repositories": [
+    "wcook04/plectis-erdos"
+   ]
+  },
+  {
+   "number": 1097,
+   "database_state": "open",
+   "database_updated": "2025-10-18",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/1097",
+   "proof_repositories": [
+    "mo271/formal-conjectures"
+   ]
+  },
+  {
+   "number": 1188,
+   "database_state": "open",
+   "database_updated": "2026-04-04",
+   "open_theorems": [],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/1188",
+   "proof_repositories": [
+    "williamjblair/lean-proofs"
+   ]
+  }
+ ],
+ "checkable": [
+  {
+   "number": 7,
+   "database_state": "verifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_7"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/7",
+   "proof_repositories": []
+  },
+  {
+   "number": 19,
+   "database_state": "decidable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_19"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/19",
+   "proof_repositories": []
+  },
+  {
+   "number": 23,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_23"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/23",
+   "proof_repositories": []
+  },
+  {
+   "number": 64,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_64"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/64",
+   "proof_repositories": []
+  },
+  {
+   "number": 97,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_97"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/97",
+   "proof_repositories": []
+  },
+  {
+   "number": 107,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_107"
+   ],
+   "main_theorems": 5,
+   "url": "https://www.erdosproblems.com/107",
+   "proof_repositories": []
+  },
+  {
+   "number": 128,
+   "database_state": "falsifiable",
+   "database_updated": "2025-10-31",
+   "open_theorems": [
+    "erdos_128"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/128",
+   "proof_repositories": []
+  },
+  {
+   "number": 242,
+   "database_state": "falsifiable",
+   "database_updated": "2025-09-28",
+   "open_theorems": [
+    "erdos_242"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/242",
+   "proof_repositories": []
+  },
+  {
+   "number": 287,
+   "database_state": "falsifiable",
+   "database_updated": "2025-12-05",
+   "open_theorems": [
+    "erdos_287"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/287",
+   "proof_repositories": []
+  },
+  {
+   "number": 307,
+   "database_state": "verifiable",
+   "database_updated": "2025-09-09",
+   "open_theorems": [
+    "erdos_307"
+   ],
+   "main_theorems": 3,
+   "url": "https://www.erdosproblems.com/307",
+   "proof_repositories": [
+    "ElVec1o/erdos307"
+   ]
+  },
+  {
+   "number": 364,
+   "database_state": "verifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_364"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/364",
+   "proof_repositories": []
+  },
+  {
+   "number": 366,
+   "database_state": "verifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_366"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/366",
+   "proof_repositories": []
+  },
+  {
+   "number": 375,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_375"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/375",
+   "proof_repositories": []
+  },
+  {
+   "number": 398,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_398"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/398",
+   "proof_repositories": []
+  },
+  {
+   "number": 458,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_458"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/458",
+   "proof_repositories": []
+  },
+  {
+   "number": 488,
+   "database_state": "falsifiable",
+   "database_updated": "2026-03-29",
+   "open_theorems": [
+    "erdos_488"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/488",
+   "proof_repositories": []
+  },
+  {
+   "number": 506,
+   "database_state": "decidable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_506"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/506",
+   "proof_repositories": []
+  },
+  {
+   "number": 551,
+   "database_state": "decidable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_551"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/551",
+   "proof_repositories": []
+  },
+  {
+   "number": 583,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_583"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/583",
+   "proof_repositories": []
+  },
+  {
+   "number": 617,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_617"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/617",
+   "proof_repositories": []
+  },
+  {
+   "number": 628,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_628"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/628",
+   "proof_repositories": []
+  },
+  {
+   "number": 647,
+   "database_state": "verifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_647"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/647",
+   "proof_repositories": []
+  },
+  {
+   "number": 672,
+   "database_state": "verifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_672"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/672",
+   "proof_repositories": []
+  },
+  {
+   "number": 699,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_699",
+    "erdos_szekeres_strengthening"
+   ],
+   "main_theorems": 3,
+   "url": "https://www.erdosproblems.com/699",
+   "proof_repositories": [
+    "AllenGrahamHart/FormalConjectures-Bench"
+   ]
+  },
+  {
+   "number": 723,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_723"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/723",
+   "proof_repositories": []
+  },
+  {
+   "number": 742,
+   "database_state": "decidable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_742"
+   ],
+   "main_theorems": 4,
+   "url": "https://www.erdosproblems.com/742",
+   "proof_repositories": [
+    "plby/lean-proofs"
+   ]
+  },
+  {
+   "number": 779,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_779"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/779",
+   "proof_repositories": []
+  },
+  {
+   "number": 835,
+   "database_state": "verifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_835",
+    "johnson_chromaticNumber"
+   ],
+   "main_theorems": 10,
+   "url": "https://www.erdosproblems.com/835",
+   "proof_repositories": []
+  },
+  {
+   "number": 982,
+   "database_state": "falsifiable",
+   "database_updated": "2025-08-31",
+   "open_theorems": [
+    "erdos_982"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/982",
+   "proof_repositories": []
+  },
+  {
+   "number": 1020,
+   "database_state": "falsifiable",
+   "database_updated": "2025-09-12",
+   "open_theorems": [
+    "erdos_1020"
+   ],
+   "main_theorems": 1,
+   "url": "https://www.erdosproblems.com/1020",
+   "proof_repositories": []
+  },
+  {
+   "number": 1082,
+   "database_state": "falsifiable",
+   "database_updated": "2025-10-17",
+   "open_theorems": [
+    "erdos_1082.parts.i"
+   ],
+   "main_theorems": 2,
+   "url": "https://www.erdosproblems.com/1082",
+   "proof_repositories": [
+    "google-deepmind/formal-conjectures"
+   ]
+  }
+ ]
+}
