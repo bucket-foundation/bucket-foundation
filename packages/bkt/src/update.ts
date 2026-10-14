@@ -42,7 +42,7 @@ interface Deps {
   fetch: typeof fetch;
   now: () => number;
   current: string;
-  asset: string;
+  asset: string | ((version: string) => string);
   pubkey?: string;
 }
 
@@ -61,10 +61,11 @@ export async function checkUpdate(d: Partial<Deps> = {}): Promise<UpdateResult> 
   const now = d.now ?? Date.now;
   const current = d.current ?? VERSION;
   try {
-    const asset = d.asset ?? assetName();
     const releases = JSON.parse(await text(f, `https://api.github.com/repos/${RELEASE_REPO}/releases?per_page=30`)) as { tag_name: string; draft: boolean; prerelease: boolean }[];
     const latest = releases.find((r) => !r.draft && !r.prerelease && /^bkt-v\d+\.\d+\.\d+$/.test(r.tag_name));
     if (!latest) return { status: "error", error: "no bkt release found" };
+    const tagVersion = latest.tag_name.slice("bkt-v".length);
+    const asset = typeof d.asset === "function" ? d.asset(tagVersion) : (d.asset ?? assetName());
     const base = `https://github.com/${RELEASE_REPO}/releases/download/${latest.tag_name}/${asset}`;
     const [manifestText, sig] = await Promise.all([text(f, `${base}.manifest`), text(f, `${base}.manifest.sig`)]);
     if (!verifySshSig(manifestText, sig, d.pubkey)) return { status: "error", error: `signature check failed for ${asset} in ${latest.tag_name}` };

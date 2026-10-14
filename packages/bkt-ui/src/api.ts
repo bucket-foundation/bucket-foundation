@@ -115,6 +115,25 @@ export interface AppSettings {
   notifyDefault: string;
 }
 
+export type UpdateCheck =
+  | { status: "current"; version: string }
+  | { status: "available"; version: string; tag: string; asset: string; sha256: string; url: string }
+  | { status: "error"; error: string };
+
+export interface UpdateView {
+  current: string;
+  kind: "binary" | "appimage" | "desktop" | "flatpak" | "package" | "source";
+  selfUpdate: boolean;
+  instruction: string | null;
+  result: UpdateCheck;
+}
+
+export type UpdateOutcome =
+  | { status: "installed"; version: string }
+  | { status: "current"; version: string }
+  | { status: "manual"; version: string | null; instruction: string }
+  | { status: "error"; error: string };
+
 export interface WorkWord {
   lang: string | null;
   choicesLang: string | null;
@@ -460,6 +479,14 @@ export class Api {
 
   settings() {
     return this.call<AppSettings>("/local/settings");
+  }
+
+  checkUpdate() {
+    return this.call<UpdateView>("/local/update");
+  }
+
+  installUpdate() {
+    return this.call<UpdateOutcome>("/local/update/install", { method: "POST", body: {} });
   }
 
   setNotify(on: boolean, at?: string) {

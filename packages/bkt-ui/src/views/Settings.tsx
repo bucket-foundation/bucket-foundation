@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Api, AppSettings } from "../api";
+import { ApiError, type Api, type AppSettings, type UpdateView } from "../api";
 import { InstalledDecks, WordDatabaseLink } from "./Decks";
 import { WorkQuizSources } from "./WorkQuiz";
 
@@ -63,6 +63,74 @@ export function NotifySwitch({ api, notify, fallback }: { api: NotifyApi; notify
   );
 }
 
+export const UPDATE_CHECK = "Check for updates";
+export const UPDATE_CHECKING = "Checking for a newer release.";
+export const UPDATE_INSTALLING = "Downloading and verifying the release.";
+export const UPDATE_FAILED = "Bucket could not finish the update";
+
+type UpdateApi = Pick<Api, "checkUpdate" | "installUpdate">;
+type UpdateState =
+  | { step: "idle" }
+  | { step: "checking" }
+  | { step: "view"; view: UpdateView }
+  | { step: "installing"; view: UpdateView }
+  | { step: "done"; message: string }
+  | { step: "failed"; message: string };
+
+const reason = (e: unknown) => (e instanceof ApiError && e.code ? e.code : e instanceof Error ? e.message : "");
+const failed = (why: string) => (why ? `${UPDATE_FAILED}: ${why}` : `${UPDATE_FAILED}.`);
+
+export function UpdatePanel({ api }: { api: UpdateApi }) {
+  const [state, setState] = useState<UpdateState>({ step: "idle" });
+
+  const check = async () => {
+    setState({ step: "checking" });
+    try {
+      setState({ step: "view", view: await api.checkUpdate() });
+    } catch (e) {
+      setState({ step: "failed", message: failed(reason(e)) });
+    }
+  };
+  const install = async (view: UpdateView) => {
+    setState({ step: "installing", view });
+    try {
+      const o = await api.installUpdate();
+      if (o.status === "installed") setState({ step: "done", message: `Bucket ${o.version} is installed. Quit Bucket and open it again to use it.` });
+      else if (o.status === "current") setState({ step: "done", message: `Bucket ${o.version} is the latest release.` });
+      else if (o.status === "manual") setState({ step: "done", message: o.instruction });
+      else setState({ step: "failed", message: failed(o.error) });
+    } catch (e) {
+      setState({ step: "failed", message: failed(reason(e)) });
+    }
+  };
+  const busy = state.step === "checking" || state.step === "installing";
+  const view = state.step === "view" || state.step === "installing" ? state.view : null;
+  const r = view?.result;
+
+  return (
+    <div className="update">
+      <div className="toolbar">
+        <button disabled={busy} onClick={() => void check()}>
+          {UPDATE_CHECK}
+        </button>
+        {view && r?.status === "available" && view.selfUpdate && (
+          <button className="primary" disabled={busy} onClick={() => void install(view)}>
+            Update to {r.version}
+          </button>
+        )}
+      </div>
+      {state.step === "checking" && <p className="status">{UPDATE_CHECKING}</p>}
+      {state.step === "installing" && <p className="status">{UPDATE_INSTALLING}</p>}
+      {state.step === "view" && r?.status === "current" && <p className="status">Bucket {r.version} is the latest release.</p>}
+      {state.step === "view" && r?.status === "available" && <p className="status">Bucket {r.version} is available. Its signature checks out.</p>}
+      {state.step === "view" && r?.status === "available" && !state.view.selfUpdate && state.view.instruction && <p className="muted small">{state.view.instruction}</p>}
+      {state.step === "view" && r?.status === "error" && <p className="error">The update check failed: {r.error}</p>}
+      {state.step === "done" && <p className="status">{state.message}</p>}
+      {state.step === "failed" && <p className="error">{state.message}</p>}
+    </div>
+  );
+}
+
 export function SettingsView({ api }: { api: Api }) {
   const [settings, setSettings] = useState<AppSettings | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -99,6 +167,7 @@ export function SettingsView({ api }: { api: Api }) {
               <dt>Version</dt>
               <dd>{versionLine(settings)}</dd>
             </dl>
+            <UpdatePanel api={api} />
           </>
         )}
       </article>

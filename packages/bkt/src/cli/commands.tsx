@@ -82,6 +82,7 @@ import { startServe, type Route } from "../serve";
 import { checkUpdate, describeUpdate } from "../update";
 import { VERSION } from "../version";
 import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
+import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
 
@@ -386,6 +387,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...notesRoutes(new NotesStore(session.store, session.key)),
       ...historyRoutes(new HistoryStore(session.store, session.key)),
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
+      ...updateRoutes({ current: VERSION }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
@@ -567,6 +569,11 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "version") {
     console.log(json ? jsonLine("version", { version: VERSION }) : VERSION);
     return EXIT.ok;
+  }
+  if (name === "update" && inv.values.install === true) {
+    const o = await updateNow();
+    console.log(json ? jsonLine("update", o) : describeOutcome(o));
+    return o.status === "error" ? EXIT.failure : EXIT.ok;
   }
   if (name === "update") {
     const r = await checkUpdate();
