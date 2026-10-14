@@ -16,7 +16,7 @@ The rerun gives no clean test of the map within a list. The Erdős list scores a
 | Erdős list | 12 rows, 2 resolved | 195 rows, 83 resolved |
 | Solved rows left out for want of a resolved year | 34 | 172 |
 
-Within-list concordance on the 10 mixed lists, 496 rows, 5 folds and 10 repeats:
+The pooled figures below are contaminated by a leak in the Erdős list and do not show map signal; the leak is explained under the per-list table. Within-list concordance on the 10 mixed lists, 496 rows, 5 folds and 10 repeats:
 
 | Model | Features | Within list | 95% interval |
 |---|---|---|---|
