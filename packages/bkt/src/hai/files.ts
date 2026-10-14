@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { Bank, Review } from "./bank";
 import type { AiScores } from "./probe";
-import type { Submission } from "./score";
+import type { PilotResult, Submission } from "./score";
 
 export function haiDir(env = process.env): string {
   return env.BKT_HAI_DIR ?? resolve(import.meta.dir, "../../hai");
@@ -22,6 +22,7 @@ export const files = (dir = haiDir()) => ({
   review: join(dir, "review.json"),
   scores: join(dir, "ai-scores.json"),
   submission: join(dir, "submission.json"),
+  pilot: join(dir, "pilot.json"),
 });
 
 export function loadBank(dir?: string) {
@@ -35,6 +36,9 @@ export function loadScores(dir?: string) {
 }
 export function loadSubmission(dir?: string) {
   return readJson<Submission>(files(dir).submission);
+}
+export function loadPilot(dir?: string) {
+  return readJson<PilotResult>(files(dir).pilot);
 }
 export function save(kind: keyof ReturnType<typeof files>, v: unknown, dir?: string) {
   writeJson(files(dir)[kind], v);

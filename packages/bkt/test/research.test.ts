@@ -3,7 +3,7 @@ import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { allMarkers, findStaff, MIN_RESEARCH_MARKERS, publicResearchText, RESEARCH_MARKERS, researchCandidates, researchMarkers, staffMarkers } from "../scripts/check-no-staff";
-import { buildResearchPack, decodeBlob, encodeBlob, licenceProblems, loadReportLib, manifestView, MB, PACK_CAPS, pathProblem, readRecords, sha256, type ReportLib, type ReportRecord, type ResearchPack } from "../src/pack/research";
+import { buildResearchPack, decodeBlob, encodeBlob, licenceProblems, loadReportLib, manifestView, MB, PACK_CAPS, pathProblem, readRecords, sha256, walk, type ReportLib, type ReportRecord, type ResearchPack } from "../src/pack/research";
 import { DENIED_PREFIXES, type Denylist } from "../src/pack/rights";
 import { guardPath, Research, ResearchError, researchRoutes, VIEW_BYTES } from "../src/research";
 import { startServe, type Serve } from "../src/serve";
@@ -183,6 +183,29 @@ describe("research pack", () => {
     const text = decodeBlob(staff.blobs.blobs[staff.index.outputs.find((o) => o.slug === atlas.slug)!.files.find((x) => x.path === sourced.path)!.sha256]).toString("utf8");
     expect(licenceProblems(atlas, sourced, text)).toEqual([]);
     expect(licenceProblems({ ...atlas, attributions: atlas.attributions!.slice(1) }, sourced, text).length).toBe(1);
+  });
+
+  test("regenerable surface outputs stay out of the atlas pack", () => {
+    const atlas = staff.index.outputs.find((o) => o.slug === "solvability-frontier")!;
+    const surface = atlas.files.filter((f) => f.path.startsWith("tools/solvability-atlas/surface/")).map((f) => f.path);
+    expect(surface.sort()).toEqual(["tools/solvability-atlas/surface/results.json", "tools/solvability-atlas/surface/tables.md"]);
+    expect(atlas.files.some((f) => f.path.includes("/renders/"))).toBe(false);
+    expect(atlas.files.some((f) => f.path.endsWith("surface/table.csv"))).toBe(false);
+    expect(atlas.files.some((f) => f.path === "tools/solvability-atlas/surface.py")).toBe(true);
+    expect(staff.encoded["solvability-frontier"]).toBeLessThan(PACK_CAPS.staff);
+  });
+
+  test("a .packignore file drops the names it lists and refuses a path", () => {
+    const repo = temp("ignore");
+    for (const path of ["tool/keep.py", "tool/out.csv", "tool/renders/a.png", "tool/sub/out.csv"]) {
+      mkdirSync(dirname(join(repo, path)), { recursive: true });
+      writeFileSync(join(repo, path), "x");
+    }
+    expect(walk(repo, "tool")).toEqual(["tool/keep.py", "tool/out.csv", "tool/renders/a.png", "tool/sub/out.csv"]);
+    writeFileSync(join(repo, "tool/.packignore"), "renders\nout.csv\n");
+    expect(walk(repo, "tool")).toEqual(["tool/keep.py", "tool/sub/out.csv"]);
+    writeFileSync(join(repo, "tool/.packignore"), "../keep.py\n");
+    expect(() => walk(repo, "tool")).toThrow("refused name");
   });
 
   test("the pack stays under its size caps and a larger one fails", () => {
