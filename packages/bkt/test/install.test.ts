@@ -47,14 +47,14 @@ function target(name: string, body = "old build") {
 const deps = (install: Install, f: typeof fetch, current = "0.5.0") => ({ fetch: f, install, current, pubkey: pub, arch: "x64", platform: "linux", now: () => 1_000 });
 
 describe("install kind", () => {
-  const base = { env: {}, execPath: "/opt/u/.local/bin/bkt", platform: "linux", arch: "x64", flatpakInfo: false };
+  const base = { env: {}, execPath: "/srv/u/.local/bin/bkt", platform: "linux", arch: "x64", flatpakInfo: false };
   test("reads the environment and the binary path", () => {
-    expect(detectInstall(base)).toEqual({ kind: "binary", path: "/opt/u/.local/bin/bkt" });
-    expect(detectInstall({ ...base, env: { APPIMAGE: "/opt/u/Apps/Bucket.AppImage" } })).toEqual({ kind: "appimage", path: "/opt/u/Apps/Bucket.AppImage" });
+    expect(detectInstall(base)).toEqual({ kind: "binary", path: "/srv/u/.local/bin/bkt" });
+    expect(detectInstall({ ...base, env: { APPIMAGE: "/srv/u/Apps/Bucket.AppImage" } })).toEqual({ kind: "appimage", path: "/srv/u/Apps/Bucket.AppImage" });
     expect(detectInstall({ ...base, env: { BKT_SIDECAR: "1", APPIMAGE: "/x" } }).kind).toBe("desktop");
     expect(detectInstall({ ...base, flatpakInfo: true }).kind).toBe("flatpak");
     expect(detectInstall({ ...base, execPath: "/usr/bin/bkt" }).kind).toBe("package");
-    expect(detectInstall({ ...base, execPath: "/opt/u/.bun/bin/bun" }).kind).toBe("source");
+    expect(detectInstall({ ...base, execPath: "/srv/u/.bun/bin/bun" }).kind).toBe("source");
   });
 
   test("names the AppImage asset after the release version", () => {
