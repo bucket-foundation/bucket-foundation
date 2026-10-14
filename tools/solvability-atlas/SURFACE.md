@@ -2,7 +2,53 @@
 
 Bead `bkt-w2h0`. The frontier circle sorts problems into inside and outside by reach. This pass replaces that rule with regression: fitted surfaces over the problem graph that predict a continuous target, scored out of sample. `python3 surface.py --render frontier-surface-map` rebuilds `surface/table.csv`, `surface/results.json`, `surface/tables.md` and one render. Every number here comes from that run `[empirical: tools/solvability-atlas/surface/results.json, 2026-10-13, python3 surface.py --render frontier-surface-map]`.
 
+## Mixed Lists Rerun
+
+Bead `bkt-go2p`, 2026-10-13. `surface_table.py` joins bound posed years onto 321 Erdős rows and resolved years onto 81 from `sources/erdos/problems.tsv` (`SOURCES.md`, Erdős years), marked in the `posed_bound` column and barred as a feature. `problems-sourced.tsv`, the neighbour file and the dated forecasts are unchanged. The survival frame now groups a formal-conjectures row by the list its folder names, so the Erdős problems count as one list. Every number under this heading comes from the rerun `[empirical: tools/solvability-atlas/surface/results.json, 2026-10-13, python3 surface.py]`.
+
+The rerun gives no clean test of the map within a list. The Erdős list scores above chance, and its statements name the resolution, so the score reads the outcome from the text. The other nine mixed lists stay at chance.
+
+| Count | First run | Rerun |
+|---|---|---|
+| Survival rows | 653, 217 resolved | 836, 298 resolved |
+| Lists, one per source url | 96, 7 mixed, 273 rows in mixed lists | 278, 7 mixed, 273 rows |
+| Lists, formal-conjectures grouped by folder | 73, 10 mixed, 313 rows, 78 resolved | 73, 10 mixed, 496 rows, 159 resolved |
+| Erdős list | 12 rows, 2 resolved | 195 rows, 83 resolved |
+| Solved rows left out for want of a resolved year | 34 | 172 |
+
+Within-list concordance on the 10 mixed lists, 496 rows, 5 folds and 10 repeats:
+
+| Model | Features | Within list | 95% interval |
+|---|---|---|---|
+| Cox | posed year | 0.574 | 0.506 to 0.642 |
+| Cox | map and year | 0.627 | 0.572 to 0.679 |
+| forest | posed year | 0.517 | 0.444 to 0.590 |
+| forest | map and year | 0.716 | 0.662 to 0.762 |
+
+Gain of map and year over the posed year within a list: Cox 0.053, interval -0.017 to 0.122; forest 0.199, interval 0.105 to 0.284. On the posed-year sweep the forest gain excludes zero at one cutoff of seven, 0.107 at 1980 with interval 0.022 to 0.194. The Cox gain is negative with an interval below zero at 1950, 1960 and 1970, and covers zero from 1980 on. The condition set in Next Test, a gain that excludes zero at two cutoffs, is unmet.
+
+Concordance inside each mixed list, map and year, mean over repeats:
+
+| List | Rows | Resolved | Cox | Forest | Resolved rows whose statement names a resolution | Open rows that do |
+|---|---|---|---|---|---|---|
+| Erdős problems | 195 | 83 | 0.643 | 0.737 | 83 | 6 of 112 |
+| Science 125 questions, 2005 | 117 | 4 | 0.525 | 0.624 | 0 | 0 |
+| Atlas catalog, `problems.tsv` | 71 | 15 | 0.539 | 0.543 | 0 | 0 |
+| Hilbert's problems | 23 | 6 | 0.534 | 0.525 | 0 | 1 |
+| Wikipedia unsolved mathematics | 21 | 17 | 0.565 | 0.809 | 1 | 0 |
+| XPRIZE | 21 | 17 | 0.558 | 0.417 | 0 | 0 |
+| formal-conjectures, Wikipedia folder | 17 | 1 | 0.306 | 0.225 | 1 | 3 |
+| DARPA prize competitions | 16 | 13 | 0.290 | 0.328 | 0 | 0 |
+| formal-conjectures, Millennium folder | 11 | 2 | 0.039 | 0.539 | 2 | 0 |
+| formal-conjectures, OEIS folder | 4 | 1 | 0.767 | 1.000 | 1 | 0 |
+
+The Erdős score is a leak. A formal-conjectures statement is the Lean docstring, and the docstring of a solved problem says who proved it. The resolved year is read from that same sentence, so all 83 dated solved Erdős rows carry a resolving verb in the text the embedding saw, against 6 of the 112 open rows. The map coordinates come from that embedding. The pooled within-list figures above are driven by this list, which holds 195 of the 496 rows and 83 of the 159 resolved.
+
+Three limits on the Erdős rows. The posed year is the earliest Erdős paper the Lean file cites, an upper bound that runs late by years or decades. Solved rows enter only when the docstring names one resolving reference, 83 of 242. Rows whose atlas status and dump state disagree, 36, are left out, and those are recent solutions.
+
 ## Finding
+
+The sections from here to Stored Function report the first run of 2026-10-13: 653 survival rows and 217 regression rows, with results at `git show 044dd6ba7:tools/solvability-atlas/surface/results.json`. `surface/tables.md` holds the same tables for the rerun.
 
 The map and graph features add no signal beyond the posed year that survives a posed-year split or a within-source comparison. This is a null result.
 
@@ -144,8 +190,8 @@ The neighbour-solved density fits at R squared 0.546 for a linear model on the e
 
 `surface.frontier_surface(table, weights, model, target, cutoff, seed)` returns the fitted surface: a predicted value for every row, the training ids and the parameters. `model` takes `graph`, `gp`, `gbt` or `linear`. `surface.render(name, surface, table)` looks the name up in `surface.RENDER_FUNCTIONS`, writes into a new folder under `surface/renders/<date>/` and saves a manifest with the function, parameters, inputs and commit. A second call makes a second folder.
 
-`frontier-surface-map` draws the surface over the first two map coordinates and repeats the predictions on the shipped frontier disc, with the circle drawn. The render of 2026-10-13 is `surface/renders/2026-10-13/frontier-surface-map-205009/`. Predictions run from about 10 to 25 years across the map, a narrow band that matches the low score.
+`frontier-surface-map` draws the surface over the first two map coordinates and repeats the predictions on the shipped frontier disc, with the circle drawn. The render of 2026-10-13 is `surface/renders/2026-10-13/frontier-surface-map-205009/`; the rerun's render is `surface/renders/2026-10-14/frontier-surface-map-022305/`. Predictions run from about 10 to 25 years across the map, a narrow band that matches the low score.
 
 ## Next Test
 
-The reading changes if map features beat the posed year within source lists, with an interval that excludes zero at two cutoffs. That needs lists that mix outcomes: today 273 rows sit in such lists. A posed year on more rows is the cheapest route, since 4,522 of 5,209 have none. The frontier backtest in the paper compares rows across the same lists and should be rerun within a list.
+The reading changes if map features beat the posed year within source lists, with an interval that excludes zero at two cutoffs. After the rerun 496 rows sit in mixed lists and the condition is unmet. The next step is to embed the problem statement alone: cut the sentences that name a resolution from every formal-conjectures statement, rebuild the neighbour graph, and rerun. Until then the Erdős rows cannot test the map. A second step is the origin reference on each erdosproblems.com page, which would replace the upper-bound posed year and needs the maintainer's permission. The frontier backtest in the paper compares rows across the same lists and should be rerun within a list.

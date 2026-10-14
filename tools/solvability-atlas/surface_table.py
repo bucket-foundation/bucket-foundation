@@ -3,6 +3,7 @@ import csv
 import io
 import json
 import math
+import sys
 from collections import Counter
 from pathlib import Path
 
@@ -12,6 +13,10 @@ from scipy.linalg import cho_factor, cho_solve
 from scipy.sparse.linalg import eigsh
 
 import thresholds
+
+sys.path.insert(0, str(Path(__file__).parent / "sources"))
+
+import erdos_problems
 
 HERE = Path(__file__).parent
 REPO = HERE.parent.parent
@@ -27,13 +32,13 @@ DIMS = 8
 SEED = 20261013
 COORDS = tuple(f"x{k + 1}" for k in range(DIMS))
 TARGETS = ("years_to_resolve", "log_years", "time_open", "event", "solved_share")
-POST_OUTCOME = ("source", "source_class", "status", "solved", "resolved", "formal", "reach_2026", "zone", "inside", "disc_radius", "level", "openalex_works")
+POST_OUTCOME = ("posed_bound", "source", "source_class", "status", "solved", "resolved", "formal", "reach_2026", "zone", "inside", "disc_radius", "level", "openalex_works")
 MAP_FEATURES = COORDS + ("theta_sin", "theta_cos", "in_degree", "sim_mean", "sim_top", "log_words")
 POSED_FEATURES = ("reach_at_posed", "solved_before_posed", "posed_before_posed")
 CATEGORICAL = ("branch", "form")
 YEAR = ("posed",)
 FIELDS = (
-    ("id", "title", "branch", "kind", "form", "variant_of", "source_class", "source", "licence", "status", "solved", "formal", "level", "posed", "resolved")
+    ("id", "title", "branch", "kind", "form", "variant_of", "source_class", "source", "licence", "status", "solved", "formal", "level", "posed", "posed_bound", "resolved")
     + TARGETS
     + ("words", "theta")
     + MAP_FEATURES
@@ -139,9 +144,20 @@ def openalex_counts():
     return json.loads(OPENALEX.read_text())["rows"]
 
 
-def build(data=None):
+def with_bound_years(nodes, years):
+    out = []
+    for n in nodes:
+        fill = years.get(n["id"], {})
+        posed = fill.get("posed") if n["posed"] is None else None
+        resolved = fill.get("resolved") if n["resolved"] is None and n["solved"] else None
+        out.append({**n, "posed": n["posed"] if posed is None else posed, "resolved": n["resolved"] if resolved is None else resolved, "posed_bound": int(posed is not None)})
+    return out
+
+
+def build(data=None, years=None):
     data = data or json.loads(NEIGHBORS.read_text())
     arrays = thresholds.frontier_arrays(data)
+    arrays["nodes"] = with_bound_years(arrays["nodes"], erdos_problems.bound_years() if years is None else years)
     nodes = arrays["nodes"]
     weights = adjacency(arrays)
     coords = spectral_coordinates(weights)
@@ -178,6 +194,7 @@ def build(data=None):
             "formal": formal.get(n["id"], ""),
             "level": level.get(n["id"], ""),
             "posed": "" if posed is None else posed,
+            "posed_bound": n["posed_bound"],
             "resolved": "" if resolved is None else resolved,
             "years_to_resolve": "" if years is None else years,
             "log_years": "" if years is None else round(math.log1p(years), 6),

@@ -1,0 +1,266 @@
+{
+ "seed": 124,
+ "mu0": 50.0,
+ "original_rows": 5209,
+ "rule_counts": [
+  [
+   "R1 posed year missing",
+   4201
+  ],
+  [
+   "R2 resolved year missing",
+   710
+  ],
+  [
+   "R3 status other than solved",
+   2
+  ],
+  [
+   "R4 variant of another row",
+   2
+  ],
+  [
+   "R5 resolved year before posed year",
+   0
+  ],
+  [
+   "R6 branch or formal status missing",
+   0
+  ],
+  [
+   "R7 duplicate id",
+   0
+  ]
+ ],
+ "summary": {
+  "n": 294,
+  "mean": 31.714285714285715,
+  "median": 20.0,
+  "modes": [
+   0
+  ],
+  "mode_count": 16,
+  "variance": 2223.610921501706,
+  "sd": 47.15517915883372,
+  "min": 0.0,
+  "q1": 6.0,
+  "q3": 43.75,
+  "max": 387.0,
+  "range": 387.0,
+  "iqr": 37.75,
+  "p90": 63.0,
+  "fence_low": -50.625,
+  "fence_high": 100.375,
+  "flagged_ids": [
+   "fermat",
+   "fourcolor",
+   "kepler",
+   "wp-caratheodory-conjecture-for-surfaces-of-smoothness-c-4-brend",
+   "sd-anthrax-as-a-microbial-disease",
+   "sd-collapse-of-a-massive-star-into-a-black-hole",
+   "sd-rings-of-uranus",
+   "sd-proton-as-a-nuclear-constituent",
+   "sd-colour-of-the-sky"
+  ],
+  "flagged_values": [
+   357,
+   124,
+   387,
+   101,
+   330,
+   143,
+   188,
+   104,
+   365
+  ],
+  "mean_without": 25.350877192982455,
+  "sd_without": 23.17515305878789,
+  "n_without": 285,
+  "within": {
+   "1": 0.9251700680272109,
+   "2": 0.9795918367346939,
+   "3": 0.9829931972789115
+  },
+  "chebyshev_2": 0.75,
+  "skew": 4.888531458412895,
+  "z_id": "fermat",
+  "z_title": "Fermat's Last Theorem",
+  "z_value": 357.0,
+  "z": 6.8981969762016595
+ },
+ "grouped_mean": 38.2312925170068,
+ "grouped_sd": 45.36843003738929,
+ "regression": {
+  "n": 294,
+  "r": -0.6680148590591564,
+  "slope": -0.4125769471624405,
+  "intercept": 834.378526449965,
+  "r_squared": 0.44624385192382454,
+  "sse": 360782.0980822937,
+  "predict_x": 1950,
+  "predict_y": 29.853479483206,
+  "x_min": 1506.0,
+  "x_max": 2023.0,
+  "row_id": "fermat",
+  "row_title": "Fermat's Last Theorem",
+  "row_x": 1637.0,
+  "row_y": 357.0,
+  "row_fitted": 158.99006394504988,
+  "row_resid": 198.00993605495012
+ },
+ "probability": {
+  "n": 294,
+  "a": 50,
+  "b": 46,
+  "ab": 7,
+  "a_notb": 43,
+  "nota_b": 39,
+  "nota_notb": 205,
+  "p_a": 0.17006802721088435,
+  "p_b": 0.1564625850340136,
+  "p_ab": 0.023809523809523808,
+  "p_a_or_b": 0.30272108843537415,
+  "a_or_b": 89,
+  "p_a_given_b": 0.15217391304347827,
+  "p_a_p_b": 0.026609283169049935,
+  "c_10_3": 120
+ },
+ "models": {
+  "p": 0.17006802721088435,
+  "binom_k3": 0.16008356204994362,
+  "binom_ge1": 0.8449667114766579,
+  "binom_mean": 1.7006802721088434,
+  "binom_sd": 1.1880441630321756,
+  "mu": 31.714285714285715,
+  "sigma": 47.074914965909585,
+  "normal_tail": 0.3488457401024075,
+  "normal_p90": 92.04321668672608,
+  "observed_tail": 0.17006802721088435,
+  "observed_p90": 63.0,
+  "normal_below_zero": 0.2502516016427092
+ },
+ "simulation": {
+  "5": {
+   "mean": 32.6608,
+   "sd": 21.71048303255858
+  },
+  "50": {
+   "mean": 32.10848,
+   "sd": 6.5649838167835
+  }
+ },
+ "inference": {
+  "n": 50,
+  "mean": 22.32,
+  "sd": 23.218957771614125,
+  "se": 3.283656498478487,
+  "df": 49,
+  "t_crit": 2.0095752371292397,
+  "margin": 6.598754786580875,
+  "low": 15.721245213419126,
+  "high": 28.918754786580877,
+  "contains_full_mean": false,
+  "t": -8.429627158877851,
+  "p": 4.2412009416310485e-11,
+  "reject": true,
+  "mu0_in_interval": false,
+  "difference": -27.68,
+  "sample_max": 104.0,
+  "sample_median": 17.0,
+  "repeats": 0
+ },
+ "date": "2026-10-13",
+ "grouped_table": [
+  {
+   "lower": 0,
+   "upper": 40,
+   "midpoint": 20.0,
+   "count": 209,
+   "relative": 0.7108843537414966,
+   "cumulative": 209,
+   "cumulative_relative": 0.7108843537414966
+  },
+  {
+   "lower": 40,
+   "upper": 80,
+   "midpoint": 60.0,
+   "count": 66,
+   "relative": 0.22448979591836735,
+   "cumulative": 275,
+   "cumulative_relative": 0.935374149659864
+  },
+  {
+   "lower": 80,
+   "upper": 120,
+   "midpoint": 100.0,
+   "count": 12,
+   "relative": 0.04081632653061224,
+   "cumulative": 287,
+   "cumulative_relative": 0.9761904761904762
+  },
+  {
+   "lower": 120,
+   "upper": 160,
+   "midpoint": 140.0,
+   "count": 2,
+   "relative": 0.006802721088435374,
+   "cumulative": 289,
+   "cumulative_relative": 0.9829931972789115
+  },
+  {
+   "lower": 160,
+   "upper": 200,
+   "midpoint": 180.0,
+   "count": 1,
+   "relative": 0.003401360544217687,
+   "cumulative": 290,
+   "cumulative_relative": 0.9863945578231292
+  },
+  {
+   "lower": 200,
+   "upper": 240,
+   "midpoint": 220.0,
+   "count": 0,
+   "relative": 0.0,
+   "cumulative": 290,
+   "cumulative_relative": 0.9863945578231292
+  },
+  {
+   "lower": 240,
+   "upper": 280,
+   "midpoint": 260.0,
+   "count": 0,
+   "relative": 0.0,
+   "cumulative": 290,
+   "cumulative_relative": 0.9863945578231292
+  },
+  {
+   "lower": 280,
+   "upper": 320,
+   "midpoint": 300.0,
+   "count": 0,
+   "relative": 0.0,
+   "cumulative": 290,
+   "cumulative_relative": 0.9863945578231292
+  },
+  {
+   "lower": 320,
+   "upper": 360,
+   "midpoint": 340.0,
+   "count": 2,
+   "relative": 0.006802721088435374,
+   "cumulative": 292,
+   "cumulative_relative": 0.9931972789115646
+  },
+  {
+   "lower": 360,
+   "upper": 400,
+   "midpoint": 380.0,
+   "count": 2,
+   "relative": 0.006802721088435374,
+   "cumulative": 294,
+   "cumulative_relative": 1.0
+  }
+ ],
+ "script": "learning/research-os/statistics-project/stats_project.py"
+}
