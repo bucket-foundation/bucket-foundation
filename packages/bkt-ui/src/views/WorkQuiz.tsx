@@ -296,6 +296,7 @@ export const DAILY_MIN = QUIZ_QUESTIONS.min;
 export const DAILY_MAX = QUIZ_QUESTIONS.max;
 export const TOO_FEW = `fewer than ${DAILY_MIN} questions could be built for that day`;
 export const TOO_FEW_SHOWN = `A daily quiz holds ${DAILY_MIN} to ${DAILY_MAX} questions. Your sources gave fewer than ${DAILY_MIN} today, so Bucket built none. Turn on a chat source to give it more.`;
+export const BUILDING = "Bucket is building today's quiz from your sources. The first open of a day can take a minute.";
 export const OUTDATED = "This copy of Bucket is older than the daily quiz. Update Bucket, then open this page again.";
 export const QUIZ_CHANGED = "This quiz changed while the page was open. Reload the page to get the current questions.";
 export const GRADED_ONCE = "This question was already graded. Each daily question is graded once.";
@@ -415,6 +416,11 @@ export function DailyQuizView({ api, day }: { api: DailyApi; day: string }) {
         </p>
       </header>
       {error && <p className="error">{error}</p>}
+      {!quiz && !missing && !tooFew && !outdated && !error && (
+        <div className="panel empty" role="status">
+          <p>{BUILDING}</p>
+        </div>
+      )}
       {missing && (
         <div className="panel empty">
           <h2>No quiz for {day}</h2>
