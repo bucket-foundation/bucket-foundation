@@ -62,9 +62,11 @@ const SUITES = {
       "scripts/test-whats-new-timeline.ts",
       "scripts/test-whats-new-images.ts",
       "scripts/test-release-signing.mjs",
+      "scripts/test-solver-gap-backtest-numbers.mjs",
       "scripts/test-provenance-packet.ts",
     ],
     commands: [
+      ["python3", "-m", "unittest", "_intake/solver-gap-engine/tests/test_watch.py"],
       ["bash", "scripts/test-release-install-linux.sh"],
       ["python3", "-m", "unittest", "scripts/canon-explorer/test_embed.py"],
       ["python3", "scripts/canon-explorer/embed.py", "--check"],
