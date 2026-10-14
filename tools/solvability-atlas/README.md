@@ -59,6 +59,10 @@ The frontier circle sits at reach 0.795, the 10th percentile of each solved prob
 
 `THRESHOLDS.md` holds the sensitivity sweep of the frontier and score constants, the test of reach as a classifier and the proposed values. `python3 thresholds.py` rebuilds `thresholds/`.
 
+## Score Backtest
+
+`BACKTEST.md` checks the solvability score against the resolved flag on the 71 catalog problems. The score contains the outcome, so it describes the present state of a problem and carries no forecast. `python3 backtest.py --plot` rebuilds `backtest.json` and `backtest.png`.
+
 ## Problem records
 
 `records.py` builds one JSON record per problem in `records/` from OpenAlex, Wikipedia, arXiv and the repo's own corpora, with every network field carrying its source URL and licence. Schema, relevance filter and build flags: `records/SCHEMA.md`. Per-problem counts, a status per record and the neighbour shift between keyword and record embeddings: `records/INDEX.md` (`python3 neighbour_shift.py` rebuilds the shift section). Responses cache under `cache/`, which stays out of git. Records hold Wikipedia text under CC BY-SA 4.0 with attribution; the code is MIT and the derived numbers are CC0 in intent.

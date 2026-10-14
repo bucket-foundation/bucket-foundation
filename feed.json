@@ -1,12 +1,26 @@
 {
   "schema_version": "1.1",
-  "generated": "2026-10-11T21:02:55.309288+00:00",
-  "total_events": 1485,
+  "generated": "2026-10-13T21:37:07.867114+00:00",
+  "total_events": 1486,
   "window": {
     "size": 200,
     "returned": 200
   },
   "events": [
+    {
+      "id": "23ba73c608100807",
+      "type": "add_landscape",
+      "branch": null,
+      "topic": null,
+      "title": "RULINGS.md",
+      "path": "research-landscape/market/RULINGS.md",
+      "doi": null,
+      "author_github": "gianyrox",
+      "author_name": "Gianyrox",
+      "commit_sha": "ec50c8d",
+      "pr_number": null,
+      "timestamp": "2026-10-13T17:35:57-04:00"
+    },
     {
       "id": "f2cd2f69a78e2401",
       "type": "add_landscape",
@@ -2792,20 +2806,6 @@
       "commit_sha": "159ac3a",
       "pr_number": null,
       "timestamp": "2026-05-11T15:35:51-04:00"
-    },
-    {
-      "id": "4ea12556726fb472",
-      "type": "update_dossier",
-      "branch": "_bridges",
-      "topic": "detected",
-      "title": "README.md",
-      "path": "bucket-canon/_bridges/detected/08-second-law-of-thermodynamics/README.md",
-      "doi": null,
-      "author_github": "gianyrox",
-      "author_name": "gianyrox",
-      "commit_sha": "c202cad",
-      "pr_number": null,
-      "timestamp": "2026-05-11T15:13:56-04:00"
     }
   ]
 }

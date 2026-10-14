@@ -182,12 +182,23 @@ export function decodeBlob(blob: ResearchBlob): Buffer {
   return Buffer.from(blob.data, blob.enc);
 }
 
-function walk(repo: string, dir: string): string[] {
+export const PACK_IGNORE = ".packignore";
+
+export function packIgnored(repo: string, dir: string): Set<string> {
+  const file = join(repo, dir, PACK_IGNORE);
+  if (!existsSync(file)) return new Set();
+  const names = readFileSync(file, "utf8").split("\n").map((line) => line.trim()).filter((line) => line.length > 0);
+  for (const name of names) if (!SEGMENT.test(name)) throw new Error(`research pack: ${dir}/${PACK_IGNORE} holds the refused name ${JSON.stringify(name)}`);
+  return new Set(names);
+}
+
+export function walk(repo: string, dir: string): string[] {
+  const ignored = packIgnored(repo, dir);
   return readdirSync(join(repo, dir), { withFileTypes: true })
     .sort((a, b) => (a.name < b.name ? -1 : 1))
     .flatMap((entry) => {
       const path = `${dir}/${entry.name}`;
-      if (entry.name.startsWith(".") || SKIPPED_DIRS.has(entry.name)) return [];
+      if (entry.name.startsWith(".") || SKIPPED_DIRS.has(entry.name) || ignored.has(entry.name)) return [];
       if (entry.isSymbolicLink()) throw new Error(`research pack: ${path} is a symlink`);
       if (entry.isDirectory()) return walk(repo, path);
       return entry.isFile() ? [path] : [];
