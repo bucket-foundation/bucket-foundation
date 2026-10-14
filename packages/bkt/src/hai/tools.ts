@@ -77,12 +77,20 @@ export function review(a: ToolArgs, log = console.log) {
   for (const [k, n] of [...counts].sort()) log(`  ${k}: ${n}`);
 }
 
-async function batchStatus(client: Anthropic, batchId: string): Promise<{ status: string; succeeded: number }> {
+interface BatchCounts {
+  succeeded: number;
+  errored: number;
+  expired: number;
+  canceled: number;
+}
+
+async function batchStatus(client: Anthropic, batchId: string): Promise<{ status: string; succeeded: number; counts: BatchCounts | null }> {
   try {
     const b = await client.messages.batches.retrieve(batchId);
-    return { status: b.processing_status, succeeded: b.request_counts.succeeded };
+    const c = b.request_counts;
+    return { status: b.processing_status, succeeded: c.succeeded, counts: { succeeded: c.succeeded, errored: c.errored, expired: c.expired, canceled: c.canceled } };
   } catch (e) {
-    if (e instanceof Anthropic.NotFoundError) return { status: "not found", succeeded: 0 };
+    if (e instanceof Anthropic.NotFoundError) return { status: "not found", succeeded: 0, counts: null };
     throw e;
   }
 }
@@ -92,11 +100,12 @@ export async function score(a: ToolArgs, log = console.log, env = process.env, m
   if (a.abandon) {
     const sub = loadSubmission(a.dir);
     if (!sub || sub.collectedAt || sub.abandonedAt) throw new Error("no open batch to abandon");
-    const { status, succeeded } = await batchStatus(makeClient(), sub.batchId);
+    const { status, succeeded, counts } = await batchStatus(makeClient(), sub.batchId);
     if (status === "in_progress" || status === "canceling") throw new Error(`batch ${sub.batchId} is ${status.replace("_", " ")}; run bkt hai score --collect when it ends`);
     if (succeeded > 0) throw new Error(`batch ${sub.batchId} holds ${succeeded} paid answers; run bkt hai score --collect`);
     save("submission", { ...sub, abandonedAt: new Date().toISOString() }, a.dir);
-    log(`batch ${sub.batchId} abandoned (${status}); its items stay unscored and a new batch may be submitted`);
+    const tally = counts ? `${counts.errored} errored, ${counts.expired} expired, ${counts.canceled} canceled` : "no request counts";
+    log(`batch ${sub.batchId} abandoned (${status}): ${sub.itemIds.length} items stay unscored, ${tally}; a new batch may be submitted`);
     return;
   }
   if (a.collect) {

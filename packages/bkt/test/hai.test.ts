@@ -327,7 +327,7 @@ describe("scorer", () => {
         messages: {
           batches: {
             create: async () => ({ id: `batch${++created}` }),
-            retrieve: async () => ({ processing_status: status(), request_counts: { succeeded: succeeded() } }),
+            retrieve: async () => ({ processing_status: status(), request_counts: { succeeded: succeeded(), errored: 1, expired: 2, canceled: 0, processing: 0 } }),
             results: async () =>
               (async function* () {
                 const sub = loadSubmission(dir)!;
@@ -419,7 +419,7 @@ describe("scorer", () => {
     const lines: string[] = [];
     await score({ ...a, abandon: true }, (l) => lines.push(l), env, c.make);
     expect(loadSubmission(dir)!.abandonedAt).toBeString();
-    expect(lines.at(-1)).toContain("abandoned (ended)");
+    expect(lines.at(-1)).toContain("abandoned (ended): 20 items stay unscored, 1 errored, 2 expired, 0 canceled");
     await expect(score({ ...a, collect: true }, () => {}, env, c.make)).rejects.toThrow("was abandoned");
     await expect(score({ ...a, abandon: true }, () => {}, env, c.make)).rejects.toThrow("no open batch");
     await score({ ...a, yes: true }, () => {}, env, c.make);
@@ -436,7 +436,7 @@ describe("scorer", () => {
         },
       }) as never;
     await score({ ...a, abandon: true }, (l) => lines.push(l), env, gone);
-    expect(lines.at(-1)).toContain("abandoned (not found)");
+    expect(lines.at(-1)).toContain("abandoned (not found): 20 items stay unscored, no request counts");
     const broken = () => ({ messages: { batches: { retrieve: async () => { throw new Error("network down"); } } } }) as never;
     await score({ ...a, yes: true }, () => {}, env, c.make);
     await expect(score({ ...a, abandon: true }, () => {}, env, broken)).rejects.toThrow("network down");
