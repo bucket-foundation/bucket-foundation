@@ -1,3 +1,4 @@
+import re
 import warnings
 
 import numpy as np
@@ -23,6 +24,13 @@ FOREST = {"n_estimators": 200, "min_samples_leaf": 10, "max_features": "sqrt", "
 FAMILIES = ("cox", "forest")
 FEATURES = ("year", "map_year")
 MIN_TEST_EVENTS = 15
+RESOLVING_WORD = re.compile(r"\b(proved|proven|solved|disproved|shown|resolved|answered|settled|refuted)\b", re.I)
+FORMAL_FAMILY = re.compile(r"formal-conjectures/blob/main/FormalConjectures/([^/;]+)/")
+
+
+def problem_list(source):
+    family = FORMAL_FAMILY.search(source)
+    return f"formal-conjectures/{family.group(1)}" if family else source
 
 
 def survival_frame(table, as_of=st.AS_OF):
@@ -42,7 +50,9 @@ def survival_frame(table, as_of=st.AS_OF):
         "event": event,
         "follow_up": as_of - posed[keep],
         "groups": table["group"].to_numpy()[keep],
-        "source": pd.factorize(table["source"].to_numpy()[keep])[0],
+        "source": pd.factorize(np.array([problem_list(x) for x in table["source"].to_numpy()[keep]]))[0],
+        "source_name": np.array([problem_list(x) for x in table["source"].to_numpy()[keep]]),
+        "source_url": pd.factorize(table["source"].to_numpy()[keep])[0],
         "x": {"year": posed[keep][:, None], "map_year": x_map[keep]},
         "dropped_undated_solved": int((~np.isnan(posed) & undated).sum()),
     }
@@ -197,6 +207,7 @@ def cross_validate(frame, repeats=REPEATS, bootstraps=surface.BOOTSTRAPS, seed=S
     block = summarise(frame, rows, [r[0] for r in runs], [r[1] for r in runs], bootstraps, seed)
     mixed = mixed_rows(frame)
     inside = summarise(frame, mixed, [r[0] for r in runs], [r[1] for r in runs], bootstraps, seed)
+    block["mixed_lists"] = per_list(frame, mixed, [r[0] for r in runs])
     block["mixed_sources"] = {"rows": int(len(mixed)), "events": int(frame["event"][mixed].sum()), "sources": int(len(np.unique(frame["source"][mixed]))), **inside}
     return {"rows": int(len(rows)), "events": int(frame["event"].sum()), "censored": int((~frame["event"]).sum()), "folds": FOLDS, "repeats": repeats, **block}
 
@@ -224,17 +235,44 @@ def sweep(frame, cutoffs=surface.CUTOFFS, bootstraps=surface.BOOTSTRAPS, seed=SE
     return {str(b["cutoff"]): b for b in blocks}
 
 
+def per_list(frame, rows, risks):
+    out = []
+    for name in sorted(set(frame["source_name"][rows].tolist())):
+        pick = rows[frame["source_name"][rows] == name]
+        time, event = frame["time"][pick], frame["event"][pick]
+        try:
+            scores = {model: float(np.mean([concordance(time, event, risk[model][pick]) for risk in risks])) for model in names()}
+        except NoComparablePairException:
+            scores = None
+        out.append({"list": name, "rows": int(len(pick)), "events": int(event.sum()), "concordance": scores})
+    return out
+
+
+def resolution_wording(frame, statements):
+    said = np.array([bool(RESOLVING_WORD.search(statements.get(i, ""))) for i in frame["ids"]])
+    out = []
+    for name in sorted(set(frame["source_name"][mixed_rows(frame)].tolist())):
+        inside = frame["source_name"] == name
+        event = frame["event"]
+        out.append({"list": name, "resolved_rows": int((inside & event).sum()), "resolved_rows_with_wording": int((inside & event & said).sum()), "open_rows": int((inside & ~event).sum()), "open_rows_with_wording": int((inside & ~event & said).sum())})
+    return out
+
+
+def statements():
+    return {r["id"]: r.get("statement", "") for r in st.read_tsv(st.SOURCED_TSV)}
+
+
 def mixed_rows(frame):
     sources = np.unique(frame["source"])
     share = np.array([frame["event"][frame["source"] == s].mean() for s in sources])
     return np.flatnonzero(np.isin(frame["source"], sources[(share > 0) & (share < 1)]))
 
 
-def source_mix(frame):
-    sources = np.unique(frame["source"])
-    share = np.array([frame["event"][frame["source"] == s].mean() for s in sources])
+def source_mix(frame, key="source"):
+    sources = np.unique(frame[key])
+    share = np.array([frame["event"][frame[key] == s].mean() for s in sources])
     mixed = sources[(share > 0) & (share < 1)]
-    inside = np.isin(frame["source"], mixed)
+    inside = np.isin(frame[key], mixed)
     return {"sources": int(len(sources)), "single_outcome_sources": int(len(sources) - len(mixed)), "mixed_sources": int(len(mixed)), "rows_in_mixed_sources": int(inside.sum()), "events_in_mixed_sources": int(frame["event"][inside].sum())}
 
 
@@ -244,7 +282,10 @@ def run(table, repeats=REPEATS, bootstraps=surface.BOOTSTRAPS, seed=SEED, jobs=-
         "target": "years open from the posed year, an unsolved row censored at 2026",
         "dropped_undated_solved": frame["dropped_undated_solved"],
         "horizons": list(HORIZONS),
+        "source_rule": "a formal-conjectures row belongs to the list its folder names, every other row to its source url",
         "source_mix": source_mix(frame),
+        "source_mix_by_url": source_mix(frame, "source_url"),
+        "resolution_wording": resolution_wording(frame, statements()),
         "brier_rule": "at each horizon, rows posed at least that many years before 2026, so every outcome is observed",
         "temporal_rule": "train on rows posed before the cutoff with status as known at the cutoff, test on rows posed in the cutoff year or later",
         "cross_validation": cross_validate(frame, repeats, bootstraps, seed, jobs),
