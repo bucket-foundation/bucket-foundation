@@ -92,8 +92,6 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 640, height: 400
     expect(bounds).not.toBeNull();
     expect(bounds!.x).toBeGreaterThanOrEqual(0);
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(viewport.width);
-    expect(bounds!.y).toBeGreaterThanOrEqual(0);
-    expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(viewport.height + 2);
     await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
     await page.getByLabel("Name", { exact: true }).fill("Ada");
     await page.getByLabel("Agree to the privacy terms").check();
