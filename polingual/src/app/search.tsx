@@ -203,7 +203,7 @@ export default function Search() {
         </p>
       </section>
 
-      <section className="max-w-3xl mx-auto px-5 md:px-8 pb-24 mt-6">
+      <section className="max-w-3xl mx-auto px-5 md:px-8 mt-6">
         {grouped.map(([lang, items]) => (
           <div key={lang} className="mb-8 fade-in">
             <div className="flex items-baseline justify-between mb-3">
