@@ -20,6 +20,9 @@ const ISO3 = { en: "eng", es: "spa", fr: "fra", it: "ita", pt: "por", de: "deu",
 const ESPEAK = { en: "en-us", es: "es", fr: "fr", it: "it", pt: "pt", de: "de", nl: "nl", sv: "sv", pl: "pl", fi: "fi", ru: "ru", el: "el", ko: "ko", hi: "hi", ar: "ar" };
 const SENTENCES_PER = 3;
 const MAX_LEN = 60;
+const LOW_RESOURCE = new Set(["ko", "hi", "ar", "el"]);
+const maxLen = (l) => (LOW_RESOURCE.has(l) ? 90 : MAX_LEN);
+const BAD_TEXT = new Set(["Eure Auge sind rot."]);
 
 const read = (f) => JSON.parse(fs.readFileSync(path.join(CORPUS, f), "utf8"));
 const core = read("lang-core.json");
@@ -242,7 +245,7 @@ for (const l of LANGS.filter((x) => x !== "en")) {
 }
 const eng = new Map();
 await loadTsv("eng_sentences.tsv", ([id, , text]) => {
-  if (engNeeded.has(id) && text && text.length <= MAX_LEN) eng.set(id, text);
+  if (engNeeded.has(id) && text && text.length <= 90) eng.set(id, text);
 });
 console.log(`[layers] ${eng.size} short English sentences linked`);
 
@@ -260,7 +263,9 @@ function needles(item, lang) {
     const stem = suf ? base.replace(suf, "") : base.length > 4 ? base.slice(0, -1) : base;
     if (stem.length >= (["ja", "zh", "ko"].includes(lang) ? 1 : 3)) out.add("^" + stem.toLowerCase());
   }
-  if (lang === "ar") return Array.from(out).map(strip);
+  if (lang === "hi" && item.category !== "verb" && base.length > 3) out.add("^" + base.slice(0, -1));
+  if (lang === "ko" && /하다$/.test(base)) out.add("^" + base.replace(/하다$/, ""));
+  if (lang === "ar") return Array.from(out).map((n) => "~" + strip(n).replace(/^\^/, "").replace(/^ال/, ""));
   return Array.from(out);
 }
 
@@ -287,8 +292,9 @@ function matches(index, lang, list) {
   const out = new Set();
   for (const n of list) {
     const prefix = n.startsWith("^");
-    const w = prefix ? n.slice(1) : n;
-    if (CJK.has(lang) || w.includes(" ")) {
+    const sub = n.startsWith("~");
+    const w = prefix || sub ? n.slice(1) : n;
+    if (CJK.has(lang) || sub || w.includes(" ")) {
       for (const [e, t] of index.rows) if (t.includes(w)) out.add(e);
     } else if (prefix) {
       for (const k of index.keys) if (k.startsWith(w)) for (const e of index.inv.get(k)) out.add(e);
@@ -297,14 +303,37 @@ function matches(index, lang, list) {
   return out;
 }
 
+const EN_IRREGULAR = { buy: ["bought"], come: ["came"], die: ["died", "dying", "dead"], drink: ["drank", "drunk"], eat: ["ate", "eaten"], find: ["found"], fly: ["flew", "flies", "flown"], give: ["gave", "given"], go: ["went", "gone", "goes"], hear: ["heard"], know: ["knew", "known"], pay: ["paid"], read: ["read"], run: ["ran", "running"], say: ["said"], see: ["saw", "seen"], sell: ["sold"], sing: ["sang", "sung"], sit: ["sat", "sitting"], sleep: ["slept"], speak: ["spoke", "spoken"], stand: ["stood"], swim: ["swam", "swimming"], take: ["took", "taken"], teach: ["taught"], think: ["thought"], write: ["wrote", "written", "writing"], child: ["children"], man: ["men"], woman: ["women"], foot: ["feet"], tooth: ["teeth"], mouse: ["mice"], person: ["people"], knife: ["knives"], leaf: ["leaves"], wife: ["wives"], good: ["better", "best"], bad: ["worse", "worst"], big: ["bigger", "biggest"], happy: ["happier", "happiest"], cry: ["cried", "cries"] };
 const enRegex = new Map();
 function englishHas(enText, en) {
   if (!en) return true;
   if (!enRegex.has(en)) {
     const w = en.toLowerCase().split(" ")[0];
-    enRegex.set(en, new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(s|es|ed|d|ing|'s)?\\b`, "i"));
+    const alts = [w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "(s|es|ed|d|ing|'s)?", ...(EN_IRREGULAR[w] ?? [])];
+    enRegex.set(en, new RegExp(`\\b(${alts.join("|")})\\b`, "i"));
   }
   return enRegex.get(en).test(enText);
+}
+
+const natives = new Map();
+await loadTsv("user_languages.csv", ([lang, level, user]) => {
+  if (Number(level) >= 4 && user) {
+    if (!natives.has(lang)) natives.set(lang, new Map());
+    natives.get(lang).set(user, Number(level));
+  }
+});
+const flagged = new Set();
+const approved = new Set();
+await loadTsv("users_sentences.csv", ([, id, rating]) => {
+  if (rating === "-1") flagged.add(id);
+  else if (rating === "1") approved.add(id);
+});
+console.log(`[layers] ${flagged.size} flagged, ${approved.size} approved sentences`);
+function trusted(lang, id, user) {
+  if (flagged.has(id)) return false;
+  const level = natives.get(ISO3[lang])?.get(user) ?? 0;
+  if (level >= 5 || approved.has(id)) return true;
+  return LOW_RESOURCE.has(lang) && level >= 4;
 }
 
 const pool = {};
@@ -313,8 +342,11 @@ const engIndex = {};
 const searchIndex = {};
 for (const l of LANGS.filter((x) => x !== "en")) {
   const sents = new Map();
-  await loadTsv(`${ISO3[l]}_sentences.tsv`, ([id, , text]) => {
-    if (links[l].has(id) && text && text.length <= MAX_LEN) sents.set(id, text);
+  let dropped = 0;
+  await loadTsv(`${ISO3[l]}_sentences_detailed.tsv`, ([id, , text, user]) => {
+    if (!links[l].has(id) || !text || text.length > maxLen(l) || BAD_TEXT.has(text)) return;
+    if (trusted(l, id, user)) sents.set(id, text);
+    else dropped++;
   });
   const perEng = new Map();
   for (const [id, text] of sents) for (const e of links[l].get(id) ?? []) if (eng.has(e)) {
@@ -323,7 +355,24 @@ for (const l of LANGS.filter((x) => x !== "en")) {
   }
   engIndex[l] = perEng;
   searchIndex[l] = buildIndex(l, perEng);
-  console.log(`[layers] ${l}: ${perEng.size} aligned sentences`);
+  console.log(`[layers] ${l}: ${perEng.size} aligned sentences, ${dropped} untrusted dropped`);
+}
+
+const freqRank = {};
+for (const l of LANGS.filter((x) => x !== "en")) {
+  const ranked = Array.from(searchIndex[l].inv.entries()).sort((a, b) => b[1].length - a[1].length);
+  freqRank[l] = new Map(ranked.map(([tok], i) => [tok, i]));
+}
+function levelOf(l, text) {
+  if (CJK.has(l)) {
+    const n = Array.from(text.replace(/[\s。、！？.,!?]/gu, "")).length;
+    return n <= 7 ? 1 : n <= 14 ? 2 : 3;
+  }
+  const toks = tokensOf(norm(l, text));
+  const worst = Math.max(0, ...toks.map((t) => freqRank[l].get(t) ?? 1e9));
+  if (toks.length <= 5 && worst <= 1500) return 1;
+  if (toks.length <= 9 && worst <= 5000) return 2;
+  return 3;
 }
 
 for (const item of words) {
@@ -337,14 +386,20 @@ for (const item of words) {
       hits.push([e, engIndex[l].get(e)]);
     }
     hits.sort((a, b) => a[1].length - b[1].length || (a[0] < b[0] ? -1 : 1));
-    const pick = [];
+    const byLevel = new Map([[1, []], [2, []], [3, []]]);
     const texts = new Set();
     for (const [e, text] of hits) {
-      if (pick.length >= SENTENCES_PER) break;
       const key = text.replace(/[\s.!?。！？]+$/u, "").toLowerCase();
       if (texts.has(key)) continue;
       texts.add(key);
-      pick.push(e);
+      byLevel.get(levelOf(l, text)).push(e);
+    }
+    const pick = [];
+    for (let round = 0; pick.length < SENTENCES_PER && round < SENTENCES_PER; round++) {
+      for (const lv of [1, 2, 3]) {
+        const e = byLevel.get(lv)[round];
+        if (e && pick.length < SENTENCES_PER) pick.push(e);
+      }
     }
     if (pick.length) row[l] = pick;
     for (const e of pick) pool[e] = pool[e] ?? {};
@@ -380,7 +435,9 @@ for (const e of Object.keys(pool)) {
     if (one.roman) r[l] = one.roman;
   }
   const tok = t.ja ? tokenizer.tokenize(t.ja).map((x) => x.surface_form) : undefined;
-  pool[e] = { t, r, ...(tok ? { jaTokens: tok } : {}) };
+  const lv = {};
+  for (const [l, text] of Object.entries(t)) if (l !== "en") lv[l] = levelOf(l, text);
+  pool[e] = { t, r, lv, ...(tok ? { jaTokens: tok } : {}) };
 }
 
 const coverage = {};
@@ -397,6 +454,7 @@ const out = {
     built: new Date().toISOString(),
     attribution: [
       "Example sentences from Tatoeba (tatoeba.org), CC-BY 2.0 FR. Each sentence keeps its Tatoeba number.",
+      "Sentences kept only from native owners or reviewer-approved entries, with flagged ones dropped; each carries an A1, A2 or B1 level from length and word frequency.",
       "IPA generated with eSpeak NG. Pinyin from pinyin-pro. Japanese readings from Kuroshiro with the Kuromoji dictionary.",
       "Corrections, gender and conjugation tables curated in lang-fixes.json.",
     ],
@@ -411,4 +469,14 @@ const out = {
   falseFriends: fixes.falseFriends,
 };
 fs.writeFileSync(path.join(CORPUS, "lang-layers.json"), JSON.stringify(out));
+for (const a of core.atoms) {
+  for (const [l, m] of Object.entries(fixes.forms)) {
+    if (!m[a.id]) continue;
+    const prev = a.forms[l] ?? {};
+    a.forms[l] = { ...prev, word: m[a.id] };
+    if (prev.word !== m[a.id] && l !== "en") delete a.forms[l].ipa;
+  }
+}
+core.meta.corrections = "Forms corrected by lang-fixes.json through build-lang-layers.mjs.";
+fs.writeFileSync(path.join(CORPUS, "lang-core.json"), JSON.stringify(core, null, 2) + "\n");
 console.log(`[layers] wrote lang-layers.json, ${(fs.statSync(path.join(CORPUS, "lang-layers.json")).size / 1024).toFixed(0)} KB, ${Object.keys(pool).length} sentences`);

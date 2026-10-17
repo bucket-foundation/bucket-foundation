@@ -47,6 +47,7 @@ export interface LangSystem {
   root: string;
   targets: string[];
   createdAt: number;
+  updatedAt?: number;
   placement: Record<string, number>;
 }
 
@@ -84,6 +85,7 @@ export interface LangItem {
   sentences: Record<string, string[]>;
   gender: Record<string, string>;
   conj: Record<string, string[]>;
+  conjPast: Record<string, string[]>;
   falseFriends: Record<string, FalseFriend>;
 }
 
@@ -91,13 +93,14 @@ export interface PoolSentence {
   t: Record<string, string>;
   r: Record<string, string>;
   jaTokens?: string[];
+  lv?: Record<string, number>;
 }
 
 export interface LangUnit {
   index: number;
   id: string;
   title: string;
-  grammar: ("gender" | "conj")[];
+  grammar: ("gender" | "conj" | "past")[];
 }
 
 export interface LangCorpus {
@@ -141,12 +144,12 @@ export interface RawLayers {
   readings?: Record<string, Record<string, Reading>>;
   sentences?: { byItem?: Record<string, Record<string, string[]>>; pool?: Record<string, PoolSentence> };
   gender?: Record<string, Record<string, string>>;
-  conjugation?: Record<string, Record<string, { infinitive: string; present: string[] }>>;
+  conjugation?: Record<string, Record<string, { infinitive: string; present: string[]; past?: string[] }>>;
   persons?: Record<string, string[]>;
   falseFriends?: FalseFriend[];
 }
 
-export const UNITS: { id: string; title: string; categories: string[]; grammar: ("gender" | "conj")[]; verbTierMax?: number; verbTierMin?: number }[] = [
+export const UNITS: { id: string; title: string; categories: string[]; grammar: ("gender" | "conj" | "past")[]; verbTierMax?: number; verbTierMin?: number }[] = [
   { id: "numbers", title: "Numbers", categories: ["number"], grammar: [] },
   { id: "greetings", title: "Greetings", categories: ["ph:greeting", "ph:courtesy"], grammar: [] },
   { id: "people", title: "People and family", categories: ["family", "ph:intro"], grammar: ["gender"] },
@@ -159,7 +162,7 @@ export const UNITS: { id: string; title: string; categories: string[]; grammar: 
   { id: "home", title: "Home and objects", categories: ["object", "ph:shopping"], grammar: ["gender"] },
   { id: "time", title: "Time", categories: ["time", "ph:time"], grammar: ["gender"] },
   { id: "nature", title: "Nature", categories: ["nature"], grammar: ["gender"] },
-  { id: "verbs-2", title: "Core verbs 2", categories: ["verb"], verbTierMin: 7, grammar: ["conj"] },
+  { id: "verbs-2", title: "Core verbs 2", categories: ["verb"], verbTierMin: 7, grammar: ["conj", "past"] },
   { id: "travel", title: "Getting around", categories: ["ph:survival", "ph:direction", "ph:smalltalk"], grammar: [] },
 ];
 
@@ -197,7 +200,7 @@ export function buildLangCorpus(
   const fix = layers?.forms ?? {};
   const ffs = layers?.falseFriends ?? [];
   const items: LangItem[] = [];
-  const blank = (): Pick<LangItem, "sentences" | "gender" | "conj" | "falseFriends"> => ({ sentences: {}, gender: {}, conj: {}, falseFriends: {} });
+  const blank = (): Pick<LangItem, "sentences" | "gender" | "conj" | "conjPast" | "falseFriends"> => ({ sentences: {}, gender: {}, conj: {}, conjPast: {}, falseFriends: {} });
 
   for (const a of core?.atoms ?? []) {
     const c = concepts[a.id];
@@ -225,7 +228,10 @@ export function buildLangCorpus(
     };
     item.sentences = { ...(layers?.sentences?.byItem?.[a.id] ?? {}) };
     for (const [l, g] of Object.entries(layers?.gender ?? {})) if (g[a.id]) item.gender[l] = g[a.id];
-    for (const [l, t] of Object.entries(layers?.conjugation?.[a.id] ?? {})) item.conj[l] = t.present;
+    for (const [l, t] of Object.entries(layers?.conjugation?.[a.id] ?? {})) {
+      item.conj[l] = t.present;
+      if (t.past) item.conjPast[l] = t.past;
+    }
     for (const f of ffs) if (f.itemId === a.id && forms[f.lang] && forms[f.lang].toLowerCase() === f.word.toLowerCase()) item.falseFriends[f.lang] = f;
     items.push(item);
 
@@ -424,6 +430,8 @@ export interface Exercise {
   tokens?: string[];
   sentenceId?: string;
   person?: string;
+  tense?: "present" | "past";
+  level?: number;
   falseFriend?: FalseFriend;
 }
 
@@ -493,10 +501,20 @@ export function joinTokens(tokens: string[], lang: string): string {
   return lang === "zh" || lang === "ja" ? tokens.join("") : tokens.join(" ");
 }
 
-export function sentenceFor(corpus: LangCorpus, item: LangItem, lang: string, root: string, rng: Rng): { id: string; s: PoolSentence } | null {
+export const LEVEL_LABEL: Record<number, string> = { 1: "A1", 2: "A2", 3: "B1" };
+
+export function learnerLevel(state: EngineState, lang: string): number {
+  const n = Object.keys(state.cards).filter((id) => id.startsWith(`${lang}:`) && !id.startsWith(`${lang}:g-`) && !id.startsWith(`${lang}:c-`)).length;
+  return n < 60 ? 1 : n < 150 ? 2 : 3;
+}
+
+export function sentenceFor(corpus: LangCorpus, item: LangItem, lang: string, root: string, rng: Rng, level = 3): { id: string; s: PoolSentence } | null {
   const ids = (item.sentences[lang] ?? []).filter((id) => corpus.pool[id]?.t[lang] && corpus.pool[id]?.t[root]);
   if (!ids.length) return null;
-  const id = ids[Math.floor(rng() * ids.length)];
+  const lv = (id: string) => corpus.pool[id].lv?.[lang] ?? 1;
+  const fit = ids.filter((id) => lv(id) <= level);
+  const choice = fit.length ? fit : [ids.reduce((a, b) => (lv(b) < lv(a) ? b : a))];
+  const id = choice[Math.floor(rng() * choice.length)];
   return { id, s: corpus.pool[id] };
 }
 
@@ -529,7 +547,7 @@ export function exerciseFor(
   lang: string,
   card: LangCard | undefined,
   rng: Rng,
-  opts: { speech?: boolean; afterIntro?: boolean } = {}
+  opts: { speech?: boolean; afterIntro?: boolean; level?: number } = {}
 ): Exercise {
   const root = system.root;
   const target = item.forms[lang];
@@ -564,10 +582,10 @@ export function exerciseFor(
   }
   if (reps === 2) return roll < 0.5 ? toRoot("listen") : toRoot("reverse");
 
-  const sent = item.kind === "word" ? sentenceFor(corpus, item, lang, root, rng) : null;
+  const sent = item.kind === "word" ? sentenceFor(corpus, item, lang, root, rng, opts.level ?? 3) : null;
   if (sent && roll < 0.45) {
     const text = sent.s.t[lang];
-    const common = { ...base, prompt: sent.s.t[root], promptLang: root, answer: text, answerLang: lang, sentenceId: sent.id, answerReading: sent.s.r[lang] ? { roman: sent.s.r[lang] } : undefined, promptReading: sent.s.r[root] ? { roman: sent.s.r[root] } : undefined };
+    const common = { ...base, level: sent.s.lv?.[lang], prompt: sent.s.t[root], promptLang: root, answer: text, answerLang: lang, sentenceId: sent.id, answerReading: sent.s.r[lang] ? { roman: sent.s.r[lang] } : undefined, promptReading: sent.s.r[root] ? { roman: sent.s.r[root] } : undefined };
     const toks = tokenize(text, lang, sent.s.jaTokens);
     if (roll < 0.25 && toks.length >= 3 && toks.length <= 12) {
       const other = sentenceDistractors(corpus, lang, root, sent.id, rng, 1)[0];
@@ -607,12 +625,23 @@ function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): E
   };
 }
 
+export function personLabel(lang: string, person: string, form: string): string {
+  if (lang === "fr" && person === "je" && /^[aeiouhéèêâîôû]/i.test(form)) return "j'";
+  return person;
+}
+
+export function withPerson(lang: string, person: string, form: string): string {
+  const label = personLabel(lang, person, form);
+  return label.endsWith("'") ? `${label}${form}` : `${label} ${form}`;
+}
+
 function conjExercise(corpus: LangCorpus, item: LangItem, lang: string, root: string, reps: number, rng: Rng): Exercise {
-  const table = item.conj[lang];
+  const past = item.conjPast[lang];
+  const usePast = !!past && (reps >= 3 || UNITS[item.unit]?.grammar.includes("past")) && rng() < 0.5;
+  const table = usePast ? past : item.conj[lang];
   const persons = corpus.persons[lang] ?? ["1sg", "2sg", "3sg", "1pl", "2pl", "3pl"];
   const p = Math.floor(rng() * 6);
   const answer = table[p];
-  const accept = [answer];
   const ex: Exercise = {
     kind: "conjugate",
     itemId: item.id,
@@ -622,9 +651,10 @@ function conjExercise(corpus: LangCorpus, item: LangItem, lang: string, root: st
     promptLang: lang,
     answer,
     answerLang: lang,
-    accept,
-    person: persons[p],
-    note: persons.map((pr, i) => `${pr} ${table[i]}`).join(", "),
+    accept: [answer],
+    person: personLabel(lang, persons[p], answer),
+    tense: usePast ? "past" : "present",
+    note: persons.map((pr, i) => withPerson(lang, pr, table[i])).join(", "),
     promptReading: { roman: item.forms[root] },
   };
   if (reps <= 1) {
@@ -861,6 +891,12 @@ export function requeueAfterMiss(queue: QueueEntry[], index: number, entry: Queu
   return [...queue.slice(0, at), entry, ...queue.slice(at)];
 }
 
+export function editSystem(system: LangSystem, targets: string[], now: number = Date.now()): LangSystem {
+  const t = Array.from(new Set(targets)).filter((x) => x !== system.root && LANGS[x]);
+  if (t.length === 0 || t.length > MAX_TARGETS) throw new Error(t.length ? "too-many" : "no-targets");
+  return { ...system, targets: t, name: systemName(system.root, t), updatedAt: now };
+}
+
 export interface SystemsDoc {
   systems: LangSystem[];
   removed: Record<string, number>;
@@ -886,7 +922,8 @@ export function mergeSystems(a: SystemsDoc, b: SystemsDoc): SystemsDoc {
     }
     const placement = { ...cur.placement };
     for (const [l, t] of Object.entries(s.placement)) placement[l] = Math.max(placement[l] ?? 0, t);
-    byId.set(s.id, { ...cur, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
+    const newer = (s.updatedAt ?? s.createdAt) > (cur.updatedAt ?? cur.createdAt) ? s : cur;
+    byId.set(s.id, { ...newer, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
   }
   const systems = Array.from(byId.values())
     .filter((s) => (removed[s.id] ?? -1) < s.createdAt)

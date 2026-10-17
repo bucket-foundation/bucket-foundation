@@ -134,6 +134,22 @@ for (const l of ["es", "fr", "it", "pt", "de", "nl"]) {
 ok(corpus.byId.get("eat")?.conj.de?.[1] === "isst" && corpus.byId.get("go")?.conj.fr?.[0] === "vais" && corpus.byId.get("speak")?.conj.es?.[0] === "hablo", "irregular and regular forms spot-check");
 ok((corpus.persons.es ?? []).length === 6, "person labels present");
 
+for (const l of ["es", "fr", "it", "pt", "de", "nl"]) {
+  none(verbs.filter((v) => (v.conjPast[l] ?? []).filter(Boolean).length !== 6).map((v) => v.id), `${l} six past forms for every verb`);
+}
+ok(corpus.byId.get("go")?.conjPast.fr?.[0] === "suis allé" && corpus.byId.get("eat")?.conjPast.de?.[0] === "habe gegessen" && corpus.byId.get("speak")?.conjPast.es?.[0] === "hablé", "past tense spot-check");
+ok(corpus.persons.pt?.[4] === "vocês" && corpus.byId.get("go")?.conj.pt?.[4] === "vão", "Portuguese uses vocês, not vós");
+none(verbs.filter((v) => (v.conj.pt ?? []).includes("ides")), "no archaic Portuguese second plural");
+
+const core = read("lang-core.json") as { atoms: { id: string; forms: Record<string, { word: string }> }[] };
+const coreForm = (id: string, l: string) => core.atoms.find((a) => a.id === id)?.forms[l]?.word;
+ok(coreForm("fire", "pl") === "ogień" && coreForm("seven", "zh") === "七" && coreForm("eye", "el") === "μάτι", "base lang-core.json carries the corrections");
+
+const levels = Object.values(corpus.pool).flatMap((s) => Object.values(s.lv ?? {}));
+ok(levels.length > 1000 && [1, 2, 3].every((n) => levels.includes(n)), "pooled sentences carry A1, A2 and B1 levels");
+none(Object.values(corpus.pool).filter((s) => /Eure Auge sind/.test(s.t.de ?? "")).map((s) => s.t.de), "known-bad sentences are dropped");
+ok(layers.meta.attribution?.some((a) => a.includes("native")) ?? false, "the native-speaker filter is documented");
+
 none(corpus.falseFriends.filter((f) => !f.lang || !f.word || !f.means || !f.looksLike).map((f) => f.word), "false friends are complete");
 none(corpus.falseFriends.filter((f) => f.itemId && corpus.byId.get(f.itemId)?.forms[f.lang]?.toLowerCase() !== f.word.toLowerCase()).map((f) => f.word), "linked false friends match the deck form");
 ok(corpus.falseFriends.some((f) => f.crossWith), "cross-language false friends present");

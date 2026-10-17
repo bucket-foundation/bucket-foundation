@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { falseFriendsFor, langName, langProgress, sharedRootLangs, systemSummary, unitStatus } from "@/lib/academy/lang-systems";
+import { falseFriendsFor, LANG_CODES, langName, MAX_TARGETS, langProgress, sharedRootLangs, systemSummary, unitStatus } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState, PageHeader, Panel } from "@/components/ui";
 import { useLangSystem } from "./useLangSystem";
+import SaveNotice from "./SaveNotice";
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 
@@ -18,6 +19,7 @@ export default function SystemView({ systemId }: { systemId: string }) {
     [system, corpus]
   );
   const [unitLang, setUnitLang] = useState<string | null>(null);
+  const [editing, setEditing] = useState<string[] | null>(null);
   const shownLang = unitLang ?? system?.targets[0] ?? null;
   const units = useMemo(() => (system && corpus && shownLang ? unitStatus(system, corpus, state, shownLang) : []), [system, corpus, state, shownLang]);
   const friends = useMemo(() => (system && corpus ? falseFriendsFor(corpus, system) : []), [system, corpus]);
@@ -27,7 +29,7 @@ export default function SystemView({ systemId }: { systemId: string }) {
   if (!system || !corpus || !sum) return <EmptyState title="No such language system" action={{ href: "/research-os/learn/languages", label: "your systems" }} />;
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 min-w-0">
       <PageHeader
         eyebrow="Research OS · learn · languages"
         title={system.name}
@@ -43,6 +45,47 @@ export default function SystemView({ systemId }: { systemId: string }) {
           </>
         }
       />
+      <Panel title="languages" meta={system.targets.map(langName).join(", ")}>
+        {editing === null ? (
+          <button type="button" onClick={() => setEditing(system.targets)} className={BTN_SECONDARY}>
+            edit languages
+          </button>
+        ) : (
+          <div data-testid="edit-langs">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="languages in this system">
+              {LANG_CODES.filter((c) => c !== system.root).map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  aria-pressed={editing.includes(c)}
+                  onClick={() => setEditing((t) => (t!.includes(c) ? t!.filter((x) => x !== c) : [...t!, c]))}
+                  className={"px-3 py-2 text-[13px] rounded-sm border min-h-[40px] " + (editing.includes(c) ? "bg-[color:var(--gold)] border-[color:var(--gold-deep)]" : "border-[color:var(--hairline)]")}
+                >
+                  {langName(c)}
+                </button>
+              ))}
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <button
+                type="button"
+                disabled={editing.length === 0 || editing.length > MAX_TARGETS}
+                onClick={() => {
+                  h.edit(editing);
+                  setEditing(null);
+                }}
+                className={BTN_PRIMARY}
+              >
+                save languages
+              </button>
+              <button type="button" onClick={() => setEditing(null)} className={BTN_SECONDARY}>
+                cancel
+              </button>
+            </div>
+            <p className="mt-2 text-[11px] text-[color:var(--basalt-3)]">Progress in a removed language stays saved and returns if you add it back.</p>
+          </div>
+        )}
+        <SaveNotice state={h.saveState} />
+      </Panel>
       <div className="flex flex-wrap gap-x-6 gap-y-1 text-[13px] text-[color:var(--basalt-2)] [font-variant-numeric:tabular-nums]">
         <span data-testid="sys-xp">{sum.xp} xp</span>
         <span>{sum.streak} day streak</span>

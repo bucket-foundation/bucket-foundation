@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
-import { buildQueue, cardId, exerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
+import { buildQueue, cardId, exerciseFor, learnerLevel, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
 import LangExercise, { ReadingsContext, type ExerciseResult } from "./LangExercise";
 import { useLangSystem } from "./useLangSystem";
@@ -28,13 +28,14 @@ export default function LangStudy({ systemId }: { systemId: string }) {
   }, [h.status, system, corpus, state, queue]);
 
   const entry = queue?.[i];
+  const unitTitle = entry && corpus ? corpus.units[corpus.byId.get(entry.itemId)?.unit ?? -1]?.title : undefined;
   const ex: Exercise | null = useMemo(() => {
     if (!entry || !system || !corpus) return null;
     const item = corpus.byId.get(entry.itemId);
     if (!item) return null;
     if (entry.stage === "match") return matchExercise(corpus, system, item, rng);
     const card = state.cards[cardId(entry.lang, entry.itemId)];
-    return exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check" });
+    return exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entry, system, corpus, rng]);
 
@@ -101,7 +102,7 @@ export default function LangStudy({ systemId }: { systemId: string }) {
           {system.name}
         </Link>
         <span data-testid="counter">
-          {i + 1} / {queue.length} · {state.stats.xp} xp
+          {i + 1} / {queue.length} · {state.stats.xp} xp{unitTitle ? ` · unit: ${unitTitle}` : ""}
         </span>
       </div>
       <div className="h-1 bg-[color:var(--hairline)]">

@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Rating } from "@/lib/academy/fsrs";
 import { listenOnce, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
-import { gradeMatch, joinTokens, judgeTyped, langName, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
+import { gradeMatch, joinTokens, judgeTyped, langName, LEVEL_LABEL, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 
 export interface ExerciseResult {
@@ -74,7 +74,7 @@ function FalseFriendNote({ ex }: { ex: Exercise }) {
 
 function shownAnswer(ex: Exercise): string {
   if (ex.kind === "gender") return `${ex.answer}${ex.cloze?.after ?? ""}`;
-  if (ex.kind === "conjugate") return `${ex.person} ${ex.answer}`;
+  if (ex.kind === "conjugate") return ex.person?.endsWith("'") ? `${ex.person}${ex.answer}` : `${ex.person} ${ex.answer}`;
   return ex.answer;
 }
 
@@ -135,7 +135,7 @@ function Prompt({ ex }: { ex: Exercise }) {
   if (ex.kind === "conjugate") {
     return (
       <span>
-        Present tense of <strong lang={ex.lang}>{ex.prompt}</strong> <span className="text-[12px] text-[color:var(--basalt-3)]">({ex.promptReading?.roman})</span>:{" "}
+        {ex.tense === "past" ? "Past tense" : "Present tense"} of <strong lang={ex.lang}>{ex.prompt}</strong> <span className="text-[12px] text-[color:var(--basalt-3)]">({ex.promptReading?.roman})</span>:{" "}
         <strong lang={ex.lang}>{ex.person} ___</strong>
       </span>
     );
@@ -212,7 +212,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
 
   const header = (
     <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--aegean-deep)]">
-      {KIND_LABEL[ex.kind]} · {langName(ex.lang)}
+      {KIND_LABEL[ex.kind]} · {langName(ex.lang)}{ex.level ? ` · ${LEVEL_LABEL[ex.level]}` : ""}
     </div>
   );
 

@@ -11,6 +11,9 @@ import {
   exerciseFor,
   gradeCard,
   gradeMatch,
+  learnerLevel,
+  editSystem,
+  mergeSystems,
   interleave,
   judgeTyped,
   langProgress,
@@ -273,6 +276,31 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   ok(!wrong[0].correct && !wrong[1].correct && wrong[2].correct, "a real mismatch is still wrong");
   const hand = matchExercise(corpus, romance, corpus.byId.get("hand")!, seededRng(1))!;
   ok(new Set(hand.pairs!.map((p) => p.lang)).size === 3, "match rows are keyed by language even when forms repeat");
+}
+
+{
+  let s = normalizeState(null);
+  for (let k = 0; k < 4; k++) s = gradeCard(s, "fr", "c-go", 3, NOW + k * DAY_MS);
+  const tenses = new Set<string>();
+  for (let k = 0; k < 30; k++) tenses.add(exerciseFor(corpus, romance, corpus.byId.get("c-go")!, "fr", s.cards[cardId("fr", "c-go")], seededRng(k + 9)).tense ?? "");
+  ok(tenses.has("past") && tenses.has("present"), "mature verbs drill both tenses");
+  const elide = exerciseFor(corpus, romance, corpus.byId.get("c-love")!, "fr", undefined, seededRng(3), { afterIntro: true });
+  ok(!elide.note!.includes("je ai") && !elide.note!.includes("je aime"), "French je elides in tables");
+  ok(learnerLevel(normalizeState(null), "fr") === 1, "a new learner reads A1 sentences");
+  const lvl = (lv: number) => {
+    let w = normalizeState(null);
+    for (let k = 0; k < 4; k++) w = gradeCard(w, "de", "dog", 3, NOW + k * DAY_MS);
+    const seen = new Set<number>();
+    for (let k = 0; k < 60; k++) {
+      const e = exerciseFor(corpus, createSystem("en", ["de"], [], NOW), corpus.byId.get("dog")!, "de", w.cards[cardId("de", "dog")], seededRng(k + 300), { level: lv });
+      if (e.level) seen.add(e.level);
+    }
+    return seen;
+  };
+  ok(Array.from(lvl(1)).every((x) => x === 1), "sentences stay at the learner's level");
+  const edited = editSystem(romance, ["fr", "es", "it", "pt"], NOW + 5);
+  const merged = mergeSystems({ systems: [romance], removed: {} }, { systems: [edited], removed: {} });
+  ok(merged.systems[0].targets.length === 4 && merged.systems[0].name.includes("Portuguese"), "the newer edit wins the merge");
 }
 
 if (failures) {

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { normalizeState, type EngineState } from "@/lib/academy/engine";
 import type { Rating } from "@/lib/academy/fsrs";
 import { loadLangCorpus, loadSystems, saveSystems, type SaveResult } from "@/lib/academy/lang-client";
-import { applyPlacement, gradeCard, progressBranch, type LangCorpus, type LangSystem } from "@/lib/academy/lang-systems";
+import { applyPlacement, editSystem, gradeCard, progressBranch, type LangCorpus, type LangSystem } from "@/lib/academy/lang-systems";
 import { webProgressStore } from "@/lib/academy/progress-store";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
@@ -17,6 +17,7 @@ export interface LangSystemHandle {
   grade: (lang: string, itemId: string, rating: Rating) => void;
   place: (lang: string, tier: number) => void;
   saveState: SaveResult | "idle" | "saving";
+  edit: (targets: string[]) => void;
 }
 
 export function useLangSystem(systemId: string): LangSystemHandle {
@@ -84,5 +85,19 @@ export function useLangSystem(systemId: string): LangSystemHandle {
     [system, corpus, commit]
   );
 
-  return { status, system, corpus, state, grade, place, saveState };
+  const edit = useCallback(
+    (targets: string[]) => {
+      if (!system) return;
+      const next = editSystem(system, targets);
+      setSystem(next);
+      setSaveState("saving");
+      void saveSystems({ upsert: next }).then((r) => {
+        systemsRef.current = r.systems;
+        setSaveState(r.result);
+      });
+    },
+    [system]
+  );
+
+  return { status, system, corpus, state, grade, place, saveState, edit };
 }
