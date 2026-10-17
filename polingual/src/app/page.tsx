@@ -1,365 +1,277 @@
-"use client";
+import Search from "./search";
+import Signup from "./signup";
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-
-type Photon = {
-  id: string; kind: string; lang: string; surface: string;
-  meaning_en: string; tier: string; branch: string[];
-  pos?: string | null; ipa?: string | null;
-};
-
-type SearchResp = {
-  query: string; n_results: number; results: Photon[]; took_ms: number;
-  stats?: { total: number; by_lang: Record<string, number> };
-};
-
-const EXAMPLE_QUERIES = [
-  { q: "light",      hint: "en" },
-  { q: "amor",       hint: "la" },
-  { q: "重",          hint: "zh" },
-  { q: "मन",         hint: "sa" },
-  { q: "wisdom",     hint: "en" },
-  { q: "tempus",     hint: "la" },
-  { q: "Mond",       hint: "de" },
-  { q: "ψυχή",       hint: "el" },
+const NAV = [
+  { id: "search", label: "Search" },
+  { id: "record", label: "The record" },
+  { id: "math", label: "The math" },
+  { id: "network", label: "The network" },
+  { id: "ranking", label: "Search at scale" },
+  { id: "sources", label: "Sources" },
+  { id: "questions", label: "Open questions" },
+  { id: "join", label: "Join" },
 ];
 
-const LANG_LABEL: Record<string, string> = {
-  en: "English",   la: "Latin",      sa: "Sanskrit",   fr: "French",
-  de: "German",    es: "Spanish",    it: "Italian",    pt: "Portuguese",
-  ru: "Russian",   zh: "Chinese",    ja: "Japanese",   ko: "Korean",
-  ar: "Arabic",    he: "Hebrew",     hi: "Hindi",      fa: "Persian",
-  el: "Greek",     tr: "Turkish",    pl: "Polish",     nl: "Dutch",
-  sv: "Swedish",   fi: "Finnish",    cs: "Czech",      vi: "Vietnamese",
-  th: "Thai",      id: "Indonesian", ta: "Tamil",      grc: "Ancient Greek",
-};
+const RECORD = `{
+  "id": "photon:word:en:gravity",
+  "kind": "word",
+  "lang": "en",
+  "surface": "gravity",
+  "meaning_en": "The attractive force between masses.",
+  "ipa": "/ˈɡɹævɪti/",
+  "pos": "noun",
+  "tier": "nucleus",
+  "relations": [
+    { "predicate": "derives_from", "to": "photon:word:la:gravitas" },
+    { "predicate": "translates",   "to": "photon:word:de:schwerkraft" },
+    { "predicate": "translates",   "to": "photon:word:ja:重力" }
+  ]
+}`;
+
+const PREDICATES = [
+  ["translates", "Same meaning in another language", "gravity → Schwerkraft"],
+  ["derives_from", "Etymological ancestor", "gravity → gravitas"],
+  ["synonym_of", "Same language, same meaning", "entropy → disorder"],
+  ["attested_at", "First appearance in a corpus", "gravity → 1644"],
+];
+
+const SOURCES = [
+  ["Wiktionary via Kaikki", "35 languages, English glosses, IPA", "live, CC BY-SA"],
+  ["Open Multilingual WordNet", "~30 languages", "planned"],
+  ["PanLex", "1,300+ languages", "planned"],
+  ["Tatoeba", "400+ languages, parallel sentences", "planned"],
+];
+
+const QUESTIONS = [
+  ["Polysemy", "bank the river and bank the institution are two records with two meanings. Today each Wiktionary sense becomes its own record. Picking the right sense from context comes later."],
+  ["Compounds", "\"second law of thermodynamics\" is stored as one phrase record and also as word records linked to it, so both phrase and word queries work."],
+  ["Re-embedding", "When the embedding model changes, every vector is rebuilt and ids stay fixed. Old vectors are kept so we can measure how far each word moved."],
+  ["Learner signal", "A speaker of two languages can say when two words line up and when they drift. We want that judgment as labeled data for the joint score."],
+];
+
+function H2({ id, n, children }: { id: string; n: string; children: React.ReactNode }) {
+  return (
+    <h2 id={id} className="scroll-mt-8 flex items-baseline gap-3 text-3xl md:text-4xl" style={{ color: "var(--ink)", letterSpacing: "-0.01em" }}>
+      <span className="font-mono text-xs" style={{ color: "var(--blue)" }}>{n}</span>
+      {children}
+    </h2>
+  );
+}
+
+function P({ children }: { children: React.ReactNode }) {
+  return <p className="mt-4 font-sans text-[15px] leading-7" style={{ color: "var(--ink-2)" }}>{children}</p>;
+}
+
+function Formula({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mt-4 overflow-x-auto rounded-lg px-5 py-4 font-mono text-[13px] leading-6" style={{ background: "var(--sky-2)", border: "1px solid var(--hairline)", color: "var(--ink)" }}>
+      {children}
+    </div>
+  );
+}
+
+function Table({ head, rows }: { head: string[]; rows: string[][] }) {
+  return (
+    <div className="mt-4 overflow-x-auto rounded-lg bg-white" style={{ border: "1px solid var(--hairline)" }}>
+      <table className="w-full font-sans text-sm">
+        <thead>
+          <tr>
+            {head.map((h) => (
+              <th key={h} className="px-4 py-2 text-left font-mono text-[10px] uppercase tracking-[0.18em]" style={{ color: "var(--ink-dim)", borderBottom: "1px solid var(--hairline)" }}>{h}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r[0]}>
+              {r.map((c, i) => (
+                <td key={i} className={`px-4 py-2 align-top ${i === 0 ? "font-mono text-[13px]" : ""}`} style={{ color: "var(--ink-2)", borderTop: "1px solid var(--hairline)" }}>{c}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export default function HomePage() {
-  const [q, setQ] = useState("");
-  const [results, setResults] = useState<Photon[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [stats, setStats] = useState<{ total: number; n_langs: number; took: number }>({
-    total: 0, n_langs: 0, took: 0,
-  });
-  const abortRef = useRef<AbortController | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    fetch("/api/photon/search?q=___NEVER___")
-      .then((r) => r.json())
-      .then((j: SearchResp) => {
-        if (j.stats) setStats({
-          total: j.stats.total || 0,
-          n_langs: Object.keys(j.stats.by_lang || {}).length,
-          took: 0,
-        });
-      })
-      .catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    if (!q.trim()) { setResults([]); return; }
-    abortRef.current?.abort();
-    const ac = new AbortController();
-    abortRef.current = ac;
-    setLoading(true);
-    const t = setTimeout(async () => {
-      try {
-        const r = await fetch(`/api/photon/search?q=${encodeURIComponent(q)}&top_k=30`, { signal: ac.signal });
-        if (!r.ok) throw new Error(`http ${r.status}`);
-        const j = (await r.json()) as SearchResp;
-        setResults(j.results || []);
-        setStats((s) => ({ ...s, took: j.took_ms || 0 }));
-      } catch (e: unknown) {
-        if ((e as Error).name !== "AbortError") setResults([]);
-      } finally {
-        setLoading(false);
-      }
-    }, 180);
-    return () => clearTimeout(t);
-  }, [q]);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "/" && document.activeElement?.tagName !== "INPUT") {
-        e.preventDefault();
-        inputRef.current?.focus();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const grouped = (() => {
-    const m = new Map<string, Photon[]>();
-    for (const p of results) {
-      if (!m.has(p.lang)) m.set(p.lang, []);
-      m.get(p.lang)!.push(p);
-    }
-    return Array.from(m.entries());
-  })();
-
   return (
     <main className="min-h-screen relative">
-      <section className="relative">
-        <div className="hero-glow absolute inset-0 pointer-events-none" />
-        <div className="relative max-w-4xl mx-auto px-5 md:px-8 pt-10 md:pt-16 pb-6 text-center">
-          <div className="flex justify-center mb-6">
+      <div className="hero-glow absolute inset-x-0 top-0 h-[480px] pointer-events-none" />
+      <div className="relative mx-auto max-w-6xl px-4 md:px-8 md:grid md:grid-cols-[180px_1fr] md:gap-12">
+        <aside className="hidden md:block">
+          <nav className="sticky top-8 pt-16">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/logo.svg"
-              alt="Po — polingual"
-              width="160"
-              height="64"
-              className="h-14 md:h-16 w-auto"
-            />
-          </div>
-          <p
-            className="font-mono text-[10px] tracking-[0.28em] uppercase"
-            style={{ color: "var(--ink-faint)" }}
-          >
-            polingual · v0
-          </p>
-          <h1
-            className="mt-5 leading-[1.04] text-[clamp(2.4rem,5.5vw,4.4rem)]"
-            style={{ color: "var(--ink)", letterSpacing: "-0.02em" }}
-          >
-            every word in every language,
-            <br />
-            <em style={{ color: "var(--blue)" }}>one meaning.</em>
-          </h1>
-          <p
-            className="mt-5 max-w-xl mx-auto text-base md:text-lg leading-relaxed"
-            style={{ color: "var(--ink-dim)" }}
-          >
-            Cross-lingual dictionary on the photon graph. Surface forms in any
-            script · definitions in English · {stats.n_langs || 27} languages indexed.
-          </p>
-        </div>
-      </section>
-
-      <section className="relative max-w-2xl mx-auto px-5 md:px-8 pb-2">
-        <div
-          className="rounded-full bg-white shadow-md transition-all duration-200 ring-1 focus-within:ring-2"
-          style={{
-            boxShadow: "0 4px 14px -2px rgba(15, 37, 64, 0.10)",
-            // @ts-expect-error -- CSS custom prop in style works in modern browsers
-            "--tw-ring-color": "var(--blue)",
-            "--tw-ring-offset-shadow": "0 0 0 0 #fff",
-            ringColor: "var(--blue-soft)",
-          }}
-        >
-          <div className="flex items-center px-4 py-3">
-            <svg
-              width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2"
-              strokeLinecap="round" strokeLinejoin="round"
-              style={{ color: "var(--blue)" }}
-              aria-hidden
-            >
-              <circle cx="11" cy="11" r="7" />
-              <line x1="20" y1="20" x2="16.65" y2="16.65" />
-            </svg>
-            <input
-              ref={inputRef}
-              type="text"
-              autoFocus
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="type a word · in any language"
-              className="flex-1 bg-transparent px-3 py-1 outline-none text-lg md:text-xl"
-              style={{ fontFamily: "inherit", color: "var(--ink)" }}
-            />
-            {q && (
-              <button
-                onClick={() => { setQ(""); setResults([]); inputRef.current?.focus(); }}
-                className="text-xl leading-none hover:scale-110 transition px-2"
-                style={{ color: "var(--ink-faint)" }}
-                aria-label="clear"
-                title="clear"
-              >
-                ×
-              </button>
-            )}
-            <kbd
-              className="hidden md:inline-flex ml-2 px-2 py-0.5 rounded text-[10px] font-mono"
-              style={{
-                background: "var(--sky-2)", color: "var(--ink-dim)",
-                border: `1px solid ${"var(--hairline-2)"}`,
-              }}
-            >
-              /
-            </kbd>
-          </div>
-        </div>
-
-        {!q && (
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-            <span
-              className="text-[10px] font-mono uppercase tracking-[0.2em] mr-1"
-              style={{ color: "var(--ink-faint)" }}
-            >
-              try
-            </span>
-            {EXAMPLE_QUERIES.map((ex) => (
-              <button
-                key={ex.q}
-                onClick={() => setQ(ex.q)}
-                className="rounded-full px-3 py-1 text-sm transition hover:bg-white hover:shadow-sm"
-                style={{
-                  background: "var(--sky-2)",
-                  border: `1px solid ${"var(--hairline)"}`,
-                  color: "var(--ink-2)",
-                  fontFamily: "inherit",
-                }}
-              >
-                {ex.q}
-                <span
-                  className="ml-2 font-mono text-[9px] uppercase tracking-[0.18em]"
-                  style={{ color: "var(--ink-faint)" }}
-                >
-                  {ex.hint}
-                </span>
-              </button>
-            ))}
-          </div>
-        )}
-
-        <p
-          className="mt-4 text-center font-mono text-[10px] uppercase tracking-[0.22em]"
-          style={{ color: "var(--ink-faint)" }}
-        >
-          {q
-            ? loading
-              ? "searching…"
-              : results.length
-                ? `${results.length} results · ${stats.took}ms`
-                : "no matches — try a different surface or lang"
-            : `${stats.total.toLocaleString() || "45,000+"} photons · ${stats.n_langs || 27} languages`}
-        </p>
-      </section>
-
-      <section className="max-w-3xl mx-auto px-5 md:px-8 pb-24 mt-6">
-        {grouped.map(([lang, items]) => (
-          <div key={lang} className="mb-8 fade-in">
-            <div className="flex items-baseline justify-between mb-3">
-              <h2
-                className="font-mono text-[11px] uppercase tracking-[0.22em]"
-                style={{ color: "var(--blue)" }}
-              >
-                {LANG_LABEL[lang] || lang}
-                <span
-                  className="ml-2 font-mono text-[10px]"
-                  style={{ color: "var(--ink-faint)" }}
-                >
-                  · {lang}
-                </span>
-              </h2>
-              <span
-                className="font-mono text-[10px] uppercase tracking-[0.18em]"
-                style={{ color: "var(--ink-faint)" }}
-              >
-                {items.length}
-              </span>
-            </div>
-            <div className="space-y-2">
-              {items.map((p) => (
-                <Link
-                  key={p.id}
-                  href={`/word/${encodeURIComponent(p.id)}`}
-                  className="block rounded-xl bg-white px-5 py-4 transition hover:shadow-md"
-                  style={{
-                    border: `1px solid ${"var(--hairline)"}`,
-                  }}
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <div className="flex items-baseline gap-3 min-w-0">
-                      <span
-                        className="text-2xl md:text-[28px] truncate"
-                        style={{ color: "var(--ink)" }}
-                      >
-                        {p.surface}
-                      </span>
-                      {p.ipa && (
-                        <span
-                          className="font-mono text-xs whitespace-nowrap"
-                          style={{ color: "var(--ink-faint)" }}
-                        >
-                          {p.ipa}
-                        </span>
-                      )}
-                    </div>
-                    {p.pos && (
-                      <span
-                        className="font-mono text-[10px] italic whitespace-nowrap"
-                        style={{ color: "var(--ink-dim)" }}
-                      >
-                        {p.pos}
-                      </span>
-                    )}
-                  </div>
-                  <p
-                    className="mt-2 text-[15px] leading-relaxed line-clamp-2"
-                    style={{ color: "var(--ink-2)" }}
-                  >
-                    {p.meaning_en}
-                  </p>
-                </Link>
+            <img src="/logo.svg" alt="polingual" width="120" height="48" className="h-10 w-auto mb-8" />
+            <ul className="space-y-2 font-sans text-sm">
+              {NAV.map((n) => (
+                <li key={n.id}>
+                  <a href={`#${n.id}`} className="hover:underline" style={{ color: "var(--ink-dim)" }}>{n.label}</a>
+                </li>
               ))}
-            </div>
-          </div>
-        ))}
+            </ul>
+          </nav>
+        </aside>
 
-        {!q && !results.length && (
-          <div className="mt-12 max-w-xl mx-auto text-center">
-            <div
-              className="rounded-2xl p-6 md:p-8"
-              style={{
-                background: "var(--sky-2)",
-                border: `1px solid ${"var(--hairline)"}`,
-              }}
-            >
-              <p
-                className="font-mono text-[10px] uppercase tracking-[0.24em] mb-3"
-                style={{ color: "var(--blue)" }}
-              >
-                how to use
-              </p>
-              <p
-                className="text-[15px] leading-relaxed mb-2"
-                style={{ color: "var(--ink-2)" }}
-              >
-                Type a word in any language — Latin, Sanskrit, Japanese, Hebrew,
-                Arabic, French — and we return its English meaning plus how it
-                relates to the same concept across other languages.
-              </p>
-              <p
-                className="text-[13px]"
-                style={{ color: "var(--ink-dim)" }}
-              >
-                Click a result for full definition · part of speech · IPA ·
-                provenance · related photons.
-              </p>
-            </div>
-          </div>
-        )}
-      </section>
+        <div className="min-w-0 max-w-3xl pb-24">
+          <header className="pt-10 md:pt-16">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.svg" alt="polingual" width="120" height="48" className="h-10 w-auto mb-6 md:hidden" />
+            <p className="font-mono text-[10px] uppercase tracking-[0.28em]" style={{ color: "var(--ink-faint)" }}>polingual v0, research notes</p>
+            <h1 className="mt-4 leading-[1.05] text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--ink)", letterSpacing: "-0.02em" }}>
+              Every word in every language, <em style={{ color: "var(--blue)" }}>one meaning.</em>
+            </h1>
+            <P>
+              polingual is a cross-lingual dictionary and an open research project. It holds 6.5 million words in 35
+              languages. Each word is a record with an English meaning, two vectors, and links to the same idea in
+              other languages.
+            </P>
+            <p className="mt-4 font-sans text-sm">
+              <a href="#join" className="underline" style={{ color: "var(--blue)" }}>Speak two languages or more? Join the learner list.</a>
+            </p>
+          </header>
 
-      <footer
-        className="text-center pb-10 pt-2 font-mono text-[10px] uppercase tracking-[0.22em]"
-        style={{ color: "var(--ink-faint)" }}
-      >
-        photon substrate at{" "}
-        <a
-          href="https://www.bucket.foundation"
-          className="underline hover:no-underline"
-          style={{ color: "var(--blue)" }}
-        >
-          bucket.foundation
-        </a>
-        {" · "}every word, one meaning
-      </footer>
+          <section className="mt-10">
+            <Search />
+          </section>
+
+          <section className="mt-20">
+            <H2 id="record" n="01">The record</H2>
+            <P>
+              We call each record a photon. A photon has one id, one surface form in its own script, and one meaning
+              written in English. Each dictionary sense gets its own record. Translations stay separate records joined
+              by links.
+            </P>
+            <pre className="mt-4 overflow-x-auto rounded-lg bg-white px-5 py-4 font-mono text-[12.5px] leading-6" style={{ border: "1px solid var(--hairline)", color: "var(--ink)" }}>{RECORD}</pre>
+          </section>
+
+          <section className="mt-20">
+            <H2 id="math" n="02">The math</H2>
+            <P>
+              Each word gets two unit vectors. The semantic vector embeds the text &ldquo;surface: meaning&rdquo; with
+              LaBSE, a multilingual sentence model, into 768 dimensions. The phonetic vector is built by hand from the
+              IPA transcription into 64 dimensions.
+            </P>
+            <Formula>
+              s(w) = LaBSE(surface + &quot;: &quot; + meaning_en) ∈ ℝ⁷⁶⁸, &nbsp; ‖s‖ = 1<br />
+              p(w) = phon(ipa) ∈ ℝ⁶⁴, &nbsp; ‖p‖ = 1<br />
+              d(a, b) = 1 − a · b
+            </Formula>
+            <P>
+              Two words mean the same thing when their semantic vectors point the same way. LaBSE was trained on
+              translation pairs, and every record carries an English gloss, so light, אור, luce and valo sit close
+              together with no translation step at query time.
+            </P>
+            <P>
+              The phonetic vector answers a separate question: which words sound alike, whatever they mean. Its 64
+              slots hold four groups of features:
+            </P>
+            <Table
+              head={["Slots", "Feature"]}
+              rows={[
+                ["0 to 19", "average vowel height, backness and rounding; consonant place, manner and voicing"],
+                ["32 to 45", "the first, middle and last segment, plus vowel and consonant ratios"],
+                ["48 to 49", "word length and stress marks"],
+                ["50 to 63", "sound bigrams hashed into 14 buckets"],
+              ]}
+            />
+            <P>
+              Sound search finds loanwords and shared roots across scripts. Words close on both vectors are the cognates:
+              gravitas, gravity, gravedad. A joint score mixes the two distances with a weight α:
+            </P>
+            <Formula>
+              score(q, w) = α · d(s(q), s(w)) + (1 − α) · d(p(q), p(w)), &nbsp; 0 ≤ α ≤ 1
+            </Formula>
+            <P>
+              Choosing α per query, and checking it against human judgment, is open work.
+            </P>
+          </section>
+
+          <section className="mt-20">
+            <H2 id="network" n="03">The network</H2>
+            <P>
+              Records link to each other through typed edges. Following translates edges gives a translation table.
+              Following derives_from edges backward gives an etymology: English to Latin to Greek, or Japanese back
+              through Old Chinese readings.
+            </P>
+            <Table head={["Predicate", "Meaning", "Example"]} rows={PREDICATES} />
+            <P>
+              Every record carries a confidence tier: nucleus for settled entries, functional for sourced ones, edge
+              for contested ones, and unverified for raw imports. The same graph powers{" "}
+              <a href="https://www.bucket.foundation" className="underline" style={{ color: "var(--blue)" }}>bucket.foundation</a>,
+              which reads it as research claims. polingual reads it as words.
+            </P>
+          </section>
+
+          <section className="mt-20">
+            <H2 id="ranking" n="04">Search at scale</H2>
+            <P>
+              The full index holds 6,564,942 records across 35 languages. 1,979,896 of them have IPA and a phonetic
+              vector. Both vector columns live in Postgres with pgvector and an HNSW index, so a nearest-neighbor query
+              walks a graph of the vectors instead of scanning every row.
+            </P>
+            <Table
+              head={["Query", "What it does", "Latency"]}
+              rows={[
+                ["lookup", "exact surface form in one language", "1 ms"],
+                ["semantic", "nearest meaning vectors", "3 ms"],
+                ["phonetic", "nearest sound vectors", "1.5 ms"],
+                ["translate", "nearest meaning, filtered to a target language", "3 ms"],
+                ["spelling", "trigram match on the surface form", "~160 ms"],
+              ]}
+            />
+            <P>
+              The search box on this page runs a lighter text search: exact surface match, then prefix, then substring,
+              then English full-text over the meanings, merged in that order until it has 30 results.
+            </P>
+            <P>
+              Semantic search works best for words with close neighbors: gold finds silver and golden, king finds
+              monarch. Isolated scientific terms such as entropy get weak neighbors, and the dictionary has gaps.
+            </P>
+          </section>
+
+          <section className="mt-20">
+            <H2 id="sources" n="05">Sources</H2>
+            <P>
+              Every record keeps its source URL and capture date. Dictionary data comes from{" "}
+              <a href="https://en.wiktionary.org" className="underline" style={{ color: "var(--blue)" }}>Wiktionary</a>{" "}
+              through <a href="https://kaikki.org" className="underline" style={{ color: "var(--blue)" }}>Kaikki</a>,
+              under CC BY-SA 4.0.
+            </P>
+            <Table head={["Source", "Coverage", "Status"]} rows={SOURCES} />
+          </section>
+
+          <section className="mt-20">
+            <H2 id="questions" n="06">Open questions</H2>
+            <dl className="mt-4 space-y-5">
+              {QUESTIONS.map(([t, d]) => (
+                <div key={t}>
+                  <dt className="font-sans text-[15px] font-semibold" style={{ color: "var(--ink)" }}>{t}</dt>
+                  <dd className="mt-1 font-sans text-[15px] leading-7" style={{ color: "var(--ink-2)" }}>{d}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+
+          <section className="mt-20">
+            <H2 id="join" n="07">Join the learner list</H2>
+            <P>
+              We are building learning tools for people who already speak two or more languages: learn the next
+              language through the ones you know. Leave your email and your languages. We will write when the first
+              tools open, and we may ask you to rate a few word pairs.
+            </P>
+            <div className="mt-6 max-w-md">
+              <Signup />
+            </div>
+          </section>
+
+          <footer className="mt-24 font-mono text-[10px] uppercase tracking-[0.22em]" style={{ color: "var(--ink-faint)" }}>
+            same graph as{" "}
+            <a href="https://www.bucket.foundation" className="underline" style={{ color: "var(--blue)" }}>bucket.foundation</a>
+          </footer>
+        </div>
+      </div>
     </main>
   );
 }
