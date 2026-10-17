@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { recognitionSupported } from "@/lib/academy/lang-client";
-import { buildQueue, cardId, exerciseFor, matchExercise, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
+import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
+import { buildQueue, cardId, exerciseFor, learnerLevel, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
-import LangExercise, { type ExerciseResult } from "./LangExercise";
+import LangExercise, { ReadingsContext, type ExerciseResult } from "./LangExercise";
 import { useLangSystem } from "./useLangSystem";
 
 export default function LangStudy({ systemId }: { systemId: string }) {
@@ -17,6 +17,8 @@ export default function LangStudy({ systemId }: { systemId: string }) {
   const [correct, setCorrect] = useState(0);
   const xpStart = useRef(0);
   const rng = useMemo(() => seededRng(Date.now() % 2147483647), []);
+  const [readings, setReadings] = useState(true);
+  useEffect(() => setReadings(readReadingsPref()), []);
 
   useEffect(() => {
     if (h.status === "ready" && system && corpus && queue === null) {
@@ -26,15 +28,18 @@ export default function LangStudy({ systemId }: { systemId: string }) {
   }, [h.status, system, corpus, state, queue]);
 
   const entry = queue?.[i];
+  const unitTitle = entry && corpus ? corpus.units[corpus.byId.get(entry.itemId)?.unit ?? -1]?.title : undefined;
   const ex: Exercise | null = useMemo(() => {
     if (!entry || !system || !corpus) return null;
     const item = corpus.byId.get(entry.itemId);
     if (!item) return null;
     if (entry.stage === "match") return matchExercise(corpus, system, item, rng);
     const card = state.cards[cardId(entry.lang, entry.itemId)];
-    return exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check" });
+    return exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entry, system, corpus, rng]);
+
+  const optionReadings = useMemo(() => (ex && corpus ? readingsByForm(corpus, ex.answerLang) : undefined), [ex, corpus]);
 
   const onDone = useCallback(
     (results: ExerciseResult[]) => {
@@ -91,19 +96,38 @@ export default function LangStudy({ systemId }: { systemId: string }) {
   }
 
   return (
-    <div className="flex flex-col gap-4 max-w-2xl">
+    <div className="flex flex-col gap-4 max-w-2xl min-w-0">
       <div className="flex items-center justify-between gap-3 text-[12px] text-[color:var(--basalt-3)] [font-variant-numeric:tabular-nums]">
         <Link href={back} className="underline underline-offset-4">
           {system.name}
         </Link>
         <span data-testid="counter">
-          {i + 1} / {queue.length} · {state.stats.xp} xp
+          {i + 1} / {queue.length} · {state.stats.xp} xp{unitTitle ? ` · unit: ${unitTitle}` : ""}
         </span>
       </div>
       <div className="h-1 bg-[color:var(--hairline)]">
         <div className="h-1 bg-[color:var(--gold-deep)]" style={{ width: `${Math.round((i / queue.length) * 100)}%` }} />
       </div>
-      <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} />
+      <ReadingsContext.Provider value={readings}>
+        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} />
+      </ReadingsContext.Provider>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+      <button type="button" onClick={() => setI((x) => x + 1)} className="text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)]" data-testid="skip-exercise">
+        skip this one
+      </button>
+      <label className="flex items-center gap-2 text-[12px] text-[color:var(--basalt-3)]">
+        <input
+          type="checkbox"
+          checked={readings}
+          onChange={(e) => {
+            setReadings(e.target.checked);
+            writeReadingsPref(e.target.checked);
+          }}
+          data-testid="readings-toggle"
+        />
+        show readings and IPA
+      </label>
+      </div>
     </div>
   );
 }
