@@ -199,7 +199,7 @@ export default function Search() {
               : results.length
                 ? `${results.length} results · ${stats.took}ms`
                 : "no matches. Try another spelling or language."
-            : `${stats.total.toLocaleString() || "45,000+"} photons · ${stats.n_langs || 27} languages`}
+            : stats.total ? `${stats.total.toLocaleString()} words · ${stats.n_langs} languages` : "6,564,942 words · 35 languages"}
         </p>
       </section>
 
