@@ -16,14 +16,18 @@ import {
   matchExercise,
   newToday,
   NEW_PER_LANG_PER_DAY,
-  placementItems,
-  placementTier,
+  PLACEMENT_MAX_ITEMS,
+  PLACEMENT_TIERS,
+  placementItem,
+  placementOptions,
+  placementStep,
   planSession,
   progressBranch,
   requeueAfterMiss,
   seededRng,
   sharedRootLangs,
   systemSummary,
+  unitStatus,
   validateSystem,
   verdictRating,
 } from "../src/lib/academy/lang-systems";
@@ -39,12 +43,12 @@ function ok(c: boolean, m: string) {
 
 const dir = path.resolve(__dirname, "../learning/app/corpus");
 const read = (f: string) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
-const corpus = buildLangCorpus(read("lang-core.json"), read("lang-cognates.json"), read("lang-phrases.json"));
+const corpus = buildLangCorpus(read("lang-core.json"), read("lang-cognates.json"), read("lang-phrases.json"), read("lang-layers.json"));
 const NOW = Date.UTC(2026, 9, 17, 12);
 
 ok(corpus.items.length >= 300, `corpus has words and phrases (${corpus.items.length})`);
 ok(corpus.items.some((i) => i.kind === "phrase") && corpus.items.some((i) => i.kind === "word"), "both kinds present");
-ok(corpus.items.every((x, k, a) => k === 0 || a[k - 1].tier <= x.tier), "items sorted by tier");
+ok(corpus.items.every((x, k, a) => k === 0 || a[k - 1].unit < x.unit || (a[k - 1].unit === x.unit && a[k - 1].tier <= x.tier)), "items sorted by unit then tier");
 ok(corpus.items.some((i) => i.root && i.cognateLangs.length >= 2), "some items carry a shared root");
 
 ok(validateSystem("en", []) === "no-targets", "empty target set rejected");
@@ -167,28 +171,93 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
 }
 
 {
-  const items = placementItems(romance, corpus, "fr", seededRng(1));
-  ok(items.length >= 10 && items.every((i) => i.forms.fr && i.forms.en), "placement samples across tiers");
-  ok(placementTier([]) === 0, "no answers places at zero");
-  ok(placementTier([{ tier: 0, correct: false }, { tier: 0, correct: false }]) === 0, "missing tier 0 places at zero");
-  ok(
-    placementTier([
-      { tier: 0, correct: true },
-      { tier: 0, correct: true },
-      { tier: 2, correct: true },
-      { tier: 2, correct: false },
-      { tier: 4, correct: false },
-      { tier: 4, correct: false },
-    ]) === 4,
-    "placement stops at the first failed tier"
-  );
+  for (const level of [0, 3, 5, 9, 11]) {
+    const answers: { tier: number; correct: boolean }[] = [];
+    let step = placementStep(answers);
+    while (!step.done) {
+      answers.push({ tier: step.nextTier!, correct: step.nextTier! < level });
+      step = placementStep(answers);
+    }
+    const want = PLACEMENT_TIERS.find((t) => t >= level) ?? 11;
+    ok(step.tier === want, `adaptive placement finds level ${level} as tier ${step.tier} in ${answers.length} questions`);
+    ok(answers.length >= 4 && answers.length <= PLACEMENT_MAX_ITEMS, "placement asks between 4 and 12 questions");
+  }
+  {
+    const noisy = [true, false, true, false, true, false, true, false, true, false, true, false];
+    const answers: { tier: number; correct: boolean }[] = [];
+    let step = placementStep(answers);
+    let k = 0;
+    while (!step.done) {
+      answers.push({ tier: step.nextTier!, correct: noisy[k++ % noisy.length] });
+      step = placementStep(answers);
+    }
+    ok(answers.length <= PLACEMENT_MAX_ITEMS, `noisy answers still stop at the cap (${answers.length})`);
+  }
+  const seen = new Set<string>();
+  const first = placementItem(romance, corpus, "fr", 4, seen, seededRng(1))!;
+  ok(first.tier === 4 && first.kind === "word", "placement item comes from the probed tier");
+  const opts = placementOptions(corpus, first, "fr", "en", seededRng(2));
+  ok(opts.length === 4 && opts.includes(first.forms.fr), "placement options hold the answer");
   const s = applyPlacement(normalizeState(null), { ...romance, placement: { fr: 4 } }, corpus, "fr", 4, NOW);
   const placed = Object.keys(s.cards).filter((k) => k.startsWith("fr:"));
-  const expected = corpus.items.filter((i) => i.tier < 4 && i.forms.fr && i.forms.en).length;
+  const expected = corpus.items.filter((i) => (i.kind === "word" || i.kind === "phrase") && i.tier < 4 && i.forms.fr && i.forms.en).length;
   ok(placed.length === expected, `placement seeds known cards below the tier (${placed.length})`);
   ok(newToday(s, "fr", NOW) === 0, "placed cards do not use the new-card budget");
   const plan = planSession({ ...romance, placement: { fr: 4 } }, corpus, s, NOW, 15);
   ok(plan.filter((p) => p.lang === "fr").every((p) => corpus.byId.get(p.itemId)!.tier >= 4), "new French starts at the placed tier");
+}
+
+{
+  const units = unitStatus(romance, corpus, normalizeState(null), "fr");
+  ok(units.length >= 10 && units[0].unlocked && !units[1].unlocked, "only the first unit is open at the start");
+  let s = normalizeState(null);
+  for (const i of corpus.items.filter((x) => x.unit === 0 && x.kind === "word" && x.forms.fr)) s = gradeCard(s, "fr", i.id, 3, NOW);
+  const after = unitStatus(romance, corpus, s, "fr");
+  ok(after[0].done && after[1].unlocked && !after[2].unlocked, "finishing a unit opens the next one");
+  const plan = planSession(romance, corpus, normalizeState(null), NOW, 15);
+  ok(plan.every((p) => corpus.byId.get(p.itemId)!.unit === 0), "new cards come from open units");
+  ok(!plan.some((p) => p.itemId.startsWith("g-") || p.itemId.startsWith("c-")), "grammar waits for its word");
+}
+
+{
+  const rng = seededRng(5);
+  const dog = corpus.byId.get("g-dog")!;
+  const g = exerciseFor(corpus, romance, dog, "fr", undefined, rng, { afterIntro: true });
+  ok(g.kind === "gender" && g.answer === "le" && g.options!.includes("la") && g.prompt === "chien", "gender drill asks for the article");
+  const eat = corpus.byId.get("c-eat")!;
+  const c1 = exerciseFor(corpus, romance, eat, "es", undefined, seededRng(1), { afterIntro: true });
+  ok(c1.kind === "conjugate" && !!c1.person && eat.conj.es.includes(c1.answer) && c1.options!.includes(c1.answer), "conjugation drill starts as a choice");
+  let s = normalizeState(null);
+  for (let k = 0; k < 3; k++) s = gradeCard(s, "es", "c-eat", 3, NOW + k * DAY_MS);
+  const c2 = exerciseFor(corpus, romance, eat, "es", s.cards[cardId("es", "c-eat")], seededRng(2));
+  ok(c2.kind === "conjugate" && !c2.options, "a known verb is typed");
+
+  let w = normalizeState(null);
+  for (let k = 0; k < 4; k++) w = gradeCard(w, "fr", "dog", 3, NOW + k * DAY_MS);
+  const kinds = new Map<string, ReturnType<typeof exerciseFor>>();
+  for (let k = 0; k < 80; k++) {
+    const e = exerciseFor(corpus, romance, corpus.byId.get("dog")!, "fr", w.cards[cardId("fr", "dog")], seededRng(k + 100));
+    kinds.set(e.kind, e);
+  }
+  const sent = kinds.get("sentence");
+  ok(!!sent && sent.options!.includes(sent.answer) && sent.options!.length >= 2 && !!corpus.pool[sent.sentenceId!].t.en, "sentence translation offers the Tatoeba sentence");
+  const bank = kinds.get("wordbank");
+  ok(!!bank && bank.accept![0].split(" ").every((t) => bank.tokens!.includes(t)), "word bank holds every token of the sentence");
+
+  let f = normalizeState(null);
+  f = gradeCard(f, "fr", "bread", 3, NOW);
+  const ffKinds = new Set<string>();
+  for (let k = 0; k < 40; k++) ffKinds.add(exerciseFor(corpus, romance, corpus.byId.get("bread")!, "fr", f.cards[cardId("fr", "bread")], seededRng(k + 7)).kind);
+  ok(ffKinds.has("false-friend"), "a false friend gets its own drill");
+  const ff = exerciseFor(corpus, romance, corpus.byId.get("bread")!, "fr", undefined, seededRng(1));
+  ok(ff.kind === "intro" && ff.falseFriend?.looksLike === "pain", "intro warns about the false friend");
+
+  const asianIntro = exerciseFor(corpus, asian, corpus.byId.get("woman")!, "zh", undefined, seededRng(1));
+  ok(asianIntro.answer === "女人" && !!asianIntro.answerReading?.roman, "Mandarin card carries pinyin");
+  const ja = exerciseFor(corpus, asian, corpus.byId.get("eat")!, "ja", undefined, seededRng(1));
+  ok(!!ja.answerReading?.kana && !!ja.answerReading?.roman, "Japanese card carries kana and romaji");
+  const m = matchExercise(corpus, asian, corpus.byId.get("eat")!, seededRng(1))!;
+  ok(m.pairs!.every((p) => !!p.reading?.roman), "match pairs carry readings");
 }
 
 if (failures) {

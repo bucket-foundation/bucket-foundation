@@ -1,0 +1,4761 @@
+{
+ "meta": {
+  "note": "Hand-curated corrections, gender and false-friend data for the language systems. Applied over lang-core.json and lang-phrases.json by build-lang-layers.mjs.",
+  "license": "Original curation, CC-BY-SA 3.0 to match the Wiktionary-derived base."
+ },
+ "forms": {
+  "el": {
+   "eight": "οκτώ",
+   "five": "πέντε",
+   "four": "τέσσερα",
+   "half": "μισό",
+   "hundred": "εκατό",
+   "nine": "εννέα",
+   "number": "αριθμός",
+   "one": "ένα",
+   "seven": "επτά",
+   "six": "έξι",
+   "ten": "δέκα",
+   "thousand": "χίλια",
+   "three": "τρία",
+   "two": "δύο",
+   "zero": "μηδέν",
+   "black": "μαύρος",
+   "blue": "μπλε",
+   "brown": "καφέ",
+   "color": "χρώμα",
+   "green": "πράσινος",
+   "orange": "πορτοκαλί",
+   "pink": "ροζ",
+   "red": "κόκκινος",
+   "white": "άσπρος",
+   "yellow": "κίτρινος",
+   "baby": "μωρό",
+   "brother": "αδελφός",
+   "child": "παιδί",
+   "daughter": "κόρη",
+   "father": "πατέρας",
+   "friend": "φίλος",
+   "husband": "σύζυγος",
+   "man": "άντρας",
+   "mother": "μητέρα",
+   "name": "όνομα",
+   "people": "άνθρωποι",
+   "person": "άτομο",
+   "sister": "αδελφή",
+   "son": "γιος",
+   "wife": "σύζυγος",
+   "woman": "γυναίκα",
+   "bear": "αρκούδα",
+   "bee": "μέλισσα",
+   "bird": "πουλί",
+   "cat": "γάτα",
+   "chicken": "κότα",
+   "cow": "αγελάδα",
+   "dog": "σκύλος",
+   "egg": "αυγό",
+   "fish": "ψάρι",
+   "horse": "άλογο",
+   "lion": "λιοντάρι",
+   "mouse": "ποντίκι",
+   "pig": "γουρούνι",
+   "sheep": "πρόβατο",
+   "snake": "φίδι",
+   "spider": "αράχνη",
+   "wolf": "λύκος",
+   "arm": "χέρι",
+   "back": "πλάτη",
+   "blood": "αίμα",
+   "bone": "κόκαλο",
+   "brain": "εγκέφαλος",
+   "ear": "αυτί",
+   "eye": "μάτι",
+   "face": "πρόσωπο",
+   "finger": "δάχτυλο",
+   "foot": "πόδι",
+   "hair": "μαλλιά",
+   "hand": "χέρι",
+   "head": "κεφάλι",
+   "heart": "καρδιά",
+   "knee": "γόνατο",
+   "leg": "πόδι",
+   "mouth": "στόμα",
+   "neck": "λαιμός",
+   "nose": "μύτη",
+   "skin": "δέρμα",
+   "stomach": "στομάχι",
+   "tongue": "γλώσσα",
+   "tooth": "δόντι",
+   "apple": "μήλο",
+   "beer": "μπίρα",
+   "bread": "ψωμί",
+   "butter": "βούτυρο",
+   "cheese": "τυρί",
+   "coffee": "καφές",
+   "fruit": "φρούτο",
+   "honey": "μέλι",
+   "meat": "κρέας",
+   "milk": "γάλα",
+   "potato": "πατάτα",
+   "rice": "ρύζι",
+   "salt": "αλάτι",
+   "soup": "σούπα",
+   "sugar": "ζάχαρη",
+   "tea": "τσάι",
+   "wine": "κρασί",
+   "beach": "παραλία",
+   "cloud": "σύννεφο",
+   "earth": "χώμα",
+   "fire": "φωτιά",
+   "flower": "λουλούδι",
+   "forest": "δάσος",
+   "grass": "χορτάρι",
+   "ice": "πάγος",
+   "iron": "σίδερο",
+   "island": "νησί",
+   "lake": "λίμνη",
+   "leaf": "φύλλο",
+   "moon": "φεγγάρι",
+   "mountain": "βουνό",
+   "rain": "βροχή",
+   "river": "ποτάμι",
+   "sand": "άμμος",
+   "sea": "θάλασσα",
+   "silver": "ασήμι",
+   "sky": "ουρανός",
+   "snow": "χιόνι",
+   "star": "αστέρι",
+   "stone": "πέτρα",
+   "sun": "ήλιος",
+   "tree": "δέντρο",
+   "water": "νερό",
+   "wind": "άνεμος",
+   "wood": "ξύλο",
+   "bag": "τσάντα",
+   "ball": "μπάλα",
+   "bed": "κρεβάτι",
+   "boat": "βάρκα",
+   "book": "βιβλίο",
+   "bridge": "γέφυρα",
+   "car": "αυτοκίνητο",
+   "chair": "καρέκλα",
+   "church": "εκκλησία",
+   "city": "πόλη",
+   "clock": "ρολόι",
+   "clothes": "ρούχα",
+   "door": "πόρτα",
+   "hat": "καπέλο",
+   "house": "σπίτι",
+   "key": "κλειδί",
+   "knife": "μαχαίρι",
+   "letter": "γράμμα",
+   "money": "λεφτά",
+   "music": "μουσική",
+   "paper": "χαρτί",
+   "road": "δρόμος",
+   "school": "σχολείο",
+   "shirt": "πουκάμισο",
+   "shoe": "παπούτσι",
+   "table": "τραπέζι",
+   "window": "παράθυρο",
+   "word": "λέξη",
+   "day": "μέρα",
+   "evening": "βράδυ",
+   "hour": "ώρα",
+   "minute": "λεπτό",
+   "month": "μήνας",
+   "morning": "πρωί",
+   "night": "νύχτα",
+   "time": "χρόνος",
+   "today": "σήμερα",
+   "tomorrow": "αύριο",
+   "week": "εβδομάδα",
+   "year": "χρονιά",
+   "yesterday": "χθες",
+   "bad": "κακός",
+   "beautiful": "ωραίος",
+   "big": "μεγάλος",
+   "clean": "καθαρός",
+   "cold": "κρύος",
+   "dirty": "βρόμικος",
+   "dry": "στεγνός",
+   "easy": "εύκολος",
+   "empty": "άδειος",
+   "fast": "γρήγορος",
+   "full": "γεμάτος",
+   "good": "καλός",
+   "happy": "χαρούμενος",
+   "hard": "σκληρός",
+   "heavy": "βαρύς",
+   "high": "ψηλός",
+   "hot": "ζεστός",
+   "light": "ελαφρύς",
+   "long": "μακρύς",
+   "low": "χαμηλός",
+   "new": "νέος",
+   "old": "παλιός",
+   "poor": "φτωχός",
+   "rich": "πλούσιος",
+   "sad": "λυπημένος",
+   "short": "κοντός",
+   "slow": "αργός",
+   "small": "μικρός",
+   "strong": "δυνατός",
+   "sweet": "γλυκός",
+   "warm": "ζεστός",
+   "weak": "αδύναμος",
+   "wet": "υγρός",
+   "young": "νεαρός",
+   "buy": "αγοράζω",
+   "close": "κλείνω",
+   "come": "έρχομαι",
+   "cook": "μαγειρεύω",
+   "cry": "κλαίω",
+   "dance": "χορεύω",
+   "die": "πεθαίνω",
+   "drink": "πίνω",
+   "eat": "τρώω",
+   "find": "βρίσκω",
+   "fly": "πετάω",
+   "give": "δίνω",
+   "go": "πηγαίνω",
+   "hear": "ακούω",
+   "help": "βοηθάω",
+   "know": "ξέρω",
+   "laugh": "γελάω",
+   "learn": "μαθαίνω",
+   "live": "ζω",
+   "love": "αγαπάω",
+   "open": "ανοίγω",
+   "pay": "πληρώνω",
+   "play": "παίζω",
+   "read": "διαβάζω",
+   "run": "τρέχω",
+   "say": "λέω",
+   "see": "βλέπω",
+   "sell": "πουλάω",
+   "sing": "τραγουδάω",
+   "sit": "κάθομαι",
+   "sleep": "κοιμάμαι",
+   "speak": "μιλάω",
+   "stand": "στέκομαι",
+   "swim": "κολυμπάω",
+   "take": "παίρνω",
+   "teach": "διδάσκω",
+   "think": "σκέφτομαι",
+   "wait": "περιμένω",
+   "walk": "περπατάω",
+   "want": "θέλω",
+   "wash": "πλένω",
+   "work": "δουλεύω",
+   "write": "γράφω"
+  },
+  "zh": {
+   "half": "一半",
+   "seven": "七",
+   "ten": "十",
+   "thousand": "千",
+   "brown": "棕色",
+   "green": "绿",
+   "pink": "粉红色",
+   "wife": "妻子",
+   "woman": "女人",
+   "bear": "熊",
+   "arm": "胳膊",
+   "ear": "耳朵",
+   "finger": "手指",
+   "knee": "膝盖",
+   "milk": "牛奶",
+   "potato": "土豆",
+   "soup": "汤",
+   "sugar": "糖",
+   "tea": "茶",
+   "beach": "海滩",
+   "ice": "冰",
+   "iron": "铁",
+   "mountain": "山",
+   "sand": "沙子",
+   "silver": "银",
+   "city": "城市",
+   "clothes": "衣服",
+   "road": "路",
+   "shirt": "衬衫",
+   "shoe": "鞋",
+   "evening": "晚上",
+   "hour": "小时",
+   "month": "月",
+   "yesterday": "昨天",
+   "beautiful": "美丽",
+   "dirty": "脏",
+   "easy": "容易",
+   "empty": "空",
+   "happy": "快乐",
+   "hard": "硬",
+   "heavy": "重",
+   "long": "长",
+   "low": "低",
+   "poor": "穷",
+   "rich": "富",
+   "slow": "慢",
+   "strong": "强",
+   "sweet": "甜",
+   "weak": "弱",
+   "wet": "湿",
+   "young": "年轻",
+   "buy": "买",
+   "close": "关",
+   "die": "死",
+   "find": "找到",
+   "go": "去",
+   "hear": "听见",
+   "help": "帮助",
+   "learn": "学习",
+   "run": "跑",
+   "sing": "唱歌",
+   "swim": "游泳",
+   "take": "拿",
+   "teach": "教",
+   "wait": "等",
+   "cheese": "奶酪",
+   "egg": "鸡蛋",
+   "bone": "骨头",
+   "brain": "大脑",
+   "people": "人们",
+   "fruit": "水果",
+   "sell": "卖",
+   "open": "开",
+   "think": "想",
+   "name": "名字",
+   "pay": "付钱",
+   "live": "活",
+   "earth": "土",
+   "house": "房子",
+   "star": "星星",
+   "stone": "石头",
+   "wood": "木头",
+   "see": "看见",
+   "speak": "说话",
+   "church": "教堂",
+   "cow": "牛",
+   "sheep": "羊",
+   "blue": "蓝"
+  },
+  "ja": {
+   "cat": "猫",
+   "take": "取る",
+   "close": "閉める",
+   "bed": "ベッド",
+   "table": "テーブル",
+   "boat": "船",
+   "beach": "浜辺",
+   "apple": "りんご",
+   "mouse": "ネズミ",
+   "people": "人々",
+   "earth": "土",
+   "milk": "牛乳",
+   "soup": "スープ",
+   "cow": "牛",
+   "clean": "きれい",
+   "full": "いっぱい",
+   "find": "見つける",
+   "man": "男",
+   "woman": "女",
+   "door": "ドア"
+  },
+  "ko": {
+   "day": "날",
+   "full": "가득하다",
+   "blue": "파랗다",
+   "want": "원하다",
+   "take": "가져가다",
+   "rich": "부유하다",
+   "close": "닫다",
+   "woman": "여자",
+   "hair": "머리카락",
+   "stomach": "배",
+   "skin": "피부",
+   "cow": "소"
+  },
+  "hi": {
+   "buy": "खरीदना",
+   "door": "दरवाज़ा",
+   "bear": "भालू",
+   "chair": "कुर्सी",
+   "table": "मेज़",
+   "key": "चाबी",
+   "beautiful": "सुंदर",
+   "mother": "माँ",
+   "brain": "दिमाग़",
+   "full": "भरा",
+   "empty": "खाली",
+   "money": "पैसा",
+   "heavy": "भारी",
+   "butter": "मक्खन",
+   "coffee": "कॉफ़ी",
+   "cloud": "बादल",
+   "ice": "बर्फ़",
+   "people": "लोग",
+   "person": "व्यक्ति",
+   "think": "सोचना",
+   "leg": "टाँग",
+   "honey": "शहद",
+   "sun": "सूरज",
+   "book": "किताब",
+   "bed": "बिस्तर",
+   "letter": "चिट्ठी",
+   "sea": "समुद्र"
+  },
+  "ar": {
+   "door": "بَاب",
+   "year": "سَنَة",
+   "orange": "بُرْتُقَالِيّ",
+   "young": "شَابّ",
+   "child": "طِفْل",
+   "people": "نَاس",
+   "live": "عَاشَ",
+   "think": "فَكَّرَ",
+   "brown": "بُنِّيّ"
+  },
+  "pl": {
+   "fire": "ogień",
+   "money": "pieniądze",
+   "rice": "ryż",
+   "people": "ludzie",
+   "think": "myśleć"
+  },
+  "fi": {
+   "money": "raha",
+   "moon": "kuu",
+   "think": "ajatella",
+   "half": "puoli",
+   "clothes": "vaatteet",
+   "beach": "ranta",
+   "stomach": "vatsa"
+  },
+  "it": {
+   "money": "soldi",
+   "baby": "neonato",
+   "wife": "moglie",
+   "table": "tavolo",
+   "bag": "borsa"
+  },
+  "sv": {
+   "money": "pengar",
+   "beautiful": "vacker",
+   "day": "dag",
+   "beach": "strand",
+   "strong": "stark",
+   "think": "tänka",
+   "friend": "vän",
+   "father": "far",
+   "baby": "bebis",
+   "dirty": "smutsig",
+   "pink": "rosa"
+  },
+  "fr": {
+   "hair": "cheveux",
+   "teach": "enseigner",
+   "think": "penser",
+   "people": "gens",
+   "soup": "soupe"
+  },
+  "de": {
+   "think": "denken",
+   "chair": "Stuhl",
+   "hat": "Hut",
+   "music": "Musik",
+   "happy": "glücklich",
+   "people": "Leute",
+   "bag": "Tasche",
+   "walk": "laufen",
+   "easy": "einfach"
+  },
+  "nl": {
+   "sun": "zon",
+   "cat": "kat",
+   "close": "sluiten",
+   "people": "mensen",
+   "forest": "bos",
+   "teach": "onderwijzen"
+  },
+  "es": {
+   "sky": "cielo",
+   "people": "gente",
+   "sheep": "oveja",
+   "grass": "hierba",
+   "pink": "rosa",
+   "boat": "barco",
+   "child": "niño",
+   "ear": "oreja",
+   "warm": "cálido"
+  },
+  "pt": {
+   "hot": "quente",
+   "love": "amar",
+   "child": "criança",
+   "people": "gente",
+   "orange": "laranja",
+   "ear": "orelha",
+   "shoe": "sapato",
+   "sun": "sol"
+  },
+  "ru": {
+   "day": "день",
+   "brain": "мозг",
+   "orange": "оранжевый",
+   "think": "думать",
+   "chicken": "курица",
+   "people": "люди",
+   "fruit": "фрукт",
+   "zero": "ноль",
+   "shoe": "ботинок"
+  }
+ },
+ "homographs": [
+  [
+   "arm",
+   "hand"
+  ],
+  [
+   "foot",
+   "leg"
+  ],
+  [
+   "tree",
+   "wood"
+  ],
+  [
+   "bone",
+   "leg"
+  ],
+  [
+   "eye",
+   "snow"
+  ],
+  [
+   "leg",
+   "bridge"
+  ],
+  [
+   "boat",
+   "stomach"
+  ],
+  [
+   "horse",
+   "word"
+  ],
+  [
+   "moon",
+   "month"
+  ],
+  [
+   "say",
+   "speak"
+  ],
+  [
+   "easy",
+   "light"
+  ],
+  [
+   "hot",
+   "warm"
+  ],
+  [
+   "morning",
+   "tomorrow"
+  ],
+  [
+   "yesterday",
+   "tomorrow"
+  ],
+  [
+   "clock",
+   "hour"
+  ],
+  [
+   "baby",
+   "child"
+  ],
+  [
+   "child",
+   "son"
+  ],
+  [
+   "wife",
+   "woman"
+  ],
+  [
+   "husband",
+   "man"
+  ],
+  [
+   "evening",
+   "night"
+  ],
+  [
+   "time",
+   "year"
+  ],
+  [
+   "small",
+   "young"
+  ],
+  [
+   "small",
+   "short"
+  ],
+  [
+   "ice",
+   "snow"
+  ],
+  [
+   "go",
+   "walk"
+  ],
+  [
+   "husband",
+   "wife"
+  ],
+  [
+   "know",
+   "learn"
+  ],
+  [
+   "teach",
+   "learn"
+  ],
+  [
+   "sky",
+   "day"
+  ],
+  [
+   "letter",
+   "paper"
+  ],
+  [
+   "person",
+   "people"
+  ],
+  [
+   "hot",
+   "high"
+  ],
+  [
+   "mother",
+   "father"
+  ]
+ ],
+ "gender": {
+  "es": {
+   "half": "f",
+   "hundred": "m",
+   "number": "m",
+   "thousand": "m",
+   "zero": "m",
+   "color": "m",
+   "baby": "m",
+   "brother": "m",
+   "child": "m",
+   "daughter": "f",
+   "father": "m",
+   "friend": "m",
+   "husband": "m",
+   "man": "m",
+   "mother": "f",
+   "name": "m",
+   "people": "f",
+   "person": "f",
+   "sister": "f",
+   "son": "m",
+   "wife": "f",
+   "woman": "f",
+   "bear": "m",
+   "bee": "f",
+   "bird": "m",
+   "cat": "m",
+   "chicken": "m",
+   "cow": "f",
+   "dog": "m",
+   "egg": "m",
+   "fish": "m",
+   "horse": "m",
+   "lion": "m",
+   "mouse": "m",
+   "pig": "m",
+   "sheep": "f",
+   "snake": "f",
+   "spider": "f",
+   "wolf": "m",
+   "arm": "m",
+   "back": "f",
+   "blood": "f",
+   "bone": "m",
+   "brain": "m",
+   "ear": "f",
+   "eye": "m",
+   "face": "f",
+   "finger": "m",
+   "foot": "m",
+   "hair": "m",
+   "hand": "f",
+   "head": "f",
+   "heart": "m",
+   "knee": "f",
+   "leg": "f",
+   "mouth": "f",
+   "neck": "m",
+   "nose": "f",
+   "skin": "f",
+   "stomach": "m",
+   "tongue": "f",
+   "tooth": "m",
+   "apple": "f",
+   "beer": "f",
+   "bread": "m",
+   "butter": "f",
+   "cheese": "m",
+   "coffee": "m",
+   "fruit": "f",
+   "honey": "f",
+   "meat": "f",
+   "milk": "f",
+   "potato": "f",
+   "rice": "m",
+   "salt": "f",
+   "soup": "f",
+   "sugar": "m",
+   "tea": "m",
+   "wine": "m",
+   "beach": "f",
+   "cloud": "f",
+   "earth": "f",
+   "fire": "m",
+   "flower": "f",
+   "forest": "m",
+   "grass": "f",
+   "ice": "m",
+   "iron": "m",
+   "island": "f",
+   "lake": "m",
+   "leaf": "f",
+   "moon": "f",
+   "mountain": "f",
+   "rain": "f",
+   "river": "m",
+   "sand": "f",
+   "sea": "m",
+   "silver": "f",
+   "sky": "m",
+   "snow": "f",
+   "star": "f",
+   "stone": "f",
+   "sun": "m",
+   "tree": "m",
+   "water": "f",
+   "wind": "m",
+   "wood": "f",
+   "bag": "f",
+   "ball": "f",
+   "bed": "f",
+   "boat": "m",
+   "book": "m",
+   "bridge": "m",
+   "car": "m",
+   "chair": "f",
+   "church": "f",
+   "city": "f",
+   "clock": "m",
+   "clothes": "f",
+   "door": "f",
+   "hat": "m",
+   "house": "f",
+   "key": "f",
+   "knife": "m",
+   "letter": "f",
+   "money": "m",
+   "music": "f",
+   "paper": "m",
+   "road": "m",
+   "school": "f",
+   "shirt": "f",
+   "shoe": "m",
+   "table": "f",
+   "window": "f",
+   "word": "f",
+   "day": "m",
+   "evening": "f",
+   "hour": "f",
+   "minute": "m",
+   "month": "m",
+   "morning": "f",
+   "night": "f",
+   "time": "m",
+   "week": "f",
+   "year": "m"
+  },
+  "fr": {
+   "half": "f",
+   "hundred": "m",
+   "number": "m",
+   "thousand": "m",
+   "zero": "m",
+   "color": "f",
+   "baby": "m",
+   "brother": "m",
+   "child": "m",
+   "daughter": "f",
+   "father": "m",
+   "friend": "m",
+   "husband": "m",
+   "man": "m",
+   "mother": "f",
+   "name": "m",
+   "people": "m",
+   "person": "f",
+   "sister": "f",
+   "son": "m",
+   "wife": "f",
+   "woman": "f",
+   "bear": "m",
+   "bee": "f",
+   "bird": "m",
+   "cat": "m",
+   "chicken": "m",
+   "cow": "f",
+   "dog": "m",
+   "egg": "m",
+   "fish": "m",
+   "horse": "m",
+   "lion": "m",
+   "mouse": "f",
+   "pig": "m",
+   "sheep": "m",
+   "snake": "m",
+   "spider": "f",
+   "wolf": "m",
+   "arm": "m",
+   "back": "m",
+   "blood": "m",
+   "bone": "m",
+   "brain": "m",
+   "ear": "f",
+   "eye": "m",
+   "face": "m",
+   "finger": "m",
+   "foot": "m",
+   "hair": "m",
+   "hand": "f",
+   "head": "f",
+   "heart": "m",
+   "knee": "m",
+   "leg": "f",
+   "mouth": "f",
+   "neck": "m",
+   "nose": "m",
+   "skin": "f",
+   "stomach": "m",
+   "tongue": "f",
+   "tooth": "f",
+   "apple": "f",
+   "beer": "f",
+   "bread": "m",
+   "butter": "m",
+   "cheese": "m",
+   "coffee": "m",
+   "fruit": "m",
+   "honey": "m",
+   "meat": "f",
+   "milk": "m",
+   "potato": "f",
+   "rice": "m",
+   "salt": "m",
+   "soup": "f",
+   "sugar": "m",
+   "tea": "m",
+   "wine": "m",
+   "beach": "f",
+   "cloud": "m",
+   "earth": "f",
+   "fire": "m",
+   "flower": "f",
+   "forest": "f",
+   "grass": "f",
+   "ice": "f",
+   "iron": "m",
+   "island": "f",
+   "lake": "m",
+   "leaf": "f",
+   "moon": "f",
+   "mountain": "f",
+   "rain": "f",
+   "river": "m",
+   "sand": "m",
+   "sea": "f",
+   "silver": "m",
+   "sky": "m",
+   "snow": "f",
+   "star": "f",
+   "stone": "f",
+   "sun": "m",
+   "tree": "m",
+   "water": "f",
+   "wind": "m",
+   "wood": "m",
+   "bag": "m",
+   "ball": "f",
+   "bed": "m",
+   "boat": "m",
+   "book": "m",
+   "bridge": "m",
+   "car": "f",
+   "chair": "f",
+   "church": "f",
+   "city": "f",
+   "clock": "f",
+   "clothes": "m",
+   "door": "f",
+   "hat": "m",
+   "house": "f",
+   "key": "f",
+   "knife": "m",
+   "letter": "f",
+   "money": "m",
+   "music": "f",
+   "paper": "m",
+   "road": "f",
+   "school": "f",
+   "shirt": "f",
+   "shoe": "f",
+   "table": "f",
+   "window": "f",
+   "word": "m",
+   "day": "m",
+   "evening": "m",
+   "hour": "f",
+   "minute": "f",
+   "month": "m",
+   "morning": "m",
+   "night": "f",
+   "time": "m",
+   "week": "f",
+   "year": "f"
+  },
+  "it": {
+   "half": "f",
+   "hundred": "m",
+   "number": "m",
+   "thousand": "m",
+   "zero": "m",
+   "color": "m",
+   "baby": "m",
+   "brother": "m",
+   "child": "m",
+   "daughter": "f",
+   "father": "m",
+   "friend": "m",
+   "husband": "m",
+   "man": "m",
+   "mother": "f",
+   "name": "m",
+   "people": "m",
+   "person": "f",
+   "sister": "f",
+   "son": "m",
+   "wife": "f",
+   "woman": "f",
+   "bear": "m",
+   "bee": "f",
+   "bird": "m",
+   "cat": "m",
+   "chicken": "m",
+   "cow": "f",
+   "dog": "m",
+   "egg": "m",
+   "fish": "m",
+   "horse": "m",
+   "lion": "m",
+   "mouse": "m",
+   "pig": "m",
+   "sheep": "f",
+   "snake": "m",
+   "spider": "m",
+   "wolf": "m",
+   "arm": "m",
+   "back": "f",
+   "blood": "m",
+   "bone": "m",
+   "brain": "m",
+   "ear": "m",
+   "eye": "m",
+   "face": "f",
+   "finger": "m",
+   "foot": "m",
+   "hair": "m",
+   "hand": "f",
+   "head": "f",
+   "heart": "m",
+   "knee": "m",
+   "leg": "f",
+   "mouth": "f",
+   "neck": "m",
+   "nose": "m",
+   "skin": "f",
+   "stomach": "m",
+   "tongue": "f",
+   "tooth": "m",
+   "apple": "f",
+   "beer": "f",
+   "bread": "m",
+   "butter": "m",
+   "cheese": "m",
+   "coffee": "m",
+   "fruit": "m",
+   "honey": "m",
+   "meat": "f",
+   "milk": "m",
+   "potato": "f",
+   "rice": "m",
+   "salt": "m",
+   "soup": "f",
+   "sugar": "m",
+   "tea": "m",
+   "wine": "m",
+   "beach": "f",
+   "cloud": "f",
+   "earth": "f",
+   "fire": "m",
+   "flower": "m",
+   "forest": "m",
+   "grass": "f",
+   "ice": "m",
+   "iron": "m",
+   "island": "f",
+   "lake": "m",
+   "leaf": "f",
+   "moon": "f",
+   "mountain": "f",
+   "rain": "f",
+   "river": "m",
+   "sand": "f",
+   "sea": "m",
+   "silver": "m",
+   "sky": "m",
+   "snow": "f",
+   "star": "f",
+   "stone": "f",
+   "sun": "m",
+   "tree": "m",
+   "water": "f",
+   "wind": "m",
+   "wood": "m",
+   "bag": "f",
+   "ball": "m",
+   "bed": "m",
+   "boat": "f",
+   "book": "m",
+   "bridge": "m",
+   "car": "f",
+   "chair": "f",
+   "church": "f",
+   "city": "f",
+   "clock": "m",
+   "clothes": "m",
+   "door": "f",
+   "hat": "m",
+   "house": "f",
+   "key": "f",
+   "knife": "m",
+   "letter": "f",
+   "money": "m",
+   "music": "f",
+   "paper": "f",
+   "road": "f",
+   "school": "f",
+   "shirt": "f",
+   "shoe": "f",
+   "table": "m",
+   "window": "f",
+   "word": "f",
+   "day": "m",
+   "evening": "f",
+   "hour": "f",
+   "minute": "m",
+   "month": "m",
+   "morning": "m",
+   "night": "f",
+   "time": "m",
+   "week": "f",
+   "year": "m"
+  },
+  "pt": {
+   "half": "f",
+   "hundred": "m",
+   "number": "m",
+   "thousand": "m",
+   "zero": "m",
+   "color": "f",
+   "baby": "m",
+   "brother": "m",
+   "child": "f",
+   "daughter": "f",
+   "father": "m",
+   "friend": "m",
+   "husband": "m",
+   "man": "m",
+   "mother": "f",
+   "name": "m",
+   "people": "f",
+   "person": "f",
+   "sister": "f",
+   "son": "m",
+   "wife": "f",
+   "woman": "f",
+   "bear": "m",
+   "bee": "f",
+   "bird": "m",
+   "cat": "m",
+   "chicken": "m",
+   "cow": "f",
+   "dog": "m",
+   "egg": "m",
+   "fish": "m",
+   "horse": "m",
+   "lion": "m",
+   "mouse": "m",
+   "pig": "m",
+   "sheep": "f",
+   "snake": "f",
+   "spider": "f",
+   "wolf": "m",
+   "arm": "m",
+   "back": "f",
+   "blood": "m",
+   "bone": "m",
+   "brain": "m",
+   "ear": "f",
+   "eye": "m",
+   "face": "f",
+   "finger": "m",
+   "foot": "m",
+   "hair": "m",
+   "hand": "f",
+   "head": "f",
+   "heart": "m",
+   "knee": "m",
+   "leg": "f",
+   "mouth": "f",
+   "neck": "m",
+   "nose": "m",
+   "skin": "f",
+   "stomach": "m",
+   "tongue": "f",
+   "tooth": "m",
+   "apple": "f",
+   "beer": "f",
+   "bread": "m",
+   "butter": "f",
+   "cheese": "m",
+   "coffee": "m",
+   "fruit": "f",
+   "honey": "m",
+   "meat": "f",
+   "milk": "m",
+   "potato": "f",
+   "rice": "m",
+   "salt": "m",
+   "soup": "f",
+   "sugar": "m",
+   "tea": "m",
+   "wine": "m",
+   "beach": "f",
+   "cloud": "f",
+   "earth": "f",
+   "fire": "m",
+   "flower": "f",
+   "forest": "f",
+   "grass": "f",
+   "ice": "m",
+   "iron": "m",
+   "island": "f",
+   "lake": "m",
+   "leaf": "f",
+   "moon": "f",
+   "mountain": "f",
+   "rain": "f",
+   "river": "m",
+   "sand": "f",
+   "sea": "m",
+   "silver": "f",
+   "sky": "m",
+   "snow": "f",
+   "star": "f",
+   "stone": "f",
+   "sun": "m",
+   "tree": "f",
+   "water": "f",
+   "wind": "m",
+   "wood": "f",
+   "bag": "f",
+   "ball": "f",
+   "bed": "f",
+   "boat": "m",
+   "book": "m",
+   "bridge": "f",
+   "car": "m",
+   "chair": "f",
+   "church": "f",
+   "city": "f",
+   "clock": "m",
+   "clothes": "f",
+   "door": "f",
+   "hat": "m",
+   "house": "f",
+   "key": "f",
+   "knife": "f",
+   "letter": "f",
+   "money": "m",
+   "music": "f",
+   "paper": "m",
+   "road": "f",
+   "school": "f",
+   "shirt": "f",
+   "shoe": "m",
+   "table": "f",
+   "window": "f",
+   "word": "f",
+   "day": "m",
+   "evening": "f",
+   "hour": "f",
+   "minute": "m",
+   "month": "m",
+   "morning": "f",
+   "night": "f",
+   "time": "m",
+   "week": "f",
+   "year": "m"
+  },
+  "de": {
+   "half": "f",
+   "number": "f",
+   "color": "f",
+   "baby": "n",
+   "brother": "m",
+   "child": "n",
+   "daughter": "f",
+   "father": "m",
+   "friend": "m",
+   "husband": "m",
+   "man": "m",
+   "mother": "f",
+   "name": "m",
+   "people": "pl",
+   "person": "f",
+   "sister": "f",
+   "son": "m",
+   "wife": "f",
+   "woman": "f",
+   "bear": "m",
+   "bee": "f",
+   "bird": "m",
+   "cat": "f",
+   "chicken": "n",
+   "cow": "f",
+   "dog": "m",
+   "egg": "n",
+   "fish": "m",
+   "horse": "n",
+   "lion": "m",
+   "mouse": "f",
+   "pig": "n",
+   "sheep": "n",
+   "snake": "f",
+   "spider": "f",
+   "wolf": "m",
+   "arm": "m",
+   "back": "m",
+   "blood": "n",
+   "bone": "m",
+   "brain": "n",
+   "ear": "n",
+   "eye": "n",
+   "face": "n",
+   "finger": "m",
+   "foot": "m",
+   "hair": "n",
+   "hand": "f",
+   "head": "m",
+   "heart": "n",
+   "knee": "n",
+   "leg": "n",
+   "mouth": "m",
+   "neck": "m",
+   "nose": "f",
+   "skin": "f",
+   "stomach": "m",
+   "tongue": "f",
+   "tooth": "m",
+   "apple": "m",
+   "beer": "n",
+   "bread": "n",
+   "butter": "f",
+   "cheese": "m",
+   "coffee": "m",
+   "fruit": "f",
+   "honey": "m",
+   "meat": "n",
+   "milk": "f",
+   "potato": "f",
+   "rice": "m",
+   "salt": "n",
+   "soup": "f",
+   "sugar": "m",
+   "tea": "m",
+   "wine": "m",
+   "beach": "m",
+   "cloud": "f",
+   "earth": "f",
+   "fire": "n",
+   "flower": "f",
+   "forest": "m",
+   "grass": "n",
+   "ice": "n",
+   "iron": "n",
+   "island": "f",
+   "lake": "m",
+   "leaf": "n",
+   "moon": "m",
+   "mountain": "m",
+   "rain": "m",
+   "river": "m",
+   "sand": "m",
+   "sea": "n",
+   "silver": "n",
+   "sky": "m",
+   "snow": "m",
+   "star": "m",
+   "stone": "m",
+   "sun": "f",
+   "tree": "m",
+   "water": "n",
+   "wind": "m",
+   "wood": "n",
+   "bag": "f",
+   "ball": "m",
+   "bed": "n",
+   "boat": "n",
+   "book": "n",
+   "bridge": "f",
+   "car": "n",
+   "chair": "m",
+   "church": "f",
+   "city": "f",
+   "clock": "f",
+   "clothes": "pl",
+   "door": "f",
+   "hat": "m",
+   "house": "n",
+   "key": "m",
+   "knife": "n",
+   "letter": "m",
+   "money": "n",
+   "music": "f",
+   "paper": "n",
+   "road": "f",
+   "school": "f",
+   "shirt": "n",
+   "shoe": "m",
+   "table": "m",
+   "window": "n",
+   "word": "n",
+   "day": "m",
+   "evening": "m",
+   "hour": "f",
+   "minute": "f",
+   "month": "m",
+   "morning": "m",
+   "night": "f",
+   "time": "f",
+   "week": "f",
+   "year": "n"
+  },
+  "nl": {
+   "half": "de",
+   "number": "het",
+   "color": "de",
+   "baby": "de",
+   "brother": "de",
+   "child": "het",
+   "daughter": "de",
+   "father": "de",
+   "friend": "de",
+   "husband": "de",
+   "man": "de",
+   "mother": "de",
+   "name": "de",
+   "people": "de",
+   "person": "de",
+   "sister": "de",
+   "son": "de",
+   "wife": "de",
+   "woman": "de",
+   "bear": "de",
+   "bee": "de",
+   "bird": "de",
+   "cat": "de",
+   "chicken": "de",
+   "cow": "de",
+   "dog": "de",
+   "egg": "het",
+   "fish": "de",
+   "horse": "het",
+   "lion": "de",
+   "mouse": "de",
+   "pig": "het",
+   "sheep": "het",
+   "snake": "de",
+   "spider": "de",
+   "wolf": "de",
+   "arm": "de",
+   "back": "de",
+   "blood": "het",
+   "bone": "het",
+   "brain": "de",
+   "ear": "het",
+   "eye": "het",
+   "face": "het",
+   "finger": "de",
+   "foot": "de",
+   "hair": "het",
+   "hand": "de",
+   "head": "het",
+   "heart": "het",
+   "knee": "de",
+   "leg": "het",
+   "mouth": "de",
+   "neck": "de",
+   "nose": "de",
+   "skin": "de",
+   "stomach": "de",
+   "tongue": "de",
+   "tooth": "de",
+   "apple": "de",
+   "beer": "het",
+   "bread": "het",
+   "butter": "de",
+   "cheese": "de",
+   "coffee": "de",
+   "fruit": "het",
+   "honey": "de",
+   "meat": "het",
+   "milk": "de",
+   "potato": "de",
+   "rice": "de",
+   "salt": "het",
+   "soup": "de",
+   "sugar": "de",
+   "tea": "de",
+   "wine": "de",
+   "beach": "het",
+   "cloud": "de",
+   "earth": "de",
+   "fire": "het",
+   "flower": "de",
+   "forest": "het",
+   "grass": "het",
+   "ice": "het",
+   "iron": "het",
+   "island": "het",
+   "lake": "het",
+   "leaf": "het",
+   "moon": "de",
+   "mountain": "de",
+   "rain": "de",
+   "river": "de",
+   "sand": "het",
+   "sea": "de",
+   "silver": "het",
+   "sky": "de",
+   "snow": "de",
+   "star": "de",
+   "stone": "de",
+   "sun": "de",
+   "tree": "de",
+   "water": "het",
+   "wind": "de",
+   "wood": "het",
+   "bag": "de",
+   "ball": "de",
+   "bed": "het",
+   "boat": "de",
+   "book": "het",
+   "bridge": "de",
+   "car": "de",
+   "chair": "de",
+   "church": "de",
+   "city": "de",
+   "clock": "de",
+   "clothes": "de",
+   "door": "de",
+   "hat": "de",
+   "house": "het",
+   "key": "de",
+   "knife": "het",
+   "letter": "de",
+   "money": "het",
+   "music": "de",
+   "paper": "het",
+   "road": "de",
+   "school": "de",
+   "shirt": "het",
+   "shoe": "de",
+   "table": "de",
+   "window": "het",
+   "word": "het",
+   "day": "de",
+   "evening": "de",
+   "hour": "het",
+   "minute": "de",
+   "month": "de",
+   "morning": "de",
+   "night": "de",
+   "time": "de",
+   "week": "de",
+   "year": "het"
+  }
+ },
+ "falseFriends": [
+  {
+   "lang": "fr",
+   "word": "pain",
+   "means": "bread",
+   "looksLike": "pain",
+   "itemId": "bread"
+  },
+  {
+   "lang": "fr",
+   "word": "sale",
+   "means": "dirty",
+   "looksLike": "sale",
+   "itemId": "dirty"
+  },
+  {
+   "lang": "fr",
+   "word": "chair",
+   "means": "flesh",
+   "looksLike": "chair"
+  },
+  {
+   "lang": "fr",
+   "word": "librairie",
+   "means": "bookshop",
+   "looksLike": "library"
+  },
+  {
+   "lang": "es",
+   "word": "largo",
+   "means": "long",
+   "looksLike": "large",
+   "itemId": "long"
+  },
+  {
+   "lang": "it",
+   "word": "largo",
+   "means": "wide",
+   "looksLike": "large"
+  },
+  {
+   "lang": "es",
+   "word": "ropa",
+   "means": "clothes",
+   "looksLike": "rope",
+   "itemId": "clothes"
+  },
+  {
+   "lang": "es",
+   "word": "embarazada",
+   "means": "pregnant",
+   "looksLike": "embarrassed"
+  },
+  {
+   "lang": "es",
+   "word": "éxito",
+   "means": "success",
+   "looksLike": "exit"
+  },
+  {
+   "lang": "es",
+   "word": "burro",
+   "means": "donkey",
+   "looksLike": "burro",
+   "crossWith": {
+    "lang": "it",
+    "word": "burro",
+    "means": "butter"
+   }
+  },
+  {
+   "lang": "it",
+   "word": "burro",
+   "means": "butter",
+   "looksLike": "burro",
+   "itemId": "butter",
+   "crossWith": {
+    "lang": "es",
+    "word": "burro",
+    "means": "donkey"
+   }
+  },
+  {
+   "lang": "it",
+   "word": "camera",
+   "means": "room",
+   "looksLike": "camera"
+  },
+  {
+   "lang": "pt",
+   "word": "polvo",
+   "means": "octopus",
+   "looksLike": "polvo",
+   "crossWith": {
+    "lang": "es",
+    "word": "polvo",
+    "means": "dust"
+   }
+  },
+  {
+   "lang": "pt",
+   "word": "esquisito",
+   "means": "strange",
+   "looksLike": "exquisite",
+   "crossWith": {
+    "lang": "es",
+    "word": "exquisito",
+    "means": "delicious"
+   }
+  },
+  {
+   "lang": "pt",
+   "word": "puxar",
+   "means": "to pull",
+   "looksLike": "push"
+  },
+  {
+   "lang": "de",
+   "word": "Gift",
+   "means": "poison",
+   "looksLike": "gift"
+  },
+  {
+   "lang": "de",
+   "word": "bekommen",
+   "means": "to get",
+   "looksLike": "become"
+  },
+  {
+   "lang": "de",
+   "word": "Rat",
+   "means": "advice",
+   "looksLike": "rat"
+  },
+  {
+   "lang": "nl",
+   "word": "been",
+   "means": "leg or bone",
+   "looksLike": "been",
+   "itemId": "leg"
+  },
+  {
+   "lang": "sv",
+   "word": "glass",
+   "means": "ice cream",
+   "looksLike": "glass"
+  },
+  {
+   "lang": "sv",
+   "word": "barn",
+   "means": "child",
+   "looksLike": "barn",
+   "itemId": "child"
+  },
+  {
+   "lang": "pl",
+   "word": "data",
+   "means": "date",
+   "looksLike": "data"
+  },
+  {
+   "lang": "ru",
+   "word": "магазин",
+   "means": "shop",
+   "looksLike": "magazine"
+  },
+  {
+   "lang": "fi",
+   "word": "kiva",
+   "means": "nice",
+   "looksLike": "kiwi"
+  }
+ ],
+ "conjugation": {
+  "buy": {
+   "es": {
+    "infinitive": "comprar",
+    "present": [
+     "compro",
+     "compras",
+     "compra",
+     "compramos",
+     "compráis",
+     "compran"
+    ]
+   },
+   "fr": {
+    "infinitive": "acheter",
+    "present": [
+     "achète",
+     "achètes",
+     "achète",
+     "achetons",
+     "achetez",
+     "achètent"
+    ]
+   },
+   "it": {
+    "infinitive": "comprare",
+    "present": [
+     "compro",
+     "compri",
+     "compra",
+     "compriamo",
+     "comprate",
+     "comprano"
+    ]
+   },
+   "pt": {
+    "infinitive": "comprar",
+    "present": [
+     "compro",
+     "compras",
+     "compra",
+     "compramos",
+     "comprais",
+     "compram"
+    ]
+   },
+   "de": {
+    "infinitive": "kaufen",
+    "present": [
+     "kaufe",
+     "kaufst",
+     "kauft",
+     "kaufen",
+     "kauft",
+     "kaufen"
+    ]
+   },
+   "nl": {
+    "infinitive": "kopen",
+    "present": [
+     "koop",
+     "koopt",
+     "koopt",
+     "kopen",
+     "koopt",
+     "kopen"
+    ]
+   }
+  },
+  "close": {
+   "es": {
+    "infinitive": "cerrar",
+    "present": [
+     "cierro",
+     "cierras",
+     "cierra",
+     "cerramos",
+     "cerráis",
+     "cierran"
+    ]
+   },
+   "fr": {
+    "infinitive": "fermer",
+    "present": [
+     "ferme",
+     "fermes",
+     "ferme",
+     "fermons",
+     "fermez",
+     "ferment"
+    ]
+   },
+   "it": {
+    "infinitive": "chiudere",
+    "present": [
+     "chiudo",
+     "chiudi",
+     "chiude",
+     "chiudiamo",
+     "chiudete",
+     "chiudono"
+    ]
+   },
+   "pt": {
+    "infinitive": "fechar",
+    "present": [
+     "fecho",
+     "fechas",
+     "fecha",
+     "fechamos",
+     "fechais",
+     "fecham"
+    ]
+   },
+   "de": {
+    "infinitive": "schließen",
+    "present": [
+     "schließe",
+     "schließt",
+     "schließt",
+     "schließen",
+     "schließt",
+     "schließen"
+    ]
+   },
+   "nl": {
+    "infinitive": "sluiten",
+    "present": [
+     "sluit",
+     "sluit",
+     "sluit",
+     "sluiten",
+     "sluiten",
+     "sluiten"
+    ]
+   }
+  },
+  "come": {
+   "es": {
+    "infinitive": "venir",
+    "present": [
+     "vengo",
+     "vienes",
+     "viene",
+     "venimos",
+     "venís",
+     "vienen"
+    ]
+   },
+   "fr": {
+    "infinitive": "venir",
+    "present": [
+     "viens",
+     "viens",
+     "vient",
+     "venons",
+     "venez",
+     "viennent"
+    ]
+   },
+   "it": {
+    "infinitive": "venire",
+    "present": [
+     "vengo",
+     "vieni",
+     "viene",
+     "veniamo",
+     "venite",
+     "vengono"
+    ]
+   },
+   "pt": {
+    "infinitive": "vir",
+    "present": [
+     "venho",
+     "vens",
+     "vem",
+     "vimos",
+     "vindes",
+     "vêm"
+    ]
+   },
+   "de": {
+    "infinitive": "kommen",
+    "present": [
+     "komme",
+     "kommst",
+     "kommt",
+     "kommen",
+     "kommt",
+     "kommen"
+    ]
+   },
+   "nl": {
+    "infinitive": "komen",
+    "present": [
+     "kom",
+     "komt",
+     "komt",
+     "komen",
+     "komen",
+     "komen"
+    ]
+   }
+  },
+  "cook": {
+   "es": {
+    "infinitive": "cocinar",
+    "present": [
+     "cocino",
+     "cocinas",
+     "cocina",
+     "cocinamos",
+     "cocináis",
+     "cocinan"
+    ]
+   },
+   "fr": {
+    "infinitive": "cuisiner",
+    "present": [
+     "cuisine",
+     "cuisines",
+     "cuisine",
+     "cuisinons",
+     "cuisinez",
+     "cuisinent"
+    ]
+   },
+   "it": {
+    "infinitive": "cuocere",
+    "present": [
+     "cuocio",
+     "cuoci",
+     "cuoce",
+     "cuociamo",
+     "cuocete",
+     "cuociono"
+    ]
+   },
+   "pt": {
+    "infinitive": "cozinhar",
+    "present": [
+     "cozinho",
+     "cozinhas",
+     "cozinha",
+     "cozinhamos",
+     "cozinhais",
+     "cozinham"
+    ]
+   },
+   "de": {
+    "infinitive": "kochen",
+    "present": [
+     "koche",
+     "kochst",
+     "kocht",
+     "kochen",
+     "kocht",
+     "kochen"
+    ]
+   },
+   "nl": {
+    "infinitive": "koken",
+    "present": [
+     "kook",
+     "kookt",
+     "kookt",
+     "koken",
+     "koken",
+     "koken"
+    ]
+   }
+  },
+  "cry": {
+   "es": {
+    "infinitive": "llorar",
+    "present": [
+     "lloro",
+     "lloras",
+     "llora",
+     "lloramos",
+     "lloráis",
+     "lloran"
+    ]
+   },
+   "fr": {
+    "infinitive": "pleurer",
+    "present": [
+     "pleure",
+     "pleures",
+     "pleure",
+     "pleurons",
+     "pleurez",
+     "pleurent"
+    ]
+   },
+   "it": {
+    "infinitive": "piangere",
+    "present": [
+     "piango",
+     "piangi",
+     "piange",
+     "piangiamo",
+     "piangete",
+     "piangono"
+    ]
+   },
+   "pt": {
+    "infinitive": "chorar",
+    "present": [
+     "choro",
+     "choras",
+     "chora",
+     "choramos",
+     "chorais",
+     "choram"
+    ]
+   },
+   "de": {
+    "infinitive": "weinen",
+    "present": [
+     "weine",
+     "weinst",
+     "weint",
+     "weinen",
+     "weint",
+     "weinen"
+    ]
+   },
+   "nl": {
+    "infinitive": "huilen",
+    "present": [
+     "huil",
+     "huilt",
+     "huilt",
+     "huilen",
+     "huilen",
+     "huilen"
+    ]
+   }
+  },
+  "dance": {
+   "es": {
+    "infinitive": "bailar",
+    "present": [
+     "bailo",
+     "bailas",
+     "baila",
+     "bailamos",
+     "bailáis",
+     "bailan"
+    ]
+   },
+   "fr": {
+    "infinitive": "danser",
+    "present": [
+     "danse",
+     "danses",
+     "danse",
+     "dansons",
+     "dansez",
+     "dansent"
+    ]
+   },
+   "it": {
+    "infinitive": "ballare",
+    "present": [
+     "ballo",
+     "balli",
+     "balla",
+     "balliamo",
+     "ballate",
+     "ballano"
+    ]
+   },
+   "pt": {
+    "infinitive": "dançar",
+    "present": [
+     "danço",
+     "danças",
+     "dança",
+     "dançamos",
+     "dançais",
+     "dançam"
+    ]
+   },
+   "de": {
+    "infinitive": "tanzen",
+    "present": [
+     "tanze",
+     "tanzt",
+     "tanzt",
+     "tanzen",
+     "tanzt",
+     "tanzen"
+    ]
+   },
+   "nl": {
+    "infinitive": "dansen",
+    "present": [
+     "dans",
+     "danst",
+     "danst",
+     "dansen",
+     "dansen",
+     "dansen"
+    ]
+   }
+  },
+  "die": {
+   "es": {
+    "infinitive": "morir",
+    "present": [
+     "muero",
+     "mueres",
+     "muere",
+     "morimos",
+     "morís",
+     "mueren"
+    ]
+   },
+   "fr": {
+    "infinitive": "mourir",
+    "present": [
+     "meurs",
+     "meurs",
+     "meurt",
+     "mourons",
+     "mourez",
+     "meurent"
+    ]
+   },
+   "it": {
+    "infinitive": "morire",
+    "present": [
+     "muoio",
+     "muori",
+     "muore",
+     "moriamo",
+     "morite",
+     "muoiono"
+    ]
+   },
+   "pt": {
+    "infinitive": "morrer",
+    "present": [
+     "morro",
+     "morres",
+     "morre",
+     "morremos",
+     "morreis",
+     "morrem"
+    ]
+   },
+   "de": {
+    "infinitive": "sterben",
+    "present": [
+     "sterbe",
+     "stirbst",
+     "stirbt",
+     "sterben",
+     "sterbt",
+     "sterben"
+    ]
+   },
+   "nl": {
+    "infinitive": "doodgaan",
+    "present": [
+     "ga dood",
+     "gaat dood",
+     "gaat dood",
+     "gaan dood",
+     "gaan dood",
+     "gaan dood"
+    ]
+   }
+  },
+  "drink": {
+   "es": {
+    "infinitive": "beber",
+    "present": [
+     "bebo",
+     "bebes",
+     "bebe",
+     "bebemos",
+     "bebéis",
+     "beben"
+    ]
+   },
+   "fr": {
+    "infinitive": "boire",
+    "present": [
+     "bois",
+     "bois",
+     "boit",
+     "buvons",
+     "buvez",
+     "boivent"
+    ]
+   },
+   "it": {
+    "infinitive": "bere",
+    "present": [
+     "bevo",
+     "bevi",
+     "beve",
+     "beviamo",
+     "bevete",
+     "bevono"
+    ]
+   },
+   "pt": {
+    "infinitive": "beber",
+    "present": [
+     "bebo",
+     "bebes",
+     "bebe",
+     "bebemos",
+     "bebeis",
+     "bebem"
+    ]
+   },
+   "de": {
+    "infinitive": "trinken",
+    "present": [
+     "trinke",
+     "trinkst",
+     "trinkt",
+     "trinken",
+     "trinkt",
+     "trinken"
+    ]
+   },
+   "nl": {
+    "infinitive": "drinken",
+    "present": [
+     "drink",
+     "drinkt",
+     "drinkt",
+     "drinken",
+     "drinken",
+     "drinken"
+    ]
+   }
+  },
+  "eat": {
+   "es": {
+    "infinitive": "comer",
+    "present": [
+     "como",
+     "comes",
+     "come",
+     "comemos",
+     "coméis",
+     "comen"
+    ]
+   },
+   "fr": {
+    "infinitive": "manger",
+    "present": [
+     "mange",
+     "manges",
+     "mange",
+     "mangeons",
+     "mangez",
+     "mangent"
+    ]
+   },
+   "it": {
+    "infinitive": "mangiare",
+    "present": [
+     "mangio",
+     "mangi",
+     "mangia",
+     "mangiamo",
+     "mangiate",
+     "mangiano"
+    ]
+   },
+   "pt": {
+    "infinitive": "comer",
+    "present": [
+     "como",
+     "comes",
+     "come",
+     "comemos",
+     "comeis",
+     "comem"
+    ]
+   },
+   "de": {
+    "infinitive": "essen",
+    "present": [
+     "esse",
+     "isst",
+     "isst",
+     "essen",
+     "esst",
+     "essen"
+    ]
+   },
+   "nl": {
+    "infinitive": "eten",
+    "present": [
+     "eet",
+     "eet",
+     "eet",
+     "eten",
+     "eten",
+     "eten"
+    ]
+   }
+  },
+  "find": {
+   "es": {
+    "infinitive": "encontrar",
+    "present": [
+     "encuentro",
+     "encuentras",
+     "encuentra",
+     "encontramos",
+     "encontráis",
+     "encuentran"
+    ]
+   },
+   "fr": {
+    "infinitive": "trouver",
+    "present": [
+     "trouve",
+     "trouves",
+     "trouve",
+     "trouvons",
+     "trouvez",
+     "trouvent"
+    ]
+   },
+   "it": {
+    "infinitive": "trovare",
+    "present": [
+     "trovo",
+     "trovi",
+     "trova",
+     "troviamo",
+     "trovate",
+     "trovano"
+    ]
+   },
+   "pt": {
+    "infinitive": "achar",
+    "present": [
+     "acho",
+     "achas",
+     "acha",
+     "achamos",
+     "achais",
+     "acham"
+    ]
+   },
+   "de": {
+    "infinitive": "finden",
+    "present": [
+     "finde",
+     "findest",
+     "findet",
+     "finden",
+     "findet",
+     "finden"
+    ]
+   },
+   "nl": {
+    "infinitive": "vinden",
+    "present": [
+     "vind",
+     "vindt",
+     "vindt",
+     "vinden",
+     "vinden",
+     "vinden"
+    ]
+   }
+  },
+  "fly": {
+   "es": {
+    "infinitive": "volar",
+    "present": [
+     "vuelo",
+     "vuelas",
+     "vuela",
+     "volamos",
+     "voláis",
+     "vuelan"
+    ]
+   },
+   "fr": {
+    "infinitive": "voler",
+    "present": [
+     "vole",
+     "voles",
+     "vole",
+     "volons",
+     "volez",
+     "volent"
+    ]
+   },
+   "it": {
+    "infinitive": "volare",
+    "present": [
+     "volo",
+     "voli",
+     "vola",
+     "voliamo",
+     "volate",
+     "volano"
+    ]
+   },
+   "pt": {
+    "infinitive": "voar",
+    "present": [
+     "voo",
+     "voas",
+     "voa",
+     "voamos",
+     "voais",
+     "voam"
+    ]
+   },
+   "de": {
+    "infinitive": "fliegen",
+    "present": [
+     "fliege",
+     "fliegst",
+     "fliegt",
+     "fliegen",
+     "fliegt",
+     "fliegen"
+    ]
+   },
+   "nl": {
+    "infinitive": "vliegen",
+    "present": [
+     "vlieg",
+     "vliegt",
+     "vliegt",
+     "vliegen",
+     "vliegen",
+     "vliegen"
+    ]
+   }
+  },
+  "give": {
+   "es": {
+    "infinitive": "dar",
+    "present": [
+     "doy",
+     "das",
+     "da",
+     "damos",
+     "dais",
+     "dan"
+    ]
+   },
+   "fr": {
+    "infinitive": "donner",
+    "present": [
+     "donne",
+     "donnes",
+     "donne",
+     "donnons",
+     "donnez",
+     "donnent"
+    ]
+   },
+   "it": {
+    "infinitive": "dare",
+    "present": [
+     "do",
+     "dai",
+     "dà",
+     "diamo",
+     "date",
+     "danno"
+    ]
+   },
+   "pt": {
+    "infinitive": "dar",
+    "present": [
+     "dou",
+     "dás",
+     "dá",
+     "damos",
+     "dais",
+     "dão"
+    ]
+   },
+   "de": {
+    "infinitive": "geben",
+    "present": [
+     "gebe",
+     "gibst",
+     "gibt",
+     "geben",
+     "gebt",
+     "geben"
+    ]
+   },
+   "nl": {
+    "infinitive": "geven",
+    "present": [
+     "geef",
+     "geeft",
+     "geeft",
+     "geven",
+     "geven",
+     "geven"
+    ]
+   }
+  },
+  "go": {
+   "es": {
+    "infinitive": "ir",
+    "present": [
+     "voy",
+     "vas",
+     "va",
+     "vamos",
+     "vais",
+     "van"
+    ]
+   },
+   "fr": {
+    "infinitive": "aller",
+    "present": [
+     "vais",
+     "vas",
+     "va",
+     "allons",
+     "allez",
+     "vont"
+    ]
+   },
+   "it": {
+    "infinitive": "andare",
+    "present": [
+     "vado",
+     "vai",
+     "va",
+     "andiamo",
+     "andate",
+     "vanno"
+    ]
+   },
+   "pt": {
+    "infinitive": "ir",
+    "present": [
+     "vou",
+     "vais",
+     "vai",
+     "vamos",
+     "ides",
+     "vão"
+    ]
+   },
+   "de": {
+    "infinitive": "gehen",
+    "present": [
+     "gehe",
+     "gehst",
+     "geht",
+     "gehen",
+     "geht",
+     "gehen"
+    ]
+   },
+   "nl": {
+    "infinitive": "gaan",
+    "present": [
+     "ga",
+     "gaat",
+     "gaat",
+     "gaan",
+     "gaan",
+     "gaan"
+    ]
+   }
+  },
+  "hear": {
+   "es": {
+    "infinitive": "oír",
+    "present": [
+     "oigo",
+     "oyes",
+     "oye",
+     "oímos",
+     "oís",
+     "oyen"
+    ]
+   },
+   "fr": {
+    "infinitive": "entendre",
+    "present": [
+     "entends",
+     "entends",
+     "entend",
+     "entendons",
+     "entendez",
+     "entendent"
+    ]
+   },
+   "it": {
+    "infinitive": "sentire",
+    "present": [
+     "sento",
+     "senti",
+     "sente",
+     "sentiamo",
+     "sentite",
+     "sentono"
+    ]
+   },
+   "pt": {
+    "infinitive": "ouvir",
+    "present": [
+     "ouço",
+     "ouves",
+     "ouve",
+     "ouvimos",
+     "ouvis",
+     "ouvem"
+    ]
+   },
+   "de": {
+    "infinitive": "hören",
+    "present": [
+     "höre",
+     "hörst",
+     "hört",
+     "hören",
+     "hört",
+     "hören"
+    ]
+   },
+   "nl": {
+    "infinitive": "horen",
+    "present": [
+     "hoor",
+     "hoort",
+     "hoort",
+     "horen",
+     "horen",
+     "horen"
+    ]
+   }
+  },
+  "help": {
+   "es": {
+    "infinitive": "ayudar",
+    "present": [
+     "ayudo",
+     "ayudas",
+     "ayuda",
+     "ayudamos",
+     "ayudáis",
+     "ayudan"
+    ]
+   },
+   "fr": {
+    "infinitive": "aider",
+    "present": [
+     "aide",
+     "aides",
+     "aide",
+     "aidons",
+     "aidez",
+     "aident"
+    ]
+   },
+   "it": {
+    "infinitive": "aiutare",
+    "present": [
+     "aiuto",
+     "aiuti",
+     "aiuta",
+     "aiutiamo",
+     "aiutate",
+     "aiutano"
+    ]
+   },
+   "pt": {
+    "infinitive": "ajudar",
+    "present": [
+     "ajudo",
+     "ajudas",
+     "ajuda",
+     "ajudamos",
+     "ajudais",
+     "ajudam"
+    ]
+   },
+   "de": {
+    "infinitive": "helfen",
+    "present": [
+     "helfe",
+     "hilfst",
+     "hilft",
+     "helfen",
+     "helft",
+     "helfen"
+    ]
+   },
+   "nl": {
+    "infinitive": "helpen",
+    "present": [
+     "help",
+     "helpt",
+     "helpt",
+     "helpen",
+     "helpen",
+     "helpen"
+    ]
+   }
+  },
+  "know": {
+   "es": {
+    "infinitive": "saber",
+    "present": [
+     "sé",
+     "sabes",
+     "sabe",
+     "sabemos",
+     "sabéis",
+     "saben"
+    ]
+   },
+   "fr": {
+    "infinitive": "savoir",
+    "present": [
+     "sais",
+     "sais",
+     "sait",
+     "savons",
+     "savez",
+     "savent"
+    ]
+   },
+   "it": {
+    "infinitive": "sapere",
+    "present": [
+     "so",
+     "sai",
+     "sa",
+     "sappiamo",
+     "sapete",
+     "sanno"
+    ]
+   },
+   "pt": {
+    "infinitive": "saber",
+    "present": [
+     "sei",
+     "sabes",
+     "sabe",
+     "sabemos",
+     "sabeis",
+     "sabem"
+    ]
+   },
+   "de": {
+    "infinitive": "wissen",
+    "present": [
+     "weiß",
+     "weißt",
+     "weiß",
+     "wissen",
+     "wisst",
+     "wissen"
+    ]
+   },
+   "nl": {
+    "infinitive": "weten",
+    "present": [
+     "weet",
+     "weet",
+     "weet",
+     "weten",
+     "weten",
+     "weten"
+    ]
+   }
+  },
+  "laugh": {
+   "es": {
+    "infinitive": "reír",
+    "present": [
+     "río",
+     "ríes",
+     "ríe",
+     "reímos",
+     "reís",
+     "ríen"
+    ]
+   },
+   "fr": {
+    "infinitive": "rire",
+    "present": [
+     "ris",
+     "ris",
+     "rit",
+     "rions",
+     "riez",
+     "rient"
+    ]
+   },
+   "it": {
+    "infinitive": "ridere",
+    "present": [
+     "rido",
+     "ridi",
+     "ride",
+     "ridiamo",
+     "ridete",
+     "ridono"
+    ]
+   },
+   "pt": {
+    "infinitive": "rir",
+    "present": [
+     "rio",
+     "ris",
+     "ri",
+     "rimos",
+     "rides",
+     "riem"
+    ]
+   },
+   "de": {
+    "infinitive": "lachen",
+    "present": [
+     "lache",
+     "lachst",
+     "lacht",
+     "lachen",
+     "lacht",
+     "lachen"
+    ]
+   },
+   "nl": {
+    "infinitive": "lachen",
+    "present": [
+     "lach",
+     "lacht",
+     "lacht",
+     "lachen",
+     "lachen",
+     "lachen"
+    ]
+   }
+  },
+  "learn": {
+   "es": {
+    "infinitive": "aprender",
+    "present": [
+     "aprendo",
+     "aprendes",
+     "aprende",
+     "aprendemos",
+     "aprendéis",
+     "aprenden"
+    ]
+   },
+   "fr": {
+    "infinitive": "apprendre",
+    "present": [
+     "apprends",
+     "apprends",
+     "apprend",
+     "apprenons",
+     "apprenez",
+     "apprennent"
+    ]
+   },
+   "it": {
+    "infinitive": "imparare",
+    "present": [
+     "imparo",
+     "impari",
+     "impara",
+     "impariamo",
+     "imparate",
+     "imparano"
+    ]
+   },
+   "pt": {
+    "infinitive": "aprender",
+    "present": [
+     "aprendo",
+     "aprendes",
+     "aprende",
+     "aprendemos",
+     "aprendeis",
+     "aprendem"
+    ]
+   },
+   "de": {
+    "infinitive": "lernen",
+    "present": [
+     "lerne",
+     "lernst",
+     "lernt",
+     "lernen",
+     "lernt",
+     "lernen"
+    ]
+   },
+   "nl": {
+    "infinitive": "leren",
+    "present": [
+     "leer",
+     "leert",
+     "leert",
+     "leren",
+     "leren",
+     "leren"
+    ]
+   }
+  },
+  "live": {
+   "es": {
+    "infinitive": "vivir",
+    "present": [
+     "vivo",
+     "vives",
+     "vive",
+     "vivimos",
+     "vivís",
+     "viven"
+    ]
+   },
+   "fr": {
+    "infinitive": "vivre",
+    "present": [
+     "vis",
+     "vis",
+     "vit",
+     "vivons",
+     "vivez",
+     "vivent"
+    ]
+   },
+   "it": {
+    "infinitive": "vivere",
+    "present": [
+     "vivo",
+     "vivi",
+     "vive",
+     "viviamo",
+     "vivete",
+     "vivono"
+    ]
+   },
+   "pt": {
+    "infinitive": "viver",
+    "present": [
+     "vivo",
+     "vives",
+     "vive",
+     "vivemos",
+     "viveis",
+     "vivem"
+    ]
+   },
+   "de": {
+    "infinitive": "leben",
+    "present": [
+     "lebe",
+     "lebst",
+     "lebt",
+     "leben",
+     "lebt",
+     "leben"
+    ]
+   },
+   "nl": {
+    "infinitive": "leven",
+    "present": [
+     "leef",
+     "leeft",
+     "leeft",
+     "leven",
+     "leven",
+     "leven"
+    ]
+   }
+  },
+  "love": {
+   "es": {
+    "infinitive": "amar",
+    "present": [
+     "amo",
+     "amas",
+     "ama",
+     "amamos",
+     "amáis",
+     "aman"
+    ]
+   },
+   "fr": {
+    "infinitive": "aimer",
+    "present": [
+     "aime",
+     "aimes",
+     "aime",
+     "aimons",
+     "aimez",
+     "aiment"
+    ]
+   },
+   "it": {
+    "infinitive": "amare",
+    "present": [
+     "amo",
+     "ami",
+     "ama",
+     "amiamo",
+     "amate",
+     "amano"
+    ]
+   },
+   "pt": {
+    "infinitive": "amar",
+    "present": [
+     "amo",
+     "amas",
+     "ama",
+     "amamos",
+     "amais",
+     "amam"
+    ]
+   },
+   "de": {
+    "infinitive": "lieben",
+    "present": [
+     "liebe",
+     "liebst",
+     "liebt",
+     "lieben",
+     "liebt",
+     "lieben"
+    ]
+   },
+   "nl": {
+    "infinitive": "houden van",
+    "present": [
+     "houd van",
+     "houdt van",
+     "houdt van",
+     "houden van",
+     "houden van",
+     "houden van"
+    ]
+   }
+  },
+  "open": {
+   "es": {
+    "infinitive": "abrir",
+    "present": [
+     "abro",
+     "abres",
+     "abre",
+     "abrimos",
+     "abrís",
+     "abren"
+    ]
+   },
+   "fr": {
+    "infinitive": "ouvrir",
+    "present": [
+     "ouvre",
+     "ouvres",
+     "ouvre",
+     "ouvrons",
+     "ouvrez",
+     "ouvrent"
+    ]
+   },
+   "it": {
+    "infinitive": "aprire",
+    "present": [
+     "apro",
+     "apri",
+     "apre",
+     "apriamo",
+     "aprite",
+     "aprono"
+    ]
+   },
+   "pt": {
+    "infinitive": "abrir",
+    "present": [
+     "abro",
+     "abres",
+     "abre",
+     "abrimos",
+     "abris",
+     "abrem"
+    ]
+   },
+   "de": {
+    "infinitive": "öffnen",
+    "present": [
+     "öffne",
+     "öffnest",
+     "öffnet",
+     "öffnen",
+     "öffnet",
+     "öffnen"
+    ]
+   },
+   "nl": {
+    "infinitive": "openen",
+    "present": [
+     "open",
+     "opent",
+     "opent",
+     "openen",
+     "openen",
+     "openen"
+    ]
+   }
+  },
+  "pay": {
+   "es": {
+    "infinitive": "pagar",
+    "present": [
+     "pago",
+     "pagas",
+     "paga",
+     "pagamos",
+     "pagáis",
+     "pagan"
+    ]
+   },
+   "fr": {
+    "infinitive": "payer",
+    "present": [
+     "paie",
+     "paies",
+     "paie",
+     "payons",
+     "payez",
+     "paient"
+    ]
+   },
+   "it": {
+    "infinitive": "pagare",
+    "present": [
+     "pago",
+     "paghi",
+     "paga",
+     "paghiamo",
+     "pagate",
+     "pagano"
+    ]
+   },
+   "pt": {
+    "infinitive": "pagar",
+    "present": [
+     "pago",
+     "pagas",
+     "paga",
+     "pagamos",
+     "pagais",
+     "pagam"
+    ]
+   },
+   "de": {
+    "infinitive": "bezahlen",
+    "present": [
+     "bezahle",
+     "bezahlst",
+     "bezahlt",
+     "bezahlen",
+     "bezahlt",
+     "bezahlen"
+    ]
+   },
+   "nl": {
+    "infinitive": "betalen",
+    "present": [
+     "betaal",
+     "betaalt",
+     "betaalt",
+     "betalen",
+     "betalen",
+     "betalen"
+    ]
+   }
+  },
+  "play": {
+   "es": {
+    "infinitive": "jugar",
+    "present": [
+     "juego",
+     "juegas",
+     "juega",
+     "jugamos",
+     "jugáis",
+     "juegan"
+    ]
+   },
+   "fr": {
+    "infinitive": "jouer",
+    "present": [
+     "joue",
+     "joues",
+     "joue",
+     "jouons",
+     "jouez",
+     "jouent"
+    ]
+   },
+   "it": {
+    "infinitive": "giocare",
+    "present": [
+     "gioco",
+     "giochi",
+     "gioca",
+     "giochiamo",
+     "giocate",
+     "giocano"
+    ]
+   },
+   "pt": {
+    "infinitive": "jogar",
+    "present": [
+     "jogo",
+     "jogas",
+     "joga",
+     "jogamos",
+     "jogais",
+     "jogam"
+    ]
+   },
+   "de": {
+    "infinitive": "spielen",
+    "present": [
+     "spiele",
+     "spielst",
+     "spielt",
+     "spielen",
+     "spielt",
+     "spielen"
+    ]
+   },
+   "nl": {
+    "infinitive": "spelen",
+    "present": [
+     "speel",
+     "speelt",
+     "speelt",
+     "spelen",
+     "spelen",
+     "spelen"
+    ]
+   }
+  },
+  "read": {
+   "es": {
+    "infinitive": "leer",
+    "present": [
+     "leo",
+     "lees",
+     "lee",
+     "leemos",
+     "leéis",
+     "leen"
+    ]
+   },
+   "fr": {
+    "infinitive": "lire",
+    "present": [
+     "lis",
+     "lis",
+     "lit",
+     "lisons",
+     "lisez",
+     "lisent"
+    ]
+   },
+   "it": {
+    "infinitive": "leggere",
+    "present": [
+     "leggo",
+     "leggi",
+     "legge",
+     "leggiamo",
+     "leggete",
+     "leggono"
+    ]
+   },
+   "pt": {
+    "infinitive": "ler",
+    "present": [
+     "leio",
+     "lês",
+     "lê",
+     "lemos",
+     "ledes",
+     "leem"
+    ]
+   },
+   "de": {
+    "infinitive": "lesen",
+    "present": [
+     "lese",
+     "liest",
+     "liest",
+     "lesen",
+     "lest",
+     "lesen"
+    ]
+   },
+   "nl": {
+    "infinitive": "lezen",
+    "present": [
+     "lees",
+     "leest",
+     "leest",
+     "lezen",
+     "lezen",
+     "lezen"
+    ]
+   }
+  },
+  "run": {
+   "es": {
+    "infinitive": "correr",
+    "present": [
+     "corro",
+     "corres",
+     "corre",
+     "corremos",
+     "corréis",
+     "corren"
+    ]
+   },
+   "fr": {
+    "infinitive": "courir",
+    "present": [
+     "cours",
+     "cours",
+     "court",
+     "courons",
+     "courez",
+     "courent"
+    ]
+   },
+   "it": {
+    "infinitive": "correre",
+    "present": [
+     "corro",
+     "corri",
+     "corre",
+     "corriamo",
+     "correte",
+     "corrono"
+    ]
+   },
+   "pt": {
+    "infinitive": "correr",
+    "present": [
+     "corro",
+     "corres",
+     "corre",
+     "corremos",
+     "correis",
+     "correm"
+    ]
+   },
+   "de": {
+    "infinitive": "rennen",
+    "present": [
+     "renne",
+     "rennst",
+     "rennt",
+     "rennen",
+     "rennt",
+     "rennen"
+    ]
+   },
+   "nl": {
+    "infinitive": "rennen",
+    "present": [
+     "ren",
+     "rent",
+     "rent",
+     "rennen",
+     "rennen",
+     "rennen"
+    ]
+   }
+  },
+  "say": {
+   "es": {
+    "infinitive": "decir",
+    "present": [
+     "digo",
+     "dices",
+     "dice",
+     "decimos",
+     "decís",
+     "dicen"
+    ]
+   },
+   "fr": {
+    "infinitive": "dire",
+    "present": [
+     "dis",
+     "dis",
+     "dit",
+     "disons",
+     "dites",
+     "disent"
+    ]
+   },
+   "it": {
+    "infinitive": "dire",
+    "present": [
+     "dico",
+     "dici",
+     "dice",
+     "diciamo",
+     "dite",
+     "dicono"
+    ]
+   },
+   "pt": {
+    "infinitive": "dizer",
+    "present": [
+     "digo",
+     "dizes",
+     "diz",
+     "dizemos",
+     "dizeis",
+     "dizem"
+    ]
+   },
+   "de": {
+    "infinitive": "sagen",
+    "present": [
+     "sage",
+     "sagst",
+     "sagt",
+     "sagen",
+     "sagt",
+     "sagen"
+    ]
+   },
+   "nl": {
+    "infinitive": "zeggen",
+    "present": [
+     "zeg",
+     "zegt",
+     "zegt",
+     "zeggen",
+     "zeggen",
+     "zeggen"
+    ]
+   }
+  },
+  "see": {
+   "es": {
+    "infinitive": "ver",
+    "present": [
+     "veo",
+     "ves",
+     "ve",
+     "vemos",
+     "veis",
+     "ven"
+    ]
+   },
+   "fr": {
+    "infinitive": "voir",
+    "present": [
+     "vois",
+     "vois",
+     "voit",
+     "voyons",
+     "voyez",
+     "voient"
+    ]
+   },
+   "it": {
+    "infinitive": "vedere",
+    "present": [
+     "vedo",
+     "vedi",
+     "vede",
+     "vediamo",
+     "vedete",
+     "vedono"
+    ]
+   },
+   "pt": {
+    "infinitive": "ver",
+    "present": [
+     "vejo",
+     "vês",
+     "vê",
+     "vemos",
+     "vedes",
+     "veem"
+    ]
+   },
+   "de": {
+    "infinitive": "sehen",
+    "present": [
+     "sehe",
+     "siehst",
+     "sieht",
+     "sehen",
+     "seht",
+     "sehen"
+    ]
+   },
+   "nl": {
+    "infinitive": "zien",
+    "present": [
+     "zie",
+     "ziet",
+     "ziet",
+     "zien",
+     "zien",
+     "zien"
+    ]
+   }
+  },
+  "sell": {
+   "es": {
+    "infinitive": "vender",
+    "present": [
+     "vendo",
+     "vendes",
+     "vende",
+     "vendemos",
+     "vendéis",
+     "venden"
+    ]
+   },
+   "fr": {
+    "infinitive": "vendre",
+    "present": [
+     "vends",
+     "vends",
+     "vend",
+     "vendons",
+     "vendez",
+     "vendent"
+    ]
+   },
+   "it": {
+    "infinitive": "vendere",
+    "present": [
+     "vendo",
+     "vendi",
+     "vende",
+     "vendiamo",
+     "vendete",
+     "vendono"
+    ]
+   },
+   "pt": {
+    "infinitive": "vender",
+    "present": [
+     "vendo",
+     "vendes",
+     "vende",
+     "vendemos",
+     "vendeis",
+     "vendem"
+    ]
+   },
+   "de": {
+    "infinitive": "verkaufen",
+    "present": [
+     "verkaufe",
+     "verkaufst",
+     "verkauft",
+     "verkaufen",
+     "verkauft",
+     "verkaufen"
+    ]
+   },
+   "nl": {
+    "infinitive": "verkopen",
+    "present": [
+     "verkoop",
+     "verkoopt",
+     "verkoopt",
+     "verkopen",
+     "verkopen",
+     "verkopen"
+    ]
+   }
+  },
+  "sing": {
+   "es": {
+    "infinitive": "cantar",
+    "present": [
+     "canto",
+     "cantas",
+     "canta",
+     "cantamos",
+     "cantáis",
+     "cantan"
+    ]
+   },
+   "fr": {
+    "infinitive": "chanter",
+    "present": [
+     "chante",
+     "chantes",
+     "chante",
+     "chantons",
+     "chantez",
+     "chantent"
+    ]
+   },
+   "it": {
+    "infinitive": "cantare",
+    "present": [
+     "canto",
+     "canti",
+     "canta",
+     "cantiamo",
+     "cantate",
+     "cantano"
+    ]
+   },
+   "pt": {
+    "infinitive": "cantar",
+    "present": [
+     "canto",
+     "cantas",
+     "canta",
+     "cantamos",
+     "cantais",
+     "cantam"
+    ]
+   },
+   "de": {
+    "infinitive": "singen",
+    "present": [
+     "singe",
+     "singst",
+     "singt",
+     "singen",
+     "singt",
+     "singen"
+    ]
+   },
+   "nl": {
+    "infinitive": "zingen",
+    "present": [
+     "zing",
+     "zingt",
+     "zingt",
+     "zingen",
+     "zingen",
+     "zingen"
+    ]
+   }
+  },
+  "sit": {
+   "es": {
+    "infinitive": "sentarse",
+    "present": [
+     "me siento",
+     "te sientas",
+     "se sienta",
+     "nos sentamos",
+     "os sentáis",
+     "se sientan"
+    ]
+   },
+   "fr": {
+    "infinitive": "être assis",
+    "present": [
+     "suis assis",
+     "es assis",
+     "est assis",
+     "sommes assis",
+     "êtes assis",
+     "sont assis"
+    ]
+   },
+   "it": {
+    "infinitive": "sedere",
+    "present": [
+     "siedo",
+     "siedi",
+     "siede",
+     "sediamo",
+     "sedete",
+     "siedono"
+    ]
+   },
+   "pt": {
+    "infinitive": "estar sentado",
+    "present": [
+     "estou sentado",
+     "estás sentado",
+     "está sentado",
+     "estamos sentados",
+     "estais sentados",
+     "estão sentados"
+    ]
+   },
+   "de": {
+    "infinitive": "sitzen",
+    "present": [
+     "sitze",
+     "sitzt",
+     "sitzt",
+     "sitzen",
+     "sitzt",
+     "sitzen"
+    ]
+   },
+   "nl": {
+    "infinitive": "zitten",
+    "present": [
+     "zit",
+     "zit",
+     "zit",
+     "zitten",
+     "zitten",
+     "zitten"
+    ]
+   }
+  },
+  "sleep": {
+   "es": {
+    "infinitive": "dormir",
+    "present": [
+     "duermo",
+     "duermes",
+     "duerme",
+     "dormimos",
+     "dormís",
+     "duermen"
+    ]
+   },
+   "fr": {
+    "infinitive": "dormir",
+    "present": [
+     "dors",
+     "dors",
+     "dort",
+     "dormons",
+     "dormez",
+     "dorment"
+    ]
+   },
+   "it": {
+    "infinitive": "dormire",
+    "present": [
+     "dormo",
+     "dormi",
+     "dorme",
+     "dormiamo",
+     "dormite",
+     "dormono"
+    ]
+   },
+   "pt": {
+    "infinitive": "dormir",
+    "present": [
+     "durmo",
+     "dormes",
+     "dorme",
+     "dormimos",
+     "dormis",
+     "dormem"
+    ]
+   },
+   "de": {
+    "infinitive": "schlafen",
+    "present": [
+     "schlafe",
+     "schläfst",
+     "schläft",
+     "schlafen",
+     "schlaft",
+     "schlafen"
+    ]
+   },
+   "nl": {
+    "infinitive": "slapen",
+    "present": [
+     "slaap",
+     "slaapt",
+     "slaapt",
+     "slapen",
+     "slapen",
+     "slapen"
+    ]
+   }
+  },
+  "speak": {
+   "es": {
+    "infinitive": "hablar",
+    "present": [
+     "hablo",
+     "hablas",
+     "habla",
+     "hablamos",
+     "habláis",
+     "hablan"
+    ]
+   },
+   "fr": {
+    "infinitive": "parler",
+    "present": [
+     "parle",
+     "parles",
+     "parle",
+     "parlons",
+     "parlez",
+     "parlent"
+    ]
+   },
+   "it": {
+    "infinitive": "parlare",
+    "present": [
+     "parlo",
+     "parli",
+     "parla",
+     "parliamo",
+     "parlate",
+     "parlano"
+    ]
+   },
+   "pt": {
+    "infinitive": "falar",
+    "present": [
+     "falo",
+     "falas",
+     "fala",
+     "falamos",
+     "falais",
+     "falam"
+    ]
+   },
+   "de": {
+    "infinitive": "sprechen",
+    "present": [
+     "spreche",
+     "sprichst",
+     "spricht",
+     "sprechen",
+     "sprecht",
+     "sprechen"
+    ]
+   },
+   "nl": {
+    "infinitive": "spreken",
+    "present": [
+     "spreek",
+     "spreekt",
+     "spreekt",
+     "spreken",
+     "spreken",
+     "spreken"
+    ]
+   }
+  },
+  "stand": {
+   "es": {
+    "infinitive": "estar de pie",
+    "present": [
+     "estoy de pie",
+     "estás de pie",
+     "está de pie",
+     "estamos de pie",
+     "estáis de pie",
+     "están de pie"
+    ]
+   },
+   "fr": {
+    "infinitive": "être debout",
+    "present": [
+     "suis debout",
+     "es debout",
+     "est debout",
+     "sommes debout",
+     "êtes debout",
+     "sont debout"
+    ]
+   },
+   "it": {
+    "infinitive": "stare in piedi",
+    "present": [
+     "sto in piedi",
+     "stai in piedi",
+     "sta in piedi",
+     "stiamo in piedi",
+     "state in piedi",
+     "stanno in piedi"
+    ]
+   },
+   "pt": {
+    "infinitive": "estar em pé",
+    "present": [
+     "estou em pé",
+     "estás em pé",
+     "está em pé",
+     "estamos em pé",
+     "estais em pé",
+     "estão em pé"
+    ]
+   },
+   "de": {
+    "infinitive": "stehen",
+    "present": [
+     "stehe",
+     "stehst",
+     "steht",
+     "stehen",
+     "steht",
+     "stehen"
+    ]
+   },
+   "nl": {
+    "infinitive": "staan",
+    "present": [
+     "sta",
+     "staat",
+     "staat",
+     "staan",
+     "staan",
+     "staan"
+    ]
+   }
+  },
+  "swim": {
+   "es": {
+    "infinitive": "nadar",
+    "present": [
+     "nado",
+     "nadas",
+     "nada",
+     "nadamos",
+     "nadáis",
+     "nadan"
+    ]
+   },
+   "fr": {
+    "infinitive": "nager",
+    "present": [
+     "nage",
+     "nages",
+     "nage",
+     "nageons",
+     "nagez",
+     "nagent"
+    ]
+   },
+   "it": {
+    "infinitive": "nuotare",
+    "present": [
+     "nuoto",
+     "nuoti",
+     "nuota",
+     "nuotiamo",
+     "nuotate",
+     "nuotano"
+    ]
+   },
+   "pt": {
+    "infinitive": "nadar",
+    "present": [
+     "nado",
+     "nadas",
+     "nada",
+     "nadamos",
+     "nadais",
+     "nadam"
+    ]
+   },
+   "de": {
+    "infinitive": "schwimmen",
+    "present": [
+     "schwimme",
+     "schwimmst",
+     "schwimmt",
+     "schwimmen",
+     "schwimmt",
+     "schwimmen"
+    ]
+   },
+   "nl": {
+    "infinitive": "zwemmen",
+    "present": [
+     "zwem",
+     "zwemt",
+     "zwemt",
+     "zwemmen",
+     "zwemmen",
+     "zwemmen"
+    ]
+   }
+  },
+  "take": {
+   "es": {
+    "infinitive": "tomar",
+    "present": [
+     "tomo",
+     "tomas",
+     "toma",
+     "tomamos",
+     "tomáis",
+     "toman"
+    ]
+   },
+   "fr": {
+    "infinitive": "prendre",
+    "present": [
+     "prends",
+     "prends",
+     "prend",
+     "prenons",
+     "prenez",
+     "prennent"
+    ]
+   },
+   "it": {
+    "infinitive": "prendere",
+    "present": [
+     "prendo",
+     "prendi",
+     "prende",
+     "prendiamo",
+     "prendete",
+     "prendono"
+    ]
+   },
+   "pt": {
+    "infinitive": "tomar",
+    "present": [
+     "tomo",
+     "tomas",
+     "toma",
+     "tomamos",
+     "tomais",
+     "tomam"
+    ]
+   },
+   "de": {
+    "infinitive": "nehmen",
+    "present": [
+     "nehme",
+     "nimmst",
+     "nimmt",
+     "nehmen",
+     "nehmt",
+     "nehmen"
+    ]
+   },
+   "nl": {
+    "infinitive": "nemen",
+    "present": [
+     "neem",
+     "neemt",
+     "neemt",
+     "nemen",
+     "nemen",
+     "nemen"
+    ]
+   }
+  },
+  "teach": {
+   "es": {
+    "infinitive": "enseñar",
+    "present": [
+     "enseño",
+     "enseñas",
+     "enseña",
+     "enseñamos",
+     "enseñáis",
+     "enseñan"
+    ]
+   },
+   "fr": {
+    "infinitive": "enseigner",
+    "present": [
+     "enseigne",
+     "enseignes",
+     "enseigne",
+     "enseignons",
+     "enseignez",
+     "enseignent"
+    ]
+   },
+   "it": {
+    "infinitive": "insegnare",
+    "present": [
+     "insegno",
+     "insegni",
+     "insegna",
+     "insegniamo",
+     "insegnate",
+     "insegnano"
+    ]
+   },
+   "pt": {
+    "infinitive": "ensinar",
+    "present": [
+     "ensino",
+     "ensinas",
+     "ensina",
+     "ensinamos",
+     "ensinais",
+     "ensinam"
+    ]
+   },
+   "de": {
+    "infinitive": "lehren",
+    "present": [
+     "lehre",
+     "lehrst",
+     "lehrt",
+     "lehren",
+     "lehrt",
+     "lehren"
+    ]
+   },
+   "nl": {
+    "infinitive": "onderwijzen",
+    "present": [
+     "onderwijs",
+     "onderwijst",
+     "onderwijst",
+     "onderwijzen",
+     "onderwijzen",
+     "onderwijzen"
+    ]
+   }
+  },
+  "think": {
+   "es": {
+    "infinitive": "pensar",
+    "present": [
+     "pienso",
+     "piensas",
+     "piensa",
+     "pensamos",
+     "pensáis",
+     "piensan"
+    ]
+   },
+   "fr": {
+    "infinitive": "penser",
+    "present": [
+     "pense",
+     "penses",
+     "pense",
+     "pensons",
+     "pensez",
+     "pensent"
+    ]
+   },
+   "it": {
+    "infinitive": "pensare",
+    "present": [
+     "penso",
+     "pensi",
+     "pensa",
+     "pensiamo",
+     "pensate",
+     "pensano"
+    ]
+   },
+   "pt": {
+    "infinitive": "pensar",
+    "present": [
+     "penso",
+     "pensas",
+     "pensa",
+     "pensamos",
+     "pensais",
+     "pensam"
+    ]
+   },
+   "de": {
+    "infinitive": "denken",
+    "present": [
+     "denke",
+     "denkst",
+     "denkt",
+     "denken",
+     "denkt",
+     "denken"
+    ]
+   },
+   "nl": {
+    "infinitive": "denken",
+    "present": [
+     "denk",
+     "denkt",
+     "denkt",
+     "denken",
+     "denken",
+     "denken"
+    ]
+   }
+  },
+  "wait": {
+   "es": {
+    "infinitive": "esperar",
+    "present": [
+     "espero",
+     "esperas",
+     "espera",
+     "esperamos",
+     "esperáis",
+     "esperan"
+    ]
+   },
+   "fr": {
+    "infinitive": "attendre",
+    "present": [
+     "attends",
+     "attends",
+     "attend",
+     "attendons",
+     "attendez",
+     "attendent"
+    ]
+   },
+   "it": {
+    "infinitive": "aspettare",
+    "present": [
+     "aspetto",
+     "aspetti",
+     "aspetta",
+     "aspettiamo",
+     "aspettate",
+     "aspettano"
+    ]
+   },
+   "pt": {
+    "infinitive": "esperar",
+    "present": [
+     "espero",
+     "esperas",
+     "espera",
+     "esperamos",
+     "esperais",
+     "esperam"
+    ]
+   },
+   "de": {
+    "infinitive": "warten",
+    "present": [
+     "warte",
+     "wartest",
+     "wartet",
+     "warten",
+     "wartet",
+     "warten"
+    ]
+   },
+   "nl": {
+    "infinitive": "wachten",
+    "present": [
+     "wacht",
+     "wacht",
+     "wacht",
+     "wachten",
+     "wachten",
+     "wachten"
+    ]
+   }
+  },
+  "walk": {
+   "es": {
+    "infinitive": "caminar",
+    "present": [
+     "camino",
+     "caminas",
+     "camina",
+     "caminamos",
+     "camináis",
+     "caminan"
+    ]
+   },
+   "fr": {
+    "infinitive": "marcher",
+    "present": [
+     "marche",
+     "marches",
+     "marche",
+     "marchons",
+     "marchez",
+     "marchent"
+    ]
+   },
+   "it": {
+    "infinitive": "camminare",
+    "present": [
+     "cammino",
+     "cammini",
+     "cammina",
+     "camminiamo",
+     "camminate",
+     "camminano"
+    ]
+   },
+   "pt": {
+    "infinitive": "andar",
+    "present": [
+     "ando",
+     "andas",
+     "anda",
+     "andamos",
+     "andais",
+     "andam"
+    ]
+   },
+   "de": {
+    "infinitive": "laufen",
+    "present": [
+     "laufe",
+     "läufst",
+     "läuft",
+     "laufen",
+     "lauft",
+     "laufen"
+    ]
+   },
+   "nl": {
+    "infinitive": "lopen",
+    "present": [
+     "loop",
+     "loopt",
+     "loopt",
+     "lopen",
+     "lopen",
+     "lopen"
+    ]
+   }
+  },
+  "want": {
+   "es": {
+    "infinitive": "querer",
+    "present": [
+     "quiero",
+     "quieres",
+     "quiere",
+     "queremos",
+     "queréis",
+     "quieren"
+    ]
+   },
+   "fr": {
+    "infinitive": "vouloir",
+    "present": [
+     "veux",
+     "veux",
+     "veut",
+     "voulons",
+     "voulez",
+     "veulent"
+    ]
+   },
+   "it": {
+    "infinitive": "volere",
+    "present": [
+     "voglio",
+     "vuoi",
+     "vuole",
+     "vogliamo",
+     "volete",
+     "vogliono"
+    ]
+   },
+   "pt": {
+    "infinitive": "querer",
+    "present": [
+     "quero",
+     "queres",
+     "quer",
+     "queremos",
+     "quereis",
+     "querem"
+    ]
+   },
+   "de": {
+    "infinitive": "wollen",
+    "present": [
+     "will",
+     "willst",
+     "will",
+     "wollen",
+     "wollt",
+     "wollen"
+    ]
+   },
+   "nl": {
+    "infinitive": "willen",
+    "present": [
+     "wil",
+     "wilt",
+     "wil",
+     "willen",
+     "willen",
+     "willen"
+    ]
+   }
+  },
+  "wash": {
+   "es": {
+    "infinitive": "lavar",
+    "present": [
+     "lavo",
+     "lavas",
+     "lava",
+     "lavamos",
+     "laváis",
+     "lavan"
+    ]
+   },
+   "fr": {
+    "infinitive": "laver",
+    "present": [
+     "lave",
+     "laves",
+     "lave",
+     "lavons",
+     "lavez",
+     "lavent"
+    ]
+   },
+   "it": {
+    "infinitive": "lavare",
+    "present": [
+     "lavo",
+     "lavi",
+     "lava",
+     "laviamo",
+     "lavate",
+     "lavano"
+    ]
+   },
+   "pt": {
+    "infinitive": "lavar",
+    "present": [
+     "lavo",
+     "lavas",
+     "lava",
+     "lavamos",
+     "lavais",
+     "lavam"
+    ]
+   },
+   "de": {
+    "infinitive": "waschen",
+    "present": [
+     "wasche",
+     "wäschst",
+     "wäscht",
+     "waschen",
+     "wascht",
+     "waschen"
+    ]
+   },
+   "nl": {
+    "infinitive": "wassen",
+    "present": [
+     "was",
+     "wast",
+     "wast",
+     "wassen",
+     "wassen",
+     "wassen"
+    ]
+   }
+  },
+  "work": {
+   "es": {
+    "infinitive": "trabajar",
+    "present": [
+     "trabajo",
+     "trabajas",
+     "trabaja",
+     "trabajamos",
+     "trabajáis",
+     "trabajan"
+    ]
+   },
+   "fr": {
+    "infinitive": "travailler",
+    "present": [
+     "travaille",
+     "travailles",
+     "travaille",
+     "travaillons",
+     "travaillez",
+     "travaillent"
+    ]
+   },
+   "it": {
+    "infinitive": "lavorare",
+    "present": [
+     "lavoro",
+     "lavori",
+     "lavora",
+     "lavoriamo",
+     "lavorate",
+     "lavorano"
+    ]
+   },
+   "pt": {
+    "infinitive": "trabalhar",
+    "present": [
+     "trabalho",
+     "trabalhas",
+     "trabalha",
+     "trabalhamos",
+     "trabalhais",
+     "trabalham"
+    ]
+   },
+   "de": {
+    "infinitive": "arbeiten",
+    "present": [
+     "arbeite",
+     "arbeitest",
+     "arbeitet",
+     "arbeiten",
+     "arbeitet",
+     "arbeiten"
+    ]
+   },
+   "nl": {
+    "infinitive": "werken",
+    "present": [
+     "werk",
+     "werkt",
+     "werkt",
+     "werken",
+     "werken",
+     "werken"
+    ]
+   }
+  },
+  "write": {
+   "es": {
+    "infinitive": "escribir",
+    "present": [
+     "escribo",
+     "escribes",
+     "escribe",
+     "escribimos",
+     "escribís",
+     "escriben"
+    ]
+   },
+   "fr": {
+    "infinitive": "écrire",
+    "present": [
+     "écris",
+     "écris",
+     "écrit",
+     "écrivons",
+     "écrivez",
+     "écrivent"
+    ]
+   },
+   "it": {
+    "infinitive": "scrivere",
+    "present": [
+     "scrivo",
+     "scrivi",
+     "scrive",
+     "scriviamo",
+     "scrivete",
+     "scrivono"
+    ]
+   },
+   "pt": {
+    "infinitive": "escrever",
+    "present": [
+     "escrevo",
+     "escreves",
+     "escreve",
+     "escrevemos",
+     "escreveis",
+     "escrevem"
+    ]
+   },
+   "de": {
+    "infinitive": "schreiben",
+    "present": [
+     "schreibe",
+     "schreibst",
+     "schreibt",
+     "schreiben",
+     "schreibt",
+     "schreiben"
+    ]
+   },
+   "nl": {
+    "infinitive": "schrijven",
+    "present": [
+     "schrijf",
+     "schrijft",
+     "schrijft",
+     "schrijven",
+     "schrijven",
+     "schrijven"
+    ]
+   }
+  }
+ },
+ "persons": {
+  "es": [
+   "yo",
+   "tú",
+   "él",
+   "nosotros",
+   "vosotros",
+   "ellos"
+  ],
+  "fr": [
+   "je",
+   "tu",
+   "il",
+   "nous",
+   "vous",
+   "ils"
+  ],
+  "it": [
+   "io",
+   "tu",
+   "lui",
+   "noi",
+   "voi",
+   "loro"
+  ],
+  "pt": [
+   "eu",
+   "tu",
+   "ele",
+   "nós",
+   "vós",
+   "eles"
+  ],
+  "de": [
+   "ich",
+   "du",
+   "er",
+   "wir",
+   "ihr",
+   "sie"
+  ],
+  "nl": [
+   "ik",
+   "jij",
+   "hij",
+   "wij",
+   "jullie",
+   "zij"
+  ]
+ },
+ "romanization": {
+  "ar": {
+   "ph-hello": "marḥaban",
+   "ph-good-morning": "ṣabāḥ al-khayr",
+   "ph-good-afternoon": "masāʼ al-khayr",
+   "ph-good-evening": "masāʼ al-khayr",
+   "ph-good-night": "tuṣbiḥ ʿalā khayr",
+   "ph-goodbye": "maʿa as-salāma",
+   "ph-see-you-later": "arāka lāḥiqan",
+   "ph-welcome": "ahlan wa-sahlan",
+   "ph-long-time-no-see": "lam arak mundhu zaman",
+   "ph-thank-you": "shukran",
+   "ph-thank-you-very-much": "shukran jazīlan",
+   "ph-you-are-welcome": "ʿafwan",
+   "ph-please": "min faḍlak",
+   "ph-excuse-me": "ʿudhran",
+   "ph-sorry": "āsif",
+   "ph-yes": "naʿam",
+   "ph-no": "lā",
+   "ph-maybe": "rubbamā",
+   "ph-of-course": "bi-ṭ-ṭabʿ",
+   "ph-no-problem": "lā mushkila",
+   "ph-how-are-you": "kayfa ḥāluk?",
+   "ph-i-am-fine": "anā bi-khayr",
+   "ph-and-you": "wa-anta?",
+   "ph-my-name-is": "ismī",
+   "ph-nice-to-meet-you": "tasharrafnā",
+   "ph-what-is-your-name": "mā ismuk?",
+   "ph-where-are-you-from": "min ayna anta?",
+   "ph-i-am-from": "anā min",
+   "ph-how-old-are-you": "kam ʿumruk?",
+   "ph-nice-day": "nahāruk saʿīd",
+   "ph-take-care": "iʿtani bi-nafsik",
+   "ph-do-you-speak-english": "hal tataḥaddath al-injilīziyya?",
+   "ph-i-dont-understand": "lā afham",
+   "ph-i-dont-know": "lā aʿrif",
+   "ph-can-you-help-me": "hal yumkinuk musāʿadatī?",
+   "ph-can-you-repeat": "hal yumkinuk at-tikrār?",
+   "ph-speak-slowly": "takallam bi-buṭʼ min faḍlak",
+   "ph-where-is": "ayna",
+   "ph-where-is-the-bathroom": "ayna al-ḥammām?",
+   "ph-i-want": "urīd",
+   "ph-i-need": "aḥtāj",
+   "ph-help": "an-najda",
+   "ph-i-am-lost": "anā tāʼih",
+   "ph-call-the-police": "ittaṣil bi-sh-shurṭa",
+   "ph-i-am-sick": "anā marīḍ",
+   "ph-the-check-please": "al-ḥisāb min faḍlak",
+   "ph-water-please": "māʼ min faḍlak",
+   "ph-menu-please": "al-qāʼima min faḍlak",
+   "ph-i-am-hungry": "anā jāʼiʿ",
+   "ph-i-am-thirsty": "anā ʿaṭshān",
+   "ph-cheers": "fī ṣiḥḥatik",
+   "ph-delicious": "ladhīdh",
+   "ph-i-would-like": "awadd",
+   "ph-how-much": "kam ath-thaman?",
+   "ph-too-expensive": "ghālin jiddan",
+   "ph-i-am-just-looking": "anā atafarraj faqaṭ",
+   "ph-i-will-take-it": "saʼākhudhuh",
+   "ph-do-you-accept-cards": "hal taqbalūn al-biṭāqāt?",
+   "ph-left": "yasār",
+   "ph-right": "yamīn",
+   "ph-straight-ahead": "ilā al-amām",
+   "ph-how-do-i-get-to": "kayfa aṣil ilā?",
+   "ph-stop-here": "qif hunā min faḍlak",
+   "ph-what-time-is-it": "kam as-sāʿa?",
+   "ph-today": "al-yawm",
+   "ph-tomorrow": "ghadan",
+   "ph-yesterday": "ams",
+   "ph-now": "al-ān",
+   "ph-good": "jayyid",
+   "ph-bad": "sayyiʼ",
+   "ph-i-love-you": "uḥibbuk",
+   "ph-i-agree": "uwāfiq",
+   "ph-i-like-it": "yuʿjibunī",
+   "ph-congratulations": "tahānīnā",
+   "ph-i-am-american": "anā amrīkī",
+   "ph-i-dont-speak": "lā atakallam",
+   "ph-what-does-this-mean": "mādhā yaʿnī hādhā?",
+   "ph-one-moment": "laḥẓa min faḍlak",
+   "ph-where-is-the-station": "ayna al-maḥaṭṭa?",
+   "ph-i-have-a-reservation": "ladayya ḥajz",
+   "ph-open": "maftūḥ",
+   "ph-closed": "mughlaq"
+  }
+ }
+}

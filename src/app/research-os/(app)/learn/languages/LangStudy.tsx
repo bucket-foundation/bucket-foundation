@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { recognitionSupported } from "@/lib/academy/lang-client";
-import { buildQueue, cardId, exerciseFor, matchExercise, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
+import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
+import { buildQueue, cardId, exerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
-import LangExercise, { type ExerciseResult } from "./LangExercise";
+import LangExercise, { ReadingsContext, type ExerciseResult } from "./LangExercise";
 import { useLangSystem } from "./useLangSystem";
 
 export default function LangStudy({ systemId }: { systemId: string }) {
@@ -17,6 +17,8 @@ export default function LangStudy({ systemId }: { systemId: string }) {
   const [correct, setCorrect] = useState(0);
   const xpStart = useRef(0);
   const rng = useMemo(() => seededRng(Date.now() % 2147483647), []);
+  const [readings, setReadings] = useState(true);
+  useEffect(() => setReadings(readReadingsPref()), []);
 
   useEffect(() => {
     if (h.status === "ready" && system && corpus && queue === null) {
@@ -35,6 +37,8 @@ export default function LangStudy({ systemId }: { systemId: string }) {
     return exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entry, system, corpus, rng]);
+
+  const optionReadings = useMemo(() => (ex && corpus ? readingsByForm(corpus, ex.answerLang) : undefined), [ex, corpus]);
 
   const onDone = useCallback(
     (results: ExerciseResult[]) => {
@@ -103,7 +107,21 @@ export default function LangStudy({ systemId }: { systemId: string }) {
       <div className="h-1 bg-[color:var(--hairline)]">
         <div className="h-1 bg-[color:var(--gold-deep)]" style={{ width: `${Math.round((i / queue.length) * 100)}%` }} />
       </div>
-      <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} />
+      <ReadingsContext.Provider value={readings}>
+        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} />
+      </ReadingsContext.Provider>
+      <label className="flex items-center gap-2 text-[12px] text-[color:var(--basalt-3)]">
+        <input
+          type="checkbox"
+          checked={readings}
+          onChange={(e) => {
+            setReadings(e.target.checked);
+            writeReadingsPref(e.target.checked);
+          }}
+          data-testid="readings-toggle"
+        />
+        show readings and IPA
+      </label>
     </div>
   );
 }

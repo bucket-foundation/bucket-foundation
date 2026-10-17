@@ -54,6 +54,12 @@ async function answerOne(p: Page): Promise<void> {
     await p.getByTestId("next").click();
     return;
   }
+  if (kind === "wordbank") {
+    await p.getByTestId("token").first().click();
+    await p.getByTestId("check").click();
+    await p.getByTestId("next").click();
+    return;
+  }
   if (kind === "speak" && (await p.getByRole("button", { name: "type instead" }).count())) await p.getByRole("button", { name: "type instead" }).click();
   if (await p.getByTestId("answer").count()) {
     await p.getByTestId("answer").fill("x");
@@ -74,9 +80,15 @@ test("create a Romance system, place French, and study a mixed session", async (
 
   await page.getByRole("link", { name: "placement" }).click();
   await expect(page.getByTestId("exercise")).toBeVisible();
-  await page.getByTestId("skip").click();
-  await page.getByTestId("skip").click();
+  let asked = 0;
+  while (!(await page.getByTestId("placement-done").count()) && asked < 20) {
+    await page.getByTestId("skip").click();
+    asked++;
+    await page.waitForTimeout(150);
+  }
   await expect(page.getByTestId("placement-done")).toBeVisible();
+  expect(asked).toBeGreaterThanOrEqual(4);
+  expect(asked).toBeLessThanOrEqual(12);
   await expect(page.getByRole("heading", { name: "placed at tier 0" })).toBeVisible();
 
   await page.getByRole("link", { name: /place Spanish/ }).click();
@@ -104,4 +116,27 @@ test("create a Romance system, place French, and study a mixed session", async (
 
   await page.reload();
   await expect(page.getByTestId("lang-progress").locator("li").first()).toContainText(/[1-9]\d*\/\d+ started/);
+  await expect(page.getByTestId("units").locator("li").first()).toHaveAttribute("data-unlocked", "true");
+  await expect(page.getByTestId("false-friends")).toContainText("pain");
+});
+
+test("an East Asian system shows pinyin, kana and romaji on its cards", async () => {
+  await page.goto("/research-os/learn/languages");
+  await page.getByRole("button", { name: /^East Asian/ }).click();
+  await page.getByRole("button", { name: "create system" }).click();
+  await page.goto("/research-os/learn/languages/en-zh-ja/study");
+  const seen = { zh: false, ja: false };
+  for (let n = 0; n < 12 && !(seen.zh && seen.ja); n++) {
+    const ex = page.getByTestId("exercise");
+    await expect(ex).toBeVisible();
+    if ((await ex.getAttribute("data-kind")) === "intro") {
+      const lang = await ex.getAttribute("data-lang");
+      const reading = await page.getByTestId("intro-reading").innerText();
+      if (lang === "zh") seen.zh = seen.zh || /[āáǎàēéěèīíǐìōóǒòūúǔù]/.test(reading);
+      if (lang === "ja") seen.ja = seen.ja || (/[぀-ヿ]/.test(reading) && /[a-z]/.test(reading));
+    }
+    await answerOne(page);
+  }
+  expect(seen.zh).toBeTruthy();
+  expect(seen.ja).toBeTruthy();
 });

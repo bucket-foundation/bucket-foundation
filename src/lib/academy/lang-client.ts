@@ -1,6 +1,6 @@
 "use client";
 
-import { buildLangCorpus, LANGS, mergeSystems, normalizeSystemsDoc, type LangCorpus, type LangSystem, type SystemsDoc } from "./lang-systems";
+import { buildLangCorpus, LANGS, mergeSystems, normalizeSystemsDoc, type LangCorpus, type LangSystem, type RawLayers, type SystemsDoc } from "./lang-systems";
 import { pullServer, type ServerBranches } from "./progress-store";
 
 const BASE = "/academy-app/corpus";
@@ -17,8 +17,8 @@ async function getJson(file: string): Promise<unknown> {
 
 export function loadLangCorpus(): Promise<LangCorpus | null> {
   if (!corpusPromise) {
-    corpusPromise = Promise.all([getJson("lang-core.json"), getJson("lang-cognates.json"), getJson("lang-phrases.json")])
-      .then(([core, cog, ph]) => buildLangCorpus(core as never, cog as never, ph as never))
+    corpusPromise = Promise.all([getJson("lang-core.json"), getJson("lang-cognates.json"), getJson("lang-phrases.json"), getJson("lang-layers.json").catch(() => null)])
+      .then(([core, cog, ph, layers]) => buildLangCorpus(core as never, cog as never, ph as never, layers as RawLayers | null))
       .then((c) => (c.items.length ? c : null))
       .catch(() => {
         corpusPromise = null;
@@ -80,6 +80,23 @@ export async function saveSystems(change: SystemsChange, deps: { pull?: typeof p
     }
   }
   return { result: "failed", systems: doc.systems };
+}
+
+const READINGS_KEY = "bucket-academy-lang/v1/readings";
+
+export function readReadingsPref(): boolean {
+  try {
+    return localStorage.getItem(READINGS_KEY) !== "off";
+  } catch {
+    return true;
+  }
+}
+
+export function writeReadingsPref(on: boolean): void {
+  try {
+    localStorage.setItem(READINGS_KEY, on ? "on" : "off");
+  } catch {
+  }
 }
 
 export function speechSupported(): boolean {
