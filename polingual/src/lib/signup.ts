@@ -15,7 +15,6 @@ export function parseSignup(body: unknown): ParsedSignup {
   const email = clean(b.email, 254).toLowerCase();
   if (!EMAIL_RE.test(email)) return { ok: false, error: "Enter a valid email address." };
   const speaks = clean(b.speaks, LIST_MAX);
-  if (!speaks) return { ok: false, error: "List the languages you speak." };
   const learning = clean(b.learning, LIST_MAX);
   return { ok: true, signup: { email, speaks, learning }, suspect: clean(b.website, 200) !== "" };
 }
