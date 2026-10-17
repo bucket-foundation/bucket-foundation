@@ -53,7 +53,7 @@ function loadApi(): Promise<YtNamespace> {
 const mono = { fontFamily: "var(--font-jetbrains)" };
 const btn = "border hairline px-3 py-2 text-sm min-h-[44px] focus-visible:outline focus-visible:outline-2";
 
-export default function YtPlayer({ play, title, autoPlay = false, onNext }: { play: YtPlay; title: string; autoPlay?: boolean; onNext?: () => void }) {
+export default function YtPlayer({ play, title, playToken, onNext }: { play: YtPlay; title: string; playToken?: number; onNext?: () => void }) {
   const host = useRef<HTMLDivElement>(null);
   const player = useRef<YtApiPlayer | null>(null);
   const [playing, setPlaying] = useState(false);
@@ -66,8 +66,8 @@ export default function YtPlayer({ play, title, autoPlay = false, onNext }: { pl
   }, []);
 
   useEffect(() => {
-    if (autoPlay) start();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (playToken) start();
+  }, [playToken]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function start() {
     if (player.current) {

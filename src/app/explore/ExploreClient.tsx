@@ -66,7 +66,7 @@ export default function ExploreClient() {
   const [asked, setAsked] = useState("");
   const [origin, setOrigin] = useState<AdvisorOrigin>("none");
   const [selected, setSelected] = useState<string | null>(null);
-  const [listen, setListen] = useState<string | null>(null);
+  const [listen, setListen] = useState<{ id: string; n: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [modeId, setModeId] = useState<string>("globe");
@@ -136,7 +136,7 @@ export default function ExploreClient() {
   const nextPlayable = current?.yt && playable.length > 1 ? playable[(playable.findIndex((h) => h.id === current.id) + 1) % playable.length] : null;
   const playHit = (id: string) => {
     setSelected(id);
-    setListen(id);
+    setListen((prev) => ({ id, n: (prev?.n ?? 0) + 1 }));
   };
   const currentFields = current ? citeFieldsFromHit(current) : null;
   const mode = modeById(modeId);
@@ -446,7 +446,7 @@ export default function ExploreClient() {
                     key={current.id}
                     play={current.yt}
                     title={current.title}
-                    autoPlay={listen === current.id}
+                    playToken={listen?.id === current.id ? listen.n : undefined}
                     onNext={nextPlayable ? () => playHit(nextPlayable.id) : undefined}
                   />
                 )}
