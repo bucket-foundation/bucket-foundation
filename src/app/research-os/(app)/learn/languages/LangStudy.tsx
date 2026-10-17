@@ -95,7 +95,7 @@ export default function LangStudy({ systemId }: { systemId: string }) {
   }
 
   return (
-    <div className="flex flex-col gap-4 max-w-2xl">
+    <div className="flex flex-col gap-4 max-w-2xl min-w-0">
       <div className="flex items-center justify-between gap-3 text-[12px] text-[color:var(--basalt-3)] [font-variant-numeric:tabular-nums]">
         <Link href={back} className="underline underline-offset-4">
           {system.name}
@@ -110,6 +110,10 @@ export default function LangStudy({ systemId }: { systemId: string }) {
       <ReadingsContext.Provider value={readings}>
         <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} />
       </ReadingsContext.Provider>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+      <button type="button" onClick={() => setI((x) => x + 1)} className="text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)]" data-testid="skip-exercise">
+        skip this one
+      </button>
       <label className="flex items-center gap-2 text-[12px] text-[color:var(--basalt-3)]">
         <input
           type="checkbox"
@@ -122,6 +126,7 @@ export default function LangStudy({ systemId }: { systemId: string }) {
         />
         show readings and IPA
       </label>
+      </div>
     </div>
   );
 }

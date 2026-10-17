@@ -634,6 +634,10 @@ function conjExercise(corpus: LangCorpus, item: LangItem, lang: string, root: st
   return ex;
 }
 
+export function gradeMatch(pairs: { lang: string; word: string }[], assign: Record<string, string>): { lang: string; correct: boolean }[] {
+  return pairs.map((p) => ({ lang: p.lang, correct: pairs.find((q) => q.lang === assign[p.lang])?.word === p.word }));
+}
+
 export function matchExercise(corpus: LangCorpus, system: LangSystem, item: LangItem, rng: Rng): Exercise | null {
   const langs = system.targets.filter((l) => item.forms[l]);
   if (langs.length < 2 || !item.forms[system.root]) return null;

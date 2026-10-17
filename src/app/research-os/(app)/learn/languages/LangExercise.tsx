@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Rating } from "@/lib/academy/fsrs";
 import { listenOnce, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
-import { joinTokens, judgeTyped, langName, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
+import { gradeMatch, joinTokens, judgeTyped, langName, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 
 export interface ExerciseResult {
@@ -239,7 +239,8 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
 
   if (ex.kind === "match" && ex.pairs) {
     const langs = ex.pairs.map((p) => p.lang);
-    const results = ex.pairs.map((p) => ({ lang: p.lang, rating: (assign[p.word] === p.lang ? 3 : 1) as Rating }));
+    const pairWordFor = (l?: string) => ex.pairs?.find((q) => q.lang === l)?.word;
+    const results = gradeMatch(ex.pairs, assign).map((r) => ({ lang: r.lang, rating: (r.correct ? 3 : 1) as Rating }));
     return (
       <section className="bg-[color:var(--bone)] p-4 md:p-5" data-testid="exercise" data-kind={ex.kind} data-lang={ex.lang}>
         {header}
@@ -248,7 +249,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
         </p>
         <ul className="mt-3 flex flex-col gap-3">
           {ex.pairs.map((p) => (
-            <li key={p.word} className="flex flex-wrap items-center gap-3 text-[15px]">
+            <li key={p.lang} className="flex flex-wrap items-center gap-3 text-[15px]" data-testid="match-row">
               <span className="min-w-[8rem]">
                 <span lang={p.lang} className="text-[color:var(--basalt)]">
                   {p.word}
@@ -258,9 +259,9 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
               </span>
               <select
                 aria-label={`language of ${p.word}`}
-                value={assign[p.word] ?? ""}
+                value={assign[p.lang] ?? ""}
                 disabled={matchDone}
-                onChange={(e) => setAssign((a) => ({ ...a, [p.word]: e.target.value }))}
+                onChange={(e) => setAssign((a) => ({ ...a, [p.lang]: e.target.value }))}
                 className="border border-[color:var(--hairline)] bg-white/60 px-2 py-1 rounded-sm"
               >
                 <option value="">choose</option>
@@ -270,7 +271,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
                   </option>
                 ))}
               </select>
-              {matchDone && <span className="text-[12px] text-[color:var(--basalt-3)]">{assign[p.word] === p.lang ? "right" : langName(p.lang)}</span>}
+              {matchDone && <span className="text-[12px] text-[color:var(--basalt-3)]">{pairWordFor(assign[p.lang]) === p.word ? "right" : langName(p.lang)}</span>}
             </li>
           ))}
         </ul>

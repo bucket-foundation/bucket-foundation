@@ -154,7 +154,11 @@ export default function LanguagesHome() {
           <Panel title="new system">
             <label className="flex items-center gap-3 text-[13px] text-[color:var(--basalt-2)]">
               root language
-              <select value={root} onChange={(e) => setRoot(e.target.value)} className="border border-[color:var(--hairline)] bg-white/60 px-2 py-1 rounded-sm" aria-label="root language">
+              <select value={root} onChange={(e) => {
+                  const v = e.target.value;
+                  setRoot(v);
+                  setTargets((t) => t.filter((x) => x !== v));
+                }} className="border border-[color:var(--hairline)] bg-white/60 px-2 py-1 rounded-sm" aria-label="root language">
                 {LANG_CODES.map((c) => (
                   <option key={c} value={c}>
                     {langName(c)}

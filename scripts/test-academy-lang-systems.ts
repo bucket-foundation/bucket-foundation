@@ -10,6 +10,7 @@ import {
   createSystem,
   exerciseFor,
   gradeCard,
+  gradeMatch,
   interleave,
   judgeTyped,
   langProgress,
@@ -258,6 +259,20 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   ok(!!ja.answerReading?.kana && !!ja.answerReading?.roman, "Japanese card carries kana and romaji");
   const m = matchExercise(corpus, asian, corpus.byId.get("eat")!, seededRng(1))!;
   ok(m.pairs!.every((p) => !!p.reading?.roman), "match pairs carry readings");
+}
+
+{
+  const pairs = [
+    { lang: "fr", word: "main" },
+    { lang: "es", word: "mano" },
+    { lang: "it", word: "mano" },
+  ];
+  const swapped = gradeMatch(pairs, { fr: "fr", es: "it", it: "es" });
+  ok(swapped.every((r) => r.correct), "identical forms accept either language");
+  const wrong = gradeMatch(pairs, { fr: "es", es: "fr", it: "it" });
+  ok(!wrong[0].correct && !wrong[1].correct && wrong[2].correct, "a real mismatch is still wrong");
+  const hand = matchExercise(corpus, romance, corpus.byId.get("hand")!, seededRng(1))!;
+  ok(new Set(hand.pairs!.map((p) => p.lang)).size === 3, "match rows are keyed by language even when forms repeat");
 }
 
 if (failures) {
