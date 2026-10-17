@@ -35,6 +35,7 @@ export interface ExploreSearchDeps {
   sources: () => Prepared[] | Promise<Prepared[]>;
   yearOf: (concept: string) => number | null;
   canonFiles: (query: string) => Hit[];
+  sourceStart?: (id: string) => number;
 }
 
 export interface ExploreReply {
@@ -78,7 +79,7 @@ export async function exploreSearch(deps: ExploreSearchDeps, url: URL): Promise<
   const { sources, sample, origin } = deps.advisors();
   const advisors = params.branch ? [] : sources;
   const wantsSources = !types.length || types.some((t) => t === "paper" || t === "text" || t === "talk");
-  const sourceHits = wantsSources && !params.branch ? searchSources(params.q, await deps.sources()).map(sourceToHit) : [];
+  const sourceHits = wantsSources && !params.branch ? searchSources(params.q, await deps.sources()).map((s) => sourceToHit(s, deps.sourceStart)) : [];
   const results = unify({ query: params.q, excerpts, advisors, sources: sourceHits, types, topK: params.topK, extraHits: params.branch ? [] : deps.canonFiles(params.q) });
   return {
     status: 200,

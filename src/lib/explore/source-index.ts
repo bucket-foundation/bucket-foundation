@@ -1,5 +1,4 @@
 import { coverage, rankNormalized, tokens, type Hit } from "./search";
-import { sourceStart } from "./yt-starts";
 
 export type SourceKind = "o" | "p" | "a" | "g" | "w" | "y" | "d";
 export type SourceType = "paper" | "text" | "talk";
@@ -81,7 +80,7 @@ export function searchSources(query: string, pool: Prepared[], perType = PER_TYP
   return out;
 }
 
-export function sourceToHit(s: SourceSource): Hit {
+export function sourceToHit(s: SourceSource, start: (id: string) => number = () => 0): Hit {
   const label = SOURCE_LABEL[s.kind];
   return {
     id: sourceHitId(s.kind, s.id),
@@ -96,6 +95,6 @@ export function sourceToHit(s: SourceSource): Hit {
     year: s.year,
     url: sourceUrl(s.kind, s.id),
     links: [],
-    ...(s.kind === "y" ? { yt: { id: s.id, start: sourceStart(s.id) } } : {}),
+    ...(s.kind === "y" ? { yt: { id: s.id, start: start(s.id) } } : {}),
   };
 }
