@@ -6,7 +6,8 @@ export type ParsedSignup = { ok: true; signup: Signup; suspect: boolean } | { ok
 
 function clean(value: unknown, max: number): string {
   if (typeof value !== "string") return "";
-  return value.replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
+  const printable = Array.from(value, (ch) => (ch.charCodeAt(0) < 32 || ch.charCodeAt(0) === 127 ? " " : ch)).join("");
+  return printable.replace(/\s+/g, " ").trim().slice(0, max);
 }
 
 export function parseSignup(body: unknown): ParsedSignup {
