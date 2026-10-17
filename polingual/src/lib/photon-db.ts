@@ -1,3 +1,6 @@
+import { bakedGet, bakedSearch, bakedStats } from "./baked";
+
+const USE_DB = Boolean(process.env.POLINGUAL_DB_URL);
 const DB_URL =
   process.env.POLINGUAL_DB_URL || "https://db.agfarms.dev";
 const ANON_KEY =
@@ -47,6 +50,7 @@ function buildUrl(path: string, params: Record<string, string | number | undefin
 }
 
 export async function getPhoton(id: string): Promise<Photon | null> {
+  if (!USE_DB) return bakedGet(id);
   const url = buildUrl("photons", {
     select: SELECT_COLS,
     id: `eq.${id}`,
@@ -78,6 +82,7 @@ export async function searchPhotons(
   query: string,
   opts: SearchOptions = {}
 ): Promise<SearchResult> {
+  if (!USE_DB) return bakedSearch(query || "", opts);
   const t0 = Date.now();
   const q = (query || "").trim();
   const topK = Math.min(Math.max(opts.topK ?? 30, 1), 100);
@@ -156,6 +161,7 @@ export type PhotonStats = {
 };
 
 export async function photonStats(): Promise<PhotonStats> {
+  if (!USE_DB) return bakedStats();
   const totalUrl = buildUrl("photons", { select: "id", limit: 1 });
   const totalRes = await fetch(totalUrl, {
     headers: pgrstHeaders({ Prefer: "count=exact" }),
@@ -173,4 +179,21 @@ export async function photonStats(): Promise<PhotonStats> {
   for (const code of KNOWN_LANGS) by_lang[code] = 0;
 
   return { total, by_lang };
+}
+
+export async function insertSignup(s: { email: string; speaks: string; learning: string }): Promise<void> {
+  const r = await fetch(`${DB_URL}/rest/v1/signups?on_conflict=email`, {
+    signal: AbortSignal.timeout(8000),
+    method: "POST",
+    headers: {
+      apikey: ANON_KEY,
+      Authorization: `Bearer ${ANON_KEY}`,
+      "Content-Profile": SCHEMA,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal,resolution=merge-duplicates",
+    },
+    body: JSON.stringify({ email: s.email, source: "polingual.com", ...(s.speaks ? { speaks: s.speaks } : {}), ...(s.learning ? { learning: s.learning } : {}) }),
+    cache: "no-store",
+  });
+  if (!r.ok) throw new Error(`signups insert http ${r.status}: ${(await r.text()).slice(0, 200)}`);
 }
