@@ -12,24 +12,18 @@ const FOOTER = read("src/components/FooterV3.tsx");
 const LAYOUT = read("src/app/layout.tsx");
 const PRESENTATION = read("src/components/Presentation.tsx");
 
-test("research os is one link with no dropdown", () => {
-  const item = HEADER.slice(HEADER.indexOf('label: "Research OS"') - 40, HEADER.indexOf('label: "Research OS"') + 60);
-  assert.doesNotMatch(item, /sub:/);
-  assert.doesNotMatch(HEADER, /research-os\/workspace/);
-});
-
-test("canon is one link with no dropdown", () => {
-  assert.match(HEADER, /\{ href: "\/canon", label: "Canon" \}/);
-  assert.doesNotMatch(HEADER, /sub[:?]/);
-  assert.doesNotMatch(HEADER, /aria-haspopup/);
-  assert.doesNotMatch(HEADER, /▾/);
-  assert.doesNotMatch(HEADER, /canon\/(search|bridges|graph)/);
-});
-
-test("header nav lists Download right after Research OS and keeps the button", () => {
-  assert.ok(HEADER.indexOf('label: "Research OS"') < HEADER.indexOf('label: "Download"'));
-  assert.ok(HEADER.indexOf('label: "Download"') < HEADER.indexOf('label: "Canon"'));
+test("header holds the logo, the account menu and Download", () => {
+  assert.match(HEADER, /href="\/"/);
+  assert.match(HEADER, /<UserMenu /);
   assert.match(HEADER, /href="\/download"/);
+  assert.equal((HEADER.match(/href="/g) ?? []).length, 2);
+  assert.doesNotMatch(HEADER, /Research OS|"\/canon"|whats-new|"\/about"|GitHubStarButton|aria-haspopup|mobile-drawer/);
+});
+
+test("footer keeps the links the header dropped", () => {
+  for (const href of ["/research-os", "/canon", "/whats-new", "/about", "https://github.com/bucket-foundation"]) {
+    assert.ok(FOOTER.includes(`href="${href}"`), href);
+  }
 });
 
 test("footer links Download and drops the dead links", () => {
