@@ -33,6 +33,7 @@
     "test": "node scripts/run-tests.mjs --suite unit",
     "test:mcp": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-mcp-route.ts",
     "test:auth": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-auth-paths.ts",
+    "explore:yt-starts": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/build-yt-starts.ts",
     "test:dedup": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-research-os-dedup.ts && npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-research-os-merge-actions.ts",
     "waitlist:invite": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/waitlist-invite.ts",
     "test:waitlist": "npx ts-node --compiler-options '{\"module\":\"commonjs\"}' scripts/test-waitlist.ts",

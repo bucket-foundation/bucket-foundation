@@ -1,4 +1,5 @@
 import { coverage, rankNormalized, tokens, type Hit } from "./search";
+import { sourceStart } from "./yt-starts";
 
 export type SourceKind = "o" | "p" | "a" | "g" | "w" | "y" | "d";
 export type SourceType = "paper" | "text" | "talk";
@@ -95,5 +96,6 @@ export function sourceToHit(s: SourceSource): Hit {
     year: s.year,
     url: sourceUrl(s.kind, s.id),
     links: [],
+    ...(s.kind === "y" ? { yt: { id: s.id, start: sourceStart(s.id) } } : {}),
   };
 }

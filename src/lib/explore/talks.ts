@@ -1,9 +1,11 @@
 import fs from "fs";
 import path from "path";
+import { excerptStart } from "./yt-starts";
 
 export interface Talk {
   id: string;
   title: string;
+  start?: number;
 }
 
 const SOURCE_LINE = /\*\*Source\*\*:\s*\[(.+)\]\((https?:\/\/[^)\s]+)\)/;
@@ -27,6 +29,7 @@ export function talkFor(file: string, root = process.cwd()): Talk | null {
   } catch {
     talk = null;
   }
+  if (talk) talk = { ...talk, start: excerptStart(file) };
   cache.set(file, talk);
   return talk;
 }
