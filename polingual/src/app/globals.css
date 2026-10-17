@@ -58,3 +58,6 @@ html, body {
 }
 .katex { font-size: 1.05em; }
 .katex-display { margin: 0.4em 0; }
+@media (max-width: 640px) {
+  .katex-display { font-size: 0.82em; overflow-x: auto; overflow-y: hidden; }
+}
