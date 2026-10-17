@@ -1,0 +1,164 @@
+"use client";
+
+import { buildLangCorpus, LANGS, mergeSystems, normalizeSystemsDoc, type LangCorpus, type LangSystem, type SystemsDoc } from "./lang-systems";
+import { pullServer, type ServerBranches } from "./progress-store";
+
+const BASE = "/academy-app/corpus";
+export const SYSTEMS_KEY = "bucket-academy-lang/v1/systems";
+export const SYSTEMS_BRANCH = "lang-systems";
+
+let corpusPromise: Promise<LangCorpus | null> | null = null;
+
+async function getJson(file: string): Promise<unknown> {
+  const r = await fetch(`${BASE}/${file}`, { cache: "force-cache" });
+  if (!r.ok) throw new Error(`${file} ${r.status}`);
+  return r.json();
+}
+
+export function loadLangCorpus(): Promise<LangCorpus | null> {
+  if (!corpusPromise) {
+    corpusPromise = Promise.all([getJson("lang-core.json"), getJson("lang-cognates.json"), getJson("lang-phrases.json")])
+      .then(([core, cog, ph]) => buildLangCorpus(core as never, cog as never, ph as never))
+      .then((c) => (c.items.length ? c : null))
+      .catch(() => {
+        corpusPromise = null;
+        return null;
+      });
+  }
+  return corpusPromise;
+}
+
+function readLocalSystems(): SystemsDoc {
+  try {
+    const raw = localStorage.getItem(SYSTEMS_KEY);
+    return normalizeSystemsDoc(raw ? JSON.parse(raw) : null);
+  } catch {
+    return normalizeSystemsDoc(null);
+  }
+}
+
+function writeLocalSystems(doc: SystemsDoc): void {
+  try {
+    localStorage.setItem(SYSTEMS_KEY, JSON.stringify(doc));
+  } catch {
+  }
+}
+
+export async function loadSystems(server?: ServerBranches | null): Promise<LangSystem[]> {
+  const remote = server === undefined ? await pullServer() : server;
+  const merged = mergeSystems(readLocalSystems(), normalizeSystemsDoc(remote?.[SYSTEMS_BRANCH]?.data));
+  writeLocalSystems(merged);
+  return merged.systems;
+}
+
+export type SaveResult = "synced" | "local-only" | "failed";
+
+export interface SystemsChange {
+  upsert?: LangSystem;
+  remove?: string;
+}
+
+const RETRY_MS = [0, 800, 2500];
+
+export async function saveSystems(change: SystemsChange, deps: { pull?: typeof pullServer; post?: (doc: SystemsDoc) => Promise<Response> } = {}): Promise<{ result: SaveResult; systems: LangSystem[] }> {
+  const pull = deps.pull ?? pullServer;
+  const post = deps.post ?? ((doc: SystemsDoc) => fetch("/api/academy/progress", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ branch: SYSTEMS_BRANCH, data: doc }) }));
+  const delta: SystemsDoc = { systems: change.upsert ? [change.upsert] : [], removed: change.remove ? { [change.remove]: Date.now() } : {} };
+  let doc = mergeSystems(readLocalSystems(), delta);
+  writeLocalSystems(doc);
+  for (const wait of RETRY_MS) {
+    if (wait) await new Promise((r) => setTimeout(r, wait));
+    try {
+      const server = await pull();
+      if (server === null) return { result: "local-only", systems: doc.systems };
+      doc = mergeSystems(mergeSystems(doc, normalizeSystemsDoc(server[SYSTEMS_BRANCH]?.data)), delta);
+      writeLocalSystems(doc);
+      const res = await post(doc);
+      if (res.status === 401) return { result: "local-only", systems: doc.systems };
+      if (res.ok) return { result: "synced", systems: doc.systems };
+    } catch {
+    }
+  }
+  return { result: "failed", systems: doc.systems };
+}
+
+export function speechSupported(): boolean {
+  return typeof window !== "undefined" && "speechSynthesis" in window && typeof window.SpeechSynthesisUtterance === "function";
+}
+
+export function speak(text: string, lang: string): boolean {
+  if (!speechSupported() || !text) return false;
+  try {
+    const synth = window.speechSynthesis;
+    synth.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    const tag = LANGS[lang]?.bcp47 ?? lang;
+    const prefix = tag.slice(0, 2).toLowerCase();
+    const voices = synth.getVoices();
+    const v = voices.find((x) => x.lang.toLowerCase().replace("_", "-") === tag.toLowerCase()) ?? voices.find((x) => x.lang.toLowerCase().startsWith(prefix));
+    if (v) u.voice = v;
+    u.lang = v?.lang ?? tag;
+    u.rate = 0.9;
+    synth.speak(u);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+interface RecognitionLike {
+  lang: string;
+  interimResults: boolean;
+  maxAlternatives: number;
+  onresult: ((e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  start(): void;
+  stop(): void;
+}
+
+function recognitionCtor(): (new () => RecognitionLike) | null {
+  if (typeof window === "undefined") return null;
+  const w = window as unknown as { SpeechRecognition?: new () => RecognitionLike; webkitSpeechRecognition?: new () => RecognitionLike };
+  return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null;
+}
+
+export function recognitionSupported(): boolean {
+  return recognitionCtor() !== null;
+}
+
+export function listenOnce(lang: string): Promise<string[]> {
+  const Ctor = recognitionCtor();
+  if (!Ctor) return Promise.resolve([]);
+  return new Promise((resolve) => {
+    const r = new Ctor();
+    let done = false;
+    const finish = (xs: string[]) => {
+      if (done) return;
+      done = true;
+      resolve(xs);
+    };
+    r.lang = LANGS[lang]?.bcp47 ?? lang;
+    r.interimResults = false;
+    r.maxAlternatives = 5;
+    r.onresult = (e) => {
+      const first = e.results[0];
+      const out: string[] = [];
+      for (let i = 0; i < (first?.length ?? 0); i++) out.push(first[i].transcript);
+      finish(out);
+    };
+    r.onerror = () => finish([]);
+    r.onend = () => finish([]);
+    try {
+      r.start();
+      window.setTimeout(() => {
+        try {
+          r.stop();
+        } catch {
+        }
+      }, 6000);
+    } catch {
+      finish([]);
+    }
+  });
+}
