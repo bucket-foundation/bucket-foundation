@@ -143,9 +143,13 @@ export default function HomePage() {
             </ul>
           </details>
 
+
+          <section className="mt-8">
+            <Search />
+          </section>
           <aside className="mt-8 rounded-xl bg-white px-5 py-4" style={{ border: "1px solid var(--hairline)" }}>
             <p className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color: "var(--ink-dim)" }}>one record, four languages</p>
-            <div className="mt-3 flex flex-wrap items-baseline gap-x-6 gap-y-2 text-2xl" style={{ color: "var(--ink)" }}>
+            <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-2 text-2xl md:flex md:flex-wrap md:items-baseline" style={{ color: "var(--ink)" }}>
               <span>gravity <span className="font-mono text-[11px]" style={{ color: "var(--ink-faint)" }}>en</span></span>
               <span>Schwerkraft <span className="font-mono text-[11px]" style={{ color: "var(--ink-faint)" }}>de</span></span>
               <span>重力 <span className="font-mono text-[11px]" style={{ color: "var(--ink-faint)" }}>ja</span></span>
@@ -155,10 +159,6 @@ export default function HomePage() {
               Linked by translates and derives_from edges, and close in meaning space.
             </p>
           </aside>
-
-          <section className="mt-8">
-            <Search />
-          </section>
 
           <section className="mt-20">
             <H2 id="record" n="01">The record</H2>
