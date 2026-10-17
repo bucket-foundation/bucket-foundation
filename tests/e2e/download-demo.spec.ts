@@ -45,13 +45,13 @@ test("sample actions preserve signup and never post notes or data", async ({ pag
   await nav.getByRole("button", { name: "Add your own", exact: true }).click();
   await page.getByLabel("Probabilities, one per row").fill("0\n.5\n1");
   await page.getByRole("button", { name: "Analyze these values" }).click();
-  await expect(page.getByRole("table")).toContainText("1.0000");
+  await expect(page.locator("[data-demo-pane]").getByRole("table")).toContainText("1.0000");
   await nav.getByRole("button", { name: "Add your own", exact: true }).click();
   await page.getByLabel("Probabilities, one per row").fill("5");
   await page.getByRole("button", { name: "Analyze these values" }).click();
   await expect(page.locator("[data-product-demo]").getByRole("alert")).toContainText("zero and one");
   await page.getByLabel("Or choose a numeric CSV").setInputFiles({ name: "private-probabilities.csv", mimeType: "text/csv", buffer: Buffer.from("probability\n0.123456789\n0.5\n") });
-  await expect(page.getByRole("table")).toContainText("0.123456789");
+  await expect(page.locator("[data-demo-pane]").getByRole("table")).toContainText("0.123456789");
   const csvDownload = page.waitForEvent("download");
   await page.getByRole("button", { name: "Download sample CSV" }).click();
   expect(await readFile(await (await csvDownload).path() as string, "utf8")).toContain("0.123456789");

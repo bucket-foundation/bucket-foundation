@@ -5,6 +5,7 @@ import DownloadFlowV3 from "@/app/download/DownloadFlowV3";
 import type { Os } from "@/lib/download/release";
 import type { InstallerV2, WindowedInstaller } from "@/lib/download/release-v2";
 import ProductDemo from "./ProductDemo";
+import WebDesktopCompare from "./WebDesktopCompare";
 import styles from "./download-demo.module.css";
 
 export default function DownloadExperience({ detected, installers, windowed }: { detected: Os | null; installers: InstallerV2[]; windowed: WindowedInstaller[] }) {
@@ -19,6 +20,7 @@ export default function DownloadExperience({ detected, installers, windowed }: {
       </div>
       <div className={styles.downloadCard} data-download-pane><h2>Get the app</h2><DownloadFlowV3 detected={detected} installers={installers} windowed={windowed} /></div>
     </section>
+    <WebDesktopCompare />
     <section className={styles.demoPane} aria-labelledby="demo-heading" data-demo-pane>
       <header className={styles.intro}><div><span className={styles.eyebrow}>See it first</span><h2 id="demo-heading">Follow a question.</h2><p>Start with a coin toss. Follow the math, find a source, and keep what you learn.</p></div><div className={styles.modes} aria-label="Demo format"><button type="button" aria-pressed={mode === "try"} onClick={() => setMode("try")}>Try it ↗</button><button type="button" aria-pressed={mode === "watch"} onClick={() => setMode("watch")}>Watch the desktop ▷</button></div></header>
       <div hidden={mode !== "try"}><ProductDemo /></div>
