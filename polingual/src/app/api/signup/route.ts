@@ -1,8 +1,9 @@
+import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
+import { get, put } from "@vercel/blob";
 import path from "node:path";
 import { NextResponse } from "next/server";
 import { parseSignup, type Signup } from "@/lib/signup";
-import { insertSignup } from "@/lib/photon-db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -25,6 +26,27 @@ async function saveLocal(s: Signup): Promise<void> {
   await fs.appendFile(path.join(dir, "signups.jsonl"), JSON.stringify({ ...s, created_at: new Date().toISOString() }) + "\n");
 }
 
+async function saveBlob(s: Signup): Promise<void> {
+  const key = `signups/${createHash("sha256").update(s.email).digest("hex")}.json`;
+  const now = new Date().toISOString();
+  let prev: { created_at?: string; speaks?: string; learning?: string } = {};
+  try {
+    const old = await get(key, { access: "private" });
+    if (old?.stream) prev = JSON.parse(await new Response(old.stream).text());
+  } catch {
+    prev = {};
+  }
+  const entry = {
+    email: s.email,
+    speaks: s.speaks || prev.speaks || null,
+    learning: s.learning || prev.learning || null,
+    source: "polingual.com",
+    created_at: prev.created_at ?? now,
+    updated_at: now,
+  };
+  await put(key, JSON.stringify(entry), { access: "private", addRandomSuffix: false, allowOverwrite: true, contentType: "application/json" });
+}
+
 export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (limited(ip)) return NextResponse.json({ error: "Too many tries. Wait a minute." }, { status: 429 });
@@ -40,7 +62,7 @@ export async function POST(req: Request) {
   if (parsed.suspect) return NextResponse.json({ ok: true });
 
   try {
-    if (process.env.VERCEL) await insertSignup(parsed.signup);
+    if (process.env.BLOB_READ_WRITE_TOKEN) await saveBlob(parsed.signup);
     else await saveLocal(parsed.signup);
   } catch (err) {
     console.error("[signup] insert failed:", err instanceof Error ? err.message : err);
