@@ -53,7 +53,7 @@ const QUESTIONS = [
 function H2({ id, n, children }: { id: string; n: string; children: React.ReactNode }) {
   return (
     <h2 id={id} className="scroll-mt-8 flex items-baseline gap-3 text-3xl md:text-4xl" style={{ color: "var(--ink)", letterSpacing: "-0.01em" }}>
-      <span className="font-mono text-xs" style={{ color: "var(--blue)" }}>{n}</span>
+      <span style={{ color: "var(--ink)" }}>{n}</span>
       {children}
     </h2>
   );
@@ -123,6 +123,7 @@ export default function HomePage() {
             <h1 className="mt-4 leading-[1.05] text-[clamp(2.2rem,5vw,3.8rem)]" style={{ color: "var(--ink)", letterSpacing: "-0.02em" }}>
               Every word in every language, <em style={{ color: "var(--blue)" }}>one meaning.</em>
             </h1>
+            <p className="mt-6 text-center text-[15px] font-bold" style={{ color: "var(--ink)" }}>Abstract</p>
             <P>
               polingual is a cross-lingual dictionary and an open research project. It holds 6.5 million words in 35
               languages. Each word is a record with an English meaning, two vectors, and links to the same idea in
@@ -161,7 +162,7 @@ export default function HomePage() {
           </aside>
 
           <section className="mt-20">
-            <H2 id="record" n="01">The record</H2>
+            <H2 id="record" n="1">The record</H2>
             <P>
               We call each record a photon. A photon has one id, one surface form in its own script, and one meaning
               written in English. Each dictionary sense gets its own record. Translations stay separate records joined
@@ -171,13 +172,13 @@ export default function HomePage() {
           </section>
 
           <section className="mt-20">
-            <H2 id="math" n="02">The math</H2>
+            <H2 id="math" n="2">The math</H2>
             <P>
               Notation: <Tex>{String.raw`w`}</Tex> is a word record, <Tex>{String.raw`V`}</Tex> the set of all{" "}
               <Tex>{String.raw`N`}</Tex> records, <Tex>{String.raw`q`}</Tex> a query, and{" "}
               <Tex>{String.raw`\Vert`}</Tex> concatenation. Each word gets two unit vectors. The semantic vector embeds the text &ldquo;surface: meaning&rdquo; with
-              LaBSE, a multilingual sentence model, into 768 dimensions. The phonetic vector is built by hand from the
-              IPA transcription into 64 dimensions.
+              LaBSE, a multilingual sentence model, into <Tex>{String.raw`\mathbb{R}^{768}`}</Tex>. The phonetic vector is built by hand from the
+              IPA transcription into <Tex>{String.raw`\mathbb{R}^{64}`}</Tex>.
             </P>
             <Formula>
               <Tex block>{String.raw`s(w) = \mathrm{LaBSE}\big(\text{surface}(w) \,\Vert\, \text{": "} \,\Vert\, \text{meaning}_{en}(w)\big) \in \mathbb{R}^{768}, \qquad \lVert s(w) \rVert_2 = 1 \tag{1}`}</Tex>
@@ -226,7 +227,7 @@ export default function HomePage() {
           </section>
 
           <section className="mt-20">
-            <H2 id="network" n="03">The network</H2>
+            <H2 id="network" n="3">The network</H2>
             <P>
               Records link to each other through typed edges. Following translates edges gives a translation table.
               Following derives_from edges backward gives an etymology: English to Latin to Greek, or Japanese back
@@ -242,7 +243,7 @@ export default function HomePage() {
           </section>
 
           <section className="mt-20">
-            <H2 id="ranking" n="04">Search at scale</H2>
+            <H2 id="ranking" n="4">Search at scale</H2>
             <P>
               The full index holds 6,564,942 records across 35 languages. 1,979,896 of them have IPA and a phonetic
               vector. Both vector columns live in Postgres with pgvector and an HNSW index, so a nearest-neighbor query
@@ -271,7 +272,7 @@ export default function HomePage() {
           </section>
 
           <section className="mt-20">
-            <H2 id="sources" n="05">Sources</H2>
+            <H2 id="sources" n="5">Sources</H2>
             <P>
               Every record keeps its source URL and capture date. Dictionary data comes from{" "}
               <a href="https://en.wiktionary.org" className="underline" style={{ color: "var(--blue)" }}>Wiktionary</a>{" "}
@@ -282,7 +283,7 @@ export default function HomePage() {
           </section>
 
           <section className="mt-20">
-            <H2 id="questions" n="06">Open questions</H2>
+            <H2 id="questions" n="6">Open questions</H2>
             <dl className="mt-4 space-y-5">
               {QUESTIONS.map(([t, d]) => (
                 <div key={t}>
@@ -294,7 +295,7 @@ export default function HomePage() {
           </section>
 
           <section className="mt-20">
-            <H2 id="join" n="07">Join the learner list</H2>
+            <H2 id="join" n="7">Join the learner list</H2>
             <P>
               We are building learning tools for people who already speak two or more languages: learn the next
               language through the ones you know. Leave your email, and tell us your languages if you like. We will write when the first
