@@ -49,3 +49,12 @@ html, body {
       rgba(37, 99, 235, 0.04) 40%,
       transparent 70%);
 }
+
+.scroll-fade {
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+}
+@media (min-width: 768px) {
+  .scroll-fade { mask-image: none; }
+}
+.katex { font-size: 1.05em; }
+.katex-display { margin: 0.4em 0; }
