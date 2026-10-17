@@ -31,20 +31,22 @@ test("the five states show the desktop app screenshots", async ({ page, request 
   }
 });
 
-test("at 390 wide the header keeps Download, GitHub, the account link and a menu button", async ({ page }) => {
+test("at 390 wide the header shows the logo, the account link and Download", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/research-os");
   const header = page.locator("header").first();
+  await expect(header.getByRole("link", { name: "bucket.foundation" })).toBeVisible();
   await expect(header.getByRole("link", { name: "Download", exact: true })).toBeVisible();
-  await expect(header.getByRole("link", { name: /Bucket Foundation on GitHub/ })).toBeVisible();
   await expect(header.getByRole("link", { name: /Sign in|Notify me/ })).toBeVisible();
-  await expect(header.locator("nav")).toBeHidden();
-  const menu = header.getByRole("button", { name: "Open menu" });
-  await expect(menu).toBeVisible();
-  await menu.click();
-  await expect(page.locator("#mobile-drawer").getByRole("link", { name: /Research OS/ })).toBeVisible();
+  await expect(header.getByRole("link")).toHaveCount(3);
+  await expect(header.getByRole("button")).toHaveCount(0);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(0);
+});
+
+test("the landing links to the web and desktop comparison", async ({ page }) => {
+  await page.goto("/research-os");
+  await expect(page.getByRole("link", { name: /Web and desktop/ })).toHaveAttribute("href", "/download#web-and-desktop");
 });
 
 test("the home variants route is gone", async ({ request }) => {

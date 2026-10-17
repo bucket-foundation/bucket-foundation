@@ -83,6 +83,9 @@ export default function ResearchOsPage() {
                 Open Research OS →
               </Link>
             </div>
+            <p className="ros-sub">
+              <Link href="/download#web-and-desktop" className="underline underline-offset-4">Web and desktop: what each one does →</Link>
+            </p>
           </div>
         </section>
 
