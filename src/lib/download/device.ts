@@ -30,6 +30,20 @@ export function detectDevice(ua: string | null | undefined, archHint: string | n
   return "web";
 }
 
+const PLATFORM_UA: Record<string, string> = {
+  macos: "Macintosh",
+  windows: "Windows",
+  linux: "X11; Linux",
+  android: "Android",
+  "chrome os": "CrOS",
+  ios: "iPhone",
+};
+
+export function detectFromHints(ua: string | null | undefined, platform: string | null | undefined, archHint: string | null | undefined = null): DetectedDevice {
+  const known = PLATFORM_UA[(platform ?? "").replace(/"/g, "").trim().toLowerCase()];
+  return detectDevice(known ?? ua, archHint);
+}
+
 export interface DeviceLink {
   device: Device;
   label: string;
@@ -57,23 +71,42 @@ const DESKTOP_TARGET: Record<"macos-arm64" | "macos-x64" | "windows" | "linux" |
   "linux-arm64": ["linux", "arm64"],
 };
 
+const OS_NAME: Record<Device, string> = {
+  ios: "iPhone",
+  android: "Android",
+  "macos-arm64": "Mac",
+  "macos-x64": "Intel Mac",
+  windows: "Windows",
+  linux: "Linux",
+  "linux-arm64": "Linux ARM",
+  web: "your browser",
+};
+
 export function linkFor(device: Device, src: DeviceSources): DeviceLink {
   const label = DEVICE_LABEL[device];
-  if (device === "ios") return src.testflight ? { device, label, href: src.testflight, action: "Join the TestFlight beta" } : { device, label, href: null, action: "Coming soon" };
-  if (device === "android") return src.apk ? { device, label, href: src.apk, action: "Download the Android app" } : { device, label, href: null, action: "Coming soon" };
+  if (device === "ios") return src.testflight ? { device, label, href: src.testflight, action: "Get Bucket for iPhone on TestFlight" } : { device, label, href: null, action: "Bucket for iPhone is coming soon" };
+  if (device === "android") return src.apk ? { device, label, href: src.apk, action: "Download Bucket for Android" } : { device, label, href: null, action: "Bucket for Android is coming soon" };
   if (device === "web") return { device, label, href: LEARN_PATH, action: "Open Bucket in your browser" };
   const href = desktop(src.windowed, ...DESKTOP_TARGET[device]);
-  return href ? { device, label, href, action: `Download for ${label}` } : { device, label, href: RELEASES_PAGE, action: "See all releases" };
+  return href ? { device, label, href, action: `Download Bucket for ${OS_NAME[device]}` } : { device, label, href: RELEASES_PAGE, action: `Download Bucket for ${OS_NAME[device]}` };
+}
+
+export type DeviceLinks = Record<Device, DeviceLink>;
+
+export function allLinks(src: DeviceSources): DeviceLinks {
+  return Object.fromEntries(DEVICES.map((d) => [d, linkFor(d, src)])) as DeviceLinks;
 }
 
 export interface DeviceChoice {
-  primary: DeviceLink[];
+  primary: DeviceLink;
+  alt: DeviceLink | null;
   others: DeviceLink[];
 }
 
-export function deviceLinks(detected: DetectedDevice, src: DeviceSources): DeviceChoice {
-  const first: Device[] = detected === "macos" ? ["macos-arm64", "macos-x64"] : [detected];
-  return { primary: first.map((d) => linkFor(d, src)), others: DEVICES.filter((d) => !first.includes(d)).map((d) => linkFor(d, src)) };
+export function deviceLinks(detected: DetectedDevice, links: DeviceLinks): DeviceChoice {
+  const main: Device = detected === "macos" ? "macos-arm64" : detected;
+  const alt = detected === "macos" ? links["macos-x64"] : null;
+  return { primary: links[main], alt, others: DEVICES.filter((d) => d !== main && d !== alt?.device).map((d) => links[d]) };
 }
 
 export function testflightUrl(raw: string | null | undefined): string | null {

@@ -4,23 +4,24 @@ import { useState } from "react";
 import DownloadFlowV3 from "@/app/download/DownloadFlowV3";
 import type { Os } from "@/lib/download/release";
 import type { InstallerV2, WindowedInstaller } from "@/lib/download/release-v2";
-import type { DeviceChoice } from "@/lib/download/device";
+import type { DetectedDevice, DeviceLinks } from "@/lib/download/device";
 import DevicePicker from "./DevicePicker";
 import ProductDemo from "./ProductDemo";
 import WebDesktopCompare from "./WebDesktopCompare";
 import styles from "./download-demo.module.css";
 
-export default function DownloadExperience({ detected, installers, windowed, devices }: { detected: Os | null; installers: InstallerV2[]; windowed: WindowedInstaller[]; devices: DeviceChoice }) {
+export default function DownloadExperience({ detected, installers, windowed, device, links }: { detected: Os | null; installers: InstallerV2[]; windowed: WindowedInstaller[]; device: DetectedDevice; links: DeviceLinks }) {
   const [mode, setMode] = useState<"try" | "watch">("try");
   return <main className={styles.page}>
-    <section className={styles.hero} aria-label="Download Bucket">
+    <section className={styles.heroSingle} aria-label="Download Bucket">
       <div className={styles.heroText}>
-        <span className={styles.eyebrow}>Download · Bucket desktop</span>
-        <h1>Bucket on your computer.</h1>
-        <p>Follow a question from a coin toss to the math and the sources, and keep what you learn. The desktop app runs offline, and every release is signed.</p>
-        <ul className={styles.facts}><li>Mac, Windows, Linux and Android</li><li>Works offline</li><li>Signed releases</li><li>Free</li></ul>
+        <span className={styles.eyebrow}>Download</span>
+        <h1>Bucket on your devices.</h1>
+        <p data-polingual-line>Polingual language study is inside Bucket: read words across 35 languages by sound, spelling and root.</p>
+        <DevicePicker detected={device} links={links} />
+        <ul className={styles.facts}><li>Works offline</li><li>Signed releases</li><li>Free</li><li>No account needed</li></ul>
       </div>
-      <div className={styles.downloadCard} data-download-pane><h2>Get the app</h2><DevicePicker primary={devices.primary} others={devices.others} /><h2>Install commands and release emails</h2><DownloadFlowV3 detected={detected} installers={installers} windowed={windowed} /></div>
+      <div className={styles.downloadCard} data-download-pane><h2>Release emails, optional</h2><DownloadFlowV3 detected={detected} installers={installers} windowed={windowed} /></div>
     </section>
     <WebDesktopCompare />
     <section className={styles.demoPane} aria-labelledby="demo-heading" data-demo-pane>

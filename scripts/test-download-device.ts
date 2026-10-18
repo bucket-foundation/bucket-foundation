@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { DEVICES, LEARN_PATH, detectDevice, deviceLinks, linkFor, testflightUrl, type DeviceSources } from "../src/lib/download/device";
+import { DEVICES, LEARN_PATH, allLinks, detectDevice, detectFromHints, deviceLinks, linkFor, testflightUrl, type DeviceSources } from "../src/lib/download/device";
 import { RELEASES_PAGE } from "../src/lib/download/release";
 import { pickLatestV2, signedApk, windowedInstallers } from "../src/lib/download/release-v2";
 
@@ -53,8 +53,8 @@ test("linkFor picks the installer for each device", () => {
 });
 
 test("linkFor falls back when an asset is missing", () => {
-  assert.deepEqual([linkFor("ios", empty).href, linkFor("ios", empty).action], [null, "Coming soon"]);
-  assert.deepEqual([linkFor("android", empty).href, linkFor("android", empty).action], [null, "Coming soon"]);
+  assert.deepEqual([linkFor("ios", empty).href, linkFor("ios", empty).action], [null, "Bucket for iPhone is coming soon"]);
+  assert.deepEqual([linkFor("android", empty).href, linkFor("android", empty).action], [null, "Bucket for Android is coming soon"]);
   assert.equal(linkFor("macos-arm64", empty).href, RELEASES_PAGE);
   assert.equal(linkFor("web", empty).href, LEARN_PATH);
   const debOnly = windowedInstallers([asset(`Bucket-desktop-${v}-linux-x64.deb`)]);
@@ -62,14 +62,38 @@ test("linkFor falls back when an asset is missing", () => {
 });
 
 test("deviceLinks puts the detected device first and lists every other device once", () => {
+  const links = allLinks(full);
   for (const d of DEVICES) {
-    const got = deviceLinks(d, full);
-    assert.deepEqual(got.primary.map((l) => l.device), [d]);
-    assert.deepEqual([...got.primary, ...got.others].map((l) => l.device).sort(), [...DEVICES].sort());
+    const got = deviceLinks(d, links);
+    assert.equal(got.primary.device, d);
+    assert.equal(got.alt, null);
+    assert.deepEqual([got.primary, ...got.others].map((l) => l.device).sort(), [...DEVICES].sort());
   }
-  const mac = deviceLinks("macos", full);
-  assert.deepEqual(mac.primary.map((l) => l.href), [`https://example.org/Bucket-desktop-${v}-macos-arm64.dmg`, `https://example.org/Bucket-desktop-${v}-macos-x64.dmg`]);
+  const mac = deviceLinks("macos", links);
+  assert.equal(mac.primary.href, `https://example.org/Bucket-desktop-${v}-macos-arm64.dmg`);
+  assert.equal(mac.primary.action, "Download Bucket for Mac");
+  assert.equal(mac.alt?.href, `https://example.org/Bucket-desktop-${v}-macos-x64.dmg`);
   assert.ok(!mac.others.some((l) => l.device.startsWith("macos")));
+});
+
+const CHROME_MAC = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36";
+const BRAVE_MAC = CHROME_MAC;
+
+test("Chrome and Brave on macOS detect as Mac from the UA or the platform hint", () => {
+  assert.equal(detectFromHints(CHROME_MAC, null), "macos");
+  assert.equal(detectFromHints(BRAVE_MAC, '"macOS"'), "macos");
+  assert.equal(detectFromHints(BRAVE_MAC, '"macOS"', '"arm"'), "macos-arm64");
+  assert.equal(detectFromHints("Mozilla/5.0 (X11; Linux x86_64)", '"macOS"'), "macos");
+  assert.equal(detectFromHints(CHROME_MAC, '"Windows"'), "windows");
+  assert.equal(detectFromHints(CHROME_MAC, '"Linux"'), "linux");
+  assert.equal(detectFromHints("x", '"Android"'), "android");
+  assert.equal(detectFromHints(CHROME_MAC, '"Unknown"'), "macos");
+});
+
+test("every desktop button reads Download Bucket for its OS", () => {
+  assert.equal(linkFor("windows", full).action, "Download Bucket for Windows");
+  assert.equal(linkFor("linux", full).action, "Download Bucket for Linux");
+  assert.equal(linkFor("macos-arm64", empty).action, "Download Bucket for Mac");
 });
 
 test("testflightUrl accepts only a TestFlight join link", () => {
