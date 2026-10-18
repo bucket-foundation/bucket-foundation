@@ -183,6 +183,7 @@
           "level": "derive",
           "prompt": "Compute the entropy of a biased coin with P(heads)=1/4.",
           "answer": "H = −(1/4)log2(1/4) − (3/4)log2(3/4) = (1/4)(2) + (3/4)(0.415) ≈ 0.811 bits.",
+          "key": "0.811 bits",
           "eq": "H=-\\tfrac14\\log_2\\tfrac14-\\tfrac34\\log_2\\tfrac34\\approx0.811"
         },
         {
@@ -254,6 +255,7 @@
           "level": "apply",
           "prompt": "Can codeword lengths {1, 2, 2, 3} form a valid binary prefix code? Use Kraft.",
           "answer": "Σ 2^(−ℓ) = 1/2 + 1/4 + 1/4 + 1/8 = 9/8 > 1, so no — it violates the Kraft inequality.",
+          "key": "no", "accept": ["no it cannot", "no, the Kraft sum exceeds 1"],
           "eq": "\\sum_i 2^{-\\ell_i}=\\tfrac98>1"
         }
       ],
@@ -695,7 +697,8 @@
         {
           "level": "recall",
           "prompt": "What principle underlies the pumping lemma?",
-          "answer": "The pigeonhole principle: a sufficiently long accepted string must revisit a state, forming a loop that can be repeated."
+          "answer": "The pigeonhole principle: a sufficiently long accepted string must revisit a state, forming a loop that can be repeated.",
+          "key": "pigeonhole principle", "accept": ["pigeonhole"]
         }
       ],
       "lesson": "### Intuition\n\nA **language** here just means a set of allowed words. Finite-memory machines recognize many word patterns, but they fundamentally cannot *count without bound*, because they only ever remember which of finitely many states they're in. A pattern like \"some number of A's followed by *exactly the same number* of B's\" requires remembering an arbitrarily large count — beyond any fixed automaton. The **pumping lemma** is the clever lever that proves such languages are not regular.\n\n### Precisely\n\nA language is **regular** iff some DFA recognizes it. The **pumping lemma** states: for every regular language $L$ there is a \"pumping length\" $p$ such that every $w\\in L$ with $|w|\\ge p$ can be split as $w=xyz$ with\n\n$$|y|\\ge 1,\\quad |xy|\\le p,\\quad\\text{and}\\quad xy^i z\\in L \\text{ for all } i\\ge 0.$$\n\nThat is, the middle part $y$ (non-empty, occurring within the first $p$ symbols) can be repeated any number of times — or deleted — and the result stays in $L$. If *no* such $p$ can work, $L$ is **not regular**.\n\n### Worked example\n\nShow $L=\\{0^n1^n : n\\ge 0\\}$ is not regular. Suppose it were, with pumping length $p$. Take $w=0^p1^p\\in L$. By the lemma $w=xyz$ with $|xy|\\le p$, so $x$ and $y$ consist only of 0s; say $y=0^k$ with $k\\ge 1$. Pump up: $xy^2z=0^{p+k}1^p$, which has more 0s than 1s, so it is *not* in $L$ — contradiction. Hence no valid $p$ exists and $L$ is not regular. A DFA simply cannot remember the value of $n$.\n\n### Why it works\n\nThe lemma is the **pigeonhole principle** applied to states. A DFA with $p$ states reading a string of length $\\ge p$ must visit some state twice. The piece of the string consumed *between* those two visits forms a loop — the $y$ part — that the automaton can traverse 0, 1, 2, … times while ending in the same state, so all of $xy^iz$ are accepted or rejected together. A language requiring those pumped strings to behave differently cannot be regular.\n\n### Where it connects\n\nThis pins down the limit of **DFA/NFA** and **regular expressions**. The next rung, **context-free languages**, *can* handle $0^n1^n$ using a stack, and has its own (two-segment) pumping lemma. The **Myhill–Nerode theorem** gives an alternative, exact characterization of regularity. The pigeonhole argument recurs throughout complexity theory.\n\n### A second angle\n\nRegular languages enjoy strong **closure properties**, which give a second route to proving non-regularity. They are closed under union, intersection, complement, concatenation, and Kleene star. So if you suspect a language $L$ is non-regular, you can sometimes combine it with a known-regular language and derive a contradiction: e.g. if $L\\cap(0^*1^*)$ equals the known-non-regular $\\{0^n1^n\\}$, and intersection with a regular set preserves regularity, then $L$ cannot be regular. This \"closure\" technique often dodges the fiddly case analysis of the pumping lemma and is worth keeping in your toolkit alongside it.\n\n### Watch out\n\nThe pumping lemma is **necessary but not sufficient**: some non-regular languages still satisfy the pumping condition, so passing it does *not* prove regularity. A correct non-regularity proof must show the condition fails for *every* possible split — you, the prover, don't get to choose $x,y,z$; you must defeat *all* adversarial choices the lemma allows.\n"
@@ -756,7 +759,8 @@
         {
           "level": "apply",
           "prompt": "Is {0^n 1^n 2^n : n ≥ 0} context-free?",
-          "answer": "No; it fails the context-free pumping lemma — a single stack cannot match three counts simultaneously."
+          "answer": "No; it fails the context-free pumping lemma — a single stack cannot match three counts simultaneously.",
+          "key": "no", "accept": ["no it is not", "not context-free"]
         }
       ],
       "lesson": "### Intuition\n\nA **grammar** is a set of build-rules for words. **Context-free grammars** allow recursive rules like \"a sentence may contain a smaller sentence inside it,\" which lets you generate *nested* structure: matching brackets, arithmetic expressions, and programming-language syntax. This nesting is precisely what flat finite-state machines cannot do, because nesting requires remembering how deep you are — a job for a stack.\n\n### Precisely\n\nA **context-free grammar (CFG)** is a set of **production rules**, each rewriting a single **nonterminal** (a placeholder symbol) into a string of **terminals** (actual symbols) and nonterminals. Starting from a start symbol and applying rules generates the **context-free language (CFL)**. CFLs are exactly the languages recognized by **pushdown automata** — finite automata equipped with a **stack** (last-in-first-out memory). The stack supplies the bounded-recursion memory needed for balanced nesting.\n\n### Worked example\n\nA grammar for balanced parentheses, with start symbol $S$:\n\n$$S \\to (S)\\,S \\;\\mid\\; \\varepsilon$$\n\n($\\varepsilon$ is the empty string). Derive the string \"(())\": $S\\Rightarrow (S)S \\Rightarrow ((S)S)S \\Rightarrow (())$ by replacing inner $S$'s with $\\varepsilon$. The same grammar generates $\\{0^n1^n\\}$ if you read open-bracket as 0 and close-bracket as 1 — note this is exactly the language the **pumping lemma** proved *non-regular*. The pushdown automaton recognizes it by pushing a marker for each open bracket and popping one for each close, accepting iff the stack empties exactly at the end.\n\n### Why it works\n\nThe single stack is the precise extra ingredient. Each open bracket pushes; each close pops the matching one; you accept only if everything matched. There is also a **pumping lemma for context-free languages**, but with *two* pumpable segments ($uvxyz$ with $vy$ pumped together). It proves, for instance, that $\\{0^n1^n2^n\\}$ is *not* context-free: one stack can synchronize two counts but not three independent ones simultaneously.\n\n### Where it connects\n\nCFGs sit one rung above **regular languages** and one below **context-sensitive** in the **Chomsky hierarchy**. Parsing a CFG runs in polynomial time — the **CYK algorithm** in $O(n^3)$ — and deterministic subclasses (LL, LR) parse in linear time, which is why real compilers restrict their grammars to those. Adding a *second* stack jumps all the way to **Turing-machine** power.\n\n### A second angle\n\nContext-free languages are *not* closed under intersection or complement — a sharp contrast with regular languages. The classic witness: $\\{a^nb^nc^m\\}$ and $\\{a^mb^nc^n\\}$ are each context-free (one stack matches one pair), but their intersection is $\\{a^nb^nc^n\\}$, which is *not* context-free (it needs to match three counts). This failure of closure is exactly why a single pushdown stack hits a ceiling and why parsing real programming languages — which have context-sensitive aspects like declared-before-use variables — needs extra machinery layered on top of the context-free grammar. The grammar handles the nesting; a separate semantic pass handles the rest.\n\n### Watch out\n\n\"Context-free\" refers to the *form* of the rules (one nonterminal on the left), not to the language being simple — many CFLs are quite intricate. Note $\\{0^n1^n\\}$ is context-free but $\\{0^n1^n2^n\\}$ is not; the jump from two matched counts to three crosses the boundary. And passing the regular pumping test means nothing about CFLs — use the *context-free* pumping lemma for those.\n"
@@ -1179,6 +1183,7 @@
           "level": "apply",
           "prompt": "Solve T(n) = 2T(n/2) + n using the Master Theorem.",
           "answer": "Here a=2, b=2 so n^(log_b a) = n; f(n)=n matches, giving T(n) = Θ(n log n).",
+          "key": "Θ(n log n)", "accept": ["O(n log n)", "n log n", "theta(n log n)"],
           "eq": "T(n)=2T(n/2)+n=\\Theta(n\\log n)"
         },
         {
@@ -1730,7 +1735,8 @@
         {
           "level": "apply",
           "prompt": "Is (P → Q) ∨ (Q → P) a tautology?",
-          "answer": "Yes — for any truth values, at least one of the two implications holds, so the disjunction is always true."
+          "answer": "Yes — for any truth values, at least one of the two implications holds, so the disjunction is always true.",
+          "key": "yes", "accept": ["yes it is", "yes, it is a tautology"]
         }
       ],
       "lesson": "### Intuition\n\nTake simple statements that are each either true or false, and glue them together with AND, OR, NOT, and \"if…then.\" A **truth table** lists every possible true/false combination of the parts and shows when the whole glued statement comes out true. Propositional logic is the algebra of such yes/no statements — the foundation under digital circuits, SAT solvers, and all of formal reasoning.\n\n### Precisely\n\nFormulas are built from **atomic propositions** (basic true/false variables) and **connectives**: $\\lnot$ (not), $\\land$ (and), $\\lor$ (or), $\\to$ (implies), $\\leftrightarrow$ (iff). An **assignment** sets each atom true or false. A formula is **satisfiable** if *some* assignment makes it true, **valid** (a **tautology**) if *every* assignment does, and a **contradiction** if *none* does. Truth tables settle all of these by brute force over $2^n$ rows for $n$ atoms.\n\n### Worked example\n\nIs $(P\\to Q)\\lor(Q\\to P)$ a tautology? Build the truth table over the four assignments of $(P,Q)$. Recall $P\\to Q$ is false *only* when $P$ is true and $Q$ false. If $P$ is true and $Q$ false, then $P\\to Q$ is false but $Q\\to P$ is true (false antecedent), so the OR is true. In every other row at least one implication holds. All four rows give true — so yes, it is a tautology. The brute-force enumeration is the proof.\n\n### Why it works\n\nPropositional logic is **sound and complete**: a formula is provable in a proper proof system iff it is a tautology — syntactic provability and semantic truth coincide exactly. It is also **decidable**, since truth tables always terminate (finitely many rows). This decidability is precisely the property that *predicate* (first-order) logic loses. **Normal forms** — CNF (an AND of ORs) and DNF (an OR of ANDs) — standardize formulas, and converting to CNF is the front door to **SAT solvers** and the resolution proof method.\n\n### Where it connects\n\nDeciding satisfiability of propositional formulas *is* the **SAT** problem at the root of **NP-completeness** (Cook–Levin). Propositional logic underlies **proof systems**, digital circuit design, and is the base case beneath **predicate logic**. Truth-table reasoning connects to **probability** when truth values become probabilities.\n\n### A second angle\n\nPropositional logic is the mathematics of **digital circuits**. Every combinational circuit computes a Boolean function, and every Boolean function can be written as a formula over AND, OR, NOT — indeed in CNF or DNF. Minimizing such formulas (Karnaugh maps, Quine–McCluskey) is literally circuit optimization. Two functionally complete sets are worth knowing: $\\{\\text{AND, OR, NOT}\\}$, and the single gate **NAND** (or NOR), from which every other connective can be built — which is why chip fabs can implement any logic with one repeated gate type. This bridge from truth tables to silicon is why propositional logic is foundational to computer engineering, not just to proofs.\n\n### Watch out\n\nDon't confuse **satisfiable** (true under *at least one* assignment) with **valid** (true under *every* assignment) — a formula can be satisfiable without being a tautology. Also, $\\to$ (material implication) is true whenever the antecedent is false, which often surprises people: \"if the moon is cheese, then 2+2=5\" is *true* propositionally. And while truth tables always work, they take exponential time — which is exactly why SAT is hard.\n"
@@ -2525,7 +2531,8 @@
         {
           "level": "apply",
           "prompt": "A test is 99% accurate for a disease affecting 1 in 10,000 people. Roughly, is a single positive result likely to be a true positive?",
-          "answer": "No — with such a low base rate, false positives vastly outnumber true positives, so a lone positive is probably false (the base-rate fallacy)."
+          "answer": "No — with such a low base rate, false positives vastly outnumber true positives, so a lone positive is probably false (the base-rate fallacy).",
+          "key": "no", "accept": ["no it is not", "unlikely", "not likely"]
         },
         {
           "level": "recall",
@@ -2585,7 +2592,8 @@
         {
           "level": "recall",
           "prompt": "What theorem equates regular expressions with finite automata?",
-          "answer": "Kleene's theorem: regular expressions describe exactly the regular languages, equivalently those recognized by finite automata."
+          "answer": "Kleene's theorem: regular expressions describe exactly the regular languages, equivalently those recognized by finite automata.",
+          "key": "Kleene's theorem", "accept": ["Kleene", "Kleenes theorem", "Kleene theorem"]
         },
         {
           "level": "teach",
@@ -3119,7 +3127,8 @@
         {
           "level": "recall",
           "prompt": "What is the single computation rule of the lambda calculus?",
-          "answer": "Beta reduction: (λx.M)N rewrites to M with every free occurrence of x replaced by N, i.e. M[x:=N]."
+          "answer": "Beta reduction: (λx.M)N rewrites to M with every free occurrence of x replaced by N, i.e. M[x:=N].",
+          "key": "beta reduction", "accept": ["β-reduction", "beta-reduction"]
         },
         {
           "level": "teach",
@@ -3491,7 +3500,8 @@
         {
           "level": "derive",
           "prompt": "With public p=23, g=5, Alice's secret a=6 and Bob's secret b=15, show that both parties compute the same key.",
-          "answer": "A = 5^6 mod 23 = 8, B = 5^15 mod 23 = 19. Alice computes B^a = 19^6 mod 23 = 2; Bob computes A^b = 8^15 mod 23 = 2. Both equal g^{ab} mod 23 = 2, the shared key."
+          "answer": "A = 5^6 mod 23 = 8, B = 5^15 mod 23 = 19. Alice computes B^a = 19^6 mod 23 = 2; Bob computes A^b = 8^15 mod 23 = 2. Both equal g^{ab} mod 23 = 2, the shared key.",
+          "key": "2"
         }
       ]
     },

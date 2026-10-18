@@ -2059,7 +2059,8 @@
         {
           "level": "recall",
           "prompt": "What does the phasic firing of midbrain dopamine neurons signal?",
-          "answer": "A reward prediction error: a burst when reward is better than expected and a dip when it is worse than expected."
+          "answer": "A reward prediction error: a burst when reward is better than expected and a dip when it is worse than expected.",
+          "key": "reward prediction error", "accept": ["reward prediction errors", "RPE", "prediction error"]
         },
         {
           "level": "apply",

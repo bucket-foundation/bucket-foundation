@@ -43,7 +43,8 @@
         {
           "level": "apply",
           "prompt": "A car drives around a roundabout at a steady 30 km/h. Is it accelerating?",
-          "answer": "Yes — its speed is constant but its velocity vector keeps changing direction, so there is a centripetal acceleration pointing toward the center."
+          "answer": "Yes — its speed is constant but its velocity vector keeps changing direction, so there is a centripetal acceleration pointing toward the center.",
+          "key": "yes", "accept": ["yes it is", "yes, it is accelerating"]
         }
       ]
     },
@@ -868,7 +869,8 @@
         {
           "level": "apply",
           "prompt": "If you double the absolute temperature of a fixed amount of gas at constant volume, what happens to its pressure?",
-          "answer": "It doubles — by PV = NkT, with N and V fixed, P is proportional to T."
+          "answer": "It doubles — by PV = NkT, with N and V fixed, P is proportional to T.",
+          "key": "doubles", "accept": ["it doubles", "pressure doubles", "doubled", "2x", "x2", "twice"]
         }
       ]
     },
@@ -1806,7 +1808,8 @@
         {
           "level": "recall",
           "prompt": "Which fundamental force is NOT described by the Standard Model?",
-          "answer": "Gravity; the Standard Model covers the electromagnetic, weak, and strong forces but not gravitation."
+          "answer": "Gravity; the Standard Model covers the electromagnetic, weak, and strong forces but not gravitation.",
+          "key": "gravity", "accept": ["gravitation", "gravitational force", "gravitational"]
         },
         {
           "level": "teach",

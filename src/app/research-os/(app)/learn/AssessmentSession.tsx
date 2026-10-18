@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { useAcademy } from "../learn/useAcademy";
-import { buildRun, gradeAnswer, ratingFor, summarize, type Run, type RunResult, type Verdict } from "@/lib/academy/assess";
+import { buildRun, gradeItem, ratingFor, summarize, type Run, type RunResult, type Verdict } from "@/lib/academy/assess";
 import { deckLabel } from "@/lib/academy/corpus-client";
 import { newEventId, sendLearnEvent } from "@/lib/academy/events-client";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
@@ -73,7 +73,7 @@ export default function AssessmentSession({ branch }: { branch: string }) {
   function submit(e: FormEvent) {
     e.preventDefault();
     if (!item) return;
-    const v = gradeAnswer(input, item.answer);
+    const v = gradeItem(input, item);
     setVerdict(v);
     if (v.gradable) setStep("verdict");
     else setStep("selfcheck");
