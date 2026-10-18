@@ -1,5 +1,6 @@
 .page { background: #eeeadf; color: #1f1c16; padding: 40px 28px 56px; }
 .hero { max-width: 1180px; margin: 0 auto 72px; display: grid; grid-template-columns: minmax(0,1fr) 380px; gap: 56px; align-items: start; padding-top: 24px; }
+.heroSingle { max-width: 640px; margin: 0 auto 72px; padding-top: 24px; display: flex; flex-direction: column; gap: 28px; }
 .heroText h1 { font-family: var(--font-display), Georgia, serif; font-size: clamp(40px, 5vw, 72px); line-height: 1.02; letter-spacing: -.04em; margin: 12px 0 18px; }
 .heroText p { font-size: 17px; line-height: 1.6; color: #625c50; max-width: 520px; }
 .facts { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
