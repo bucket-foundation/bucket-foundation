@@ -253,11 +253,28 @@
       .replace(/[.;!,]+$/, "");
   }
 
-  function leadingNumber(s) {
+  var LEAD_FILLER = /^\s*(?:(?:the\s+)?answer\s+is|it\s+is|its|it's|about|approximately|approx\.?|roughly|around|nearly|so)\s*:?\s*/i;
+
+  function keyUnit(u) {
+    var n = normUnit(u).replace(/^volts?$/, "v").replace(/^bits$/, "bit");
+    return n.split("/")[0];
+  }
+
+  function leadingQuantity(s) {
     var text = asciiMath(s);
     var eq = text.lastIndexOf("=");
-    var m = (eq >= 0 ? text.slice(eq + 1) : text).match(LEAD_NUM);
-    return m ? parseNumber(m[1]) : null;
+    if (eq >= 0) text = text.slice(eq + 1);
+    var prev = "";
+    while (prev !== text) {
+      prev = text;
+      text = text.replace(LEAD_FILLER, "");
+    }
+    var m = text.match(LEAD_NUM);
+    if (!m) return null;
+    var value = parseNumber(m[1]);
+    if (value == null) return null;
+    var u = text.slice(m[0].length).match(/^\s*([a-zµμ°Ωå]+)/i);
+    return { value: value, unit: u ? keyUnit(u[1]) : "" };
   }
 
   function gradeItem(userInput, item) {
@@ -268,10 +285,11 @@
     var got = normKeyText(raw);
     var forms = [key].concat(item.accept || []);
     for (var i = 0; i < forms.length; i++) if (normKeyText(forms[i]) === got) return { gradable: true, correct: true, kind: "symbolic", expected: key, got: raw, reason: "match" };
-    var keyNum = leadingNumber(key);
-    if (keyNum != null) {
-      var userNum = leadingNumber(raw);
-      var ok = userNum != null && numbersClose(userNum, keyNum, { rel: item.tol != null ? item.tol : ASSESS.NUM_REL_TOL });
+    var keyQ = leadingQuantity(key);
+    if (keyQ) {
+      var userQ = leadingQuantity(raw);
+      var unitOk = !userQ || !userQ.unit || !keyQ.unit || userQ.unit === keyQ.unit;
+      var ok = userQ != null && unitOk && numbersClose(userQ.value, keyQ.value, { rel: item.tol != null ? item.tol : ASSESS.NUM_REL_TOL });
       return { gradable: true, correct: ok, kind: "numeric", expected: key, got: raw, reason: ok ? "match" : "value_mismatch" };
     }
     return { gradable: true, correct: false, kind: "symbolic", expected: key, got: raw, reason: "mismatch" };

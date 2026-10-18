@@ -2171,7 +2171,7 @@
      "level": "recall",
      "prompt": "What is the cell potential when a battery reaches equilibrium?",
      "answer": "Zero — at equilibrium Q = K and E = 0, the battery is 'dead'.",
-     "key": "0 V"
+     "key": "0 V", "accept": ["zero", "zero volts"]
     },
     {
      "level": "derive",

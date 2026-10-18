@@ -139,11 +139,31 @@ export function normKeyText(s: unknown): string {
 
 const LEAD_NUM = /^\s*([+-]?\d+(?:\.\d+)?(?:\s*[ex]\s*10\s*\^\s*[+-]?\d+|\s*e[+-]?\d+|\s*\/\s*\d+(?:\.\d+)?)?)/i;
 
-export function leadingNumber(s: unknown): number | null {
-  const text = asciiMath(s);
+const LEAD_FILLER = /^\s*(?:(?:the\s+)?answer\s+is|it\s+is|its|it's|about|approximately|approx\.?|roughly|around|nearly|so)\s*:?\s*/i;
+
+function keyUnit(u: string): string {
+  const n = normUnit(u).replace(/^volts?$/, "v").replace(/^bits$/, "bit");
+  return n.split("/")[0];
+}
+
+export function leadingQuantity(s: unknown): Salient | null {
+  let text = asciiMath(s);
   const eq = text.lastIndexOf("=");
-  const m = (eq >= 0 ? text.slice(eq + 1) : text).match(LEAD_NUM);
-  return m ? parseNumber(m[1]) : null;
+  if (eq >= 0) text = text.slice(eq + 1);
+  for (let prev = ""; prev !== text; ) {
+    prev = text;
+    text = text.replace(LEAD_FILLER, "");
+  }
+  const m = text.match(LEAD_NUM);
+  if (!m) return null;
+  const value = parseNumber(m[1]);
+  if (value == null) return null;
+  const u = text.slice(m[0].length).match(/^\s*([a-zµμ°Ωå]+)/i);
+  return { value, unit: u ? keyUnit(u[1]) : "" };
+}
+
+export function leadingNumber(s: unknown): number | null {
+  return leadingQuantity(s)?.value ?? null;
 }
 
 export function hasKey(item: KeyedItem): boolean {
@@ -157,10 +177,11 @@ export function gradeItem(userInput: unknown, item: KeyedItem): Verdict {
   if (!raw) return { gradable: true, correct: false, kind: "symbolic", expected: key, got: "", reason: "blank" };
   const got = normKeyText(raw);
   if ([key, ...(item.accept ?? [])].some((form) => normKeyText(form) === got)) return { gradable: true, correct: true, kind: "symbolic", expected: key, got: raw, reason: "match" };
-  const keyNum = leadingNumber(key);
-  if (keyNum != null) {
-    const userNum = leadingNumber(raw);
-    const ok = userNum != null && numbersClose(userNum, keyNum, { rel: item.tol ?? ASSESS.NUM_REL_TOL });
+  const keyQ = leadingQuantity(key);
+  if (keyQ) {
+    const userQ = leadingQuantity(raw);
+    const unitOk = !userQ?.unit || !keyQ.unit || userQ.unit === keyQ.unit;
+    const ok = userQ != null && unitOk && numbersClose(userQ.value, keyQ.value, { rel: item.tol ?? ASSESS.NUM_REL_TOL });
     return { gradable: true, correct: ok, kind: "numeric", expected: key, got: raw, reason: ok ? "match" : "value_mismatch" };
   }
   return { gradable: true, correct: false, kind: "symbolic", expected: key, got: raw, reason: "mismatch" };

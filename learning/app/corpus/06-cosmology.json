@@ -1277,7 +1277,7 @@
      "level": "recall",
      "prompt": "How large are the CMB temperature anisotropies relative to the mean temperature?",
      "answer": "About one part in 100,000 (after subtracting the dipole from our motion).",
-     "key": "1e-5", "accept": ["1 in 100000", "1 part in 100000", "0.001%", "10^-5"], "tol": 0.5
+     "key": "1e-5", "accept": ["1 in 100000", "1 part in 100000", "0.001%", "10^-5"], "tol": 0.25
     },
     {
      "level": "apply",
