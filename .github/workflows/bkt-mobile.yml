@@ -264,7 +264,8 @@ jobs:
           "$bt/apksigner" sign --ks "$ks" --ks-key-alias "$ANDROID_KEY_ALIAS" --ks-pass env:ANDROID_KEYSTORE_PASSWORD --key-pass env:ANDROID_KEY_PASSWORD --out "$out/Bucket-android-$TAG.apk" "$RUNNER_TEMP/aligned.apk"
           cert="$("$bt/apksigner" verify --print-certs "$out/Bucket-android-$TAG.apk" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')"
           echo "signer sha256: $cert"
-          if [ -n "$ANDROID_CERT_SHA256" ] && [ "$cert" != "$(echo "$ANDROID_CERT_SHA256" | tr -d ': ' | tr 'A-F' 'a-f')" ]; then
+          [ -n "$ANDROID_CERT_SHA256" ] || echo "::warning::ANDROID_CERT_SHA256 unset in bkt-release; signer not pinned."
+          if [ -n "$ANDROID_CERT_SHA256" ] &&[ "$cert" != "$(echo "$ANDROID_CERT_SHA256" | tr -d ': ' | tr 'A-F' 'a-f')" ]; then
             echo "::error::APK signer does not match ANDROID_CERT_SHA256"; exit 1
           fi
           cp "$b/bundle/release/app-release.aab" "$out/Bucket-android-$TAG.aab"
