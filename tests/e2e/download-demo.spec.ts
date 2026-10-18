@@ -108,7 +108,7 @@ test.describe("on an Android phone", () => {
     await page.goto("/download");
     await expect(page.locator("[data-device-picker]")).toHaveAttribute("data-detected", "android");
     await expect(page.locator("[data-device-primary=android]")).toBeVisible();
-    await expect(page.locator("[data-device-other]")).toHaveCount(6);
+    await expect(page.locator("[data-device-other]")).toHaveCount(7);
     await expect(page.locator("[data-device-other=web] a")).toHaveAttribute("href", "/learn");
   });
 });

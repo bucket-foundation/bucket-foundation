@@ -24,11 +24,13 @@ test("detectDevice maps user agents to one device", () => {
   assert.equal(detectDevice("Mozilla/5.0 (iPad; CPU OS 17_0 like Mac OS X)"), "ios");
   assert.equal(detectDevice("Mozilla/5.0 (Linux; Android 14; Pixel 8)"), "android");
   assert.equal(detectDevice("Mozilla/5.0 (Windows NT 10.0; Win64; x64)"), "windows");
-  assert.equal(detectDevice("Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5)"), "macos-arm64");
+  assert.equal(detectDevice("Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5)"), "macos");
   assert.equal(detectDevice("Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5)", '"x86"'), "macos-x64");
   assert.equal(detectDevice("Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5)", '"arm"'), "macos-arm64");
   assert.equal(detectDevice("Mozilla/5.0 (X11; Linux x86_64) Gecko"), "linux");
+  assert.equal(detectDevice("Mozilla/5.0 (X11; Linux aarch64)", '"arm"'), "linux-arm64");
   assert.equal(detectDevice("Mozilla/5.0 (X11; CrOS x86_64 14541.0.0)"), "web");
+  assert.equal(detectDevice("Mozilla/5.0 (X11; CrOS aarch64 14541.0.0)", '"arm"'), "web");
   assert.equal(detectDevice("curl/8.0"), "web");
   assert.equal(detectDevice(null), "web");
 });
@@ -43,6 +45,7 @@ test("linkFor picks the installer for each device", () => {
   assert.equal(linkFor("macos-arm64", full).href, `https://example.org/Bucket-desktop-${v}-macos-arm64.dmg`);
   assert.equal(linkFor("macos-x64", full).href, `https://example.org/Bucket-desktop-${v}-macos-x64.dmg`);
   assert.equal(linkFor("windows", full).href, `https://example.org/Bucket-desktop-${v}-windows-x64.msi`);
+  assert.equal(linkFor("linux-arm64", full).href, RELEASES_PAGE);
   assert.equal(linkFor("linux", full).href, `https://example.org/Bucket-desktop-${v}-linux-x64.AppImage.tar.gz`);
   assert.equal(linkFor("android", full).href, "https://example.org/Bucket-android-bkt-v0.6.0.apk");
   assert.equal(linkFor("ios", full).href, "https://testflight.apple.com/join/AbC123");
@@ -61,9 +64,12 @@ test("linkFor falls back when an asset is missing", () => {
 test("deviceLinks puts the detected device first and lists every other device once", () => {
   for (const d of DEVICES) {
     const got = deviceLinks(d, full);
-    assert.equal(got.primary.device, d);
-    assert.deepEqual([got.primary.device, ...got.others.map((l) => l.device)].sort(), [...DEVICES].sort());
+    assert.deepEqual(got.primary.map((l) => l.device), [d]);
+    assert.deepEqual([...got.primary, ...got.others].map((l) => l.device).sort(), [...DEVICES].sort());
   }
+  const mac = deviceLinks("macos", full);
+  assert.deepEqual(mac.primary.map((l) => l.href), [`https://example.org/Bucket-desktop-${v}-macos-arm64.dmg`, `https://example.org/Bucket-desktop-${v}-macos-x64.dmg`]);
+  assert.ok(!mac.others.some((l) => l.device.startsWith("macos")));
 });
 
 test("testflightUrl accepts only a TestFlight join link", () => {
