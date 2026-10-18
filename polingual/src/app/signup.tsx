@@ -31,7 +31,7 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
   if (state.kind === "done" && compact) {
     return (
       <p className="font-sans text-[15px]" style={{ color: "var(--ink-2)" }}>
-        You are on the list. <a href="#join" className="underline" style={{ color: "var(--blue)" }}>Add your languages</a> so we can match you to the first tools.
+        You are on the list. <a href="/research#join" className="underline" style={{ color: "var(--blue)" }}>Add your languages</a> so we can match you to the first tools.
       </p>
     );
   }
