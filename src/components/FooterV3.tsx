@@ -41,6 +41,10 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Explore</div>
           <ul className="space-y-2 text-sm">
             <li><Link href="/download" className="hover:text-[color:var(--bone)] transition">Download</Link></li>
+            <li><Link href="/research-os" className="hover:text-[color:var(--bone)] transition">Research OS</Link></li>
+            <li><Link href="/canon" className="hover:text-[color:var(--bone)] transition">Canon</Link></li>
+            <li><Link href="/whats-new" className="hover:text-[color:var(--bone)] transition">What&rsquo;s new</Link></li>
+            <li><Link href="/about" className="hover:text-[color:var(--bone)] transition">About</Link></li>
             <li><Link href="/canon/search" className="hover:text-[color:var(--bone)] transition">Search canon</Link></li>
             <li><Link href="/canon/bridges" className="hover:text-[color:var(--bone)] transition">Bridges</Link></li>
             <li><Link href="/canon/graph" className="hover:text-[color:var(--bone)] transition">Knowledge graph</Link></li>
@@ -72,6 +76,7 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
         <div>
           <div className="small-caps text-[10px] text-[color:var(--gold)] mb-4">Open source</div>
           <ul className="space-y-2 text-sm">
+            <li><a href="https://github.com/bucket-foundation" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">GitHub</a></li>
             <li><a href="https://github.com/bucket-foundation/bucket-foundation" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">bucket-foundation</a></li>
             <li><a href="https://github.com/bucket-foundation/x402-research-gateway" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">x402-gateway</a></li>
             <li><a href="https://github.com/bucket-foundation/research-atlas" className="hover:text-[color:var(--bone)] transition" target="_blank" rel="noreferrer">research-atlas</a></li>

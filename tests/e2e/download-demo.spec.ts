@@ -45,13 +45,13 @@ test("sample actions preserve signup and never post notes or data", async ({ pag
   await nav.getByRole("button", { name: "Add your own", exact: true }).click();
   await page.getByLabel("Probabilities, one per row").fill("0\n.5\n1");
   await page.getByRole("button", { name: "Analyze these values" }).click();
-  await expect(page.getByRole("table")).toContainText("1.0000");
+  await expect(page.locator("[data-demo-pane]").getByRole("table")).toContainText("1.0000");
   await nav.getByRole("button", { name: "Add your own", exact: true }).click();
   await page.getByLabel("Probabilities, one per row").fill("5");
   await page.getByRole("button", { name: "Analyze these values" }).click();
   await expect(page.locator("[data-product-demo]").getByRole("alert")).toContainText("zero and one");
   await page.getByLabel("Or choose a numeric CSV").setInputFiles({ name: "private-probabilities.csv", mimeType: "text/csv", buffer: Buffer.from("probability\n0.123456789\n0.5\n") });
-  await expect(page.getByRole("table")).toContainText("0.123456789");
+  await expect(page.locator("[data-demo-pane]").getByRole("table")).toContainText("0.123456789");
   const csvDownload = page.waitForEvent("download");
   await page.getByRole("button", { name: "Download sample CSV" }).click();
   expect(await readFile(await (await csvDownload).path() as string, "utf8")).toContain("0.123456789");
@@ -92,8 +92,6 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 640, height: 400
     expect(bounds).not.toBeNull();
     expect(bounds!.x).toBeGreaterThanOrEqual(0);
     expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(viewport.width);
-    expect(bounds!.y).toBeGreaterThanOrEqual(0);
-    expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(viewport.height + 2);
     await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
     await page.getByLabel("Name", { exact: true }).fill("Ada");
     await page.getByLabel("Agree to the privacy terms").check();
@@ -103,3 +101,30 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 640, height: 400
     if (viewport.width === 1440 || viewport.width === 390 && viewport.height === 844) await page.screenshot({ path: `test-results/download-${viewport.width}.png`, fullPage: true });
   });
 }
+
+test.describe("on an Android phone", () => {
+  test.use({ userAgent: "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/126.0 Mobile Safari/537.36" });
+  test("the download card leads with Android and lists the other devices", async ({ page }) => {
+    await page.goto("/download");
+    await expect(page.locator("[data-device-picker]")).toHaveAttribute("data-detected", "android");
+    await expect(page.locator("[data-device-primary=android]")).toBeVisible();
+    await expect(page.locator("[data-device-other]")).toHaveCount(7);
+    await expect(page.locator("[data-device-other=web] a")).toHaveAttribute("href", "/learn");
+  });
+});
+
+test.describe("on a Mac in Brave", () => {
+  test.use({ userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" });
+  test("one enabled Mac download button sits above the optional signup", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/download");
+    const button = page.locator("[data-device-primary^=macos]");
+    await expect(button).toHaveText(/^Download Bucket for (Intel )?Mac$/);
+    await expect(button).toBeInViewport();
+    await expect(page.locator("[data-polingual-line]")).toBeVisible();
+    await expect(page.locator("#flow-platform")).toHaveValue("macos-arm64");
+    const b = await button.boundingBox();
+    const form = await page.locator("[data-download-pane]").boundingBox();
+    expect(form!.y).toBeGreaterThan(b!.y);
+  });
+});

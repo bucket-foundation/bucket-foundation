@@ -37,7 +37,7 @@ function readBinaryVectors(p: string, dim: number, n: number): Float32Array {
   return new Float32Array(buf.buffer, buf.byteOffset, n * dim);
 }
 
-function parseExcerpt(file: string): { title: string; excerpt: string } {
+export function parseExcerpt(file: string): { title: string; excerpt: string } {
   let raw = "";
   try { raw = fs.readFileSync(file, "utf-8"); } catch { return { title: "", excerpt: "" }; }
   const lines = raw.split("\n");

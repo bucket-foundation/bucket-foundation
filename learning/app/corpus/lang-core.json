@@ -25,7 +25,8 @@
       "zh"
     ],
     "version": "0.5.0",
-    "license": "Translations are VERIFIED from the English Wiktionary translation tables (kaikki.org raw-wiktextract-data, CC-BY-SA 3.0) — each concept ships only where Wiktionary lists a translation for the right sense. The Polingual semantic corpus is NOT used as a translation source (it is semantic-neighbour noise). English IPA from Wiktionary `sounds`. Concrete-first ordering & emoji tiles are original. Attribution: Wiktionary contributors via Kaikki (kaikki.org)."
+    "license": "Translations are VERIFIED from the English Wiktionary translation tables (kaikki.org raw-wiktextract-data, CC-BY-SA 3.0) — each concept ships only where Wiktionary lists a translation for the right sense. The Polingual semantic corpus is NOT used as a translation source (it is semantic-neighbour noise). English IPA from Wiktionary `sounds`. Concrete-first ordering & emoji tiles are original. Attribution: Wiktionary contributors via Kaikki (kaikki.org).",
+    "corrections": "Forms corrected by lang-fixes.json through build-lang-layers.mjs."
   },
   "atoms": [
     {
@@ -73,7 +74,7 @@
           "word": "ثَمَانِيَة"
         },
         "el": {
-          "word": "οκτω"
+          "word": "οκτώ"
         },
         "fi": {
           "word": "kahdeksan"
@@ -143,7 +144,7 @@
           "word": "خَمْسَة"
         },
         "el": {
-          "word": "πεντε"
+          "word": "πέντε"
         },
         "fi": {
           "word": "viisi"
@@ -219,7 +220,7 @@
           "word": "أَرْبَعَة"
         },
         "el": {
-          "word": "τεσσερα"
+          "word": "τέσσερα"
         },
         "fi": {
           "word": "neljä"
@@ -295,10 +296,10 @@
           "word": "نِصْف"
         },
         "el": {
-          "word": "μισο"
+          "word": "μισό"
         },
         "fi": {
-          "word": "puolikas"
+          "word": "puoli"
         },
         "hi": {
           "word": "आधा"
@@ -308,6 +309,9 @@
         },
         "pl": {
           "word": "połowa"
+        },
+        "zh": {
+          "word": "一半"
         }
       },
       "resources": [
@@ -362,7 +366,7 @@
           "word": "مِٱئَة"
         },
         "el": {
-          "word": "εκατο"
+          "word": "εκατό"
         },
         "fi": {
           "word": "sata"
@@ -432,7 +436,7 @@
           "word": "تِسْعَة"
         },
         "el": {
-          "word": "εννεα"
+          "word": "εννέα"
         },
         "fi": {
           "word": "yhdeksän"
@@ -502,7 +506,7 @@
           "word": "عَدَد"
         },
         "el": {
-          "word": "αριθμος"
+          "word": "αριθμός"
         },
         "fi": {
           "word": "luku"
@@ -578,7 +582,7 @@
           "word": "وَاحِد"
         },
         "el": {
-          "word": "ενα"
+          "word": "ένα"
         },
         "fi": {
           "word": "yksi"
@@ -653,7 +657,7 @@
           "word": "سَبْعَة"
         },
         "el": {
-          "word": "επτα"
+          "word": "επτά"
         },
         "fi": {
           "word": "seitsemän"
@@ -666,6 +670,9 @@
         },
         "pl": {
           "word": "siedem"
+        },
+        "zh": {
+          "word": "七"
         }
       },
       "resources": [
@@ -720,7 +727,7 @@
           "word": "سِتَّة"
         },
         "el": {
-          "word": "εξι"
+          "word": "έξι"
         },
         "fi": {
           "word": "kuusi"
@@ -790,7 +797,7 @@
           "word": "عَشَرَة"
         },
         "el": {
-          "word": "δεκα"
+          "word": "δέκα"
         },
         "fi": {
           "word": "kymmenen"
@@ -803,6 +810,9 @@
         },
         "pl": {
           "word": "dziesięć"
+        },
+        "zh": {
+          "word": "十"
         }
       },
       "resources": [
@@ -863,7 +873,7 @@
           "word": "أَلْف"
         },
         "el": {
-          "word": "χιλια"
+          "word": "χίλια"
         },
         "fi": {
           "word": "tuhat"
@@ -876,6 +886,9 @@
         },
         "pl": {
           "word": "tysiąc"
+        },
+        "zh": {
+          "word": "千"
         }
       },
       "resources": [
@@ -930,7 +943,7 @@
           "word": "ثَلَاثَة"
         },
         "el": {
-          "word": "τρια"
+          "word": "τρία"
         },
         "fi": {
           "word": "kolme"
@@ -1006,7 +1019,7 @@
           "word": "اِثْنَانِ"
         },
         "el": {
-          "word": "δυο"
+          "word": "δύο"
         },
         "fi": {
           "word": "kaksi"
@@ -1073,7 +1086,7 @@
           "word": "noll"
         },
         "ru": {
-          "word": "нуль"
+          "word": "ноль"
         },
         "ja": {
           "word": "零"
@@ -1082,7 +1095,7 @@
           "word": "صِفْر"
         },
         "el": {
-          "word": "μηδεν"
+          "word": "μηδέν"
         },
         "fi": {
           "word": "nolla"
@@ -1152,7 +1165,7 @@
           "word": "أَسْوَد"
         },
         "el": {
-          "word": "μαυρος"
+          "word": "μαύρος"
         },
         "fi": {
           "word": "musta"
@@ -1237,13 +1250,13 @@
           "word": "नीला"
         },
         "ko": {
-          "word": "푸르다"
+          "word": "파랗다"
         },
         "pl": {
           "word": "niebieski"
         },
         "zh": {
-          "word": "蓝色"
+          "word": "蓝"
         }
       },
       "resources": [
@@ -1301,10 +1314,10 @@
           "word": "茶色い"
         },
         "ar": {
-          "word": "أَسْمَر"
+          "word": "بُنِّيّ"
         },
         "el": {
-          "word": "καστανος"
+          "word": "καφέ"
         },
         "fi": {
           "word": "ruskea"
@@ -1317,6 +1330,9 @@
         },
         "pl": {
           "word": "brązowy"
+        },
+        "zh": {
+          "word": "棕色"
         }
       },
       "resources": [
@@ -1378,7 +1394,7 @@
           "word": "لَوْن"
         },
         "el": {
-          "word": "χρωμα"
+          "word": "χρώμα"
         },
         "fi": {
           "word": "väri"
@@ -1448,7 +1464,7 @@
           "word": "أَخْضَر"
         },
         "el": {
-          "word": "πρασινος"
+          "word": "πράσινος"
         },
         "fi": {
           "word": "vihreä"
@@ -1461,6 +1477,9 @@
         },
         "pl": {
           "word": "zielony"
+        },
+        "zh": {
+          "word": "绿"
         }
       },
       "resources": [
@@ -1500,7 +1519,7 @@
           "word": "arancione"
         },
         "pt": {
-          "word": "alaranjado"
+          "word": "laranja"
         },
         "de": {
           "word": "Orange"
@@ -1512,16 +1531,16 @@
           "word": "orange"
         },
         "ru": {
-          "word": "оранжевый цвет"
+          "word": "оранжевый"
         },
         "ja": {
           "word": "橙色"
         },
         "ar": {
-          "word": "برتقاني"
+          "word": "بُرْتُقَالِيّ"
         },
         "el": {
-          "word": "πορτοκαλι"
+          "word": "πορτοκαλί"
         },
         "fi": {
           "word": "oranssi"
@@ -1561,7 +1580,7 @@
           "ipa": "ˈpɪŋk"
         },
         "es": {
-          "word": "rosado"
+          "word": "rosa"
         },
         "fr": {
           "word": "rose"
@@ -1579,7 +1598,7 @@
           "word": "roze"
         },
         "sv": {
-          "word": "skär"
+          "word": "rosa"
         },
         "ru": {
           "word": "розовый"
@@ -1604,6 +1623,9 @@
         },
         "pl": {
           "word": "różowy"
+        },
+        "zh": {
+          "word": "粉红色"
         }
       },
       "resources": [
@@ -1658,7 +1680,7 @@
           "word": "أَحْمَر"
         },
         "el": {
-          "word": "κοκκινος"
+          "word": "κόκκινος"
         },
         "fi": {
           "word": "punainen"
@@ -1734,7 +1756,7 @@
           "word": "أَبْيَض"
         },
         "el": {
-          "word": "ασπρος"
+          "word": "άσπρος"
         },
         "fi": {
           "word": "valkoinen"
@@ -1810,7 +1832,7 @@
           "word": "أَصْفَر"
         },
         "el": {
-          "word": "κιτρινος"
+          "word": "κίτρινος"
         },
         "fi": {
           "word": "keltainen"
@@ -1862,7 +1884,7 @@
           "word": "bébé"
         },
         "it": {
-          "word": "bambino"
+          "word": "neonato"
         },
         "pt": {
           "word": "bebé"
@@ -1874,7 +1896,7 @@
           "word": "baby"
         },
         "sv": {
-          "word": "spädbarn"
+          "word": "bebis"
         },
         "ru": {
           "word": "младенец"
@@ -1886,7 +1908,7 @@
           "word": "رَضِيع"
         },
         "el": {
-          "word": "βρεφος"
+          "word": "μωρό"
         },
         "fi": {
           "word": "vauva"
@@ -1956,7 +1978,7 @@
           "word": "أَخ"
         },
         "el": {
-          "word": "αδελφος"
+          "word": "αδελφός"
         },
         "fi": {
           "word": "veli"
@@ -1996,7 +2018,7 @@
           "ipa": "tʃaɪld"
         },
         "es": {
-          "word": "hijo"
+          "word": "niño"
         },
         "fr": {
           "word": "enfant"
@@ -2005,7 +2027,7 @@
           "word": "bambino"
         },
         "pt": {
-          "word": "filho"
+          "word": "criança"
         },
         "de": {
           "word": "Kind"
@@ -2023,10 +2045,10 @@
           "word": "子供"
         },
         "ar": {
-          "word": "وَلَد"
+          "word": "طِفْل"
         },
         "el": {
-          "word": "παιδι"
+          "word": "παιδί"
         },
         "fi": {
           "word": "lapsi"
@@ -2100,7 +2122,7 @@
           "word": "اِبْنَة"
         },
         "el": {
-          "word": "κορη"
+          "word": "κόρη"
         },
         "fi": {
           "word": "tytär"
@@ -2158,7 +2180,7 @@
           "word": "vader"
         },
         "sv": {
-          "word": "fader"
+          "word": "far"
         },
         "ru": {
           "word": "отец"
@@ -2170,7 +2192,7 @@
           "word": "أَب"
         },
         "el": {
-          "word": "πατερας"
+          "word": "πατέρας"
         },
         "fi": {
           "word": "isä"
@@ -2234,7 +2256,7 @@
           "word": "vriend"
         },
         "sv": {
-          "word": "kamrat"
+          "word": "vän"
         },
         "ru": {
           "word": "друг"
@@ -2246,7 +2268,7 @@
           "word": "صَدِيق"
         },
         "el": {
-          "word": "φιλος"
+          "word": "φίλος"
         },
         "fi": {
           "word": "ystävä"
@@ -2322,7 +2344,7 @@
           "word": "زَوْج"
         },
         "el": {
-          "word": "συζυγος"
+          "word": "σύζυγος"
         },
         "fi": {
           "word": "mies"
@@ -2386,13 +2408,13 @@
           "word": "мужчина"
         },
         "ja": {
-          "word": "男性"
+          "word": "男"
         },
         "ar": {
           "word": "رَجُل"
         },
         "el": {
-          "word": "ανδρας"
+          "word": "άντρας"
         },
         "fi": {
           "word": "mies"
@@ -2467,13 +2489,13 @@
           "word": "أُمّ"
         },
         "el": {
-          "word": "μητερα"
+          "word": "μητέρα"
         },
         "fi": {
           "word": "äiti"
         },
         "hi": {
-          "word": "माता"
+          "word": "माँ"
         },
         "ko": {
           "word": "엄마"
@@ -2543,7 +2565,7 @@
           "word": "اِسْم"
         },
         "el": {
-          "word": "ονομα"
+          "word": "όνομα"
         },
         "fi": {
           "word": "nimi"
@@ -2558,7 +2580,7 @@
           "word": "imię"
         },
         "zh": {
-          "word": "名"
+          "word": "名字"
         }
       },
       "resources": [
@@ -2589,52 +2611,52 @@
           "ipa": "ˈpi.pəl"
         },
         "es": {
-          "word": "pueblo"
+          "word": "gente"
         },
         "fr": {
-          "word": "peuple"
+          "word": "gens"
         },
         "it": {
           "word": "popolo"
         },
         "pt": {
-          "word": "povo"
+          "word": "gente"
         },
         "de": {
-          "word": "Volk"
+          "word": "Leute"
         },
         "nl": {
-          "word": "volk"
+          "word": "mensen"
         },
         "sv": {
           "word": "folk"
         },
         "ru": {
-          "word": "народ"
+          "word": "люди"
         },
         "ja": {
-          "word": "国民"
+          "word": "人々"
         },
         "ar": {
-          "word": "خَلْق"
+          "word": "نَاس"
         },
         "el": {
-          "word": "λαος"
+          "word": "άνθρωποι"
         },
         "fi": {
           "word": "kansa"
         },
         "hi": {
-          "word": "समाज"
+          "word": "लोग"
         },
         "ko": {
           "word": "국민"
         },
         "pl": {
-          "word": "naród"
+          "word": "ludzie"
         },
         "zh": {
-          "word": "国民"
+          "word": "人们"
         }
       },
       "resources": [
@@ -2692,13 +2714,13 @@
           "word": "شَخْص"
         },
         "el": {
-          "word": "ατομο"
+          "word": "άτομο"
         },
         "fi": {
           "word": "henkilö"
         },
         "hi": {
-          "word": "मनुष्य"
+          "word": "व्यक्ति"
         },
         "ko": {
           "word": "사람"
@@ -2762,7 +2784,7 @@
           "word": "أُخْت"
         },
         "el": {
-          "word": "αδελφη"
+          "word": "αδελφή"
         },
         "fi": {
           "word": "sisko"
@@ -2878,7 +2900,7 @@
           "word": "femme"
         },
         "it": {
-          "word": "sposa"
+          "word": "moglie"
         },
         "pt": {
           "word": "esposa"
@@ -2902,7 +2924,7 @@
           "word": "زَوْجَة"
         },
         "el": {
-          "word": "συζυγος"
+          "word": "σύζυγος"
         },
         "fi": {
           "word": "vaimo"
@@ -2915,6 +2937,9 @@
         },
         "pl": {
           "word": "żona"
+        },
+        "zh": {
+          "word": "妻子"
         }
       },
       "resources": [
@@ -2963,13 +2988,13 @@
           "word": "женщина"
         },
         "ja": {
-          "word": "女の人"
+          "word": "女"
         },
         "ar": {
           "word": "اِمْرَأَة"
         },
         "el": {
-          "word": "γυναικα"
+          "word": "γυναίκα"
         },
         "fi": {
           "word": "nainen"
@@ -2978,10 +3003,13 @@
           "word": "महिला"
         },
         "ko": {
-          "word": "여성"
+          "word": "여자"
         },
         "pl": {
           "word": "kobieta"
+        },
+        "zh": {
+          "word": "女人"
         }
       },
       "resources": [
@@ -3042,19 +3070,22 @@
           "word": "دُبّ"
         },
         "el": {
-          "word": "αρκουδα"
+          "word": "αρκούδα"
         },
         "fi": {
           "word": "karhu"
         },
         "hi": {
-          "word": "भालो"
+          "word": "भालू"
         },
         "ko": {
           "word": "곰"
         },
         "pl": {
           "word": "niedźwiedź"
+        },
+        "zh": {
+          "word": "熊"
         }
       },
       "resources": [
@@ -3109,7 +3140,7 @@
           "word": "نَحْلَة"
         },
         "el": {
-          "word": "μελισσα"
+          "word": "μέλισσα"
         },
         "fi": {
           "word": "mehiläinen"
@@ -3179,7 +3210,7 @@
           "word": "طَائِر"
         },
         "el": {
-          "word": "πουλι"
+          "word": "πουλί"
         },
         "fi": {
           "word": "lintu"
@@ -3239,7 +3270,7 @@
           "word": "Katze"
         },
         "nl": {
-          "word": "huiskat"
+          "word": "kat"
         },
         "sv": {
           "word": "katt"
@@ -3248,13 +3279,13 @@
           "word": "кошка"
         },
         "ja": {
-          "word": "家猫"
+          "word": "猫"
         },
         "ar": {
           "word": "قِطّ"
         },
         "el": {
-          "word": "γατα"
+          "word": "γάτα"
         },
         "fi": {
           "word": "kissa"
@@ -3321,7 +3352,7 @@
           "word": "höna"
         },
         "ru": {
-          "word": "цыплёнок"
+          "word": "курица"
         },
         "ja": {
           "word": "鶏"
@@ -3330,7 +3361,7 @@
           "word": "دَجَاجَة"
         },
         "el": {
-          "word": "κοτοπουλο"
+          "word": "κότα"
         },
         "fi": {
           "word": "kana"
@@ -3394,13 +3425,13 @@
           "word": "корова"
         },
         "ja": {
-          "word": "雌牛"
+          "word": "牛"
         },
         "ar": {
           "word": "بَقَرَة"
         },
         "el": {
-          "word": "αγελαδα"
+          "word": "αγελάδα"
         },
         "fi": {
           "word": "lehmä"
@@ -3409,13 +3440,13 @@
           "word": "गाय"
         },
         "ko": {
-          "word": "암소"
+          "word": "소"
         },
         "pl": {
           "word": "krowa"
         },
         "zh": {
-          "word": "母牛"
+          "word": "牛"
         }
       },
       "resources": [
@@ -3476,7 +3507,7 @@
           "word": "كَلْب"
         },
         "el": {
-          "word": "σκυλος"
+          "word": "σκύλος"
         },
         "fi": {
           "word": "koira"
@@ -3552,7 +3583,7 @@
           "word": "بَيْض"
         },
         "el": {
-          "word": "αβγο"
+          "word": "αυγό"
         },
         "fi": {
           "word": "muna"
@@ -3567,7 +3598,7 @@
           "word": "jajo"
         },
         "zh": {
-          "word": "卵子"
+          "word": "鸡蛋"
         }
       },
       "resources": [
@@ -3629,7 +3660,7 @@
           "word": "سَمَكَة"
         },
         "el": {
-          "word": "ψαρι"
+          "word": "ψάρι"
         },
         "fi": {
           "word": "kala"
@@ -3705,7 +3736,7 @@
           "word": "حِصَان"
         },
         "el": {
-          "word": "αλογο"
+          "word": "άλογο"
         },
         "fi": {
           "word": "hevonen"
@@ -3781,7 +3812,7 @@
           "word": "أَسَد"
         },
         "el": {
-          "word": "λιονταρι"
+          "word": "λιοντάρι"
         },
         "fi": {
           "word": "leijona"
@@ -3845,13 +3876,13 @@
           "word": "мышь"
         },
         "ja": {
-          "word": "鼠"
+          "word": "ネズミ"
         },
         "ar": {
           "word": "فَأْرَة"
         },
         "el": {
-          "word": "ποντικι"
+          "word": "ποντίκι"
         },
         "fi": {
           "word": "hiiri"
@@ -3921,7 +3952,7 @@
           "word": "خِنْزِير"
         },
         "el": {
-          "word": "γουρουνι"
+          "word": "γουρούνι"
         },
         "fi": {
           "word": "sika"
@@ -3961,7 +3992,7 @@
           "ipa": "ʃiːp"
         },
         "es": {
-          "word": "carnero"
+          "word": "oveja"
         },
         "fr": {
           "word": "mouton"
@@ -3991,7 +4022,7 @@
           "word": "خَرُوف"
         },
         "el": {
-          "word": "προβατο"
+          "word": "πρόβατο"
         },
         "fi": {
           "word": "lammas"
@@ -4006,7 +4037,7 @@
           "word": "owca"
         },
         "zh": {
-          "word": "绵羊"
+          "word": "羊"
         }
       },
       "resources": [
@@ -4061,7 +4092,7 @@
           "word": "ثُعْبَان"
         },
         "el": {
-          "word": "φιδι"
+          "word": "φίδι"
         },
         "fi": {
           "word": "käärme"
@@ -4131,7 +4162,7 @@
           "word": "عَنْكَبُوت"
         },
         "el": {
-          "word": "αραχνη"
+          "word": "αράχνη"
         },
         "fi": {
           "word": "hämähäkki"
@@ -4201,7 +4232,7 @@
           "word": "ذِئْب"
         },
         "el": {
-          "word": "λυκος"
+          "word": "λύκος"
         },
         "fi": {
           "word": "susi"
@@ -4271,7 +4302,7 @@
           "word": "ذِرَاع"
         },
         "el": {
-          "word": "χερι"
+          "word": "χέρι"
         },
         "fi": {
           "word": "käsivarsi"
@@ -4284,6 +4315,9 @@
         },
         "pl": {
           "word": "ramię"
+        },
+        "zh": {
+          "word": "胳膊"
         }
       },
       "resources": [
@@ -4345,7 +4379,7 @@
           "word": "ظَهْر"
         },
         "el": {
-          "word": "πλατη"
+          "word": "πλάτη"
         },
         "fi": {
           "word": "selkä"
@@ -4415,7 +4449,7 @@
           "word": "دَم"
         },
         "el": {
-          "word": "αιμα"
+          "word": "αίμα"
         },
         "fi": {
           "word": "veri"
@@ -4492,7 +4526,7 @@
           "word": "عَظْم"
         },
         "el": {
-          "word": "κοκαλο"
+          "word": "κόκαλο"
         },
         "fi": {
           "word": "luu"
@@ -4507,7 +4541,7 @@
           "word": "kość"
         },
         "zh": {
-          "word": "骨质"
+          "word": "骨头"
         }
       },
       "resources": [
@@ -4560,7 +4594,7 @@
           "word": "hjärna"
         },
         "ru": {
-          "word": "головной мозг"
+          "word": "мозг"
         },
         "ja": {
           "word": "脳"
@@ -4569,13 +4603,13 @@
           "word": "دِمَاغ"
         },
         "el": {
-          "word": "εγκεφαλος"
+          "word": "εγκέφαλος"
         },
         "fi": {
           "word": "aivot"
         },
         "hi": {
-          "word": "भेजा"
+          "word": "दिमाग़"
         },
         "ko": {
           "word": "뇌"
@@ -4584,7 +4618,7 @@
           "word": "mózg"
         },
         "zh": {
-          "word": "头脑"
+          "word": "大脑"
         }
       },
       "resources": [
@@ -4609,7 +4643,7 @@
           "ipa": "ˈɪə̯"
         },
         "es": {
-          "word": "oído"
+          "word": "oreja"
         },
         "fr": {
           "word": "oreille"
@@ -4618,7 +4652,7 @@
           "word": "orecchio"
         },
         "pt": {
-          "word": "ouvido"
+          "word": "orelha"
         },
         "de": {
           "word": "Ohr"
@@ -4639,7 +4673,7 @@
           "word": "أُذُن"
         },
         "el": {
-          "word": "αυτι"
+          "word": "αυτί"
         },
         "fi": {
           "word": "korva"
@@ -4652,6 +4686,9 @@
         },
         "pl": {
           "word": "ucho"
+        },
+        "zh": {
+          "word": "耳朵"
         }
       },
       "resources": [
@@ -4712,7 +4749,7 @@
           "word": "عَيْن"
         },
         "el": {
-          "word": "οφθαλμος"
+          "word": "μάτι"
         },
         "fi": {
           "word": "silmä"
@@ -4783,7 +4820,7 @@
           "word": "وَجْه"
         },
         "el": {
-          "word": "προσωπο"
+          "word": "πρόσωπο"
         },
         "fi": {
           "word": "kasvot"
@@ -4853,7 +4890,7 @@
           "word": "إِصْبَع"
         },
         "el": {
-          "word": "δαχτυλο"
+          "word": "δάχτυλο"
         },
         "fi": {
           "word": "sormi"
@@ -4866,6 +4903,9 @@
         },
         "pl": {
           "word": "palec"
+        },
+        "zh": {
+          "word": "手指"
         }
       },
       "resources": [
@@ -4920,7 +4960,7 @@
           "word": "رِجْل"
         },
         "el": {
-          "word": "ποδι"
+          "word": "πόδι"
         },
         "fi": {
           "word": "jalka"
@@ -4964,7 +5004,7 @@
           "word": "cabello"
         },
         "fr": {
-          "word": "cheveu"
+          "word": "cheveux"
         },
         "it": {
           "word": "capello"
@@ -4991,7 +5031,7 @@
           "word": "شَعْر"
         },
         "el": {
-          "word": "μαλλι"
+          "word": "μαλλιά"
         },
         "fi": {
           "word": "hiukset"
@@ -5000,7 +5040,7 @@
           "word": "बाल"
         },
         "ko": {
-          "word": "머리칼"
+          "word": "머리카락"
         },
         "pl": {
           "word": "włosy"
@@ -5065,7 +5105,7 @@
           "word": "يَد"
         },
         "el": {
-          "word": "χερι"
+          "word": "χέρι"
         },
         "fi": {
           "word": "käsi"
@@ -5141,7 +5181,7 @@
           "word": "رَأْس"
         },
         "el": {
-          "word": "κεφαλι"
+          "word": "κεφάλι"
         },
         "fi": {
           "word": "pää"
@@ -5217,7 +5257,7 @@
           "word": "قَلْب"
         },
         "el": {
-          "word": "καρδια"
+          "word": "καρδιά"
         },
         "fi": {
           "word": "sydän"
@@ -5293,7 +5333,7 @@
           "word": "رُكْبَة"
         },
         "el": {
-          "word": "γονατο"
+          "word": "γόνατο"
         },
         "fi": {
           "word": "polvi"
@@ -5306,6 +5346,9 @@
         },
         "pl": {
           "word": "kolano"
+        },
+        "zh": {
+          "word": "膝盖"
         }
       },
       "resources": [
@@ -5360,13 +5403,13 @@
           "word": "رِجْل"
         },
         "el": {
-          "word": "ποδι"
+          "word": "πόδι"
         },
         "fi": {
           "word": "jalka"
         },
         "hi": {
-          "word": "पांव"
+          "word": "टाँग"
         },
         "ko": {
           "word": "다리"
@@ -5437,7 +5480,7 @@
           "word": "فَم"
         },
         "el": {
-          "word": "στομα"
+          "word": "στόμα"
         },
         "fi": {
           "word": "suu"
@@ -5514,7 +5557,7 @@
           "word": "رَقَبَة"
         },
         "el": {
-          "word": "λαιμος"
+          "word": "λαιμός"
         },
         "fi": {
           "word": "kaula"
@@ -5584,7 +5627,7 @@
           "word": "أَنْف"
         },
         "el": {
-          "word": "μυτη"
+          "word": "μύτη"
         },
         "fi": {
           "word": "nenä"
@@ -5661,7 +5704,7 @@
           "word": "جِلْد"
         },
         "el": {
-          "word": "δερμα"
+          "word": "δέρμα"
         },
         "fi": {
           "word": "iho"
@@ -5670,7 +5713,7 @@
           "word": "त्वचा"
         },
         "ko": {
-          "word": "살갗"
+          "word": "피부"
         },
         "pl": {
           "word": "skóra"
@@ -5738,16 +5781,16 @@
           "word": "مَعِدَة"
         },
         "el": {
-          "word": "στομαχι"
+          "word": "στομάχι"
         },
         "fi": {
-          "word": "mahalaukku"
+          "word": "vatsa"
         },
         "hi": {
           "word": "आमाशय"
         },
         "ko": {
-          "word": "위"
+          "word": "배"
         },
         "pl": {
           "word": "żołądek"
@@ -5808,7 +5851,7 @@
           "word": "لِسَان"
         },
         "el": {
-          "word": "γλωσσα"
+          "word": "γλώσσα"
         },
         "fi": {
           "word": "kieli"
@@ -5878,7 +5921,7 @@
           "word": "سِنّ"
         },
         "el": {
-          "word": "δοντι"
+          "word": "δόντι"
         },
         "fi": {
           "word": "hammas"
@@ -5949,13 +5992,13 @@
           "word": "яблоко"
         },
         "ja": {
-          "word": "林檎"
+          "word": "りんご"
         },
         "ar": {
           "word": "تُفَّاحَة"
         },
         "el": {
-          "word": "μηλο"
+          "word": "μήλο"
         },
         "fi": {
           "word": "omena"
@@ -6025,7 +6068,7 @@
           "word": "بِيرَة"
         },
         "el": {
-          "word": "μπιρα"
+          "word": "μπίρα"
         },
         "fi": {
           "word": "olut"
@@ -6095,7 +6138,7 @@
           "word": "خُبْز"
         },
         "el": {
-          "word": "ψωμι"
+          "word": "ψωμί"
         },
         "fi": {
           "word": "leipä"
@@ -6171,13 +6214,13 @@
           "word": "زُبْدَة"
         },
         "el": {
-          "word": "βουτυρο"
+          "word": "βούτυρο"
         },
         "fi": {
           "word": "voi"
         },
         "hi": {
-          "word": "घी"
+          "word": "मक्खन"
         },
         "ko": {
           "word": "버터"
@@ -6241,7 +6284,7 @@
           "word": "جُبْن"
         },
         "el": {
-          "word": "τυρι"
+          "word": "τυρί"
         },
         "fi": {
           "word": "juusto"
@@ -6256,7 +6299,7 @@
           "word": "ser"
         },
         "zh": {
-          "word": "酪"
+          "word": "奶酪"
         }
       },
       "resources": [
@@ -6311,13 +6354,13 @@
           "word": "قَهْوَة"
         },
         "el": {
-          "word": "καφες"
+          "word": "καφές"
         },
         "fi": {
           "word": "kahvi"
         },
         "hi": {
-          "word": "क़हवा"
+          "word": "कॉफ़ी"
         },
         "ko": {
           "word": "커피"
@@ -6372,7 +6415,7 @@
           "word": "frukt"
         },
         "ru": {
-          "word": "плод"
+          "word": "фрукт"
         },
         "ja": {
           "word": "果実"
@@ -6381,7 +6424,7 @@
           "word": "ثَمَرَة"
         },
         "el": {
-          "word": "καρπος"
+          "word": "φρούτο"
         },
         "fi": {
           "word": "hedelmä"
@@ -6396,7 +6439,7 @@
           "word": "owoc"
         },
         "zh": {
-          "word": "果"
+          "word": "水果"
         }
       },
       "resources": [
@@ -6456,13 +6499,13 @@
           "word": "عَسَل"
         },
         "el": {
-          "word": "μελι"
+          "word": "μέλι"
         },
         "fi": {
           "word": "hunaja"
         },
         "hi": {
-          "word": "मधु"
+          "word": "शहद"
         },
         "ko": {
           "word": "꿀"
@@ -6526,7 +6569,7 @@
           "word": "لَحْم"
         },
         "el": {
-          "word": "κρεας"
+          "word": "κρέας"
         },
         "fi": {
           "word": "liha"
@@ -6597,13 +6640,13 @@
           "word": "молоко"
         },
         "ja": {
-          "word": "乳"
+          "word": "牛乳"
         },
         "ar": {
           "word": "حَلِيب"
         },
         "el": {
-          "word": "γαλα"
+          "word": "γάλα"
         },
         "fi": {
           "word": "maito"
@@ -6616,6 +6659,9 @@
         },
         "pl": {
           "word": "mleko"
+        },
+        "zh": {
+          "word": "牛奶"
         }
       },
       "resources": [
@@ -6676,7 +6722,7 @@
           "word": "بَطَاطَا"
         },
         "el": {
-          "word": "πατατα"
+          "word": "πατάτα"
         },
         "fi": {
           "word": "peruna"
@@ -6689,6 +6735,9 @@
         },
         "pl": {
           "word": "ziemniak"
+        },
+        "zh": {
+          "word": "土豆"
         }
       },
       "resources": [
@@ -6743,7 +6792,7 @@
           "word": "أَرُزّ"
         },
         "el": {
-          "word": "ρυζι"
+          "word": "ρύζι"
         },
         "fi": {
           "word": "riisi"
@@ -6755,7 +6804,7 @@
           "word": "쌀"
         },
         "pl": {
-          "word": "ryż gotowany"
+          "word": "ryż"
         },
         "zh": {
           "word": "米"
@@ -6813,7 +6862,7 @@
           "word": "مِلْح"
         },
         "el": {
-          "word": "αλατι"
+          "word": "αλάτι"
         },
         "fi": {
           "word": "suola"
@@ -6863,7 +6912,7 @@
           "word": "sopa"
         },
         "fr": {
-          "word": "potage"
+          "word": "soupe"
         },
         "it": {
           "word": "minestra"
@@ -6884,13 +6933,13 @@
           "word": "суп"
         },
         "ja": {
-          "word": "汁"
+          "word": "スープ"
         },
         "ar": {
           "word": "شُورَبَة"
         },
         "el": {
-          "word": "σουπα"
+          "word": "σούπα"
         },
         "fi": {
           "word": "keitto"
@@ -6903,6 +6952,9 @@
         },
         "pl": {
           "word": "zupa"
+        },
+        "zh": {
+          "word": "汤"
         }
       },
       "resources": [
@@ -6957,7 +7009,7 @@
           "word": "سُكَّر"
         },
         "el": {
-          "word": "ζαχαρη"
+          "word": "ζάχαρη"
         },
         "fi": {
           "word": "sokeri"
@@ -6970,6 +7022,9 @@
         },
         "pl": {
           "word": "cukier"
+        },
+        "zh": {
+          "word": "糖"
         }
       },
       "resources": [
@@ -7024,7 +7079,7 @@
           "word": "شَاي"
         },
         "el": {
-          "word": "τσαι"
+          "word": "τσάι"
         },
         "fi": {
           "word": "tee"
@@ -7037,6 +7092,9 @@
         },
         "pl": {
           "word": "herbata"
+        },
+        "zh": {
+          "word": "茶"
         }
       },
       "resources": [
@@ -7091,7 +7149,7 @@
           "word": "نَبِيذ"
         },
         "el": {
-          "word": "κρασι"
+          "word": "κρασί"
         },
         "fi": {
           "word": "viini"
@@ -7155,22 +7213,22 @@
           "word": "strand"
         },
         "sv": {
-          "word": "sandstrand"
+          "word": "strand"
         },
         "ru": {
           "word": "пляж"
         },
         "ja": {
-          "word": "浜"
+          "word": "浜辺"
         },
         "ar": {
           "word": "شَاطِئ"
         },
         "el": {
-          "word": "αμμουδια"
+          "word": "παραλία"
         },
         "fi": {
-          "word": "hiekkaranta"
+          "word": "ranta"
         },
         "hi": {
           "word": "समुद्रतट"
@@ -7180,6 +7238,9 @@
         },
         "pl": {
           "word": "plaża"
+        },
+        "zh": {
+          "word": "海滩"
         }
       },
       "resources": [
@@ -7234,13 +7295,13 @@
           "word": "سَحَاب"
         },
         "el": {
-          "word": "συννεφο"
+          "word": "σύννεφο"
         },
         "fi": {
           "word": "pilvi"
         },
         "hi": {
-          "word": "मेघ"
+          "word": "बादल"
         },
         "ko": {
           "word": "구름"
@@ -7305,13 +7366,13 @@
           "word": "земля"
         },
         "ja": {
-          "word": "地"
+          "word": "土"
         },
         "ar": {
           "word": "تُرْبَة"
         },
         "el": {
-          "word": "χωμα"
+          "word": "χώμα"
         },
         "fi": {
           "word": "maa"
@@ -7326,7 +7387,7 @@
           "word": "ziemia"
         },
         "zh": {
-          "word": "地"
+          "word": "土"
         }
       },
       "resources": [
@@ -7387,7 +7448,7 @@
           "word": "نَار"
         },
         "el": {
-          "word": "φωτια"
+          "word": "φωτιά"
         },
         "fi": {
           "word": "tuli"
@@ -7399,7 +7460,7 @@
           "word": "불"
         },
         "pl": {
-          "word": "żar"
+          "word": "ogień"
         },
         "zh": {
           "word": "火"
@@ -7463,7 +7524,7 @@
           "word": "زَهْرَة"
         },
         "el": {
-          "word": "ανθος"
+          "word": "λουλούδι"
         },
         "fi": {
           "word": "kukka"
@@ -7524,7 +7585,7 @@
           "word": "Wald"
         },
         "nl": {
-          "word": "woud"
+          "word": "bos"
         },
         "sv": {
           "word": "skog"
@@ -7539,7 +7600,7 @@
           "word": "غَابَة"
         },
         "el": {
-          "word": "δασος"
+          "word": "δάσος"
         },
         "fi": {
           "word": "metsä"
@@ -7579,7 +7640,7 @@
           "ipa": "ɡɹɑːs"
         },
         "es": {
-          "word": "pasto"
+          "word": "hierba"
         },
         "fr": {
           "word": "herbe"
@@ -7609,7 +7670,7 @@
           "word": "حَشِيش"
         },
         "el": {
-          "word": "χορταρι"
+          "word": "χορτάρι"
         },
         "fi": {
           "word": "heinä"
@@ -7685,19 +7746,22 @@
           "word": "جَلِيد"
         },
         "el": {
-          "word": "παγος"
+          "word": "πάγος"
         },
         "fi": {
           "word": "jää"
         },
         "hi": {
-          "word": "हिम"
+          "word": "बर्फ़"
         },
         "ko": {
           "word": "얼음"
         },
         "pl": {
           "word": "lód"
+        },
+        "zh": {
+          "word": "冰"
         }
       },
       "resources": [
@@ -7759,7 +7823,7 @@
           "word": "حَدِيد"
         },
         "el": {
-          "word": "σιδηρος"
+          "word": "σίδερο"
         },
         "fi": {
           "word": "rauta"
@@ -7772,6 +7836,9 @@
         },
         "pl": {
           "word": "żelazo"
+        },
+        "zh": {
+          "word": "铁"
         }
       },
       "resources": [
@@ -7826,7 +7893,7 @@
           "word": "جَزِيرَة"
         },
         "el": {
-          "word": "νησος"
+          "word": "νησί"
         },
         "fi": {
           "word": "saari"
@@ -7896,7 +7963,7 @@
           "word": "بُحَيْرَة"
         },
         "el": {
-          "word": "λιμνη"
+          "word": "λίμνη"
         },
         "fi": {
           "word": "järvi"
@@ -7966,7 +8033,7 @@
           "word": "وَرَقَة"
         },
         "el": {
-          "word": "φυλλο"
+          "word": "φύλλο"
         },
         "fi": {
           "word": "lehti"
@@ -8043,10 +8110,10 @@
           "word": "قَمَر"
         },
         "el": {
-          "word": "σεληνη"
+          "word": "φεγγάρι"
         },
         "fi": {
-          "word": "Kuu"
+          "word": "kuu"
         },
         "hi": {
           "word": "चांद"
@@ -8119,7 +8186,7 @@
           "word": "جَبَل"
         },
         "el": {
-          "word": "βουνο"
+          "word": "βουνό"
         },
         "fi": {
           "word": "vuori"
@@ -8132,6 +8199,9 @@
         },
         "pl": {
           "word": "góra"
+        },
+        "zh": {
+          "word": "山"
         }
       },
       "resources": [
@@ -8193,7 +8263,7 @@
           "word": "مَطَر"
         },
         "el": {
-          "word": "βροχη"
+          "word": "βροχή"
         },
         "fi": {
           "word": "sade"
@@ -8270,7 +8340,7 @@
           "word": "نَهْر"
         },
         "el": {
-          "word": "ποταμι"
+          "word": "ποτάμι"
         },
         "fi": {
           "word": "joki"
@@ -8347,7 +8417,7 @@
           "word": "رَمْل"
         },
         "el": {
-          "word": "αμμος"
+          "word": "άμμος"
         },
         "fi": {
           "word": "hiekka"
@@ -8360,6 +8430,9 @@
         },
         "pl": {
           "word": "piasek"
+        },
+        "zh": {
+          "word": "沙子"
         }
       },
       "resources": [
@@ -8414,13 +8487,13 @@
           "word": "بَحْر"
         },
         "el": {
-          "word": "θαλασσα"
+          "word": "θάλασσα"
         },
         "fi": {
           "word": "meri"
         },
         "hi": {
-          "word": "सागर"
+          "word": "समुद्र"
         },
         "ko": {
           "word": "바다"
@@ -8491,7 +8564,7 @@
           "word": "فِضَّة"
         },
         "el": {
-          "word": "αργυρος"
+          "word": "ασήμι"
         },
         "fi": {
           "word": "hopea"
@@ -8504,6 +8577,9 @@
         },
         "pl": {
           "word": "srebro"
+        },
+        "zh": {
+          "word": "银"
         }
       },
       "resources": [
@@ -8528,7 +8604,7 @@
           "ipa": "skaɪ"
         },
         "es": {
-          "word": "firmamento"
+          "word": "cielo"
         },
         "fr": {
           "word": "ciel"
@@ -8558,7 +8634,7 @@
           "word": "سَمَاء"
         },
         "el": {
-          "word": "ουρανος"
+          "word": "ουρανός"
         },
         "fi": {
           "word": "taivas"
@@ -8634,7 +8710,7 @@
           "word": "ثَلْج"
         },
         "el": {
-          "word": "χιονι"
+          "word": "χιόνι"
         },
         "fi": {
           "word": "lumi"
@@ -8711,7 +8787,7 @@
           "word": "نَجْم"
         },
         "el": {
-          "word": "αστερι"
+          "word": "αστέρι"
         },
         "fi": {
           "word": "tähti"
@@ -8726,7 +8802,7 @@
           "word": "gwiazda"
         },
         "zh": {
-          "word": "星"
+          "word": "星星"
         }
       },
       "resources": [
@@ -8782,7 +8858,7 @@
           "word": "حَجَر"
         },
         "el": {
-          "word": "λιθος"
+          "word": "πέτρα"
         },
         "fi": {
           "word": "kivi"
@@ -8797,7 +8873,7 @@
           "word": "kamień"
         },
         "zh": {
-          "word": "石"
+          "word": "石头"
         }
       },
       "resources": [
@@ -8838,13 +8914,13 @@
           "word": "sole"
         },
         "pt": {
-          "word": "Sol"
+          "word": "sol"
         },
         "de": {
           "word": "Sonne"
         },
         "nl": {
-          "word": "Zon"
+          "word": "zon"
         },
         "sv": {
           "word": "sol"
@@ -8859,13 +8935,13 @@
           "word": "شَمْس"
         },
         "el": {
-          "word": "ηλιος"
+          "word": "ήλιος"
         },
         "fi": {
           "word": "aurinko"
         },
         "hi": {
-          "word": "सूर्य"
+          "word": "सूरज"
         },
         "ko": {
           "word": "해"
@@ -8935,7 +9011,7 @@
           "word": "شَجَر"
         },
         "el": {
-          "word": "δεντρο"
+          "word": "δέντρο"
         },
         "fi": {
           "word": "puu"
@@ -9010,7 +9086,7 @@
           "word": "مَاء"
         },
         "el": {
-          "word": "νερο"
+          "word": "νερό"
         },
         "fi": {
           "word": "vesi"
@@ -9085,7 +9161,7 @@
           "word": "رِيح"
         },
         "el": {
-          "word": "ανεμος"
+          "word": "άνεμος"
         },
         "fi": {
           "word": "tuuli"
@@ -9162,7 +9238,7 @@
           "word": "خَشَب"
         },
         "el": {
-          "word": "ξυλο"
+          "word": "ξύλο"
         },
         "fi": {
           "word": "puu"
@@ -9177,7 +9253,7 @@
           "word": "drewno"
         },
         "zh": {
-          "word": "木"
+          "word": "木头"
         }
       },
       "resources": [
@@ -9208,13 +9284,13 @@
           "word": "sac"
         },
         "it": {
-          "word": "sacco"
+          "word": "borsa"
         },
         "pt": {
           "word": "sacola"
         },
         "de": {
-          "word": "Beutel"
+          "word": "Tasche"
         },
         "nl": {
           "word": "zak"
@@ -9232,7 +9308,7 @@
           "word": "حَقِيبَة"
         },
         "el": {
-          "word": "σακουλα"
+          "word": "τσάντα"
         },
         "fi": {
           "word": "kassi"
@@ -9302,7 +9378,7 @@
           "word": "كُرَة"
         },
         "el": {
-          "word": "μπαλα"
+          "word": "μπάλα"
         },
         "fi": {
           "word": "pallo"
@@ -9366,19 +9442,19 @@
           "word": "кровать"
         },
         "ja": {
-          "word": "寝床"
+          "word": "ベッド"
         },
         "ar": {
           "word": "سَرِير"
         },
         "el": {
-          "word": "κρεβατι"
+          "word": "κρεβάτι"
         },
         "fi": {
           "word": "sänky"
         },
         "hi": {
-          "word": "पलंग"
+          "word": "बिस्तर"
         },
         "ko": {
           "word": "침대"
@@ -9412,7 +9488,7 @@
           "ipa": "ˈbəʊ̯t"
         },
         "es": {
-          "word": "barca"
+          "word": "barco"
         },
         "fr": {
           "word": "bateau"
@@ -9436,13 +9512,13 @@
           "word": "лодка"
         },
         "ja": {
-          "word": "舟"
+          "word": "船"
         },
         "ar": {
           "word": "قَارِب"
         },
         "el": {
-          "word": "βαρκα"
+          "word": "βάρκα"
         },
         "fi": {
           "word": "vene"
@@ -9512,13 +9588,13 @@
           "word": "كِتَاب"
         },
         "el": {
-          "word": "βιβλιο"
+          "word": "βιβλίο"
         },
         "fi": {
           "word": "kirja"
         },
         "hi": {
-          "word": "पुस्तक"
+          "word": "किताब"
         },
         "ko": {
           "word": "책"
@@ -9588,7 +9664,7 @@
           "word": "جِسْر"
         },
         "el": {
-          "word": "γεφυρα"
+          "word": "γέφυρα"
         },
         "fi": {
           "word": "silta"
@@ -9658,7 +9734,7 @@
           "word": "سَيَّارَة"
         },
         "el": {
-          "word": "αυτοκινητο"
+          "word": "αυτοκίνητο"
         },
         "fi": {
           "word": "auto"
@@ -9710,7 +9786,7 @@
           "word": "cadeira"
         },
         "de": {
-          "word": "Sessel"
+          "word": "Stuhl"
         },
         "nl": {
           "word": "stoel"
@@ -9728,13 +9804,13 @@
           "word": "كُرْسِيّ"
         },
         "el": {
-          "word": "καρεκλα"
+          "word": "καρέκλα"
         },
         "fi": {
           "word": "tuoli"
         },
         "hi": {
-          "word": "आसंद"
+          "word": "कुर्सी"
         },
         "ko": {
           "word": "의자"
@@ -9798,7 +9874,7 @@
           "word": "كَنِيسَة"
         },
         "el": {
-          "word": "εκκλησια"
+          "word": "εκκλησία"
         },
         "fi": {
           "word": "kirkko"
@@ -9813,7 +9889,7 @@
           "word": "kościół"
         },
         "zh": {
-          "word": "教会"
+          "word": "教堂"
         }
       },
       "resources": [
@@ -9868,7 +9944,7 @@
           "word": "مَدِينَة"
         },
         "el": {
-          "word": "πολη"
+          "word": "πόλη"
         },
         "fi": {
           "word": "kaupunki"
@@ -9881,6 +9957,9 @@
         },
         "pl": {
           "word": "miasto"
+        },
+        "zh": {
+          "word": "城市"
         }
       },
       "resources": [
@@ -9935,7 +10014,7 @@
           "word": "سَاعَة"
         },
         "el": {
-          "word": "ρολοι"
+          "word": "ρολόι"
         },
         "fi": {
           "word": "kello"
@@ -10005,10 +10084,10 @@
           "word": "مَلَابِس"
         },
         "el": {
-          "word": "ρουχο"
+          "word": "ρούχα"
         },
         "fi": {
-          "word": "vaate"
+          "word": "vaatteet"
         },
         "hi": {
           "word": "कपड़े"
@@ -10018,6 +10097,9 @@
         },
         "pl": {
           "word": "ubrania"
+        },
+        "zh": {
+          "word": "衣服"
         }
       },
       "resources": [
@@ -10066,19 +10148,19 @@
           "word": "дверь"
         },
         "ja": {
-          "word": "戸"
+          "word": "ドア"
         },
         "ar": {
-          "word": "أَبْوَاب"
+          "word": "بَاب"
         },
         "el": {
-          "word": "πορτα"
+          "word": "πόρτα"
         },
         "fi": {
           "word": "ovi"
         },
         "hi": {
-          "word": "किवाड़"
+          "word": "दरवाज़ा"
         },
         "ko": {
           "word": "문"
@@ -10131,7 +10213,7 @@
           "word": "chapéu"
         },
         "de": {
-          "word": "Kopfbedeckung"
+          "word": "Hut"
         },
         "nl": {
           "word": "hoed"
@@ -10149,7 +10231,7 @@
           "word": "قُبَّعَة"
         },
         "el": {
-          "word": "καπελο"
+          "word": "καπέλο"
         },
         "fi": {
           "word": "hattu"
@@ -10219,7 +10301,7 @@
           "word": "بَيْت"
         },
         "el": {
-          "word": "σπιτι"
+          "word": "σπίτι"
         },
         "fi": {
           "word": "talo"
@@ -10234,7 +10316,7 @@
           "word": "dom"
         },
         "zh": {
-          "word": "房屋"
+          "word": "房子"
         }
       },
       "resources": [
@@ -10295,13 +10377,13 @@
           "word": "مِفْتَاح"
         },
         "el": {
-          "word": "κλειδι"
+          "word": "κλειδί"
         },
         "fi": {
           "word": "avain"
         },
         "hi": {
-          "word": "ताली"
+          "word": "चाबी"
         },
         "ko": {
           "word": "열쇠"
@@ -10365,7 +10447,7 @@
           "word": "سِكِّين"
         },
         "el": {
-          "word": "μαχαιρι"
+          "word": "μαχαίρι"
         },
         "fi": {
           "word": "veitsi"
@@ -10435,13 +10517,13 @@
           "word": "رِسَالَة"
         },
         "el": {
-          "word": "επιστολη"
+          "word": "γράμμα"
         },
         "fi": {
           "word": "kirje"
         },
         "hi": {
-          "word": "पत्र"
+          "word": "चिट्ठी"
         },
         "ko": {
           "word": "편지"
@@ -10481,7 +10563,7 @@
           "word": "argent"
         },
         "it": {
-          "word": "valuta"
+          "word": "soldi"
         },
         "pt": {
           "word": "dinheiro"
@@ -10493,7 +10575,7 @@
           "word": "geld"
         },
         "sv": {
-          "word": "valuta"
+          "word": "pengar"
         },
         "ru": {
           "word": "деньги"
@@ -10505,19 +10587,19 @@
           "word": "نُقُود"
         },
         "el": {
-          "word": "νομισμα"
+          "word": "λεφτά"
         },
         "fi": {
-          "word": "valuutta"
+          "word": "raha"
         },
         "hi": {
-          "word": "मुद्रा"
+          "word": "पैसा"
         },
         "ko": {
           "word": "돈"
         },
         "pl": {
-          "word": "waluta"
+          "word": "pieniądze"
         },
         "zh": {
           "word": "钱"
@@ -10557,7 +10639,7 @@
           "word": "música"
         },
         "de": {
-          "word": "Musikstück"
+          "word": "Musik"
         },
         "nl": {
           "word": "muziek"
@@ -10575,7 +10657,7 @@
           "word": "مُوسِيقَى"
         },
         "el": {
-          "word": "μουσικη"
+          "word": "μουσική"
         },
         "fi": {
           "word": "musiikki"
@@ -10645,7 +10727,7 @@
           "word": "وَرَق"
         },
         "el": {
-          "word": "χαρτι"
+          "word": "χαρτί"
         },
         "fi": {
           "word": "paperi"
@@ -10715,7 +10797,7 @@
           "word": "طَرِيق"
         },
         "el": {
-          "word": "δρομος"
+          "word": "δρόμος"
         },
         "fi": {
           "word": "tie"
@@ -10728,6 +10810,9 @@
         },
         "pl": {
           "word": "droga"
+        },
+        "zh": {
+          "word": "路"
         }
       },
       "resources": [
@@ -10788,7 +10873,7 @@
           "word": "مَدْرَسَة"
         },
         "el": {
-          "word": "σχολειο"
+          "word": "σχολείο"
         },
         "fi": {
           "word": "koulu"
@@ -10858,7 +10943,7 @@
           "word": "قَمِيص"
         },
         "el": {
-          "word": "πουκαμισο"
+          "word": "πουκάμισο"
         },
         "fi": {
           "word": "paita"
@@ -10871,6 +10956,9 @@
         },
         "pl": {
           "word": "koszula"
+        },
+        "zh": {
+          "word": "衬衫"
         }
       },
       "resources": [
@@ -10904,7 +10992,7 @@
           "word": "scarpa"
         },
         "pt": {
-          "word": "calçado"
+          "word": "sapato"
         },
         "de": {
           "word": "Schuh"
@@ -10916,7 +11004,7 @@
           "word": "sko"
         },
         "ru": {
-          "word": "туфля"
+          "word": "ботинок"
         },
         "ja": {
           "word": "靴"
@@ -10925,7 +11013,7 @@
           "word": "حِذَاء"
         },
         "el": {
-          "word": "παπουτσι"
+          "word": "παπούτσι"
         },
         "fi": {
           "word": "kenkä"
@@ -10938,6 +11026,9 @@
         },
         "pl": {
           "word": "but"
+        },
+        "zh": {
+          "word": "鞋"
         }
       },
       "resources": [
@@ -10968,7 +11059,7 @@
           "word": "table"
         },
         "it": {
-          "word": "tavola"
+          "word": "tavolo"
         },
         "pt": {
           "word": "mesa"
@@ -10986,19 +11077,19 @@
           "word": "стол"
         },
         "ja": {
-          "word": "台"
+          "word": "テーブル"
         },
         "ar": {
           "word": "طَاوِلَة"
         },
         "el": {
-          "word": "τραπεζι"
+          "word": "τραπέζι"
         },
         "fi": {
           "word": "pöytä"
         },
         "hi": {
-          "word": "पटल"
+          "word": "मेज़"
         },
         "ko": {
           "word": "테이블"
@@ -11062,7 +11153,7 @@
           "word": "نَافِذَة"
         },
         "el": {
-          "word": "παραθυρο"
+          "word": "παράθυρο"
         },
         "fi": {
           "word": "ikkuna"
@@ -11132,7 +11223,7 @@
           "word": "كَلِمَة"
         },
         "el": {
-          "word": "λεξη"
+          "word": "λέξη"
         },
         "fi": {
           "word": "sana"
@@ -11196,10 +11287,10 @@
           "word": "dag"
         },
         "sv": {
-          "word": "dygn"
+          "word": "dag"
         },
         "ru": {
-          "word": "сутки"
+          "word": "день"
         },
         "ja": {
           "word": "日"
@@ -11208,7 +11299,7 @@
           "word": "يَوْم"
         },
         "el": {
-          "word": "ημερα"
+          "word": "μέρα"
         },
         "fi": {
           "word": "päivä"
@@ -11217,7 +11308,7 @@
           "word": "दिन"
         },
         "ko": {
-          "word": "일주야"
+          "word": "날"
         },
         "pl": {
           "word": "dzień"
@@ -11283,7 +11374,7 @@
           "word": "مَسَاء"
         },
         "el": {
-          "word": "εσπερα"
+          "word": "βράδυ"
         },
         "fi": {
           "word": "ilta"
@@ -11296,6 +11387,9 @@
         },
         "pl": {
           "word": "wieczór"
+        },
+        "zh": {
+          "word": "晚上"
         }
       },
       "resources": [
@@ -11350,7 +11444,7 @@
           "word": "سَاعَة"
         },
         "el": {
-          "word": "ωρα"
+          "word": "ώρα"
         },
         "fi": {
           "word": "tunti"
@@ -11363,6 +11457,9 @@
         },
         "pl": {
           "word": "godzina"
+        },
+        "zh": {
+          "word": "小时"
         }
       },
       "resources": [
@@ -11417,7 +11514,7 @@
           "word": "دَقِيقَة"
         },
         "el": {
-          "word": "λεπτο"
+          "word": "λεπτό"
         },
         "fi": {
           "word": "minuutti"
@@ -11487,7 +11584,7 @@
           "word": "شَهْر"
         },
         "el": {
-          "word": "μηνας"
+          "word": "μήνας"
         },
         "fi": {
           "word": "kuukausi"
@@ -11500,6 +11597,9 @@
         },
         "pl": {
           "word": "miesiąc"
+        },
+        "zh": {
+          "word": "月"
         }
       },
       "resources": [
@@ -11554,7 +11654,7 @@
           "word": "صَبَاح"
         },
         "el": {
-          "word": "πρωι"
+          "word": "πρωί"
         },
         "fi": {
           "word": "aamu"
@@ -11624,7 +11724,7 @@
           "word": "لَيْلَة"
         },
         "el": {
-          "word": "νυχτα"
+          "word": "νύχτα"
         },
         "fi": {
           "word": "yö"
@@ -11699,7 +11799,7 @@
           "word": "زَمَان"
         },
         "el": {
-          "word": "χρονος"
+          "word": "χρόνος"
         },
         "fi": {
           "word": "aika"
@@ -11775,7 +11875,7 @@
           "word": "الْيَوْمَ"
         },
         "el": {
-          "word": "σημερα"
+          "word": "σήμερα"
         },
         "fi": {
           "word": "tänään"
@@ -11845,7 +11945,7 @@
           "word": "غَدًا"
         },
         "el": {
-          "word": "αυριο"
+          "word": "αύριο"
         },
         "fi": {
           "word": "huomenna"
@@ -11915,7 +12015,7 @@
           "word": "أُسْبُوع"
         },
         "el": {
-          "word": "εβδομαδα"
+          "word": "εβδομάδα"
         },
         "fi": {
           "word": "viikko"
@@ -11982,10 +12082,10 @@
           "word": "年"
         },
         "ar": {
-          "word": "أَعْوَام"
+          "word": "سَنَة"
         },
         "el": {
-          "word": "χρονος"
+          "word": "χρονιά"
         },
         "fi": {
           "word": "vuosi"
@@ -12074,6 +12174,9 @@
         },
         "pl": {
           "word": "wczoraj"
+        },
+        "zh": {
+          "word": "昨天"
         }
       },
       "resources": [
@@ -12128,7 +12231,7 @@
           "word": "سَيِّئ"
         },
         "el": {
-          "word": "κακος"
+          "word": "κακός"
         },
         "fi": {
           "word": "huono"
@@ -12193,7 +12296,7 @@
           "word": "mooi"
         },
         "sv": {
-          "word": "fin"
+          "word": "vacker"
         },
         "ru": {
           "word": "красивый"
@@ -12205,19 +12308,22 @@
           "word": "جَمِيل"
         },
         "el": {
-          "word": "ωραιος"
+          "word": "ωραίος"
         },
         "fi": {
           "word": "kaunis"
         },
         "hi": {
-          "word": "आकर्षक"
+          "word": "सुंदर"
         },
         "ko": {
           "word": "아름답다"
         },
         "pl": {
           "word": "piękny"
+        },
+        "zh": {
+          "word": "美丽"
         }
       },
       "resources": [
@@ -12272,7 +12378,7 @@
           "word": "كَبِير"
         },
         "el": {
-          "word": "μεγαλος"
+          "word": "μεγάλος"
         },
         "fi": {
           "word": "iso"
@@ -12342,13 +12448,13 @@
           "word": "чистый"
         },
         "ja": {
-          "word": "清い"
+          "word": "きれい"
         },
         "ar": {
           "word": "نَظِيف"
         },
         "el": {
-          "word": "καθαρος"
+          "word": "καθαρός"
         },
         "fi": {
           "word": "puhdas"
@@ -12418,7 +12524,7 @@
           "word": "بَارِد"
         },
         "el": {
-          "word": "κρυος"
+          "word": "κρύος"
         },
         "fi": {
           "word": "kylmä"
@@ -12480,7 +12586,7 @@
           "word": "vuil"
         },
         "sv": {
-          "word": "oren"
+          "word": "smutsig"
         },
         "ru": {
           "word": "грязный"
@@ -12492,7 +12598,7 @@
           "word": "قَذِر"
         },
         "el": {
-          "word": "βρομικος"
+          "word": "βρόμικος"
         },
         "fi": {
           "word": "likainen"
@@ -12505,6 +12611,9 @@
         },
         "pl": {
           "word": "brudny"
+        },
+        "zh": {
+          "word": "脏"
         }
       },
       "resources": [
@@ -12559,7 +12668,7 @@
           "word": "جَافّ"
         },
         "el": {
-          "word": "στεγνος"
+          "word": "στεγνός"
         },
         "fi": {
           "word": "kuiva"
@@ -12618,7 +12727,7 @@
           "word": "fácil"
         },
         "de": {
-          "word": "leicht"
+          "word": "einfach"
         },
         "nl": {
           "word": "makkelijk"
@@ -12636,7 +12745,7 @@
           "word": "سَهْل"
         },
         "el": {
-          "word": "ευκολος"
+          "word": "εύκολος"
         },
         "fi": {
           "word": "helppo"
@@ -12649,6 +12758,9 @@
         },
         "pl": {
           "word": "łatwy"
+        },
+        "zh": {
+          "word": "容易"
         }
       },
       "resources": [
@@ -12703,19 +12815,22 @@
           "word": "فَارِغ"
         },
         "el": {
-          "word": "αδειος"
+          "word": "άδειος"
         },
         "fi": {
           "word": "tyhjä"
         },
         "hi": {
-          "word": "रीता"
+          "word": "खाली"
         },
         "ko": {
           "word": "비다"
         },
         "pl": {
           "word": "pusty"
+        },
+        "zh": {
+          "word": "空"
         }
       },
       "resources": [
@@ -12777,7 +12892,7 @@
           "word": "سَرِيع"
         },
         "el": {
-          "word": "γρηγορος"
+          "word": "γρήγορος"
         },
         "fi": {
           "word": "nopea"
@@ -12841,22 +12956,22 @@
           "word": "полный"
         },
         "ja": {
-          "word": "一杯"
+          "word": "いっぱい"
         },
         "ar": {
           "word": "مُمْتَلِئ"
         },
         "el": {
-          "word": "πληρης"
+          "word": "γεμάτος"
         },
         "fi": {
           "word": "täysi"
         },
         "hi": {
-          "word": "पूर्ण"
+          "word": "भरा"
         },
         "ko": {
-          "word": "채우다"
+          "word": "가득하다"
         },
         "pl": {
           "word": "pełny"
@@ -12924,7 +13039,7 @@
           "word": "حَسَن"
         },
         "el": {
-          "word": "καλος"
+          "word": "καλός"
         },
         "fi": {
           "word": "hyvä"
@@ -12982,7 +13097,7 @@
           "word": "feliz"
         },
         "de": {
-          "word": "zufrieden"
+          "word": "glücklich"
         },
         "nl": {
           "word": "gelukkig"
@@ -13000,7 +13115,7 @@
           "word": "سَعِيد"
         },
         "el": {
-          "word": "ευχαριστημενος"
+          "word": "χαρούμενος"
         },
         "fi": {
           "word": "onnellinen"
@@ -13013,6 +13128,9 @@
         },
         "pl": {
           "word": "szczęśliwy"
+        },
+        "zh": {
+          "word": "快乐"
         }
       },
       "resources": [
@@ -13067,7 +13185,7 @@
           "word": "صُلْب"
         },
         "el": {
-          "word": "δυσκολος"
+          "word": "σκληρός"
         },
         "fi": {
           "word": "kova"
@@ -13080,6 +13198,9 @@
         },
         "pl": {
           "word": "twardy"
+        },
+        "zh": {
+          "word": "硬"
         }
       },
       "resources": [
@@ -13134,19 +13255,22 @@
           "word": "ثَقِيل"
         },
         "el": {
-          "word": "βαρυς"
+          "word": "βαρύς"
         },
         "fi": {
           "word": "painava"
         },
         "hi": {
-          "word": "भारा"
+          "word": "भारी"
         },
         "ko": {
           "word": "무겁다"
         },
         "pl": {
           "word": "ciężki"
+        },
+        "zh": {
+          "word": "重"
         }
       },
       "resources": [
@@ -13208,7 +13332,7 @@
           "word": "عَالٍ"
         },
         "el": {
-          "word": "ψηλος"
+          "word": "ψηλός"
         },
         "fi": {
           "word": "korkea"
@@ -13264,7 +13388,7 @@
           "word": "caldo"
         },
         "pt": {
-          "word": "(muito) quente"
+          "word": "quente"
         },
         "de": {
           "word": "heiß"
@@ -13285,7 +13409,7 @@
           "word": "حَارّ"
         },
         "el": {
-          "word": "ζεστος"
+          "word": "ζεστός"
         },
         "fi": {
           "word": "kuuma"
@@ -13360,7 +13484,7 @@
           "word": "خَفِيف"
         },
         "el": {
-          "word": "αβαρης"
+          "word": "ελαφρύς"
         },
         "fi": {
           "word": "kevyt"
@@ -13434,7 +13558,7 @@
           "word": "طَوِيل"
         },
         "el": {
-          "word": "μακρυς"
+          "word": "μακρύς"
         },
         "fi": {
           "word": "pitkä"
@@ -13447,6 +13571,9 @@
         },
         "pl": {
           "word": "długi"
+        },
+        "zh": {
+          "word": "长"
         }
       },
       "resources": [
@@ -13508,7 +13635,7 @@
           "word": "مُنْخَفِض"
         },
         "el": {
-          "word": "χαμηλος"
+          "word": "χαμηλός"
         },
         "fi": {
           "word": "matala"
@@ -13521,6 +13648,9 @@
         },
         "pl": {
           "word": "niski"
+        },
+        "zh": {
+          "word": "低"
         }
       },
       "resources": [
@@ -13575,7 +13705,7 @@
           "word": "جَدِيد"
         },
         "el": {
-          "word": "νεος"
+          "word": "νέος"
         },
         "fi": {
           "word": "uusi"
@@ -13651,7 +13781,7 @@
           "word": "قَدِيم"
         },
         "el": {
-          "word": "παλιος"
+          "word": "παλιός"
         },
         "fi": {
           "word": "vanha"
@@ -13725,7 +13855,7 @@
           "word": "فَقِير"
         },
         "el": {
-          "word": "φτωχος"
+          "word": "φτωχός"
         },
         "fi": {
           "word": "köyhä"
@@ -13738,6 +13868,9 @@
         },
         "pl": {
           "word": "biedny"
+        },
+        "zh": {
+          "word": "穷"
         }
       },
       "resources": [
@@ -13792,7 +13925,7 @@
           "word": "غَنِيّ"
         },
         "el": {
-          "word": "πλουσιος"
+          "word": "πλούσιος"
         },
         "fi": {
           "word": "rikas"
@@ -13801,10 +13934,13 @@
           "word": "अमीर"
         },
         "ko": {
-          "word": "풍부하다"
+          "word": "부유하다"
         },
         "pl": {
           "word": "bogaty"
+        },
+        "zh": {
+          "word": "富"
         }
       },
       "resources": [
@@ -13859,7 +13995,7 @@
           "word": "حَزِين"
         },
         "el": {
-          "word": "θλιμμενος"
+          "word": "λυπημένος"
         },
         "fi": {
           "word": "surullinen"
@@ -13929,7 +14065,7 @@
           "word": "قَصِير"
         },
         "el": {
-          "word": "συντομος"
+          "word": "κοντός"
         },
         "fi": {
           "word": "lyhyt"
@@ -14006,7 +14142,7 @@
           "word": "بَطِيء"
         },
         "el": {
-          "word": "αργος"
+          "word": "αργός"
         },
         "fi": {
           "word": "hidas"
@@ -14019,6 +14155,9 @@
         },
         "pl": {
           "word": "wolny"
+        },
+        "zh": {
+          "word": "慢"
         }
       },
       "resources": [
@@ -14073,7 +14212,7 @@
           "word": "صَغِير"
         },
         "el": {
-          "word": "μικρος"
+          "word": "μικρός"
         },
         "fi": {
           "word": "pieni"
@@ -14137,7 +14276,7 @@
           "word": "sterk"
         },
         "sv": {
-          "word": "kraftfull"
+          "word": "stark"
         },
         "ru": {
           "word": "сильный"
@@ -14149,7 +14288,7 @@
           "word": "قَوِيّ"
         },
         "el": {
-          "word": "δυνατος"
+          "word": "δυνατός"
         },
         "fi": {
           "word": "vahva"
@@ -14162,6 +14301,9 @@
         },
         "pl": {
           "word": "silny"
+        },
+        "zh": {
+          "word": "强"
         }
       },
       "resources": [
@@ -14216,7 +14358,7 @@
           "word": "حُلْو"
         },
         "el": {
-          "word": "γλυκος"
+          "word": "γλυκός"
         },
         "fi": {
           "word": "makea"
@@ -14229,6 +14371,9 @@
         },
         "pl": {
           "word": "słodki"
+        },
+        "zh": {
+          "word": "甜"
         }
       },
       "resources": [
@@ -14253,7 +14398,7 @@
           "ipa": "wɔːm"
         },
         "es": {
-          "word": "caliente"
+          "word": "cálido"
         },
         "fr": {
           "word": "chaud"
@@ -14283,7 +14428,7 @@
           "word": "دَافِئ"
         },
         "el": {
-          "word": "ζεστος"
+          "word": "ζεστός"
         },
         "fi": {
           "word": "lämmin"
@@ -14353,7 +14498,7 @@
           "word": "ضَعِيف"
         },
         "el": {
-          "word": "αδυναμος"
+          "word": "αδύναμος"
         },
         "fi": {
           "word": "heikko"
@@ -14366,6 +14511,9 @@
         },
         "pl": {
           "word": "słaby"
+        },
+        "zh": {
+          "word": "弱"
         }
       },
       "resources": [
@@ -14420,7 +14568,7 @@
           "word": "مَبْلُول"
         },
         "el": {
-          "word": "υγρος"
+          "word": "υγρός"
         },
         "fi": {
           "word": "märkä"
@@ -14433,6 +14581,9 @@
         },
         "pl": {
           "word": "mokry"
+        },
+        "zh": {
+          "word": "湿"
         }
       },
       "resources": [
@@ -14491,10 +14642,10 @@
           "word": "若い"
         },
         "ar": {
-          "word": "صَغِير"
+          "word": "شَابّ"
         },
         "el": {
-          "word": "νεαρος"
+          "word": "νεαρός"
         },
         "fi": {
           "word": "nuori"
@@ -14507,6 +14658,9 @@
         },
         "pl": {
           "word": "młody"
+        },
+        "zh": {
+          "word": "年轻"
         }
       },
       "resources": [
@@ -14568,19 +14722,22 @@
           "word": "اِشْتَرَى"
         },
         "el": {
-          "word": "αγοραζω"
+          "word": "αγοράζω"
         },
         "fi": {
           "word": "ostaa"
         },
         "hi": {
-          "word": "क्रय"
+          "word": "खरीदना"
         },
         "ko": {
           "word": "사다"
         },
         "pl": {
           "word": "kupować"
+        },
+        "zh": {
+          "word": "买"
         }
       },
       "resources": [
@@ -14620,7 +14777,7 @@
           "word": "schließen"
         },
         "nl": {
-          "word": "dichten"
+          "word": "sluiten"
         },
         "sv": {
           "word": "stänga"
@@ -14629,13 +14786,13 @@
           "word": "закрывать"
         },
         "ja": {
-          "word": "塞ぐ"
+          "word": "閉める"
         },
         "ar": {
           "word": "أَغْلَقَ"
         },
         "el": {
-          "word": "κλεινω"
+          "word": "κλείνω"
         },
         "fi": {
           "word": "sulkea"
@@ -14644,10 +14801,13 @@
           "word": "बंद करना"
         },
         "ko": {
-          "word": "막다"
+          "word": "닫다"
         },
         "pl": {
           "word": "zamykać"
+        },
+        "zh": {
+          "word": "关"
         }
       },
       "resources": [
@@ -14702,7 +14862,7 @@
           "word": "جَاءَ"
         },
         "el": {
-          "word": "ερχομαι"
+          "word": "έρχομαι"
         },
         "fi": {
           "word": "tulla"
@@ -14772,7 +14932,7 @@
           "word": "طَبَخَ"
         },
         "el": {
-          "word": "μαγειρευω"
+          "word": "μαγειρεύω"
         },
         "fi": {
           "word": "keittää"
@@ -14842,7 +15002,7 @@
           "word": "بَكَى"
         },
         "el": {
-          "word": "κλαιω"
+          "word": "κλαίω"
         },
         "fi": {
           "word": "itkeä"
@@ -14912,7 +15072,7 @@
           "word": "رَقَصَ"
         },
         "el": {
-          "word": "χορευω"
+          "word": "χορεύω"
         },
         "fi": {
           "word": "tanssia"
@@ -14982,7 +15142,7 @@
           "word": "مَاتَ"
         },
         "el": {
-          "word": "πεθαινω"
+          "word": "πεθαίνω"
         },
         "fi": {
           "word": "kuolla"
@@ -14995,6 +15155,9 @@
         },
         "pl": {
           "word": "umierać"
+        },
+        "zh": {
+          "word": "死"
         }
       },
       "resources": [
@@ -15049,7 +15212,7 @@
           "word": "شَرِبَ"
         },
         "el": {
-          "word": "πινω"
+          "word": "πίνω"
         },
         "fi": {
           "word": "juoda"
@@ -15119,7 +15282,7 @@
           "word": "أَكَلَ"
         },
         "el": {
-          "word": "τρωω"
+          "word": "τρώω"
         },
         "fi": {
           "word": "syödä"
@@ -15183,13 +15346,13 @@
           "word": "находить"
         },
         "ja": {
-          "word": "見付ける"
+          "word": "見つける"
         },
         "ar": {
           "word": "وَجَدَ"
         },
         "el": {
-          "word": "βρισκω"
+          "word": "βρίσκω"
         },
         "fi": {
           "word": "löytää"
@@ -15202,6 +15365,9 @@
         },
         "pl": {
           "word": "znajdować"
+        },
+        "zh": {
+          "word": "找到"
         }
       },
       "resources": [
@@ -15256,7 +15422,7 @@
           "word": "طَارَ"
         },
         "el": {
-          "word": "πετω"
+          "word": "πετάω"
         },
         "fi": {
           "word": "lentää"
@@ -15326,7 +15492,7 @@
           "word": "أَعْطَى"
         },
         "el": {
-          "word": "δινω"
+          "word": "δίνω"
         },
         "fi": {
           "word": "antaa"
@@ -15396,7 +15562,7 @@
           "word": "ذَهَبَ"
         },
         "el": {
-          "word": "παω"
+          "word": "πηγαίνω"
         },
         "fi": {
           "word": "mennä"
@@ -15409,6 +15575,9 @@
         },
         "pl": {
           "word": "chodzić"
+        },
+        "zh": {
+          "word": "去"
         }
       },
       "resources": [
@@ -15463,7 +15632,7 @@
           "word": "سَمِعَ"
         },
         "el": {
-          "word": "ακουω"
+          "word": "ακούω"
         },
         "fi": {
           "word": "kuulla"
@@ -15476,6 +15645,9 @@
         },
         "pl": {
           "word": "słyszeć"
+        },
+        "zh": {
+          "word": "听见"
         }
       },
       "resources": [
@@ -15530,7 +15702,7 @@
           "word": "سَاعَدَ"
         },
         "el": {
-          "word": "βοηθω"
+          "word": "βοηθάω"
         },
         "fi": {
           "word": "auttaa"
@@ -15543,6 +15715,9 @@
         },
         "pl": {
           "word": "pomagać"
+        },
+        "zh": {
+          "word": "帮助"
         }
       },
       "resources": [
@@ -15597,7 +15772,7 @@
           "word": "عَلِمَ"
         },
         "el": {
-          "word": "ξερω"
+          "word": "ξέρω"
         },
         "fi": {
           "word": "tietää"
@@ -15667,7 +15842,7 @@
           "word": "ضَحِكَ"
         },
         "el": {
-          "word": "γελαω"
+          "word": "γελάω"
         },
         "fi": {
           "word": "nauraa"
@@ -15737,7 +15912,7 @@
           "word": "تَعَلَّمَ"
         },
         "el": {
-          "word": "μαθαινω"
+          "word": "μαθαίνω"
         },
         "fi": {
           "word": "oppia"
@@ -15750,6 +15925,9 @@
         },
         "pl": {
           "word": "uczyć się"
+        },
+        "zh": {
+          "word": "学习"
         }
       },
       "resources": [
@@ -15801,7 +15979,7 @@
           "word": "生きる"
         },
         "ar": {
-          "word": "حَيِيَ"
+          "word": "عَاشَ"
         },
         "el": {
           "word": "ζω"
@@ -15819,7 +15997,7 @@
           "word": "żyć"
         },
         "zh": {
-          "word": "生"
+          "word": "活"
         }
       },
       "resources": [
@@ -15853,7 +16031,7 @@
           "word": "amare"
         },
         "pt": {
-          "word": "adorar"
+          "word": "amar"
         },
         "de": {
           "word": "lieben"
@@ -15874,7 +16052,7 @@
           "word": "أَحَبَّ"
         },
         "el": {
-          "word": "αγαπω"
+          "word": "αγαπάω"
         },
         "fi": {
           "word": "rakastaa"
@@ -15948,7 +16126,7 @@
           "word": "فَتَحَ"
         },
         "el": {
-          "word": "ανοιγω"
+          "word": "ανοίγω"
         },
         "fi": {
           "word": "avata"
@@ -15963,7 +16141,7 @@
           "word": "otwierać"
         },
         "zh": {
-          "word": "开门"
+          "word": "开"
         }
       },
       "resources": [
@@ -16018,7 +16196,7 @@
           "word": "دَفَعَ"
         },
         "el": {
-          "word": "πληρωνω"
+          "word": "πληρώνω"
         },
         "fi": {
           "word": "maksaa"
@@ -16033,7 +16211,7 @@
           "word": "płacić"
         },
         "zh": {
-          "word": "付"
+          "word": "付钱"
         }
       },
       "resources": [
@@ -16088,7 +16266,7 @@
           "word": "لَعِبَ"
         },
         "el": {
-          "word": "παιζω"
+          "word": "παίζω"
         },
         "fi": {
           "word": "leikkiä"
@@ -16158,7 +16336,7 @@
           "word": "قَرَأَ"
         },
         "el": {
-          "word": "διαβαζω"
+          "word": "διαβάζω"
         },
         "fi": {
           "word": "lukea"
@@ -16228,7 +16406,7 @@
           "word": "رَكَضَ"
         },
         "el": {
-          "word": "τρεχω"
+          "word": "τρέχω"
         },
         "fi": {
           "word": "juosta"
@@ -16241,6 +16419,9 @@
         },
         "pl": {
           "word": "biegać"
+        },
+        "zh": {
+          "word": "跑"
         }
       },
       "resources": [
@@ -16295,7 +16476,7 @@
           "word": "قَالَ"
         },
         "el": {
-          "word": "λεγω"
+          "word": "λέω"
         },
         "fi": {
           "word": "sanoa"
@@ -16365,7 +16546,7 @@
           "word": "رَأَى"
         },
         "el": {
-          "word": "βλεπω"
+          "word": "βλέπω"
         },
         "fi": {
           "word": "nähdä"
@@ -16380,7 +16561,7 @@
           "word": "widzieć"
         },
         "zh": {
-          "word": "见"
+          "word": "看见"
         }
       },
       "resources": [
@@ -16435,7 +16616,7 @@
           "word": "بَاعَ"
         },
         "el": {
-          "word": "πουλαω"
+          "word": "πουλάω"
         },
         "fi": {
           "word": "myydä"
@@ -16450,7 +16631,7 @@
           "word": "sprzedawać"
         },
         "zh": {
-          "word": "被卖出"
+          "word": "卖"
         }
       },
       "resources": [
@@ -16505,7 +16686,7 @@
           "word": "غَنَّى"
         },
         "el": {
-          "word": "τραγουδαω"
+          "word": "τραγουδάω"
         },
         "fi": {
           "word": "laulaa"
@@ -16518,6 +16699,9 @@
         },
         "pl": {
           "word": "śpiewać"
+        },
+        "zh": {
+          "word": "唱歌"
         }
       },
       "resources": [
@@ -16572,7 +16756,7 @@
           "word": "جَلَسَ"
         },
         "el": {
-          "word": "καθομαι"
+          "word": "κάθομαι"
         },
         "fi": {
           "word": "istua"
@@ -16642,7 +16826,7 @@
           "word": "نَامَ"
         },
         "el": {
-          "word": "κοιμαμαι"
+          "word": "κοιμάμαι"
         },
         "fi": {
           "word": "nukkua"
@@ -16712,7 +16896,7 @@
           "word": "تَحَدَّثَ"
         },
         "el": {
-          "word": "μιλω"
+          "word": "μιλάω"
         },
         "fi": {
           "word": "puhua"
@@ -16727,7 +16911,7 @@
           "word": "mówić"
         },
         "zh": {
-          "word": "讲"
+          "word": "说话"
         }
       },
       "resources": [
@@ -16782,7 +16966,7 @@
           "word": "وَقَفَ"
         },
         "el": {
-          "word": "στεκομαι"
+          "word": "στέκομαι"
         },
         "fi": {
           "word": "seisoa"
@@ -16852,7 +17036,7 @@
           "word": "سَبَحَ"
         },
         "el": {
-          "word": "κολυμπαω"
+          "word": "κολυμπάω"
         },
         "fi": {
           "word": "uida"
@@ -16865,6 +17049,9 @@
         },
         "pl": {
           "word": "pływać"
+        },
+        "zh": {
+          "word": "游泳"
         }
       },
       "resources": [
@@ -16913,13 +17100,13 @@
           "word": "брать"
         },
         "ja": {
-          "word": "運ぶ"
+          "word": "取る"
         },
         "ar": {
           "word": "أَخَذَ"
         },
         "el": {
-          "word": "παιρνω"
+          "word": "παίρνω"
         },
         "fi": {
           "word": "ottaa"
@@ -16928,10 +17115,13 @@
           "word": "लेना"
         },
         "ko": {
-          "word": "잡다"
+          "word": "가져가다"
         },
         "pl": {
           "word": "brać"
+        },
+        "zh": {
+          "word": "拿"
         }
       },
       "resources": [
@@ -16959,7 +17149,7 @@
           "word": "enseñar"
         },
         "fr": {
-          "word": "apprendre"
+          "word": "enseigner"
         },
         "it": {
           "word": "insegnare"
@@ -16971,7 +17161,7 @@
           "word": "lehren"
         },
         "nl": {
-          "word": "aanleren"
+          "word": "onderwijzen"
         },
         "sv": {
           "word": "lära"
@@ -16986,7 +17176,7 @@
           "word": "عَلَّمَ"
         },
         "el": {
-          "word": "διδασκω"
+          "word": "διδάσκω"
         },
         "fi": {
           "word": "opettaa"
@@ -16999,6 +17189,9 @@
         },
         "pl": {
           "word": "uczyć"
+        },
+        "zh": {
+          "word": "教"
         }
       },
       "resources": [
@@ -17026,7 +17219,7 @@
           "word": "pensar"
         },
         "fr": {
-          "word": "réfléchir à"
+          "word": "penser"
         },
         "it": {
           "word": "pensare"
@@ -17035,40 +17228,40 @@
           "word": "pensar"
         },
         "de": {
-          "word": "nachdenken"
+          "word": "denken"
         },
         "nl": {
           "word": "denken"
         },
         "sv": {
-          "word": "tänka över"
+          "word": "tänka"
         },
         "ru": {
-          "word": "обдумывать"
+          "word": "думать"
         },
         "ja": {
           "word": "考える"
         },
         "ar": {
-          "word": "فَكَرَ"
+          "word": "فَكَّرَ"
         },
         "el": {
-          "word": "σκεφτομαι"
+          "word": "σκέφτομαι"
         },
         "fi": {
-          "word": "pohtia"
+          "word": "ajatella"
         },
         "hi": {
-          "word": "विचारना"
+          "word": "सोचना"
         },
         "ko": {
           "word": "생각하다"
         },
         "pl": {
-          "word": "zastanawiać się"
+          "word": "myśleć"
         },
         "zh": {
-          "word": "念"
+          "word": "想"
         }
       },
       "resources": [
@@ -17123,7 +17316,7 @@
           "word": "اِنْتَظَرَ"
         },
         "el": {
-          "word": "περιμενω"
+          "word": "περιμένω"
         },
         "fi": {
           "word": "odottaa"
@@ -17136,6 +17329,9 @@
         },
         "pl": {
           "word": "czekać"
+        },
+        "zh": {
+          "word": "等"
         }
       },
       "resources": [
@@ -17172,7 +17368,7 @@
           "word": "andar"
         },
         "de": {
-          "word": "gehen"
+          "word": "laufen"
         },
         "nl": {
           "word": "lopen"
@@ -17190,7 +17386,7 @@
           "word": "مَشَى"
         },
         "el": {
-          "word": "περπαταω"
+          "word": "περπατάω"
         },
         "fi": {
           "word": "kävellä"
@@ -17260,7 +17456,7 @@
           "word": "أَرَادَ"
         },
         "el": {
-          "word": "θελω"
+          "word": "θέλω"
         },
         "fi": {
           "word": "tahtoa"
@@ -17269,7 +17465,7 @@
           "word": "चाहना"
         },
         "ko": {
-          "word": "빌다"
+          "word": "원하다"
         },
         "pl": {
           "word": "chcieć"
@@ -17330,7 +17526,7 @@
           "word": "غَسَلَ"
         },
         "el": {
-          "word": "πλενω"
+          "word": "πλένω"
         },
         "fi": {
           "word": "pestä"
@@ -17400,7 +17596,7 @@
           "word": "عَمِلَ"
         },
         "el": {
-          "word": "δουλευω"
+          "word": "δουλεύω"
         },
         "fi": {
           "word": "työskennellä"
@@ -17470,7 +17666,7 @@
           "word": "كَتَبَ"
         },
         "el": {
-          "word": "γραφω"
+          "word": "γράφω"
         },
         "fi": {
           "word": "kirjoittaa"

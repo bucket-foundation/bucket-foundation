@@ -1,15 +1,20 @@
 .page { background: #eeeadf; color: #1f1c16; padding: 40px 28px 56px; }
-.layout { max-width: 1480px; margin: auto; display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; align-items: start; }
+.hero { max-width: 1180px; margin: 0 auto 72px; display: grid; grid-template-columns: minmax(0,1fr) 380px; gap: 56px; align-items: start; padding-top: 24px; }
+.heroSingle { max-width: 640px; margin: 0 auto 72px; padding-top: 24px; display: flex; flex-direction: column; gap: 28px; }
+.heroText h1 { font-family: var(--font-display), Georgia, serif; font-size: clamp(40px, 5vw, 72px); line-height: 1.02; letter-spacing: -.04em; margin: 12px 0 18px; }
+.heroText p { font-size: 17px; line-height: 1.6; color: #625c50; max-width: 520px; }
+.facts { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.facts li { font: 12px system-ui, sans-serif; border: 1px solid #d0c7b5; padding: 7px 12px; border-radius: 99px; color: #4b4436; }
+.downloadCard { border-top: 3px solid #b8861e; background: #e5dfcf; padding: 24px; }
+.downloadCard h2 { font: 26px/1.1 Georgia, serif; margin: 0 0 12px; }
+.demoPane { max-width: 1180px; margin: auto; border-top: 1px solid #d0c7b5; padding-top: 48px; }
 .intro { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 24px; }
-.intro h1 { font-family: var(--font-display), Georgia, serif; font-size: clamp(36px, 4vw, 60px); line-height: 1.05; margin: 10px 0; letter-spacing: -.04em; }
+.intro h2 { font-family: var(--font-display), Georgia, serif; font-size: clamp(30px, 3vw, 44px); line-height: 1.05; margin: 10px 0; letter-spacing: -.03em; }
 .intro p { font-size: 15px; color: #625c50; max-width: 440px; }
 .eyebrow { display: block; font: 10px/1.5 system-ui, sans-serif; letter-spacing: .15em; text-transform: uppercase; color: #655b48; }
 .modes { display: flex; gap: 4px; background: #ded8c9; padding: 4px; border-radius: 5px; flex-shrink: 0; }
 .modes button { padding: 9px 13px; font: 12px system-ui, sans-serif; white-space: nowrap; }
 .modes button[aria-pressed=true] { background: #faf7ef; box-shadow: 0 1px 3px #1f1c1620; }
-.downloadPane { position: sticky; top: 90px; border-top: 3px solid #b8861e; background: #e5dfcf; padding: 24px; max-height: calc(100dvh - 110px); overflow-y: auto; scrollbar-width: thin; }
-.downloadPane h2 { font: 30px/1.08 Georgia, serif; letter-spacing: -.025em; margin: 10px 0; }
-.downloadPane > p { font-size: 13px; line-height: 1.5; color: #655b48; }
 .workspace { border: 1px solid #d0c7b5; background: #faf7ef; box-shadow: 0 10px 40px #4935150a; border-radius: 7px; overflow: hidden; }
 .workspaceBar { display: flex; justify-content: space-between; padding: 13px 20px; gap: 12px; border-bottom: 1px solid #dcd5c7; font: 11px system-ui, sans-serif; color: #6b6150; }
 .workspaceBar span { display: flex; align-items: center; gap: 7px; }
@@ -76,17 +81,16 @@
 .watchText p { font-size: 14px; color: #d1c9b5; line-height: 1.6; }
 .watchText a { text-decoration: underline; text-underline-offset: 3px; }
 .page button:focus-visible, .page input:focus-visible, .page textarea:focus-visible, .page select:focus-visible, .page a:focus-visible, .page summary:focus-visible { outline: 2px solid #9f7118; outline-offset: 3px; }
-@media (max-width: 1100px) { .layout { grid-template-columns: minmax(0,1fr) 300px; gap: 20px; } .toolContent { padding: 24px 20px; } .intro { display: block; } .modes { width: fit-content; margin-top: 18px; } .downloadPane { padding: 20px; } }
+@media (max-width: 1100px) { .hero { grid-template-columns: minmax(0,1fr) 320px; gap: 28px; } .toolContent { padding: 24px 20px; } .intro { display: block; } .modes { width: fit-content; margin-top: 18px; } }
 @media (max-width: 760px) {
-  .page { padding: 0; }
-  .layout { height: calc(100dvh - 69px); min-height: 260px; display: flex; flex-direction: column; gap: 0; }
-  .demoPane { width: 100%; flex: 1 1 55%; min-height: 100px; overflow-y: auto; padding: 20px 16px; }
+  .page { padding: 24px 16px 40px; }
+  .hero { display: block; margin-bottom: 48px; }
+  .downloadCard { margin-top: 28px; padding: 18px; }
+  .demoPane { padding-top: 32px; }
   .intro { margin-bottom: 16px; }
-  .intro h1 { font-size: 36px; }
+  .intro h2 { font-size: 30px; }
+  .heroText h1 { font-size: 40px; }
   .intro p { font-size: 13px; }
-  .downloadPane { position: static; flex: 0 1 45%; width: 100%; min-height: 140px; max-height: 45%; padding: 16px; border-top-width: 2px; overscroll-behavior: contain; }
-  .downloadPane h2 { font-size: 24px; margin: 0 0 8px; }
-  .downloadPane > .eyebrow, .downloadPane > p { display: none; }
   .workspaceBody { display: block; min-height: 450px; }
   .toolNav { display: flex; flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid #dcd5c7; padding: 8px; }
   .toolNav button { flex-shrink: 0; }

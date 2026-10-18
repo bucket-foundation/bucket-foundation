@@ -43,6 +43,10 @@ export function executableStep(distro: Distro | null): string {
 export const APPIMAGE_RUN_STEPS = ["chmod +x Bucket-*.AppImage", "./Bucket-*.AppImage"] as const;
 
 export function appImageRunSteps(name: string): string {
+  if (name.endsWith(".tar.gz")) {
+    const inner = name.slice(0, -".tar.gz".length);
+    return `tar -xzf ~/Downloads/${name} -C ~/Downloads\n~/Downloads/${inner}`;
+  }
   return `chmod +x ~/Downloads/${name}\n~/Downloads/${name}`;
 }
 
@@ -52,7 +56,9 @@ export const LINUX_PACKAGE_LABEL: Record<"deb" | "rpm", string> = { deb: "Downlo
 
 export const DIRECT_FILE_SUMMARY = "Direct file";
 
-export const DIRECT_FILE_STEP = "The AppImage arrives without permission to run. Run these two lines after it downloads.";
+export const DIRECT_FILE_STEP = "The archive keeps the AppImage runnable. Run these two lines after it downloads.";
+
+export const DIRECT_FILE_STEP_RAW = "The AppImage arrives without permission to run. Run these two lines after it downloads.";
 
 export const APPIMAGE_WARNING = "Open the AppImage from a terminal. Opening it with Disks offers to overwrite your whole drive.";
 

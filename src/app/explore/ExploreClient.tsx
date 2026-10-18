@@ -14,6 +14,8 @@ import type { MapModel } from "@/lib/explore/map";
 import DropZone from "@/components/explore/DropZone";
 import { bibHits, linkNearest, youHit, type UploadResult } from "@/lib/explore/upload";
 import SourcePanel, { isSourceHit } from "@/components/explore/SourcePanel";
+import YtPlayer from "@/components/explore/YtPlayer";
+import { clock } from "@/lib/explore/yt-start";
 import { DEFAULT_Z, ELEMENTS, elementByZ } from "@/lib/explore/modes/atom";
 import { PARTICLES } from "@/lib/explore/modes/particle";
 import { MOLECULES, REACTIONS, registerCustom, loadSmiles, moleculeById, reactionById, smilesReady } from "@/lib/explore/modes/chem";
@@ -64,6 +66,7 @@ export default function ExploreClient() {
   const [asked, setAsked] = useState("");
   const [origin, setOrigin] = useState<AdvisorOrigin>("none");
   const [selected, setSelected] = useState<string | null>(null);
+  const [listen, setListen] = useState<{ id: string; n: number } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [modeId, setModeId] = useState<string>("globe");
@@ -129,6 +132,12 @@ export default function ExploreClient() {
   const visible = useMemo(() => [...hits.filter((h) => types.has(h.type)), ...uploaded.filter((h) => types.has(h.type) || h.type === "you")], [hits, types, uploaded]);
   const byId = useMemo(() => new Map([...hits, ...uploaded].map((h) => [h.id, h])), [hits, uploaded]);
   const current = selected ? byId.get(selected) ?? null : null;
+  const playable = useMemo(() => visible.filter((h) => h.yt), [visible]);
+  const nextPlayable = current?.yt && playable.length > 1 ? playable[(playable.findIndex((h) => h.id === current.id) + 1) % playable.length] : null;
+  const playHit = (id: string) => {
+    setSelected(id);
+    setListen((prev) => ({ id, n: (prev?.n ?? 0) + 1 }));
+  };
   const currentFields = current ? citeFieldsFromHit(current) : null;
   const mode = modeById(modeId);
   const protein = proteinById(null);
@@ -407,6 +416,17 @@ export default function ExploreClient() {
                     </span>
                   ))}
                 </button>
+                {h.yt && (
+                  <button
+                    type="button"
+                    data-testid="explore-listen"
+                    onClick={() => playHit(h.id)}
+                    aria-label={`Listen to ${h.title} at ${clock(h.yt.start)}`}
+                    className="mt-1 border hairline px-3 py-2 text-sm min-h-[44px] focus-visible:outline focus-visible:outline-2"
+                  >
+                    <span aria-hidden="true">▶</span> Listen <span className="text-xs" style={mono}>{clock(h.yt.start)}</span>
+                  </button>
+                )}
                 {fields && <ResultActions fields={fields} saved={saved} />}
               </li>
               );
@@ -421,6 +441,15 @@ export default function ExploreClient() {
                 <h2 className="text-lg mt-1">{current.title}</h2>
                 <p className="text-sm mt-1" style={{ color: "var(--parchment-dim)" }}>{current.subtitle}</p>
                 {current.text && <p className="text-sm mt-3">{current.text}</p>}
+                {current.yt && (
+                  <YtPlayer
+                    key={current.id}
+                    play={current.yt}
+                    title={current.title}
+                    playToken={listen?.id === current.id ? listen.n : undefined}
+                    onNext={nextPlayable ? () => playHit(nextPlayable.id) : undefined}
+                  />
+                )}
                 <SourcePanel hit={current} />
                 {currentFields && <ResultActions key={current.id} fields={currentFields} saved={saved} />}
                 {current.url && !isSourceHit(current) && (

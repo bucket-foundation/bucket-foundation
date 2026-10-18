@@ -99,6 +99,14 @@ export default function LearnHome() {
             </Panel>
           ))}
         </div>
+        <Panel title="languages" meta="language systems">
+          <p className="text-[13px] leading-[1.6] text-[color:var(--basalt-2)]">Learn a set of languages together from one root language, with shared roots drilled side by side.</p>
+          <div className="mt-4">
+            <Link href="/research-os/learn/languages" className={BTN_PRIMARY}>
+              language systems
+            </Link>
+          </div>
+        </Panel>
         <p className="text-[12px] text-[color:var(--basalt-3)]">
           <button type="button" onClick={downloadProgress} className="underline underline-offset-4 hover:text-[color:var(--basalt)]">
             Export progress

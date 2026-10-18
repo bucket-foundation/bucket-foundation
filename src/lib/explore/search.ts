@@ -20,17 +20,25 @@ export interface Hit {
   license?: string;
   also?: string[];
   fragments?: Fragment[];
+  yt?: YtPlay;
+}
+
+export interface YtPlay {
+  id: string;
+  start: number;
 }
 
 export interface Fragment {
   id: string;
   text: string;
   url: string;
+  start?: number;
 }
 
 export interface Talk {
   id: string;
   title: string;
+  start?: number;
 }
 
 export interface ExcerptSource {
@@ -204,7 +212,8 @@ export function unify(opts: UnifyOptions): Hit[] {
       url: `/excerpts/${x.e.concept}/${x.e.slug}`,
       links: Array.from(links.get(x.id) ?? []),
       also: x.group.slice(1).map((f) => f.id),
-      fragments: x.group.slice(0, FRAGMENTS_PER_TALK).map((f) => ({ id: f.id, text: f.e.text.slice(0, 200), url: `/excerpts/${f.e.concept}/${f.e.slug}` })),
+      fragments: x.group.slice(0, FRAGMENTS_PER_TALK).map((f) => ({ id: f.id, text: f.e.text.slice(0, 200), url: `/excerpts/${f.e.concept}/${f.e.slug}`, ...(f.e.talk ? { start: f.e.talk.start ?? 0 } : {}) })),
+      ...(x.e.talk ? { yt: { id: x.e.talk.id, start: x.e.talk.start ?? 0 } } : {}),
     });
   }
   for (const x of advisors) {

@@ -4,6 +4,7 @@ import path from "path";
 export interface Talk {
   id: string;
   title: string;
+  start?: number;
 }
 
 const SOURCE_LINE = /\*\*Source\*\*:\s*\[(.+)\]\((https?:\/\/[^)\s]+)\)/;
@@ -18,7 +19,7 @@ export function parseTalk(markdown: string): Talk | null {
   return id ? { id, title: m[1].trim() } : null;
 }
 
-export function talkFor(file: string, root = process.cwd()): Talk | null {
+export function talkFor(file: string, root = process.cwd(), start: (file: string) => number = () => 0): Talk | null {
   const hit = cache.get(file);
   if (hit !== undefined) return hit;
   let talk: Talk | null = null;
@@ -27,6 +28,7 @@ export function talkFor(file: string, root = process.cwd()): Talk | null {
   } catch {
     talk = null;
   }
+  if (talk) talk = { ...talk, start: start(file) };
   cache.set(file, talk);
   return talk;
 }
