@@ -3,7 +3,7 @@ set -euo pipefail
 
 out="${1:-$HOME/.bucket/android-upload.jks}"
 alias="${ANDROID_KEY_ALIAS:-bucket-upload}"
-repo="${GH_REPO:-gianyrox/bucket-foundation}"
+repo="${GH_REPO:-bucket-foundation/bucket-foundation}"
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 
 command -v keytool >/dev/null || { echo "keytool not found; install a JDK" >&2; exit 1; }
