@@ -31,7 +31,7 @@ export default function DevicePicker({ detected, links }: { detected: DetectedDe
           <a href={links.web.href ?? "/learn"} className={PRIMARY} data-device-fallback="web">{links.web.action}</a>
         </>
       )}
-      {alt?.href && <a href={alt.href} className={SMALL} data-device-alt={alt.device}>Intel Mac? {alt.action}</a>}
+      {alt?.href && <p className="text-[13px] text-[color:var(--basalt-2)]" data-device-alt={alt.device}>Built for Apple silicon. Apple menu, About This Mac shows your chip. Intel chip? <a href={alt.href} className="underline">Download the Intel build</a>.</p>}
       <ul className="flex flex-wrap gap-x-4" aria-label="Other platforms">
         {others.map((l) => (
           <li key={l.device} data-device-other={l.device}>
