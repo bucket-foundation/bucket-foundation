@@ -180,20 +180,3 @@ export async function photonStats(): Promise<PhotonStats> {
 
   return { total, by_lang };
 }
-
-export async function insertSignup(s: { email: string; speaks: string; learning: string }): Promise<void> {
-  const r = await fetch(`${DB_URL}/rest/v1/signups?on_conflict=email`, {
-    signal: AbortSignal.timeout(8000),
-    method: "POST",
-    headers: {
-      apikey: ANON_KEY,
-      Authorization: `Bearer ${ANON_KEY}`,
-      "Content-Profile": SCHEMA,
-      "Content-Type": "application/json",
-      Prefer: "return=minimal,resolution=merge-duplicates",
-    },
-    body: JSON.stringify({ email: s.email, source: "polingual.com", ...(s.speaks ? { speaks: s.speaks } : {}), ...(s.learning ? { learning: s.learning } : {}) }),
-    cache: "no-store",
-  });
-  if (!r.ok) throw new Error(`signups insert http ${r.status}: ${(await r.text()).slice(0, 200)}`);
-}

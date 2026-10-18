@@ -33,8 +33,8 @@ async function saveBlob(s: Signup): Promise<void> {
   try {
     const old = await get(key, { access: "private" });
     if (old?.stream) prev = JSON.parse(await new Response(old.stream).text());
-  } catch {
-    prev = {};
+  } catch (err) {
+    if (!(err instanceof Error) || !/not.?found|404/i.test(`${err.name} ${err.message}`)) throw err;
   }
   const entry = {
     email: s.email,
