@@ -1,0 +1,2062 @@
+{
+ "tag": "polingual-ux-v1",
+ "atomsByVersion": {
+  "atoms-v1": [
+   {
+    "id": "a",
+    "title": "A",
+    "shell": "prereq",
+    "requires": [],
+    "quiz": [
+     {
+      "level": "recall",
+      "prompt": "?",
+      "answer": "!"
+     },
+     {
+      "level": "apply",
+      "prompt": "?",
+      "answer": "!"
+     }
+    ]
+   },
+   {
+    "id": "b",
+    "title": "B",
+    "shell": "nucleus",
+    "requires": [
+     "a"
+    ],
+    "quiz": [
+     {
+      "level": "recall",
+      "prompt": "?",
+      "answer": "!"
+     },
+     {
+      "level": "derive",
+      "prompt": "?",
+      "answer": "!"
+     }
+    ]
+   },
+   {
+    "id": "c",
+    "title": "C",
+    "shell": "nucleus",
+    "requires": [
+     "b"
+    ],
+    "quiz": [
+     {
+      "level": "recall",
+      "prompt": "?",
+      "answer": "!"
+     },
+     {
+      "level": "teach",
+      "prompt": "?",
+      "answer": "!"
+     }
+    ]
+   },
+   {
+    "id": "d",
+    "title": "D",
+    "shell": "frontier",
+    "requires": [
+     "a"
+    ],
+    "quiz": [
+     {
+      "level": "recall",
+      "prompt": "?",
+      "answer": "!"
+     }
+    ]
+   },
+   {
+    "id": "e",
+    "title": "E",
+    "shell": "frontier",
+    "requires": [
+     "c",
+     "d"
+    ],
+    "quiz": [
+     {
+      "level": "apply",
+      "prompt": "?",
+      "answer": "!"
+     }
+    ]
+   },
+   {
+    "id": "f",
+    "title": "F",
+    "shell": "prereq",
+    "requires": [],
+    "quiz": [
+     {
+      "level": "recall",
+      "prompt": "?",
+      "answer": "!"
+     }
+    ]
+   }
+  ],
+  "lang": []
+ },
+ "sessions": [
+  {
+   "name": "atoms-new-york-dst",
+   "tz": "America/New_York",
+   "rows": [
+    {
+     "review_id": "atoms-new-york-dst-0000",
+     "card_id": "f",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793021396799,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0001",
+     "card_id": "a",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1793022716345,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0002",
+     "card_id": "b",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793024648847,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0003",
+     "card_id": "c",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1793027476171,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0004",
+     "card_id": "a",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793029229597,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0005",
+     "card_id": "f",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1793029893453,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0006",
+     "card_id": "a",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793030302281,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0007",
+     "card_id": "a",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1793179968488,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0008",
+     "card_id": "f",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793181114431,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0009",
+     "card_id": "a",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1793381830334,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0010",
+     "card_id": "c",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793382491658,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0011",
+     "card_id": "b",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1793383141249,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0012",
+     "card_id": "d",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793385897393,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0013",
+     "card_id": "e",
+     "rating": 3,
+     "level": "apply",
+     "reviewed_at": 1793387254224,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0014",
+     "card_id": "e",
+     "rating": 4,
+     "level": "apply",
+     "reviewed_at": 1793389008761,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0015",
+     "card_id": "b",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793389774420,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0016",
+     "card_id": "b",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793434244246,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0017",
+     "card_id": "e",
+     "rating": 2,
+     "level": "apply",
+     "reviewed_at": 1793565609128,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0018",
+     "card_id": "f",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1793566369013,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0019",
+     "card_id": "b",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793567974356,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0020",
+     "card_id": "d",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793675896280,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0021",
+     "card_id": "f",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793676750045,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0022",
+     "card_id": "a",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793679732004,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0023",
+     "card_id": "f",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793681320498,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0024",
+     "card_id": "e",
+     "rating": 4,
+     "level": "apply",
+     "reviewed_at": 1793684392277,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0025",
+     "card_id": "b",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793886922234,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0026",
+     "card_id": "d",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793889944931,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0027",
+     "card_id": "a",
+     "rating": 1,
+     "level": "apply",
+     "reviewed_at": 1793929620258,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0028",
+     "card_id": "a",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794033824804,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0029",
+     "card_id": "f",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794035668812,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0030",
+     "card_id": "c",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794036533531,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0031",
+     "card_id": "a",
+     "rating": 4,
+     "level": "apply",
+     "reviewed_at": 1794038106962,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0032",
+     "card_id": "f",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794038675922,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0033",
+     "card_id": "c",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794039664953,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0034",
+     "card_id": "d",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794223914881,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0035",
+     "card_id": "b",
+     "rating": 4,
+     "level": "derive",
+     "reviewed_at": 1794224972684,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0036",
+     "card_id": "c",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794321361973,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0037",
+     "card_id": "f",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794322920216,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0038",
+     "card_id": "f",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794439341937,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0039",
+     "card_id": "c",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794439856473,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0040",
+     "card_id": "c",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794603994351,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0041",
+     "card_id": "f",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794605647140,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0042",
+     "card_id": "d",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794607092743,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0043",
+     "card_id": "a",
+     "rating": 1,
+     "level": "apply",
+     "reviewed_at": 1794607502773,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0044",
+     "card_id": "e",
+     "rating": 3,
+     "level": "apply",
+     "reviewed_at": 1794610438477,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0045",
+     "card_id": "a",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794611270245,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0046",
+     "card_id": "e",
+     "rating": 3,
+     "level": "apply",
+     "reviewed_at": 1794614416000,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0047",
+     "card_id": "f",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794617430596,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0048",
+     "card_id": "f",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794617453346,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0049",
+     "card_id": "d",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794618965017,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0050",
+     "card_id": "b",
+     "rating": 2,
+     "level": "derive",
+     "reviewed_at": 1794619929193,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0051",
+     "card_id": "c",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794622975036,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0052",
+     "card_id": "e",
+     "rating": 1,
+     "level": "apply",
+     "reviewed_at": 1794625371617,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0053",
+     "card_id": "c",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794627064392,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0054",
+     "card_id": "b",
+     "rating": 3,
+     "level": "derive",
+     "reviewed_at": 1794628691146,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0055",
+     "card_id": "e",
+     "rating": 1,
+     "level": "apply",
+     "reviewed_at": 1794632220786,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0056",
+     "card_id": "e",
+     "rating": 2,
+     "level": "apply",
+     "reviewed_at": 1794632873067,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0057",
+     "card_id": "c",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794820486350,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0058",
+     "card_id": "a",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794822270621,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-phone",
+     "tz": "America/New_York"
+    },
+    {
+     "review_id": "atoms-new-york-dst-0059",
+     "card_id": "e",
+     "rating": 3,
+     "level": "apply",
+     "reviewed_at": 1794963217665,
+     "atoms_version": "atoms-v1",
+     "device_id": "dev-laptop",
+     "tz": "America/New_York"
+    }
+   ],
+   "state": {
+    "cards": {
+     "f": {
+      "state": "relearning",
+      "stability": 0.8300163198251739,
+      "difficulty": 8.799201020934426,
+      "reps": 13,
+      "lapses": 5,
+      "lastReview": 1794617453346,
+      "scheduledDays": 1,
+      "due": 1794703853346
+     },
+     "a": {
+      "state": "review",
+      "stability": 2.9618,
+      "difficulty": 8.450930571107328,
+      "reps": 12,
+      "lapses": 2,
+      "lastReview": 1794822270621,
+      "scheduledDays": 3,
+      "due": 1795081470621,
+      "firedCredit": 5.1
+     },
+     "b": {
+      "state": "review",
+      "stability": 67.8917,
+      "difficulty": 5.0319467828227085,
+      "reps": 9,
+      "lapses": 1,
+      "lastReview": 1794628691146,
+      "scheduledDays": 66,
+      "due": 1800503891146,
+      "firedCredit": 1.5
+     },
+     "c": {
+      "state": "relearning",
+      "stability": 0.3514,
+      "difficulty": 9.50407092363631,
+      "reps": 10,
+      "lapses": 5,
+      "lastReview": 1794820486350,
+      "scheduledDays": 1,
+      "due": 1794906886350,
+      "firedCredit": 1.8
+     },
+     "d": {
+      "state": "review",
+      "stability": 86.1105,
+      "difficulty": 3.603069983438358,
+      "reps": 6,
+      "lapses": 0,
+      "lastReview": 1794618965017,
+      "scheduledDays": 82,
+      "due": 1802049365017,
+      "firedCredit": 1.8
+     },
+     "e": {
+      "state": "review",
+      "stability": 5.434200213454281,
+      "difficulty": 7.877418460183468,
+      "reps": 10,
+      "lapses": 2,
+      "lastReview": 1794963217665,
+      "scheduledDays": 5,
+      "due": 1795395217665
+     }
+    },
+    "prof": {
+     "f": {
+      "theta": -0.5845180623007797,
+      "n": 13
+     },
+     "a": {
+      "theta": 0.03901536740712791,
+      "n": 12
+     },
+     "b": {
+      "theta": 1.2948984052330983,
+      "n": 9
+     },
+     "c": {
+      "theta": -1.4207965162348888,
+      "n": 10
+     },
+     "d": {
+      "theta": 1.1298623126524063,
+      "n": 6
+     },
+     "e": {
+      "theta": 0.4386976479719961,
+      "n": 10
+     }
+    },
+    "settings": {
+     "newPerDay": 4,
+     "requestRetention": 0.9
+    },
+    "stats": {
+     "xp": 274,
+     "streak": 2,
+     "lastStudyDay": "2026-11-17",
+     "history": {
+      "2026-10-26": {
+       "new": 4,
+       "reviews": 3
+      },
+      "2026-10-28": {
+       "new": 0,
+       "reviews": 2
+      },
+      "2026-10-30": {
+       "new": 2,
+       "reviews": 5
+      },
+      "2026-10-31": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-1": {
+       "new": 0,
+       "reviews": 3
+      },
+      "2026-11-2": {
+       "new": 0,
+       "reviews": 4
+      },
+      "2026-11-3": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-5": {
+       "new": 0,
+       "reviews": 3
+      },
+      "2026-11-7": {
+       "new": 0,
+       "reviews": 6
+      },
+      "2026-11-9": {
+       "new": 0,
+       "reviews": 2
+      },
+      "2026-11-10": {
+       "new": 0,
+       "reviews": 2
+      },
+      "2026-11-11": {
+       "new": 0,
+       "reviews": 2
+      },
+      "2026-11-13": {
+       "new": 0,
+       "reviews": 16
+      },
+      "2026-11-14": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-16": {
+       "new": 0,
+       "reviews": 2
+      },
+      "2026-11-17": {
+       "new": 0,
+       "reviews": 1
+      }
+     }
+    }
+   }
+  },
+  {
+   "name": "polingual-auckland",
+   "tz": "Pacific/Auckland",
+   "rows": [
+    {
+     "review_id": "polingual-auckland-0000",
+     "card_id": "ru:w1",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1792321280686,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0001",
+     "card_id": "ru:w5",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1792492264559,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0002",
+     "card_id": "es:w16",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1792493562954,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0003",
+     "card_id": "ru:w18",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1792495020313,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0004",
+     "card_id": "es:w1",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1792495491599,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0005",
+     "card_id": "es:w1",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1792498134188,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0006",
+     "card_id": "es:w4",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1792573438485,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0007",
+     "card_id": "es:w3",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1792576835150,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0008",
+     "card_id": "ru:w15",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1792578340886,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0009",
+     "card_id": "ru:w17",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1792578855366,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0010",
+     "card_id": "ru:w1",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1792582456703,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0011",
+     "card_id": "es:w5",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1792583642904,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0012",
+     "card_id": "es:w16",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1792585048799,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0013",
+     "card_id": "ru:w15",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1792668485875,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0014",
+     "card_id": "es:w0",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1792670490297,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0015",
+     "card_id": "ru:w23",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1792778479645,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0016",
+     "card_id": "ru:w1",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1792928435967,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0017",
+     "card_id": "ru:w15",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793062379470,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0018",
+     "card_id": "es:w0",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793064389200,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0019",
+     "card_id": "es:w16",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1793181349169,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0020",
+     "card_id": "ru:w9",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793326252769,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0021",
+     "card_id": "es:w1",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793329015510,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0022",
+     "card_id": "ru:w17",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1793329554380,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0023",
+     "card_id": "es:w3",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1793331725752,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0024",
+     "card_id": "es:w6",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1793334299415,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0025",
+     "card_id": "es:w5",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1793336307768,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0026",
+     "card_id": "es:w2",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793508885783,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0027",
+     "card_id": "es:w6",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1793620470939,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0028",
+     "card_id": "es:w2",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1793779186847,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0029",
+     "card_id": "ru:w5",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794002673057,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0030",
+     "card_id": "es:w16",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794142346565,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0031",
+     "card_id": "ru:w15",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794304922454,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0032",
+     "card_id": "ru:w16",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794308475406,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0033",
+     "card_id": "es:w5",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794348177071,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0034",
+     "card_id": "es:w4",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794351480021,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0035",
+     "card_id": "es:w6",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794351931969,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0036",
+     "card_id": "ru:w0",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794355169342,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0037",
+     "card_id": "ru:w18",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794358576524,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0038",
+     "card_id": "es:w3",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794359976217,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0039",
+     "card_id": "ru:w1",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794362238589,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0040",
+     "card_id": "ru:w23",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794365193008,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0041",
+     "card_id": "es:w0",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794368612902,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0042",
+     "card_id": "es:w15",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794369983506,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0043",
+     "card_id": "es:w5",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794493478341,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0044",
+     "card_id": "ru:w23",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794496354522,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0045",
+     "card_id": "ru:w6",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794499386973,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0046",
+     "card_id": "ru:w17",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794502304106,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0047",
+     "card_id": "ru:w15",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794505658422,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0048",
+     "card_id": "es:w16",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794507768663,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0049",
+     "card_id": "es:w10",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794510833161,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0050",
+     "card_id": "es:w1",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794511921175,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0051",
+     "card_id": "es:w6",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794514612100,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0052",
+     "card_id": "ru:w17",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794607452636,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0053",
+     "card_id": "es:w10",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794609690007,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0054",
+     "card_id": "ru:w17",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794612179253,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0055",
+     "card_id": "es:w16",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794613889534,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0056",
+     "card_id": "ru:w0",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794614728291,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0057",
+     "card_id": "es:w1",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794615804524,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0058",
+     "card_id": "es:w17",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794619272559,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0059",
+     "card_id": "es:w20",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794619376689,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0060",
+     "card_id": "ru:w15",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794621450825,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0061",
+     "card_id": "es:w14",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794624403457,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0062",
+     "card_id": "ru:w14",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794624447284,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0063",
+     "card_id": "ru:w6",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1794760137184,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0064",
+     "card_id": "ru:w9",
+     "rating": 4,
+     "level": "recall",
+     "reviewed_at": 1794763562004,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0065",
+     "card_id": "es:w9",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1794766668643,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0066",
+     "card_id": "es:w1",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794767979861,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0067",
+     "card_id": "es:w6",
+     "rating": 1,
+     "level": "recall",
+     "reviewed_at": 1794940930271,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0068",
+     "card_id": "ru:w4",
+     "rating": 2,
+     "level": "recall",
+     "reviewed_at": 1795051407706,
+     "atoms_version": "lang",
+     "device_id": "dev-phone",
+     "tz": "Pacific/Auckland"
+    },
+    {
+     "review_id": "polingual-auckland-0069",
+     "card_id": "ru:w17",
+     "rating": 3,
+     "level": "recall",
+     "reviewed_at": 1795052765040,
+     "atoms_version": "lang",
+     "device_id": "dev-laptop",
+     "tz": "Pacific/Auckland"
+    }
+   ],
+   "state": {
+    "cards": {
+     "ru:w1": {
+      "state": "review",
+      "stability": 81.81624340265405,
+      "difficulty": 6.244127297443678,
+      "reps": 4,
+      "lapses": 1,
+      "lastReview": 1794362238589,
+      "scheduledDays": 82,
+      "due": 1801447038589
+     },
+     "ru:w5": {
+      "state": "review",
+      "stability": 26.97075357061069,
+      "difficulty": 4.318881718775723,
+      "reps": 2,
+      "lapses": 0,
+      "lastReview": 1794002673057,
+      "scheduledDays": 27,
+      "due": 1796335473057
+     },
+     "es:w16": {
+      "state": "review",
+      "stability": 2.6241922416154306,
+      "difficulty": 8.576208525220805,
+      "reps": 6,
+      "lapses": 2,
+      "lastReview": 1794613889534,
+      "scheduledDays": 3,
+      "due": 1794873089534
+     },
+     "ru:w18": {
+      "state": "review",
+      "stability": 29.258857162824487,
+      "difficulty": 4.318881718775723,
+      "reps": 2,
+      "lapses": 0,
+      "lastReview": 1794358576524,
+      "scheduledDays": 29,
+      "due": 1796864176524
+     },
+     "es:w1": {
+      "state": "relearning",
+      "stability": 0.4307681178620568,
+      "difficulty": 9.02890712882868,
+      "reps": 6,
+      "lapses": 3,
+      "lastReview": 1794767979861,
+      "scheduledDays": 1,
+      "due": 1794854379861
+     },
+     "es:w4": {
+      "state": "review",
+      "stability": 19.918241287673048,
+      "difficulty": 6.473291771547592,
+      "reps": 2,
+      "lapses": 0,
+      "lastReview": 1794351480021,
+      "scheduledDays": 20,
+      "due": 1796079480021
+     },
+     "es:w3": {
+      "state": "review",
+      "stability": 20.850137342340066,
+      "difficulty": 7.022947947583929,
+      "reps": 3,
+      "lapses": 0,
+      "lastReview": 1794359976217,
+      "scheduledDays": 21,
+      "due": 1796174376217
+     },
+     "ru:w15": {
+      "state": "review",
+      "stability": 7.178719712125045,
+      "difficulty": 7.923651100654672,
+      "reps": 6,
+      "lapses": 1,
+      "lastReview": 1794621450825,
+      "scheduledDays": 7,
+      "due": 1795226250825
+     },
+     "ru:w17": {
+      "state": "review",
+      "stability": 6.440927507746391,
+      "difficulty": 8.041779774100863,
+      "reps": 6,
+      "lapses": 2,
+      "lastReview": 1795052765040,
+      "scheduledDays": 6,
+      "due": 1795571165040
+     },
+     "es:w5": {
+      "state": "review",
+      "stability": 24.006846931249516,
+      "difficulty": 6.244127297443678,
+      "reps": 4,
+      "lapses": 1,
+      "lastReview": 1794493478341,
+      "scheduledDays": 24,
+      "due": 1796567078341
+     },
+     "es:w0": {
+      "state": "review",
+      "stability": 21.426175232413154,
+      "difficulty": 6.0270563403407795,
+      "reps": 3,
+      "lapses": 0,
+      "lastReview": 1794368612902,
+      "scheduledDays": 21,
+      "due": 1796183012902
+     },
+     "ru:w23": {
+      "state": "review",
+      "stability": 4.91473087836871,
+      "difficulty": 6.780499397376409,
+      "reps": 3,
+      "lapses": 1,
+      "lastReview": 1794496354522,
+      "scheduledDays": 5,
+      "due": 1794928354522
+     },
+     "ru:w9": {
+      "state": "review",
+      "stability": 155.06307183282274,
+      "difficulty": 2.1301214599670124,
+      "reps": 2,
+      "lapses": 0,
+      "lastReview": 1794763562004,
+      "scheduledDays": 155,
+      "due": 1808155562004
+     },
+     "es:w6": {
+      "state": "relearning",
+      "stability": 0.9712772503256585,
+      "difficulty": 9.064299871463128,
+      "reps": 5,
+      "lapses": 3,
+      "lastReview": 1794940930271,
+      "scheduledDays": 1,
+      "due": 1795027330271
+     },
+     "es:w2": {
+      "state": "review",
+      "stability": 44.40591803412768,
+      "difficulty": 2.1301214599670124,
+      "reps": 2,
+      "lapses": 0,
+      "lastReview": 1793779186847,
+      "scheduledDays": 44,
+      "due": 1797580786847
+     },
+     "ru:w16": {
+      "state": "review",
+      "stability": 15.69105,
+      "difficulty": 3.2245015893713678,
+      "reps": 1,
+      "lapses": 0,
+      "lastReview": 1794308475406,
+      "scheduledDays": 16,
+      "due": 1795690875406
+     },
+     "ru:w0": {
+      "state": "review",
+      "stability": 4.9267045181108795,
+      "difficulty": 6.0349502556102195,
+      "reps": 2,
+      "lapses": 0,
+      "lastReview": 1794614728291,
+      "scheduledDays": 5,
+      "due": 1795046728291
+     },
+     "es:w15": {
+      "state": "review",
+      "stability": 3.173,
+      "difficulty": 5.282434422319005,
+      "reps": 1,
+      "lapses": 0,
+      "lastReview": 1794369983506,
+      "scheduledDays": 3,
+      "due": 1794629183506
+     },
+     "ru:w6": {
+      "state": "review",
+      "stability": 24.963330040768128,
+      "difficulty": 3.2245015893713673,
+      "reps": 2,
+      "lapses": 0,
+      "lastReview": 1794760137184,
+      "scheduledDays": 25,
+      "due": 1796920137184
+     },
+     "es:w10": {
+      "state": "review",
+      "stability": 1.775449150553745,
+      "difficulty": 7.040501547390819,
+      "reps": 2,
+      "lapses": 0,
+      "lastReview": 1794609690007,
+      "scheduledDays": 2,
+      "due": 1794782490007
+     },
+     "es:w17": {
+      "state": "review",
+      "stability": 1.18385,
+      "difficulty": 6.488305268471453,
+      "reps": 1,
+      "lapses": 0,
+      "lastReview": 1794619272559,
+      "scheduledDays": 1,
+      "due": 1794705672559
+     },
+     "es:w20": {
+      "state": "review",
+      "stability": 3.173,
+      "difficulty": 5.282434422319005,
+      "reps": 1,
+      "lapses": 0,
+      "lastReview": 1794619376689,
+      "scheduledDays": 3,
+      "due": 1794878576689
+     },
+     "es:w14": {
+      "state": "review",
+      "stability": 15.69105,
+      "difficulty": 3.2245015893713678,
+      "reps": 1,
+      "lapses": 0,
+      "lastReview": 1794624403457,
+      "scheduledDays": 16,
+      "due": 1796006803457
+     },
+     "ru:w14": {
+      "state": "review",
+      "stability": 1.18385,
+      "difficulty": 6.488305268471453,
+      "reps": 1,
+      "lapses": 0,
+      "lastReview": 1794624447284,
+      "scheduledDays": 1,
+      "due": 1794710847284
+     },
+     "es:w9": {
+      "state": "review",
+      "stability": 1.18385,
+      "difficulty": 6.488305268471453,
+      "reps": 1,
+      "lapses": 0,
+      "lastReview": 1794766668643,
+      "scheduledDays": 1,
+      "due": 1794853068643
+     },
+     "ru:w4": {
+      "state": "review",
+      "stability": 1.18385,
+      "difficulty": 6.488305268471453,
+      "reps": 1,
+      "lapses": 0,
+      "lastReview": 1795051407706,
+      "scheduledDays": 1,
+      "due": 1795137807706
+     }
+    },
+    "prof": {
+     "ru:w1": {
+      "theta": 0.23701247616064153,
+      "n": 4
+     },
+     "ru:w5": {
+      "theta": 0.16513611990515778,
+      "n": 2
+     },
+     "es:w16": {
+      "theta": -0.5011246721230613,
+      "n": 6
+     },
+     "ru:w18": {
+      "theta": 0.16513611990515778,
+      "n": 2
+     },
+     "es:w1": {
+      "theta": -1.3251286472913353,
+      "n": 6
+     },
+     "es:w4": {
+      "theta": 0.22392380599400924,
+      "n": 2
+     },
+     "es:w3": {
+      "theta": 0.15622156497392403,
+      "n": 3
+     },
+     "ru:w15": {
+      "theta": 0.14654654290584157,
+      "n": 6
+     },
+     "ru:w17": {
+      "theta": -0.1651661372623215,
+      "n": 6
+     },
+     "es:w5": {
+      "theta": 0.23701247616064153,
+      "n": 4
+     },
+     "es:w0": {
+      "theta": 0.37018903702826494,
+      "n": 3
+     },
+     "ru:w23": {
+      "theta": -0.04008781207015827,
+      "n": 3
+     },
+     "ru:w9": {
+      "theta": 0.5460885008575387,
+      "n": 2
+     },
+     "es:w6": {
+      "theta": -1.348620529098075,
+      "n": 5
+     },
+     "es:w2": {
+      "theta": 0.5460885008575387,
+      "n": 2
+     },
+     "ru:w16": {
+      "theta": 0.3100255188723875,
+      "n": 1
+     },
+     "ru:w0": {
+      "theta": 0.16513611990515778,
+      "n": 2
+     },
+     "es:w15": {
+      "theta": 0.3100255188723875,
+      "n": 1
+     },
+     "ru:w6": {
+      "theta": 0.5460885008575387,
+      "n": 2
+     },
+     "es:w10": {
+      "theta": -0.1570285749583717,
+      "n": 2
+     },
+     "es:w17": {
+      "theta": -0.08997448112761253,
+      "n": 1
+     },
+     "es:w20": {
+      "theta": 0.3100255188723875,
+      "n": 1
+     },
+     "es:w14": {
+      "theta": 0.3100255188723875,
+      "n": 1
+     },
+     "ru:w14": {
+      "theta": -0.08997448112761253,
+      "n": 1
+     },
+     "es:w9": {
+      "theta": -0.08997448112761253,
+      "n": 1
+     },
+     "ru:w4": {
+      "theta": -0.08997448112761253,
+      "n": 1
+     }
+    },
+    "settings": {
+     "newPerDay": 4,
+     "requestRetention": 0.9
+    },
+    "stats": {
+     "xp": 275,
+     "streak": 2,
+     "lastStudyDay": "2026-11-19",
+     "history": {
+      "2026-10-19": {
+       "new": 1,
+       "reviews": 0
+      },
+      "2026-10-20": {
+       "new": 2,
+       "reviews": 0
+      },
+      "2026-10-21": {
+       "new": 6,
+       "reviews": 1
+      },
+      "2026-10-22": {
+       "new": 1,
+       "reviews": 2
+      },
+      "2026-10-23": {
+       "new": 1,
+       "reviews": 1
+      },
+      "2026-10-24": {
+       "new": 1,
+       "reviews": 0
+      },
+      "2026-10-26": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-10-27": {
+       "new": 0,
+       "reviews": 2
+      },
+      "2026-10-28": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-10-30": {
+       "new": 2,
+       "reviews": 4
+      },
+      "2026-11-1": {
+       "new": 1,
+       "reviews": 0
+      },
+      "2026-11-3": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-4": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-7": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-9": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-10": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-11": {
+       "new": 3,
+       "reviews": 8
+      },
+      "2026-11-13": {
+       "new": 2,
+       "reviews": 7
+      },
+      "2026-11-14": {
+       "new": 4,
+       "reviews": 7
+      },
+      "2026-11-16": {
+       "new": 1,
+       "reviews": 3
+      },
+      "2026-11-18": {
+       "new": 0,
+       "reviews": 1
+      },
+      "2026-11-19": {
+       "new": 1,
+       "reviews": 1
+      }
+     }
+    }
+   }
+  }
+ ]
+}

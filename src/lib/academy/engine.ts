@@ -79,7 +79,21 @@ export function normalizeState(raw: unknown): EngineState {
   };
 }
 
-export function dayKey(now: number = Date.now()): string {
+const dayFormats = new Map<string, Intl.DateTimeFormat>();
+
+function zonedDay(now: number, tz: string): string {
+  let f = dayFormats.get(tz);
+  if (!f) {
+    f = new Intl.DateTimeFormat("en-US", { timeZone: tz, year: "numeric", month: "numeric", day: "numeric" });
+    dayFormats.set(tz, f);
+  }
+  const p: Record<string, string> = {};
+  f.formatToParts(new Date(now)).forEach((x) => (p[x.type] = x.value));
+  return Number(p.year) + "-" + Number(p.month) + "-" + Number(p.day);
+}
+
+export function dayKey(now: number = Date.now(), tz?: string): string {
+  if (tz) return zonedDay(now, tz);
   const d = new Date(now);
   return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
 }
@@ -234,7 +248,8 @@ export function grade(
   id: string,
   rating: Rating,
   level: Depth = "recall",
-  now: number = Date.now()
+  now: number = Date.now(),
+  tz?: string
 ): EngineState {
   const next = normalizeState(state);
   const fsrs = makeFsrs(next);
@@ -253,14 +268,14 @@ export function grade(
   }
 
   if (rating > 1) next.stats.xp += DEPTH_XP[level] ?? 5;
-  const dk = dayKey(now);
+  const dk = dayKey(now, tz);
   const h = (next.stats.history[dk] = next.stats.history[dk] ?? { new: 0, reviews: 0 });
   if (wasNew) h.new += 1;
   else h.reviews += 1;
 
   const last = next.stats.lastStudyDay;
   if (last !== dk) {
-    next.stats.streak = last === dayKey(now - DAY_MS) ? (next.stats.streak || 0) + 1 : 1;
+    next.stats.streak = last === dayKey(now - DAY_MS, tz) ? (next.stats.streak || 0) + 1 : 1;
     next.stats.lastStudyDay = dk;
   }
   void atoms;
