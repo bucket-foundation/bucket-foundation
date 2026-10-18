@@ -142,7 +142,7 @@ export default function DownloadFlowV3({ detected, installers, windowed = [] }: 
       </label>
 
       <button type="submit" disabled={!complete || busy} className={BUTTON + " mt-2"} data-download-button>
-        {busy ? "Saving" : "Download"}
+        {busy ? "Saving" : "Sign up"}
       </button>
       {error && <p role="alert" className="text-[12px] text-[color:var(--crimson)]">{error}</p>}
     </form>

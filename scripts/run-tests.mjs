@@ -26,6 +26,7 @@ const SUITES = {
       "scripts/test-download.ts",
       "scripts/test-download-demo.ts",
       "scripts/test-download-release.ts",
+      "scripts/test-download-device.ts",
       "scripts/test-site-chrome.ts",
       "scripts/test-site-zoom-pane.ts",
       "scripts/test-sitemap-routes.ts",
