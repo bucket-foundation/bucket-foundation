@@ -22,10 +22,10 @@ function archOf(name: string): Arch {
   return /arm64|aarch64/i.test(name) ? "arm64" : "x64";
 }
 
-const WINDOWED = /^Bucket-desktop-\d+\.\d+\.\d+-(macos|windows|linux)-(arm64|x64)\.(dmg|msi|exe|AppImage|deb|rpm)$/;
-const FORMAT_ORDER: WindowedFormat[] = ["dmg", "msi", "exe", "deb", "rpm", "AppImage"];
+const WINDOWED = /^Bucket-desktop-\d+\.\d+\.\d+-(macos|windows|linux)-(arm64|x64)\.(dmg|msi|exe|AppImage\.tar\.gz|AppImage|deb|rpm)$/;
+const FORMAT_ORDER: WindowedFormat[] = ["dmg", "msi", "exe", "deb", "rpm", "AppImage.tar.gz", "AppImage"];
 
-export type WindowedFormat = "dmg" | "msi" | "exe" | "AppImage" | "deb" | "rpm";
+export type WindowedFormat = "dmg" | "msi" | "exe" | "AppImage" | "AppImage.tar.gz" | "deb" | "rpm";
 
 export interface WindowedInstaller {
   os: Os;
@@ -59,7 +59,12 @@ export function windowedInstallers(assets: ReleaseAsset[]): WindowedInstaller[] 
 }
 
 export function isBareExecutable(w: WindowedInstaller): boolean {
-  return w.format === "AppImage";
+  return w.format === "AppImage" || w.format === "AppImage.tar.gz";
+}
+
+export function directFiles(windowed: WindowedInstaller[]): WindowedInstaller[] {
+  const bare = windowed.filter(isBareExecutable);
+  return bare.filter((w) => w.format === "AppImage.tar.gz" || !bare.some((t) => t.format === "AppImage.tar.gz" && t.os === w.os && t.arch === w.arch));
 }
 
 function classify(asset: ReleaseAsset): Omit<InstallerV2, "checksumUrl" | "url" | "size" | "name"> | null {

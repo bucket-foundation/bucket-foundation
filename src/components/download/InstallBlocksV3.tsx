@@ -1,7 +1,7 @@
 import CopyBlock from "../CopyBlock";
-import { APPIMAGE_WARNING_SHORT, DIRECT_FILE_STEP, DIRECT_FILE_SUMMARY, FIRST_OPEN, INSTALL_COMMAND, LINUX_INSTALL_NOTE, LINUX_PACKAGE_LABEL, appImageRunSteps, linuxInstallCommand } from "../../lib/download/install";
+import { APPIMAGE_WARNING_SHORT, DIRECT_FILE_STEP, DIRECT_FILE_STEP_RAW, DIRECT_FILE_SUMMARY, FIRST_OPEN, INSTALL_COMMAND, LINUX_INSTALL_NOTE, LINUX_PACKAGE_LABEL, appImageRunSteps, linuxInstallCommand } from "../../lib/download/install";
 import { OS_LABEL, type Os } from "../../lib/download/release";
-import { isBareExecutable, type InstallerV2, type WindowedInstaller } from "../../lib/download/release-v2";
+import { directFiles, isBareExecutable, type InstallerV2, type WindowedInstaller } from "../../lib/download/release-v2";
 import { osOrder } from "./InstallBlocks";
 
 function commandFor(os: Os, installers: InstallerV2[]): string {
@@ -24,7 +24,7 @@ function linkLabel(w: WindowedInstaller): string {
 function Block({ os, installers, windowed }: { os: Os; installers: InstallerV2[]; windowed: WindowedInstaller[] }) {
   const mine = windowed.filter((w) => w.os === os);
   const apps = mine.filter((w) => !isBareExecutable(w));
-  const bare = mine.filter(isBareExecutable);
+  const bare = directFiles(mine);
   const firstOpen = apps.some((w) => !w.signed) ? FIRST_OPEN[os] : undefined;
   return (
     <div data-os={os} className="flex flex-col gap-2">
@@ -52,7 +52,7 @@ function Block({ os, installers, windowed }: { os: Os; installers: InstallerV2[]
         <details data-direct-file>
           <summary className="text-[13px] text-[color:var(--basalt-2)] cursor-pointer min-h-[44px] flex items-center">{DIRECT_FILE_SUMMARY}</summary>
           <div className="flex flex-col gap-2">
-            <p className="text-[13px] text-[color:var(--basalt)]">{DIRECT_FILE_STEP}</p>
+            <p className="text-[13px] text-[color:var(--basalt)]">{bare.every((w) => w.format === "AppImage.tar.gz") ? DIRECT_FILE_STEP : DIRECT_FILE_STEP_RAW}</p>
             {bare.map((w) => (
               <div key={w.name} className="flex flex-col gap-2">
                 <CopyBlock text={appImageRunSteps(w.name)} label={`AppImage run commands, ${w.arch}`} />
