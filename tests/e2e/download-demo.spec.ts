@@ -101,3 +101,14 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 640, height: 400
     if (viewport.width === 1440 || viewport.width === 390 && viewport.height === 844) await page.screenshot({ path: `test-results/download-${viewport.width}.png`, fullPage: true });
   });
 }
+
+test.describe("on an Android phone", () => {
+  test.use({ userAgent: "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/126.0 Mobile Safari/537.36" });
+  test("the download card leads with Android and lists the other devices", async ({ page }) => {
+    await page.goto("/download");
+    await expect(page.locator("[data-device-picker]")).toHaveAttribute("data-detected", "android");
+    await expect(page.locator("[data-device-primary=android]")).toBeVisible();
+    await expect(page.locator("[data-device-other]")).toHaveCount(6);
+    await expect(page.locator("[data-device-other=web] a")).toHaveAttribute("href", "/learn");
+  });
+});
