@@ -4,7 +4,8 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { buildEncompassingMap, dayKey, emptyState, grade, withLeverage, type Atom, type EngineState } from "../src/lib/academy/engine";
-import { orderLog, replay, type ReviewRow } from "../src/lib/academy/replay";
+import { gradeCard, parseCardId } from "../src/lib/academy/lang-systems";
+import { LANG_ATOMS_VERSION, orderLog, replay, type ReviewRow } from "../src/lib/academy/replay";
 
 interface Session {
   name: string;
@@ -23,6 +24,7 @@ const atomsByVersion: Record<string, Atom[]> = Object.fromEntries(Object.entries
 
 function liveFold(rows: ReviewRow[]): EngineState {
   return rows.reduce((s, r) => {
+    if (r.atoms_version === LANG_ATOMS_VERSION) return gradeCard(s, parseCardId(r.card_id).lang, parseCardId(r.card_id).itemId, r.rating, r.reviewed_at);
     const atoms = atomsByVersion[r.atoms_version];
     return grade(s, atoms, buildEncompassingMap(atoms), r.card_id, r.rating, r.level, r.reviewed_at);
   }, emptyState());
@@ -86,6 +88,13 @@ if (process.env.REPLAY_ZONE_REPORT) {
       }
     });
   }
+
+  test("replayed Polingual cards carry the introduced day gradeCard sets live", () => {
+    const s = fixture.sessions.find((x) => x.tz === "Pacific/Auckland")!;
+    const cards = Object.values(s.state.cards) as { introduced?: string }[];
+    assert.ok(cards.length > 0 && cards.every((c) => typeof c.introduced === "string"));
+    assert.deepEqual(replay(null, s.rows, atomsByVersion).cards, s.state.cards);
+  });
 
   test("rows at the same instant order by device then review id", () => {
     const base: ReviewRow = { review_id: "r", card_id: "a", rating: 3, level: "recall", reviewed_at: 1000, atoms_version: "atoms-v1", device_id: "d", tz: "UTC" };

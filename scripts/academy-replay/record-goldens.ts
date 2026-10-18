@@ -6,7 +6,7 @@ import path from "node:path";
 const TAG = "polingual-ux-v1";
 const ROOT = path.resolve(__dirname, "../..");
 const OUT = path.join(ROOT, "tests/fixtures/academy-replay-sessions.golden.json");
-const FILES = ["engine", "fsrs", "mastery"];
+const FILES = ["engine", "fsrs", "mastery", "lang-systems"];
 
 const ATOMS = [
   { id: "a", title: "A", shell: "prereq", requires: [], quiz: [{ level: "recall", prompt: "?", answer: "!" }, { level: "apply", prompt: "?", answer: "!" }] },
@@ -43,7 +43,7 @@ function rng(seed: number) {
 function loadTagEngine() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "replay-tag-"));
   FILES.forEach((f) => fs.writeFileSync(path.join(dir, f + ".ts"), execFileSync("git", ["show", `${TAG}:src/lib/academy/${f}.ts`], { cwd: ROOT })));
-  return require(path.join(dir, "engine.ts"));
+  return { ...require(path.join(dir, "engine.ts")), ...require(path.join(dir, "lang-systems.ts")) };
 }
 
 function record(spec: Spec) {
@@ -70,7 +70,10 @@ function record(spec: Spec) {
       level = E.pickLevel(state, atoms.find((a: { id: string }) => a.id === id));
     }
     const rating = (1 + Math.floor(r() * 4)) as 1 | 2 | 3 | 4;
-    state = E.grade(state, atoms, enc, id, rating, level, now);
+    if (spec.lang) {
+      const [lang, item] = id.split(":");
+      state = E.gradeCard(state, lang, item, rating, now);
+    } else state = E.grade(state, atoms, enc, id, rating, level, now);
     rows.push({
       review_id: `${spec.name}-${String(i).padStart(4, "0")}`,
       card_id: id,

@@ -1,4 +1,5 @@
 import type { Rating } from "./fsrs";
+import { gradeCard, parseCardId } from "./lang-systems";
 import { buildEncompassingMap, grade, normalizeState, type Atom, type Depth, type EncEdge, type EngineState } from "./engine";
 
 export interface ReviewRow {
@@ -13,6 +14,8 @@ export interface ReviewRow {
 }
 
 const cmp = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
+
+export const LANG_ATOMS_VERSION = "lang";
 
 export function compareReviewRows(a: ReviewRow, b: ReviewRow): number {
   return a.reviewed_at - b.reviewed_at || cmp(a.device_id, b.device_id) || cmp(a.review_id, b.review_id);
@@ -41,6 +44,10 @@ export function replay(baseline: EngineState | null, log: readonly ReviewRow[], 
   };
   return orderLog(log).reduce((state, r) => {
     if (!r.tz) throw new Error(`replay: review ${r.review_id} has no tz`);
+    if (r.atoms_version === LANG_ATOMS_VERSION) {
+      const { lang, itemId } = parseCardId(r.card_id);
+      return gradeCard(state, lang, itemId, r.rating, r.reviewed_at, r.tz);
+    }
     const { atoms, enc } = pack(r.atoms_version);
     return grade(state, atoms, enc, r.card_id, r.rating, r.level, r.reviewed_at, r.tz);
   }, normalizeState(baseline));

@@ -774,11 +774,11 @@ export function planSession(system: LangSystem, corpus: LangCorpus, state: Engin
   return [...interleave(due), ...fresh];
 }
 
-export function gradeCard(state: EngineState, lang: string, itemId: string, rating: Rating, now: number = Date.now()): EngineState {
+export function gradeCard(state: EngineState, lang: string, itemId: string, rating: Rating, now: number = Date.now(), tz?: string): EngineState {
   const id = cardId(lang, itemId);
   const wasNew = !state.cards[id];
-  const next = grade(state, [], {}, id, rating, "recall", now);
-  if (wasNew) (next.cards[id] as LangCard).introduced = dayKey(now);
+  const next = grade(state, [], {}, id, rating, "recall", now, tz);
+  if (wasNew) (next.cards[id] as LangCard).introduced = dayKey(now, tz);
   else if ((state.cards[id] as LangCard).introduced) (next.cards[id] as LangCard).introduced = (state.cards[id] as LangCard).introduced;
   return next;
 }
