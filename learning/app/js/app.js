@@ -2686,7 +2686,7 @@
   }
 
   function assessGrade(item, userInput) {
-    const verdict = window.Assess.gradeAnswer(userInput, item.answer);
+    const verdict = window.Assess.gradeAnswer(userInput, (item.key && String(item.key).trim()) || item.answer);
     const latency = Math.max(0, Date.now() - assess.itemStart);
     if (verdict.gradable) {
       recordAssessItem(item, verdict.correct, true, latency);

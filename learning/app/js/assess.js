@@ -170,7 +170,7 @@
       var order = [preferLevel].concat(ASSESS.LEVELS.filter(function (l) { return l !== preferLevel; }));
       for (var k = 0; k < order.length; k++) {
         var q = quiz.find(function (x) { return x.level === order[k]; });
-        if (q) return { atomId: atom.id, title: atom.title || atom.id, level: q.level, prompt: q.prompt, answer: q.answer, eq: q.eq || null, shell: atom.shell };
+        if (q) return { atomId: atom.id, title: atom.title || atom.id, level: q.level, prompt: q.prompt, answer: q.answer, key: q.key || null, eq: q.eq || null, shell: atom.shell };
       }
       return null;
     }
