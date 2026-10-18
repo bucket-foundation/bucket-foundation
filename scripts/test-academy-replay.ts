@@ -22,12 +22,24 @@ const fixture = JSON.parse(fs.readFileSync(path.join(ROOT, "tests/fixtures/acade
 };
 const atomsByVersion: Record<string, Atom[]> = Object.fromEntries(Object.entries(fixture.atomsByVersion).map(([v, a]) => [v, withLeverage(a)]));
 
-function liveFold(rows: ReviewRow[]): EngineState {
+function liveFold(rows: ReviewRow[], zoned = false): EngineState {
   return rows.reduce((s, r) => {
-    if (r.atoms_version === LANG_ATOMS_VERSION) return gradeCard(s, parseCardId(r.card_id).lang, parseCardId(r.card_id).itemId, r.rating, r.reviewed_at);
+    const tz = zoned ? r.tz : undefined;
+    if (r.atoms_version === LANG_ATOMS_VERSION) return gradeCard(s, parseCardId(r.card_id).lang, parseCardId(r.card_id).itemId, r.rating, r.reviewed_at, tz);
     const atoms = atomsByVersion[r.atoms_version];
-    return grade(s, atoms, buildEncompassingMap(atoms), r.card_id, r.rating, r.level, r.reviewed_at);
+    return grade(s, atoms, buildEncompassingMap(atoms), r.card_id, r.rating, r.level, r.reviewed_at, tz);
   }, emptyState());
+}
+
+function sig(v: unknown): unknown {
+  if (typeof v === "number") return Number.isInteger(v) ? v : Number(v.toPrecision(12));
+  if (Array.isArray(v)) return v.map(sig);
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, sig(x)]));
+  return v;
+}
+
+function assertGolden(actual: unknown, golden: unknown) {
+  assert.deepEqual(sig(actual), sig(golden));
 }
 
 function shuffle<T>(xs: T[], seed: number): T[] {
@@ -74,10 +86,9 @@ if (process.env.REPLAY_ZONE_REPORT) {
   for (const s of fixture.sessions) {
     test(`replay of ${s.name} deep-equals the live state recorded at polingual-ux-v1`, () => {
       const got = replay(null, s.rows, atomsByVersion);
-      assert.deepEqual(got.prof, s.state.prof);
-      assert.deepEqual(got.cards, s.state.cards);
       assert.deepEqual(got.stats, s.state.stats);
-      assert.deepEqual(got, s.state);
+      assertGolden(got, s.state);
+      assert.deepEqual(got, liveFold(s.rows, true));
     });
 
     test(`replay of ${s.name} is independent of log order and duplicate delivery`, () => {
@@ -93,7 +104,7 @@ if (process.env.REPLAY_ZONE_REPORT) {
     const s = fixture.sessions.find((x) => x.tz === "Pacific/Auckland")!;
     const cards = Object.values(s.state.cards) as { introduced?: string }[];
     assert.ok(cards.length > 0 && cards.every((c) => typeof c.introduced === "string"));
-    assert.deepEqual(replay(null, s.rows, atomsByVersion).cards, s.state.cards);
+    assertGolden(replay(null, s.rows, atomsByVersion).cards, s.state.cards);
   });
 
   test("rows at the same instant order by device then review id", () => {
@@ -118,7 +129,8 @@ if (process.env.REPLAY_ZONE_REPORT) {
   test("replay continues from a baseline", () => {
     const rows = fixture.sessions[0].rows;
     const head = replay(null, rows.slice(0, 25), atomsByVersion);
-    assert.deepEqual(replay(head, rows.slice(25), atomsByVersion), fixture.sessions[0].state);
+    assert.deepEqual(replay(head, rows.slice(25), atomsByVersion), replay(null, rows, atomsByVersion));
+    assertGolden(replay(head, rows.slice(25), atomsByVersion), fixture.sessions[0].state);
   });
 
   test("replay throws on an unknown atoms version", () => {
@@ -145,13 +157,13 @@ if (process.env.REPLAY_ZONE_REPORT) {
     const akl = runUnder("Pacific/Auckland");
     assert.deepEqual(utc.sessions, akl.sessions);
     assert.deepEqual(utc.merged, akl.merged);
-    assert.deepEqual(utc.sessions, fixture.sessions.map((s) => s.state));
+    assertGolden(utc.sessions, fixture.sessions.map((s) => s.state));
   });
 
   test("live grade() without a zone keeps the process-local day under the recording zone", () => {
     for (const s of fixture.sessions) {
       const r = runUnder(s.tz);
-      assert.deepEqual(r.liveLocal[s.name], s.state);
+      assertGolden(r.liveLocal[s.name], s.state);
     }
   });
 }
