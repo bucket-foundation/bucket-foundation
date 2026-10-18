@@ -25,11 +25,15 @@ export default function HomePage() {
             Every word in every language, <em style={{ color: "var(--blue)" }}>one meaning.</em>
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-[19px] leading-8 text-center" style={{ color: "var(--ink-2)" }}>
-            Learn your next language through the ones you already speak.
+            Polingual is the language part of Bucket. Learn your next language through the ones you already speak.
           </p>
-          <div className="mx-auto mt-7 max-w-md text-left">
-            <Signup compact />
-          </div>
+          <a
+            href="https://www.bucket.foundation/download"
+            className="mt-7 inline-block rounded-xl px-7 py-3.5 font-sans text-[17px] font-medium text-white"
+            style={{ background: "var(--blue)" }}
+          >
+            Download Bucket
+          </a>
         </header>
 
         <section className="mt-14">
@@ -43,6 +47,11 @@ export default function HomePage() {
               <p className="mt-1 text-[14px] text-center" style={{ color: "var(--ink-dim)" }}>{l}</p>
             </div>
           ))}
+        </section>
+
+        <section className="mt-16 mx-auto max-w-md">
+          <h2 className="mb-3 text-center text-[20px]" style={{ color: "var(--ink)" }}>Get language updates</h2>
+          <Signup compact />
         </section>
 
         <section className="mt-16 rounded-xl bg-white px-5 py-6 md:px-8" style={{ border: "1px solid var(--hairline)" }}>
