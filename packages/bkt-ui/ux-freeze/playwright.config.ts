@@ -2,6 +2,7 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: ".",
+  testMatch: "polingual.spec.ts",
   globalSetup: "./global-setup.ts",
   snapshotPathTemplate: "{testDir}/snapshots/{arg}{ext}",
   timeout: 60_000,
@@ -18,5 +19,6 @@ export default defineConfig({
     timezoneId: "UTC",
     colorScheme: "light",
     reducedMotion: "reduce",
+    launchOptions: { args: ["--disable-skia-runtime-opts", "--disable-gpu", "--disable-partial-raster", "--disable-lcd-text", "--font-render-hinting=none", "--force-color-profile=srgb", "--force-device-scale-factor=1"] },
   },
 });
