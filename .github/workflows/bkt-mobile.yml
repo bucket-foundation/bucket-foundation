@@ -195,22 +195,25 @@ jobs:
     permissions:
       contents: write
     env:
-      ANDROID_KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
-      ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-      ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-      ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
       HAS_PLAY: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON != '' }}
       TAG: ${{ github.ref_name }}
     steps:
       - name: signing secrets present
         id: gate
+        env:
+          A: ${{ secrets.ANDROID_KEYSTORE_B64 != '' }}
+          B: ${{ secrets.ANDROID_KEY_ALIAS != '' }}
+          C: ${{ secrets.ANDROID_KEYSTORE_PASSWORD != '' }}
+          D: ${{ secrets.ANDROID_KEY_PASSWORD != '' }}
         run: |
-          if [ -n "$ANDROID_KEYSTORE_B64" ] && [ -n "$ANDROID_KEY_ALIAS" ] && [ -n "$ANDROID_KEYSTORE_PASSWORD" ] && [ -n "$ANDROID_KEY_PASSWORD" ]; then
-            echo "sign=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "sign=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Android signing secrets absent in bkt-release; signed APK and AAB skipped."
-          fi
+          set="$(printf '%s\n' "$A" "$B" "$C" "$D" | grep -c true || true)"
+          case "$set" in
+            4) echo "sign=true" >> "$GITHUB_OUTPUT" ;;
+            0) echo "sign=false" >> "$GITHUB_OUTPUT"
+               echo "::notice::Android signing secrets absent in bkt-release; signed APK and AAB skipped." ;;
+            *) echo "::error::$set of 4 Android signing secrets set in bkt-release; set all four or none."
+               exit 1 ;;
+          esac
       - if: steps.gate.outputs.sign == 'true'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - if: steps.gate.outputs.sign == 'true'
@@ -234,13 +237,20 @@ jobs:
         working-directory: packages/bkt-mobile
         env:
           RUN: ${{ github.run_number }}
+          ATTEMPT: ${{ github.run_attempt }}
         run: |
           bun install --frozen-lockfile
           bunx cap sync android
           cd android
-          ./gradlew assembleRelease bundleRelease --no-daemon -PbktVersionCode="$((1000 + RUN))" -PbktVersionName="${TAG#bkt-v}"
+          ./gradlew assembleRelease bundleRelease --no-daemon -PbktVersionCode="$((1000 + RUN * 10 + ATTEMPT))" -PbktVersionName="${TAG#bkt-v}"
       - name: sign
         if: steps.gate.outputs.sign == 'true'
+        env:
+          ANDROID_KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          ANDROID_CERT_SHA256: ${{ vars.ANDROID_CERT_SHA256 }}
         run: |
           umask 077
           ks="$RUNNER_TEMP/upload.jks"
@@ -252,7 +262,11 @@ jobs:
           b=packages/bkt-mobile/android/app/build/outputs
           "$bt/zipalign" -f 4 "$b/apk/release/app-release-unsigned.apk" "$RUNNER_TEMP/aligned.apk"
           "$bt/apksigner" sign --ks "$ks" --ks-key-alias "$ANDROID_KEY_ALIAS" --ks-pass env:ANDROID_KEYSTORE_PASSWORD --key-pass env:ANDROID_KEY_PASSWORD --out "$out/Bucket-android-$TAG.apk" "$RUNNER_TEMP/aligned.apk"
-          "$bt/apksigner" verify "$out/Bucket-android-$TAG.apk"
+          cert="$("$bt/apksigner" verify --print-certs "$out/Bucket-android-$TAG.apk" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')"
+          echo "signer sha256: $cert"
+          if [ -n "$ANDROID_CERT_SHA256" ] && [ "$cert" != "$(echo "$ANDROID_CERT_SHA256" | tr -d ': ' | tr 'A-F' 'a-f')" ]; then
+            echo "::error::APK signer does not match ANDROID_CERT_SHA256"; exit 1
+          fi
           cp "$b/bundle/release/app-release.aab" "$out/Bucket-android-$TAG.aab"
           jarsigner -keystore "$ks" -storepass:env ANDROID_KEYSTORE_PASSWORD -keypass:env ANDROID_KEY_PASSWORD -sigalg SHA256withRSA -digestalg SHA-256 "$out/Bucket-android-$TAG.aab" "$ANDROID_KEY_ALIAS" >/dev/null
           jarsigner -verify "$out/Bucket-android-$TAG.aab" >/dev/null
