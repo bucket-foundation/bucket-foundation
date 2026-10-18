@@ -237,7 +237,7 @@
      "level": "recall",
      "prompt": "What kind of path does an object in free fall follow in general relativity?",
      "answer": "A geodesic — the straightest possible (proper-time-extremizing) path through curved spacetime.",
-     "key": "geodesic"
+     "key": "geodesic", "accept": ["a geodesic", "geodesics", "timelike geodesic"]
     },
     {
      "level": "apply",
@@ -1277,7 +1277,7 @@
      "level": "recall",
      "prompt": "How large are the CMB temperature anisotropies relative to the mean temperature?",
      "answer": "About one part in 100,000 (after subtracting the dipole from our motion).",
-     "key": "1e-5"
+     "key": "1e-5", "accept": ["1 in 100000", "1 part in 100000", "0.001%", "10^-5"], "tol": 0.5
     },
     {
      "level": "apply",
@@ -2325,7 +2325,7 @@
      "level": "recall",
      "prompt": "What CMB signature would primordial gravitational waves from inflation produce?",
      "answer": "A curl-type 'B-mode' polarization pattern, parametrized by the tensor-to-scalar ratio r.",
-     "key": "B-mode"
+     "key": "B-mode", "accept": ["B-modes", "B-mode polarization", "B-mode polarisation"]
     },
     {
      "level": "apply",

@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { gradeAnswer, gradingKey } from "../../src/lib/academy/assess";
+import { gradeAnswer, hasKey } from "../../src/lib/academy/assess";
 
 const DECKS = ["00-learning-to-learn", "01-mathematics", "02-physics", "03-chemistry", "04-information", "06-cosmology", "07-mind", "biophysics"];
 const root = join(import.meta.dir, "..", "..", "learning", "app", "corpus");
@@ -15,8 +15,9 @@ for (const deck of DECKS) {
     let anyShort = false;
     for (const item of atom.quiz ?? []) {
       total.items += 1;
-      const canon = gradingKey(item);
-      const verdict = gradeAnswer("", canon);
+      const keyed = hasKey(item);
+      const canon = keyed ? String(item.key) : item.answer;
+      const verdict = keyed ? { gradable: true, kind: "symbolic" as const } : gradeAnswer("", canon);
       total[verdict.kind] += 1;
       any = any || verdict.gradable;
       const short = verdict.gradable && canon.trim().length <= SHORT;

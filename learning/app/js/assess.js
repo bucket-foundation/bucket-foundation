@@ -170,7 +170,7 @@
       var order = [preferLevel].concat(ASSESS.LEVELS.filter(function (l) { return l !== preferLevel; }));
       for (var k = 0; k < order.length; k++) {
         var q = quiz.find(function (x) { return x.level === order[k]; });
-        if (q) return { atomId: atom.id, title: atom.title || atom.id, level: q.level, prompt: q.prompt, answer: q.answer, key: q.key || null, eq: q.eq || null, shell: atom.shell };
+        if (q) return { atomId: atom.id, title: atom.title || atom.id, level: q.level, prompt: q.prompt, answer: q.answer, key: q.key || null, accept: q.accept || null, tol: q.tol != null ? q.tol : null, eq: q.eq || null, shell: atom.shell };
       }
       return null;
     }
@@ -238,9 +238,49 @@
     return verdict ? ASSESS.RATING_CORRECT : ASSESS.RATING_INCORRECT;
   }
 
+  var SUB = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9" };
+  var LEAD_NUM = /^\s*([+-]?\d+(?:\.\d+)?(?:\s*[ex]\s*10\s*\^\s*[+-]?\d+|\s*e[+-]?\d+|\s*\/\s*\d+(?:\.\d+)?)?)/i;
+
+  function normKeyText(s) {
+    return asciiMath(s)
+      .replace(/[₀-₉]/g, function (c) { return SUB[c] || c; })
+      .replace(/β/g, "beta")
+      .toLowerCase()
+      .replace(/[’'`,]/g, "")
+      .replace(/^(the|a|an)\s+/, "")
+      .replace(/([a-z])\s*-\s*(?=[a-z])/g, "$1")
+      .replace(/[\s_]+/g, "")
+      .replace(/[.;!,]+$/, "");
+  }
+
+  function leadingNumber(s) {
+    var text = asciiMath(s);
+    var eq = text.lastIndexOf("=");
+    var m = (eq >= 0 ? text.slice(eq + 1) : text).match(LEAD_NUM);
+    return m ? parseNumber(m[1]) : null;
+  }
+
+  function gradeItem(userInput, item) {
+    var key = item && item.key != null ? String(item.key).trim() : "";
+    if (!key) return gradeAnswer(userInput, item ? item.answer : "");
+    var raw = userInput == null ? "" : String(userInput).trim();
+    if (!raw) return { gradable: true, correct: false, kind: "symbolic", expected: key, got: "", reason: "blank" };
+    var got = normKeyText(raw);
+    var forms = [key].concat(item.accept || []);
+    for (var i = 0; i < forms.length; i++) if (normKeyText(forms[i]) === got) return { gradable: true, correct: true, kind: "symbolic", expected: key, got: raw, reason: "match" };
+    var keyNum = leadingNumber(key);
+    if (keyNum != null) {
+      var userNum = leadingNumber(raw);
+      var ok = userNum != null && numbersClose(userNum, keyNum, { rel: item.tol != null ? item.tol : ASSESS.NUM_REL_TOL });
+      return { gradable: true, correct: ok, kind: "numeric", expected: key, got: raw, reason: ok ? "match" : "value_mismatch" };
+    }
+    return { gradable: true, correct: false, kind: "symbolic", expected: key, got: raw, reason: "mismatch" };
+  }
+
   var api = {
     ASSESS: ASSESS,
     gradeAnswer: gradeAnswer,
+    gradeItem: gradeItem,
     buildRun: buildRun,
     summarize: summarize,
     ratingFor: ratingFor,

@@ -6,6 +6,8 @@ export interface QuizItem {
   prompt: string;
   answer: string;
   key?: string;
+  accept?: string[];
+  tol?: number;
 }
 
 export interface Atom {

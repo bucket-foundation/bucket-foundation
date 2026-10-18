@@ -116,8 +116,54 @@ export function gradeAnswer(userInput: unknown, canonicalAnswer: unknown, opts: 
   return { gradable: false, kind: "open", expected: canon, got: raw, reason: "not_auto_gradable" };
 }
 
-export function gradingKey(item: { answer: string; key?: string }): string {
-  return item.key?.trim() ? item.key : item.answer;
+export interface KeyedItem {
+  answer: string;
+  key?: string;
+  accept?: string[];
+  tol?: number;
+}
+
+const SUB: Record<string, string> = { "₀": "0", "₁": "1", "₂": "2", "₃": "3", "₄": "4", "₅": "5", "₆": "6", "₇": "7", "₈": "8", "₉": "9" };
+
+export function normKeyText(s: unknown): string {
+  return asciiMath(s)
+    .replace(/[₀-₉]/g, (c) => SUB[c] ?? c)
+    .replace(/β/g, "beta")
+    .toLowerCase()
+    .replace(/[’'`,]/g, "")
+    .replace(/^(the|a|an)\s+/, "")
+    .replace(/([a-z])\s*-\s*(?=[a-z])/g, "$1")
+    .replace(/[\s_]+/g, "")
+    .replace(/[.;!,]+$/, "");
+}
+
+const LEAD_NUM = /^\s*([+-]?\d+(?:\.\d+)?(?:\s*[ex]\s*10\s*\^\s*[+-]?\d+|\s*e[+-]?\d+|\s*\/\s*\d+(?:\.\d+)?)?)/i;
+
+export function leadingNumber(s: unknown): number | null {
+  const text = asciiMath(s);
+  const eq = text.lastIndexOf("=");
+  const m = (eq >= 0 ? text.slice(eq + 1) : text).match(LEAD_NUM);
+  return m ? parseNumber(m[1]) : null;
+}
+
+export function hasKey(item: KeyedItem): boolean {
+  return Boolean(item.key && item.key.trim());
+}
+
+export function gradeItem(userInput: unknown, item: KeyedItem): Verdict {
+  if (!hasKey(item)) return gradeAnswer(userInput, item.answer);
+  const key = String(item.key).trim();
+  const raw = userInput == null ? "" : String(userInput).trim();
+  if (!raw) return { gradable: true, correct: false, kind: "symbolic", expected: key, got: "", reason: "blank" };
+  const got = normKeyText(raw);
+  if ([key, ...(item.accept ?? [])].some((form) => normKeyText(form) === got)) return { gradable: true, correct: true, kind: "symbolic", expected: key, got: raw, reason: "match" };
+  const keyNum = leadingNumber(key);
+  if (keyNum != null) {
+    const userNum = leadingNumber(raw);
+    const ok = userNum != null && numbersClose(userNum, keyNum, { rel: item.tol ?? ASSESS.NUM_REL_TOL });
+    return { gradable: true, correct: ok, kind: "numeric", expected: key, got: raw, reason: ok ? "match" : "value_mismatch" };
+  }
+  return { gradable: true, correct: false, kind: "symbolic", expected: key, got: raw, reason: "mismatch" };
 }
 
 export interface RunItem {
@@ -127,6 +173,8 @@ export interface RunItem {
   prompt: string;
   answer: string;
   key?: string;
+  accept?: string[];
+  tol?: number;
   shell?: string;
 }
 
@@ -166,7 +214,7 @@ export function buildRun(atoms: Atom[], cardFor: (id: string) => Card | null | u
     const order = [prefer, ...ASSESS.LEVELS.filter((l) => l !== prefer)];
     for (const lvl of order) {
       const q = (atom.quiz ?? []).find((x) => x.level === lvl);
-      if (q) return { atomId: atom.id, title: atom.title || atom.id, level: q.level as Depth, prompt: q.prompt, answer: q.answer, ...(q.key ? { key: q.key } : {}), shell: atom.shell };
+      if (q) return { atomId: atom.id, title: atom.title || atom.id, level: q.level as Depth, prompt: q.prompt, answer: q.answer, ...(q.key ? { key: q.key, accept: q.accept, tol: q.tol } : {}), shell: atom.shell };
     }
     return null;
   };
