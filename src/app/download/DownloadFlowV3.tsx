@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { detectFromHints, type DetectedDevice } from "@/lib/download/device";
 import InstallBlocksV3 from "@/components/download/InstallBlocksV3";
 import { DOWNLOAD_PLATFORMS, osOfPlatform, type DownloadPlatform } from "@/lib/download/core";
 import type { Os } from "@/lib/download/release";
@@ -20,6 +21,15 @@ const PLATFORM_LABEL: Record<DownloadPlatform, string> = {
   "linux-arm64": "Linux ARM",
   "macos-arm64": "macOS",
   "windows-x64": "Windows",
+};
+
+const PLATFORM_OF_DEVICE: Partial<Record<DetectedDevice, DownloadPlatform>> = {
+  macos: "macos-arm64",
+  "macos-arm64": "macos-arm64",
+  "macos-x64": "macos-arm64",
+  windows: "windows-x64",
+  linux: "linux-x64",
+  "linux-arm64": "linux-arm64",
 };
 
 const PLATFORM_OF: Record<Os, DownloadPlatform> = {
@@ -41,6 +51,13 @@ export default function DownloadFlowV3({ detected, installers, windowed = [] }: 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState<{ outcome: string; os: Os } | null>(null);
+
+  useEffect(() => {
+    const hints = (navigator as Navigator & { userAgentData?: { platform?: string } }).userAgentData;
+    const seen = PLATFORM_OF_DEVICE[detectFromHints(navigator.userAgent, hints?.platform)];
+    const initial = detected ? PLATFORM_OF[detected] : "";
+    if (seen) setPlatform((p) => (p === initial ? seen : p));
+  }, [detected]);
 
   const signedUp = /.+@.+\..+/.test(email.trim()) && name.trim() !== "";
   const platformChosen = (DOWNLOAD_PLATFORMS as readonly string[]).includes(platform);

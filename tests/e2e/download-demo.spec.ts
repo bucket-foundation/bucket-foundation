@@ -112,3 +112,19 @@ test.describe("on an Android phone", () => {
     await expect(page.locator("[data-device-other=web] a")).toHaveAttribute("href", "/learn");
   });
 });
+
+test.describe("on a Mac in Brave", () => {
+  test.use({ userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" });
+  test("one enabled Mac download button sits above the optional signup", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/download");
+    const button = page.locator("[data-device-primary^=macos]");
+    await expect(button).toHaveText(/^Download Bucket for (Intel )?Mac$/);
+    await expect(button).toBeInViewport();
+    await expect(page.locator("[data-polingual-line]")).toBeVisible();
+    await expect(page.locator("#flow-platform")).toHaveValue("macos-arm64");
+    const b = await button.boundingBox();
+    const form = await page.locator("[data-download-pane]").boundingBox();
+    expect(form!.y).toBeGreaterThan(b!.y);
+  });
+});
