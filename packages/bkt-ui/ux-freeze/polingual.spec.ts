@@ -26,6 +26,7 @@ async function open(hash: string, ready: string): Promise<void> {
 
 async function settle(): Promise<void> {
   await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => Promise.all([...document.images].map((i) => i.decode().catch(() => undefined))));
   let last = "";
   for (let same = 0; same < 4; ) {
     await page.waitForTimeout(250);
@@ -37,6 +38,8 @@ async function settle(): Promise<void> {
 }
 
 async function freeze(name: string): Promise<void> {
+  await page.mouse.move(1279, 859);
+  await settle();
   const dom = await page.locator("main").evaluate((m) => m.outerHTML);
   expect(dom).toMatchSnapshot(`${name}.html`);
   await expect(page).toHaveScreenshot(`${name}.png`, { fullPage: true });

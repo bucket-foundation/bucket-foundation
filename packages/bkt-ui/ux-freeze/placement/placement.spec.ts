@@ -28,6 +28,7 @@ async function codeFor(address: string): Promise<string> {
 
 async function settle(): Promise<void> {
   await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => Promise.all([...document.images].map((i) => i.decode().catch(() => undefined))));
   let last = "";
   for (let same = 0; same < 4; ) {
     await page.waitForTimeout(250);
@@ -41,7 +42,11 @@ async function freeze(name: string): Promise<void> {
   await page.mouse.move(1279, 859);
   await settle();
   expect(await page.locator(STUDY_PANE).evaluate((m) => m.outerHTML)).toMatchSnapshot(`${name}.html`);
-  await expect(page.locator(STUDY_PANE)).toHaveScreenshot(`${name}.png`);
+  const box = (await page.locator(STUDY_PANE).boundingBox())!;
+  const x = Math.ceil(box.x);
+  const y = Math.ceil(box.y);
+  const clip = { x, y, width: Math.floor(box.x + box.width) - x - 1, height: Math.floor(box.y + box.height) - y - 1 };
+  await expect(page).toHaveScreenshot(`${name}.png`, { clip });
 }
 
 test.beforeAll(async ({ browser }, info) => {
