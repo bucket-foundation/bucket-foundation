@@ -63,7 +63,8 @@
     {
      "level": "recall",
      "prompt": "Which subatomic particle determines what element an atom is?",
-     "answer": "The proton — the number of protons (atomic number Z) defines the element."
+     "answer": "The proton — the number of protons (atomic number Z) defines the element.",
+     "key": "proton"
     },
     {
      "level": "apply",
@@ -133,7 +134,8 @@
     {
      "level": "apply",
      "prompt": "How many electrons can the n=3 shell hold in total?",
-     "answer": "18 — the 3s (2), 3p (6), and 3d (10) subshells together; in general 2n²."
+     "answer": "18 — the 3s (2), 3p (6), and 3d (10) subshells together; in general 2n².",
+     "key": "18"
     }
    ]
   },
@@ -255,7 +257,8 @@
     {
      "level": "recall",
      "prompt": "What property are modern periodic tables ordered by?",
-     "answer": "Atomic number (the number of protons, Z)."
+     "answer": "Atomic number (the number of protons, Z).",
+     "key": "atomic number"
     },
     {
      "level": "teach",
@@ -324,7 +327,8 @@
     {
      "level": "apply",
      "prompt": "Which has the higher first ionization energy, sodium or chlorine?",
-     "answer": "Chlorine — it is farther right in the same period with higher Z_eff, so it holds electrons more tightly."
+     "answer": "Chlorine — it is farther right in the same period with higher Z_eff, so it holds electrons more tightly.",
+     "key": "chlorine"
     }
    ]
   },
@@ -998,7 +1002,8 @@
     {
      "level": "apply",
      "prompt": "For 2H₂ + O₂ → 2H₂O, if you have 3 mol H₂ and 3 mol O₂, which is limiting?",
-     "answer": "H₂ — it needs O₂ in a 2:1 ratio, so 3 mol H₂ requires only 1.5 mol O₂; H₂ runs out first."
+     "answer": "H₂ — it needs O₂ in a 2:1 ratio, so 3 mol H₂ requires only 1.5 mol O₂; H₂ runs out first.",
+     "key": "H2"
     }
    ]
   },
@@ -1120,7 +1125,8 @@
     {
      "level": "apply",
      "prompt": "At the same temperature, do helium or oxygen molecules move faster on average?",
-     "answer": "Helium — lighter molecules have higher average speed since ½m⟨v²⟩ is the same, so ⟨v²⟩ ∝ 1/m."
+     "answer": "Helium — lighter molecules have higher average speed since ½m⟨v²⟩ is the same, so ⟨v²⟩ ∝ 1/m.",
+     "key": "helium"
     }
    ]
   },
@@ -1174,7 +1180,8 @@
     {
      "level": "recall",
      "prompt": "Which intermolecular force is present in all substances?",
-     "answer": "London dispersion forces (induced-dipole / induced-dipole)."
+     "answer": "London dispersion forces (induced-dipole / induced-dipole).",
+     "key": "london dispersion"
     },
     {
      "level": "apply",
@@ -1554,7 +1561,8 @@
     {
      "level": "apply",
      "prompt": "If the reaction quotient Q is greater than K, which direction does the reaction proceed?",
-     "answer": "In reverse, toward reactants, until Q falls to K."
+     "answer": "In reverse, toward reactants, until Q falls to K.",
+     "key": "reverse"
     }
    ]
   },
@@ -2037,7 +2045,8 @@
     {
      "level": "apply",
      "prompt": "In Zn + Cu²⁺ → Zn²⁺ + Cu, which species is oxidized?",
-     "answer": "Zinc — it goes from 0 to +2, losing two electrons; Cu²⁺ is reduced to Cu."
+     "answer": "Zinc — it goes from 0 to +2, losing two electrons; Cu²⁺ is reduced to Cu.",
+     "key": "Zn"
     }
    ]
   },
@@ -2161,7 +2170,8 @@
     {
      "level": "recall",
      "prompt": "What is the cell potential when a battery reaches equilibrium?",
-     "answer": "Zero — at equilibrium Q = K and E = 0, the battery is 'dead'."
+     "answer": "Zero — at equilibrium Q = K and E = 0, the battery is 'dead'.",
+     "key": "0 V"
     },
     {
      "level": "derive",
@@ -2287,7 +2297,8 @@
     {
      "level": "recall",
      "prompt": "What functional group defines a carboxylic acid?",
-     "answer": "The carboxyl group, –COOH (a carbonyl bonded to a hydroxyl)."
+     "answer": "The carboxyl group, –COOH (a carbonyl bonded to a hydroxyl).",
+     "key": "carboxyl"
     },
     {
      "level": "apply",
@@ -2662,7 +2673,8 @@
     {
      "level": "recall",
      "prompt": "Is breaking a chemical bond endothermic or exothermic?",
-     "answer": "Endothermic — energy must be supplied to break a bond."
+     "answer": "Endothermic — energy must be supplied to break a bond.",
+     "key": "endothermic"
     },
     {
      "level": "derive",
@@ -2904,7 +2916,8 @@
     {
      "level": "recall",
      "prompt": "Which step in a mechanism determines the overall reaction rate?",
-     "answer": "The rate-determining step — the slowest elementary step."
+     "answer": "The rate-determining step — the slowest elementary step.",
+     "key": "rate-determining step"
     },
     {
      "level": "teach",
@@ -3064,7 +3077,8 @@
     {
      "level": "derive",
      "prompt": "Given C + O₂ → CO₂ (ΔH = −393.5 kJ/mol) and CO + ½O₂ → CO₂ (ΔH = −283.0 kJ/mol), find ΔH for C + ½O₂ → CO.",
-     "answer": "Reverse the second reaction (+283.0) and add to the first: −393.5 + 283.0 = −110.5 kJ/mol."
+     "answer": "Reverse the second reaction (+283.0) and add to the first: −393.5 + 283.0 = −110.5 kJ/mol.",
+     "key": "-110.5 kJ/mol"
     }
    ],
    "sources": [

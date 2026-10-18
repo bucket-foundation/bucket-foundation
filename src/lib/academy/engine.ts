@@ -5,6 +5,7 @@ export interface QuizItem {
   level?: string;
   prompt: string;
   answer: string;
+  key?: string;
 }
 
 export interface Atom {

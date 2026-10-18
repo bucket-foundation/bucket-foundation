@@ -1,6 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildRun, gradeAnswer, parseNumber, summarize } from "../src/lib/academy/assess";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { buildRun, gradeAnswer, gradingKey, parseNumber, summarize } from "../src/lib/academy/assess";
 import { withLeverage, type Atom } from "../src/lib/academy/engine";
 
 test("parseNumber reads plain, scientific, fraction, and unicode forms", () => {
@@ -50,4 +52,26 @@ test("summarize scores, splits trust, and names weak concepts once", () => {
   assert.equal(s.trust, "mixed");
   assert.deepEqual(s.weakConcepts, ["b"]);
   assert.equal(s.byLevel.apply.total, 1);
+});
+
+test("gradingKey prefers a typed key and buildRun carries it", () => {
+  const long = "Helium, because lighter molecules move faster at one temperature.";
+  assert.equal(gradingKey({ answer: long, key: "helium" }), "helium");
+  assert.equal(gradingKey({ answer: long, key: "  " }), long);
+  assert.equal(gradeAnswer("Helium", gradingKey({ answer: long, key: "helium" })).correct, true);
+  const atoms: Atom[] = withLeverage([{ id: "k", title: "K", requires: [], quiz: [{ level: "recall", prompt: "k?", answer: long, key: "helium" }] }]);
+  assert.equal(buildRun(atoms, () => null, { size: 3, rng: () => 0.5 }).items[0].key, "helium");
+});
+
+test("every science key is rule-gradable, short, and accepts itself", () => {
+  const dir = join(__dirname, "..", "learning", "app", "corpus");
+  for (const deck of ["00-learning-to-learn", "01-mathematics", "02-physics", "03-chemistry", "04-information", "06-cosmology", "07-mind", "biophysics"]) {
+    const { atoms } = JSON.parse(readFileSync(join(dir, `${deck}.json`), "utf8")) as { atoms: Atom[] };
+    for (const atom of atoms)
+      for (const item of atom.quiz ?? []) {
+        if (item.key === undefined) continue;
+        const v = gradeAnswer(item.key, item.key);
+        assert.ok(v.gradable && v.correct && item.key.trim().length <= 60, `${deck}/${atom.id}: ${item.key}`);
+      }
+  }
 });

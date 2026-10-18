@@ -116,12 +116,17 @@ export function gradeAnswer(userInput: unknown, canonicalAnswer: unknown, opts: 
   return { gradable: false, kind: "open", expected: canon, got: raw, reason: "not_auto_gradable" };
 }
 
+export function gradingKey(item: { answer: string; key?: string }): string {
+  return item.key?.trim() ? item.key : item.answer;
+}
+
 export interface RunItem {
   atomId: string;
   title: string;
   level: Depth;
   prompt: string;
   answer: string;
+  key?: string;
   shell?: string;
 }
 
@@ -161,7 +166,7 @@ export function buildRun(atoms: Atom[], cardFor: (id: string) => Card | null | u
     const order = [prefer, ...ASSESS.LEVELS.filter((l) => l !== prefer)];
     for (const lvl of order) {
       const q = (atom.quiz ?? []).find((x) => x.level === lvl);
-      if (q) return { atomId: atom.id, title: atom.title || atom.id, level: q.level as Depth, prompt: q.prompt, answer: q.answer, shell: atom.shell };
+      if (q) return { atomId: atom.id, title: atom.title || atom.id, level: q.level as Depth, prompt: q.prompt, answer: q.answer, ...(q.key ? { key: q.key } : {}), shell: atom.shell };
     }
     return null;
   };
