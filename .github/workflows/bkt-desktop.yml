@@ -270,7 +270,7 @@ jobs:
           BKT_DESKTOP_UNSIGNED_OK: ${{ vars.BKT_DESKTOP_UNSIGNED_OK }}
         run: |
           v=${GITHUB_REF_NAME#bkt-v}
-          for a in macos-arm64.dmg macos-x64.dmg windows-x64.msi linux-x64.AppImage linux-x64.deb linux-x64.rpm; do
+          for a in macos-arm64.dmg macos-x64.dmg windows-x64.msi linux-x64.AppImage linux-x64.AppImage.tar.gz linux-x64.deb linux-x64.rpm; do
             for suffix in "" .sha256; do
               [ -s "bundles/Bucket-desktop-$v-$a$suffix" ] || { echo "missing Bucket-desktop-$v-$a$suffix" >&2; exit 1; }
             done

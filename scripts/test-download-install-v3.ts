@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import InstallBlocksV3 from "../src/components/download/InstallBlocksV3";
-import { APPIMAGE_WARNING_SHORT, DIRECT_FILE_SUMMARY, FIRST_OPEN, INSTALL_COMMAND, LINUX_INSTALL_NOTE, LINUX_PACKAGE_LABEL, appImageRunSteps } from "../src/lib/download/install";
+import { APPIMAGE_WARNING_SHORT, DIRECT_FILE_STEP, DIRECT_FILE_STEP_RAW, DIRECT_FILE_SUMMARY, FIRST_OPEN, INSTALL_COMMAND, LINUX_INSTALL_NOTE, LINUX_PACKAGE_LABEL, appImageRunSteps } from "../src/lib/download/install";
 import { installersForV2, windowedInstallers } from "../src/lib/download/release-v2";
 import type { ReleaseAsset } from "../src/lib/download/release";
 
@@ -50,8 +50,8 @@ test("each system links its windowed installer above the terminal command", () =
   assert.ok(at("macos-arm64.dmg") > 0 && at("macos-arm64.dmg") < at("macos-x64.dmg"));
   assert.ok(at("macos-x64.dmg") < html.indexOf("install.sh") && at("macos-x64.dmg") < details);
   assert.ok(at("windows-x64.msi") > details);
-  assert.ok(at("linux-x64.AppImage") > details);
-  assert.ok(at("linux-x64.deb") > details && at("linux-x64.deb") < at("linux-x64.AppImage"));
+  assert.ok(at("linux-x64.AppImage.tar.gz") > details);
+  assert.ok(at("linux-x64.deb") > details && at("linux-x64.deb") < at("linux-x64.AppImage.tar.gz"));
   assert.match(html, /Download the macOS app, Apple silicon/);
   assert.match(html, /Download the macOS app, Intel/);
   assert.match(html, /Download the Windows app</);
@@ -107,8 +107,8 @@ test("on linux the deb and rpm packages are the only visible downloads", () => {
   assert.doesNotMatch(visible, /Download the Linux app/);
 });
 
-test("the raw AppImage sits in a closed disclosure beside its chmod command", () => {
-  const block = linuxBlock(linuxHtml(tauri));
+test("an older release without the tarball keeps the raw AppImage beside its chmod command", () => {
+  const block = linuxBlock(linuxHtml(tauri.filter((a) => !a.name.includes(".tar.gz"))));
   const direct = /<details data-direct-file[^>]*>[\s\S]*?<\/details>/.exec(block)?.[0] ?? "";
   assert.ok(direct.includes("<summary") && direct.includes(DIRECT_FILE_SUMMARY));
   assert.doesNotMatch(direct, /^<details[^>]*\sopen/);
@@ -119,6 +119,20 @@ test("the raw AppImage sits in a closed disclosure beside its chmod command", ()
   assert.ok(direct.includes(APPIMAGE_WARNING_SHORT));
   assert.equal(block.split(APPIMAGE_WARNING_SHORT).length, 2);
   assert.equal(appImageRunSteps("a.AppImage"), "chmod +x ~/Downloads/a.AppImage\n~/Downloads/a.AppImage");
+  assert.ok(direct.includes(DIRECT_FILE_STEP_RAW));
+});
+
+test("the direct file is the AppImage tarball, so a double click never reaches Disks", () => {
+  const block = linuxBlock(linuxHtml(tauri));
+  const direct = /<details data-direct-file[^>]*>[\s\S]*?<\/details>/.exec(block)?.[0] ?? "";
+  assert.ok(direct.includes('/bkt-v0.5.0/Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz"'));
+  assert.ok(direct.includes("Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz.sha256"));
+  assert.doesNotMatch(direct, /linux-x64\.AppImage"/);
+  assert.doesNotMatch(direct, /chmod/);
+  assert.ok(direct.includes("tar -xzf ~/Downloads/Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz -C ~/Downloads"));
+  assert.ok(direct.includes(DIRECT_FILE_STEP));
+  assert.equal(appImageRunSteps("a.AppImage.tar.gz"), "tar -xzf ~/Downloads/a.AppImage.tar.gz -C ~/Downloads\n~/Downloads/a.AppImage");
+  assert.ok(block.includes("/bkt-v0.5.0/Bucket-0.5.0-x86_64.AppImage&#x27;"));
 });
 
 test("macOS and Windows keep the installer link above the command", () => {

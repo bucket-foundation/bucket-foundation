@@ -1,5 +1,6 @@
+import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { chmodSync, copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { releaseVersion } from "./build-config";
 
@@ -48,6 +49,19 @@ export function bundleFiles(dir: string): string[] {
   return out;
 }
 
+export function executableTarball(outDir: string, name: string): string {
+  chmodSync(join(outDir, name), 0o755);
+  const tarball = `${name}.tar.gz`;
+  const r = spawnSync("tar", ["-czf", tarball, "--owner=0", "--group=0", "--mode=0755", name], { cwd: outDir, encoding: "utf8" });
+  if (r.status !== 0) throw new Error(`tar failed for ${name}: ${r.stderr || r.error}`);
+  return tarball;
+}
+
+function writeChecksum(outDir: string, name: string): void {
+  const sum = createHash("sha256").update(readFileSync(join(outDir, name))).digest("hex");
+  writeFileSync(join(outDir, `${name}.sha256`), `${sum}  ${name}\n`);
+}
+
 const OS_SIGNED = /\.(dmg|msi|exe)$/;
 
 export function collect(bundleDir: string, outDir: string, version: string, os: DesktopOs, arch: DesktopArch, unsigned = false): string[] {
@@ -60,8 +74,12 @@ export function collect(bundleDir: string, outDir: string, version: string, os: 
     copyFileSync(path, join(outDir, name));
     written.push(name);
     if (name.endsWith(".sig")) continue;
-    const sum = createHash("sha256").update(readFileSync(path)).digest("hex");
-    writeFileSync(join(outDir, `${name}.sha256`), `${sum}  ${name}\n`);
+    writeChecksum(outDir, name);
+    if (name.endsWith(".AppImage")) {
+      const tarball = executableTarball(outDir, name);
+      writeChecksum(outDir, tarball);
+      written.push(tarball);
+    }
     if (unsigned && OS_SIGNED.test(name)) writeFileSync(join(outDir, `${name}.unsigned`), `${name} carries no publisher signature\n`);
   }
   if (!written.some((n) => !n.endsWith(".sig"))) throw new Error(`no bundles under ${bundleDir}`);
