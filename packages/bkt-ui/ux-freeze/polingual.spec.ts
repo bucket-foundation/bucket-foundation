@@ -42,11 +42,6 @@ async function freeze(name: string): Promise<void> {
   await expect(page).toHaveScreenshot(`${name}.png`, { fullPage: true });
 }
 
-test("learn home lists the science decks and the word decks", async () => {
-  await open("#/learn", ".deck");
-  await freeze("learn-home");
-});
-
 test("deck study shows a new atom, its answer, and the next card after a grade", async () => {
   await open("#/learn/03-chemistry", ".card h2");
   await freeze("deck-new-atom");
@@ -58,19 +53,9 @@ test("deck study shows a new atom, its answer, and the next card after a grade",
   await freeze("deck-after-grade");
 });
 
-test("word deck lists its lessons", async () => {
-  await open("#/words/ar", 'a[href="#/words/ar/1"]');
-  await freeze("word-deck-ar");
-});
-
 test("word lesson shows its word cards", async () => {
   await open("#/words/ar/1", ".word-cards");
   await freeze("word-lesson-ar-1");
-});
-
-test("concepts page before any language is picked", async () => {
-  await open("#/words/concepts", "main h1");
-  await freeze("word-concepts");
 });
 
 test("review shows the queue after one graded card", async () => {

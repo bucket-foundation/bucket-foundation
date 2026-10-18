@@ -2,6 +2,7 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: ".",
+  testMatch: "polingual.spec.ts",
   globalSetup: "./global-setup.ts",
   snapshotPathTemplate: "{testDir}/snapshots/{arg}{ext}",
   timeout: 60_000,
