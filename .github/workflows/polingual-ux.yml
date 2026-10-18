@@ -1,0 +1,31 @@
+name: polingual-ux
+
+on:
+  pull_request:
+    branches: [dev, main]
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: polingual-ux-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  polingual-ux-freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: learn views match the polingual-ux-v1 screenshots and DOM
+        run: bash packages/bkt-ui/ux-freeze/run.sh
+      - name: screenshots that missed their baseline
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: polingual-ux-diff
+          path: packages/bkt-ui/test-results/
+          if-no-files-found: ignore
