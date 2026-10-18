@@ -130,7 +130,7 @@ Design, pre-registered on OSF before the first assignment, after Bastani et al. 
 
 Atom-level randomization within a learner gains power, and a crutch habit spills across atoms toward zero, so the learner is the unit.
 
-Held-out items: the corpus has about two quiz items per atom, and `buildRun` draws assessments from the practice pool (`src/lib/academy/assess.ts:134`). A separate bank costs about 3 to 5 days per branch.
+Held-out items: the corpus has about two quiz items per atom, and `buildRun` draws assessments from the practice pool (`src/lib/academy/assess.ts:208`). A separate bank costs about 3 to 5 days per branch.
 
 Hint-only in code: the server loads grounding from the corpus by `atomId` and drops the client payload; it compares each reply against the atom's canonical answers with `gradeAnswer` and `extractSalientNumber` (`assess.ts:59,95`) and swaps a leaked answer for a hint. This follows the review's rule that the block lives in code at the step level (`learning/research-os/LITERATURE-REVIEW.md`, section "Hint-only tutoring is the one design rule with harm data").
 
