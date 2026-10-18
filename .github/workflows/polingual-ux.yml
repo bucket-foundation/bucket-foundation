@@ -6,6 +6,10 @@ on:
   push:
     branches: [dev]
   workflow_dispatch:
+    inputs:
+      runs:
+        description: times to run each suite
+        default: "1"
 
 permissions:
   contents: read
@@ -17,11 +21,13 @@ concurrency:
 jobs:
   polingual-ux-freeze:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 120
+    env:
+      RUNS: ${{ inputs.runs || '1' }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - name: window study screens match the polingual-ux-v1 screenshots and DOM
-        run: bash packages/bkt-ui/ux-freeze/run.sh window
+        run: for i in $(seq 1 "$RUNS"); do bash packages/bkt-ui/ux-freeze/run.sh window; done
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24
@@ -47,7 +53,7 @@ jobs:
             sleep 2
           done
       - name: placement screens match the polingual-ux-v1 screenshots and DOM
-        run: bash packages/bkt-ui/ux-freeze/run.sh placement
+        run: for i in $(seq 1 "$RUNS"); do bash packages/bkt-ui/ux-freeze/run.sh placement; done
       - name: screenshots that missed their baseline
         if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
