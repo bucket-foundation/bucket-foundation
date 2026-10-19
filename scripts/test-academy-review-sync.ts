@@ -319,7 +319,7 @@ test("a review queued after the last confirmation is held when the server report
   assert.equal(tab.sync.held().length, 1);
 });
 
-test("a review queued while an account was confirmed still posts under it after a later switch back", async () => {
+test("a review confirmed under its account posts under it after a switch away and back", async () => {
   const server = new Server();
   const tab = new Tab(server, memoryStorage());
   tab.sync.setUser("u1");
@@ -327,6 +327,7 @@ test("a review queued while an account was confirmed still posts under it after 
   await tab.sync.flush();
   server.online = false;
   tab.study("a2", T0 + 1000);
+  tab.sync.setUser("u1");
   tab.sync.setUser("u2");
   server.online = true;
   server.user = "u2";
@@ -354,4 +355,21 @@ test("a full outbox keeps every review and reports it, and a failed write is rep
   };
   tab.study("a2", T0);
   assert.equal(problems.at(-1)?.[0], "outbox_write_failed");
+});
+
+test("a review queued before the auth event for a new account is held and never credited to the old one", async () => {
+  const server = new Server();
+  const tab = new Tab(server, memoryStorage());
+  tab.sync.setUser("u1");
+  tab.study("a1", T0);
+  await tab.sync.flush();
+  tab.study("a2", T0 + 1000);
+  problems.length = 0;
+  tab.sync.setUser("u2");
+  assert.deepEqual(problems, [["owner_ambiguous", 1]]);
+  assert.equal(tab.sync.held().length, 1);
+  server.user = "u1";
+  tab.sync.setUser("u1");
+  await tab.sync.flush();
+  assert.deepEqual(server.log.map((r) => r.card_id), ["a1"]);
 });

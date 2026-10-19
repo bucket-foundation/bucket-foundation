@@ -151,6 +151,10 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
       if (next) confirmOwner(next);
       return;
     }
+    if (next) {
+      switchOwner(next);
+      return;
+    }
     write(deps.storage(), OWNER_KEY, { user: next, confirmed_at: now() });
   }
   const mine = (user: string) => (x: { owner?: string }) => !x.owner || x.owner === user;
