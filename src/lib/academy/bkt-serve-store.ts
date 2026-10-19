@@ -1,16 +1,20 @@
 import { mergeState, normalizeState, type EngineState } from "./engine";
 import type { ProgressStore, ServerBranches } from "./progress-store";
+import type { PulledReview, QueuedReview, ReviewEvent } from "./review-sync";
 
 export interface BktServeStoreOptions {
   token: string;
   base?: string;
-  fetch?: typeof fetch;
+  fetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+  uuid?: () => string;
   debounceMs?: number;
   onError?: (e: Error) => void;
 }
 
 export interface BktServeStore extends ProgressStore {
   flush(): Promise<void>;
+  appendReview(branch: string, review: ReviewEvent): QueuedReview;
+  pullLog(): Promise<PulledReview[] | null>;
 }
 
 export function createBktServeStore(opts: BktServeStoreOptions): BktServeStore {
@@ -70,5 +74,32 @@ export function createBktServeStore(opts: BktServeStoreOptions): BktServeStore {
     await Promise.all(jobs);
   }
 
-  return { pull, load, save, flush };
+  const uuid = opts.uuid ?? (() => crypto.randomUUID());
+  const sent = new Set<Promise<unknown>>();
+
+  function appendReview(branch: string, review: ReviewEvent): QueuedReview {
+    const q: QueuedReview = { ...review, review_id: review.review_id || uuid(), branch, device_id: "local" };
+    const p = f(`${base}/local/review-log`, { method: "POST", headers, body: JSON.stringify({ branch, review: { ...review, review_id: q.review_id } }) })
+      .then((r) => {
+        if (!r.ok) throw new Error(`review log append ${r.status}`);
+      })
+      .catch(report)
+      .finally(() => sent.delete(p));
+    sent.add(p);
+    return q;
+  }
+
+  async function pullLog(): Promise<PulledReview[] | null> {
+    await Promise.all(Array.from(sent));
+    try {
+      const r = await f(`${base}/local/review-log`, { headers });
+      if (!r.ok) throw new Error(`review log pull ${r.status}`);
+      return ((await r.json()) as { reviews: PulledReview[] | null }).reviews;
+    } catch (e) {
+      report(e);
+      return null;
+    }
+  }
+
+  return { pull, load, save, flush, appendReview, pullLog };
 }

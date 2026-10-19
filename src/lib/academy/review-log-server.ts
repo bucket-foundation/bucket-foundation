@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import type { DeviceCheck } from "./device-auth";
 import type { BirthYearBucket } from "../research-os/consent";
 import { decideLearnWrite } from "../research-os/learn-gate";
 import type { Atom, Depth, EngineState } from "./engine";
@@ -56,6 +57,7 @@ export interface StoredReview extends ReviewRow {
 }
 
 export interface ReviewLogDeps {
+  verifyDevice?: (req: Request, uid: string, body: string) => Promise<DeviceCheck>;
   enabled: () => boolean;
   configured: () => boolean;
   origins: () => readonly string[];
@@ -117,7 +119,7 @@ export function corsHeaders(origin: string | null, allowed: readonly string[]): 
   if (origin && allowed.includes(origin)) {
     h["access-control-allow-origin"] = origin;
     h["access-control-allow-methods"] = "GET, POST, OPTIONS";
-    h["access-control-allow-headers"] = "authorization, content-type";
+    h["access-control-allow-headers"] = "authorization, content-type, x-bkt-device";
     h["access-control-max-age"] = "600";
   }
   return h;
@@ -127,12 +129,14 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
   const respond = (req: Request, body: unknown, status: number) =>
     new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json", ...corsHeaders(req.headers.get("origin"), deps.origins()) } });
 
-  async function preflight(req: Request): Promise<{ uid: string } | Response> {
+  async function preflight(req: Request, body: string): Promise<{ uid: string; deviceId: string | null } | Response> {
     if (!deps.enabled()) return respond(req, { error: "review_log_disabled" }, 503);
     if (!deps.configured()) return respond(req, { error: "sync_unavailable" }, 503);
     const uid = await deps.verifyUser(req);
     if (!uid) return respond(req, { error: "unauthorized" }, 401);
-    return { uid };
+    const device = deps.verifyDevice ? await deps.verifyDevice(req, uid, body) : ({ ok: true, deviceId: null } as const);
+    if (!device.ok) return respond(req, { error: "device_refused", reason: device.reason }, 401);
+    return { uid, deviceId: device.deviceId };
   }
 
   async function fold(uid: string, branch: string): Promise<{ folded: boolean; advanced: number }> {
@@ -161,7 +165,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
   }
 
   async function GET(req: Request): Promise<Response> {
-    const pre = await preflight(req);
+    const pre = await preflight(req, "");
     if (pre instanceof Response) return pre;
     const url = new URL(req.url);
     const since = Number(url.searchParams.get("since") ?? "0");
@@ -178,7 +182,13 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
   }
 
   async function POST(req: Request): Promise<Response> {
-    const pre = await preflight(req);
+    let text: string;
+    try {
+      text = await req.text();
+    } catch {
+      return respond(req, { error: "bad_request" }, 400);
+    }
+    const pre = await preflight(req, text);
     if (pre instanceof Response) return pre;
     const band = await deps.readAgeBand(pre.uid);
     if (!band.ok) return respond(req, { error: "consent_unavailable" }, 503);
@@ -187,7 +197,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
 
     let body: unknown;
     try {
-      body = await req.json();
+      body = JSON.parse(text);
     } catch {
       return respond(req, { error: "bad_request" }, 400);
     }
@@ -196,6 +206,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     const parsed = list.map(parseReview);
     if (parsed.some((r) => r === null)) return respond(req, { error: "bad_request" }, 400);
     const now = deps.now();
+    if (pre.deviceId && (parsed as ReviewInput[]).some((r) => r.device_id !== pre.deviceId)) return respond(req, { error: "device_mismatch" }, 400);
     const rows = (parsed as ReviewInput[]).map((r) => toAppendRow(r, now));
     const keys = new Set(rows.map((r) => `${r.branch}/${r.review_id}`));
     if (keys.size !== rows.length) return respond(req, { error: "bad_request" }, 400);

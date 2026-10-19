@@ -152,6 +152,9 @@ export const TABLE: CommandSpec[] = [
   { name: "words list", summary: "the same as decks list", args: "[folder]", positionals: [0, 1], json: true },
   { name: "words install", summary: "the same as decks install", args: "<file-or-folder>", positionals: [1, 1], json: true },
   { name: "words remove", summary: "the same as decks remove", args: "<language>", positionals: [1, 1], json: true },
+  { name: "login", summary: "sign this device in to your Bucket account so study progress syncs", json: true },
+  { name: "logout", summary: "sign this device out of your Bucket account", json: true },
+  { name: "sync", summary: "send waiting reviews and pull new ones from your account", json: true },
   {
     name: "doctor",
     summary: "check this install and name the fix for each problem; writes nothing",

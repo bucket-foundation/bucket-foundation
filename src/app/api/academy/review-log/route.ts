@@ -7,6 +7,7 @@ import type { Atom } from "@/lib/academy/engine";
 import { loadCorpusForBranch } from "@/lib/academy/corpus";
 import { DEFAULT_ORIGINS, corpusAtomsVersion, createReviewLogHandlers } from "@/lib/academy/review-log-server";
 import { bucketService, reviewLogStore } from "@/lib/academy/review-log-store";
+import { serverVerifyDevice } from "@/lib/academy/device-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -24,6 +25,7 @@ const extraOrigins = (process.env.ACADEMY_SYNC_ORIGINS || "")
   .filter(Boolean);
 
 const handlers = createReviewLogHandlers({
+  verifyDevice: serverVerifyDevice,
   enabled: () => process.env.ACADEMY_REVIEW_LOG === "on",
   configured: () => Boolean(SUPABASE_URL && ANON_KEY && SERVICE_ROLE_KEY),
   origins: () => [...DEFAULT_ORIGINS, ...extraOrigins],
