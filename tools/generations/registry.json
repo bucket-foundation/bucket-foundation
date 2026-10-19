@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "generations": [
+    {
+      "name": "frontier-figure",
+      "script": "frontier-figure.py",
+      "about": "The solvability frontier: every problem placed by meaning, with the frontier circle",
+      "inputs": {},
+      "data": ["output/solvability-frontier/report/frontier.json"],
+      "outputs": ["solvability-frontier-figure.png", "solvability-frontier-figure.svg"]
+    },
+    {
+      "name": "problem-star",
+      "script": "problem-star.py",
+      "about": "Star chart of one problem and its nearest solved neighbours",
+      "inputs": { "problem": "problem id, such as navier" },
+      "data": ["output/solvability-frontier/report/frontier.json", "src/lib/research-os/solvability-neighbors-data.json"],
+      "outputs": ["solvability-frontier-star-{problem}.png", "solvability-frontier-star-{problem}.svg"]
+    },
+    {
+      "name": "problem-slice",
+      "script": "problem-slice.py",
+      "about": "The slice of the frontier around one problem",
+      "inputs": { "problem": "problem id, such as navier" },
+      "data": ["output/solvability-frontier/report/frontier.json"],
+      "outputs": ["solvability-frontier-slice-{problem}.png", "solvability-frontier-slice-{problem}.svg"]
+    },
+    {
+      "name": "problem-polygon",
+      "script": "problem-polygon.py",
+      "about": "Polygon circle of one problem on the eight principal directions, standalone and as an inset, with its data",
+      "inputs": { "problem": "problem id, such as navier" },
+      "data": ["output/solvability-frontier/report/frontier.json", "~/.cache/bucket-atlas/keys.json", "~/.cache/bucket-atlas/vectors.npy"],
+      "outputs": ["{problem}-polygon-circle.png", "{problem}-polygon-inset.png", "{problem}-polygon.json"]
+    },
+    {
+      "name": "problem-polygon-figure",
+      "script": "problem-polygon-figure.py",
+      "about": "The polygon circle beside the whole corpus on the same directions, the paper figure",
+      "inputs": { "problem": "problem id, such as navier" },
+      "data": ["output/solvability-frontier/report/frontier.json", "~/.cache/bucket-atlas/keys.json", "~/.cache/bucket-atlas/vectors.npy"],
+      "outputs": ["solvability-frontier-polygon-{problem}.png", "solvability-frontier-polygon-{problem}.svg"]
+    },
+    {
+      "name": "frontier-card",
+      "script": "frontier-card.py",
+      "about": "The frontier card for one problem: the frontier, its polygon and the backtest",
+      "inputs": { "problem": "problem id, such as navier", "label": "name shown on the card; the problem title when omitted" },
+      "needs": ["problem-polygon"],
+      "data": ["output/solvability-frontier/report/frontier.json", "output/solvability-frontier/report/backtest.json"],
+      "outputs": ["frontier-card-{problem}.png", "frontier-card-{problem}.pdf"]
+    }
+  ]
+}

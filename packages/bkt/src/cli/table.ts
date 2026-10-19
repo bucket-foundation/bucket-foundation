@@ -156,6 +156,20 @@ export const TABLE: CommandSpec[] = [
   { name: "logout", summary: "sign this device out of your Bucket account", json: true },
   { name: "sync", summary: "send waiting reviews and pull new ones from your account", json: true },
   {
+    name: "generate",
+    summary: "make a stored figure from the generation registry, saved with its inputs and data hash",
+    args: "[name]",
+    positionals: [0, 1],
+    json: true,
+    options: {
+      list: { type: "boolean", help: "list every generation and its inputs" },
+      past: { type: "boolean", help: "list earlier outputs, of one generation when named" },
+      problem: { type: "string", value: "ID", help: "the problem id, such as navier" },
+      label: { type: "string", value: "TEXT", help: "the name shown on a card" },
+      repo: { type: "string", value: "DIR", help: "the Bucket repository that holds tools/generations; the current folder when omitted" },
+    },
+  },
+  {
     name: "doctor",
     summary: "check this install and name the fix for each problem; writes nothing",
     json: true,
