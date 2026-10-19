@@ -38,14 +38,18 @@ test("sign-in never shows an error code or a raw object", () => {
 });
 
 const ROOT = path.join(__dirname, "..");
-const DEMO_DIRS = ["src/app/research-os/(app)/learn", "src/app/research-os/(app)/home", "src/app/research-os/(app)/profile", "src/app/sign-in", "packages/bkt-ui/src/views/LearnHome.tsx", "packages/bkt-ui/src/views/Words.tsx", "packages/bkt-ui/src/views/CanonSearch.tsx"];
-const FROZEN = new Set(["StudySession.tsx", "PlacementSession.tsx", "LangPlacement.tsx", "LangExercise.tsx"]);
+const DEMO_DIRS = ["src/app/research-os/(app)/learn", "src/app/research-os/(app)/home", "src/app/research-os/(app)/profile", "src/app/sign-in", "packages/bkt-ui/src/views/LearnHome.tsx", "packages/bkt-ui/src/views/Words.tsx", "packages/bkt-ui/src/views/CanonSearch.tsx", "src/app/canon"];
+const FROZEN = new Set(["StudySession.tsx", "PlacementSession.tsx", "LangPlacement.tsx", "LangExercise.tsx", "CanonGlobeMount.tsx"]);
 const LEAKS: [RegExp, string][] = [
   [/j\.error \?\? ["`'][^"`']*["`']\)?/, "a server error code used as copy"],
   [/\?\? `failed \(|"failed"\)/, "a bare failure code used as copy"],
   [/\(e(rr)? as Error\)\.message|\(e(rr)?: Error\) => [^;]*\.message\)/, "a raw exception message set as copy"],
   [/answered \$\{/, "an HTTP status in copy"],
   [/(body|title)=\{`[^`]*\$\{(to|id|atomId|branch|error\.id)\}[^`]*`\}/, "an id in visible copy"],
+  [/\b(pr|score)\s*\{[A-Za-z.]+\.toFixed\(/, "a raw score in visible copy"],
+  [/\busdc\b/i, "a token unit in visible copy"],
+  [/>\{[a-z]+\.(id|bibkey)\}</, "an id rendered as text"],
+  [/data\.error \|\| "|signoff_failed/, "an error code used as copy"],
 ];
 
 function files(p: string): string[] {

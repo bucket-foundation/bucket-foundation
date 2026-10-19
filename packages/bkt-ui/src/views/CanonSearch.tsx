@@ -9,6 +9,8 @@ import { CanonGraphPanel } from "./CanonGraph";
 import type { CanonGraph } from "@/lib/canon-graph-core";
 import "../ros.css";
 
+export const GLOBE_SEARCH_INPUT = 'input[placeholder^="search "]';
+
 export interface CanonSearchApi {
   canonSearch(q: string, branch?: string, topK?: number): Promise<CanonHit[]>;
   canonExcerpt(id: number): Promise<CanonExcerpt>;
@@ -37,7 +39,7 @@ export function canonCounts(about: CanonAbout): CanonCounts {
 }
 
 export function showCounts(root: Element, counts: CanonCounts): void {
-  const box = root.querySelector<HTMLInputElement>('input[placeholder^="search "]');
+  const box = root.querySelector<HTMLInputElement>(GLOBE_SEARCH_INPUT);
   const placeholder = `search ${counts.excerpts} source excerpts across ${counts.branches} branches`;
   if (box && box.placeholder !== placeholder) box.placeholder = placeholder;
   const values: Record<string, string | null> = { "Source excerpts": String(counts.excerpts), Branches: String(counts.branches), "Detected bridges": null, "Geocoded events": String(counts.events), "Year span": counts.span };
@@ -321,7 +323,7 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
         onClickCapture={onLink}
         onInputCapture={(e) => {
           const box = e.target as HTMLInputElement;
-          if (box.matches?.('input[placeholder^="search "]')) setTyped(box.value);
+          if (box.matches?.(GLOBE_SEARCH_INPUT)) setTyped(box.value);
         }}
       >
         {counts && <CanonGlobeMount key={round} branches={[]} containerClassName={CANON_CONTAINER} />}
