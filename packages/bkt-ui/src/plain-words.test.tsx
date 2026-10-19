@@ -1324,6 +1324,17 @@ describe("Research OS views on the local store", () => {
     await v.unmount();
   });
 
+  test("progress says so in a sentence when the level does not load, and shows no made-up level", async () => {
+    await useLocalStore();
+    const local = globalThis.fetch;
+    globalThis.fetch = ((input: RequestInfo | URL, init?: RequestInit) => (String(input).includes("/profile") ? Promise.reject(new TypeError("offline")) : local(input, init))) as typeof fetch;
+    const v = await mount({ name: "progress" }, empty());
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.host.textContent).toContain("Bucket could not load your level. Close the window and open it again.");
+    expect(v.host.querySelectorAll(".tile")).toHaveLength(0);
+    await v.unmount();
+  });
+
   test("progress with nothing studied points to Learn, and a failed save says so in a sentence", async () => {
     await useLocalStore();
     const v = await mount({ name: "progress" }, { ...empty(), exportProgress: () => Promise.reject(new ApiError("save_failed", 500)) } as Stub);

@@ -15,27 +15,30 @@ interface Game {
   badges: unknown[];
 }
 
+export const LEVEL_TROUBLE = "Bucket could not load your level. Close the window and open it again.";
 export const EXPORT_PROGRESS_TROUBLE = "Bucket could not save your progress. Try again.";
 
 type ProgressApi = Pick<Api, "decks" | "exportProgress">;
 
 function Tiles() {
   const [game, setGame] = useState<Game | null | undefined>(undefined);
+  const [failed, setFailed] = useState(false);
   useEffect(() => {
     let live = true;
     fetch("/api/research-os/profile", { cache: "no-store" })
       .then((r) => (r.ok ? (r.json() as Promise<{ game: Game | null }>) : Promise.reject(new Error(String(r.status)))))
       .then((d) => live && setGame(d.game),
-        () => live && setGame(null));
+        () => live && setFailed(true));
     return () => {
       live = false;
     };
   }, []);
+  if (failed) return <p className="muted">{LEVEL_TROUBLE}</p>;
   if (game === undefined) return <p className="muted">Loading your level…</p>;
   const g = game;
   const tiles: [string, string][] = [
     ["Level", String(g?.level ?? 1)],
-    ["XP to the next level", g && g.span ? `${g.into ?? 0} of ${g.span}` : "0 of 50"],
+    ["XP this level", g && g.span ? `${g.into ?? 0} of ${g.span}` : "0"],
     ["Streak", g ? `${g.streakDays} ${g.streakDays === 1 ? "day" : "days"}` : "0 days"],
     ["Badges", String(g?.badges.length ?? 0)],
   ];
