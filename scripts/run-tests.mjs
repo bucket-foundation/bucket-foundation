@@ -40,7 +40,7 @@ const SUITES = {
       "scripts/test-whats-new-email.ts",
       "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
-      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,replay,review-log}.ts",
+      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,replay,review-log,review-sync}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-research-agent-route.ts",
       "scripts/test-llm-daily-limit.ts",
