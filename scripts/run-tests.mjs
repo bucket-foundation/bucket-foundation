@@ -43,7 +43,7 @@ const SUITES = {
       "scripts/test-whats-new-email.ts",
       "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
-      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,lang-memory,replay,review-log,review-sync,device-auth,session,sync-hosted}.ts",
+      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-plain-words-demo.ts",
       "scripts/test-research-agent-route.ts",

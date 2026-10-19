@@ -109,3 +109,42 @@ test("language placement narrows in on a tier with a fixed seed", async () => {
   await page.getByTestId("placement-done").waitFor();
   await freeze("lang-placement-done");
 });
+
+const PREVIEW = "bucket-academy/v1/flags/polingual-shared-memory";
+let romanceStudy = "";
+
+test("shared memory: a new word leads with the target and links the other languages", async () => {
+  await page.goto("/research-os/learn/languages");
+  await page.evaluate((k) => localStorage.setItem(k, "1"), PREVIEW);
+  await page.reload();
+  await page.getByRole("button", { name: /^Romance:/ }).click();
+  await page.getByRole("button", { name: "create system" }).click();
+  await page.locator('a[href$="/study"]').last().waitFor();
+  romanceStudy = (await page.locator('a[href$="/study"]').last().getAttribute("href")) ?? "";
+  await page.goto(romanceStudy);
+  await page.locator('[data-layout="target"]').waitFor();
+  await expect(page.getByTestId("links")).toBeVisible();
+  await freeze("lang-intro-links");
+});
+
+test("shared memory: a review asks for the meaning of the target word", async () => {
+  const items = ["eight", "five", "four", "nine", "seven", "six", "ten", "three", "two", "one", "black", "white"];
+  const at = FROZEN_AT.getTime() - 9 * 86_400_000;
+  await page.evaluate(
+    ({ key, items, at }) => {
+      const cards: Record<string, unknown> = {};
+      for (const id of items) cards[`es:${id}`] = { state: "review", reps: 4, lapses: 0, stability: 6, difficulty: 5, lastReview: at, due: at + 4 * 86_400_000, introduced: "2026-10-1" };
+      localStorage.setItem(key, JSON.stringify({ lang: "es", baseline: { cards, prof: {}, settings: {}, stats: { xp: 0, streak: 0, lastStudyDay: null, history: {} } }, log: [], migrated: "v1" }));
+    },
+    { key: "bucket-academy/v1/lang-es", items, at }
+  );
+  await page.goto(romanceStudy);
+  const target = page.locator('[data-kind="reverse"] [data-testid="target-headline"]');
+  for (let i = 0; i < 30; i++) {
+    await page.getByTestId("exercise").waitFor();
+    if (await target.isVisible()) break;
+    await page.getByTestId("skip-exercise").click();
+  }
+  await expect(target).toBeVisible();
+  await freeze("lang-recall-target");
+});
