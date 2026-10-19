@@ -6,6 +6,7 @@ import { ApiError, type Api, type DailyAnswer, type DailyQuiz, type WorkAnswer, 
 import { href } from "../router";
 import { windowHref } from "../site-fetch";
 import { FILE_UNREADABLE } from "./file";
+import { trouble } from "../trouble";
 
 export const WORK_QUIZ_CHANGED = "bkt-work-quiz-changed";
 export const LANGUAGES_SAVE_FAILED = "Your languages were not saved.";
@@ -26,7 +27,7 @@ export function LanguageChips({ api, onSaved }: { api: LanguageApi; onSaved?: (l
         setChosen(r.chosen ?? r.languages);
         setFromSystems(r.fromSystems ?? []);
       },
-      (e: Error) => live && setError(e.message),
+      (e: unknown) => live && setError(trouble(e).text),
     );
     return () => {
       live = false;
