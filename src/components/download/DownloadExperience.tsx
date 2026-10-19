@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
+import TrackedLink from "@/components/TrackedLink";
+import { START_LEARNING_HREF, downloadTarget, trackFunnel } from "@/lib/analytics/funnel";
 import DownloadFlowV3 from "@/app/download/DownloadFlowV3";
 import type { Os } from "@/lib/download/release";
 import type { InstallerV2, WindowedInstaller } from "@/lib/download/release-v2";
@@ -12,12 +14,21 @@ import styles from "./download-demo.module.css";
 
 export default function DownloadExperience({ detected, installers, windowed, device, links }: { detected: Os | null; installers: InstallerV2[]; windowed: WindowedInstaller[]; device: DetectedDevice; links: DeviceLinks }) {
   const [mode, setMode] = useState<"try" | "watch">("try");
-  return <main className={styles.page}>
+  function onDownloadClick(e: MouseEvent<HTMLElement>) {
+    const target = downloadTarget(e.target as Element);
+    if (target) trackFunnel("download_complete", { target });
+  }
+  return <main className={styles.page} onClickCapture={onDownloadClick}>
     <section className={styles.heroSingle} aria-label="Download Bucket">
       <div className={styles.heroText}>
-        <span className={styles.eyebrow}>Download</span>
-        <h1>Bucket on your devices.</h1>
+        <span className={styles.eyebrow}>Start learning</span>
+        <h1>Learn in your browser today.</h1>
         <p data-polingual-line>Polingual language study is inside Bucket: read words across 35 languages by sound, spelling and root.</p>
+        <div className="flex flex-col gap-2" data-start-learning>
+          <TrackedLink href={START_LEARNING_HREF} event="start_learning_click" from="download_page" className="min-h-[44px] inline-flex items-center justify-center px-6 py-3 rounded-sm bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] small-caps text-[12px] tracking-[0.14em]">Start learning</TrackedLink>
+          <p className="text-[13px] text-[color:var(--basalt-2)]">Sign in with an email code, then go straight to Learn.</p>
+        </div>
+        <h2 className="mt-6 text-[15px] font-semibold">Or download Bucket</h2>
         <DevicePicker detected={device} links={links} />
         <ul className={styles.facts}><li>Works offline</li><li>Signed releases</li><li>Free</li><li>No account needed</li></ul>
       </div>

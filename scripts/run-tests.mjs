@@ -24,6 +24,7 @@ const SUITES = {
       "scripts/test-research-impact-registry.ts",
       "scripts/test-waitlist.ts",
       "scripts/test-download.ts",
+      "scripts/test-capture.ts",
       "scripts/test-download-demo.ts",
       "scripts/test-download-release.ts",
       "scripts/test-download-device.ts",

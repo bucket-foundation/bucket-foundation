@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
 import { safeNextPath } from "@/lib/auth/paths";
+import { trackFunnel } from "@/lib/analytics/funnel";
 import { useSession } from "@/providers/SessionProvider";
 
 type Step = "email" | "code" | "done";
@@ -26,6 +27,7 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
   function leave() {
     if (sent.current) return;
     sent.current = true;
+    trackFunnel("sign_in_complete", { next: destination, resumed: step === "email" });
     setStep("done");
     window.location.replace(destination);
   }

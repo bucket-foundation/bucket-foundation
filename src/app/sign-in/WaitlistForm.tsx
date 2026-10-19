@@ -31,10 +31,10 @@ export default function WaitlistForm({ wanted }: { wanted: string | null }) {
     setBusy(true);
     setError(null);
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch("/api/capture", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email: address, name, role, wanted, website }),
+        body: JSON.stringify({ source: "wall", email: address, name, role, wanted, website }),
       });
       const data = (await res.json().catch(() => ({}))) as {
         ok?: boolean;

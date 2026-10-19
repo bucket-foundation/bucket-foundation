@@ -3,6 +3,8 @@
 import Link from "next/link";
 import UserMenu from "@/components/auth/UserMenuV2";
 import InverseOmega from "./InverseOmega";
+import TrackedLink from "./TrackedLink";
+import { START_LEARNING_HREF } from "@/lib/analytics/funnel";
 
 export default function HeaderV3({ launchList = false }: { launchList?: boolean }) {
   return (
@@ -16,12 +18,22 @@ export default function HeaderV3({ launchList = false }: { launchList?: boolean 
         </Link>
         <div className="flex items-center gap-2 min-w-0">
           <UserMenu launchList={launchList} />
-          <Link
+          <TrackedLink
             href="/download"
-            className="h-11 flex items-center px-3 md:px-4 rounded-sm bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px] tracking-[0.14em] shrink-0"
+            event="download_click"
+            from="header"
+            className="hidden sm:flex h-11 items-center px-2 text-[color:var(--basalt-2)] hover:text-[color:var(--gold-deep)] transition small-caps text-[11px] tracking-[0.14em] shrink-0"
           >
             Download
-          </Link>
+          </TrackedLink>
+          <TrackedLink
+            href={START_LEARNING_HREF}
+            event="start_learning_click"
+            from="header"
+            className="h-11 flex items-center px-3 md:px-4 rounded-sm bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px] tracking-[0.14em] shrink-0"
+          >
+            Start learning
+          </TrackedLink>
         </div>
       </div>
     </header>
