@@ -280,6 +280,8 @@ function empty(): Stub {
   return {
     researchList: async () => ({ outputs: [] }),
     workspaceItems: async () => ({ items: [], total: 0, page: 1, size: 50 }),
+    generations: async () => ({ generations: [], repo: false }),
+    generatedImage: () => Promise.reject(new ApiError("no such render", 404)),
     researchManifest: () => Promise.reject(new ApiError("no such output", 404)),
     researchTable: () => Promise.reject(new ApiError("the output has no such table", 404)),
     researchNew: () => Promise.reject(new ApiError("an output already has that short name", 409)),
@@ -333,6 +335,10 @@ function populated(over: Stub = {}): Stub {
     ...empty(),
     researchList: async () => ({ outputs: RESEARCH_ROWS }),
     workspaceItems: async (type: string) => ({ items: WORKSPACE_ITEMS.filter((i) => i.type === type), total: WORKSPACE_ITEMS.filter((i) => i.type === type).length, page: 1, size: 50 }),
+    generations: async () => ({ repo: true, generations: [
+      { name: "record-glyph", about: "The record glyph of one problem", inputs: ["problem"], command: "bkt generate record-glyph --problem ...", last: { run: "20261019T101500-0a1b2c3d", created: "2026-10-19T10:15:00Z", folder: "x", outputs: ["riemann-glyph.svg"] } },
+      { name: "atlas-plots", about: "The nine atlas plots", inputs: [], command: "bkt generate atlas-plots", last: null },
+    ] }),
     researchManifest: async () => RESEARCH_DETAIL,
     researchChanges: async () => ({
       notice: "Edits are kept on this computer as plain files, so the tools that build a paper can read them.",
@@ -400,6 +406,8 @@ function failing(): Stub {
     progress: progress(null),
     researchList: fail("the research files could not be read", 500),
     workspaceItems: fail("the workspace list could not be read", 500),
+    generations: fail("the list of renders could not be read", 500),
+    generatedImage: fail("that render file is refused", 400),
     advisor: fail("the people file could not be read", 500),
     researchManifest: fail("public/papers/x/paper.pdf does not match its hash in this build", 409),
     researchTable: fail("the table does not parse", 422),

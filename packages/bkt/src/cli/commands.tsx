@@ -88,6 +88,7 @@ import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
 import { hostname } from "node:os";
+import { generatedFigures, generationRoutes } from "../generation-routes";
 import { findRepo, GenerateError, loadRegistry, pastRuns, runFolder, runGeneration } from "../generate";
 import { openRemote } from "../sync";
 import type { RemoteSync } from "../../../../src/lib/academy/remote-sync";
@@ -352,6 +353,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   ];
   const data = dataRoutes(adapters);
   const researchTrouble = (e: Error) => console.error(`bkt serve: research: ${e.message}`);
+  const renders = { home: dir, repo: findRepo(process.env.BKT_REPO ?? process.cwd()) };
   const research = new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, researchTrouble);
   const ownOutputs = new LocalOutputs(dir, { taken: (slug) => (researchIndex as unknown as ResearchIndex).outputs.some((o) => o.slug === slug) || research.staffHas(slug) });
   research.setLocal(ownOutputs);
@@ -384,7 +386,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...researchRoutes(research, researchTrouble),
       ...researchWorkRoutes(researchWork, researchTrouble, ownOutputs),
       ...alignmentRoutes(alignmentReview as unknown as AlignmentReviewPack),
-      ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => (rowSetPack as unknown as RowSetPack).sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0]?.modes ?? [] })) }, researchTrouble),
+      ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => (rowSetPack as unknown as RowSetPack).sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0]?.modes ?? [] })), generated: () => generatedFigures(renders) }, researchTrouble),
+      ...generationRoutes(renders, researchTrouble),
       ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os, built: (slug, path) => researchWork.built(slug, path) }), researchTrouble),
       ...researchBuildRoutes(builds, researchTrouble),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
@@ -612,7 +615,7 @@ function generateCmd(inv: Invocation, json: boolean): number {
     return EXIT.ok;
   }
   const params: Record<string, string> = {};
-  for (const k of ["problem", "label"]) if (typeof v[k] === "string") params[k] = v[k] as string;
+  for (const k of ["problem", "label", "corpus"]) if (typeof v[k] === "string") params[k] = v[k] as string;
   const name = inv.positionals[0];
   const folder = runFolder(home, name, params, new Date());
   try {

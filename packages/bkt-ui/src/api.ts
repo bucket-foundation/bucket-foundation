@@ -24,6 +24,8 @@ export type { TablePage } from "../../bkt/src/research-table";
 import type { TablePage } from "../../bkt/src/research-table";
 export type { Change, Exported } from "../../bkt/src/research-work";
 export type { WorkspaceItem } from "../../bkt/src/workspace";
+export type { GenerationRow } from "../../bkt/src/generation-routes";
+import type { GenerationRow } from "../../bkt/src/generation-routes";
 export type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
 import type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
 import type { WorkspaceItem } from "../../bkt/src/workspace";
@@ -645,6 +647,20 @@ export class Api {
 
   async image(slug: string, path: string): Promise<string> {
     const r = await this.researchFile(slug, path);
+    const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
+    if (!IMAGE_TYPES.includes(type)) throw new Error("That file is not an image this window shows.");
+    const blob = await r.blob();
+    if (blob.size > IMAGE_MAX_BYTES) throw new Error("That image is over 8 MB.");
+    return asDataUrl(blob.type === type ? blob : new Blob([blob], { type }));
+  }
+
+  generations() {
+    return this.call<{ generations: GenerationRow[]; repo: boolean }>("/local/generations");
+  }
+
+  async generatedImage(name: string, run: string, file: string): Promise<string> {
+    const r = await fetch(`/local/generations/file?${new URLSearchParams({ name, run, file }).toString()}`, { headers: { authorization: `Bucket ${this.token}` } });
+    if (!r.ok) throw new ApiError(((await r.json().catch(() => ({}))) as { error?: string }).error ?? "", r.status);
     const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
     if (!IMAGE_TYPES.includes(type)) throw new Error("That file is not an image this window shows.");
     const blob = await r.blob();
