@@ -145,11 +145,20 @@ export function stripCodex(toml: string, shim: string): string {
   return toml.split("\n").filter((l) => l.trim() !== line).join("\n");
 }
 
-function writePrivate(path: string, text: string, mode = 0o600) {
+export function writeAtomic(path: string, text: string, mode = 0o600, write: (p: string, t: string) => void = (p, t) => writeFileSync(p, t, { mode })) {
   mkdirSync(dirname(path), { recursive: true, mode: 0o700 });
-  writeFileSync(path, text, { mode });
-  chmodSync(path, mode);
+  const tmp = `${path}.bkt-wait.${process.pid}.tmp`;
+  try {
+    write(tmp, text);
+    chmodSync(tmp, mode);
+    renameSync(tmp, path);
+  } catch (e) {
+    rmSync(tmp, { force: true });
+    throw e;
+  }
 }
+
+const writePrivate = writeAtomic;
 
 function readJson(path: string): Settings | null {
   if (!existsSync(path)) return {};
@@ -193,7 +202,9 @@ export async function waitInstall(d: WaitDeps): Promise<number> {
     if (sameJson(before, after)) d.out("Claude Code hooks are already installed");
     else {
       const backup = `${sp}.bkt-wait.bak`;
-      if (existsSync(sp) && !existsSync(backup)) writePrivate(backup, readFileSync(sp, "utf8"));
+      const absent = `${sp}.bkt-wait.absent`;
+      if (!existsSync(sp) && !existsSync(backup)) writePrivate(absent, "");
+      if (existsSync(sp) && !existsSync(backup) && !existsSync(absent)) writePrivate(backup, readFileSync(sp, "utf8"));
       writePrivate(sp, `${JSON.stringify(after, null, 2)}\n`);
       d.out(`Claude Code hooks added to ${sp}`);
     }
@@ -227,10 +238,13 @@ export async function waitUninstall(d: WaitDeps): Promise<number> {
   if (now && existsSync(sp)) {
     const stripped = stripClaude(now, shim);
     const backup = `${sp}.bkt-wait.bak`;
+    const absent = `${sp}.bkt-wait.absent`;
     const saved = existsSync(backup) ? readJson(backup) : null;
-    if (saved && sameJson(saved, stripped)) writeFileSync(sp, readFileSync(backup, "utf8"));
-    else if (!sameJson(now, stripped)) writeFileSync(sp, `${JSON.stringify(stripped, null, 2)}\n`);
+    if (existsSync(absent) && sameJson(stripped, {})) rmSync(sp);
+    else if (saved && sameJson(saved, stripped)) writeAtomic(sp, readFileSync(backup, "utf8"));
+    else if (!sameJson(now, stripped)) writeAtomic(sp, `${JSON.stringify(stripped, null, 2)}\n`);
     rmSync(backup, { force: true });
+    rmSync(absent, { force: true });
     d.out("Claude Code hooks removed");
   }
   const cp = codexConfig(d.home);
@@ -238,7 +252,7 @@ export async function waitUninstall(d: WaitDeps): Promise<number> {
     const toml = readFileSync(cp, "utf8");
     const out = stripCodex(toml, shim);
     if (out !== toml) {
-      writeFileSync(cp, out);
+      writeAtomic(cp, out);
       d.out("Codex notify removed");
     }
   }

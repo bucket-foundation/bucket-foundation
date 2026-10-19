@@ -26,6 +26,10 @@ case "$event" in
   *) exit 0 ;;
 esac
 state=$dir/sessions/$tool-$session
+if [ "$kind" = waiting ]; then
+  [ "$(cat "$state" 2>/dev/null)" = done ] && exit 0
+  [ "$event" = Notification ] && [ "${5:-}" != permission_prompt ] && exit 0
+fi
 if [ "$kind" = study ]; then
   printf 'running' > "$state"
 else

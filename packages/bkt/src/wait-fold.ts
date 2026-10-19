@@ -58,6 +58,7 @@ export function foldAgents(text: string, nowS: number): AgentRow[] {
     const key = `${e.tool}:${e.session}`;
     const state = stateOf(e.event)!;
     const prev = rows.get(key);
+    if (state === "waiting" && prev?.state === "done") continue;
     const row = prev ?? { tool: e.tool, session: e.session, project: e.project, state, since: e.ts, subagents: 0, last: e.ts };
     if (e.event === "UserPromptSubmit") row.subagents = 0;
     if (e.event === "PreToolUse") row.subagents += 1;

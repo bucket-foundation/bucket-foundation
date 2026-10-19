@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { startServe } from "../src/serve";
 import { foldAgents, parseEvent } from "../src/wait-fold";
-import { agentsBody, codexNotifyLine, hookPath, mergeCodex, renderHook, renderNotify, waitDir, waitInstall, waitRoutes, waitStatus, waitUninstall, writeFocus, type WaitDeps } from "../src/wait";
+import { writeAtomic, agentsBody, codexNotifyLine, hookPath, mergeCodex, renderHook, renderNotify, waitDir, waitInstall, waitRoutes, waitStatus, waitUninstall, writeFocus, type WaitDeps } from "../src/wait";
 
 const roots: string[] = [];
 afterAll(() => roots.forEach((r) => rmSync(r, { recursive: true, force: true })));
@@ -134,6 +134,8 @@ describe("hook shim", () => {
 describe("notifier", () => {
   const fire = (s: S, event: string, session = "n-1", extra: Record<string, string> = {}) => Bun.spawnSync(["sh", s.notify, "claude", session, event, "proj"], { env: { ...s.env, ...extra } });
 
+  const perm = (s: S, type: string, session = "n-1") => Bun.spawnSync(["sh", s.notify, "claude", session, "Notification", "proj", type], { env: s.env });
+
   test("sends the study notification once per 10 minutes", () => {
     const s = scratch();
     fire(s, "UserPromptSubmit", "a");
@@ -150,12 +152,23 @@ describe("notifier", () => {
     const s = scratch();
     fire(s, "Stop");
     fire(s, "SessionEnd");
-    fire(s, "Notification");
-    fire(s, "Notification");
     fire(s, "UserPromptSubmit");
+    perm(s, "permission_prompt");
+    perm(s, "permission_prompt");
     fire(s, "Stop");
     const titles = s.sentLines().map((l) => l.split("\t").at(-3));
-    expect(titles).toEqual(["Done: proj", "Claude is waiting for you: proj", "Study while you wait", "Done: proj"]);
+    expect(titles).toEqual(["Done: proj", "Study while you wait", "Claude is waiting for you: proj", "Done: proj"]);
+  });
+
+  test("idle_prompt after Stop neither flips nor notifies", () => {
+    const s = scratch();
+    fire(s, "Stop");
+    perm(s, "idle_prompt");
+    perm(s, "permission_prompt");
+    expect(s.sentLines().length).toBe(1);
+    fire(s, "UserPromptSubmit", "n-2");
+    perm(s, "idle_prompt", "n-2");
+    expect(s.sentLines().map((l) => l.split("\t").at(-3))).toEqual(["Done: proj", "Study while you wait"]);
   });
 
   test("a fresh focused report suppresses and a stale one sends", () => {
@@ -216,6 +229,12 @@ describe("fold", () => {
     expect(foldAgents(`${text}\n${line(t + 9, "Stop")}`, t + 10)[0]).toMatchObject({ state: "done", since: t + 9, subagents: 0 });
   });
 
+  test("a Notification after Stop keeps the session done", () => {
+    const t = 1_000_000;
+    const rows = foldAgents([line(t, "UserPromptSubmit"), line(t + 1, "Stop"), line(t + 70, "Notification")].join("\n"), t + 80);
+    expect(rows[0]).toMatchObject({ state: "done", since: t + 1 });
+  });
+
   test("drops idle sessions after 30 minutes and done rows after 10", () => {
     const t = 1_000_000;
     expect(foldAgents(line(t, "UserPromptSubmit"), t + 1799)).toHaveLength(1);
@@ -267,6 +286,29 @@ describe("install", () => {
     expect(readFileSync(join(s.home, ".claude", "settings.json"), "utf8")).toBe(ORIGINAL);
     expect(readFileSync(join(s.home, ".codex", "config.toml"), "utf8")).toBe('model = "o4"\n[profiles.x]\nnotify = "nested"\n');
     expect(existsSync(hookPath(s.d))).toBe(false);
+  });
+
+  test("uninstall removes a settings file that install created", async () => {
+    const s = scratch();
+    mkdirSync(join(s.home, ".claude"));
+    expect(await waitInstall(s.d)).toBe(0);
+    expect(existsSync(join(s.home, ".claude", "settings.json"))).toBe(true);
+    expect(await waitUninstall(s.d)).toBe(0);
+    expect(existsSync(join(s.home, ".claude", "settings.json"))).toBe(false);
+  });
+
+  test("an interrupted write leaves the old file whole and no temp file", () => {
+    const s = scratch();
+    const p = join(s.home, "settings.json");
+    writeFileSync(p, ORIGINAL);
+    expect(() =>
+      writeAtomic(p, "{\"new\":", 0o600, (tmp, t) => {
+        writeFileSync(tmp, t.slice(0, 3));
+        throw new Error("disk full");
+      }),
+    ).toThrow("disk full");
+    expect(readFileSync(p, "utf8")).toBe(ORIGINAL);
+    expect(require("node:fs").readdirSync(s.home).filter((f: string) => f.endsWith(".tmp"))).toEqual([]);
   });
 
   test("refuses to replace an existing Codex notify", async () => {

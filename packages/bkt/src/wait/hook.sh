@@ -24,6 +24,7 @@ else
   event=$(pick hook_event_name)
 fi
 cwd=$(pick cwd)
+ntype=$(pick notification_type | tr -cd 'a-z_' | cut -c1-32)
 session=$(printf '%s' "$session" | tr -cd 'A-Za-z0-9_-' | cut -c1-64)
 case "$event" in
   UserPromptSubmit|PreToolUse|SubagentStop|Stop|SessionEnd|Notification|agent-turn-complete|approval-requested) ;;
@@ -46,5 +47,5 @@ case "$line" in
 esac
 [ ${#line} -le 512 ] || exit 0
 printf '%s\n' "$line" >> "$dir/agents.jsonl" 2>/dev/null
-[ -x "$NOTIFY" ] && setsid "$NOTIFY" "$tool" "$session" "$event" "$project" >/dev/null 2>&1 </dev/null &
+[ -x "$NOTIFY" ] && setsid "$NOTIFY" "$tool" "$session" "$event" "$project" "$ntype" >/dev/null 2>&1 </dev/null &
 exit 0
