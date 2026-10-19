@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { avatarInitial, nextIndex, pillHidden, pillItems } from "../src/lib/account-pill";
+import { syncView } from "../src/lib/academy/sync-status";
 
 const root = path.join(__dirname, "..");
 const read = (p: string) => fs.readFileSync(path.join(root, p), "utf8");
@@ -58,4 +59,24 @@ test("settings page shows the email and a sign out button", () => {
   assert.match(page, /user\.email/);
   assert.match(page, /action="\/auth\/sign-out"/);
   assert.match(page, />\s*Sign out\s*</);
+});
+
+test("sync row reads synced, waiting with a count, or offline, and offers Sync now when it can", () => {
+  const base = { pending: 0, online: true, syncing: false, signedIn: true };
+  assert.deepEqual(syncView(base), { state: "synced", label: "Synced", badge: false, canSync: true });
+  assert.deepEqual(syncView({ ...base, pending: 1 }), { state: "waiting", label: "1 change waiting to sync", badge: true, canSync: true });
+  assert.equal(syncView({ ...base, pending: 3 }).label, "3 changes waiting to sync");
+  assert.deepEqual(syncView({ ...base, pending: 2, online: false }), { state: "offline", label: "Offline, 2 changes waiting to sync", badge: true, canSync: false });
+  assert.equal(syncView({ ...base, syncing: true, pending: 2 }).canSync, false);
+  assert.equal(syncView({ ...base, signedIn: false }).state, "idle");
+  assert.deepEqual(syncView({ ...base, signedIn: false, pending: 2 }), { state: "waiting", label: "2 changes waiting to sync", badge: true, canSync: false });
+});
+
+test("the pill carries the sync status and stays off the frozen screens", () => {
+  const menu = read("src/components/auth/UserMenuV2.tsx");
+  assert.match(menu, /if \(!drawer && !pillHidden\(pathname\)\) return <SyncedAccountPill \/>/);
+  const synced = read("src/components/auth/SyncedAccountPill.tsx");
+  assert.match(synced, /Sync now/);
+  assert.match(synced, /role="status"/);
+  assert.match(read("src/components/academy/useSyncStatus.ts"), /reviewSync\.flush\(\)/);
 });
