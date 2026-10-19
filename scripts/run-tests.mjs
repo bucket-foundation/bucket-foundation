@@ -22,6 +22,7 @@ const SUITES = {
       "scripts/test-depth-ladder-counts.ts",
       "scripts/test-research-statement.ts",
       "scripts/test-research-maps.ts",
+      "scripts/test-research-figures.ts",
       "scripts/test-research-maps-corpus.ts",
       "scripts/test-research-host.ts",
       "scripts/test-research-impact-registry.ts",

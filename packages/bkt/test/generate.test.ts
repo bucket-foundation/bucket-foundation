@@ -49,7 +49,7 @@ function fakeSpawn(calls: { script: string; env: Record<string, string> }[], wri
 describe("the generation registry in the repository", () => {
   test("every listed generation has its script, a unique name and known needs", () => {
     const reg = loadRegistry(REPO);
-    expect(reg.generations.map((g) => g.name)).toEqual(["frontier-figure", "problem-star", "problem-slice", "problem-polygon", "problem-polygon-figure", "frontier-card", "paper-frontier", "paper-classes", "paper-backtest", "atlas-plots", "record-glyph", "prime-directions"]);
+    expect(reg.generations.map((g) => g.name)).toEqual(["polingual-coverage", "polingual-similarity", "polingual-sound-meaning", "polingual-index-languages", "frontier-figure", "problem-star", "problem-slice", "problem-polygon", "problem-polygon-figure", "frontier-card", "paper-frontier", "paper-classes", "paper-backtest", "atlas-plots", "record-glyph", "prime-directions"]);
     for (const g of reg.generations) for (const o of g.outputs) expect(o).not.toContain("navier");
     expect(findRepo(join(REPO, "packages/bkt/src"))).toBe(REPO);
   });
