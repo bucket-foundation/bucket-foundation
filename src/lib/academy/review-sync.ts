@@ -64,6 +64,7 @@ export interface ReviewSyncDeps {
   pushSnapshot: (branch: string, state: EngineState) => Promise<boolean>;
   base?: string;
   lock?: <T>(fn: () => Promise<T>) => Promise<T>;
+  deviceId?: string;
   now?: () => number;
   onProblem?: (p: SyncProblem, count: number) => void;
 }
@@ -162,6 +163,7 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
   const notMine = (user: string) => (x: { owner?: string }) => !mine(user)(x);
 
   function deviceId(): string {
+    if (deps.deviceId) return deps.deviceId;
     const s = deps.storage();
     const have = read<string>(s, DEVICE_KEY, "");
     if (have) return have;

@@ -40,7 +40,7 @@ const SUITES = {
       "scripts/test-whats-new-email.ts",
       "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
-      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,lang-memory,replay,review-log,review-sync}.ts",
+      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,lang-memory,replay,review-log,review-sync,device-auth}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-research-agent-route.ts",
       "scripts/test-llm-daily-limit.ts",
@@ -78,7 +78,7 @@ const SUITES = {
     ],
   },
   db: {
-    files: ["scripts/test-research-os-*-db.ts", "scripts/test-academy-review-log-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],
+    files: ["scripts/test-research-os-*-db.ts", "scripts/test-academy-review-log-db.ts", "scripts/test-academy-devices-db.ts", "scripts/test-academy-device-sync-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],
   },
   "research-os": {
     files: [
