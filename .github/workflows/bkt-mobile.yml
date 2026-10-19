@@ -262,7 +262,7 @@ jobs:
           b=packages/bkt-mobile/android/app/build/outputs
           "$bt/zipalign" -f 4 "$b/apk/release/app-release-unsigned.apk" "$RUNNER_TEMP/aligned.apk"
           "$bt/apksigner" sign --ks "$ks" --ks-key-alias "$ANDROID_KEY_ALIAS" --ks-pass env:ANDROID_KEYSTORE_PASSWORD --key-pass env:ANDROID_KEY_PASSWORD --out "$out/Bucket-android-$TAG.apk" "$RUNNER_TEMP/aligned.apk"
-          cert="$("$bt/apksigner" verify --print-certs "$out/Bucket-android-$TAG.apk" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')"
+          cert="$("$bt/apksigner" verify --print-certs "$out/Bucket-android-$TAG.apk" | sed -n 's/^Signer.*certificate SHA-256 digest: //p' | head -1)"
           echo "signer sha256: $cert"
           [ -n "$ANDROID_CERT_SHA256" ] || echo "::warning::ANDROID_CERT_SHA256 unset in bkt-release; signer not pinned."
           if [ -n "$ANDROID_CERT_SHA256" ] &&[ "$cert" != "$(echo "$ANDROID_CERT_SHA256" | tr -d ': ' | tr 'A-F' 'a-f')" ]; then
