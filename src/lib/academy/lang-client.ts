@@ -1,6 +1,7 @@
 "use client";
 
 import { buildLangCorpus, LANGS, mergeSystems, normalizeSystemsDoc, type LangCorpus, type LangSystem, type RawLayers, type SystemsDoc } from "./lang-systems";
+import { AUDIO_BASE, audioKey, audioUrl, pickVoice } from "./lang-audio";
 import { pullServer, type ServerBranches } from "./progress-store";
 
 const BASE = "/academy-app/corpus";
@@ -103,23 +104,69 @@ export function speechSupported(): boolean {
   return typeof window !== "undefined" && "speechSynthesis" in window && typeof window.SpeechSynthesisUtterance === "function";
 }
 
+const CLIP_INDEX = `${AUDIO_BASE}/index.json`;
+let clipIndex: Map<string, Set<string>> | null = null;
+let clipPromise: Promise<void> | null = null;
+
+export function loadClipIndex(): Promise<void> {
+  if (!clipPromise) {
+    clipPromise = fetch(CLIP_INDEX, { cache: "force-cache" })
+      .then((r): Promise<Record<string, string[]>> => (r.ok ? r.json() : Promise.resolve({})))
+      .then((doc) => {
+        clipIndex = new Map(Object.entries(doc).map(([l, keys]) => [l, new Set(keys)]));
+      })
+      .catch(() => {
+        clipPromise = null;
+      });
+  }
+  return clipPromise;
+}
+
+export function hasClip(lang: string, text: string): boolean {
+  return !!clipIndex?.get(lang)?.has(audioKey(lang, text));
+}
+
+function voiceFor(lang: string): SpeechSynthesisVoice | null {
+  if (!speechSupported()) return null;
+  return pickVoice(window.speechSynthesis.getVoices(), lang, LANGS[lang]?.bcp47 ?? lang);
+}
+
+export function canSpeak(text: string, lang: string): boolean {
+  if (typeof window === "undefined" || !text) return false;
+  return voiceFor(lang) !== null || hasClip(lang, text);
+}
+
+let clip: HTMLAudioElement | null = null;
+
+function playClip(text: string, lang: string): boolean {
+  if (!hasClip(lang, text) || typeof window.Audio !== "function") return false;
+  try {
+    if (speechSupported()) window.speechSynthesis.cancel();
+    clip?.pause();
+    clip = new window.Audio(audioUrl(lang, text));
+    void clip.play().catch(() => undefined);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function speak(text: string, lang: string): boolean {
-  if (!speechSupported() || !text) return false;
+  if (typeof window === "undefined" || !text) return false;
+  const voice = voiceFor(lang);
+  if (!voice) return playClip(text, lang);
   try {
     const synth = window.speechSynthesis;
     synth.cancel();
+    clip?.pause();
     const u = new SpeechSynthesisUtterance(text);
-    const tag = LANGS[lang]?.bcp47 ?? lang;
-    const prefix = tag.slice(0, 2).toLowerCase();
-    const voices = synth.getVoices();
-    const v = voices.find((x) => x.lang.toLowerCase().replace("_", "-") === tag.toLowerCase()) ?? voices.find((x) => x.lang.toLowerCase().startsWith(prefix));
-    if (v) u.voice = v;
-    u.lang = v?.lang ?? tag;
+    u.voice = voice;
+    u.lang = voice.lang;
     u.rate = 0.9;
     synth.speak(u);
     return true;
   } catch {
-    return false;
+    return playClip(text, lang);
   }
 }
 
