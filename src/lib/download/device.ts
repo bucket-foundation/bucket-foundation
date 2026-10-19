@@ -16,7 +16,7 @@ export const DEVICE_LABEL: Record<Device, string> = {
   web: "Web",
 };
 
-export const LEARN_PATH = "/learn";
+export const LEARN_PATH = "/research-os/learn";
 
 export function detectDevice(ua: string | null | undefined, archHint: string | null | undefined = null): DetectedDevice {
   const s = ua ?? "";

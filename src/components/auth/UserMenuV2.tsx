@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "@/providers/SessionProvider";
 import { useSignInClosed, useSignInHref } from "@/components/auth/SignInEntryContext";
+import { useAccountGate } from "@/components/auth/AccountGate";
 
 const BUTTON =
   "small-caps text-[11px] text-[color:var(--bone)] bg-[color:var(--laurel-deep)] tracking-[0.14em] px-4 rounded-sm hover:bg-[color:var(--aegean-deep)] transition inline-flex items-center whitespace-nowrap h-11";
@@ -15,6 +16,7 @@ export default function UserMenuV2({ drawer = false, onNavigate, launchList = fa
   const pathname = usePathname() || "/";
   const closed = useSignInClosed();
   const signIn = useSignInHref(pathname === "/" ? "/research-os/home" : pathname);
+  const { openSignIn } = useAccountGate();
 
   if (!user) {
     const cta = launchList && !closed ? "Notify me" : "Sign in";
@@ -27,9 +29,9 @@ export default function UserMenuV2({ drawer = false, onNavigate, launchList = fa
       );
     }
     return (
-      <Link href={href} className={BUTTON + (loading ? " opacity-70" : "")}>
-        {cta}
-      </Link>
+      <button type="button" onClick={openSignIn} data-header-sign-in className={BUTTON + (loading ? " opacity-70" : "")}>
+        Sign in
+      </button>
     );
   }
 
