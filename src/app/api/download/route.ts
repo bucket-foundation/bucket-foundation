@@ -1,16 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { normalizeEmail } from "@/lib/waitlist/core";
-import { forgetDownload, handleDownload, rateLimiter } from "@/lib/download/handler";
-import { notifierConfig, resendNotifier } from "@/lib/download/notify";
-import { getMarkStore, sharedRateLimiter } from "@/lib/download/marks";
+import { forgetDownload } from "@/lib/download/handler";
+import { captureRequest } from "@/lib/capture/server";
 import { adminKeyMatches, getWaitlistStore } from "@/lib/waitlist/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const NO_STORE = { "cache-control": "no-store" };
-const localLimited = rateLimiter(5, 60_000);
-
+const FORGET_PARTS = ["downloads", "downloads/suspect", "polingual", "polingual/suspect"] as const;
 function clientIp(req: NextRequest): string {
   return req.ip || req.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
 }
@@ -22,14 +20,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   } catch {
     return NextResponse.json({ error: "Send the form as JSON." }, { status: 400, headers: NO_STORE });
   }
-  const marks = getMarkStore();
-  const config = notifierConfig();
-  if (!config) console.error("[download] RESEND_API_KEY, DOWNLOAD_LINK_SECRET or DOWNLOAD_ARTIFACT_BLOB unset; request stored without email");
-  const result = await handleDownload(body, clientIp(req), {
-    store: (suspect) => getWaitlistStore(process.env, suspect ? "downloads/suspect" : "downloads"),
-    limited: marks ? sharedRateLimiter(marks, 5, 60_000) : localLimited,
-    notify: config && marks ? resendNotifier(config, marks) : undefined,
-  });
+  const result = await captureRequest({ ...(body && typeof body === "object" ? body : {}), source: "download" }, clientIp(req));
   return NextResponse.json(result.body, { status: result.status, headers: NO_STORE });
 }
 
@@ -40,7 +31,7 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
   const email = normalizeEmail(req.nextUrl.searchParams.get("email"));
   if (!email) return NextResponse.json({ error: "Give a valid email." }, { status: 400, headers: NO_STORE });
   try {
-    for (const part of ["downloads", "downloads/suspect"] as const) {
+    for (const part of FORGET_PARTS) {
       const store = getWaitlistStore(process.env, part);
       if (!store) return NextResponse.json({ error: "No Blob store is connected." }, { status: 503, headers: NO_STORE });
       await forgetDownload(store, email);

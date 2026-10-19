@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { parseSignup, toCsv } from "@/lib/waitlist/core";
-import { adminKeyMatches, getWaitlistStore, listSignups, saveSignup } from "@/lib/waitlist/store";
+import { toCsv } from "@/lib/waitlist/core";
+import { captureRequest } from "@/lib/capture/server";
+import { adminKeyMatches, getWaitlistStore, listSignups } from "@/lib/waitlist/store";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -8,20 +9,8 @@ export const maxDuration = 60;
 
 const NO_STORE = { "cache-control": "no-store" };
 
-const WINDOW_MS = 60_000;
-const MAX_PER_WINDOW = 10;
-const hits = new Map<string, number[]>();
-
-function limited(ip: string, now = Date.now()): boolean {
-  const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
-  recent.push(now);
-  hits.set(ip, recent);
-  if (hits.size > 5000) hits.clear();
-  return recent.length > MAX_PER_WINDOW;
-}
-
 function clientIp(req: NextRequest): string {
-  return req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
+  return req.ip || req.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
 }
 
 function json(body: unknown, status = 200): NextResponse {
@@ -29,32 +18,14 @@ function json(body: unknown, status = 200): NextResponse {
 }
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  if (limited(clientIp(req))) return json({ error: "Too many signups from here. Wait a minute and try again." }, 429);
-
   let body: unknown;
   try {
     body = await req.json();
   } catch {
     return json({ error: "Send the form as JSON." }, 400);
   }
-
-  const parsed = parseSignup(body);
-  if (!parsed.ok) return json({ error: parsed.error }, 400);
-
-  const store = getWaitlistStore(process.env, parsed.suspect ? "suspect" : "list");
-  if (!store) {
-    console.error("[waitlist] no Blob store connected; signup refused");
-    return json({ error: "The launch list is closed for a moment. Try again later." }, 503);
-  }
-
-  if (parsed.suspect) console.warn("[waitlist] honeypot field filled; signup held under suspect/");
-  try {
-    await saveSignup(store, parsed.input);
-  } catch (err) {
-    console.error("[waitlist] save failed:", err instanceof Error ? err.message : err);
-    return json({ error: "Your signup did not save. Try again in a minute." }, 502);
-  }
-  return json({ ok: true });
+  const result = await captureRequest({ ...(body && typeof body === "object" ? body : {}), source: "wall" }, clientIp(req));
+  return json(result.body, result.status);
 }
 
 export async function GET(req: NextRequest): Promise<NextResponse> {

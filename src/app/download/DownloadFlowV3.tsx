@@ -69,10 +69,11 @@ export default function DownloadFlowV3({ detected, installers, windowed = [] }: 
     setBusy(true);
     setError(null);
     try {
-      const res = await fetch("/api/download", {
+      const res = await fetch("/api/capture", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
+          source: "download",
           email: email.trim(),
           name: name.trim(),
           role,
