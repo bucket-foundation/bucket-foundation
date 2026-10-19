@@ -70,7 +70,7 @@ export interface ReviewLogDeps {
   atoms: (branch: string) => Readonly<Record<string, Atom[]>>;
 }
 
-export const corpusAtomsVersion = (branch: string) => `corpus:${branch}`;
+export { corpusAtomsVersion } from "./replay";
 
 export function payloadHash(r: ReviewInput): string {
   const canon = JSON.stringify([r.branch, r.card_id, r.rating, r.level, r.reviewed_at, r.tz, r.atoms_version, r.device_id]);

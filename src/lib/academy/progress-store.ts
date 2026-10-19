@@ -1,6 +1,7 @@
 "use client";
 
 import { mergeState, normalizeState, type EngineState } from "./engine";
+import { createReviewSync, type PulledReview, type QueuedReview, type ReviewEvent } from "./review-sync";
 
 export type ServerBranches = Record<string, { data: unknown; updated_at: string }>;
 
@@ -8,6 +9,8 @@ export interface ProgressStore {
   pull(): Promise<ServerBranches | null>;
   load(branch: string, server?: ServerBranches | null): Promise<EngineState>;
   save(branch: string, state: EngineState): void;
+  appendReview?(branch: string, review: ReviewEvent): QueuedReview;
+  pullLog?(): Promise<PulledReview[] | null>;
 }
 
 export const LS_BASE = "bucket-academy/v1";
@@ -61,15 +64,47 @@ export async function pushBranch(branch: string, state: EngineState): Promise<bo
   }
 }
 
+export const reviewSync = createReviewSync({
+  storage: () => {
+    try {
+      return typeof localStorage === "undefined" ? null : localStorage;
+    } catch {
+      return null;
+    }
+  },
+  fetch: (input, init) => fetch(input, init),
+  uuid: () => crypto.randomUUID(),
+  readLocal,
+  pushSnapshot: pushBranch,
+});
+
+let flushTimer: ReturnType<typeof setTimeout> | null = null;
+
+export function appendReview(branch: string, review: ReviewEvent): QueuedReview {
+  const q = reviewSync.appendReview(branch, review);
+  if (flushTimer) clearTimeout(flushTimer);
+  flushTimer = setTimeout(() => {
+    flushTimer = null;
+    void reviewSync.flush();
+  }, 800);
+  return q;
+}
+
+export async function pullLog(): Promise<PulledReview[] | null> {
+  await reviewSync.flush();
+  return reviewSync.pullLog();
+}
+
 export async function loadBranch(branch: string, server?: ServerBranches | null): Promise<EngineState> {
   const local = readLocal(branch);
+  void pullLog();
   const remote = server === undefined ? await pullServer() : server;
   const remoteState = remote && remote[branch] ? normalizeState(remote[branch].data) : null;
   if (!remoteState) return local ?? normalizeState(null);
   const merged = mergeState(local, remoteState);
   const mergedJson = JSON.stringify(merged);
   if (JSON.stringify(local) !== mergedJson) writeLocal(branch, merged);
-  if (JSON.stringify(remoteState) !== mergedJson) void pushBranch(branch, merged);
+  if (JSON.stringify(remoteState) !== mergedJson && reviewSync.mode() !== "log") void pushBranch(branch, merged);
   return merged;
 }
 
@@ -90,12 +125,12 @@ export function saveBranch(branch: string, state: EngineState): void {
     branch,
     window.setTimeout(() => {
       timers.delete(branch);
-      void pushBranch(branch, state);
+      if (reviewSync.mode() !== "log") void pushBranch(branch, state);
     }, 1200)
   );
 }
 
-export const webProgressStore: ProgressStore = { pull: pullServer, load: loadBranch, save: saveBranch };
+export const webProgressStore: ProgressStore = { pull: pullServer, load: loadBranch, save: saveBranch, appendReview, pullLog };
 
 export function exportLocal(): Record<string, EngineState> {
   const out: Record<string, EngineState> = {};
