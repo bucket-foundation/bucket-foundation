@@ -347,6 +347,12 @@ declare global {
   }
 }
 
+export interface WorkLanguages {
+  languages: string[];
+  chosen?: string[];
+  fromSystems?: string[];
+}
+
 export interface DeckRow {
   id: string;
   title: string;
@@ -510,11 +516,11 @@ export class Api {
   }
 
   workLanguages() {
-    return this.call<{ languages: string[]; available: { code: string; name: string }[] }>("/local/work-quiz/languages");
+    return this.call<WorkLanguages & { available: { code: string; name: string }[] }>("/local/work-quiz/languages");
   }
 
   workSetLanguages(languages: string[]) {
-    return this.call<{ languages: string[] }>("/local/work-quiz/languages", { method: "POST", body: { languages } });
+    return this.call<WorkLanguages>("/local/work-quiz/languages", { method: "POST", body: { languages } });
   }
 
   researchList() {
