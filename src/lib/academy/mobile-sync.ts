@@ -33,10 +33,17 @@ export function createMobileSync(deps: MobileSyncDeps): MobileSync {
   const base = deps.base.replace(/\/$/, "");
   let flushTimer: ReturnType<typeof setTimeout> | null = null;
 
+  let refreshing: Promise<StoredSession | null> | null = null;
+
   async function current(): Promise<StoredSession | null> {
     const s = await deps.vault.get();
     if (!s) return null;
     if (s.expires_at - MOBILE_REFRESH_MARGIN_S > now() / 1000) return s;
+    if (!refreshing) refreshing = refreshOnce(s).finally(() => (refreshing = null));
+    return refreshing;
+  }
+
+  async function refreshOnce(s: StoredSession): Promise<StoredSession | null> {
     const r = await session({ action: "refresh", refresh_token: s.refresh_token });
     if (r.status === 401) {
       await deps.vault.clear();

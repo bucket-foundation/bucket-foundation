@@ -1,51 +1,45 @@
 import type { NextRequest } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
+import { clientIp, createSessionHandler } from "@/lib/academy/session-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const URL_ = () => process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "") ?? "";
+const opts = { auth: { persistSession: false, autoRefreshToken: false } };
+let anon: SupabaseClient | null = null;
+let bucket: SupabaseClient | null = null;
+const anonClient = () => (anon ??= createClient(URL_(), process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "", opts));
+const bucketClient = () => (bucket ??= createClient(URL_(), process.env.SUPABASE_SERVICE_ROLE_KEY ?? "", { ...opts, db: { schema: "bucket" } }) as unknown as SupabaseClient);
 
-function anon() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  return url && key ? createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } }) : null;
-}
-
-function tokens(s: { access_token: string; refresh_token: string; expires_at?: number; expires_in?: number; user?: { id: string } }) {
-  return { access_token: s.access_token, refresh_token: s.refresh_token, expires_at: s.expires_at ?? Math.floor(Date.now() / 1000) + (s.expires_in ?? 3600), user_id: s.user?.id ?? null };
-}
+const handle = createSessionHandler({
+  enabled: () => process.env.ACADEMY_REVIEW_LOG === "on",
+  configured: () => Boolean(URL_() && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY && process.env.SUPABASE_SERVICE_ROLE_KEY),
+  now: Date.now,
+  rateHit: async (key, limit, windowSeconds) => {
+    const { data, error } = await bucketClient().rpc("session_rate_hit", { p_key: key, p_limit: limit, p_window_seconds: windowSeconds });
+    if (error) throw new Error(`session rate: ${error.message}`);
+    return data === true;
+  },
+  sendOtp: async (email) => {
+    const { error } = await anonClient().auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
+    return { status: error ? (error.status ?? 500) : null };
+  },
+  verifyOtp: async (email, code) => {
+    const { data, error } = await anonClient().auth.verifyOtp({ type: "email", email, token: code });
+    return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
+  },
+  refresh: async (refreshToken) => {
+    const { data, error } = await anonClient().auth.refreshSession({ refresh_token: refreshToken });
+    return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
+  },
+});
 
 export async function POST(req: NextRequest): Promise<Response> {
-  if (process.env.ACADEMY_REVIEW_LOG !== "on") return jsonResponse({ error: "review_log_disabled" }, 503);
-  const sb = anon();
-  if (!sb) return jsonResponse({ error: "sync_unavailable" }, 503);
-  const b = (await readJson(req)) as { action?: unknown; email?: unknown; code?: unknown; refresh_token?: unknown } | null;
-  const email = typeof b?.email === "string" ? b.email.trim() : "";
   try {
-    if (b?.action === "otp") {
-      if (!EMAIL_RE.test(email)) return jsonResponse({ error: "bad_email" }, 400);
-      const { error } = await sb.auth.signInWithOtp({ email, options: { shouldCreateUser: true } });
-      if (error) return jsonResponse({ error: error.status === 429 ? "too_many_requests" : "send_failed" }, error.status === 429 ? 429 : 400);
-      return jsonResponse({ ok: true });
-    }
-    if (b?.action === "verify") {
-      const code = typeof b.code === "string" ? b.code.trim() : "";
-      if (!EMAIL_RE.test(email) || !/^\d{6,10}$/.test(code)) return jsonResponse({ error: "bad_code" }, 400);
-      const { data, error } = await sb.auth.verifyOtp({ type: "email", email, token: code });
-      if (error || !data.session) return jsonResponse({ error: "bad_code" }, 400);
-      return jsonResponse(tokens(data.session));
-    }
-    if (b?.action === "refresh") {
-      const rt = typeof b.refresh_token === "string" ? b.refresh_token : "";
-      if (!rt) return jsonResponse({ error: "bad_request" }, 400);
-      const { data, error } = await sb.auth.refreshSession({ refresh_token: rt });
-      if (error && (error.status ?? 500) >= 500) return jsonResponse({ error: "refresh_failed" }, 502);
-      if (error || !data.session) return jsonResponse({ error: "revoked" }, 401);
-      return jsonResponse(tokens(data.session));
-    }
-    return jsonResponse({ error: "bad_request" }, 400);
+    const r = await handle(await readJson(req), clientIp(req.headers));
+    return jsonResponse(r.body, r.status);
   } catch (e) {
     console.error("academy session", e);
     return jsonResponse({ error: "session_failed" }, 502);

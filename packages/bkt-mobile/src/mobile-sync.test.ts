@@ -25,7 +25,7 @@ function secure(): SecureStore & { data: Map<string, string> } {
   return { data, get: async (k) => data.get(k) ?? null, set: async (k, v) => void data.set(k, v), remove: async (k) => void data.delete(k) };
 }
 
-function server(opts: { online?: boolean; refreshRevoked?: boolean } = {}) {
+function server(opts: { online?: boolean; refreshRevoked?: boolean; refreshStatus?: number } = {}) {
   const state = { online: opts.online ?? true, log: [] as { review_id: string; auth: string }[], calls: [] as string[], token: "at-1" };
   const f = (async (input: RequestInfo | URL, init?: RequestInit) => {
     if (!state.online) throw new TypeError("offline");
@@ -39,6 +39,8 @@ function server(opts: { online?: boolean; refreshRevoked?: boolean } = {}) {
       if (body.action === "verify") return body.code === "123456" ? Response.json({ access_token: state.token, refresh_token: "rt-1", expires_at: NOW / 1000 + 3600, user_id: "u1" }) : Response.json({ error: "bad_code" }, { status: 400 });
       if (body.action === "refresh") {
         if (opts.refreshRevoked) return Response.json({ error: "revoked" }, { status: 401 });
+        if (opts.refreshStatus) return Response.json({ error: "too_many_requests" }, { status: opts.refreshStatus });
+        await new Promise((res) => setTimeout(res, 5));
         state.token = "at-2";
         return Response.json({ access_token: "at-2", refresh_token: "rt-2", expires_at: NOW / 1000 + 7200, user_id: "u1" });
       }
@@ -130,4 +132,25 @@ test("logout clears the session and a bad review body is refused", async () => {
   expect((await post(fetch, "/local/review-log", { branch: "lang", review: { rating: 3 } })).status).toBe(400);
   expect((await post(fetch, "/local/account/logout", {})).status).toBe(200);
   expect(store.data.size).toBe(0);
+});
+
+const expired = () => JSON.stringify({ access_token: "at-1", refresh_token: "rt-1", expires_at: NOW / 1000 - 10, user_id: "u1", device_id: "mobile", supabase_url: BASE, anon_key: "" });
+
+test("parallel callers share one refresh, so the rotating refresh token is spent once", async () => {
+  const srv = server();
+  const store = secure();
+  store.data.set(SESSION_KEY, expired());
+  const { mobile } = app(srv, memoryStorage(), store);
+  const got = await Promise.all([mobile.accessToken(), mobile.accessToken(), mobile.accessToken()]);
+  expect(got).toEqual(["at-2", "at-2", "at-2"]);
+  expect(srv.state.calls.filter((c) => c === "POST /api/academy/session")).toHaveLength(1);
+});
+
+test("a rate-limited refresh keeps the session for a later try", async () => {
+  const srv = server({ refreshStatus: 429 });
+  const store = secure();
+  store.data.set(SESSION_KEY, expired());
+  const { mobile } = app(srv, memoryStorage(), store);
+  expect(await mobile.accessToken()).toBeNull();
+  expect(JSON.parse(store.data.get(SESSION_KEY)!).refresh_token).toBe("rt-1");
 });
