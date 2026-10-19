@@ -123,7 +123,7 @@ export default function SignInForm({ next, allowNewAccounts = true, linkError = 
           pattern="[0-9 ]*"
           value={code}
           onChange={(e) => setCode(e.target.value)}
-          placeholder="6-digit code"
+          placeholder="code from the email"
           className={INPUT + " tracking-[0.2em]"}
         />
         <button type="submit" disabled={busy || !code.trim()} className={BUTTON}>
