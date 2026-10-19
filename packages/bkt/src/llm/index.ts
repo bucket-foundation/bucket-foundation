@@ -11,3 +11,4 @@ export function providerFor(entry: ProviderEntry, keyring: Keyring | null, fetch
   if (entry.kind === "anthropic") return new AnthropicProvider({ name: entry.name, model: entry.model, baseUrl: entry.baseUrl, key, fetch });
   return new OpenAiProvider({ name: entry.name, baseUrl: entry.baseUrl, model: entry.model, local: entry.local, key, fetch });
 }
+export * from "./canon-tools";
