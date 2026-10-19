@@ -29,6 +29,7 @@ const WEB: Record<RosLiveRoute, () => Promise<{ GET?: (req: NextRequest, ctx: un
   profile: () => import("@/app/api/research-os/profile/route"),
   modules: () => import("@/app/api/research-os/modules/route"),
   route: () => import("@/app/api/research-os/route/route"),
+  privacy: () => import("@/app/api/research-os/privacy/route"),
 };
 
 beforeAll(() => {

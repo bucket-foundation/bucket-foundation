@@ -1234,7 +1234,7 @@ describe("Research OS views on the local store", () => {
     const { RosGraph, rosLiveRoutes, syncRosGraph } = await import("../../bkt/src/ros");
     const db = new Store(":memory:", newDataKey()).db;
     syncRosGraph(db, "test", ATOMS);
-    routes = rosLiveRoutes(new RosGraph(db), () => Date.UTC(2026, 8, 30), { saveExport: (name, text) => (savedExports.push({ name, text }), { name, folder: "/home/me/Downloads" }) });
+    routes = rosLiveRoutes(new RosGraph(db), () => Date.UTC(2026, 8, 30), { saveExport: (name, text) => (savedExports.push({ name, text }), { name, folder: "Downloads" }) });
     const { siteFetch } = await import("./site-fetch");
     const loop = (async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = new URL(String(input), "http://127.0.0.1");
@@ -1318,7 +1318,7 @@ describe("Research OS views on the local store", () => {
       await v.act(async () => new Promise((r) => setTimeout(r, 60)));
     };
     await click("Export my profile and idea progress");
-    expect(v.text()).toContain("Saved your profile and idea progress in /home/me/Downloads as research-os-export-2026-09-30.");
+    expect(v.text()).toContain("Saved your profile and idea progress in Downloads as research-os-export-2026-09-30.");
     expect(violations(v.host)).toEqual([]);
     expect(JSON.parse(savedExports.at(-1)!.text).tables.ros_state).toHaveLength(1);
     await click("Delete my profile and idea progress");
