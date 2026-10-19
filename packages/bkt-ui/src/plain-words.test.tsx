@@ -1305,6 +1305,38 @@ describe("Research OS views on the local store", () => {
     await v.unmount();
   });
 
+  test("progress shows level tiles, started decks and saves progress to a file", async () => {
+    await useLocalStore(["02-physics:ph-heat"]);
+    let saved = 0;
+    const v = await mount({ name: "progress" }, { ...empty(), decks: async () => DECKS, exportProgress: async () => (saved++, { name: "bucket-progress-2026-09-30.json", folder: "/home/me/Downloads" }) } as Stub);
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    const tiles = [...v.host.querySelectorAll(".tile")].map((t) => t.textContent);
+    expect(tiles[0]).toMatch(/^Level\d+$/);
+    expect(tiles[2]).toMatch(/^Streak\d+ days?$/);
+    const rows = [...v.host.querySelectorAll(".decks-progress tbody tr")].map((r) => [...r.querySelectorAll("td")].map((c) => c.textContent));
+    expect(rows).toEqual([["Physics", "1 of 3", "1", "10"]]);
+    const b = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Save my progress to a file") as HTMLButtonElement;
+    await v.act(async () => b.click());
+    await v.act(async () => new Promise((r) => setTimeout(r, 20)));
+    expect(saved).toBe(1);
+    expect(v.host.textContent).toContain("Saved your progress in /home/me/Downloads as bucket-progress-2026-09-30.");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("progress with nothing studied points to Learn, and a failed save says so in a sentence", async () => {
+    await useLocalStore();
+    const v = await mount({ name: "progress" }, { ...empty(), exportProgress: () => Promise.reject(new ApiError("save_failed", 500)) } as Stub);
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.host.textContent).toContain("Nothing studied yet. Start a deck in Learn.");
+    const b = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Save my progress to a file") as HTMLButtonElement;
+    await v.act(async () => b.click());
+    await v.act(async () => new Promise((r) => setTimeout(r, 20)));
+    expect(v.host.textContent).toContain("Bucket could not save your progress. Try again.");
+    expect(v.host.textContent).not.toContain("save_failed");
+    await v.unmount();
+  });
+
   test("the profile saves a role and shows the level earned by opening ideas", async () => {
     await useLocalStore(["02-physics:ph-heat"]);
     const v = await mount({ name: "profile" }, empty());
