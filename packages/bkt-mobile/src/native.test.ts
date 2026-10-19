@@ -41,7 +41,13 @@ test("the web bundle loads no remote script", () => {
 });
 
 test("tokens go through secure storage and never web storage", () => {
-  const src = read("src/token.ts") + read("src/adapter.ts") + read("src/main.ts");
+  const src = read("src/token.ts") + read("src/adapter.ts") + read("src/main.ts") + read("../../src/lib/academy/mobile-sync.ts") + read("../../src/lib/academy/token-store.ts");
   expect(src).toContain("@aparajita/capacitor-secure-storage");
   expect(src).not.toMatch(/localStorage|sessionStorage|indexedDB/);
+  expect(read("src/main.ts")).toContain("vault: new SecureStorageVault()");
+});
+
+test("only the review outbox uses web storage, and it holds no session", () => {
+  expect(read("src/outbox-storage.ts")).toContain("window.localStorage");
+  expect(read("../../src/lib/academy/review-sync.ts")).not.toMatch(/access_token|refresh_token/);
 });

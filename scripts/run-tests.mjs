@@ -78,7 +78,7 @@ const SUITES = {
     ],
   },
   db: {
-    files: ["scripts/test-research-os-*-db.ts", "scripts/test-academy-review-log-db.ts", "scripts/test-academy-devices-db.ts", "scripts/test-academy-device-sync-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],
+    files: ["scripts/test-research-os-*-db.ts", "scripts/test-academy-review-log-db.ts", "scripts/test-academy-devices-db.ts", "scripts/test-academy-device-sync-db.ts", "scripts/test-academy-mobile-sync-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],
   },
   "research-os": {
     files: [
