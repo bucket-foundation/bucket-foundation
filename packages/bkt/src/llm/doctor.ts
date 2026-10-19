@@ -1,4 +1,5 @@
 import type { Exec } from "../platform";
+import { RECOMMENDED_LOCAL_MODEL } from "./config";
 import { probeLocal, pickChatModel, type LocalServer } from "./local";
 import { OpenAiProvider } from "./openai";
 import type { Fetch } from "./types";
@@ -129,9 +130,11 @@ export function doctorLines(r: DoctorReport): string[] {
   lines.push(`rocm: ${r.rocm ? "rocminfo installed" : "not installed"}`);
   if (!r.server) {
     lines.push("server: no OpenAI-compatible server on 127.0.0.1:11434, :8080 or :8000");
+    lines.push(`recommended local model: ${RECOMMENDED_LOCAL_MODEL}, run ollama pull ${RECOMMENDED_LOCAL_MODEL}`);
     return lines;
   }
   lines.push(`server: ${r.server.baseUrl} (${r.runner ?? r.server.preset}), ${r.server.models.length} models`);
+  lines.push(`recommended local model: ${RECOMMENDED_LOCAL_MODEL}${r.server.models.includes(RECOMMENDED_LOCAL_MODEL) ? ", installed" : `, not installed; run ollama pull ${RECOMMENDED_LOCAL_MODEL}`}`);
   const c = r.completion;
   if (!c) lines.push("completion: no chat model to test");
   else if (c.ok)

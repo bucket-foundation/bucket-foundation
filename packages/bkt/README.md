@@ -154,3 +154,7 @@ The window reads productions from a file the user saves on the web: sign in at b
 ## Canon pack quotations
 
 The pack holds short quotations from third-party talks, abstracts and texts with a link to each source. Whether these ship in a release is a founder decision recorded on bead bkt-6wjd.
+
+## Bucket Agent
+
+`bkt ask "<question>"` answers from the canon with the tools `canon_search`, `canon_get_claim` and `cite`, and prints each citation with its Math Contract tag. It uses a local provider from `bkt llm list` when one exists, or `--provider NAME`. The recommended local model is `qwen3:8b` (`ollama pull qwen3:8b`, then `bkt llm add ollama`). A provider counts as local only when its base URL is on 127.0.0.1, localhost or [::1]. A hosted provider receives your question and passages under CC0, CC BY, CC BY-SA or public domain; every other passage goes as title and link.

@@ -338,7 +338,7 @@ describe("doctor", () => {
 
   test("reports no server", async () => {
     const r = await runDoctor({ exec: async () => ({ code: 0, stdout: "", stderr: "" }), which: () => null, now: () => 0, fetch: async () => Promise.reject(new TypeError("refused")) });
-    expect(doctorLines(r)).toEqual(["gpu: none found", "rocm: not installed", "server: no OpenAI-compatible server on 127.0.0.1:11434, :8080 or :8000"]);
+    expect(doctorLines(r)).toEqual(["gpu: none found", "rocm: not installed", "server: no OpenAI-compatible server on 127.0.0.1:11434, :8080 or :8000", "recommended local model: qwen3:8b, run ollama pull qwen3:8b"]);
   });
 
   test("parses lspci and splits placement", () => {

@@ -21,12 +21,14 @@ export interface Preset {
   keyed: boolean;
 }
 
+export const RECOMMENDED_LOCAL_MODEL = "qwen3:8b";
+
 export const PRESETS: Record<string, Preset> = {
   anthropic: { kind: "anthropic", baseUrl: "https://api.anthropic.com", model: "claude-sonnet-4-5", local: false, keyed: true },
   openai: { kind: "openai", baseUrl: "https://api.openai.com/v1", model: "gpt-4.1-mini", local: false, keyed: true },
   openrouter: { kind: "openai", baseUrl: "https://openrouter.ai/api/v1", model: "anthropic/claude-sonnet-4.5", local: false, keyed: true },
   gemini: { kind: "openai", baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai", model: "gemini-2.5-flash", local: false, keyed: true },
-  ollama: { kind: "openai", baseUrl: "http://127.0.0.1:11434/v1", model: "qwen3:4b", local: true, keyed: false },
+  ollama: { kind: "openai", baseUrl: "http://127.0.0.1:11434/v1", model: RECOMMENDED_LOCAL_MODEL, local: true, keyed: false },
   llamacpp: { kind: "openai", baseUrl: "http://127.0.0.1:8080/v1", model: "default", local: true, keyed: false },
   vllm: { kind: "openai", baseUrl: "http://127.0.0.1:8000/v1", model: "default", local: true, keyed: false },
   lmstudio: { kind: "openai", baseUrl: "http://127.0.0.1:1234/v1", model: "default", local: true, keyed: false },
