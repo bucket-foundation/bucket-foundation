@@ -73,6 +73,23 @@ export const TABLE: CommandSpec[] = [
   { name: "quiz unschedule", summary: "remove the daily quiz notification timer" },
   { name: "wait install", summary: "notify you to study while Claude Code or Codex agents run; Linux only" },
   { name: "wait uninstall", summary: "remove the Claude Code and Codex hooks that bkt wait added" },
+  {
+    name: "llm add",
+    summary: "add a model provider; hosted keys go to the keyring, read with hidden input",
+    args: "<name>",
+    positionals: [1, 1],
+    session: true,
+    options: {
+      model: { type: "string", value: "MODEL", help: "model id to use" },
+      "base-url": { type: "string", value: "URL", help: "OpenAI-compatible base URL for a provider bkt does not know" },
+      "key-fd": { type: "string", value: "N", help: "read the API key from file descriptor N" },
+      "no-key": { type: "boolean", help: "the server takes no key" },
+    },
+  },
+  { name: "llm remove", summary: "remove a model provider and delete its key from the keyring", args: "<name>", positionals: [1, 1], session: true },
+  { name: "llm list", summary: "list model providers and whether each key is stored", session: true },
+  { name: "llm local", summary: "look for a local OpenAI-compatible server on ports 11434, 8080 and 8000" },
+  { name: "llm doctor", summary: "check the GPU, the local model server and one test completion", options: { model: { type: "string", value: "MODEL", help: "model to test" } } },
   { name: "wait status", summary: "show whether the agent hooks are on and the last events" },
   {
     name: "analyze",

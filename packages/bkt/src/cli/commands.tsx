@@ -15,7 +15,7 @@ import { spawn } from "node:child_process";
 import { formLines, listAnalyses, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type AnalyzeOptions } from "../analyze";
 import { AnalysisBrowser, AnalyzeRun } from "../analyze-view";
 import type { Pack, PackDeck } from "../pack/export";
-import { dataDir, ensureDataDir, openSession, pickKeyring, type Session } from "../setup";
+import { dataDir, ensureDataDir, openSession, pickKeyring, promptPassphrase, readPassphraseFd, type Session } from "../setup";
 import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
@@ -42,7 +42,7 @@ import { provenServer } from "../core/remote";
 import { graphView } from "./screens";
 import { HaiApp } from "../hai/view";
 import { doctorLines, doctorPassed, runDoctor } from "../doctor";
-import { execSync, platformFor } from "../platform";
+import { exec as platformExec, execSync, platformFor } from "../platform";
 import { completionScript, isShell } from "./completion";
 import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
@@ -87,6 +87,7 @@ import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
 import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
+import { llmCommand } from "./llm";
 import { defaultWaitDeps, FOCUS_BODY_BYTES, WAIT_BODY_BYTES, waitCommand, waitRoutes } from "../wait";
 import { hostname } from "node:os";
 import { generatedFigures, generationRoutes } from "../generation-routes";
@@ -676,6 +677,7 @@ export async function execute(inv: Invocation): Promise<number> {
     return EXIT.ok;
   }
   if (name === "doctor") return doctor(inv, json);
+  if (name.startsWith("llm ")) return llmCmd(inv);
   if (name === "generate") return generateCmd(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
   if (name.startsWith("research ")) return researchCmd(inv, json);
@@ -759,4 +761,21 @@ export async function execute(inv: Invocation): Promise<number> {
   } finally {
     session.store.close();
   }
+}
+
+async function llmCmd(inv: Invocation): Promise<number> {
+  const home = ensureDataDir(dataDir());
+  const fd = inv.values["key-fd"];
+  return llmCommand(
+    inv.command.name.slice(4),
+    { positionals: inv.positionals, values: inv.values },
+    {
+      home,
+      keyring: () => pickKeyring(keyringOptions(inv), home),
+      readKey: async (label) => (typeof fd === "string" ? readPassphraseFd(Number(fd)) : promptPassphrase(label)),
+      fetch,
+      doctor: { fetch, exec: platformExec, now: Date.now, which: (b) => Bun.which(b) },
+      out: (l) => console.log(l),
+    },
+  );
 }
