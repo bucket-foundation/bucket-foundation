@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+[ "$(uname -m)" = x86_64 ] || { echo "appimage-sidecar.sh builds and checks the x86_64 AppImage only" >&2; exit 2; }
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 bundle="$here/src-tauri/target/release/bundle/appimage"
 sidecar="$here/src-tauri/binaries/bkt-$(uname -m)-unknown-linux-gnu"
