@@ -85,6 +85,9 @@ jobs:
       - name: eight Learn views pass with the network denied
         working-directory: packages/bkt
         run: bun scripts/smoke.ts --learn-offline
+      - name: an injected outside call fails the offline run, from the window and from the helper
+        working-directory: packages/bkt
+        run: bun scripts/smoke.ts --learn-offline --mutation
 
   ros-contract:
     runs-on: ubuntu-latest

@@ -118,6 +118,9 @@ describe("canon screen with the globe", () => {
     expect(Number(globe.dataset.markers)).toBeGreaterThan(50);
     expect(Array.from(v.host.querySelectorAll('[role="radio"]')).map((b) => b.textContent)).toEqual(["globe", "circle"]);
     expect((v.host.querySelector('.canon-site input[type="text"]') as HTMLInputElement).placeholder).toBe("search 364 source excerpts across 2 branches");
+    const { GLOBE_SEARCH_INPUT } = await import("./views/CanonSearch");
+    expect(v.host.querySelectorAll(GLOBE_SEARCH_INPUT)).toHaveLength(1);
+    expect(v.host.querySelector(GLOBE_SEARCH_INPUT)).toBe(v.host.querySelector('.canon-site input[type="text"]'));
     const { canonCounts } = await import("./views/CanonSearch");
     const counts = canonCounts(ABOUT);
     const cells = Array.from(v.host.querySelectorAll<HTMLElement>(".canon-site aside dl > div"));

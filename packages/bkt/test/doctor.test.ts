@@ -55,6 +55,9 @@ class CountingKeyring implements Keyring {
   async set(): Promise<void> {
     this.sets++;
   }
+  async delete(): Promise<boolean> {
+    return false;
+  }
 }
 
 const pythonOk = (missing = ""): ExecResult => ({ code: 0, stdout: `3.13.1\n${missing}\n`, stderr: "" });

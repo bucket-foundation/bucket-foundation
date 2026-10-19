@@ -75,7 +75,7 @@ function Unavailable({ status, code, retry }: { status: number; code?: string | 
   }
   if (status === 503) return <ErrorState title={UNCONFIGURED_COPY.title} body={UNCONFIGURED_COPY.body} />;
   if (status === 401) return <ErrorState title="Your session ended" body="Sign in again to continue." />;
-  return <ErrorState body={status ? `The server answered ${status}.` : "The request did not reach the server."} retry={retry} />;
+  return <ErrorState body={status ? "Bucket could not load your home page. Try again." : "Bucket could not reach the server. Check your connection and try again."} details={status ? `status ${status}${code ? ` ${code}` : ""}` : null} retry={retry} />;
 }
 
 function due(d?: string | null): string | null {

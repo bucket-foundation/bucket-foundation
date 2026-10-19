@@ -57,11 +57,22 @@ export function EmptyState({ title, body, action }: { title: string; body?: Reac
   );
 }
 
-export function ErrorState({ title = "Something went wrong", body, retry }: { title?: string; body?: ReactNode; retry?: () => void }) {
+export function RawDetails({ raw }: { raw?: string | null }) {
+  if (!raw) return null;
+  return (
+    <details className="mt-2 text-[12px] text-[color:var(--basalt-3)]" data-testid="raw-details">
+      <summary className="cursor-pointer small-caps tracking-[0.12em]">details</summary>
+      <pre className="mt-1 font-mono whitespace-pre-wrap break-all">{raw}</pre>
+    </details>
+  );
+}
+
+export function ErrorState({ title = "Something went wrong", body, retry, details }: { title?: string; body?: ReactNode; retry?: () => void; details?: string | null }) {
   return (
     <div role="alert" className="py-4 border-l-2 border-[color:var(--crimson)] pl-4">
       <div className="text-[14px] text-[color:var(--basalt)]">{title}</div>
       {body && <p className="mt-1 text-[13px] leading-[1.6] text-[color:var(--basalt-3)]">{body}</p>}
+      <RawDetails raw={details} />
       {retry && (
         <button type="button" onClick={retry} className={BTN_SECONDARY + " mt-3"}>
           try again

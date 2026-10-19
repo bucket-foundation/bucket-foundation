@@ -1,11 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { normalizeState, type EngineState } from "@/lib/academy/engine";
 import type { Rating } from "@/lib/academy/fsrs";
 import { loadLangCorpus, loadSystems, saveSystems, type SaveResult } from "@/lib/academy/lang-client";
 import { applyPlacement, editSystem, gradeCard, progressBranch, type LangCorpus, type LangSystem } from "@/lib/academy/lang-systems";
 import { webProgressStore } from "@/lib/academy/progress-store";
+import { useAccountGate } from "@/lib/academy/account-gate-context";
+import { guestMayStudyLanguage } from "@/lib/academy/guest-merge";
 import { sharedMemoryActive } from "@/lib/academy/lang-memory";
 import { browserMemoryIO, gradeShared, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
 
@@ -28,7 +30,18 @@ export function useLangSystem(systemId: string): LangSystemHandle {
   const [on] = useState(sharedMemoryActive);
   const shared = useSharedLangSystem(systemId, on);
   const legacy = useLegacyLangSystem(systemId, !on);
-  return on ? { ...shared, shared: true } : legacy;
+  const handle = on ? shared : legacy;
+  const { guest, requireAccount } = useAccountGate();
+  const inner = handle.grade;
+  const grade = useCallback(
+    (lang: string, itemId: string, rating: Rating) => {
+      const apply = () => inner(lang, itemId, rating);
+      if (guest && !guestMayStudyLanguage(systemId)) requireAccount(apply);
+      else apply();
+    },
+    [inner, guest, requireAccount, systemId]
+  );
+  return useMemo(() => ({ ...handle, grade, ...(on ? { shared: true } : {}) }), [handle, grade, on]);
 }
 
 function useLegacyLangSystem(systemId: string, active: boolean): LangSystemHandle {

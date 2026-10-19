@@ -7,6 +7,8 @@ import type { ProductionsSnapshot } from "@ros/productions-snapshot";
 import type { ConceptPage, LessonPage, WordCredit, WordLicence } from "../../bkt/src/core/words";
 import type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 import { siteFetch } from "./site-fetch";
+import type { AgentsBody } from "../../bkt/src/wait-fold";
+export type { AgentRow, AgentsBody } from "../../bkt/src/wait-fold";
 
 export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordLicence, WordView } from "../../bkt/src/core/words";
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
@@ -24,6 +26,8 @@ export type { TablePage } from "../../bkt/src/research-table";
 import type { TablePage } from "../../bkt/src/research-table";
 export type { Change, Exported } from "../../bkt/src/research-work";
 export type { WorkspaceItem } from "../../bkt/src/workspace";
+export type { GenerationRow } from "../../bkt/src/generation-routes";
+import type { GenerationRow } from "../../bkt/src/generation-routes";
 export type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
 import type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
 import type { WorkspaceItem } from "../../bkt/src/workspace";
@@ -347,6 +351,12 @@ declare global {
   }
 }
 
+export interface WorkLanguages {
+  languages: string[];
+  chosen?: string[];
+  fromSystems?: string[];
+}
+
 export interface DeckRow {
   id: string;
   title: string;
@@ -415,6 +425,10 @@ export class Api {
 
   decks() {
     return this.call<{ decks: DeckRow[] }>("/local/decks").then((r) => r.decks);
+  }
+
+  exportProgress() {
+    return this.call<{ name: string; folder: string }>("/local/progress/export", { method: "POST", body: {} });
   }
 
   atoms(deck: string) {
@@ -489,6 +503,18 @@ export class Api {
     return this.call<UpdateOutcome>("/local/update/install", { method: "POST", body: {} });
   }
 
+  agents() {
+    return this.call<AgentsBody>("/local/agents");
+  }
+
+  reportFocus(focused: boolean, visible: boolean) {
+    return this.call<{ ok: boolean }>("/local/focus", { method: "POST", body: { focused, visible } });
+  }
+
+  setWait(on: boolean) {
+    return this.call<AgentsBody & { ok: boolean; lines: string[] }>("/local/wait", { method: "POST", body: { on } });
+  }
+
   setNotify(on: boolean, at?: string) {
     return this.call<{ notify: AppSettings["notify"] }>("/local/settings/notify", { method: "POST", body: at === undefined ? { on } : { on, at } });
   }
@@ -510,11 +536,11 @@ export class Api {
   }
 
   workLanguages() {
-    return this.call<{ languages: string[]; available: { code: string; name: string }[] }>("/local/work-quiz/languages");
+    return this.call<WorkLanguages & { available: { code: string; name: string }[] }>("/local/work-quiz/languages");
   }
 
   workSetLanguages(languages: string[]) {
-    return this.call<{ languages: string[] }>("/local/work-quiz/languages", { method: "POST", body: { languages } });
+    return this.call<WorkLanguages>("/local/work-quiz/languages", { method: "POST", body: { languages } });
   }
 
   researchList() {
@@ -635,6 +661,20 @@ export class Api {
 
   async image(slug: string, path: string): Promise<string> {
     const r = await this.researchFile(slug, path);
+    const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
+    if (!IMAGE_TYPES.includes(type)) throw new Error("That file is not an image this window shows.");
+    const blob = await r.blob();
+    if (blob.size > IMAGE_MAX_BYTES) throw new Error("That image is over 8 MB.");
+    return asDataUrl(blob.type === type ? blob : new Blob([blob], { type }));
+  }
+
+  generations() {
+    return this.call<{ generations: GenerationRow[]; repo: boolean }>("/local/generations");
+  }
+
+  async generatedImage(name: string, run: string, file: string): Promise<string> {
+    const r = await fetch(`/local/generations/file?${new URLSearchParams({ name, run, file }).toString()}`, { headers: { authorization: `Bucket ${this.token}` } });
+    if (!r.ok) throw new ApiError(((await r.json().catch(() => ({}))) as { error?: string }).error ?? "", r.status);
     const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
     if (!IMAGE_TYPES.includes(type)) throw new Error("That file is not an image this window shows.");
     const blob = await r.blob();

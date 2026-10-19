@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { buildEncompassingMap, grade, mergeState, normalizeState, type Atom, type EngineState } from "../src/lib/academy/engine";
 import { corpusAtomsVersion } from "../src/lib/academy/replay";
 import { createReviewLogHandlers, type AppendRow, type StoredReview } from "../src/lib/academy/review-log-server";
-import { OUTBOX_CAP, OUTBOX_KEY, createReviewSync, type Fetcher, type ReviewEvent, type ReviewSync } from "../src/lib/academy/review-sync";
+import { OUTBOX_CAP, OUTBOX_KEY, createReviewSync, heldAction, type Fetcher, type ReviewEvent, type ReviewSync } from "../src/lib/academy/review-sync";
 
 const BRANCH = "01-mathematics";
 const ATOMS = [
@@ -383,4 +383,53 @@ test("a caller review_id is kept from the outbox to the server log", async () =>
   assert.equal(q.review_id, "6f1c2b9e-3d4a-4e5f-8a6b-7c8d9e0f1a2b");
   await tab.sync.flush();
   assert.equal(server.log.filter((r) => r.review_id === "6f1c2b9e-3d4a-4e5f-8a6b-7c8d9e0f1a2b").length, 1);
+});
+
+test("a held review can be restored to the signed-in account on request, and then syncs", async () => {
+  const server = new Server();
+  const tab = new Tab(server, memoryStorage());
+  tab.sync.setUser("u1");
+  tab.study("a1", T0);
+  await tab.sync.flush();
+  tab.study("a2", T0 + 1000);
+  tab.sync.setUser("u2");
+  server.user = "u2";
+  assert.equal(tab.sync.held().length, 1);
+  await tab.sync.flush();
+  assert.equal(server.log.filter((r) => r.user === "u2").length, 0);
+  assert.deepEqual(heldAction(tab.sync, { action: "restore" }).body, { restored: 0, held: 1 });
+  const r = heldAction(tab.sync, { action: "restore", claim: true });
+  assert.deepEqual(r.body, { restored: 1, held: 0 });
+  await tab.sync.flush();
+  assert.deepEqual(server.log.filter((x) => x.user === "u2").map((x) => x.card_id), ["a2"]);
+});
+
+test("a held review goes back to its own account without a claim when that account signs in again", async () => {
+  const server = new Server();
+  const tab = new Tab(server, memoryStorage());
+  tab.sync.setUser("u1");
+  tab.study("a1", T0);
+  tab.sync.setUser("u2");
+  assert.equal(tab.sync.held().length, 1);
+  tab.sync.setUser("u1");
+  assert.equal(tab.sync.restoreHeld(), 1);
+  server.user = "u1";
+  await tab.sync.flush();
+  assert.deepEqual(server.log.map((x) => [x.user, x.card_id]), [["u1", "a1"]]);
+});
+
+test("held reviews can be discarded one by one, and bad requests are refused", async () => {
+  const server = new Server();
+  const tab = new Tab(server, memoryStorage());
+  tab.sync.setUser("u1");
+  tab.study("a1", T0);
+  tab.study("a2", T0 + 1000);
+  tab.sync.setUser("u2");
+  const [first] = tab.sync.held();
+  assert.deepEqual(heldAction(tab.sync, { action: "discard", ids: [first.review_id] }).body, { discarded: 1, held: 1 });
+  assert.equal(heldAction(tab.sync, { action: "keep" }).status, 400);
+  assert.equal(heldAction(tab.sync, { action: "restore", ids: [1] }).status, 400);
+  tab.sync.setUser(null);
+  assert.equal(tab.sync.restoreHeld(), 0);
+  assert.equal(tab.sync.held().length, 1);
 });

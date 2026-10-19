@@ -1,6 +1,7 @@
 "use client";
 
 import { mergeState, normalizeState, type EngineState } from "./engine";
+import { watchReconnect } from "./reconnect";
 import { createReviewSync, type PulledReview, type QueuedReview, type ReviewEvent } from "./review-sync";
 
 export type ServerBranches = Record<string, { data: unknown; updated_at: string }>;
@@ -79,6 +80,7 @@ export const reviewSync = createReviewSync({
   onProblem: (problem, count) => console.error("academy review outbox", problem, count),
 });
 
+if (typeof window !== "undefined" && typeof document !== "undefined") watchReconnect(window, document, () => reviewSync.flush(), () => reviewSync.pending().length);
 
 let flushTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -90,6 +92,20 @@ export function appendReview(branch: string, review: ReviewEvent): QueuedReview 
     void reviewSync.flush();
   }, 800);
   return q;
+}
+
+export function heldReviews(): number {
+  return reviewSync.held().length;
+}
+
+export function restoreHeldReviews(ids?: string[]): number {
+  const n = reviewSync.restoreHeld(ids);
+  if (n) void reviewSync.flush();
+  return n;
+}
+
+export function discardHeldReviews(ids?: string[]): number {
+  return reviewSync.discardHeld(ids);
 }
 
 export async function pullLog(): Promise<PulledReview[] | null> {

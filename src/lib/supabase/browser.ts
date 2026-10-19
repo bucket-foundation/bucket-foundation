@@ -2,7 +2,7 @@
 
 import { createBrowserClient } from "@supabase/ssr";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { cookieDomainFor } from "../research-host";
+import { sessionCookieOptions } from "./cookie-options";
 
 let _client: SupabaseClient | null = null;
 
@@ -17,7 +17,6 @@ export function getBrowserSupabase(): SupabaseClient {
   if (!url || !anon) {
     throw new Error("Supabase env missing: set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY");
   }
-  const domain = cookieDomainFor(window.location.hostname);
-  _client = createBrowserClient(url, anon, domain ? { cookieOptions: { domain } } : undefined);
+  _client = createBrowserClient(url, anon, { cookieOptions: { ...sessionCookieOptions(window.location.hostname), secure: window.location.protocol === "https:" } });
   return _client;
 }

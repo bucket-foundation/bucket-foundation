@@ -12,6 +12,10 @@ Plans and PRs both get a critic review before work starts and before merge. Pass
 
 Quantitative claims cite a BucketMath definition or theorem (`[bm:Name]`, library at `lean/`) or carry `[empirical: source, date, command]`. Rules and the `bm.py` tool: [docs/agents/MATH-CONTRACT.md](docs/agents/MATH-CONTRACT.md).
 
+## Figures
+
+A figure request starts with `bkt generate --list`. Run the stored generation that fits (`bkt generate frontier-card --problem navier`); each run lands in `$BKT_HOME/generations/<name>/` with its inputs, script hash and data hashes. A new figure is added to the registry (`tools/generations/registry.json` plus its script) in the same PR that first draws it, never as a one-off script.
+
 ## Quick Reference
 
 ```bash
