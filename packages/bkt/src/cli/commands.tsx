@@ -88,6 +88,7 @@ import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
 import { hostname } from "node:os";
+import { findRepo, GenerateError, loadRegistry, pastRuns, runFolder, runGeneration } from "../generate";
 import { openRemote } from "../sync";
 import type { RemoteSync } from "../../../../src/lib/academy/remote-sync";
 import { syncRoutes } from "../sync/routes";
@@ -591,6 +592,40 @@ async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync,
   return out.mode === "log" ? EXIT.ok : EXIT.failure;
 }
 
+function generateCmd(inv: Invocation, json: boolean): number {
+  const v = inv.values;
+  const home = dataDir();
+  if (v.past === true) {
+    const runs = pastRuns(home, inv.positionals[0]).map((r) => ({ name: r.name, folder: r.folder, created: r.record.created, params: r.record.params, outputs: r.record.outputs }));
+    if (json) console.log(jsonLine("generate", { runs }));
+    else if (!runs.length) console.log("No stored figures yet. bkt generate --list shows what can be made.");
+    else for (const r of runs) console.log(`${r.created.slice(0, 16).replace("T", " ")}  ${r.name}  ${Object.values(r.params).join(" ")}  ${r.folder}`);
+    return EXIT.ok;
+  }
+  const repo = findRepo(typeof v.repo === "string" ? v.repo : process.cwd());
+  if (!repo) throw new UsageError("bkt generate runs inside the Bucket repository; pass --repo or run it from there", inv.command);
+  const reg = loadRegistry(repo);
+  if (v.list === true || !inv.positionals[0]) {
+    const generations = reg.generations.map((g) => ({ name: g.name, about: g.about, inputs: g.inputs }));
+    if (json) console.log(jsonLine("generate", { generations }));
+    else for (const g of generations) console.log(`${g.name.padEnd(24)} ${g.about}${Object.keys(g.inputs).length ? ` (--${Object.keys(g.inputs).join(", --")})` : ""}`);
+    return EXIT.ok;
+  }
+  const params: Record<string, string> = {};
+  for (const k of ["problem", "label"]) if (typeof v[k] === "string") params[k] = v[k] as string;
+  const name = inv.positionals[0];
+  const folder = runFolder(home, name, params, new Date());
+  try {
+    const rec = runGeneration(reg, name, params, { repo, out: folder });
+    if (json) console.log(jsonLine("generate", { folder, outputs: rec.outputs }));
+    else console.log(`Made ${name} in ${folder}: ${rec.outputs.join(", ")}`);
+    return EXIT.ok;
+  } catch (e) {
+    if (e instanceof GenerateError) throw new UsageError(e.message, inv.command);
+    throw e;
+  }
+}
+
 export async function execute(inv: Invocation): Promise<number> {
   const name = inv.command.name;
   const json = inv.values.json === true;
@@ -627,6 +662,7 @@ export async function execute(inv: Invocation): Promise<number> {
     return EXIT.ok;
   }
   if (name === "doctor") return doctor(inv, json);
+  if (name === "generate") return generateCmd(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
   if (name.startsWith("research ")) return researchCmd(inv, json);
   if (name === "licences") {
