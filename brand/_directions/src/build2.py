@@ -1,6 +1,9 @@
 import json,os,math,glob,html as H
 from lib import D,glyph,wordmark,pairs,gear,cr
 from paths import SRC_DIR,BRAND_DIR
+import re as _re
+REGEN=_re.compile(r'(pages/[^/]+/thumbs/|screens/thumbs/|logos/px/|3d/[^/]+[.]png$|video/|mood/)')
+def have(p): return bool(REGEN.search(p)) or os.path.exists(p)
 MADE=json.load(open(SRC_DIR+'/made.json'))
 from logos import MARKS,svgm,lockup,mho,construction,vessel,mascot,MASCOT,MOTION
 B=BRAND_DIR+"/"; DD=B+"_directions/"
@@ -146,7 +149,7 @@ def clean(t):
     return t[:70]
 def refstrip(d):
     p=f'{DD}refs/{d["id"]}/sources.json'
-    if not os.path.exists(p): return '<p class="small">References pending.</p>',[]
+    if not have(p): return '<p class="small">References pending.</p>',[]
     S=json.load(open(p))
     items="".join(f'<figure><a href="{H.escape(s["url"])}"><img src="refs/{d["id"]}/{s["file"]}" alt="{H.escape(s["title"])}" loading="lazy"></a><figcaption>{H.escape(clean(s["title"]))}, {H.escape(clean(str(s.get("creator",""))))} {H.escape(clean(str(s.get("year",""))))}</figcaption></figure>' for s in S)
     return f'<div class="refs">{items}</div>',S
@@ -169,14 +172,14 @@ PAGES=["landing","polingual-landing","polingual-flow","app-learn","app-language-
 def pagegrid(i):
     out=[]
     for p in PAGES:
-        if not os.path.exists(f'{DD}pages/{i}/{p}.html'): continue
+        if not have(f'{DD}pages/{i}/{p}.html'): continue
         t=f'pages/{i}/thumbs/{p}-1440.png';m=f'pages/{i}/thumbs/{p}-390.png'
-        im=f'<img src="{t}" alt="{p} at 1440px" loading="lazy">' if os.path.exists(DD+t) else ''
-        im2=f'<img class="m" src="{m}" alt="{p} at 390px" loading="lazy">' if os.path.exists(DD+m) else ''
+        im=f'<img src="{t}" alt="{p} at 1440px" loading="lazy">' if have(DD+t) else ''
+        im2=f'<img class="m" src="{m}" alt="{p} at 390px" loading="lazy">' if have(DD+m) else ''
         out.append(f'<a class="pg" href="pages/{i}/{p}.html" target="_blank" rel="noopener"><span class="pv">{im}{im2}</span><span class="pn">{p.replace("-"," ")}</span></a>')
     return f'<div class="pages">{"".join(out)}</div>' if out else ''
 def VID(i):
-    if not os.path.exists(f'{DD}video/{i}-16x9.mp4'): return ''
+    if not have(f'{DD}video/{i}-16x9.mp4'): return ''
     sb="".join(f'<img src="video/{i}-frame-{k}.jpg" alt="Storyboard frame {k}" loading="lazy">' for k in range(1,7))
     return f'<div class="vid"><video src="video/{i}-16x9.mp4" controls muted loop playsinline preload="metadata" poster="video/{i}-frame-2.jpg"></video><video class="v916" src="video/{i}-9x16.mp4" controls muted loop playsinline preload="metadata" poster="video/{i}-frame-2.jpg"></video></div><div class="sb">{sb}</div>'
 VAR={
@@ -210,7 +213,7 @@ for d in D:
     src="".join(f'<li><a href="{u}">{tt}</a></li>' for tt,u in d["src"])
     def frame(kind,w,h,s): return f'<div class="fr" style="width:{w*s:.0f}px;height:{h*s:.0f}px"><iframe src="screens/{i}-{kind}.html" title="{d["name"]} {kind} at {w}px" style="width:{w}px;height:{h}px;transform:scale({s})" ></iframe><span>{w}px</span></div>'
     def tile(href,img,label,slot,w=1440,h=900):
-        ok=os.path.exists(DD+img)
+        ok=have(DD+img)
         im=f'<img src="{img}" alt="{label}" loading="lazy" decoding="async" width="{w}" height="{h}">' if ok else ''
         if ok: SLOTS.setdefault(slot,{})[i]=(img,href,label)
         return f'<a class="tl" href="{href}" data-slot="{slot}" style="--ar:{w}/{h}"><span class="pv">{im}</span><span class="pn">{label}</span></a>'
@@ -248,17 +251,17 @@ for d in D:
     game="".join(pt(p) for p in GM)
     math_=f'<div class="live"><iframe src="screens/{i}-mm.html" title="{d["name"]} math and motion" loading="lazy"></iframe></div>'+pt("math")
     SLOTS.setdefault("math-motion",{})[i]=(f"screens/thumbs/{i}-mm.png",f"screens/{i}-mm.html","math and motion")
-    vid='<p class="pn">Video rendering.</p>' if not os.path.exists(f'{DD}video/{i}-16x9.mp4') else f'<div class="vids"><video src="video/{i}-16x9.mp4" controls muted loop playsinline preload="none" poster="video/{i}-frame-2.jpg" width="1280" height="720"></video><video class="v9" src="video/{i}-9x16.mp4" controls muted loop playsinline preload="none" poster="video/{i}-frame-2.jpg" width="720" height="1280"></video></div>'+"".join(f'<a class="tl" href="video/{i}-frame-{k}.jpg" data-slot="frame-{k}" style="--ar:16/9"><span class="pv"><img src="video/{i}-frame-{k}.jpg" alt="Storyboard frame {k}" loading="lazy" width="640" height="360"></span><span class="pn">frame {k}</span></a>' for k in range(1,7))
+    vid='<p class="pn">Video rendering.</p>' if not have(f'{DD}video/{i}-16x9.mp4') else f'<div class="vids"><video src="video/{i}-16x9.mp4" controls muted loop playsinline preload="none" poster="video/{i}-frame-2.jpg" width="1280" height="720"></video><video class="v9" src="video/{i}-9x16.mp4" controls muted loop playsinline preload="none" poster="video/{i}-frame-2.jpg" width="720" height="1280"></video></div>'+"".join(f'<a class="tl" href="video/{i}-frame-{k}.jpg" data-slot="frame-{k}" style="--ar:16/9"><span class="pv"><img src="video/{i}-frame-{k}.jpg" alt="Storyboard frame {k}" loading="lazy" width="640" height="360"></span><span class="pn">frame {k}</span></a>' for k in range(1,7))
     SLOTS.setdefault("video",{})[i]=(f"video/{i}-frame-3.jpg",f"video/{i}-16x9.mp4","video")
-    three='<p class="pn">3D render queued for this direction.</p>' if not os.path.exists(f'{DD}3d/{i}-mark.jpg') else f'<a class="tl" href="3d/{i}-mark.png" data-slot="3d-mark" style="--ar:1/1"><span class="pv"><img src="3d/{i}-mark.jpg" alt="Blender mark" loading="lazy" width="1024" height="1024"></span><span class="pn">mark, Blender</span></a><a class="tl" href="3d/{i}-object.png" data-slot="3d-object" style="--ar:1/1"><span class="pv"><img src="3d/{i}-object.jpg" alt="Blender object" loading="lazy" width="1024" height="1024"></span><span class="pn">object, Blender</span></a><div class="tl"><canvas class="live3" data-glb="3d/{i}-mark.glb" data-bg="{c["bg"]}" data-light="{LIGHT[i]}" aria-label="Live 3D mark, drag to rotate" width="320" height="320"></canvas><span class="pn">live, Three.js</span></div>'
+    three='<p class="pn">3D render queued for this direction.</p>' if not have(f'{DD}3d/{i}-mark.jpg') else f'<a class="tl" href="3d/{i}-mark.png" data-slot="3d-mark" style="--ar:1/1"><span class="pv"><img src="3d/{i}-mark.jpg" alt="Blender mark" loading="lazy" width="1024" height="1024"></span><span class="pn">mark, Blender</span></a><a class="tl" href="3d/{i}-object.png" data-slot="3d-object" style="--ar:1/1"><span class="pv"><img src="3d/{i}-object.jpg" alt="Blender object" loading="lazy" width="1024" height="1024"></span><span class="pn">object, Blender</span></a><div class="tl"><canvas class="live3" data-glb="3d/{i}-mark.glb" data-bg="{c["bg"]}" data-light="{LIGHT[i]}" aria-label="Live 3D mark, drag to rotate" width="320" height="320"></canvas><span class="pn">live, Three.js</span></div>'
     SLOTS.setdefault("3d-object",{})[i]=(f"3d/{i}-object.jpg",f"3d/{i}-object.png","object")
     lic=[]
     lp=f"{DD}licensed/{i}/sources.json"
-    if os.path.exists(lp):
+    if have(lp):
         try: lic=json.load(open(lp))
         except Exception: lic=[]
     refs="".join(f'<a class="tl" href="refs/{i}/{s_["file"]}" title="{H.escape(clean(s_["title"]))}" style="--ar:4/3"><span class="pv"><img src="refs/{i}/{s_["file"]}" alt="{H.escape(clean(s_["title"]))}" loading="lazy"></span><span class="pn">{H.escape(clean(s_["title"]))}</span></a>' for s_ in S)
-    refs+="".join(f'<a class="tl" href="licensed/{i}/{s_["file"]}" title="{H.escape(clean(str(s_.get("title",""))))}, {H.escape(str(s_.get("license","")))}" style="--ar:4/3"><span class="pv"><img src="licensed/{i}/{s_["file"]}" alt="{H.escape(clean(str(s_.get("title",""))))}" loading="lazy"></span><span class="pn">{H.escape(clean(str(s_.get("title",""))))} · {H.escape(str(s_.get("license","")))}</span></a>' for s_ in lic if os.path.exists(f"{DD}licensed/{i}/{s_.get('file','')}"))
+    refs+="".join(f'<a class="tl" href="licensed/{i}/{s_["file"]}" title="{H.escape(clean(str(s_.get("title",""))))}, {H.escape(str(s_.get("license","")))}" style="--ar:4/3"><span class="pv"><img src="licensed/{i}/{s_["file"]}" alt="{H.escape(clean(str(s_.get("title",""))))}" loading="lazy"></span><span class="pn">{H.escape(clean(str(s_.get("title",""))))} · {H.escape(str(s_.get("license","")))}</span></a>' for s_ in lic if have(f"{DD}licensed/{i}/{s_.get('file','')}"))
     TABS=[("Logos",f'<div class="lg">{logo_cells}</div>'),("Pages",f'<div class="grid">{pages}</div>'),("App",f'<div class="grid">{app}</div>'),("Math and motion",f'<div class="grid">{math_}</div>'),("Video",f'<div class="grid">{vid}</div>'),("Gamification",f'<div class="grid">{game}</div>'),("3D · in progress",f'<div class="grid">{three}</div>'),("References",f'<div class="grid">{refs}</div>')]
     slug=lambda n:re.sub(r"[^a-z0-9]+","-",n.lower()).strip("-")
     panels="".join(f'<section class="ps" id="{i}-{slug(n)}"><h3>{n}</h3>{h}</section>' for n,h in TABS)
