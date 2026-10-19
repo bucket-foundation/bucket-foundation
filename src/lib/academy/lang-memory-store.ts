@@ -65,7 +65,8 @@ async function persist(io: MemoryIO, mine: LangMemory, push: boolean): Promise<b
   io.writeRaw(branch, mine);
   if (!push) return true;
   const latest = await io.pull();
-  const m = latest?.[branch] ? mergeMemory(mine, normalizeMemory(mine.lang, latest[branch].data)) : mine;
+  if (!latest) return false;
+  const m = latest[branch] ? mergeMemory(mine, normalizeMemory(mine.lang, latest[branch].data)) : mine;
   io.writeRaw(branch, m);
   const ok = await io.push(branch, m);
   if (ok) {
