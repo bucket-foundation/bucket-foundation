@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { buildCanonGraph, components, excerptsByAuthor, layoutCanonGraph, matchNodes, neighbours, recordId, type RawGraph } from "@/lib/canon-graph-core";
+import { buildCanonGraph, components, degree, excerptsByAuthor, layoutCanonGraph, matchNodes, neighbours, recordId, shortestPath, type RawGraph } from "@/lib/canon-graph-core";
 
 const RAW: RawGraph = {
   nodes: [
@@ -23,6 +23,27 @@ const RAW: RawGraph = {
 const CENT = { degree: { A1: 2, A2: 1, A3: 1 }, weighted: { A1: 0.9, A2: 0.4 } };
 
 describe("canon graph module", () => {
+  test("degree counts distinct neighbours from the edges, and ignores self and dangling links", () => {
+    const g = buildCanonGraph(RAW, CENT);
+    expect(degree(g, "openalex:A1")).toBe(2);
+    expect(degree(g, "openalex:A6")).toBe(2);
+    expect(degree(g, "openalex:A3")).toBe(1);
+    expect(degree(g, "openalex:A5")).toBe(0);
+    const doubled = { ...g, edges: [...g.edges, { source: "openalex:A2", target: "openalex:A1", weight: 1 }] };
+    expect(degree(doubled, "openalex:A1")).toBe(2);
+  });
+
+  test("shortest path walks edges both ways and stops at the component edge", () => {
+    const g = buildCanonGraph(RAW, CENT);
+    expect(shortestPath(g, "openalex:A2", "openalex:A3")).toEqual(["openalex:A2", "openalex:A1", "openalex:A3"]);
+    expect(shortestPath(g, "openalex:A7", "openalex:A4")).toEqual(["openalex:A7", "openalex:A6", "openalex:A4"]);
+    expect(shortestPath(g, "openalex:A1", "openalex:A1")).toEqual(["openalex:A1"]);
+    expect(shortestPath(g, "openalex:A1", "openalex:A7")).toBeNull();
+    expect(shortestPath(g, "openalex:A1", "openalex:A9")).toBeNull();
+    const ring = buildCanonGraph({ nodes: ["A11", "A12", "A13", "A14"].map((id) => ({ id, name: id, group: "author" })), edges: [{ source: "A11", target: "A12", weight: 1 }, { source: "A12", target: "A14", weight: 1 }, { source: "A11", target: "A13", weight: 1 }, { source: "A13", target: "A14", weight: 1 }] });
+    expect(shortestPath(ring, "openalex:A11", "openalex:A14")).toEqual(["openalex:A11", "openalex:A12", "openalex:A14"]);
+  });
+
   test("keeps linked authors under record ids and drops loose and dangling links", () => {
     const g = buildCanonGraph(RAW, CENT);
     expect(g.nodes.map((n) => n.id)).toEqual(["openalex:A1", "openalex:A2", "openalex:A3", "openalex:A4", "openalex:A6", "openalex:A7"]);
