@@ -150,9 +150,12 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
 
   const grade = useCallback((lang: string, itemId: string, rating: Rating) => {
     if (!ref.current) return;
-    const { session: next } = gradeShared(browserMemoryIO, ref.current, lang, itemId, rating);
+    const { session: next, saved } = gradeShared(browserMemoryIO, ref.current, lang, itemId, rating);
     ref.current = next;
     setSession(next);
+    void saved.then((ok) => {
+      if (!ok) setSaveState("local-only");
+    });
   }, []);
 
   const place = useCallback(

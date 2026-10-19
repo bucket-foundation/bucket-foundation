@@ -48,9 +48,10 @@ async function loadLang(io: MemoryIO, lang: string, systems: LangSystem[], serve
       if (!s.targets.includes(lang)) continue;
       const old = oldStates[progressBranch(s)];
       const bak = backupBranch(progressBranch(s));
-      if (!old || io.readRaw(bak) || server?.[bak]) continue;
-      io.writeRaw(bak, old);
-      if (!(await io.push(bak, old))) throw new Error(`backup ${bak} did not reach the server`);
+      if (!old || server?.[bak]) continue;
+      const copy = io.readRaw(bak) ?? old;
+      io.writeRaw(bak, copy);
+      if (!(await io.push(bak, copy))) throw new Error(`backup ${bak} did not reach the server`);
     }
     m = migrateLang(lang, systems, oldStates, m);
   }
@@ -59,10 +60,13 @@ async function loadLang(io: MemoryIO, lang: string, systems: LangSystem[], serve
   return m;
 }
 
-async function persist(io: MemoryIO, m: LangMemory, push: boolean): Promise<boolean> {
-  const branch = langBranch(m.lang);
-  io.writeRaw(branch, m);
+async function persist(io: MemoryIO, mine: LangMemory, push: boolean): Promise<boolean> {
+  const branch = langBranch(mine.lang);
+  io.writeRaw(branch, mine);
   if (!push) return true;
+  const latest = await io.pull();
+  const m = latest?.[branch] ? mergeMemory(mine, normalizeMemory(mine.lang, latest[branch].data)) : mine;
+  io.writeRaw(branch, m);
   const ok = await io.push(branch, m);
   if (ok) {
     const sent = new Set(m.log.map((r) => r.review_id));

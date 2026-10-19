@@ -112,7 +112,11 @@ async function main() {
 
   let s: SharedSession = s1;
   const fresh = corpus.items.filter((i) => i.kind === "word" && i.forms.it && !s.view.cards[cardId("it", i.id)]).slice(0, NEW_PER_LANG_PER_DAY).map((i) => i.id);
-  for (const id of fresh) s = gradeShared(io, s, "it", id, 3).session;
+  for (const id of fresh) {
+    const g0 = gradeShared(io, s, "it", id, 3);
+    s = g0.session;
+    await g0.saved;
+  }
   const romanceView = (await openShared(io, romance, systems)).view;
   ok(newToday(romanceView, "it", T0) >= NEW_PER_LANG_PER_DAY, "the per-language daily new budget is shared across systems");
   const romancePlan = planSession((await openShared(io, romance, systems)).plan, corpus, romanceView, T0);
@@ -127,7 +131,9 @@ async function main() {
   ok(dupe.log.length === mem.log.length && memoryState(dupe).cards[id0].reps === mem.log.filter((r) => r.card_id === id0).length, "N1: reps equal the rows left after review_id dedupe");
 
   const baseCard = mem.baseline.cards[cardId("it", words[1])];
-  const extra = gradeShared(io, s, "it", words[1], 3).session;
+  const g1 = gradeShared(io, s, "it", words[1], 3);
+  await g1.saved;
+  const extra = g1.session;
   ok(memoryState(extra.memories.it).cards[cardId("it", words[1])].reps === (baseCard.reps ?? 0) + 1, "N2: logged rows replay over the unlogged baseline");
 
   const io2 = new FakeIO("dev-b");
@@ -158,6 +164,19 @@ async function main() {
   const healed = await openShared(io3, trio, systems);
   const landed = healed.memories.it.log.find((r) => r.review_id === queued!.review_id);
   ok(!!landed && !io3.outbox.some((r) => r.review_id === queued!.review_id), "N4: the outbox row lands with its stable review_id and leaves the outbox");
+
+  ok(!!io3.server.get(backupBranch(progressBranch(romance))) && healed.memories.it.migrated === "v1", "a backup push that failed once is retried before the marker is written");
+
+  const ioA = new FakeIO("dev-a");
+  const ioB = new FakeIO("dev-b");
+  ioB.server = ioA.server;
+  ioA.server.set(progressBranch(trio), b);
+  const sa = await openShared(ioA, trio, systems);
+  const sb = await openShared(ioB, trio, systems);
+  await gradeShared(ioA, sa, "it", words[6], 3).saved;
+  await gradeShared(ioB, sb, "it", words[7], 3).saved;
+  const both = normalizeMemory("it", ioA.server.get(langBranch("it"))).log.map((r) => r.card_id);
+  ok(both.includes(cardId("it", words[6])) && both.includes(cardId("it", words[7])), "a stale device merges the server copy before it pushes, so no rows are lost");
 
   const newer = gradeCard(normalizeState(io.server.get(progressBranch(romance))), "it", words[2], 4, T0 + 5 * DAY, "UTC");
   const view = foldByLang(trio, { it: live }, systems, { [progressBranch(romance)]: newer, [progressBranch(trio)]: b });
