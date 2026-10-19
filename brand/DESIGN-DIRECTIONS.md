@@ -199,3 +199,4 @@ Bucket critic, design rubric frozen before round 1, pass above 8.0 with every di
 | 5 | Girih | 8.08 pass | 8.43 pass |  |
 | 6 | Primitive | 7.95 fail | 8.23 pass |  |
 | 7 | Euclid | 7.20 fail | 8.08 pass |  |
+| all | Directions page | 6.50 fail | 7.25 fail | 7.85 fail |

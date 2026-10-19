@@ -38,6 +38,7 @@ video:
 	for i in $(VIDEO_IDS); do ./vid.sh $$i 16x9 1280 720; ./vid.sh $$i 9x16 720 1280; done
 
 check:
+	for f in ../made/*.js; do node --check $$f || exit 1; done
 	$(PY) geomcheck.py
 	$(PY) check.py
 

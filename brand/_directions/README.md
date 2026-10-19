@@ -18,7 +18,7 @@ Each direction's palette, fonts, motion and source list live in `src/lib.py` (`D
 
 ## Tools
 
-python3 with cairosvg, Pillow and fontTools; chromium (`chromium-browser`, or set `CHROME`); ffmpeg; Blender for 3D only.
+python3 with cairosvg, Pillow and fontTools; node for `node --check`; chromium (`chromium-browser`, or set `CHROME`); ffmpeg; Blender for 3D only.
 
 ```bash
 pip install cairosvg Pillow fontTools
@@ -44,7 +44,7 @@ Open http://127.0.0.1:8777/_directions/index.html.
 | screens, thumbs | `shoot.sh`: chromium captures at 1440x900 and 390x844 |
 | video | `vid.sh` per direction at 16x9 and 9x16; needs `make serve` running |
 | render3d | `blender -b -P render.py`: marks and objects into `3d/` |
-| check | `geomcheck.py` and `check.py`; `STRICT=1` also fails on unbuilt thumbs and video |
+| check | `node --check` on `made/*.js`, `geomcheck.py` and `check.py`; `STRICT=1` also fails on unbuilt thumbs and video |
 | index | `build2.py` |
 
 Every generator is deterministic: two runs give the same HTML. Paths resolve from `src/paths.py`, so the tree builds from any clone.
