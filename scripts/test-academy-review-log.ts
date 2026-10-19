@@ -236,8 +236,13 @@ test("a late review that sorts before the fold triggers a full refold", async ()
 test("a full refold over the row cap is skipped and reported", async () => {
   const w = world();
   w.deps.readBranch = async () => ({ baseline: null, rows: Array.from({ length: MAX_REFOLD_ROWS + 1 }, (_, i) => ({ review_id: `r${i}`, branch: "lang", card_id: "ru:a", rating: 3, level: "recall", reviewed_at: NOW, tz: "UTC", atoms_version: "lang", device_id: "d", seq: i + 1 })) as StoredReview[] });
+  const notes: string[] = [];
+  w.deps.noteCapped = async (_u, branch, note) => void notes.push(`${branch}: ${note}`);
   const res = await createReviewLogHandlers(w.deps).POST(post({ reviews: [review()] }));
-  assert.deepEqual(((await res.json()) as { folded: string[] }).folded, []);
+  const j = (await res.json()) as { folded: string[]; capped: string[] };
+  assert.deepEqual(j.folded, []);
+  assert.deepEqual(j.capped, ["lang"]);
+  assert.deepEqual(notes, [`lang: refold over ${MAX_REFOLD_ROWS} rows skipped`]);
   assert.equal(w.folds.length, 0);
 });
 

@@ -70,6 +70,7 @@ export interface ReviewLogDeps {
   writeFold: (uid: string, branch: string, data: EngineState, seq: number, foldKey: string) => Promise<boolean>;
   readFold?: (uid: string, branch: string) => Promise<FoldState | null>;
   noteSkips?: (uid: string, branch: string, ids: string[], note: string) => Promise<void>;
+  noteCapped?: (uid: string, branch: string, note: string) => Promise<void>;
   syncMastery: (uid: string, branch: string, data: unknown) => Promise<{ advanced: number }>;
   atoms: (branch: string) => Readonly<Record<string, Atom[]>>;
 }
@@ -203,6 +204,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
       if (all.rows.length === 0) return none();
       if (all.rows.length > MAX_REFOLD_ROWS) {
         console.error("review-log refold skipped: branch log over the cap", branch, all.rows.length);
+        await deps.noteCapped?.(uid, branch, `refold over ${MAX_REFOLD_ROWS} rows skipped`).catch((e) => console.error("review-log cap note failed", branch, e));
         return none({ capped: true });
       }
       rows = all.rows;
@@ -297,18 +299,20 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     let advanced = 0;
     const folded: string[] = [];
     const skipped: { review_id: string; reason: string }[] = [];
+    const capped: string[] = [];
     for (const branch of branches) {
       try {
         const f = await fold(pre.uid, branch);
         advanced += f.advanced;
         skipped.push(...f.skipped);
+        if (f.capped) capped.push(branch);
         if (f.folded) folded.push(branch);
       } catch (e) {
         console.error("review-log fold failed", branch, e);
       }
     }
     const conflict = results.some((r) => r.status === "conflict");
-    return respond(req, { results, folded, advanced, skipped }, conflict ? 409 : 200);
+    return respond(req, { results, folded, advanced, skipped, capped }, conflict ? 409 : 200);
   }
 
   return { OPTIONS, GET, POST };

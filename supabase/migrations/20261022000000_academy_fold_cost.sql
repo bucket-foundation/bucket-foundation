@@ -1,4 +1,5 @@
 alter table bucket.academy_progress add column if not exists fold_key text;
+alter table bucket.academy_progress add column if not exists fold_note text check (fold_note is null or length(fold_note) <= 200);
 alter table bucket.academy_review_log add column if not exists fold_note text check (fold_note is null or length(fold_note) <= 200);
 
 drop function if exists bucket.write_progress_fold(uuid, text, jsonb, bigint);
@@ -14,7 +15,7 @@ begin
   insert into bucket.academy_progress as p (user_id, branch, data, log_seq, fold_key)
   values (p_user, p_branch, p_data, p_seq, p_fold_key)
   on conflict (user_id, branch) do update
-    set data = excluded.data, log_seq = excluded.log_seq, fold_key = excluded.fold_key
+    set data = excluded.data, log_seq = excluded.log_seq, fold_key = excluded.fold_key, fold_note = null
     where p.log_seq is null or p.log_seq <= excluded.log_seq;
   get diagnostics n = row_count;
   return n > 0;
@@ -34,6 +35,17 @@ begin
   return n;
 end $$;
 
+create or replace function bucket.note_fold_capped(p_user uuid, p_branch text, p_note text)
+returns void
+language sql
+security definer
+set search_path = ''
+as $$
+  update bucket.academy_progress set fold_note = left(p_note, 200) where user_id = p_user and branch = p_branch;
+$$;
+
+revoke all on function bucket.note_fold_capped(uuid, text, text) from public, anon, authenticated;
+grant execute on function bucket.note_fold_capped(uuid, text, text) to service_role;
 revoke all on function bucket.write_progress_fold(uuid, text, jsonb, bigint, text) from public, anon, authenticated;
 revoke all on function bucket.note_fold_skips(uuid, text, uuid[], text) from public, anon, authenticated;
 grant execute on function bucket.write_progress_fold(uuid, text, jsonb, bigint, text) to service_role;
