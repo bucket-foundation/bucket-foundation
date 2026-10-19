@@ -1,4 +1,5 @@
 import test from "node:test";
+import { CAPTURE_MAX_PER_WINDOW, CAPTURE_WINDOW_MS, storePart } from "../src/lib/capture/core";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -77,15 +78,19 @@ test("the page states the link, cooldown, sweep and retention windows the code u
 
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), "utf8");
 
-test("the page states the five a minute limit the download route enforces", () => {
-  const route = read("src/app/api/download/route.ts");
-  assert.match(route, /rateLimiter\(5, 60_000\)/);
-  assert.match(route, /sharedRateLimiter\(marks, 5, 60_000\)/);
-  assert.match(read("src/app/privacy/page.tsx"), /allow five a minute/);
+test("the page states the one per 30 seconds limit the capture route enforces", () => {
+  assert.match(read("src/app/api/download/route.ts"), /captureRequest\(/);
+  const server = read("src/lib/capture/server.ts");
+  assert.match(server, /rateLimiter\(CAPTURE_MAX_PER_WINDOW, CAPTURE_WINDOW_MS\)/);
+  assert.match(server, /sharedRateLimiter\(marks, CAPTURE_MAX_PER_WINDOW, CAPTURE_WINDOW_MS\)/);
+  assert.equal(CAPTURE_MAX_PER_WINDOW, 1);
+  assert.equal(CAPTURE_WINDOW_MS, 30_000);
+  assert.match(read("src/app/privacy/page.tsx"), /allow one every 30 seconds/);
 });
 
 test("a spam-trap request is stored apart and gets no email, as the page says", async () => {
-  assert.match(read("src/app/api/download/route.ts"), /suspect \? "downloads\/suspect" : "downloads"/);
+  assert.equal(storePart("download", true), "downloads/suspect");
+  assert.equal(storePart("download", false), "downloads");
   const saved: { suspect: boolean; keys: string[] }[] = [];
   let notified = 0;
   const store = (suspect: boolean) => ({
