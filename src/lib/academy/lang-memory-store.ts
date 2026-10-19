@@ -194,7 +194,6 @@ export const browserMemoryIO: MemoryIO = {
   },
   now: () => Date.now(),
   appendReview(branch, review) {
-    const store = webProgressStore as { appendReview?: (b: string, r: typeof review) => unknown };
-    return store.appendReview?.(branch, review);
+    return webProgressStore.appendReview?.(branch, review);
   },
 };
