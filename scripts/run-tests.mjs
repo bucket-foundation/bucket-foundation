@@ -16,6 +16,7 @@ const SUITES = {
       "scripts/test-kruse-token.ts",
       "scripts/test-auth-paths.ts",
       "scripts/test-auth-callback.ts",
+      "scripts/test-session-persist.ts",
       "scripts/test-sign-in-gate.ts",
       "scripts/test-guest-entry.ts",
       "scripts/test-depth-ladder-counts.ts",
