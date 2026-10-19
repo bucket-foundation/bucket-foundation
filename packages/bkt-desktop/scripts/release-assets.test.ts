@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test";
-import { mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { mkdirSync, statSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { collect, hostArch, hostOs, releaseName } from "./release-assets";
@@ -77,6 +78,23 @@ test("the release names are the ones the /download fixture holds", () => {
     releaseName("Bucket_0.5.0_x64_en-US.msi", "0.5.0", "windows", "x64"),
     releaseName("Bucket_0.5.0_amd64.AppImage", "0.5.0", "linux", "x64"),
     releaseName("Bucket_0.5.0_amd64.deb", "0.5.0", "linux", "x64"),
+    `${releaseName("Bucket_0.5.0_amd64.AppImage", "0.5.0", "linux", "x64")}.tar.gz`,
   ].sort();
   expect(built).toEqual(held);
+});
+
+test("the linux AppImage also ships as a tarball that keeps the execute bit", () => {
+  const root = mkdtempSync(join(tmpdir(), "bkt-assets-"));
+  mkdirSync(join(root, "bundle", "appimage"), { recursive: true });
+  writeFileSync(join(root, "bundle", "appimage", "Bucket_0.5.0_amd64.AppImage"), "\x7fELF");
+  const out = join(root, "out");
+  const names = collect(join(root, "bundle"), out, "0.5.0", "linux", "x64");
+  expect(names).toEqual(["Bucket-desktop-0.5.0-linux-x64.AppImage", "Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz"]);
+  expect(readFileSync(join(out, "Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz.sha256"), "utf8")).toMatch(/^[0-9a-f]{64}  Bucket-desktop-0\.5\.0-linux-x64\.AppImage\.tar\.gz\n$/);
+  const listing = spawnSync("tar", ["-tvzf", "Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz"], { cwd: out, encoding: "utf8" }).stdout;
+  expect(listing).toMatch(/^-rwxr-xr-x .* Bucket-desktop-0\.5\.0-linux-x64\.AppImage\n$/);
+  const unpacked = join(root, "unpacked");
+  mkdirSync(unpacked);
+  spawnSync("tar", ["-xzf", join(out, "Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz"), "-C", unpacked]);
+  expect(statSync(join(unpacked, "Bucket-desktop-0.5.0-linux-x64.AppImage")).mode & 0o111).toBe(0o111);
 });

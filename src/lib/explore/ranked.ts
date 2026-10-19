@@ -3,6 +3,7 @@ import { CANON_FILES } from "./canon-files";
 import { buildCorpus, type ExploreCorpus } from "./ranked-core";
 import { loadSourceIndex } from "./sources";
 import { talkFor } from "./talks";
+import { excerptStart } from "./yt-starts";
 
 export * from "./ranked-core";
 
@@ -12,7 +13,7 @@ export async function loadExploreCorpus(): Promise<ExploreCorpus> {
   const pool = await loadSourceIndex();
   const entries = canonIndex();
   if (cached && cached.pool === pool && cached.entries === entries) return cached.corpus;
-  const corpus = buildCorpus({ rows: pool.map((p) => p.row), entries, files: CANON_FILES, talk: talkFor });
+  const corpus = buildCorpus({ rows: pool.map((p) => p.row), entries, files: CANON_FILES, talk: (file) => talkFor(file, undefined, excerptStart) });
   cached = { pool, entries, corpus };
   return corpus;
 }

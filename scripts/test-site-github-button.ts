@@ -15,10 +15,9 @@ test("button links to the public repo in a new tab", () => {
   assert.match(BUTTON, /rel="noopener noreferrer"/);
 });
 
-test("header renders the button before the user menu", () => {
-  const button = HEADER.indexOf("<GitHubStarButton />");
-  const menu = HEADER.indexOf("<UserMenu");
-  assert.ok(button > 0 && menu > button);
+test("header keeps the account menu and leaves the star button to the footer pages", () => {
+  assert.ok(HEADER.includes("<UserMenu"));
+  assert.equal(HEADER.includes("<GitHubStarButton"), false);
 });
 
 test("star counts format like the OpenScriva button", () => {

@@ -35,6 +35,7 @@ assert.equal(startFromUrl("https://www.youtube.com/watch?v=zrdRVDk66JE"), null);
 
 const yHit = sourceToHit({ kind: "y", id: "abcdefghijk", title: "Talk", year: 2020, snippet: "", by: "", score: 1 });
 assert.deepEqual(yHit.yt, { id: "abcdefghijk", start: 0 });
+assert.deepEqual(sourceToHit({ kind: "y", id: "abcdefghijk", title: "Talk", year: 2020, snippet: "", by: "", score: 1 }, () => 42).yt, { id: "abcdefghijk", start: 42 });
 assert.equal(sourceToHit({ kind: "p", id: "1", title: "Paper", year: 2020, snippet: "", by: "", score: 1 }).yt, undefined);
 
 const hits = unify({

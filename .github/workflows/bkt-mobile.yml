@@ -186,3 +186,114 @@ jobs:
         run: |
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --verify-tag --title "$TAG" --notes "Unsigned builds." || gh release view "$TAG" >/dev/null
           gh release upload "$TAG" bundles/* --clobber
+
+  android-signed:
+    if: startsWith(github.ref, 'refs/tags/bkt-v')
+    needs: release
+    runs-on: ubuntu-latest
+    environment: bkt-release
+    permissions:
+      contents: write
+    env:
+      HAS_PLAY: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON != '' }}
+      TAG: ${{ github.ref_name }}
+    steps:
+      - name: signing secrets present
+        id: gate
+        env:
+          A: ${{ secrets.ANDROID_KEYSTORE_B64 != '' }}
+          B: ${{ secrets.ANDROID_KEY_ALIAS != '' }}
+          C: ${{ secrets.ANDROID_KEYSTORE_PASSWORD != '' }}
+          D: ${{ secrets.ANDROID_KEY_PASSWORD != '' }}
+        run: |
+          set="$(printf '%s\n' "$A" "$B" "$C" "$D" | grep -c true || true)"
+          case "$set" in
+            4) echo "sign=true" >> "$GITHUB_OUTPUT" ;;
+            0) echo "sign=false" >> "$GITHUB_OUTPUT"
+               echo "::notice::Android signing secrets absent in bkt-release; signed APK and AAB skipped." ;;
+            *) echo "::error::$set of 4 Android signing secrets set in bkt-release; set all four or none."
+               exit 1 ;;
+          esac
+      - if: steps.gate.outputs.sign == 'true'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - if: steps.gate.outputs.sign == 'true'
+        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - if: steps.gate.outputs.sign == 'true'
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6
+        with:
+          distribution: temurin
+          java-version: "21"
+      - if: steps.gate.outputs.sign == 'true'
+        uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd
+      - if: steps.gate.outputs.sign == 'true'
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
+        with:
+          name: bkt-mobile-web
+          path: packages/bkt-mobile/dist
+      - if: steps.gate.outputs.sign == 'true'
+        uses: gradle/actions/wrapper-validation@3f5f9adaf7d9fecd50b5935e54106014257a94e6
+      - name: release apk and aab
+        if: steps.gate.outputs.sign == 'true'
+        working-directory: packages/bkt-mobile
+        env:
+          RUN: ${{ github.run_number }}
+          ATTEMPT: ${{ github.run_attempt }}
+        run: |
+          bun install --frozen-lockfile
+          bunx cap sync android
+          cd android
+          ./gradlew assembleRelease bundleRelease --no-daemon -PbktVersionCode="$((1000 + RUN * 10 + ATTEMPT))" -PbktVersionName="${TAG#bkt-v}"
+      - name: sign
+        if: steps.gate.outputs.sign == 'true'
+        env:
+          ANDROID_KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          ANDROID_CERT_SHA256: ${{ vars.ANDROID_CERT_SHA256 }}
+        run: |
+          umask 077
+          ks="$RUNNER_TEMP/upload.jks"
+          trap 'rm -f "$ks"' EXIT
+          printf '%s' "$ANDROID_KEYSTORE_B64" | base64 -d > "$ks"
+          bt=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          out="$RUNNER_TEMP/signed"
+          mkdir -p "$out"
+          b=packages/bkt-mobile/android/app/build/outputs
+          "$bt/zipalign" -f 4 "$b/apk/release/app-release-unsigned.apk" "$RUNNER_TEMP/aligned.apk"
+          "$bt/apksigner" sign --ks "$ks" --ks-key-alias "$ANDROID_KEY_ALIAS" --ks-pass env:ANDROID_KEYSTORE_PASSWORD --key-pass env:ANDROID_KEY_PASSWORD --out "$out/Bucket-android-$TAG.apk" "$RUNNER_TEMP/aligned.apk"
+          cert="$("$bt/apksigner" verify --print-certs "$out/Bucket-android-$TAG.apk" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p')"
+          echo "signer sha256: $cert"
+          [ -n "$ANDROID_CERT_SHA256" ] || echo "::warning::ANDROID_CERT_SHA256 unset in bkt-release; signer not pinned."
+          if [ -n "$ANDROID_CERT_SHA256" ] &&[ "$cert" != "$(echo "$ANDROID_CERT_SHA256" | tr -d ': ' | tr 'A-F' 'a-f')" ]; then
+            echo "::error::APK signer does not match ANDROID_CERT_SHA256"; exit 1
+          fi
+          cp "$b/bundle/release/app-release.aab" "$out/Bucket-android-$TAG.aab"
+          jarsigner -keystore "$ks" -storepass:env ANDROID_KEYSTORE_PASSWORD -keypass:env ANDROID_KEY_PASSWORD -sigalg SHA256withRSA -digestalg SHA-256 "$out/Bucket-android-$TAG.aab" "$ANDROID_KEY_ALIAS" >/dev/null
+          jarsigner -verify "$out/Bucket-android-$TAG.aab" >/dev/null
+          (cd "$out" && sha256sum ./*.apk ./*.aab > SHA256SUMS-android-signed.txt && cat SHA256SUMS-android-signed.txt)
+          echo "SIGNED=$out" >> "$GITHUB_ENV"
+      - name: attach apk to the release
+        if: steps.gate.outputs.sign == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload "$TAG" "$SIGNED/Bucket-android-$TAG.apk" "$SIGNED/SHA256SUMS-android-signed.txt" --clobber
+      - if: steps.gate.outputs.sign == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: bkt-mobile-android-signed
+          path: ${{ env.SIGNED }}/*
+          if-no-files-found: error
+      - name: play internal track
+        if: steps.gate.outputs.sign == 'true' && env.HAS_PLAY == 'true'
+        uses: r0adkll/upload-google-play@935ef9c68bb393a8e6116b1575626a7f5be3a7fb
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: foundation.bucket.app
+          releaseFiles: ${{ env.SIGNED }}/Bucket-android-${{ github.ref_name }}.aab
+          track: internal
+          status: completed
+      - name: play skipped
+        if: steps.gate.outputs.sign == 'true' && env.HAS_PLAY != 'true'
+        run: echo "::notice::PLAY_SERVICE_ACCOUNT_JSON absent; AAB kept as a workflow artifact."

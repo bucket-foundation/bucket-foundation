@@ -101,3 +101,30 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 640, height: 400
     if (viewport.width === 1440 || viewport.width === 390 && viewport.height === 844) await page.screenshot({ path: `test-results/download-${viewport.width}.png`, fullPage: true });
   });
 }
+
+test.describe("on an Android phone", () => {
+  test.use({ userAgent: "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/126.0 Mobile Safari/537.36" });
+  test("the download card leads with Android and lists the other devices", async ({ page }) => {
+    await page.goto("/download");
+    await expect(page.locator("[data-device-picker]")).toHaveAttribute("data-detected", "android");
+    await expect(page.locator("[data-device-primary=android]")).toBeVisible();
+    await expect(page.locator("[data-device-other]")).toHaveCount(7);
+    await expect(page.locator("[data-device-other=web] a")).toHaveAttribute("href", "/learn");
+  });
+});
+
+test.describe("on a Mac in Brave", () => {
+  test.use({ userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" });
+  test("one enabled Mac download button sits above the optional signup", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/download");
+    const button = page.locator("[data-device-primary^=macos]");
+    await expect(button).toHaveText(/^Download Bucket for (Intel )?Mac$/);
+    await expect(button).toBeInViewport();
+    await expect(page.locator("[data-polingual-line]")).toBeVisible();
+    await expect(page.locator("#flow-platform")).toHaveValue("macos-arm64");
+    const b = await button.boundingBox();
+    const form = await page.locator("[data-download-pane]").boundingBox();
+    expect(form!.y).toBeGreaterThan(b!.y);
+  });
+});

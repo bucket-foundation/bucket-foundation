@@ -74,7 +74,7 @@ check("search skips non-matching rows", !searchSources("photon", pool).some((s) 
 check("title match outranks body match", searchSources("water", pool)[0]?.id === "abc");
 check("per-type cap holds", searchSources("photon light water risk", pool, 1).length <= 3);
 
-const hits = found.map(sourceToHit);
+const hits = found.map((s) => sourceToHit(s));
 check("hits carry type-specific ids and urls", hits.every((h) => h.id.startsWith(`${h.type}:`) && !!h.url));
 check("colors differ per source type", new Set(["paper", "text", "talk"].map((t) => hitColor({ ...hits[0], type: t as "paper" }))).size === 3);
 
@@ -122,7 +122,7 @@ return loadSourceIndex(tmp).then((p) => {
     check("no primary paper repeats an existing OpenAlex row", !primary.some((r) => openalexTitles.has(titleKey(r[2]))));
     const shannon = primary.find((r) => r[1] === SHANNON_DOI);
     check("Shannon 1948 is in the index with its year and author", !!shannon && shannon[3] === 1948 && shannon[5] === "Claude E. Shannon" && shannon[2] === "A Mathematical Theory of Communication");
-    const shannonHit = searchSources("mathematical theory of communication", prepare({ v: 1, items: built.items as SourceIndex["items"] })).map(sourceToHit)[0];
+    const shannonHit = searchSources("mathematical theory of communication", prepare({ v: 1, items: built.items as SourceIndex["items"] })).map((s) => sourceToHit(s))[0];
     check("Shannon 1948 is the first paper for its title", shannonHit?.id === `paper:d/${SHANNON_DOI}` && shannonHit.source === "Primary paper" && !!shannonHit.license);
 
     const held2 = (row: Row, doi: string, author: string): Existing => ({ row, doi, title: row[2].normalize("NFKD").toLowerCase().replace(/[^a-z0-9]+/g, ""), author: author.normalize("NFKD").toLowerCase().replace(/[^a-z0-9]+/g, ""), year: row[3] });

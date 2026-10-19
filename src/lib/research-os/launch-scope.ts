@@ -7,6 +7,10 @@ export const LAUNCH_PAGES = [
   "/research-os/learn/[branch]/study",
   "/research-os/learn/[branch]/[atom]",
   "/research-os/learn/[branch]/assess",
+  "/research-os/learn/languages",
+  "/research-os/learn/languages/[system]",
+  "/research-os/learn/languages/[system]/place",
+  "/research-os/learn/languages/[system]/study",
   "/research-os/profile",
   "/research-os/n/[slug]",
 ] as const;
