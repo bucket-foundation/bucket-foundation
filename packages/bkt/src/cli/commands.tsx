@@ -93,7 +93,8 @@ import { generatedFigures, generationRoutes } from "../generation-routes";
 import { findRepo, GenerateError, loadRegistry, pastRuns, runFolder, runGeneration } from "../generate";
 import { openRemote } from "../sync";
 import type { RemoteSync } from "../../../../src/lib/academy/remote-sync";
-import { syncRoutes } from "../sync/routes";
+import { startSyncLoop, syncRoutes } from "../sync/routes";
+import { pullRemoteProgress, type LearnStore } from "../sync/pull-progress";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
   const { code, report, stderr, cancelled } = r;
@@ -369,6 +370,10 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const researchWork = new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() });
   const builds = new ResearchBuilds({ research, runner: buildRunner, consent: buildConsent, gate: buildGate, os: platformFor().os, ownBuilds: (slug) => ownOutputs.buildsOn(slug) });
   const pagesRunner = new JobRunner({ root: join(dir, "research", "jobs", "pages"), specs: researchSpecs({ os: platformFor().os }), keep: PAGES_KEEP, frozenOnly: true });
+  const remote = openRemote(session, dir);
+  const syncTrouble = (m: string) => console.error(`bkt serve: sync: ${m}`);
+  const pullProgress = () => pullRemoteProgress(remote, session.store);
+  startSyncLoop(remote, pullProgress, syncTrouble);
   const srv = startServe({
     cliToken,
     cliSecret,
@@ -379,7 +384,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi), graph: (canonPack as CanonPack).graph ?? null }),
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content, langCorpus, saveExport: saveTextToDownloads() }),
-      ...syncRoutes(openRemote(session, dir), { label: () => hostname(), onError: (m) => console.error(`bkt serve: sync: ${m}`) }),
+      ...syncRoutes(remote, { label: () => hostname(), onError: syncTrouble, pullProgress }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
       ...rosLiveRoutes(new RosGraph(session.store.db), Date.now, { saveExport: saveToDownloads() }),
       ...advisorRoutes(people),
@@ -578,7 +583,7 @@ function tuiSources(session: Session): AppSources {
   };
 }
 
-async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync, json: boolean): Promise<number> {
+async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync, json: boolean, store: LearnStore): Promise<number> {
   if (name === "logout") {
     await remote.logout();
     console.log(json ? jsonLine("logout", { signed_in: false }) : "Signed out on this device.");
@@ -594,8 +599,9 @@ async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync,
   }
   await remote.sync.flush();
   const pulled = await remote.sync.pullLog();
-  const out = { mode: remote.sync.mode(), pending: remote.sync.pending().length, held: remote.sync.held().length, pulled: pulled?.length ?? null };
-  console.log(json ? jsonLine("sync", out) : `sync: ${out.mode}, ${out.pending} waiting to send, ${out.pulled ?? 0} pulled`);
+  const merged = pulled === null ? null : await pullRemoteProgress(remote, store);
+  const out = { mode: remote.sync.mode(), pending: remote.sync.pending().length, held: remote.sync.held().length, pulled: pulled?.length ?? null, merged: merged ?? [] };
+  console.log(json ? jsonLine("sync", out) : out.pending ? `${out.pending} changes waiting to sync, ${out.pulled ?? 0} pulled` : `synced, ${out.pulled ?? 0} pulled, ${out.merged.length} decks updated from your account`);
   return out.mode === "log" ? EXIT.ok : EXIT.failure;
 }
 
@@ -743,7 +749,7 @@ export async function execute(inv: Invocation): Promise<number> {
     } else if (name === "forget people") {
       const n = new PeopleStore(session.store, session.key).forget(Date.now());
       console.log(`forgot ${n} people; a later import skips them unless you confirm`);
-    } else if (name === "login" || name === "logout" || name === "sync") return await accountCmd(name, openRemote(session, dir), json);
+    } else if (name === "login" || name === "logout" || name === "sync") return await accountCmd(name, openRemote(session, dir), json, session.store);
     else if (name === "serve" || name === "app") await serve(name, session, dir, content, route);
     else if (name === "stats") {
       const s = session.store.stats(Date.now());
