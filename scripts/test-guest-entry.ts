@@ -67,6 +67,15 @@ test("merge keeps local progress when the server read fails", async () => {
   assert.equal(JSON.parse(store.getItem("bucket-academy/v1/a")!).stats.xp, 7);
 });
 
+test("a demo tag comes from the URL first, then the session, and must be a short slug", async () => {
+  const { demoSession } = await import("../src/lib/analytics/funnel");
+  assert.equal(demoSession("?demo=ru-en", null), "ru-en");
+  assert.equal(demoSession("", "spanish"), "spanish");
+  assert.equal(demoSession("?demo=Bad%20Tag", "hebrew"), "hebrew");
+  assert.equal(demoSession("?demo=" + "a".repeat(40), null), null);
+  assert.equal(demoSession("", null), null);
+});
+
 test("middleware overwrites a spoofed path header", async () => {
   const { middleware } = await import("../src/middleware");
   const req = new NextRequest("http://localhost/canon", { headers: { [PATH_HEADER]: "/research-os/learn" } });
