@@ -71,17 +71,13 @@ export function useLangSystem(systemId: string): LangSystemHandle {
     [system]
   );
 
-  useEffect(() => {
-    if (guest && status === "ready") guestMayStudyLanguage();
-  }, [guest, status]);
-
   const grade = useCallback(
     (lang: string, itemId: string, rating: Rating) => {
       const apply = () => commit(gradeCard(stateRef.current, lang, itemId, rating));
-      if (guest && !guestMayStudyLanguage()) requireAccount(apply);
+      if (guest && !guestMayStudyLanguage(systemId)) requireAccount(apply);
       else apply();
     },
-    [commit, guest, requireAccount]
+    [commit, guest, requireAccount, systemId]
   );
 
   const place = useCallback(

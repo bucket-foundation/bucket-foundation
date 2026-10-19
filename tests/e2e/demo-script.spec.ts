@@ -103,8 +103,14 @@ for (const [tag, targets, system] of LANG_PERSONAS) {
     await expect(page.locator("[data-guest-save]")).toBeVisible();
     await expect(page.getByRole("dialog")).toHaveCount(0);
     await page.goto(`${LEARN}/languages/${system}/study`);
-    for (let n = 0; n < 4; n++) await answerOne(page);
+    for (let n = 0; n < 2; n++) await answerOne(page);
+    await page.reload();
+    for (let n = 0; n < 2; n++) await answerOne(page);
     await expect(page.getByRole("dialog")).toHaveCount(0);
+    await page.evaluate(() => {
+      const held = JSON.parse(localStorage.getItem("bucket-guest-lang-lesson") || "{}");
+      localStorage.setItem("bucket-guest-lang-lesson", JSON.stringify({ ...held, at: Date.now() - 46 * 60 * 1000 }));
+    });
     await page.goto(`${LEARN}/languages/${system}/study`);
     for (let n = 0; n < 6 && !(await page.getByRole("dialog").count()); n++) await answerOne(page);
     await signInThroughModal(page, `e2e-demo-${tag}-${Date.now()}@bucket.local`);
@@ -115,6 +121,7 @@ for (const [tag, targets, system] of LANG_PERSONAS) {
       const j = (await r.json()) as { branches: Record<string, unknown> };
       return Object.keys(j.branches);
     }).toEqual(expect.arrayContaining(["lang-systems"]));
+    expect(await page.evaluate(() => localStorage.getItem("bucket-guest-lang-lesson"))).toBeNull();
     const names = (await events(page)).map((e) => e.name);
     expect(names).toEqual(expect.arrayContaining(["start_learning_click", "open_research_os", "sign_in_complete"]));
     for (const e of await events(page)) expect(e.data.demo).toBe(tag);

@@ -6,6 +6,7 @@ import { SYSTEMS_KEY, saveSystems } from "./lang-client";
 export const GUEST_FREE_ATOMS = 1;
 
 export async function mergeGuestProgress(): Promise<void> {
+  clearGuestLesson();
   const branches = localBranches();
   if (hasLocalSystems()) await saveSystems({});
   if (branches.length === 0) return;
@@ -40,17 +41,25 @@ function hasLocalSystems(): boolean {
 }
 
 export const GUEST_LESSON_KEY = "bucket-guest-lang-lesson";
-const pageLesson = Math.random().toString(36).slice(2);
+export const GUEST_LESSON_MS = 45 * 60 * 1000;
 
-export function guestMayStudyLanguage(): boolean {
+export function guestMayStudyLanguage(systemId: string, now = Date.now()): boolean {
   try {
-    const held = localStorage.getItem(GUEST_LESSON_KEY);
-    if (held === null) {
-      localStorage.setItem(GUEST_LESSON_KEY, pageLesson);
+    const raw = localStorage.getItem(GUEST_LESSON_KEY);
+    const held = raw ? (JSON.parse(raw) as { system?: string; at?: number }) : null;
+    if (!held || typeof held.at !== "number") {
+      localStorage.setItem(GUEST_LESSON_KEY, JSON.stringify({ system: systemId, at: now }));
       return true;
     }
-    return held === pageLesson;
+    return held.system === systemId && now - held.at < GUEST_LESSON_MS;
   } catch {
     return true;
+  }
+}
+
+export function clearGuestLesson(): void {
+  try {
+    localStorage.removeItem(GUEST_LESSON_KEY);
+  } catch {
   }
 }
