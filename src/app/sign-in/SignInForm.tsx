@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
 import { safeNextPath } from "@/lib/auth/paths";
+import { callbackRedirectUrl } from "@/lib/auth/callback";
 import { trackFunnel } from "@/lib/analytics/funnel";
 import { useSession } from "@/providers/SessionProvider";
 
@@ -11,14 +12,14 @@ type Step = "email" | "code" | "done";
 const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 
-export default function SignInForm({ next, allowNewAccounts = true }: { next: string | null; allowNewAccounts?: boolean }) {
+export default function SignInForm({ next, allowNewAccounts = true, linkError = null }: { next: string | null; allowNewAccounts?: boolean; linkError?: string | null }) {
   const { user, loading } = useSession();
   const destination = safeNextPath(next);
   const [step, setStep] = useState<Step>("email");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(linkError);
   const codeRef = useRef<HTMLInputElement>(null);
   const enabled = supabaseConfigured();
   const [slow, setSlow] = useState(false);
@@ -53,7 +54,7 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
     if (!address || busy) return;
     setBusy(true);
     setError(null);
-    const { error: err } = await getBrowserSupabase().auth.signInWithOtp({ email: address, options: { shouldCreateUser: allowNewAccounts } });
+    const { error: err } = await getBrowserSupabase().auth.signInWithOtp({ email: address, options: { shouldCreateUser: allowNewAccounts, emailRedirectTo: callbackRedirectUrl(window.location.origin, destination) } });
     setBusy(false);
     const unknownAccount = !allowNewAccounts && Boolean(err?.message.toLowerCase().includes("signups not allowed"));
     if (err && !unknownAccount) {
@@ -105,8 +106,14 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
   if (step === "code") {
     return (
       <form onSubmit={verify} className="mt-8 flex flex-col gap-3">
-        <label htmlFor="sign-in-code" className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
-          {allowNewAccounts ? `enter the code sent to ${email.trim()}` : `if an account uses ${email.trim()}, a code is on the way`}
+        <p role="status" className="text-[15px] leading-relaxed text-[color:var(--basalt)]">
+          Check your email and tap the link.
+        </p>
+        <p className="text-[13px] text-[color:var(--basalt-2)]">
+          {allowNewAccounts ? `We sent it to ${email.trim()}.` : `If an account uses ${email.trim()}, a link is on the way.`}
+        </p>
+        <label htmlFor="sign-in-code" className="mt-4 small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">
+          or enter a code from the email
         </label>
         <input
           id="sign-in-code"
@@ -163,7 +170,7 @@ export default function SignInForm({ next, allowNewAccounts = true }: { next: st
 
 function friendly(message: string): string {
   const m = message.toLowerCase();
-  if (m.includes("rate limit") || m.includes("too many")) return "Too many codes requested. Wait a minute and try again.";
+  if (m.includes("rate limit") || m.includes("too many")) return "Too many emails requested. Wait a minute and try again.";
   if (m.includes("expired")) return "That code expired. Ask for a new one.";
   if (m.includes("invalid")) return "That code did not match. Check it and try again.";
   return message;
