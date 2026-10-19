@@ -1,6 +1,7 @@
 import { createReviewSync, heldAction, type Fetcher, type ReviewEvent, type ReviewSync } from "./review-sync";
 import type { StoredSession, TokenVault } from "./token-store";
 import type { EngineState } from "./engine";
+import { canonicalSyncBase } from "./sync-base";
 
 export const MOBILE_REFRESH_MARGIN_S = 60;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,7 +31,7 @@ const json = (body: unknown, status = 200) => new Response(JSON.stringify(body),
 export function createMobileSync(deps: MobileSyncDeps): MobileSync {
   const now = deps.now ?? Date.now;
   const uuid = deps.uuid ?? (() => crypto.randomUUID());
-  const base = deps.base.replace(/\/$/, "");
+  const base = canonicalSyncBase(deps.base);
   let flushTimer: ReturnType<typeof setTimeout> | null = null;
 
   let refreshing: Promise<StoredSession | null> | null = null;
@@ -156,7 +157,7 @@ export function createMobileSync(deps: MobileSyncDeps): MobileSync {
     }
     if (path === "/local/account" && method === "GET") {
       const s = await current();
-      return json({ signed_in: s !== null, user_id: s?.user_id ?? null, methods: ["email"], mode: sync.mode() });
+      return json({ signed_in: s !== null, user_id: s?.user_id ?? null, methods: ["email"], mode: sync.mode(), pending: sync.pending().length });
     }
     if (path === "/local/account/email" && method === "POST") {
       const out = await sendCode(String(parse()?.email ?? "").trim());
