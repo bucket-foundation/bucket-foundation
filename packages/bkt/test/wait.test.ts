@@ -409,7 +409,7 @@ describe("gemini", () => {
     const rows = s.log().trim().split("\n").map(parseEvent);
     expect(rows.map((r) => r?.event)).toEqual(["BeforeAgent", "BeforeTool", "AfterTool", "AfterAgent", "SessionEnd"]);
     expect(rows.every((r) => r?.tool === "gemini" && r.project === "proj" && r.session === gemJson("before-agent").session_id)).toBe(true);
-    for (const leak of ["CAPTURE", "say hi", "/home/user", "touch zz"]) expect(s.log()).not.toContain(leak);
+    for (const leak of ["CAPTURE", "say hi", "/w/u", "touch zz"]) expect(s.log()).not.toContain(leak);
     await settle(s, 2);
     expect(s.sentLines().some((l) => l.includes("proj"))).toBe(true);
   });
