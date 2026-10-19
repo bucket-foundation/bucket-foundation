@@ -5,8 +5,10 @@ exec 2>/dev/null
 umask 077
 tool=claude
 payload=
-if [ "${1:-}" = codex ]; then
-  tool=codex
+case "${1:-}" in
+  @@TOOLS@@) tool=$1 ;;
+esac
+if [ "$tool" = codex ]; then
   for a in "$@"; do payload=$a; done
   payload=$(printf '%s' "$payload" | head -c 65536 | tr -d '\n\r\000')
 else
@@ -24,10 +26,10 @@ else
   event=$(pick hook_event_name)
 fi
 cwd=$(pick cwd)
-ntype=$(pick notification_type | tr -cd 'a-z_' | cut -c1-32)
+ntype=$(pick notification_type | tr -cd 'A-Za-z_' | cut -c1-32)
 session=$(printf '%s' "$session" | tr -cd 'A-Za-z0-9_-' | cut -c1-64)
 case "$event" in
-  UserPromptSubmit|PreToolUse|SubagentStop|Stop|SessionEnd|Notification|agent-turn-complete|approval-requested) ;;
+  @@EVENTS@@) ;;
   *) exit 0 ;;
 esac
 [ -n "$session" ] || exit 0

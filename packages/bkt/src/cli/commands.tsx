@@ -654,7 +654,7 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "quiz notify") return quizCommand(["notify", ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz schedule") return quizCommand(["schedule", ...(typeof inv.values.at === "string" ? ["--at", inv.values.at] : []), ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz unschedule") return quizCommand(["unschedule"]);
-  if (name === "wait install" || name === "wait uninstall" || name === "wait status") return waitCommand([name.slice(5)]);
+  if (name === "wait install" || name === "wait uninstall" || name === "wait status") return waitCommand([name.slice(5), ...(inv.values.gemini === true ? ["--gemini"] : [])]);
   let route: string | null = null;
   if (name === "app" && inv.values.route !== undefined) {
     try {

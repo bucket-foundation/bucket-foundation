@@ -16,6 +16,7 @@ const RUNNING: AgentsBody = {
   sessions: [
     { tool: "claude", session: "aaaa1111", project: "bucket-foundation", state: "running", since: NOW / 1000 - 125, subagents: 2 },
     { tool: "codex", session: "bbbb2222", project: "tools", state: "done", since: NOW / 1000 - 30, subagents: 0 },
+    { tool: "gemini", session: "cccc3333", project: "notes", state: "waiting", since: NOW / 1000 - 5, subagents: 1 },
   ],
 };
 
@@ -56,7 +57,7 @@ describe("agents strip", () => {
     const api = fakeApi(RUNNING);
     const m = await mount(api);
     const rows = [...m.host.querySelectorAll(".agent")].map((li) => li.textContent);
-    expect(rows).toEqual(["bucket-foundationClauderunning2m2 subagents", "toolsCodexdone30s"]);
+    expect(rows).toEqual(["bucket-foundationClauderunning2m2 subagents", "toolsCodexdone30s", "notesGeminiwaiting on you5s1 subagent"]);
     expect(m.host.querySelector("h2")!.textContent).toBe("Your agents");
     await m.unmount();
   });

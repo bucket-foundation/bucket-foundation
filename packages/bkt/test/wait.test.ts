@@ -4,7 +4,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { startServe } from "../src/serve";
 import { foldAgents, parseEvent } from "../src/wait-fold";
-import { writeAtomic, agentsBody, codexNotifyLine, hookPath, mergeCodex, renderHook, renderNotify, waitDir, waitInstall, waitRoutes, waitStatus, waitUninstall, writeFocus, type WaitDeps } from "../src/wait";
+import { writeAtomic, agentsBody, codexNotifyLine, GEMINI_HOOK_NAME, hookPath, mergeCodex, renderHook, renderNotify, waitCommand, waitDir, waitInstall, waitRoutes, waitStatus, waitUninstall, writeFocus, type WaitDeps } from "../src/wait";
+import { AGENT_TOOLS, EVENT_KINDS, GEMINI_HOOKS, GEMINI_SUBAGENT_TOOL, NOTIFY_TYPES } from "../src/wait-events";
 
 const roots: string[] = [];
 afterAll(() => roots.forEach((r) => rmSync(r, { recursive: true, force: true })));
@@ -363,5 +364,145 @@ describe("sidecar routes", () => {
     } finally {
       srv.stop();
     }
+  });
+});
+
+const GEMINI_DIR = join(import.meta.dir, "fixtures", "gemini-0.45.0");
+const gem = (name: string) => readFileSync(join(GEMINI_DIR, `${name}.json`), "utf8");
+const gemJson = (name: string) => JSON.parse(gem(name)) as Record<string, string>;
+
+describe("event map", () => {
+  test("the rendered shims carry every mapped event and tool", () => {
+    const hook = renderHook("/n");
+    const notify = renderNotify("/ns", ["/b"]);
+    expect(hook).not.toContain("@@");
+    expect(notify).not.toContain("@@");
+    for (const e of Object.keys(EVENT_KINDS)) expect(hook).toContain(e);
+    for (const t of AGENT_TOOLS) expect(hook).toContain(t);
+  });
+
+  test("parseEvent accepts every tool and rejects an unknown one", () => {
+    for (const tool of AGENT_TOOLS) expect(parseEvent(JSON.stringify({ v: 1, ts: 1, tool, session: "s", event: "Stop", project: "p" }))?.tool).toBe(tool);
+    expect(parseEvent(JSON.stringify({ v: 1, ts: 1, tool: "cursor", session: "s", event: "Stop", project: "p" }))).toBeNull();
+  });
+
+  test("captured Gemini payloads name the matcher and notification type the install uses", () => {
+    expect(gemJson("before-tool-invoke-agent").tool_name).toBe(GEMINI_SUBAGENT_TOOL);
+    expect(gemJson("after-tool-invoke-agent").tool_name).toBe(GEMINI_SUBAGENT_TOOL);
+    expect(NOTIFY_TYPES).toContain(gemJson("notification-tool-permission").notification_type);
+    for (const h of GEMINI_HOOKS) expect(Object.hasOwn(EVENT_KINDS, h.event)).toBe(true);
+    for (const f of ["before-agent", "before-tool-invoke-agent", "after-tool-invoke-agent", "after-agent", "session-end", "notification-tool-permission"]) {
+      expect(GEMINI_HOOKS.map((h) => h.event)).toContain(gemJson(f).hook_event_name);
+    }
+  });
+});
+
+describe("gemini", () => {
+  const order = ["session-start", "before-agent", "before-tool-invoke-agent", "after-tool-invoke-agent", "after-agent", "session-end"];
+
+  test("captured payloads give one v1 line each, with no prompt text", async () => {
+    const s = scratch();
+    for (const f of order) {
+      const r = run(s, gem(f), ["gemini"]);
+      expect([r.code, r.stdout, r.stderr]).toEqual([0, "", ""]);
+    }
+    const rows = s.log().trim().split("\n").map(parseEvent);
+    expect(rows.map((r) => r?.event)).toEqual(["BeforeAgent", "BeforeTool", "AfterTool", "AfterAgent", "SessionEnd"]);
+    expect(rows.every((r) => r?.tool === "gemini" && r.project === "proj" && r.session === gemJson("before-agent").session_id)).toBe(true);
+    for (const leak of ["CAPTURE", "say hi", "/home/user", "touch zz"]) expect(s.log()).not.toContain(leak);
+    await settle(s, 2);
+    expect(s.sentLines().some((l) => l.includes("proj"))).toBe(true);
+  });
+
+  test("the fold counts the invoke_agent subagent and ends done", () => {
+    const s = scratch();
+    const now = Math.floor(Date.now() / 1000);
+    for (const f of order.slice(0, 3)) run(s, gem(f), ["gemini"]);
+    expect(foldAgents(s.log(), now)[0]).toMatchObject({ tool: "gemini", state: "running", subagents: 1 });
+    run(s, gem("after-tool-invoke-agent"), ["gemini"]);
+    expect(foldAgents(s.log(), now)[0]).toMatchObject({ state: "running", subagents: 0 });
+    run(s, gem("after-agent"), ["gemini"]);
+    expect(foldAgents(s.log(), now)[0]).toMatchObject({ state: "done", subagents: 0 });
+  });
+
+  test("the ToolPermission notification marks the session waiting and notifies", async () => {
+    const s = scratch();
+    const n = gemJson("notification-tool-permission");
+    run(s, JSON.stringify({ ...gemJson("before-agent"), session_id: n.session_id }), ["gemini"]);
+    run(s, gem("notification-tool-permission"), ["gemini"]);
+    expect(foldAgents(s.log(), Math.floor(Date.now() / 1000))[0]).toMatchObject({ tool: "gemini", session: n.session_id, state: "waiting" });
+    await settle(s, 2);
+    expect(s.sentLines().length).toBe(2);
+    expect(s.log()).not.toContain("touch zz");
+  });
+
+  const ORIGINAL = `{\n  "security": { "auth": { "selectedType": "oauth-personal" } },\n  "hooks": {\n    "BeforeTool": [{ "matcher": "run_shell_command", "hooks": [{ "type": "command", "command": "echo mine" }] }]\n  }\n}\n`;
+
+  test("install --gemini merges once, leaves Claude alone, and uninstall restores the bytes", async () => {
+    const s = scratch();
+    mkdirSync(join(s.home, ".gemini"));
+    const sp = join(s.home, ".gemini", "settings.json");
+    writeFileSync(sp, ORIGINAL);
+    expect(await waitCommand(["install", "--gemini"], s.d)).toBe(0);
+    const once = readFileSync(sp, "utf8");
+    expect(await waitCommand(["install", "--gemini"], s.d)).toBe(0);
+    expect(readFileSync(sp, "utf8")).toBe(once);
+    expect(existsSync(join(s.home, ".claude", "settings.json"))).toBe(false);
+    const settings = JSON.parse(once);
+    expect(settings.security.auth.selectedType).toBe("oauth-personal");
+    expect(settings.hooks.BeforeTool.map((g: { matcher?: string }) => g.matcher)).toEqual(["run_shell_command", "invoke_agent"]);
+    expect(settings.hooks.BeforeTool[1].hooks[0]).toMatchObject({ name: GEMINI_HOOK_NAME, type: "command" });
+    expect(settings.hooks.Notification[0].matcher).toBeUndefined();
+    expect(Object.keys(settings.hooks).sort()).toEqual(["AfterAgent", "AfterTool", "BeforeAgent", "BeforeTool", "Notification", "SessionEnd"]);
+    s.lines.length = 0;
+    await waitStatus(s.d);
+    expect(s.lines).toContain("Gemini CLI: on, no event yet");
+    expect(s.lines.join("\n")).toContain("No event source yet: OpenCode, Aider");
+    expect(await waitCommand(["uninstall", "--gemini"], s.d)).toBe(0);
+    expect(readFileSync(sp, "utf8")).toBe(ORIGINAL);
+    expect(existsSync(`${sp}.bkt-wait.bak`)).toBe(false);
+    expect(existsSync(hookPath(s.d))).toBe(false);
+  });
+
+  test("uninstall --gemini keeps the Claude hooks and the shim", async () => {
+    const s = scratch();
+    mkdirSync(join(s.home, ".claude"));
+    mkdirSync(join(s.home, ".gemini"));
+    expect(await waitInstall(s.d)).toBe(0);
+    expect(await waitCommand(["install", "--gemini"], s.d)).toBe(0);
+    expect(await waitCommand(["uninstall", "--gemini"], s.d)).toBe(0);
+    expect(existsSync(join(s.home, ".gemini", "settings.json"))).toBe(false);
+    expect(existsSync(hookPath(s.d))).toBe(true);
+    expect(JSON.parse(readFileSync(join(s.home, ".claude", "settings.json"), "utf8")).hooks.Stop).toHaveLength(1);
+  });
+
+  test("plain uninstall removes the Gemini hooks too", async () => {
+    const s = scratch();
+    mkdirSync(join(s.home, ".gemini"));
+    writeFileSync(join(s.home, ".gemini", "settings.json"), ORIGINAL);
+    expect(await waitCommand(["install", "--gemini"], s.d)).toBe(0);
+    expect(await waitUninstall(s.d)).toBe(0);
+    expect(readFileSync(join(s.home, ".gemini", "settings.json"), "utf8")).toBe(ORIGINAL);
+  });
+
+  test("a settings file with comments is left alone", async () => {
+    const s = scratch();
+    mkdirSync(join(s.home, ".gemini"));
+    const text = '// mine\n{ "theme": "x" }\n';
+    writeFileSync(join(s.home, ".gemini", "settings.json"), text);
+    expect(await waitCommand(["install", "--gemini"], s.d)).toBe(1);
+    expect(readFileSync(join(s.home, ".gemini", "settings.json"), "utf8")).toBe(text);
+  });
+
+  test("the installed Gemini hook runs end to end on a captured payload", async () => {
+    const s = scratch();
+    expect(await waitCommand(["install", "--gemini"], s.d)).toBe(0);
+    const settings = JSON.parse(readFileSync(join(s.home, ".gemini", "settings.json"), "utf8"));
+    const cmd: string = settings.hooks.AfterAgent[0].hooks[0].command;
+    const p = Bun.spawnSync(["sh", "-c", cmd], { stdin: new TextEncoder().encode(gem("after-agent")), env: s.env });
+    expect([p.exitCode, p.stdout.toString()]).toEqual([0, ""]);
+    await settle(s, 1);
+    expect(s.sentLines()[0]).toContain("Done: proj");
+    expect(agentsBody(s.d, Math.floor(Date.now() / 1000))).toMatchObject({ installed: true, sessions: [{ tool: "gemini", state: "done" }] });
   });
 });
