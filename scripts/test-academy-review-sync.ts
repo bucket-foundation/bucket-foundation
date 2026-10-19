@@ -32,9 +32,11 @@ function memoryStorage(): Storage {
 class Server {
   enabled = true;
   online = true;
+  user = "u1";
+  band: "18plus" | "13to17" | null = "18plus";
   progress = new Map<string, { data: EngineState; log_seq: number | null }>();
   baseline = new Map<string, EngineState>();
-  log: (AppendRow & { seq: number })[] = [];
+  log: (AppendRow & { seq: number; user: string })[] = [];
   mastery = 0;
   snapshots = 0;
   handlers = createReviewLogHandlers({
@@ -42,18 +44,19 @@ class Server {
     configured: () => true,
     origins: () => [],
     now: () => T0 + 3_600_000,
-    verifyUser: async () => "u1",
-    readAgeBand: async () => ({ ok: true, band: "18plus" }),
+    verifyUser: async () => this.user,
+    readAgeBand: async () => ({ ok: true, band: this.band }),
     appendReviews: async (_uid, rows) =>
       rows.map((r) => {
         const prev = this.log.find((x) => x.branch === r.branch && x.review_id === r.review_id);
+        if (prev && prev.user !== this.user) throw new Error("cross-user review_id");
         if (prev) return { review_id: r.review_id, status: prev.payload_hash === r.payload_hash ? ("duplicate" as const) : ("conflict" as const), seq: prev.seq };
         if (!this.baseline.has(r.branch)) this.baseline.set(r.branch, this.progress.get(r.branch)?.data ?? normalizeState(null));
         const seq = this.log.length + 1;
-        this.log.push({ ...r, seq });
+        this.log.push({ ...r, seq, user: this.user });
         return { review_id: r.review_id, status: "inserted" as const, seq };
       }),
-    readLog: async (_uid, since, limit) => this.log.filter((r) => r.seq > since).slice(0, limit).map((r) => this.stored(r)),
+    readLog: async (uid, since, limit) => this.log.filter((r) => r.user === uid && r.seq > since).slice(0, limit).map((r) => this.stored(r)),
     readBranch: async (_uid, branch) => ({ baseline: this.baseline.get(branch) ?? null, rows: this.log.filter((r) => r.branch === branch).map((r) => this.stored(r)) }),
     writeFold: async (_uid, branch, data, seq) => {
       const cur = this.progress.get(branch);
@@ -68,7 +71,7 @@ class Server {
     atoms: (branch) => ({ [corpusAtomsVersion(branch)]: ATOMS }),
   });
 
-  stored(r: AppendRow & { seq: number }): StoredReview {
+  stored(r: AppendRow & { seq: number; user: string }): StoredReview {
     return { ...r, reviewed_at: Date.parse(r.reviewed_at), seq: r.seq };
   }
 
@@ -87,6 +90,13 @@ class Server {
   };
 }
 
+let chain: Promise<unknown> = Promise.resolve();
+function tabLock<T>(fn: () => Promise<T>): Promise<T> {
+  const run = chain.then(fn, fn);
+  chain = run.catch(() => undefined);
+  return run;
+}
+
 class Tab {
   sync: ReviewSync;
   state: EngineState;
@@ -97,10 +107,11 @@ class Tab {
     this.state = this.readLocal() ?? normalizeState(null);
     this.sync = createReviewSync({
       storage: () => storage,
-      fetch: server.fetch,
+      fetch: (input, init) => server.fetch(input, init),
       uuid: randomUUID,
       readLocal: () => this.readLocal(),
       pushSnapshot: server.pushSnapshot,
+      lock: tabLock,
     });
   }
   readLocal(): EngineState | null {
@@ -206,4 +217,64 @@ test("with the kill switch off the snapshot path keeps working and the log stays
   assert.deepEqual(cards(fold), ["a1", "a2"]);
   assert.deepEqual(fold.cards.a1, tab.state.cards.a1);
   assert.equal(fold.stats.xp, tab.state.stats.xp);
+});
+
+test("reviews queued by one account never post under the next account in the same browser", async () => {
+  const server = new Server();
+  const storage = memoryStorage();
+  const tab = new Tab(server, storage);
+  tab.study("a1", T0);
+  await tab.sync.flush();
+  server.online = false;
+  tab.study("a2", T0 + 1000);
+  server.online = true;
+  server.user = "u2";
+  await tab.sync.flush();
+  assert.equal(server.log.filter((r) => r.user === "u2").length, 0);
+  assert.equal(tab.sync.pending().length, 1);
+  assert.equal(await tab.sync.pullLog().then((r) => r?.length), 0);
+  assert.equal(tab.sync.cursor(), 0);
+  server.user = "u1";
+  await tab.sync.flush();
+  assert.equal(server.log.filter((r) => r.user === "u1").length, 2);
+  assert.equal(tab.sync.pending().length, 0);
+});
+
+test("a no_profile refusal keeps the outbox and a minor refusal drops it", async () => {
+  const server = new Server();
+  server.band = null;
+  const tab = new Tab(server, memoryStorage());
+  tab.study("a1", T0);
+  await tab.sync.flush();
+  assert.equal(tab.sync.pending().length, 1);
+  assert.notEqual(tab.sync.mode(), "log");
+  server.band = "18plus";
+  await tab.sync.flush();
+  assert.equal(server.log.length, 1);
+  server.band = "13to17";
+  tab.study("a2", T0 + 1000);
+  await tab.sync.flush();
+  assert.equal(tab.sync.pending().length, 0);
+  assert.equal(server.log.length, 1);
+});
+
+test("a review appended in one tab while another tab flushes is kept", async () => {
+  const server = new Server();
+  const storage = memoryStorage();
+  const a = new Tab(server, storage);
+  const b = new Tab(server, storage);
+  a.study("a1", T0);
+  const fetch = server.fetch;
+  let injected = false;
+  server.fetch = async (input, init) => {
+    if (!injected && init?.method === "POST") {
+      injected = true;
+      b.study("a2", T0 + 1000);
+    }
+    return fetch(input, init);
+  };
+  await a.sync.flush();
+  await b.sync.flush();
+  assert.deepEqual(server.log.map((r) => r.card_id).sort(), ["a1", "a2"]);
+  assert.equal(a.sync.pending().length, 0);
 });
