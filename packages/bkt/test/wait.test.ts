@@ -414,6 +414,20 @@ describe("gemini", () => {
     expect(s.sentLines().some((l) => l.includes("proj"))).toBe(true);
   });
 
+  test("a Gemini Notification of another type writes nothing", () => {
+    const s = scratch();
+    run(s, JSON.stringify({ ...gemJson("notification-tool-permission"), notification_type: "Other" }), ["gemini"]);
+    expect(s.log()).toBe("");
+    run(s, gem("notification-tool-permission"), ["gemini"]);
+    expect(parseEvent(s.log().trim())?.event).toBe("Notification");
+  });
+
+  test("install --gemini prints the Gemini consent", async () => {
+    const s = scratch();
+    expect(await waitCommand(["install", "--gemini"], s.d)).toBe(0);
+    expect(s.lines[0]).toContain("Gemini CLI");
+  });
+
   test("the fold counts the invoke_agent subagent and ends done", () => {
     const s = scratch();
     const now = Math.floor(Date.now() / 1000);

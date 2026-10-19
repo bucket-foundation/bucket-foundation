@@ -241,6 +241,7 @@ function preflight(d: WaitDeps): number | null {
 export async function waitInstallGemini(d: WaitDeps): Promise<number> {
   const stop = preflight(d);
   if (stop !== null) return stop;
+  d.out(GEMINI_CONSENT);
   const shim = writeShims(d);
   const code = installJson(d, geminiSettings(d.home), "Gemini CLI", (s) => mergeGemini(s, shim));
   d.out("Turned on for Gemini CLI. Run bkt wait status after your next prompt to see the first event.");

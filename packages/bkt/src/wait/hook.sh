@@ -33,6 +33,7 @@ case "$event" in
   *) exit 0 ;;
 esac
 [ -n "$session" ] || exit 0
+if [ "$tool" = gemini ] && [ "$event" = Notification ] && [ "$ntype" != ToolPermission ]; then exit 0; fi
 base=${cwd%/}
 base=${base##*/}
 project=$(printf '%s' "$base" | tr -cd 'A-Za-z0-9._ -' | cut -c1-48 | sed 's/^ *//;s/ *$//')
