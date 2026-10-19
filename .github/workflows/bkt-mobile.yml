@@ -37,6 +37,8 @@ jobs:
         run: bun run build
       - name: no staff data in the public bundle
         run: bun packages/bkt/scripts/check-no-staff.ts packages/bkt-mobile/dist
+      - name: no smoke hook in the release bundle
+        run: "! grep -rl -e BKT_SMOKE -e sync-smoke packages/bkt-mobile/dist"
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: bkt-mobile-web
@@ -97,6 +99,74 @@ jobs:
           name: bkt-mobile-android
           path: ${{ env.OUT }}/*
           if-no-files-found: error
+
+  android-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd
+      - run: npm ci
+      - name: local supabase
+        run: npx supabase@2.117.0 start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
+      - name: site against local supabase
+        run: |
+          npx supabase@2.117.0 status -o env > "$RUNNER_TEMP/supa.env"
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
+          {
+            echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
+            echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
+            echo "ACADEMY_REVIEW_LOG=on"
+          } > .env.local
+          node scripts/sync-academy.mjs
+          (ACADEMY_REVIEW_LOG=on npx next dev -p 3000 > "$RUNNER_TEMP/dev.log" 2>&1 &)
+          for i in $(seq 1 90); do
+            if wget -q -O /dev/null http://localhost:3000/sign-in; then break; fi
+            sleep 2
+          done
+      - name: smoke user with one web review
+        run: |
+          set -a; . "$RUNNER_TEMP/supa.env"; set +a
+          SITE_URL=http://127.0.0.1:3000 node packages/bkt-mobile/scripts/sync-smoke-prep.mjs
+      - name: debug bundle pointed at the host
+        working-directory: packages/bkt-mobile
+        env:
+          VITE_BKT_SMOKE: "1"
+          VITE_BUCKET_SYNC_BASE: http://10.0.2.2:3000
+        run: |
+          bun install --frozen-lockfile
+          VITE_SMOKE_REFRESH_TOKEN="$SMOKE_REFRESH_TOKEN" VITE_SMOKE_USER="$SMOKE_USER" bun run build
+          bunx cap sync android
+      - name: debug apk
+        working-directory: packages/bkt-mobile/android
+        run: ./gradlew assembleDebug --no-daemon
+      - name: enable kvm
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
+      - name: emulator sync round trip
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        with:
+          api-level: 34
+          arch: x86_64
+          target: google_apis
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+          script: bash packages/bkt-mobile/scripts/android-sync-smoke.sh packages/bkt-mobile/android/app/build/outputs/apk/debug/app-debug.apk
+      - name: server log on failure
+        if: failure()
+        run: tail -200 "$RUNNER_TEMP/dev.log" || true
 
   ios:
     needs: web

@@ -9,12 +9,16 @@ export interface SyncFetchOptions {
   token: () => Promise<string | null>;
   fetch: typeof fetch;
   account?: Pick<MobileSync, "route">;
+  allowLocalHttp?: boolean;
 }
+
+export const SMOKE_HOSTS = ["10.0.2.2", "127.0.0.1", "localhost"];
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } });
 
-export function requireHttps(base: string): string {
+export function requireHttps(base: string, allowLocalHttp = false): string {
   const u = new URL(base);
+  if (u.protocol === "http:" && allowLocalHttp && SMOKE_HOSTS.includes(u.hostname)) return u.origin;
   if (u.protocol !== "https:") throw new Error(`sync API must use https, got ${u.protocol}`);
   return u.origin;
 }
@@ -24,7 +28,7 @@ function isRos(name: string): name is RosResource {
 }
 
 export function createSyncFetch(opts: SyncFetchOptions): typeof fetch {
-  const base = requireHttps(opts.base);
+  const base = requireHttps(opts.base, opts.allowLocalHttp === true);
   const ros = webRosSource({ base, fetch: opts.fetch });
 
   async function progress(method: string, body: BodyInit | null | undefined): Promise<Response> {
@@ -44,7 +48,7 @@ export function createSyncFetch(opts: SyncFetchOptions): typeof fetch {
     if (!local) return opts.fetch(input, init);
     if (url.pathname === "/session" && method === "POST") return json({ token: MOBILE_SESSION });
     if (url.pathname === "/local/progress") return progress(method, init?.body ?? (req ? await req.text() : undefined));
-    if (opts.account && (url.pathname === "/local/review-log" || url.pathname.startsWith("/local/account"))) {
+    if (opts.account && (url.pathname.startsWith("/local/review-log") || url.pathname.startsWith("/local/account"))) {
       const raw = init?.body ?? (req && method !== "GET" ? await req.text() : null);
       const hit = await opts.account.route(url.pathname, method, typeof raw === "string" ? raw : null);
       if (hit) return hit;
