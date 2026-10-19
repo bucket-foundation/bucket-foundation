@@ -8,6 +8,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const NO_STORE = { "cache-control": "no-store" };
+const FORGET_PARTS = ["downloads", "downloads/suspect", "polingual", "polingual/suspect"] as const;
 function clientIp(req: NextRequest): string {
   return req.ip || req.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "unknown";
 }
@@ -30,7 +31,7 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
   const email = normalizeEmail(req.nextUrl.searchParams.get("email"));
   if (!email) return NextResponse.json({ error: "Give a valid email." }, { status: 400, headers: NO_STORE });
   try {
-    for (const part of ["downloads", "downloads/suspect"] as const) {
+    for (const part of FORGET_PARTS) {
       const store = getWaitlistStore(process.env, part);
       if (!store) return NextResponse.json({ error: "No Blob store is connected." }, { status: 503, headers: NO_STORE });
       await forgetDownload(store, email);

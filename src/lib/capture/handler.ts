@@ -36,13 +36,13 @@ function emptyDelivered(): Delivered {
 }
 
 export async function handleCapture(body: unknown, ip: string, deps: CaptureDeps): Promise<CaptureResult> {
+  const parsed = parseCapture(body);
+  if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
   try {
     if (await deps.limited?.(ip)) return { status: 429, body: { error: "Too many signups from here. Wait 30 seconds and try again." } };
   } catch (err) {
     console.error("[capture] rate limit check failed:", err instanceof Error ? err.message : err);
   }
-  const parsed = parseCapture(body);
-  if (!parsed.ok) return { status: 400, body: { error: parsed.error } };
   const store = deps.store(storePart(parsed.source, parsed.suspect));
   if (!store) return { status: 503, body: { error: "Signups are closed for a moment. Try again later." } };
   const at = deps.now?.() ?? new Date().toISOString();

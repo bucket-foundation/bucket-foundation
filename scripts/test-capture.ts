@@ -83,6 +83,8 @@ test("rate limit allows one submit per IP per 30 seconds", async () => {
   assert.equal((await handleCapture(body, "2.2.2.2", deps)).status, 200);
   assert.equal((await handleCapture(body, "2.2.2.2", deps)).status, 429);
   assert.equal((await handleCapture(body, "3.3.3.3", deps)).status, 200);
+  assert.equal((await handleCapture({ source: "footer", email: "typo" }, "4.4.4.4", deps)).status, 400);
+  assert.equal((await handleCapture(body, "4.4.4.4", deps)).status, 200);
   t = CAPTURE_WINDOW_MS + 1;
   assert.equal((await handleCapture(body, "2.2.2.2", deps)).status, 200);
   await rm(dir, { recursive: true, force: true });
@@ -202,6 +204,12 @@ test("Start learning is the primary action and Download is secondary", () => {
   const header = read("src/components/HeaderV3.tsx");
   assert.match(header, /bg-\[color:var\(--gold\)\][\s\S]*Start learning/);
   assert.match(read("src/components/download/DownloadExperience.tsx"), /data-start-learning/);
+});
+
+test("the forget route clears download and polingual parts", () => {
+  const route = read("src/app/api/download/route.ts");
+  for (const part of ["downloads", "downloads/suspect", "polingual", "polingual/suspect"]) assert.ok(route.includes(`"${part}"`), part);
+  assert.match(route, /for \(const part of FORGET_PARTS\)/);
 });
 
 test("funnel events cover the four plan events", () => {
