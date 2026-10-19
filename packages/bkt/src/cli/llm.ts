@@ -2,7 +2,10 @@ import type { Keyring } from "../keyring";
 import { isLoopback, keyAccount, PRESETS, readProviders, upsert, writeProviders, type ProviderEntry } from "../llm/config";
 import { doctorLines, runDoctor, type DoctorDeps } from "../llm/doctor";
 import { probeLocal } from "../llm/local";
-import type { Fetch } from "../llm/types";
+import type { CanonStore } from "../canon";
+import { providerFor } from "../llm";
+import { canonChat } from "../llm/canon-tools";
+import type { Fetch, Provider } from "../llm/types";
 import { EXIT } from "./table";
 
 export interface LlmDeps {
@@ -90,4 +93,50 @@ export async function llmCommand(sub: string, args: LlmArgs, deps: LlmDeps): Pro
     return r.completion?.ok ? EXIT.ok : EXIT.failure;
   }
   throw new Error(`unknown llm command ${sub}`);
+}
+
+export interface AskDeps {
+  home: string;
+  keyring: () => Promise<Keyring>;
+  fetch?: Fetch;
+  store: CanonStore;
+  out: (line: string) => void;
+}
+
+export function pickProvider(list: ProviderEntry[], name?: string): ProviderEntry | null {
+  if (name) return list.find((p) => p.name === name) ?? null;
+  return list.find((p) => p.local && isLoopback(p.baseUrl)) ?? list[0] ?? null;
+}
+
+export async function askCommand(question: string, values: Record<string, unknown>, deps: AskDeps): Promise<number> {
+  const { out } = deps;
+  const name = str(values.provider);
+  const list = readProviders(deps.home);
+  const entry = pickProvider(list, name);
+  if (!entry) {
+    out(name ? `no provider named ${name}; bkt llm list shows them` : "no providers yet; run bkt llm add <name> or bkt llm local");
+    return EXIT.noData;
+  }
+  const provider: Provider = providerFor(entry, entry.keyed ? await deps.keyring() : null, deps.fetch);
+  out(`${provider.local ? "local" : "hosted"}: ${entry.name} ${entry.model}${provider.local ? ", nothing leaves this computer" : ", only your question and open-licence passages are sent"}`);
+  const res = await canonChat(provider, deps.store, [{ role: "user", content: question }]);
+  out("");
+  out(res.text.trim() || "the model gave no answer");
+  const cited = res.messages
+    .filter((m) => m.role === "tool")
+    .map((m) => {
+      try {
+        return JSON.parse(m.content) as { citation?: string; tag?: string };
+      } catch {
+        return {};
+      }
+    })
+    .filter((c): c is { citation: string; tag: string } => typeof c.citation === "string" && typeof c.tag === "string");
+  out("");
+  if (!cited.length) out("citations: none");
+  else {
+    out("citations:");
+    for (const c of cited) out(`  ${c.citation} ${c.tag}`);
+  }
+  return EXIT.ok;
 }

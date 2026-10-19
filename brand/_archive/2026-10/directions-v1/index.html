@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bucket Design Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;600&family=IM+Fell+English:ital@0;1&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=Young+Serif&family=Instrument+Sans:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Geist:wght@400;600&family=Geist+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--page:#f3f1ec;--ink:#1b1b1b;--muted:#5f5c56;--rule:#d8d4ca}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#141413;--ink:#ecebe6;--muted:#a3a098;--rule:#2d2c29}}
+:root[data-theme="dark"]{--page:#141413;--ink:#ecebe6;--muted:#a3a098;--rule:#2d2c29}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 "Inter Tight",system-ui,sans-serif}
+img{max-width:100%;display:block}
+header.top{max-width:1200px;margin:0 auto;padding:48px 16px 24px}
+header.top h1{font:600 34px/1.1 "Inter Tight";margin:0 0 8px;letter-spacing:-.02em}
+header.top p{margin:0;color:var(--muted);max-width:66ch}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}nav a{color:var(--ink);border:1px solid var(--rule);border-radius:999px;padding:6px 12px;text-decoration:none;font-size:13px}
+section.dir{background:var(--bg);color:var(--fg);padding:56px 16px;border-top:1px solid var(--rule)}
+.wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+@media (max-width:900px){.wrap{grid-template-columns:1fr;gap:32px}.side{order:-1}}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--label);margin-bottom:14px}
+h2{font-family:var(--display);font-weight:var(--dw,400);font-size:clamp(40px,6vw,68px);line-height:1;margin:0 0 18px;letter-spacing:var(--dt,-.01em)}
+.feel{font-family:var(--body);font-size:17px;max-width:60ch;margin:0 0 8px}
+h3{font:600 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;margin:30px 0 12px;color:var(--fg2)}
+ol,ul{margin:0;padding-left:20px;font-family:var(--body)}li{margin:4px 0}
+ul.no li::marker{content:"× "}
+.sw{display:flex;flex-wrap:wrap;gap:10px}.sw div{width:100px}.sw i{display:block;height:64px;border-radius:var(--r,4px);border:1px solid color-mix(in srgb,var(--fg) 18%,transparent)}
+.sw b{display:block;font:500 12px/1.3 var(--mono);margin-top:6px}.sw span{font:400 12px/1.3 var(--mono);color:var(--fg2)}
+.spec{border-top:1px solid color-mix(in srgb,var(--fg) 20%,transparent);padding-top:14px}
+.spec .d{font-family:var(--display);font-weight:var(--dw,400);font-size:46px;line-height:1.05;letter-spacing:var(--dt,0)}
+.spec .b{font-family:var(--body);font-size:15px;max-width:52ch;margin-top:8px}
+.spec .m{font:12px var(--mono);color:var(--fg2);margin-top:8px}
+.refs{font-family:var(--body);font-size:14px}
+table.cr{border-collapse:collapse;font:12px/1.4 var(--mono);width:100%}
+table.cr td{padding:5px 8px 5px 0;border-bottom:1px solid color-mix(in srgb,var(--fg) 14%,transparent)}
+table.cr .chip{display:inline-block;padding:2px 8px;border-radius:3px;font-weight:600}
+table.cr .ok{color:var(--fg)}
+.side{display:flex;flex-direction:column;gap:32px}
+.phones{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.ph{display:flex;flex-direction:column;align-items:center;gap:8px}
+.ph>small{font:13px var(--mono);color:var(--fg2)}
+.phone{width:260px;aspect-ratio:9/18.5;border-radius:36px;background:var(--app);padding:10px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5);border:1px solid color-mix(in srgb,var(--fg) 16%,transparent);display:flex}
+.screen{flex:1;border-radius:28px;background:var(--app);display:flex;flex-direction:column;padding:18px 14px 14px;color:var(--appfg);overflow:hidden}
+.bar{display:flex;justify-content:space-between;font:12px var(--mono)}
+.prog{height:4px;background:color-mix(in srgb,var(--appfg) 22%,transparent);margin:12px 0 14px;border-radius:2px}.prog i{display:block;height:100%;width:62%;background:var(--prog);border-radius:inherit}
+.card{flex:1;background:var(--card);color:var(--cardfg);border-radius:var(--cr,14px);padding:18px 16px;display:flex;flex-direction:column;position:relative;border:var(--cb,0)}
+.card .lang{font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cardlabel)}
+.card .ex{margin-bottom:14px}.card .word{font-family:var(--display);font-weight:var(--dw,400);font-size:38px;line-height:1;margin:16px 0 6px;letter-spacing:var(--dt,0)}
+.card .word.sm{font-size:24px;margin-top:10px}
+.card .ipa{font:12px var(--mono);color:var(--cardmuted)}
+.card .ex{font-family:var(--body);font-size:14px;line-height:1.45;margin-top:16px}
+.card .ex mark{background:none;color:inherit;font-weight:600;box-shadow:inset 0 -2px 0 var(--mk)}
+.card .tr{font-family:var(--body);font-size:13px;color:var(--cardmuted);margin-top:6px;font-style:italic}
+.card .gloss{font-family:var(--body);font-size:16px;font-weight:600;margin-top:12px}
+.card .root{font:11px var(--mono);color:var(--cardmuted);margin-top:auto;padding-top:10px}
+.reveal{font:600 13px var(--body);text-align:center;padding:12px 0;border-radius:var(--br,10px);border:1.5px dashed color-mix(in srgb,var(--cardfg) 45%,transparent);color:var(--cardfg)}
+.ans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px}
+.ans span{font:600 12px var(--body);text-align:center;padding:11px 0;border-radius:var(--br,10px);background:var(--sec);color:var(--secfg)}
+.ans span em{display:block;font:500 10px var(--mono);font-style:normal;opacity:.85;margin-top:2px}.ans span.sel{outline:2px solid var(--appfg);outline-offset:2px}.peek{margin-top:auto;margin-bottom:12px;padding-top:12px;border-top:1px solid color-mix(in srgb,var(--cardfg) 15%,transparent);display:flex;flex-direction:column;gap:4px;font:12px var(--body);color:var(--cardmuted)}.peek span:last-child{font:11px var(--mono)}.ans span.go{background:var(--btn);color:var(--btnfg)}
+.hint{font:11px var(--mono);text-align:center;margin-top:10px;color:var(--appfg)}
+.mark-big{background:var(--markbg);border-radius:8px;padding:24px;display:flex;justify-content:center}
+.mark-big svg{width:100%;max-width:1024px;height:auto}
+.sizes{display:flex;gap:20px;align-items:flex-end;flex-wrap:wrap;margin-top:14px}
+.sizes figure{margin:0;text-align:center}.sizes figcaption{font:12px var(--mono);color:var(--fg2);margin-top:6px}
+.sizes svg{display:block}
+.art{margin:0}.art img{border-radius:6px;aspect-ratio:1;object-fit:cover;width:100%;max-width:520px}.art figcaption{font:12px var(--mono);color:var(--fg2);margin-top:6px}
+footer{max-width:1200px;margin:0 auto;padding:32px 16px 64px;color:var(--muted);font-size:13px}
+</style></head><body>
+<header class="top">
+<h1>Bucket design directions</h1>
+<p>Five art directions for the Bucket Foundation refresh. Direction 0 reworks the current tan, gold and green. Directions 1 to 4 are new. Each one shows the bkt mark at 1024, 64 and 32px, iOS and Android icons, a Polingual study card front and back, and measured WCAG contrast for every action and label. Generated art is marked as such and is a concept sample.</p>
+<nav id="nav"></nav>
+</header>
+<main id="dirs"></main>
+<footer>Full text in brand/DESIGN-DIRECTIONS.md. Pick one direction, or two to blend, before Step 2 produces the final mark files.</footer>
+<script>
+const D=[
+{id:"d0",n:"0",tag:"Rework of the current look",name:"Forest and Gilt",
+c:{bg:"#ECEBE4",fg:"#12261E",fg2:"#4A5A51",label:"#6E520E",app:"#12261E",appfg:"#ECEBE4",card:"#F7F6F1",cardfg:"#12261E",cardlabel:"#6E520E",cardmuted:"#4A5A51",btn:"#D4A73C",btnfg:"#12261E",sec:"#E1DFD5",secfg:"#12261E",prog:"#D4A73C",mk:"#9C7416",markbg:"#12261E",markfg:"#ECEBE4",acc:"#D4A73C"},
+font:{display:"'Instrument Serif',serif",body:"'Inter Tight',sans-serif",mono:"'IBM Plex Mono',monospace",label:"Instrument Serif display · Inter Tight UI · IBM Plex Mono labels"},
+style:{serif:true},
+feel:"The current palette moved from tan to cool limestone, with forest green as the dominant surface and gilt as a fill behind dark text. The serif changes from Garamond to Instrument Serif, a sharp condensed face that sets large and tight, so headings read as cut stone. Today's site reads as warm parchment. This version reads as a modern foundation building: green glass, pale stone, one gold plaque.",
+dir:["Forest green is the app surface; limestone is the reading surface.","Gilt is a fill with forest text, used for one action per screen; gilt text uses the darker #6E520E.","Instrument Serif at 32px and up only; Inter Tight for every control.","The bkt mark is set in limestone on forest, with a gilt rim inside the bucket counter."],
+no:["No tan or parchment backgrounds.","No gold gradients, foil or gold text on green.","No globe or stone clip art carried over from Kala.","No serif in buttons or fields."],
+pal:[["Limestone","#ECEBE4"],["Card","#F7F6F1"],["Forest","#12261E"],["Lichen","#4A5A51"],["Gilt","#D4A73C"],["Gilt text","#6E520E"]],
+refs:"Wellcome Collection identity · Stripe Press covers · Kinfolk typography · Aesop store signage",
+ex:"Dopo l'inverno arriva la <mark>rinascita</mark> del bosco.",
+art:null},
+{id:"d1",n:"1",tag:"New",name:"Codex",
+c:{bg:"#F4EEDF",fg:"#2B2118",fg2:"#5E4F3D",label:"#A8321F",app:"#E9E0CA",appfg:"#2B2118",card:"#FBF7EC",cardfg:"#2B2118",cardlabel:"#A8321F",cardmuted:"#5E4F3D",btn:"#A8321F",btnfg:"#FBF7EC",sec:"#E3D8BE",secfg:"#2B2118",prog:"#A8321F",mk:"#A8321F",markbg:"#F4EEDF",markfg:"#2B2118",acc:"#A8321F"},
+font:{display:"'IM Fell English',serif",body:"'Source Serif 4',serif",mono:"'IBM Plex Mono',monospace",label:"IM Fell English display · Source Serif 4 body · IBM Plex Mono margin notes"},
+style:{serif:true,italic:true,cr:"3px",br:"3px",cb:"1px solid #CBBD9C"},
+feel:"The Renaissance notebook. Every screen is a page from a working codex: iron-gall ink on vellum, red rubrication for what matters, marginal notes in a second hand. Study becomes annotation, so a learner writing a gloss beside a word is doing what the Florentine humanists did. It owns the slogan build the past by showing the past as a page still being written, and it gives Polingual a warm, handmade feel without a mascot.",
+dir:["Rubric red marks the one action; everything else is brown-black ink.","A margin column on every page holds roots, notes and citations.","The bkt mark is set upright in Source Serif 4 with a rubric point beside the t; IM Fell stays for headings.","Ruled lines and fold marks as texture, under 6% contrast."],
+no:["No parchment photos, burned edges or coffee stains.","No handwriting fonts for body text.","No pasted Leonardo sketches; draw original diagrams.","No blackletter."],
+pal:[["Vellum","#F4EEDF"],["Quire","#E9E0CA"],["Iron gall","#2B2118"],["Sepia","#5E4F3D"],["Rubric","#A8321F"],["Lapis note","#2E4A8C"]],
+refs:"Codex Arundel facsimiles · Aldine italics of Aldus Manutius · Edward Tufte's book typography · Folger Shakespeare Library collection",
+ex:"Dopo l'inverno arriva la <mark>rinascita</mark> del bosco.",
+art:["img/codex-b.jpg","Generated with gpt-image-1: Aldine b with a rubric dot, letterpress on vellum. Mood sample for the mark."]},
+{id:"d2",n:"2",tag:"New",name:"Archive",
+c:{bg:"#F5F4F0",fg:"#111111",fg2:"#5F5F5A",label:"#C7330F",app:"#F5F4F0",appfg:"#111111",card:"#FFFFFF",cardfg:"#111111",cardlabel:"#5F5F5A",cardmuted:"#5F5F5A",btn:"#C7330F",btnfg:"#FFFFFF",sec:"#E6E5E0",secfg:"#111111",prog:"#C7330F",mk:"#C7330F",markbg:"#F5F4F0",markfg:"#111111",acc:"#C7330F"},
+font:{display:"'Archivo',sans-serif",body:"'Archivo',sans-serif",mono:"'IBM Plex Mono',monospace",label:"Archivo 800 display · Archivo 400 body · IBM Plex Mono accession numbers"},
+style:{dw:800,dt:"-.035em",cr:"0",br:"0",r:"0",cb:"2px solid #111",square:true},
+feel:"A museum catalog on a Swiss grid. Every foundation and every word gets an accession number, a heavy black rule and a fixed slot. It looks like an institution that will still be here in fifty years, the way a national library reads. Polingual turns into a collecting game: each learned word is filed in your own archive with its number and date.",
+dir:["Accession numbers on everything: BKT-0001 for canon entries, PL-IT-0412 for words.","An 8-column grid with 2px black rules and square corners.","One signal orange, #C7330F, for the primary action and live states.","The bkt mark is set in Archivo ExtraBold with a square bucket counter and an orange index tab."],
+no:["No drop shadows, gradients or glass.","No icons where a word fits.","No centered layouts; everything hangs from the left edge.","No second accent color."],
+pal:[["Catalog","#F5F4F0"],["Sheet","#FFFFFF"],["Black","#111111"],["Graphite","#5F5F5A"],["Signal","#C7330F"]],
+refs:"Experimental Jetset's Whitney Museum identity · Cooper Hewitt collection site · Josef Müller-Brockmann grid systems · Are.na",
+ex:"Dopo l'inverno arriva la <mark>rinascita</mark> del bosco.",
+art:null},
+{id:"d3",n:"3",tag:"New",name:"Pigment",
+c:{bg:"#F3EBDD",fg:"#1D2238",fg2:"#4A5270",label:"#B8361C",app:"#1F3F8F",appfg:"#F3EBDD",card:"#E8B23A",cardfg:"#1D2238",cardlabel:"#1D2238",cardmuted:"#3A3320",btn:"#F3EBDD",btnfg:"#B8361C",sec:"#2C4C9C",secfg:"#F3EBDD",prog:"#E8B23A",mk:"#1F3F8F",markbg:"#1F3F8F",markfg:"#E8B23A",acc:"#B8361C"},
+font:{display:"'Young Serif',serif",body:"'Instrument Sans',sans-serif",mono:"'IBM Plex Mono',monospace",label:"Young Serif display · Instrument Sans UI · IBM Plex Mono labels"},
+style:{cr:"26px",br:"999px",r:"50%",round:true},
+feel:"The Renaissance workshop palette as flat color fields: lapis, vermilion, ochre and terre verte, the pigments a fresco painter ground by hand. Shapes are cut paper and generous, closer to Matisse than to a museum. This direction is built around the part a first user found fun. Each language gets its own pigment, cards feel tactile, and the research side uses the same pigments on lime white so both halves read as one house.",
+dir:["Four pigments, each owning a language or canon branch; a screen uses one pigment field plus lime white.","Cut-paper shapes with hand-cut edges for the mark and all illustration.","Rounded cards and pill buttons at 44px or more; the primary pill is lime white with vermilion text so it holds 3:1 against lapis.","Card flip and stamp under 300ms, off when reduced motion is set."],
+no:["No mascot, confetti or streak flames.","No pastel versions of the pigments.","No 3D blobs or gradients between pigments.","No text below 4.5:1, so vermilion text uses #B8361C."],
+pal:[["Lime white","#F3EBDD"],["Lapis","#1F3F8F"],["Vermilion","#B8361C"],["Ochre","#E8B23A"],["Terre verte","#56724B"]],
+refs:"Matisse's late cut-outs · Giotto's Scrovegni Chapel blue · Headspace flat color system · Penguin Modern Classics covers",
+ex:"Dopo l'inverno arriva la <mark>rinascita</mark> del bosco.",
+art:["img/pigment-bucket.jpg","Generated with gpt-image-1: cut-paper ochre bucket with a vermilion rim on lapis, with paper grain. Mood sample for illustration."]},
+{id:"d4",n:"4",tag:"New",name:"Observatory",
+c:{bg:"#0E1116",fg:"#E9E4D8",fg2:"#9AA0AC",label:"#C8A55A",app:"#0E1116",appfg:"#E9E4D8",card:"#161B23",cardfg:"#E9E4D8",cardlabel:"#C8A55A",cardmuted:"#9AA0AC",btn:"#C8A55A",btnfg:"#0E1116",sec:"#222936",secfg:"#E9E4D8",prog:"#C8A55A",mk:"#6FC3C9",markbg:"#0E1116",markfg:"#E9E4D8",acc:"#C8A55A"},
+font:{display:"'Newsreader',serif",body:"'Geist',sans-serif",mono:"'Geist Mono',monospace",label:"Newsreader display · Geist UI · Geist Mono labels"},
+style:{serif:true,cb:"1px solid #2A3140",orbit:true},
+feel:"Galileo's night: a dark canvas, brass instruments and star charts. The canon becomes a sky you map, with each foundation a fixed star and citations as lines between them. This direction meets the Cadence quality bar most directly, dark and cinematic with one warm accent, and it suits long study sessions at night on a phone. It risks reading as a tech product, so the serif and the brass keep it tied to history.",
+dir:["Near-black canvas with one brass accent; meridian cyan only for links between items.","Constellation diagrams for the canon graph, drawn as thin lines and dots.","Newsreader for studied words, Geist for everything else.","The bkt mark sits in moon paper with a brass star on a meridian line; the icon puts the b inside a brass orbit ring."],
+no:["No purple, no aurora gradients, no AI sparkles.","No starfield photos or space stock imagery.","No heavy glass blur.","No neon glow on text."],
+pal:[["Night","#0E1116"],["Dome","#161B23"],["Moon paper","#E9E4D8"],["Brass","#C8A55A"],["Meridian","#6FC3C9"]],
+refs:"Galileo's Sidereus Nuncius plates · Linear's dark UI · Griffith Observatory wayfinding · Stellarium star maps",
+ex:"Dopo l'inverno arriva la <mark>rinascita</mark> del bosco.",
+art:["img/observatory-plate.jpg","Generated with gpt-image-1: engraved constellation plate, brass stars and cyan hairlines. Mood sample for the canon graph."]}
+];
+
+function lum(h){const v=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(x=>x<=.03928?x/12.92:Math.pow((x+.055)/1.055,2.4));return .2126*v[0]+.7152*v[1]+.0722*v[2]}
+function ratio(a,b){const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+
+function bGlyph(d,fill,small){
+  const s=d.style,r=s.square?0:s.round?40:30;
+  const rimY=60,bot=110;
+  const counter=small?`M34 56H82L75 116H41Z`:`M30 ${rimY}H80V${rimY+6}H76L71 ${bot}H39L34 ${rimY+6}H30Z`;
+  const bowl=`M8 0H28V44H${94-r}Q94 44 94 ${44+r}V${130-r}Q94 130 ${94-r} 130H8Z`;
+  let g=`<path fill-rule="evenodd" fill="${fill}" d="${bowl} ${counter}"/>`;
+  if(s.serif)g=`<path fill="${fill}" d="M0 0H28V8H0Z"/>`+g;
+  if(d.id==="d0"&&!small)g+=`<path fill="${d.c.acc}" d="M30 ${rimY}H80V${rimY+6}H30Z"/>`;
+  if(d.id==="d3"&&!small)g+=`<path fill="${d.c.label}" d="M28 ${rimY-2}Q55 ${rimY-6} 82 ${rimY-2}V${rimY+6}H28Z"/>`;
+  return g;
+}
+function wordmark(d,h){const w=Math.round(h*344/160),small=h<=64;
+  const c=d.c;
+  let extra="";
+  if(d.id==="d1")extra=`<circle cx="${small?262:268}" cy="${small?30:34}" r="${small?16:11}" fill="${c.acc}"/>`;
+  if(d.id==="d2")extra=`<rect x="270" y="0" width="26" height="26" fill="${c.acc}"/>`+(small?"":`<text x="0" y="146" font-family="IBM Plex Mono" font-size="12" letter-spacing="2" fill="${c.fg2}">BKT-0001 · FILED 2026</text>`);
+  if(d.style.orbit)extra=`<circle cx="292" cy="20" r="9" fill="${c.acc}"/><path d="M200 20H283" stroke="${c.acc}" stroke-width="2"/>`;
+  return `<svg viewBox="-24 -14 344 160" width="${w}"><g>${bGlyph(d,c.markfg,small)}</g><text x="108" y="130" font-family="${(d.id==="d1"?"Source Serif 4":d.font.display).replace(/'/g,"")}" font-size="148"  font-weight="${d.style.dw||400}" letter-spacing="${d.style.square?-6:-2}" fill="${c.markfg}">kt</text>${extra}</svg>`;
+}
+function icon(d,size,android){
+  const c=d.c,s=d.style;
+  let extra="";
+  if(d.id==="d1")extra=`<circle cx="100" cy="22" r="14" fill="${c.acc}"/>`;
+  if(d.id==="d2")extra=`<rect x="70" y="0" width="24" height="24" fill="${c.acc}"/>`;
+  if(s.orbit)extra=`<circle cx="51" cy="65" r="92" fill="none" stroke="${c.acc}" stroke-width="7"/><circle cx="116" cy="0" r="13" fill="${c.acc}" stroke="${c.markbg}" stroke-width="6"/>`;
+  const scale=s.orbit?(android?.36:.44):(android?.42:.56), cx=60, cy=60;
+  const inner=`<g transform="translate(${cx} ${cy}) scale(${scale}) translate(-51 -68)">${bGlyph(d,c.markfg,size<=48)}${extra}</g>`;
+  const bg=android?`<circle cx="60" cy="60" r="60" fill="${c.markbg}"/>`:`<rect width="120" height="120" rx="27" fill="${c.markbg}"/>`;
+  const ring=c.markbg===d.c.bg?`<${android?'circle cx="60" cy="60" r="59.5"':'rect x=".5" y=".5" width="119" height="119" rx="26.5"'} fill="none" stroke="${c.fg}" stroke-opacity=".18"/>`:"";
+  return `<svg viewBox="0 0 120 120" width="${size}" height="${size}" role="img" aria-label="bkt ${android?'Android':'iOS'} icon">${bg}${inner}${ring}</svg>`;
+}
+function phone(d,back){
+  const c=d.c,acc=d.id==="d2"?"PL-IT-0412":"Polingual";
+  const front=`<div class="lang">Italian · noun</div><div class="word">rinascita</div><div class="ipa">/ri.naʃ.ʃi.ta/</div><div class="ex">${d.ex}</div><div class="peek"><span>Say it aloud, then recall the meaning</span><span>Seen in: deck Italiano 1 · word 412 of 2,000</span><span>review 3 · due today</span></div><div class="reveal">Tap card to reveal · space</div>`;
+  const bk=`<div class="lang">Italian · noun</div><div class="word sm">rinascita</div><div class="gloss">rebirth; a return after loss</div><div class="ex">${d.ex}</div><div class="tr">After winter comes the rebirth of the forest.</div><div class="root">root: re + nascere, to be born<br>related: nascita, Renaissance</div>`;
+  const ans=back?`<div class="ans"><span>again<em>1m</em></span><span>hard<em>1d</em></span><span class="go sel">${d.id==="d2"?"file it":"knew it"}<em>4d</em></span></div>`:`<div class="hint">12 of 20 today</div>`;
+  return `<div class="ph"><div class="phone"><div class="screen"><div class="bar"><span>${acc}</span><span>12 / 20</span></div><div class="prog"><i></i></div><div class="card">${back?bk:front}</div>${ans}</div></div><small>${back?"Back, after reveal":"Front"}</small></div>`;
+}
+function checks(d){
+  const c=d.c;
+  const rows=[["Primary button text",c.btnfg,c.btn,4.5],["Secondary button text",c.secfg,c.sec,4.5],["Eyebrow label",c.label,c.bg,4.5],["Card label",c.cardlabel,c.card,4.5],["Card body",c.cardfg,c.card,4.5],["Card muted text",c.cardmuted,c.card,4.5],["Word underline",c.mk,c.card,3],["Muted page text",c.fg2,c.bg,4.5],["Progress bar vs screen",c.prog,c.app,3],["Primary button vs screen",c.btn,c.app,3]];
+  return `<table class="cr">`+rows.map(([l,f,b,t])=>{const r=ratio(f,b);return `<tr><td><span class="chip" style="background:${b};color:${f};border:1px solid ${f}33">Aa</span></td><td>${l}</td><td>${f} on ${b}</td><td class="ok">${r.toFixed(2)}:1 ${r>=t?"pass":"FAIL"} ${t===3?"UI 3:1":"AA 4.5:1"}</td></tr>`}).join("")+`</table>`;
+}
+const main=document.getElementById("dirs"),nav=document.getElementById("nav");
+for(const d of D){
+  const c=d.c,s=d.style;
+  nav.insertAdjacentHTML("beforeend",`<a href="#${d.id}">${d.n} ${d.name}</a>`);
+  const vars={"--bg":c.bg,"--fg":c.fg,"--fg2":c.fg2,"--label":c.label,"--app":c.app,"--appfg":c.appfg,"--card":c.card,"--cardfg":c.cardfg,"--cardlabel":c.cardlabel,"--cardmuted":c.cardmuted,"--btn":c.btn,"--btnfg":c.btnfg,"--sec":c.sec,"--secfg":c.secfg,"--prog":c.prog,"--mk":c.mk,"--markbg":c.markbg,"--display":d.font.display,"--body":d.font.body,"--mono":d.font.mono};
+  if(s.dw)vars["--dw"]=s.dw;if(s.dt)vars["--dt"]=s.dt;if(s.cr)vars["--cr"]=s.cr;if(s.br)vars["--br"]=s.br;if(s.r)vars["--r"]=s.r;if(s.cb)vars["--cb"]=s.cb;
+  const st=Object.entries(vars).map(([k,v])=>`${k}:${v}`).join(";");
+  const it=s.italic?"font-style:italic":"";
+  main.insertAdjacentHTML("beforeend",`<section class="dir" id="${d.id}" style="${st}"><div class="wrap"><div>
+<div class="kicker">Direction ${d.n} · ${d.tag}</div><h2 style="${it}">${d.name}</h2>
+<p class="feel">${d.feel}</p>
+<h3>Directives</h3><ol>${d.dir.map(x=>`<li>${x}</li>`).join("")}</ol>
+<h3>Anti-slop</h3><ul class="no">${d.no.map(x=>`<li>${x}</li>`).join("")}</ul>
+<h3>Palette</h3><div class="sw">${d.pal.map(([n,h])=>`<div><i style="background:${h}"></i><b>${n}</b><span>${h}</span></div>`).join("")}</div>
+<h3>Type</h3><div class="spec"><div class="d" style="${it}">build the past.</div><div class="b">A small canon of foundations you can trust and cite, free to read. Body set in the UI face at 15 on 24.</div><div class="m">${d.font.label}</div></div>
+<h3>Measured contrast</h3>${checks(d)}
+<h3>References</h3><p class="refs">${d.refs}</p>
+</div><div class="side">
+<div class="phones">${phone(d,false)}${phone(d,true)}</div>
+<div><h3 style="margin-top:0">bkt mark, 1024 master</h3><div class="mark-big">${wordmark(d,476)}</div>
+<div class="sizes"><figure>${wordmark(d,64).replace('<svg','<svg style="background:'+c.markbg+';padding:4px"')}<figcaption>64px</figcaption></figure><figure>${wordmark(d,32).replace('<svg','<svg style="background:'+c.markbg+';padding:2px"')}<figcaption>32px</figcaption></figure>
+<figure>${icon(d,120,false)}<figcaption>iOS 120</figcaption></figure><figure>${icon(d,64,false)}<figcaption>iOS 64</figcaption></figure><figure>${icon(d,32,false)}<figcaption>32</figcaption></figure>
+<figure>${icon(d,108,true)}<figcaption>Android 108</figcaption></figure><figure>${icon(d,48,true)}<figcaption>Android 48</figcaption></figure></div></div>
+${d.art?`<figure class="art"><img src="${d.art[0]}" alt="${d.art[1]}" loading="lazy"><figcaption>${d.art[1]}</figcaption></figure>`:""}
+</div></div></section>`);
+}
+</script>
+</body></html>
