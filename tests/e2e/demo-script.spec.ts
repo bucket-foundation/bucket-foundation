@@ -91,26 +91,56 @@ async function signInThroughModal(page: Page, email: string) {
 const LANG_PERSONAS: [string, string[], string][] = [["ru-en", ["Russian"], "en-ru"], ["es", ["Spanish", "Portuguese"], "en-es-pt"], ["he", ["Hebrew"], "en-he"]];
 
 for (const [tag, targets, system] of LANG_PERSONAS) {
-  test(`persona ${tag}: guest card, modal on a language system, then a Polingual lesson`, async ({ page }) => {
+  test(`persona ${tag}: guest builds a language system and studies one Polingual lesson, the second opens the modal`, async ({ page }) => {
     test.setTimeout(240_000);
     await recordEvents(page);
     await page.goto(`/?demo=${tag}`);
     await page.getByRole("link", { name: "Start learning" }).click();
     await expect(page).toHaveURL(new RegExp(`${LEARN}$`));
-    await guestCard(page, "00-learning-to-learn");
-    await page.goto(`${LEARN}/languages`);
+    await expect(page.locator("[data-guest-learn]").getByRole("heading", { name: "language systems" })).toBeVisible();
     for (const t of targets) await page.getByRole("group", { name: "languages to learn" }).getByRole("button", { name: t, exact: true }).click();
     await page.getByRole("button", { name: "create system" }).click();
+    await expect(page.locator("[data-guest-save]")).toBeVisible();
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await page.goto(`${LEARN}/languages/${system}/study`);
+    for (let n = 0; n < 2; n++) await answerOne(page);
+    await page.reload();
+    for (let n = 0; n < 2; n++) await answerOne(page);
+    await expect(page.getByRole("dialog")).toHaveCount(0);
+    await page.evaluate(() => {
+      const held = JSON.parse(localStorage.getItem("bucket-guest-lang-lesson") || "{}");
+      localStorage.setItem("bucket-guest-lang-lesson", JSON.stringify({ ...held, at: Date.now() - 46 * 60 * 1000 }));
+    });
+    await page.goto(`${LEARN}/languages/${system}/study`);
+    for (let n = 0; n < 6 && !(await page.getByRole("dialog").count()); n++) await answerOne(page);
     await signInThroughModal(page, `e2e-demo-${tag}-${Date.now()}@bucket.local`);
     await page.getByRole("button", { name: "18 or older" }).click();
-    await expect(page.getByRole("heading", { name: "language systems" })).toBeVisible();
-    await page.goto(`${LEARN}/languages/${system}/study`);
-    for (let n = 0; n < 3; n++) await answerOne(page);
+    await expect.poll(async () => {
+      const r = await page.request.get("/api/academy/progress");
+      if (!r.ok()) return [];
+      const j = (await r.json()) as { branches: Record<string, unknown> };
+      return Object.keys(j.branches);
+    }).toEqual(expect.arrayContaining(["lang-systems"]));
+    expect(await page.evaluate(() => localStorage.getItem("bucket-guest-lang-lesson"))).toBeNull();
     const names = (await events(page)).map((e) => e.name);
     expect(names).toEqual(expect.arrayContaining(["start_learning_click", "open_research_os", "sign_in_complete"]));
     for (const e of await events(page)) expect(e.data.demo).toBe(tag);
   });
 }
+
+test("a guest's second language system asks for an account", async ({ page }) => {
+  await page.goto(LEARN);
+  const picker = page.locator("[data-guest-learn]");
+  await picker.getByRole("button", { name: /^Romance/ }).click();
+  await picker.getByRole("button", { name: "create system" }).click();
+  await expect(page.locator("[data-guest-save]")).toBeVisible();
+  await picker.getByRole("button", { name: /^Germanic/ }).click();
+  await picker.getByRole("button", { name: "create system" }).click();
+  await expect(page.getByRole("dialog").getByRole("heading", { name: "Enter your email" })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: "save to your account" }).click();
+  await expect(page.getByRole("dialog").getByRole("heading", { name: "Enter your email" })).toBeVisible();
+});
 
 test("persona sci: one free deck card, the second deck opens the modal", async ({ page }) => {
   await recordEvents(page);

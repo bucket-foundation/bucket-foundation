@@ -76,6 +76,28 @@ test("a demo tag comes from the URL first, then the session, and must be a short
   assert.equal(demoSession("", null), null);
 });
 
+test("a guest's language lesson is one system within one sitting, and merge clears it", async () => {
+  const { guestMayStudyLanguage, GUEST_LESSON_KEY, GUEST_LESSON_MS } = await import("../src/lib/academy/guest-merge");
+  store.clear();
+  assert.equal(guestMayStudyLanguage("en-ru", 1000), true);
+  assert.equal(guestMayStudyLanguage("en-ru", 2000), true);
+  assert.equal(guestMayStudyLanguage("en-es-pt", 2000), false);
+  assert.equal(guestMayStudyLanguage("en-ru", 1000 + GUEST_LESSON_MS), false);
+  stubFetch({}, []);
+  await mergeGuestProgress();
+  assert.equal(store.getItem(GUEST_LESSON_KEY), null);
+});
+
+test("merge saves local language systems to the account", async () => {
+  const { SYSTEMS_KEY } = await import("../src/lib/academy/lang-client");
+  store.clear();
+  store.setItem(SYSTEMS_KEY, JSON.stringify({ systems: [], removed: {} }));
+  const posts: { branch: string }[] = [];
+  stubFetch({}, posts);
+  await mergeGuestProgress();
+  assert.deepEqual(posts.map((p) => p.branch), ["lang-systems"]);
+});
+
 test("middleware overwrites a spoofed path header", async () => {
   const { middleware } = await import("../src/middleware");
   const req = new NextRequest("http://localhost/canon", { headers: { [PATH_HEADER]: "/research-os/learn" } });
