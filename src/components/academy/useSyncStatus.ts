@@ -14,7 +14,7 @@ export function useSyncStatus(signedIn: boolean): SyncView & { syncNow: () => Pr
   const [syncing, setSyncing] = useState(false);
 
   const read = useCallback(() => {
-    setPending(reviewSync.pending().length);
+    setPending(reviewSync.pending().length + reviewSync.held().length);
     setOnline(isOnline());
   }, []);
 
