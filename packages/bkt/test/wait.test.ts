@@ -39,7 +39,7 @@ function run(s: S, input: string, args: string[] = ["claude"], extra: Record<str
   return { ms: performance.now() - t, code: p.exitCode, stdout: p.stdout.toString(), stderr: p.stderr.toString() };
 }
 
-const claude = (event: string, session = "s-1", cwd = "/home/u/proj", more: Record<string, unknown> = {}) => JSON.stringify({ session_id: session, transcript_path: "/home/u/.claude/projects/x.jsonl", cwd, hook_event_name: event, ...more });
+const claude = (event: string, session = "s-1", cwd = "/w/u/proj", more: Record<string, unknown> = {}) => JSON.stringify({ session_id: session, transcript_path: "/w/u/.claude/projects/x.jsonl", cwd, hook_event_name: event, ...more });
 
 async function settle(s: S, count: number, ms = 3000) {
   const end = Date.now() + ms;
@@ -61,7 +61,7 @@ describe("hook shim", () => {
 
   test("quotes, backslashes and non-ASCII in cwd still give a valid line", () => {
     const s = scratch();
-    for (const cwd of ['/home/u/my "q" pr\\oj é', "/home/u/日本語", "/x/a'b`$(rm -rf ~)", "/x/<b>bold</b>"]) run(s, claude("Stop", "s-2", cwd));
+    for (const cwd of ['/w/u/my "q" pr\\oj é', "/w/u/日本語", "/x/a'b`$(rm -rf ~)", "/x/<b>bold</b>"]) run(s, claude("Stop", "s-2", cwd));
     const rows = s.log().trim().split("\n");
     expect(rows.length).toBe(4);
     for (const r of rows) expect(parseEvent(r)).not.toBeNull();
@@ -95,12 +95,12 @@ describe("hook shim", () => {
   test("keeps prompt text and transcript content out of the log and the notification", async () => {
     const s = scratch();
     const secret = "SECRET-PROMPT-7f3a";
-    run(s, claude("UserPromptSubmit", "s-p", "/home/u/proj", { prompt: `${secret} "cwd":"/leak/${secret}"` }));
-    run(s, claude("Stop", "s-p", "/home/u/proj", { last_assistant_message: secret, transcript: secret }));
+    run(s, claude("UserPromptSubmit", "s-p", "/w/u/proj", { prompt: `${secret} "cwd":"/leak/${secret}"` }));
+    run(s, claude("Stop", "s-p", "/w/u/proj", { last_assistant_message: secret, transcript: secret }));
     run(s, "", ["codex", JSON.stringify({ type: "agent-turn-complete", "thread-id": "c-p", cwd: "/w/x", "input-messages": [secret], "last-assistant-message": secret })]);
     await settle(s, 3);
     expect(s.log()).not.toContain(secret);
-    expect(s.log()).not.toContain("/home/u");
+    expect(s.log()).not.toContain("/w/u");
     expect(s.log()).not.toContain(".claude");
     expect(s.sentLines().length).toBeGreaterThan(0);
     expect(s.sentLines().join("\n")).not.toContain(secret);
@@ -118,7 +118,7 @@ describe("hook shim", () => {
 
   test("50 parallel runs give 50 intact lines and one notification", async () => {
     const s = scratch();
-    const procs = Array.from({ length: 50 }, (_, i) => Bun.spawn(["sh", s.hook, "claude"], { stdin: new TextEncoder().encode(claude("UserPromptSubmit", `par-${i}`, `/home/u/project-number-${i}-${"x".repeat(30)}`)), env: s.env }));
+    const procs = Array.from({ length: 50 }, (_, i) => Bun.spawn(["sh", s.hook, "claude"], { stdin: new TextEncoder().encode(claude("UserPromptSubmit", `par-${i}`, `/w/u/project-number-${i}-${"x".repeat(30)}`)), env: s.env }));
     await Promise.all(procs.map((p) => p.exited));
     await settle(s, 1);
     await Bun.sleep(500);
