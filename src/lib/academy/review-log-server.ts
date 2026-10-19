@@ -214,10 +214,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
       start = all.baseline;
     }
     const { ok, skipped } = splitFoldable(rows, atoms);
-    if (shipped.length && deps.clearSkips) {
-      const now = ok.filter((r) => shipped.includes(r.atoms_version)).map((r) => r.review_id);
-      if (now.length) await deps.clearSkips(uid, branch, now).catch((e) => console.error("review-log skip clear failed", branch, e));
-    }
+    const nowFoldable = shipped.length ? ok.filter((r) => shipped.includes(r.atoms_version)).map((r) => r.review_id) : [];
     if (skipped.length && deps.noteSkips) {
       const byReason = new Map<string, string[]>();
       for (const s of skipped) byReason.set(s.reason, [...(byReason.get(s.reason) ?? []), s.review_id]);
@@ -235,6 +232,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     }
     const folded = await deps.writeFold(uid, branch, state, seq, key);
     if (!folded) return none({ skipped });
+    if (nowFoldable.length && deps.clearSkips) await deps.clearSkips(uid, branch, nowFoldable).catch((e) => console.error("review-log skip clear failed", branch, e));
     try {
       return { folded, advanced: (await deps.syncMastery(uid, branch, state)).advanced, mode, skipped };
     } catch (e) {
