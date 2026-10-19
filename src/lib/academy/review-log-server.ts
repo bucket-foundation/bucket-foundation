@@ -70,7 +70,7 @@ export interface ReviewLogDeps {
   atoms: (branch: string) => Readonly<Record<string, Atom[]>>;
 }
 
-export const corpusAtomsVersion = (branch: string) => `corpus:${branch}`;
+export { corpusAtomsVersion } from "./replay";
 
 export function payloadHash(r: ReviewInput): string {
   const canon = JSON.stringify([r.branch, r.card_id, r.rating, r.level, r.reviewed_at, r.tz, r.atoms_version, r.device_id]);
@@ -174,7 +174,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
       return respond(req, { error: "read_failed" }, 500);
     }
     const cursor = reviews.reduce((m, r) => Math.max(m, r.seq), since);
-    return respond(req, { reviews, cursor, more: reviews.length === limit }, 200);
+    return respond(req, { user: pre.uid, reviews, cursor, more: reviews.length === limit }, 200);
   }
 
   async function POST(req: Request): Promise<Response> {
