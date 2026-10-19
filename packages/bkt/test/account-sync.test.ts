@@ -61,7 +61,7 @@ describe("SQLite outbox", () => {
     s.setItem("bucket-academy/outbox/v1", JSON.stringify({ reviews: [{ review_id: "r1" }] }));
     const raw = store.meta(`${SYNC_META_PREFIX}bucket-academy/outbox/v1`)!;
     expect(raw.startsWith("v1:")).toBe(true);
-    expect(raw.includes("r1")).toBe(false);
+    expect(raw.includes("review_id")).toBe(false);
     store.close();
     store = new Store(join(dir, "bkt.db"), key);
     expect(JSON.parse(sealedMetaStorage(store, key).getItem("bucket-academy/outbox/v1")!).reviews[0].review_id).toBe("r1");
