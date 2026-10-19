@@ -19,6 +19,8 @@ import {
   type SystemError,
 } from "@/lib/academy/lang-systems";
 import { webProgressStore } from "@/lib/academy/progress-store";
+import { sharedMemoryOn } from "@/lib/academy/lang-memory";
+import { browserMemoryIO, openShared } from "@/lib/academy/lang-memory-store";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState, PageHeader, Panel } from "@/components/ui";
 
 const ERROR_TEXT: Record<SystemError, string> = {
@@ -45,7 +47,7 @@ export default function LanguagesHome() {
         const server = await webProgressStore.pull();
         const [c, list] = await Promise.all([loadLangCorpus(), loadSystems(server)]);
         const st: Record<string, EngineState> = {};
-        for (const s of list) st[s.id] = await webProgressStore.load(progressBranch(s), server);
+        for (const s of list) st[s.id] = sharedMemoryOn() ? (await openShared(browserMemoryIO, s, list, server)).view : await webProgressStore.load(progressBranch(s), server);
         if (!alive) return;
         if (!c) setError(true);
         setCorpus(c);
