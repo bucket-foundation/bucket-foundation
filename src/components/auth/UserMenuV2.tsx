@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useSession } from "@/providers/SessionProvider";
 import { useSignInClosed, useSignInHref } from "@/components/auth/SignInEntryContext";
 import { useAccountGate } from "@/components/auth/AccountGate";
-import AccountPill from "@/components/auth/AccountPill";
+import SyncedAccountPill from "@/components/auth/SyncedAccountPill";
 import { pillHidden } from "@/lib/account-pill";
 
 const BUTTON =
@@ -20,7 +20,7 @@ export default function UserMenuV2({ drawer = false, onNavigate, launchList = fa
   const signIn = useSignInHref(pathname === "/" ? "/research-os/home" : pathname);
   const { openSignIn } = useAccountGate();
 
-  if (!drawer && !pillHidden(pathname)) return <AccountPill />;
+  if (!drawer && !pillHidden(pathname)) return <SyncedAccountPill />;
 
   if (!user) {
     const cta = launchList && !closed ? "Notify me" : "Sign in";
