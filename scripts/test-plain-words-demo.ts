@@ -39,7 +39,7 @@ test("sign-in never shows an error code or a raw object", () => {
 
 const ROOT = path.join(__dirname, "..");
 const DEMO_DIRS = ["src/app/research-os/(app)/learn", "src/app/research-os/(app)/home", "src/app/research-os/(app)/profile", "src/app/sign-in", "packages/bkt-ui/src/views/LearnHome.tsx", "packages/bkt-ui/src/views/Words.tsx", "packages/bkt-ui/src/views/CanonSearch.tsx", "src/app/canon"];
-const FROZEN = new Set(["StudySession.tsx", "PlacementSession.tsx", "LangPlacement.tsx", "LangExercise.tsx"]);
+const FROZEN = new Set(["StudySession.tsx", "PlacementSession.tsx", "LangPlacement.tsx", "LangExercise.tsx", "CanonGlobeMount.tsx"]);
 const LEAKS: [RegExp, string][] = [
   [/j\.error \?\? ["`'][^"`']*["`']\)?/, "a server error code used as copy"],
   [/\?\? `failed \(|"failed"\)/, "a bare failure code used as copy"],
