@@ -32,7 +32,7 @@ export default function BranchView({ branch }: { branch: string }) {
   }, [a.corpus, q]);
 
   if (a.status === "loading") return <LoadingState label="Loading the deck" />;
-  if (a.status === "missing") return <ErrorState title="No such deck" body={`There is no branch named ${branch}.`} />;
+  if (a.status === "missing") return <ErrorState title="No such deck" body="Bucket has no deck at this address." details={`branch ${branch}`} />;
   if (a.status === "error" || !a.corpus) return <ErrorState title="The deck did not load" />;
 
   const s = a.summaryNow;

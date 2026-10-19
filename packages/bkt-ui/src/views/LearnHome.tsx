@@ -6,16 +6,17 @@ import { GripPanel } from "./Grip";
 import { loadLearnData } from "./learn-data";
 import { LIBRARY_LINK, WordSearchBox } from "./Decks";
 import { PICK_LANGUAGES, WordAttribution, WORDS_FAILED } from "./Words";
+import { trouble, TroubleNote, type Trouble } from "../trouble";
 
 export function LearnHome({ api }: { api: Api }) {
   const [decks, setDecks] = useState<DeckRow[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Trouble | null>(null);
   const [grip, setGrip] = useState<GripSphere | null>(null);
   const [words, setWords] = useState<WordDecks | null>(null);
   const [wordsFailed, setWordsFailed] = useState(false);
 
   useEffect(() => {
-    api.decks().then(setDecks, (e: Error) => setError(e.message));
+    api.decks().then(setDecks, (e: unknown) => setError(trouble(e)));
     api.wordDecks().then(setWords, () => setWordsFailed(true));
     loadLearnData(api).then(
       (d) => setGrip(gripSphere(d.decks.map((x) => ({ branch: x.id, atomIds: d.byDeck.get(x.id) ?? [], state: d.states.get(x.id) ?? null })))),
@@ -23,7 +24,7 @@ export function LearnHome({ api }: { api: Api }) {
     );
   }, [api]);
 
-  if (error) return <p className="error">{error}</p>;
+  if (error) return <TroubleNote t={error} />;
   if (!decks) return <p className="muted">Loading decks…</p>;
   const due = decks.reduce((n, d) => n + d.due, 0);
   const xp = decks.reduce((n, d) => n + d.xp, 0);

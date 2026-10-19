@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent, type MouseEvent } from "react";
 import CanonGlobeMount from "@/app/canon/CanonGlobeMount";
 import { ALL_EVENTS, ALL_SITES, MAX_YEAR, MIN_YEAR } from "@/lib/canon-explorer/markers";
+import { trouble, TroubleNote, RawDetails, type Trouble } from "../trouble";
 import { plainError, type CanonAbout, type CanonExcerpt, type CanonHit } from "../api";
 import { href } from "../router";
 import { CANON_TROUBLE, windowHref } from "../site-fetch";
@@ -63,24 +64,24 @@ export function webglAvailable(doc: Document = document): boolean {
   }
 }
 
-function SourceLink({ api, url, onError, children }: { api: CanonSearchApi; url: string | null; onError: (m: string) => void; children: string }) {
+function SourceLink({ api, url, onError, children }: { api: CanonSearchApi; url: string | null; onError: (t: Trouble) => void; children: string }) {
   if (!url) return null;
   return (
-    <button className="link" onClick={() => void api.openLink(url).catch((e: Error) => onError(e.message))}>
+    <button className="link" onClick={() => void api.openLink(url).catch((e: unknown) => onError(trouble(e)))}>
       {children}
     </button>
   );
 }
 
-function useAbout(api: CanonSearchApi, onError: (m: string) => void): CanonAbout | null {
+function useAbout(api: CanonSearchApi, onError: (t: Trouble) => void): CanonAbout | null {
   const [about, setAbout] = useState<CanonAbout | null>(null);
   useEffect(() => {
-    void api.canonAbout().then(setAbout, (e: Error) => onError(e.message));
+    void api.canonAbout().then(setAbout, (e: unknown) => onError(trouble(e)));
   }, [api, onError]);
   return about;
 }
 
-function useExcerpt(api: CanonSearchApi, id: number | undefined, onError: (m: string) => void): CanonExcerpt | null {
+function useExcerpt(api: CanonSearchApi, id: number | undefined, onError: (t: Trouble) => void): CanonExcerpt | null {
   const [detail, setDetail] = useState<CanonExcerpt | null>(null);
   useEffect(() => {
     setDetail(null);
@@ -88,7 +89,7 @@ function useExcerpt(api: CanonSearchApi, id: number | undefined, onError: (m: st
     let live = true;
     api.canonExcerpt(id).then(
       (d) => live && setDetail(d),
-      (e: Error) => live && onError(e.message),
+      (e: unknown) => live && onError(trouble(e)),
     );
     return () => {
       live = false;
@@ -97,7 +98,7 @@ function useExcerpt(api: CanonSearchApi, id: number | undefined, onError: (m: st
   return detail;
 }
 
-function Excerpt({ api, detail, onError }: { api: CanonSearchApi; detail: CanonExcerpt; onError: (m: string) => void }) {
+function Excerpt({ api, detail, onError }: { api: CanonSearchApi; detail: CanonExcerpt; onError: (t: Trouble) => void }) {
   const conceptName = detail.concept.replace(/-/g, " ");
   return (
     <>
@@ -122,9 +123,9 @@ function Excerpt({ api, detail, onError }: { api: CanonSearchApi; detail: CanonE
             <li key={i}>
               <span className="card-top">
                 <span className="tag ghost">{KIND[p.kind] ?? p.kind}</span>
-                <span className="mastery">{p.score.toFixed(2)}</span>
               </span>
               <p>{p.text}</p>
+              <RawDetails raw={`match score ${p.score.toFixed(2)}`} />
               <p className="muted cite">
                 {p.title}
                 {p.author ? `, ${p.author}` : ""}
@@ -141,7 +142,7 @@ function Excerpt({ api, detail, onError }: { api: CanonSearchApi; detail: CanonE
   );
 }
 
-function Licences({ api, about, onError }: { api: CanonSearchApi; about: CanonAbout | null; onError: (m: string) => void }) {
+function Licences({ api, about, onError }: { api: CanonSearchApi; about: CanonAbout | null; onError: (t: Trouble) => void }) {
   if (!about || about.licences.length === 0) return null;
   return (
     <details className="panel licences">
@@ -168,13 +169,9 @@ function Licences({ api, about, onError }: { api: CanonSearchApi; about: CanonAb
   );
 }
 
-function Problem({ error }: { error: string | null }) {
+function Problem({ error }: { error: Trouble | null }) {
   if (!error) return null;
-  return (
-    <p className="banner" role="alert">
-      {error}
-    </p>
-  );
+  return <TroubleNote t={error} className="banner" />;
 }
 
 function KeywordSearch({ api, id, globe }: { api: CanonSearchApi; id?: number; globe: boolean }) {
@@ -183,7 +180,7 @@ function KeywordSearch({ api, id, globe }: { api: CanonSearchApi; id?: number; g
   const [asked, setAsked] = useState<string | null>(null);
   const [hits, setHits] = useState<CanonHit[]>([]);
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Trouble | null>(null);
   const about = useAbout(api, setError);
   const detail = useExcerpt(api, id, setError);
 
@@ -198,7 +195,7 @@ function KeywordSearch({ api, id, globe }: { api: CanonSearchApi; id?: number; g
       setHits(found.filter((h) => h.score > 0));
       setAsked(query);
     } catch (err) {
-      setError((err as Error).message);
+      setError(trouble(err));
     } finally {
       setBusy(false);
     }
@@ -248,7 +245,7 @@ function KeywordSearch({ api, id, globe }: { api: CanonSearchApi; id?: number; g
                     <span className="tag ghost">{label(h.branch)}</span>
                     <span className="muted">{h.concept.replace(/-/g, " ")}</span>
                     <span className="mastery">
-                      {h.score} {h.score === 1 ? "match" : "matches"} · {h.evidence_count} evidence
+                      {h.score} {h.score === 1 ? "match" : "matches"} · {h.evidence_count} {h.evidence_count === 1 ? "passage" : "passages"}
                     </span>
                   </span>
                   <span className="hit-text">{h.excerpt.slice(h.title.length + 2)}</span>
@@ -268,7 +265,7 @@ function KeywordSearch({ api, id, globe }: { api: CanonSearchApi; id?: number; g
 }
 
 function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Trouble | null>(null);
   const [round, setRound] = useState(0);
   const [typed, setTyped] = useState(find ?? "");
   useEffect(() => setTyped(find ?? ""), [find]);
@@ -277,7 +274,7 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
   const frame = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const on = (e: Event) => setError(plainError((e as CustomEvent<{ status: number }>).detail.status));
+    const on = (e: Event) => setError(trouble(plainError((e as CustomEvent<{ status: number }>).detail.status)));
     window.addEventListener(CANON_TROUBLE, on);
     return () => window.removeEventListener(CANON_TROUBLE, on);
   }, []);
@@ -306,7 +303,7 @@ function GlobeScreen({ api, find }: { api: CanonSearchApi; find?: string }) {
     const to = a?.getAttribute("href") ?? "";
     if (!a || to.startsWith("#/")) return;
     e.preventDefault();
-    if (/^https:\/\//.test(to)) return void api.openLink(to).catch((err: Error) => setError(err.message));
+    if (/^https:\/\//.test(to)) return void api.openLink(to).catch((err: unknown) => setError(trouble(err)));
     const local = windowHref(to);
     if (local) window.location.hash = local;
   };
