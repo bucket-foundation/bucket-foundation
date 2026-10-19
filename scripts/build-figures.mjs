@@ -40,7 +40,7 @@ async function toWebp(src, dest) {
 
 async function build(g, tracked) {
   const missing = unpublishedData(g, tracked);
-  if (missing.length) return { name: g.name, published: false, missing };
+  if (missing.length) return { name: g.name, published: false, missing: [...new Set(missing.map((d) => (d.startsWith("~/") ? "local cache" : d)))] };
   const params = Object.fromEntries(Object.keys(g.inputs).filter((k) => k in DEFAULTS).map((k) => [k, DEFAULTS[k]]));
   const work = fs.mkdtempSync(path.join(os.tmpdir(), `figure-${g.name}-`));
   const env = { ...process.env, BKT_GEN_OUT: work };
@@ -59,6 +59,7 @@ async function build(g, tracked) {
     published: true,
     image: `/figures/${g.name}.webp`,
     source_output: image,
+    image_count: outputs.filter((o) => /\.(png|svg)$/.test(o)).length,
     params,
     ran: new Date().toISOString(),
     script_sha256: sha(fs.readFileSync(script)),

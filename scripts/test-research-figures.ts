@@ -44,6 +44,20 @@ test("figures whose data is not published show the waiting state and no image", 
   }
 });
 
+test("home-relative paths stay out of the manifest and the page", () => {
+  assert.ok(!fs.readFileSync(path.join(ROOT, "public/figures/manifest.json"), "utf8").includes("~/"));
+  assert.ok(!html.includes("~/"));
+  assert.ok(!html.includes(".cache/bucket-atlas"));
+  assert.ok(html.includes("local cache"));
+});
+
+test("multi-image figures say how many images they hold and language licences link out", () => {
+  assert.ok(html.split('data-figure="atlas-plots"')[1].split("</li>")[0].includes("Shows 1 of 9 images"));
+  const lang = html.split('data-figure="polingual-coverage"')[1].split("</li>")[0];
+  assert.ok(lang.includes('href="https://creativecommons.org/licenses/by-sa/3.0/"'));
+  assert.ok(lang.includes('href="https://en.wiktionary.org"'));
+});
+
 test("published figures read only data tracked in the repository", () => {
   for (const f of manifest.figures.filter((x) => x.published)) {
     const g = registry.generations.find((x) => x.name === f.name)!;

@@ -25,7 +25,9 @@ function FigureCard({ f }: { f: Figure }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={f.image.src} width={f.image.width} height={f.image.height} alt={f.about} loading="lazy" className="h-auto w-full border border-[color:var(--hairline)]" />
         </a>
-      ) : (
+      ) : null}
+      {f.image && f.imageCount > 1 ? <p className="mt-2 text-[13px] text-[color:var(--basalt-2)]">Shows 1 of {f.imageCount} images. Run the script for the rest.</p> : null}
+      {f.image ? null : (
         <div data-waiting className="mt-5 border border-dashed border-[color:var(--hairline)] px-5 py-8 text-[14px] leading-[1.6] text-[color:var(--basalt-2)]">
           <div className="font-display uppercase text-[color:var(--basalt)]">Data not published yet</div>
           <p className="mt-2">This figure reads data that is not in the repository: {f.missing.join(", ")}.</p>
@@ -46,7 +48,15 @@ function FigureCard({ f }: { f: Figure }) {
         <dt className="small-caps">Last run</dt>
         <dd>{f.ran ? <time dateTime={f.ran}>{ranOn(f.ran)}</time> : "Not run from published data"}</dd>
         <dt className="small-caps">Licence</dt>
-        <dd>{f.licence ?? "Not stated"}</dd>
+        <dd>
+          {f.licence?.startsWith("CC-BY-SA 3.0") ? (
+            <>
+              <a href="https://creativecommons.org/licenses/by-sa/3.0/" className={link}>CC-BY-SA 3.0</a>, from{" "}
+              <a href="https://en.wiktionary.org" className={link}>Wiktionary</a> via{" "}
+              <a href="https://kaikki.org" className={link}>Kaikki</a>
+            </>
+          ) : (f.licence ?? "Not stated")}
+        </dd>
       </dl>
     </li>
   );

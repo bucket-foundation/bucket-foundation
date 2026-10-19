@@ -6,8 +6,9 @@
       "published": true,
       "image": "/figures/polingual-coverage.webp",
       "source_output": "polingual-coverage.png",
+      "image_count": 1,
       "params": {},
-      "ran": "2026-10-19T19:01:11.235Z",
+      "ran": "2026-10-19T19:38:09.203Z",
       "script_sha256": "c17fbe4f155f331cc997fb4fed13599caa802cee251b0048754215d971c8f379",
       "data_sha256": {
         "learning/app/polingual/subset.json": "018fe81fecb2c6051a5d020cfdd71f511bb51b9ff6e32d49fb511ba4f9613cc2",
@@ -22,8 +23,9 @@
       "published": true,
       "image": "/figures/polingual-similarity.webp",
       "source_output": "polingual-similarity.png",
+      "image_count": 1,
       "params": {},
-      "ran": "2026-10-19T19:01:12.413Z",
+      "ran": "2026-10-19T19:38:10.485Z",
       "script_sha256": "9f31288d581303e9bd52b94aa77ae9dc8feb3b9c749a73c3e3930e8cc6e5be7f",
       "data_sha256": {
         "learning/app/polingual/subset.json": "018fe81fecb2c6051a5d020cfdd71f511bb51b9ff6e32d49fb511ba4f9613cc2",
@@ -38,8 +40,9 @@
       "published": true,
       "image": "/figures/polingual-sound-meaning.webp",
       "source_output": "polingual-sound-meaning.png",
+      "image_count": 1,
       "params": {},
-      "ran": "2026-10-19T19:01:13.797Z",
+      "ran": "2026-10-19T19:38:11.512Z",
       "script_sha256": "132e5da1e59830f24ad32a4f06695f39e2bf759d741dc1c2fb0469c3d7db4570",
       "data_sha256": {
         "learning/app/polingual/subset.json": "018fe81fecb2c6051a5d020cfdd71f511bb51b9ff6e32d49fb511ba4f9613cc2",
@@ -82,8 +85,7 @@
       "published": false,
       "missing": [
         "output/solvability-frontier/report/frontier.json",
-        "~/.cache/bucket-atlas/keys.json",
-        "~/.cache/bucket-atlas/vectors.npy"
+        "local cache"
       ]
     },
     {
@@ -91,8 +93,7 @@
       "published": false,
       "missing": [
         "output/solvability-frontier/report/frontier.json",
-        "~/.cache/bucket-atlas/keys.json",
-        "~/.cache/bucket-atlas/vectors.npy"
+        "local cache"
       ]
     },
     {
@@ -129,8 +130,9 @@
       "published": true,
       "image": "/figures/atlas-plots.webp",
       "source_output": "01-token-circle.png",
+      "image_count": 9,
       "params": {},
-      "ran": "2026-10-19T19:03:04.948Z",
+      "ran": "2026-10-19T19:39:53.747Z",
       "script_sha256": "44186870bb33d19f5de4e6ffd68f4e0df31971ec54886c017ef0775fa80c9849",
       "data_sha256": {
         "tools/solvability-atlas/problems.tsv": "7a3df3bdd76a3273edf363d20c94a37660ebb046c1f62eb7cf2ac18e228dfbf1"
@@ -144,10 +146,11 @@
       "published": true,
       "image": "/figures/record-glyph.webp",
       "source_output": "navier-glyph.svg",
+      "image_count": 1,
       "params": {
         "problem": "navier"
       },
-      "ran": "2026-10-19T19:03:05.151Z",
+      "ran": "2026-10-19T19:39:53.849Z",
       "script_sha256": "4a2ece2d3b44f1e260668eb82e8d4de8befb231559d4076ef1b975ca8b5f2621",
       "data_sha256": {
         "src/lib/research-os/solvability-records-data.json": "56454d0fb6eee57534e22a8fadad1c1f8eb566e18fbb29cc01200e4cf848164d"

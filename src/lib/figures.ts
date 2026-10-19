@@ -16,7 +16,7 @@ type RegistryEntry = {
 
 type ManifestEntry =
   | { name: string; published: false; missing: string[] }
-  | { name: string; published: true; image: string; ran: string; params: Record<string, string>; width: number; height: number; data_sha256: Record<string, string> };
+  | { name: string; published: true; image: string; ran: string; params: Record<string, string>; width: number; height: number; image_count?: number; data_sha256: Record<string, string> };
 
 export type Figure = {
   name: string;
@@ -28,6 +28,7 @@ export type Figure = {
   data: { path: string; url: string | null }[];
   params: Record<string, string>;
   image: { src: string; width: number; height: number } | null;
+  imageCount: number;
   ran: string | null;
   missing: string[];
 };
@@ -42,7 +43,7 @@ export function loadFigures(
   const figures = reg.generations.map((g): Figure => {
     const m = built.get(g.name);
     const published = m?.published === true ? m : null;
-    const missing = m && !m.published ? m.missing : published ? [] : g.data;
+    const missing = m && !m.published ? m.missing : published ? [] : Array.from(new Set(g.data.map((d) => (repoPath(d) ? d : "local cache"))));
     return {
       name: g.name,
       about: g.about,
@@ -50,7 +51,8 @@ export function loadFigures(
       licence: g.licence ?? null,
       scriptPath: `tools/generations/${g.script}`,
       scriptUrl: `${REPO_BLOB}/tools/generations/${g.script}`,
-      data: g.data.map((d) => ({ path: d, url: repoPath(d) && !missing.includes(d) ? `${REPO_BLOB}/${d}` : null })),
+      data: Array.from(new Map(g.data.map((d) => (repoPath(d) ? [d, { path: d, url: missing.includes(d) ? null : `${REPO_BLOB}/${d}` }] : ["local cache", { path: "local cache", url: null }]))).values()),
+      imageCount: published?.image_count ?? 1,
       params: published?.params ?? {},
       image: published ? { src: published.image, width: published.width, height: published.height } : null,
       ran: published?.ran ?? null,
