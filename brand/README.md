@@ -28,7 +28,10 @@ Specific answers).
 
 ## Provenance
 
-Lifted 2026-04-23 from `DerbyFish/derbyfish-docs/research/brand/` + the
-BRAND-WORKSHOP-FRAMEWORK (war-room). DerbyFish-specific artifacts (KALA,
-Fibonacci marks, logo systems, competitor decks) intentionally **not** copied,
-Those are DerbyFish's answers, scoped to that venture.
+Lifted 2026-04-23 from `DerbyFish/derbyfish-docs/research/brand/` and the
+BRAND-WORKSHOP-FRAMEWORK (war-room). The research canon and the workshop are
+source-agnostic. The Kala name, Fibonacci marks and logo system were left out.
+Bucket did carry over the Kala Earth Ambient palette and carved-stone CSS
+(site 0.1.0, 2026-04-23), the tagline pair, the canon globe (2026-05-01) and
+the stone title cards in `gtm/video-v5`. The filled workshop is
+`workshop/BUCKET-FOUNDATION.md`. The plan that uses it is `docs/growth/BRAND-PLAN.md`.
