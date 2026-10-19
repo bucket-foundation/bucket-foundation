@@ -32,7 +32,11 @@ export interface ViewResult {
 
 const DAY = "2026-09-30";
 
-export async function learnOffline(): Promise<ViewResult[]> {
+export type OfflineMutation = "browser" | "server";
+
+export const MUTATION_URL = "https://offline-check.invalid/leak";
+
+export async function learnOffline(mutation: OfflineMutation | null = null): Promise<ViewResult[]> {
   const pkg = resolve(import.meta.dir, "..");
   const home = mkdtempSync(join(tmpdir(), "bkt-learn-offline-"));
   process.env.BKT_HOME = join(home, "data");
@@ -81,6 +85,12 @@ export async function learnOffline(): Promise<ViewResult[]> {
     page.on("console", (m) => m.type?.() === "error" && !m.text?.().includes("status of 404") && errors.push(m.text?.() ?? ""));
     await page.goto(srv.url);
     await page.waitForSelector(".side nav a");
+    await page.evaluate(() => {
+      const w = window as unknown as { __bktRefused: string[] };
+      w.__bktRefused = [];
+      window.addEventListener("bkt:offline-refused", (e) => w.__bktRefused.push(String((e as CustomEvent<{ url: string }>).detail?.url ?? "")));
+    });
+    const windowRefused = () => page.evaluate(() => (window as unknown as { __bktRefused: string[] }).__bktRefused.splice(0));
 
     const tally = () => ({
       cards: store.db.query<{ n: string }, []>("select coalesce(group_concat(deck || card_id || updated_at), '') n from learn_cards").get()!.n,
@@ -176,13 +186,19 @@ export async function learnOffline(): Promise<ViewResult[]> {
       let detail = "";
       try {
         await drive();
+        if (mutation && results.length === 0) {
+          if (mutation === "browser") await page.evaluate(() => fetch("https://offline-check.invalid/leak").catch(() => undefined));
+          else await globalThis.fetch(MUTATION_URL).catch(() => undefined);
+          await Bun.sleep(200);
+        }
         const errs = await page.locator(".error, .banner[role=alert]").count();
         if (errs) detail = "error state shown";
       } catch (e) {
         const shown = await page.evaluate(() => document.querySelector("main")?.textContent?.slice(0, 160) ?? "");
         detail = `${(e as Error).message.split("\n")[0]}; page shows: ${shown}`;
       }
-      const extra = [...blocked.slice(b0).map((u) => `blocked ${u}`), ...errors.slice(e0), ...serverRefused.slice(s0)];
+      const refusedInWindow = await windowRefused();
+      const extra = [...blocked.slice(b0).map((u) => `blocked ${u}`), ...refusedInWindow.map((u) => `window refused ${u}`), ...errors.slice(e0), ...serverRefused.slice(s0)];
       if (extra.length) detail = [detail, ...extra].filter(Boolean).join("; ");
       results.push({ view, actions, pass: detail === "", detail });
       console.log(`${detail === "" ? "ok" : "FAIL"} ${view}: ${actions}${detail ? ` (${detail})` : ""}`);
