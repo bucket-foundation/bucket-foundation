@@ -83,8 +83,8 @@ const CASES: [RosLiveRoute, string][] = [
 ];
 
 describe("live Research OS routes: web and local return the same shape for one fixture", () => {
-  test("ten routes, each with a local path and a web path", () => {
-    expect(ROS_LIVE_ROUTES.length).toBe(10);
+  test("eleven routes, each with a local path and a web path", () => {
+    expect(ROS_LIVE_ROUTES.length).toBe(11);
     for (const r of ROS_LIVE_ROUTES) expect(rosLiveLocal(ROS_LIVE_PATHS[r].web)).toBe(ROS_LIVE_PATHS[r].local);
     expect(rosLiveLocal("/api/research-os/roster")).toBeUndefined();
   });
