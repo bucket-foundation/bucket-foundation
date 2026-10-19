@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, resolve, basename } from "node:path";
 
 export const REGISTRY_PATH = "tools/generations/registry.json";
 const NAME = /^[a-z][a-z0-9-]{0,63}$/;
@@ -107,7 +107,8 @@ export function runGeneration(reg: Registry, name: string, params: Record<string
   const script = join(o.repo, "tools/generations", g.script);
   const env: Record<string, string> = { ...(g.env ?? {}), BKT_GEN_OUT: o.out };
   for (const [k, v] of Object.entries(p)) env[`BKT_GEN_${k.toUpperCase()}`] = v;
-  const runner = g.script.endsWith(".ts") ? (o.bun ?? process.execPath) : (o.python ?? process.env.BKT_PYTHON ?? "python3");
+  const runner = g.script.endsWith(".ts") ? findBun(o.bun) : (o.python ?? process.env.BKT_PYTHON ?? "python3");
+  if (runner === null) throw new GenerateError(`${g.name} runs under bun; install bun or set BKT_BUN to its path`);
   const run = (o.spawn ?? defaultSpawn)([runner, script], env, o.repo);
   if (run.code !== 0) throw new GenerateError(`${name} did not finish (exit ${run.code}): ${run.stderr.trim().split("\n").slice(-3).join(" ")}`);
   const outputs = g.outputs.map((t) => fill(t, p));
@@ -117,6 +118,13 @@ export function runGeneration(reg: Registry, name: string, params: Record<string
   const record: RunRecord = { name, params: p, script_sha256: sha(readFileSync(script)), data_sha256: data, outputs, created: (o.now ?? (() => new Date()))().toISOString(), needs };
   writeFileSync(join(o.out, `${name}.run.json`), JSON.stringify(record, null, 2), { mode: 0o600 });
   return record;
+}
+
+export function findBun(given?: string, env: NodeJS.ProcessEnv = process.env, exec: string = process.execPath, which: (cmd: string) => string | null = (cmd) => Bun.which(cmd)): string | null {
+  if (given) return given;
+  if (env.BKT_BUN) return env.BKT_BUN;
+  if (/^bun(\.exe)?$/i.test(basename(exec))) return exec;
+  return which("bun");
 }
 
 export function runFolder(home: string, name: string, params: Record<string, string>, now: Date): string {

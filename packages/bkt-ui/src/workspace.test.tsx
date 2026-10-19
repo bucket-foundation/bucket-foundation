@@ -573,6 +573,13 @@ describe("figures workspace", () => {
     await v.unmount();
   });
 
+  test("a failed renders list shows its line above the figures", async () => {
+    const v = await workspace(fakeApi({ generations: () => Promise.reject(new Error("the list of renders could not be read")) }).api, "figures");
+    expect(v.host.querySelector('.workspace-list [role="alert"]')!.textContent).toBe("the list of renders could not be read");
+    expect(cells(v.host).length).toBe(2);
+    await v.unmount();
+  });
+
   test("a figure opens from its four-part research address, and a table from its own", async () => {
     const { Screen } = await import("./nav");
     const f = fakeApi();

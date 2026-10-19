@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { checkParams, fill, findRepo, GenerateError, loadRegistry, pastRuns, runFolder, runGeneration, type Registry } from "../src/generate";
+import { checkParams, fill, findBun, findRepo, GenerateError, loadRegistry, pastRuns, runFolder, runGeneration, type Registry } from "../src/generate";
 
 const REPO = resolve(import.meta.dir, "../../..");
 
@@ -144,4 +144,12 @@ test("a TypeScript generation runs under bun with the static env of its entry", 
   expect(calls).toEqual([["/bin/bun-test", "fig_x", ""], ["/bin/py-test", "", "80k"]]);
   writeFileSync(join(repo, "tools/generations/registry.json"), JSON.stringify({ version: 1, generations: [{ ...reg.generations[0], env: { PATH: "/x" } }] }));
   expect(() => loadRegistry(repo)).toThrow(/only BKT_GEN_ variables/);
+});
+
+test("bun comes from the option, then BKT_BUN, then the running bun, then PATH, and a compiled bkt never runs itself", () => {
+  expect(findBun("/a/bun", { BKT_BUN: "/b/bun" }, "/c/bun", () => "/d/bun")).toBe("/a/bun");
+  expect(findBun(undefined, { BKT_BUN: "/b/bun" }, "/c/bun", () => "/d/bun")).toBe("/b/bun");
+  expect(findBun(undefined, {}, "/c/bun", () => "/d/bun")).toBe("/c/bun");
+  expect(findBun(undefined, {}, "/usr/local/bin/bkt", () => "/d/bun")).toBe("/d/bun");
+  expect(findBun(undefined, {}, "/usr/local/bin/bkt", () => null)).toBeNull();
 });

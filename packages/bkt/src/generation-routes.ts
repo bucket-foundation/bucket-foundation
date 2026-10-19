@@ -44,9 +44,8 @@ function latest(src: GenerationSource) {
 
 const runOf = (folder: string) => folder.split(/[\\/]/).pop()!;
 
-export function generationRows(src: GenerationSource): GenerationRow[] {
+export function generationRows(src: GenerationSource, last = latest(src)): GenerationRow[] {
   const reg = registry(src);
-  const last = latest(src);
   const names = new Set([...(reg?.generations.map((g) => g.name) ?? []), ...last.keys()]);
   return [...names].sort().map((name) => {
     const g = reg?.generations.find((x) => x.name === name);
@@ -64,19 +63,16 @@ export function generationRows(src: GenerationSource): GenerationRow[] {
 
 export function generatedFigures(src: GenerationSource): WorkspaceItem[] {
   const items: WorkspaceItem[] = [];
-  for (const row of generationRows(src)) {
+  const last = latest(src);
+  for (const row of generationRows(src, last)) {
     if (!row.last || !RUN.test(row.last.run)) continue;
-    const label = Object.values(pastParams(src, row.name, row.last.run)).join(", ");
+    const label = Object.values(last.get(row.name)?.record.params ?? {}).join(", ");
     for (const file of row.last.outputs) {
       if (!FILE.test(file) || !imageType(file)) continue;
       items.push({ type: "figures", key: `generated:${row.name}:${row.last.run}:${file}`, title: label ? `${file}, ${label}` : file, from: { kind: "generation", id: row.name, title: row.about || row.name }, origin: "local", licence: "", changed: false, opens: "#/workspace/figures", explore: null });
     }
   }
   return items;
-}
-
-function pastParams(src: GenerationSource, name: string, run: string): Record<string, string> {
-  return pastRuns(src.home, name).find((r) => runOf(r.folder) === run)?.record.params ?? {};
 }
 
 export function generationRoutes(src: GenerationSource, onError: (e: Error) => void = () => {}): Record<string, Route> {
