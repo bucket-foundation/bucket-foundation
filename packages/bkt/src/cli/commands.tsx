@@ -377,7 +377,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const remote = openRemote(session, dir);
   const syncTrouble = (m: string) => console.error(`bkt serve: sync: ${m}`);
   const pullProgress = () => pullRemoteProgress(remote, session.store);
-  startSyncLoop(remote, pullProgress, syncTrouble);
+  const stopSync = startSyncLoop(remote, pullProgress, syncTrouble);
   const srv = startServe({
     cliToken,
     cliSecret,
@@ -461,6 +461,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   process.off("SIGUSR1", reopen);
   clearInterval(asked);
+  stopSync();
   win.forget();
   runner.stopAll();
   pagesRunner.stopAll();

@@ -57,15 +57,28 @@ describe("pulling the account's progress into the desktop store", () => {
       sync: { flush: async () => void calls.push("flush"), pullLog: async () => (calls.push("pull"), []) },
     } as unknown as RemoteSync;
     const errors: string[] = [];
-    let stop = startSyncLoop(remote, async () => calls.push("progress"), (m) => errors.push(m), 60_000);
+    let stop = startSyncLoop(remote, async () => calls.push("progress"), (m) => errors.push(m), 60_000, 0);
     await new Promise((r) => setTimeout(r, 5));
     stop();
     expect(calls).toEqual([]);
     signedIn = true;
-    stop = startSyncLoop(remote, async () => calls.push("progress"), (m) => errors.push(m), 60_000);
+    stop = startSyncLoop(remote, async () => calls.push("progress"), (m) => errors.push(m), 60_000, 0);
     await new Promise((r) => setTimeout(r, 5));
     stop();
     expect(calls).toEqual(["flush", "pull", "progress"]);
     expect(errors).toEqual([]);
+  });
+
+  test("a running sync loop does not keep the process alive", async () => {
+    const src = `import { startSyncLoop } from ${JSON.stringify(join(import.meta.dir, "../src/sync/routes.ts"))};
+startSyncLoop({ session: () => new Promise(() => {}) }, async () => {}, () => {}, 1000, 0);
+console.log("started");`;
+    const file = join(dir, "loop.ts");
+    await Bun.write(file, src);
+    const p = Bun.spawn([process.execPath, file], { stdout: "pipe", timeout: 15_000 });
+    const t0 = Date.now();
+    expect(await p.exited).toBe(0);
+    expect(Date.now() - t0).toBeLessThan(10_000);
+    expect(await new Response(p.stdout).text()).toContain("started");
   });
 });
