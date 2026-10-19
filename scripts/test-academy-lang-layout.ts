@@ -47,7 +47,19 @@ for (let seed = 1; seed <= 40; seed++) {
   }
 }
 const share = rootToTarget / total;
-ok(share <= 0.36, `root-to-target prompts are about one in three or fewer (${(share * 100).toFixed(1)}% of ${total})`);
+ok(share <= 0.36, `root-to-target recognition prompts are about one in three or fewer (${(share * 100).toFixed(1)}% of ${total})`);
+
+const typed = ["translate", "speak", "cloze"] as const;
+let kept = 0;
+for (let seed = 1; seed <= 400; seed++) {
+  const item = words[seed % words.length];
+  const rng = seededRng(seed);
+  const ex = exerciseFor(corpus, solo, item, "fr", card, rng, { speech: true });
+  if (!(typed as readonly string[]).includes(ex.kind)) continue;
+  if (targetFirst(corpus, item, ex, () => 0.99) === ex) kept++;
+  else ok(false, `${ex.kind} for ${item.id} stays a production card`);
+}
+ok(kept > 0, `typed, spoken and cloze cards stay production cards (${kept} checked)`);
 
 const intro = exerciseFor(corpus, solo, hundred, "fr", undefined, seededRng(1));
 ok(targetFirst(corpus, hundred, intro, () => 0.99) === intro, "an intro card is left as it is");

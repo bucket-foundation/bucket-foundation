@@ -25,7 +25,7 @@ export function linkForms(item: LangItem, system: LangSystem, lang: string, cap 
   return out;
 }
 
-const ROOT_TO_TARGET = new Set<Exercise["kind"]>(["choose", "translate", "cloze", "cognate", "speak"]);
+const ROOT_TO_TARGET = new Set<Exercise["kind"]>(["choose", "cognate"]);
 
 export function isRootToTarget(ex: Exercise): boolean {
   return ROOT_TO_TARGET.has(ex.kind) && ex.promptLang === ex.root && ex.answerLang === ex.lang;
