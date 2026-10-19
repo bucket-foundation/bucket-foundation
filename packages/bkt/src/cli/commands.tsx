@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "ink";
 import pack from "../../content/pack.json" with { type: "json" };
+import langCorpus from "../../content/lang-corpus.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
 import explorePack from "../../content/explore.json" with { type: "json" };
 import rowSetPack from "../../content/explore-rows.json" with { type: "json" };
@@ -368,7 +369,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...data.routes,
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi), graph: (canonPack as CanonPack).graph ?? null }),
       ...exploreRoutes(explore, canon),
-      ...localRoutes(session.store, { content }),
+      ...localRoutes(session.store, { content, langCorpus }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
       ...rosLiveRoutes(new RosGraph(session.store.db)),
       ...advisorRoutes(people),
