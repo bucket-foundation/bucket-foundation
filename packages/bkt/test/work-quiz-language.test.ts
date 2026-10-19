@@ -104,7 +104,7 @@ describe("schema 11 languages", () => {
     expect(((await (await get(routes, "/local/work-quiz/languages")).json()) as { languages: string[]; available: { code: string }[] }).available.length).toBe(27);
     let res = await post(routes, "/local/work-quiz/languages", { languages: ["ja", "he", "ja"] });
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ languages: ["ja", "he"] });
+    expect(await res.json()).toEqual({ languages: ["ja", "he"], chosen: ["ja", "he"], fromSystems: [] });
     res = await post(routes, "/local/work-quiz/languages", { languages: ["xx"] });
     expect(res.status).toBe(400);
     res = await post(routes, "/local/work-quiz/languages", { languages: "ja" });
@@ -118,6 +118,24 @@ describe("schema 11 languages", () => {
     await post(routes, "/local/work-quiz/forget", {});
     expect(wq.languages()).toEqual([]);
     expect(((await (await get(routes, "/local/work-quiz/status")).json()) as { ready: boolean }).ready).toBe(false);
+    s.close();
+  });
+
+  test("languages in the language systems join the quiz and cannot be switched off there", async () => {
+    const key = newDataKey();
+    const s = new Store(join(dir, "bkt.db"), key);
+    const wq = new WorkQuizStore(s, key);
+    const routes = workQuizRoutes(wq, { now: () => 1, log: () => {} });
+    s.setMeta("lang_systems", JSON.stringify({ systems: [{ id: "en-ru", name: "English to Russian", root: "en", targets: ["ru", "zz"], createdAt: 1, placement: {} }] }));
+    expect(wq.systemLanguages()).toEqual(["en", "ru"]);
+    const res = await post(routes, "/local/work-quiz/languages", { languages: ["ja", "ru"] });
+    expect(await res.json()).toEqual({ languages: ["ja", "en", "ru"], chosen: ["ja"], fromSystems: ["en", "ru"] });
+    const off = await post(routes, "/local/work-quiz/languages", { languages: [] });
+    expect(((await off.json()) as { languages: string[] }).languages).toEqual(["en", "ru"]);
+    const got = (await (await get(routes, "/local/work-quiz/languages")).json()) as { languages: string[]; chosen: string[]; fromSystems: string[] };
+    expect([got.languages, got.chosen, got.fromSystems]).toEqual([["en", "ru"], [], ["en", "ru"]]);
+    s.setMeta("lang_systems", "not json");
+    expect(wq.systemLanguages()).toEqual([]);
     s.close();
   });
 
