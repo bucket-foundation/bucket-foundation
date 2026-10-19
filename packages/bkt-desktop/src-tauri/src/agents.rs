@@ -1,6 +1,9 @@
 use std::collections::HashMap;
 use std::ffi::{OsStr, OsString};
 use std::path::{Path, PathBuf};
+use std::sync::Mutex;
+use std::time::{Duration, Instant};
+use tauri::Url;
 
 pub const AGENT_CLIS: [&str; 5] = ["claude", "codex", "gemini", "opencode", "aider"];
 pub const FOLDERS_FILE: &str = "agent-folders.json";
@@ -124,10 +127,45 @@ pub fn terminal_args(terminal: &str, tool: &Path, folder: &Path) -> Vec<OsString
     }
 }
 
+pub const LAUNCH_GAP: Duration = Duration::from_secs(2);
+pub const LAUNCH_STREAK: u32 = 4;
+pub const STREAK_RESET: Duration = Duration::from_secs(60);
+
+pub fn same_origin(page: &Url, base: Option<&Url>) -> bool {
+    base.is_some_and(|b| page.scheme() == b.scheme() && page.host_str() == b.host_str() && page.port_or_known_default() == b.port_or_known_default())
+}
+
+#[derive(Default)]
+pub struct Gate {
+    last: Option<Instant>,
+    streak: u32,
+}
+
+impl Gate {
+    pub fn admit(&mut self, now: Instant) -> Result<(), String> {
+        if let Some(last) = self.last {
+            let gap = now.saturating_duration_since(last);
+            if gap < LAUNCH_GAP {
+                return Err("wait two seconds between launches".into());
+            }
+            if gap >= STREAK_RESET {
+                self.streak = 0;
+            }
+        }
+        if self.streak >= LAUNCH_STREAK {
+            return Err("Bucket opened 4 agents in a row; wait a minute".into());
+        }
+        self.last = Some(now);
+        self.streak += 1;
+        Ok(())
+    }
+}
+
 pub struct Agents {
     pub tools: HashMap<String, PathBuf>,
     pub terminal: Option<(&'static str, PathBuf)>,
     pub state: Option<PathBuf>,
+    pub gate: Mutex<Gate>,
 }
 
 impl Agents {
@@ -137,6 +175,7 @@ impl Agents {
             tools: find_tools(path.as_deref()),
             terminal: find_terminal(path.as_deref()),
             state: state_dir(std::env::var_os("XDG_STATE_HOME"), std::env::var_os("HOME")),
+            gate: Mutex::new(Gate::default()),
         }
     }
 
@@ -144,6 +183,10 @@ impl Agents {
         if !cfg!(target_os = "linux") {
             return Err("launching agents works on Linux for now".into());
         }
+        let Ok(mut gate) = self.gate.try_lock() else {
+            return Err("another launch is in progress".into());
+        };
+        gate.admit(Instant::now())?;
         let state = self.state.as_ref().ok_or("Bucket could not find its state folder")?;
         let (bin, real) = check_launch(&self.tools, &read_folders(state)?, tool, folder)?;
         let (name, term) = self.terminal.as_ref().ok_or("Bucket found no terminal app to open")?;
@@ -184,6 +227,35 @@ mod tests {
 
     fn tools(dir: &Path) -> HashMap<String, PathBuf> {
         HashMap::from([("claude".to_string(), exe(dir, "claude"))])
+    }
+
+    #[test]
+    fn only_the_sidecar_origin_may_launch() {
+        let base = Url::parse("http://127.0.0.1:41234/").unwrap();
+        assert!(same_origin(&Url::parse("http://127.0.0.1:41234/#/agents").unwrap(), Some(&base)));
+        assert!(!same_origin(&Url::parse("http://127.0.0.1:41235/").unwrap(), Some(&base)));
+        assert!(!same_origin(&Url::parse("http://localhost:41234/").unwrap(), Some(&base)));
+        assert!(!same_origin(&Url::parse("https://127.0.0.1:41234/").unwrap(), Some(&base)));
+        assert!(!same_origin(&Url::parse("http://127.0.0.1:41234/").unwrap(), None));
+    }
+
+    #[test]
+    fn launches_are_spaced_two_seconds_apart_and_capped_at_four_in_a_row() {
+        let mut g = Gate::default();
+        let t0 = Instant::now();
+        assert!(g.admit(t0).is_ok());
+        assert_eq!(g.admit(t0 + Duration::from_millis(1999)).unwrap_err(), "wait two seconds between launches");
+        assert!(g.admit(t0 + Duration::from_secs(2)).is_ok());
+        assert!(g.admit(t0 + Duration::from_secs(4)).is_ok());
+        assert!(g.admit(t0 + Duration::from_secs(6)).is_ok());
+        assert_eq!(g.admit(t0 + Duration::from_secs(8)).unwrap_err(), "Bucket opened 4 agents in a row; wait a minute");
+        assert!(g.admit(t0 + Duration::from_secs(66)).is_ok());
+        let a = Agents { tools: HashMap::new(), terminal: None, state: None, gate: Mutex::new(Gate::default()) };
+        let held = a.gate.lock().unwrap();
+        if cfg!(target_os = "linux") {
+            assert_eq!(a.launch("claude", "/").unwrap_err(), "another launch is in progress");
+        }
+        drop(held);
     }
 
     #[test]

@@ -87,6 +87,10 @@ impl LinkState {
         }
     }
 
+    pub fn base(&self) -> Option<&Url> {
+        self.base.as_ref()
+    }
+
     pub fn loaded(&mut self, base: Url) {
         self.base = Some(base);
     }
@@ -655,9 +659,13 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
 }
 
 #[tauri::command]
-fn launch_agent(window: tauri::Window, agents: tauri::State<'_, agents::Agents>, tool: String, folder: String) -> Result<(), String> {
+fn launch_agent(window: tauri::WebviewWindow, link: tauri::State<'_, Link>, agents: tauri::State<'_, agents::Agents>, tool: String, folder: String) -> Result<(), String> {
     if window.label() != "main" {
         return Err("only the main window can open agents".into());
+    }
+    let page = window.url().map_err(|e| e.to_string())?;
+    if !agents::same_origin(&page, link.0.lock().unwrap().base()) {
+        return Err("only the Bucket page can open agents".into());
     }
     agents.launch(&tool, &folder)
 }
@@ -681,7 +689,12 @@ fn approve_folder(app: &tauri::AppHandle) {
 fn agents_menu(app: &tauri::App) -> tauri::Result<()> {
     let item = MenuItemBuilder::with_id(agents::APPROVE_MENU_ID, "Approve a folder for agents").build(app)?;
     let sub = SubmenuBuilder::new(app, "Agents").item(&item).build()?;
-    let menu = MenuBuilder::new(app).item(&sub).build()?;
+    let menu = match app.menu() {
+        Some(menu) => menu,
+        None if cfg!(target_os = "macos") => tauri::menu::Menu::default(app.handle())?,
+        None => MenuBuilder::new(app).build()?,
+    };
+    menu.append(&sub)?;
     app.set_menu(menu)?;
     app.on_menu_event(|app, event| {
         if event.id() == agents::APPROVE_MENU_ID {
@@ -1366,6 +1379,9 @@ mod tests {
         assert_eq!(conf["app"]["withGlobalTauri"], serde_json::json!(false));
         let command = shipped.split("fn launch_agent(").nth(1).unwrap().split("\n}\n").next().unwrap();
         assert!(command.contains("window.label() != \"main\""));
+        assert!(command.contains("agents::same_origin(&page, link.0.lock().unwrap().base())"));
+        let menu = shipped.split("fn agents_menu(").nth(1).unwrap().split("\n}\n").next().unwrap();
+        assert!(menu.contains("Some(menu) => menu") && menu.contains("menu.append(&sub)"));
         assert!(!command.contains("add_folder") && !command.contains("write"));
         assert_eq!(shipped.matches("agents::add_folder(").count(), 1);
         let approve = shipped.split("fn approve_folder(").nth(1).unwrap().split("\n}\n").next().unwrap();
