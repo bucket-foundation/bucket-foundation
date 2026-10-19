@@ -96,9 +96,14 @@ test("language placement narrows in on a tier with a fixed seed", async () => {
   await page.locator('a[href$="/place"]').first().click();
   await page.getByTestId("option").first().waitFor();
   await freeze("lang-placement-question");
+  let typedFrozen = false;
   for (let i = 0; i < 60; i++) {
     if (await page.getByTestId("placement-done").isVisible()) break;
     if (await page.getByTestId("answer").isVisible()) {
+      if (!typedFrozen) {
+        typedFrozen = true;
+        await freeze("lang-placement-typed");
+      }
       await page.getByTestId("skip").click();
       await page.waitForTimeout(100);
       continue;
