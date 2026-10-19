@@ -1317,10 +1317,10 @@ describe("Research OS views on the local store", () => {
       await v.act(async () => b.click());
       await v.act(async () => new Promise((r) => setTimeout(r, 60)));
     };
-    await click("Export my data");
+    await click("Export my profile and idea progress");
     expect(v.text()).toContain("Saved research-os-export-2026-09-30.json in /home/me/Downloads.");
     expect(JSON.parse(savedExports.at(-1)!.text).tables.ros_state).toHaveLength(1);
-    await click("Delete my data");
+    await click("Delete my profile and idea progress");
     const del = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Delete") as HTMLButtonElement;
     expect(del.disabled).toBe(true);
     const input = v.host.querySelector('input[aria-label="type the confirm word"]') as HTMLInputElement;

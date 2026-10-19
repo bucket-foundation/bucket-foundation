@@ -12,7 +12,7 @@ const ROLES: LearnerRole[] = ["independent", "student", "teacher"];
 const BANDS: BirthYearBucket[] = ["18plus", "13to17", "under13"];
 export const UNDER_13_NOTE = "Choosing under 13 clears your progress on this computer.";
 export const DELETE_WORD = "DELETE";
-export const DELETE_NOTE = "This removes your profile, level and idea progress on this computer, and it cannot be undone. Your Learn decks stay.";
+export const DELETE_NOTE = "This removes your profile, level and idea progress on this computer, and it cannot be undone. Your Learn decks, notes and history stay.";
 export const EXPORT_TROUBLE = "Bucket could not save the export. Try again.";
 export const DELETE_TROUBLE = "Bucket could not delete your data. Try again.";
 const PRIVACY = "/api/research-os/privacy";
@@ -64,11 +64,11 @@ function YourData({ onDeleted }: { onDeleted: () => void }) {
       <h2>Your data</h2>
       <div className="toolbar">
         <button type="button" disabled={busy} onClick={() => void exportMine()}>
-          Export my data
+          Export my profile and idea progress
         </button>
         {!confirming && (
           <button type="button" className="danger" disabled={busy} onClick={() => setConfirming(true)}>
-            Delete my data
+            Delete my profile and idea progress
           </button>
         )}
       </div>

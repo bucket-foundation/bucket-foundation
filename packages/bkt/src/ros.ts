@@ -217,7 +217,7 @@ export class RosGraph {
   forgetAll(): Record<string, number> {
     const states = this.db.query<{ n: number }, []>("select count(*) n from ros_state").get()!.n;
     const profile = this.db.query<{ n: number }, []>("select count(*) n from ros_profile").get()!.n;
-    this.db.run("delete from ros_state; delete from ros_profile;");
+    this.db.transaction(() => this.db.run("delete from ros_state; delete from ros_profile;"))();
     return { ros_state: states, ros_profile: profile };
   }
 }
