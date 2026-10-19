@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import type { EngineState } from "../src/lib/academy/engine";
-import { MAX_FUTURE_MS, createReviewLogHandlers, payloadHash, toAppendRow, type AppendResult, type AppendRow, type ReviewLogDeps, type StoredReview } from "../src/lib/academy/review-log-server";
+import { MAX_FUTURE_MS, MAX_REFOLD_ROWS, createReviewLogHandlers, payloadHash, toAppendRow, type AppendResult, type AppendRow, type ReviewLogDeps, type StoredReview } from "../src/lib/academy/review-log-server";
 import type { BirthYearBucket } from "../src/lib/research-os/consent";
 
 const NOW = Date.UTC(2026, 9, 18, 12);
@@ -183,12 +183,61 @@ test("an insert replays the branch log into academy_progress and runs mastery sy
   assert.deepEqual(w.mastery, ["u1/lang"]);
 });
 
-test("a review whose atoms pack is missing is stored and leaves academy_progress alone", async () => {
-  const w = world();
-  const res = await createReviewLogHandlers(w.deps).POST(post({ reviews: [review({ atoms_version: "atoms-v9", card_id: "a" })] }));
+test("a review with an unknown atoms pack is skipped with a reason and the rest of the branch still folds", async () => {
+  const notes: string[] = [];
+  const w = world({ noteSkips: async (_u, _b, ids, note) => void notes.push(`${ids.length} ${note}`) });
+  const res = await createReviewLogHandlers(w.deps).POST(post({ reviews: [review({ atoms_version: "atoms-v9", card_id: "a" }), review({ card_id: "ru:da" })] }));
   assert.equal(res.status, 200);
+  const j = (await res.json()) as { folded: string[]; skipped: { reason: string }[] };
+  assert.deepEqual(j.folded, ["lang"]);
+  assert.deepEqual(j.skipped.map((x) => x.reason), ["unknown atoms_version atoms-v9"]);
+  assert.deepEqual(notes, ["1 unknown atoms_version atoms-v9"]);
+  assert.ok(w.folds[0].data.cards["ru:da"]);
+  assert.equal(w.folds[0].seq, 2);
+});
+
+function foldWorld() {
+  const reads: { afterSeq?: number; limit?: number }[] = [];
+  const fold = { data: null as EngineState | null, log_seq: null as number | null, fold_key: null as string | null };
+  const w = world();
+  const readBranch = w.deps.readBranch;
+  w.deps.readBranch = async (uid, branch, opts) => {
+    reads.push(opts ?? {});
+    const all = await readBranch(uid, branch);
+    return { baseline: all.baseline, rows: all.rows.filter((r) => r.seq > (opts?.afterSeq ?? 0)) };
+  };
+  w.deps.readFold = async () => fold;
+  w.deps.writeFold = async (uid, branch, data, seq, key) => {
+    w.folds.push({ uid, branch, data, seq });
+    Object.assign(fold, { data, log_seq: seq, fold_key: key });
+    return true;
+  };
+  return { w, reads, fold };
+}
+
+test("an append after the last folded review folds only the new rows on top of the stored fold", async () => {
+  const { w, reads } = foldWorld();
+  const h = createReviewLogHandlers(w.deps);
+  await h.POST(post({ reviews: [review({ card_id: "ru:a", reviewed_at: NOW - 50_000 })] }));
+  await h.POST(post({ reviews: [review({ card_id: "ru:b", reviewed_at: NOW - 40_000 })] }));
+  assert.deepEqual(reads.map((r) => r.afterSeq ?? 0), [0, 1]);
+  assert.ok(w.folds[1].data.cards["ru:a"] && w.folds[1].data.cards["ru:b"]);
+});
+
+test("a late review that sorts before the fold triggers a full refold", async () => {
+  const { w, reads } = foldWorld();
+  const h = createReviewLogHandlers(w.deps);
+  await h.POST(post({ reviews: [review({ card_id: "ru:a", reviewed_at: NOW - 50_000 })] }));
+  await h.POST(post({ reviews: [review({ card_id: "ru:old", reviewed_at: NOW - 90_000 })] }));
+  assert.deepEqual(reads.map((r) => r.afterSeq ?? 0), [0, 1, 0]);
+  assert.ok(w.folds[1].data.cards["ru:old"] && w.folds[1].data.cards["ru:a"]);
+});
+
+test("a full refold over the row cap is skipped and reported", async () => {
+  const w = world();
+  w.deps.readBranch = async () => ({ baseline: null, rows: Array.from({ length: MAX_REFOLD_ROWS + 1 }, (_, i) => ({ review_id: `r${i}`, branch: "lang", card_id: "ru:a", rating: 3, level: "recall", reviewed_at: NOW, tz: "UTC", atoms_version: "lang", device_id: "d", seq: i + 1 })) as StoredReview[] });
+  const res = await createReviewLogHandlers(w.deps).POST(post({ reviews: [review()] }));
   assert.deepEqual(((await res.json()) as { folded: string[] }).folded, []);
-  assert.equal(w.log.size, 1);
   assert.equal(w.folds.length, 0);
 });
 
