@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { normalizeState, type EngineState } from "@/lib/academy/engine";
+import { useAccountGate } from "@/lib/academy/account-gate-context";
 import { loadLangCorpus, loadSystems, saveSystems, type SaveResult, type SystemsChange } from "@/lib/academy/lang-client";
 import SaveNotice from "./SaveNotice";
 import {
@@ -37,6 +38,7 @@ export default function LanguagesHome() {
   const [root, setRoot] = useState("en");
   const [targets, setTargets] = useState<string[]>([]);
   const [saveState, setSaveState] = useState<SaveResult | "idle" | "saving">("idle");
+  const { requireAccount } = useAccountGate();
 
   useEffect(() => {
     let alive = true;
@@ -68,10 +70,12 @@ export default function LanguagesHome() {
 
   function create() {
     if (!systems || err) return;
-    const s = createSystem(root, targets, systems);
-    setSystems([...systems, s]);
-    setTargets([]);
-    void persist({ upsert: s });
+    requireAccount(() => {
+      const s = createSystem(root, targets, systems);
+      setSystems([...systems, s]);
+      setTargets([]);
+      void persist({ upsert: s });
+    });
   }
 
   function remove(id: string) {

@@ -196,14 +196,13 @@ test("clients post to /api/capture with their source", () => {
   assert.ok(!fs.existsSync(path.join(root, "polingual/src/app/api/signup/route.ts")));
 });
 
-test("Start learning is the primary action and Download is secondary", () => {
-  assert.equal(START_LEARNING_HREF, "/sign-in?next=/learn");
+test("Start learning opens Learn as a guest and is the only hero action", () => {
+  assert.equal(START_LEARNING_HREF, "/research-os/learn");
   const hero = read("src/components/Presentation.tsx");
-  assert.ok(hero.indexOf("Start learning") < hero.indexOf("Download Bucket"));
+  assert.equal(hero.match(/<TrackedLink/g)?.length, 1);
   assert.match(hero, /event="start_learning_click"/);
-  const header = read("src/components/HeaderV3.tsx");
-  assert.match(header, /bg-\[color:var\(--gold\)\][\s\S]*Start learning/);
-  assert.match(read("src/components/download/DownloadExperience.tsx"), /data-start-learning/);
+  assert.doesNotMatch(read("src/components/HeaderV3.tsx"), /Start learning|Download/);
+  assert.match(read("src/components/SiteFooter.tsx"), /href="\/download"/);
 });
 
 test("the forget route clears download and polingual parts", () => {
