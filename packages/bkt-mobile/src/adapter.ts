@@ -1,3 +1,4 @@
+import type { MobileSync } from "../../../src/lib/academy/mobile-sync";
 import { ROS_RESOURCES, webRosSource, type RosResource } from "@ros/contract";
 
 export const MOBILE_SESSION = "mobile";
@@ -7,6 +8,7 @@ export interface SyncFetchOptions {
   base: string;
   token: () => Promise<string | null>;
   fetch: typeof fetch;
+  account?: Pick<MobileSync, "route">;
 }
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } });
@@ -42,6 +44,11 @@ export function createSyncFetch(opts: SyncFetchOptions): typeof fetch {
     if (!local) return opts.fetch(input, init);
     if (url.pathname === "/session" && method === "POST") return json({ token: MOBILE_SESSION });
     if (url.pathname === "/local/progress") return progress(method, init?.body ?? (req ? await req.text() : undefined));
+    if (opts.account && (url.pathname === "/local/review-log" || url.pathname.startsWith("/local/account"))) {
+      const raw = init?.body ?? (req && method !== "GET" ? await req.text() : null);
+      const hit = await opts.account.route(url.pathname, method, typeof raw === "string" ? raw : null);
+      if (hit) return hit;
+    }
     const rosName = url.pathname.match(/^\/local\/ros\/([a-z]+)$/)?.[1];
     if (rosName && isRos(rosName) && method === "GET") {
       const r = await ros.get(rosName);
