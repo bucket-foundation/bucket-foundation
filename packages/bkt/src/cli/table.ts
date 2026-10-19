@@ -71,8 +71,8 @@ export const TABLE: CommandSpec[] = [
   { name: "quiz notify", summary: "send the daily quiz notification when a chat source changed", options: { force: { type: "boolean", help: "send even when today's notification went out" } } },
   { name: "quiz schedule", summary: "run the daily quiz notification once a day; Linux only", options: { at: { type: "string", value: "HH:MM", help: "time of day, 08:53 when omitted" }, force: { type: "boolean", help: "replace a unit file that was edited by hand" } } },
   { name: "quiz unschedule", summary: "remove the daily quiz notification timer" },
-  { name: "wait install", summary: "notify you to study while Claude Code or Codex agents run; Linux only" },
-  { name: "wait uninstall", summary: "remove the Claude Code and Codex hooks that bkt wait added" },
+  { name: "wait install", summary: "notify you to study while Claude Code or Codex agents run, or Gemini CLI with --gemini; Linux only", options: { gemini: { type: "boolean", help: "add hooks to Gemini CLI instead" } } },
+  { name: "wait uninstall", summary: "remove the agent hooks that bkt wait added", options: { gemini: { type: "boolean", help: "remove only the Gemini CLI hooks" } } },
   {
     name: "llm add",
     summary: "add a model provider; hosted keys go to the keyring, read with hidden input",
