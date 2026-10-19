@@ -129,7 +129,36 @@ test("a resend with the same payload is 200 duplicate and a changed payload is 4
   assert.equal(changed.status, 409);
   assert.equal(((await changed.json()) as { results: AppendResult[] }).results[0].status, "conflict");
   assert.equal(w.log.size, 1);
-  assert.equal(w.folds.length, 1);
+  assert.equal(w.folds.length, 2);
+});
+
+test("a retry after a failed fold refolds the branch", async () => {
+  let fail = true;
+  const w = world();
+  const write = w.deps.writeFold;
+  w.deps.writeFold = async (...a) => {
+    if (fail) throw new Error("db down");
+    return write(...a);
+  };
+  const h = createReviewLogHandlers(w.deps);
+  const r = review();
+  assert.deepEqual(((await (await h.POST(post({ reviews: [r] }))).json()) as { folded: string[] }).folded, []);
+  fail = false;
+  assert.deepEqual(((await (await h.POST(post({ reviews: [r] }))).json()) as { folded: string[] }).folded, ["lang"]);
+});
+
+test("an unconfigured service answers 503 sync_unavailable", async () => {
+  const res = await createReviewLogHandlers(world({ configured: () => false }).deps).POST(post({ reviews: [review()] }));
+  assert.equal(res.status, 503);
+  assert.deepEqual(await res.json(), { error: "sync_unavailable" });
+});
+
+test("a corpus review folds when the atoms pack for its branch resolves", async () => {
+  const atom = { id: "a1", title: "A", shell: "nucleus" };
+  const w = world({ atoms: (branch) => ({ [`corpus:${branch}`]: [atom] as never }) });
+  const res = await createReviewLogHandlers(w.deps).POST(post({ reviews: [review({ branch: "01-mathematics", atoms_version: "corpus:01-mathematics", card_id: "a1" })] }));
+  assert.deepEqual(((await res.json()) as { folded: string[] }).folded, ["01-mathematics"]);
+  assert.ok(w.folds[0].data.cards.a1);
 });
 
 test("reviewed_at more than 24h ahead is clamped to now and the hash keeps the client value", () => {

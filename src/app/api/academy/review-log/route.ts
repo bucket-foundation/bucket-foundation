@@ -3,7 +3,9 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { verifyRequestUser } from "@/lib/auth/verify";
 import { syncAcademyMastery } from "@/lib/research-os/learn-sync";
 import { readAgeBand } from "@/lib/research-os/learn-gate";
-import { DEFAULT_ORIGINS, createReviewLogHandlers } from "@/lib/academy/review-log-server";
+import type { Atom } from "@/lib/academy/engine";
+import { loadCorpusForBranch } from "@/lib/academy/corpus";
+import { DEFAULT_ORIGINS, corpusAtomsVersion, createReviewLogHandlers } from "@/lib/academy/review-log-server";
 import { bucketService, reviewLogStore } from "@/lib/academy/review-log-store";
 
 export const runtime = "nodejs";
@@ -30,7 +32,10 @@ const handlers = createReviewLogHandlers({
   readAgeBand,
   ...reviewLogStore(service),
   syncMastery: syncAcademyMastery,
-  atoms: () => ({}),
+  atoms: (branch) => {
+    const atoms = loadCorpusForBranch(branch)?.atoms;
+    return atoms ? { [corpusAtomsVersion(branch)]: atoms as unknown as Atom[] } : {};
+  },
 });
 
 export const OPTIONS = (req: NextRequest) => handlers.OPTIONS(req);

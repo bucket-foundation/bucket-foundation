@@ -67,8 +67,10 @@ export interface ReviewLogDeps {
   readBranch: (uid: string, branch: string) => Promise<{ baseline: EngineState | null; rows: StoredReview[] }>;
   writeFold: (uid: string, branch: string, data: EngineState, seq: number) => Promise<boolean>;
   syncMastery: (uid: string, branch: string, data: unknown) => Promise<{ advanced: number }>;
-  atoms: () => Readonly<Record<string, Atom[]>>;
+  atoms: (branch: string) => Readonly<Record<string, Atom[]>>;
 }
+
+export const corpusAtomsVersion = (branch: string) => `corpus:${branch}`;
 
 export function payloadHash(r: ReviewInput): string {
   const canon = JSON.stringify([r.branch, r.card_id, r.rating, r.level, r.reviewed_at, r.tz, r.atoms_version, r.device_id]);
@@ -138,7 +140,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     if (rows.length === 0) return { folded: false, advanced: 0 };
     let state: EngineState;
     try {
-      state = replay(baseline, rows, deps.atoms());
+      state = replay(baseline, rows, deps.atoms(branch));
     } catch (e) {
       console.error("review-log replay failed", branch, e);
       return { folded: false, advanced: 0 };
@@ -205,8 +207,8 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
       return respond(req, { error: "write_failed" }, 500);
     }
 
-    const inserted = new Set(results.filter((r) => r.status === "inserted").map((r) => r.review_id));
-    const branches = Array.from(new Set(rows.filter((r) => inserted.has(r.review_id)).map((r) => r.branch)));
+    const stored = new Set(results.filter((r) => r.status !== "conflict").map((r) => r.review_id));
+    const branches = Array.from(new Set(rows.filter((r) => stored.has(r.review_id)).map((r) => r.branch)));
     let advanced = 0;
     const folded: string[] = [];
     for (const branch of branches) {
