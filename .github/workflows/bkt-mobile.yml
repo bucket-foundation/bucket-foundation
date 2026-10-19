@@ -166,7 +166,7 @@ jobs:
           script: bash packages/bkt-mobile/scripts/android-sync-smoke.sh packages/bkt-mobile/android/app/build/outputs/apk/debug/app-debug.apk
       - name: server log on failure
         if: failure()
-        run: tail -200 "$RUNNER_TEMP/dev.log" || true
+        run: grep -E "academy|sign-in|Error" "$RUNNER_TEMP/dev.log" | tail -80 || true
 
   ios:
     needs: web

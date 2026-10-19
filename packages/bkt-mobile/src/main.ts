@@ -14,6 +14,6 @@ window.fetch = createSyncFetch({ base: SYNC_BASE, token: () => mobile.accessToke
 window.__BKT__ = { nonce: "mobile" };
 if (SMOKE) {
   const { runSyncSmoke } = await import("./sync-smoke");
-  await runSyncSmoke(mobile, vault, import.meta.env.VITE_SMOKE_REFRESH_TOKEN ?? "", import.meta.env.VITE_SMOKE_USER ?? "");
+  await runSyncSmoke(mobile, vault, import.meta.env.VITE_SMOKE_REFRESH_TOKEN ?? "", import.meta.env.VITE_SMOKE_USER ?? "", () => native(`${SYNC_BASE}/sign-in?smoke=1`).then((r) => r.status));
 }
 await import("../../bkt-ui/src/main");
