@@ -67,7 +67,7 @@ export default function AppShell({ user, host, children }: { user: ShellUser | n
   const router = useRouter();
   const { requireAccount, openSignIn } = useAccountGate();
   const gated = (target: string) => (e: MouseEvent<HTMLAnchorElement>) => {
-    if (user || isGuestPath(target)) return;
+    if (user || isGuestPath(target) || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
     e.preventDefault();
     requireAccount(() => router.push(href(target)));
   };
