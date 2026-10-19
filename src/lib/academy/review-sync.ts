@@ -79,6 +79,8 @@ export interface ReviewSync {
   deviceId(): string;
   setUser(user: string | null): void;
   held(): QueuedReview[];
+  restoreHeld(ids?: string[]): number;
+  discardHeld(ids?: string[]): number;
 }
 
 function read<T>(s: Storage | null, key: string, fallback: T): T {
@@ -108,6 +110,15 @@ const PERMANENT_REFUSALS = new Set(["minor_read_only", "under_13"]);
 function webLock<T>(fn: () => Promise<T>): Promise<T> {
   const locks = typeof navigator === "undefined" ? undefined : (navigator as Navigator & { locks?: LockManager }).locks;
   return locks ? (locks.request(LOCK_NAME, fn) as Promise<T>) : fn();
+}
+
+export function heldAction(sync: Pick<ReviewSync, "restoreHeld" | "discardHeld" | "held">, body: unknown): { status: number; body: Record<string, unknown> } {
+  const b = (body && typeof body === "object" ? body : {}) as { action?: unknown; ids?: unknown };
+  const ids = Array.isArray(b.ids) && b.ids.every((x) => typeof x === "string") ? (b.ids as string[]) : undefined;
+  if (b.ids !== undefined && !ids) return { status: 400, body: { error: "bad_request" } };
+  if (b.action === "restore") return { status: 200, body: { restored: sync.restoreHeld(ids), held: sync.held().length } };
+  if (b.action === "discard") return { status: 200, body: { discarded: sync.discardHeld(ids), held: sync.held().length } };
+  return { status: 400, body: { error: "bad_request" } };
 }
 
 export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
@@ -212,6 +223,29 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
     return true;
   }
 
+  function takeHeld(ids: string[] | undefined): QueuedReview[] {
+    let taken: QueuedReview[] = [];
+    mutate((o) => {
+      const pick = (h: QueuedReview) => !ids || ids.includes(h.review_id);
+      taken = o.held.filter(pick);
+      return { ...o, held: o.held.filter((h) => !pick(h)) };
+    });
+    return taken;
+  }
+
+  function restoreHeld(ids?: string[]): number {
+    const who = owner();
+    if (!who) return 0;
+    const at = now();
+    const back = takeHeld(ids);
+    if (back.length) mutate((o) => ({ ...o, reviews: o.reviews.concat(back.map((h) => ({ ...h, owner: who, queued_at: at }))) }));
+    return back.length;
+  }
+
+  function discardHeld(ids?: string[]): number {
+    return takeHeld(ids).length;
+  }
+
   const dropMine = (user: string) => mutate((o) => ({ ...o, seeds: o.seeds.filter(notMine(user)), reviews: o.reviews.filter(notMine(user)) }));
 
   async function flushOnce(): Promise<void> {
@@ -310,5 +344,7 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
     deviceId,
     setUser,
     held: () => loadOutbox().held,
+    restoreHeld,
+    discardHeld,
   };
 }

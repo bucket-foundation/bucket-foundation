@@ -133,6 +133,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     branch,
     data: updates[branch] ?? {},
     updated_at: now,
+    fold_key: null,
   }));
 
   const { error } = await service()

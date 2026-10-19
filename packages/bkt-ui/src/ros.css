@@ -121,7 +121,7 @@
 .canon-site a[href="/canon/bridges"],
 .canon-site a[href="/canon/graph"],
 .canon-site a[href^="https://"]:not([href^="https://en.wikipedia.org/"]):not([href^="https://openalex.org/"]):not([href^="https://whc.unesco.org/"]),
-.canon-site button[title^="copies /canon"] {
+.canon-site button[title="Copy a link to this marker"] {
   display: none;
 }
 

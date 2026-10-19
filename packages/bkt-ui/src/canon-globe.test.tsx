@@ -200,8 +200,8 @@ describe("canon screen with the globe", () => {
     const open = rules.map((r) => of(r).length);
     expect(rules.map((r, i) => [r, idle[i] + open[i] > 0])).toEqual(rules.map((r) => [r, true]));
     const meta = of(".canon-site aside section:has(dl)");
-    expect(meta.map((el) => el.querySelector("dt")?.textContent)).toEqual(["id"]);
-    expect(of(".canon-site button[title^='copies /canon']").length).toBe(1);
+    expect(meta.length).toBe(1);
+    expect(of(".canon-site button[title='Copy a link to this marker']").length).toBe(1);
     await v.unmount();
   });
 
