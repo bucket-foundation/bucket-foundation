@@ -7,6 +7,8 @@ import type { ProductionsSnapshot } from "@ros/productions-snapshot";
 import type { ConceptPage, LessonPage, WordCredit, WordLicence } from "../../bkt/src/core/words";
 import type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 import { siteFetch } from "./site-fetch";
+import type { AgentsBody } from "../../bkt/src/wait-fold";
+export type { AgentRow, AgentsBody } from "../../bkt/src/wait-fold";
 
 export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordLicence, WordView } from "../../bkt/src/core/words";
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
@@ -499,6 +501,18 @@ export class Api {
 
   installUpdate() {
     return this.call<UpdateOutcome>("/local/update/install", { method: "POST", body: {} });
+  }
+
+  agents() {
+    return this.call<AgentsBody>("/local/agents");
+  }
+
+  reportFocus(focused: boolean, visible: boolean) {
+    return this.call<{ ok: boolean }>("/local/focus", { method: "POST", body: { focused, visible } });
+  }
+
+  setWait(on: boolean) {
+    return this.call<AgentsBody & { ok: boolean; lines: string[] }>("/local/wait", { method: "POST", body: { on } });
   }
 
   setNotify(on: boolean, at?: string) {

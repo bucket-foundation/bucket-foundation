@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { gripSphere, type GripSphere } from "@academy/grip-sphere";
 import type { Api, DeckRow, WordDecks } from "../api";
 import { href } from "../router";
+import { AgentsStrip } from "./Agents";
 import { GripPanel } from "./Grip";
 import { loadLearnData } from "./learn-data";
 import { LIBRARY_LINK, WordSearchBox } from "./Decks";
@@ -37,6 +38,7 @@ export function LearnHome({ api }: { api: Api }) {
           {due} due today · {xp} XP
         </p>
       </header>
+      <AgentsStrip api={api} />
       {grip && grip.axes.length > 0 && <GripPanel grip={grip} />}
       <p className="muted small">
         <a href={href({ name: "path" })}>Plan a path to any concept</a>

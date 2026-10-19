@@ -147,7 +147,7 @@ describe("word lesson pages", () => {
 
   test("Learn lists one deck per chosen language under Languages, with the by-concept link and the credit", async () => {
     const { LearnHome } = await import("./views/LearnHome");
-    const base = { decks: async () => [], atoms: async () => [], progress: { pull: async () => ({}) } };
+    const base = { decks: async () => [], atoms: async () => [], progress: { pull: async () => ({}) }, agents: async () => ({ v: 1, supported: false, installed: false, sessions: [] }), reportFocus: async () => ({ ok: true }) };
     const v = await render(<LearnHome api={{ ...base, wordDecks: async () => WORD_DECKS } as unknown as Api} />);
     expect(Array.from(v.host.querySelectorAll("h2")).map((h) => h.textContent)).toContain("Languages");
     expect(Array.from(v.host.querySelectorAll('a.deck[href^="#/words/"]')).map((a) => [a.getAttribute("href"), a.querySelector(".deck-title")!.textContent])).toEqual([["#/words/de", "German words"], ["#/words/ar", "Arabic words"]]);

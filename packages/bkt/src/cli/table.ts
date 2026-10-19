@@ -71,6 +71,9 @@ export const TABLE: CommandSpec[] = [
   { name: "quiz notify", summary: "send the daily quiz notification when a chat source changed", options: { force: { type: "boolean", help: "send even when today's notification went out" } } },
   { name: "quiz schedule", summary: "run the daily quiz notification once a day; Linux only", options: { at: { type: "string", value: "HH:MM", help: "time of day, 08:53 when omitted" }, force: { type: "boolean", help: "replace a unit file that was edited by hand" } } },
   { name: "quiz unschedule", summary: "remove the daily quiz notification timer" },
+  { name: "wait install", summary: "notify you to study while Claude Code or Codex agents run; Linux only" },
+  { name: "wait uninstall", summary: "remove the Claude Code and Codex hooks that bkt wait added" },
+  { name: "wait status", summary: "show whether the agent hooks are on and the last events" },
   {
     name: "analyze",
     summary: "check a data file, run the analysis suite and save a report",
