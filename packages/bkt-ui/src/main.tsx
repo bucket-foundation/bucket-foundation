@@ -45,7 +45,10 @@ function App() {
   useEffect(() => {
     if (!api) return;
     let live = true;
-    void agentsAvailable(api).then((ok) => live && setAgentsReady(ok));
+    void agentsAvailable(api).then(
+      (ok) => live && setAgentsReady(ok),
+      () => live && setAgentsReady(false)
+    );
     return () => {
       live = false;
     };
