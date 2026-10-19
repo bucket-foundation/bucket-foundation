@@ -1308,7 +1308,7 @@ describe("Research OS views on the local store", () => {
   test("progress shows level tiles, started decks and saves progress to a file", async () => {
     await useLocalStore(["02-physics:ph-heat"]);
     let saved = 0;
-    const v = await mount({ name: "progress" }, { ...empty(), decks: async () => DECKS, exportProgress: async () => (saved++, { name: "bucket-progress-2026-09-30.json", folder: "/home/me/Downloads" }) } as Stub);
+    const v = await mount({ name: "progress" }, { ...empty(), decks: async () => DECKS, exportProgress: async () => (saved++, { name: "bucket-progress-2026-09-30.json", folder: "Downloads" }) } as Stub);
     await v.act(async () => new Promise((r) => setTimeout(r, 60)));
     const tiles = [...v.host.querySelectorAll(".tile")].map((t) => t.textContent);
     expect(tiles[0]).toMatch(/^Level\d+$/);
@@ -1319,7 +1319,7 @@ describe("Research OS views on the local store", () => {
     await v.act(async () => b.click());
     await v.act(async () => new Promise((r) => setTimeout(r, 20)));
     expect(saved).toBe(1);
-    expect(v.host.textContent).toContain("Saved your progress in /home/me/Downloads as bucket-progress-2026-09-30.");
+    expect(v.host.textContent).toContain("Saved your progress in Downloads as bucket-progress-2026-09-30.");
     expect(violations(v.host)).toEqual([]);
     await v.unmount();
   });
