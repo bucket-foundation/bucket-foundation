@@ -2,7 +2,7 @@ import { randomBytes, randomUUID } from "node:crypto";
 import type { EngineState } from "./engine";
 import { canonicalRequest, DEVICE_HEADER, formatDeviceHeader } from "./device-sign";
 import { createReviewSync, type Fetcher, type ReviewSync } from "./review-sync";
-import type { StoredSession, TokenVault } from "./token-store";
+import { refreshSession, type StoredSession, type TokenVault } from "./token-store";
 
 export const DEFAULT_SYNC_BASE = "https://bucket.foundation";
 export const REFRESH_MARGIN_S = 60;
@@ -56,21 +56,15 @@ export function createRemoteSync(deps: RemoteDeps): RemoteSync {
   const base = deps.base.replace(/\/$/, "");
 
   async function refresh(s: StoredSession): Promise<StoredSession | null> {
-    const r = await f(`${s.supabase_url}/auth/v1/token?grant_type=refresh_token`, {
-      method: "POST",
-      headers: { apikey: s.anon_key, "content-type": "application/json" },
-      body: JSON.stringify({ refresh_token: s.refresh_token }),
-    });
-    if (r.status === 400 || r.status === 401 || r.status === 403) {
+    const out = await refreshSession(f, s, now());
+    if (out.kind === "revoked") {
       await deps.vault.clear();
       sync.setUser(null);
       return null;
     }
-    if (!r.ok) throw new SyncError(`session refresh answered ${r.status}`, "refresh_failed");
-    const j = (await r.json()) as { access_token: string; refresh_token: string; expires_at?: number; expires_in?: number };
-    const next: StoredSession = { ...s, access_token: j.access_token, refresh_token: j.refresh_token, expires_at: j.expires_at ?? Math.floor(now() / 1000) + (j.expires_in ?? 3600) };
-    await deps.vault.set(next);
-    return next;
+    if (out.kind === "failed") throw new SyncError(`session refresh answered ${out.status}`, "refresh_failed");
+    await deps.vault.set(out.session);
+    return out.session;
   }
 
   async function current(): Promise<StoredSession | null> {

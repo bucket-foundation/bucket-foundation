@@ -43,6 +43,37 @@ export function neighbours(g: CanonGraph, id: string): { id: string; weight: num
   return Array.from(out, ([n, weight]) => ({ id: n, weight })).sort((a, b) => b.weight - a.weight || (a.id < b.id ? -1 : 1));
 }
 
+export function degree(g: CanonGraph, id: string): number {
+  return neighbours(g, id).length;
+}
+
+export function shortestPath(g: CanonGraph, from: string, to: string): string[] | null {
+  const ids = new Set(g.nodes.map((n) => n.id));
+  if (!ids.has(from) || !ids.has(to)) return null;
+  if (from === to) return [from];
+  const adj = new Map<string, string[]>();
+  for (const e of g.edges) {
+    (adj.get(e.source) ?? adj.set(e.source, []).get(e.source)!).push(e.target);
+    (adj.get(e.target) ?? adj.set(e.target, []).get(e.target)!).push(e.source);
+  }
+  const prev = new Map<string, string>([[from, from]]);
+  const queue = [from];
+  while (queue.length) {
+    const at = queue.shift()!;
+    for (const next of (adj.get(at) ?? []).slice().sort()) {
+      if (prev.has(next)) continue;
+      prev.set(next, at);
+      if (next === to) {
+        const path = [to];
+        while (path[0] !== from) path.unshift(prev.get(path[0])!);
+        return path;
+      }
+      queue.push(next);
+    }
+  }
+  return null;
+}
+
 export function components(g: CanonGraph): string[][] {
   const parent = new Map(g.nodes.map((n) => [n.id, n.id]));
   const find = (x: string): string => {
@@ -92,10 +123,12 @@ export function excerptsByAuthor(nodes: RawGraph["nodes"], excerpts: ExcerptByli
   return out;
 }
 
+export const SHORT_WORD = 4;
+
 export function matchNodes(g: CanonGraph, query: string): string[] {
   const words = fold(query).filter((w) => w.length >= 3);
   if (!words.length) return [];
-  return g.nodes.filter((n) => fold(n.name).some((part) => words.some((w) => part.startsWith(w)))).map((n) => n.id);
+  return g.nodes.filter((n) => fold(n.name).some((part) => words.some((w) => (w.length < SHORT_WORD ? part === w : part.startsWith(w))))).map((n) => n.id);
 }
 
 export interface Placed {

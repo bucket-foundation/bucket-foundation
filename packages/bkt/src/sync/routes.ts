@@ -1,4 +1,4 @@
-import type { ReviewEvent } from "../../../../src/lib/academy/review-sync";
+import { heldAction, type ReviewEvent } from "../../../../src/lib/academy/review-sync";
 import type { Route } from "../serve";
 import { SyncError, type LoginPrompt, type RemoteSync } from "../../../../src/lib/academy/remote-sync";
 
@@ -44,6 +44,11 @@ export function syncRoutes(remote: RemoteSync, opts: { label: () => string; onEr
         report(e);
         return json({ error: e instanceof SyncError ? e.code : "sync_failed" }, 502);
       }
+    },
+    "POST /local/review-log/held": async (req) => {
+      const r = heldAction(remote.sync, await req.json().catch(() => null));
+      if (r.status === 200 && r.body.restored) scheduleFlush();
+      return json(r.body, r.status);
     },
     "GET /local/account": async () => {
       try {

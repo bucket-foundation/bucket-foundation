@@ -103,3 +103,15 @@ test("re-registering a device ends its earlier sessions, and revoke_device ends 
     sql(`delete from auth.users where id = '${uid}'`);
   }
 });
+
+test("session_rate_hit counts within a window and starts over after it", { skip: skip || sql("select to_regprocedure('bucket.session_rate_hit(text,int,int)') is not null").out !== "t" ? "the session rate migration is not applied" : false }, () => {
+  const key = `test:${randomUUID()}`;
+  try {
+    const hit = () => sql(`select bucket.session_rate_hit('${key}', 2, 600)`).out;
+    assert.deepEqual([hit(), hit(), hit()], ["t", "t", "f"]);
+    sql(`update bucket.session_rate set window_start = now() - interval '11 minutes' where key = '${key}'`);
+    assert.equal(hit(), "t");
+  } finally {
+    sql(`delete from bucket.session_rate where key = '${key}'`);
+  }
+});

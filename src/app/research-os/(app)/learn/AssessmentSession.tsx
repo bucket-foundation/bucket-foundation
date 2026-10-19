@@ -37,7 +37,7 @@ export default function AssessmentSession({ branch }: { branch: string }) {
   }, [step, i]);
 
   if (a.status === "loading") return <LoadingState label="Loading the deck" />;
-  if (a.status !== "ready" || !a.corpus) return <ErrorState title="No such deck" body={`There is no branch named ${branch}.`} />;
+  if (a.status !== "ready" || !a.corpus) return <ErrorState title="No such deck" body="Bucket has no deck at this address." details={`branch ${branch}`} />;
   const label = deckLabel(a.corpus.deck);
 
   function begin() {

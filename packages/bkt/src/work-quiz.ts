@@ -15,7 +15,9 @@ import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "..
 import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, type ChatToggles } from "./chat-sources";
 import { open, seal } from "./crypto";
 import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
-import { LANGUAGES_ERROR, languagesByName, parseLanguages } from "../../../src/lib/research-os/work-quiz/languages";
+import { LANGUAGE_CODES, LANGUAGES_ERROR, languagesByName, parseLanguages } from "../../../src/lib/research-os/work-quiz/languages";
+import { normalizeSystemsDoc } from "../../../src/lib/academy/lang-systems";
+import { SYSTEMS_META } from "./local";
 import { answerDaily, LearnError } from "./core/learn";
 import { DAILY_MAX, DAILY_MIN, DailyQuizStore, overLength, TOO_FEW, validDay, type DailyQuiz } from "./daily-quiz";
 import { criticDir, lessonFill, originOf, readCriticQuiz } from "./daily-fill";
@@ -119,11 +121,31 @@ export class WorkQuizStore {
     this.store.setMeta(CHAT_META, JSON.stringify({ claude: on.claude, codex: on.codex }));
   }
 
-  languages(): string[] {
+  chosenLanguages(): string[] {
     return this.store.db
       .query<{ code: string }, []>("select code from work_quiz_languages order by rowid")
       .all()
       .map((r) => r.code);
+  }
+
+  systemLanguages(): string[] {
+    const raw = this.store.meta(SYSTEMS_META);
+    if (!raw) return [];
+    let doc: ReturnType<typeof normalizeSystemsDoc>;
+    try {
+      doc = normalizeSystemsDoc(JSON.parse(raw));
+    } catch {
+      return [];
+    }
+    const out: string[] = [];
+    for (const s of doc.systems) for (const code of [s.root, ...s.targets]) if (LANGUAGE_CODES.includes(code) && !out.includes(code)) out.push(code);
+    return out;
+  }
+
+  languages(): string[] {
+    const out = this.chosenLanguages();
+    for (const code of this.systemLanguages()) if (!out.includes(code)) out.push(code);
+    return out;
   }
 
   setLanguages(codes: readonly string[], now: number) {
@@ -353,14 +375,15 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const { sources: s, repoError } = await sources();
       return json({ beads: s.beads.length, prs: s.prs.length, repo: wq.repo(), repoError, chat: wq.chat(), languages: wq.languages(), ready: askable(s), ...wq.tally() });
     },
-    "GET /local/work-quiz/languages": () => json({ languages: wq.languages(), available: languagesByName() }),
+    "GET /local/work-quiz/languages": () => json({ languages: wq.languages(), chosen: wq.chosenLanguages(), fromSystems: wq.systemLanguages(), available: languagesByName() }),
     "POST /local/work-quiz/languages": async (req) => {
       const b = await body(req);
       const languages = b ? parseLanguages(b.languages) : null;
       if (!languages) return json({ error: LANGUAGES_ERROR }, 400);
-      wq.setLanguages(languages, now());
+      const fromSystems = wq.systemLanguages();
+      wq.setLanguages(languages.filter((c) => !fromSystems.includes(c)), now());
       empty.clear();
-      return json({ languages: wq.languages() });
+      return json({ languages: wq.languages(), chosen: wq.chosenLanguages(), fromSystems: wq.systemLanguages() });
     },
     "POST /local/work-quiz/beads": async (req) => {
       const b = await body(req);

@@ -95,13 +95,13 @@ export default function BranchEntriesTableV2({
                 href="/cite-forever/v0.1"
                 className="text-[color:var(--gold)] hover:text-[color:var(--basalt)]"
               >
-                cite ${CANON_CITE_PRICE_USD.toFixed(3)} usdc
+                cite for ${CANON_CITE_PRICE_USD.toFixed(3)}
               </a>
               <a
                 href={canonEntryUrl(branchSlug, e.bibkey)}
                 className="font-mono-mark normal-case text-[color:var(--parchment-dim)] hover:text-[color:var(--gold)]"
               >
-                /canon/{branchSlug}#{e.bibkey}
+                link to this entry
               </a>
             </div>
           </div>

@@ -50,7 +50,7 @@ export default function AccessMine({ token }: { token: string | null }) {
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? `failed (${res.status})`));
+        setError(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : "Bucket could not change access. Try again.");
       } else {
         setTitle("");
         setUrl("");

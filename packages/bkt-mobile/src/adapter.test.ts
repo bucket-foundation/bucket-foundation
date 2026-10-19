@@ -28,6 +28,9 @@ const PRIMES = {
 
 test("refuses a sync base without https", () => {
   expect(() => requireHttps("http://bucket.foundation")).toThrow(/https/);
+  expect(() => requireHttps("http://10.0.2.2:3000")).toThrow(/https/);
+  expect(requireHttps("http://10.0.2.2:3000", true)).toBe("http://10.0.2.2:3000");
+  expect(() => requireHttps("http://bucket.foundation", true)).toThrow(/https/);
   expect(requireHttps("https://bucket.foundation/x")).toBe("https://bucket.foundation");
 });
 
