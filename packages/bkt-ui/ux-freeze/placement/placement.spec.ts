@@ -98,6 +98,11 @@ test("language placement narrows in on a tier with a fixed seed", async () => {
   await freeze("lang-placement-question");
   for (let i = 0; i < 60; i++) {
     if (await page.getByTestId("placement-done").isVisible()) break;
+    if (await page.getByTestId("answer").isVisible()) {
+      await page.getByTestId("skip").click();
+      await page.waitForTimeout(100);
+      continue;
+    }
     const option = page.getByTestId("option").first();
     if (!(await option.isVisible())) {
       await page.waitForTimeout(100);

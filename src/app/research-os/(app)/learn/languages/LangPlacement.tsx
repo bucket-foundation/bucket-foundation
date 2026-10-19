@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { langName, placementItem, placementOptions, placementStep, readingsByForm, seededRng, type LangItem, type PlacementAnswer } from "@/lib/academy/lang-systems";
+import { judgeTyped, langName, placementItem, placementOptions, placementStep, readingsByForm, seededRng, type LangItem, type PlacementAnswer, type PlacementMode } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState, PageHeader } from "@/components/ui";
 import { useLangSystem } from "./useLangSystem";
 import SaveNotice from "./SaveNotice";
@@ -16,6 +16,8 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
   const [answers, setAnswers] = useState<PlacementAnswer[]>([]);
   const [seen, setSeen] = useState<Set<string>>(new Set());
   const [item, setItem] = useState<LangItem | null>(null);
+  const [mode, setMode] = useState<PlacementMode>("recognize");
+  const [typed, setTyped] = useState("");
   const [result, setResult] = useState<number | null>(null);
 
   useEffect(() => {
@@ -45,6 +47,8 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
       setResult(step.tier);
       return;
     }
+    setMode(step.nextMode ?? "recognize");
+    setTyped("");
     setItem(next);
   }, [system, corpus, lang, answers, seen, item, result, rng, h]);
 
@@ -60,7 +64,8 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
 
   function answer(correct: boolean) {
     if (!item) return;
-    setAnswers((a) => [...a, { tier: item.tier, correct }]);
+    const tier = placementStep(answers).nextTier ?? item.tier;
+    setAnswers((a) => [...a, { tier, correct, mode }]);
     setSeen((s) => new Set(s).add(item.id));
     setItem(null);
   }
@@ -104,6 +109,28 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
         <div className="text-[15px] text-[color:var(--basalt)]">
           {langName(lang)} for <strong>{item.forms[system.root]}</strong>
         </div>
+        {mode === "produce" ? (
+          <form
+            className="mt-4 flex flex-wrap gap-2"
+            onSubmit={(e) => {
+              e.preventDefault();
+              answer(judgeTyped(typed, item.forms[lang], lang) !== "wrong");
+            }}
+          >
+            <input
+              autoFocus
+              value={typed}
+              onChange={(e) => setTyped(e.target.value)}
+              lang={lang}
+              aria-label={`answer in ${langName(lang)}`}
+              className="flex-1 min-w-[12rem] border border-[color:var(--hairline)] bg-white/70 px-3 py-2 rounded-sm text-[15px]"
+              data-testid="answer"
+            />
+            <button type="submit" className={BTN_PRIMARY} data-testid="check">
+              check
+            </button>
+          </form>
+        ) : (
         <div className="mt-4 grid sm:grid-cols-2 gap-2">
           {options.map((o) => (
             <button key={o} type="button" lang={lang} onClick={() => answer(o === item.forms[lang])} className="border border-[color:var(--hairline)] bg-white/50 hover:bg-[color:var(--bone-2)] px-3 py-2 text-left rounded-sm min-h-[48px] text-[15px]" data-testid="option">
@@ -112,6 +139,7 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
             </button>
           ))}
         </div>
+        )}
         <button type="button" onClick={() => answer(false)} className="mt-3 text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)]" data-testid="skip">
           I do not know
         </button>

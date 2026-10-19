@@ -31,7 +31,10 @@ export const LANG_CODES = Object.keys(LANGS);
 export const MAX_TARGETS = 6;
 export const NEW_PER_LANG_PER_DAY = 5;
 export const PLACEMENT_TIERS = [0, 2, 4, 6, 8, 10];
-export const PLACEMENT_MAX_ITEMS = 12;
+export const PLACEMENT_ITEMS_PER_TIER = 3;
+export const PLACEMENT_PASS_PER_TIER = 2;
+export const PLACEMENT_MAX_ITEMS = 18;
+export const PLACEMENT_PRODUCE_AT = 1;
 export const UNIT_UNLOCK_SHARE = 0.8;
 
 export const PRESETS: { name: string; targets: string[] }[] = [
@@ -783,39 +786,48 @@ export function gradeCard(state: EngineState, lang: string, itemId: string, rati
   return next;
 }
 
+export type PlacementMode = "recognize" | "produce";
+
 export interface PlacementAnswer {
   tier: number;
   correct: boolean;
+  mode?: PlacementMode;
 }
 
 export interface PlacementStep {
   done: boolean;
   tier: number;
   nextTier?: number;
+  nextMode?: PlacementMode;
 }
 
 export function placementStep(answers: PlacementAnswer[], maxItems = PLACEMENT_MAX_ITEMS): PlacementStep {
-  const tierAt = (i: number) => (i < PLACEMENT_TIERS.length ? PLACEMENT_TIERS[i] : PLACEMENT_TIERS[PLACEMENT_TIERS.length - 1] + 1);
-  let lo = 0;
-  let hi = PLACEMENT_TIERS.length;
-  while (lo < hi) {
-    const mid = Math.floor((lo + hi) / 2);
-    const t = PLACEMENT_TIERS[mid];
+  const after = (i: number) => (i + 1 < PLACEMENT_TIERS.length ? PLACEMENT_TIERS[i + 1] : PLACEMENT_TIERS[PLACEMENT_TIERS.length - 1] + 1);
+  for (let i = 0; i < PLACEMENT_TIERS.length; i++) {
+    const t = PLACEMENT_TIERS[i];
     const at = answers.filter((a) => a.tier === t);
     const right = at.filter((a) => a.correct).length;
     const wrong = at.length - right;
-    const decided = right >= 2 || wrong >= 2 || answers.length >= maxItems;
-    if (!decided) return { done: false, tier: tierAt(lo), nextTier: t };
-    if (right > wrong) lo = mid + 1;
-    else hi = mid;
+    if (right >= PLACEMENT_PASS_PER_TIER) continue;
+    if (wrong > PLACEMENT_ITEMS_PER_TIER - PLACEMENT_PASS_PER_TIER || at.length >= PLACEMENT_ITEMS_PER_TIER || answers.length >= maxItems) return { done: true, tier: t };
+    return { done: false, tier: t, nextTier: t, nextMode: at.length === PLACEMENT_PRODUCE_AT ? "produce" : "recognize" };
   }
-  return { done: true, tier: tierAt(lo) };
+  return { done: true, tier: after(PLACEMENT_TIERS.length - 1) };
+}
+
+export function placementHardness(item: LangItem, root: string, lang: string): number {
+  const a = normalizeAnswer(item.forms[root] ?? "", root);
+  const b = normalizeAnswer(item.forms[lang] ?? "", lang);
+  const n = Math.max(a.length, b.length, 1);
+  return editDistance(a, b) / n;
 }
 
 export function placementItem(system: LangSystem, corpus: LangCorpus, lang: string, tier: number, seen: Set<string>, rng: Rng): LangItem | null {
   const exact = corpus.items.filter((i) => i.kind === "word" && i.tier === tier && usable(i, system.root, lang) && !seen.has(i.id));
   const near = exact.length ? exact : corpus.items.filter((i) => i.kind === "word" && Math.abs(i.tier - tier) <= 1 && usable(i, system.root, lang) && !seen.has(i.id));
-  return near.length ? shuffle(near, rng)[0] : null;
+  if (!near.length) return null;
+  const ranked = shuffle(near, rng).sort((x, y) => placementHardness(y, system.root, lang) - placementHardness(x, system.root, lang));
+  return ranked[Math.floor(rng() * Math.max(1, Math.ceil(ranked.length / 2)))];
 }
 
 export function placementOptions(corpus: LangCorpus, item: LangItem, lang: string, root: string, rng: Rng): string[] {
