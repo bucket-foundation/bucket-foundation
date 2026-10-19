@@ -76,7 +76,9 @@ export const reviewSync = createReviewSync({
   uuid: () => crypto.randomUUID(),
   readLocal,
   pushSnapshot: pushBranch,
+  onProblem: (problem, count) => console.error("academy review outbox", problem, count),
 });
+
 
 let flushTimer: ReturnType<typeof setTimeout> | null = null;
 

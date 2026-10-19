@@ -55,9 +55,9 @@ async function selectMarker(page: Page): Promise<void> {
 }
 
 for (const view of ["globe", "circle"] as const) {
-  test.describe(`home explorer ${view} view`, () => {
+  test.describe(`canon explorer ${view} view`, () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto(`/?view=${view}&sort=branch`);
+      await page.goto(`/canon?view=${view}&sort=branch`);
       await expect(page.locator("canvas").first()).toBeVisible();
       await page.waitForTimeout(3000);
     });
