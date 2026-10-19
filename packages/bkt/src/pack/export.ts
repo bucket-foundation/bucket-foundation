@@ -78,11 +78,18 @@ export function buildPack(corpusDir: string): Pack {
   return { version, source: "learning/app/corpus", items, decks, atoms };
 }
 
+export const LANG_CORPUS_FILES = ["lang-core.json", "lang-cognates.json", "lang-phrases.json", "lang-layers.json"] as const;
+
+export function langCorpus(corpusDir: string): Record<string, unknown> {
+  return Object.fromEntries(LANG_CORPUS_FILES.map((f) => [f, JSON.parse(readFileSync(join(corpusDir, f), "utf8"))]));
+}
+
 if (import.meta.main) {
   const root = resolve(import.meta.dir, "../../../..");
   const pack = buildPack(join(root, "learning/app/corpus"));
   const outDir = resolve(import.meta.dir, "../../content");
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, "pack.json"), JSON.stringify(pack));
+  writeFileSync(join(outDir, "lang-corpus.json"), JSON.stringify(langCorpus(join(root, "learning/app/corpus"))));
   console.log(`pack ${pack.version}: ${pack.items.length} items`);
 }

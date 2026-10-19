@@ -10,7 +10,7 @@ const SHIMS: Record<string, string> = {
   "next/dynamic": resolve(HERE, "src/shims/next-dynamic.tsx"),
   "next/navigation": resolve(HERE, "src/shims/next-navigation.ts"),
 };
-const OWN = /^(react|react-dom|three|three-stdlib|@react-three\/fiber|@react-three\/drei|katex)(\/.*)?$/;
+const OWN = /^(react|react-dom|three|three-stdlib|@react-three\/fiber|@react-three\/drei|katex|react-markdown|remark-math|rehype-katex)(\/.*)?$/;
 const IMPORT = /(\bfrom\s+|\bimport\s*\(\s*|\bimport\s+)(["'])([^"']+)\2/g;
 const JSX = dirname(Bun.resolveSync("react", HERE));
 

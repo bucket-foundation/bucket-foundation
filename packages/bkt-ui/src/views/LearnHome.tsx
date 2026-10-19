@@ -54,7 +54,19 @@ export function LearnHome({ api }: { api: Api }) {
           </a>
         ))}
       </div>
+      <ul className="deck-links">
+        {decks.map((d) => (
+          <li key={d.id}>
+            <span>{d.title}</span>
+            <a href={href({ name: "place", deck: d.id })}>{d.introduced === 0 ? "Place me first" : "Retake placement"}</a>
+            {d.introduced > 0 && <a href={href({ name: "assess", deck: d.id })}>Test yourself</a>}
+          </li>
+        ))}
+      </ul>
       <h2 className="section-title">Languages</h2>
+      <p className="muted small">
+        <a href={href({ name: "languages" })}>Language systems</a>: learn a set of languages together from one root language, with a placement for each.
+      </p>
       <WordSearchBox api={api} />
       <p className="muted small">
         <a href={href({ name: "library" })}>{LIBRARY_LINK}</a>

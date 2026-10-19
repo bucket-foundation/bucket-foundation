@@ -26,6 +26,25 @@ describe("hash router", () => {
   });
 });
 
+describe("placement, tests and language system routes", () => {
+  test("round trip and fall back to the nearest valid screen", () => {
+    const routes: Route[] = [
+      { name: "place", deck: "03-chemistry" },
+      { name: "assess", deck: "03-chemistry" },
+      { name: "languages" },
+      { name: "langSystem", system: "en-es-pt" },
+      { name: "langStudy", system: "en-es-pt" },
+      { name: "langPlace", system: "en-es-pt" },
+      { name: "langPlace", system: "en-es-pt", lang: "pt" },
+    ];
+    for (const r of routes) expect(parseHash(href(r))).toEqual(r);
+    expect(parseHash("#/learn/languages/%3Cx%3E")).toEqual({ name: "languages" });
+    expect(parseHash("#/learn/languages/en-es/place/PT")).toEqual({ name: "langSystem", system: "en-es" });
+    expect(parseHash("#/learn/languages/en-es/other")).toEqual({ name: "langSystem", system: "en-es" });
+    expect(parseHash("#/learn/03-chemistry/place/extra")).toEqual({ name: "deck", deck: "03-chemistry", atom: "place" });
+  });
+});
+
 describe("explore, workspace and research item routes", () => {
   const roundTrips = (r: Route) => expect(parseHash(href(r))).toEqual(r);
 

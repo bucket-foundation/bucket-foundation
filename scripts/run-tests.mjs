@@ -15,6 +15,7 @@ const SUITES = {
     files: [
       "scripts/test-kruse-token.ts",
       "scripts/test-auth-paths.ts",
+      "scripts/test-auth-callback.ts",
       "scripts/test-sign-in-gate.ts",
       "scripts/test-depth-ladder-counts.ts",
       "scripts/test-research-statement.ts",
@@ -24,6 +25,7 @@ const SUITES = {
       "scripts/test-research-impact-registry.ts",
       "scripts/test-waitlist.ts",
       "scripts/test-download.ts",
+      "scripts/test-capture.ts",
       "scripts/test-download-demo.ts",
       "scripts/test-download-release.ts",
       "scripts/test-download-device.ts",
@@ -37,7 +39,7 @@ const SUITES = {
       "scripts/test-whats-new-email.ts",
       "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
-      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,replay}.ts",
+      "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,replay,review-log}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-research-agent-route.ts",
       "scripts/test-llm-daily-limit.ts",
@@ -75,7 +77,7 @@ const SUITES = {
     ],
   },
   db: {
-    files: ["scripts/test-research-os-*-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],
+    files: ["scripts/test-research-os-*-db.ts", "scripts/test-academy-review-log-db.ts", "scripts/test-research-os-{evidence-append,connections-paging,access-paging,read-access-routes,evidence-route-access}.ts"],
   },
   "research-os": {
     files: [
