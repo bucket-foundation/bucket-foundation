@@ -15,7 +15,7 @@ export interface MemoryIO {
   deviceId(): string;
   tz(): string;
   now(): number;
-  appendReview?(branch: string, review: Pick<LangRow, "card_id" | "rating" | "level" | "reviewed_at" | "tz" | "atoms_version">): unknown;
+  appendReview?(branch: string, review: Pick<LangRow, "review_id" | "card_id" | "rating" | "level" | "reviewed_at" | "tz" | "atoms_version">): unknown;
 }
 
 export type LangLoadStatus = "ready" | "error";
@@ -99,7 +99,7 @@ function refold(s: SharedSession): SharedSession {
 export function gradeShared(io: MemoryIO, s: SharedSession, lang: string, itemId: string, rating: Rating): { session: SharedSession; saved: Promise<boolean> } {
   const row = makeRow(s.system.id, cardId(lang, itemId), rating, io.uuid(), io.deviceId(), io.now(), io.tz());
   io.writeOutbox([...io.readOutbox(), row]);
-  io.appendReview?.(langBranch(lang), { card_id: row.card_id, rating: row.rating, level: row.level, reviewed_at: row.reviewed_at, tz: row.tz, atoms_version: row.atoms_version });
+  io.appendReview?.(langBranch(lang), { review_id: row.review_id, card_id: row.card_id, rating: row.rating, level: row.level, reviewed_at: row.reviewed_at, tz: row.tz, atoms_version: row.atoms_version });
   if (s.langStatus[lang] !== "ready") return { session: s, saved: Promise.resolve(false) };
   const m = withRows(s.memories[lang] ?? emptyMemory(lang), [row]);
   const session = refold({ ...s, memories: { ...s.memories, [lang]: m } });
@@ -140,7 +140,12 @@ function lsSet(key: string, value: string): void {
 }
 
 function newId(): string {
-  return typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
+  const h = Array.from({ length: 32 }, () => Math.floor(Math.random() * 16).toString(16));
+  h[12] = "4";
+  h[16] = "89ab"[Math.floor(Math.random() * 4)];
+  const x = h.join("");
+  return `${x.slice(0, 8)}-${x.slice(8, 12)}-${x.slice(12, 16)}-${x.slice(16, 20)}-${x.slice(20)}`;
 }
 
 export const browserMemoryIO: MemoryIO = {

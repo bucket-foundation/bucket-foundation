@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { normalizeState, type EngineState } from "../src/lib/academy/engine";
-import { backupBranch, foldByLang, langBranch, memoryState, mergeMemory, normalizeMemory, rollback, sharedMemoryOn, type LangMemory, type LangRow } from "../src/lib/academy/lang-memory";
+import { backupBranch, emptyMemory, foldByLang, langBranch, memoryState, mergeMemory, normalizeMemory, rollback, sharedMemoryOn, type LangMemory, type LangRow } from "../src/lib/academy/lang-memory";
 import { gradeShared, openShared, placeShared, type MemoryIO, type SharedSession } from "../src/lib/academy/lang-memory-store";
 import { buildLangCorpus, buildQueue, cardId, createSystem, gradeCard, newToday, NEW_PER_LANG_PER_DAY, planSession, progressBranch, type LangCard, type LangSystem } from "../src/lib/academy/lang-systems";
 import type { ServerBranches } from "../src/lib/academy/progress-store";
@@ -29,9 +29,9 @@ class FakeIO implements MemoryIO {
   pushes: string[] = [];
   failPush = new Set<string>();
   clock = T0;
-  appended: { branch: string; card_id: string }[] = [];
-  appendReview(branch: string, r: { card_id: string }) {
-    this.appended.push({ branch, card_id: r.card_id });
+  appended: { branch: string; card_id: string; review_id: string }[] = [];
+  appendReview(branch: string, r: { card_id: string; review_id: string }) {
+    this.appended.push({ branch, card_id: r.card_id, review_id: r.review_id });
   }
   n = 0;
   constructor(public device = "dev-a") {}
@@ -122,6 +122,19 @@ async function main() {
     await g0.saved;
   }
   ok(io.appended.length === fresh.length && io.appended.every((x) => x.branch === langBranch("it") && x.card_id.startsWith("it:")), "each shared-memory grade is appended to the review log on its lang-<code> branch");
+  {
+    const one = new FakeIO("dev-one");
+    one.server.set(progressBranch(trio), b);
+    const s0 = await openShared(one, trio, systems);
+    const fresh1 = corpus.items.find((i) => i.kind === "word" && i.forms.pl && !s0.view.cards[cardId("pl", i.id)])!.id;
+    const g = gradeShared(one, s0, "pl", fresh1, 3);
+    await g.saved;
+    const memRows = normalizeMemory("pl", one.server.get(langBranch("pl"))).log.filter((r) => r.card_id === cardId("pl", fresh1));
+    const logRows = one.appended.filter((r) => r.card_id === cardId("pl", fresh1));
+    ok(memRows.length === 1 && logRows.length === 1 && memRows[0].review_id === logRows[0].review_id, "one grade gives one log row and one memory row with the same review_id");
+    const twice = mergeMemory(normalizeMemory("pl", one.server.get(langBranch("pl"))), { ...emptyMemory("pl"), log: [{ ...memRows[0], device_id: "log" }] });
+    ok(memoryState(twice).cards[cardId("pl", fresh1)].reps === 1, "replaying the memory and log copies of that grade gives reps 1");
+  }
   const romanceView = (await openShared(io, romance, systems)).view;
   ok(newToday(romanceView, "it", T0) >= NEW_PER_LANG_PER_DAY, "the per-language daily new budget is shared across systems");
   const romancePlan = planSession((await openShared(io, romance, systems)).plan, corpus, romanceView, T0);
