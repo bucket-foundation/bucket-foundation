@@ -109,7 +109,7 @@ export default function PathView() {
       {!to ? (
         <EmptyState title="No concept picked" body="Search above to see the ordered path to it." />
       ) : !target || !result ? (
-        <ErrorState title="Unknown concept" body={`${to} is not in any deck.`} />
+        <ErrorState title="Unknown topic" body="Bucket has no deck with this topic." details={`topic ${to}`} />
       ) : !result.ok && result.error.kind === "MasteryConflict" ? (
         <Panel title="mastery conflict">
           <p className="text-[13px] leading-[1.6]">{describePathError(result.error, title)}</p>

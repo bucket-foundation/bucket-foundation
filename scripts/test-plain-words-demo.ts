@@ -1,4 +1,6 @@
 import test from "node:test";
+import fs from "node:fs";
+import path from "node:path";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
 import { ErrorState, RawDetails } from "../src/components/ui";
@@ -33,4 +35,34 @@ test("sign-in never shows an error code or a raw object", () => {
   }
   assert.equal(friendly("Token has expired or is invalid"), "That code expired. Ask for a new one.");
   assert.equal(friendly("Email rate limit exceeded"), "Too many emails requested. Wait a minute and try again.");
+});
+
+const ROOT = path.join(__dirname, "..");
+const DEMO_DIRS = ["src/app/research-os/(app)/learn", "src/app/research-os/(app)/home", "src/app/research-os/(app)/profile", "src/app/sign-in", "packages/bkt-ui/src/views/LearnHome.tsx", "packages/bkt-ui/src/views/Words.tsx", "packages/bkt-ui/src/views/CanonSearch.tsx"];
+const FROZEN = new Set(["StudySession.tsx", "PlacementSession.tsx", "LangPlacement.tsx", "LangExercise.tsx"]);
+const LEAKS: [RegExp, string][] = [
+  [/j\.error \?\? ["`'][^"`']*["`']\)?/, "a server error code used as copy"],
+  [/\?\? `failed \(|"failed"\)/, "a bare failure code used as copy"],
+  [/\(e(rr)? as Error\)\.message|\(e(rr)?: Error\) => [^;]*\.message\)/, "a raw exception message set as copy"],
+  [/answered \$\{/, "an HTTP status in copy"],
+  [/(body|title)=\{`[^`]*\$\{(to|id|atomId|branch|error\.id)\}[^`]*`\}/, "an id in visible copy"],
+];
+
+function files(p: string): string[] {
+  const full = path.join(ROOT, p);
+  if (fs.statSync(full).isFile()) return [full];
+  return fs.readdirSync(full, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? files(path.join(p, e.name)) : /\.tsx?$/.test(e.name) && !FROZEN.has(e.name) ? [path.join(full, e.name)] : []));
+}
+
+test("demo screen sources put no codes, ids or exception text into default copy", () => {
+  const found: string[] = [];
+  for (const f of DEMO_DIRS.flatMap(files)) {
+    fs.readFileSync(f, "utf8")
+      .split("\n")
+      .forEach((line, i) => {
+        if (/details=|RawDetails|raw:/.test(line)) return;
+        for (const [re, why] of LEAKS) if (re.test(line)) found.push(`${path.relative(ROOT, f)}:${i + 1} ${why}`);
+      });
+  }
+  assert.deepEqual(found, []);
 });
