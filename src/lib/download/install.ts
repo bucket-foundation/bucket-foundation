@@ -33,7 +33,7 @@ export function releaseTagOf(appImageUrl: string): string | null {
 
 export function linuxInstallCommand(appImageUrl: string | null, releaseTag: string | null = null): string {
   const tag = appImageUrl ? releaseTagOf(appImageUrl) : null;
-  if (!appImageUrl || !tag) return releaseTag && RELEASE_TAG.test(releaseTag) ? `curl -fsSL '${RAW_AT(releaseTag)}/install.sh' | sh` : INSTALL_COMMAND.linux;
+  if (!appImageUrl || !tag) return releaseTag && RELEASE_TAG.test(releaseTag) ? `curl -fsSL '${RAW_AT(releaseTag)}/install.sh' | BKT_VERSION=${releaseTag} sh` : INSTALL_COMMAND.linux;
   return `curl -fsSL '${RAW_AT(tag)}/release/install.sh' | bash -s -- '${appImageUrl}'`;
 }
 

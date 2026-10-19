@@ -164,7 +164,7 @@ test("with no AppImage the linux command pins to the release tag", () => {
   const block = linuxBlock(linuxHtml(noAppImage));
   assert.ok(block.includes("/bucket-foundation/bkt-v0.5.0/scripts/install.sh"));
   assert.doesNotMatch(block, /\/main\/scripts/);
-  assert.equal(linuxInstallCommand(null, "bkt-v0.5.0"), "curl -fsSL 'https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.5.0/scripts/install.sh' | sh");
+  assert.equal(linuxInstallCommand(null, "bkt-v0.5.0"), "curl -fsSL 'https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.5.0/scripts/install.sh' | BKT_VERSION=bkt-v0.5.0 sh");
   assert.equal(linuxInstallCommand(null, "main';id"), INSTALL_COMMAND.linux);
   assert.equal(linuxInstallCommand(null, null), INSTALL_COMMAND.linux);
 });
@@ -175,4 +175,8 @@ test("linux arm64 with no packages shows the command and warning and no package 
   assert.ok(block.includes("/bkt-v0.5.0/scripts/release/install.sh"));
   assert.ok(block.includes(APPIMAGE_WARNING_SHORT));
   assert.doesNotMatch(block, /data-format="(deb|rpm)"|sudo (apt|dnf)/);
+  const bare: ReleaseAsset[] = [{ name: "bkt-linux-arm64", browser_download_url: "https://github.com/bucket-foundation/bucket-foundation/releases/download/bkt-v0.5.0/bkt-linux-arm64", size: 1 }];
+  const tagOnly = linuxBlock(linuxHtml(bare));
+  assert.ok(tagOnly.includes("BKT_VERSION=bkt-v0.5.0 sh"));
+  assert.doesNotMatch(tagOnly, /data-format="(deb|rpm)"|sudo (apt|dnf)|\/main\/scripts/);
 });
