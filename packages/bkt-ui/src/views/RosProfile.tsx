@@ -34,7 +34,7 @@ function YourData({ onDeleted }: { onDeleted: () => void }) {
     setNote(null);
     try {
       const out = (await post({ action: "export", save: true })) as { saved?: { name: string; folder: string } };
-      setNote(out.saved ? `Saved ${out.saved.name} in ${out.saved.folder}.` : EXPORT_TROUBLE);
+      setNote(out.saved ? `Saved your profile and idea progress in ${out.saved.folder} as ${out.saved.name.replace(/\.[a-z]+$/i, "")}.` : EXPORT_TROUBLE);
     } catch {
       setNote(EXPORT_TROUBLE);
     } finally {

@@ -1318,7 +1318,8 @@ describe("Research OS views on the local store", () => {
       await v.act(async () => new Promise((r) => setTimeout(r, 60)));
     };
     await click("Export my profile and idea progress");
-    expect(v.text()).toContain("Saved research-os-export-2026-09-30.json in /home/me/Downloads.");
+    expect(v.text()).toContain("Saved your profile and idea progress in /home/me/Downloads as research-os-export-2026-09-30.");
+    expect(violations(v.host)).toEqual([]);
     expect(JSON.parse(savedExports.at(-1)!.text).tables.ros_state).toHaveLength(1);
     await click("Delete my profile and idea progress");
     const del = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Delete") as HTMLButtonElement;
