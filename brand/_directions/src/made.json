@@ -1,0 +1,37 @@
+{
+ "d1": {
+  "medium": "Hand-set SVG on a 16-column 8px grid; every shape snaps to integer grid units",
+  "motion": "Hard cuts and kinetic type: 0ms state swaps, type slides on steps of 8px, Carbon productive cubic-bezier(0.2,0,0.38,0.9) 110ms",
+  "accents": "Square buttons with right-aligned arrow; 1px hairline dividers; 2px inset focus ring in blue; crosshair cursor on canvas, underline on hover; sound: single 1kHz tick; photos none, data plots only; icons filled sharp; no texture; flush-left ragged-right type; 16-col grid"
+ },
+ "d2": {
+  "medium": "Compass-and-ruler geometry: every mark built from circles and their intersections, construction lines shown at 8% opacity",
+  "motion": "Slow ink reveal: stroke-dashoffset draws at 900ms cubic-bezier(0.65,0,0.35,1), then fill fades 400ms",
+  "accents": "Pill buttons with seal dot; double hairline rule dividers; vermilion ring focus with 4px offset; brush cursor on art; hover darkens indigo; sound: wooden clack; woodblock illustration, photos as washi-texture duotone; icons filled in mon roundels; washi fibre texture 4%; centered scroll axis, vertical rhythm 8px"
+ },
+ "d3": {
+  "medium": "Flat vector with repeating patterns: squiggle, terrazzo, zigzag fills as SVG pattern tiles",
+  "motion": "Bouncy squash and stretch: scaleY 0.9 / scaleX 1.1 on press, overshoot cubic-bezier(0.34,1.56,0.64,1) 300ms",
+  "accents": "Chunky 16px-radius buttons with 4px bottom lip; dashed 2px dividers; thick 3px pink focus ring; pointer cursor with press squash; sound: pop; flat illustration, photos cut into blob masks; icons filled with lip; terrazzo texture in margins; stacked card layout"
+ },
+ "d4": {
+  "medium": "Photomontage collage: halftone photos cut into wedges and circles over flat red and black",
+  "motion": "Diagonal wipes at 30 degrees: clip-path polygon wipe 500ms cubic-bezier(0.2,0,0,1)",
+  "accents": "Rectangular buttons with clipped corner; 4px red diagonal dividers; red 3px focus ring offset diagonally; hover inverts; sound: press stamp; photos halftone duotone red/black; icons filled sharp with red wedge; newsprint grain texture; condensed uppercase type rotated -4 to -8 degrees; diagonal layout axis"
+ },
+ "d5": {
+  "medium": "Generative tiling code: girih and khatam patterns computed in JS/SVG from compass-and-straightedge rules",
+  "motion": "Tessellation growth: tiles appear outward from a seed in rings, 60ms stagger, decelerate cubic-bezier(0,0,0,1)",
+  "accents": "4px-radius buttons framed by star corners; dividers are interlace bands; turquoise double focus ring; hover glows pattern; sound: soft chime; illustration only generated tiling, photos masked in arches; icons filled with 4-point star marker; glaze crackle texture 3%; symmetric 8-fold layout"
+ },
+ "d6": {
+  "medium": "Blender primitives: cubes, cones, spheres rendered as stills and GLB; 2D graphics use only circle, square, triangle",
+  "motion": "Mechanical easing: steps(4) for state, 120ms linear for dials, knob rotates in 22.5 degree detents",
+  "accents": "Pill keys with 2px black keyline and an orange knob; 2px black rules; orange keyline focus; hover depresses 2px; sound: click detent; renders of primitives only; icons primitive two-color; matte paper texture; mono uppercase labels; hardware panel 8px module layout"
+ },
+ "d7": {
+  "medium": "Euclidean construction in code: every figure is a numbered proposition built from labelled points, circles and lines, colored in Byrne's red, yellow and blue; headings set on a stoichedon letter grid",
+  "motion": "Proof steps: construction lines draw in sequence, 240ms each, cubic-bezier(0.4,0,0.2,1), then the conclusion and QED fade in",
+  "accents": "2px-radius Codex buttons with a terracotta fill; meander (Greek key) dividers; 2px blue focus ring with a key corner; pointer cursor, hover underlines in terracotta; sound: a single lyre pluck; red-figure silhouettes for figures, Byrne diagrams for ideas; icons filled on a 20px grid; parchment grain texture; polytonic Greek alongside English; numbered proposition layout with proof column"
+ }
+}

@@ -17,6 +17,8 @@ const cmp = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 
 export const LANG_ATOMS_VERSION = "lang";
 
+export const corpusAtomsVersion = (branch: string) => `corpus:${branch}`;
+
 export function compareReviewRows(a: ReviewRow, b: ReviewRow): number {
   return a.reviewed_at - b.reviewed_at || cmp(a.device_id, b.device_id) || cmp(a.review_id, b.review_id);
 }

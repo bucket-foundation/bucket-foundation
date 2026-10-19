@@ -41,7 +41,29 @@ test("the web bundle loads no remote script", () => {
 });
 
 test("tokens go through secure storage and never web storage", () => {
-  const src = read("src/token.ts") + read("src/adapter.ts") + read("src/main.ts");
+  const src = read("src/token.ts") + read("src/adapter.ts") + read("src/main.ts") + read("../../src/lib/academy/mobile-sync.ts") + read("../../src/lib/academy/token-store.ts");
   expect(src).toContain("@aparajita/capacitor-secure-storage");
   expect(src).not.toMatch(/localStorage|sessionStorage|indexedDB/);
+  expect(read("src/main.ts")).toContain("const vault = new SecureStorageVault();");
+});
+
+test("only the review outbox uses web storage, and it holds no session", () => {
+  expect(read("src/outbox-storage.ts")).toContain("window.localStorage");
+  expect(read("../../src/lib/academy/review-sync.ts")).not.toMatch(/access_token|refresh_token/);
+});
+
+test("only the debug build may reach the emulator host over http, and it keeps the pins", () => {
+  const release = read("android/app/src/main/res/xml/network_security_config.xml");
+  expect(release).not.toContain("10.0.2.2");
+  const debug = read("android/app/src/debug/res/xml/network_security_config.xml");
+  expect(debug).toMatch(/<domain-config cleartextTrafficPermitted="true">\s*<domain includeSubdomains="false">10\.0\.2\.2<\/domain>\s*<\/domain-config>/);
+  expect(debug.match(/cleartextTrafficPermitted="true"/g)).toHaveLength(1);
+  for (const p of PINS) expect(debug).toContain(p);
+});
+
+test("the smoke hook loads only when the smoke flag is built in", () => {
+  const main = read("src/main.ts");
+  expect(main).toContain('const SMOKE = import.meta.env.VITE_BKT_SMOKE === "1";');
+  expect(main).toContain("allowLocalHttp: SMOKE");
+  expect(main).toMatch(/if \(SMOKE\) \{\s*const \{ runSyncSmoke \} = await import\("\.\/sync-smoke"\);/);
 });

@@ -25,7 +25,9 @@ const IPA_LANGS = ["en", "es", "fr", "it", "pt", "de", "nl", "sv", "pl", "fi", "
 const NOUN_CATEGORIES = new Set(["family", "animal", "body", "food", "nature", "object", "time"]);
 
 ok(words.length === 244, "244 core words");
-for (const l of LANG_CODES) none(words.filter((w) => !w.forms[l]).map((w) => w.id), `every word has a ${l} form`);
+const EXTRA: string[] = read("lang-core.json").meta.extraLanguages;
+for (const l of LANG_CODES.filter((x) => !EXTRA.includes(x))) none(words.filter((w) => !w.forms[l]).map((w) => w.id), `every word has a ${l} form`);
+for (const l of EXTRA) ok(LANG_CODES.includes(l) && words.filter((w) => w.forms[l]).length >= 0.8 * words.length, `${l} covers at least 80% of the words`);
 
 for (const l of NON_LATIN_ROMAN) none(vocab.filter((i) => i.forms[l] && !i.readings[l]?.roman).map((i) => i.id), `${l} romanization on every card`);
 none(vocab.filter((i) => i.forms.ja && !i.readings.ja?.kana).map((i) => i.id), "ja kana on every card");
@@ -109,7 +111,7 @@ for (const l of LANG_CODES) {
 }
 ok(equalGroups.some((g) => g.includes("good-evening") && g.includes("good-night")), "the validator sees equal phrase answers such as good evening and good night");
 
-for (const l of LANG_CODES.filter((x) => x !== "en")) {
+for (const l of LANG_CODES.filter((x) => x !== "en" && !EXTRA.includes(x))) {
   const c = layers.meta.coverage[l];
   ok(c.any >= 0.6 * c.of, `${l} sentences for ${c.any} of ${c.of} words, ${c.three} with three`);
 }

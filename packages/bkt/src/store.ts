@@ -222,6 +222,14 @@ export class Store {
     this.db.query("insert into meta (k, v) values (?, ?) on conflict(k) do update set v = excluded.v").run(k, v);
   }
 
+  deleteMeta(k: string) {
+    this.db.query("delete from meta where k = ?").run(k);
+  }
+
+  metaKeys(prefix: string): string[] {
+    return this.db.query<{ k: string }, [string]>("select k from meta where substr(k, 1, length(?1)) = ?1 order by k").all(prefix).map((r) => r.k);
+  }
+
   recordDevice(id: string, publicKey: string, now: number) {
     this.db.query("insert into device (id, public_key, created_at) values (?, ?, ?) on conflict(id) do nothing").run(id, publicKey, now);
   }

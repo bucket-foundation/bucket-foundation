@@ -1,5 +1,7 @@
 "use client";
 
+import { friendly } from "@/lib/auth/sign-in-words";
+
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
 import { safeNextPath } from "@/lib/auth/paths";
@@ -12,7 +14,7 @@ type Step = "email" | "code" | "done";
 const INPUT = "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
 const BUTTON = "w-full px-4 py-3 text-[12px] small-caps tracking-[0.14em] bg-[color:var(--gold)] text-[color:var(--basalt)] disabled:opacity-50 min-h-[44px]";
 
-export default function SignInForm({ next, allowNewAccounts = true, linkError = null }: { next: string | null; allowNewAccounts?: boolean; linkError?: string | null }) {
+export default function SignInForm({ next, allowNewAccounts = true, linkError = null, onSignedIn }: { next: string | null; allowNewAccounts?: boolean; linkError?: string | null; onSignedIn?: () => void | Promise<void> }) {
   const { user, loading } = useSession();
   const destination = safeNextPath(next);
   const [step, setStep] = useState<Step>("email");
@@ -30,7 +32,8 @@ export default function SignInForm({ next, allowNewAccounts = true, linkError = 
     sent.current = true;
     trackFunnel("sign_in_complete", { next: destination, resumed: step === "email" });
     setStep("done");
-    window.location.replace(destination);
+    if (onSignedIn) void onSignedIn();
+    else window.location.replace(destination);
   }
 
   useEffect(() => {
@@ -92,9 +95,9 @@ export default function SignInForm({ next, allowNewAccounts = true, linkError = 
       <div className="mt-8 flex flex-col gap-3" role="status" aria-live="polite">
         <div className="flex items-center gap-3 text-[13px] text-[color:var(--basalt-2)]">
           <span aria-hidden className="inline-block w-3 h-3 rounded-full border border-[color:var(--gold-deep)] border-t-transparent animate-spin" />
-          Signed in. Opening Research OS.
+          {onSignedIn ? "Signed in. Saving your progress." : "Signed in. Opening Research OS."}
         </div>
-        {slow && (
+        {slow && !onSignedIn && (
           <a href={destination} className={BUTTON + " text-center"}>
             continue
           </a>
@@ -168,10 +171,3 @@ export default function SignInForm({ next, allowNewAccounts = true, linkError = 
   );
 }
 
-function friendly(message: string): string {
-  const m = message.toLowerCase();
-  if (m.includes("rate limit") || m.includes("too many")) return "Too many emails requested. Wait a minute and try again.";
-  if (m.includes("expired")) return "That code expired. Ask for a new one.";
-  if (m.includes("invalid")) return "That code did not match. Check it and try again.";
-  return message;
-}

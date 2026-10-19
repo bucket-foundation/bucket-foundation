@@ -11,6 +11,13 @@ export const PROTECTED_PREFIXES = [
 ] as const;
 
 export const SIGN_IN_PATH = "/sign-in";
+export const PATH_HEADER = "x-bucket-pathname";
+export const GUEST_PREFIXES = ["/research-os/learn"] as const;
+
+export function isGuestPath(pathname: string | null | undefined): boolean {
+  if (!pathname) return false;
+  return GUEST_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + "/"));
+}
 export const DEFAULT_AFTER_SIGN_IN = "/research-os/home";
 
 export function isProtectedPath(pathname: string): boolean {

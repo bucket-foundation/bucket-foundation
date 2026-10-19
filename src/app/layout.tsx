@@ -7,6 +7,8 @@ import Header from "@/components/HeaderV3";
 import Footer from "@/components/FooterV3";
 import { CANON_BRANCHES } from "@/lib/contribute";
 import { SessionProvider } from "@/providers/SessionProvider";
+import { AccountGateProvider } from "@/components/auth/AccountGate";
+import SiteFooter from "@/components/SiteFooter";
 import { signInOpen } from "@/lib/launch";
 import { signInClosed } from "@/lib/sign-in-gate";
 import { SignInEntryProvider } from "@/components/auth/SignInEntryContext";
@@ -243,6 +245,7 @@ export default function RootLayout({
       <body className="stone-bg min-h-screen">
         <SessionProvider>
           <SignInEntryProvider closed={signInClosed()}>
+          <AccountGateProvider allowNewAccounts={signInOpen()}>
           <Script
             id="ld-org"
             type="application/ld+json"
@@ -251,9 +254,12 @@ export default function RootLayout({
           />
           <Header launchList={!signInOpen()} />
           {children}
-          <Footer launchList={!signInOpen()} signInClosed={signInClosed()} />
+          <SiteFooter>
+            <Footer launchList={!signInOpen()} signInClosed={signInClosed()} />
+          </SiteFooter>
           <Analytics />
           <SpeedInsights />
+          </AccountGateProvider>
           </SignInEntryProvider>
         </SessionProvider>
       </body>

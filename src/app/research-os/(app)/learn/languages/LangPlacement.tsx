@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { judgeTyped, langName, placementItem, placementOptions, placementStep, readingsByForm, seededRng, type LangItem, type PlacementAnswer, type PlacementMode } from "@/lib/academy/lang-systems";
+import { judgeTyped, langDir, langName, placementItem, placementOptions, placementStep, readingsByForm, seededRng, type LangItem, type PlacementAnswer, type PlacementMode } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState, PageHeader } from "@/components/ui";
 import { useLangSystem } from "./useLangSystem";
 import SaveNotice from "./SaveNotice";
@@ -122,6 +122,7 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
               value={typed}
               onChange={(e) => setTyped(e.target.value)}
               lang={lang}
+              dir={langDir(lang)}
               aria-label={`answer in ${langName(lang)}`}
               className="flex-1 min-w-[12rem] border border-[color:var(--hairline)] bg-white/70 px-3 py-2 rounded-sm text-[15px]"
               data-testid="answer"
@@ -133,7 +134,7 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
         ) : (
         <div className="mt-4 grid sm:grid-cols-2 gap-2">
           {options.map((o) => (
-            <button key={o} type="button" lang={lang} onClick={() => answer(o === item.forms[lang])} className="border border-[color:var(--hairline)] bg-white/50 hover:bg-[color:var(--bone-2)] px-3 py-2 text-left rounded-sm min-h-[48px] text-[15px]" data-testid="option">
+            <button key={o} type="button" lang={lang} dir={langDir(lang)} onClick={() => answer(o === item.forms[lang])} className="border border-[color:var(--hairline)] bg-white/50 hover:bg-[color:var(--bone-2)] px-3 py-2 text-left rounded-sm min-h-[48px] text-[15px]" data-testid="option">
               {o}
               <ReadingLine reading={readings[o]} testId="option-reading" />
             </button>

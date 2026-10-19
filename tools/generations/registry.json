@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "generations": [
+    {
+      "name": "frontier-figure",
+      "script": "frontier-figure.py",
+      "about": "The solvability frontier: every problem placed by meaning, with the frontier circle",
+      "inputs": {},
+      "data": [
+        "output/solvability-frontier/report/frontier.json"
+      ],
+      "outputs": [
+        "solvability-frontier-figure.png",
+        "solvability-frontier-figure.svg"
+      ]
+    },
+    {
+      "name": "problem-star",
+      "script": "problem-star.py",
+      "about": "Star chart of one problem and its nearest solved neighbours",
+      "inputs": {
+        "problem": "problem id, such as navier"
+      },
+      "data": [
+        "output/solvability-frontier/report/frontier.json",
+        "src/lib/research-os/solvability-neighbors-data.json"
+      ],
+      "outputs": [
+        "solvability-frontier-star-{problem}.png",
+        "solvability-frontier-star-{problem}.svg"
+      ]
+    },
+    {
+      "name": "problem-slice",
+      "script": "problem-slice.py",
+      "about": "The slice of the frontier around one problem",
+      "inputs": {
+        "problem": "problem id, such as navier"
+      },
+      "data": [
+        "output/solvability-frontier/report/frontier.json"
+      ],
+      "outputs": [
+        "solvability-frontier-slice-{problem}.png",
+        "solvability-frontier-slice-{problem}.svg"
+      ]
+    },
+    {
+      "name": "problem-polygon",
+      "script": "problem-polygon.py",
+      "about": "Polygon circle of one problem on the eight principal directions, standalone and as an inset, with its data",
+      "inputs": {
+        "problem": "problem id, such as navier"
+      },
+      "data": [
+        "output/solvability-frontier/report/frontier.json",
+        "~/.cache/bucket-atlas/keys.json",
+        "~/.cache/bucket-atlas/vectors.npy"
+      ],
+      "outputs": [
+        "{problem}-polygon-circle.png",
+        "{problem}-polygon-inset.png",
+        "{problem}-polygon.json"
+      ]
+    },
+    {
+      "name": "problem-polygon-figure",
+      "script": "problem-polygon-figure.py",
+      "about": "The polygon circle beside the whole corpus on the same directions, the paper figure",
+      "inputs": {
+        "problem": "problem id, such as navier"
+      },
+      "data": [
+        "output/solvability-frontier/report/frontier.json",
+        "~/.cache/bucket-atlas/keys.json",
+        "~/.cache/bucket-atlas/vectors.npy"
+      ],
+      "outputs": [
+        "solvability-frontier-polygon-{problem}.png",
+        "solvability-frontier-polygon-{problem}.svg"
+      ]
+    },
+    {
+      "name": "frontier-card",
+      "script": "frontier-card.py",
+      "about": "The frontier card for one problem: the frontier, its polygon and the backtest",
+      "inputs": {
+        "problem": "problem id, such as navier",
+        "label": "name shown on the card; the problem title when omitted"
+      },
+      "needs": [
+        "problem-polygon"
+      ],
+      "data": [
+        "output/solvability-frontier/report/frontier.json",
+        "output/solvability-frontier/report/backtest.json"
+      ],
+      "outputs": [
+        "frontier-card-{problem}.png",
+        "frontier-card-{problem}.pdf"
+      ]
+    },
+    {
+      "name": "paper-frontier",
+      "script": "paper-figure.py",
+      "about": "Paper figure: the frontier, from the solvability-frontier paper",
+      "inputs": {},
+      "env": {
+        "BKT_GEN_FIGURE": "fig_frontier"
+      },
+      "data": [
+        "output/solvability-frontier/report/frontier.json",
+        "src/lib/research-os/solvability-frontier-report-data.json"
+      ],
+      "outputs": [
+        "fig_frontier.pdf"
+      ]
+    },
+    {
+      "name": "paper-classes",
+      "script": "paper-figure.py",
+      "about": "Paper figure: problem classes, from the solvability-frontier paper",
+      "inputs": {},
+      "env": {
+        "BKT_GEN_FIGURE": "fig_classes"
+      },
+      "data": [
+        "output/solvability-frontier/report/predictions.json",
+        "src/lib/research-os/solvability-frontier-report-data.json"
+      ],
+      "outputs": [
+        "fig_classes.pdf"
+      ]
+    },
+    {
+      "name": "paper-backtest",
+      "script": "paper-figure.py",
+      "about": "Paper figure: the backtest, from the solvability-frontier paper",
+      "inputs": {},
+      "env": {
+        "BKT_GEN_FIGURE": "fig_backtest"
+      },
+      "data": [
+        "output/solvability-frontier/report/backtest.json",
+        "src/lib/research-os/solvability-frontier-report-data.json"
+      ],
+      "outputs": [
+        "fig_backtest.pdf"
+      ]
+    },
+    {
+      "name": "atlas-plots",
+      "script": "atlas-plots.py",
+      "about": "The nine atlas plots: token circle, star charts, helix, sphere, network and matrices",
+      "inputs": {},
+      "data": [
+        "tools/solvability-atlas/problems.tsv"
+      ],
+      "outputs": [
+        "01-token-circle.png",
+        "02-star-chart.png",
+        "03-star-chart-time.png",
+        "04-helix.png",
+        "05-sphere.png",
+        "06-network.png",
+        "07-similarity-matrix.png",
+        "08-matrices.png",
+        "09-token-matrix.png"
+      ]
+    },
+    {
+      "name": "record-glyph",
+      "script": "record-glyph.ts",
+      "about": "The record glyph of one problem with its stored neighbours, as on its record page",
+      "inputs": {
+        "problem": "problem id, such as navier"
+      },
+      "data": [
+        "src/lib/research-os/solvability-records-data.json"
+      ],
+      "outputs": [
+        "{problem}-glyph.svg"
+      ]
+    },
+    {
+      "name": "prime-directions",
+      "script": "prime-directions.py",
+      "about": "The prime-direction circle of a corpus, the 80k image on What's New",
+      "inputs": {
+        "corpus": "corpus name from tools/prime-directions/corpora.json, such as 80k"
+      },
+      "data": [
+        "tools/prime-directions/corpora.json"
+      ],
+      "outputs": [
+        "prime.png"
+      ]
+    }
+  ]
+}

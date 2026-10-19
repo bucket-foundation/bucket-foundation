@@ -26,6 +26,28 @@ async function render(node: React.ReactElement) {
 }
 
 describe("language chips on the desktop work quiz", () => {
+  test("languages from the language systems show as on, cannot be tapped off, and say where to change them", async () => {
+    const { LanguageChips } = await import("./views/WorkQuiz");
+    let saved: string[] = [];
+    const api: Pick<Api, "workLanguages" | "workSetLanguages"> = {
+      workLanguages: async () => ({ languages: ["en", "ru"], chosen: [], fromSystems: ["en", "ru"], available: AVAILABLE }),
+      workSetLanguages: async (languages) => {
+        saved = languages;
+        return { languages: [...languages, "en", "ru"], chosen: languages, fromSystems: ["en", "ru"] };
+      },
+    };
+    const v = await render(<LanguageChips api={api} />);
+    const russian = v.button("Russian")!;
+    expect(russian.getAttribute("aria-pressed")).toBe("true");
+    expect(russian.hasAttribute("disabled")).toBe(true);
+    expect(v.host.querySelector('[data-testid="from-systems"]')!.textContent).toBe("Languages in your language systems are always on here. Change them there.");
+    await v.click(v.button("German"));
+    expect(saved).toEqual(["de"]);
+    expect(v.button("German")!.getAttribute("aria-pressed")).toBe("true");
+    expect(v.button("Russian")!.getAttribute("aria-pressed")).toBe("true");
+    await v.unmount();
+  });
+
   test("the saved languages are pressed, a tap saves the new list, and a failed save rolls back", async () => {
     const { LanguageChips, LANGUAGES_SAVE_FAILED } = await import("./views/WorkQuiz");
     let saved: string[] = ["he"];

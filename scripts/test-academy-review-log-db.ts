@@ -120,12 +120,43 @@ test("users keep separate seq spaces and RLS hides another user's rows", { skip 
 test("write_progress_fold refuses a fold older than the stored one", { skip }, () => {
   const uid = makeUser();
   try {
-    const fold = (seq: number, xp: number) => sql(`select bucket.write_progress_fold('${uid}', 'lang', '{"xp": ${xp}}', ${seq})`).out;
+    const fold = (seq: number, xp: number) => sql(`select bucket.write_progress_fold('${uid}', 'lang', '{"xp": ${xp}}', ${seq}, null)`).out;
     assert.equal(fold(5, 5), "t");
     assert.equal(fold(3, 3), "f");
     assert.equal(fold(6, 6), "t");
     assert.equal(sql(`select data->>'xp' || ' ' || log_seq from bucket.academy_progress where user_id = '${uid}'`).out, "6 6");
   } finally {
     dropUser(uid);
+  }
+});
+
+test("note_fold_skips records why a review stayed out of the fold, for that user only", { skip }, () => {
+  const a = makeUser();
+  const b = makeUser();
+  try {
+    const r = row({ atoms_version: "atoms-v9" });
+    append(a, [r]);
+    append(b, [r]);
+    assert.equal(sql(`select bucket.note_fold_skips('${a}', 'lang', array['${r.review_id}']::uuid[], 'unknown atoms_version atoms-v9')`).out, "1");
+    assert.equal(sql(`select bucket.note_fold_skips('${a}', 'lang', array['${r.review_id}']::uuid[], 'unknown atoms_version atoms-v9')`).out, "0");
+    assert.equal(sql(`select coalesce(fold_note, '-') from bucket.academy_review_log where user_id = '${a}'`).out, "unknown atoms_version atoms-v9");
+    assert.equal(sql(`select coalesce(fold_note, '-') from bucket.academy_review_log where user_id = '${b}'`).out, "-");
+  } finally {
+    dropUser(a);
+    dropUser(b);
+  }
+});
+
+test("skipped versions are listed per branch and their notes clear once folded", { skip: skip || sql("select to_regprocedure('bucket.clear_fold_skips(uuid,text,uuid[])') is not null").out !== "t" ? "the sync lows migration is not applied" : false }, () => {
+  const a = makeUser();
+  try {
+    const r = row({ atoms_version: "corpus:x" });
+    append(a, [r, row()]);
+    sql(`select bucket.note_fold_skips('${a}', 'lang', array['${r.review_id}']::uuid[], 'unknown atoms_version corpus:x')`);
+    assert.equal(sql(`select string_agg(v, ',') from bucket.fold_skip_versions('${a}', 'lang') v`).out, "corpus:x");
+    assert.equal(sql(`select bucket.clear_fold_skips('${a}', 'lang', array['${r.review_id}']::uuid[])`).out, "1");
+    assert.equal(sql(`select count(*) from bucket.fold_skip_versions('${a}', 'lang')`).out, "0");
+  } finally {
+    dropUser(a);
   }
 });
