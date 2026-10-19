@@ -1,8 +1,6 @@
-import { existsSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
 import { exportFileName } from "../../../src/lib/research-os/privacy-actions";
 import { DELETE_CONFIRM_TOKEN } from "../../../src/lib/research-os/types";
-import { defaultDownloads } from "./library";
+import { saveTextToDownloads } from "./downloads";
 import type { Database } from "bun:sqlite";
 import type { Atom } from "../../../src/lib/academy/engine";
 import { computeAncestorClosure } from "../../../src/lib/research-os/closure";
@@ -231,15 +229,7 @@ export interface RosLiveOptions {
   saveExport?: (name: string, text: string) => { name: string; folder: string };
 }
 
-export function saveToDownloads(downloads: () => string = defaultDownloads): (name: string, text: string) => { name: string; folder: string } {
-  return (name, text) => {
-    const folder = downloads();
-    let file = name;
-    for (let i = 2; existsSync(join(folder, file)); i++) file = name.replace(/\.json$/, ` (${i}).json`);
-    writeFileSync(join(folder, file), text, { mode: 0o600, flag: "wx" });
-    return { name: file, folder };
-  };
-}
+export const saveToDownloads = saveTextToDownloads;
 
 export function rosLiveRoutes(g: RosGraph, now: () => number = Date.now, opts: RosLiveOptions = {}): Record<string, Route> {
   const P = ROS_LIVE_PATHS;
