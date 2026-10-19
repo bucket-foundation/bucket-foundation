@@ -5,6 +5,12 @@ import { CANON_META_KEY, CanonStore, syncCanon } from "../src/canon";
 import { CANON_TOOLS, canonChat, runCanonTool, sendable, WITHHELD } from "../src/llm/canon-tools";
 import { OpenAiProvider } from "../src/llm/openai";
 import type { Provider } from "../src/llm/types";
+import { providerFor } from "../src/llm";
+import { askCommand } from "../src/cli/llm";
+import { writeProviders } from "../src/llm/config";
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { buildCanonPack, CANON_SCHEMA, excerptLicenceKind, isPrivate, licenceKind, LICENCES, type CanonPack, type PackPassage } from "../src/pack/canon";
 
 const SECRET = {
@@ -207,6 +213,44 @@ describe("egress filter", () => {
   });
 });
 
+describe("local means loopback", () => {
+  const scripted = (bodies: string[], calls: [string, unknown][]) => {
+    let turn = 0;
+    return async (_u: string | URL | Request, init?: RequestInit) => {
+      bodies.push(String(init?.body));
+      const next = calls[turn++];
+      return sse(next ? [toolCallChunk(next[0], next[1])] : [textChunk("answer")]);
+    };
+  };
+
+  test("a hosted URL configured as local gets withheld text", async () => {
+    const bodies: string[] = [];
+    const provider = providerFor({ name: "sneaky", kind: "openai", baseUrl: "https://api.example.com/v1", model: "m", local: true, keyed: false }, null, scripted(bodies, [["canon_get_claim", { claim_id: 0 }]]));
+    expect(provider.local).toBe(false);
+    await canonChat(provider, storeFor().store, [{ role: "user", content: "water?" }]);
+    expect(bodies[1]).toContain("Kruse post");
+    expect(bodies[1]).not.toContain(SECRET.kruse);
+    expect(bodies[1]).not.toContain(SECRET.closedExcerpt);
+    expect(bodies[1]).toContain(OPEN.cc0);
+  });
+
+  test("a loopback URL configured as local gets full text", () => {
+    expect(providerFor({ name: "ollama", kind: "openai", baseUrl: "http://127.0.0.1:11434/v1", model: "m", local: true, keyed: false }, null).local).toBe(true);
+  });
+
+  test("bkt ask names the provider kind and prints the citations", async () => {
+    const home = mkdtempSync(join(tmpdir(), "bkt-ask-"));
+    writeProviders(home, [{ name: "hostedx", kind: "openai", baseUrl: "https://api.example.com/v1", model: "m", local: false, keyed: false }]);
+    const bodies: string[] = [];
+    const lines: string[] = [];
+    const code = await askCommand("water?", {}, { home, keyring: async () => { throw new Error("no keyring"); }, fetch: scripted(bodies, [["cite", { claim_id: 0 }]]), store: storeFor().store, out: (l) => lines.push(l) });
+    expect(code).toBe(0);
+    expect(lines[0]).toStartWith("hosted: hostedx m");
+    expect(lines).toContain("answer");
+    expect(lines.join("\n")).toContain("Water mixed claim. Bucket canon, https://bucket.foundation/excerpts/water/claim-0 [empirical: Water mixed claim");
+  });
+});
+
 describe("canon tools over the packed canon", () => {
   const pack = buildCanonPack(resolve(import.meta.dir, "../../.."));
   const { store } = storeFor(pack);
@@ -250,8 +294,13 @@ describe("canon tools over the packed canon", () => {
   test.skipIf(!process.env.BKT_E2E_OLLAMA)("end to end against the local Ollama", async () => {
     const model = process.env.BKT_E2E_OLLAMA!;
     const provider: Provider = new OpenAiProvider({ name: "ollama", baseUrl: "http://127.0.0.1:11434/v1", model, local: true, key: async () => null });
-    const out = await canonChat(provider, store, [{ role: "user", content: `Use canon_search to find what the Bucket canon says about "${first.title}", then cite one claim.` }]);
+    const out = await canonChat(provider, store, [{ role: "user", content: `Use canon_search to find what the Bucket canon says about "${first.title}", then call the cite tool with the claim_id of one result and quote its tag.` }]);
     console.log(JSON.stringify({ model, calls: out.calls.map((c) => ({ name: c.name, input: c.input })), answer: out.text }, null, 1));
     expect(out.calls.length).toBeGreaterThan(0);
+    const ids = new Set(pack.excerpts.map((e) => e.rowid));
+    const cited = out.calls.filter((c) => c.name === "cite" || c.name === "canon_get_claim").map((c) => Number((c.input as { claim_id?: unknown }).claim_id))
+      .concat([...out.text.matchAll(/claim[_ ]id:?\s*(\d+)/gi)].map((m) => Number(m[1])));
+    expect(cited.length).toBeGreaterThan(0);
+    for (const id of cited) expect(ids.has(id)).toBe(true);
   }, 600_000);
 });

@@ -87,7 +87,8 @@ import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
 import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
-import { llmCommand } from "./llm";
+import { askCommand, llmCommand } from "./llm";
+import { Database } from "bun:sqlite";
 import { defaultWaitDeps, FOCUS_BODY_BYTES, WAIT_BODY_BYTES, waitCommand, waitRoutes } from "../wait";
 import { hostname } from "node:os";
 import { generatedFigures, generationRoutes } from "../generation-routes";
@@ -672,6 +673,7 @@ export async function execute(inv: Invocation): Promise<number> {
   }
   if (name === "doctor") return doctor(inv, json);
   if (name.startsWith("llm ")) return llmCmd(inv);
+  if (name === "ask") return askCmd(inv);
   if (name === "generate") return generateCmd(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
   if (name.startsWith("research ")) return researchCmd(inv, json);
@@ -755,6 +757,14 @@ export async function execute(inv: Invocation): Promise<number> {
   } finally {
     session.store.close();
   }
+}
+
+async function askCmd(inv: Invocation): Promise<number> {
+  const home = ensureDataDir(dataDir());
+  const db = new Database(":memory:");
+  db.run("create table meta (k text primary key, v text not null)");
+  syncCanon(db, canonPack as CanonPack);
+  return askCommand(inv.positionals[0], inv.values, { home, keyring: () => pickKeyring(keyringOptions(inv), home), store: new CanonStore(db), out: (l) => console.log(l) });
 }
 
 async function llmCmd(inv: Invocation): Promise<number> {

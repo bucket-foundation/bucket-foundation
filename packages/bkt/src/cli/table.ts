@@ -89,6 +89,7 @@ export const TABLE: CommandSpec[] = [
   { name: "llm remove", summary: "remove a model provider and delete its key from the keyring", args: "<name>", positionals: [1, 1], session: true },
   { name: "llm list", summary: "list model providers and whether each key is stored", session: true },
   { name: "llm local", summary: "look for a local OpenAI-compatible server on ports 11434, 8080 and 8000" },
+  { name: "ask", summary: "ask the Bucket agent a question; it answers from the canon with citations", args: "<question>", positionals: [1, 1], options: { provider: { type: "string", value: "NAME", help: "provider from bkt llm list; a local one when omitted" } } },
   { name: "llm doctor", summary: "check the GPU, the local model server and one test completion", options: { model: { type: "string", value: "MODEL", help: "model to test" } } },
   { name: "wait status", summary: "show whether the agent hooks are on and the last events" },
   {
