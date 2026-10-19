@@ -46,7 +46,7 @@ describe("device key", () => {
   });
 
   test("fails when the keyring drops the write", async () => {
-    const kr = { kind: "memory" as const, get: async () => null, set: async () => {} };
+    const kr = { kind: "memory" as const, get: async () => null, set: async () => {}, delete: async () => false };
     await expect(ensureDevice(kr)).rejects.toThrow("did not persist");
   });
 });
@@ -152,6 +152,7 @@ describe("keyring failures never mint keys", () => {
       set: async () => {
         sets++;
       },
+      delete: async () => false,
     };
     await expect(openSession(kr, dir)).rejects.toThrow("locked collection");
     expect(sets).toBe(0);
@@ -214,6 +215,7 @@ function counting(inner: Keyring) {
     kind: inner.kind,
     get: (a) => (calls.get++, inner.get(a)),
     set: (a, v) => (calls.set++, inner.set(a, v)),
+    delete: (a) => inner.delete(a),
   };
   return { kr, calls };
 }
@@ -263,6 +265,7 @@ describe("keyring guard", () => {
       set: async () => {
         sets++;
       },
+      delete: async () => false,
     };
     const failure = await openSession(kr, dir, 2).catch((e: Error) => e);
     expect((failure as Error).message).toContain("keyring locked or key missing");
@@ -471,6 +474,7 @@ describe("keyring entries scoped to the data folder", () => {
       set: async () => {
         sets++;
       },
+      delete: async () => false,
     };
     await expect(openSession(kr, dir, 2)).rejects.toThrow("keyring locked");
     expect(sets).toBe(0);
