@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { RawDetails } from "@/components/ui";
 import { getCanonGraph } from "@/lib/canon-graph";
 import {
   getKGSummary,
@@ -118,11 +119,11 @@ export default function Page() {
                   className="text-xs uppercase tracking-[0.16em]"
                   style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
                 >
-                  pr {c.pagerank.toFixed(4)}
                 </span>
               </div>
             ))}
           </div>
+          <RawDetails raw={topConcepts.slice(0, 15).map((c) => `${c.concept} PageRank ${c.pagerank.toFixed(4)}`).join("\n")} />
         </section>
       )}
 
@@ -158,11 +159,12 @@ export default function Page() {
                   className="text-xs uppercase tracking-[0.16em]"
                   style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
                 >
-                  pr {a.pagerank.toFixed(4)} · h{a.hIndex} · {a.citedBy.toLocaleString()} cites
+                  h-index {a.hIndex} · {a.citedBy.toLocaleString()} citations
                 </span>
               </div>
             ))}
           </div>
+          <RawDetails raw={topAuthors.slice(0, 15).map((a) => `${a.name} PageRank ${a.pagerank.toFixed(4)}`).join("\n")} />
         </section>
       )}
 

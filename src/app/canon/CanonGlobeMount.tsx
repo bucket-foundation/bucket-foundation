@@ -22,6 +22,7 @@ import {
 import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
 import { SORTS, VIEWS } from "@/lib/canon-explorer/url";
 import { useExplorerState } from "./useExplorerState";
+import { RawDetails } from "@/components/ui";
 
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ssr: false,
@@ -1105,7 +1106,7 @@ function Drawer({
                     navigator.clipboard?.writeText(url.toString()).catch(() => {});
                   }}
                   className="small-caps text-[10px] tracking-[0.18em] border border-[color:var(--hairline)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] px-3 py-1.5 transition"
-                  title={`copies /canon?marker=${selected.id}`}
+                  title="Copy a link to this marker"
                 >
                   copy link ⎘
                 </button>
@@ -1292,10 +1293,6 @@ function Drawer({
                   Metadata
                 </h3>
                 <dl className="text-[12px] space-y-1" style={{ fontFamily: "var(--font-fraunces)" }}>
-                  <div className="flex justify-between border-b border-[color:var(--hairline)] pb-1">
-                    <dt style={{ color: "var(--parchment-dim)" }}>id</dt>
-                    <dd className="font-mono">{selected.id}</dd>
-                  </div>
                   {(selected.lat !== 0 || selected.lng !== 0) && (
                     <div className="flex justify-between border-b border-[color:var(--hairline)] pb-1">
                       <dt style={{ color: "var(--parchment-dim)" }}>coords</dt>
@@ -1312,6 +1309,7 @@ function Drawer({
                     </div>
                   )}
                 </dl>
+                <RawDetails raw={`marker ${selected.id}`} />
               </section>
             </div>
           </div>
