@@ -31,15 +31,13 @@ test("the five states show the desktop app screenshots", async ({ page, request 
   }
 });
 
-test("at 390 wide the header shows the logo, the account link and Download", async ({ page }) => {
+test("at 390 wide the header shows the logo and Sign in", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/research-os");
   const header = page.locator("header").first();
   await expect(header.getByRole("link", { name: "bucket.foundation" })).toBeVisible();
-  await expect(header.getByRole("link", { name: "Download", exact: true })).toBeVisible();
-  await expect(header.getByRole("link", { name: /Sign in|Notify me/ })).toBeVisible();
-  await expect(header.getByRole("link")).toHaveCount(3);
-  await expect(header.getByRole("button")).toHaveCount(0);
+  await expect(header.getByRole("link")).toHaveCount(1);
+  await expect(header.getByRole("button", { name: "Sign in" })).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(0);
 });

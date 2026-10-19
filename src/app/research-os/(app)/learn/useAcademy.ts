@@ -6,6 +6,8 @@ import type { Rating } from "@/lib/academy/fsrs";
 import { loadCorpus, type LoadedCorpus } from "@/lib/academy/corpus-client";
 import { webProgressStore, type ProgressStore } from "@/lib/academy/progress-store";
 import { corpusAtomsVersion } from "@/lib/academy/replay";
+import { guestMayGrade } from "@/lib/academy/guest-merge";
+import { useAccountGate } from "@/lib/academy/account-gate-context";
 
 export type AcademyStatus = "loading" | "ready" | "missing" | "error";
 
@@ -27,6 +29,7 @@ export function useAcademy(branch: string, store: ProgressStore = webProgressSto
   const [state, setState] = useState<EngineState>(() => normalizeState(null));
   const stateRef = useRef(state);
   stateRef.current = state;
+  const { guest, requireAccount } = useAccountGate();
 
   useEffect(() => {
     let alive = true;
@@ -57,15 +60,19 @@ export function useAcademy(branch: string, store: ProgressStore = webProgressSto
 
   const gradeAtom = useCallback(
     (id: string, rating: Rating, level: Depth) => {
-      const now = Date.now();
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      store.appendReview?.(branch, { card_id: id, rating, level, reviewed_at: now, tz, atoms_version: corpusAtomsVersion(branch) });
-      const next = grade(stateRef.current, atoms, encompassing, id, rating, level, now, tz);
-      stateRef.current = next;
-      setState(next);
-      store.save(branch, next);
+      const apply = () => {
+        const now = Date.now();
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        store.appendReview?.(branch, { card_id: id, rating, level, reviewed_at: now, tz, atoms_version: corpusAtomsVersion(branch) });
+        const next = grade(stateRef.current, atoms, encompassing, id, rating, level, now, tz);
+        stateRef.current = next;
+        setState(next);
+        store.save(branch, next);
+      };
+      if (guest && !guestMayGrade(branch, stateRef.current.cards, id)) requireAccount(apply);
+      else apply();
     },
-    [atoms, encompassing, branch, store]
+    [atoms, encompassing, branch, store, guest, requireAccount]
   );
 
   return { status, corpus, byId, state, encompassing, routeItems, summaryNow, mastery, gradeAtom };

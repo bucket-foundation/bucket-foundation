@@ -12,11 +12,10 @@ const FOOTER = read("src/components/FooterV3.tsx");
 const LAYOUT = read("src/app/layout.tsx");
 const PRESENTATION = read("src/components/Presentation.tsx");
 
-test("header holds the logo, the account menu and Download", () => {
+test("header holds the logo and the account menu", () => {
   assert.match(HEADER, /href="\/"/);
   assert.match(HEADER, /<UserMenu /);
-  assert.match(HEADER, /href="\/download"/);
-  assert.equal((HEADER.match(/href="/g) ?? []).length, 2);
+  assert.equal((HEADER.match(/href="/g) ?? []).length, 1);
   assert.doesNotMatch(HEADER, /Research OS|"\/canon"|whats-new|"\/about"|GitHubStarButton|aria-haspopup|mobile-drawer/);
 });
 
@@ -42,8 +41,9 @@ test("the layout uses the V3 chrome and one branch count", () => {
   assert.equal(CANON_BRANCHES.length, 7);
 });
 
-test("the home hero links Download", () => {
-  assert.match(PRESENTATION, /href="\/download"/);
+test("the home hero holds one action and the slim footer links Download", () => {
+  assert.equal((PRESENTATION.match(/href=/g) ?? []).length, 1);
+  assert.match(read("src/components/SiteFooter.tsx"), /href="\/download"/);
 });
 
 test("originals stay untouched", () => {

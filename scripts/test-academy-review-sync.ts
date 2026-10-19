@@ -373,3 +373,14 @@ test("a review queued before the auth event for a new account is held and never 
   await tab.sync.flush();
   assert.deepEqual(server.log.map((r) => r.card_id), ["a1"]);
 });
+
+
+test("a caller review_id is kept from the outbox to the server log", async () => {
+  const server = new Server();
+  const tab = new Tab(server, memoryStorage());
+  tab.study("a2", T0 - 1000);
+  const q = tab.sync.appendReview(BRANCH, { card_id: "a1", rating: 3, level: "recall", reviewed_at: T0, tz: "UTC", atoms_version: corpusAtomsVersion(BRANCH), review_id: "6f1c2b9e-3d4a-4e5f-8a6b-7c8d9e0f1a2b" });
+  assert.equal(q.review_id, "6f1c2b9e-3d4a-4e5f-8a6b-7c8d9e0f1a2b");
+  await tab.sync.flush();
+  assert.equal(server.log.filter((r) => r.review_id === "6f1c2b9e-3d4a-4e5f-8a6b-7c8d9e0f1a2b").length, 1);
+});

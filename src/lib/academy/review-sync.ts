@@ -18,6 +18,7 @@ export interface ReviewEvent {
   reviewed_at: number;
   tz: string;
   atoms_version: string;
+  review_id?: string;
 }
 
 export interface QueuedReview extends ReviewEvent {
@@ -171,7 +172,7 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
 
   function appendReview(branch: string, review: ReviewEvent): QueuedReview {
     const who = owner();
-    const q: QueuedReview = { ...review, review_id: deps.uuid(), branch, device_id: deviceId(), queued_at: now(), ...(who ? { owner: who } : {}) };
+    const q: QueuedReview = { ...review, review_id: review.review_id || deps.uuid(), branch, device_id: deviceId(), queued_at: now(), ...(who ? { owner: who } : {}) };
     let size = 0;
     const ok = mutate((o) => {
       const alreadySeeded = who !== "" && read<boolean>(deps.storage(), seededKey(who, branch), false);

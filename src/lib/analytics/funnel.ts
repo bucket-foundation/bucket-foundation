@@ -4,7 +4,7 @@ export const FUNNEL_EVENTS = ["start_learning_click", "open_research_os", "sign_
 export type FunnelEvent = (typeof FUNNEL_EVENTS)[number];
 export type FunnelProps = Record<string, string | number | boolean | null>;
 
-export const START_LEARNING_HREF = "/sign-in?next=/learn";
+export const START_LEARNING_HREF = "/research-os/learn";
 
 export function trackFunnel(event: FunnelEvent, props: FunnelProps = {}): void {
   track(event, props);
