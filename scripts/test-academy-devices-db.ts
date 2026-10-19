@@ -83,3 +83,23 @@ test("the device functions are closed to signed-in browser roles", { skip }, () 
   assert.notEqual(r.status, 0);
   assert.match(r.out, /permission denied/);
 });
+
+test("re-registering a device ends its earlier sessions, and revoke_device ends them all", { skip }, () => {
+  const uid = makeUser();
+  try {
+    const s1 = randomUUID();
+    const s2 = randomUUID();
+    const s3 = randomUUID();
+    for (const sid of [s1, s2, s3]) assert.equal(sql(`insert into auth.sessions (id, user_id, created_at, updated_at) values ('${sid}', '${uid}', now(), now())`).status, 0);
+    assert.equal(register(uid, "dev_s", PK, s1), "t");
+    assert.equal(register(uid, "dev_s", PK, s2), "t");
+    assert.equal(sql(`select string_agg(id::text, ',') from auth.sessions where user_id = '${uid}' and id in ('${s1}', '${s2}')`).out, s2);
+    assert.equal(sql(`select count(*) from bucket.device_sessions where user_id = '${uid}' and device_id = 'dev_s'`).out, "2");
+    assert.equal(sql(`select bucket.revoke_device('${uid}', 'dev_s')`).out, "1");
+    assert.equal(sql(`select count(*) from auth.sessions where id in ('${s1}', '${s2}')`).out, "0");
+    assert.equal(sql(`select count(*) from auth.sessions where id = '${s3}'`).out, "1");
+    assert.equal(sql(`select bucket.revoke_device('${uid}', 'dev_s')`).out, "-1");
+  } finally {
+    sql(`delete from auth.users where id = '${uid}'`);
+  }
+});

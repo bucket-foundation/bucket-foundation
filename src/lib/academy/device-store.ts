@@ -21,7 +21,7 @@ export function deviceAuthStore(svc: () => SupabaseClient): Omit<DeviceAuthDeps,
       return data === true;
     },
     async deviceSession(uid, sessionId) {
-      const { data, error } = await svc().from("devices").select("device_id").eq("user_id", uid).eq("session_id", sessionId).limit(1);
+      const { data, error } = await svc().from("device_sessions").select("device_id").eq("user_id", uid).eq("session_id", sessionId).limit(1);
       fail("device session", error);
       return ((data as unknown[]) ?? []).length > 0;
     },
@@ -32,8 +32,24 @@ export function deviceFlowStore(opts: { svc: () => SupabaseClient; admin: () => 
   const { svc, admin, anon } = opts;
   return {
     async insertCode(row) {
+      const purge = await svc().rpc("purge_device_codes");
+      fail("device code purge", purge.error);
       const { error } = await svc().from("device_codes").insert(row);
       fail("device code insert", error);
+    },
+    async pendingFor(deviceId, nowIso) {
+      const { count, error } = await svc().from("device_codes").select("device_code_hash", { count: "exact", head: true }).eq("device_id", deviceId).eq("status", "pending").gt("expires_at", nowIso);
+      fail("device code count", error);
+      return count ?? 0;
+    },
+    async peekCode(userCode, nowIso) {
+      const { data, error } = await svc().from("device_codes").select(CODE_COLUMNS).eq("user_code", userCode).eq("status", "pending").gt("expires_at", nowIso).maybeSingle();
+      fail("device code peek", error);
+      return (data as CodeRow | null) ?? null;
+    },
+    async unconsumeCode(hash) {
+      const { error } = await svc().from("device_codes").update({ status: "approved" }).eq("device_code_hash", hash).eq("status", "consumed");
+      fail("device code unconsume", error);
     },
     async approveCode(userCode, uid, nowIso) {
       const { data, error } = await svc().from("device_codes").update({ user_id: uid, status: "approved" }).eq("user_code", userCode).eq("status", "pending").gt("expires_at", nowIso).select(CODE_COLUMNS).maybeSingle();
@@ -74,9 +90,10 @@ export function deviceFlowStore(opts: { svc: () => SupabaseClient; admin: () => 
       fail("device end session", error);
     },
     async revokeDevice(uid, deviceId) {
-      const { data, error } = await svc().from("devices").update({ revoked_at: new Date().toISOString() }).eq("user_id", uid).eq("device_id", deviceId).is("revoked_at", null).not("public_key", "is", null).select("device_id");
+      const { data, error } = await svc().rpc("revoke_device", { p_user: uid, p_device: deviceId });
       fail("device revoke", error);
-      return ((data as unknown[]) ?? []).length > 0;
+      const n = Number(data);
+      return n < 0 ? null : n;
     },
     async signOutOthers(accessToken) {
       const { error } = await admin().auth.admin.signOut(accessToken, "others");

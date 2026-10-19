@@ -99,6 +99,12 @@ function flowWorld(over: Partial<DeviceFlowDeps> = {}) {
   const d: DeviceFlowDeps = {
     now: () => t,
     insertCode: async (row) => void codes.set(row.device_code_hash, { ...row }),
+    pendingFor: async (id, nowIso) => Array.from(codes.values()).filter((r) => r.device_id === id && r.status === "pending" && r.expires_at > nowIso).length,
+    peekCode: async (uc, nowIso) => Array.from(codes.values()).find((r) => r.user_code === uc && r.status === "pending" && r.expires_at > nowIso) ?? null,
+    unconsumeCode: async (h) => {
+      const row = codes.get(h);
+      if (row?.status === "consumed") row.status = "approved";
+    },
     approveCode: async (uc, uid, nowIso) => {
       const row = Array.from(codes.values()).find((r) => r.user_code === uc && r.status === "pending" && r.expires_at > nowIso);
       if (!row) return null;
@@ -115,7 +121,7 @@ function flowWorld(over: Partial<DeviceFlowDeps> = {}) {
     registerDevice: async (uid, row, sid) => (calls.push(`register ${uid} ${row.device_id} ${sid}`), true),
     endSession: async () => void calls.push("end"),
     mintSession: async () => ({ access_token: "at", refresh_token: "rt", expires_at: 1, session_id: "sid" }),
-    revokeDevice: async (_u, id) => id === k.id,
+    revokeDevice: async (_u, id) => (id === k.id ? 2 : null),
     signOutOthers: async (tok) => void calls.push(`signout ${tok}`),
     publicConfig: () => ({ supabase_url: "http://sb", anon_key: "anon" }),
     ...over,
@@ -167,6 +173,35 @@ test("revoke marks the device and signs out the other sessions", async () => {
   const r = await w.flow.revoke("u1", "web-token", { device_id: k.id });
   assert.equal(r.status, 200);
   assert.equal(r.body.signed_out_others, true);
+  assert.equal(r.body.sessions_ended, 2);
   assert.deepEqual(w.calls, ["signout web-token"]);
   assert.equal((await w.flow.revoke("u1", "web-token", { device_id: other.id })).status, 404);
+});
+
+test("revoke reports a failed sign-out of the other sessions", async () => {
+  const w = flowWorld({ signOutOthers: async () => Promise.reject(new Error("auth down")) });
+  const r = await w.flow.revoke("u1", "web-token", { device_id: k.id });
+  assert.equal(r.status, 200);
+  assert.equal(r.body.signed_out_others, false);
+});
+
+test("a device may hold five open codes at most", async () => {
+  const w = flowWorld();
+  for (let i = 0; i < 5; i++) assert.equal((await w.flow.start({ device_id: k.id, public_key: k.pub, kind: "cli" }, "x")).status, 200);
+  assert.equal((await w.flow.start({ device_id: k.id, public_key: k.pub, kind: "cli" }, "x")).status, 429);
+});
+
+test("peek names the waiting device, and a failed mint leaves the code redeemable", async () => {
+  let fail = true;
+  const w = flowWorld({ mintSession: async () => (fail ? Promise.reject(new Error("auth down")) : { access_token: "at", refresh_token: "rt", expires_at: 1, session_id: "sid" }) });
+  const s = await w.flow.start({ device_id: k.id, public_key: k.pub, kind: "desktop", label: "studio mac" }, "x");
+  const p = await w.flow.peek(s.body.user_code);
+  assert.deepEqual(p.body, { kind: "desktop", label: "studio mac", device_id: k.id });
+  await w.flow.approve("u1", { user_code: s.body.user_code });
+  assert.equal((await w.flow.peek(s.body.user_code)).status, 404);
+  const dc = s.body.device_code as string;
+  const proof = () => ({ device_code: dc, ts: NOW, sig: k.sign(tokenProofMessage(dc, NOW)) });
+  await assert.rejects(w.flow.token(proof()), /auth down/);
+  fail = false;
+  assert.equal((await w.flow.token(proof())).status, 200);
 });

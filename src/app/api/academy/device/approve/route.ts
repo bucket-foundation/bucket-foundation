@@ -4,6 +4,20 @@ import { deviceFlow, deviceSyncConfigured, deviceSyncEnabled, jsonResponse, read
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+export async function GET(req: NextRequest): Promise<Response> {
+  if (!deviceSyncEnabled()) return jsonResponse({ error: "review_log_disabled" }, 503);
+  if (!deviceSyncConfigured()) return jsonResponse({ error: "sync_unavailable" }, 503);
+  const uid = await requestUser(req);
+  if (!uid) return jsonResponse({ error: "unauthorized" }, 401);
+  try {
+    const r = await deviceFlow.peek(new URL(req.url).searchParams.get("user_code"));
+    return jsonResponse(r.body, r.status);
+  } catch (e) {
+    console.error("device peek", e);
+    return jsonResponse({ error: "peek_failed" }, 500);
+  }
+}
+
 export async function POST(req: NextRequest): Promise<Response> {
   if (!deviceSyncEnabled()) return jsonResponse({ error: "review_log_disabled" }, 503);
   if (!deviceSyncConfigured()) return jsonResponse({ error: "sync_unavailable" }, 503);

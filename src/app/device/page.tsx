@@ -17,6 +17,7 @@ export default function DevicePage() {
   const [note, setNote] = useState<string | null>(null);
   const [devices, setDevices] = useState<DeviceRow[] | null>(null);
   const [signedOut, setSignedOut] = useState(false);
+  const [pending, setPending] = useState<{ kind: string; label: string | null } | null>(null);
 
   const refresh = useCallback(async () => {
     const r = await fetch("/api/academy/devices", { cache: "no-store" });
@@ -30,8 +31,20 @@ export default function DevicePage() {
     void refresh();
   }, [refresh]);
 
-  async function approve(e: React.FormEvent) {
+  async function check(e: React.FormEvent) {
     e.preventDefault();
+    const r = await fetch(`/api/academy/device/approve?user_code=${encodeURIComponent(code)}`, { cache: "no-store" });
+    if (r.status === 401) return setSignedOut(true);
+    if (!r.ok) {
+      setPending(null);
+      return setNote("That code is unknown or has expired. Start again on the device.");
+    }
+    setNote(null);
+    setPending((await r.json()) as { kind: string; label: string | null });
+  }
+
+  async function approve() {
+    setPending(null);
     const r = await fetch("/api/academy/device/approve", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ user_code: code }) });
     if (r.status === 401) return setSignedOut(true);
     const j = (await r.json().catch(() => ({}))) as { label?: string | null; error?: string };
@@ -42,7 +55,8 @@ export default function DevicePage() {
 
   async function revoke(id: string) {
     const r = await fetch("/api/academy/device/revoke", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ device_id: id }) });
-    setNote(r.ok ? "Device signed out. Other sessions were signed out too, so sign in again on your other devices." : "The device could not be signed out.");
+    const j = (await r.json().catch(() => ({}))) as { signed_out_others?: boolean };
+    setNote(!r.ok ? "The device could not be signed out." : j.signed_out_others ? "Device signed out. Other sessions were signed out too, so sign in again on your other devices." : "Device signed out, but signing out your other sessions failed. Try again to sign them out.");
     void refresh();
   }
 
@@ -60,12 +74,27 @@ export default function DevicePage() {
   return (
     <main className="mx-auto max-w-xl p-6 flex flex-col gap-6">
       <PageHeader eyebrow="devices" title="connect a device" lede="Enter the code your desktop app or terminal shows. It then syncs your study progress with this account." />
-      <form onSubmit={approve} className="flex flex-wrap gap-2">
+      <form onSubmit={check} className="flex flex-wrap gap-2">
         <input value={code} onChange={(e) => setCode(e.target.value)} aria-label="device code" autoComplete="off" spellCheck={false} className="flex-1 min-w-[12rem] border border-[color:var(--hairline)] bg-white/70 px-3 py-2 rounded-sm text-[15px] uppercase tracking-[0.2em]" data-testid="device-code" />
         <button type="submit" className={BTN_PRIMARY} disabled={code.trim().length < 8}>
-          connect
+          check
         </button>
       </form>
+      {pending && (
+        <div className="flex flex-col gap-3 border border-[color:var(--hairline)] p-4" data-testid="device-confirm">
+          <p className="text-[14px] text-[color:var(--basalt)]">
+            Connect <strong>{pending.label ?? "an unnamed device"}</strong> ({pending.kind}) to your account? Only confirm if you started this on your own device just now.
+          </p>
+          <div className="flex gap-2">
+            <button type="button" onClick={approve} className={BTN_PRIMARY}>
+              connect
+            </button>
+            <button type="button" onClick={() => setPending(null)} className={BTN_SECONDARY}>
+              cancel
+            </button>
+          </div>
+        </div>
+      )}
       {note && <p className="text-[14px] text-[color:var(--basalt-2)]" data-testid="device-note">{note}</p>}
       <section className="flex flex-col gap-2">
         <h2 className="small-caps text-[11px] tracking-[0.2em] text-[color:var(--basalt-3)]">your devices</h2>

@@ -5,6 +5,7 @@ export const CODE_TTL_MS = 10 * 60 * 1000;
 export const POLL_INTERVAL_S = 5;
 export const TOKEN_SKEW_MS = 60_000;
 export const USER_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+export const MAX_PENDING_PER_DEVICE = 5;
 export const DEVICE_KINDS = ["desktop", "cli", "mobile"] as const;
 export type DeviceKind = (typeof DEVICE_KINDS)[number];
 
@@ -34,13 +35,16 @@ export interface MintedSession {
 export interface DeviceFlowDeps {
   now: () => number;
   insertCode: (row: CodeRow) => Promise<void>;
+  pendingFor: (deviceId: string, nowIso: string) => Promise<number>;
+  peekCode: (userCode: string, nowIso: string) => Promise<CodeRow | null>;
+  unconsumeCode: (hash: string) => Promise<void>;
   approveCode: (userCode: string, uid: string, nowIso: string) => Promise<CodeRow | null>;
   findCode: (hash: string) => Promise<CodeRow | null>;
   consumeCode: (hash: string) => Promise<CodeRow | null>;
   registerDevice: (uid: string, row: CodeRow, sessionId: string) => Promise<boolean>;
   endSession: (accessToken: string) => Promise<void>;
   mintSession: (uid: string) => Promise<MintedSession>;
-  revokeDevice: (uid: string, deviceId: string) => Promise<boolean>;
+  revokeDevice: (uid: string, deviceId: string) => Promise<number | null>;
   signOutOthers: (accessToken: string) => Promise<void>;
   publicConfig: () => { supabase_url: string; anon_key: string };
 }
@@ -79,6 +83,7 @@ export function createDeviceFlow(deps: DeviceFlowDeps) {
     const label = typeof b.label === "string" ? b.label.slice(0, 80) : null;
     if (!PUBKEY_RE.test(pk) || Buffer.from(pk, "base64").length !== 32 || !kind) return { status: 400, body: { error: "bad_request" } };
     if (b.device_id !== deviceIdFor(pk)) return { status: 400, body: { error: "device_id_mismatch" } };
+    if ((await deps.pendingFor(b.device_id as string, new Date(deps.now()).toISOString())) >= MAX_PENDING_PER_DEVICE) return { status: 429, body: { error: "too_many_codes" } };
     const deviceCode = randomBytes(32).toString("base64url");
     const userCode = newUserCode();
     await deps.insertCode({
@@ -93,6 +98,14 @@ export function createDeviceFlow(deps: DeviceFlowDeps) {
       expires_at: new Date(deps.now() + CODE_TTL_MS).toISOString(),
     });
     return { status: 200, body: { device_code: deviceCode, user_code: userCode, verification_uri: verificationUri, expires_in: CODE_TTL_MS / 1000, interval: POLL_INTERVAL_S } };
+  }
+
+  async function peek(code: unknown): Promise<FlowResult> {
+    const c = normalizeUserCode(code);
+    if (!c) return { status: 400, body: { error: "bad_request" } };
+    const row = await deps.peekCode(c, new Date(deps.now()).toISOString());
+    if (!row) return { status: 404, body: { error: "unknown_or_expired_code" } };
+    return { status: 200, body: { kind: row.kind, label: row.label, device_id: row.device_id } };
   }
 
   async function approve(uid: string, body: unknown): Promise<FlowResult> {
@@ -117,7 +130,13 @@ export function createDeviceFlow(deps: DeviceFlowDeps) {
     if (row.status === "pending") return { status: 428, body: { error: "authorization_pending", interval: POLL_INTERVAL_S } };
     const taken = await deps.consumeCode(hash);
     if (!taken || !taken.user_id) return { status: 400, body: { error: "expired_token" } };
-    const session = await deps.mintSession(taken.user_id);
+    let session: MintedSession;
+    try {
+      session = await deps.mintSession(taken.user_id);
+    } catch (e) {
+      await deps.unconsumeCode(hash).catch((u) => console.error("device token unconsume failed", u));
+      throw e;
+    }
     if (!(await deps.registerDevice(taken.user_id, taken, session.session_id))) {
       await deps.endSession(session.access_token).catch((e) => console.error("device token end-session failed", e));
       return { status: 403, body: { error: "device_revoked" } };
@@ -129,8 +148,8 @@ export function createDeviceFlow(deps: DeviceFlowDeps) {
   async function revoke(uid: string, accessToken: string | null, body: unknown): Promise<FlowResult> {
     const id = (body as { device_id?: unknown } | null)?.device_id;
     if (typeof id !== "string" || !/^[A-Za-z0-9._-]{1,64}$/.test(id)) return { status: 400, body: { error: "bad_request" } };
-    const revoked = await deps.revokeDevice(uid, id);
-    if (!revoked) return { status: 404, body: { error: "unknown_device" } };
+    const ended = await deps.revokeDevice(uid, id);
+    if (ended === null) return { status: 404, body: { error: "unknown_device" } };
     let signedOut = false;
     if (accessToken) {
       try {
@@ -140,8 +159,8 @@ export function createDeviceFlow(deps: DeviceFlowDeps) {
         console.error("device revoke sign-out failed", e);
       }
     }
-    return { status: 200, body: { ok: true, revoked: id, signed_out_others: signedOut } };
+    return { status: 200, body: { ok: true, revoked: id, sessions_ended: ended, signed_out_others: signedOut } };
   }
 
-  return { start, approve, token, revoke };
+  return { start, peek, approve, token, revoke };
 }

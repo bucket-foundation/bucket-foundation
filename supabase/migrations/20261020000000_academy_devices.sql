@@ -33,6 +33,16 @@ create table if not exists bucket.device_nonces (
 
 create index if not exists device_nonces_expires_idx on bucket.device_nonces (expires_at);
 
+create table if not exists bucket.device_sessions (
+  user_id    uuid        not null references auth.users (id) on delete cascade,
+  device_id  text        not null,
+  session_id uuid        not null,
+  bound_at   timestamptz not null default now(),
+  primary key (user_id, session_id),
+  foreign key (user_id, device_id) references bucket.devices (user_id, device_id) on delete cascade
+);
+
+alter table bucket.device_sessions enable row level security;
 alter table bucket.device_codes enable row level security;
 alter table bucket.device_nonces enable row level security;
 
@@ -71,10 +81,50 @@ begin
   on conflict (user_id, device_id) do update
     set public_key = excluded.public_key, kind = excluded.kind, label = coalesce(excluded.label, bucket.devices.label),
         registered_at = now(), last_seen_at = now(), session_id = excluded.session_id;
+  delete from auth.sessions s
+   using bucket.device_sessions b
+   where b.user_id = p_user and b.device_id = p_device and b.session_id = s.id and s.id <> p_session;
+  insert into bucket.device_sessions (user_id, device_id, session_id) values (p_user, p_device, p_session)
+  on conflict (user_id, session_id) do nothing;
   return true;
 end $$;
 
+create or replace function bucket.revoke_device(p_user uuid, p_device text)
+returns int
+language plpgsql
+security definer
+set search_path = ''
+as $$
+declare n int;
+begin
+  update bucket.devices set revoked_at = now()
+   where user_id = p_user and device_id = p_device and revoked_at is null and public_key is not null;
+  get diagnostics n = row_count;
+  if n = 0 then
+    return -1;
+  end if;
+  delete from auth.sessions s
+   using bucket.device_sessions b
+   where b.user_id = p_user and b.device_id = p_device and b.session_id = s.id;
+  get diagnostics n = row_count;
+  return n;
+end $$;
+
+create or replace function bucket.purge_device_codes()
+returns void
+language sql
+security definer
+set search_path = ''
+as $$
+  delete from bucket.device_codes where expires_at < now() - interval '1 day';
+$$;
+
 revoke all on function bucket.use_device_nonce(uuid, text, text, int) from public, anon, authenticated;
+revoke all on function bucket.revoke_device(uuid, text) from public, anon, authenticated;
+revoke all on function bucket.purge_device_codes() from public, anon, authenticated;
+grant execute on function bucket.revoke_device(uuid, text) to service_role;
+grant execute on function bucket.purge_device_codes() to service_role;
+grant select on bucket.device_sessions to service_role;
 revoke all on function bucket.register_device(uuid, text, text, text, text, uuid) from public, anon, authenticated;
 grant execute on function bucket.use_device_nonce(uuid, text, text, int) to service_role;
 grant execute on function bucket.register_device(uuid, text, text, text, text, uuid) to service_role;
