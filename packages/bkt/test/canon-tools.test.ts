@@ -106,7 +106,7 @@ const PRIVATE_OR_CLOSED = [SECRET.unmapped, SECRET.kruse, SECRET.tierB, SECRET.c
 describe("licence_kind at pack time", () => {
   test("Kruse and Tier-B paths resolve to private", () => {
     expect(isPrivate("_intake/kruse-blog-corpus/a.md")).toBe(true);
-    expect(isPrivate("/home/x/agfarms/bucket-foundation/_intake/kruse-references-mined/a.md")).toBe(true);
+    expect(isPrivate("/w/r/_intake/kruse-references-mined/a.md")).toBe(true);
     expect(isPrivate("_intake/sacred-history-corpus/work/ed/a.md")).toBe(true);
     expect(isPrivate("_intake/tier-b/a.md")).toBe(true);
     expect(licenceKind("_intake/kruse-blog-corpus/a.md")).toBe("private");
