@@ -1,5 +1,7 @@
 "use client";
 
+import { describePathError, rawPathError } from "@/lib/academy/path-words";
+
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -8,7 +10,7 @@ import { masteryFor, type Atom } from "@/lib/academy/engine";
 import { MASTERED_THRESHOLD } from "@/lib/academy/mastery";
 import { peekBranch, pullServer } from "@/lib/academy/progress-store";
 import { graphFromAtoms, planPath, repairMastery, type PathError } from "@/lib/academy/prereq-path";
-import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LINK, LoadingState, PageHeader, Panel } from "@/components/ui";
+import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LINK, LoadingState, PageHeader, Panel, RawDetails } from "@/components/ui";
 
 interface Loaded {
   atoms: Map<string, Atom & { branch: string; branchLabel: string }>;
@@ -30,12 +32,6 @@ async function loadAll(): Promise<Loaded> {
     }
   }
   return { atoms, mastered };
-}
-
-function describe(error: PathError, title: (id: string) => string): string {
-  if (error.kind === "MissingNode") return error.requiredBy ? `${title(error.requiredBy)} requires ${error.id}, which is not in the graph.` : `${error.id} is not in the graph.`;
-  if (error.kind === "Cycle") return `The prerequisite graph has a cycle through ${error.nodes.map(title).join(", ")}.`;
-  return "Some concepts are marked mastered while one of their prerequisites is not.";
 }
 
 export default function PathView() {
@@ -116,7 +112,8 @@ export default function PathView() {
         <ErrorState title="Unknown concept" body={`${to} is not in any deck.`} />
       ) : !result.ok && result.error.kind === "MasteryConflict" ? (
         <Panel title="mastery conflict">
-          <p className="text-[13px] leading-[1.6]">{describe(result.error, title)}</p>
+          <p className="text-[13px] leading-[1.6]">{describePathError(result.error, title)}</p>
+          <RawDetails raw={rawPathError(result.error)} />
           <ul className="mt-2 text-[13px] list-disc pl-5">
             {result.error.conflicts.map((c) => (
               <li key={c.id}>
@@ -134,7 +131,7 @@ export default function PathView() {
           )}
         </Panel>
       ) : !result.ok ? (
-        <ErrorState title="No path" body={describe(result.error, title)} />
+        <ErrorState title="No path" body={describePathError(result.error, title)} details={rawPathError(result.error)} />
       ) : (
         <Panel title={target.title} meta={`${result.steps.length} to learn · ${result.mastered.length} mastered`}>
           {repaired && repair && (

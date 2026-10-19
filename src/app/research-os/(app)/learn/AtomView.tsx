@@ -27,8 +27,8 @@ export default function AtomView({ branch, atomId }: { branch: string; atomId: s
   );
 
   if (a.status === "loading") return <LoadingState label="Loading the atom" />;
-  if (a.status === "missing" || !a.corpus) return <ErrorState title="No such deck" body={`There is no branch named ${branch}.`} />;
-  if (!atom) return <ErrorState title="No such atom" body={`${atomId} is not in ${deckLabel(a.corpus.deck)}.`} />;
+  if (a.status === "missing" || !a.corpus) return <ErrorState title="No such deck" body="Bucket has no deck at this address." details={`branch ${branch}`} />;
+  if (!atom) return <ErrorState title="No such topic" body={`This topic is not in ${deckLabel(a.corpus.deck)}.`} details={`topic ${atomId}`} />;
 
   const level = pickLevel(a.state, atom);
   const started = Boolean(a.state.cards[atomId]);

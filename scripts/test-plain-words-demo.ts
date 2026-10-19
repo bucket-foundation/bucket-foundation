@@ -1,0 +1,36 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { renderToStaticMarkup } from "react-dom/server";
+import { ErrorState, RawDetails } from "../src/components/ui";
+import { describePathError, rawPathError } from "../src/lib/academy/path-words";
+import { friendly } from "../src/lib/auth/sign-in-words";
+
+const RAW = /\b[a-z0-9]+(?:[-_:][a-z0-9]+)+\b|\{|\}|\bstatus \d{3}\b|answered \d{3}/;
+
+test("an error state keeps raw detail behind a closed details toggle", () => {
+  const html = renderToStaticMarkup(ErrorState({ title: "No such topic", body: "This topic is not in Mathematics.", details: "topic 01-mathematics:limits" }));
+  const shown = html.replace(/<details[\s\S]*<\/details>/, "").replace(/<[^>]+>/g, " ");
+  assert.doesNotMatch(shown, RAW);
+  assert.match(html, /<details[^>]*><summary[^>]*>details<\/summary><pre[^>]*>topic 01-mathematics:limits<\/pre><\/details>/);
+  assert.doesNotMatch(html, /<details[^>]* open/);
+  assert.equal(renderToStaticMarkup(RawDetails({ raw: null }) ?? ""), "");
+});
+
+test("path errors read as sentences with titles, and ids stay in the raw view", () => {
+  const title = (id: string) => ({ "calc-limits": "Limits", "calc-derivative": "The derivative" })[id] ?? id;
+  const missing = { kind: "MissingNode", id: "calc-epsilon", requiredBy: "calc-limits" } as const;
+  assert.equal(describePathError(missing, title), "Limits needs a topic Bucket does not have yet.");
+  assert.match(rawPathError(missing), /calc-epsilon/);
+  const cycle = { kind: "Cycle" as const, nodes: ["calc-limits", "calc-derivative"] };
+  assert.equal(describePathError(cycle, title), "Two topics each need the other first: Limits, The derivative.");
+  for (const e of [missing, cycle, { kind: "MasteryConflict" } as const]) assert.doesNotMatch(describePathError(e as never, title), /calc-|graph|prerequisite/);
+});
+
+test("sign-in never shows an error code or a raw object", () => {
+  for (const raw of ["over_email_send_rate_limit", "unexpected_failure", '{"code":500}', "status: 500", "AuthApiError code=otp_disabled"]) {
+    const shown = friendly(raw);
+    assert.doesNotMatch(shown, /_|\{|status|code/, `${raw} -> ${shown}`);
+  }
+  assert.equal(friendly("Token has expired or is invalid"), "That code expired. Ask for a new one.");
+  assert.equal(friendly("Email rate limit exceeded"), "Too many emails requested. Wait a minute and try again.");
+});
