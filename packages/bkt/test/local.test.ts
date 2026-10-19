@@ -44,7 +44,7 @@ beforeEach(async () => {
   store = new Store(":memory:", newDataKey());
   store.importPack("v1", items);
   const uid = 7;
-  s = startServe({ uid, resolvePeerUid: () => uid, now: () => clock, routes: localRoutes(store, { now: () => clock, seed: () => "seed", content, shorts }) });
+  s = startServe({ uid, resolvePeerUid: () => uid, now: () => clock, routes: localRoutes(store, { now: () => clock, seed: () => "seed", content, shorts, langCorpus: { "lang-core.json": { atoms: [{ id: "eight" }] } } }) });
   const nonce = (await (await req("/")).text()).match(/"nonce":"([A-Za-z0-9_-]+)"/)![1];
   const r = await req("/session", { method: "POST", body: { nonce }, headers: { origin: `http://127.0.0.1:${s.port}` } });
   auth = { authorization: `Bucket ${((await r.json()) as { token: string }).token}` };
@@ -153,6 +153,23 @@ describe("learn routes", () => {
     expect(r.data.cards.a.lastReview).toBe(clock);
     expect((await post("/local/progress", { branch: "../etc", data: s1 })).status).toBe(400);
     expect((await post("/local/progress", { branch: "phys" })).status).toBe(400);
+  });
+
+  test("the language corpus serves its own files and nothing else", async () => {
+    const r = await req("/local/lang-corpus?file=lang-core.json", { headers: auth });
+    expect(((await r.json()) as { atoms: { id: string }[] }).atoms[0].id).toBe("eight");
+    expect((await req("/local/lang-corpus?file=../pack.json", { headers: auth })).status).toBe(404);
+    expect((await req("/local/lang-corpus?file=toString", { headers: auth })).status).toBe(404);
+  });
+
+  test("progress keeps the language systems document whole and merges it", async () => {
+    const sys = (id: string, createdAt: number, placement: Record<string, number>) => ({ id, name: id, root: "en", targets: ["es"], placement, createdAt });
+    expect((await post("/local/progress", { branch: "lang-systems", data: { systems: [sys("a", 1, { es: 2 })], removed: {} } })).status).toBe(200);
+    const r = await post("/local/progress", { branch: "lang-systems", data: { systems: [sys("a", 1, { es: 4 }), sys("b", 2, {})], removed: {} } });
+    expect(((await r.json()) as { data: { systems: { id: string }[] } }).data.systems.map((s) => s.id)).toEqual(["a", "b"]);
+    const p = (await (await req("/local/progress", { headers: auth })).json()) as { branches: Record<string, { data: { systems: { id: string; placement: Record<string, number> }[] } }> };
+    expect(p.branches["lang-systems"].data.systems[0].placement).toEqual({ es: 4 });
+    expect(store.learnDecks()).not.toContain("lang-systems");
   });
 
   test("web import runs once and merges localStorage keys", async () => {

@@ -36,6 +36,27 @@ describe("Research OS fetch bridge", () => {
     expect(calls[1].init?.body).toBeUndefined();
   });
 
+  test("academy progress, corpus and events stay on this computer", async () => {
+    const calls: { input: RequestInfo | URL; init?: RequestInit }[] = [];
+    const base = (async (input: RequestInfo | URL, init?: RequestInit) => {
+      calls.push({ input, init });
+      if (input === "/local/decks") return new Response(JSON.stringify({ decks: [{ id: "03-chemistry", title: "Chemistry" }] }));
+      if (input === "/local/atoms?deck=03-chemistry") return new Response(JSON.stringify({ atoms: [{ id: "mole" }] }));
+      return new Response("{}");
+    }) as typeof fetch;
+    const fetcher = siteFetch(base, origin, token, true);
+    await fetcher(`${origin}/api/academy/progress`, { method: "POST", body: '{"branch":"lang-systems"}' });
+    expect(calls[0].input).toBe("/local/progress");
+    expect(calls[0].init?.body).toBe('{"branch":"lang-systems"}');
+    expect(new Headers(calls[0].init?.headers).get("authorization")).toBe(`Bucket ${token}`);
+    expect((await fetcher(`${origin}/api/academy/event`, { method: "POST", body: "{}" })).status).toBe(204);
+    expect(calls).toHaveLength(1);
+    expect(await (await fetcher(`${origin}/academy-app/corpus/index.json`)).json()).toEqual({ decks: [{ id: "03-chemistry", file: "corpus/03-chemistry.json", pill: "Chemistry" }] });
+    expect(await (await fetcher(`${origin}/academy-app/corpus/03-chemistry.json`)).json()).toEqual({ meta: {}, atoms: [{ id: "mole" }] });
+    await fetcher(`${origin}/academy-app/corpus/lang-core.json`);
+    expect(calls.at(-1)?.input).toBe("/local/lang-corpus?file=lang-core.json");
+  });
+
   test("foreign origins receive no Bucket token and offline requests are refused", async () => {
     const { base, calls } = recorder();
     const foreign = "https://example.com/api/research-os/profile";
@@ -52,6 +73,14 @@ describe("Research OS fetch bridge", () => {
     expect(windowHref("/research-os/profile")).toBe("#/profile");
     expect(windowHref("/research-os/learn/path")).toBe("#/learn");
     expect(windowHref("/research-os/learn/02-physics/heat")).toBe("#/learn/02-physics/heat");
+    expect(windowHref("/research-os/learn/02-physics/study")).toBe("#/learn/02-physics");
+    expect(windowHref("/research-os/learn/02-physics/place")).toBe("#/learn/02-physics/place");
+    expect(windowHref("/research-os/learn/02-physics/assess")).toBe("#/learn/02-physics/assess");
+    expect(windowHref("/research-os/learn/languages")).toBe("#/learn/languages");
+    expect(windowHref("/research-os/learn/languages/en-es")).toBe("#/learn/languages/en-es");
+    expect(windowHref("/research-os/learn/languages/en-es/study")).toBe("#/learn/languages/en-es/study");
+    expect(windowHref("/research-os/learn/languages/en-es/place?lang=pt")).toBe("#/learn/languages/en-es/place/pt");
+    expect(windowHref("/research-os/learn/languages/en-es/place?lang=..")).toBe("#/learn/languages/en-es/place");
     expect(windowHref("/research-os/n/02-physics%3Aheat")).toBe("#/node/02-physics%3Aheat");
   });
 

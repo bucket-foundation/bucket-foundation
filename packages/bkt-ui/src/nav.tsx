@@ -11,6 +11,7 @@ import { HistoryView } from "./views/History";
 import { ImportView } from "./views/Import";
 import { JobsView } from "./views/Jobs";
 import { LearnHome } from "./views/LearnHome";
+import { AssessView, LangPlaceView, LangStudyView, LangSystemView, LanguagesView, PlaceView } from "./views/LearnWeb";
 import { LibraryView } from "./views/Library";
 import { NotesView } from "./views/Notes";
 import { PathView } from "./views/Path";
@@ -53,6 +54,7 @@ export const FOOT_LINKS = [FOOT_LINK, SETTINGS_LINK];
 
 export function activeNav(route: Route): Route["name"] {
   if (route.name === "node") return "graph";
+  if (route.name === "place" || route.name === "assess" || route.name === "languages" || route.name === "langSystem" || route.name === "langPlace" || route.name === "langStudy") return "learn";
   if (route.name === "deck" || route.name === "words" || route.name === "concepts" || route.name === "library" || route.name === "licence") return "learn";
   if (route.name === "daily" || route.name === "practice") return "quiz";
   if (route.name === "search") return "canon";
@@ -76,6 +78,12 @@ export function Screen({ api, route }: { api: Api; route: Route }) {
 
 function Page({ api, route }: { api: Api; route: Route }) {
   if (route.name === "deck") return <DeckView key={`${route.deck}/${route.atom ?? ""}`} api={api} deck={route.deck} focus={route.atom} />;
+  if (route.name === "place") return <PlaceView key={route.deck} deck={route.deck} />;
+  if (route.name === "assess") return <AssessView key={route.deck} deck={route.deck} />;
+  if (route.name === "languages") return <LanguagesView />;
+  if (route.name === "langSystem") return <LangSystemView key={route.system} system={route.system} />;
+  if (route.name === "langPlace") return <LangPlaceView key={`${route.system}/${route.lang ?? ""}`} system={route.system} lang={route.lang} />;
+  if (route.name === "langStudy") return <LangStudyView key={route.system} system={route.system} />;
   if (route.name === "words" && route.lesson) return <WordLessonView key={`${route.deck}/${route.lesson}`} api={api} deck={route.deck} n={route.lesson} />;
   if (route.name === "words") return <WordDeckView key={route.deck} api={api} deck={route.deck} />;
   if (route.name === "licence") return <WordLicenceView api={api} />;

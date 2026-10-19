@@ -304,7 +304,7 @@ describe("people stay out of every pack and every build step", () => {
 
   test("the packs that hold content carry nothing shaped like an email address", async () => {
     const email = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+\.[a-z]{2,}/;
-    const packs = ["research-index.json", "explore-rows.json", "explore.json", "canon.json", "pack.json", "words.json", "deck-catalog.json", "staff-ros.json"];
+    const packs = ["research-index.json", "explore-rows.json", "explore.json", "canon.json", "pack.json", "lang-corpus.json", "words.json", "deck-catalog.json", "staff-ros.json"];
     for (const name of packs) {
       const text = await Bun.file(join(root, "content", name)).text();
       expect({ name, found: email.exec(text)?.[0] ?? null }).toEqual({ name, found: null });
