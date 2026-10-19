@@ -1,4 +1,4 @@
-import { createReviewSync, type Fetcher, type ReviewEvent, type ReviewSync } from "./review-sync";
+import { createReviewSync, heldAction, type Fetcher, type ReviewEvent, type ReviewSync } from "./review-sync";
 import type { StoredSession, TokenVault } from "./token-store";
 import type { EngineState } from "./engine";
 
@@ -148,6 +148,11 @@ export function createMobileSync(deps: MobileSyncDeps): MobileSync {
     if (path === "/local/review-log" && method === "GET") {
       await sync.flush();
       return json({ reviews: await sync.pullLog(), pending: sync.pending().length, held: sync.held().length });
+    }
+    if (path === "/local/review-log/held" && method === "POST") {
+      const r = heldAction(sync, parse());
+      if (r.status === 200 && r.body.restored) scheduleFlush();
+      return json(r.body, r.status);
     }
     if (path === "/local/account" && method === "GET") {
       const s = await current();

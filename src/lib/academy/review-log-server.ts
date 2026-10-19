@@ -4,7 +4,7 @@ import type { BirthYearBucket } from "../research-os/consent";
 import { decideLearnWrite } from "../research-os/learn-gate";
 import type { Atom, Depth, EngineState } from "./engine";
 import type { Rating } from "./fsrs";
-import { replay, type ReviewRow } from "./replay";
+import { compareReviewRows, LANG_ATOMS_VERSION, replay, type ReviewRow } from "./replay";
 
 export const MAX_FUTURE_MS = 24 * 60 * 60 * 1000;
 export const MIN_REVIEWED_AT = Date.UTC(2020, 0, 1);
@@ -66,13 +66,56 @@ export interface ReviewLogDeps {
   readAgeBand: (uid: string) => Promise<{ ok: true; band: BirthYearBucket | null } | { ok: false }>;
   appendReviews: (uid: string, rows: AppendRow[]) => Promise<AppendResult[]>;
   readLog: (uid: string, sinceSeq: number, limit: number) => Promise<StoredReview[]>;
-  readBranch: (uid: string, branch: string) => Promise<{ baseline: EngineState | null; rows: StoredReview[] }>;
-  writeFold: (uid: string, branch: string, data: EngineState, seq: number) => Promise<boolean>;
+  readBranch: (uid: string, branch: string, opts?: { afterSeq?: number; limit?: number }) => Promise<{ baseline: EngineState | null; rows: StoredReview[] }>;
+  writeFold: (uid: string, branch: string, data: EngineState, seq: number, foldKey: string) => Promise<boolean>;
+  readFold?: (uid: string, branch: string) => Promise<FoldState | null>;
+  noteSkips?: (uid: string, branch: string, ids: string[], note: string) => Promise<void>;
+  noteCapped?: (uid: string, branch: string, note: string) => Promise<void>;
   syncMastery: (uid: string, branch: string, data: unknown) => Promise<{ advanced: number }>;
   atoms: (branch: string) => Readonly<Record<string, Atom[]>>;
 }
 
 export { corpusAtomsVersion } from "./replay";
+
+export const MAX_REFOLD_ROWS = 20_000;
+
+export interface FoldState {
+  data: EngineState | null;
+  log_seq: number | null;
+  fold_key: string | null;
+}
+
+export interface FoldOutcome {
+  folded: boolean;
+  advanced: number;
+  mode: "incremental" | "full" | "none";
+  skipped: { review_id: string; reason: string }[];
+  capped?: boolean;
+}
+
+export function foldKey(r: Pick<ReviewRow, "reviewed_at" | "device_id" | "review_id">): string {
+  return JSON.stringify([r.reviewed_at, r.device_id, r.review_id]);
+}
+
+export function parseFoldKey(k: string | null): Pick<ReviewRow, "reviewed_at" | "device_id" | "review_id"> | null {
+  if (!k) return null;
+  try {
+    const [reviewed_at, device_id, review_id] = JSON.parse(k) as [number, string, string];
+    return typeof reviewed_at === "number" && typeof device_id === "string" && typeof review_id === "string" ? { reviewed_at, device_id, review_id } : null;
+  } catch {
+    return null;
+  }
+}
+
+export function splitFoldable(rows: StoredReview[], atoms: Readonly<Record<string, Atom[]>>): { ok: StoredReview[]; skipped: { review_id: string; reason: string }[] } {
+  const ok: StoredReview[] = [];
+  const skipped: { review_id: string; reason: string }[] = [];
+  for (const r of rows) {
+    if (r.atoms_version === LANG_ATOMS_VERSION || atoms[r.atoms_version]) ok.push(r);
+    else skipped.push({ review_id: r.review_id, reason: `unknown atoms_version ${r.atoms_version}` });
+  }
+  return { ok, skipped };
+}
 
 export function payloadHash(r: ReviewInput): string {
   const canon = JSON.stringify([r.branch, r.card_id, r.rating, r.level, r.reviewed_at, r.tz, r.atoms_version, r.device_id]);
@@ -139,24 +182,57 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     return { uid, deviceId: device.deviceId };
   }
 
-  async function fold(uid: string, branch: string): Promise<{ folded: boolean; advanced: number }> {
-    const { baseline, rows } = await deps.readBranch(uid, branch);
-    if (rows.length === 0) return { folded: false, advanced: 0 };
+  async function fold(uid: string, branch: string): Promise<FoldOutcome> {
+    const none = (extra: Partial<FoldOutcome> = {}): FoldOutcome => ({ folded: false, advanced: 0, mode: "none", skipped: [], ...extra });
+    const atoms = deps.atoms(branch);
+    const cur = deps.readFold ? await deps.readFold(uid, branch) : null;
+    const last = parseFoldKey(cur?.fold_key ?? null);
+    let mode: "incremental" | "full" = "full";
+    let rows: StoredReview[] = [];
+    let start: EngineState | null = null;
+    if (cur?.data && cur.log_seq !== null && last) {
+      const fresh = (await deps.readBranch(uid, branch, { afterSeq: cur.log_seq, limit: MAX_REFOLD_ROWS + 1 })).rows;
+      if (fresh.length === 0) return none();
+      if (fresh.length <= MAX_REFOLD_ROWS && fresh.every((r) => compareReviewRows(r, last as ReviewRow) > 0)) {
+        mode = "incremental";
+        rows = fresh;
+        start = cur.data;
+      }
+    }
+    if (mode === "full") {
+      const all = await deps.readBranch(uid, branch, { limit: MAX_REFOLD_ROWS + 1 });
+      if (all.rows.length === 0) return none();
+      if (all.rows.length > MAX_REFOLD_ROWS) {
+        console.error("review-log refold skipped: branch log over the cap", branch, all.rows.length);
+        await deps.noteCapped?.(uid, branch, `refold over ${MAX_REFOLD_ROWS} rows skipped`).catch((e) => console.error("review-log cap note failed", branch, e));
+        return none({ capped: true });
+      }
+      rows = all.rows;
+      start = all.baseline;
+    }
+    const { ok, skipped } = splitFoldable(rows, atoms);
+    if (skipped.length && deps.noteSkips) {
+      const byReason = new Map<string, string[]>();
+      for (const s of skipped) byReason.set(s.reason, [...(byReason.get(s.reason) ?? []), s.review_id]);
+      for (const [reason, ids] of Array.from(byReason)) await deps.noteSkips(uid, branch, ids, reason).catch((e) => console.error("review-log skip note failed", branch, e));
+    }
+    const seq = rows.reduce((m, r) => Math.max(m, r.seq), cur?.log_seq ?? 0);
+    const newest = ok.length ? ok.slice().sort(compareReviewRows)[ok.length - 1] : null;
+    const key = newest ? foldKey(newest) : (cur?.fold_key ?? foldKey({ reviewed_at: 0, device_id: "", review_id: "" }));
     let state: EngineState;
     try {
-      state = replay(baseline, rows, deps.atoms(branch));
+      state = replay(start, ok, atoms);
     } catch (e) {
       console.error("review-log replay failed", branch, e);
-      return { folded: false, advanced: 0 };
+      return none({ skipped });
     }
-    const seq = rows.reduce((m, r) => Math.max(m, r.seq), 0);
-    const folded = await deps.writeFold(uid, branch, state, seq);
-    if (!folded) return { folded: false, advanced: 0 };
+    const folded = await deps.writeFold(uid, branch, state, seq, key);
+    if (!folded) return none({ skipped });
     try {
-      return { folded, advanced: (await deps.syncMastery(uid, branch, state)).advanced };
+      return { folded, advanced: (await deps.syncMastery(uid, branch, state)).advanced, mode, skipped };
     } catch (e) {
       console.error("review-log mastery sync failed", branch, e);
-      return { folded, advanced: 0 };
+      return { folded, advanced: 0, mode, skipped };
     }
   }
 
@@ -222,17 +298,21 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     const branches = Array.from(new Set(rows.filter((r) => stored.has(r.review_id)).map((r) => r.branch)));
     let advanced = 0;
     const folded: string[] = [];
+    const skipped: { review_id: string; reason: string }[] = [];
+    const capped: string[] = [];
     for (const branch of branches) {
       try {
         const f = await fold(pre.uid, branch);
         advanced += f.advanced;
+        skipped.push(...f.skipped);
+        if (f.capped) capped.push(branch);
         if (f.folded) folded.push(branch);
       } catch (e) {
         console.error("review-log fold failed", branch, e);
       }
     }
     const conflict = results.some((r) => r.status === "conflict");
-    return respond(req, { results, folded, advanced }, conflict ? 409 : 200);
+    return respond(req, { results, folded, advanced, skipped, capped }, conflict ? 409 : 200);
   }
 
   return { OPTIONS, GET, POST };

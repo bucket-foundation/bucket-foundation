@@ -92,6 +92,20 @@ export function appendReview(branch: string, review: ReviewEvent): QueuedReview 
   return q;
 }
 
+export function heldReviews(): number {
+  return reviewSync.held().length;
+}
+
+export function restoreHeldReviews(ids?: string[]): number {
+  const n = reviewSync.restoreHeld(ids);
+  if (n) void reviewSync.flush();
+  return n;
+}
+
+export function discardHeldReviews(ids?: string[]): number {
+  return reviewSync.discardHeld(ids);
+}
+
 export async function pullLog(): Promise<PulledReview[] | null> {
   await reviewSync.flush();
   return reviewSync.pullLog();

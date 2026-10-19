@@ -12,5 +12,5 @@
     "baseUrl": ".",
     "paths": { "@ros/*": ["../../src/lib/research-os/*"], "@/*": ["../../src/*"] }
   },
-  "include": ["src/adapter.ts", "src/adapter.test.ts", "src/mobile-sync.test.ts", "src/outbox-storage.ts", "src/token.ts", "capacitor.config.ts"]
+  "include": ["src/adapter.ts", "src/adapter.test.ts", "src/mobile-sync.test.ts", "src/outbox-storage.ts", "src/sync-smoke.ts", "src/token.ts", "capacitor.config.ts"]
 }
