@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import LearnHome from "./LearnHome";
+import LearnEntry from "./LearnEntry";
 
 export const metadata: Metadata = { title: "Learn", robots: { index: false, follow: false } };
 
 export default function LearnPage() {
-  return <LearnHome />;
+  return <LearnEntry />;
 }

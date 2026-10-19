@@ -6,6 +6,8 @@ import type { Rating } from "@/lib/academy/fsrs";
 import { loadLangCorpus, loadSystems, saveSystems, type SaveResult } from "@/lib/academy/lang-client";
 import { applyPlacement, editSystem, gradeCard, progressBranch, type LangCorpus, type LangSystem } from "@/lib/academy/lang-systems";
 import { webProgressStore } from "@/lib/academy/progress-store";
+import { useAccountGate } from "@/lib/academy/account-gate-context";
+import { guestMayStudyLanguage } from "@/lib/academy/guest-merge";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
 
@@ -29,6 +31,7 @@ export function useLangSystem(systemId: string): LangSystemHandle {
   stateRef.current = state;
   const systemsRef = useRef<LangSystem[]>([]);
   const [saveState, setSaveState] = useState<SaveResult | "idle" | "saving">("idle");
+  const { guest, requireAccount } = useAccountGate();
 
   useEffect(() => {
     let alive = true;
@@ -68,7 +71,18 @@ export function useLangSystem(systemId: string): LangSystemHandle {
     [system]
   );
 
-  const grade = useCallback((lang: string, itemId: string, rating: Rating) => commit(gradeCard(stateRef.current, lang, itemId, rating)), [commit]);
+  useEffect(() => {
+    if (guest && status === "ready") guestMayStudyLanguage();
+  }, [guest, status]);
+
+  const grade = useCallback(
+    (lang: string, itemId: string, rating: Rating) => {
+      const apply = () => commit(gradeCard(stateRef.current, lang, itemId, rating));
+      if (guest && !guestMayStudyLanguage()) requireAccount(apply);
+      else apply();
+    },
+    [commit, guest, requireAccount]
+  );
 
   const place = useCallback(
     (lang: string, tier: number) => {

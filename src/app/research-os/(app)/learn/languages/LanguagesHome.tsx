@@ -38,7 +38,7 @@ export default function LanguagesHome() {
   const [root, setRoot] = useState("en");
   const [targets, setTargets] = useState<string[]>([]);
   const [saveState, setSaveState] = useState<SaveResult | "idle" | "saving">("idle");
-  const { requireAccount } = useAccountGate();
+  const { guest, requireAccount } = useAccountGate();
 
   useEffect(() => {
     let alive = true;
@@ -70,12 +70,14 @@ export default function LanguagesHome() {
 
   function create() {
     if (!systems || err) return;
-    requireAccount(() => {
+    const make = () => {
       const s = createSystem(root, targets, systems);
       setSystems([...systems, s]);
       setTargets([]);
       void persist({ upsert: s });
-    });
+    };
+    if (guest && systems.length === 0) make();
+    else requireAccount(make);
   }
 
   function remove(id: string) {
@@ -202,7 +204,16 @@ export default function LanguagesHome() {
               {err && targets.length > 0 && <span className="text-[12px] text-[color:var(--basalt-3)]">{ERROR_TEXT[err]}</span>}
             </div>
           </Panel>
-          <SaveNotice state={saveState} />
+          {guest && systems.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-3" data-guest-save>
+              <p className="text-[12px] text-[color:var(--basalt-2)]">Saved on this device.</p>
+              <button type="button" onClick={() => requireAccount(() => void persist({}))} className={BTN_SECONDARY}>
+                save to your account
+              </button>
+            </div>
+          ) : (
+            <SaveNotice state={saveState} />
+          )}
           <p className="text-[11px] text-[color:var(--basalt-3)]">{corpus.attribution}</p>
         </>
       )}
