@@ -1,6 +1,7 @@
 "use client";
 
 import { mergeState, normalizeState, type EngineState } from "./engine";
+import { watchReconnect } from "./reconnect";
 import { createReviewSync, type PulledReview, type QueuedReview, type ReviewEvent } from "./review-sync";
 
 export type ServerBranches = Record<string, { data: unknown; updated_at: string }>;
@@ -79,6 +80,7 @@ export const reviewSync = createReviewSync({
   onProblem: (problem, count) => console.error("academy review outbox", problem, count),
 });
 
+if (typeof window !== "undefined" && typeof document !== "undefined") watchReconnect(window, document, () => reviewSync.flush(), () => reviewSync.pending().length);
 
 let flushTimer: ReturnType<typeof setTimeout> | null = null;
 

@@ -2,9 +2,10 @@ import { randomBytes, randomUUID } from "node:crypto";
 import type { EngineState } from "./engine";
 import { canonicalRequest, DEVICE_HEADER, formatDeviceHeader } from "./device-sign";
 import { createReviewSync, type Fetcher, type ReviewSync } from "./review-sync";
+import { canonicalSyncBase } from "./sync-base";
 import { refreshSession, type StoredSession, type TokenVault } from "./token-store";
 
-export const DEFAULT_SYNC_BASE = "https://bucket.foundation";
+export { canonicalSyncBase, DEFAULT_SYNC_BASE } from "./sync-base";
 export const REFRESH_MARGIN_S = 60;
 
 export interface DeviceSigner {
@@ -53,7 +54,7 @@ export function createRemoteSync(deps: RemoteDeps): RemoteSync {
   const now = deps.now ?? Date.now;
   const sleep = deps.sleep ?? ((ms: number) => new Promise<void>((r) => setTimeout(r, ms)));
   const offline = deps.offline ?? (() => false);
-  const base = deps.base.replace(/\/$/, "");
+  const base = canonicalSyncBase(deps.base);
 
   async function refresh(s: StoredSession): Promise<StoredSession | null> {
     const out = await refreshSession(f, s, now());
