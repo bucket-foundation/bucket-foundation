@@ -91,10 +91,13 @@ async function main(): Promise<void> {
 
   const jobs: Job[] = [];
   mkdirSync(OUT, { recursive: true });
-  const texts = clipTexts(corpus).filter((c) => !process.env.CLIP_LANG || c.lang === process.env.CLIP_LANG);
-  for (const c of texts) {
+  const skipped: Record<string, number> = {};
+  for (const c of clipTexts(corpus)) {
     const how = spoken(c.lang, c.text, c.reading, categories.get(`${c.lang}\u0000${c.text}`));
-    if (!how || !how.input.trim()) continue;
+    if (!how || !how.input.trim()) {
+      skipped[c.lang] = (skipped[c.lang] ?? 0) + 1;
+      continue;
+    }
     const key = audioKey(c.lang, c.text);
     const dir = join(OUT, c.lang);
     const file = join(dir, `${key}.mp3`);
@@ -123,6 +126,7 @@ async function main(): Promise<void> {
   writeFileSync(join(OUT, "index.json"), JSON.stringify(index));
   writeFileSync(inputsFile, JSON.stringify(inputs, Object.keys(inputs).sort(), 0));
   console.log(`clips: ${wanted.size} total, ${made} new, ${removed} removed`);
+  console.log(`no clip: ${Object.entries(skipped).map(([l, n]) => `${l} ${n}`).join(", ")}`);
 }
 
 if (require.main === module) main().catch((e) => {
