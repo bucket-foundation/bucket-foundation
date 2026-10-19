@@ -23,6 +23,7 @@ import { useReducedMotion } from "@/components/canon-globe/useReducedMotion";
 import { SORTS, VIEWS } from "@/lib/canon-explorer/url";
 import { useExplorerState } from "./useExplorerState";
 import { RawDetails } from "@/components/ui";
+import { plainBranch } from "@/lib/plain-branch";
 
 const R3FCanonGlobe = nextDynamic(() => import("@/components/canon-globe"), {
   ssr: false,
@@ -1062,7 +1063,7 @@ function Drawer({
                 style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
               >
                 {selected.year !== undefined && <>{fmtYear(selected.year)} · </>}
-                {selected.branch}
+                {plainBranch(selected.branch)}
                 {selected.civilization && <> · {selected.civilization}</>}
               </p>
 

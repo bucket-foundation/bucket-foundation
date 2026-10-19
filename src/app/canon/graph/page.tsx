@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { RawDetails } from "@/components/ui";
+import { plainBranch } from "@/lib/plain-branch";
 import { getCanonGraph } from "@/lib/canon-graph";
 import {
   getKGSummary,
@@ -112,13 +113,8 @@ export default function Page() {
                     className="ml-2 text-xs uppercase tracking-[0.14em]"
                     style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
                   >
-                    {c.branch}
+                    {plainBranch(c.branch)}
                   </span>
-                </span>
-                <span
-                  className="text-xs uppercase tracking-[0.16em]"
-                  style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
-                >
                 </span>
               </div>
             ))}
