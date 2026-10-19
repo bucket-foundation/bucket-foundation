@@ -154,3 +154,10 @@ test("a rate-limited refresh keeps the session for a later try", async () => {
   expect(await mobile.accessToken()).toBeNull();
   expect(JSON.parse(store.data.get(SESSION_KEY)!).refresh_token).toBe("rt-1");
 });
+
+test("the app answers the held-review action and refuses a bad one", async () => {
+  const srv = server();
+  const { fetch } = app(srv, memoryStorage(), secure());
+  expect(await (await post(fetch, "/local/review-log/held", { action: "discard" })).json()).toEqual({ discarded: 0, held: 0 });
+  expect((await post(fetch, "/local/review-log/held", { action: "nope" })).status).toBe(400);
+});
