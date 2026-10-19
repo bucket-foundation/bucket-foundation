@@ -49,7 +49,7 @@ function fakeSpawn(calls: { script: string; env: Record<string, string> }[], wri
 describe("the generation registry in the repository", () => {
   test("every listed generation has its script, a unique name and known needs", () => {
     const reg = loadRegistry(REPO);
-    expect(reg.generations.map((g) => g.name)).toEqual(["frontier-figure", "problem-star", "problem-slice", "problem-polygon", "problem-polygon-figure", "frontier-card"]);
+    expect(reg.generations.map((g) => g.name)).toEqual(["frontier-figure", "problem-star", "problem-slice", "problem-polygon", "problem-polygon-figure", "frontier-card", "paper-frontier", "paper-classes", "paper-backtest", "atlas-plots", "record-glyph", "prime-directions"]);
     for (const g of reg.generations) for (const o of g.outputs) expect(o).not.toContain("navier");
     expect(findRepo(join(REPO, "packages/bkt/src"))).toBe(REPO);
   });
@@ -119,4 +119,29 @@ test.skipIf(!existsSync(FRONTIER) || !PYTHON_OK)("the frontier figure renders fo
   const rec = runGeneration(loadRegistry(REPO), "frontier-figure", {}, { repo: REPO, out });
   expect(rec.outputs.every((f) => existsSync(join(out, f)))).toBe(true);
   expect(rec.data_sha256["output/solvability-frontier/report/frontier.json"]).toMatch(/^[0-9a-f]{64}$/);
+});
+
+test("a TypeScript generation runs under bun with the static env of its entry", () => {
+  const calls: string[][] = [];
+  writeFileSync(join(repo, "tools/generations/glyph.ts"), "x");
+  const reg: Registry = {
+    version: 1,
+    generations: [
+      { name: "glyph", script: "glyph.ts", about: "g", inputs: { problem: "id" }, env: { BKT_GEN_FIGURE: "fig_x" }, data: [], outputs: ["g.svg"] },
+      { name: "fit", script: "base.py", about: "f", inputs: { corpus: "name" }, data: [], outputs: ["f.png"] },
+    ],
+  };
+  writeFileSync(join(repo, "tools/generations/registry.json"), JSON.stringify(reg));
+  const loaded = loadRegistry(repo);
+  const out = join(home, "ts");
+  const spawn = (cmd: string[], env: Record<string, string>) => {
+    calls.push([cmd[0], env.BKT_GEN_FIGURE ?? "", env.BKT_GEN_CORPUS ?? ""]);
+    writeFileSync(join(env.BKT_GEN_OUT, cmd[1].endsWith("glyph.ts") ? "g.svg" : "f.png"), "x");
+    return { code: 0, stderr: "" };
+  };
+  runGeneration(loaded, "glyph", { problem: "navier" }, { repo, out, spawn, bun: "/bin/bun-test" });
+  runGeneration(loaded, "fit", { corpus: "80k" }, { repo, out, spawn, python: "/bin/py-test" });
+  expect(calls).toEqual([["/bin/bun-test", "fig_x", ""], ["/bin/py-test", "", "80k"]]);
+  writeFileSync(join(repo, "tools/generations/registry.json"), JSON.stringify({ version: 1, generations: [{ ...reg.generations[0], env: { PATH: "/x" } }] }));
+  expect(() => loadRegistry(repo)).toThrow(/only BKT_GEN_ variables/);
 });

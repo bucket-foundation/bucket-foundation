@@ -166,6 +166,7 @@ export const TABLE: CommandSpec[] = [
       past: { type: "boolean", help: "list earlier outputs, of one generation when named" },
       problem: { type: "string", value: "ID", help: "the problem id, such as navier" },
       label: { type: "string", value: "TEXT", help: "the name shown on a card" },
+      corpus: { type: "string", value: "NAME", help: "the corpus for prime-directions, such as 80k" },
       repo: { type: "string", value: "DIR", help: "the Bucket repository that holds tools/generations; its scripts run with python3, so point it only at a checkout you trust; the current folder when omitted" },
     },
   },

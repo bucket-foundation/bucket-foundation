@@ -12,6 +12,7 @@ export interface Generation {
   script: string;
   about: string;
   inputs: Record<string, string>;
+  env?: Record<string, string>;
   needs?: string[];
   data: string[];
   outputs: string[];
@@ -48,6 +49,8 @@ export function loadRegistry(repo: string): Registry {
     if (!NAME.test(g.name) || names.has(g.name)) throw new GenerateError(`the registry lists ${g.name} twice or under a bad name`);
     names.add(g.name);
     if (!existsSync(join(repo, "tools/generations", g.script))) throw new GenerateError(`${g.name} names a script that is not in tools/generations`);
+    if (!/\.(py|ts)$/.test(g.script)) throw new GenerateError(`${g.name} names a script that is neither Python nor TypeScript`);
+    for (const k of Object.keys(g.env ?? {})) if (!/^BKT_GEN_[A-Z]+$/.test(k)) throw new GenerateError(`${g.name} sets ${k}; a generation may set only BKT_GEN_ variables`);
   }
   for (const g of r.generations) for (const n of g.needs ?? []) if (!names.has(n)) throw new GenerateError(`${g.name} needs ${n}, which the registry does not list`);
   return r;
@@ -77,6 +80,7 @@ export interface RunOptions {
   repo: string;
   out: string;
   python?: string;
+  bun?: string;
   now?: () => Date;
   spawn?: (cmd: string[], env: Record<string, string>, cwd: string) => { code: number; stderr: string };
 }
@@ -101,9 +105,10 @@ export function runGeneration(reg: Registry, name: string, params: Record<string
     return runGeneration(reg, n, depParams, o, new Set(seen));
   });
   const script = join(o.repo, "tools/generations", g.script);
-  const env: Record<string, string> = { BKT_GEN_OUT: o.out };
+  const env: Record<string, string> = { ...(g.env ?? {}), BKT_GEN_OUT: o.out };
   for (const [k, v] of Object.entries(p)) env[`BKT_GEN_${k.toUpperCase()}`] = v;
-  const run = (o.spawn ?? defaultSpawn)([o.python ?? process.env.BKT_PYTHON ?? "python3", script], env, o.repo);
+  const runner = g.script.endsWith(".ts") ? (o.bun ?? process.execPath) : (o.python ?? process.env.BKT_PYTHON ?? "python3");
+  const run = (o.spawn ?? defaultSpawn)([runner, script], env, o.repo);
   if (run.code !== 0) throw new GenerateError(`${name} did not finish (exit ${run.code}): ${run.stderr.trim().split("\n").slice(-3).join(" ")}`);
   const outputs = g.outputs.map((t) => fill(t, p));
   const missing = outputs.filter((f) => !existsSync(join(o.out, f)));

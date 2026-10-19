@@ -92,6 +92,8 @@ function fakeApi(over: Partial<WorkspaceApi> = {}) {
     researchBuild: async (slug: string, build: string) => (builds.push([slug, build]), { state: "refused", reason: "builds are off for this output", install: null, status: 403 }),
     researchBuildState: async () => ({ pending: null, job: null }),
     installedDecks: async () => ({ decks: [] }),
+    generations: async () => ({ generations: [], repo: true }),
+    generatedImage: async (name: string, run: string, file: string) => (images.push(`${name}/${run}/${file}`), "data:image/svg+xml;base64,AAAA"),
     advisor: async () => ({ review: null, forgotten: 0 }),
     library: async () => ({ built: "1970-01-01", refreshedAt: null, offline: true, from: "bundled", signed: false, decks: [] }),
     researchSave: async (slug: string, path: string, base: string, text: string): Promise<SaveResult> => (saves.push({ slug, path, base, text }), { saved: true, rev: "rev-next", changed: true }),
@@ -543,6 +545,32 @@ describe("figures workspace", () => {
     const { NOT_LOADED } = await import("./views/Data");
     expect(gone.host.querySelector('[role="tabpanel"]')!.textContent).toBe(NOT_LOADED);
     await gone.unmount();
+  });
+
+  test("renders show with their command, and a drawn image opens from the list", async () => {
+    const RUN = "20261019T101500-0a1b2c3d";
+    const drawn: WorkspaceItem = { type: "figures", key: `generated:record-glyph:${RUN}:riemann-glyph.svg`, title: "riemann-glyph.svg, riemann", from: { kind: "generation", id: "record-glyph", title: "The record glyph" }, origin: "local", licence: "", changed: false, opens: "#/workspace/figures", explore: null };
+    const f = fakeApi({
+      workspaceItems: async () => ({ items: [drawn], total: 1, page: 1, size: 50 }),
+      generations: async () => ({ repo: true, generations: [
+        { name: "record-glyph", about: "The record glyph", inputs: ["problem"], command: "bkt generate record-glyph --problem ...", last: { run: RUN, created: "2026-10-19T10:15:00Z", folder: "x", outputs: ["riemann-glyph.svg"] } },
+        { name: "atlas-plots", about: "The nine atlas plots", inputs: [], command: "bkt generate atlas-plots", last: null },
+      ] }),
+    });
+    const store = memory();
+    const v = await workspace(f.api, "figures", store);
+    const { NEVER_RUN, RENDERS_ABOUT } = await import("./views/Workspace");
+    const renders = v.host.querySelector("section.renders")!;
+    expect(renders.querySelector("p")!.textContent).toBe(RENDERS_ABOUT);
+    expect(Array.from(renders.querySelectorAll("tbody tr")).map((tr) => Array.from(tr.querySelectorAll("td")).map((td) => td.textContent))).toEqual([
+      ["The record glyph", "2026-10-19", "bkt generate record-glyph --problem ..."],
+      ["The nine atlas plots", NEVER_RUN, "bkt generate atlas-plots"],
+    ]);
+    await v.click(press(v.host, "riemann-glyph.svg, riemann"));
+    expect(f.images).toEqual([`record-glyph/${RUN}/riemann-glyph.svg`]);
+    expect(v.host.querySelector("img.generated-figure")!.getAttribute("src")).toBe("data:image/svg+xml;base64,AAAA");
+    expect(JSON.parse(store.data["bucket.workspace.figures.tabs"]).active).toBe(drawn.key);
+    await v.unmount();
   });
 
   test("a figure opens from its four-part research address, and a table from its own", async () => {
