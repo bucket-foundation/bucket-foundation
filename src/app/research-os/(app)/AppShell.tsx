@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
 import { useAccountGate } from "@/components/auth/AccountGate";
 import { isGuestPath } from "@/lib/auth/paths";
+import { trackOpenOnce } from "@/lib/analytics/funnel";
 import SearchPalette from "./SearchPalette";
 import WorkQuiz from "./quiz/WorkQuiz";
 import { inLaunchScope } from "@/lib/research-os/launch-scope";
@@ -72,6 +73,10 @@ export default function AppShell({ user, host, children }: { user: ShellUser | n
     requireAccount(() => router.push(href(target)));
   };
   const [searchOpen, setSearchOpen] = useState(false);
+  useEffect(() => {
+    trackOpenOnce({ guest: !user, path: pathname });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
