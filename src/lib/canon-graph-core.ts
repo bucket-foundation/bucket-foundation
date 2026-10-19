@@ -92,10 +92,12 @@ export function excerptsByAuthor(nodes: RawGraph["nodes"], excerpts: ExcerptByli
   return out;
 }
 
+export const SHORT_WORD = 4;
+
 export function matchNodes(g: CanonGraph, query: string): string[] {
   const words = fold(query).filter((w) => w.length >= 3);
   if (!words.length) return [];
-  return g.nodes.filter((n) => fold(n.name).some((part) => words.some((w) => part.startsWith(w)))).map((n) => n.id);
+  return g.nodes.filter((n) => fold(n.name).some((part) => words.some((w) => (w.length < SHORT_WORD ? part === w : part.startsWith(w))))).map((n) => n.id);
 }
 
 export interface Placed {
