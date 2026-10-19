@@ -1226,13 +1226,15 @@ describe("Research OS views on the local store", () => {
   const realFetch = globalThis.fetch;
   let routes: Record<string, (req: Request, url: URL) => Response | Promise<Response>> = {};
 
+  const savedExports: { name: string; text: string }[] = [];
+
   async function useLocalStore(opened: string[] = []) {
     const { Store } = await import("../../bkt/src/store");
     const { newDataKey } = await import("../../bkt/src/crypto");
     const { RosGraph, rosLiveRoutes, syncRosGraph } = await import("../../bkt/src/ros");
     const db = new Store(":memory:", newDataKey()).db;
     syncRosGraph(db, "test", ATOMS);
-    routes = rosLiveRoutes(new RosGraph(db), () => Date.UTC(2026, 8, 30));
+    routes = rosLiveRoutes(new RosGraph(db), () => Date.UTC(2026, 8, 30), { saveExport: (name, text) => (savedExports.push({ name, text }), { name, folder: "Downloads" }) });
     const { siteFetch } = await import("./site-fetch");
     const loop = (async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = new URL(String(input), "http://127.0.0.1");
@@ -1320,6 +1322,36 @@ describe("Research OS views on the local store", () => {
     await v.act(async () => new Promise((r) => setTimeout(r, 20)));
     expect(saved).toBe(1);
     expect(v.host.textContent).toContain("Saved your progress in Downloads as bucket-progress-2026-09-30.");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("the profile exports to the downloads folder and deletes only after the confirm word", async () => {
+    await useLocalStore(["02-physics:ph-heat"]);
+    const v = await mount({ name: "profile" }, empty());
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.host.textContent).toMatch(/Badges: \d+ ideas made your own · \d+ pieces of work/);
+    const click = async (label: string) => {
+      const b = [...v.host.querySelectorAll("button")].find((x) => x.textContent === label) as HTMLButtonElement;
+      await v.act(async () => b.click());
+      await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    };
+    await click("Export my profile and idea progress");
+    expect(v.text()).toContain("Saved your profile and idea progress in Downloads as research-os-export-2026-09-30.");
+    expect(violations(v.host)).toEqual([]);
+    expect(JSON.parse(savedExports.at(-1)!.text).tables.ros_state).toHaveLength(1);
+    await click("Delete my profile and idea progress");
+    const del = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Delete") as HTMLButtonElement;
+    expect(del.disabled).toBe(true);
+    const input = v.host.querySelector('input[aria-label="type the confirm word"]') as HTMLInputElement;
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")!.set!;
+    await v.act(async () => {
+      setter.call(input, "DELETE");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+    await click("Delete");
+    expect(v.text()).toContain("Your data on this computer is deleted.");
+    expect(v.text()).toContain("Open an idea on the knowledge graph to start earning XP.");
     expect(violations(v.host)).toEqual([]);
     await v.unmount();
   });

@@ -139,7 +139,7 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
   };
 }
 
-const SYSTEMS_META = "lang_systems";
+export const SYSTEMS_META = "lang_systems";
 const SYSTEMS_AT = "lang_systems_at";
 const DECK_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
 export const IMPORT_BODY_BYTES = 8 * 1024 * 1024;

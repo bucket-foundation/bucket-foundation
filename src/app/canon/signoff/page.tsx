@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { getSupabase } from "@/lib/supabase/client";
 import SignInGate from "@/components/auth/SignInGate";
+import { RawDetails } from "@/components/ui";
 
 interface PendingRecord {
   id: string;
@@ -53,7 +54,7 @@ export default function CanonSignoffPage() {
       const res = await fetch("/api/canon/signoff", { headers: authHeaders() });
       const data = (await res.json().catch(() => ({}))) as { error?: string; records?: PendingRecord[] };
       if (!res.ok) {
-        setListError(res.status === 403 ? "forbidden" : data.error || "load_failed");
+        setListError(res.status === 403 ? "forbidden" : `${data.error ?? "load failed"} (${res.status})`);
         setRecords(null);
         return;
       }
@@ -90,7 +91,7 @@ export default function CanonSignoffPage() {
         body: JSON.stringify({ action, record: `${record.path}#${record.id}`, reason: reason || undefined }),
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
-      setNotice(res.ok ? `${action === "approve" ? "Approved" : "Rejected"} ${record.id}.` : data.error || "signoff_failed");
+      setNotice(res.ok ? `${action === "approve" ? "Approved" : "Rejected"}: ${record.title}.` : "The sign-off did not save. Try again.");
       if (res.ok) loadRecords();
     } finally {
       setBusyId(null);
@@ -126,7 +127,10 @@ export default function CanonSignoffPage() {
           </p>
         )}
         {listError && listError !== "forbidden" && (
-          <p className="mt-6 text-[13px] text-red-700">Could not load the queue ({listError}).</p>
+          <div className="mt-6 text-[13px] text-red-700">
+            <p>Bucket could not load the queue. Try again.</p>
+            <RawDetails raw={listError} />
+          </div>
         )}
 
         {records && (
@@ -142,8 +146,9 @@ export default function CanonSignoffPage() {
                     <strong>{r.title}</strong>
                   </div>
                   <div className="mt-1 text-[12px] text-[color:var(--basalt-2)]">
-                    {r.tier} &middot; score {r.canonScore} &middot; {r.doi ? `DOI ${r.doi}` : "no DOI"} &middot; {r.path}#{r.id}
+                    {r.tier} &middot; {r.doi ? `DOI ${r.doi}` : "no DOI"}
                   </div>
+                  <RawDetails raw={`score ${r.canonScore}\n${r.path}#${r.id}`} />
                   <input
                     value={reasons[r.id] || ""}
                     onChange={(e) => setReasons((prev) => ({ ...prev, [r.id]: e.target.value }))}

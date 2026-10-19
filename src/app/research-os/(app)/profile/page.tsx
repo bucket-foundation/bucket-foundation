@@ -11,6 +11,7 @@ import GameSection from "./GameSection";
 import ConsentPayeeSection from "./ConsentPayeeSection";
 import PrivacySection from "./PrivacySection";
 import SignInGate from "@/components/auth/SignInGate";
+import { RawDetails } from "@/components/ui";
 
 const ROLE_OPTIONS: LearnerRole[] = ["student", "teacher", "independent"];
 const BUCKET_OPTIONS: BirthYearBucket[] = ["under13", "13to17", "18plus"];
@@ -60,7 +61,7 @@ export default function ResearchOsProfilePage() {
         const res = await fetch("/api/research-os/profile", { headers: { authorization: `Bearer ${token}` } });
         const data = (await res.json().catch(() => ({}))) as { profile?: ProfileResponse | null; error?: string };
         if (!res.ok) {
-          setLoadError(isTransientOutage(res.status, data.error ?? null) ? "transient" : data.error || "load_failed");
+          setLoadError(isTransientOutage(res.status, data.error ?? null) ? "transient" : `${data.error ?? "load failed"} (${res.status})`);
           return;
         }
         if (data.profile) {
@@ -95,7 +96,7 @@ export default function ResearchOsProfilePage() {
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string; profile?: ProfileResponse | null };
       if (!res.ok) {
-        setSaveError(isTransientOutage(res.status, data.error ?? null) ? OUTAGE_COPY.body : data.error || "save_failed");
+        setSaveError(isTransientOutage(res.status, data.error ?? null) ? OUTAGE_COPY.body : "Bucket could not save your profile. Try again.");
         return;
       }
       setExisting(data.profile ?? null);
@@ -130,7 +131,12 @@ export default function ResearchOsProfilePage() {
         <SignInGate signedIn={Boolean(token)} />
 
         {loadError === "transient" && <p className="mt-4 text-[13px] text-red-700">{OUTAGE_COPY.body}</p>}
-        {loadError && loadError !== "transient" && <p className="mt-4 text-[13px] text-red-700">Could not load your profile ({loadError}).</p>}
+        {loadError && loadError !== "transient" && (
+          <div className="mt-4 text-[13px] text-red-700">
+            <p>Bucket could not load your profile. Try again.</p>
+            <RawDetails raw={loadError} />
+          </div>
+        )}
 
         {token && (
           <div className="mt-6 p-4 bg-[color:var(--bone)] flex flex-col gap-5">
