@@ -1,6 +1,7 @@
 "use client";
 
 import { mergeState, normalizeState, type EngineState } from "./engine";
+import { getBrowserSupabase, supabaseConfigured } from "../supabase/browser";
 import { createReviewSync, type PulledReview, type QueuedReview, type ReviewEvent } from "./review-sync";
 
 export type ServerBranches = Record<string, { data: unknown; updated_at: string }>;
@@ -76,11 +77,26 @@ export const reviewSync = createReviewSync({
   uuid: () => crypto.randomUUID(),
   readLocal,
   pushSnapshot: pushBranch,
+  onProblem: (problem, count) => console.error("academy review outbox", problem, count),
 });
+
+let authWatched = false;
+function watchAuth(): void {
+  if (authWatched || typeof window === "undefined" || !supabaseConfigured()) return;
+  authWatched = true;
+  try {
+    const sb = getBrowserSupabase();
+    void sb.auth.getSession().then(({ data }) => reviewSync.setUser(data.session?.user.id ?? null));
+    sb.auth.onAuthStateChange((_event, session) => reviewSync.setUser(session?.user.id ?? null));
+  } catch (e) {
+    console.error("academy review outbox auth watch", e);
+  }
+}
 
 let flushTimer: ReturnType<typeof setTimeout> | null = null;
 
 export function appendReview(branch: string, review: ReviewEvent): QueuedReview {
+  watchAuth();
   const q = reviewSync.appendReview(branch, review);
   if (flushTimer) clearTimeout(flushTimer);
   flushTimer = setTimeout(() => {
@@ -97,6 +113,7 @@ export async function pullLog(): Promise<PulledReview[] | null> {
 
 export async function loadBranch(branch: string, server?: ServerBranches | null): Promise<EngineState> {
   const local = readLocal(branch);
+  watchAuth();
   void pullLog();
   const remote = server === undefined ? await pullServer() : server;
   const remoteState = remote && remote[branch] ? normalizeState(remote[branch].data) : null;

@@ -25,6 +25,7 @@ export interface QueuedReview extends ReviewEvent {
   branch: string;
   device_id: string;
   owner?: string;
+  queued_at?: number;
 }
 
 export interface SeedEntry {
@@ -36,7 +37,15 @@ export interface SeedEntry {
 interface Outbox {
   seeds: SeedEntry[];
   reviews: QueuedReview[];
+  held: QueuedReview[];
 }
+
+interface Owner {
+  user: string;
+  confirmed_at: number;
+}
+
+export type SyncProblem = "outbox_full" | "outbox_write_failed" | "owner_ambiguous";
 
 export interface PulledReview extends QueuedReview {
   seq: number;
@@ -54,6 +63,8 @@ export interface ReviewSyncDeps {
   pushSnapshot: (branch: string, state: EngineState) => Promise<boolean>;
   base?: string;
   lock?: <T>(fn: () => Promise<T>) => Promise<T>;
+  now?: () => number;
+  onProblem?: (p: SyncProblem, count: number) => void;
 }
 
 export interface ReviewSync {
@@ -64,6 +75,8 @@ export interface ReviewSync {
   cursor(): number;
   mode(): SyncMode;
   deviceId(): string;
+  setUser(user: string | null): void;
+  held(): QueuedReview[];
 }
 
 function read<T>(s: Storage | null, key: string, fallback: T): T {
@@ -76,10 +89,13 @@ function read<T>(s: Storage | null, key: string, fallback: T): T {
   }
 }
 
-function write(s: Storage | null, key: string, value: unknown): void {
+function write(s: Storage | null, key: string, value: unknown): boolean {
+  if (!s) return false;
   try {
-    s?.setItem(key, JSON.stringify(value));
+    s.setItem(key, JSON.stringify(value));
+    return true;
   } catch {
+    return false;
   }
 }
 
@@ -98,14 +114,45 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
   let mode: SyncMode = "unknown";
   let inflight: Promise<void> | null = null;
 
-  const owner = () => read<string>(deps.storage(), OWNER_KEY, "");
+  const now = deps.now ?? Date.now;
+  const report = (p: SyncProblem, n: number) => deps.onProblem?.(p, n);
+  const ownerRecord = (): Owner => {
+    const o = read<Partial<Owner> | string>(deps.storage(), OWNER_KEY, "");
+    return typeof o === "string" ? { user: o, confirmed_at: 0 } : { user: o.user ?? "", confirmed_at: o.confirmed_at ?? 0 };
+  };
+  const owner = () => ownerRecord().user;
+  const confirmOwner = (user: string) => write(deps.storage(), OWNER_KEY, { user, confirmed_at: now() });
   const cursorKey = (user: string) => `${CURSOR_KEY}/${user}`;
   const seededKey = (user: string, branch: string) => `${SEEDED_PREFIX}${user}/${branch}`;
   const loadOutbox = (): Outbox => {
     const o = read<Partial<Outbox>>(deps.storage(), OUTBOX_KEY, {});
-    return { seeds: Array.isArray(o.seeds) ? o.seeds : [], reviews: Array.isArray(o.reviews) ? o.reviews : [] };
+    return { seeds: Array.isArray(o.seeds) ? o.seeds : [], reviews: Array.isArray(o.reviews) ? o.reviews : [], held: Array.isArray(o.held) ? o.held : [] };
   };
   const mutate = (fn: (o: Outbox) => Outbox) => write(deps.storage(), OUTBOX_KEY, fn(loadOutbox()));
+
+  function switchOwner(next: string): void {
+    const prev = ownerRecord();
+    if (prev.user && prev.user !== next) {
+      let moved = 0;
+      mutate((o) => {
+        const ambiguous = (r: QueuedReview) => r.owner === prev.user && (r.queued_at ?? 0) > prev.confirmed_at;
+        const out = o.reviews.filter(ambiguous);
+        moved = out.length;
+        return { ...o, reviews: o.reviews.filter((r) => !ambiguous(r)), held: o.held.concat(out) };
+      });
+      if (moved > 0) report("owner_ambiguous", moved);
+    }
+    confirmOwner(next);
+  }
+
+  function setUser(user: string | null): void {
+    const next = user ?? "";
+    if (next === owner()) {
+      if (next) confirmOwner(next);
+      return;
+    }
+    write(deps.storage(), OWNER_KEY, { user: next, confirmed_at: now() });
+  }
   const mine = (user: string) => (x: { owner?: string }) => !x.owner || x.owner === user;
   const notMine = (user: string) => (x: { owner?: string }) => !mine(user)(x);
 
@@ -120,8 +167,9 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
 
   function appendReview(branch: string, review: ReviewEvent): QueuedReview {
     const who = owner();
-    const q: QueuedReview = { ...review, review_id: deps.uuid(), branch, device_id: deviceId(), ...(who ? { owner: who } : {}) };
-    mutate((o) => {
+    const q: QueuedReview = { ...review, review_id: deps.uuid(), branch, device_id: deviceId(), queued_at: now(), ...(who ? { owner: who } : {}) };
+    let size = 0;
+    const ok = mutate((o) => {
       const alreadySeeded = who !== "" && read<boolean>(deps.storage(), seededKey(who, branch), false);
       const queued = o.seeds.some((x) => x.branch === branch && (x.owner ?? "") === who);
       if (!alreadySeeded && !queued) {
@@ -129,9 +177,11 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
         if (local) o.seeds.push({ branch, data: local, ...(who ? { owner: who } : {}) });
       }
       o.reviews.push(q);
-      if (o.reviews.length > OUTBOX_CAP) o.reviews = o.reviews.slice(o.reviews.length - OUTBOX_CAP);
+      size = o.reviews.length;
       return o;
     });
+    if (!ok) report("outbox_write_failed", size);
+    else if (size > OUTBOX_CAP) report("outbox_full", size);
     return q;
   }
 
@@ -155,7 +205,7 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
     return true;
   }
 
-  const dropMine = (user: string) => mutate((o) => ({ seeds: o.seeds.filter(notMine(user)), reviews: o.reviews.filter(notMine(user)) }));
+  const dropMine = (user: string) => mutate((o) => ({ ...o, seeds: o.seeds.filter(notMine(user)), reviews: o.reviews.filter(notMine(user)) }));
 
   async function flushOnce(): Promise<void> {
     if (loadOutbox().reviews.length === 0) return;
@@ -164,12 +214,12 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
       mode = "snapshot";
       const who = owner();
       if (who) dropMine(who);
-      else mutate(() => ({ seeds: [], reviews: [] }));
+      else mutate((o) => ({ ...o, seeds: [], reviews: [] }));
       return;
     }
     if (p.kind !== "log") return;
     const user = p.user;
-    write(deps.storage(), OWNER_KEY, user);
+    switchOwner(user);
     for (;;) {
       const queue = loadOutbox().reviews.filter(mine(user));
       if (queue.length === 0) return;
@@ -179,7 +229,7 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
       }
       const batch = queue.filter((r) => ready.has(r.branch)).slice(0, BATCH);
       if (batch.length === 0) return;
-      const body = JSON.stringify({ reviews: batch.map((r) => ({ ...r, owner: undefined })) });
+      const body = JSON.stringify({ reviews: batch.map((r) => ({ ...r, owner: undefined, queued_at: undefined })) });
       let res: Response;
       try {
         res = await deps.fetch(base, { method: "POST", headers: { "content-type": "application/json" }, body });
@@ -230,7 +280,7 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
       mode = "log";
       const j = (await res.json()) as { user: string; reviews: PulledReview[]; cursor: number; more: boolean };
       if (j.user !== who) {
-        write(s, OWNER_KEY, j.user);
+        switchOwner(j.user);
         out.length = 0;
         continue;
       }
@@ -251,5 +301,7 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
     },
     mode: () => mode,
     deviceId,
+    setUser,
+    held: () => loadOutbox().held,
   };
 }

@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { buildEncompassingMap, grade, mergeState, normalizeState, type Atom, type EngineState } from "../src/lib/academy/engine";
 import { corpusAtomsVersion } from "../src/lib/academy/replay";
 import { createReviewLogHandlers, type AppendRow, type StoredReview } from "../src/lib/academy/review-log-server";
-import { createReviewSync, type Fetcher, type ReviewEvent, type ReviewSync } from "../src/lib/academy/review-sync";
+import { OUTBOX_CAP, OUTBOX_KEY, createReviewSync, type Fetcher, type ReviewEvent, type ReviewSync } from "../src/lib/academy/review-sync";
 
 const BRANCH = "01-mathematics";
 const ATOMS = [
@@ -97,6 +97,9 @@ function tabLock<T>(fn: () => Promise<T>): Promise<T> {
   return run;
 }
 
+let clock = T0;
+const problems: [string, number][] = [];
+
 class Tab {
   sync: ReviewSync;
   state: EngineState;
@@ -112,6 +115,8 @@ class Tab {
       readLocal: () => this.readLocal(),
       pushSnapshot: server.pushSnapshot,
       lock: tabLock,
+      now: () => ++clock,
+      onProblem: (p, n) => void problems.push([p, n]),
     });
   }
   readLocal(): EngineState | null {
@@ -231,13 +236,13 @@ test("reviews queued by one account never post under the next account in the sam
   server.user = "u2";
   await tab.sync.flush();
   assert.equal(server.log.filter((r) => r.user === "u2").length, 0);
-  assert.equal(tab.sync.pending().length, 1);
+  assert.equal(tab.sync.pending().length + tab.sync.held().length, 1);
   assert.equal(await tab.sync.pullLog().then((r) => r?.length), 0);
   assert.equal(tab.sync.cursor(), 0);
   server.user = "u1";
   await tab.sync.flush();
-  assert.equal(server.log.filter((r) => r.user === "u1").length, 2);
-  assert.equal(tab.sync.pending().length, 0);
+  assert.equal(server.log.filter((r) => r.user === "u1").length, 1);
+  assert.equal(server.log.filter((r) => r.user === "u2").length, 0);
 });
 
 test("a no_profile refusal keeps the outbox and a minor refusal drops it", async () => {
@@ -277,4 +282,76 @@ test("a review appended in one tab while another tab flushes is kept", async () 
   await b.sync.flush();
   assert.deepEqual(server.log.map((r) => r.card_id).sort(), ["a1", "a2"]);
   assert.equal(a.sync.pending().length, 0);
+});
+
+test("after a signed-in account switch, new reviews post only under the new account", async () => {
+  const server = new Server();
+  const tab = new Tab(server, memoryStorage());
+  tab.sync.setUser("u1");
+  tab.study("a1", T0);
+  await tab.sync.flush();
+  tab.sync.setUser("u2");
+  server.user = "u2";
+  tab.study("a2", T0 + 1000);
+  await tab.sync.flush();
+  assert.deepEqual(server.log.map((r) => [r.user, r.card_id]), [["u1", "a1"], ["u2", "a2"]]);
+});
+
+test("a review queued after the last confirmation is held when the server reports another account", async () => {
+  const server = new Server();
+  const storage = memoryStorage();
+  const tab = new Tab(server, storage);
+  tab.sync.setUser("u1");
+  server.online = false;
+  tab.study("a1", T0);
+  server.online = true;
+  server.user = "u2";
+  problems.length = 0;
+  await tab.sync.flush();
+  assert.equal(server.log.length, 0);
+  assert.equal(tab.sync.held().length, 1);
+  assert.deepEqual(problems, [["owner_ambiguous", 1]]);
+  server.user = "u1";
+  await tab.sync.flush();
+  tab.sync.setUser("u1");
+  await tab.sync.flush();
+  assert.equal(server.log.length, 0);
+  assert.equal(tab.sync.held().length, 1);
+});
+
+test("a review queued while an account was confirmed still posts under it after a later switch back", async () => {
+  const server = new Server();
+  const tab = new Tab(server, memoryStorage());
+  tab.sync.setUser("u1");
+  tab.study("a1", T0);
+  await tab.sync.flush();
+  server.online = false;
+  tab.study("a2", T0 + 1000);
+  tab.sync.setUser("u2");
+  server.online = true;
+  server.user = "u2";
+  await tab.sync.flush();
+  assert.equal(server.log.filter((r) => r.user === "u2").length, 0);
+  tab.sync.setUser("u1");
+  server.user = "u1";
+  await tab.sync.flush();
+  assert.deepEqual(server.log.map((r) => [r.user, r.card_id]), [["u1", "a1"], ["u1", "a2"]]);
+});
+
+test("a full outbox keeps every review and reports it, and a failed write is reported", async () => {
+  const server = new Server();
+  server.online = false;
+  const storage = memoryStorage();
+  const tab = new Tab(server, storage);
+  problems.length = 0;
+  for (let i = 0; i <= OUTBOX_CAP; i++) tab.sync.appendReview(BRANCH, { card_id: "a1", rating: 3, level: "recall", reviewed_at: T0 + i, tz: "UTC", atoms_version: corpusAtomsVersion(BRANCH) });
+  assert.equal(tab.sync.pending().length, OUTBOX_CAP + 1);
+  assert.deepEqual(problems.at(-1), ["outbox_full", OUTBOX_CAP + 1]);
+  const set = storage.setItem.bind(storage);
+  storage.setItem = (k, v) => {
+    if (k === OUTBOX_KEY) throw new Error("QuotaExceededError");
+    set(k, v);
+  };
+  tab.study("a2", T0);
+  assert.equal(problems.at(-1)?.[0], "outbox_write_failed");
 });
