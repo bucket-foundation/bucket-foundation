@@ -26,7 +26,7 @@ export const JSON_SHAPES = {
   generate: [["generations", ["name", "about", "inputs"]], ["runs", ["name", "folder", "created", "params", "outputs"]], "folder", "outputs"],
   login: ["user_code", "verification_uri", "signed_in", "user_id", "device_id"],
   logout: ["signed_in"],
-  sync: ["mode", "pending", "held", "pulled"],
+  sync: ["mode", "pending", "held", "pulled", "merged"],
   analyses: [["analyses", ["name", "dir", "mtime"]]],
   update: ["status", "version", "tag", "asset", "sha256", "url", "error"],
   analyze: [
