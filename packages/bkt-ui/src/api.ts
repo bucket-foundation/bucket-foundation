@@ -423,6 +423,10 @@ export class Api {
     return this.call<{ decks: DeckRow[] }>("/local/decks").then((r) => r.decks);
   }
 
+  exportProgress() {
+    return this.call<{ name: string; folder: string }>("/local/progress/export", { method: "POST", body: {} });
+  }
+
   atoms(deck: string) {
     return this.call<{ atoms: Atom[] }>(`/local/atoms?deck=${encodeURIComponent(deck)}`).then((r) => r.atoms);
   }
