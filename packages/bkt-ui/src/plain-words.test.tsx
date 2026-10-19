@@ -307,6 +307,10 @@ function empty(): Stub {
     settings: async () => ({ version: "0.5.0", build: null, dataDir: "/data/bucket", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
     agents: async () => ({ v: 1, supported: false, installed: false, sessions: [] }),
+    agentsV2: async () => ({ v: 1, supported: true, installed: true, sessions: [], chats: [] }),
+    agentTools: async () => [],
+    agentFolders: async () => [],
+    agentProviders: async () => [],
     reportFocus: async () => ({ ok: true }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
     wordLicence: async () => WORD_LICENCE,
@@ -431,6 +435,10 @@ function failing(): Stub {
     settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
     agents: fail("data key does not match", 500),
+    agentsV2: fail("data key does not match", 500),
+    agentTools: fail("data key does not match", 500),
+    agentFolders: fail("data key does not match", 500),
+    agentProviders: fail("data key does not match", 500),
     reportFocus: fail("data key does not match", 500),
     wordLicence: fail("data key does not match", 500),
     wordDecks: fail("data key does not match", 500),
@@ -488,7 +496,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "advisors" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "agents" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "advisors" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -500,7 +508,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Agents", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -561,7 +569,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Agents", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
   });
 

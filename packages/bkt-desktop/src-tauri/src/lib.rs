@@ -1,6 +1,9 @@
+pub mod agents;
+
 use std::collections::HashMap;
 use std::sync::Mutex;
 use std::time::{Duration, Instant};
+use tauri::menu::{MenuBuilder, MenuItemBuilder, SubmenuBuilder};
 use tauri::{Manager, RunEvent, Url};
 use tauri_plugin_deep_link::DeepLinkExt;
 use tauri_plugin_shell::process::{CommandChild, CommandEvent};
@@ -82,6 +85,10 @@ impl LinkState {
             Some(route) => with_route(base, &route),
             None => base.clone(),
         }
+    }
+
+    pub fn base(&self) -> Option<&Url> {
+        self.base.as_ref()
     }
 
     pub fn loaded(&mut self, base: Url) {
@@ -651,6 +658,52 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
     Ok(())
 }
 
+#[tauri::command]
+fn launch_agent(window: tauri::WebviewWindow, link: tauri::State<'_, Link>, agents: tauri::State<'_, agents::Agents>, tool: String, folder: String) -> Result<(), String> {
+    if window.label() != "main" {
+        return Err("only the main window can open agents".into());
+    }
+    let page = window.url().map_err(|e| e.to_string())?;
+    if !agents::same_origin(&page, link.0.lock().unwrap().base()) {
+        return Err("only the Bucket page can open agents".into());
+    }
+    agents.launch(&tool, &folder)
+}
+
+fn approve_folder(app: &tauri::AppHandle) {
+    let Some(state) = app.state::<agents::Agents>().state.clone() else {
+        show_error(app, "Bucket could not find its state folder");
+        return;
+    };
+    let handle = app.clone();
+    tauri::async_runtime::spawn(async move {
+        let picked = rfd::AsyncFileDialog::new().set_title("Approve a folder for agents").pick_folder().await;
+        if let Some(folder) = picked {
+            if let Err(e) = agents::add_folder(&state, folder.path()) {
+                show_error(&handle, &e);
+            }
+        }
+    });
+}
+
+fn agents_menu(app: &tauri::App) -> tauri::Result<()> {
+    let item = MenuItemBuilder::with_id(agents::APPROVE_MENU_ID, "Approve a folder for agents").build(app)?;
+    let sub = SubmenuBuilder::new(app, "Agents").item(&item).build()?;
+    let menu = match app.menu() {
+        Some(menu) => menu,
+        None if cfg!(target_os = "macos") => tauri::menu::Menu::default(app.handle())?,
+        None => MenuBuilder::new(app).build()?,
+    };
+    menu.append(&sub)?;
+    app.set_menu(menu)?;
+    app.on_menu_event(|app, event| {
+        if event.id() == agents::APPROVE_MENU_ID {
+            approve_folder(app);
+        }
+    });
+    Ok(())
+}
+
 pub fn updates_enabled() -> bool {
     !cfg!(debug_assertions)
 }
@@ -672,7 +725,12 @@ pub fn run() {
         .manage(Sidecar(Mutex::new(None)))
         .manage(Consent(Mutex::new(ConsentDesk::default())))
         .manage(Link(Mutex::new(LinkState::default())))
+        .manage(agents::Agents::at_startup())
+        .invoke_handler(tauri::generate_handler![launch_agent])
         .setup(|app| {
+            if let Err(e) = agents_menu(app) {
+                eprintln!("bucket could not add the Agents menu: {e}");
+            }
             let links = app.handle().clone();
             app.deep_link().on_open_url(move |event| {
                 if let Some(route) = event.urls().iter().find_map(|u| link_route(u.as_str())) {
@@ -1298,12 +1356,38 @@ mod tests {
         assert!(shipped.contains(".register_uri_scheme_protocol(CONSENT_SCHEME,"));
         assert!(shipped.contains("tauri::WebviewUrl::CustomProtocol(page)"));
         assert!(shipped.contains("default-src 'none'"));
-        assert!(!shipped.contains("invoke_handler"));
+        assert_eq!(shipped.matches("invoke_handler").count(), 1);
+        assert!(shipped.contains(".invoke_handler(tauri::generate_handler![launch_agent])"));
+        assert_eq!(shipped.matches("#[tauri::command]").count(), 1);
         assert!(!shipped.contains("tauri_plugin_dialog"));
         assert!(!shipped.contains(".eval(&format!(\"document.getElementById('consent"));
         let caps: serde_json::Value = serde_json::from_str(include_str!("../capabilities/default.json")).unwrap();
         assert_eq!(caps["permissions"], serde_json::json!([]));
         assert_eq!(caps["windows"], serde_json::json!(["main"]));
+    }
+
+    #[test]
+    fn the_page_gains_exactly_launch_agent_and_nothing_writes_the_folder_list() {
+        let shipped = include_str!("lib.rs").split("#[cfg(test)]").next().unwrap();
+        let caps: serde_json::Value = serde_json::from_str(include_str!("../capabilities/agents.json")).unwrap();
+        assert_eq!(caps["permissions"], serde_json::json!(["allow-launch-agent"]));
+        assert_eq!(caps["windows"], serde_json::json!(["main"]));
+        assert_eq!(caps["remote"]["urls"], serde_json::json!(["http://127.0.0.1:*"]));
+        assert!(include_str!("../build.rs").contains(".commands(&[\"launch_agent\"])"));
+        let conf: serde_json::Value = serde_json::from_str(include_str!("../tauri.conf.json")).unwrap();
+        assert_eq!(conf["app"]["security"]["capabilities"], serde_json::json!(["default", "agents"]));
+        assert_eq!(conf["app"]["withGlobalTauri"], serde_json::json!(false));
+        let command = shipped.split("fn launch_agent(").nth(1).unwrap().split("\n}\n").next().unwrap();
+        assert!(command.contains("window.label() != \"main\""));
+        assert!(command.contains("agents::same_origin(&page, link.0.lock().unwrap().base())"));
+        let menu = shipped.split("fn agents_menu(").nth(1).unwrap().split("\n}\n").next().unwrap();
+        assert!(menu.contains("Some(menu) => menu") && menu.contains("menu.append(&sub)"));
+        assert!(!command.contains("add_folder") && !command.contains("write"));
+        assert_eq!(shipped.matches("agents::add_folder(").count(), 1);
+        let approve = shipped.split("fn approve_folder(").nth(1).unwrap().split("\n}\n").next().unwrap();
+        assert!(approve.contains("agents::add_folder(") && approve.contains("rfd::AsyncFileDialog::new()"));
+        assert_eq!(shipped.matches("approve_folder(app)").count(), 1);
+        assert!(shipped.contains("if event.id() == agents::APPROVE_MENU_ID {"));
     }
 
     #[test]

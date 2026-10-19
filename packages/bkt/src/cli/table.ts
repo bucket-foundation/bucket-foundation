@@ -92,6 +92,7 @@ export const TABLE: CommandSpec[] = [
   { name: "ask", summary: "ask the Bucket agent a question; it answers from the canon with citations", args: "<question>", positionals: [1, 1], options: { provider: { type: "string", value: "NAME", help: "provider from bkt llm list; a local one when omitted" } } },
   { name: "llm doctor", summary: "check the GPU, the local model server and one test completion", options: { model: { type: "string", value: "MODEL", help: "model to test" } } },
   { name: "wait status", summary: "show whether the agent hooks are on and the last events" },
+  { name: "agents", summary: "list coding agents and chat with the Bucket agent", terminal: "always" },
   {
     name: "analyze",
     summary: "check a data file, run the analysis suite and save a report",

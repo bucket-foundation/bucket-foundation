@@ -89,6 +89,8 @@ import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReo
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
 import { askCommand, llmCommand } from "./llm";
 import { Database } from "bun:sqlite";
+import { agentsCmd } from "./agents-cmd";
+import { agentRoutes, canonRunner } from "../agents";
 import { defaultWaitDeps, FOCUS_BODY_BYTES, WAIT_BODY_BYTES, waitCommand, waitRoutes } from "../wait";
 import { hostname } from "node:os";
 import { generatedFigures, generationRoutes } from "../generation-routes";
@@ -408,6 +410,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
       ...updateRoutes({ current: VERSION }),
       ...waitRoutes(defaultWaitDeps),
+      ...agentRoutes({ wait: defaultWaitDeps, llmHome: dir, keyring: session.keyring, which: (b) => Bun.which(b), run: canonRunner(canon) }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
@@ -679,6 +682,7 @@ export async function execute(inv: Invocation): Promise<number> {
   }
   if (name === "doctor") return doctor(inv, json);
   if (name.startsWith("llm ")) return llmCmd(inv);
+  if (name === "agents") return agentsCmd(inv, memoryCanon);
   if (name === "ask") return askCmd(inv);
   if (name === "generate") return generateCmd(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
@@ -765,12 +769,16 @@ export async function execute(inv: Invocation): Promise<number> {
   }
 }
 
-async function askCmd(inv: Invocation): Promise<number> {
-  const home = ensureDataDir(dataDir());
+function memoryCanon(): CanonStore {
   const db = new Database(":memory:");
   db.run("create table meta (k text primary key, v text not null)");
   syncCanon(db, canonPack as CanonPack);
-  return askCommand(inv.positionals[0], inv.values, { home, keyring: () => pickKeyring(keyringOptions(inv), home), store: new CanonStore(db), out: (l) => console.log(l) });
+  return new CanonStore(db);
+}
+
+async function askCmd(inv: Invocation): Promise<number> {
+  const home = ensureDataDir(dataDir());
+  return askCommand(inv.positionals[0], inv.values, { home, keyring: () => pickKeyring(keyringOptions(inv), home), store: memoryCanon(), out: (l) => console.log(l) });
 }
 
 async function llmCmd(inv: Invocation): Promise<number> {
