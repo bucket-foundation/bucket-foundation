@@ -95,7 +95,7 @@ async function corpusFile(base: typeof fetch, token: string, name: string, signa
   return reply({ meta: {}, atoms });
 }
 
-export const OFFLINE_REFUSED ="bkt:offline-refused";
+export const OFFLINE_REFUSED = "bkt:offline-refused";
 export const OFFLINE_MESSAGE = "Bucket works offline on this computer.";
 
 export function siteFetch(base: typeof fetch, origin: string, token: string, offline = false): typeof fetch {
@@ -121,7 +121,7 @@ export function siteFetch(base: typeof fetch, origin: string, token: string, off
       const body = method === "POST" ? init?.body ?? (input instanceof Request ? await input.clone().text() : undefined) : undefined;
       return base(`${ros}${url.search}`, { method, signal, headers, body });
     }
-    if (url.origin === origin && url.pathname === ACADEMY_EVENT) return new Response(null, { status: 204 });
+    if (url.origin === origin && url.pathname === ACADEMY_EVENT && method === "POST") return new Response(null, { status: 204 });
     const corpus = url.origin === origin && method === "GET" ? CORPUS_FILE.exec(url.pathname) : null;
     if (corpus) return corpusFile(base, token, corpus[1], signal ?? undefined);
     if (url.origin === origin && url.pathname === ACADEMY_PROGRESS && (method === "GET" || method === "POST")) {
