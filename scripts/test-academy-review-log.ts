@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
-import type { EngineState } from "../src/lib/academy/engine";
+import type { Atom, EngineState } from "../src/lib/academy/engine";
 import { MAX_FUTURE_MS, MAX_REFOLD_ROWS, createReviewLogHandlers, payloadHash, toAppendRow, type AppendResult, type AppendRow, type ReviewLogDeps, type StoredReview } from "../src/lib/academy/review-log-server";
 import type { BirthYearBucket } from "../src/lib/research-os/consent";
 
@@ -231,6 +231,47 @@ test("a late review that sorts before the fold triggers a full refold", async ()
   await h.POST(post({ reviews: [review({ card_id: "ru:old", reviewed_at: NOW - 90_000 })] }));
   assert.deepEqual(reads.map((r) => r.afterSeq ?? 0), [0, 1, 0]);
   assert.ok(w.folds[1].data.cards["ru:old"] && w.folds[1].data.cards["ru:a"]);
+});
+
+test("rows skipped for a missing atoms pack fold in once the pack ships, and their notes clear", async () => {
+  const { w } = foldWorld();
+  let pack: Record<string, Atom[]> = {};
+  const notes = new Map<string, string>();
+  w.deps.atoms = () => pack;
+  w.deps.noteSkips = async (_u, _b, ids, note) => ids.forEach((id) => notes.set(id, note));
+  w.deps.skippedVersions = async () => Array.from(new Set(Array.from(w.log.values()).filter((r) => notes.has(r.review_id)).map((r) => r.atoms_version)));
+  w.deps.clearSkips = async (_u, _b, ids) => ids.forEach((id) => notes.delete(id));
+  const h = createReviewLogHandlers(w.deps);
+  await h.POST(post({ reviews: [review({ atoms_version: "corpus:x", card_id: "a1", reviewed_at: NOW - 50_000 })] }));
+  await h.POST(post({ reviews: [review({ card_id: "ru:b", reviewed_at: NOW - 40_000 })] }));
+  assert.equal(notes.size, 1);
+  assert.equal(w.folds.at(-1)!.data.cards.a1, undefined);
+  pack = { "corpus:x": [{ id: "a1", title: "A1", shell: "nucleus" } as unknown as Atom] };
+  await h.POST(post({ reviews: [review({ card_id: "ru:c", reviewed_at: NOW - 30_000 })] }));
+  assert.ok(w.folds.at(-1)!.data.cards.a1);
+  assert.ok(w.folds.at(-1)!.data.cards["ru:b"] && w.folds.at(-1)!.data.cards["ru:c"]);
+  assert.equal(notes.size, 0);
+});
+
+test("skip notes stay when the refold that would fold them is refused", async () => {
+  const { w } = foldWorld();
+  let pack: Record<string, Atom[]> = {};
+  const notes = new Map<string, string>();
+  w.deps.atoms = () => pack;
+  w.deps.noteSkips = async (_u, _b, ids, note) => ids.forEach((id) => notes.set(id, note));
+  w.deps.skippedVersions = async () => Array.from(new Set(Array.from(w.log.values()).filter((r) => notes.has(r.review_id)).map((r) => r.atoms_version)));
+  w.deps.clearSkips = async (_u, _b, ids) => ids.forEach((id) => notes.delete(id));
+  const h = createReviewLogHandlers(w.deps);
+  await h.POST(post({ reviews: [review({ atoms_version: "corpus:x", card_id: "a1", reviewed_at: NOW - 50_000 })] }));
+  pack = { "corpus:x": [{ id: "a1", title: "A1", shell: "nucleus" } as unknown as Atom] };
+  const write = w.deps.writeFold;
+  w.deps.writeFold = async () => false;
+  await h.POST(post({ reviews: [review({ card_id: "ru:c", reviewed_at: NOW - 30_000 })] }));
+  assert.equal(notes.size, 1);
+  w.deps.writeFold = write;
+  await h.POST(post({ reviews: [review({ card_id: "ru:d", reviewed_at: NOW - 20_000 })] }));
+  assert.equal(notes.size, 0);
+  assert.ok(w.folds.at(-1)!.data.cards.a1);
 });
 
 test("a full refold over the row cap is skipped and reported", async () => {

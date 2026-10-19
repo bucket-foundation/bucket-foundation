@@ -42,7 +42,7 @@ export interface DeviceFlowDeps {
   findCode: (hash: string) => Promise<CodeRow | null>;
   consumeCode: (hash: string) => Promise<CodeRow | null>;
   registerDevice: (uid: string, row: CodeRow, sessionId: string) => Promise<boolean>;
-  endSession: (accessToken: string) => Promise<void>;
+  endSession: (uid: string, sessionId: string) => Promise<void>;
   mintSession: (uid: string) => Promise<MintedSession>;
   revokeDevice: (uid: string, deviceId: string) => Promise<number | null>;
   signOutOthers: (accessToken: string) => Promise<void>;
@@ -138,7 +138,7 @@ export function createDeviceFlow(deps: DeviceFlowDeps) {
       throw e;
     }
     if (!(await deps.registerDevice(taken.user_id, taken, session.session_id))) {
-      await deps.endSession(session.access_token).catch((e) => console.error("device token end-session failed", e));
+      await deps.endSession(taken.user_id, session.session_id).catch((e) => console.error("device token end-session failed", e));
       return { status: 403, body: { error: "device_revoked" } };
     }
     const { session_id: _sid, ...tokens } = session;

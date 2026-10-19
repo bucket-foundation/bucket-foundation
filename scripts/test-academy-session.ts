@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { clientIp, createSessionHandler, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
+import { clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
 
 const SESSION = { access_token: "at", refresh_token: "rt", expires_in: 3600, user: { id: "u1" } };
 
@@ -48,6 +48,20 @@ test("code requests are capped per email and per address", async () => {
   for (let i = 0; i < SESSION_LIMITS.otpIp; i++) await v.handle({ action: "otp", email: `u${i}@b.co` }, "9.9.9.9");
   assert.equal((await v.handle({ action: "otp", email: "fresh@b.co" }, "9.9.9.9")).status, 429);
   assert.equal(v.calls.length, SESSION_LIMITS.otpIp);
+});
+
+test("an email that hit its code cap says to wait, and the address cap says the same in its own words", async () => {
+  const w = world();
+  for (let i = 0; i < SESSION_LIMITS.otpEmail; i++) await w.handle({ action: "otp", email: "a@b.co" }, `10.2.0.${i}`);
+  assert.deepEqual((await w.handle({ action: "otp", email: "a@b.co" }, "10.2.0.99")).body, { error: "too_many_requests", message: OTP_LOCKOUT_MESSAGE });
+  const v = world();
+  for (let i = 0; i < SESSION_LIMITS.otpIp; i++) await v.handle({ action: "otp", email: `u${i}@b.co` }, "9.9.9.8");
+  assert.deepEqual((await v.handle({ action: "otp", email: "new@b.co" }, "9.9.9.8")).body, { error: "too_many_requests", message: RATE_MESSAGE });
+});
+
+test("the platform client address wins over a forwarded chain the client can write", () => {
+  assert.equal(clientIp(new Headers({ "x-forwarded-for": "6.6.6.6, 203.0.113.5", "x-vercel-forwarded-for": "203.0.113.5" })), "203.0.113.5");
+  assert.equal(clientIp(new Headers({ "x-forwarded-for": "6.6.6.6", "x-real-ip": "198.51.100.7" })), "198.51.100.7");
 });
 
 test("code guesses are capped per email", async () => {

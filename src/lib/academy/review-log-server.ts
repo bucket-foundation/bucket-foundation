@@ -71,6 +71,8 @@ export interface ReviewLogDeps {
   readFold?: (uid: string, branch: string) => Promise<FoldState | null>;
   noteSkips?: (uid: string, branch: string, ids: string[], note: string) => Promise<void>;
   noteCapped?: (uid: string, branch: string, note: string) => Promise<void>;
+  skippedVersions?: (uid: string, branch: string) => Promise<string[]>;
+  clearSkips?: (uid: string, branch: string, ids: string[]) => Promise<void>;
   syncMastery: (uid: string, branch: string, data: unknown) => Promise<{ advanced: number }>;
   atoms: (branch: string) => Readonly<Record<string, Atom[]>>;
 }
@@ -186,7 +188,8 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     const none = (extra: Partial<FoldOutcome> = {}): FoldOutcome => ({ folded: false, advanced: 0, mode: "none", skipped: [], ...extra });
     const atoms = deps.atoms(branch);
     const cur = deps.readFold ? await deps.readFold(uid, branch) : null;
-    const last = parseFoldKey(cur?.fold_key ?? null);
+    const shipped = deps.skippedVersions ? (await deps.skippedVersions(uid, branch)).filter((v) => v === LANG_ATOMS_VERSION || atoms[v]) : [];
+    const last = shipped.length ? null : parseFoldKey(cur?.fold_key ?? null);
     let mode: "incremental" | "full" = "full";
     let rows: StoredReview[] = [];
     let start: EngineState | null = null;
@@ -211,6 +214,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
       start = all.baseline;
     }
     const { ok, skipped } = splitFoldable(rows, atoms);
+    const nowFoldable = shipped.length ? ok.filter((r) => shipped.includes(r.atoms_version)).map((r) => r.review_id) : [];
     if (skipped.length && deps.noteSkips) {
       const byReason = new Map<string, string[]>();
       for (const s of skipped) byReason.set(s.reason, [...(byReason.get(s.reason) ?? []), s.review_id]);
@@ -228,6 +232,7 @@ export function createReviewLogHandlers(deps: ReviewLogDeps) {
     }
     const folded = await deps.writeFold(uid, branch, state, seq, key);
     if (!folded) return none({ skipped });
+    if (nowFoldable.length && deps.clearSkips) await deps.clearSkips(uid, branch, nowFoldable).catch((e) => console.error("review-log skip clear failed", branch, e));
     try {
       return { folded, advanced: (await deps.syncMastery(uid, branch, state)).advanced, mode, skipped };
     } catch (e) {

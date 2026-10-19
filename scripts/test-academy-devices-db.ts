@@ -115,3 +115,18 @@ test("session_rate_hit counts within a window and starts over after it", { skip:
     sql(`delete from bucket.session_rate where key = '${key}'`);
   }
 });
+
+test("end_session removes one session of that user and no other", { skip: skip || sql("select to_regprocedure('bucket.end_session(uuid,uuid)') is not null").out !== "t" ? "the sync lows migration is not applied" : false }, () => {
+  const a = makeUser();
+  const b = makeUser();
+  try {
+    const sa = randomUUID();
+    const sb = randomUUID();
+    sql(`insert into auth.sessions (id, user_id, created_at, updated_at) values ('${sa}', '${a}', now(), now()), ('${sb}', '${b}', now(), now())`);
+    assert.equal(sql(`select bucket.end_session('${a}', '${sb}')`).out, "0");
+    assert.equal(sql(`select bucket.end_session('${a}', '${sa}')`).out, "1");
+    assert.equal(sql(`select count(*) from auth.sessions where id in ('${sa}', '${sb}')`).out, "1");
+  } finally {
+    sql(`delete from auth.users where id in ('${a}', '${b}')`);
+  }
+});

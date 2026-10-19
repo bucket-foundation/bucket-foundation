@@ -34,9 +34,13 @@ export interface SessionDeps {
 export type SessionResult = { status: number; body: Record<string, unknown> };
 
 export function clientIp(headers: Headers): string {
-  const fwd = headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  return fwd || headers.get("x-real-ip")?.trim() || "unknown";
+  const platform = headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || headers.get("x-real-ip")?.trim();
+  if (platform) return platform;
+  return headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 }
+
+export const OTP_LOCKOUT_MESSAGE = "Bucket sent several codes to this email. Wait ten minutes and try again.";
+export const RATE_MESSAGE = "Too many tries from here. Wait ten minutes and try again.";
 
 const hashed = (v: string) => createHash("sha256").update(v.toLowerCase()).digest("hex").slice(0, 32);
 
@@ -61,7 +65,8 @@ export function createSessionHandler(deps: SessionDeps) {
 
     if (b.action === "otp") {
       if (!EMAIL_RE.test(email)) return { status: 400, body: { error: "bad_email" } };
-      if (!(await within([[`otp:ip:${ip}`, SESSION_LIMITS.otpIp], [`otp:email:${hashed(email)}`, SESSION_LIMITS.otpEmail]]))) return { status: 429, body: { error: "too_many_requests" } };
+      if (!(await within([[`otp:ip:${ip}`, SESSION_LIMITS.otpIp]]))) return { status: 429, body: { error: "too_many_requests", message: RATE_MESSAGE } };
+      if (!(await within([[`otp:email:${hashed(email)}`, SESSION_LIMITS.otpEmail]]))) return { status: 429, body: { error: "too_many_requests", message: OTP_LOCKOUT_MESSAGE } };
       const r = await deps.sendOtp(email);
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       return r.status === null ? { status: 200, body: { ok: true } } : { status: 400, body: { error: "send_failed" } };

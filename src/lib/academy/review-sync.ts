@@ -79,7 +79,7 @@ export interface ReviewSync {
   deviceId(): string;
   setUser(user: string | null): void;
   held(): QueuedReview[];
-  restoreHeld(ids?: string[]): number;
+  restoreHeld(ids?: string[], claim?: boolean): number;
   discardHeld(ids?: string[]): number;
 }
 
@@ -113,10 +113,10 @@ function webLock<T>(fn: () => Promise<T>): Promise<T> {
 }
 
 export function heldAction(sync: Pick<ReviewSync, "restoreHeld" | "discardHeld" | "held">, body: unknown): { status: number; body: Record<string, unknown> } {
-  const b = (body && typeof body === "object" ? body : {}) as { action?: unknown; ids?: unknown };
+  const b = (body && typeof body === "object" ? body : {}) as { action?: unknown; ids?: unknown; claim?: unknown };
   const ids = Array.isArray(b.ids) && b.ids.every((x) => typeof x === "string") ? (b.ids as string[]) : undefined;
   if (b.ids !== undefined && !ids) return { status: 400, body: { error: "bad_request" } };
-  if (b.action === "restore") return { status: 200, body: { restored: sync.restoreHeld(ids), held: sync.held().length } };
+  if (b.action === "restore") return { status: 200, body: { restored: sync.restoreHeld(ids, b.claim === true), held: sync.held().length } };
   if (b.action === "discard") return { status: 200, body: { discarded: sync.discardHeld(ids), held: sync.held().length } };
   return { status: 400, body: { error: "bad_request" } };
 }
@@ -223,21 +223,21 @@ export function createReviewSync(deps: ReviewSyncDeps): ReviewSync {
     return true;
   }
 
-  function takeHeld(ids: string[] | undefined): QueuedReview[] {
+  function takeHeld(ids: string[] | undefined, onlyOwner?: string): QueuedReview[] {
     let taken: QueuedReview[] = [];
     mutate((o) => {
-      const pick = (h: QueuedReview) => !ids || ids.includes(h.review_id);
+      const pick = (h: QueuedReview) => (!ids || ids.includes(h.review_id)) && (onlyOwner === undefined || h.owner === onlyOwner);
       taken = o.held.filter(pick);
       return { ...o, held: o.held.filter((h) => !pick(h)) };
     });
     return taken;
   }
 
-  function restoreHeld(ids?: string[]): number {
+  function restoreHeld(ids?: string[], claim = false): number {
     const who = owner();
     if (!who) return 0;
     const at = now();
-    const back = takeHeld(ids);
+    const back = takeHeld(ids, claim ? undefined : who);
     if (back.length) mutate((o) => ({ ...o, reviews: o.reviews.concat(back.map((h) => ({ ...h, owner: who, queued_at: at }))) }));
     return back.length;
   }

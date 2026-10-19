@@ -85,8 +85,8 @@ export function deviceFlowStore(opts: { svc: () => SupabaseClient; admin: () => 
       if (!claims.session_id) throw new Error("device session: token has no session_id");
       return { access_token: s.access_token, refresh_token: s.refresh_token, expires_at: s.expires_at ?? Math.floor(Date.now() / 1000) + 3600, session_id: claims.session_id };
     },
-    async endSession(accessToken) {
-      const { error } = await admin().auth.admin.signOut(accessToken, "local");
+    async endSession(uid, sessionId) {
+      const { error } = await svc().rpc("end_session", { p_user: uid, p_session: sessionId });
       fail("device end session", error);
     },
     async revokeDevice(uid, deviceId) {
