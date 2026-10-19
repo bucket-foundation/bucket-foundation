@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+const CAPTURE_URL = process.env.NEXT_PUBLIC_CAPTURE_URL || "https://www.bucket.foundation/api/capture";
+
 type State = { kind: "idle" } | { kind: "sending" } | { kind: "done" } | { kind: "error"; message: string };
 
 const field =
@@ -15,10 +17,10 @@ export default function Signup({ compact = false }: { compact?: boolean }) {
     const data = Object.fromEntries(new FormData(e.currentTarget));
     setState({ kind: "sending" });
     try {
-      const r = await fetch("/api/signup", {
+      const r = await fetch(CAPTURE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, source: "polingual" }),
       });
       const j = (await r.json().catch(() => ({}))) as { error?: string };
       if (!r.ok) throw new Error(j.error || `Signup failed with status ${r.status}.`);

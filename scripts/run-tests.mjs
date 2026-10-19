@@ -15,6 +15,7 @@ const SUITES = {
     files: [
       "scripts/test-kruse-token.ts",
       "scripts/test-auth-paths.ts",
+      "scripts/test-auth-callback.ts",
       "scripts/test-sign-in-gate.ts",
       "scripts/test-depth-ladder-counts.ts",
       "scripts/test-research-statement.ts",
@@ -24,6 +25,7 @@ const SUITES = {
       "scripts/test-research-impact-registry.ts",
       "scripts/test-waitlist.ts",
       "scripts/test-download.ts",
+      "scripts/test-capture.ts",
       "scripts/test-download-demo.ts",
       "scripts/test-download-release.ts",
       "scripts/test-download-device.ts",

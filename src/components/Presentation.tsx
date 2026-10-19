@@ -1,4 +1,5 @@
-import Link from "next/link";
+import TrackedLink from "./TrackedLink";
+import { START_LEARNING_HREF } from "@/lib/analytics/funnel";
 import CanonSearchPanel from "./CanonSearchPanel";
 import { getBranches } from "@/lib/canon-fs";
 import type { GlobeBranch } from "./CanonGlobe";
@@ -72,27 +73,27 @@ export default function Presentation() {
             year of school to the research frontier.
           </p>
 
-          <div className="mt-10 carve-in-5 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/download"
-              className="group relative px-8 py-4 bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[11px]"
+          <div className="mt-10 carve-in-5 flex flex-col items-center gap-4">
+            <TrackedLink
+              href={START_LEARNING_HREF}
+              event="start_learning_click"
+              from="home_hero"
+              className="group relative px-10 py-5 bg-[color:var(--gold)] text-[color:var(--basalt)] hover:bg-[color:var(--gold-deep)] hover:text-[color:var(--bone)] transition small-caps text-[13px]"
             >
               <span className="flex items-center gap-3">
-                Download
-                <span className="group-hover:translate-y-0.5 transition">↓</span>
+                Start learning
+                <span className="group-hover:translate-x-1 transition">→</span>
               </span>
-            </Link>
-            <Link
-              href="/research-os"
-              className="group relative px-8 py-4 bg-[color:var(--basalt)] text-[color:var(--bone)] hover:bg-[color:var(--aegean-deep)] transition small-caps text-[11px] shadow-[inset_0_-2px_0_rgba(0,0,0,0.4),inset_0_1px_0_rgba(247,244,236,0.12)]"
-            >
-              <span className="flex items-center gap-3">
+            </TrackedLink>
+            <p className="text-[13px] text-[color:var(--basalt-2)]">Sign in with an email code. No password.</p>
+            <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[13px]">
+              <TrackedLink href="/download" event="download_click" from="home_hero" className="min-h-[44px] inline-flex items-center underline underline-offset-4 text-[color:var(--basalt)] hover:text-[color:var(--gold-deep)]">
+                Download Bucket
+              </TrackedLink>
+              <TrackedLink href="/research-os" event="open_research_os" from="home_hero" className="min-h-[44px] inline-flex items-center underline underline-offset-4 text-[color:var(--basalt-2)] hover:text-[color:var(--gold-deep)]">
                 Research OS
-                <span className="text-[color:var(--gold)] group-hover:translate-x-1 transition">
-                  →
-                </span>
-              </span>
-            </Link>
+              </TrackedLink>
+            </div>
           </div>
         </div>
       </section>

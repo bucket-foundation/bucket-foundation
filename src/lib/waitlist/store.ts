@@ -111,7 +111,7 @@ export function fileStore(root: string, prefix: string): WaitlistStore {
   };
 }
 
-export type StorePart = "list" | "suspect" | "downloads" | "downloads/suspect";
+export type StorePart = "list" | "suspect" | "downloads" | "downloads/suspect" | "polingual" | "polingual/suspect";
 
 export function getWaitlistStore(env: Env = process.env, part: StorePart = "list"): WaitlistStore | null {
   const prefix = waitlistPrefix(env) + (part === "list" ? "" : `${part}/`);

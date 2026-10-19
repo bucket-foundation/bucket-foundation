@@ -15,6 +15,8 @@ export interface WaitlistEntry {
   wanted: string | null;
   research?: string | null;
   release_notes?: boolean;
+  speaks?: string;
+  learning?: string;
   created_at: string;
   updated_at: string;
   signups: number;
@@ -30,6 +32,8 @@ export interface SignupInput {
   wanted: string | null;
   research?: string | null;
   release_notes?: boolean;
+  speaks?: string;
+  learning?: string;
   consent_version?: string;
   whats_new_daily?: boolean;
 }
@@ -77,10 +81,12 @@ export function parseSignup(body: unknown): ParsedSignup {
 }
 
 export function mergeEntry(existing: WaitlistEntry | null, input: SignupInput, now: string): WaitlistEntry {
-  const { consent_version, whats_new_daily, release_notes, ...fields } = input;
+  const { consent_version, whats_new_daily, release_notes, speaks, learning, ...fields } = input;
   const extra = {
     ...((input.research === undefined ? existing?.research : input.research) ? { research: input.research === undefined ? existing?.research : input.research } : {}),
     ...(release_notes === true || existing?.release_notes === true ? { release_notes: true } : {}),
+    ...((speaks ?? existing?.speaks) ? { speaks: speaks ?? existing?.speaks } : {}),
+    ...((learning ?? existing?.learning) ? { learning: learning ?? existing?.learning } : {}),
   };
   const consent = consent_version ? { consent_at: now, consent_version } : existing?.consent_version ? { consent_at: existing.consent_at, consent_version: existing.consent_version } : {};
   const optIn = whats_new_daily === true || existing?.whats_new_daily === true ? { whats_new_daily: true } : {};
@@ -117,6 +123,8 @@ export function parseEntry(raw: unknown): WaitlistEntry | null {
     signups: typeof r.signups === "number" && r.signups > 0 ? Math.floor(r.signups) : 1,
     ...(typeof r.research === "string" && r.research ? { research: r.research } : {}),
     ...(r.release_notes === true ? { release_notes: true } : {}),
+    ...(typeof r.speaks === "string" && r.speaks ? { speaks: r.speaks } : {}),
+    ...(typeof r.learning === "string" && r.learning ? { learning: r.learning } : {}),
     ...(typeof r.consent_at === "string" && typeof r.consent_version === "string" ? { consent_at: r.consent_at, consent_version: r.consent_version } : {}),
     ...(r.whats_new_daily === true ? { whats_new_daily: true } : {}),
   };
