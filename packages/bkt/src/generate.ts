@@ -26,7 +26,7 @@ export interface RunRecord {
   name: string;
   params: Record<string, string>;
   script_sha256: string;
-  data_sha256: Record<string, string | null>;
+  data_sha256: Record<string, string>;
   outputs: string[];
   created: string;
   needs: RunRecord[];
@@ -92,6 +92,8 @@ export function runGeneration(reg: Registry, name: string, params: Record<string
   if (seen.has(name)) throw new GenerateError(`${name} needs itself`);
   seen.add(name);
   const p = checkParams(g, params);
+  const absent = g.data.filter((d) => !existsSync(dataPath(o.repo, d)));
+  if (absent.length) throw new GenerateError(`${name} needs ${absent.join(", ")}, which this checkout does not have yet; build it first`);
   mkdirSync(o.out, { recursive: true, mode: 0o700 });
   const needs = (g.needs ?? []).map((n) => {
     const dep = reg.generations.find((x) => x.name === n)!;
@@ -106,7 +108,7 @@ export function runGeneration(reg: Registry, name: string, params: Record<string
   const outputs = g.outputs.map((t) => fill(t, p));
   const missing = outputs.filter((f) => !existsSync(join(o.out, f)));
   if (missing.length) throw new GenerateError(`${name} finished without writing ${missing.join(", ")}`);
-  const data = Object.fromEntries(g.data.map((d) => [d, existsSync(dataPath(o.repo, d)) ? sha(readFileSync(dataPath(o.repo, d))) : null]));
+  const data = Object.fromEntries(g.data.map((d) => [d, sha(readFileSync(dataPath(o.repo, d)))]));
   const record: RunRecord = { name, params: p, script_sha256: sha(readFileSync(script)), data_sha256: data, outputs, created: (o.now ?? (() => new Date()))().toISOString(), needs };
   writeFileSync(join(o.out, `${name}.run.json`), JSON.stringify(record, null, 2), { mode: 0o600 });
   return record;

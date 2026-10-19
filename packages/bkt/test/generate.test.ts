@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { checkParams, fill, findRepo, GenerateError, loadRegistry, pastRuns, runFolder, runGeneration, type Registry } from "../src/generate";
@@ -13,7 +13,8 @@ const REG: Registry = {
   version: 1,
   generations: [
     { name: "base", script: "base.py", about: "a base", inputs: { problem: "id" }, data: ["data/in.json"], outputs: ["{problem}-base.json"] },
-    { name: "card", script: "card.py", about: "a card", inputs: { problem: "id", label: "text" }, needs: ["base"], data: ["data/in.json", "data/missing.json"], outputs: ["card-{problem}.png"] },
+    { name: "card", script: "card.py", about: "a card", inputs: { problem: "id", label: "text" }, needs: ["base"], data: ["data/in.json"], outputs: ["card-{problem}.png"] },
+    { name: "orphan", script: "base.py", about: "needs data nobody built", inputs: {}, data: ["data/missing.json"], outputs: ["x.png"] },
   ],
 };
 
@@ -71,12 +72,18 @@ describe("running a generation", () => {
     expect(calls[1].env).toEqual({ BKT_GEN_OUT: out, BKT_GEN_PROBLEM: "navier", BKT_GEN_LABEL: "Navier-Stokes" });
     expect(rec.outputs).toEqual(["card-navier.png"]);
     expect(rec.data_sha256["data/in.json"]).toMatch(/^[0-9a-f]{64}$/);
-    expect(rec.data_sha256["data/missing.json"]).toBeNull();
+    expect(Object.keys(rec.data_sha256)).toEqual(["data/in.json"]);
     expect(rec.needs[0].name).toBe("base");
     const saved = JSON.parse(readFileSync(join(out, "card.run.json"), "utf8"));
     expect(saved.params).toEqual({ problem: "navier", label: "Navier-Stokes" });
     expect(pastRuns(home).map((r) => r.name)).toEqual(["card"]);
     expect(pastRuns(home, "base")).toEqual([]);
+  });
+
+  test("missing data stops a generation before its script runs, with the files to build", () => {
+    const calls: { script: string; env: Record<string, string> }[] = [];
+    expect(() => runGeneration(loadRegistry(repo), "orphan", {}, { repo, out: join(home, "o"), spawn: fakeSpawn(calls) })).toThrow("orphan needs data/missing.json, which this checkout does not have yet; build it first");
+    expect(calls).toEqual([]);
   });
 
   test("an unknown input, an unsafe value, an unknown name and a run that writes nothing are refused", () => {
@@ -102,4 +109,14 @@ describe("running a generation", () => {
     expect(runFolder(home, "card", { problem: "navier" }, at)).not.toBe(runFolder(home, "card", { problem: "hodge" }, at));
     expect(fill("card-{problem}-{size}.png", { problem: "navier" })).toBe("card-navier-{size}.png");
   });
+});
+
+const FRONTIER = join(REPO, "output/solvability-frontier/report/frontier.json");
+const PYTHON_OK = Bun.spawnSync(["python3", "-c", "import matplotlib, numpy"]).exitCode === 0;
+
+test.skipIf(!existsSync(FRONTIER) || !PYTHON_OK)("the frontier figure renders for real from the repository data", () => {
+  const out = join(home, "real");
+  const rec = runGeneration(loadRegistry(REPO), "frontier-figure", {}, { repo: REPO, out });
+  expect(rec.outputs.every((f) => existsSync(join(out, f)))).toBe(true);
+  expect(rec.data_sha256["output/solvability-frontier/report/frontier.json"]).toMatch(/^[0-9a-f]{64}$/);
 });
