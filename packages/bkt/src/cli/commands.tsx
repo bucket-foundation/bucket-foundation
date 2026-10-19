@@ -66,7 +66,7 @@ import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
 import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
-import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
+import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, saveToDownloads, syncRosGraph } from "../ros";
 import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
 import { addLines, answerKey, approvalLines, installLines, researchAdd, researchAnswer, researchBuilds, researchInstall, researchWaiting } from "./research";
 import { createInterface } from "node:readline";
@@ -376,7 +376,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...localRoutes(session.store, { content, langCorpus }),
       ...syncRoutes(openRemote(session, dir), { label: () => hostname(), onError: (m) => console.error(`bkt serve: sync: ${m}`) }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
-      ...rosLiveRoutes(new RosGraph(session.store.db)),
+      ...rosLiveRoutes(new RosGraph(session.store.db), Date.now, { saveExport: saveToDownloads() }),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...researchRoutes(research, researchTrouble),
