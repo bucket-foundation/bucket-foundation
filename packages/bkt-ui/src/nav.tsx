@@ -63,8 +63,14 @@ export function activeNav(route: Route): Route["name"] {
   return route.name;
 }
 
-export function navFor(workReady: boolean) {
-  return NAV.filter((n) => n.route.name !== "work" || workReady);
+export function navFor(workReady: boolean, agentsReady = false) {
+  return NAV.filter((n) => (n.route.name !== "work" || workReady) && (n.route.name !== "agents" || agentsReady));
+}
+
+export async function agentsAvailable(api: Pick<Api, "agentTools" | "agentsV2">): Promise<boolean> {
+  const [tools, body] = await Promise.allSettled([api.agentTools(), api.agentsV2()]);
+  if (tools.status === "fulfilled" && tools.value.length > 0) return true;
+  return body.status === "fulfilled" && (body.value.sessions.length > 0 || body.value.chats.length > 0);
 }
 
 export function Screen({ api, route }: { api: Api; route: Route }) {

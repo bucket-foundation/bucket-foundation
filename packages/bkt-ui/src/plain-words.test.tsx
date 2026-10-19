@@ -569,8 +569,19 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Agents", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
+    expect(navFor(false, true).map((n) => n.label)).toContain("Agents");
+  });
+
+  test("Agents joins the menu once an agent CLI is installed or an agent has run", async () => {
+    const { agentsAvailable } = await import("./nav");
+    const body = (sessions: number, chats: number) => ({ v: 1, installed: false, supported: true, sessions: Array(sessions).fill({}), chats: Array(chats).fill({}) }) as never;
+    const api = (tools: string[] | Error, b: unknown) => ({ agentTools: () => (tools instanceof Error ? Promise.reject(tools) : Promise.resolve(tools)), agentsV2: () => Promise.resolve(b as never) });
+    expect(await agentsAvailable(api([], body(0, 0)))).toBe(false);
+    expect(await agentsAvailable(api(["claude"], body(0, 0)))).toBe(true);
+    expect(await agentsAvailable(api([], body(0, 1)))).toBe(true);
+    expect(await agentsAvailable(api(new Error("down"), body(1, 0)))).toBe(true);
   });
 
   test("no screen in the navigation needs a file or shows a format word", async () => {
