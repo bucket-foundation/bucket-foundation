@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { buildEncompassingMap, grade, mergeState, normalizeState, type Atom, type EngineState } from "../src/lib/academy/engine";
 import { corpusAtomsVersion } from "../src/lib/academy/replay";
 import { createReviewLogHandlers, type AppendRow, type StoredReview } from "../src/lib/academy/review-log-server";
-import { createReviewSync, type ReviewEvent, type ReviewSync } from "../src/lib/academy/review-sync";
+import { createReviewSync, type Fetcher, type ReviewEvent, type ReviewSync } from "../src/lib/academy/review-sync";
 
 const BRANCH = "01-mathematics";
 const ATOMS = [
@@ -75,7 +75,7 @@ class Server {
     return { ...r, reviewed_at: Date.parse(r.reviewed_at), seq: r.seq };
   }
 
-  fetch: typeof fetch = async (input, init) => {
+  fetch: Fetcher = async (input, init) => {
     if (!this.online) throw new TypeError("offline");
     const req = new Request(new URL(String(input), "https://bucket.foundation"), init as RequestInit);
     return req.method === "POST" ? this.handlers.POST(req) : this.handlers.GET(req);

@@ -42,11 +42,13 @@ export interface PulledReview extends QueuedReview {
   seq: number;
 }
 
+export type Fetcher = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+
 export type SyncMode = "unknown" | "log" | "snapshot";
 
 export interface ReviewSyncDeps {
   storage: () => Storage | null;
-  fetch: typeof fetch;
+  fetch: Fetcher;
   uuid: () => string;
   readLocal: (branch: string) => EngineState | null;
   pushSnapshot: (branch: string, state: EngineState) => Promise<boolean>;
