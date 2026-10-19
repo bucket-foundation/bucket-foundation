@@ -87,6 +87,7 @@ import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
 import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
+import { defaultWaitDeps, FOCUS_BODY_BYTES, WAIT_BODY_BYTES, waitCommand, waitRoutes } from "../wait";
 import { hostname } from "node:os";
 import { findRepo, GenerateError, loadRegistry, pastRuns, runFolder, runGeneration } from "../generate";
 import { openRemote } from "../sync";
@@ -396,6 +397,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...historyRoutes(new HistoryStore(session.store, session.key)),
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
       ...updateRoutes({ current: VERSION }),
+      ...waitRoutes(defaultWaitDeps),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
@@ -413,6 +415,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/explore/saved": SAVED_BODY_BYTES,
       "POST /local/history/import": HISTORY_BODY_BYTES,
       "POST /local/open": OPEN_BODY_BYTES,
+      "POST /local/focus": FOCUS_BODY_BYTES,
+      "POST /local/wait": WAIT_BODY_BYTES,
     },
     uiDir: uiDir(),
     onError: (e) => console.error(`bkt serve: ${e.message}`),
@@ -646,6 +650,7 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "quiz notify") return quizCommand(["notify", ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz schedule") return quizCommand(["schedule", ...(typeof inv.values.at === "string" ? ["--at", inv.values.at] : []), ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz unschedule") return quizCommand(["unschedule"]);
+  if (name === "wait install" || name === "wait uninstall" || name === "wait status") return waitCommand([name.slice(5)]);
   let route: string | null = null;
   if (name === "app" && inv.values.route !== undefined) {
     try {

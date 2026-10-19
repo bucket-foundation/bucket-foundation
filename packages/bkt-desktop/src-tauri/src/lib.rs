@@ -41,8 +41,17 @@ pub fn quiz_route(link: &str) -> Option<String> {
     valid_day(day).then(|| format!("/work/daily/{day}"))
 }
 
+pub const LEARN_LINK: &str = "bucket://learn";
+
+pub fn link_route(link: &str) -> Option<String> {
+    if link == LEARN_LINK || link == "bucket://learn/" {
+        return Some("/learn".to_string());
+    }
+    quiz_route(link)
+}
+
 pub fn route_in(args: &[String]) -> Option<String> {
-    args.iter().skip(1).find_map(|a| quiz_route(a))
+    args.iter().skip(1).find_map(|a| link_route(a))
 }
 
 pub fn with_route(base: &Url, route: &str) -> Url {
@@ -666,7 +675,7 @@ pub fn run() {
         .setup(|app| {
             let links = app.handle().clone();
             app.deep_link().on_open_url(move |event| {
-                if let Some(route) = event.urls().iter().find_map(|u| quiz_route(u.as_str())) {
+                if let Some(route) = event.urls().iter().find_map(|u| link_route(u.as_str())) {
                     open_route(&Shell(links.clone()), &links.state::<Link>().0, route);
                 }
             });
@@ -704,6 +713,18 @@ mod tests {
 
     fn base() -> Url {
         serve_url("http://127.0.0.1:41234/").unwrap()
+    }
+
+    #[test]
+    fn learn_link_routes_to_learn() {
+        assert_eq!(link_route(LEARN_LINK).as_deref(), Some("/learn"));
+        assert_eq!(link_route("bucket://learn/").as_deref(), Some("/learn"));
+        assert_eq!(link_route(DAY).as_deref(), Some("/work/daily/2026-09-30"));
+        let args = vec!["bucket".to_string(), LEARN_LINK.to_string()];
+        assert_eq!(route_in(&args).as_deref(), Some("/learn"));
+        for link in ["bucket://learn/x", "bucket://learn?x=1", "bucket://learn#/import", "bucket://Learn", "bucket://learnx", "http://learn", " bucket://learn", "bucket://learn/../quiz"] {
+            assert_eq!(link_route(link), None, "{link}");
+        }
     }
 
     #[test]
