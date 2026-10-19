@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import InstallBlocksV3 from "../src/components/download/InstallBlocksV3";
-import { APPIMAGE_WARNING_SHORT, DIRECT_FILE_STEP, DIRECT_FILE_STEP_RAW, DIRECT_FILE_SUMMARY, FIRST_OPEN, INSTALL_COMMAND, LINUX_INSTALL_NOTE, LINUX_PACKAGE_LABEL, appImageRunSteps } from "../src/lib/download/install";
+import { APPIMAGE_WARNING_SHORT, DIRECT_FILE_STEP, DIRECT_FILE_STEP_RAW, DIRECT_FILE_SUMMARY, FIRST_OPEN, INSTALL_COMMAND, LINUX_INSTALL_NOTE, LINUX_PACKAGE_LABEL, appImageRunSteps, linuxInstallCommand, packageInstallCommand } from "../src/lib/download/install";
 import { installersForV2, windowedInstallers } from "../src/lib/download/release-v2";
 import type { ReleaseAsset } from "../src/lib/download/release";
 
@@ -67,7 +67,7 @@ test("an unsigned installer carries its first-open steps inside a disclosure", (
   assert.match(FIRST_OPEN.macos!.steps, /Open Anyway/);
   assert.match(FIRST_OPEN.windows!.steps, /More info, then Run anyway/);
   assert.doesNotMatch(html, /data-first-open="linux"/);
-  const visible = html.replace(/<details data-direct-file[\s\S]*?<\/details>/g, "").replace(/<details data-first-open[\s\S]*?<\/details>/g, (d) => d.replace(/<p[\s\S]*?<\/p>/, ""));
+  const visible = html.replace(/<details data-direct-file[\s\S]*?<\/details>/g, "").replace(/<details data-first-open[\s\S]*?<\/details>/g, (d) => d.replace(/<p[\s\S]*?<\/p>/, "")).replace(/<pre[\s\S]*?<\/pre>/g, "");
   assert.ok(words(visible) < 70);
 });
 
@@ -77,6 +77,8 @@ test("a signed installer shows no first-open steps", () => {
   assert.doesNotMatch(html, /data-first-open/);
   assert.match(html, /data-windowed-installer="macos-arm64"/);
 });
+
+const CD = 'cd "$(xdg-user-dir DOWNLOAD 2>/dev/null || echo "$HOME/Downloads")"';
 
 const withRpm: ReleaseAsset[] = [...tauri, ...tauri.filter((a) => /linux-x64\.deb(\.sha256)?$/.test(a.name)).map((a) => ({ ...a, name: a.name.replace(".deb", ".rpm"), browser_download_url: a.browser_download_url.replace(".deb", ".rpm") }))];
 const linuxHtml = (list: ReleaseAsset[]) => renderToStaticMarkup(InstallBlocksV3({ os: "linux", installers: installersForV2(list), windowed: windowedInstallers(list) }));
@@ -112,13 +114,13 @@ test("an older release without the tarball keeps the raw AppImage beside its chm
   const direct = /<details data-direct-file[^>]*>[\s\S]*?<\/details>/.exec(block)?.[0] ?? "";
   assert.ok(direct.includes("<summary") && direct.includes(DIRECT_FILE_SUMMARY));
   assert.doesNotMatch(direct, /^<details[^>]*\sopen/);
-  const chmod = direct.indexOf("chmod +x ~/Downloads/Bucket-desktop-0.5.0-linux-x64.AppImage");
+  const chmod = direct.indexOf("chmod +x ./Bucket-desktop-0.5.0-linux-x64.AppImage");
   const link = direct.indexOf('/bkt-v0.5.0/Bucket-desktop-0.5.0-linux-x64.AppImage"');
   assert.ok(chmod > 0 && chmod < link);
   assert.ok(direct.includes("Bucket-desktop-0.5.0-linux-x64.AppImage.sha256"));
   assert.ok(direct.includes(APPIMAGE_WARNING_SHORT));
   assert.equal(block.split(APPIMAGE_WARNING_SHORT).length, 2);
-  assert.equal(appImageRunSteps("a.AppImage"), "chmod +x ~/Downloads/a.AppImage\n~/Downloads/a.AppImage");
+  assert.equal(appImageRunSteps("a.AppImage"), `${CD}\nchmod +x ./a.AppImage\n./a.AppImage`);
   assert.ok(direct.includes(DIRECT_FILE_STEP_RAW));
 });
 
@@ -129,9 +131,9 @@ test("the direct file is the AppImage tarball, so a double click never reaches D
   assert.ok(direct.includes("Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz.sha256"));
   assert.doesNotMatch(direct, /linux-x64\.AppImage"/);
   assert.doesNotMatch(direct, /chmod/);
-  assert.ok(direct.includes("tar -xzf ~/Downloads/Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz -C ~/Downloads"));
+  assert.ok(direct.includes("tar -xzf ./Bucket-desktop-0.5.0-linux-x64.AppImage.tar.gz"));
   assert.ok(direct.includes(DIRECT_FILE_STEP));
-  assert.equal(appImageRunSteps("a.AppImage.tar.gz"), "tar -xzf ~/Downloads/a.AppImage.tar.gz -C ~/Downloads\n~/Downloads/a.AppImage");
+  assert.equal(appImageRunSteps("a.AppImage.tar.gz"), `${CD}\ntar -xzf ./a.AppImage.tar.gz\n./a.AppImage`);
   assert.ok(block.includes("/bkt-v0.5.0/Bucket-0.5.0-x86_64.AppImage&#x27;"));
 });
 
@@ -144,4 +146,37 @@ test("macOS and Windows keep the installer link above the command", () => {
 test("a release without Tauri bundles renders no installer link", () => {
   const html = renderToStaticMarkup(InstallBlocksV3({ os: "windows", installers }));
   assert.doesNotMatch(html, /data-windowed-installer/);
+});
+
+test("each linux package carries its install command and no step hardcodes ~/Downloads", () => {
+  const block = linuxBlock(linuxHtml(withRpm));
+  assert.equal(packageInstallCommand("deb", "a.deb"), `${CD}\nsudo apt install ./a.deb`);
+  assert.equal(packageInstallCommand("rpm", "a.rpm"), `${CD}\nsudo dnf install ./a.rpm`);
+  assert.ok(block.indexOf("sudo apt install ./Bucket-desktop-0.5.0-linux-x64.deb") > block.indexOf(LINUX_PACKAGE_LABEL.deb));
+  assert.ok(block.indexOf("sudo dnf install ./Bucket-desktop-0.5.0-linux-x64.rpm") > block.indexOf(LINUX_PACKAGE_LABEL.rpm));
+  assert.match(block, /aria-label="Copy \.deb install command, x64"/);
+  assert.match(block, /aria-label="Copy \.rpm install command, x64"/);
+  assert.doesNotMatch(block, /~\/Downloads/);
+});
+
+test("with no AppImage the linux command pins to the release tag", () => {
+  const noAppImage = tauri.filter((a) => !/AppImage/.test(a.name));
+  const block = linuxBlock(linuxHtml(noAppImage));
+  assert.ok(block.includes("/bucket-foundation/bkt-v0.5.0/scripts/install.sh"));
+  assert.doesNotMatch(block, /\/main\/scripts/);
+  assert.equal(linuxInstallCommand(null, "bkt-v0.5.0"), "curl -fsSL 'https://raw.githubusercontent.com/bucket-foundation/bucket-foundation/bkt-v0.5.0/scripts/install.sh' | BKT_VERSION=bkt-v0.5.0 sh");
+  assert.equal(linuxInstallCommand(null, "main';id"), INSTALL_COMMAND.linux);
+  assert.equal(linuxInstallCommand(null, null), INSTALL_COMMAND.linux);
+});
+
+test("linux arm64 with no packages shows the command and warning and no package links", () => {
+  const arm: ReleaseAsset[] = [{ name: "Bucket-0.5.0-aarch64.AppImage", browser_download_url: "https://github.com/bucket-foundation/bucket-foundation/releases/download/bkt-v0.5.0/Bucket-0.5.0-aarch64.AppImage", size: 1 }];
+  const block = linuxBlock(linuxHtml(arm));
+  assert.ok(block.includes("/bkt-v0.5.0/scripts/release/install.sh"));
+  assert.ok(block.includes(APPIMAGE_WARNING_SHORT));
+  assert.doesNotMatch(block, /data-format="(deb|rpm)"|sudo (apt|dnf)/);
+  const bare: ReleaseAsset[] = [{ name: "bkt-linux-arm64", browser_download_url: "https://github.com/bucket-foundation/bucket-foundation/releases/download/bkt-v0.5.0/bkt-linux-arm64", size: 1 }];
+  const tagOnly = linuxBlock(linuxHtml(bare));
+  assert.ok(tagOnly.includes("BKT_VERSION=bkt-v0.5.0 sh"));
+  assert.doesNotMatch(tagOnly, /data-format="(deb|rpm)"|sudo (apt|dnf)|\/main\/scripts/);
 });

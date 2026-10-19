@@ -11,6 +11,8 @@ export interface Generation {
   name: string;
   script: string;
   about: string;
+  topic?: string;
+  licence?: string;
   inputs: Record<string, string>;
   env?: Record<string, string>;
   needs?: string[];

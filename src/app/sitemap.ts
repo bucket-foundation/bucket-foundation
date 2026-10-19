@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { p: "/contributors",       pri: 0.7,  freq: "weekly"  as const },
     { p: "/research",           pri: 0.85, freq: "weekly"  as const },
     { p: "/research/tools",     pri: 0.85, freq: "weekly"  as const },
+    { p: "/research/figures",   pri: 0.6,  freq: "weekly"  as const },
     { p: "/research/atlas",     pri: 0.85, freq: "weekly"  as const },
     { p: "/research/datasets",  pri: 0.8,  freq: "weekly"  as const },
     { p: "/research/papers",    pri: 0.8,  freq: "weekly"  as const },

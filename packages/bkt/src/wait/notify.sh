@@ -20,15 +20,18 @@ if [ -f "$log" ] && [ "$(wc -c < "$log")" -gt 1048576 ]; then
 fi
 now=$(date +%s)
 case "$event" in
-  UserPromptSubmit|PreToolUse) kind=study ;;
-  Stop|SessionEnd|agent-turn-complete) kind=done ;;
-  Notification|approval-requested) kind=waiting ;;
+  @@STUDY@@) kind=study ;;
+  @@DONE@@) kind=done ;;
+  @@WAITING@@) kind=waiting ;;
   *) exit 0 ;;
 esac
 state=$dir/sessions/$tool-$session
 if [ "$kind" = waiting ]; then
   [ "$(cat "$state" 2>/dev/null)" = done ] && exit 0
-  [ "$event" = Notification ] && [ "${5:-}" != permission_prompt ] && exit 0
+  case "$event:${5:-}" in
+    @@NOTIFY_TYPES@@) ;;
+    Notification:*) exit 0 ;;
+  esac
 fi
 if [ "$kind" = study ]; then
   printf 'running' > "$state"

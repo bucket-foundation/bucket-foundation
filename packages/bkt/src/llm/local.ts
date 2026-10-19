@@ -1,3 +1,4 @@
+import { RECOMMENDED_LOCAL_MODEL } from "./config";
 import type { Fetch } from "./types";
 
 export const LOCAL_PORTS = [11434, 8080, 8000] as const;
@@ -32,5 +33,5 @@ export async function probeLocal(fetch: Fetch = globalThis.fetch, host = "127.0.
 }
 
 export function pickChatModel(models: string[]): string | undefined {
-  return models.find((m) => !/embed/i.test(m));
+  return models.includes(RECOMMENDED_LOCAL_MODEL) ? RECOMMENDED_LOCAL_MODEL : models.find((m) => !/embed/i.test(m));
 }

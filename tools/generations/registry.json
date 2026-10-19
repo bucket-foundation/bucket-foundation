@@ -2,6 +2,65 @@
   "version": 1,
   "generations": [
     {
+      "name": "polingual-coverage",
+      "script": "polingual-coverage.py",
+      "about": "Words per language in the Polingual starter set, and how many of the core concepts each language covers",
+      "topic": "language",
+      "licence": "CC-BY-SA 3.0, from Wiktionary via Kaikki",
+      "inputs": {},
+      "data": [
+        "learning/app/polingual/subset.json",
+        "learning/app/polingual/vectors.bin"
+      ],
+      "outputs": [
+        "polingual-coverage.png"
+      ]
+    },
+    {
+      "name": "polingual-similarity",
+      "script": "polingual-similarity.py",
+      "about": "Mean meaning similarity between every pair of languages over the same core concepts",
+      "topic": "language",
+      "licence": "CC-BY-SA 3.0, from Wiktionary via Kaikki",
+      "inputs": {},
+      "data": [
+        "learning/app/polingual/subset.json",
+        "learning/app/polingual/vectors.bin"
+      ],
+      "outputs": [
+        "polingual-similarity.png"
+      ]
+    },
+    {
+      "name": "polingual-sound-meaning",
+      "script": "polingual-sound-meaning.py",
+      "about": "Sound against meaning: each language's words for the core concepts set beside the English word",
+      "topic": "language",
+      "licence": "CC-BY-SA 3.0, from Wiktionary via Kaikki",
+      "inputs": {},
+      "data": [
+        "learning/app/polingual/subset.json",
+        "learning/app/polingual/vectors.bin"
+      ],
+      "outputs": [
+        "polingual-sound-meaning.png"
+      ]
+    },
+    {
+      "name": "polingual-index-languages",
+      "script": "polingual-index-languages.py",
+      "about": "Words per language in the full Polingual index",
+      "topic": "language",
+      "licence": "CC-BY-SA 3.0, from Wiktionary via Kaikki",
+      "inputs": {},
+      "data": [
+        "_intake/photons/index.sqlite"
+      ],
+      "outputs": [
+        "polingual-index-languages.png"
+      ]
+    },
+    {
       "name": "frontier-figure",
       "script": "frontier-figure.py",
       "about": "The solvability frontier: every problem placed by meaning, with the frontier circle",
@@ -190,7 +249,8 @@
         "corpus": "corpus name from tools/prime-directions/corpora.json, such as 80k"
       },
       "data": [
-        "tools/prime-directions/corpora.json"
+        "tools/prime-directions/corpora.json",
+        "_intake/80k-ea-longtermism/corpus.sqlite"
       ],
       "outputs": [
         "prime.png"

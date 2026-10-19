@@ -71,8 +71,8 @@ export const TABLE: CommandSpec[] = [
   { name: "quiz notify", summary: "send the daily quiz notification when a chat source changed", options: { force: { type: "boolean", help: "send even when today's notification went out" } } },
   { name: "quiz schedule", summary: "run the daily quiz notification once a day; Linux only", options: { at: { type: "string", value: "HH:MM", help: "time of day, 08:53 when omitted" }, force: { type: "boolean", help: "replace a unit file that was edited by hand" } } },
   { name: "quiz unschedule", summary: "remove the daily quiz notification timer" },
-  { name: "wait install", summary: "notify you to study while Claude Code or Codex agents run; Linux only" },
-  { name: "wait uninstall", summary: "remove the Claude Code and Codex hooks that bkt wait added" },
+  { name: "wait install", summary: "notify you to study while Claude Code or Codex agents run, or Gemini CLI with --gemini; Linux only", options: { gemini: { type: "boolean", help: "add hooks to Gemini CLI instead" } } },
+  { name: "wait uninstall", summary: "remove the agent hooks that bkt wait added", options: { gemini: { type: "boolean", help: "remove only the Gemini CLI hooks" } } },
   {
     name: "llm add",
     summary: "add a model provider; hosted keys go to the keyring, read with hidden input",
@@ -89,6 +89,7 @@ export const TABLE: CommandSpec[] = [
   { name: "llm remove", summary: "remove a model provider and delete its key from the keyring", args: "<name>", positionals: [1, 1], session: true },
   { name: "llm list", summary: "list model providers and whether each key is stored", session: true },
   { name: "llm local", summary: "look for a local OpenAI-compatible server on ports 11434, 8080 and 8000" },
+  { name: "ask", summary: "ask the Bucket agent a question; it answers from the canon with citations", args: "<question>", positionals: [1, 1], options: { provider: { type: "string", value: "NAME", help: "provider from bkt llm list; a local one when omitted" } } },
   { name: "llm doctor", summary: "check the GPU, the local model server and one test completion", options: { model: { type: "string", value: "MODEL", help: "model to test" } } },
   { name: "wait status", summary: "show whether the agent hooks are on and the last events" },
   { name: "agents", summary: "list coding agents and chat with the Bucket agent", terminal: "always" },

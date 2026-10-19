@@ -1,6 +1,8 @@
 import { appendFileSync, mkdirSync, readFileSync, realpathSync } from "node:fs";
 import { join } from "node:path";
+import type { CanonStore } from "./canon";
 import type { Keyring } from "./keyring";
+import { canonChat } from "./llm/canon-tools";
 import { providerFor } from "./llm";
 import { readProviders, type ProviderEntry } from "./llm/config";
 import type { Message, Provider, StreamEvent } from "./llm/types";
@@ -20,6 +22,15 @@ export const MAX_CHATS = 50;
 export const SYSTEM = "You are the Bucket agent. Answer from the Bucket canon where you can, say when you are unsure, and keep answers short.";
 
 export type ChatRunner = (provider: Provider, messages: Message[], signal: AbortSignal) => AsyncIterable<StreamEvent>;
+
+export function canonRunner(store: CanonStore): ChatRunner {
+  return async function* (provider, messages, signal) {
+    const res = await canonChat(provider, store, messages, { signal });
+    if (signal.aborted) return;
+    yield { type: "text", text: res.text };
+    yield { type: "done", stop: "end", usage: { input: 0, output: 0 } };
+  };
+}
 
 export const plainChat: ChatRunner = (provider, messages, signal) => provider.chat(messages, [], { system: SYSTEM, signal });
 

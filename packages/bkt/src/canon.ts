@@ -33,32 +33,35 @@ const json = (body: unknown, status = 200) =>
 
 const meta = (db: Database) => db.query<{ v: string }, [string]>("select v from meta where k = ?").get(CANON_META_KEY)?.v ?? null;
 
+const hasLicenceColumns = (db: Database) =>
+  ["canon_excerpts", "canon_evidence"].every((t) => db.query<{ name: string }, []>(`select name from pragma_table_info('${t}')`).all().some((c) => c.name === "licence_kind"));
+
 export function syncCanon(db: Database, pack: CanonPack): boolean {
-  if (meta(db) === pack.version) return false;
+  if (meta(db) === pack.version && hasLicenceColumns(db)) return false;
   db.transaction(() => {
     db.run(`drop table if exists canon_fts; drop table if exists canon_evidence; drop table if exists canon_excerpts; drop table if exists canon_licences;
       create table canon_excerpts (id integer primary key, branch text not null, concept text not null, slug text not null, title text not null,
-        text text not null, path text not null, source text not null);
+        text text not null, path text not null, source text not null, licence_kind text);
       create table canon_evidence (excerpt integer not null references canon_excerpts(id), n integer not null, score real not null, kind text not null,
-        source_path text not null, text text not null, url text, title text not null, author text, primary key (excerpt, n));
-      create table canon_licences (n integer primary key, kind text not null, name text not null, terms text not null, url text, works integer not null);
+        source_path text not null, text text not null, url text, title text not null, author text, licence_kind text, primary key (excerpt, n));
+      create table canon_licences (n integer primary key, kind text not null, licence text not null, name text not null, terms text not null, url text, works integer not null);
       create virtual table canon_fts using fts5(title, text, tokenize = 'unicode61');`);
-    const ex = db.query("insert into canon_excerpts (id, branch, concept, slug, title, text, path, source) values (?, ?, ?, ?, ?, ?, ?, ?)");
+    const ex = db.query("insert into canon_excerpts (id, branch, concept, slug, title, text, path, source, licence_kind) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     const fts = db.query("insert into canon_fts (rowid, title, text) values (?, ?, ?)");
-    const ev = db.query("insert into canon_evidence (excerpt, n, score, kind, source_path, text, url, title, author) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    const ev = db.query("insert into canon_evidence (excerpt, n, score, kind, source_path, text, url, title, author, licence_kind) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     for (const e of pack.excerpts) {
-      ex.run(e.rowid, e.branch, e.concept, e.slug, e.title, e.text, e.path, JSON.stringify(e.source));
+      ex.run(e.rowid, e.branch, e.concept, e.slug, e.title, e.text, e.path, JSON.stringify(e.source), e.licence_kind ?? null);
       fts.run(e.rowid, e.title, e.text);
-      (pack.evidence[String(e.rowid)] ?? []).forEach((p, n) => ev.run(e.rowid, n, p.score, p.kind, p.source_path, p.text, p.url, p.title, p.author));
+      (pack.evidence[String(e.rowid)] ?? []).forEach((p, n) => ev.run(e.rowid, n, p.score, p.kind, p.source_path, p.text, p.url, p.title, p.author, p.licence_kind ?? null));
     }
-    const lic = db.query("insert into canon_licences (n, kind, name, terms, url, works) values (?, ?, ?, ?, ?, ?)");
-    pack.licences.forEach((l, n) => lic.run(n, l.kind, l.name, l.terms, l.url, l.works));
+    const lic = db.query("insert into canon_licences (n, kind, licence, name, terms, url, works) values (?, ?, ?, ?, ?, ?, ?)");
+    pack.licences.forEach((l, n) => lic.run(n, l.kind, l.licence ?? "closed", l.name, l.terms, l.url, l.works));
     db.query("insert into meta (k, v) values (?, ?) on conflict (k) do update set v = excluded.v").run(CANON_META_KEY, pack.version);
   })();
   return true;
 }
 
-type ExcerptRow = { id: number; branch: string; concept: string; slug: string; title: string; text: string; path: string; source: string };
+type ExcerptRow = { id: number; branch: string; concept: string; slug: string; title: string; text: string; path: string; source: string; licence_kind: string | null };
 
 export class CanonStore implements CanonSource {
   private cached: ClaimIndexEntry[] | null = null;
@@ -73,11 +76,15 @@ export class CanonStore implements CanonSource {
     if (!this.cached) {
       if (!this.version()) return [];
       this.cached = this.db
-        .query<ExcerptRow, []>("select id, branch, concept, slug, title, text, path, source from canon_excerpts order by id")
+        .query<ExcerptRow, []>("select id, branch, concept, slug, title, text, path, source, licence_kind from canon_excerpts order by id")
         .all()
         .map((r) => ({ rowid: r.id, branch: r.branch, concept: r.concept, slug: r.slug, title: r.title, text: r.text, path: r.path, vec: NO_VEC }));
     }
     return this.cached;
+  }
+
+  excerptLicence(id: number): string | null {
+    return this.db.query<{ k: string | null }, [number]>("select licence_kind as k from canon_excerpts where id = ?").get(id)?.k ?? null;
   }
 
   evidenceCount(id: number): number {
@@ -85,15 +92,15 @@ export class CanonStore implements CanonSource {
   }
 
   passages(id: number): PackPassage[] {
-    return this.db.query<PackPassage, [number]>("select score, kind, source_path, text, url, title, author from canon_evidence where excerpt = ? order by n").all(id);
+    return this.db.query<PackPassage, [number]>("select score, kind, source_path, text, url, title, author, licence_kind from canon_evidence where excerpt = ? order by n").all(id);
   }
 
   excerpt(id: number): (Omit<ExcerptRow, "source"> & { source: PackSource; evidence: (PackPassage & { openable: boolean })[] }) | null {
     if (!this.version() || !Number.isInteger(id)) return null;
-    const r = this.db.query<ExcerptRow, [number]>("select id, branch, concept, slug, title, text, path, source from canon_excerpts where id = ?").get(id);
+    const r = this.db.query<ExcerptRow, [number]>("select id, branch, concept, slug, title, text, path, source, licence_kind from canon_excerpts where id = ?").get(id);
     if (!r) return null;
     const evidence = this.db
-      .query<PackPassage, [number]>("select score, kind, source_path, text, url, title, author from canon_evidence where excerpt = ? order by n")
+      .query<PackPassage, [number]>("select score, kind, source_path, text, url, title, author, licence_kind from canon_evidence where excerpt = ? order by n")
       .all(r.id)
       .map((p) => ({ ...p, openable: openable(p.url) !== null }));
     return { ...r, source: JSON.parse(r.source) as PackSource, evidence };
@@ -101,7 +108,7 @@ export class CanonStore implements CanonSource {
 
   licences(): Licence[] {
     if (!this.version()) return [];
-    return this.db.query<Licence, []>("select kind, name, terms, url, works from canon_licences order by n").all();
+    return this.db.query<Licence, []>("select kind, licence, name, terms, url, works from canon_licences order by n").all();
   }
 
   branches(): string[] {

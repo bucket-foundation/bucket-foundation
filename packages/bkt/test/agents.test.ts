@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { agentRoutes, agentsBodyV2, AGENT_CLIS, approvedFolders, ChatStore, foldChats, inApproved, installedClis, parseChat, type ChatRunner, type TurnEvent } from "../src/agents";
+import { agentRoutes, canonRunner, agentsBodyV2, AGENT_CLIS, approvedFolders, ChatStore, foldChats, inApproved, installedClis, parseChat, type ChatRunner, type TurnEvent } from "../src/agents";
 import { writeProviders } from "../src/llm/config";
 import { startServe } from "../src/serve";
 import { agentsBody, waitDir } from "../src/wait";
@@ -219,5 +219,23 @@ describe("installed CLIs", () => {
 
   test("providers route shows names and models and no keys or URLs", async () => {
     expect(await (await call(routes(words([])), "GET /local/agents/providers")).json()).toEqual({ providers: [{ name: "ollama", model: "qwen3:4b", local: true }] });
+  });
+});
+
+describe("canon runner", () => {
+  test("streams the canonChat answer and stops when cancelled", async () => {
+    const provider = { name: "ollama", kind: "openai" as const, local: true, async *chat() {
+      yield { type: "text" as const, text: "Light is a wave." };
+      yield { type: "done" as const, stop: "end", usage: { input: 1, output: 1 } };
+    } };
+    const run = canonRunner({} as never);
+    const out: string[] = [];
+    for await (const ev of run(provider, [{ role: "user", content: "light" }], new AbortController().signal)) out.push(ev.type === "text" ? ev.text : ev.type);
+    expect(out).toEqual(["Light is a wave.", "done"]);
+    const c = new AbortController();
+    c.abort();
+    const none: unknown[] = [];
+    for await (const ev of run(provider, [{ role: "user", content: "light" }], c.signal)) none.push(ev);
+    expect(none).toEqual([]);
   });
 });

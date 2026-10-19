@@ -3,6 +3,7 @@ import type { AgentRow, AgentsBody, Api } from "../api";
 
 export const POLL_MS = 3000;
 export const HEARTBEAT_MS = 2000;
+export const TOOL_LABEL: Record<string, string> = { claude: "Claude", codex: "Codex", gemini: "Gemini", opencode: "OpenCode", aider: "Aider" };
 export const CONSENT = "Bucket adds hooks to Claude Code and Codex. Each hook writes the session id, the event name and the project folder name to a file on this computer, then shows a notification while your agents run. No prompt text, transcript or full path leaves the hook.";
 
 type AgentsApi = Pick<Api, "agents" | "reportFocus" | "setWait">;
@@ -107,7 +108,7 @@ export function AgentsStrip({ api, now = Date.now }: { api: AgentsApi; now?: () 
           {body.sessions.map((r) => (
             <li key={`${r.tool}:${r.session}`} className={`agent agent-${r.state}`}>
               <span className="agent-project">{r.project || r.session.slice(0, 8)}</span>
-              <span className="muted small">{r.tool === "claude" ? "Claude" : "Codex"}</span>
+              <span className="muted small">{TOOL_LABEL[r.tool] ?? r.tool}</span>
               <b className="pill">{STATE_LABEL[r.state]}</b>
               <span className="muted small">{elapsed(r.since, now())}</span>
               {r.subagents > 0 && <span className="muted small">{r.subagents} {r.subagents === 1 ? "subagent" : "subagents"}</span>}

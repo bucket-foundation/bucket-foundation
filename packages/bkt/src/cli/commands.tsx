@@ -87,9 +87,10 @@ import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
 import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
-import { llmCommand } from "./llm";
+import { askCommand, llmCommand } from "./llm";
+import { Database } from "bun:sqlite";
 import { agentsCmd } from "./agents-cmd";
-import { agentRoutes } from "../agents";
+import { agentRoutes, canonRunner } from "../agents";
 import { defaultWaitDeps, FOCUS_BODY_BYTES, WAIT_BODY_BYTES, waitCommand, waitRoutes } from "../wait";
 import { hostname } from "node:os";
 import { generatedFigures, generationRoutes } from "../generation-routes";
@@ -409,7 +410,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
       ...updateRoutes({ current: VERSION }),
       ...waitRoutes(defaultWaitDeps),
-      ...agentRoutes({ wait: defaultWaitDeps, llmHome: dir, keyring: session.keyring, which: (b) => Bun.which(b) }),
+      ...agentRoutes({ wait: defaultWaitDeps, llmHome: dir, keyring: session.keyring, which: (b) => Bun.which(b), run: canonRunner(canon) }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
@@ -663,7 +664,7 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "quiz notify") return quizCommand(["notify", ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz schedule") return quizCommand(["schedule", ...(typeof inv.values.at === "string" ? ["--at", inv.values.at] : []), ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz unschedule") return quizCommand(["unschedule"]);
-  if (name === "wait install" || name === "wait uninstall" || name === "wait status") return waitCommand([name.slice(5)]);
+  if (name === "wait install" || name === "wait uninstall" || name === "wait status") return waitCommand([name.slice(5), ...(inv.values.gemini === true ? ["--gemini"] : [])]);
   let route: string | null = null;
   if (name === "app" && inv.values.route !== undefined) {
     try {
@@ -681,7 +682,8 @@ export async function execute(inv: Invocation): Promise<number> {
   }
   if (name === "doctor") return doctor(inv, json);
   if (name.startsWith("llm ")) return llmCmd(inv);
-  if (name === "agents") return agentsCmd(inv);
+  if (name === "agents") return agentsCmd(inv, memoryCanon);
+  if (name === "ask") return askCmd(inv);
   if (name === "generate") return generateCmd(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
   if (name.startsWith("research ")) return researchCmd(inv, json);
@@ -765,6 +767,18 @@ export async function execute(inv: Invocation): Promise<number> {
   } finally {
     session.store.close();
   }
+}
+
+function memoryCanon(): CanonStore {
+  const db = new Database(":memory:");
+  db.run("create table meta (k text primary key, v text not null)");
+  syncCanon(db, canonPack as CanonPack);
+  return new CanonStore(db);
+}
+
+async function askCmd(inv: Invocation): Promise<number> {
+  const home = ensureDataDir(dataDir());
+  return askCommand(inv.positionals[0], inv.values, { home, keyring: () => pickKeyring(keyringOptions(inv), home), store: memoryCanon(), out: (l) => console.log(l) });
 }
 
 async function llmCmd(inv: Invocation): Promise<number> {
