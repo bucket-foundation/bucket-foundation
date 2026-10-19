@@ -1,5 +1,7 @@
 "use client";
 
+import { friendly } from "@/lib/auth/sign-in-words";
+
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { getBrowserSupabase, supabaseConfigured } from "@/lib/supabase/browser";
 import { safeNextPath } from "@/lib/auth/paths";
@@ -169,10 +171,3 @@ export default function SignInForm({ next, allowNewAccounts = true, linkError = 
   );
 }
 
-function friendly(message: string): string {
-  const m = message.toLowerCase();
-  if (m.includes("rate limit") || m.includes("too many")) return "Too many emails requested. Wait a minute and try again.";
-  if (m.includes("expired")) return "That code expired. Ask for a new one.";
-  if (m.includes("invalid")) return "That code did not match. Check it and try again.";
-  return message;
-}
