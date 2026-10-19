@@ -81,6 +81,17 @@ export function reviewLogStore(svc: () => SupabaseClient) {
       return row ? { data: row.data ? normalizeState(row.data) : null, log_seq: row.log_seq === null ? null : Number(row.log_seq), fold_key: row.fold_key } : null;
     },
 
+    async skippedVersions(uid: string, branch: string): Promise<string[]> {
+      const { data, error } = await svc().rpc("fold_skip_versions", { p_user: uid, p_branch: branch });
+      if (error) throw new Error(error.message);
+      return ((data as (string | { fold_skip_versions: string })[]) ?? []).map((r) => (typeof r === "string" ? r : r.fold_skip_versions));
+    },
+
+    async clearSkips(uid: string, branch: string, ids: string[]): Promise<void> {
+      const { error } = await svc().rpc("clear_fold_skips", { p_user: uid, p_branch: branch, p_ids: ids });
+      if (error) throw new Error(error.message);
+    },
+
     async noteCapped(uid: string, branch: string, note: string): Promise<void> {
       const { error } = await svc().rpc("note_fold_capped", { p_user: uid, p_branch: branch, p_note: note });
       if (error) throw new Error(error.message);

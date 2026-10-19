@@ -119,7 +119,7 @@ function flowWorld(over: Partial<DeviceFlowDeps> = {}) {
       return row;
     },
     registerDevice: async (uid, row, sid) => (calls.push(`register ${uid} ${row.device_id} ${sid}`), true),
-    endSession: async () => void calls.push("end"),
+    endSession: async (uid, sid) => void calls.push(`end ${uid} ${sid}`),
     mintSession: async () => ({ access_token: "at", refresh_token: "rt", expires_at: 1, session_id: "sid" }),
     revokeDevice: async (_u, id) => (id === k.id ? 2 : null),
     signOutOthers: async (tok) => void calls.push(`signout ${tok}`),
@@ -165,7 +165,7 @@ test("a revoked device cannot sign in again and its minted session is ended", as
   const dc = s.body.device_code as string;
   const t = await w.flow.token({ device_code: dc, ts: NOW, sig: k.sign(tokenProofMessage(dc, NOW)) });
   assert.equal(t.status, 403);
-  assert.deepEqual(w.calls, ["end"]);
+  assert.deepEqual(w.calls, ["end u1 sid"]);
 });
 
 test("revoke marks the device and signs out the other sessions", async () => {

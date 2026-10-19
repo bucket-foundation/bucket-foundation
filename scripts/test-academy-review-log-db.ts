@@ -146,3 +146,17 @@ test("note_fold_skips records why a review stayed out of the fold, for that user
     dropUser(b);
   }
 });
+
+test("skipped versions are listed per branch and their notes clear once folded", { skip: skip || sql("select to_regprocedure('bucket.clear_fold_skips(uuid,text,uuid[])') is not null").out !== "t" ? "the sync lows migration is not applied" : false }, () => {
+  const a = makeUser();
+  try {
+    const r = row({ atoms_version: "corpus:x" });
+    append(a, [r, row()]);
+    sql(`select bucket.note_fold_skips('${a}', 'lang', array['${r.review_id}']::uuid[], 'unknown atoms_version corpus:x')`);
+    assert.equal(sql(`select string_agg(v, ',') from bucket.fold_skip_versions('${a}', 'lang') v`).out, "corpus:x");
+    assert.equal(sql(`select bucket.clear_fold_skips('${a}', 'lang', array['${r.review_id}']::uuid[])`).out, "1");
+    assert.equal(sql(`select count(*) from bucket.fold_skip_versions('${a}', 'lang')`).out, "0");
+  } finally {
+    dropUser(a);
+  }
+});
