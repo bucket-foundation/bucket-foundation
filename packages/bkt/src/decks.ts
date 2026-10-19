@@ -282,13 +282,27 @@ export function checkUpdate(have: DeckManifest, next: DeckManifest): void {
   if (!newerThan(next, have)) throw new DeckError(`the installed ${have.title} was made on ${have.built} and this one on ${next.built}. Bucket replaces a deck only with a newer one. Remove the installed deck first to go back.`);
 }
 
-export async function installDeck(home: string, source: string): Promise<DeckManifest> {
+export const UNCHECKED_RELEASE_FILE = "the deck list in this copy of Bucket is not signed, so Bucket cannot check a deck file on its own. Put the deck's manifest.json beside it, or add the deck from the Library.";
+
+function releaseManifest(source: string, catalog: readonly DeckManifest[] | null): DeckManifest | null {
+  if (!existsSync(source) || !statSync(source).isFile() || existsSync(manifestPath(source))) return null;
+  const name = basename(source);
+  const known = DECK_FILE_NAME.test(name) ? (catalog ?? []).filter((d) => d.file === name) : [];
+  if (DECK_FILE_NAME.test(name) && catalog === null) throw new DeckError(UNCHECKED_RELEASE_FILE);
+  if (known.length !== 1) return null;
+  return known[0];
+}
+
+const DECK_FILE_NAME = /^[a-z0-9][a-z0-9-]{0,63}\.sqlite\.zst$/;
+
+export async function installDeck(home: string, source: string, catalog: readonly DeckManifest[] | null = null): Promise<DeckManifest> {
   refuseLink(source);
-  const from = manifestPath(source);
+  const fromRelease = releaseManifest(source, catalog);
+  const from = fromRelease ? source : manifestPath(source);
   refuseLink(dirname(from));
-  if (!existsSync(from)) throw new DeckError(`no ${DECK_MANIFEST} beside ${source}; a deck is a folder with a manifest and one deck file`);
-  const m = readManifest(from);
-  const packed = join(dirname(from), m.file);
+  if (!fromRelease && !existsSync(from)) throw new DeckError(`no ${DECK_MANIFEST} beside ${source}; a deck is a folder with a manifest and one deck file, or a release deck file the signed deck list names`);
+  const m = fromRelease ?? readManifest(from);
+  const packed = fromRelease ? source : join(dirname(from), m.file);
   if (!existsSync(packed)) throw new DeckError(`${m.file} is missing beside the manifest`);
   refuseLink(packed);
   if (!statSync(packed).isFile()) throw new DeckError(`${m.file} is not a file`);

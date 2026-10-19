@@ -10,6 +10,7 @@
     "prepare:bundle": "bun run ui && bun run sidecar",
     "dev": "tauri dev",
     "build": "tauri build",
+    "appimage": "bash scripts/appimage-sidecar.sh build",
     "test": "bun test scripts && cd src-tauri && cargo test"
   },
   "devDependencies": {

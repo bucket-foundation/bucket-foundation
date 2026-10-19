@@ -150,6 +150,10 @@ jobs:
           app=$(ls "$BUNDLES"/*.AppImage)
           chmod +x "$app"
           APPIMAGE_EXTRACT_AND_RUN=1 xvfb-run -a dbus-run-session -- bash "$RUNNER_TEMP/smoke.sh" "$app"
+      - name: the AppImage carries the bkt sidecar byte for byte
+        if: runner.os == 'Linux'
+        working-directory: packages/bkt-desktop
+        run: bash scripts/appimage-sidecar.sh check "$(ls "$BUNDLES"/*.AppImage)"
       - name: the rpm carries the app and the bkt sidecar
         if: runner.os == 'Linux'
         run: |
