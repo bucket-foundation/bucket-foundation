@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllDetectedBridges, getDetectedBridge } from "@/lib/canon-detected-bridges";
+import { RawDetails } from "@/components/ui";
 
 export const dynamic = "force-static";
 
@@ -41,8 +42,9 @@ export default function Page({ params }: { params: { slug: string } }) {
           className="mt-4 text-sm uppercase tracking-[0.18em]"
           style={{ color: "var(--parchment-dim)", fontFamily: "var(--font-jetbrains)" }}
         >
-          {b.branchCount} branches · {b.size} claims · bridge score {b.bridgeScore.toFixed(2)}
+          {b.branchCount} branches · {b.size} claims
         </p>
+        <RawDetails raw={`bridge score ${b.bridgeScore.toFixed(2)}`} />
       </header>
 
       {b.canonicalForm && (

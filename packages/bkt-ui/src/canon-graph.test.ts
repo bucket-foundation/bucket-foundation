@@ -84,6 +84,8 @@ describe("canon graph module", () => {
     expect(matchNodes(g, "coomaraswamy")).toEqual(["openalex:A4"]);
     expect(matchNodes(g, "Penrose and Hawking")).toEqual(["openalex:A1", "openalex:A3"]);
     expect(matchNodes(g, "of a")).toEqual([]);
+    expect(matchNodes(g, "pen")).toEqual([]);
+    expect(matchNodes(g, "penr")).toEqual(["openalex:A1"]);
   });
 
   test("layout is the same on every run and keeps groups apart", () => {

@@ -6,6 +6,7 @@ import { ApiError, type Api, type DailyAnswer, type DailyQuiz, type WorkAnswer, 
 import { href } from "../router";
 import { windowHref } from "../site-fetch";
 import { FILE_UNREADABLE } from "./file";
+import { trouble } from "../trouble";
 
 export const WORK_QUIZ_CHANGED = "bkt-work-quiz-changed";
 export const LANGUAGES_SAVE_FAILED = "Your languages were not saved.";
@@ -14,14 +15,19 @@ type LanguageApi = Pick<Api, "workLanguages" | "workSetLanguages">;
 
 export function LanguageChips({ api, onSaved }: { api: LanguageApi; onSaved?: (languages: string[]) => void }) {
   const [chosen, setChosen] = useState<string[] | null>(null);
+  const [fromSystems, setFromSystems] = useState<string[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let live = true;
     api.workLanguages().then(
-      (r) => live && setChosen(r.languages),
-      (e: Error) => live && setError(e.message),
+      (r) => {
+        if (!live) return;
+        setChosen(r.chosen ?? r.languages);
+        setFromSystems(r.fromSystems ?? []);
+      },
+      (e: unknown) => live && setError(trouble(e).text),
     );
     return () => {
       live = false;
@@ -34,8 +40,10 @@ export function LanguageChips({ api, onSaved }: { api: LanguageApi; onSaved?: (l
     setChosen(next);
     setBusy(true);
     try {
-      const saved = (await api.workSetLanguages(next)).languages;
-      setChosen(saved);
+      const out = await api.workSetLanguages(next);
+      const saved = out.languages;
+      setChosen(out.chosen ?? saved);
+      setFromSystems(out.fromSystems ?? fromSystems);
       setError(null);
       onSaved?.(saved);
       window.dispatchEvent(new Event(WORK_QUIZ_CHANGED));
@@ -50,11 +58,17 @@ export function LanguageChips({ api, onSaved }: { api: LanguageApi; onSaved?: (l
   return (
     <div className="lang-pick">
       <p className="muted small">Pick the languages you know or are learning. Word questions in them join the quiz. Changes save as you tap.</p>
+      {fromSystems.length > 0 && (
+        <p className="muted small" data-testid="from-systems">
+          Languages in your <a href={href({ name: "languages" })}>language systems</a> are always on here. Change them there.
+        </p>
+      )}
       <div className="lang-chips" role="group" aria-label="languages">
         {languagesByName().map((l) => {
-          const on = chosen?.includes(l.code) ?? false;
+          const locked = fromSystems.includes(l.code);
+          const on = locked || (chosen?.includes(l.code) ?? false);
           return (
-            <button key={l.code} type="button" className={`lang-chip${on ? " on" : ""}`} aria-pressed={on} disabled={busy || !chosen} onClick={() => void toggle(l.code)}>
+            <button key={l.code} type="button" className={`lang-chip${on ? " on" : ""}`} aria-pressed={on} disabled={busy || !chosen || locked} title={locked ? "From your language systems" : undefined} onClick={() => void toggle(l.code)}>
               {l.name}
             </button>
           );
