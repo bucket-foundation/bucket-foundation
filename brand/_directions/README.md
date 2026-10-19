@@ -51,7 +51,7 @@ Every generator is deterministic: two runs give the same HTML. Paths resolve fro
 
 ## Heavy Outputs
 
-Thumbs, pixel PNGs, 3D PNGs, video and mood images are gitignored and rebuild from source. A copy of the 2026-10-19 build: GDRIVE_LINK (`gdrive:AGFarms/Nucleus/bucket-foundation/brand-directions/2026-10-19/`). Copy it into `brand/_directions/` to skip the rebuild.
+Thumbs, pixel PNGs, 3D PNGs, video and mood images are gitignored and rebuild from source. A copy of the 2026-10-19 build: https://drive.google.com/open?id=1ZwULcm_a4wmg4g7qtudZjanQIFnZp4r9 (`gdrive:AGFarms/Nucleus/bucket-foundation/brand-directions/2026-10-19/`). Copy it into `brand/_directions/` to skip the rebuild.
 
 ## File Map
 
