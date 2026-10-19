@@ -128,3 +128,32 @@
 .canon-site aside section:has(dl) {
   display: none;
 }
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tile strong {
+  font-size: 1.4rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.decks-progress {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.decks-progress th,
+.decks-progress td {
+  text-align: left;
+  padding: 0.3rem 0.5rem 0.3rem 0;
+}

@@ -9,11 +9,11 @@ test.describe("download flow on linux", () => {
 
   test("the installer stays locked until every required field and consent is complete", async ({ page }) => {
     const posts: Record<string, unknown>[] = [];
-    await page.route("**/api/download", async (route) => {
+    await page.route("**/api/capture", async (route) => {
       posts.push(route.request().postDataJSON());
       await route.fulfill({ json: { ok: true, email: "off" } });
     });
-    await page.goto("/download");
+    await page.goto("/demo");
 
     const button = page.locator("[data-download-button]");
     await expect(button).toBeDisabled();
@@ -34,7 +34,7 @@ test.describe("download flow on linux", () => {
   });
 
   test("the demo keeps one signup form and one privacy link", async ({ page }) => {
-    await page.goto("/download");
+    await page.goto("/demo");
     await expect(page.locator("[data-download-form]")).toHaveCount(1);
     await expect(page.locator("[data-product-demo]")).toHaveCount(1);
     await expect(page.locator('main a[href="/privacy"]')).toHaveCount(1);
@@ -42,11 +42,11 @@ test.describe("download flow on linux", () => {
 
   test("after submit the linux command is first and the signup is stored with its opt-ins", async ({ page }) => {
     const posts: Record<string, unknown>[] = [];
-    await page.route("**/api/download", async (route) => {
+    await page.route("**/api/capture", async (route) => {
       posts.push(route.request().postDataJSON());
       await route.fulfill({ json: { ok: true, email: "off" } });
     });
-    await page.goto("/download");
+    await page.goto("/demo");
     await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
     await page.getByLabel("Name", { exact: true }).fill("Ada Lovelace");
     await page.getByText("Research interests and email updates", { exact: true }).click();
@@ -65,6 +65,7 @@ test.describe("download flow on linux", () => {
 
     expect(posts).toHaveLength(1);
     expect(posts[0]).toMatchObject({
+      source: "download",
       email: "ada@example.org",
       name: "Ada Lovelace",
       platform: "linux-x64",
@@ -80,8 +81,8 @@ test.describe("download flow on macos", () => {
   test.use({ userAgent: MAC_UA });
 
   test("the macos command comes first", async ({ page }) => {
-    await page.route("**/api/download", (route) => route.fulfill({ json: { ok: true, email: "off" } }));
-    await page.goto("/download");
+    await page.route("**/api/capture", (route) => route.fulfill({ json: { ok: true, email: "off" } }));
+    await page.goto("/demo");
     await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
     await page.getByLabel("Name", { exact: true }).fill("Ada");
     await page.getByLabel("Agree to the privacy terms").check();
@@ -92,8 +93,8 @@ test.describe("download flow on macos", () => {
   });
 
   test("windows gets the PowerShell line when chosen", async ({ page }) => {
-    await page.route("**/api/download", (route) => route.fulfill({ json: { ok: true, email: "off" } }));
-    await page.goto("/download");
+    await page.route("**/api/capture", (route) => route.fulfill({ json: { ok: true, email: "off" } }));
+    await page.goto("/demo");
     await page.getByLabel("Computer").selectOption("windows-x64");
     await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
     await page.getByLabel("Name", { exact: true }).fill("Ada");

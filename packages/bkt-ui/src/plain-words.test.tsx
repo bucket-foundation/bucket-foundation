@@ -1226,13 +1226,15 @@ describe("Research OS views on the local store", () => {
   const realFetch = globalThis.fetch;
   let routes: Record<string, (req: Request, url: URL) => Response | Promise<Response>> = {};
 
+  const savedExports: { name: string; text: string }[] = [];
+
   async function useLocalStore(opened: string[] = []) {
     const { Store } = await import("../../bkt/src/store");
     const { newDataKey } = await import("../../bkt/src/crypto");
     const { RosGraph, rosLiveRoutes, syncRosGraph } = await import("../../bkt/src/ros");
     const db = new Store(":memory:", newDataKey()).db;
     syncRosGraph(db, "test", ATOMS);
-    routes = rosLiveRoutes(new RosGraph(db), () => Date.UTC(2026, 8, 30));
+    routes = rosLiveRoutes(new RosGraph(db), () => Date.UTC(2026, 8, 30), { saveExport: (name, text) => (savedExports.push({ name, text }), { name, folder: "Downloads" }) });
     const { siteFetch } = await import("./site-fetch");
     const loop = (async (input: RequestInfo | URL, init?: RequestInit) => {
       const url = new URL(String(input), "http://127.0.0.1");
@@ -1302,6 +1304,79 @@ describe("Research OS views on the local store", () => {
     await submit();
     expect(v.text()).toContain("Saved.");
     expect(v.host.querySelector(".error")).toBeNull();
+    await v.unmount();
+  });
+
+  test("progress shows level tiles, started decks and saves progress to a file", async () => {
+    await useLocalStore(["02-physics:ph-heat"]);
+    let saved = 0;
+    const v = await mount({ name: "progress" }, { ...empty(), decks: async () => DECKS, exportProgress: async () => (saved++, { name: "bucket-progress-2026-09-30.json", folder: "Downloads" }) } as Stub);
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    const tiles = [...v.host.querySelectorAll(".tile")].map((t) => t.textContent);
+    expect(tiles[0]).toMatch(/^Level\d+$/);
+    expect(tiles[2]).toMatch(/^Streak\d+ days?$/);
+    const rows = [...v.host.querySelectorAll(".decks-progress tbody tr")].map((r) => [...r.querySelectorAll("td")].map((c) => c.textContent));
+    expect(rows).toEqual([["Physics", "1 of 3", "1", "10"]]);
+    const b = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Save my progress to a file") as HTMLButtonElement;
+    await v.act(async () => b.click());
+    await v.act(async () => new Promise((r) => setTimeout(r, 20)));
+    expect(saved).toBe(1);
+    expect(v.host.textContent).toContain("Saved your progress in Downloads as bucket-progress-2026-09-30.");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("the profile exports to the downloads folder and deletes only after the confirm word", async () => {
+    await useLocalStore(["02-physics:ph-heat"]);
+    const v = await mount({ name: "profile" }, empty());
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.host.textContent).toMatch(/Badges: \d+ ideas made your own · \d+ pieces of work/);
+    const click = async (label: string) => {
+      const b = [...v.host.querySelectorAll("button")].find((x) => x.textContent === label) as HTMLButtonElement;
+      await v.act(async () => b.click());
+      await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    };
+    await click("Export my profile and idea progress");
+    expect(v.text()).toContain("Saved your profile and idea progress in Downloads as research-os-export-2026-09-30.");
+    expect(violations(v.host)).toEqual([]);
+    expect(JSON.parse(savedExports.at(-1)!.text).tables.ros_state).toHaveLength(1);
+    await click("Delete my profile and idea progress");
+    const del = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Delete") as HTMLButtonElement;
+    expect(del.disabled).toBe(true);
+    const input = v.host.querySelector('input[aria-label="type the confirm word"]') as HTMLInputElement;
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")!.set!;
+    await v.act(async () => {
+      setter.call(input, "DELETE");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+    await click("Delete");
+    expect(v.text()).toContain("Your data on this computer is deleted.");
+    expect(v.text()).toContain("Open an idea on the knowledge graph to start earning XP.");
+    expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("progress says so in a sentence when the level does not load, and shows no made-up level", async () => {
+    await useLocalStore();
+    const local = globalThis.fetch;
+    globalThis.fetch = ((input: RequestInfo | URL, init?: RequestInit) => (String(input).includes("/profile") ? Promise.reject(new TypeError("offline")) : local(input, init))) as typeof fetch;
+    const v = await mount({ name: "progress" }, empty());
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.host.textContent).toContain("Bucket could not load your level. Close the window and open it again.");
+    expect(v.host.querySelectorAll(".tile")).toHaveLength(0);
+    await v.unmount();
+  });
+
+  test("progress with nothing studied points to Learn, and a failed save says so in a sentence", async () => {
+    await useLocalStore();
+    const v = await mount({ name: "progress" }, { ...empty(), exportProgress: () => Promise.reject(new ApiError("save_failed", 500)) } as Stub);
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    expect(v.host.textContent).toContain("Nothing studied yet. Start a deck in Learn.");
+    const b = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Save my progress to a file") as HTMLButtonElement;
+    await v.act(async () => b.click());
+    await v.act(async () => new Promise((r) => setTimeout(r, 20)));
+    expect(v.host.textContent).toContain("Bucket could not save your progress. Try again.");
+    expect(v.host.textContent).not.toContain("save_failed");
     await v.unmount();
   });
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { normalizeState, type EngineState } from "@/lib/academy/engine";
+import { useAccountGate } from "@/lib/academy/account-gate-context";
 import { loadLangCorpus, loadSystems, saveSystems, type SaveResult, type SystemsChange } from "@/lib/academy/lang-client";
 import SaveNotice from "./SaveNotice";
 import {
@@ -19,6 +20,8 @@ import {
   type SystemError,
 } from "@/lib/academy/lang-systems";
 import { webProgressStore } from "@/lib/academy/progress-store";
+import { sharedMemoryOn } from "@/lib/academy/lang-memory";
+import { browserMemoryIO, openShared } from "@/lib/academy/lang-memory-store";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState, PageHeader, Panel } from "@/components/ui";
 
 const ERROR_TEXT: Record<SystemError, string> = {
@@ -37,6 +40,7 @@ export default function LanguagesHome() {
   const [root, setRoot] = useState("en");
   const [targets, setTargets] = useState<string[]>([]);
   const [saveState, setSaveState] = useState<SaveResult | "idle" | "saving">("idle");
+  const { guest, requireAccount } = useAccountGate();
 
   useEffect(() => {
     let alive = true;
@@ -45,7 +49,7 @@ export default function LanguagesHome() {
         const server = await webProgressStore.pull();
         const [c, list] = await Promise.all([loadLangCorpus(), loadSystems(server)]);
         const st: Record<string, EngineState> = {};
-        for (const s of list) st[s.id] = await webProgressStore.load(progressBranch(s), server);
+        for (const s of list) st[s.id] = sharedMemoryOn() ? (await openShared(browserMemoryIO, s, list, server)).view : await webProgressStore.load(progressBranch(s), server);
         if (!alive) return;
         if (!c) setError(true);
         setCorpus(c);
@@ -68,10 +72,14 @@ export default function LanguagesHome() {
 
   function create() {
     if (!systems || err) return;
-    const s = createSystem(root, targets, systems);
-    setSystems([...systems, s]);
-    setTargets([]);
-    void persist({ upsert: s });
+    const make = () => {
+      const s = createSystem(root, targets, systems);
+      setSystems([...systems, s]);
+      setTargets([]);
+      void persist({ upsert: s });
+    };
+    if (guest && systems.length === 0) make();
+    else requireAccount(make);
   }
 
   function remove(id: string) {
@@ -198,7 +206,16 @@ export default function LanguagesHome() {
               {err && targets.length > 0 && <span className="text-[12px] text-[color:var(--basalt-3)]">{ERROR_TEXT[err]}</span>}
             </div>
           </Panel>
-          <SaveNotice state={saveState} />
+          {guest && systems.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-3" data-guest-save>
+              <p className="text-[12px] text-[color:var(--basalt-2)]">Saved on this device.</p>
+              <button type="button" onClick={() => requireAccount(() => void persist({}))} className={BTN_SECONDARY}>
+                save to your account
+              </button>
+            </div>
+          ) : (
+            <SaveNotice state={saveState} />
+          )}
           <p className="text-[11px] text-[color:var(--basalt-3)]">{corpus.attribution}</p>
         </>
       )}

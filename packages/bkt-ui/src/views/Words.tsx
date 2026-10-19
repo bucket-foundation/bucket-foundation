@@ -3,6 +3,7 @@ import { InlineMath } from "@/components/math/InlineMath";
 import type { Api, ConceptPage, DeckCredit, LessonPage, LessonWord, WordAnswerApi, WordCredit, WordLessons, WordQuizPick, WordView, WorkAnswer, WorkQuestion } from "../api";
 import { href } from "../router";
 import { Choice, QuestionBody, Why } from "./WorkQuiz";
+import { trouble, TroubleNote, type Trouble } from "../trouble";
 
 export const WORD_LESSONS_NOTE = "Word lessons teach single words with their sound and origin, about 8 words at a time.";
 export const PICK_LANGUAGES = "Pick languages in Settings to get word lessons.";
@@ -134,7 +135,7 @@ export function WordQuizRun({ api, pick, onLeave, leaveLabel }: { api: WordAnswe
   const [value, setValue] = useState("");
   const [result, setResult] = useState<WorkAnswer | null>(null);
   const [score, setScore] = useState(0);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Trouble | null>(null);
   const started = useRef(Date.now());
 
   useEffect(() => {
@@ -145,7 +146,7 @@ export function WordQuizRun({ api, pick, onLeave, leaveLabel }: { api: WordAnswe
         setQs(r.questions);
         started.current = Date.now();
       },
-      (e: Error) => live && setError(e.message),
+      (e: unknown) => live && setError(trouble(e)),
     );
     return () => {
       live = false;
@@ -161,7 +162,7 @@ export function WordQuizRun({ api, pick, onLeave, leaveLabel }: { api: WordAnswe
       setResult(r);
       if (r.correct) setScore((s) => s + 1);
     } catch (e) {
-      setError((e as Error).message);
+      setError(trouble(e));
     }
   };
   const next = () => {
@@ -171,7 +172,7 @@ export function WordQuizRun({ api, pick, onLeave, leaveLabel }: { api: WordAnswe
     started.current = Date.now();
   };
 
-  if (error) return <p className="error">{error}</p>;
+  if (error) return <TroubleNote t={error} />;
   if (!qs) return <p className="muted">Building questions…</p>;
   if (!q)
     return (
@@ -225,13 +226,13 @@ export function WordQuizRun({ api, pick, onLeave, leaveLabel }: { api: WordAnswe
   );
 }
 
-function useLoad<T>(load: () => Promise<T>, deps: unknown[]): { value: T | null; error: string | null } {
-  const [state, setState] = useState<{ value: T | null; error: string | null }>({ value: null, error: null });
+function useLoad<T>(load: () => Promise<T>, deps: unknown[]): { value: T | null; error: Trouble | null } {
+  const [state, setState] = useState<{ value: T | null; error: Trouble | null }>({ value: null, error: null });
   useEffect(() => {
     let live = true;
     load().then(
       (value) => live && setState({ value, error: null }),
-      (e: Error) => live && setState({ value: null, error: e.message }),
+      (e: unknown) => live && setState({ value: null, error: trouble(e) }),
     );
     return () => {
       live = false;
@@ -242,7 +243,7 @@ function useLoad<T>(load: () => Promise<T>, deps: unknown[]): { value: T | null;
 
 export function WordDeckView({ api, deck }: { api: Pick<Api, "wordLessons">; deck: string }) {
   const { value, error } = useLoad<WordLessons>(() => api.wordLessons(deck), [api, deck]);
-  if (error) return <p className="error">{error}</p>;
+  if (error) return <TroubleNote t={error} />;
   if (!value) return <p className="muted">Loading word lessons…</p>;
   const d = value.deck;
   return (
@@ -280,7 +281,7 @@ export function WordDeckView({ api, deck }: { api: Pick<Api, "wordLessons">; dec
 export function WordLessonView({ api, deck, n }: { api: Pick<Api, "wordLesson"> & WordAnswerApi; deck: string; n: number }) {
   const { value, error } = useLoad<LessonPage & { credit: WordCredit }>(() => api.wordLesson(deck, n), [api, deck, n]);
   const [quiz, setQuiz] = useState(false);
-  if (error) return <p className="error">{error}</p>;
+  if (error) return <TroubleNote t={error} />;
   if (!value) return <p className="muted">Loading the lesson…</p>;
   const back = href({ name: "words", deck: value.deck.lang });
   const onward = n < value.of ? href({ name: "words", deck: value.deck.lang, lesson: n + 1 }) : back;
@@ -334,7 +335,7 @@ function ConceptCell({ words }: { words: WordView[] }) {
 
 export function WordLicenceView({ api }: { api: Pick<Api, "wordLicence"> }) {
   const { value, error } = useLoad(() => api.wordLicence(), [api]);
-  if (error) return <p className="error">{error}</p>;
+  if (error) return <TroubleNote t={error} />;
   if (!value) return <p className="muted">Loading the licence…</p>;
   return (
     <section>
@@ -365,7 +366,7 @@ export function WordConceptsView({ api, page }: { api: Pick<Api, "wordConcepts">
   const load = useCallback(() => api.wordConcepts(page), [api, page]);
   const { value, error } = useLoad<ConceptPage & { credit: WordCredit }>(load, [load]);
   const [quiz, setQuiz] = useState(false);
-  if (error) return <p className="error">{error}</p>;
+  if (error) return <TroubleNote t={error} />;
   if (!value) return <p className="muted">Loading words…</p>;
   const settings = href({ name: "settings" });
   return (

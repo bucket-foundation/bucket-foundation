@@ -1,3 +1,6 @@
+import { exportFileName } from "../../../src/lib/research-os/privacy-actions";
+import { DELETE_CONFIRM_TOKEN } from "../../../src/lib/research-os/types";
+import { saveTextToDownloads } from "./downloads";
 import type { Database } from "bun:sqlite";
 import type { Atom } from "../../../src/lib/academy/engine";
 import { computeAncestorClosure } from "../../../src/lib/research-os/closure";
@@ -201,6 +204,20 @@ export class RosGraph {
   forget() {
     this.db.run("delete from ros_state; update ros_profile set game = null;");
   }
+
+  exportTables(): Record<string, Record<string, unknown>[]> {
+    return {
+      ros_profile: this.db.query<Record<string, unknown>, []>("select role, birth_year_bucket, game, updated_at from ros_profile").all(),
+      ros_state: this.db.query<Record<string, unknown>, []>("select node_id, stage, confidence, evidence, updated_at from ros_state order by node_id").all(),
+    };
+  }
+
+  forgetAll(): Record<string, number> {
+    const states = this.db.query<{ n: number }, []>("select count(*) n from ros_state").get()!.n;
+    const profile = this.db.query<{ n: number }, []>("select count(*) n from ros_profile").get()!.n;
+    this.db.transaction(() => this.db.run("delete from ros_state; delete from ros_profile;"))();
+    return { ros_state: states, ros_profile: profile };
+  }
 }
 
 const lite = (n: GraphNode) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, branch: n.branch, frontierFlag: n.frontierFlag ?? null });
@@ -208,7 +225,13 @@ const dlite = (n: GraphNode) => ({ id: n.id, slug: n.slug, title: n.title, kind:
 const VERBS = ["view", "continue", "extend", "cite", "replicate", "review"];
 const ACTING = ["extends", "replicates", "reviews", "answers"];
 
-export function rosLiveRoutes(g: RosGraph, now: () => number = Date.now): Record<string, Route> {
+export interface RosLiveOptions {
+  saveExport?: (name: string, text: string) => { name: string; folder: string };
+}
+
+export const saveToDownloads = saveTextToDownloads;
+
+export function rosLiveRoutes(g: RosGraph, now: () => number = Date.now, opts: RosLiveOptions = {}): Record<string, Route> {
   const P = ROS_LIVE_PATHS;
   const standing = () => new Map(g.states().map((s) => [s.node_id, s]));
   return {
@@ -345,6 +368,22 @@ export function rosLiveRoutes(g: RosGraph, now: () => number = Date.now): Record
       if (deleted) g.forget();
       g.saveProfile(v.value.role, v.value.birthYearBucket, at);
       return json({ profile: { role: v.value.role, birthYearBucket: v.value.birthYearBucket, consentStatus: "self", updatedAt: iso(at) }, deleted });
+    },
+    [`POST ${P.privacy.local}`]: async (req) => {
+      const b = (await readBody(req)) as { action?: unknown; confirm?: unknown; save?: unknown } | null;
+      if (!b || (b.action !== "export" && b.action !== "delete")) return bad(400, "bad_request");
+      const at = iso(now());
+      if (b.action === "delete") {
+        if (b.confirm !== DELETE_CONFIRM_TOKEN) return bad(400, "confirm_required");
+        return json({ learnerId: "local", deletedAt: at, deleted: g.forgetAll() });
+      }
+      const envelope = { learnerId: "local", exportedAt: at, tables: g.exportTables() };
+      if (b.save !== true || !opts.saveExport) return json(envelope);
+      try {
+        return json({ ...envelope, saved: opts.saveExport(exportFileName(new Date(now())), JSON.stringify(envelope, null, 2)) });
+      } catch {
+        return bad(500, "save_failed");
+      }
     },
     [`GET ${P.modules.local}`]: (_req, url) => {
       const slug = (url.searchParams.get("node") || "").trim();

@@ -66,7 +66,8 @@ import { HISTORY_BODY_BYTES, HistoryStore, historyRoutes } from "../history";
 import { cacheRoot } from "../pyruntime";
 import pysrc from "../../content/pysrc.json" with { type: "json" };
 import type { PySource } from "../pack/pysrc";
-import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, syncRosGraph } from "../ros";
+import { saveTextToDownloads } from "../downloads";
+import { BUNDLED_ROS, RosGraph, rosLiveRoutes, rosRoutes, saveToDownloads, syncRosGraph } from "../ros";
 import { Research, researchCacheRoot, ResearchError, researchRoutes, SIDE_PACK_BYTES } from "../research";
 import { addLines, answerKey, approvalLines, installLines, researchAdd, researchAnswer, researchBuilds, researchInstall, researchWaiting } from "./research";
 import { createInterface } from "node:readline";
@@ -86,6 +87,10 @@ import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
 import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
+import { hostname } from "node:os";
+import { openRemote } from "../sync";
+import type { RemoteSync } from "../../../../src/lib/academy/remote-sync";
+import { syncRoutes } from "../sync/routes";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
   const { code, report, stderr, cancelled } = r;
@@ -369,9 +374,10 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...data.routes,
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi), graph: (canonPack as CanonPack).graph ?? null }),
       ...exploreRoutes(explore, canon),
-      ...localRoutes(session.store, { content, langCorpus }),
+      ...localRoutes(session.store, { content, langCorpus, saveExport: saveTextToDownloads() }),
+      ...syncRoutes(openRemote(session, dir), { label: () => hostname(), onError: (m) => console.error(`bkt serve: sync: ${m}`) }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
-      ...rosLiveRoutes(new RosGraph(session.store.db)),
+      ...rosLiveRoutes(new RosGraph(session.store.db), Date.now, { saveExport: saveToDownloads() }),
       ...advisorRoutes(people),
       ...jobRoutes(runner),
       ...researchRoutes(research, researchTrouble),
@@ -564,6 +570,27 @@ function tuiSources(session: Session): AppSources {
   };
 }
 
+async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync, json: boolean): Promise<number> {
+  if (name === "logout") {
+    await remote.logout();
+    console.log(json ? jsonLine("logout", { signed_in: false }) : "Signed out on this device.");
+    return EXIT.ok;
+  }
+  if (name === "login") {
+    const s = await remote.login("cli", hostname(), (p) => {
+      if (json) console.log(jsonLine("login", { user_code: p.user_code, verification_uri: p.verification_uri }));
+      else console.log(`Open ${p.verification_uri} and confirm the code ${p.user_code}. Waiting up to ${Math.round(p.expires_in / 60)} minutes.`);
+    });
+    console.log(json ? jsonLine("login", { signed_in: true, user_id: s.user_id, device_id: s.device_id }) : "Signed in. Study progress now syncs with your account.");
+    return EXIT.ok;
+  }
+  await remote.sync.flush();
+  const pulled = await remote.sync.pullLog();
+  const out = { mode: remote.sync.mode(), pending: remote.sync.pending().length, held: remote.sync.held().length, pulled: pulled?.length ?? null };
+  console.log(json ? jsonLine("sync", out) : `sync: ${out.mode}, ${out.pending} waiting to send, ${out.pulled ?? 0} pulled`);
+  return out.mode === "log" ? EXIT.ok : EXIT.failure;
+}
+
 export async function execute(inv: Invocation): Promise<number> {
   const name = inv.command.name;
   const json = inv.values.json === true;
@@ -672,7 +699,8 @@ export async function execute(inv: Invocation): Promise<number> {
     } else if (name === "forget people") {
       const n = new PeopleStore(session.store, session.key).forget(Date.now());
       console.log(`forgot ${n} people; a later import skips them unless you confirm`);
-    } else if (name === "serve" || name === "app") await serve(name, session, dir, content, route);
+    } else if (name === "login" || name === "logout" || name === "sync") return await accountCmd(name, openRemote(session, dir), json);
+    else if (name === "serve" || name === "app") await serve(name, session, dir, content, route);
     else if (name === "stats") {
       const s = session.store.stats(Date.now());
       console.log(json ? jsonLine("stats", s) : textRows(statRows(s)));

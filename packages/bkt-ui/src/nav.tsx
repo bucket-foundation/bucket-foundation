@@ -112,7 +112,7 @@ function Page({ api, route }: { api: Api; route: Route }) {
   if (route.name === "library") return <LibraryView api={api} />;
   if (route.name === "graph") return <RosMapView branch={route.branch} />;
   if (route.name === "node") return <RosNodeView key={route.slug} slug={route.slug} />;
-  if (route.name === "progress") return <RosProgressView />;
+  if (route.name === "progress") return <RosProgressView api={api} />;
   if (route.name === "profile") return <RosProfileView />;
   return <LearnHome api={api} />;
 }
