@@ -6,7 +6,7 @@ import type { Rating } from "@/lib/academy/fsrs";
 import { loadLangCorpus, loadSystems, saveSystems, type SaveResult } from "@/lib/academy/lang-client";
 import { applyPlacement, editSystem, gradeCard, progressBranch, type LangCorpus, type LangSystem } from "@/lib/academy/lang-systems";
 import { webProgressStore } from "@/lib/academy/progress-store";
-import { sharedMemoryOn } from "@/lib/academy/lang-memory";
+import { sharedMemoryActive } from "@/lib/academy/lang-memory";
 import { browserMemoryIO, gradeShared, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
@@ -21,12 +21,14 @@ export interface LangSystemHandle {
   saveState: SaveResult | "idle" | "saving";
   edit: (targets: string[]) => void;
   langStatus: Record<string, LangLoadStatus>;
+  shared?: boolean;
 }
 
 export function useLangSystem(systemId: string): LangSystemHandle {
-  const shared = useSharedLangSystem(systemId, sharedMemoryOn());
-  const legacy = useLegacyLangSystem(systemId, !sharedMemoryOn());
-  return sharedMemoryOn() ? shared : legacy;
+  const [on] = useState(sharedMemoryActive);
+  const shared = useSharedLangSystem(systemId, on);
+  const legacy = useLegacyLangSystem(systemId, !on);
+  return on ? { ...shared, shared: true } : legacy;
 }
 
 function useLegacyLangSystem(systemId: string, active: boolean): LangSystemHandle {

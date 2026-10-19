@@ -7,6 +7,17 @@ export function sharedMemoryOn(value: string | undefined = process.env.NEXT_PUBL
   return value === "1" || value === "true";
 }
 
+export const SHARED_MEMORY_PREVIEW_KEY = "bucket-academy/v1/flags/polingual-shared-memory";
+
+export function sharedMemoryActive(): boolean {
+  if (sharedMemoryOn()) return true;
+  try {
+    return typeof localStorage !== "undefined" && localStorage.getItem(SHARED_MEMORY_PREVIEW_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export const MIGRATION = "v1";
 export const BACKUP_SUFFIX = ".bak-v1";
 
