@@ -88,6 +88,8 @@ import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
 import { llmCommand } from "./llm";
+import { agentsCmd } from "./agents-cmd";
+import { agentRoutes } from "../agents";
 import { defaultWaitDeps, FOCUS_BODY_BYTES, WAIT_BODY_BYTES, waitCommand, waitRoutes } from "../wait";
 import { hostname } from "node:os";
 import { generatedFigures, generationRoutes } from "../generation-routes";
@@ -407,6 +409,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
       ...updateRoutes({ current: VERSION }),
       ...waitRoutes(defaultWaitDeps),
+      ...agentRoutes({ wait: defaultWaitDeps, llmHome: dir, keyring: session.keyring, which: (b) => Bun.which(b) }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
@@ -678,6 +681,7 @@ export async function execute(inv: Invocation): Promise<number> {
   }
   if (name === "doctor") return doctor(inv, json);
   if (name.startsWith("llm ")) return llmCmd(inv);
+  if (name === "agents") return agentsCmd(inv);
   if (name === "generate") return generateCmd(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
   if (name.startsWith("research ")) return researchCmd(inv, json);

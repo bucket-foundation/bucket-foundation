@@ -1,6 +1,7 @@
 import type { Api } from "./api";
 import type { Route } from "./router";
 import { AddView } from "./views/Add";
+import { AgentsScreen } from "./views/AgentsScreen";
 import { AdvisorsView } from "./views/Advisors";
 import { AtlasesView } from "./views/Atlases";
 import { CanonSearchView } from "./views/CanonSearch";
@@ -31,6 +32,7 @@ import { WordConceptsView, WordDeckView, WordLessonView, WordLicenceView } from 
 
 export const NAV: { route: Route; label: string }[] = [
   { route: { name: "learn" }, label: "Learn" },
+  { route: { name: "agents" }, label: "Agents" },
   { route: { name: "path" }, label: "Path" },
   { route: { name: "quiz" }, label: "Quiz" },
   { route: { name: "review" }, label: "Review" },
@@ -108,6 +110,7 @@ function Page({ api, route }: { api: Api; route: Route }) {
   if (route.name === "workspace") return <WorkspaceView key={route.type ?? "tables"} api={api} type={route.type ?? "tables"} item={route.item} />;
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
+  if (route.name === "agents") return <AgentsScreen api={api} />;
   if (route.name === "settings") return <SettingsView api={api} />;
   if (route.name === "library") return <LibraryView api={api} />;
   if (route.name === "graph") return <RosMapView branch={route.branch} />;

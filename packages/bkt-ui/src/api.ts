@@ -9,6 +9,8 @@ import type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 import { siteFetch } from "./site-fetch";
 import type { AgentsBody } from "../../bkt/src/wait-fold";
 export type { AgentRow, AgentsBody } from "../../bkt/src/wait-fold";
+import type { AgentsBodyV2, TurnEvent } from "../../bkt/src/agents-types";
+export type { AgentsBodyV2, ChatRow, CliRow, TurnEvent } from "../../bkt/src/agents-types";
 
 export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordLicence, WordView } from "../../bkt/src/core/words";
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
@@ -305,6 +307,20 @@ export interface DataDetail {
   fields: { label: string; value: string }[];
 }
 
+export interface ChatProvider {
+  name: string;
+  model: string;
+  local: boolean;
+}
+
+export interface ChatRequest {
+  id?: string;
+  provider: string;
+  model?: string;
+  folder?: string;
+  messages: { role: "user" | "assistant"; content: string }[];
+}
+
 export class ApiError extends Error {
   constructor(
     readonly code: string,
@@ -505,6 +521,49 @@ export class Api {
 
   agents() {
     return this.call<AgentsBody>("/local/agents");
+  }
+
+  agentsV2() {
+    return this.call<AgentsBodyV2>("/local/agents");
+  }
+
+  agentTools() {
+    return this.call<{ tools: string[] }>("/local/agents/tools").then((r) => r.tools);
+  }
+
+  agentFolders() {
+    return this.call<{ folders: string[] }>("/local/agents/folders").then((r) => r.folders);
+  }
+
+  agentProviders() {
+    return this.call<{ providers: ChatProvider[] }>("/local/agents/providers").then((r) => r.providers);
+  }
+
+  cancelChat(id: string) {
+    return this.call<{ cancelled: boolean }>("/local/agents/chat/cancel", { method: "POST", body: { id } });
+  }
+
+  async *chat(req: ChatRequest, signal?: AbortSignal): AsyncGenerator<TurnEvent> {
+    const r = await fetch("/local/agents/chat", { method: "POST", headers: { authorization: `Bucket ${this.token}`, "content-type": "application/json" }, body: JSON.stringify(req), signal });
+    if (!r.ok || !r.body) {
+      const data = (await r.json().catch(() => ({}))) as { error?: string };
+      throw new ApiError(data.error ?? "", r.status);
+    }
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "";
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let nl = buf.indexOf("\n");
+      while (nl >= 0) {
+        const line = buf.slice(0, nl).trim();
+        buf = buf.slice(nl + 1);
+        if (line) yield JSON.parse(line) as TurnEvent;
+        nl = buf.indexOf("\n");
+      }
+    }
   }
 
   reportFocus(focused: boolean, visible: boolean) {

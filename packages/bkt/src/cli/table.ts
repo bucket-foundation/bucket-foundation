@@ -91,6 +91,7 @@ export const TABLE: CommandSpec[] = [
   { name: "llm local", summary: "look for a local OpenAI-compatible server on ports 11434, 8080 and 8000" },
   { name: "llm doctor", summary: "check the GPU, the local model server and one test completion", options: { model: { type: "string", value: "MODEL", help: "model to test" } } },
   { name: "wait status", summary: "show whether the agent hooks are on and the last events" },
+  { name: "agents", summary: "list coding agents and chat with the Bucket agent", terminal: "always" },
   {
     name: "analyze",
     summary: "check a data file, run the analysis suite and save a report",
