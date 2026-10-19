@@ -2,7 +2,7 @@ import { mergeState, normalizeState, type EngineState } from "./engine";
 import type { Rating } from "./fsrs";
 import { backupBranch, emptyMemory, foldByLang, langBranch, makeRow, memoryState, mergeMemory, migrateLang, normalizeMemory, planningSystem, withRows, type LangMemory, type LangRow } from "./lang-memory";
 import { applyPlacement, cardId, progressBranch, type LangCorpus, type LangSystem } from "./lang-systems";
-import { LS_BASE, pullServer, type ServerBranches } from "./progress-store";
+import { LS_BASE, pullServer, webProgressStore, type ServerBranches } from "./progress-store";
 
 export interface MemoryIO {
   pull(): Promise<ServerBranches | null>;
@@ -15,6 +15,7 @@ export interface MemoryIO {
   deviceId(): string;
   tz(): string;
   now(): number;
+  appendReview?(branch: string, review: Pick<LangRow, "card_id" | "rating" | "level" | "reviewed_at" | "tz" | "atoms_version">): unknown;
 }
 
 export type LangLoadStatus = "ready" | "error";
@@ -98,6 +99,7 @@ function refold(s: SharedSession): SharedSession {
 export function gradeShared(io: MemoryIO, s: SharedSession, lang: string, itemId: string, rating: Rating): { session: SharedSession; saved: Promise<boolean> } {
   const row = makeRow(s.system.id, cardId(lang, itemId), rating, io.uuid(), io.deviceId(), io.now(), io.tz());
   io.writeOutbox([...io.readOutbox(), row]);
+  io.appendReview?.(langBranch(lang), { card_id: row.card_id, rating: row.rating, level: row.level, reviewed_at: row.reviewed_at, tz: row.tz, atoms_version: row.atoms_version });
   if (s.langStatus[lang] !== "ready") return { session: s, saved: Promise.resolve(false) };
   const m = withRows(s.memories[lang] ?? emptyMemory(lang), [row]);
   const session = refold({ ...s, memories: { ...s.memories, [lang]: m } });
@@ -186,4 +188,8 @@ export const browserMemoryIO: MemoryIO = {
     return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
   },
   now: () => Date.now(),
+  appendReview(branch, review) {
+    const store = webProgressStore as { appendReview?: (b: string, r: typeof review) => unknown };
+    return store.appendReview?.(branch, review);
+  },
 };

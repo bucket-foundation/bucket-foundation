@@ -29,6 +29,10 @@ class FakeIO implements MemoryIO {
   pushes: string[] = [];
   failPush = new Set<string>();
   clock = T0;
+  appended: { branch: string; card_id: string }[] = [];
+  appendReview(branch: string, r: { card_id: string }) {
+    this.appended.push({ branch, card_id: r.card_id });
+  }
   n = 0;
   constructor(public device = "dev-a") {}
   async pull(): Promise<ServerBranches> {
@@ -117,6 +121,7 @@ async function main() {
     s = g0.session;
     await g0.saved;
   }
+  ok(io.appended.length === fresh.length && io.appended.every((x) => x.branch === langBranch("it") && x.card_id.startsWith("it:")), "each shared-memory grade is appended to the review log on its lang-<code> branch");
   const romanceView = (await openShared(io, romance, systems)).view;
   ok(newToday(romanceView, "it", T0) >= NEW_PER_LANG_PER_DAY, "the per-language daily new budget is shared across systems");
   const romancePlan = planSession((await openShared(io, romance, systems)).plan, corpus, romanceView, T0);
