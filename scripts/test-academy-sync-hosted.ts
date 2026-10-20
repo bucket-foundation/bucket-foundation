@@ -5,6 +5,7 @@ import { normalizeState, type Atom } from "../src/lib/academy/engine";
 import { createMobileSync } from "../src/lib/academy/mobile-sync";
 import { RETRY_MS, watchReconnect } from "../src/lib/academy/reconnect";
 import { createRemoteSync } from "../src/lib/academy/remote-sync";
+import { deviceCodeFromSearch, isSignedOut } from "../src/lib/academy/device-code";
 import { corpusAtomsVersion } from "../src/lib/academy/replay";
 import { createReviewLogHandlers, type AppendRow, type StoredReview } from "../src/lib/academy/review-log-server";
 import { createReviewSync, type Fetcher, type ReviewEvent } from "../src/lib/academy/review-sync";
@@ -172,4 +173,49 @@ test("a grade made offline lands once when the connection returns and shows on a
   events.fire("online");
   await settle();
   assert.ok(server.posts >= 1);
+});
+
+test("the device page reads the code from its link", () => {
+  assert.equal(deviceCodeFromSearch("?code=QVLGREFK"), "QVLGREFK");
+  assert.equal(deviceCodeFromSearch("?code=qvlg-refk"), "QVLGREFK");
+  assert.equal(deviceCodeFromSearch("?code=short"), null);
+  assert.equal(deviceCodeFromSearch(""), null);
+});
+
+test("a device check refusal on a signed-in browser does not send the person back to sign in", async () => {
+  const res = (status: number, error: string) => new Response(JSON.stringify({ error }), { status });
+  assert.equal(await isSignedOut(res(401, "unauthorized")), true);
+  assert.equal(await isSignedOut(res(401, "device_refused")), false);
+  assert.equal(await isSignedOut(res(503, "sync_unavailable")), false);
+});
+
+function loginServer(page: number | "down", start = 200): Fetcher {
+  return async (input) => {
+    const u = new URL(String(input));
+    if (u.pathname === "/api/academy/device/start") {
+      if (start !== 200) return new Response(JSON.stringify({ error: "review_log_disabled" }), { status: start });
+      return new Response(JSON.stringify({ device_code: "dc", user_code: "QVLGREFK", verification_uri: "https://www.bucket.foundation/device", expires_in: 0, interval: 1 }), { status: 200 });
+    }
+    if (u.pathname === "/device") {
+      if (page === "down") throw new TypeError("fetch failed");
+      return new Response("<html></html>", { status: page });
+    }
+    return new Response("{}", { status: 500 });
+  };
+}
+
+async function promptFrom(f: Fetcher): Promise<{ prompt: { warning?: string; verification_uri: string } | null; error: string }> {
+  const sync = createRemoteSync({ base: DEFAULT_SYNC_BASE, storage: () => memoryStorage(), vault: new MemoryVault(), device: { id: "dev_1", publicKey: "pk", sign: () => "sig" }, readLocal: () => null, fetch: f, sleep: async () => undefined });
+  let prompt: { warning?: string; verification_uri: string } | null = null;
+  const error = await sync.login("cli", "t", (p) => void (prompt = p)).then(() => "", (e: Error) => e.message);
+  return { prompt, error };
+}
+
+test("bkt login says why when the approval page or the API cannot be reached", async () => {
+  const ok = await promptFrom(loginServer(200));
+  assert.equal(ok.prompt?.verification_uri, "https://www.bucket.foundation/device?code=QVLGREFK");
+  assert.equal(ok.prompt?.warning, undefined);
+  assert.equal((await promptFrom(loginServer(404))).prompt?.warning, "the sign-in page answered 404");
+  assert.match((await promptFrom(loginServer("down"))).prompt?.warning ?? "", /unreachable/);
+  assert.equal((await promptFrom(loginServer(200, 503))).error, "sign-in could not start: account sync is turned off on the site");
 });

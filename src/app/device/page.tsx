@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY, PageHeader } from "@/components/ui";
+import { deviceCodeFromSearch, isSignedOut } from "@/lib/academy/device-code";
 
 interface DeviceRow {
   device_id: string;
@@ -21,26 +22,31 @@ export default function DevicePage() {
 
   const refresh = useCallback(async () => {
     const r = await fetch("/api/academy/devices", { cache: "no-store" });
-    if (r.status === 401) return setSignedOut(true);
-    if (r.ok) setDevices(((await r.json()) as { devices: DeviceRow[] }).devices);
+    if (r.ok) return setDevices(((await r.json()) as { devices: DeviceRow[] }).devices);
+    if (await isSignedOut(r)) setSignedOut(true);
   }, []);
 
-  useEffect(() => {
-    const q = new URLSearchParams(window.location.search).get("code");
-    if (q) setCode(q);
-    void refresh();
-  }, [refresh]);
-
-  async function check(e: React.FormEvent) {
-    e.preventDefault();
-    const r = await fetch(`/api/academy/device/approve?user_code=${encodeURIComponent(code)}`, { cache: "no-store" });
-    if (r.status === 401) return setSignedOut(true);
+  const lookup = useCallback(async (value: string) => {
+    const r = await fetch(`/api/academy/device/approve?user_code=${encodeURIComponent(value)}`, { cache: "no-store" });
+    if (await isSignedOut(r)) return setSignedOut(true);
     if (!r.ok) {
       setPending(null);
       return setNote("That code is unknown or has expired. Start again on the device.");
     }
     setNote(null);
     setPending((await r.json()) as { kind: string; label: string | null });
+  }, []);
+
+  useEffect(() => {
+    const q = deviceCodeFromSearch(window.location.search);
+    if (q) setCode(q);
+    void refresh();
+    if (q) void lookup(q);
+  }, [refresh, lookup]);
+
+  async function check(e: React.FormEvent) {
+    e.preventDefault();
+    await lookup(code.trim().toUpperCase());
   }
 
   async function approve() {
