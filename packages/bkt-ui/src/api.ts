@@ -527,6 +527,10 @@ export class Api {
     return this.call<AgentsBodyV2>("/local/agents");
   }
 
+  launchAgent(tool: string, folder: string) {
+    return this.call<{ ok: boolean; tool: string; folder: string }>("/local/agents/launch", { method: "POST", body: { tool, folder } });
+  }
+
   agentTools() {
     return this.call<{ tools: string[] }>("/local/agents/tools").then((r) => r.tools);
   }

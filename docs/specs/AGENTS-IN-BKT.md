@@ -23,7 +23,7 @@ In bkt desktop and the bkt TUI the founder sees every coding agent running on th
 ## Slice 4: agent panel
 - bkt-ui: an Agents screen beside Learn listing sessions from `/local/agents` (external CLIs) and Bucket agent chats, with launch buttons for installed CLIs (opens a terminal in the chosen folder through the desktop shell; no embedded PTY in this slice).
 - TUI: `bkt agents` (ink) shows the same list and opens a Bucket agent chat.
-- Launching a CLI: one new Tauri command `launch_agent(tool, folder)`. `tool` must be in a fixed allowlist of installed CLIs found at startup; `folder` must resolve (realpath) inside a user-approved folder list stored by the sidecar; everything else is rejected. The capabilities file and the lib.rs page-call test extend to exactly this command, with reject tests (B4).
+- Launching a CLI: the sidecar route `POST /local/agents/launch` behind the serve guards (nonce, bearer token, peer uid). `tool` must be in a fixed allowlist of installed CLIs found at startup; `folder` must resolve (realpath) inside the approved folder list, which the sidecar reads and never writes; the spawn passes argv with no shell, one launch at a time, at most one per 2s and four in a row, counted only after validation. The page holds zero Tauri capabilities (B4).
 - Bucket agent chat: streaming, cancel, provider and model picker, per-chat folder scope. Chats are stored in their own store `chats.jsonl` (v1: id, provider, model, started, state) separate from the agent event log; `/local/agents` v2 merges both with a `kind` field, and v1 readers keep working (B6).
 
 ## Slice 5: canon tools for the Bucket agent

@@ -1,4 +1,5 @@
-import { appendFileSync, mkdirSync, readFileSync, realpathSync } from "node:fs";
+import { appendFileSync, mkdirSync, readFileSync, realpathSync, statSync } from "node:fs";
+import { isAbsolute } from "node:path";
 import { join } from "node:path";
 import type { CanonStore } from "./canon";
 import type { Keyring } from "./keyring";
@@ -127,7 +128,89 @@ export function installedClis(which: (bin: string) => string | null): AgentCli[]
   return AGENT_CLIS.filter((t) => which(t) !== null);
 }
 
+export const TERMINALS = ["ptyxis", "gnome-terminal", "konsole", "kitty", "alacritty", "foot", "wezterm", "xterm", "x-terminal-emulator"] as const;
+export const LAUNCH_GAP_MS = 2000;
+export const LAUNCH_STREAK = 4;
+export const STREAK_RESET_MS = 60_000;
+
+export type Spawn = (cmd: string, args: string[], cwd: string) => Promise<void>;
+
+export function terminalArgs(terminal: string, tool: string, folder: string): string[] {
+  if (terminal === "ptyxis") return ["--new-window", "--working-directory", folder, "--", tool];
+  if (terminal === "gnome-terminal") return [`--working-directory=${folder}`, "--", tool];
+  if (terminal === "konsole") return ["--workdir", folder, "-e", tool];
+  if (terminal === "kitty") return ["--directory", folder, tool];
+  if (terminal === "alacritty") return ["--working-directory", folder, "-e", tool];
+  if (terminal === "foot") return [`--working-directory=${folder}`, tool];
+  if (terminal === "wezterm") return ["start", "--cwd", folder, "--", tool];
+  return ["-e", tool];
+}
+
+export class LaunchGate {
+  private last: number | null = null;
+  private streak = 0;
+  private busy = false;
+
+  enter(): boolean {
+    if (this.busy) return false;
+    this.busy = true;
+    return true;
+  }
+
+  leave(): void {
+    this.busy = false;
+  }
+
+  admit(nowMs: number): string | null {
+    if (this.last !== null) {
+      const gap = nowMs - this.last;
+      if (gap < LAUNCH_GAP_MS) return "wait two seconds between launches";
+      if (gap >= STREAK_RESET_MS) this.streak = 0;
+    }
+    if (this.streak >= LAUNCH_STREAK) return "Bucket opened 4 agents in a row; wait a minute";
+    this.last = nowMs;
+    this.streak += 1;
+    return null;
+  }
+}
+
+export interface Launcher {
+  tools: Map<AgentCli, string>;
+  terminal: { name: string; path: string } | null;
+}
+
+export function findLauncher(which: (bin: string) => string | null): Launcher {
+  const tools = new Map<AgentCli, string>();
+  for (const t of AGENT_CLIS) {
+    const p = which(t);
+    if (p) tools.set(t, p);
+  }
+  for (const name of TERMINALS) {
+    const path = which(name);
+    if (path) return { tools, terminal: { name, path } };
+  }
+  return { tools, terminal: null };
+}
+
+export function checkLaunch(l: Launcher, approved: string[], tool: unknown, folder: unknown): { bin: string; real: string } | string {
+  if (typeof tool !== "string" || !(AGENT_CLIS as readonly string[]).includes(tool)) return `${String(tool)} is not an agent Bucket can open`;
+  const bin = l.tools.get(tool as AgentCli);
+  if (!bin) return `${tool} is not installed`;
+  if (typeof folder !== "string" || !isAbsolute(folder)) return "the folder must be a full path";
+  let real: string;
+  try {
+    real = realpathSync(folder);
+  } catch {
+    return "that folder does not exist";
+  }
+  if (!statSync(real).isDirectory()) return "that path is not a folder";
+  if (!inApproved(real, approved)) return "that folder is not on the approved list";
+  return { bin, real };
+}
+
 export interface AgentsDeps {
+  launcher?: Launcher;
+  spawn?: Spawn;
   wait: () => Pick<WaitDeps, "home" | "env" | "os">;
   llmHome: string;
   keyring: Keyring | null;
@@ -200,6 +283,8 @@ export function agentRoutes(deps: AgentsDeps, now: () => number = Date.now): Rec
   const store = () => new ChatStore(waitDir(deps.wait().env, deps.wait().home));
   const newId = deps.newId ?? (() => crypto.randomUUID().replace(/-/g, ""));
   const run = deps.run ?? plainChat;
+  const launcher = deps.launcher ?? findLauncher(deps.which);
+  const gate = new LaunchGate();
 
   return {
     "GET /local/agents": async () => {
@@ -212,6 +297,27 @@ export function agentRoutes(deps: AgentsDeps, now: () => number = Date.now): Rec
       return json({ folders: approvedFolders(waitDir(d.env, d.home)) });
     },
     "GET /local/agents/providers": async () => json({ providers: readProviders(deps.llmHome).map(({ name, model, local }) => ({ name, model, local })) }),
+    "POST /local/agents/launch": async (req) => {
+      if (deps.wait().os !== "linux") return json({ error: "launching agents works on Linux for now" }, 400);
+      const b = (await req.json().catch(() => null)) as { tool?: unknown; folder?: unknown } | null;
+      if (!b) return json({ error: "send a tool and a folder" }, 400);
+      if (!gate.enter()) return json({ error: "another launch is in progress" }, 429);
+      try {
+        const d = deps.wait();
+        const ok = checkLaunch(launcher, approvedFolders(waitDir(d.env, d.home)), b.tool, b.folder);
+        if (typeof ok === "string") return json({ error: ok }, 403);
+        if (!launcher.terminal) return json({ error: "Bucket found no terminal app to open" }, 400);
+        const late = gate.admit(now());
+        if (late) return json({ error: late }, 429);
+        if (!deps.spawn) return json({ error: "this Bucket cannot open programs" }, 400);
+        await deps.spawn(launcher.terminal.path, terminalArgs(launcher.terminal.name, ok.bin, ok.real), ok.real);
+        return json({ ok: true, tool: b.tool, folder: ok.real });
+      } catch (e) {
+        return json({ error: (e as Error).message }, 500);
+      } finally {
+        gate.leave();
+      }
+    },
     "POST /local/agents/chat/cancel": async (req) => {
       const b = (await req.json().catch(() => null)) as { id?: unknown } | null;
       if (!b || typeof b.id !== "string") return json({ error: "send the chat id" }, 400);
