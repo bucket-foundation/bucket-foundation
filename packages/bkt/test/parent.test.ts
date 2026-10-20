@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { resolve } from "node:path";
-import { isSidecar, PARENT_LINE_BYTES, parentGone, watchParent } from "../src/parent";
+import { isSidecar, livePpid, PARENT_LINE_BYTES, parentGone, watchParent } from "../src/parent";
 
 const WATCH = resolve(import.meta.dir, "fixtures/parent-watch.ts");
 const HOLDER = resolve(import.meta.dir, "fixtures/parent-holder.ts");
@@ -110,4 +110,33 @@ describe("parent watch", () => {
     await holder.exited;
     expect(await gone(pid, 10_000)).toBe(true);
   }, 20_000);
+});
+
+test("a sidecar whose parent is reparented resolves without stdin closing", async () => {
+  let ppid = 77;
+  let tick = () => {};
+  const probe = { ppid: () => ppid, alive: () => true, every: (_: number, f: () => void) => { tick = f; return () => {}; } };
+  let done = false;
+  const gone = parentGone({ BKT_SIDECAR: "1" }, () => ({ async *[Symbol.asyncIterator]() { await new Promise(() => {}); } }), undefined, probe).then(() => { done = true; });
+  tick();
+  await Promise.resolve();
+  expect(done).toBe(false);
+  ppid = 1;
+  tick();
+  await gone;
+  expect(done).toBe(true);
+});
+
+test("a sidecar resolves when its parent pid stops existing", async () => {
+  let tick = () => {};
+  let alive = true;
+  const probe = { ppid: () => 77, alive: () => alive, every: (_: number, f: () => void) => { tick = f; return () => {}; } };
+  const gone = parentGone({ BKT_SIDECAR: "1" }, () => ({ async *[Symbol.asyncIterator]() { await new Promise(() => {}); } }), undefined, probe);
+  alive = false;
+  tick();
+  await gone;
+});
+
+test("livePpid reads the current parent from the kernel", () => {
+  expect(livePpid()).toBe(process.ppid);
 });
