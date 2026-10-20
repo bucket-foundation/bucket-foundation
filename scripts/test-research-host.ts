@@ -1,5 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import { parseCookieHeader, COOKIE_MIGRATION_MARKER, cookieDomainFor, cookieMigrationHeaders, isResearchHost, researchHref, researchRoute } from "../src/lib/research-host";
 
 const R = "research.bucket.foundation";
@@ -85,4 +87,22 @@ test("duplicate sb names expire the host-only copy and never re-set a stale valu
   assert.deepEqual(h.filter((l) => l.startsWith("sb-p-auth-token=")), ["sb-p-auth-token=; Path=/; SameSite=Lax; Secure; Max-Age=0"]);
   assert.ok(!h.some((l) => l.includes("stale") || l.includes("fresh")));
   assert.ok(h.includes("sb-p-auth-token.0=x; Path=/; SameSite=Lax; Secure; Domain=.bucket.foundation; Max-Age=34560000"));
+});
+
+test("after migration a duplicated sb name still loses its host-only copy", () => {
+  const jar = parseCookieHeader(`${COOKIE_MIGRATION_MARKER}=1; sb-p-auth-token=stale; sb-p-auth-token=fresh; sb-p-auth-token.0=x`);
+  assert.deepEqual(cookieMigrationHeaders(R, jar), ["sb-p-auth-token=; Path=/; SameSite=Lax; Secure; Max-Age=0"]);
+  assert.deepEqual(cookieMigrationHeaders(R, parseCookieHeader(`${COOKIE_MIGRATION_MARKER}=1; sb-p-auth-token=one`)), []);
+});
+
+test("the session middleware runs on academy API routes so a refreshed session is saved", () => {
+  const source = fs.readFileSync(path.join(__dirname, "../src/middleware.ts"), "utf8");
+  const pattern = source.match(/"(\/\(\(\?!_next[^"]+)"/)?.[1]?.replace(/\\\\/g, "\\");
+  assert.ok(pattern);
+  const re = new RegExp(`^${pattern}$`);
+  assert.ok(re.test("/api/academy/devices"));
+  assert.ok(re.test("/api/academy/device/approve"));
+  assert.ok(re.test("/api/kruse/search"));
+  assert.ok(!re.test("/api/polingual"));
+  assert.ok(re.test("/device"));
 });
