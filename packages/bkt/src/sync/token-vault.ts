@@ -7,6 +7,7 @@ export type { StoredSession, TokenVault } from "../../../../src/lib/academy/toke
 export { MemoryVault, parseSession } from "../../../../src/lib/academy/token-store";
 
 export const SESSION_ACCOUNT = "account-session";
+export const SECRET_TOOL_TIMEOUT_MS = 10_000;
 
 export class VaultError extends Error {}
 
@@ -43,7 +44,7 @@ export class SecretToolVault implements TokenVault {
   ) {}
 
   private async run(args: string[], stdin?: string): Promise<{ out: string; err: string; code: number }> {
-    const p = Bun.spawn([this.bin, ...args], { stdin: stdin === undefined ? "ignore" : "pipe", stdout: "pipe", stderr: "pipe" });
+    const p = Bun.spawn([this.bin, ...args], { stdin: stdin === undefined ? "ignore" : "pipe", stdout: "pipe", stderr: "pipe", timeout: SECRET_TOOL_TIMEOUT_MS });
     if (stdin !== undefined && p.stdin) {
       p.stdin.write(stdin);
       p.stdin.end();

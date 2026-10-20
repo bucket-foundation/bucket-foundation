@@ -138,23 +138,17 @@ test("shared memory: a new word leads with the target and links the other langua
 });
 
 test("shared memory: a review asks for the meaning of the target word", async () => {
-  const items = ["eight", "five", "four", "nine", "seven", "six", "ten", "three", "two", "one", "black", "white"];
-  const at = FROZEN_AT.getTime() - 9 * 86_400_000;
+  const at = FROZEN_AT.getTime() - 2 * 86_400_000;
   await page.evaluate(
-    ({ key, items, at }) => {
-      const cards: Record<string, unknown> = {};
-      for (const id of items) cards[`es:${id}`] = { state: "review", reps: 4, lapses: 0, stability: 6, difficulty: 5, lastReview: at, due: at + 4 * 86_400_000, introduced: "2026-10-1" };
-      localStorage.setItem(key, JSON.stringify({ lang: "es", baseline: { cards, prof: {}, settings: {}, stats: { xp: 0, streak: 0, lastStudyDay: null, history: {} } }, log: [], migrated: "v1" }));
+    ({ key, at }) => {
+      const cards = { "fr:eight": { state: "review", reps: 1, lapses: 0, stability: 1, difficulty: 5, lastReview: at, due: at + 86_400_000, introduced: "2026-10-16" } };
+      localStorage.setItem(key, JSON.stringify({ lang: "fr", baseline: { cards, prof: {}, settings: {}, stats: { xp: 0, streak: 0, lastStudyDay: null, history: {} } }, log: [], migrated: "v1" }));
     },
-    { key: "bucket-academy/v1/lang-es", items, at }
+    { key: "bucket-academy/v1/lang-fr", at }
   );
   await page.goto(romanceStudy);
-  const target = page.locator('[data-kind="reverse"] [data-testid="target-headline"]');
-  for (let i = 0; i < 30; i++) {
-    await page.getByTestId("exercise").waitFor();
-    if (await target.isVisible()) break;
-    await page.getByTestId("skip-exercise").click();
-  }
-  await expect(target).toBeVisible();
+  const ex = page.getByTestId("exercise");
+  await ex.waitFor();
+  await expect(page.locator('[data-kind="reverse"] [data-testid="target-headline"]')).toBeVisible();
   await freeze("lang-recall-target");
 });

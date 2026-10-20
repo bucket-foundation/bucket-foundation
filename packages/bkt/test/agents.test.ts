@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { agentRoutes, canonRunner, agentsBodyV2, AGENT_CLIS, approvedFolders, ChatStore, foldChats, inApproved, installedClis, parseChat, type ChatRunner, type TurnEvent } from "../src/agents";
+import { agentRoutes, canonRunner, checkLaunch, findLauncher, LaunchGate, terminalArgs, agentsBodyV2, AGENT_CLIS, approvedFolders, ChatStore, foldChats, inApproved, installedClis, parseChat, type ChatRunner, type TurnEvent } from "../src/agents";
 import { writeProviders } from "../src/llm/config";
 import { startServe } from "../src/serve";
 import { agentsBody, waitDir } from "../src/wait";
@@ -237,5 +237,111 @@ describe("canon runner", () => {
     const none: unknown[] = [];
     for await (const ev of run(provider, [{ role: "user", content: "light" }], c.signal)) none.push(ev);
     expect(none).toEqual([]);
+  });
+});
+
+describe("launch route", () => {
+  function setup(os = "linux") {
+    const bin = join(s.home, "bin");
+    mkdirSync(bin);
+    const root = join(s.home, "approved");
+    const outside = join(s.home, "outside");
+    mkdirSync(join(root, "inner"), { recursive: true });
+    mkdirSync(outside);
+    writeFileSync(join(root, "file"), "x");
+    mkdirSync(join(s.home, "approved-sibling"));
+    symlinkSync(outside, join(root, "escape"));
+    symlinkSync("/", join(root, "rootfs"));
+    writeFileSync(join(s.state, "agent-folders.json"), JSON.stringify({ v: 1, folders: [root] }));
+    const spawned: [string, string[], string][] = [];
+    let t = NOW_S * 1000;
+    const launcher = findLauncher((b) => (b === "claude" || b === "gnome-terminal" ? join(bin, b) : null));
+    const r = agentRoutes({ wait: () => ({ ...s.d, os }), llmHome: s.llmHome, keyring: null, which: () => null, launcher, spawn: async (c, a, cwd) => void spawned.push([c, a, cwd]) }, () => t);
+    const go = async (body: unknown) => {
+      const res = await call(r as never, "POST /local/agents/launch", body);
+      return { status: res.status, body: (await res.json()) as { error?: string; ok?: boolean } };
+    };
+    return { root, outside, bin, spawned, go, tick: (ms: number) => (t += ms) };
+  }
+
+  test("opens an installed tool in a terminal inside an approved folder with argv only", async () => {
+    const l = setup();
+    const res = await l.go({ tool: "claude", folder: join(l.root, "inner") });
+    expect(res).toEqual({ status: 200, body: { ok: true, tool: "claude", folder: join(l.root, "inner") } as never });
+    expect(l.spawned).toEqual([[join(l.bin, "gnome-terminal"), [`--working-directory=${join(l.root, "inner")}`, "--", join(l.bin, "claude")], join(l.root, "inner")]]);
+  });
+
+  test("rejects unknown or missing tools and folders outside the approved list", async () => {
+    const l = setup();
+    const no = async (tool: unknown, folder: unknown) => (await l.go({ tool, folder })).body.error;
+    expect(await no("bash", l.root)).toBe("bash is not an agent Bucket can open");
+    expect(await no("claude; ls", l.root)).toBe("claude; ls is not an agent Bucket can open");
+    expect(await no("codex", l.root)).toBe("codex is not installed");
+    expect(await no("claude", "approved")).toBe("the folder must be a full path");
+    expect(await no("claude", join(l.root, "missing"))).toBe("that folder does not exist");
+    expect(await no("claude", join(l.root, "file"))).toBe("that path is not a folder");
+    expect(await no("claude", l.outside)).toBe("that folder is not on the approved list");
+    expect(await no("claude", join(l.root, "..", "outside"))).toBe("that folder is not on the approved list");
+    expect(await no("claude", join(s.home, "approved-sibling"))).toBe("that folder is not on the approved list");
+    expect(l.spawned).toEqual([]);
+  });
+
+  test("rejects a symlink inside an approved folder that points outside it", async () => {
+    const l = setup();
+    expect((await l.go({ tool: "claude", folder: join(l.root, "escape") })).body.error).toBe("that folder is not on the approved list");
+    expect((await l.go({ tool: "claude", folder: join(l.root, "rootfs") })).body.error).toBe("that folder is not on the approved list");
+    expect(l.spawned).toEqual([]);
+  });
+
+  test("rejected requests do not use up the rate gate", async () => {
+    const l = setup();
+    for (let i = 0; i < 6; i++) expect((await l.go({ tool: "bash", folder: l.root })).status).toBe(403);
+    expect((await l.go({ tool: "claude", folder: l.root })).status).toBe(200);
+    expect((await l.go({ tool: "claude", folder: l.root })).body.error).toBe("wait two seconds between launches");
+  });
+
+  test("launches are spaced two seconds apart and capped at four in a row", async () => {
+    const l = setup();
+    for (let i = 0; i < 4; i++) {
+      expect((await l.go({ tool: "claude", folder: l.root })).status).toBe(200);
+      l.tick(2000);
+    }
+    expect((await l.go({ tool: "claude", folder: l.root })).body.error).toBe("Bucket opened 4 agents in a row; wait a minute");
+    l.tick(60_000);
+    expect((await l.go({ tool: "claude", folder: l.root })).status).toBe(200);
+  });
+
+  test("the launch route sits behind the serve token", async () => {
+    const l = setup();
+    const srv = startServe({ uid: 1, resolvePeerUid: () => 1, cliToken: "t".repeat(43), routes: agentRoutes({ wait: () => s.d, llmHome: s.llmHome, keyring: null, which: () => null, spawn: async () => void l.spawned.push(["x", [], ""]) }) });
+    try {
+      const anon = await fetch(`${srv.url}local/agents/launch`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ tool: "claude", folder: l.root }) });
+      expect(anon.status).toBe(401);
+      const wrong = await fetch(`${srv.url}local/agents/launch`, { method: "POST", headers: { authorization: "Bucket wrong", "content-type": "application/json" }, body: "{}" });
+      expect(wrong.status).toBe(401);
+    } finally {
+      srv.stop();
+    }
+    expect(l.spawned).toEqual([]);
+  });
+
+  test("a second launch while one is spawning is refused", () => {
+    const g = new LaunchGate();
+    expect(g.enter()).toBe(true);
+    expect(g.enter()).toBe(false);
+    g.leave();
+    expect(g.enter()).toBe(true);
+  });
+
+  test("other systems are refused and no page route writes the folder list", async () => {
+    const l = setup("darwin");
+    expect((await l.go({ tool: "claude", folder: l.root })).body.error).toBe("launching agents works on Linux for now");
+    expect(Object.keys(agentRoutes({ wait: () => s.d, llmHome: s.llmHome, keyring: null, which: () => null })).filter((k) => !k.startsWith("GET ")).sort()).toEqual(["POST /local/agents/chat", "POST /local/agents/chat/cancel", "POST /local/agents/launch"]);
+  });
+
+  test("terminal arguments keep the tool path as one argument", () => {
+    expect(terminalArgs("ptyxis", "/opt/claude", "/w/a b")).toEqual(["--new-window", "--working-directory", "/w/a b", "--", "/opt/claude"]);
+    expect(terminalArgs("xterm", "/opt/claude", "/w/a b")).toEqual(["-e", "/opt/claude"]);
+    expect(typeof checkLaunch(findLauncher(() => null), [], "claude", "/")).toBe("string");
   });
 });

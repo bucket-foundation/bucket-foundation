@@ -84,8 +84,9 @@ export function syncRoutes(remote: RemoteSync, opts: { label: () => string; onEr
 }
 
 export const SYNC_EVERY_MS = 60_000;
+export const SYNC_FIRST_MS = 2_000;
 
-export function startSyncLoop(remote: RemoteSync, pullProgress: () => Promise<unknown>, onError: (m: string) => void, every = SYNC_EVERY_MS): () => void {
+export function startSyncLoop(remote: RemoteSync, pullProgress: () => Promise<unknown>, onError: (m: string) => void, every = SYNC_EVERY_MS, firstAfter = SYNC_FIRST_MS): () => void {
   let busy = false;
   const tick = async () => {
     if (busy) return;
@@ -101,7 +102,12 @@ export function startSyncLoop(remote: RemoteSync, pullProgress: () => Promise<un
       busy = false;
     }
   };
-  void tick();
+  const first = setTimeout(() => void tick(), firstAfter);
   const t = setInterval(() => void tick(), every);
-  return () => clearInterval(t);
+  first.unref?.();
+  t.unref?.();
+  return () => {
+    clearTimeout(first);
+    clearInterval(t);
+  };
 }

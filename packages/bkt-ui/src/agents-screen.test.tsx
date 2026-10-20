@@ -17,14 +17,17 @@ const BODY: AgentsBodyV2 = {
   chats: [{ v: 1, kind: "chat", id: "chat0001", provider: "ollama", model: "qwen3:4b", started: NOW / 1000 - 60, state: "done" }],
 };
 
-function fakeApi(stream: (req: ChatRequest, signal?: AbortSignal) => AsyncGenerator<TurnEvent>, folders = ["/work/bucket"]) {
+function fakeApi(stream: (req: ChatRequest, signal?: AbortSignal) => AsyncGenerator<TurnEvent>, folders = ["/work/bucket"], tools = ["claude", "gemini"], launch: (tool: string, folder: string) => Promise<unknown> = async () => undefined) {
   const requests: ChatRequest[] = [];
+  const launches: [string, string][] = [];
   const cancels: string[] = [];
   return {
     requests,
     cancels,
+    launches,
+    launchAgent: async (tool: string, folder: string) => (launches.push([tool, folder]), await launch(tool, folder), { ok: true, tool, folder }),
     agentsV2: async () => BODY,
-    agentTools: async () => ["claude", "gemini"],
+    agentTools: async () => tools,
     agentFolders: async () => folders,
     agentProviders: async () => [
       { name: "ollama", model: "qwen3:4b", local: true },
@@ -35,7 +38,7 @@ function fakeApi(stream: (req: ChatRequest, signal?: AbortSignal) => AsyncGenera
   };
 }
 
-async function mount(api: ReturnType<typeof fakeApi>, invoke: ((cmd: string, args: Record<string, unknown>) => Promise<unknown>) | null) {
+async function mount(api: ReturnType<typeof fakeApi>) {
   const { act } = await import("react");
   const { createRoot } = await import("react-dom/client");
   const { AgentsScreen } = await import("./views/AgentsScreen");
@@ -45,7 +48,7 @@ async function mount(api: ReturnType<typeof fakeApi>, invoke: ((cmd: string, arg
   const flush = async () => {
     for (let i = 0; i < 6; i++) await act(async () => new Promise((r) => setTimeout(r, 0)));
   };
-  await act(async () => root.render(<AgentsScreen api={api as never} invoke={invoke} now={() => NOW} />));
+  await act(async () => root.render(<AgentsScreen api={api as never} now={() => NOW} />));
   await flush();
   const button = (label: string) => {
     const b = [...host.querySelectorAll("button")].find((x) => x.textContent === label);
@@ -70,33 +73,34 @@ async function mount(api: ReturnType<typeof fakeApi>, invoke: ((cmd: string, arg
 
 describe("agents screen", () => {
   test("lists coding agents and past Bucket agent chats", async () => {
-    const m = await mount(fakeApi(async function* () {}), null);
+    const m = await mount(fakeApi(async function* () {}, ["/work/bucket"], []));
     const rows = [...m.host.querySelectorAll(".agent")].map((li) => li.textContent);
     expect(rows).toEqual(["bucket-foundationClaude Coderunning2m", "ollamaqwen3:4bdone1m"]);
     expect(m.host.textContent).not.toContain("Open Claude Code");
     await m.unmount();
   });
 
-  test("launch buttons call launch_agent with the tool and the chosen approved folder", async () => {
-    const calls: [string, Record<string, unknown>][] = [];
-    const m = await mount(fakeApi(async function* () {}), async (cmd, args) => void calls.push([cmd, args]));
+  test("launch buttons ask the sidecar to open the tool in the chosen approved folder", async () => {
+    const api = fakeApi(async function* () {});
+    const m = await mount(api);
     await m.click("Open Gemini CLI");
-    expect(calls).toEqual([["launch_agent", { tool: "gemini", folder: "/work/bucket" }]]);
+    expect(api.launches).toEqual([["gemini", "/work/bucket"]]);
     expect(m.host.textContent).toContain("Opened Gemini CLI in /work/bucket.");
     await m.unmount();
   });
 
   test("a refused launch shows the shell's reason", async () => {
-    const m = await mount(fakeApi(async function* () {}), async () => {
-      throw new Error("that folder is not on the approved list");
-    });
+    const { ApiError } = await import("./api");
+    const m = await mount(fakeApi(async function* () {}, ["/work/bucket"], ["claude"], async () => {
+      throw new ApiError("that folder is not on the approved list", 403);
+    }));
     await m.click("Open Claude Code");
     expect(m.host.textContent).toContain("Bucket could not open Claude Code: that folder is not on the approved list");
     await m.unmount();
   });
 
   test("with no approved folder the screen points to the shell menu and offers no launch", async () => {
-    const m = await mount(fakeApi(async function* () {}, []), async () => undefined);
+    const m = await mount(fakeApi(async function* () {}, []));
     expect(m.host.textContent).toContain("Approve a folder from the Bucket menu");
     expect([...m.host.querySelectorAll("button")].map((b) => b.textContent)).not.toContain("Open Claude Code");
     await m.unmount();
@@ -109,7 +113,7 @@ describe("agents screen", () => {
       yield { type: "text", text: "a wave." };
       yield { type: "done", usage: { input: 1, output: 2 } };
     });
-    const m = await mount(api, null);
+    const m = await mount(api);
     await m.type("Model", "llama3.2:3b");
     await m.type("Message", "what is light");
     await m.click("Send");
@@ -134,7 +138,7 @@ describe("agents screen", () => {
       await new Promise<void>((r) => s!.addEventListener("abort", () => r()));
       yield { type: "cancelled" };
     });
-    const m = await mount(api, null);
+    const m = await mount(api);
     await m.type("Message", "long one");
     await m.click("Send");
     expect(m.host.textContent).toContain("thinking");

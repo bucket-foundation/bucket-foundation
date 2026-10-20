@@ -333,6 +333,17 @@ async function research(inv: Invocation, json: boolean): Promise<number> {
   }
 }
 
+function spawnDetached(cmd: string, args: string[], cwd: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const child = spawn(cmd, args, { cwd, shell: false, detached: true, stdio: "ignore" });
+    child.once("error", reject);
+    child.once("spawn", () => {
+      child.unref();
+      resolve();
+    });
+  });
+}
+
 async function serve(name: "serve" | "app", session: Session, dir: string, content: Pack, route: string | null): Promise<void> {
   const workQuiz = new WorkQuizStore(session.store, session.key);
   writeQuizRoots(dir, workQuiz.chat());
@@ -377,7 +388,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const remote = openRemote(session, dir);
   const syncTrouble = (m: string) => console.error(`bkt serve: sync: ${m}`);
   const pullProgress = () => pullRemoteProgress(remote, session.store);
-  startSyncLoop(remote, pullProgress, syncTrouble);
+  const stopSync = startSyncLoop(remote, pullProgress, syncTrouble);
   const srv = startServe({
     cliToken,
     cliSecret,
@@ -410,7 +421,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
       ...updateRoutes({ current: VERSION }),
       ...waitRoutes(defaultWaitDeps),
-      ...agentRoutes({ wait: defaultWaitDeps, llmHome: dir, keyring: session.keyring, which: (b) => Bun.which(b), run: canonRunner(canon) }),
+      ...agentRoutes({ wait: defaultWaitDeps, llmHome: dir, keyring: session.keyring, which: (b) => Bun.which(b), run: canonRunner(canon), spawn: spawnDetached }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
@@ -461,6 +472,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   process.off("SIGUSR1", reopen);
   clearInterval(asked);
+  stopSync();
   win.forget();
   runner.stopAll();
   pagesRunner.stopAll();

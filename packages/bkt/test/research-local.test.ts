@@ -64,6 +64,8 @@ function fixtureRepo(): string {
   return repo;
 }
 
+const THREE_NODE_CHECKS_MS = 20_000;
+
 function check(repo: string): { code: number; out: string } {
   const r = Bun.spawnSync(["node", "scripts/report.mjs", "check"], { cwd: repo, stdout: "pipe", stderr: "pipe" });
   return { code: r.exitCode, out: r.stdout.toString() + r.stderr.toString() };
@@ -196,7 +198,7 @@ describe("own outputs", () => {
     const other = fixtureRepo();
     cpSync(join(plain.dir, "reports"), join(other, "reports"), { recursive: true });
     expect(check(other)).toEqual({ code: 0, out: "ok   bare\n" });
-  });
+  }, THREE_NODE_CHECKS_MS);
 });
 
 describe("bkt research add", () => {

@@ -520,3 +520,10 @@ describe("gemini", () => {
     expect(agentsBody(s.d, Math.floor(Date.now() / 1000))).toMatchObject({ installed: true, sessions: [{ tool: "gemini", state: "done" }] });
   });
 });
+
+test("waitDir uses XDG_STATE_HOME, then LOCALAPPDATA on Windows, then the home state folder", () => {
+  expect(waitDir({ XDG_STATE_HOME: "/x" }, "/h", "win32")).toBe(join("/x", "bkt"));
+  expect(waitDir({ LOCALAPPDATA: "C:\\Users\\u\\AppData\\Local" }, "/h", "win32")).toBe(join("C:\\Users\\u\\AppData\\Local", "bkt"));
+  expect(waitDir({ LOCALAPPDATA: "/l" }, "/h", "linux")).toBe(join("/h", ".local", "state", "bkt"));
+  expect(waitDir({}, "/h", "win32")).toBe(join("/h", ".local", "state", "bkt"));
+});
