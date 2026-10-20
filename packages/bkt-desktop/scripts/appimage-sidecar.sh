@@ -4,19 +4,33 @@ set -euo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 bundle="$here/src-tauri/target/release/bundle/appimage"
 sidecar="$here/src-tauri/binaries/bkt-$(uname -m)-unknown-linux-gnu"
-version="$(jq -r .version "$here/src-tauri/tauri.conf.json")"
+
+describe() {
+  if [ -L "$1" ]; then echo "  $1 -> $(readlink "$1")"; fi
+  if [ -f "$1" ]; then echo "  $1: $(stat -Lc %s "$1") bytes, sha256 $(sha256sum < "$1" | cut -c1-64), $(file -bL "$1" | cut -c1-80)"; else echo "  $1: missing"; fi
+}
 
 check() {
-  local app="$1" tmp ok=0
+  local app="$1" tmp inner out
   tmp="$(mktemp -d)"
   (cd "$tmp" && "$app" --appimage-extract usr/bin/bkt > /dev/null)
-  cmp -s "$tmp/squashfs-root/usr/bin/bkt" "$sidecar" && "$tmp/squashfs-root/usr/bin/bkt" --version > /dev/null || ok=1
-  rm -rf "$tmp"
-  if [ "$ok" -ne 0 ]; then
-    echo "the bkt sidecar in $app differs from $sidecar or does not run" >&2
+  inner="$tmp/squashfs-root/usr/bin/bkt"
+  if ! cmp -s "$inner" "$sidecar"; then
+    echo "the bkt sidecar in $app differs from the one the build bundled" >&2
+    describe "$inner" >&2
+    describe "$sidecar" >&2
+    cmp "$inner" "$sidecar" >&2 || true
+    rm -rf "$tmp"
     return 1
   fi
-  echo "bkt sidecar intact in $app"
+  if ! out="$("$inner" --version 2>&1)"; then
+    echo "the bkt sidecar in $app matches $sidecar but does not run:" >&2
+    echo "$out" | tail -5 >&2
+    rm -rf "$tmp"
+    return 1
+  fi
+  rm -rf "$tmp"
+  echo "bkt sidecar intact in $app: $(stat -Lc %s "$sidecar") bytes, sha256 $(sha256sum < "$sidecar" | cut -c1-64), $out"
 }
 
 build() {
@@ -37,16 +51,31 @@ EOF
   fi
   (cd "$here" && PATH="$shim:$PATH" PKG_CONFIG_PATH="$pc" NO_STRIP=true bunx tauri build --bundles appimage "$@")
   rm -rf "$shim"
-  app="$bundle/Bucket_${version}_amd64.AppImage"
-  if check "$app"; then return 0; fi
+  repack
+}
+
+repack() {
+  local apps=("$bundle"/*.AppImage) plugin="$HOME/.cache/tauri/linuxdeploy-plugin-appimage.AppImage" app
+  [ "${#apps[@]}" -eq 1 ] && [ -f "${apps[0]}" ] || { echo "expected one AppImage in $bundle, found ${#apps[@]}; run tauri build --bundles appimage first" >&2; return 1; }
+  app="${apps[0]}"
+  if check "$app" 2> /dev/null; then return 0; fi
+  [ -x "$plugin" ] || { echo "no linuxdeploy appimage plugin at $plugin; tauri build downloads it on its first AppImage build" >&2; return 1; }
+  echo "linuxdeploy rewrote the bkt sidecar; putting the built one back and packing the AppImage again"
   cp "$sidecar" "$bundle/Bucket.AppDir/usr/bin/bkt"
   rm -f "$app"
-  (cd "$bundle" && ARCH="$(uname -m)" LDAI_OUTPUT="$(basename "$app")" APPIMAGE_EXTRACT_AND_RUN=1 "$HOME/.cache/tauri/linuxdeploy-plugin-appimage.AppImage" --appdir Bucket.AppDir > /dev/null)
+  (cd "$bundle" && ARCH="$(uname -m)" LDAI_OUTPUT="$(basename "$app")" APPIMAGE_EXTRACT_AND_RUN=1 "$plugin" --appdir Bucket.AppDir > /dev/null)
   check "$app"
+  if [ -f "$app.sig" ]; then
+    rm -f "$app.sig"
+    [ -n "${TAURI_SIGNING_PRIVATE_KEY:-}" ] || { echo "the updater signature belonged to the AppImage before repacking, and no signing key is set to sign it again" >&2; return 1; }
+    (cd "$here" && bunx tauri signer sign "$app" > /dev/null)
+    [ -f "$app.sig" ] || { echo "signing the repacked AppImage wrote no $app.sig" >&2; return 1; }
+  fi
 }
 
 case "${1:-}" in
   check) check "$(realpath "$2")" ;;
   build) shift; build "$@" ;;
-  *) echo "usage: appimage-sidecar.sh build [tauri args] | check <AppImage>" >&2; exit 2 ;;
+  repack) repack ;;
+  *) echo "usage: appimage-sidecar.sh build [tauri args] | repack | check <AppImage>" >&2; exit 2 ;;
 esac
