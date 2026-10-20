@@ -235,7 +235,7 @@ async function decks(inv: Invocation, json: boolean): Promise<number> {
     }
     if (action === "install") {
       ensureDataDir(home);
-      const m = await installAny(home, inv.positionals[0]);
+      const m = await installAny(home, inv.positionals[0], verifyCatalog(deckCatalog as SignedCatalog)?.decks ?? null);
       const row = deckRow(m, true, join(decksDir(home), m.id));
       if (json) console.log(jsonLine("decks install", row));
       else {

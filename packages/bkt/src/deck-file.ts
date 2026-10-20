@@ -70,8 +70,8 @@ export async function installDeckFile(home: string, path: string): Promise<DeckM
   }
 }
 
-export async function installAny(home: string, source: string): Promise<DeckManifest> {
-  return isDeckFile(source) ? installDeckFile(home, source) : installDeck(home, source);
+export async function installAny(home: string, source: string, catalog: readonly DeckManifest[] | null = null): Promise<DeckManifest> {
+  return isDeckFile(source) ? installDeckFile(home, source) : installDeck(home, source, catalog);
 }
 
 export class DeckExistsError extends DeckError {
