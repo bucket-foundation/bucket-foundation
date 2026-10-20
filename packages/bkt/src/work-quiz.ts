@@ -20,7 +20,7 @@ import { normalizeSystemsDoc } from "../../../src/lib/academy/lang-systems";
 import { SYSTEMS_META } from "./local";
 import { answerDaily, LearnError } from "./core/learn";
 import { DAILY_MAX, DAILY_MIN, DailyQuizStore, overLength, TOO_FEW, validDay, type DailyQuiz } from "./daily-quiz";
-import { criticDir, lessonFill, originOf, readCriticQuiz } from "./daily-fill";
+import { criticDir, lessonFill, originOf, readCriticQuiz, recentDays, repeats } from "./daily-fill";
 import type { Item } from "./grade";
 import { writeDailyQuiz, type WriterOptions } from "./quiz-writer";
 import { hasShort, withShort } from "./short-fields";
@@ -287,10 +287,20 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
 
   const askable = (s: WorkSources) => !sourcesEmpty(s) || wq.languages().length > 0;
 
+  function freshCritic(day: string, logged = false): { questions: QuizQuestion[] } {
+    const read = readCriticQuiz(day, critics);
+    const asked = recentDays(day).flatMap((d) => wq.daily.get(d)?.questions ?? []);
+    const questions = read.questions.filter((q) => !repeats(q, asked));
+    if (logged) {
+      for (const why of read.skipped) log(`daily quiz ${day}: critic quiz skipped: ${why}`);
+      if (questions.length < read.questions.length) log(`daily quiz ${day}: ${read.questions.length - questions.length} critic questions repeat the last 30 days`);
+    }
+    return { questions };
+  }
+
   async function build(day: string): Promise<DailyQuiz | null> {
     refresh.delete(day);
-    const critic = readCriticQuiz(day, critics);
-    for (const why of critic.skipped) log(`daily quiz ${day}: critic quiz skipped: ${why}`);
+    const critic = freshCritic(day, true);
     const on = wq.chat();
     let chat: QuizQuestion[] = [];
     if (CHAT_ROOT_NAMES.some((r) => on[r])) {
@@ -338,7 +348,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
     const stored = wq.daily.get(day);
     const today = day === localDay(now());
     const untouched = today && stored !== null && wq.daily.answered(day).size === 0;
-    const criticWaiting = untouched && !stored!.questions.some((q) => q.origin === "critic") && readCriticQuiz(day, critics).questions.length > 0;
+    const criticWaiting = untouched && !stored!.questions.some((q) => q.origin === "critic") && freshCritic(day).questions.length > 0;
     const rebuild = untouched && (overLength(stored!) || refresh.has(day) || criticWaiting);
     if ((stored && !rebuild) || !today || empty.has(day)) return Promise.resolve(stored);
     const running =
