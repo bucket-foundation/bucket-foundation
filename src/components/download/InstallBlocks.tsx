@@ -1,5 +1,5 @@
 import CopyBlock from "../CopyBlock";
-import { APPIMAGE_RUN_STEPS, APPIMAGE_WARNING, DISTRO_LABEL, INSTALL_COMMAND, INSTALL_SHELL, executableStep, linuxInstallCommand, releaseTagOf, type Distro } from "../../lib/download/install";
+import { APPIMAGE_RUN_STEPS, APPIMAGE_WARNING, DISTRO_LABEL, INSTALL_COMMAND, INSTALL_SHELL, executableStep, linuxInstallCommand, releaseTagFrom, releaseTagOf, type Distro } from "../../lib/download/install";
 import { OSES, OS_LABEL, megabytes, type Os } from "../../lib/download/release";
 import { hasDesktop, preferArch, type Arch, type InstallerV2 } from "../../lib/download/release-v2";
 
@@ -33,7 +33,7 @@ export default function InstallBlocks({ os, arch = null, distro = null, installe
               Paste this into {INSTALL_SHELL[o]}{o === "linux" && distro ? ` on ${DISTRO_LABEL[distro]}` : ""}.{" "}
               {o === "linux" && appImage ? `It runs install.sh pinned to release ${releaseTagOf(appImage.url) ?? "main"}, installs the Bucket app, adds it to your app menu and checks the signature first.` : "It installs the bkt terminal app and checks the signature first."}
             </p>
-            <CopyBlock text={o === "linux" ? linuxInstallCommand(appImage?.url ?? null) : INSTALL_COMMAND[o]} label={`${OS_LABEL[o]} install command`} />
+            <CopyBlock text={o === "linux" ? linuxInstallCommand(appImage?.url ?? null, releaseTagFrom(installers.map((i) => i.url))) : INSTALL_COMMAND[o]} label={`${OS_LABEL[o]} install command`} />
             {o === "linux" && appImage ? (
               <div className="flex flex-col gap-3" data-other-ways>
                 <h4 className="small-caps text-[11px] tracking-[0.14em] text-[color:var(--basalt-2)]">Other ways</h4>

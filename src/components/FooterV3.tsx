@@ -69,6 +69,7 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
             <li><Link href="/research/education" className="hover:text-[color:var(--bone)] transition">Education research</Link></li>
             <li><Link href="/research/education/knowledge-access-gradient" className="hover:text-[color:var(--bone)] transition">Knowledge-Access Gradient</Link></li>
             <li><Link href="/research/tools" className="hover:text-[color:var(--bone)] transition">Research tools</Link></li>
+            <li><Link href="/research/figures" className="hover:text-[color:var(--bone)] transition">Figures</Link></li>
             <li><Link href={signInClosed ? "/download" : "/sign-in"} className="hover:text-[color:var(--bone)] transition">{signInClosed ? "Download" : launchList ? "Launch list" : "Sign in"}</Link></li>
           </ul>
         </div>

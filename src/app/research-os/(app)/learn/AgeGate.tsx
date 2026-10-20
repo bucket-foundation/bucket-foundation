@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState, type ReactNode } from "react";
 import { useSession } from "@/providers/SessionProvider";
+import { mergeGuestProgress } from "@/lib/academy/guest-merge";
 import { BTN_PRIMARY, BTN_SECONDARY, ErrorState, LoadingState, PageHeader, Panel } from "@/components/ui";
 import { BIRTH_YEAR_BUCKET_LABELS } from "@/lib/research-os/profile";
 import type { BirthYearBucket } from "@/lib/research-os/consent";
@@ -50,6 +51,7 @@ export function AgeBandStep({ role, onSaved }: { role: string | null; onSaved: (
         return;
       }
       if (band === "under13") clearLocalProgress();
+      if (band === "18plus") await mergeGuestProgress();
       onSaved(band);
     } catch {
       setError("Your age range could not be saved. Check your connection and try again.");

@@ -156,6 +156,12 @@ export function SettingsView({ api }: { api: Api }) {
       <InstalledDecks api={api} />
       <WordDatabaseLink api={api} />
       <article className="panel card">
+        <h2>Agents</h2>
+        <p>
+          Run Claude Code, Codex or a Bucket chat on your own folders: <a href="#/agents">open Agents</a>. It joins the menu once an agent tool is installed or has run.
+        </p>
+      </article>
+      <article className="panel card">
         <h2>This app</h2>
         {error && <p className="error">{error}</p>}
         {settings && (

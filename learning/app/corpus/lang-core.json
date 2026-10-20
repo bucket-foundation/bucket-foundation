@@ -26,7 +26,21 @@
     ],
     "version": "0.5.0",
     "license": "Translations are VERIFIED from the English Wiktionary translation tables (kaikki.org raw-wiktextract-data, CC-BY-SA 3.0) — each concept ships only where Wiktionary lists a translation for the right sense. The Polingual semantic corpus is NOT used as a translation source (it is semantic-neighbour noise). English IPA from Wiktionary `sounds`. Concrete-first ordering & emoji tiles are original. Attribution: Wiktionary contributors via Kaikki (kaikki.org).",
-    "corrections": "Forms corrected by lang-fixes.json through build-lang-layers.mjs."
+    "corrections": "Forms corrected by lang-fixes.json through build-lang-layers.mjs.",
+    "extraLanguages": [
+      "ang",
+      "cs",
+      "fa",
+      "grc",
+      "he",
+      "id",
+      "la",
+      "sa",
+      "ta",
+      "th",
+      "tr",
+      "vi"
+    ]
   },
   "atoms": [
     {
@@ -90,6 +104,42 @@
         },
         "zh": {
           "word": "八"
+        },
+        "ang": {
+          "word": "eahta"
+        },
+        "cs": {
+          "word": "osm"
+        },
+        "fa": {
+          "word": "هشت"
+        },
+        "grc": {
+          "word": "ὀκτώ"
+        },
+        "he": {
+          "word": "שְׁמוֹנֶה"
+        },
+        "id": {
+          "word": "delapan"
+        },
+        "la": {
+          "word": "octo"
+        },
+        "sa": {
+          "word": "अष्ट"
+        },
+        "ta": {
+          "word": "எட்டு"
+        },
+        "th": {
+          "word": "แปด"
+        },
+        "tr": {
+          "word": "sekiz"
+        },
+        "vi": {
+          "word": "tám"
         }
       },
       "resources": [
@@ -160,6 +210,42 @@
         },
         "zh": {
           "word": "五"
+        },
+        "ang": {
+          "word": "fīf"
+        },
+        "cs": {
+          "word": "pět"
+        },
+        "fa": {
+          "word": "پنج"
+        },
+        "grc": {
+          "word": "πέντε"
+        },
+        "he": {
+          "word": "חָמֵשׁ"
+        },
+        "id": {
+          "word": "lima"
+        },
+        "la": {
+          "word": "quīnque"
+        },
+        "sa": {
+          "word": "पञ्च"
+        },
+        "ta": {
+          "word": "ஐந்து"
+        },
+        "th": {
+          "word": "ห้า"
+        },
+        "tr": {
+          "word": "beş"
+        },
+        "vi": {
+          "word": "năm"
         }
       },
       "resources": [
@@ -236,6 +322,42 @@
         },
         "zh": {
           "word": "四"
+        },
+        "ang": {
+          "word": "feower"
+        },
+        "cs": {
+          "word": "čtyři"
+        },
+        "fa": {
+          "word": "چَهار"
+        },
+        "grc": {
+          "word": "τέτταρες"
+        },
+        "he": {
+          "word": "אַרְבַּע"
+        },
+        "id": {
+          "word": "empat"
+        },
+        "la": {
+          "word": "quattuor"
+        },
+        "sa": {
+          "word": "चतुर्"
+        },
+        "ta": {
+          "word": "நான்கு"
+        },
+        "th": {
+          "word": "สี่"
+        },
+        "tr": {
+          "word": "dört"
+        },
+        "vi": {
+          "word": "bốn"
         }
       },
       "resources": [
@@ -312,6 +434,39 @@
         },
         "zh": {
           "word": "一半"
+        },
+        "cs": {
+          "word": "polovina"
+        },
+        "fa": {
+          "word": "نیم"
+        },
+        "grc": {
+          "word": "ἥμισυ"
+        },
+        "he": {
+          "word": "חֵצִי"
+        },
+        "id": {
+          "word": "setengah"
+        },
+        "la": {
+          "word": "dīmidium"
+        },
+        "sa": {
+          "word": "अर्ध"
+        },
+        "ta": {
+          "word": "அரை"
+        },
+        "th": {
+          "word": "ครึ่ง"
+        },
+        "tr": {
+          "word": "yarım"
+        },
+        "vi": {
+          "word": "nửa"
         }
       },
       "resources": [
@@ -382,6 +537,42 @@
         },
         "zh": {
           "word": "百"
+        },
+        "ang": {
+          "word": "hundtēontiġ"
+        },
+        "cs": {
+          "word": "sto"
+        },
+        "fa": {
+          "word": "صَد"
+        },
+        "grc": {
+          "word": "ἑκατόν"
+        },
+        "he": {
+          "word": "מֵאָה"
+        },
+        "id": {
+          "word": "seratus"
+        },
+        "la": {
+          "word": "centum"
+        },
+        "sa": {
+          "word": "शत"
+        },
+        "ta": {
+          "word": "நூறு"
+        },
+        "th": {
+          "word": "หนึ่งร้อย"
+        },
+        "tr": {
+          "word": "yüz"
+        },
+        "vi": {
+          "word": "một trăm"
         }
       },
       "resources": [
@@ -452,6 +643,42 @@
         },
         "zh": {
           "word": "九"
+        },
+        "ang": {
+          "word": "nigon"
+        },
+        "cs": {
+          "word": "devět"
+        },
+        "fa": {
+          "word": "نُه"
+        },
+        "grc": {
+          "word": "ἐννέα"
+        },
+        "he": {
+          "word": "תֵּשַׁע"
+        },
+        "id": {
+          "word": "sembilan"
+        },
+        "la": {
+          "word": "novem"
+        },
+        "sa": {
+          "word": "नव"
+        },
+        "ta": {
+          "word": "ஒன்பது"
+        },
+        "th": {
+          "word": "เก้า"
+        },
+        "tr": {
+          "word": "dokuz"
+        },
+        "vi": {
+          "word": "chín"
         }
       },
       "resources": [
@@ -522,6 +749,42 @@
         },
         "zh": {
           "word": "数"
+        },
+        "ang": {
+          "word": "rīm"
+        },
+        "cs": {
+          "word": "číslo"
+        },
+        "fa": {
+          "word": "شُمَارَه"
+        },
+        "grc": {
+          "word": "ἀριθμός"
+        },
+        "he": {
+          "word": "מִסְפָּר"
+        },
+        "id": {
+          "word": "angka"
+        },
+        "la": {
+          "word": "numerus"
+        },
+        "sa": {
+          "word": "संख्या"
+        },
+        "ta": {
+          "word": "எண்"
+        },
+        "th": {
+          "word": "จำนวน"
+        },
+        "tr": {
+          "word": "sayı"
+        },
+        "vi": {
+          "word": "số"
         }
       },
       "resources": [
@@ -598,6 +861,42 @@
         },
         "zh": {
           "word": "一"
+        },
+        "ang": {
+          "word": "ān"
+        },
+        "cs": {
+          "word": "jeden"
+        },
+        "fa": {
+          "word": "یَک"
+        },
+        "grc": {
+          "word": "εἷς"
+        },
+        "he": {
+          "word": "אַחַת"
+        },
+        "id": {
+          "word": "satu"
+        },
+        "la": {
+          "word": "ūnus"
+        },
+        "sa": {
+          "word": "एक"
+        },
+        "ta": {
+          "word": "ஒன்று"
+        },
+        "th": {
+          "word": "หนึ่ง"
+        },
+        "tr": {
+          "word": "bir"
+        },
+        "vi": {
+          "word": "một"
         }
       },
       "resources": [
@@ -673,6 +972,42 @@
         },
         "zh": {
           "word": "七"
+        },
+        "ang": {
+          "word": "seofon"
+        },
+        "cs": {
+          "word": "sedm"
+        },
+        "fa": {
+          "word": "هَفت"
+        },
+        "grc": {
+          "word": "ἑπτά"
+        },
+        "he": {
+          "word": "שֶׁבַע"
+        },
+        "id": {
+          "word": "tujuh"
+        },
+        "la": {
+          "word": "septem"
+        },
+        "sa": {
+          "word": "सप्त"
+        },
+        "ta": {
+          "word": "ஏழு"
+        },
+        "th": {
+          "word": "เจ็ด"
+        },
+        "tr": {
+          "word": "yedi"
+        },
+        "vi": {
+          "word": "bảy"
         }
       },
       "resources": [
@@ -743,6 +1078,42 @@
         },
         "zh": {
           "word": "六"
+        },
+        "ang": {
+          "word": "six"
+        },
+        "cs": {
+          "word": "šest"
+        },
+        "fa": {
+          "word": "شِش"
+        },
+        "grc": {
+          "word": "ἕξ"
+        },
+        "he": {
+          "word": "שֵׁשׁ"
+        },
+        "id": {
+          "word": "enam"
+        },
+        "la": {
+          "word": "sex"
+        },
+        "sa": {
+          "word": "षष्"
+        },
+        "ta": {
+          "word": "ஆறு"
+        },
+        "th": {
+          "word": "หก"
+        },
+        "tr": {
+          "word": "altı"
+        },
+        "vi": {
+          "word": "sáu"
         }
       },
       "resources": [
@@ -813,6 +1184,42 @@
         },
         "zh": {
           "word": "十"
+        },
+        "ang": {
+          "word": "tīen"
+        },
+        "cs": {
+          "word": "deset"
+        },
+        "fa": {
+          "word": "ده"
+        },
+        "grc": {
+          "word": "δέκα"
+        },
+        "he": {
+          "word": "עֶשֶׂר"
+        },
+        "id": {
+          "word": "sepuluh"
+        },
+        "la": {
+          "word": "decem"
+        },
+        "sa": {
+          "word": "दश"
+        },
+        "ta": {
+          "word": "பத்து"
+        },
+        "th": {
+          "word": "สิบ"
+        },
+        "tr": {
+          "word": "on"
+        },
+        "vi": {
+          "word": "mười"
         }
       },
       "resources": [
@@ -889,6 +1296,42 @@
         },
         "zh": {
           "word": "千"
+        },
+        "ang": {
+          "word": "þūsend"
+        },
+        "cs": {
+          "word": "tisíc"
+        },
+        "fa": {
+          "word": "هِزار"
+        },
+        "grc": {
+          "word": "χίλιοι"
+        },
+        "he": {
+          "word": "אֶלֶף"
+        },
+        "id": {
+          "word": "seribu"
+        },
+        "la": {
+          "word": "mīlle"
+        },
+        "sa": {
+          "word": "सहस्र"
+        },
+        "ta": {
+          "word": "ஆயிரம்"
+        },
+        "th": {
+          "word": "หนึ่งพัน"
+        },
+        "tr": {
+          "word": "bin"
+        },
+        "vi": {
+          "word": "ngàn"
         }
       },
       "resources": [
@@ -959,6 +1402,42 @@
         },
         "zh": {
           "word": "三"
+        },
+        "ang": {
+          "word": "þrī"
+        },
+        "cs": {
+          "word": "tři"
+        },
+        "fa": {
+          "word": "سِه"
+        },
+        "grc": {
+          "word": "τρεῖς"
+        },
+        "he": {
+          "word": "שָׁלוֹשׁ"
+        },
+        "id": {
+          "word": "tiga"
+        },
+        "la": {
+          "word": "trēs"
+        },
+        "sa": {
+          "word": "त्रि"
+        },
+        "ta": {
+          "word": "மூன்று"
+        },
+        "th": {
+          "word": "สาม"
+        },
+        "tr": {
+          "word": "üç"
+        },
+        "vi": {
+          "word": "ba"
         }
       },
       "resources": [
@@ -1035,6 +1514,42 @@
         },
         "zh": {
           "word": "二"
+        },
+        "ang": {
+          "word": "twēġen"
+        },
+        "cs": {
+          "word": "dva"
+        },
+        "fa": {
+          "word": "دُو"
+        },
+        "grc": {
+          "word": "δύο"
+        },
+        "he": {
+          "word": "שְׁתַּיִם"
+        },
+        "id": {
+          "word": "dua"
+        },
+        "la": {
+          "word": "duo"
+        },
+        "sa": {
+          "word": "द्वि"
+        },
+        "ta": {
+          "word": "இரண்டு"
+        },
+        "th": {
+          "word": "สอง"
+        },
+        "tr": {
+          "word": "iki"
+        },
+        "vi": {
+          "word": "hai"
         }
       },
       "resources": [
@@ -1111,6 +1626,36 @@
         },
         "zh": {
           "word": "零"
+        },
+        "cs": {
+          "word": "nula"
+        },
+        "fa": {
+          "word": "صِفْر"
+        },
+        "he": {
+          "word": "אֶפֶס"
+        },
+        "id": {
+          "word": "nol"
+        },
+        "la": {
+          "word": "zerum"
+        },
+        "sa": {
+          "word": "शून्य"
+        },
+        "ta": {
+          "word": "சுழியம்"
+        },
+        "th": {
+          "word": "ศูนย์"
+        },
+        "tr": {
+          "word": "sıfır"
+        },
+        "vi": {
+          "word": "không"
         }
       },
       "resources": [
@@ -1181,6 +1726,42 @@
         },
         "zh": {
           "word": "黑"
+        },
+        "ang": {
+          "word": "blæc"
+        },
+        "cs": {
+          "word": "černý"
+        },
+        "fa": {
+          "word": "سِیاه"
+        },
+        "grc": {
+          "word": "ἀμαυρός"
+        },
+        "he": {
+          "word": "שָׁחֹר"
+        },
+        "id": {
+          "word": "hitam"
+        },
+        "la": {
+          "word": "ater"
+        },
+        "sa": {
+          "word": "कृष्ण"
+        },
+        "ta": {
+          "word": "கருப்பு"
+        },
+        "th": {
+          "word": "ดำ"
+        },
+        "tr": {
+          "word": "kara"
+        },
+        "vi": {
+          "word": "đen"
         }
       },
       "resources": [
@@ -1257,6 +1838,42 @@
         },
         "zh": {
           "word": "蓝"
+        },
+        "ang": {
+          "word": "hǣwen"
+        },
+        "cs": {
+          "word": "modrý"
+        },
+        "fa": {
+          "word": "آبی"
+        },
+        "grc": {
+          "word": "κυάνεος"
+        },
+        "he": {
+          "word": "כָּחוֹל"
+        },
+        "id": {
+          "word": "biru"
+        },
+        "la": {
+          "word": "blavus"
+        },
+        "sa": {
+          "word": "नील"
+        },
+        "ta": {
+          "word": "நீலம்"
+        },
+        "th": {
+          "word": "น้ำเงิน"
+        },
+        "tr": {
+          "word": "mavi"
+        },
+        "vi": {
+          "word": "xanh"
         }
       },
       "resources": [
@@ -1333,6 +1950,36 @@
         },
         "zh": {
           "word": "棕色"
+        },
+        "ang": {
+          "word": "brūn"
+        },
+        "cs": {
+          "word": "hnědý"
+        },
+        "he": {
+          "word": "חוּם"
+        },
+        "id": {
+          "word": "cokelat"
+        },
+        "la": {
+          "word": "spādīx"
+        },
+        "sa": {
+          "word": "श्याव"
+        },
+        "ta": {
+          "word": "பழுப்பு"
+        },
+        "th": {
+          "word": "น้ำตาล"
+        },
+        "tr": {
+          "word": "kahverengi"
+        },
+        "vi": {
+          "word": "nâu"
         }
       },
       "resources": [
@@ -1410,6 +2057,42 @@
         },
         "zh": {
           "word": "色"
+        },
+        "ang": {
+          "word": "blēo"
+        },
+        "cs": {
+          "word": "barva"
+        },
+        "fa": {
+          "word": "رَنْگ"
+        },
+        "grc": {
+          "word": "χρῶμα"
+        },
+        "he": {
+          "word": "צֶבַע"
+        },
+        "id": {
+          "word": "warna"
+        },
+        "la": {
+          "word": "color"
+        },
+        "sa": {
+          "word": "रङ्ग"
+        },
+        "ta": {
+          "word": "நிறம்"
+        },
+        "th": {
+          "word": "สี"
+        },
+        "tr": {
+          "word": "renk"
+        },
+        "vi": {
+          "word": "màu"
         }
       },
       "resources": [
@@ -1480,6 +2163,39 @@
         },
         "zh": {
           "word": "绿"
+        },
+        "ang": {
+          "word": "grene"
+        },
+        "cs": {
+          "word": "zelený"
+        },
+        "grc": {
+          "word": "χλωρός"
+        },
+        "he": {
+          "word": "יָרֹק"
+        },
+        "id": {
+          "word": "hijau"
+        },
+        "la": {
+          "word": "viridis"
+        },
+        "sa": {
+          "word": "हरित"
+        },
+        "ta": {
+          "word": "பச்சை"
+        },
+        "th": {
+          "word": "เขียว"
+        },
+        "tr": {
+          "word": "yeşil"
+        },
+        "vi": {
+          "word": "xanh"
         }
       },
       "resources": [
@@ -1556,6 +2272,42 @@
         },
         "zh": {
           "word": "橙色"
+        },
+        "ang": {
+          "word": "geoluread"
+        },
+        "cs": {
+          "word": "oranžový"
+        },
+        "fa": {
+          "word": "نارَنْجی"
+        },
+        "grc": {
+          "word": "σανδαράκινος"
+        },
+        "he": {
+          "word": "כָּתֹם"
+        },
+        "id": {
+          "word": "jingga"
+        },
+        "la": {
+          "word": "aurantius"
+        },
+        "sa": {
+          "word": "कमला"
+        },
+        "ta": {
+          "word": "செம்மஞ்சள்"
+        },
+        "th": {
+          "word": "สีส้ม"
+        },
+        "tr": {
+          "word": "turuncu"
+        },
+        "vi": {
+          "word": "màu da cam"
         }
       },
       "resources": [
@@ -1626,6 +2378,36 @@
         },
         "zh": {
           "word": "粉红色"
+        },
+        "cs": {
+          "word": "růžový"
+        },
+        "fa": {
+          "word": "صورتی"
+        },
+        "grc": {
+          "word": "ῥόδινος"
+        },
+        "he": {
+          "word": "וָרֹד"
+        },
+        "id": {
+          "word": "pink muda"
+        },
+        "la": {
+          "word": "roseus"
+        },
+        "sa": {
+          "word": "कमल"
+        },
+        "th": {
+          "word": "ชมพู"
+        },
+        "tr": {
+          "word": "pembe"
+        },
+        "vi": {
+          "word": "màu hồng"
         }
       },
       "resources": [
@@ -1696,6 +2478,42 @@
         },
         "zh": {
           "word": "红"
+        },
+        "ang": {
+          "word": "rēad"
+        },
+        "cs": {
+          "word": "červený"
+        },
+        "fa": {
+          "word": "قِرْمِز"
+        },
+        "grc": {
+          "word": "ἐρυθρός"
+        },
+        "he": {
+          "word": "אָדוֹם"
+        },
+        "id": {
+          "word": "merah"
+        },
+        "la": {
+          "word": "rubeus"
+        },
+        "sa": {
+          "word": "रुधिर"
+        },
+        "ta": {
+          "word": "சிவப்பு"
+        },
+        "th": {
+          "word": "แดง"
+        },
+        "tr": {
+          "word": "kırmızı"
+        },
+        "vi": {
+          "word": "đỏ"
         }
       },
       "resources": [
@@ -1772,6 +2590,42 @@
         },
         "zh": {
           "word": "白"
+        },
+        "ang": {
+          "word": "hwīt"
+        },
+        "cs": {
+          "word": "bílý"
+        },
+        "fa": {
+          "word": "سَفید"
+        },
+        "grc": {
+          "word": "λευκός"
+        },
+        "he": {
+          "word": "לָבָן"
+        },
+        "id": {
+          "word": "putih"
+        },
+        "la": {
+          "word": "albus"
+        },
+        "sa": {
+          "word": "श्वेत"
+        },
+        "ta": {
+          "word": "வெள்"
+        },
+        "th": {
+          "word": "ขาว"
+        },
+        "tr": {
+          "word": "ak"
+        },
+        "vi": {
+          "word": "trắng"
         }
       },
       "resources": [
@@ -1848,6 +2702,42 @@
         },
         "zh": {
           "word": "黄"
+        },
+        "ang": {
+          "word": "ġeolu"
+        },
+        "cs": {
+          "word": "žlutý"
+        },
+        "fa": {
+          "word": "زَرْد"
+        },
+        "grc": {
+          "word": "ξανθός"
+        },
+        "he": {
+          "word": "צָהֹב"
+        },
+        "id": {
+          "word": "kuning"
+        },
+        "la": {
+          "word": "flāvus"
+        },
+        "sa": {
+          "word": "पीत"
+        },
+        "ta": {
+          "word": "மஞ்சள்"
+        },
+        "th": {
+          "word": "เหลือง"
+        },
+        "tr": {
+          "word": "sarı"
+        },
+        "vi": {
+          "word": "vàng"
         }
       },
       "resources": [
@@ -1924,6 +2814,42 @@
         },
         "zh": {
           "word": "婴儿"
+        },
+        "ang": {
+          "word": "ċild"
+        },
+        "cs": {
+          "word": "děťátko"
+        },
+        "fa": {
+          "word": "اُشْتُک"
+        },
+        "grc": {
+          "word": "βρέφος"
+        },
+        "he": {
+          "word": "תִּינוֹק"
+        },
+        "id": {
+          "word": "bayi"
+        },
+        "la": {
+          "word": "infans"
+        },
+        "sa": {
+          "word": "स्तनप"
+        },
+        "ta": {
+          "word": "குழந்தை"
+        },
+        "th": {
+          "word": "เด็กอ่อน"
+        },
+        "tr": {
+          "word": "bebek"
+        },
+        "vi": {
+          "word": "bé"
         }
       },
       "resources": [
@@ -1994,6 +2920,42 @@
         },
         "zh": {
           "word": "哥哥"
+        },
+        "ang": {
+          "word": "brōþor"
+        },
+        "cs": {
+          "word": "bratr"
+        },
+        "fa": {
+          "word": "بَرَادَر"
+        },
+        "grc": {
+          "word": "ἀδελφός"
+        },
+        "he": {
+          "word": "אָח"
+        },
+        "id": {
+          "word": "saudara"
+        },
+        "la": {
+          "word": "frāter"
+        },
+        "sa": {
+          "word": "भ्रातृ"
+        },
+        "ta": {
+          "word": "சகோதரன்"
+        },
+        "th": {
+          "word": "พี่"
+        },
+        "tr": {
+          "word": "erkek kardeş"
+        },
+        "vi": {
+          "word": "em trai"
         }
       },
       "resources": [
@@ -2064,6 +3026,42 @@
         },
         "zh": {
           "word": "小孩"
+        },
+        "ang": {
+          "word": "ċild"
+        },
+        "cs": {
+          "word": "dítě"
+        },
+        "fa": {
+          "word": "بَچِّه"
+        },
+        "grc": {
+          "word": "παῖς"
+        },
+        "he": {
+          "word": "יֶלֶד"
+        },
+        "id": {
+          "word": "anak"
+        },
+        "la": {
+          "word": "filius"
+        },
+        "sa": {
+          "word": "शिशु"
+        },
+        "ta": {
+          "word": "குழந்தை"
+        },
+        "th": {
+          "word": "ลูก"
+        },
+        "tr": {
+          "word": "çocuk"
+        },
+        "vi": {
+          "word": "đứa bé"
         }
       },
       "resources": [
@@ -2138,6 +3136,42 @@
         },
         "zh": {
           "word": "女儿"
+        },
+        "ang": {
+          "word": "dohtor"
+        },
+        "cs": {
+          "word": "dcera"
+        },
+        "fa": {
+          "word": "دُخْتَر"
+        },
+        "grc": {
+          "word": "θυγάτηρ"
+        },
+        "he": {
+          "word": "בַּת"
+        },
+        "id": {
+          "word": "putri"
+        },
+        "la": {
+          "word": "filia"
+        },
+        "sa": {
+          "word": "दुहितृ"
+        },
+        "ta": {
+          "word": "மகள்"
+        },
+        "th": {
+          "word": "ลูกสาว"
+        },
+        "tr": {
+          "word": "kız"
+        },
+        "vi": {
+          "word": "con gái"
         }
       },
       "resources": [
@@ -2208,6 +3242,42 @@
         },
         "zh": {
           "word": "父亲"
+        },
+        "ang": {
+          "word": "fæder"
+        },
+        "cs": {
+          "word": "otec"
+        },
+        "fa": {
+          "word": "پَدَر"
+        },
+        "grc": {
+          "word": "πατήρ"
+        },
+        "he": {
+          "word": "אָב"
+        },
+        "id": {
+          "word": "bapa"
+        },
+        "la": {
+          "word": "pater"
+        },
+        "sa": {
+          "word": "पितृ"
+        },
+        "ta": {
+          "word": "அப்பா"
+        },
+        "th": {
+          "word": "พ่อ"
+        },
+        "tr": {
+          "word": "baba"
+        },
+        "vi": {
+          "word": "cha"
         }
       },
       "resources": [
@@ -2284,6 +3354,42 @@
         },
         "zh": {
           "word": "朋友"
+        },
+        "ang": {
+          "word": "frēond"
+        },
+        "cs": {
+          "word": "přítel"
+        },
+        "fa": {
+          "word": "دوسْت"
+        },
+        "grc": {
+          "word": "φίλος"
+        },
+        "he": {
+          "word": "יָדִיד"
+        },
+        "id": {
+          "word": "teman"
+        },
+        "la": {
+          "word": "amicus"
+        },
+        "sa": {
+          "word": "सखि"
+        },
+        "ta": {
+          "word": "நண்பன்"
+        },
+        "th": {
+          "word": "เพื่อน"
+        },
+        "tr": {
+          "word": "arkadaş"
+        },
+        "vi": {
+          "word": "người bạn"
         }
       },
       "resources": [
@@ -2360,6 +3466,42 @@
         },
         "zh": {
           "word": "丈夫"
+        },
+        "ang": {
+          "word": "wer"
+        },
+        "cs": {
+          "word": "manžel"
+        },
+        "fa": {
+          "word": "شَوْهَر"
+        },
+        "grc": {
+          "word": "γαμέτης"
+        },
+        "he": {
+          "word": "בַּעַל"
+        },
+        "id": {
+          "word": "suami"
+        },
+        "la": {
+          "word": "marītus"
+        },
+        "sa": {
+          "word": "पति"
+        },
+        "ta": {
+          "word": "அம்படையன்"
+        },
+        "th": {
+          "word": "สามี"
+        },
+        "tr": {
+          "word": "koca"
+        },
+        "vi": {
+          "word": "chồng"
         }
       },
       "resources": [
@@ -2430,6 +3572,42 @@
         },
         "zh": {
           "word": "男人"
+        },
+        "ang": {
+          "word": "wer"
+        },
+        "cs": {
+          "word": "muž"
+        },
+        "fa": {
+          "word": "مَرْد"
+        },
+        "grc": {
+          "word": "ἀνήρ"
+        },
+        "he": {
+          "word": "גֶּבֶר"
+        },
+        "id": {
+          "word": "pria"
+        },
+        "la": {
+          "word": "vir"
+        },
+        "sa": {
+          "word": "वृषन्"
+        },
+        "ta": {
+          "word": "ஆண்"
+        },
+        "th": {
+          "word": "ผู้ชาย"
+        },
+        "tr": {
+          "word": "adam"
+        },
+        "vi": {
+          "word": "đàn ông"
         }
       },
       "resources": [
@@ -2505,6 +3683,42 @@
         },
         "zh": {
           "word": "妈妈"
+        },
+        "ang": {
+          "word": "mōdor"
+        },
+        "cs": {
+          "word": "matka"
+        },
+        "fa": {
+          "word": "مَادَر"
+        },
+        "grc": {
+          "word": "μήτηρ"
+        },
+        "he": {
+          "word": "אֵם"
+        },
+        "id": {
+          "word": "ibu"
+        },
+        "la": {
+          "word": "māter"
+        },
+        "sa": {
+          "word": "मातृ"
+        },
+        "ta": {
+          "word": "அம்மா"
+        },
+        "th": {
+          "word": "แม่"
+        },
+        "tr": {
+          "word": "anne"
+        },
+        "vi": {
+          "word": "má"
         }
       },
       "resources": [
@@ -2581,6 +3795,42 @@
         },
         "zh": {
           "word": "名字"
+        },
+        "ang": {
+          "word": "nama"
+        },
+        "cs": {
+          "word": "jméno"
+        },
+        "fa": {
+          "word": "نَام"
+        },
+        "grc": {
+          "word": "ὄνομα"
+        },
+        "he": {
+          "word": "שֵׁם"
+        },
+        "id": {
+          "word": "nama"
+        },
+        "la": {
+          "word": "nōmen"
+        },
+        "sa": {
+          "word": "नामन्"
+        },
+        "ta": {
+          "word": "பெயர்"
+        },
+        "th": {
+          "word": "ชื่อ"
+        },
+        "tr": {
+          "word": "ad"
+        },
+        "vi": {
+          "word": "tên"
         }
       },
       "resources": [
@@ -2657,6 +3907,42 @@
         },
         "zh": {
           "word": "人们"
+        },
+        "ang": {
+          "word": "folc"
+        },
+        "cs": {
+          "word": "lid"
+        },
+        "fa": {
+          "word": "مَرْدُم"
+        },
+        "grc": {
+          "word": "ἔθνος"
+        },
+        "he": {
+          "word": "עַם"
+        },
+        "id": {
+          "word": "rakyat"
+        },
+        "la": {
+          "word": "gens"
+        },
+        "sa": {
+          "word": "जन"
+        },
+        "ta": {
+          "word": "மக்கள்"
+        },
+        "th": {
+          "word": "คน"
+        },
+        "tr": {
+          "word": "halk"
+        },
+        "vi": {
+          "word": "nhân dân"
         }
       },
       "resources": [
@@ -2730,6 +4016,42 @@
         },
         "zh": {
           "word": "人"
+        },
+        "ang": {
+          "word": "mann"
+        },
+        "cs": {
+          "word": "osoba"
+        },
+        "fa": {
+          "word": "شَخْص"
+        },
+        "grc": {
+          "word": "ἄνθρωπος"
+        },
+        "he": {
+          "word": "בֶּן אָדָם"
+        },
+        "id": {
+          "word": "orang"
+        },
+        "la": {
+          "word": "homo"
+        },
+        "sa": {
+          "word": "पुरुष"
+        },
+        "ta": {
+          "word": "ஆள்"
+        },
+        "th": {
+          "word": "คน"
+        },
+        "tr": {
+          "word": "kişi"
+        },
+        "vi": {
+          "word": "người"
         }
       },
       "resources": [
@@ -2800,6 +4122,42 @@
         },
         "zh": {
           "word": "姐姐"
+        },
+        "ang": {
+          "word": "sweoster"
+        },
+        "cs": {
+          "word": "sestra"
+        },
+        "fa": {
+          "word": "خوَاهَر"
+        },
+        "grc": {
+          "word": "ἀδελφή"
+        },
+        "he": {
+          "word": "אָחוֹת"
+        },
+        "id": {
+          "word": "saudari"
+        },
+        "la": {
+          "word": "soror"
+        },
+        "sa": {
+          "word": "स्वसृ"
+        },
+        "ta": {
+          "word": "அக்கா"
+        },
+        "th": {
+          "word": "พี่สาว"
+        },
+        "tr": {
+          "word": "abla"
+        },
+        "vi": {
+          "word": "em gái"
         }
       },
       "resources": [
@@ -2870,6 +4228,42 @@
         },
         "zh": {
           "word": "儿子"
+        },
+        "ang": {
+          "word": "sunu"
+        },
+        "cs": {
+          "word": "syn"
+        },
+        "fa": {
+          "word": "پِسَر"
+        },
+        "grc": {
+          "word": "υἱός"
+        },
+        "he": {
+          "word": "בֵּן"
+        },
+        "id": {
+          "word": "putra"
+        },
+        "la": {
+          "word": "filius"
+        },
+        "sa": {
+          "word": "पुत्र"
+        },
+        "ta": {
+          "word": "மகன்"
+        },
+        "th": {
+          "word": "ลูกชาย"
+        },
+        "tr": {
+          "word": "oğul"
+        },
+        "vi": {
+          "word": "con trai"
         }
       },
       "resources": [
@@ -2940,6 +4334,39 @@
         },
         "zh": {
           "word": "妻子"
+        },
+        "ang": {
+          "word": "wīf"
+        },
+        "cs": {
+          "word": "manželka"
+        },
+        "grc": {
+          "word": "γαμετή"
+        },
+        "he": {
+          "word": "אִשָּׁה"
+        },
+        "id": {
+          "word": "istri"
+        },
+        "la": {
+          "word": "uxor"
+        },
+        "sa": {
+          "word": "पत्नी"
+        },
+        "ta": {
+          "word": "மனைவி"
+        },
+        "th": {
+          "word": "ภริยา"
+        },
+        "tr": {
+          "word": "karı"
+        },
+        "vi": {
+          "word": "vợ"
         }
       },
       "resources": [
@@ -3010,6 +4437,39 @@
         },
         "zh": {
           "word": "女人"
+        },
+        "ang": {
+          "word": "wīf"
+        },
+        "cs": {
+          "word": "žena"
+        },
+        "grc": {
+          "word": "γυνή"
+        },
+        "he": {
+          "word": "אִשָּׁה"
+        },
+        "id": {
+          "word": "perempuan"
+        },
+        "la": {
+          "word": "fēmina"
+        },
+        "sa": {
+          "word": "स्त्री"
+        },
+        "ta": {
+          "word": "பெண்"
+        },
+        "th": {
+          "word": "ผู้หญิง"
+        },
+        "tr": {
+          "word": "kadın"
+        },
+        "vi": {
+          "word": "phụ nữ"
         }
       },
       "resources": [
@@ -3086,6 +4546,42 @@
         },
         "zh": {
           "word": "熊"
+        },
+        "ang": {
+          "word": "bera"
+        },
+        "cs": {
+          "word": "medvěd"
+        },
+        "fa": {
+          "word": "خرس"
+        },
+        "grc": {
+          "word": "ἄρκτος"
+        },
+        "he": {
+          "word": "דֹּב"
+        },
+        "id": {
+          "word": "beruang"
+        },
+        "la": {
+          "word": "ursus"
+        },
+        "sa": {
+          "word": "ऋक्ष"
+        },
+        "ta": {
+          "word": "கரடி"
+        },
+        "th": {
+          "word": "หมี"
+        },
+        "tr": {
+          "word": "ayı"
+        },
+        "vi": {
+          "word": "gấu"
         }
       },
       "resources": [
@@ -3156,6 +4652,42 @@
         },
         "zh": {
           "word": "蜜蜂"
+        },
+        "ang": {
+          "word": "bēo"
+        },
+        "cs": {
+          "word": "včela"
+        },
+        "fa": {
+          "word": "زَنْبور"
+        },
+        "grc": {
+          "word": "μέλισσα"
+        },
+        "he": {
+          "word": "דְּבוֹרָה"
+        },
+        "id": {
+          "word": "lebah"
+        },
+        "la": {
+          "word": "apis"
+        },
+        "sa": {
+          "word": "भ्रमर"
+        },
+        "ta": {
+          "word": "தேனீ"
+        },
+        "th": {
+          "word": "ผึ้ง"
+        },
+        "tr": {
+          "word": "arı"
+        },
+        "vi": {
+          "word": "ong"
         }
       },
       "resources": [
@@ -3226,6 +4758,42 @@
         },
         "zh": {
           "word": "鸟"
+        },
+        "ang": {
+          "word": "fugol"
+        },
+        "cs": {
+          "word": "pták"
+        },
+        "fa": {
+          "word": "پَرِنْدَه"
+        },
+        "grc": {
+          "word": "ὄρνις"
+        },
+        "he": {
+          "word": "צִפּוֹר"
+        },
+        "id": {
+          "word": "burung"
+        },
+        "la": {
+          "word": "avis"
+        },
+        "sa": {
+          "word": "वि"
+        },
+        "ta": {
+          "word": "பறவை"
+        },
+        "th": {
+          "word": "นก"
+        },
+        "tr": {
+          "word": "kuş"
+        },
+        "vi": {
+          "word": "chim"
         }
       },
       "resources": [
@@ -3301,6 +4869,42 @@
         },
         "zh": {
           "word": "猫"
+        },
+        "ang": {
+          "word": "catt"
+        },
+        "cs": {
+          "word": "kočka"
+        },
+        "fa": {
+          "word": "گُرْبَه"
+        },
+        "grc": {
+          "word": "αἴλουρος"
+        },
+        "he": {
+          "word": "חָתוּל"
+        },
+        "id": {
+          "word": "kucing"
+        },
+        "la": {
+          "word": "fēlēs"
+        },
+        "sa": {
+          "word": "मार्जार"
+        },
+        "ta": {
+          "word": "பூனை"
+        },
+        "th": {
+          "word": "แมว"
+        },
+        "tr": {
+          "word": "kedi"
+        },
+        "vi": {
+          "word": "mèo"
         }
       },
       "resources": [
@@ -3377,6 +4981,42 @@
         },
         "zh": {
           "word": "鸡"
+        },
+        "ang": {
+          "word": "ċȳcen"
+        },
+        "cs": {
+          "word": "slepice"
+        },
+        "fa": {
+          "word": "مرغ خانگی"
+        },
+        "grc": {
+          "word": "ἀλεκτοριδεύς"
+        },
+        "he": {
+          "word": "תַּרְנְגוֹל"
+        },
+        "id": {
+          "word": "ayam"
+        },
+        "la": {
+          "word": "pullus"
+        },
+        "sa": {
+          "word": "कुक्कुट"
+        },
+        "ta": {
+          "word": "கோழி"
+        },
+        "th": {
+          "word": "ไก่"
+        },
+        "tr": {
+          "word": "tavuk"
+        },
+        "vi": {
+          "word": "gà"
         }
       },
       "resources": [
@@ -3447,6 +5087,42 @@
         },
         "zh": {
           "word": "牛"
+        },
+        "ang": {
+          "word": "cū"
+        },
+        "cs": {
+          "word": "kráva"
+        },
+        "fa": {
+          "word": "مادِهگاو"
+        },
+        "grc": {
+          "word": "βοῦς"
+        },
+        "he": {
+          "word": "פָּרָה"
+        },
+        "id": {
+          "word": "sapi"
+        },
+        "la": {
+          "word": "vacca"
+        },
+        "sa": {
+          "word": "धेनु"
+        },
+        "ta": {
+          "word": "பசு"
+        },
+        "th": {
+          "word": "วัว"
+        },
+        "tr": {
+          "word": "inek"
+        },
+        "vi": {
+          "word": "bò cái"
         }
       },
       "resources": [
@@ -3523,6 +5199,42 @@
         },
         "zh": {
           "word": "狗"
+        },
+        "ang": {
+          "word": "hund"
+        },
+        "cs": {
+          "word": "pes"
+        },
+        "fa": {
+          "word": "سَگ"
+        },
+        "grc": {
+          "word": "κύων"
+        },
+        "he": {
+          "word": "כֶּלֶב"
+        },
+        "id": {
+          "word": "anjing"
+        },
+        "la": {
+          "word": "canis"
+        },
+        "sa": {
+          "word": "श्वन्"
+        },
+        "ta": {
+          "word": "நாய்"
+        },
+        "th": {
+          "word": "หมา"
+        },
+        "tr": {
+          "word": "köpek"
+        },
+        "vi": {
+          "word": "chó"
         }
       },
       "resources": [
@@ -3599,6 +5311,42 @@
         },
         "zh": {
           "word": "鸡蛋"
+        },
+        "ang": {
+          "word": "ǣġ"
+        },
+        "cs": {
+          "word": "vejce"
+        },
+        "fa": {
+          "word": "تُخْم"
+        },
+        "grc": {
+          "word": "ᾠόν"
+        },
+        "he": {
+          "word": "בֵּיצָה"
+        },
+        "id": {
+          "word": "telur"
+        },
+        "la": {
+          "word": "ōvum"
+        },
+        "sa": {
+          "word": "अण्ड"
+        },
+        "ta": {
+          "word": "முட்டை"
+        },
+        "th": {
+          "word": "ไข่"
+        },
+        "tr": {
+          "word": "yumurta"
+        },
+        "vi": {
+          "word": "trứng"
         }
       },
       "resources": [
@@ -3676,6 +5424,42 @@
         },
         "zh": {
           "word": "鱼"
+        },
+        "ang": {
+          "word": "fisċ"
+        },
+        "cs": {
+          "word": "ryba"
+        },
+        "fa": {
+          "word": "مَاهِی"
+        },
+        "grc": {
+          "word": "ἰχθύς"
+        },
+        "he": {
+          "word": "דָּג"
+        },
+        "id": {
+          "word": "ikan"
+        },
+        "la": {
+          "word": "piscis"
+        },
+        "sa": {
+          "word": "मत्स्य"
+        },
+        "ta": {
+          "word": "மீன்"
+        },
+        "th": {
+          "word": "ปลา"
+        },
+        "tr": {
+          "word": "balık"
+        },
+        "vi": {
+          "word": "cá"
         }
       },
       "resources": [
@@ -3752,6 +5536,42 @@
         },
         "zh": {
           "word": "马"
+        },
+        "ang": {
+          "word": "hors"
+        },
+        "cs": {
+          "word": "kůň"
+        },
+        "fa": {
+          "word": "اَسْپ"
+        },
+        "grc": {
+          "word": "ἵππος"
+        },
+        "he": {
+          "word": "סוּס"
+        },
+        "id": {
+          "word": "kuda"
+        },
+        "la": {
+          "word": "equus"
+        },
+        "sa": {
+          "word": "अश्व"
+        },
+        "ta": {
+          "word": "குதிரை"
+        },
+        "th": {
+          "word": "ม้า"
+        },
+        "tr": {
+          "word": "at"
+        },
+        "vi": {
+          "word": "ngựa"
         }
       },
       "resources": [
@@ -3828,6 +5648,42 @@
         },
         "zh": {
           "word": "狮子"
+        },
+        "ang": {
+          "word": "lēo"
+        },
+        "cs": {
+          "word": "lev"
+        },
+        "fa": {
+          "word": "شیر"
+        },
+        "grc": {
+          "word": "λέων"
+        },
+        "he": {
+          "word": "אַרְיֵה"
+        },
+        "id": {
+          "word": "singa"
+        },
+        "la": {
+          "word": "leō"
+        },
+        "sa": {
+          "word": "केसरी"
+        },
+        "ta": {
+          "word": "சிங்கம்"
+        },
+        "th": {
+          "word": "สิงโต"
+        },
+        "tr": {
+          "word": "aslan"
+        },
+        "vi": {
+          "word": "sư tử"
         }
       },
       "resources": [
@@ -3898,6 +5754,42 @@
         },
         "zh": {
           "word": "老鼠"
+        },
+        "ang": {
+          "word": "mūs"
+        },
+        "cs": {
+          "word": "myš"
+        },
+        "fa": {
+          "word": "مُوش"
+        },
+        "grc": {
+          "word": "μῦς"
+        },
+        "he": {
+          "word": "עַכְבָּר"
+        },
+        "id": {
+          "word": "tikus"
+        },
+        "la": {
+          "word": "mūs"
+        },
+        "sa": {
+          "word": "मूष्"
+        },
+        "ta": {
+          "word": "சுண்டெலி"
+        },
+        "th": {
+          "word": "หนู"
+        },
+        "tr": {
+          "word": "fare"
+        },
+        "vi": {
+          "word": "chuột"
         }
       },
       "resources": [
@@ -3968,6 +5860,42 @@
         },
         "zh": {
           "word": "猪"
+        },
+        "ang": {
+          "word": "swīn"
+        },
+        "cs": {
+          "word": "prase"
+        },
+        "fa": {
+          "word": "خُوک"
+        },
+        "grc": {
+          "word": "ὗς"
+        },
+        "he": {
+          "word": "חֲזִיר"
+        },
+        "id": {
+          "word": "babi"
+        },
+        "la": {
+          "word": "sūs"
+        },
+        "sa": {
+          "word": "सूकर"
+        },
+        "ta": {
+          "word": "பன்றி"
+        },
+        "th": {
+          "word": "หมู"
+        },
+        "tr": {
+          "word": "domuz"
+        },
+        "vi": {
+          "word": "heo"
         }
       },
       "resources": [
@@ -4038,6 +5966,42 @@
         },
         "zh": {
           "word": "羊"
+        },
+        "ang": {
+          "word": "scēap"
+        },
+        "cs": {
+          "word": "ovce"
+        },
+        "fa": {
+          "word": "گوسْفَنْد"
+        },
+        "grc": {
+          "word": "οἶς"
+        },
+        "he": {
+          "word": "כֶּבֶשׂ"
+        },
+        "id": {
+          "word": "domba"
+        },
+        "la": {
+          "word": "ovis"
+        },
+        "sa": {
+          "word": "अवि"
+        },
+        "ta": {
+          "word": "செம்மறியாடு"
+        },
+        "th": {
+          "word": "แกะ"
+        },
+        "tr": {
+          "word": "koyun"
+        },
+        "vi": {
+          "word": "cừu"
         }
       },
       "resources": [
@@ -4108,6 +6072,42 @@
         },
         "zh": {
           "word": "蛇"
+        },
+        "ang": {
+          "word": "nǣdre"
+        },
+        "cs": {
+          "word": "had"
+        },
+        "fa": {
+          "word": "مَار"
+        },
+        "grc": {
+          "word": "ὄφις"
+        },
+        "he": {
+          "word": "נָחָשׁ"
+        },
+        "id": {
+          "word": "ular"
+        },
+        "la": {
+          "word": "anguis"
+        },
+        "sa": {
+          "word": "सर्प"
+        },
+        "ta": {
+          "word": "பாம்பு"
+        },
+        "th": {
+          "word": "งู"
+        },
+        "tr": {
+          "word": "yılan"
+        },
+        "vi": {
+          "word": "rắn"
         }
       },
       "resources": [
@@ -4178,6 +6178,42 @@
         },
         "zh": {
           "word": "蜘蛛"
+        },
+        "ang": {
+          "word": "ātorcoppe"
+        },
+        "cs": {
+          "word": "pavouk"
+        },
+        "fa": {
+          "word": "جولَا"
+        },
+        "grc": {
+          "word": "ἀράχνη"
+        },
+        "he": {
+          "word": "עַכָּבִישׁ"
+        },
+        "id": {
+          "word": "labah"
+        },
+        "la": {
+          "word": "aranea"
+        },
+        "sa": {
+          "word": "लूता"
+        },
+        "ta": {
+          "word": "சிலந்தி"
+        },
+        "th": {
+          "word": "แมงมุม"
+        },
+        "tr": {
+          "word": "örümcek"
+        },
+        "vi": {
+          "word": "nhện"
         }
       },
       "resources": [
@@ -4248,6 +6284,42 @@
         },
         "zh": {
           "word": "狼"
+        },
+        "ang": {
+          "word": "wulf"
+        },
+        "cs": {
+          "word": "vlk"
+        },
+        "fa": {
+          "word": "گُرْگ"
+        },
+        "grc": {
+          "word": "λύκος"
+        },
+        "he": {
+          "word": "זְאֵב"
+        },
+        "id": {
+          "word": "serigala"
+        },
+        "la": {
+          "word": "lupus"
+        },
+        "sa": {
+          "word": "वृक"
+        },
+        "ta": {
+          "word": "ஓநாய்"
+        },
+        "th": {
+          "word": "หมาป่า"
+        },
+        "tr": {
+          "word": "kurt"
+        },
+        "vi": {
+          "word": "sói"
         }
       },
       "resources": [
@@ -4318,6 +6390,42 @@
         },
         "zh": {
           "word": "胳膊"
+        },
+        "ang": {
+          "word": "earm"
+        },
+        "cs": {
+          "word": "paže"
+        },
+        "fa": {
+          "word": "بازو"
+        },
+        "grc": {
+          "word": "βραχίων"
+        },
+        "he": {
+          "word": "זְרוֹעַ"
+        },
+        "id": {
+          "word": "lengan"
+        },
+        "la": {
+          "word": "bracchium"
+        },
+        "sa": {
+          "word": "बाहु"
+        },
+        "ta": {
+          "word": "கை"
+        },
+        "th": {
+          "word": "แขน"
+        },
+        "tr": {
+          "word": "kol"
+        },
+        "vi": {
+          "word": "cánh tay"
         }
       },
       "resources": [
@@ -4395,6 +6503,42 @@
         },
         "zh": {
           "word": "背部"
+        },
+        "ang": {
+          "word": "hryċġ"
+        },
+        "cs": {
+          "word": "záda"
+        },
+        "fa": {
+          "word": "پُشْت"
+        },
+        "grc": {
+          "word": "νῶτος"
+        },
+        "he": {
+          "word": "גַּב"
+        },
+        "id": {
+          "word": "punggung"
+        },
+        "la": {
+          "word": "dorsum"
+        },
+        "sa": {
+          "word": "पृष्ठ"
+        },
+        "ta": {
+          "word": "முதுகு"
+        },
+        "th": {
+          "word": "หลัง"
+        },
+        "tr": {
+          "word": "sırt"
+        },
+        "vi": {
+          "word": "lưng"
         }
       },
       "resources": [
@@ -4465,6 +6609,42 @@
         },
         "zh": {
           "word": "血"
+        },
+        "ang": {
+          "word": "blōd"
+        },
+        "cs": {
+          "word": "krev"
+        },
+        "fa": {
+          "word": "خُون"
+        },
+        "grc": {
+          "word": "αἷμα"
+        },
+        "he": {
+          "word": "דָּם"
+        },
+        "id": {
+          "word": "darah"
+        },
+        "la": {
+          "word": "sanguis"
+        },
+        "sa": {
+          "word": "असृज्"
+        },
+        "ta": {
+          "word": "ரத்தம்"
+        },
+        "th": {
+          "word": "เลือด"
+        },
+        "tr": {
+          "word": "kan"
+        },
+        "vi": {
+          "word": "máu"
         }
       },
       "resources": [
@@ -4542,6 +6722,42 @@
         },
         "zh": {
           "word": "骨头"
+        },
+        "ang": {
+          "word": "bān"
+        },
+        "cs": {
+          "word": "kost"
+        },
+        "fa": {
+          "word": "اُسْتُخْوَان"
+        },
+        "grc": {
+          "word": "ὀστέον"
+        },
+        "he": {
+          "word": "עֶצֶם"
+        },
+        "id": {
+          "word": "tulang"
+        },
+        "la": {
+          "word": "os"
+        },
+        "sa": {
+          "word": "अस्थि"
+        },
+        "ta": {
+          "word": "எலும்பு"
+        },
+        "th": {
+          "word": "กระดูก"
+        },
+        "tr": {
+          "word": "kemik"
+        },
+        "vi": {
+          "word": "chất xương"
         }
       },
       "resources": [
@@ -4619,6 +6835,42 @@
         },
         "zh": {
           "word": "大脑"
+        },
+        "ang": {
+          "word": "bræġn"
+        },
+        "cs": {
+          "word": "mozek"
+        },
+        "fa": {
+          "word": "مَغْز"
+        },
+        "grc": {
+          "word": "ἐγκέφαλος"
+        },
+        "he": {
+          "word": "מֹחַ"
+        },
+        "id": {
+          "word": "otak"
+        },
+        "la": {
+          "word": "cerebrum"
+        },
+        "sa": {
+          "word": "मस्तिष्क"
+        },
+        "ta": {
+          "word": "மூளை"
+        },
+        "th": {
+          "word": "มันสมอง"
+        },
+        "tr": {
+          "word": "beyin"
+        },
+        "vi": {
+          "word": "óc"
         }
       },
       "resources": [
@@ -4689,6 +6941,39 @@
         },
         "zh": {
           "word": "耳朵"
+        },
+        "ang": {
+          "word": "ēare"
+        },
+        "cs": {
+          "word": "ucho"
+        },
+        "grc": {
+          "word": "οὖς"
+        },
+        "he": {
+          "word": "אֹזֶן"
+        },
+        "id": {
+          "word": "telinga"
+        },
+        "la": {
+          "word": "auris"
+        },
+        "sa": {
+          "word": "कर्ण"
+        },
+        "ta": {
+          "word": "காது"
+        },
+        "th": {
+          "word": "หู"
+        },
+        "tr": {
+          "word": "kulak"
+        },
+        "vi": {
+          "word": "tai"
         }
       },
       "resources": [
@@ -4765,6 +7050,42 @@
         },
         "zh": {
           "word": "眼睛"
+        },
+        "ang": {
+          "word": "ēage"
+        },
+        "cs": {
+          "word": "oko"
+        },
+        "fa": {
+          "word": "چَشْم"
+        },
+        "grc": {
+          "word": "ὀφθαλμός"
+        },
+        "he": {
+          "word": "עַיִן"
+        },
+        "id": {
+          "word": "mata"
+        },
+        "la": {
+          "word": "oculus"
+        },
+        "sa": {
+          "word": "नेत्र"
+        },
+        "ta": {
+          "word": "கண்"
+        },
+        "th": {
+          "word": "ตา"
+        },
+        "tr": {
+          "word": "göz"
+        },
+        "vi": {
+          "word": "mắt"
         }
       },
       "resources": [
@@ -4836,6 +7157,42 @@
         },
         "zh": {
           "word": "脸"
+        },
+        "ang": {
+          "word": "ansīen"
+        },
+        "cs": {
+          "word": "tvář"
+        },
+        "fa": {
+          "word": "صُورَت"
+        },
+        "grc": {
+          "word": "πρόσωπον"
+        },
+        "he": {
+          "word": "פָּנִים"
+        },
+        "id": {
+          "word": "muka"
+        },
+        "la": {
+          "word": "faciēs"
+        },
+        "sa": {
+          "word": "अनीक"
+        },
+        "ta": {
+          "word": "முகம்"
+        },
+        "th": {
+          "word": "หน้า"
+        },
+        "tr": {
+          "word": "yüz"
+        },
+        "vi": {
+          "word": "mặt"
         }
       },
       "resources": [
@@ -4906,6 +7263,39 @@
         },
         "zh": {
           "word": "手指"
+        },
+        "ang": {
+          "word": "finger"
+        },
+        "cs": {
+          "word": "prst"
+        },
+        "grc": {
+          "word": "δάκτυλος"
+        },
+        "he": {
+          "word": "אֶצְבַּע"
+        },
+        "id": {
+          "word": "jari"
+        },
+        "la": {
+          "word": "digitus"
+        },
+        "sa": {
+          "word": "अङ्गुली"
+        },
+        "ta": {
+          "word": "விரல்"
+        },
+        "th": {
+          "word": "นิ้ว"
+        },
+        "tr": {
+          "word": "parmak"
+        },
+        "vi": {
+          "word": "ngón tay"
         }
       },
       "resources": [
@@ -4976,6 +7366,39 @@
         },
         "zh": {
           "word": "脚"
+        },
+        "ang": {
+          "word": "fōt"
+        },
+        "cs": {
+          "word": "noha"
+        },
+        "fa": {
+          "word": "پا"
+        },
+        "grc": {
+          "word": "πούς"
+        },
+        "he": {
+          "word": "רֶגֶל"
+        },
+        "id": {
+          "word": "kaki"
+        },
+        "la": {
+          "word": "pēs"
+        },
+        "sa": {
+          "word": "पद्"
+        },
+        "th": {
+          "word": "เท้า"
+        },
+        "tr": {
+          "word": "ayak"
+        },
+        "vi": {
+          "word": "bàn chân"
         }
       },
       "resources": [
@@ -5047,6 +7470,42 @@
         },
         "zh": {
           "word": "头发"
+        },
+        "ang": {
+          "word": "feax"
+        },
+        "cs": {
+          "word": "vlasy"
+        },
+        "fa": {
+          "word": "مو"
+        },
+        "grc": {
+          "word": "κόμη"
+        },
+        "he": {
+          "word": "שֵׂעָר"
+        },
+        "id": {
+          "word": "rambut"
+        },
+        "la": {
+          "word": "capilli"
+        },
+        "sa": {
+          "word": "केश"
+        },
+        "ta": {
+          "word": "முடி"
+        },
+        "th": {
+          "word": "ผม"
+        },
+        "tr": {
+          "word": "saç"
+        },
+        "vi": {
+          "word": "tóc"
         }
       },
       "resources": [
@@ -5121,6 +7580,42 @@
         },
         "zh": {
           "word": "手"
+        },
+        "ang": {
+          "word": "hand"
+        },
+        "cs": {
+          "word": "ruka"
+        },
+        "fa": {
+          "word": "دَسْت"
+        },
+        "grc": {
+          "word": "χείρ"
+        },
+        "he": {
+          "word": "יָד"
+        },
+        "id": {
+          "word": "tangan"
+        },
+        "la": {
+          "word": "manus"
+        },
+        "sa": {
+          "word": "हस्त"
+        },
+        "ta": {
+          "word": "கை"
+        },
+        "th": {
+          "word": "มือ"
+        },
+        "tr": {
+          "word": "el"
+        },
+        "vi": {
+          "word": "tay"
         }
       },
       "resources": [
@@ -5197,6 +7692,42 @@
         },
         "zh": {
           "word": "头"
+        },
+        "ang": {
+          "word": "hēafod"
+        },
+        "cs": {
+          "word": "hlava"
+        },
+        "fa": {
+          "word": "سَر"
+        },
+        "grc": {
+          "word": "κεφαλή"
+        },
+        "he": {
+          "word": "רֹאשׁ"
+        },
+        "id": {
+          "word": "kepala"
+        },
+        "la": {
+          "word": "caput"
+        },
+        "sa": {
+          "word": "शिरस्"
+        },
+        "ta": {
+          "word": "தலை"
+        },
+        "th": {
+          "word": "หัว"
+        },
+        "tr": {
+          "word": "baş"
+        },
+        "vi": {
+          "word": "đầu"
         }
       },
       "resources": [
@@ -5273,6 +7804,42 @@
         },
         "zh": {
           "word": "心脏"
+        },
+        "ang": {
+          "word": "heorte"
+        },
+        "cs": {
+          "word": "srdce"
+        },
+        "fa": {
+          "word": "دِل"
+        },
+        "grc": {
+          "word": "καρδία"
+        },
+        "he": {
+          "word": "לֵב"
+        },
+        "id": {
+          "word": "jantung"
+        },
+        "la": {
+          "word": "cor"
+        },
+        "sa": {
+          "word": "हृदय"
+        },
+        "ta": {
+          "word": "இதயம்"
+        },
+        "th": {
+          "word": "หัวใจ"
+        },
+        "tr": {
+          "word": "yürek"
+        },
+        "vi": {
+          "word": "tim"
         }
       },
       "resources": [
@@ -5349,6 +7916,39 @@
         },
         "zh": {
           "word": "膝盖"
+        },
+        "ang": {
+          "word": "cnēow"
+        },
+        "cs": {
+          "word": "koleno"
+        },
+        "grc": {
+          "word": "γόνυ"
+        },
+        "he": {
+          "word": "בֶּרֶךְ"
+        },
+        "id": {
+          "word": "lutut"
+        },
+        "la": {
+          "word": "genu"
+        },
+        "sa": {
+          "word": "जानु"
+        },
+        "ta": {
+          "word": "முழங்கால்"
+        },
+        "th": {
+          "word": "เข่า"
+        },
+        "tr": {
+          "word": "diz"
+        },
+        "vi": {
+          "word": "đầu gối"
         }
       },
       "resources": [
@@ -5419,6 +8019,42 @@
         },
         "zh": {
           "word": "腿"
+        },
+        "ang": {
+          "word": "sċanca"
+        },
+        "cs": {
+          "word": "noha"
+        },
+        "fa": {
+          "word": "پا"
+        },
+        "grc": {
+          "word": "σκέλος"
+        },
+        "he": {
+          "word": "רֶגֶל"
+        },
+        "id": {
+          "word": "tungkai"
+        },
+        "la": {
+          "word": "crūs"
+        },
+        "sa": {
+          "word": "पाद"
+        },
+        "ta": {
+          "word": "கால்"
+        },
+        "th": {
+          "word": "ขา"
+        },
+        "tr": {
+          "word": "bacak"
+        },
+        "vi": {
+          "word": "chân"
         }
       },
       "resources": [
@@ -5496,6 +8132,42 @@
         },
         "zh": {
           "word": "嘴"
+        },
+        "ang": {
+          "word": "mūþ"
+        },
+        "cs": {
+          "word": "ústa"
+        },
+        "fa": {
+          "word": "دَهَان"
+        },
+        "grc": {
+          "word": "στόμα"
+        },
+        "he": {
+          "word": "פֶּה"
+        },
+        "id": {
+          "word": "mulut"
+        },
+        "la": {
+          "word": "ōs"
+        },
+        "sa": {
+          "word": "आस्"
+        },
+        "ta": {
+          "word": "வாய்"
+        },
+        "th": {
+          "word": "ปาก"
+        },
+        "tr": {
+          "word": "ağız"
+        },
+        "vi": {
+          "word": "miệng"
         }
       },
       "resources": [
@@ -5573,6 +8245,42 @@
         },
         "zh": {
           "word": "颈"
+        },
+        "ang": {
+          "word": "swēora"
+        },
+        "cs": {
+          "word": "krk"
+        },
+        "fa": {
+          "word": "گَرْدَن"
+        },
+        "grc": {
+          "word": "δέρη"
+        },
+        "he": {
+          "word": "צַוָּאר"
+        },
+        "id": {
+          "word": "leher"
+        },
+        "la": {
+          "word": "collum"
+        },
+        "sa": {
+          "word": "ग्रीवा"
+        },
+        "ta": {
+          "word": "கழுத்து"
+        },
+        "th": {
+          "word": "คอ"
+        },
+        "tr": {
+          "word": "boyun"
+        },
+        "vi": {
+          "word": "cổ"
         }
       },
       "resources": [
@@ -5643,6 +8351,42 @@
         },
         "zh": {
           "word": "鼻子"
+        },
+        "ang": {
+          "word": "nosu"
+        },
+        "cs": {
+          "word": "nos"
+        },
+        "fa": {
+          "word": "بِینِی"
+        },
+        "grc": {
+          "word": "ῥίς"
+        },
+        "he": {
+          "word": "אַף"
+        },
+        "id": {
+          "word": "hidung"
+        },
+        "la": {
+          "word": "nāsus"
+        },
+        "sa": {
+          "word": "नस्"
+        },
+        "ta": {
+          "word": "மூக்கு"
+        },
+        "th": {
+          "word": "จมูก"
+        },
+        "tr": {
+          "word": "burun"
+        },
+        "vi": {
+          "word": "mũi"
         }
       },
       "resources": [
@@ -5720,6 +8464,42 @@
         },
         "zh": {
           "word": "皮肤"
+        },
+        "ang": {
+          "word": "hȳd"
+        },
+        "cs": {
+          "word": "kůže"
+        },
+        "fa": {
+          "word": "پوسْت"
+        },
+        "grc": {
+          "word": "δέρμα"
+        },
+        "he": {
+          "word": "עוֹר"
+        },
+        "id": {
+          "word": "kulit"
+        },
+        "la": {
+          "word": "cutis"
+        },
+        "sa": {
+          "word": "त्वच"
+        },
+        "ta": {
+          "word": "தோல்"
+        },
+        "th": {
+          "word": "ผิวหนัง"
+        },
+        "tr": {
+          "word": "cilt"
+        },
+        "vi": {
+          "word": "da"
         }
       },
       "resources": [
@@ -5797,6 +8577,42 @@
         },
         "zh": {
           "word": "胃"
+        },
+        "ang": {
+          "word": "maga"
+        },
+        "cs": {
+          "word": "žaludek"
+        },
+        "fa": {
+          "word": "مِعْدِه"
+        },
+        "grc": {
+          "word": "στόμαχος"
+        },
+        "he": {
+          "word": "קֵבָה"
+        },
+        "id": {
+          "word": "lambung"
+        },
+        "la": {
+          "word": "alvus"
+        },
+        "sa": {
+          "word": "उदरम्"
+        },
+        "ta": {
+          "word": "இரைப்பை"
+        },
+        "th": {
+          "word": "ท้อง"
+        },
+        "tr": {
+          "word": "mide"
+        },
+        "vi": {
+          "word": "dạ dày"
         }
       },
       "resources": [
@@ -5867,6 +8683,42 @@
         },
         "zh": {
           "word": "舌头"
+        },
+        "ang": {
+          "word": "tunge"
+        },
+        "cs": {
+          "word": "jazyk"
+        },
+        "fa": {
+          "word": "زَبَان"
+        },
+        "grc": {
+          "word": "γλῶσσα"
+        },
+        "he": {
+          "word": "לָשׁוֹן"
+        },
+        "id": {
+          "word": "lidah"
+        },
+        "la": {
+          "word": "lingua"
+        },
+        "sa": {
+          "word": "जिह्वा"
+        },
+        "ta": {
+          "word": "நாக்கு"
+        },
+        "th": {
+          "word": "ลิ้น"
+        },
+        "tr": {
+          "word": "dil"
+        },
+        "vi": {
+          "word": "lưỡi"
         }
       },
       "resources": [
@@ -5937,6 +8789,42 @@
         },
         "zh": {
           "word": "牙齿"
+        },
+        "ang": {
+          "word": "tōþ"
+        },
+        "cs": {
+          "word": "zub"
+        },
+        "fa": {
+          "word": "دَنْدَان"
+        },
+        "grc": {
+          "word": "ὀδούς"
+        },
+        "he": {
+          "word": "שֵׁן"
+        },
+        "id": {
+          "word": "gigi"
+        },
+        "la": {
+          "word": "dēns"
+        },
+        "sa": {
+          "word": "दन्त"
+        },
+        "ta": {
+          "word": "பல்"
+        },
+        "th": {
+          "word": "ฟัน"
+        },
+        "tr": {
+          "word": "diş"
+        },
+        "vi": {
+          "word": "răng"
         }
       },
       "resources": [
@@ -6014,6 +8902,42 @@
         },
         "zh": {
           "word": "苹果"
+        },
+        "ang": {
+          "word": "æppel"
+        },
+        "cs": {
+          "word": "jablko"
+        },
+        "fa": {
+          "word": "سیب"
+        },
+        "grc": {
+          "word": "μῆλον"
+        },
+        "he": {
+          "word": "תַּפּוּחַ"
+        },
+        "id": {
+          "word": "apel"
+        },
+        "la": {
+          "word": "mālum"
+        },
+        "sa": {
+          "word": "सेवि"
+        },
+        "ta": {
+          "word": "ஆப்பிள்"
+        },
+        "th": {
+          "word": "แอปเปิล"
+        },
+        "tr": {
+          "word": "elma"
+        },
+        "vi": {
+          "word": "táo tây"
         }
       },
       "resources": [
@@ -6084,6 +9008,42 @@
         },
         "zh": {
           "word": "啤酒"
+        },
+        "ang": {
+          "word": "ealu"
+        },
+        "cs": {
+          "word": "pivo"
+        },
+        "fa": {
+          "word": "آبْجَوْ"
+        },
+        "grc": {
+          "word": "ζῦθος"
+        },
+        "he": {
+          "word": "בִּירָה"
+        },
+        "id": {
+          "word": "bir"
+        },
+        "la": {
+          "word": "cervēsa"
+        },
+        "sa": {
+          "word": "यवसुरा"
+        },
+        "ta": {
+          "word": "பியர்"
+        },
+        "th": {
+          "word": "เบียร์"
+        },
+        "tr": {
+          "word": "bira"
+        },
+        "vi": {
+          "word": "bia"
         }
       },
       "resources": [
@@ -6154,6 +9114,42 @@
         },
         "zh": {
           "word": "面包"
+        },
+        "ang": {
+          "word": "hlāf"
+        },
+        "cs": {
+          "word": "chléb"
+        },
+        "fa": {
+          "word": "نَان"
+        },
+        "grc": {
+          "word": "ἄρτος"
+        },
+        "he": {
+          "word": "לֶחֶם"
+        },
+        "id": {
+          "word": "roti"
+        },
+        "la": {
+          "word": "panis"
+        },
+        "sa": {
+          "word": "रोटी"
+        },
+        "ta": {
+          "word": "ரொட்டி"
+        },
+        "th": {
+          "word": "ขนมปัง"
+        },
+        "tr": {
+          "word": "ekmek"
+        },
+        "vi": {
+          "word": "bánh mì"
         }
       },
       "resources": [
@@ -6230,6 +9226,42 @@
         },
         "zh": {
           "word": "黄油"
+        },
+        "ang": {
+          "word": "butere"
+        },
+        "cs": {
+          "word": "máslo"
+        },
+        "fa": {
+          "word": "مَسْکَه"
+        },
+        "grc": {
+          "word": "βούτυρον"
+        },
+        "he": {
+          "word": "חֶמְאָה"
+        },
+        "id": {
+          "word": "mentega"
+        },
+        "la": {
+          "word": "būtȳrum"
+        },
+        "sa": {
+          "word": "नवनीत"
+        },
+        "ta": {
+          "word": "வெண்ணெய்"
+        },
+        "th": {
+          "word": "เนย"
+        },
+        "tr": {
+          "word": "tereyağı"
+        },
+        "vi": {
+          "word": "bơ"
         }
       },
       "resources": [
@@ -6300,6 +9332,39 @@
         },
         "zh": {
           "word": "奶酪"
+        },
+        "ang": {
+          "word": "ċīese"
+        },
+        "cs": {
+          "word": "sýr"
+        },
+        "fa": {
+          "word": "پَنِیر"
+        },
+        "grc": {
+          "word": "τυρός"
+        },
+        "he": {
+          "word": "גְּבִינָה"
+        },
+        "id": {
+          "word": "keju"
+        },
+        "la": {
+          "word": "caseus"
+        },
+        "ta": {
+          "word": "பாலாடைக்கட்டி"
+        },
+        "th": {
+          "word": "เนยแข็ง"
+        },
+        "tr": {
+          "word": "peynir"
+        },
+        "vi": {
+          "word": "pho mát"
         }
       },
       "resources": [
@@ -6370,6 +9435,36 @@
         },
         "zh": {
           "word": "咖啡"
+        },
+        "cs": {
+          "word": "káva"
+        },
+        "fa": {
+          "word": "قَهْوَه"
+        },
+        "he": {
+          "word": "קָפֶה"
+        },
+        "id": {
+          "word": "kopi"
+        },
+        "la": {
+          "word": "cafaea"
+        },
+        "sa": {
+          "word": "पीयूष"
+        },
+        "ta": {
+          "word": "காபி"
+        },
+        "th": {
+          "word": "กาแฟ"
+        },
+        "tr": {
+          "word": "kahve"
+        },
+        "vi": {
+          "word": "cà phê"
         }
       },
       "resources": [
@@ -6440,6 +9535,42 @@
         },
         "zh": {
           "word": "水果"
+        },
+        "ang": {
+          "word": "wæstm"
+        },
+        "cs": {
+          "word": "ovoce"
+        },
+        "fa": {
+          "word": "میوَه"
+        },
+        "grc": {
+          "word": "καρπός"
+        },
+        "he": {
+          "word": "פְּרִי"
+        },
+        "id": {
+          "word": "buah"
+        },
+        "la": {
+          "word": "frūx"
+        },
+        "sa": {
+          "word": "फल"
+        },
+        "ta": {
+          "word": "பழம்"
+        },
+        "th": {
+          "word": "ลูก"
+        },
+        "tr": {
+          "word": "meyve"
+        },
+        "vi": {
+          "word": "quả"
         }
       },
       "resources": [
@@ -6515,6 +9646,42 @@
         },
         "zh": {
           "word": "蜂蜜"
+        },
+        "ang": {
+          "word": "huniġ"
+        },
+        "cs": {
+          "word": "med"
+        },
+        "fa": {
+          "word": "عَسَل"
+        },
+        "grc": {
+          "word": "μέλῐ"
+        },
+        "he": {
+          "word": "דְּבַשׁ"
+        },
+        "id": {
+          "word": "madu"
+        },
+        "la": {
+          "word": "mel"
+        },
+        "sa": {
+          "word": "मधु"
+        },
+        "ta": {
+          "word": "தேன்"
+        },
+        "th": {
+          "word": "น้ำผึ้ง"
+        },
+        "tr": {
+          "word": "bal"
+        },
+        "vi": {
+          "word": "mật ong"
         }
       },
       "resources": [
@@ -6585,6 +9752,42 @@
         },
         "zh": {
           "word": "肉"
+        },
+        "ang": {
+          "word": "flǣsċ"
+        },
+        "cs": {
+          "word": "maso"
+        },
+        "fa": {
+          "word": "گوشْت"
+        },
+        "grc": {
+          "word": "κρέας"
+        },
+        "he": {
+          "word": "בָּשָׂר"
+        },
+        "id": {
+          "word": "daging"
+        },
+        "la": {
+          "word": "carō"
+        },
+        "sa": {
+          "word": "मांस"
+        },
+        "ta": {
+          "word": "இறைச்சி"
+        },
+        "th": {
+          "word": "เนื้อ"
+        },
+        "tr": {
+          "word": "et"
+        },
+        "vi": {
+          "word": "thịt"
         }
       },
       "resources": [
@@ -6662,6 +9865,39 @@
         },
         "zh": {
           "word": "牛奶"
+        },
+        "ang": {
+          "word": "meolc"
+        },
+        "cs": {
+          "word": "mléko"
+        },
+        "grc": {
+          "word": "γάλα"
+        },
+        "he": {
+          "word": "חָלָב"
+        },
+        "id": {
+          "word": "susu"
+        },
+        "la": {
+          "word": "lac"
+        },
+        "sa": {
+          "word": "दुग्ध"
+        },
+        "ta": {
+          "word": "பால்"
+        },
+        "th": {
+          "word": "น้ำนม"
+        },
+        "tr": {
+          "word": "süt"
+        },
+        "vi": {
+          "word": "sữa"
         }
       },
       "resources": [
@@ -6738,6 +9974,33 @@
         },
         "zh": {
           "word": "土豆"
+        },
+        "cs": {
+          "word": "brambor"
+        },
+        "he": {
+          "word": "תַּפּוּחַ אֲדָמָה"
+        },
+        "id": {
+          "word": "kentang"
+        },
+        "la": {
+          "word": "patāta"
+        },
+        "sa": {
+          "word": "आलुकम्"
+        },
+        "ta": {
+          "word": "உருளைக்கிழங்கு"
+        },
+        "th": {
+          "word": "มันฝรั่ง"
+        },
+        "tr": {
+          "word": "patates"
+        },
+        "vi": {
+          "word": "khoai tây"
         }
       },
       "resources": [
@@ -6808,6 +10071,39 @@
         },
         "zh": {
           "word": "米"
+        },
+        "cs": {
+          "word": "rýže"
+        },
+        "fa": {
+          "word": "بِرِنْج"
+        },
+        "grc": {
+          "word": "ὄρυζα"
+        },
+        "he": {
+          "word": "אֹרֶז"
+        },
+        "id": {
+          "word": "beras"
+        },
+        "la": {
+          "word": "oryza"
+        },
+        "sa": {
+          "word": "व्रीहि"
+        },
+        "ta": {
+          "word": "அரிசி"
+        },
+        "th": {
+          "word": "ข้าว"
+        },
+        "tr": {
+          "word": "pilav"
+        },
+        "vi": {
+          "word": "gạo"
         }
       },
       "resources": [
@@ -6878,6 +10174,42 @@
         },
         "zh": {
           "word": "盐"
+        },
+        "ang": {
+          "word": "sealt"
+        },
+        "cs": {
+          "word": "sůl"
+        },
+        "fa": {
+          "word": "نَمَک"
+        },
+        "grc": {
+          "word": "ἅλς"
+        },
+        "he": {
+          "word": "מֶלַח"
+        },
+        "id": {
+          "word": "garam"
+        },
+        "la": {
+          "word": "sāl"
+        },
+        "sa": {
+          "word": "लवण"
+        },
+        "ta": {
+          "word": "உப்பு"
+        },
+        "th": {
+          "word": "เกลือ"
+        },
+        "tr": {
+          "word": "tuz"
+        },
+        "vi": {
+          "word": "muối"
         }
       },
       "resources": [
@@ -6955,6 +10287,36 @@
         },
         "zh": {
           "word": "汤"
+        },
+        "cs": {
+          "word": "polévka"
+        },
+        "grc": {
+          "word": "ζωμός"
+        },
+        "he": {
+          "word": "מָרָק"
+        },
+        "id": {
+          "word": "sup"
+        },
+        "la": {
+          "word": "iūs"
+        },
+        "sa": {
+          "word": "सूप"
+        },
+        "ta": {
+          "word": "சூப்"
+        },
+        "th": {
+          "word": "ซุป"
+        },
+        "tr": {
+          "word": "çorba"
+        },
+        "vi": {
+          "word": "canh"
         }
       },
       "resources": [
@@ -7025,6 +10387,39 @@
         },
         "zh": {
           "word": "糖"
+        },
+        "cs": {
+          "word": "cukr"
+        },
+        "fa": {
+          "word": "شکر"
+        },
+        "grc": {
+          "word": "σάκχαρ"
+        },
+        "he": {
+          "word": "סֻכָּר"
+        },
+        "id": {
+          "word": "gula"
+        },
+        "la": {
+          "word": "saccharum"
+        },
+        "sa": {
+          "word": "शर्करा"
+        },
+        "ta": {
+          "word": "சக்கரை"
+        },
+        "th": {
+          "word": "น้ำตาล"
+        },
+        "tr": {
+          "word": "şeker"
+        },
+        "vi": {
+          "word": "đường"
         }
       },
       "resources": [
@@ -7095,6 +10490,33 @@
         },
         "zh": {
           "word": "茶"
+        },
+        "cs": {
+          "word": "čaj"
+        },
+        "he": {
+          "word": "תֵּה"
+        },
+        "id": {
+          "word": "teh"
+        },
+        "la": {
+          "word": "thea"
+        },
+        "sa": {
+          "word": "चाय"
+        },
+        "ta": {
+          "word": "தேநீர்"
+        },
+        "th": {
+          "word": "ชา"
+        },
+        "tr": {
+          "word": "çay"
+        },
+        "vi": {
+          "word": "trà"
         }
       },
       "resources": [
@@ -7165,6 +10587,42 @@
         },
         "zh": {
           "word": "葡萄酒"
+        },
+        "ang": {
+          "word": "wīn"
+        },
+        "cs": {
+          "word": "víno"
+        },
+        "fa": {
+          "word": "شَراب"
+        },
+        "grc": {
+          "word": "οἶνος"
+        },
+        "he": {
+          "word": "יַיִן"
+        },
+        "id": {
+          "word": "anggur"
+        },
+        "la": {
+          "word": "vīnum"
+        },
+        "sa": {
+          "word": "सुरा"
+        },
+        "ta": {
+          "word": "வைன்"
+        },
+        "th": {
+          "word": "เหล้าองุ่น"
+        },
+        "tr": {
+          "word": "şarap"
+        },
+        "vi": {
+          "word": "rượu vàng"
         }
       },
       "resources": [
@@ -7241,6 +10699,39 @@
         },
         "zh": {
           "word": "海滩"
+        },
+        "ang": {
+          "word": "strand"
+        },
+        "cs": {
+          "word": "pláž"
+        },
+        "grc": {
+          "word": "αἰγιαλός"
+        },
+        "he": {
+          "word": "חוֹף"
+        },
+        "id": {
+          "word": "pantai"
+        },
+        "la": {
+          "word": "lītus"
+        },
+        "sa": {
+          "word": "तीर"
+        },
+        "ta": {
+          "word": "கடற்கரை"
+        },
+        "th": {
+          "word": "หาด"
+        },
+        "tr": {
+          "word": "kumsal"
+        },
+        "vi": {
+          "word": "bãi biển"
         }
       },
       "resources": [
@@ -7311,6 +10802,42 @@
         },
         "zh": {
           "word": "云"
+        },
+        "ang": {
+          "word": "wolcn"
+        },
+        "cs": {
+          "word": "mrak"
+        },
+        "fa": {
+          "word": "اَبْر"
+        },
+        "grc": {
+          "word": "νέφος"
+        },
+        "he": {
+          "word": "עָנָן"
+        },
+        "id": {
+          "word": "awan"
+        },
+        "la": {
+          "word": "nūbēs"
+        },
+        "sa": {
+          "word": "मेघ"
+        },
+        "ta": {
+          "word": "மேகம்"
+        },
+        "th": {
+          "word": "เมฆ"
+        },
+        "tr": {
+          "word": "bulut"
+        },
+        "vi": {
+          "word": "mây"
         }
       },
       "resources": [
@@ -7388,6 +10915,42 @@
         },
         "zh": {
           "word": "土"
+        },
+        "ang": {
+          "word": "eorþe"
+        },
+        "cs": {
+          "word": "země"
+        },
+        "fa": {
+          "word": "خَاک"
+        },
+        "grc": {
+          "word": "γαῖα"
+        },
+        "he": {
+          "word": "אֲדָמָה"
+        },
+        "id": {
+          "word": "tanah"
+        },
+        "la": {
+          "word": "terra"
+        },
+        "sa": {
+          "word": "धरित्री"
+        },
+        "ta": {
+          "word": "மண்"
+        },
+        "th": {
+          "word": "ดิน"
+        },
+        "tr": {
+          "word": "toprak"
+        },
+        "vi": {
+          "word": "đất"
         }
       },
       "resources": [
@@ -7464,6 +11027,42 @@
         },
         "zh": {
           "word": "火"
+        },
+        "ang": {
+          "word": "ǣled"
+        },
+        "cs": {
+          "word": "oheň"
+        },
+        "fa": {
+          "word": "آتَش"
+        },
+        "grc": {
+          "word": "πυρά"
+        },
+        "he": {
+          "word": "מְדוּרָה"
+        },
+        "id": {
+          "word": "api"
+        },
+        "la": {
+          "word": "focus"
+        },
+        "sa": {
+          "word": "अग्नि"
+        },
+        "ta": {
+          "word": "நெருப்பு"
+        },
+        "th": {
+          "word": "ไฟ"
+        },
+        "tr": {
+          "word": "ateş"
+        },
+        "vi": {
+          "word": "lửa"
         }
       },
       "resources": [
@@ -7540,6 +11139,42 @@
         },
         "zh": {
           "word": "花"
+        },
+        "ang": {
+          "word": "blostma"
+        },
+        "cs": {
+          "word": "květina"
+        },
+        "fa": {
+          "word": "گُل"
+        },
+        "grc": {
+          "word": "ἄνθος"
+        },
+        "he": {
+          "word": "פֶּרַח"
+        },
+        "id": {
+          "word": "bunga"
+        },
+        "la": {
+          "word": "flōs"
+        },
+        "sa": {
+          "word": "पुष्प"
+        },
+        "ta": {
+          "word": "மலர்"
+        },
+        "th": {
+          "word": "ดอก"
+        },
+        "tr": {
+          "word": "çiçek"
+        },
+        "vi": {
+          "word": "hoa"
         }
       },
       "resources": [
@@ -7616,6 +11251,42 @@
         },
         "zh": {
           "word": "森林"
+        },
+        "ang": {
+          "word": "wudu"
+        },
+        "cs": {
+          "word": "les"
+        },
+        "fa": {
+          "word": "بیشَه"
+        },
+        "grc": {
+          "word": "δάσος"
+        },
+        "he": {
+          "word": "יַעַר"
+        },
+        "id": {
+          "word": "hutan"
+        },
+        "la": {
+          "word": "silva"
+        },
+        "sa": {
+          "word": "वन"
+        },
+        "ta": {
+          "word": "காடு"
+        },
+        "th": {
+          "word": "ป่า"
+        },
+        "tr": {
+          "word": "orman"
+        },
+        "vi": {
+          "word": "rừng"
         }
       },
       "resources": [
@@ -7686,6 +11357,39 @@
         },
         "zh": {
           "word": "草"
+        },
+        "cs": {
+          "word": "tráva"
+        },
+        "fa": {
+          "word": "سَبْزَه"
+        },
+        "grc": {
+          "word": "χόρτος"
+        },
+        "he": {
+          "word": "דֶּשֶׁא"
+        },
+        "id": {
+          "word": "rumput"
+        },
+        "la": {
+          "word": "herba"
+        },
+        "sa": {
+          "word": "तृण"
+        },
+        "ta": {
+          "word": "புல்"
+        },
+        "th": {
+          "word": "หญ้า"
+        },
+        "tr": {
+          "word": "ot"
+        },
+        "vi": {
+          "word": "cỏ"
         }
       },
       "resources": [
@@ -7762,6 +11466,36 @@
         },
         "zh": {
           "word": "冰"
+        },
+        "ang": {
+          "word": "īs"
+        },
+        "cs": {
+          "word": "led"
+        },
+        "grc": {
+          "word": "κρύσταλλος"
+        },
+        "he": {
+          "word": "קֶרַח"
+        },
+        "id": {
+          "word": "es"
+        },
+        "la": {
+          "word": "glaciēs"
+        },
+        "ta": {
+          "word": "பனி"
+        },
+        "th": {
+          "word": "น้ำแข็ง"
+        },
+        "tr": {
+          "word": "buz"
+        },
+        "vi": {
+          "word": "băng"
         }
       },
       "resources": [
@@ -7839,6 +11573,39 @@
         },
         "zh": {
           "word": "铁"
+        },
+        "ang": {
+          "word": "īsern"
+        },
+        "cs": {
+          "word": "železo"
+        },
+        "grc": {
+          "word": "σίδηρος"
+        },
+        "he": {
+          "word": "בַּרְזֶל"
+        },
+        "id": {
+          "word": "besi"
+        },
+        "la": {
+          "word": "ferrum"
+        },
+        "sa": {
+          "word": "लोह"
+        },
+        "ta": {
+          "word": "இரும்பு"
+        },
+        "th": {
+          "word": "เหล็ก"
+        },
+        "tr": {
+          "word": "demir"
+        },
+        "vi": {
+          "word": "sắt"
         }
       },
       "resources": [
@@ -7909,6 +11676,42 @@
         },
         "zh": {
           "word": "岛"
+        },
+        "ang": {
+          "word": "īeġland"
+        },
+        "cs": {
+          "word": "ostrov"
+        },
+        "fa": {
+          "word": "جَزِیرَه"
+        },
+        "grc": {
+          "word": "νῆσος"
+        },
+        "he": {
+          "word": "אִי"
+        },
+        "id": {
+          "word": "pulau"
+        },
+        "la": {
+          "word": "īnsula"
+        },
+        "sa": {
+          "word": "जलवेष्टितभूमि"
+        },
+        "ta": {
+          "word": "தீவு"
+        },
+        "th": {
+          "word": "เกาะ"
+        },
+        "tr": {
+          "word": "ada"
+        },
+        "vi": {
+          "word": "đảo"
         }
       },
       "resources": [
@@ -7979,6 +11782,42 @@
         },
         "zh": {
           "word": "湖"
+        },
+        "ang": {
+          "word": "mere"
+        },
+        "cs": {
+          "word": "jezero"
+        },
+        "fa": {
+          "word": "دَرْیاچِه"
+        },
+        "grc": {
+          "word": "λίμνη"
+        },
+        "he": {
+          "word": "אֲגַם"
+        },
+        "id": {
+          "word": "danau"
+        },
+        "la": {
+          "word": "lacus"
+        },
+        "sa": {
+          "word": "सरोवर"
+        },
+        "ta": {
+          "word": "ஏரி"
+        },
+        "th": {
+          "word": "สาบ"
+        },
+        "tr": {
+          "word": "göl"
+        },
+        "vi": {
+          "word": "hồ"
         }
       },
       "resources": [
@@ -8049,6 +11888,42 @@
         },
         "zh": {
           "word": "叶"
+        },
+        "ang": {
+          "word": "lēaf"
+        },
+        "cs": {
+          "word": "list"
+        },
+        "fa": {
+          "word": "بَرْگ"
+        },
+        "grc": {
+          "word": "φύλλον"
+        },
+        "he": {
+          "word": "עָלֶה"
+        },
+        "id": {
+          "word": "daun"
+        },
+        "la": {
+          "word": "folium"
+        },
+        "sa": {
+          "word": "पर्ण"
+        },
+        "ta": {
+          "word": "இலை"
+        },
+        "th": {
+          "word": "ใบ"
+        },
+        "tr": {
+          "word": "yaprak"
+        },
+        "vi": {
+          "word": "lá"
         }
       },
       "resources": [
@@ -8126,6 +12001,42 @@
         },
         "zh": {
           "word": "月亮"
+        },
+        "ang": {
+          "word": "mōna"
+        },
+        "cs": {
+          "word": "měsíc"
+        },
+        "fa": {
+          "word": "مَاه"
+        },
+        "grc": {
+          "word": "σελήνη"
+        },
+        "he": {
+          "word": "יָרֵחַ"
+        },
+        "id": {
+          "word": "bulan"
+        },
+        "la": {
+          "word": "lūna"
+        },
+        "sa": {
+          "word": "चन्द्र"
+        },
+        "ta": {
+          "word": "நிலா"
+        },
+        "th": {
+          "word": "ดวงจันทร์"
+        },
+        "tr": {
+          "word": "ay"
+        },
+        "vi": {
+          "word": "mặt trăng"
         }
       },
       "resources": [
@@ -8202,6 +12113,39 @@
         },
         "zh": {
           "word": "山"
+        },
+        "ang": {
+          "word": "beorg"
+        },
+        "cs": {
+          "word": "hora"
+        },
+        "grc": {
+          "word": "ὄρος"
+        },
+        "he": {
+          "word": "הַר"
+        },
+        "id": {
+          "word": "gunung"
+        },
+        "la": {
+          "word": "mōns"
+        },
+        "sa": {
+          "word": "गिरि"
+        },
+        "ta": {
+          "word": "மலை"
+        },
+        "th": {
+          "word": "ภู"
+        },
+        "tr": {
+          "word": "dağ"
+        },
+        "vi": {
+          "word": "núi"
         }
       },
       "resources": [
@@ -8279,6 +12223,42 @@
         },
         "zh": {
           "word": "雨"
+        },
+        "ang": {
+          "word": "reġn"
+        },
+        "cs": {
+          "word": "déšť"
+        },
+        "fa": {
+          "word": "بَارَان"
+        },
+        "grc": {
+          "word": "ὑετός"
+        },
+        "he": {
+          "word": "גֶּשֶׁם"
+        },
+        "id": {
+          "word": "hujan"
+        },
+        "la": {
+          "word": "pluvia"
+        },
+        "sa": {
+          "word": "वृष्टि"
+        },
+        "ta": {
+          "word": "மழை"
+        },
+        "th": {
+          "word": "ฝน"
+        },
+        "tr": {
+          "word": "yağmur"
+        },
+        "vi": {
+          "word": "mưa"
         }
       },
       "resources": [
@@ -8356,6 +12336,42 @@
         },
         "zh": {
           "word": "河"
+        },
+        "ang": {
+          "word": "ēa"
+        },
+        "cs": {
+          "word": "řeka"
+        },
+        "fa": {
+          "word": "رود"
+        },
+        "grc": {
+          "word": "ποταμός"
+        },
+        "he": {
+          "word": "נָהָר"
+        },
+        "id": {
+          "word": "sungai"
+        },
+        "la": {
+          "word": "flūmen"
+        },
+        "sa": {
+          "word": "नदी"
+        },
+        "ta": {
+          "word": "ஆறு"
+        },
+        "th": {
+          "word": "แม่น้ำ"
+        },
+        "tr": {
+          "word": "ırmak"
+        },
+        "vi": {
+          "word": "sông"
         }
       },
       "resources": [
@@ -8433,6 +12449,39 @@
         },
         "zh": {
           "word": "沙子"
+        },
+        "ang": {
+          "word": "sand"
+        },
+        "cs": {
+          "word": "písek"
+        },
+        "grc": {
+          "word": "ψάμμος"
+        },
+        "he": {
+          "word": "חוֹל"
+        },
+        "id": {
+          "word": "pasir"
+        },
+        "la": {
+          "word": "arēna"
+        },
+        "sa": {
+          "word": "सिकता"
+        },
+        "ta": {
+          "word": "மணல்"
+        },
+        "th": {
+          "word": "ทราย"
+        },
+        "tr": {
+          "word": "kum"
+        },
+        "vi": {
+          "word": "cát"
         }
       },
       "resources": [
@@ -8503,6 +12552,42 @@
         },
         "zh": {
           "word": "海"
+        },
+        "ang": {
+          "word": "sǣ"
+        },
+        "cs": {
+          "word": "moře"
+        },
+        "fa": {
+          "word": "دَرْیا"
+        },
+        "grc": {
+          "word": "θάλασσα"
+        },
+        "he": {
+          "word": "יָם"
+        },
+        "id": {
+          "word": "laut"
+        },
+        "la": {
+          "word": "mare"
+        },
+        "sa": {
+          "word": "समुद्र"
+        },
+        "ta": {
+          "word": "கடல்"
+        },
+        "th": {
+          "word": "ทะเล"
+        },
+        "tr": {
+          "word": "deniz"
+        },
+        "vi": {
+          "word": "biển"
         }
       },
       "resources": [
@@ -8580,6 +12665,42 @@
         },
         "zh": {
           "word": "银"
+        },
+        "ang": {
+          "word": "seolfor"
+        },
+        "cs": {
+          "word": "stříbro"
+        },
+        "fa": {
+          "word": "نقره"
+        },
+        "grc": {
+          "word": "ἄργυρος"
+        },
+        "he": {
+          "word": "כֶּסֶף"
+        },
+        "id": {
+          "word": "perak"
+        },
+        "la": {
+          "word": "argentum"
+        },
+        "sa": {
+          "word": "अर्जुन"
+        },
+        "ta": {
+          "word": "வெள்ளி"
+        },
+        "th": {
+          "word": "เงิน"
+        },
+        "tr": {
+          "word": "gümüş"
+        },
+        "vi": {
+          "word": "bạc"
         }
       },
       "resources": [
@@ -8650,6 +12771,42 @@
         },
         "zh": {
           "word": "天"
+        },
+        "ang": {
+          "word": "heofon"
+        },
+        "cs": {
+          "word": "nebe"
+        },
+        "fa": {
+          "word": "آسْمان"
+        },
+        "grc": {
+          "word": "οὐρανός"
+        },
+        "he": {
+          "word": "שמיים"
+        },
+        "id": {
+          "word": "langit"
+        },
+        "la": {
+          "word": "caelum"
+        },
+        "sa": {
+          "word": "दिव"
+        },
+        "ta": {
+          "word": "ஆகாயம்"
+        },
+        "th": {
+          "word": "ฟ้า"
+        },
+        "tr": {
+          "word": "gökyüzü"
+        },
+        "vi": {
+          "word": "trời"
         }
       },
       "resources": [
@@ -8726,6 +12883,42 @@
         },
         "zh": {
           "word": "雪"
+        },
+        "ang": {
+          "word": "snāw"
+        },
+        "cs": {
+          "word": "sníh"
+        },
+        "fa": {
+          "word": "بَرْف"
+        },
+        "grc": {
+          "word": "χιών"
+        },
+        "he": {
+          "word": "שֶׁלֶג"
+        },
+        "id": {
+          "word": "salju"
+        },
+        "la": {
+          "word": "nix"
+        },
+        "sa": {
+          "word": "हिम"
+        },
+        "ta": {
+          "word": "பனி"
+        },
+        "th": {
+          "word": "หิมะ"
+        },
+        "tr": {
+          "word": "kar"
+        },
+        "vi": {
+          "word": "tuyết"
         }
       },
       "resources": [
@@ -8803,6 +12996,42 @@
         },
         "zh": {
           "word": "星星"
+        },
+        "ang": {
+          "word": "steorra"
+        },
+        "cs": {
+          "word": "hvězda"
+        },
+        "fa": {
+          "word": "سِتَارَه"
+        },
+        "grc": {
+          "word": "ἀστήρ"
+        },
+        "he": {
+          "word": "כּוֹכָב"
+        },
+        "id": {
+          "word": "bintang"
+        },
+        "la": {
+          "word": "stēlla"
+        },
+        "sa": {
+          "word": "तारा"
+        },
+        "ta": {
+          "word": "நட்சத்திரம்"
+        },
+        "th": {
+          "word": "ดาว"
+        },
+        "tr": {
+          "word": "yıldız"
+        },
+        "vi": {
+          "word": "sao"
         }
       },
       "resources": [
@@ -8874,6 +13103,42 @@
         },
         "zh": {
           "word": "石头"
+        },
+        "ang": {
+          "word": "stān"
+        },
+        "cs": {
+          "word": "kámen"
+        },
+        "fa": {
+          "word": "سنگ"
+        },
+        "grc": {
+          "word": "λίθος"
+        },
+        "he": {
+          "word": "אֶבֶן"
+        },
+        "id": {
+          "word": "batu"
+        },
+        "la": {
+          "word": "lapis"
+        },
+        "sa": {
+          "word": "शिला"
+        },
+        "ta": {
+          "word": "கல்"
+        },
+        "th": {
+          "word": "หิน"
+        },
+        "tr": {
+          "word": "taş"
+        },
+        "vi": {
+          "word": "đá"
         }
       },
       "resources": [
@@ -8951,6 +13216,42 @@
         },
         "zh": {
           "word": "太阳"
+        },
+        "ang": {
+          "word": "sunne"
+        },
+        "cs": {
+          "word": "slunce"
+        },
+        "fa": {
+          "word": "خْوَرْشِید"
+        },
+        "grc": {
+          "word": "ἥλιος"
+        },
+        "he": {
+          "word": "שֶׁמֶשׁ"
+        },
+        "id": {
+          "word": "matahari"
+        },
+        "la": {
+          "word": "sōl"
+        },
+        "sa": {
+          "word": "सूर्य"
+        },
+        "ta": {
+          "word": "சூரியன்"
+        },
+        "th": {
+          "word": "ดวงอาทิตย์"
+        },
+        "tr": {
+          "word": "güneş"
+        },
+        "vi": {
+          "word": "mặt trời"
         }
       },
       "resources": [
@@ -9027,6 +13328,42 @@
         },
         "zh": {
           "word": "树"
+        },
+        "ang": {
+          "word": "trēow"
+        },
+        "cs": {
+          "word": "strom"
+        },
+        "fa": {
+          "word": "دِرَخْت"
+        },
+        "grc": {
+          "word": "δένδρον"
+        },
+        "he": {
+          "word": "עֵץ"
+        },
+        "id": {
+          "word": "pohon"
+        },
+        "la": {
+          "word": "arbor"
+        },
+        "sa": {
+          "word": "तरु"
+        },
+        "ta": {
+          "word": "மரம்"
+        },
+        "th": {
+          "word": "ต้นไม้"
+        },
+        "tr": {
+          "word": "ağaç"
+        },
+        "vi": {
+          "word": "cây"
         }
       },
       "resources": [
@@ -9102,6 +13439,42 @@
         },
         "zh": {
           "word": "水"
+        },
+        "ang": {
+          "word": "wæter"
+        },
+        "cs": {
+          "word": "voda"
+        },
+        "fa": {
+          "word": "آب"
+        },
+        "grc": {
+          "word": "ὕδωρ"
+        },
+        "he": {
+          "word": "מַיִם"
+        },
+        "id": {
+          "word": "air"
+        },
+        "la": {
+          "word": "aqua"
+        },
+        "sa": {
+          "word": "अप्"
+        },
+        "ta": {
+          "word": "தண்ணீர்"
+        },
+        "th": {
+          "word": "น้ำ"
+        },
+        "tr": {
+          "word": "su"
+        },
+        "vi": {
+          "word": "nước"
         }
       },
       "resources": [
@@ -9177,6 +13550,42 @@
         },
         "zh": {
           "word": "风"
+        },
+        "ang": {
+          "word": "wind"
+        },
+        "cs": {
+          "word": "vítr"
+        },
+        "fa": {
+          "word": "بَاد"
+        },
+        "grc": {
+          "word": "ἄνεμος"
+        },
+        "he": {
+          "word": "רוּחַ"
+        },
+        "id": {
+          "word": "angin"
+        },
+        "la": {
+          "word": "ventus"
+        },
+        "sa": {
+          "word": "वात"
+        },
+        "ta": {
+          "word": "காற்று"
+        },
+        "th": {
+          "word": "ลม"
+        },
+        "tr": {
+          "word": "rüzgâr"
+        },
+        "vi": {
+          "word": "gió"
         }
       },
       "resources": [
@@ -9254,6 +13663,39 @@
         },
         "zh": {
           "word": "木头"
+        },
+        "ang": {
+          "word": "holt"
+        },
+        "cs": {
+          "word": "dřevo"
+        },
+        "fa": {
+          "word": "چوب"
+        },
+        "grc": {
+          "word": "ξύλον"
+        },
+        "he": {
+          "word": "עֵץ"
+        },
+        "id": {
+          "word": "kayu"
+        },
+        "la": {
+          "word": "lignum"
+        },
+        "sa": {
+          "word": "काष्ठ"
+        },
+        "th": {
+          "word": "ไม้"
+        },
+        "tr": {
+          "word": "odun"
+        },
+        "vi": {
+          "word": "gỗ"
         }
       },
       "resources": [
@@ -9324,6 +13766,39 @@
         },
         "zh": {
           "word": "包"
+        },
+        "ang": {
+          "word": "codd"
+        },
+        "cs": {
+          "word": "taška"
+        },
+        "fa": {
+          "word": "کِیسَه"
+        },
+        "grc": {
+          "word": "θύλακος"
+        },
+        "he": {
+          "word": "תִּיק"
+        },
+        "id": {
+          "word": "tas"
+        },
+        "la": {
+          "word": "follis"
+        },
+        "ta": {
+          "word": "பை"
+        },
+        "th": {
+          "word": "ถุง"
+        },
+        "tr": {
+          "word": "çanta"
+        },
+        "vi": {
+          "word": "bao"
         }
       },
       "resources": [
@@ -9394,6 +13869,42 @@
         },
         "zh": {
           "word": "球"
+        },
+        "ang": {
+          "word": "þōþor"
+        },
+        "cs": {
+          "word": "míč"
+        },
+        "fa": {
+          "word": "توپ"
+        },
+        "grc": {
+          "word": "σφαῖρα"
+        },
+        "he": {
+          "word": "כַּדּוּר"
+        },
+        "id": {
+          "word": "bola"
+        },
+        "la": {
+          "word": "pila"
+        },
+        "sa": {
+          "word": "कन्दुक"
+        },
+        "ta": {
+          "word": "பந்து"
+        },
+        "th": {
+          "word": "บอล"
+        },
+        "tr": {
+          "word": "top"
+        },
+        "vi": {
+          "word": "bóng"
         }
       },
       "resources": [
@@ -9464,6 +13975,42 @@
         },
         "zh": {
           "word": "床"
+        },
+        "ang": {
+          "word": "bedd"
+        },
+        "cs": {
+          "word": "postel"
+        },
+        "fa": {
+          "word": "بِسْتَر"
+        },
+        "grc": {
+          "word": "κλίνη"
+        },
+        "he": {
+          "word": "מִטָּה"
+        },
+        "id": {
+          "word": "ranjang"
+        },
+        "la": {
+          "word": "cubīle"
+        },
+        "sa": {
+          "word": "शय्या"
+        },
+        "ta": {
+          "word": "படுக்கை"
+        },
+        "th": {
+          "word": "เตียง"
+        },
+        "tr": {
+          "word": "yatak"
+        },
+        "vi": {
+          "word": "giường"
         }
       },
       "resources": [
@@ -9534,6 +14081,42 @@
         },
         "zh": {
           "word": "船"
+        },
+        "ang": {
+          "word": "bāt"
+        },
+        "cs": {
+          "word": "člun"
+        },
+        "fa": {
+          "word": "قَایِق"
+        },
+        "grc": {
+          "word": "ναῦς"
+        },
+        "he": {
+          "word": "סִירָה"
+        },
+        "id": {
+          "word": "perahu"
+        },
+        "la": {
+          "word": "navis"
+        },
+        "sa": {
+          "word": "नौ"
+        },
+        "ta": {
+          "word": "நவாடா"
+        },
+        "th": {
+          "word": "เรือ"
+        },
+        "tr": {
+          "word": "kayık"
+        },
+        "vi": {
+          "word": "thuyền"
         }
       },
       "resources": [
@@ -9604,6 +14187,42 @@
         },
         "zh": {
           "word": "书"
+        },
+        "ang": {
+          "word": "bōc"
+        },
+        "cs": {
+          "word": "kniha"
+        },
+        "fa": {
+          "word": "کتاب"
+        },
+        "grc": {
+          "word": "βιβλίον"
+        },
+        "he": {
+          "word": "סֵפֶר"
+        },
+        "id": {
+          "word": "buku"
+        },
+        "la": {
+          "word": "liber"
+        },
+        "sa": {
+          "word": "पुस्तक"
+        },
+        "ta": {
+          "word": "நூல்"
+        },
+        "th": {
+          "word": "หนังสือ"
+        },
+        "tr": {
+          "word": "kitap"
+        },
+        "vi": {
+          "word": "sách"
         }
       },
       "resources": [
@@ -9680,6 +14299,42 @@
         },
         "zh": {
           "word": "桥"
+        },
+        "ang": {
+          "word": "bryċġ"
+        },
+        "cs": {
+          "word": "most"
+        },
+        "fa": {
+          "word": "پُل"
+        },
+        "grc": {
+          "word": "γέφυρα"
+        },
+        "he": {
+          "word": "גֶשֶׁר"
+        },
+        "id": {
+          "word": "jembatan"
+        },
+        "la": {
+          "word": "pōns"
+        },
+        "sa": {
+          "word": "सेतु"
+        },
+        "ta": {
+          "word": "பாலம்"
+        },
+        "th": {
+          "word": "สะพาน"
+        },
+        "tr": {
+          "word": "köprü"
+        },
+        "vi": {
+          "word": "cầu"
         }
       },
       "resources": [
@@ -9750,6 +14405,36 @@
         },
         "zh": {
           "word": "汽车"
+        },
+        "cs": {
+          "word": "auto"
+        },
+        "fa": {
+          "word": "موتَر"
+        },
+        "he": {
+          "word": "מְכוֹנִית"
+        },
+        "id": {
+          "word": "mobil"
+        },
+        "la": {
+          "word": "autocīnētum"
+        },
+        "sa": {
+          "word": "कारयान"
+        },
+        "ta": {
+          "word": "மகிழுந்து"
+        },
+        "th": {
+          "word": "รถยนต์"
+        },
+        "tr": {
+          "word": "araba"
+        },
+        "vi": {
+          "word": "xe hơi"
         }
       },
       "resources": [
@@ -9820,6 +14505,42 @@
         },
         "zh": {
           "word": "椅子"
+        },
+        "ang": {
+          "word": "stōl"
+        },
+        "cs": {
+          "word": "židle"
+        },
+        "fa": {
+          "word": "چَوْکِی"
+        },
+        "grc": {
+          "word": "δίφρος"
+        },
+        "he": {
+          "word": "כִּסֵּא"
+        },
+        "id": {
+          "word": "kursi"
+        },
+        "la": {
+          "word": "sella"
+        },
+        "sa": {
+          "word": "आसन"
+        },
+        "ta": {
+          "word": "நாற்காலி"
+        },
+        "th": {
+          "word": "เก้าอี้"
+        },
+        "tr": {
+          "word": "koltuk"
+        },
+        "vi": {
+          "word": "ghế"
         }
       },
       "resources": [
@@ -9890,6 +14611,39 @@
         },
         "zh": {
           "word": "教堂"
+        },
+        "ang": {
+          "word": "ċiriċe"
+        },
+        "cs": {
+          "word": "kostel"
+        },
+        "fa": {
+          "word": "کَلِیسَا"
+        },
+        "grc": {
+          "word": "ἐκκλησία"
+        },
+        "he": {
+          "word": "כְּנֵסִיָּה"
+        },
+        "id": {
+          "word": "gereja"
+        },
+        "la": {
+          "word": "ecclesia"
+        },
+        "ta": {
+          "word": "தேவாலயம்"
+        },
+        "th": {
+          "word": "โบสถ์"
+        },
+        "tr": {
+          "word": "kilise"
+        },
+        "vi": {
+          "word": "nhà thờ"
         }
       },
       "resources": [
@@ -9960,6 +14714,39 @@
         },
         "zh": {
           "word": "城市"
+        },
+        "ang": {
+          "word": "burg"
+        },
+        "cs": {
+          "word": "město"
+        },
+        "grc": {
+          "word": "πόλις"
+        },
+        "he": {
+          "word": "עִיר"
+        },
+        "id": {
+          "word": "kota"
+        },
+        "la": {
+          "word": "urbs"
+        },
+        "sa": {
+          "word": "नगर"
+        },
+        "ta": {
+          "word": "நகரம்"
+        },
+        "th": {
+          "word": "เมือง"
+        },
+        "tr": {
+          "word": "kent"
+        },
+        "vi": {
+          "word": "thành phố"
         }
       },
       "resources": [
@@ -10030,6 +14817,42 @@
         },
         "zh": {
           "word": "钟"
+        },
+        "ang": {
+          "word": "dæġmǣl"
+        },
+        "cs": {
+          "word": "hodiny"
+        },
+        "fa": {
+          "word": "سَاعَت"
+        },
+        "grc": {
+          "word": "ὡρολόγιον"
+        },
+        "he": {
+          "word": "שָׁעוֹן"
+        },
+        "id": {
+          "word": "jam"
+        },
+        "la": {
+          "word": "horologium"
+        },
+        "sa": {
+          "word": "घटी"
+        },
+        "ta": {
+          "word": "கடிகாரம்"
+        },
+        "th": {
+          "word": "นาฬิกา"
+        },
+        "tr": {
+          "word": "saat"
+        },
+        "vi": {
+          "word": "đồng hồ"
         }
       },
       "resources": [
@@ -10100,6 +14923,36 @@
         },
         "zh": {
           "word": "衣服"
+        },
+        "ang": {
+          "word": "clāþas"
+        },
+        "cs": {
+          "word": "oblečení"
+        },
+        "grc": {
+          "word": "ἐσθής"
+        },
+        "he": {
+          "word": "בְּגָדִים"
+        },
+        "id": {
+          "word": "pakaian"
+        },
+        "la": {
+          "word": "vestīmenta"
+        },
+        "ta": {
+          "word": "உடுப்பு"
+        },
+        "th": {
+          "word": "เสื้อผ้า"
+        },
+        "tr": {
+          "word": "giyim"
+        },
+        "vi": {
+          "word": "quần áo"
         }
       },
       "resources": [
@@ -10170,6 +15023,42 @@
         },
         "zh": {
           "word": "门"
+        },
+        "ang": {
+          "word": "duru"
+        },
+        "cs": {
+          "word": "dveře"
+        },
+        "fa": {
+          "word": "دَرْوازَه"
+        },
+        "grc": {
+          "word": "θύρα"
+        },
+        "he": {
+          "word": "דֶּלֶת"
+        },
+        "id": {
+          "word": "pintu"
+        },
+        "la": {
+          "word": "foris"
+        },
+        "sa": {
+          "word": "द्वार्"
+        },
+        "ta": {
+          "word": "கதவு"
+        },
+        "th": {
+          "word": "ประตู"
+        },
+        "tr": {
+          "word": "kapı"
+        },
+        "vi": {
+          "word": "cửa"
         }
       },
       "resources": [
@@ -10247,6 +15136,39 @@
         },
         "zh": {
           "word": "帽子"
+        },
+        "ang": {
+          "word": "hætt"
+        },
+        "cs": {
+          "word": "klobouk"
+        },
+        "fa": {
+          "word": "کُلَاه"
+        },
+        "grc": {
+          "word": "πῖλος"
+        },
+        "he": {
+          "word": "כּוֹבַע"
+        },
+        "id": {
+          "word": "topi"
+        },
+        "la": {
+          "word": "pileus"
+        },
+        "ta": {
+          "word": "தொப்பி"
+        },
+        "th": {
+          "word": "หมวก"
+        },
+        "tr": {
+          "word": "şapka"
+        },
+        "vi": {
+          "word": "mũ"
         }
       },
       "resources": [
@@ -10317,6 +15239,42 @@
         },
         "zh": {
           "word": "房子"
+        },
+        "ang": {
+          "word": "hūs"
+        },
+        "cs": {
+          "word": "dům"
+        },
+        "fa": {
+          "word": "خَانَه"
+        },
+        "grc": {
+          "word": "οἶκος"
+        },
+        "he": {
+          "word": "בַּיִת"
+        },
+        "id": {
+          "word": "rumah"
+        },
+        "la": {
+          "word": "domus"
+        },
+        "sa": {
+          "word": "गृह"
+        },
+        "ta": {
+          "word": "வீடு"
+        },
+        "th": {
+          "word": "บ้าน"
+        },
+        "tr": {
+          "word": "ev"
+        },
+        "vi": {
+          "word": "nhà"
         }
       },
       "resources": [
@@ -10393,6 +15351,42 @@
         },
         "zh": {
           "word": "钥匙"
+        },
+        "ang": {
+          "word": "cǣġ"
+        },
+        "cs": {
+          "word": "klíč"
+        },
+        "fa": {
+          "word": "کَلِید"
+        },
+        "grc": {
+          "word": "κλείς"
+        },
+        "he": {
+          "word": "מַפְתֵּחַ"
+        },
+        "id": {
+          "word": "kunci"
+        },
+        "la": {
+          "word": "clāvis"
+        },
+        "sa": {
+          "word": "कुञ्चिका"
+        },
+        "ta": {
+          "word": "சாவி"
+        },
+        "th": {
+          "word": "กุญแจ"
+        },
+        "tr": {
+          "word": "anahtar"
+        },
+        "vi": {
+          "word": "chìa khoá"
         }
       },
       "resources": [
@@ -10463,6 +15457,42 @@
         },
         "zh": {
           "word": "刀"
+        },
+        "ang": {
+          "word": "seax"
+        },
+        "cs": {
+          "word": "nůž"
+        },
+        "fa": {
+          "word": "چَاقُو"
+        },
+        "grc": {
+          "word": "μάχαιρα"
+        },
+        "he": {
+          "word": "סַכִּין"
+        },
+        "id": {
+          "word": "pisau"
+        },
+        "la": {
+          "word": "culter"
+        },
+        "sa": {
+          "word": "छुरी"
+        },
+        "ta": {
+          "word": "கத்தி"
+        },
+        "th": {
+          "word": "มีด"
+        },
+        "tr": {
+          "word": "bıçak"
+        },
+        "vi": {
+          "word": "dao"
         }
       },
       "resources": [
@@ -10533,6 +15563,42 @@
         },
         "zh": {
           "word": "信"
+        },
+        "ang": {
+          "word": "ǣrendġewrit"
+        },
+        "cs": {
+          "word": "dopis"
+        },
+        "fa": {
+          "word": "نَامَه"
+        },
+        "grc": {
+          "word": "ἐπιστολή"
+        },
+        "he": {
+          "word": "מִכְתָּב"
+        },
+        "id": {
+          "word": "surat"
+        },
+        "la": {
+          "word": "epistula"
+        },
+        "sa": {
+          "word": "पत्रिका"
+        },
+        "ta": {
+          "word": "கடுதாசி"
+        },
+        "th": {
+          "word": "จดหมาย"
+        },
+        "tr": {
+          "word": "mektup"
+        },
+        "vi": {
+          "word": "thư"
         }
       },
       "resources": [
@@ -10603,6 +15669,42 @@
         },
         "zh": {
           "word": "钱"
+        },
+        "ang": {
+          "word": "feoh"
+        },
+        "cs": {
+          "word": "peníze"
+        },
+        "fa": {
+          "word": "پَیْسَه"
+        },
+        "grc": {
+          "word": "χρήματα"
+        },
+        "he": {
+          "word": "כֶּסֶף"
+        },
+        "id": {
+          "word": "uang"
+        },
+        "la": {
+          "word": "pecunia"
+        },
+        "sa": {
+          "word": "धन"
+        },
+        "ta": {
+          "word": "பணம்"
+        },
+        "th": {
+          "word": "เงิน"
+        },
+        "tr": {
+          "word": "para"
+        },
+        "vi": {
+          "word": "tiền"
         }
       },
       "resources": [
@@ -10673,6 +15775,42 @@
         },
         "zh": {
           "word": "音乐"
+        },
+        "ang": {
+          "word": "drēam"
+        },
+        "cs": {
+          "word": "hudba"
+        },
+        "fa": {
+          "word": "مُوسِیقِی"
+        },
+        "grc": {
+          "word": "μουσική"
+        },
+        "he": {
+          "word": "מוּזִיקָה"
+        },
+        "id": {
+          "word": "musik"
+        },
+        "la": {
+          "word": "mūsica"
+        },
+        "sa": {
+          "word": "सङ्गीत"
+        },
+        "ta": {
+          "word": "சங்கீதம்"
+        },
+        "th": {
+          "word": "ดนตรี"
+        },
+        "tr": {
+          "word": "müzik"
+        },
+        "vi": {
+          "word": "âm nhạc"
         }
       },
       "resources": [
@@ -10743,6 +15881,39 @@
         },
         "zh": {
           "word": "纸"
+        },
+        "ang": {
+          "word": "paper"
+        },
+        "cs": {
+          "word": "papír"
+        },
+        "fa": {
+          "word": "کَاغَذ"
+        },
+        "grc": {
+          "word": "χάρτης"
+        },
+        "he": {
+          "word": "נְיָר"
+        },
+        "id": {
+          "word": "kertas"
+        },
+        "la": {
+          "word": "charta"
+        },
+        "ta": {
+          "word": "காகிதம்"
+        },
+        "th": {
+          "word": "กระดาษ"
+        },
+        "tr": {
+          "word": "kâğıt"
+        },
+        "vi": {
+          "word": "giấy"
         }
       },
       "resources": [
@@ -10813,6 +15984,39 @@
         },
         "zh": {
           "word": "路"
+        },
+        "ang": {
+          "word": "weġ"
+        },
+        "cs": {
+          "word": "cesta"
+        },
+        "grc": {
+          "word": "ὁδός"
+        },
+        "he": {
+          "word": "כְּבִישׁ"
+        },
+        "id": {
+          "word": "jalan"
+        },
+        "la": {
+          "word": "via"
+        },
+        "sa": {
+          "word": "मार्ग"
+        },
+        "ta": {
+          "word": "சாலை"
+        },
+        "th": {
+          "word": "ถนน"
+        },
+        "tr": {
+          "word": "yol"
+        },
+        "vi": {
+          "word": "đường"
         }
       },
       "resources": [
@@ -10889,6 +16093,42 @@
         },
         "zh": {
           "word": "学校"
+        },
+        "ang": {
+          "word": "scōl"
+        },
+        "cs": {
+          "word": "škola"
+        },
+        "fa": {
+          "word": "مَدْرَسَه"
+        },
+        "grc": {
+          "word": "διδασκαλεῖον"
+        },
+        "he": {
+          "word": "בֵּית סֵפֶר"
+        },
+        "id": {
+          "word": "sekolah"
+        },
+        "la": {
+          "word": "collēgium"
+        },
+        "sa": {
+          "word": "विद्यालय"
+        },
+        "ta": {
+          "word": "பள்ளி"
+        },
+        "th": {
+          "word": "โรงเรียน"
+        },
+        "tr": {
+          "word": "okul"
+        },
+        "vi": {
+          "word": "trường"
         }
       },
       "resources": [
@@ -10959,6 +16199,33 @@
         },
         "zh": {
           "word": "衬衫"
+        },
+        "ang": {
+          "word": "hemeþe"
+        },
+        "cs": {
+          "word": "košile"
+        },
+        "he": {
+          "word": "חֻלְצָה"
+        },
+        "id": {
+          "word": "baju"
+        },
+        "la": {
+          "word": "camisia"
+        },
+        "ta": {
+          "word": "சட்டை"
+        },
+        "th": {
+          "word": "เสื้อเชิ้ต"
+        },
+        "tr": {
+          "word": "gömlek"
+        },
+        "vi": {
+          "word": "áo sơ mi"
         }
       },
       "resources": [
@@ -11029,6 +16296,36 @@
         },
         "zh": {
           "word": "鞋"
+        },
+        "ang": {
+          "word": "scōh"
+        },
+        "cs": {
+          "word": "bota"
+        },
+        "grc": {
+          "word": "ὑπόδημα"
+        },
+        "he": {
+          "word": "נַעַל"
+        },
+        "id": {
+          "word": "sepatu"
+        },
+        "la": {
+          "word": "calceus"
+        },
+        "ta": {
+          "word": "காலணி"
+        },
+        "th": {
+          "word": "รองเท้า"
+        },
+        "tr": {
+          "word": "kundura"
+        },
+        "vi": {
+          "word": "giày"
         }
       },
       "resources": [
@@ -11099,6 +16396,42 @@
         },
         "zh": {
           "word": "桌子"
+        },
+        "ang": {
+          "word": "bēod"
+        },
+        "cs": {
+          "word": "stůl"
+        },
+        "fa": {
+          "word": "میز"
+        },
+        "grc": {
+          "word": "τράπεζα"
+        },
+        "he": {
+          "word": "שֻׁלְחָן"
+        },
+        "id": {
+          "word": "meja"
+        },
+        "la": {
+          "word": "mensa"
+        },
+        "sa": {
+          "word": "भार्मन्"
+        },
+        "ta": {
+          "word": "மேசை"
+        },
+        "th": {
+          "word": "โต๊ะ"
+        },
+        "tr": {
+          "word": "masa"
+        },
+        "vi": {
+          "word": "bàn"
         }
       },
       "resources": [
@@ -11169,6 +16502,42 @@
         },
         "zh": {
           "word": "窗户"
+        },
+        "ang": {
+          "word": "ēagþȳrel"
+        },
+        "cs": {
+          "word": "okno"
+        },
+        "fa": {
+          "word": "کِلْکِین"
+        },
+        "grc": {
+          "word": "θυρίς"
+        },
+        "he": {
+          "word": "חַלּוֹן"
+        },
+        "id": {
+          "word": "ventilasi"
+        },
+        "la": {
+          "word": "fenestra"
+        },
+        "sa": {
+          "word": "वातायन"
+        },
+        "ta": {
+          "word": "சன்னல்"
+        },
+        "th": {
+          "word": "หน้าต่าง"
+        },
+        "tr": {
+          "word": "pencere"
+        },
+        "vi": {
+          "word": "cửa sổ"
         }
       },
       "resources": [
@@ -11239,6 +16608,42 @@
         },
         "zh": {
           "word": "词"
+        },
+        "ang": {
+          "word": "word"
+        },
+        "cs": {
+          "word": "slovo"
+        },
+        "fa": {
+          "word": "وَاژَه"
+        },
+        "grc": {
+          "word": "λόγος"
+        },
+        "he": {
+          "word": "מִלָּה"
+        },
+        "id": {
+          "word": "kata"
+        },
+        "la": {
+          "word": "verbum"
+        },
+        "sa": {
+          "word": "शब्द"
+        },
+        "ta": {
+          "word": "சொல்"
+        },
+        "th": {
+          "word": "คำ"
+        },
+        "tr": {
+          "word": "sözcük"
+        },
+        "vi": {
+          "word": "từ"
         }
       },
       "resources": [
@@ -11315,6 +16720,42 @@
         },
         "zh": {
           "word": "天"
+        },
+        "ang": {
+          "word": "dæġ"
+        },
+        "cs": {
+          "word": "den"
+        },
+        "fa": {
+          "word": "روز"
+        },
+        "grc": {
+          "word": "ἡμέρα"
+        },
+        "he": {
+          "word": "יְמָמָה"
+        },
+        "id": {
+          "word": "hari"
+        },
+        "la": {
+          "word": "diēs"
+        },
+        "sa": {
+          "word": "दिन"
+        },
+        "ta": {
+          "word": "நாள்"
+        },
+        "th": {
+          "word": "วัน"
+        },
+        "tr": {
+          "word": "gün"
+        },
+        "vi": {
+          "word": "ngày"
         }
       },
       "resources": [
@@ -11390,6 +16831,39 @@
         },
         "zh": {
           "word": "晚上"
+        },
+        "ang": {
+          "word": "ǣfen"
+        },
+        "cs": {
+          "word": "večer"
+        },
+        "grc": {
+          "word": "ἑσπέρα"
+        },
+        "he": {
+          "word": "עֶרֶב"
+        },
+        "id": {
+          "word": "petang"
+        },
+        "la": {
+          "word": "vesper"
+        },
+        "sa": {
+          "word": "संध्या"
+        },
+        "ta": {
+          "word": "மாலை"
+        },
+        "th": {
+          "word": "เย็น"
+        },
+        "tr": {
+          "word": "akşam"
+        },
+        "vi": {
+          "word": "chiều tối"
         }
       },
       "resources": [
@@ -11460,6 +16934,36 @@
         },
         "zh": {
           "word": "小时"
+        },
+        "cs": {
+          "word": "hodina"
+        },
+        "grc": {
+          "word": "ὥρα"
+        },
+        "he": {
+          "word": "שָׁעָה"
+        },
+        "id": {
+          "word": "jam"
+        },
+        "la": {
+          "word": "hōra"
+        },
+        "sa": {
+          "word": "घण्टा"
+        },
+        "ta": {
+          "word": "மணி"
+        },
+        "th": {
+          "word": "ชั่วโมง"
+        },
+        "tr": {
+          "word": "saat"
+        },
+        "vi": {
+          "word": "giờ"
         }
       },
       "resources": [
@@ -11530,6 +17034,33 @@
         },
         "zh": {
           "word": "分钟"
+        },
+        "cs": {
+          "word": "minuta"
+        },
+        "fa": {
+          "word": "دَقِیقَه"
+        },
+        "he": {
+          "word": "דַּקָּה"
+        },
+        "id": {
+          "word": "menit"
+        },
+        "la": {
+          "word": "minutum"
+        },
+        "ta": {
+          "word": "நிமிடம்"
+        },
+        "th": {
+          "word": "นาที"
+        },
+        "tr": {
+          "word": "dakika"
+        },
+        "vi": {
+          "word": "phút"
         }
       },
       "resources": [
@@ -11600,6 +17131,39 @@
         },
         "zh": {
           "word": "月"
+        },
+        "ang": {
+          "word": "mōnaþ"
+        },
+        "cs": {
+          "word": "měsíc"
+        },
+        "grc": {
+          "word": "μήν"
+        },
+        "he": {
+          "word": "חֹדֶשׁ"
+        },
+        "id": {
+          "word": "bulan"
+        },
+        "la": {
+          "word": "mensis"
+        },
+        "sa": {
+          "word": "मास"
+        },
+        "ta": {
+          "word": "மாதம்"
+        },
+        "th": {
+          "word": "เดือน"
+        },
+        "tr": {
+          "word": "ay"
+        },
+        "vi": {
+          "word": "tháng"
         }
       },
       "resources": [
@@ -11670,6 +17234,42 @@
         },
         "zh": {
           "word": "上午"
+        },
+        "ang": {
+          "word": "morgen"
+        },
+        "cs": {
+          "word": "ráno"
+        },
+        "fa": {
+          "word": "صُبْح"
+        },
+        "grc": {
+          "word": "πρωΐα"
+        },
+        "he": {
+          "word": "בֹּקֶר"
+        },
+        "id": {
+          "word": "pagi"
+        },
+        "la": {
+          "word": "māne"
+        },
+        "sa": {
+          "word": "see"
+        },
+        "ta": {
+          "word": "காலை"
+        },
+        "th": {
+          "word": "ตอนเช้า"
+        },
+        "tr": {
+          "word": "sabah"
+        },
+        "vi": {
+          "word": "buổi sáng"
         }
       },
       "resources": [
@@ -11740,6 +17340,42 @@
         },
         "zh": {
           "word": "夜晚"
+        },
+        "ang": {
+          "word": "niht"
+        },
+        "cs": {
+          "word": "noc"
+        },
+        "fa": {
+          "word": "شَب"
+        },
+        "grc": {
+          "word": "νύξ"
+        },
+        "he": {
+          "word": "לַיְלָה"
+        },
+        "id": {
+          "word": "malam"
+        },
+        "la": {
+          "word": "nox"
+        },
+        "sa": {
+          "word": "रात्रि"
+        },
+        "ta": {
+          "word": "இரவு"
+        },
+        "th": {
+          "word": "กลางคืน"
+        },
+        "tr": {
+          "word": "gece"
+        },
+        "vi": {
+          "word": "đêm"
         }
       },
       "resources": [
@@ -11815,6 +17451,42 @@
         },
         "zh": {
           "word": "时间"
+        },
+        "ang": {
+          "word": "tīd"
+        },
+        "cs": {
+          "word": "čas"
+        },
+        "fa": {
+          "word": "زَمَان"
+        },
+        "grc": {
+          "word": "χρόνος"
+        },
+        "he": {
+          "word": "זְמָן"
+        },
+        "id": {
+          "word": "waktu"
+        },
+        "la": {
+          "word": "tempus"
+        },
+        "sa": {
+          "word": "काल"
+        },
+        "ta": {
+          "word": "நேரம்"
+        },
+        "th": {
+          "word": "เวลา"
+        },
+        "tr": {
+          "word": "zaman"
+        },
+        "vi": {
+          "word": "thời gian"
         }
       },
       "resources": [
@@ -11891,6 +17563,42 @@
         },
         "zh": {
           "word": "今天"
+        },
+        "ang": {
+          "word": "tōdæġ"
+        },
+        "cs": {
+          "word": "dnes"
+        },
+        "fa": {
+          "word": "اِمْروز"
+        },
+        "grc": {
+          "word": "σήμερον"
+        },
+        "he": {
+          "word": "הַיּוֹם"
+        },
+        "id": {
+          "word": "hari ini"
+        },
+        "la": {
+          "word": "hodie"
+        },
+        "sa": {
+          "word": "अद्य"
+        },
+        "ta": {
+          "word": "இன்று"
+        },
+        "th": {
+          "word": "วันนี้"
+        },
+        "tr": {
+          "word": "bugün"
+        },
+        "vi": {
+          "word": "hôm nay"
         }
       },
       "resources": [
@@ -11961,6 +17669,42 @@
         },
         "zh": {
           "word": "明天"
+        },
+        "ang": {
+          "word": "tō morgne"
+        },
+        "cs": {
+          "word": "zítra"
+        },
+        "fa": {
+          "word": "فَرْدَا"
+        },
+        "grc": {
+          "word": "αὔριον"
+        },
+        "he": {
+          "word": "מָחָר"
+        },
+        "id": {
+          "word": "esok"
+        },
+        "la": {
+          "word": "crās"
+        },
+        "sa": {
+          "word": "श्वस्"
+        },
+        "ta": {
+          "word": "நாளை"
+        },
+        "th": {
+          "word": "พรุ่งนี้"
+        },
+        "tr": {
+          "word": "yarın"
+        },
+        "vi": {
+          "word": "ngày mai"
         }
       },
       "resources": [
@@ -12031,6 +17775,42 @@
         },
         "zh": {
           "word": "星期"
+        },
+        "ang": {
+          "word": "wiċe"
+        },
+        "cs": {
+          "word": "týden"
+        },
+        "fa": {
+          "word": "هَفْتَه"
+        },
+        "grc": {
+          "word": "ἑβδομάς"
+        },
+        "he": {
+          "word": "שָׁבוּעַ"
+        },
+        "id": {
+          "word": "minggu"
+        },
+        "la": {
+          "word": "hebdomas"
+        },
+        "sa": {
+          "word": "सप्ताह"
+        },
+        "ta": {
+          "word": "கிழமை"
+        },
+        "th": {
+          "word": "สัปดาห์"
+        },
+        "tr": {
+          "word": "hafta"
+        },
+        "vi": {
+          "word": "tuần"
         }
       },
       "resources": [
@@ -12101,6 +17881,42 @@
         },
         "zh": {
           "word": "年"
+        },
+        "ang": {
+          "word": "ġēar"
+        },
+        "cs": {
+          "word": "rok"
+        },
+        "fa": {
+          "word": "سَال"
+        },
+        "grc": {
+          "word": "ἔτος"
+        },
+        "he": {
+          "word": "שָׁנָה"
+        },
+        "id": {
+          "word": "tahun"
+        },
+        "la": {
+          "word": "annus"
+        },
+        "sa": {
+          "word": "वर्ष"
+        },
+        "ta": {
+          "word": "ஆண்டு"
+        },
+        "th": {
+          "word": "ปี"
+        },
+        "tr": {
+          "word": "yıl"
+        },
+        "vi": {
+          "word": "năm"
         }
       },
       "resources": [
@@ -12177,6 +17993,36 @@
         },
         "zh": {
           "word": "昨天"
+        },
+        "ang": {
+          "word": "geostran"
+        },
+        "cs": {
+          "word": "včera"
+        },
+        "grc": {
+          "word": "χθές"
+        },
+        "he": {
+          "word": "אֶתְמוֹל"
+        },
+        "id": {
+          "word": "kemarin"
+        },
+        "la": {
+          "word": "heri"
+        },
+        "sa": {
+          "word": "ह्यस्"
+        },
+        "ta": {
+          "word": "நேற்று"
+        },
+        "th": {
+          "word": "เมื่อวานนี้"
+        },
+        "tr": {
+          "word": "dün"
         }
       },
       "resources": [
@@ -12247,6 +18093,42 @@
         },
         "zh": {
           "word": "坏"
+        },
+        "ang": {
+          "word": "yfel"
+        },
+        "cs": {
+          "word": "špatný"
+        },
+        "fa": {
+          "word": "بد"
+        },
+        "grc": {
+          "word": "κακός"
+        },
+        "he": {
+          "word": "רַע"
+        },
+        "id": {
+          "word": "buruk"
+        },
+        "la": {
+          "word": "malus"
+        },
+        "sa": {
+          "word": "अघ"
+        },
+        "ta": {
+          "word": "மோசம்"
+        },
+        "th": {
+          "word": "แย่"
+        },
+        "tr": {
+          "word": "kötü"
+        },
+        "vi": {
+          "word": "xấu"
         }
       },
       "resources": [
@@ -12324,6 +18206,39 @@
         },
         "zh": {
           "word": "美丽"
+        },
+        "ang": {
+          "word": "fæġer"
+        },
+        "cs": {
+          "word": "krásný"
+        },
+        "grc": {
+          "word": "καλός"
+        },
+        "he": {
+          "word": "יָפֶה"
+        },
+        "id": {
+          "word": "indah"
+        },
+        "la": {
+          "word": "pulcher"
+        },
+        "sa": {
+          "word": "सुन्दर"
+        },
+        "ta": {
+          "word": "அழகிய"
+        },
+        "th": {
+          "word": "สุนทร"
+        },
+        "tr": {
+          "word": "güzel"
+        },
+        "vi": {
+          "word": "đẹp"
         }
       },
       "resources": [
@@ -12394,6 +18309,42 @@
         },
         "zh": {
           "word": "大"
+        },
+        "ang": {
+          "word": "miċel"
+        },
+        "cs": {
+          "word": "velký"
+        },
+        "fa": {
+          "word": "بُزُرْگ"
+        },
+        "grc": {
+          "word": "μέγας"
+        },
+        "he": {
+          "word": "גָּדוֹל"
+        },
+        "id": {
+          "word": "besar"
+        },
+        "la": {
+          "word": "magnus"
+        },
+        "sa": {
+          "word": "बृहत्"
+        },
+        "ta": {
+          "word": "பெரு"
+        },
+        "th": {
+          "word": "ใหญ่"
+        },
+        "tr": {
+          "word": "büyük"
+        },
+        "vi": {
+          "word": "lớn"
         }
       },
       "resources": [
@@ -12470,6 +18421,39 @@
         },
         "zh": {
           "word": "干净"
+        },
+        "ang": {
+          "word": "clǣne"
+        },
+        "cs": {
+          "word": "čistý"
+        },
+        "fa": {
+          "word": "پاک"
+        },
+        "grc": {
+          "word": "καθαρός"
+        },
+        "he": {
+          "word": "נָקִי"
+        },
+        "id": {
+          "word": "bersih"
+        },
+        "la": {
+          "word": "pūrus"
+        },
+        "ta": {
+          "word": "சுத்தம்"
+        },
+        "th": {
+          "word": "สะอาด"
+        },
+        "tr": {
+          "word": "temiz"
+        },
+        "vi": {
+          "word": "sạch sẽ"
         }
       },
       "resources": [
@@ -12540,6 +18524,42 @@
         },
         "zh": {
           "word": "冷"
+        },
+        "ang": {
+          "word": "ċeald"
+        },
+        "cs": {
+          "word": "studený"
+        },
+        "fa": {
+          "word": "سَرْد"
+        },
+        "grc": {
+          "word": "ψυχρός"
+        },
+        "he": {
+          "word": "קַר"
+        },
+        "id": {
+          "word": "dingin"
+        },
+        "la": {
+          "word": "algidus"
+        },
+        "sa": {
+          "word": "शीत"
+        },
+        "ta": {
+          "word": "குளுழு"
+        },
+        "th": {
+          "word": "เย็น"
+        },
+        "tr": {
+          "word": "soğuk"
+        },
+        "vi": {
+          "word": "lạnh"
         }
       },
       "resources": [
@@ -12614,6 +18634,39 @@
         },
         "zh": {
           "word": "脏"
+        },
+        "ang": {
+          "word": "fūl"
+        },
+        "cs": {
+          "word": "špinavý"
+        },
+        "fa": {
+          "word": "کثیف"
+        },
+        "grc": {
+          "word": "μυσαρός"
+        },
+        "he": {
+          "word": "מְלֻכְלָךְ"
+        },
+        "id": {
+          "word": "kotor"
+        },
+        "la": {
+          "word": "sordidus"
+        },
+        "sa": {
+          "word": "मल"
+        },
+        "th": {
+          "word": "สกปรก"
+        },
+        "tr": {
+          "word": "kirli"
+        },
+        "vi": {
+          "word": "bẩn"
         }
       },
       "resources": [
@@ -12684,6 +18737,39 @@
         },
         "zh": {
           "word": "干"
+        },
+        "ang": {
+          "word": "dryġe"
+        },
+        "cs": {
+          "word": "suchý"
+        },
+        "fa": {
+          "word": "خشک"
+        },
+        "grc": {
+          "word": "ξηρός"
+        },
+        "he": {
+          "word": "יָבֵשׁ"
+        },
+        "id": {
+          "word": "kering"
+        },
+        "la": {
+          "word": "siccus"
+        },
+        "sa": {
+          "word": "शुष्क"
+        },
+        "th": {
+          "word": "แห้ง"
+        },
+        "tr": {
+          "word": "kuru"
+        },
+        "vi": {
+          "word": "khô"
         }
       },
       "resources": [
@@ -12761,6 +18847,42 @@
         },
         "zh": {
           "word": "容易"
+        },
+        "ang": {
+          "word": "īeþe"
+        },
+        "cs": {
+          "word": "snadný"
+        },
+        "fa": {
+          "word": "آسان"
+        },
+        "grc": {
+          "word": "ῥᾴδιος"
+        },
+        "he": {
+          "word": "קַל"
+        },
+        "id": {
+          "word": "mudah"
+        },
+        "la": {
+          "word": "facilis"
+        },
+        "sa": {
+          "word": "सुलभ"
+        },
+        "ta": {
+          "word": "எளிதான"
+        },
+        "th": {
+          "word": "ง่าย"
+        },
+        "tr": {
+          "word": "kolay"
+        },
+        "vi": {
+          "word": "dễ dàng"
         }
       },
       "resources": [
@@ -12831,6 +18953,39 @@
         },
         "zh": {
           "word": "空"
+        },
+        "ang": {
+          "word": "tōm"
+        },
+        "cs": {
+          "word": "prázdný"
+        },
+        "fa": {
+          "word": "خالی"
+        },
+        "grc": {
+          "word": "κενός"
+        },
+        "he": {
+          "word": "רֵיק"
+        },
+        "id": {
+          "word": "kosong"
+        },
+        "la": {
+          "word": "vacuus"
+        },
+        "ta": {
+          "word": "காலி"
+        },
+        "th": {
+          "word": "ว้าง"
+        },
+        "tr": {
+          "word": "boş"
+        },
+        "vi": {
+          "word": "trống"
         }
       },
       "resources": [
@@ -12908,6 +19063,42 @@
         },
         "zh": {
           "word": "快"
+        },
+        "ang": {
+          "word": "hræd"
+        },
+        "cs": {
+          "word": "rychlý"
+        },
+        "fa": {
+          "word": "تند"
+        },
+        "grc": {
+          "word": "ταχύς"
+        },
+        "he": {
+          "word": "מָהִיר"
+        },
+        "id": {
+          "word": "cepat"
+        },
+        "la": {
+          "word": "celer"
+        },
+        "sa": {
+          "word": "आशु"
+        },
+        "ta": {
+          "word": "வேகமான"
+        },
+        "th": {
+          "word": "เร็ว"
+        },
+        "tr": {
+          "word": "hızlı"
+        },
+        "vi": {
+          "word": "mau"
         }
       },
       "resources": [
@@ -12978,6 +19169,42 @@
         },
         "zh": {
           "word": "充满"
+        },
+        "ang": {
+          "word": "full"
+        },
+        "cs": {
+          "word": "plný"
+        },
+        "fa": {
+          "word": "پر"
+        },
+        "grc": {
+          "word": "πλήρης"
+        },
+        "he": {
+          "word": "מָלֵא"
+        },
+        "id": {
+          "word": "penuh"
+        },
+        "la": {
+          "word": "plēnus"
+        },
+        "sa": {
+          "word": "पूर्ण"
+        },
+        "ta": {
+          "word": "முழு"
+        },
+        "th": {
+          "word": "เต็ม"
+        },
+        "tr": {
+          "word": "dolu"
+        },
+        "vi": {
+          "word": "đầy"
         }
       },
       "resources": [
@@ -13055,6 +19282,39 @@
         },
         "zh": {
           "word": "好"
+        },
+        "cs": {
+          "word": "dobrý"
+        },
+        "fa": {
+          "word": "خوب"
+        },
+        "grc": {
+          "word": "ἀγαθός"
+        },
+        "he": {
+          "word": "טוֹב"
+        },
+        "id": {
+          "word": "baik"
+        },
+        "la": {
+          "word": "bonus"
+        },
+        "sa": {
+          "word": "साधु"
+        },
+        "ta": {
+          "word": "நல்ல"
+        },
+        "th": {
+          "word": "ดี"
+        },
+        "tr": {
+          "word": "iyi"
+        },
+        "vi": {
+          "word": "tốt"
         }
       },
       "resources": [
@@ -13131,6 +19391,39 @@
         },
         "zh": {
           "word": "快乐"
+        },
+        "ang": {
+          "word": "blīþe"
+        },
+        "cs": {
+          "word": "šťastný"
+        },
+        "fa": {
+          "word": "شاد"
+        },
+        "grc": {
+          "word": "εὐτυχής"
+        },
+        "he": {
+          "word": "מְאֻשָּׁר"
+        },
+        "id": {
+          "word": "senang"
+        },
+        "la": {
+          "word": "laetus"
+        },
+        "sa": {
+          "word": "सुखिन्"
+        },
+        "th": {
+          "word": "มีความสุข"
+        },
+        "tr": {
+          "word": "mutlu"
+        },
+        "vi": {
+          "word": "mừng"
         }
       },
       "resources": [
@@ -13201,6 +19494,39 @@
         },
         "zh": {
           "word": "硬"
+        },
+        "ang": {
+          "word": "heard"
+        },
+        "cs": {
+          "word": "tvrdý"
+        },
+        "fa": {
+          "word": "سفت"
+        },
+        "grc": {
+          "word": "σκληρός"
+        },
+        "he": {
+          "word": "קָשִׁיחַ"
+        },
+        "id": {
+          "word": "keras"
+        },
+        "la": {
+          "word": "dūrus"
+        },
+        "ta": {
+          "word": "கடினம்"
+        },
+        "th": {
+          "word": "แข็ง"
+        },
+        "tr": {
+          "word": "sert"
+        },
+        "vi": {
+          "word": "cứng"
         }
       },
       "resources": [
@@ -13271,6 +19597,39 @@
         },
         "zh": {
           "word": "重"
+        },
+        "ang": {
+          "word": "hefiġ"
+        },
+        "cs": {
+          "word": "těžký"
+        },
+        "fa": {
+          "word": "سنگین"
+        },
+        "grc": {
+          "word": "βαρύς"
+        },
+        "he": {
+          "word": "כָּבֵד"
+        },
+        "id": {
+          "word": "berat"
+        },
+        "la": {
+          "word": "gravis"
+        },
+        "sa": {
+          "word": "गुरु"
+        },
+        "th": {
+          "word": "หนัก"
+        },
+        "tr": {
+          "word": "ağır"
+        },
+        "vi": {
+          "word": "nặng"
         }
       },
       "resources": [
@@ -13348,6 +19707,36 @@
         },
         "zh": {
           "word": "高"
+        },
+        "cs": {
+          "word": "vysoký"
+        },
+        "fa": {
+          "word": "بالا"
+        },
+        "grc": {
+          "word": "ὑψηλός"
+        },
+        "he": {
+          "word": "גָבוֹהַ"
+        },
+        "id": {
+          "word": "tinggi"
+        },
+        "la": {
+          "word": "altus"
+        },
+        "sa": {
+          "word": "उच्च"
+        },
+        "th": {
+          "word": "สูง"
+        },
+        "tr": {
+          "word": "yüksek"
+        },
+        "vi": {
+          "word": "cao cấp"
         }
       },
       "resources": [
@@ -13425,6 +19814,39 @@
         },
         "zh": {
           "word": "热"
+        },
+        "ang": {
+          "word": "hāt"
+        },
+        "cs": {
+          "word": "horký"
+        },
+        "fa": {
+          "word": "داغ"
+        },
+        "grc": {
+          "word": "θερμός"
+        },
+        "he": {
+          "word": "חַם"
+        },
+        "id": {
+          "word": "panas"
+        },
+        "la": {
+          "word": "calidus"
+        },
+        "sa": {
+          "word": "उष्ण"
+        },
+        "th": {
+          "word": "ร้อน"
+        },
+        "tr": {
+          "word": "sıcak"
+        },
+        "vi": {
+          "word": "nóng"
         }
       },
       "resources": [
@@ -13500,6 +19922,36 @@
         },
         "zh": {
           "word": "轻"
+        },
+        "cs": {
+          "word": "lehký"
+        },
+        "fa": {
+          "word": "سَبُک"
+        },
+        "grc": {
+          "word": "ἐλαφρός"
+        },
+        "he": {
+          "word": "קַל"
+        },
+        "id": {
+          "word": "ringan"
+        },
+        "la": {
+          "word": "levis"
+        },
+        "sa": {
+          "word": "लघु"
+        },
+        "th": {
+          "word": "เบา"
+        },
+        "tr": {
+          "word": "yeğni"
+        },
+        "vi": {
+          "word": "nhẹ"
         }
       },
       "resources": [
@@ -13574,6 +20026,39 @@
         },
         "zh": {
           "word": "长"
+        },
+        "cs": {
+          "word": "dlouhý"
+        },
+        "fa": {
+          "word": "دراز"
+        },
+        "grc": {
+          "word": "μακρός"
+        },
+        "he": {
+          "word": "אָרֹךְ"
+        },
+        "id": {
+          "word": "panjang"
+        },
+        "la": {
+          "word": "longus"
+        },
+        "sa": {
+          "word": "दीर्घ"
+        },
+        "ta": {
+          "word": "நீளமான"
+        },
+        "th": {
+          "word": "ยาว"
+        },
+        "tr": {
+          "word": "uzun"
+        },
+        "vi": {
+          "word": "dài"
         }
       },
       "resources": [
@@ -13651,6 +20136,36 @@
         },
         "zh": {
           "word": "低"
+        },
+        "ang": {
+          "word": "niþerlīċ"
+        },
+        "cs": {
+          "word": "nízký"
+        },
+        "fa": {
+          "word": "پست"
+        },
+        "grc": {
+          "word": "ταπεινός"
+        },
+        "he": {
+          "word": "נָמוּךְ"
+        },
+        "la": {
+          "word": "humilis"
+        },
+        "sa": {
+          "word": "अधर"
+        },
+        "th": {
+          "word": "ต่ำ"
+        },
+        "tr": {
+          "word": "alçak"
+        },
+        "vi": {
+          "word": "thấp"
         }
       },
       "resources": [
@@ -13721,6 +20236,42 @@
         },
         "zh": {
           "word": "新"
+        },
+        "ang": {
+          "word": "nīewe"
+        },
+        "cs": {
+          "word": "nový"
+        },
+        "fa": {
+          "word": "نو"
+        },
+        "grc": {
+          "word": "νέος"
+        },
+        "he": {
+          "word": "חָדָשׁ"
+        },
+        "id": {
+          "word": "baru"
+        },
+        "la": {
+          "word": "novus"
+        },
+        "sa": {
+          "word": "नव"
+        },
+        "ta": {
+          "word": "புதிய"
+        },
+        "th": {
+          "word": "ใหม่"
+        },
+        "tr": {
+          "word": "yeni"
+        },
+        "vi": {
+          "word": "mới"
         }
       },
       "resources": [
@@ -13797,6 +20348,42 @@
         },
         "zh": {
           "word": "旧"
+        },
+        "ang": {
+          "word": "eald"
+        },
+        "cs": {
+          "word": "starý"
+        },
+        "fa": {
+          "word": "قدیمی"
+        },
+        "grc": {
+          "word": "παλαιός"
+        },
+        "he": {
+          "word": "יָשָׁן"
+        },
+        "id": {
+          "word": "lama"
+        },
+        "la": {
+          "word": "vetus"
+        },
+        "sa": {
+          "word": "वृद्ध"
+        },
+        "ta": {
+          "word": "பழைய"
+        },
+        "th": {
+          "word": "เก่า"
+        },
+        "tr": {
+          "word": "eski"
+        },
+        "vi": {
+          "word": "cũ"
         }
       },
       "resources": [
@@ -13871,6 +20458,42 @@
         },
         "zh": {
           "word": "穷"
+        },
+        "ang": {
+          "word": "earm"
+        },
+        "cs": {
+          "word": "chudý"
+        },
+        "fa": {
+          "word": "فقیر"
+        },
+        "grc": {
+          "word": "πένης"
+        },
+        "he": {
+          "word": "עָנִי"
+        },
+        "id": {
+          "word": "miskin"
+        },
+        "la": {
+          "word": "pauper"
+        },
+        "sa": {
+          "word": "दीन"
+        },
+        "ta": {
+          "word": "ஏழை"
+        },
+        "th": {
+          "word": "จน"
+        },
+        "tr": {
+          "word": "fakir"
+        },
+        "vi": {
+          "word": "nghèo"
         }
       },
       "resources": [
@@ -13941,6 +20564,39 @@
         },
         "zh": {
           "word": "富"
+        },
+        "cs": {
+          "word": "bohatý"
+        },
+        "fa": {
+          "word": "غنی"
+        },
+        "grc": {
+          "word": "πλούσιος"
+        },
+        "he": {
+          "word": "עָשִׁיר"
+        },
+        "id": {
+          "word": "kaya"
+        },
+        "la": {
+          "word": "dīves"
+        },
+        "sa": {
+          "word": "धन्य"
+        },
+        "ta": {
+          "word": "பணக்கார"
+        },
+        "th": {
+          "word": "รวย"
+        },
+        "tr": {
+          "word": "varlıklı"
+        },
+        "vi": {
+          "word": "giàu"
         }
       },
       "resources": [
@@ -14011,6 +20667,36 @@
         },
         "zh": {
           "word": "哀伤"
+        },
+        "ang": {
+          "word": "drēoriġ"
+        },
+        "cs": {
+          "word": "smutný"
+        },
+        "fa": {
+          "word": "غَمْگین"
+        },
+        "he": {
+          "word": "עָצוּב"
+        },
+        "id": {
+          "word": "sedih"
+        },
+        "la": {
+          "word": "tristis"
+        },
+        "sa": {
+          "word": "खिन्न"
+        },
+        "th": {
+          "word": "เศร้า"
+        },
+        "tr": {
+          "word": "üzgün"
+        },
+        "vi": {
+          "word": "buồn"
         }
       },
       "resources": [
@@ -14081,6 +20767,42 @@
         },
         "zh": {
           "word": "短"
+        },
+        "ang": {
+          "word": "sċort"
+        },
+        "cs": {
+          "word": "krátký"
+        },
+        "fa": {
+          "word": "کوتاه"
+        },
+        "grc": {
+          "word": "βραχύς"
+        },
+        "he": {
+          "word": "קָצָר"
+        },
+        "id": {
+          "word": "kependekan"
+        },
+        "la": {
+          "word": "brevis"
+        },
+        "sa": {
+          "word": "ह्रस्व"
+        },
+        "ta": {
+          "word": "குள்ளமான"
+        },
+        "th": {
+          "word": "สั้น"
+        },
+        "tr": {
+          "word": "kısa"
+        },
+        "vi": {
+          "word": "ngắn"
         }
       },
       "resources": [
@@ -14158,6 +20880,39 @@
         },
         "zh": {
           "word": "慢"
+        },
+        "ang": {
+          "word": "læt"
+        },
+        "cs": {
+          "word": "pomalý"
+        },
+        "fa": {
+          "word": "آهسته"
+        },
+        "grc": {
+          "word": "βραδύς"
+        },
+        "he": {
+          "word": "אִטִּי"
+        },
+        "id": {
+          "word": "lambat"
+        },
+        "la": {
+          "word": "lentus"
+        },
+        "ta": {
+          "word": "மெதுவான"
+        },
+        "th": {
+          "word": "ช้า"
+        },
+        "tr": {
+          "word": "yavaş"
+        },
+        "vi": {
+          "word": "chậm"
         }
       },
       "resources": [
@@ -14228,6 +20983,42 @@
         },
         "zh": {
           "word": "小"
+        },
+        "ang": {
+          "word": "lȳtel"
+        },
+        "cs": {
+          "word": "malý"
+        },
+        "fa": {
+          "word": "کوچَک"
+        },
+        "grc": {
+          "word": "μικρός"
+        },
+        "he": {
+          "word": "קָטָן"
+        },
+        "id": {
+          "word": "kecil"
+        },
+        "la": {
+          "word": "parvus"
+        },
+        "sa": {
+          "word": "अर्भ"
+        },
+        "ta": {
+          "word": "சிறிய்"
+        },
+        "th": {
+          "word": "เล็ก"
+        },
+        "tr": {
+          "word": "küçük"
+        },
+        "vi": {
+          "word": "nhỏ"
         }
       },
       "resources": [
@@ -14304,6 +21095,36 @@
         },
         "zh": {
           "word": "强"
+        },
+        "cs": {
+          "word": "silný"
+        },
+        "fa": {
+          "word": "قوی"
+        },
+        "grc": {
+          "word": "ἰσχυρός"
+        },
+        "he": {
+          "word": "חָזָק"
+        },
+        "id": {
+          "word": "kuat"
+        },
+        "la": {
+          "word": "robustus"
+        },
+        "sa": {
+          "word": "प्रबल"
+        },
+        "th": {
+          "word": "แข็งแรง"
+        },
+        "tr": {
+          "word": "güçlü"
+        },
+        "vi": {
+          "word": "mạnh"
         }
       },
       "resources": [
@@ -14374,6 +21195,42 @@
         },
         "zh": {
           "word": "甜"
+        },
+        "ang": {
+          "word": "swēte"
+        },
+        "cs": {
+          "word": "sladký"
+        },
+        "fa": {
+          "word": "شیرین"
+        },
+        "grc": {
+          "word": "γλυκύς"
+        },
+        "he": {
+          "word": "מָתוֹק"
+        },
+        "id": {
+          "word": "manis"
+        },
+        "la": {
+          "word": "dulcis"
+        },
+        "sa": {
+          "word": "मधुर"
+        },
+        "ta": {
+          "word": "இனிப்பான"
+        },
+        "th": {
+          "word": "หวาน"
+        },
+        "tr": {
+          "word": "tatlı"
+        },
+        "vi": {
+          "word": "ngọt"
         }
       },
       "resources": [
@@ -14444,6 +21301,42 @@
         },
         "zh": {
           "word": "暖和"
+        },
+        "ang": {
+          "word": "wearm"
+        },
+        "cs": {
+          "word": "teplý"
+        },
+        "fa": {
+          "word": "گَرْم"
+        },
+        "grc": {
+          "word": "θερμός"
+        },
+        "he": {
+          "word": "חָמִים"
+        },
+        "id": {
+          "word": "hangat"
+        },
+        "la": {
+          "word": "calidus"
+        },
+        "sa": {
+          "word": "उष्ण"
+        },
+        "ta": {
+          "word": "இதமாக"
+        },
+        "th": {
+          "word": "อุ่น"
+        },
+        "tr": {
+          "word": "ılık"
+        },
+        "vi": {
+          "word": "ấm"
         }
       },
       "resources": [
@@ -14514,6 +21407,39 @@
         },
         "zh": {
           "word": "弱"
+        },
+        "ang": {
+          "word": "untrum"
+        },
+        "cs": {
+          "word": "slabý"
+        },
+        "fa": {
+          "word": "ضعیف"
+        },
+        "grc": {
+          "word": "ἀσθενής"
+        },
+        "he": {
+          "word": "חַלָּשׁ"
+        },
+        "id": {
+          "word": "lemah"
+        },
+        "la": {
+          "word": "debilis"
+        },
+        "sa": {
+          "word": "निर्बल"
+        },
+        "th": {
+          "word": "อ่อนแอ"
+        },
+        "tr": {
+          "word": "zayıf"
+        },
+        "vi": {
+          "word": "yếu"
         }
       },
       "resources": [
@@ -14584,6 +21510,42 @@
         },
         "zh": {
           "word": "湿"
+        },
+        "ang": {
+          "word": "wǣt"
+        },
+        "cs": {
+          "word": "mokrý"
+        },
+        "fa": {
+          "word": "خیس"
+        },
+        "grc": {
+          "word": "ὑγρός"
+        },
+        "he": {
+          "word": "רָטֹב"
+        },
+        "id": {
+          "word": "basah"
+        },
+        "la": {
+          "word": "udus"
+        },
+        "sa": {
+          "word": "आर्द्र"
+        },
+        "ta": {
+          "word": "ஈரமான"
+        },
+        "th": {
+          "word": "เปียก"
+        },
+        "tr": {
+          "word": "ıslak"
+        },
+        "vi": {
+          "word": "ướt"
         }
       },
       "resources": [
@@ -14661,6 +21623,42 @@
         },
         "zh": {
           "word": "年轻"
+        },
+        "ang": {
+          "word": "geong"
+        },
+        "cs": {
+          "word": "mladý"
+        },
+        "fa": {
+          "word": "جوان"
+        },
+        "grc": {
+          "word": "νέος"
+        },
+        "he": {
+          "word": "צָעִיר"
+        },
+        "id": {
+          "word": "muda"
+        },
+        "la": {
+          "word": "iuvenis"
+        },
+        "sa": {
+          "word": "युवन्"
+        },
+        "ta": {
+          "word": "இளைய"
+        },
+        "th": {
+          "word": "เด็ก"
+        },
+        "tr": {
+          "word": "genç"
+        },
+        "vi": {
+          "word": "trẻ"
         }
       },
       "resources": [
@@ -14738,6 +21736,39 @@
         },
         "zh": {
           "word": "买"
+        },
+        "ang": {
+          "word": "bycgan"
+        },
+        "cs": {
+          "word": "kupovat"
+        },
+        "grc": {
+          "word": "ἀγοράζω"
+        },
+        "he": {
+          "word": "קָנָה"
+        },
+        "id": {
+          "word": "membeli"
+        },
+        "la": {
+          "word": "emō"
+        },
+        "sa": {
+          "word": "क्रीणाति"
+        },
+        "ta": {
+          "word": "வாங்கு"
+        },
+        "th": {
+          "word": "ซื้อ"
+        },
+        "tr": {
+          "word": "satın almak"
+        },
+        "vi": {
+          "word": "mua"
         }
       },
       "resources": [
@@ -14808,6 +21839,36 @@
         },
         "zh": {
           "word": "关"
+        },
+        "cs": {
+          "word": "zavírat"
+        },
+        "fa": {
+          "word": "بستن"
+        },
+        "grc": {
+          "word": "κλείω"
+        },
+        "he": {
+          "word": "סָגַר"
+        },
+        "id": {
+          "word": "menutup"
+        },
+        "la": {
+          "word": "claudō"
+        },
+        "ta": {
+          "word": "மூடு"
+        },
+        "th": {
+          "word": "ปิด"
+        },
+        "tr": {
+          "word": "kapatmak"
+        },
+        "vi": {
+          "word": "đóng"
         }
       },
       "resources": [
@@ -14878,6 +21939,42 @@
         },
         "zh": {
           "word": "来"
+        },
+        "ang": {
+          "word": "cuman"
+        },
+        "cs": {
+          "word": "přicházet"
+        },
+        "fa": {
+          "word": "آمَدَن"
+        },
+        "grc": {
+          "word": "ἀφικνέομαι"
+        },
+        "he": {
+          "word": "בָּא"
+        },
+        "id": {
+          "word": "datang"
+        },
+        "la": {
+          "word": "venio"
+        },
+        "sa": {
+          "word": "गमति"
+        },
+        "ta": {
+          "word": "வா"
+        },
+        "th": {
+          "word": "มา"
+        },
+        "tr": {
+          "word": "gelmek"
+        },
+        "vi": {
+          "word": "lại"
         }
       },
       "resources": [
@@ -14948,6 +22045,42 @@
         },
         "zh": {
           "word": "做饭"
+        },
+        "ang": {
+          "word": "sēoþan"
+        },
+        "cs": {
+          "word": "vařit"
+        },
+        "fa": {
+          "word": "پختن"
+        },
+        "grc": {
+          "word": "πέσσω"
+        },
+        "he": {
+          "word": "בִּשֵּׁל"
+        },
+        "id": {
+          "word": "masak"
+        },
+        "la": {
+          "word": "coquō"
+        },
+        "sa": {
+          "word": "पचति"
+        },
+        "ta": {
+          "word": "குய்"
+        },
+        "th": {
+          "word": "ปรุงอาหาร"
+        },
+        "tr": {
+          "word": "pişirmek"
+        },
+        "vi": {
+          "word": "nấu"
         }
       },
       "resources": [
@@ -15018,6 +22151,42 @@
         },
         "zh": {
           "word": "哭"
+        },
+        "ang": {
+          "word": "grēotan"
+        },
+        "cs": {
+          "word": "plakat"
+        },
+        "fa": {
+          "word": "گریستن"
+        },
+        "grc": {
+          "word": "κλαίω"
+        },
+        "he": {
+          "word": "בָּכָה"
+        },
+        "id": {
+          "word": "tangis"
+        },
+        "la": {
+          "word": "fleō"
+        },
+        "sa": {
+          "word": "रोदिति"
+        },
+        "ta": {
+          "word": "அழு"
+        },
+        "th": {
+          "word": "ร้องไห้"
+        },
+        "tr": {
+          "word": "ağlamak"
+        },
+        "vi": {
+          "word": "khóc"
         }
       },
       "resources": [
@@ -15088,6 +22257,42 @@
         },
         "zh": {
           "word": "跳舞"
+        },
+        "ang": {
+          "word": "frīcian"
+        },
+        "cs": {
+          "word": "tančit"
+        },
+        "fa": {
+          "word": "رَقْصیدَن"
+        },
+        "grc": {
+          "word": "ὀρχέομαι"
+        },
+        "he": {
+          "word": "רָקַד"
+        },
+        "id": {
+          "word": "menari"
+        },
+        "la": {
+          "word": "saltō"
+        },
+        "sa": {
+          "word": "नृत्यति"
+        },
+        "ta": {
+          "word": "ஆடு"
+        },
+        "th": {
+          "word": "เต้นรำ"
+        },
+        "tr": {
+          "word": "dans etmek"
+        },
+        "vi": {
+          "word": "nhảy"
         }
       },
       "resources": [
@@ -15158,6 +22363,39 @@
         },
         "zh": {
           "word": "死"
+        },
+        "ang": {
+          "word": "sweltan"
+        },
+        "cs": {
+          "word": "umírat"
+        },
+        "grc": {
+          "word": "ἀποθνήσκω"
+        },
+        "he": {
+          "word": "מֵת"
+        },
+        "id": {
+          "word": "mati"
+        },
+        "la": {
+          "word": "morior"
+        },
+        "sa": {
+          "word": "म्रियते"
+        },
+        "ta": {
+          "word": "இற"
+        },
+        "th": {
+          "word": "ตาย"
+        },
+        "tr": {
+          "word": "ölmek"
+        },
+        "vi": {
+          "word": "chết"
         }
       },
       "resources": [
@@ -15228,6 +22466,42 @@
         },
         "zh": {
           "word": "喝"
+        },
+        "ang": {
+          "word": "drincan"
+        },
+        "cs": {
+          "word": "pít"
+        },
+        "fa": {
+          "word": "نوشِیدَن"
+        },
+        "grc": {
+          "word": "πίνω"
+        },
+        "he": {
+          "word": "שָׁתָה"
+        },
+        "id": {
+          "word": "minum"
+        },
+        "la": {
+          "word": "bibo"
+        },
+        "sa": {
+          "word": "पिबति"
+        },
+        "ta": {
+          "word": "குடி"
+        },
+        "th": {
+          "word": "ดื่ม"
+        },
+        "tr": {
+          "word": "içmek"
+        },
+        "vi": {
+          "word": "uống"
         }
       },
       "resources": [
@@ -15298,6 +22572,42 @@
         },
         "zh": {
           "word": "吃"
+        },
+        "ang": {
+          "word": "etan"
+        },
+        "cs": {
+          "word": "jíst"
+        },
+        "fa": {
+          "word": "خوردن"
+        },
+        "grc": {
+          "word": "ἔδω"
+        },
+        "he": {
+          "word": "אָכַל"
+        },
+        "id": {
+          "word": "makan"
+        },
+        "la": {
+          "word": "edō"
+        },
+        "sa": {
+          "word": "अत्ति"
+        },
+        "ta": {
+          "word": "சாப்பிடு"
+        },
+        "th": {
+          "word": "กิน"
+        },
+        "tr": {
+          "word": "yemek"
+        },
+        "vi": {
+          "word": "ăn"
         }
       },
       "resources": [
@@ -15368,6 +22678,36 @@
         },
         "zh": {
           "word": "找到"
+        },
+        "ang": {
+          "word": "findan"
+        },
+        "cs": {
+          "word": "nalézat"
+        },
+        "fa": {
+          "word": "یافتن"
+        },
+        "grc": {
+          "word": "εὑρίσκω"
+        },
+        "he": {
+          "word": "מָצָא"
+        },
+        "id": {
+          "word": "menemukan"
+        },
+        "la": {
+          "word": "inveniō"
+        },
+        "th": {
+          "word": "พบ"
+        },
+        "tr": {
+          "word": "bulmak"
+        },
+        "vi": {
+          "word": "tìm"
         }
       },
       "resources": [
@@ -15438,6 +22778,39 @@
         },
         "zh": {
           "word": "飞"
+        },
+        "ang": {
+          "word": "flēogan"
+        },
+        "cs": {
+          "word": "létat"
+        },
+        "fa": {
+          "word": "پَرْواز کَرْدَن"
+        },
+        "grc": {
+          "word": "πέτομαι"
+        },
+        "he": {
+          "word": "טָס"
+        },
+        "id": {
+          "word": "terbang"
+        },
+        "la": {
+          "word": "volō"
+        },
+        "ta": {
+          "word": "பற"
+        },
+        "th": {
+          "word": "บิน"
+        },
+        "tr": {
+          "word": "gitmek"
+        },
+        "vi": {
+          "word": "bay"
         }
       },
       "resources": [
@@ -15508,6 +22881,42 @@
         },
         "zh": {
           "word": "给"
+        },
+        "ang": {
+          "word": "sellan"
+        },
+        "cs": {
+          "word": "dávat"
+        },
+        "fa": {
+          "word": "دَادَن"
+        },
+        "grc": {
+          "word": "δίδωμι"
+        },
+        "he": {
+          "word": "נָתַן"
+        },
+        "id": {
+          "word": "beri"
+        },
+        "la": {
+          "word": "do"
+        },
+        "sa": {
+          "word": "ददाति"
+        },
+        "ta": {
+          "word": "கொடு"
+        },
+        "th": {
+          "word": "ให้"
+        },
+        "tr": {
+          "word": "vermek"
+        },
+        "vi": {
+          "word": "cho"
         }
       },
       "resources": [
@@ -15578,6 +22987,39 @@
         },
         "zh": {
           "word": "去"
+        },
+        "ang": {
+          "word": "gān"
+        },
+        "cs": {
+          "word": "chodit"
+        },
+        "grc": {
+          "word": "ἀπέρχομαι"
+        },
+        "he": {
+          "word": "הָלַךְ"
+        },
+        "id": {
+          "word": "pergi"
+        },
+        "la": {
+          "word": "eō"
+        },
+        "sa": {
+          "word": "एति"
+        },
+        "ta": {
+          "word": "செல்"
+        },
+        "th": {
+          "word": "ไป"
+        },
+        "tr": {
+          "word": "gitmek"
+        },
+        "vi": {
+          "word": "đi"
         }
       },
       "resources": [
@@ -15648,6 +23090,39 @@
         },
         "zh": {
           "word": "听见"
+        },
+        "ang": {
+          "word": "ġehīeran"
+        },
+        "cs": {
+          "word": "slyšet"
+        },
+        "grc": {
+          "word": "ἀκούω"
+        },
+        "he": {
+          "word": "שָׁמַע"
+        },
+        "id": {
+          "word": "dengar"
+        },
+        "la": {
+          "word": "audio"
+        },
+        "sa": {
+          "word": "श्रु"
+        },
+        "ta": {
+          "word": "கேள்"
+        },
+        "th": {
+          "word": "ได้ยิน"
+        },
+        "tr": {
+          "word": "işitmek"
+        },
+        "vi": {
+          "word": "nghe"
         }
       },
       "resources": [
@@ -15718,6 +23193,42 @@
         },
         "zh": {
           "word": "帮助"
+        },
+        "ang": {
+          "word": "helpan"
+        },
+        "cs": {
+          "word": "pomáhat"
+        },
+        "fa": {
+          "word": "کمک کردن"
+        },
+        "grc": {
+          "word": "ὠφελέω"
+        },
+        "he": {
+          "word": "עָזַר"
+        },
+        "id": {
+          "word": "bantu"
+        },
+        "la": {
+          "word": "adiuvō"
+        },
+        "sa": {
+          "word": "अवति"
+        },
+        "ta": {
+          "word": "உதவு"
+        },
+        "th": {
+          "word": "ช่วยเหลือ"
+        },
+        "tr": {
+          "word": "yardım etmek"
+        },
+        "vi": {
+          "word": "giúp"
         }
       },
       "resources": [
@@ -15788,6 +23299,42 @@
         },
         "zh": {
           "word": "知道"
+        },
+        "ang": {
+          "word": "witan"
+        },
+        "cs": {
+          "word": "vědět"
+        },
+        "fa": {
+          "word": "دانستن"
+        },
+        "grc": {
+          "word": "γιγνώσκω"
+        },
+        "he": {
+          "word": "יָדַע"
+        },
+        "id": {
+          "word": "tahu"
+        },
+        "la": {
+          "word": "sciō"
+        },
+        "sa": {
+          "word": "जानाति"
+        },
+        "ta": {
+          "word": "தெரிந்திரு"
+        },
+        "th": {
+          "word": "รู้"
+        },
+        "tr": {
+          "word": "bilmek"
+        },
+        "vi": {
+          "word": "biết"
         }
       },
       "resources": [
@@ -15858,6 +23405,42 @@
         },
         "zh": {
           "word": "笑"
+        },
+        "ang": {
+          "word": "hliehhan"
+        },
+        "cs": {
+          "word": "smát se"
+        },
+        "fa": {
+          "word": "خندیدن"
+        },
+        "grc": {
+          "word": "γελάω"
+        },
+        "he": {
+          "word": "צָחַק"
+        },
+        "id": {
+          "word": "tertawa"
+        },
+        "la": {
+          "word": "rīdeō"
+        },
+        "sa": {
+          "word": "हसति"
+        },
+        "ta": {
+          "word": "சிரி"
+        },
+        "th": {
+          "word": "ขำ"
+        },
+        "tr": {
+          "word": "gülmek"
+        },
+        "vi": {
+          "word": "cười"
         }
       },
       "resources": [
@@ -15928,6 +23511,42 @@
         },
         "zh": {
           "word": "学习"
+        },
+        "ang": {
+          "word": "ġeāscian"
+        },
+        "cs": {
+          "word": "učit se"
+        },
+        "fa": {
+          "word": "یاد گرفتن"
+        },
+        "grc": {
+          "word": "μανθάνω"
+        },
+        "he": {
+          "word": "לָמַד"
+        },
+        "id": {
+          "word": "belajar"
+        },
+        "la": {
+          "word": "discō"
+        },
+        "sa": {
+          "word": "शिक्षति"
+        },
+        "ta": {
+          "word": "கல்"
+        },
+        "th": {
+          "word": "เรียน"
+        },
+        "tr": {
+          "word": "öğrenmek"
+        },
+        "vi": {
+          "word": "học"
         }
       },
       "resources": [
@@ -15998,6 +23617,42 @@
         },
         "zh": {
           "word": "活"
+        },
+        "ang": {
+          "word": "libban"
+        },
+        "cs": {
+          "word": "žít"
+        },
+        "fa": {
+          "word": "زِنْدَگِی کَرْدَن"
+        },
+        "grc": {
+          "word": "ζῶ"
+        },
+        "he": {
+          "word": "חַי"
+        },
+        "id": {
+          "word": "hidup"
+        },
+        "la": {
+          "word": "vivo"
+        },
+        "sa": {
+          "word": "जीवति"
+        },
+        "ta": {
+          "word": "வாழ்"
+        },
+        "th": {
+          "word": "มีชีวิต"
+        },
+        "tr": {
+          "word": "yaşamak"
+        },
+        "vi": {
+          "word": "sống"
         }
       },
       "resources": [
@@ -16068,6 +23723,39 @@
         },
         "zh": {
           "word": "爱"
+        },
+        "ang": {
+          "word": "lufian"
+        },
+        "cs": {
+          "word": "milovat"
+        },
+        "fa": {
+          "word": "دوست داشتن"
+        },
+        "grc": {
+          "word": "ἀγαπάω"
+        },
+        "he": {
+          "word": "אָהַב"
+        },
+        "id": {
+          "word": "cinta"
+        },
+        "la": {
+          "word": "amo"
+        },
+        "ta": {
+          "word": "காதலி"
+        },
+        "th": {
+          "word": "รัก"
+        },
+        "tr": {
+          "word": "sevmek"
+        },
+        "vi": {
+          "word": "yêu"
         }
       },
       "resources": [
@@ -16142,6 +23830,39 @@
         },
         "zh": {
           "word": "开"
+        },
+        "cs": {
+          "word": "otevřít"
+        },
+        "fa": {
+          "word": "گشودن"
+        },
+        "grc": {
+          "word": "ἀνοίγω"
+        },
+        "he": {
+          "word": "פָּתַח"
+        },
+        "id": {
+          "word": "buka"
+        },
+        "la": {
+          "word": "aperio"
+        },
+        "sa": {
+          "word": "उद्घाटयति"
+        },
+        "ta": {
+          "word": "திற"
+        },
+        "th": {
+          "word": "เปิด"
+        },
+        "tr": {
+          "word": "açmak"
+        },
+        "vi": {
+          "word": "mở"
         }
       },
       "resources": [
@@ -16212,6 +23933,36 @@
         },
         "zh": {
           "word": "付钱"
+        },
+        "ang": {
+          "word": "ġieldan"
+        },
+        "cs": {
+          "word": "platit"
+        },
+        "fa": {
+          "word": "پرداختن"
+        },
+        "grc": {
+          "word": "τίνω"
+        },
+        "he": {
+          "word": "שִׁלֵּם"
+        },
+        "id": {
+          "word": "membayar"
+        },
+        "la": {
+          "word": "solvo"
+        },
+        "th": {
+          "word": "จ่าย"
+        },
+        "tr": {
+          "word": "ödemek"
+        },
+        "vi": {
+          "word": "trả"
         }
       },
       "resources": [
@@ -16282,6 +24033,42 @@
         },
         "zh": {
           "word": "玩"
+        },
+        "ang": {
+          "word": "lācan"
+        },
+        "cs": {
+          "word": "hrát"
+        },
+        "fa": {
+          "word": "بازی کردن"
+        },
+        "grc": {
+          "word": "παίζω"
+        },
+        "he": {
+          "word": "שִׂחֵק"
+        },
+        "id": {
+          "word": "bermain"
+        },
+        "la": {
+          "word": "lūdō"
+        },
+        "sa": {
+          "word": "खेलति"
+        },
+        "ta": {
+          "word": "விளையாடு"
+        },
+        "th": {
+          "word": "เล่น"
+        },
+        "tr": {
+          "word": "oynamak"
+        },
+        "vi": {
+          "word": "chơi"
         }
       },
       "resources": [
@@ -16352,6 +24139,42 @@
         },
         "zh": {
           "word": "读"
+        },
+        "ang": {
+          "word": "rǣdan"
+        },
+        "cs": {
+          "word": "číst"
+        },
+        "fa": {
+          "word": "خْوَانْدَن"
+        },
+        "grc": {
+          "word": "ἀναγιγνώσκω"
+        },
+        "he": {
+          "word": "קָרָא"
+        },
+        "id": {
+          "word": "baca"
+        },
+        "la": {
+          "word": "legō"
+        },
+        "sa": {
+          "word": "पठ्"
+        },
+        "ta": {
+          "word": "வாசி"
+        },
+        "th": {
+          "word": "อ่าน"
+        },
+        "tr": {
+          "word": "okumak"
+        },
+        "vi": {
+          "word": "đọc"
         }
       },
       "resources": [
@@ -16422,6 +24245,39 @@
         },
         "zh": {
           "word": "跑"
+        },
+        "ang": {
+          "word": "rinnan"
+        },
+        "cs": {
+          "word": "běhat"
+        },
+        "grc": {
+          "word": "τρέχω"
+        },
+        "he": {
+          "word": "רָץ"
+        },
+        "id": {
+          "word": "lari"
+        },
+        "la": {
+          "word": "currō"
+        },
+        "sa": {
+          "word": "द्रवति"
+        },
+        "ta": {
+          "word": "ஓடு"
+        },
+        "th": {
+          "word": "วิ่ง"
+        },
+        "tr": {
+          "word": "koşmak"
+        },
+        "vi": {
+          "word": "chạy"
         }
       },
       "resources": [
@@ -16492,6 +24348,42 @@
         },
         "zh": {
           "word": "说"
+        },
+        "ang": {
+          "word": "secgan"
+        },
+        "cs": {
+          "word": "říkat"
+        },
+        "fa": {
+          "word": "گُفْتَن"
+        },
+        "grc": {
+          "word": "λέγω"
+        },
+        "he": {
+          "word": "אָמַר"
+        },
+        "id": {
+          "word": "berkata"
+        },
+        "la": {
+          "word": "dico"
+        },
+        "sa": {
+          "word": "वदति"
+        },
+        "ta": {
+          "word": "சொல்"
+        },
+        "th": {
+          "word": "กล่าว"
+        },
+        "tr": {
+          "word": "söylemek"
+        },
+        "vi": {
+          "word": "nói"
         }
       },
       "resources": [
@@ -16562,6 +24454,42 @@
         },
         "zh": {
           "word": "看见"
+        },
+        "ang": {
+          "word": "ġesēon"
+        },
+        "cs": {
+          "word": "vidět"
+        },
+        "fa": {
+          "word": "دِیدَن"
+        },
+        "grc": {
+          "word": "βλέπω"
+        },
+        "he": {
+          "word": "רָאָה"
+        },
+        "id": {
+          "word": "melihat"
+        },
+        "la": {
+          "word": "video"
+        },
+        "sa": {
+          "word": "पश्यति"
+        },
+        "ta": {
+          "word": "பார்"
+        },
+        "th": {
+          "word": "เห็น"
+        },
+        "tr": {
+          "word": "görmek"
+        },
+        "vi": {
+          "word": "nhìn thấy"
         }
       },
       "resources": [
@@ -16632,6 +24560,33 @@
         },
         "zh": {
           "word": "卖"
+        },
+        "cs": {
+          "word": "prodávat"
+        },
+        "grc": {
+          "word": "πωλέω"
+        },
+        "he": {
+          "word": "מָכַר"
+        },
+        "id": {
+          "word": "jual"
+        },
+        "la": {
+          "word": "vendō"
+        },
+        "ta": {
+          "word": "வில்"
+        },
+        "th": {
+          "word": "ขาย"
+        },
+        "tr": {
+          "word": "satmak"
+        },
+        "vi": {
+          "word": "bán"
         }
       },
       "resources": [
@@ -16702,6 +24657,39 @@
         },
         "zh": {
           "word": "唱歌"
+        },
+        "ang": {
+          "word": "singan"
+        },
+        "cs": {
+          "word": "zpívat"
+        },
+        "grc": {
+          "word": "ἀείδω"
+        },
+        "he": {
+          "word": "שָׁר"
+        },
+        "id": {
+          "word": "bernyanyi"
+        },
+        "la": {
+          "word": "canō"
+        },
+        "sa": {
+          "word": "गायति"
+        },
+        "ta": {
+          "word": "பாடு"
+        },
+        "th": {
+          "word": "ขับร้อง"
+        },
+        "tr": {
+          "word": "şarkı söylemek"
+        },
+        "vi": {
+          "word": "hát"
         }
       },
       "resources": [
@@ -16772,6 +24760,42 @@
         },
         "zh": {
           "word": "坐"
+        },
+        "ang": {
+          "word": "sittan"
+        },
+        "cs": {
+          "word": "sedět"
+        },
+        "fa": {
+          "word": "نشستن"
+        },
+        "grc": {
+          "word": "ἕζομαι"
+        },
+        "he": {
+          "word": "יָשַׁב"
+        },
+        "id": {
+          "word": "duduk"
+        },
+        "la": {
+          "word": "sedeō"
+        },
+        "sa": {
+          "word": "सीदति"
+        },
+        "ta": {
+          "word": "உட்கார்"
+        },
+        "th": {
+          "word": "นั่ง"
+        },
+        "tr": {
+          "word": "oturmak"
+        },
+        "vi": {
+          "word": "ngồi"
         }
       },
       "resources": [
@@ -16842,6 +24866,42 @@
         },
         "zh": {
           "word": "睡觉"
+        },
+        "ang": {
+          "word": "sƿefan"
+        },
+        "cs": {
+          "word": "spát"
+        },
+        "fa": {
+          "word": "خوابیدَن"
+        },
+        "grc": {
+          "word": "καθεύδω"
+        },
+        "he": {
+          "word": "יָשֵׁן"
+        },
+        "id": {
+          "word": "tidur"
+        },
+        "la": {
+          "word": "dormiō"
+        },
+        "sa": {
+          "word": "स्वपिति"
+        },
+        "ta": {
+          "word": "தூங்கு"
+        },
+        "th": {
+          "word": "นอน"
+        },
+        "tr": {
+          "word": "uyumak"
+        },
+        "vi": {
+          "word": "ngủ"
         }
       },
       "resources": [
@@ -16912,6 +24972,42 @@
         },
         "zh": {
           "word": "说话"
+        },
+        "ang": {
+          "word": "sprecan"
+        },
+        "cs": {
+          "word": "mluvit"
+        },
+        "fa": {
+          "word": "گَپ زَدَن"
+        },
+        "grc": {
+          "word": "λαλέω"
+        },
+        "he": {
+          "word": "דִּבֵּר"
+        },
+        "id": {
+          "word": "berbicara"
+        },
+        "la": {
+          "word": "loquor"
+        },
+        "sa": {
+          "word": "भाषते"
+        },
+        "ta": {
+          "word": "பேசு"
+        },
+        "th": {
+          "word": "พูด"
+        },
+        "tr": {
+          "word": "konuşmak"
+        },
+        "vi": {
+          "word": "nói"
         }
       },
       "resources": [
@@ -16982,6 +25078,42 @@
         },
         "zh": {
           "word": "站"
+        },
+        "ang": {
+          "word": "standan"
+        },
+        "cs": {
+          "word": "stát"
+        },
+        "fa": {
+          "word": "ایستادن"
+        },
+        "grc": {
+          "word": "ἵστημι"
+        },
+        "he": {
+          "word": "עָמַד"
+        },
+        "id": {
+          "word": "berdiri"
+        },
+        "la": {
+          "word": "stō"
+        },
+        "sa": {
+          "word": "तिष्ठति"
+        },
+        "ta": {
+          "word": "நில்"
+        },
+        "th": {
+          "word": "ยืน"
+        },
+        "tr": {
+          "word": "ayakta durmak"
+        },
+        "vi": {
+          "word": "đứng"
         }
       },
       "resources": [
@@ -17052,6 +25184,39 @@
         },
         "zh": {
           "word": "游泳"
+        },
+        "cs": {
+          "word": "plavat"
+        },
+        "fa": {
+          "word": "شنا کردن"
+        },
+        "grc": {
+          "word": "κολυμβάω"
+        },
+        "he": {
+          "word": "שָׂחָה"
+        },
+        "id": {
+          "word": "berenang"
+        },
+        "la": {
+          "word": "nato"
+        },
+        "sa": {
+          "word": "प्लवते"
+        },
+        "ta": {
+          "word": "நீந்து"
+        },
+        "th": {
+          "word": "ว่ายน้ำ"
+        },
+        "tr": {
+          "word": "yüzmek"
+        },
+        "vi": {
+          "word": "bơi"
         }
       },
       "resources": [
@@ -17122,6 +25287,36 @@
         },
         "zh": {
           "word": "拿"
+        },
+        "ang": {
+          "word": "niman"
+        },
+        "cs": {
+          "word": "vzít"
+        },
+        "grc": {
+          "word": "αἱρέω"
+        },
+        "he": {
+          "word": "לָקַח"
+        },
+        "id": {
+          "word": "ambil"
+        },
+        "la": {
+          "word": "capio"
+        },
+        "ta": {
+          "word": "எடு"
+        },
+        "th": {
+          "word": "เอา"
+        },
+        "tr": {
+          "word": "almak"
+        },
+        "vi": {
+          "word": "lấy"
         }
       },
       "resources": [
@@ -17192,6 +25387,42 @@
         },
         "zh": {
           "word": "教"
+        },
+        "ang": {
+          "word": "lǣran"
+        },
+        "cs": {
+          "word": "učit"
+        },
+        "fa": {
+          "word": "آموزاندن"
+        },
+        "grc": {
+          "word": "διδάσκω"
+        },
+        "he": {
+          "word": "לִמֵּד"
+        },
+        "id": {
+          "word": "ajar"
+        },
+        "la": {
+          "word": "doceō"
+        },
+        "sa": {
+          "word": "उपदिशति"
+        },
+        "ta": {
+          "word": "கற்பி"
+        },
+        "th": {
+          "word": "สอน"
+        },
+        "tr": {
+          "word": "öğretmek"
+        },
+        "vi": {
+          "word": "dạy"
         }
       },
       "resources": [
@@ -17262,6 +25493,42 @@
         },
         "zh": {
           "word": "想"
+        },
+        "ang": {
+          "word": "wenan"
+        },
+        "cs": {
+          "word": "přemýšlet"
+        },
+        "fa": {
+          "word": "فِکْر کَرْدَن"
+        },
+        "grc": {
+          "word": "φρονέω"
+        },
+        "he": {
+          "word": "חָשַׁב"
+        },
+        "id": {
+          "word": "fikir"
+        },
+        "la": {
+          "word": "puto"
+        },
+        "sa": {
+          "word": "मन्यते"
+        },
+        "ta": {
+          "word": "யோசி"
+        },
+        "th": {
+          "word": "คิด"
+        },
+        "tr": {
+          "word": "düşünmek"
+        },
+        "vi": {
+          "word": "nghĩ"
         }
       },
       "resources": [
@@ -17332,6 +25599,39 @@
         },
         "zh": {
           "word": "等"
+        },
+        "ang": {
+          "word": "bīdan"
+        },
+        "cs": {
+          "word": "čekat"
+        },
+        "grc": {
+          "word": "προσδέχομαι"
+        },
+        "he": {
+          "word": "חִכָּה"
+        },
+        "id": {
+          "word": "menunggu"
+        },
+        "la": {
+          "word": "expectō"
+        },
+        "sa": {
+          "word": "प्रतीक्षते"
+        },
+        "ta": {
+          "word": "பொறுத்திரு"
+        },
+        "th": {
+          "word": "รอ"
+        },
+        "tr": {
+          "word": "beklemek"
+        },
+        "vi": {
+          "word": "đợi"
         }
       },
       "resources": [
@@ -17402,6 +25702,42 @@
         },
         "zh": {
           "word": "走"
+        },
+        "ang": {
+          "word": "gān"
+        },
+        "cs": {
+          "word": "jít"
+        },
+        "fa": {
+          "word": "راه رفتن"
+        },
+        "grc": {
+          "word": "βαδίζω"
+        },
+        "he": {
+          "word": "הָלַךְ"
+        },
+        "id": {
+          "word": "jalan"
+        },
+        "la": {
+          "word": "gradior"
+        },
+        "sa": {
+          "word": "चलति"
+        },
+        "ta": {
+          "word": "நட"
+        },
+        "th": {
+          "word": "เดิน"
+        },
+        "tr": {
+          "word": "yürümek"
+        },
+        "vi": {
+          "word": "đi"
         }
       },
       "resources": [
@@ -17472,6 +25808,42 @@
         },
         "zh": {
           "word": "要"
+        },
+        "ang": {
+          "word": "willan"
+        },
+        "cs": {
+          "word": "chtít"
+        },
+        "fa": {
+          "word": "خْوَاسْتَن"
+        },
+        "grc": {
+          "word": "ἐθέλω"
+        },
+        "he": {
+          "word": "רָצָה"
+        },
+        "id": {
+          "word": "mau"
+        },
+        "la": {
+          "word": "volō"
+        },
+        "sa": {
+          "word": "वष्टि"
+        },
+        "ta": {
+          "word": "வேண்டு"
+        },
+        "th": {
+          "word": "อยาก"
+        },
+        "tr": {
+          "word": "istemek"
+        },
+        "vi": {
+          "word": "muốn"
         }
       },
       "resources": [
@@ -17542,6 +25914,42 @@
         },
         "zh": {
           "word": "洗"
+        },
+        "ang": {
+          "word": "þwēan"
+        },
+        "cs": {
+          "word": "mýt"
+        },
+        "fa": {
+          "word": "شستن"
+        },
+        "grc": {
+          "word": "πλύνω"
+        },
+        "he": {
+          "word": "רָחַץ"
+        },
+        "id": {
+          "word": "mencuci"
+        },
+        "la": {
+          "word": "lavō"
+        },
+        "sa": {
+          "word": "क्षिपति"
+        },
+        "ta": {
+          "word": "கழுவு"
+        },
+        "th": {
+          "word": "ล้าง"
+        },
+        "tr": {
+          "word": "yıkamak"
+        },
+        "vi": {
+          "word": "rửa"
         }
       },
       "resources": [
@@ -17612,6 +26020,39 @@
         },
         "zh": {
           "word": "工作"
+        },
+        "ang": {
+          "word": "wyrċan"
+        },
+        "cs": {
+          "word": "pracovat"
+        },
+        "fa": {
+          "word": "کَار کَرْدَن"
+        },
+        "grc": {
+          "word": "ἐργάζομαι"
+        },
+        "he": {
+          "word": "עָבַד"
+        },
+        "id": {
+          "word": "bekerja"
+        },
+        "la": {
+          "word": "labōrō"
+        },
+        "ta": {
+          "word": "வேலை செய்"
+        },
+        "th": {
+          "word": "ทำงาน"
+        },
+        "tr": {
+          "word": "çalışmak"
+        },
+        "vi": {
+          "word": "làm việc"
         }
       },
       "resources": [
@@ -17682,6 +26123,42 @@
         },
         "zh": {
           "word": "写"
+        },
+        "ang": {
+          "word": "wrītan"
+        },
+        "cs": {
+          "word": "psát"
+        },
+        "fa": {
+          "word": "نَوِشْتَن"
+        },
+        "grc": {
+          "word": "γράφω"
+        },
+        "he": {
+          "word": "כָּתַב"
+        },
+        "id": {
+          "word": "menulis"
+        },
+        "la": {
+          "word": "scrībō"
+        },
+        "sa": {
+          "word": "लिखति"
+        },
+        "ta": {
+          "word": "எழுது"
+        },
+        "th": {
+          "word": "เขียน"
+        },
+        "tr": {
+          "word": "yazmak"
+        },
+        "vi": {
+          "word": "viết"
         }
       },
       "resources": [

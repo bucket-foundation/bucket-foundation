@@ -117,6 +117,15 @@ describe("catalog", () => {
     for (const file of readdirSync(join(REPO, "decks"))) expect(/key|\.pem$|ed25519/i.test(file)).toBe(false);
   });
 
+  test("the committed signature is the founder's key over the committed catalog, and one changed byte fails it", () => {
+    const text = readFileSync(join(REPO, "decks", "catalog.json"), "utf8");
+    const signature = readFileSync(join(REPO, "decks", "catalog.json.sig"), "utf8");
+    expect(DECK_CATALOG_PUBKEY).toStartWith("ssh-ed25519 ");
+    expect(verifyCatalog({ text, signature })?.decks.length).toBeGreaterThanOrEqual(35);
+    expect(verifyCatalog({ text: text.replace('"serial": ', '"serial":  '), signature })).toBeNull();
+    expect(verifyCatalog({ text, signature }, KEY.pub)).toBeNull();
+  });
+
   test("publishing raises the serial when the decks change and holds it when they do not", () => {
     const repo = join(ROOT, "publish");
     const put = (m: { id: string }) => {

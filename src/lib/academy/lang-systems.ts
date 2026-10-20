@@ -5,33 +5,54 @@ export interface LangInfo {
   name: string;
   bcp47: string;
   latin: boolean;
+  espeak?: string;
+  rtl?: boolean;
 }
 
 export const LANGS: Record<string, LangInfo> = {
-  en: { name: "English", bcp47: "en-US", latin: true },
-  es: { name: "Spanish", bcp47: "es-ES", latin: true },
-  fr: { name: "French", bcp47: "fr-FR", latin: true },
-  it: { name: "Italian", bcp47: "it-IT", latin: true },
-  pt: { name: "Portuguese", bcp47: "pt-PT", latin: true },
-  de: { name: "German", bcp47: "de-DE", latin: true },
-  nl: { name: "Dutch", bcp47: "nl-NL", latin: true },
-  sv: { name: "Swedish", bcp47: "sv-SE", latin: true },
-  pl: { name: "Polish", bcp47: "pl-PL", latin: true },
-  fi: { name: "Finnish", bcp47: "fi-FI", latin: true },
-  ru: { name: "Russian", bcp47: "ru-RU", latin: false },
-  el: { name: "Greek", bcp47: "el-GR", latin: false },
-  ar: { name: "Arabic", bcp47: "ar-SA", latin: false },
-  hi: { name: "Hindi", bcp47: "hi-IN", latin: false },
-  ja: { name: "Japanese", bcp47: "ja-JP", latin: false },
-  zh: { name: "Mandarin", bcp47: "zh-CN", latin: false },
-  ko: { name: "Korean", bcp47: "ko-KR", latin: false },
+  en: { name: "English", bcp47: "en-US", latin: true, espeak: "en-us" },
+  es: { name: "Spanish", bcp47: "es-ES", latin: true, espeak: "es" },
+  fr: { name: "French", bcp47: "fr-FR", latin: true, espeak: "fr-fr" },
+  it: { name: "Italian", bcp47: "it-IT", latin: true, espeak: "it" },
+  pt: { name: "Portuguese", bcp47: "pt-PT", latin: true, espeak: "pt" },
+  de: { name: "German", bcp47: "de-DE", latin: true, espeak: "de" },
+  nl: { name: "Dutch", bcp47: "nl-NL", latin: true, espeak: "nl" },
+  sv: { name: "Swedish", bcp47: "sv-SE", latin: true, espeak: "sv" },
+  pl: { name: "Polish", bcp47: "pl-PL", latin: true, espeak: "pl" },
+  fi: { name: "Finnish", bcp47: "fi-FI", latin: true, espeak: "fi" },
+  ru: { name: "Russian", bcp47: "ru-RU", latin: false, espeak: "ru" },
+  el: { name: "Greek", bcp47: "el-GR", latin: false, espeak: "el" },
+  ar: { name: "Arabic", bcp47: "ar-SA", latin: false, espeak: "ar", rtl: true },
+  hi: { name: "Hindi", bcp47: "hi-IN", latin: false, espeak: "hi" },
+  ja: { name: "Japanese", bcp47: "ja-JP", latin: false, espeak: "ja" },
+  zh: { name: "Mandarin", bcp47: "zh-CN", latin: false, espeak: "cmn" },
+  ko: { name: "Korean", bcp47: "ko-KR", latin: false, espeak: "ko" },
+  he: { name: "Hebrew", bcp47: "he-IL", latin: false, espeak: "he", rtl: true },
+  fa: { name: "Persian", bcp47: "fa-IR", latin: false, espeak: "fa", rtl: true },
+  tr: { name: "Turkish", bcp47: "tr-TR", latin: true, espeak: "tr" },
+  cs: { name: "Czech", bcp47: "cs-CZ", latin: true, espeak: "cs" },
+  id: { name: "Indonesian", bcp47: "id-ID", latin: true, espeak: "id" },
+  vi: { name: "Vietnamese", bcp47: "vi-VN", latin: true, espeak: "vi" },
+  th: { name: "Thai", bcp47: "th-TH", latin: false },
+  ta: { name: "Tamil", bcp47: "ta-IN", latin: false, espeak: "ta" },
+  la: { name: "Latin", bcp47: "la", latin: true, espeak: "la" },
+  grc: { name: "Ancient Greek", bcp47: "grc", latin: false, espeak: "grc" },
+  sa: { name: "Sanskrit", bcp47: "sa-IN", latin: false },
+  ang: { name: "Old English", bcp47: "ang", latin: true },
 };
+
+export function langDir(code: string): "rtl" | undefined {
+  return LANGS[code]?.rtl ? "rtl" : undefined;
+}
 
 export const LANG_CODES = Object.keys(LANGS);
 export const MAX_TARGETS = 6;
 export const NEW_PER_LANG_PER_DAY = 5;
 export const PLACEMENT_TIERS = [0, 2, 4, 6, 8, 10];
-export const PLACEMENT_MAX_ITEMS = 12;
+export const PLACEMENT_ITEMS_PER_TIER = 3;
+export const PLACEMENT_PASS_PER_TIER = 2;
+export const PLACEMENT_MAX_ITEMS = 18;
+export const PLACEMENT_PRODUCE_AT = 1;
 export const UNIT_UNLOCK_SHARE = 0.8;
 
 export const PRESETS: { name: string; targets: string[] }[] = [
@@ -783,39 +804,48 @@ export function gradeCard(state: EngineState, lang: string, itemId: string, rati
   return next;
 }
 
+export type PlacementMode = "recognize" | "produce";
+
 export interface PlacementAnswer {
   tier: number;
   correct: boolean;
+  mode?: PlacementMode;
 }
 
 export interface PlacementStep {
   done: boolean;
   tier: number;
   nextTier?: number;
+  nextMode?: PlacementMode;
 }
 
 export function placementStep(answers: PlacementAnswer[], maxItems = PLACEMENT_MAX_ITEMS): PlacementStep {
-  const tierAt = (i: number) => (i < PLACEMENT_TIERS.length ? PLACEMENT_TIERS[i] : PLACEMENT_TIERS[PLACEMENT_TIERS.length - 1] + 1);
-  let lo = 0;
-  let hi = PLACEMENT_TIERS.length;
-  while (lo < hi) {
-    const mid = Math.floor((lo + hi) / 2);
-    const t = PLACEMENT_TIERS[mid];
+  const after = (i: number) => (i + 1 < PLACEMENT_TIERS.length ? PLACEMENT_TIERS[i + 1] : PLACEMENT_TIERS[PLACEMENT_TIERS.length - 1] + 1);
+  for (let i = 0; i < PLACEMENT_TIERS.length; i++) {
+    const t = PLACEMENT_TIERS[i];
     const at = answers.filter((a) => a.tier === t);
     const right = at.filter((a) => a.correct).length;
     const wrong = at.length - right;
-    const decided = right >= 2 || wrong >= 2 || answers.length >= maxItems;
-    if (!decided) return { done: false, tier: tierAt(lo), nextTier: t };
-    if (right > wrong) lo = mid + 1;
-    else hi = mid;
+    if (right >= PLACEMENT_PASS_PER_TIER) continue;
+    if (wrong > PLACEMENT_ITEMS_PER_TIER - PLACEMENT_PASS_PER_TIER || at.length >= PLACEMENT_ITEMS_PER_TIER || answers.length >= maxItems) return { done: true, tier: t };
+    return { done: false, tier: t, nextTier: t, nextMode: at.length === PLACEMENT_PRODUCE_AT ? "produce" : "recognize" };
   }
-  return { done: true, tier: tierAt(lo) };
+  return { done: true, tier: after(PLACEMENT_TIERS.length - 1) };
+}
+
+export function placementHardness(item: LangItem, root: string, lang: string): number {
+  const a = normalizeAnswer(item.forms[root] ?? "", root);
+  const b = normalizeAnswer(item.forms[lang] ?? "", lang);
+  const n = Math.max(a.length, b.length, 1);
+  return editDistance(a, b) / n;
 }
 
 export function placementItem(system: LangSystem, corpus: LangCorpus, lang: string, tier: number, seen: Set<string>, rng: Rng): LangItem | null {
   const exact = corpus.items.filter((i) => i.kind === "word" && i.tier === tier && usable(i, system.root, lang) && !seen.has(i.id));
   const near = exact.length ? exact : corpus.items.filter((i) => i.kind === "word" && Math.abs(i.tier - tier) <= 1 && usable(i, system.root, lang) && !seen.has(i.id));
-  return near.length ? shuffle(near, rng)[0] : null;
+  if (!near.length) return null;
+  const ranked = shuffle(near, rng).sort((x, y) => placementHardness(y, system.root, lang) - placementHardness(x, system.root, lang));
+  return ranked[Math.floor(rng() * Math.max(1, Math.ceil(ranked.length / 2)))];
 }
 
 export function placementOptions(corpus: LangCorpus, item: LangItem, lang: string, root: string, rng: Rng): string[] {
