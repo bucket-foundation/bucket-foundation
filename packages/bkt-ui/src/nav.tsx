@@ -1,6 +1,7 @@
 import type { Api } from "./api";
 import type { Route } from "./router";
 import { AddView } from "./views/Add";
+import { AgentsScreen } from "./views/AgentsScreen";
 import { AdvisorsView } from "./views/Advisors";
 import { AtlasesView } from "./views/Atlases";
 import { CanonSearchView } from "./views/CanonSearch";
@@ -31,6 +32,7 @@ import { WordConceptsView, WordDeckView, WordLessonView, WordLicenceView } from 
 
 export const NAV: { route: Route; label: string }[] = [
   { route: { name: "learn" }, label: "Learn" },
+  { route: { name: "agents" }, label: "Agents" },
   { route: { name: "path" }, label: "Path" },
   { route: { name: "quiz" }, label: "Quiz" },
   { route: { name: "review" }, label: "Review" },
@@ -61,8 +63,14 @@ export function activeNav(route: Route): Route["name"] {
   return route.name;
 }
 
-export function navFor(workReady: boolean) {
-  return NAV.filter((n) => n.route.name !== "work" || workReady);
+export function navFor(workReady: boolean, agentsReady = false) {
+  return NAV.filter((n) => (n.route.name !== "work" || workReady) && (n.route.name !== "agents" || agentsReady));
+}
+
+export async function agentsAvailable(api: Pick<Api, "agentTools" | "agentsV2">): Promise<boolean> {
+  const [tools, body] = await Promise.allSettled([api.agentTools(), api.agentsV2()]);
+  if (tools.status === "fulfilled" && tools.value.length > 0) return true;
+  return body.status === "fulfilled" && (body.value.sessions.length > 0 || body.value.chats.length > 0);
 }
 
 export function Screen({ api, route }: { api: Api; route: Route }) {
@@ -108,6 +116,7 @@ function Page({ api, route }: { api: Api; route: Route }) {
   if (route.name === "workspace") return <WorkspaceView key={route.type ?? "tables"} api={api} type={route.type ?? "tables"} item={route.item} />;
   if (route.name === "import") return <ImportView api={api} />;
   if (route.name === "add") return <AddView />;
+  if (route.name === "agents") return <AgentsScreen api={api} />;
   if (route.name === "settings") return <SettingsView api={api} />;
   if (route.name === "library") return <LibraryView api={api} />;
   if (route.name === "graph") return <RosMapView branch={route.branch} />;

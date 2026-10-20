@@ -1,20 +1,16 @@
 import type { Atom, Depth, QuizItem } from "./engine";
 
-const W_CORRECT = 1.55;
-const W_INCORRECT = 1.35;
-const W_SLOW = 0.55;
-const PROP_DECAY = 0.62;
-const PROP_FLOOR = 0.18;
-const INFER_FLOOR = 1.4;
-const CLOSURE_BIAS = 0.15;
-const UNCERTAIN_LO = 0.32;
-const UNCERTAIN_HI = 0.68;
 export const MAX_QUESTIONS_DEFAULT = 18;
 export const KNOWN_THRESHOLD = 0.62;
+export const ITEMS_PER_LEVEL = 3;
+export const PASS_PER_LEVEL = 2;
+export const SLOW_CREDIT = 0.5;
+export const HARDEST_FIRST: Depth[] = ["derive", "apply", "teach", "recall"];
 
-const clamp01 = (x: number) => (x < 1e-4 ? 1e-4 : x > 1 - 1e-4 ? 1 - 1e-4 : x);
-const logit = (p: number) => Math.log(clamp01(p) / (1 - clamp01(p)));
-const sigmoid = (z: number) => 1 / (1 + Math.exp(-z));
+const P_KNOWN = 0.92;
+const P_MISSED = 0.08;
+const P_UNTESTED = 0.2;
+const P_UNCONFIRMED = 0.5;
 
 interface Closures {
   reqC: Map<string, Set<string>>;
@@ -52,6 +48,47 @@ export function buildClosures(atoms: Atom[]): Closures {
   return { reqC, unlC, between };
 }
 
+export function prerequisiteDepth(atoms: Atom[]): Map<string, number> {
+  const byId = new Map(atoms.map((a) => [a.id, a]));
+  const depth = new Map<string, number>();
+  const visit = (id: string, stack: Set<string>): number => {
+    const known = depth.get(id);
+    if (known !== undefined) return known;
+    if (stack.has(id)) return 0;
+    stack.add(id);
+    const reqs = (byId.get(id)?.requires ?? []).filter((r) => byId.has(r));
+    const d = reqs.length ? 1 + Math.max(...reqs.map((r) => visit(r, stack))) : 0;
+    stack.delete(id);
+    depth.set(id, d);
+    return d;
+  };
+  atoms.forEach((a) => visit(a.id, new Set()));
+  return depth;
+}
+
+const QUIZ_WEIGHT: Record<string, number> = { recall: 0, apply: 0.5, teach: 0.75, derive: 1 };
+
+export function hardestQuiz(a: Atom): QuizItem | null {
+  for (const lvl of HARDEST_FIRST) {
+    const q = (a.quiz ?? []).find((x) => x.level === lvl);
+    if (q) return q;
+  }
+  return a.quiz?.[0] ?? null;
+}
+
+export function itemDifficulty(a: Atom, depth: number): number {
+  return depth + (QUIZ_WEIGHT[hardestQuiz(a)?.level ?? "recall"] ?? 0);
+}
+
+export function placementLevels(atoms: Atom[], maxLevels: number): Atom[][] {
+  const depth = prerequisiteDepth(atoms);
+  const sorted = atoms.slice().sort((x, y) => itemDifficulty(x, depth.get(x.id) ?? 0) - itemDifficulty(y, depth.get(y.id) ?? 0) || (x.id < y.id ? -1 : x.id > y.id ? 1 : 0));
+  const n = Math.max(1, Math.min(maxLevels, Math.floor(sorted.length / ITEMS_PER_LEVEL) || 1));
+  const levels: Atom[][] = Array.from({ length: n }, () => []);
+  sorted.forEach((a, i) => levels[Math.min(n - 1, Math.floor((i * n) / sorted.length))].push(a));
+  return levels;
+}
+
 export interface DiagnosticItem {
   id: string;
   atom: Atom;
@@ -76,16 +113,21 @@ export interface Placement {
   questionsAsked: number;
   placedCount: number;
   total: number;
+  levelsPassed: number;
+  levels: number;
 }
 
 export class Diagnostic {
   atoms: Atom[];
   byId: Map<string, Atom>;
   maxQ: number;
-  private closures: Closures;
-  logodds = new Map<string, number>();
+  levels: Atom[][];
   asked: Asked[] = [];
+  private closures: Closures;
   private askedSet = new Set<string>();
+  private probes: Atom[][];
+  private level = 0;
+  private stopped = false;
   private started = false;
 
   constructor(atoms: Atom[], opts: { maxQuestions?: number } = {}) {
@@ -93,14 +135,21 @@ export class Diagnostic {
     this.atoms = atoms.filter((a) => (a.quiz?.length ?? 0) > 0);
     this.maxQ = opts.maxQuestions ?? MAX_QUESTIONS_DEFAULT;
     this.closures = buildClosures(atoms);
+    this.levels = placementLevels(this.atoms, Math.max(1, Math.floor(this.maxQ / ITEMS_PER_LEVEL)));
+    this.probes = this.levels.map((lvl) =>
+      lvl
+        .slice()
+        .sort((x, y) => (this.closures.between.get(y.id) ?? 0) - (this.closures.between.get(x.id) ?? 0) || (x.id < y.id ? -1 : 1))
+        .slice(0, ITEMS_PER_LEVEL),
+    );
     this.reset();
   }
 
   reset(): void {
-    const prior = logit(0.4);
-    this.logodds = new Map(this.atoms.map((a) => [a.id, prior]));
     this.asked = [];
     this.askedSet = new Set();
+    this.level = 0;
+    this.stopped = false;
     this.started = false;
   }
 
@@ -110,49 +159,55 @@ export class Diagnostic {
     return this;
   }
 
+  private tally(level: number): { credit: number; open: number; need: number } {
+    const probes = this.probes[level] ?? [];
+    let credit = 0;
+    for (const a of this.asked) {
+      if (!probes.some((p) => p.id === a.id) || !a.correct) continue;
+      credit += a.slow ? SLOW_CREDIT : 1;
+    }
+    const open = probes.filter((p) => !this.askedSet.has(p.id)).length;
+    return { credit, open, need: Math.min(PASS_PER_LEVEL, probes.length) };
+  }
+
+  private advance(): void {
+    while (!this.stopped && this.level < this.probes.length) {
+      const t = this.tally(this.level);
+      if (t.credit >= t.need) {
+        this.level++;
+        continue;
+      }
+      if (t.credit + t.open < t.need || this.asked.length >= this.maxQ) this.stopped = true;
+      return;
+    }
+  }
+
+  levelsPassed(): number {
+    return this.level;
+  }
+
   p(id: string): number {
-    return sigmoid(this.logodds.get(id) ?? logit(0.4));
+    const lvl = this.levels.findIndex((l) => l.some((a) => a.id === id));
+    const passed = lvl >= 0 && lvl < this.level;
+    const asked = this.asked.find((a) => a.id === id);
+    if (asked && !asked.correct) return P_MISSED;
+    if (passed) return P_KNOWN;
+    return asked ? P_UNCONFIRMED : P_UNTESTED;
   }
 
   done(): boolean {
     if (!this.started) return false;
-    if (this.asked.length >= this.maxQ) return true;
-    if (this.askedSet.size >= this.atoms.length) return true;
-    return !this.atoms.some((a) => {
-      if (this.askedSet.has(a.id)) return false;
-      const p = this.p(a.id);
-      return p >= UNCERTAIN_LO && p <= UNCERTAIN_HI;
-    });
+    return this.stopped || this.level >= this.probes.length || this.asked.length >= this.maxQ;
   }
 
   next(): DiagnosticItem | null {
     if (this.done()) return null;
-    const proven = this.asked.some((a) => a.correct);
-    let maxReqC = 1;
-    if (proven) this.atoms.forEach((a) => (maxReqC = Math.max(maxReqC, this.closures.reqC.get(a.id)!.size)));
-    let best: Atom | null = null;
-    let bestScore = Infinity;
-    this.atoms.forEach((a) => {
-      if (this.askedSet.has(a.id)) return;
-      const p = this.p(a.id);
-      let score = Math.abs(p - 0.5) - (this.closures.between.get(a.id) ?? 0) * 0.12;
-      if (proven) score -= (this.closures.reqC.get(a.id)!.size / maxReqC) * CLOSURE_BIAS;
-      if (score < bestScore) {
-        bestScore = score;
-        best = a;
-      }
-    });
-    return best ? this.payload(best) : null;
+    const a = (this.probes[this.level] ?? []).find((p) => !this.askedSet.has(p.id));
+    return a ? this.payload(a) : null;
   }
 
   private payload(a: Atom): DiagnosticItem {
-    const order: Depth[] = ["recall", "apply", "derive", "teach"];
-    let q: QuizItem | null = null;
-    for (const lvl of order) {
-      q = (a.quiz ?? []).find((x) => x.level === lvl) ?? null;
-      if (q) break;
-    }
-    q = q ?? a.quiz?.[0] ?? null;
+    const q = hardestQuiz(a);
     return {
       id: a.id,
       atom: a,
@@ -165,44 +220,11 @@ export class Diagnostic {
   }
 
   answer(id: string, correct: boolean, meta: { slow?: boolean } = {}): void {
-    if (this.askedSet.has(id) || !this.logodds.has(id)) return;
+    if (this.askedSet.has(id) || !this.byId.has(id) || this.done()) return;
+    if (!(this.probes[this.level] ?? []).some((p) => p.id === id)) return;
     this.askedSet.add(id);
     this.asked.push({ id, correct, slow: Boolean(meta.slow) });
-    if (correct) {
-      const base = meta.slow ? W_SLOW : W_CORRECT;
-      this.logodds.set(id, this.logodds.get(id)! + base);
-      if (meta.slow) this.propagate(this.closures.reqC.get(id), base);
-      else this.inferKnown(this.closures.reqC.get(id));
-    } else {
-      this.logodds.set(id, this.logodds.get(id)! - W_INCORRECT);
-      this.inferUnknown(this.closures.unlC.get(id));
-    }
-  }
-
-  private propagate(closure: Set<string> | undefined, base: number): void {
-    if (!closure) return;
-    const nudge = base * PROP_DECAY;
-    if (nudge < PROP_FLOOR) return;
-    closure.forEach((cid) => {
-      if (this.askedSet.has(cid) || !this.logodds.has(cid)) return;
-      this.logodds.set(cid, this.logodds.get(cid)! + nudge);
-    });
-  }
-
-  private inferKnown(closure: Set<string> | undefined): void {
-    if (!closure) return;
-    closure.forEach((cid) => {
-      if (this.askedSet.has(cid) || !this.logodds.has(cid)) return;
-      if (this.logodds.get(cid)! < INFER_FLOOR) this.logodds.set(cid, INFER_FLOOR);
-    });
-  }
-
-  private inferUnknown(closure: Set<string> | undefined): void {
-    if (!closure) return;
-    closure.forEach((cid) => {
-      if (this.askedSet.has(cid) || !this.logodds.has(cid)) return;
-      if (this.logodds.get(cid)! > -INFER_FLOOR) this.logodds.set(cid, -INFER_FLOOR);
-    });
+    this.advance();
   }
 
   result(threshold: number = KNOWN_THRESHOLD): Placement {
@@ -213,10 +235,20 @@ export class Diagnostic {
       detail[a.id] = +p.toFixed(3);
       if (p >= threshold) known.push(a.id);
     });
-    known.sort((x, y) => this.closures.reqC.get(x)!.size - this.closures.reqC.get(y)!.size);
+    known.sort((x, y) => this.closures.reqC.get(x)!.size - this.closures.reqC.get(y)!.size || (x < y ? -1 : 1));
     const knownSet = new Set(known);
     const frontier = known.filter((id) => (this.byId.get(id)?.unlocks ?? []).some((u) => this.byId.has(u) && !knownSet.has(u)));
-    return { known, frontier, detail, asked: this.asked.slice(), questionsAsked: this.asked.length, placedCount: known.length, total: this.atoms.length };
+    return {
+      known,
+      frontier,
+      detail,
+      asked: this.asked.slice(),
+      questionsAsked: this.asked.length,
+      placedCount: known.length,
+      total: this.atoms.length,
+      levelsPassed: this.level,
+      levels: this.probes.length,
+    };
   }
 
   simulate(responder: (item: DiagnosticItem) => { correct: boolean; slow?: boolean }): Placement {

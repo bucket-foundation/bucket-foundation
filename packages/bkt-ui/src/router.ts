@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export type Route =
   | { name: "learn" }
+  | { name: "agents" }
   | { name: "deck"; deck: string; atom?: string }
   | { name: "place"; deck: string }
   | { name: "assess"; deck: string }
@@ -82,7 +83,7 @@ function parseResearch(parts: string[]): Route {
   return RESEARCH_ITEM.test(parts[3]) ? { name: "research", slug: parts[1], tab, item: parts[3] } : { name: "research" };
 }
 
-const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
+const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile", "agents"]);
 const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
 const LANGUAGE = /^[a-z]{2,3}$/;
 const PAGE = /^[1-9]\d{0,3}$/;

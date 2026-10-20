@@ -15,7 +15,7 @@ import { spawn } from "node:child_process";
 import { formLines, listAnalyses, parseAnalyzeArgs, startAnalysis, type AnalysisResult, type AnalyzeOptions } from "../analyze";
 import { AnalysisBrowser, AnalyzeRun } from "../analyze-view";
 import type { Pack, PackDeck } from "../pack/export";
-import { dataDir, ensureDataDir, openSession, pickKeyring, type Session } from "../setup";
+import { dataDir, ensureDataDir, openSession, pickKeyring, promptPassphrase, readPassphraseFd, type Session } from "../setup";
 import { loadBank, loadReview, loadScores } from "../hai/files";
 import { HaiStore } from "../hai/store";
 import { freeze, parseToolArgs, review, score } from "../hai/tools";
@@ -42,7 +42,7 @@ import { provenServer } from "../core/remote";
 import { graphView } from "./screens";
 import { HaiApp } from "../hai/view";
 import { doctorLines, doctorPassed, runDoctor } from "../doctor";
-import { execSync, platformFor } from "../platform";
+import { exec as platformExec, execSync, platformFor } from "../platform";
 import { completionScript, isShell } from "./completion";
 import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
@@ -87,10 +87,18 @@ import { NOTIFY_BODY_BYTES, settingsRoutes } from "../settings";
 import { describeOutcome, updateNow, updateRoutes } from "../install";
 import { AppWindow, askRunningApp, checkRoute, processTable, readApp, requestReopen, RouteError, routeUrl, runtimeDir, ROUTE_WAIT_MS, takeReopen, takeRoute, uiDir, windowRoutes, writeApp, writeRoute } from "../window";
 import { defaultDeps, quizCommand, writeQuizRoots } from "../notify";
+import { askCommand, llmCommand } from "./llm";
+import { Database } from "bun:sqlite";
+import { agentsCmd } from "./agents-cmd";
+import { agentRoutes, canonRunner } from "../agents";
+import { defaultWaitDeps, FOCUS_BODY_BYTES, WAIT_BODY_BYTES, waitCommand, waitRoutes } from "../wait";
 import { hostname } from "node:os";
+import { generatedFigures, generationRoutes } from "../generation-routes";
+import { findRepo, GenerateError, loadRegistry, pastRuns, runFolder, runGeneration } from "../generate";
 import { openRemote } from "../sync";
 import type { RemoteSync } from "../../../../src/lib/academy/remote-sync";
-import { syncRoutes } from "../sync/routes";
+import { startSyncLoop, syncRoutes } from "../sync/routes";
+import { pullRemoteProgress, type LearnStore } from "../sync/pull-progress";
 
 function printResult(o: AnalyzeOptions, r: AnalysisResult): number {
   const { code, report, stderr, cancelled } = r;
@@ -325,6 +333,17 @@ async function research(inv: Invocation, json: boolean): Promise<number> {
   }
 }
 
+function spawnDetached(cmd: string, args: string[], cwd: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const child = spawn(cmd, args, { cwd, shell: false, detached: true, stdio: "ignore" });
+    child.once("error", reject);
+    child.once("spawn", () => {
+      child.unref();
+      resolve();
+    });
+  });
+}
+
 async function serve(name: "serve" | "app", session: Session, dir: string, content: Pack, route: string | null): Promise<void> {
   const workQuiz = new WorkQuizStore(session.store, session.key);
   writeQuizRoots(dir, workQuiz.chat());
@@ -351,6 +370,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   ];
   const data = dataRoutes(adapters);
   const researchTrouble = (e: Error) => console.error(`bkt serve: research: ${e.message}`);
+  const renders = { home: dir, repo: findRepo(process.env.BKT_REPO ?? process.cwd()) };
   const research = new Research({ index: researchIndex as unknown as ResearchIndex, blobs: async () => (await Bun.file(researchBlobsFile as unknown as string).json()) as ResearchBlobs }, undefined, dir, researchTrouble);
   const ownOutputs = new LocalOutputs(dir, { taken: (slug) => (researchIndex as unknown as ResearchIndex).outputs.some((o) => o.slug === slug) || research.staffHas(slug) });
   research.setLocal(ownOutputs);
@@ -365,6 +385,10 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   const researchWork = new ResearchWork(research, dir, { open: (folder) => void spawn(platformFor().os === "darwin" ? "open" : platformFor().os === "win32" ? "explorer" : "xdg-open", [folder], { stdio: "ignore", detached: true }).on("error", researchTrouble).unref() });
   const builds = new ResearchBuilds({ research, runner: buildRunner, consent: buildConsent, gate: buildGate, os: platformFor().os, ownBuilds: (slug) => ownOutputs.buildsOn(slug) });
   const pagesRunner = new JobRunner({ root: join(dir, "research", "jobs", "pages"), specs: researchSpecs({ os: platformFor().os }), keep: PAGES_KEEP, frozenOnly: true });
+  const remote = openRemote(session, dir);
+  const syncTrouble = (m: string) => console.error(`bkt serve: sync: ${m}`);
+  const pullProgress = () => pullRemoteProgress(remote, session.store);
+  const stopSync = startSyncLoop(remote, pullProgress, syncTrouble);
   const srv = startServe({
     cliToken,
     cliSecret,
@@ -375,7 +399,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi), graph: (canonPack as CanonPack).graph ?? null }),
       ...exploreRoutes(explore, canon),
       ...localRoutes(session.store, { content, langCorpus, saveExport: saveTextToDownloads() }),
-      ...syncRoutes(openRemote(session, dir), { label: () => hostname(), onError: (m) => console.error(`bkt serve: sync: ${m}`) }),
+      ...syncRoutes(remote, { label: () => hostname(), onError: syncTrouble, pullProgress }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
       ...rosLiveRoutes(new RosGraph(session.store.db), Date.now, { saveExport: saveToDownloads() }),
       ...advisorRoutes(people),
@@ -383,7 +407,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...researchRoutes(research, researchTrouble),
       ...researchWorkRoutes(researchWork, researchTrouble, ownOutputs),
       ...alignmentRoutes(alignmentReview as unknown as AlignmentReviewPack),
-      ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => (rowSetPack as unknown as RowSetPack).sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0]?.modes ?? [] })) }, researchTrouble),
+      ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => (rowSetPack as unknown as RowSetPack).sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0]?.modes ?? [] })), generated: () => generatedFigures(renders) }, researchTrouble),
+      ...generationRoutes(renders, researchTrouble),
       ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os, built: (slug, path) => researchWork.built(slug, path) }), researchTrouble),
       ...researchBuildRoutes(builds, researchTrouble),
       ...workQuizRoutes(workQuiz, { onChat: (on) => writeQuizRoots(dir, on), atoms: packLearnAtoms((pack as Pack).atoms), words: wordBook().bundled.set }),
@@ -395,6 +420,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...historyRoutes(new HistoryStore(session.store, session.key)),
       ...settingsRoutes({ dataDir: dir, timerDir: platformFor().timerDir(), quiz: defaultDeps }),
       ...updateRoutes({ current: VERSION }),
+      ...waitRoutes(defaultWaitDeps),
+      ...agentRoutes({ wait: defaultWaitDeps, llmHome: dir, keyring: session.keyring, which: (b) => Bun.which(b), run: canonRunner(canon), spawn: spawnDetached }),
     },
     routeBodyBytes: {
       "POST /local/import": IMPORT_BODY_BYTES,
@@ -412,6 +439,8 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       "POST /local/explore/saved": SAVED_BODY_BYTES,
       "POST /local/history/import": HISTORY_BODY_BYTES,
       "POST /local/open": OPEN_BODY_BYTES,
+      "POST /local/focus": FOCUS_BODY_BYTES,
+      "POST /local/wait": WAIT_BODY_BYTES,
     },
     uiDir: uiDir(),
     onError: (e) => console.error(`bkt serve: ${e.message}`),
@@ -443,6 +472,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   process.off("SIGUSR1", reopen);
   clearInterval(asked);
+  stopSync();
   win.forget();
   runner.stopAll();
   pagesRunner.stopAll();
@@ -570,7 +600,7 @@ function tuiSources(session: Session): AppSources {
   };
 }
 
-async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync, json: boolean): Promise<number> {
+async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync, json: boolean, store: LearnStore): Promise<number> {
   if (name === "logout") {
     await remote.logout();
     console.log(json ? jsonLine("logout", { signed_in: false }) : "Signed out on this device.");
@@ -586,9 +616,44 @@ async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync,
   }
   await remote.sync.flush();
   const pulled = await remote.sync.pullLog();
-  const out = { mode: remote.sync.mode(), pending: remote.sync.pending().length, held: remote.sync.held().length, pulled: pulled?.length ?? null };
-  console.log(json ? jsonLine("sync", out) : `sync: ${out.mode}, ${out.pending} waiting to send, ${out.pulled ?? 0} pulled`);
+  const merged = pulled === null ? null : await pullRemoteProgress(remote, store);
+  const out = { mode: remote.sync.mode(), pending: remote.sync.pending().length, held: remote.sync.held().length, pulled: pulled?.length ?? null, merged: merged ?? [] };
+  console.log(json ? jsonLine("sync", out) : out.pending ? `${out.pending} changes waiting to sync, ${out.pulled ?? 0} pulled` : `synced, ${out.pulled ?? 0} pulled, ${out.merged.length} decks updated from your account`);
   return out.mode === "log" ? EXIT.ok : EXIT.failure;
+}
+
+function generateCmd(inv: Invocation, json: boolean): number {
+  const v = inv.values;
+  const home = dataDir();
+  if (v.past === true) {
+    const runs = pastRuns(home, inv.positionals[0]).map((r) => ({ name: r.name, folder: r.folder, created: r.record.created, params: r.record.params, outputs: r.record.outputs }));
+    if (json) console.log(jsonLine("generate", { runs }));
+    else if (!runs.length) console.log("No stored figures yet. bkt generate --list shows what can be made.");
+    else for (const r of runs) console.log(`${r.created.slice(0, 16).replace("T", " ")}  ${r.name}  ${Object.values(r.params).join(" ")}  ${r.folder}`);
+    return EXIT.ok;
+  }
+  const repo = findRepo(typeof v.repo === "string" ? v.repo : process.cwd());
+  if (!repo) throw new UsageError("bkt generate runs inside the Bucket repository; pass --repo or run it from there", inv.command);
+  const reg = loadRegistry(repo);
+  if (v.list === true || !inv.positionals[0]) {
+    const generations = reg.generations.map((g) => ({ name: g.name, about: g.about, inputs: g.inputs }));
+    if (json) console.log(jsonLine("generate", { generations }));
+    else for (const g of generations) console.log(`${g.name.padEnd(24)} ${g.about}${Object.keys(g.inputs).length ? ` (--${Object.keys(g.inputs).join(", --")})` : ""}`);
+    return EXIT.ok;
+  }
+  const params: Record<string, string> = {};
+  for (const k of ["problem", "label", "corpus"]) if (typeof v[k] === "string") params[k] = v[k] as string;
+  const name = inv.positionals[0];
+  const folder = runFolder(home, name, params, new Date());
+  try {
+    const rec = runGeneration(reg, name, params, { repo, out: folder });
+    if (json) console.log(jsonLine("generate", { folder, outputs: rec.outputs }));
+    else console.log(`Made ${name} in ${folder}: ${rec.outputs.join(", ")}`);
+    return EXIT.ok;
+  } catch (e) {
+    if (e instanceof GenerateError) throw new UsageError(e.message, inv.command);
+    throw e;
+  }
 }
 
 export async function execute(inv: Invocation): Promise<number> {
@@ -611,6 +676,7 @@ export async function execute(inv: Invocation): Promise<number> {
   if (name === "quiz notify") return quizCommand(["notify", ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz schedule") return quizCommand(["schedule", ...(typeof inv.values.at === "string" ? ["--at", inv.values.at] : []), ...(inv.values.force === true ? ["--force"] : [])]);
   if (name === "quiz unschedule") return quizCommand(["unschedule"]);
+  if (name === "wait install" || name === "wait uninstall" || name === "wait status") return waitCommand([name.slice(5), ...(inv.values.gemini === true ? ["--gemini"] : [])]);
   let route: string | null = null;
   if (name === "app" && inv.values.route !== undefined) {
     try {
@@ -627,6 +693,10 @@ export async function execute(inv: Invocation): Promise<number> {
     return EXIT.ok;
   }
   if (name === "doctor") return doctor(inv, json);
+  if (name.startsWith("llm ")) return llmCmd(inv);
+  if (name === "agents") return agentsCmd(inv, memoryCanon);
+  if (name === "ask") return askCmd(inv);
+  if (name === "generate") return generateCmd(inv, json);
   if (DECK_COMMANDS[name]) return decks(inv, json);
   if (name.startsWith("research ")) return researchCmd(inv, json);
   if (name === "licences") {
@@ -699,7 +769,7 @@ export async function execute(inv: Invocation): Promise<number> {
     } else if (name === "forget people") {
       const n = new PeopleStore(session.store, session.key).forget(Date.now());
       console.log(`forgot ${n} people; a later import skips them unless you confirm`);
-    } else if (name === "login" || name === "logout" || name === "sync") return await accountCmd(name, openRemote(session, dir), json);
+    } else if (name === "login" || name === "logout" || name === "sync") return await accountCmd(name, openRemote(session, dir), json, session.store);
     else if (name === "serve" || name === "app") await serve(name, session, dir, content, route);
     else if (name === "stats") {
       const s = session.store.stats(Date.now());
@@ -709,4 +779,33 @@ export async function execute(inv: Invocation): Promise<number> {
   } finally {
     session.store.close();
   }
+}
+
+function memoryCanon(): CanonStore {
+  const db = new Database(":memory:");
+  db.run("create table meta (k text primary key, v text not null)");
+  syncCanon(db, canonPack as CanonPack);
+  return new CanonStore(db);
+}
+
+async function askCmd(inv: Invocation): Promise<number> {
+  const home = ensureDataDir(dataDir());
+  return askCommand(inv.positionals[0], inv.values, { home, keyring: () => pickKeyring(keyringOptions(inv), home), store: memoryCanon(), out: (l) => console.log(l) });
+}
+
+async function llmCmd(inv: Invocation): Promise<number> {
+  const home = ensureDataDir(dataDir());
+  const fd = inv.values["key-fd"];
+  return llmCommand(
+    inv.command.name.slice(4),
+    { positionals: inv.positionals, values: inv.values },
+    {
+      home,
+      keyring: () => pickKeyring(keyringOptions(inv), home),
+      readKey: async (label) => (typeof fd === "string" ? readPassphraseFd(Number(fd)) : promptPassphrase(label)),
+      fetch,
+      doctor: { fetch, exec: platformExec, now: Date.now, which: (b) => Bun.which(b) },
+      out: (l) => console.log(l),
+    },
+  );
 }

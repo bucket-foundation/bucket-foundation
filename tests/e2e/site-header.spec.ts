@@ -1,13 +1,14 @@
 import { test, expect } from "@playwright/test";
+import { expectSignedOutPill } from "./account-pill";
 
 for (const width of [1280, 390]) {
-  test(`at ${width} wide the header holds only the logo and Sign in`, async ({ page }) => {
+  test(`at ${width} wide the header holds only the logo and the account pill`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/download");
     const header = page.locator("header").first();
     await expect(header.getByRole("link")).toHaveCount(1);
     await expect(header.getByRole("link", { name: "bucket.foundation" })).toHaveAttribute("href", "/");
-    await expect(header.getByRole("button", { name: "Sign in" })).toBeVisible();
+    await expectSignedOutPill(header);
     for (const gone of ["Research OS", "Canon", "About"]) {
       await expect(header.getByRole("link", { name: gone, exact: true })).toHaveCount(0);
     }

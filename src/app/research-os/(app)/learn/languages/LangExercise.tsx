@@ -5,6 +5,7 @@ import type { Rating } from "@/lib/academy/fsrs";
 import { canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
 import { gradeMatch, joinTokens, judgeTyped, langDir, langName, LEVEL_LABEL, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
+import type { LinkForm } from "@/lib/academy/lang-layout";
 
 export interface ExerciseResult {
   lang: string;
@@ -198,7 +199,37 @@ function Prompt({ ex }: { ex: Exercise }) {
   );
 }
 
-export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exercise; onDone: (results: ExerciseResult[]) => void; optionReadings?: Record<string, Reading> }) {
+function Links({ links }: { links?: LinkForm[] }) {
+  if (!links || links.length === 0) return null;
+  return (
+    <p className="mt-3 text-[13px] text-[color:var(--basalt-2)]" data-testid="links">
+      <span className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">linked</span>{" "}
+      {links.map((l, i) => (
+        <span key={l.lang} data-link-lang={l.lang} data-link-why={l.why}>
+          {i > 0 && " · "}
+          {langName(l.lang)}{" "}
+          <span lang={l.lang} dir={langDir(l.lang)}>
+            {l.word}
+          </span>
+        </span>
+      ))}
+    </p>
+  );
+}
+
+function TargetHeadline({ ex }: { ex: Exercise }) {
+  return (
+    <div data-testid="target-headline">
+      <div className="text-[28px] text-[color:var(--basalt)]" lang={ex.promptLang} dir={langDir(ex.promptLang)}>
+        {ex.prompt} <SpeakButton text={ex.prompt} lang={ex.promptLang} />
+      </div>
+      <ReadingLine reading={ex.promptReading} />
+      <div className="mt-1 text-[13px] text-[color:var(--basalt-3)]">What does this mean in {langName(ex.answerLang)}?</div>
+    </div>
+  );
+}
+
+export default function LangExercise({ ex, onDone, optionReadings, links, targetLayout = false }: { ex: Exercise; onDone: (results: ExerciseResult[]) => void; optionReadings?: Record<string, Reading>; links?: LinkForm[]; targetLayout?: boolean }) {
   const [picked, setPicked] = useState<string | null>(null);
   const [typed, setTyped] = useState("");
   const [verdict, setVerdict] = useState<Verdict | null>(null);
@@ -231,6 +262,27 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
       {KIND_LABEL[ex.kind]} · {langName(ex.lang)}{ex.level ? ` · ${LEVEL_LABEL[ex.level]}` : ""}
     </div>
   );
+
+  if (ex.kind === "intro" && targetLayout) {
+    return (
+      <section className="bg-[color:var(--bone)] p-4 md:p-5" data-testid="exercise" data-kind={ex.kind} data-lang={ex.lang} data-layout="target">
+        {header}
+        <div className="mt-2 text-[28px] text-[color:var(--basalt)]" lang={ex.answerLang} dir={langDir(ex.answerLang)} data-testid="target-headline">
+          {ex.answer} <SpeakButton text={ex.answer} lang={ex.answerLang} />
+        </div>
+        <ReadingLine reading={ex.answerReading} testId="intro-reading" />
+        <div className="mt-1 text-[13px] text-[color:var(--basalt-3)]" data-testid="root-gloss">
+          {langName(ex.promptLang)}: <span lang={ex.promptLang} dir={langDir(ex.promptLang)}>{ex.prompt}</span>
+        </div>
+        <Links links={links} />
+        <FalseFriendNote ex={ex} />
+        {ex.note && <p className="mt-2 text-[12px] leading-[1.6] text-[color:var(--basalt-3)]">{ex.note}</p>}
+        <button type="button" onClick={() => onDone([])} className={BTN_PRIMARY + " mt-4"} data-testid="next">
+          got it
+        </button>
+      </section>
+    );
+  }
 
   if (ex.kind === "intro") {
     return (
@@ -362,7 +414,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
     <section className="bg-[color:var(--bone)] p-4 md:p-5" data-testid="exercise" data-kind={ex.kind} data-lang={ex.lang}>
       {header}
       <div className="mt-2 text-[15px] leading-[1.6] text-[color:var(--basalt)]">
-        <Prompt ex={ex} />
+        {targetLayout && ex.kind === "reverse" ? <TargetHeadline ex={ex} /> : <Prompt ex={ex} />}
       </div>
 
       {mc && ex.options && (

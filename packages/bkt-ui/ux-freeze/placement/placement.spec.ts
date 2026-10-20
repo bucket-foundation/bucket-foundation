@@ -96,8 +96,18 @@ test("language placement narrows in on a tier with a fixed seed", async () => {
   await page.locator('a[href$="/place"]').first().click();
   await page.getByTestId("option").first().waitFor();
   await freeze("lang-placement-question");
+  let typedFrozen = false;
   for (let i = 0; i < 60; i++) {
     if (await page.getByTestId("placement-done").isVisible()) break;
+    if (await page.getByTestId("answer").isVisible()) {
+      if (!typedFrozen) {
+        typedFrozen = true;
+        await freeze("lang-placement-typed");
+      }
+      await page.getByTestId("skip").click();
+      await page.waitForTimeout(100);
+      continue;
+    }
     const option = page.getByTestId("option").first();
     if (!(await option.isVisible())) {
       await page.waitForTimeout(100);
@@ -108,4 +118,37 @@ test("language placement narrows in on a tier with a fixed seed", async () => {
   }
   await page.getByTestId("placement-done").waitFor();
   await freeze("lang-placement-done");
+});
+
+const PREVIEW = "bucket-academy/v1/flags/polingual-shared-memory";
+let romanceStudy = "";
+
+test("shared memory: a new word leads with the target and links the other languages", async () => {
+  await page.goto("/research-os/learn/languages");
+  await page.evaluate((k) => localStorage.setItem(k, "1"), PREVIEW);
+  await page.reload();
+  await page.getByRole("button", { name: /^Romance:/ }).click();
+  await page.getByRole("button", { name: "create system" }).click();
+  await page.locator('a[href$="/study"]').last().waitFor();
+  romanceStudy = (await page.locator('a[href$="/study"]').last().getAttribute("href")) ?? "";
+  await page.goto(romanceStudy);
+  await page.locator('[data-layout="target"]').waitFor();
+  await expect(page.getByTestId("links")).toBeVisible();
+  await freeze("lang-intro-links");
+});
+
+test("shared memory: a review asks for the meaning of the target word", async () => {
+  const at = FROZEN_AT.getTime() - 2 * 86_400_000;
+  await page.evaluate(
+    ({ key, at }) => {
+      const cards = { "fr:eight": { state: "review", reps: 1, lapses: 0, stability: 1, difficulty: 5, lastReview: at, due: at + 86_400_000, introduced: "2026-10-16" } };
+      localStorage.setItem(key, JSON.stringify({ lang: "fr", baseline: { cards, prof: {}, settings: {}, stats: { xp: 0, streak: 0, lastStudyDay: null, history: {} } }, log: [], migrated: "v1" }));
+    },
+    { key: "bucket-academy/v1/lang-fr", at }
+  );
+  await page.goto(romanceStudy);
+  const ex = page.getByTestId("exercise");
+  await ex.waitFor();
+  await expect(page.locator('[data-kind="reverse"] [data-testid="target-headline"]')).toBeVisible();
+  await freeze("lang-recall-target");
 });

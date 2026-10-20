@@ -8,7 +8,7 @@ import { applyPlacement, editSystem, gradeCard, progressBranch, type LangCorpus,
 import { webProgressStore } from "@/lib/academy/progress-store";
 import { useAccountGate } from "@/lib/academy/account-gate-context";
 import { guestMayStudyLanguage } from "@/lib/academy/guest-merge";
-import { sharedMemoryOn } from "@/lib/academy/lang-memory";
+import { sharedMemoryActive } from "@/lib/academy/lang-memory";
 import { browserMemoryIO, gradeShared, openShared, placeShared, type LangLoadStatus, type SharedSession } from "@/lib/academy/lang-memory-store";
 
 export type LangStatus = "loading" | "ready" | "missing" | "error";
@@ -23,12 +23,14 @@ export interface LangSystemHandle {
   saveState: SaveResult | "idle" | "saving";
   edit: (targets: string[]) => void;
   langStatus: Record<string, LangLoadStatus>;
+  shared?: boolean;
 }
 
 export function useLangSystem(systemId: string): LangSystemHandle {
-  const shared = useSharedLangSystem(systemId, sharedMemoryOn());
-  const legacy = useLegacyLangSystem(systemId, !sharedMemoryOn());
-  const handle = sharedMemoryOn() ? shared : legacy;
+  const [on] = useState(sharedMemoryActive);
+  const shared = useSharedLangSystem(systemId, on);
+  const legacy = useLegacyLangSystem(systemId, !on);
+  const handle = on ? shared : legacy;
   const { guest, requireAccount } = useAccountGate();
   const inner = handle.grade;
   const grade = useCallback(
@@ -39,7 +41,7 @@ export function useLangSystem(systemId: string): LangSystemHandle {
     },
     [inner, guest, requireAccount, systemId]
   );
-  return useMemo(() => ({ ...handle, grade }), [handle, grade]);
+  return useMemo(() => ({ ...handle, grade, ...(on ? { shared: true } : {}) }), [handle, grade, on]);
 }
 
 function useLegacyLangSystem(systemId: string, active: boolean): LangSystemHandle {

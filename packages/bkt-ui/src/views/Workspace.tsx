@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Api, ResearchDetail, WorkspaceItem } from "../api";
+import type { Api, GenerationRow, ResearchDetail, WorkspaceItem } from "../api";
 import { href, parseHash, type Route, type WorkspaceType } from "../router";
 import { activateTab, openTab, patchTab, readTabs, windowStorage, writeTabs, type Tab, type Tabs, type TabStorage } from "../tabs";
 import { FILTER_WAIT_MS, NOT_LOADED, Pager } from "./Data";
@@ -14,7 +14,7 @@ import { FigurePane, figureItems, ORIGIN_LABELS, Paper, RecordSetPane, TablePane
 import { TabBar } from "./TabBar";
 import "../workspace.css";
 
-export type WorkspaceApi = ResearchApi & ExploreApi & LibraryApi & AdvisorApi & AlignmentApi & Pick<Api, "workspaceItems" | "installedDecks">;
+export type WorkspaceApi = ResearchApi & ExploreApi & LibraryApi & AdvisorApi & AlignmentApi & Pick<Api, "workspaceItems" | "installedDecks" | "generations" | "generatedImage">;
 
 export const DECKS_ABOUT = "The decks installed on this computer and the decks you can add, in one place.";
 
@@ -49,7 +49,12 @@ export const CHANGED_MARK = "Changed on this computer";
 
 const KEY = /^output:([a-z0-9][a-z0-9-]{0,63}):([A-Za-z0-9][A-Za-z0-9._-]{0,127})$/;
 const SET_KEY = /^rowset:([a-z0-9][a-z0-9-]{0,63}):all$/;
-const anyKey = (id: string) => KEY.test(id) || SET_KEY.test(id);
+const GEN_KEY = /^generated:([a-z0-9][a-z0-9-]{0,63}):(\d{8}T\d{6}-[0-9a-f]{8}):([A-Za-z0-9][A-Za-z0-9._-]{0,127})$/;
+const anyKey = (id: string) => KEY.test(id) || SET_KEY.test(id) || GEN_KEY.test(id);
+export const RENDERS_TITLE = "Renders";
+export const RENDERS_ABOUT = "Figures Bucket can draw again on this computer. Run the command in a terminal, and the newest images join the list.";
+export const NEVER_RUN = "Not drawn yet";
+export const NO_CHECKOUT = "Drawing these needs a copy of the Bucket source. Past runs still show here.";
 export const REVIEW_KEY = `output:${REVIEW_SLUG}:review`;
 export const setKey = (id: string) => (id === REVIEW_SLUG ? REVIEW_KEY : `rowset:${id}:all`);
 
@@ -95,8 +100,76 @@ function RowSetPane({ api, type, tab, webgl }: { api: WorkspaceApi; type: "graph
 function ItemPane({ api, type, tab, webgl }: { api: WorkspaceApi; type: BuiltType; tab: ItemTab; webgl?: boolean }) {
   if (type === "graphs" && tab.id === REVIEW_KEY) return <AlignmentPane api={api} />;
   if (type === "graphs" || type === "maps") return SET_KEY.test(tab.id) ? <RowSetPane api={api} type={type} tab={tab} webgl={webgl} /> : <p className="muted">{NOT_LOADED}</p>;
+  if (type === "figures" && GEN_KEY.test(tab.id)) return <GeneratedPane api={api} tab={tab} />;
   if (!KEY.test(tab.id)) return <p className="muted">{NOT_LOADED}</p>;
   return <OutputPane api={api} type={type} tab={tab} />;
+}
+
+function GeneratedPane({ api, tab }: { api: WorkspaceApi; tab: ItemTab }) {
+  const [, name, run, file] = GEN_KEY.exec(tab.id)!;
+  const [src, setSrc] = useState<{ url: string } | { error: string } | null>(null);
+  useEffect(() => {
+    let live = true;
+    api.generatedImage(name, run, file).then(
+      (url) => live && setSrc({ url }),
+      (e: Error & { status?: number }) => live && setSrc({ error: e.status === 404 ? NOT_LOADED : e.message }),
+    );
+    return () => {
+      live = false;
+    };
+  }, [api, name, run, file]);
+  return (
+    <>
+      <div className="workspace-item-head">
+        <h2>{tab.title}</h2>
+        <span className="muted">bkt generate {name}</span>
+      </div>
+      {src === null ? <p className="muted">Loading…</p> : "error" in src ? <p className="error">{src.error}</p> : <img className="generated-figure" src={src.url} alt={tab.title} />}
+    </>
+  );
+}
+
+function Renders({ api }: { api: WorkspaceApi }) {
+  const [list, setList] = useState<{ generations: GenerationRow[]; repo: boolean } | { error: string } | null>(null);
+  useEffect(() => {
+    let live = true;
+    api.generations().then(
+      (r) => live && setList(r),
+      (e: Error) => live && setList({ error: e.message }),
+    );
+    return () => {
+      live = false;
+    };
+  }, [api]);
+  if (list === null) return null;
+  if ("error" in list) return <p className="banner" role="alert">{list.error}</p>;
+  if (list.generations.length === 0) return null;
+  return (
+    <section className="renders panel" aria-label={RENDERS_TITLE}>
+      <h2>{RENDERS_TITLE}</h2>
+      <p className="muted">{list.repo ? RENDERS_ABOUT : NO_CHECKOUT}</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Render</th>
+            <th>Last drawn</th>
+            <th>Command</th>
+          </tr>
+        </thead>
+        <tbody>
+          {list.generations.map((g) => (
+            <tr key={g.name}>
+              <td>{g.about || g.name}</td>
+              <td>{g.last ? g.last.created.slice(0, 10) : <span className="muted">{NEVER_RUN}</span>}</td>
+              <td>
+                <code>{g.command}</code>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
+  );
 }
 
 function OutputPane({ api, type, tab }: { api: WorkspaceApi; type: OutputType; tab: ItemTab }) {
@@ -174,6 +247,7 @@ function ItemList({ api, type, words, onOpen }: { api: WorkspaceApi; type: Built
       <div className="toolbar">
         <input className="search" type="search" value={typed} onChange={(e) => setTyped(e.target.value)} placeholder="Filter by name or output" aria-label={`Filter ${words.title.toLowerCase()}`} />
       </div>
+      {type === "figures" && <Renders api={api} />}
       {list.total === 0 ? (
         <p className="muted">{query.q ? `${words.noMatch} “${query.q}”.` : words.empty}</p>
       ) : (
@@ -193,7 +267,7 @@ function ItemList({ api, type, words, onOpen }: { api: WorkspaceApi; type: Built
                 {list.items.map((item) => (
                   <tr key={item.key}>
                     <td>
-                      {item.from.kind === "output" || type === "graphs" || type === "maps" ? (
+                      {item.from.kind === "output" || item.from.kind === "generation" || type === "graphs" || type === "maps" ? (
                         <button className="link" onClick={() => onOpen(item)}>
                           {item.title}
                         </button>
@@ -203,7 +277,7 @@ function ItemList({ api, type, words, onOpen }: { api: WorkspaceApi; type: Built
                         </a>
                       )}
                     </td>
-                    <td>{item.from.kind === "output" ? <a className="link" href={item.opens}>{item.from.title}</a> : item.explore ? <a className="link" href={href({ name: "explore", data: item.explore.data, mode: item.explore.modes[0] })}>{TO_EXPLORE}</a> : <span className="muted">{ON_DATA_SCREEN}</span>}</td>
+                    <td>{item.from.kind === "generation" ? <span>{item.from.title}</span> : item.from.kind === "output" ? <a className="link" href={item.opens}>{item.from.title}</a> : item.explore ? <a className="link" href={href({ name: "explore", data: item.explore.data, mode: item.explore.modes[0] })}>{TO_EXPLORE}</a> : <span className="muted">{ON_DATA_SCREEN}</span>}</td>
                     <td>{ORIGIN_LABELS[item.origin]}</td>
                     <td>{item.licence === "mixed" ? "Each row carries its own" : item.licence || <span className="muted">None stated</span>}</td>
                     <td className={item.changed ? "changed" : undefined}>{item.changed ? CHANGED_MARK : ""}</td>

@@ -184,7 +184,7 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
     }
     const want = PLACEMENT_TIERS.find((t) => t >= level) ?? 11;
     ok(step.tier === want, `adaptive placement finds level ${level} as tier ${step.tier} in ${answers.length} questions`);
-    ok(answers.length >= 4 && answers.length <= PLACEMENT_MAX_ITEMS, "placement asks between 4 and 12 questions");
+    ok(answers.length >= 2 && answers.length <= PLACEMENT_MAX_ITEMS, "placement asks between 2 and 18 questions");
   }
   {
     const noisy = [true, false, true, false, true, false, true, false, true, false, true, false];
@@ -196,6 +196,44 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
       step = placementStep(answers);
     }
     ok(answers.length <= PLACEMENT_MAX_ITEMS, `noisy answers still stop at the cap (${answers.length})`);
+  }
+  {
+    let step = placementStep([]);
+    ok(step.nextTier === 0 && step.nextMode === "recognize", "placement starts at the first tier with a recognition item");
+    step = placementStep([{ tier: 0, correct: true }]);
+    ok(step.nextTier === 0 && step.nextMode === "produce", "the second item of a tier asks for a typed answer");
+    ok(placementStep([{ tier: 0, correct: true }, { tier: 0, correct: true }]).nextTier === 2, "two right at a tier moves up one tier");
+    ok(placementStep([{ tier: 0, correct: true }, { tier: 0, correct: false }, { tier: 0, correct: false }]).tier === 0, "two misses at a tier stop placement there");
+    const climbed = [0, 2, 4].flatMap((t) => [{ tier: t, correct: true }, { tier: t, correct: true }]);
+    const stop = placementStep([...climbed, { tier: 6, correct: false }, { tier: 6, correct: false }, { tier: 8, correct: true }]);
+    ok(stop.done && stop.tier === 6, "placement stops at the first tier that fails");
+  }
+  {
+    const basics = (t: number) => t < 2;
+    const answers: { tier: number; correct: boolean }[] = [];
+    let step = placementStep(answers);
+    while (!step.done) {
+      answers.push({ tier: step.nextTier!, correct: basics(step.nextTier!) });
+      step = placementStep(answers);
+    }
+    ok(step.tier === 2, `a learner who knows only the first tier places at tier 2 (${step.tier})`);
+  }
+  {
+    let s0 = 7;
+    const roll = () => ((s0 = (s0 * 48271) % 2147483647) / 2147483647);
+    const tiers: number[] = [];
+    for (let run = 0; run < 400; run++) {
+      const answers: { tier: number; correct: boolean }[] = [];
+      let step = placementStep(answers);
+      while (!step.done) {
+        answers.push({ tier: step.nextTier!, correct: step.nextMode === "produce" ? false : roll() < 0.25 });
+        step = placementStep(answers);
+      }
+      tiers.push(step.tier);
+    }
+    tiers.sort((a, b) => a - b);
+    ok(tiers[200] === 0, `a random guesser places at tier 0 at the median (${tiers[200]})`);
+    ok(tiers.filter((t) => t >= 4).length / tiers.length < 0.02, "a random guesser reaches tier 4 in under 2% of runs");
   }
   const seen = new Set<string>();
   const first = placementItem(romance, corpus, "fr", 4, seen, seededRng(1))!;

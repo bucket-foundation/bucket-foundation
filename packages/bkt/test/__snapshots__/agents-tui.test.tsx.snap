@@ -1,0 +1,34 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`bkt agents lists coding agents and Bucket agent chats 1`] = `
+"Agents
+bucket-foundation        Claude    running         2m 2 subagents
+tools                    Codex     waiting on you  30s
+Bucket agent chats
+ollama qwen3:4b                    done            10m
+c opens a Bucket agent chat. q quits."
+`;
+
+exports[`bkt agents shows an empty list and how to add a model 1`] = `
+"Agents
+No coding agent is running.
+Bucket agent chats
+No chats yet.
+Add a model with bkt llm add or bkt llm local to chat. q quits."
+`;
+
+exports[`bkt agents opens a chat, streams the answer and switches provider with Tab 1`] = `
+"Bucket agent
+ollama qwen3:4b on this computer
+you: what is light
+bucket: Light is a wave.
+>
+Enter sends. Tab changes the provider. Esc stops the answer or leaves the chat."
+`;
+
+exports[`bkt agents opens a chat, streams the answer and switches provider with Tab 2`] = `
+"Bucket agent
+anthropic claude-sonnet-4-5 hosted, your messages leave this computer
+>
+Enter sends. Tab changes the provider. Esc stops the answer or leaves the chat."
+`;

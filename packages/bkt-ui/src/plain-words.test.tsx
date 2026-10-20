@@ -280,6 +280,8 @@ function empty(): Stub {
   return {
     researchList: async () => ({ outputs: [] }),
     workspaceItems: async () => ({ items: [], total: 0, page: 1, size: 50 }),
+    generations: async () => ({ generations: [], repo: false }),
+    generatedImage: () => Promise.reject(new ApiError("no such render", 404)),
     researchManifest: () => Promise.reject(new ApiError("no such output", 404)),
     researchTable: () => Promise.reject(new ApiError("the output has no such table", 404)),
     researchNew: () => Promise.reject(new ApiError("an output already has that short name", 409)),
@@ -304,6 +306,12 @@ function empty(): Stub {
     workStatus: async () => ({ beads: 0, prs: 0, repo: null, repoError: null, chat: { claude: false, codex: false }, languages: [], ready: false, answered: 0, correct: 0 }),
     settings: async () => ({ version: "0.5.0", build: null, dataDir: "/data/bucket", notify: { supported: true, on: false, at: null }, notifyDefault: "08:53" }),
     workLanguages: async () => ({ languages: [], available: [] }),
+    agents: async () => ({ v: 1, supported: false, installed: false, sessions: [] }),
+    agentsV2: async () => ({ v: 1, supported: true, installed: true, sessions: [], chats: [] }),
+    agentTools: async () => [],
+    agentFolders: async () => [],
+    agentProviders: async () => [],
+    reportFocus: async () => ({ ok: true }),
     workSetLanguages: async (languages: string[]) => ({ languages }),
     wordLicence: async () => WORD_LICENCE,
     wordDecks: async () => NO_WORD_DECKS,
@@ -333,6 +341,10 @@ function populated(over: Stub = {}): Stub {
     ...empty(),
     researchList: async () => ({ outputs: RESEARCH_ROWS }),
     workspaceItems: async (type: string) => ({ items: WORKSPACE_ITEMS.filter((i) => i.type === type), total: WORKSPACE_ITEMS.filter((i) => i.type === type).length, page: 1, size: 50 }),
+    generations: async () => ({ repo: true, generations: [
+      { name: "record-glyph", about: "The record glyph of one problem", inputs: ["problem"], command: "bkt generate record-glyph --problem ...", last: { run: "20261019T101500-0a1b2c3d", created: "2026-10-19T10:15:00Z", folder: "x", outputs: ["riemann-glyph.svg"] } },
+      { name: "atlas-plots", about: "The nine atlas plots", inputs: [], command: "bkt generate atlas-plots", last: null },
+    ] }),
     researchManifest: async () => RESEARCH_DETAIL,
     researchChanges: async () => ({
       notice: "Edits are kept on this computer as plain files, so the tools that build a paper can read them.",
@@ -400,6 +412,8 @@ function failing(): Stub {
     progress: progress(null),
     researchList: fail("the research files could not be read", 500),
     workspaceItems: fail("the workspace list could not be read", 500),
+    generations: fail("the list of renders could not be read", 500),
+    generatedImage: fail("that render file is refused", 400),
     advisor: fail("the people file could not be read", 500),
     researchManifest: fail("public/papers/x/paper.pdf does not match its hash in this build", 409),
     researchTable: fail("the table does not parse", 422),
@@ -420,6 +434,12 @@ function failing(): Stub {
     workStatus: fail("git could not read that folder", 400),
     settings: fail("data key does not match", 500),
     workLanguages: fail("data key does not match", 500),
+    agents: fail("data key does not match", 500),
+    agentsV2: fail("data key does not match", 500),
+    agentTools: fail("data key does not match", 500),
+    agentFolders: fail("data key does not match", 500),
+    agentProviders: fail("data key does not match", 500),
+    reportFocus: fail("data key does not match", 500),
     wordLicence: fail("data key does not match", 500),
     wordDecks: fail("data key does not match", 500),
     installedDecks: fail("data key does not match", 500),
@@ -476,7 +496,7 @@ async function mount(route: Route, stub: Stub) {
 }
 
 const DAY = "2026-09-30";
-const COVERED: Route[] = [{ name: "learn" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "advisors" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
+const COVERED: Route[] = [{ name: "learn" }, { name: "agents" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "advisors" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
 const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
@@ -488,7 +508,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Agents", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -551,6 +571,17 @@ describe("navigation", () => {
     const { navFor } = await import("./nav");
     expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
+    expect(navFor(false, true).map((n) => n.label)).toContain("Agents");
+  });
+
+  test("Agents joins the menu once an agent CLI is installed or an agent has run", async () => {
+    const { agentsAvailable } = await import("./nav");
+    const body = (sessions: number, chats: number) => ({ v: 1, installed: false, supported: true, sessions: Array(sessions).fill({}), chats: Array(chats).fill({}) }) as never;
+    const api = (tools: string[] | Error, b: unknown) => ({ agentTools: () => (tools instanceof Error ? Promise.reject(tools) : Promise.resolve(tools)), agentsV2: () => Promise.resolve(b as never) });
+    expect(await agentsAvailable(api([], body(0, 0)))).toBe(false);
+    expect(await agentsAvailable(api(["claude"], body(0, 0)))).toBe(true);
+    expect(await agentsAvailable(api([], body(0, 1)))).toBe(true);
+    expect(await agentsAvailable(api(new Error("down"), body(1, 0)))).toBe(true);
   });
 
   test("no screen in the navigation needs a file or shows a format word", async () => {

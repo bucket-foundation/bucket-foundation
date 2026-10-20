@@ -1,16 +1,22 @@
 import { spawn } from "node:child_process";
-import { mkdtempSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 
+function bunDir(): string {
+  const dir = (process.env.PATH ?? "").split(":").find((d) => d && existsSync(join(d, "bun")));
+  if (!dir) throw new Error("bun is not on PATH");
+  return dir;
+}
+
 export default async function globalSetup(): Promise<() => Promise<void>> {
   const home = mkdtempSync(join(tmpdir(), "ux-freeze-"));
   const child = spawn("bun", ["src/cli.tsx", "serve", "--keyring", "passphrase", "--passphrase-fd", "3"], {
     cwd: resolve(here, "../../bkt"),
-    env: { ...process.env, BKT_HOME: join(home, "data"), XDG_RUNTIME_DIR: join(home, "run"), BKT_OFFLINE: "1", BKT_UI_DIR: resolve(here, "../dist") },
+    env: { ...process.env, PATH: [bunDir(), dirname(process.execPath), "/usr/bin", "/bin"].join(":"), BKT_HOME: join(home, "data"), XDG_RUNTIME_DIR: join(home, "run"), BKT_OFFLINE: "1", BKT_UI_DIR: resolve(here, "../dist") },
     stdio: ["ignore", "pipe", "inherit", "pipe"],
   });
   const fd3 = child.stdio[3] as NodeJS.WritableStream;

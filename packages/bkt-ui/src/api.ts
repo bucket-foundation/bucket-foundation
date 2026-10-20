@@ -7,6 +7,10 @@ import type { ProductionsSnapshot } from "@ros/productions-snapshot";
 import type { ConceptPage, LessonPage, WordCredit, WordLicence } from "../../bkt/src/core/words";
 import type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
 import { siteFetch } from "./site-fetch";
+import type { AgentsBody } from "../../bkt/src/wait-fold";
+export type { AgentRow, AgentsBody } from "../../bkt/src/wait-fold";
+import type { AgentsBodyV2, TurnEvent } from "../../bkt/src/agents-types";
+export type { AgentsBodyV2, ChatRow, CliRow, TurnEvent } from "../../bkt/src/agents-types";
 
 export type { ConceptPage, ConceptRow, LessonPage, LessonWord, WordCredit, WordLicence, WordView } from "../../bkt/src/core/words";
 export type { WordDeckProgress, WordLessonProgress } from "../../bkt/src/words";
@@ -24,6 +28,8 @@ export type { TablePage } from "../../bkt/src/research-table";
 import type { TablePage } from "../../bkt/src/research-table";
 export type { Change, Exported } from "../../bkt/src/research-work";
 export type { WorkspaceItem } from "../../bkt/src/workspace";
+export type { GenerationRow } from "../../bkt/src/generation-routes";
+import type { GenerationRow } from "../../bkt/src/generation-routes";
 export type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
 import type { ShownRow as ReviewRow } from "../../bkt/src/alignment";
 import type { WorkspaceItem } from "../../bkt/src/workspace";
@@ -301,6 +307,20 @@ export interface DataDetail {
   fields: { label: string; value: string }[];
 }
 
+export interface ChatProvider {
+  name: string;
+  model: string;
+  local: boolean;
+}
+
+export interface ChatRequest {
+  id?: string;
+  provider: string;
+  model?: string;
+  folder?: string;
+  messages: { role: "user" | "assistant"; content: string }[];
+}
+
 export class ApiError extends Error {
   constructor(
     readonly code: string,
@@ -499,6 +519,65 @@ export class Api {
     return this.call<UpdateOutcome>("/local/update/install", { method: "POST", body: {} });
   }
 
+  agents() {
+    return this.call<AgentsBody>("/local/agents");
+  }
+
+  agentsV2() {
+    return this.call<AgentsBodyV2>("/local/agents");
+  }
+
+  launchAgent(tool: string, folder: string) {
+    return this.call<{ ok: boolean; tool: string; folder: string }>("/local/agents/launch", { method: "POST", body: { tool, folder } });
+  }
+
+  agentTools() {
+    return this.call<{ tools: string[] }>("/local/agents/tools").then((r) => r.tools);
+  }
+
+  agentFolders() {
+    return this.call<{ folders: string[] }>("/local/agents/folders").then((r) => r.folders);
+  }
+
+  agentProviders() {
+    return this.call<{ providers: ChatProvider[] }>("/local/agents/providers").then((r) => r.providers);
+  }
+
+  cancelChat(id: string) {
+    return this.call<{ cancelled: boolean }>("/local/agents/chat/cancel", { method: "POST", body: { id } });
+  }
+
+  async *chat(req: ChatRequest, signal?: AbortSignal): AsyncGenerator<TurnEvent> {
+    const r = await fetch("/local/agents/chat", { method: "POST", headers: { authorization: `Bucket ${this.token}`, "content-type": "application/json" }, body: JSON.stringify(req), signal });
+    if (!r.ok || !r.body) {
+      const data = (await r.json().catch(() => ({}))) as { error?: string };
+      throw new ApiError(data.error ?? "", r.status);
+    }
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "";
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let nl = buf.indexOf("\n");
+      while (nl >= 0) {
+        const line = buf.slice(0, nl).trim();
+        buf = buf.slice(nl + 1);
+        if (line) yield JSON.parse(line) as TurnEvent;
+        nl = buf.indexOf("\n");
+      }
+    }
+  }
+
+  reportFocus(focused: boolean, visible: boolean) {
+    return this.call<{ ok: boolean }>("/local/focus", { method: "POST", body: { focused, visible } });
+  }
+
+  setWait(on: boolean) {
+    return this.call<AgentsBody & { ok: boolean; lines: string[] }>("/local/wait", { method: "POST", body: { on } });
+  }
+
   setNotify(on: boolean, at?: string) {
     return this.call<{ notify: AppSettings["notify"] }>("/local/settings/notify", { method: "POST", body: at === undefined ? { on } : { on, at } });
   }
@@ -645,6 +724,20 @@ export class Api {
 
   async image(slug: string, path: string): Promise<string> {
     const r = await this.researchFile(slug, path);
+    const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
+    if (!IMAGE_TYPES.includes(type)) throw new Error("That file is not an image this window shows.");
+    const blob = await r.blob();
+    if (blob.size > IMAGE_MAX_BYTES) throw new Error("That image is over 8 MB.");
+    return asDataUrl(blob.type === type ? blob : new Blob([blob], { type }));
+  }
+
+  generations() {
+    return this.call<{ generations: GenerationRow[]; repo: boolean }>("/local/generations");
+  }
+
+  async generatedImage(name: string, run: string, file: string): Promise<string> {
+    const r = await fetch(`/local/generations/file?${new URLSearchParams({ name, run, file }).toString()}`, { headers: { authorization: `Bucket ${this.token}` } });
+    if (!r.ok) throw new ApiError(((await r.json().catch(() => ({}))) as { error?: string }).error ?? "", r.status);
     const type = (r.headers.get("content-type") ?? "").split(";")[0].trim();
     if (!IMAGE_TYPES.includes(type)) throw new Error("That file is not an image this window shows.");
     const blob = await r.blob();

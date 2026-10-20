@@ -15,7 +15,7 @@ function reviewOf(v: unknown): ReviewEvent | null {
   return r as unknown as ReviewEvent;
 }
 
-export function syncRoutes(remote: RemoteSync, opts: { label: () => string; onError?: (m: string) => void } = { label: () => "desktop" }): Record<string, Route> {
+export function syncRoutes(remote: RemoteSync, opts: { label: () => string; onError?: (m: string) => void; pullProgress?: () => Promise<unknown> } = { label: () => "desktop" }): Record<string, Route> {
   let flushTimer: ReturnType<typeof setTimeout> | null = null;
   let pendingLogin: LoginPrompt | null = null;
   const report = (e: unknown) => opts.onError?.(e instanceof Error ? e.message : String(e));
@@ -39,7 +39,9 @@ export function syncRoutes(remote: RemoteSync, opts: { label: () => string; onEr
     "GET /local/review-log": async () => {
       try {
         await remote.sync.flush();
-        return json({ reviews: await remote.sync.pullLog(), pending: remote.sync.pending().length, held: remote.sync.held().length });
+        const reviews = await remote.sync.pullLog();
+        await opts.pullProgress?.();
+        return json({ reviews, pending: remote.sync.pending().length, held: remote.sync.held().length });
       } catch (e) {
         report(e);
         return json({ error: e instanceof SyncError ? e.code : "sync_failed" }, 502);
@@ -53,7 +55,7 @@ export function syncRoutes(remote: RemoteSync, opts: { label: () => string; onEr
     "GET /local/account": async () => {
       try {
         const s = await remote.session();
-        return json({ signed_in: s !== null, user_id: s?.user_id ?? null, device_id: s?.device_id ?? null, pending_login: pendingLogin, mode: remote.sync.mode() });
+        return json({ signed_in: s !== null, user_id: s?.user_id ?? null, device_id: s?.device_id ?? null, pending_login: pendingLogin, mode: remote.sync.mode(), pending: remote.sync.pending().length });
       } catch (e) {
         report(e);
         return json({ error: e instanceof SyncError ? e.code : "account_failed" }, 502);
@@ -78,5 +80,34 @@ export function syncRoutes(remote: RemoteSync, opts: { label: () => string; onEr
       await remote.logout();
       return json({ ok: true });
     },
+  };
+}
+
+export const SYNC_EVERY_MS = 60_000;
+export const SYNC_FIRST_MS = 2_000;
+
+export function startSyncLoop(remote: RemoteSync, pullProgress: () => Promise<unknown>, onError: (m: string) => void, every = SYNC_EVERY_MS, firstAfter = SYNC_FIRST_MS): () => void {
+  let busy = false;
+  const tick = async () => {
+    if (busy) return;
+    busy = true;
+    try {
+      if (!(await remote.session())) return;
+      await remote.sync.flush();
+      await remote.sync.pullLog();
+      await pullProgress();
+    } catch (e) {
+      onError(e instanceof Error ? e.message : String(e));
+    } finally {
+      busy = false;
+    }
+  };
+  const first = setTimeout(() => void tick(), firstAfter);
+  const t = setInterval(() => void tick(), every);
+  first.unref?.();
+  t.unref?.();
+  return () => {
+    clearTimeout(first);
+    clearInterval(t);
   };
 }

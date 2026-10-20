@@ -1,6 +1,9 @@
+pub mod agents;
+
 use std::collections::HashMap;
 use std::sync::Mutex;
 use std::time::{Duration, Instant};
+use tauri::menu::{MenuBuilder, MenuItemBuilder, SubmenuBuilder};
 use tauri::{Manager, RunEvent, Url};
 use tauri_plugin_deep_link::DeepLinkExt;
 use tauri_plugin_shell::process::{CommandChild, CommandEvent};
@@ -41,8 +44,17 @@ pub fn quiz_route(link: &str) -> Option<String> {
     valid_day(day).then(|| format!("/work/daily/{day}"))
 }
 
+pub const LEARN_LINK: &str = "bucket://learn";
+
+pub fn link_route(link: &str) -> Option<String> {
+    if link == LEARN_LINK || link == "bucket://learn/" {
+        return Some("/learn".to_string());
+    }
+    quiz_route(link)
+}
+
 pub fn route_in(args: &[String]) -> Option<String> {
-    args.iter().skip(1).find_map(|a| quiz_route(a))
+    args.iter().skip(1).find_map(|a| link_route(a))
 }
 
 pub fn with_route(base: &Url, route: &str) -> Url {
@@ -642,6 +654,40 @@ fn start(app: &tauri::AppHandle) -> Result<(), String> {
     Ok(())
 }
 
+fn approve_folder(app: &tauri::AppHandle) {
+    let Some(state) = app.state::<agents::Agents>().state.clone() else {
+        show_error(app, "Bucket could not find its state folder");
+        return;
+    };
+    let handle = app.clone();
+    tauri::async_runtime::spawn(async move {
+        let picked = rfd::AsyncFileDialog::new().set_title("Approve a folder for agents").pick_folder().await;
+        if let Some(folder) = picked {
+            if let Err(e) = agents::add_folder(&state, folder.path()) {
+                show_error(&handle, &e);
+            }
+        }
+    });
+}
+
+fn agents_menu(app: &tauri::App) -> tauri::Result<()> {
+    let item = MenuItemBuilder::with_id(agents::APPROVE_MENU_ID, "Approve a folder for agents").build(app)?;
+    let sub = SubmenuBuilder::new(app, "Agents").item(&item).build()?;
+    let menu = match app.menu() {
+        Some(menu) => menu,
+        None if cfg!(target_os = "macos") => tauri::menu::Menu::default(app.handle())?,
+        None => MenuBuilder::new(app).build()?,
+    };
+    menu.append(&sub)?;
+    app.set_menu(menu)?;
+    app.on_menu_event(|app, event| {
+        if event.id() == agents::APPROVE_MENU_ID {
+            approve_folder(app);
+        }
+    });
+    Ok(())
+}
+
 pub fn updates_enabled() -> bool {
     !cfg!(debug_assertions)
 }
@@ -663,10 +709,14 @@ pub fn run() {
         .manage(Sidecar(Mutex::new(None)))
         .manage(Consent(Mutex::new(ConsentDesk::default())))
         .manage(Link(Mutex::new(LinkState::default())))
+        .manage(agents::Agents::at_startup())
         .setup(|app| {
+            if let Err(e) = agents_menu(app) {
+                eprintln!("bucket could not add the Agents menu: {e}");
+            }
             let links = app.handle().clone();
             app.deep_link().on_open_url(move |event| {
-                if let Some(route) = event.urls().iter().find_map(|u| quiz_route(u.as_str())) {
+                if let Some(route) = event.urls().iter().find_map(|u| link_route(u.as_str())) {
                     open_route(&Shell(links.clone()), &links.state::<Link>().0, route);
                 }
             });
@@ -704,6 +754,18 @@ mod tests {
 
     fn base() -> Url {
         serve_url("http://127.0.0.1:41234/").unwrap()
+    }
+
+    #[test]
+    fn learn_link_routes_to_learn() {
+        assert_eq!(link_route(LEARN_LINK).as_deref(), Some("/learn"));
+        assert_eq!(link_route("bucket://learn/").as_deref(), Some("/learn"));
+        assert_eq!(link_route(DAY).as_deref(), Some("/work/daily/2026-09-30"));
+        let args = vec!["bucket".to_string(), LEARN_LINK.to_string()];
+        assert_eq!(route_in(&args).as_deref(), Some("/learn"));
+        for link in ["bucket://learn/x", "bucket://learn?x=1", "bucket://learn#/import", "bucket://Learn", "bucket://learnx", "http://learn", " bucket://learn", "bucket://learn/../quiz"] {
+            assert_eq!(link_route(link), None, "{link}");
+        }
     }
 
     #[test]
@@ -1278,11 +1340,24 @@ mod tests {
         assert!(shipped.contains("tauri::WebviewUrl::CustomProtocol(page)"));
         assert!(shipped.contains("default-src 'none'"));
         assert!(!shipped.contains("invoke_handler"));
+        assert!(!shipped.contains("#[tauri::command]"));
         assert!(!shipped.contains("tauri_plugin_dialog"));
         assert!(!shipped.contains(".eval(&format!(\"document.getElementById('consent"));
         let caps: serde_json::Value = serde_json::from_str(include_str!("../capabilities/default.json")).unwrap();
         assert_eq!(caps["permissions"], serde_json::json!([]));
         assert_eq!(caps["windows"], serde_json::json!(["main"]));
+    }
+
+    #[test]
+    fn only_the_shell_menu_writes_the_folder_list() {
+        let shipped = include_str!("lib.rs").split("#[cfg(test)]").next().unwrap();
+        assert_eq!(shipped.matches("agents::add_folder(").count(), 1);
+        let approve = shipped.split("fn approve_folder(").nth(1).unwrap().split("\n}\n").next().unwrap();
+        assert!(approve.contains("agents::add_folder(") && approve.contains("rfd::AsyncFileDialog::new()"));
+        assert_eq!(shipped.matches("approve_folder(app)").count(), 1);
+        assert!(shipped.contains("if event.id() == agents::APPROVE_MENU_ID {"));
+        let menu = shipped.split("fn agents_menu(").nth(1).unwrap().split("\n}\n").next().unwrap();
+        assert!(menu.contains("Some(menu) => menu") && menu.contains("menu.append(&sub)"));
     }
 
     #[test]

@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 export type Env = Record<string, string | undefined>;
 
 export const PARENT_LINE_BYTES = 256;
@@ -35,7 +37,55 @@ export async function watchParent(stream: AsyncIterable<unknown>, onLine: (line:
   }
 }
 
-export function parentGone(env: Env, stdin: () => AsyncIterable<unknown>, onLine?: (line: string) => void): Promise<void> {
+export interface ParentProbe {
+  ppid: () => number;
+  alive: (pid: number) => boolean;
+  every: (ms: number, tick: () => void) => () => void;
+}
+
+export const PARENT_POLL_MS = 500;
+
+export function livePpid(): number {
+  try {
+    const stat = readFileSync("/proc/self/stat", "utf8");
+    const fields = stat.slice(stat.lastIndexOf(")") + 2).split(" ");
+    const ppid = Number(fields[1]);
+    if (Number.isInteger(ppid) && ppid > 0) return ppid;
+  } catch {
+    return process.ppid;
+  }
+  return process.ppid;
+}
+
+export const SYSTEM_PROBE: ParentProbe = {
+  ppid: livePpid,
+  alive: (pid) => {
+    try {
+      process.kill(pid, 0);
+      return true;
+    } catch (e) {
+      return (e as NodeJS.ErrnoException).code === "EPERM";
+    }
+  },
+  every: (ms, tick) => {
+    const t = setInterval(tick, ms);
+    return () => clearInterval(t);
+  },
+};
+
+export function parentDied(probe: ParentProbe): Promise<void> {
+  const first = probe.ppid();
+  return new Promise<void>((resolve) => {
+    const stop = probe.every(PARENT_POLL_MS, () => {
+      if (probe.ppid() !== first || !probe.alive(first)) {
+        stop();
+        resolve();
+      }
+    });
+  });
+}
+
+export function parentGone(env: Env, stdin: () => AsyncIterable<unknown>, onLine?: (line: string) => void, probe: ParentProbe = SYSTEM_PROBE): Promise<void> {
   if (!isSidecar(env)) return new Promise<void>(() => {});
-  return watchParent(stdin(), onLine);
+  return Promise.race([watchParent(stdin(), onLine), parentDied(probe)]);
 }
