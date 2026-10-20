@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { expectSignedOutPill } from "./account-pill";
 
 const MAIL = process.env.E2E_MAIL_URL || "http://127.0.0.1:54324";
 const SHOTS = process.env.E2E_SHOTS || "test-results/guest-entry";
@@ -38,7 +39,7 @@ for (const [label, viewport] of [["web", { width: 1280, height: 860 }], ["mobile
       await expect(hero.getByRole("link", { name: "Start learning" })).toHaveAttribute("href", LEARN);
       const header = page.locator("header").first();
       await expect(header.getByRole("link")).toHaveCount(1);
-      await expect(header.getByRole("button", { name: "Sign in" })).toBeVisible();
+      await expectSignedOutPill(header);
       await expect(page.locator("[data-slim-footer]").getByRole("link", { name: "Download" })).toHaveAttribute("href", "/download");
       await noSideScroll(page);
       await page.screenshot({ path: `${SHOTS}/landing-${label}.png`, fullPage: true });
