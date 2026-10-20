@@ -54,7 +54,7 @@ describe("bkt serve fails closed", () => {
     boot();
     const csp = (await req("/")).headers.get("content-security-policy") ?? "";
     expect(csp.replace(/'sha256-[A-Za-z0-9+/=]+'/, "'sha256-HASH'")).toBe(
-      "default-src 'none'; script-src 'self' 'sha256-HASH'; connect-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+      "default-src 'none'; script-src 'self' 'sha256-HASH'; connect-src 'self'; worker-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
     );
     expect(csp).not.toContain("blob:");
   });
@@ -205,5 +205,52 @@ describe("bkt serve fails closed", () => {
     boot();
     await token();
     expect((await req("/")).status).toBe(410);
+  });
+});
+
+describe("eSpeak clips route", () => {
+  const KEY = "0123456789abcdef";
+  function bootWithClips() {
+    const { mkdirSync, mkdtempSync, writeFileSync } = require("node:fs") as typeof import("node:fs");
+    const { join } = require("node:path") as typeof import("node:path");
+    const dir = mkdtempSync(join(require("node:os").tmpdir(), "bkt-clips-"));
+    mkdirSync(join(dir, "academy-app", "audio", "he"), { recursive: true });
+    writeFileSync(join(dir, "academy-app", "audio", "index.json"), JSON.stringify({ he: [KEY] }));
+    writeFileSync(join(dir, "academy-app", "audio", "he", `${KEY}.mp3`), new Uint8Array([0xff, 0xfb, 0x90, 0x00]));
+    clock = 1_000_000;
+    peerUid = ME;
+    s = startServe({ uid: ME, resolvePeerUid: () => peerUid, now: () => clock, uiDir: dir });
+  }
+
+  test("a clip path returns 200 audio/mpeg with its bytes", async () => {
+    bootWithClips();
+    const r = await req(`/academy-app/audio/he/${KEY}.mp3`);
+    expect(r.status).toBe(200);
+    expect(r.headers.get("content-type")).toBe("audio/mpeg");
+    expect((await r.arrayBuffer()).byteLength).toBe(4);
+    const i = await req("/academy-app/audio/index.json");
+    expect(i.status).toBe(200);
+    expect(await i.json()).toEqual({ he: [KEY] });
+  });
+
+  test("traversal and non-clip paths are 404 even with a session", async () => {
+    bootWithClips();
+    const t = await token();
+    for (const p of ["/academy-app/audio/he/%2e%2e%2findex.json", "/academy-app/audio/%2e%2e/corpus/index.json", "/academy-app/audio/he/fedcba9876543210.mp3", "/academy-app/audio/he/x.mp3", "/academy-app/audio/he/"]) {
+      expect((await req(p, { headers: { authorization: `Bucket ${t}` } })).status).toBe(404);
+    }
+  });
+
+  test("a foreign Host or Origin is refused", async () => {
+    bootWithClips();
+    const path = `/academy-app/audio/he/${KEY}.mp3`;
+    expect((await req(path, { headers: { host: `localhost:${s.port}` } })).status).toBe(403);
+    expect((await req(path, { headers: { origin: "http://evil.example" } })).status).toBe(403);
+  });
+
+  test("a peer owned by another user is refused", async () => {
+    bootWithClips();
+    peerUid = ME + 1;
+    expect((await req(`/academy-app/audio/he/${KEY}.mp3`)).status).toBe(403);
   });
 });
