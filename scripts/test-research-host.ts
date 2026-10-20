@@ -103,6 +103,24 @@ test("the session middleware runs on academy API routes so a refreshed session i
   assert.ok(re.test("/api/academy/devices"));
   assert.ok(re.test("/api/academy/device/approve"));
   assert.ok(re.test("/api/kruse/search"));
+  assert.ok(!re.test("/api/academy/review-log"));
+  assert.ok(!re.test("/api/academy/progress"));
   assert.ok(!re.test("/api/polingual"));
   assert.ok(re.test("/device"));
+});
+
+test("middleware on the device approve route expires a stale host-only session copy and passes the request through", async () => {
+  process.env.NEXT_PUBLIC_SUPABASE_URL = "http://127.0.0.1:9";
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = "anon";
+  /* eslint-disable-next-line @typescript-eslint/no-require-imports */
+  const { middleware } = require("../src/middleware") as typeof import("../src/middleware");
+  const { NextRequest } = await import("next/server");
+  const req = new NextRequest("https://www.bucket.foundation/api/academy/device/approve", {
+    method: "POST",
+    headers: { host: "www.bucket.foundation", cookie: `${COOKIE_MIGRATION_MARKER}=1; sb-p-auth-token=stale; sb-p-auth-token=fresh` },
+  });
+  const res = await middleware(req);
+  assert.equal(res.status, 200);
+  assert.equal(res.headers.get("location"), null);
+  assert.ok(res.headers.getSetCookie().includes("sb-p-auth-token=; Path=/; SameSite=Lax; Secure; Max-Age=0"));
 });

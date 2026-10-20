@@ -7,7 +7,7 @@ import { cookieMigrationHeaders, isResearchHost, parseCookieHeader, researchRout
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|academy-app|textures|api/(?!kruse|academy/)|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|avif|woff|woff2|ttf|bin|json|txt|xml|webmanifest|mp4|css|js|map)$).*)",
+    "/((?!_next/static|_next/image|academy-app|textures|api/(?!kruse|academy/devices|academy/device/)|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|avif|woff|woff2|ttf|bin|json|txt|xml|webmanifest|mp4|css|js|map)$).*)",
   ],
 };
 
