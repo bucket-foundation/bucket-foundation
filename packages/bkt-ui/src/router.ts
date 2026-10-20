@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 
 export type Route =
   | { name: "learn" }
+  | { name: "agents" }
   | { name: "deck"; deck: string; atom?: string }
+  | { name: "place"; deck: string }
+  | { name: "assess"; deck: string }
+  | { name: "languages" }
+  | { name: "langSystem"; system: string }
+  | { name: "langPlace"; system: string; lang?: string }
+  | { name: "langStudy"; system: string }
   | { name: "path"; to?: string }
   | { name: "words"; deck: string; lesson?: number }
   | { name: "concepts"; page?: number }
@@ -55,6 +62,18 @@ function parseExplore(parts: string[]): Route {
   return EXPLORE_SEL.test(sel) ? { name: "explore", data, mode, sel } : { name: "explore" };
 }
 
+const SYSTEM = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
+
+function parseLanguages(parts: string[]): Route {
+  const [, , system, step, lang] = parts;
+  if (parts.length === 2 || !SYSTEM.test(system)) return { name: "languages" };
+  if (parts.length === 3) return { name: "langSystem", system };
+  if (step === "study" && parts.length === 4) return { name: "langStudy", system };
+  if (step === "place" && parts.length === 4) return { name: "langPlace", system };
+  if (step === "place" && parts.length === 5 && LANGUAGE.test(lang)) return { name: "langPlace", system, lang };
+  return { name: "langSystem", system };
+}
+
 function parseResearch(parts: string[]): Route {
   if (parts.length < 2 || parts.length > 4 || !RESEARCH_SLUG.test(parts[1])) return { name: "research" };
   const tab = RESEARCH_TABS.find((t) => t === parts[2]);
@@ -64,7 +83,7 @@ function parseResearch(parts: string[]): Route {
   return RESEARCH_ITEM.test(parts[3]) ? { name: "research", slug: parts[1], tab, item: parts[3] } : { name: "research" };
 }
 
-const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile"]);
+const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile", "agents"]);
 const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
 const LANGUAGE = /^[a-z]{2,3}$/;
 const PAGE = /^[1-9]\d{0,3}$/;
@@ -83,6 +102,8 @@ export function parseHash(hash: string): Route {
   } catch {
     return { name: "learn" };
   }
+  if (parts[0] === "learn" && parts[1] === "languages") return parseLanguages(parts);
+  if (parts[0] === "learn" && parts[1] && parts.length === 3 && (parts[2] === "place" || parts[2] === "assess")) return { name: parts[2], deck: parts[1] };
   if (parts[0] === "learn" && parts[1]) return parts[2] ? { name: "deck", deck: parts[1], atom: parts[2] } : { name: "deck", deck: parts[1] };
   if (parts[0] === "words" && parts[1] === "licence" && parts.length === 2) return { name: "licence" };
   if (parts[0] === "words" && parts[1] === "concepts") return parts.length === 3 && PAGE.test(parts[2]) ? { name: "concepts", page: Number(parts[2]) } : { name: "concepts" };
@@ -107,6 +128,11 @@ export function parseHash(hash: string): Route {
 
 export function href(r: Route): string {
   if (r.name === "deck") return `#/learn/${encodeURIComponent(r.deck)}${r.atom ? `/${encodeURIComponent(r.atom)}` : ""}`;
+  if (r.name === "place" || r.name === "assess") return `#/learn/${encodeURIComponent(r.deck)}/${r.name}`;
+  if (r.name === "languages") return "#/learn/languages";
+  if (r.name === "langSystem") return `#/learn/languages/${encodeURIComponent(r.system)}`;
+  if (r.name === "langStudy") return `#/learn/languages/${encodeURIComponent(r.system)}/study`;
+  if (r.name === "langPlace") return `#/learn/languages/${encodeURIComponent(r.system)}/place${r.lang ? `/${r.lang}` : ""}`;
   if (r.name === "words") return `#/words/${r.deck}${r.lesson ? `/${r.lesson}` : ""}`;
   if (r.name === "licence") return "#/words/licence";
   if (r.name === "concepts") return r.page && r.page > 1 ? `#/words/concepts/${r.page}` : "#/words/concepts";

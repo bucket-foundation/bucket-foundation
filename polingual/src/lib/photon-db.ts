@@ -1,3 +1,6 @@
+import { bakedGet, bakedSearch, bakedStats } from "./baked";
+
+const USE_DB = Boolean(process.env.POLINGUAL_DB_URL);
 const DB_URL =
   process.env.POLINGUAL_DB_URL || "https://db.agfarms.dev";
 const ANON_KEY =
@@ -47,6 +50,7 @@ function buildUrl(path: string, params: Record<string, string | number | undefin
 }
 
 export async function getPhoton(id: string): Promise<Photon | null> {
+  if (!USE_DB) return bakedGet(id);
   const url = buildUrl("photons", {
     select: SELECT_COLS,
     id: `eq.${id}`,
@@ -78,6 +82,7 @@ export async function searchPhotons(
   query: string,
   opts: SearchOptions = {}
 ): Promise<SearchResult> {
+  if (!USE_DB) return bakedSearch(query || "", opts);
   const t0 = Date.now();
   const q = (query || "").trim();
   const topK = Math.min(Math.max(opts.topK ?? 30, 1), 100);
@@ -156,6 +161,7 @@ export type PhotonStats = {
 };
 
 export async function photonStats(): Promise<PhotonStats> {
+  if (!USE_DB) return bakedStats();
   const totalUrl = buildUrl("photons", { select: "id", limit: 1 });
   const totalRes = await fetch(totalUrl, {
     headers: pgrstHeaders({ Prefer: "count=exact" }),

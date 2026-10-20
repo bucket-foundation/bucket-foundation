@@ -12,24 +12,17 @@ const FOOTER = read("src/components/FooterV3.tsx");
 const LAYOUT = read("src/app/layout.tsx");
 const PRESENTATION = read("src/components/Presentation.tsx");
 
-test("research os is one link with no dropdown", () => {
-  const item = HEADER.slice(HEADER.indexOf('label: "Research OS"') - 40, HEADER.indexOf('label: "Research OS"') + 60);
-  assert.doesNotMatch(item, /sub:/);
-  assert.doesNotMatch(HEADER, /research-os\/workspace/);
+test("header holds the logo and the account menu", () => {
+  assert.match(HEADER, /href="\/"/);
+  assert.match(HEADER, /<UserMenu /);
+  assert.equal((HEADER.match(/href="/g) ?? []).length, 1);
+  assert.doesNotMatch(HEADER, /Research OS|"\/canon"|whats-new|"\/about"|GitHubStarButton|aria-haspopup|mobile-drawer/);
 });
 
-test("canon is one link with no dropdown", () => {
-  assert.match(HEADER, /\{ href: "\/canon", label: "Canon" \}/);
-  assert.doesNotMatch(HEADER, /sub[:?]/);
-  assert.doesNotMatch(HEADER, /aria-haspopup/);
-  assert.doesNotMatch(HEADER, /▾/);
-  assert.doesNotMatch(HEADER, /canon\/(search|bridges|graph)/);
-});
-
-test("header nav lists Download right after Research OS and keeps the button", () => {
-  assert.ok(HEADER.indexOf('label: "Research OS"') < HEADER.indexOf('label: "Download"'));
-  assert.ok(HEADER.indexOf('label: "Download"') < HEADER.indexOf('label: "Canon"'));
-  assert.match(HEADER, /href="\/download"/);
+test("footer keeps the links the header dropped", () => {
+  for (const href of ["/research-os", "/canon", "/whats-new", "/about", "https://github.com/bucket-foundation"]) {
+    assert.ok(FOOTER.includes(`href="${href}"`), href);
+  }
 });
 
 test("footer links Download and drops the dead links", () => {
@@ -48,8 +41,9 @@ test("the layout uses the V3 chrome and one branch count", () => {
   assert.equal(CANON_BRANCHES.length, 7);
 });
 
-test("the home hero links Download", () => {
-  assert.match(PRESENTATION, /href="\/download"/);
+test("the home hero holds one action and the slim footer links Download", () => {
+  assert.equal((PRESENTATION.match(/href=/g) ?? []).length, 1);
+  assert.match(read("src/components/SiteFooter.tsx"), /href="\/download"/);
 });
 
 test("originals stay untouched", () => {

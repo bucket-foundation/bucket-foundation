@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
 
 test("desktop video loads captions, plays and seeks", async ({ page, request }) => {
-  await page.goto("/download");
+  await page.goto("/demo");
   await page.getByRole("button", { name: "Watch the desktop" }).click();
   const video = page.locator("video");
   await video.evaluate(async (element: HTMLVideoElement) => { element.muted = true; await element.play(); });
@@ -67,37 +67,26 @@ test("sample actions preserve signup and never post notes or data", async ({ pag
   await expect(page.getByLabel("Your sample note")).not.toHaveValue(/Private sample marker/);
 });
 
-test("failed signup preserves details and permits retry", async ({ page }) => {
-  let count = 0;
-  await page.route("**/api/download", (route) => route.fulfill(++count === 1 ? { status: 503, json: { error: "Try again later." } } : { json: { ok: true, email: "off" } }));
-  await page.goto("/download");
-  await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
-  await page.getByLabel("Name", { exact: true }).fill("Ada");
-  await page.getByLabel("Computer").selectOption("linux-x64");
-  await page.getByLabel("Agree to the privacy terms").check();
-  await page.locator("[data-download-button]").click();
-  await expect(page.locator("[data-download-form]").getByRole("alert")).toHaveText("Try again later.");
-  await expect(page.getByLabel("Email", { exact: true })).toHaveValue("ada@example.org");
-  await page.locator("[data-download-button]").click();
-  await expect(page.locator("[data-download-unlocked]")).toBeVisible();
-  expect(count).toBe(2);
+test.describe("on an Android phone", () => {
+  test.use({ userAgent: "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/126.0 Mobile Safari/537.36" });
+  test("the download card leads with Android and lists the other devices", async ({ page }) => {
+    await page.goto("/download");
+    await expect(page.locator("[data-device-picker]")).toHaveAttribute("data-detected", "android");
+    await expect(page.locator("[data-device-primary=android]")).toBeVisible();
+    await expect(page.locator("[data-device-other]")).toHaveCount(7);
+    await expect(page.locator("[data-device-other=web] a")).toHaveAttribute("href", "/research-os/learn");
+  });
 });
 
-for (const viewport of [{ width: 1440, height: 1000 }, { width: 640, height: 400 }, { width: 390, height: 844 }, { width: 320, height: 568 }, { width: 390, height: 430 }]) {
-  test(`form remains reachable at ${viewport.width} by ${viewport.height}`, async ({ page }) => {
-    await page.setViewportSize(viewport);
+test.describe("on a Mac in Brave", () => {
+  test.use({ userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" });
+  test("one Mac download button and no release-email form", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/download");
-    const pane = page.locator("[data-download-pane]");
-    const bounds = await pane.boundingBox();
-    expect(bounds).not.toBeNull();
-    expect(bounds!.x).toBeGreaterThanOrEqual(0);
-    expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(viewport.width);
-    await page.getByLabel("Email", { exact: true }).fill("ada@example.org");
-    await page.getByLabel("Name", { exact: true }).fill("Ada");
-    await page.getByLabel("Agree to the privacy terms").check();
-    await page.locator("[data-download-button]").focus();
-    await expect(page.locator("[data-download-button]")).toBeInViewport();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    if (viewport.width === 1440 || viewport.width === 390 && viewport.height === 844) await page.screenshot({ path: `test-results/download-${viewport.width}.png`, fullPage: true });
+    const button = page.locator("[data-device-primary^=macos]");
+    await expect(button).toHaveText(/^Download Bucket for (Intel )?Mac$/);
+    await expect(button).toBeInViewport();
+    await expect(page.locator("[data-polingual-line]")).toBeVisible();
+    await expect(page.locator("[data-download-pane], [data-download-form], #flow-platform")).toHaveCount(0);
   });
-}
+});

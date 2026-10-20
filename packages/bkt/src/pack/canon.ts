@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { readCanonClaims, type CanonClaim } from "../../../../src/lib/canon-index-loader";
 import { excerptsByAuthor, NO_CENTRALITY, type Centrality, type RawGraph } from "../../../../src/lib/canon-graph-core";
-import { assertClean, BACKSTOP_PREFIXES, buildDenylist, denyRow, keepConnections, DENIED_NAME, marker, withDeniedFiles, type Denial, type Denylist } from "./rights";
+import { assertClean, BACKSTOP_PREFIXES, buildDenylist, denyRow, keepConnections, DENIED_NAME, DENIED_PREFIXES, marker, withDeniedFiles, type Denial, type Denylist } from "./rights";
 
 export const CANON_PACK_BUDGET_BYTES = 6 * 1024 * 1024;
 const EVIDENCE_FILE = "_intake/embeddings/claim-evidence.jsonl";
@@ -31,6 +31,7 @@ export interface PackExcerpt {
   text: string;
   path: string;
   source: PackSource;
+  licence_kind: string | null;
 }
 
 export interface PackPassage {
@@ -41,7 +42,14 @@ export interface PackPassage {
   url: string | null;
   title: string;
   author: string | null;
+  licence_kind: string | null;
 }
+
+export type LicenceKind = "cc0" | "cc-by" | "cc-by-sa" | "public-domain" | "closed";
+
+export const PRIVATE = "private";
+export const OPEN_LICENCE_KINDS: ReadonlySet<string> = new Set(["cc0", "cc-by", "cc-by-sa", "public-domain"]);
+export const CANON_SCHEMA = 2;
 
 export interface Licence {
   kind: string;
@@ -49,6 +57,10 @@ export interface Licence {
   terms: string;
   url: string | null;
   works: number;
+}
+
+export interface CanonLicence extends Licence {
+  licence: LicenceKind;
 }
 
 export type Drop = "licence" | "noSource";
@@ -75,11 +87,12 @@ export interface CanonCounts {
 
 export interface CanonPack {
   version: string;
+  schema: number;
   sha256: string;
   source: string;
   excerpts: PackExcerpt[];
   evidence: Record<string, PackPassage[]>;
-  licences: Licence[];
+  licences: CanonLicence[];
   graph: PackGraph;
   counts: CanonCounts;
 }
@@ -89,21 +102,21 @@ export const QUOTATION_NOTICE =
   "The pack holds short quotations from third-party talks, abstracts and texts with a link to each source. Whether these ship in a release is a founder decision recorded on bead bkt-6wjd.";
 export const AUTHOR_DEATH_CUTOFF = 1955;
 
-export const LICENCES: Omit<Licence, "works">[] = [
-  { kind: "yt", name: "YouTube transcripts", terms: "Transcript excerpts of public videos on youtube.com. Copyright stays with each speaker and channel. Each excerpt names its video and channel and links to it.", url: "https://www.youtube.com" },
-  { kind: "gutenberg", name: "Project Gutenberg", terms: "Books from gutenberg.org that Project Gutenberg marks as free of copyright in the United States. Each passage names its book and author.", url: "https://www.gutenberg.org/policy/permission.html" },
+export const LICENCES: Omit<CanonLicence, "works">[] = [
+  { kind: "yt", name: "YouTube transcripts", terms: "Transcript excerpts of public videos on youtube.com. Copyright stays with each speaker and channel. Each excerpt names its video and channel and links to it.", licence: "closed", url: "https://www.youtube.com" },
+  { kind: "gutenberg", name: "Project Gutenberg", terms: "Books from gutenberg.org that Project Gutenberg marks as free of copyright in the United States. Each passage names its book and author.", licence: "public-domain", url: "https://www.gutenberg.org/policy/permission.html" },
   {
     kind: "wikisource",
     name: "Wikisource",
     terms: "Pages from en.wikisource.org whose author died before 1955 or that the source data marks as public domain, licensed as marked on the Wikisource page. Each passage names its page and links to it. Wikisource text is offered under CC BY-SA 4.0: if you share or adapt a passage, credit the page and release your version under the same licence.",
-    url: "https://creativecommons.org/licenses/by-sa/4.0/",
+    licence: "cc-by-sa", url: "https://creativecommons.org/licenses/by-sa/4.0/",
   },
-  { kind: "pubmed", name: "PubMed abstracts", terms: "Abstracts indexed at pubmed.ncbi.nlm.nih.gov. Copyright stays with each publisher. Each passage names its paper and authors and links to its PubMed record.", url: "https://pubmed.ncbi.nlm.nih.gov" },
-  { kind: "arxiv", name: "arXiv", terms: "Abstracts from arxiv.org. Each passage names its paper and authors and links to its arXiv record; see the arXiv record for its licence.", url: "https://arxiv.org" },
-  { kind: "openalex", name: "OpenAlex", terms: "Records from openalex.org, released under CC0. Each passage names its work or author and links to its record.", url: "https://openalex.org" },
-  { kind: "archive", name: "Internet Archive", terms: "Items from archive.org that carry a public domain mark. Each passage names its item and creator and gives its address.", url: null },
-  { kind: "_intake", name: "Bucket Foundation notes", terms: "Working notes by Bucket Foundation, written from the sources in this table.", url: "https://bucket.foundation" },
-  { kind: NOTICE_KIND, name: "About these quotations", terms: QUOTATION_NOTICE, url: null },
+  { kind: "pubmed", name: "PubMed abstracts", terms: "Abstracts indexed at pubmed.ncbi.nlm.nih.gov. Copyright stays with each publisher. Each passage names its paper and authors and links to its PubMed record.", licence: "closed", url: "https://pubmed.ncbi.nlm.nih.gov" },
+  { kind: "arxiv", name: "arXiv", terms: "Abstracts from arxiv.org. Each passage names its paper and authors and links to its arXiv record; see the arXiv record for its licence.", licence: "closed", url: "https://arxiv.org" },
+  { kind: "openalex", name: "OpenAlex", terms: "Records from openalex.org, released under CC0. Each passage names its work or author and links to its record.", licence: "cc0", url: "https://openalex.org" },
+  { kind: "archive", name: "Internet Archive", terms: "Items from archive.org that carry a public domain mark. Each passage names its item and creator and gives its address.", licence: "public-domain", url: null },
+  { kind: "_intake", name: "Bucket Foundation notes", terms: "Working notes by Bucket Foundation, written from the sources in this table.", licence: "closed", url: "https://bucket.foundation" },
+  { kind: NOTICE_KIND, name: "About these quotations", terms: QUOTATION_NOTICE, licence: "closed", url: null },
 ];
 
 const KIND_ALIAS: Record<string, string> = { "openalex-fanout": "openalex", "openalex-citers": "openalex" };
@@ -114,6 +127,23 @@ const clean = (sourcePath: string) => sourcePath.replace(/^.*?\/bucket-foundatio
 export function kindOf(sourcePath: string): string {
   const top = clean(sourcePath).split("/")[0];
   return KIND_ALIAS[top] ?? top;
+}
+
+const TIER_B = /(?:^|\/)(?:tier[-_]?b|sacred-history-corpus\/work)(?:\/|$)/i;
+
+export function isPrivate(sourcePath: string): boolean {
+  const path = clean(sourcePath);
+  return DENIED_NAME.test(path) || DENIED_PREFIXES.some((p) => path.startsWith(p)) || TIER_B.test(path);
+}
+
+export function licenceKind(sourcePath: string, licences: readonly Pick<CanonLicence, "kind" | "licence">[] = LICENCES): string | null {
+  if (isPrivate(sourcePath)) return PRIVATE;
+  return licences.find((l) => l.kind === kindOf(sourcePath))?.licence ?? null;
+}
+
+export function excerptLicenceKind(paths: string[], licences: readonly Pick<CanonLicence, "kind" | "licence">[] = LICENCES): string | null {
+  if (paths.some(isPrivate)) return PRIVATE;
+  return licences.find((l) => l.kind === "yt")?.licence ?? null;
 }
 
 export interface SourceMeta {
@@ -265,7 +295,7 @@ export function assemble(inputs: CanonInputs, deny: Denylist): CanonPack {
         const src = sourceMeta(inputs.repo, p.source_path);
         const drop: Drop | null = !src ? "noSource" : !src.permitted ? "licence" : null;
         if (drop) counts.passages.dropped[drop][kind] = (counts.passages.dropped[drop][kind] ?? 0) + 1;
-        else kept.push({ score: p.score, kind, source_path: p.source_path, text: p.text, url: src!.url, title: src!.title, author: src!.author });
+        else kept.push({ score: p.score, kind, source_path: p.source_path, text: p.text, url: src!.url, title: src!.title, author: src!.author, licence_kind: licenceKind(p.source_path) });
       }
     }
     if (why) {
@@ -273,7 +303,7 @@ export function assemble(inputs: CanonInputs, deny: Denylist): CanonPack {
       counts.excerpts.denied[why]++;
       return;
     }
-    excerpts.push({ rowid, branch: c.branch, concept: c.concept, slug: c.slug, title: c.title, text: c.text, path: c.path, source: meta.source });
+    excerpts.push({ rowid, branch: c.branch, concept: c.concept, slug: c.slug, title: c.title, text: c.text, path: c.path, source: meta.source, licence_kind: excerptLicenceKind([c.path, ...meta.refs]) });
     evidence[String(rowid)] = kept;
     for (const p of kept) {
       kinds.add(p.kind);
@@ -288,7 +318,7 @@ export function assemble(inputs: CanonInputs, deny: Denylist): CanonPack {
   const unlicensed = [...kinds].filter((k) => !LICENCES.some((l) => l.kind === k));
   if (unlicensed.length) throw new Error(`canon pack: no licence row for ${unlicensed.sort().join(", ")}`);
   graph.graph.excerpts = excerptsByAuthor(graph.graph.graph.nodes, excerpts.map((e) => ({ rowid: e.rowid, text: e.text, authors: (evidence[String(e.rowid)] ?? []).map((p) => p.author) })));
-  const body = { source: "bucket-canon sub-claims", excerpts, evidence, graph: graph.graph, licences: LICENCES.filter((l) => kinds.has(l.kind) || l.kind === NOTICE_KIND).map((l) => ({ ...l, works: l.kind === NOTICE_KIND ? allWorks : (works[l.kind]?.size ?? 0) })), counts };
+  const body = { schema: CANON_SCHEMA, source: "bucket-canon sub-claims", excerpts, evidence, graph: graph.graph, licences: LICENCES.filter((l) => kinds.has(l.kind) || l.kind === NOTICE_KIND).map((l) => ({ ...l, works: l.kind === NOTICE_KIND ? allWorks : (works[l.kind]?.size ?? 0) })), counts };
   const sha256 = createHash("sha256").update(JSON.stringify(body)).digest("hex");
   const pack: CanonPack = { version: sha256.slice(0, 12), sha256, ...body };
   assertClean(deny, pack, "the canon pack", markers, [...excerpts.map((e) => e.text), ...Object.values(evidence).flatMap((ps) => ps.map((p) => p.text))]);

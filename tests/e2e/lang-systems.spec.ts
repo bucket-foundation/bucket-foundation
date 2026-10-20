@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { PLACEMENT_ITEMS_PER_TIER, PLACEMENT_PASS_PER_TIER } from "../../src/lib/academy/lang-systems";
 
 const MAIL = process.env.E2E_MAIL_URL || "http://127.0.0.1:54324";
 const email = `e2e-lang-${Date.now()}@bucket.local`;
@@ -87,8 +88,7 @@ test("create a Romance system, place French, and study a mixed session", async (
     await page.waitForTimeout(150);
   }
   await expect(page.getByTestId("placement-done")).toBeVisible();
-  expect(asked).toBeGreaterThanOrEqual(4);
-  expect(asked).toBeLessThanOrEqual(12);
+  expect(asked).toBe(PLACEMENT_ITEMS_PER_TIER - PLACEMENT_PASS_PER_TIER + 1);
   await expect(page.getByRole("heading", { name: "placed at tier 0" })).toBeVisible();
 
   await page.getByRole("link", { name: /place Spanish/ }).click();

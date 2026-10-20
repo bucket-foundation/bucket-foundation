@@ -15,7 +15,7 @@ export interface WorkspaceItem {
   type: WorkspaceType;
   key: string;
   title: string;
-  from: { kind: "output" | "dataset" | "rowset" | "deck" | "advisor"; id: string; title: string };
+  from: { kind: "output" | "dataset" | "rowset" | "deck" | "advisor" | "generation"; id: string; title: string };
   origin: "shipped" | "staff" | "local";
   licence: string;
   changed: boolean;
@@ -38,6 +38,7 @@ export interface WorkspaceSources {
   changedPaths: (slug: string) => string[];
   datasets: () => DatasetInfo[];
   rowSets: () => RowSetInfo[];
+  generated?: () => WorkspaceItem[];
 }
 
 function terms(info: DatasetInfo): string {
@@ -129,7 +130,8 @@ function reviewQueue(src: WorkspaceSources): WorkspaceItem[] {
 export function workspaceItems(src: WorkspaceSources, type: WorkspaceType): WorkspaceItem[] {
   if (type === "graphs") return [...reviewQueue(src), ...fromRowSets(src, type)];
   if (type === "maps") return fromRowSets(src, type);
-  if (type === "figures" || type === "papers") return figuresAndPapers(src, type);
+  if (type === "figures") return [...figuresAndPapers(src, type), ...(src.generated?.() ?? [])];
+  if (type === "papers") return figuresAndPapers(src, type);
   if (type === "tables") return fromOutputs(src, "tables");
   if (type === "records") return [...fromOutputs(src, "records"), ...fromDatasets(src)];
   return [];

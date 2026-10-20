@@ -53,6 +53,7 @@ jobs:
             bundles: msi
             strict: "1"
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
     environment: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && 'bkt-release' || 'bkt-dry-run' }}
     permissions:
       contents: read
@@ -204,6 +205,7 @@ jobs:
   rpm-fedora:
     needs: bundle
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     container: fedora:latest
     steps:
       - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c
@@ -270,7 +272,7 @@ jobs:
           BKT_DESKTOP_UNSIGNED_OK: ${{ vars.BKT_DESKTOP_UNSIGNED_OK }}
         run: |
           v=${GITHUB_REF_NAME#bkt-v}
-          for a in macos-arm64.dmg macos-x64.dmg windows-x64.msi linux-x64.AppImage linux-x64.deb linux-x64.rpm; do
+          for a in macos-arm64.dmg macos-x64.dmg windows-x64.msi linux-x64.AppImage linux-x64.AppImage.tar.gz linux-x64.deb linux-x64.rpm; do
             for suffix in "" .sha256; do
               [ -s "bundles/Bucket-desktop-$v-$a$suffix" ] || { echo "missing Bucket-desktop-$v-$a$suffix" >&2; exit 1; }
             done

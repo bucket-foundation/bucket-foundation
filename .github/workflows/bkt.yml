@@ -57,6 +57,7 @@ permissions:
 jobs:
   bkt:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
@@ -85,6 +86,9 @@ jobs:
       - name: eight Learn views pass with the network denied
         working-directory: packages/bkt
         run: bun scripts/smoke.ts --learn-offline
+      - name: an injected outside call fails the offline run, from the window and from the helper
+        working-directory: packages/bkt
+        run: bun scripts/smoke.ts --learn-offline --mutation
 
   ros-contract:
     runs-on: ubuntu-latest
@@ -147,6 +151,7 @@ jobs:
 
   appimage:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     needs: [bkt, bkt-ui]
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -172,6 +177,7 @@ jobs:
 
   binaries:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     needs: [bkt]
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
@@ -235,6 +241,7 @@ jobs:
           - os: windows-latest
             asset: bkt-windows-x64.exe
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
     steps:
       - name: let git skip repo paths that NTFS cannot hold
         if: runner.os == 'Windows'
@@ -301,16 +308,19 @@ jobs:
           "BKT_BIN=$env:RUNNER_TEMP\bin\bkt.exe" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
           exit 0
       - name: smoke on linux with a libsecret keystore
+        timeout-minutes: 10
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update -q && sudo apt-get install -yq --no-install-recommends gnome-keyring libsecret-tools dbus-x11
           dbus-run-session -- bash -c 'echo -n smoke | gnome-keyring-daemon --unlock --components=secrets > /dev/null && bun packages/bkt/scripts/smoke.ts "$BKT_BIN" "$BKT_EXPECT"'
       - name: a locked libsecret collection refuses and stores nothing
+        timeout-minutes: 10
         if: runner.os == 'Linux'
         run: |
           sudo apt-get install -yq --no-install-recommends libglib2.0-bin
           dbus-run-session -- bash -c 'echo -n smoke | gnome-keyring-daemon --unlock --components=secrets > /dev/null && bun packages/bkt/scripts/smoke-locked.ts "$BKT_BIN"'
       - name: smoke on macos with a Keychain
+        timeout-minutes: 10
         if: runner.os == 'macOS'
         run: |
           security create-keychain -p smoke bkt-smoke.keychain
@@ -320,6 +330,7 @@ jobs:
           security set-keychain-settings bkt-smoke.keychain
           bun packages/bkt/scripts/smoke.ts "$BKT_BIN" "$BKT_EXPECT"
       - name: smoke on windows with DPAPI
+        timeout-minutes: 10
         if: runner.os == 'Windows'
         shell: pwsh
         run: bun packages/bkt/scripts/smoke.ts $env:BKT_BIN $env:BKT_EXPECT

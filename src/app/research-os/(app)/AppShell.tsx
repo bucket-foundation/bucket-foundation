@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
+import { useAccountGate } from "@/components/auth/AccountGate";
+import { isGuestPath } from "@/lib/auth/paths";
+import { trackOpenOnce } from "@/lib/analytics/funnel";
 import SearchPalette from "./SearchPalette";
 import WorkQuiz from "./quiz/WorkQuiz";
 import { inLaunchScope } from "@/lib/research-os/launch-scope";
@@ -53,15 +56,27 @@ function isOn(item: Item, pathname: string): boolean {
   return item.match.some((p) => pathname === p || pathname.startsWith(p + "/"));
 }
 
-export default function AppShell({ user, host, children }: { user: ShellUser; host: string | null; children: ReactNode }) {
+export default function AppShell({ user, host, children }: { user: ShellUser | null; host: string | null; children: ReactNode }) {
   const raw = usePathname() || "/research-os/home";
   const pathname = raw.startsWith(RESEARCH_PREFIX) ? raw : RESEARCH_PREFIX + (raw === "/" ? "" : raw);
   const href = (p: string) => researchHref(p, host);
-  const groups: { title: string; items: Item[] }[] = [{ title: "learn", items: user.staff ? LEARN : LEARN.filter((it) => inLaunchScope(it.href)) }];
-  if (user.staff) groups.push({ title: "teach", items: TEACH });
+  const staff = user?.staff ?? false;
+  const groups: { title: string; items: Item[] }[] = [{ title: "learn", items: staff ? LEARN : LEARN.filter((it) => inLaunchScope(it.href)) }];
+  if (staff) groups.push({ title: "teach", items: TEACH });
   const all = groups.flatMap((g) => g.items);
-  const name = user.handle || (user.email ? user.email.split("@")[0] : "you");
+  const name = user ? user.handle || (user.email ? user.email.split("@")[0] : "you") : null;
+  const router = useRouter();
+  const { requireAccount, openSignIn } = useAccountGate();
+  const gated = (target: string) => (e: MouseEvent<HTMLAnchorElement>) => {
+    if (user || isGuestPath(target) || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    requireAccount(() => router.push(href(target)));
+  };
   const [searchOpen, setSearchOpen] = useState(false);
+  useEffect(() => {
+    trackOpenOnce({ guest: !user, path: pathname });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -86,6 +101,7 @@ export default function AppShell({ user, host, children }: { user: ShellUser; ho
               <Link
                 key={it.href}
                 href={href(it.href)}
+                onClick={gated(it.href)}
                 aria-current={on ? "page" : undefined}
                 className={
                   "small-caps text-[10px] tracking-[0.18em] px-3 py-3 whitespace-nowrap border-b-2 min-h-[44px] inline-flex items-center " +
@@ -100,7 +116,7 @@ export default function AppShell({ user, host, children }: { user: ShellUser; ho
       </nav>
 
       <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
-      <WorkQuiz enabled={user.staff} />
+      <WorkQuiz enabled={staff} />
       <div className="max-w-[1200px] mx-auto md:grid md:grid-cols-[224px_minmax(0,1fr)] md:gap-8 px-4 md:px-6">
         <aside className="hidden md:block py-8">
           <div className="sticky top-[96px]">
@@ -108,10 +124,17 @@ export default function AppShell({ user, host, children }: { user: ShellUser; ho
               <span>search the graph</span>
               <kbd className="font-mono text-[10px]">⌘K</kbd>
             </button>
-            <Link href="/account" className="block p-3 border border-[color:var(--hairline)] rounded-sm hover:bg-[color:var(--bone-2)] transition">
-              <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">signed in</div>
-              <div className="mt-0.5 text-[14px] text-[color:var(--basalt)] truncate" title={user.email ?? undefined}>{name}</div>
-            </Link>
+            {user ? (
+              <Link href="/account" className="block p-3 border border-[color:var(--hairline)] rounded-sm hover:bg-[color:var(--bone-2)] transition">
+                <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">signed in</div>
+                <div className="mt-0.5 text-[14px] text-[color:var(--basalt)] truncate" title={user.email ?? undefined}>{name}</div>
+              </Link>
+            ) : (
+              <button type="button" onClick={openSignIn} data-guest-sign-in className="w-full text-left p-3 border border-[color:var(--hairline)] rounded-sm hover:bg-[color:var(--bone-2)] transition">
+                <div className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">guest</div>
+                <div className="mt-0.5 text-[14px] text-[color:var(--basalt)]">Sign in to save progress</div>
+              </button>
+            )}
             {groups.map((g) => (
               <div key={g.title} className="mt-6">
                 <div className="small-caps text-[10px] tracking-[0.22em] text-[color:var(--aegean-deep)] px-3">{g.title}</div>
@@ -122,6 +145,7 @@ export default function AppShell({ user, host, children }: { user: ShellUser; ho
                       <li key={it.href}>
                         <Link
                           href={href(it.href)}
+                          onClick={gated(it.href)}
                           aria-current={on ? "page" : undefined}
                           className={
                             "block px-3 py-2 rounded-sm border-l-2 transition " +
@@ -139,9 +163,11 @@ export default function AppShell({ user, host, children }: { user: ShellUser; ho
             ))}
             <div className="mt-6 px-3 flex flex-col gap-2 text-[12px]">
               <Link href={href("/research-os")} className="text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4">about Research OS</Link>
-              <form method="post" action="/auth/sign-out">
-                <button type="submit" className="text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4">sign out</button>
-              </form>
+              {user && (
+                <form method="post" action="/auth/sign-out">
+                  <button type="submit" className="text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] underline underline-offset-4">sign out</button>
+                </form>
+              )}
             </div>
           </div>
         </aside>

@@ -3,6 +3,18 @@ import { connect } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
+if (process.argv[2] === "--learn-offline" && process.argv[3] === "--mutation") {
+  const { learnOffline } = await import("./learn-offline");
+  let caught = 0;
+  for (const kind of ["browser", "server"] as const) {
+    const first = (await learnOffline(kind))[0];
+    const seen = first !== undefined && !first.pass && first.detail.includes("offline-check.invalid");
+    console.log(`${seen ? "ok" : "FAIL"} mutation ${kind}: an injected outside call ${seen ? "fails the audit" : "went unnoticed"}`);
+    if (seen) caught++;
+  }
+  process.exit(caught === 2 ? 0 : 1);
+}
+
 if (process.argv[2] === "--learn-offline") {
   const { learnOffline } = await import("./learn-offline");
   const results = await learnOffline();
@@ -136,7 +148,12 @@ async function full(): Promise<void> {
     check((await fetch(`${url}local/ping`, { headers: { authorization: `Bucket ${"A".repeat(43)}` } })).status === 401, "a wrong token is refused");
   } finally {
     serve.kill();
-    await serve.exited;
+    const stopped = await Promise.race([serve.exited.then(() => true), new Promise<false>((r) => setTimeout(() => r(false), 10_000))]);
+    if (!stopped) {
+      serve.kill("SIGKILL");
+      await serve.exited;
+      throw new Error("smoke: bkt serve did not exit within 10s of SIGTERM");
+    }
   }
   console.log("smoke passed");
 }

@@ -1,7 +1,7 @@
 import { chmodSync, existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, posix, win32 } from "node:path";
-import { KeyringError, refuseOverwrite, SecretToolKeyring, SERVICE, type Keyring } from "./keyring";
+import { KeyringError, refuseOverwrite, SecretToolKeyring, SERVICE, type Keyring, type SetOptions } from "./keyring";
 
 export type Os = "linux" | "darwin" | "win32";
 export type Env = Record<string, string | undefined>;
@@ -117,12 +117,20 @@ export class KeychainKeyring implements Keyring {
     throw new KeyringError(`security find-generic-password failed (exit ${r.code}): ${r.stderr.trim() || "empty output"}`);
   }
 
-  async set(account: string, secret: string) {
-    if (!/^[\w.@-]+$/.test(account)) throw new KeyringError(`invalid keychain account ${account}`);
-    if ((await this.get(account)) !== null) refuseOverwrite(account);
-    const line = `add-generic-password -s ${SERVICE} -a ${account} -l "bkt ${account}" -w ${b64(secret)}\n`;
+  async set(account: string, secret: string, opts: SetOptions = {}) {
+    if (!/^[\w.@:-]+$/.test(account)) throw new KeyringError(`invalid keychain account ${account}`);
+    if (!opts.replace && (await this.get(account)) !== null) refuseOverwrite(account);
+    const line = `add-generic-password${opts.replace ? " -U" : ""} -s ${SERVICE} -a ${account} -l "bkt ${account}" -w ${b64(secret)}\n`;
     const r = await this.run([this.bin, "-i"], line);
     if (r.code !== 0 || /error/i.test(r.stderr)) throw new KeyringError(`security add-generic-password failed: ${r.stderr.trim()}`);
+  }
+
+  async delete(account: string) {
+    if (!/^[\w.@:-]+$/.test(account)) throw new KeyringError(`invalid keychain account ${account}`);
+    const r = await this.run([this.bin, "delete-generic-password", "-s", SERVICE, "-a", account]);
+    if (r.code === 0) return true;
+    if (r.code === 44) return false;
+    throw new KeyringError(`security delete-generic-password failed (exit ${r.code}): ${r.stderr.trim() || "empty output"}`);
   }
 }
 
@@ -144,8 +152,8 @@ export class DpapiKeyring implements Keyring {
   ) {}
 
   private file(account: string) {
-    if (!/^[\w.@-]+$/.test(account)) throw new KeyringError(`invalid dpapi account ${account}`);
-    return join(this.dir, `${SERVICE}.${account}.dpapi`);
+    if (!/^[\w.@:-]+$/.test(account)) throw new KeyringError(`invalid dpapi account ${account}`);
+    return join(this.dir, `${SERVICE}.${account.replaceAll(":", "%3A")}.dpapi`);
   }
 
   async get(account: string) {
@@ -156,9 +164,9 @@ export class DpapiKeyring implements Keyring {
     return unb64(r.stdout);
   }
 
-  async set(account: string, secret: string) {
+  async set(account: string, secret: string, opts: SetOptions = {}) {
     const f = this.file(account);
-    if (existsSync(f)) refuseOverwrite(account);
+    if (existsSync(f) && !opts.replace) refuseOverwrite(account);
     const r = await this.run([this.bin, ...PS_FLAGS, PS_PROTECT], b64(secret));
     if (r.code !== 0 || !r.stdout.trim()) throw new KeyringError(`dpapi protect failed (exit ${r.code}): ${r.stderr.trim()}`);
     this.secure(this.dir);
@@ -170,6 +178,13 @@ export class DpapiKeyring implements Keyring {
       rmSync(tmp, { force: true });
       throw e;
     }
+  }
+
+  async delete(account: string) {
+    const f = this.file(account);
+    if (!existsSync(f)) return false;
+    rmSync(f);
+    return true;
   }
 }
 

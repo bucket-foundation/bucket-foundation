@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Api } from "./api";
 import { attachBack, BackButton, focusScreen, replaceHash, windowTrail } from "./back";
 import { firstRunHash, followRoutes, href, useRoute } from "./router";
-import { activeNav, FOOT_LINKS, navFor, Screen } from "./nav";
+import { activeNav, agentsAvailable, FOOT_LINKS, navFor, Screen } from "./nav";
 
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
 import "katex/dist/katex.min.css";
@@ -15,6 +15,7 @@ function App() {
   const [fatal, setFatal] = useState<string | null>(null);
   const [warn, setWarn] = useState<string | null>(null);
   const [workReady, setWorkReady] = useState(false);
+  const [agentsReady, setAgentsReady] = useState(false);
   const trail = windowTrail();
 
   useEffect(() => {
@@ -44,6 +45,18 @@ function App() {
   useEffect(() => {
     if (!api) return;
     let live = true;
+    void agentsAvailable(api).then(
+      (ok) => live && setAgentsReady(ok),
+      () => live && setAgentsReady(false)
+    );
+    return () => {
+      live = false;
+    };
+  }, [api, route.name]);
+
+  useEffect(() => {
+    if (!api) return;
+    let live = true;
     void followRoutes(() => api.windowRoute(), (to) => (window.location.hash = to), () => live);
     return () => {
       live = false;
@@ -68,7 +81,7 @@ function App() {
           <BackButton trail={trail} />
         </div>
         <nav>
-          {navFor(workReady).map((n) => (
+          {navFor(workReady, agentsReady || route.name === "agents").map((n) => (
             <a key={n.label} href={href(n.route)} className={active === n.route.name ? "on" : ""}>
               {n.label}
             </a>

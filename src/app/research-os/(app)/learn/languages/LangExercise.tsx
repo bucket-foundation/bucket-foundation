@@ -2,9 +2,10 @@
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Rating } from "@/lib/academy/fsrs";
-import { listenOnce, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
-import { gradeMatch, joinTokens, judgeTyped, langName, LEVEL_LABEL, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
+import { canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
+import { gradeMatch, joinTokens, judgeTyped, langDir, langName, LEVEL_LABEL, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
+import type { LinkForm } from "@/lib/academy/lang-layout";
 
 export interface ExerciseResult {
   lang: string;
@@ -43,8 +44,24 @@ export function ReadingLine({ reading, testId }: { reading?: Reading; testId?: s
   );
 }
 
+function useAudioReady(): void {
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    let live = true;
+    const bump = () => live && setTick((t) => t + 1);
+    void loadClipIndex().then(bump);
+    const synth = speechSupported() ? window.speechSynthesis : null;
+    synth?.addEventListener?.("voiceschanged", bump);
+    return () => {
+      live = false;
+      synth?.removeEventListener?.("voiceschanged", bump);
+    };
+  }, []);
+}
+
 function SpeakButton({ text, lang, label }: { text: string; lang: string; label?: string }) {
-  if (!speechSupported()) return null;
+  useAudioReady();
+  if (!canSpeak(text, lang)) return null;
   return (
     <button type="button" onClick={() => speak(text, lang)} className="px-2 py-1 text-[12px] small-caps underline underline-offset-4 text-[color:var(--aegean-deep)]" aria-label={label ?? `Hear it in ${langName(lang)}`}>
       play
@@ -85,7 +102,7 @@ function Feedback({ ok, verdict, ex, onNext }: { ok: boolean; verdict?: Verdict;
   return (
     <div className="mt-4 border-t border-[color:var(--hairline)] pt-3" role="status">
       <div className="text-[14px] text-[color:var(--basalt)]" data-testid="verdict">
-        {ok ? (verdict === "close" ? "Close. Check the spelling and accents:" : "Right:") : "The answer:"} <strong lang={ex.answerLang}>{shownAnswer(ex)}</strong>
+        {ok ? (verdict === "close" ? "Close. Check the spelling and accents:" : "Right:") : "The answer:"} <strong lang={ex.answerLang} dir={langDir(ex.answerLang)}>{shownAnswer(ex)}</strong>
         <SpeakButton text={ex.kind === "gender" ? shownAnswer(ex) : targetText} lang={ex.lang} />
       </div>
       <ReadingLine reading={ex.answerLang === ex.lang ? ex.answerReading : ex.promptReading} testId="feedback-reading" />
@@ -103,7 +120,7 @@ function Prompt({ ex }: { ex: Exercise }) {
   const hidden = ex.kind === "listen" || ex.kind === "type-heard";
   if (ex.kind === "cloze" && ex.cloze) {
     return (
-      <span lang={ex.lang}>
+      <span lang={ex.lang} dir={langDir(ex.lang)}>
         {ex.cloze.before}
         <span className="inline-block min-w-[4rem] border-b border-[color:var(--basalt)]">{" "}</span>
         {ex.cloze.after} <span className="text-[12px] text-[color:var(--basalt-3)]">({ex.prompt})</span>
@@ -114,9 +131,9 @@ function Prompt({ ex }: { ex: Exercise }) {
     return (
       <span>
         Listen and {ex.kind === "listen" ? `pick the ${langName(ex.answerLang)} meaning` : "type the word"}. <SpeakButton text={ex.prompt} lang={ex.promptLang} label="Play again" />
-        {!speechSupported() && (
+        {!canSpeak(ex.prompt, ex.promptLang) && (
           <>
-            <span lang={ex.promptLang} className="ml-2">
+            <span lang={ex.promptLang} dir={langDir(ex.promptLang)} className="ml-2">
               {ex.prompt}
             </span>
             <ReadingLine reading={ex.promptReading} />
@@ -128,15 +145,15 @@ function Prompt({ ex }: { ex: Exercise }) {
   if (ex.kind === "gender") {
     return (
       <span>
-        Which article goes with <strong lang={ex.lang}>{ex.prompt}</strong>? <span className="text-[12px] text-[color:var(--basalt-3)]">({ex.promptReading?.roman})</span>
+        Which article goes with <strong lang={ex.lang} dir={langDir(ex.lang)}>{ex.prompt}</strong>? <span className="text-[12px] text-[color:var(--basalt-3)]">({ex.promptReading?.roman})</span>
       </span>
     );
   }
   if (ex.kind === "conjugate") {
     return (
       <span>
-        {ex.tense === "past" ? "Past tense" : "Present tense"} of <strong lang={ex.lang}>{ex.prompt}</strong> <span className="text-[12px] text-[color:var(--basalt-3)]">({ex.promptReading?.roman})</span>:{" "}
-        <strong lang={ex.lang}>{ex.person} ___</strong>
+        {ex.tense === "past" ? "Past tense" : "Present tense"} of <strong lang={ex.lang} dir={langDir(ex.lang)}>{ex.prompt}</strong> <span className="text-[12px] text-[color:var(--basalt-3)]">({ex.promptReading?.roman})</span>:{" "}
+        <strong lang={ex.lang} dir={langDir(ex.lang)}>{ex.person} ___</strong>
       </span>
     );
   }
@@ -151,7 +168,7 @@ function Prompt({ ex }: { ex: Exercise }) {
   if (ex.kind === "sentence" || ex.kind === "wordbank") {
     return (
       <span>
-        {langName(ex.answerLang)} for <strong lang={ex.promptLang}>{ex.prompt}</strong>
+        {langName(ex.answerLang)} for <strong lang={ex.promptLang} dir={langDir(ex.promptLang)}>{ex.prompt}</strong>
       </span>
     );
   }
@@ -171,7 +188,7 @@ function Prompt({ ex }: { ex: Exercise }) {
   }
   return (
     <span>
-      {ex.kind === "reverse" ? `What does this mean in ${langName(ex.answerLang)}?` : `${langName(ex.answerLang)} for`} <strong lang={ex.promptLang}>{ex.prompt}</strong>
+      {ex.kind === "reverse" ? `What does this mean in ${langName(ex.answerLang)}?` : `${langName(ex.answerLang)} for`} <strong lang={ex.promptLang} dir={langDir(ex.promptLang)}>{ex.prompt}</strong>
       {ex.kind === "reverse" && (
         <>
           <SpeakButton text={ex.prompt} lang={ex.promptLang} />
@@ -182,7 +199,37 @@ function Prompt({ ex }: { ex: Exercise }) {
   );
 }
 
-export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exercise; onDone: (results: ExerciseResult[]) => void; optionReadings?: Record<string, Reading> }) {
+function Links({ links }: { links?: LinkForm[] }) {
+  if (!links || links.length === 0) return null;
+  return (
+    <p className="mt-3 text-[13px] text-[color:var(--basalt-2)]" data-testid="links">
+      <span className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">linked</span>{" "}
+      {links.map((l, i) => (
+        <span key={l.lang} data-link-lang={l.lang} data-link-why={l.why}>
+          {i > 0 && " · "}
+          {langName(l.lang)}{" "}
+          <span lang={l.lang} dir={langDir(l.lang)}>
+            {l.word}
+          </span>
+        </span>
+      ))}
+    </p>
+  );
+}
+
+function TargetHeadline({ ex }: { ex: Exercise }) {
+  return (
+    <div data-testid="target-headline">
+      <div className="text-[28px] text-[color:var(--basalt)]" lang={ex.promptLang} dir={langDir(ex.promptLang)}>
+        {ex.prompt} <SpeakButton text={ex.prompt} lang={ex.promptLang} />
+      </div>
+      <ReadingLine reading={ex.promptReading} />
+      <div className="mt-1 text-[13px] text-[color:var(--basalt-3)]">What does this mean in {langName(ex.answerLang)}?</div>
+    </div>
+  );
+}
+
+export default function LangExercise({ ex, onDone, optionReadings, links, targetLayout = false }: { ex: Exercise; onDone: (results: ExerciseResult[]) => void; optionReadings?: Record<string, Reading>; links?: LinkForm[]; targetLayout?: boolean }) {
   const [picked, setPicked] = useState<string | null>(null);
   const [typed, setTyped] = useState("");
   const [verdict, setVerdict] = useState<Verdict | null>(null);
@@ -216,6 +263,27 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
     </div>
   );
 
+  if (ex.kind === "intro" && targetLayout) {
+    return (
+      <section className="bg-[color:var(--bone)] p-4 md:p-5" data-testid="exercise" data-kind={ex.kind} data-lang={ex.lang} data-layout="target">
+        {header}
+        <div className="mt-2 text-[28px] text-[color:var(--basalt)]" lang={ex.answerLang} dir={langDir(ex.answerLang)} data-testid="target-headline">
+          {ex.answer} <SpeakButton text={ex.answer} lang={ex.answerLang} />
+        </div>
+        <ReadingLine reading={ex.answerReading} testId="intro-reading" />
+        <div className="mt-1 text-[13px] text-[color:var(--basalt-3)]" data-testid="root-gloss">
+          {langName(ex.promptLang)}: <span lang={ex.promptLang} dir={langDir(ex.promptLang)}>{ex.prompt}</span>
+        </div>
+        <Links links={links} />
+        <FalseFriendNote ex={ex} />
+        {ex.note && <p className="mt-2 text-[12px] leading-[1.6] text-[color:var(--basalt-3)]">{ex.note}</p>}
+        <button type="button" onClick={() => onDone([])} className={BTN_PRIMARY + " mt-4"} data-testid="next">
+          got it
+        </button>
+      </section>
+    );
+  }
+
   if (ex.kind === "intro") {
     return (
       <section className="bg-[color:var(--bone)] p-4 md:p-5" data-testid="exercise" data-kind={ex.kind} data-lang={ex.lang}>
@@ -223,7 +291,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
         <div className="mt-2 text-[13px] text-[color:var(--basalt-3)]">
           {langName(ex.promptLang)}: {ex.prompt}
         </div>
-        <div className="mt-1 text-[28px] text-[color:var(--basalt)]" lang={ex.answerLang}>
+        <div className="mt-1 text-[28px] text-[color:var(--basalt)]" lang={ex.answerLang} dir={langDir(ex.answerLang)}>
           {ex.answer} <SpeakButton text={ex.answer} lang={ex.answerLang} />
         </div>
         <ReadingLine reading={ex.answerReading} testId="intro-reading" />
@@ -251,7 +319,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
           {ex.pairs.map((p) => (
             <li key={p.lang} className="flex flex-wrap items-center gap-3 text-[15px]" data-testid="match-row">
               <span className="min-w-[8rem]">
-                <span lang={p.lang} className="text-[color:var(--basalt)]">
+                <span lang={p.lang} dir={langDir(p.lang)} className="text-[color:var(--basalt)]">
                   {p.word}
                 </span>
                 <SpeakButton text={p.word} lang={p.lang} />
@@ -300,14 +368,14 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
         <div className="mt-2 text-[15px] leading-[1.6] text-[color:var(--basalt)]">
           <Prompt ex={ex} />
         </div>
-        <div className="mt-3 min-h-[48px] border-b border-[color:var(--basalt)] flex flex-wrap gap-2 pb-2" data-testid="built" lang={ex.lang}>
+        <div className="mt-3 min-h-[48px] border-b border-[color:var(--basalt)] flex flex-wrap gap-2 pb-2" data-testid="built" lang={ex.lang} dir={langDir(ex.lang)}>
           {built.map((ti, k) => (
             <button key={`${ti}-${k}`} type="button" disabled={verdict !== null} onClick={() => setBuilt((b) => b.filter((_, j) => j !== k))} className="px-2 py-1 rounded-sm bg-white/70 border border-[color:var(--hairline)] text-[15px]">
               {tokens[ti]}
             </button>
           ))}
         </div>
-        <div className="mt-3 flex flex-wrap gap-2" lang={ex.lang}>
+        <div className="mt-3 flex flex-wrap gap-2" lang={ex.lang} dir={langDir(ex.lang)}>
           {tokens.map((t, ti) => (
             <button key={ti} type="button" disabled={built.includes(ti) || verdict !== null} onClick={() => setBuilt((b) => [...b, ti])} className="px-2 py-1 rounded-sm border border-[color:var(--hairline)] text-[15px] disabled:opacity-30" data-testid="token">
               {t}
@@ -346,7 +414,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
     <section className="bg-[color:var(--bone)] p-4 md:p-5" data-testid="exercise" data-kind={ex.kind} data-lang={ex.lang}>
       {header}
       <div className="mt-2 text-[15px] leading-[1.6] text-[color:var(--basalt)]">
-        <Prompt ex={ex} />
+        {targetLayout && ex.kind === "reverse" ? <TargetHeadline ex={ex} /> : <Prompt ex={ex} />}
       </div>
 
       {mc && ex.options && (
@@ -360,7 +428,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
                 type="button"
                 disabled={picked !== null}
                 onClick={() => setPicked(o)}
-                lang={ex.answerLang}
+                lang={ex.answerLang} dir={langDir(ex.answerLang)}
                 className={"border border-[color:var(--hairline)] bg-white/50 hover:bg-[color:var(--bone-2)] px-3 py-2 text-left rounded-sm min-h-[48px] text-[15px] " + state}
                 data-testid="option"
               >
@@ -397,7 +465,7 @@ export default function LangExercise({ ex, onDone, optionReadings }: { ex: Exerc
             autoFocus
             value={typed}
             onChange={(e) => setTyped(e.target.value)}
-            lang={ex.answerLang}
+            lang={ex.answerLang} dir={langDir(ex.answerLang)}
             aria-label={`answer in ${langName(ex.answerLang)}`}
             className="flex-1 min-w-[12rem] border border-[color:var(--hairline)] bg-white/70 px-3 py-2 rounded-sm text-[15px]"
             data-testid="answer"

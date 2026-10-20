@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
 import { buildQueue, cardId, exerciseFor, learnerLevel, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
+import { linkForms, targetFirst } from "@/lib/academy/lang-layout";
 import LangExercise, { ReadingsContext, type ExerciseResult } from "./LangExercise";
 import { useLangSystem } from "./useLangSystem";
 
@@ -35,9 +36,16 @@ export default function LangStudy({ systemId }: { systemId: string }) {
     if (!item) return null;
     if (entry.stage === "match") return matchExercise(corpus, system, item, rng);
     const card = state.cards[cardId(entry.lang, entry.itemId)];
-    return exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang) });
+    const made = exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang) });
+    return h.shared ? targetFirst(corpus, item, made, rng) : made;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entry, system, corpus, rng]);
+
+  const links = useMemo(() => {
+    if (!h.shared || !ex || !system || !corpus || ex.kind !== "intro") return undefined;
+    const item = corpus.byId.get(ex.itemId);
+    return item ? linkForms(item, system, ex.lang) : undefined;
+  }, [h.shared, ex, system, corpus]);
 
   const optionReadings = useMemo(() => (ex && corpus ? readingsByForm(corpus, ex.answerLang) : undefined), [ex, corpus]);
 
@@ -109,7 +117,7 @@ export default function LangStudy({ systemId }: { systemId: string }) {
         <div className="h-1 bg-[color:var(--gold-deep)]" style={{ width: `${Math.round((i / queue.length) * 100)}%` }} />
       </div>
       <ReadingsContext.Provider value={readings}>
-        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} />
+        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} links={links} targetLayout={!!h.shared} />
       </ReadingsContext.Provider>
       <div className="flex flex-wrap items-center justify-between gap-3">
       <button type="button" onClick={() => setI((x) => x + 1)} className="text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)]" data-testid="skip-exercise">

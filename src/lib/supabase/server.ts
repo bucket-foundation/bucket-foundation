@@ -1,7 +1,8 @@
 import { cookies, headers } from "next/headers";
-import { cookieDomainFor } from "../research-host";
+import { persistentCookie, sessionCookieOptions } from "./cookie-options";
+import { updateSession, type SessionResult } from "./session";
 import type { NextRequest, NextResponse } from "next/server";
-import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { createServerClient } from "@supabase/ssr";
 import type { SupabaseClient, User } from "@supabase/supabase-js";
 
 const URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -11,34 +12,29 @@ export function authConfigured(): boolean {
   return Boolean(URL && ANON);
 }
 
-function sharedCookieOptions(host: string | null): { cookieOptions?: { domain: string } } {
-  const domain = cookieDomainFor(host);
-  return domain ? { cookieOptions: { domain } } : {};
-}
-
 export function getServerSupabase(): SupabaseClient {
   const store = cookies();
   let host: string | null = null;
+  let secure = process.env.NODE_ENV === "production";
   try {
-    host = headers().get("host");
+    const h = headers();
+    host = h.get("host");
+    secure = h.get("x-forwarded-proto") === "https" || secure;
   } catch {
     host = null;
   }
   return createServerClient(URL as string, ANON as string, {
-    ...sharedCookieOptions(host),
+    cookieOptions: sessionCookieOptions(host),
     cookies: {
-      get(name: string) {
-        return store.get(name)?.value;
+      getAll() {
+        return store.getAll();
       },
-      set(name: string, value: string, options: CookieOptions) {
+      setAll(list) {
         try {
-          store.set({ name, value, ...options });
-        } catch {
-        }
-      },
-      remove(name: string, options: CookieOptions) {
-        try {
-          store.set({ name, value: "", ...options });
+          for (const c of list) {
+            const p = persistentCookie({ name: c.name, value: c.value, options: c.options ?? {} }, host, secure);
+            store.set(p.name, p.value, p.options);
+          }
         } catch {
         }
       },
@@ -49,33 +45,17 @@ export function getServerSupabase(): SupabaseClient {
 export function getRequestSupabase(req: NextRequest): SupabaseClient {
   return createServerClient(URL as string, ANON as string, {
     cookies: {
-      get(name: string) {
-        return req.cookies.get(name)?.value;
+      getAll() {
+        return req.cookies.getAll();
       },
-      set() {
+      setAll() {
       },
-      remove() {},
     },
   });
 }
 
-export function getMiddlewareSupabase(req: NextRequest, res: NextResponse): SupabaseClient {
-  return createServerClient(URL as string, ANON as string, {
-    ...sharedCookieOptions(req.headers.get("host")),
-    cookies: {
-      get(name: string) {
-        return req.cookies.get(name)?.value;
-      },
-      set(name: string, value: string, options: CookieOptions) {
-        req.cookies.set({ name, value, ...options });
-        res.cookies.set({ name, value, ...options });
-      },
-      remove(name: string, options: CookieOptions) {
-        req.cookies.set({ name, value: "", ...options });
-        res.cookies.set({ name, value: "", ...options });
-      },
-    },
-  });
+export function refreshMiddlewareSession(req: NextRequest, build: () => NextResponse): Promise<SessionResult> {
+  return updateSession(req, build, URL as string, ANON as string);
 }
 
 export interface SessionUser {

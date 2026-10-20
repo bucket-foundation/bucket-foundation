@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_MAX_AGE_SECONDS, COOKIE_NAME, verifyToken } from "@/lib/kruse-token";
-import { isProtectedPath } from "@/lib/auth/paths";
+import { PATH_HEADER, isProtectedPath } from "@/lib/auth/paths";
 import { protectedRedirectTarget, redirectUrl, signInRedirectTarget } from "@/lib/sign-in-gate";
-import { getMiddlewareSupabase, authConfigured } from "@/lib/supabase/server";
+import { refreshMiddlewareSession, authConfigured } from "@/lib/supabase/server";
 import { cookieMigrationHeaders, isResearchHost, parseCookieHeader, researchRoute } from "@/lib/research-host";
 
 export const config = {
@@ -57,11 +57,13 @@ async function kruse(req: NextRequest): Promise<NextResponse> {
   return NextResponse.next({ request: { headers } });
 }
 
-function forward(req: NextRequest, rewriteTo: string | null): NextResponse {
-  if (!rewriteTo) return NextResponse.next({ request: { headers: req.headers } });
+function forward(req: NextRequest, rewriteTo: string | null, pathname: string): NextResponse {
+  const headers = new Headers(req.headers);
+  headers.set(PATH_HEADER, pathname);
+  if (!rewriteTo) return NextResponse.next({ request: { headers } });
   const url = req.nextUrl.clone();
   url.pathname = rewriteTo;
-  return NextResponse.rewrite(url, { request: { headers: req.headers } });
+  return NextResponse.rewrite(url, { request: { headers } });
 }
 
 export async function middleware(req: NextRequest) {
@@ -80,20 +82,13 @@ async function route(req: NextRequest): Promise<NextResponse> {
   const closedTarget = signInRedirectTarget(pathname);
   if (closedTarget) return NextResponse.redirect(redirectUrl(closedTarget, req.url, onResearchHost), 307);
 
-  const res = forward(req, route.kind === "rewrite" ? route.pathname : null);
+  const build = () => forward(req, route.kind === "rewrite" ? route.pathname : null, pathname);
   if (!authConfigured()) {
     if (isProtectedPath(pathname)) return NextResponse.redirect(redirectUrl(protectedRedirectTarget(pathname, req.nextUrl.search), req.url, onResearchHost));
-    return res;
+    return build();
   }
 
-  const supabase = getMiddlewareSupabase(req, res);
-  let signedIn = false;
-  try {
-    const { data } = await supabase.auth.getUser();
-    signedIn = Boolean(data.user);
-  } catch {
-    signedIn = false;
-  }
+  const { res, signedIn } = await refreshMiddlewareSession(req, build);
 
   if (!signedIn && isProtectedPath(pathname)) {
     const redirect = NextResponse.redirect(redirectUrl(protectedRedirectTarget(pathname, req.nextUrl.search), req.url, onResearchHost));

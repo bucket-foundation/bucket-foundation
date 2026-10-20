@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { getSessionUser } from "@/lib/supabase/server";
 import { getIdentity } from "@/lib/auth/identity";
-import { signInUrl, DEFAULT_AFTER_SIGN_IN } from "@/lib/auth/paths";
+import { signInUrl, DEFAULT_AFTER_SIGN_IN, PATH_HEADER, isGuestPath } from "@/lib/auth/paths";
 import { isLaunchStaff } from "@/lib/research-os/launch-gate";
 import AppShell from "./AppShell";
 
@@ -12,7 +12,14 @@ export const dynamic = "force-dynamic";
 
 export default async function ResearchOsAppLayout({ children }: { children: ReactNode }) {
   const user = await getSessionUser();
-  if (!user) redirect(signInUrl(DEFAULT_AFTER_SIGN_IN));
+  if (!user) {
+    if (!isGuestPath(headers().get(PATH_HEADER))) redirect(signInUrl(DEFAULT_AFTER_SIGN_IN));
+    return (
+      <AppShell host={headers().get("host")} user={null}>
+        {children}
+      </AppShell>
+    );
+  }
   const identity = await getIdentity(user.id);
   const staff = isLaunchStaff(user);
   return (

@@ -1,11 +1,14 @@
 import { randomBytes } from "node:crypto";
 import { ALREADY_IMPORTED, checkState, importProgress } from "./core/importer";
 import { mergeState, normalizeState } from "../../../src/lib/academy/engine";
+import { SYSTEMS_BRANCH } from "../../../src/lib/academy/lang-client";
+import { mergeSystems, normalizeSystemsDoc } from "../../../src/lib/academy/lang-systems";
 import { dueCards, deckProgress, Encompassing, gradeQuiz, LearnError, publicQuestion, quizSession, rateCard } from "./core/learn";
 import type { Question } from "./grade";
 import type { Route } from "./serve";
 import type { Pack, PackDeck } from "./pack/export";
 import type { ShortFile } from "./short-fields";
+import type { SaveText } from "./downloads";
 import type { Store } from "./store";
 
 export interface LocalOptions {
@@ -13,6 +16,12 @@ export interface LocalOptions {
   now?: () => number;
   seed?: () => string;
   content?: Pick<Pack, "decks" | "atoms">;
+  langCorpus?: Record<string, unknown>;
+  saveExport?: SaveText;
+}
+
+export function progressExportName(now: Date): string {
+  return `bucket-progress-${now.toISOString().slice(0, 10)}.json`;
 }
 
 const json = (body: unknown, status = 200) =>
@@ -49,6 +58,13 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
   const open = new Map<string, Question>();
   const decks: PackDeck[] = opts.content?.decks ?? [];
   const enc = new Encompassing(store, opts.content);
+  const progressBranches = () => {
+    const branches: Record<string, { data: unknown; updated_at: string }> = {};
+    for (const deck of store.learnDecks()) branches[deck] = { data: store.learnState(deck), updated_at: new Date(store.learnUpdatedAt(deck)).toISOString() };
+    const systems = store.meta(SYSTEMS_META);
+    if (systems) branches[SYSTEMS_BRANCH] = { data: JSON.parse(systems), updated_at: new Date(Number(store.meta(SYSTEMS_AT) ?? 0)).toISOString() };
+    return branches;
+  };
 
   return {
     "GET /local/quiz": (_req, url) => {
@@ -85,14 +101,31 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
       const list = enc.deckAtoms(deck);
       return list ? json({ deck, atoms: list }) : json({ error: "unknown deck" }, 404);
     },
-    "GET /local/progress": () => {
-      const branches: Record<string, { data: unknown; updated_at: string }> = {};
-      for (const deck of store.learnDecks()) branches[deck] = { data: store.learnState(deck), updated_at: new Date(store.learnUpdatedAt(deck)).toISOString() };
-      return json({ branches });
+    "GET /local/lang-corpus": (_req, url) => {
+      const file = url.searchParams.get("file") ?? "";
+      const data = Object.hasOwn(opts.langCorpus ?? {}, file) ? opts.langCorpus![file] : undefined;
+      return data === undefined ? json({ error: "unknown file" }, 404) : new Response(JSON.stringify(data), { headers: { "content-type": "application/json", "cache-control": "private, max-age=86400" } });
+    },
+    "GET /local/progress": () => json({ branches: progressBranches() }),
+    "POST /local/progress/export": () => {
+      if (!opts.saveExport) return json({ error: "export_unavailable" }, 501);
+      try {
+        return json(opts.saveExport(progressExportName(new Date(now())), JSON.stringify({ branches: progressBranches() }, null, 2)));
+      } catch {
+        return json({ error: "save_failed" }, 500);
+      }
     },
     "POST /local/progress": async (req) => {
       const b = await body(req);
       if (!b || typeof b.branch !== "string" || !DECK_ID.test(b.branch) || !b.data || typeof b.data !== "object") return json({ error: "branch and data required" }, 400);
+      if (b.branch === SYSTEMS_BRANCH) {
+        const saved = store.meta(SYSTEMS_META);
+        const merged = mergeSystems(normalizeSystemsDoc(saved ? JSON.parse(saved) : null), normalizeSystemsDoc(b.data));
+        const t = now();
+        store.setMeta(SYSTEMS_META, JSON.stringify(merged));
+        store.setMeta(SYSTEMS_AT, String(t));
+        return json({ data: merged });
+      }
       const merged = mergeState(store.learnState(b.branch), normalizeState(b.data));
       store.putLearnState(b.branch, merged, now());
       return json({ data: merged });
@@ -106,6 +139,8 @@ export function localRoutes(store: Store, opts: LocalOptions = {}): Record<strin
   };
 }
 
+export const SYSTEMS_META = "lang_systems";
+const SYSTEMS_AT = "lang_systems_at";
 const DECK_ID = /^[a-z0-9][a-z0-9-]{0,63}$/;
 export const IMPORT_BODY_BYTES = 8 * 1024 * 1024;
 const LS_PREFIX = "bucket-academy/v1/";

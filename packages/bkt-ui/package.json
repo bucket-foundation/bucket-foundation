@@ -19,12 +19,16 @@
     "katex": "^0.16.47",
     "react": "18",
     "react-dom": "18",
+    "react-markdown": "^9.1.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "smiles-drawer": "2.4.1",
     "three": "0.170.0",
     "three-stdlib": "2.36.1"
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "15",
+    "@playwright/test": "1.58.2",
     "@types/bun": "^1.4.2",
     "@types/react": "18",
     "@types/react-dom": "18",

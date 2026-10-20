@@ -158,8 +158,11 @@ export function startServe(opts: ServeOptions = {}): Serve {
   const routes = opts.routes ?? {};
   const ui = loadUi(opts.uiDir);
   const offline = opts.offline ?? isOffline();
+  const before = globalThis.fetch;
+  let guard: typeof fetch | null = null;
   if (offline && !(globalThis.fetch as { bktOffline?: boolean }).bktOffline) {
-    globalThis.fetch = Object.assign(offlineFetch(globalThis.fetch, (u) => opts.onError?.(new OfflineError(u))), { bktOffline: true });
+    guard = Object.assign(offlineFetch(globalThis.fetch, (u) => opts.onError?.(new OfflineError(u))), { bktOffline: true });
+    globalThis.fetch = guard;
   }
   const maxBody = opts.maxBodyBytes ?? MAX_BODY_BYTES;
   const routeBody = opts.routeBodyBytes ?? {};
@@ -297,6 +300,9 @@ export function startServe(opts: ServeOptions = {}): Serve {
     hostname: HOSTNAME,
     url: `http://${HOSTNAME}:${server.port}/`,
     remint,
-    stop: () => server.stop(true),
+    stop: () => {
+      server.stop(true);
+      if (guard && globalThis.fetch === guard) globalThis.fetch = before;
+    },
   };
 }

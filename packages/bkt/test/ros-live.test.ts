@@ -3,7 +3,10 @@ import { beforeEach, describe, expect, test } from "bun:test";
 import type { Atom } from "../../../src/lib/academy/engine";
 import { parseRosLive, ROS_LIVE_PATHS, ROS_LIVE_ROUTES, type RosLiveRoute } from "../../../src/lib/research-os/contract";
 import { newDataKey } from "../src/crypto";
-import { RosGraph, rosLiveRoutes, rosNodeId, syncRosGraph } from "../src/ros";
+import { mkdtempSync, readFileSync, rmSync, statSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { RosGraph, rosLiveRoutes, rosNodeId, saveToDownloads, syncRosGraph } from "../src/ros";
 import { Store } from "../src/store";
 import atoms from "./fixtures/ros-atoms.json";
 
@@ -80,6 +83,40 @@ describe("local Research OS graph", () => {
     expect(saved.body.deleted).toBe(true);
     expect((await call("profile")).body.profile.role).toBe("independent");
     expect((await call("loop")).body.empty).toBe(true);
+  });
+
+  test("privacy export returns every local table and delete wipes profile and progress after the confirm word", async () => {
+    await call("profile", "", "POST", { role: "independent", birthYearBucket: "18plus" });
+    await call("state", "", "POST", { nodeId: MOMENTUM, action: "open" });
+    const out = await call("privacy", "", "POST", { action: "export" });
+    expect(out.status).toBe(200);
+    expect(() => parseRosLive("privacy", out.body)).not.toThrow();
+    expect(out.body.tables.ros_profile[0].role).toBe("independent");
+    expect(out.body.tables.ros_state.map((r: { node_id: string }) => r.node_id)).toEqual([MOMENTUM]);
+    expect((await call("privacy", "", "POST", { action: "delete" })).status).toBe(400);
+    expect((await call("privacy", "", "POST", { action: "delete", confirm: "delete" })).status).toBe(400);
+    expect((await call("privacy", "", "POST", { action: "wipe" })).status).toBe(400);
+    const del = await call("privacy", "", "POST", { action: "delete", confirm: "DELETE" });
+    expect(del.status).toBe(200);
+    expect(() => parseRosLive("privacy", del.body)).not.toThrow();
+    expect(del.body.deleted).toEqual({ ros_state: 1, ros_profile: 1 });
+    expect((await call("profile")).body).toEqual({ profile: null, game: null });
+    expect(db.query("select count(*) as n from ros_nodes").get()).toEqual({ n: 4 });
+  });
+
+  test("an export saved to the downloads folder never overwrites an earlier one", async () => {
+    const dir = mkdtempSync(join(tmpdir(), "bkt-export-"));
+    try {
+      routes = rosLiveRoutes(new RosGraph(db), () => NOW, { saveExport: saveToDownloads(() => dir) });
+      const first = await call("privacy", "", "POST", { action: "export", save: true });
+      const second = await call("privacy", "", "POST", { action: "export", save: true });
+      expect(first.body.saved).toEqual({ name: "research-os-export-2026-10-01.json", folder: dir });
+      expect(second.body.saved.name).toBe("research-os-export-2026-10-01 (2).json");
+      expect(JSON.parse(readFileSync(join(dir, first.body.saved.name), "utf8")).learnerId).toBe("local");
+      expect(statSync(join(dir, first.body.saved.name)).mode & 0o777).toBe(0o600);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 
   test("every success payload passes the shared contract", async () => {

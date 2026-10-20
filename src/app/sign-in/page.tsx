@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { signInOpen } from "@/lib/launch";
 import { safeNextPath } from "@/lib/auth/paths";
+import { callbackErrorMessage } from "@/lib/auth/callback";
 import SignInForm from "./SignInForm";
 import WaitlistForm from "./WaitlistForm";
 
@@ -13,7 +14,7 @@ function first(v: string | string[] | undefined): string | null {
 
 export function generateMetadata(): Metadata {
   return signInOpen()
-    ? { title: "Sign in", description: "Sign in to Research OS with an email code.", robots: { index: false, follow: false } }
+    ? { title: "Sign in", description: "Sign in to Research OS with an email link.", robots: { index: false, follow: false } }
     : { title: "Launch list", description: "Leave your email to hear when Research OS opens.", robots: { index: false, follow: false } };
 }
 
@@ -22,13 +23,14 @@ const SWITCH = "underline underline-offset-4 text-[color:var(--basalt-2)] hover:
 
 export default function SignInPage({ searchParams }: { searchParams?: SearchParams }) {
   const next = first(searchParams?.next);
+  const linkError = callbackErrorMessage(first(searchParams?.error));
   const nextQuery = next ? `next=${encodeURIComponent(safeNextPath(next))}` : "";
 
   if (signInOpen()) {
     return (
       <Shell>
         <h1 className={H1}>Sign in</h1>
-        <SignInForm next={next} />
+        <SignInForm next={next} linkError={linkError} />
       </Shell>
     );
   }
@@ -38,7 +40,7 @@ export default function SignInPage({ searchParams }: { searchParams?: SearchPara
       <Shell>
         <h1 className={H1}>Sign in</h1>
         <p className="mt-3 text-[13px] text-[color:var(--basalt-2)]">For accounts that already exist.</p>
-        <SignInForm next={next} allowNewAccounts={false} />
+        <SignInForm next={next} allowNewAccounts={false} linkError={linkError} />
         <p className="mt-8 text-[12px] text-[color:var(--basalt-3)]">
           New here?{" "}
           <Link href={nextQuery ? `/sign-in?${nextQuery}` : "/sign-in"} className={SWITCH}>

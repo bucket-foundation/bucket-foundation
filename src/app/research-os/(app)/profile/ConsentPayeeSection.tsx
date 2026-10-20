@@ -92,7 +92,7 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
             ? OUTAGE_COPY.body
             : j.error === "vendor_not_configured"
               ? "That vendor is not connected yet; ask your teacher to record consent, or pick the manual path."
-              : (j.error ?? "failed"),
+              : "Bucket could not request consent. Try again.",
         );
       else setNote(j.url ? `Consent started. A parent completes it at ${j.url}` : "Consent requested. Your teacher or librarian records it once a parent has said yes.");
       setContact("");
@@ -113,7 +113,7 @@ export default function ConsentPayeeSection({ token }: { token: string | null })
       });
       if (!res.ok) {
         const j = (await res.json().catch(() => ({}))) as { error?: string };
-        setNote(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : (j.error ?? "failed"));
+        setNote(isTransientOutage(res.status, j.error ?? null) ? OUTAGE_COPY.body : "Bucket could not save that. Try again.");
       } else {
         setContact("");
       }

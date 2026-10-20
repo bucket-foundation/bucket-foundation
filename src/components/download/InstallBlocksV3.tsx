@@ -1,13 +1,13 @@
 import CopyBlock from "../CopyBlock";
-import { APPIMAGE_WARNING_SHORT, DIRECT_FILE_STEP, DIRECT_FILE_SUMMARY, FIRST_OPEN, INSTALL_COMMAND, LINUX_INSTALL_NOTE, LINUX_PACKAGE_LABEL, appImageRunSteps, linuxInstallCommand } from "../../lib/download/install";
+import { APPIMAGE_WARNING_SHORT, DIRECT_FILE_STEP, DIRECT_FILE_STEP_RAW, DIRECT_FILE_SUMMARY, FIRST_OPEN, INSTALL_COMMAND, LINUX_INSTALL_NOTE, LINUX_PACKAGE_LABEL, appImageRunSteps, linuxInstallCommand, packageInstallCommand, releaseTagFrom } from "../../lib/download/install";
 import { OS_LABEL, type Os } from "../../lib/download/release";
-import { isBareExecutable, type InstallerV2, type WindowedInstaller } from "../../lib/download/release-v2";
+import { directFiles, isBareExecutable, type InstallerV2, type WindowedInstaller } from "../../lib/download/release-v2";
 import { osOrder } from "./InstallBlocks";
 
-function commandFor(os: Os, installers: InstallerV2[]): string {
+function commandFor(os: Os, installers: InstallerV2[], windowed: WindowedInstaller[]): string {
   if (os !== "linux") return INSTALL_COMMAND[os];
   const appImage = installers.find((i) => i.os === "linux" && /\.AppImage$/i.test(i.name));
-  return linuxInstallCommand(appImage?.url ?? null);
+  return linuxInstallCommand(appImage?.url ?? null, releaseTagFrom([...installers, ...windowed].map((i) => i.url)));
 }
 
 const ARCH_LABEL: Record<string, string> = { "macos/arm64": "Apple silicon", "macos/x64": "Intel", "linux/arm64": "ARM" };
@@ -24,21 +24,24 @@ function linkLabel(w: WindowedInstaller): string {
 function Block({ os, installers, windowed }: { os: Os; installers: InstallerV2[]; windowed: WindowedInstaller[] }) {
   const mine = windowed.filter((w) => w.os === os);
   const apps = mine.filter((w) => !isBareExecutable(w));
-  const bare = mine.filter(isBareExecutable);
+  const bare = directFiles(mine);
   const firstOpen = apps.some((w) => !w.signed) ? FIRST_OPEN[os] : undefined;
   return (
     <div data-os={os} className="flex flex-col gap-2">
       <h3 className="small-caps text-[11px] tracking-[0.14em] text-[color:var(--basalt-2)]">{OS_LABEL[os]}</h3>
       {os === "linux" && (
         <div className="flex flex-col gap-2" data-primary-install>
-          <CopyBlock text={commandFor(os, installers)} label={`${OS_LABEL[os]} install command`} />
+          <CopyBlock text={commandFor(os, installers, windowed)} label={`${OS_LABEL[os]} install command`} />
           {installers.some((i) => i.os === "linux" && i.kind === "desktop") && <p className="text-[13px] text-[color:var(--basalt)]" data-install-note>{LINUX_INSTALL_NOTE}</p>}
         </div>
       )}
       {apps.map((w) => (
-        <div key={w.name} className="flex items-center gap-4">
-          <a href={w.url} className={LINK} data-windowed-installer={`${w.os}-${w.arch}`} data-format={w.format}>{linkLabel(w)}</a>
-          {w.checksumUrl && <a href={w.checksumUrl} className={SMALL_LINK} data-checksum={`${w.os}-${w.arch}`}>sha256</a>}
+        <div key={w.name} className="flex flex-col gap-2">
+          <div className="flex items-center gap-4">
+            <a href={w.url} className={LINK} data-windowed-installer={`${w.os}-${w.arch}`} data-format={w.format}>{linkLabel(w)}</a>
+            {w.checksumUrl && <a href={w.checksumUrl} className={SMALL_LINK} data-checksum={`${w.os}-${w.arch}`}>sha256</a>}
+          </div>
+          {(w.format === "deb" || w.format === "rpm") && <CopyBlock text={packageInstallCommand(w.format, w.name)} label={`.${w.format} install command, ${w.arch}`} />}
         </div>
       ))}
       {firstOpen && (
@@ -47,12 +50,12 @@ function Block({ os, installers, windowed }: { os: Os; installers: InstallerV2[]
           <p className="text-[13px] text-[color:var(--basalt)]">{firstOpen.steps}</p>
         </details>
       )}
-      {os !== "linux" && <CopyBlock text={commandFor(os, installers)} label={`${OS_LABEL[os]} install command`} />}
+      {os !== "linux" && <CopyBlock text={commandFor(os, installers, windowed)} label={`${OS_LABEL[os]} install command`} />}
       {bare.length > 0 && (
         <details data-direct-file>
           <summary className="text-[13px] text-[color:var(--basalt-2)] cursor-pointer min-h-[44px] flex items-center">{DIRECT_FILE_SUMMARY}</summary>
           <div className="flex flex-col gap-2">
-            <p className="text-[13px] text-[color:var(--basalt)]">{DIRECT_FILE_STEP}</p>
+            <p className="text-[13px] text-[color:var(--basalt)]">{bare.every((w) => w.format === "AppImage.tar.gz") ? DIRECT_FILE_STEP : DIRECT_FILE_STEP_RAW}</p>
             {bare.map((w) => (
               <div key={w.name} className="flex flex-col gap-2">
                 <CopyBlock text={appImageRunSteps(w.name)} label={`AppImage run commands, ${w.arch}`} />

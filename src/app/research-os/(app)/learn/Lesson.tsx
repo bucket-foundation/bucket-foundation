@@ -8,6 +8,7 @@ import rehypeKatex from "rehype-katex";
 import katex from "katex";
 import { InlineMath } from "@/components/math/InlineMath";
 import type { Atom } from "@/lib/academy/engine";
+import { RawDetails } from "@/components/ui";
 
 const DEPTHS: { key: string; label: string }[] = [
   { key: "eli5", label: "Plain" },
@@ -29,7 +30,13 @@ export function Equation({ tex }: { tex: string }) {
       return "";
     }
   }, [tex]);
-  if (!html) return <pre className="font-mono text-[13px] overflow-x-auto">{tex}</pre>;
+  if (!html)
+    return (
+      <div className="py-2 text-[13px] text-[color:var(--basalt-3)]">
+        <p>This formula could not be drawn.</p>
+        <RawDetails raw={tex} />
+      </div>
+    );
   return <div className="overflow-x-auto py-2" dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
