@@ -2,6 +2,28 @@
   "version": "0.1",
   "entries": [
     {
+      "id": "pr-913",
+      "date": "2026-10-20",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Header tests check the account pill, placement expects the approved stop",
+      "summary": "Tests in e2e: header tests check the account pill, placement expects the approved stop.",
+      "commit": "e5bdc24",
+      "pr": 913,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/913"
+    },
+    {
+      "id": "pr-911",
+      "date": "2026-10-20",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Dev release fixes, frozen screens, desktop capability, deploy, CI hang",
+      "summary": "Fix: dev release fixes, frozen screens, desktop capability, deploy, CI hang.",
+      "commit": "b326c66",
+      "pr": 911,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/911"
+    },
+    {
       "id": "pr-865",
       "date": "2026-10-19",
       "category": "pr-merged",
@@ -319,6 +341,182 @@
       "commit": "3a21fe5",
       "pr": 868,
       "url": "https://github.com/bucket-foundation/bucket-foundation/pull/868"
+    },
+    {
+      "id": "pr-906",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Agents panel, launch_agent, Bucket agent chat, bkt agents",
+      "summary": "New in bkt: agents panel, launch_agent, Bucket agent chat, bkt agents.",
+      "commit": "6b150ac",
+      "pr": 906,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/906"
+    },
+    {
+      "id": "pr-905",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Study sync state on the account pill",
+      "summary": "New in site: study sync state on the account pill.",
+      "commit": "e711adf",
+      "pr": 905,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/905"
+    },
+    {
+      "id": "pr-874",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Harder, better calibrated placement",
+      "summary": "Fix in academy: harder, better calibrated placement.",
+      "commit": "348a86b",
+      "pr": 874,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/874"
+    },
+    {
+      "id": "pr-877",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Target-first cards and links panel behind POLINGUAL_SHARED_MEMORY",
+      "summary": "New in polingual: target-first cards and links panel behind POLINGUAL_SHARED_MEMORY.",
+      "commit": "6b6ff4f",
+      "pr": 877,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/877"
+    },
+    {
+      "id": "pr-904",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Deb and rpm install commands, pinned fallback",
+      "summary": "Fix in download: deb and rpm install commands, pinned fallback.",
+      "commit": "172266b",
+      "pr": 904,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/904"
+    },
+    {
+      "id": "pr-903",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Public figures page from the generation registry",
+      "summary": "New in site: public figures page from the generation registry.",
+      "commit": "1973e0d",
+      "pr": 903,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/903"
+    },
+    {
+      "id": "pr-902",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Canon tools and licence egress for the Bucket agent",
+      "summary": "New in bkt: canon tools and licence egress for the Bucket agent.",
+      "commit": "2d65fa9",
+      "pr": 902,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/902"
+    },
+    {
+      "id": "pr-896",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Gemini CLI events in bkt wait",
+      "summary": "New in bkt: Gemini CLI events in bkt wait.",
+      "commit": "e83bdee",
+      "pr": 896,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/896"
+    },
+    {
+      "id": "pr-901",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Collaboration-ready brand directions",
+      "summary": "New in brand: collaboration-ready brand directions.",
+      "commit": "ab23371",
+      "pr": 901,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/901"
+    },
+    {
+      "id": "pr-900",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Desktop, web and Android sync against bucket.foundation",
+      "summary": "Fix in sync: desktop, web and Android sync against bucket.foundation.",
+      "commit": "a736be1",
+      "pr": 900,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/900"
+    },
+    {
+      "id": "pr-898",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Account pill with menu and a Settings page",
+      "summary": "New in site: account pill with menu and a Settings page.",
+      "commit": "8edbd0b",
+      "pr": 898,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/898"
+    },
+    {
+      "id": "pr-899",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Keep the Supabase session across reloads and restarts",
+      "summary": "Fix in auth: keep the Supabase session across reloads and restarts.",
+      "commit": "5c4f491",
+      "pr": 899,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/899"
+    },
+    {
+      "id": "pr-897",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Llm provider layer, keyring rotation, bkt llm",
+      "summary": "New in bkt: llm provider layer, keyring rotation, bkt llm.",
+      "commit": "3ea7c0b",
+      "pr": 897,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/897"
+    },
+    {
+      "id": "pr-895",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Study while you wait",
+      "summary": "New in bkt: study while you wait.",
+      "commit": "77a2d4b",
+      "pr": 895,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/895"
+    },
+    {
+      "id": "pr-894",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Figures list shows renders, and more renders join the registry",
+      "summary": "New in bkt: Figures list shows renders, and more renders join the registry.",
+      "commit": "1c847bc",
+      "pr": 894,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/894"
+    },
+    {
+      "id": "pr-893",
+      "date": "2026-10-19",
+      "category": "pr-merged",
+      "branch": null,
+      "title": "Stored figure generations with bkt generate",
+      "summary": "New in bkt: stored figure generations with bkt generate.",
+      "commit": "f2c646a",
+      "pr": 893,
+      "url": "https://github.com/bucket-foundation/bucket-foundation/pull/893"
     },
     {
       "id": "pr-853",
