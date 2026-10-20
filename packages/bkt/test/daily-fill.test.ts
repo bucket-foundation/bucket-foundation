@@ -7,7 +7,7 @@ import type { QuizQuestion } from "../../../src/lib/research-os/work-quiz/types"
 import pack from "../content/pack.json" with { type: "json" };
 import type { ChatScan } from "../src/chat-sources";
 import { newDataKey } from "../src/crypto";
-import { CRITIC_DIR_ENV, criticDir, lessonFill, readCriticQuiz } from "../src/daily-fill";
+import { CRITIC_DIR_ENV, criticDir, lessonFill, readCriticQuiz, recentDays, repeats } from "../src/daily-fill";
 import { DAILY_MAX, DAILY_MIN } from "../src/daily-quiz";
 import type { Item } from "../src/grade";
 import { platformFor, type ExecResult } from "../src/platform";
@@ -153,6 +153,29 @@ describe("daily quiz fill", () => {
     expect(readCriticQuiz("../etc", critics)).toEqual({ questions: [], skipped: [] });
     expect(criticDir({ [CRITIC_DIR_ENV]: "/tmp/x" }, "/srv/ada")).toBe("/tmp/x");
     expect(criticDir({}, "/srv/ada")).toBe("/srv/ada/.local/share/bucket-daily");
+  });
+
+  test("a critic question asked in the last 30 days is dropped and the day's set stays put", async () => {
+    const { wq } = open();
+    const photon = (id: string, prompt: string) => ({ id, type: "estimate", prompt, answer: "20", log10Tolerance: 1, limitSec: 60, explain: "About 20 GB." });
+    wq.daily.put({ day: "2026-10-07", questions: [photon("critic-old", "Gigabytes for 6.56 million 768-dimension float32 vectors?")] }, AT);
+    plant({ day: DAY, questions: [photon("critic-photon-gb", "Gigabytes for 6.56 million photons as 768-dimension float32 vectors?"), CRITIC[0]] });
+    const routes = routesFor(wq);
+    const first = (await daily(routes)).body.questions.map((q) => q.id);
+    expect(first).not.toContain("critic-photon-gb");
+    expect(first[0]).toBe("critic-1");
+    expect(logs).toEqual([`daily quiz ${DAY}: 1 critic questions repeat the last 30 days`]);
+    expect((await daily(routes)).body.questions.map((q) => q.id)).toEqual(first);
+  });
+
+  test("repeats matches a reworded prompt of the same type inside the window", () => {
+    const asked = [{ type: "estimate" as const, prompt: "Gigabytes for 768-dimension float32 vectors across 6,564,942 photons?" }];
+    expect(repeats({ type: "estimate", prompt: "Gigabytes for 6.56 million photons as 768-dimension float32 vectors?" }, asked)).toBe(true);
+    expect(repeats({ type: "recall", prompt: "Gigabytes for 6.56 million photons as 768-dimension float32 vectors?" }, asked)).toBe(false);
+    expect(repeats({ type: "estimate", prompt: "How many tests ran in the suite?" }, asked)).toBe(false);
+    const window = recentDays(DAY);
+    expect(window).toHaveLength(30);
+    expect([window[0], window[29]]).toEqual(["2026-10-10", "2026-09-11"]);
   });
 
   test("a critic file that arrives after the first build joins an unanswered quiz", async () => {

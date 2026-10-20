@@ -85,6 +85,37 @@ export function readCriticQuiz(day: string, dir: string): CriticRead {
   return { questions, skipped };
 }
 
+export const REPEAT_DAYS = 30;
+export const REPEAT_OVERLAP = 0.5;
+const STOP = new Set(["a", "an", "the", "of", "in", "for", "as", "at", "to", "on", "by", "and", "or", "is", "are", "how", "many", "much", "what", "which", "across", "with"]);
+
+export function promptWords(prompt: string): Set<string> {
+  return new Set(
+    prompt
+      .toLowerCase()
+      .replace(/(\d),(?=\d)/g, "$1")
+      .split(/[^a-z0-9.-]+/)
+      .map((w) => w.replace(/^[.-]+|[.-]+$/g, ""))
+      .filter((w) => w && !STOP.has(w)),
+  );
+}
+
+export function repeats(q: Pick<QuizQuestion, "type" | "prompt">, asked: readonly Pick<QuizQuestion, "type" | "prompt">[]): boolean {
+  const mine = promptWords(q.prompt);
+  return asked.some((a) => {
+    if (a.type !== q.type) return false;
+    const theirs = promptWords(a.prompt);
+    const shared = [...mine].filter((w) => theirs.has(w)).length;
+    const union = new Set([...mine, ...theirs]).size;
+    return union > 0 && shared / union >= REPEAT_OVERLAP;
+  });
+}
+
+export function recentDays(day: string, days = REPEAT_DAYS): string[] {
+  const t = Date.parse(`${day}T00:00:00Z`);
+  return Array.from({ length: days }, (_, i) => new Date(t - (i + 1) * 86_400_000).toISOString().slice(0, 10));
+}
+
 export function lessonFactId(item: Pick<Item, "branch" | "atomId">): string {
   return factId("atom", `${encodeURIComponent(deckOf(item.branch))}/${encodeURIComponent(item.atomId)}`);
 }

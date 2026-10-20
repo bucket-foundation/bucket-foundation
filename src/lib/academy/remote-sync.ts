@@ -30,6 +30,21 @@ export interface LoginPrompt {
   user_code: string;
   verification_uri: string;
   expires_in: number;
+  warning?: string;
+}
+
+export const START_REASONS: Readonly<Record<string, string>> = {
+  review_log_disabled: "account sync is turned off on the site",
+  sync_unavailable: "the site has no account database configured",
+};
+
+async function pageWarning(f: Fetcher, url: string): Promise<string | undefined> {
+  try {
+    const r = await f(url, { method: "GET", redirect: "follow" });
+    return r.ok ? undefined : `the sign-in page answered ${r.status}`;
+  } catch (e) {
+    return `the sign-in page is unreachable (${e instanceof Error ? e.message : String(e)})`;
+  }
 }
 
 export class SyncError extends Error {
@@ -124,9 +139,14 @@ export function createRemoteSync(deps: RemoteDeps): RemoteSync {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ device_id: deps.device.id, public_key: deps.device.publicKey, kind, label }),
     });
-    if (!start.ok) throw new SyncError(`sign-in could not start (${start.status})`, "start_failed");
+    if (!start.ok) {
+      const err = ((await start.json().catch(() => ({}))) as { error?: string }).error ?? "";
+      throw new SyncError(`sign-in could not start: ${START_REASONS[err] ?? `${base} answered ${start.status}${err ? ` ${err}` : ""}`}`, "start_failed");
+    }
     const s = (await start.json()) as { device_code: string; user_code: string; verification_uri: string; expires_in: number; interval: number };
-    onPrompt({ user_code: s.user_code, verification_uri: `${s.verification_uri}?code=${s.user_code}`, expires_in: s.expires_in });
+    const verification_uri = `${s.verification_uri}?code=${s.user_code}`;
+    const warning = await pageWarning(f, verification_uri);
+    onPrompt({ user_code: s.user_code, verification_uri, expires_in: s.expires_in, ...(warning ? { warning } : {}) });
     const deadline = now() + s.expires_in * 1000;
     while (now() < deadline) {
       await sleep(s.interval * 1000);
