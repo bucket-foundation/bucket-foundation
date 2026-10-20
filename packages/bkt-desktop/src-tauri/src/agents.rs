@@ -92,7 +92,22 @@ mod tests {
     }
 
     #[test]
-    fn add_folder_stores_the_real_path_once_with_owner_only_permissions() {
+    fn add_folder_stores_the_real_path_once() {
+        let d = scratch();
+        let state = d.join("state");
+        let proj = d.join("proj");
+        std::fs::create_dir_all(&proj).unwrap();
+        assert_eq!(add_folder(&state, &proj).unwrap(), proj);
+        assert_eq!(add_folder(&state, &proj.join(".")).unwrap(), proj);
+        assert_eq!(read_folders(&state).unwrap(), vec![proj.clone()]);
+        assert!(add_folder(&state, &d.join("missing")).is_err());
+        std::fs::write(d.join("file"), "x").unwrap();
+        assert_eq!(add_folder(&state, &d.join("file")).unwrap_err(), "pick a folder");
+    }
+
+    #[cfg(unix)]
+    #[test]
+    fn add_folder_resolves_symlinks_and_keeps_the_file_owner_only() {
         use std::os::unix::fs::PermissionsExt;
         let d = scratch();
         let state = d.join("state");
@@ -100,13 +115,8 @@ mod tests {
         std::fs::create_dir_all(&proj).unwrap();
         std::os::unix::fs::symlink(&proj, d.join("link")).unwrap();
         assert_eq!(add_folder(&state, &d.join("link")).unwrap(), proj);
-        assert_eq!(add_folder(&state, &proj).unwrap(), proj);
-        assert_eq!(read_folders(&state).unwrap(), vec![proj.clone()]);
         let mode = std::fs::metadata(state.join(FOLDERS_FILE)).unwrap().permissions().mode() & 0o777;
         assert_eq!(mode, 0o600);
-        assert!(add_folder(&state, &d.join("missing")).is_err());
-        std::fs::write(d.join("file"), "x").unwrap();
-        assert_eq!(add_folder(&state, &d.join("file")).unwrap_err(), "pick a folder");
     }
 
     #[test]
