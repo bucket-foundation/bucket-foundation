@@ -3,6 +3,9 @@ import path from "node:path";
 import { normalizeState, dayKey } from "../src/lib/academy/engine";
 import { DAY_MS } from "../src/lib/academy/fsrs";
 import {
+  availableSystems,
+  LANGS as CATALOG_LANGS,
+  SYSTEM_CATALOG,
   applyPlacement,
   buildLangCorpus,
   buildQueue,
@@ -339,6 +342,21 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   const edited = editSystem(romance, ["fr", "es", "it", "pt"], NOW + 5);
   const merged = mergeSystems({ systems: [romance], removed: {} }, { systems: [edited], removed: {} });
   ok(merged.systems[0].targets.length === 4 && merged.systems[0].name.includes("Portuguese"), "the newer edit wins the merge");
+}
+
+{
+  const names = SYSTEM_CATALOG.map((c) => c.name);
+  ok(["Romance", "Germanic", "Semitic"].every((n) => names.includes(n)), "catalog lists Romance, Germanic and Semitic");
+  ok(SYSTEM_CATALOG.find((c) => c.name === "Semitic")!.targets.includes("he"), "Semitic carries Hebrew");
+  ok(SYSTEM_CATALOG.every((c) => c.targets.every((t) => CATALOG_LANGS[t] && t !== "en")), "every catalog language is in the course and differs from the root");
+  ok(availableSystems([]).length === SYSTEM_CATALOG.length, "a new learner sees the whole catalog");
+  const romance = createSystem("en", ["it", "fr", "es"], []);
+  ok(romance.name === "Romance from English", "a catalog system keeps its family name");
+  const left = availableSystems([romance]);
+  ok(!left.some((c) => c.name === "Romance") && left.length === SYSTEM_CATALOG.length - 1, "an owned system leaves the available list");
+  ok(availableSystems([createSystem("es", ["fr", "it", "pt"], [])]).length === SYSTEM_CATALOG.length, "a system from another root does not hide a catalog entry");
+  const semitic = createSystem("en", ["he", "ar"], []);
+  ok(semitic.name === "Semitic from English" && semitic.id === "en-he-ar", "starting Semitic makes en-he-ar");
 }
 
 if (failures) {

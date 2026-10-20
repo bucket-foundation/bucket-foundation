@@ -62,6 +62,30 @@ export const PRESETS: { name: string; targets: string[] }[] = [
   { name: "Iberian", targets: ["es", "pt"] },
 ];
 
+export const SYSTEM_ROOT = "en";
+
+export const SYSTEM_CATALOG: { name: string; targets: string[] }[] = [
+  { name: "Romance", targets: ["fr", "es", "it"] },
+  { name: "Germanic", targets: ["de", "nl", "sv"] },
+  { name: "Semitic", targets: ["he", "ar"] },
+  { name: "Slavic", targets: ["ru", "pl", "cs"] },
+  { name: "Iberian", targets: ["es", "pt"] },
+  { name: "Hellenic and Latin", targets: ["el", "la", "grc"] },
+  { name: "Indo-Iranian", targets: ["hi", "fa", "sa"] },
+  { name: "East Asian", targets: ["zh", "ja", "ko"] },
+  { name: "Southeast Asian", targets: ["id", "vi", "th"] },
+  { name: "Uralic and Turkic", targets: ["fi", "tr"] },
+  { name: "Dravidian", targets: ["ta"] },
+];
+
+export function sameTargets(a: string[], b: string[]): boolean {
+  return a.length === b.length && a.every((t) => b.includes(t));
+}
+
+export function availableSystems(owned: LangSystem[], root: string = SYSTEM_ROOT): { name: string; targets: string[] }[] {
+  return SYSTEM_CATALOG.filter((c) => !owned.some((s) => s.root === root && sameTargets(s.targets, c.targets)));
+}
+
 export interface LangSystem {
   id: string;
   name: string;
@@ -308,7 +332,7 @@ export function langName(code: string): string {
 }
 
 export function systemName(root: string, targets: string[]): string {
-  const preset = PRESETS.find((p) => p.targets.length === targets.length && p.targets.every((t) => targets.includes(t)));
+  const preset = [...PRESETS, ...SYSTEM_CATALOG].find((p) => sameTargets(p.targets, targets));
   if (preset) return `${preset.name} from ${langName(root)}`;
   return `${targets.map(langName).join(" + ")} from ${langName(root)}`;
 }
