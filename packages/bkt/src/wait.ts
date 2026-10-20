@@ -31,8 +31,10 @@ export function defaultWaitDeps(): WaitDeps {
   return { os: process.platform, home: process.env.HOME ?? homedir(), env: process.env, self: selfArgv(), notifySend: Bun.which("notify-send"), out: (l) => console.log(l) };
 }
 
-export function waitDir(env: Record<string, string | undefined>, home: string): string {
-  return join(env.XDG_STATE_HOME || join(home, ".local", "state"), "bkt");
+export function waitDir(env: Record<string, string | undefined>, home: string, platform: string = process.platform): string {
+  if (env.XDG_STATE_HOME) return join(env.XDG_STATE_HOME, "bkt");
+  if (platform === "win32" && env.LOCALAPPDATA) return join(env.LOCALAPPDATA, "bkt");
+  return join(home, ".local", "state", "bkt");
 }
 
 export const shareDir = (home: string, env: Record<string, string | undefined> = {}) => join(env.XDG_DATA_HOME || join(home, ".local", "share"), "bkt");
