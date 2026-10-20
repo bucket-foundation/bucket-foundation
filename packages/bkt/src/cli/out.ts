@@ -24,7 +24,7 @@ export const JSON_SHAPES = {
   whoami: ["device", "publicKey", "newDevice", "keyring", "pack", "imported", "journal"],
   stats: ["items", "seen", "due", "attempts"],
   generate: [["generations", ["name", "about", "inputs"]], ["runs", ["name", "folder", "created", "params", "outputs"]], "folder", "outputs"],
-  login: ["user_code", "verification_uri", "signed_in", "user_id", "device_id"],
+  login: ["user_code", "verification_uri", "warning", "signed_in", "user_id", "device_id"],
   logout: ["signed_in"],
   sync: ["mode", "pending", "held", "pulled", "merged"],
   analyses: [["analyses", ["name", "dir", "mtime"]]],

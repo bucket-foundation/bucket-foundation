@@ -12,7 +12,7 @@ import { deckIpa, deckLessonWords, DeckWordBook, lessonWord, openWordDecks, sear
 import { LESSON_WORDS, WordBook } from "../src/core/words";
 import { newDataKey } from "../src/crypto";
 import { creditedWordRoutes, deckRoutes, SEARCH_NEEDS_WORDS, type DecksBody } from "../src/deck-routes";
-import { brokenDecks, checkManifest, DECK_DB, DECK_MANIFEST, deckLine, deckRows, DeckError, decksDir, findInstalled, installDeck, listAvailable, listInstalled, MAX_DECK_CARDS, MAX_DECK_DB_BYTES, MAX_DECK_FILE_BYTES, MAX_INSTALLED_BYTES, removeDeck, SEARCH_ROW_CAP, sizeText } from "../src/decks";
+import { brokenDecks, checkManifest, DECK_DB, DECK_MANIFEST, deckLine, deckRows, DeckError, decksDir, findInstalled, installDeck, listAvailable, listInstalled, MAX_DECK_CARDS, MAX_DECK_DB_BYTES, MAX_DECK_FILE_BYTES, MAX_INSTALLED_BYTES, removeDeck, SEARCH_ROW_CAP, sizeText, UNCHECKED_RELEASE_FILE } from "../src/decks";
 import { buildDenylist } from "../src/pack/rights";
 import { buildWordPack } from "../src/pack/words";
 import { Store } from "../src/store";
@@ -176,6 +176,21 @@ describe("install", () => {
     const gone = buildDeck(join(ROOT, "gone"), "de", "German", GERMAN);
     rmSync(gone.packed);
     expect(await refusal(() => installDeck(home, gone.dir))).toContain("is missing beside the manifest");
+  });
+
+  test("a lone release deck file installs from the signed deck list and nothing else", async () => {
+    const home = join(ROOT, "h-release");
+    const lone = join(ROOT, "release");
+    mkdirSync(lone, { recursive: true });
+    const file = join(lone, DE.manifest.file);
+    writeFileSync(file, readFileSync(DE.packed));
+    expect(await refusal(() => installDeck(home, file, null))).toBe(UNCHECKED_RELEASE_FILE);
+    expect(await refusal(() => installDeck(home, file, [AR.manifest]))).toContain("release deck file the signed deck list names");
+    const m = await installDeck(home, file, [DE.manifest, AR.manifest]);
+    expect(m.id).toBe("polingual-de");
+    expect(listInstalled(home).map((d) => d.manifest.id)).toEqual(["polingual-de"]);
+    writeFileSync(file, Buffer.concat([readFileSync(DE.packed), Buffer.from("x")]));
+    expect(await refusal(() => installDeck(join(ROOT, "h-release-2"), file, [DE.manifest]))).toContain("changed or cut short");
   });
 
   test("list shows installed decks and the ones a folder offers; remove takes an id or a language", async () => {

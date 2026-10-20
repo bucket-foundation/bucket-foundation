@@ -235,7 +235,7 @@ async function decks(inv: Invocation, json: boolean): Promise<number> {
     }
     if (action === "install") {
       ensureDataDir(home);
-      const m = await installAny(home, inv.positionals[0]);
+      const m = await installAny(home, inv.positionals[0], verifyCatalog(deckCatalog as SignedCatalog)?.decks ?? null);
       const row = deckRow(m, true, join(decksDir(home), m.id));
       if (json) console.log(jsonLine("decks install", row));
       else {
@@ -608,8 +608,9 @@ async function accountCmd(name: "login" | "logout" | "sync", remote: RemoteSync,
   }
   if (name === "login") {
     const s = await remote.login("cli", hostname(), (p) => {
-      if (json) console.log(jsonLine("login", { user_code: p.user_code, verification_uri: p.verification_uri }));
+      if (json) console.log(jsonLine("login", { user_code: p.user_code, verification_uri: p.verification_uri, warning: p.warning ?? null }));
       else console.log(`Open ${p.verification_uri} and confirm the code ${p.user_code}. Waiting up to ${Math.round(p.expires_in / 60)} minutes.`);
+      if (p.warning && !json) console.error(`bkt login: ${p.warning}; open the link in a browser anyway or try again later.`);
     });
     console.log(json ? jsonLine("login", { signed_in: true, user_id: s.user_id, device_id: s.device_id }) : "Signed in. Study progress now syncs with your account.");
     return EXIT.ok;
