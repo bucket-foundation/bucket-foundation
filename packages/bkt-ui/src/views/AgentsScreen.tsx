@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import type { AgentsBodyV2, Api, ChatProvider } from "../api";
-import { launchAgent, shellInvoke, type Invoke } from "../launch";
+import { ApiError } from "../api";
 import { elapsed, POLL_MS } from "./Agents";
 
-export type AgentsScreenApi = Pick<Api, "agentsV2" | "agentTools" | "agentFolders" | "agentProviders" | "chat" | "cancelChat">;
+export type AgentsScreenApi = Pick<Api, "agentsV2" | "launchAgent" | "agentTools" | "agentFolders" | "agentProviders" | "chat" | "cancelChat">;
 
 const TOOL_LABEL: Record<string, string> = { claude: "Claude Code", codex: "Codex", gemini: "Gemini CLI", opencode: "OpenCode", aider: "Aider" };
 const STATE_LABEL: Record<string, string> = { running: "running", waiting: "waiting on you", done: "done", cancelled: "cancelled", error: "error" };
@@ -13,7 +13,7 @@ interface Line {
   content: string;
 }
 
-export function AgentsScreen({ api, invoke = shellInvoke(), now = Date.now }: { api: AgentsScreenApi; invoke?: Invoke | null; now?: () => number }) {
+export function AgentsScreen({ api, now = Date.now }: { api: AgentsScreenApi; now?: () => number }) {
   const [body, setBody] = useState<AgentsBodyV2 | null>(null);
   const [tools, setTools] = useState<string[]>([]);
   const [folders, setFolders] = useState<string[]>([]);
@@ -42,12 +42,12 @@ export function AgentsScreen({ api, invoke = shellInvoke(), now = Date.now }: { 
   }, [api]);
 
   const launch = async (tool: string) => {
-    if (!invoke || !folder) return;
+    if (!folder) return;
     try {
-      await launchAgent(invoke, tool, folder);
+      await api.launchAgent(tool, folder);
       setLaunchNote(`Opened ${TOOL_LABEL[tool] ?? tool} in ${folder}.`);
     } catch (e) {
-      setLaunchNote(`Bucket could not open ${TOOL_LABEL[tool] ?? tool}: ${e instanceof Error ? e.message : String(e)}`);
+      setLaunchNote(`Bucket could not open ${TOOL_LABEL[tool] ?? tool}: ${e instanceof ApiError && e.code ? e.code : e instanceof Error ? e.message : String(e)}`);
     }
   };
 
@@ -68,7 +68,7 @@ export function AgentsScreen({ api, invoke = shellInvoke(), now = Date.now }: { 
             </li>
           ))}
         </ul>
-        {invoke && tools.length > 0 && (
+        {tools.length > 0 && (
           <div className="agents-launch">
             {folders.length === 0 ? (
               <p className="muted small">Approve a folder from the Bucket menu, Agents, Approve a folder, to launch an agent there.</p>

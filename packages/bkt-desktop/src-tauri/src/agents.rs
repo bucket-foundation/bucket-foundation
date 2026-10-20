@@ -1,41 +1,10 @@
-use std::collections::HashMap;
-use std::ffi::{OsStr, OsString};
 use std::path::{Path, PathBuf};
-use std::sync::Mutex;
-use std::time::{Duration, Instant};
-use tauri::Url;
 
-pub const AGENT_CLIS: [&str; 5] = ["claude", "codex", "gemini", "opencode", "aider"];
 pub const FOLDERS_FILE: &str = "agent-folders.json";
 pub const APPROVE_MENU_ID: &str = "approve-agent-folder";
 pub const MAX_FOLDERS: usize = 64;
-pub const TERMINALS: [&str; 9] = ["ptyxis", "gnome-terminal", "konsole", "kitty", "alacritty", "foot", "wezterm", "xterm", "x-terminal-emulator"];
 
-fn executable(p: &Path) -> bool {
-    #[cfg(unix)]
-    {
-        use std::os::unix::fs::PermissionsExt;
-        std::fs::metadata(p).map(|m| m.is_file() && m.permissions().mode() & 0o111 != 0).unwrap_or(false)
-    }
-    #[cfg(not(unix))]
-    {
-        p.is_file()
-    }
-}
-
-pub fn which_in(path: Option<&OsStr>, name: &str) -> Option<PathBuf> {
-    std::env::split_paths(path?).filter(|d| d.is_absolute()).map(|d| d.join(name)).find(|p| executable(p))
-}
-
-pub fn find_tools(path: Option<&OsStr>) -> HashMap<String, PathBuf> {
-    AGENT_CLIS.iter().filter_map(|t| which_in(path, t).map(|p| (t.to_string(), p))).collect()
-}
-
-pub fn find_terminal(path: Option<&OsStr>) -> Option<(&'static str, PathBuf)> {
-    TERMINALS.iter().find_map(|t| which_in(path, t).map(|p| (*t, p)))
-}
-
-pub fn state_dir(xdg_state: Option<OsString>, home: Option<OsString>) -> Option<PathBuf> {
+pub fn state_dir(xdg_state: Option<std::ffi::OsString>, home: Option<std::ffi::OsString>) -> Option<PathBuf> {
     let base = match xdg_state.filter(|s| !s.is_empty()) {
         Some(s) => PathBuf::from(s),
         None => PathBuf::from(home.filter(|h| !h.is_empty())?).join(".local").join("state"),
@@ -90,116 +59,13 @@ fn write_private(path: &Path, bytes: &[u8]) -> std::io::Result<()> {
     opts.open(path)?.write_all(bytes)
 }
 
-pub fn check_launch(tools: &HashMap<String, PathBuf>, approved: &[PathBuf], tool: &str, folder: &str) -> Result<(PathBuf, PathBuf), String> {
-    if !AGENT_CLIS.contains(&tool) {
-        return Err(format!("{tool} is not an agent Bucket can open"));
-    }
-    let bin = tools.get(tool).ok_or_else(|| format!("{tool} is not installed"))?;
-    let asked = Path::new(folder);
-    if !asked.is_absolute() {
-        return Err("the folder must be a full path".into());
-    }
-    let real = std::fs::canonicalize(asked).map_err(|_| "that folder does not exist".to_string())?;
-    if !real.is_dir() {
-        return Err("that path is not a folder".into());
-    }
-    let inside = approved.iter().filter_map(|a| std::fs::canonicalize(a).ok()).any(|root| real.starts_with(&root));
-    if !inside {
-        return Err("that folder is not on the approved list".into());
-    }
-    Ok((bin.clone(), real))
-}
-
-pub fn terminal_args(terminal: &str, tool: &Path, folder: &Path) -> Vec<OsString> {
-    let t = tool.as_os_str().to_owned();
-    let f = folder.as_os_str().to_owned();
-    let mut wd = OsString::from("--working-directory=");
-    wd.push(&f);
-    match terminal {
-        "ptyxis" => vec!["--new-window".into(), "--working-directory".into(), f, "--".into(), t],
-        "gnome-terminal" => vec![wd, "--".into(), t],
-        "konsole" => vec!["--workdir".into(), f, "-e".into(), t],
-        "kitty" => vec!["--directory".into(), f, t],
-        "alacritty" => vec!["--working-directory".into(), f, "-e".into(), t],
-        "foot" => vec![wd, t],
-        "wezterm" => vec!["start".into(), "--cwd".into(), f, "--".into(), t],
-        _ => vec!["-e".into(), t],
-    }
-}
-
-pub const LAUNCH_GAP: Duration = Duration::from_secs(2);
-pub const LAUNCH_STREAK: u32 = 4;
-pub const STREAK_RESET: Duration = Duration::from_secs(60);
-
-pub fn same_origin(page: &Url, base: Option<&Url>) -> bool {
-    base.is_some_and(|b| page.scheme() == b.scheme() && page.host_str() == b.host_str() && page.port_or_known_default() == b.port_or_known_default())
-}
-
-#[derive(Default)]
-pub struct Gate {
-    last: Option<Instant>,
-    streak: u32,
-}
-
-impl Gate {
-    pub fn admit(&mut self, now: Instant) -> Result<(), String> {
-        if let Some(last) = self.last {
-            let gap = now.saturating_duration_since(last);
-            if gap < LAUNCH_GAP {
-                return Err("wait two seconds between launches".into());
-            }
-            if gap >= STREAK_RESET {
-                self.streak = 0;
-            }
-        }
-        if self.streak >= LAUNCH_STREAK {
-            return Err("Bucket opened 4 agents in a row; wait a minute".into());
-        }
-        self.last = Some(now);
-        self.streak += 1;
-        Ok(())
-    }
-}
-
 pub struct Agents {
-    pub tools: HashMap<String, PathBuf>,
-    pub terminal: Option<(&'static str, PathBuf)>,
     pub state: Option<PathBuf>,
-    pub gate: Mutex<Gate>,
 }
 
 impl Agents {
     pub fn at_startup() -> Self {
-        let path = std::env::var_os("PATH");
-        Agents {
-            tools: find_tools(path.as_deref()),
-            terminal: find_terminal(path.as_deref()),
-            state: state_dir(std::env::var_os("XDG_STATE_HOME"), std::env::var_os("HOME")),
-            gate: Mutex::new(Gate::default()),
-        }
-    }
-
-    pub fn launch(&self, tool: &str, folder: &str) -> Result<(), String> {
-        if !cfg!(target_os = "linux") {
-            return Err("launching agents works on Linux for now".into());
-        }
-        let Ok(mut gate) = self.gate.try_lock() else {
-            return Err("another launch is in progress".into());
-        };
-        gate.admit(Instant::now())?;
-        let state = self.state.as_ref().ok_or("Bucket could not find its state folder")?;
-        let (bin, real) = check_launch(&self.tools, &read_folders(state)?, tool, folder)?;
-        let (name, term) = self.terminal.as_ref().ok_or("Bucket found no terminal app to open")?;
-        let mut child = std::process::Command::new(term)
-            .args(terminal_args(name, &bin, &real))
-            .current_dir(&real)
-            .stdin(std::process::Stdio::null())
-            .stdout(std::process::Stdio::null())
-            .stderr(std::process::Stdio::null())
-            .spawn()
-            .map_err(|e| format!("could not open {name}: {e}"))?;
-        std::thread::spawn(move || child.wait());
-        Ok(())
+        Agents { state: state_dir(std::env::var_os("XDG_STATE_HOME"), std::env::var_os("HOME")) }
     }
 }
 
@@ -217,64 +83,6 @@ mod tests {
         std::fs::canonicalize(d).unwrap()
     }
 
-    fn exe(dir: &Path, name: &str) -> PathBuf {
-        use std::os::unix::fs::PermissionsExt;
-        let p = dir.join(name);
-        std::fs::write(&p, "#!/bin/sh\n").unwrap();
-        std::fs::set_permissions(&p, std::fs::Permissions::from_mode(0o755)).unwrap();
-        p
-    }
-
-    fn tools(dir: &Path) -> HashMap<String, PathBuf> {
-        HashMap::from([("claude".to_string(), exe(dir, "claude"))])
-    }
-
-    #[test]
-    fn only_the_sidecar_origin_may_launch() {
-        let base = Url::parse("http://127.0.0.1:41234/").unwrap();
-        assert!(same_origin(&Url::parse("http://127.0.0.1:41234/#/agents").unwrap(), Some(&base)));
-        assert!(!same_origin(&Url::parse("http://127.0.0.1:41235/").unwrap(), Some(&base)));
-        assert!(!same_origin(&Url::parse("http://localhost:41234/").unwrap(), Some(&base)));
-        assert!(!same_origin(&Url::parse("https://127.0.0.1:41234/").unwrap(), Some(&base)));
-        assert!(!same_origin(&Url::parse("http://127.0.0.1:41234/").unwrap(), None));
-    }
-
-    #[test]
-    fn launches_are_spaced_two_seconds_apart_and_capped_at_four_in_a_row() {
-        let mut g = Gate::default();
-        let t0 = Instant::now();
-        assert!(g.admit(t0).is_ok());
-        assert_eq!(g.admit(t0 + Duration::from_millis(1999)).unwrap_err(), "wait two seconds between launches");
-        assert!(g.admit(t0 + Duration::from_secs(2)).is_ok());
-        assert!(g.admit(t0 + Duration::from_secs(4)).is_ok());
-        assert!(g.admit(t0 + Duration::from_secs(6)).is_ok());
-        assert_eq!(g.admit(t0 + Duration::from_secs(8)).unwrap_err(), "Bucket opened 4 agents in a row; wait a minute");
-        assert!(g.admit(t0 + Duration::from_secs(66)).is_ok());
-        let a = Agents { tools: HashMap::new(), terminal: None, state: None, gate: Mutex::new(Gate::default()) };
-        let held = a.gate.lock().unwrap();
-        if cfg!(target_os = "linux") {
-            assert_eq!(a.launch("claude", "/").unwrap_err(), "another launch is in progress");
-        }
-        drop(held);
-    }
-
-    #[test]
-    fn finds_only_allowlisted_executables_on_path() {
-        let a = scratch();
-        let b = scratch();
-        exe(&a, "claude");
-        exe(&b, "gemini");
-        exe(&b, "rm");
-        std::fs::write(b.join("codex"), "not executable").unwrap();
-        let path = std::env::join_paths([a.clone(), PathBuf::from("relative"), b.clone()]).unwrap();
-        let found = find_tools(Some(&path));
-        let mut names: Vec<_> = found.keys().cloned().collect();
-        names.sort();
-        assert_eq!(names, vec!["claude", "gemini"]);
-        assert_eq!(found["claude"], a.join("claude"));
-        assert!(find_tools(None).is_empty());
-    }
-
     #[test]
     fn state_dir_follows_xdg_then_home() {
         assert_eq!(state_dir(Some("/s".into()), Some("/h".into())), Some(PathBuf::from("/s/bkt")));
@@ -284,66 +92,22 @@ mod tests {
     }
 
     #[test]
-    fn a_folder_inside_an_approved_root_launches_with_its_real_path() {
+    fn add_folder_stores_the_real_path_once() {
         let d = scratch();
-        let root = d.join("approved");
-        std::fs::create_dir_all(root.join("inner")).unwrap();
-        let (bin, real) = check_launch(&tools(&d), &[root.clone()], "claude", root.join("inner").to_str().unwrap()).unwrap();
-        assert_eq!(bin, d.join("claude"));
-        assert_eq!(real, root.join("inner"));
-        assert!(check_launch(&tools(&d), &[root.clone()], "claude", root.to_str().unwrap()).is_ok());
+        let state = d.join("state");
+        let proj = d.join("proj");
+        std::fs::create_dir_all(&proj).unwrap();
+        assert_eq!(add_folder(&state, &proj).unwrap(), proj);
+        assert_eq!(add_folder(&state, &proj.join(".")).unwrap(), proj);
+        assert_eq!(read_folders(&state).unwrap(), vec![proj.clone()]);
+        assert!(add_folder(&state, &d.join("missing")).is_err());
+        std::fs::write(d.join("file"), "x").unwrap();
+        assert_eq!(add_folder(&state, &d.join("file")).unwrap_err(), "pick a folder");
     }
 
+    #[cfg(unix)]
     #[test]
-    fn rejects_unknown_and_missing_tools() {
-        let d = scratch();
-        let r = [d.clone()];
-        let f = d.to_str().unwrap();
-        assert_eq!(check_launch(&tools(&d), &r, "bash", f).unwrap_err(), "bash is not an agent Bucket can open");
-        assert_eq!(check_launch(&tools(&d), &r, "claude; rm -rf /", f).unwrap_err(), "claude; rm -rf / is not an agent Bucket can open");
-        assert_eq!(check_launch(&tools(&d), &r, "codex", f).unwrap_err(), "codex is not installed");
-        assert_eq!(check_launch(&tools(&d), &r, "", f).unwrap_err(), " is not an agent Bucket can open");
-    }
-
-    #[test]
-    fn rejects_folders_outside_the_approved_list() {
-        let d = scratch();
-        let root = d.join("approved");
-        let outside = d.join("outside");
-        std::fs::create_dir_all(&root).unwrap();
-        std::fs::create_dir_all(&outside).unwrap();
-        std::fs::create_dir_all(d.join("approved-sibling")).unwrap();
-        std::fs::write(root.join("file"), "x").unwrap();
-        let t = tools(&d);
-        let r = [root.clone()];
-        let no = |f: &Path| check_launch(&t, &r, "claude", f.to_str().unwrap()).unwrap_err();
-        assert_eq!(no(&outside), "that folder is not on the approved list");
-        assert_eq!(no(&root.join("..").join("outside")), "that folder is not on the approved list");
-        assert_eq!(no(&d.join("approved-sibling")), "that folder is not on the approved list");
-        assert_eq!(no(&root.join("missing")), "that folder does not exist");
-        assert_eq!(no(&root.join("file")), "that path is not a folder");
-        assert_eq!(check_launch(&t, &r, "claude", "approved").unwrap_err(), "the folder must be a full path");
-        assert_eq!(check_launch(&t, &[], "claude", root.to_str().unwrap()).unwrap_err(), "that folder is not on the approved list");
-    }
-
-    #[test]
-    fn rejects_a_symlink_inside_an_approved_folder_that_points_outside() {
-        let d = scratch();
-        let root = d.join("approved");
-        let outside = d.join("outside");
-        std::fs::create_dir_all(&root).unwrap();
-        std::fs::create_dir_all(&outside).unwrap();
-        std::os::unix::fs::symlink(&outside, root.join("escape")).unwrap();
-        std::os::unix::fs::symlink("/", root.join("rootfs")).unwrap();
-        let t = tools(&d);
-        assert_eq!(check_launch(&t, &[root.clone()], "claude", root.join("escape").to_str().unwrap()).unwrap_err(), "that folder is not on the approved list");
-        assert_eq!(check_launch(&t, &[root.clone()], "claude", root.join("rootfs").to_str().unwrap()).unwrap_err(), "that folder is not on the approved list");
-        std::os::unix::fs::symlink(&root, d.join("alias")).unwrap();
-        assert!(check_launch(&t, &[d.join("alias")], "claude", root.to_str().unwrap()).is_ok());
-    }
-
-    #[test]
-    fn add_folder_stores_the_real_path_once_with_owner_only_permissions() {
+    fn add_folder_resolves_symlinks_and_keeps_the_file_owner_only() {
         use std::os::unix::fs::PermissionsExt;
         let d = scratch();
         let state = d.join("state");
@@ -351,13 +115,8 @@ mod tests {
         std::fs::create_dir_all(&proj).unwrap();
         std::os::unix::fs::symlink(&proj, d.join("link")).unwrap();
         assert_eq!(add_folder(&state, &d.join("link")).unwrap(), proj);
-        assert_eq!(add_folder(&state, &proj).unwrap(), proj);
-        assert_eq!(read_folders(&state).unwrap(), vec![proj.clone()]);
         let mode = std::fs::metadata(state.join(FOLDERS_FILE)).unwrap().permissions().mode() & 0o777;
         assert_eq!(mode, 0o600);
-        assert!(add_folder(&state, &d.join("missing")).is_err());
-        std::fs::write(d.join("file"), "x").unwrap();
-        assert_eq!(add_folder(&state, &d.join("file")).unwrap_err(), "pick a folder");
     }
 
     #[test]
@@ -368,14 +127,5 @@ mod tests {
         assert_eq!(read_folders(&d).unwrap_err(), "the approved folder list is not a v1 list");
         std::fs::write(d.join(FOLDERS_FILE), "{\"v\":1,\"folders\":[\"/a\",\"rel\",3]}").unwrap();
         assert_eq!(read_folders(&d).unwrap(), vec![PathBuf::from("/a")]);
-    }
-
-    #[test]
-    fn terminal_arguments_pass_the_tool_path_as_one_argument() {
-        let tool = Path::new("/opt/bin/claude");
-        let folder = Path::new("/w/a b");
-        assert_eq!(terminal_args("gnome-terminal", tool, folder), vec![OsString::from("--working-directory=/w/a b"), "--".into(), "/opt/bin/claude".into()]);
-        assert_eq!(terminal_args("ptyxis", tool, folder), vec![OsString::from("--new-window"), "--working-directory".into(), "/w/a b".into(), "--".into(), "/opt/bin/claude".into()]);
-        assert_eq!(terminal_args("xterm", tool, folder), vec![OsString::from("-e"), "/opt/bin/claude".into()]);
     }
 }
