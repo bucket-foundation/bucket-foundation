@@ -7,7 +7,14 @@ import { buildCatalog, CATALOG_SIG_SUFFIX, type Catalog, type SignedCatalog } fr
 export const CURATED_DIR = "decks";
 export const CATALOG_FILE = "catalog.json";
 
-export function curatedCatalog(repo: string): Catalog {
+function committedCatalog(repo: string): { serial: number; sha256: string } | null {
+  const file = join(repo, CURATED_DIR, CATALOG_FILE);
+  if (!existsSync(file)) return null;
+  const c = JSON.parse(readFileSync(file, "utf8")) as { serial?: unknown; sha256?: unknown };
+  return typeof c.serial === "number" && typeof c.sha256 === "string" ? { serial: c.serial, sha256: c.sha256 } : null;
+}
+
+export function curatedCatalog(repo: string, o: { publish?: boolean } = {}): Catalog {
   const root = join(repo, CURATED_DIR);
   const manifests = readdirSync(root, { withFileTypes: true })
     .filter((e) => e.isDirectory())
@@ -18,7 +25,9 @@ export function curatedCatalog(repo: string): Catalog {
       if (raw.id !== name) throw new Error(`deck catalog: ${CURATED_DIR}/${name} holds a manifest with another id`);
       return raw;
     });
-  return buildCatalog(manifests);
+  const held = committedCatalog(repo);
+  const same = buildCatalog(manifests, held?.serial ?? 1);
+  return o.publish && held && same.sha256 !== held.sha256 ? buildCatalog(manifests, held.serial + 1) : same;
 }
 
 export function catalogText(c: Catalog): string {
@@ -33,8 +42,9 @@ export function bundledCatalog(repo: string): SignedCatalog {
 
 if (import.meta.main) {
   const repo = resolve(import.meta.dir, "../../../..");
-  const catalog = curatedCatalog(repo);
-  if (process.argv.includes("--publish")) writeFileSync(join(repo, CURATED_DIR, CATALOG_FILE), catalogText(catalog));
+  const publish = process.argv.includes("--publish");
+  const catalog = curatedCatalog(repo, { publish });
+  if (publish) writeFileSync(join(repo, CURATED_DIR, CATALOG_FILE), catalogText(catalog));
   const outDir = resolve(import.meta.dir, "../../content");
   mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, "deck-catalog.json"), JSON.stringify(bundledCatalog(repo)));

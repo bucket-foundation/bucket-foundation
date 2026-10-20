@@ -9,14 +9,20 @@ import { isOffline, LOOPBACK, type Route } from "./serve";
 
 export const CATALOG_FORMAT = "bkt-deck-catalog";
 export const CATALOG_FORMAT_VERSION = 1;
-export const CATALOG_URL = "https://bucket.foundation/decks/catalog.json";
-export const CATALOG_HOST = "bucket.foundation";
+export const CATALOG_URL = "https://www.bucket.foundation/decks/catalog.json";
+export const CATALOG_HOST = "www.bucket.foundation";
+export const DECK_FILE_HOST = "github.com";
+export const DECK_FILE_PATH = "/bucket-foundation/bucket-foundation/releases/download/";
+export const DECK_FILE_REDIRECT_HOST = "release-assets.githubusercontent.com";
+export const DECK_FILE_REFUSED = `Bucket downloads a deck from ${CATALOG_HOST} or from a Bucket release on ${DECK_FILE_HOST} only`;
+export const DECK_FILE_MOVED = `${DECK_FILE_HOST} sent the download to a place Bucket does not use`;
+export const DECK_FILE_TIMEOUT_MS = 30 * 60_000;
 export const CATALOG_BYTES = 2 * 1024 * 1024;
 export const CATALOG_SIG_BYTES = 4096;
 export const CATALOG_DECKS_MAX = 500;
 export const CATALOG_SIG_SUFFIX = ".sig";
 export const CATALOG_NAMESPACE = "bucket-deck-catalog";
-export const DECK_CATALOG_PUBKEY = "";
+export const DECK_CATALOG_PUBKEY: string = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAcu4538iYSEP96xmNL2+c0YXymi1YDii/pmooLLb/Ab";
 export const UNSIGNED_BUNDLE = "The deck list in this copy of Bucket is not signed yet, so Bucket shows none of it. Adding a deck from a file still works.";
 export const UNSIGNED_REFRESH = "The deck list from bucket.foundation did not carry Bucket's signature, so Bucket kept the list it had.";
 export const NO_CATALOG_KEY = "This copy of Bucket holds no key to check the deck list with, so it did not ask for one.";
@@ -25,6 +31,7 @@ export const IMPORT_BODY_BYTES = 512 * 1024 * 1024;
 export const LIBRARY_BODY_BYTES = 256;
 export const OFFLINE_NOTE = "Bucket is set to stay offline on this computer, so it did not contact bucket.foundation.";
 export const REFRESH_FAILED = "Bucket could not reach the deck catalog. The list below is the one that came with this copy.";
+export const STALE_REFRESH = "The deck list from bucket.foundation is no newer than the one Bucket has, so Bucket kept its own.";
 export const NOT_IN_CATALOG = "that deck is not in the catalog";
 export const DOWNLOAD_FAILED = "The download did not finish. Try again.";
 export const DOWNLOAD_CHANGED = "The downloaded file did not match the catalog, so Bucket did not install it.";
@@ -50,12 +57,13 @@ export function verifyCatalog(signed: SignedCatalog, pubkey: string = DECK_CATAL
   }
 }
 
-export const NO_CATALOG: Catalog = { format: "bkt-deck-catalog", format_version: 1, built: "1970-01-01", decks: [], sha256: "" };
+export const NO_CATALOG: Catalog = { format: "bkt-deck-catalog", format_version: 1, built: "1970-01-01", serial: 0, decks: [], sha256: "" };
 
 export interface Catalog {
   format: string;
   format_version: number;
   built: string;
+  serial: number;
   decks: DeckManifest[];
   sha256: string;
 }
@@ -91,16 +99,18 @@ export interface LibraryBody {
   signed: boolean;
 }
 
-export function catalogChecksum(decks: readonly DeckManifest[], built: string): string {
-  return createHash("sha256").update(JSON.stringify({ built, decks })).digest("hex");
+export function catalogChecksum(decks: readonly DeckManifest[], built: string, serial: number): string {
+  return createHash("sha256").update(JSON.stringify({ built, serial, decks })).digest("hex");
 }
 
-export function buildCatalog(manifests: readonly unknown[]): Catalog {
+export function buildCatalog(manifests: readonly unknown[], serial = 1): Catalog {
+  if (!Number.isSafeInteger(serial) || serial < 1) throw new DeckError("the deck catalog serial is a whole number from 1 up");
   const decks = manifests.map(checkManifest).sort((a, b) => a.id.localeCompare(b.id));
   const ids = new Set(decks.map((d) => d.id));
   if (ids.size !== decks.length) throw new DeckError("two curated decks share an id");
+  decks.forEach(deckFileUrl);
   const built = decks.map((d) => d.built).sort().at(-1) ?? "1970-01-01";
-  return { format: CATALOG_FORMAT, format_version: CATALOG_FORMAT_VERSION, built, decks, sha256: catalogChecksum(decks, built) };
+  return { format: CATALOG_FORMAT, format_version: CATALOG_FORMAT_VERSION, built, serial, decks, sha256: catalogChecksum(decks, built, serial) };
 }
 
 export function checkCatalog(raw: unknown): Catalog {
@@ -111,9 +121,11 @@ export function checkCatalog(raw: unknown): Catalog {
   if (!Array.isArray(c.decks) || typeof c.built !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(c.built)) throw new DeckError("the deck catalog lists no decks");
   const decks = c.decks.map(checkManifest);
   if (new Set(decks.map((d) => d.id)).size !== decks.length) throw new DeckError("the deck catalog lists a deck twice");
-  const sum = catalogChecksum(decks, c.built);
+  decks.forEach(deckFileUrl);
+  if (typeof c.serial !== "number" || !Number.isSafeInteger(c.serial) || c.serial < 1) throw new DeckError("the deck catalog gives no serial");
+  const sum = catalogChecksum(decks, c.built, c.serial);
   if (sum !== c.sha256) throw new DeckError("the deck catalog does not match its checksum");
-  return { format: CATALOG_FORMAT, format_version: CATALOG_FORMAT_VERSION, built: c.built, decks, sha256: sum };
+  return { format: CATALOG_FORMAT, format_version: CATALOG_FORMAT_VERSION, built: c.built, serial: c.serial, decks, sha256: sum };
 }
 
 export function allowedCatalogUrl(raw: string): URL {
@@ -128,6 +140,30 @@ export function allowedCatalogUrl(raw: string): URL {
   return url;
 }
 
+export function deckFileUrl(m: Pick<DeckManifest, "file" | "file_url">): URL | null {
+  if (m.file_url === null) return null;
+  let url: URL;
+  try {
+    url = new URL(m.file_url);
+  } catch {
+    throw new DeckError(DECK_FILE_REFUSED);
+  }
+  const plain = url.protocol === "https:" && url.hostname === DECK_FILE_HOST && url.port === "" && url.username === "" && url.password === "" && url.search === "" && url.hash === "";
+  if (!plain || !url.pathname.startsWith(DECK_FILE_PATH) || !url.pathname.endsWith(`/${m.file}`)) throw new DeckError(DECK_FILE_REFUSED);
+  return url;
+}
+
+export function deckFileRedirect(location: string | null): URL {
+  let url: URL;
+  try {
+    url = new URL(location ?? "");
+  } catch {
+    throw new DeckError(DECK_FILE_MOVED);
+  }
+  if (url.protocol !== "https:" || url.hostname !== DECK_FILE_REDIRECT_HOST || url.port !== "") throw new DeckError(DECK_FILE_MOVED);
+  return url;
+}
+
 export type Fetcher = (url: string, init?: RequestInit) => Promise<Response>;
 
 export interface LibraryOptions {
@@ -139,6 +175,7 @@ export interface LibraryOptions {
   offline?: () => boolean;
   now?: () => number;
   downloads?: () => string;
+  fileTimeoutMs?: number;
   onChange?: () => void;
 }
 
@@ -168,7 +205,7 @@ export class Library {
     try {
       const saved = JSON.parse(readFileSync(join(decksDir(o.home), CATALOG_CACHE), "utf8")) as { at?: unknown; text?: unknown; signature?: unknown };
       const catalog = typeof saved.text === "string" && typeof saved.signature === "string" ? verifyCatalog({ text: saved.text, signature: saved.signature }, this.pubkey) : null;
-      if (catalog && typeof saved.at === "number" && catalog.built >= (this.bundled?.built ?? "")) this.refreshed = { catalog, at: saved.at };
+      if (catalog && typeof saved.at === "number" && catalog.serial >= (this.bundled?.serial ?? 0)) this.refreshed = { catalog, at: saved.at };
     } catch {
       this.refreshed = null;
     }
@@ -210,11 +247,21 @@ export class Library {
     return { decks: [...catalog.decks.map((m) => row(m, true)), ...own.map((m) => row(m, false))], built: catalog.built, refreshedAt: this.refreshed?.at ?? null, offline: this.offline(), from: this.refreshed ? "refreshed" : "bundled", signed: this.refreshed !== null || this.bundled !== null };
   }
 
-  private async get(url: URL): Promise<Response> {
+  private async get(url: URL, ms = 30_000): Promise<Response> {
     if (this.offline()) throw new DeckError(OFFLINE_NOTE);
-    const r = await this.fetcher(url.href, { redirect: "error", signal: AbortSignal.timeout(30_000) });
+    const r = await this.fetcher(url.href, { redirect: "error", signal: AbortSignal.timeout(ms) });
     if (!r.ok) throw new DeckError(`${url.hostname} answered ${r.status}`);
     return r;
+  }
+
+  private async deckFile(m: DeckManifest): Promise<Response> {
+    const released = deckFileUrl(m);
+    const ms = this.o.fileTimeoutMs ?? DECK_FILE_TIMEOUT_MS;
+    if (!released) return this.get(new URL(`${m.id}/${m.file}`, this.url), ms);
+    if (this.offline()) throw new DeckError(OFFLINE_NOTE);
+    const r = await this.fetcher(released.href, { redirect: "manual", signal: AbortSignal.timeout(30_000) });
+    if (r.status !== 302) throw new DeckError(r.ok ? DECK_FILE_MOVED : `${released.hostname} answered ${r.status}`);
+    return this.get(deckFileRedirect(r.headers.get("location")), ms);
   }
 
   private async read(url: URL, cap: number, what: string): Promise<string> {
@@ -240,7 +287,9 @@ export class Library {
     const signature = await this.read(sigUrl, CATALOG_SIG_BYTES, "the deck catalog signature");
     const catalog = verifyCatalog({ text, signature }, this.pubkey);
     if (!catalog) throw new DeckError(UNSIGNED_REFRESH);
-    if (catalog.built < (this.refreshed?.catalog.built ?? this.bundled?.built ?? "")) throw new DeckError("The deck list from bucket.foundation is older than the one Bucket has, so Bucket kept its own.");
+    const held = this.refreshed?.catalog ?? this.bundled;
+    if (held && catalog.serial === held.serial && catalog.sha256 === held.sha256) return this.body();
+    if (held && catalog.serial <= held.serial) throw new DeckError(STALE_REFRESH);
     this.refreshed = { catalog, at: this.now() };
     mkdirSync(decksDir(this.o.home), { recursive: true, mode: 0o700 });
     writeFileSync(join(decksDir(this.o.home), CATALOG_CACHE), JSON.stringify({ at: this.refreshed.at, text, signature }), { mode: 0o600 });
@@ -276,7 +325,7 @@ export class Library {
     rmSync(tmp, { recursive: true, force: true });
     mkdirSync(tmp, { recursive: true, mode: 0o700 });
     try {
-      const r = await this.get(new URL(`${m.id}/${m.file}`, this.url));
+      const r = await this.deckFile(m);
       if (!r.body) throw new DeckError(DOWNLOAD_FAILED);
       const out = createWriteStream(join(tmp, m.file), { mode: 0o600 });
       try {
