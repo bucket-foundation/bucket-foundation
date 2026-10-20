@@ -82,6 +82,16 @@ const UI_DIRS: { dir: string; types: Record<string, string> }[] = [
 
 export const UI_ENTRY = "/assets/app.js";
 
+export const CLIP_PATH = /^\/academy-app\/audio\/(index\.json|[a-z]{2,3}\/[0-9a-f]{16}\.mp3)$/;
+
+export function clipFile(uiDir: string | undefined, pathname: string): { body: Uint8Array; type: string } | null {
+  const m = CLIP_PATH.exec(pathname);
+  if (!m || !uiDir) return null;
+  const p = join(uiDir, "academy-app", "audio", m[1]);
+  if (!existsSync(p) || !statSync(p).isFile()) return null;
+  return { body: readFileSync(p), type: m[1].endsWith(".mp3") ? "audio/mpeg" : "application/json" };
+}
+
 export function loadUi(dir: string | undefined): UiAssets {
   const files = new Map<string, { body: Uint8Array; type: string }>();
   for (const { dir: sub, types } of UI_DIRS) {
@@ -139,6 +149,7 @@ export function page(nonce: string, ui: Pick<UiAssets, "scripts" | "styles"> = {
     "worker-src 'self'",
     "style-src 'self'",
     "img-src 'self' data:",
+    "media-src 'self'",
     "font-src 'self'",
     "base-uri 'none'",
     "form-action 'none'",
@@ -254,7 +265,7 @@ export function startServe(opts: ServeOptions = {}): Serve {
         });
       }
 
-      const asset = req.method === "GET" ? ui.files.get(url.pathname) : undefined;
+      const asset = req.method === "GET" ? (ui.files.get(url.pathname) ?? clipFile(opts.uiDir, url.pathname) ?? undefined) : undefined;
       if (asset) {
         if (!peerOk()) return deny(403);
         return new Response(new Blob([asset.body as Uint8Array<ArrayBuffer>]), { headers: { "content-type": asset.type, "cache-control": "no-store", "x-content-type-options": "nosniff" } });

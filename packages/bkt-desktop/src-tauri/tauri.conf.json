@@ -56,7 +56,8 @@
       "binaries/bkt"
     ],
     "resources": {
-      "../../bkt-ui/dist/": "ui/"
+      "../../bkt-ui/dist/": "ui/",
+      "../../../learning/app/audio/": "ui/academy-app/audio/"
     },
     "category": "Education",
     "shortDescription": "Bucket learning and research workspace",
