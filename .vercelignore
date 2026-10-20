@@ -146,4 +146,7 @@ BEADS-DISPATCHED.jsonl
 # research-tool routes from the Vercel upload and 404'd them in production
 # (the routes built fine locally; they just never reached Vercel). Anchor to
 # the repo-root tools/ only. (bkt research-tools 404 fix, 2026-06-20)
-/tools/
+/tools/*
+!/tools/generations/
+/tools/generations/*
+!/tools/generations/registry.json
