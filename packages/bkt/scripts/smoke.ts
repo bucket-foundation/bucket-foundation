@@ -148,7 +148,12 @@ async function full(): Promise<void> {
     check((await fetch(`${url}local/ping`, { headers: { authorization: `Bucket ${"A".repeat(43)}` } })).status === 401, "a wrong token is refused");
   } finally {
     serve.kill();
-    await serve.exited;
+    const stopped = await Promise.race([serve.exited.then(() => true), new Promise<false>((r) => setTimeout(() => r(false), 10_000))]);
+    if (!stopped) {
+      serve.kill("SIGKILL");
+      await serve.exited;
+      throw new Error("smoke: bkt serve did not exit within 10s of SIGTERM");
+    }
   }
   console.log("smoke passed");
 }
