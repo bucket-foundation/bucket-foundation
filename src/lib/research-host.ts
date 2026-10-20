@@ -57,11 +57,15 @@ export function cookieDomainFor(host: string | null | undefined): string | undef
 
 export function cookieMigrationHeaders(host: string | null | undefined, cookies: { name: string; value: string }[], secure = true, alreadySet: string[] = []): string[] {
   if (!isBucketHost(hostname(host))) return [];
-  if (cookies.some((c) => c.name === COOKIE_MIGRATION_MARKER)) return [];
   const flags = `Path=/; SameSite=Lax${secure ? "; Secure" : ""}`;
   const out: string[] = [];
   const counts = new Map<string, number>();
   for (const c of cookies) counts.set(c.name, (counts.get(c.name) ?? 0) + 1);
+  if (cookies.some((c) => c.name === COOKIE_MIGRATION_MARKER)) {
+    return Array.from(counts.entries())
+      .filter(([name, n]) => name.startsWith("sb-") && n > 1)
+      .map(([name]) => `${name}=; ${flags}; Max-Age=0`);
+  }
   const seen = new Set<string>();
   for (const c of cookies) {
     if (!c.name.startsWith("sb-") || seen.has(c.name)) continue;
