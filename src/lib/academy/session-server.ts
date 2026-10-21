@@ -9,6 +9,7 @@ export const SESSION_LIMITS = {
   verifyEmail: 10,
   verifyIp: 40,
   refreshIp: 120,
+  deleteIp: 10,
 } as const;
 
 export interface AuthSession {
@@ -28,10 +29,16 @@ export interface SessionDeps {
   sendOtp: (email: string) => Promise<{ status: number | null }>;
   verifyOtp: (email: string, code: string) => Promise<AuthResult>;
   refresh: (refreshToken: string) => Promise<AuthResult>;
+  deleteAccount: (accessToken: string) => Promise<{ status: number | null }>;
   now: () => number;
 }
 
 export type SessionResult = { status: number; body: Record<string, unknown> };
+
+export function bearerToken(headers: Headers): string {
+  const m = /^Bearer\s+(\S+)$/i.exec(headers.get("authorization") ?? "");
+  return m ? m[1] : "";
+}
 
 export function clientIp(headers: Headers): string {
   const platform = headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || headers.get("x-real-ip")?.trim();
@@ -57,7 +64,17 @@ export function createSessionHandler(deps: SessionDeps) {
     return true;
   }
 
-  return async function handle(body: unknown, ip: string): Promise<SessionResult> {
+  return async function handle(body: unknown, ip: string, bearer = ""): Promise<SessionResult> {
+    const b0 = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
+    if (b0.action === "delete_account") {
+      if (!deps.configured()) return { status: 503, body: { error: "sync_unavailable" } };
+      if (!bearer || bearer.length > 4096) return { status: 401, body: { error: "revoked" } };
+      if (!(await within([[`delete:ip:${ip}`, SESSION_LIMITS.deleteIp]]))) return { status: 429, body: { error: "too_many_requests" } };
+      const r = await deps.deleteAccount(bearer);
+      if (r.status === null) return { status: 200, body: { ok: true } };
+      if (r.status === 401 || r.status === 403) return { status: 401, body: { error: "revoked" } };
+      return { status: 502, body: { error: "delete_failed" } };
+    }
     if (!deps.enabled()) return { status: 503, body: { error: "review_log_disabled" } };
     if (!deps.configured()) return { status: 503, body: { error: "sync_unavailable" } };
     const b = (body && typeof body === "object" ? body : {}) as Record<string, unknown>;
