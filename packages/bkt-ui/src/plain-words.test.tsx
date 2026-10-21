@@ -91,8 +91,8 @@ function violationsIn(all: string[]): string[] {
 const SAVED_ITEM = { id: "paper:d/10.1002/j.1538-7305.1948.tb01338.x", kind: "paper", title: "A Mathematical Theory of Communication", authors: "C. E. Shannon", year: 1948, citation: "C. E. Shannon. A Mathematical Theory of Communication. 1948.", url: "https://doi.org/10.1002/j.1538-7305.1948.tb01338.x", savedAt: "2026-10-01T00:00:00.000Z" };
 
 const DECKS: DeckRow[] = [
-  { id: "02-physics", title: "Physics", atoms: 3, introduced: 1, due: 1, xp: 10 },
-  { id: "01-mathematics", title: "Mathematics", atoms: 1, introduced: 0, due: 0, xp: 0 },
+  { id: "02-physics", title: "Physics", atoms: 3, introduced: 1, due: 1, xp: 10, streak: 3 },
+  { id: "01-mathematics", title: "Mathematics", atoms: 1, introduced: 0, due: 0, xp: 0, streak: 0 },
 ];
 const ATOMS: Record<string, Atom[]> = {
   "02-physics": [
@@ -1347,13 +1347,28 @@ describe("Research OS views on the local store", () => {
     expect(tiles[0]).toMatch(/^Level\d+$/);
     expect(tiles[2]).toMatch(/^Streak\d+ days?$/);
     const rows = [...v.host.querySelectorAll(".decks-progress tbody tr")].map((r) => [...r.querySelectorAll("td")].map((c) => c.textContent));
-    expect(rows).toEqual([["Physics", "1 of 3", "1", "10"]]);
+    expect(rows).toEqual([["Physics", "1 of 3", "1", "10", "3 days"]]);
     const b = [...v.host.querySelectorAll("button")].find((x) => x.textContent === "Save my progress to a file") as HTMLButtonElement;
     await v.act(async () => b.click());
     await v.act(async () => new Promise((r) => setTimeout(r, 20)));
     expect(saved).toBe(1);
     expect(v.host.textContent).toContain("Saved your progress in Downloads as bucket-progress-2026-09-30.");
     expect(violations(v.host)).toEqual([]);
+    await v.unmount();
+  });
+
+  test("progress lists started decks with the most due first and a streak per deck", async () => {
+    await useLocalStore(["02-physics:ph-heat"]);
+    const rows3: DeckRow[] = [
+      { id: "a", title: "Alpha", atoms: 4, introduced: 2, due: 0, xp: 5, streak: 1 },
+      { id: "b", title: "Beta", atoms: 4, introduced: 1, due: 2, xp: 3, streak: 0 },
+      { id: "d", title: "Delta", atoms: 2, introduced: 1, due: 0, xp: 5 },
+    ];
+    const v = await mount({ name: "progress" }, { ...empty(), decks: async () => rows3 } as Stub);
+    await v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    const rows = [...v.host.querySelectorAll(".decks-progress tbody tr")].map((r) => [...r.querySelectorAll("td")].map((c) => c.textContent));
+    expect(rows).toEqual([["Beta", "1 of 4", "2", "3", "0 days"], ["Alpha", "2 of 4", "0", "5", "1 day"], ["Delta", "1 of 2", "0", "5", "0 days"]]);
+    expect([...v.host.querySelectorAll(".decks-progress th")].map((t) => t.textContent)).toEqual(["Deck", "Started", "Due today", "XP", "Streak"]);
     await v.unmount();
   });
 
