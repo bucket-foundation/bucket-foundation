@@ -1,0 +1,203 @@
+@font-face {
+  font-family: "Cinzel";
+  src: url("./fonts/cinzel.woff2") format("woff2");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("./fonts/fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("./fonts/fraunces-italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root[data-skin="brand"] {
+  --paper: var(--bone);
+  --panel: var(--bone-1);
+  --line: var(--hairline);
+  --ink: var(--basalt);
+  --ink-2: var(--basalt-2);
+  --ink-3: var(--stone-ink);
+  --accent: var(--gold-ink);
+  --accent-ink: var(--on-gold-ink);
+  --ok: var(--laurel-deep);
+  --bad: var(--crimson);
+  --warn-bg: var(--papyrus);
+  --r1: var(--crimson);
+  --r2: var(--ochre-ink);
+  --r3: var(--laurel-deep);
+  --r4: var(--aegean-deep);
+  --hub-gold-deep: var(--gold-ink);
+  color-scheme: light;
+}
+
+:root[data-skin="brand"][data-scheme="dark"] {
+  color-scheme: dark;
+}
+
+:root[data-skin="brand"] .ros,
+:root[data-skin="brand"] .canon-site,
+:root[data-skin="brand"] .learn-hub {
+  --basalt: inherit;
+  --basalt-2: inherit;
+  --bone: inherit;
+  --bone-2: inherit;
+  --bone-3: inherit;
+  --hairline: inherit;
+  --gold: inherit;
+  --gold-deep: inherit;
+  --aegean: inherit;
+  --aegean-deep: inherit;
+  --aegean-dark: inherit;
+  --verdigris: inherit;
+  --copper: inherit;
+  --on-gold: inherit;
+  --accent: inherit;
+  --accent-ink: inherit;
+  --hub-gold-deep: inherit;
+  --parchment-dim: var(--ink-2);
+}
+
+:root[data-skin="brand"] .canon-site {
+  color-scheme: inherit;
+}
+
+:root[data-skin="brand"] body {
+  font-family: var(--font-text-brand);
+  font-optical-sizing: auto;
+  font-feature-settings: "kern";
+}
+
+:root[data-skin="brand"] h1,
+:root[data-skin="brand"] h2,
+:root[data-skin="brand"] .deck-title,
+:root[data-skin="brand"] .brand {
+  font-family: var(--font-display-brand);
+  letter-spacing: 0.02em;
+}
+
+:root[data-skin="brand"] .head h1 {
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+:root[data-skin="brand"] .side {
+  background: var(--bone-1);
+  border-right-color: var(--hairline);
+}
+
+:root[data-skin="brand"] .brand {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 15px;
+}
+
+:root[data-skin="brand"] .mark {
+  border-radius: 50%;
+  background: #efe8d4 url("../../../public/brand/logo/mark-hero.png") center / 132% no-repeat;
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+:root[data-skin="brand"] .side nav a:hover,
+:root[data-skin="brand"] .foot-link:hover {
+  background: var(--bone-2);
+}
+
+:root[data-skin="brand"] .side nav a.on {
+  background: var(--bone-2);
+  box-shadow: inset 2px 0 0 var(--gold);
+}
+
+:root[data-skin="brand"] .deck,
+:root[data-skin="brand"] .panel,
+:root[data-skin="brand"] .stats div {
+  background: var(--bone-1);
+  border-color: var(--hairline);
+}
+
+:root[data-skin="brand"] .deck:hover {
+  border-color: var(--gold);
+}
+
+:root[data-skin="brand"] .bar {
+  background: var(--bone-3);
+}
+
+:root[data-skin="brand"] .bar span {
+  background: var(--gold);
+}
+
+:root[data-skin="brand"] .primary,
+:root[data-skin="brand"] .pill,
+:root[data-skin="brand"] .tag,
+:root[data-skin="brand"] .lang-chip.on {
+  background: var(--gold);
+  color: var(--on-gold);
+}
+
+:root[data-skin="brand"] .tag.ghost {
+  background: none;
+  color: var(--ink-2);
+  border-color: var(--hairline);
+}
+
+:root[data-skin="brand"] .ghost,
+:root[data-skin="brand"] .lang-chip {
+  background: var(--bone);
+  color: var(--ink);
+  border-color: var(--stone-carve);
+}
+
+:root[data-skin="brand"] .ghost:hover,
+:root[data-skin="brand"] .lang-chip:hover {
+  border-color: var(--gold);
+}
+
+:root[data-skin="brand"] input,
+:root[data-skin="brand"] select,
+:root[data-skin="brand"] textarea {
+  background-color: var(--bone-1);
+  color: var(--ink);
+  border-color: var(--stone-carve);
+}
+
+:root[data-skin="brand"] table th {
+  color: var(--ink-2);
+  border-color: var(--hairline);
+}
+
+:root[data-skin="brand"] table td {
+  border-color: var(--hairline);
+}
+
+:root[data-skin="brand"] a:focus-visible,
+:root[data-skin="brand"] button:focus-visible,
+:root[data-skin="brand"] input:focus-visible,
+:root[data-skin="brand"] select:focus-visible,
+:root[data-skin="brand"] textarea:focus-visible {
+  outline: 2px solid var(--gold-ink);
+  outline-offset: 2px;
+}
+
+:root[data-skin="brand"] main a:not([class]) {
+  color: var(--accent);
+}
+
+:root[data-skin="brand"] input[type="search"],
+:root[data-skin="brand"] input[type="text"] {
+  border: 1px solid var(--stone-carve);
+  border-radius: 6px;
+  padding: 6px 10px;
+}

@@ -1,0 +1,68 @@
+:root {
+  --aegean:       #2E6B6B;
+  --aegean-deep:  #1F4F4F;
+  --aegean-dark:  #123838;
+  --gold:         #B8861E;
+  --gold-bright:  #D9A43A;
+  --gold-deep:    #8A641A;
+  --gold-ink:     #74520F;
+  --on-gold:      #1F1C16;
+  --on-gold-ink:  #F6F1E3;
+  --basalt:       #1F1C16;
+  --basalt-2:     #2A261E;
+  --basalt-3:     #3A3529;
+  --stone-ink:    #5E5646;
+  --bone:         #EFE8D4;
+  --bone-1:       #F6F1E3;
+  --bone-2:       #E4DCC4;
+  --bone-3:       #D3C9AB;
+  --laurel-deep:  #3E5A2A;
+  --laurel-core:  #5A7A3A;
+  --laurel:       var(--laurel-core);
+  --lichen:       #8A9668;
+  --stone-200:    #4A4A42;
+  --stone-300:    #6F6A5E;
+  --stone-800:    #2E2A22;
+  --papyrus:      #E4D5A8;
+  --sandstone:    #C9A863;
+  --ochre:        #B8863A;
+  --ochre-ink:    #7A5313;
+  --marigold:     var(--ochre);
+  --verdigris:    #4A8A7A;
+  --copper:       #B86A3A;
+  --crimson:      #9E3A24;
+  --hairline:     rgba(31, 28, 22, 0.14);
+  --hairline-bone: rgba(239, 232, 212, 0.12);
+  --stone-carve:   rgba(31, 28, 22, 0.40);
+  --font-display-brand: "Cinzel", "Trajan Pro", "Cormorant Garamond", Georgia, serif;
+  --font-text-brand: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+
+:root[data-scheme="dark"] {
+  --aegean:       #6FB8B8;
+  --aegean-deep:  #8CCACA;
+  --aegean-dark:  #A9D9D9;
+  --gold:         #D9A43A;
+  --gold-bright:  #F2CF7E;
+  --gold-deep:    #E3B65A;
+  --gold-ink:     #E3B65A;
+  --on-gold:      #17140F;
+  --on-gold-ink:  #17140F;
+  --basalt:       #EFE8D4;
+  --basalt-2:     #D3C9AB;
+  --basalt-3:     #B3A88C;
+  --stone-ink:    #A89D82;
+  --bone:         #17140F;
+  --bone-1:       #201C15;
+  --bone-2:       #29241B;
+  --bone-3:       #3A3326;
+  --laurel-deep:  #A6C487;
+  --laurel-core:  #8FB06C;
+  --papyrus:      #3A2F1A;
+  --ochre:        #E0B06B;
+  --ochre-ink:    #E0B06B;
+  --crimson:      #E8907C;
+  --hairline:     rgba(239, 232, 212, 0.16);
+  --stone-carve:   rgba(239, 232, 212, 0.40);
+  color-scheme: dark;
+}
