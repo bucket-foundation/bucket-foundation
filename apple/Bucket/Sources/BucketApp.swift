@@ -50,7 +50,6 @@ struct RootView: View {
         TabView(selection: $tab) {
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
             Tab("Practice", systemImage: "rectangle.on.rectangle.angled", value: .practice) { PracticeHome() }
-            Tab("Canon", systemImage: "magnifyingglass", value: .canon) { CanonView() }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .task { await library.loadIndex() }

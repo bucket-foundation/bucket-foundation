@@ -78,6 +78,10 @@ public struct BucketAPI: Sendable {
         return try decodeBody(data)
     }
 
+    public func deleteAccount(token: String) async throws {
+        _ = try await session(["action": "delete_account"], token: token)
+    }
+
     public func raw(_ path: String) async throws -> Data {
         let (data, http) = try await transport.send(URLRequest(url: base.appending(path: path)))
         guard (200..<300).contains(http.statusCode) else { throw BucketError.server(http.statusCode, nil) }
@@ -107,9 +111,10 @@ public struct BucketAPI: Sendable {
         return try decode(data, http)
     }
 
-    func session(_ body: [String: String]) async throws -> Data {
+    func session(_ body: [String: String], token: String? = nil) async throws -> Data {
         var r = URLRequest(url: base.appending(path: "api/academy/session"))
         r.httpMethod = "POST"
+        if let token { r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization") }
         r.setValue("application/json", forHTTPHeaderField: "content-type")
         r.httpBody = try JSONEncoder().encode(body)
         let (data, http) = try await transport.send(r)
