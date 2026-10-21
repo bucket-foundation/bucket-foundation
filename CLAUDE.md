@@ -286,3 +286,14 @@ Four long-lived branches, set on 2026-09-14 to stop Vercel building on every pus
 
 Rules: never push to `main`; a PR into `main` comes from `dev` alone; engine PRs never target `dev` or `main` directly; a branch that needs a preview build must avoid the blocked prefixes. Same rule applies to every Claude session working this repo.
 
+## Two Machines
+
+Two checkouts of this repo work at once, same origin, synced only through git.
+
+| Machine | Checkout | Owns |
+|---|---|---|
+| `charizard` (Linux, Nucleus sessions) | `~/agfarms/bucket-foundation` | web, engine, canon, ops, beads orchestration |
+| `farmers` (Mac, `ssh mac`) | `~/code/bucket-foundation` | Apple-native: `apple/` (Bucket, BucketKit, Polingual targets), `packages/bkt-mobile`, Xcode, TestFlight |
+
+Rules for both: Apple work lives on `feat/apple-*` branches that are pushed the same day they are created, with PRs into `dev`. Nothing stays untracked at the end of a turn. Pull `dev` before claiming a bead, since beads travel in the `bd: backup` commits. The charizard orchestrator reviews Mac PRs before merge; the Mac session never merges its own. Signing and TestFlight uploads happen on the Mac with the founder's Apple account; see `~/agfarms/CLAUDE.md`, Mac Build Machine.
+
