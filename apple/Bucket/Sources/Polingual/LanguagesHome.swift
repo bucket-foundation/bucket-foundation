@@ -1,5 +1,40 @@
 import BucketKit
+import StoreKit
 import SwiftUI
+
+extension EnvironmentValues {
+    @Entry var polingualUpsell = false
+}
+
+struct PolingualCard: View {
+    static let appID = "6825177856"
+    @State private var showing = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Eyebrow(text: "Polingual")
+            Text("Go further with Polingual").font(.serif(.title3, weight: .semibold)).foregroundStyle(Palette.ink)
+            Text("Our language app: every language system, placement, speaking practice and daily review, synced with this account. 3 days free.")
+                .font(.subheadline)
+                .foregroundStyle(Palette.muted)
+            Button("Get Polingual") { open() }
+                .buttonStyle(.borderedProminent)
+                .padding(.top, 4)
+        }
+        .padding(.vertical, 6)
+        #if os(iOS)
+        .appStoreOverlay(isPresented: $showing) { SKOverlay.AppConfiguration(appIdentifier: Self.appID, position: .bottom) }
+        #endif
+    }
+
+    func open() {
+        #if os(iOS)
+        showing = true
+        #else
+        NSWorkspace.shared.open(URL(string: "https://apps.apple.com/app/id\(Self.appID)")!)
+        #endif
+    }
+}
 
 enum LangRoute: Hashable {
     case home
@@ -50,6 +85,7 @@ struct Chip: View {
 }
 
 struct LanguagesHome: View {
+    @Environment(\.polingualUpsell) private var polingualUpsell
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
     @Binding var path: NavigationPath
@@ -140,6 +176,10 @@ struct LanguagesHome: View {
                 Eyebrow(text: "New system")
             }
             .listRowBackground(Palette.card)
+            if polingualUpsell {
+                Section { PolingualCard() }
+                    .listRowBackground(Palette.card)
+            }
             Section {
                 if gate.guest && !store.systems.isEmpty {
                     Text("Saved on this device.").noticeStyle()

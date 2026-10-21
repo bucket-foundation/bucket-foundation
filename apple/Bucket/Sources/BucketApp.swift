@@ -24,6 +24,7 @@ struct BucketApp: App {
                 .environment(library)
                 .environment(langs)
                 .environment(gate)
+                .environment(\.polingualUpsell, true)
                 .tint(Palette.green)
         }
     }
