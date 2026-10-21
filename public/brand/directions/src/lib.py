@@ -78,16 +78,16 @@ dict(id="d2",n="2",name="Kamon",movement="Japanese mon crests and ukiyo-e",syste
  src=[("Matsuya Piece-Goods Store, Japanese Design Motifs: 4,260 Illustrations of Japanese Crests, Dover 1972","https://store.doverpublications.com/products/9780486228747"),("Katsushika Hokusai, Thirty-six Views of Mount Fuji, Met collection","https://www.metmuseum.org/art/collection/search/45434"),("Apple HIG, App icons","https://developer.apple.com/design/human-interface-guidelines/app-icons"),("SF Symbols","https://developer.apple.com/sf-symbols/")],
  img="mon",icon=lambda n,c:icon_mon(n,c["acc"],c["bg"]),hero="build the past.",cta="Begin a study"),
 dict(id="d3",n="3",name="Squiggle",movement="Memphis Group",system="Duolingo design system",
- feel="Loud, toy-like, unserious about itself and serious about the work. Memphis laminate patterns and Duolingo chunky shapes make Polingual a game you open on the bus.",
+ feel="Discovery through play. Memphis pattern and plum ink give learning a curious, handmade voice. Research pages keep clear reading surfaces and source labels.",
  fonts="family=Fredoka:wght@600;700&family=Nunito:wght@400;800",disp="'Fredoka'",dispw=700,body="'Nunito'",mono="'Nunito'",
- c=dict(bg="#FFF8E7",surf="#FFFFFF",text="#2B2B2B",muted="#5E5A52",acc="#58CC02",onacc="#173600",hl="#FF4B91"),
- layout="Card stack with 16px radius and a 4px bottom lip on every pressable, Duolingo style; patterned margins of terrazzo and squiggles",
+ c=dict(bg="#FFF8E7",surf="#FFFFFF",text="#2B2B2B",muted="#5E5A52",acc="#6B367C",onacc="#FFFFFF",hl="#FF4B91"),
+ layout="Paper cards with rounded corners; plum actions and yellow or pink learning accents. Patterns belong to illustrations and celebrations.",
  illus="Duolingo rule of simple shapes, rounded corners and flat fills, composed with Memphis squiggles, terrazzo and zigzags. Hero is generated.",
  iconstyle="Duolingo chunky glyphs: 4px rounded stroke-fill, darker lip offset 3px, one highlight tick",
  motion="Bouncy press: 3px lip collapses in 80ms, release overshoot cubic-bezier(0.34,1.56,0.64,1) at 300ms",
  ease="cubic-bezier(0.34,1.56,0.64,1)",dur="300ms",anim="bounce",
  src=[("Memphis Group, Milan 1981, Design Museum","https://designmuseum.org/discover-design/all-stories/memphis-group-awful-tasteless-and-brilliant"),("Ettore Sottsass, Carlton bookcase 1981, V&A","https://collections.vam.ac.uk/item/O1138636/carlton-bookcase-sottsass-ettore/"),("Duolingo design guidelines","https://design.duolingo.com/"),("Duolingo illustration guidelines","https://design.duolingo.com/marketing/illustration")],
- img="memphis",icon=lambda n,c:icon_duo(n,"#2E7D00","#1F5600"),hero="Learn the words that built the world.",cta="Start a streak"),
+ img="memphis",icon=lambda n,c:icon_duo(n,"#6B367C","#492457"),hero="Learn the words that built the world.",cta="Start a streak"),
 dict(id="d4",n="4",name="Wedge",movement="Soviet constructivism",system="Material Design 3",
  feel="Knowledge as construction. A hot-red wedge cuts a black field at 30 degrees, type stacks in condensed caps, photomontage of hands at work. Bucket builds the past and the page shows the scaffolding.",
  fonts="family=Oswald:wght@500;700&family=Roboto+Flex:wght@400;600",disp="'Oswald'",dispw=700,body="'Roboto Flex'",mono="'Roboto Flex'",
@@ -127,7 +127,7 @@ def glyph(d,size):
     c=d["c"];i=d["id"];small=size<=64
     if i=="d1": body=f'<rect width="100" height="100" fill="{c["acc"]}"/><path fill="#fff" fill-rule="evenodd" d="M20 12h16v28h28a16 16 0 0 1 16 16v16a16 16 0 0 1-16 16H20ZM36 52v24h24a4 4 0 0 0 4-4V56a4 4 0 0 0-4-4Z"/><rect x="72" y="12" width="16" height="16" fill="{c["hl"]}"/>'
     elif i=="d2": body=f'<rect width="100" height="100" rx="22" fill="{c["acc"]}"/><circle cx="50" cy="50" r="38" fill="none" stroke="{c["bg"]}" stroke-width="3"/><circle cx="50" cy="50" r="32" fill="none" stroke="{c["bg"]}" stroke-width="1"/><path fill="{c["bg"]}" fill-rule="evenodd" d="M34 22h9v56h-9Z"/><path fill="{c["bg"]}" fill-rule="evenodd" d="M57 42a18 18 0 1 1 0 36a18 18 0 1 1 0-36ZM57 51a9 9 0 1 0 0 18a9 9 0 1 0 0-18Z"/>{"" if small else f'<circle cx="72" cy="28" r="6" fill="{c["hl"]}"/>'}'
-    elif i=="d3": body=f'<rect width="100" height="100" rx="24" fill="#FFC800"/>{"" if small else '<path d="M12 84q8-8 16 0t16 0" stroke="#FF4B91" stroke-width="5" fill="none" stroke-linecap="round"/>'}<g stroke-linejoin="round" stroke-width="8"><path fill="#1F5600" stroke="#1F5600" fill-rule="evenodd" d="M30 18h14v20a22 22 0 1 1-14 20ZM56 50a10 10 0 1 0 .1 0Z" transform="translate(0 5)"/><path fill="#2E7D00" stroke="#2E7D00" fill-rule="evenodd" d="M30 18h14v20a22 22 0 1 1-14 20ZM56 50a10 10 0 1 0 .1 0Z"/></g>'
+    elif i=="d3": body=f'<rect width="100" height="100" rx="24" fill="#FFC800"/>{"" if small else '<path d="M12 84q8-8 16 0t16 0" stroke="#FF4B91" stroke-width="5" fill="none" stroke-linecap="round"/>'}<g stroke-linejoin="round" stroke-width="8"><path fill="#492457" stroke="#492457" fill-rule="evenodd" d="M30 18h14v20a22 22 0 1 1-14 20ZM56 50a10 10 0 1 0 .1 0Z" transform="translate(0 5)"/><path fill="#6B367C" stroke="#6B367C" fill-rule="evenodd" d="M30 18h14v20a22 22 0 1 1-14 20ZM56 50a10 10 0 1 0 .1 0Z"/></g>'
     elif i=="d4": body=f'<rect width="100" height="100" fill="{c["bg"]}"/><path d="M0 100 100 30V100Z" fill="{c["acc"]}"/><rect x="22" y="16" width="15" height="68" fill="{c["text"]}" transform="rotate(-8 30 50)"/><circle cx="54" cy="62" r="20" fill="{c["text"]}"/><circle cx="54" cy="62" r="8" fill="{c["acc"]}"/>'
     elif i=="d5":
         st=" ".join(f"{56+((19 if small else 15) if k%2==0 else (12 if small else 9))*math.cos(math.pi*k/8-math.pi/2):.1f},{62+((19 if small else 15) if k%2==0 else (12 if small else 9))*math.sin(math.pi*k/8-math.pi/2):.1f}" for k in range(16))
@@ -149,7 +149,7 @@ def pairs(d):
     c=d["c"]
     P=[("text on bg",c["text"],c["bg"]),("muted on bg",c["muted"],c["bg"]),("text on surface",c["text"],c["surf"]),("muted on surface",c["muted"],c["surf"]),("button label",c["onacc"],c["acc"])]
     if d["id"]=="d6": P.append(("blue link on bg","#1D4ED8","#EDEBE6"))
-    NT={"d1":[("icon on bg",c["text"],c["bg"]),("action on bg",c["acc"],c["bg"])],"d2":[("crest on bg",c["acc"],c["bg"])],"d3":[("icon on bg","#2E7D00",c["bg"]),("glyph on yellow","#2E7D00","#FFC800")],"d4":[("icon on bg",c["text"],c["bg"]),("wedge on bg",c["acc"],c["bg"])],"d5":[("icon on bg",c["text"],c["bg"]),("star on bg",c["acc"],c["bg"])],"d6":[("icon on bg",c["text"],c["bg"]),("orange key keyline","#111111",c["acc"])],"d7":[("icon on bg",c["text"],c["bg"]),("terracotta on bg",c["acc"],c["bg"])]}[d["id"]]
+    NT={"d1":[("icon on bg",c["text"],c["bg"]),("action on bg",c["acc"],c["bg"])],"d2":[("crest on bg",c["acc"],c["bg"])],"d3":[("icon on bg","#6B367C",c["bg"]),("glyph on yellow","#6B367C","#FFC800")],"d4":[("icon on bg",c["text"],c["bg"]),("wedge on bg",c["acc"],c["bg"])],"d5":[("icon on bg",c["text"],c["bg"]),("star on bg",c["acc"],c["bg"])],"d6":[("icon on bg",c["text"],c["bg"]),("orange key keyline","#111111",c["acc"])],"d7":[("icon on bg",c["text"],c["bg"]),("terracotta on bg",c["acc"],c["bg"])]}[d["id"]]
     if d["id"]=="d2": P.append(("seal label","#FFFFFF",c["hl"]))
     if d["id"]=="d3": P.append(("pink tag label","#1A1A1A",c["hl"]))
     if d["id"]=="d5": P.append(("gold on bg",c["hl"],c["bg"]))
@@ -161,7 +161,7 @@ def pairs(d):
     return out
 
 D.append(dict(id="d7",n="7",name="Euclid",movement="Classical Greek: Attic red-figure, stoichedon inscriptions and Byrne's Euclid",system="Wikimedia Codex",
- feel="Bucket as the Greek polymath's notebook. Letters cut on the stoichedon grid, terracotta and black from Attic vases, and Byrne's colored proofs for every diagram. The ℧ is Greek, so this is its home.",
+ feel="Bucket as the Greek polymath's notebook. Letters cut on the stoichedon grid, terracotta and black from Attic vases, and Byrne's colored proofs for every diagram. The heritage ℧ links the research workspace to its foundation.",
  fonts="family=GFS+Didot&family=Gentium+Book+Plus:wght@400;700&family=Noto+Sans+Mono",disp="'GFS Didot'",dispw=400,body="'Gentium Book Plus'",mono="'Noto Sans Mono'",
  c=dict(bg="#F3EEE3",surf="#FBF8F1",text="#1A1714",muted="#5B5148",acc="#A6442A",onacc="#FFFFFF",hl="#1E4F94"),
  layout="Stoichedon letter grid for headings, Codex 8px spacing and 2px radius, numbered propositions with a proof column beside the figure",

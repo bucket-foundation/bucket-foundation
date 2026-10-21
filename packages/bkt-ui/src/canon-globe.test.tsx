@@ -350,7 +350,7 @@ describe("canon styling", () => {
   test("the window palette defines every colour the web component reads", () => {
     const files = ["src/app/canon/CanonGlobeMount.tsx", "src/components/CanonGlobe.tsx", "src/components/canon-globe/CanonGlobe.tsx", "src/components/canon-globe/CanonMarkers.tsx"];
     const used = new Set(files.flatMap((f) => Array.from(readFileSync(resolve(ROOT, f), "utf8").matchAll(/var\((--[a-z0-9-]+)/g)).map((m) => m[1])));
-    const site = readFileSync(resolve(ROOT, "src/app/globals.css"), "utf8");
+    const site = ["src/styles/brand-tokens.css", "src/app/globals.css"].map((f) => readFileSync(resolve(ROOT, f), "utf8")).join("\n");
     const block = /\.canon-site \{([^}]+)\}/.exec(CSS)![1];
     const colours = [...used].filter((v) => new RegExp(`${v}:`).test(site));
     expect(colours.length).toBeGreaterThan(6);

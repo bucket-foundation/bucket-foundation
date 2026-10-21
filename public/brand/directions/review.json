@@ -1,0 +1,144 @@
+{
+  "round": 2,
+  "bar": {
+    "weighted_score_above": 8,
+    "dimension_minimum": 7,
+    "open_high_or_critical": 0
+  },
+  "directions": [
+    {
+      "id": "d1",
+      "name": "Grid",
+      "weighted_score": 8.375,
+      "dimensions": {
+        "grounding": 8.5,
+        "geometry": 9,
+        "marks_icons": 8,
+        "screens": 8,
+        "type_craft": 8.5,
+        "motion": 8,
+        "accessibility": 8.5,
+        "asset_integrity": 8.5
+      }
+    },
+    {
+      "id": "d2",
+      "name": "Kamon",
+      "weighted_score": 8.3,
+      "dimensions": {
+        "grounding": 8.5,
+        "geometry": 9,
+        "marks_icons": 7.5,
+        "screens": 8,
+        "type_craft": 8.5,
+        "motion": 8,
+        "accessibility": 8.5,
+        "asset_integrity": 8.5
+      }
+    },
+    {
+      "id": "d3",
+      "name": "Squiggle",
+      "weighted_score": 8.425,
+      "dimensions": {
+        "grounding": 8.5,
+        "geometry": 9,
+        "marks_icons": 8,
+        "screens": 8,
+        "type_craft": 8.5,
+        "motion": 8.5,
+        "accessibility": 8.5,
+        "asset_integrity": 8.5
+      }
+    },
+    {
+      "id": "d4",
+      "name": "Wedge",
+      "weighted_score": 8.475,
+      "dimensions": {
+        "grounding": 9,
+        "geometry": 8.5,
+        "marks": 7.5,
+        "screens": 8.5,
+        "type": 8.5,
+        "motion": 8.5,
+        "accessibility": 8.5,
+        "assets": 9
+      }
+    },
+    {
+      "id": "d5",
+      "name": "Girih",
+      "weighted_score": 8.425,
+      "dimensions": {
+        "grounding": 8.5,
+        "geometry": 8.5,
+        "marks": 8,
+        "screens": 8.5,
+        "type": 8.5,
+        "motion": 8.5,
+        "accessibility": 8.5,
+        "assets": 8.5
+      }
+    },
+    {
+      "id": "d6",
+      "name": "Primitive",
+      "weighted_score": 8.49,
+      "dimensions": {
+        "grounding": 8.3,
+        "geometry": 8.7,
+        "marks": 8.1,
+        "screens": 8.5,
+        "type": 8.4,
+        "motion": 8.7,
+        "accessibility": 8.7,
+        "assets": 8.7
+      }
+    },
+    {
+      "id": "d7",
+      "name": "Euclid",
+      "weighted_score": 8.61,
+      "dimensions": {
+        "grounding": 8.8,
+        "geometry": 8.7,
+        "marks": 8.2,
+        "screens": 8.5,
+        "type": 8.6,
+        "motion": 8.8,
+        "accessibility": 8.7,
+        "assets": 8.7
+      }
+    }
+  ],
+  "verification": {
+    "screen_captures": 476,
+    "screen_errors": 0,
+    "deck_viewports": [
+      1440,
+      390
+    ],
+    "focus_targets": 31,
+    "motion_samples": 14,
+    "mobile_equation_pages": 7,
+    "geometry_checks": 125,
+    "asset_references": 720,
+    "deterministic_generated_files": 376
+  },
+  "source_hashes": {
+    "screens": "843013c5937213cecda6c4ec8f61cb0fa8b00b2d896be21bf952fab32271576e",
+    "deck": "a1289c67cfcb01202699903a7cb3723cdde126aa3fa5647accca58875889ef95"
+  },
+  "test_correction": "The deck test now selects app-learn. Its previous selection was a 3D object whose device controls are hidden. Page and style sources were unchanged.",
+  "scope_exclusions": [
+    "Existing 3D models and video renders",
+    "Backend behavior"
+  ],
+  "followup_bead": "bkt-ovfwv",
+  "reports": {
+    "runtime.json": "b9c756406471d8a0f54d4c5b8848c8d4be270cbed4410a03f4327fad73788caf",
+    "runtime-filtered.json": "6748e2fd0ae73199ff87cf8c12b75d92619d0afbbe11b97eaae81bdf628c6993",
+    "motion-focus.json": "3ed8200d8e61d05b5749a39942771eea431f4e119231b32c728ddd0d5c6df8b6"
+  }
+}

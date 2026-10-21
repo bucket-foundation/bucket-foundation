@@ -230,7 +230,7 @@ def omark(d,fg,ac,bg):
         return f'<circle cx="50" cy="50" r="46" fill="{fg}"/><path d="{p}" fill="{bg}"/><circle cx="50" cy="{n(b[1]+b[3]*.6)}" r="3.5" fill="{ac}"/>'
     if i=="d3":
         grid(10,100);b=info["box"];src_glyph("gentiumb",b)
-        return lip(rnd(p,ac,4),5,"#1F5600")+f'<circle cx="50" cy="{n(b[1]+b[3]*.6)}" r="7" fill="#FF4B91"/>'
+        return lip(rnd(p,ac,4),5,"#492457")+f'<circle cx="50" cy="{n(b[1]+b[3]*.6)}" r="7" fill="#FF4B91"/>'
     if i=="d4":
         b=info["box"];src_glyph("noto",b);gl(100,30,52,58)
         cut=f'<polygon points="100,30 100,46 58,58" fill="{ac}"/>'
@@ -286,7 +286,7 @@ def mho_legacy(d,fg,ac,bg):
         return f'<circle cx="50" cy="50" r="46" fill="{fg}"/><path d="{mho_path(50,50,R,r,50-R,R-r,R-r)}" fill="{bg}"/><circle cx="50" cy="{n(50+R+(46-R)/2)}" r="4" fill="{ac}"/>'
     if i=="d3":
         grid(10,100);p=mho_path(50,50,20,10,30,10,10)
-        return lip(rnd(p,ac,6),5,"#1F5600")
+        return lip(rnd(p,ac,6),5,"#492457")
     if i=="d4":
         return wedge(ac)+f'<path d="{mho_path(50,52,20,8,26,12,14)}" fill="{fg}"/>'
     if i=="d5":
@@ -315,11 +315,11 @@ def lyre(d,fg,ac,bg):
             return f'<circle cx="50" cy="50" r="48" fill="{fg}"/><path d="M30 76A40 40 0 0 1 22 30H34A40 40 0 0 0 42 76ZM70 76A40 40 0 0 0 78 30H66A40 40 0 0 1 58 76Z" fill="{bg}"/><rect x="18" y="20" width="64" height="12" fill="{bg}"/><rect x="28" y="70" width="44" height="12" fill="{bg}"/><rect x="45" y="32" width="10" height="38" fill="{ac}"/>'
             return f'<circle cx="50" cy="50" r="48" fill="{fg}"/><path d="M24 22H76V36H68V52A18 18 0 0 1 32 52V36H24Z" fill="{bg}"/><path d="M44 36H56V60H44Z" fill="{fg}"/><circle cx="50" cy="84" r="6" fill="{ac}"/>'
         if i=="d3":
-            return lip(rnd("M16 16H84V34H72V62A22 22 0 0 1 28 62V34H16ZM42 34V70H58V34Z",ac,6),5,"#1F5600")
+            return lip(rnd("M16 16H84V34H72V62A22 22 0 0 1 28 62V34H16ZM42 34V70H58V34Z",ac,6),5,"#492457")
         if i=="d4":
             return wedge(ac)+f'<polygon points="12,14 30,14 42,78 26,78" fill="{fg}"/><polygon points="88,14 70,14 58,78 74,78" fill="{fg}"/><rect x="12" y="14" width="76" height="14" fill="{fg}"/><rect x="26" y="72" width="48" height="14" fill="{fg}"/>'
         st=star(50,50,49,8,2)
-        return f'<polygon points="{pts(st)}" fill="{ac}"/><path d="M28 26H72V40H64V62H72V76H28V62H36V40H28Z" fill="#062027"/><rect x="44" y="40" width="12" height="22" fill="#062027"/>'
+        return f'<polygon points="{pts(st)}" fill="{ac}"/><path d="M24 26H76M30 26V74H70V26M44 28V72M56 28V72" fill="none" stroke="#062027" stroke-width="6"/>'
     sw=mw({"d2":5,"d3":11,"d4":9,"d5":5}[i]);cap="butt" if i=="d4" else "round"
     if i=="d4":
         dx=60*T30*.5;arms=f'M{n(34-dx)} 22L34 84M{n(66+dx)} 22L66 84';gl(34,84,34-dx,22);gl(66,84,66+dx,22)
@@ -332,7 +332,7 @@ def lyre(d,fg,ac,bg):
     body=f'<path d="{arms}" fill="none" stroke="{fg}" stroke-width="{sw}" stroke-linecap="{cap}"/><path d="M24 30H76M32 84H68" stroke="{fg}" stroke-width="{sw}" stroke-linecap="{cap}"/>'
     body+="".join(f'<path d="M{x} 30V84" stroke="{ac if k==1 else fg}" stroke-width="{n(mw(max(2,sw/3)))}"/>' for k,x in enumerate((42,50,58)) if not small() or k==1)
     if i=="d2": gc(50,50,47);body=f'<circle cx="50" cy="50" r="47" fill="none" stroke="{fg}" stroke-width="{n(mw(2))}"/>'+body
-    if i=="d3": body=lip(body,4,"#1F5600")
+    if i=="d3": body=lip(body,4,"#492457")
     if i=="d4": body=wedge(ac)+body
     if i=="d5": s=star(50,52,47,8,3);body=("" if small() else f'<polygon points="{pts(s)}" fill="none" stroke="{ac}" stroke-width="2"/>')+body
     return body
@@ -358,7 +358,7 @@ def goat(d,fg,ac,bg):
     if i=="d3":
         grid(10,100);head=mirror([(30,50),(40,80),(50,90)])
         b=rnd(horn("gentiumb",20.00,20,60.00,40.00),ac,6)+rnd(f'M{pts(head)}Z',ac,6)+rnd("M30 50L10 60H30ZM70 50L90 60H70Z",ac,6)
-        return lip(b,5,"#1F5600")+'<circle cx="42" cy="62" r="5" fill="#fff"/><circle cx="58" cy="62" r="5" fill="#fff"/><circle cx="43" cy="63" r="2.5" fill="#1A1A1A"/><circle cx="59" cy="63" r="2.5" fill="#1A1A1A"/>'
+        return lip(b,5,"#492457")+'<circle cx="42" cy="62" r="5" fill="#fff"/><circle cx="58" cy="62" r="5" fill="#fff"/><circle cx="43" cy="63" r="2.5" fill="#1A1A1A"/><circle cx="59" cy="63" r="2.5" fill="#1A1A1A"/>'
     if i=="d4":
         dy=18/T30
         if small():
@@ -406,7 +406,7 @@ def vessel(d,fg,ac,bg):
         return f'<circle cx="50" cy="50" r="46" fill="{fg}"/><circle cx="50" cy="50" r="{n(L)}" fill="{bg}"/><circle cx="50" cy="50" r="{n(L-3)}" fill="{fg}"/><g fill="{bg}">{bars}</g><rect x="{n(50-a+w/2)}" y="{n(50-a+w/2)}" width="{n(2*a-w)}" height="{n(2*a-w)}" fill="{ac}"/>'
     if i=="d3":
         grid(10,100);path,m,ticks=cornucopia(ac)
-        body=lip(rnd(path,ac,4),5,"#1F5600")
+        body=lip(rnd(path,ac,4),5,"#492457")
         if small(): return body+f'<circle cx="{n(m[0]+2)}" cy="{n(m[1]-10)}" r="14" fill="#FF4B91"/>'
         return body+f'<g stroke="#FF4B91" stroke-width="4" stroke-linecap="round">{ticks}</g><circle cx="{n(m[0]+4)}" cy="{n(m[1]-8)}" r="9" fill="#FF4B91"/><circle cx="{n(m[0]+12)}" cy="{n(m[1]+8)}" r="7" fill="#1CB0F6"/><circle cx="{n(m[0]-6)}" cy="{n(m[1]-18)}" r="5" fill="#FFC800"/>'
     if i=="d4":
@@ -451,10 +451,10 @@ def mascot(d,fg,ac,bg):
                 f'<circle cx="50" cy="24" r="7" fill="{fg}"/><circle cx="50" cy="21" r="3.5" fill="{ac}"/><path d="M50 86L44 94H56Z" fill="{fg}"/>')
     if i=="d3":
         grid(10,100);w="M10 60"
-        if small(): return lip(f'<rect x="8" y="48" width="72" height="32" rx="16" fill="{ac}"/><circle cx="80" cy="52" r="22" fill="{ac}"/>',5,"#1F5600")
+        if small(): return lip(f'<rect x="8" y="48" width="72" height="32" rx="16" fill="{ac}"/><circle cx="80" cy="52" r="22" fill="{ac}"/>',5,"#492457")
         w+="".join(f"A10 10 0 0 {k%2} {30+20*k} 60" for k in range(3))
         b=f'<path d="{w}" fill="none" stroke="{ac}" stroke-width="16" stroke-linecap="round"/><circle cx="80" cy="50" r="14" fill="{ac}"/>'
-        return lip(b,5,"#1F5600")+'<circle cx="75" cy="46" r="5" fill="#fff"/><circle cx="86" cy="46" r="5" fill="#fff"/><circle cx="76" cy="47" r="2.5" fill="#1A1A1A"/><circle cx="87" cy="47" r="2.5" fill="#1A1A1A"/><circle cx="30" cy="58" r="3" fill="#FF4B91"/>'
+        return lip(b,5,"#492457")+'<circle cx="75" cy="46" r="5" fill="#fff"/><circle cx="86" cy="46" r="5" fill="#fff"/><circle cx="76" cy="47" r="2.5" fill="#1A1A1A"/><circle cx="87" cy="47" r="2.5" fill="#1A1A1A"/><circle cx="30" cy="58" r="3" fill="#FF4B91"/>'
     if i=="d4":
         bird=mirror([(50,16),(42,28),(4,24),(4,40),(40,50),(40,90),(50,74)]) if small() else mirror([(50,20),(44,30),(6,30-38*T30),(42,44),(44,62),(30,92),(48,72)])
         for p in bird: gl(50,50,*p)
@@ -469,12 +469,12 @@ def mascot(d,fg,ac,bg):
     if small(): return f'<polygon points="8,64 56,64 48,32 16,32" fill="{RED}"/><rect x="16" y="8" width="32" height="24" fill="{fg}"/><circle cx="24" cy="20" r="8" fill="#EDEBE6"/><circle cx="40" cy="20" r="8" fill="#EDEBE6"/><rect x="24" y="56" width="16" height="8" fill="{ac}"/>'
     return (f'<polygon points="8,64 56,64 32,24" fill="{RED}"/><rect x="16" y="8" width="32" height="24" fill="{fg}"/><polygon points="16,8 16,0 24,8" fill="{fg}"/><polygon points="48,8 48,0 40,8" fill="{fg}"/>'
             f'<circle cx="24" cy="20" r="8" fill="#EDEBE6"/><circle cx="40" cy="20" r="8" fill="#EDEBE6"/><circle cx="24" cy="20" r="4" fill="{BLUE}"/><circle cx="40" cy="20" r="4" fill="{BLUE}"/><rect x="24" y="56" width="16" height="8" fill="{ac}"/>')
-MARKS=[("mho","℧ heritage",mho),("lyre","Lyre",lyre),("goat","Goat ℧",goat),("vessel","Vessel",vessel)]
+MARKS=[("mho","Primary ℧",mho),("lyre","Lyre",lyre),("goat","Goat ℧",goat),("vessel","Vessel",vessel)]
 MASCOT={"d7":"Owl of Athena after the Athenian tetradrachm","d1":"Alpine ibex on the 8px lattice","d2":"Tsuru-maru crane from two circles","d3":"Squiggle worm on tangent arcs","d4":"Steel swallow on 30 degree rules","d5":"Hoopoe in a khatam star","d6":"Bauhaus owl from three primitives"}
 def markcols(d):
     c=d["c"];i=d["id"]
     if i=="d2": return c["acc"],c["hl"],c["bg"]
-    ac={"d3":"#2E7D00"}.get(i,c["acc"] if i!="d1" else c["hl"])
+    ac={"d3":"#6B367C"}.get(i,c["acc"] if i!="d1" else c["hl"])
     return c["text"],ac,c["bg"]
 try: HINTED=_json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"hinted.json")))
 except Exception: HINTED={}

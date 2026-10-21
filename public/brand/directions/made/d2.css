@@ -3,8 +3,8 @@
 [data-mk=d2] .mk-ink{stroke-dasharray:1 1;stroke-dashoffset:1;fill-opacity:0;animation:mk2-draw 900ms var(--mk-ink) forwards,mk2-fill 400ms ease-out forwards;animation-delay:calc(var(--i,0)*150ms),calc(900ms + var(--i,0)*150ms)}
 @keyframes mk2-draw{to{stroke-dashoffset:0}}
 @keyframes mk2-fill{to{fill-opacity:1}}
-[data-mk=d2] h1.disp,[data-mk=d2] h2.disp,[data-mk=d2] .bar h1{animation:mk2-reveal 900ms var(--mk-ink) both}
-[data-mk=d2] .card,[data-mk=d2] .opt,[data-mk=d2] .results li{animation:mk2-reveal 900ms var(--mk-ink) both}
+[data-mk=d2] h1.disp,[data-mk=d2] h2.disp,[data-mk=d2] .bar h1{animation:none}
+[data-mk=d2] .card,[data-mk=d2] .opt,[data-mk=d2] .results li{animation:none}
 [data-mk=d2] .grid>*:nth-child(2),[data-mk=d2] .results li:nth-child(2){animation-delay:120ms}
 [data-mk=d2] .grid>*:nth-child(3),[data-mk=d2] .results li:nth-child(3){animation-delay:240ms}
 [data-mk=d2] .grid>*:nth-child(n+4),[data-mk=d2] .results li:nth-child(n+4){animation-delay:360ms}
@@ -46,7 +46,7 @@ body[data-mk=d2]::after{content:"";position:fixed;inset:0;pointer-events:none;z-
 [data-mk=d2] .site nav a.btn:not(.ghost){color:#F4EFE4}
 :root{--ease:cubic-bezier(0.65,0,0.35,1)}
 [data-mk=d2] *{transition-timing-function:cubic-bezier(0.65,0,0.35,1)}
-[data-mk=d2] main section,[data-mk=d2] .content>*{animation:mk2-reveal 900ms var(--mk-ink) both}
+[data-mk=d2] main section,[data-mk=d2] .content>*{animation:none}
 .mk-sound.docked{position:static;margin-left:16px;min-height:32px;padding:4px 12px 4px 28px;flex:none}
 [data-mk=d2] .brand svg{width:32px;height:32px;flex:none}
 [data-mk=d2] .brand svg path,[data-mk=d2] .brand svg circle,[data-mk=d2] .brand svg rect{stroke-dasharray:1 1;stroke-dashoffset:1;animation:mk2-draw 900ms var(--mk-ink) forwards}
@@ -62,3 +62,14 @@ body[data-mk=d2]::after{content:"";position:fixed;inset:0;pointer-events:none;z-
 [data-mk=d2] .mk-dlhero .stack{align-items:center}
 [data-mk=d2] .mk-dlart{width:min(320px,80vw);height:auto;cursor:inherit}
 .mk-top{display:flex;justify-content:flex-end;padding:8px 16px;border-bottom:3px double var(--line);background:var(--bg)}
+
+[data-mk=d2] .content{max-width:1160px;gap:28px}
+[data-mk=d2] .content .card,[data-mk=d2] .content .opt{border-radius:12px}
+[data-mk=d2] .content h2.disp{font-size:28px;line-height:1.4}
+[data-mk=d2] .content .card p{max-width:68ch}
+[data-mk=d2] .content .kick{letter-spacing:.08em}
+[data-mk=d2] .bar{border-bottom:1px solid var(--line)}
+[data-mk=d2] .bar h1{font:700 28px/36px var(--body)}
+[data-mk=d2] .content .btn::before{display:none}
+[data-mk=d2] .content .btn{padding-left:24px}
+body[data-mk=d2]:has(.shell)::after{display:none}
