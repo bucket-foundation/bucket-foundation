@@ -380,6 +380,7 @@ export interface DeckRow {
   introduced: number;
   due: number;
   xp: number;
+  streak: number;
 }
 
 export interface QuizQuestion {

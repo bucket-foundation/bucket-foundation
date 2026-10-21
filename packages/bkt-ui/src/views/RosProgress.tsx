@@ -83,7 +83,7 @@ function Decks({ api }: { api: ProgressApi }) {
 
   if (error) return <TroubleNote t={error} />;
   if (!decks) return <p className="muted">Loading your decks…</p>;
-  const started = decks.filter((d) => d.introduced > 0);
+  const started = decks.filter((d) => d.introduced > 0).sort((a, b) => b.due - a.due || b.xp - a.xp);
   return (
     <article className="panel card" aria-label="your decks">
       <h2>Your decks</h2>
@@ -99,6 +99,7 @@ function Decks({ api }: { api: ProgressApi }) {
               <th>Started</th>
               <th>Due today</th>
               <th>XP</th>
+              <th>Streak</th>
             </tr>
           </thead>
           <tbody>
@@ -112,6 +113,7 @@ function Decks({ api }: { api: ProgressApi }) {
                 </td>
                 <td>{d.due}</td>
                 <td>{d.xp}</td>
+                <td>{d.streak === 1 ? "1 day" : `${d.streak} days`}</td>
               </tr>
             ))}
           </tbody>

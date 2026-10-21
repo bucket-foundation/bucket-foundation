@@ -40,6 +40,7 @@ export interface DeckProgress extends PackDeck {
   introduced: number;
   due: number;
   xp: number;
+  streak: number;
 }
 
 export interface QuizLesson {
@@ -120,7 +121,7 @@ export function deckProgress(store: Store, decks: PackDeck[], now: number): Deck
   return decks.map((d) => {
     const state = store.learnState(d.id);
     const cards = Object.values(state.cards);
-    return { ...d, introduced: cards.length, due: cards.filter((c) => c.due != null && c.due <= now).length, xp: state.stats.xp };
+    return { ...d, introduced: cards.length, due: cards.filter((c) => c.due != null && c.due <= now).length, xp: state.stats.xp, streak: state.stats.streak || 0 };
   });
 }
 
