@@ -3,7 +3,7 @@ import math, re
 from paths import DIRECTIONS_DIR as ROOT
 
 P = {
-    "d3": dict(a="#58CC02", at="#2E7D00", on="#173600", h="#FF4B91", y="#FFC800", b="#1CB0F6", k="#2B2B2B", bg="#FFF8E7", sf="#FFFFFF", mu="#5E5A52", lk="#B9B3A3"),
+    "d3": dict(a="#6B367C", at="#6B367C", on="#FFFFFF", h="#FF4B91", y="#FFC800", b="#1CB0F6", k="#2B2B2B", bg="#FFF8E7", sf="#FFFFFF", mu="#5E5A52", lk="#B9B3A3"),
     "d7": dict(a="#A6442A", at="#A6442A", on="#FFFFFF", h="#C8102E", y="#E8A800", b="#1E4F94", k="#1A1714", bg="#F3EEE3", sf="#FBF8F1", mu="#5B5148", lk="#B3A898"),
     "d4": dict(a="#E3242B", at="#E3242B", on="#FFFFFF", h="#E3242B", y="#EFE6D2", b="#EFE6D2", k="#141414", bg="#141414", sf="#222222", mu="#B5AC9A", lk="#5A554C"),
 }

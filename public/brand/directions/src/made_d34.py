@@ -124,8 +124,6 @@ def inject(did, html, rel):
         html = html.replace("</footer>", cap + "</footer>", 1) if "</footer>" in html else html.replace("</body>", cap + "</body>", 1)
     if did == "d3" and "<title>bkt Squiggle settings" in html:
         html = html.replace("</main>", d3_extra() + "</main>", 1)
-    if did == "d4" and "<title>bkt canon search" in html:
-        html = html.replace("</head>", "<style>@media(min-width:1200px){.main .grid.g2{grid-template-columns:repeat(3,minmax(0,1fr))}.main .grid.g2>*:nth-child(n+4){display:none}}</style></head>", 1)
     if did == "d4" and "<title>bkt settings" in html:
         html = html.replace("</head>", "<style>@media(min-width:1200px){.main{min-height:100vh;display:flex;flex-direction:column}}</style></head>", 1)
     head = f'<link rel="stylesheet" href="{rel}/made/{did}.css"><script src="{rel}/made/{did}.js" defer></script>'
@@ -233,20 +231,6 @@ def inject_d7(html, rel):
     html = re.sub(r'<img src="[^"]*img/d7-hero\.jpg"[^>]*>', lambda m: d7_hero(rel), html)
     html = html.replace("http://127.0.0.1:8777/_directions", rel)
     html = re.sub(r'<img src="[^"]*3d/d7-(mark|object)\.png"[^>]*>', lambda m: lic(rel, "exekias-achilles-ajax.jpg", "Exekias amphora, Achilles and Ajax playing a board game, about 540 BC"), html)
-    html = re.sub(r'<img src="[^"]*video/d7-frame-(\d)\.jpg"[^>]*>', lambda m: byrne_i1(int(m.group(1)), "made-frame", f"Scene {m.group(1)}: step {m.group(1)} of Elements I.1"), html)
-    html = re.sub(r'<video[^>]*video/d7-16x9\.mp4[^>]*>\s*</video>', lambda m: byrne_i1(6, "made-ill pv made-loop", "Video preview: Elements I.1 drawn step by step", 540, 362), html)
-    if re.search(r"<title>[^<]*math", html):
-        html = re.sub(r'(<main class="main">.*?</div></div>)', lambda m: m.group(1) + math_block(rel), html, count=1, flags=re.S) if '<main class="main">' in html else html.replace("<main", "<main", 1)
-    html = re.sub(r'(<nav class="side" aria-label="App"><a class="brand"[^>]*>.*?</a>)', lambda m: m.group(1) + side_art(rel), html, count=1, flags=re.S)
-    html = re.sub(r'(<aside class="art">)', lambda m: m.group(1) + f'<div class="art-photo">{lic(rel, "stoichedon-ig-i3-48.jpg", "IG I³ 48, an Athenian decree cut stoichedon")}</div>', html, count=1)
-    if "licensed/d7" not in html and not re.search(r"<title>[^<]*email", html):
-        band = f'<section class="made-band"><p class="prop-n"><span lang="grc">Μνημεῖα</span> · From the record</p><div class="pair">{lic(rel, "exekias-achilles-ajax.jpg", "Exekias amphora, Achilles and Ajax at a board game, about 540 BC")}{lic(rel, "stoichedon-ig-i3-48.jpg", "IG I³ 48, an Athenian decree cut stoichedon")}</div></section>'
-        if "<footer" in html:
-            html = html.replace("<footer", band + "<footer", 1)
-        elif "</main>" in html:
-            html = html.replace("</main>", band + "</main>", 1)
-        else:
-            html = html.replace("</body>", band + "</body>", 1)
     html = credit_d7(html, rel)
     head = f'<link rel="stylesheet" href="{rel}/made/d7.css"><script src="{rel}/made/d7.js" defer></script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=GFS+Neohellenic:wght@400;700&display=swap">'
     html = html.replace("</head>", head + "</head>", 1)

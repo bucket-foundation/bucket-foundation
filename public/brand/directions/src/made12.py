@@ -142,10 +142,9 @@ def enforce(d, html, depth):
         else:
             art = f'<svg class="mk-dlart" viewBox="0 0 320 320" role="img" aria-label="Shippō crest constructed from five circles">{shippo(160, 160, 64)}</svg>'
         html = html.replace(dl.group(1), f'<div class="mk-dlhero"><div class="stack" style="gap:var(--s4)">{dl.group(1)}<p class="muted" style="font-size:20px;line-height:28px;max-width:36ch">The canon on your desk and in your pocket. Read offline, cite from anywhere.</p></div>{art}</div>', 1)
-    elif 'class="content"' in html:
-        html = re.sub(r'(<(?:div|main)\b[^>]*class="content"[^>]*>)', lambda m: m.group(1) + band(d, seed), html, count=1)
-    elif "mk-fig" not in html and not dl:
-        html = re.sub(r'(<main\b)', lambda m: band(d, seed) + m.group(1), html, count=1)
-    if "mk-credit" not in html:
+    elif d == "d1" and 'class="content"' in html:
+        folio = '<div class="mk-folio"><span>℧ / Bucket</span><span>Reference shelf</span></div>'
+        html = re.sub(r'(<(?:div|main)\b[^>]*class="content"[^>]*>)', lambda m: m.group(1) + folio, html, count=1)
+    if "mk-credit" not in html and "mk-dlart" in html:
         html = html.replace("</main>", f'<p class="mk-credit mk-credit-foot">{CREDIT[d]}</p></main>', 1)
     return html

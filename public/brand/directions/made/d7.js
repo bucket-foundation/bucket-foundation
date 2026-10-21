@@ -8,4 +8,4 @@ function play(){try{c=c||new (window.AudioContext||window.webkitAudioContext)();
 document.addEventListener("pointerdown",e=>{const t=e.target.closest(".btn,button,[role=tab],.chip,.opt");if(!t||t===b)return;t.classList.remove("made-press");void t.offsetWidth;t.classList.add("made-press");if(on)play()});
 document.addEventListener("animationend",e=>e.target.classList&&e.target.classList.remove("made-press"));
 const cards=document.querySelectorAll(".card,article,.res,.r");cards.forEach((el,i)=>el.style.setProperty("--mi",Math.min(i,12)));
-r.classList.add("made-in");const GR={"landing":"Πᾶσα ἀπόδειξις κατὰ τάξιν","settings":"Ῥυθμίσεις","search":"Ζήτησις τοῦ κανόνος"};const key=Object.keys(GR).find(k=>document.title.toLowerCase().includes(k));const h=document.querySelector("h1");if(h){const g=document.createElement("p");g.className="grc";g.lang="grc";g.textContent=GR[key]||"Στοιχεῖα · ὅπερ ἔδει δεῖξαι";h.insertAdjacentElement("afterend",g)}})();
+r.classList.add("made-in")})();
