@@ -34,7 +34,7 @@ const AI_AGENTS = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/admin/", "/api/kruse/"] },
+      { userAgent: "*", allow: "/", disallow: ["/admin/", "/api/kruse/", "/brand/"] },
       ...AI_AGENTS.map((ua) => ({ userAgent: ua, allow: "/" })),
     ],
     sitemap: `${BASE}/sitemap.xml`,

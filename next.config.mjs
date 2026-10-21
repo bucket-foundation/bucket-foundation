@@ -41,8 +41,13 @@ const nextConfig = {
     ],
   },
 
+  async rewrites() {
+    return [{ source: "/brand/directions/", destination: "/brand/directions/index.html" }];
+  },
+
   async redirects() {
     return [
+      { source: "/brand/directions", destination: "/brand/directions/", permanent: false },
       { source: "/canon/claims", destination: "/excerpts", permanent: true },
       { source: "/canon/claims/:concept", destination: "/excerpts/:concept", permanent: true },
       { source: "/canon/claims/:concept/:slug", destination: "/excerpts/:concept/:slug", permanent: true },
@@ -66,6 +71,10 @@ const nextConfig = {
       },
       {
         source: "/research/maps/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noimageindex" }],
+      },
+      {
+        source: "/brand/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noimageindex" }],
       },
       {
