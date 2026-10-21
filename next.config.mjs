@@ -46,6 +46,8 @@ const nextConfig = {
       beforeFiles: [
         { source: "/brand/directions", destination: "/brand/directions/index.html" },
         { source: "/brand/directions/", destination: "/brand/directions/index.html" },
+        { source: "/brand/round2", destination: "/brand/round2/index.html" },
+        { source: "/brand/round2/", destination: "/brand/round2/index.html" },
       ],
     };
   },
