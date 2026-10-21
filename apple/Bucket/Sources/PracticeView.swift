@@ -53,9 +53,6 @@ struct PracticeHome: View {
                     .listRowBackground(Palette.card)
                 } header: {
                     Eyebrow(text: "Language systems")
-                } footer: {
-                    Text("Practice runs on this device. Synced reviews and spaced repetition arrive in the next build.")
-                        .foregroundStyle(Palette.muted)
                 }
             }
             .paper()

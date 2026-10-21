@@ -3,7 +3,7 @@ import SwiftUI
 
 struct CanonView: View {
     @Environment(Library.self) private var library
-    @State private var query = ""
+    @State private var query = Launch.value("-canonQuery") ?? ""
     @State private var hits: [CanonHit] = []
     @State private var error: String?
     @State private var searching = false
@@ -33,6 +33,7 @@ struct CanonView: View {
             .navigationTitle("Canon")
             .searchable(text: $query, prompt: "entropy, symmetry, memory")
             .onSubmit(of: .search) { Task { await search() } }
+            .task { if !query.isEmpty && hits.isEmpty { await search() } }
         }
     }
 
