@@ -43,6 +43,16 @@ final class Subscriptions {
     }
 
     func refresh() async {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-storeProbe") {
+            do {
+                let found = try await Product.products(for: Plan.all)
+                print("storeProbe asked", Plan.all.sorted(), "got", found.map { "\($0.id) \($0.displayPrice) intro=\($0.subscription?.introductoryOffer?.period.debugDescription ?? "none")" }, "storefront", await Storefront.current?.countryCode ?? "nil")
+            } catch {
+                print("storeProbe error", error)
+            }
+        }
+        #endif
         var current: [EntitlementRecord] = []
         for await result in Transaction.currentEntitlements {
             if case .verified(let t) = result { current.append(EntitlementRecord(t)) }
