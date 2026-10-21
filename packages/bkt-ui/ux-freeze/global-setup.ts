@@ -14,7 +14,7 @@ function bunDir(): string {
 
 export default async function globalSetup(): Promise<() => Promise<void>> {
   const home = mkdtempSync(join(tmpdir(), "ux-freeze-"));
-  const child = spawn("bun", ["src/cli.tsx", "serve", "--keyring", "passphrase", "--passphrase-fd", "3"], {
+  const child = spawn("bun", ["--preload", join(here, "server-clock.ts"), "src/cli.tsx", "serve", "--keyring", "passphrase", "--passphrase-fd", "3"], {
     cwd: resolve(here, "../../bkt"),
     env: { ...process.env, PATH: [bunDir(), dirname(process.execPath), "/usr/bin", "/bin"].join(":"), BKT_HOME: join(home, "data"), XDG_RUNTIME_DIR: join(home, "run"), BKT_OFFLINE: "1", BKT_UI_DIR: resolve(here, "../dist") },
     stdio: ["ignore", "pipe", "inherit", "pipe"],
