@@ -135,6 +135,15 @@ jobs:
           TAURI_SIGNING_PRIVATE_KEY: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.TAURI_SIGNING_PRIVATE_KEY || '' }}
           TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ startsWith(github.ref, 'refs/tags/bkt-v') && secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD || '' }}
         run: bash scripts/appimage-sidecar.sh repack
+      - name: measure the eSpeak clips in the AppImage
+        if: runner.os == 'Linux' && contains(matrix.bundles, 'appimage')
+        working-directory: packages/bkt-desktop
+        run: |
+          clips=$(du -sb ../../learning/app/audio | cut -f1)
+          app=$(ls src-tauri/target/release/bundle/appimage/*.AppImage)
+          total=$(stat -c %s "$app")
+          echo "eSpeak clips: $clips bytes raw, $(find ../../learning/app/audio -name '*.mp3' | wc -l) files; AppImage: $total bytes"
+          echo "### AppImage size: $total bytes, eSpeak clips $clips bytes raw" >> "$GITHUB_STEP_SUMMARY"
       - name: collect bundles under their release names
         working-directory: packages/bkt-desktop
         run: |

@@ -8,6 +8,8 @@ import { loadLearnData } from "./learn-data";
 import { LIBRARY_LINK, WordSearchBox } from "./Decks";
 import { PICK_LANGUAGES, WordAttribution, WORDS_FAILED } from "./Words";
 import { trouble, TroubleNote, type Trouble } from "../trouble";
+import LanguagesHome from "@/app/research-os/(app)/learn/languages/LanguagesHome";
+import "../ros.css";
 
 export function LearnHome({ api }: { api: Api }) {
   const [decks, setDecks] = useState<DeckRow[] | null>(null);
@@ -25,51 +27,21 @@ export function LearnHome({ api }: { api: Api }) {
     );
   }, [api]);
 
-  if (error) return <TroubleNote t={error} />;
-  if (!decks) return <p className="muted">Loading decks…</p>;
-  const due = decks.reduce((n, d) => n + d.due, 0);
-  const xp = decks.reduce((n, d) => n + d.xp, 0);
-
   return (
-    <section>
+    <section className="learn-hub">
       <header className="head">
         <h1>Learn</h1>
-        <p className="muted">
-          {due} due today · {xp} XP
-        </p>
+        {decks && (
+          <p className="muted">
+            {decks.reduce((n, d) => n + d.due, 0)} due today · {decks.reduce((n, d) => n + d.xp, 0)} XP
+          </p>
+        )}
       </header>
-      <AgentsStrip api={api} />
-      {grip && grip.axes.length > 0 && <GripPanel grip={grip} />}
-      <p className="muted small">
-        <a href={href({ name: "path" })}>Plan a path to any concept</a>
-      </p>
-      <div className="grid">
-        {decks.map((d) => (
-          <a key={d.id} className="deck" href={href({ name: "deck", deck: d.id })}>
-            <span className="deck-title">{d.title}</span>
-            <span className="bar" aria-hidden>
-              <span style={{ width: `${Math.round((100 * d.introduced) / Math.max(1, d.atoms))}%` }} />
-            </span>
-            <span className="deck-meta">
-              {d.introduced} of {d.atoms} started
-              {d.due > 0 && <b className="pill">{d.due} due</b>}
-            </span>
-          </a>
-        ))}
-      </div>
-      <ul className="deck-links">
-        {decks.map((d) => (
-          <li key={d.id}>
-            <span>{d.title}</span>
-            <a href={href({ name: "place", deck: d.id })}>{d.introduced === 0 ? "Place me first" : "Retake placement"}</a>
-            {d.introduced > 0 && <a href={href({ name: "assess", deck: d.id })}>Test yourself</a>}
-          </li>
-        ))}
-      </ul>
+      <section className="ros learn-web learn-hub-languages">
+        <LanguagesHome hub builder={false} />
+      </section>
+      {error ? <TroubleNote t={error} /> : !decks ? <p className="muted">Loading decks…</p> : <DeckSection decks={decks} grip={grip} api={api} />}
       <h2 className="section-title">Languages</h2>
-      <p className="muted small">
-        <a href={href({ name: "languages" })}>Language systems</a>: learn a set of languages together from one root language, with a placement for each.
-      </p>
       <WordSearchBox api={api} />
       <p className="muted small">
         <a href={href({ name: "library" })}>{LIBRARY_LINK}</a>
@@ -103,5 +75,41 @@ export function LearnHome({ api }: { api: Api }) {
         </>
       )}
     </section>
+  );
+}
+
+function DeckSection({ decks, grip, api }: { decks: DeckRow[]; grip: GripSphere | null; api: Api }) {
+  return (
+    <>
+      <h2 className="section-title">Decks</h2>
+      <AgentsStrip api={api} />
+      {grip && grip.axes.length > 0 && <GripPanel grip={grip} />}
+      <p className="muted small">
+        <a href={href({ name: "path" })}>Plan a path to any concept</a>
+      </p>
+      <div className="grid">
+        {decks.map((d) => (
+          <a key={d.id} className="deck" href={href({ name: "deck", deck: d.id })}>
+            <span className="deck-title">{d.title}</span>
+            <span className="bar" aria-hidden>
+              <span style={{ width: `${Math.round((100 * d.introduced) / Math.max(1, d.atoms))}%` }} />
+            </span>
+            <span className="deck-meta">
+              {d.introduced} of {d.atoms} started
+              {d.due > 0 && <b className="pill">{d.due} due</b>}
+            </span>
+          </a>
+        ))}
+      </div>
+      <ul className="deck-links">
+        {decks.map((d) => (
+          <li key={d.id}>
+            <span>{d.title}</span>
+            <a href={href({ name: "place", deck: d.id })}>{d.introduced === 0 ? "Place me first" : "Retake placement"}</a>
+            {d.introduced > 0 && <a href={href({ name: "assess", deck: d.id })}>Test yourself</a>}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

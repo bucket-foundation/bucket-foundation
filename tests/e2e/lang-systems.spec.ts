@@ -73,8 +73,8 @@ async function answerOne(p: Page): Promise<void> {
 
 test("create a Romance system, place French, and study a mixed session", async () => {
   await page.goto("/research-os/learn");
-  await page.getByRole("link", { name: "language systems" }).click();
-  await expect(page.getByRole("heading", { name: "language systems" })).toBeVisible();
+  await page.getByRole("link", { name: "build your own" }).click();
+  await expect(page.getByRole("heading", { name: "language systems", level: 1 })).toBeVisible();
   await page.getByRole("button", { name: /^Romance/ }).click();
   await page.getByRole("button", { name: "create system" }).click();
   await expect(page.getByText("Romance from English")).toBeVisible();

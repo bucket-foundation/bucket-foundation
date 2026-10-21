@@ -18,6 +18,13 @@
   --verdigris: #4f8a7a;
   --copper: #9b5a2c;
   --stone-300: var(--line);
+  --on-gold: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ros {
+    --on-gold: #1f1c16;
+  }
 }
 
 .ros .small-caps {
