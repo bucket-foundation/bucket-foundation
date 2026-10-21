@@ -25,3 +25,14 @@ describe("skin", () => {
     expect(root.dataset.scheme).toBeUndefined();
   });
 });
+
+describe("frozen set matches the polingual freeze", () => {
+  test("every hash the window freeze opens keeps the classic skin", async () => {
+    const { readFileSync } = await import("node:fs");
+    const { parseHash } = await import("./router");
+    const spec = readFileSync(new URL("../ux-freeze/polingual.spec.ts", import.meta.url), "utf8");
+    const hashes = [...spec.matchAll(/open\("(#[^"]+)"/g)].map((m) => m[1]);
+    expect(hashes.length).toBeGreaterThan(0);
+    for (const h of hashes) expect([h, skinFor(parseHash(h))]).toEqual([h, "classic"]);
+  });
+});

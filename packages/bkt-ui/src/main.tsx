@@ -14,8 +14,9 @@ import "./brand.css";
 
 function useDarkScheme(): boolean {
   const query = "(prefers-color-scheme: dark)";
-  const [dark, setDark] = useState(() => window.matchMedia(query).matches);
+  const [dark, setDark] = useState(() => typeof window.matchMedia === "function" && window.matchMedia(query).matches);
   useEffect(() => {
+    if (typeof window.matchMedia !== "function") return;
     const media = window.matchMedia(query);
     const update = () => setDark(media.matches);
     media.addEventListener("change", update);
