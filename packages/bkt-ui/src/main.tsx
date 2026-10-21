@@ -1,13 +1,28 @@
-import { StrictMode, useEffect, useState } from "react";
+import { StrictMode, useEffect, useLayoutEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { Api } from "./api";
 import { attachBack, BackButton, focusScreen, replaceHash, windowTrail } from "./back";
 import { firstRunHash, followRoutes, href, useRoute } from "./router";
 import { activeNav, agentsAvailable, FOOT_LINKS, navFor, Screen } from "./nav";
+import { applySkin, skinFor } from "./skin";
 
 import { WORK_QUIZ_CHANGED } from "./views/WorkQuiz";
 import "katex/dist/katex.min.css";
+import "../../../src/styles/brand-tokens.css";
 import "./app.css";
+import "./brand.css";
+
+function useDarkScheme(): boolean {
+  const query = "(prefers-color-scheme: dark)";
+  const [dark, setDark] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    const update = () => setDark(media.matches);
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+  return dark;
+}
 
 function App() {
   const route = useRoute();
@@ -17,6 +32,10 @@ function App() {
   const [workReady, setWorkReady] = useState(false);
   const [agentsReady, setAgentsReady] = useState(false);
   const trail = windowTrail();
+  const dark = useDarkScheme();
+  const skin = skinFor(route);
+
+  useLayoutEffect(() => applySkin(document.documentElement, skin, dark), [skin, dark]);
 
   useEffect(() => {
     Api.connect((e) => setWarn(e.message))
