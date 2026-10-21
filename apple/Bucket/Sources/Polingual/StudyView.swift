@@ -2,6 +2,7 @@ import BucketKit
 import SwiftUI
 
 struct StudyView: View {
+    @Environment(Reminders.self) private var reminders
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
     @Binding var path: NavigationPath
@@ -90,7 +91,8 @@ struct StudyView: View {
         } else if i >= queue.count || current == nil {
             VStack(spacing: 16) {
                 Image(systemName: "checkmark.seal.fill").font(.system(size: 56)).foregroundStyle(Palette.green)
-                Text("Session done").font(.serif(.title, weight: .semibold))
+                Text("Session done").font(.serif(.title, weight: .semibold)).onAppear { reminders.noteStudy() }
+                ReminderPrompt()
                 Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
                     .foregroundStyle(Palette.muted)
                     .monospacedDigit()
