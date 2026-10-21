@@ -120,8 +120,26 @@ jobs:
           java-version: "21"
       - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd
       - run: npm ci
+      - name: restore supabase images
+        id: supa-images
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/supa-images.tar
+          key: supa-images-2.117.0-${{ hashFiles('supabase/config.toml') }}
+      - name: load supabase images
+        if: steps.supa-images.outputs.cache-hit == 'true'
+        run: docker load -i "$RUNNER_TEMP/supa-images.tar"
       - name: local supabase
         run: npx supabase@2.117.0 start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor
+      - name: export supabase images
+        if: steps.supa-images.outputs.cache-hit != 'true'
+        run: docker save -o "$RUNNER_TEMP/supa-images.tar" $(docker ps --format '{{.Image}}' | sort -u)
+      - name: save supabase images
+        if: steps.supa-images.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ${{ runner.temp }}/supa-images.tar
+          key: ${{ steps.supa-images.outputs.cache-primary-key }}
       - name: site against local supabase
         run: |
           npx supabase@2.117.0 status -o env > "$RUNNER_TEMP/supa.env"
