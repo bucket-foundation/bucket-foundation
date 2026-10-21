@@ -2,7 +2,7 @@ import type { Route } from "./router";
 
 export type Skin = "brand" | "classic";
 
-export const FROZEN_ROUTES: ReadonlySet<Route["name"]> = new Set(["deck", "words", "review", "place", "assess", "langPlace", "langStudy"]);
+export const FROZEN_ROUTES: ReadonlySet<Route["name"]> = new Set();
 
 export function skinFor(route: Route): Skin {
   return FROZEN_ROUTES.has(route.name) ? "classic" : "brand";
