@@ -73,6 +73,7 @@ const SUITES = {
       "scripts/test-solver-gap-backtest-numbers.mjs",
       "scripts/test-provenance-packet.ts",
       "scripts/test-deck-catalog-route.ts",
+      "scripts/test-brand-pick.ts",
     ],
     commands: [
       ["python3", "-m", "unittest", "_intake/solver-gap-engine/tests/test_watch.py"],
