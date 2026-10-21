@@ -42,7 +42,12 @@ const nextConfig = {
   },
 
   async rewrites() {
-    return [{ source: "/brand/directions", destination: "/brand/directions/index.html" }];
+    return {
+      beforeFiles: [
+        { source: "/brand/directions", destination: "/brand/directions/index.html" },
+        { source: "/brand/directions/", destination: "/brand/directions/index.html" },
+      ],
+    };
   },
 
   async redirects() {
