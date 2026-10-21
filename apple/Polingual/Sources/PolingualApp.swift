@@ -1,0 +1,32 @@
+import BucketKit
+import SwiftUI
+
+@main
+struct PolingualApp: App {
+    @State private var account: Account
+    @State private var store: LangStore
+    @State private var gate: Gate
+    @State private var subs: Subscriptions
+
+    init() {
+        let api = BucketAPI()
+        let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
+        let store = LangStore(api: api, token: { await account.freshToken() })
+        LangVoice.shared.store = store
+        _account = State(initialValue: account)
+        _store = State(initialValue: store)
+        _gate = State(initialValue: Gate(account: account))
+        _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            PolingualRoot()
+                .environment(account)
+                .environment(store)
+                .environment(gate)
+                .environment(subs)
+                .tint(Palette.green)
+        }
+    }
+}
