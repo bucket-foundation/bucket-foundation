@@ -126,6 +126,7 @@ Set by the founder on 2026-09-22 after a week where 17% of added lines reached a
 - **No per-change logs.** `learning/research-os/CHANGE-LEDGER.md` and `docs/internal/archive/TIMELOG.md` are frozen. The PR is the record.
 - **Memos need a question.** A memo over 200 lines needs a founder question named in its bead. Agent process docs go in `docs/internal/`, and no page renders them.
 - **CLAUDE.md budget.** This file stays under 300 lines. A new rule replaces an old one.
+- **What's New.** Merged PRs reach `/whats-new` on their own. Any other user-visible change (a deploy, a paper, a figure, a data release, a Hypothesis Engine result) goes in as a draft: `node scripts/whats-new-post.mjs draft entry.json [image]`. Engine results use `engine`, which autopublishes. Tokens live in `~/.config/bucket/whats-new.env`. The founder publishes drafts at `/admin/whats-new`.
 - **Output budget.** Commit bodies three lines at most. PR bodies ten lines at most: what changed, how it was tested. No recap in replies.
 
 ## Grant Draft Review
