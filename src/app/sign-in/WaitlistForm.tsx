@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { NAME_MAX, WAITLIST_ROLES } from "@/lib/waitlist/core";
+import { RawDetails } from "@/components/ui";
+import { signupTrouble } from "@/lib/auth/sign-in-words";
 
 const INPUT =
   "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
@@ -16,7 +18,7 @@ export default function WaitlistForm({ wanted }: { wanted: string | null }) {
   const [role, setRole] = useState("");
   const [website, setWebsite] = useState("");
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<{ text: string; raw: string | null } | null>(null);
   const [joined, setJoined] = useState<string | null>(null);
   const doneRef = useRef<HTMLDivElement>(null);
 
@@ -41,14 +43,12 @@ export default function WaitlistForm({ wanted }: { wanted: string | null }) {
         error?: string;
       };
       if (!res.ok || !data.ok) {
-        setError(
-          data.error ?? "Your signup did not save. Try again in a minute.",
-        );
+        setError(signupTrouble(data.error, "Your signup did not save. Try again in a minute."));
         return;
       }
       setJoined(address);
     } catch {
-      setError("No connection. Check your network and try again.");
+      setError({ text: "No connection. Check your network and try again.", raw: null });
     } finally {
       setBusy(false);
     }
@@ -154,9 +154,10 @@ export default function WaitlistForm({ wanted }: { wanted: string | null }) {
           {busy ? "saving" : "notify me"}
         </button>
         {error && (
-          <p role="alert" className="text-[12px] text-[color:var(--crimson)]">
-            {error}
-          </p>
+          <div role="alert" className="text-[12px] text-[color:var(--crimson)]">
+            <p>{error.text}</p>
+            <RawDetails raw={error.raw} />
+          </div>
         )}
         <p className="mt-2 text-[12px] leading-relaxed text-[color:var(--basalt-3)]">
           One email when Research OS opens. Reply to it and we take you off the
