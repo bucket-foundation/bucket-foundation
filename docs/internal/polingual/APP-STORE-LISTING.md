@@ -63,13 +63,13 @@ Word data comes from Wiktionary contributors via kaikki.org, CC BY-SA.
 
 ## Screenshot Captions
 
-Six iPhone 6.9 inch shots, then the same set for iPad 13 inch. One line each, set in the app's serif on the paper background.
+Six shots per device, files in `apple/Polingual/AppStore/screenshots/`. One line each, set in the app's serif on the paper background.
 
 1. Learn languages together
-2. One word in every language you study
-3. Placement finds your level in each language
-4. Reviews arrive right before you forget
-5. Say it out loud and get a pronunciation check
+2. Build a set from 29 languages
+3. One word in every language you study
+4. Placement finds your level in each language
+5. Reviews arrive right before you forget
 6. 3 days free, then pick monthly or yearly
 
 ## App Review Notes

@@ -78,6 +78,14 @@ struct Studio: View {
         let existing = store.systems.first { $0.root == parts[0] && $0.targets == targets }
         let system: LangSystem? = if let existing { existing } else { try? await store.create(root: parts[0], targets: targets) }
         guard let system else { return }
+        #if DEBUG
+        if existing == nil, let n = PolingualLaunch.value("-polingualDemo").flatMap(Int.init), let corpus = store.corpus {
+            for (i, lang) in system.targets.enumerated() { await store.place(system.id, lang: lang, tier: Double(max(0, 2 - i))) }
+            for item in corpus.items.prefix(n) {
+                for lang in system.targets { store.grade(system.id, lang: lang, itemId: item.id, rating: 3) }
+            }
+        }
+        #endif
         switch parts[2] {
         case "study": path.append(LangRoute.study(system.id))
         case "place": path.append(LangRoute.place(system.id, nil))
