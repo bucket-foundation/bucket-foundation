@@ -8,6 +8,11 @@ struct AccountView: View {
     @State private var confirmingDelete = false
     @FocusState private var focused: Bool
 
+    private static var privacyURL: URL {
+        let polingual = Bundle.main.bundleIdentifier == "com.polingual.app"
+        return URL(string: polingual ? "https://polingual.com/privacy" : "https://www.bucket.foundation/privacy")!
+    }
+
     var body: some View {
         NavigationStack {
             Form {
@@ -60,7 +65,7 @@ struct AccountView: View {
                     Section { ProgressView() }
                 }
                 Section {
-                    Link("Privacy and data", destination: URL(string: "https://www.bucket.foundation/privacy")!)
+                    Link("Privacy and data", destination: Self.privacyURL)
                     LabeledContent("Version", value: Bundle.main.versionLabel)
                 } header: {
                     Eyebrow(text: "About")
