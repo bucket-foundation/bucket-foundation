@@ -8,6 +8,9 @@ import { exportLocal, webProgressStore } from "@/lib/academy/progress-store";
 import type { EngineState } from "@/lib/academy/engine";
 import { BTN_PRIMARY, EmptyState, ErrorState, LoadingState, PageHeader, Panel } from "@/components/ui";
 
+const FOCUS = "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--gold-deep)]";
+const CARD = "flex flex-col rounded-sm border border-[color:var(--hairline)] transition-colors hover:border-[color:var(--gold-deep)] focus-within:border-[color:var(--gold-deep)]";
+
 interface Row {
   deck: Deck;
   introduced: number;
@@ -79,34 +82,26 @@ export default function LearnHome() {
       ) : (
         <>
         {grip && grip.axes.length > 0 && <GripPanel grip={grip} />}
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-learn-hub="decks">
           {rows.map((r) => (
-            <Panel key={r.deck.id} title={deckLabel(r.deck)} meta={r.introduced > 0 ? `${r.introduced} started` : "new"}>
+            <Panel key={r.deck.id} title={deckLabel(r.deck)} meta={r.introduced > 0 ? `${r.introduced} started` : "new"} className={CARD}>
               {r.deck.sub && <p className="text-[13px] leading-[1.6] text-[color:var(--basalt-2)]">{r.deck.sub}</p>}
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-[color:var(--basalt-3)] [font-variant-numeric:tabular-nums]">
                 <span>{r.due} due</span>
                 <span>{r.xp} xp</span>
                 <span>{r.streak} day streak</span>
               </div>
-              <div className="mt-4 flex flex-wrap gap-2">
-                <Link href={r.introduced > 0 ? `/research-os/learn/${r.deck.id}/study` : `/research-os/learn/${r.deck.id}/place`} className={BTN_PRIMARY}>
+              <div className="mt-auto pt-4 flex flex-wrap gap-2">
+                <Link href={r.introduced > 0 ? `/research-os/learn/${r.deck.id}/study` : `/research-os/learn/${r.deck.id}/place`} className={`${BTN_PRIMARY} ${FOCUS}`}>
                   {r.introduced > 0 ? (r.due > 0 ? "review" : "continue") : "start"}
                 </Link>
-                <Link href={`/research-os/learn/${r.deck.id}`} className="inline-flex items-center px-3 text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)]">
+                <Link href={`/research-os/learn/${r.deck.id}`} className={`inline-flex items-center px-3 text-[12px] small-caps underline decoration-[color:var(--gold)] underline-offset-4 text-[color:var(--basalt-3)] hover:text-[color:var(--basalt)] ${FOCUS}`}>
                   the atoms
                 </Link>
               </div>
             </Panel>
           ))}
         </div>
-        <Panel title="languages" meta="language systems">
-          <p className="text-[13px] leading-[1.6] text-[color:var(--basalt-2)]">Learn a set of languages together from one root language, with shared roots drilled side by side.</p>
-          <div className="mt-4">
-            <Link href="/research-os/learn/languages" className={BTN_PRIMARY}>
-              language systems
-            </Link>
-          </div>
-        </Panel>
         <p className="text-[12px] text-[color:var(--basalt-3)]">
           <button type="button" onClick={downloadProgress} className="underline underline-offset-4 hover:text-[color:var(--basalt)]">
             Export progress
