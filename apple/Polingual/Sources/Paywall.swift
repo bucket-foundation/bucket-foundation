@@ -66,6 +66,7 @@ struct PaywallHeader: View {
             Text("Every language system, every word in all 29 languages, placement, spaced review and speaking practice. Progress syncs with Bucket.")
                 .font(.serif(.body))
                 .foregroundStyle(Palette.muted)
+                .fixedSize(horizontal: false, vertical: true)
             VStack(alignment: .leading, spacing: 8) {
                 Label("Unlimited language systems", systemImage: "square.stack.3d.up")
                 Label("Placement in each language", systemImage: "scope")

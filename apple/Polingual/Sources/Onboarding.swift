@@ -6,7 +6,7 @@ struct Onboarding: View {
 
     @Environment(Account.self) private var account
     let finish: () -> Void
-    @State private var step = Step.welcome
+    @State private var step = PolingualLaunch.value("-onboardingStep").flatMap(Int.init).flatMap(Step.init(rawValue:)) ?? .welcome
     @State private var signingIn = false
 
     var body: some View {

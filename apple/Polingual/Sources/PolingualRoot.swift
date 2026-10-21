@@ -33,6 +33,7 @@ struct PolingualRoot: View {
 
 struct Studio: View {
     @Environment(Subscriptions.self) private var subs
+    @Environment(LangStore.self) private var store
     @State private var path = NavigationPath()
     @State private var showAccount = false
     @State private var managing = false
@@ -65,6 +66,24 @@ struct Studio: View {
         }
         .sheet(isPresented: $showAccount) { AccountView() }
         .manageSubscriptions(isPresented: $managing)
+        .task { await openFromLaunch() }
+    }
+
+    func openFromLaunch() async {
+        guard let spec = PolingualLaunch.value("-openLang") else { return }
+        await store.load()
+        let parts = spec.split(separator: ":").map(String.init)
+        guard parts.count == 3 else { return }
+        let targets = parts[1].split(separator: ",").map(String.init)
+        let existing = store.systems.first { $0.root == parts[0] && $0.targets == targets }
+        let system: LangSystem? = if let existing { existing } else { try? await store.create(root: parts[0], targets: targets) }
+        guard let system else { return }
+        switch parts[2] {
+        case "study": path.append(LangRoute.study(system.id))
+        case "place": path.append(LangRoute.place(system.id, nil))
+        case "system": path.append(LangRoute.system(system.id))
+        default: break
+        }
     }
 
     func manage() {
