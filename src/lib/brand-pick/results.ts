@@ -1,4 +1,4 @@
-import { ASPECTS, ASPECT_IDS, DIRECTIONS, DIRECTION_IDS, type AspectId, type DirectionId } from "./directions";
+import { ASPECTS, ASPECT_IDS, DIRECTIONS, DIRECTION_IDS, type AspectId, type DirectionId } from "./catalog";
 import type { Answer } from "./answers";
 import { bradleyTerry, type Ranked } from "./rank";
 

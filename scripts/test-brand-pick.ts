@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ASPECT_IDS, DIRECTION_IDS, type AspectId, type DirectionId } from "../src/lib/brand-pick/directions";
+import { ASPECT_IDS, DIRECTION_IDS, type AspectId, type DirectionId } from "../src/lib/brand-pick/catalog";
 import { mergeAnswers, normalizeNote, parseAnswer, NOTE_MAX, type Answer } from "../src/lib/brand-pick/answers";
 import { bradleyTerry } from "../src/lib/brand-pick/rank";
 import { allPairs, coverageOrder, nextCard, progress, rematches, stable, type Card } from "../src/lib/brand-pick/schedule";

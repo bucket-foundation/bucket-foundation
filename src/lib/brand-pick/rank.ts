@@ -1,4 +1,4 @@
-import { DIRECTION_IDS, type DirectionId } from "./directions";
+import { DIRECTION_IDS, type DirectionId } from "./catalog";
 import type { Answer } from "./answers";
 
 export interface Ranked {

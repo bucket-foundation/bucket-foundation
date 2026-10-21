@@ -1,4 +1,4 @@
-import { isAspectId, isDirectionId, type AspectId, type DirectionId } from "./directions";
+import { isAspectId, isDirectionId, type AspectId, type DirectionId } from "./catalog";
 
 export const NOTE_MAX = 1000;
 export const ROUND_MAX = 3;

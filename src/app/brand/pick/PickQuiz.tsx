@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
-import { ASPECTS, ASPECT_IDS, DIRECTIONS, mediaFor, type AspectId, type DirectionId } from "@/lib/brand-pick/directions";
+import { ASPECTS, ASPECT_IDS, DIRECTIONS, mediaFor, type AspectId, type DirectionId } from "@/lib/brand-pick/catalog";
 import { answerKey, mergeAnswers, normalizeNote, parseAnswer, NOTE_MAX, type Answer } from "@/lib/brand-pick/answers";
 import { nextCard, progress, stable, type Card } from "@/lib/brand-pick/schedule";
 import { buildResults, pct, shareSummary } from "@/lib/brand-pick/results";
