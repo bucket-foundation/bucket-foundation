@@ -3,15 +3,11 @@ import { applySkin, FROZEN_ROUTES, skinFor } from "./skin";
 import type { Route } from "./router";
 
 describe("skin", () => {
-  test("study and placement screens under the polingual freeze keep the classic skin", () => {
-    const frozen: Route[] = [{ name: "deck", deck: "03-chemistry" }, { name: "words", deck: "ar", lesson: 1 }, { name: "review" }, { name: "place", deck: "03-chemistry" }, { name: "assess", deck: "03-chemistry" }, { name: "langPlace", system: "romance" }, { name: "langStudy", system: "romance" }];
-    for (const r of frozen) expect(skinFor(r)).toBe("classic");
-    expect(FROZEN_ROUTES.size).toBe(frozen.length);
+  test("every screen, study and placement included, wears the brand skin", () => {
+    for (const r of [{ name: "learn" }, { name: "progress" }, { name: "profile" }, { name: "settings" }, { name: "languages" }, { name: "deck", deck: "03-chemistry" }, { name: "words", deck: "ar", lesson: 1 }, { name: "review" }, { name: "place", deck: "03-chemistry" }, { name: "langStudy", system: "romance" }] as Route[]) expect(skinFor(r)).toBe("brand");
   });
 
-  test("every other screen wears the brand skin", () => {
-    for (const r of [{ name: "learn" }, { name: "progress" }, { name: "profile" }, { name: "settings" }, { name: "languages" }] as Route[]) expect(skinFor(r)).toBe("brand");
-  });
+  test("no route is held on the classic skin", () => expect(FROZEN_ROUTES.size).toBe(0));
 
   test("applySkin sets the scheme for brand and clears both attributes for classic", () => {
     const root = { dataset: {} as DOMStringMap } as HTMLElement;
@@ -26,13 +22,3 @@ describe("skin", () => {
   });
 });
 
-describe("frozen set matches the polingual freeze", () => {
-  test("every hash the window freeze opens keeps the classic skin", async () => {
-    const { readFileSync } = await import("node:fs");
-    const { parseHash } = await import("./router");
-    const spec = readFileSync(new URL("../ux-freeze/polingual.spec.ts", import.meta.url), "utf8");
-    const hashes = [...spec.matchAll(/open\("(#[^"]+)"/g)].map((m) => m[1]);
-    expect(hashes.length).toBeGreaterThan(0);
-    for (const h of hashes) expect([h, skinFor(parseHash(h))]).toEqual([h, "classic"]);
-  });
-});
