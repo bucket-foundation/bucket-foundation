@@ -71,7 +71,7 @@ export default function PickQuiz() {
     (async () => {
       try {
         const res = await fetch(API, { credentials: "same-origin", cache: "no-store" });
-        const body = (await res.json()) as { signedIn?: boolean; answers?: unknown[] };
+        const body = (await res.json()) as { signedIn?: boolean; clearedAt?: string | null; answers?: unknown[] };
         if (cancelled) return;
         if (!body.signedIn) {
           setAccount("guest");
@@ -83,6 +83,8 @@ export default function PickQuiz() {
           return;
         }
         const remote = (body.answers ?? []).map(parseAnswer).filter((x): x is Answer => x !== null);
+        const cleared = body.clearedAt ? new Date(body.clearedAt).toISOString() : "";
+        local.answers = local.answers.filter((x) => x.at > cleared);
         const remoteKeys = new Map(remote.map((x) => [answerKey(x), x.at]));
         const toPush = local.answers.filter((x) => (remoteKeys.get(answerKey(x)) ?? "") < x.at);
         const merged = mergeAnswers(remote, local.answers);

@@ -9,6 +9,8 @@ export const dynamic = "force-dynamic";
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
 const SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const TABLE = "brand_picks";
+const RESETS = "brand_pick_resets";
+const BATCH_MAX = 300;
 const HEADERS = { "cache-control": "no-store", "x-robots-tag": "noindex, nofollow" };
 
 interface Row {
@@ -45,10 +47,13 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   if (!user) return json({ signedIn: false, answers: [] });
   const db = service();
   if (!db) return json({ signedIn: true, storage: "unavailable", answers: [] }, 503);
+  const reset = await db.from(RESETS).select("cleared_at").eq("user_id", user.id).maybeSingle();
+  if (reset.error) return json({ signedIn: true, error: "read_failed", answers: [] }, 502);
+  const clearedAt = (reset.data as { cleared_at: string } | null)?.cleared_at ?? null;
   const { data, error } = await db.from(TABLE).select("aspect,a,b,round,left_id,choice,note,answered_at").eq("user_id", user.id).order("answered_at");
   if (error) return json({ signedIn: true, error: "read_failed", answers: [] }, 502);
   const answers = ((data ?? []) as Row[]).map(rowToAnswer).filter((x): x is Answer => x !== null);
-  return json({ signedIn: true, answers });
+  return json({ signedIn: true, clearedAt, answers });
 }
 
 export async function PUT(req: NextRequest): Promise<NextResponse> {
@@ -62,11 +67,22 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
   } catch {
     return json({ error: "bad_json" }, 400);
   }
-  const list = Array.isArray((body as { answers?: unknown })?.answers) ? ((body as { answers: unknown[] }).answers) : [body];
-  if (list.length === 0 || list.length > 300) return json({ error: "bad_answer" }, 400);
-  const answers = list.map(parseAnswer);
-  if (answers.some((x) => x === null)) return json({ error: "bad_answer" }, 400);
-  const rows = (answers as Answer[]).map((x) => ({
+  const list = (body as { answers?: unknown })?.answers;
+  if (!Array.isArray(list) || list.length === 0 || list.length > BATCH_MAX) return json({ error: "bad_answer" }, 400);
+  const parsed = list.map(parseAnswer);
+  if (parsed.some((x) => x === null)) return json({ error: "bad_answer" }, 400);
+  const now = new Date().toISOString();
+  const reset = await db.from(RESETS).select("cleared_at").eq("user_id", user.id).maybeSingle();
+  if (reset.error) return json({ error: "read_failed" }, 502);
+  const clearedAt = (reset.data as { cleared_at: string } | null)?.cleared_at ?? "";
+  const existing = await db.from(TABLE).select("aspect,a,b,round,answered_at").eq("user_id", user.id);
+  if (existing.error) return json({ error: "read_failed" }, 502);
+  const newest = new Map(((existing.data ?? []) as Row[]).map((r) => [`${r.aspect}:${r.a}:${r.b}:${r.round}`, new Date(r.answered_at).toISOString()]));
+  const answers = (parsed as Answer[])
+    .map((x) => ({ ...x, at: x.at > now ? now : x.at }))
+    .filter((x) => x.at > clearedAt && (newest.get(`${x.aspect}:${x.a}:${x.b}:${x.round}`) ?? "") <= x.at);
+  if (answers.length === 0) return json({ saved: 0 });
+  const rows = answers.map((x) => ({
     user_id: user.id,
     aspect: x.aspect,
     a: x.a,
@@ -87,6 +103,8 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
   if (!user) return json({ error: "sign_in_required" }, 401);
   const db = service();
   if (!db) return json({ error: "storage_unavailable" }, 503);
+  const mark = await db.from(RESETS).upsert({ user_id: user.id, cleared_at: new Date().toISOString() }, { onConflict: "user_id" });
+  if (mark.error) return json({ error: "delete_failed" }, 502);
   const { error } = await db.from(TABLE).delete().eq("user_id", user.id);
   if (error) return json({ error: "delete_failed" }, 502);
   return json({ cleared: true });

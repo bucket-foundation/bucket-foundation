@@ -148,13 +148,33 @@ test("a signed-in pick lands in the account and survives a fresh browser", async
     const j = (await r.json()) as { answers: Answer[] };
     return j.answers.map((a) => a.note);
   }).toEqual(["calmer"]);
-  expect((await page.request.put("/api/brand/pick", { data: { aspect: "logo", a: "d2", b: "d1", round: 0, left: "d1", choice: "d1" } })).status()).toBe(400);
+  expect((await page.request.put("/api/brand/pick", { data: { answers: [{ aspect: "logo", a: "d2", b: "d1", round: 0, left: "d1", choice: "d1" }] } })).status()).toBe(400);
+  expect((await page.request.put("/api/brand/pick", { data: { aspect: "logo", a: "d1", b: "d2", round: 0, left: "d1", choice: "d1" } })).status()).toBe(400);
 
   const fresh = await browser.newContext({ storageState: { cookies: await page.context().cookies(), origins: [] } });
   const other = await fresh.newPage();
   await other.goto(PATH);
   await expect.poll(() => answeredCount(other)).toBe(1);
   await fresh.close();
+
+  const stale = { aspect: "logo", a: "d1", b: "d2", round: 0, left: "d1", choice: "d1", note: "", at: "2026-10-20T00:00:00.000Z" };
+  const future = { ...stale, choice: "d2", at: "2099-01-01T00:00:00.000Z" };
+  expect((await page.request.put("/api/brand/pick", { data: { answers: [future] } })).status()).toBe(200);
+  expect((await page.request.put("/api/brand/pick", { data: { answers: [stale] } })).status()).toBe(200);
+  const kept = ((await (await page.request.get("/api/brand/pick")).json()) as { answers: Answer[] }).answers.find((a) => a.aspect === "logo")!;
+  expect(kept.choice).toBe("d2");
+  expect(Date.parse(kept.at)).toBeLessThan(Date.now() + 60_000);
+
+  expect((await page.request.delete("/api/brand/pick")).status()).toBe(200);
+  const device = await browser.newContext({ storageState: { cookies: await page.context().cookies(), origins: [] } });
+  const b = await device.newPage();
+  await b.goto(PATH);
+  await b.evaluate(([k, v]) => localStorage.setItem(k, v), [STORE, JSON.stringify({ seed: 1, answers: [stale] })]);
+  await b.reload();
+  await expect(b.getByText("Saved to your account.")).toBeVisible();
+  await expect.poll(() => answeredCount(b)).toBe(0);
+  expect(((await (await page.request.get("/api/brand/pick")).json()) as { answers: Answer[] }).answers).toHaveLength(0);
+  await device.close();
 
   const anon = await browser.newContext();
   const r = await anon.request.get(new URL("/api/brand/pick", page.url()).toString());

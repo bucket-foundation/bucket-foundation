@@ -29,6 +29,19 @@ revoke all on bucket.brand_picks from public, anon, authenticated;
 grant usage on schema bucket to service_role;
 grant select, insert, update, delete on bucket.brand_picks to service_role;
 
+create table if not exists bucket.brand_pick_resets (
+  user_id    uuid        primary key references auth.users (id) on delete cascade,
+  cleared_at timestamptz not null default now()
+);
+
+alter table bucket.brand_pick_resets enable row level security;
+
+drop policy if exists own_select on bucket.brand_pick_resets;
+create policy own_select on bucket.brand_pick_resets for select using (auth.uid() = user_id);
+
+revoke all on bucket.brand_pick_resets from public, anon, authenticated;
+grant select, insert, update, delete on bucket.brand_pick_resets to service_role;
+
 create or replace function graph.privacy_delete_learner(
   p_learner_id uuid,
   p_actor_id uuid default null,
@@ -112,6 +125,7 @@ begin
 
   delete from bucket.brand_picks where user_id = p_learner_id;
   get diagnostics v_brand_picks = row_count;
+  delete from bucket.brand_pick_resets where user_id = p_learner_id;
 
   insert into graph.privacy_events (learner_id_hash, action, actor_id_hash, acting_as_reviewer)
   values (
