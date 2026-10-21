@@ -106,7 +106,7 @@ def icon(d,name):
                 f'<g transform="translate(12 12) scale(.72) translate(-12 -12)" fill="none" stroke="{c["bg"]}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{SF[name]}</g>')
     if i=="d3":
         p=DUO[name];f=lambda col,dy:f'<path fill-rule="evenodd" d="{p}" fill="{col}" stroke="{col}" stroke-width="2" stroke-linejoin="round" transform="translate(0 {dy})"/>'
-        return f'<g transform="translate(12 11) scale(.86) translate(-12 -12)">{f("#1F5600",2)}{f("#2E7D00",0)}<path d="{DUOHI[name]}" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" fill="none"/></g>'
+        return f'<g transform="translate(12 11) scale(.86) translate(-12 -12)">{f("#492457",2)}{f("#6B367C",0)}<path d="{DUOHI[name]}" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" fill="none"/></g>'
     if i=="d4":
         return f'<path fill-rule="evenodd" d="{SHARP[name]}" fill="{c["text"]}"/><path d="M0 24 6 24 0 18Z" fill="{c["acc"]}"/>'
     if i=="d5":

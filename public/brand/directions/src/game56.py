@@ -172,7 +172,7 @@ def pg_badges(i):
 def pg_social(i):
     people = [("1", "Mira K.", "1,240"), ("2", "Tomás R.", "1,105"), ("3", "Ada R.", "980"), ("4", "Yusuf A.", "910"), ("5", "Lena B.", "870"), ("6", "Noor H.", "640"), ("7", "Sam W.", "410")]
     rows = "".join(f'<li class="{"me" if n == "Ada R." else ""}"><span class="lab">{r}</span><span>{n}{" · you" if n == "Ada R." else ""}</span><span class="sm">{x} XP</span></li>' + ('<li class="zone" style="display:block;min-height:0">Promotion zone above · demotion zone below</li>' if r == "5" else "") for r, n, x in people)
-    glyph = f'<img class="ic" src="../../icons/{i}-glyph.svg" alt="" width="40" height="40">'
+    glyph = f'<img class="ic" src="../../icons/{i}-brand.svg" alt="" width="40" height="40">'
     body = f'''<div class="grid g2" style="align-items:start"><section class="card stack"><p class="lab">Sapphire league · week 42 · 3 days left</p><h2 class="h3">League table</h2><ol class="lead">{rows}</ol>{cap("Duolingo leagues")}</section>
 <div class="stack" style="--s4:var(--s5)"><section class="card stack"><p class="lab">Study group · Roots club</p><p class="h3">4 of 5 met today's goal</p><div class="xpbar" role="progressbar" aria-label="Group goal" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><i style="width:80%"></i></div><p class="sm muted">Group quest: 500 XP together by Sunday. 410 so far.</p><button class="btn ghost">Nudge Sam</button>{cap("Duolingo friends quest")}</section>
 <section class="stack"><p class="lab">Push notification</p><div class="phone"><div class="notif">{glyph}<div><p class="sm"><b>bkt</b> · now</p><p class="sm">Your 12-day streak ends at midnight. One 3-minute review keeps it.</p></div></div></div></section>

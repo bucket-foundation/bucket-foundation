@@ -1,38 +1,10 @@
+@import "../styles/brand-tokens.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --aegean:       #2E6B6B;
-  --aegean-deep:  #1F4F4F;
-  --aegean-dark:  #123838;
-  --gold:         #B8861E;
-  --gold-bright:  #D9A43A;
-  --gold-deep:    #8A641A;
-  --basalt:       #1F1C16;
-  --basalt-2:     #2A261E;
-  --basalt-3:     #3A3529;
-  --bone:         #EFE8D4;
-  --bone-2:       #E4DCC4;
-  --bone-3:       #D3C9AB;
-  --laurel-deep:  #3E5A2A;
-  --laurel-core:  #5A7A3A;
-  --laurel:       var(--laurel-core);
-  --lichen:       #8A9668;
-  --stone-200:    #4A4A42;
-  --stone-300:    #6F6A5E;
-  --stone-800:    #2E2A22;
-  --papyrus:      #E4D5A8;
-  --sandstone:    #C9A863;
-  --ochre:        #B8863A;
-  --marigold:     var(--ochre);
-  --verdigris:    #4A8A7A;
-  --copper:       #B86A3A;
-  --crimson:      #9E3A24;
-  --hairline:     rgba(31, 28, 22, 0.14);
-  --hairline-bone: rgba(239, 232, 212, 0.12);
-  --stone-carve:   rgba(31, 28, 22, 0.40);
-
   --ink:           var(--basalt);
   --ink-2:         var(--basalt-2);
   --ink-3:         var(--basalt-3);

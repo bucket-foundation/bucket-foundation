@@ -8,17 +8,17 @@ SK = {
  "d1": dict(name="Grid", fonts="family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono&family=IBM+Plex+Sans+Hebrew:wght@400;600&family=IBM+Plex+Sans+Devanagari:wght@400&family=Noto+Sans+SC:wght@400",
    disp="'IBM Plex Sans'", dw=300, body="'IBM Plex Sans','IBM Plex Sans Hebrew','IBM Plex Sans Devanagari','Noto Sans SC',sans-serif", mono="'IBM Plex Mono',monospace",
    bg="#FFFFFF", surf="#F4F4F4", text="#161616", muted="#525252", acc="#0F62FE", onacc="#FFFFFF", hl="#DA1E28", acct="#0F62FE", line="#E0E0E0", onhl="#FFFFFF",
-   r="0px", rb="0px", ease="cubic-bezier(0.2,0,0.38,0.9)", hero="Every foundation, indexed.", cta="Open the canon", poh="One root. Six scripts. Indexed.",
+   r="0px", rb="0px", ease="cubic-bezier(0.2,0,0.38,0.9)", hero="Every foundation, indexed.", cta="Open the canon", poh="Six words. Their roots, indexed.",
    bar="#161616", ontext="#F4F4F4", barmuted="#C6C6C6"),
  "d2": dict(name="Kamon", fonts="family=Shippori+Mincho:wght@500;800&family=Zen+Kaku+Gothic+New:wght@400;700&family=Frank+Ruhl+Libre:wght@500;700&family=Noto+Serif:wght@400;700&family=Noto+Serif+Devanagari:wght@400&family=Noto+Serif+SC:wght@400",
    disp="'Shippori Mincho','Frank Ruhl Libre','Noto Serif',serif", dw=800, body="'Zen Kaku Gothic New','Frank Ruhl Libre','Noto Serif','Noto Serif Devanagari','Noto Serif SC',sans-serif", mono="ui-monospace,'SF Mono',Menlo,monospace",
    bg="#F4EFE4", surf="#FBF8F1", text="#1C1C1C", muted="#5A5148", acc="#1F3A5F", onacc="#F4EFE4", hl="#B8341B", acct="#1F3A5F", line="#D9CFBE", onhl="#FFFFFF",
-   r="20px", rb="999px", ease="cubic-bezier(0.65,0,0.35,1)", hero="build the past.", cta="Begin a study", poh="One root, six crests.",
+   r="20px", rb="999px", ease="cubic-bezier(0.65,0,0.35,1)", hero="build the past.", cta="Begin a study", poh="Six words, six crests.",
    bar="#FBF8F1", ontext="#1C1C1C", barmuted="#5A5148"),
  "d3": dict(name="Squiggle", fonts="family=Fredoka:wght@500;700&family=Nunito:wght@400;800&family=Rubik:wght@500;700&family=Noto+Sans:wght@400;800&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+SC:wght@400;700",
    disp="'Fredoka','Rubik','Noto Sans',sans-serif", dw=700, body="'Nunito','Rubik','Noto Sans','Noto Sans Devanagari','Noto Sans SC',sans-serif", mono="ui-monospace,Menlo,monospace",
-   bg="#FFF8E7", surf="#FFFFFF", text="#2B2B2B", muted="#5E5A52", acc="#58CC02", onacc="#173600", hl="#FF4B91", acct="#2E7D00", line="#E5E0D2", onhl="#1A1A1A",
-   r="16px", rb="16px", ease="cubic-bezier(0.34,1.56,0.64,1)", hero="Learn the words that built the world.", cta="Start a streak", poh="Six words for hundred. One streak.",
+   bg="#FFF8E7", surf="#FFFFFF", text="#2B2B2B", muted="#5E5A52", acc="#6B367C", onacc="#FFFFFF", hl="#FF4B91", acct="#6B367C", line="#E5E0D2", onhl="#1A1A1A",
+   r="16px", rb="16px", ease="cubic-bezier(0.34,1.56,0.64,1)", hero="Build from the source.", cta="Explore the canon", poly_cta="Start a streak", poh="Six words for hundred. One streak.",
    bar="#FFFFFF", ontext="#2B2B2B", barmuted="#5E5A52"),
 }
 
@@ -96,6 +96,23 @@ code,pre,.mono{font-family:var(--mono)}pre{margin:0;white-space:pre-wrap;overflo
 .bar{padding:var(--s3) var(--s4);min-height:64px}.bar h1{font-size:22px;line-height:28px}.bar .hide{display:none}.content{padding:var(--s4);gap:var(--s5)}.card{padding:var(--s4)}
 .word{font-size:40px;line-height:48px}.tl{grid-template-columns:repeat(3,minmax(0,1fr))}.phone{width:100%;max-width:280px}
 }
+
+.study-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.study-layout .study-face{padding:clamp(24px,3vw,40px);gap:var(--s4);min-width:0}
+.study-layout .study-face .word{font-size:clamp(40px,5vw,64px);line-height:1.15;white-space:nowrap;overflow-wrap:normal}
+.study-list .study-translation{display:grid;grid-template-columns:minmax(88px,1fr) minmax(72px,1fr) 44px;gap:12px;align-items:center}
+.study-language{display:flex;flex-direction:column;gap:4px;min-width:0}
+.study-language .kick{letter-spacing:0;text-transform:none}
+.study-word{font:var(--dw) 26px/36px var(--disp);white-space:nowrap;overflow-wrap:normal}
+.study-list .btn.listen{display:grid;place-items:center;width:44px;min-width:44px;min-height:44px;padding:10px;box-shadow:none}
+.study-list .btn.listen::before,.study-list .btn.listen::after,.study-layout .study-ratings .btn::before,.study-layout .study-ratings .btn::after{display:none}
+.study-ratings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%}
+.study-layout .study-ratings .btn{padding:12px 16px;justify-content:center}
+.root-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.root-grid .word{font-size:clamp(28px,3vw,40px);line-height:1.25;white-space:nowrap;overflow-wrap:normal}
+@media(max-width:1000px){.study-layout{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:900px){.root-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.root-grid{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 """
 
@@ -111,10 +128,10 @@ SKIN = {
 .seal{display:inline-grid;place-items:center;background:var(--hl);color:#fff;border-radius:50%;width:48px;height:48px;font:700 14px/1 var(--body)}
 .center{text-align:center;align-items:center}
 """,
-"d3": """:root{--ls:0;--bw:2px;--lip-card:0 4px 0 #E5E0D2;--lip-btn:0 4px 0 #46A302;--lip-hl:0 4px 0 #D63A78;--bfw:800;--btt:uppercase;--bls:.04em;--press:4px;--ri:16px;--rt:8px;--rn:12px;--rg:8px;--nfw:800;--sidebg:#FFFFFF;--navon:#DDF4FF;--navontext:#2B2B2B;--navlip:inset 0 0 0 2px #84D8FF}
+"d3": """:root{--ls:0;--bw:2px;--lip-card:0 4px 0 #E5E0D2;--lip-btn:0 4px 0 #492457;--lip-hl:0 4px 0 #D63A78;--bfw:800;--btt:none;--bls:.04em;--press:4px;--ri:16px;--rt:8px;--rn:12px;--rg:8px;--nfw:800;--sidebg:#FFFFFF;--navon:#F1E8F5;--navontext:#492457;--navlip:inset 0 0 0 2px #B892C7}
 .btn:active{box-shadow:none}.btn.ghost{box-shadow:inset 0 0 0 2px #E5E0D2,0 4px 0 #E5E0D2;color:var(--text);background:var(--surf)}.btn.ghost:active{box-shadow:inset 0 0 0 2px #E5E0D2}
 .inp{border:2px solid #E5E0D2;background:#F7F7F7}.inp:focus-visible{border-color:#84D8FF;outline:3px solid #2B2B2B}
-.side{border-right:2px solid var(--line)}.bar{border-bottom:2px solid var(--line)}.opt{border-width:2px}.opt[aria-checked=true]{border-color:#84D8FF;background:#DDF4FF;box-shadow:0 4px 0 #84D8FF}
+.side{border-right:2px solid var(--line)}.bar{border-bottom:2px solid var(--line)}.opt{border-width:2px}.opt[aria-checked=true]{border-color:#6B367C;background:#F1E8F5;box-shadow:0 2px 0 #B892C7}
 .tag{border-radius:8px}.pat{background-image:radial-gradient(#FF4B91 2px,transparent 2.5px),radial-gradient(#1CB0F6 2px,transparent 2.5px);background-size:32px 32px;background-position:0 0,16px 16px}
 .prog{height:16px;border-radius:8px}.prog i{box-shadow:inset 0 -4px 0 rgba(0,0,0,.12)}
 """,
@@ -137,10 +154,10 @@ WORDS = [("en", "ltr", "English", "hundred", "/ˈhʌn.drəd/", "Root. Old Englis
 def head(d, title, extra=""):
     s = SK[d]
     v = f":root{{--bg:{s['bg']};--surf:{s['surf']};--text:{s['text']};--muted:{s['muted']};--acc:{s['acc']};--onacc:{s['onacc']};--hl:{s['hl']};--onhl:{s['onhl']};--acct:{s['acct']};--line:{s['line']};--r:{s['r']};--rb:{s['rb']};--disp:{s['disp']};--dw:{s['dw']};--body:{s['body']};--mono:{s['mono']};--ease:{s['ease']};--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px}}"
-    return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>bkt {s["name"]} {title}</title><link rel="icon" href="../../icons/{d}-glyph.svg"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?{s["fonts"]}&display=swap">{extra}<style>{v}{BASE}{SKIN[d]}</style></head><body>'
+    return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>bkt {s["name"]} {title}</title><link rel="icon" href="../../icons/{d}-brand-16.svg"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?{s["fonts"]}&display=swap">{extra}<style>{v}{BASE}{SKIN[d]}</style></head><body>'
 
 def ic(d, n): return f'<img src="../../icons/{d}-{n}.svg" alt="" width="24" height="24">'
-def brand(d, label="bkt", href="landing.html"): return f'<a class="brand" href="{href}"><img src="../../icons/{d}-glyph.svg" alt="" width="32" height="32">{label}</a>'
+def brand(d, label="bkt", href="landing.html"): return f'<a class="brand" href="{href}"><img src="../../icons/{d}-brand.svg" alt="" width="32" height="32">{label}</a>'
 
 def site(d, poly=False):
     if poly:
@@ -182,9 +199,9 @@ def p_poly(d):
     s = SK[d]
     words = "".join(wcard(w, "root" if w[0]=="en" else "") for w in WORDS)
     langs = "".join(f'<li class="chip" style="cursor:default">{x}</li>' for x in ["English", "Français", "Español", "עברית", "Ελληνικά", "Русский", "हिन्दी", "中文"])
-    how = "".join(f'<li class="card stack"><span class="n"></span><h3>{h}</h3><p class="muted">{t}</p></li>' for h, t in [("Pick a script", "Latin, Hebrew, Greek, Cyrillic, Devanagari or Han."), ("Study one root", "See hundred beside cent, cien, מאה, εκατό and сто."), ("Reveal the link", "Each card shows the shared Proto-Indo-European root *ḱm̥tóm."), ("Keep the streak", "Five minutes a day. Reviews space themselves.")])
-    return head(d, "Polingual") + site(d, True) + f'''<main><section class="pad wrap stack" style="gap:var(--s5)"><span class="kick">polingual.com · by Bucket</span><h1 class="disp" style="max-width:16ch">{s["poh"]}</h1><p class="muted" style="font-size:20px;line-height:28px;max-width:46ch">Polingual teaches the words underneath the languages. Learn one root, then watch it surface in six scripts.</p><div class="row"><a class="btn" href="polingual-flow.html">{s["cta"]}</a><a class="btn ghost" href="signin.html">I have an account</a></div></section>
-<section class="pad wrap"><div class="grid">{words}</div></section>
+    how = "".join(f'<li class="card stack"><span class="n"></span><h3>{h}</h3><p class="muted">{t}</p></li>' for h, t in [("Pick a script", "Latin, Hebrew, Greek, Cyrillic, Devanagari or Han."), ("Compare the words", "See hundred beside cent, cien, מאה, εκατό and сто."), ("Reveal the link", "Trace the Indo-European cognates, then compare Hebrew as a translation."), ("Keep the streak", "Five minutes a day. Reviews space themselves.")])
+    return head(d, "Polingual") + site(d, True) + f'''<main><section class="pad wrap stack" style="gap:var(--s5)"><span class="kick">polingual.com · by Bucket</span><h1 class="disp" style="max-width:16ch">{s["poh"]}</h1><p class="muted" style="font-size:20px;line-height:28px;max-width:46ch">Polingual teaches words through their histories. Follow shared roots and compare translations across scripts.</p><div class="row"><a class="btn" href="polingual-flow.html">{s.get("poly_cta", s["cta"])}</a><a class="btn ghost" href="signin.html">I have an account</a></div></section>
+<section class="pad wrap"><div class="grid root-grid">{words}</div><p class="muted small" style="margin-top:var(--s5)">English hundred, French cent, Spanish cien, Greek εκατό and Russian сто share the Indo-European root *ḱm̥tóm. Hebrew מאה is a translation from the Semitic family. <a href="https://lrc.la.utexas.edu/eieol/grkol/0">Greek and English cognates</a>.</p></section>
 <section id="how" class="pad wrap stack" style="gap:var(--s5)"><h2 class="disp">How it works</h2><ol class="steps">{how}</ol></section>
 <section id="langs" class="pad wrap stack" style="gap:var(--s5)"><h2 class="disp">Languages</h2><ul class="row">{langs}</ul></section></main>''' + foot(d) + end()
 
@@ -211,10 +228,10 @@ def p_picker(d):
     return head(d, "language picker") + shell(d, "app-language-picker", "Languages", body) + end()
 
 def p_study(d):
-    tr = "".join(f'<li class="setrow" lang="{w[0]}"><span class="kick" style="width:96px">{w[2]}</span><span class="grow" dir="{w[1]}" style="font:var(--dw) 24px/32px var(--disp)">{w[3]}</span><span class="muted mono small">{w[4]}</span><button class="btn ghost sm" aria-label="Play {w[3]}">{ic(d,"listen")}</button></li>' for w in WORDS[1:])
+    tr = "".join(f'<li class="setrow study-translation" lang="{w[0]}"><span class="study-language"><span class="kick">{w[2]}</span><span class="muted mono small">{w[4]}</span></span><span class="study-word" dir="{w[1]}">{w[3]}</span><button class="btn ghost sm listen" aria-label="Play {w[3]}">{ic(d,"listen")}</button></li>' for w in WORDS[1:])
     body = f'''<div class="row"><div class="prog grow" role="progressbar" aria-label="Session" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><i style="width:40%"></i></div><span class="muted small">4 of 10</span></div>
-<div class="split"><article class="card stack" style="gap:var(--s4);padding:var(--s7)"><span class="tag">English · root</span><span class="word" style="font-size:72px;line-height:80px">hundred</span><span class="muted mono">/ˈhʌn.drəd/</span><p>Old English hund, Proto-Germanic *hundą, Proto-Indo-European *ḱm̥tóm. The same root gives Latin centum and Greek ἑκατόν.</p><div class="row" style="margin-top:var(--s4)"><button class="btn ghost">Again</button><button class="btn ghost">Hard</button><button class="btn">Good</button><button class="btn ghost">Easy</button></div></article>
-<section class="card"><h3>In six scripts</h3><ul>{tr}</ul></section></div>'''
+<div class="split study-layout"><article class="card stack study-face"><span class="tag">English · root</span><span class="word" lang="en">hundred</span><span class="muted mono">/ˈhʌn.drəd/</span><p>Old English hund, Proto-Germanic *hundą, Proto-Indo-European *ḱm̥tóm. The same root gives Latin centum and Greek ἑκατόν.</p><div class="row study-ratings" style="margin-top:var(--s4)"><button class="btn ghost">Again</button><button class="btn ghost">Hard</button><button class="btn">Good</button><button class="btn ghost">Easy</button></div></article>
+<section class="card study-list"><h3>Across languages</h3><ul>{tr}</ul></section></div>'''
     return head(d, "study card") + shell(d, "app-review", "Study", body, '<a class="btn ghost sm" href="app-learn.html">End session</a>') + end()
 
 def p_review(d):
@@ -281,7 +298,7 @@ def p_email(d):
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>bkt {s["name"]} sign-in email</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?{s["fonts"]}&display=swap"><style>:root{{--bg:{s["bg"]}}}body{{margin:0;background:var(--bg)}}a:focus-visible{{outline:3px solid {s["text"]};outline-offset:3px}}</style></head><body style="margin:0;background:{s["bg"]};font-family:{s["body"]};color:{s["text"]}">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{s["bg"]}"><tr><td align="center" style="padding:32px 16px">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:{s["surf"]};border:1px solid {s["line"]};border-radius:{r}">
-<tr><td style="padding:24px 32px;border-bottom:1px solid {s["line"]}"><img src="../../icons/{d}-glyph.svg" width="32" height="32" alt="bkt" style="vertical-align:middle;border-radius:{"0" if d=="d1" else "8px"}"> <span style="font:{s["dw"]} 20px/32px {s["disp"]};vertical-align:middle;margin-left:8px">bkt</span></td></tr>
+<tr><td style="padding:24px 32px;border-bottom:1px solid {s["line"]}"><img src="../../icons/{d}-brand.svg" width="32" height="32" alt="bkt" style="vertical-align:middle;border-radius:{"0" if d=="d1" else "8px"}"> <span style="font:{s["dw"]} 20px/32px {s["disp"]};vertical-align:middle;margin-left:8px">bkt</span></td></tr>
 <tr><td style="padding:32px"><h1 style="margin:0 0 16px;font:{s["dw"]} 28px/36px {s["disp"]}">Your sign-in code</h1><p style="margin:0 0 24px;font-size:16px;line-height:24px;color:{s["muted"]}">Enter this code in bkt to sign in as emmy@bucket.foundation. It expires in 10 minutes.</p>
 <p style="margin:0 0 24px;font:700 40px/48px {s["mono"]};letter-spacing:8px;background:{s["bg"]};padding:16px 24px;border-radius:{"0" if d=="d1" else "12px"}">482 913</p>{btn}
 <p style="margin:24px 0 0;font-size:14px;line-height:20px;color:{s["muted"]}">If you did not ask for this, ignore it. Nobody can sign in without the code.</p></td></tr>
@@ -307,12 +324,12 @@ def p_logo(d):
     s = SK[d]
     others = "".join(f'<span class="app-i"><i style="background:{c}"></i>{n}</span>' for c, n in [("#3A3A3C", "Clock"), ("#5E5CE6", "Notes"), ("#30B0C7", "Weather"), ("#8E8E93", "Files"), ("#FF9F0A", "Books"), ("#34C759", "Maps"), ("#636366", "Camera")])
     return head(d, "logo in context") + site(d) + f'''<main class="pad wrap stack" style="gap:var(--s6)"><h1 class="disp">The mark in use</h1><div class="grid" style="--cols:2">
-<section class="card stack center" style="align-items:center"><h3>Home screen</h3><div class="phone"><div class="scr" style="background:linear-gradient(160deg,{s["acc"]},#161616)"><span class="app-i"><img src="../../icons/{d}-glyph.svg" alt="">bkt</span>{others}</div></div></section>
-<div class="stack" style="gap:var(--s4)"><section class="card stack"><h3>Browser tab</h3><div style="background:#DADCE0;border-radius:8px 8px 0 0;padding:8px 8px 0"><div class="row" style="background:#fff;border-radius:8px 8px 0 0;padding:8px 12px;gap:8px;max-width:260px;color:#202124;font-size:13px;line-height:16px"><img src="../../icons/{d}-glyph.svg" alt="" width="16" height="16">Noether 1918 · bkt</div></div><div style="background:#fff;border:1px solid #DADCE0;padding:8px 12px;font:13px/16px var(--mono);color:#202124">bucket.foundation/canon/noether-1918</div></section>
+<section class="card stack center" style="align-items:center"><h3>Home screen</h3><div class="phone"><div class="scr" style="background:linear-gradient(160deg,{s["acc"]},#161616)"><span class="app-i"><img src="../../icons/{d}-brand.svg" alt="Bucket app icon" style="background:{s['bg']};padding:6px">bkt</span>{others}</div></div></section>
+<div class="stack" style="gap:var(--s4)"><section class="card stack"><h3>Browser tab</h3><div style="background:#DADCE0;border-radius:8px 8px 0 0;padding:8px 8px 0"><div class="row" style="background:#fff;border-radius:8px 8px 0 0;padding:8px 12px;gap:8px;max-width:260px;color:#202124;font-size:13px;line-height:16px"><img src="../../icons/{d}-brand-16.svg" alt="" width="16" height="16">Noether 1918 · bkt</div></div><div style="background:#fff;border:1px solid #DADCE0;padding:8px 12px;font:13px/16px var(--mono);color:#202124">bucket.foundation/canon/noether-1918</div></section>
 <section class="card stack"><h3>CLI prompt</h3><pre class="term"><span class="p">$</span> bkt cite noether-1918
 <span class="g">✓</span> Invariante Variationsprobleme, 1918
 <span class="d">  paid $0.01 · receipt bkt://r/7c1e</span></pre></section>
-<section class="card stack"><h3>Tote and signage</h3><div class="row" style="gap:var(--s4)"><img src="../../3d/{d}-mark.png" alt="3D render of the {s["name"]} mark" style="width:160px;height:160px;object-fit:cover;border-radius:var(--r);background:var(--bg)"><div style="width:120px;height:150px;background:{s["bg"]};border:2px solid {s["text"]};border-radius:0 0 12px 12px;display:grid;place-items:center;position:relative"><img src="../../icons/{d}-glyph.svg" alt="bkt tote bag" width="64" height="64"></div></div></section></div></div></main>''' + foot(d) + end()
+<section class="card stack"><h3>Tote and signage</h3><div class="row" style="gap:var(--s4)"><img src="../../icons/{d}-brand.svg" alt="Bucket primary mark" style="width:160px;height:160px;object-fit:cover;border-radius:var(--r);background:var(--bg)"><div style="width:120px;height:150px;background:{s["bg"]};border:2px solid {s["text"]};border-radius:0 0 12px 12px;display:grid;place-items:center;position:relative"><img src="../../icons/{d}-brand.svg" alt="bkt tote bag" width="64" height="64" style="background:{s['bg']};padding:6px;border-radius:2px"></div></div></section></div></div></main>''' + foot(d) + end()
 
 def names_svgs(d):
     s = SK[d]; a, t, h, bg = s["acc"], s["text"], s["hl"], s["bg"]
@@ -324,7 +341,7 @@ def names_svgs(d):
         why = ["Mincho lowercase with wide tracking, written as a scroll title.", "Bucket in Mincho, the way a shop name sits on a noren curtain.", "Igeta, the well-frame crest from the Matsuya crest book. A well is where the bucket goes."]
     else:
         sym = f'<rect width="100" height="100" rx="24" fill="#FFC800"/><path d="M26 40h48l-7 42H33Z" fill="{s["acct"]}"/><path d="M28 38q22-34 44 0" fill="none" stroke="{h}" stroke-width="6" stroke-linecap="round"/><path d="M34 60q5-6 10 0t10 0t10 0" fill="none" stroke="#FFF8E7" stroke-width="5" stroke-linecap="round"/><circle cx="80" cy="20" r="6" fill="#1CB0F6"/>'
-        why = ["Fredoka bold lowercase, chunky and bouncy like a Duolingo lesson title.", "Bucket with a Memphis squiggle under it, after Sottsass laminates.", "A pail with a squiggle handle on yellow. Shapes only, no letter."]
+        why = ["Fredoka lowercase with a plum ink accent, set for a shared research notebook.", "Bucket with a Memphis squiggle under it, after Sottsass laminates.", "A pail with a squiggle handle on yellow. Shapes only, no letter."]
     word = lambda txt, sz: f'<text x="0" y="{int(sz*0.8)}" font-family="{s["disp"].replace(chr(39),"")}" font-weight="{s["dw"]}" font-size="{sz}" fill="{t}" letter-spacing="{"2" if d=="d2" else "-1"}">{txt}</text>'
     deco = f'<path d="M4 76q10-10 20 0t20 0t20 0t20 0" stroke="{h}" stroke-width="5" fill="none" stroke-linecap="round"/>' if d == "d3" else (f'<rect x="0" y="74" width="40" height="4" fill="{a}"/>' if d == "d1" else f'<circle cx="270" cy="22" r="8" fill="{h}"/>')
     return [("bkt", f'<svg viewBox="0 0 200 80" role="img" aria-label="bkt wordmark">{word("bkt",72)}</svg>', why[0]),
@@ -333,7 +350,7 @@ def names_svgs(d):
 
 def p_names(d):
     rows = "".join(f'<li class="card stack"><span class="kick">{n}</span><div style="height:160px;display:flex;align-items:center">{svg.replace("<svg ", "<svg style=height:120px;width:auto ")}</div><div class="row" style="gap:var(--s4)"><span style="width:32px;height:32px;display:block">{svg.replace("<svg ", "<svg width=32 height=32 ")}</span><span class="muted small">at 32 px</span></div><p class="muted">{w}</p></li>' for n, svg, w in names_svgs(d))
-    return head(d, "names") + site(d) + f'<main class="pad wrap stack" style="gap:var(--s6)"><span class="kick">{SK[d]["name"]} · names and marks</span><h1 class="disp">What to call it</h1><ul class="grid">{rows}</ul><section class="card stack"><h3>Current glyph</h3><div class="row"><img src="../../icons/{d}-glyph.svg" alt="bkt glyph" width="96" height="96"><img src="../../icons/{d}-glyph.svg" alt="" width="32" height="32"><img src="../../icons/{d}-glyph.svg" alt="" width="16" height="16"></div></section></main>' + foot(d) + end()
+    return head(d, "names") + site(d) + f'<main class="pad wrap stack" style="gap:var(--s6)"><span class="kick">{SK[d]["name"]} · names and marks</span><h1 class="disp">Identity roles</h1><p class="muted">℧ identifies Bucket across the app and its publications. Wordmarks name the product. Secondary illustrations support campaign artwork.</p><ul class="grid">{rows}</ul><section class="card stack"><h3>Primary mark · ℧</h3><div class="row"><img src="../../icons/{d}-brand.svg" alt="Bucket primary mark" width="96" height="96"><img src="../../icons/{d}-brand.svg" alt="" width="32" height="32"><img src="../../icons/{d}-brand-16.svg" alt="" width="16" height="16"></div></section><section class="card stack"><h3>Secondary monogram</h3><p class="muted">The earlier b glyph remains an illustration study.</p><img src="../../icons/{d}-glyph.svg" alt="Secondary b monogram" width="64" height="64"></section></main>' + foot(d) + end()
 
 KATEX = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:\'$$\',right:\'$$\',display:true},{left:\'\\\\(\',right:\'\\\\)\',display:false}]})"></script>'
 
@@ -375,5 +392,5 @@ for d in SK:
     for n, f in PAGES.items():
         open(f"{OUT}/{d}/{n}.html", "w").write(__import__("made_d34").inject(d, __import__("made12").enforce(d, f(d), 2), "../.."))
     s = SK[d]
-    pairs = [("text/bg", s["text"], s["bg"]), ("text/surf", s["text"], s["surf"]), ("muted/bg", s["muted"], s["bg"]), ("muted/surf", s["muted"], s["surf"]), ("onacc/acc", s["onacc"], s["acc"]), ("acct/bg", s["acct"], s["bg"]), ("acct/surf", s["acct"], s["surf"]), ("onhl/hl", s["onhl"], s["hl"]), ("navon", {"d1": "#161616", "d2": "#F4EFE4", "d3": "#2B2B2B"}[d], {"d1": "#E8E8E8", "d2": "#1F3A5F", "d3": "#DDF4FF"}[d]), ("term", "#C6C6C6", "#161616"), ("ok-bar text", s["text"], "#E0F2D0" if d == "d3" else s["surf"])]
+    pairs = [("text/bg", s["text"], s["bg"]), ("text/surf", s["text"], s["surf"]), ("muted/bg", s["muted"], s["bg"]), ("muted/surf", s["muted"], s["surf"]), ("onacc/acc", s["onacc"], s["acc"]), ("acct/bg", s["acct"], s["bg"]), ("acct/surf", s["acct"], s["surf"]), ("onhl/hl", s["onhl"], s["hl"]), ("navon", {"d1": "#161616", "d2": "#F4EFE4", "d3": "#2B2B2B"}[d], {"d1": "#E8E8E8", "d2": "#1F3A5F", "d3": "#F1E8F5"}[d]), ("term", "#C6C6C6", "#161616"), ("ok-bar text", s["text"], "#E9DFED" if d == "d3" else s["surf"])]
     print(d, " ".join(f"{k}={cr(a,b):.2f}" for k, a, b in pairs))
