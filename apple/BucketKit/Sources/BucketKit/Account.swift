@@ -72,6 +72,14 @@ public final class Account {
         stage = .signedOut
     }
 
+    public func deleteAccount() async {
+        await run {
+            guard let token = await self.freshToken() else { throw BucketError.revoked }
+            try await self.api.deleteAccount(token: token)
+            self.signOut()
+        }
+    }
+
     public func signOut() {
         store.clear()
         session = nil

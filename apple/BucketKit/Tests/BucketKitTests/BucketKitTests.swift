@@ -20,6 +20,14 @@ func json(_ object: [String: Any]) -> Data {
     try! JSONSerialization.data(withJSONObject: object)
 }
 
+final class LockedBox<T>: @unchecked Sendable {
+    private let lock = NSLock()
+    private var stored: T
+    init(_ value: T) { stored = value }
+    var value: T { lock.withLock { stored } }
+    func mutate(_ change: (inout T) -> Void) { lock.withLock { change(&stored) } }
+}
+
 func bodyAction(_ r: URLRequest) -> String? {
     guard let b = r.httpBody, let o = try? JSONSerialization.jsonObject(with: b) as? [String: String] else { return nil }
     return o["action"]
@@ -94,6 +102,32 @@ func bodyAction(_ r: URLRequest) -> String? {
         await account.verify(code: "000000")
         #expect(account.stage == .codeSent("me@example.com"))
         #expect(account.error == BucketError.badCode.errorDescription)
+    }
+
+    @Test func deleteAccountSendsBearerAndClearsTheSession() async {
+        let live = Session(accessToken: "tok", refreshToken: "r0", expiresAt: Int(Date.now.timeIntervalSince1970) + 3600, userId: "u1")
+        let seen = LockedBox<[String]>([])
+        let api = BucketAPI(transport: StubTransport { r in
+            seen.mutate { $0.append("\(bodyAction(r) ?? "") \(r.value(forHTTPHeaderField: "authorization") ?? "")") }
+            return (200, json(["ok": true]))
+        })
+        let store = MemorySessionStore(live)
+        let account = Account(api: api, store: store)
+        await account.deleteAccount()
+        #expect(seen.value == ["delete_account Bearer tok"])
+        #expect(account.stage == .signedOut)
+        #expect(store.load() == nil)
+        #expect(account.error == nil)
+    }
+
+    @Test func failedDeleteKeepsTheSession() async {
+        let live = Session(accessToken: "tok", refreshToken: "r0", expiresAt: Int(Date.now.timeIntervalSince1970) + 3600, userId: "u1")
+        let store = MemorySessionStore(live)
+        let account = Account(api: BucketAPI(transport: StubTransport { _ in (502, json(["error": "delete_failed"])) }), store: store)
+        await account.deleteAccount()
+        #expect(account.stage == .signedIn)
+        #expect(store.load() != nil)
+        #expect(account.error != nil)
     }
 
     @Test func expiredSessionRefreshesAndRevokedSignsOut() async {

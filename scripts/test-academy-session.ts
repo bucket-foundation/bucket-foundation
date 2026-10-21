@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
+import { bearerToken, clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
 
 const SESSION = { access_token: "at", refresh_token: "rt", expires_in: 3600, user: { id: "u1" } };
 
@@ -19,6 +19,7 @@ function world(over: Partial<SessionDeps> = {}) {
     sendOtp: async (email) => (calls.push(`otp ${email}`), { status: null }),
     verifyOtp: async (_e, code): Promise<AuthResult> => (code === "123456" ? { session: SESSION, status: null } : { session: null, status: 403 }),
     refresh: async (): Promise<AuthResult> => ({ session: SESSION, status: null }),
+    deleteAccount: async (token) => (calls.push(`delete ${token}`), { status: null }),
     ...over,
   };
   return { handle: createSessionHandler(deps), calls };
@@ -76,4 +77,36 @@ test("the switch and configuration gate every action, and the client address com
   assert.equal((await world().handle({ action: "nope" }, "x")).status, 400);
   assert.equal(clientIp(new Headers({ "x-forwarded-for": "203.0.113.5, 10.0.0.1" })), "203.0.113.5");
   assert.equal(clientIp(new Headers({ "x-real-ip": "198.51.100.7" })), "198.51.100.7");
+});
+
+test("delete_account needs a bearer token and passes it to the deleter", async () => {
+  const w = world();
+  assert.equal((await w.handle({ action: "delete_account" }, "1.1.1.1")).status, 401);
+  const ok = await w.handle({ action: "delete_account" }, "1.1.1.1", "tok");
+  assert.deepEqual([ok.status, ok.body], [200, { ok: true }]);
+  assert.deepEqual(w.calls, ["delete tok"]);
+});
+
+test("delete_account works with the review log switch off and fails closed when unconfigured", async () => {
+  assert.equal((await world({ enabled: () => false }).handle({ action: "delete_account" }, "x", "tok")).status, 200);
+  assert.equal((await world({ configured: () => false }).handle({ action: "delete_account" }, "x", "tok")).status, 503);
+});
+
+for (const [status, want] of [[401, 401], [403, 401], [500, 502], [404, 502]] as const) {
+  test(`a delete that the deleter answers ${status} becomes ${want}`, async () => {
+    const w = world({ deleteAccount: async () => ({ status }) });
+    assert.equal((await w.handle({ action: "delete_account" }, "1.1.1.1", "tok")).status, want);
+  });
+}
+
+test("delete_account is capped per address", async () => {
+  const w = world();
+  for (let i = 0; i < SESSION_LIMITS.deleteIp; i++) await w.handle({ action: "delete_account" }, "7.7.7.7", "tok");
+  assert.equal((await w.handle({ action: "delete_account" }, "7.7.7.7", "tok")).status, 429);
+});
+
+test("bearerToken reads the authorization header", () => {
+  assert.equal(bearerToken(new Headers({ authorization: "Bearer abc.def" })), "abc.def");
+  assert.equal(bearerToken(new Headers({ authorization: "Basic abc" })), "");
+  assert.equal(bearerToken(new Headers()), "");
 });

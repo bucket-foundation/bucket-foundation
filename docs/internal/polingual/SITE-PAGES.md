@@ -35,7 +35,7 @@ Account and progress data is stored with our database host in the United States 
 
 Your choices
 
-You can delete your account and all progress by emailing privacy@polingual.com from the address on the account. We delete it within 30 days. Unsubscribe from email with the link in any message.
+Delete your account and all progress in the app: Account, Delete account. You can also email privacy@polingual.com from the address on the account. Unsubscribe from email with the link in any message.
 
 Children
 
@@ -89,4 +89,4 @@ Common questions
 - Sync with Bucket: sign in with the same email in both apps.
 - Speaking does not work: allow Microphone and Speech Recognition for Polingual in Settings, Privacy and Security.
 - Refunds: reportaproblem.apple.com.
-- Delete your account: email privacy@polingual.com from the address on the account.
+- Delete your account: in the app, Account, Delete account. Or email privacy@polingual.com from the address on the account.
