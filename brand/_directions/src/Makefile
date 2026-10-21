@@ -5,7 +5,7 @@ DIRS := $(abspath ..)
 BRAND := $(abspath ../..)
 VIDEO_IDS := d1 d2 d3 d4 d5 d6 d7
 
-.PHONY: all marks pages screens mm video thumbs check index serve render3d
+.PHONY: all marks pages screens mm video thumbs check index serve render3d round2 round2-check
 
 all: marks pages mm index thumbs check
 
@@ -47,3 +47,9 @@ render3d:
 
 serve:
 	$(PY) -m http.server --directory $(BRAND) $(PORT)
+
+round2:
+	$(MAKE) -C ../../_round2/src round2
+
+round2-check:
+	$(MAKE) -C ../../_round2/src round2-check
