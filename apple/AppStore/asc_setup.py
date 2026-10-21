@@ -31,11 +31,11 @@ POLINGUAL = {
     "app": "6825177856",
     "version": "1.0",
     "build": "2610211045",
-    "subtitle": "Many languages, one daily habit",
+    "subtitle": "Learn many languages together",
     "privacy": "https://polingual.com/privacy",
     "support": "https://polingual.com/support",
     "marketing": "https://polingual.com",
-    "keywords": "spanish,french,italian,german,japanese,latin,vocabulary,flashcards,polyglot,romance,spaced,repetition",
+    "keywords": "spanish,french,italian,german,japanese,latin,vocabulary,flashcards,polyglot,romance,spaced",
     "promo": "Start a 3-day free trial. Learn Spanish, French and Italian side by side, or build your own set from 29 languages. Your progress syncs with Bucket.",
     "listing": "docs/internal/polingual/APP-STORE-LISTING.md",
     "shots": "apple/Polingual/AppStore/screenshots",
@@ -264,22 +264,27 @@ def setup_subscriptions(api, cfg):
             api.write("localization", "POST", "/v1/subscriptionLocalizations", {
                 "data": {"type": "subscriptionLocalizations", "attributes": {"locale": "en-US", "name": spec["name"], "description": spec["desc"]},
                          "relationships": {"subscription": rel("subscriptions", sid)}}})
-        if not api.get(f"/v1/subscriptions/{sid}/prices?limit=1")["data"]:
-            usa = next(p for p in api.all(f"/v1/subscriptions/{sid}/pricePoints?filter[territory]=USA&limit=200") if p["attributes"]["customerPrice"] == spec["price"])
-            points = [usa] + api.all(f"/v1/subscriptionPricePoints/{usa['id']}/equalizations?limit=200")
-            print(f"  {'would set' if not api.apply else 'setting'} price {spec['price']} USD in {len(points)} territories")
-            for p in points:
-                if api.apply:
-                    s, d = api.call("POST", "/v1/subscriptionPrices", {"data": {"type": "subscriptionPrices", "attributes": {"startDate": None, "preserveCurrentPrice": False},
-                                                                             "relationships": {"subscription": rel("subscriptions", sid), "subscriptionPricePoint": rel("subscriptionPricePoints", p["id"])}}})
-                    if s >= 300:
-                        print(f"  FAIL  price {p['id']}: {[(e.get('code'), e.get('detail')) for e in d.get('errors', [])]}")
         s, d = api.call("GET", f"/v1/subscriptions/{sid}/subscriptionAvailability")
         if s != 200 or not d.get("data"):
             terr = terr or all_territories(api)
             api.write(f"availability: all {len(terr)} territories", "POST", "/v1/subscriptionAvailabilities", {
                 "data": {"type": "subscriptionAvailabilities", "attributes": {"availableInNewTerritories": True},
                          "relationships": {"subscription": rel("subscriptions", sid), "availableTerritories": {"data": [{"type": "territories", "id": t} for t in terr]}}}})
+        if not api.get(f"/v1/subscriptions/{sid}/prices?limit=1")["data"]:
+            usa = next(p for p in api.all(f"/v1/subscriptions/{sid}/pricePoints?filter[territory]=USA&limit=200") if p["attributes"]["customerPrice"] == spec["price"])
+            points = [usa] + api.all(f"/v1/subscriptionPricePoints/{usa['id']}/equalizations?limit=200")
+            print(f"  {'would set' if not api.apply else 'setting'} price {spec['price']} USD in {len(points)} territories")
+            failed = 0
+            for p in points:
+                if api.apply:
+                    s, d = api.call("POST", "/v1/subscriptionPrices", {"data": {"type": "subscriptionPrices", "attributes": {"startDate": None, "preserveCurrentPrice": False},
+                                                                             "relationships": {"subscription": rel("subscriptions", sid), "subscriptionPricePoint": rel("subscriptionPricePoints", p["id"])}}})
+                    if s >= 300:
+                        failed += 1
+                        if failed <= 3:
+                            print(f"  FAIL  price: {[(e.get('code'), e.get('detail')) for e in d.get('errors', [])]}")
+            if api.apply:
+                print(f"  done  prices set in {len(points) - failed} of {len(points)} territories")
         if not api.all(f"/v1/subscriptions/{sid}/introductoryOffers?limit=200"):
             d = api.write("3-day free trial, all territories", "POST", "/v1/subscriptionIntroductoryOffers", {
                 "data": {"type": "subscriptionIntroductoryOffers", "attributes": {"duration": "THREE_DAYS", "offerMode": "FREE_TRIAL", "numberOfPeriods": 1},
@@ -287,10 +292,13 @@ def setup_subscriptions(api, cfg):
             if api.apply and d is None:
                 terr = terr or all_territories(api)
                 print(f"  retrying the trial per territory ({len(terr)})")
+                ok = 0
                 for t in terr:
-                    api.call("POST", "/v1/subscriptionIntroductoryOffers", {
+                    st, _ = api.call("POST", "/v1/subscriptionIntroductoryOffers", {
                         "data": {"type": "subscriptionIntroductoryOffers", "attributes": {"duration": "THREE_DAYS", "offerMode": "FREE_TRIAL", "numberOfPeriods": 1},
                                  "relationships": {"subscription": rel("subscriptions", sid), "territory": rel("territories", t)}}})
+                    ok += st < 300
+                print(f"  done  trial in {ok} of {len(terr)} territories")
         s, d = api.call("GET", f"/v1/subscriptions/{sid}/appStoreReviewScreenshot")
         if s != 200 or not d.get("data"):
             upload(api, "review screenshot", "subscriptionAppStoreReviewScreenshots", {}, {"subscription": rel("subscriptions", sid)}, shot)
@@ -314,7 +322,7 @@ def main():
     if a.only in (None, "polingual"):
         setup_app(api, POLINGUAL, contact, free_price=True)
         setup_subscriptions(api, POLINGUAL)
-    print("\nWeb-only steps left: App Privacy answers for both apps, then add both subscriptions to the Polingual 1.0 version and submit.")
+    print("\nWeb-only steps left: the subscription group display name, App Privacy for both apps, then add both subscriptions to the Polingual 1.0 version and submit.")
 
 
 if __name__ == "__main__":
