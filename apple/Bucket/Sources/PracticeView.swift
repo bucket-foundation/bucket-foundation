@@ -1,24 +1,12 @@
 import BucketKit
 import SwiftUI
 
-struct PracticeCard: Identifiable, Hashable {
-    let id: String
-    let eyebrow: String
-    let prompt: String
-    let answer: String
-
-    static func cards(from atoms: [Atom]) -> [PracticeCard] {
-        atoms.flatMap { a in
-            a.quiz.enumerated().map { PracticeCard(id: "\(a.id)#\($0.offset)", eyebrow: "\($0.element.level) · \(a.title)", prompt: $0.element.prompt, answer: $0.element.answer) }
-        }
-    }
-}
-
 struct PracticeHome: View {
     @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
     @State private var path = NavigationPath()
-    @State private var session: PracticeLaunch?
+    @Environment(ScienceStore.self) private var science
+    @State private var session: StudyLaunch?
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -27,17 +15,18 @@ struct PracticeHome: View {
                     ForEach(library.scienceDecks) { entry in
                         Button {
                             Task {
-                                if let deck = await library.deck(entry) {
-                                    session = PracticeLaunch(title: entry.title, cards: PracticeCard.cards(from: deck.atoms).shuffled())
-                                }
+                                if let deck = await library.prepared(entry) { session = StudyLaunch(entry: entry, deck: deck) }
                             }
                         } label: {
-                            DeckRow(entry: entry)
+                            ReviewDeckRow(entry: entry)
                         }
                         .listRowBackground(Palette.card)
                     }
                 } header: {
-                    Eyebrow(text: "Pick a deck")
+                    Eyebrow(text: "Today's review")
+                } footer: {
+                    Text("Due reviews come first, then up to \(Int(EngineState().newPerDay)) new atoms a day in each deck.")
+                        .font(.footnote).foregroundStyle(Palette.muted)
                 }
                 Section {
                     if langs.systems.isEmpty {
@@ -57,116 +46,50 @@ struct PracticeHome: View {
             }
             .paper()
             .navigationTitle("Practice")
-            .sheet(item: $session) { PracticeSession(title: $0.title, cards: $0.cards) }
+            .sheet(item: $session) { StudySession(entry: $0.entry, deck: $0.deck) }
             .langDestinations(path: $path)
             .task { await langs.load() }
+            .task(id: library.scienceDecks.map(\.id)) {
+                await science.load(library.scienceDecks.map(\.id))
+                guard session == nil, let id = Launch.value("-study"), let entry = library.scienceDecks.first(where: { $0.id == id }), let deck = await library.prepared(entry) else { return }
+                session = StudyLaunch(entry: entry, deck: deck)
+            }
         }
     }
 }
 
-struct PracticeLaunch: Identifiable {
-    let id = UUID()
-    let title: String
-    let cards: [PracticeCard]
-}
-
-struct PracticeSession: View {
-    @Environment(\.dismiss) private var dismiss
-    let title: String
-    let cards: [PracticeCard]
-    @State private var position = 0
-    @State private var revealed = false
-    @State private var tally: [Int: Int] = [:]
+struct ReviewDeckRow: View {
+    @Environment(Library.self) private var library
+    @Environment(ScienceStore.self) private var science
+    let entry: DeckEntry
 
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 20) {
-                if position < cards.count {
-                    ProgressView(value: Double(position), total: Double(cards.count))
-                    card(cards[position])
-                    Spacer(minLength: 0)
-                    controls
-                } else {
-                    summary
-                }
-            }
-            .padding(20)
-            .frame(maxWidth: 640)
-            .frame(maxWidth: .infinity)
-            .background(Palette.paper.ignoresSafeArea())
-            .navigationTitle(title)
-            .inlineTitle()
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
+        HStack(alignment: .center, spacing: 12) {
+            DeckRow(entry: entry, subtitle: detail)
+            Spacer(minLength: 0)
+            if let due = counts?.due, due > 0 {
+                Text("\(due)").font(.subheadline.weight(.semibold)).monospacedDigit()
+                    .padding(.horizontal, 10).padding(.vertical, 4)
+                    .background(Palette.gold.opacity(0.18), in: .capsule)
+                    .foregroundStyle(Palette.ink)
+                    .accessibilityLabel("\(due) due")
             }
         }
+        .task { _ = await library.prepared(entry) }
     }
 
-    func card(_ c: PracticeCard) -> some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 14) {
-                Eyebrow(text: c.eyebrow)
-                Text(LessonText.inline(c.prompt)).font(.serif(.title2, weight: .medium)).foregroundStyle(Palette.ink)
-                if revealed {
-                    Divider().overlay(Palette.rule)
-                    Text(LessonText.inline(c.answer)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
-                        .transition(.opacity.combined(with: .move(edge: .bottom)))
-                }
-            }
-            .padding(20)
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .background(Palette.card, in: .rect(cornerRadius: 16))
-        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Palette.rule))
-        .contentShape(.rect)
-        .onTapGesture { withAnimation(.snappy) { revealed = true } }
-        .accessibilityAction(named: "Show answer") { revealed = true }
+    var counts: (due: Int, new: Int, streak: Double)? {
+        guard let deck = library.prepared[entry.id] else { return nil }
+        let r = science.route(deck)
+        let due = r.filter { $0.kind == .review }.count
+        return (due, r.count - due, science.state(entry.id).streak)
     }
 
-    @ViewBuilder var controls: some View {
-        if revealed {
-            HStack(spacing: 10) {
-                rate(1, "Again", .red)
-                rate(2, "Hard", Palette.gold)
-                rate(3, "Good", Palette.green)
-                rate(4, "Easy", .blue)
-            }
-        } else {
-            Button {
-                withAnimation(.snappy) { revealed = true }
-            } label: {
-                Text("Show answer").frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-            .keyboardShortcut(.space, modifiers: [])
-        }
-    }
-
-    func rate(_ value: Int, _ label: String, _ color: Color) -> some View {
-        Button {
-            tally[value, default: 0] += 1
-            revealed = false
-            withAnimation(.snappy) { position += 1 }
-            #if os(iOS)
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            #endif
-        } label: {
-            Text(label).font(.subheadline.weight(.semibold)).frame(maxWidth: .infinity, minHeight: 44)
-        }
-        .buttonStyle(.bordered)
-        .tint(color)
-        .keyboardShortcut(KeyEquivalent(Character(String(value))), modifiers: [])
-    }
-
-    var summary: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "checkmark.seal.fill").font(.system(size: 56)).foregroundStyle(Palette.green)
-            Text("Session complete").font(.serif(.title, weight: .semibold))
-            Text("\(cards.count) cards. Good or Easy on \(tally[3, default: 0] + tally[4, default: 0]).")
-                .foregroundStyle(Palette.muted)
-            Button("Done") { dismiss() }.buttonStyle(.borderedProminent).controlSize(.large)
-        }
-        .frame(maxHeight: .infinity)
+    var detail: String? {
+        guard let c = counts else { return entry.sub }
+        if c.due == 0 && c.new == 0 { return "Nothing due today" }
+        var parts = ["\(c.due) due", "\(c.new) new"]
+        if c.streak > 0 { parts.append("\(streakText(c.streak)) streak") }
+        return parts.joined(separator: " · ")
     }
 }
