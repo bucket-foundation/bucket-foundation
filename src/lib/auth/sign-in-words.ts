@@ -1,3 +1,13 @@
+export function isPlainSentence(message: string): boolean {
+  const t = message.trim();
+  return /^[A-Z][A-Za-z0-9 ,.'-]*[A-Za-z.]$/.test(t) && t.includes(" ") && !/\b(status|error|code|null|undefined)\b/i.test(t);
+}
+
+export function signupTrouble(serverError: string | undefined, fallback: string): { text: string; raw: string | null } {
+  if (serverError && isPlainSentence(serverError)) return { text: serverError, raw: null };
+  return { text: fallback, raw: serverError ?? null };
+}
+
 export function friendly(message: string): string {
   const m = message.toLowerCase();
   if (m.includes("rate limit") || m.includes("too many")) return "Too many emails requested. Wait a minute and try again.";

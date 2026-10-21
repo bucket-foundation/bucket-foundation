@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
 import { ErrorState, RawDetails } from "../src/components/ui";
 import { describePathError, rawPathError } from "../src/lib/academy/path-words";
-import { friendly } from "../src/lib/auth/sign-in-words";
+import { friendly, signupTrouble } from "../src/lib/auth/sign-in-words";
 
 const RAW = /\b[a-z0-9]+(?:[-_:][a-z0-9]+)+\b|\{|\}|\bstatus \d{3}\b|answered \d{3}/;
 
@@ -37,8 +37,16 @@ test("sign-in never shows an error code or a raw object", () => {
   assert.equal(friendly("Email rate limit exceeded"), "Too many emails requested. Wait a minute and try again.");
 });
 
+test("the waitlist form shows a server sentence and keeps codes behind details", () => {
+  const fallback = "Your signup did not save. Try again in a minute.";
+  const plain = "Too many signups from here. Wait 30 seconds and try again.";
+  assert.deepEqual(signupTrouble(plain, fallback), { text: plain, raw: null });
+  for (const raw of ["blob_put_failed", '{"code":502}', "FUNCTION_INVOCATION_TIMEOUT", "status 502"]) assert.deepEqual(signupTrouble(raw, fallback), { text: fallback, raw });
+  assert.deepEqual(signupTrouble(undefined, fallback), { text: fallback, raw: null });
+});
+
 const ROOT = path.join(__dirname, "..");
-const DEMO_DIRS = ["src/app/research-os/(app)/learn", "src/app/research-os/(app)/home", "src/app/research-os/(app)/profile", "src/app/sign-in", "packages/bkt-ui/src/views/LearnHome.tsx", "packages/bkt-ui/src/views/Words.tsx", "packages/bkt-ui/src/views/CanonSearch.tsx", "src/app/canon"];
+const DEMO_DIRS = ["src/app/research-os/(app)/learn", "src/app/research-os/(app)/home", "src/app/research-os/(app)/profile", "src/app/sign-in", "packages/bkt-ui/src/views/LearnHome.tsx", "packages/bkt-ui/src/views/Words.tsx", "packages/bkt-ui/src/views/CanonSearch.tsx", "packages/bkt-ui/src/views/RosProfile.tsx", "packages/bkt-ui/src/views/RosProgress.tsx", "src/app/canon"];
 const FROZEN = new Set(["StudySession.tsx", "PlacementSession.tsx", "LangPlacement.tsx", "LangExercise.tsx", "CanonGlobeMount.tsx"]);
 const LEAKS: [RegExp, string][] = [
   [/j\.error \?\? ["`'][^"`']*["`']\)?/, "a server error code used as copy"],
@@ -50,6 +58,8 @@ const LEAKS: [RegExp, string][] = [
   [/\busdc\b/i, "a token unit in visible copy"],
   [/>\{[a-z]+\.(id|bibkey)\}</, "an id rendered as text"],
   [/data\.error \|\| "|signoff_failed/, "an error code used as copy"],
+  [/set\w+\(data\.error \?\? "/, "a server error passed through as copy"],
+  [/\{(error|err|e)\.message\}/, "a raw exception message rendered as text"],
 ];
 
 function files(p: string): string[] {
