@@ -47,7 +47,7 @@ def copy_assets():
     alt = grid.replace('<rect x="112" y="128" width="32" height="32" fill="#DA1E28"/>', f'<circle cx="128" cy="144" r="18" fill="{DECK["knob"]}"/><circle cx="128" cy="144" r="6" fill="{DECK["gold"]}"/>')
     assert alt != grid
     open(os.path.join(A, "grid-primitive-knob.svg"), "w").write(alt)
-    open(os.path.join(A, "girih.svg"), "w").write(girih_svg(DECK["ink"], 0.14))
+    open(os.path.join(A, "girih.svg"), "w").write(girih_svg(DECK["ink"], 0.08))
 
 
 def girih_svg(color, op):
@@ -59,7 +59,7 @@ def girih_svg(color, op):
         pts.append(f"{60 + r * math.cos(a):.2f},{60 - r * math.sin(a):.2f}")
     star = " ".join(pts)
     dec = " ".join(f"{60 + 52 * math.cos(math.pi / 10 + k * math.pi / 5):.2f},{60 - 52 * math.sin(math.pi / 10 + k * math.pi / 5):.2f}" for k in range(10))
-    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120"><g fill="none" stroke="{color}" stroke-opacity="{op}" stroke-width="1.5"><polygon points="{star}"/><polygon points="{dec}"/><path d="M0 0L60 8M120 0L60 8M0 120L60 112M120 120L60 112M0 0L8 60M0 120L8 60M120 0L112 60M120 120L112 60"/></g></svg>'
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120"><g fill="none" stroke="{color}" stroke-opacity="{op}" stroke-width="1"><polygon points="{star}"/><polygon points="{dec}"/><path d="M0 0L60 8M120 0L60 8M0 120L60 112M120 120L60 112M0 0L8 60M0 120L8 60M120 0L112 60M120 120L112 60"/></g></svg>'
 
 
 def feedback():
@@ -67,7 +67,12 @@ def feedback():
     t = re.sub(r"^<!--.*?-->\n", "", t)
     head, notes = t.split("## Notes, verbatim", 1)
     secs = re.split(r"\n(?=### )", notes.strip())
-    groups = [secs[:2], secs[2:4], secs[4:]]
+    groups = []
+    for s in secs:
+        lines = s.splitlines()
+        head_, items = lines[0], lines[1:]
+        for k in range(0, len(items), 3):
+            groups.append([head_ + "\n" + "\n".join(items[k:k + 3])])
     return md(head), [md("\n".join(g)) for g in groups if g]
 
 
@@ -155,7 +160,7 @@ def page(title, body, extra=""):
 
 
 def euclid_landing(src):
-    FILES = ["alexandria-von-corven.jpg", "oxyrhynchus-euclid.jpg", "stoichedon-ig-i3-48.jpg", "astrolabe-1654.jpg", "tetradrachm-owl.png"]
+    FILES = ["alexandria-von-corven.jpg", "byrne-prop-i1.jpg", "oxyrhynchus-euclid.jpg", "stoichedon-ig-i3-48.jpg", "astrolabe-1654.jpg", "tetradrachm-owl.png"]
     langs, words = polingual_row()
     branch = "".join(f'<li style="display:grid;grid-template-columns:48px 1fr;gap:var(--s3);padding:var(--s3) 0;border-top:1px solid var(--muted)"><span style="font:400 24px/32px var(--disp);color:var(--acc)">{n}</span><span><b>{b}</b><br><span class="muted">{p}, {w}</span></span></li>' for n, b, p, w, _ in BRANCHES)
     wordrow = "".join(f'<li><span lang="{l}" style="font-size:28px;line-height:36px">{e(w)}</span><br><span class="credit">{l}</span></li>' for l, w in words)
@@ -165,11 +170,11 @@ def euclid_landing(src):
 <div style="grid-column:1/8"><p class="eyebrow">The Library of Alexandria, rebuilt as a canon</p><h1 class="stoich">Every proof in order</h1>
 <p style="font-size:22px;line-height:32px;max-width:36ch">Bucket keeps the foundations the geometers and polymaths wrote down, set in their own letters, with the source for every line.</p>
 <p style="display:flex;gap:var(--s4);flex-wrap:wrap"><a class="btn" href="euclid2-proposition.html">Begin the Elements</a><a class="btn ghost" href="euclid2-polymaths.html">Meet the polymaths</a></p></div>
-<figure style="grid-column:8/13;margin:0"><img src="../assets/alexandria-von-corven.jpg" alt="The Great Library of Alexandria, 19th century engraving by O. Von Corven: scholars among shelves of scrolls under a colonnade" style="width:100%;height:auto"><figcaption class="credit">{credit(src, "alexandria-von-corven.jpg")}</figcaption></figure>
+<figure style="grid-column:8/13;margin:0"><img src="../assets/alexandria-von-corven.jpg" alt="The Great Library of Alexandria, 19th century engraving by O. Von Corven: scholars among shelves of scrolls under a colonnade" style="width:100%;height:auto"><figcaption class="credit">A 19th-century imagining of the Library. {credit(src, "alexandria-von-corven.jpg")}</figcaption></figure>
 </section>
 <section class="night"><div class="wrap grid" style="padding:var(--s16) var(--s8)">
 <div style="grid-column:1/6"><p class="eyebrow" style="color:var(--yel)">Proposition I.1</p><p lang="grc" style="font:400 32px/44px var(--disp);margin:0 0 var(--s4)">Ἐπὶ τῆς δοθείσης εὐθείας πεπερασμένης τρίγωνον ἰσόπλευρον συστήσασθαι.</p><p class="muted">On a given finite straight line to construct an equilateral triangle. Heiberg's Greek, Heath's English.</p></div>
-<div style="grid-column:7/13;background:var(--bg);padding:var(--s6)">{byrne_svg(520).replace('width="520"','width="100%"')}<p class="credit" style="color:var(--muted)">Drawn in Byrne's red, yellow and blue after his 1847 plate.</p></div>
+<div style="grid-column:7/13;background:var(--bg);padding:var(--s6);display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);align-items:start"><figure style="margin:0">{byrne_svg(260).replace('width="260"','width="100%"')}<figcaption class="credit" style="color:var(--muted)">Drawn in code in Byrne's red, yellow and blue.</figcaption></figure><figure style="margin:0"><img src="../assets/byrne-prop-i1.jpg" alt="Byrne 1847, Book I Proposition I, the printed plate" width="1920" height="2519" style="width:100%;height:auto"><figcaption class="credit" style="color:var(--muted)">{credit(src, "byrne-prop-i1.jpg")}</figcaption></figure></div>
 </div></section>
 <section class="wrap grid" style="padding:var(--s16) var(--s8)">
 <div style="grid-column:1/6"><p class="eyebrow">Seven branches</p><h2 style="font:400 40px/48px var(--disp);margin:0 0 var(--s6)">One polymath at the door of each branch</h2><ol style="list-style:none;margin:0;padding:0">{branch}</ol></div>
@@ -234,7 +239,7 @@ h1{{font:700 64px/72px var(--disp);margin:0 0 var(--s6);letter-spacing:-.01em}}h
 .knob{{width:96px;height:96px;border-radius:50%;background:var(--knob);position:relative;box-shadow:0 0 0 2px var(--ink),inset 0 -6px 0 rgba(0,0,0,.18)}}.knob::after{{content:"";position:absolute;left:50%;top:12px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--gold)}}
 .spin{{animation:spin 24s linear infinite}}@keyframes spin{{to{{background-position:120px 120px}}}}
 @media (prefers-reduced-motion:reduce){{.slide,.slide.on{{transition:none;transform:none}}.spin{{animation:none}}}}
-@media (max-width:600px){{.slide{{padding:var(--s6) var(--s4) var(--s12)}}h1{{font-size:36px;line-height:44px}}h2{{font-size:28px;line-height:36px}}.lede{{font-size:20px;line-height:28px}}.cols{{grid-template-columns:1fr;gap:var(--s6)}}.cols>*{{grid-column:1/-1}}.quote{{columns:1}}.marks img{{width:120px;height:120px}}.rail span{{display:none}}}}
+@media (max-width:600px){{.slide{{padding:var(--s6) var(--s4) var(--s12)}}h1{{font-size:36px;line-height:44px}}h2{{font-size:28px;line-height:36px}}.lede{{font-size:20px;line-height:28px}}.cols{{grid-template-columns:1fr;gap:var(--s6)}}.cols>*{{grid-column:1/-1}}.quote{{columns:1}}.marks{{gap:var(--s3)}}.marks img{{width:88px;height:88px}}.rail span{{display:none}}h1{{font-size:28px;line-height:36px}}.lede{{font-size:16px;line-height:24px}}.quote{{font-size:14px;line-height:20px}}.tiles{{grid-template-columns:1fr 1fr;gap:var(--s1) var(--s3);font-size:14px;line-height:20px}}.cut{{height:96px!important}}.knob{{width:64px;height:64px}}.slide p{{margin:0 0 var(--s3)}}}}
 """
 
 JS = r"""
@@ -246,7 +251,7 @@ let cur=0;
 function fromHash(){const id=location.hash.slice(1);const i=S.findIndex(s=>s.id===id||s.querySelector('[id="'+id+'"]'));go(i<0?0:i,false)}
 addEventListener('hashchange',fromHash);
 addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(cur+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(cur-1)}else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1)});
-function fit(){document.querySelectorAll('.slide.on .frame').forEach(f=>{const i=f.querySelector('iframe');f.style.width='';const m=innerWidth<=600;const w=m?390:1440,h=m?844:900;const s=f.closest('.slide'),cs=getComputedStyle(s),avail=s.clientHeight-parseFloat(cs.paddingBottom)-(f.getBoundingClientRect().top-s.getBoundingClientRect().top)-40;const sc=m?f.clientWidth/w:Math.min(f.clientWidth/w,avail/h);f.style.width=(w*sc)+'px';f.style.height=(h*sc)+'px';if(i){i.width=w;i.height=h;i.style.transform='scale('+sc+')'}})}
+function fit(){document.querySelectorAll('.slide.on .frame').forEach(f=>{const i=f.querySelector('iframe');f.style.width='';const m=innerWidth<=600;const w=m?390:1440,h=m?844:900;const s=f.closest('.slide'),cs=getComputedStyle(s),avail=s.clientHeight-parseFloat(cs.paddingBottom)-(f.getBoundingClientRect().top-s.getBoundingClientRect().top)-64;const sc=Math.min(f.clientWidth/w,avail/h);f.style.width=(w*sc)+'px';f.style.height=(h*sc)+'px';if(i){i.width=w;i.height=h;i.style.transform='scale('+sc+')'}})}
 addEventListener('resize',fit);fromHash();
 """
 
@@ -287,7 +292,7 @@ def slides(src):
     dec = [
         ("d-base", "Grid-Primitive base", "Base: Grid's structure, Primitive's play", "Grid and Primitive rank top two, and the notes lean Primitive. Grid alone reads too strict. The base keeps Grid's 16-column Swiss grid, its ℧ and its b, and takes Primitive's shapes, colors and knob for play. Copy calls it Grid-Primitive; files stay grid2-*.", '<div class="marks"><figure><img src="assets/d1-mho.svg" alt="Grid mho"><figcaption>Grid</figcaption></figure><figure><img src="assets/d6-mho.svg" alt="Primitive mho"><figcaption>Primitive</figcaption></figure><figure><img src="assets/grid-primitive-knob.svg" alt="Grid-Primitive mho"><figcaption>Grid-Primitive</figcaption></figure></div>'),
         ("d-young", "Young-learner register", "Young learners get disciplined chaos", "Squiggle has the best buttons and the energy for young learners. Merged with Primitive's structure it becomes disciplined chaos. The register switches the Polingual study screens and leaves every frozen flow as it is.", '<p><a class="squig" href="#screens-grid2">Keep going</a></p><p class="k">Squiggle button, 16px radius, 4px lip</p><div class="marks"><figure><img src="assets/d3-mho.svg" alt="Squiggle mho"><figcaption>Squiggle</figcaption></figure><figure><img src="assets/d6-mho.svg" alt="Primitive mho"><figcaption>Primitive</figcaption></figure></div>'),
-        ("d-wedge", "Wedge as accent", "Wedge cuts in as an accent", "Wedge never becomes the base. Its ℧ and its diagonal stay, the metal tool cutting through a map, shiny, plus its punk, steampunk and solarpunk energy as a subtle-punk b variant.", '<div class="card cut" style="height:240px;display:flex;align-items:flex-end"><p class="k" style="margin:0">Diagonal cut, brushed steel on paper</p></div><div class="marks" style="margin-top:var(--s6)"><figure><img src="assets/d4-mho.svg" alt="Wedge mho"><figcaption>Wedge ℧</figcaption></figure></div>'),
+        ("d-wedge", "Wedge as accent", "Wedge cuts in as an accent", "Wedge never becomes the base. Its ℧ and its diagonal stay, the metal tool cutting through a map, shiny, plus its punk, steampunk and solarpunk energy as a subtle-punk b variant.", '<p class="k">Diagonal cut, brushed steel on paper</p><div class="card cut" style="height:200px"></div><div class="marks" style="margin-top:var(--s6)"><figure><img src="assets/d4-mho.svg" alt="Wedge mho"><figcaption>Wedge ℧</figcaption></figure><figure><img src="assets/grid2/marks/b-punk.svg" alt="Subtle-punk b, Grid b cut on the Wedge diagonal"><figcaption>subtle-punk b</figcaption></figure><figure><img src="assets/grid2/marks/b-solar.svg" alt="Solarpunk b"><figcaption>solarpunk b</figcaption></figure></div>'),
         ("d-euclid", "Ideal Euclid", "Euclid becomes the polymath direction", "Round 1's Euclid fell short. Ideal Euclid rebuilds it around the Library of Alexandria, the geometers and the polymaths, from public-domain sources: papyri, Byrne, stoichedon, a Met astrolabe. One landing and two app screens follow.", f'<figure style="margin:0"><img src="assets/oxyrhynchus-euclid.jpg" alt="P. Oxy. I 29, papyrus fragment of the Elements" style="width:100%;height:auto"><figcaption class="k" style="text-transform:none;letter-spacing:0">{credit(src, "oxyrhynchus-euclid.jpg")}</figcaption></figure><p><a class="btn" href="#screens-euclid">See ideal Euclid</a></p>'),
         ("d-girih", "Girih texture and motion", "Girih supplies texture and motion", "One Girih pattern system, ten-fold stars and decagons on a 120px tile, sits behind Grid-Primitive as an optional background and drifts as its motion layer. The pattern is computed in code.", '<div class="card spin" style="height:320px;background-image:url(assets/girih.svg);background-size:120px"></div><p class="k">Drifts 120px in 24s; stops under reduced motion</p>'),
         ("d-kamon", "Kamon dropped", "Kamon is dropped", "Its mark read as unclear: a red dot, a b and a bucket that did not cohere. Nothing from Kamon carries into round 2.", '<div class="marks dim"><figure><img src="assets/d2-mho.svg" alt="Kamon mho, dropped"><figcaption>Kamon, dropped</figcaption></figure></div>'),

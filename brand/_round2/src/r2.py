@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.join(DIRS, "src"))
 
 from lib import cr
 
-DECK = dict(bg="#F4F3EF", surf="#FFFFFF", text="#161616", muted="#4F4E4A", acc="#0F62FE", onacc="#FFFFFF", knob="#FF5F00", gold="#D9A43A", ink="#111111", red="#DA1E28")
+DECK = dict(bg="#F4F3EF", surf="#FFFFFF", text="#161616", muted="#4F4E4A", acc="#0043CE", onacc="#FFFFFF", knob="#FF5F00", gold="#D9A43A", ink="#111111", red="#DA1E28")
 EUC = dict(bg="#F3EEE3", surf="#FBF8F1", text="#1A1714", muted="#5B5148", acc="#A6442A", onacc="#FFFFFF", hl="#1E4F94", by_red="#C8261D", by_yel="#E8B10C", by_blu="#1E4F94", night="#16130F", night_text="#F3EEE3", night_muted="#C9BDA9")
 
 TEXT_PAIRS = [

@@ -317,7 +317,7 @@ def marks():
 {tile(M.mho_wedge(),"Wedge ℧, accent","The diagonal cut in brushed metal, a tool through a map. Accent only.")}
 {tile(M.b_solar(),"Solarpunk b","The same cut through the b, with a green sun. Accent only.")}
 {tile(M.b_punk(),"Subtle punk b","A 30 degree notch cut into the bowl, metal edge and three rivets. Accent only.")}
-{tile('<div style="width:100%;height:100%;background-image:url(../assets/grid2/marks/girih.svg);background-size:64px"></div>',"Girih texture","An 8-fold khatam star on a 64-unit tile, at 14% ink.",bg="var(--bg)")}
+{tile('<div style="width:100%;height:100%;background-image:url(../assets/grid2/marks/girih.svg);background-size:64px"></div>',"Girih texture","An 8-fold khatam star on a 64-unit tile, at 8% ink.",bg="var(--bg)")}
 {tile(f'<div style="width:100%;height:100%;display:grid;place-items:center;background:var(--ink)">{M.mho_grid(fg="#F2F0EB",size=128)}</div>',"Reversed","Paper on ink.")}</div>
 <section style="margin-top:var(--s7)"><p class="kick" style="margin-bottom:var(--s3)">Sizes</p><div class="row" style="gap:var(--s6);align-items:flex-end">{sizes}</div></section>
 <p class="credit" style="margin-top:var(--s5)">Wedge ℧ outline from Noto Serif Ω, SIL Open Font License. All other marks are code geometry.</p>'''
@@ -329,7 +329,7 @@ def dot_pair():
     page("dot-pair","Primitive dot pair",body)
 def texture():
     body=f'''{site_header()}<main><section class="wrap" style="padding-top:var(--s9);padding-bottom:var(--s9)"><div class="g16" style="row-gap:var(--s6);align-items:center">
-<div class="stack" style="grid-column:span 8;gap:var(--s4)"><p class="kick">Texture option</p><h1 class="d1">Few axioms. Every pattern.</h1><p class="muted" style="max-width:520px">Girih's 8-fold star tiles the page background at 14% ink. It is off by default and switches on in Settings.</p><a class="btn" href="grid2-settings.html" style="align-self:flex-start">Texture settings</a></div>
+<div class="stack" style="grid-column:span 8;gap:var(--s4)"><p class="kick">Texture option</p><h1 class="d1">Few axioms. Every pattern.</h1><p class="muted" style="max-width:520px">Girih's 8-fold star tiles the page background at 8% ink. It is off by default and switches on in Settings.</p><a class="btn" href="grid2-settings.html" style="align-self:flex-start">Texture settings</a></div>
 <div style="grid-column:span 8;background:var(--surf);padding:var(--s6)">{M.girih_svg(64,"#161616",.9).replace('width="64" height="64"','width="100%"')}<p class="credit" style="margin-top:var(--s2)">One tile: {"{"}8/3{"}"} star in an octagon, compass and straightedge after Eric Broug, Islamic Geometric Patterns, 2008.</p></div></div></section></main>{site_footer()}'''
     page("texture","Girih texture, Grid-Primitive",body,texture=True)
 def build():

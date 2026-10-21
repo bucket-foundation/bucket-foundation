@@ -60,13 +60,13 @@ def b_punk(size=None,title="Subtle punk b variant"):
 def svg(body,size,title):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"{dim(size)} role="img" aria-label="{title}"><title>{title}</title>{body}</svg>'
 def dim(size): return f' width="{size}" height="{size}"' if size else ""
-def girih_tile(u=64,stroke=INK,op=.14):
+def girih_tile(u=64,stroke=INK,op=.08):
     s=logos.star(u/2,u/2,u*.46,8,3)
     REC.append(dict(kind="girih",cx=u/2,cy=u/2,n=8,p=s))
     oc=[(u/2+u*.5*math.cos(math.pi/8+k*math.pi/4)/math.cos(math.pi/8),u/2+u*.5*math.sin(math.pi/8+k*math.pi/4)/math.cos(math.pi/8)) for k in range(8)]
     return (f'<polygon points="{logos.pts(s)}" fill="none" stroke="{stroke}" stroke-opacity="{op}" stroke-width="1.5"/>'
             f'<polygon points="{logos.pts(oc)}" fill="none" stroke="{stroke}" stroke-opacity="{op*.7:.3f}" stroke-width="1"/>')
-def girih_svg(u=64,stroke=INK,op=.14):
+def girih_svg(u=64,stroke=INK,op=.08):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {u} {u}" width="{u}" height="{u}">{girih_tile(u,stroke,op)}</svg>'
 def construction(size=None):
     p,info=omega()

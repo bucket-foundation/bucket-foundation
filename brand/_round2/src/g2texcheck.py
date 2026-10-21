@@ -11,7 +11,7 @@ def hexc(c):
 async def main():
     worst=99
     async with async_playwright() as p:
-        b=await p.chromium.launch(executable_path="/usr/bin/google-chrome")
+        b=await p.chromium.launch(executable_path=next((x for x in ("/usr/bin/google-chrome","/usr/bin/chromium-browser","/usr/bin/chromium") if os.path.exists(x)),None))
         for f in PAGES:
             for w,h in ((1440,900),(390,844)):
                 pg=await b.new_page(viewport=dict(width=w,height=h));await pg.goto("file://"+f,wait_until="networkidle");await pg.evaluate("document.fonts.ready");await pg.wait_for_timeout(500)
@@ -23,9 +23,9 @@ async def main():
                     cols={"#%02X%02X%02X"%c for _,c in crop.getcolors(1<<20) or []}
                     if not cols: continue
                     fg=hexc(bx["c"]);r=min(cr(fg,c) for c in cols)
-                    if r<4.5: print(f"LOW {os.path.basename(f)} {w} {r:.2f} {bx['t']!r}")
+                    if r<5.0: print(f"LOW {os.path.basename(f)} {w} {r:.2f} {bx['t']!r}")
                     worst=min(worst,r)
                 await pg.close()
         await b.close()
     print(f"worst sampled ratio {worst:.2f}");return worst
-sys.exit(0 if asyncio.run(main())>=4.5 else 1)
+sys.exit(0 if asyncio.run(main())>=5.0 else 1)
