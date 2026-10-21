@@ -18,7 +18,7 @@ Version 2.0 for App Store Connect. The setup script `apple/AppStore/asc_setup.py
 
 ## Promotional Text
 
-Learn the foundations of mathematics, physics, chemistry, information, biophysics, cosmology and mind, then review them on a schedule that keeps them.
+Learn the foundations of mathematics, physics, chemistry, information, biophysics, cosmology and mind, and learn a set of languages together.
 
 ## Description
 

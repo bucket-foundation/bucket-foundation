@@ -21,7 +21,7 @@ BUCKET = {
     "support": "https://www.bucket.foundation",
     "marketing": "https://www.bucket.foundation",
     "keywords": "physics,math,chemistry,cosmology,biology,mind,science,spaced,repetition,flashcards,languages,study",
-    "promo": "Learn the foundations of mathematics, physics, chemistry, information, biophysics, cosmology and mind, then review them on a schedule that keeps them.",
+    "promo": "Learn the foundations of mathematics, physics, chemistry, information, biophysics, cosmology and mind, and learn a set of languages together.",
     "listing": "docs/internal/apple/BUCKET-LISTING.md",
     "shots": "apple/Bucket/AppStore/screenshots",
     "notes": "Sign-in is optional and uses a one-time email code sent to the address entered. Every screen except Account works signed out. Learn shows the science decks; Learn, Languages opens language systems. The microphone and speech recognition prompts appear on the first speaking exercise. Delete account is under Account once signed in.",
