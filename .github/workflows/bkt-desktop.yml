@@ -26,6 +26,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: tagged commit must not carry [skip ci]
+        if: startsWith(github.ref, 'refs/tags/bkt-v')
+        run: |
+          if git log -1 --format=%B "$GITHUB_SHA" | grep -qiF '[skip ci]'; then
+            echo "::error::$GITHUB_REF_NAME points at $GITHUB_SHA, a [skip ci] commit. Retag the dev-to-main merge with scripts/release/tag.sh."
+            exit 1
+          fi
       - uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76
       - name: install
         working-directory: packages/bkt-desktop
