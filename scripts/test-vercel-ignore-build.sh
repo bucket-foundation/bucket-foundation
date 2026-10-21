@@ -163,6 +163,12 @@ run_case "a squash body carrying [skip ci] lines still builds a site change" bui
   "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
   "VERCEL_GIT_COMMIT_SHA=$SHA_SITE"
 
+run_case "the whats-new bot commit on main builds despite [skip ci]" build \
+  "VERCEL_GIT_COMMIT_REF=main" \
+  "VERCEL_GIT_COMMIT_MESSAGE=whats-new: append merged PR entries [skip ci]" \
+  "VERCEL_GIT_PREVIOUS_SHA=$SHA_DOCS" \
+  "VERCEL_GIT_COMMIT_SHA=$SHA_DOCS"
+
 run_case "[skip vercel] skips (diff touches src/)" skip \
   "VERCEL_GIT_COMMIT_REF=feat/some-random-topic" \
   "VERCEL_GIT_COMMIT_MESSAGE=feat(site): work in progress [skip vercel]" \

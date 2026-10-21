@@ -31,6 +31,9 @@ fi
 if [[ "$SUBJECT" == feed:* ]]; then
   skip "commit message starts with 'feed:' (bot feed sync)"
 fi
+if [[ "$SUBJECT" == whats-new:* ]]; then
+  build "whats-new entries changed"
+fi
 for token in "[skip ci]" "[skip vercel]" "[vercel skip]"; do
   if [[ "$SUBJECT" == *"$token"* ]]; then
     skip "commit subject contains $token"
