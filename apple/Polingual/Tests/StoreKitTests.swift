@@ -5,10 +5,13 @@ import Testing
 @testable import Polingual
 
 @MainActor
-@Suite(.serialized)
+@Suite(.serialized, .timeLimit(.minutes(1)))
 struct StoreKitTests {
+    static var shared: SKTestSession?
+
     func session() throws -> SKTestSession {
-        let s = try SKTestSession(configurationFileNamed: "Polingual")
+        let s = try Self.shared ?? SKTestSession(configurationFileNamed: "Polingual")
+        Self.shared = s
         s.resetToDefaultState()
         s.clearTransactions()
         s.disableDialogs = true
@@ -52,7 +55,10 @@ struct StoreKitTests {
         await subs.refresh()
         #expect(subs.access.open)
         try s.expireSubscription(productIdentifier: Plan.yearly)
-        await subs.refresh()
+        for _ in 0..<20 where subs.access != .locked {
+            try await Task.sleep(for: .milliseconds(250))
+            await subs.refresh()
+        }
         #expect(subs.access == .locked)
     }
 

@@ -58,7 +58,7 @@ struct Onboarding: View {
             VStack(alignment: .leading, spacing: 18) {
                 Point(icon: "scope", title: "Placement", detail: "A short test finds your level in each language, so you skip what you know.")
                 Point(icon: "arrow.triangle.2.circlepath", title: "Spaced review", detail: "Words return right before you would forget them, mixed across your languages in one queue.")
-                Point(icon: "mic", title: "Speak and listen", detail: "Hear each word and say it back. Polingual checks your pronunciation on the device.")
+                Point(icon: "mic", title: "Speak and listen", detail: "Hear each word and say it back. Apple speech recognition checks your pronunciation.")
                 Point(icon: "globe", title: "29 languages", detail: "From Spanish and Japanese to Latin, Sanskrit and Old English.")
             }
         }
