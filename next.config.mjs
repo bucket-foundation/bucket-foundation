@@ -41,6 +41,10 @@ const nextConfig = {
     ],
   },
 
+  async rewrites() {
+    return [{ source: "/brand/directions", destination: "/brand/directions/index.html" }];
+  },
+
   async redirects() {
     return [
       { source: "/canon/claims", destination: "/excerpts", permanent: true },
@@ -66,6 +70,10 @@ const nextConfig = {
       },
       {
         source: "/research/maps/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noimageindex" }],
+      },
+      {
+        source: "/brand/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow, noimageindex" }],
       },
       {
