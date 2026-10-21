@@ -15,7 +15,7 @@ BASE = "https://api.appstoreconnect.apple.com"
 BUCKET = {
     "app": "6825123451",
     "version": "2.0",
-    "build": "2610211045",
+    "build": "2610211209",
     "subtitle": "Foundations of every science",
     "privacy": "https://www.bucket.foundation/privacy",
     "support": "https://www.bucket.foundation",
@@ -30,7 +30,7 @@ BUCKET = {
 POLINGUAL = {
     "app": "6825177856",
     "version": "1.0",
-    "build": "2610211045",
+    "build": "2610211209",
     "subtitle": "Learn many languages together",
     "privacy": "https://polingual.com/privacy",
     "support": "https://polingual.com/support",
