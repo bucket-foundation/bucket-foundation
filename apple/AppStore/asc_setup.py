@@ -18,6 +18,7 @@ BUCKET = {
     "build": "2610211209",
     "subtitle": "Foundations of every science",
     "privacy": "https://www.bucket.foundation/privacy",
+    "privacyText": "Bucket Foundation collects your email address, learning progress and a user ID only when you sign in, so your progress syncs across your devices. Bucket has no ads, no tracking, and does not sell or share personal data. You can delete your account and all progress in the app under Account, Delete account. Full policy: https://www.bucket.foundation/privacy",
     "support": "https://www.bucket.foundation",
     "marketing": "https://www.bucket.foundation",
     "keywords": "physics,math,chemistry,cosmology,biology,mind,science,spaced,repetition,flashcards,languages,study",
@@ -33,6 +34,7 @@ POLINGUAL = {
     "build": "2610211209",
     "subtitle": "Learn many languages together",
     "privacy": "https://polingual.com/privacy",
+    "privacyText": "Polingual collects your email address, learning progress and a user ID only when you sign in, so your progress syncs across your devices and with Bucket. Polingual has no ads, no tracking, and does not sell or share personal data. Apple handles all payments. You can delete your account and all progress in the app under Account, Delete account. Full policy: https://polingual.com/privacy",
     "support": "https://polingual.com/support",
     "marketing": "https://polingual.com",
     "keywords": "spanish,french,italian,german,japanese,latin,vocabulary,flashcards,polyglot,romance,spaced",
@@ -187,8 +189,8 @@ def setup_app(api, cfg, contact, free_price):
     api.write("age rating: 4+, all None", "PATCH", f"/v1/ageRatingDeclarations/{info['id']}",
               {"data": {"type": "ageRatingDeclarations", "id": info["id"], "attributes": dict(AGE)}})
     loc = next(l for l in api.all(f"/v1/appInfos/{info['id']}/appInfoLocalizations") if l["attributes"]["locale"] == "en-US")
-    api.write("subtitle and privacy URL", "PATCH", f"/v1/appInfoLocalizations/{loc['id']}", {
-        "data": {"type": "appInfoLocalizations", "id": loc["id"], "attributes": {"subtitle": cfg["subtitle"], "privacyPolicyUrl": cfg["privacy"]}}})
+    api.write("subtitle, privacy URL and Apple TV privacy text", "PATCH", f"/v1/appInfoLocalizations/{loc['id']}", {
+        "data": {"type": "appInfoLocalizations", "id": loc["id"], "attributes": {"subtitle": cfg["subtitle"], "privacyPolicyUrl": cfg["privacy"], "privacyPolicyText": cfg["privacyText"]}}})
 
     ver = next(v for v in api.all(f"/v1/apps/{app}/appStoreVersions?filter[platform]=IOS") if v["attributes"]["appStoreState"] in ("PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED", "METADATA_REJECTED"))
     attrs = {"copyright": COPYRIGHT, "releaseType": "MANUAL"}
