@@ -51,6 +51,12 @@ def b_solar(size=None,title="Solarpunk b variant"):
     cut=f'<path d="M0 {n(y0)}L256 {n(y1)}L256 {n(y1+24)}L0 {n(y0+24)}Z" fill="url(#g2metalb)"/>'
     defs='<defs><linearGradient id="g2metalb" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#6F6F6F"/><stop offset=".5" stop-color="#FFFFFF"/><stop offset="1" stop-color="#8D8D8D"/></linearGradient><clipPath id="g2bclip"><path fill-rule="evenodd" d="'+b_paths()+'"/></clipPath></defs>'
     return svg(defs+f'<path fill-rule="evenodd" d="{b_paths()}" fill="{INK}"/><g clip-path="url(#g2bclip)">{cut}</g><circle cx="216" cy="56" r="24" fill="{GREEN}"/><circle cx="216" cy="56" r="8" fill="{YEL}"/>',size,title)
+def b_punk(size=None,title="Subtle punk b variant"):
+    t=math.tan(math.pi/6)
+    notch=f'<path d="M208 {n(176-56*t)}L144 176L208 {n(176+8)}Z" fill="{PAPER}"/>'
+    rivets="".join(f'<rect x="{x}" y="{y}" width="8" height="8" fill="url(#g2metalp)"/>' for x,y in ((64,48),(64,200),(184,208)))
+    defs='<defs><linearGradient id="g2metalp" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#6F6F6F"/><stop offset=".5" stop-color="#FFFFFF"/><stop offset="1" stop-color="#8D8D8D"/></linearGradient></defs>'
+    return svg(defs+f'<path fill-rule="evenodd" d="{b_paths()}" fill="{INK}"/>{notch}<path d="M144 176L208 {n(176-56*t)}" stroke="url(#g2metalp)" stroke-width="4"/>{rivets}<rect x="200" y="24" width="32" height="32" fill="{RED}"/>',size,title)
 def svg(body,size,title):
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"{dim(size)} role="img" aria-label="{title}"><title>{title}</title>{body}</svg>'
 def dim(size): return f' width="{size}" height="{size}"' if size else ""
@@ -72,6 +78,6 @@ def favicon():
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="{PAPER}"/><path d="{omega()[0]}" fill="{INK}"/><rect x="144" y="136" width="32" height="32" fill="{RED}"/></svg>'
 def write_assets(out):
     os.makedirs(out,exist_ok=True)
-    files=dict(mho=mho_grid(),b=b_grid(),**{"mho-primitive-dot":mho_prim(True),"mho-primitive":mho_prim(False),"mho-wedge":mho_wedge(),"b-solar":b_solar(),"girih":girih_svg(),"mho-construction":construction(),"favicon":favicon()})
+    files=dict(mho=mho_grid(),b=b_grid(),**{"mho-primitive-dot":mho_prim(True),"mho-primitive":mho_prim(False),"mho-wedge":mho_wedge(),"b-solar":b_solar(),"b-punk":b_punk(),"girih":girih_svg(),"mho-construction":construction(),"favicon":favicon()})
     for k,v in files.items(): open(os.path.join(out,k+".svg"),"w",encoding="utf-8").write(v)
     return files

@@ -141,6 +141,10 @@ def shapes_bg(seed=7,count=14,w=1440,h=900):
         elif t==2: out.append(f'<path d="M{x} {y+s}L{x+s//2} {y}L{x+s} {y+s}Z" fill="{col}"/>')
         else: out.append(f'<path d="M{x} {y+8}q8 -16 16 0t16 0t16 0" fill="none" stroke="{col}" stroke-width="6" stroke-linecap="round"/>')
     return f'<svg class="shapes" viewBox="0 0 {w} {h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="opacity:.55">{"".join(out)}</svg>'
+def shape_band():
+    cols=[("var(--red)",""),("var(--yel)","border-radius:50%"),(T.SQ["green"],"clip-path:polygon(50% 0,100% 100%,0 100%)"),("var(--knob)","border-radius:50%"),("var(--pblue)",""),(T.SQ["pink"],"border-radius:8px")]
+    cells="".join(f'<span style="width:24px;height:24px;background:{c};{st}"></span>' for c,st in cols)
+    return f'<div aria-hidden="true" style="display:grid;grid-template-columns:repeat(6,24px);gap:24px;height:24px">{cells}</div>'
 def lang_strip(limit=None):
     s,att=DATA.strip();s=s[:limit] if limit else s
     items="".join(f'<li><span class="w" lang="{x["code"]}" dir="{"rtl" if x["code"] in ("ar","he","fa") else "ltr"}">{E(x["word"])}</span><span class="c">{x["code"]} · {E(x["name"])}</span><span class="c">{E(x["concept"])}</span></li>' for x in s)
@@ -195,7 +199,7 @@ def study_young():
     c=DATA.card("el");s,att=DATA.strip()
     others=[x for x in s if x["concept"]=="light" and x["code"] in ("ru","hi","he","ja")]
     chips="".join(f'<li class="card" style="padding:var(--s3);display:flex;flex-direction:column;gap:0"><span lang="{x["code"]}" dir="{"rtl" if x["code"]=="he" else "ltr"}" style="font:700 24px/32px var(--young)">{E(x["word"])}</span><span class="small" style="color:var(--sq-muted)">{E(x["name"])}</span></li>' for x in others)
-    body=f'''<div style="position:relative">{shapes_bg(11,12)}<div style="position:relative" class="stack">
+    body=f'''<div class="stack">{shape_band()}<div class="stack">
 <div class="row" style="justify-content:space-between"><div class="row"><span class="yb white" style="min-height:40px;padding:var(--s2) var(--s3);font-size:14px"><span class="sq k" aria-hidden="true"></span>14 days</span><span class="yb white s-hide" style="min-height:40px;padding:var(--s2) var(--s3);font-size:14px">1,240 XP</span></div><span style="font:700 14px/20px var(--young);color:var(--sq-muted)">Word 3 of 10</span></div>
 <div style="height:16px;border-radius:8px;background:var(--sq-line);overflow:hidden"><i style="display:block;height:100%;width:30%;background:var(--sq-green);border-radius:8px"></i></div>
 <div class="flow" aria-label="Frozen flow"><span>1 New word</span><span aria-current="step">2 Show answer</span><span>3 Grade</span></div>
@@ -208,6 +212,18 @@ def study_young():
 <p class="credit">{E(att["credit"])}</p></div></div>'''
     head="<style>@media (max-width:900px){.ylangs{grid-template-columns:repeat(2,minmax(0,1fr))!important}}</style>"
     page("study-young","Study card, young-learner register",app_shell("learn",body,True),young=True,head=head)
+def young_page(name,title,heading,inner):
+    body=f'''<div class="stack" style="gap:var(--s5)">{shape_band()}<h1 style="font:700 32px/40px var(--young)">{heading}</h1>{inner}</div>'''
+    page(name,title,app_shell("review" if "review" in name else "learn",body,True),young=True)
+def review_young():
+    q=[("φως","Greek","due"),("свет","Russian","due"),("प्रकाश","Hindi","new"),("נגה","Hebrew","new")]
+    rows="".join(f'<li class="card" style="display:flex;align-items:center;gap:var(--s4);padding:var(--s3) var(--s4)"><span style="font:700 28px/36px var(--young)">{w}</span><span class="small" style="color:var(--sq-muted)">{l}</span><span class="yb {"pink" if d=="due" else "sky"}" style="margin-left:auto;min-height:36px;padding:var(--s1) var(--s3);font-size:14px">{d}</span></li>' for w,l,d in q)
+    young_page("review-young","Review, young-learner register","4 words to review",f'<ul class="stack" style="gap:var(--s3)">{rows}</ul><button class="yb block">Start review</button>')
+def quiz_young():
+    _,att=DATA.strip()
+    opts=[("φως","el",True),("נגה","he",False),("प्रकाश","hi",False),("明かり","ja",False)]
+    o="".join(f'<button class="yb {"" if ok else "white"} block" lang="{c}" style="font-size:28px;text-transform:none;min-height:64px">{w}</button>' for w,c,ok in opts)
+    young_page("quiz-young","Quiz, young-learner register","Which one is Greek?",f'<p style="color:var(--sq-muted)">All four mean light.</p><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s4)">{o}</div><button class="yb pink block">Check</button><p class="credit">{E(att["credit"])}</p>')
 def review():
     q=[("04.02","Landauer's principle","1 d","Good"),("02.07","Boltzmann entropy","3 d","due"),("el","φως · light","10 m","due"),("01.03","Euclid I.1","2 d","due"),("ru","свет · light","1 h","new"),("05.11","Protein folding funnel","4 d","new")]
     rows="".join(f'<li style="display:grid;grid-template-columns:64px minmax(0,1fr) 64px 72px;gap:var(--s3);padding:var(--s3) 0;border-bottom:1px solid var(--line);align-items:center"><span class="num">{E(a)}</span><span>{E(b)}</span><span class="mono small muted">{c}</span><span class="small" style="justify-self:end;{"color:var(--redt)" if d=="due" else ""}">{d}</span></li>' for a,b,c,d in q)
@@ -255,7 +271,7 @@ def math_page():
     head=f'<link rel="stylesheet" href="{KATEX}katex.min.css"><script defer src="{KATEX}katex.min.js"></script><script defer src="{KATEX}contrib/auto-render.min.js" onload="renderMathInElement(document.body,{{delimiters:[{{left:\'$$\',right:\'$$\',display:true}},{{left:\'\\\\(\',right:\'\\\\)\',display:false}}]}})"></script><style>.katex{{font-size:1.1em}}.katex-display{{overflow-x:auto;overflow-y:hidden;padding:var(--s2) 0}}</style>'
     body=f'''<div class="top"><div class="grow"><p class="kick">01 Mathematics · Elements I</p><h1 class="d2">Proposition 47</h1></div><a class="btn ghost sm" href="grid2-canon-search.html">Cite</a></div>
 <div class="prop"><div class="stack" style="gap:var(--s5)"><p style="font:300 24px/32px var(--body)">In right-angled triangles the square on the side subtending the right angle equals the squares on the sides containing it.</p>
-$$\\textcolor{{#1F4E9C}}{{c^2}} = \\textcolor{{#C8331F}}{{a^2}} + \\textcolor{{#B07C00}}{{b^2}}$$
+$$\\textcolor{{#1F4E9C}}{{c^2}} = \\textcolor{{#C8331F}}{{a^2}} + \\textcolor{{#8A6200}}{{b^2}}$$
 <div class="proof"><ol><li>Square the hypotenuse, blue, and each leg: red and yellow. I.46.</li><li>Drop the perpendicular from the right angle; it splits the blue square in two rectangles.</li><li>Each rectangle equals the square on the nearer leg, since \\(\\triangle ABD \\cong \\triangle FBC\\). I.4, I.41.</li><li>Sum both: \\(c^2 = a^2 + b^2\\). Common notion 2.</li></ol></div>
 <p class="credit">Figure after Oliver Byrne, The First Six Books of the Elements of Euclid, 1847, plate for I.47, public domain. <a href="https://archive.org/details/firstsixbooksofe00eucl">archive.org</a>. Set in KaTeX 0.16.9.</p></div>
 <figure class="card" style="justify-self:center">{byrne_i47(320)}</figure></div>'''
@@ -300,6 +316,7 @@ def marks():
 {tile(M.mho_prim(False),"Primitive ℧ without the dot","The alternate mark inside Grid-Primitive.",bg="var(--surf2)")}
 {tile(M.mho_wedge(),"Wedge ℧, accent","The diagonal cut in brushed metal, a tool through a map. Accent only.")}
 {tile(M.b_solar(),"Solarpunk b","The same cut through the b, with a green sun. Accent only.")}
+{tile(M.b_punk(),"Subtle punk b","A 30 degree notch cut into the bowl, metal edge and three rivets. Accent only.")}
 {tile('<div style="width:100%;height:100%;background-image:url(../assets/grid2/marks/girih.svg);background-size:64px"></div>',"Girih texture","An 8-fold khatam star on a 64-unit tile, at 14% ink.",bg="var(--bg)")}
 {tile(f'<div style="width:100%;height:100%;display:grid;place-items:center;background:var(--ink)">{M.mho_grid(fg="#F2F0EB",size=128)}</div>',"Reversed","Paper on ink.")}</div>
 <section style="margin-top:var(--s7)"><p class="kick" style="margin-bottom:var(--s3)">Sizes</p><div class="row" style="gap:var(--s6);align-items:flex-end">{sizes}</div></section>
@@ -319,5 +336,5 @@ def build():
     os.makedirs(SCREENS,exist_ok=True);os.makedirs(ASSETS,exist_ok=True)
     M.write_assets(os.path.join(ASSETS,"marks"))
     open(os.path.join(ASSETS,"grid2.css"),"w",encoding="utf-8").write(CSS)
-    for f in (landing,canon_search,app_learn,study,study_young,review,quiz,progress,settings,signin,math_page,game,motion,marks,dot_pair,texture): f()
+    for f in (landing,canon_search,app_learn,study,study_young,review,quiz,progress,settings,signin,math_page,game,motion,review_young,quiz_young,marks,dot_pair,texture): f()
 if __name__=="__main__": build();print("built")
