@@ -5,6 +5,7 @@ struct AccountView: View {
     @Environment(Account.self) private var account
     @State private var email = ""
     @State private var code = ""
+    @State private var confirmingDelete = false
     @FocusState private var focused: Bool
 
     var body: some View {
@@ -47,6 +48,7 @@ struct AccountView: View {
                         LabeledContent("Status", value: "Signed in")
                         if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
                         Button("Sign out", role: .destructive) { account.signOut() }
+                        Button("Delete account", role: .destructive) { confirmingDelete = true }
                     } header: {
                         Eyebrow(text: "Account")
                     }
@@ -69,6 +71,12 @@ struct AccountView: View {
             .listRowBackground(Palette.card)
             .paper()
             .navigationTitle("Account")
+            .confirmationDialog("Delete your account?", isPresented: $confirmingDelete, titleVisibility: .visible) {
+                Button("Delete account and data", role: .destructive) { Task { await account.deleteAccount() } }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("This removes your sign-in and your saved progress and profile from Bucket. It cannot be undone.")
+            }
         }
     }
 }
