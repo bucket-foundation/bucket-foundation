@@ -132,7 +132,7 @@ nav{{display:flex;gap:var(--s6);flex-wrap:wrap}}nav a{{color:var(--text);text-de
 .credit,.credit a{{font-size:13px;line-height:20px;color:var(--muted)}}
 .grid{{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s6)}}
 .night{{background:var(--night);color:var(--nt)}}.night .credit,.night .credit a,.night .muted{{color:var(--nm)}}.night a{{color:var(--nt)}}
-.muted{{color:var(--muted)}}
+.muted{{color:var(--muted)}}.night .light .credit,.night .light .credit a{{color:var(--muted)}}
 .byrne line,.byrne path,.byrne circle{{fill:none;stroke-width:6}}
 @media (max-width:600px){{.wrap{{padding:0 var(--s4)}}.stoich{{font-size:36px;line-height:44px;letter-spacing:.04em}}.grid{{grid-template-columns:1fr}}.grid>*{{grid-column:1/-1!important}}nav{{gap:var(--s4)}}}}
 """
@@ -174,7 +174,7 @@ def euclid_landing(src):
 </section>
 <section class="night"><div class="wrap grid" style="padding:var(--s16) var(--s8)">
 <div style="grid-column:1/6"><p class="eyebrow" style="color:var(--yel)">Proposition I.1</p><p lang="grc" style="font:400 32px/44px var(--disp);margin:0 0 var(--s4)">Ἐπὶ τῆς δοθείσης εὐθείας πεπερασμένης τρίγωνον ἰσόπλευρον συστήσασθαι.</p><p class="muted">On a given finite straight line to construct an equilateral triangle. Heiberg's Greek, Heath's English.</p></div>
-<div style="grid-column:7/13;background:var(--bg);padding:var(--s6);display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);align-items:start"><figure style="margin:0">{byrne_svg(260).replace('width="260"','width="100%"')}<figcaption class="credit" style="color:var(--muted)">Drawn in code in Byrne's red, yellow and blue.</figcaption></figure><figure style="margin:0"><img src="../assets/byrne-prop-i1.jpg" alt="Byrne 1847, Book I Proposition I, the printed plate" width="1920" height="2519" style="width:100%;height:auto"><figcaption class="credit" style="color:var(--muted)">{credit(src, "byrne-prop-i1.jpg")}</figcaption></figure></div>
+<div class="light" style="grid-column:7/13;background:var(--bg);padding:var(--s6);display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);align-items:start"><figure style="margin:0">{byrne_svg(260).replace('width="260"','width="100%"')}<figcaption class="credit" style="color:var(--muted)">Drawn in code in Byrne's red, yellow and blue.</figcaption></figure><figure style="margin:0"><img src="../assets/byrne-prop-i1.jpg" alt="Byrne 1847, Book I Proposition I, the printed plate" width="1920" height="2519" style="width:100%;height:auto"><figcaption class="credit" style="color:var(--muted)">{credit(src, "byrne-prop-i1.jpg")}</figcaption></figure></div>
 </div></section>
 <section class="wrap grid" style="padding:var(--s16) var(--s8)">
 <div style="grid-column:1/6"><p class="eyebrow">Seven branches</p><h2 style="font:400 40px/48px var(--disp);margin:0 0 var(--s6)">One polymath at the door of each branch</h2><ol style="list-style:none;margin:0;padding:0">{branch}</ol></div>
