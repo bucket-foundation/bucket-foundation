@@ -1362,11 +1362,12 @@ describe("Research OS views on the local store", () => {
     const rows3: DeckRow[] = [
       { id: "a", title: "Alpha", atoms: 4, introduced: 2, due: 0, xp: 5, streak: 1 },
       { id: "b", title: "Beta", atoms: 4, introduced: 1, due: 2, xp: 3, streak: 0 },
+      { id: "d", title: "Delta", atoms: 2, introduced: 1, due: 0, xp: 5 },
     ];
     const v = await mount({ name: "progress" }, { ...empty(), decks: async () => rows3 } as Stub);
     await v.act(async () => new Promise((r) => setTimeout(r, 60)));
     const rows = [...v.host.querySelectorAll(".decks-progress tbody tr")].map((r) => [...r.querySelectorAll("td")].map((c) => c.textContent));
-    expect(rows).toEqual([["Beta", "1 of 4", "2", "3", "0 days"], ["Alpha", "2 of 4", "0", "5", "1 day"]]);
+    expect(rows).toEqual([["Beta", "1 of 4", "2", "3", "0 days"], ["Alpha", "2 of 4", "0", "5", "1 day"], ["Delta", "1 of 2", "0", "5", "0 days"]]);
     expect([...v.host.querySelectorAll(".decks-progress th")].map((t) => t.textContent)).toEqual(["Deck", "Started", "Due today", "XP", "Streak"]);
     await v.unmount();
   });

@@ -1,4 +1,4 @@
-import { buildEncompassingMap, withLeverage, type Atom, type EncEdge } from "../../../../src/lib/academy/engine";
+import { buildEncompassingMap, dayKey, withLeverage, type Atom, type EncEdge } from "../../../../src/lib/academy/engine";
 import { gradeAnswer, log10Distance, normalizeResponse } from "../../../../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../../../../src/lib/research-os/work-quiz/limits";
 import type { LearnAtom } from "../../../../src/lib/research-os/work-quiz/learn-match";
@@ -117,11 +117,16 @@ export function rateCard(store: Store, enc: Encompassing, itemId: unknown, ratin
   return { due: store.card(itemId)?.due ?? null };
 }
 
+export function liveStreak(stats: { streak?: number; lastStudyDay?: string | null }, now: number): number {
+  const last = stats.lastStudyDay;
+  return last === dayKey(now) || last === dayKey(now - 86_400_000) ? stats.streak || 0 : 0;
+}
+
 export function deckProgress(store: Store, decks: PackDeck[], now: number): DeckProgress[] {
   return decks.map((d) => {
     const state = store.learnState(d.id);
     const cards = Object.values(state.cards);
-    return { ...d, introduced: cards.length, due: cards.filter((c) => c.due != null && c.due <= now).length, xp: state.stats.xp, streak: state.stats.streak || 0 };
+    return { ...d, introduced: cards.length, due: cards.filter((c) => c.due != null && c.due <= now).length, xp: state.stats.xp, streak: liveStreak(state.stats, now) };
   });
 }
 
