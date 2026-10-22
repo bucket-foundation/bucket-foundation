@@ -149,6 +149,11 @@ func bodyAction(_ r: URLRequest) -> String? {
 }
 
 @Suite struct TeXLiteTests {
+    @Test func functionNamesAndEscapedSpace() {
+        #expect(TeXLite.render("|a\\times b| = ab\\sin\\theta") == "|a× b| = ab sin θ")
+        #expect(TeXLite.render("20\\ km/h") == "20 km/h")
+    }
+
     @Test(arguments: [
         ("f\\colon X \\to Y,\\quad x \\mapsto f(x)", "f: X → Y,  x ↦ f(x)"),
         ("E = mc^2", "E = mc²"),
