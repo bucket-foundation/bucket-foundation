@@ -30,15 +30,18 @@ test("unknown and nested paths select no tab", () => {
   assert.equal(activeWorkspaceType("/research-os/home"), null);
 });
 
-test("web list tabs use names the desktop workspaces also use", () => {
+const WEB_ONLY = new Set(["study", "datasets"]);
+
+test("web tabs share desktop names only where they hold the same data", () => {
   const match = DESKTOP_ROUTER.match(/WORKSPACE_TYPES = \[([^\]]+)\]/);
   assert.ok(match);
   const desktop = match[1].split(",").map((s) => s.trim().replace(/"/g, ""));
-  for (const type of WEB_WORKSPACE_TYPES.filter((t) => t !== "study")) assert.ok(desktop.includes(type), type);
+  for (const type of WEB_WORKSPACE_TYPES) assert.ok(WEB_ONLY.has(type) !== desktop.includes(type), type);
+  assert.equal(parseWorkspaceType("records"), null);
 });
 
 test("each list tab opens with rows in plain words and links to an existing page", () => {
-  for (const type of ["figures", "maps", "records"] as const) {
+  for (const type of ["figures", "maps", "datasets"] as const) {
     const items = workspaceItems(type);
     assert.ok(items.length > 0, type);
     assert.equal(new Set(items.map((i) => i.id)).size, items.length, type);

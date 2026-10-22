@@ -123,18 +123,20 @@ Every workspace tab has the same four parts: a list of row sets of that type, a 
 
 `packages/bkt-ui` is a Vite app with a hash router and a desktop `Api` that reads the local pack. Mounting it under a Next route would bring two routers and an API the web has no server for. W1 builds native Next components instead:
 
-- `src/app/research-os/(app)/workspace/[type]/page.tsx`, a server component that validates `type` against a shared list and renders a client `WorkspaceTabs`.
-- The type list, the `BUILT` copy and the tab key format move from `packages/bkt-ui` into `packages/ros-contract`, which both apps import, so names and copy match without sharing components.
-- Row sets reach the web as the public pack JSON served from `public/`, read by `src/lib/explore/datasets.ts`.
-- Tabs persist in `localStorage` under the same key format, wrapped in try/catch.
-- The current learner page moves to `workspace/study`, and `/research-os/workspace` redirects there, the founder's ask that the web Workspace page becomes one of the tabs.
-- Drawing reuses web components until bkt-5f2h ships the shared module.
+W1 shipped in #963 with four tabs: Study, Figures, Maps and Datasets.
+
+- Study is the current learner page and stays at `/research-os/workspace`, so every `?target` and `#production` link keeps working. It is the founder's ask that the web Workspace page becomes one of the tabs.
+- `src/app/research-os/(app)/workspace/[type]/page.tsx` is a server component that validates `type` and lists items; `WorkspaceTabBar.tsx` in the workspace layout draws the tabs.
+- The type list and tab copy live in `src/lib/research-os/workspace-tabs.ts`. `packages/ros-contract` holds API contract tests and no source, so the copy stays in web code, and `scripts/test-workspace-tabs.ts` checks the web names against the desktop `WORKSPACE_TYPES`.
+- Figures, Maps and Datasets list data the web already holds: `loadFigures`, the research maps list and the research-atlas datasets. Datasets is a web-only name, kept apart from the desktop Records workspace, which holds research-output records.
+- Tables, papers and graphs join when the web gains their data; row sets reach the web as the public pack JSON read by `src/lib/explore/datasets.ts`.
+- Open-item tabs persisted in `localStorage` and drawing through bkt-5f2h remain open.
 
 ## Build Order
 
 | Slice | Content | Depends on |
 |-------|---------|------------|
-| W1 | Web `/research-os/workspace/[type]` with the existing eight types, current page as `study` | none |
+| W1 | Web `/research-os/workspace/[type]` with Study, Figures, Maps and Datasets; shipped in #963 | none |
 | E1 | Contract fields `angle`, `radius`, `t`; mappers for the six built row sets; iso3 rule | none |
 | E2 | coverage-frontier row set in graph and earth | E1 |
 | E3 | corpus-claims and corpus-mechanisms row sets; Corpus workspace | E1, W1 |
