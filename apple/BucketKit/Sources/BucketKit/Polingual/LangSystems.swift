@@ -595,6 +595,12 @@ public struct LangWord: Sendable, Equatable, Hashable {
     public let lang: String
     public let word: String
     public var reading: Reading?
+
+    public init(lang: String, word: String, reading: Reading? = nil) {
+        self.lang = lang
+        self.word = word
+        self.reading = reading
+    }
 }
 
 public struct Exercise: Sendable {

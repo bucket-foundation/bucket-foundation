@@ -66,6 +66,8 @@ struct ExerciseView: View {
     let readings: Bool
     let optionReadings: [String: Reading]
     let onDone: ([ExerciseResult]) -> Void
+    var switched = false
+    var setWords: [LangWord] = []
 
     @State private var picked: String?
     @State private var typed = ""
@@ -86,10 +88,7 @@ struct ExerciseView: View {
     }
 
     var header: some View {
-        Text("\(ex.kind.label) · \(Lang.name(ex.lang))\(ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? "")".uppercased())
-            .font(.caption2.weight(.semibold))
-            .tracking(1.4)
-            .foregroundStyle(Palette.green)
+        SubjectTile(subject: .language(ex.lang), caption: "\(ex.kind.label)\(ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? "")", highlight: switched)
     }
 
     var body: some View {
@@ -121,6 +120,7 @@ struct ExerciseView: View {
             FamilyLine(ex: ex)
             FalseFriendNote(ex: ex)
             if let note = ex.note { Text(note).font(.caption).foregroundStyle(Palette.muted) }
+            if setWords.count > 1 { WordSetTiles(words: setWords).padding(.top, 6) }
             Button("Got it") { onDone([]) }.buttonStyle(.borderedProminent).padding(.top, 6)
         }
     }
