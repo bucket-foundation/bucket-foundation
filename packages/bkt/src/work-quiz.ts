@@ -15,7 +15,7 @@ import { toPublic, type BeadFact, type QuizQuestion, type WorkSources } from "..
 import { CHAT_OFF, CHAT_ROOT_NAMES, localDay, readChatSources, type ChatScan, type ChatToggles } from "./chat-sources";
 import { open, seal } from "./crypto";
 import { checkLimits } from "../../../src/lib/research-os/work-quiz/limits";
-import { LANGUAGE_CODES, LANGUAGES_ERROR, languagesByName, parseLanguages } from "../../../src/lib/research-os/work-quiz/languages";
+import { LANGUAGES_ERROR, languagesByName, parseLanguages, systemLanguageCodes, withSystemLanguages } from "../../../src/lib/research-os/work-quiz/languages";
 import { normalizeSystemsDoc } from "../../../src/lib/academy/lang-systems";
 import { SYSTEMS_META } from "./local";
 import { answerDaily, LearnError } from "./core/learn";
@@ -137,15 +137,11 @@ export class WorkQuizStore {
     } catch {
       return [];
     }
-    const out: string[] = [];
-    for (const s of doc.systems) for (const code of [s.root, ...s.targets]) if (LANGUAGE_CODES.includes(code) && !out.includes(code)) out.push(code);
-    return out;
+    return systemLanguageCodes(doc.systems);
   }
 
   languages(): string[] {
-    const out = this.chosenLanguages();
-    for (const code of this.systemLanguages()) if (!out.includes(code)) out.push(code);
-    return out;
+    return withSystemLanguages(this.chosenLanguages(), this.systemLanguages());
   }
 
   setLanguages(codes: readonly string[], now: number) {

@@ -65,6 +65,23 @@ export function toggleLanguage(languages: readonly string[], code: string): stri
   return languages.includes(code) ? languages.filter((l) => l !== code) : [...languages, code];
 }
 
+export interface LanguageSystemLike {
+  root: string;
+  targets: readonly string[];
+}
+
+export function systemLanguageCodes(systems: readonly LanguageSystemLike[]): string[] {
+  const out: string[] = [];
+  for (const s of systems) for (const code of [s.root, ...s.targets]) if (LANGUAGE_CODES.includes(code) && !out.includes(code)) out.push(code);
+  return out;
+}
+
+export function withSystemLanguages(chosen: readonly string[], fromSystems: readonly string[]): string[] {
+  const out = [...chosen];
+  for (const code of fromSystems) if (!out.includes(code)) out.push(code);
+  return out;
+}
+
 export function languagesByName(codes: readonly string[] = LANGUAGE_CODES): { code: string; name: string }[] {
   return codes.map((code) => ({ code, name: languageName(code) })).sort((a, b) => a.name.localeCompare(b.name));
 }

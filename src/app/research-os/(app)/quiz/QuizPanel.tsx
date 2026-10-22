@@ -16,6 +16,8 @@ interface StatsBody {
   sources: SourceStatus;
   counts: { beads: number; prs: number; notes: number };
   languages: string[];
+  chosen?: string[];
+  fromSystems?: string[];
 }
 
 const API = "/api/research-os/work-quiz";
@@ -23,7 +25,8 @@ const API = "/api/research-os/work-quiz";
 export async function saveLanguages(languages: string[]): Promise<string[]> {
   const res = await fetch(API, { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify({ languages }) });
   if (!res.ok) throw new Error(`languages_${res.status}`);
-  return ((await res.json()) as { languages: string[] }).languages;
+  const body = (await res.json()) as { languages: string[]; chosen?: string[] };
+  return body.chosen ?? body.languages;
 }
 
 const CARD = "border border-[color:var(--hairline)] rounded-sm p-4 bg-[color:var(--bone)]/70";
@@ -85,7 +88,7 @@ export default function QuizPanel() {
         </dl>
       )}
 
-      {body && <LanguagePicker languages={body.languages ?? []} save={saveLanguages} onSaved={(languages) => setBody((b) => (b ? { ...b, languages } : b))} />}
+      {body && <LanguagePicker languages={body.chosen ?? body.languages ?? []} fromSystems={body.fromSystems ?? []} save={saveLanguages} onSaved={(chosen) => setBody((b) => (b ? { ...b, chosen } : b))} />}
 
       {body && (
         <section className={CARD}>

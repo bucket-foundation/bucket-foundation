@@ -39,6 +39,8 @@ quizDb.loadStats = async () => {
 };
 let languages: string[] = [];
 quizDb.loadLanguages = async () => languages;
+let systemLanguages: string[] = [];
+quizDb.loadSystemLanguages = async () => systemLanguages;
 quizDb.saveLanguages = async (_learnerId: string, next: string[]) => {
   writes++;
   languages = next;
@@ -132,4 +134,27 @@ test("staff set their languages, the list comes back in the views, and the next 
   assert.equal(q.word.href, "https://en.wiktionary.org");
   assert.ok(q.word.lang === null || ["he", "de"].includes(q.word.lang));
   noSources = false;
+});
+
+test("languages from the language systems join the quiz, stay on, and never land in the saved choice", async () => {
+  who = STAFF;
+  languages = ["de"];
+  systemLanguages = ["en", "ru"];
+  let out = await read(await get("?view=languages"));
+  assert.deepEqual(out.body.languages, ["de", "en", "ru"]);
+  assert.deepEqual(out.body.chosen, ["de"]);
+  assert.deepEqual(out.body.fromSystems, ["en", "ru"]);
+  assert.deepEqual((await read(await get("?view=stats"))).body.fromSystems, ["en", "ru"]);
+  out = await read(await put({ languages: ["ru", "fr"] }));
+  assert.deepEqual(languages, ["fr"]);
+  assert.deepEqual(out.body.languages, ["fr", "en", "ru"]);
+  assert.deepEqual(out.body.chosen, ["fr"]);
+  noSources = true;
+  languages = [];
+  const issued = await read(await get("?mode=manual"));
+  assert.equal(issued.body.status, "issued");
+  const q = issued.body.question as { word: { lang: string | null } };
+  assert.ok(q.word.lang === null || ["en", "ru"].includes(q.word.lang));
+  noSources = false;
+  systemLanguages = [];
 });

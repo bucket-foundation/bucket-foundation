@@ -2,8 +2,8 @@ import type { NextRequest } from "next/server";
 import { verifyLearnerIdentity } from "@/lib/research-os/db";
 import { isStaff } from "@/lib/research-os/staff";
 import { bad, readJson, withResearchOsRoute } from "@/lib/research-os/route";
-import { answerAttempt, dueCards, openAttempt, issueAttempt, loadAttempt, loadCard, loadCoverage, loadLanguages, loadStats, recordMiss, recordPicks, rekeyCard, retireCard, saveLanguages, writeCard } from "@/lib/research-os/work-quiz/db";
-import { LANGUAGES_ERROR, languagesByName, parseLanguages } from "@/lib/research-os/work-quiz/languages";
+import { answerAttempt, dueCards, openAttempt, issueAttempt, loadAttempt, loadCard, loadCoverage, languageState, loadLanguages, loadStats, loadSystemLanguages, recordMiss, recordPicks, rekeyCard, retireCard, saveLanguages, writeCard } from "@/lib/research-os/work-quiz/db";
+import { LANGUAGES_ERROR, languagesByName, parseLanguages, withSystemLanguages } from "@/lib/research-os/work-quiz/languages";
 import { answerQuestion, issueQuestion, parseMode, type QuizDeps } from "@/lib/research-os/work-quiz/service";
 import { loadWorkSources } from "@/lib/research-os/work-quiz/sources-server";
 import { matchLearnItem } from "@/lib/research-os/work-quiz/learn-match";
@@ -27,7 +27,7 @@ const deps: QuizDeps = {
   loadCoverage,
   recordPicks,
   recordMiss,
-  loadLanguages,
+  loadLanguages: async (learnerId) => (await languageState(learnerId, loadLanguages, loadSystemLanguages)).languages,
 };
 
 async function staff(req: NextRequest): Promise<boolean> {
@@ -37,10 +37,10 @@ async function staff(req: NextRequest): Promise<boolean> {
 export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
   if (!(await staff(req))) return bad(404, "not_found");
   const params = new URL(req.url).searchParams;
-  if (params.get("view") === "languages") return { languages: await loadLanguages(learnerId), available: languagesByName() };
+  if (params.get("view") === "languages") return { ...(await languageState(learnerId, loadLanguages, loadSystemLanguages)), available: languagesByName() };
   if (params.get("view") === "stats") {
-    const [stats, sources, languages] = await Promise.all([loadStats(learnerId, new Date()), loadWorkSources(), loadLanguages(learnerId)]);
-    return { stats, sources: sources.status, counts: { beads: sources.sources.beads.length, prs: sources.sources.prs.length, notes: sources.sources.notes.length }, languages, available: languagesByName() };
+    const [stats, sources, langs] = await Promise.all([loadStats(learnerId, new Date()), loadWorkSources(), languageState(learnerId, loadLanguages, loadSystemLanguages)]);
+    return { stats, sources: sources.status, counts: { beads: sources.sources.beads.length, prs: sources.sources.prs.length, notes: sources.sources.notes.length }, ...langs, available: languagesByName() };
   }
   const mode = parseMode(params.get("mode") ?? "surprise");
   if (!mode) return bad(400, "bad_mode");
@@ -63,5 +63,7 @@ export const PUT = withResearchOsRoute({ auth: "required" }, async (req, { learn
   if (!read.ok) return read.res;
   const languages = parseLanguages(read.value.languages);
   if (!languages) return bad(400, LANGUAGES_ERROR);
-  return { languages: await saveLanguages(learnerId, languages) };
+  const fromSystems = await loadSystemLanguages(learnerId);
+  const chosen = await saveLanguages(learnerId, languages.filter((c) => !fromSystems.includes(c)));
+  return { languages: withSystemLanguages(chosen, fromSystems), chosen, fromSystems };
 });
