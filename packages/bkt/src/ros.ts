@@ -20,6 +20,9 @@ import { onNodeOpened } from "../../../src/lib/research-os/stages";
 import { stageAtLeast, type GraphEdge, type GraphNode, type Stage } from "../../../src/lib/research-os/types";
 import staff from "../content/staff-ros.json" with { type: "json" };
 import type { Route } from "./serve";
+import { randomUUID } from "node:crypto";
+
+type ProductionKind = "production" | "extension" | "replication" | "peer_review";
 
 export type RosLoader<K extends RosResource> = () => RosPayloads[K] | null;
 
@@ -117,6 +120,22 @@ async function readBody(req: Request): Promise<Record<string, unknown> | null> {
   }
 }
 
+export interface ProductionRow {
+  id: string;
+  kind: ProductionKind;
+  status: "draft";
+  claim: string | null;
+  target_node_id: string;
+  related_node_id: string | null;
+  sources: string;
+  created_at: number;
+  updated_at: number;
+}
+
+const PRODUCTION_KINDS: ProductionKind[] = ["production", "extension", "replication", "peer_review"];
+const MAX_CLAIM = 4000;
+const MAX_SOURCES = 50;
+
 export class RosGraph {
   constructor(private db: Database) {}
 
@@ -205,20 +224,53 @@ export class RosGraph {
     this.db.run("delete from ros_state; update ros_profile set game = null;");
   }
 
+  productions(): ProductionRow[] {
+    return this.db.query<ProductionRow, []>("select * from ros_productions order by created_at desc, id").all();
+  }
+
+  production(id: string): ProductionRow | null {
+    return this.db.query<ProductionRow, [string]>("select * from ros_productions where id = ?").get(id) ?? null;
+  }
+
+  saveProduction(p: Omit<ProductionRow, "created_at">, now: number): ProductionRow {
+    this.db
+      .query(
+        "insert into ros_productions (id, kind, status, claim, target_node_id, related_node_id, sources, created_at, updated_at) values (?, ?, ?, ?, ?, ?, ?, ?, ?) on conflict (id) do update set kind = excluded.kind, claim = excluded.claim, target_node_id = excluded.target_node_id, related_node_id = excluded.related_node_id, sources = excluded.sources, updated_at = excluded.updated_at",
+      )
+      .run(p.id, p.kind, p.status, p.claim, p.target_node_id, p.related_node_id, p.sources, now, p.updated_at);
+    return this.production(p.id)!;
+  }
+
   exportTables(): Record<string, Record<string, unknown>[]> {
     return {
       ros_profile: this.db.query<Record<string, unknown>, []>("select role, birth_year_bucket, game, updated_at from ros_profile").all(),
       ros_state: this.db.query<Record<string, unknown>, []>("select node_id, stage, confidence, evidence, updated_at from ros_state order by node_id").all(),
+      ros_productions: this.db.query<Record<string, unknown>, []>("select * from ros_productions order by created_at").all(),
     };
   }
 
   forgetAll(): Record<string, number> {
     const states = this.db.query<{ n: number }, []>("select count(*) n from ros_state").get()!.n;
     const profile = this.db.query<{ n: number }, []>("select count(*) n from ros_profile").get()!.n;
-    this.db.transaction(() => this.db.run("delete from ros_state; delete from ros_profile;"))();
-    return { ros_state: states, ros_profile: profile };
+    const productions = this.db.query<{ n: number }, []>("select count(*) n from ros_productions").get()!.n;
+    this.db.transaction(() => this.db.run("delete from ros_state; delete from ros_profile; delete from ros_productions;"))();
+    return { ros_state: states, ros_profile: profile, ros_productions: productions };
   }
 }
+
+const productionOut = (r: ProductionRow) => ({
+  id: r.id,
+  kind: r.kind,
+  status: r.status,
+  claim: r.claim,
+  target_node_id: r.target_node_id,
+  related_node_id: r.related_node_id,
+  node_id: null,
+  sources: JSON.parse(r.sources) as string[],
+  notes: [],
+  created_at: iso(r.created_at),
+  updated_at: iso(r.updated_at),
+});
 
 const lite = (n: GraphNode) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, tier: n.tier, branch: n.branch, frontierFlag: n.frontierFlag ?? null });
 const dlite = (n: GraphNode) => ({ id: n.id, slug: n.slug, title: n.title, kind: n.kind, frontierFlag: n.frontierFlag ?? null });
@@ -368,6 +420,34 @@ export function rosLiveRoutes(g: RosGraph, now: () => number = Date.now, opts: R
       if (deleted) g.forget();
       g.saveProfile(v.value.role, v.value.birthYearBucket, at);
       return json({ profile: { role: v.value.role, birthYearBucket: v.value.birthYearBucket, consentStatus: "self", updatedAt: iso(at) }, deleted });
+    },
+    [`GET ${P.production.local}`]: () => {
+      const rows = g.productions();
+      const nodes: Record<string, { slug: string; title: string; kind: string }> = {};
+      for (const id of new Set(rows.flatMap((r) => [r.target_node_id, r.related_node_id]))) {
+        const n = id ? g.byId(id) : null;
+        if (n) nodes[n.id] = { slug: n.slug, title: n.title, kind: n.kind };
+      }
+      return json({ productions: rows.map(productionOut), nodes });
+    },
+    [`POST ${P.production.local}`]: async (req) => {
+      const b = await readBody(req);
+      if (!b) return bad(400, "bad_request");
+      if (b.status !== undefined && b.status !== "draft") return bad(400, "submit_on_web");
+      const prior = typeof b.id === "string" ? g.production(b.id) : null;
+      if (typeof b.id === "string" && !prior) return bad(404, "production_not_found");
+      const target = typeof b.targetNodeId === "string" ? b.targetNodeId : prior?.target_node_id;
+      if (!target || !g.byId(target)) return bad(404, "node_not_found");
+      const related = typeof b.relatedNodeId === "string" ? b.relatedNodeId : b.relatedNodeId === null ? null : prior?.related_node_id ?? null;
+      if (related && !g.byId(related)) return bad(404, "node_not_found");
+      const kind = PRODUCTION_KINDS.find((k) => k === b.kind) ?? prior?.kind ?? "production";
+      if (kind !== "production" && !related) return bad(400, "related_node_required");
+      const claim = typeof b.claim === "string" ? b.claim.trim().slice(0, MAX_CLAIM) || null : prior?.claim ?? null;
+      const sources = Array.isArray(b.sources)
+        ? JSON.stringify(b.sources.filter((s): s is string => typeof s === "string" && s.trim().length > 0).slice(0, MAX_SOURCES).map((s) => s.trim().slice(0, 2000)))
+        : prior?.sources ?? "[]";
+      const row = g.saveProduction({ id: prior?.id ?? randomUUID(), kind, status: "draft", claim, target_node_id: target, related_node_id: related, sources, updated_at: now() }, now());
+      return json({ production: productionOut(row) });
     },
     [`POST ${P.privacy.local}`]: async (req) => {
       const b = (await readBody(req)) as { action?: unknown; confirm?: unknown; save?: unknown } | null;

@@ -129,9 +129,9 @@ export const webRosSource = (opts: Omit<FetchSourceOptions, "token"> = {}): RosS
 
 export const localRosSource = (opts: FetchSourceOptions & { token: string }): RosSource => fetchSource("local", opts);
 
-export type RosLiveRoute = "graph" | "search" | "node" | "state" | "directions" | "connections" | "loop" | "profile" | "modules" | "route" | "privacy";
+export type RosLiveRoute = "graph" | "search" | "node" | "state" | "directions" | "connections" | "loop" | "profile" | "modules" | "route" | "privacy" | "production";
 
-export const ROS_LIVE_ROUTES: RosLiveRoute[] = ["graph", "search", "node", "state", "directions", "connections", "loop", "profile", "modules", "route", "privacy"];
+export const ROS_LIVE_ROUTES: RosLiveRoute[] = ["graph", "search", "node", "state", "directions", "connections", "loop", "profile", "modules", "route", "privacy", "production"];
 
 const WEB_PREFIX = "/api/research-os/";
 const LOCAL_PREFIX = "/local/ros/";
@@ -150,6 +150,7 @@ export const ROS_LIVE_PATHS: Record<RosLiveRoute, { web: string; local: string; 
   modules: livePath("modules", ["GET"]),
   route: livePath("route", ["GET"]),
   privacy: livePath("privacy", ["POST"]),
+  production: livePath("production", ["GET", "POST"]),
 };
 
 const bool: Check = (v) => typeof v === "boolean";
@@ -190,6 +191,7 @@ const LIVE_SHAPES: Record<RosLiveRoute, Check> = {
   modules: shape({ node: shape({ id: str, slug: str, title: str }), modules: arr(obj) }),
   route: shape({ target: obj, frontier: arr(obj), chain: arr(obj), gap: arr(obj), lowConfidenceFlags: arr(obj), engineFrontier: any, openQuestions: arr(obj), llmEnabled: bool, learner: str }),
   privacy: oneOf({ learnerId: str, exportedAt: str, tables: obj }, { learnerId: str, deletedAt: str, deleted: obj }),
+  production: oneOf({ productions: arr(shape({ id: str, kind: str, status: str, target_node_id: str })), nodes: obj }, { production: shape({ id: str, status: str }) }),
 };
 
 export function parseRosLive(route: RosLiveRoute, raw: unknown): unknown {

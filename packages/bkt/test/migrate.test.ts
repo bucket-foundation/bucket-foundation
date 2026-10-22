@@ -130,7 +130,7 @@ describe("migration 11", () => {
     const s = new Store(path, key);
     expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     const tables = s.db.query<{ name: string }, []>("select name from sqlite_master where type = 'table' and name like 'ros_%' order by name").all().map((t) => t.name);
-    expect(tables).toEqual(["ros_edges", "ros_items", "ros_nodes", "ros_profile", "ros_state"]);
+    expect(tables).toEqual(["ros_edges", "ros_items", "ros_nodes", "ros_productions", "ros_profile", "ros_state"]);
     expect(snapshot(s.db)).toEqual(before);
     expect(LOCAL_ONLY_TABLES).toContain("ros_state");
     expect(() => s.db.query("insert into ros_profile (id, updated_at) values (2, 0)").run()).toThrow();
@@ -175,7 +175,7 @@ describe("migration 13", () => {
     const path = join(dir, "bkt.db");
     v12Fixture(path);
     const s = new Store(path, newDataKey());
-    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(13);
+    expect(s.db.query<{ user_version: number }, []>("pragma user_version").get()!.user_version).toBe(SCHEMA_VERSION);
     const rows = s.db.query<{ id: string; prompt: string }, []>("select i.id, i.prompt from attempts a join items i on i.id = a.item_id order by a.at").all();
     expect(rows.map((r) => r.prompt)).toEqual(["first?", "second?", "other deck?", "legacy?"]);
     expect(rows.map((r) => r.id)).toEqual([

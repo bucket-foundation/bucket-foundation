@@ -164,3 +164,40 @@
   text-align: left;
   padding: 0.3rem 0.5rem 0.3rem 0;
 }
+
+.draft-form {
+  display: grid;
+  gap: 10px;
+}
+
+.draft-form label {
+  display: grid;
+  gap: 4px;
+}
+
+.idea-picker .hits {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.productions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.productions .production {
+  padding: 10px 0;
+  border-top: 1px solid var(--line, rgba(127, 127, 127, 0.25));
+}
+
+.productions .production .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}

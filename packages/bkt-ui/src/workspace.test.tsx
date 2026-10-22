@@ -183,7 +183,7 @@ describe("workspace tab bar", () => {
   test("the menu holds Workspaces after Research and lights it on every workspace tab", async () => {
     const { NAV } = await import("./nav");
     const labels = NAV.map((n) => n.label);
-    expect(labels).toHaveLength(17);
+    expect(labels).toHaveLength(18);
     expect(labels[labels.indexOf("Research") + 1]).toBe("Workspaces");
     expect(NAV.find((n) => n.label === "Workspaces")!.route).toEqual({ name: "workspace" });
     expect(href({ name: "workspace" })).toBe("#/workspace/tables");

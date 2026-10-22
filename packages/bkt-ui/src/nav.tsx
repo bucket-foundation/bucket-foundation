@@ -17,6 +17,7 @@ import { LibraryView } from "./views/Library";
 import { NotesView } from "./views/Notes";
 import { PathView } from "./views/Path";
 import { PrimesView } from "./views/Primes";
+import { ProductionsView } from "./views/Productions";
 import { DailyScreen, PracticeQuizView, QuizView } from "./views/Quiz";
 import { ResearchView } from "./views/Research";
 import { ReviewView } from "./views/Review";
@@ -47,6 +48,7 @@ export const NAV: { route: Route; label: string }[] = [
   { route: { name: "data" }, label: "Data" },
   { route: { name: "research" }, label: "Research" },
   { route: { name: "workspace" }, label: "Workspaces" },
+  { route: { name: "productions" }, label: "Productions" },
   { route: { name: "profile" }, label: "Profile" },
 ];
 
@@ -105,6 +107,7 @@ function Page({ api, route }: { api: Api; route: Route }) {
   if (route.name === "history") return <HistoryView api={api} />;
   if (route.name === "notes") return <NotesView api={api} />;
   if (route.name === "atlases") return <AtlasesView api={api} />;
+  if (route.name === "productions") return <ProductionsView />;
   if (route.name === "canon") return <CanonSearchView api={api} page="globe" find={route.find} />;
   if (route.name === "search") return <CanonSearchView api={api} page="search" id={route.id} />;
   if (route.name === "explore") return <ExploreView key={route.data ?? ""} api={api} initial={{ data: route.data, mode: route.mode, sel: route.sel }} />;

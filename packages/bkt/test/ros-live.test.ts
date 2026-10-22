@@ -88,20 +88,43 @@ describe("local Research OS graph", () => {
   test("privacy export returns every local table and delete wipes profile and progress after the confirm word", async () => {
     await call("profile", "", "POST", { role: "independent", birthYearBucket: "18plus" });
     await call("state", "", "POST", { nodeId: MOMENTUM, action: "open" });
+    await call("production", "", "POST", { targetNodeId: MOMENTUM, claim: "p = mv" });
     const out = await call("privacy", "", "POST", { action: "export" });
     expect(out.status).toBe(200);
     expect(() => parseRosLive("privacy", out.body)).not.toThrow();
     expect(out.body.tables.ros_profile[0].role).toBe("independent");
     expect(out.body.tables.ros_state.map((r: { node_id: string }) => r.node_id)).toEqual([MOMENTUM]);
+    expect(out.body.tables.ros_productions.map((r: { claim: string }) => r.claim)).toEqual(["p = mv"]);
     expect((await call("privacy", "", "POST", { action: "delete" })).status).toBe(400);
     expect((await call("privacy", "", "POST", { action: "delete", confirm: "delete" })).status).toBe(400);
     expect((await call("privacy", "", "POST", { action: "wipe" })).status).toBe(400);
     const del = await call("privacy", "", "POST", { action: "delete", confirm: "DELETE" });
     expect(del.status).toBe(200);
     expect(() => parseRosLive("privacy", del.body)).not.toThrow();
-    expect(del.body.deleted).toEqual({ ros_state: 1, ros_profile: 1 });
+    expect(del.body.deleted).toEqual({ ros_state: 1, ros_profile: 1, ros_productions: 1 });
+    expect((await call("production")).body.productions).toEqual([]);
     expect((await call("profile")).body).toEqual({ profile: null, game: null });
     expect(db.query("select count(*) as n from ros_nodes").get()).toEqual({ n: 4 });
+  });
+
+  test("production drafts save, update in place and list with their idea titles", async () => {
+    const FORCE = rosNodeId("02-physics", "force");
+    expect((await call("production")).body).toEqual({ productions: [], nodes: {} });
+    const made = await call("production", "", "POST", { targetNodeId: MOMENTUM, claim: "  p = mv  ", sources: ["Newton 1687", " ", 7] });
+    expect(made.status).toBe(200);
+    expect(() => parseRosLive("production", made.body)).not.toThrow();
+    expect(made.body.production).toMatchObject({ kind: "production", status: "draft", claim: "p = mv", target_node_id: MOMENTUM, sources: ["Newton 1687"], notes: [] });
+    const edited = await call("production", "", "POST", { id: made.body.production.id, claim: "momentum is conserved" });
+    expect(edited.body.production).toMatchObject({ id: made.body.production.id, claim: "momentum is conserved", sources: ["Newton 1687"] });
+    const list = await call("production");
+    expect(() => parseRosLive("production", list.body)).not.toThrow();
+    expect(list.body.productions).toHaveLength(1);
+    expect(list.body.nodes[MOMENTUM].slug).toBe(MOMENTUM);
+    expect((await call("production", "", "POST", { targetNodeId: MOMENTUM, kind: "extension" })).body).toEqual({ error: "related_node_required" });
+    expect((await call("production", "", "POST", { targetNodeId: MOMENTUM, kind: "extension", relatedNodeId: FORCE })).body.production.related_node_id).toBe(FORCE);
+    expect((await call("production", "", "POST", { targetNodeId: MOMENTUM, status: "submitted" })).body).toEqual({ error: "submit_on_web" });
+    expect((await call("production", "", "POST", { targetNodeId: "nope" })).status).toBe(404);
+    expect((await call("production", "", "POST", { id: "nope" })).status).toBe(404);
   });
 
   test("an export saved to the downloads folder never overwrites an earlier one", async () => {

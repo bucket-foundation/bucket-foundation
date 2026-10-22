@@ -497,7 +497,7 @@ async function mount(route: Route, stub: Stub) {
 
 const DAY = "2026-09-30";
 const COVERED: Route[] = [{ name: "learn" }, { name: "agents" }, { name: "words", deck: "de" }, { name: "words", deck: "de", lesson: 1 }, { name: "concepts" }, { name: "licence" }, { name: "path" }, { name: "quiz" }, { name: "practice" }, { name: "review" }, { name: "work" }, { name: "daily", day: DAY }, { name: "canon" }, { name: "search" }, { name: "search", id: 7 }, { name: "explore" }, { name: "notes" }, { name: "history" }, { name: "jobs" }, { name: "data" }, { name: "research" }, { name: "research", slug: "solvability-frontier", tab: "report" }, { name: "research", slug: "solvability-frontier", tab: "figures" }, { name: "research", slug: "solvability-frontier", tab: "data" }, { name: "research", slug: "solvability-frontier", tab: "records" }, { name: "research", slug: "solvability-frontier", tab: "paper" }, { name: "research", slug: "solvability-frontier", tab: "changes" }, { name: "workspace" }, { name: "workspace", type: "tables" }, { name: "workspace", type: "records" }, { name: "workspace", type: "figures" }, { name: "workspace", type: "papers" }, { name: "workspace", type: "graphs" }, { name: "workspace", type: "people" }, { name: "workspace", type: "decks" }, { name: "workspace", type: "maps" }, { name: "advisors" }, { name: "import" }, { name: "add" }, { name: "settings" }, { name: "library" }];
-const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }];
+const ROS_COVERED: Route[] = [{ name: "graph" }, { name: "graph", branch: "07-mind" }, { name: "node", slug: "02-physics:ph-entropy" }, { name: "progress" }, { name: "profile" }, { name: "productions" }];
 const COVERED_NAMES = [...COVERED, ...ROS_COVERED].map((r) => r.name);
 
 const PENDING: { name: Route["name"]; fixedBy: string }[] = [
@@ -508,7 +508,7 @@ const PENDING: { name: Route["name"]; fixedBy: string }[] = [
 describe("navigation", () => {
   test("reads in plain words and leaves out the screens whose actions are not built", async () => {
     const { NAV } = await import("./nav");
-    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Agents", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
+    expect(NAV.map((n) => n.label)).toEqual(["Learn", "Agents", "Path", "Quiz", "Review", "Work quiz", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Productions", "Profile"]);
     expect(NAV.flatMap((n) => DENY.filter((d) => d.re.test(n.label)))).toEqual([]);
   });
 
@@ -569,7 +569,7 @@ describe("navigation", () => {
 
   test("the work quiz joins the menu only for someone who has set it up", async () => {
     const { navFor } = await import("./nav");
-    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Profile"]);
+    expect(navFor(false).map((n) => n.label)).toEqual(["Learn", "Path", "Quiz", "Review", "Graph", "Progress", "Canon", "Explore", "Notes", "History", "Analyze data", "Data", "Research", "Workspaces", "Productions", "Profile"]);
     expect(navFor(true).map((n) => n.label)).toContain("Work quiz");
     expect(navFor(false, true).map((n) => n.label)).toContain("Agents");
   });
@@ -1312,6 +1312,36 @@ describe("Research OS views on the local store", () => {
     await v.act(async () => new Promise((r) => setTimeout(r, 60)));
     expect(v.host.querySelector(".workspace-tabs a.on")!.textContent).toBe("Nodes");
     expect(v.text().split("\n").slice(10)).toEqual([NODE_MISSING]);
+    await v.unmount();
+  });
+
+  test("a production draft saves on this computer and opens again for editing", async () => {
+    await useLocalStore();
+    const { NO_DRAFTS } = await import("./views/Productions");
+    const v = await mount({ name: "productions" }, empty());
+    const wait = () => v.act(async () => new Promise((r) => setTimeout(r, 60)));
+    await wait();
+    expect(v.text()).toContain(NO_DRAFTS);
+    const type = async (el: HTMLInputElement | HTMLTextAreaElement, value: string) => {
+      const proto = el instanceof HTMLTextAreaElement ? HTMLTextAreaElement.prototype : HTMLInputElement.prototype;
+      Object.getOwnPropertyDescriptor(proto, "value")!.set!.call(el, value);
+      await v.act(async () => void el.dispatchEvent(new Event("input", { bubbles: true })));
+      await wait();
+    };
+    await type(v.host.querySelector('input[type="search"]') as HTMLInputElement, "entropy");
+    await v.act(async () => (v.host.querySelector(".hits button") as HTMLButtonElement).click());
+    const [claim, sources] = Array.from(v.host.querySelectorAll("textarea"));
+    await type(claim, "Entropy never falls in a closed system");
+    await type(sources, "Clausius 1865");
+    await v.act(async () => void v.host.querySelector("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
+    await wait();
+    expect(v.host.querySelector(".error")).toBeNull();
+    expect(v.host.querySelectorAll("li.production").length).toBe(1);
+    expect(v.text()).toContain("Entropy never falls in a closed system");
+    expect(v.host.querySelector('li.production a[href="#/node/02-physics%3Aph-entropy"]')).not.toBeNull();
+    const list = await (await globalThis.fetch("http://127.0.0.1/api/research-os/production")).json();
+    expect(list.productions[0]).toMatchObject({ status: "draft", target_node_id: "02-physics:ph-entropy", sources: ["Clausius 1865"] });
+    expect(violations(v.host)).toEqual([]);
     await v.unmount();
   });
 

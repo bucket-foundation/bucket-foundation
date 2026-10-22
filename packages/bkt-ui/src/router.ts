@@ -30,6 +30,7 @@ export type Route =
   | { name: "search"; id?: number }
   | { name: "explore"; data?: string; mode?: string; sel?: string }
   | { name: "atlases" }
+  | { name: "productions" }
   | { name: "notes" }
   | { name: "history" }
   | { name: "data" }
@@ -83,7 +84,7 @@ function parseResearch(parts: string[]): Route {
   return RESEARCH_ITEM.test(parts[3]) ? { name: "research", slug: parts[1], tab, item: parts[3] } : { name: "research" };
 }
 
-const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "notes", "history", "data", "progress", "profile", "agents"]);
+const SIMPLE = new Set(["quiz", "review", "add", "settings", "library", "import", "advisors", "primes", "jobs", "work", "canon", "explore", "atlases", "productions", "notes", "history", "data", "progress", "profile", "agents"]);
 const BRANCH = /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/;
 const LANGUAGE = /^[a-z]{2,3}$/;
 const PAGE = /^[1-9]\d{0,3}$/;
