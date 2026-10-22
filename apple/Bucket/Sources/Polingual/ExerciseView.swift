@@ -43,35 +43,21 @@ struct OptionButton: View {
     let state: OptionState
     let action: () -> Void
 
-    var fill: Color { state == .right ? Color(light: 0x58CC02, dark: 0x58CC02) : Squiggle.surface }
-    var lip: Color { state == .right ? Color(light: 0x46A302, dark: 0x46A302) : Squiggle.line }
-    var ink: Color { state == .right ? Color(light: 0x173600, dark: 0x173600) : Squiggle.text }
-
     var body: some View {
         Button(action: action) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(text).strikethrough(state == .wrongPick).font(.system(.body, design: .rounded, weight: .semibold)).foregroundStyle(ink)
+                Text(text).strikethrough(state == .wrongPick).font(.body).foregroundStyle(Palette.ink)
                 ReadingLine(reading: reading, on: true)
             }
-            .padding(.horizontal, 14)
-            .padding(.vertical, 12)
-            .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
-            .background(fill, in: .rect(cornerRadius: 16))
-            .overlay(RoundedRectangle(cornerRadius: 16).stroke(lip, lineWidth: 2))
-            .background(lip, in: .rect(cornerRadius: 16).offset(y: 4))
-            .padding(.bottom, 4)
-            .opacity(state == .wrongPick ? 0.55 : 1)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .frame(maxWidth: .infinity, minHeight: 48, alignment: .leading)
+            .background(state == .right ? Palette.gold.opacity(0.85) : Palette.paper.opacity(0.6), in: .rect(cornerRadius: 8))
+            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Palette.rule))
+            .opacity(state == .wrongPick ? 0.6 : 1)
         }
-        .buttonStyle(SquigglePress())
+        .buttonStyle(.plain)
         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
-    }
-}
-
-struct SquigglePress: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .offset(y: configuration.isPressed ? 3 : 0)
-            .animation(Squiggle.bounce, value: configuration.isPressed)
     }
 }
 
@@ -80,8 +66,6 @@ struct ExerciseView: View {
     let readings: Bool
     let optionReadings: [String: Reading]
     let onDone: ([ExerciseResult]) -> Void
-    var switched = false
-    var setWords: [LangWord] = []
 
     @State private var picked: String?
     @State private var typed = ""
@@ -102,7 +86,10 @@ struct ExerciseView: View {
     }
 
     var header: some View {
-        DirectionHeader(from: ex.promptLang, to: ex.answerLang, caption: "\(ex.kind.label)\(ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? "")", switched: switched)
+        Text("\(ex.kind.label) · \(Lang.name(ex.lang))\(ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? "")".uppercased())
+            .font(.caption2.weight(.semibold))
+            .tracking(1.4)
+            .foregroundStyle(Palette.green)
     }
 
     var body: some View {
@@ -125,7 +112,7 @@ struct ExerciseView: View {
 
     var intro: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted)
+            Text("\(Lang.name(ex.promptLang)): \(ex.prompt)").font(.subheadline).foregroundStyle(Palette.muted)
             HStack(alignment: .firstTextBaseline) {
                 Text(ex.answer).font(.serif(.largeTitle)).foregroundStyle(Palette.ink).textSelection(.enabled)
                 PlayButton(text: ex.answer, lang: ex.answerLang)
@@ -134,7 +121,6 @@ struct ExerciseView: View {
             FamilyLine(ex: ex)
             FalseFriendNote(ex: ex)
             if let note = ex.note { Text(note).font(.caption).foregroundStyle(Palette.muted) }
-            if !setWords.isEmpty { WordSetTiles(words: setWords).padding(.top, 6) }
             Button("Got it") { onDone([]) }.buttonStyle(.borderedProminent).padding(.top, 6)
         }
     }
@@ -382,7 +368,7 @@ struct PromptView: View {
                     ReadingLine(reading: ex.promptReading, on: readings)
                 }
             case .sentence, .wordbank:
-                Text("**\(ex.prompt)**")
+                Text("\(Lang.name(ex.answerLang)) for **\(ex.prompt)**")
             case .cognate:
                 Text("Which \(Lang.name(ex.answerLang)) word shares a root with \(Lang.name(ex.promptLang)) **\(ex.prompt)**?")
             case .speak:
@@ -396,7 +382,7 @@ struct PromptView: View {
                     ReadingLine(reading: ex.promptReading, on: readings)
                 }
             default:
-                Text("**\(ex.prompt)**")
+                Text("\(Lang.name(ex.answerLang)) for **\(ex.prompt)**")
             }
         }
         .font(.serif(.title3))

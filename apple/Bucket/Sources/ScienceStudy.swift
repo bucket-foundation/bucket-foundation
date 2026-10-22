@@ -222,8 +222,7 @@ struct StudySession: View {
         let isNew = item.kind == .new
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                HStack(spacing: 8) {
-                    SubjectBadge(subject: .branch(entry))
+                HStack {
                     Eyebrow(text: isNew ? "New" : "Review")
                     Spacer()
                     Text("\(position + 1) / \(count)").font(.footnote).foregroundStyle(Palette.muted).monospacedDigit()
