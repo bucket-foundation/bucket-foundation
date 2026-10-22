@@ -1,6 +1,6 @@
-import Search from "./search";
-import Signup from "./signup";
-import { Tex } from "./tex";
+import Search from "../search";
+import Signup from "../signup";
+import { Tex } from "../tex";
 
 const STATS = [
   ["6.5M", "words indexed"],
