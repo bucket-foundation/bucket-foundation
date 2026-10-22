@@ -36,8 +36,8 @@ struct BucketApp: App {
                 .environment(gate)
                 .environment(reminders)
                 .onChange(of: phase) { _, p in
-                    guard p == .background else { return }
-                    Task { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
+                    guard p == .background || p == .active else { return }
+                    backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
                 }
                 .tint(Palette.green)
         }
@@ -57,6 +57,7 @@ enum Launch {
 }
 
 struct RootView: View {
+    @Environment(Reminders.self) private var reminders
     @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
     @Environment(ScienceStore.self) private var science
@@ -80,6 +81,7 @@ struct RootView: View {
             if new == .signedOut && old == .signedIn && account.endedByUser {
                 science.clearLocal()
                 langs.clearLocal()
+                reminders.reset()
             }
         }
         .task {
