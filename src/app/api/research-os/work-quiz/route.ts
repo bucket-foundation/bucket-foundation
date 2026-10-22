@@ -9,6 +9,10 @@ import { loadWorkSources } from "@/lib/research-os/work-quiz/sources-server";
 import { matchLearnItem } from "@/lib/research-os/work-quiz/learn-match";
 import { learnAtoms } from "@/lib/research-os/work-quiz/learn-index-server";
 
+async function systemLanguagesOrNone(learnerId: string): Promise<string[]> {
+  return loadSystemLanguages(learnerId).catch(() => []);
+}
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -27,7 +31,7 @@ const deps: QuizDeps = {
   loadCoverage,
   recordPicks,
   recordMiss,
-  loadLanguages: async (learnerId) => (await languageState(learnerId, loadLanguages, loadSystemLanguages)).languages,
+  loadLanguages: async (learnerId) => (await languageState(learnerId, loadLanguages, systemLanguagesOrNone)).languages,
 };
 
 async function staff(req: NextRequest): Promise<boolean> {
@@ -37,9 +41,9 @@ async function staff(req: NextRequest): Promise<boolean> {
 export const GET = withResearchOsRoute({ auth: "required" }, async (req, { learnerId }) => {
   if (!(await staff(req))) return bad(404, "not_found");
   const params = new URL(req.url).searchParams;
-  if (params.get("view") === "languages") return { ...(await languageState(learnerId, loadLanguages, loadSystemLanguages)), available: languagesByName() };
+  if (params.get("view") === "languages") return { ...(await languageState(learnerId, loadLanguages, systemLanguagesOrNone)), available: languagesByName() };
   if (params.get("view") === "stats") {
-    const [stats, sources, langs] = await Promise.all([loadStats(learnerId, new Date()), loadWorkSources(), languageState(learnerId, loadLanguages, loadSystemLanguages)]);
+    const [stats, sources, langs] = await Promise.all([loadStats(learnerId, new Date()), loadWorkSources(), languageState(learnerId, loadLanguages, systemLanguagesOrNone)]);
     return { stats, sources: sources.status, counts: { beads: sources.sources.beads.length, prs: sources.sources.prs.length, notes: sources.sources.notes.length }, ...langs, available: languagesByName() };
   }
   const mode = parseMode(params.get("mode") ?? "surprise");
@@ -63,7 +67,6 @@ export const PUT = withResearchOsRoute({ auth: "required" }, async (req, { learn
   if (!read.ok) return read.res;
   const languages = parseLanguages(read.value.languages);
   if (!languages) return bad(400, LANGUAGES_ERROR);
-  const fromSystems = await loadSystemLanguages(learnerId);
-  const chosen = await saveLanguages(learnerId, languages.filter((c) => !fromSystems.includes(c)));
+  const [chosen, fromSystems] = await Promise.all([saveLanguages(learnerId, languages), systemLanguagesOrNone(learnerId)]);
   return { languages: withSystemLanguages(chosen, fromSystems), chosen, fromSystems };
 });
