@@ -16,7 +16,7 @@ import { mathematicsChain } from "./mathematics-chain";
 import { occupationsTime } from "./occupations-time";
 import { technologyWaves } from "./technology-waves";
 
-export const ROW_SET_PACK_SCHEMA = "bucket.explore-rows-pack/1";
+export const ROW_SET_PACK_SCHEMA = "bucket.explore-rows-pack/2";
 export const ROW_SET_PACK_BUDGET_BYTES = 1_310_720;
 export const ROW_SET_PACK_FILE = "explore-rows.json";
 export const TABLES_DIR = "learning/corpus/progressions/tables";
@@ -86,7 +86,7 @@ export function reservedIds(repo: string): Set<string> {
 export async function countryCodes(tables: TableReader): Promise<Set<string>> {
   const out = new Set<string>();
   if (!tables.has(COUNTRY_TABLE)) return out;
-  for await (const row of tables.rows(COUNTRY_TABLE)) if (typeof row.iso2 === "string" && /^[A-Z]{2}$/.test(row.iso2)) out.add(row.iso2);
+  for await (const row of tables.rows(COUNTRY_TABLE)) if (typeof row.iso3 === "string" && /^[A-Z]{3}$/.test(row.iso3)) out.add(row.iso3);
   return out;
 }
 
@@ -177,6 +177,8 @@ export function assembleRowSetPack(sets: PackedRows[][], deny: Denylist, built: 
   const body = { schema: ROW_SET_PACK_SCHEMA, built, sets: entries } as const;
   const sha256 = createHash("sha256").update(JSON.stringify(body)).digest("hex");
   const pack: RowSetPack = { version: sha256.slice(0, 12), sha256, ...body };
+  const bytes = packBytes(pack);
+  if (bytes > ROW_SET_PACK_BUDGET_BYTES) throw new Error(`row set pack: ${bytes} bytes is over the ${ROW_SET_PACK_BUDGET_BYTES} byte budget`);
   assertClean(deny, pack, "the row set pack");
   assertClean(deny, rowSetText(entries.flatMap((e) => e.pages)), "the row set hit ids");
   return pack;
@@ -223,6 +225,8 @@ export function publicPackProblems(pack: RowSetPack, registry: LicenceEntry[] = 
     if (hasEmail(text)) out.push(`${set.id}: an email address`);
     if (/ipums/i.test(text)) out.push(`${set.id}: a row that cites IPUMS`);
   }
+  const bytes = packBytes(pack);
+  if (bytes > ROW_SET_PACK_BUDGET_BYTES) out.push(`the pack is ${bytes} bytes, over the ${ROW_SET_PACK_BUDGET_BYTES} byte budget`);
   return [...new Set(out)];
 }
 

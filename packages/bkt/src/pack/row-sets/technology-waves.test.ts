@@ -77,7 +77,7 @@ describe("technology waves", () => {
   test("a fixture gives a stable sha256", async () => {
     const pages = await technologyWaves(tables(), ctx);
     expect((await technologyWaves(tables(), ctx)).map((p) => p.sha256)).toEqual(pages.map((p) => p.sha256));
-    expect(pages[0].sha256).toBe("db448823d8615140b2bfeab6ea3a42e5cbb5bd56865b21f55e417de5b09f9ae4");
+    expect(pages[0].sha256).toBe("6548184f876455a22af6a95da54cb43fe6e52e0dffde14ddae47ea87746a4e96");
   });
 
   test("waves, curated technologies, training responses and changed occupations sit on one page, checked and unchecked apart", async () => {

@@ -228,9 +228,9 @@ describe("the public row set pack, built from the tables", () => {
     for (const set of pack.sets) expect(reserved.has(set.id)).toBe(false);
   });
 
-  test("the countries table gives 237 two-letter codes, and every placed row carries one of them with its point", async () => {
+  test("the countries table gives 236 three-letter codes, and every placed row carries one of them with its point", async () => {
     const codes = await countryCodes(fileTables(join(REPO, TABLES_DIR)));
-    expect(codes.size).toBe(237);
+    expect(codes.size).toBe(236);
     const placed = pack.sets.flatMap((s) => s.pages).filter((p) => p.frame.place !== null);
     expect(placed.map((p) => p.id)).toEqual(["education-by-country", "coverage-by-country"]);
     for (const page of placed) {
@@ -260,9 +260,9 @@ describe("the public row set pack, built from the tables", () => {
     const [rows] = setOf("coverage-by-country").pages;
     expect(rows.n).toBe(30);
     expect(rows.sources).toEqual(["bucket-corpus"]);
-    const us = rows.frame.place?.indexOf("US") as number;
+    const us = rows.frame.place?.indexOf("USA") as number;
     expect([rows.title[us], rows.sub[us], rows.frame.weight?.[us]]).toEqual(["United States of America", "32,898 rows, 3,639 checked", 32898]);
-    const turkey = rows.frame.place?.indexOf("TR") as number;
+    const turkey = rows.frame.place?.indexOf("TUR") as number;
     expect([rows.sub[turkey], rows.groups[rows.gi[turkey]].label, rows.frame.weight?.[turkey]]).toEqual(["0 rows, 0 checked", "No rows yet", null]);
   });
 
@@ -341,6 +341,8 @@ describe("the public build checks", () => {
     const file = write("explore-rows.json", pack);
     expect(readRowSetPack(file)?.sets).toHaveLength(6);
     expect(publicPackProblems(pack)).toEqual([]);
+    const padded = { ...pack, sets: [...pack.sets, ...Array.from({ length: Math.ceil(ROW_SET_PACK_BUDGET_BYTES / packBytes(pack)) }, () => pack.sets).flat()] };
+    expect(publicPackProblems(padded).some((p) => p.includes("over the 1310720 byte budget"))).toBe(true);
     expect(findStaffRowSets([file])).toEqual([]);
     expect(findKruse([file], [...deny.videoIds])).toEqual([]);
   });
@@ -377,6 +379,8 @@ describe("the public build checks", () => {
 
   test("a file of another shape is no row set pack", () => {
     expect(readRowSetPack(write("other.json", { schema: "bucket.explore-space/1" }))).toBeNull();
+    expect(ROW_SET_PACK_SCHEMA).toBe("bucket.explore-rows-pack/2");
+    expect(readRowSetPack(write("old.json", { ...pack, schema: "bucket.explore-rows-pack/1" }))).toBeNull();
     expect(readRowSetPack(write("broken.json", "{"))).toBeNull();
     expect(readRowSetPack(write("notes.txt", JSON.stringify(pack)))).toBeNull();
     rmSync(dir, { recursive: true, force: true });

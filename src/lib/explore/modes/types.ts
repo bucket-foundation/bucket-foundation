@@ -69,6 +69,8 @@ export interface RowFrame {
   place: (string | null)[] | null;
   points?: ([lat: number, lng: number] | null)[] | null;
   weight: (number | null)[] | null;
+  angle?: (number | null)[] | null;
+  radius?: (number | null)[] | null;
   edgeWeight: number[][] | null;
   edgeStated?: boolean[][] | null;
   cells: [x: string, y: string, state: 0 | 1 | 2][] | null;

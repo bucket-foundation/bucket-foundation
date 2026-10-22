@@ -1,6 +1,6 @@
 # Explore Data Modes and Research OS Workspaces
 
-Bead: bkt-khfw. Plan only. Status as of dev at 1af5a5011, 2026-10-22.
+Bead: bkt-khfw. Plan only. Status as of dev at 943c06692, 2026-10-22.
 
 ## Founder Ideas Still Open
 
@@ -78,7 +78,7 @@ Occupations and technologies already have row sets; they gain the angle, radius 
 
 ### Contract Change
 
-Add three optional fields to a row in `contract.ts`: `angle` (category bucket, 0 to 1), `radius` (depth or level, 0 to 1), `t` (year). Bump `ROW_SET_PACK_SCHEMA` from `bucket.explore-rows-pack/1` to `/2`. The reader in `index.ts` already returns null on a schema mismatch, so an old desktop build shows no row sets until it updates; the pack test asserts the new value and one fixture at the old value reads as null. A mode reads only these plus `group` and `links`. Each row set declares a mapper that fills them; bkt-0sj7.30 is that mapper set. Rule 5 moves from iso2 to iso3 to match `world-indicators.json`, closing the open note on A4.
+Add three optional fields to a row in `contract.ts`: `angle` (category bucket, 0 to 1), `radius` (depth or level, 0 to 1), `year`, already a row column. Bump `ROW_SET_PACK_SCHEMA` from `bucket.explore-rows-pack/1` to `/2`. The reader in `index.ts` already returns null on a schema mismatch, so an old desktop build shows no row sets until it updates; the pack test asserts the new value and one fixture at the old value reads as null. A mode reads only these plus `group` and `links`. Each row set declares a mapper that fills them; bkt-0sj7.30 is that mapper set. Rule 5 moves from iso2 to iso3 to match `world-indicators.json`, the country list `src/data/world-indicators-scoring.json` ranks, closing the open note on A4. The public pack build fails above its 1.25 MB budget.
 
 ### Mode Coverage
 
