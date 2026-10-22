@@ -8,7 +8,8 @@
 # small embedding / evidence / graph files that the runtime canon-search
 # + canon-graph + canon-evidence libraries actually read at request time.
 # (See src/lib/canon-search-index.ts and src/lib/canon-evidence.ts.)
-_intake/photons/                      # 20 GB regenerable kaikki cache
+_intake/photons/*
+!_intake/photons/all.json
 _intake/war-gov-pursue-release-01/    # 2 GB war.gov mirror
 _intake/aaro-mil-archive/             # 152 MB
 _intake/training/                     # 132 MB

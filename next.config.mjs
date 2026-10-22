@@ -23,6 +23,8 @@ const nextConfig = {
   },
 
   outputFileTracingIncludes: {
+    "/api/polingual": ["./_intake/photons/all.json"],
+    "/api/photon/**": ["./_intake/photons/all.json"],
     "/decks/[file]": ["./decks/catalog.json", "./decks/catalog.json.sig"],
     "/api/canon/search": [
       "./_intake/embeddings-v2/claims-vectors.npy",

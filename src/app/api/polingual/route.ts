@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { lookupPhoton, meansLike, PHOTON_PROVENANCE } from "@/lib/photon-index";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -34,6 +35,41 @@ function err(status: number, code: string, extra?: Record<string, unknown>) {
   );
 }
 
+function staticAnswer(op: string, params: URLSearchParams): Response | null {
+  const surface = params.get("surface") || "";
+  const lang = params.get("lang") || null;
+  const headers = { ...JSON_HEADERS, "x-polingual-upstream": "static" };
+  if (op === "semantic") {
+    const cross = params.get("cross") !== "0";
+    const { found, results } = meansLike(surface, lang, Number(params.get("k") ?? "10"), cross);
+    if (!found) return null;
+    return new Response(
+      JSON.stringify({ query: surface, lang, results, axis: "semantic", cross_lingual: cross }),
+      { status: 200, headers },
+    );
+  }
+  if (op === "lookup") {
+    const p = lookupPhoton(surface, lang);
+    if (!p) return null;
+    return new Response(
+      JSON.stringify({
+        found: true,
+        id: p.id,
+        surface: p.surface,
+        lang: p.lang,
+        meaning_en: p.meaning_en,
+        pos: p.pos ?? null,
+        ipa: p.ipa ?? null,
+        has_semantic: Boolean(p.means_like?.length),
+        has_phonetic: false,
+        provenance: PHOTON_PROVENANCE,
+      }),
+      { status: 200, headers },
+    );
+  }
+  return null;
+}
+
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const op = (url.searchParams.get("op") || "semantic").toLowerCase();
@@ -47,6 +83,8 @@ export async function GET(req: NextRequest) {
   }
 
   if (UPSTREAMS.length === 0) {
+    const local = staticAnswer(op, url.searchParams);
+    if (local) return local;
     return new Response(
       JSON.stringify(
         {
@@ -101,6 +139,8 @@ export async function GET(req: NextRequest) {
         clearTimeout(timer);
         continue;
       }
+      const local = staticAnswer(op, url.searchParams);
+      if (local) return local;
       return new Response(
         JSON.stringify(
           {
