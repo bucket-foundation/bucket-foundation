@@ -94,53 +94,100 @@ struct AtomRoute: Hashable {
 
 struct DeckView: View {
     @Environment(Library.self) private var library
+    @Environment(ScienceStore.self) private var science
     let entry: DeckEntry
-    @State private var deck: Deck?
-    @State private var practicing = false
+    @State private var deck: PreparedDeck?
+    @State private var studying: StudyLaunch?
+
+    static let shells = [("prereq", "Prerequisites", "The base everything rests on"), ("nucleus", "Nucleus", "The small set that opens the most"), ("frontier", "Frontier", "Where the branch is still moving")]
 
     var body: some View {
         Group {
             if let deck {
+                let state = science.state(deck.branch)
+                let today = science.route(deck)
                 List {
                     Section {
+                        DeckStats(summary: science.summary(deck))
                         Button {
-                            practicing = true
+                            studying = StudyLaunch(entry: entry, deck: deck)
                         } label: {
-                            Label("Practice this deck", systemImage: "play.fill").font(.headline)
+                            Label(today.isEmpty ? "Study" : "Study today (\(today.count))", systemImage: "play.fill").font(.headline)
                         }
-                        .listRowBackground(Palette.card)
                     }
+                    .listRowBackground(Palette.card)
                     Section {
-                        ForEach(deck.atoms) { atom in
-                            NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(atom.title).font(.serif(.body, weight: .medium)).foregroundStyle(Palette.ink)
-                                    Text(atom.summary).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
+                        if today.isEmpty {
+                            Text("Nothing due. Every card is scheduled ahead and today's new atoms are done.")
+                                .font(.subheadline).foregroundStyle(Palette.muted)
+                        }
+                        ForEach(today, id: \.id) { item in
+                            if let atom = deck.byId[item.id] {
+                                NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
+                                    HStack {
+                                        Text(atom.title).font(.serif(.body)).foregroundStyle(Palette.ink)
+                                        Spacer()
+                                        Text(item.kind == .review ? "REVIEW" : "NEW").font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
+                                    }
                                 }
-                                .padding(.vertical, 4)
+                            }
+                        }
+                    } header: {
+                        Eyebrow(text: "Today's route")
+                    }
+                    .listRowBackground(Palette.card)
+                    ForEach(Self.shells, id: \.0) { key, label, hint in
+                        let atoms = deck.atoms.filter { ($0.shell ?? "nucleus") == key }
+                        if !atoms.isEmpty {
+                            Section {
+                                ForEach(atoms) { atom in atomRow(atom, state) }
+                            } header: {
+                                Eyebrow(text: label)
+                            } footer: {
+                                Text(hint).font(.footnote).foregroundStyle(Palette.muted)
                             }
                             .listRowBackground(Palette.card)
                         }
-                    } header: {
-                        Eyebrow(text: "\(deck.atoms.count) foundations")
                     }
                 }
             } else if let error = library.deckErrors[entry.id] {
-                StateMessage(title: "This deck did not load", detail: error) { Task { deck = await library.deck(entry) } }
+                StateMessage(title: "This deck did not load", detail: error) { Task { deck = await library.prepared(entry) } }
             } else {
                 ProgressView()
             }
         }
         .paper()
         .navigationTitle(entry.title)
-        .task { deck = await library.deck(entry) }
-        .sheet(isPresented: $practicing) {
-            if let deck { PracticeSession(title: entry.title, cards: PracticeCard.cards(from: deck.atoms)) }
+        .task {
+            deck = await library.prepared(entry)
+            await science.load(library.scienceDecks.map(\.id))
+        }
+        .sheet(item: $studying) { StudySession(entry: $0.entry, deck: $0.deck) }
+    }
+
+    func atomRow(_ atom: Atom, _ state: EngineState) -> some View {
+        let started = state.cards.has(atom.id)
+        let open = started || atom.requires.allSatisfy { state.cards.has($0) }
+        return NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
+            HStack(spacing: 10) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(atom.title).font(.serif(.body, weight: .medium)).foregroundStyle(open ? Palette.ink : Palette.muted)
+                    if !open {
+                        Text("After \(atom.requires.count) prerequisite\(atom.requires.count == 1 ? "" : "s")").font(.caption).foregroundStyle(Palette.muted)
+                    } else if !atom.summary.isEmpty {
+                        Text(atom.summary).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
+                    }
+                }
+                Spacer(minLength: 0)
+                if started { MasteryBar(value: masteryFor(state, atom.id)) }
+            }
+            .padding(.vertical, 4)
         }
     }
 }
 
 struct AtomView: View {
+    @Environment(Library.self) private var library
     let route: AtomRoute
     @State private var depth = "core"
     @State private var practicing = false
@@ -184,8 +231,9 @@ struct AtomView: View {
         .paper()
         .inlineTitle()
         .sheet(isPresented: $practicing) {
-            PracticeSession(title: atom.title, cards: PracticeCard.cards(from: [atom]))
+            if let deck = library.prepared[route.deck.id] { AtomDrillSheet(deck: deck, atom: deck.byId[atom.id] ?? atom) }
         }
+        .task { _ = await library.prepared(route.deck) }
     }
 
     static func depthName(_ key: String) -> String {
