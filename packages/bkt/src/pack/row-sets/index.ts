@@ -133,6 +133,12 @@ export function parseRowSetPack(value: unknown): RowSetPack | null {
   return pack.sets.every((s) => s && typeof s.id === "string" && Array.isArray(s.pages)) ? (pack as RowSetPack) : null;
 }
 
+export function embeddedRowSets(value: unknown): RowSetPack {
+  const pack = parseRowSetPack(value);
+  if (!pack) throw new Error(`the embedded row set pack fails the ${ROW_SET_PACK_SCHEMA} schema check; rebuild with bun run pack:content`);
+  return pack;
+}
+
 export function isRowSetPackFile(file: string): boolean {
   return file.endsWith(`/${ROW_SET_PACK_FILE}`) || file === ROW_SET_PACK_FILE;
 }
