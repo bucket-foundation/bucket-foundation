@@ -4,7 +4,7 @@ import type { RowFrame } from "../../../../../src/lib/explore/modes/types";
 import { hasEmail } from "../../../../../src/lib/research-os/advisor-review";
 import { entryById, licenceRank, strictest, type LicenceEntry } from "./licences";
 
-export const ROWS_SCHEMA = "bucket.explore-rows/1";
+export const ROWS_SCHEMA = "bucket.explore-rows/2";
 export const REPLY_HITS = 600;
 export const REPLY_BYTES = 128 * 1024;
 export const SET_BYTES = 768 * 1024;
@@ -74,6 +74,8 @@ export interface RowDraft {
   place?: string | null;
   point?: [number, number] | null;
   weight?: number | null;
+  angle?: number | null;
+  radius?: number | null;
   atom?: string | null;
   verified?: boolean;
 }
@@ -202,6 +204,8 @@ export function packRows(draft: RowSetDraft, ctx: AssembleContext): PackedRows {
       place: column(draft.rows, (r) => r.place),
       points: column(draft.rows, (r) => r.point),
       weight: column(draft.rows, (r) => r.weight),
+      angle: column(draft.rows, (r) => r.angle),
+      radius: column(draft.rows, (r) => r.radius),
       edgeWeight: weighted ? draft.rows.map((r) => (r.links ?? []).map((l) => l.weight ?? 1)) : null,
       edgeStated: marked ? draft.rows.map((r) => (r.links ?? []).map((l) => l.stated === true)) : null,
       cells: draft.cells ?? null,
@@ -224,7 +228,7 @@ const IMAGE_URL = /\.(?:png|jpe?g|gif|svg|webp|avif|ico|bmp)(?:[?#]|$)|^data:ima
 const WITHHELD_LABEL = /\bHRAF\b|Human Relations Area Files|Outline of Cultural Materials|Prop(?:a|ae|æ)dia/i;
 const CODE_ONLY = /^[A-Za-z0-9 ._:/-]{1,40}$/;
 const ATOM = /^atom:[a-z0-9][a-z0-9-]{0,63}\/[a-z0-9][a-z0-9-]{0,127}$/;
-const PLACE = /^[A-Z]{2}$/;
+const PLACE = /^[A-Z]{3}$/;
 const COLOR = /^#[0-9a-f]{6}$/i;
 const HIT_KEY = /^[A-Za-z0-9._-]{1,160}$/;
 
@@ -249,13 +253,15 @@ export function checkRows(rows: PackedRows, ctx: AssembleContext): void {
   if (typeof rows.idp !== "string" || !rows.idp.startsWith(`row:${rows.id}:`) || rows.idp.includes("/")) fail(id, 2, `the id prefix is ${rows.idp}`);
   const columns: Record<string, unknown[] | null> = {
     key: rows.key, title: rows.title, sub: rows.sub, gi: rows.gi, si: rows.si, li: rows.li, year: rows.year, url: rows.url, links: rows.links,
-    "frame.from": rows.frame.from, "frame.to": rows.frame.to, "frame.place": rows.frame.place, "frame.points": rows.frame.points ?? null, "frame.weight": rows.frame.weight,
+    "frame.from": rows.frame.from, "frame.to": rows.frame.to, "frame.place": rows.frame.place, "frame.points": rows.frame.points ?? null, "frame.weight": rows.frame.weight, "frame.angle": rows.frame.angle ?? null, "frame.radius": rows.frame.radius ?? null,
     "frame.edgeWeight": rows.frame.edgeWeight, "frame.edgeStated": rows.frame.edgeStated ?? null, "frame.atom": rows.frame.atom, "frame.verified": rows.frame.verified,
   };
   for (const [name, col] of Object.entries(columns)) {
     if (col === null && name.startsWith("frame.")) continue;
     if (!Array.isArray(col) || col.length !== n) fail(id, 3, `column ${name} has length ${Array.isArray(col) ? col.length : "none"}, and the set has ${n} rows`);
   }
+  for (const name of ["angle", "radius"] as const) rows.frame[name]?.forEach((v, i) => v === null || (Number.isFinite(v) && v >= 0 && v <= 1) || fail(id, 3, `${name}[${i}] is outside 0 to 1`));
+  rows.year.forEach((y, i) => y === null || Number.isInteger(y) || fail(id, 3, `year[${i}] is no whole year`));
   const inRange = (i: unknown, size: number) => Number.isInteger(i) && (i as number) >= 0 && (i as number) < size;
   rows.gi.forEach((g, i) => inRange(g, rows.groups.length) || fail(id, 3, `gi[${i}] is outside groups`));
   rows.si.forEach((s, i) => inRange(s, rows.sources.length) || fail(id, 3, `si[${i}] is outside sources`));
@@ -288,7 +294,7 @@ export function checkRows(rows: PackedRows, ctx: AssembleContext): void {
     if (a.licence !== entry.licence || typeof a.termsRead !== "boolean" || (audienceOf(rows) === "public" && entry.public === "none" && !sources.has(a.source))) fail(id, 4, `the credit ${a.source} does not match its registry source`);
   });
 
-  if (rows.frame.place) rows.frame.place.forEach((p) => p === null || (PLACE.test(p) && ctx.places.has(p)) || fail(id, 5, `place ${p} is no ISO 3166 two-letter code in the country file`));
+  if (rows.frame.place) rows.frame.place.forEach((p) => p === null || (PLACE.test(p) && ctx.places.has(p)) || fail(id, 5, `place ${p} is no ISO 3166 three-letter code in the country file`));
   if (rows.frame.points) {
     rows.frame.points.forEach((point, i) => {
       if (point === null) return;
@@ -391,7 +397,7 @@ function pickRows(rows: PackedRows, picked: number[], counts: { total: number; p
     links,
     frame: {
       ...rows.frame,
-      from: maybe(rows.frame.from), to: maybe(rows.frame.to), place: maybe(rows.frame.place), points: maybe(rows.frame.points), weight: maybe(rows.frame.weight),
+      from: maybe(rows.frame.from), to: maybe(rows.frame.to), place: maybe(rows.frame.place), points: maybe(rows.frame.points), weight: maybe(rows.frame.weight), angle: maybe(rows.frame.angle), radius: maybe(rows.frame.radius),
       edgeWeight: rows.frame.edgeWeight ? edgeWeight : null,
       edgeStated: rows.frame.edgeStated ? edgeStated : null,
       atom: maybe(rows.frame.atom), verified: maybe(rows.frame.verified),

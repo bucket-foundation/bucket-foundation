@@ -10,7 +10,7 @@ export const FIXTURE_REGISTRY: LicenceEntry[] = [
 ];
 
 export function fixtureContext(over: Partial<AssembleContext> = {}): AssembleContext {
-  return { registry: FIXTURE_REGISTRY, modes: MODE_IDS, reserved: new Set(["canon", "sample", "advisors"]), places: new Set(["US", "CL"]), atoms: null, built: "fixture", ...over };
+  return { registry: FIXTURE_REGISTRY, modes: MODE_IDS, reserved: new Set(["canon", "sample", "advisors"]), places: new Set(["USA", "CHL"]), atoms: null, built: "fixture", ...over };
 }
 
 export function repoFixtureContext(): AssembleContext {

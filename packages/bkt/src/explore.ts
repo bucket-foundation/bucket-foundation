@@ -214,13 +214,18 @@ export function exploreDeps(explore: ExploreStore, canon: CanonStore): ExploreSe
 }
 
 export class SavedStore {
-  constructor(private db: Database) {
+  constructor(private db: Database, private aliases: Record<string, string> = {}) {
     db.run("create table if not exists explore_saved (k text primary key, v text not null)");
   }
 
   get(): SavedState {
     const row = this.db.query<{ v: string }, []>("select v from explore_saved where k = 'list'").get();
-    return parseStored(row?.v).state;
+    const state = parseStored(row?.v).state;
+    if (!state.items.some((item) => item.id in this.aliases)) return state;
+    const items = state.items.map((item) => (item.id in this.aliases ? { ...item, id: this.aliases[item.id] } : item)).filter((item, n, all) => all.findIndex((o) => o.id === item.id) === n);
+    const moved = { ...state, items };
+    this.db.query("insert into explore_saved (k, v) values ('list', ?) on conflict (k) do update set v = excluded.v").run(serializeSaved(moved));
+    return moved;
   }
 
   put(raw: string): SavedState | null {

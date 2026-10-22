@@ -41,18 +41,18 @@ const CELLS = { cells: [
   { dimension: "domain", cell: "IN", label: "A domain that shares a code", rows_total: 7, rows_verified: 7 },
 ] };
 const ctx = repoFixtureContext();
-const placed = { ...ctx, places: new Set(["IN", "CL", "US", "TR"]) };
+const placed = { ...ctx, places: new Set(["IND", "CHL", "USA", "TUR"]) };
 const tables = () => memoryTables({ countries: COUNTRIES, world_indicators: INDICATORS }, { completeness: CELLS });
 
 describe("country points", () => {
   test("a point comes from a Natural Earth row with both codes and a latitude and longitude on the globe", async () => {
     const points = await countryPoints(tables(), ctx);
-    expect(points.get("IND")).toEqual({ iso2: "IN", name: "India", point: [22.9, 79.6] });
+    expect(points.get("IND")).toEqual({ iso2: "IN", iso3: "IND", name: "India", point: [22.9, 79.6] });
     expect(points.get("IN")).toBe(points.get("IND") as never);
     expect(points.has("XXX")).toBe(false);
     expect(points.has("ZZZ")).toBe(false);
     expect((await countryPoints(memoryTables({}), ctx)).size).toBe(0);
-    expect([...(await countryCodes(tables()))].sort()).toEqual(["CL", "IN", "TR", "US", "XX", "ZZ"]);
+    expect([...(await countryCodes(tables()))].sort()).toEqual(["CHL", "IND", "TUR", "USA", "XXX", "ZZZ"]);
     expect((await countryCodes(memoryTables({}))).size).toBe(0);
   });
 });
@@ -61,7 +61,7 @@ describe("education by country", () => {
   test("a fixture gives a stable sha256", async () => {
     const [rows] = await educationByCountry(tables(), placed);
     expect((await educationByCountry(tables(), placed))[0].sha256).toBe(rows.sha256);
-    expect(rows.sha256).toBe("3bdab6da1d53d64b726690709937197aeaab0f7d1c543f90b144035f731676c6");
+    expect(rows.sha256).toBe("1f46c66091917303870ffebc352e9371e92c14a67a9c088230a2c905cb647a15");
   });
 
   test("each country is one placed hit with its schooling line, grouped by the age primary school starts", async () => {
@@ -71,7 +71,7 @@ describe("education by country", () => {
     expect(rows.title).toEqual(["Chile", "India", "Turkey", "United States of America"]);
     expect(rows.sub).toEqual(["Primary from age 6 for 6 years", "Primary from age 6 for 5 years, secondary from age 11 for 7 years, 8 years compulsory", "Primary from age 4", "Secondary for 6 years, 1 year compulsory"]);
     expect(rows.gi.map((g) => rows.groups[g].id)).toEqual(["age-6", "age-6", "age-other", "age-none"]);
-    expect(rows.frame.place).toEqual(["CL", "IN", "TR", "US"]);
+    expect(rows.frame.place).toEqual(["CHL", "IND", "TUR", "USA"]);
     expect(rows.frame.points).toEqual([[-37.7, -71.4], [22.9, 79.6], [39.1, 35.0], [39.8, -98.6]]);
     expect(rows.frame.weight).toEqual([6, 12, null, 6]);
     expect(rows.year).toEqual([2023, 2024, 2023, 2023]);
@@ -98,17 +98,17 @@ describe("education by country", () => {
 describe("coverage by country", () => {
   test("a fixture gives a stable sha256", async () => {
     const [rows] = await coverageByCountry(tables(), placed);
-    expect(rows.sha256).toBe("5cbc857f13c2dab318b003bf90e910e17ea7ddf507aa0a98b3e1cd13a54e6046");
+    expect(rows.sha256).toBe("aef83aa0ec1827c91aa55a455488555e16a34712824cda9379f4cd60687d7e3a");
   });
 
   test("each geography cell with a point is one hit with its row counts", async () => {
     const [rows] = await coverageByCountry(tables(), placed);
     expect(rows.id).toBe(COVERAGE_BY_COUNTRY_ID);
-    expect(rowKeys(rows)).toEqual(["IN", "US", "TR", "CL"]);
+    expect(rowKeys(rows)).toEqual(["IND", "USA", "TUR", "CHL"]);
     expect(rows.sub).toEqual(["101 rows, 57 checked", "32,898 rows, 3,639 checked", "0 rows, 0 checked", "1 row, 1 checked"]);
     expect(rows.gi.map((g) => rows.groups[g].id)).toEqual(["most", "some", "none", "most"]);
     expect(rows.frame.weight).toEqual([101, 32898, null, 1]);
-    expect(rows.frame.place).toEqual(["IN", "US", "TR", "CL"]);
+    expect(rows.frame.place).toEqual(["IND", "USA", "TUR", "CHL"]);
     expect(rows.title[1]).toBe("United States of America");
     expect([rows.sources, rows.licence]).toEqual([["bucket-corpus"], "CC-BY-4.0"]);
     expect(rows.attributions.map((a) => a.rows)).toEqual([4, 4]);
@@ -121,9 +121,9 @@ describe("places and points in the contract", () => {
   const one = (over: Partial<RowDraft>): RowDraft => ({ key: "one", title: "T", sub: "", group: "a", source: "open", ...over });
 
   test("a point needs a place code and a latitude and longitude on the globe", () => {
-    expect(assembleRowSet([fixtureDraft({ modes: ["earth"], rows: [one({ place: "CL", point: [-37.7, -71.4] })] })], fixture)[0].frame.points).toEqual([[-37.7, -71.4]]);
+    expect(assembleRowSet([fixtureDraft({ modes: ["earth"], rows: [one({ place: "CHL", point: [-37.7, -71.4] })] })], fixture)[0].frame.points).toEqual([[-37.7, -71.4]]);
     expect(() => assembleRowSet([fixtureDraft({ modes: ["earth"], rows: [one({ point: [1, 1] })] })], fixture)).toThrow(/rule 5: row 0 carries a point and no place code/);
-    for (const point of [[91, 0], [0, 181], [Number.NaN, 0]] as [number, number][]) expect(() => assembleRowSet([fixtureDraft({ modes: ["earth"], rows: [one({ place: "CL", point })] })], fixture)).toThrow(/rule 5/);
+    for (const point of [[91, 0], [0, 181], [Number.NaN, 0]] as [number, number][]) expect(() => assembleRowSet([fixtureDraft({ modes: ["earth"], rows: [one({ place: "CHL", point })] })], fixture)).toThrow(/rule 5/);
   });
 
   test("an extra credit names a registry source, shows once and may not be restricted in a public set", () => {
