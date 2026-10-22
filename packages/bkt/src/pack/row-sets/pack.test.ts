@@ -8,7 +8,7 @@ import { findStaff, findStaffRowSets } from "../../../scripts/check-no-staff";
 import { assertClean, buildDenylist } from "../rights";
 import { figureUrl, occupationKey, STAFF_ONLY_EVIDENCE } from "./technology-waves";
 import { assembleRowSet, checkRows, hitIds, packedBytes, pageCount, pageRows, REPLY_BYTES, REPLY_HITS, rowKey, rowKeys, rowSetText, SET_BYTES, type RowDraft } from "./contract";
-import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, packWarnings, countryCodes, describeRowSets, fileTables, packBytes, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
+import { assembleRowSetPack, buildRowSetPack, capWarnings, checkCaps, packWarnings, countryCodes, describeRowSets, fileTables, packBytes, parseRowSetPack, publicPackProblems, readRowSetPack, replies, repoContext, reservedIds, ROW_SET_PACK_BUDGET_BYTES, ROW_SET_PACK_SCHEMA, setBytes, TABLES_DIR, WARN_SHARE, type RowSetPack } from "./index";
 import { fixtureContext, fixtureDraft } from "./test-fixtures";
 
 const REPO = resolve(import.meta.dir, "../../../../..");
@@ -228,6 +228,11 @@ describe("the public row set pack, built from the tables", () => {
     for (const set of pack.sets) expect(reserved.has(set.id)).toBe(false);
   });
 
+  test("old two-letter coverage hit ids alias to their three-letter ids", () => {
+    expect(pack.aliases["row:coverage-by-country:US"]).toBe("row:coverage-by-country:USA");
+    expect(Object.values(pack.aliases).every((id) => id.startsWith("row:coverage-by-country:"))).toBe(true);
+  });
+
   test("the countries table gives 236 three-letter codes, and every placed row carries one of them with its point", async () => {
     const codes = await countryCodes(fileTables(join(REPO, TABLES_DIR)));
     expect(codes.size).toBe(236);
@@ -381,6 +386,12 @@ describe("the public build checks", () => {
     expect(readRowSetPack(write("other.json", { schema: "bucket.explore-space/1" }))).toBeNull();
     expect(ROW_SET_PACK_SCHEMA).toBe("bucket.explore-rows-pack/2");
     expect(readRowSetPack(write("old.json", { ...pack, schema: "bucket.explore-rows-pack/1" }))).toBeNull();
+    const stale = write("explore-rows.json", { ...pack, schema: "bucket.explore-rows-pack/1" });
+    expect(findStaffRowSets([stale]).map((h) => h.marker)).toEqual(["a row set pack that fails the schema check"]);
+    expect(findKruse([stale], []).map((h) => h.marker)).toEqual(["a row set pack that fails the schema check"]);
+    expect(parseRowSetPack(pack)).toBe(pack);
+    expect(parseRowSetPack({ ...pack, aliases: undefined })).toBeNull();
+    expect(parseRowSetPack({ ...pack, sets: [{ id: 1 }] })).toBeNull();
     expect(readRowSetPack(write("broken.json", "{"))).toBeNull();
     expect(readRowSetPack(write("notes.txt", JSON.stringify(pack)))).toBeNull();
     rmSync(dir, { recursive: true, force: true });

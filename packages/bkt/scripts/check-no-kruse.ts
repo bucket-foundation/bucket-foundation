@@ -4,7 +4,7 @@ import { claimMeta, readInputs } from "../src/pack/canon";
 import { deniedSourceMarkers, readExploreInputs, splitSources } from "../src/pack/explore";
 import { buildDenylist, DENIED_NAME, DENIED_PREFIXES, denyRow, marker, withDeniedFiles } from "../src/pack/rights";
 import { rowSetText } from "../src/pack/row-sets/contract";
-import { readRowSetPack } from "../src/pack/row-sets/index";
+import { isRowSetPackFile, readRowSetPack } from "../src/pack/row-sets/index";
 
 const REPO = resolve(import.meta.dir, "../../..");
 function files(p: string): string[] {
@@ -37,6 +37,7 @@ export function findKruse(targets: string[], markers: string[]): { file: string;
   const hits: { file: string; marker: string }[] = [];
   for (const file of targets.flatMap(files)) {
     const pack = readRowSetPack(file);
+    if (!pack && isRowSetPackFile(file)) hits.push({ file, marker: "a row set pack that fails the schema check" });
     const expanded = pack ? Buffer.from(rowSetText(pack.sets.flatMap((set) => set.pages)), "utf8").toString("latin1") : "";
     const body = `${readFileSync(file).toString("latin1")}\n${expanded}`;
     if (DENIED_NAME.test(body)) hits.push({ file, marker: "the denied name" });

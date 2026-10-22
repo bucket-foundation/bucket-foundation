@@ -2,7 +2,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { buildResearchPack, loadReportLib, readRecords, type ReportLib, type ReportRecord } from "../src/pack/research";
 import { rowSetText } from "../src/pack/row-sets/contract";
-import { publicPackProblems, readRowSetPack } from "../src/pack/row-sets/index";
+import { isRowSetPackFile, publicPackProblems, readRowSetPack } from "../src/pack/row-sets/index";
 
 const REPO = resolve(import.meta.dir, "../../..");
 export const STAFF = ["solvability-atlas-data.json", "software-atlas-data.json", "patents-design-data.json", "solvability-similarity-data.json", "solvability-neighbors-data.json"].map((f) => join(REPO, "src/lib/research-os", f));
@@ -117,7 +117,8 @@ export function findStaff(targets: string[], markers = staffMarkers()): { file: 
 export function findStaffRowSets(targets: string[]): { file: string; marker: string }[] {
   return targets.flatMap(files).flatMap((file) => {
     const pack = readRowSetPack(file);
-    return pack ? publicPackProblems(pack).map((marker) => ({ file, marker })) : [];
+    if (!pack) return isRowSetPackFile(file) ? [{ file, marker: "a row set pack that fails the schema check" }] : [];
+    return publicPackProblems(pack).map((marker) => ({ file, marker }));
   });
 }
 

@@ -4,7 +4,7 @@ import pack from "../../content/pack.json" with { type: "json" };
 import langCorpus from "../../content/lang-corpus.json" with { type: "json" };
 import canonPack from "../../content/canon.json" with { type: "json" };
 import explorePack from "../../content/explore.json" with { type: "json" };
-import rowSetPack from "../../content/explore-rows.json" with { type: "json" };
+import embeddedRowSetPack from "../../content/explore-rows.json" with { type: "json" };
 import wordPack from "../../content/words.json" with { type: "json" };
 import deckCatalog from "../../content/deck-catalog.json" with { type: "json" };
 import researchIndex from "../../content/research-index.json" with { type: "json" };
@@ -48,8 +48,8 @@ import { reportRows, reportSentences } from "../hai/report-text";
 import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
-import { exploreRoutes, ExploreStore, SAVED_BODY_BYTES, syncExplore, syncRowSets } from "../explore";
-import type { RowSetPack } from "../pack/row-sets/index";
+import { exploreRoutes, ExploreStore, SavedStore, SAVED_BODY_BYTES, syncExplore, syncRowSets } from "../explore";
+import { parseRowSetPack, ROW_SET_PACK_SCHEMA } from "../pack/row-sets/index";
 import type { CanonPack } from "../pack/canon";
 import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter, rowSetAdapter } from "../data";
 import type { ExplorePack } from "../pack/explore";
@@ -354,7 +354,9 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   syncCanon(session.store.db, canonPack as CanonPack);
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
-  syncRowSets(session.store.db, rowSetPack as unknown as RowSetPack);
+  const rowSetPack = parseRowSetPack(embeddedRowSetPack);
+  if (!rowSetPack) throw new Error(`the embedded row set pack fails the ${ROW_SET_PACK_SCHEMA} schema check; rebuild with bun run pack:content`);
+  syncRowSets(session.store.db, rowSetPack);
   syncRosGraph(session.store.db, content.version, content.atoms ?? {});
   const canon = new CanonStore(session.store.db);
   const explore = new ExploreStore(session.store.db);
@@ -365,7 +367,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
     learningAdapter(content),
     canonAdapter(canonPack as CanonPack),
     exploreAdapter(explorePack as unknown as ExplorePack),
-    ...(rowSetPack as unknown as RowSetPack).sets.map(rowSetAdapter),
+    ...rowSetPack.sets.map(rowSetAdapter),
     ownAdapter(session.store, { analyses: () => runner.list().length }),
   ];
   const data = dataRoutes(adapters);
@@ -397,7 +399,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...windowRoutes(win.routes),
       ...data.routes,
       ...canonRoutes(canon, { holdsDoi: (doi) => explore.hasPrimaryPaper(doi), graph: (canonPack as CanonPack).graph ?? null }),
-      ...exploreRoutes(explore, canon),
+      ...exploreRoutes(explore, canon, new SavedStore(explore.database(), rowSetPack.aliases)),
       ...localRoutes(session.store, { content, langCorpus, saveExport: saveTextToDownloads() }),
       ...syncRoutes(remote, { label: () => hostname(), onError: syncTrouble, pullProgress }),
       ...rosRoutes(BUNDLED_ROS, (e) => console.error(`bkt serve: ${e.message}`)),
@@ -407,7 +409,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
       ...researchRoutes(research, researchTrouble),
       ...researchWorkRoutes(researchWork, researchTrouble, ownOutputs),
       ...alignmentRoutes(alignmentReview as unknown as AlignmentReviewPack),
-      ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => (rowSetPack as unknown as RowSetPack).sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0]?.modes ?? [] })), generated: () => generatedFigures(renders) }, researchTrouble),
+      ...workspaceRoutes({ research, changedPaths: (slug) => researchWork.changedPaths(slug), datasets: () => adapters.map((a) => a.info()), rowSets: () => rowSetPack.sets.map((s) => ({ id: s.id, label: s.label, licence: s.licence, modes: s.pages[0]?.modes ?? [] })), generated: () => generatedFigures(renders) }, researchTrouble),
       ...generationRoutes(renders, researchTrouble),
       ...researchPageRoutes(new ResearchPages({ research, runner: pagesRunner, consent: new ConsentStore(), cache: join(researchCacheRoot(), "pages"), os: platformFor().os, built: (slug, path) => researchWork.built(slug, path) }), researchTrouble),
       ...researchBuildRoutes(builds, researchTrouble),
