@@ -116,7 +116,7 @@ struct PlacementView: View {
                         .foregroundStyle(Palette.muted)
                     Text("Question \(answers.count + 1) · tier \(JSON.number(item.tier))").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("\(Lang.name(lang)) for **\(item.forms[system.root] ?? "")**").font(.serif(.title3))
+                        Text("**\(item.forms[system.root] ?? "")**").font(.serif(.title3))
                         if mode == .produce {
                             HStack {
                                 TextField("Answer in \(Lang.name(lang))", text: $typed)
