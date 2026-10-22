@@ -79,6 +79,33 @@ func bodyAction(_ r: URLRequest) -> String? {
 @Suite struct AccountTests {
     let tokens = json(["access_token": "a1", "refresh_token": "r1", "expires_at": 4_000_000_000, "user_id": "u1"])
 
+    func signedIn(_ transport: StubTransport, expiresIn: Int = 3600) -> Account {
+        let live = Session(accessToken: "tok", refreshToken: "r0", expiresAt: Int(Date.now.timeIntervalSince1970) + expiresIn, userId: "u1")
+        return Account(api: BucketAPI(transport: transport), store: MemorySessionStore(live))
+    }
+
+    @Test func endingsTellWhoEndedTheSession() async {
+        let out = signedIn(StubTransport { _ in (200, json(["ok": true])) })
+        out.signOut()
+        #expect(out.ending == .signedOut && out.endedByUser)
+        let deleted = signedIn(StubTransport { _ in (200, json(["ok": true])) })
+        await deleted.deleteAccount()
+        #expect(deleted.ending == .deleted && deleted.endedByUser)
+        let expired = signedIn(StubTransport { _ in (401, json(["error": "revoked"])) }, expiresIn: 10)
+        _ = await expired.freshToken()
+        #expect(expired.ending == .expired && !expired.endedByUser)
+        #expect(expired.stage == .signedOut)
+    }
+
+    @Test func signOutAfterSyncRunsTheFlushFirst() async {
+        let account = signedIn(StubTransport { _ in (200, json(["ok": true])) })
+        let order = LockedBox<[String]>([])
+        account.beforeSignOut = { order.mutate { $0.append(account.session == nil ? "after" : "before") } }
+        await account.signOutAfterSync()
+        #expect(order.value == ["before"])
+        #expect(account.stage == .signedOut)
+    }
+
     @Test func codeThenVerifyStoresSession() async {
         let ok = tokens
         let api = BucketAPI(transport: StubTransport { r in

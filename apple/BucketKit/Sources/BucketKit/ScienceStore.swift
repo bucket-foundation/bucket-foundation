@@ -81,11 +81,14 @@ public final class ScienceStore {
     }
 
     public func load(_ branches: [String]) async {
-        if let loading { return await loading.value }
+        while let running = loading {
+            await running.value
+            if loading == running { loading = nil }
+        }
         let task = Task { await self.loadNow(branches) }
         loading = task
         await task.value
-        loading = nil
+        if loading == task { loading = nil }
     }
 
     func loadNow(_ branches: [String]) async {
@@ -136,6 +139,7 @@ public final class ScienceStore {
             saveState = .localOnly
             return
         }
+        if Task.isCancelled { return }
         saveState = .saving
         let mine = state(branch)
         let merged = server[branch].map { mergeState(mine, EngineState(js: $0["data"])) } ?? mine
@@ -144,7 +148,20 @@ public final class ScienceStore {
             writeLocal(branch, merged)
         }
         let status = await api.progressPush(token: t, branch: branch, data: merged.js)
+        if Task.isCancelled && !(200..<300).contains(status) {
+            saveState = .idle
+            return
+        }
         saveState = status == 403 ? .needsProfile : (200..<300).contains(status) ? .synced : .localOnly
+    }
+
+    public func clearLocal() {
+        for t in pushes.values { t.cancel() }
+        pushes = [:]
+        disk.removeAll()
+        states = [:]
+        pulled = false
+        saveState = .idle
     }
 
     public func syncAfterSignIn() async {

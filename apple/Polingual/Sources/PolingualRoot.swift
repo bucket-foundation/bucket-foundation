@@ -2,6 +2,7 @@ import BucketKit
 import SwiftUI
 
 struct PolingualRoot: View {
+    @Environment(Reminders.self) private var reminders
     @Environment(Account.self) private var account
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
@@ -27,7 +28,12 @@ struct PolingualRoot: View {
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn { Task { await store.syncAfterSignIn() } }
+            if new == .signedOut && old == .signedIn && account.endedByUser {
+                store.clearLocal()
+                reminders.reset()
+            }
         }
+        .task { account.beforeSignOut = { await store.flush() } }
     }
 }
 

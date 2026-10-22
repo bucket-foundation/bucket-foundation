@@ -30,8 +30,8 @@ struct PolingualApp: App {
                 .environment(subs)
                 .environment(reminders)
                 .onChange(of: phase) { _, p in
-                    guard p == .background else { return }
-                    Task { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
+                    guard p == .background || p == .active else { return }
+                    backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
                 }
                 .tint(Palette.green)
         }

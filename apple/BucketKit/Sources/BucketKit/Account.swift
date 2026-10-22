@@ -5,8 +5,10 @@ import Observation
 @Observable
 public final class Account {
     public enum Stage: Equatable { case signedOut, codeSent(String), signedIn }
+    public enum Ending: Equatable, Sendable { case signedOut, deleted, expired }
 
     public private(set) var stage: Stage
+    public private(set) var ending: Ending?
     public private(set) var session: Session?
     public var error: String?
     public private(set) var busy = false
@@ -37,6 +39,7 @@ public final class Account {
             let s = try await self.api.verify(email: email, code: code)
             try self.store.save(s)
             self.session = s
+            self.ending = nil
             self.stage = .signedIn
         }
     }
@@ -57,7 +60,7 @@ public final class Account {
                 self.session = next
                 return next.accessToken
             } catch BucketError.revoked {
-                self.signOut()
+                self.end(.expired)
                 return nil
             } catch {
                 return s.expires(within: 0, now: now()) ? nil : s.accessToken
@@ -76,15 +79,27 @@ public final class Account {
         await run {
             guard let token = await self.freshToken() else { throw BucketError.revoked }
             try await self.api.deleteAccount(token: token)
-            self.signOut()
+            self.end(.deleted)
         }
     }
 
-    public func signOut() {
+    @ObservationIgnored public var beforeSignOut: (@MainActor () async -> Void)?
+
+    public func signOut() { end(.signedOut) }
+
+    public func signOutAfterSync() async {
+        await beforeSignOut?()
+        end(.signedOut)
+    }
+
+    func end(_ how: Ending) {
         store.clear()
         session = nil
+        ending = how
         stage = .signedOut
     }
+
+    public var endedByUser: Bool { ending == .signedOut || ending == .deleted }
 
     func run(_ work: @escaping @MainActor () async throws -> Void) async {
         busy = true
