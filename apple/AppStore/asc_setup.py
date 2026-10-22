@@ -18,7 +18,7 @@ BUCKET = {
     "build": "2610211209",
     "subtitle": "Foundations of every science",
     "privacy": "https://www.bucket.foundation/privacy",
-    "privacyText": "Bucket Foundation collects your email address, learning progress and a user ID only when you sign in, so your progress syncs across your devices. Bucket has no ads, no tracking, and does not sell or share personal data. You can delete your account and all progress in the app under Account, Delete account. Full policy: https://www.bucket.foundation/privacy",
+    "privacyText": "When you sign in, Bucket Foundation stores your email address and your learning progress: the decks you open, your placement result, each graded answer and your review schedule. It syncs that progress across your devices. We sell no data and run no ads. Delete your account and all progress in the app under Account, Delete account. Full policy: https://www.bucket.foundation/privacy",
     "support": "https://www.bucket.foundation",
     "marketing": "https://www.bucket.foundation",
     "keywords": "physics,math,chemistry,cosmology,biology,mind,science,spaced,repetition,flashcards,languages,study",
@@ -34,7 +34,7 @@ POLINGUAL = {
     "build": "2610211209",
     "subtitle": "Learn many languages together",
     "privacy": "https://polingual.com/privacy",
-    "privacyText": "Polingual collects your email address, learning progress and a user ID only when you sign in, so your progress syncs across your devices and with Bucket. Polingual has no ads, no tracking, and does not sell or share personal data. Apple handles all payments. You can delete your account and all progress in the app under Account, Delete account. Full policy: https://polingual.com/privacy",
+    "privacyText": "When you sign in, Polingual stores your email address and your learning progress: your language systems, placement results and review history. We do not track you across apps or websites. We do not sell or share personal data. Apple processes every purchase. Delete your account and all progress in the app under Account, Delete account. Full policy: https://polingual.com/privacy",
     "support": "https://polingual.com/support",
     "marketing": "https://polingual.com",
     "keywords": "spanish,french,italian,german,japanese,latin,vocabulary,flashcards,polyglot,romance,spaced",
@@ -192,7 +192,12 @@ def setup_app(api, cfg, contact, free_price):
     api.write("subtitle, privacy URL and Apple TV privacy text", "PATCH", f"/v1/appInfoLocalizations/{loc['id']}", {
         "data": {"type": "appInfoLocalizations", "id": loc["id"], "attributes": {"subtitle": cfg["subtitle"], "privacyPolicyUrl": cfg["privacy"], "privacyPolicyText": cfg["privacyText"]}}})
 
-    ver = next(v for v in api.all(f"/v1/apps/{app}/appStoreVersions?filter[platform]=IOS") if v["attributes"]["appStoreState"] in ("PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED", "METADATA_REJECTED"))
+    versions = api.all(f"/v1/apps/{app}/appStoreVersions?filter[platform]=IOS")
+    ver = next((v for v in versions if v["attributes"]["appStoreState"] in ("PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED", "METADATA_REJECTED")), None)
+    if ver is None:
+        states = ", ".join(f"{v['attributes']['versionString']} {v['attributes']['appStoreState']}" for v in versions)
+        print(f"  skip  version steps: no editable iOS version ({states})")
+        return
     attrs = {"copyright": COPYRIGHT, "releaseType": "MANUAL"}
     if ver["attributes"]["versionString"] != cfg["version"]:
         attrs["versionString"] = cfg["version"]
