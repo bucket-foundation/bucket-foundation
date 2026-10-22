@@ -78,45 +78,46 @@ struct SquiggleTag: View {
     }
 }
 
-struct SubjectTile: View {
+struct SubjectBadge: View {
     let subject: Subject
-    var caption: String?
-    var highlight = false
+
+    var body: some View {
+        HStack(spacing: 4) {
+            Text(subject.symbol).font(.system(.subheadline, design: .rounded, weight: .bold)).foregroundStyle(subject.color)
+            Text(subject.name).font(.system(.subheadline, design: .rounded, weight: .semibold)).foregroundStyle(subject.color)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 3)
+        .background(subject.color.opacity(0.12), in: .rect(cornerRadius: 8))
+        .accessibilityElement(children: .combine)
+    }
+}
+
+struct DirectionHeader: View {
+    let from: String
+    let to: String
+    let caption: String
+    var switched = false
     @State private var pop = false
 
     var body: some View {
-        HStack(spacing: 12) {
-            Text(subject.symbol)
-                .font(.system(size: 30, weight: .bold, design: .rounded))
-                .foregroundStyle(.white)
-                .minimumScaleFactor(0.5)
-                .frame(width: 56, height: 56)
-                .background(subject.color, in: .rect(cornerRadius: 12))
-                .background(subject.color.opacity(0.55), in: .rect(cornerRadius: 12).offset(y: 3))
-            VStack(alignment: .leading, spacing: 3) {
-                Text(subject.name)
-                    .font(.system(.title2, design: .rounded, weight: .bold))
-                    .foregroundStyle(Squiggle.text)
-                if let native = subject.native {
-                    Text(native).font(.system(.subheadline, design: .rounded)).foregroundStyle(Squiggle.muted)
-                }
-                HStack(spacing: 6) {
-                    if highlight { SquiggleTag(text: "New language") }
-                    if let caption { Text(caption).font(.system(.caption, design: .rounded, weight: .semibold)).foregroundStyle(Squiggle.muted) }
-                }
+        HStack(spacing: 6) {
+            if from != to {
+                SubjectBadge(subject: .language(from))
+                Image(systemName: "arrow.right").font(.caption.weight(.bold)).foregroundStyle(Squiggle.muted)
             }
+            SubjectBadge(subject: .language(to))
+                .scaleEffect(pop ? 1.08 : 1)
+            Text(caption).font(.system(.caption, design: .rounded, weight: .semibold)).foregroundStyle(Squiggle.muted)
             Spacer(minLength: 0)
         }
-        .padding(12)
-        .modifier(SquiggleCard())
-        .scaleEffect(pop ? 1.03 : 1)
         .onAppear {
-            guard highlight else { return }
+            guard switched else { return }
             withAnimation(Squiggle.bounce) { pop = true }
             withAnimation(Squiggle.bounce.delay(0.3)) { pop = false }
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(highlight ? "New language, " : "")\(subject.name)\(caption.map { ", \($0)" } ?? "")")
+        .accessibilityLabel("\(from != to ? "\(Lang.name(from)) to " : "")\(Lang.name(to)), \(caption)")
     }
 }
 
@@ -135,7 +136,7 @@ struct WordSetTiles: View {
                         Text(s.name).font(.system(.caption2, design: .rounded, weight: .semibold)).foregroundStyle(Squiggle.muted)
                     }
                     .frame(maxWidth: .infinity, minHeight: 88)
-                    .modifier(SquiggleCard(radius: 14))
+                    .background(s.color.opacity(0.07), in: .rect(cornerRadius: 12))
                     .overlay(alignment: .topTrailing) { PlayButton(text: w.word, lang: w.lang).padding(6).font(.caption) }
                     .accessibilityElement(children: .combine)
                 }

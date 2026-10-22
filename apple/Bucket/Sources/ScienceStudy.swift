@@ -222,8 +222,10 @@ struct StudySession: View {
         let isNew = item.kind == .new
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                HStack(alignment: .top) {
-                    SubjectTile(subject: .branch(entry), caption: isNew ? "New" : "Review")
+                HStack(spacing: 8) {
+                    SubjectBadge(subject: .branch(entry))
+                    Eyebrow(text: isNew ? "New" : "Review")
+                    Spacer()
                     Text("\(position + 1) / \(count)").font(.footnote).foregroundStyle(Palette.muted).monospacedDigit()
                 }
                 ProgressView(value: Double(position), total: Double(count)).tint(Palette.gold)
