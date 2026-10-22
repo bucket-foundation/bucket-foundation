@@ -50,6 +50,8 @@ function rosHref(path: string): string | null {
   }
   if (p === "/research-os/home" || p === "/research-os") return href({ name: "progress" });
   if (p === "/research-os/profile") return href({ name: "profile" });
+  if (p === "/research-os/productions") return href({ name: "productions" });
+  if (p === "/research-os/solvability" || p === "/research-os/software" || p === "/research-os/patents") return href({ name: "atlases" });
   if (p === "/research-os/learn/path" || p === "/research-os/learn") return href({ name: "learn" });
   const languages = /^\/research-os\/learn\/languages(?:\/([^/]+)(?:\/(place|study))?)?$/.exec(p);
   if (languages) {

@@ -71,6 +71,8 @@ describe("Research OS fetch bridge", () => {
     expect(windowHref("/research-os/map?branch=02-physics")).toBe("#/graph/02-physics");
     expect(windowHref("/research-os/map?view=globe")).toBe("#/canon");
     expect(windowHref("/research-os/profile")).toBe("#/profile");
+    expect(windowHref("/research-os/productions")).toBe("#/productions");
+    expect(windowHref("/research-os/patents")).toBe("#/atlases");
     expect(windowHref("/research-os/learn/path")).toBe("#/learn");
     expect(windowHref("/research-os/learn/02-physics/heat")).toBe("#/learn/02-physics/heat");
     expect(windowHref("/research-os/learn/02-physics/study")).toBe("#/learn/02-physics");

@@ -30,6 +30,7 @@ const WEB: Record<RosLiveRoute, () => Promise<{ GET?: (req: NextRequest, ctx: un
   modules: () => import("@/app/api/research-os/modules/route"),
   route: () => import("@/app/api/research-os/route/route"),
   privacy: () => import("@/app/api/research-os/privacy/route"),
+  production: () => import("@/app/api/research-os/production/route"),
 };
 
 beforeAll(() => {
@@ -79,13 +80,14 @@ const CASES: [RosLiveRoute, string][] = [
   ["connections", ""],
   ["loop", ""],
   ["profile", ""],
+  ["production", ""],
   ["modules", `?node=${MOMENTUM}&kind=recall`],
   ["route", `?target=${rosNodeId("02-physics", "rocket")}&branch=02-physics`],
 ];
 
 describe("live Research OS routes: web and local return the same shape for one fixture", () => {
-  test("eleven routes, each with a local path and a web path", () => {
-    expect(ROS_LIVE_ROUTES.length).toBe(11);
+  test("twelve routes, each with a local path and a web path", () => {
+    expect(ROS_LIVE_ROUTES.length).toBe(12);
     for (const r of ROS_LIVE_ROUTES) expect(rosLiveLocal(ROS_LIVE_PATHS[r].web)).toBe(ROS_LIVE_PATHS[r].local);
     expect(rosLiveLocal("/api/research-os/roster")).toBeUndefined();
   });
