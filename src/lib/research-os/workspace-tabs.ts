@@ -1,4 +1,4 @@
-export const WEB_WORKSPACE_TYPES = ["study", "figures", "maps", "records"] as const;
+export const WEB_WORKSPACE_TYPES = ["study", "figures", "maps", "datasets"] as const;
 export type WebWorkspaceType = (typeof WEB_WORKSPACE_TYPES)[number];
 export type ListWorkspaceType = Exclude<WebWorkspaceType, "study">;
 
@@ -15,7 +15,7 @@ export const WORKSPACE_TABS: Record<WebWorkspaceType, WorkspaceTab> = {
   study: { type: "study", title: "Study", about: "Your target, your notes and the evidence you found, in one place.", empty: "" },
   figures: { type: "figures", title: "Figures", about: "Every figure Bucket draws from its own scripts. Open one to see its data and the script that drew it.", empty: "No figure is on record yet." },
   maps: { type: "maps", title: "Maps", about: "Every research map Bucket draws from the corpus. Open one to read it at full size.", empty: "No map is on record yet." },
-  records: { type: "records", title: "Records", about: "Every open dataset in the research atlas, free to read and priced once to cite.", empty: "No dataset is on record yet." },
+  datasets: { type: "datasets", title: "Datasets", about: "Every open dataset in the research atlas, free to read and priced once to cite.", empty: "No dataset is on record yet." },
 };
 
 export function parseWorkspaceType(raw: string | undefined | null): WebWorkspaceType | null {
