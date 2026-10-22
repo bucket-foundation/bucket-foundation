@@ -1,6 +1,6 @@
 # D8 Word Tiles In The Native Study Screens
 
-Plan for bringing the D8 word tile and flag tile into the language study screens of the Bucket and Polingual iOS apps. Brand source: `brand/_directions/pages/d8/` on PR #966, mainly `deck.html`, `tiles.css`, `tiles.js` and `mobile.html`. Nothing in this plan is built yet. Round 2, after the critic report on PR #968.
+Plan for bringing the D8 word tile and flag tile into the language study screens of the Bucket and Polingual iOS apps. Brand source: `brand/_directions/pages/d8/` on PR #966, mainly `deck.html`, `tiles.css`, `tiles.js` and `mobile.html`. Nothing in this plan is built yet. Round 3, after the critic reports on PR #968.
 
 ## Problem
 
@@ -9,7 +9,7 @@ On a language card the learner can lose track of the language they are in. The f
 ## Founder Intent
 
 - One flag tile names the target language. "English → Spanish" sits outside the tile as plain text.
-- Only the answer choices look like buttons.
+- Only the answer choices look like buttons. Headers and tiles never do: no lip, no tilt, no press state on a tile inside a card.
 - Each language is named once per card.
 - The flag teaches which language it stands for, so the flag becomes knowledge the learner carries.
 - Same treatment in Bucket and Polingual, which compile the same study files.
@@ -35,7 +35,7 @@ Every language card opens with the same row:
 
 - A small flag tile for the target language: full flag, no words, no lip, no tilt, no tap target. It reads as an image.
 - Beside it, one line of plain text: the direction, the exercise kind and the level. This line is the only place on the card where the two languages are named.
-- The word tile drops its own language label inside exercises, because the header names both languages. Standalone tiles in pickers keep the label.
+- Inside a card, the word tile drops its language label, its 6 px lip and its tilt, and keeps the flag border, the glaze and the parchment panel. The speaker icon is the only tap target on it. Standalone tiles in pickers keep the D8 label, lip and tilt.
 - Same-language kinds (gender, conjugate, type-heard) show "Spanish · article · A1".
 
 ## Layout By Exercise Kind
@@ -43,18 +43,22 @@ Every language card opens with the same row:
 | Kind | Body | Answers |
 |---|---|---|
 | intro | Word tile of the new word with speaker and IPA; the root word below in plain text | "Got it", D8 primary |
-| choose, cloze, cognate | Prompt word in plain serif; cloze shows the sentence with a gap | Option buttons |
+| choose, cognate | Prompt word in a word tile with the prompt language's flag border | Option buttons |
+| cloze | The sentence with a gap in plain serif | Option buttons |
 | reverse | Word tile of the target word with speaker and IPA | Option buttons |
 | listen | Speaker tile: flag border, speaker in the panel, no word, no IPA until answered | Option buttons |
 | type-heard | Speaker tile as in listen | Text field and Check |
-| translate | Prompt word in plain serif | Text field and Check |
-| speak | Prompt word in plain serif | Speak and "Type instead" |
+| translate | Prompt word in a word tile | Text field and Check |
+| speak | Prompt word in a word tile | Speak and "Type instead" |
 | sentence, wordbank | Prompt sentence in plain serif | Option buttons or token buttons |
 | gender, conjugate | Noun or verb in a word tile with IPA | Option buttons or text field |
 | false-friend | Target word in a word tile | Option buttons |
-| match | One flag tile per language in the set, with the words as option buttons; the learner assigns each word to a flag | Word buttons, flags as targets |
+| match | One flag tile per language in the set, its name printed under it while the flag is new; the words as option buttons; the learner assigns each word to a flag | Word buttons, flags as targets |
 
 - Match is where flags teach: the learner places each word on its flag.
+- A flag shows its language name underneath until the learner has matched that language correctly 3 times; after that the flag stands alone. Any miss on a nameless flag brings the name back.
+- Grading keeps flag knowledge out of the word schedule. With the name shown, match grades as today through `gradeMatch`. With a nameless flag, a wrong assignment records a flag miss in a local per-language counter and gives that word card no rating from this match; a right assignment grades as today.
+- Every single word sits in a word tile, as D8 asks of the hero. Sentences and gapped sentences stay in plain serif, since a square tile cannot hold a sentence. This is the one deviation from "the hero of every screen".
 - Feedback after an answer keeps today's content: the answer, its reading, the family line and the false-friend note.
 
 ## Option Buttons
@@ -74,7 +78,8 @@ Each string below loses its language name, since the header carries it:
 
 ## Flags
 
-- Drawn natively from the stripe table in `tiles.js`, ported to Swift as data. Emblems as glyphs (★, ☸, ✡, ✚, ◆, ☾, ●, ☯). Egypt's eagle is an emoji in `tiles.js`; the native tile draws Egypt's tricolour without the eagle. No emoji anywhere, so every iOS version and the simulator draw the same flag.
+- Drawn natively from the stripe table in `tiles.js`, ported to Swift as data. Emblems as glyphs (★, ☸, ✡, ✚, ◆, ☾, ●, ☯). No emoji anywhere, so every iOS version and the simulator draw the same flag.
+- Egypt's eagle is an emoji in `tiles.js`, and Egypt's tricolour without the eagle is Yemen's flag. If Arabic keeps the Egyptian flag, the eagle is a vector path from the public domain Wikimedia flag file, in gold `#C09300`.
 - `tiles.js` covers 18 languages. Twelve more need a flag decision: English, Dutch, Swedish, Polish, Finnish, Czech, Indonesian and Tamil take their national flags. Latin, Ancient Greek, Sanskrit and Old English get pigment tiles from the D8 palette with a script glyph. English is a founder question.
 - The app names Chinese "Mandarin"; D8 says "Chinese". The header follows the app's name.
 
@@ -84,7 +89,7 @@ Measured on the live corpus, 326 items: 15 languages carry IPA on all 326, and 9
 
 ## Type And Color
 
-- Bundle Nunito and Space Mono under OFL, registered at launch with `CTFontManagerRegisterFontsForURL`, which works on iOS and macOS and needs no Info.plist key. Fredoka is out of scope: no display text on these screens.
+- Bundle Nunito and Space Mono under OFL in the app targets' shared resources in `project.yml`, registered at launch with `CTFontManagerRegisterFontsForURL` from `Bundle.main`, which works on iOS and macOS and needs no Info.plist key. Fredoka is out of scope: no display text on these screens.
 - Non-Latin scripts use the system fonts iOS ships (PingFang, Hiragino, Devanagari Sangam, Geeza, Arial Hebrew). No Noto bundle.
 - Dark mode: tiles keep the parchment panel and ink text, a fixed tile like a printed card. The card around them follows the app's dark palette. Option buttons use a dark surface `#2A2620` with a `#4A443A` keyline.
 
@@ -114,7 +119,10 @@ In `BucketKitTests`:
 - Listen and type-heard expose no target word before the answer.
 - Contrast: ink on the 80 percent parchment panel over the darkest and lightest flags reaches 4.5 to 1.
 
-On device, each step: screenshots of all 15 kinds on an iPhone 14 Pro and the smallest supported iPhone, light and dark, at the default and the largest accessibility text size, with each card fitting one screen, checked by eye before any claim. VoiceOver reads "Spanish flag" on the flag tile and "siete, IPA ˈsjete" on a word tile.
+- Match grading: a wrong assignment on a nameless flag leaves the word card unrated and increments the flag miss count; with the name shown, grading equals `gradeMatch`.
+- The name under a flag hides after the third correct match and returns after a miss.
+
+On device, each step: screenshots of all 15 kinds on an iPhone 14 Pro and the smallest supported iPhone, light and dark, checked by eye before any claim. At the default text size each card fits one screen. At the largest accessibility size the pass rule is no clipped or truncated text, with the card scrolling vertically. VoiceOver reads "Spanish flag" on the flag tile and "siete, IPA ˈsjete" on a word tile.
 
 ## Rollout
 
@@ -134,4 +142,4 @@ Branch `feat/apple-d8-word-tiles`, rebased onto `feat/apple-today` once #953 and
 
 ## Work Tracking
 
-Bead to file on the charizard machine with `source-founder`, linked to this plan; `bd` finds no database on this Mac.
+Step 0, before any code: a bead filed on the charizard machine with the `source-founder` label, linked to this plan and PR #968. `bd` finds no database on this Mac, so the Mac session asks the charizard orchestrator to file it. The bead id goes into this plan and into every stacked PR body, and step 1 does not start until it exists.
