@@ -359,6 +359,7 @@ export default function HomePage() {
           bucket.foundation
         </a>
         {" · "}every word, one meaning
+        {" · "}<Link href="/flags" className="underline hover:no-underline" style={{ color: "var(--blue)", display: "inline-flex", alignItems: "center", minHeight: 44 }}>Flag atelier ↗</Link>
       </footer>
     </main>
   );

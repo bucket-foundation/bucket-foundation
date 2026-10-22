@@ -45,6 +45,7 @@ export default function FooterV3({ launchList = false, signInClosed = false }: {
             <li><Link href="/canon/bridges" className="hover:text-[color:var(--bone)] transition">Bridges</Link></li>
             <li><Link href="/canon/graph" className="hover:text-[color:var(--bone)] transition">Knowledge graph</Link></li>
             <li><Link href="/earth" className="hover:text-[color:var(--bone)] transition">Earth data globe</Link></li>
+            <li><Link href="/flags" className="hover:text-[color:var(--bone)] transition">Flag atelier</Link></li>
             <li><Link href="/excerpts" className="hover:text-[color:var(--bone)] transition">Source excerpts</Link></li>
             <li><Link href="/sacred-history" className="hover:text-[color:var(--bone)] transition">Sacred history</Link></li>
             <li><Link href="/access" className="hover:text-[color:var(--bone)] transition">How to access</Link></li>

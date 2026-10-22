@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="Original Wajima lacquer material study">
+<defs>
+<linearGradient id="paper" x2="0" y2="1"><stop stop-color="#f7f4e9"/><stop offset="1" stop-color="#e9e7d9"/></linearGradient>
+<linearGradient id="ceramic" x1="0" y1="0" x2="1" y2=".8"><stop stop-color="#fffff4"/><stop offset=".38" stop-color="#f4f1de"/><stop offset=".75" stop-color="#e5e3d3"/><stop offset="1" stop-color="#d0d1c0"/></linearGradient>
+<linearGradient id="lacquer" x1="0" y1="0" x2="1" y2=".4"><stop stop-color="#7e2630"/><stop offset=".35" stop-color="#b64c49"/><stop offset=".6" stop-color="#8c2f37"/><stop offset="1" stop-color="#4e222b"/></linearGradient>
+<radialGradient id="bowl"><stop stop-color="#5d2930"/><stop offset=".8" stop-color="#7d2d34"/><stop offset="1" stop-color="#a54342"/></radialGradient>
+<linearGradient id="wood" x2=".8" y2="1"><stop stop-color="#b18b5d"/><stop offset=".45" stop-color="#9d764e"/><stop offset="1" stop-color="#715036"/></linearGradient>
+<linearGradient id="copper" x2=".9" y2="1"><stop stop-color="#dec69a"/><stop offset=".4" stop-color="#bc955d"/><stop offset=".7" stop-color="#e3c790"/><stop offset="1" stop-color="#8f6539"/></linearGradient>
+<linearGradient id="glass" x2="1" y2=".2"><stop stop-color="#a1c8c8" stop-opacity=".65"/><stop offset=".12" stop-color="#eff7ec" stop-opacity=".85"/><stop offset=".32" stop-color="#bed6d4" stop-opacity=".26"/><stop offset=".65" stop-color="#9dc4c6" stop-opacity=".3"/><stop offset=".88" stop-color="#edf7ed" stop-opacity=".86"/><stop offset="1" stop-color="#77aab3" stop-opacity=".6"/></linearGradient>
+<linearGradient id="stoneware" x2="1" y2=".3"><stop stop-color="#9fa28c"/><stop offset=".3" stop-color="#bbc0a7"/><stop offset=".7" stop-color="#9ba58e"/><stop offset="1" stop-color="#7a8775"/></linearGradient>
+<linearGradient id="clay" x2="1" y2=".15"><stop stop-color="#b47c57"/><stop offset=".27" stop-color="#d7a17a"/><stop offset=".65" stop-color="#cb926c"/><stop offset="1" stop-color="#ae7452"/></linearGradient>
+<pattern id="weave" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0 0H4M0 2H4" stroke="#fff7da" stroke-width=".6" opacity=".24"/><path d="M1 0V4M3 0V4" stroke="#554830" stroke-width=".5" opacity=".22"/></pattern>
+<filter id="blur" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="17" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".07"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+</defs>
+<rect x="0" y="0" width="640" height="400" rx="0" fill="url(#paper)" />
+<circle cx="332" cy="183" r="143" fill="#ffffff" opacity=".2"/>
+<path d="M74 335L566 335" fill="none" stroke="#d9dace" stroke-width="1" />
+<ellipse cx="325" cy="315" rx="139" ry="13" fill="#3b4739" opacity=".13" filter="url(#blur)"/><path d="M176 193C188 275 236 308 320 308C404 308 452 275 464 193Z" fill="url(#lacquer)" stroke="#502329" stroke-width="2"/><ellipse cx="320" cy="191" rx="144" ry="48" fill="#4f2028" stroke="#ad675c" stroke-width="3"/><ellipse cx="320" cy="188" rx="132" ry="38" fill="#8B2430" /><ellipse cx="320" cy="184" rx="119" ry="28" fill="url(#bowl)" /><path d="M200 214C225 265 260 281 286 284" fill="none" stroke="#f6c1a0" stroke-width="6" opacity=".35" stroke-linecap="round"/><path d="M340 291C381 287 411 266 432 238" fill="none" stroke="#2c1421" stroke-width="6" opacity=".28" stroke-linecap="round"/><ellipse cx="320" cy="309" rx="67" ry="10" fill="#562d2a" /><ellipse cx="320" cy="305" rx="65" ry="8" fill="#772d31" /><g transform="rotate(-8 380 114)" ><rect x="235" y="107" width="252" height="6" rx="3" fill="#735e42" /><rect x="251" y="125" width="252" height="6" rx="3" fill="#9f8661" /></g>
+<circle cx="45" cy="40" r="3" fill="#8B2430" />
+<text x="57" y="43" font-family="Arial, sans-serif" font-size="9" letter-spacing="2.1" fill="#6b7663">MATERIAL STUDY</text>
+<text x="594" y="43" text-anchor="end" font-family="Arial, sans-serif" font-size="10" letter-spacing="2" fill="#6b7663">JP</text>
+<text x="44" y="375" font-family="Arial, sans-serif" font-size="8" letter-spacing="1.4" fill="#7f8775">ORIGINAL FORM / CRAFT REFERENCE</text>
+</svg>

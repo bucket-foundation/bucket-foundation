@@ -1,0 +1,75 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+import { mkdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = dirname(fileURLToPath(import.meta.url));
+mkdirSync(join(root, 'previews'), { recursive: true });
+const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+const results = [];
+try {
+  for (const [product, port] of [['polingual', process.env.FLAG_POL_PORT || 3291], ['bucket', process.env.FLAG_BUCKET_PORT || 3292]]) {
+    const page = await browser.newPage({ viewport: { width: 1440, height: 1080 }, reducedMotion: 'reduce' });
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    const response = await page.goto(`http://127.0.0.1:${port}/flags`, { waitUntil: 'networkidle', timeout: 120000 });
+    assert.equal(response.status(), 200);
+    await page.getByRole('heading', { level: 1, name: /A world/ }).waitFor();
+    await page.evaluate(() => document.fonts.ready);
+    assert.equal(await page.locator('button[aria-label^="Explore "]').count(), 16);
+    await page.getByRole('button', { name: 'View Portugal craft study', exact: true }).click();
+    assert.equal(await page.getByRole('button', { name: 'Explore Portugal', exact: true }).getAttribute('aria-pressed'), 'true');
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.screenshot({ path: join(root, 'previews', `${product}-desktop.png`), fullPage: true });
+    await page.getByRole('button', { name: /^All places/ }).click();
+    assert.equal(await page.locator('button[aria-label^="Explore "]').count(), 249);
+    const search = page.getByRole('searchbox', { name: 'Search countries and territories' });
+    await search.fill('Nepal');
+    assert.equal(await page.locator('button[aria-label^="Explore "]').count(), 1);
+    await page.getByRole('button', { name: 'Explore Nepal', exact: true }).focus();
+    await page.keyboard.press('Enter');
+    assert.equal(await page.getByRole('button', { name: 'Explore Nepal', exact: true }).getAttribute('aria-pressed'), 'true');
+    const detail = page.getByRole('complementary', { name: 'Selected country detail' });
+    assert.equal(await detail.getByRole('heading', { name: 'Nepal', exact: true }).count(), 1);
+    await page.waitForFunction(() => document.activeElement?.textContent === 'Nepal');
+    await page.keyboard.press('Tab');
+    assert.equal(await page.evaluate(() => document.activeElement?.textContent?.trim().startsWith('Download flag SVG')), true);
+    const flag = detail.getByRole('img', { name: 'Flag of Nepal' });
+    const dimensions = await flag.evaluate((element) => ({ fit: getComputedStyle(element).objectFit, width: element.naturalWidth, height: element.naturalHeight }));
+    assert.equal(dimensions.fit, 'contain');
+    assert.ok(dimensions.width < dimensions.height);
+    const download = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Download flag SVG' }).click()]);
+    assert.equal(download[0].suggestedFilename(), 'np-flag.svg');
+    await search.fill('zz-no-country');
+    assert.equal(await page.getByRole('heading', { name: 'No place found.' }).count(), 1);
+    await page.getByRole('button', { name: /Show all places/ }).click();
+    await search.fill('Morocco');
+    await page.getByRole('button', { name: 'Explore Morocco', exact: true }).click();
+    const arabic = detail.locator('[lang="ar-MA"]').first();
+    assert.equal(await arabic.getAttribute('dir'), 'rtl');
+    assert.ok((await arabic.evaluate((element) => getComputedStyle(element).fontFamily)).includes('Flag Arabic'));
+    await page.getByRole('button', { name: 'Studio finish', exact: true }).click();
+    await page.getByRole('combobox', { name: 'Studio material' }).selectOption('glass');
+    assert.equal(await detail.locator('[data-material="glass"]').count(), 4);
+    await page.getByRole('button', { name: /^Craft studies/ }).click();
+    await page.getByRole('button', { name: 'Local craft', exact: true }).click();
+    await page.getByRole('button', { name: 'Explore Japan', exact: true }).click();
+    assert.ok(await detail.getByRole('img').count() >= 2);
+    await page.screenshot({ path: join(root, 'previews', `${product}-culture.png`), fullPage: true });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.reload({ waitUntil: 'networkidle' });
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true);
+    await page.getByRole('button', { name: 'Explore Morocco', exact: true }).click();
+    assert.equal(await detail.getByRole('heading', { name: 'Morocco', exact: true }).count(), 1);
+    await page.screenshot({ path: join(root, 'previews', `${product}-mobile.png`), fullPage: true });
+    const broken = await page.locator('img').evaluateAll((images) => images.filter((image) => image.complete && image.naturalWidth === 0).map((image) => image.alt));
+    assert.deepEqual(broken, []);
+    assert.deepEqual(errors, []);
+    results.push({ product, tiles: 249, curated: 16, desktop: true, mobile: true, keyboard: true, download: true, rtl: true, runtimeErrors: 0 });
+    await page.close();
+  }
+  process.stdout.write(JSON.stringify(results, null, 2) + '\n');
+} finally {
+  await browser.close();
+}

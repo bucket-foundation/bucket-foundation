@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400" role="img" aria-label="Original Delft painted ceramic material study">
+<defs>
+<linearGradient id="paper" x2="0" y2="1"><stop stop-color="#f7f4e9"/><stop offset="1" stop-color="#e9e7d9"/></linearGradient>
+<linearGradient id="ceramic" x1="0" y1="0" x2="1" y2=".8"><stop stop-color="#fffff4"/><stop offset=".38" stop-color="#f4f1de"/><stop offset=".75" stop-color="#e5e3d3"/><stop offset="1" stop-color="#d0d1c0"/></linearGradient>
+<linearGradient id="lacquer" x1="0" y1="0" x2="1" y2=".4"><stop stop-color="#7e2630"/><stop offset=".35" stop-color="#b64c49"/><stop offset=".6" stop-color="#8c2f37"/><stop offset="1" stop-color="#4e222b"/></linearGradient>
+<radialGradient id="bowl"><stop stop-color="#5d2930"/><stop offset=".8" stop-color="#7d2d34"/><stop offset="1" stop-color="#a54342"/></radialGradient>
+<linearGradient id="wood" x2=".8" y2="1"><stop stop-color="#b18b5d"/><stop offset=".45" stop-color="#9d764e"/><stop offset="1" stop-color="#715036"/></linearGradient>
+<linearGradient id="copper" x2=".9" y2="1"><stop stop-color="#dec69a"/><stop offset=".4" stop-color="#bc955d"/><stop offset=".7" stop-color="#e3c790"/><stop offset="1" stop-color="#8f6539"/></linearGradient>
+<linearGradient id="glass" x2="1" y2=".2"><stop stop-color="#a1c8c8" stop-opacity=".65"/><stop offset=".12" stop-color="#eff7ec" stop-opacity=".85"/><stop offset=".32" stop-color="#bed6d4" stop-opacity=".26"/><stop offset=".65" stop-color="#9dc4c6" stop-opacity=".3"/><stop offset=".88" stop-color="#edf7ed" stop-opacity=".86"/><stop offset="1" stop-color="#77aab3" stop-opacity=".6"/></linearGradient>
+<linearGradient id="stoneware" x2="1" y2=".3"><stop stop-color="#9fa28c"/><stop offset=".3" stop-color="#bbc0a7"/><stop offset=".7" stop-color="#9ba58e"/><stop offset="1" stop-color="#7a8775"/></linearGradient>
+<linearGradient id="clay" x2="1" y2=".15"><stop stop-color="#b47c57"/><stop offset=".27" stop-color="#d7a17a"/><stop offset=".65" stop-color="#cb926c"/><stop offset="1" stop-color="#ae7452"/></linearGradient>
+<pattern id="weave" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0 0H4M0 2H4" stroke="#fff7da" stroke-width=".6" opacity=".24"/><path d="M1 0V4M3 0V4" stroke="#554830" stroke-width=".5" opacity=".22"/></pattern>
+<filter id="blur" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="17" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".07"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter>
+</defs>
+<rect x="0" y="0" width="640" height="400" rx="0" fill="url(#paper)" />
+<circle cx="332" cy="183" r="143" fill="#ffffff" opacity=".2"/>
+<path d="M74 335L566 335" fill="none" stroke="#d9dace" stroke-width="1" />
+<ellipse cx="325" cy="324" rx="103" ry="13" fill="#3b4739" opacity=".13" filter="url(#blur)"/><path d="M290 73L290 139C275 156 251 167 243 195C227 252 244 305 274 313H376C406 305 423 252 407 195C399 167 375 156 360 139V73Z" fill="url(#ceramic)" stroke="#c6c8bd" stroke-width="2"/><ellipse cx="325" cy="74" rx="35" ry="10" fill="#275592" /><ellipse cx="325" cy="72" rx="27" ry="6" fill="#b0b7ae" /><path d="M287 122H363M255 178Q325 199 395 178M246 275Q325 299 404 275" fill="none" stroke="#275592" stroke-width="5"/><path d="M252 205C280 188 295 224 323 205S370 188 399 205" fill="none" stroke="#275592" stroke-width="2.5" opacity="0.7"/><path d="M252 218C280 201 295 237 323 218S370 201 399 218" fill="none" stroke="#275592" stroke-width="2.5" opacity="0.75"/><path d="M252 231C280 214 295 250 323 231S370 214 399 231" fill="none" stroke="#275592" stroke-width="2.5" opacity="0.7999999999999999"/><path d="M252 244C280 227 295 263 323 244S370 227 399 244" fill="none" stroke="#275592" stroke-width="2.5" opacity="0.85"/><path d="M252 257C280 240 295 276 323 257S370 240 399 257" fill="none" stroke="#275592" stroke-width="2.5" opacity="0.8999999999999999"/><path d="M272 180C252 220 258 268 270 288" fill="none" stroke="white" stroke-width="8" opacity=".65" stroke-linecap="round"/><g transform="translate(466 282)" ><ellipse cx="0" cy="9" rx="35" ry="12" fill="#c8c9bc" /><ellipse cx="0" cy="0" rx="35" ry="12" fill="url(#ceramic)" /><ellipse cx="0" cy="0" rx="26" ry="7" fill="none" stroke="#275592" stroke-width="2"/></g>
+<circle cx="45" cy="40" r="3" fill="#275592" />
+<text x="57" y="43" font-family="Arial, sans-serif" font-size="9" letter-spacing="2.1" fill="#6b7663">MATERIAL STUDY</text>
+<text x="594" y="43" text-anchor="end" font-family="Arial, sans-serif" font-size="10" letter-spacing="2" fill="#6b7663">NL</text>
+<text x="44" y="375" font-family="Arial, sans-serif" font-size="8" letter-spacing="1.4" fill="#7f8775">ORIGINAL FORM / CRAFT REFERENCE</text>
+</svg>
