@@ -36,6 +36,7 @@ const SUITES = {
     "scripts/test-account-pill.ts",
       "scripts/test-site-zoom-pane.ts",
       "scripts/test-sitemap-routes.ts",
+      "scripts/test-workspace-tabs.ts",
       "scripts/test-canon-branch-status.ts",
       "scripts/test-download-install.ts",
       "scripts/test-download-install-v3.ts",
