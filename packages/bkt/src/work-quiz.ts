@@ -386,8 +386,7 @@ export function workQuizRoutes(wq: WorkQuizStore, o: WorkQuizOptions = {}): Reco
       const b = await body(req);
       const languages = b ? parseLanguages(b.languages) : null;
       if (!languages) return json({ error: LANGUAGES_ERROR }, 400);
-      const fromSystems = wq.systemLanguages();
-      wq.setLanguages(languages.filter((c) => !fromSystems.includes(c)), now());
+      wq.setLanguages(languages, now());
       empty.clear();
       return json({ languages: wq.languages(), chosen: wq.chosenLanguages(), fromSystems: wq.systemLanguages() });
     },

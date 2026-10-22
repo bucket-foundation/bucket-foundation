@@ -121,7 +121,7 @@ describe("schema 11 languages", () => {
     s.close();
   });
 
-  test("languages in the language systems join the quiz and cannot be switched off there", async () => {
+  test("languages in the language systems join the quiz, cannot be switched off there, and own picks they cover survive the system going away", async () => {
     const key = newDataKey();
     const s = new Store(join(dir, "bkt.db"), key);
     const wq = new WorkQuizStore(s, key);
@@ -129,13 +129,15 @@ describe("schema 11 languages", () => {
     s.setMeta("lang_systems", JSON.stringify({ systems: [{ id: "en-ru", name: "English to Russian", root: "en", targets: ["ru", "zz"], createdAt: 1, placement: {} }] }));
     expect(wq.systemLanguages()).toEqual(["en", "ru"]);
     const res = await post(routes, "/local/work-quiz/languages", { languages: ["ja", "ru"] });
-    expect(await res.json()).toEqual({ languages: ["ja", "en", "ru"], chosen: ["ja"], fromSystems: ["en", "ru"] });
+    expect(await res.json()).toEqual({ languages: ["ja", "ru", "en"], chosen: ["ja", "ru"], fromSystems: ["en", "ru"] });
     const off = await post(routes, "/local/work-quiz/languages", { languages: [] });
     expect(((await off.json()) as { languages: string[] }).languages).toEqual(["en", "ru"]);
     const got = (await (await get(routes, "/local/work-quiz/languages")).json()) as { languages: string[]; chosen: string[]; fromSystems: string[] };
     expect([got.languages, got.chosen, got.fromSystems]).toEqual([["en", "ru"], [], ["en", "ru"]]);
+    await post(routes, "/local/work-quiz/languages", { languages: ["ru"] });
     s.setMeta("lang_systems", "not json");
     expect(wq.systemLanguages()).toEqual([]);
+    expect(wq.languages()).toEqual(["ru"]);
     s.close();
   });
 
