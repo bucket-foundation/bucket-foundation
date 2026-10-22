@@ -156,18 +156,13 @@ struct ReviewDeckRow: View {
 
 @MainActor
 func bucketForecast(_ library: Library, _ science: ScienceStore, _ langs: LangStore, at date: Date) -> ReviewForecast {
-    let t = date.timeIntervalSince1970 * 1000
-    var count = 0
-    var best: (due: Double, text: String)?
+    var due = langDue(langs)
     for entry in library.scienceDecks {
-        let state = science.state(entry.id)
-        for (id, card) in state.cards.entries {
-            guard let due = card.due, due <= t else { continue }
-            count += 1
-            if best == nil || due < best!.due, let title = library.prepared[entry.id]?.byId[id]?.title { best = (due, title) }
+        for (id, card) in science.state(entry.id).cards.entries {
+            guard let d = card.due else { continue }
+            due.append((d, library.prepared[entry.id]?.byId[id]?.title))
         }
     }
-    let lang = langForecast(langs, at: date)
-    let streak = max(lang.streak, library.scienceDecks.map { Int(science.state($0.id).streak) }.max() ?? 0)
-    return ReviewForecast(count: count + lang.count, example: best?.text ?? lang.example, streak: streak)
+    let streak = max(langStreak(langs), library.scienceDecks.map { Int(science.state($0.id).streak) }.max() ?? 0)
+    return ReminderPlan.forecast(due: due, at: date, streak: streak)
 }

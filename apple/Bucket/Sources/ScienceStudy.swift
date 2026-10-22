@@ -238,6 +238,7 @@ struct StudySession: View {
                 }
                 ScienceDrill(atom: atom, level: pickLevel(store.state(deck.branch), atom), onRate: { rating, level in
                     store.grade(deck, id: item.id, rating: rating, level: level)
+                    reminders.noteStudy()
                     graded += 1
                     advance()
                 }, onSkip: advance)
@@ -273,7 +274,7 @@ struct StudySession: View {
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 Eyebrow(text: entry.title)
-                Text("Route done").onAppear { reminders.noteStudy() }.font(.serif(.largeTitle, weight: .semibold)).foregroundStyle(Palette.ink)
+                Text("Route done").font(.serif(.largeTitle, weight: .semibold)).foregroundStyle(Palette.ink)
                 Text("\(graded) card\(graded == 1 ? "" : "s") recorded. \(s.introduced) of \(s.total) atoms started, \(s.mastered) mastered.")
                     .font(.serif(.body)).foregroundStyle(Palette.ink)
                 DeckStats(summary: s)

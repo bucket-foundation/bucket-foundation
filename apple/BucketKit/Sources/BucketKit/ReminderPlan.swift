@@ -20,10 +20,17 @@ public enum ReminderPlan {
         let studiedToday = lastStudy.map { cal.isDate($0, inSameDayAs: now) } ?? false
         let quietFrom = cal.date(byAdding: .day, value: quietAfterDays, to: cal.startOfDay(for: lastStudy ?? now)) ?? now
         return (0...quietAfterDays).compactMap { k -> Date? in
-            guard let day = cal.date(byAdding: .day, value: k, to: start), let fire = cal.date(byAdding: .minute, value: minute, to: day) else { return nil }
+            guard let day = cal.date(byAdding: .day, value: k, to: start), let fire = cal.date(bySettingHour: minute / 60, minute: minute % 60, second: 0, of: day) else { return nil }
             if fire <= now || (k == 0 && studiedToday) || fire >= quietFrom { return nil }
             return fire
         }
+    }
+
+    public static func forecast(due: [(due: Double, label: String?)], at date: Date, streak: Int) -> ReviewForecast {
+        let t = date.timeIntervalSince1970 * 1000
+        let ready = due.filter { $0.due <= t }
+        let first = ready.filter { $0.label != nil }.min { $0.due < $1.due }
+        return ReviewForecast(count: ready.count, example: first?.label, streak: streak)
     }
 
     public static func median(_ minutes: [Int], fallback: Int) -> Int {

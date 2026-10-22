@@ -3,23 +3,44 @@ import Foundation
 import Observation
 import SwiftUI
 import UserNotifications
+#if os(iOS)
+import UIKit
+#endif
+
+@MainActor
+func backgroundSafe(_ work: @escaping @MainActor () async -> Void) {
+    #if os(iOS)
+    var id = UIBackgroundTaskIdentifier.invalid
+    id = UIApplication.shared.beginBackgroundTask { UIApplication.shared.endBackgroundTask(id) }
+    Task {
+        await work()
+        UIApplication.shared.endBackgroundTask(id)
+    }
+    #else
+    Task { await work() }
+    #endif
+}
+
+@MainActor
+func langDue(_ store: LangStore) -> [(due: Double, label: String?)] {
+    var out: [(due: Double, label: String?)] = []
+    for sys in store.systems {
+        for (id, card) in store.state(sys.id).cards.entries {
+            guard let due = card.due else { continue }
+            let p = parseCardId(id)
+            guard sys.targets.contains(p.lang) else { continue }
+            out.append((due, store.corpus?.byId[p.itemId]?.form(p.lang)))
+        }
+    }
+    return out
+}
+
+@MainActor
+func langStreak(_ store: LangStore) -> Int { store.systems.map { Int(store.state($0.id).streak) }.max() ?? 0 }
 
 @MainActor
 func langForecast(_ store: LangStore, at date: Date) -> ReviewForecast {
-    let t = date.timeIntervalSince1970 * 1000
-    var count = 0
-    var best: (due: Double, text: String)?
-    for s in store.systems {
-        for (id, card) in store.state(s.id).cards.entries {
-            guard let due = card.due, due <= t else { continue }
-            let p = parseCardId(id)
-            guard s.targets.contains(p.lang) else { continue }
-            count += 1
-            if best == nil || due < best!.due, let w = store.corpus?.byId[p.itemId]?.form(p.lang) { best = (due, w) }
-        }
-    }
-    let streak = store.systems.map { Int(store.state($0.id).streak) }.max() ?? 0
-    return ReviewForecast(count: count, example: best?.text, streak: streak)
+    ReminderPlan.forecast(due: langDue(store), at: date, streak: langStreak(store))
 }
 
 @MainActor
@@ -54,10 +75,17 @@ final class Reminders {
     var minute: Int { customMinute ?? usualMinute }
 
     func noteStudy(at date: Date = .now) {
+        if let last = lastStudy, Calendar.current.isDate(last, inSameDayAs: date) { return }
         let c = Calendar.current.dateComponents([.hour, .minute], from: date)
         let m = (c.hour ?? 0) * 60 + (c.minute ?? 0)
         defaults.set(Array((studyMinutes + [m]).suffix(14)), forKey: Self.studyKey)
         defaults.set(date.timeIntervalSince1970, forKey: Self.lastStudyKey)
+    }
+
+    func reset() {
+        disable()
+        for k in [Self.studyKey, Self.lastStudyKey, Self.customKey] { defaults.removeObject(forKey: k) }
+        customMinute = nil
     }
 
     var lastStudy: Date? {
@@ -87,8 +115,9 @@ final class Reminders {
         center.removePendingNotificationRequests(withIdentifiers: (0..<Self.quietAfterDays + 1).map { Self.idPrefix + String($0) })
         guard enabled else { return }
         for (i, date) in fireDates().enumerated() {
-            let f = forecast(date)
-            guard f.count > 0 else { continue }
+            let raw = forecast(date)
+            guard raw.count > 0 else { continue }
+            let f = i == 0 ? raw : ReviewForecast(count: raw.count, example: raw.example, streak: 0)
             let content = UNMutableNotificationContent()
             content.title = title
             content.body = ReminderPlan.message(f)

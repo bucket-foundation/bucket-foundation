@@ -71,6 +71,7 @@ struct StudyView: View {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
         }
         if !results.isEmpty {
+            reminders.noteStudy()
             if gate.guest && !store.guestMayStudy(systemId) { gate.require(apply) } else { apply() }
         }
         for r in results where r.rating == 1 {
@@ -91,7 +92,7 @@ struct StudyView: View {
         } else if i >= queue.count || current == nil {
             VStack(spacing: 16) {
                 Image(systemName: "checkmark.seal.fill").font(.system(size: 56)).foregroundStyle(Palette.green)
-                Text("Session done").font(.serif(.title, weight: .semibold)).onAppear { reminders.noteStudy() }
+                Text("Session done").font(.serif(.title, weight: .semibold))
                 ReminderPrompt()
                 Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
                     .foregroundStyle(Palette.muted)
