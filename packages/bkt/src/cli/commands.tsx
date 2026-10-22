@@ -49,7 +49,7 @@ import { report } from "../hai/session";
 import { IMPORT_BODY_BYTES, localRoutes } from "../local";
 import { canonRoutes, CanonStore, OPEN_BODY_BYTES, syncCanon } from "../canon";
 import { exploreRoutes, ExploreStore, SavedStore, SAVED_BODY_BYTES, syncExplore, syncRowSets } from "../explore";
-import { parseRowSetPack, ROW_SET_PACK_SCHEMA } from "../pack/row-sets/index";
+import { embeddedRowSets } from "../pack/row-sets/index";
 import type { CanonPack } from "../pack/canon";
 import { canonAdapter, dataRoutes, exploreAdapter, learningAdapter, ownAdapter, rowSetAdapter } from "../data";
 import type { ExplorePack } from "../pack/explore";
@@ -354,8 +354,7 @@ async function serve(name: "serve" | "app", session: Session, dir: string, conte
   });
   syncCanon(session.store.db, canonPack as CanonPack);
   syncExplore(session.store.db, explorePack as unknown as ExplorePack);
-  const rowSetPack = parseRowSetPack(embeddedRowSetPack);
-  if (!rowSetPack) throw new Error(`the embedded row set pack fails the ${ROW_SET_PACK_SCHEMA} schema check; rebuild with bun run pack:content`);
+  const rowSetPack = embeddedRowSets(embeddedRowSetPack);
   syncRowSets(session.store.db, rowSetPack);
   syncRosGraph(session.store.db, content.version, content.atoms ?? {});
   const canon = new CanonStore(session.store.db);
