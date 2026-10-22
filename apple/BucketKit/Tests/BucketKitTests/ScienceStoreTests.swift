@@ -74,4 +74,37 @@ struct ProgressServer: Sendable {
         #expect(server.posts.value == [d.branch])
         #expect(EngineState(js: server.branches.value[d.branch]).cards.has(a.id))
     }
+
+    @Test func concurrentLoadsOfDifferentDecksLoadBoth() async throws {
+        let disk = MemoryLangDisk()
+        let d = try deck()
+        let utc = { @MainActor in TimeZone(identifier: "UTC")! }
+        let seed = ScienceStore(api: BucketAPI(transport: ProgressServer().transport), disk: disk, token: { nil }, now: { 1_000_000 }, tz: utc)
+        let a = try #require(seed.route(d).first)
+        seed.grade(d, id: a.id, rating: 3, level: "recall")
+        let other = PreparedDeck(branch: "01-mathematics", atoms: d.atoms)
+        seed.grade(other, id: a.id, rating: 3, level: "recall")
+        let store = ScienceStore(api: BucketAPI(transport: ProgressServer().transport), disk: disk, token: { nil }, now: { 1_000_000 }, tz: utc)
+        async let one: Void = store.load([d.branch])
+        async let two: Void = store.load([other.branch])
+        _ = await (one, two)
+        #expect(store.state(d.branch).cards.has(a.id))
+        #expect(store.state(other.branch).cards.has(a.id))
+    }
+
+    @Test func clearLocalLeavesNothingForTheNextAccount() async throws {
+        let server = ProgressServer()
+        let disk = MemoryLangDisk()
+        let d = try deck()
+        let signedIn = LockedBox(false)
+        let store = ScienceStore(api: BucketAPI(transport: server.transport), disk: disk, token: { signedIn.value ? "t" : nil }, now: { 1_000_000 }, tz: { TimeZone(identifier: "UTC")! })
+        let a = try #require(store.route(d).first)
+        store.grade(d, id: a.id, rating: 3, level: "recall")
+        store.clearLocal()
+        #expect(disk.names.isEmpty)
+        #expect(store.state(d.branch).cards.count == 0)
+        signedIn.mutate { $0 = true }
+        await store.syncAfterSignIn()
+        #expect(server.posts.value.isEmpty)
+    }
 }

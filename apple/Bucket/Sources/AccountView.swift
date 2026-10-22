@@ -52,7 +52,7 @@ struct AccountView: View {
                     Section {
                         LabeledContent("Status", value: "Signed in")
                         if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
-                        Button("Sign out", role: .destructive) { account.signOut() }
+                        Button("Sign out", role: .destructive) { Task { await account.signOutAfterSync() } }
                         Button("Delete account", role: .destructive) { confirmingDelete = true }
                     } header: {
                         Eyebrow(text: "Account")

@@ -15,7 +15,11 @@ struct BucketApp: App {
         LangVoice.shared.store = langs
         _account = State(initialValue: account)
         _langs = State(initialValue: langs)
+        #if DEBUG
         let shift = (Launch.value("-clockDays").flatMap(Double.init) ?? 0) * DAY_MS
+        #else
+        let shift = 0.0
+        #endif
         _science = State(initialValue: ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift }))
         _gate = State(initialValue: Gate(account: account))
     }
@@ -65,6 +69,16 @@ struct RootView: View {
             if new == .signedIn && old != .signedIn {
                 Task { await langs.syncAfterSignIn() }
                 Task { await science.syncAfterSignIn() }
+            }
+            if new == .signedOut && old == .signedIn && account.endedByUser {
+                science.clearLocal()
+                langs.clearLocal()
+            }
+        }
+        .task {
+            account.beforeSignOut = {
+                await science.flush()
+                await langs.flush()
             }
         }
     }
