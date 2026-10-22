@@ -11,18 +11,20 @@ struct Onboarding: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 22) {
-                    switch step {
-                    case .welcome: welcome
-                    case .method: method
-                    case .account: accountStep
+            GeometryReader { geo in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 22) {
+                        switch step {
+                        case .welcome: welcome
+                        case .method: method
+                        case .account: accountStep
+                        }
                     }
+                    .padding(.horizontal, 28)
+                    .padding(.vertical, 32)
+                    .frame(maxWidth: geo.size.width > 700 ? 680 : 560, alignment: .leading)
+                    .frame(maxWidth: .infinity, minHeight: geo.size.height, alignment: geo.size.width > 700 ? .center : .top)
                 }
-                .padding(.horizontal, 28)
-                .padding(.top, 56)
-                .frame(maxWidth: 560, alignment: .leading)
-                .frame(maxWidth: .infinity)
             }
             footer
         }
@@ -39,13 +41,15 @@ struct Onboarding: View {
     var welcome: some View {
         Group {
             Eyebrow(text: "Polingual")
-            Text("Learn languages together")
+            Text("One word. Every language you want.")
                 .font(.serif(.largeTitle, weight: .semibold))
                 .foregroundStyle(Palette.ink)
-            Text("Pick one language you know and a set you want. Every word comes back in each language of the set, so you see how they share roots.")
+                .fixedSize(horizontal: false, vertical: true)
+            Text("Pick the languages you want and learn them side by side, with shared roots, placement and a daily review.")
                 .font(.serif(.title3))
                 .foregroundStyle(Palette.muted)
-            WordFamily(gloss: "night", forms: [("Spanish", "noche"), ("French", "nuit"), ("Italian", "notte"), ("Portuguese", "noite")])
+                .fixedSize(horizontal: false, vertical: true)
+            WordWheel()
         }
     }
 
@@ -87,6 +91,9 @@ struct Onboarding: View {
                 }
             }
             .accessibilityHidden(true)
+            if step == .welcome {
+                Text("3 days free, then pick monthly or yearly").font(.footnote).foregroundStyle(Palette.muted)
+            }
             if step == .account && account.stage != .signedIn {
                 Button { signingIn = true } label: { Text("Sign in with email").frame(maxWidth: .infinity) }
                     .buttonStyle(.borderedProminent)
@@ -96,7 +103,7 @@ struct Onboarding: View {
                 Button {
                     if let next = Step(rawValue: step.rawValue + 1) { withAnimation { step = next } } else { finish() }
                 } label: {
-                    Text("Continue").frame(maxWidth: .infinity)
+                    Text(step == .welcome ? "Start free" : "Continue").frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
@@ -108,25 +115,86 @@ struct Onboarding: View {
     }
 }
 
-struct WordFamily: View {
-    let gloss: String
-    let forms: [(String, String)]
+struct WordWheel: View {
+    struct Meaning {
+        let gloss: String
+        let root: String?
+        let forms: [String]
+    }
+
+    static let langs = ["es", "fr", "it", "pt", "de", "nl", "ru", "el", "ar", "hi", "zh", "ko"]
+    static let romance: Set<String> = ["es", "fr", "it", "pt"]
+    static let germanic: Set<String> = ["de", "nl"]
+    static let meanings = [
+        Meaning(gloss: "night", root: nil, forms: ["noche", "nuit", "notte", "noite", "Nacht", "nacht", "ночь", "νύχτα", "لَيْلَة", "रात", "夜晚", "밤"]),
+        Meaning(gloss: "star", root: "*h₂stḗr", forms: ["estrella", "étoile", "stella", "estrela", "Stern", "ster", "звезда", "αστέρι", "نَجْم", "तारा", "星星", "별"]),
+        Meaning(gloss: "water", root: "*h₂ekʷeh₂", forms: ["agua", "eau", "acqua", "água", "Wasser", "water", "вода", "νερό", "مَاء", "पानी", "水", "물"]),
+        Meaning(gloss: "mother", root: "*méh₂tēr", forms: ["madre", "mère", "madre", "mãe", "Mutter", "moeder", "мать", "μητέρα", "أُمّ", "माँ", "妈妈", "엄마"]),
+        Meaning(gloss: "heart", root: "*ḱḗr", forms: ["corazón", "cœur", "cuore", "coração", "Herz", "hart", "сердце", "καρδιά", "قَلْب", "दिल", "心脏", "심장"]),
+    ]
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    @State private var index = 0
+
+    var meaning: Meaning { Self.meanings[index] }
+
+    func tint(_ lang: String) -> Color {
+        Self.romance.contains(lang) ? Palette.green : Self.germanic.contains(lang) ? Palette.gold : Palette.muted
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(gloss).font(.caption.weight(.semibold)).tracking(1.4).textCase(.uppercase).foregroundStyle(Palette.gold)
-            ForEach(forms, id: \.0) { lang, word in
-                HStack {
-                    Text(word).font(.serif(.title2, weight: .semibold)).foregroundStyle(Palette.ink)
-                    Spacer()
-                    Text(lang).font(.subheadline).foregroundStyle(Palette.muted)
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .firstTextBaseline, spacing: 10) {
+                Text(meaning.gloss.uppercased())
+                    .font(.caption.weight(.semibold))
+                    .tracking(1.6)
+                    .foregroundStyle(Palette.ink)
+                if let root = meaning.root {
+                    Text("one root, \(root)").font(.caption).foregroundStyle(Palette.muted)
                 }
-                if lang != forms.last?.0 { Divider().overlay(Palette.rule) }
+                Spacer()
+                HStack(spacing: 5) {
+                    ForEach(Self.meanings.indices, id: \.self) { i in
+                        Circle().fill(i == index ? Palette.gold : Palette.rule).frame(width: 6, height: 6)
+                    }
+                }
+            }
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: sizeClass == .regular ? 4 : 3), spacing: 8) {
+                ForEach(Array(Self.langs.enumerated()), id: \.offset) { i, lang in
+                    VStack(spacing: 4) {
+                        Text(meaning.forms[i])
+                            .font(.serif(sizeClass == .regular ? .title2 : .title3, weight: .semibold))
+                            .foregroundStyle(Palette.ink)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.6)
+                            .id("\(index)-\(i)")
+                            .transition(.opacity.combined(with: .scale(scale: 0.92)))
+                        Text(Lang.name(lang)).font(.caption2).foregroundStyle(tint(lang))
+                    }
+                    .frame(maxWidth: .infinity, minHeight: sizeClass == .regular ? 84 : 64)
+                    .background(tint(lang).opacity(0.08), in: .rect(cornerRadius: 12))
+                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(tint(lang).opacity(0.25)))
+                    .accessibilityElement(children: .combine)
+                }
+            }
+            HStack(spacing: 14) {
+                Label("Romance", systemImage: "circle.fill").foregroundStyle(Palette.green)
+                Label("Germanic", systemImage: "circle.fill").foregroundStyle(Palette.gold)
+                Label("29 languages in all", systemImage: "circle.fill").foregroundStyle(Palette.muted)
+            }
+            .font(.caption2)
+            .labelStyle(.titleAndIcon)
+            .imageScale(.small)
+        }
+        .task {
+            guard !reduceMotion else { return }
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(3.2))
+                withAnimation(.easeInOut(duration: 0.6)) { index = (index + 1) % Self.meanings.count }
             }
         }
-        .padding(18)
-        .background(Palette.card, in: .rect(cornerRadius: 14))
-        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Palette.rule))
+        .accessibilityLabel("The word \(meaning.gloss) in 12 languages")
     }
 }
 
