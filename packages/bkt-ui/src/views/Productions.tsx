@@ -25,6 +25,16 @@ interface Hit {
   branch: string;
 }
 
+const isHit = (v: unknown): v is Hit => {
+  const h = v as Record<string, unknown> | null;
+  return !!h && typeof h.id === "string" && typeof h.slug === "string" && typeof h.title === "string";
+};
+
+export function hitsFrom(raw: unknown): Hit[] {
+  const results = (raw as { results?: unknown } | null)?.results;
+  return Array.isArray(results) ? results.filter(isHit).slice(0, 6) : [];
+}
+
 const API = "/api/research-os/production";
 const KIND: Record<string, string> = { production: "production", extension: "extension", replication: "replication", peer_review: "peer review" };
 
@@ -32,6 +42,7 @@ export const NO_DRAFTS = "No drafts yet. Pick an idea, write the claim and the s
 export const SUBMIT_NOTE = "Drafts stay on this computer. A teacher reviews a production once you submit it on the website.";
 export const LOAD_TROUBLE = "Bucket could not load your drafts. Try again.";
 export const SAVE_TROUBLE = "Bucket could not save the draft. Try again.";
+export const DELETE_TROUBLE = "Bucket could not delete the draft. Try again.";
 export const PICK_IDEA = "Pick the idea this claim is about.";
 
 function NodeLink({ id, nodes }: { id: string; nodes: Data["nodes"] }) {
@@ -39,7 +50,7 @@ function NodeLink({ id, nodes }: { id: string; nodes: Data["nodes"] }) {
   return n ? <a href={href({ name: "node", slug: n.slug })}>{n.title}</a> : <>an idea</>;
 }
 
-function Draft({ p, nodes, onEdit }: { p: Production; nodes: Data["nodes"]; onEdit: () => void }) {
+function Draft({ p, nodes, onEdit, onDelete }: { p: Production; nodes: Data["nodes"]; onEdit: () => void; onDelete: () => void }) {
   const kind = KIND[p.kind] ?? p.kind;
   return (
     <li className="production">
@@ -47,6 +58,9 @@ function Draft({ p, nodes, onEdit }: { p: Production; nodes: Data["nodes"]; onEd
         <strong>{p.claim?.trim() || `Untitled ${kind}`}</strong>
         <button type="button" className="ghost" onClick={onEdit}>
           Edit
+        </button>
+        <button type="button" className="ghost" onClick={onDelete}>
+          Delete
         </button>
       </div>
       <p className="muted">
@@ -69,8 +83,8 @@ function IdeaPicker({ picked, onPick }: { picked: Hit | null; onPick: (h: Hit) =
     if (!term) return setHits([]);
     let alive = true;
     fetch(`/api/research-os/search?q=${encodeURIComponent(term)}&limit=6`)
-      .then((r) => (r.ok ? (r.json() as Promise<{ results: Hit[] }>) : { results: [] }))
-      .then((d) => alive && setHits(d.results), () => alive && setHits([]));
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => alive && setHits(hitsFrom(d)), () => alive && setHits([]));
     return () => {
       alive = false;
     };
@@ -141,6 +155,7 @@ export function ProductionsView() {
   const [data, setData] = useState<Data | null>(null);
   const [error, setError] = useState(false);
   const [editing, setEditing] = useState<Production | null>(null);
+  const [trouble, setTrouble] = useState<string | null>(null);
 
   const load = useCallback(() => {
     fetch(API, { cache: "no-store" })
@@ -150,6 +165,15 @@ export function ProductionsView() {
 
   useEffect(load, [load]);
 
+  const remove = async (p: Production) => {
+    if (!window.confirm("Delete this draft from this computer?")) return;
+    const r = await fetch(API, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action: "delete", id: p.id }) }).catch(() => null);
+    if (!r?.ok) return setTrouble(DELETE_TROUBLE);
+    setTrouble(null);
+    if (editing?.id === p.id) setEditing(null);
+    load();
+  };
+
   return (
     <section>
       <header className="head">
@@ -157,6 +181,7 @@ export function ProductionsView() {
         <p className="muted">A production is a claim you organize from quotes and sources. {SUBMIT_NOTE}</p>
       </header>
       {error && <p className="error">{LOAD_TROUBLE}</p>}
+      {trouble && <p className="error">{trouble}</p>}
       {!data && !error && <p className="muted">Loading drafts…</p>}
       {data && (
         <>
@@ -170,7 +195,7 @@ export function ProductionsView() {
             ) : (
               <ul className="productions">
                 {data.productions.map((p) => (
-                  <Draft key={p.id} p={p} nodes={data.nodes} onEdit={() => setEditing(p)} />
+                  <Draft key={p.id} p={p} nodes={data.nodes} onEdit={() => setEditing(p)} onDelete={() => void remove(p)} />
                 ))}
               </ul>
             )}

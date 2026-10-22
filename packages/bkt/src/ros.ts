@@ -232,6 +232,10 @@ export class RosGraph {
     return this.db.query<ProductionRow, [string]>("select * from ros_productions where id = ?").get(id) ?? null;
   }
 
+  deleteProduction(id: string): boolean {
+    return this.db.query("delete from ros_productions where id = ?").run(id).changes > 0;
+  }
+
   saveProduction(p: Omit<ProductionRow, "created_at">, now: number): ProductionRow {
     this.db
       .query(
@@ -250,11 +254,12 @@ export class RosGraph {
   }
 
   forgetAll(): Record<string, number> {
-    const states = this.db.query<{ n: number }, []>("select count(*) n from ros_state").get()!.n;
-    const profile = this.db.query<{ n: number }, []>("select count(*) n from ros_profile").get()!.n;
-    const productions = this.db.query<{ n: number }, []>("select count(*) n from ros_productions").get()!.n;
-    this.db.transaction(() => this.db.run("delete from ros_state; delete from ros_profile; delete from ros_productions;"))();
-    return { ros_state: states, ros_profile: profile, ros_productions: productions };
+    return this.db.transaction(() => {
+      const count = (t: string) => this.db.query<{ n: number }, []>(`select count(*) n from ${t}`).get()!.n;
+      const out = { ros_state: count("ros_state"), ros_profile: count("ros_profile"), ros_productions: count("ros_productions") };
+      this.db.run("delete from ros_state; delete from ros_profile; delete from ros_productions;");
+      return out;
+    })();
   }
 }
 
@@ -433,6 +438,7 @@ export function rosLiveRoutes(g: RosGraph, now: () => number = Date.now, opts: R
     [`POST ${P.production.local}`]: async (req) => {
       const b = await readBody(req);
       if (!b) return bad(400, "bad_request");
+      if (b.action === "delete") return typeof b.id === "string" && g.deleteProduction(b.id) ? json({ deleted: b.id }) : bad(404, "production_not_found");
       if (b.status !== undefined && b.status !== "draft") return bad(400, "submit_on_web");
       const prior = typeof b.id === "string" ? g.production(b.id) : null;
       if (typeof b.id === "string" && !prior) return bad(404, "production_not_found");

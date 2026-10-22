@@ -125,6 +125,11 @@ describe("local Research OS graph", () => {
     expect((await call("production", "", "POST", { targetNodeId: MOMENTUM, status: "submitted" })).body).toEqual({ error: "submit_on_web" });
     expect((await call("production", "", "POST", { targetNodeId: "nope" })).status).toBe(404);
     expect((await call("production", "", "POST", { id: "nope" })).status).toBe(404);
+    const gone = await call("production", "", "POST", { action: "delete", id: made.body.production.id });
+    expect(() => parseRosLive("production", gone.body)).not.toThrow();
+    expect(gone.body).toEqual({ deleted: made.body.production.id });
+    expect((await call("production")).body.productions.map((p: { id: string }) => p.id)).not.toContain(made.body.production.id);
+    expect((await call("production", "", "POST", { action: "delete", id: made.body.production.id })).status).toBe(404);
   });
 
   test("an export saved to the downloads folder never overwrites an earlier one", async () => {
