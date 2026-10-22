@@ -161,11 +161,11 @@ describe("ring labels in the map view", () => {
 });
 
 describe("placed rows on the earth", () => {
-  const places = fixtureContext({ places: new Set(["US", "CL", "IN"]) });
+  const places = fixtureContext({ places: new Set(["USA", "CHL", "IND"]) });
   const rows: RowDraft[] = [
-    { key: "USA", title: "United States of America", sub: "", group: "a", source: "open", place: "US", point: [39.8, -98.6], weight: 32898 },
-    { key: "CHL", title: "Chile", sub: "", group: "b", source: "by", place: "CL", point: [-37.7, -71.4], weight: 66 },
-    { key: "IND", title: "India", sub: "", group: "a", source: "open", place: "IN", point: [22.9, 79.6] },
+    { key: "USA", title: "United States of America", sub: "", group: "a", source: "open", place: "USA", point: [39.8, -98.6], weight: 32898 },
+    { key: "CHL", title: "Chile", sub: "", group: "b", source: "by", place: "CHL", point: [-37.7, -71.4], weight: 66 },
+    { key: "IND", title: "India", sub: "", group: "a", source: "open", place: "IND", point: [22.9, 79.6] },
     { key: "loose-1", title: "No place one", sub: "", group: "a", source: "open" },
     { key: "loose-2", title: "No place two", sub: "", group: "b", source: "by" },
   ];
