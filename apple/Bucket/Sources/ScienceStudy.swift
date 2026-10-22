@@ -180,6 +180,7 @@ struct StudyLaunch: Identifiable {
 }
 
 struct StudySession: View {
+    @Environment(Reminders.self) private var reminders
     @Environment(ScienceStore.self) private var store
     @Environment(\.dismiss) private var dismiss
     let entry: DeckEntry
@@ -237,6 +238,7 @@ struct StudySession: View {
                 }
                 ScienceDrill(atom: atom, level: pickLevel(store.state(deck.branch), atom), onRate: { rating, level in
                     store.grade(deck, id: item.id, rating: rating, level: level)
+                    reminders.noteStudy()
                     graded += 1
                     advance()
                 }, onSkip: advance)
@@ -277,6 +279,7 @@ struct StudySession: View {
                     .font(.serif(.body)).foregroundStyle(Palette.ink)
                 DeckStats(summary: s)
                 if let nextLine { Text(nextLine).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink) }
+                ReminderPrompt()
                 SyncLine(state: store.saveState)
                 Button {
                     dismiss()

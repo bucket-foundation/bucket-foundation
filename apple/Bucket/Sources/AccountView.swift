@@ -58,6 +58,7 @@ struct AccountView: View {
                         Eyebrow(text: "Account")
                     }
                 }
+                ReminderSettings()
                 if let error = account.error {
                     Section { Text(error).foregroundStyle(.red) }
                 }

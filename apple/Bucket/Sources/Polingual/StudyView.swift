@@ -2,6 +2,7 @@ import BucketKit
 import SwiftUI
 
 struct StudyView: View {
+    @Environment(Reminders.self) private var reminders
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
     @Binding var path: NavigationPath
@@ -70,6 +71,7 @@ struct StudyView: View {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
         }
         if !results.isEmpty {
+            reminders.noteStudy()
             if gate.guest && !store.guestMayStudy(systemId) { gate.require(apply) } else { apply() }
         }
         for r in results where r.rating == 1 {
@@ -91,6 +93,7 @@ struct StudyView: View {
             VStack(spacing: 16) {
                 Image(systemName: "checkmark.seal.fill").font(.system(size: 56)).foregroundStyle(Palette.green)
                 Text("Session done").font(.serif(.title, weight: .semibold))
+                ReminderPrompt()
                 Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
                     .foregroundStyle(Palette.muted)
                     .monospacedDigit()

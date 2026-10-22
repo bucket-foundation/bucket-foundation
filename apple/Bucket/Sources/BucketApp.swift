@@ -8,6 +8,8 @@ struct BucketApp: App {
     @State private var langs: LangStore
     @State private var science: ScienceStore
     @State private var gate: Gate
+    @State private var reminders = Reminders()
+    @Environment(\.scenePhase) private var phase
 
     init() {
         let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
@@ -32,12 +34,17 @@ struct BucketApp: App {
                 .environment(langs)
                 .environment(science)
                 .environment(gate)
+                .environment(reminders)
+                .onChange(of: phase) { _, p in
+                    guard p == .background || p == .active else { return }
+                    backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
+                }
                 .tint(Palette.green)
         }
     }
 }
 
-enum AppTab: String, Hashable { case learn, practice, canon, account }
+enum AppTab: String, Hashable { case today, learn, canon, account }
 
 enum Launch {
     static func value(_ flag: String) -> String? {
@@ -50,17 +57,18 @@ enum Launch {
 }
 
 struct RootView: View {
+    @Environment(Reminders.self) private var reminders
     @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
     @Environment(ScienceStore.self) private var science
     @Environment(Gate.self) private var gate
     @Environment(Account.self) private var account
-    @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .learn
+    @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
 
     var body: some View {
         TabView(selection: $tab) {
+            Tab("Today", systemImage: "sun.max", value: .today) { TodayView() }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Practice", systemImage: "rectangle.on.rectangle.angled", value: .practice) { PracticeHome() }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .task { await library.loadIndex() }
@@ -73,6 +81,7 @@ struct RootView: View {
             if new == .signedOut && old == .signedIn && account.endedByUser {
                 science.clearLocal()
                 langs.clearLocal()
+                reminders.reset()
             }
         }
         .task {
