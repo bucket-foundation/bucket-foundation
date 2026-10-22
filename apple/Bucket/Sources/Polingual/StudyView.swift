@@ -129,7 +129,7 @@ struct StudyView: View {
                     ProgressView(value: Double(i), total: Double(queue.count)).tint(Palette.gold)
                     ExerciseView(ex: ex, readings: readings, optionReadings: readingsByForm(corpus, ex.answerLang), onDone: done,
                                  switched: i > 0 && queue[i - 1].lang != entry.lang,
-                                 setWords: ex.kind == .intro ? corpus.byId[entry.itemId].map { item in system.targets.compactMap { l in item.form(l).map { LangWord(lang: l, word: $0, reading: item.readings[l]) } } } ?? [] : [])
+                                 setWords: ex.kind == .intro ? corpus.byId[entry.itemId].map { item in system.targets.filter { $0 != entry.lang }.compactMap { l in item.form(l).map { LangWord(lang: l, word: $0, reading: item.readings[l]) } } } ?? [] : [])
                         .id(currentKey)
                     HStack {
                         Button("Skip this one") {

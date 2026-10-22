@@ -43,43 +43,80 @@ struct Subject: Equatable {
     }
 }
 
+enum Squiggle {
+    static let surface = Color(light: 0xFFFFFF, dark: 0x2A2620)
+    static let line = Color(light: 0xE5E0D2, dark: 0x4A443A)
+    static let text = Color(light: 0x2B2B2B, dark: 0xF2EDE0)
+    static let muted = Color(light: 0x5E5A52, dark: 0xB5AE9E)
+    static let pink = Color(light: 0xFF4B91, dark: 0xFF4B91)
+    static let onPink = Color(light: 0x1A1A1A, dark: 0x1A1A1A)
+    static let bounce = Animation.timingCurve(0.34, 1.56, 0.64, 1, duration: 0.3)
+}
+
+struct SquiggleCard: ViewModifier {
+    var radius: CGFloat = 16
+
+    func body(content: Content) -> some View {
+        content
+            .background(Squiggle.surface, in: .rect(cornerRadius: radius))
+            .overlay(RoundedRectangle(cornerRadius: radius).stroke(Squiggle.line, lineWidth: 2))
+            .background(Squiggle.line, in: .rect(cornerRadius: radius).offset(y: 4))
+            .padding(.bottom, 4)
+    }
+}
+
+struct SquiggleTag: View {
+    let text: String
+
+    var body: some View {
+        Text(text)
+            .font(.system(.caption, design: .rounded, weight: .semibold))
+            .foregroundStyle(Squiggle.onPink)
+            .padding(.horizontal, 8)
+            .padding(.vertical, 4)
+            .background(Squiggle.pink, in: .rect(cornerRadius: 8))
+    }
+}
+
 struct SubjectTile: View {
     let subject: Subject
     var caption: String?
     var highlight = false
+    @State private var pop = false
 
     var body: some View {
-        HStack(spacing: 14) {
+        HStack(spacing: 12) {
             Text(subject.symbol)
-                .font(.system(size: 34, weight: .semibold, design: .serif))
+                .font(.system(size: 30, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
                 .minimumScaleFactor(0.5)
-                .frame(width: 62, height: 62)
-                .background(subject.color.gradient, in: .rect(cornerRadius: 14))
-                .shadow(color: subject.color.opacity(0.35), radius: highlight ? 10 : 0, y: highlight ? 4 : 0)
-            VStack(alignment: .leading, spacing: 2) {
-                if highlight {
-                    Text("NOW IN").font(.caption2.weight(.heavy)).tracking(1.4).foregroundStyle(subject.color)
-                }
+                .frame(width: 56, height: 56)
+                .background(subject.color, in: .rect(cornerRadius: 12))
+                .background(subject.color.opacity(0.55), in: .rect(cornerRadius: 12).offset(y: 3))
+            VStack(alignment: .leading, spacing: 3) {
                 Text(subject.name)
-                    .font(.serif(.title2, weight: .bold))
-                    .foregroundStyle(subject.color)
+                    .font(.system(.title2, design: .rounded, weight: .bold))
+                    .foregroundStyle(Squiggle.text)
                 if let native = subject.native {
-                    Text(native).font(.subheadline).foregroundStyle(Palette.muted)
+                    Text(native).font(.system(.subheadline, design: .rounded)).foregroundStyle(Squiggle.muted)
                 }
-                if let caption {
-                    Text(caption.uppercased()).font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
+                HStack(spacing: 6) {
+                    if highlight { SquiggleTag(text: "New language") }
+                    if let caption { Text(caption).font(.system(.caption, design: .rounded, weight: .semibold)).foregroundStyle(Squiggle.muted) }
                 }
             }
             Spacer(minLength: 0)
         }
-        .padding(10)
-        .background(subject.color.opacity(highlight ? 0.14 : 0.07), in: .rect(cornerRadius: 18))
-        .overlay(RoundedRectangle(cornerRadius: 18).stroke(subject.color.opacity(highlight ? 0.6 : 0.25), lineWidth: highlight ? 2 : 1))
-        .scaleEffect(highlight ? 1.02 : 1)
-        .animation(.spring(duration: 0.4), value: highlight)
+        .padding(12)
+        .modifier(SquiggleCard())
+        .scaleEffect(pop ? 1.03 : 1)
+        .onAppear {
+            guard highlight else { return }
+            withAnimation(Squiggle.bounce) { pop = true }
+            withAnimation(Squiggle.bounce.delay(0.3)) { pop = false }
+        }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(highlight ? "Now in " : "")\(subject.name)\(caption.map { ", \($0)" } ?? "")")
+        .accessibilityLabel("\(highlight ? "New language, " : "")\(subject.name)\(caption.map { ", \($0)" } ?? "")")
     }
 }
 
@@ -88,19 +125,18 @@ struct WordSetTiles: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Eyebrow(text: "Across your set")
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), spacing: 8)], spacing: 8) {
+            Text("In your other languages").font(.system(.subheadline, design: .rounded, weight: .semibold)).foregroundStyle(Squiggle.muted)
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), spacing: 10)], spacing: 10) {
                 ForEach(words, id: \.lang) { w in
                     let s = Subject.language(w.lang)
                     VStack(spacing: 4) {
                         Text(s.symbol).font(.title2)
-                        Text(w.word).font(.serif(.headline, weight: .semibold)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
-                        Text(s.name).font(.caption2.weight(.semibold)).foregroundStyle(s.color)
+                        Text(w.word).font(.system(.headline, design: .rounded, weight: .bold)).foregroundStyle(Squiggle.text).lineLimit(1).minimumScaleFactor(0.6)
+                        Text(s.name).font(.system(.caption2, design: .rounded, weight: .semibold)).foregroundStyle(Squiggle.muted)
                     }
-                    .frame(maxWidth: .infinity, minHeight: 86)
-                    .background(s.color.opacity(0.08), in: .rect(cornerRadius: 12))
-                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(s.color.opacity(0.3)))
-                    .overlay(alignment: .topTrailing) { PlayButton(text: w.word, lang: w.lang).padding(4).font(.caption) }
+                    .frame(maxWidth: .infinity, minHeight: 88)
+                    .modifier(SquiggleCard(radius: 14))
+                    .overlay(alignment: .topTrailing) { PlayButton(text: w.word, lang: w.lang).padding(6).font(.caption) }
                     .accessibilityElement(children: .combine)
                 }
             }

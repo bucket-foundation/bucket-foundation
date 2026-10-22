@@ -120,7 +120,7 @@ struct ExerciseView: View {
             FamilyLine(ex: ex)
             FalseFriendNote(ex: ex)
             if let note = ex.note { Text(note).font(.caption).foregroundStyle(Palette.muted) }
-            if setWords.count > 1 { WordSetTiles(words: setWords).padding(.top, 6) }
+            if !setWords.isEmpty { WordSetTiles(words: setWords).padding(.top, 6) }
             Button("Got it") { onDone([]) }.buttonStyle(.borderedProminent).padding(.top, 6)
         }
     }
