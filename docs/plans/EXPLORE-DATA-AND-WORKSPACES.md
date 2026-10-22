@@ -69,8 +69,8 @@ One spine carries all of them: **a row set is the unit of data, a mode is a view
 |---------|--------|-------|--------------|
 | corpus-claims | `learning/corpus/claims.jsonl`, joined to `works.jsonl` | graph, timeline | per-work licence; snippet and link only |
 | corpus-mechanisms | `mechanisms.jsonl`, `methods.jsonl` | graph | same |
-| progressions | `progressions/frame.jsonl` | graph, timeline, helix | per-standard licences already in the registry |
-| coverage-frontier | `progressions/completeness/validation.json`, `COVERAGE.md` | circle, earth | derived counts |
+| progressions | `learning/corpus/progressions/completeness/frame.jsonl` | graph, timeline, helix | per-standard licences already in the registry |
+| coverage-frontier | `learning/corpus/progressions/completeness/validation.json`, `COVERAGE.md` | graph with the circle layout, earth | derived counts |
 | market | new `learning/corpus/market/rows.jsonl` extracted from the three market docs | graph, timeline | each row needs a source address |
 | technology-links | existing technology lags, kept to rows with a source address | graph, timeline | bkt-khfw.7 rule holds |
 
@@ -78,11 +78,11 @@ Occupations and technologies already have row sets; they gain the angle, radius 
 
 ### Contract Change
 
-Add three optional fields to a row in `contract.ts`: `angle` (category bucket, 0 to 1), `radius` (depth or level, 0 to 1), `t` (year). A mode reads only these plus `group` and `links`. Each row set declares a mapper that fills them; bkt-0sj7.30 is that mapper set. Rule 5 moves from iso2 to iso3 to match `world-indicators.json`, closing the open note on A4.
+Add three optional fields to a row in `contract.ts`: `angle` (category bucket, 0 to 1), `radius` (depth or level, 0 to 1), `t` (year). Bump `ROW_SET_PACK_SCHEMA` from `bucket.explore-rows-pack/1` to `/2`. The reader in `index.ts` already returns null on a schema mismatch, so an old desktop build shows no row sets until it updates; the pack test asserts the new value and one fixture at the old value reads as null. A mode reads only these plus `group` and `links`. Each row set declares a mapper that fills them; bkt-0sj7.30 is that mapper set. Rule 5 moves from iso2 to iso3 to match `world-indicators.json`, closing the open note on A4.
 
 ### Mode Coverage
 
-Add `circle` as a mode id rendered by bkt-5f2h. Then every row set lists at least two modes so the morph in bkt-0sj7.26 has somewhere to go.
+The circle layout exists: `circle-layout.ts` and `CircleGraphV2.tsx` draw it inside graph mode. No new mode id. bkt-5f2h folds that layout into the shared module. Every row set lists at least two modes so the morph in bkt-0sj7.26 has somewhere to go.
 
 ### Web
 
@@ -96,12 +96,24 @@ Keep the eight desktop types. Add four, each fed by a row set family:
 
 | Workspace | Rows | Work done there |
 |-----------|------|-----------------|
-| Corpus | corpus-claims, corpus-mechanisms | read a claim with its source, mark agree or dispute, link to an atom |
+| Corpus | corpus-claims, corpus-mechanisms | read a claim with its source and open the linked atom; read-only in v1 |
 | Progressions | progressions, mathematics-chain | walk a standard chain, see coverage gaps, open the deck atom |
 | Coverage | coverage-frontier, coverage-by-country | see the filled circle and the open edge, pick a gap to work |
-| My Data | learner rows from Supabase | due today, streaks, export and delete; gated by bkt-98gt5.9 |
+| My Data | the signed-in learner's own rows | due today, streaks, export and delete; gated by bkt-98gt5.9 |
 
 Occupations, technologies and market open in the existing graphs and maps workspaces; they need no type of their own until a task needs one.
+
+### Corpus Writes
+
+Agree and dispute marks are cut from v1. They need a table, row level security and a reader decision the founder has not made. When they come back they follow the alignment review pattern from #795: decisions live in the local working copy, and only an export the reviewer runs leaves the machine.
+
+### My Data Access
+
+- Rows come from `bucket.academy_progress`, `bucket.academy_profiles` and the Research OS tables, all in the private `bucket` schema. The browser never queries them. A service-role route under `src/app/api/academy/` reads only rows whose owner is the session user from `@supabase/ssr`, and returns 401 with no session.
+- Nothing in My Data enters a row set, the public pack or Explore. The workspace has no "Open in Explore" action.
+- Export and delete reuse the existing path: the settings privacy route and `src/app/api/account/`, with the delete test that runs in the unit suite (#960). My Data links to them and adds no second delete path.
+- Consent follows `20260910040000_research_os_privacy_consent.sql`. A learner who has not consented sees an empty state that says so.
+- bkt-98gt5.9 holds the guardrail list. W2 starts only after the founder approves it, and its acceptance tests cover a second user's rows returning nothing and a deleted account returning 404.
 
 ### Shared Shell
 
@@ -109,7 +121,14 @@ Every workspace tab has the same four parts: a list of row sets of that type, a 
 
 ### Web Parity
 
-`/research-os/workspace/[type]` renders the same shell from `packages/bkt-ui`. The current learner workspace page becomes the `study` tab, the founder's ask that the web Workspace page becomes one of the tabs. Tabs persist in `localStorage` on the web, wrapped in try/catch.
+`packages/bkt-ui` is a Vite app with a hash router and a desktop `Api` that reads the local pack. Mounting it under a Next route would bring two routers and an API the web has no server for. W1 builds native Next components instead:
+
+- `src/app/research-os/(app)/workspace/[type]/page.tsx`, a server component that validates `type` against a shared list and renders a client `WorkspaceTabs`.
+- The type list, the `BUILT` copy and the tab key format move from `packages/bkt-ui` into `packages/ros-contract`, which both apps import, so names and copy match without sharing components.
+- Row sets reach the web as the public pack JSON served from `public/`, read by `src/lib/explore/datasets.ts`.
+- Tabs persist in `localStorage` under the same key format, wrapped in try/catch.
+- The current learner page moves to `workspace/study`, and `/research-os/workspace` redirects there, the founder's ask that the web Workspace page becomes one of the tabs.
+- Drawing reuses web components until bkt-5f2h ships the shared module.
 
 ## Build Order
 
@@ -117,7 +136,7 @@ Every workspace tab has the same four parts: a list of row sets of that type, a 
 |-------|---------|------------|
 | W1 | Web `/research-os/workspace/[type]` with the existing eight types, current page as `study` | none |
 | E1 | Contract fields `angle`, `radius`, `t`; mappers for the six built row sets; iso3 rule | none |
-| E2 | `circle` mode via bkt-5f2h; coverage-frontier row set | E1 |
+| E2 | coverage-frontier row set in graph and earth | E1 |
 | E3 | corpus-claims and corpus-mechanisms row sets; Corpus workspace | E1, W1 |
 | E4 | progressions row set; Progressions workspace | E1, W1 |
 | E5 | market rows extracted with source addresses; graph and timeline | E1 |
