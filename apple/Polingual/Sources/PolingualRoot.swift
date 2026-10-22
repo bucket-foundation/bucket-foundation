@@ -27,7 +27,9 @@ struct PolingualRoot: View {
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
             if new == .signedIn && old != .signedIn { Task { await store.syncAfterSignIn() } }
+            if new == .signedOut && old == .signedIn && account.endedByUser { store.clearLocal() }
         }
+        .task { account.beforeSignOut = { await store.flush() } }
     }
 }
 
