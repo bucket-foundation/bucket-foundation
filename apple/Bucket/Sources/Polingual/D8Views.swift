@@ -328,13 +328,15 @@ struct MiniTile: View {
 
 struct D8Primary: ButtonStyle {
     @Environment(\.isEnabled) private var enabled
+    var compact = false
 
     func makeBody(configuration: Configuration) -> some View {
         let pressed = configuration.isPressed && enabled
         configuration.label
             .font(.system(size: 18, weight: .heavy, design: .rounded))
             .foregroundStyle(enabled ? .white : D8.disabledText)
-            .frame(maxWidth: .infinity, minHeight: 50)
+            .padding(.horizontal, compact ? 18 : 0)
+            .frame(maxWidth: compact ? nil : .infinity, minHeight: compact ? 42 : 50)
             .background(enabled ? D8.vermilion : D8.disabled, in: .rect(cornerRadius: 12))
             .background(enabled ? D8.vermilionLip : D8.disabled.opacity(0.6), in: .rect(cornerRadius: 12).offset(y: pressed ? 1 : 4))
             .offset(y: pressed ? 3 : 0)
@@ -345,13 +347,14 @@ struct D8Primary: ButtonStyle {
 struct D8Option: ButtonStyle {
     var selected = false
     var align: Alignment = .leading
+    var compact = false
 
     func makeBody(configuration: Configuration) -> some View {
         let down = selected || configuration.isPressed
         configuration.label
             .font(.system(size: 18, weight: .heavy, design: .rounded))
             .foregroundStyle(D8.ink)
-            .frame(maxWidth: .infinity, minHeight: 50, alignment: align)
+            .frame(maxWidth: compact ? nil : .infinity, minHeight: compact ? 42 : 50, alignment: align)
             .padding(.horizontal, 16)
             .background(selected ? Color(hex: 0xEEF3FB) : .white, in: .rect(cornerRadius: 12))
             .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(selected ? D8.lapis : D8.keyline, lineWidth: selected ? 3 : 2) }

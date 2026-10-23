@@ -72,12 +72,9 @@ struct DeckRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            Text(entry.mark)
-                .font(.serif(.title3, weight: .semibold))
-                .foregroundStyle(Palette.gold)
-                .frame(width: 34)
+            BranchTile(branch: entry.id, size: 36)
             VStack(alignment: .leading, spacing: 3) {
-                Text(entry.title).font(.serif(.headline)).foregroundStyle(Palette.ink)
+                Text(entry.title).font(.headline).foregroundStyle(Palette.ink)
                 if let sub = subtitle ?? entry.sub {
                     Text(sub).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(2)
                 }
@@ -220,7 +217,7 @@ struct AtomView: View {
                     } label: {
                         Label("Test yourself", systemImage: "checkmark.circle").frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(D8Primary())
                     .controlSize(.large)
                 }
             }

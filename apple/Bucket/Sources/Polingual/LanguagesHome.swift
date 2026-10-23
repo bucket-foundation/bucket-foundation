@@ -31,20 +31,27 @@ extension Text {
 
 struct Chip: View {
     let title: String
+    var langs: [String] = []
     let on: Bool
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            Text(title)
-                .font(.subheadline)
-                .padding(.horizontal, 12)
-                .frame(minHeight: 40)
-                .background(on ? Palette.gold.opacity(0.85) : Color.clear, in: .rect(cornerRadius: 6))
-                .overlay(RoundedRectangle(cornerRadius: 6).stroke(on ? Palette.gold : Palette.rule))
-                .foregroundStyle(Palette.ink)
+        Button {
+            tap()
+            action()
+        } label: {
+            HStack(spacing: 8) {
+                if !langs.isEmpty {
+                    HStack(spacing: 3) { ForEach(langs.prefix(3), id: \.self) { FlagTile(lang: $0, size: 20) } }
+                }
+                Text(title).font(.system(size: 15, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+            }
+            .padding(.horizontal, 12)
+            .frame(minHeight: 42)
+            .background(on ? Color(hex: 0xEEF3FB) : .white, in: .rect(cornerRadius: 12))
+            .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(on ? D8.lapis : D8.keyline, lineWidth: on ? 3 : 2))
         }
-        .buttonStyle(.plain)
+        .buttonStyle(TilePress())
         .accessibilityAddTraits(on ? .isSelected : [])
     }
 }
@@ -116,7 +123,7 @@ struct LanguagesHome: View {
                     Eyebrow(text: "Presets")
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.presets, id: \.name) { p in
-                            Chip(title: "\(p.name): \(p.targets.map(Lang.name).joined(separator: ", "))", on: false) {
+                            Chip(title: p.name, langs: p.targets, on: false) {
                                 targets = p.targets.filter { $0 != root }
                             }
                         }
@@ -126,14 +133,14 @@ struct LanguagesHome: View {
                     Eyebrow(text: "Languages to learn")
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
-                            Chip(title: Lang.name(c), on: targets.contains(c)) {
+                            Chip(title: Lang.name(c), langs: [c], on: targets.contains(c)) {
                                 if targets.contains(c) { targets.removeAll { $0 == c } } else { targets.append(c) }
                             }
                         }
                     }
                 }
                 Button("Create system", action: create)
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(D8Primary(compact: true))
                     .disabled(err != nil)
                 if let err, !targets.isEmpty { Text(err.message).noticeStyle() }
             } header: {
@@ -162,7 +169,7 @@ struct LanguagesHome: View {
                 Spacer()
                 Text("\(sum.started) of \(sum.total) cards").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
             }
-            Text("\(s.targets.map(Lang.name).joined(separator: " · ")) from \(Lang.name(s.root))").font(.subheadline).foregroundStyle(Palette.muted)
+            HStack(spacing: 4) { ForEach(s.targets, id: \.self) { FlagTile(lang: $0, size: 24) }; Text("from \(Lang.name(s.root))").font(.subheadline).foregroundStyle(Palette.muted).padding(.leading, 4) }
             HStack(spacing: 14) {
                 Text("\(sum.due) due")
                 Text("\(Int(sum.xp)) xp")
@@ -174,17 +181,16 @@ struct LanguagesHome: View {
             .monospacedDigit()
             FlowLayout(spacing: 8) {
                 if fresh {
-                    Button("Placement") { path.append(LangRoute.place(s.id, nil)) }.buttonStyle(.borderedProminent)
+                    Button("Placement") { path.append(LangRoute.place(s.id, nil)) }.buttonStyle(D8Primary(compact: true))
                 } else {
-                    Button(sum.due > 0 ? "Review" : "Continue") { path.append(LangRoute.study(s.id)) }.buttonStyle(.borderedProminent)
+                    Button(sum.due > 0 ? "Review" : "Continue") { path.append(LangRoute.study(s.id)) }.buttonStyle(D8Primary(compact: true))
                 }
                 if sum.started == 0 {
-                    Button("Start from zero") { path.append(LangRoute.study(s.id)) }.buttonStyle(.bordered)
+                    Button("Start from zero") { path.append(LangRoute.study(s.id)) }.buttonStyle(D8Option(align: .center, compact: true))
                 }
-                Button("Progress") { path.append(LangRoute.system(s.id)) }.buttonStyle(.bordered)
+                Button("Progress") { path.append(LangRoute.system(s.id)) }.buttonStyle(D8Option(align: .center, compact: true))
                 Button("Remove", role: .destructive) { removing = s }.buttonStyle(.borderless).font(.caption)
             }
-            .controlSize(.small)
         }
         .padding(.vertical, 6)
     }

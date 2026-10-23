@@ -25,6 +25,7 @@ struct AccountView: View {
                             .focused($focused)
                             .emailField()
                         Button("Send code") { Task { await account.sendCode(to: email) } }
+                            .buttonStyle(D8Primary())
                             .disabled(account.busy || !email.contains("@"))
                     } header: {
                         Eyebrow(text: "Sign in")
@@ -38,6 +39,7 @@ struct AccountView: View {
                             .focused($focused)
                             .codeField()
                         Button("Verify") { Task { await account.verify(code: code) } }
+                            .buttonStyle(D8Primary())
                             .disabled(account.busy || code.filter(\.isNumber).count < 6)
                         Button("Use a different email", role: .cancel) {
                             code = ""

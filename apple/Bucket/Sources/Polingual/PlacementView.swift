@@ -90,19 +90,19 @@ struct PlacementView: View {
                             path.removeLast()
                             path.append(LangRoute.place(system.id, nextLang))
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(D8Primary())
                     } else {
                         Button("Start studying") {
                             path.removeLast()
                             path.append(LangRoute.study(system.id))
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(D8Primary())
                     }
                     Button("Progress") {
                         path.removeLast()
                         path.append(LangRoute.system(system.id))
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(D8Option(align: .center))
                 }
                 .listRowBackground(Palette.card)
             }
@@ -116,7 +116,7 @@ struct PlacementView: View {
                         .foregroundStyle(Palette.muted)
                     Text("Question \(answers.count + 1) · tier \(JSON.number(item.tier))").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("\(Lang.name(lang)) for **\(item.forms[system.root] ?? "")**").font(.serif(.title3))
+                        HStack(spacing: 10) { FlagTile(lang: lang, size: 32); Text(item.forms[system.root] ?? "").font(.system(size: 30, weight: .bold, design: .rounded)) }
                         if mode == .produce {
                             HStack {
                                 TextField("Answer in \(Lang.name(lang))", text: $typed)
@@ -125,7 +125,7 @@ struct PlacementView: View {
                                     .langInput(lang)
                                     .onSubmit { answer(judgeTyped(typed, [item.forms[lang] ?? ""], lang) != .wrong) }
                                 Button("Check") { answer(judgeTyped(typed, [item.forms[lang] ?? ""], lang) != .wrong) }
-                                    .buttonStyle(.borderedProminent)
+                                    .buttonStyle(D8Primary())
                             }
                         } else {
                             ForEach(options, id: \.self) { o in
@@ -134,7 +134,7 @@ struct PlacementView: View {
                                 }
                             }
                         }
-                        Button("I do not know") { answer(false) }.font(.footnote).buttonStyle(.borderless)
+                        Button("I do not know") { answer(false) }.buttonStyle(PlainLink())
                     }
                     .exerciseCard()
                 }
