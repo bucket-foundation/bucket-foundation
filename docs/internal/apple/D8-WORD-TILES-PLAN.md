@@ -12,7 +12,7 @@ On a language card the learner can lose track of the language they are in. The f
 - Only the answer choices look like buttons. Headers and tiles never do: no lip, no tilt, no press state on a tile inside a card.
 - Each language is named once per card.
 - The flag teaches which language it stands for, so the flag becomes knowledge the learner carries.
-- Same treatment in Bucket and Polingual, which compile the same study files.
+- Bucket's language section only. Polingual keeps today's screens; flags in Polingual come later.
 
 ## What D8 Specifies
 
@@ -135,10 +135,27 @@ Branch `feat/apple-d8-word-tiles`, rebased onto `feat/apple-today` once #953 and
 - Long phrases inside a word tile: phrases render in plain serif with the speaker beside them; word tiles hold single words and short nouns.
 - D8 is on open PR #966. Each step re-checks the D8 files before it starts.
 
-## Founder Questions
+## Founder Decisions
 
-1. Is the card header right: a small flag tile for the target language, with "English → Spanish · translate · A1" beside it as the only place languages are named?
-2. Flags for English, Portuguese and Arabic. The recorded clips and the IPA come from European Portuguese and Modern Standard Arabic, and the app speaks en-US. D8 shows Brazil and Egypt and leaves English open. Options: flags follow the audio (United States, Portugal, a pigment tile for Arabic), or the audio follows D8 (pt-BR and ar-EG voices, new clips and new IPA, a larger change).
+Taken on 2026-10-22 from the mockups in `d8-visuals/index.html`.
+
+- Scope is Bucket's language section. Polingual stays as it is; the three-flag question waits for a later Polingual pass.
+- The prompt is plain text with the small flag: "seven" over "in Spanish". The answers are D8 buttons.
+- Picking presses the button in with a lapis keyline and wakes Check. Check stays grey until a pick.
+- After Check each answer becomes a wide tile in its own language's flag: label top left, word and speaker, IPA below. The right answer gets a malachite ring and a ✓ badge, a wrong pick a vermilion ring and a ✕ badge. Every tile but the right one drops to 78 percent brightness.
+- Translate options come from the learner's other languages (sette, siete, sept, sieben). The engine picks same-language distractors today, so this is an engine change with parity tests.
+- Shared root shows the known cousins as small flag tiles with an empty tile for the asked language.
+- Long words: over 7 letters the type steps down; a space or over 12 letters moves the word to the wide tile. No word breaks mid-word.
+
+## Findings For Other Branches
+
+Measured on the live decks at bucket.foundation/academy-app/corpus on 2026-10-22.
+
+- LaTeX: 1,094 math segments render with raw commands, led by \tfrac (173), \circ (153), \vec (127), \hat (59) and \dfrac (45). `\pmod` renders as "±od" because `\pm` matches first.
+- Markdown: 161 lesson paragraphs carry `$$` mid paragraph and 50 carry bullet lists; LessonText shows both as raw text.
+- Long answers: biophysics has 73 quiz answers over 400 characters, the longest 1,184, written in ASCII math ("H-hat", "lambda").
+- Science study keeps one question kind, recall then self-rating, restyled with D8 buttons and a pigment tile per branch.
+- Today needs three counted groups: due now, new today, done.
 
 ## Work Tracking
 
