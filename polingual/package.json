@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx --yes tsx@4.21.0 --test src/lib/signup.test.ts src/lib/baked.test.ts src/lib/d8-links.test.ts"
+    "test": "npx --yes tsx@4.21.0 --test src/lib/signup.test.ts src/lib/baked.test.ts src/lib/beta.test.ts src/lib/d8-links.test.ts"
   },
   "dependencies": {
     "@vercel/blob": "^2.8.2",
