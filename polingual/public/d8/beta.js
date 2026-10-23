@@ -1,4 +1,4 @@
-(()=>{const TF="https://testflight.apple.com/join/HfeRBKr8",API="https://www.bucket.foundation/api/capture";
+(()=>{const TF="https://testflight.apple.com/join/HfeRBKr8",API="/api/beta";
 const css=`.bt-bg{position:fixed;inset:0;background:rgba(35,31,32,.55);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
 .bt-bg.on{display:flex}.bt{background:#F6EEDC;color:#231F20;border-radius:20px;padding:28px;width:min(440px,100%);box-shadow:0 10px 0 rgba(0,0,0,.3);font-family:Nunito,sans-serif}
 .bt h2{font-family:Fredoka,sans-serif;font-size:32px;margin:0 0 6px}.bt p{margin:0 0 16px;color:#5d5650;font-size:16px;line-height:1.45}
