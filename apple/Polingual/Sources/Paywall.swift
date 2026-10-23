@@ -6,85 +6,177 @@ import UserNotifications
 
 struct Paywall: View {
     @Environment(Subscriptions.self) private var subs
-    @Environment(Reminders.self) private var reminders
     @Environment(Account.self) private var account
+    @Environment(\.openURL) private var openURL
+    @State private var products: [Product] = []
+    @State private var chosen = Plan.yearly
+    @State private var buying = false
+    @State private var failure: String?
     @State private var signingIn = false
     @State private var restoring = false
     @State private var redeeming = false
 
+    var product: Product? { products.first { $0.id == chosen } }
+
     var body: some View {
-        SubscriptionStoreView(productIDs: Plan.all) {
-            VStack(alignment: .leading, spacing: 14) {
-                PaywallArt()
-                    .frame(height: 300)
-                    #if DEBUG
-                    .onLongPressGesture(minimumDuration: 1.5) {
-                        haptic(true)
-                        subs.grantDevPass()
+        GeometryReader { g in
+            let h = g.size.height
+            ZStack(alignment: .top) {
+                Dots().ignoresSafeArea()
+                Diagonal(top: 0.30, rise: 0.06)
+                    .fill(Color(hex: 0x5B1A4A))
+                    .ignoresSafeArea()
+                VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        PoMark()
+                        Text(PaywallCopy.headline(trial: subs.trialEligible))
+                            .font(.system(size: 40, weight: .heavy, design: .rounded))
+                            .foregroundStyle(Palette.ink)
+                            .minimumScaleFactor(0.7)
+                            .lineLimit(1)
                     }
-                    #endif
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(PaywallCopy.headline(trial: subs.trialEligible))
-                        .font(.system(size: 40, weight: .heavy, design: .rounded))
-                        .foregroundStyle(D8.parchment)
-                        .minimumScaleFactor(0.7)
-                        .lineLimit(1)
-                    Text(subs.trialEligible ? "Every language, every card. Cancel before day \(Plan.trialDays) and pay nothing." : "Every language, every card, synced with Bucket.")
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
-                        .foregroundStyle(D8.parchment.opacity(0.75))
-                        .fixedSize(horizontal: false, vertical: true)
-                    Text(PaywallCopy.renewal(trial: subs.trialEligible))
-                        .font(.system(size: 10))
-                        .foregroundStyle(D8.parchment.opacity(0.5))
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.top, 4)
-                    HStack(spacing: 18) {
-                        Button(restoring ? "Restoring" : "Restore") {
-                            Task {
-                                restoring = true
-                                try? await AppStore.sync()
-                                await subs.refresh()
-                                restoring = false
+                    .padding(.horizontal, 24)
+                    .padding(.top, 12)
+                    PaywallArt()
+                        .frame(height: min(260, h * 0.34))
+                        .padding(.top, h * 0.06)
+                        #if DEBUG
+                        .onLongPressGesture(minimumDuration: 1.5) {
+                            haptic(true)
+                            subs.grantDevPass()
+                        }
+                        #endif
+                    Spacer(minLength: 8)
+                    VStack(spacing: 12) {
+                        HStack(spacing: 10) {
+                            ForEach(products, id: \.id) { p in
+                                PlanCard(product: p, selected: chosen == p.id, trial: subs.trialEligible) {
+                                    tap()
+                                    chosen = p.id
+                                }
                             }
                         }
-                        .disabled(restoring)
-                        Button("Have a code?") { redeeming = true }
-                        if account.stage != .signedIn {
-                            Button("Sign in") { signingIn = true }
+                        .frame(minHeight: 84)
+                        Button(buying ? "One moment" : subs.trialEligible ? "Start \(Plan.trialDays) days free" : "Subscribe") {
+                            Task { await buy() }
                         }
+                        .buttonStyle(D8Primary())
+                        .disabled(product == nil || buying)
+                        if let failure { Text(failure).font(.footnote).foregroundStyle(D8.parchment) }
+                        if let product {
+                            Text("\(subs.trialEligible ? "Then " : "")\(product.displayPrice)/\(product.id == Plan.yearly ? "year" : "month"). Auto-renews, cancel anytime in Settings.")
+                                .font(.system(size: 11))
+                                .foregroundStyle(D8.parchment.opacity(0.7))
+                                .multilineTextAlignment(.center)
+                        }
+                        HStack(spacing: 14) {
+                            Button(restoring ? "Restoring" : "Restore") { Task { await restore() } }.disabled(restoring)
+                            Button("Code") { redeeming = true }
+                            if account.stage != .signedIn { Button("Sign in") { signingIn = true } }
+                            Button("Terms") { openURL(Plan.terms) }
+                            Button("Privacy") { openURL(Plan.privacy) }
+                        }
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundStyle(D8.parchment.opacity(0.75))
+                        .buttonStyle(.borderless)
                     }
-                    .font(.footnote.weight(.semibold))
-                    .foregroundStyle(D8.parchment.opacity(0.75))
-                    .buttonStyle(.borderless)
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 8)
                 }
-                .padding(.horizontal, 24)
+                .frame(maxWidth: 560)
+                .frame(maxWidth: .infinity)
             }
-            .frame(maxWidth: 560, alignment: .leading)
         }
-        .id(subs.epoch)
-        .subscriptionStoreControlStyle(.compactPicker)
-        .subscriptionStoreButtonLabel(.multiline)
-        .storeButton(.hidden, for: .redeemCode, .restorePurchases)
-        .storeButton(.visible, for: .policies)
-        .subscriptionStorePolicyDestination(url: Plan.terms, for: .termsOfService)
-        .subscriptionStorePolicyDestination(url: Plan.privacy, for: .privacyPolicy)
-        .inAppPurchaseOptions { _ in
-            guard let id = account.session?.userId.flatMap(UUID.init(uuidString:)) else { return [] }
-            return [.appAccountToken(id)]
-        }
-        .onInAppPurchaseCompletion { _, result in
-            let trial = subs.trialEligible
-            await subs.refresh()
-            if trial, case .success(.success) = result { await TrialReminder.schedule() }
-        }
-        .tint(D8.vermilion)
-        .background(Color(hex: 0x5B1A4A).ignoresSafeArea())
-        .environment(\.colorScheme, .dark)
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
+        .task { await load() }
         .sheet(isPresented: $signingIn) { AccountView() }
         #if os(iOS)
         .offerCodeRedemption(isPresented: $redeeming) { _ in Task { await subs.refresh() } }
         #endif
+    }
+
+    func load() async {
+        let found = (try? await Product.products(for: Plan.all)) ?? []
+        products = Plan.all.compactMap { id in found.first { $0.id == id } }
+    }
+
+    func buy() async {
+        guard let product else { return }
+        buying = true
+        failure = nil
+        defer { buying = false }
+        let trial = subs.trialEligible
+        var options: Set<Product.PurchaseOption> = []
+        if let id = account.session?.userId.flatMap(UUID.init(uuidString:)) { options.insert(.appAccountToken(id)) }
+        do {
+            switch try await product.purchase(options: options) {
+            case .success(let result):
+                if case .verified(let t) = result { await t.finish() }
+                await subs.refresh()
+                haptic(true)
+                if trial { await TrialReminder.schedule() }
+            case .userCancelled, .pending:
+                break
+            @unknown default:
+                break
+            }
+        } catch {
+            failure = "The App Store did not finish the purchase. Try again."
+        }
+    }
+
+    func restore() async {
+        restoring = true
+        try? await AppStore.sync()
+        await subs.refresh()
+        restoring = false
+    }
+}
+
+struct PlanCard: View {
+    let product: Product
+    let selected: Bool
+    let trial: Bool
+    let action: () -> Void
+
+    var body: some View {
+        let yearly = product.id == Plan.yearly
+        Button(action: action) {
+            VStack(spacing: 3) {
+                Text(yearly ? "Yearly" : "Monthly").font(.system(size: 15, weight: .heavy, design: .rounded))
+                Text(product.displayPrice).font(.system(size: 22, weight: .heavy, design: .rounded))
+                Text(yearly ? "per year" : "per month").font(.caption).foregroundStyle(D8.label)
+            }
+            .foregroundStyle(D8.ink)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+            .overlay(alignment: .top) {
+                if yearly {
+                    Text("BEST VALUE").font(D8.caps(9)).tracking(1).foregroundStyle(.white)
+                        .padding(.horizontal, 8).padding(.vertical, 3)
+                        .background(D8.vermilion, in: .capsule)
+                        .offset(y: -10)
+                }
+            }
+        }
+        .buttonStyle(D8Option(selected: selected, align: .center))
+        .accessibilityLabel("\(yearly ? "Yearly" : "Monthly"), \(product.displayPrice)")
+        .accessibilityAddTraits(selected ? .isSelected : [])
+    }
+}
+
+struct Diagonal: Shape {
+    var top: CGFloat
+    var rise: CGFloat
+
+    func path(in r: CGRect) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: 0, y: r.height * (top + rise)))
+        p.addLine(to: CGPoint(x: r.width, y: r.height * top))
+        p.addLine(to: CGPoint(x: r.width, y: r.height))
+        p.addLine(to: CGPoint(x: 0, y: r.height))
+        p.closeSubpath()
+        return p
     }
 }
 
@@ -145,7 +237,7 @@ struct PaywallArt: View {
                         .position(x: w * 0.1, y: h * 0.58 + bob(3))
                     Text("מאה")
                         .font(.system(size: 30, weight: .heavy, design: .rounded))
-                        .foregroundStyle(D8.parchment.opacity(0.8))
+                        .foregroundStyle(Color(hex: 0x5B1A4A).opacity(0.85))
                         .rotationEffect(.degrees(-8))
                         .position(x: w * 0.6, y: h * 0.12 + bob(4))
                     Text("शतम्")
