@@ -1,0 +1,21 @@
+(()=>{const TF="https://testflight.apple.com/join/HfeRBKr8",API="https://www.bucket.foundation/api/capture";
+const css=`.bt-bg{position:fixed;inset:0;background:rgba(35,31,32,.55);display:none;align-items:center;justify-content:center;z-index:99;padding:16px}
+.bt-bg.on{display:flex}.bt{background:#F6EEDC;color:#231F20;border-radius:20px;padding:28px;width:min(440px,100%);box-shadow:0 10px 0 rgba(0,0,0,.3);font-family:Nunito,sans-serif}
+.bt h2{font-family:Fredoka,sans-serif;font-size:32px;margin:0 0 6px}.bt p{margin:0 0 16px;color:#5d5650;font-size:16px;line-height:1.45}
+.bt input{width:100%;font:inherit;font-size:18px;padding:14px 16px;border-radius:12px;border:2px solid #E3D6B8;background:#fff;margin-bottom:12px}
+.bt input:focus{outline:3px solid #D9381E;outline-offset:1px}.bt .hp{position:absolute;left:-9999px}
+.bt button{width:100%;font:inherit;font-weight:800;font-size:18px;padding:15px;border:0;border-radius:12px;background:#D9381E;color:#fff;box-shadow:0 4px 0 #8E2312;cursor:pointer}
+.bt .x{position:absolute;right:14px;top:10px;background:none;border:0;font-size:26px;color:#5d5650;cursor:pointer;width:auto;box-shadow:none;padding:4px}
+.bt .msg{min-height:22px;margin-top:10px;font-size:15px}.bt .err{color:#B92E08}.bt a{color:#D9381E;font-weight:800}`;
+const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+const bg=document.createElement('div');bg.className='bt-bg';bg.innerHTML=`<form class="bt" style="position:relative" novalidate><button type="button" class="x" aria-label="Close">×</button><h2>Join the beta</h2><p>Leave your email and we will send you updates. Then install Polingual through TestFlight on your iPhone.</p><label for="bt-e" class="hp">Email</label><input id="bt-e" type="email" name="email" autocomplete="email" placeholder="you@example.com" required><input class="hp" tabindex="-1" autocomplete="off" name="website" aria-hidden="true"><button type="submit">Join and open TestFlight</button><div class="msg" aria-live="polite"></div></form>`;
+document.body.appendChild(bg);const f=bg.querySelector('form'),m=f.querySelector('.msg'),e=f.querySelector('#bt-e');
+const open=()=>{bg.classList.add('on');setTimeout(()=>e.focus(),30)},close=()=>bg.classList.remove('on');
+bg.addEventListener('click',x=>{if(x.target===bg)close()});f.querySelector('.x').onclick=close;addEventListener('keydown',x=>{if(x.key==='Escape')close()});
+f.onsubmit=async x=>{x.preventDefault();m.className='msg';m.textContent='Saving…';
+try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value,website:f.website.value,speaks:'',learning:'beta',source:'polingual'})});
+const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Something went wrong. Try again.');
+m.innerHTML=`You are on the list. <a href="${TF}" target="_blank" rel="noopener">Open TestFlight</a>`;window.open(TF,'_blank','noopener')}
+catch(err){m.className='msg err';m.innerHTML=(err instanceof TypeError?'Could not reach the signup service.':err.message)+` <a href="${TF}" target="_blank" rel="noopener">Open TestFlight anyway</a>`}};
+document.addEventListener('click',x=>{const a=x.target.closest('[data-slot="appstore"]');if(!a)return;x.preventDefault();(top!==self?top:window).dispatchEvent(new CustomEvent('pl-beta'));if(top===self)open()});
+addEventListener('pl-beta',()=>{if(top===self)open()});})();
