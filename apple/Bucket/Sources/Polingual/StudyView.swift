@@ -32,7 +32,10 @@ struct StudyView: View {
         .paper()
         .navigationTitle(store.system(systemId)?.name ?? "Study")
         .inlineTitle()
-        .task { await store.load() }
+        .task {
+            LangVoice.shared.warm()
+            await store.load()
+        }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
     }
 

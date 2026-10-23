@@ -348,7 +348,10 @@ struct PlayfulTiles: View {
                 LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
                     ForEach(0..<4, id: \.self) { i in
                         let w = Self.night[slots[i]]
-                        WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side) { Task { await flip(i, speak: true) } }
+                        WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side) {
+                            tap()
+                            LangVoice.shared.speak(w.1, w.0)
+                        }
                             .rotation3DEffect(.degrees(angle[i]), axis: (x: 0, y: 1, z: 0), perspective: 0.4)
                             .rotationEffect(.degrees(i.isMultiple(of: 2) ? -2 : 1.5))
                             .offset(y: floating ? (i.isMultiple(of: 2) ? -4 : 4) : (i.isMultiple(of: 2) ? 3 : -3))
@@ -363,6 +366,7 @@ struct PlayfulTiles: View {
         .onAppear {
             withAnimation(.easeOut(duration: 0.6)) { shown = true }
             floating = true
+            LangVoice.shared.warm()
         }
         .task {
             guard !still else { return }
