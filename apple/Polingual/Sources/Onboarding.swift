@@ -57,7 +57,7 @@ struct Onboarding: View {
     var welcome: some View {
         VStack(alignment: .leading, spacing: 16) {
             PoMark()
-            (Text("Language learning for ") + Text("multilingual").foregroundStyle(D8.vermilion) + Text(" learners."))
+            Text(accented("Language learning for **multilingual** learners.", D8.vermilion))
                 .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
                 .minimumScaleFactor(0.7)
@@ -113,7 +113,7 @@ struct Onboarding: View {
                         .tint(Palette.ink)
                     }
                     .onChange(of: root) { _, r in targets.removeAll { $0 == r } }
-                    Text(targets.count == 5 ? "Five at most. Tap one to swap it out." : "\(targets.count) of 5 picked")
+                    Text(targets.count == 5 ? String(localized: "Five at most. Tap one to swap it out.") : String(localized: "\(targets.count) of 5 picked"))
                         .font(.footnote).foregroundStyle(Palette.muted)
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
@@ -341,7 +341,7 @@ struct PlayfulTiles: View {
             let side = compact ? min((g.size.width - 48) / 4, g.size.height - 16, 96) : min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
             VStack(spacing: 12) {
                 if !compact {
-                    (Text("One word, ") + Text("night").foregroundStyle(D8.lapis) + Text(", in every language"))
+                    Text(accented("One word, **night**, in every language", D8.lapis))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(Palette.muted)
                 }
@@ -474,4 +474,13 @@ struct StreakBadge: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("A 100 day streak")
     }
+}
+
+func accented(_ key: String.LocalizationValue, _ color: Color) -> AttributedString {
+    var a = AttributedString(localized: key)
+    for run in a.runs where run.inlinePresentationIntent?.contains(.stronglyEmphasized) == true {
+        a[run.range].foregroundColor = color
+        a[run.range].inlinePresentationIntent = nil
+    }
+    return a
 }

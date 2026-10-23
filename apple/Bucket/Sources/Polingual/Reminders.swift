@@ -155,7 +155,7 @@ struct ReminderPrompt: View {
     var body: some View {
         if !reminders.enabled {
             VStack(alignment: .leading, spacing: 6) {
-                Text(reminders.denied ? "Notifications are off for this app. Turn them on in Settings to get review reminders." : "Get one nudge a day when reviews are due, at your regular study time.")
+                Text(reminders.denied ? String(localized: "Notifications are off for this app. Turn them on in Settings to get review reminders.") : String(localized: "Get one nudge a day when reviews are due, at your regular study time."))
                     .font(.subheadline)
                     .foregroundStyle(Palette.muted)
                 if !reminders.denied {

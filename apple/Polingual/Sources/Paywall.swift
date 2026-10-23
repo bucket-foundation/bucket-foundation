@@ -73,7 +73,7 @@ struct Paywall: View {
                             }
                             .frame(minHeight: 84)
                         }
-                        Button(buying ? "One moment" : subs.trialEligible ? "Start \(Plan.trialDays) days free" : "Subscribe") {
+                        Button(buying ? String(localized: "One moment") : subs.trialEligible ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
                             Task { await buy() }
                         }
                         .buttonStyle(D8Primary())
@@ -87,7 +87,7 @@ struct Paywall: View {
                                 .fixedSize(horizontal: false, vertical: true)
                         }
                         FlowLayout(spacing: 4) {
-                            Button(restoring ? "Restoring" : "Restore") { Task { await restore() } }.disabled(restoring)
+                            Button(restoring ? String(localized: "Restoring") : String(localized: "Restore")) { Task { await restore() } }.disabled(restoring)
                             Button("Code") { redeeming = true }
                             if account.stage != .signedIn { Button("Sign in") { signingIn = true } }
                             Button("Terms") { openURL(Plan.terms) }
@@ -173,9 +173,9 @@ struct PlanCard: View {
         let yearly = product.id == Plan.yearly
         Button(action: action) {
             VStack(spacing: 3) {
-                Text(yearly ? "Yearly" : "Monthly").font(.system(size: 15, weight: .heavy, design: .rounded))
+                Text(yearly ? String(localized: "Yearly") : String(localized: "Monthly")).font(.system(size: 15, weight: .heavy, design: .rounded))
                 Text(product.displayPrice).font(.system(size: 22, weight: .heavy, design: .rounded))
-                Text(yearly ? "per year" : "per month").font(.caption).foregroundStyle(D8.label)
+                Text(yearly ? String(localized: "per year") : String(localized: "per month")).font(.caption).foregroundStyle(D8.label)
             }
             .foregroundStyle(D8.ink)
             .frame(maxWidth: .infinity)
@@ -222,12 +222,13 @@ struct Diagonal: Shape {
 
 enum PaywallCopy {
     static func headline(trial: Bool) -> String {
-        trial ? "\(Plan.trialDays) days free" : "Keep learning"
+        trial ? String(localized: "\(Plan.trialDays) days free") : String(localized: "Keep learning")
     }
 
     static func disclosure(trial: Bool, price: String, period: String) -> String {
-        (trial ? "\(Plan.trialDays) days free, then \(price) a \(period). " : "\(price) a \(period). ")
-            + "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings."
+        let per = period == "year" ? String(localized: "\(price) a year") : String(localized: "\(price) a month")
+        let lead = trial ? String(localized: "\(Plan.trialDays) days free, then \(per).") : String(localized: "\(per).")
+        return lead + " " + String(localized: "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings.")
     }
 
     static func renewal(trial: Bool) -> String {

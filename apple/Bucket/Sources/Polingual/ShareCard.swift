@@ -9,13 +9,13 @@ struct ShareCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
             HStack(spacing: 10) {
-                Text(Feedback.isPolingual ? "Po" : "B")
+                Text(Feedback.isPolingual ? String(localized: "Po") : String(localized: "B"))
                     .font(.system(size: 26, weight: .heavy, design: .rounded))
                     .foregroundStyle(D8.parchment)
                     .frame(width: 56, height: 56)
                     .background(Color(hex: 0x5B1A4A), in: .rect(cornerRadius: 14))
                     .overlay(alignment: .topTrailing) { if Feedback.isPolingual { Circle().fill(D8.vermilion).frame(width: 11, height: 11).padding(7) } }
-                Text(Feedback.isPolingual ? "polingual" : "bucket").font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
+                Text(Feedback.isPolingual ? String(localized: "polingual") : String(localized: "bucket")).font(.system(size: 30, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
             }
             HStack(spacing: 10) {
                 ForEach(langs.prefix(5), id: \.self) { FlagTile(lang: $0, size: 64) }
@@ -29,7 +29,7 @@ struct ShareCard: View {
                 .font(.system(size: 26, weight: .bold, design: .rounded))
                 .foregroundStyle(D8.ink)
                 .fixedSize(horizontal: false, vertical: true)
-            Text(Feedback.isPolingual ? "polingual.com" : "bucket.foundation").font(D8.caps(16)).tracking(1.5).foregroundStyle(Color(hex: 0x5B1A4A))
+            Text(Feedback.isPolingual ? String(localized: "polingual.com") : String(localized: "bucket.foundation")).font(D8.caps(16)).tracking(1.5).foregroundStyle(Color(hex: 0x5B1A4A))
         }
         .padding(48)
         .frame(width: 1080 / 2, alignment: .leading)

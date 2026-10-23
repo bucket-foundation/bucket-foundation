@@ -109,7 +109,7 @@ struct DeckView: View {
                         Button {
                             studying = StudyLaunch(entry: entry, deck: deck)
                         } label: {
-                            Label(today.isEmpty ? "Study" : "Study today (\(today.count))", systemImage: "play.fill").font(.headline)
+                            Label(today.isEmpty ? String(localized: "Study") : String(localized: "Study today (\(today.count))"), systemImage: "play.fill").font(.headline)
                         }
                     }
                     .listRowBackground(Palette.card)
@@ -124,7 +124,7 @@ struct DeckView: View {
                                     HStack {
                                         Text(atom.title).font(.serif(.body)).foregroundStyle(Palette.ink)
                                         Spacer()
-                                        Text(item.kind == .review ? "REVIEW" : "NEW").font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
+                                        Text(item.kind == .review ? String(localized: "REVIEW") : String(localized: "NEW")).font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
                                     }
                                 }
                             }

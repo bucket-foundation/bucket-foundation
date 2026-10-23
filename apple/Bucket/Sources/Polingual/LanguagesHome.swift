@@ -44,7 +44,7 @@ struct Chip: View {
                 if !langs.isEmpty {
                     HStack(spacing: 3) { ForEach(langs.prefix(3), id: \.self) { FlagTile(lang: $0, size: 20) } }
                 }
-                Text(title).font(.system(size: 15, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
+                Text(LocalizedStringKey(title)).font(.system(size: 15, weight: .bold, design: .rounded)).foregroundStyle(D8.ink)
             }
             .padding(.horizontal, 12)
             .frame(minHeight: 42)
@@ -185,7 +185,7 @@ struct LanguagesHome: View {
                 if fresh {
                     Button("Placement") { path.append(LangRoute.place(s.id, nil)) }.buttonStyle(D8Primary(compact: true))
                 } else {
-                    Button(sum.due > 0 ? "Review" : "Continue") { path.append(LangRoute.study(s.id)) }.buttonStyle(D8Primary(compact: true))
+                    Button(sum.due > 0 ? String(localized: "Review") : String(localized: "Continue")) { path.append(LangRoute.study(s.id)) }.buttonStyle(D8Primary(compact: true))
                 }
                 if sum.started == 0 {
                     Button("Start from zero") { path.append(LangRoute.study(s.id)) }.buttonStyle(D8Option(align: .center, compact: true))

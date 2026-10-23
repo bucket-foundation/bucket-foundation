@@ -87,7 +87,8 @@ struct ExerciseView: View {
 
     var headerText: String {
         let level = ex.level.flatMap { Lang.levelLabel[Int($0)] }.map { " · \($0)" } ?? ""
-        return ex.kind == .match ? "\(ex.prompt) · \(ex.kind.label)\(level)" : "\(ex.kind.label)\(level)"
+        let label = String(localized: String.LocalizationValue(ex.kind.label))
+        return ex.kind == .match ? "\(ex.prompt) · \(label)\(level)" : "\(label)\(level)"
     }
 
     var body: some View {
@@ -259,7 +260,7 @@ struct ExerciseView: View {
                 Button {
                     Task { await micTry() }
                 } label: {
-                    Label(listening ? "Listening" : "Speak", systemImage: "mic.fill")
+                    Label(listening ? String(localized: "Listening") : String(localized: "Speak"), systemImage: "mic.fill")
                 }
                 .buttonStyle(D8Primary())
                 .disabled(listening)

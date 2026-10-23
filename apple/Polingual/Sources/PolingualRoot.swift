@@ -72,7 +72,7 @@ struct Studio: View {
                 }
                 .safeAreaInset(edge: .bottom) {
                     if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
-                        Text(days == 1 ? "Free trial: 1 day left" : "Free trial: \(days) days left")
+                        Text(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"))
                             .font(.footnote)
                             .foregroundStyle(Palette.muted)
                             .padding(.vertical, 6)

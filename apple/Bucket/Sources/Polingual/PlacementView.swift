@@ -80,7 +80,7 @@ struct PlacementView: View {
             let nextLang = system.targets.first { $0 != lang && system.placement[$0] == nil }
             List {
                 Section {
-                    Eyebrow(text: "Placement · \(langName(lang))")
+                    Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
                     Text("Placed at tier \(JSON.number(result))").font(.serif(.title, weight: .semibold))
                     Text("\(answers.count) questions. \(result > 0 ? "Words below tier \(JSON.number(result)) start as known and come back for review on the normal schedule." : "You start from the first words.")")
                         .foregroundStyle(Palette.muted)
@@ -110,7 +110,7 @@ struct PlacementView: View {
             let optionReadings = readingsByForm(corpus, lang)
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Eyebrow(text: "Placement · \(langName(lang))")
+                    Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
                     Text("\(langName(system.root)) to \(langName(lang))").font(.serif(.title2, weight: .semibold))
                     Text("Pick the word you know. Skip the ones you do not. The test narrows in on your level and stops when it finds it.")
                         .foregroundStyle(Palette.muted)
