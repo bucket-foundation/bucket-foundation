@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { allowedSource, joinBeta, RateLimiter, TESTFLIGHT_URL } from "./beta";
+import { allowedSource, joinBeta, RateLimiter, TESTFLIGHT_URL, UNSUBSCRIBE, welcomeEmail } from "./beta";
 
 const env = { RESEND_API_KEY: "k", RESEND_BETA_AUDIENCE_ID: "aud" };
 const site = { origin: "https://www.polingual.com", ip: "1.2.3.4" };
@@ -103,4 +103,10 @@ test("rate limiter window expires", () => {
   assert.equal(l.take("k", 0), true);
   assert.equal(l.take("k", 500), false);
   assert.equal(l.take("k", 1500), true);
+});
+
+test("welcome email carries the unsubscribe line in text and html", () => {
+  const m = welcomeEmail("a@b.co", "x");
+  assert.ok(m.text.includes(UNSUBSCRIBE));
+  assert.ok(m.html.includes(UNSUBSCRIBE));
 });

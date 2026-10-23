@@ -7,6 +7,7 @@ export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
 export type BetaResult = { status: number; body: { ok?: true; error?: string; testflight?: string } };
 
 const API = "https://api.resend.com";
+export const UNSUBSCRIBE = "To leave the beta list, email privacy@polingual.com and we remove your address.";
 const ALLOWED_HOSTS = new Set(["polingual.com", "www.polingual.com"]);
 
 export type BetaRequest = { origin?: string | null; referer?: string | null; ip?: string | null; now?: number };
@@ -48,8 +49,8 @@ export function welcomeEmail(to: string, from: string) {
     from,
     to: [to],
     subject: "Your Polingual beta link",
-    text: `Thanks for joining the Polingual beta.\n\nInstall it on your iPhone through TestFlight:\n${TESTFLIGHT_URL}\n\nReply to this email with the languages you speak and the ones you want next.\n\nPolingual`,
-    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>Thanks for joining the Polingual beta.</p><p><a href="${TESTFLIGHT_URL}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Install with TestFlight</a></p><p>Reply with the languages you speak and the ones you want next.</p><p>Polingual</p></div>`,
+    text: `Thanks for joining the Polingual beta.\n\nInstall it on your iPhone through TestFlight:\n${TESTFLIGHT_URL}\n\nReply to this email with the languages you speak and the ones you want next.\n\n${UNSUBSCRIBE}\n\nPolingual`,
+    html: `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#231F20"><p>Thanks for joining the Polingual beta.</p><p><a href="${TESTFLIGHT_URL}" style="display:inline-block;background:#D9381E;color:#fff;padding:12px 20px;border-radius:10px;text-decoration:none;font-weight:700">Install with TestFlight</a></p><p>Reply with the languages you speak and the ones you want next.</p><p style="font-size:13px;color:#5d5650">${UNSUBSCRIBE}</p><p>Polingual</p></div>`,
   };
 }
 
