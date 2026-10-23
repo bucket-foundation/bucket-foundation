@@ -129,7 +129,7 @@ struct PlacementView: View {
                             }
                         } else {
                             ForEach(options, id: \.self) { o in
-                                OptionButton(text: o, lang: lang, reading: readings ? optionReadings[o] : nil, state: .idle) {
+                                OptionButton(text: o, lang: lang, reading: readings ? optionReadings[o] : nil) {
                                     answer(o == item.forms[lang])
                                 }
                             }

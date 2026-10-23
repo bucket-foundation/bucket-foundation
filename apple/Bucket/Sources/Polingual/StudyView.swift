@@ -45,6 +45,13 @@ struct StudyView: View {
     }
 
     func makeExercise() {
+        #if DEBUG
+        if let kind = Self.forcedKind, let system = store.system(systemId), let corpus = store.corpus {
+            current = forced(kind, system, corpus)
+            currentKey = "\(i)-forced"
+            return
+        }
+        #endif
         guard let queue, i < queue.count, let system = store.system(systemId), let corpus = store.corpus else {
             current = nil
             return
@@ -58,7 +65,8 @@ struct StudyView: View {
         if entry.stage == .match {
             current = matchExercise(corpus, system, item, &rng)
         } else {
-            current = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang))
+            let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang))
+            current = crossLanguageOptions(made, item, system, &rng)
         }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
     }
@@ -128,7 +136,8 @@ struct StudyView: View {
                     .foregroundStyle(Palette.muted)
                     .monospacedDigit()
                     ProgressView(value: Double(i), total: Double(queue.count)).tint(Palette.gold)
-                    ExerciseView(ex: ex, readings: readings, optionReadings: readingsByForm(corpus, ex.answerLang), onDone: done)
+                    let maps = readingMaps(ex, corpus)
+                    ExerciseView(ex: ex, readings: readings, reading: { form, lang in maps[lang]?[form] }, onDone: done)
                         .id(currentKey)
                     HStack {
                         Button("Skip this one") {
@@ -149,4 +158,40 @@ struct StudyView: View {
             .scrollDismissesKeyboard(.interactively)
         }
     }
+
+    func readingMaps(_ ex: Exercise, _ corpus: LangCorpus) -> [String: [String: Reading]] {
+        var langs: Set<String> = [ex.answerLang, ex.lang, ex.promptLang]
+        langs.formUnion((ex.optionLangs ?? [:]).values)
+        langs.formUnion((ex.family ?? []).map(\.lang))
+        langs.formUnion((ex.pairs ?? []).map(\.lang))
+        var out: [String: [String: Reading]] = [:]
+        for l in langs { out[l] = readingsByForm(corpus, l) }
+        return out
+    }
+
+    #if DEBUG
+    static let forcedKind: ExerciseKind? = {
+        let args = ProcessInfo.processInfo.arguments
+        guard let i = args.firstIndex(of: "-forceKind"), i + 1 < args.count else { return nil }
+        return ExerciseKind(rawValue: args[i + 1])
+    }()
+
+    func forced(_ kind: ExerciseKind, _ system: LangSystem, _ corpus: LangCorpus) -> Exercise? {
+        for _ in 0..<4000 {
+            let item = corpus.items[rng.index(corpus.items.count)]
+            let lang = system.targets[rng.index(system.targets.count)]
+            guard item.form(lang) != nil, item.form(system.root) != nil else { continue }
+            if kind == .match {
+                if let m = matchExercise(corpus, system, item, &rng) { return m }
+                continue
+            }
+            var card = Card(state: rng.next() < 0.3 ? "relearning" : "review")
+            card.reps = Double(rng.index(6))
+            card.lapses = Double(rng.index(2))
+            let made = exerciseFor(corpus, system, item, lang, kind == .intro ? nil : card, &rng, speech: true, afterIntro: false, level: 3)
+            if made.kind == kind { return crossLanguageOptions(made, item, system, &rng) }
+        }
+        return nil
+    }
+    #endif
 }
