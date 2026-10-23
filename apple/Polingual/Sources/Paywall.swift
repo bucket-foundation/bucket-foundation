@@ -2,14 +2,17 @@ import BucketKit
 import StoreKit
 import SwiftUI
 
+import UserNotifications
+
 struct Paywall: View {
     @Environment(Subscriptions.self) private var subs
+    @Environment(Reminders.self) private var reminders
     @Environment(Account.self) private var account
     @State private var signingIn = false
 
     var body: some View {
         SubscriptionStoreView(productIDs: Plan.all) {
-            PaywallHeader(trial: subs.trialEligible)
+            PaywallHeader(trial: subs.trialEligible, reminded: reminders.enabled)
         }
         .id(subs.epoch)
         .subscriptionStoreControlStyle(.prominentPicker)
@@ -21,7 +24,11 @@ struct Paywall: View {
             guard let id = account.session?.userId.flatMap(UUID.init(uuidString:)) else { return [] }
             return [.appAccountToken(id)]
         }
-        .onInAppPurchaseCompletion { _, _ in await subs.refresh() }
+        .onInAppPurchaseCompletion { _, result in
+            let trial = subs.trialEligible
+            await subs.refresh()
+            if trial, case .success(.success) = result { await TrialReminder.schedule() }
+        }
         .tint(D8.vermilion)
         .background(Palette.paper.ignoresSafeArea())
         .safeAreaInset(edge: .bottom) {
@@ -54,8 +61,22 @@ enum PaywallCopy {
     }
 }
 
+enum TrialReminder {
+    static func schedule(now: Date = .now) async {
+        let center = UNUserNotificationCenter.current()
+        guard await center.notificationSettings().authorizationStatus == .authorized else { return }
+        let content = UNMutableNotificationContent()
+        content.title = "Your Polingual trial ends tomorrow"
+        content.body = "Keep learning, or cancel in Settings before tomorrow and pay nothing."
+        let at = now.addingTimeInterval(Double(Plan.trialDays - 1) * 86_400)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: at), repeats: false)
+        try? await center.add(UNNotificationRequest(identifier: "polingual.trial.ending", content: content, trigger: trigger))
+    }
+}
+
 struct PaywallHeader: View {
     let trial: Bool
+    var reminded = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -67,6 +88,17 @@ struct PaywallHeader: View {
                 .font(.body)
                 .foregroundStyle(Palette.muted)
                 .fixedSize(horizontal: false, vertical: true)
+            if trial {
+                VStack(alignment: .leading, spacing: 0) {
+                    TimelineRow(icon: "lock.open.fill", color: D8.malachite, title: "Today", detail: "Full access to every language and card.", last: false)
+                    if reminded {
+                        TimelineRow(icon: "bell.fill", color: D8.lapis, title: "Day \(Plan.trialDays - 1)", detail: "We remind you that the trial is ending.", last: false)
+                    }
+                    TimelineRow(icon: "star.fill", color: D8.vermilion, title: "Day \(Plan.trialDays)", detail: "Your plan starts. Cancel before this and pay nothing.", last: true)
+                }
+                .padding(16)
+                .background(Palette.card, in: .rect(cornerRadius: 18))
+            }
             VStack(alignment: .leading, spacing: 12) {
                 Point(icon: "square.stack.3d.up.fill", color: D8.lapis, title: "Unlimited language sets", detail: "Learn up to five languages side by side.")
                 Point(icon: "scope", color: D8.malachite, title: "Placement in each language", detail: "Start at your level.")
@@ -77,5 +109,28 @@ struct PaywallHeader: View {
         .padding(.top, 24)
         .frame(maxWidth: 560, alignment: .leading)
         .frame(maxWidth: .infinity)
+    }
+}
+
+struct TimelineRow: View {
+    let icon: String
+    let color: Color
+    let title: String
+    let detail: String
+    let last: Bool
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            VStack(spacing: 0) {
+                Image(systemName: icon).font(.system(size: 13, weight: .bold)).foregroundStyle(.white)
+                    .frame(width: 30, height: 30).background(color, in: .circle)
+                if !last { Rectangle().fill(Palette.rule).frame(width: 3).frame(minHeight: 22) }
+            }
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title).font(.headline).foregroundStyle(Palette.ink)
+                Text(detail).font(.subheadline).foregroundStyle(Palette.muted)
+            }
+            .padding(.bottom, last ? 0 : 10)
+        }
     }
 }

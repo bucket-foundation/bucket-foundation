@@ -18,35 +18,39 @@ struct Onboarding: View {
     @State private var moreLanguages = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Group {
-                switch step {
-                case .welcome: welcome
-                case .languages: languages
-                case .method: method
-                case .daily: daily
-                case .account: accountStep
+        VStack(spacing: 0) {
+            TabView(selection: $step) {
+                ForEach(Step.allCases, id: \.self) { st in
+                    page(st)
+                        .frame(maxWidth: 560, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(.horizontal, 24)
+                        .padding(.top, 16)
+                        .frame(maxWidth: .infinity)
+                        .tag(st)
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .padding(.horizontal, 24)
-            .padding(.top, 16)
-            .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity), removal: .move(edge: .leading).combined(with: .opacity)))
-            .id(step)
+            #if os(iOS)
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            #endif
+            .animation(.spring(duration: 0.4), value: step)
             footer
         }
-        .frame(maxWidth: 560)
-        .frame(maxWidth: .infinity)
         .background(Dots().ignoresSafeArea())
         .sheet(isPresented: $signingIn) { AccountView() }
         .sheet(isPresented: $moreLanguages) { languagePicker }
-        .onChange(of: account.stage) { _, s in
-            if s == .signedIn, step == .account {
-                signingIn = false
-                Task { await complete() }
-            }
-        }
+        .onChange(of: account.stage) { _, st in if st == .signedIn { signingIn = false } }
         .task { await store.load() }
+    }
+
+    @ViewBuilder
+    func page(_ s: Step) -> some View {
+        switch s {
+        case .welcome: welcome
+        case .languages: languages
+        case .method: method
+        case .daily: daily
+        case .account: accountStep
+        }
     }
 
     var welcome: some View {
@@ -167,35 +171,48 @@ struct Onboarding: View {
                 Label("Reminder on", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
             } else if reminders.denied {
                 Text("Notifications are off for Polingual. You can turn them on later in Settings.").font(.subheadline).foregroundStyle(Palette.muted)
+            } else {
+                Button {
+                    Task { _ = await reminders.enable() }
+                } label: {
+                    Label("Turn on my daily reminder", systemImage: "bell.fill")
+                }
+                .buttonStyle(D8Option(align: .center))
             }
         }
     }
 
     var accountStep: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Text("Keep it everywhere")
+            Text("Your plan is ready")
                 .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
-            Text("Sign in with your email and your languages follow you to iPad, Mac, Bucket and polingual.com. You can do this later from the account menu.")
-                .font(.body)
-                .foregroundStyle(Palette.muted)
-            HStack(spacing: 12) {
-                ForEach([("iphone", "iPhone"), ("ipad", "iPad"), ("laptopcomputer", "Mac"), ("globe", "Web")], id: \.1) { icon, name in
-                    VStack(spacing: 6) {
-                        Image(systemName: icon).font(.system(size: 22, weight: .semibold)).foregroundStyle(D8.parchment)
-                            .frame(width: 58, height: 58).background(Color(hex: 0x5B1A4A), in: .rect(cornerRadius: 14))
-                            .modifier(Glaze(radius: 14, lip: 4))
-                        Text(name).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
-                    }
-                    .frame(maxWidth: .infinity)
+            VStack(alignment: .leading, spacing: 14) {
+                HStack(spacing: 6) {
+                    ForEach(targets, id: \.self) { FlagTile(lang: $0, size: 34) }
+                    Text(targets.map(Lang.name).joined(separator: " · ")).font(.headline).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.7).padding(.leading, 4)
                 }
+                PlanLine(icon: "scope", text: "A short placement in each language")
+                PlanLine(icon: "clock", text: "About 10 minutes a day, one mixed queue")
+                PlanLine(icon: reminders.enabled ? "bell.fill" : "bell.slash", text: reminders.enabled ? "A daily reminder at your study time" : "No reminder, turn it on any time")
             }
-            .padding(.vertical, 8)
-            .accessibilityHidden(true)
+            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Palette.card, in: .rect(cornerRadius: 18))
             if account.stage == .signedIn {
-                Label("Signed in", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
+                Label("Signed in, progress syncs", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
+            } else {
+                Button {
+                    signingIn = true
+                } label: {
+                    Label("Sign in to sync iPhone, iPad and Mac", systemImage: "person.crop.circle")
+                }
+                .buttonStyle(D8Option(align: .center))
             }
-            if let failed { Text(failed).font(.footnote).foregroundStyle(D8.vermilion) }
+            if let failed {
+                Text(failed).font(.footnote).foregroundStyle(D8.vermilion)
+                Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
+            }
         }
     }
 
@@ -207,30 +224,23 @@ struct Onboarding: View {
                 }
             }
             .accessibilityHidden(true)
-            switch step {
-            case .daily where !reminders.enabled && !reminders.denied:
-                Button("Remind me daily") { Task { _ = await reminders.enable(); advance() } }.buttonStyle(D8Primary())
-                Button("Not now", action: advance).buttonStyle(PlainLink())
-            case .account where account.stage != .signedIn:
-                Button("Sign in with email") { signingIn = true }.buttonStyle(D8Primary())
-                if failed == nil {
-                    Button("Not now") { Task { await complete() } }.buttonStyle(PlainLink()).disabled(creating)
-                } else {
-                    Button("Try again") { Task { await complete() } }.buttonStyle(PlainLink()).disabled(creating)
-                    Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
-                }
-            case .account:
-                Button(creating ? "Setting up" : failed == nil ? "Start learning" : "Try again") { Task { await complete() } }.buttonStyle(D8Primary()).disabled(creating)
-                if failed != nil { Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink()) }
-            default:
-                Button(step == .welcome ? "Get started" : "Continue", action: advance)
-                    .buttonStyle(D8Primary())
-                    .disabled(step == .languages && targets.isEmpty)
+            Button(label) {
+                if step == .account { Task { await complete() } } else { advance() }
             }
+            .buttonStyle(D8Primary())
+            .disabled((step == .languages && targets.isEmpty) || creating)
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 20)
         .frame(maxWidth: 560)
+    }
+
+    var label: String {
+        switch step {
+        case .welcome: "Get started"
+        case .account: creating ? "Setting up" : failed == nil ? "Start learning" : "Try again"
+        default: "Continue"
+        }
     }
 
     func advance() {
@@ -371,6 +381,18 @@ struct PlayfulTiles: View {
                     try? await Task.sleep(for: .milliseconds(90))
                 }
             }
+        }
+    }
+}
+
+struct PlanLine: View {
+    let icon: String
+    let text: String
+
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: icon).font(.system(size: 15, weight: .bold)).foregroundStyle(D8.lapis).frame(width: 22)
+            Text(text).font(.subheadline).foregroundStyle(Palette.ink)
         }
     }
 }
