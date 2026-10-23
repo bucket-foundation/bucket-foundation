@@ -93,7 +93,7 @@ public enum D8Fit {
 
 public func crossLanguageOptions(_ ex: Exercise, _ item: LangItem, _ system: LangSystem, _ rng: inout Rng) -> Exercise {
     guard ex.kind == .choose, let same = ex.options else { return ex }
-    var seen: Set<String> = [ex.answer]
+    var seen = Set([ex.answer] + (ex.accept ?? []))
     var langs: [String: String] = [ex.answer: ex.answerLang]
     var picks: [String] = []
     for l in shuffle(system.targets.filter { $0 != ex.answerLang }, &rng) {

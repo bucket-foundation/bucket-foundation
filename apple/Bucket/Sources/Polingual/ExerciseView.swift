@@ -51,6 +51,7 @@ struct OptionButton: View {
         }
         .buttonStyle(D8Option(selected: selected))
         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
+        .accessibilityLabel("\(text), \(Lang.name(lang))")
         .accessibilityAddTraits(selected ? .isSelected : [])
     }
 }
