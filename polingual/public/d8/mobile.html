@@ -117,6 +117,22 @@ h1{font-size:min(8.4vw,5.2vh)}
 .cta{max-width:calc(3*21vh + 2*2vh)}.cta .btn{font-size:min(22px,2.2vh);padding:min(20px,1.8vh)}
 .art .azu,.art .seal,.art .stamp,.art .kente,.art .torn{zoom:1.4}
 }
+.xl{display:none}
+.art .cal{position:absolute;line-height:1;font-weight:800}
+.art .ink{position:absolute;width:36px;height:36px;border-radius:50%;background:#F6EEDC}
+@media (min-width:900px){
+.mn{display:grid;grid-template-columns:min(calc(3*21vh + 2*2vh),62%) 1fr;grid-template-rows:auto auto auto auto 1fr;column-gap:4vw;align-content:start}
+.mn>*:not(.art){grid-column:1}
+.art{grid-column:2;grid-row:1/-1;margin:0 -6vw 0 0;height:auto;min-height:0;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
+.art>.xl{display:block}
+.art .azu{left:auto!important;right:6%!important;top:4%!important}
+.art .seal:not(.xl){left:34%!important;top:12%!important}
+.art .stamp{left:24%!important;top:30%!important}
+.art .torn{right:auto!important;left:38%!important;top:62%!important}
+.art .kente:not(.xl){left:40%!important;top:46%!important}
+.art .mini:not(.xl){left:60%!important;top:24%!important}
+.ft{grid-column:1/-1}
+}
 </style></head><body>
 <div class="memphis"></div>
 <div class="pg">
@@ -155,6 +171,15 @@ h1{font-size:min(8.4vw,5.2vh)}
   <div class="torn" style="right:10px;top:250px;transform:rotate(-4deg) scale(.7)"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
   <div class="mini" style="left:200px;top:70px;transform:rotate(-12deg);font-family:'Noto Sans Hebrew'">מאה</div>
   <div class="mini" style="left:40px;top:200px;transform:rotate(18deg);font-family:'Noto Sans'">сто</div>
+  <div class="xl cal" style="left:8%;top:30%;font-family:'Noto Sans Arabic';font-size:26vh;transform:rotate(-8deg);color:rgba(246,238,220,.12)">ع</div>
+  <div class="xl cal" style="right:2%;top:58%;font-family:'Noto Sans SC';font-size:22vh;transform:rotate(9deg);color:rgba(111,183,194,.2)">永</div>
+  <div class="xl paisley" style="right:12%;top:46%;transform:rotate(25deg)"></div>
+  <div class="xl kente" style="left:10%;top:74%;transform:rotate(14deg)"></div>
+  <div class="xl seal" style="right:8%;bottom:6%;transform:rotate(8deg) scale(.8)"><span>百</span></div>
+  <div class="xl mini" style="left:30%;top:52%;transform:rotate(-20deg);font-family:'Noto Sans'">백</div>
+  <div class="xl mini" style="left:56%;top:88%;transform:rotate(12deg);font-family:'Noto Sans'">cien</div>
+  <div class="xl mini" style="left:14%;top:44%;transform:rotate(16deg);font-family:'Noto Sans Devanagari'">सौ</div>
+  <div class="xl ink" style="left:44%;top:36%"></div><div class="xl ink" style="left:72%;top:72%;width:22px;height:22px;background:#D9381E"></div>
  </div>
  </main>
  <footer class="ft"><span>Polingual · <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:inherit">Wiktionary CC BY-SA</a></span><nav><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a></nav></footer>
