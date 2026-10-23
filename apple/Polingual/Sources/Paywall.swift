@@ -9,15 +9,43 @@ struct Paywall: View {
     @Environment(Reminders.self) private var reminders
     @Environment(Account.self) private var account
     @State private var signingIn = false
+    @State private var restoring = false
 
     var body: some View {
         SubscriptionStoreView(productIDs: Plan.all) {
-            PaywallHeader(trial: subs.trialEligible, reminded: reminders.enabled)
+            VStack(alignment: .leading, spacing: 12) {
+                PaywallHeader(trial: subs.trialEligible, reminded: reminders.enabled)
+                Text(PaywallCopy.renewal(trial: subs.trialEligible))
+                    .font(.system(size: 11))
+                    .foregroundStyle(Palette.muted)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.horizontal, 24)
+                HStack(spacing: 18) {
+                    Button(restoring ? "Restoring" : "Restore purchases") {
+                        Task {
+                            restoring = true
+                            try? await AppStore.sync()
+                            await subs.refresh()
+                            restoring = false
+                        }
+                    }
+                    .disabled(restoring)
+                    if account.stage != .signedIn {
+                        Button("Sign in") { signingIn = true }
+                    }
+                }
+                .font(.footnote.weight(.semibold))
+                .foregroundStyle(Palette.muted)
+                .buttonStyle(.borderless)
+                .padding(.horizontal, 24)
+            }
+            .frame(maxWidth: 560, alignment: .leading)
         }
         .id(subs.epoch)
-        .subscriptionStoreControlStyle(.prominentPicker)
+        .subscriptionStoreControlStyle(.compactPicker)
         .subscriptionStoreButtonLabel(.multiline)
-        .storeButton(.visible, for: .restorePurchases, .redeemCode, .policies)
+        .storeButton(.hidden, for: .redeemCode, .restorePurchases)
+        .storeButton(.visible, for: .policies)
         .subscriptionStorePolicyDestination(url: Plan.terms, for: .termsOfService)
         .subscriptionStorePolicyDestination(url: Plan.privacy, for: .privacyPolicy)
         .inAppPurchaseOptions { _ in
@@ -30,22 +58,8 @@ struct Paywall: View {
             if trial, case .success(.success) = result { await TrialReminder.schedule() }
         }
         .tint(D8.vermilion)
-        .background(Palette.paper.ignoresSafeArea())
-        .safeAreaInset(edge: .bottom) {
-            VStack(spacing: 6) {
-                Text(PaywallCopy.renewal(trial: subs.trialEligible))
-                    .font(.caption2)
-                    .foregroundStyle(Palette.muted)
-                    .multilineTextAlignment(.center)
-                if account.stage != .signedIn {
-                    Button("Already learning in Bucket? Sign in") { signingIn = true }
-                        .font(.footnote)
-                        .buttonStyle(.borderless)
-                }
-            }
-            .padding(.horizontal, 24)
-            .padding(.bottom, 6)
-        }
+        .background(Dots().ignoresSafeArea())
+        .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .sheet(isPresented: $signingIn) { AccountView() }
     }
 }
@@ -79,34 +93,39 @@ struct PaywallHeader: View {
     var reminded = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(spacing: 10) {
+                ForEach(Array(["fr", "ja", "es", "el", "ar", "it"].enumerated()), id: \.offset) { i, l in
+                    FlagTile(lang: l, size: 42).rotationEffect(.degrees(i.isMultiple(of: 2) ? -6 : 5))
+                }
+            }
+            .accessibilityHidden(true)
             PoMark()
             Text(PaywallCopy.headline(trial: trial))
-                .font(.system(size: 38, weight: .heavy, design: .rounded))
+                .font(.system(size: 36, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
-            Text("Every language set, every word in all 29 languages, placement, spaced review and speaking practice. Progress syncs with Bucket.")
-                .font(.body)
-                .foregroundStyle(Palette.muted)
-                .fixedSize(horizontal: false, vertical: true)
+                .minimumScaleFactor(0.7)
+                .lineLimit(1)
             if trial {
                 VStack(alignment: .leading, spacing: 0) {
-                    TimelineRow(icon: "lock.open.fill", color: D8.malachite, title: "Today", detail: "Full access to every language and card.", last: false)
+                    TimelineRow(icon: "lock.open.fill", color: D8.malachite, title: "Today", detail: "Every language, every card.", last: false)
                     if reminded {
-                        TimelineRow(icon: "bell.fill", color: D8.lapis, title: "Day \(Plan.trialDays - 1)", detail: "We remind you that the trial is ending.", last: false)
+                        TimelineRow(icon: "bell.fill", color: D8.lapis, title: "Day \(Plan.trialDays - 1)", detail: "A reminder that the trial ends.", last: false)
                     }
-                    TimelineRow(icon: "star.fill", color: D8.vermilion, title: "Day \(Plan.trialDays)", detail: "Your plan starts. Cancel before this and pay nothing.", last: true)
+                    TimelineRow(icon: "star.fill", color: D8.vermilion, title: "Day \(Plan.trialDays)", detail: "Plan starts. Cancel before, pay nothing.", last: true)
                 }
-                .padding(16)
+                .padding(14)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Palette.card, in: .rect(cornerRadius: 18))
-            }
-            VStack(alignment: .leading, spacing: 12) {
-                Point(icon: "square.stack.3d.up.fill", color: D8.lapis, title: "Unlimited language sets", detail: "Learn up to five languages side by side.")
-                Point(icon: "scope", color: D8.malachite, title: "Placement in each language", detail: "Start at your level.")
-                Point(icon: "speaker.wave.2.fill", color: D8.vermilion, title: "Hear and say every word", detail: "Native audio and speech checks.")
+            } else {
+                Text("Every language set, placement, spaced review and speaking practice. Progress syncs with Bucket.")
+                    .font(.subheadline)
+                    .foregroundStyle(Palette.muted)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
         .padding(.horizontal, 24)
-        .padding(.top, 24)
+        .padding(.top, 12)
         .frame(maxWidth: 560, alignment: .leading)
         .frame(maxWidth: .infinity)
     }
@@ -122,15 +141,15 @@ struct TimelineRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(spacing: 0) {
-                Image(systemName: icon).font(.system(size: 13, weight: .bold)).foregroundStyle(.white)
-                    .frame(width: 30, height: 30).background(color, in: .circle)
-                if !last { Rectangle().fill(Palette.rule).frame(width: 3).frame(minHeight: 22) }
+                Image(systemName: icon).font(.system(size: 12, weight: .bold)).foregroundStyle(.white)
+                    .frame(width: 26, height: 26).background(color, in: .circle)
+                if !last { Rectangle().fill(Palette.rule).frame(width: 3, height: 14) }
             }
             VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.headline).foregroundStyle(Palette.ink)
-                Text(detail).font(.subheadline).foregroundStyle(Palette.muted)
+                Text(title).font(.subheadline.weight(.bold)).foregroundStyle(Palette.ink)
+                Text(detail).font(.footnote).foregroundStyle(Palette.muted)
             }
-            .padding(.bottom, last ? 0 : 10)
+            .padding(.bottom, last ? 0 : 4)
         }
     }
 }
