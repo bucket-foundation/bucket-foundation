@@ -251,13 +251,13 @@ enum TrialReminder {
 
 struct PaywallArt: View {
     @Environment(\.accessibilityReduceMotion) private var still
+    @State private var floating = false
 
     var body: some View {
         GeometryReader { g in
             let w = g.size.width, h = g.size.height
-            TimelineView(.animation(paused: still)) { t in
-                let now = t.date.timeIntervalSinceReferenceDate
-                let bob = { (i: Double) -> CGFloat in still ? 0 : CGFloat(sin(now * 0.9 + i) * 4) }
+            do {
+                let bob = { (i: Double) -> CGFloat in still ? 0 : (floating ? 1 : -1) * CGFloat(Int(i).isMultiple(of: 2) ? 4 : -4) }
                 ZStack {
                     Weave()
                         .frame(width: w * 0.62, height: 54)
@@ -298,6 +298,8 @@ struct PaywallArt: View {
                 }
             }
         }
+        .animation(still ? nil : .easeInOut(duration: 3).repeatForever(autoreverses: true), value: floating)
+        .onAppear { floating = true }
         .accessibilityHidden(true)
     }
 }

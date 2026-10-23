@@ -334,6 +334,7 @@ struct PlayfulTiles: View {
     @State private var slots = [0, 1, 2, 3]
     @State private var angle: [Double] = [0, 0, 0, 0]
     @State private var shown = false
+    @State private var floating = false
 
     var body: some View {
         GeometryReader { g in
@@ -344,16 +345,14 @@ struct PlayfulTiles: View {
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(Palette.muted)
                 }
-                TimelineView(.animation(paused: still)) { t in
-                    let now = t.date.timeIntervalSinceReferenceDate
-                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
-                        ForEach(0..<4, id: \.self) { i in
-                            let w = Self.night[slots[i]]
-                            WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side) { Task { await flip(i, speak: true) } }
-                                .rotation3DEffect(.degrees(angle[i]), axis: (x: 0, y: 1, z: 0), perspective: 0.5)
-                                .rotationEffect(.degrees((i.isMultiple(of: 2) ? -2 : 1.5) + (still ? 0 : sin(now * 0.8 + Double(i)) * 1.0)))
-                                .offset(y: still ? 0 : sin(now * 1.1 + Double(i) * 1.6) * (compact ? 2 : 4))
-                        }
+                LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
+                    ForEach(0..<4, id: \.self) { i in
+                        let w = Self.night[slots[i]]
+                        WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side) { Task { await flip(i, speak: true) } }
+                            .rotation3DEffect(.degrees(angle[i]), axis: (x: 0, y: 1, z: 0), perspective: 0.4)
+                            .rotationEffect(.degrees(i.isMultiple(of: 2) ? -2 : 1.5))
+                            .offset(y: floating ? (i.isMultiple(of: 2) ? -4 : 4) : (i.isMultiple(of: 2) ? 3 : -3))
+                            .animation(still ? nil : .easeInOut(duration: 2.4 + Double(i) * 0.35).repeatForever(autoreverses: true), value: floating)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -361,11 +360,14 @@ struct PlayfulTiles: View {
                 .offset(y: shown ? 0 : 16)
             }
         }
-        .onAppear { withAnimation(.easeOut(duration: 0.6)) { shown = true } }
+        .onAppear {
+            withAnimation(.easeOut(duration: 0.6)) { shown = true }
+            floating = true
+        }
         .task {
             guard !still else { return }
             while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(3.5))
+                try? await Task.sleep(for: .seconds(7))
                 await flip(Int.random(in: 0..<4), speak: false)
             }
         }
@@ -378,11 +380,15 @@ struct PlayfulTiles: View {
         if still {
             slots[i] = next
         } else {
-            withAnimation(.easeIn(duration: 0.18)) { angle[i] = 90 }
-            try? await Task.sleep(for: .milliseconds(180))
-            slots[i] = next
-            angle[i] = -90
-            withAnimation(.easeOut(duration: 0.22)) { angle[i] = 0 }
+            withAnimation(.easeIn(duration: 0.24)) { angle[i] = 90 }
+            try? await Task.sleep(for: .milliseconds(240))
+            var t = Transaction()
+            t.disablesAnimations = true
+            withTransaction(t) {
+                slots[i] = next
+                angle[i] = -90
+            }
+            withAnimation(.easeOut(duration: 0.3)) { angle[i] = 0 }
         }
         if speak {
             let w = Self.night[next]
