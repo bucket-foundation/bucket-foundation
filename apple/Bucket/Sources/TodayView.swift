@@ -7,6 +7,29 @@ struct TodayView: View {
     @Environment(ScienceStore.self) private var science
     @State private var path = NavigationPath()
     @State private var session: StudyLaunch?
+    @AppStorage("bucket.today.order") private var order = ""
+
+    enum Item: Identifiable {
+        case deck(Work)
+        case lang(LangSystem)
+
+        var id: String {
+            switch self {
+            case .deck(let w): "d:\(w.entry.id)"
+            case .lang(let s): "l:\(s.id)"
+            }
+        }
+    }
+
+    var items: [Item] {
+        let all = langs.systems.map(Item.lang) + work.map(Item.deck)
+        let saved = order.split(separator: ",").map(String.init)
+        return all.enumerated().sorted { a, b in
+            let ia = saved.firstIndex(of: a.element.id) ?? saved.count + a.offset
+            let ib = saved.firstIndex(of: b.element.id) ?? saved.count + b.offset
+            return ia < ib
+        }.map(\.element)
+    }
 
     struct Work {
         let entry: DeckEntry
@@ -34,9 +57,19 @@ struct TodayView: View {
         (library.scienceDecks.map { science.state($0.id).streak } + langs.systems.map { langs.state($0.id).streak }).max() ?? 0
     }
 
+    func nextUp(_ now: Double) -> Item? {
+        let corpus = langs.corpus
+        return items.first { item in
+            switch item {
+            case .deck(let w): w.due + w.new > 0
+            case .lang(let s):
+                (corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0) > 0 || langNewLeft(s, langs.state(s.id), now: now) > 0
+            }
+        }
+    }
+
     var body: some View {
         let w = work
-        let pending = w.filter { $0.due + $0.new > 0 }.sorted { ($0.due, $0.new) > ($1.due, $1.new) }
         let due = w.reduce(0) { $0 + $1.due } + langDue.reduce(0) { $0 + $1.due }
         let now = Date().timeIntervalSince1970 * 1000
         let new = w.reduce(0) { $0 + $1.new } + langs.systems.reduce(0) { $0 + langNewLeft($1, langs.state($1.id), now: now) }
@@ -56,50 +89,42 @@ struct TodayView: View {
                         Text(due + new == 0 ? (w.isEmpty && langs.systems.isEmpty ? "Start a deck in Learn or build a language system, and its reviews show up here." : "All caught up. Reviews come back as their intervals run out.") : "Due reviews first, then new cards.")
                             .font(.subheadline)
                             .foregroundStyle(Palette.muted)
-                        if let first = pending.first {
-                            Button("Start · \(first.entry.title)") {
-                                session = StudyLaunch(entry: first.entry, deck: first.deck)
+                        if let next = nextUp(now) {
+                            switch next {
+                            case .deck(let work):
+                                Button("Start · \(work.entry.title)") { session = StudyLaunch(entry: work.entry, deck: work.deck) }.buttonStyle(D8Primary())
+                            case .lang(let system):
+                                Button("Start · \(system.name)") { path.append(LangRoute.study(system.id)) }.buttonStyle(D8Primary())
                             }
-                            .buttonStyle(D8Primary())
-                        } else if let lang = langDue.first(where: { $0.due > 0 }) ?? langDue.first(where: { langs.state($0.system.id).cards.count == 0 }) {
-                            Button(lang.due > 0 ? "Review · \(lang.system.name)" : "Start · \(lang.system.name)") {
-                                path.append(LangRoute.study(lang.system.id))
-                            }
-                            .buttonStyle(D8Primary())
                         }
                     }
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(Palette.card)
-                if !pending.isEmpty {
+                if !items.isEmpty {
                     Section {
-                        ForEach(pending, id: \.entry.id) { item in
-                            Button {
-                                session = StudyLaunch(entry: item.entry, deck: item.deck)
-                            } label: {
-                                ReviewDeckRow(entry: item.entry)
+                        ForEach(items) { item in
+                            switch item {
+                            case .deck(let work):
+                                Button { session = StudyLaunch(entry: work.entry, deck: work.deck) } label: { ReviewDeckRow(entry: work.entry) }
+                            case .lang(let system):
+                                Button { path.append(LangRoute.study(system.id)) } label: { LangSystemRow(system: system) }
                             }
+                        }
+                        .onMove { from, to in
+                            var ids = items.map(\.id)
+                            ids.move(fromOffsets: from, toOffset: to)
+                            order = ids.joined(separator: ",")
                         }
                         .listRowBackground(Palette.card)
                     } header: {
-                        Eyebrow(text: "Science")
+                        Eyebrow(text: "Your studies")
                     }
-                }
-                if !langs.systems.isEmpty {
-                Section {
-                    ForEach(langs.systems) { s in
-                        Button {
-                            path.append(LangRoute.study(s.id))
-                        } label: {
-                            LangSystemRow(system: s)
-                        }
-                    }
-                    .listRowBackground(Palette.card)
-                } header: {
-                    Eyebrow(text: "Language systems")
-                }
                 }
             }
+            #if os(iOS)
+            .toolbar { if items.count > 1 { EditButton().tint(Palette.ink) } }
+            #endif
             .paper()
             .navigationTitle("Today")
             .sheet(item: $session) { StudySession(entry: $0.entry, deck: $0.deck) }

@@ -404,7 +404,7 @@ struct BranchTile: View {
 
     static let pigments: [String: (UInt32, String)] = [
         "00": (0xC8952C, "✦"), "01": (0x1F4E9A, "∑"), "02": (0xD9381E, "Φ"), "03": (0x1E7A5A, "χ"),
-        "04": (0x231F20, "∫"), "05": (0x5B1A4A, "ψ"), "06": (0x2E6FA8, "★"), "07": (0x8E2312, "∞"),
+        "04": (0x231F20, "∫"), "05": (0x5B1A4A, "ψ"), "06": (0x2E6FA8, "★"), "07": (0x8E2312, "∞"), "la": (0x5B1A4A, "Aa"),
     ]
 
     var body: some View {

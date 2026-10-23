@@ -19,20 +19,20 @@ struct LearnView: View {
                 case .ready:
                     List {
                         Section {
-                            ForEach(library.scienceDecks) { entry in
-                                NavigationLink(value: entry) { DeckRow(entry: entry) }
-                                    .listRowBackground(Palette.card)
-                            }
-                        } header: {
-                            Eyebrow(text: "Seven branches and the meta-skill")
-                        }
-                        Section {
                             ForEach(library.languageDecks) { entry in
                                 NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
                                     .listRowBackground(Palette.card)
                             }
                         } header: {
                             Eyebrow(text: "Languages")
+                        }
+                        Section {
+                            ForEach(library.scienceDecks) { entry in
+                                NavigationLink(value: entry) { DeckRow(entry: entry) }
+                                    .listRowBackground(Palette.card)
+                            }
+                        } header: {
+                            Eyebrow(text: "Seven branches and the meta-skill")
                         }
                     }
                 }
