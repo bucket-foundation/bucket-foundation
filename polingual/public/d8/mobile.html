@@ -163,6 +163,16 @@ h1{font-size:calc(var(--T)*.3)}
 @media (prefers-reduced-motion:reduce){.azu,.seal,.stamp,.kente,.torn,.paisley,.mini,.pc,.np{animation:none}}
 .np{position:absolute}
 .wd-art .strip{display:none}@media (min-width:680px){.art>.np.strip{display:none}}
+@media (max-width:429px){
+.grid{grid-template-columns:repeat(3,min(calc((100% - 20px)/3),12.5vh));justify-content:center}
+.grid .tt b{font-size:min(6.4vw,2.9vh)}.grid .tt b.long{font-size:min(4.4vw,2vh)}
+.grid .tt .cc{font-size:min(8px,1.2vh)}.grid .tt i{font-size:min(10px,1.5vh)}
+.cta .btn{padding:min(13px,1.6vh) 8px;font-size:min(16px,4.1vw,2.3vh)}
+.pot .fire{height:min(11vh,100px)}
+.art{min-height:22vh}
+.art>.azu,.art>.seal,.art>.stamp,.art>.kente,.art>.torn,.art>.mini,.art>.np{zoom:.62}
+h1{font-size:min(9.6vw,5vh)}
+}
 </style></head><body>
 <div class="memphis"></div>
 <div class="pg">
