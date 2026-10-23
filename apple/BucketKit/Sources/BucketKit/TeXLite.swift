@@ -114,10 +114,12 @@ public enum TeXLite {
         for env in envs {
             let open = "\\begin{\(env)}", close = "\\end{\(env)}"
             while let a = out.range(of: open), let b = out.range(of: close, range: a.upperBound..<out.endIndex) {
-                let rows = out[a.upperBound..<b.lowerBound].components(separatedBy: "\\\\")
+                var inner = out[a.upperBound..<b.lowerBound]
+                if env == "array", inner.hasPrefix("{"), let end = inner.firstIndex(of: "}") { inner = inner[inner.index(after: end)...] }
+                let rows = inner.components(separatedBy: "\\\\")
                     .map { $0.replacingOccurrences(of: "&", with: " ").trimmingCharacters(in: .whitespaces) }
                     .filter { !$0.isEmpty }
-                let body = rows.joined(separator: env == "cases" || env == "aligned" ? "; " : "; ")
+                let body = rows.joined(separator: "; ")
                 out.replaceSubrange(a.lowerBound..<b.upperBound, with: env == "cases" || env == "aligned" ? "{ \(body) }" : "(\(body))")
             }
         }

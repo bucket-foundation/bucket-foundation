@@ -139,10 +139,9 @@ struct StudyView: View {
             .padding(.bottom, 12)
             .frame(maxWidth: 680, alignment: .top)
             .frame(maxWidth: .infinity)
-            ViewThatFits(in: .vertical) {
-                page.frame(maxHeight: .infinity, alignment: .top)
-                ScrollView { page }.scrollDismissesKeyboard(.interactively)
-            }
+            ScrollView { page }
+                .scrollBounceBehavior(.basedOnSize)
+                .scrollDismissesKeyboard(.interactively)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {

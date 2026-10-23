@@ -195,6 +195,8 @@ func bodyAction(_ r: URLRequest) -> String? {
         ("\\bar\\rho", "ρ̄"),
         ("Q \\ne K, L \\gg l_p", "Q ≠ K, L ≫ lₚ"),
         ("\\mathbb{E}[X]", "𝔼[X]"),
+        ("\\foo x", "foo x"),
+        ("\\begin{array}{cc}1&2\\end{array}", "(1 2)"),
         ("A=\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}", "A=(2 1; 0 3)"),
         ("\\alpha + \\beta \\leq \\gamma", "α + β ≤ γ"),
         ("e^{i\\pi} + 1 = 0", "e^(iπ) + 1 = 0"),

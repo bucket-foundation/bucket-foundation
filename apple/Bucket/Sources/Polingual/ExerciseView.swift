@@ -157,7 +157,7 @@ struct ExerciseView: View {
                         .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("\(Lang.name(l))\(word.map { ", holds \($0)" } ?? "")")
+                    .accessibilityLabel("\(Lang.name(l))\(word.map { ", holds \($0)" } ?? "")\(matchDone ? (ok ? ", right" : ", wrong, the answer is \(truth)") : "")")
                 }
             }
             if matchDone {
