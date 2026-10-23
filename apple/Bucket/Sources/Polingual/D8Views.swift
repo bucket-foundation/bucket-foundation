@@ -366,3 +366,25 @@ struct PlainLink: ButtonStyle {
         configuration.label.font(.subheadline.weight(.bold)).underline().foregroundStyle(Palette.muted).frame(maxWidth: .infinity).opacity(configuration.isPressed ? 0.6 : 1)
     }
 }
+
+struct BranchTile: View {
+    let branch: String
+    var size: CGFloat = 44
+
+    static let pigments: [String: (UInt32, String)] = [
+        "00": (0xC8952C, "✦"), "01": (0x1F4E9A, "∑"), "02": (0xD9381E, "Φ"), "03": (0x1E7A5A, "χ"),
+        "04": (0x231F20, "∫"), "05": (0x5B1A4A, "ψ"), "06": (0x2E6FA8, "★"), "07": (0x8E2312, "∞"),
+    ]
+
+    var body: some View {
+        let p = Self.pigments[String(branch.prefix(2))] ?? (0x5d5650, String(branch.prefix(1)).uppercased())
+        Text(p.1)
+            .font(.system(size: size * 0.48, weight: .bold, design: .serif))
+            .foregroundStyle(D8.parchment)
+            .frame(width: size, height: size)
+            .background(Color(hex: p.0))
+            .overlay { Shine() }
+            .modifier(Glaze(radius: size * 0.23))
+            .accessibilityHidden(true)
+    }
+}
