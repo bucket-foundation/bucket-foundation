@@ -16,6 +16,22 @@ ONE_TIME = 200
 EXPIRES = "2027-03-31"
 
 
+def create(api, label, path, body):
+    if not api.apply:
+        print(f"  would {label}")
+        return None
+    s, d = api.call("POST", path, body)
+    if s < 300:
+        print(f"  done  {label}")
+        return d
+    codes = [e.get("code") for e in d.get("errors", [])]
+    if any("APP_STATE" in c or "SALABLE_STATE" in c for c in codes):
+        print(f"  wait  {label}: Apple allows codes once the app and the subscription are live; rerun after approval")
+    else:
+        print(f"  FAIL  {label}: {s} {[(e.get('code'), e.get('detail')) for e in d.get('errors', [])]}")
+    return None
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--apply", action="store_true")
@@ -44,7 +60,7 @@ def main():
     oid = offer["id"]
     customs = api.all(f"/v1/subscriptionOfferCodes/{oid}/customCodes?limit=50")
     if not any(c["attributes"]["customCode"] == CUSTOM["code"] for c in customs):
-        api.write(f"custom code {CUSTOM['code']} for {CUSTOM['uses']} people, until {EXPIRES}", "POST", "/v1/subscriptionOfferCodeCustomCodes", {
+        create(api, f"custom code {CUSTOM['code']} for {CUSTOM['uses']} people, until {EXPIRES}", "/v1/subscriptionOfferCodeCustomCodes", {
             "data": {"type": "subscriptionOfferCodeCustomCodes",
                      "attributes": {"customCode": CUSTOM["code"], "numberOfCodes": CUSTOM["uses"], "expirationDate": EXPIRES},
                      "relationships": {"offerCode": rel("subscriptionOfferCodes", oid)}}})
@@ -52,7 +68,7 @@ def main():
         print(f"  have  custom code {CUSTOM['code']}")
     batches = api.all(f"/v1/subscriptionOfferCodes/{oid}/oneTimeUseCodes?limit=50")
     if not batches:
-        d = api.write(f"{ONE_TIME} one-time codes, until {EXPIRES}", "POST", "/v1/subscriptionOfferCodeOneTimeUseCodes", {
+        d = create(api, f"{ONE_TIME} one-time codes, until {EXPIRES}", "/v1/subscriptionOfferCodeOneTimeUseCodes", {
             "data": {"type": "subscriptionOfferCodeOneTimeUseCodes",
                      "attributes": {"numberOfCodes": ONE_TIME, "expirationDate": EXPIRES},
                      "relationships": {"offerCode": rel("subscriptionOfferCodes", oid)}}})
