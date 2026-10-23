@@ -244,7 +244,6 @@ struct StudySession: View {
             }
             .padding(20)
         }
-        .modifier(AskForReview(streak: Int(store.state(deck.branch).streak), graded: 0, correct: 0))
     }
 
     func advance() {
@@ -291,6 +290,7 @@ struct StudySession: View {
             }
             .padding(20)
         }
+        .modifier(AskForReview(streak: Int(store.state(deck.branch).streak), graded: graded, correct: graded))
     }
 }
 

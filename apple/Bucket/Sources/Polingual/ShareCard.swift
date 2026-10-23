@@ -43,8 +43,10 @@ enum Share {
 
     static func message(langs: [String], streak: Int) -> String {
         let set = langs.map(langName).joined(separator: ", ")
-        let lead = streak > 1 ? "\(streak) days in a row" : "Today"
-        return "\(lead) learning \(set) together on \(Feedback.appName). Try it: \(appLink.absoluteString)"
+        let link = appLink.absoluteString
+        return streak > 1
+            ? String(localized: "\(streak) days in a row learning \(set) together on \(Feedback.appName). Try it: \(link)")
+            : String(localized: "Today learning \(set) together on \(Feedback.appName). Try it: \(link)")
     }
 
     @MainActor
@@ -63,15 +65,19 @@ struct ShareProgress: View {
     let langs: [String]
     let streak: Int
     let learned: Int
+    @State private var image: Image?
 
     var body: some View {
-        if let image = Share.image(langs: langs, streak: streak, learned: learned) {
+        Group {
+            if let image {
             ShareLink(item: image, message: Text(Share.message(langs: langs, streak: streak)),
                       preview: SharePreview("\(Feedback.appName) progress", image: image)) {
                 Label("Share your progress", systemImage: "square.and.arrow.up")
             }
             .buttonStyle(D8Option(align: .center))
+            }
         }
+        .task { if image == nil { image = Share.image(langs: langs, streak: streak, learned: learned) } }
     }
 }
 

@@ -31,8 +31,10 @@ enum Feedback {
 
     static func shouldAsk(streak: Int, graded: Int, correct: Int, now: Date = .now, last: Double) -> Bool {
         let quiet = last == 0 || now.timeIntervalSince1970 - last > 60 * 86_400
-        let strong = graded >= 10 && Double(correct) / Double(max(graded, 1)) >= 0.9
-        return quiet && (strong || [3, 7, 30].contains(streak))
+        let accuracy = Double(correct) / Double(max(graded, 1))
+        let strong = graded >= 10 && accuracy >= 0.9
+        let milestone = [3, 7, 30].contains(streak) && graded >= 5 && accuracy >= 0.7
+        return quiet && (strong || milestone)
     }
 }
 

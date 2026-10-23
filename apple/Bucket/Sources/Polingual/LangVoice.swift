@@ -4,9 +4,26 @@ import Speech
 import SwiftUI
 
 @MainActor
-final class LangVoice {
+final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = LangVoice()
     private let synth = AVSpeechSynthesizer()
+
+    override init() {
+        super.init()
+        synth.delegate = self
+    }
+
+    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        Task { @MainActor in self.release() }
+    }
+
+    func release() {
+        guard active, !synth.isSpeaking else { return }
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        #endif
+        active = false
+    }
     private var player: AVPlayer?
     private var active = false
     private var warmed = false
@@ -27,7 +44,6 @@ final class LangVoice {
     func warm() {
         guard !warmed else { return }
         warmed = true
-        activate()
         let u = AVSpeechUtterance(string: " ")
         u.volume = 0
         synth.speak(u)
@@ -63,7 +79,11 @@ final class LangVoice {
         activate()
         synth.stopSpeaking(at: .immediate)
         player?.pause()
-        player = AVPlayer(url: store.clipURL(lang, text))
+        let item = AVPlayerItem(url: store.clipURL(lang, text))
+        NotificationCenter.default.addObserver(forName: AVPlayerItem.didPlayToEndTimeNotification, object: item, queue: .main) { _ in
+            Task { @MainActor in LangVoice.shared.release() }
+        }
+        player = AVPlayer(playerItem: item)
         player?.play()
         return true
     }

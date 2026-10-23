@@ -96,7 +96,7 @@ struct Studio: View {
     }
 
     func openFromLaunch() async {
-        if UserDefaults.standard.bool(forKey: StudyRequest.key) {
+        if StudyRequest.pending {
             await openRequested()
             return
         }

@@ -8,11 +8,14 @@ extension Notification.Name {
 enum StudyRequest {
     static let key = "intent.startStudy"
 
-    static func take() -> Bool {
-        guard UserDefaults.standard.bool(forKey: key) else { return false }
+    static func take(now: Date = .now) -> Bool {
+        let at = UserDefaults.standard.double(forKey: key)
+        guard at > 0 else { return false }
         UserDefaults.standard.removeObject(forKey: key)
-        return true
+        return now.timeIntervalSince1970 - at < 60
     }
+
+    static var pending: Bool { UserDefaults.standard.double(forKey: key) > 0 }
 }
 
 struct StartStudyIntent: AppIntent {
@@ -22,7 +25,7 @@ struct StartStudyIntent: AppIntent {
 
     @MainActor
     func perform() async throws -> some IntentResult {
-        UserDefaults.standard.set(true, forKey: StudyRequest.key)
+        UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: StudyRequest.key)
         NotificationCenter.default.post(name: .startStudy, object: nil)
         return .result()
     }
