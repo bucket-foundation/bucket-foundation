@@ -117,22 +117,30 @@ h1{font-size:min(8.4vw,5.2vh)}
 .cta{max-width:calc(3*21vh + 2*2vh)}.cta .btn{font-size:min(22px,2.2vh);padding:min(20px,1.8vh)}
 .art .azu,.art .seal,.art .stamp,.art .kente,.art .torn{zoom:1.4}
 }
-.xl{display:none}
 .art .cal{position:absolute;line-height:1;font-weight:800}
 .art .ink{position:absolute;width:36px;height:36px;border-radius:50%;background:#F6EEDC}
-@media (min-width:900px){
-.mn{display:grid;grid-template-columns:min(calc(3*21vh + 2*2vh),62%) 1fr;grid-template-rows:auto auto auto auto 1fr;column-gap:4vw;align-content:start}
-.mn>*:not(.art){grid-column:1}
-.art{grid-column:2;grid-row:1/-1;margin:0 -6vw 0 0;height:auto;min-height:0;clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)}
-.art>.xl{display:block}
-.art .azu{left:auto!important;right:6%!important;top:4%!important}
-.art .seal:not(.xl){left:34%!important;top:12%!important}
-.art .stamp{left:24%!important;top:30%!important}
-.art .torn{right:auto!important;left:38%!important;top:62%!important}
-.art .kente:not(.xl){left:40%!important;top:46%!important}
-.art .mini:not(.xl){left:60%!important;top:24%!important}
-.ft{grid-column:1/-1}
+.wd-art{display:none}
+@media (min-width:680px){
+.mn{--T:min(15vh,21vw);--L:calc(3*var(--T) + 24px);position:relative;justify-content:center;padding-bottom:2vh}
+.mn>*:not(.art){max-width:var(--L);width:100%}
+.grid{grid-template-columns:repeat(3,var(--T));gap:12px}
+.grid .tt b{font-size:calc(var(--T)*.2)}.grid .tt b.long{font-size:calc(var(--T)*.14)}
+.grid .tt .cc{font-size:calc(var(--T)*.065);left:calc(var(--T)*.1);top:calc(var(--T)*.09)}
+.grid .tt i{font-size:calc(var(--T)*.08);bottom:calc(var(--T)*.1)}
+.grid .tt .snd svg{width:calc(var(--T)*.1);height:calc(var(--T)*.1)}
+.cta .btn{font-size:calc(var(--T)*.1);padding:calc(var(--T)*.09) 10px}
+h1{font-size:calc(var(--T)*.3)}
+.pot .fire{height:calc(var(--T)*.6)}.pot b{font-size:calc(var(--T)*.24)}
+.art{position:absolute;top:0;bottom:0;left:calc(var(--L) + 4vw);right:-6vw;margin:0;height:auto;clip-path:polygon(14% 0,100% 0,100% 100%,0 100%)}
+.art>*:not(.wd-art){display:none}
+.wd-art{display:block;position:absolute;inset:0 0 0 10%}
+.wd-box{position:absolute;left:50%;top:50%;width:460px;height:1000px;transform:translate(-50%,-50%) scale(var(--k,1))}
+.wd-box .w{position:absolute;transform:rotate(var(--r,0deg))}
+.wd-box{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.wd-box .cal{line-height:1;font-weight:800;transform:rotate(-8deg)}
+.wd-box .ink{width:34px;height:34px;border-radius:50%;background:#F6EEDC}
 }
+.art,.grid,.grid .t,h1,.pot .fire,.pot b,.cta .btn,.mn>*{transition:left .5s cubic-bezier(.2,.8,.2,1),right .5s,width .5s,height .5s,font-size .5s,max-width .5s,padding .5s,clip-path .5s,margin .5s}
 </style></head><body>
 <div class="memphis"></div>
 <div class="pg">
@@ -164,6 +172,22 @@ h1{font-size:min(8.4vw,5.2vh)}
  <div class="grid" data-tiles="text" data-cycle="2400"></div>
  <div class="cta"><a class="btn btn-p" href="/support" data-slot="appstore">Download on the App Store</a></div>
  <div class="art" aria-hidden="true">
+  <div class="wd-art"><div class="wd-box">
+   <div class="w cal" style="left:-10px;top:170px;font-family:'Noto Sans Arabic';font-size:380px;color:rgba(246,238,220,.09)">ع</div>
+   <div class="w cal" style="left:170px;top:540px;font-family:'Noto Sans SC';font-size:300px;color:rgba(111,183,194,.15)">永</div>
+   <div class="w azu" style="left:240px;top:40px;--r:10deg"></div>
+   <div class="w seal" style="left:44px;top:96px;--r:-7deg"><span>百</span></div>
+   <div class="w mini" style="left:236px;top:236px;--r:-12deg;font-family:'Noto Sans Hebrew'">מאה</div>
+   <div class="w stamp" style="left:60px;top:300px;--r:5deg"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
+   <div class="w mini" style="left:40px;top:470px;--r:16deg;font-family:'Noto Sans'">сто</div>
+   <div class="w paisley" style="left:300px;top:470px;--r:24deg"></div>
+   <div class="w kente" style="left:34px;top:590px;--r:-10deg"></div>
+   <div class="w mini" style="left:360px;top:660px;--r:-22deg;font-family:'Noto Sans'">백</div>
+   <div class="w torn" style="left:150px;top:740px;--r:-4deg"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
+   <div class="w mini" style="left:50px;top:890px;--r:10deg;font-family:'Noto Sans'">cien</div>
+   <div class="w ink" style="left:210px;top:200px"></div><div class="w ink" style="left:380px;top:900px;width:20px;height:20px;background:#D9381E"></div>
+  </div></div>
+
   <div class="azu" style="right:-20px;top:40px;transform:rotate(12deg) scale(.8)"></div>
   <div class="seal" style="left:30px;top:70px;transform:rotate(-7deg) scale(.75)"><span>百</span></div>
   <div class="stamp" style="left:150px;top:150px;transform:rotate(6deg) scale(.8)"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
@@ -171,18 +195,9 @@ h1{font-size:min(8.4vw,5.2vh)}
   <div class="torn" style="right:10px;top:250px;transform:rotate(-4deg) scale(.7)"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
   <div class="mini" style="left:200px;top:70px;transform:rotate(-12deg);font-family:'Noto Sans Hebrew'">מאה</div>
   <div class="mini" style="left:40px;top:200px;transform:rotate(18deg);font-family:'Noto Sans'">сто</div>
-  <div class="xl cal" style="left:8%;top:30%;font-family:'Noto Sans Arabic';font-size:26vh;transform:rotate(-8deg);color:rgba(246,238,220,.12)">ع</div>
-  <div class="xl cal" style="right:2%;top:58%;font-family:'Noto Sans SC';font-size:22vh;transform:rotate(9deg);color:rgba(111,183,194,.2)">永</div>
-  <div class="xl paisley" style="right:12%;top:46%;transform:rotate(25deg)"></div>
-  <div class="xl kente" style="left:10%;top:74%;transform:rotate(14deg)"></div>
-  <div class="xl seal" style="right:8%;bottom:6%;transform:rotate(8deg) scale(.8)"><span>百</span></div>
-  <div class="xl mini" style="left:30%;top:52%;transform:rotate(-20deg);font-family:'Noto Sans'">백</div>
-  <div class="xl mini" style="left:56%;top:88%;transform:rotate(12deg);font-family:'Noto Sans'">cien</div>
-  <div class="xl mini" style="left:14%;top:44%;transform:rotate(16deg);font-family:'Noto Sans Devanagari'">सौ</div>
-  <div class="xl ink" style="left:44%;top:36%"></div><div class="xl ink" style="left:72%;top:72%;width:22px;height:22px;background:#D9381E"></div>
  </div>
  </main>
  <footer class="ft"><span>Polingual · <a href="https://creativecommons.org/licenses/by-sa/4.0/" style="color:inherit">Wiktionary CC BY-SA</a></span><nav><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a></nav></footer>
 </div>
 <script src="tiles.js"></script>
-<script>(()=>{const S=["#5B1A4A","url(#sk-kente)","url(#sk-azulejo)","url(#sk-girih)","url(#sk-seal)","url(#sk-paisley)","url(#sk-mudcloth)"];let i=0;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(()=>{i=(i+1)%S.length;document.querySelectorAll(".mho.face").forEach(p=>p.setAttribute("stroke",S[i]))},3000)})()</script></body></html>
+<script>(()=>{const S=["#5B1A4A","url(#sk-kente)","url(#sk-azulejo)","url(#sk-girih)","url(#sk-seal)","url(#sk-paisley)","url(#sk-mudcloth)"];let i=0;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(()=>{i=(i+1)%S.length;document.querySelectorAll(".mho.face").forEach(p=>p.setAttribute("stroke",S[i]))},3000)})()</script><script>(()=>{const f=()=>document.querySelectorAll(".wd-art").forEach(a=>{const b=a.firstElementChild;if(!a.clientWidth)return;b.style.setProperty("--k",Math.min(a.clientWidth/520,a.clientHeight/1060))});f();addEventListener("resize",f);setTimeout(f,300)})()</script></body></html>
