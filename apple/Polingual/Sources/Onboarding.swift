@@ -325,6 +325,7 @@ struct Dots: View {
 }
 
 struct PlayfulTiles: View {
+    var compact = false
     @Environment(\.accessibilityReduceMotion) private var still
     static let sets: [(gloss: String, words: [(String, String, String)])] = [
         ("night", [("es", "noche", "ˈnotʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ")]),
@@ -339,14 +340,16 @@ struct PlayfulTiles: View {
 
     var body: some View {
         GeometryReader { g in
-            let side = min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
+            let side = compact ? min((g.size.width - 48) / 4, g.size.height - 10, 96) : min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
             VStack(spacing: 12) {
+                if !compact {
                 (Text("One word, ") + Text(Self.sets[set].gloss).foregroundStyle(D8.lapis) + Text(", in four languages"))
                     .font(.system(size: 18, weight: .bold, design: .rounded))
                     .foregroundStyle(Palette.muted)
                     .contentTransition(.opacity)
                     .animation(.easeInOut, value: set)
-                LazyVGrid(columns: [GridItem(.fixed(side), spacing: 16), GridItem(.fixed(side))], spacing: 16) {
+                }
+                LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
                     ForEach(0..<4, id: \.self) { i in
                         let w = Self.sets[sets[i]].words[i]
                         WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side)

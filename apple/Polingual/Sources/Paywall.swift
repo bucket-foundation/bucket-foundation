@@ -10,6 +10,7 @@ struct Paywall: View {
     @Environment(Account.self) private var account
     @State private var signingIn = false
     @State private var restoring = false
+    @State private var redeeming = false
 
     var body: some View {
         SubscriptionStoreView(productIDs: Plan.all) {
@@ -30,6 +31,7 @@ struct Paywall: View {
                         }
                     }
                     .disabled(restoring)
+                    Button("Have a code?") { redeeming = true }
                     if account.stage != .signedIn {
                         Button("Sign in") { signingIn = true }
                     }
@@ -61,6 +63,9 @@ struct Paywall: View {
         .background(Dots().ignoresSafeArea())
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .sheet(isPresented: $signingIn) { AccountView() }
+        #if os(iOS)
+        .offerCodeRedemption(isPresented: $redeeming) { _ in Task { await subs.refresh() } }
+        #endif
     }
 }
 
@@ -94,12 +99,8 @@ struct PaywallHeader: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            HStack(spacing: 10) {
-                ForEach(Array(["fr", "ja", "es", "el", "ar", "it"].enumerated()), id: \.offset) { i, l in
-                    FlagTile(lang: l, size: 42).rotationEffect(.degrees(i.isMultiple(of: 2) ? -6 : 5))
-                }
-            }
-            .accessibilityHidden(true)
+            PlayfulTiles(compact: true)
+                .frame(height: 104)
             PoMark()
             Text(PaywallCopy.headline(trial: trial))
                 .font(.system(size: 36, weight: .heavy, design: .rounded))
