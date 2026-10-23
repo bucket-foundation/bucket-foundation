@@ -8,6 +8,16 @@ struct TodayView: View {
     @State private var path = NavigationPath()
     @State private var session: StudyLaunch?
     @AppStorage("bucket.today.order") private var order = ""
+    @State private var scienceReady = false
+
+    var loaded: Bool {
+        let indexDone: Bool
+        switch library.index {
+        case .ready, .failed: indexDone = true
+        default: indexDone = false
+        }
+        return indexDone && scienceReady && (langs.status == .ready || langs.status == .error)
+    }
 
     enum Item: Identifiable {
         case deck(Work)
@@ -86,10 +96,12 @@ struct TodayView: View {
                             Tally(n: new, label: "new today", color: D8.lapis)
                             Tally(n: done, label: "done today", color: D8.malachite)
                         }
-                        Text(due + new == 0 ? (w.isEmpty && langs.systems.isEmpty ? "Start a deck in Learn or build a language system, and its reviews show up here." : "All caught up. Reviews come back as their intervals run out.") : "Due reviews first, then new cards.")
+                        .redacted(reason: loaded ? [] : .placeholder)
+                        .overlay { if !loaded { ProgressView().tint(Palette.muted) } }
+                        Text(!loaded ? "Loading your reviews" : due + new == 0 ? (w.isEmpty && langs.systems.isEmpty ? "Start a deck in Learn or build a language system, and its reviews show up here." : "All caught up. Reviews come back as their intervals run out.") : "Due reviews first, then new cards.")
                             .font(.subheadline)
                             .foregroundStyle(Palette.muted)
-                        if let next = nextUp(now) {
+                        if loaded, let next = nextUp(now) {
                             switch next {
                             case .deck(let work):
                                 Button("Start · \(work.entry.title)") { session = StudyLaunch(entry: work.entry, deck: work.deck) }.buttonStyle(D8Primary())
@@ -101,7 +113,7 @@ struct TodayView: View {
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(Palette.card)
-                if !items.isEmpty {
+                if loaded && !items.isEmpty {
                     Section {
                         ForEach(items) { item in
                             switch item {
@@ -131,8 +143,10 @@ struct TodayView: View {
             .langDestinations(path: $path)
             .task { await langs.load() }
             .task(id: library.scienceDecks.map(\.id)) {
+                scienceReady = false
                 await science.load(library.scienceDecks.map(\.id))
                 for entry in library.scienceDecks { _ = await library.prepared(entry) }
+                scienceReady = true
                 guard session == nil, let id = Launch.value("-study"), let entry = library.scienceDecks.first(where: { $0.id == id }), let deck = await library.prepared(entry) else { return }
                 session = StudyLaunch(entry: entry, deck: deck)
             }
