@@ -158,12 +158,14 @@ struct WordTile: View {
     let reading: Reading?
     var size: CGFloat = 200
     var speakText: String?
+    var onTap: (() -> Void)?
 
     var body: some View {
         let inset = size * 0.06
         let say = speakText ?? word ?? ""
         let canSay = LangVoice.shared.canSpeak(say, lang)
         Button {
+            if let onTap { onTap(); return }
             if canSay { LangVoice.shared.speak(say, lang) }
         } label: {
             ZStack {

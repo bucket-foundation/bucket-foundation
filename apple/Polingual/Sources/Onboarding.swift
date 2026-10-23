@@ -62,6 +62,7 @@ struct Onboarding: View {
                 .foregroundStyle(Palette.ink)
                 .minimumScaleFactor(0.7)
                 .fixedSize(horizontal: false, vertical: true)
+            StreakBadge()
             PlayfulTiles()
         }
     }
@@ -324,7 +325,14 @@ struct Dots: View {
 struct PlayfulTiles: View {
     var compact = false
     @Environment(\.accessibilityReduceMotion) private var still
-    static let words: [(String, String, String)] = [("es", "noche", "ˈnotʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ")]
+    static let night: [(String, String, String)] = [
+        ("es", "noche", "ˈnotʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ"),
+        ("de", "Nacht", "naxt"), ("nl", "nacht", "nɑxt"), ("sv", "natt", "natː"), ("ru", "ночь", "notʃʲ"),
+        ("el", "νύχτα", "ˈnixta"), ("ja", "夜", "joɾɯ"), ("ko", "밤", "pam"), ("tr", "gece", "ɟedʒe"),
+        ("hi", "रात", "raːt"), ("he", "לילה", "ˈlajla"), ("ar", "ليل", "lajl"), ("zh", "夜", "yè"),
+    ]
+    @State private var slots = [0, 1, 2, 3]
+    @State private var angle: [Double] = [0, 0, 0, 0]
     @State private var shown = false
 
     var body: some View {
@@ -332,7 +340,7 @@ struct PlayfulTiles: View {
             let side = compact ? min((g.size.width - 48) / 4, g.size.height - 16, 96) : min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
             VStack(spacing: 12) {
                 if !compact {
-                    (Text("One word, ") + Text("night").foregroundStyle(D8.lapis) + Text(", in four languages"))
+                    (Text("One word, ") + Text("night").foregroundStyle(D8.lapis) + Text(", in every language"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundStyle(Palette.muted)
                 }
@@ -340,10 +348,11 @@ struct PlayfulTiles: View {
                     let now = t.date.timeIntervalSinceReferenceDate
                     LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
                         ForEach(0..<4, id: \.self) { i in
-                            let w = Self.words[i]
-                            WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side)
-                                .rotationEffect(.degrees((i.isMultiple(of: 2) ? -2 : 1.5) + (still ? 0 : sin(now * 0.8 + Double(i)) * 1.2)))
-                                .offset(y: still ? 0 : sin(now * 1.1 + Double(i) * 1.6) * (compact ? 3 : 5))
+                            let w = Self.night[slots[i]]
+                            WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side) { Task { await flip(i, speak: true) } }
+                                .rotation3DEffect(.degrees(angle[i]), axis: (x: 0, y: 1, z: 0), perspective: 0.5)
+                                .rotationEffect(.degrees((i.isMultiple(of: 2) ? -2 : 1.5) + (still ? 0 : sin(now * 0.8 + Double(i)) * 1.0)))
+                                .offset(y: still ? 0 : sin(now * 1.1 + Double(i) * 1.6) * (compact ? 2 : 4))
                         }
                     }
                 }
@@ -353,6 +362,32 @@ struct PlayfulTiles: View {
             }
         }
         .onAppear { withAnimation(.easeOut(duration: 0.6)) { shown = true } }
+        .task {
+            guard !still else { return }
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(3.5))
+                await flip(Int.random(in: 0..<4), speak: false)
+            }
+        }
+    }
+
+    func flip(_ i: Int, speak: Bool) async {
+        if speak { tap() }
+        let used = Set(slots)
+        let next = (0..<Self.night.count).filter { !used.contains($0) }.randomElement() ?? slots[i]
+        if still {
+            slots[i] = next
+        } else {
+            withAnimation(.easeIn(duration: 0.18)) { angle[i] = 90 }
+            try? await Task.sleep(for: .milliseconds(180))
+            slots[i] = next
+            angle[i] = -90
+            withAnimation(.easeOut(duration: 0.22)) { angle[i] = 0 }
+        }
+        if speak {
+            let w = Self.night[next]
+            if LangVoice.shared.canSpeak(w.1, w.0) { LangVoice.shared.speak(w.1, w.0) }
+        }
     }
 }
 
@@ -412,5 +447,21 @@ struct Backdrop: View {
             .clipped()
         }
         .accessibilityHidden(true)
+    }
+}
+
+struct StreakBadge: View {
+    var body: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "flame.fill")
+                .font(.system(size: 34))
+                .foregroundStyle(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion], startPoint: .top, endPoint: .bottom))
+            VStack(alignment: .leading, spacing: 0) {
+                Text("100").font(.system(size: 28, weight: .heavy, design: .rounded)).foregroundStyle(D8.vermilion)
+                Text("DAY STREAK").font(D8.caps(11)).tracking(1.4).foregroundStyle(Palette.muted)
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("A 100 day streak")
     }
 }
