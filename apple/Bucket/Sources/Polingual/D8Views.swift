@@ -51,7 +51,7 @@ struct FlagFace: View {
                     }
                     .fill(Color(hex: c))
                 }
-                if emblem || flag.pigment, let e = flag.emblem {
+                if emblem, let e = flag.emblem {
                     Text(e.glyph)
                         .font(.system(size: min(w, h) * e.scale, weight: .bold, design: flag.pigment ? .serif : .default))
                         .foregroundStyle(Color(hex: e.color))

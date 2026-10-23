@@ -15,28 +15,31 @@ struct Onboarding: View {
     @State private var creating = false
     @State private var failed: String?
 
+    @State private var moreLanguages = false
+
     var body: some View {
-        VStack(spacing: 0) {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 22) {
-                    switch step {
-                    case .welcome: welcome
-                    case .languages: languages
-                    case .method: method
-                    case .daily: daily
-                    case .account: accountStep
-                    }
+        VStack(alignment: .leading, spacing: 0) {
+            Group {
+                switch step {
+                case .welcome: welcome
+                case .languages: languages
+                case .method: method
+                case .daily: daily
+                case .account: accountStep
                 }
-                .padding(.horizontal, 24)
-                .padding(.top, 28)
-                .frame(maxWidth: 560, alignment: .leading)
-                .frame(maxWidth: .infinity)
             }
-            .scrollBounceBehavior(.basedOnSize)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .padding(.horizontal, 24)
+            .padding(.top, 16)
+            .transition(.asymmetric(insertion: .move(edge: .trailing).combined(with: .opacity), removal: .move(edge: .leading).combined(with: .opacity)))
+            .id(step)
             footer
         }
-        .background(Palette.paper.ignoresSafeArea())
+        .frame(maxWidth: 560)
+        .frame(maxWidth: .infinity)
+        .background(Dots().ignoresSafeArea())
         .sheet(isPresented: $signingIn) { AccountView() }
+        .sheet(isPresented: $moreLanguages) { languagePicker }
         .onChange(of: account.stage) { _, s in
             if s == .signedIn, step == .account {
                 signingIn = false
@@ -47,66 +50,85 @@ struct Onboarding: View {
     }
 
     var welcome: some View {
-        VStack(alignment: .leading, spacing: 22) {
+        VStack(alignment: .leading, spacing: 16) {
             PoMark()
             (Text("Language learning for ") + Text("multilingual").foregroundStyle(D8.vermilion) + Text(" learners."))
-                .font(.system(size: 38, weight: .heavy, design: .rounded))
+                .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
+                .minimumScaleFactor(0.7)
                 .fixedSize(horizontal: false, vertical: true)
-            Text("One word, every language you study. Tap a tile to hear it.")
-                .font(.title3)
-                .foregroundStyle(Palette.muted)
-            LazyVGrid(columns: [GridItem(.flexible(), spacing: 14), GridItem(.flexible())], spacing: 18) {
-                ForEach(Array([("es", "noche", "ˈnot͡ʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ")].enumerated()), id: \.offset) { i, w in
-                    WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: 150)
-                        .rotationEffect(.degrees(i.isMultiple(of: 2) ? -2 : 1.5))
-                }
-            }
-            .padding(.top, 4)
+            PlayfulTiles()
         }
     }
 
     var languages: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Eyebrow(text: "Your set")
             Text("Which languages?")
                 .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
-            Text("Pick a set. Each word comes back in every language you choose, mixed in one daily queue.")
+            Text("Each word comes back in every language you pick.")
                 .font(.body)
                 .foregroundStyle(Palette.muted)
+            HStack(alignment: .top, spacing: 12) {
+                ForEach(targets, id: \.self) { l in
+                    VStack(spacing: 6) {
+                        FlagTile(lang: l, size: 56)
+                        Text(Lang.name(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
+                    }
+                    .frame(maxWidth: 72)
+                    .transition(.scale.combined(with: .opacity))
+                }
+                if targets.isEmpty { Text("Pick at least one.").font(.subheadline).foregroundStyle(Palette.muted).frame(height: 76) }
+            }
+            .animation(.spring(duration: 0.35, bounce: 0.4), value: targets)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
+            .background(Palette.card, in: .rect(cornerRadius: 18))
             FlowLayout(spacing: 8) {
                 ForEach(Lang.presets, id: \.name) { p in
                     Chip(title: p.name, langs: p.targets, on: Set(p.targets.filter { $0 != root }) == Set(targets)) { targets = p.targets.filter { $0 != root } }
                 }
             }
-            Eyebrow(text: "Or choose your own")
-            FlowLayout(spacing: 8) {
-                ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
-                    Chip(title: Lang.name(c), langs: [c], on: targets.contains(c)) {
-                        if let i = targets.firstIndex(of: c) { targets.remove(at: i) } else if targets.count < 5 { targets.append(c) }
+            Button("More languages · 29") { moreLanguages = true }.buttonStyle(D8Option(align: .center, compact: true))
+        }
+    }
+
+    var languagePicker: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack {
+                        Text("I already speak").foregroundStyle(Palette.muted)
+                        Spacer()
+                        Picker("I already speak", selection: $root) {
+                            ForEach(Lang.codes, id: \.self) { Text(Lang.name($0)).tag($0) }
+                        }
+                        .labelsHidden()
+                        .tint(Palette.ink)
+                    }
+                    .onChange(of: root) { _, r in targets.removeAll { $0 == r } }
+                    Text(targets.count == 5 ? "Five at most. Tap one to swap it out." : "\(targets.count) of 5 picked")
+                        .font(.footnote).foregroundStyle(Palette.muted)
+                    FlowLayout(spacing: 8) {
+                        ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
+                            Chip(title: Lang.name(c), langs: [c], on: targets.contains(c)) {
+                                if let i = targets.firstIndex(of: c) { targets.remove(at: i) } else if targets.count < 5 { targets.append(c) }
+                            }
+                        }
                     }
                 }
+                .padding(20)
             }
-            HStack {
-                Text("I already speak").foregroundStyle(Palette.muted)
-                Spacer()
-                Picker("I already speak", selection: $root) {
-                    ForEach(Lang.codes, id: \.self) { Text(Lang.name($0)).tag($0) }
-                }
-                .labelsHidden()
-                .tint(Palette.ink)
-            }
-            .onChange(of: root) { _, r in targets.removeAll { $0 == r } }
-            Text(targets.isEmpty ? "Pick at least one language." : targets.count == 5 ? "Five at most. Tap one to swap it out." : "\(targets.count) of 5 · \(targets.map(Lang.name).joined(separator: ", "))")
-                .font(.footnote)
-                .foregroundStyle(Palette.muted)
+            .background(Palette.paper.ignoresSafeArea())
+            .navigationTitle("Languages")
+            .inlineTitle()
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Done") { moreLanguages = false } } }
         }
+        .presentationDetents([.large])
     }
 
     var method: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Eyebrow(text: "How it works")
             Text("A short session a day")
                 .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
@@ -119,13 +141,28 @@ struct Onboarding: View {
 
     var daily: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Eyebrow(text: "Your streak")
             Text("One nudge a day")
                 .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
             Text("Polingual reminds you once a day, at the time you usually study, and only when words are due.")
                 .font(.body)
                 .foregroundStyle(Palette.muted)
+            HStack(spacing: 8) {
+                ForEach(Array(["M", "T", "W", "T", "F", "S", "S"].enumerated()), id: \.offset) { i, d in
+                    VStack(spacing: 6) {
+                        Image(systemName: i < 5 ? "checkmark" : "")
+                            .font(.system(size: 15, weight: .heavy))
+                            .foregroundStyle(.white)
+                            .frame(width: 38, height: 38)
+                            .background(i < 5 ? D8.vermilion : Palette.rule, in: .rect(cornerRadius: 10))
+                            .modifier(Glaze(radius: 10, lip: i < 5 ? 3 : 0))
+                        Text(d).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            .padding(.vertical, 8)
+            .accessibilityLabel("A five day streak")
             if reminders.enabled {
                 Label("Reminder on", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
             } else if reminders.denied {
@@ -136,13 +173,25 @@ struct Onboarding: View {
 
     var accountStep: some View {
         VStack(alignment: .leading, spacing: 18) {
-            Eyebrow(text: "Your progress")
             Text("Keep it everywhere")
                 .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
             Text("Sign in with your email and your languages follow you to iPad, Mac, Bucket and polingual.com. You can do this later from the account menu.")
                 .font(.body)
                 .foregroundStyle(Palette.muted)
+            HStack(spacing: 12) {
+                ForEach([("iphone", "iPhone"), ("ipad", "iPad"), ("laptopcomputer", "Mac"), ("globe", "Web")], id: \.1) { icon, name in
+                    VStack(spacing: 6) {
+                        Image(systemName: icon).font(.system(size: 22, weight: .semibold)).foregroundStyle(D8.parchment)
+                            .frame(width: 58, height: 58).background(Color(hex: 0x5B1A4A), in: .rect(cornerRadius: 14))
+                            .modifier(Glaze(radius: 14, lip: 4))
+                        Text(name).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            .padding(.vertical, 8)
+            .accessibilityHidden(true)
             if account.stage == .signedIn {
                 Label("Signed in", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
             }
@@ -186,7 +235,7 @@ struct Onboarding: View {
 
     func advance() {
         tap()
-        if let next = Step(rawValue: step.rawValue + 1) { withAnimation(.snappy) { step = next } }
+        if let next = Step(rawValue: step.rawValue + 1) { withAnimation(.spring(duration: 0.4)) { step = next } }
     }
 
     func complete() async {
@@ -241,6 +290,86 @@ struct Point: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(title).font(.headline).foregroundStyle(Palette.ink)
                 Text(detail).font(.subheadline).foregroundStyle(Palette.muted)
+            }
+        }
+    }
+}
+
+struct Dots: View {
+    var body: some View {
+        Canvas { ctx, size in
+            let step: CGFloat = 24
+            var y: CGFloat = step / 2
+            while y < size.height {
+                var x: CGFloat = step / 2
+                while x < size.width {
+                    ctx.fill(Path(ellipseIn: CGRect(x: x - 1.2, y: y - 1.2, width: 2.4, height: 2.4)), with: .color(Color(light: 0xE2D4B4, dark: 0x3A352C)))
+                    x += step
+                }
+                y += step
+            }
+        }
+        .background(Palette.paper)
+        .accessibilityHidden(true)
+    }
+}
+
+struct PlayfulTiles: View {
+    @Environment(\.accessibilityReduceMotion) private var still
+    static let sets: [(gloss: String, words: [(String, String, String)])] = [
+        ("night", [("es", "noche", "ˈnotʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ")]),
+        ("seven", [("de", "sieben", "ˈziːbn̩"), ("ja", "七", "nana"), ("el", "επτά", "epˈta"), ("hi", "सात", "saːt")]),
+        ("hundred", [("ru", "сто", "sto"), ("he", "מאה", "meˈa"), ("zh", "百", "bǎi"), ("ar", "مئة", "miʔa")]),
+    ]
+    @State private var sets = [0, 0, 0, 0]
+    var set: Int { sets[0] }
+    @State private var shown = 0
+    @State private var flip = [0.0, 0.0, 0.0, 0.0]
+    @State private var bounce = -1
+
+    var body: some View {
+        GeometryReader { g in
+            let side = min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
+            VStack(spacing: 12) {
+                (Text("One word, ") + Text(Self.sets[set].gloss).foregroundStyle(D8.lapis) + Text(", in four languages"))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundStyle(Palette.muted)
+                    .contentTransition(.opacity)
+                    .animation(.easeInOut, value: set)
+                LazyVGrid(columns: [GridItem(.fixed(side), spacing: 16), GridItem(.fixed(side))], spacing: 16) {
+                    ForEach(0..<4, id: \.self) { i in
+                        let w = Self.sets[sets[i]].words[i]
+                        WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side)
+                            .rotationEffect(.degrees(i.isMultiple(of: 2) ? -2 : 1.5))
+                            .rotation3DEffect(.degrees(flip[i]), axis: (x: 0, y: 1, z: 0))
+                            .scaleEffect(i < shown ? (bounce == i ? 1.08 : 1) : 0.4)
+                            .opacity(i < shown ? 1 : 0)
+                            .simultaneousGesture(TapGesture().onEnded {
+                                tap()
+                                withAnimation(.spring(duration: 0.25, bounce: 0.6)) { bounce = i }
+                                Task { try? await Task.sleep(for: .milliseconds(220)); withAnimation(.spring) { bounce = -1 } }
+                            })
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .task {
+            for i in 1...4 {
+                withAnimation(still ? nil : .spring(duration: 0.45, bounce: 0.5)) { shown = i }
+                try? await Task.sleep(for: .milliseconds(140))
+            }
+            guard !still else { return }
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(3.2))
+                for i in 0..<4 {
+                    withAnimation(.easeIn(duration: 0.16)) { flip[i] = 90 }
+                    try? await Task.sleep(for: .milliseconds(160))
+                    sets[i] = (sets[i] + 1) % Self.sets.count
+                    flip[i] = -90
+                    withAnimation(.easeOut(duration: 0.18)) { flip[i] = 0 }
+                    try? await Task.sleep(for: .milliseconds(90))
+                }
             }
         }
     }
