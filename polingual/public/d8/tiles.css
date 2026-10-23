@@ -22,3 +22,4 @@
 .t.flip{transform:perspective(600px) rotateY(90deg) !important}
 .t.flipin{animation:fin .26s ease}
 @keyframes fin{from{transform:perspective(600px) rotateY(-90deg)}}
+.tt .snd:focus-visible{outline:3px solid #D9381E;outline-offset:2px;border-radius:4px}
