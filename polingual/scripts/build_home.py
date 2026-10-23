@@ -82,11 +82,15 @@ html,body{{height:100%;overflow:hidden;background:#F6EEDC}}
 #dk .hero{{flex:1 1 auto;min-height:0;position:relative;overflow:hidden;background:linear-gradient(90deg,#F6EEDC 50%,#5B1A4A 50%)}}
 #dk .stage{{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}}
 #dk .stage .brand{{visibility:hidden}}
-#dk .stage .l{{top:20px}}
+#dk .stage .l{{top:calc(20px + var(--ex,0px))}}
+#dk .stage .wedge,#dk .stage .tile{{height:100%!important}}
+#dk .stage .r{{top:calc(120px + var(--ex,0px))!important}}
+#dk .stage .col{{top:var(--ex,0px)!important;bottom:auto!important;height:1080px}}
+#dk .stage .s{{height:100%!important}}
 {shell_css}
 {dk_css}
 {mb_css}
-@media (max-width:759px),(max-aspect-ratio:20/21){{#dk{{display:none}}#mb{{display:block}}}}
+@media (max-width:759px),(max-aspect-ratio:5/4){{#dk{{display:none}}#mb{{display:block}}}}
 </style></head><body>
 <div id="dk">
 {hd}
@@ -96,10 +100,11 @@ html,body{{height:100%;overflow:hidden;background:#F6EEDC}}
 <div id="mb">{body(mobile)}</div>
 <script src="/d8/tiles.js"></script>
 <script src="/d8/beta.js"></script>
+<script src="/d8/share.js"></script>
 {skins.replace('document.querySelectorAll(".mho.face")', 'document.querySelectorAll(".mho.face")')}
 <script>(()=>{{const f=()=>document.querySelectorAll(".wd-art").forEach(a=>{{const b=a.firstElementChild;if(!a.clientWidth)return;b.style.setProperty("--k",Math.min(a.clientWidth/520,a.clientHeight/1060))}});f();addEventListener("resize",f);setTimeout(f,300)}})()</script>
 <script>(()=>{{const mq=matchMedia("(min-width:680px)");let last=null;const art=()=>document.querySelector("#mb .art")||document.querySelector(".pg .art");const snap=()=>{{const a=art();if(a&&a.offsetParent)last=a.getBoundingClientRect()}};snap();mq.addEventListener("change",()=>{{const a=art();if(!a||!last)return snap();const n=a.getBoundingClientRect();if(!n.width)return snap();const dx=last.left-n.left,dy=last.top-n.top,sx=last.width/n.width,sy=last.height/n.height;a.animate([{{transformOrigin:"0 0",transform:`translate(${{dx}}px,${{dy}}px) scale(${{sx}},${{sy}})`}},{{transformOrigin:"0 0",transform:"none"}}],{{duration:650,easing:"cubic-bezier(.2,.8,.2,1)"}});snap()}});addEventListener("resize",()=>{{clearTimeout(window.plS);window.plS=setTimeout(snap,120)}})}})()</script>
-<script>const fit=()=>{{const w=hero.clientWidth,h=hero.clientHeight;if(!w)return;const k=Math.min(w/1920,h/1080);stage.style.transform=`translate(${{(w-1920*k)/2}}px,${{(h-1080*k)/2}}px) scale(${{k}})`}};fit();addEventListener("resize",fit);matchMedia("(max-width:759px),(max-aspect-ratio:20/21)").addEventListener("change",fit)</script>
+<script>const fit=()=>{{const w=hero.clientWidth,h=hero.clientHeight;if(!w)return;const k=w/1920;const H=Math.max(1080,h/k);stage.style.height=H+"px";stage.style.setProperty("--ex",((H-1080)/2)+"px");const k2=Math.min(k,h/1080);stage.style.transform=`translate(${{(w-1920*k2)/2}}px,${{(h-H*k2)/2}}px) scale(${{k2}})`}};fit();addEventListener("resize",fit);matchMedia("(max-width:759px),(max-aspect-ratio:5/4)").addEventListener("change",fit)</script>
 </body></html>
 """
 out = out.replace('src="mark-pl.svg"', 'src="/d8/mark-pl.svg"').replace('href="/d8/mark.svg"', 'href="/d8/mark-pl.svg"')
