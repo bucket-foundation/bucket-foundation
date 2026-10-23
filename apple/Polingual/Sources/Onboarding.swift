@@ -79,7 +79,7 @@ struct Onboarding: View {
                 ForEach(targets, id: \.self) { l in
                     VStack(spacing: 6) {
                         FlagTile(lang: l, size: 56)
-                        Text(Lang.name(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
+                        Text(langName(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.7)
                     }
                     .frame(maxWidth: 72)
                     .transition(.scale.combined(with: .opacity))
@@ -107,7 +107,7 @@ struct Onboarding: View {
                         Text("I already speak").foregroundStyle(Palette.muted)
                         Spacer()
                         Picker("I already speak", selection: $root) {
-                            ForEach(Lang.codes, id: \.self) { Text(Lang.name($0)).tag($0) }
+                            ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
                         }
                         .labelsHidden()
                         .tint(Palette.ink)
@@ -117,7 +117,7 @@ struct Onboarding: View {
                         .font(.footnote).foregroundStyle(Palette.muted)
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
-                            Chip(title: Lang.name(c), langs: [c], on: targets.contains(c)) {
+                            Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
                                 if let i = targets.firstIndex(of: c) { targets.remove(at: i) } else if targets.count < 5 { targets.append(c) }
                             }
                         }
@@ -188,7 +188,7 @@ struct Onboarding: View {
             VStack(alignment: .leading, spacing: 14) {
                 HStack(spacing: 6) {
                     ForEach(targets, id: \.self) { FlagTile(lang: $0, size: 34) }
-                    Text(targets.map(Lang.name).joined(separator: " · ")).font(.headline).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.7).padding(.leading, 4)
+                    Text(targets.map(langName).joined(separator: " · ")).font(.headline).foregroundStyle(Palette.ink).lineLimit(2).minimumScaleFactor(0.7).padding(.leading, 4)
                 }
                 PlanLine(icon: "scope", text: "A short placement in each language")
                 PlanLine(icon: "clock", text: "About 10 minutes a day, one mixed queue")
@@ -284,8 +284,8 @@ struct PoMark: View {
 struct Point: View {
     let icon: String
     let color: Color
-    let title: String
-    let detail: String
+    let title: LocalizedStringKey
+    let detail: LocalizedStringKey
 
     var body: some View {
         HStack(alignment: .top, spacing: 14) {
@@ -403,7 +403,7 @@ struct PlayfulTiles: View {
 
 struct PlanLine: View {
     let icon: String
-    let text: String
+    let text: LocalizedStringKey
 
     var body: some View {
         HStack(spacing: 10) {

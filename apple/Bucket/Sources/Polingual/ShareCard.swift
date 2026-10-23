@@ -25,7 +25,7 @@ struct ShareCard: View {
                 Text("\(streak)").font(.system(size: 72, weight: .heavy, design: .rounded)).foregroundStyle(D8.vermilion)
                 Text("DAY STREAK").font(D8.caps(18)).tracking(2).foregroundStyle(Color(hex: 0x5d5650))
             }
-            Text("\(learned) words in \(langs.map(Lang.name).joined(separator: ", "))")
+            Text("\(learned) words in \(langs.map(langName).joined(separator: ", "))")
                 .font(.system(size: 26, weight: .bold, design: .rounded))
                 .foregroundStyle(D8.ink)
                 .fixedSize(horizontal: false, vertical: true)
@@ -42,7 +42,7 @@ enum Share {
     static var appLink: URL { URL(string: "https://apps.apple.com/app/id\(Feedback.appID)")! }
 
     static func message(langs: [String], streak: Int) -> String {
-        let set = langs.map(Lang.name).joined(separator: ", ")
+        let set = langs.map(langName).joined(separator: ", ")
         let lead = streak > 1 ? "\(streak) days in a row" : "Today"
         return "\(lead) learning \(set) together on \(Feedback.appName). Try it: \(appLink.absoluteString)"
     }

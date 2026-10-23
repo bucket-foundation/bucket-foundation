@@ -128,7 +128,7 @@ struct FlagTile: View {
             .overlay { Shine() }
             .modifier(Glaze(radius: size * 0.23))
             .accessibilityElement()
-            .accessibilityLabel("\(Lang.name(lang)) flag")
+            .accessibilityLabel("\(langName(lang)) flag")
     }
 }
 
@@ -172,7 +172,7 @@ struct WordTile: View {
                 FlagFace(flag: D8Flag.of(lang), emblem: false)
                 RoundedRectangle(cornerRadius: 6).fill(D8.panel).padding(inset)
                 VStack(spacing: 4) {
-                    Text(Lang.name(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label)
+                    Text(langName(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Spacer(minLength: 0)
                     if let word {
@@ -200,7 +200,7 @@ struct WordTile: View {
         }
         .buttonStyle(TilePress())
         .frame(maxWidth: .infinity)
-        .accessibilityLabel([Lang.name(lang), word, readingText(reading).map { "IPA \($0)" }].compactMap { $0 }.joined(separator: ", "))
+        .accessibilityLabel([langName(lang), word, readingText(reading).map { "IPA \($0)" }].compactMap { $0 }.joined(separator: ", "))
         .accessibilityHint(canSay ? "Plays the word" : "")
     }
 }
@@ -245,7 +245,7 @@ struct WideTile: View {
             .padding(.bottom, 8)
             .overlay(alignment: .topLeading) {
                 if label {
-                    Text(Lang.name(lang).uppercased()).font(D8.caps(11)).tracking(0.9).foregroundStyle(D8.label).padding(.leading, 10).padding(.top, 7)
+                    Text(langName(lang).uppercased()).font(D8.caps(11)).tracking(0.9).foregroundStyle(D8.label).padding(.leading, 10).padding(.top, 7)
                 }
             }
             .background(D8.panel, in: .rect(cornerRadius: 6))
@@ -269,7 +269,7 @@ struct WideTile: View {
             }
         }
         .buttonStyle(TilePress())
-        .accessibilityLabel("\(Lang.name(lang)), \(word)\(state == .right ? ", right answer" : "")")
+        .accessibilityLabel("\(langName(lang)), \(word)\(state == .right ? ", right answer" : "")")
         .accessibilityHint(canSay ? "Plays the word" : "")
     }
 }
@@ -295,7 +295,7 @@ struct AnswerRow: View {
             }
         }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(word), \(Lang.name(lang))\(state == .right ? ", right answer" : state == .wrong ? ", your pick, wrong" : "")")
+        .accessibilityLabel("\(word), \(langName(lang))\(state == .right ? ", right answer" : state == .wrong ? ", your pick, wrong" : "")")
     }
 
     func row(_ canSay: Bool) -> some View {
@@ -343,7 +343,7 @@ struct MiniTile: View {
         .padding(.bottom, 6)
         .padding(.horizontal, 4)
         .overlay(alignment: .topLeading) {
-            Text(Lang.name(lang).uppercased()).font(D8.caps(8)).tracking(0.6).foregroundStyle(D8.label).padding(.leading, 6).padding(.top, 5)
+            Text(langName(lang).uppercased()).font(D8.caps(8)).tracking(0.6).foregroundStyle(D8.label).padding(.leading, 6).padding(.top, 5)
         }
         .background(D8.panel, in: .rect(cornerRadius: 5))
         .padding(6)
@@ -420,4 +420,11 @@ struct BranchTile: View {
             .modifier(Glaze(radius: size * 0.23))
             .accessibilityHidden(true)
     }
+}
+
+func langName(_ code: String) -> String {
+    guard Locale.current.language.languageCode?.identifier != "en",
+          let tag = Lang.info[code]?.bcp47,
+          let name = Locale.current.localizedString(forLanguageCode: String(tag.prefix { $0 != "-" })) else { return Lang.name(code) }
+    return name.prefix(1).uppercased() + name.dropFirst()
 }

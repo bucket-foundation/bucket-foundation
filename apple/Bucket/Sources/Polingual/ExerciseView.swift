@@ -51,7 +51,7 @@ struct OptionButton: View {
         }
         .buttonStyle(D8Option(selected: selected))
         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
-        .accessibilityLabel("\(text), \(Lang.name(lang))")
+        .accessibilityLabel("\(text), \(langName(lang))")
         .accessibilityAddTraits(selected ? .isSelected : [])
     }
 }
@@ -77,7 +77,7 @@ struct ExerciseView: View {
 
     var accepted: [String] { ex.accept ?? [ex.answer] }
     var slow: Bool { Date().timeIntervalSince(started) > 15 }
-    var targetName: String { Lang.name(ex.lang) }
+    var targetName: String { langName(ex.lang) }
 
     func finish(_ ok: Bool, _ v: Verdict? = nil) {
         onDone([ExerciseResult(lang: ex.lang, rating: v.map { verdictRating($0, hesitated: slow) } ?? (ok ? (slow ? 2 : 3) : 1))])
@@ -149,7 +149,7 @@ struct ExerciseView: View {
                                             .frame(width: 24, height: 24).background(ok ? D8.malachite : D8.vermilion, in: .circle).offset(x: 7, y: -7)
                                     }
                                 }
-                            Text(Lang.name(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                            Text(langName(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
                             Text(word ?? " ").font(D8.word(16)).strikethrough(matchDone && !ok, color: D8.vermilion)
                                 .foregroundStyle(matchDone ? (ok ? D8.malachite : Palette.muted) : Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
                             if matchDone && !ok { Text(truth).font(D8.word(16)).foregroundStyle(D8.malachite).lineLimit(1).minimumScaleFactor(0.6) }
@@ -157,7 +157,7 @@ struct ExerciseView: View {
                         .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.plain)
-                    .accessibilityLabel("\(Lang.name(l))\(word.map { ", holds \($0)" } ?? "")\(matchDone ? (ok ? ", right" : ", wrong, the answer is \(truth)") : "")")
+                    .accessibilityLabel("\(langName(l))\(word.map { ", holds \($0)" } ?? "")\(matchDone ? (ok ? ", right" : ", wrong, the answer is \(truth)") : "")")
                 }
             }
             if matchDone {
@@ -361,7 +361,7 @@ struct FamilyLine: View {
     var body: some View {
         if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
             Text("SAME ROOT ").font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
-                + Text(f.map { "\(Lang.name($0.lang)) \($0.word)" }.joined(separator: " · ")).font(.subheadline).foregroundStyle(Palette.ink)
+                + Text(f.map { "\(langName($0.lang)) \($0.word)" }.joined(separator: " · ")).font(.subheadline).foregroundStyle(Palette.ink)
         }
     }
 }
@@ -371,7 +371,7 @@ struct FalseFriendNote: View {
 
     var body: some View {
         if let f = ex.falseFriend {
-            Text("False friend: \(f.word) means \(f.means). It looks like English \(f.looksLike).\(f.crossWith.map { " \(Lang.name($0.lang)) \($0.word) means \($0.means)." } ?? "")")
+            Text("False friend: \(f.word) means \(f.means). It looks like English \(f.looksLike).\(f.crossWith.map { " \(langName($0.lang)) \($0.word) means \($0.means)." } ?? "")")
                 .font(.caption)
                 .foregroundStyle(Palette.ink.opacity(0.8))
         }
@@ -394,7 +394,7 @@ struct SentencePrompt: View {
 
 struct AskWord: View {
     let word: String
-    let sub: String?
+    let sub: LocalizedStringKey?
 
     var body: some View {
         VStack(spacing: 4) {
@@ -412,7 +412,7 @@ struct Prompt: View {
     let cousins: (String) -> Reading?
 
     var body: some View {
-        let name = Lang.name(ex.lang)
+        let name = langName(ex.lang)
         switch ex.kind {
         case .cloze:
             VStack(spacing: 6) {
@@ -462,7 +462,7 @@ struct Prompt: View {
                 }
             }
         case .speak:
-            AskWord(word: "Say \(ex.prompt)", sub: "in \(name)")
+            AskWord(word: ex.prompt, sub: "say it in \(name)")
         default:
             AskWord(word: ex.prompt, sub: "in \(name)")
         }

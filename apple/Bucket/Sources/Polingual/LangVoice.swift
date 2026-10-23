@@ -148,7 +148,7 @@ struct PlayButton: View {
             }
             .buttonStyle(.borderless)
             .tint(Palette.green)
-            .accessibilityLabel(label ?? "Hear it in \(Lang.name(lang))")
+            .accessibilityLabel(label ?? "Hear it in \(langName(lang))")
         }
     }
 }

@@ -54,7 +54,7 @@ struct SystemView: View {
                 if let draft = editing {
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.codes.filter { $0 != system.root }, id: \.self) { c in
-                            Chip(title: Lang.name(c), langs: [c], on: draft.contains(c)) {
+                            Chip(title: langName(c), langs: [c], on: draft.contains(c)) {
                                 editing = draft.contains(c) ? draft.filter { $0 != c } : draft + [c]
                             }
                         }
@@ -81,7 +81,7 @@ struct SystemView: View {
                 }
                 SaveNotice(state: store.saveState)
             } header: {
-                Eyebrow(text: "Languages · \(system.targets.map(Lang.name).joined(separator: ", "))")
+                Eyebrow(text: "Languages · \(system.targets.map(langName).joined(separator: ", "))")
             }
             .listRowBackground(Palette.card)
 
@@ -89,12 +89,12 @@ struct SystemView: View {
                 ForEach(per) { p in
                     VStack(alignment: .leading, spacing: 6) {
                         HStack {
-                            HStack(spacing: 8) { FlagTile(lang: p.lang, size: 26); Text(Lang.name(p.lang)).font(.headline) }
+                            HStack(spacing: 8) { FlagTile(lang: p.lang, size: 26); Text(langName(p.lang)).font(.headline) }
                             Spacer()
                             Text("\(p.started)/\(p.total) started").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                         }
                         ProgressBar(started: p.total > 0 ? Double(p.started) / Double(p.total) : 0, mastered: p.total > 0 ? Double(p.mastered) / Double(p.total) : 0)
-                            .accessibilityLabel("\(Lang.name(p.lang)) \(p.started) started, \(p.mastered) mastered")
+                            .accessibilityLabel("\(langName(p.lang)) \(p.started) started, \(p.mastered) mastered")
                         FlowLayout(spacing: 10) {
                             Text("\(p.mastered) mastered")
                             Text("\(p.due) due")
@@ -119,7 +119,7 @@ struct SystemView: View {
 
             Section {
                 Picker("Language", selection: Binding(get: { shown }, set: { unitLang = $0 })) {
-                    ForEach(system.targets, id: \.self) { Text(Lang.name($0)).tag($0) }
+                    ForEach(system.targets, id: \.self) { Text(langName($0)).tag($0) }
                 }
                 .pickerStyle(.segmented)
                 ForEach(units) { u in
@@ -144,7 +144,7 @@ struct SystemView: View {
             if !friends.isEmpty {
                 Section {
                     ForEach(friends, id: \.self) { f in
-                        Text("**\(Lang.name(f.lang)) \(f.word)** means \(f.means), looks like English \(f.looksLike)\(f.crossWith.map { "; \(Lang.name($0.lang)) \($0.word) means \($0.means)" } ?? "")")
+                        Text("**\(langName(f.lang)) \(f.word)** means \(f.means), looks like English \(f.looksLike)\(f.crossWith.map { "; \(langName($0.lang)) \($0.word) means \($0.means)" } ?? "")")
                             .font(.subheadline)
                     }
                 } header: {
@@ -155,7 +155,7 @@ struct SystemView: View {
             if !families.isEmpty {
                 Section {
                     ForEach(families) { i in
-                        Text("**\(i.root ?? "")** \(sharedRootLangs(i, system).map { "\(Lang.name($0)) \(i.forms[$0] ?? "")" }.joined(separator: " · "))")
+                        Text("**\(i.root ?? "")** \(sharedRootLangs(i, system).map { "\(langName($0)) \(i.forms[$0] ?? "")" }.joined(separator: " · "))")
                             .font(.subheadline)
                     }
                 } header: {

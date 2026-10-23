@@ -53,7 +53,7 @@ struct Chip: View {
         }
         .buttonStyle(TilePress())
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(langs.count > 1 ? "\(title): \(langs.map(Lang.name).joined(separator: ", "))" : title)
+        .accessibilityLabel(langs.count > 1 ? "\(title): \(langs.map(langName).joined(separator: ", "))" : title)
         .accessibilityAddTraits(on ? [.isButton, .isSelected] : .isButton)
     }
 }
@@ -118,7 +118,7 @@ struct LanguagesHome: View {
             }
             Section {
                 Picker("Root language", selection: $root) {
-                    ForEach(Lang.codes, id: \.self) { Text(Lang.name($0)).tag($0) }
+                    ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
                 }
                 .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
                 VStack(alignment: .leading, spacing: 8) {
@@ -135,7 +135,7 @@ struct LanguagesHome: View {
                     Eyebrow(text: "Languages to learn")
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
-                            Chip(title: Lang.name(c), langs: [c], on: targets.contains(c)) {
+                            Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
                                 if targets.contains(c) { targets.removeAll { $0 == c } } else { targets.append(c) }
                             }
                         }
@@ -171,7 +171,7 @@ struct LanguagesHome: View {
                 Spacer()
                 Text("\(sum.started) of \(sum.total) cards").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
             }
-            HStack(spacing: 4) { ForEach(s.targets, id: \.self) { FlagTile(lang: $0, size: 24) }; Text("from \(Lang.name(s.root))").font(.subheadline).foregroundStyle(Palette.muted).padding(.leading, 4) }
+            HStack(spacing: 4) { ForEach(s.targets, id: \.self) { FlagTile(lang: $0, size: 24) }; Text("from \(langName(s.root))").font(.subheadline).foregroundStyle(Palette.muted).padding(.leading, 4) }
             HStack(spacing: 14) {
                 Text("\(sum.due) due")
                 Text("\(Int(sum.xp)) xp")
