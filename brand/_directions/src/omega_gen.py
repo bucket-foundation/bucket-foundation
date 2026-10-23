@@ -54,6 +54,7 @@ STYLES = [
     ("flat", "clean flat vector brand mark, dribbble, minimal, high contrast", 0.82),
 ]
 
+MODEL = {"model": "stabilityai/sdxl-turbo", "license": "Stability AI Community License, reference use only"}
 NEG = "text, letters, watermark, signature, words"
 
 
@@ -101,6 +102,7 @@ def main():
                 img.save(path)
             manifest.append({"file": name, "subject": sk, "style": tk, "base": bk})
             (OUT / "manifest.json").write_text(json.dumps(manifest, indent=1))
+            (OUT / "model.json").write_text(json.dumps(MODEL))
             n += 1
             print(name, flush=True)
             if n >= limit:

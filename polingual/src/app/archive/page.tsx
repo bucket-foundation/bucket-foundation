@@ -2,6 +2,8 @@ import Search from "../search";
 import Signup from "../signup";
 import { Tex } from "../tex";
 
+export const metadata = { robots: { index: false, follow: true }, alternates: { canonical: "/archive" } };
+
 const STATS = [
   ["6.5M", "words indexed"],
   ["209k", "searchable here"],

@@ -34,16 +34,16 @@ function say(el,t){
 }
 function style(t){return `--flag:${t.bg};--ec:${t.ec||'#000'};--es:${t.es||0}px${t.ex?`;--ex:${t.ex};--ey:${t.ey}`:';--ex:50%;--ey:50%'}`}
 function inner(t,mode){
- const face=`<img class="face" src="flags/${t.c}.svg" onerror="this.remove()" alt="">`;
+ const face="";
  if(mode==='bare')return `${face}<span class="em">${t.e||''}</span>`;
- return `${face}<span class="cc">${t.n}</span><div class="wd"><b class="${[...t.w].length>3?'long':''}" lang="${t.lang}" style="font-family:'${t.f}'">${t.w}</b><button class="snd" aria-label="Play pronunciation">${SPK}</button></div><i>/${t.ipa}/</i>`;
+ return `${face}<span class="cc">${t.n}</span><div class="wd"><b class="${[...t.w].length>3?'long':''}" lang="${t.lang}" style="font-family:'${t.f}'">${t.w}</b><button class="snd" aria-label="Play ${t.n} ${t.w}">${SPK}</button></div><i>/${t.ipa}/</i>`;
 }
-function paint(el,t,mode){el.dataset.c=t.c;el.setAttribute('style',style(t));el.innerHTML=inner(t,mode);if(mode!=='bare')el.setAttribute('aria-label',`Play ${t.w}`)}
+function paint(el,t,mode){el.dataset.c=t.c;el.setAttribute('style',style(t));el.innerHTML=inner(t,mode);}
 function renderTiles(root,mode){
  const text=mode!=='bare';
- root.innerHTML=TILES.map(()=>`<div class="t${text?' tt':''}"${text?' role="button" tabindex="0"':''}></div>`).join('');
+ root.innerHTML=TILES.map(()=>`<div class="t${text?' tt':''}"></div>`).join('');
  const els=[...root.children];els.forEach((el,i)=>paint(el,TILES[i],text?'text':'bare'));
- if(text)els.forEach(el=>{el.onclick=()=>say(el,byC(el.dataset.c));el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();say(el,byC(el.dataset.c))}}});
+ if(text)els.forEach(el=>{el.onclick=()=>say(el,byC(el.dataset.c))});
  if(root.dataset.cycle!==undefined)cycle(els,text?'text':'bare',+root.dataset.cycle||2200);
 }
 function cycle(els,mode,ms){
