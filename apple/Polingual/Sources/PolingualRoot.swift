@@ -8,11 +8,15 @@ struct PolingualRoot: View {
     @Environment(Gate.self) private var gate
     @Environment(Subscriptions.self) private var subs
     @AppStorage("polingual.onboarded") private var onboarded = false
+    @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
     var body: some View {
         Group {
             if !onboarded {
-                Onboarding { onboarded = true }
+                Onboarding { id in
+                    firstSystem = id ?? ""
+                    onboarded = true
+                }
             } else {
                 switch subs.access {
                 case .checking:
@@ -43,6 +47,7 @@ struct Studio: View {
     @State private var path = NavigationPath()
     @State private var showAccount = false
     @State private var managing = false
+    @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -76,6 +81,12 @@ struct Studio: View {
     }
 
     func openFromLaunch() async {
+        if !firstSystem.isEmpty {
+            await store.load()
+            if store.system(firstSystem) != nil { path.append(LangRoute.place(firstSystem, nil)) }
+            firstSystem = ""
+            return
+        }
         guard let spec = PolingualLaunch.value("-openLang") else { return }
         await store.load()
         let parts = spec.split(separator: ":").map(String.init)

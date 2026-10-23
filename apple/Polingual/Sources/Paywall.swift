@@ -22,7 +22,7 @@ struct Paywall: View {
             return [.appAccountToken(id)]
         }
         .onInAppPurchaseCompletion { _, _ in await subs.refresh() }
-        .tint(Palette.green)
+        .tint(D8.vermilion)
         .background(Palette.paper.ignoresSafeArea())
         .safeAreaInset(edge: .bottom) {
             VStack(spacing: 6) {
@@ -58,23 +58,20 @@ struct PaywallHeader: View {
     let trial: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Eyebrow(text: "Polingual")
+        VStack(alignment: .leading, spacing: 16) {
+            PoMark()
             Text(PaywallCopy.headline(trial: trial))
-                .font(.serif(.largeTitle, weight: .semibold))
+                .font(.system(size: 38, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
-            Text("Every language system, every word in all 29 languages, placement, spaced review and speaking practice. Progress syncs with Bucket.")
-                .font(.serif(.body))
+            Text("Every language set, every word in all 29 languages, placement, spaced review and speaking practice. Progress syncs with Bucket.")
+                .font(.body)
                 .foregroundStyle(Palette.muted)
                 .fixedSize(horizontal: false, vertical: true)
-            VStack(alignment: .leading, spacing: 8) {
-                Label("Unlimited language systems", systemImage: "square.stack.3d.up")
-                Label("Placement in each language", systemImage: "scope")
-                Label("Speak and listen on every card", systemImage: "waveform")
-                Label("Sync across iPhone, iPad and Mac", systemImage: "arrow.triangle.2.circlepath")
+            VStack(alignment: .leading, spacing: 12) {
+                Point(icon: "square.stack.3d.up.fill", color: D8.lapis, title: "Unlimited language sets", detail: "Learn up to five languages side by side.")
+                Point(icon: "scope", color: D8.malachite, title: "Placement in each language", detail: "Start at your level.")
+                Point(icon: "speaker.wave.2.fill", color: D8.vermilion, title: "Hear and say every word", detail: "Native audio and speech checks.")
             }
-            .font(.subheadline)
-            .foregroundStyle(Palette.ink)
         }
         .padding(.horizontal, 24)
         .padding(.top, 24)
