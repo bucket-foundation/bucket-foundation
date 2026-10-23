@@ -16,6 +16,12 @@ struct Paywall: View {
         SubscriptionStoreView(productIDs: Plan.all) {
             VStack(alignment: .leading, spacing: 12) {
                 PaywallHeader(trial: subs.trialEligible, reminded: reminders.enabled)
+                    #if DEBUG
+                    .onLongPressGesture(minimumDuration: 1.5) {
+                        haptic(true)
+                        subs.grantDevPass()
+                    }
+                    #endif
                 Text(PaywallCopy.renewal(trial: subs.trialEligible))
                     .font(.system(size: 11))
                     .foregroundStyle(Palette.muted)
