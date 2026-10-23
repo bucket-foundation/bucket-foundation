@@ -25,7 +25,7 @@ const byC=c=>POOL.find(t=>t.c===c);
 function say(el,t){
  document.querySelectorAll('.tt.playing').forEach(x=>x.classList.remove('playing'));
  el.classList.add('playing');const done=()=>el.classList.remove('playing');
- const a=new Audio(`audio/${t.c}.mp3`);a.onended=done;
+ const a=new Audio(`audio/${t.c}.m4a`);a.onended=done;
  a.play().catch(()=>{
   if(!('speechSynthesis' in window)){done();return}
   speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.w);u.lang=t.lang;u.rate=.85;
