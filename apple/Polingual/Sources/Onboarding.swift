@@ -327,60 +327,35 @@ struct Dots: View {
 struct PlayfulTiles: View {
     var compact = false
     @Environment(\.accessibilityReduceMotion) private var still
-    static let sets: [(gloss: String, words: [(String, String, String)])] = [
-        ("night", [("es", "noche", "ˈnotʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ")]),
-        ("seven", [("de", "sieben", "ˈziːbn̩"), ("ja", "七", "nana"), ("el", "επτά", "epˈta"), ("hi", "सात", "saːt")]),
-        ("hundred", [("ru", "сто", "sto"), ("he", "מאה", "meˈa"), ("zh", "百", "bǎi"), ("ar", "مئة", "miʔa")]),
-    ]
-    @State private var sets = [0, 0, 0, 0]
-    var set: Int { sets[0] }
-    @State private var shown = 0
-    @State private var bounce = -1
+    static let words: [(String, String, String)] = [("es", "noche", "ˈnotʃe"), ("fr", "nuit", "nɥi"), ("it", "notte", "ˈnɔtte"), ("pt", "noite", "ˈnojtɨ")]
+    @State private var shown = false
 
     var body: some View {
         GeometryReader { g in
-            let side = compact ? min((g.size.width - 48) / 4, g.size.height - 10, 96) : min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
+            let side = compact ? min((g.size.width - 48) / 4, g.size.height - 16, 96) : min((g.size.width - 16) / 2, (g.size.height - 44) / 2, 170)
             VStack(spacing: 12) {
                 if !compact {
-                (Text("One word, ") + Text(Self.sets[set].gloss).foregroundStyle(D8.lapis) + Text(", in four languages"))
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
-                    .foregroundStyle(Palette.muted)
-                    .contentTransition(.opacity)
-                    .animation(.easeInOut, value: set)
+                    (Text("One word, ") + Text("night").foregroundStyle(D8.lapis) + Text(", in four languages"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundStyle(Palette.muted)
                 }
-                LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
-                    ForEach(0..<4, id: \.self) { i in
-                        let w = Self.sets[sets[i]].words[i]
-                        WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side)
-                            .id(sets[i])
-                            .transition(.opacity.combined(with: .scale(scale: 0.97)))
-                            .rotationEffect(.degrees(i.isMultiple(of: 2) ? -2 : 1.5))
-                            .scaleEffect(i < shown ? (bounce == i ? 1.08 : 1) : 0.4)
-                            .opacity(i < shown ? 1 : 0)
-                            .simultaneousGesture(TapGesture().onEnded {
-                                tap()
-                                withAnimation(.spring(duration: 0.25, bounce: 0.6)) { bounce = i }
-                                Task { try? await Task.sleep(for: .milliseconds(220)); withAnimation(.spring) { bounce = -1 } }
-                            })
+                TimelineView(.animation(paused: still)) { t in
+                    let now = t.date.timeIntervalSinceReferenceDate
+                    LazyVGrid(columns: Array(repeating: GridItem(.fixed(side), spacing: compact ? 12 : 16), count: compact ? 4 : 2), spacing: 16) {
+                        ForEach(0..<4, id: \.self) { i in
+                            let w = Self.words[i]
+                            WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side)
+                                .rotationEffect(.degrees((i.isMultiple(of: 2) ? -2 : 1.5) + (still ? 0 : sin(now * 0.8 + Double(i)) * 1.2)))
+                                .offset(y: still ? 0 : sin(now * 1.1 + Double(i) * 1.6) * (compact ? 3 : 5))
+                        }
                     }
                 }
                 .frame(maxWidth: .infinity)
+                .opacity(shown ? 1 : 0)
+                .offset(y: shown ? 0 : 16)
             }
         }
-        .task {
-            for i in 1...4 {
-                withAnimation(still ? nil : .spring(duration: 0.45, bounce: 0.5)) { shown = i }
-                try? await Task.sleep(for: .milliseconds(140))
-            }
-            guard !still else { return }
-            while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(4))
-                for i in 0..<4 {
-                    withAnimation(.easeInOut(duration: 0.7)) { sets[i] = (sets[i] + 1) % Self.sets.count }
-                    try? await Task.sleep(for: .milliseconds(260))
-                }
-            }
-        }
+        .onAppear { withAnimation(.easeOut(duration: 0.6)) { shown = true } }
     }
 }
 
