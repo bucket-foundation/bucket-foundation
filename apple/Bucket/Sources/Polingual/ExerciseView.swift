@@ -233,11 +233,8 @@ struct ExerciseView: View {
                 if let picked {
                     VStack(spacing: 8) {
                         ForEach(options, id: \.self) { o in
-                            if accepted.contains(o) {
-                                WideTile(word: o, lang: optionLang(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil, state: .right).padding(.vertical, 4)
-                            } else {
-                                AnswerRow(word: o, lang: optionLang(o), state: o == picked ? .wrong : .other, flag: ex.optionLangs != nil)
-                            }
+                            AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
+                                      flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil)
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender)
@@ -334,7 +331,7 @@ struct Answered: View {
             } else if !ok {
                 (Text("Not quite. ") + Text(given.flatMap { $0.isEmpty ? nil : "You wrote \($0)." } ?? "")).font(.subheadline.weight(.semibold)).foregroundStyle(D8.vermilion)
             }
-            WideTile(word: target, lang: ex.lang, reading: reading, state: .right)
+            AnswerRow(word: target, lang: ex.lang, state: .right, reading: reading)
             Notes(ex: ex, showNote: !ok || ex.kind == .conjugate || ex.kind == .gender)
             Button("Continue", action: onNext)
                 .buttonStyle(D8Primary())
