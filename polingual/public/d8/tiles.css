@@ -18,8 +18,8 @@
 .tt:hover .snd{opacity:.9}
 .tt.playing .snd{color:#D9381E;opacity:1}
 .tt::after{left:auto;right:18px}
-.t{transition:transform .24s ease}
-.t.flip{transform:perspective(600px) rotateY(90deg) !important}
-.t.flipin{animation:fin .26s ease}
+.t{transition:opacity .24s ease}
+.t.flip{opacity:0}
+
 @keyframes fin{from{transform:perspective(600px) rotateY(-90deg)}}
 .tt .snd:focus-visible{outline:3px solid #D9381E;outline-offset:2px;border-radius:4px}
