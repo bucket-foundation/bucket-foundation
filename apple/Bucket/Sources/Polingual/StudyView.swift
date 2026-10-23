@@ -99,8 +99,10 @@ struct StudyView: View {
             StateMessage(title: "Nothing due", detail: "You have met today's new words in every language of this set. Come back tomorrow.", retry: nil)
         } else if i >= queue.count || current == nil {
             VStack(spacing: 16) {
-                Image(systemName: "checkmark.seal.fill").font(.system(size: 56)).foregroundStyle(Palette.green)
-                Text("Session done").font(.serif(.title, weight: .semibold))
+                Image(systemName: "checkmark").font(.system(size: 34, weight: .heavy)).foregroundStyle(.white)
+                    .frame(width: 76, height: 76).background(D8.malachite, in: .circle)
+                    .onAppear { haptic(true) }
+                Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
                 ReminderPrompt()
                 Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
                     .foregroundStyle(Palette.muted)
@@ -109,7 +111,7 @@ struct StudyView: View {
                     path.removeLast()
                     path.append(LangRoute.system(system.id))
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(D8Primary())
                 Button("Another round") {
                     self.queue = buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000)
                     i = 0
@@ -118,44 +120,43 @@ struct StudyView: View {
                     xpStart = state.xp
                     makeExercise()
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(D8Option(align: .center))
             }
             .padding(24)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else if let ex = current {
-            let entry = queue[i]
-            let unitTitle = corpus.byId[entry.itemId].map { corpus.units[$0.unit].title }
-            ScrollView {
-                VStack(alignment: .leading, spacing: 14) {
-                    HStack {
-                        Text(system.name).lineLimit(1)
-                        Spacer()
-                        Text("\(i + 1) / \(queue.count) · \(Int(state.xp)) xp\(unitTitle.map { " · unit: \($0)" } ?? "")").lineLimit(1)
-                    }
-                    .font(.caption)
-                    .foregroundStyle(Palette.muted)
-                    .monospacedDigit()
-                    ProgressView(value: Double(i), total: Double(queue.count)).tint(Palette.gold)
-                    let maps = readingMaps(ex, corpus)
-                    ExerciseView(ex: ex, readings: readings, reading: { form, lang in maps[lang]?[form] }, onDone: done)
-                        .id(currentKey)
-                    HStack {
-                        Button("Skip this one") {
+            let maps = readingMaps(ex, corpus)
+            let page = VStack(alignment: .leading, spacing: 12) {
+                HStack(spacing: 10) {
+                    ProgressView(value: Double(i), total: Double(queue.count)).tint(D8.malachite)
+                    Text("\(i + 1)/\(queue.count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                }
+                ExerciseView(ex: ex, readings: readings, reading: { form, lang in maps[lang]?[form] }, onDone: done)
+                    .id(currentKey)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 4)
+            .padding(.bottom, 12)
+            .frame(maxWidth: 680, alignment: .top)
+            .frame(maxWidth: .infinity)
+            ViewThatFits(in: .vertical) {
+                page.frame(maxHeight: .infinity, alignment: .top)
+                ScrollView { page }.scrollDismissesKeyboard(.interactively)
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        Button("Skip this one", systemImage: "forward") {
                             i += 1
                             makeExercise()
                         }
-                        .font(.footnote)
-                        .buttonStyle(.borderless)
-                        Spacer()
-                        Toggle("Show readings and IPA", isOn: $readings).font(.footnote).fixedSize()
+                        Toggle("Show readings and IPA", systemImage: "character.phonetic", isOn: $readings)
+                    } label: {
+                        Image(systemName: "ellipsis")
                     }
-                    .foregroundStyle(Palette.muted)
+                    .accessibilityLabel("Session options")
                 }
-                .padding(20)
-                .frame(maxWidth: 680, alignment: .leading)
-                .frame(maxWidth: .infinity)
             }
-            .scrollDismissesKeyboard(.interactively)
         }
     }
 
@@ -181,6 +182,8 @@ struct StudyView: View {
             let item = corpus.items[rng.index(corpus.items.count)]
             let lang = system.targets[rng.index(system.targets.count)]
             guard item.form(lang) != nil, item.form(system.root) != nil else { continue }
+            if item.kind == .conj && item.conj[lang] == nil { continue }
+            if item.kind == .gender && item.gender[lang] == nil { continue }
             if kind == .match {
                 if let m = matchExercise(corpus, system, item, &rng) { return m }
                 continue

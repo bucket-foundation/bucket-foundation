@@ -28,6 +28,7 @@ extension Color {
 
 struct FlagFace: View {
     let flag: D8Flag
+    var emblem = true
 
     var body: some View {
         GeometryReader { g in
@@ -50,7 +51,7 @@ struct FlagFace: View {
                     }
                     .fill(Color(hex: c))
                 }
-                if let e = flag.emblem {
+                if emblem || flag.pigment, let e = flag.emblem {
                     Text(e.glyph)
                         .font(.system(size: min(w, h) * e.scale, weight: .bold, design: flag.pigment ? .serif : .default))
                         .foregroundStyle(Color(hex: e.color))
@@ -151,69 +152,64 @@ func readingText(_ r: Reading?) -> String? {
     return nil
 }
 
-struct SpeakerGlyph: View {
-    let text: String
-    let lang: String
-    var size: CGFloat = 20
-
-    var body: some View {
-        if LangVoice.shared.canSpeak(text, lang) {
-            Button {
-                LangVoice.shared.speak(text, lang)
-            } label: {
-                Image(systemName: "speaker.wave.2.fill").font(.system(size: size)).foregroundStyle(D8.ink.opacity(0.55))
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel("Hear \(text)")
-        }
-    }
-}
-
 struct WordTile: View {
     let word: String?
     let lang: String
     let reading: Reading?
-    var size: CGFloat = 210
+    var size: CGFloat = 200
     var speakText: String?
 
     var body: some View {
-        let inset = size * 0.057
-        ZStack {
-            FlagFace(flag: D8Flag.of(lang))
-            RoundedRectangle(cornerRadius: 6).fill(D8.panel).padding(inset)
-            VStack(spacing: 6) {
-                Spacer(minLength: 0)
-                if let word {
-                    HStack(spacing: 6) {
-                        Text(word)
-                            .font(D8.word(size * (D8Fit.long(word) ? 0.15 : 0.21)))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.4)
-                            .foregroundStyle(D8.ink)
-                        SpeakerGlyph(text: speakText ?? word, lang: lang, size: size * 0.1)
+        let inset = size * 0.06
+        let say = speakText ?? word ?? ""
+        let canSay = LangVoice.shared.canSpeak(say, lang)
+        Button {
+            if canSay { LangVoice.shared.speak(say, lang) }
+        } label: {
+            ZStack {
+                FlagFace(flag: D8Flag.of(lang), emblem: false)
+                RoundedRectangle(cornerRadius: 6).fill(D8.panel).padding(inset)
+                VStack(spacing: 4) {
+                    Text(Lang.name(lang).uppercased()).font(D8.caps(size * 0.055)).tracking(0.8).foregroundStyle(D8.label)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer(minLength: 0)
+                    if let word {
+                        HStack(spacing: 6) {
+                            Text(word)
+                                .font(D8.word(size * (D8Fit.long(word) ? 0.15 : 0.21)))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.4)
+                                .foregroundStyle(D8.ink)
+                            if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.09)).foregroundStyle(D8.ink.opacity(0.55)) }
+                        }
+                        .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
+                    } else {
+                        Image(systemName: "speaker.wave.2.fill").font(.system(size: size * 0.24)).foregroundStyle(D8.ink.opacity(0.6))
                     }
-                    .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
-                } else {
-                    SpeakerGlyph(text: speakText ?? "", lang: lang, size: size * 0.24)
+                    Spacer(minLength: 0)
+                    Text(word == nil ? " " : readingText(reading) ?? " ").font(.system(size: size * 0.075)).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6)
                 }
-                Spacer(minLength: 0)
-                if word != nil, let r = readingText(reading) {
-                    Text(r).font(.system(size: size * 0.075)).foregroundStyle(D8.ipa).lineLimit(1).minimumScaleFactor(0.6)
-                }
+                .padding(.horizontal, inset * 1.7)
+                .padding(.vertical, inset * 1.5)
+                Shine()
             }
-            .padding(.horizontal, inset * 1.6)
-            .padding(.vertical, inset * 1.8)
-            Shine()
+            .frame(width: size, height: size)
+            .modifier(Glaze(radius: 14, lip: 6))
         }
-        .frame(width: size, height: size)
-        .modifier(Glaze(radius: 14, lip: 6))
+        .buttonStyle(TilePress())
         .frame(maxWidth: .infinity)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel([word, readingText(reading).map { "IPA \($0)" }].compactMap { $0 }.joined(separator: ", "))
+        .accessibilityLabel([Lang.name(lang), word, readingText(reading).map { "IPA \($0)" }].compactMap { $0 }.joined(separator: ", "))
+        .accessibilityHint(canSay ? "Plays the word" : "")
     }
 }
 
-enum TileState { case plain, right, wrong, dim }
+struct TilePress: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.offset(y: configuration.isPressed ? 3 : 0).animation(.snappy(duration: 0.12), value: configuration.isPressed)
+    }
+}
+
+enum TileState { case plain, right }
 
 struct WideTile: View {
     let word: String
@@ -223,54 +219,82 @@ struct WideTile: View {
     var label: Bool = true
 
     var body: some View {
-        VStack(spacing: 2) {
-            HStack(spacing: 6) {
-                Text(word)
-                    .font(D8.word(D8Fit.wide(word) && !word.contains(" ") ? 18 : 24))
-                    .multilineTextAlignment(.center)
-                    .lineLimit(word.contains(" ") ? 3 : 1)
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(D8.ink)
-                SpeakerGlyph(text: word, lang: lang, size: 18)
+        let canSay = LangVoice.shared.canSpeak(word, lang)
+        Button {
+            if canSay { LangVoice.shared.speak(word, lang) }
+        } label: {
+            VStack(spacing: 2) {
+                HStack(spacing: 6) {
+                    Text(word)
+                        .font(D8.word(D8Fit.wide(word) && !word.contains(" ") ? 18 : 24))
+                        .multilineTextAlignment(.center)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .foregroundStyle(D8.ink)
+                    if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: 17)).foregroundStyle(D8.ink.opacity(0.55)) }
+                }
+                .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
+                if let r = readingText(reading) {
+                    Text(r).font(.footnote).foregroundStyle(D8.ipa).lineLimit(2).multilineTextAlignment(.center)
+                }
             }
-            .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
-            if let r = readingText(reading) {
-                Text(r).font(.footnote).foregroundStyle(D8.ipa).lineLimit(2).multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 12)
+            .padding(.top, label ? 22 : 10)
+            .padding(.bottom, 8)
+            .overlay(alignment: .topLeading) {
+                if label {
+                    Text(Lang.name(lang).uppercased()).font(D8.caps(11)).tracking(0.9).foregroundStyle(D8.label).padding(.leading, 10).padding(.top, 7)
+                }
+            }
+            .background(D8.panel, in: .rect(cornerRadius: 6))
+            .padding(10)
+            .background { FlagFace(flag: D8Flag.of(lang), emblem: false) }
+            .overlay { Shine() }
+            .modifier(Glaze(radius: 14, lip: 6))
+            .padding(state == .right ? 6 : 0)
+            .overlay {
+                if state == .right { RoundedRectangle(cornerRadius: 18).strokeBorder(D8.malachite, lineWidth: 3) }
+            }
+            .overlay(alignment: .topTrailing) {
+                if state == .right {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 13, weight: .heavy))
+                        .foregroundStyle(.white)
+                        .frame(width: 26, height: 26)
+                        .background(D8.malachite, in: .circle)
+                        .offset(x: 8, y: -8)
+                }
             }
         }
-        .frame(maxWidth: .infinity)
+        .buttonStyle(TilePress())
+        .accessibilityLabel("\(Lang.name(lang)), \(word)\(state == .right ? ", right answer" : "")")
+        .accessibilityHint(canSay ? "Plays the word" : "")
+    }
+}
+
+enum RowState { case wrong, other }
+
+struct AnswerRow: View {
+    let word: String
+    let lang: String
+    let state: RowState
+    var flag = true
+
+    var body: some View {
+        HStack(spacing: 10) {
+            if flag { FlagTile(lang: lang, size: 26) }
+            Text(word).font(.system(size: 17, weight: .bold, design: .rounded)).strikethrough(state == .wrong, color: D8.vermilion).foregroundStyle(Palette.ink).lineLimit(2)
+            Spacer(minLength: 0)
+            if state == .wrong {
+                Image(systemName: "xmark").font(.system(size: 12, weight: .heavy)).foregroundStyle(.white).frame(width: 22, height: 22).background(D8.vermilion, in: .circle)
+            }
+        }
         .padding(.horizontal, 12)
-        .padding(.top, label ? 22 : 10)
-        .padding(.bottom, 8)
-        .overlay(alignment: .topLeading) {
-            if label {
-                Text(Lang.name(lang).uppercased()).font(D8.caps(11)).tracking(0.9).foregroundStyle(D8.label).padding(.leading, 10).padding(.top, 7)
-            }
-        }
-        .background(D8.panel, in: .rect(cornerRadius: 6))
-        .padding(10)
-        .background { FlagFace(flag: D8Flag.of(lang)) }
-        .overlay { Shine() }
-        .modifier(Glaze(radius: 14, lip: state == .dim ? 0 : 6))
-        .brightness(state == .right || state == .plain ? 0 : -0.22)
-        .padding(state == .right || state == .wrong ? 6 : 0)
-        .overlay {
-            if state == .right || state == .wrong {
-                RoundedRectangle(cornerRadius: 18).strokeBorder(state == .right ? D8.malachite : D8.vermilion, lineWidth: 3)
-            }
-        }
-        .overlay(alignment: .topTrailing) {
-            if state == .right || state == .wrong {
-                Image(systemName: state == .right ? "checkmark" : "xmark")
-                    .font(.system(size: 13, weight: .heavy))
-                    .foregroundStyle(.white)
-                    .frame(width: 26, height: 26)
-                    .background(state == .right ? D8.malachite : D8.vermilion, in: .circle)
-                    .offset(x: 8, y: -8)
-            }
-        }
+        .frame(minHeight: 44)
+        .overlay { if state == .wrong { RoundedRectangle(cornerRadius: 12).strokeBorder(D8.vermilion, lineWidth: 2) } }
+        .opacity(state == .other ? 0.38 : 1)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(Lang.name(lang)), \(word)\(state == .right ? ", right answer" : state == .wrong ? ", your pick, wrong" : "")")
+        .accessibilityLabel("\(word), \(Lang.name(lang))\(state == .wrong ? ", your pick, wrong" : "")")
     }
 }
 
@@ -320,13 +344,14 @@ struct D8Primary: ButtonStyle {
 
 struct D8Option: ButtonStyle {
     var selected = false
+    var align: Alignment = .leading
 
     func makeBody(configuration: Configuration) -> some View {
         let down = selected || configuration.isPressed
         configuration.label
             .font(.system(size: 18, weight: .heavy, design: .rounded))
             .foregroundStyle(D8.ink)
-            .frame(maxWidth: .infinity, minHeight: 50, alignment: .leading)
+            .frame(maxWidth: .infinity, minHeight: 50, alignment: align)
             .padding(.horizontal, 16)
             .background(selected ? Color(hex: 0xEEF3FB) : .white, in: .rect(cornerRadius: 12))
             .overlay { RoundedRectangle(cornerRadius: 12).strokeBorder(selected ? D8.lapis : D8.keyline, lineWidth: selected ? 3 : 2) }

@@ -116,7 +116,7 @@ struct ExerciseView: View {
 
     var intro: some View {
         VStack(spacing: 12) {
-            WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil)
+            WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
             Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
             Notes(ex: ex, showNote: true)
             Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
@@ -130,17 +130,29 @@ struct ExerciseView: View {
         return VStack(alignment: .leading, spacing: 14) {
             HStack(alignment: .top, spacing: 10) {
                 ForEach(langs, id: \.self) { l in
-                    let word = assign.first { $0.value == l }.map { k in pairs.first { $0.lang == k.key }?.word ?? "" }
+                    let owner = assign.first { $0.value == l }?.key
+                    let word = owner.flatMap { k in pairs.first { $0.lang == k }?.word }
+                    let ok = owner == l
+                    let truth = pairs.first { $0.lang == l }?.word ?? ""
                     Button {
                         guard !matchDone, let h = holding else { return }
                         assign = assign.filter { $0.value != l }
                         assign[h] = l
                         holding = nil
+                        tap()
                     } label: {
                         VStack(spacing: 6) {
                             FlagTile(lang: l, size: 64)
+                                .overlay(alignment: .topTrailing) {
+                                    if matchDone {
+                                        Image(systemName: ok ? "checkmark" : "xmark").font(.system(size: 12, weight: .heavy)).foregroundStyle(.white)
+                                            .frame(width: 24, height: 24).background(ok ? D8.malachite : D8.vermilion, in: .circle).offset(x: 7, y: -7)
+                                    }
+                                }
                             Text(Lang.name(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
-                            Text(word ?? " ").font(D8.word(15)).foregroundStyle(Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
+                            Text(word ?? " ").font(D8.word(16)).strikethrough(matchDone && !ok, color: D8.vermilion)
+                                .foregroundStyle(matchDone ? (ok ? D8.malachite : Palette.muted) : Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
+                            if matchDone && !ok { Text(truth).font(D8.word(16)).foregroundStyle(D8.malachite).lineLimit(1).minimumScaleFactor(0.6) }
                         }
                         .frame(maxWidth: .infinity)
                     }
@@ -149,12 +161,6 @@ struct ExerciseView: View {
                 }
             }
             if matchDone {
-                VStack(spacing: 12) {
-                    ForEach(pairs, id: \.lang) { p in
-                        let ok = pairs.first { $0.lang == assign[p.lang] }?.word == p.word
-                        WideTile(word: p.word, lang: p.lang, reading: r(p.word, p.lang), state: ok ? .right : .wrong)
-                    }
-                }
                 Notes(ex: ex, showNote: false)
                 Button("Continue") {
                     onDone(gradeMatch(pairs, assign).map { ExerciseResult(lang: $0.lang, rating: $0.correct ? 3 : 1) })
@@ -163,10 +169,13 @@ struct ExerciseView: View {
             } else {
                 VStack(spacing: 10) {
                     ForEach(pairs.filter { !placed.contains($0.lang) }, id: \.lang) { p in
-                        OptionButton(text: p.word, lang: p.lang, reading: nil, selected: holding == p.lang) { holding = p.lang }
+                        OptionButton(text: p.word, lang: p.lang, reading: nil, selected: holding == p.lang) { holding = p.lang; tap() }
                     }
                 }
-                Button("Check") { matchDone = true }
+                Button("Check") {
+                    matchDone = true
+                    haptic(gradeMatch(pairs, assign).allSatisfy(\.correct))
+                }
                     .buttonStyle(D8Primary())
                     .disabled(assign.count < pairs.count)
             }
@@ -222,10 +231,13 @@ struct ExerciseView: View {
             Prompt(ex: ex, readings: readings, cousins: { l in r(ex.family?.first { $0.lang == l }?.word ?? "", l) })
             if mc, let options = ex.options {
                 if let picked {
-                    VStack(spacing: 12) {
+                    VStack(spacing: 8) {
                         ForEach(options, id: \.self) { o in
-                            let state: TileState = accepted.contains(o) ? .right : o == picked ? .wrong : .dim
-                            WideTile(word: o, lang: optionLang(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil, state: state)
+                            if accepted.contains(o) {
+                                WideTile(word: o, lang: optionLang(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil, state: .right).padding(.vertical, 4)
+                            } else {
+                                AnswerRow(word: o, lang: optionLang(o), state: o == picked ? .wrong : .other, flag: ex.optionLangs != nil)
+                            }
                         }
                     }
                     Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender)
@@ -238,7 +250,7 @@ struct ExerciseView: View {
                     let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : [GridItem(.flexible())]
                     LazyVGrid(columns: cols, spacing: 10) {
                         ForEach(options, id: \.self) { o in
-                            OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o) { selected = o }
+                            OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o) { selected = o; tap() }
                         }
                     }
                     Button("Check") { picked = selected }
@@ -292,6 +304,12 @@ struct ExerciseView: View {
         heard = alts[0]
         verdict = best
     }
+}
+
+func tap() {
+    #if os(iOS)
+    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+    #endif
 }
 
 func haptic(_ ok: Bool) {
@@ -410,7 +428,7 @@ struct Prompt: View {
             .frame(maxWidth: .infinity)
         case .listen, .typeHeard:
             VStack(spacing: 10) {
-                WordTile(word: LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? nil : ex.prompt, lang: ex.promptLang, reading: nil, size: 150, speakText: ex.prompt)
+                WordTile(word: LangVoice.shared.canSpeak(ex.prompt, ex.promptLang) ? nil : ex.prompt, lang: ex.promptLang, reading: nil, size: 140, speakText: ex.prompt)
                 if ex.kind == .listen { Text("Pick the meaning").font(.subheadline).foregroundStyle(Palette.muted) }
             }
         case .gender:
@@ -421,7 +439,7 @@ struct Prompt: View {
             .frame(maxWidth: .infinity)
         case .conjugate:
             VStack(spacing: 8) {
-                WordTile(word: ex.prompt, lang: ex.lang, reading: nil, size: 150)
+                WordTile(word: ex.prompt, lang: ex.lang, reading: nil, size: 130)
                 Text([ex.promptReading?.roman, ex.tense == "past" ? "past" : "present"].compactMap { $0 }.joined(separator: " · ")).font(.subheadline).foregroundStyle(Palette.muted)
                 (Text("\(ex.person ?? "") ") + Text("______").foregroundStyle(Palette.muted)).font(.serif(.title2, weight: .semibold)).foregroundStyle(Palette.ink)
             }
@@ -430,7 +448,7 @@ struct Prompt: View {
                 if D8Fit.wide(ex.prompt) {
                     WideTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, label: false)
                 } else {
-                    WordTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, size: ex.kind == .falseFriend ? 150 : 190)
+                    WordTile(word: ex.prompt, lang: ex.lang, reading: readings ? ex.promptReading : nil, size: 160)
                 }
                 Text("What does it mean?").font(.subheadline).foregroundStyle(Palette.muted)
             }
