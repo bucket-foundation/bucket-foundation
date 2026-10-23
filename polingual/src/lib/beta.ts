@@ -2,7 +2,7 @@ import { parseSignup } from "./signup";
 
 export const TESTFLIGHT_URL = "https://testflight.apple.com/join/HfeRBKr8";
 
-export type BetaEnv = { RESEND_API_KEY?: string; RESEND_BETA_AUDIENCE_ID?: string; BETA_FROM?: string };
+export type BetaEnv = Record<string, string | undefined>;
 export type Fetcher = (url: string, init: RequestInit) => Promise<Response>;
 export type BetaResult = { status: number; body: { ok?: true; error?: string; testflight?: string } };
 
