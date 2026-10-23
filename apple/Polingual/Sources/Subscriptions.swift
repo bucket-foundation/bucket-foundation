@@ -75,8 +75,17 @@ final class Subscriptions {
 
     static func launchOverride() -> Access? {
         #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("-polingualOpen") { return .subscribed(productID: Plan.yearly, until: nil) }
+        if ProcessInfo.processInfo.arguments.contains("-polingualOpen") || UserDefaults.standard.bool(forKey: "polingual.devPass") {
+            return .subscribed(productID: Plan.yearly, until: nil)
+        }
         #endif
         return nil
     }
+
+    #if DEBUG
+    func grantDevPass() {
+        UserDefaults.standard.set(true, forKey: "polingual.devPass")
+        access = .subscribed(productID: Plan.yearly, until: nil)
+    }
+    #endif
 }

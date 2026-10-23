@@ -4,24 +4,56 @@ import Speech
 import SwiftUI
 
 @MainActor
-final class LangVoice {
+final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = LangVoice()
     private let synth = AVSpeechSynthesizer()
+
+    override init() {
+        super.init()
+        synth.delegate = self
+    }
+
+    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        Task { @MainActor in self.release() }
+    }
+
+    func release() {
+        guard active, !synth.isSpeaking else { return }
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        #endif
+        active = false
+    }
     private var player: AVPlayer?
+    private var active = false
+    private var warmed = false
+    private lazy var voices = AVSpeechSynthesisVoice.speechVoices()
+    private var picked: [String: AVSpeechSynthesisVoice?] = [:]
     weak var store: LangStore?
 
     func activate() {
+        guard !active else { return }
         #if os(iOS)
         let session = AVAudioSession.sharedInstance()
         try? session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
         try? session.setActive(true)
         #endif
+        active = true
+    }
+
+    func warm() {
+        guard !warmed else { return }
+        warmed = true
+        let u = AVSpeechUtterance(string: " ")
+        u.volume = 0
+        synth.speak(u)
     }
 
     func voice(_ lang: String) -> AVSpeechSynthesisVoice? {
-        let voices = AVSpeechSynthesisVoice.speechVoices()
-        guard let tag = LangAudio.pickVoice(voices.map(\.language), lang) else { return nil }
-        return voices.first { $0.language == tag }
+        if let hit = picked[lang] { return hit }
+        let v = LangAudio.pickVoice(voices.map(\.language), lang).flatMap { tag in voices.first { $0.language == tag } }
+        picked[lang] = v
+        return v
     }
 
     func canSpeak(_ text: String, _ lang: String) -> Bool {
@@ -47,7 +79,11 @@ final class LangVoice {
         activate()
         synth.stopSpeaking(at: .immediate)
         player?.pause()
-        player = AVPlayer(url: store.clipURL(lang, text))
+        let item = AVPlayerItem(url: store.clipURL(lang, text))
+        NotificationCenter.default.addObserver(forName: AVPlayerItem.didPlayToEndTimeNotification, object: item, queue: .main) { _ in
+            Task { @MainActor in LangVoice.shared.release() }
+        }
+        player = AVPlayer(playerItem: item)
         player?.play()
         return true
     }
@@ -132,7 +168,7 @@ struct PlayButton: View {
             }
             .buttonStyle(.borderless)
             .tint(Palette.green)
-            .accessibilityLabel(label ?? "Hear it in \(Lang.name(lang))")
+            .accessibilityLabel(label ?? "Hear it in \(langName(lang))")
         }
     }
 }

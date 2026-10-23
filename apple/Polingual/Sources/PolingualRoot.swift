@@ -38,6 +38,12 @@ struct PolingualRoot: View {
             }
         }
         .task { account.beforeSignOut = { await store.flush() } }
+        #if DEBUG
+        .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
+            store.clearLocal()
+            reminders.reset()
+        }
+        #endif
     }
 }
 
@@ -66,7 +72,7 @@ struct Studio: View {
                 }
                 .safeAreaInset(edge: .bottom) {
                     if let days = Entitlement.trialDaysLeft(subs.access, now: .now) {
-                        Text(days == 1 ? "Free trial: 1 day left" : "Free trial: \(days) days left")
+                        Text(days == 1 ? String(localized: "Free trial: 1 day left") : String(localized: "Free trial: \(days) days left"))
                             .font(.footnote)
                             .foregroundStyle(Palette.muted)
                             .padding(.vertical, 6)
@@ -78,9 +84,22 @@ struct Studio: View {
         .sheet(isPresented: $showAccount) { AccountView() }
         .manageSubscriptions(isPresented: $managing)
         .task { await openFromLaunch() }
+        .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
+    }
+
+    func openRequested() async {
+        guard StudyRequest.take() else { return }
+        await store.load()
+        guard let first = store.systems.first else { return }
+        path = NavigationPath()
+        path.append(LangRoute.study(first.id))
     }
 
     func openFromLaunch() async {
+        if StudyRequest.pending {
+            await openRequested()
+            return
+        }
         if !firstSystem.isEmpty {
             await store.load()
             if store.system(firstSystem) != nil { path.append(LangRoute.place(firstSystem, nil)) }

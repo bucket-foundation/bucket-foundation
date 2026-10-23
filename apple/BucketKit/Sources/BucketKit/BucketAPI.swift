@@ -65,8 +65,10 @@ public struct BucketAPI: Sendable {
     }
 
     public func requestCode(email: String) async throws {
-        _ = try await session(["action": "otp", "email": email])
+        _ = try await session(["action": "otp", "email": email, "app": Self.appName])
     }
+
+    public static var appName: String { Bundle.main.bundleIdentifier?.hasPrefix("com.polingual") == true ? "polingual" : "bucket" }
 
     public func verify(email: String, code: String) async throws -> Session {
         let data = try await session(["action": "verify", "email": email, "code": code])

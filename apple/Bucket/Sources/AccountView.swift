@@ -1,8 +1,10 @@
 import BucketKit
 import SwiftUI
+import UserNotifications
 
 struct AccountView: View {
     @Environment(Account.self) private var account
+    @State private var confirmingReset = false
     @State private var email = ""
     @State private var code = ""
     @State private var confirmingDelete = false
@@ -61,6 +63,14 @@ struct AccountView: View {
                     }
                 }
                 ReminderSettings()
+                FeedbackSettings()
+                #if DEBUG
+                Section {
+                    Button("Reset to fresh install", role: .destructive) { confirmingReset = true }
+                } header: {
+                    Eyebrow(text: "Developer")
+                }
+                #endif
                 if let error = account.error {
                     Section { Text(error).foregroundStyle(.red) }
                 }
@@ -85,9 +95,38 @@ struct AccountView: View {
             } message: {
                 Text("This removes your sign-in and your saved progress and profile from Bucket. It cannot be undone.")
             }
+            #if DEBUG
+            .confirmationDialog("Reset to a fresh install?", isPresented: $confirmingReset, titleVisibility: .visible) {
+                Button("Reset and close the app", role: .destructive) { DevReset.run(account) }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Signs out on this phone, clears local progress, settings, onboarding and the dev pass, then closes. Your synced account stays on the server.")
+            }
+            #endif
         }
     }
 }
+
+#if DEBUG
+extension Notification.Name {
+    static let devReset = Notification.Name("bucket.devReset")
+}
+
+enum DevReset {
+    @MainActor
+    static func run(_ account: Account) {
+        NotificationCenter.default.post(name: .devReset, object: nil)
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        if account.stage == .signedIn { account.signOut() }
+        if let id = Bundle.main.bundleIdentifier { UserDefaults.standard.removePersistentDomain(forName: id) }
+        UserDefaults.standard.synchronize()
+        Task {
+            try? await Task.sleep(for: .milliseconds(600))
+            exit(0)
+        }
+    }
+}
+#endif
 
 extension View {
     @ViewBuilder func emailField() -> some View {

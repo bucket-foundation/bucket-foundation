@@ -278,6 +278,7 @@ struct StudySession: View {
                 DeckStats(summary: s)
                 if let nextLine { Text(nextLine).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink) }
                 ReminderPrompt()
+                FeedbackLink()
                 SyncLine(state: store.saveState)
                 Button {
                     dismiss()
@@ -289,6 +290,7 @@ struct StudySession: View {
             }
             .padding(20)
         }
+        .modifier(AskForReview(streak: Int(store.state(deck.branch).streak), graded: graded, correct: graded))
     }
 }
 

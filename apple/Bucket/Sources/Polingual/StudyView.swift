@@ -32,7 +32,10 @@ struct StudyView: View {
         .paper()
         .navigationTitle(store.system(systemId)?.name ?? "Study")
         .inlineTitle()
-        .task { await store.load() }
+        .task {
+            LangVoice.shared.warm()
+            await store.load()
+        }
         .onChange(of: store.status, initial: true) { _, _ in startIfReady() }
     }
 
@@ -104,9 +107,11 @@ struct StudyView: View {
                     .onAppear { haptic(true) }
                 Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
                 ReminderPrompt()
+                FeedbackLink()
                 Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
                     .foregroundStyle(Palette.muted)
                     .monospacedDigit()
+                ShareProgress(langs: system.targets, streak: Int(state.streak), learned: systemSummary(system, corpus, state, now: Date().timeIntervalSince1970 * 1000).started)
                 Button("See progress") {
                     path.removeLast()
                     path.append(LangRoute.system(system.id))
@@ -124,6 +129,7 @@ struct StudyView: View {
             }
             .padding(24)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .modifier(AskForReview(streak: Int(state.streak), graded: graded, correct: correct))
         } else if let ex = current {
             let maps = readingMaps(ex, corpus)
             let page = VStack(alignment: .leading, spacing: 12) {

@@ -19,20 +19,20 @@ struct LearnView: View {
                 case .ready:
                     List {
                         Section {
-                            ForEach(library.scienceDecks) { entry in
-                                NavigationLink(value: entry) { DeckRow(entry: entry) }
-                                    .listRowBackground(Palette.card)
-                            }
-                        } header: {
-                            Eyebrow(text: "Seven branches and the meta-skill")
-                        }
-                        Section {
                             ForEach(library.languageDecks) { entry in
                                 NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
                                     .listRowBackground(Palette.card)
                             }
                         } header: {
                             Eyebrow(text: "Languages")
+                        }
+                        Section {
+                            ForEach(library.scienceDecks) { entry in
+                                NavigationLink(value: entry) { DeckRow(entry: entry) }
+                                    .listRowBackground(Palette.card)
+                            }
+                        } header: {
+                            Eyebrow(text: "Seven branches and the meta-skill")
                         }
                     }
                 }
@@ -109,7 +109,7 @@ struct DeckView: View {
                         Button {
                             studying = StudyLaunch(entry: entry, deck: deck)
                         } label: {
-                            Label(today.isEmpty ? "Study" : "Study today (\(today.count))", systemImage: "play.fill").font(.headline)
+                            Label(today.isEmpty ? String(localized: "Study") : String(localized: "Study today (\(today.count))"), systemImage: "play.fill").font(.headline)
                         }
                     }
                     .listRowBackground(Palette.card)
@@ -124,7 +124,7 @@ struct DeckView: View {
                                     HStack {
                                         Text(atom.title).font(.serif(.body)).foregroundStyle(Palette.ink)
                                         Spacer()
-                                        Text(item.kind == .review ? "REVIEW" : "NEW").font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
+                                        Text(item.kind == .review ? String(localized: "REVIEW") : String(localized: "NEW")).font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
                                     }
                                 }
                             }

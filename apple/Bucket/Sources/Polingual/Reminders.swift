@@ -93,6 +93,27 @@ final class Reminders {
         return t > 0 ? Date(timeIntervalSince1970: t) : nil
     }
 
+    #if DEBUG
+    static func test() async -> String {
+        let center = UNUserNotificationCenter.current()
+        _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
+        let settings = await center.notificationSettings()
+        guard settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional else {
+            return "Notifications are off for this app. Turn them on in iPhone Settings, Notifications."
+        }
+        let content = UNMutableNotificationContent()
+        content.title = "Test reminder"
+        content.body = "Notifications reach this phone."
+        content.sound = .default
+        do {
+            try await center.add(UNNotificationRequest(identifier: "test.reminder", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)))
+            return "Scheduled. It arrives in 10 seconds, in the app or on the lock screen."
+        } catch {
+            return "Could not schedule: \(error.localizedDescription)"
+        }
+    }
+    #endif
+
     func enable() async -> Bool {
         let center = UNUserNotificationCenter.current()
         let granted = (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
@@ -134,7 +155,7 @@ struct ReminderPrompt: View {
     var body: some View {
         if !reminders.enabled {
             VStack(alignment: .leading, spacing: 6) {
-                Text(reminders.denied ? "Notifications are off for this app. Turn them on in Settings to get review reminders." : "Get one nudge a day when reviews are due, at your regular study time.")
+                Text(reminders.denied ? String(localized: "Notifications are off for this app. Turn them on in Settings to get review reminders.") : String(localized: "Get one nudge a day when reviews are due, at your regular study time."))
                     .font(.subheadline)
                     .foregroundStyle(Palette.muted)
                 if !reminders.denied {
@@ -148,6 +169,7 @@ struct ReminderPrompt: View {
 
 struct ReminderSettings: View {
     @Environment(Reminders.self) private var reminders
+    @State private var testResult: String?
 
     var body: some View {
         @Bindable var r = reminders
@@ -175,10 +197,20 @@ struct ReminderSettings: View {
             if reminders.denied {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)
             }
+            #if DEBUG
+            Button("Send a test reminder in 10 seconds") { Task { testResult = await Reminders.test() } }
+            if let testResult { Text(testResult).font(.footnote).foregroundStyle(Palette.muted) }
+            #endif
         } header: {
             Eyebrow(text: "Reminders")
-        } footer: {
-            Text("One reminder a day at most, only when something is due. It stops after a week away.")
         }
+    }
+}
+
+final class NotificationPresenter: NSObject, UNUserNotificationCenterDelegate, Sendable {
+    static let shared = NotificationPresenter()
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        [.banner, .list, .sound]
     }
 }
