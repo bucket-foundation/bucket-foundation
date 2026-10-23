@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Polingual Scenes</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;800&family=Space+Mono:wght@700&family=Noto+Sans:wght@800&family=Noto+Sans+JP:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:var(--parchment);font-family:var(--font-body);color:var(--ink)}
+.app{height:100dvh;display:flex;flex-direction:column}
+header{display:flex;align-items:center;gap:14px;padding:12px 20px}
+header img{width:40px;height:40px;border-radius:11px}
+header b{font-family:var(--font-display);font-size:24px;color:var(--tyrian-deep)}
+.tabs{margin-left:auto;display:flex;gap:8px}
+.tabs button{font:inherit;font-weight:800;font-size:15px;padding:9px 14px;border-radius:var(--r-btn);border:0;background:#fff;box-shadow:inset 0 0 0 2px var(--line),0 3px 0 var(--line);cursor:pointer}
+.tabs button.on{background:var(--tyrian);color:#fff;box-shadow:0 3px 0 var(--tyrian-deep)}
+.ask{display:flex;align-items:center;gap:16px;padding:6px 20px 12px}
+.ask .k{font-family:var(--font-label);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.ask .w{font-family:var(--font-display);font-size:clamp(28px,5vw,48px);color:var(--vermilion)}
+.ask .i{font-family:var(--font-label);font-size:15px;color:var(--ink-2)}
+.ask button{margin-left:auto;font:inherit;font-weight:800;border:0;background:none;color:var(--ink-2);cursor:pointer;font-size:15px}
+.stage{flex:1;min-height:0;position:relative;margin:0 20px;border-radius:24px;overflow:hidden;box-shadow:0 0 0 3px var(--ink)}
+.stage svg{width:100%;height:100%;display:block}
+.obj{cursor:pointer;transition:transform .25s var(--ease)}
+.obj:hover{transform:translateY(-4px)}
+.obj.hit{animation:pop .5s var(--ease)}
+.obj.miss{animation:shake .35s}
+@keyframes pop{50%{transform:scale(1.12)}}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.found{font-family:var(--font-label);font-size:12px;letter-spacing:.1em;fill:#fff;paint-order:stroke;stroke:var(--ink);stroke-width:4px}
+footer{display:flex;align-items:center;gap:12px;padding:12px 20px;font-family:var(--font-label);font-size:13px;color:var(--ink-2)}
+.dots{display:flex;gap:6px}.dots i{width:12px;height:12px;border-radius:50%;background:var(--line)}.dots i.on{background:var(--malachite)}
+.toast{position:absolute;left:50%;top:16px;transform:translateX(-50%);background:var(--ink);color:var(--parchment);padding:10px 16px;border-radius:12px;font-weight:800;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.obj,.obj.hit,.obj.miss{animation:none;transition:none}}
+</style></head><body>
+<div class="app">
+<header><img src="polingual-icon.svg" alt=""><b>polingual</b><div class="tabs" id="tabs"></div></header>
+<div class="ask"><span class="k" id="ask-k">Find</span><span class="w" id="ask-w"></span><span class="i" id="ask-i"></span><button id="say" aria-label="Hear the word">🔊 hear it</button></div>
+<div class="stage"><svg id="scene" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" role="img"></svg><div class="toast" id="toast"></div></div>
+<footer><span id="lang"></span><div class="dots" id="dots"></div><span id="score"></span></footer>
+</div>
+<script>
+const O='stroke="#231F20" stroke-width="4" stroke-linejoin="round"';
+const SH=(d)=>`<g transform="translate(6 8)" opacity=".28">${d.replace(/fill="[^"]*"/g,'fill="#231F20"')}</g>${d}`;
+const ART={
+croissant:SH(`<path d="M-80 20 C-70-40 70-40 80 20 C40 0-40 0-80 20Z" fill="#E9A23B" ${O}/><path d="M-40 4 L-30-26 M0-2 L0-34 M40 4 L30-26" stroke="#B9741F" stroke-width="5" fill="none"/>`),
+baguette:SH(`<rect x="-150" y="-20" width="300" height="40" rx="20" fill="#D79A45" ${O} transform="rotate(-18)"/><path d="M-90 10 l20-18 M-30-8 l20-18 M30-26 l20-18" stroke="#9C6420" stroke-width="5" transform="rotate(-18)"/>`),
+cheese:SH(`<path d="M-70 30 L70 30 L70-10 L-70 -40Z" fill="#FFC93C" ${O}/><circle cx="-20" cy="8" r="9" fill="#E9A23B"/><circle cx="30" cy="14" r="6" fill="#E9A23B"/>`),
+coffee:SH(`<path d="M-36-30 H36 L28 30 H-28Z" fill="#F6EEDC" ${O}/><path d="M36-16 c26 0 26 26 0 26" fill="none" ${O}/><ellipse cx="0" cy="34" rx="56" ry="10" fill="#F6EEDC" ${O}/>`),
+beret:SH(`<ellipse cx="0" cy="0" rx="74" ry="34" fill="#26428B" ${O}/><path d="M0-34 v-14" stroke="#231F20" stroke-width="6"/>`),
+salmon:SH(`<path d="M-110 0 C-60-50 60-50 90 0 C60 50-60 50-110 0Z" fill="#F08A5D" ${O}/><path d="M90 0 L140-34 L134 0 L140 34Z" fill="#F08A5D" ${O}/><circle cx="-70" cy="-8" r="6" fill="#231F20"/><path d="M-40-20 q20 20 0 40 M0-24 q20 24 0 48 M40-20 q20 20 0 40" stroke="#F6EEDC" stroke-width="5" fill="none"/>`),
+sushi:SH(`<rect x="-60" y="-10" width="120" height="40" rx="14" fill="#F6EEDC" ${O}/><path d="M-62-6 C-30-46 30-46 62-6Z" fill="#F08A5D" ${O}/>`),
+lantern:SH(`<rect x="-44" y="-70" width="88" height="140" rx="40" fill="#D9381E" ${O}/><rect x="-30" y="-80" width="60" height="14" fill="#231F20"/><rect x="-30" y="66" width="60" height="14" fill="#231F20"/><path d="M-44-30 H44 M-44 0 H44 M-44 30 H44" stroke="#8E2312" stroke-width="4"/>`),
+teapot:SH(`<ellipse cx="0" cy="10" rx="62" ry="48" fill="#1E7A5A" ${O}/><path d="M60 0 l40-20 l-6 16Z" fill="#1E7A5A" ${O}/><path d="M-60-10 c-34 0-34 40 0 40" fill="none" ${O}/><rect x="-24" y="-48" width="48" height="12" rx="6" fill="#231F20"/>`),
+chopsticks:SH(`<path d="M-90 30 L90-30" stroke="#C98A2E" stroke-width="12" stroke-linecap="round"/><path d="M-90 46 L94-10" stroke="#C98A2E" stroke-width="12" stroke-linecap="round"/>`)};
+const SCENES={
+paris:{name:"Café in Paris",lang:"French",code:"fr-FR",bg:`<rect width="1200" height="700" fill="#F6EEDC"/><rect y="0" width="1200" height="330" fill="#6FB7C2"/>
+<g opacity=".9">${[...Array(8)].map((_,i)=>`<rect x="${i*150}" y="80" width="80" height="170" rx="40" fill="#F6EEDC" stroke="#231F20" stroke-width="4"/><rect x="${i*150+10}" y="100" width="60" height="130" rx="30" fill="#26428B"/>`).join('')}</g>
+<path d="M0 300 H1200 V340 H0Z" fill="#D9381E"/>${[...Array(12)].map((_,i)=>`<path d="M${i*100} 340 h50 l-25 34Z" fill="${i%2?'#F6EEDC':'#D9381E'}" stroke="#231F20" stroke-width="3"/>`).join('')}
+<rect y="560" width="1200" height="140" fill="#EBDDBE"/>${[...Array(24)].map((_,i)=>`<path d="M${i*50} 560 v140" stroke="#E2D4B4" stroke-width="3"/>`).join('')}
+<ellipse cx="360" cy="560" rx="230" ry="40" fill="#F6EEDC" stroke="#231F20" stroke-width="4"/><path d="M360 600 v100" stroke="#231F20" stroke-width="10"/>
+<ellipse cx="880" cy="580" rx="200" ry="36" fill="#F6EEDC" stroke="#231F20" stroke-width="4"/><path d="M880 616 v84" stroke="#231F20" stroke-width="10"/>`,
+items:[{k:"croissant",w:"croissant",ipa:"kʁwa.sɑ̃",x:300,y:520},{k:"coffee",w:"café",ipa:"ka.fe",x:440,y:510},{k:"baguette",w:"baguette",ipa:"ba.ɡɛt",x:860,y:520},{k:"cheese",w:"fromage",ipa:"fʁɔ.maʒ",x:980,y:540},{k:"beret",w:"béret",ipa:"be.ʁɛ",x:640,y:470}]},
+tokyo:{name:"Market in Tokyo",lang:"Japanese",code:"ja-JP",bg:`<rect width="1200" height="700" fill="#F6EEDC"/><rect width="1200" height="300" fill="#5B1A4A"/>
+${[...Array(14)].map((_,i)=>`<circle cx="${i*90+40}" cy="${60+(i%3)*20}" r="5" fill="#E9A23B"/>`).join('')}
+<path d="M0 280 H1200 V320 H0Z" fill="#231F20"/>${[...Array(10)].map((_,i)=>`<rect x="${i*120+10}" y="320" width="100" height="60" fill="${i%2?'#F6EEDC':'#26428B'}" stroke="#231F20" stroke-width="3"/>`).join('')}
+<rect x="80" y="520" width="1040" height="60" fill="#C98A2E" stroke="#231F20" stroke-width="4"/><rect x="80" y="580" width="1040" height="120" fill="#8E2312"/>
+<g fill="none" stroke="#6FB7C2" stroke-width="3" opacity=".5">${[...Array(6)].map((_,i)=>`<circle cx="${200*i+100}" cy="640" r="40"/>`).join('')}</g>`,
+items:[{k:"salmon",w:"鮭",ipa:"sa.ke",x:330,y:470},{k:"sushi",w:"寿司",ipa:"sɯ.ɕi",x:620,y:480},{k:"lantern",w:"提灯",ipa:"tɕoː.tɕiɴ",x:960,y:170},{k:"teapot",w:"急須",ipa:"kʲɯː.sɯ",x:860,y:460},{k:"chopsticks",w:"箸",ipa:"ha.ɕi",x:150,y:480}]}};
+let cur="paris",order=[],q=0,found=new Set();
+const $=id=>document.getElementById(id);
+function say(text,code){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang=code;u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),1200)}
+function load(id){cur=id;const S=SCENES[id];found=new Set();order=S.items.map((_,i)=>i).sort(()=>Math.random()-.5);q=0;
+ $('scene').setAttribute('aria-label',S.name);
+ $('scene').innerHTML=S.bg+S.items.map((it,i)=>`<g class="obj" data-i="${i}" transform="translate(${it.x} ${it.y})" tabindex="0" role="button" aria-label="${it.k}">${ART[it.k]}<text class="found" y="-60" text-anchor="middle" display="none">${it.w}</text></g>`).join('');
+ $('scene').querySelectorAll('.obj').forEach(g=>{const f=()=>pick(+g.dataset.i,g);g.onclick=f;g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();f()}}});
+ $('lang').textContent=S.name+' · '+S.lang;$('tabs').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.s===id));ask()}
+function ask(){const S=SCENES[cur];$('dots').innerHTML=S.items.map((_,i)=>`<i class="${i<found.size?'on':''}"></i>`).join('');
+ if(found.size===S.items.length){$('ask-k').textContent='Scene complete';$('ask-w').textContent='✓';$('ask-i').textContent='';$('score').textContent=`${found.size} / ${S.items.length}`;return}
+ const it=S.items[order[q]];$('ask-k').textContent='Find';$('ask-w').textContent=it.w;$('ask-w').lang=S.code;$('ask-i').textContent='/'+it.ipa+'/';$('score').textContent=`${found.size} / ${S.items.length}`;say(it.w,S.code)}
+function pick(i,g){const S=SCENES[cur];if(found.has(i))return;const want=order[q];
+ if(i===want){found.add(i);q++;g.classList.remove('hit');void g.getBBox();g.classList.add('hit');g.querySelector('text').removeAttribute('display');toast('✓ '+S.items[i].w);ask()}
+ else{g.classList.remove('miss');void g.getBBox();g.classList.add('miss');toast('That is '+S.items[i].w);say(S.items[i].w,S.code)}}
+$('tabs').innerHTML=Object.entries(SCENES).map(([k,v])=>`<button data-s="${k}">${v.lang}</button>`).join('');
+$('tabs').onclick=e=>{const b=e.target.closest('button');if(b)load(b.dataset.s)};
+$('say').onclick=()=>{const S=SCENES[cur],it=S.items[order[q]];if(it)say(it.w,S.code)};
+load('paris');
+</script></body></html>
