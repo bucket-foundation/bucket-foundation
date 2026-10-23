@@ -283,40 +283,47 @@ struct AnswerRow: View {
 
     var body: some View {
         let canSay = state == .right && LangVoice.shared.canSpeak(word, lang)
-        Button {
-            if canSay { LangVoice.shared.speak(word, lang) }
-        } label: {
-            HStack(spacing: 10) {
-                if flag { FlagTile(lang: lang, size: state == .right ? 30 : 26) }
-                VStack(alignment: .leading, spacing: 1) {
-                    HStack(spacing: 6) {
-                        Text(word).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
-                            .strikethrough(state == .wrong, color: D8.vermilion).foregroundStyle(Palette.ink).lineLimit(2)
-                        if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted) }
-                    }
-                    .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
-                    if state == .right, let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(Palette.muted) }
-                }
-                Spacer(minLength: 0)
-                if state != .other {
-                    Image(systemName: state == .right ? "checkmark" : "xmark").font(.system(size: 12, weight: .heavy)).foregroundStyle(.white)
-                        .frame(width: 22, height: 22).background(state == .right ? D8.malachite : D8.vermilion, in: .circle)
-                }
+        Group {
+            if canSay {
+                Button { LangVoice.shared.speak(word, lang) } label: { row(canSay) }
+                    .buttonStyle(.plain)
+                    .accessibilityHint("Plays the word")
+            } else {
+                row(canSay)
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, state == .right ? 8 : 0)
-            .frame(minHeight: 44)
-            .background(state == .right ? D8.malachite.opacity(0.1) : .clear, in: .rect(cornerRadius: 12))
-            .overlay {
-                if state != .other { RoundedRectangle(cornerRadius: 12).strokeBorder(state == .right ? D8.malachite : D8.vermilion, lineWidth: 2) }
-            }
-            .opacity(state == .other ? 0.38 : 1)
         }
-        .buttonStyle(.plain)
-        .disabled(!canSay)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(word), \(Lang.name(lang))\(state == .right ? ", right answer" : state == .wrong ? ", your pick, wrong" : "")")
     }
+
+    func row(_ canSay: Bool) -> some View {
+        HStack(spacing: 10) {
+            if flag { FlagTile(lang: lang, size: state == .right ? 30 : 26) }
+            VStack(alignment: .leading, spacing: 1) {
+                HStack(spacing: 6) {
+                    Text(word).font(.system(size: state == .right ? 19 : 17, weight: .bold, design: .rounded))
+                        .strikethrough(state == .wrong, color: D8.vermilion).foregroundStyle(Palette.ink).lineLimit(2)
+                    if canSay { Image(systemName: "speaker.wave.2.fill").font(.system(size: 13)).foregroundStyle(Palette.muted) }
+                }
+                .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
+                if state == .right, let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(Palette.muted) }
+            }
+            Spacer(minLength: 0)
+            if state != .other {
+                Image(systemName: state == .right ? "checkmark" : "xmark").font(.system(size: 12, weight: .heavy)).foregroundStyle(.white)
+                    .frame(width: 22, height: 22).background(state == .right ? D8.malachite : D8.vermilion, in: .circle)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, state == .right ? 8 : 0)
+        .frame(minHeight: 44)
+        .background(state == .right ? D8.malachite.opacity(0.1) : .clear, in: .rect(cornerRadius: 12))
+        .overlay {
+            if state != .other { RoundedRectangle(cornerRadius: 12).strokeBorder(state == .right ? D8.malachite : D8.vermilion, lineWidth: 2) }
+        }
+        .opacity(state == .other ? 0.38 : 1)
+    }
+
 }
 
 struct MiniTile: View {

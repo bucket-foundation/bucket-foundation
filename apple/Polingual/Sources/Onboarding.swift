@@ -399,15 +399,16 @@ struct Backdrop: View {
                     .background(D8.vermilion, in: .rect(cornerRadius: 8))
                     .overlay(RoundedRectangle(cornerRadius: 5).strokeBorder(D8.parchment, lineWidth: 2).padding(5))
                     .rotationEffect(.degrees(-8))
-                    .position(x: w - 46, y: h * 0.84)
+                    .position(x: w - 44, y: h * 0.815)
                 Text("ἑκατόν")
                     .font(.system(size: 15, weight: .bold, design: .serif))
                     .foregroundStyle(D8.ink)
                     .padding(.horizontal, 10).padding(.vertical, 6)
                     .background(D8.parchment, in: .rect(cornerRadius: 3))
                     .rotationEffect(.degrees(6))
-                    .position(x: w * 0.2, y: h * 0.865)
+                    .position(x: w * 0.18, y: h * 0.845)
             }
+            .clipped()
         }
         .accessibilityHidden(true)
     }
