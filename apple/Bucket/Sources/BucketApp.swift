@@ -1,5 +1,6 @@
 import BucketKit
 import SwiftUI
+import UserNotifications
 
 @main
 struct BucketApp: App {
@@ -12,6 +13,7 @@ struct BucketApp: App {
     @Environment(\.scenePhase) private var phase
 
     init() {
+        UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
         let langs = LangStore(api: BucketAPI(), token: { await account.freshToken() })
         LangVoice.shared.store = langs

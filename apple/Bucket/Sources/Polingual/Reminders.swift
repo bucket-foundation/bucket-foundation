@@ -94,14 +94,23 @@ final class Reminders {
     }
 
     #if DEBUG
-    static func test() async {
+    static func test() async -> String {
         let center = UNUserNotificationCenter.current()
         _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
+        let settings = await center.notificationSettings()
+        guard settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional else {
+            return "Notifications are off for this app. Turn them on in iPhone Settings, Notifications."
+        }
         let content = UNMutableNotificationContent()
         content.title = "Test reminder"
         content.body = "Notifications reach this phone."
         content.sound = .default
-        try? await center.add(UNNotificationRequest(identifier: "test.reminder", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)))
+        do {
+            try await center.add(UNNotificationRequest(identifier: "test.reminder", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)))
+            return "Scheduled. It arrives in 10 seconds, in the app or on the lock screen."
+        } catch {
+            return "Could not schedule: \(error.localizedDescription)"
+        }
     }
     #endif
 
@@ -160,6 +169,7 @@ struct ReminderPrompt: View {
 
 struct ReminderSettings: View {
     @Environment(Reminders.self) private var reminders
+    @State private var testResult: String?
 
     var body: some View {
         @Bindable var r = reminders
@@ -188,12 +198,19 @@ struct ReminderSettings: View {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)
             }
             #if DEBUG
-            Button("Send a test reminder in 10 seconds") { Task { await Reminders.test() } }
+            Button("Send a test reminder in 10 seconds") { Task { testResult = await Reminders.test() } }
+            if let testResult { Text(testResult).font(.footnote).foregroundStyle(Palette.muted) }
             #endif
         } header: {
             Eyebrow(text: "Reminders")
-        } footer: {
-            Text("One reminder a day at most, only when something is due. It stops after a week away.")
         }
+    }
+}
+
+final class NotificationPresenter: NSObject, UNUserNotificationCenterDelegate, Sendable {
+    static let shared = NotificationPresenter()
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        [.banner, .list, .sound]
     }
 }
