@@ -139,7 +139,7 @@ struct ReminderPrompt: View {
                     .foregroundStyle(Palette.muted)
                 if !reminders.denied {
                     Button("Remind me when these are due") { Task { _ = await reminders.enable() } }
-                        .buttonStyle(.bordered)
+                        .buttonStyle(D8Option(align: .center, compact: true))
                 }
             }
         }

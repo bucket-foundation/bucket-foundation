@@ -176,11 +176,28 @@ func bodyAction(_ r: URLRequest) -> String? {
 }
 
 @Suite struct TeXLiteTests {
+    @Test func functionNamesAndEscapedSpace() {
+        #expect(TeXLite.render("|a\\times b| = ab\\sin\\theta") == "|a× b| = ab sin θ")
+        #expect(TeXLite.render("20\\ km/h") == "20 km/h")
+    }
+
     @Test(arguments: [
         ("f\\colon X \\to Y,\\quad x \\mapsto f(x)", "f: X → Y,  x ↦ f(x)"),
         ("E = mc^2", "E = mc²"),
         ("x_{n+1} = x_n", "xₙ₊₁ = xₙ"),
-        ("\\frac{a}{b}", "(a)⁄(b)"),
+        ("\\frac{a}{b}", "a⁄b"),
+        ("\\dfrac{f(a+h)-f(a)}{h}", "(f(a+h)-f(a))⁄(h)"),
+        ("a \\equiv b \\pmod n", "a ≡ b  (mod n)"),
+        ("\\sinh x", " sinh  x"),
+        ("27\\,^\\circ\\text{C}", "27 °C"),
+        ("\\hat f(\\omega)", "f̂(ω)"),
+        ("\\vec{a} \\cdot \\vec b", "a⃗ · b⃗"),
+        ("\\bar\\rho", "ρ̄"),
+        ("Q \\ne K, L \\gg l_p", "Q ≠ K, L ≫ lₚ"),
+        ("\\mathbb{E}[X]", "𝔼[X]"),
+        ("\\foo x", "foo x"),
+        ("\\begin{array}{cc}1&2\\end{array}", "(1 2)"),
+        ("A=\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}", "A=(2 1; 0 3)"),
         ("\\alpha + \\beta \\leq \\gamma", "α + β ≤ γ"),
         ("e^{i\\pi} + 1 = 0", "e^(iπ) + 1 = 0"),
     ])
