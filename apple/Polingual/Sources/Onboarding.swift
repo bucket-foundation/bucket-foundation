@@ -77,7 +77,7 @@ struct Onboarding: View {
                 .foregroundStyle(Palette.muted)
             FlowLayout(spacing: 8) {
                 ForEach(Lang.presets, id: \.name) { p in
-                    Chip(title: p.name, langs: p.targets, on: Set(p.targets) == Set(targets)) { targets = p.targets.filter { $0 != root } }
+                    Chip(title: p.name, langs: p.targets, on: Set(p.targets.filter { $0 != root }) == Set(targets)) { targets = p.targets.filter { $0 != root } }
                 }
             }
             Eyebrow(text: "Or choose your own")
@@ -98,7 +98,7 @@ struct Onboarding: View {
                 .tint(Palette.ink)
             }
             .onChange(of: root) { _, r in targets.removeAll { $0 == r } }
-            Text(targets.isEmpty ? "Pick at least one language." : "\(targets.count) of 5 · \(targets.map(Lang.name).joined(separator: ", "))")
+            Text(targets.isEmpty ? "Pick at least one language." : targets.count == 5 ? "Five at most. Tap one to swap it out." : "\(targets.count) of 5 · \(targets.map(Lang.name).joined(separator: ", "))")
                 .font(.footnote)
                 .foregroundStyle(Palette.muted)
         }
@@ -164,9 +164,15 @@ struct Onboarding: View {
                 Button("Not now", action: advance).buttonStyle(PlainLink())
             case .account where account.stage != .signedIn:
                 Button("Sign in with email") { signingIn = true }.buttonStyle(D8Primary())
-                Button("Not now") { Task { await complete() } }.buttonStyle(PlainLink()).disabled(creating)
+                if failed == nil {
+                    Button("Not now") { Task { await complete() } }.buttonStyle(PlainLink()).disabled(creating)
+                } else {
+                    Button("Try again") { Task { await complete() } }.buttonStyle(PlainLink()).disabled(creating)
+                    Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink())
+                }
             case .account:
-                Button(creating ? "Setting up" : "Start learning") { Task { await complete() } }.buttonStyle(D8Primary()).disabled(creating)
+                Button(creating ? "Setting up" : failed == nil ? "Start learning" : "Try again") { Task { await complete() } }.buttonStyle(D8Primary()).disabled(creating)
+                if failed != nil { Button("Skip for now") { finish(nil) }.buttonStyle(PlainLink()) }
             default:
                 Button(step == .welcome ? "Get started" : "Continue", action: advance)
                     .buttonStyle(D8Primary())
@@ -185,6 +191,7 @@ struct Onboarding: View {
 
     func complete() async {
         guard !creating else { return }
+        failed = nil
         creating = true
         defer { creating = false }
         await store.load()
@@ -194,8 +201,7 @@ struct Onboarding: View {
             let s = try await store.create(root: root, targets: targets)
             finish(s.id)
         } catch {
-            failed = "That set could not be created. You can build one from the home screen."
-            finish(nil)
+            failed = "That set could not be created. Try again, or skip and build one from the home screen."
         }
     }
 }
