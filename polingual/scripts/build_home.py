@@ -95,6 +95,7 @@ html,body{{height:100%;overflow:hidden;background:#F6EEDC}}
 </div>
 <div id="mb">{body(mobile)}</div>
 <script src="/d8/tiles.js"></script>
+<script src="/d8/beta.js"></script>
 {skins.replace('document.querySelectorAll(".mho.face")', 'document.querySelectorAll(".mho.face")')}
 <script>(()=>{{const f=()=>document.querySelectorAll(".wd-art").forEach(a=>{{const b=a.firstElementChild;if(!a.clientWidth)return;b.style.setProperty("--k",Math.min(a.clientWidth/520,a.clientHeight/1060))}});f();addEventListener("resize",f);setTimeout(f,300)}})()</script>
 <script>(()=>{{const mq=matchMedia("(min-width:680px)");let last=null;const art=()=>document.querySelector("#mb .art")||document.querySelector(".pg .art");const snap=()=>{{const a=art();if(a&&a.offsetParent)last=a.getBoundingClientRect()}};snap();mq.addEventListener("change",()=>{{const a=art();if(!a||!last)return snap();const n=a.getBoundingClientRect();if(!n.width)return snap();const dx=last.left-n.left,dy=last.top-n.top,sx=last.width/n.width,sy=last.height/n.height;a.animate([{{transformOrigin:"0 0",transform:`translate(${{dx}}px,${{dy}}px) scale(${{sx}},${{sy}})`}},{{transformOrigin:"0 0",transform:"none"}}],{{duration:650,easing:"cubic-bezier(.2,.8,.2,1)"}});snap()}});addEventListener("resize",()=>{{clearTimeout(window.plS);window.plS=setTimeout(snap,120)}})}})()</script>
