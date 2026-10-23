@@ -63,6 +63,7 @@ struct AccountView: View {
                     }
                 }
                 ReminderSettings()
+                FeedbackSettings()
                 #if DEBUG
                 Section {
                     Button("Reset to fresh install", role: .destructive) { confirmingReset = true }
