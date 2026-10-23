@@ -93,6 +93,18 @@ final class Reminders {
         return t > 0 ? Date(timeIntervalSince1970: t) : nil
     }
 
+    #if DEBUG
+    static func test() async {
+        let center = UNUserNotificationCenter.current()
+        _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
+        let content = UNMutableNotificationContent()
+        content.title = "Test reminder"
+        content.body = "Notifications reach this phone."
+        content.sound = .default
+        try? await center.add(UNNotificationRequest(identifier: "test.reminder", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)))
+    }
+    #endif
+
     func enable() async -> Bool {
         let center = UNUserNotificationCenter.current()
         let granted = (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
@@ -175,6 +187,9 @@ struct ReminderSettings: View {
             if reminders.denied {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)
             }
+            #if DEBUG
+            Button("Send a test reminder in 10 seconds") { Task { await Reminders.test() } }
+            #endif
         } header: {
             Eyebrow(text: "Reminders")
         } footer: {

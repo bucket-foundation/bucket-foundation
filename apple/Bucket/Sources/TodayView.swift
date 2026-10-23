@@ -11,6 +11,9 @@ struct TodayView: View {
     @State private var scienceReady = false
 
     var loaded: Bool {
+        #if DEBUG
+        if Launch.flag("-holdLoading") { return false }
+        #endif
         let indexDone: Bool
         switch library.index {
         case .ready, .failed: indexDone = true
@@ -87,6 +90,10 @@ struct TodayView: View {
         let done = library.scienceDecks.reduce(0) { t, e in t + science.state(e.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
             + langs.systems.reduce(0) { t, s in t + langs.state(s.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
         NavigationStack(path: $path) {
+            Group {
+            if !loaded {
+                TodaySkeleton()
+            } else {
             List {
                 Section {
                     VStack(alignment: .leading, spacing: 14) {
@@ -96,9 +103,7 @@ struct TodayView: View {
                             Tally(n: new, label: "new today", color: D8.lapis)
                             Tally(n: done, label: "done today", color: D8.malachite)
                         }
-                        .redacted(reason: loaded ? [] : .placeholder)
-                        .overlay { if !loaded { ProgressView().tint(Palette.muted) } }
-                        Text(!loaded ? "Loading your reviews" : due + new == 0 ? (w.isEmpty && langs.systems.isEmpty ? "Start a deck in Learn or build a language system, and its reviews show up here." : "All caught up. Reviews come back as their intervals run out.") : "Due reviews first, then new cards.")
+                        Text(due + new == 0 ? (w.isEmpty && langs.systems.isEmpty ? "Start a deck in Learn or build a language system, and its reviews show up here." : "All caught up. Reviews come back as their intervals run out.") : "Due reviews first, then new cards.")
                             .font(.subheadline)
                             .foregroundStyle(Palette.muted)
                         if loaded, let next = nextUp(now) {
@@ -137,6 +142,9 @@ struct TodayView: View {
             #if os(iOS)
             .toolbar { if items.count > 1 { EditButton().tint(Palette.ink) } }
             #endif
+            }
+            }
+            .animation(.easeOut(duration: 0.35), value: loaded)
             .paper()
             .navigationTitle("Today")
             .sheet(item: $session) { StudySession(entry: $0.entry, deck: $0.deck) }
@@ -214,4 +222,78 @@ struct Tally: View {
 
 extension Optional where Wrapped == Int {
     var orZero: Int { self ?? 0 }
+}
+
+struct Shimmer: ViewModifier {
+    @Environment(\.accessibilityReduceMotion) private var still
+    @Environment(\.colorScheme) private var scheme
+    @State private var phase: CGFloat = -1
+
+    func body(content: Content) -> some View {
+        content
+            .overlay {
+                if !still {
+                    GeometryReader { g in
+                        LinearGradient(colors: [.clear, .white.opacity(scheme == .dark ? 0.08 : 0.35), .clear], startPoint: .leading, endPoint: .trailing)
+                            .frame(width: g.size.width * 0.6)
+                            .offset(x: phase * g.size.width * 1.6)
+                    }
+                    .mask(content)
+                    .allowsHitTesting(false)
+                }
+            }
+            .onAppear {
+                withAnimation(.linear(duration: 1.3).repeatForever(autoreverses: false)) { phase = 1 }
+            }
+    }
+}
+
+struct TodaySkeleton: View {
+    var body: some View {
+        let block = Palette.rule.opacity(0.7)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 22) {
+                VStack(alignment: .leading, spacing: 16) {
+                    RoundedRectangle(cornerRadius: 5).fill(block).frame(width: 90, height: 12)
+                    HStack(spacing: 0) {
+                        ForEach(0..<3, id: \.self) { _ in
+                            VStack(spacing: 8) {
+                                RoundedRectangle(cornerRadius: 8).fill(block).frame(width: 40, height: 34)
+                                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 58, height: 10)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+                    RoundedRectangle(cornerRadius: 5).fill(block).frame(height: 12).padding(.trailing, 60)
+                    RoundedRectangle(cornerRadius: 12).fill(D8.vermilion.opacity(0.25)).frame(height: 50)
+                }
+                .padding(18)
+                .background(Palette.card, in: .rect(cornerRadius: 22))
+                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 100, height: 10).padding(.leading, 18)
+                VStack(spacing: 0) {
+                    ForEach(0..<3, id: \.self) { i in
+                        HStack(spacing: 12) {
+                            RoundedRectangle(cornerRadius: 8).fill(block).frame(width: 36, height: 36)
+                            VStack(alignment: .leading, spacing: 7) {
+                                RoundedRectangle(cornerRadius: 5).fill(block).frame(width: 150, height: 13)
+                                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 110, height: 10)
+                            }
+                            Spacer()
+                            Capsule().fill(block).frame(width: 56, height: 24)
+                        }
+                        .padding(.vertical, 14)
+                        if i < 2 { Divider().overlay(Palette.rule) }
+                    }
+                }
+                .padding(.horizontal, 18)
+                .background(Palette.card, in: .rect(cornerRadius: 22))
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            .modifier(Shimmer())
+        }
+        .scrollDisabled(true)
+        .accessibilityElement()
+        .accessibilityLabel("Loading your reviews")
+    }
 }
