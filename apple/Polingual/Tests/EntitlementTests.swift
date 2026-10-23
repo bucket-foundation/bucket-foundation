@@ -69,5 +69,7 @@ struct EntitlementTests {
         #expect(PaywallCopy.renewal(trial: true).contains("3 days free"))
         #expect(PaywallCopy.renewal(trial: true).contains("renews automatically"))
         #expect(!PaywallCopy.renewal(trial: false).contains("days free"))
+        #expect(PaywallCopy.disclosure(trial: true, price: "$59.99", period: "year").hasPrefix("3 days free, then $59.99 a year."))
+        #expect(PaywallCopy.disclosure(trial: false, price: "$9.99", period: "month").contains("24 hours"))
     }
 }

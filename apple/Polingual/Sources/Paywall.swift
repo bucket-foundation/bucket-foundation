@@ -9,9 +9,10 @@ struct Paywall: View {
     @Environment(Account.self) private var account
     @Environment(\.openURL) private var openURL
     @State private var products: [Product] = []
+    @State private var loading = true
+    @State private var note: String?
     @State private var chosen = Plan.yearly
     @State private var buying = false
-    @State private var failure: String?
     @State private var signingIn = false
     @State private var restoring = false
     @State private var redeeming = false
@@ -48,37 +49,53 @@ struct Paywall: View {
                         #endif
                     Spacer(minLength: 8)
                     VStack(spacing: 12) {
-                        HStack(spacing: 10) {
-                            ForEach(products, id: \.id) { p in
-                                PlanCard(product: p, selected: chosen == p.id, trial: subs.trialEligible) {
-                                    tap()
-                                    chosen = p.id
+                        if products.isEmpty {
+                            VStack(spacing: 10) {
+                                if loading {
+                                    ProgressView().tint(D8.parchment)
+                                } else {
+                                    Text("The plans did not load. Check your connection and try again.")
+                                        .font(.subheadline.weight(.semibold))
+                                        .foregroundStyle(D8.parchment)
+                                        .multilineTextAlignment(.center)
+                                    Button("Try again") { Task { await load() } }.buttonStyle(D8Option(align: .center, compact: true))
                                 }
                             }
+                            .frame(minHeight: 84)
+                        } else {
+                            HStack(spacing: 10) {
+                                ForEach(products, id: \.id) { p in
+                                    PlanCard(product: p, selected: chosen == p.id, trial: subs.trialEligible) {
+                                        tap()
+                                        chosen = p.id
+                                    }
+                                }
+                            }
+                            .frame(minHeight: 84)
                         }
-                        .frame(minHeight: 84)
                         Button(buying ? "One moment" : subs.trialEligible ? "Start \(Plan.trialDays) days free" : "Subscribe") {
                             Task { await buy() }
                         }
                         .buttonStyle(D8Primary())
                         .disabled(product == nil || buying)
-                        if let failure { Text(failure).font(.footnote).foregroundStyle(D8.parchment) }
+                        if let note { Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center) }
                         if let product {
-                            Text("\(subs.trialEligible ? "Then " : "")\(product.displayPrice)/\(product.id == Plan.yearly ? "year" : "month"). Auto-renews, cancel anytime in Settings.")
-                                .font(.system(size: 11))
-                                .foregroundStyle(D8.parchment.opacity(0.7))
+                            Text(PaywallCopy.disclosure(trial: subs.trialEligible, price: product.displayPrice, period: product.id == Plan.yearly ? "year" : "month"))
+                                .font(.system(size: 12))
+                                .foregroundStyle(D8.parchment.opacity(0.85))
                                 .multilineTextAlignment(.center)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
-                        HStack(spacing: 14) {
+                        FlowLayout(spacing: 4) {
                             Button(restoring ? "Restoring" : "Restore") { Task { await restore() } }.disabled(restoring)
                             Button("Code") { redeeming = true }
                             if account.stage != .signedIn { Button("Sign in") { signingIn = true } }
                             Button("Terms") { openURL(Plan.terms) }
                             Button("Privacy") { openURL(Plan.privacy) }
                         }
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundStyle(D8.parchment.opacity(0.75))
-                        .buttonStyle(.borderless)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(D8.parchment.opacity(0.85))
+                        .buttonStyle(LinkPad())
                     }
                     .padding(.horizontal, 20)
                     .padding(.bottom, 8)
@@ -96,39 +113,52 @@ struct Paywall: View {
     }
 
     func load() async {
+        loading = true
         let found = (try? await Product.products(for: Plan.all)) ?? []
         products = Plan.all.compactMap { id in found.first { $0.id == id } }
+        if !products.contains(where: { $0.id == chosen }), let first = products.first { chosen = first.id }
+        loading = false
     }
 
     func buy() async {
         guard let product else { return }
         buying = true
-        failure = nil
+        note = nil
         defer { buying = false }
         let trial = subs.trialEligible
         var options: Set<Product.PurchaseOption> = []
         if let id = account.session?.userId.flatMap(UUID.init(uuidString:)) { options.insert(.appAccountToken(id)) }
         do {
             switch try await product.purchase(options: options) {
-            case .success(let result):
-                if case .verified(let t) = result { await t.finish() }
+            case .success(.verified(let t)):
+                await t.finish()
                 await subs.refresh()
                 haptic(true)
                 if trial { await TrialReminder.schedule() }
-            case .userCancelled, .pending:
+            case .success(.unverified):
+                note = "The App Store could not verify this purchase. Tap Restore, or try again."
+            case .pending:
+                note = "Waiting for approval. Polingual opens as soon as the purchase is approved."
+            case .userCancelled:
                 break
             @unknown default:
                 break
             }
         } catch {
-            failure = "The App Store did not finish the purchase. Try again."
+            note = "The App Store did not finish the purchase. Try again."
         }
     }
 
     func restore() async {
         restoring = true
-        try? await AppStore.sync()
-        await subs.refresh()
+        note = nil
+        do {
+            try await AppStore.sync()
+            await subs.refresh()
+            if case .locked = subs.access { note = "No Polingual subscription found on this Apple Account." }
+        } catch {
+            note = "Restore did not finish. Check your connection and try again."
+        }
         restoring = false
     }
 }
@@ -165,6 +195,16 @@ struct PlanCard: View {
     }
 }
 
+struct LinkPad: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.horizontal, 8)
+            .frame(minHeight: 44)
+            .contentShape(Rectangle())
+            .opacity(configuration.isPressed ? 0.6 : 1)
+    }
+}
+
 struct Diagonal: Shape {
     var top: CGFloat
     var rise: CGFloat
@@ -183,6 +223,11 @@ struct Diagonal: Shape {
 enum PaywallCopy {
     static func headline(trial: Bool) -> String {
         trial ? "\(Plan.trialDays) days free" : "Keep learning"
+    }
+
+    static func disclosure(trial: Bool, price: String, period: String) -> String {
+        (trial ? "\(Plan.trialDays) days free, then \(price) a \(period). " : "\(price) a \(period). ")
+            + "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings."
     }
 
     static func renewal(trial: Bool) -> String {
