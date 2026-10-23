@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Omega Exploration</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Nunito:wght@400;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6EEDC;--ink:#231F20;--pur:#5B1A4A;--cta:#D9381E;--muted:#5d5650;--line:#E3D6B8}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);font-family:Nunito,sans-serif;color:var(--ink);padding:32px 16px}
+.w{max-width:1600px;margin:0 auto}
+h1{font-family:Fredoka;font-size:56px}
+p{color:var(--muted);font-size:18px;margin:8px 0 20px;max-width:900px}
+.f{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.f button{font-family:'Space Mono';font-size:13px;padding:8px 12px;border-radius:999px;border:2px solid var(--line);background:#fff;cursor:pointer}
+.f button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:20px}
+figure{background:#fff;border-radius:12px;overflow:hidden;box-shadow:inset 0 0 0 2px var(--line);cursor:pointer;position:relative}
+figure img{display:block;width:100%;aspect-ratio:1;object-fit:cover}
+figcaption{font-family:'Space Mono';font-size:12px;padding:8px 10px;display:flex;justify-content:space-between}
+figure.pick{box-shadow:inset 0 0 0 4px var(--cta)}
+figure.pick::after{content:"★";position:absolute;top:8px;right:10px;color:var(--cta);font-size:26px;text-shadow:0 1px 2px #fff}
+.empty{font-family:'Space Mono';color:var(--muted);margin-top:40px}
+</style></head><body><div class="w">
+<h1>℧ exploration</h1>
+<p>Generated locally with SDXL Turbo, image to image from the ℧ ring, across craft traditions and generator eras. Reference only. Click to star a favorite; stars stay in this browser.</p>
+<div class="f" id="fs"></div><div class="f" id="ft"></div>
+<div class="g" id="g"></div><div class="empty" id="e"></div>
+</div>
+<script>
+const K='omega-picks';let picks=new Set();try{picks=new Set(JSON.parse(localStorage.getItem(K)||'[]'))}catch(e){}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify([...picks]))}catch(e){}};
+let M=[],fs='all',ft='all';
+const chips=(el,vals,get,set)=>{el.innerHTML=['all',...vals,...(el.id==='fs'?['starred']:[])].map(v=>`<button data-v="${v}">${v}</button>`).join('');el.onclick=e=>{const b=e.target.closest('button');if(!b)return;set(b.dataset.v);draw()};};
+function draw(){
+ fsEl.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===fs));
+ ftEl.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===ft));
+ const L=M.filter(m=>(fs==='all'||m.subject===fs||(fs==='starred'&&picks.has(m.file)))&&(ft==='all'||m.style===ft));
+ g.innerHTML=L.map(m=>`<figure data-f="${m.file}" class="${picks.has(m.file)?'pick':''}"><img loading="lazy" src="omega/${m.file}" alt=""><figcaption><span>${m.subject}</span><span>${m.style}</span></figcaption></figure>`).join('');
+ e.textContent=L.length?'':'Nothing here yet.';
+}
+const fsEl=document.getElementById('fs'),ftEl=document.getElementById('ft');
+g.onclick=ev=>{const f=ev.target.closest('figure');if(!f)return;const k=f.dataset.f;picks.has(k)?picks.delete(k):picks.add(k);save();f.classList.toggle('pick')};
+fetch('omega/manifest.json').then(r=>r.json()).then(j=>{M=j;chips(fsEl,[...new Set(j.map(m=>m.subject))],()=>fs,v=>fs=v);chips(ftEl,[...new Set(j.map(m=>m.style))],()=>ft,v=>ft=v);draw()}).catch(()=>{e.textContent='Generation still running.'});
+</script></body></html>

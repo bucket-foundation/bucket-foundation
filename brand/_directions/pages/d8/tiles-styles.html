@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Tile Styles</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Nunito:wght@800&family=Space+Mono:wght@700&family=Noto+Sans:wght@800&family=Noto+Sans+Hebrew:wght@800&family=Noto+Sans+Arabic:wght@800&family=Noto+Sans+Devanagari:wght@800&family=Noto+Sans+SC:wght@800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6EEDC;--ink:#231F20}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);background-image:radial-gradient(#e2d4b4 1.4px,transparent 1.5px);background-size:32px 32px;font-family:Nunito;color:var(--ink);padding:60px 80px;width:1920px}
+h2{font-family:'Space Mono';font-size:18px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 22px}
+.row{display:flex;gap:28px;margin-bottom:64px}
+.t{width:200px;height:200px;border-radius:14px;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--flag);box-shadow:inset 0 0 0 2px rgba(0,0,0,.15),inset 0 -24px 40px rgba(0,0,0,.18),inset 0 18px 30px rgba(255,255,255,.25),0 6px 0 rgba(35,31,32,.3)}
+.t:nth-child(odd){transform:rotate(-2deg)}.t:nth-child(even){transform:rotate(1.5deg) translateY(-6px)}
+.t::after{content:"";position:absolute;left:22px;top:18px;width:70px;height:20px;border-radius:50%;background:rgba(255,255,255,.45);transform:rotate(-20deg)}
+.t .em{position:absolute;font-size:var(--es,0);color:var(--ec);line-height:1;left:var(--ex,50%);top:var(--ey,50%);transform:translate(-50%,-50%)}
+.t b{position:relative;z-index:1;font-size:56px;line-height:1;color:#fff;text-shadow:0 3px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink),3px 3px 0 var(--ink)}
+.t i{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-style:normal;font-family:'Space Mono';font-size:14px;color:#fff;text-shadow:0 1px 2px #000;z-index:1}
+.t .cc{position:absolute;right:14px;top:12px;font-family:'Space Mono';font-weight:700;font-size:13px;color:#fff;text-shadow:0 1px 2px #000;z-index:1}
+.bare b,.bare i,.bare .cc{display:none}
+#a .em{opacity:.25}
+.low{}
+.low .t::before{content:"";position:absolute;inset:0;background:rgba(246,238,220,.78)}
+.low .t b{color:var(--ink);text-shadow:none}
+.low .t i,.low .t .cc{color:#555;text-shadow:none}
+.low .t .em{opacity:.18}
+.slot{font-family:'Space Mono';font-size:14px;color:#666;margin-top:-40px}
+
+.v .t::before{content:"";position:absolute;background:#F6EEDC}
+.v .t b{color:var(--ink);text-shadow:none}.v .t i,.v .t .cc{color:#555;text-shadow:none;z-index:2}.v .t .em{display:none}
+.lowb .t::before{inset:12px;border-radius:6px;background:rgba(246,238,220,.8)}
+.frame .t::before{inset:14px;border-radius:6px;box-shadow:inset 0 0 0 2px rgba(35,31,32,.25)}
+.corner .t::before{inset:0;clip-path:polygon(0 0,100% 0,100% 62%,62% 100%,0 100%)}
+.spine .t::before{inset:0 0 0 22px}
+.band .t::before{inset:0 0 26px 0}
+.band .t i{bottom:36px}
+.frame .t .cc{top:20px;right:22px}
+</style></head><body>
+<h2>Full color, with text</h2><div class="row" id="a"></div>
+<h2>Full color, no text</h2><div class="row bare" id="b"></div>
+<h2>Low color, with text</h2><div class="row low" id="c"></div>
+<h2>Low color with full flag border</h2><div class="row v lowb" id="lowb"></div>
+<h2>Cream face with flag frame</h2><div class="row v frame" id="frame"></div>
+<h2>Cream face with flag corner</h2><div class="row v corner" id="corner"></div>
+<h2>Cream face with flag spine</h2><div class="row v spine" id="spine"></div>
+<h2>Cream face with flag foot band</h2><div class="row v band" id="band"></div>
+<p class="slot">Saved styles. Picked styles live in tiles.html</p>
+<script>
+const T=[
+["fr","cent","sɑ̃","Nunito","linear-gradient(90deg,#002654 0 33.3%,#fff 0 66.6%,#CE1126 0)","",0],
+["il","מאה","me'a","Noto Sans Hebrew","linear-gradient(#fff 0 14%,#0038B8 0 26%,#fff 0 74%,#0038B8 0 86%,#fff 0)","✡","#0038B8",70],
+["gr","εκατό","e.ka'to","Noto Sans","linear-gradient(90deg,#0D5EAF 0 0) 0 0/40% 55.5% no-repeat,repeating-linear-gradient(#0D5EAF 0 11.1%,#fff 0 22.2%)","✚","#fff",64,"20%","28%"],
+["eg","مئة","miʔa","Noto Sans Arabic","linear-gradient(#CE1126 0 33.3%,#fff 0 66.6%,#000 0)","🦅","#C09300",40],
+["in","सौ","sɔː","Noto Sans Devanagari","linear-gradient(#FF9933 0 33.3%,#fff 0 66.6%,#138808 0)","☸","#000080",62],
+["cn","百","bǎi","Noto Sans SC","#EE1C25","★","#FFDE00",58,"24%","26%"]];
+for(const r of ["a","b","c","lowb","frame","corner","spine","band"])document.getElementById(r).innerHTML=T.map(([c,w,ipa,f,bg,e,ec,es,ex,ey])=>`<div class="t" style="--flag:${bg};--ec:${ec||'#000'};--es:${es||0}px${ex?`;--ex:${ex};--ey:${ey}`:''}"><span class="em">${e}</span><span class="cc">${c.toUpperCase()}</span><b style="font-family:'${f}';${w.length>3?'font-size:42px':''}">${w}</b><i>/${ipa}/</i></div>`).join("");
+</script></body></html>
