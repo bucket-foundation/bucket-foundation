@@ -241,18 +241,19 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
 #mb .mark{width:54px;height:54px;border-radius:14px}
 #mb .mark img{width:46px;height:46px}
 #mb .si{font-size:20px}
-#mb h1{font-size:min(8.4vw,5.6vh)}
+#mb h1{font-size:min(8.4vw,5.2vh)}
 #mb .pot .fire{height:min(12vh,150px)}
 #mb .pot b{font-size:min(7vw,5vh)}
 #mb .pot span{font-size:18px}
-#mb .grid{gap:2.4vw;margin-top:min(3vh,30px)}
-#mb .grid .tt b{font-size:min(5.4vw,3.6vh)}
-#mb .grid .tt b.long{font-size:min(3.6vw,2.5vh)}
+#mb .grid{gap:min(2.4vw,2vh);margin-top:min(3vh,30px);grid-template-columns:repeat(3,min(calc((100% - 2*min(2.4vw,2vh))/3),21vh));justify-content:start}
+#mb .grid .tt b{font-size:min(5.4vw,3.2vh)}
+#mb .grid .tt b.long{font-size:min(3.6vw,2.2vh)}
 #mb .grid .tt .cc{font-size:min(1.6vw,13px);left:20px;top:18px}
 #mb .grid .tt i{font-size:min(1.9vw,16px);bottom:18px}
 #mb .grid .tt::before{inset:12px}
 #mb .grid .tt .snd svg{width:20px;height:20px}
-#mb .cta .btn{font-size:22px;padding:20px}
+#mb .cta{max-width:calc(3*21vh + 2*2vh)}
+#mb .cta .btn{font-size:min(22px,2.2vh);padding:min(20px,1.8vh)}
 #mb .art .azu,#mb .art .seal,#mb .art .stamp,#mb .art .kente,#mb .art .torn{zoom:1.4}}
 @media (max-width:759px),(max-aspect-ratio:20/21){#dk{display:none}#mb{display:block}}
 </style></head><body>
