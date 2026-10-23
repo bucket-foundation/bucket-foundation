@@ -335,7 +335,6 @@ struct PlayfulTiles: View {
     @State private var sets = [0, 0, 0, 0]
     var set: Int { sets[0] }
     @State private var shown = 0
-    @State private var flip = [0.0, 0.0, 0.0, 0.0]
     @State private var bounce = -1
 
     var body: some View {
@@ -353,8 +352,9 @@ struct PlayfulTiles: View {
                     ForEach(0..<4, id: \.self) { i in
                         let w = Self.sets[sets[i]].words[i]
                         WordTile(word: w.1, lang: w.0, reading: Reading(ipa: w.2), size: side)
+                            .id(sets[i])
+                            .transition(.opacity.combined(with: .scale(scale: 0.97)))
                             .rotationEffect(.degrees(i.isMultiple(of: 2) ? -2 : 1.5))
-                            .rotation3DEffect(.degrees(flip[i]), axis: (x: 0, y: 1, z: 0))
                             .scaleEffect(i < shown ? (bounce == i ? 1.08 : 1) : 0.4)
                             .opacity(i < shown ? 1 : 0)
                             .simultaneousGesture(TapGesture().onEnded {
@@ -374,14 +374,10 @@ struct PlayfulTiles: View {
             }
             guard !still else { return }
             while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(3.2))
+                try? await Task.sleep(for: .seconds(4))
                 for i in 0..<4 {
-                    withAnimation(.easeIn(duration: 0.16)) { flip[i] = 90 }
-                    try? await Task.sleep(for: .milliseconds(160))
-                    sets[i] = (sets[i] + 1) % Self.sets.count
-                    flip[i] = -90
-                    withAnimation(.easeOut(duration: 0.18)) { flip[i] = 0 }
-                    try? await Task.sleep(for: .milliseconds(90))
+                    withAnimation(.easeInOut(duration: 0.7)) { sets[i] = (sets[i] + 1) % Self.sets.count }
+                    try? await Task.sleep(for: .milliseconds(260))
                 }
             }
         }
