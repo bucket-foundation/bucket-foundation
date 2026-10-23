@@ -111,6 +111,7 @@ struct StudyView: View {
                 Text("\(correct) of \(graded) right · +\(Int(state.xp - xpStart)) xp · \(Int(state.streak)) day streak")
                     .foregroundStyle(Palette.muted)
                     .monospacedDigit()
+                ShareProgress(langs: system.targets, streak: Int(state.streak), learned: systemSummary(system, corpus, state, now: Date().timeIntervalSince1970 * 1000).started)
                 Button("See progress") {
                     path.removeLast()
                     path.append(LangRoute.system(system.id))

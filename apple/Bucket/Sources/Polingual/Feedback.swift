@@ -69,6 +69,7 @@ struct FeedbackSettings: View {
         Section {
             Button("Rate \(Feedback.appName) on the App Store") { openURL(Feedback.reviewURL) }
             Button("Send feedback") { openURL(Feedback.mailURL) }
+            InviteFriend()
         } header: {
             Eyebrow(text: "Feedback")
         }
