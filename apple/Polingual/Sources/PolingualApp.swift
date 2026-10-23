@@ -40,8 +40,12 @@ struct PolingualApp: App {
 
 enum PolingualLaunch {
     static func value(_ flag: String) -> String? {
+        #if DEBUG
         let args = ProcessInfo.processInfo.arguments
         guard let i = args.firstIndex(of: flag), i + 1 < args.count else { return nil }
         return args[i + 1]
+        #else
+        return nil
+        #endif
     }
 }
