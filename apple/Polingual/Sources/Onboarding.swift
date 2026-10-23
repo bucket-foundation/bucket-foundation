@@ -25,6 +25,7 @@ struct Onboarding: View {
                         .frame(maxWidth: 560, maxHeight: .infinity, alignment: .topLeading)
                         .padding(.horizontal, 24)
                         .padding(.top, 16)
+                        .padding(.bottom, 64)
                         .frame(maxWidth: .infinity)
                         .tag(st)
                 }
