@@ -86,6 +86,7 @@ struct RootView: View {
                 reminders.reset()
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in tab = .today }
         #if DEBUG
         .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
             science.clearLocal()

@@ -84,9 +84,22 @@ struct Studio: View {
         .sheet(isPresented: $showAccount) { AccountView() }
         .manageSubscriptions(isPresented: $managing)
         .task { await openFromLaunch() }
+        .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
+    }
+
+    func openRequested() async {
+        guard StudyRequest.take() else { return }
+        await store.load()
+        guard let first = store.systems.first else { return }
+        path = NavigationPath()
+        path.append(LangRoute.study(first.id))
     }
 
     func openFromLaunch() async {
+        if UserDefaults.standard.bool(forKey: StudyRequest.key) {
+            await openRequested()
+            return
+        }
         if !firstSystem.isEmpty {
             await store.load()
             if store.system(firstSystem) != nil { path.append(LangRoute.place(firstSystem, nil)) }

@@ -70,6 +70,14 @@ struct TodayView: View {
         (library.scienceDecks.map { science.state($0.id).streak } + langs.systems.map { langs.state($0.id).streak }).max() ?? 0
     }
 
+    func startNext() {
+        guard let next = nextUp(Date().timeIntervalSince1970 * 1000) ?? items.first else { return }
+        switch next {
+        case .deck(let w): session = StudyLaunch(entry: w.entry, deck: w.deck)
+        case .lang(let s): path.append(LangRoute.study(s.id))
+        }
+    }
+
     func nextUp(_ now: Double) -> Item? {
         let corpus = langs.corpus
         return items.first { item in
@@ -149,6 +157,8 @@ struct TodayView: View {
             .navigationTitle("Today")
             .sheet(item: $session) { StudySession(entry: $0.entry, deck: $0.deck) }
             .langDestinations(path: $path)
+            .onChange(of: loaded, initial: true) { _, ready in if ready && StudyRequest.take() { startNext() } }
+            .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in if loaded && StudyRequest.take() { startNext() } }
             .task { await langs.load() }
             .task(id: library.scienceDecks.map(\.id)) {
                 scienceReady = false
