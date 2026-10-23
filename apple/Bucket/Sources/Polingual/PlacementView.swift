@@ -125,7 +125,7 @@ struct PlacementView: View {
                                     .langInput(lang)
                                     .onSubmit { answer(judgeTyped(typed, [item.forms[lang] ?? ""], lang) != .wrong) }
                                 Button("Check") { answer(judgeTyped(typed, [item.forms[lang] ?? ""], lang) != .wrong) }
-                                    .buttonStyle(D8Primary())
+                                    .buttonStyle(D8Primary(compact: true))
                             }
                         } else {
                             ForEach(options, id: \.self) { o in

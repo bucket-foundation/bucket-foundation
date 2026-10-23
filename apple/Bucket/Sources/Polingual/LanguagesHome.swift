@@ -52,7 +52,9 @@ struct Chip: View {
             .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(on ? D8.lapis : D8.keyline, lineWidth: on ? 3 : 2))
         }
         .buttonStyle(TilePress())
-        .accessibilityAddTraits(on ? .isSelected : [])
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(langs.count > 1 ? "\(title): \(langs.map(Lang.name).joined(separator: ", "))" : title)
+        .accessibilityAddTraits(on ? [.isButton, .isSelected] : .isButton)
     }
 }
 
