@@ -38,6 +38,12 @@ struct PolingualRoot: View {
             }
         }
         .task { account.beforeSignOut = { await store.flush() } }
+        #if DEBUG
+        .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
+            store.clearLocal()
+            reminders.reset()
+        }
+        #endif
     }
 }
 

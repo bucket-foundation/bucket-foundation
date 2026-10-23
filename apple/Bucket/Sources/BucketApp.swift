@@ -86,6 +86,13 @@ struct RootView: View {
                 reminders.reset()
             }
         }
+        #if DEBUG
+        .onReceive(NotificationCenter.default.publisher(for: .devReset)) { _ in
+            science.clearLocal()
+            langs.clearLocal()
+            reminders.reset()
+        }
+        #endif
         .task {
             account.beforeSignOut = {
                 await science.flush()
