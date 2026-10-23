@@ -35,7 +35,7 @@ struct Onboarding: View {
             .animation(.spring(duration: 0.4), value: step)
             footer
         }
-        .background(Dots().ignoresSafeArea())
+        .background(Backdrop().ignoresSafeArea())
         .sheet(isPresented: $signingIn) { AccountView() }
         .sheet(isPresented: $moreLanguages) { languagePicker }
         .onChange(of: account.stage) { _, st in if st == .signedIn { signingIn = false } }
@@ -151,21 +151,17 @@ struct Onboarding: View {
             Text("Polingual reminds you once a day, at the time you usually study, and only when words are due.")
                 .font(.body)
                 .foregroundStyle(Palette.muted)
-            HStack(spacing: 8) {
-                ForEach(Array(["M", "T", "W", "T", "F", "S", "S"].enumerated()), id: \.offset) { i, d in
-                    VStack(spacing: 6) {
-                        Image(systemName: i < 5 ? "checkmark" : "")
-                            .font(.system(size: 15, weight: .heavy))
-                            .foregroundStyle(.white)
-                            .frame(width: 38, height: 38)
-                            .background(i < 5 ? D8.vermilion : Palette.rule, in: .rect(cornerRadius: 10))
-                            .modifier(Glaze(radius: 10, lip: i < 5 ? 3 : 0))
-                        Text(d).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
-                    }
-                    .frame(maxWidth: .infinity)
+            HStack(spacing: 14) {
+                Image(systemName: "flame.fill")
+                    .font(.system(size: 58))
+                    .foregroundStyle(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion], startPoint: .top, endPoint: .bottom))
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("5").font(.system(size: 44, weight: .heavy, design: .rounded)).foregroundStyle(D8.vermilion)
+                    Text("DAY STREAK").font(D8.caps(13)).tracking(1.5).foregroundStyle(Palette.muted)
                 }
             }
-            .padding(.vertical, 8)
+            .padding(.vertical, 6)
+            .accessibilityElement(children: .ignore)
             .accessibilityLabel("A five day streak")
             if reminders.enabled {
                 Label("Reminder on", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
@@ -220,7 +216,7 @@ struct Onboarding: View {
         VStack(spacing: 12) {
             HStack(spacing: 8) {
                 ForEach(Step.allCases, id: \.self) { s in
-                    Capsule().fill(s == step ? D8.vermilion : Palette.rule).frame(width: s == step ? 22 : 8, height: 8)
+                    Capsule().fill(s == step ? D8.parchment : D8.parchment.opacity(0.35)).frame(width: s == step ? 22 : 8, height: 8)
                 }
             }
             .accessibilityHidden(true)
@@ -368,5 +364,51 @@ struct PlanLine: View {
             Image(systemName: icon).font(.system(size: 15, weight: .bold)).foregroundStyle(D8.lapis).frame(width: 22)
             Text(text).font(.subheadline).foregroundStyle(Palette.ink)
         }
+    }
+}
+
+struct Backdrop: View {
+    var body: some View {
+        GeometryReader { g in
+            let w = g.size.width, h = g.size.height
+            ZStack(alignment: .topLeading) {
+                Dots()
+                VStack(spacing: 26) {
+                    ForEach(0..<Int(h / 52) + 1, id: \.self) { i in
+                        Text(i.isMultiple(of: 2) ? "✸" : "〜")
+                            .font(.system(size: i.isMultiple(of: 2) ? 22 : 18, weight: .black))
+                            .foregroundStyle(i.isMultiple(of: 2) ? D8.lapis : D8.malachite)
+                            .rotationEffect(.degrees(i.isMultiple(of: 2) ? 0 : -30))
+                    }
+                }
+                .frame(width: 24)
+                .opacity(0.45)
+                .offset(x: -6, y: 10)
+                Path { p in
+                    p.move(to: CGPoint(x: 0, y: h * 0.86))
+                    p.addLine(to: CGPoint(x: w, y: h * 0.80))
+                    p.addLine(to: CGPoint(x: w, y: h))
+                    p.addLine(to: CGPoint(x: 0, y: h))
+                    p.closeSubpath()
+                }
+                .fill(Color(hex: 0x5B1A4A))
+                Text("百")
+                    .font(.system(size: 30, weight: .black))
+                    .foregroundStyle(D8.parchment)
+                    .frame(width: 52, height: 52)
+                    .background(D8.vermilion, in: .rect(cornerRadius: 8))
+                    .overlay(RoundedRectangle(cornerRadius: 5).strokeBorder(D8.parchment, lineWidth: 2).padding(5))
+                    .rotationEffect(.degrees(-8))
+                    .position(x: w - 46, y: h * 0.84)
+                Text("ἑκατόν")
+                    .font(.system(size: 15, weight: .bold, design: .serif))
+                    .foregroundStyle(D8.ink)
+                    .padding(.horizontal, 10).padding(.vertical, 6)
+                    .background(D8.parchment, in: .rect(cornerRadius: 3))
+                    .rotationEffect(.degrees(6))
+                    .position(x: w * 0.2, y: h * 0.865)
+            }
+        }
+        .accessibilityHidden(true)
     }
 }
