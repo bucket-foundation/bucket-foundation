@@ -50,6 +50,7 @@ POLINGUAL = {
 }
 
 COPYRIGHT = "2026 AGFarms LLC"
+REPLACE_SHOTS = False
 SHOT_TYPES = {"iphone-6.9": "APP_IPHONE_67", "ipad-13": "APP_IPAD_PRO_3GEN_129"}
 AGE = {
     "alcoholTobaccoOrDrugUseOrReferences": "NONE", "contests": "NONE", "gamblingSimulated": "NONE", "horrorOrFearThemes": "NONE",
@@ -220,9 +221,11 @@ def setup_app(api, cfg, contact, free_price):
     for folder, kind in SHOT_TYPES.items():
         files = sorted(f for f in os.listdir(os.path.join(ROOT, cfg["shots"], folder)) if f.endswith(".png"))
         existing = api.all(f"/v1/appScreenshotSets/{sets[kind]['id']}/appScreenshots") if kind in sets else []
-        if existing:
+        if existing and not REPLACE_SHOTS:
             print(f"  skip  {kind}: {len(existing)} screenshots already there")
             continue
+        for old in existing:
+            api.write(f"remove old {kind} screenshot", "DELETE", f"/v1/appScreenshots/{old['id']}", None)
         if kind not in sets:
             d = api.write(f"screenshot set {kind}", "POST", "/v1/appScreenshotSets", {
                 "data": {"type": "appScreenshotSets", "attributes": {"screenshotDisplayType": kind}, "relationships": {"appStoreVersionLocalization": rel("appStoreVersionLocalizations", vloc["id"])}}})
@@ -320,7 +323,10 @@ def main():
     ap.add_argument("--first", default="Gianangelo")
     ap.add_argument("--last", default="Dichio")
     ap.add_argument("--only", choices=["bucket", "polingual"])
+    ap.add_argument("--replace-shots", action="store_true")
     a = ap.parse_args()
+    global REPLACE_SHOTS
+    REPLACE_SHOTS = a.replace_shots
     api = ASC(a.apply)
     contact = {"first": a.first, "last": a.last, "phone": a.phone, "email": a.email}
     print("APPLYING CHANGES" if a.apply else "DRY RUN: nothing is changed; add --apply to write")
