@@ -15,7 +15,7 @@ BASE = "https://api.appstoreconnect.apple.com"
 BUCKET = {
     "app": "6825123451",
     "version": "2.0",
-    "build": "2610211209",
+    "build": "2610231305",
     "subtitle": "Foundations of every science",
     "privacy": "https://www.bucket.foundation/privacy",
     "privacyText": "When you sign in, Bucket Foundation stores your email address and your learning progress: the decks you open, your placement result, each graded answer and your review schedule. It syncs that progress across your devices. We sell no data and run no ads. Delete your account and all progress in the app under Account, Delete account. Full policy: https://www.bucket.foundation/privacy",
@@ -31,7 +31,7 @@ BUCKET = {
 POLINGUAL = {
     "app": "6825177856",
     "version": "1.0",
-    "build": "2610211209",
+    "build": "2610231305",
     "subtitle": "Learn many languages together",
     "privacy": "https://polingual.com/privacy",
     "privacyText": "When you sign in, Polingual stores your email address and your learning progress: your language systems, placement results and review history. We do not track you across apps or websites. We do not sell or share personal data. Apple processes every purchase. Delete your account and all progress in the app under Account, Delete account. Full policy: https://polingual.com/privacy",
@@ -41,7 +41,7 @@ POLINGUAL = {
     "promo": "Start a 3-day free trial. Learn Spanish, French and Italian side by side, or build your own set from 29 languages. Your progress syncs with Bucket.",
     "listing": "docs/internal/polingual/APP-STORE-LISTING.md",
     "shots": "apple/Polingual/AppStore/screenshots",
-    "notes": "Onboarding runs three screens, then the subscription screen. Use a sandbox Apple Account to start the free trial. Sign-in is optional and uses a one-time email code. The microphone and speech recognition prompts appear on the first speaking exercise. Delete account is under Account once signed in.",
+    "notes": "Onboarding runs five screens, then the subscription screen. Use a sandbox Apple Account to start the free trial. Sign-in is optional and uses a one-time email code. The microphone and speech recognition prompts appear on the first speaking exercise. Delete account is under Account once signed in.",
     "group": "22498866",
     "subs": [
         {"productId": "com.polingual.yearly", "name": "Polingual Yearly", "period": "ONE_YEAR", "level": 1, "price": "59.99", "desc": "Every language system, a year at a time."},
