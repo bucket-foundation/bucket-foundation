@@ -15,13 +15,14 @@ BASE = "https://api.appstoreconnect.apple.com"
 BUCKET = {
     "app": "6825123451",
     "version": "2.0",
-    "build": "2610211209",
+    "build": "2610231305",
     "subtitle": "Foundations of every science",
     "privacy": "https://www.bucket.foundation/privacy",
+    "privacyText": "When you sign in, Bucket Foundation stores your email address and your learning progress: the decks you open, your placement result, each graded answer and your review schedule. It syncs that progress across your devices. We sell no data and run no ads. Delete your account and all progress in the app under Account, Delete account. Full policy: https://www.bucket.foundation/privacy",
     "support": "https://www.bucket.foundation",
     "marketing": "https://www.bucket.foundation",
     "keywords": "physics,math,chemistry,cosmology,biology,mind,science,spaced,repetition,flashcards,languages,study",
-    "promo": "Learn the foundations of mathematics, physics, chemistry, information, biophysics, cosmology and mind, then review them on a schedule that keeps them.",
+    "promo": "Learn the foundations of mathematics, physics, chemistry, information, biophysics, cosmology and mind, and learn a set of languages together.",
     "listing": "docs/internal/apple/BUCKET-LISTING.md",
     "shots": "apple/Bucket/AppStore/screenshots",
     "notes": "Sign-in is optional and uses a one-time email code sent to the address entered. Every screen except Account works signed out. Learn shows the science decks; Learn, Languages opens language systems. The microphone and speech recognition prompts appear on the first speaking exercise. Delete account is under Account once signed in.",
@@ -30,16 +31,17 @@ BUCKET = {
 POLINGUAL = {
     "app": "6825177856",
     "version": "1.0",
-    "build": "2610211209",
+    "build": "2610231305",
     "subtitle": "Learn many languages together",
     "privacy": "https://polingual.com/privacy",
+    "privacyText": "When you sign in, Polingual stores your email address and your learning progress: your language systems, placement results and review history. We do not track you across apps or websites. We do not sell or share personal data. Apple processes every purchase. Delete your account and all progress in the app under Account, Delete account. Full policy: https://polingual.com/privacy",
     "support": "https://polingual.com/support",
     "marketing": "https://polingual.com",
     "keywords": "spanish,french,italian,german,japanese,latin,vocabulary,flashcards,polyglot,romance,spaced",
     "promo": "Start a 3-day free trial. Learn Spanish, French and Italian side by side, or build your own set from 29 languages. Your progress syncs with Bucket.",
     "listing": "docs/internal/polingual/APP-STORE-LISTING.md",
     "shots": "apple/Polingual/AppStore/screenshots",
-    "notes": "Onboarding runs three screens, then the subscription screen. Use a sandbox Apple Account to start the free trial. Sign-in is optional and uses a one-time email code. The microphone and speech recognition prompts appear on the first speaking exercise. Delete account is under Account once signed in.",
+    "notes": "Onboarding runs five screens, then the subscription screen. Use a sandbox Apple Account to start the free trial. Sign-in is optional and uses a one-time email code. The microphone and speech recognition prompts appear on the first speaking exercise. Delete account is under Account once signed in.",
     "group": "22498866",
     "subs": [
         {"productId": "com.polingual.yearly", "name": "Polingual Yearly", "period": "ONE_YEAR", "level": 1, "price": "59.99", "desc": "Every language system, a year at a time."},
@@ -48,6 +50,7 @@ POLINGUAL = {
 }
 
 COPYRIGHT = "2026 AGFarms LLC"
+REPLACE_SHOTS = False
 SHOT_TYPES = {"iphone-6.9": "APP_IPHONE_67", "ipad-13": "APP_IPAD_PRO_3GEN_129"}
 AGE = {
     "alcoholTobaccoOrDrugUseOrReferences": "NONE", "contests": "NONE", "gamblingSimulated": "NONE", "horrorOrFearThemes": "NONE",
@@ -187,10 +190,15 @@ def setup_app(api, cfg, contact, free_price):
     api.write("age rating: 4+, all None", "PATCH", f"/v1/ageRatingDeclarations/{info['id']}",
               {"data": {"type": "ageRatingDeclarations", "id": info["id"], "attributes": dict(AGE)}})
     loc = next(l for l in api.all(f"/v1/appInfos/{info['id']}/appInfoLocalizations") if l["attributes"]["locale"] == "en-US")
-    api.write("subtitle and privacy URL", "PATCH", f"/v1/appInfoLocalizations/{loc['id']}", {
-        "data": {"type": "appInfoLocalizations", "id": loc["id"], "attributes": {"subtitle": cfg["subtitle"], "privacyPolicyUrl": cfg["privacy"]}}})
+    api.write("subtitle, privacy URL and Apple TV privacy text", "PATCH", f"/v1/appInfoLocalizations/{loc['id']}", {
+        "data": {"type": "appInfoLocalizations", "id": loc["id"], "attributes": {"subtitle": cfg["subtitle"], "privacyPolicyUrl": cfg["privacy"], "privacyPolicyText": cfg["privacyText"]}}})
 
-    ver = next(v for v in api.all(f"/v1/apps/{app}/appStoreVersions?filter[platform]=IOS") if v["attributes"]["appStoreState"] in ("PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED", "METADATA_REJECTED"))
+    versions = api.all(f"/v1/apps/{app}/appStoreVersions?filter[platform]=IOS")
+    ver = next((v for v in versions if v["attributes"]["appStoreState"] in ("PREPARE_FOR_SUBMISSION", "DEVELOPER_REJECTED", "REJECTED", "METADATA_REJECTED")), None)
+    if ver is None:
+        states = ", ".join(f"{v['attributes']['versionString']} {v['attributes']['appStoreState']}" for v in versions)
+        print(f"  skip  version steps: no editable iOS version ({states})")
+        return
     attrs = {"copyright": COPYRIGHT, "releaseType": "MANUAL"}
     if ver["attributes"]["versionString"] != cfg["version"]:
         attrs["versionString"] = cfg["version"]
@@ -213,9 +221,11 @@ def setup_app(api, cfg, contact, free_price):
     for folder, kind in SHOT_TYPES.items():
         files = sorted(f for f in os.listdir(os.path.join(ROOT, cfg["shots"], folder)) if f.endswith(".png"))
         existing = api.all(f"/v1/appScreenshotSets/{sets[kind]['id']}/appScreenshots") if kind in sets else []
-        if existing:
+        if existing and not REPLACE_SHOTS:
             print(f"  skip  {kind}: {len(existing)} screenshots already there")
             continue
+        for old in existing:
+            api.write(f"remove old {kind} screenshot", "DELETE", f"/v1/appScreenshots/{old['id']}", None)
         if kind not in sets:
             d = api.write(f"screenshot set {kind}", "POST", "/v1/appScreenshotSets", {
                 "data": {"type": "appScreenshotSets", "attributes": {"screenshotDisplayType": kind}, "relationships": {"appStoreVersionLocalization": rel("appStoreVersionLocalizations", vloc["id"])}}})
@@ -313,7 +323,10 @@ def main():
     ap.add_argument("--first", default="Gianangelo")
     ap.add_argument("--last", default="Dichio")
     ap.add_argument("--only", choices=["bucket", "polingual"])
+    ap.add_argument("--replace-shots", action="store_true")
     a = ap.parse_args()
+    global REPLACE_SHOTS
+    REPLACE_SHOTS = a.replace_shots
     api = ASC(a.apply)
     contact = {"first": a.first, "last": a.last, "phone": a.phone, "email": a.email}
     print("APPLYING CHANGES" if a.apply else "DRY RUN: nothing is changed; add --apply to write")
