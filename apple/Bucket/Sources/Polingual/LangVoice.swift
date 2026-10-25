@@ -4,26 +4,10 @@ import Speech
 import SwiftUI
 
 @MainActor
-final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
+final class LangVoice: NSObject {
     static let shared = LangVoice()
     private let synth = AVSpeechSynthesizer()
 
-    override init() {
-        super.init()
-        synth.delegate = self
-    }
-
-    nonisolated func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        Task { @MainActor in self.release() }
-    }
-
-    func release() {
-        guard active, !synth.isSpeaking else { return }
-        #if os(iOS)
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
-        #endif
-        active = false
-    }
     private var player: AVPlayer?
     private var active = false
     private var warmed = false
@@ -35,7 +19,7 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
         guard !active else { return }
         #if os(iOS)
         let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
+        try? session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
         try? session.setActive(true)
         #endif
         active = true
@@ -79,11 +63,7 @@ final class LangVoice: NSObject, AVSpeechSynthesizerDelegate {
         activate()
         synth.stopSpeaking(at: .immediate)
         player?.pause()
-        let item = AVPlayerItem(url: store.clipURL(lang, text))
-        NotificationCenter.default.addObserver(forName: AVPlayerItem.didPlayToEndTimeNotification, object: item, queue: .main) { _ in
-            Task { @MainActor in LangVoice.shared.release() }
-        }
-        player = AVPlayer(playerItem: item)
+        player = AVPlayer(url: store.clipURL(lang, text))
         player?.play()
         return true
     }
@@ -148,7 +128,7 @@ final class LangListener {
         engine.stop()
         input.removeTap(onBus: 0)
         #if os(iOS)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
         #endif
         return result
     }
