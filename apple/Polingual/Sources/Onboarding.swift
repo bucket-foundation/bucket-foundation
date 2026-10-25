@@ -55,15 +55,30 @@ struct Onboarding: View {
     }
 
     var welcome: some View {
+        GeometryReader { g in
+            if g.size.width > g.size.height {
+                HStack(alignment: .center, spacing: 20) {
+                    welcomeText.frame(maxWidth: .infinity, alignment: .leading)
+                    PlayfulTiles().frame(maxWidth: .infinity)
+                }
+            } else {
+                VStack(alignment: .leading, spacing: 16) {
+                    welcomeText
+                    PlayfulTiles()
+                }
+            }
+        }
+    }
+
+    var welcomeText: some View {
         VStack(alignment: .leading, spacing: 16) {
             PoMark()
             Text(accented("Language learning for **multilingual** learners.", D8.vermilion))
                 .font(.system(size: 34, weight: .heavy, design: .rounded))
                 .foregroundStyle(Palette.ink)
-                .minimumScaleFactor(0.7)
+                .minimumScaleFactor(0.6)
                 .fixedSize(horizontal: false, vertical: true)
             StreakBadge()
-            PlayfulTiles()
         }
     }
 

@@ -22,86 +22,43 @@ struct Paywall: View {
     var body: some View {
         GeometryReader { g in
             let h = g.size.height
-            ZStack(alignment: .top) {
-                Dots().ignoresSafeArea()
-                Diagonal(top: 0.30, rise: 0.06)
-                    .fill(Color(hex: 0x5B1A4A))
-                    .ignoresSafeArea()
-                VStack(alignment: .leading, spacing: 0) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        PoMark()
-                        Text(PaywallCopy.headline(trial: subs.trialEligible))
-                            .font(.system(size: 40, weight: .heavy, design: .rounded))
-                            .foregroundStyle(Palette.ink)
-                            .minimumScaleFactor(0.7)
-                            .lineLimit(1)
+            if g.size.width > g.size.height {
+                ZStack {
+                    Dots().ignoresSafeArea()
+                    SideDiagonal().fill(Color(hex: 0x5B1A4A)).ignoresSafeArea()
+                    HStack(alignment: .top, spacing: 16) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            header
+                            art.frame(height: min(220, h * 0.55))
+                        }
+                        .frame(maxWidth: .infinity)
+                        ScrollView {
+                            purchase.padding(.vertical, 12)
+                        }
+                        .scrollBounceBehavior(.basedOnSize)
+                        .frame(maxWidth: 380)
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.top, 12)
-                    PaywallArt()
-                        .frame(height: min(260, h * 0.34))
-                        .padding(.top, h * 0.06)
-                        #if DEBUG
-                        .onLongPressGesture(minimumDuration: 1.5) {
-                            haptic(true)
-                            subs.grantDevPass()
-                        }
-                        #endif
-                    Spacer(minLength: 8)
-                    VStack(spacing: 12) {
-                        if products.isEmpty {
-                            VStack(spacing: 10) {
-                                if loading {
-                                    ProgressView().tint(D8.parchment)
-                                } else {
-                                    Text("The plans did not load. Check your connection and try again.")
-                                        .font(.subheadline.weight(.semibold))
-                                        .foregroundStyle(D8.parchment)
-                                        .multilineTextAlignment(.center)
-                                    Button("Try again") { Task { await load() } }.buttonStyle(D8Option(align: .center, compact: true))
-                                }
-                            }
-                            .frame(minHeight: 84)
-                        } else {
-                            HStack(spacing: 10) {
-                                ForEach(products, id: \.id) { p in
-                                    PlanCard(product: p, selected: chosen == p.id, trial: subs.trialEligible) {
-                                        tap()
-                                        chosen = p.id
-                                    }
-                                }
-                            }
-                            .frame(minHeight: 84)
-                        }
-                        Button(buying ? String(localized: "One moment") : subs.trialEligible ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
-                            Task { await buy() }
-                        }
-                        .buttonStyle(D8Primary())
-                        .disabled(product == nil || buying)
-                        if let note { Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center) }
-                        if let product {
-                            Text(PaywallCopy.disclosure(trial: subs.trialEligible, price: product.displayPrice, period: product.id == Plan.yearly ? "year" : "month"))
-                                .font(.system(size: 12))
-                                .foregroundStyle(D8.parchment.opacity(0.85))
-                                .multilineTextAlignment(.center)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        FlowLayout(spacing: 4) {
-                            Button(restoring ? String(localized: "Restoring") : String(localized: "Restore")) { Task { await restore() } }.disabled(restoring)
-                            Button("Code") { redeeming = true }
-                            if account.stage != .signedIn { Button("Sign in") { signingIn = true } }
-                            Button("Terms") { openURL(Plan.terms) }
-                            Button("Privacy") { openURL(Plan.privacy) }
-                        }
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundStyle(D8.parchment.opacity(0.85))
-                        .buttonStyle(LinkPad())
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 8)
+                    .padding(.horizontal, 12)
                 }
-                .frame(maxWidth: 560)
-                .frame(maxWidth: .infinity)
+            } else {
+                ZStack(alignment: .top) {
+                    Dots().ignoresSafeArea()
+                    Diagonal(top: 0.30, rise: 0.06)
+                        .fill(Color(hex: 0x5B1A4A))
+                        .ignoresSafeArea()
+                    VStack(alignment: .leading, spacing: 0) {
+                        header
+                        art
+                            .frame(height: min(260, h * 0.34))
+                            .padding(.top, h * 0.06)
+                        Spacer(minLength: 8)
+                        purchase
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 8)
+                    }
+                    .frame(maxWidth: 560)
+                    .frame(maxWidth: .infinity)
+                }
             }
         }
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
@@ -110,6 +67,81 @@ struct Paywall: View {
         #if os(iOS)
         .offerCodeRedemption(isPresented: $redeeming) { _ in Task { await subs.refresh() } }
         #endif
+    }
+
+    var header: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            PoMark()
+            Text(PaywallCopy.headline(trial: subs.trialEligible))
+                .font(.system(size: 40, weight: .heavy, design: .rounded))
+                .foregroundStyle(Palette.ink)
+                .minimumScaleFactor(0.7)
+                .lineLimit(1)
+        }
+        .padding(.horizontal, 24)
+        .padding(.top, 12)
+    }
+
+    var art: some View {
+        PaywallArt()
+            #if DEBUG
+            .onLongPressGesture(minimumDuration: 1.5) {
+                haptic(true)
+                subs.grantDevPass()
+            }
+            #endif
+    }
+
+    var purchase: some View {
+        VStack(spacing: 12) {
+            if products.isEmpty {
+                VStack(spacing: 10) {
+                    if loading {
+                        ProgressView().tint(D8.parchment)
+                    } else {
+                        Text("The plans did not load. Check your connection and try again.")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(D8.parchment)
+                            .multilineTextAlignment(.center)
+                        Button("Try again") { Task { await load() } }.buttonStyle(D8Option(align: .center, compact: true))
+                    }
+                }
+                .frame(minHeight: 84)
+            } else {
+                HStack(spacing: 10) {
+                    ForEach(products, id: \.id) { p in
+                        PlanCard(product: p, selected: chosen == p.id, trial: subs.trialEligible) {
+                            tap()
+                            chosen = p.id
+                        }
+                    }
+                }
+                .frame(minHeight: 84)
+            }
+            Button(buying ? String(localized: "One moment") : subs.trialEligible ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
+                Task { await buy() }
+            }
+            .buttonStyle(D8Primary())
+            .disabled(product == nil || buying)
+            if let note { Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center) }
+            if let product {
+                Text(PaywallCopy.disclosure(trial: subs.trialEligible, price: product.displayPrice, period: product.id == Plan.yearly ? "year" : "month"))
+                    .font(.system(size: 12))
+                    .foregroundStyle(D8.parchment.opacity(0.85))
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            FlowLayout(spacing: 4) {
+                Button(restoring ? String(localized: "Restoring") : String(localized: "Restore")) { Task { await restore() } }.disabled(restoring)
+                Button("Code") { redeeming = true }
+                if account.stage != .signedIn { Button("Sign in") { signingIn = true } }
+                Button("Terms") { openURL(Plan.terms) }
+                Button("Privacy") { openURL(Plan.privacy) }
+            }
+            .font(.system(size: 13, weight: .semibold))
+            .foregroundStyle(D8.parchment.opacity(0.85))
+            .buttonStyle(LinkPad())
+        }
     }
 
     func load() async {
@@ -202,6 +234,18 @@ struct LinkPad: ButtonStyle {
             .frame(minHeight: 44)
             .contentShape(Rectangle())
             .opacity(configuration.isPressed ? 0.6 : 1)
+    }
+}
+
+struct SideDiagonal: Shape {
+    func path(in r: CGRect) -> Path {
+        var p = Path()
+        p.move(to: CGPoint(x: r.width * 0.5, y: 0))
+        p.addLine(to: CGPoint(x: r.width, y: 0))
+        p.addLine(to: CGPoint(x: r.width, y: r.height))
+        p.addLine(to: CGPoint(x: r.width * 0.42, y: r.height))
+        p.closeSubpath()
+        return p
     }
 }
 
