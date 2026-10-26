@@ -1,7 +1,7 @@
 import test from "node:test";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
-import { bearerToken, clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
+import { appleAudiences, bearerToken, clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
 
 const SESSION = { access_token: "at", refresh_token: "rt", expires_in: 3600, user: { id: "u1" } };
 
@@ -118,7 +118,7 @@ const sha = (v: string) => createHash("sha256").update(v).digest("hex");
 
 test("apple id token with a matching nonce returns the verify session shape", async () => {
   const w = world();
-  const tok = appleToken({ nonce: sha("n1") });
+  const tok = appleToken({ aud: "foundation.bucket.app", nonce: sha("n1") });
   const ok = await w.handle({ action: "apple", id_token: tok, nonce: "n1" }, "1.1.1.1");
   assert.equal(ok.status, 200);
   assert.deepEqual(ok.body, { access_token: "at", refresh_token: "rt", expires_at: 1_760_000_000 + 3600, user_id: "u1" });
@@ -128,13 +128,13 @@ test("apple id token with a matching nonce returns the verify session shape", as
 test("apple sign-in rejects a missing token or missing nonce with 400", async () => {
   const w = world();
   assert.equal((await w.handle({ action: "apple", nonce: "n1" }, "1.1.1.1")).status, 400);
-  assert.equal((await w.handle({ action: "apple", id_token: appleToken({ nonce: sha("n1") }) }, "1.1.1.1")).status, 400);
+  assert.equal((await w.handle({ action: "apple", id_token: appleToken({ aud: "foundation.bucket.app", nonce: sha("n1") }) }, "1.1.1.1")).status, 400);
   assert.deepEqual(w.calls, []);
 });
 
 test("apple sign-in rejects a wrong or absent nonce claim before calling Supabase", async () => {
   const w = world();
-  assert.equal((await w.handle({ action: "apple", id_token: appleToken({ nonce: sha("other") }), nonce: "n1" }, "1.1.1.1")).status, 401);
+  assert.equal((await w.handle({ action: "apple", id_token: appleToken({ aud: "foundation.bucket.app", nonce: sha("other") }), nonce: "n1" }, "1.1.1.1")).status, 401);
   assert.equal((await w.handle({ action: "apple", id_token: appleToken({}), nonce: "n1" }, "1.1.1.1")).status, 401);
   assert.equal((await w.handle({ action: "apple", id_token: "garbage", nonce: "n1" }, "1.1.1.1")).status, 401);
   assert.deepEqual(w.calls, []);
@@ -143,6 +143,40 @@ test("apple sign-in rejects a wrong or absent nonce claim before calling Supabas
 for (const [status, want] of [[400, 401], [500, 502], [503, 502], [429, 429]] as const) {
   test(`an apple sign-in that Supabase answers ${status} becomes ${want}`, async () => {
     const w = world({ signInWithApple: async () => ({ session: null, status }) });
-    assert.equal((await w.handle({ action: "apple", id_token: appleToken({ nonce: sha("n1") }), nonce: "n1" }, "1.1.1.1")).status, want);
+    assert.equal((await w.handle({ action: "apple", id_token: appleToken({ aud: "foundation.bucket.app", nonce: sha("n1") }), nonce: "n1" }, "1.1.1.1")).status, want);
   });
 }
+
+test("contract: the app half of #987 posts this exact apple request and gets the verify session shape", async () => {
+  for (const [app, aud] of [["bucket", "foundation.bucket.app"], ["polingual", "com.polingual.app"]] as const) {
+    const w = world();
+    const r = await w.handle({ action: "apple", id_token: appleToken({ aud, nonce: sha("raw-nonce") }), nonce: "raw-nonce", app }, "1.1.1.1");
+    assert.equal(r.status, 200);
+    assert.deepEqual(Object.keys(r.body).sort(), ["access_token", "expires_at", "refresh_token", "user_id"]);
+    assert.deepEqual(r.body, { access_token: "at", refresh_token: "rt", expires_at: 1_760_000_000 + 3600, user_id: "u1" });
+  }
+});
+
+test("apple sign-in rejects a wrong or missing aud and an unknown app", async () => {
+  const w = world();
+  assert.equal((await w.handle({ action: "apple", id_token: appleToken({ aud: "com.evil.app", nonce: sha("n1") }), nonce: "n1", app: "bucket" }, "1.1.1.1")).status, 401);
+  assert.equal((await w.handle({ action: "apple", id_token: appleToken({ nonce: sha("n1") }), nonce: "n1", app: "bucket" }, "1.1.1.1")).status, 401);
+  assert.equal((await w.handle({ action: "apple", id_token: appleToken({ aud: "foundation.bucket.app", nonce: sha("n1") }), nonce: "n1", app: "other" }, "1.1.1.1")).status, 400);
+  assert.deepEqual(w.calls, []);
+});
+
+test("apple audiences come from APPLE_AUDIENCES with the two bundle ids as default", () => {
+  assert.deepEqual(appleAudiences(undefined), ["foundation.bucket.app", "com.polingual.app"]);
+  assert.deepEqual(appleAudiences(" a.b , c.d "), ["a.b", "c.d"]);
+  const w = world({ appleAudiences: () => ["a.b"] });
+  return w.handle({ action: "apple", id_token: appleToken({ aud: ["x", "a.b"], nonce: sha("n1") }), nonce: "n1" }, "1.1.1.1").then((r) => assert.equal(r.status, 200));
+});
+
+test("otp with app polingual redirects to polingual.com, other apps keep the default", async () => {
+  const seen: (string | undefined)[] = [];
+  const w = world({ sendOtp: async (_e, redirectTo) => (seen.push(redirectTo), { status: null }) });
+  assert.equal((await w.handle({ action: "otp", email: "a@b.co", app: "polingual" }, "1.1.1.1")).status, 200);
+  assert.equal((await w.handle({ action: "otp", email: "c@b.co", app: "constructor" }, "1.1.1.1")).status, 200);
+  assert.equal((await w.handle({ action: "otp", email: "d@b.co" }, "1.1.1.1")).status, 200);
+  assert.deepEqual(seen, ["https://polingual.com/", undefined, undefined]);
+});
