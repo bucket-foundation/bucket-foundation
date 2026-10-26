@@ -113,6 +113,10 @@ struct LanguagesHome: View {
                         .listRowBackground(Color.clear)
                 }
                 if !store.systems.isEmpty {
+                    Section { StreakGoalCard(streak: Double(langStreak(store))) }
+                        .listRowBackground(Palette.card)
+                }
+                if !store.systems.isEmpty {
                     Section { TranslateCard() }
                         .listRowBackground(Palette.card)
                 }

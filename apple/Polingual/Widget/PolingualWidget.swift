@@ -48,10 +48,10 @@ struct PolingualWidgetView: View {
     var body: some View {
         switch family {
         case .accessoryCircular:
-            Gauge(value: 0) {
+            Gauge(value: StreakGoal(streak: Double(c.streak)).fraction) {
                 Image(systemName: "flame.fill")
             } currentValueLabel: {
-                Text("\(c.due)")
+                Text("\(c.streak)")
             }
             .gaugeStyle(.accessoryCircularCapacity)
         case .accessoryRectangular:
@@ -60,7 +60,7 @@ struct PolingualWidgetView: View {
                 Text(s.words.map(\.form).joined(separator: " · ")).font(.headline).lineLimit(2)
             }
         case .accessoryInline:
-            Text("\(c.due) due · \(s.words.first?.form ?? s.gloss)")
+            Text("\(goal) · \(c.due) due")
         case .systemSmall:
             VStack(alignment: .leading, spacing: 6) {
                 tally
@@ -72,9 +72,10 @@ struct PolingualWidgetView: View {
         default:
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .firstTextBaseline, spacing: 10) {
-                    HStack(spacing: 3) {
+                    HStack(alignment: .firstTextBaseline, spacing: 3) {
                         Image(systemName: "flame.fill").foregroundStyle(WidgetInk.vermilion)
                         Text("\(c.streak)").font(.system(size: 22, weight: .heavy, design: .rounded))
+                        if c.streak < StreakGoal.target { Text("/100").font(.caption.weight(.bold)).foregroundStyle(WidgetInk.ink.opacity(0.55)) }
                     }
                     Text("\(c.due) due").font(.subheadline.weight(.bold))
                     Text("\(c.new) new").font(.subheadline).foregroundStyle(WidgetInk.ink.opacity(0.6))
@@ -91,12 +92,19 @@ struct PolingualWidgetView: View {
         }
     }
 
+    var goal: String {
+        let g = StreakGoal(streak: Double(c.streak))
+        if g.day == 0 { return String(localized: "Day 0 of 100") }
+        return g.reached ? String(localized: "Day \(g.day)") : String(localized: "Day \(g.day) of 100")
+    }
+
     var tally: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: 4) {
                 Image(systemName: "flame.fill").foregroundStyle(WidgetInk.vermilion)
-                Text("\(c.streak)").font(.system(size: 24, weight: .heavy, design: .rounded))
+                Text(goal).font(.system(size: 17, weight: .heavy, design: .rounded)).lineLimit(1).minimumScaleFactor(0.7)
             }
+            ProgressView(value: StreakGoal(streak: Double(c.streak)).fraction).tint(WidgetInk.vermilion)
             Text("\(c.due) due · \(c.new) new").font(.caption.weight(.semibold))
         }
     }
