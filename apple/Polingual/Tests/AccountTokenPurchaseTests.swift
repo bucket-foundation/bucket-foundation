@@ -17,7 +17,7 @@ struct ServerTokenTransport: Transport {
     let issued = UUID()
     let api = BucketAPI(transport: ServerTokenTransport(issued: issued))
     let live = Session(accessToken: "b", refreshToken: "r", expiresAt: 9_999_999_999, userId: UUID().uuidString)
-    let tokens = AccountTokens(api: api, defaults: try #require(UserDefaults(suiteName: "purchase-token-\(UUID())")))
+    let tokens = AccountTokens(api: api, vault: MemoryAccountTokenVault())
     let fetched = await tokens.fetch(for: Account(api: api, store: MemorySessionStore(live)))
     #expect(try fetched.get() == issued)
     let options = try PurchaseOptions.make(fetched).get()
@@ -26,7 +26,7 @@ struct ServerTokenTransport: Transport {
 }
 
 @Test func aSignedInPurchaseWithoutATokenIsBlocked() throws {
-    for kind in [AccountTokenFailure.unauthorized, .timeout, .offline, .unavailable, .server, .decode] {
+    for kind in [AccountTokenFailure.unauthorized, .userChanged, .timeout, .offline, .unavailable, .server, .decode] {
         #expect(PurchaseOptions.make(.failure(kind)).map(\.count) == .failure(kind))
     }
     #expect(try PurchaseOptions.make(.failure(.signedOut)).get().isEmpty)

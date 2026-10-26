@@ -18,7 +18,6 @@ struct Paywall: View {
     @State private var redeeming = false
     @State private var student = false
     @State private var tokens = AccountTokens()
-    @State private var accountToken: UUID?
 
     var product: Product? { products.first { $0.id == chosen } }
 
@@ -66,10 +65,7 @@ struct Paywall: View {
         }
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .task { await load() }
-        .task(id: account.session?.userId) {
-            accountToken = nil
-            accountToken = try? await fetchToken(at: "prefetch").get()
-        }
+        .task(id: account.session?.userId) { _ = await fetchToken(at: "prefetch") }
         .sheet(isPresented: $signingIn) { AccountView() }
         #if os(iOS)
         .offerCodeRedemption(isPresented: $redeeming) { _ in Task { await subs.refresh() } }
@@ -184,9 +180,7 @@ struct Paywall: View {
         buying = true
         note = nil
         defer { buying = false }
-        let fetched: Result<UUID, AccountTokenFailure> = if let accountToken { .success(accountToken) } else { await fetchToken(at: "purchase") }
-        accountToken = try? fetched.get()
-        guard let options = try? PurchaseOptions.make(fetched).get() else {
+        guard let options = try? PurchaseOptions.make(await fetchToken(at: "purchase")).get() else {
             note = String(localized: "We could not link this purchase to your account. Check your connection and tap again.")
             return
         }
