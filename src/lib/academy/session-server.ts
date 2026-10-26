@@ -29,6 +29,7 @@ export interface SessionDeps {
   sendOtp: (email: string, redirectTo?: string) => Promise<{ status: number | null }>;
   verifyOtp: (email: string, code: string) => Promise<AuthResult>;
   refresh: (refreshToken: string) => Promise<AuthResult>;
+  signInWithApple: (token: string, nonce?: string) => Promise<AuthResult>;
   deleteAccount: (accessToken: string) => Promise<{ status: number | null }>;
   now: () => number;
 }
@@ -99,6 +100,17 @@ export function createSessionHandler(deps: SessionDeps) {
       const r = await deps.verifyOtp(email, code);
       if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
       return r.session ? { status: 200, body: tokens(r.session) } : { status: 400, body: { error: "bad_code" } };
+    }
+
+    if (b.action === "apple") {
+      const token = typeof b.id_token === "string" ? b.id_token : "";
+      const nonce = typeof b.nonce === "string" ? b.nonce : "";
+      if (!token || token.length > 8192 || nonce.length > 512) return { status: 400, body: { error: "bad_request" } };
+      if (!(await within([[`apple:ip:${ip}`, SESSION_LIMITS.verifyIp]]))) return { status: 429, body: { error: "too_many_requests" } };
+      const r = nonce ? await deps.signInWithApple(token, nonce) : await deps.signInWithApple(token);
+      if (r.session) return { status: 200, body: tokens(r.session) };
+      if (r.status === 429) return { status: 429, body: { error: "too_many_requests" } };
+      return { status: 401, body: { error: "bad_token" } };
     }
 
     if (b.action === "refresh") {

@@ -19,6 +19,7 @@ function world(over: Partial<SessionDeps> = {}) {
     sendOtp: async (email) => (calls.push(`otp ${email}`), { status: null }),
     verifyOtp: async (_e, code): Promise<AuthResult> => (code === "123456" ? { session: SESSION, status: null } : { session: null, status: 403 }),
     refresh: async (): Promise<AuthResult> => ({ session: SESSION, status: null }),
+    signInWithApple: async (token, nonce): Promise<AuthResult> => (calls.push(`apple ${token} ${nonce ?? "-"}`), token === "good" ? { session: SESSION, status: null } : { session: null, status: 400 }),
     deleteAccount: async (token) => (calls.push(`delete ${token}`), { status: null }),
     ...over,
   };
@@ -118,4 +119,19 @@ test("otp with app polingual redirects to polingual.com, other apps keep the def
   assert.equal((await w.handle({ action: "otp", email: "c@b.co", app: "constructor" }, "1.1.1.1")).status, 200);
   assert.equal((await w.handle({ action: "otp", email: "d@b.co" }, "1.1.1.1")).status, 200);
   assert.deepEqual(seen, ["https://polingual.com/", undefined, undefined]);
+});
+
+test("apple id token returns the same session shape and passes the nonce", async () => {
+  const w = world();
+  const ok = await w.handle({ action: "apple", id_token: "good", nonce: "n1" }, "1.1.1.1");
+  assert.equal(ok.status, 200);
+  assert.deepEqual(ok.body, { access_token: "at", refresh_token: "rt", expires_at: 1_760_000_000 + 3600, user_id: "u1" });
+  assert.deepEqual(w.calls, ["apple good n1"]);
+});
+
+test("apple sign-in rejects a missing or bad token", async () => {
+  const w = world();
+  assert.equal((await w.handle({ action: "apple" }, "1.1.1.1")).status, 400);
+  assert.equal((await w.handle({ action: "apple", id_token: "bad" }, "1.1.1.1")).status, 401);
+  assert.deepEqual(w.calls, ["apple bad -"]);
 });
