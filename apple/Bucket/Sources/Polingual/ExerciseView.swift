@@ -475,7 +475,7 @@ struct Prompt: View {
         case .gender:
             VStack(spacing: 4) {
                 (Text("______ ").foregroundStyle(Palette.muted) + Text(ex.prompt)).font(.serif(.title, weight: .semibold)).foregroundStyle(Palette.ink)
-                if let g = ex.promptReading?.roman { Text(ex.root == "en" ? "the \(g)" : g).font(.subheadline).foregroundStyle(Palette.muted) }
+                if let g = ex.promptReading?.roman { Text(g).font(.subheadline).foregroundStyle(Palette.muted) }
             }
             .frame(maxWidth: .infinity)
         case .conjugate:

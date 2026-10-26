@@ -77,7 +77,7 @@ struct StudyView: View {
         } else {
             let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang))
             let crossed = Beta.shared.flags.values["option_language"] == "same" ? made : crossLanguageOptions(made, item, system, &rng)
-            current = correctArticle(crossed, &rng)
+            current = crossed
         }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
         cardStart = .now
