@@ -93,6 +93,7 @@ const SUITES = {
     ],
     commands: [
       ["python3", "-m", "unittest", "_intake/solver-gap-engine/tests/test_watch.py"],
+      ["python3", "scripts/academy/deck_voice.py"],
       ["python3", "scripts/academy/check_keys.py"],
       ["bash", "scripts/test-release-install-linux.sh"],
       ["python3", "-m", "unittest", "scripts/canon-explorer/test_embed.py"],
