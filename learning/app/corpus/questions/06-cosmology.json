@@ -237,12 +237,12 @@
    "id": "metric.applied",
    "atom": "metric",
    "kind": "pick",
-   "prompt": "Surveyors on a curved Earth compute distances from latitude and longitude differences. What plays the role of the metric?",
+   "prompt": "A survey grid uses 1 km east-west steps at the equator. On a sphere the metric scales east-west distance by cos(latitude). How long is the same grid step at 60 degrees north?",
    "options": [
-    "The rule converting coordinate steps into ground distance",
-    "The total number of survey points taken across the whole region",
-    "The height of the tallest hill",
-    "The compass bearing of north"
+    "0.5 km",
+    "0.87 km",
+    "1 km",
+    "2 km"
    ],
    "answer": 0,
    "applied": true
@@ -409,14 +409,14 @@
    "id": "stress-energy.applied",
    "atom": "stress-energy",
    "kind": "pick",
-   "prompt": "A neutron star's huge internal pressure adds to its gravity. Which object in general relativity includes that pressure?",
+   "prompt": "Two neutron stars have the same rest mass, but one has far higher internal pressure. Which one curves spacetime more strongly?",
    "options": [
-    "The stress-energy tensor",
-    "The Hubble constant",
-    "The scale factor of the universe at the star's location",
-    "The redshift"
+    "Both the same, since only rest mass sources gravity",
+    "The higher-pressure star, since pressure also sources gravity",
+    "The lower-pressure star, since pressure pushes outward against gravity",
+    "Neither, since pressure and mass cancel inside a star"
    ],
-   "answer": 0,
+   "answer": 1,
    "applied": true
   },
   {
@@ -495,14 +495,14 @@
    "id": "einstein-field-equations.applied",
    "atom": "einstein-field-equations",
    "kind": "pick",
-   "prompt": "Engineers model GPS timing with general relativity. Which equation links Earth's mass to the spacetime curvature they correct for?",
+   "prompt": "A GPS clock orbits at 20,200 km, where Earth's gravity is weaker than on the ground. From gravity alone, how does it run against a ground clock?",
    "options": [
-    "Einstein's field equations",
-    "Hubble's law",
-    "Wien's law",
-    "The Friedmann equation for an empty universe"
+    "Slower, by about 45 microseconds a day",
+    "Faster, by about 7 microseconds a day",
+    "Faster, by about 45 microseconds a day",
+    "At the same rate, since both clocks are identical"
    ],
-   "answer": 0,
+   "answer": 2,
    "applied": true
   },
   {
@@ -667,14 +667,14 @@
    "id": "frw-metric.applied",
    "atom": "frw-metric",
    "kind": "pick",
-   "prompt": "Cosmology software converts a galaxy's redshift into a distance. Which metric does it assume for the universe?",
+   "prompt": "A radio survey finds the 21 cm hydrogen line from a distant galaxy arriving at 42 cm. By what factor has space stretched since the light left?",
    "options": [
-    "The FRW metric",
-    "The flat Minkowski metric with no expansion",
-    "The Schwarzschild metric of one star",
-    "The taxicab metric"
+    "21",
+    "0.5",
+    "42",
+    "2"
    ],
-   "answer": 0,
+   "answer": 3,
    "applied": true
   },
   {
@@ -985,12 +985,12 @@
    "id": "friedmann-equations.applied",
    "atom": "friedmann-equations",
    "kind": "pick",
-   "prompt": "Planck satellite data fixes the universe's expansion history. Which equations turn its measured densities into that history?",
+   "prompt": "The first Friedmann equation sets the critical density in proportion to H squared. If H0 were twice Planck's 67.4 km/s/Mpc, the critical density would be:",
    "options": [
-    "The Friedmann equations",
-    "Maxwell's equations",
-    "Newton's laws of motion for planets",
-    "Kepler's laws"
+    "Four times larger",
+    "Twice as large",
+    "Half as large",
+    "Unchanged"
    ],
    "answer": 0,
    "applied": true
@@ -1614,11 +1614,11 @@
    "id": "cmb-origin.calculate",
    "atom": "cmb-origin",
    "kind": "calculate",
-   "prompt": "Wien's law gives peak wavelength = 2.898e-3 / T meters. For T = 2.725 K, find the peak in mm.",
+   "prompt": "A team designs a receiver for the 2.725 K CMB. Wien's law gives the peak wavelength as 2.898e-3 / T meters. At what wavelength, in mm, should the receiver be most sensitive?",
    "answer": 1.063,
+   "applied": true,
    "unit": "mm",
-   "relTol": 0.02,
-   "applied": true
+   "relTol": 0.02
   },
   {
    "id": "cmb-origin.order",
@@ -1687,11 +1687,11 @@
    "id": "cmb-anisotropies.calculate",
    "atom": "cmb-anisotropies",
    "kind": "calculate",
-   "prompt": "The CMB averages 2.725 K. A fluctuation of 1 part in 100,000 is how many microkelvin?",
+   "prompt": "A CMB telescope must map hot and cold spots of 1 part in 100,000 on the 2.725 K sky. What temperature difference, in microkelvin, must its detectors resolve?",
    "answer": 27.25,
+   "applied": true,
    "unit": "µK",
-   "relTol": 0.02,
-   "applied": true
+   "relTol": 0.02
   },
   {
    "id": "cmb-anisotropies.order",
@@ -2541,14 +2541,14 @@
    "id": "cosmological-constant.applied",
    "atom": "cosmological-constant",
    "kind": "pick",
-   "prompt": "Astronomers fit supernova and CMB data with a constant energy density in empty space. What is that term called?",
+   "prompt": "As the universe doubles in size, matter density drops by a factor of 8. If dark energy is a cosmological constant, its density over the same doubling:",
    "options": [
-    "The cosmological constant",
-    "The Hubble constant",
-    "The critical density of a flat universe",
-    "The baryon fraction"
+    "Drops by 8, like matter",
+    "Stays the same",
+    "Drops by 2",
+    "Drops by 16, like radiation"
    ],
-   "answer": 0,
+   "answer": 1,
    "applied": true
   },
   {
@@ -2626,14 +2626,14 @@
    "id": "lambda-cdm.applied",
    "atom": "lambda-cdm",
    "kind": "pick",
-   "prompt": "Planck, BAO surveys and supernovae all fit one six-parameter model. Which model is it?",
+   "prompt": "Lambda-CDM fits today's universe with matter near 0.3 and Lambda near 0.7 of the critical density. What does it predict for the far future?",
    "options": [
-    "Lambda-CDM",
-    "The steady-state model",
-    "A static universe",
-    "Hot dark matter only"
+    "A recollapse into a big crunch",
+    "Expansion slowing until the universe stops growing",
+    "Accelerating expansion that tends to exponential growth",
+    "Coasting at a constant expansion speed"
    ],
-   "answer": 0,
+   "answer": 2,
    "applied": true
   },
   {
@@ -2812,11 +2812,11 @@
    "id": "gravitational-lensing.calculate",
    "atom": "gravitational-lensing",
    "kind": "calculate",
-   "prompt": "Lensing shows a cluster mass of 1.0e15 solar masses; visible matter is 1.5e14. What is the ratio of total to visible mass?",
+   "prompt": "Hubble images of a cluster show arcs whose Einstein radius implies 1.0e15 solar masses. X-ray gas and stars add up to 1.5e14. How many times more mass does lensing see than the visible matter?",
    "answer": 6.67,
+   "applied": true,
    "unit": "x",
-   "relTol": 0.02,
-   "applied": true
+   "relTol": 0.02
   },
   {
    "id": "gravitational-lensing.order",
@@ -2885,11 +2885,11 @@
    "id": "hubble-tension.calculate",
    "atom": "hubble-tension",
    "kind": "calculate",
-   "prompt": "By what percent does 73 exceed 67.4 km/s/Mpc?",
+   "prompt": "SH0ES Cepheid-calibrated supernovae give H0 = 73.0 km/s/Mpc; the Planck CMB fit gives 67.4. By what percent is the local value higher?",
    "answer": 8.31,
+   "applied": true,
    "unit": "%",
-   "relTol": 0.02,
-   "applied": true
+   "relTol": 0.02
   },
   {
    "id": "hubble-tension.order",
@@ -3619,14 +3619,14 @@
    "id": "matter-power-spectrum.applied",
    "atom": "matter-power-spectrum",
    "kind": "pick",
-   "prompt": "Survey teams compare galaxy clustering at different scales with theory. What do they measure?",
+   "prompt": "A galaxy survey finds less clustering on small scales than pure cold dark matter predicts. Which change to the model produces that suppression?",
    "options": [
-    "The matter power spectrum",
-    "The Sun's spectrum",
-    "The CMB temperature alone",
-    "The speed of light"
+    "More cold dark matter",
+    "A higher CMB temperature",
+    "Removing dark energy",
+    "Massive neutrinos or warmer dark matter that streams out of small clumps"
    ],
-   "answer": 0,
+   "answer": 3,
    "applied": true
   },
   {
@@ -3646,11 +3646,11 @@
    "id": "type-ia-supernovae.calculate",
    "atom": "type-ia-supernovae",
    "kind": "calculate",
-   "prompt": "Two standardized Type Ia supernovae differ by 5 magnitudes in apparent brightness. By what factor do their luminosity distances differ?",
-   "answer": 10,
-   "unit": "",
-   "tol": 0.01,
-   "applied": true
+   "prompt": "A survey's Type Ia supernova looks 5 magnitudes fainter than an identical one in a calibrator galaxy 20 Mpc away. Ignoring expansion effects, how far away is it, in Mpc?",
+   "answer": 200,
+   "applied": true,
+   "unit": "Mpc",
+   "relTol": 0.02
   },
   {
    "id": "type-ia-supernovae.order",
@@ -4150,11 +4150,11 @@
    "id": "sunyaev-zeldovich-effect.calculate",
    "atom": "sunyaev-zeldovich-effect",
    "kind": "calculate",
-   "prompt": "The SZ null sits near 217 GHz. A map at 150 GHz sits how many GHz below it?",
-   "answer": 67,
-   "unit": "GHz",
-   "tol": 0.5,
-   "applied": true
+   "prompt": "A cluster in a South Pole Telescope map has Compton y = 1e-4. At low frequency the CMB behind it dims by 2yT, with T = 2.725 K. How deep is the decrement, in microkelvin?",
+   "answer": 545,
+   "applied": true,
+   "unit": "µK",
+   "relTol": 0.02
   },
   {
    "id": "sunyaev-zeldovich-effect.order",
@@ -4355,12 +4355,12 @@
    "id": "halo-mass-function.applied",
    "atom": "halo-mass-function",
    "kind": "pick",
-   "prompt": "The eROSITA X-ray survey counts massive clusters to test cosmology. Which prediction does it compare against?",
+   "prompt": "eROSITA counts fewer massive galaxy clusters than a model with sigma_8 = 0.9 predicts. Which change brings the model in line?",
    "options": [
-    "The halo mass function",
-    "Wien's law",
-    "Hubble's law alone",
-    "The Chandrasekhar mass"
+    "A lower sigma_8, the amplitude of matter fluctuations",
+    "A higher sigma_8",
+    "A higher CMB temperature",
+    "More stars per galaxy"
    ],
    "answer": 0,
    "applied": true
@@ -4441,14 +4441,14 @@
    "id": "fluid-equation.applied",
    "atom": "fluid-equation",
    "kind": "pick",
-   "prompt": "A cosmology code tracks each component's density as space expands. Which equation updates them?",
+   "prompt": "Radiation has pressure equal to a third of its energy density. When the universe doubles in size, its energy density drops by what factor?",
    "options": [
-    "The fluid equation",
-    "The wave equation",
-    "Ohm's law",
-    "Snell's law"
+    "8",
+    "16",
+    "4",
+    "2"
    ],
-   "answer": 0,
+   "answer": 1,
    "applied": true
   },
   {
@@ -4613,14 +4613,14 @@
    "id": "growth-of-structure.applied",
    "atom": "growth-of-structure",
    "kind": "pick",
-   "prompt": "Weak lensing surveys measure how fast clumps grew over time. Which quantity do they track?",
+   "prompt": "Weak lensing finds clumps grew more slowly since redshift 1 than gravity in a matter-only universe predicts. What is the standard explanation?",
    "options": [
-    "The growth factor D(a)",
-    "The CMB temperature",
-    "The Hubble constant alone",
-    "The Sun's luminosity"
+    "Gravity grew stronger at late times",
+    "More baryons formed after redshift 1",
+    "Dark energy sped up expansion, which slows clumping",
+    "The CMB cooled faster than expected"
    ],
-   "answer": 0,
+   "answer": 2,
    "applied": true
   },
   {
@@ -4871,14 +4871,14 @@
    "id": "cmb-polarization.applied",
    "atom": "cmb-polarization",
    "kind": "pick",
-   "prompt": "The Simons Observatory measures CMB polarization in addition to temperature. What extra information does polarization give?",
+   "prompt": "The Simons Observatory detects primordial B-mode polarization on large angular scales, after removing dust. What does that point to?",
    "options": [
-    "Reionization history and possible gravitational waves",
-    "The Sun's magnetic field",
-    "Earth's ozone layer",
-    "The color of galaxies"
+    "Hot gas in galaxy clusters",
+    "Earth's magnetic field",
+    "Rotation of nearby galaxies",
+    "Gravitational waves from inflation"
    ],
-   "answer": 0,
+   "answer": 3,
    "applied": true
   }
  ]
