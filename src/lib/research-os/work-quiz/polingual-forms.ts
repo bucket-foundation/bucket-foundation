@@ -27,7 +27,7 @@ export interface RawSubset {
   words: readonly RawWord[];
 }
 
-export type Script = "latin" | "cyrillic" | "greek" | "arabic" | "hebrew" | "devanagari" | "tamil" | "thai" | "hangul" | "kana" | "han" | "other";
+export type Script = "latin" | "cyrillic" | "greek" | "arabic" | "hebrew" | "devanagari" | "gurmukhi" | "tamil" | "thai" | "hangul" | "kana" | "han" | "other";
 
 export interface WordCell {
   lang: string;
@@ -91,6 +91,7 @@ const SCRIPT_RANGES: readonly [number, number, Script][] = [
   [0xfb50, 0xfdff, "arabic"],
   [0xfe70, 0xfeff, "arabic"],
   [0x0900, 0x097f, "devanagari"],
+  [0x0a00, 0x0a7f, "gurmukhi"],
   [0x0b80, 0x0bff, "tamil"],
   [0x0e00, 0x0e7f, "thai"],
   [0x1100, 0x11ff, "hangul"],

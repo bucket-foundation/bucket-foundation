@@ -11,7 +11,7 @@ LEVELS = {"A1", "A2", "B1"}
 def codes() -> list[str]:
     src = (ROOT / "src/lib/research-os/work-quiz/languages.ts").read_text()
     block = src.split("LANGUAGE_NAMES")[1].split("};")[0]
-    return sorted(set(re.findall(r"^\s+([a-z]{2}):", block, re.M)) | {"pa"})
+    return sorted(set(re.findall(r"^\s+([a-z]{2}):", block, re.M)))
 
 
 class CorpusTest(unittest.TestCase):
@@ -45,6 +45,20 @@ class CorpusTest(unittest.TestCase):
             for p in phrases:
                 self.assertIn(p["band"], LEVELS)
                 self.assertTrue(p["url"].startswith("https://") and p["license"] and p["author"] and p["english"], lang)
+
+    def test_punjabi_deck_overrides_hold(self):
+        subset = json.loads((DATA / "subset.json").read_text())
+        pa = {w["c"]: w for w in subset["words"] if w["l"] == "pa"}
+        self.assertEqual(pa["mouth"]["s"], "ਮੂੰਹ")
+        self.assertNotIn("ਵਾਕ", {w["s"] for w in pa.values()})
+        self.assertNotIn("young", pa)
+
+    def test_every_punjabi_match_is_reviewed(self):
+        subset = json.loads((DATA / "subset.json").read_text())
+        rows = [line.split("\t") for line in (DATA / "sources/pa_review.tsv").read_text(encoding="utf-8").splitlines()[1:]]
+        reviewed = {(r[0], r[1]) for r in rows if r[2] == "ok" and r[4]}
+        shipped = {(w["c"], w["s"]) for w in subset["words"] if w["l"] == "pa"}
+        self.assertEqual(shipped - reviewed, set())
 
     def test_punjabi_is_gurmukhi(self):
         words = json.loads((DATA / "top1000/pa.json").read_text())

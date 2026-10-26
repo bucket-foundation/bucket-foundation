@@ -18,6 +18,7 @@ export const LANGUAGE_NAMES: Readonly<Record<string, string>> = {
   ko: "Korean",
   la: "Latin",
   nl: "Dutch",
+  pa: "Punjabi",
   pl: "Polish",
   pt: "Portuguese",
   ru: "Russian",
@@ -31,6 +32,11 @@ export const LANGUAGE_NAMES: Readonly<Record<string, string>> = {
 };
 
 export const LANGUAGE_CODES: readonly string[] = Object.keys(LANGUAGE_NAMES);
+export const PREVIEW_LANGUAGES: readonly string[] = ["pa"];
+
+export function isPreviewLanguage(code: string): boolean {
+  return PREVIEW_LANGUAGES.includes(code);
+}
 export const RTL_LANGUAGES: readonly string[] = ["ar", "he", "fa"];
 export const MAX_LANGUAGES = LANGUAGE_CODES.length;
 export const LANGUAGES_ERROR = "languages must be a list of codes from the Polingual word set";
