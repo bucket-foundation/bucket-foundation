@@ -3,6 +3,8 @@ import path from "node:path";
 import { normalizeState, dayKey } from "../src/lib/academy/engine";
 import { DAY_MS } from "../src/lib/academy/fsrs";
 import {
+  articleFor,
+  articleWord,
   availableSystems,
   LANGS as CATALOG_LANGS,
   SYSTEM_CATALOG,
@@ -269,6 +271,17 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   const dog = corpus.byId.get("g-dog")!;
   const g = exerciseFor(corpus, romance, dog, "fr", undefined, rng, { afterIntro: true });
   ok(g.kind === "gender" && g.answer === "le" && g.options!.includes("la") && g.prompt === "chien", "gender drill asks for the article");
+  const zaino = { ...dog, forms: { ...dog.forms, it: "lo zaino" }, gender: { ...dog.gender, it: "m" } };
+  const gi = exerciseFor(corpus, romance, zaino, "it", undefined, seededRng(5), { afterIntro: true });
+  ok(gi.kind === "gender" && gi.answer === "lo" && gi.prompt === "zaino" && ["il", "lo", "la", "l'"].every((o) => gi.options!.includes(o)), "Italian drill grades lo and offers l'");
+  const hibou = { ...dog, forms: { ...dog.forms, fr: "le hibou" } };
+  const gh = exerciseFor(corpus, romance, hibou, "fr", undefined, seededRng(5), { afterIntro: true });
+  ok(gh.kind === "gender" && gh.answer === "le" && gh.prompt === "hibou", "French drill keeps le before an aspirated h");
+ok(articleFor("it", "m", "zero") === "lo zero" && articleFor("it", "m", "studente") === "lo studente" && articleFor("it", "m", "libro") === "il libro", "Italian lo before z and s plus consonant");
+ok(articleFor("it", "m", "amico") === "l'amico" && articleFor("fr", "f", "eau") === "l'eau" && articleFor("fr", "m", "homme") === "l'homme", "elision before a vowel or mute h");
+ok(articleFor("fr", "m", "héros") === "le héros" && articleFor("fr", "f", "haine") === "la haine", "no elision before an aspirated h");
+ok(articleFor("es", "f", "agua") === "el agua" && articleFor("es", "f", "hambre") === "el hambre" && articleFor("es", "f", "casa") === "la casa", "Spanish el before stressed a");
+ok(articleWord("it", "m", "sole") === "il" && articleWord("it", "m", "gnomo") === "lo", "lo only before s plus consonant, z, gn");
   const eat = corpus.byId.get("c-eat")!;
   const c1 = exerciseFor(corpus, romance, eat, "es", undefined, seededRng(1), { afterIntro: true });
   ok(c1.kind === "conjugate" && !!c1.person && eat.conj.es.includes(c1.answer) && c1.options!.includes(c1.answer), "conjugation drill starts as a choice");
