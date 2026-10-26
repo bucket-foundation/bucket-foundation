@@ -119,7 +119,7 @@ struct Paywall: View {
                 }
                 .frame(minHeight: 84)
             } else {
-                HStack(spacing: 10) {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: min(max(products.count, 1), 2)), spacing: 14) {
                     ForEach(products, id: \.id) { p in
                         PlanCard(product: p, selected: chosen == p.id, trial: subs.trialEligible) {
                             tap()
@@ -129,14 +129,14 @@ struct Paywall: View {
                 }
                 .frame(minHeight: 84)
             }
-            Button(buying ? String(localized: "One moment") : subs.trialEligible ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
+            Button(buying ? String(localized: "One moment") : chosen == Plan.lifetime ? String(localized: "Buy once") : subs.trialEligible && Plan.hasTrial(chosen) ? String(localized: "Start \(Plan.trialDays) days free") : String(localized: "Subscribe")) {
                 Task { await buy() }
             }
             .buttonStyle(D8Primary())
             .disabled(product == nil || buying)
             if let note { Text(note).font(.subheadline.weight(.semibold)).foregroundStyle(D8.parchment).multilineTextAlignment(.center) }
             if let product {
-                Text(PaywallCopy.disclosure(trial: subs.trialEligible, price: product.displayPrice, period: product.id == Plan.yearly ? "year" : "month"))
+                Text(PaywallCopy.disclosure(trial: subs.trialEligible && Plan.hasTrial(product.id), price: product.displayPrice, period: product.id == Plan.monthly ? "month" : product.id == Plan.lifetime ? "once" : "year", family: product.id == Plan.family))
                     .font(.system(size: 12))
                     .foregroundStyle(D8.parchment.opacity(0.85))
                     .multilineTextAlignment(.center)
@@ -158,8 +158,9 @@ struct Paywall: View {
 
     func load() async {
         loading = true
-        let found = (try? await Product.products(for: Plan.all)) ?? []
-        products = Plan.all.compactMap { id in found.first { $0.id == id } }
+        let ids = Plan.shown(extra: PaywallFlags.extraPlans)
+        let found = (try? await Product.products(for: ids)) ?? []
+        products = ids.compactMap { id in found.first { $0.id == id } }
         if !products.contains(where: { $0.id == chosen }), let first = products.first { chosen = first.id }
         loading = false
     }
@@ -217,9 +218,9 @@ struct PlanCard: View {
         let yearly = product.id == Plan.yearly
         Button(action: action) {
             VStack(spacing: 3) {
-                Text(yearly ? String(localized: "Yearly") : String(localized: "Monthly")).font(.system(size: 15, weight: .heavy, design: .rounded))
+                Text(PlanCard.title(product.id)).font(.system(size: 15, weight: .heavy, design: .rounded))
                 Text(product.displayPrice).font(.system(size: 22, weight: .heavy, design: .rounded))
-                Text(yearly ? String(localized: "per year") : String(localized: "per month")).font(.caption).foregroundStyle(D8.label)
+                Text(PlanCard.period(product.id)).font(.caption).foregroundStyle(D8.label)
             }
             .foregroundStyle(D8.ink)
             .frame(maxWidth: .infinity)
@@ -234,8 +235,38 @@ struct PlanCard: View {
             }
         }
         .buttonStyle(D8Option(selected: selected, align: .center))
-        .accessibilityLabel("\(yearly ? "Yearly" : "Monthly"), \(product.displayPrice)")
+        .accessibilityLabel("\(PlanCard.title(product.id)), \(product.displayPrice), \(PlanCard.period(product.id))")
         .accessibilityAddTraits(selected ? .isSelected : [])
+    }
+}
+
+extension PlanCard {
+    static func title(_ id: String) -> String {
+        switch id {
+        case Plan.yearly: String(localized: "Yearly")
+        case Plan.family: String(localized: "Family")
+        case Plan.lifetime: String(localized: "Lifetime")
+        default: String(localized: "Monthly")
+        }
+    }
+
+    static func period(_ id: String) -> String {
+        switch id {
+        case Plan.yearly: String(localized: "per year")
+        case Plan.family: String(localized: "per year, up to 6")
+        case Plan.lifetime: String(localized: "once")
+        default: String(localized: "per month")
+        }
+    }
+}
+
+@MainActor
+enum PaywallFlags {
+    static var extraPlans: Bool {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-extraPlans") { return true }
+        #endif
+        return Beta.shared.flags.value("extra_plans") == "on"
     }
 }
 
@@ -281,7 +312,13 @@ enum PaywallCopy {
         trial ? String(localized: "\(Plan.trialDays) days free") : String(localized: "Keep learning")
     }
 
-    static func disclosure(trial: Bool, price: String, period: String) -> String {
+    static func disclosure(trial: Bool, price: String, period: String, family: Bool = false) -> String {
+        if period == "once" { return String(localized: "\(price) once. Charged to your Apple Account. No subscription and no renewal.") }
+        let share = family ? " " + String(localized: "Share it with up to 5 family members through Family Sharing.") : ""
+        return base(trial: trial, price: price, period: period) + share
+    }
+
+    static func base(trial: Bool, price: String, period: String) -> String {
         let per = period == "year" ? String(localized: "\(price) a year") : String(localized: "\(price) a month")
         let lead = trial ? String(localized: "\(Plan.trialDays) days free, then \(per).") : String(localized: "\(per).")
         return lead + " " + String(localized: "Charged to your Apple Account. Renews automatically unless cancelled at least 24 hours before the period ends, in Settings.")

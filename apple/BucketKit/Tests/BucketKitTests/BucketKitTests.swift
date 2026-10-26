@@ -255,3 +255,19 @@ final class FlakyRoutes: @unchecked Sendable {
     let values = try url.resourceValues(forKeys: [.isExcludedFromBackupKey])
     #expect(values.isExcludedFromBackup == true)
 }
+
+final class BodyBox: @unchecked Sendable { var bodies: [[String: String]] = [] }
+
+@Test func appleSignInSendsTheAuthorizationCodeForRevocation() async throws {
+    let box = BodyBox()
+    let reply = try JSONSerialization.data(withJSONObject: ["access_token": "a", "refresh_token": "r", "expires_at": 9_999_999_999, "user_id": "u"])
+    let api = BucketAPI(transport: StubTransport { r in
+        box.bodies.append((try? JSONDecoder().decode([String: String].self, from: r.httpBody ?? Data())) ?? [:])
+        return (200, reply)
+    })
+    _ = try await api.signInWithApple(idToken: "jwt", nonce: "raw", authorizationCode: "code-1")
+    _ = try await api.signInWithApple(idToken: "jwt", nonce: "raw")
+    #expect(box.bodies[0]["authorization_code"] == "code-1")
+    #expect(box.bodies[0]["nonce"] == "raw" && box.bodies[0]["id_token"] == "jwt" && box.bodies[0]["action"] == "apple")
+    #expect(box.bodies[1]["authorization_code"] == nil)
+}
