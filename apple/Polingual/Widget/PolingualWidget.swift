@@ -24,6 +24,12 @@ struct SnapshotProvider: TimelineProvider {
 }
 
 enum WidgetBrand {
+    #if os(iOS)
+    static let families: [WidgetFamily] = [.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular, .accessoryInline]
+    #else
+    static let families: [WidgetFamily] = [.systemSmall, .systemMedium]
+    #endif
+
     #if BUCKET
     static let name = "Bucket"
     #else
@@ -47,6 +53,7 @@ struct PolingualWidgetView: View {
 
     var body: some View {
         switch family {
+        #if os(iOS)
         case .accessoryCircular:
             Gauge(value: StreakGoal(streak: Double(c.streak)).fraction) {
                 Image(systemName: "flame.fill")
@@ -61,6 +68,7 @@ struct PolingualWidgetView: View {
             }
         case .accessoryInline:
             Text("\(goal) · \(c.due) due")
+        #endif
         case .systemSmall:
             VStack(alignment: .leading, spacing: 6) {
                 tally
@@ -152,7 +160,7 @@ struct PolingualWidget: Widget {
         }
         .configurationDisplayName(WidgetBrand.name)
         .description("Your streak, reviews due and the word of the day.")
-        .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular, .accessoryInline])
+        .supportedFamilies(WidgetBrand.families)
     }
 }
 

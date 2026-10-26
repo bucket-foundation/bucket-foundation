@@ -27,6 +27,9 @@ struct PolingualApp: App {
     var body: some Scene {
         WindowGroup {
             PolingualRoot()
+                #if os(macOS)
+                .frame(minWidth: 960, minHeight: 680)
+                #endif
                 .environment(account)
                 .environment(store)
                 .environment(gate)
@@ -65,6 +68,9 @@ struct PolingualApp: App {
                 }
                 .tint(Palette.green)
         }
+        #if os(macOS)
+        .defaultSize(width: 1180, height: 820)
+        #endif
     }
 }
 

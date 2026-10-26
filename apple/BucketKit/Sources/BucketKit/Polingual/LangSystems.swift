@@ -653,7 +653,7 @@ public struct Exercise: Sendable {
     public var level: Double?
     public var falseFriend: FalseFriend?
 
-    init(kind: ExerciseKind, itemId: String, lang: String, root: String, prompt: String, promptLang: String, answer: String, answerLang: String, note: String? = nil) {
+    public init(kind: ExerciseKind, itemId: String, lang: String, root: String, prompt: String, promptLang: String, answer: String, answerLang: String, note: String? = nil) {
         self.kind = kind
         self.itemId = itemId
         self.lang = lang
