@@ -388,7 +388,7 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 #app .stk2{position:absolute;right:18px;top:-30px;z-index:2;width:62px;height:62px;border-radius:8px;background:#D9381E;display:grid;place-items:center;transform:rotate(-10deg);box-shadow:inset 0 0 0 4px #D9381E,inset 0 0 0 6px #F6EEDC,0 4px 0 rgba(0,0,0,.3);font-family:'Noto Sans SC';font-weight:800;font-size:36px;color:#F6EEDC}
 #app .stk3{position:absolute;z-index:2;left:44%;top:30px;width:40px;height:40px;border-radius:4px;transform:rotate(14deg);box-shadow:0 3px 0 rgba(0,0,0,.3);background:#F4F1E8 radial-gradient(circle,#26428B 0 4px,transparent 5px),radial-gradient(circle at 0 0,#26428B 0 10px,transparent 11px) #F4F1E8;background-image:radial-gradient(circle at 50% 50%,#26428B 0 8%,transparent 8.5%),radial-gradient(circle at 0 0,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 100% 0,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 0 100%,#26428B 0 23%,transparent 23.5%),radial-gradient(circle at 100% 100%,#26428B 0 23%,transparent 23.5%),repeating-conic-gradient(from 45deg at 50% 50%,#6FB7C2 0 10deg,transparent 0 45deg)}
 #app .stk4{position:absolute;z-index:2;left:62%;top:44px;font-family:'Noto Sans';font-weight:800;font-size:22px;color:#F6EEDC;opacity:.8;transform:rotate(-12deg)}
-#app .stk5{position:absolute;z-index:2;left:22%;top:58px;width:40px;transform:rotate(16deg)}
+#app .stk5{position:absolute;z-index:2;left:22%;top:44px;width:30px;aspect-ratio:11/15;background:#D9381E;border-radius:60% 40% 60% 40%/70% 70% 30% 30%;box-shadow:inset 0 0 0 3px #E9A23B,inset 0 0 0 5px #D9381E,inset 0 0 0 6px #F6EEDC;transform:rotate(22deg)}
 #app .stk5 svg{width:100%;height:auto;display:block}
 #app .band .pill{position:relative;z-index:3}
 #app .ft{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;font-size:12px;color:#d9c7d3}
@@ -425,7 +425,8 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 #dk .hc .stk b{font-family:Fredoka;font-weight:700;font-size:28px;line-height:1;color:var(--cta)}
 #dk .hc .stk small{display:block;white-space:nowrap;font-family:'Space Mono';font-weight:700;font-size:11px;letter-spacing:.14em;color:#4a443e}
 #dk .hc .stk p{margin:0 0 0 8px;padding-left:14px;border-left:2px solid var(--line);font-size:14px;color:var(--muted)}
-#dk .hc .g4{display:grid;grid-template-columns:repeat(2,max-content);gap:14px}
+#dk .hc .g4{display:grid;grid-template-columns:repeat(3,max-content);gap:14px}
+@media (max-width:999px){#dk .hc .g4{grid-template-columns:repeat(2,max-content)}#dk .hc .g4 .t:nth-child(n+5){display:none}}
 #dk .hc .g4 .t{zoom:var(--hz,.75)}
 #dk .hc .btn{align-self:flex-start}
 }
@@ -453,6 +454,15 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 #dk .pp>*{animation:plf2 6s ease-in-out infinite}
 #dk .pp>*:nth-child(2n){animation-duration:8s}
 #dk .pp>*:nth-child(3n){animation-duration:9s}
+
+#dk .pp .kente{position:absolute;width:clamp(120px,14vw,280px);aspect-ratio:10/3;box-shadow:0 6px 0 rgba(0,0,0,.35);background:repeating-linear-gradient(90deg,#E9A23B 0 22px,#1E7A5A 0 30px,#E9A23B 0 52px,#D9381E 0 60px,#231F20 0 66px),#E9A23B}
+#dk .pp .kente::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 26px,rgba(35,31,32,.85) 0 32px)}
+#dk .pp .paisley{width:clamp(52px,5.4vw,104px);aspect-ratio:11/15;background:#D9381E;border-radius:60% 40% 60% 40%/70% 70% 30% 30%;box-shadow:inset 0 0 0 clamp(5px,.5vw,10px) #E9A23B,inset 0 0 0 clamp(8px,.8vw,16px) #D9381E,inset 0 0 0 clamp(10px,1vw,20px) #F6EEDC}
+#dk .pp .ink{width:clamp(14px,1.8vw,34px);aspect-ratio:1;border-radius:50%;background:#F6EEDC}
+#dk .pp .ink.red{background:#D9381E;width:clamp(10px,1.1vw,20px)}
+@keyframes drift{0%,100%{translate:0 0}50%{translate:var(--dx,3px) var(--dy,-3px)}}
+#dk .pp>*{animation:drift var(--dur,8s) ease-in-out infinite!important}
+@media (prefers-reduced-motion:reduce){#dk .pp>*{animation:none!important}}
 </style></head><body>
 <div id="app">
  <div class="in">
@@ -462,7 +472,7 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
   <p class="stat">1 meaning a day in 4 languages · up to 400 words</p>
   <div class="grid4" id="app-grid"></div>
  </div>
- <div class="wrapb"><span class="stk1">ἑκατόν</span><span class="stk2">百</span><span class="stk3" aria-hidden="true"></span><span class="stk4" aria-hidden="true">сто</span><span class="stk5" aria-hidden="true"><svg viewBox="0 0 150 140" filter="drop-shadow(6px 8px 0 rgba(0,0,0,.35))"><path d="M75 5 L95 35 L130 30 L118 62 L145 85 L112 95 L105 130 L75 110 L45 130 L38 95 L5 85 L32 62 L20 30 L55 35Z" fill="#1E7A5A" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><path d="M75 5 L95 35 L130 30 L118 62 L145 85 L112 95 L105 130 L75 110 L45 130 L38 95 L5 85 L32 62 L20 30 L55 35Z" transform="translate(75 68) scale(.55) translate(-75 -68)" fill="#E9A23B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle cx="75" cy="68" r="10" fill="#F6EEDC" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/></svg></span>
+ <div class="wrapb"><span class="stk1">ἑκατόν</span><span class="stk2">百</span><span class="stk3" aria-hidden="true"></span><span class="stk4" aria-hidden="true">сто</span><span class="stk5" aria-hidden="true"></span>
  <div class="band">
   <a class="pill" href="https://testflight.apple.com/join/HfeRBKr8" data-slot="appstore" rel="noopener">Join the beta on TestFlight</a>
   <footer class="ft"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a><span>Words: <a href="https://en.wiktionary.org">Wiktionary</a> via <a href="https://kaikki.org">Kaikki</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></span></footer>
@@ -535,15 +545,17 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 </div>
 <div class="pz" id="pz" aria-hidden="true"></div>
 <div class="pp" id="pp" aria-hidden="true">
- <div class="bunt" data-u="0.6" data-v="0.05" style="--r:-6deg"><svg class="pc " viewBox="0 0 300 110" filter="drop-shadow(6px 8px 0 rgba(0,0,0,.35))"><path d="M0 16 Q150 30 300 16" fill="none" stroke="#231F20" stroke-width="3"/><path d="M8 18 h60 v62 l-10-10 -10 10 -10-10 -10 10 -10-10 -10 10Z M38 34 l8 8 -8 8 -8-8Z M22 56 a5 5 0 1 0 .1 0Z M54 56 a5 5 0 1 0 .1 0Z" fill="#E85A9B" fill-rule="evenodd" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><path d="M80 18 h60 v62 l-10-10 -10 10 -10-10 -10 10 -10-10 -10 10Z M110 34 l8 8 -8 8 -8-8Z M94 56 a5 5 0 1 0 .1 0Z M126 56 a5 5 0 1 0 .1 0Z" fill="#E9A23B" fill-rule="evenodd" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><path d="M152 18 h60 v62 l-10-10 -10 10 -10-10 -10 10 -10-10 -10 10Z M182 34 l8 8 -8 8 -8-8Z M166 56 a5 5 0 1 0 .1 0Z M198 56 a5 5 0 1 0 .1 0Z" fill="#6FB7C2" fill-rule="evenodd" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><path d="M224 18 h60 v62 l-10-10 -10 10 -10-10 -10 10 -10-10 -10 10Z M254 34 l8 8 -8 8 -8-8Z M238 56 a5 5 0 1 0 .1 0Z M270 56 a5 5 0 1 0 .1 0Z" fill="#1E7A5A" fill-rule="evenodd" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/></svg></div>
- <div class="seal" data-u="0.35" data-v="0.3" style="--r:-8deg"><span>百</span></div>
- <div class="azu" data-u="0.45" data-v="0.58" style="--r:12deg"></div>
- <div class="stamp" data-u="0.12" data-v="0.06" style="--r:6deg"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
- <div class="gridp" data-u="0.0" data-v="0.62" style="--r:-10deg"><svg class="pc " viewBox="0 0 160 160" filter="drop-shadow(6px 8px 0 rgba(0,0,0,.35))"><defs><clipPath id="sgc"><rect width="160" height="160" rx="10"/></clipPath></defs><g clip-path="url(#sgc)"><rect width="160" height="160" fill="#F6EEDC"/><g transform="translate(0 40)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(52 40)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(104 40)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(156 40)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(26 80)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(78 80)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(130 80)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(0 120)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(52 120)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(104 120)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(156 120)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(26 160)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(78 160)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g><g transform="translate(130 160)"><circle r="26" fill="#26428B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle r="18" fill="#F6EEDC"/><circle r="11" fill="#6FB7C2"/><circle r="5" fill="#F6EEDC"/></g></g><rect width="160" height="160" rx="10" fill="none" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/></svg></div>
- <div class="mini" data-u="0.7" data-v="0.36" style="--r:-12deg;font-family:'Noto Sans Hebrew'">מאה</div>
- <div class="torn" data-u="-0.05" data-v="0.4" style="--r:-4deg"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
- <div class="starp" data-u="0.22" data-v="0.88" style="--r:14deg"><svg class="pc " viewBox="0 0 150 140" filter="drop-shadow(6px 8px 0 rgba(0,0,0,.35))"><path d="M75 5 L95 35 L130 30 L118 62 L145 85 L112 95 L105 130 L75 110 L45 130 L38 95 L5 85 L32 62 L20 30 L55 35Z" fill="#1E7A5A" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><path d="M75 5 L95 35 L130 30 L118 62 L145 85 L112 95 L105 130 L75 110 L45 130 L38 95 L5 85 L32 62 L20 30 L55 35Z" transform="translate(75 68) scale(.55) translate(-75 -68)" fill="#E9A23B" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/><circle cx="75" cy="68" r="10" fill="#F6EEDC" stroke="#231F20" stroke-width="3" stroke-linejoin="round"/></svg></div>
- <div class="mini" data-u="0.02" data-v="1.02" style="--r:18deg;font-family:'Noto Sans'">сто</div>
+ <div class="azu" data-a="0.06,0.3" style="--r:12deg;--dx:4px;--dy:-6px;--dur:7.0s;"></div>
+ <div class="stamp" data-a="0.35,0.12" style="--r:6deg;--dx:-5px;--dy:4px;--dur:8.5s;"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
+ <div class="mini" data-a="0.12,0.72" style="--r:-12deg;--dx:3px;--dy:5px;--dur:9.5s;font-family:'Noto Sans Hebrew';">מאה</div>
+ <div class="seal" data-a="0.3,0.55" style="--r:-7deg;--dx:-4px;--dy:-5px;--dur:6.5s;"><span>百</span></div>
+ <div class="torn" data-a="0.6,0.4" style="--r:-4deg;--dx:5px;--dy:-3px;--dur:10.0s;"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
+ <div class="kente" data-a="0.68,0.85" style="--r:-18deg;--dx:-3px;--dy:6px;--dur:11.0s;"></div>
+ <div class="paisley" data-a="0.45,0.75" style="--r:25deg;--dx:6px;--dy:3px;--dur:7.8s;"></div>
+ <div class="mini" data-a="0.82,0.62" style="--r:18deg;--dx:-4px;--dy:-4px;--dur:8.8s;font-family:'Noto Sans';">сто</div>
+ <div class="mini" data-a="0.02,0.92" style="--r:-24deg;--dx:4px;--dy:4px;--dur:9.9s;font-family:'Noto Sans';">백</div>
+ <div class="ink" data-a="0.5,0.3" style="--r:0deg;--dx:3px;--dy:-3px;--dur:6.0s;"></div>
+ <div class="ink red" data-a="0.86,0.22" style="--r:0deg;--dx:-3px;--dy:3px;--dur:7.2s;"></div>
 </div>
 </main>
 <footer class="ft"><div class="wrap ftrow">
@@ -614,7 +626,7 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 </div>
 <script src="/d8/tiles.js"></script>
 <script>(()=>{const g=document.getElementById("app-grid");if(!g)return;const set=TILES.slice(0,4);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");const els=[...g.children];els.forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const z=()=>g.style.setProperty("--z",Math.min(1,(g.clientWidth-24)/2/208).toFixed(3));z();addEventListener("resize",z)})()</script>
-<script>(()=>{const g=document.getElementById("hc-grid");if(!g)return;const set=TILES.slice(0,4);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");const els=[...g.children];els.forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const hc=g.parentElement;const z=()=>{if(!hc.offsetParent)return;g.style.setProperty("--hz",1);const other=hc.scrollHeight-g.offsetHeight;const byH=(hc.clientHeight-other-40-14)/2,byW=(hc.clientWidth-14)/2;g.style.setProperty("--hz",Math.max(.4,Math.min(1,byH/206,byW/206)).toFixed(3))};z();addEventListener("resize",z);document.fonts.ready.then(z);window.hcZ=z})()</script>
+<script>(()=>{const g=document.getElementById("hc-grid");if(!g)return;const set=TILES.slice(0,6);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");const els=[...g.children];els.forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const hc=g.parentElement;const z=()=>{if(!hc.offsetParent)return;g.style.setProperty("--hz",1);const other=hc.scrollHeight-g.offsetHeight;const cols=innerWidth>=1000?3:2;const byH=(hc.clientHeight-other-40-14)/2,byW=(hc.clientWidth-14*(cols-1))/cols;g.style.setProperty("--hz",Math.max(.4,Math.min(1,byH/206,byW/206)).toFixed(3))};z();addEventListener("resize",z);document.fonts.ready.then(z);window.hcZ=z})()</script>
 <script>(()=>{const hero=document.getElementById("hero"),pz=document.getElementById("pz"),pp=document.getElementById("pp"),hc=document.querySelector("#dk .hc");if(!hero||!pz)return;
 const lerp=(a,b,t)=>a+(b-a)*t;
 function clip(poly,c,n){const out=[];for(let i=0;i<poly.length;i++){const P=poly[i],Q=poly[(i+1)%poly.length];const dp=(P[0]-c[0])*n[0]+(P[1]-c[1])*n[1],dq=(Q[0]-c[0])*n[0]+(Q[1]-c[1])*n[1];if(dp>=0)out.push(P);if(dp*dq<0){const k=dp/(dp-dq);out.push([P[0]+(Q[0]-P[0])*k,P[1]+(Q[1]-P[1])*k])}}return out}
@@ -624,7 +636,9 @@ function lay(){const w=hero.clientWidth,h=hero.clientHeight;if(!w||!h)return;
  const c=[lerp(.615*w,.5*w,t),lerp(.5*h,.82*h,t)];const d=[Math.cos(th),-Math.sin(th)],n=[Math.sin(th),Math.cos(th)];
  const poly=clip([[0,0],[w,0],[w,h],[0,h]],c,n);pz.style.clipPath="polygon("+poly.map(p=>p[0].toFixed(1)+"px "+p[1].toFixed(1)+"px").join(",")+")";
  const L=Math.hypot(w,h)/2,S=Math.min(lerp(.42*w,h,t)*.5,lerp(.42*w,.22*h,t)*1.6);
- pp.querySelectorAll("[data-u]").forEach(el=>{const u=+el.dataset.u,v=+el.dataset.v;let x=c[0]+d[0]*u*L*lerp(.9,1,t)+n[0]*v*S,y=c[1]+d[1]*u*L*lerp(.9,1,t)+n[1]*v*S;const r=el.getBoundingClientRect();x=Math.min(w-r.width*.35,Math.max(r.width*.35,x));y=Math.min(h-r.height*.4,Math.max(r.height*.4,y));el.style.left=x.toFixed(1)+"px";el.style.top=y.toFixed(1)+"px"});
+ const seg=(()=>{const ts=[];const P=[[0,0],[w,0],[w,h],[0,h]];for(let i=0;i<4;i++){const A=P[i],B=P[(i+1)%4];const ex=B[0]-A[0],ey=B[1]-A[1];const den=d[0]*ey-d[1]*ex;if(Math.abs(den)<1e-9)continue;const k=((A[0]-c[0])*ey-(A[1]-c[1])*ex)/den;const m=((A[0]-c[0])*d[1]-(A[1]-c[1])*d[0])/den;if(m>=-1e-6&&m<=1+1e-6)ts.push(k)}return[Math.min(...ts),Math.max(...ts)]})();
+ const depth=(x,y)=>{let q=Infinity;if(n[0]>1e-6)q=Math.min(q,(w-x)/n[0]);if(n[0]<-1e-6)q=Math.min(q,-x/n[0]);if(n[1]>1e-6)q=Math.min(q,(h-y)/n[1]);if(n[1]<-1e-6)q=Math.min(q,-y/n[1]);return q};
+ pp.querySelectorAll("[data-a]").forEach(el=>{const [u,v]=el.dataset.a.split(",").map(Number);const hw=el.offsetWidth/2,hh=el.offsetHeight/2,m=Math.hypot(hw,hh)*.8+6;const s0=seg[0]+m,s1=seg[1]-m;const sv=s1>s0?s1-(s1-s0)*u:(seg[0]+seg[1])/2;let x=c[0]+d[0]*sv,y=c[1]+d[1]*sv;const q=depth(x,y);const qq=Math.max(m*.9,Math.min(q-m,m*.9+(q-2*m*.9)*v));x+=n[0]*qq;y+=n[1]*qq;x=Math.min(w-hw-4,Math.max(hw+4,x));y=Math.min(h-hh-4,Math.max(hh+4,y));el.style.left=x.toFixed(1)+"px";el.style.top=y.toFixed(1)+"px"});
  if(hc){const band=t>.55;hc.style.width=band?Math.min(560,w-2*hc.offsetLeft)+"px":"";const xr=hc.offsetLeft+Math.min(hc.offsetWidth,340);const yl=c[1]+(c[0]-xr)*Math.tan(th);hc.style.bottom=Math.max(0,h-Math.min(h,yl)+14)+"px";if(window.hcZ)window.hcZ()}}
 lay();addEventListener("resize",lay);document.fonts.ready.then(lay)})()</script>
 
