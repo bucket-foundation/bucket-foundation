@@ -24,11 +24,14 @@ targets:
     sources:
       - path: Bucket/Sources
       - path: Bucket/Resources
+      - path: Polingual/WidgetShared
       - path: Shared/Corpus
         type: folder
         buildPhase: resources
     dependencies:
       - package: BucketKit
+      - target: BucketWidgets
+        destinationFilters: [iOS]
     entitlements:
       path: Bucket/Bucket.entitlements
       properties:
@@ -36,9 +39,12 @@ targets:
           - $(AppIdentifierPrefix)foundation.bucket.shared
         com.apple.developer.applesignin:
           - Default
+        com.apple.security.application-groups:
+          - group.foundation.bucket.app
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: foundation.bucket.app
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) BUCKET
         PRODUCT_NAME: Bucket
         TARGETED_DEVICE_FAMILY: "1,2"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -105,6 +111,30 @@ targets:
       configs:
         Debug:
           CODE_SIGN_ENTITLEMENTS: Polingual/PolingualDebug.entitlements
+  BucketWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Polingual/Widget/PolingualWidget.swift
+      - path: Bucket/Widget/PrivacyInfo.xcprivacy
+      - path: Polingual/WidgetShared
+    info:
+      path: Bucket/Widget/Info.plist
+      properties:
+        CFBundleDisplayName: Bucket
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Bucket/Widget/Widget.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.foundation.bucket.app
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: foundation.bucket.app.widgets
+        IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) BUCKET
+        SKIP_INSTALL: YES
   PolingualWidgets:
     type: app-extension
     platform: iOS

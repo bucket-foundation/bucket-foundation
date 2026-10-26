@@ -6,7 +6,11 @@ struct WidgetWord: Codable, Equatable {
 }
 
 struct WidgetSnapshot: Codable, Equatable {
+    #if BUCKET
+    static let group = "group.foundation.bucket.app"
+    #else
     static let group = "group.com.polingual.app"
+    #endif
     static let key = "widget.snapshot"
 
     var streak: Int

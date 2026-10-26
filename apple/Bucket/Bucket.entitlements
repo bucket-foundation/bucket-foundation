@@ -6,6 +6,10 @@
 	<array>
 		<string>Default</string>
 	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.foundation.bucket.app</string>
+	</array>
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)foundation.bucket.shared</string>
