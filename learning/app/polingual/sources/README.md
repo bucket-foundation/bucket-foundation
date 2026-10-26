@@ -33,3 +33,7 @@ python3 scripts/polingual/build_sources.py --th th_50k.txt --la latin-core-list1
 python3 scripts/polingual/top_words.py --kaikki <kaikki dir> --cedict cedict_1_0_ts_utf-8_mdbg.txt
 python3 scripts/polingual/phrases.py --tatoeba <tatoeba dir> --kaikki <kaikki dir>
 ```
+
+## Word QA
+
+`scripts/polingual/wordlist_qa.py` flags junk (digits, symbols, stray letters), proper nouns, case-folded duplicates and inflection or variant glosses. `top_words.py` drops junk, names and duplicates, and replaces a flagged gloss with the first clean sense from the photon index, dropping the word when none is clean. The audit draws a seeded 50-word sample per language and writes `top1000/qa-report.json`. Homographs glossed with a rare sense, such as Arabic من as "favor", pass the audit and need a sense-frequency source.
