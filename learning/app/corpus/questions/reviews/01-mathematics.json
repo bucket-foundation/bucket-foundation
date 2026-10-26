@@ -1319,7 +1319,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer key vs mathematics and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "The old faulty step was true: a flat-bottomed convex function has many minimizers. The new faulty step says a local minimum can fail to be global."
   },
   "optimization.match": {
    "reviewed_by": "claude-opus-5-5",
@@ -1769,6 +1770,60 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "set-theory-axioms.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "homomorphism.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "topology.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "real-analysis.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "category-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "complex-analysis.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "measure-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
+   "verdict": "ok"
+  },
+  "galois-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs mathematics and atom lesson",
    "verdict": "ok"
   }
  }
