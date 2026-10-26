@@ -123,7 +123,7 @@ struct ExerciseView: View {
         VStack(spacing: 12) {
             WordTile(word: ex.answer, lang: ex.answerLang, reading: readings ? ex.answerReading : nil, size: 190)
             Text(ex.prompt).font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity)
-            Notes(ex: ex, showNote: true)
+            Notes(ex: ex, showNote: true, readings: readings)
             Button("Got it") { onDone([]) }.buttonStyle(D8Primary())
         }
     }
@@ -166,7 +166,7 @@ struct ExerciseView: View {
                 }
             }
             if matchDone {
-                Notes(ex: ex, showNote: false)
+                Notes(ex: ex, showNote: false, readings: readings)
                 Button("Continue") {
                     onDone(gradeMatch(pairs, assign).map { ExerciseResult(lang: $0.lang, rating: $0.correct ? 3 : 1) })
                 }
@@ -242,7 +242,7 @@ struct ExerciseView: View {
                                       flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil)
                         }
                     }
-                    Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender)
+                    Notes(ex: ex, showNote: !accepted.contains(picked) || ex.kind == .conjugate || ex.kind == .gender, readings: readings)
                     Button("Continue") { finish(accepted.contains(picked)) }
                         .buttonStyle(D8Primary())
                         .keyboardShortcut(.defaultAction)
@@ -363,10 +363,11 @@ struct Answered: View {
 struct Notes: View {
     let ex: Exercise
     let showNote: Bool
+    var readings = true
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            FamilyLine(ex: ex)
+            FamilyLine(ex: ex, readings: readings)
             if ex.kind == .gender { ArticleKey(lang: ex.lang) }
             FalseFriendNote(ex: ex)
             if showNote, let note = ex.note, !note.isEmpty { Text(note).font(.caption).foregroundStyle(Palette.muted) }
@@ -400,11 +401,32 @@ struct ArticleKey: View {
 
 struct FamilyLine: View {
     let ex: Exercise
+    var readings = true
 
     var body: some View {
         if let f = ex.family?.filter({ $0.lang != ex.lang && $0.lang != ex.root }), !f.isEmpty {
-            Text("SAME ROOT ").font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
-                + Text(f.map { "\(langName($0.lang)) \($0.word)" }.joined(separator: " · ")).font(.subheadline).foregroundStyle(Palette.ink)
+            VStack(alignment: .leading, spacing: 6) {
+                Text("SAME ROOT").font(.caption2.weight(.semibold)).foregroundStyle(Palette.muted)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 8) {
+                        ForEach(f, id: \.self) { w in
+                            HStack(spacing: 6) {
+                                FlagTile(lang: w.lang, size: 20)
+                                VStack(alignment: .leading, spacing: 0) {
+                                    Text(w.word).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.ink)
+                                    if readings, let r = readingText(w.reading) { Text(r).font(.caption2).foregroundStyle(D8.ipa) }
+                                }
+                                PlayButton(text: w.word, lang: w.lang)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(.white, in: .rect(cornerRadius: 10))
+                            .overlay { RoundedRectangle(cornerRadius: 10).strokeBorder(D8.keyline, lineWidth: 1.5) }
+                            .accessibilityElement(children: .combine)
+                        }
+                    }
+                }
+            }
         }
     }
 }

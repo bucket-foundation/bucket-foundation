@@ -146,10 +146,8 @@ struct CardHeader: View {
 
 func readingText(_ r: Reading?) -> String? {
     guard let r else { return nil }
-    if let ipa = r.ipa, !ipa.isEmpty { return "/\(ipa)/" }
-    if let k = r.kana, !k.isEmpty { return [k, r.roman].compactMap { $0 }.joined(separator: " · ") }
-    if let roman = r.roman, !roman.isEmpty { return roman }
-    return nil
+    let parts = [r.kana, r.roman, r.ipa.map { "/\($0)/" }].compactMap { $0 }.filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty && $0 != "//" }
+    return parts.isEmpty ? nil : parts.joined(separator: " · ")
 }
 
 struct WordTile: View {

@@ -806,7 +806,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
     let note = relevantNote(item.note, system)
     let reps = Int(card?.reps ?? 0)
     let latin = Lang.info[lang]?.latin ?? true
-    let family = sharedRootLangs(item, system).filter { $0 != lang }.map { LangWord(lang: $0, word: item.forms[$0] ?? "") }
+    let family = sharedRootLangs(item, system).filter { $0 != lang }.map { LangWord(lang: $0, word: item.forms[$0] ?? "", reading: item.readings[$0]) }
     let ff = item.falseFriends[lang]
 
     if item.kind == .gender { return genderExercise(item, lang, root, &rng) }
@@ -976,7 +976,7 @@ public func matchExercise(_ corpus: LangCorpus, _ system: LangSystem, _ item: La
     guard langs.count >= 2, let rootWord = item.form(system.root) else { return nil }
     var ex = Exercise(kind: .match, itemId: item.id, lang: langs[0], root: system.root, prompt: rootWord, promptLang: system.root, answer: "", answerLang: langs[0], note: nil)
     ex.pairs = shuffle(langs.map { LangWord(lang: $0, word: item.forms[$0]!, reading: item.readings[$0]) }, &rng)
-    ex.family = sharedRootLangs(item, system).map { LangWord(lang: $0, word: item.forms[$0] ?? "") }
+    ex.family = sharedRootLangs(item, system).map { LangWord(lang: $0, word: item.forms[$0] ?? "", reading: item.readings[$0]) }
     ex.note = relevantNote(item.note, system)
     return ex
 }
