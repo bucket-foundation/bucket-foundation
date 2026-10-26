@@ -87,6 +87,11 @@ export default function PrivacyPage() {
         </ul>
         <p className={P}>Our servers write these records. The page you study on cannot add to them.</p>
 
+        <h2 className={H2}>beta testing</h2>
+        <p className={P}>
+          While you test the Bucket or Polingual app, it sends us your sessions, the cards you see and answer, and the lessons you finish, tied to your account. We use them to see what helps people learn. We keep no IP address, device id or location with them. Turn it off in the app or by emailing us; turning it off deletes the beta events we hold for you.
+        </p>
+
         <h2 className={H2}>page visits</h2>
         <p className={P}>
           Vercel Web Analytics counts which pages are opened, from the home page through sign-in to placement. It sets no cookies and keeps no account link.
