@@ -240,7 +240,7 @@
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
    "verdict": "fixed",
-   "note": "Counting-only item given a setting and a step."
+   "note": "Unit was empty though the prompt asks for millions."
   },
   "structure-hierarchy.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1842,7 +1842,7 @@
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
    "verdict": "fixed",
-   "note": "Counting-only item given a setting and a step."
+   "note": "Unit was empty for a rate; now charges/s."
   },
   "membrane-transport.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -2776,7 +2776,7 @@
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
    "verdict": "fixed",
-   "note": "Near-duplicate of nernst (both E_K); replaced with a driving-force step."
+   "note": "Replaced: the old K+ driving force repeated the mind deck. Now the mitochondrial proton-motive force, 150 + 61.5 x 0.75 = 196.1 mV."
   },
   "electrochemical-potential.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -2940,7 +2940,7 @@
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
    "verdict": "fixed",
-   "note": "Near-duplicate of langevin (same D = k_BT/gamma); replaced with a trap calibration step."
+   "note": "Replaced: the old item inverted equipartition, duplicating that atom. Now Johnson noise of a 1 GOhm resistor, sqrt(4 k_BT R df) = 128.7 microvolts."
   },
   "fluctuation-dissipation.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -3293,7 +3293,7 @@
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
    "verdict": "fixed",
-   "note": "Near-duplicate of cable-equation (both e^-2); replaced with an integrated correlation time."
+   "note": "Unit was empty though the prompt asks for ns."
   },
   "correlation-function.order": {
    "reviewed_by": "claude-opus-5-5",

@@ -571,7 +571,7 @@
    "kind": "calculate",
    "prompt": "Each haemoglobin carries 4 hemes and each heme binds one O2. A red cell holds 270 million haemoglobins. How many O2 can it carry, in millions?",
    "answer": 1080.0,
-   "unit": "",
+   "unit": "million",
    "relTol": 0.02
   },
   {
@@ -4387,7 +4387,7 @@
    "kind": "calculate",
    "prompt": "A kidney cell's Na+/K+ pumps each run 100 cycles per second, moving 3 Na+ out and 2 K+ in per cycle. How many net positive charges does one pump export per second?",
    "answer": 100.0,
-   "unit": "",
+   "unit": "charges/s",
    "relTol": 0.02
   },
   {
@@ -6616,8 +6616,8 @@
    "id": "electrochemical-potential.calculate",
    "atom": "electrochemical-potential",
    "kind": "calculate",
-   "prompt": "A neuron rests at -70 mV and its K+ equilibrium potential is -89 mV. What is the K+ driving force V - E_K, in mV, that pushes K+ out at rest?",
-   "answer": 19.0,
+   "prompt": "Across a mitochondrion's inner membrane the voltage is 150 mV, matrix negative, and the matrix is 0.75 pH units more alkaline. At 37 C, 2.303 RT/F = 61.5 mV. What is the size of the proton-motive force, 150 + 61.5 x 0.75, in mV?",
+   "answer": 196.12,
    "unit": "mV",
    "relTol": 0.02,
    "applied": true
@@ -7007,9 +7007,9 @@
    "id": "fluctuation-dissipation.calculate",
    "atom": "fluctuation-dissipation",
    "kind": "calculate",
-   "prompt": "An optical-trap bead shows <x^2> = 4.14e-17 m^2 at k_BT = 4.14e-21 J. Equipartition gives k = k_BT/<x^2>. What is the trap stiffness, in N/m?",
-   "answer": 0.0001,
-   "unit": "N/m",
+   "prompt": "A patch-clamp amplifier uses a 1 GOhm feedback resistor. Its thermal noise follows the fluctuation-dissipation theorem, <V^2> = 4 k_BT R df. At k_BT = 4.14e-21 J over a 1 kHz bandwidth, what RMS noise voltage does it add, in microvolts?",
+   "answer": 128.7,
+   "unit": "µV",
    "relTol": 0.02
   },
   {
@@ -7843,7 +7843,7 @@
    "kind": "calculate",
    "prompt": "An NMR bond-vector correlation decays as C(t) = 0.8 e^(-t/2 ns) + 0.2. The decaying part's integral is 0.8 x 2 ns. What is that integral, in ns?",
    "answer": 1.6,
-   "unit": "",
+   "unit": "ns",
    "relTol": 0.02
   },
   {
