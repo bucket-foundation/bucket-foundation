@@ -95,6 +95,12 @@ app = FastAPI(title="Polingual Photon API (pgvector)", version="2.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "OPTIONS"],
                    allow_headers=["*"], max_age=86400)
 
+from psycopg2.errors import QueryCanceled  # noqa: E402
+
+@app.exception_handler(QueryCanceled)
+def _query_timeout(request: Request, exc: QueryCanceled):
+    return JSONResponse({"error": "query_timeout", "timeout_ms": STATEMENT_TIMEOUT_MS}, status_code=503)
+
 def timed(fn):
     t = time.time(); out = fn(); out["took_ms"] = round((time.time()-t)*1000, 1); return out
 
@@ -117,7 +123,7 @@ def healthz():
 @app.get("/lookup")
 def api_lookup(surface: str, lang: str | None = None):
     def go():
-        with cur() as c:
+        with txn() as c:
             q = f"SELECT id,surface,lang,meaning_en,pos,ipa,(embedding IS NOT NULL),(phonetic IS NOT NULL) FROM {TABLE} WHERE surface=%s"
             args = [surface]
             if lang: q += " AND lang=%s"; args.append(lang)
@@ -133,7 +139,7 @@ def api_lookup(surface: str, lang: str | None = None):
 @app.get("/semantic")
 def api_semantic(surface: str, lang: str | None = None, k: int = 10, cross: int = 1):
     def go():
-        with cur() as c:
+        with txn() as c:
             qv = _qvec(c, surface, lang, "embedding")
             if not qv:
                 return {"error": f"no semantic vector for {surface!r} ({lang})", "results": [],
@@ -152,7 +158,7 @@ def api_semantic(surface: str, lang: str | None = None, k: int = 10, cross: int 
 @app.get("/phonetic")
 def api_phonetic(surface: str, lang: str | None = None, k: int = 10):
     def go():
-        with cur() as c:
+        with txn() as c:
             qv = _qvec(c, surface, lang, "phonetic")
             if not qv:
                 return {"error": f"no phonetic vector for {surface!r} ({lang}) "
@@ -183,9 +189,9 @@ def api_spelling(surface: str, lang: str | None = None, k: int = 10):
     return timed(go)
 
 @app.get("/etymology")
-def api_etymology(surface: str, lang: str):
+def api_etymology(surface: str, lang: str = "en"):
     def go():
-        with cur() as c:
+        with txn() as c:
             c.execute(f"SELECT relations FROM {TABLE} WHERE surface=%s AND lang=%s "
                       f"AND relations IS NOT NULL AND relations <> '[]'::jsonb LIMIT 1",
                       (surface, lang))
@@ -198,7 +204,7 @@ def api_etymology(surface: str, lang: str):
 @app.get("/translate")
 def api_translate(surface: str, to: str, frm: str = Query(alias="from"), k: int = 8):
     def go():
-        with cur() as c:
+        with txn() as c:
             qv = _qvec(c, surface, frm, "embedding")
             if not qv:
                 return {"query": surface, "from": frm, "to": to, "results": [], "axis": "translate"}
