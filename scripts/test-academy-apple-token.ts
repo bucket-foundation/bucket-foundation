@@ -39,6 +39,7 @@ function apple(replies: Reply[], fetchSeconds = 0) {
   let pendingReads = 0;
   const alerts: string[] = [];
   const logs: string[] = [];
+  const logFields: Record<string, unknown>[] = [];
   let nextId = 1;
   let clock = 0;
   let now = 1_760_000_000;
@@ -48,7 +49,7 @@ function apple(replies: Reply[], fetchSeconds = 0) {
     timeoutMs: 20,
     alert: (m) => void alerts.push(m),
     nowSeconds: () => now,
-    log: (event, f) => void logs.push(`${event} ${f.ok} ${f.reason ?? ""}`.trim()),
+    log: (event, f) => (logFields.push({ event, ...f }), void logs.push(`${event} ${f.ok} ${f.reason ?? ""}`.trim())),
     fetch: async (url, init) => {
       calls.push({ url, body: new URLSearchParams(init.body), signal: init.signal });
       now += fetchSeconds;
@@ -82,13 +83,14 @@ function apple(replies: Reply[], fetchSeconds = 0) {
     bumpPending: async (id, r, failed) => {
       const p = pending.find((x) => x.id === id)!;
       p.lastError = r;
+      if (!r.endsWith("invalid_client")) p.first = null;
       p.attempts += 1;
       p.touched = clock++;
       if (failed) p.status = "failed";
     },
   };
   const store = (u: string, clientId: string, refresh: string) => tokens.set(`${u}|${clientId}`, { clientId, sealed: sealToken(ENC, refresh) });
-  return { deps, calls, tokens, pending, logs, store, pendingReads: () => pendingReads, alerts, advance: (s: number) => void (now += s) };
+  return { deps, calls, tokens, pending, logs, store, pendingReads: () => pendingReads, alerts, logFields, advance: (s: number) => void (now += s) };
 }
 
 test("client secret is an ES256 JWT for the app's client id that the key verifies", () => {
@@ -324,7 +326,7 @@ test("the age limit counts from the first invalid_client, and failed rows keep t
   assert.equal(idle.credentialFailedRows, 1);
   assert.equal(retryCronReply(idle).status, 503);
   assert.match(idle.alerts[0], /requeue/);
-  assert.deepEqual(await requeueCredentialFailed(w.deps), { requeued: 1 });
+  assert.deepEqual(await requeueCredentialFailed(w.deps, "gian"), { requeued: 1 });
   assert.deepEqual([w.pending[0].status, w.pending[0].first], ["pending", null]);
 });
 
@@ -333,7 +335,7 @@ test("requeue leaves invalid_grant failures alone", async () => {
   w.store("u1", "foundation.bucket.app", "r1");
   await revokeUserTokens(w.deps, "u1");
   await retryPendingRevokes(w.deps);
-  assert.deepEqual(await requeueCredentialFailed(w.deps), { requeued: 0 });
+  assert.deepEqual(await requeueCredentialFailed(w.deps, "gian"), { requeued: 0 });
   assert.equal(w.pending[0].status, "failed");
   assert.equal(retryCronReply(await retryPendingRevokes(w.deps)).status, 200);
 });
@@ -349,4 +351,35 @@ test("a run stops starting Apple calls once the time budget is spent", async () 
   assert.equal(r.skipped, 8 - r.revoked);
   assert.equal(retryCronReply(r).status, 200);
   assert.ok(RUN_BUDGET_SECONDS + APPLE_FETCH_TIMEOUT_MS / 1000 < 60);
+});
+
+test("a non-credential outcome clears the first invalid_client time, so the age limit restarts", async () => {
+  const ic = { ok: false, status: 400, body: { error: "invalid_client" } };
+  const w = apple([ic, ic, { ok: false, status: 503 }, ic]);
+  w.store("u1", "foundation.bucket.app", "r1");
+  await revokeUserTokens(w.deps, "u1");
+  const t0 = (await retryPendingRevokes(w.deps), w.pending[0].first);
+  assert.notEqual(t0, null);
+  w.advance(20 * 86400);
+  await retryPendingRevokes(w.deps);
+  assert.equal(w.pending[0].first, null);
+  w.advance(20 * 86400);
+  const r = await retryPendingRevokes(w.deps);
+  assert.equal(r.expired, 0);
+  assert.equal(w.pending[0].status, "pending");
+});
+
+test("a requeue logs its count and the admin id, never the key", async () => {
+  const w = apple([{ ok: false, status: 400, body: { error: "invalid_client" } }]);
+  await requeueCredentialFailed(w.deps, "gian");
+  assert.deepEqual(w.logFields.at(-1), { event: "apple_revoke_requeue", ok: true, requeued: 0, adminId: "gian" });
+});
+
+test("the cron body reports skipped rows", async () => {
+  const w = apple([{ ok: true, status: 200 }], 50);
+  for (let i = 0; i < 2; i++) {
+    w.store(`u${i}`, "foundation.bucket.app", `r${i}`);
+    w.pending.push({ clientId: "foundation.bucket.app", sealed: w.tokens.get(`u${i}|foundation.bucket.app`)!.sealed, id: 200 + i, attempts: 1, status: "pending", touched: -50 + i, lastError: "", first: null });
+  }
+  assert.equal(retryCronReply(await retryPendingRevokes(w.deps)).body.skipped, 1);
 });

@@ -149,9 +149,11 @@ export interface RetryResult {
   alerts: string[];
 }
 
-export async function requeueCredentialFailed(deps: AppleTokenDeps): Promise<{ requeued: number }> {
+export const ADMIN_ID = /^[A-Za-z0-9._@-]{1,64}$/;
+
+export async function requeueCredentialFailed(deps: AppleTokenDeps, adminId: string): Promise<{ requeued: number }> {
   const requeued = await deps.requeueCredentialFailed();
-  deps.log("apple_revoke_requeue", { ok: true, requeued });
+  deps.log("apple_revoke_requeue", { ok: true, requeued, adminId });
   return { requeued };
 }
 
