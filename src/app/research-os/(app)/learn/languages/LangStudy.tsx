@@ -6,7 +6,8 @@ import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib
 import { heritageLangs, langName, studyHref, buildQueue, cardId, exerciseFor, learnerLevel, letterExerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
 import { linkForms, targetFirst } from "@/lib/academy/lang-layout";
-import LangExercise, { ReadingsContext, type ExerciseResult } from "./LangExercise";
+import LangExercise, { ReadingsContext, type ExerciseResult, type MatchGrading } from "./LangExercise";
+import { gradeWebMatch } from "@/lib/academy/flag-misses";
 import { useLangSystem } from "./useLangSystem";
 
 export function HeritageLink({ systemId, langs, on }: { systemId: string; langs: string[]; on: boolean }) {
@@ -77,6 +78,17 @@ export default function LangStudy({ systemId, heritage = false }: { systemId: st
     [entry, queue, i, h]
   );
 
+  const match = useMemo<MatchGrading>(
+    () => ({
+      grade: (pairs, assign) => {
+        const { results, tables } = gradeWebMatch(pairs, assign, state);
+        h.recordFlags(tables);
+        return results;
+      },
+    }),
+    [state, h]
+  );
+
   if (h.status === "loading" || (h.status === "ready" && queue === null)) return <LoadingState label="Building your session" />;
   if (h.status === "error") return <ErrorState title="The session did not load" />;
   if (!system || !corpus || !queue) return <EmptyState title="No such language system" action={{ href: "/research-os/learn/languages", label: "your systems" }} />;
@@ -134,7 +146,7 @@ export default function LangStudy({ systemId, heritage = false }: { systemId: st
         <div className="h-1 bg-[color:var(--gold-deep)]" style={{ width: `${Math.round((i / queue.length) * 100)}%` }} />
       </div>
       <ReadingsContext.Provider value={readings}>
-        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} links={links} targetLayout={!!h.shared} />
+        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} links={links} targetLayout={!!h.shared} match={match} />
       </ReadingsContext.Provider>
       <div className="flex flex-wrap items-center justify-between gap-3">
       <HeritageLink systemId={system.id} langs={heritageLangs(system)} on={heritage} />

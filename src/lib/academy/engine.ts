@@ -29,10 +29,12 @@ export interface Atom {
   gloss?: string;
 }
 
+import { mergeFlagTables } from "./flag-misses";
+
 export interface EngineState extends StoredEngineState {
   cards: Record<string, Card>;
   prof: Record<string, ProficiencyState>;
-  settings: { newPerDay: number; requestRetention: number };
+  settings: { newPerDay: number; requestRetention: number; flagHits?: Record<string, number>; flagMisses?: Record<string, number> };
   stats: { xp: number; streak: number; lastStudyDay: string | null; history: Record<string, { new: number; reviews: number }> };
 }
 
@@ -331,7 +333,7 @@ export function mergeState(a: EngineState | null, b: EngineState | null): Engine
   if (!a) return normalizeState(b);
   if (!b) return normalizeState(a);
   const out = emptyState();
-  out.settings = { ...a.settings, ...b.settings };
+  out.settings = { ...a.settings, ...b.settings, ...mergeFlagTables(a.settings, b.settings) };
   const ids = new Set([...Object.keys(a.cards), ...Object.keys(b.cards)]);
   ids.forEach((id) => {
     const ca = a.cards[id];
