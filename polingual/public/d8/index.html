@@ -364,42 +364,45 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
 
 #app{display:none}
 @media (max-width:640px){
+html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 #dk,#mb{display:none!important}
-#app{display:block;min-height:100vh;min-height:100dvh;background:#EEE6D3;color:#231F20;font-family:Nunito,sans-serif;padding:16px 16px 32px}
-#app .top{display:flex;align-items:center;gap:8px;font-family:Fredoka;font-weight:600;font-size:20px;color:#231F20;text-decoration:none}
-#app .top img{width:30px;height:30px}
-#app h1{font-family:Nunito,sans-serif;font-weight:800;font-size:34px;line-height:1.1;letter-spacing:-.01em;margin:28px 0 10px}
-#app .sub{font-size:17px;color:#6b635b;margin:0 0 24px}
-#app .card{background:#F6EEDC;border:1px solid #E6DAC0;border-radius:24px;padding:20px}
-#app .field{display:flex;align-items:center;gap:10px;background:#FFFDF8;border:2px solid #E3D6B8;border-radius:14px;padding:12px 14px;font-weight:700;font-size:15px;line-height:1.35}
-#app .field .ic{flex:none;width:26px;height:26px;border-radius:7px;background:#D9381E;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800}
-#app .rows{list-style:none;margin:10px 0 18px;padding:0}
-#app .rows li{display:flex;align-items:center;gap:12px;padding:7px 0}
-#app .fi{flex:none;width:30px;height:30px;border-radius:8px;background:var(--flag);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12),inset 0 -6px 8px rgba(0,0,0,.15),inset 0 5px 6px rgba(255,255,255,.3);position:relative;overflow:hidden}
-#app .fi .em{position:absolute;left:var(--ex,50%);top:var(--ey,50%);transform:translate(-50%,-50%);font-size:calc(var(--es,0px) * .17);color:var(--ec);line-height:1}
-#app .rows b{flex:1;font-size:19px;font-weight:800}
-#app .rows button{border:0;background:none;padding:4px;color:#1E7A5A;cursor:pointer}
-#app .rows button svg{width:22px;height:22px;display:block}
-#app .rows li.playing button{color:#D9381E}
-#app .pills{display:flex;flex-wrap:wrap;gap:10px}
-#app .pill{display:inline-block;padding:13px 20px;border-radius:14px;font-weight:800;font-size:17px;text-decoration:none}
-#app .pill.p{background:#D9381E;color:#fff;box-shadow:0 4px 0 #8E2312}
-#app .pill.s{background:#FFFDF8;color:#231F20;border:2px solid #E3D6B8;box-shadow:0 4px 0 #E3D6B8}
-#app .pill:active{transform:translateY(3px);box-shadow:none}
-#app .ft{margin-top:28px;font-size:13px;color:#6b635b;display:flex;flex-wrap:wrap;gap:12px}
+#app{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;position:relative;overflow-x:hidden;color:#231F20;font-family:Nunito,sans-serif;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='140'%3E%3Cpath d='M12 4l2 6 6-2-4 5 4 5-6-2-2 6-2-6-6 2 4-5-4-5 6 2z' fill='%237FA6C9'/%3E%3Cpath d='M4 80c4-4 8 2 12-2' fill='none' stroke='%231E7A5A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") 0 20px/24px 140px repeat-y,radial-gradient(#d9ccb0 1.1px,transparent 1.3px) 0 0/22px 22px,#F1E8D6}
+#app .in{padding:28px 22px 0 34px}
+#app .top{display:flex;align-items:center;gap:12px;font-family:Fredoka;font-weight:600;font-size:28px;color:#231F20;text-decoration:none}
+#app .top img{width:46px;height:46px;border-radius:11px}
+#app h1{font-family:Nunito,sans-serif;font-weight:800;font-size:clamp(27px,7.4vw,37px);line-height:1.12;letter-spacing:-.01em;margin:22px 0 14px}
+#app h1 em{font-style:normal;color:#D9381E}
+#app .streak{display:flex;align-items:center;gap:10px}
+#app .streak svg{width:34px;height:44px}
+#app .streak b{display:block;font-family:Fredoka;font-weight:700;font-size:30px;line-height:1;color:#D9381E}
+#app .streak small{display:block;font-family:'Space Mono';font-weight:700;font-size:12px;letter-spacing:.14em;color:#4a443e;margin-top:4px}
+#app .stat{text-align:center;font-weight:700;font-size:clamp(13px,3.6vw,16px);color:#5d5650;margin:18px 0 12px}
+#app .stat b{color:#26428B}
+#app .grid4{padding-bottom:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;justify-items:center;padding-right:4px}
+#app .grid4 .t{zoom:var(--z,.8)}
+#app .band{position:relative;margin-top:auto;padding:70px 22px 28px;background:#5B1A4A;clip-path:polygon(0 38px,100% 0,100% 100%,0 100%)}
+#app .wrapb{position:relative;margin-top:36px}
+#app .pill{display:block;text-align:center;padding:16px;border-radius:16px;background:#D9381E;color:#fff;font-weight:800;font-size:19px;text-decoration:none;box-shadow:0 5px 0 #8E2312}
+#app .pill:active{transform:translateY(4px);box-shadow:none}
+#app .stk1{position:absolute;left:30px;top:-10px;z-index:2;background:#F6EEDC;padding:6px 14px;transform:rotate(5deg);box-shadow:0 4px 0 rgba(0,0,0,.25);font-family:'Noto Sans',serif;font-weight:700;font-size:18px}
+#app .stk2{position:absolute;right:18px;top:-30px;z-index:2;width:62px;height:62px;border-radius:8px;background:#D9381E;display:grid;place-items:center;transform:rotate(-10deg);box-shadow:inset 0 0 0 4px #D9381E,inset 0 0 0 6px #F6EEDC,0 4px 0 rgba(0,0,0,.3);font-family:'Noto Sans SC';font-weight:800;font-size:36px;color:#F6EEDC}
+#app .ft{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;font-size:12px;color:#d9c7d3}
 #app .ft a{color:inherit}
 }
 </style></head><body>
 <div id="app">
- <a class="top" href="/"><img src="/d8/mark-pl.svg" alt="">polingual</a>
- <h1>Language learning for multilingual learners.</h1>
- <p class="sub">Learn several languages together.</p>
- <div class="card">
-  <div class="field"><span class="ic" aria-hidden="true">100</span><span>100 day streak · 1 meaning a day in 4 languages · up to 400 words</span></div>
-  <ul class="rows" id="app-rows"></ul>
-  <div class="pills"><a class="pill p" href="https://testflight.apple.com/join/HfeRBKr8" data-slot="appstore" rel="noopener">Join the beta on TestFlight</a><a class="pill s" href="mailto:?subject=Polingual&amp;body=https%3A%2F%2Fwww.polingual.com%2F" data-slot="share">Share</a></div>
+ <div class="in">
+  <a class="top" href="/"><img src="/d8/mark-pl.svg" alt="">polingual</a>
+  <h1>Language learning for <em>multilingual</em> learners.</h1>
+  <div class="streak" aria-label="100 day streak"><svg viewBox="0 0 34 44" aria-hidden="true"><defs><linearGradient id="apf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F28C28"/><stop offset="1" stop-color="#D9381E"/></linearGradient></defs><path d="M17 1c3 8 14 13 14 26a14 14 0 0 1-28 0c0-7 4-11 6-14 1 4 3 6 5 7-1-7 0-13 3-19z" fill="url(#apf)"/><path d="M17 23c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 1 2 2 3 3 3-1-3-1-6 0-8z" fill="#F6EEDC"/></svg><div><b>100</b><small>DAY STREAK</small></div></div>
+  <p class="stat">1 meaning a day in 4 languages · up to 400 words</p>
+  <div class="grid4" id="app-grid"></div>
  </div>
- <footer class="ft"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a><span>Words: <a href="https://en.wiktionary.org">Wiktionary</a> via <a href="https://kaikki.org">Kaikki</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></span></footer>
+ <div class="wrapb"><span class="stk1">ἑκατόν</span><span class="stk2">百</span>
+ <div class="band">
+  <a class="pill" href="https://testflight.apple.com/join/HfeRBKr8" data-slot="appstore" rel="noopener">Join the beta on TestFlight</a>
+  <footer class="ft"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a><span>Words: <a href="https://en.wiktionary.org">Wiktionary</a> via <a href="https://kaikki.org">Kaikki</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></span></footer>
+ </div></div>
 </div>
 
 <div id="dk">
@@ -528,7 +531,7 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
 
 </div>
 <script src="/d8/tiles.js"></script>
-<script>(()=>{const ul=document.getElementById("app-rows");if(!ul)return;ul.innerHTML=TILES.map(t=>`<li data-c="${t.c}"><span class="fi" style="${style(t)}"><span class="em">${t.e||""}</span></span><b lang="${t.lang}" style="font-family:'${t.f}',Nunito,sans-serif">${t.w}</b><button aria-label="Play ${t.n} ${t.w}">${SPK}</button></li>`).join("");ul.querySelectorAll("li").forEach(li=>{li.querySelector("button").onclick=()=>say(li,byC(li.dataset.c))})})()</script>
+<script>(()=>{const g=document.getElementById("app-grid");if(!g)return;const set=TILES.slice(0,4);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");const els=[...g.children];els.forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const z=()=>g.style.setProperty("--z",Math.min(1,(g.clientWidth-24)/2/208).toFixed(3));z();addEventListener("resize",z)})()</script>
 <script src="/d8/beta.js"></script>
 <script src="/d8/share.js"></script>
 <script>(()=>{const S=["#5B1A4A","url(#sk-kente)","url(#sk-azulejo)","url(#sk-girih)","url(#sk-seal)","url(#sk-paisley)","url(#sk-mudcloth)"];let i=0;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(()=>{i=(i+1)%S.length;document.querySelectorAll(".mho.face").forEach(p=>p.setAttribute("stroke",S[i]))},3000)})()</script>
