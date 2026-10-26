@@ -49,6 +49,7 @@ public actor BetaEvents {
     public static let maxQueue = 2000
     public static let optOutKey = "beta.optedOut"
     public static let pendingKey = "beta.optOutPending"
+    public static let ownerKey = "beta.queueOwner"
 
     let app: String
     let base: URL
@@ -70,8 +71,14 @@ public actor BetaEvents {
     public var optedOut: Bool { defaults.bool(forKey: Self.optOutKey) }
     public var pending: Int { queue.count }
 
-    public func log(_ event: BetaEvent) {
+    public var owner: String? { defaults.string(forKey: Self.ownerKey) }
+
+    public func log(_ event: BetaEvent, owner: String) {
         guard !optedOut else { return }
+        if self.owner != owner {
+            queue = []
+            defaults.set(owner, forKey: Self.ownerKey)
+        }
         queue.append(event)
         if queue.count > Self.maxQueue { queue.removeFirst(queue.count - Self.maxQueue) }
         save()
@@ -79,9 +86,10 @@ public actor BetaEvents {
 
     public var pendingOptOut: Bool? { defaults.object(forKey: Self.pendingKey) as? Bool }
 
-    public func flush(token: String?) async -> BetaFlush {
+    public func flush(token: String?, owner: String?) async -> BetaFlush {
         if let token, let pending = pendingOptOut { await sendOptOut(pending, token: token) }
-        guard let token, !flushing, !queue.isEmpty, !optedOut else { return BetaFlush(sent: 0, kept: queue.count) }
+        if let owner, self.owner != nil, self.owner != owner { clearQueue() }
+        guard let token, owner != nil, !flushing, !queue.isEmpty, !optedOut else { return BetaFlush(sent: 0, kept: queue.count) }
         flushing = true
         defer { flushing = false }
         var sent = 0
@@ -121,6 +129,7 @@ public actor BetaEvents {
 
     public func clearQueue() {
         queue = []
+        defaults.removeObject(forKey: Self.ownerKey)
         save()
     }
 

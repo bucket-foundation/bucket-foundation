@@ -30,11 +30,21 @@ struct AccountView: View {
                             request.requestedScopes = [.email]
                             request.nonce = n.hashed
                         } onCompletion: { result in
-                            guard case .success(let auth) = result,
-                                  let credential = auth.credential as? ASAuthorizationAppleIDCredential,
-                                  let token = credential.identityToken.flatMap({ String(data: $0, encoding: .utf8) }),
-                                  let raw = nonce?.raw else { return }
-                            Task { await account.signInWithApple(idToken: token, nonce: raw) }
+                            switch result {
+                            case .failure(let error):
+                                if (error as? ASAuthorizationError)?.code != .canceled {
+                                    account.error = String(localized: "Sign in with Apple didn't finish. Try again, or use your email below.")
+                                }
+                            case .success(let auth):
+                                guard let credential = auth.credential as? ASAuthorizationAppleIDCredential,
+                                      let token = credential.identityToken.flatMap({ String(data: $0, encoding: .utf8) }),
+                                      let raw = nonce?.raw else {
+                                    account.error = String(localized: "Apple didn't return a sign-in token. Try again, or use your email below.")
+                                    return
+                                }
+                                account.error = nil
+                                Task { await account.signInWithApple(idToken: token, nonce: raw) }
+                            }
                         }
                         .signInWithAppleButtonStyle(scheme == .dark ? .white : .black)
                         .frame(height: 52)
@@ -77,7 +87,10 @@ struct AccountView: View {
                     Section {
                         LabeledContent("Status", value: "Signed in")
                         if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
-                        Button("Sign out", role: .destructive) { Task { await account.signOutAfterSync() } }
+                        Button("Sign out", role: .destructive) {
+                            Beta.shared.signedOut()
+                            Task { await account.signOutAfterSync() }
+                        }
                         Button("Delete account", role: .destructive) { confirmingDelete = true }
                     } header: {
                         Eyebrow(text: "Account")
@@ -112,7 +125,10 @@ struct AccountView: View {
             .paper()
             .navigationTitle("Account")
             .confirmationDialog("Delete your account?", isPresented: $confirmingDelete, titleVisibility: .visible) {
-                Button("Delete account and data", role: .destructive) { Task { await account.deleteAccount() } }
+                Button("Delete account and data", role: .destructive) {
+                    Beta.shared.signedOut()
+                    Task { await account.deleteAccount() }
+                }
                 Button("Cancel", role: .cancel) {}
             } message: {
                 Text("This removes your sign-in and your saved progress and profile from Bucket. It cannot be undone.")
@@ -139,7 +155,10 @@ enum DevReset {
     static func run(_ account: Account) {
         NotificationCenter.default.post(name: .devReset, object: nil)
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        if account.stage == .signedIn { account.signOut() }
+        if account.stage == .signedIn {
+            Beta.shared.signedOut()
+            account.signOut()
+        }
         if let id = Bundle.main.bundleIdentifier { UserDefaults.standard.removePersistentDomain(forName: id) }
         UserDefaults.standard.synchronize()
         Task {

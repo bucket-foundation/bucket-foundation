@@ -17,9 +17,9 @@ final class Beta {
     }
 
     func log(_ name: String, _ props: [String: JSONScalar] = [:]) {
-        guard account?.session != nil else { return }
+        guard let owner = account?.session?.userId else { return }
         let event = BetaEvent(name: name, sessionId: sessionId, props: props)
-        Task { await events.log(event) }
+        Task { await events.log(event, owner: owner) }
     }
 
     func foreground(_ account: Account) {
@@ -29,13 +29,17 @@ final class Beta {
         Task {
             let token = await account.freshToken()
             flags = await BetaFlags.fetch(app: BucketAPI.appName, token: token)
-            _ = await events.flush(token: token)
+            _ = await events.flush(token: token, owner: account.session?.userId)
         }
+    }
+
+    func signedOut() {
+        Task { await events.clearQueue() }
     }
 
     func background(_ account: Account) {
         self.account = account
-        Task { _ = await events.flush(token: await account.freshToken()) }
+        Task { _ = await events.flush(token: await account.freshToken(), owner: account.session?.userId) }
     }
 
     func studyStarted(_ deck: String) {
