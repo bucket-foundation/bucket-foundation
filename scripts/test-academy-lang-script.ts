@@ -31,6 +31,9 @@ ok(judgeSpelled("كتـاب", "كتاب", "ar") === "exact", "ar: tatweel is ign
 ok(judgeSpelled("كتاي", "كتاب", "ar") === "close", "ar: one wrong letter is close");
 ok(judgeSpelled("يك", "یک", "fa") === "exact", "fa: Arabic yeh and kaf fold to Persian forms");
 ok(judgeSpelled("еж", "ёж", "ru") === "exact", "ru: ё folds to е");
+ok(judgeSpelled("мои", "мой", "ru") !== "exact", "ru: и and й stay distinct");
+ok(judgeSpelled("кни\u0301га", "книга", "ru") === "exact", "ru: stress accent folds");
+ok(foldMarks("ї", "uk") === "ї" && foldMarks("ў", "be") === "ў" && foldMarks("ϊ", "el") === "ι", "Cyrillic breve and diaeresis letters survive, Greek dialytika folds");
 ok(judgeSpelled("Москва", "москва", "ru") === "exact", "ru: case is ignored");
 ok(judgeSpelled("моско", "москва", "ru") === "wrong", "ru: two edits is wrong");
 ok(judgeSpelled("καλημερα", "καλημέρα", "el") === "close", "el: a missing tonos is close");

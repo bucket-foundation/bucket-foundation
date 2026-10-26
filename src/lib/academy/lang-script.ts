@@ -30,7 +30,7 @@ export const HERITAGE_LANGS = Object.keys(SCRIPTS);
 
 const ARABIC_MARKS = /[ً-ٰٟۖ-ۭـ]/g;
 const HEBREW_MARKS = /[֑-ׇֽֿׁׂׅׄ]/g;
-const COMBINING = /[̀-ͯ]/g;
+export const FOLDABLE_MARKS = /(?<![\u0400-\u04ff])[\u0306\u0308]|[\u0300-\u0305\u0307\u0309-\u036f]/g;
 const PUNCT = /[\s.,;:!?¿¡"'«»()\-־،؟。、！？]+/g;
 
 function base(s: string, lang: string): string {
@@ -45,7 +45,7 @@ export function foldMarks(s: string, lang: string): string {
   if (lang === "fa") t = t.replace(/ي/g, "ی").replace(/ك/g, "ک");
   if (lang === "he") t = t.replace(HEBREW_MARKS, "");
   if (lang === "ru") t = t.replace(/ё/g, "е");
-  if (SCRIPTS[lang]?.marks !== "keep") t = t.normalize("NFD").replace(COMBINING, "").normalize("NFC");
+  if (SCRIPTS[lang]?.marks !== "keep") t = t.normalize("NFD").replace(FOLDABLE_MARKS, "").normalize("NFC");
   return t;
 }
 

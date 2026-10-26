@@ -1,6 +1,6 @@
 import { DAY_MS, FSRS, type Card, type Rating } from "./fsrs";
 import { dayKey, grade, makeFsrs, normalizeState, type EngineState } from "./engine";
-import { alphabetUnit, judgeSpelled, letterItemId } from "./lang-script";
+import { alphabetUnit, FOLDABLE_MARKS, judgeSpelled, letterItemId } from "./lang-script";
 
 export interface LangInfo {
   name: string;
@@ -409,7 +409,7 @@ const ARABIC_VOWELS = /[ً-ْٰـ]/g;
 export function normalizeAnswer(s: string, lang = ""): string {
   let t = s.trim().toLowerCase();
   if (lang === "ar") t = t.replace(ARABIC_VOWELS, "");
-  else t = t.normalize("NFD").replace(/[̀-ͯ]/g, "").normalize("NFC");
+  else t = t.normalize("NFD").replace(FOLDABLE_MARKS, "").normalize("NFC");
   return t
     .replace(/[¿¡!?.,;:"'«»()。、！？؟،]/g, " ")
     .replace(/\s+/g, " ")
