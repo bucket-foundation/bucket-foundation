@@ -43,6 +43,7 @@ jobs:
             bundles: msi
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
+    environment: ${{ startsWith(github.ref, 'refs/tags/polingual-desktop-v') && 'polingual-release' || 'polingual-dry-run' }}
     permissions:
       contents: read
     defaults:

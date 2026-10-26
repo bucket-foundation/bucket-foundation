@@ -2,7 +2,9 @@ use std::net::{TcpStream, ToSocketAddrs};
 use std::path::PathBuf;
 use std::sync::Mutex;
 use std::time::Duration;
-use tauri::{Manager, Url};
+use tauri::webview::NewWindowResponse;
+use tauri::{Manager, Url, WebviewWindowBuilder};
+use tauri_plugin_opener::OpenerExt;
 use tauri_plugin_deep_link::DeepLinkExt;
 
 pub const DEFAULT_APP_URL: &str = "https://polingual.com";
@@ -64,6 +66,57 @@ impl LinkState {
             None => base.clone(),
         }
     }
+}
+
+pub const INSIDE_HOSTS: &[&str] = &["polingual.com", "www.polingual.com", "bucket.foundation", "www.bucket.foundation"];
+pub const AUTH_HOST_SUFFIX: &str = ".supabase.co";
+
+pub fn stays_inside(url: &Url) -> bool {
+    match url.scheme() {
+        "tauri" => url.host_str() == Some("localhost"),
+        "http" => url.host_str() == Some("tauri.localhost"),
+        "about" => url.as_str() == "about:blank",
+        "https" => url.host_str().is_some_and(|h| INSIDE_HOSTS.contains(&h) || (h.ends_with(AUTH_HOST_SUFFIX) && h.len() > AUTH_HOST_SUFFIX.len())),
+        _ => false,
+    }
+}
+
+pub fn opens_outside(url: &Url) -> bool {
+    !stays_inside(url) && matches!(url.scheme(), "https" | "http" | "mailto")
+}
+
+fn send_out(app: &tauri::AppHandle, url: &Url) {
+    if opens_outside(url) {
+        if let Err(e) = app.opener().open_url(url.as_str(), None::<&str>) {
+            eprintln!("polingual could not open {url} in the browser: {e}");
+        }
+    } else {
+        eprintln!("polingual refused {url}");
+    }
+}
+
+fn main_window(app: &tauri::App) -> tauri::Result<()> {
+    let config = app.config().app.windows.iter().find(|w| w.label == "main").cloned().ok_or(tauri::Error::WindowNotFound)?;
+    let nav = app.handle().clone();
+    let popup = app.handle().clone();
+    WebviewWindowBuilder::from_config(app.handle(), &config)?
+        .on_navigation(move |url| {
+            let inside = stays_inside(url);
+            if !inside {
+                send_out(&nav, url);
+            }
+            inside
+        })
+        .on_new_window(move |url, _| {
+            if stays_inside(&url) {
+                navigate(&popup, url);
+            } else {
+                send_out(&popup, &url);
+            }
+            NewWindowResponse::Deny
+        })
+        .build()?;
+    Ok(())
 }
 
 pub fn reachable(url: &Url) -> bool {
@@ -165,10 +218,12 @@ pub fn run() {
             None => raise(app),
         }))
         .plugin(tauri_plugin_deep_link::init())
+        .plugin(tauri_plugin_opener::init())
         .manage(Link(Mutex::new(LinkState::default())))
         .manage(Routes(Mutex::new(Vec::new())))
         .manage(record)
         .setup(|app| {
+            main_window(app)?;
             #[cfg(target_os = "linux")]
             if let Ok(data) = app.path().data_dir() {
                 let _ = std::fs::create_dir_all(data.join("applications"));
@@ -266,6 +321,33 @@ mod tests {
     fn online_without_links_opens_the_base() {
         let mut s = LinkState::default();
         assert_eq!(s.went_online(&base()), base());
+    }
+
+    fn u(s: &str) -> Url {
+        Url::parse(s).unwrap()
+    }
+
+    #[test]
+    fn app_hosts_stay_in_the_window() {
+        for s in ["https://polingual.com/app/learn", "https://www.polingual.com/", "https://bucket.foundation/sign-in", "https://abcd.supabase.co/auth/v1/verify", "tauri://localhost/index.html", "http://tauri.localhost/index.html", "about:blank"] {
+            assert!(stays_inside(&u(s)), "{s}");
+        }
+    }
+
+    #[test]
+    fn other_hosts_leave_for_the_browser() {
+        for s in ["https://en.wiktionary.org/wiki/x", "https://polingual.com.evil.com/", "https://evilpolingual.com/", "https://supabase.co/", "https://x.supabase.co.evil.com/", "http://polingual.com/", "mailto:hi@polingual.com"] {
+            assert!(!stays_inside(&u(s)), "{s}");
+            assert!(opens_outside(&u(s)), "{s}");
+        }
+    }
+
+    #[test]
+    fn unsafe_schemes_go_nowhere() {
+        for s in ["file:///etc/passwd", "javascript:alert(1)", "data:text/html,x", "ftp://x.org/"] {
+            assert!(!stays_inside(&u(s)), "{s}");
+            assert!(!opens_outside(&u(s)), "{s}");
+        }
     }
 
     #[test]

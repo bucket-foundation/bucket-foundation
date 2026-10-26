@@ -41,3 +41,8 @@ test("the shell holds no Bucket identifiers", () => {
   expect(raw).not.toContain("bucket://");
   expect(conf.bundle.externalBin).toBeUndefined();
 });
+
+test("the main window is built in Rust so its navigation guards apply", () => {
+  expect(conf.app.windows[0].label).toBe("main");
+  expect(conf.app.windows[0].create).toBe(false);
+});
