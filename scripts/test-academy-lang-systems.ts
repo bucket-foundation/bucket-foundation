@@ -382,6 +382,15 @@ for (const [w, g] of [["homme", "m"], ["heure", "f"], ["hôtel", "m"], ["histoir
 ok(articleFor("fr", "m", "héros") === "le héros" && articleFor("fr", "f", "héroïne") === "l'héroïne", "le héros but l'héroïne");
 ok(isHAspire("hiboux") && isHAspire("haricots") && isHAspire("hall d'entrée") && !isHAspire("hommes"), "plural and multiword lookups");
 
+ok(isHAspire("hors-d'œuvre") && isHAspire("haut-parleur") && articleFor("fr", "m", "haut-parleur") === "le haut-parleur", "hyphenated and apostrophe compounds match their first element");
+ok(["hautain", "huitaine", "hurlement", "haineux", "hâtif", "honteux", "hurleur", "hachette"].every(isHAspire), "derived aspirated words kept");
+for (const [w, g] of [["hallucination", "f"], ["haltère", "m"], ["héroïsme", "m"], ["hommage", "m"], ["horizon", "m"]]) {
+  ok(articleWord("fr", g, w) === "l'", `hallucination bug: aspirated prefix does not capture h muet ${w}`);
+}
+
+ok(["hot-dog", "hold-up", "hip-hop", "hot-dogs"].every(isHAspire) && articleFor("fr", "m", "hold-up") === "le hold-up", "whole hyphenated words match before their first element");
+ok(isHAspire("haute") && articleFor("fr", "f", "haute") === "la haute", "haute is aspirated");
+
 if (failures) {
   console.error(`\n${failures} failure(s)`);
   process.exit(1);
