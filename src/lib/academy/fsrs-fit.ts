@@ -38,15 +38,18 @@ export const FSRS_W_BOUNDS: ReadonlyArray<readonly [number, number]> = [
 export interface FitResult {
   w: number[];
   fitted: boolean;
-  reason: "fitted" | "too-few-reviews" | "too-few-cards";
+  reason: "fitted" | "too-few-reviews" | "too-few-cards" | "no-held-out-gain";
   scoredReviews: number;
   distinctCards: number;
   lossBefore: number;
   lossAfter: number;
+  heldOutBefore: number;
+  heldOutAfter: number;
 }
 
 const EPS = 1e-6;
 const PRIOR = 1e-2;
+export const HOLDOUT_EVERY = 5;
 
 function groupByCard(log: ReviewEntry[]): ReviewEntry[][] {
   const byCard = new Map<string, ReviewEntry[]>();
@@ -99,28 +102,43 @@ function objective(w: number[], log: ReviewEntry[]): number {
 
 const clampW = (i: number, v: number) => Math.min(Math.max(v, FSRS_W_BOUNDS[i][0]), FSRS_W_BOUNDS[i][1]);
 
-export function fitFsrsWeights(
-  log: ReviewEntry[],
-  opts: { gate?: FitGate; rounds?: number; initial?: number[] } = {},
-): FitResult {
+export function splitByCard(log: ReviewEntry[], every = HOLDOUT_EVERY): { train: ReviewEntry[]; test: ReviewEntry[] } {
+  const ids = Array.from(new Set(log.map((r) => r.cardId))).sort();
+  const held = new Set(ids.filter((_, k) => k % every === every - 1));
+  return { train: log.filter((r) => !held.has(r.cardId)), test: log.filter((r) => held.has(r.cardId)) };
+}
+
+export interface FitOptions {
+  gate?: FitGate;
+  rounds?: number;
+  initial?: number[];
+}
+
+function* fitSteps(log: ReviewEntry[], opts: FitOptions): Generator<void, FitResult, void> {
   const gate = opts.gate ?? FSRS_FIT_GATE;
   const start = (opts.initial ?? FSRS_DEFAULT_W).slice();
   const scoredReviews = predictions(start, log).length;
   const distinctCards = new Set(log.map((r) => r.cardId)).size;
-  const lossBefore = logLoss(start, log);
-  const base = { scoredReviews, distinctCards, lossBefore };
-  if (scoredReviews < gate.minReviews) {
-    return { ...base, w: [...FSRS_DEFAULT_W], fitted: false, reason: "too-few-reviews", lossAfter: lossBefore };
-  }
-  if (distinctCards < gate.minCards) {
-    return { ...base, w: [...FSRS_DEFAULT_W], fitted: false, reason: "too-few-cards", lossAfter: lossBefore };
-  }
+  const { train, test } = splitByCard(log);
+  const lossBefore = logLoss(start, train);
+  const heldOutBefore = logLoss(start, test);
+  const base = { scoredReviews, distinctCards, lossBefore, heldOutBefore };
+  const keep = (reason: FitResult["reason"]): FitResult => ({
+    ...base,
+    w: [...FSRS_DEFAULT_W],
+    fitted: false,
+    reason,
+    lossAfter: lossBefore,
+    heldOutAfter: heldOutBefore,
+  });
+  if (scoredReviews < gate.minReviews) return keep("too-few-reviews");
+  if (distinctCards < gate.minCards) return keep("too-few-cards");
 
   const w = start.map((v, i) => clampW(i, v));
   const step = FSRS_W_BOUNDS.map(() => 0.5);
   const move = (i: number, v: number, d: number) =>
     FSRS_W_BOUNDS[i][0] > 0 ? v * Math.exp(d) : v + d * ((FSRS_W_BOUNDS[i][1] - FSRS_W_BOUNDS[i][0]) / 10);
-  let best = objective(w, log);
+  let best = objective(w, train);
   const rounds = opts.rounds ?? 40;
   for (let round = 0; round < rounds; round++) {
     let improved = false;
@@ -130,7 +148,7 @@ export function fitFsrsWeights(
         const cand = clampW(i, move(i, prev, dir * step[i]));
         if (cand === prev) continue;
         w[i] = cand;
-        const value = objective(w, log);
+        const value = objective(w, train);
         if (value < best - 1e-12) {
           best = value;
           improved = true;
@@ -139,8 +157,33 @@ export function fitFsrsWeights(
         }
         w[i] = prev;
       }
+      yield;
     }
     if (!improved) for (let i = 0; i < step.length; i++) step[i] *= 0.5;
   }
-  return { ...base, w, fitted: true, reason: "fitted", lossAfter: logLoss(w, log) };
+  const heldOutAfter = logLoss(w, test);
+  if (heldOutAfter >= heldOutBefore) return keep("no-held-out-gain");
+  return { ...base, w, fitted: true, reason: "fitted", lossAfter: logLoss(w, train), heldOutAfter };
+}
+
+export function fitFsrsWeights(log: ReviewEntry[], opts: FitOptions = {}): FitResult {
+  const it = fitSteps(log, opts);
+  for (;;) {
+    const r = it.next();
+    if (r.done) return r.value;
+  }
+}
+
+export async function fitFsrsWeightsAsync(log: ReviewEntry[], opts: FitOptions & { sliceMs?: number } = {}): Promise<FitResult> {
+  const sliceMs = opts.sliceMs ?? 8;
+  const it = fitSteps(log, opts);
+  let sliceStart = Date.now();
+  for (;;) {
+    const r = it.next();
+    if (r.done) return r.value;
+    if (Date.now() - sliceStart >= sliceMs) {
+      await new Promise<void>((resolve) => setTimeout(resolve, 0));
+      sliceStart = Date.now();
+    }
+  }
 }

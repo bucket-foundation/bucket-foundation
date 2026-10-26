@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { DAY_MS, FSRS, FSRS_DEFAULT_W, type Card, type Rating } from "../src/lib/academy/fsrs";
-import { FSRS_FIT_GATE, fitFsrsWeights, logLoss, predictions, type ReviewEntry } from "../src/lib/academy/fsrs-fit";
+import { FSRS_FIT_GATE, fitFsrsWeights, fitFsrsWeightsAsync, splitByCard, logLoss, predictions, type ReviewEntry } from "../src/lib/academy/fsrs-fit";
 
 const T0 = 1_800_000_000_000;
 const TRUE_W = FSRS_DEFAULT_W.map((v, i) => (i < 4 ? v * 0.2 : i === 8 ? v * 0.6 : i === 10 ? v * 1.3 : v));
@@ -89,4 +89,45 @@ test("gate returns defaults when reviews cover too few cards", () => {
 test("fit is deterministic and ignores log order", () => {
   const again = fitFsrsWeights([...train].reverse());
   assert.deepEqual(again.w, fit.w);
+});
+
+function powerLawLog(cards: number, reviewsPerCard: number, seed: number): ReviewEntry[] {
+  const rand = rng(seed);
+  const log: ReviewEntry[] = [];
+  for (let c = 0; c < cards; c++) {
+    let ts = T0 + c * 3_600_000;
+    let h = 0.3 + rand() * 1.5;
+    log.push({ cardId: `p${String(c).padStart(4, "0")}`, ts, rating: 3 });
+    for (let k = 1; k < reviewsPerCard; k++) {
+      const t = h * (0.3 + rand() * 3);
+      ts += t * DAY_MS;
+      const r = Math.pow(1 + t / (4 * h), -1.6);
+      const ok = rand() < r;
+      log.push({ cardId: `p${String(c).padStart(4, "0")}`, ts, rating: ok ? (rand() < 0.2 ? 4 : 3) : 1 });
+      h = ok ? h * (1.6 + rand()) : Math.max(0.1, h * 0.3);
+    }
+  }
+  return log;
+}
+
+test("held-out log-loss is reported on a card split and beats defaults", () => {
+  const { train: tr, test: te } = splitByCard(train);
+  assert.ok(te.length > 0 && tr.length > te.length * 3);
+  assert.ok(!te.some((r) => tr.some((x) => x.cardId === r.cardId)));
+  assert.ok(fit.heldOutAfter < fit.heldOutBefore, `${fit.heldOutAfter} < ${fit.heldOutBefore}`);
+});
+
+test("fit beats defaults on held-out cards from a power-law forgetting simulator", () => {
+  const res = fitFsrsWeights(powerLawLog(300, 8, 11));
+  assert.equal(res.fitted, true);
+  assert.ok(res.heldOutAfter < res.heldOutBefore, `${res.heldOutAfter} < ${res.heldOutBefore}`);
+});
+
+test("async fit yields to the event loop and matches the sync result", async () => {
+  let ticks = 0;
+  const timer = setInterval(() => ticks++, 1);
+  const res = await fitFsrsWeightsAsync(train, { sliceMs: 4 });
+  clearInterval(timer);
+  assert.ok(ticks > 5, `ticks ${ticks}`);
+  assert.deepEqual(res.w, fit.w);
 });
