@@ -1,35 +1,45 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { gradeQuestion, loadQuestionDeck, parseNumber, present, questionsFor, validateQuestion, type Question, type QuestionKind } from "../src/lib/academy/question-types";
 
 const ROOT = join(__dirname, "..");
-const corpus = JSON.parse(readFileSync(join(ROOT, "learning/app/corpus/00-learning-to-learn.json"), "utf8"));
-const raw = JSON.parse(readFileSync(join(ROOT, "learning/app/corpus/questions/00-learning-to-learn.json"), "utf8"));
-const atomIds: string[] = corpus.atoms.map((a: { id: string }) => a.id);
+const QDIR = join(ROOT, "learning/app/corpus/questions");
 const KINDS: QuestionKind[] = ["pick", "calculate", "order", "spot-error", "match"];
-
-test("pilot deck loads and every atom has all five kinds", () => {
-  const deck = loadQuestionDeck(raw, atomIds);
-  assert.equal(deck.questions.length, atomIds.length * 5);
-  for (const id of atomIds) for (const k of KINDS) assert.equal(questionsFor(deck, id, k).length, 1, `${id} ${k}`);
+const decks = readdirSync(QDIR).filter((f) => f.endsWith(".json")).map((f) => {
+  const branch = f.replace(/\.json$/, "");
+  const corpus = JSON.parse(readFileSync(join(ROOT, "learning/app/corpus", f), "utf8"));
+  return { branch, atomIds: corpus.atoms.map((a: { id: string }) => a.id) as string[], raw: JSON.parse(readFileSync(join(QDIR, f), "utf8")) };
 });
 
-test("every pilot question grades its own key as correct", () => {
-  const deck = loadQuestionDeck(raw, atomIds);
-  for (const q of deck.questions) {
-    const r =
-      q.kind === "pick" ? { kind: q.kind, choice: q.answer } :
-      q.kind === "calculate" ? { kind: q.kind, value: q.answer } :
-      q.kind === "order" ? { kind: q.kind, order: q.steps.map((_, i) => i) } :
-      q.kind === "spot-error" ? { kind: q.kind, step: q.error } :
-      { kind: q.kind, pairs: Object.fromEntries(q.pairs.map((p) => [p.term, p.meaning])) };
-    const g = gradeQuestion(q, r as never);
-    assert.ok(g.correct, q.id);
-    assert.equal(g.rating, 3);
-  }
+test("question decks exist for the cosmology pilot", () => {
+  assert.ok(decks.some((d) => d.branch === "06-cosmology"));
 });
+
+for (const { branch, atomIds, raw } of decks) {
+  test(`${branch}: deck loads and every atom has all five kinds`, () => {
+    const deck = loadQuestionDeck(raw, atomIds);
+    assert.equal(deck.branch, branch);
+    assert.equal(deck.questions.length, atomIds.length * 5);
+    for (const id of atomIds) for (const k of KINDS) assert.equal(questionsFor(deck, id, k).length, 1, `${id} ${k}`);
+  });
+
+  test(`${branch}: every question grades its own key as correct`, () => {
+    const deck = loadQuestionDeck(raw, atomIds);
+    for (const q of deck.questions) {
+      const r =
+        q.kind === "pick" ? { kind: q.kind, choice: q.answer } :
+        q.kind === "calculate" ? { kind: q.kind, value: q.answer } :
+        q.kind === "order" ? { kind: q.kind, order: q.steps.map((_, i) => i) } :
+        q.kind === "spot-error" ? { kind: q.kind, step: q.error } :
+        { kind: q.kind, pairs: Object.fromEntries(q.pairs.map((p) => [p.term, p.meaning])) };
+      const g = gradeQuestion(q, r as never);
+      assert.ok(g.correct, q.id);
+      assert.equal(g.rating, 3);
+    }
+  });
+}
 
 test("loader rejects unknown atoms, bad indices and duplicate ids", () => {
   const bad = { branch: "x", version: "0", questions: [
