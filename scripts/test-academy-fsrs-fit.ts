@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import path from "node:path";
+import { Worker } from "node:worker_threads";
 import { DAY_MS, FSRS, FSRS_DEFAULT_W, type Card, type Rating } from "../src/lib/academy/fsrs";
-import { FSRS_FIT_GATE, fitFsrsWeights, fitFsrsWeightsAsync, splitByCard, logLoss, predictions, type ReviewEntry } from "../src/lib/academy/fsrs-fit";
+import { FSRS_FIT_GATE, fitFsrsWeights, fitInWorker, type FitWorker, splitByCard, logLoss, predictions, type ReviewEntry } from "../src/lib/academy/fsrs-fit";
 
 const T0 = 1_800_000_000_000;
 const TRUE_W = FSRS_DEFAULT_W.map((v, i) => (i < 4 ? v * 0.2 : i === 8 ? v * 0.6 : i === 10 ? v * 1.3 : v));
@@ -123,11 +125,34 @@ test("fit beats defaults on held-out cards from a power-law forgetting simulator
   assert.ok(res.heldOutAfter < res.heldOutBefore, `${res.heldOutAfter} < ${res.heldOutBefore}`);
 });
 
-test("async fit yields to the event loop and matches the sync result", async () => {
+function nodeFitWorker(): FitWorker {
+  const file = path.join(__dirname, "..", "src", "lib", "academy", "fsrs-fit.worker.ts");
+  const boot = [
+    "const { parentPort } = require('node:worker_threads');",
+    "require('ts-node').register({ transpileOnly: true, compilerOptions: { module: 'commonjs', moduleResolution: 'node' } });",
+    "globalThis.self = globalThis;",
+    "globalThis.postMessage = (m) => parentPort.postMessage(m);",
+    "parentPort.on('message', (data) => globalThis.onmessage({ data }));",
+    `require(${JSON.stringify(file)});`,
+  ].join("\n");
+  const w = new Worker(boot, { eval: true });
+  const adapter: FitWorker = {
+    postMessage: (req) => w.postMessage(req),
+    onmessage: null,
+    onerror: null,
+    terminate: () => void w.terminate(),
+  };
+  w.on("message", (data) => adapter.onmessage?.({ data }));
+  w.on("error", (e) => adapter.onerror?.(e));
+  return adapter;
+}
+
+test("worker body runs off the main thread and returns the sync weights", async () => {
   let ticks = 0;
   const timer = setInterval(() => ticks++, 1);
-  const res = await fitFsrsWeightsAsync(train, { sliceMs: 4 });
+  const res = await fitInWorker(nodeFitWorker, train);
   clearInterval(timer);
   assert.ok(ticks > 5, `ticks ${ticks}`);
   assert.deepEqual(res.w, fit.w);
+  assert.equal(res.heldOutAfter, fit.heldOutAfter);
 });

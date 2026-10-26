@@ -174,16 +174,31 @@ export function fitFsrsWeights(log: ReviewEntry[], opts: FitOptions = {}): FitRe
   }
 }
 
-export async function fitFsrsWeightsAsync(log: ReviewEntry[], opts: FitOptions & { sliceMs?: number } = {}): Promise<FitResult> {
-  const sliceMs = opts.sliceMs ?? 8;
-  const it = fitSteps(log, opts);
-  let sliceStart = Date.now();
-  for (;;) {
-    const r = it.next();
-    if (r.done) return r.value;
-    if (Date.now() - sliceStart >= sliceMs) {
-      await new Promise<void>((resolve) => setTimeout(resolve, 0));
-      sliceStart = Date.now();
-    }
-  }
+export interface FitRequest {
+  log: ReviewEntry[];
+  opts?: FitOptions;
+}
+
+export const runFitJob = (req: FitRequest): FitResult => fitFsrsWeights(req.log, req.opts);
+
+export interface FitWorker {
+  postMessage(req: FitRequest): void;
+  onmessage: ((e: { data: FitResult }) => void) | null;
+  onerror: ((e: unknown) => void) | null;
+  terminate(): void;
+}
+
+export function fitInWorker(spawn: () => FitWorker, log: ReviewEntry[], opts?: FitOptions): Promise<FitResult> {
+  return new Promise((resolve, reject) => {
+    const w = spawn();
+    w.onmessage = (e) => {
+      w.terminate();
+      resolve(e.data);
+    };
+    w.onerror = (e) => {
+      w.terminate();
+      reject(e);
+    };
+    w.postMessage({ log, opts });
+  });
 }
