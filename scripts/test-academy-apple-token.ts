@@ -416,8 +416,8 @@ test("an old v1 seal without AAD still opens, and still revokes from the pending
   assert.equal(w.calls[0].body.get("token"), "old");
 });
 
-test("the sign-in code exchange times out at 3 s while revoke keeps 8 s", async () => {
-  assert.equal(APPLE_EXCHANGE_TIMEOUT_MS, 3000);
+test("the code exchange fetch and revoke both cap at 8 s; the 3 s sign-in budget lives in the session handler", async () => {
+  assert.equal(APPLE_EXCHANGE_TIMEOUT_MS, 8000);
   assert.equal(APPLE_FETCH_TIMEOUT_MS, 8000);
   const seen: number[] = [];
   const realTimeout = AbortSignal.timeout;
@@ -432,5 +432,5 @@ test("the sign-in code exchange times out at 3 s while revoke keeps 8 s", async 
   } finally {
     AbortSignal.timeout = realTimeout;
   }
-  assert.deepEqual(seen, [3000, 8000]);
+  assert.deepEqual(seen, [8000, 8000]);
 });
