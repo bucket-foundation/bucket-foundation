@@ -78,5 +78,6 @@ The first answer that gives a tester an arm writes it to `bucket.beta_assignment
 | `new_words` | `4`, `8` | `4` |
 | `practice_order` | `mixed`, `blocked` | `blocked` |
 | `cognate_hints` | `on`, `off` | `off` |
+| `extra_plans` | `on`, `off` | `off` |
 
 Per cohort an experiment is `on` (hash split, the default), `off`, or pinned to one arm. Set it from `/admin/beta` or `POST /api/admin/beta` with `{ experiment, cohort, setting }`. The report shows n, the pinned count, D1/D7/D30 retention, recall and time per card for each arm. Pinned testers are not randomized; compare arms on hash-split testers. Recall at DN is the share of `card_answered` events with `correct: true` on day N after the tester's first event; time per card reads `card_answered.ms`.

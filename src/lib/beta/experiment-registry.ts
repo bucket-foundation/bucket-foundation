@@ -2,6 +2,7 @@ export interface Experiment {
   key: string;
   arms: readonly string[];
   fallback: string;
+  defaultSetting?: "on" | "off";
 }
 
 export const EXPERIMENTS: readonly Experiment[] = [
@@ -9,6 +10,7 @@ export const EXPERIMENTS: readonly Experiment[] = [
   { key: "new_words", arms: ["4", "8"], fallback: "4" },
   { key: "practice_order", arms: ["mixed", "blocked"], fallback: "blocked" },
   { key: "cognate_hints", arms: ["on", "off"], fallback: "off" },
+  { key: "extra_plans", arms: ["on", "off"], fallback: "off", defaultSetting: "off" },
 ];
 
 export interface AssignmentRow {

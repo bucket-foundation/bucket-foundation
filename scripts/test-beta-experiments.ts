@@ -12,12 +12,20 @@ const USER = "11111111-1111-1111-1111-111111111111";
 const KEY = "k".repeat(24);
 const ids = Array.from({ length: 400 }, (_, i) => `00000000-0000-4000-8000-${String(i).padStart(12, "0")}`);
 
-test("the four bead experiments are registered", () => {
-  assert.deepEqual(EXPERIMENTS.map((e) => e.key), ["option_language", "new_words", "practice_order", "cognate_hints"]);
+test("the bead experiments and extra_plans are registered", () => {
+  assert.deepEqual(EXPERIMENTS.map((e) => e.key), ["option_language", "new_words", "practice_order", "cognate_hints", "extra_plans"]);
 });
 
 test("option_language falls back to cross, matching the app", () => {
   assert.equal(EXPERIMENTS.find((e) => e.key === "option_language")!.fallback, "cross");
+});
+
+test("extra_plans is off until a cohort turns it on", () => {
+  const exp = EXPERIMENTS.find((e) => e.key === "extra_plans")!;
+  assert.equal(exp.fallback, "off");
+  assert.deepEqual(assign(exp, USER, "default", []), { value: "off", arm: null, source: "off" });
+  const on = assign(exp, USER, "default", [{ experiment: "extra_plans", cohort: "default", setting: "on" }]);
+  assert.equal(on.source, "hash");
 });
 
 test("hash assignment is deterministic and splits close to even", () => {
@@ -40,7 +48,7 @@ test("cohort settings force an arm or switch the experiment off", () => {
   assert.deepEqual(assign(exp, USER, "staff", rows), { value: "4", arm: null, source: "off" });
   assert.equal(assign(exp, USER, "odd", rows).source, "off");
   assert.equal(assign(exp, USER, "default", rows).source, "hash");
-  assert.equal(Object.keys(flagsFor(USER, "default", [])).length, 4);
+  assert.equal(Object.keys(flagsFor(USER, "default", [])).length, 5);
 });
 
 test("the report groups by the stored arm, and a later cohort change leaves it unchanged", async () => {
@@ -101,5 +109,5 @@ test("flags API returns cohort and arms for the bearer user", async () => {
   assert.equal((await store.assignments(USER)).length, 4);
   const report = await (await handleBetaReport(req("http://localhost/api/admin/beta", { key: KEY }), admin)).json();
   assert.equal(report.settings.length, 1);
-  assert.equal(report.experiments.length, 4);
+  assert.equal(report.experiments.length, 5);
 });

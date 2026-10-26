@@ -24,12 +24,12 @@ export function hashArm(exp: Experiment, userId: string): string {
   return exp.arms[digest.readUInt32BE(0) % exp.arms.length];
 }
 
-export function settingFor(rows: CohortSettingRow[], experiment: string, cohort: string): CohortSetting {
-  return rows.find((r) => r.experiment === experiment && r.cohort === cohort)?.setting ?? "on";
+export function settingFor(rows: CohortSettingRow[], exp: Experiment, cohort: string): CohortSetting {
+  return rows.find((r) => r.experiment === exp.key && r.cohort === cohort)?.setting ?? exp.defaultSetting ?? "on";
 }
 
 export function assign(exp: Experiment, userId: string, cohort: string, rows: CohortSettingRow[]): Flag {
-  const setting = settingFor(rows, exp.key, cohort);
+  const setting = settingFor(rows, exp, cohort);
   if (setting === "off" || !validSetting(exp, setting)) return { value: exp.fallback, arm: null, source: "off" };
   if (setting !== "on") return { value: setting, arm: setting, source: "cohort" };
   const arm = hashArm(exp, userId);
