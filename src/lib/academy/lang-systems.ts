@@ -104,6 +104,7 @@ export interface LangSystem {
   createdAt: number;
   updatedAt?: number;
   placement: Record<string, number>;
+  levels?: Record<string, string>;
 }
 
 export interface Reading {
@@ -558,7 +559,7 @@ export function distractors(corpus: LangCorpus, item: LangItem, optionLang: stri
   return out;
 }
 
-function clozeFor(item: LangItem, lang: string): { before: string; after: string } | null {
+export function clozeFor(item: LangItem, lang: string): { before: string; after: string } | null {
   const word = item.forms[lang];
   const sentence = item.example[lang];
   if (item.kind === "word" && sentence) {
@@ -595,7 +596,7 @@ export function sentenceFor(corpus: LangCorpus, item: LangItem, lang: string, ro
   return { id, s: corpus.pool[id] };
 }
 
-function sentenceDistractors(corpus: LangCorpus, lang: string, root: string, avoid: string, rng: Rng, n = 3): string[] {
+export function sentenceDistractors(corpus: LangCorpus, lang: string, root: string, avoid: string, rng: Rng, n = 3): string[] {
   const ids = shuffle(Object.keys(corpus.pool).filter((id) => id !== avoid && corpus.pool[id].t[lang] && corpus.pool[id].t[root] !== corpus.pool[avoid]?.t[root]), rng);
   const out: string[] = [];
   for (const id of ids) {
@@ -838,7 +839,8 @@ export function unitStatus(system: LangSystem, corpus: LangCorpus, state: Engine
   for (const unit of corpus.units) {
     const items = corpus.items.filter((i) => i.unit === unit.index && isVocab(i) && usable(i, system.root, lang));
     const started = items.filter((i) => cards[cardId(lang, i.id)]).length;
-    const done = items.length === 0 || started / items.length >= UNIT_UNLOCK_SHARE;
+    const covered = items.filter((i) => cards[cardId(lang, i.id)] || i.tier < (system.placement[lang] ?? 0)).length;
+    const done = items.length === 0 || covered / items.length >= UNIT_UNLOCK_SHARE;
     out.push({ unit, total: items.length, started, unlocked: prevDone, done });
     prevDone = prevDone && done;
   }
@@ -971,12 +973,13 @@ export function placementOptions(corpus: LangCorpus, item: LangItem, lang: strin
   return shuffle([item.forms[lang], ...distractors(corpus, item, lang, root, rng)], rng);
 }
 
-export function applyPlacement(state: EngineState, system: LangSystem, corpus: LangCorpus, lang: string, tier: number, now: number = Date.now()): EngineState {
+export function applyPlacement(state: EngineState, system: LangSystem, corpus: LangCorpus, lang: string, tier: number, now: number = Date.now(), only?: ReadonlySet<string>): EngineState {
   const next = normalizeState(state);
   const fsrs: FSRS = makeFsrs(next);
   const placed: string[] = [];
   for (const item of corpus.items) {
-    if (!isVocab(item) || item.tier >= tier || !usable(item, system.root, lang)) continue;
+    if (!isVocab(item) || !usable(item, system.root, lang)) continue;
+    if (only ? !only.has(item.id) : item.tier >= tier) continue;
     const id = cardId(lang, item.id);
     if (next.cards[id]) continue;
     const c = fsrs.review({ state: "new" }, 4, now) as LangCard;
@@ -1095,7 +1098,9 @@ export function mergeSystems(a: SystemsDoc, b: SystemsDoc): SystemsDoc {
     const placement = { ...cur.placement };
     for (const [l, t] of Object.entries(s.placement)) placement[l] = Math.max(placement[l] ?? 0, t);
     const newer = (s.updatedAt ?? s.createdAt) > (cur.updatedAt ?? cur.createdAt) ? s : cur;
-    byId.set(s.id, { ...newer, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
+    const older = newer === s ? cur : s;
+    const levels = older.levels || newer.levels ? { levels: { ...older.levels, ...newer.levels } } : {};
+    byId.set(s.id, { ...newer, ...levels, createdAt: Math.min(cur.createdAt, s.createdAt), placement: Object.fromEntries(Object.entries(placement).sort()) });
   }
   const systems = Array.from(byId.values())
     .filter((s) => (removed[s.id] ?? -1) < s.createdAt)

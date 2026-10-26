@@ -21,7 +21,7 @@ export interface LangSystemHandle {
   state: EngineState;
   grade: (lang: string, itemId: string, rating: Rating) => void;
   recordFlags: (tables: FlagTables) => void;
-  place: (lang: string, tier: number) => void;
+  place: (lang: string, tier: number, only?: string[], level?: string) => void;
   saveState: SaveResult | "idle" | "saving";
   edit: (targets: string[]) => void;
   langStatus: Record<string, LangLoadStatus>;
@@ -100,16 +100,16 @@ function useLegacyLangSystem(systemId: string, active: boolean): LangSystemHandl
   const recordFlags = useCallback((tables: FlagTables) => commit(withFlagTables(stateRef.current, tables)), [commit]);
 
   const place = useCallback(
-    (lang: string, tier: number) => {
+    (lang: string, tier: number, only?: string[], level?: string) => {
       if (!system || !corpus) return;
-      const nextSystem = { ...system, placement: { ...system.placement, [lang]: tier } };
+      const nextSystem = { ...system, placement: { ...system.placement, [lang]: tier }, ...(level ? { levels: { ...system.levels, [lang]: level } } : {}) };
       setSystem(nextSystem);
       setSaveState("saving");
       void saveSystems({ upsert: nextSystem }).then((r) => {
         systemsRef.current = r.systems;
         setSaveState(r.result);
       });
-      commit(applyPlacement(stateRef.current, nextSystem, corpus, lang, tier));
+      commit(applyPlacement(stateRef.current, nextSystem, corpus, lang, tier, undefined, only ? new Set(only) : undefined));
     },
     [system, corpus, commit]
   );
@@ -191,9 +191,9 @@ function useSharedLangSystem(systemId: string, active: boolean): LangSystemHandl
   }, []);
 
   const place = useCallback(
-    (lang: string, tier: number) => {
+    (lang: string, tier: number, only?: string[], level?: string) => {
       if (!ref.current || !corpus) return;
-      const r = placeShared(browserMemoryIO, ref.current, corpus, lang, tier);
+      const r = placeShared(browserMemoryIO, ref.current, corpus, lang, tier, only, level);
       ref.current = r.session;
       setSession(r.session);
       setSaveState("saving");
