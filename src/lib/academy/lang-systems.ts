@@ -700,7 +700,9 @@ export function letterExercise(lang: string, root: string, index: number, rng: R
   const letter = unit?.letters[index];
   if (!unit || !letter) return null;
   const others = shuffle(unit.letters.filter((l) => l.ch !== letter.ch && l.sound !== letter.sound), rng).slice(0, 3).map((l) => l.ch);
-  return { itemId: letterItemId(letter.ch), lang, root, kind: "letter", prompt: letter.sound, promptLang: lang, answer: letter.ch, answerLang: lang, options: shuffle([letter.ch, ...others], rng), promptReading: { roman: letter.sound }, note: unit.title };
+  const prompt = letter.name ? `${letter.sound} · ${letter.name}` : letter.sound;
+  const accept = letter.name ? [letter.ch] : unit.letters.filter((l) => l.sound === letter.sound).map((l) => l.ch);
+  return { itemId: letterItemId(letter.ch), lang, root, kind: "letter", prompt, promptLang: lang, answer: letter.ch, answerLang: lang, options: shuffle([letter.ch, ...others], rng), accept, promptReading: { roman: letter.sound }, note: unit.title };
 }
 
 function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): Exercise {

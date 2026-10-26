@@ -21,7 +21,10 @@ for (const l of nonLatin) {
   ok(new Set(u.letters.map((x) => x.ch)).size === u.letters.length, `${l} letters are unique`);
 }
 ok(alphabetUnit("es") === null, "Latin languages have no alphabet unit");
-ok(alphabetUnit("ru")!.letters.length === 33 && alphabetUnit("he")!.letters.length === 22 && alphabetUnit("th")!.letters.length === 44 && alphabetUnit("ja")!.letters.length === 46, "full alphabets for ru, he, th, ja");
+ok(alphabetUnit("ru")!.letters.length === 33 && alphabetUnit("he")!.letters.length === 22 && alphabetUnit("th")!.letters.length === 44 + 14 && alphabetUnit("ja")!.letters.length === 92, "full alphabets for ru, he, th, ja");
+ok(alphabetUnit("ja")!.letters.some((l) => l.ch === "カ" && l.sound === "ka"), "ja: katakana follows hiragana");
+for (const l of ["hi", "sa", "ta", "th"]) ok(alphabetUnit(l)!.letters.filter((x) => x.ch.includes("◌")).length >= 10, `${l}: dependent vowel signs are taught`);
+ok(alphabetUnit("hi")!.letters.some((l) => l.ch === "◌ा" && l.sound === "-ā"), "hi: matra aa is in the unit");
 ok(alphabetUnit("ru")!.letters[0].ch === "а" && alphabetUnit("ja")!.letters[5].ch === "か", "letters keep their traditional order");
 
 ok(judgeSpelled("שָׁלוֹם", "שלום", "he") === "exact", "he: niqqud is optional");
@@ -30,7 +33,9 @@ ok(judgeSpelled("كِتَاب", "كتاب", "ar") === "exact", "ar: harakat are 
 ok(judgeSpelled("كتـاب", "كتاب", "ar") === "exact", "ar: tatweel is ignored");
 ok(judgeSpelled("كتاي", "كتاب", "ar") === "close", "ar: one wrong letter is close");
 ok(judgeSpelled("يك", "یک", "fa") === "exact", "fa: Arabic yeh and kaf fold to Persian forms");
-ok(judgeSpelled("еж", "ёж", "ru") === "exact", "ru: ё folds to е");
+ok(judgeSpelled("еж", "ёж", "ru") === "close", "ru: е for ё is close");
+ok(judgeSpelled("все", "всё", "ru") !== "exact" && judgeSpelled("всё", "все", "ru") !== "exact", "ru: все and всё never grade exact for each other");
+ok(judgeSpelled("ВСЁ", "всё", "ru") === "exact", "ru: ё matches ё exactly");
 ok(judgeSpelled("мои", "мой", "ru") !== "exact", "ru: и and й stay distinct");
 ok(judgeSpelled("кни\u0301га", "книга", "ru") === "exact", "ru: stress accent folds");
 ok(foldMarks("ї", "uk") === "ї" && foldMarks("ў", "be") === "ў" && foldMarks("ϊ", "el") === "ι", "Cyrillic breve and diaeresis letters survive, Greek dialytika folds");
@@ -64,6 +69,12 @@ ok(gradeSpelling(ex, "zzz").rating === 1, "wrong spelling rates Again");
 
 const lx = letterExercise("he", "en", 1, seededRng(2))!;
 ok(lx.kind === "letter" && lx.answer === "ב" && lx.prompt === "b/v" && lx.options!.length === 4 && lx.options!.includes("ב"), "letter card asks for the letter by sound");
+const thx = letterExercise("th", "en", 1, seededRng(2))!;
+ok(thx.prompt === "kh · kho khai" && thx.accept!.join("") === "ข", "th: a shared sound is prompted with the letter name");
+const fax = letterExercise("fa", "en", alphabetUnit("fa")!.letters.findIndex((l) => l.ch === "س"), seededRng(2))!;
+ok(fax.prompt === "s · sin", "fa: sin is named apart from se and sad");
+const rux = letterExercise("ru", "en", alphabetUnit("ru")!.letters.findIndex((l) => l.ch === "й"), seededRng(2))!;
+ok(rux.accept!.includes("й") && rux.accept!.includes("ы"), "unnamed letters accept every letter with the same sound");
 ok(letterExercise("he", "en", 99, seededRng(2)) === null && letterExercise("es", "en", 0, seededRng(2)) === null, "letter card out of range or Latin is null");
 
 const NOW = Date.UTC(2026, 9, 25, 12);
