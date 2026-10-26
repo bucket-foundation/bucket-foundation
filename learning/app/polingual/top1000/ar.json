@@ -13,7 +13,7 @@
   "rank": 2,
   "word": "كيف",
   "meaning": "how",
-  "pos": "noun",
+  "pos": "adv",
   "ipa": "/kajf/",
   "zipf": 5.89,
   "score": 500141.02,
@@ -33,7 +33,7 @@
   "rank": 4,
   "word": "هم",
   "meaning": "they (masculine plural subject pronoun)",
-  "pos": "noun",
+  "pos": "pron",
   "ipa": "/hamm/",
   "zipf": 5.71,
   "score": 500137.78,
@@ -213,7 +213,7 @@
   "rank": 22,
   "word": "فتح",
   "meaning": "to open (“to make something accessible”)",
-  "pos": "noun",
+  "pos": "verb",
   "ipa": "/fatħ/",
   "zipf": 5.02,
   "score": 500125.36,
@@ -813,7 +813,7 @@
   "rank": 82,
   "word": "هن",
   "meaning": "they (feminine plural subject pronoun)",
-  "pos": "noun",
+  "pos": "pron",
   "ipa": "",
   "zipf": 4.06,
   "score": 500096.08,
@@ -1433,7 +1433,7 @@
   "rank": 144,
   "word": "على",
   "meaning": "on, over",
-  "pos": "verb",
+  "pos": "prep",
   "ipa": "/ʕal.laː/",
   "zipf": 7.18,
   "score": 164.24,
@@ -1453,7 +1453,7 @@
   "rank": 146,
   "word": "عن",
   "meaning": "from (source)",
-  "pos": "noun",
+  "pos": "prep",
   "ipa": "",
   "zipf": 6.77,
   "score": 156.85999999999999,
@@ -1503,7 +1503,7 @@
   "rank": 151,
   "word": "بين",
   "meaning": "between (“in the position or interval that separates two things”)",
-  "pos": "noun",
+  "pos": "prep",
   "ipa": "",
   "zipf": 6.35,
   "score": 149.3,
@@ -1513,7 +1513,7 @@
   "rank": 152,
   "word": "قبل",
   "meaning": "previously, formerly, earlier, before",
-  "pos": "noun",
+  "pos": "adv",
   "ipa": "/qu.bul/",
   "zipf": 6.29,
   "score": 148.22,
@@ -2073,7 +2073,7 @@
   "rank": 208,
   "word": "دون",
   "meaning": "without",
-  "pos": "verb",
+  "pos": "prep",
   "ipa": "/daw.wa.na/",
   "zipf": 5.79,
   "score": 130.22,
@@ -2283,7 +2283,7 @@
   "rank": 229,
   "word": "ضد",
   "meaning": "against",
-  "pos": "noun",
+  "pos": "prep",
   "ipa": "/dˤidd/",
   "zipf": 5.67,
   "score": 128.06,
@@ -2943,7 +2943,7 @@
   "rank": 295,
   "word": "وقع",
   "meaning": "to happen, to occur",
-  "pos": "noun",
+  "pos": "verb",
   "ipa": "/waqʕ/",
   "zipf": 4.94,
   "score": 123.92,
@@ -3333,7 +3333,7 @@
   "rank": 334,
   "word": "آخر",
   "meaning": "another, one more, other",
-  "pos": "noun",
+  "pos": "adj",
   "ipa": "/ʔaː.xir/",
   "zipf": 5.84,
   "score": 122.12,
@@ -4023,7 +4023,7 @@
   "rank": 403,
   "word": "كبير",
   "meaning": "big, large",
-  "pos": "noun",
+  "pos": "adj",
   "ipa": "/ka.biːr/",
   "zipf": 5.67,
   "score": 119.06,
@@ -4573,7 +4573,7 @@
   "rank": 458,
   "word": "جلب",
   "meaning": "to bring, to fetch",
-  "pos": "noun",
+  "pos": "verb",
   "ipa": "/d͡ʒa.lab/",
   "zipf": 4.54,
   "score": 116.72,
@@ -5151,6 +5151,16 @@
  },
  {
   "rank": 516,
+  "word": "كامل",
+  "meaning": "whole, entire, total",
+  "pos": "adj",
+  "ipa": "/kaː.mil/",
+  "zipf": 5.27,
+  "score": 114.85999999999999,
+  "band": "A2"
+ },
+ {
+  "rank": 517,
   "word": "جو",
   "meaning": "air (the apparently open space above the ground)",
   "pos": "noun",
@@ -5160,7 +5170,7 @@
   "band": "A2"
  },
  {
-  "rank": 517,
+  "rank": 518,
   "word": "حاجة",
   "meaning": "need, necessity (act of needing something)",
   "pos": "noun",
@@ -5170,7 +5180,7 @@
   "band": "A2"
  },
  {
-  "rank": 518,
+  "rank": 519,
   "word": "اتصل",
   "meaning": "to be in contact with; to be connected with, to be associated with",
   "pos": "verb",
@@ -5180,7 +5190,7 @@
   "band": "A2"
  },
  {
-  "rank": 519,
+  "rank": 520,
   "word": "برنامج",
   "meaning": "agenda",
   "pos": "noun",
@@ -5190,7 +5200,7 @@
   "band": "A2"
  },
  {
-  "rank": 520,
+  "rank": 521,
   "word": "صناعة",
   "meaning": "art, skill",
   "pos": "noun",
@@ -5200,7 +5210,7 @@
   "band": "A2"
  },
  {
-  "rank": 521,
+  "rank": 522,
   "word": "سمع",
   "meaning": "hearing, sense of hearing",
   "pos": "noun",
@@ -5210,7 +5220,7 @@
   "band": "A2"
  },
  {
-  "rank": 522,
+  "rank": 523,
   "word": "نسخ",
   "meaning": "abolition, abolishment, abrogation, cancellation, invalidation",
   "pos": "noun",
@@ -5220,7 +5230,7 @@
   "band": "A2"
  },
  {
-  "rank": 523,
+  "rank": 524,
   "word": "فشل",
   "meaning": "failure",
   "pos": "noun",
@@ -5230,7 +5240,7 @@
   "band": "A2"
  },
  {
-  "rank": 524,
+  "rank": 525,
   "word": "قطعة",
   "meaning": "piece, fragment, chunk",
   "pos": "noun",
@@ -5240,7 +5250,7 @@
   "band": "A2"
  },
  {
-  "rank": 525,
+  "rank": 526,
   "word": "وجود",
   "meaning": "existence",
   "pos": "noun",
@@ -5250,7 +5260,7 @@
   "band": "A2"
  },
  {
-  "rank": 526,
+  "rank": 527,
   "word": "زال",
   "meaning": "to go away, withdraw",
   "pos": "verb",
@@ -5260,7 +5270,7 @@
   "band": "A2"
  },
  {
-  "rank": 527,
+  "rank": 528,
   "word": "شقة",
   "meaning": "half, moiety",
   "pos": "noun",
@@ -5270,7 +5280,7 @@
   "band": "A2"
  },
  {
-  "rank": 528,
+  "rank": 529,
   "word": "صدق",
   "meaning": "truthfulness, sincerity, honesty",
   "pos": "noun",
@@ -5280,7 +5290,7 @@
   "band": "A2"
  },
  {
-  "rank": 529,
+  "rank": 530,
   "word": "معلم",
   "meaning": "landmark, milestone, milepost",
   "pos": "noun",
@@ -5290,7 +5300,7 @@
   "band": "A2"
  },
  {
-  "rank": 530,
+  "rank": 531,
   "word": "مما",
   "meaning": "from what",
   "pos": "pron",
@@ -5300,7 +5310,7 @@
   "band": "A2"
  },
  {
-  "rank": 531,
+  "rank": 532,
   "word": "سالم",
   "meaning": "to make peace with, to treat peaceably, to make up with",
   "pos": "verb",
@@ -5310,23 +5320,13 @@
   "band": "A2"
  },
  {
-  "rank": 532,
+  "rank": 533,
   "word": "سلطان",
   "meaning": "power, strength",
   "pos": "noun",
   "ipa": "/sul.tˤaːn/",
   "zipf": 4.75,
   "score": 114.5,
-  "band": "A2"
- },
- {
-  "rank": 533,
-  "word": "مارس",
-  "meaning": "March (third month of the Gregorian calendar)",
-  "pos": "noun",
-  "ipa": "/maːrs/",
-  "zipf": 5.41,
-  "score": 114.38,
   "band": "A2"
  },
  {
@@ -5342,7 +5342,7 @@
  {
   "rank": 535,
   "word": "تردد",
-  "meaning": "frequency",
+  "meaning": "reluctance, indecision, hesitation, wavering",
   "pos": "noun",
   "ipa": "",
   "zipf": 4.41,
@@ -5443,7 +5443,7 @@
   "rank": 545,
   "word": "فقد",
   "meaning": "to lose, to misplace, to miss",
-  "pos": "noun",
+  "pos": "verb",
   "ipa": "/faqd/",
   "zipf": 5.73,
   "score": 114.14000000000001,
@@ -5653,7 +5653,7 @@
   "rank": 566,
   "word": "خسر",
   "meaning": "to lose",
-  "pos": "noun",
+  "pos": "verb",
   "ipa": "/xa.si.ra/",
   "zipf": 4.37,
   "score": 113.66,
@@ -5983,7 +5983,7 @@
   "rank": 599,
   "word": "طبيعي",
   "meaning": "natural",
-  "pos": "noun",
+  "pos": "adj",
   "ipa": "",
   "zipf": 4.82,
   "score": 112.76,
@@ -6873,7 +6873,7 @@
   "rank": 688,
   "word": "بلا",
   "meaning": "without",
-  "pos": "noun",
+  "pos": "prep",
   "ipa": "",
   "zipf": 5.36,
   "score": 110.48,
@@ -7063,7 +7063,7 @@
   "rank": 707,
   "word": "غني",
   "meaning": "rich, wealthy",
-  "pos": "verb",
+  "pos": "adj",
   "ipa": "/ɣa.niː/",
   "zipf": 4.34,
   "score": 110.12,
@@ -8363,7 +8363,7 @@
   "rank": 837,
   "word": "مؤثر",
   "meaning": "moving, touching",
-  "pos": "noun",
+  "pos": "adj",
   "ipa": "/mu.ʔaθ.θir/",
   "zipf": 4.06,
   "score": 108.08,
@@ -9333,7 +9333,7 @@
   "rank": 934,
   "word": "تذكر",
   "meaning": "to remember, to bear in mind",
-  "pos": "noun",
+  "pos": "verb",
   "ipa": "/ta.ðak.kur/",
   "zipf": 4.96,
   "score": 106.28,

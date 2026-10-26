@@ -299,14 +299,18 @@ def rank_index(db: sqlite3.Connection, lang: str, n: int, votes: dict | None = N
             score = zipf * 100 + score / 100
         raw = [x for x in json.loads(payload).get("senses") or [] if x.get("gloss")]
         senses = [x["gloss"] for x in raw]
-        scored.append((score, zipf, surface, meaning, pos, ipa, senses, replaceable(raw, majority_pos((pos_counts or {}).get((lang, strip_marks(surface)), {}), pos))))
+        major = majority_pos((pos_counts or {}).get((lang, strip_marks(surface)), {}), pos)
+        scored.append((score, zipf, surface, meaning, pos, ipa, senses, major, replaceable(raw, major)))
     scored.sort(key=lambda r: (-r[0], -r[1], r[2]))
     seen: set[str] = set()
     out = []
-    for score, zipf, surface, meaning, pos, ipa, senses, options in scored:
+    for score, zipf, surface, meaning, pos, ipa, senses, major, options in scored:
         if fold(surface) in seen:
             continue
-        agreed = PINS.get((lang, surface)) or (agreed_sense(meaning, options, votes.get((lang, strip_marks(surface)), {})) if votes else None)
+        pinned = PINS.get((lang, surface))
+        agreed = pinned or (agreed_sense(meaning, options, votes.get((lang, strip_marks(surface)), {})) if votes else None)
+        if agreed and not pinned and agreed != meaning:
+            pos = major
         row = clean({"word": surface, "meaning": agreed or meaning, "pos": pos}, lang, senses)
         if not row:
             continue
