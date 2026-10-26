@@ -36,6 +36,40 @@ function ms(v: unknown): string | null {
   return n === null ? null : new Date(n).toISOString();
 }
 
+export const TRANSACTION_FIELDS = [
+  "transactionId",
+  "originalTransactionId",
+  "webOrderLineItemId",
+  "productId",
+  "type",
+  "price",
+  "purchaseDate",
+  "originalPurchaseDate",
+  "expiresDate",
+  "signedDate",
+  "revocationDate",
+] as const;
+
+export const RENEWAL_FIELDS = [
+  "originalTransactionId",
+  "productId",
+  "autoRenewProductId",
+  "renewalPrice",
+  "signedDate",
+  "renewalDate",
+  "recentSubscriptionStartDate",
+  "gracePeriodExpiresDate",
+] as const;
+
+export function pick(info: Record<string, unknown>, fields: readonly string[]): Record<string, string | number> {
+  const out: Record<string, string | number> = {};
+  for (const f of fields) {
+    const v = info[f];
+    if ((typeof v === "string" && v.length <= 256) || (typeof v === "number" && Number.isFinite(v))) out[f] = v;
+  }
+  return out;
+}
+
 export function classify(type: string, subtype: string | null, offerType: number | null, offerDiscountType: string | null): StoreEventKind {
   const trial = offerType === 1 && (offerDiscountType === null || offerDiscountType === "FREE_TRIAL");
   switch (type) {
@@ -88,7 +122,7 @@ export function decodeNotification(signedPayload: string, opts: VerifyOptions = 
     offerType,
     signedAt: ms(p.signedDate) ?? new Date().toISOString(),
     expiresAt: ms(tx.expiresDate),
-    transactionInfo: tx,
-    renewalInfo: renewal,
+    transactionInfo: pick(tx, TRANSACTION_FIELDS),
+    renewalInfo: pick(renewal, RENEWAL_FIELDS),
   };
 }
