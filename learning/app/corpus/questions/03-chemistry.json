@@ -1,0 +1,4541 @@
+{
+ "branch": "03-chemistry",
+ "version": "0.4.0",
+ "questions": [
+  {
+   "id": "atom-nucleus-electrons.pick",
+   "atom": "atom-nucleus-electrons",
+   "kind": "pick",
+   "prompt": "What sets which element an atom is?",
+   "options": [
+    "The number of neutrons",
+    "The number of protons",
+    "The number of electrons",
+    "The mass number"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "atom-nucleus-electrons.calculate",
+   "atom": "atom-nucleus-electrons",
+   "kind": "calculate",
+   "prompt": "An atom has 6 protons, 8 neutrons and 6 electrons. What is its mass number?",
+   "answer": 14.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "atom-nucleus-electrons.order",
+   "atom": "atom-nucleus-electrons",
+   "kind": "order",
+   "prompt": "Order Rutherford's gold-foil reasoning.",
+   "steps": [
+    "Fire alpha particles at thin gold foil",
+    "Most pass straight through",
+    "A few bounce back sharply",
+    "Conclude the positive charge sits in a tiny dense nucleus"
+   ]
+  },
+  {
+   "id": "atom-nucleus-electrons.spot-error",
+   "atom": "atom-nucleus-electrons",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Protons and neutrons sit in the nucleus",
+    "Electrons form a diffuse cloud around it",
+    "Changing the neutron count changes the element",
+    "A neutral atom has equal protons and electrons"
+   ],
+   "error": 2,
+   "fix": "Changing the neutron count makes a new isotope of the same element."
+  },
+  {
+   "id": "atom-nucleus-electrons.match",
+   "atom": "atom-nucleus-electrons",
+   "kind": "match",
+   "prompt": "Match each particle or number to its meaning.",
+   "pairs": [
+    {
+     "term": "Proton",
+     "meaning": "Positive particle in the nucleus"
+    },
+    {
+     "term": "Neutron",
+     "meaning": "Neutral particle in the nucleus"
+    },
+    {
+     "term": "Electron",
+     "meaning": "Negative particle around the nucleus"
+    },
+    {
+     "term": "Mass number A",
+     "meaning": "Protons plus neutrons"
+    }
+   ]
+  },
+  {
+   "id": "atom-nucleus-electrons.applied",
+   "atom": "atom-nucleus-electrons",
+   "kind": "pick",
+   "prompt": "Archaeologists date bones with carbon-14. How does carbon-14 differ from ordinary carbon-12?",
+   "options": [
+    "It has two more protons",
+    "It has two more neutrons",
+    "It has two more electrons",
+    "It is a different element"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
+   "id": "quantum-numbers.pick",
+   "atom": "quantum-numbers",
+   "kind": "pick",
+   "prompt": "What does the quantum number l set?",
+   "options": [
+    "The shell's energy level",
+    "The shape of the subshell",
+    "The spin direction",
+    "The orientation of the orbital in space"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "quantum-numbers.calculate",
+   "atom": "quantum-numbers",
+   "kind": "calculate",
+   "prompt": "How many electrons can the n = 4 shell hold?",
+   "answer": 32.0,
+   "unit": "electrons",
+   "relTol": 0.02
+  },
+  {
+   "id": "quantum-numbers.order",
+   "atom": "quantum-numbers",
+   "kind": "order",
+   "prompt": "Order the steps to count electrons in a shell.",
+   "steps": [
+    "Pick n",
+    "List the allowed l from 0 to n - 1",
+    "Count 2l + 1 orbitals for each l",
+    "Multiply the total orbitals by 2"
+   ]
+  },
+  {
+   "id": "quantum-numbers.spot-error",
+   "atom": "quantum-numbers",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "n sets the shell",
+    "l runs from 0 to n",
+    "m_l runs from -l to +l",
+    "m_s is +1/2 or -1/2"
+   ],
+   "error": 1,
+   "fix": "l runs from 0 to n - 1."
+  },
+  {
+   "id": "quantum-numbers.match",
+   "atom": "quantum-numbers",
+   "kind": "match",
+   "prompt": "Match each quantum number to what it names.",
+   "pairs": [
+    {
+     "term": "n",
+     "meaning": "Shell and main energy"
+    },
+    {
+     "term": "l",
+     "meaning": "Subshell shape"
+    },
+    {
+     "term": "m_l",
+     "meaning": "Orbital orientation"
+    },
+    {
+     "term": "m_s",
+     "meaning": "Electron spin"
+    }
+   ]
+  },
+  {
+   "id": "quantum-numbers.applied",
+   "atom": "quantum-numbers",
+   "kind": "pick",
+   "prompt": "A chemist reads that a 3d subshell holds up to 10 electrons, which explains the ten columns of transition metals. Where does 10 come from?",
+   "options": [
+    "Five orbitals with two electrons each",
+    "Ten orbitals with one electron each",
+    "Three orbitals with three electrons each plus one",
+    "Two orbitals with five electrons each"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "electron-configuration.pick",
+   "atom": "electron-configuration",
+   "kind": "pick",
+   "prompt": "How many unpaired electrons does oxygen have in its ground state?",
+   "options": [
+    "0",
+    "1",
+    "2",
+    "4"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "electron-configuration.calculate",
+   "atom": "electron-configuration",
+   "kind": "calculate",
+   "prompt": "How many electrons does a neutral iron atom, [Ar] 4s^2 3d^6, carry? Argon has 18.",
+   "answer": 26.0,
+   "unit": "electrons",
+   "relTol": 0.02
+  },
+  {
+   "id": "electron-configuration.order",
+   "atom": "electron-configuration",
+   "kind": "order",
+   "prompt": "Order the filling for oxygen, Z = 8.",
+   "steps": [
+    "Fill 1s with 2 electrons",
+    "Fill 2s with 2 electrons",
+    "Place one electron in each 2p orbital",
+    "Pair the fourth 2p electron in one orbital"
+   ]
+  },
+  {
+   "id": "electron-configuration.spot-error",
+   "atom": "electron-configuration",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Aufbau fills the lowest energy orbitals first",
+    "Hund's rule puts electrons in separate orbitals before pairing",
+    "Pauli allows three electrons per orbital",
+    "Oxygen ends as 1s^2 2s^2 2p^4"
+   ],
+   "error": 2,
+   "fix": "Pauli allows at most two electrons per orbital, with opposite spins."
+  },
+  {
+   "id": "electron-configuration.match",
+   "atom": "electron-configuration",
+   "kind": "match",
+   "prompt": "Match each rule to what it says.",
+   "pairs": [
+    {
+     "term": "Aufbau",
+     "meaning": "Fill lowest energy first"
+    },
+    {
+     "term": "Hund's rule",
+     "meaning": "Spread out before pairing"
+    },
+    {
+     "term": "Pauli principle",
+     "meaning": "Two electrons at most per orbital"
+    },
+    {
+     "term": "Valence electrons",
+     "meaning": "Electrons in the outer shell"
+    }
+   ]
+  },
+  {
+   "id": "electron-configuration.applied",
+   "atom": "electron-configuration",
+   "kind": "pick",
+   "prompt": "Liquid oxygen sticks between the poles of a strong magnet. What explains it?",
+   "options": [
+    "Its two unpaired electrons make it magnetic",
+    "Oxygen atoms carry a net positive charge",
+    "Cold liquids are drawn toward any metal surface placed near them",
+    "Its electrons are all paired"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "periodic-table.pick",
+   "atom": "periodic-table",
+   "kind": "pick",
+   "prompt": "Why do sodium and potassium behave alike?",
+   "options": [
+    "They have the same mass",
+    "Both have one s valence electron",
+    "Both have 11 protons",
+    "Both are gases"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "periodic-table.calculate",
+   "atom": "periodic-table",
+   "kind": "calculate",
+   "prompt": "Potassium has Z = 19 and configuration [Ar] 4s^1. Argon has Z = 18. How many valence electrons does potassium have?",
+   "answer": 1.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "periodic-table.order",
+   "atom": "periodic-table",
+   "kind": "order",
+   "prompt": "Order the reasoning behind the periodic table.",
+   "steps": [
+    "List the elements by atomic number",
+    "Notice properties recur at intervals",
+    "Trace the recurrence to repeating outer-shell structure",
+    "Group elements with the same valence pattern in columns"
+   ]
+  },
+  {
+   "id": "periodic-table.spot-error",
+   "atom": "periodic-table",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Elements are ordered by atomic number",
+    "A column shares a valence pattern",
+    "Group 18 metals react violently with water",
+    "Halogens gain one electron to complete a shell"
+   ],
+   "error": 2,
+   "fix": "Group 1 alkali metals react violently with water; Group 18 gases are inert."
+  },
+  {
+   "id": "periodic-table.match",
+   "atom": "periodic-table",
+   "kind": "match",
+   "prompt": "Match each group to its trait.",
+   "pairs": [
+    {
+     "term": "Group 1",
+     "meaning": "Soft reactive metals forming +1 ions"
+    },
+    {
+     "term": "Group 17",
+     "meaning": "Halogens forming -1 ions"
+    },
+    {
+     "term": "Group 18",
+     "meaning": "Unreactive noble gases"
+    },
+    {
+     "term": "Period",
+     "meaning": "Row of the table"
+    }
+   ]
+  },
+  {
+   "id": "periodic-table.applied",
+   "atom": "periodic-table",
+   "kind": "pick",
+   "prompt": "Divers breathe helium mixtures because helium does not react in the body. Where does that come from?",
+   "options": [
+    "Its full outer shell",
+    "Its large atomic radius",
+    "Its single valence electron",
+    "Its high electronegativity"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "periodic-trends.pick",
+   "atom": "periodic-trends",
+   "kind": "pick",
+   "prompt": "Which has the higher first ionization energy?",
+   "options": [
+    "Sodium",
+    "Chlorine",
+    "They are equal",
+    "Neither ionizes"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "periodic-trends.calculate",
+   "atom": "periodic-trends",
+   "kind": "calculate",
+   "prompt": "Sodium's first ionization energy is 496 kJ/mol. How much energy in kJ ionizes 2.0 mol of sodium atoms?",
+   "answer": 992.0,
+   "unit": "kJ",
+   "relTol": 0.02
+  },
+  {
+   "id": "periodic-trends.order",
+   "atom": "periodic-trends",
+   "kind": "order",
+   "prompt": "Order the reason radius shrinks across a period.",
+   "steps": [
+    "Z rises by one each step",
+    "Added electrons go into the same shell",
+    "They shield each other poorly",
+    "Z_eff climbs and pulls the shell inward"
+   ]
+  },
+  {
+   "id": "periodic-trends.spot-error",
+   "atom": "periodic-trends",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Atomic radius grows down a group",
+    "Ionization energy grows across a period",
+    "Electronegativity falls across a period",
+    "Fluorine is the most electronegative element"
+   ],
+   "error": 2,
+   "fix": "Electronegativity rises across a period."
+  },
+  {
+   "id": "periodic-trends.match",
+   "atom": "periodic-trends",
+   "kind": "match",
+   "prompt": "Match each trend to its direction across a period.",
+   "pairs": [
+    {
+     "term": "Atomic radius",
+     "meaning": "Shrinks"
+    },
+    {
+     "term": "Ionization energy",
+     "meaning": "Rises"
+    },
+    {
+     "term": "Electronegativity",
+     "meaning": "Rises toward fluorine"
+    },
+    {
+     "term": "Down a group",
+     "meaning": "Radius grows"
+    }
+   ]
+  },
+  {
+   "id": "periodic-trends.applied",
+   "atom": "periodic-trends",
+   "kind": "pick",
+   "prompt": "Cesium releases electrons under light in some photocells. Why cesium?",
+   "options": [
+    "It has a low ionization energy",
+    "It is the smallest atom",
+    "Its full outer shell makes it the most reactive metal",
+    "It is highly electronegative"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "effective-nuclear-charge.pick",
+   "atom": "effective-nuclear-charge",
+   "kind": "pick",
+   "prompt": "Why does an outer electron feel less than the full nuclear charge?",
+   "options": [
+    "Inner electrons screen it",
+    "Protons repel it",
+    "Neutrons cancel the charge",
+    "The nucleus spins"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "effective-nuclear-charge.calculate",
+   "atom": "effective-nuclear-charge",
+   "kind": "calculate",
+   "prompt": "Using Slater's estimate S = 8.5 for sodium's 3s electron and Z = 11, what is Z_eff?",
+   "answer": 2.5,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "effective-nuclear-charge.order",
+   "atom": "effective-nuclear-charge",
+   "kind": "order",
+   "prompt": "Order the estimate of Z_eff.",
+   "steps": [
+    "Find the atomic number Z",
+    "Count the shielding from inner electrons as S",
+    "Subtract to get Z_eff = Z - S",
+    "Compare Z_eff across atoms"
+   ]
+  },
+  {
+   "id": "effective-nuclear-charge.spot-error",
+   "atom": "effective-nuclear-charge",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Z_eff = Z - S",
+    "Inner electrons shield strongly",
+    "Electrons in the same shell shield each other fully",
+    "A higher Z_eff holds electrons tighter"
+   ],
+   "error": 2,
+   "fix": "Electrons in the same shell shield each other poorly."
+  },
+  {
+   "id": "effective-nuclear-charge.match",
+   "atom": "effective-nuclear-charge",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "Z",
+     "meaning": "Number of protons"
+    },
+    {
+     "term": "S",
+     "meaning": "Shielding constant"
+    },
+    {
+     "term": "Z_eff",
+     "meaning": "Net pull felt by an electron"
+    },
+    {
+     "term": "Core electrons",
+     "meaning": "Inner electrons that shield"
+    }
+   ]
+  },
+  {
+   "id": "effective-nuclear-charge.applied",
+   "atom": "effective-nuclear-charge",
+   "kind": "pick",
+   "prompt": "Sodium burns in air and gives up an electron with ease. Which fact explains that best?",
+   "options": [
+    "Its 3s electron feels a Z_eff near +1 to +2.5",
+    "Its nucleus holds 11 neutrons",
+    "It is a liquid at room temperature, so its atoms drift apart",
+    "It has a full 3s subshell"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "ionic-bond.pick",
+   "atom": "ionic-bond",
+   "kind": "pick",
+   "prompt": "What holds an ionic lattice together?",
+   "options": [
+    "Shared electron pairs",
+    "Attraction between opposite ions",
+    "A sea of free electrons",
+    "Hydrogen bonds"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "ionic-bond.calculate",
+   "atom": "ionic-bond",
+   "kind": "calculate",
+   "prompt": "A road crew spreads 117 g of NaCl (58.44 g/mol). How many moles of Na+ ions is that?",
+   "answer": 2.002,
+   "unit": "mol",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "ionic-bond.order",
+   "atom": "ionic-bond",
+   "kind": "order",
+   "prompt": "Order the formation of sodium chloride.",
+   "steps": [
+    "Sodium loses its 3s electron",
+    "Chlorine gains it to fill 3p",
+    "Na+ and Cl- attract",
+    "The ions stack into a cubic lattice"
+   ]
+  },
+  {
+   "id": "ionic-bond.spot-error",
+   "atom": "ionic-bond",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Na becomes Na+ with a neon configuration",
+    "Cl becomes Cl- with an argon configuration",
+    "Ionic solids bend without breaking",
+    "NaCl melts near 801 C"
+   ],
+   "error": 2,
+   "fix": "Ionic solids are hard and brittle; shifted layers bring like ions together and the crystal cracks."
+  },
+  {
+   "id": "ionic-bond.match",
+   "atom": "ionic-bond",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Cation",
+     "meaning": "Positive ion"
+    },
+    {
+     "term": "Anion",
+     "meaning": "Negative ion"
+    },
+    {
+     "term": "Lattice",
+     "meaning": "Repeating 3D array of ions"
+    },
+    {
+     "term": "Lattice energy",
+     "meaning": "Energy holding the ions together"
+    }
+   ]
+  },
+  {
+   "id": "covalent-bond.pick",
+   "atom": "covalent-bond",
+   "kind": "pick",
+   "prompt": "What lowers the energy when two H atoms bond?",
+   "options": [
+    "Electrons feel both nuclei at once",
+    "The nuclei fuse",
+    "Electrons leave the atoms",
+    "Protons are shared"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "covalent-bond.calculate",
+   "atom": "covalent-bond",
+   "kind": "calculate",
+   "prompt": "Breaking one H-H bond takes 436 kJ/mol. How much energy in kJ breaks the bonds in 3.0 mol of H2?",
+   "answer": 1308.0,
+   "unit": "kJ",
+   "relTol": 0.02
+  },
+  {
+   "id": "covalent-bond.order",
+   "atom": "covalent-bond",
+   "kind": "order",
+   "prompt": "Order what happens as two H atoms approach.",
+   "steps": [
+    "The 1s clouds begin to overlap",
+    "Electron density builds between the nuclei",
+    "Energy falls to a minimum near 74 pm",
+    "Closer still, nuclear repulsion raises the energy"
+   ]
+  },
+  {
+   "id": "covalent-bond.spot-error",
+   "atom": "covalent-bond",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Covalent bonds share electron pairs",
+    "The H-H bond length is about 74 pm",
+    "Pushing the atoms closer always lowers the energy",
+    "Breaking the bond costs about 436 kJ/mol"
+   ],
+   "error": 2,
+   "fix": "Closer than the bond length, nuclear repulsion drives the energy back up."
+  },
+  {
+   "id": "covalent-bond.match",
+   "atom": "covalent-bond",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Bond length",
+     "meaning": "Distance at the energy minimum"
+    },
+    {
+     "term": "Bond energy",
+     "meaning": "Energy to break the bond"
+    },
+    {
+     "term": "Single bond",
+     "meaning": "One shared pair"
+    },
+    {
+     "term": "Double bond",
+     "meaning": "Two shared pairs"
+    }
+   ]
+  },
+  {
+   "id": "covalent-bond.applied",
+   "atom": "covalent-bond",
+   "kind": "pick",
+   "prompt": "Why does a hydrogen fuel cell release energy when H2 and O2 react to form water?",
+   "options": [
+    "New O-H bonds release more energy than the old bonds cost",
+    "Breaking the H-H and O=O bonds is what releases the energy",
+    "Hydrogen atoms fuse into helium",
+    "Oxygen loses all its electrons"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "electronegativity-polarity.pick",
+   "atom": "electronegativity-polarity",
+   "kind": "pick",
+   "prompt": "CO2 has polar bonds. Why does it have no net dipole?",
+   "options": [
+    "It is linear, so the bond dipoles cancel",
+    "Carbon and oxygen have equal electronegativity",
+    "It has no electrons to share",
+    "It is an ionic compound"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "electronegativity-polarity.calculate",
+   "atom": "electronegativity-polarity",
+   "kind": "calculate",
+   "prompt": "Electronegativities are O 3.44 and H 2.20. What is the difference for an O-H bond?",
+   "answer": 1.24,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "electronegativity-polarity.order",
+   "atom": "electronegativity-polarity",
+   "kind": "order",
+   "prompt": "Order the steps to decide if a molecule is polar.",
+   "steps": [
+    "Find each bond's electronegativity difference",
+    "Draw each bond dipole",
+    "Find the molecular shape",
+    "Add the dipoles as vectors"
+   ]
+  },
+  {
+   "id": "electronegativity-polarity.spot-error",
+   "atom": "electronegativity-polarity",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A large difference makes a bond polar",
+    "The more electronegative atom gets delta minus",
+    "Any molecule with polar bonds is polar overall",
+    "Water is bent and polar"
+   ],
+   "error": 2,
+   "fix": "Symmetric shapes such as linear CO2 cancel the bond dipoles."
+  },
+  {
+   "id": "electronegativity-polarity.match",
+   "atom": "electronegativity-polarity",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Electronegativity",
+     "meaning": "Pull on shared electrons"
+    },
+    {
+     "term": "Dipole",
+     "meaning": "Separation of partial charges"
+    },
+    {
+     "term": "Nonpolar bond",
+     "meaning": "Equal sharing"
+    },
+    {
+     "term": "Ionic limit",
+     "meaning": "Large electronegativity difference"
+    }
+   ]
+  },
+  {
+   "id": "electronegativity-polarity.applied",
+   "atom": "electronegativity-polarity",
+   "kind": "pick",
+   "prompt": "A microwave oven heats water but leaves a dry plastic dish cool. Why does water heat?",
+   "options": [
+    "Polar water molecules twist with the oscillating field",
+    "Water conducts electricity like a metal and heats from the current",
+    "Plastic reflects every microwave",
+    "Water absorbs only visible light"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "lewis-structures.pick",
+   "atom": "lewis-structures",
+   "kind": "pick",
+   "prompt": "How many valence electrons does CO2 have?",
+   "options": [
+    "12",
+    "16",
+    "18",
+    "22"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "lewis-structures.calculate",
+   "atom": "lewis-structures",
+   "kind": "calculate",
+   "prompt": "How many valence electrons does methane, CH4, have? Carbon brings 4 and each hydrogen 1.",
+   "answer": 8.0,
+   "unit": "electrons",
+   "relTol": 0.02
+  },
+  {
+   "id": "lewis-structures.order",
+   "atom": "lewis-structures",
+   "kind": "order",
+   "prompt": "Order the steps to draw a Lewis structure.",
+   "steps": [
+    "Count the valence electrons",
+    "Connect atoms with single bonds",
+    "Place lone pairs to complete octets",
+    "Form multiple bonds if octets fall short"
+   ]
+  },
+  {
+   "id": "lewis-structures.spot-error",
+   "atom": "lewis-structures",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "CO2 has 16 valence electrons",
+    "It is drawn O=C=O",
+    "Each oxygen carries one lone pair",
+    "All formal charges are zero"
+   ],
+   "error": 2,
+   "fix": "Each oxygen carries two lone pairs."
+  },
+  {
+   "id": "lewis-structures.match",
+   "atom": "lewis-structures",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Lone pair",
+     "meaning": "Unshared electron pair"
+    },
+    {
+     "term": "Bonding pair",
+     "meaning": "Shared electron pair"
+    },
+    {
+     "term": "Octet rule",
+     "meaning": "Main-group atoms seek eight"
+    },
+    {
+     "term": "Formal charge",
+     "meaning": "Bookkeeping charge on an atom"
+    }
+   ]
+  },
+  {
+   "id": "lewis-structures.applied",
+   "atom": "lewis-structures",
+   "kind": "pick",
+   "prompt": "Ozone shields Earth from UV. Its Lewis structure shows one single and one double bond, yet both bonds measure the same length. Why?",
+   "options": [
+    "Resonance spreads the double bond over both",
+    "The molecule is linear",
+    "Oxygen forms only single bonds, so both are drawn the same",
+    "The middle atom has no lone pairs"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "vsepr.pick",
+   "atom": "vsepr",
+   "kind": "pick",
+   "prompt": "What is the shape of water?",
+   "options": [
+    "Linear",
+    "Bent",
+    "Trigonal planar",
+    "Tetrahedral"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "vsepr.calculate",
+   "atom": "vsepr",
+   "kind": "calculate",
+   "prompt": "Water's ideal tetrahedral angle is 109.5 degrees and the observed angle is 104.5 degrees. By how many degrees do the lone pairs squeeze it?",
+   "answer": 5.0,
+   "unit": "degrees",
+   "relTol": 0.02
+  },
+  {
+   "id": "vsepr.order",
+   "atom": "vsepr",
+   "kind": "order",
+   "prompt": "Order the VSEPR method.",
+   "steps": [
+    "Draw the Lewis structure",
+    "Count electron domains on the central atom",
+    "Pick the geometry that spreads them apart",
+    "Name the shape from the atom positions"
+   ]
+  },
+  {
+   "id": "vsepr.spot-error",
+   "atom": "vsepr",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Electron domains repel each other",
+    "Lone pairs repel more than bonding pairs",
+    "Water has 3 electron domains",
+    "Ammonia is trigonal pyramidal"
+   ],
+   "error": 2,
+   "fix": "Water has 4 electron domains: 2 bonds and 2 lone pairs."
+  },
+  {
+   "id": "vsepr.match",
+   "atom": "vsepr",
+   "kind": "match",
+   "prompt": "Match each molecule to its shape.",
+   "pairs": [
+    {
+     "term": "CO2",
+     "meaning": "Linear"
+    },
+    {
+     "term": "H2O",
+     "meaning": "Bent"
+    },
+    {
+     "term": "NH3",
+     "meaning": "Trigonal pyramidal"
+    },
+    {
+     "term": "CH4",
+     "meaning": "Tetrahedral"
+    }
+   ]
+  },
+  {
+   "id": "vsepr.applied",
+   "atom": "vsepr",
+   "kind": "pick",
+   "prompt": "Why does ice float, given that each water molecule is bent with angles near 109 degrees?",
+   "options": [
+    "Hydrogen bonds lock the molecules into an open lattice",
+    "Ice always contains trapped air bubbles that hold it up at the surface",
+    "Cold water molecules shrink in size",
+    "Ice is made of a different molecule"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "hybridization.pick",
+   "atom": "hybridization",
+   "kind": "pick",
+   "prompt": "What hybridization does each carbon in ethene have?",
+   "options": [
+    "sp",
+    "sp2",
+    "sp3",
+    "sp3d"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "hybridization.calculate",
+   "atom": "hybridization",
+   "kind": "calculate",
+   "prompt": "An sp3 carbon has bonds to 4 hydrogens in methane. How many s and p orbitals mixed to make its hybrids?",
+   "answer": 4.0,
+   "unit": "orbitals",
+   "relTol": 0.02
+  },
+  {
+   "id": "hybridization.order",
+   "atom": "hybridization",
+   "kind": "order",
+   "prompt": "Order the bonding in ethene.",
+   "steps": [
+    "Each carbon mixes one s and two p orbitals",
+    "Three sp2 hybrids form sigma bonds at 120 degrees",
+    "One unmixed p orbital remains on each carbon",
+    "The two p orbitals overlap side-on as a pi bond"
+   ]
+  },
+  {
+   "id": "hybridization.spot-error",
+   "atom": "hybridization",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "sp3 hybrids point to a tetrahedron",
+    "sp2 hybrids lie at 120 degrees in a plane",
+    "A C=C double bond is two sigma bonds",
+    "sp hybrids sit at 180 degrees"
+   ],
+   "error": 2,
+   "fix": "A C=C double bond is one sigma bond plus one pi bond."
+  },
+  {
+   "id": "hybridization.match",
+   "atom": "hybridization",
+   "kind": "match",
+   "prompt": "Match each hybridization to its angle.",
+   "pairs": [
+    {
+     "term": "sp",
+     "meaning": "180 degrees"
+    },
+    {
+     "term": "sp2",
+     "meaning": "120 degrees"
+    },
+    {
+     "term": "sp3",
+     "meaning": "109.5 degrees"
+    },
+    {
+     "term": "pi bond",
+     "meaning": "Side-on p overlap"
+    }
+   ]
+  },
+  {
+   "id": "hybridization.applied",
+   "atom": "hybridization",
+   "kind": "pick",
+   "prompt": "Retinal in your eye absorbs light and twists about a C=C bond. Why can that bond not rotate freely in the dark?",
+   "options": [
+    "Twisting would break the pi bond's side-on overlap",
+    "Carbon atoms cannot rotate about any bond, single or double",
+    "The sigma bond is missing",
+    "Light is needed to form any bond"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "mo-theory.pick",
+   "atom": "mo-theory",
+   "kind": "pick",
+   "prompt": "What is the bond order of He2?",
+   "options": [
+    "0",
+    "1/2",
+    "1",
+    "2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "mo-theory.calculate",
+   "atom": "mo-theory",
+   "kind": "calculate",
+   "prompt": "O2 has 10 bonding and 6 antibonding valence electrons. What is its bond order?",
+   "answer": 2.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "mo-theory.order",
+   "atom": "mo-theory",
+   "kind": "order",
+   "prompt": "Order the MO treatment of a diatomic.",
+   "steps": [
+    "Combine atomic orbitals into bonding and antibonding MOs",
+    "Rank the MOs by energy",
+    "Fill them with all the electrons",
+    "Compute bond order as half of bonding minus antibonding"
+   ]
+  },
+  {
+   "id": "mo-theory.spot-error",
+   "atom": "mo-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Bonding MOs lower the energy",
+    "Antibonding MOs raise the energy",
+    "H2 has bond order 2",
+    "He2 has bond order 0 and does not form"
+   ],
+   "error": 2,
+   "fix": "H2 has two bonding electrons and bond order 1."
+  },
+  {
+   "id": "mo-theory.match",
+   "atom": "mo-theory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Bonding MO",
+     "meaning": "Density between nuclei"
+    },
+    {
+     "term": "Antibonding MO",
+     "meaning": "Node between nuclei"
+    },
+    {
+     "term": "Bond order",
+     "meaning": "Half of bonding minus antibonding"
+    },
+    {
+     "term": "Paramagnetic",
+     "meaning": "Has unpaired electrons"
+    }
+   ]
+  },
+  {
+   "id": "mo-theory.applied",
+   "atom": "mo-theory",
+   "kind": "pick",
+   "prompt": "Helium balloons hold helium atoms. Why is there no He2 gas in them?",
+   "options": [
+    "He2 has bond order 0, so it does not hold together",
+    "Helium is too heavy to pair",
+    "He2 is a solid at room temperature and sinks to the bottom",
+    "Balloons let molecules escape"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "metallic-bond.pick",
+   "atom": "metallic-bond",
+   "kind": "pick",
+   "prompt": "Why do metals conduct electricity?",
+   "options": [
+    "Their electrons are delocalized",
+    "Their ions move",
+    "They contain water",
+    "Their bonds are polar"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "metallic-bond.calculate",
+   "atom": "metallic-bond",
+   "kind": "calculate",
+   "prompt": "A copper wire carries 2.0 A for 60 s. How many coulombs of electron charge pass a point?",
+   "answer": 120.0,
+   "unit": "C",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "metallic-bond.order",
+   "atom": "metallic-bond",
+   "kind": "order",
+   "prompt": "Order what happens when you hammer sodium metal.",
+   "steps": [
+    "The cation cores shift position",
+    "The electron sea follows them",
+    "No like charges are forced together",
+    "The metal bends without cracking"
+   ]
+  },
+  {
+   "id": "metallic-bond.spot-error",
+   "atom": "metallic-bond",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Metal atoms pool their valence electrons",
+    "The electron sea is nondirectional",
+    "Metals shatter like ionic crystals when struck",
+    "Mobile electrons carry current"
+   ],
+   "error": 2,
+   "fix": "Metals bend and stretch because the electron sea moves with the cores."
+  },
+  {
+   "id": "metallic-bond.match",
+   "atom": "metallic-bond",
+   "kind": "match",
+   "prompt": "Match each property to its cause.",
+   "pairs": [
+    {
+     "term": "Conductivity",
+     "meaning": "Mobile electrons"
+    },
+    {
+     "term": "Malleability",
+     "meaning": "Nondirectional bonding"
+    },
+    {
+     "term": "Luster",
+     "meaning": "Electrons absorb and re-emit light"
+    },
+    {
+     "term": "Band",
+     "meaning": "Merged energy levels across the lattice"
+    }
+   ]
+  },
+  {
+   "id": "mole-concept.pick",
+   "atom": "mole-concept",
+   "kind": "pick",
+   "prompt": "What is one mole?",
+   "options": [
+    "6.022e23 particles",
+    "1 gram of anything",
+    "22.4 particles",
+    "1 liter of gas"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "mole-concept.calculate",
+   "atom": "mole-concept",
+   "kind": "calculate",
+   "prompt": "How many water molecules are in a 36 g sip of water (18.0 g/mol)?",
+   "answer": 1.204e+24,
+   "unit": "molecules",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "mole-concept.order",
+   "atom": "mole-concept",
+   "kind": "order",
+   "prompt": "Order the steps from grams to particles.",
+   "steps": [
+    "Weigh the sample",
+    "Find the molar mass",
+    "Divide to get moles",
+    "Multiply by Avogadro's number"
+   ]
+  },
+  {
+   "id": "mole-concept.spot-error",
+   "atom": "mole-concept",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "N_A = 6.022e23 per mole",
+    "Molar mass links grams to moles",
+    "18 g of water holds 18 molecules",
+    "Half a mole of carbon weighs 6 g"
+   ],
+   "error": 2,
+   "fix": "18 g of water holds one mole, 6.022e23 molecules."
+  },
+  {
+   "id": "mole-concept.match",
+   "atom": "mole-concept",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Mole",
+     "meaning": "6.022e23 particles"
+    },
+    {
+     "term": "Molar mass",
+     "meaning": "Grams per mole"
+    },
+    {
+     "term": "Avogadro's number",
+     "meaning": "Particles per mole"
+    },
+    {
+     "term": "Amount n",
+     "meaning": "Mass divided by molar mass"
+    }
+   ]
+  },
+  {
+   "id": "stoichiometry.pick",
+   "atom": "stoichiometry",
+   "kind": "pick",
+   "prompt": "2 H2 + O2 -> 2 H2O. You have 3 mol H2 and 3 mol O2. Which is limiting?",
+   "options": [
+    "H2",
+    "O2",
+    "Neither",
+    "Water"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "stoichiometry.calculate",
+   "atom": "stoichiometry",
+   "kind": "calculate",
+   "prompt": "A car burns octane: 2 C8H18 + 25 O2 -> 16 CO2 + 18 H2O. How many moles of CO2 come from 4 mol of octane?",
+   "answer": 32.0,
+   "unit": "mol",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "stoichiometry.order",
+   "atom": "stoichiometry",
+   "kind": "order",
+   "prompt": "Order a stoichiometry calculation.",
+   "steps": [
+    "Balance the equation",
+    "Convert given masses to moles",
+    "Use the mole ratio",
+    "Convert moles back to grams"
+   ]
+  },
+  {
+   "id": "stoichiometry.spot-error",
+   "atom": "stoichiometry",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Coefficients give mole ratios",
+    "Coefficients give mass ratios",
+    "The limiting reagent runs out first",
+    "Atoms are conserved"
+   ],
+   "error": 1,
+   "fix": "Coefficients give mole ratios; convert with molar masses for grams."
+  },
+  {
+   "id": "stoichiometry.match",
+   "atom": "stoichiometry",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Limiting reagent",
+     "meaning": "Runs out first"
+    },
+    {
+     "term": "Excess reagent",
+     "meaning": "Left over"
+    },
+    {
+     "term": "Theoretical yield",
+     "meaning": "Most product possible"
+    },
+    {
+     "term": "Mole ratio",
+     "meaning": "Ratio of coefficients"
+    }
+   ]
+  },
+  {
+   "id": "ideal-gas-law.pick",
+   "atom": "ideal-gas-law",
+   "kind": "pick",
+   "prompt": "At fixed n and T, halving the volume does what to pressure?",
+   "options": [
+    "Halves it",
+    "Doubles it",
+    "Leaves it fixed",
+    "Quadruples it"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "ideal-gas-law.calculate",
+   "atom": "ideal-gas-law",
+   "kind": "calculate",
+   "prompt": "A 2.0 L bike-pump chamber holds 0.50 mol of air at 300 K. What is the pressure in atm? Use R = 0.08206 L atm/(mol K).",
+   "answer": 6.154,
+   "unit": "atm",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "ideal-gas-law.order",
+   "atom": "ideal-gas-law",
+   "kind": "order",
+   "prompt": "Order the steps to use PV = nRT.",
+   "steps": [
+    "Convert T to kelvin",
+    "Choose R to match the units",
+    "Rearrange for the unknown",
+    "Insert the values and compute"
+   ]
+  },
+  {
+   "id": "ideal-gas-law.spot-error",
+   "atom": "ideal-gas-law",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "PV = nRT",
+    "Temperature must be in kelvin",
+    "At fixed n and V, P falls as T rises",
+    "Boyle's law is P proportional to 1/V"
+   ],
+   "error": 2,
+   "fix": "At fixed n and V, P rises in proportion to T."
+  },
+  {
+   "id": "ideal-gas-law.match",
+   "atom": "ideal-gas-law",
+   "kind": "match",
+   "prompt": "Match each law to its relation.",
+   "pairs": [
+    {
+     "term": "Boyle",
+     "meaning": "P proportional to 1/V"
+    },
+    {
+     "term": "Charles",
+     "meaning": "V proportional to T"
+    },
+    {
+     "term": "Avogadro",
+     "meaning": "V proportional to n"
+    },
+    {
+     "term": "R",
+     "meaning": "0.08206 L atm/(mol K)"
+    }
+   ]
+  },
+  {
+   "id": "kinetic-molecular-theory.pick",
+   "atom": "kinetic-molecular-theory",
+   "kind": "pick",
+   "prompt": "At the same temperature, which moves faster on average?",
+   "options": [
+    "Helium",
+    "Oxygen",
+    "They move equally fast",
+    "Neither moves"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "kinetic-molecular-theory.calculate",
+   "atom": "kinetic-molecular-theory",
+   "kind": "calculate",
+   "prompt": "At equal temperature, what is the ratio of rms speeds, helium (M = 4) to oxygen (M = 32)?",
+   "answer": 2.828,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "kinetic-molecular-theory.order",
+   "atom": "kinetic-molecular-theory",
+   "kind": "order",
+   "prompt": "Order the kinetic theory picture of pressure.",
+   "steps": [
+    "Gas particles move in random straight lines",
+    "They collide with the walls",
+    "Each collision transfers momentum",
+    "The total push per area is pressure"
+   ]
+  },
+  {
+   "id": "kinetic-molecular-theory.spot-error",
+   "atom": "kinetic-molecular-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Average kinetic energy is set by temperature",
+    "Lighter molecules move faster at the same T",
+    "Gas particles attract each other strongly",
+    "Collisions with walls make pressure"
+   ],
+   "error": 2,
+   "fix": "The ideal model assumes negligible attraction between particles."
+  },
+  {
+   "id": "kinetic-molecular-theory.match",
+   "atom": "kinetic-molecular-theory",
+   "kind": "match",
+   "prompt": "Match each idea to its meaning.",
+   "pairs": [
+    {
+     "term": "Temperature",
+     "meaning": "Sets average kinetic energy"
+    },
+    {
+     "term": "Pressure",
+     "meaning": "Momentum transfer to walls"
+    },
+    {
+     "term": "rms speed",
+     "meaning": "Square root of mean v^2"
+    },
+    {
+     "term": "Effusion",
+     "meaning": "Escape through a tiny hole"
+    }
+   ]
+  },
+  {
+   "id": "kinetic-molecular-theory.applied",
+   "atom": "kinetic-molecular-theory",
+   "kind": "pick",
+   "prompt": "A helium balloon goes flat within a day while an air balloon lasts longer. Why?",
+   "options": [
+    "Light helium atoms move faster and leak out sooner",
+    "Helium reacts with the rubber and eats small holes through it",
+    "Air molecules are smaller",
+    "Helium is warmer than air"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "intermolecular-forces.pick",
+   "atom": "intermolecular-forces",
+   "kind": "pick",
+   "prompt": "Why does water boil far higher than methane?",
+   "options": [
+    "Hydrogen bonds hold water molecules",
+    "Water is heavier by far",
+    "Methane is ionic",
+    "Water has no dipole"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "intermolecular-forces.calculate",
+   "atom": "intermolecular-forces",
+   "kind": "calculate",
+   "prompt": "Water boils at 100 C and methane at -162 C. What is the difference in boiling points in degrees C?",
+   "answer": 262.0,
+   "unit": "degrees C",
+   "relTol": 0.02
+  },
+  {
+   "id": "intermolecular-forces.order",
+   "atom": "intermolecular-forces",
+   "kind": "order",
+   "prompt": "Order the forces from weakest to strongest for small molecules.",
+   "steps": [
+    "Dispersion",
+    "Dipole-dipole",
+    "Hydrogen bonding",
+    "Covalent bond within a molecule"
+   ]
+  },
+  {
+   "id": "intermolecular-forces.spot-error",
+   "atom": "intermolecular-forces",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Dispersion acts between all molecules",
+    "Hydrogen bonds need H on N, O or F",
+    "Intermolecular forces are stronger than covalent bonds",
+    "Stronger attractions raise boiling points"
+   ],
+   "error": 2,
+   "fix": "Intermolecular forces are much weaker than covalent bonds."
+  },
+  {
+   "id": "intermolecular-forces.match",
+   "atom": "intermolecular-forces",
+   "kind": "match",
+   "prompt": "Match each force to its source.",
+   "pairs": [
+    {
+     "term": "Dispersion",
+     "meaning": "Fleeting induced dipoles"
+    },
+    {
+     "term": "Dipole-dipole",
+     "meaning": "Permanent partial charges"
+    },
+    {
+     "term": "Hydrogen bond",
+     "meaning": "H on N, O or F attracting a lone pair"
+    },
+    {
+     "term": "Boiling point",
+     "meaning": "Rises with stronger attraction"
+    }
+   ]
+  },
+  {
+   "id": "intermolecular-forces.applied",
+   "atom": "intermolecular-forces",
+   "kind": "pick",
+   "prompt": "Geckos cling to glass ceilings. Which force holds their foot hairs to the glass?",
+   "options": [
+    "Dispersion forces",
+    "Ionic bonds",
+    "Covalent bonds",
+    "Magnetism"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "states-of-matter.pick",
+   "atom": "states-of-matter",
+   "kind": "pick",
+   "prompt": "Above the critical point, what does water become?",
+   "options": [
+    "A supercritical fluid",
+    "Ice",
+    "Plasma",
+    "A solid gas"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "states-of-matter.calculate",
+   "atom": "states-of-matter",
+   "kind": "calculate",
+   "prompt": "Water's triple point is 0.006 atm. Express that in Pa, with 1 atm = 101,325 Pa.",
+   "answer": 608.0,
+   "unit": "Pa",
+   "relTol": 0.02
+  },
+  {
+   "id": "states-of-matter.order",
+   "atom": "states-of-matter",
+   "kind": "order",
+   "prompt": "Order heating ice at 1 atm.",
+   "steps": [
+    "Solid ice at -20 C",
+    "Melting at 0 C",
+    "Liquid water warming",
+    "Boiling at 100 C"
+   ]
+  },
+  {
+   "id": "states-of-matter.spot-error",
+   "atom": "states-of-matter",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Solids have fixed shape",
+    "Gases fill their container",
+    "The triple point is where only liquid and gas coexist",
+    "Phase lines mark coexistence"
+   ],
+   "error": 2,
+   "fix": "At the triple point solid, liquid and gas all coexist."
+  },
+  {
+   "id": "states-of-matter.match",
+   "atom": "states-of-matter",
+   "kind": "match",
+   "prompt": "Match each phase-diagram feature to its meaning.",
+   "pairs": [
+    {
+     "term": "Triple point",
+     "meaning": "Three phases coexist"
+    },
+    {
+     "term": "Critical point",
+     "meaning": "End of the liquid-gas line"
+    },
+    {
+     "term": "Melting line",
+     "meaning": "Solid and liquid coexist"
+    },
+    {
+     "term": "Sublimation",
+     "meaning": "Solid straight to gas"
+    }
+   ]
+  },
+  {
+   "id": "states-of-matter.applied",
+   "atom": "states-of-matter",
+   "kind": "pick",
+   "prompt": "Freeze-dried coffee is made by lowering pressure on frozen coffee. Which change removes the water?",
+   "options": [
+    "Sublimation",
+    "Melting",
+    "Condensation",
+    "Deposition"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "solutions-concentration.pick",
+   "atom": "solutions-concentration",
+   "kind": "pick",
+   "prompt": "Which solvent dissolves table salt best?",
+   "options": [
+    "Water",
+    "Hexane",
+    "Oil",
+    "Air"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "solutions-concentration.calculate",
+   "atom": "solutions-concentration",
+   "kind": "calculate",
+   "prompt": "How many grams of NaCl (58.44 g/mol) make 0.50 L of 0.154 M saline for an IV drip?",
+   "answer": 4.5,
+   "unit": "g",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "solutions-concentration.order",
+   "atom": "solutions-concentration",
+   "kind": "order",
+   "prompt": "Order the preparation of a solution.",
+   "steps": [
+    "Compute moles from M times V",
+    "Convert moles to grams",
+    "Dissolve the solute",
+    "Add solvent to the final total volume"
+   ]
+  },
+  {
+   "id": "solutions-concentration.spot-error",
+   "atom": "solutions-concentration",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Like dissolves like",
+    "Molarity is moles per liter of solution",
+    "Dilution changes the moles of solute",
+    "M1 V1 = M2 V2 for dilution"
+   ],
+   "error": 2,
+   "fix": "Dilution keeps the moles of solute and adds solvent."
+  },
+  {
+   "id": "solutions-concentration.match",
+   "atom": "solutions-concentration",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Solute",
+     "meaning": "Thing dissolved"
+    },
+    {
+     "term": "Solvent",
+     "meaning": "Dissolving medium"
+    },
+    {
+     "term": "Molarity",
+     "meaning": "Moles per liter"
+    },
+    {
+     "term": "Dilution",
+     "meaning": "Adding solvent"
+    }
+   ]
+  },
+  {
+   "id": "enthalpy.pick",
+   "atom": "enthalpy",
+   "kind": "pick",
+   "prompt": "What does a negative Delta H mean?",
+   "options": [
+    "Heat is released",
+    "Heat is absorbed",
+    "No heat flows",
+    "The reaction is slow"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "enthalpy.calculate",
+   "atom": "enthalpy",
+   "kind": "calculate",
+   "prompt": "A gas stove burns methane with Delta H = -890.3 kJ/mol. How much heat in kJ do 2.0 mol release?",
+   "answer": 1781.0,
+   "unit": "kJ",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "enthalpy.order",
+   "atom": "enthalpy",
+   "kind": "order",
+   "prompt": "Order the formation-enthalpy method.",
+   "steps": [
+    "Write the balanced equation",
+    "Look up Delta H_f for each species",
+    "Sum products times coefficients",
+    "Subtract the reactants' sum"
+   ]
+  },
+  {
+   "id": "enthalpy.spot-error",
+   "atom": "enthalpy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Delta H = q at constant pressure",
+    "Exothermic reactions have Delta H < 0",
+    "Elements in standard state have nonzero Delta H_f",
+    "Combustion is exothermic"
+   ],
+   "error": 2,
+   "fix": "Elements in their standard state have Delta H_f = 0."
+  },
+  {
+   "id": "enthalpy.match",
+   "atom": "enthalpy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Exothermic",
+     "meaning": "Releases heat"
+    },
+    {
+     "term": "Endothermic",
+     "meaning": "Absorbs heat"
+    },
+    {
+     "term": "Delta H_f",
+     "meaning": "Enthalpy of formation"
+    },
+    {
+     "term": "q_p",
+     "meaning": "Heat at constant pressure"
+    }
+   ]
+  },
+  {
+   "id": "entropy.pick",
+   "atom": "entropy",
+   "kind": "pick",
+   "prompt": "A gas expands from half a box into the whole box. What happens to S?",
+   "options": [
+    "It rises",
+    "It falls",
+    "It stays fixed",
+    "It becomes zero"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "entropy.calculate",
+   "atom": "entropy",
+   "kind": "calculate",
+   "prompt": "One mole of gas doubles the space it can occupy. What is Delta S = R ln 2?",
+   "answer": 5.763,
+   "unit": "J/K",
+   "relTol": 0.02
+  },
+  {
+   "id": "entropy.order",
+   "atom": "entropy",
+   "kind": "order",
+   "prompt": "Order these by increasing entropy.",
+   "steps": [
+    "Ice",
+    "Liquid water",
+    "Water vapor at 100 C",
+    "Water vapor at 500 C"
+   ]
+  },
+  {
+   "id": "entropy.spot-error",
+   "atom": "entropy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "S = k_B ln W",
+    "Gases have more entropy than solids",
+    "Isolated systems drift toward lower total entropy",
+    "Melting raises entropy"
+   ],
+   "error": 2,
+   "fix": "Isolated systems evolve toward higher total entropy."
+  },
+  {
+   "id": "entropy.match",
+   "atom": "entropy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "W",
+     "meaning": "Number of arrangements"
+    },
+    {
+     "term": "k_B",
+     "meaning": "Boltzmann constant"
+    },
+    {
+     "term": "Delta S > 0",
+     "meaning": "Spreading out"
+    },
+    {
+     "term": "Second law",
+     "meaning": "Total entropy rises"
+    }
+   ]
+  },
+  {
+   "id": "entropy.applied",
+   "atom": "entropy",
+   "kind": "pick",
+   "prompt": "A spray of perfume fills a room and never gathers back into the bottle. Why?",
+   "options": [
+    "Spread-out states have far more arrangements",
+    "Perfume molecules repel the glass of the bottle and push away from it",
+    "Air pushes the perfume outward",
+    "Gravity spreads the scent"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "gibbs-free-energy.pick",
+   "atom": "gibbs-free-energy",
+   "kind": "pick",
+   "prompt": "When is a process spontaneous at constant T and P?",
+   "options": [
+    "When Delta G < 0",
+    "When Delta G > 0",
+    "When Delta H > 0",
+    "When Delta S = 0"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "gibbs-free-energy.calculate",
+   "atom": "gibbs-free-energy",
+   "kind": "calculate",
+   "prompt": "Delta H = +30 kJ/mol and Delta S = +0.100 kJ/(mol K). Above what temperature in K is the reaction spontaneous?",
+   "answer": 300.0,
+   "unit": "K",
+   "relTol": 0.02
+  },
+  {
+   "id": "gibbs-free-energy.order",
+   "atom": "gibbs-free-energy",
+   "kind": "order",
+   "prompt": "Order the spontaneity check.",
+   "steps": [
+    "Find Delta H",
+    "Find Delta S",
+    "Compute Delta G = Delta H - T Delta S",
+    "Spontaneous if Delta G < 0"
+   ]
+  },
+  {
+   "id": "gibbs-free-energy.spot-error",
+   "atom": "gibbs-free-energy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Delta G = Delta H - T Delta S",
+    "Negative Delta G means spontaneous",
+    "An endothermic reaction can never be spontaneous",
+    "Temperature can flip the sign of Delta G"
+   ],
+   "error": 2,
+   "fix": "An endothermic reaction runs when T Delta S outweighs Delta H."
+  },
+  {
+   "id": "gibbs-free-energy.match",
+   "atom": "gibbs-free-energy",
+   "kind": "match",
+   "prompt": "Match each case to its outcome.",
+   "pairs": [
+    {
+     "term": "Delta H < 0, Delta S > 0",
+     "meaning": "Spontaneous at all T"
+    },
+    {
+     "term": "Delta H > 0, Delta S < 0",
+     "meaning": "Never spontaneous"
+    },
+    {
+     "term": "Delta H > 0, Delta S > 0",
+     "meaning": "Spontaneous at high T"
+    },
+    {
+     "term": "Delta H < 0, Delta S < 0",
+     "meaning": "Spontaneous at low T"
+    }
+   ]
+  },
+  {
+   "id": "gibbs-free-energy.applied",
+   "atom": "gibbs-free-energy",
+   "kind": "pick",
+   "prompt": "An instant cold pack absorbs heat as ammonium nitrate dissolves, yet it dissolves on its own. Why?",
+   "options": [
+    "The entropy gain makes Delta G negative",
+    "Dissolving releases heat",
+    "Delta H is negative",
+    "The pack is sealed under high pressure, which forces it to dissolve"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "chemical-equilibrium.pick",
+   "atom": "chemical-equilibrium",
+   "kind": "pick",
+   "prompt": "Q = 50 and K = 10. Which way does the reaction run?",
+   "options": [
+    "Forward",
+    "In reverse",
+    "It is at equilibrium",
+    "It stops"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "chemical-equilibrium.calculate",
+   "atom": "chemical-equilibrium",
+   "kind": "calculate",
+   "prompt": "For A <=> B at equilibrium, [A] = 0.20 M and [B] = 0.80 M. What is K?",
+   "answer": 4.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "chemical-equilibrium.order",
+   "atom": "chemical-equilibrium",
+   "kind": "order",
+   "prompt": "Order the use of Q to predict a shift.",
+   "steps": [
+    "Write the K expression",
+    "Plug in the current concentrations to get Q",
+    "Compare Q with K",
+    "Shift toward the side that brings Q to K"
+   ]
+  },
+  {
+   "id": "chemical-equilibrium.spot-error",
+   "atom": "chemical-equilibrium",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "K is products over reactants at equilibrium",
+    "Q > K drives the reaction in reverse",
+    "At equilibrium the forward and reverse reactions stop",
+    "K >> 1 favors products"
+   ],
+   "error": 2,
+   "fix": "At equilibrium both reactions run at equal rates."
+  },
+  {
+   "id": "chemical-equilibrium.match",
+   "atom": "chemical-equilibrium",
+   "kind": "match",
+   "prompt": "Match each case to its meaning.",
+   "pairs": [
+    {
+     "term": "Q < K",
+     "meaning": "Runs forward"
+    },
+    {
+     "term": "Q > K",
+     "meaning": "Runs in reverse"
+    },
+    {
+     "term": "Q = K",
+     "meaning": "At equilibrium"
+    },
+    {
+     "term": "K >> 1",
+     "meaning": "Products favored"
+    }
+   ]
+  },
+  {
+   "id": "chemical-equilibrium.applied",
+   "atom": "chemical-equilibrium",
+   "kind": "pick",
+   "prompt": "In blood, hemoglobin binds O2 in the lungs and releases it in tissues. Which idea explains the switch?",
+   "options": [
+    "Equilibrium shifts with the local O2 concentration",
+    "Hemoglobin turns into a different molecule in each organ it passes",
+    "Oxygen reacts with the vessel walls",
+    "The reaction only runs one way"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "le-chatelier.pick",
+   "atom": "le-chatelier",
+   "kind": "pick",
+   "prompt": "For exothermic N2 + 3 H2 <=> 2 NH3, raising temperature shifts it which way?",
+   "options": [
+    "Toward products",
+    "Toward reactants",
+    "No shift",
+    "It stops"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "le-chatelier.calculate",
+   "atom": "le-chatelier",
+   "kind": "calculate",
+   "prompt": "N2 + 3 H2 <=> 2 NH3: how many moles of gas are on the reactant side?",
+   "answer": 4.0,
+   "unit": "mol",
+   "relTol": 0.02
+  },
+  {
+   "id": "le-chatelier.order",
+   "atom": "le-chatelier",
+   "kind": "order",
+   "prompt": "Order the response to added reactant.",
+   "steps": [
+    "Add more N2",
+    "Q drops below K",
+    "The reaction runs forward",
+    "More NH3 forms until Q = K"
+   ]
+  },
+  {
+   "id": "le-chatelier.spot-error",
+   "atom": "le-chatelier",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Adding product shifts toward reactants",
+    "Raising pressure favors the side with fewer gas moles",
+    "A catalyst shifts equilibrium toward products",
+    "Heating an exothermic reaction lowers K"
+   ],
+   "error": 2,
+   "fix": "A catalyst speeds both directions and leaves the equilibrium position unchanged."
+  },
+  {
+   "id": "le-chatelier.match",
+   "atom": "le-chatelier",
+   "kind": "match",
+   "prompt": "Match each change to its effect on NH3 synthesis.",
+   "pairs": [
+    {
+     "term": "Raise pressure",
+     "meaning": "More NH3"
+    },
+    {
+     "term": "Raise temperature",
+     "meaning": "Less NH3"
+    },
+    {
+     "term": "Remove NH3",
+     "meaning": "More NH3 forms"
+    },
+    {
+     "term": "Add catalyst",
+     "meaning": "Faster approach, same yield"
+    }
+   ]
+  },
+  {
+   "id": "le-chatelier.applied",
+   "atom": "le-chatelier",
+   "kind": "pick",
+   "prompt": "Why does the Haber-Bosch ammonia plant run at about 200 atm?",
+   "options": [
+    "High pressure favors the side with fewer gas moles",
+    "Pressure speeds up the iron catalyst and has no other effect at all",
+    "High pressure raises K",
+    "Ammonia boils at high pressure"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "acids-bases.pick",
+   "atom": "acids-bases",
+   "kind": "pick",
+   "prompt": "What is the conjugate base of HCO3-?",
+   "options": [
+    "CO3^2-",
+    "H2CO3",
+    "OH-",
+    "H2O"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "acids-bases.calculate",
+   "atom": "acids-bases",
+   "kind": "calculate",
+   "prompt": "Stomach acid is about 0.10 M HCl. How many moles of H+ are in 0.050 L of it?",
+   "answer": 0.005,
+   "unit": "mol",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "acids-bases.order",
+   "atom": "acids-bases",
+   "kind": "order",
+   "prompt": "Order a Brønsted reaction.",
+   "steps": [
+    "The acid donates a proton",
+    "The base accepts it",
+    "The acid becomes its conjugate base",
+    "The base becomes its conjugate acid"
+   ]
+  },
+  {
+   "id": "acids-bases.spot-error",
+   "atom": "acids-bases",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Brønsted acids donate protons",
+    "Bases accept protons",
+    "A strong acid has a strong conjugate base",
+    "HCO3- is amphoteric"
+   ],
+   "error": 2,
+   "fix": "A strong acid has a weak conjugate base."
+  },
+  {
+   "id": "acids-bases.match",
+   "atom": "acids-bases",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Acid",
+     "meaning": "Proton donor"
+    },
+    {
+     "term": "Base",
+     "meaning": "Proton acceptor"
+    },
+    {
+     "term": "Conjugate pair",
+     "meaning": "Differs by one proton"
+    },
+    {
+     "term": "Amphoteric",
+     "meaning": "Can act as acid or base"
+    }
+   ]
+  },
+  {
+   "id": "ph-scale.pick",
+   "atom": "ph-scale",
+   "kind": "pick",
+   "prompt": "A solution has pH 3. Is it acidic or basic?",
+   "options": [
+    "Acidic",
+    "Basic",
+    "Neutral",
+    "Cannot tell"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "ph-scale.calculate",
+   "atom": "ph-scale",
+   "kind": "calculate",
+   "prompt": "Lemon juice has [H+] = 5.0e-3 M. What is its pH?",
+   "answer": 2.301,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "ph-scale.order",
+   "atom": "ph-scale",
+   "kind": "order",
+   "prompt": "Order the steps from [OH-] to pH.",
+   "steps": [
+    "Measure [OH-]",
+    "Compute pOH = -log[OH-]",
+    "Use pH + pOH = 14",
+    "Solve for pH"
+   ]
+  },
+  {
+   "id": "ph-scale.spot-error",
+   "atom": "ph-scale",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "pH = -log[H+]",
+    "Neutral water has pH 7 at 25 C",
+    "A pH of 4 has ten times less H+ than pH 5",
+    "pH + pOH = 14 at 25 C"
+   ],
+   "error": 2,
+   "fix": "pH 4 has ten times more H+ than pH 5."
+  },
+  {
+   "id": "ph-scale.match",
+   "atom": "ph-scale",
+   "kind": "match",
+   "prompt": "Match each pH to its type at 25 C.",
+   "pairs": [
+    {
+     "term": "pH 2",
+     "meaning": "Strongly acidic"
+    },
+    {
+     "term": "pH 7",
+     "meaning": "Neutral"
+    },
+    {
+     "term": "pH 12",
+     "meaning": "Strongly basic"
+    },
+    {
+     "term": "K_w",
+     "meaning": "1.0e-14"
+    }
+   ]
+  },
+  {
+   "id": "buffers.pick",
+   "atom": "buffers",
+   "kind": "pick",
+   "prompt": "A buffer has equal acid and conjugate base. What is its pH?",
+   "options": [
+    "pKa",
+    "7",
+    "14 - pKa",
+    "0"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "buffers.calculate",
+   "atom": "buffers",
+   "kind": "calculate",
+   "prompt": "An acetate buffer (pKa 4.7) has [A-]/[HA] = 10. What is its pH?",
+   "answer": 5.7,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "buffers.order",
+   "atom": "buffers",
+   "kind": "order",
+   "prompt": "Order the buffer's response to added acid.",
+   "steps": [
+    "Strong acid adds H+",
+    "A- reacts with the H+",
+    "It becomes HA",
+    "The ratio and pH shift slightly"
+   ]
+  },
+  {
+   "id": "buffers.spot-error",
+   "atom": "buffers",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A buffer pairs a weak acid with its conjugate base",
+    "pH = pKa + log([A-]/[HA])",
+    "A buffer works best far from its pKa",
+    "Blood uses a bicarbonate buffer"
+   ],
+   "error": 2,
+   "fix": "A buffer works best within about one unit of its pKa."
+  },
+  {
+   "id": "buffers.match",
+   "atom": "buffers",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "pKa",
+     "meaning": "pH at equal acid and base"
+    },
+    {
+     "term": "Henderson-Hasselbalch",
+     "meaning": "pH from the ratio"
+    },
+    {
+     "term": "Capacity",
+     "meaning": "How much acid it can absorb"
+    },
+    {
+     "term": "Weak acid",
+     "meaning": "Partly ionized"
+    }
+   ]
+  },
+  {
+   "id": "buffers.applied",
+   "atom": "buffers",
+   "kind": "pick",
+   "prompt": "Blood stays near pH 7.4 even after a sprint makes lactic acid. Which keeps it there?",
+   "options": [
+    "The bicarbonate buffer",
+    "Pure water",
+    "Stomach acid",
+    "Table salt"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "reaction-rate.pick",
+   "atom": "reaction-rate",
+   "kind": "pick",
+   "prompt": "Doubling [A] quadruples the rate. What is the order in A?",
+   "options": [
+    "1",
+    "2",
+    "0",
+    "4"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "reaction-rate.calculate",
+   "atom": "reaction-rate",
+   "kind": "calculate",
+   "prompt": "A reaction is first order in A. [A] triples. By what factor does the rate rise?",
+   "answer": 3.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "reaction-rate.order",
+   "atom": "reaction-rate",
+   "kind": "order",
+   "prompt": "Order the method of initial rates.",
+   "steps": [
+    "Run the reaction at several starting concentrations",
+    "Change one reactant at a time",
+    "Compare the initial rates",
+    "Solve for each order"
+   ]
+  },
+  {
+   "id": "reaction-rate.spot-error",
+   "atom": "reaction-rate",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "rate = k[A]^m[B]^n",
+    "Orders come from experiment",
+    "Orders always equal the balanced coefficients",
+    "Zero order means the rate ignores that reactant"
+   ],
+   "error": 2,
+   "fix": "Orders come from experiment and can differ from the coefficients."
+  },
+  {
+   "id": "reaction-rate.match",
+   "atom": "reaction-rate",
+   "kind": "match",
+   "prompt": "Match each order to the effect of doubling [A].",
+   "pairs": [
+    {
+     "term": "Zero order",
+     "meaning": "Rate unchanged"
+    },
+    {
+     "term": "First order",
+     "meaning": "Rate doubles"
+    },
+    {
+     "term": "Second order",
+     "meaning": "Rate quadruples"
+    },
+    {
+     "term": "k",
+     "meaning": "Rate constant"
+    }
+   ]
+  },
+  {
+   "id": "reaction-rate.applied",
+   "atom": "reaction-rate",
+   "kind": "pick",
+   "prompt": "Food spoils slower in a fridge. Which fact about rates explains that?",
+   "options": [
+    "Rate constants fall at lower temperature",
+    "Cold raises the concentrations of the reactants inside the food",
+    "The fridge removes oxygen",
+    "Bacteria stop all reactions"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "arrhenius-activation.pick",
+   "atom": "arrhenius-activation",
+   "kind": "pick",
+   "prompt": "What happens to k as temperature rises?",
+   "options": [
+    "It rises exponentially",
+    "It falls",
+    "It stays fixed",
+    "It rises linearly"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "arrhenius-activation.calculate",
+   "atom": "arrhenius-activation",
+   "kind": "calculate",
+   "prompt": "A plot of ln k against 1/T has slope -6000 K. What is E_a in kJ/mol? Use R = 8.314.",
+   "answer": 49.88,
+   "unit": "kJ/mol",
+   "relTol": 0.02
+  },
+  {
+   "id": "arrhenius-activation.order",
+   "atom": "arrhenius-activation",
+   "kind": "order",
+   "prompt": "Order the extraction of E_a.",
+   "steps": [
+    "Measure k at several temperatures",
+    "Plot ln k against 1/T",
+    "Read the slope",
+    "Multiply by -R to get E_a"
+   ]
+  },
+  {
+   "id": "arrhenius-activation.spot-error",
+   "atom": "arrhenius-activation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "k = A e^(-E_a/RT)",
+    "A higher barrier gives a slower reaction",
+    "Raising T lowers the activation energy",
+    "The slope of ln k vs 1/T is -E_a/R"
+   ],
+   "error": 2,
+   "fix": "Raising T leaves E_a fixed; more molecules clear the same barrier."
+  },
+  {
+   "id": "arrhenius-activation.match",
+   "atom": "arrhenius-activation",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "k",
+     "meaning": "Rate constant"
+    },
+    {
+     "term": "A",
+     "meaning": "Pre-exponential factor"
+    },
+    {
+     "term": "E_a",
+     "meaning": "Activation energy"
+    },
+    {
+     "term": "R",
+     "meaning": "8.314 J/(mol K)"
+    }
+   ]
+  },
+  {
+   "id": "arrhenius-activation.applied",
+   "atom": "arrhenius-activation",
+   "kind": "pick",
+   "prompt": "Pressure cookers cook beans faster. Which Arrhenius idea explains it?",
+   "options": [
+    "Higher boiling temperature raises the rate constants",
+    "Pressure lowers the activation energy of every reaction in the beans",
+    "Steam has more molecules per bean",
+    "Pressure removes the barrier"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "catalysis.pick",
+   "atom": "catalysis",
+   "kind": "pick",
+   "prompt": "How does a catalyst speed a reaction?",
+   "options": [
+    "It offers a lower-energy pathway",
+    "It raises the temperature",
+    "It adds reactant",
+    "It shifts K toward products"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "catalysis.calculate",
+   "atom": "catalysis",
+   "kind": "calculate",
+   "prompt": "A catalyst lowers E_a by 10 kJ/mol at 298 K. By what factor does k rise, e^(10000/(8.314 x 298))?",
+   "answer": 56.61,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "catalysis.order",
+   "atom": "catalysis",
+   "kind": "order",
+   "prompt": "Order a catalytic cycle.",
+   "steps": [
+    "Reactant binds to the catalyst",
+    "It reacts by a low-barrier route",
+    "Product leaves",
+    "The catalyst is free to repeat"
+   ]
+  },
+  {
+   "id": "catalysis.spot-error",
+   "atom": "catalysis",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A catalyst lowers E_a",
+    "It is consumed in the reaction",
+    "It speeds forward and reverse alike",
+    "Enzymes are biological catalysts"
+   ],
+   "error": 1,
+   "fix": "The catalyst is recovered unchanged."
+  },
+  {
+   "id": "catalysis.match",
+   "atom": "catalysis",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Catalyst",
+     "meaning": "Speeds a reaction and is recovered"
+    },
+    {
+     "term": "Enzyme",
+     "meaning": "Protein catalyst"
+    },
+    {
+     "term": "Heterogeneous",
+     "meaning": "Different phase from reactants"
+    },
+    {
+     "term": "Active site",
+     "meaning": "Where the reactant binds"
+    }
+   ]
+  },
+  {
+   "id": "catalysis.applied",
+   "atom": "catalysis",
+   "kind": "pick",
+   "prompt": "A car's catalytic converter turns CO into CO2. What does the platinum surface do?",
+   "options": [
+    "Lowers the activation energy",
+    "Burns extra fuel",
+    "Raises the equilibrium constant",
+    "Absorbs the CO for good"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "redox.pick",
+   "atom": "redox",
+   "kind": "pick",
+   "prompt": "Zn + Cu2+ -> Zn2+ + Cu. Which species is oxidized?",
+   "options": [
+    "Zn",
+    "Cu2+",
+    "Zn2+",
+    "Cu"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "redox.calculate",
+   "atom": "redox",
+   "kind": "calculate",
+   "prompt": "In Zn + Cu2+ -> Zn2+ + Cu, how many electrons move per zinc atom?",
+   "answer": 2.0,
+   "unit": "electrons",
+   "relTol": 0.02
+  },
+  {
+   "id": "redox.order",
+   "atom": "redox",
+   "kind": "order",
+   "prompt": "Order the half-reaction method.",
+   "steps": [
+    "Write the oxidation half",
+    "Write the reduction half",
+    "Balance the electrons",
+    "Add the halves"
+   ]
+  },
+  {
+   "id": "redox.spot-error",
+   "atom": "redox",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Oxidation is loss of electrons",
+    "Reduction is gain of electrons",
+    "The reducing agent is itself reduced",
+    "Electrons are conserved"
+   ],
+   "error": 2,
+   "fix": "The reducing agent is itself oxidized."
+  },
+  {
+   "id": "redox.match",
+   "atom": "redox",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Oxidation",
+     "meaning": "Loses electrons"
+    },
+    {
+     "term": "Reduction",
+     "meaning": "Gains electrons"
+    },
+    {
+     "term": "Oxidizing agent",
+     "meaning": "Is reduced"
+    },
+    {
+     "term": "Reducing agent",
+     "meaning": "Is oxidized"
+    }
+   ]
+  },
+  {
+   "id": "redox.applied",
+   "atom": "redox",
+   "kind": "pick",
+   "prompt": "Iron rusts in damp air. Which happens to the iron?",
+   "options": [
+    "It is oxidized",
+    "It is reduced",
+    "It gains electrons",
+    "It is unchanged"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "electrochemical-cells.pick",
+   "atom": "electrochemical-cells",
+   "kind": "pick",
+   "prompt": "In a galvanic cell, where does oxidation occur?",
+   "options": [
+    "Anode",
+    "Cathode",
+    "Salt bridge",
+    "Wire"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "electrochemical-cells.calculate",
+   "atom": "electrochemical-cells",
+   "kind": "calculate",
+   "prompt": "A Daniell cell has E = 1.10 V and n = 2. What is Delta G in kJ/mol? Use F = 96,485.",
+   "answer": -212.3,
+   "unit": "kJ/mol",
+   "relTol": 0.02
+  },
+  {
+   "id": "electrochemical-cells.order",
+   "atom": "electrochemical-cells",
+   "kind": "order",
+   "prompt": "Order a Daniell cell's operation.",
+   "steps": [
+    "Zinc oxidizes at the anode",
+    "Electrons flow through the wire",
+    "Cu2+ is reduced at the cathode",
+    "Ions move through the salt bridge"
+   ]
+  },
+  {
+   "id": "electrochemical-cells.spot-error",
+   "atom": "electrochemical-cells",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Delta G = -nFE",
+    "A positive E means spontaneous",
+    "The cathode is where oxidation happens",
+    "The salt bridge keeps charges balanced"
+   ],
+   "error": 2,
+   "fix": "Reduction happens at the cathode."
+  },
+  {
+   "id": "electrochemical-cells.match",
+   "atom": "electrochemical-cells",
+   "kind": "match",
+   "prompt": "Match each part to its role.",
+   "pairs": [
+    {
+     "term": "Anode",
+     "meaning": "Oxidation"
+    },
+    {
+     "term": "Cathode",
+     "meaning": "Reduction"
+    },
+    {
+     "term": "Salt bridge",
+     "meaning": "Balances charge"
+    },
+    {
+     "term": "F",
+     "meaning": "96,485 C/mol"
+    }
+   ]
+  },
+  {
+   "id": "electrochemical-cells.applied",
+   "atom": "electrochemical-cells",
+   "kind": "pick",
+   "prompt": "A phone battery dies when its cell reaction reaches equilibrium. What is its voltage then?",
+   "options": [
+    "Zero",
+    "Its standard value",
+    "Double its standard value",
+    "Negative and growing"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "nernst-equation.pick",
+   "atom": "nernst-equation",
+   "kind": "pick",
+   "prompt": "At equilibrium, what is the cell potential E?",
+   "options": [
+    "0",
+    "E standard",
+    "1 V",
+    "Infinite"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "nernst-equation.calculate",
+   "atom": "nernst-equation",
+   "kind": "calculate",
+   "prompt": "For n = 2 and Q = 100 at 25 C, how far does E fall below E standard? Use 0.0592/n log Q.",
+   "answer": 0.0592,
+   "unit": "V",
+   "relTol": 0.02
+  },
+  {
+   "id": "nernst-equation.order",
+   "atom": "nernst-equation",
+   "kind": "order",
+   "prompt": "Order the Nernst calculation.",
+   "steps": [
+    "Write the cell reaction",
+    "Find E standard and n",
+    "Compute Q",
+    "Apply E = E standard - (0.0592/n) log Q"
+   ]
+  },
+  {
+   "id": "nernst-equation.spot-error",
+   "atom": "nernst-equation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "E falls as Q rises",
+    "At equilibrium E = 0",
+    "A concentration cell has E standard = 1.10 V",
+    "E standard = (RT/nF) ln K"
+   ],
+   "error": 2,
+   "fix": "A concentration cell has E standard = 0; it runs on the concentration difference."
+  },
+  {
+   "id": "nernst-equation.match",
+   "atom": "nernst-equation",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "Q",
+     "meaning": "Reaction quotient"
+    },
+    {
+     "term": "n",
+     "meaning": "Electrons transferred"
+    },
+    {
+     "term": "0.0592 V",
+     "meaning": "RT/F ln 10 at 25 C"
+    },
+    {
+     "term": "E standard",
+     "meaning": "Potential at standard conditions"
+    }
+   ]
+  },
+  {
+   "id": "nernst-equation.applied",
+   "atom": "nernst-equation",
+   "kind": "pick",
+   "prompt": "A pH meter's glass electrode reads voltage. Why does that voltage track pH?",
+   "options": [
+    "The Nernst equation ties E to the H+ concentration",
+    "Acids conduct current only at one voltage, which the meter detects",
+    "The glass heats up in acid",
+    "Voltage measures the solution's mass"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "schrodinger-atom.pick",
+   "atom": "schrodinger-atom",
+   "kind": "pick",
+   "prompt": "What does solving H psi = E psi for hydrogen give?",
+   "options": [
+    "Orbital shapes and energies",
+    "The mass of the proton",
+    "Bond lengths in water",
+    "The pH of the atom"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "schrodinger-atom.calculate",
+   "atom": "schrodinger-atom",
+   "kind": "calculate",
+   "prompt": "Hydrogen has E_n = -13.6/n^2 eV. What is the energy of the n = 2 level in eV?",
+   "answer": -3.4,
+   "unit": "eV",
+   "relTol": 0.02
+  },
+  {
+   "id": "schrodinger-atom.order",
+   "atom": "schrodinger-atom",
+   "kind": "order",
+   "prompt": "Order how chemistry follows from the equation.",
+   "steps": [
+    "Write H for electrons and nuclei",
+    "Solve for psi and E",
+    "Read orbitals and energy levels",
+    "Predict bonding and spectra"
+   ]
+  },
+  {
+   "id": "schrodinger-atom.spot-error",
+   "atom": "schrodinger-atom",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Hydrogen is solved exactly",
+    "The 1s orbital is spherical",
+    "Many-electron atoms are solved exactly with pencil and paper",
+    "Ionization energy of hydrogen is 13.6 eV"
+   ],
+   "error": 2,
+   "fix": "Many-electron atoms need approximations and computers."
+  },
+  {
+   "id": "schrodinger-atom.match",
+   "atom": "schrodinger-atom",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "psi",
+     "meaning": "Wavefunction"
+    },
+    {
+     "term": "|psi|^2",
+     "meaning": "Probability density"
+    },
+    {
+     "term": "Orbital",
+     "meaning": "One-electron wavefunction"
+    },
+    {
+     "term": "Node",
+     "meaning": "Place where psi = 0"
+    }
+   ]
+  },
+  {
+   "id": "schrodinger-atom.applied",
+   "atom": "schrodinger-atom",
+   "kind": "pick",
+   "prompt": "Astronomers find hydrogen in distant gas clouds from its spectral lines. Where do those lines come from?",
+   "options": [
+    "Jumps between the discrete energy levels",
+    "Heat from the gas cloud's motion",
+    "Electrons orbiting at any radius and losing energy smoothly",
+    "Collisions between protons"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "functional-groups.pick",
+   "atom": "functional-groups",
+   "kind": "pick",
+   "prompt": "Why do nucleophiles attack a carbonyl carbon?",
+   "options": [
+    "The carbon is electron-poor",
+    "The carbon is negative",
+    "Oxygen is less electronegative",
+    "The bond is nonpolar"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "functional-groups.calculate",
+   "atom": "functional-groups",
+   "kind": "calculate",
+   "prompt": "Ethanol is C2H5OH. Using C 12.01, H 1.008 and O 16.00, what is its molar mass in g/mol?",
+   "answer": 46.07,
+   "unit": "g/mol",
+   "relTol": 0.02
+  },
+  {
+   "id": "functional-groups.order",
+   "atom": "functional-groups",
+   "kind": "order",
+   "prompt": "Order a nucleophilic attack on a carbonyl.",
+   "steps": [
+    "Oxygen pulls electron density from carbon",
+    "The carbon becomes delta plus",
+    "A nucleophile approaches it",
+    "A new bond forms to the carbon"
+   ]
+  },
+  {
+   "id": "functional-groups.spot-error",
+   "atom": "functional-groups",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "An alcohol carries -OH",
+    "A carboxylic acid carries -COOH",
+    "An amine carries C=O",
+    "An ester carries -COO-"
+   ],
+   "error": 2,
+   "fix": "An amine carries -NH2; C=O is a carbonyl."
+  },
+  {
+   "id": "functional-groups.match",
+   "atom": "functional-groups",
+   "kind": "match",
+   "prompt": "Match each group to its formula.",
+   "pairs": [
+    {
+     "term": "Alcohol",
+     "meaning": "-OH"
+    },
+    {
+     "term": "Carboxylic acid",
+     "meaning": "-COOH"
+    },
+    {
+     "term": "Amine",
+     "meaning": "-NH2"
+    },
+    {
+     "term": "Carbonyl",
+     "meaning": "C=O"
+    }
+   ]
+  },
+  {
+   "id": "functional-groups.applied",
+   "atom": "functional-groups",
+   "kind": "pick",
+   "prompt": "Vinegar tastes sour. Which functional group in acetic acid gives it that acidity?",
+   "options": [
+    "Carboxylic acid",
+    "Alcohol",
+    "Amine",
+    "Ether"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "isomerism.pick",
+   "atom": "isomerism",
+   "kind": "pick",
+   "prompt": "Ethanol and dimethyl ether share C2H6O. What kind of isomers are they?",
+   "options": [
+    "Structural isomers",
+    "Enantiomers",
+    "The same molecule",
+    "Isotopes"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "isomerism.calculate",
+   "atom": "isomerism",
+   "kind": "calculate",
+   "prompt": "A molecule has 3 chirality centers. How many stereoisomers can it have at most, 2^n?",
+   "answer": 8.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "isomerism.order",
+   "atom": "isomerism",
+   "kind": "order",
+   "prompt": "Order the test for a chirality center.",
+   "steps": [
+    "Pick a carbon",
+    "List its four groups",
+    "Check that all four differ",
+    "If so, it is a chirality center"
+   ]
+  },
+  {
+   "id": "isomerism.spot-error",
+   "atom": "isomerism",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Structural isomers differ in connectivity",
+    "Enantiomers are mirror images",
+    "Enantiomers have different boiling points",
+    "A carbon with four different groups is chiral"
+   ],
+   "error": 2,
+   "fix": "Enantiomers share boiling points and differ in how they interact with polarized light and other chiral molecules."
+  },
+  {
+   "id": "isomerism.match",
+   "atom": "isomerism",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Structural isomer",
+     "meaning": "Different connectivity"
+    },
+    {
+     "term": "Stereoisomer",
+     "meaning": "Same connectivity, different 3D arrangement"
+    },
+    {
+     "term": "Enantiomer",
+     "meaning": "Non-superimposable mirror image"
+    },
+    {
+     "term": "Chirality center",
+     "meaning": "Carbon with four different groups"
+    }
+   ]
+  },
+  {
+   "id": "isomerism.applied",
+   "atom": "isomerism",
+   "kind": "pick",
+   "prompt": "One mirror form of a drug heals while the other harms. Why can the body tell them apart?",
+   "options": [
+    "Its receptors are chiral too",
+    "The two forms have different formulas",
+    "One form is radioactive",
+    "The body weighs each molecule"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "organic-reaction-types.pick",
+   "atom": "organic-reaction-types",
+   "kind": "pick",
+   "prompt": "What happens to configuration in an SN2 reaction?",
+   "options": [
+    "It inverts",
+    "It is kept",
+    "It racemizes",
+    "It disappears"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "organic-reaction-types.calculate",
+   "atom": "organic-reaction-types",
+   "kind": "calculate",
+   "prompt": "SN2 rate = k[Nu][RX]. Both concentrations double. By what factor does the rate rise?",
+   "answer": 4.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "organic-reaction-types.order",
+   "atom": "organic-reaction-types",
+   "kind": "order",
+   "prompt": "Order an SN1 reaction.",
+   "steps": [
+    "The leaving group departs",
+    "A flat carbocation forms",
+    "The nucleophile attacks either face",
+    "A mixed product forms"
+   ]
+  },
+  {
+   "id": "organic-reaction-types.spot-error",
+   "atom": "organic-reaction-types",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "SN2 is one concerted step",
+    "SN2 is second order",
+    "SN1 is second order overall",
+    "SN1 goes through a carbocation"
+   ],
+   "error": 2,
+   "fix": "SN1 rate depends on the substrate alone: first order."
+  },
+  {
+   "id": "organic-reaction-types.match",
+   "atom": "organic-reaction-types",
+   "kind": "match",
+   "prompt": "Match each reaction type to its pattern.",
+   "pairs": [
+    {
+     "term": "Substitution",
+     "meaning": "One group swaps for another"
+    },
+    {
+     "term": "Elimination",
+     "meaning": "Forms a double bond"
+    },
+    {
+     "term": "Addition",
+     "meaning": "Adds across a double bond"
+    },
+    {
+     "term": "SN2",
+     "meaning": "Concerted backside attack"
+    }
+   ]
+  },
+  {
+   "id": "organic-reaction-types.applied",
+   "atom": "organic-reaction-types",
+   "kind": "pick",
+   "prompt": "Margarine is made by adding H2 across C=C bonds in vegetable oil. What kind of reaction is that?",
+   "options": [
+    "Addition",
+    "Elimination",
+    "Substitution",
+    "Decomposition"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "thermodynamics-vs-kinetics.pick",
+   "atom": "thermodynamics-vs-kinetics",
+   "kind": "pick",
+   "prompt": "Why does a diamond last, though graphite is more stable?",
+   "options": [
+    "A huge activation barrier traps it",
+    "Diamond has lower Gibbs energy",
+    "Diamond is a liquid",
+    "Graphite cannot exist at room temperature"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "thermodynamics-vs-kinetics.calculate",
+   "atom": "thermodynamics-vs-kinetics",
+   "kind": "calculate",
+   "prompt": "A kinetic product forms over a 50 kJ/mol barrier, a thermodynamic one over 60 kJ/mol. At 298 K, what is the rate ratio e^(10000/(8.314 x 298))?",
+   "answer": 56.61,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "thermodynamics-vs-kinetics.order",
+   "atom": "thermodynamics-vs-kinetics",
+   "kind": "order",
+   "prompt": "Order the choice between products.",
+   "steps": [
+    "At low temperature the lower barrier wins",
+    "The kinetic product forms first",
+    "At high temperature reactions reverse",
+    "The system settles on the most stable product"
+   ]
+  },
+  {
+   "id": "thermodynamics-vs-kinetics.spot-error",
+   "atom": "thermodynamics-vs-kinetics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Thermodynamics says how far a reaction goes",
+    "Kinetics says how fast",
+    "A negative Delta G means the reaction is fast",
+    "Barriers can trap unstable products"
+   ],
+   "error": 2,
+   "fix": "A negative Delta G says the reaction can go and nothing about its speed."
+  },
+  {
+   "id": "thermodynamics-vs-kinetics.match",
+   "atom": "thermodynamics-vs-kinetics",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Kinetic product",
+     "meaning": "Forms fastest"
+    },
+    {
+     "term": "Thermodynamic product",
+     "meaning": "Most stable"
+    },
+    {
+     "term": "Activation barrier",
+     "meaning": "Sets the rate"
+    },
+    {
+     "term": "Delta G",
+     "meaning": "Sets the direction"
+    }
+   ]
+  },
+  {
+   "id": "thermodynamics-vs-kinetics.applied",
+   "atom": "thermodynamics-vs-kinetics",
+   "kind": "pick",
+   "prompt": "Paper is thermodynamically unstable in air yet does not burst into flame. Why?",
+   "options": [
+    "The activation barrier is high until a flame supplies energy",
+    "Paper has a positive Delta G of combustion, so burning is uphill all the way",
+    "Air contains no oxygen indoors",
+    "Paper is a catalyst"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "computational-chemistry.pick",
+   "atom": "computational-chemistry",
+   "kind": "pick",
+   "prompt": "What does DFT compute?",
+   "options": [
+    "Electronic energies from the electron density",
+    "pH from a titration",
+    "Molar masses from formulas",
+    "Boiling points from experiment"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "computational-chemistry.calculate",
+   "atom": "computational-chemistry",
+   "kind": "calculate",
+   "prompt": "DFT gives reactant at 0, transition state at +75 and product at -40 kJ/mol. What is E_a in kJ/mol?",
+   "answer": 75.0,
+   "unit": "kJ/mol",
+   "relTol": 0.02
+  },
+  {
+   "id": "computational-chemistry.order",
+   "atom": "computational-chemistry",
+   "kind": "order",
+   "prompt": "Order a computational study of a reaction.",
+   "steps": [
+    "Optimize reactant and product geometries",
+    "Locate the transition state",
+    "Compute energies",
+    "Read E_a and Delta G"
+   ]
+  },
+  {
+   "id": "computational-chemistry.spot-error",
+   "atom": "computational-chemistry",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "DFT approximates the many-electron problem",
+    "The transition state gives the activation energy",
+    "Computers solve the Schrödinger equation exactly for large molecules",
+    "Calculations predict reaction feasibility"
+   ],
+   "error": 2,
+   "fix": "Large molecules need approximations such as DFT."
+  },
+  {
+   "id": "computational-chemistry.match",
+   "atom": "computational-chemistry",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "DFT",
+     "meaning": "Density functional theory"
+    },
+    {
+     "term": "Transition state",
+     "meaning": "Top of the barrier"
+    },
+    {
+     "term": "Geometry optimization",
+     "meaning": "Find the lowest-energy structure"
+    },
+    {
+     "term": "Basis set",
+     "meaning": "Functions used to build orbitals"
+    }
+   ]
+  },
+  {
+   "id": "computational-chemistry.applied",
+   "atom": "computational-chemistry",
+   "kind": "pick",
+   "prompt": "A drug company screens thousands of molecules on computers before making any. What does the computation save?",
+   "options": [
+    "Lab time spent on candidates that would fail",
+    "The need to run any experiment on the final drug at all",
+    "The cost of electricity",
+    "Patent fees"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "coordination-complexes.pick",
+   "atom": "coordination-complexes",
+   "kind": "pick",
+   "prompt": "What decides high spin versus low spin in an octahedral complex?",
+   "options": [
+    "Delta compared with pairing energy P",
+    "The metal's mass",
+    "The solvent's color",
+    "The number of protons"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "coordination-complexes.calculate",
+   "atom": "coordination-complexes",
+   "kind": "calculate",
+   "prompt": "An octahedral complex holds 6 ligands. If each donates one electron pair, how many electrons do they donate in total?",
+   "answer": 12.0,
+   "unit": "electrons",
+   "relTol": 0.02
+  },
+  {
+   "id": "coordination-complexes.order",
+   "atom": "coordination-complexes",
+   "kind": "order",
+   "prompt": "Order the origin of a complex's color.",
+   "steps": [
+    "Ligands split the d orbitals",
+    "A gap Delta opens",
+    "The complex absorbs light of energy Delta",
+    "We see the complementary color"
+   ]
+  },
+  {
+   "id": "coordination-complexes.spot-error",
+   "atom": "coordination-complexes",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Octahedral fields split d into t2g and eg",
+    "t2g has three orbitals",
+    "If Delta > P, electrons go high spin",
+    "Unpaired electrons make a complex paramagnetic"
+   ],
+   "error": 2,
+   "fix": "If Delta > P, electrons pair in t2g: low spin."
+  },
+  {
+   "id": "coordination-complexes.match",
+   "atom": "coordination-complexes",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Ligand",
+     "meaning": "Donates an electron pair to the metal"
+    },
+    {
+     "term": "t2g",
+     "meaning": "Lower set of three d orbitals"
+    },
+    {
+     "term": "eg",
+     "meaning": "Upper set of two d orbitals"
+    },
+    {
+     "term": "Delta",
+     "meaning": "Splitting energy"
+    }
+   ]
+  },
+  {
+   "id": "coordination-complexes.applied",
+   "atom": "coordination-complexes",
+   "kind": "pick",
+   "prompt": "Hemoglobin's iron sits in a coordination complex. Why is blood red?",
+   "options": [
+    "The complex absorbs other colors across its d-orbital gap",
+    "Iron metal is red",
+    "Red cells contain dye",
+    "Oxygen gas is red, and blood carries a lot of it around the body"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "chemical-bond-energetics.pick",
+   "atom": "chemical-bond-energetics",
+   "kind": "pick",
+   "prompt": "When is a reaction exothermic by bond energies?",
+   "options": [
+    "Bonds formed release more than bonds broken cost",
+    "Bonds broken cost more",
+    "No bonds change",
+    "Only ionic bonds form"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "chemical-bond-energetics.calculate",
+   "atom": "chemical-bond-energetics",
+   "kind": "calculate",
+   "prompt": "H2 + Cl2 -> 2 HCl. Bond energies: H-H 436, Cl-Cl 242, H-Cl 431 kJ/mol. What is Delta H in kJ/mol?",
+   "answer": -184.0,
+   "unit": "kJ/mol",
+   "relTol": 0.02
+  },
+  {
+   "id": "chemical-bond-energetics.order",
+   "atom": "chemical-bond-energetics",
+   "kind": "order",
+   "prompt": "Order the bond-energy estimate.",
+   "steps": [
+    "List the bonds broken",
+    "Sum their energies",
+    "List and sum the bonds formed",
+    "Subtract formed from broken"
+   ]
+  },
+  {
+   "id": "chemical-bond-energetics.spot-error",
+   "atom": "chemical-bond-energetics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Breaking bonds costs energy",
+    "Forming bonds releases energy",
+    "Delta H = bonds formed - bonds broken",
+    "Average bond energies give an estimate"
+   ],
+   "error": 2,
+   "fix": "Delta H = bonds broken - bonds formed."
+  },
+  {
+   "id": "chemical-bond-energetics.match",
+   "atom": "chemical-bond-energetics",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Bond energy",
+     "meaning": "Energy to break one mole of bonds"
+    },
+    {
+     "term": "Bonds broken",
+     "meaning": "Energy in"
+    },
+    {
+     "term": "Bonds formed",
+     "meaning": "Energy out"
+    },
+    {
+     "term": "Average value",
+     "meaning": "Estimate across molecules"
+    }
+   ]
+  },
+  {
+   "id": "chemical-bond-energetics.applied",
+   "atom": "chemical-bond-energetics",
+   "kind": "pick",
+   "prompt": "Rocket engines burn H2 with O2. Why is so much energy released?",
+   "options": [
+    "The O-H bonds formed are much stronger than the bonds broken",
+    "Hydrogen atoms fuse",
+    "Oxygen gas has no bonds to break, so all the energy is free to escape",
+    "The exhaust is cold"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "acid-base-titration.pick",
+   "atom": "acid-base-titration",
+   "kind": "pick",
+   "prompt": "At the equivalence point of HCl with NaOH, what is true?",
+   "options": [
+    "Moles of acid equal moles of base",
+    "pH is 0",
+    "No water forms",
+    "The indicator is used up"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "acid-base-titration.calculate",
+   "atom": "acid-base-titration",
+   "kind": "calculate",
+   "prompt": "25.0 mL of HCl is neutralized by 30.0 mL of 0.100 M NaOH. What is [HCl] in M?",
+   "answer": 0.12,
+   "unit": "M",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "acid-base-titration.order",
+   "atom": "acid-base-titration",
+   "kind": "order",
+   "prompt": "Order a titration.",
+   "steps": [
+    "Fill a burette with standard base",
+    "Add it to the acid",
+    "Watch for the indicator color change",
+    "Use the volume to find the unknown concentration"
+   ]
+  },
+  {
+   "id": "acid-base-titration.spot-error",
+   "atom": "acid-base-titration",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "At equivalence the moles match",
+    "A strong acid-strong base titration ends near pH 7",
+    "A weak acid titration ends exactly at pH 7",
+    "The half-equivalence pH equals pKa"
+   ],
+   "error": 2,
+   "fix": "A weak acid titration ends above pH 7, since the conjugate base is basic."
+  },
+  {
+   "id": "acid-base-titration.match",
+   "atom": "acid-base-titration",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Titrant",
+     "meaning": "Solution of known concentration"
+    },
+    {
+     "term": "Equivalence point",
+     "meaning": "Moles balance"
+    },
+    {
+     "term": "Indicator",
+     "meaning": "Changes color near the end"
+    },
+    {
+     "term": "Half-equivalence",
+     "meaning": "pH equals pKa"
+    }
+   ]
+  },
+  {
+   "id": "oxidation-states.pick",
+   "atom": "oxidation-states",
+   "kind": "pick",
+   "prompt": "What is the oxidation state of sulfur in SO4^2-?",
+   "options": [
+    "+6",
+    "+4",
+    "-2",
+    "+2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "oxidation-states.calculate",
+   "atom": "oxidation-states",
+   "kind": "calculate",
+   "prompt": "What is the oxidation state of manganese in permanganate, MnO4-?",
+   "answer": 7.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "oxidation-states.order",
+   "atom": "oxidation-states",
+   "kind": "order",
+   "prompt": "Order the oxidation state calculation.",
+   "steps": [
+    "Assign known states such as O at -2",
+    "Add them up",
+    "Set the total equal to the ion's charge",
+    "Solve for the unknown"
+   ]
+  },
+  {
+   "id": "oxidation-states.spot-error",
+   "atom": "oxidation-states",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "O is -2 in most compounds",
+    "H is +1 with nonmetals",
+    "In H2O2 oxygen is -2",
+    "The states sum to the overall charge"
+   ],
+   "error": 2,
+   "fix": "In peroxides such as H2O2 oxygen is -1."
+  },
+  {
+   "id": "oxidation-states.match",
+   "atom": "oxidation-states",
+   "kind": "match",
+   "prompt": "Match each species to the oxidation state of its key atom.",
+   "pairs": [
+    {
+     "term": "S in SO4^2-",
+     "meaning": "+6"
+    },
+    {
+     "term": "O in H2O2",
+     "meaning": "-1"
+    },
+    {
+     "term": "Fe in Fe2O3",
+     "meaning": "+3"
+    },
+    {
+     "term": "Na in NaCl",
+     "meaning": "+1"
+    }
+   ]
+  },
+  {
+   "id": "oxidation-states.applied",
+   "atom": "oxidation-states",
+   "kind": "pick",
+   "prompt": "Breathalyzers use dichromate, Cr2O7^2-, which changes color as alcohol reduces it. What is chromium's state in dichromate?",
+   "options": [
+    "+6",
+    "+3",
+    "+7",
+    "+2"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "phase-equilibria-clausius.pick",
+   "atom": "phase-equilibria-clausius",
+   "kind": "pick",
+   "prompt": "Why does water boil cooler on a mountain?",
+   "options": [
+    "Lower air pressure is met at a lower temperature",
+    "The water is purer",
+    "Gravity is weaker",
+    "Air is colder"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "phase-equilibria-clausius.calculate",
+   "atom": "phase-equilibria-clausius",
+   "kind": "calculate",
+   "prompt": "Water has Delta H_vap = 40.7 kJ/mol. Its vapor pressure is 1 atm at 373 K. What is it at 363 K, in atm?",
+   "answer": 0.6966,
+   "unit": "atm",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "phase-equilibria-clausius.order",
+   "atom": "phase-equilibria-clausius",
+   "kind": "order",
+   "prompt": "Order the Clausius-Clapeyron calculation.",
+   "steps": [
+    "Know P1 at T1",
+    "Know Delta H_vap",
+    "Insert T2 into the equation",
+    "Solve for P2"
+   ]
+  },
+  {
+   "id": "phase-equilibria-clausius.spot-error",
+   "atom": "phase-equilibria-clausius",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Vapor pressure rises with temperature",
+    "Boiling happens when vapor pressure equals outside pressure",
+    "Vapor pressure rises in a straight line with T",
+    "Larger Delta H_vap means steeper rise"
+   ],
+   "error": 2,
+   "fix": "Vapor pressure rises exponentially with temperature."
+  },
+  {
+   "id": "phase-equilibria-clausius.match",
+   "atom": "phase-equilibria-clausius",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Vapor pressure",
+     "meaning": "Pressure of the vapor over its liquid"
+    },
+    {
+     "term": "Delta H_vap",
+     "meaning": "Heat to vaporize a mole"
+    },
+    {
+     "term": "Normal boiling point",
+     "meaning": "Vapor pressure equals 1 atm"
+    },
+    {
+     "term": "ln P vs 1/T",
+     "meaning": "Straight line"
+    }
+   ]
+  },
+  {
+   "id": "reaction-mechanisms.pick",
+   "atom": "reaction-mechanisms",
+   "kind": "pick",
+   "prompt": "What sets the observed rate of a multistep reaction?",
+   "options": [
+    "The slowest step",
+    "The fastest step",
+    "The last step always",
+    "The balanced coefficients"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "reaction-mechanisms.calculate",
+   "atom": "reaction-mechanisms",
+   "kind": "calculate",
+   "prompt": "A rate-determining step is bimolecular, NO2 + F2. Both concentrations double. By what factor does the rate rise?",
+   "answer": 4.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "reaction-mechanisms.order",
+   "atom": "reaction-mechanisms",
+   "kind": "order",
+   "prompt": "Order the test of a proposed mechanism.",
+   "steps": [
+    "Write the elementary steps",
+    "Check they add to the overall equation",
+    "Find the slow step",
+    "Compare its rate law with experiment"
+   ]
+  },
+  {
+   "id": "reaction-mechanisms.spot-error",
+   "atom": "reaction-mechanisms",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Elementary steps add to the overall reaction",
+    "The slow step sets the rate",
+    "Intermediates appear in the overall equation",
+    "A mechanism must match the measured rate law"
+   ],
+   "error": 2,
+   "fix": "Intermediates form and are used up, so they cancel from the overall equation."
+  },
+  {
+   "id": "reaction-mechanisms.match",
+   "atom": "reaction-mechanisms",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Elementary step",
+     "meaning": "Single molecular event"
+    },
+    {
+     "term": "Intermediate",
+     "meaning": "Formed then consumed"
+    },
+    {
+     "term": "Rate-determining step",
+     "meaning": "Slowest step"
+    },
+    {
+     "term": "Molecularity",
+     "meaning": "Molecules in one step"
+    }
+   ]
+  },
+  {
+   "id": "reaction-mechanisms.applied",
+   "atom": "reaction-mechanisms",
+   "kind": "pick",
+   "prompt": "Ozone in the stratosphere breaks down faster when chlorine is present. How does chlorine act?",
+   "options": [
+    "It opens a faster multistep pathway and is regenerated",
+    "It absorbs all UV light",
+    "It fuses with ozone into a heavier, unstable nucleus that splits apart",
+    "It slows every step"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "equilibrium-thermo-link.pick",
+   "atom": "equilibrium-thermo-link",
+   "kind": "pick",
+   "prompt": "Delta G standard = 0. What is K?",
+   "options": [
+    "1",
+    "0",
+    "Infinity",
+    "-1"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "equilibrium-thermo-link.calculate",
+   "atom": "equilibrium-thermo-link",
+   "kind": "calculate",
+   "prompt": "Delta G standard = -11.4 kJ/mol at 298 K. What is K? Use R = 8.314.",
+   "answer": 99.61,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "equilibrium-thermo-link.order",
+   "atom": "equilibrium-thermo-link",
+   "kind": "order",
+   "prompt": "Order the calculation of K from Delta G.",
+   "steps": [
+    "Get Delta G standard",
+    "Divide by -RT",
+    "Take the exponential",
+    "Read K"
+   ]
+  },
+  {
+   "id": "equilibrium-thermo-link.spot-error",
+   "atom": "equilibrium-thermo-link",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Delta G standard = -RT ln K",
+    "Negative Delta G standard means K > 1",
+    "K = 1 means products are strongly favored",
+    "K depends on temperature"
+   ],
+   "error": 2,
+   "fix": "K = 1 means products and reactants are balanced."
+  },
+  {
+   "id": "equilibrium-thermo-link.match",
+   "atom": "equilibrium-thermo-link",
+   "kind": "match",
+   "prompt": "Match each Delta G standard to its K.",
+   "pairs": [
+    {
+     "term": "Negative",
+     "meaning": "K > 1"
+    },
+    {
+     "term": "Zero",
+     "meaning": "K = 1"
+    },
+    {
+     "term": "Positive",
+     "meaning": "K < 1"
+    },
+    {
+     "term": "-RT ln K",
+     "meaning": "Delta G standard"
+    }
+   ]
+  },
+  {
+   "id": "equilibrium-thermo-link.applied",
+   "atom": "equilibrium-thermo-link",
+   "kind": "pick",
+   "prompt": "Engineers pick the operating temperature of an industrial reactor using Delta G = -RT ln K. What does that tell them?",
+   "options": [
+    "How far the reaction goes at that temperature",
+    "How fast the reaction runs at that temperature",
+    "The cost of the catalyst",
+    "The reactor's pressure rating"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "colligative-properties.pick",
+   "atom": "colligative-properties",
+   "kind": "pick",
+   "prompt": "What do colligative properties depend on?",
+   "options": [
+    "The number of dissolved particles",
+    "The identity of the solute",
+    "The solute's color",
+    "The container shape"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "colligative-properties.calculate",
+   "atom": "colligative-properties",
+   "kind": "calculate",
+   "prompt": "Road salt makes a 2.0 m NaCl solution (i = 2, K_f = 1.86 C/m). How far does the freezing point drop in C?",
+   "answer": 7.44,
+   "unit": "degrees C",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "colligative-properties.order",
+   "atom": "colligative-properties",
+   "kind": "order",
+   "prompt": "Order why salt melts ice.",
+   "steps": [
+    "Salt dissolves into Na+ and Cl-",
+    "Dissolved particles lower the freezing point",
+    "The ice sits above the new freezing point",
+    "The ice melts"
+   ]
+  },
+  {
+   "id": "colligative-properties.spot-error",
+   "atom": "colligative-properties",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Solutes lower the freezing point",
+    "Solutes raise the boiling point",
+    "Sugar and salt at equal molality depress freezing equally",
+    "Osmotic pressure is colligative"
+   ],
+   "error": 2,
+   "fix": "Salt splits into two ions, so it depresses freezing about twice as much as sugar."
+  },
+  {
+   "id": "colligative-properties.match",
+   "atom": "colligative-properties",
+   "kind": "match",
+   "prompt": "Match each property to its effect.",
+   "pairs": [
+    {
+     "term": "Freezing point depression",
+     "meaning": "Lower freezing point"
+    },
+    {
+     "term": "Boiling point elevation",
+     "meaning": "Higher boiling point"
+    },
+    {
+     "term": "Van 't Hoff factor i",
+     "meaning": "Particles per formula unit"
+    },
+    {
+     "term": "Osmotic pressure",
+     "meaning": "Push across a membrane"
+    }
+   ]
+  },
+  {
+   "id": "hess-law.pick",
+   "atom": "hess-law",
+   "kind": "pick",
+   "prompt": "Why can reaction enthalpies be added?",
+   "options": [
+    "Enthalpy is a state function",
+    "Heat is conserved by path",
+    "Reactions are always fast",
+    "Enthalpy is always negative"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hess-law.calculate",
+   "atom": "hess-law",
+   "kind": "calculate",
+   "prompt": "C + O2 -> CO2 is -393.5 kJ and CO + 1/2 O2 -> CO2 is -283.0 kJ. What is Delta H for C + 1/2 O2 -> CO, in kJ?",
+   "answer": -110.5,
+   "unit": "kJ",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "hess-law.order",
+   "atom": "hess-law",
+   "kind": "order",
+   "prompt": "Order a Hess's law calculation.",
+   "steps": [
+    "Write the target reaction",
+    "Find known reactions",
+    "Reverse or scale them to match",
+    "Add them and their Delta H values"
+   ]
+  },
+  {
+   "id": "hess-law.spot-error",
+   "atom": "hess-law",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Reversing a reaction flips the sign of Delta H",
+    "Doubling a reaction doubles Delta H",
+    "The path changes the total Delta H",
+    "Enthalpy is a state function"
+   ],
+   "error": 2,
+   "fix": "Delta H is the same for any path."
+  },
+  {
+   "id": "hess-law.match",
+   "atom": "hess-law",
+   "kind": "match",
+   "prompt": "Match each move to its effect on Delta H.",
+   "pairs": [
+    {
+     "term": "Reverse",
+     "meaning": "Flip sign"
+    },
+    {
+     "term": "Double",
+     "meaning": "Double Delta H"
+    },
+    {
+     "term": "Add steps",
+     "meaning": "Add Delta H values"
+    },
+    {
+     "term": "State function",
+     "meaning": "Path-independent"
+    }
+   ]
+  },
+  {
+   "id": "rate-laws-order.pick",
+   "atom": "rate-laws-order",
+   "kind": "pick",
+   "prompt": "Doubling [B] leaves the rate unchanged. What is the order in B?",
+   "options": [
+    "0",
+    "1",
+    "2",
+    "-1"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "rate-laws-order.calculate",
+   "atom": "rate-laws-order",
+   "kind": "calculate",
+   "prompt": "A first-order drug has k = 0.10 per hour. What is its half-life in hours, ln 2 / k?",
+   "answer": 6.931,
+   "unit": "h",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "rate-laws-order.order",
+   "atom": "rate-laws-order",
+   "kind": "order",
+   "prompt": "Order the use of an integrated rate law.",
+   "steps": [
+    "Find the order",
+    "Pick the matching integrated law",
+    "Insert k and the starting concentration",
+    "Solve for concentration at time t"
+   ]
+  },
+  {
+   "id": "rate-laws-order.spot-error",
+   "atom": "rate-laws-order",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "First-order half-life is ln 2 / k",
+    "First-order half-life depends on starting concentration",
+    "ln[A] vs t is straight for first order",
+    "Order comes from data"
+   ],
+   "error": 1,
+   "fix": "First-order half-life is independent of concentration."
+  },
+  {
+   "id": "rate-laws-order.match",
+   "atom": "rate-laws-order",
+   "kind": "match",
+   "prompt": "Match each order to its straight-line plot.",
+   "pairs": [
+    {
+     "term": "Zero order",
+     "meaning": "[A] vs t"
+    },
+    {
+     "term": "First order",
+     "meaning": "ln[A] vs t"
+    },
+    {
+     "term": "Second order",
+     "meaning": "1/[A] vs t"
+    },
+    {
+     "term": "Half-life",
+     "meaning": "Time to halve [A]"
+    }
+   ]
+  },
+  {
+   "id": "transition-state-theory.pick",
+   "atom": "transition-state-theory",
+   "kind": "pick",
+   "prompt": "Why is H2 + I2 slow though molecules collide often?",
+   "options": [
+    "Few collisions have enough energy and the right alignment",
+    "They never collide",
+    "Iodine repels hydrogen too strongly for most molecules to touch",
+    "The reaction is endothermic"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "transition-state-theory.calculate",
+   "atom": "transition-state-theory",
+   "kind": "calculate",
+   "prompt": "What is the prefactor k_B T / h at 298 K, in 1/s?",
+   "answer": 6211000000000.0,
+   "unit": "1/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "transition-state-theory.order",
+   "atom": "transition-state-theory",
+   "kind": "order",
+   "prompt": "Order a reactive collision.",
+   "steps": [
+    "Molecules collide",
+    "The collision carries enough energy",
+    "The atoms line up correctly",
+    "They pass through the transition state"
+   ]
+  },
+  {
+   "id": "transition-state-theory.spot-error",
+   "atom": "transition-state-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Only collisions above E_a react",
+    "The steric factor p is often much less than 1",
+    "Every collision leads to reaction",
+    "The transition state sits at the top of the barrier"
+   ],
+   "error": 2,
+   "fix": "Only a small fraction of collisions react."
+  },
+  {
+   "id": "transition-state-theory.match",
+   "atom": "transition-state-theory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Transition state",
+     "meaning": "Peak of the energy barrier"
+    },
+    {
+     "term": "Steric factor",
+     "meaning": "Fraction with right alignment"
+    },
+    {
+     "term": "Delta G double dagger",
+     "meaning": "Free energy of activation"
+    },
+    {
+     "term": "Collision theory",
+     "meaning": "Rate from energetic, aligned collisions"
+    }
+   ]
+  },
+  {
+   "id": "transition-state-theory.applied",
+   "atom": "transition-state-theory",
+   "kind": "pick",
+   "prompt": "A match does not light until you strike it. In transition-state terms, what does the strike provide?",
+   "options": [
+    "Enough energy for molecules to reach the transition state",
+    "New reactants",
+    "A catalyst",
+    "A lower Delta G of combustion for the match head"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "solubility-product.pick",
+   "atom": "solubility-product",
+   "kind": "pick",
+   "prompt": "Adding NaCl to a saturated AgCl solution does what to AgCl solubility?",
+   "options": [
+    "Lowers it",
+    "Raises it",
+    "No change",
+    "Doubles it"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "solubility-product.calculate",
+   "atom": "solubility-product",
+   "kind": "calculate",
+   "prompt": "AgCl has K_sp = 1.8e-10. What is its molar solubility in pure water, in M?",
+   "answer": 1.342e-05,
+   "unit": "M",
+   "relTol": 0.02
+  },
+  {
+   "id": "solubility-product.order",
+   "atom": "solubility-product",
+   "kind": "order",
+   "prompt": "Order a precipitation check.",
+   "steps": [
+    "Find the ion concentrations",
+    "Compute Q from them",
+    "Compare Q with K_sp",
+    "A precipitate forms if Q > K_sp"
+   ]
+  },
+  {
+   "id": "solubility-product.spot-error",
+   "atom": "solubility-product",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "K_sp = [Ag+][Cl-] for AgCl",
+    "A common ion lowers solubility",
+    "Precipitate forms when Q < K_sp",
+    "Small K_sp means low solubility"
+   ],
+   "error": 2,
+   "fix": "A precipitate forms when Q > K_sp."
+  },
+  {
+   "id": "solubility-product.match",
+   "atom": "solubility-product",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "K_sp",
+     "meaning": "Solubility product"
+    },
+    {
+     "term": "Molar solubility",
+     "meaning": "Moles dissolved per liter"
+    },
+    {
+     "term": "Common ion effect",
+     "meaning": "Shared ion lowers solubility"
+    },
+    {
+     "term": "Precipitate",
+     "meaning": "Solid out of solution"
+    }
+   ]
+  },
+  {
+   "id": "solubility-product.applied",
+   "atom": "solubility-product",
+   "kind": "pick",
+   "prompt": "Kidney stones form from calcium oxalate. When does a stone start to grow?",
+   "options": [
+    "When the ion product in urine exceeds K_sp",
+    "When urine is dilute and the calcium level is falling",
+    "When K_sp rises",
+    "When calcium is absent"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "beer-lambert-law.pick",
+   "atom": "beer-lambert-law",
+   "kind": "pick",
+   "prompt": "Doubling the concentration does what to absorbance?",
+   "options": [
+    "Doubles it",
+    "Halves it",
+    "Squares it",
+    "Leaves it fixed"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "beer-lambert-law.calculate",
+   "atom": "beer-lambert-law",
+   "kind": "calculate",
+   "prompt": "A dye has epsilon = 15,000 per M per cm. A 1 cm cuvette reads A = 0.60. What is c in M?",
+   "answer": 4e-05,
+   "unit": "M",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "beer-lambert-law.order",
+   "atom": "beer-lambert-law",
+   "kind": "order",
+   "prompt": "Order a concentration measurement.",
+   "steps": [
+    "Pick the wavelength of peak absorbance",
+    "Measure the absorbance",
+    "Divide by epsilon times path length",
+    "Read the concentration"
+   ]
+  },
+  {
+   "id": "beer-lambert-law.spot-error",
+   "atom": "beer-lambert-law",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A = epsilon l c",
+    "Absorbance is unitless",
+    "Doubling the path length halves A",
+    "A = -log(I/I0)"
+   ],
+   "error": 2,
+   "fix": "Doubling the path length doubles A."
+  },
+  {
+   "id": "beer-lambert-law.match",
+   "atom": "beer-lambert-law",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "A",
+     "meaning": "Absorbance"
+    },
+    {
+     "term": "epsilon",
+     "meaning": "Molar absorptivity"
+    },
+    {
+     "term": "l",
+     "meaning": "Path length"
+    },
+    {
+     "term": "c",
+     "meaning": "Concentration"
+    }
+   ]
+  },
+  {
+   "id": "crystal-field-theory.pick",
+   "atom": "crystal-field-theory",
+   "kind": "pick",
+   "prompt": "Fe2+ with CN- ligands is which spin state?",
+   "options": [
+    "Low spin",
+    "High spin",
+    "No spin",
+    "Half spin"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "crystal-field-theory.calculate",
+   "atom": "crystal-field-theory",
+   "kind": "calculate",
+   "prompt": "High-spin d6 Fe2+ with water ligands is t2g^4 eg^2. How many unpaired electrons does it have?",
+   "answer": 4.0,
+   "unit": "electrons",
+   "relTol": 0.02
+  },
+  {
+   "id": "crystal-field-theory.order",
+   "atom": "crystal-field-theory",
+   "kind": "order",
+   "prompt": "Order the build-up of a low-spin d6 ion.",
+   "steps": [
+    "Ligands split d into t2g and eg",
+    "Large Delta exceeds pairing energy",
+    "Six electrons fill t2g in pairs",
+    "The ion ends diamagnetic"
+   ]
+  },
+  {
+   "id": "crystal-field-theory.spot-error",
+   "atom": "crystal-field-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Strong-field ligands give large Delta",
+    "High-spin d6 has four unpaired electrons",
+    "Water is a strong-field ligand",
+    "Delta decides color and magnetism"
+   ],
+   "error": 2,
+   "fix": "Water is a weak-field ligand."
+  },
+  {
+   "id": "crystal-field-theory.match",
+   "atom": "crystal-field-theory",
+   "kind": "match",
+   "prompt": "Match each ligand case to its result.",
+   "pairs": [
+    {
+     "term": "Weak field",
+     "meaning": "High spin"
+    },
+    {
+     "term": "Strong field",
+     "meaning": "Low spin"
+    },
+    {
+     "term": "Paramagnetic",
+     "meaning": "Unpaired electrons"
+    },
+    {
+     "term": "Diamagnetic",
+     "meaning": "All paired"
+    }
+   ]
+  },
+  {
+   "id": "crystal-field-theory.applied",
+   "atom": "crystal-field-theory",
+   "kind": "pick",
+   "prompt": "Ruby is red because Cr3+ sits in a crystal field. What does the field do?",
+   "options": [
+    "Splits the d orbitals so they absorb green light",
+    "Makes the crystal glow from heat",
+    "Removes all d electrons from the chromium ions in the crystal",
+    "Adds iron to the crystal"
+   ],
+   "answer": 0,
+   "applied": true
+  }
+ ]
+}
