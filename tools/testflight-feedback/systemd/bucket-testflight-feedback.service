@@ -1,0 +1,13 @@
+[Unit]
+Description=Bucket TestFlight feedback pull
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/agfarms/bucket-foundation
+Environment=BUCKET_REPO=%h/agfarms/bucket-foundation
+Environment=TOOL_ROOT=%h/agfarms/bucket-foundation
+Environment=PATH=%h/bin:%h/go/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+TimeoutStartSec=10min
+ExecStart=/usr/bin/flock -n %t/bucket-testflight-feedback.lock /bin/bash -c 'set -a; . %h/.derbyfish-secrets/asc-api-key.env; set +a; exec node "$TOOL_ROOT/tools/testflight-feedback/run.mjs"'
+Nice=10
