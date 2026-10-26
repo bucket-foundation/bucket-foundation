@@ -65,6 +65,7 @@ struct LanguagesHome: View {
     @State private var root = "en"
     @State private var targets: [String] = []
     @State private var removing: LangSystem?
+    @State private var justMade: String?
 
     var err: SystemError? { validateSystem(root, targets, store.systems) }
 
@@ -93,46 +94,44 @@ struct LanguagesHome: View {
         }
     }
 
+    static let presets: [(name: String, targets: [String])] = Lang.presets + [
+        ("Slavic", ["ru", "pl", "cs"]),
+        ("Middle Eastern", ["ar", "fa", "he", "tr"]),
+        ("South Asian", ["hi", "ta", "sa"]),
+        ("Classical", ["la", "grc", "sa"]),
+        ("Mediterranean", ["es", "it", "el", "tr"]),
+    ]
+
     func content(_ corpus: LangCorpus) -> some View {
-        List {
-            Section {
-                Text("Learn a set of languages together from one root language. Each word comes back in every language of the set, mixed in one queue, with shared roots shown side by side.")
-                    .font(.serif(.body))
-                    .foregroundStyle(Palette.ink)
-                    .listRowBackground(Color.clear)
-            }
-            if store.systems.isEmpty {
+        ScrollViewReader { proxy in
+            List {
                 Section {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("No language systems yet").font(.serif(.headline))
-                        Text("Build one below. English is the default root.").font(.subheadline).foregroundStyle(Palette.muted)
+                    Text("Learn several languages together.")
+                        .font(.headline)
+                        .foregroundStyle(Palette.muted)
+                        .listRowBackground(Color.clear)
+                }
+                ForEach(store.systems) { s in
+                    Section {
+                        systemCard(s, corpus)
                     }
+                    .id(s.id)
+                    .listRowBackground(Palette.card)
                 }
-                .listRowBackground(Palette.card)
-            }
-            ForEach(store.systems) { s in
                 Section {
-                    systemCard(s, corpus)
-                }
-                .listRowBackground(Palette.card)
-            }
-            Section {
-                Picker("Root language", selection: $root) {
-                    ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
-                }
-                .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
-                VStack(alignment: .leading, spacing: 8) {
-                    Eyebrow(text: "Presets")
-                    FlowLayout(spacing: 8) {
-                        ForEach(Lang.presets, id: \.name) { p in
-                            Chip(title: p.name, langs: p.targets, on: false) {
-                                targets = p.targets.filter { $0 != root }
+                    LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
+                        ForEach(Self.presets, id: \.name) { p in
+                            PresetCard(name: p.name, langs: p.targets.filter { $0 != root }) {
+                                create(p.targets.filter { $0 != root }, proxy)
                             }
                         }
                     }
+                    .padding(.vertical, 6)
+                } header: {
+                    Eyebrow(text: "Start a set")
                 }
-                VStack(alignment: .leading, spacing: 8) {
-                    Eyebrow(text: "Languages to learn")
+                .listRowBackground(Color.clear)
+                Section {
                     FlowLayout(spacing: 8) {
                         ForEach(Lang.codes.filter { $0 != root }, id: \.self) { c in
                             Chip(title: langName(c), langs: [c], on: targets.contains(c)) {
@@ -140,25 +139,28 @@ struct LanguagesHome: View {
                             }
                         }
                     }
+                    Picker("I already speak", selection: $root) {
+                        ForEach(Lang.codes, id: \.self) { Text(langName($0)).tag($0) }
+                    }
+                    .onChange(of: root) { _, v in targets.removeAll { $0 == v } }
+                    Button("Create my set") { create(targets, proxy) }
+                        .buttonStyle(D8Primary(compact: true))
+                        .disabled(err != nil || targets.isEmpty)
+                    if let err, !targets.isEmpty { Text(err.message).noticeStyle() }
+                } header: {
+                    Eyebrow(text: "Or build your own")
                 }
-                Button("Create system", action: create)
-                    .buttonStyle(D8Primary(compact: true))
-                    .disabled(err != nil)
-                if let err, !targets.isEmpty { Text(err.message).noticeStyle() }
-            } header: {
-                Eyebrow(text: "New system")
-            }
-            .listRowBackground(Palette.card)
-            Section {
-                if gate.guest && !store.systems.isEmpty {
-                    Text("Saved on this device.").noticeStyle()
-                    Button("Save to your account") { gate.require { Task { await store.persistSystems() } } }
-                } else {
-                    SaveNotice(state: store.saveState)
+                .listRowBackground(Palette.card)
+                Section {
+                    if gate.guest && !store.systems.isEmpty {
+                        Button("Save to your account") { gate.require { Task { await store.persistSystems() } } }
+                    } else {
+                        SaveNotice(state: store.saveState)
+                    }
+                    Text(corpus.attribution).font(.caption2).foregroundStyle(Palette.muted)
                 }
-                Text(corpus.attribution).font(.caption2).foregroundStyle(Palette.muted)
+                .listRowBackground(Color.clear)
             }
-            .listRowBackground(Color.clear)
         }
     }
 
@@ -166,6 +168,9 @@ struct LanguagesHome: View {
         let sum = systemSummary(s, corpus, store.state(s.id), now: Date().timeIntervalSince1970 * 1000)
         let fresh = sum.started == 0 && s.placement.isEmpty
         return VStack(alignment: .leading, spacing: 10) {
+            if justMade == s.id {
+                Label("New set ready", systemImage: "checkmark.circle.fill").font(.subheadline.weight(.bold)).foregroundStyle(D8.malachite)
+            }
             HStack(alignment: .firstTextBaseline) {
                 Text(s.name).font(.serif(.title3, weight: .semibold)).foregroundStyle(Palette.ink)
                 Spacer()
@@ -197,15 +202,47 @@ struct LanguagesHome: View {
         .padding(.vertical, 6)
     }
 
-    func create() {
-        guard err == nil else { return }
+    func create(_ picked: [String], _ proxy: ScrollViewProxy) {
+        guard !picked.isEmpty else { return }
+        let r = root
         let make = {
-            let r = root
-            let t = targets
             targets = []
-            Task { _ = try? await store.create(root: r, targets: t) }
+            Task {
+                let existing = store.systems.first { $0.root == r && Set($0.targets) == Set(picked) }
+                let made: LangSystem? = if let existing { existing } else { try? await store.create(root: r, targets: picked) }
+                guard let made else { return }
+                haptic(true)
+                justMade = made.id
+                withAnimation(.snappy) { proxy.scrollTo(made.id, anchor: .top) }
+            }
         }
         if gate.guest && store.systems.isEmpty { make() } else { gate.require(make) }
+    }
+}
+
+struct PresetCard: View {
+    let name: String
+    let langs: [String]
+    let action: () -> Void
+
+    var body: some View {
+        Button {
+            tap()
+            action()
+        } label: {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 4) { ForEach(langs.prefix(4), id: \.self) { FlagTile(lang: $0, size: 26) } }
+                Text(LocalizedStringKey(name)).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
+                Text(langs.map(langName).joined(separator: " · ")).font(.caption).foregroundStyle(D8.label).lineLimit(2)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(12)
+            .background(.white, in: .rect(cornerRadius: 14))
+            .overlay { RoundedRectangle(cornerRadius: 14).strokeBorder(D8.keyline, lineWidth: 2) }
+            .background(D8.keyline, in: .rect(cornerRadius: 14).offset(y: 4))
+        }
+        .buttonStyle(TilePress())
+        .accessibilityLabel("\(name): \(langs.map(langName).joined(separator: ", "))")
     }
 }
 
