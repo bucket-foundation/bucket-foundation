@@ -152,6 +152,29 @@ def translation_votes(db: sqlite3.Connection) -> dict[tuple[str, str], dict[str,
     return votes
 
 
+def translation_pos(db: sqlite3.Connection) -> dict[tuple[str, str], dict[str, int]]:
+    counts: dict[tuple[str, str], dict[str, int]] = {}
+    for head_pos, payload in db.execute("select pos, payload from photons where lang='en'"):
+        data = json.loads(payload)
+        by_gloss = {x.get("gloss"): x.get("pos") for x in data.get("senses") or [] if x.get("gloss")}
+        for t in data.get("translations") or []:
+            if not t.get("word") or not t.get("code"):
+                continue
+            pos = by_gloss.get(t.get("sense")) or head_pos
+            if pos:
+                slot = counts.setdefault((t["code"], strip_marks(t["word"])), {})
+                slot[pos] = slot.get(pos, 0) + 1
+    return counts
+
+
+def majority_pos(counts: dict[str, int], own: str | None) -> str | None:
+    if not counts:
+        return own
+    top = max(counts.values())
+    tied = sorted(p for p, c in counts.items() if c == top)
+    return own if own in tied else tied[0]
+
+
 def sense_terms(gloss: str) -> list[str]:
     text = re.sub(r"\([^)]*\)", " ", gloss.lower())
     return [m for part in re.split(r"[;,]", text) for m in [part.strip().removeprefix("to ").removeprefix("a ").removeprefix("an ").removeprefix("the ").strip()] if m]
@@ -262,7 +285,7 @@ def rank_sourced(db: sqlite3.Connection, lang: str, n: int, kaikki: Path | None,
     return out
 
 
-def rank_index(db: sqlite3.Connection, lang: str, n: int, votes: dict | None = None) -> list[dict]:
+def rank_index(db: sqlite3.Connection, lang: str, n: int, votes: dict | None = None, pos_counts: dict | None = None) -> list[dict]:
     rows = db.execute("select surface, meaning_en, pos, ipa, payload from photons where lang=?", (lang,))
     freq = get_frequency_dict(lang) if lang in RAW_FREQ_LANGS else {}
     scored = []
@@ -276,7 +299,7 @@ def rank_index(db: sqlite3.Connection, lang: str, n: int, votes: dict | None = N
             score = zipf * 100 + score / 100
         raw = [x for x in json.loads(payload).get("senses") or [] if x.get("gloss")]
         senses = [x["gloss"] for x in raw]
-        scored.append((score, zipf, surface, meaning, pos, ipa, senses, replaceable(raw, pos)))
+        scored.append((score, zipf, surface, meaning, pos, ipa, senses, replaceable(raw, majority_pos((pos_counts or {}).get((lang, strip_marks(surface)), {}), pos))))
     scored.sort(key=lambda r: (-r[0], -r[1], r[2]))
     seen: set[str] = set()
     out = []
@@ -308,8 +331,9 @@ def main() -> None:
     index_path = OUT / "index.json"
     summary = json.loads(index_path.read_text()) if index_path.exists() and args.only else {}
     votes = translation_votes(db)
+    pos_counts = translation_pos(db)
     for lang in args.only or langs:
-        words = rank_sourced(db, lang, args.n, args.kaikki, args.cedict) if lang in SOURCE_INFO else rank_index(db, lang, args.n, votes)
+        words = rank_sourced(db, lang, args.n, args.kaikki, args.cedict) if lang in SOURCE_INFO else rank_index(db, lang, args.n, votes, pos_counts)
         (OUT / f"{lang}.json").write_text(json.dumps(words, ensure_ascii=False, indent=1))
         summary[lang] = {
             "count": len(words),

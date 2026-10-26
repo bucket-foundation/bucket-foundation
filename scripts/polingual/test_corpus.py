@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from top_words import junk_sense, replaceable  # noqa: E402
+from top_words import junk_sense, majority_pos, replaceable  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "learning/app/polingual"
@@ -81,6 +81,14 @@ class CorpusTest(unittest.TestCase):
             self.assertTrue(junk_sense(sense), sense)
         self.assertFalse(junk_sense({"gloss": "horse", "pos": "noun", "tags": ["masculine"]}))
         self.assertEqual(replaceable([{"gloss": "thou", "pos": "noun", "tags": ["archaic"]}, {"gloss": "you", "pos": "noun"}], "noun"), ["you"])
+
+    def test_majority_pos(self):
+        self.assertEqual(majority_pos({"noun": 5, "adj": 2}, "adj"), "noun")
+        self.assertEqual(majority_pos({}, "verb"), "verb")
+
+    def test_majority_pos_tie(self):
+        self.assertEqual(majority_pos({"noun": 3, "verb": 3}, "verb"), "verb")
+        self.assertEqual(majority_pos({"noun": 3, "verb": 3}, "adj"), "noun")
 
     def test_punjabi_is_gurmukhi(self):
         words = json.loads((DATA / "top1000/pa.json").read_text())
