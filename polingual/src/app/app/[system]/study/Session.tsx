@@ -5,6 +5,8 @@ import { useLangSystem } from "@learn/languages/useLangSystem";
 import { useLangSession } from "@learn/languages/useLangSession";
 import LangExercise, { ReadingsContext } from "@learn/languages/LangExercise";
 import { appHref } from "@/lib/app/systems";
+import { streakCard } from "@/lib/app/streak";
+import StreakCard from "../../StreakCard";
 import styles from "../../app.module.css";
 
 export default function Session({ systemId }: { systemId: string }) {
@@ -42,7 +44,8 @@ export default function Session({ systemId }: { systemId: string }) {
         <p className={styles.body} data-testid="session-score">
           {s.correct} of {s.graded} right · +{s.xpGained} XP · {state.stats.streak} day streak
         </p>
-        <div className={styles.row}>
+        <StreakCard card={streakCard([state], Date.now())} />
+        <div className={`${styles.row} ${styles.gapTop}`}>
           <button type="button" className={styles.cta} onClick={s.restart}>Another round</button>
           <Link className={styles.ghost} href={appHref.home}>Your systems</Link>
         </div>

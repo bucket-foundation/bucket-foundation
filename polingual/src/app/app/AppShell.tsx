@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { appAuth } from "@/lib/app/auth";
+import { fetchAccess, type Access } from "@/lib/app/plans";
+import Paywall from "./Paywall";
 import SignIn from "./SignIn";
 import styles from "./app.module.css";
 
@@ -26,6 +28,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     void refresh();
   }, [refresh]);
 
+  const [access, setAccess] = useState<Access>({ status: "checking" });
+  const signedIn = auth.status === "signed-in";
+  const check = useCallback(() => {
+    setAccess({ status: "checking" });
+    void fetchAccess().then(setAccess);
+  }, []);
+  useEffect(() => {
+    if (signedIn) check();
+  }, [signedIn, check]);
+
   const signOut = useCallback(() => {
     void appAuth().mobile.logout().then(refresh);
   }, [refresh]);
@@ -46,7 +58,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <main className={styles.main}>
         {auth.status === "loading" ? <p className={styles.muted} aria-busy="true">Loading</p> : null}
         {auth.status === "signed-out" ? <SignIn onSignedIn={refresh} /> : null}
-        {auth.status === "signed-in" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
+        {auth.status === "signed-in" && access.status === "checking" ? <p className={styles.muted} aria-busy="true">Checking your subscription</p> : null}
+        {auth.status === "signed-in" && (access.status === "locked" || access.status === "unknown") ? <Paywall access={access} retry={check} /> : null}
+        {auth.status === "signed-in" && access.status === "open" ? <SessionContext.Provider value={{ userId: auth.userId, signOut }}>{children}</SessionContext.Provider> : null}
       </main>
     </div>
   );

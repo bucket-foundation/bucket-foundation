@@ -3,6 +3,7 @@ import type { RequestUser } from "@/lib/auth/verify";
 import { JwsError, type VerifyOptions } from "@/lib/app-store/jws";
 import { decodeNotification } from "@/lib/app-store/notifications";
 import type { AppStoreEventStore } from "@/lib/app-store/store";
+import { entitlementFrom } from "@/lib/app-store/entitlement";
 
 export const MAX_NOTIFICATION_BYTES = 65_536;
 const NO_STORE = { "cache-control": "no-store" };
@@ -70,5 +71,20 @@ export async function handleAccountToken(req: NextRequest, deps: TokenDeps): Pro
   } catch (err) {
     console.error("[app-store/account-token] failed:", err instanceof Error ? err.message : err);
     return reply({ error: "write_failed" }, 500);
+  }
+}
+
+export const POLINGUAL_BUNDLE_ID = "com.polingual.app";
+
+export async function handleEntitlement(req: NextRequest, deps: TokenDeps & { now?: () => number }): Promise<NextResponse> {
+  const store = deps.store();
+  if (!store?.eventsFor) return reply({ error: "unavailable" }, 503);
+  const user = await deps.verifyUser(req);
+  if (!user) return reply({ error: "unauthorized" }, 401);
+  try {
+    return reply(entitlementFrom(await store.eventsFor(user.id, POLINGUAL_BUNDLE_ID), (deps.now ?? Date.now)()) as unknown as Record<string, unknown>, 200);
+  } catch (err) {
+    console.error("[academy/entitlement] failed:", err instanceof Error ? err.message : err);
+    return reply({ error: "read_failed" }, 502);
   }
 }

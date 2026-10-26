@@ -8,7 +8,8 @@ import { APPLE_ROOT_CA_G3_SHA256 } from "../src/lib/app-store/apple-root";
 import { appleRoot, verifyJws } from "../src/lib/app-store/jws";
 import { classify, decodeNotification } from "../src/lib/app-store/notifications";
 import { summarizeStoreEvents, type AppStoreEventStore, type SaveOutcome } from "../src/lib/app-store/store";
-import { handleAccountToken, handleNotification, parseBundleIds } from "../src/app/api/app-store/notifications/handler";
+import { handleAccountToken, handleEntitlement, handleNotification, parseBundleIds, POLINGUAL_BUNDLE_ID } from "../src/app/api/app-store/notifications/handler";
+import { entitlementFrom, type EntitlementEvent } from "../src/lib/app-store/entitlement";
 import { handleStoreSummary } from "../src/app/api/admin/app-store/handler";
 import type { StoreEvent } from "../src/lib/app-store/notifications";
 
@@ -196,4 +197,37 @@ test("stored transaction and renewal info keep only the allowlist", () => {
   assert.equal(e.transactionInfo.currency, "USD");
   assert.deepEqual(Object.keys(e.renewalInfo).sort(), ["originalTransactionId", "productId", "signedDate"]);
   for (const info of [e.transactionInfo, e.renewalInfo]) for (const banned of ["storefront", "storefrontId", "appAccountToken", "bundleId", "environment", "nested"]) assert.equal(banned in info, false, banned);
+});
+
+const NOW = Date.parse("2027-03-01T00:00:00Z");
+const ev = (kind: EntitlementEvent["kind"], signedAt: string, expiresAt: string | null, otx = "otx-1", productId = "com.polingual.yearly"): EntitlementEvent => ({ kind, productId, originalTransactionId: otx, signedAt, expiresAt });
+
+test("entitlementFrom keeps the latest event per original transaction", () => {
+  assert.deepEqual(entitlementFrom([], NOW), { active: false, productId: null, expiresAt: null, trial: false });
+  assert.equal(entitlementFrom([ev("trial", "2027-02-27T00:00:00Z", "2027-03-02T00:00:00Z")], NOW).trial, true);
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", "2028-02-01T00:00:00Z"), ev("refund", "2027-02-10T00:00:00Z", null)], NOW).active, false);
+  assert.equal(entitlementFrom([ev("subscribe", "2026-02-01T00:00:00Z", "2027-02-01T00:00:00Z")], NOW).active, false);
+  assert.equal(entitlementFrom([ev("cancel", "2027-02-01T00:00:00Z", "2027-04-01T00:00:00Z")], NOW).active, true);
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", null, "otx-life", "com.polingual.lifetime")], NOW).active, false);
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", "2028-02-01T00:00:00Z", "otx-x", "foundation.bucket.pro")], NOW).active, false);
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", "2028-02-01T00:00:00Z", "otx-x", null as unknown as string)], NOW).active, false);
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", null, "otx-life", "com.polingual.lifetime")], NOW, ["com.polingual.lifetime"]).active, true);
+  const two = entitlementFrom([ev("renew", "2027-02-01T00:00:00Z", "2027-03-10T00:00:00Z"), ev("subscribe", "2027-02-02T00:00:00Z", "2028-02-02T00:00:00Z", "otx-2", "com.polingual.monthly")], NOW);
+  assert.equal(two.productId, "com.polingual.monthly");
+  assert.equal(entitlementFrom([ev("expire", "2027-02-20T00:00:00Z", "2027-02-20T00:00:00Z"), ev("renew", "2027-02-01T00:00:00Z", "2027-04-01T00:00:00Z")], NOW).active, false);
+});
+
+test("entitlement route needs a user and reads the polingual bundle", async () => {
+  const asked: string[] = [];
+  const store = { save: async () => "recorded" as const, tokenFor: async () => "t", since: async () => [], eventsFor: async (u: string, b: string) => (asked.push(`${u}:${b}`), [ev("renew", "2027-02-01T00:00:00Z", "2027-04-01T00:00:00Z")]) };
+  const verifyUser = async (r: NextRequest) => (r.headers.get("authorization") ? { id: "u1", email: null } : null);
+  const req = (auth: boolean) => new NextRequest("http://localhost/api/academy/entitlement", { headers: auth ? { authorization: "Bearer t" } : {} });
+  assert.equal((await handleEntitlement(req(false), { store: () => store, verifyUser })).status, 401);
+  const ok = await handleEntitlement(req(true), { store: () => store, verifyUser, now: () => NOW });
+  assert.equal(ok.status, 200);
+  assert.equal((await ok.json()).active, true);
+  assert.deepEqual(asked, [`u1:${POLINGUAL_BUNDLE_ID}`]);
+  assert.equal((await handleEntitlement(req(true), { store: () => null, verifyUser })).status, 503);
+  const broken = { ...store, eventsFor: async () => { throw new Error("db down"); } };
+  assert.equal((await handleEntitlement(req(true), { store: () => broken, verifyUser })).status, 502);
 });

@@ -1,6 +1,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { configured } from "@/lib/research-os/db";
 import type { StoreEvent, StoreEventKind } from "./notifications";
+import type { EntitlementEvent } from "./entitlement";
 
 export type SaveOutcome = "recorded" | "duplicate";
 
@@ -16,6 +17,7 @@ export interface AppStoreEventStore {
   save: (e: StoreEvent) => Promise<SaveOutcome>;
   tokenFor: (userId: string) => Promise<string>;
   since: (iso: string) => Promise<StoreEventRow[]>;
+  eventsFor?: (userId: string, bundleId: string) => Promise<EntitlementEvent[]>;
 }
 
 let _client: SupabaseClient | null = null;
@@ -72,6 +74,23 @@ export function supabaseAppStoreEventStore(): AppStoreEventStore | null {
       const { data, error } = await db.from("app_store_account_tokens").select("token").eq("user_id", userId).single();
       if (error || !data) throw new Error(`app_store_account_tokens read failed: ${error?.message ?? "no row"}`);
       return (data as { token: string }).token;
+    },
+    eventsFor: async (userId, bundleId) => {
+      const { data, error } = await client()
+        .from("app_store_events")
+        .select("kind, product_id, original_transaction_id, signed_at, expires_at")
+        .eq("user_id", userId)
+        .eq("bundle_id", bundleId)
+        .order("signed_at", { ascending: false })
+        .limit(500);
+      if (error) throw new Error(`app_store_events read failed: ${error.message}`);
+      return (data as { kind: StoreEventKind; product_id: string | null; original_transaction_id: string | null; signed_at: string; expires_at: string | null }[]).map((r) => ({
+        kind: r.kind,
+        productId: r.product_id,
+        originalTransactionId: r.original_transaction_id,
+        signedAt: r.signed_at,
+        expiresAt: r.expires_at,
+      }));
     },
     since: async (iso) => {
       const { data, error } = await client()

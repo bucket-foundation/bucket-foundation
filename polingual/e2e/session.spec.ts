@@ -1,11 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
-import { mockApi, signIn } from "./mock";
+import { mockApi, seeded, signIn } from "./mock";
 
 const SHOTS = process.env.PL_SHOTS_DIR;
-
-export const seeded = () => ({
-  "lang-systems": { updated_at: new Date().toISOString(), data: { systems: [{ id: "en-es-fr", name: "Romance", root: "en", targets: ["es", "fr"], createdAt: 1, placement: { es: 0, fr: 0 }, levels: { es: "A1", fr: "A1" } }], removed: {} } },
-});
 
 async function answerOne(page: Page): Promise<void> {
   const body = page.getByTestId("session-body");
