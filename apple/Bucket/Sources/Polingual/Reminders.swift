@@ -218,9 +218,7 @@ struct ReminderSettings: View {
                         .foregroundStyle(Palette.muted)
                 }
             }
-            if Feedback.isPolingual {
-                Toggle("Word of the day at 9am", isOn: Binding(get: { reminders.wordOfDay }, set: { on in Task { await reminders.setWordOfDay(on) } }))
-            }
+            Toggle("Word of the day at 9am", isOn: Binding(get: { reminders.wordOfDay }, set: { on in Task { await reminders.setWordOfDay(on) } }))
             if reminders.denied {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)
             }
