@@ -81,7 +81,7 @@ export function decodeNotification(signedPayload: string, opts: VerifyOptions = 
     kind: classify(type, str(p.subtype), offerType, str(tx.offerDiscountType)),
     appAccountToken: token && UUID_RE.test(token) ? token.toLowerCase() : null,
     bundleId: str(data.bundleId) ?? str(tx.bundleId),
-    environment: str(data.environment) ?? str(tx.environment),
+    environment: str(data.environment) ?? str(tx.environment) ?? str(renewal.environment),
     productId: str(tx.productId) ?? str(renewal.productId),
     transactionId: str(tx.transactionId),
     originalTransactionId: str(tx.originalTransactionId) ?? str(renewal.originalTransactionId),

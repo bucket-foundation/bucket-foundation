@@ -20,7 +20,7 @@ The client chooses `appAccountToken`, so the route never trusts it as a user id.
 
 ## Admin
 
-`GET /api/admin/app-store` with the `WAITLIST_ADMIN_KEY` bearer returns 90-day totals per kind and per product, with sandbox events and unlinked rows counted apart, for the growth dashboard.
+`GET /api/admin/app-store` with the `WAITLIST_ADMIN_KEY` bearer returns 90-day totals per kind and per product for the growth dashboard. Each row carries `environment` from the payload's `data.environment`. Totals count `Production` only and report other environments in `sandbox`; `?sandbox=include` adds them to the totals.
 
 ## Test chain
 
