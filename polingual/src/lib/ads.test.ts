@@ -63,3 +63,21 @@ test("static pages load the consent script and the modal reports the browser eve
   assert.match(beta, /\.\.\.ex,/);
   assert.match(beta, /plAds\.lead\(ex\.event_id\)/);
 });
+
+test("hashed email goes out only when the user ticks the box", () => {
+  assert.equal(metaEvent(conv).data[0].user_data.em, undefined);
+  assert.equal(tiktokEvent("PIX123", conv).data[0].user.email, undefined);
+  const opted = { ...conv, shareEmail: true };
+  assert.deepEqual(metaEvent(opted).data[0].user_data.em, [sha256("ana@example.com")]);
+  assert.equal(tiktokEvent("PIX123", opted).data[0].user.email, sha256("ana@example.com"));
+  assert.equal(conversionFromBody({ consent: true, event_id: "abc12345" })?.shareEmail, false);
+  assert.equal(conversionFromBody({ consent: true, event_id: "abc12345", share_email: true })?.shareEmail, true);
+});
+
+test("consent text names the server-side transfer", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { join } = await import("node:path");
+  const ads = readFileSync(join(__dirname, "../../public/d8/ads.js"), "utf8");
+  assert.match(ads, /our server sends Meta and TikTok a signup event/);
+  assert.match(ads, /nuestro servidor envía a Meta y TikTok/);
+});

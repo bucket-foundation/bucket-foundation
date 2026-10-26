@@ -13,6 +13,7 @@ export type Conversion = {
   fbc?: string;
   ttclid?: string;
   utm?: Utm;
+  shareEmail?: boolean;
   now?: number;
 };
 
@@ -33,11 +34,11 @@ export function cleanUtm(raw: unknown): Utm {
   return out;
 }
 
-export function conversionFromBody(body: unknown): { eventId: string; utm: Utm; fbp?: string; fbc?: string; ttclid?: string } | null {
+export function conversionFromBody(body: unknown): { eventId: string; utm: Utm; shareEmail: boolean; fbp?: string; fbc?: string; ttclid?: string } | null {
   const b = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
   if (b.consent !== true || typeof b.event_id !== "string" || !EVENT_ID.test(b.event_id)) return null;
   const str = (v: unknown) => (typeof v === "string" && v.length <= 200 ? v : undefined);
-  return { eventId: b.event_id, utm: cleanUtm(b.utm), fbp: str(b.fbp), fbc: str(b.fbc), ttclid: str(b.ttclid) };
+  return { eventId: b.event_id, utm: cleanUtm(b.utm), shareEmail: b.share_email === true, fbp: str(b.fbp), fbc: str(b.fbc), ttclid: str(b.ttclid) };
 }
 
 export function metaEvent(c: Conversion) {
@@ -49,7 +50,7 @@ export function metaEvent(c: Conversion) {
         event_id: c.eventId,
         action_source: "website",
         event_source_url: c.url,
-        user_data: { em: [sha256(c.email)], client_ip_address: c.ip ?? undefined, client_user_agent: c.userAgent ?? undefined, fbp: c.fbp, fbc: c.fbc },
+        user_data: { em: c.shareEmail ? [sha256(c.email)] : undefined, client_ip_address: c.ip ?? undefined, client_user_agent: c.userAgent ?? undefined, fbp: c.fbp, fbc: c.fbc },
         custom_data: { ...c.utm },
       },
     ],
@@ -65,7 +66,7 @@ export function tiktokEvent(pixel: string, c: Conversion) {
         event: "CompleteRegistration",
         event_time: Math.floor((c.now ?? Date.now()) / 1000),
         event_id: c.eventId,
-        user: { email: sha256(c.email), ip: c.ip ?? undefined, user_agent: c.userAgent ?? undefined, ttclid: c.ttclid },
+        user: { email: c.shareEmail ? sha256(c.email) : undefined, ip: c.ip ?? undefined, user_agent: c.userAgent ?? undefined, ttclid: c.ttclid },
         page: { url: c.url },
         properties: { ...c.utm },
       },

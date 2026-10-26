@@ -22,7 +22,7 @@ export default function Page() {
       <h2>What we do not collect</h2>
       <p>The Polingual app does not track you across apps or websites and has no advertising or analytics SDK. We do not sell personal data.</p>
       <h2>Ad measurement on polingual.com</h2>
-      <p>polingual.com asks before it loads anything for ads. If you choose Allow, the site loads the Meta and TikTok pixels, which set cookies and tell Meta and TikTok that you visited. When you join the beta after choosing Allow, we also send Meta and TikTok a signup event with a SHA-256 hash of your email, your IP address, your browser user agent and the ad campaign tags in the link you followed, so they can count which ads led to signups. If you choose No thanks, none of this loads or is sent. To change your choice, clear this site&rsquo;s data in your browser.</p>
+      <p>polingual.com asks before it loads anything for ads. If you choose Allow, the site loads the Meta and TikTok pixels, which set cookies and tell Meta and TikTok that you visited. When you join the beta after choosing Allow, our server also sends Meta and TikTok a signup event with your IP address, your browser user agent and the ad campaign tags in the link you followed. It adds a SHA-256 hash of your email only if you tick the box for that in the signup form, so they can count which ads led to signups. If you choose No thanks, none of this loads or is sent. To change your choice, clear this site&rsquo;s data in your browser.</p>
       <h2>Speech</h2>
       <p>When you tap Speak, your audio goes to Apple&rsquo;s speech recognition to check your pronunciation, under Apple&rsquo;s privacy policy. Polingual does not store or receive the audio.</p>
       <h2>Payments</h2>
