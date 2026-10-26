@@ -1,5 +1,6 @@
 import { DAY_MS, FSRS, type Card, type Rating } from "./fsrs";
 import { dayKey, grade, makeFsrs, normalizeState, type EngineState } from "./engine";
+import { alphabetUnit, judgeSpelled, letterItemId } from "./lang-script";
 
 export interface LangInfo {
   name: string;
@@ -468,7 +469,9 @@ export type ExerciseKind =
   | "wordbank"
   | "gender"
   | "conjugate"
-  | "false-friend";
+  | "false-friend"
+  | "spell-heard"
+  | "letter";
 
 export interface Exercise {
   kind: ExerciseKind;
@@ -613,7 +616,7 @@ export function exerciseFor(
   lang: string,
   card: LangCard | undefined,
   rng: Rng,
-  opts: { speech?: boolean; afterIntro?: boolean; level?: number } = {}
+  opts: { speech?: boolean; afterIntro?: boolean; level?: number; heritage?: boolean } = {}
 ): Exercise {
   const root = system.root;
   const target = item.forms[lang];
@@ -632,6 +635,7 @@ export function exerciseFor(
   if (!card && !opts.afterIntro) {
     return { ...base, kind: "intro", prompt: rootWord, promptLang: root, answer: target, answerLang: lang, family, answerReading: tr, promptReading: rr, falseFriend: ff };
   }
+  if (opts.heritage && !latin && card) return spellHeard(item, lang, root, tr);
   const choices = (right: string, l: string, other: string) => shuffle([right, ...distractors(corpus, item, l, other, rng)], rng);
   const toTarget = (kind: ExerciseKind, extra: Partial<Exercise> = {}): Exercise => ({ ...base, kind, prompt: rootWord, promptLang: root, answer: target, answerLang: lang, promptReading: rr, answerReading: tr, ...extra });
   const toRoot = (kind: ExerciseKind): Exercise => ({ ...base, kind, prompt: target, promptLang: lang, answer: rootWord, answerLang: root, promptReading: tr, answerReading: rr, options: choices(rootWord, root, lang) });
@@ -666,6 +670,24 @@ export function exerciseFor(
   if (opts.speech && roll < 0.7) return toTarget("speak");
   if (roll < 0.85) return toTarget("translate");
   return { ...base, kind: "type-heard", prompt: target, promptLang: lang, answer: target, answerLang: lang, answerReading: tr };
+}
+
+export function spellHeard(item: LangItem, lang: string, root: string, reading?: Reading): Exercise {
+  const target = item.forms[lang];
+  return { itemId: item.id, lang, root, kind: "spell-heard", prompt: target, promptLang: lang, answer: target, answerLang: lang, accept: [target], promptReading: reading, answerReading: reading };
+}
+
+export function gradeSpelling(ex: Exercise, given: string, hesitated = false): { verdict: Verdict; rating: Rating } {
+  const verdict = judgeSpelled(given, ex.accept ?? [ex.answer], ex.answerLang);
+  return { verdict, rating: verdictRating(verdict, hesitated) };
+}
+
+export function letterExercise(lang: string, root: string, index: number, rng: Rng): Exercise | null {
+  const unit = alphabetUnit(lang);
+  const letter = unit?.letters[index];
+  if (!unit || !letter) return null;
+  const others = shuffle(unit.letters.filter((l) => l.ch !== letter.ch && l.sound !== letter.sound), rng).slice(0, 3).map((l) => l.ch);
+  return { itemId: letterItemId(letter.ch), lang, root, kind: "letter", prompt: letter.sound, promptLang: lang, answer: letter.ch, answerLang: lang, options: shuffle([letter.ch, ...others], rng), promptReading: { roman: letter.sound }, note: unit.title };
 }
 
 function genderExercise(item: LangItem, lang: string, root: string, rng: Rng): Exercise {

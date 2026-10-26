@@ -1,0 +1,81 @@
+import fs from "node:fs";
+import path from "node:path";
+import { normalizeState } from "../src/lib/academy/engine";
+import { buildLangCorpus, createSystem, exerciseFor, gradeCard, gradeSpelling, LANGS, letterExercise, seededRng } from "../src/lib/academy/lang-systems";
+import { alphabetDone, alphabetUnit, dueLetters, foldMarks, HERITAGE_LANGS, judgeSpelled, letterCardId, letterItemId, nextLetters } from "../src/lib/academy/lang-script";
+
+let failures = 0;
+function ok(c: boolean, m: string) {
+  if (c) console.log("  ok  " + m);
+  else {
+    console.error("  FAIL " + m);
+    failures++;
+  }
+}
+
+const nonLatin = Object.keys(LANGS).filter((l) => !LANGS[l].latin);
+ok(nonLatin.length === 13 && nonLatin.every((l) => HERITAGE_LANGS.includes(l)), "every non-Latin language has a script");
+for (const l of nonLatin) {
+  const u = alphabetUnit(l)!;
+  ok(!!u && u.letters.length >= 20 && u.letters.every((x) => x.ch && x.sound), `${l} alphabet unit has ${u?.letters.length} letters with sounds`);
+  ok(new Set(u.letters.map((x) => x.ch)).size === u.letters.length, `${l} letters are unique`);
+}
+ok(alphabetUnit("es") === null, "Latin languages have no alphabet unit");
+ok(alphabetUnit("ru")!.letters.length === 33 && alphabetUnit("he")!.letters.length === 22 && alphabetUnit("th")!.letters.length === 44 && alphabetUnit("ja")!.letters.length === 46, "full alphabets for ru, he, th, ja");
+ok(alphabetUnit("ru")!.letters[0].ch === "а" && alphabetUnit("ja")!.letters[5].ch === "か", "letters keep their traditional order");
+
+ok(judgeSpelled("שָׁלוֹם", "שלום", "he") === "exact", "he: niqqud is optional");
+ok(judgeSpelled("שלום", "שָׁלוֹם", "he") === "exact", "he: bare letters match a pointed answer");
+ok(judgeSpelled("كِتَاب", "كتاب", "ar") === "exact", "ar: harakat are optional");
+ok(judgeSpelled("كتـاب", "كتاب", "ar") === "exact", "ar: tatweel is ignored");
+ok(judgeSpelled("كتاي", "كتاب", "ar") === "close", "ar: one wrong letter is close");
+ok(judgeSpelled("يك", "یک", "fa") === "exact", "fa: Arabic yeh and kaf fold to Persian forms");
+ok(judgeSpelled("еж", "ёж", "ru") === "exact", "ru: ё folds to е");
+ok(judgeSpelled("Москва", "москва", "ru") === "exact", "ru: case is ignored");
+ok(judgeSpelled("моско", "москва", "ru") === "wrong", "ru: two edits is wrong");
+ok(judgeSpelled("καλημερα", "καλημέρα", "el") === "close", "el: a missing tonos is close");
+ok(judgeSpelled("καλημέρα", "καλημέρα", "el") === "exact", "el: full spelling is exact");
+ok(judgeSpelled("नमस्ते", "नमस्ते".normalize("NFD"), "hi") === "exact", "hi: NFC and NFD compare equal");
+ok(judgeSpelled("नमसते", "नमस्ते", "hi") === "close", "hi: a dropped virama is close under keep");
+ok(judgeSpelled("ﾈｺ", "ネコ", "ja") === "exact", "ja: half-width katakana folds");
+ok(judgeSpelled("한국", "한국".normalize("NFD"), "ko") === "exact", "ko: decomposed jamo compose to syllables");
+ok(judgeSpelled("", "猫", "zh") === "wrong", "empty answer is wrong");
+ok(judgeSpelled("ねこ", ["猫", "ねこ"], "ja") === "exact", "any accepted spelling counts");
+ok(foldMarks(" שָׁלוֹם! ", "he") === "שלום", "foldMarks trims punctuation and marks");
+
+const dir = path.resolve(__dirname, "../learning/app/corpus");
+const read = (f: string) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+const corpus = buildLangCorpus(read("lang-core.json"), read("lang-cognates.json"), read("lang-phrases.json"), read("lang-layers.json"));
+const sys = createSystem("en", ["ru", "es"], [], 1);
+const item = corpus.items.find((i) => i.kind === "word" && i.forms.ru && i.forms.en)!;
+const card = { reps: 3 } as never;
+const ex = exerciseFor(corpus, sys, item, "ru", card, seededRng(1), { heritage: true });
+ok(ex.kind === "spell-heard" && ex.prompt === item.forms.ru && ex.answerLang === "ru", "heritage mode makes a hear-then-spell card");
+ok(exerciseFor(corpus, sys, item, "ru", undefined, seededRng(1), { heritage: true }).kind === "intro", "heritage mode still introduces new items");
+const esItem = corpus.items.find((i) => i.kind === "word" && i.forms.es && i.forms.en)!;
+ok(exerciseFor(corpus, sys, esItem, "es", card, seededRng(1), { heritage: true }).kind !== "spell-heard", "Latin targets keep the normal flow");
+ok(Array.from({ length: 20 }, (_, k) => exerciseFor(corpus, sys, item, "ru", card, seededRng(k)).kind).every((k) => k !== "spell-heard"), "heritage off never spells");
+const g = gradeSpelling(ex, item.forms.ru.toUpperCase());
+ok(g.verdict === "exact" && g.rating === 3, "spelling grades into an FSRS rating");
+ok(gradeSpelling(ex, "zzz").rating === 1, "wrong spelling rates Again");
+
+const lx = letterExercise("he", "en", 1, seededRng(2))!;
+ok(lx.kind === "letter" && lx.answer === "ב" && lx.prompt === "b/v" && lx.options!.length === 4 && lx.options!.includes("ב"), "letter card asks for the letter by sound");
+ok(letterExercise("he", "en", 99, seededRng(2)) === null && letterExercise("es", "en", 0, seededRng(2)) === null, "letter card out of range or Latin is null");
+
+const NOW = Date.UTC(2026, 9, 25, 12);
+let st = normalizeState(null);
+ok(nextLetters(st, "ko", 3).map((l) => l.ch).join("") === "ㄱㄴㄷ", "new letters come in order");
+st = gradeCard(st, "ko", letterItemId("ㄱ"), 3, NOW, "UTC");
+ok(!!st.cards[letterCardId("ko", "ㄱ")], "letter grades through the card flow");
+ok(nextLetters(st, "ko", 1)[0].ch === "ㄴ", "graded letters leave the new queue");
+ok(dueLetters(st, "ko", NOW).length === 0 && dueLetters(st, "ko", NOW + 30 * 86400000).length === 1, "letters come due on schedule");
+ok(!alphabetDone(st, "ko"), "alphabet not done after one letter");
+for (const l of alphabetUnit("ko")!.letters) st = gradeCard(st, "ko", letterItemId(l.ch), 3, NOW, "UTC");
+ok(alphabetDone(st, "ko") && alphabetDone(st, "es"), "alphabet done once letters are learned");
+
+if (failures) {
+  console.error(`${failures} failure(s)`);
+  process.exit(1);
+}
+console.log("lang-script: all ok");
