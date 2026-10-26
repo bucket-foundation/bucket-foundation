@@ -84,6 +84,7 @@ struct AccountView: View {
                     }
                 }
                 ReminderSettings()
+                BetaSharing()
                 FeedbackSettings()
                 #if DEBUG
                 Section {
@@ -172,5 +173,23 @@ extension Bundle {
         let v = infoDictionary?["CFBundleShortVersionString"] as? String ?? "?"
         let b = infoDictionary?["CFBundleVersion"] as? String ?? "?"
         return "\(v) (\(b))"
+    }
+}
+
+struct BetaSharing: View {
+    @Environment(Account.self) private var account
+    @AppStorage(BetaEvents.optOutKey) private var optedOut = false
+
+    var body: some View {
+        Section {
+            Toggle("Share beta activity", isOn: Binding(get: { !optedOut }, set: { on in
+                Task { await Beta.shared.events.setOptedOut(!on, token: await account.freshToken()) }
+                optedOut = !on
+            }))
+        } header: {
+            Eyebrow(text: "Beta testing")
+        } footer: {
+            Text("Sessions, cards answered and completions help us improve the app. No location, contacts or device ids. Turning this off deletes what we hold.")
+        }
     }
 }

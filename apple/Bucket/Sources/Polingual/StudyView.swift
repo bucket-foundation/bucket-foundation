@@ -16,6 +16,7 @@ struct StudyView: View {
     @State private var rng = Rng(seed: UInt32(UInt64(Date().timeIntervalSince1970 * 1000) % 2147483647))
     @State private var current: Exercise?
     @State private var currentKey = ""
+    @State private var cardStart = Date()
     @AppStorage("bucket.lang.readings") private var readings = true
 
     var body: some View {
@@ -45,6 +46,7 @@ struct StudyView: View {
         let state = store.state(systemId)
         xpStart = state.xp
         queue = buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000)
+        Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }
 
@@ -70,10 +72,11 @@ struct StudyView: View {
             current = matchExercise(corpus, system, item, &rng)
         } else {
             let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang))
-            let crossed = crossLanguageOptions(made, item, system, &rng)
+            let crossed = Beta.shared.flags.values["option_language"] == "same" ? made : crossLanguageOptions(made, item, system, &rng)
             current = correctArticle(crossed, &rng)
         }
         currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-\(entry.stage.rawValue)"
+        cardStart = .now
     }
 
     func done(_ results: [ExerciseResult]) {
@@ -83,6 +86,8 @@ struct StudyView: View {
         let apply = {
             for r in results { store.grade(systemId, lang: r.lang, itemId: entry.itemId, rating: r.rating) }
         }
+        let ms = Int(Date.now.timeIntervalSince(cardStart) * 1000)
+        for r in results { Beta.shared.answered("lang:\(r.lang)", correct: r.rating > 1, ms: ms, kind: current?.kind.rawValue ?? "") }
         if !results.isEmpty {
             reminders.noteStudy()
             if gate.guest && !store.guestMayStudy(systemId) { gate.require(apply) } else { apply() }
@@ -106,7 +111,10 @@ struct StudyView: View {
             VStack(spacing: 16) {
                 Image(systemName: "checkmark").font(.system(size: 34, weight: .heavy)).foregroundStyle(.white)
                     .frame(width: 76, height: 76).background(D8.malachite, in: .circle)
-                    .onAppear { haptic(true) }
+                    .onAppear {
+                        haptic(true)
+                        Beta.shared.studyEnded("lang:\(system.targets.joined(separator: ","))", graded: graded, correct: correct)
+                    }
                 Text("Session done").font(.system(size: 30, weight: .bold, design: .rounded))
                 ReminderPrompt()
                 FeedbackLink()

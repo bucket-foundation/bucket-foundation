@@ -39,6 +39,7 @@ struct BucketApp: App {
                 .environment(reminders)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
+                    if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
                     backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
                 }
                 .onChange(of: reminders.enabled) {

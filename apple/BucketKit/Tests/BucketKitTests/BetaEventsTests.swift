@@ -1,0 +1,58 @@
+import Foundation
+import Testing
+@testable import BucketKit
+
+final class RecordingTransport: Transport, @unchecked Sendable {
+    var statuses: [Int]
+    var bodies: [Data] = []
+    init(_ statuses: [Int]) { self.statuses = statuses }
+    func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
+        bodies.append(request.httpBody ?? Data())
+        let status = statuses.isEmpty ? 200 : statuses.removeFirst()
+        return (Data("{}".utf8), HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil, headerFields: nil)!)
+    }
+}
+
+func betaFile() -> URL { FileManager.default.temporaryDirectory.appending(path: "beta-\(UUID().uuidString).json") }
+
+@Test func betaEventsBatchAndClearOnSuccess() async throws {
+    let t = RecordingTransport([200, 200, 200])
+    let d = UUID().uuidString
+    let beta = BetaEvents(app: "polingual", transport: t, file: betaFile(), suite: d)
+    for i in 0..<150 { await beta.log(BetaEvent(name: "card_answered", sessionId: nil, props: ["correct": .bool(i % 2 == 0)])) }
+    let r = await beta.flush(token: "tok")
+    #expect(r == BetaFlush(sent: 150, kept: 0))
+    #expect(t.bodies.count == 2)
+    let first = try JSONSerialization.jsonObject(with: t.bodies[0]) as! [String: Any]
+    #expect(first["app"] as? String == "polingual")
+    #expect((first["events"] as! [Any]).count == 100)
+}
+
+@Test func betaEventsKeepTheQueueOnServerErrorsAndSurviveRestart() async {
+    let file = betaFile()
+    let d = UUID().uuidString
+    let beta = BetaEvents(app: "bucket", transport: RecordingTransport([503]), file: file, suite: d)
+    await beta.log(BetaEvent(name: "app_open", sessionId: nil))
+    #expect(await beta.flush(token: "tok") == BetaFlush(sent: 0, kept: 1))
+    let again = BetaEvents(app: "bucket", transport: RecordingTransport([200]), file: file, suite: d)
+    #expect(await again.pending == 1)
+    #expect(await again.flush(token: "tok") == BetaFlush(sent: 1, kept: 0))
+}
+
+@Test func betaEventsStopWhenOptedOut() async {
+    let d = UUID().uuidString
+    let beta = BetaEvents(app: "bucket", transport: RecordingTransport([200]), file: betaFile(), suite: d)
+    await beta.log(BetaEvent(name: "app_open", sessionId: nil))
+    await beta.setOptedOut(true, token: nil)
+    await beta.log(BetaEvent(name: "app_open", sessionId: nil))
+    #expect(await beta.pending == 0)
+}
+
+@Test func betaFlagsFallBackAndParseTheServerShape() {
+    #expect(BetaFlags().newWords == 4)
+    #expect(!BetaFlags().crossLanguageOptions)
+    let f = BetaFlags.parse(Data(#"{"cohort":"default","flags":{"new_words":{"value":"8","arm":"8","source":"hash"},"option_language":{"value":"cross","arm":"cross","source":"hash"}}}"#.utf8))
+    #expect(f?.newWords == 8)
+    #expect(f?.crossLanguageOptions == true)
+    #expect(f?.cognateHints == false)
+}
