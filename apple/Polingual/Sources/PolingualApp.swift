@@ -38,8 +38,11 @@ struct PolingualApp: App {
                     backgroundSafe {
                         await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
                         WidgetSync.refresh(store)
-                        await WidgetSync.scheduleWordOfDay(store, enabled: reminders.enabled)
+                        await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay)
                     }
+                }
+                .onChange(of: reminders.wordOfDay) {
+                    backgroundSafe { await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay) }
                 }
                 .onChange(of: reminders.enabled) {
                     backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }

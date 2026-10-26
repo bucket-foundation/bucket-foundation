@@ -247,3 +247,11 @@ final class FlakyRoutes: @unchecked Sendable {
     let empty = BucketAPI(transport: StubTransport { _ in (503, Data()) }, cacheDir: FileManager.default.temporaryDirectory.appending(path: "api-\(UUID().uuidString)"))
     await #expect(throws: (any Error).self) { try await empty.deckIndex() }
 }
+
+@Test func offlineDirectoriesAreExcludedFromBackup() throws {
+    let url = try #require(BucketAPI.offlineDirectory("test-\(UUID().uuidString)"))
+    defer { try? FileManager.default.removeItem(at: url) }
+    #expect(url.path.contains("Application Support"))
+    let values = try url.resourceValues(forKeys: [.isExcludedFromBackupKey])
+    #expect(values.isExcludedFromBackup == true)
+}

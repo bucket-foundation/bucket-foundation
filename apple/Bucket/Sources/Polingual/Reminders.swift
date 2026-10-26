@@ -50,6 +50,7 @@ final class Reminders {
     static let customKey = "reminders.customMinute"
     static let studyKey = "reminders.studyMinutes"
     static let lastStudyKey = "reminders.lastStudy"
+    static let wordKey = "reminders.wordOfDay"
     static let idPrefix = "review-reminder-"
     static let fallbackMinute = 19 * 60
     static let quietAfterDays = 7
@@ -58,12 +59,25 @@ final class Reminders {
     var enabled: Bool { didSet { defaults.set(enabled, forKey: Self.enabledKey) } }
     var customMinute: Int? { didSet { defaults.set(customMinute ?? -1, forKey: Self.customKey) } }
     var denied = false
+    var wordChoice: Bool? { didSet { defaults.set(wordChoice, forKey: Self.wordKey) } }
+    var wordOfDay: Bool { wordChoice ?? enabled }
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         enabled = defaults.bool(forKey: Self.enabledKey)
         let c = defaults.object(forKey: Self.customKey) as? Int ?? -1
         customMinute = c >= 0 ? c : nil
+        wordChoice = defaults.object(forKey: Self.wordKey) as? Bool
+    }
+
+    func setWordOfDay(_ on: Bool) async {
+        guard on else {
+            wordChoice = false
+            return
+        }
+        let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])) ?? false
+        denied = !granted
+        wordChoice = granted
     }
 
     var studyMinutes: [Int] { defaults.array(forKey: Self.studyKey) as? [Int] ?? [] }
@@ -203,6 +217,9 @@ struct ReminderSettings: View {
                         .font(.footnote)
                         .foregroundStyle(Palette.muted)
                 }
+            }
+            if Feedback.isPolingual {
+                Toggle("Word of the day at 9am", isOn: Binding(get: { reminders.wordOfDay }, set: { on in Task { await reminders.setWordOfDay(on) } }))
             }
             if reminders.denied {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)

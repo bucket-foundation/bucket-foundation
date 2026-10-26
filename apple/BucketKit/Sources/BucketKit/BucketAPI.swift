@@ -45,7 +45,16 @@ public struct BucketAPI: Sendable {
     let transport: Transport
     let cacheDir: URL?
 
-    public static let defaultCache = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?.appending(path: "bucket-api", directoryHint: .isDirectory)
+    public static let defaultCache = offlineDirectory("bucket-api")
+
+    public static func offlineDirectory(_ name: String) -> URL? {
+        guard var url = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appending(path: name, directoryHint: .isDirectory) else { return nil }
+        try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        var values = URLResourceValues()
+        values.isExcludedFromBackup = true
+        try? url.setResourceValues(values)
+        return url
+    }
 
     public init(base: URL = BucketAPI.production, transport: Transport = URLSessionTransport(), cacheDir: URL? = BucketAPI.defaultCache) {
         self.base = base

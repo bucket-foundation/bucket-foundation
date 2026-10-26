@@ -420,7 +420,6 @@ struct Weave: View {
 }
 
 struct StudentPlan: View {
-    @Environment(\.openURL) private var openURL
     let yearly: Product?
     let redeem: () -> Void
 
@@ -447,7 +446,7 @@ struct StudentPlan: View {
             Text(price).font(.title3.weight(.bold)).foregroundStyle(Color(hex: 0x5B1A4A))
             Text("Email us from your school address. We reply with a one-time code for the student price.")
                 .font(.body).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
-            Button("Email from my school address") { openURL(Self.mail) }.buttonStyle(D8Primary())
+            MailButton(url: Self.mail, address: "support@polingual.com") { Text("Email from my school address") }.buttonStyle(D8Primary())
             Button("I have a code") { redeem() }.buttonStyle(D8Option(align: .center, compact: true))
         }
         .padding(24)

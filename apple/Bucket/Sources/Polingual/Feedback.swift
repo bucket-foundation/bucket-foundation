@@ -1,6 +1,11 @@
 import BucketKit
 import StoreKit
 import SwiftUI
+#if os(iOS)
+import UIKit
+#else
+import AppKit
+#endif
 
 enum Feedback {
     static var isPolingual: Bool { BucketAPI.appName == "polingual" }
@@ -56,10 +61,9 @@ struct AskForReview: ViewModifier {
 }
 
 struct FeedbackLink: View {
-    @Environment(\.openURL) private var openURL
 
     var body: some View {
-        Button("Tell us what to improve") { openURL(Feedback.mailURL) }
+        MailButton(url: Feedback.mailURL, address: Feedback.address) { Text("Tell us what to improve") }
             .buttonStyle(PlainLink())
     }
 }
@@ -70,10 +74,38 @@ struct FeedbackSettings: View {
     var body: some View {
         Section {
             Button("Rate \(Feedback.appName) on the App Store") { openURL(Feedback.reviewURL) }
-            Button("Send feedback") { openURL(Feedback.mailURL) }
+            MailButton(url: Feedback.mailURL, address: Feedback.address) { Text("Send feedback") }
             InviteFriend()
         } header: {
             Eyebrow(text: "Feedback")
+        }
+    }
+}
+
+struct MailButton<Label: View>: View {
+    @Environment(\.openURL) private var openURL
+    @State private var copied = false
+    let url: URL
+    let address: String
+    @ViewBuilder let label: () -> Label
+
+    var body: some View {
+        Button {
+            openURL(url) { accepted in
+                guard !accepted else { return }
+                #if os(iOS)
+                UIPasteboard.general.string = address
+                #else
+                NSPasteboard.general.clearContents()
+                NSPasteboard.general.setString(address, forType: .string)
+                #endif
+                copied = true
+            }
+        } label: { label() }
+        .alert("Email address copied", isPresented: $copied) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text("Mail isn't set up on this device. Paste \(address) into any email app.")
         }
     }
 }

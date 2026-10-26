@@ -63,7 +63,7 @@ public final class LangStore {
     public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
         self.disk = disk
-        self.cache = cache ?? FileLangDisk(root: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appending(path: "polingual-corpus", directoryHint: .isDirectory))
+        self.cache = cache ?? FileLangDisk(root: BucketAPI.offlineDirectory("polingual-corpus") ?? FileManager.default.temporaryDirectory.appending(path: "polingual-corpus", directoryHint: .isDirectory))
         self.seed = seed
         self.token = token
         self.now = now
