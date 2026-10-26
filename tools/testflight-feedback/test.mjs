@@ -1,16 +1,18 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import crypto from "node:crypto";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { normalize, newItems, loadState, saveState, beadTitle, beadDescription, beadArgs, digest, makeJwt } from "./lib.mjs";
+import { parseRecords, newItems, loadState, saveState, beadTitle, beadDescription, beadArgs, digest } from "./lib.mjs";
 
-const fx = (n) => JSON.parse(fs.readFileSync(new URL(`./fixtures/${n}.json`, import.meta.url)));
-const shots = fx("screenshot").data.map((r) => normalize("Polingual", "screenshot", r));
-const crashes = fx("crash").data.map((r) => normalize("Bucket Foundation", "crash", r));
+const records = parseRecords(fs.readFileSync(new URL("./fixtures/beta_feedback.jsonl", import.meta.url), "utf8"));
+const shots = records.filter((r) => r.kind === "screenshot");
+const crashes = records.filter((r) => r.kind === "crash");
 
-test("normalize maps attributes", () => {
+test("parseRecords maps beta_feedback.py --json lines", () => {
+  assert.equal(records.length, 3);
+  assert.equal(shots[0].app, "Polingual");
+  assert.equal(crashes[0].app, "Bucket Foundation");
   assert.equal(shots[0].device, "iPhone15,2 iOS 26.1");
   assert.deepEqual(shots[0].screenshots, ["https://example.com/s1.png"]);
   assert.equal(shots[1].comment, "");
@@ -48,12 +50,4 @@ test("digest is one line per item", () => {
     "bkt-b Bucket Foundation crash: Crashed on launch",
   ]);
   assert.equal(digest([]), "");
-});
-
-test("jwt verifies with ES256", () => {
-  const { privateKey, publicKey } = crypto.generateKeyPairSync("ec", { namedCurve: "P-256" });
-  const t = makeJwt({ keyId: "K", issuerId: "I", privateKeyPem: privateKey.export({ type: "pkcs8", format: "pem" }) });
-  const [h, b, s] = t.split(".");
-  assert.ok(crypto.verify("sha256", Buffer.from(`${h}.${b}`), { key: publicKey, dsaEncoding: "ieee-p1363" }, Buffer.from(s, "base64url")));
-  assert.equal(JSON.parse(Buffer.from(b, "base64url")).aud, "appstoreconnect-v1");
 });

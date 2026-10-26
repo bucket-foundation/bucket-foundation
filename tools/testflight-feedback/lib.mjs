@@ -1,23 +1,7 @@
-import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
-export const APPS = ["Bucket Foundation", "Polingual"];
-export const KINDS = {
-  screenshot: "betaFeedbackScreenshotSubmissions",
-  crash: "betaFeedbackCrashSubmissions",
-};
-
-export function makeJwt({ keyId, issuerId, privateKeyPem, now = Date.now() }) {
-  const b64 = (o) => Buffer.from(JSON.stringify(o)).toString("base64url");
-  const iat = Math.floor(now / 1000);
-  const head = b64({ alg: "ES256", kid: keyId, typ: "JWT" });
-  const body = b64({ iss: issuerId, iat, exp: iat + 1200, aud: "appstoreconnect-v1" });
-  const sig = crypto
-    .sign("sha256", Buffer.from(`${head}.${body}`), { key: privateKeyPem, dsaEncoding: "ieee-p1363" })
-    .toString("base64url");
-  return `${head}.${body}.${sig}`;
-}
+export const APP_NAMES = { bucket: "Bucket Foundation", polingual: "Polingual" };
 
 export function loadState(file) {
   try {
@@ -35,12 +19,19 @@ export function saveState(file, state) {
   fs.renameSync(tmp, file);
 }
 
-export function normalize(appName, kind, item) {
-  const a = item.attributes ?? {};
+export function parseRecords(stdout) {
+  return stdout
+    .split("\n")
+    .filter((l) => l.trim().startsWith("{"))
+    .map((l) => normalize(JSON.parse(l)));
+}
+
+export function normalize(rec) {
+  const a = rec.attributes ?? {};
   return {
-    id: item.id,
-    app: appName,
-    kind,
+    id: rec.id,
+    app: APP_NAMES[rec.app] ?? rec.app,
+    kind: rec.kind,
     createdDate: a.createdDate ?? "",
     comment: (a.comment ?? "").trim(),
     email: a.email ?? "",

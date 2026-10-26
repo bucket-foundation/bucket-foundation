@@ -3,51 +3,18 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { execFileSync, spawnSync } from "node:child_process";
-import { APPS, KINDS, makeJwt, loadState, saveState, normalize, newItems, beadArgs, digest } from "./lib.mjs";
+import { loadState, saveState, parseRecords, newItems, beadArgs, digest } from "./lib.mjs";
 
-const API = process.env.ASC_API_BASE ?? "https://api.appstoreconnect.apple.com";
 const dryRun = process.argv.includes("--dry-run");
 const stateDir = process.env.TESTFLIGHT_STATE_DIR ?? path.join(os.homedir(), ".local/state/bucket-testflight-feedback");
 const stateFile = path.join(stateDir, "state.json");
 const logFile = path.join(stateDir, "completions.jsonl");
 const repo = process.env.BUCKET_REPO ?? path.join(os.homedir(), "agfarms/bucket-foundation");
 
-function forbidden(url) {
-  try {
-    const cfg = JSON.parse(fs.readFileSync(path.join(repo, ".nucleus/config.json"), "utf8"));
-    const host = new URL(url).host;
-    return (cfg.forbidden_urls ?? []).some((p) =>
-      new RegExp(`^${p.replace(/^https?:\/\//, "").split("/")[0].replace(/[.]/g, "\\.").replace(/\*/g, ".*")}$`).test(host),
-    );
-  } catch {
-    return false;
-  }
-}
-
-function creds() {
-  const keyId = process.env.EXPO_ASC_KEY_ID;
-  const issuerId = process.env.EXPO_ASC_ISSUER_ID;
-  const keyPath = process.env.EXPO_ASC_API_KEY_PATH;
-  if (!keyId || !issuerId || !keyPath) throw new Error("ASC credentials missing; source ~/.derbyfish-secrets/asc-api-key.env");
-  return { keyId, issuerId, privateKeyPem: fs.readFileSync(keyPath, "utf8") };
-}
-
-async function get(url, token) {
-  if (forbidden(url)) throw new Error(`forbidden url ${new URL(url).host}`);
-  const r = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
-  if (!r.ok) throw new Error(`ASC ${r.status} on ${new URL(url).pathname}`);
-  return r.json();
-}
-
-async function getAll(url, token) {
-  const out = [];
-  let next = url;
-  while (next) {
-    const page = await get(next, token);
-    out.push(...(page.data ?? []));
-    next = page.links?.next;
-  }
-  return out;
+function fetchItems() {
+  const r = spawnSync("python3", [new URL("../../apple/AppStore/beta_feedback.py", import.meta.url).pathname, "--json"], { encoding: "utf8", maxBuffer: 64 << 20 });
+  if (r.status !== 0) throw new Error(`beta_feedback.py exited ${r.status}: ${(r.stderr ?? "").slice(-300)}`);
+  return parseRecords(r.stdout);
 }
 
 function appendLog(entry) {
@@ -56,21 +23,8 @@ function appendLog(entry) {
 }
 
 async function main() {
-  const token = makeJwt(creds());
-  const apps = await getAll(`${API}/v1/apps?limit=200&fields[apps]=name,bundleId`, token);
   const state = loadState(stateFile);
-  const items = [];
-  for (const name of APPS) {
-    const app = apps.find((a) => a.attributes?.name === name);
-    if (!app) {
-      console.error(`app not found: ${name}`);
-      continue;
-    }
-    for (const [kind, rel] of Object.entries(KINDS)) {
-      const rows = await getAll(`${API}/v1/apps/${app.id}/${rel}?limit=50`, token);
-      items.push(...rows.map((r) => normalize(name, kind, r)));
-    }
-  }
+  const items = fetchItems();
   const fresh = newItems(items, state);
   const entries = [];
   for (const item of fresh) {
