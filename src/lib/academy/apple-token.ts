@@ -204,7 +204,7 @@ export async function retryPendingRevokes(deps: AppleTokenDeps, limit = PENDING_
   if (credentialClients.size) alerts.push(`Apple revoke returned invalid_client for ${Array.from(credentialClients).join(", ")}: check APPLE_TEAM_ID, APPLE_KEY_ID and APPLE_PRIVATE_KEY. Pending rows stay queued.`);
   if (expired) alerts.push(`${expired} Apple revoke rows waited over ${MAX_CREDENTIAL_WAIT_DAYS} days on invalid_client and were marked failed.`);
   const credentialFailedRows = await deps.countCredentialFailed();
-  if (credentialFailedRows) alerts.push(`${credentialFailedRows} Apple revoke rows are failed on invalid_client. Fix the key, then POST /api/admin/apple-revoke/requeue.`);
+  if (credentialFailedRows) alerts.push(`${credentialFailedRows} Apple revoke rows are failed on invalid_client. Fix the key, then POST /api/admin/apple-revoke/requeue with the admin bearer key and an x-admin-id header.`);
   if (skipped) deps.log("apple_revoke_retry_budget", { ok: true, skipped });
   for (const a of alerts) deps.alert(a);
   return { revoked, failed, expired, credentialFailedRows, skipped, alerts };

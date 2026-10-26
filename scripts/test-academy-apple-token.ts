@@ -325,7 +325,7 @@ test("the age limit counts from the first invalid_client, and failed rows keep t
   assert.equal(idle.failed, 0);
   assert.equal(idle.credentialFailedRows, 1);
   assert.equal(retryCronReply(idle).status, 503);
-  assert.match(idle.alerts[0], /requeue/);
+  assert.match(idle.alerts[0], /requeue with the admin bearer key and an x-admin-id header/);
   assert.deepEqual(await requeueCredentialFailed(w.deps, "gian"), { requeued: 1 });
   assert.deepEqual([w.pending[0].status, w.pending[0].first], ["pending", null]);
 });
