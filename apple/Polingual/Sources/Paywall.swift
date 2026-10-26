@@ -170,7 +170,6 @@ struct Paywall: View {
         buying = true
         note = nil
         defer { buying = false }
-        let trial = subs.trialEligible
         var options: Set<Product.PurchaseOption> = []
         if let id = account.session?.userId.flatMap(UUID.init(uuidString:)) { options.insert(.appAccountToken(id)) }
         do {
@@ -179,7 +178,10 @@ struct Paywall: View {
                 await t.finish()
                 await subs.refresh()
                 haptic(true)
-                if trial { await TrialReminder.schedule() }
+                switch TrialReminder.action(productID: t.productID, introductory: t.offer?.type == .introductory) {
+                case .schedule: await TrialReminder.schedule()
+                case .cancel: TrialReminder.cancel()
+                }
             case .success(.unverified):
                 note = "The App Store could not verify this purchase. Tap Restore, or try again."
             case .pending:
@@ -331,6 +333,18 @@ enum PaywallCopy {
 }
 
 enum TrialReminder {
+    static let id = "polingual.trial.ending"
+
+    enum Action: Equatable { case schedule, cancel }
+
+    static func action(productID: String, introductory: Bool) -> Action {
+        introductory && Plan.hasTrial(productID) ? .schedule : .cancel
+    }
+
+    static func cancel() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+    }
+
     static func schedule(now: Date = .now) async {
         let center = UNUserNotificationCenter.current()
         guard await center.notificationSettings().authorizationStatus == .authorized else { return }
@@ -339,7 +353,7 @@ enum TrialReminder {
         content.body = "Keep learning, or cancel in Settings before tomorrow and pay nothing."
         let at = now.addingTimeInterval(Double(Plan.trialDays - 1) * 86_400)
         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: at), repeats: false)
-        try? await center.add(UNNotificationRequest(identifier: "polingual.trial.ending", content: content, trigger: trigger))
+        try? await center.add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
     }
 }
 

@@ -91,4 +91,17 @@ struct EntitlementTests {
         let family = PaywallCopy.disclosure(trial: false, price: "$89.99", period: "year", family: true)
         #expect(family.contains("24 hours") && family.contains("Family Sharing"))
     }
+
+    @Test func trialReminderOnlyForAnIntroOfferOnYearlyOrMonthly() {
+        #expect(TrialReminder.action(productID: Plan.yearly, introductory: true) == .schedule)
+        #expect(TrialReminder.action(productID: Plan.monthly, introductory: true) == .schedule)
+        #expect(TrialReminder.action(productID: Plan.yearly, introductory: false) == .cancel)
+    }
+
+    @Test func lifetimeAndFamilyCancelAnyPendingTrialReminder() {
+        #expect(TrialReminder.action(productID: Plan.lifetime, introductory: false) == .cancel)
+        #expect(TrialReminder.action(productID: Plan.family, introductory: false) == .cancel)
+        #expect(TrialReminder.action(productID: Plan.lifetime, introductory: true) == .cancel)
+        #expect(TrialReminder.action(productID: Plan.family, introductory: true) == .cancel)
+    }
 }
