@@ -119,7 +119,10 @@ targets:
     platform: iOS
     sources:
       - path: Polingual/Widget/PolingualWidget.swift
-      - path: Bucket/Widget/PrivacyInfo.xcprivacy
+      - path: Bucket/Widget
+        excludes:
+          - Info.plist
+          - Widget.entitlements
       - path: Polingual/WidgetShared
       - path: Bucket/Sources/Polingual/FlagArt.swift
     dependencies:

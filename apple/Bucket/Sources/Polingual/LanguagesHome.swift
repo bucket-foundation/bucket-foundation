@@ -189,7 +189,7 @@ struct LanguagesHome: View {
             HStack(spacing: 14) {
                 Text("\(sum.due) due")
                 Text("\(Int(sum.xp)) xp")
-                Text("\(Int(liveStreak(store.state(s.id), now: Date().timeIntervalSince1970 * 1000))) day streak")
+                Text("\(StreakGoal(streak: liveStreak(store.state(s.id), now: Date().timeIntervalSince1970 * 1000)).day) day streak")
                 Text("\(sum.sharedRootItems) shared-root words")
             }
             .font(.caption)

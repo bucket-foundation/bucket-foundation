@@ -42,7 +42,7 @@ struct SystemView: View {
                     .buttonStyle(D8Primary(compact: true))
                 HStack(spacing: 18) {
                     Text("\(Int(sum.xp)) xp")
-                    Text("\(Int(liveStreak(state, now: now))) day streak")
+                    Text("\(StreakGoal(streak: liveStreak(state, now: now)).day) day streak")
                 }
                 .font(.subheadline)
                 .foregroundStyle(Palette.muted)

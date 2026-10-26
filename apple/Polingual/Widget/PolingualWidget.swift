@@ -75,7 +75,7 @@ struct PolingualWidgetView: View {
                     HStack(alignment: .firstTextBaseline, spacing: 3) {
                         Image(systemName: "flame.fill").foregroundStyle(WidgetInk.vermilion)
                         Text("\(c.streak)").font(.system(size: 22, weight: .heavy, design: .rounded))
-                        if c.streak < StreakGoal.target { Text("/100").font(.caption.weight(.bold)).foregroundStyle(WidgetInk.ink.opacity(0.55)) }
+                        if c.streak < StreakGoal.target { Text(verbatim: "/100").font(.caption.weight(.bold)).foregroundStyle(WidgetInk.ink.opacity(0.55)) }
                     }
                     Text("\(c.due) due").font(.subheadline.weight(.bold))
                     Text("\(c.new) new").font(.subheadline).foregroundStyle(WidgetInk.ink.opacity(0.6))
