@@ -1,3 +1,5 @@
+import type { Question } from "../academy/question-types";
+
 export const BETA_APPS = ["bucket", "polingual", "web"] as const;
 export type BetaApp = (typeof BETA_APPS)[number];
 
@@ -104,4 +106,13 @@ export function parseBatch(raw: unknown, now: Date = new Date()): Parsed<BetaBat
     }
   });
   return { ok: true, value: { app: raw.app as BetaApp, events, rejected } };
+}
+
+export function answeredProps(deck: string, correct: boolean, ms: number, kind: string, question?: Question): Record<string, PropValue> {
+  const props: Record<string, PropValue> = { deck, correct, ms, kind };
+  if (question) {
+    props.question_kind = question.kind;
+    props.applied = question.applied === true;
+  }
+  return props;
 }

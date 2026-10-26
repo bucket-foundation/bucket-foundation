@@ -2,7 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { NextRequest } from "next/server";
-import { BETA_LIMITS, parseBatch, parseProps } from "../src/lib/beta/events";
+import { answeredProps, BETA_LIMITS, parseBatch, parseProps } from "../src/lib/beta/events";
+import type { Question } from "../src/lib/academy/question-types";
 import type { BetaStore, BetaTester, StoredBetaEvent } from "../src/lib/beta/store";
 import { memory, NOW } from "./beta-memory-store";
 import { buildReport, summarizeUser, utcDay } from "../src/lib/beta/metrics";
@@ -163,4 +164,14 @@ test("admin report hides behind the admin key and reassigns cohorts", async () =
   assert.equal((await handleSetCohort(admin("POST", KEY, { user_id: USER, cohort: "wave2" }), deps)).status, 200);
   assert.equal((await store.testers())[0].cohort, "wave2");
   assert.equal((await handleSetCohort(admin("POST", KEY, { user_id: randomUUID(), cohort: "wave2" }), deps)).status, 404);
+});
+
+test("card_answered props carry question_kind and applied with the BetaEvents.swift names", () => {
+  const q = { id: "x.applied", atom: "x", kind: "calculate", prompt: "?", answer: 1, applied: true } as Question;
+  const props = answeredProps("science:02-physics", true, 1200, q.kind, q);
+  assert.deepEqual(props, { deck: "science:02-physics", correct: true, ms: 1200, kind: "calculate", question_kind: "calculate", applied: true });
+  assert.equal(answeredProps("science:02-physics", true, 1, "pick", { ...q, kind: "pick", applied: undefined } as Question).applied, false);
+  const drill = answeredProps("science:02-physics", false, 900, "review");
+  assert.ok(!("question_kind" in drill) && !("applied" in drill) && drill.kind === "review");
+  assert.ok(parseProps(props).ok);
 });
