@@ -12,7 +12,7 @@
  {
   "rank": 2,
   "word": "كيف",
-  "meaning": "condition, state",
+  "meaning": "how",
   "pos": "noun",
   "ipa": "/kajf/",
   "zipf": 5.89,
@@ -32,7 +32,7 @@
  {
   "rank": 4,
   "word": "هم",
-  "meaning": "anxiety, concern, worry, care",
+  "meaning": "they (masculine plural subject pronoun)",
   "pos": "noun",
   "ipa": "/hamm/",
   "zipf": 5.71,
@@ -82,7 +82,7 @@
  {
   "rank": 9,
   "word": "رجل",
-  "meaning": "pedestrian, traveler on foot",
+  "meaning": "man (adult male human)",
   "pos": "noun",
   "ipa": "/ra.d͡ʒil/",
   "zipf": 5.46,
@@ -222,7 +222,7 @@
  {
   "rank": 23,
   "word": "حب",
-  "meaning": "grains, seeds",
+  "meaning": "to love, to like",
   "pos": "noun",
   "ipa": "/ħabb/",
   "zipf": 5.01,
@@ -382,7 +382,7 @@
  {
   "rank": 39,
   "word": "عقل",
-  "meaning": "understanding, reason, wisdom, sound judgment, sense",
+  "meaning": "mind, intellect",
   "pos": "noun",
   "ipa": "/ʕaql/",
   "zipf": 4.42,
@@ -452,7 +452,7 @@
  {
   "rank": 46,
   "word": "دم",
-  "meaning": "ointment, salve, unguent, liniment",
+  "meaning": "blood",
   "pos": "noun",
   "ipa": "/damm/",
   "zipf": 4.59,
@@ -662,7 +662,7 @@
  {
   "rank": 67,
   "word": "أسود",
-  "meaning": "black person",
+  "meaning": "black",
   "pos": "noun",
   "ipa": "/ʔas.wad/",
   "zipf": 4.63,
@@ -812,7 +812,7 @@
  {
   "rank": 82,
   "word": "هن",
-  "meaning": "thing, doofer",
+  "meaning": "they (feminine plural subject pronoun)",
   "pos": "noun",
   "ipa": "",
   "zipf": 4.06,
@@ -1262,7 +1262,7 @@
  {
   "rank": 127,
   "word": "شاف",
-  "meaning": "to look down at; to view",
+  "meaning": "to see",
   "pos": "verb",
   "ipa": "/ʃaː.fa/",
   "zipf": 3.54,
@@ -1432,7 +1432,7 @@
  {
   "rank": 144,
   "word": "على",
-  "meaning": "to raise (a building)",
+  "meaning": "on, over",
   "pos": "verb",
   "ipa": "/ʕal.laː/",
   "zipf": 7.18,
@@ -1452,7 +1452,7 @@
  {
   "rank": 146,
   "word": "عن",
-  "meaning": "off, away from",
+  "meaning": "from (source)",
   "pos": "noun",
   "ipa": "",
   "zipf": 6.77,
@@ -1502,7 +1502,7 @@
  {
   "rank": 151,
   "word": "بين",
-  "meaning": "interval, distance, space (between two things)",
+  "meaning": "between (“in the position or interval that separates two things”)",
   "pos": "noun",
   "ipa": "",
   "zipf": 6.35,
@@ -1542,7 +1542,7 @@
  {
   "rank": 155,
   "word": "مثل",
-  "meaning": "likeness",
+  "meaning": "example",
   "pos": "noun",
   "ipa": "",
   "zipf": 6.12,
@@ -1832,7 +1832,7 @@
  {
   "rank": 184,
   "word": "أكثر",
-  "meaning": "to increase",
+  "meaning": "more",
   "pos": "verb",
   "ipa": "",
   "zipf": 6.09,
@@ -1842,7 +1842,7 @@
  {
   "rank": 185,
   "word": "ليس",
-  "meaning": "not to be",
+  "meaning": "not (refers to a preceding context)",
   "pos": "noun",
   "ipa": "",
   "zipf": 5.92,
@@ -2012,7 +2012,7 @@
  {
   "rank": 202,
   "word": "منذ",
-  "meaning": "denotes the time at which an occurrence started",
+  "meaning": "since",
   "pos": "prep",
   "ipa": "/mun.ðu/",
   "zipf": 6.0,
@@ -2072,7 +2072,7 @@
  {
   "rank": 208,
   "word": "دون",
-  "meaning": "to record, to write down",
+  "meaning": "without",
   "pos": "verb",
   "ipa": "/daw.wa.na/",
   "zipf": 5.79,
@@ -2252,7 +2252,7 @@
  {
   "rank": 226,
   "word": "شكل",
-  "meaning": "likeness, resemblance, semblance",
+  "meaning": "shape, form, figure",
   "pos": "noun",
   "ipa": "",
   "zipf": 5.18,
@@ -2282,7 +2282,7 @@
  {
   "rank": 229,
   "word": "ضد",
-  "meaning": "opposite, contrast",
+  "meaning": "against",
   "pos": "noun",
   "ipa": "/dˤidd/",
   "zipf": 5.67,
@@ -2381,16 +2381,6 @@
  },
  {
   "rank": 239,
-  "word": "ألف",
-  "meaning": "Name of the first letter of the Arabic alphabet (ا / ا)",
-  "pos": "noun",
-  "ipa": "/ʔa.lif/",
-  "zipf": 5.44,
-  "score": 126.92,
-  "band": "A1"
- },
- {
-  "rank": 240,
   "word": "كتب",
   "meaning": "to mark (symbols, shapes, graphs, glyphs, letters, and the like) on a surface, to write, to inscribe",
   "pos": "noun",
@@ -2400,7 +2390,7 @@
   "band": "A1"
  },
  {
-  "rank": 241,
+  "rank": 240,
   "word": "إن",
   "meaning": "if (possible, not contrary to fact)",
   "pos": "conj",
@@ -2410,9 +2400,9 @@
   "band": "A1"
  },
  {
-  "rank": 242,
+  "rank": 241,
   "word": "رد",
-  "meaning": "refusal",
+  "meaning": "to reply, to answer, to respond",
   "pos": "noun",
   "ipa": "/radd/",
   "zipf": 5.1,
@@ -2420,7 +2410,7 @@
   "band": "A1"
  },
  {
-  "rank": 243,
+  "rank": 242,
   "word": "سجل",
   "meaning": "scroll, book",
   "pos": "noun",
@@ -2430,7 +2420,7 @@
   "band": "A1"
  },
  {
-  "rank": 244,
+  "rank": 243,
   "word": "وصل",
   "meaning": "union, connection",
   "pos": "noun",
@@ -2440,7 +2430,7 @@
   "band": "A1"
  },
  {
-  "rank": 245,
+  "rank": 244,
   "word": "شهر",
   "meaning": "month (unit of time)",
   "pos": "noun",
@@ -2450,7 +2440,7 @@
   "band": "A1"
  },
  {
-  "rank": 246,
+  "rank": 245,
   "word": "كم",
   "meaning": "quantity, multitude",
   "pos": "noun",
@@ -2460,7 +2450,7 @@
   "band": "A1"
  },
  {
-  "rank": 247,
+  "rank": 246,
   "word": "مرة",
   "meaning": "a time, instance, occurrence",
   "pos": "noun",
@@ -2470,7 +2460,7 @@
   "band": "A1"
  },
  {
-  "rank": 248,
+  "rank": 247,
   "word": "ظهر",
   "meaning": "back, rear, reverse",
   "pos": "noun",
@@ -2480,7 +2470,7 @@
   "band": "A1"
  },
  {
-  "rank": 249,
+  "rank": 248,
   "word": "رأس",
   "meaning": "head",
   "pos": "noun",
@@ -2490,7 +2480,7 @@
   "band": "A1"
  },
  {
-  "rank": 250,
+  "rank": 249,
   "word": "طول",
   "meaning": "length",
   "pos": "noun",
@@ -2500,7 +2490,7 @@
   "band": "A1"
  },
  {
-  "rank": 251,
+  "rank": 250,
   "word": "صحيح",
   "meaning": "complete, perfect, whole",
   "pos": "adj",
@@ -2510,7 +2500,7 @@
   "band": "A1"
  },
  {
-  "rank": 252,
+  "rank": 251,
   "word": "جميل",
   "meaning": "good deed, favor, benefit",
   "pos": "noun",
@@ -2520,7 +2510,7 @@
   "band": "A1"
  },
  {
-  "rank": 253,
+  "rank": 252,
   "word": "سوى",
   "meaning": "used in the construct state in ways which are translated into Standard Average European languages as prepositions like except, but, short of; of very frequent occurrence (followed by genitive)",
   "pos": "noun",
@@ -2530,7 +2520,7 @@
   "band": "A1"
  },
  {
-  "rank": 254,
+  "rank": 253,
   "word": "شرق",
   "meaning": "east; Orient",
   "pos": "noun",
@@ -2540,7 +2530,7 @@
   "band": "A1"
  },
  {
-  "rank": 255,
+  "rank": 254,
   "word": "قيد",
   "meaning": "fetter, chain, bond",
   "pos": "noun",
@@ -2550,7 +2540,7 @@
   "band": "A1"
  },
  {
-  "rank": 256,
+  "rank": 255,
   "word": "لم",
   "meaning": "not (negating past tense)",
   "pos": "particle",
@@ -2560,7 +2550,7 @@
   "band": "A1"
  },
  {
-  "rank": 257,
+  "rank": 256,
   "word": "تكون",
   "meaning": "to be established, to be created, to be formed, come into existence, be constituted",
   "pos": "noun",
@@ -2570,7 +2560,7 @@
   "band": "A1"
  },
  {
-  "rank": 258,
+  "rank": 257,
   "word": "خلف",
   "meaning": "location that is behind",
   "pos": "noun",
@@ -2580,7 +2570,7 @@
   "band": "A1"
  },
  {
-  "rank": 259,
+  "rank": 258,
   "word": "دليل",
   "meaning": "sign, indication, proof, demonstration, evidence, argument",
   "pos": "noun",
@@ -2590,7 +2580,7 @@
   "band": "A1"
  },
  {
-  "rank": 260,
+  "rank": 259,
   "word": "الذي",
   "meaning": "who, that, which",
   "pos": "pron",
@@ -2600,9 +2590,9 @@
   "band": "A1"
  },
  {
-  "rank": 261,
+  "rank": 260,
   "word": "داخل",
-  "meaning": "interior",
+  "meaning": "inside",
   "pos": "noun",
   "ipa": "/daː.xil/",
   "zipf": 5.54,
@@ -2610,7 +2600,7 @@
   "band": "A1"
  },
  {
-  "rank": 262,
+  "rank": 261,
   "word": "رفع",
   "meaning": "lifting, hoisting",
   "pos": "noun",
@@ -2620,7 +2610,7 @@
   "band": "A1"
  },
  {
-  "rank": 263,
+  "rank": 262,
   "word": "صدر",
   "meaning": "a chest, a breast",
   "pos": "noun",
@@ -2630,7 +2620,7 @@
   "band": "A1"
  },
  {
-  "rank": 264,
+  "rank": 263,
   "word": "سبيل",
   "meaning": "way, path, road",
   "pos": "noun",
@@ -2640,7 +2630,7 @@
   "band": "A1"
  },
  {
-  "rank": 265,
+  "rank": 264,
   "word": "لكن",
   "meaning": "but, however",
   "pos": "noun",
@@ -2650,7 +2640,7 @@
   "band": "A1"
  },
  {
-  "rank": 266,
+  "rank": 265,
   "word": "عملية",
   "meaning": "work",
   "pos": "noun",
@@ -2660,7 +2650,7 @@
   "band": "A1"
  },
  {
-  "rank": 267,
+  "rank": 266,
   "word": "أخذ",
   "meaning": "acceptance, reception",
   "pos": "noun",
@@ -2670,7 +2660,7 @@
   "band": "A1"
  },
  {
-  "rank": 268,
+  "rank": 267,
   "word": "تقرير",
   "meaning": "establishment",
   "pos": "noun",
@@ -2680,7 +2670,7 @@
   "band": "A1"
  },
  {
-  "rank": 269,
+  "rank": 268,
   "word": "قطع",
   "meaning": "twig cut off at the end",
   "pos": "noun",
@@ -2690,7 +2680,7 @@
   "band": "A1"
  },
  {
-  "rank": 270,
+  "rank": 269,
   "word": "خط",
   "meaning": "line",
   "pos": "noun",
@@ -2700,7 +2690,7 @@
   "band": "A1"
  },
  {
-  "rank": 271,
+  "rank": 270,
   "word": "قلب",
   "meaning": "heart (organ)",
   "pos": "noun",
@@ -2710,7 +2700,7 @@
   "band": "A1"
  },
  {
-  "rank": 272,
+  "rank": 271,
   "word": "وفق",
   "meaning": "sufficiency",
   "pos": "noun",
@@ -2720,7 +2710,7 @@
   "band": "A1"
  },
  {
-  "rank": 273,
+  "rank": 272,
   "word": "لقد",
   "meaning": "لَقَدْ وَصَلْنَا",
   "pos": "particle",
@@ -2730,7 +2720,7 @@
   "band": "A1"
  },
  {
-  "rank": 274,
+  "rank": 273,
   "word": "خطر",
   "meaning": "danger, risk, hazard, peril, calamity, jeopardy",
   "pos": "noun",
@@ -2740,7 +2730,7 @@
   "band": "A1"
  },
  {
-  "rank": 275,
+  "rank": 274,
   "word": "مباشر",
   "meaning": "agent, operator, factor, plenipotentiary, proxy",
   "pos": "noun",
@@ -2750,7 +2740,7 @@
   "band": "A1"
  },
  {
-  "rank": 276,
+  "rank": 275,
   "word": "حركة",
   "meaning": "movement, motion",
   "pos": "noun",
@@ -2760,7 +2750,7 @@
   "band": "A1"
  },
  {
-  "rank": 277,
+  "rank": 276,
   "word": "حين",
   "meaning": "time, moment",
   "pos": "noun",
@@ -2770,9 +2760,9 @@
   "band": "A1"
  },
  {
-  "rank": 278,
+  "rank": 277,
   "word": "مهمة",
-  "meaning": "important matter",
+  "meaning": "job, task, function, duty",
   "pos": "noun",
   "ipa": "",
   "zipf": 5.16,
@@ -2780,7 +2770,7 @@
   "band": "A1"
  },
  {
-  "rank": 279,
+  "rank": 278,
   "word": "أصل",
   "meaning": "ground",
   "pos": "noun",
@@ -2790,7 +2780,7 @@
   "band": "A1"
  },
  {
-  "rank": 280,
+  "rank": 279,
   "word": "جمع",
   "meaning": "gathering, collecting",
   "pos": "noun",
@@ -2800,7 +2790,7 @@
   "band": "A1"
  },
  {
-  "rank": 281,
+  "rank": 280,
   "word": "فقط",
   "meaning": "to write the word فقط (\"only\") after the total on (an invoice) to prevent fraudulent modifications",
   "pos": "verb",
@@ -2810,7 +2800,7 @@
   "band": "A1"
  },
  {
-  "rank": 282,
+  "rank": 281,
   "word": "خلق",
   "meaning": "natural disposition, character, nature",
   "pos": "noun",
@@ -2820,7 +2810,7 @@
   "band": "A1"
  },
  {
-  "rank": 283,
+  "rank": 282,
   "word": "قرب",
   "meaning": "nearness, presence",
   "pos": "noun",
@@ -2830,7 +2820,7 @@
   "band": "A1"
  },
  {
-  "rank": 284,
+  "rank": 283,
   "word": "واحد",
   "meaning": "single",
   "pos": "adj",
@@ -2840,7 +2830,7 @@
   "band": "A1"
  },
  {
-  "rank": 285,
+  "rank": 284,
   "word": "يتم",
   "meaning": "to be or become an orphan",
   "pos": "noun",
@@ -2850,7 +2840,7 @@
   "band": "A1"
  },
  {
-  "rank": 286,
+  "rank": 285,
   "word": "قدر",
   "meaning": "fate, destiny",
   "pos": "noun",
@@ -2860,7 +2850,7 @@
   "band": "A1"
  },
  {
-  "rank": 287,
+  "rank": 286,
   "word": "إذا",
   "meaning": "when, when it is that; as soon as; if",
   "pos": "conj",
@@ -2870,7 +2860,7 @@
   "band": "A1"
  },
  {
-  "rank": 288,
+  "rank": 287,
   "word": "شعر",
   "meaning": "hair",
   "pos": "noun",
@@ -2880,7 +2870,7 @@
   "band": "A1"
  },
  {
-  "rank": 289,
+  "rank": 288,
   "word": "وجد",
   "meaning": "strong emotion, strong enthusiasm, affection, fancy, liking, love, fantasy, fancy",
   "pos": "noun",
@@ -2890,7 +2880,7 @@
   "band": "A1"
  },
  {
-  "rank": 290,
+  "rank": 289,
   "word": "منزل",
   "meaning": "house, dwelling",
   "pos": "noun",
@@ -2900,7 +2890,7 @@
   "band": "A1"
  },
  {
-  "rank": 291,
+  "rank": 290,
   "word": "ذلك",
   "meaning": "that (demonstrative pronoun)",
   "pos": "pron",
@@ -2910,7 +2900,7 @@
   "band": "A1"
  },
  {
-  "rank": 292,
+  "rank": 291,
   "word": "نور",
   "meaning": "light, ray of light, light beam",
   "pos": "noun",
@@ -2920,7 +2910,7 @@
   "band": "A1"
  },
  {
-  "rank": 293,
+  "rank": 292,
   "word": "وصف",
   "meaning": "description",
   "pos": "noun",
@@ -2930,7 +2920,7 @@
   "band": "A1"
  },
  {
-  "rank": 294,
+  "rank": 293,
   "word": "قاعدة",
   "meaning": "foundation",
   "pos": "noun",
@@ -2940,7 +2930,7 @@
   "band": "A1"
  },
  {
-  "rank": 295,
+  "rank": 294,
   "word": "كلية",
   "meaning": "college, academy, school, secondary school",
   "pos": "noun",
@@ -2950,9 +2940,9 @@
   "band": "A1"
  },
  {
-  "rank": 296,
+  "rank": 295,
   "word": "وقع",
-  "meaning": "falling, fall, blow, stroke",
+  "meaning": "to happen, to occur",
   "pos": "noun",
   "ipa": "/waqʕ/",
   "zipf": 4.94,
@@ -2960,7 +2950,7 @@
   "band": "A1"
  },
  {
-  "rank": 297,
+  "rank": 296,
   "word": "حلب",
   "meaning": "fresh milk",
   "pos": "noun",
@@ -2970,7 +2960,7 @@
   "band": "A1"
  },
  {
-  "rank": 298,
+  "rank": 297,
   "word": "دين",
   "meaning": "religion, creed, credo, faith, conviction, belief, tenet, rite",
   "pos": "noun",
@@ -2980,7 +2970,7 @@
   "band": "A1"
  },
  {
-  "rank": 299,
+  "rank": 298,
   "word": "فان",
   "meaning": "evanescent, transitory, transient, ephemeral",
   "pos": "adj",
@@ -2990,7 +2980,7 @@
   "band": "A1"
  },
  {
-  "rank": 300,
+  "rank": 299,
   "word": "كما",
   "meaning": "you, your (masculine or feminine dual bound object pronoun)",
   "pos": "pron",
@@ -3000,7 +2990,7 @@
   "band": "A1"
  },
  {
-  "rank": 301,
+  "rank": 300,
   "word": "خاص",
   "meaning": "special",
   "pos": "adj",
@@ -3010,9 +3000,9 @@
   "band": "A1"
  },
  {
-  "rank": 302,
+  "rank": 301,
   "word": "ولا",
-  "meaning": "For non-idiomatic uses, see وَ (wa) and لَا (lā)",
+  "meaning": "nor; (with a preceding negative) or",
   "pos": "conj",
   "ipa": "",
   "zipf": 6.09,
@@ -3020,7 +3010,7 @@
   "band": "A1"
  },
  {
-  "rank": 303,
+  "rank": 302,
   "word": "حالة",
   "meaning": "condition, state",
   "pos": "noun",
@@ -3030,9 +3020,9 @@
   "band": "A1"
  },
  {
-  "rank": 304,
+  "rank": 303,
   "word": "أصبح",
-  "meaning": "to enter upon morning",
+  "meaning": "to become",
   "pos": "verb",
   "ipa": "",
   "zipf": 5.42,
@@ -3040,7 +3030,7 @@
   "band": "A1"
  },
  {
-  "rank": 305,
+  "rank": 304,
   "word": "أمن",
   "meaning": "safety, security",
   "pos": "noun",
@@ -3050,7 +3040,7 @@
   "band": "A1"
  },
  {
-  "rank": 306,
+  "rank": 305,
   "word": "مر",
   "meaning": "myrrh, the plant Commiphora myrrha",
   "pos": "noun",
@@ -3060,7 +3050,7 @@
   "band": "A1"
  },
  {
-  "rank": 307,
+  "rank": 306,
   "word": "سن",
   "meaning": "tooth, tusk, fang",
   "pos": "noun",
@@ -3070,7 +3060,7 @@
   "band": "A1"
  },
  {
-  "rank": 308,
+  "rank": 307,
   "word": "طرف",
   "meaning": "end, tip, point, edge, border",
   "pos": "noun",
@@ -3080,7 +3070,7 @@
   "band": "A1"
  },
  {
-  "rank": 309,
+  "rank": 308,
   "word": "عهد",
   "meaning": "covenant",
   "pos": "noun",
@@ -3090,7 +3080,7 @@
   "band": "A1"
  },
  {
-  "rank": 310,
+  "rank": 309,
   "word": "عدة",
   "meaning": "number",
   "pos": "noun",
@@ -3100,7 +3090,7 @@
   "band": "A1"
  },
  {
-  "rank": 311,
+  "rank": 310,
   "word": "بيان",
   "meaning": "clearness, obviousness",
   "pos": "noun",
@@ -3110,7 +3100,7 @@
   "band": "A1"
  },
  {
-  "rank": 312,
+  "rank": 311,
   "word": "ذهب",
   "meaning": "gold",
   "pos": "noun",
@@ -3120,7 +3110,7 @@
   "band": "A1"
  },
  {
-  "rank": 313,
+  "rank": 312,
   "word": "سعد",
   "meaning": "good fortune, luck",
   "pos": "noun",
@@ -3130,7 +3120,7 @@
   "band": "A1"
  },
  {
-  "rank": 314,
+  "rank": 313,
   "word": "فرق",
   "meaning": "difference",
   "pos": "noun",
@@ -3140,7 +3130,7 @@
   "band": "A1"
  },
  {
-  "rank": 315,
+  "rank": 314,
   "word": "معرض",
   "meaning": "place where something appears or is shown",
   "pos": "noun",
@@ -3150,7 +3140,7 @@
   "band": "A1"
  },
  {
-  "rank": 316,
+  "rank": 315,
   "word": "عبد",
   "meaning": "a person who is under the ownership of another, a slave, a bondservant",
   "pos": "noun",
@@ -3160,7 +3150,7 @@
   "band": "A1"
  },
  {
-  "rank": 317,
+  "rank": 316,
   "word": "حفل",
   "meaning": "crowd, large assembly",
   "pos": "noun",
@@ -3170,7 +3160,7 @@
   "band": "A1"
  },
  {
-  "rank": 318,
+  "rank": 317,
   "word": "صالح",
   "meaning": "good, advantage, benefit, interest",
   "pos": "noun",
@@ -3180,7 +3170,7 @@
   "band": "A1"
  },
  {
-  "rank": 319,
+  "rank": 318,
   "word": "شعب",
   "meaning": "tribe, race",
   "pos": "noun",
@@ -3190,7 +3180,7 @@
   "band": "A1"
  },
  {
-  "rank": 320,
+  "rank": 319,
   "word": "غرب",
   "meaning": "west, occident",
   "pos": "noun",
@@ -3200,7 +3190,7 @@
   "band": "A1"
  },
  {
-  "rank": 321,
+  "rank": 320,
   "word": "قوي",
   "meaning": "to be or become strong, powerful",
   "pos": "verb",
@@ -3210,7 +3200,7 @@
   "band": "A1"
  },
  {
-  "rank": 322,
+  "rank": 321,
   "word": "محل",
   "meaning": "place, location, spot, station",
   "pos": "noun",
@@ -3220,7 +3210,7 @@
   "band": "A1"
  },
  {
-  "rank": 323,
+  "rank": 322,
   "word": "وقف",
   "meaning": "stopping, halting",
   "pos": "noun",
@@ -3230,7 +3220,7 @@
   "band": "A1"
  },
  {
-  "rank": 324,
+  "rank": 323,
   "word": "خاصة",
   "meaning": "private possession",
   "pos": "noun",
@@ -3240,9 +3230,9 @@
   "band": "A1"
  },
  {
-  "rank": 325,
+  "rank": 324,
   "word": "إدارة",
-  "meaning": "turning, turning around, turning over",
+  "meaning": "management, direction, administration (the process or practice of managing)",
   "pos": "noun",
   "ipa": "/ʔi.daː.ra/",
   "zipf": 5.36,
@@ -3250,7 +3240,7 @@
   "band": "A1"
  },
  {
-  "rank": 326,
+  "rank": 325,
   "word": "بحث",
   "meaning": "search, quest",
   "pos": "noun",
@@ -3260,7 +3250,7 @@
   "band": "A1"
  },
  {
-  "rank": 327,
+  "rank": 326,
   "word": "خبر",
   "meaning": "report, message, notification",
   "pos": "noun",
@@ -3270,7 +3260,7 @@
   "band": "A1"
  },
  {
-  "rank": 328,
+  "rank": 327,
   "word": "طيب",
   "meaning": "goodness, kind-heartedness; agreeability",
   "pos": "noun",
@@ -3280,7 +3270,7 @@
   "band": "A1"
  },
  {
-  "rank": 329,
+  "rank": 328,
   "word": "أول",
   "meaning": "first part, beginning",
   "pos": "noun",
@@ -3290,7 +3280,7 @@
   "band": "A1"
  },
  {
-  "rank": 330,
+  "rank": 329,
   "word": "صلى",
   "meaning": "to pray",
   "pos": "verb",
@@ -3300,7 +3290,7 @@
   "band": "A1"
  },
  {
-  "rank": 331,
+  "rank": 330,
   "word": "شهادة",
   "meaning": "testimony, witness",
   "pos": "noun",
@@ -3310,7 +3300,7 @@
   "band": "A1"
  },
  {
-  "rank": 332,
+  "rank": 331,
   "word": "ورد",
   "meaning": "watering hole",
   "pos": "noun",
@@ -3320,7 +3310,7 @@
   "band": "A1"
  },
  {
-  "rank": 333,
+  "rank": 332,
   "word": "تقدم",
   "meaning": "preeminence",
   "pos": "noun",
@@ -3330,7 +3320,7 @@
   "band": "A1"
  },
  {
-  "rank": 334,
+  "rank": 333,
   "word": "نظام",
   "meaning": "system",
   "pos": "noun",
@@ -3340,9 +3330,9 @@
   "band": "A1"
  },
  {
-  "rank": 335,
+  "rank": 334,
   "word": "آخر",
-  "meaning": "end, conclusion",
+  "meaning": "another, one more, other",
   "pos": "noun",
   "ipa": "/ʔaː.xir/",
   "zipf": 5.84,
@@ -3350,7 +3340,7 @@
   "band": "A1"
  },
  {
-  "rank": 336,
+  "rank": 335,
   "word": "نظر",
   "meaning": "seeing, eyesight, vision",
   "pos": "noun",
@@ -3360,7 +3350,7 @@
   "band": "A1"
  },
  {
-  "rank": 337,
+  "rank": 336,
   "word": "عالم",
   "meaning": "world",
   "pos": "noun",
@@ -3370,7 +3360,7 @@
   "band": "A1"
  },
  {
-  "rank": 338,
+  "rank": 337,
   "word": "شك",
   "meaning": "doubt, uncertainty, suspicion, scruple, scandal, hesitation",
   "pos": "noun",
@@ -3380,7 +3370,7 @@
   "band": "A1"
  },
  {
-  "rank": 339,
+  "rank": 338,
   "word": "عامل",
   "meaning": "worker, workman, laborer",
   "pos": "noun",
@@ -3390,7 +3380,7 @@
   "band": "A1"
  },
  {
-  "rank": 340,
+  "rank": 339,
   "word": "غريب",
   "meaning": "foreigner",
   "pos": "noun",
@@ -3400,7 +3390,7 @@
   "band": "A1"
  },
  {
-  "rank": 341,
+  "rank": 340,
   "word": "مقاطعة",
   "meaning": "interruption",
   "pos": "noun",
@@ -3410,7 +3400,7 @@
   "band": "A1"
  },
  {
-  "rank": 342,
+  "rank": 341,
   "word": "بعض",
   "meaning": "some, part",
   "pos": "noun",
@@ -3420,7 +3410,7 @@
   "band": "A1"
  },
  {
-  "rank": 343,
+  "rank": 342,
   "word": "أفضل",
   "meaning": "to do a favor for, to oblige",
   "pos": "verb",
@@ -3430,7 +3420,7 @@
   "band": "A1"
  },
  {
-  "rank": 344,
+  "rank": 343,
   "word": "وهم",
   "meaning": "imagination, fancy",
   "pos": "noun",
@@ -3440,7 +3430,7 @@
   "band": "A1"
  },
  {
-  "rank": 345,
+  "rank": 344,
   "word": "مقر",
   "meaning": "anything acrid or bitter",
   "pos": "noun",
@@ -3450,7 +3440,7 @@
   "band": "A1"
  },
  {
-  "rank": 346,
+  "rank": 345,
   "word": "عندما",
   "meaning": "when, while",
   "pos": "conj",
@@ -3460,7 +3450,7 @@
   "band": "A1"
  },
  {
-  "rank": 347,
+  "rank": 346,
   "word": "يا",
   "meaning": "O; hey; you; vocative particle preceding a noun used in direct address, only rarely omitted in such contexts",
   "pos": "particle",
@@ -3470,7 +3460,7 @@
   "band": "A1"
  },
  {
-  "rank": 348,
+  "rank": 347,
   "word": "مشروع",
   "meaning": "scheme, project",
   "pos": "noun",
@@ -3480,7 +3470,7 @@
   "band": "A1"
  },
  {
-  "rank": 349,
+  "rank": 348,
   "word": "بلغ",
   "meaning": "to inform",
   "pos": "verb",
@@ -3490,7 +3480,7 @@
   "band": "A1"
  },
  {
-  "rank": 350,
+  "rank": 349,
   "word": "فصل",
   "meaning": "separation, division, partition",
   "pos": "noun",
@@ -3500,7 +3490,7 @@
   "band": "A1"
  },
  {
-  "rank": 351,
+  "rank": 350,
   "word": "معروف",
   "meaning": "beneficence",
   "pos": "noun",
@@ -3510,7 +3500,7 @@
   "band": "A1"
  },
  {
-  "rank": 352,
+  "rank": 351,
   "word": "لو",
   "meaning": "if (contrary to fact)",
   "pos": "conj",
@@ -3520,7 +3510,7 @@
   "band": "A1"
  },
  {
-  "rank": 353,
+  "rank": 352,
   "word": "رب",
   "meaning": "master, lord, king, sovereign, potentate",
   "pos": "noun",
@@ -3530,7 +3520,7 @@
   "band": "A1"
  },
  {
-  "rank": 354,
+  "rank": 353,
   "word": "ولي",
   "meaning": "one of the most beautiful Names of God: The Protector",
   "pos": "noun",
@@ -3540,7 +3530,7 @@
   "band": "A1"
  },
  {
-  "rank": 355,
+  "rank": 354,
   "word": "حمل",
   "meaning": "carrying",
   "pos": "noun",
@@ -3550,7 +3540,7 @@
   "band": "A1"
  },
  {
-  "rank": 356,
+  "rank": 355,
   "word": "شرح",
   "meaning": "expounding, presentation, explanation",
   "pos": "noun",
@@ -3560,7 +3550,7 @@
   "band": "A1"
  },
  {
-  "rank": 357,
+  "rank": 356,
   "word": "لعب",
   "meaning": "game",
   "pos": "noun",
@@ -3570,7 +3560,7 @@
   "band": "A1"
  },
  {
-  "rank": 358,
+  "rank": 357,
   "word": "تابع",
   "meaning": "follower, adherent, partisan",
   "pos": "noun",
@@ -3580,7 +3570,7 @@
   "band": "A1"
  },
  {
-  "rank": 359,
+  "rank": 358,
   "word": "خرج",
   "meaning": "saddlebag",
   "pos": "noun",
@@ -3590,7 +3580,7 @@
   "band": "A1"
  },
  {
-  "rank": 360,
+  "rank": 359,
   "word": "عرب",
   "meaning": "Arabs, true Arabs",
   "pos": "noun",
@@ -3600,7 +3590,7 @@
   "band": "A1"
  },
  {
-  "rank": 361,
+  "rank": 360,
   "word": "نجم",
   "meaning": "celestial body, star, planet, luminary",
   "pos": "noun",
@@ -3610,7 +3600,7 @@
   "band": "A1"
  },
  {
-  "rank": 362,
+  "rank": 361,
   "word": "هناك",
   "meaning": "there",
   "pos": "adv",
@@ -3620,7 +3610,7 @@
   "band": "A1"
  },
  {
-  "rank": 363,
+  "rank": 362,
   "word": "حصل",
   "meaning": "dates before they have become hard",
   "pos": "noun",
@@ -3630,7 +3620,7 @@
   "band": "A1"
  },
  {
-  "rank": 364,
+  "rank": 363,
   "word": "فن",
   "meaning": "genre",
   "pos": "noun",
@@ -3640,7 +3630,7 @@
   "band": "A1"
  },
  {
-  "rank": 365,
+  "rank": 364,
   "word": "لك",
   "meaning": "varnish, lacquer",
   "pos": "noun",
@@ -3650,7 +3640,7 @@
   "band": "A1"
  },
  {
-  "rank": 366,
+  "rank": 365,
   "word": "مجلس",
   "meaning": "seat",
   "pos": "noun",
@@ -3660,7 +3650,7 @@
   "band": "A1"
  },
  {
-  "rank": 367,
+  "rank": 366,
   "word": "تدخل",
   "meaning": "interference",
   "pos": "noun",
@@ -3670,7 +3660,7 @@
   "band": "A1"
  },
  {
-  "rank": 368,
+  "rank": 367,
   "word": "لي",
   "meaning": "Noun",
   "pos": "verb",
@@ -3680,7 +3670,7 @@
   "band": "A1"
  },
  {
-  "rank": 369,
+  "rank": 368,
   "word": "هل",
   "meaning": "introduces a positive yes-no question",
   "pos": "particle",
@@ -3690,7 +3680,7 @@
   "band": "A1"
  },
  {
-  "rank": 370,
+  "rank": 369,
   "word": "تمثل",
   "meaning": "to make oneself similar, to assimilate oneself",
   "pos": "noun",
@@ -3700,7 +3690,7 @@
   "band": "A1"
  },
  {
-  "rank": 371,
+  "rank": 370,
   "word": "شاهد",
   "meaning": "evidence, piece of evidence",
   "pos": "noun",
@@ -3710,7 +3700,7 @@
   "band": "A1"
  },
  {
-  "rank": 372,
+  "rank": 371,
   "word": "كريم",
   "meaning": "cream",
   "pos": "noun",
@@ -3720,7 +3710,7 @@
   "band": "A1"
  },
  {
-  "rank": 373,
+  "rank": 372,
   "word": "نجد",
   "meaning": "highland, plateau",
   "pos": "noun",
@@ -3730,7 +3720,7 @@
   "band": "A1"
  },
  {
-  "rank": 374,
+  "rank": 373,
   "word": "أمين",
   "meaning": "secretary",
   "pos": "noun",
@@ -3740,7 +3730,7 @@
   "band": "A1"
  },
  {
-  "rank": 375,
+  "rank": 374,
   "word": "شعار",
   "meaning": "password, watchword",
   "pos": "noun",
@@ -3750,7 +3740,7 @@
   "band": "A1"
  },
  {
-  "rank": 376,
+  "rank": 375,
   "word": "ضرب",
   "meaning": "beating, striking, hitting",
   "pos": "noun",
@@ -3760,7 +3750,7 @@
   "band": "A1"
  },
  {
-  "rank": 377,
+  "rank": 376,
   "word": "عكس",
   "meaning": "antithesis",
   "pos": "noun",
@@ -3770,7 +3760,7 @@
   "band": "A1"
  },
  {
-  "rank": 378,
+  "rank": 377,
   "word": "أدى",
   "meaning": "to bring, to convey, to deliver",
   "pos": "verb",
@@ -3780,7 +3770,7 @@
   "band": "A1"
  },
  {
-  "rank": 379,
+  "rank": 378,
   "word": "هدف",
   "meaning": "target, object, aim, end",
   "pos": "noun",
@@ -3790,7 +3780,7 @@
   "band": "A1"
  },
  {
-  "rank": 380,
+  "rank": 379,
   "word": "ميل",
   "meaning": "inclination, tendency",
   "pos": "noun",
@@ -3800,7 +3790,7 @@
   "band": "A1"
  },
  {
-  "rank": 381,
+  "rank": 380,
   "word": "رسم",
   "meaning": "sketch, drawing, painting, picture, portrait, outline, chart",
   "pos": "noun",
@@ -3810,7 +3800,7 @@
   "band": "A1"
  },
  {
-  "rank": 382,
+  "rank": 381,
   "word": "فرقة",
   "meaning": "part, portion",
   "pos": "noun",
@@ -3820,7 +3810,7 @@
   "band": "A1"
  },
  {
-  "rank": 383,
+  "rank": 382,
   "word": "دفع",
   "meaning": "pay, payment",
   "pos": "noun",
@@ -3830,7 +3820,7 @@
   "band": "A1"
  },
  {
-  "rank": 384,
+  "rank": 383,
   "word": "عاد",
   "meaning": "to return, to go back, to come back",
   "pos": "noun",
@@ -3840,7 +3830,7 @@
   "band": "A1"
  },
  {
-  "rank": 385,
+  "rank": 384,
   "word": "بل",
   "meaning": "but; rather",
   "pos": "noun",
@@ -3850,9 +3840,9 @@
   "band": "A1"
  },
  {
-  "rank": 386,
+  "rank": 385,
   "word": "شمال",
-  "meaning": "left hand",
+  "meaning": "north",
   "pos": "noun",
   "ipa": "/ʃi.maːl/",
   "zipf": 5.21,
@@ -3860,7 +3850,7 @@
   "band": "A1"
  },
  {
-  "rank": 387,
+  "rank": 386,
   "word": "عادل",
   "meaning": "honest witness",
   "pos": "noun",
@@ -3870,7 +3860,7 @@
   "band": "A1"
  },
  {
-  "rank": 388,
+  "rank": 387,
   "word": "أيضا",
   "meaning": "also",
   "pos": "adv",
@@ -3880,7 +3870,7 @@
   "band": "A1"
  },
  {
-  "rank": 389,
+  "rank": 388,
   "word": "قصر",
   "meaning": "large stone building from which power is projected, castle, palace",
   "pos": "noun",
@@ -3890,9 +3880,9 @@
   "band": "A1"
  },
  {
-  "rank": 390,
+  "rank": 389,
   "word": "مال",
-  "meaning": "property, possessions, chattels, goods",
+  "meaning": "money",
   "pos": "noun",
   "ipa": "/maːl/",
   "zipf": 4.7,
@@ -3900,7 +3890,7 @@
   "band": "A1"
  },
  {
-  "rank": 391,
+  "rank": 390,
   "word": "أنت",
   "meaning": "you, thou (masculine singular subject pronoun)",
   "pos": "pron",
@@ -3910,7 +3900,7 @@
   "band": "A1"
  },
  {
-  "rank": 392,
+  "rank": 391,
   "word": "شيء",
   "meaning": "thing",
   "pos": "noun",
@@ -3920,7 +3910,7 @@
   "band": "A1"
  },
  {
-  "rank": 393,
+  "rank": 392,
   "word": "أكبر",
   "meaning": "to deem great",
   "pos": "verb",
@@ -3930,7 +3920,7 @@
   "band": "A1"
  },
  {
-  "rank": 394,
+  "rank": 393,
   "word": "أثر",
   "meaning": "trace, vestige",
   "pos": "noun",
@@ -3940,7 +3930,7 @@
   "band": "A1"
  },
  {
-  "rank": 395,
+  "rank": 394,
   "word": "عقب",
   "meaning": "heel",
   "pos": "noun",
@@ -3950,7 +3940,7 @@
   "band": "A1"
  },
  {
-  "rank": 396,
+  "rank": 395,
   "word": "إضافة",
   "meaning": "addition, apposition",
   "pos": "noun",
@@ -3960,7 +3950,7 @@
   "band": "A1"
  },
  {
-  "rank": 397,
+  "rank": 396,
   "word": "حقيقة",
   "meaning": "truth, reality",
   "pos": "noun",
@@ -3970,7 +3960,7 @@
   "band": "A1"
  },
  {
-  "rank": 398,
+  "rank": 397,
   "word": "تداول",
   "meaning": "to confer",
   "pos": "noun",
@@ -3980,7 +3970,7 @@
   "band": "A1"
  },
  {
-  "rank": 399,
+  "rank": 398,
   "word": "حفظ",
   "meaning": "preservation, maintenance, conservation, upholding",
   "pos": "noun",
@@ -3990,7 +3980,7 @@
   "band": "A1"
  },
  {
-  "rank": 400,
+  "rank": 399,
   "word": "سر",
   "meaning": "secret, secret thought",
   "pos": "noun",
@@ -4000,17 +3990,17 @@
   "band": "A1"
  },
  {
-  "rank": 401,
+  "rank": 400,
   "word": "سفر",
-  "meaning": "written book",
+  "meaning": "departure, journey, travel",
   "pos": "noun",
   "ipa": "/sifr/",
   "zipf": 4.68,
   "score": 119.24,
-  "band": "A2"
+  "band": "A1"
  },
  {
-  "rank": 402,
+  "rank": 401,
   "word": "أمل",
   "meaning": "hope, expectation",
   "pos": "noun",
@@ -4020,7 +4010,7 @@
   "band": "A2"
  },
  {
-  "rank": 403,
+  "rank": 402,
   "word": "شبه",
   "meaning": "a thing or person similar, alike (with following genitive)",
   "pos": "noun",
@@ -4030,9 +4020,9 @@
   "band": "A2"
  },
  {
-  "rank": 404,
+  "rank": 403,
   "word": "كبير",
-  "meaning": "chief, leader",
+  "meaning": "big, large",
   "pos": "noun",
   "ipa": "/ka.biːr/",
   "zipf": 5.67,
@@ -4040,7 +4030,7 @@
   "band": "A2"
  },
  {
-  "rank": 405,
+  "rank": 404,
   "word": "سلم",
   "meaning": "peace",
   "pos": "noun",
@@ -4050,7 +4040,7 @@
   "band": "A2"
  },
  {
-  "rank": 406,
+  "rank": 405,
   "word": "فرع",
   "meaning": "branch, twig, shoot, limb",
   "pos": "noun",
@@ -4060,7 +4050,7 @@
   "band": "A2"
  },
  {
-  "rank": 407,
+  "rank": 406,
   "word": "من بعد",
   "meaning": "from a distance",
   "pos": "adv",
@@ -4070,7 +4060,7 @@
   "band": "A2"
  },
  {
-  "rank": 408,
+  "rank": 407,
   "word": "جدة",
   "meaning": "newness, recency",
   "pos": "noun",
@@ -4080,7 +4070,7 @@
   "band": "A2"
  },
  {
-  "rank": 409,
+  "rank": 408,
   "word": "برج",
   "meaning": "castle",
   "pos": "noun",
@@ -4090,7 +4080,7 @@
   "band": "A2"
  },
  {
-  "rank": 410,
+  "rank": 409,
   "word": "زين",
   "meaning": "beauty",
   "pos": "noun",
@@ -4100,7 +4090,7 @@
   "band": "A2"
  },
  {
-  "rank": 411,
+  "rank": 410,
   "word": "شهد",
   "meaning": "honey especially still in the honeycomb",
   "pos": "noun",
@@ -4110,7 +4100,7 @@
   "band": "A2"
  },
  {
-  "rank": 412,
+  "rank": 411,
   "word": "فرد",
   "meaning": "one, a single person, individual, somebody, someone",
   "pos": "noun",
@@ -4120,7 +4110,7 @@
   "band": "A2"
  },
  {
-  "rank": 413,
+  "rank": 412,
   "word": "كسر",
   "meaning": "breach, fracture",
   "pos": "noun",
@@ -4130,7 +4120,7 @@
   "band": "A2"
  },
  {
-  "rank": 414,
+  "rank": 413,
   "word": "إلا",
   "meaning": "except (for), save (for), but (for), barring; other than, besides, apart from",
   "pos": "conj",
@@ -4140,7 +4130,7 @@
   "band": "A2"
  },
  {
-  "rank": 415,
+  "rank": 414,
   "word": "عم",
   "meaning": "paternal blood uncle (one's father's brother)",
   "pos": "noun",
@@ -4150,7 +4140,7 @@
   "band": "A2"
  },
  {
-  "rank": 416,
+  "rank": 415,
   "word": "فكر",
   "meaning": "thinking",
   "pos": "noun",
@@ -4160,7 +4150,7 @@
   "band": "A2"
  },
  {
-  "rank": 417,
+  "rank": 416,
   "word": "جاء",
   "meaning": "to come",
   "pos": "verb",
@@ -4170,7 +4160,7 @@
   "band": "A2"
  },
  {
-  "rank": 418,
+  "rank": 417,
   "word": "مادة",
   "meaning": "matter, stuff, material, substance",
   "pos": "noun",
@@ -4180,7 +4170,7 @@
   "band": "A2"
  },
  {
-  "rank": 419,
+  "rank": 418,
   "word": "بدل",
   "meaning": "compensation",
   "pos": "noun",
@@ -4190,7 +4180,7 @@
   "band": "A2"
  },
  {
-  "rank": 420,
+  "rank": 419,
   "word": "جنب",
   "meaning": "side, flank, half of the body",
   "pos": "noun",
@@ -4200,7 +4190,7 @@
   "band": "A2"
  },
  {
-  "rank": 421,
+  "rank": 420,
   "word": "كفر",
   "meaning": "darkness, blackness",
   "pos": "noun",
@@ -4210,9 +4200,9 @@
   "band": "A2"
  },
  {
-  "rank": 422,
+  "rank": 421,
   "word": "مثال",
-  "meaning": "resemblance, anything equal or similar",
+  "meaning": "image, type, model, example, specimen",
   "pos": "noun",
   "ipa": "/mi.θaːl/",
   "zipf": 4.64,
@@ -4220,7 +4210,7 @@
   "band": "A2"
  },
  {
-  "rank": 423,
+  "rank": 422,
   "word": "جزء",
   "meaning": "component, constituent",
   "pos": "noun",
@@ -4230,7 +4220,7 @@
   "band": "A2"
  },
  {
-  "rank": 424,
+  "rank": 423,
   "word": "عشر",
   "meaning": "one tenth",
   "pos": "noun",
@@ -4240,7 +4230,7 @@
   "band": "A2"
  },
  {
-  "rank": 425,
+  "rank": 424,
   "word": "شبكة",
   "meaning": "net, fishing net",
   "pos": "noun",
@@ -4250,7 +4240,7 @@
   "band": "A2"
  },
  {
-  "rank": 426,
+  "rank": 425,
   "word": "ترتيب",
   "meaning": "order, arrangement, array",
   "pos": "noun",
@@ -4260,7 +4250,7 @@
   "band": "A2"
  },
  {
-  "rank": 427,
+  "rank": 426,
   "word": "جد",
   "meaning": "grandfather",
   "pos": "noun",
@@ -4270,7 +4260,7 @@
   "band": "A2"
  },
  {
-  "rank": 428,
+  "rank": 427,
   "word": "جزر",
   "meaning": "slaughter",
   "pos": "noun",
@@ -4280,7 +4270,7 @@
   "band": "A2"
  },
  {
-  "rank": 429,
+  "rank": 428,
   "word": "ألا",
   "meaning": "to neglect to do, to fail to do, not to do",
   "pos": "verb",
@@ -4290,9 +4280,9 @@
   "band": "A2"
  },
  {
-  "rank": 430,
+  "rank": 429,
   "word": "قانون",
-  "meaning": "canon",
+  "meaning": "law, code",
   "pos": "noun",
   "ipa": "/qaː.nuːn/",
   "zipf": 5.28,
@@ -4300,7 +4290,7 @@
   "band": "A2"
  },
  {
-  "rank": 431,
+  "rank": 430,
   "word": "أين",
   "meaning": "weariness, fatigue",
   "pos": "noun",
@@ -4310,7 +4300,7 @@
   "band": "A2"
  },
  {
-  "rank": 432,
+  "rank": 431,
   "word": "فهم",
   "meaning": "understanding, comprehension",
   "pos": "noun",
@@ -4320,7 +4310,7 @@
   "band": "A2"
  },
  {
-  "rank": 433,
+  "rank": 432,
   "word": "مؤسسة",
   "meaning": "foundation, establishment",
   "pos": "noun",
@@ -4330,7 +4320,7 @@
   "band": "A2"
  },
  {
-  "rank": 434,
+  "rank": 433,
   "word": "خارج",
   "meaning": "outside, exterior",
   "pos": "noun",
@@ -4340,7 +4330,7 @@
   "band": "A2"
  },
  {
-  "rank": 435,
+  "rank": 434,
   "word": "حديث",
   "meaning": "recent event, fresh news",
   "pos": "noun",
@@ -4350,7 +4340,7 @@
   "band": "A2"
  },
  {
-  "rank": 436,
+  "rank": 435,
   "word": "عنوان",
   "meaning": "title (of book) — and \"anything that serves as an indication of another thing is called its عُنْوَان (Lane's Lexicon)",
   "pos": "noun",
@@ -4360,7 +4350,7 @@
   "band": "A2"
  },
  {
-  "rank": 437,
+  "rank": 436,
   "word": "عيد",
   "meaning": "feast; holiday; festival",
   "pos": "noun",
@@ -4370,7 +4360,7 @@
   "band": "A2"
  },
  {
-  "rank": 438,
+  "rank": 437,
   "word": "حر",
   "meaning": "heat",
   "pos": "noun",
@@ -4380,7 +4370,7 @@
   "band": "A2"
  },
  {
-  "rank": 439,
+  "rank": 438,
   "word": "متن",
   "meaning": "back, ridge, or specifically the erector spinae muscles",
   "pos": "noun",
@@ -4390,7 +4380,7 @@
   "band": "A2"
  },
  {
-  "rank": 440,
+  "rank": 439,
   "word": "هنا",
   "meaning": "here, in this place",
   "pos": "adv",
@@ -4400,7 +4390,7 @@
   "band": "A2"
  },
  {
-  "rank": 441,
+  "rank": 440,
   "word": "صنع",
   "meaning": "production, manufacture, making",
   "pos": "noun",
@@ -4410,7 +4400,7 @@
   "band": "A2"
  },
  {
-  "rank": 442,
+  "rank": 441,
   "word": "قوة",
   "meaning": "power, strength, might, force",
   "pos": "noun",
@@ -4420,7 +4410,7 @@
   "band": "A2"
  },
  {
-  "rank": 443,
+  "rank": 442,
   "word": "جنس",
   "meaning": "a kind; a variety; a breed",
   "pos": "noun",
@@ -4430,7 +4420,7 @@
   "band": "A2"
  },
  {
-  "rank": 444,
+  "rank": 443,
   "word": "توقيع",
   "meaning": "signature",
   "pos": "noun",
@@ -4440,7 +4430,7 @@
   "band": "A2"
  },
  {
-  "rank": 445,
+  "rank": 444,
   "word": "درس",
   "meaning": "study, studies",
   "pos": "noun",
@@ -4450,7 +4440,7 @@
   "band": "A2"
  },
  {
-  "rank": 446,
+  "rank": 445,
   "word": "صرح",
   "meaning": "chamber, private room",
   "pos": "noun",
@@ -4460,7 +4450,7 @@
   "band": "A2"
  },
  {
-  "rank": 447,
+  "rank": 446,
   "word": "قام",
   "meaning": "to stand up (to rise from lying or sitting position); to get up",
   "pos": "verb",
@@ -4470,7 +4460,7 @@
   "band": "A2"
  },
  {
-  "rank": 448,
+  "rank": 447,
   "word": "حرف",
   "meaning": "letter (of the alphabet), piece of type",
   "pos": "noun",
@@ -4480,7 +4470,7 @@
   "band": "A2"
  },
  {
-  "rank": 449,
+  "rank": 448,
   "word": "ابن",
   "meaning": "son",
   "pos": "noun",
@@ -4490,7 +4480,7 @@
   "band": "A2"
  },
  {
-  "rank": 450,
+  "rank": 449,
   "word": "لها",
   "meaning": "to divert oneself, to fool around, to putz around",
   "pos": "verb",
@@ -4500,7 +4490,7 @@
   "band": "A2"
  },
  {
-  "rank": 451,
+  "rank": 450,
   "word": "كلام",
   "meaning": "talking, speaking",
   "pos": "noun",
@@ -4510,7 +4500,7 @@
   "band": "A2"
  },
  {
-  "rank": 452,
+  "rank": 451,
   "word": "تل",
   "meaning": "heap of sand, hillock, mound, knob",
   "pos": "noun",
@@ -4520,7 +4510,7 @@
   "band": "A2"
  },
  {
-  "rank": 453,
+  "rank": 452,
   "word": "لحم",
   "meaning": "flesh, meat",
   "pos": "noun",
@@ -4530,9 +4520,9 @@
   "band": "A2"
  },
  {
-  "rank": 454,
+  "rank": 453,
   "word": "أنا",
-  "meaning": "ego",
+  "meaning": "I (first person singular subject pronoun)",
   "pos": "noun",
   "ipa": "/ʔa.na/",
   "zipf": 5.89,
@@ -4540,7 +4530,7 @@
   "band": "A2"
  },
  {
-  "rank": 455,
+  "rank": 454,
   "word": "مناسبة",
   "meaning": "fitness, suitability",
   "pos": "noun",
@@ -4550,7 +4540,7 @@
   "band": "A2"
  },
  {
-  "rank": 456,
+  "rank": 455,
   "word": "ولكن",
   "meaning": "but, however",
   "pos": "conj",
@@ -4560,7 +4550,7 @@
   "band": "A2"
  },
  {
-  "rank": 457,
+  "rank": 456,
   "word": "طالب",
   "meaning": "seeker, pursuer",
   "pos": "noun",
@@ -4570,7 +4560,7 @@
   "band": "A2"
  },
  {
-  "rank": 458,
+  "rank": 457,
   "word": "فريق",
   "meaning": "team",
   "pos": "noun",
@@ -4580,9 +4570,9 @@
   "band": "A2"
  },
  {
-  "rank": 459,
+  "rank": 458,
   "word": "جلب",
-  "meaning": "merchandise, imported goods",
+  "meaning": "to bring, to fetch",
   "pos": "noun",
   "ipa": "/d͡ʒa.lab/",
   "zipf": 4.54,
@@ -4590,7 +4580,7 @@
   "band": "A2"
  },
  {
-  "rank": 460,
+  "rank": 459,
   "word": "من قبل",
   "meaning": "before, previously",
   "pos": "adv",
@@ -4600,7 +4590,7 @@
   "band": "A2"
  },
  {
-  "rank": 461,
+  "rank": 460,
   "word": "تحت",
   "meaning": "below",
   "pos": "adv",
@@ -4610,7 +4600,7 @@
   "band": "A2"
  },
  {
-  "rank": 462,
+  "rank": 461,
   "word": "عادة",
   "meaning": "custom, habit, manner, wont",
   "pos": "noun",
@@ -4620,7 +4610,7 @@
   "band": "A2"
  },
  {
-  "rank": 463,
+  "rank": 462,
   "word": "مقطع",
   "meaning": "division, part, section, portion",
   "pos": "noun",
@@ -4630,7 +4620,7 @@
   "band": "A2"
  },
  {
-  "rank": 464,
+  "rank": 463,
   "word": "وفي",
   "meaning": "loyal; faithful; reliable",
   "pos": "adj",
@@ -4640,9 +4630,9 @@
   "band": "A2"
  },
  {
-  "rank": 465,
+  "rank": 464,
   "word": "شريط",
-  "meaning": "rope, string, cord (originally of palm bast)",
+  "meaning": "tape, ribbon, band",
   "pos": "noun",
   "ipa": "",
   "zipf": 4.53,
@@ -4650,7 +4640,7 @@
   "band": "A2"
  },
  {
-  "rank": 466,
+  "rank": 465,
   "word": "عزيز",
   "meaning": "dear",
   "pos": "noun",
@@ -4660,7 +4650,7 @@
   "band": "A2"
  },
  {
-  "rank": 467,
+  "rank": 466,
   "word": "قصف",
   "meaning": "thunder, roar (of cannon)",
   "pos": "noun",
@@ -4670,7 +4660,7 @@
   "band": "A2"
  },
  {
-  "rank": 468,
+  "rank": 467,
   "word": "أقدم",
   "meaning": "to dare",
   "pos": "verb",
@@ -4680,7 +4670,7 @@
   "band": "A2"
  },
  {
-  "rank": 469,
+  "rank": 468,
   "word": "تحمل",
   "meaning": "forbearance, endurance, stamina",
   "pos": "noun",
@@ -4690,7 +4680,7 @@
   "band": "A2"
  },
  {
-  "rank": 470,
+  "rank": 469,
   "word": "حكومة",
   "meaning": "government",
   "pos": "noun",
@@ -4700,7 +4690,7 @@
   "band": "A2"
  },
  {
-  "rank": 471,
+  "rank": 470,
   "word": "درجة",
   "meaning": "stair, step",
   "pos": "noun",
@@ -4710,7 +4700,7 @@
   "band": "A2"
  },
  {
-  "rank": 472,
+  "rank": 471,
   "word": "علاقة",
   "meaning": "relationship, kinship",
   "pos": "noun",
@@ -4720,7 +4710,7 @@
   "band": "A2"
  },
  {
-  "rank": 473,
+  "rank": 472,
   "word": "تعريف",
   "meaning": "definition",
   "pos": "noun",
@@ -4730,9 +4720,9 @@
   "band": "A2"
  },
  {
-  "rank": 474,
+  "rank": 473,
   "word": "مشهد",
-  "meaning": "place of assembly, meeting, meeting place",
+  "meaning": "view, aspect, spectacle, sight, scenery",
   "pos": "noun",
   "ipa": "/maʃ.had/",
   "zipf": 4.52,
@@ -4740,7 +4730,7 @@
   "band": "A2"
  },
  {
-  "rank": 475,
+  "rank": 474,
   "word": "نزل",
   "meaning": "quarter, lodging",
   "pos": "noun",
@@ -4750,7 +4740,7 @@
   "band": "A2"
  },
  {
-  "rank": 476,
+  "rank": 475,
   "word": "طريقة",
   "meaning": "manner, mode, means",
   "pos": "noun",
@@ -4760,7 +4750,7 @@
   "band": "A2"
  },
  {
-  "rank": 477,
+  "rank": 476,
   "word": "رأى",
   "meaning": "to deem true, to opine or hold the opinion of, to have that outlook on something, to see or view it that way, to be of that thinking or to have such thoughts",
   "pos": "verb",
@@ -4770,7 +4760,7 @@
   "band": "A2"
  },
  {
-  "rank": 478,
+  "rank": 477,
   "word": "أمام",
   "meaning": "front, place that is before something",
   "pos": "noun",
@@ -4780,7 +4770,7 @@
   "band": "A2"
  },
  {
-  "rank": 479,
+  "rank": 478,
   "word": "طرح",
   "meaning": "expulsion, rejection, repulsion, banishment, repudiation",
   "pos": "noun",
@@ -4790,7 +4780,7 @@
   "band": "A2"
  },
  {
-  "rank": 480,
+  "rank": 479,
   "word": "فجر",
   "meaning": "dawn, daybreak; dayspring",
   "pos": "noun",
@@ -4800,7 +4790,7 @@
   "band": "A2"
  },
  {
-  "rank": 481,
+  "rank": 480,
   "word": "جدا",
   "meaning": "very",
   "pos": "adv",
@@ -4810,7 +4800,7 @@
   "band": "A2"
  },
  {
-  "rank": 482,
+  "rank": 481,
   "word": "جميع",
   "meaning": "whole, entire, all",
   "pos": "adj",
@@ -4820,7 +4810,7 @@
   "band": "A2"
  },
  {
-  "rank": 483,
+  "rank": 482,
   "word": "جامعة",
   "meaning": "university, academy",
   "pos": "noun",
@@ -4830,7 +4820,7 @@
   "band": "A2"
  },
  {
-  "rank": 484,
+  "rank": 483,
   "word": "فوق",
   "meaning": "above, on top of",
   "pos": "prep",
@@ -4840,7 +4830,7 @@
   "band": "A2"
  },
  {
-  "rank": 485,
+  "rank": 484,
   "word": "تصور",
   "meaning": "imagination",
   "pos": "noun",
@@ -4850,7 +4840,7 @@
   "band": "A2"
  },
  {
-  "rank": 486,
+  "rank": 485,
   "word": "ضعف",
   "meaning": "weakness",
   "pos": "noun",
@@ -4860,7 +4850,7 @@
   "band": "A2"
  },
  {
-  "rank": 487,
+  "rank": 486,
   "word": "صحيفة",
   "meaning": "newspaper",
   "pos": "noun",
@@ -4870,7 +4860,7 @@
   "band": "A2"
  },
  {
-  "rank": 488,
+  "rank": 487,
   "word": "سوق",
   "meaning": "driving (of a car)",
   "pos": "noun",
@@ -4880,7 +4870,7 @@
   "band": "A2"
  },
  {
-  "rank": 489,
+  "rank": 488,
   "word": "رحل",
   "meaning": "camel saddle",
   "pos": "noun",
@@ -4890,7 +4880,7 @@
   "band": "A2"
  },
  {
-  "rank": 490,
+  "rank": 489,
   "word": "تناول",
   "meaning": "comprehension, grasp",
   "pos": "noun",
@@ -4900,7 +4890,7 @@
   "band": "A2"
  },
  {
-  "rank": 491,
+  "rank": 490,
   "word": "كشف",
   "meaning": "to remove, to uncover, to reveal",
   "pos": "noun",
@@ -4910,7 +4900,7 @@
   "band": "A2"
  },
  {
-  "rank": 492,
+  "rank": 491,
   "word": "أما",
   "meaning": "to meow (esp. of she-cat)",
   "pos": "verb",
@@ -4920,7 +4910,7 @@
   "band": "A2"
  },
  {
-  "rank": 493,
+  "rank": 492,
   "word": "وقد",
   "meaning": "to ignite, to burn",
   "pos": "verb",
@@ -4930,7 +4920,7 @@
   "band": "A2"
  },
  {
-  "rank": 494,
+  "rank": 493,
   "word": "استخدام",
   "meaning": "use, employment",
   "pos": "noun",
@@ -4940,7 +4930,7 @@
   "band": "A2"
  },
  {
-  "rank": 495,
+  "rank": 494,
   "word": "طرد",
   "meaning": "driving away, pushing away, repelling",
   "pos": "noun",
@@ -4950,7 +4940,7 @@
   "band": "A2"
  },
  {
-  "rank": 496,
+  "rank": 495,
   "word": "عزل",
   "meaning": "removal, dissociation, detachment, setting aside, isolation, cutting off, segregation, separation, (medicine) quarantine",
   "pos": "noun",
@@ -4960,7 +4950,7 @@
   "band": "A2"
  },
  {
-  "rank": 497,
+  "rank": 496,
   "word": "قضى",
   "meaning": "to decide, decide upon, resolve, preordain, order, prescribe",
   "pos": "verb",
@@ -4970,7 +4960,7 @@
   "band": "A2"
  },
  {
-  "rank": 498,
+  "rank": 497,
   "word": "بما",
   "meaning": "with what, with which",
   "pos": "conj",
@@ -4980,7 +4970,7 @@
   "band": "A2"
  },
  {
-  "rank": 499,
+  "rank": 498,
   "word": "الآن",
   "meaning": "now",
   "pos": "noun",
@@ -4990,9 +4980,9 @@
   "band": "A2"
  },
  {
-  "rank": 500,
+  "rank": 499,
   "word": "كذلك",
-  "meaning": "Used other than figuratively or idiomatically: see كَـ (ka-), ذَٰلِكَ (ḏālika)",
+  "meaning": "too, also",
   "pos": "adv",
   "ipa": "",
   "zipf": 5.47,
@@ -5000,7 +4990,7 @@
   "band": "A2"
  },
  {
-  "rank": 501,
+  "rank": 500,
   "word": "لقاء",
   "meaning": "meeting, encounter",
   "pos": "noun",
@@ -5010,7 +5000,7 @@
   "band": "A2"
  },
  {
-  "rank": 502,
+  "rank": 501,
   "word": "تسليم",
   "meaning": "salutation",
   "pos": "noun",
@@ -5020,7 +5010,7 @@
   "band": "A2"
  },
  {
-  "rank": 503,
+  "rank": 502,
   "word": "قوم",
   "meaning": "people, nation, tribe, folk",
   "pos": "noun",
@@ -5030,7 +5020,7 @@
   "band": "A2"
  },
  {
-  "rank": 504,
+  "rank": 503,
   "word": "بسبب",
   "meaning": "because of",
   "pos": "prep",
@@ -5040,7 +5030,7 @@
   "band": "A2"
  },
  {
-  "rank": 505,
+  "rank": 504,
   "word": "أشهر",
   "meaning": "to make known, to proclaim, to announce",
   "pos": "noun",
@@ -5050,7 +5040,7 @@
   "band": "A2"
  },
  {
-  "rank": 506,
+  "rank": 505,
   "word": "مثير",
   "meaning": "stimulant",
   "pos": "noun",
@@ -5060,7 +5050,7 @@
   "band": "A2"
  },
  {
-  "rank": 507,
+  "rank": 506,
   "word": "علق",
   "meaning": "anything suspended or hung",
   "pos": "noun",
@@ -5070,7 +5060,7 @@
   "band": "A2"
  },
  {
-  "rank": 508,
+  "rank": 507,
   "word": "مخرج",
   "meaning": "exit, place of issue",
   "pos": "noun",
@@ -5080,7 +5070,7 @@
   "band": "A2"
  },
  {
-  "rank": 509,
+  "rank": 508,
   "word": "مدينة",
   "meaning": "town, city",
   "pos": "noun",
@@ -5090,7 +5080,7 @@
   "band": "A2"
  },
  {
-  "rank": 510,
+  "rank": 509,
   "word": "تعرف",
   "meaning": "to become acquainted, with, to meet",
   "pos": "noun",
@@ -5100,7 +5090,7 @@
   "band": "A2"
  },
  {
-  "rank": 511,
+  "rank": 510,
   "word": "مع أن",
   "meaning": "although",
   "pos": "conj",
@@ -5110,7 +5100,7 @@
   "band": "A2"
  },
  {
-  "rank": 512,
+  "rank": 511,
   "word": "تعالى",
   "meaning": "to rise, ascend",
   "pos": "verb",
@@ -5120,7 +5110,7 @@
   "band": "A2"
  },
  {
-  "rank": 513,
+  "rank": 512,
   "word": "لعبة",
   "meaning": "toy, plaything",
   "pos": "noun",
@@ -5130,7 +5120,7 @@
   "band": "A2"
  },
  {
-  "rank": 514,
+  "rank": 513,
   "word": "بشر",
   "meaning": "human",
   "pos": "noun",
@@ -5140,7 +5130,7 @@
   "band": "A2"
  },
  {
-  "rank": 515,
+  "rank": 514,
   "word": "بطل",
   "meaning": "hero",
   "pos": "noun",
@@ -5150,7 +5140,7 @@
   "band": "A2"
  },
  {
-  "rank": 516,
+  "rank": 515,
   "word": "جعل",
   "meaning": "to make: to create",
   "pos": "noun",
@@ -5160,7 +5150,7 @@
   "band": "A2"
  },
  {
-  "rank": 517,
+  "rank": 516,
   "word": "جو",
   "meaning": "air (the apparently open space above the ground)",
   "pos": "noun",
@@ -5170,7 +5160,7 @@
   "band": "A2"
  },
  {
-  "rank": 518,
+  "rank": 517,
   "word": "حاجة",
   "meaning": "need, necessity (act of needing something)",
   "pos": "noun",
@@ -5180,7 +5170,7 @@
   "band": "A2"
  },
  {
-  "rank": 519,
+  "rank": 518,
   "word": "اتصل",
   "meaning": "to be in contact with; to be connected with, to be associated with",
   "pos": "verb",
@@ -5190,7 +5180,7 @@
   "band": "A2"
  },
  {
-  "rank": 520,
+  "rank": 519,
   "word": "برنامج",
   "meaning": "agenda",
   "pos": "noun",
@@ -5200,7 +5190,7 @@
   "band": "A2"
  },
  {
-  "rank": 521,
+  "rank": 520,
   "word": "صناعة",
   "meaning": "art, skill",
   "pos": "noun",
@@ -5210,7 +5200,7 @@
   "band": "A2"
  },
  {
-  "rank": 522,
+  "rank": 521,
   "word": "سمع",
   "meaning": "hearing, sense of hearing",
   "pos": "noun",
@@ -5220,7 +5210,7 @@
   "band": "A2"
  },
  {
-  "rank": 523,
+  "rank": 522,
   "word": "نسخ",
   "meaning": "abolition, abolishment, abrogation, cancellation, invalidation",
   "pos": "noun",
@@ -5230,7 +5220,7 @@
   "band": "A2"
  },
  {
-  "rank": 524,
+  "rank": 523,
   "word": "فشل",
   "meaning": "failure",
   "pos": "noun",
@@ -5240,7 +5230,7 @@
   "band": "A2"
  },
  {
-  "rank": 525,
+  "rank": 524,
   "word": "قطعة",
   "meaning": "piece, fragment, chunk",
   "pos": "noun",
@@ -5250,7 +5240,7 @@
   "band": "A2"
  },
  {
-  "rank": 526,
+  "rank": 525,
   "word": "وجود",
   "meaning": "existence",
   "pos": "noun",
@@ -5260,7 +5250,7 @@
   "band": "A2"
  },
  {
-  "rank": 527,
+  "rank": 526,
   "word": "زال",
   "meaning": "to go away, withdraw",
   "pos": "verb",
@@ -5270,7 +5260,7 @@
   "band": "A2"
  },
  {
-  "rank": 528,
+  "rank": 527,
   "word": "شقة",
   "meaning": "half, moiety",
   "pos": "noun",
@@ -5280,7 +5270,7 @@
   "band": "A2"
  },
  {
-  "rank": 529,
+  "rank": 528,
   "word": "صدق",
   "meaning": "truthfulness, sincerity, honesty",
   "pos": "noun",
@@ -5290,7 +5280,7 @@
   "band": "A2"
  },
  {
-  "rank": 530,
+  "rank": 529,
   "word": "معلم",
   "meaning": "landmark, milestone, milepost",
   "pos": "noun",
@@ -5300,7 +5290,7 @@
   "band": "A2"
  },
  {
-  "rank": 531,
+  "rank": 530,
   "word": "مما",
   "meaning": "from what",
   "pos": "pron",
@@ -5310,7 +5300,7 @@
   "band": "A2"
  },
  {
-  "rank": 532,
+  "rank": 531,
   "word": "سالم",
   "meaning": "to make peace with, to treat peaceably, to make up with",
   "pos": "verb",
@@ -5320,7 +5310,7 @@
   "band": "A2"
  },
  {
-  "rank": 533,
+  "rank": 532,
   "word": "سلطان",
   "meaning": "power, strength",
   "pos": "noun",
@@ -5330,9 +5320,9 @@
   "band": "A2"
  },
  {
-  "rank": 534,
+  "rank": 533,
   "word": "مارس",
-  "meaning": "a double-point win in backgammon, achieved by clearing all pieces before the opponent has begun clearing theirs",
+  "meaning": "March (third month of the Gregorian calendar)",
   "pos": "noun",
   "ipa": "/maːrs/",
   "zipf": 5.41,
@@ -5340,7 +5330,7 @@
   "band": "A2"
  },
  {
-  "rank": 535,
+  "rank": 534,
   "word": "شديد",
   "meaning": "violent, strong, intense, severe, hard, difficult, acute, extreme",
   "pos": "adj",
@@ -5350,7 +5340,7 @@
   "band": "A2"
  },
  {
-  "rank": 536,
+  "rank": 535,
   "word": "تردد",
   "meaning": "reluctance, indecision, hesitation, wavering",
   "pos": "noun",
@@ -5360,7 +5350,7 @@
   "band": "A2"
  },
  {
-  "rank": 537,
+  "rank": 536,
   "word": "جل",
   "meaning": "the bulk (of), the majority (of); the lion's share",
   "pos": "noun",
@@ -5370,7 +5360,7 @@
   "band": "A2"
  },
  {
-  "rank": 538,
+  "rank": 537,
   "word": "شرط",
   "meaning": "condition, reservation, proviso, stipulation, article of a compact, contract, requirement, prescription, obligation",
   "pos": "noun",
@@ -5380,7 +5370,7 @@
   "band": "A2"
  },
  {
-  "rank": 539,
+  "rank": 538,
   "word": "عروض",
   "meaning": "a path or road lying to the side or obliquely or on a declivity",
   "pos": "noun",
@@ -5390,7 +5380,7 @@
   "band": "A2"
  },
  {
-  "rank": 540,
+  "rank": 539,
   "word": "رابط",
   "meaning": "link, linkage",
   "pos": "noun",
@@ -5400,7 +5390,7 @@
   "band": "A2"
  },
  {
-  "rank": 541,
+  "rank": 540,
   "word": "ساعة",
   "meaning": "hour (unit of time)",
   "pos": "noun",
@@ -5410,7 +5400,7 @@
   "band": "A2"
  },
  {
-  "rank": 542,
+  "rank": 541,
   "word": "حرم",
   "meaning": "sacred object, sacred possession",
   "pos": "noun",
@@ -5420,7 +5410,7 @@
   "band": "A2"
  },
  {
-  "rank": 543,
+  "rank": 542,
   "word": "سحر",
   "meaning": "charming, enchantment, fascination, spellbinding",
   "pos": "noun",
@@ -5430,7 +5420,7 @@
   "band": "A2"
  },
  {
-  "rank": 544,
+  "rank": 543,
   "word": "صفر",
   "meaning": "brass",
   "pos": "noun",
@@ -5440,7 +5430,7 @@
   "band": "A2"
  },
  {
-  "rank": 545,
+  "rank": 544,
   "word": "ضم",
   "meaning": "gathering, hoarding, joining",
   "pos": "noun",
@@ -5450,7 +5440,7 @@
   "band": "A2"
  },
  {
-  "rank": 546,
+  "rank": 545,
   "word": "فقد",
   "meaning": "to lose, to misplace, to miss",
   "pos": "noun",
@@ -5460,7 +5450,7 @@
   "band": "A2"
  },
  {
-  "rank": 547,
+  "rank": 546,
   "word": "مكتب",
   "meaning": "maktab, elementary school",
   "pos": "noun",
@@ -5470,7 +5460,7 @@
   "band": "A2"
  },
  {
-  "rank": 548,
+  "rank": 547,
   "word": "آدم",
   "meaning": "human",
   "pos": "noun",
@@ -5480,7 +5470,7 @@
   "band": "A2"
  },
  {
-  "rank": 549,
+  "rank": 548,
   "word": "أولى",
   "meaning": "to entrust to",
   "pos": "noun",
@@ -5490,7 +5480,7 @@
   "band": "A2"
  },
  {
-  "rank": 550,
+  "rank": 549,
   "word": "نصر",
   "meaning": "victory, triumph",
   "pos": "noun",
@@ -5500,7 +5490,7 @@
   "band": "A2"
  },
  {
-  "rank": 551,
+  "rank": 550,
   "word": "ما هذا",
   "meaning": "What is this?",
   "pos": "phrase",
@@ -5510,7 +5500,7 @@
   "band": "A2"
  },
  {
-  "rank": 552,
+  "rank": 551,
   "word": "فيما",
   "meaning": "while",
   "pos": "conj",
@@ -5520,7 +5510,7 @@
   "band": "A2"
  },
  {
-  "rank": 553,
+  "rank": 552,
   "word": "دخول",
   "meaning": "entering",
   "pos": "noun",
@@ -5530,7 +5520,7 @@
   "band": "A2"
  },
  {
-  "rank": 554,
+  "rank": 553,
   "word": "رغبة",
   "meaning": "ardent desire, longing for, wish",
   "pos": "noun",
@@ -5540,7 +5530,7 @@
   "band": "A2"
  },
  {
-  "rank": 555,
+  "rank": 554,
   "word": "ضبط",
   "meaning": "verification",
   "pos": "noun",
@@ -5550,7 +5540,7 @@
   "band": "A2"
  },
  {
-  "rank": 556,
+  "rank": 555,
   "word": "كذب",
   "meaning": "lying",
   "pos": "noun",
@@ -5560,7 +5550,7 @@
   "band": "A2"
  },
  {
-  "rank": 557,
+  "rank": 556,
   "word": "نوع",
   "meaning": "type, variety",
   "pos": "noun",
@@ -5570,7 +5560,7 @@
   "band": "A2"
  },
  {
-  "rank": 558,
+  "rank": 557,
   "word": "وزير",
   "meaning": "minister, cabinet minister",
   "pos": "noun",
@@ -5580,7 +5570,7 @@
   "band": "A2"
  },
  {
-  "rank": 559,
+  "rank": 558,
   "word": "تربية",
   "meaning": "education",
   "pos": "noun",
@@ -5590,7 +5580,7 @@
   "band": "A2"
  },
  {
-  "rank": 560,
+  "rank": 559,
   "word": "سد",
   "meaning": "to close up, to seal off",
   "pos": "noun",
@@ -5600,7 +5590,7 @@
   "band": "A2"
  },
  {
-  "rank": 561,
+  "rank": 560,
   "word": "نصب",
   "meaning": "subjunctive mood",
   "pos": "noun",
@@ -5610,7 +5600,7 @@
   "band": "A2"
  },
  {
-  "rank": 562,
+  "rank": 561,
   "word": "حرب",
   "meaning": "war",
   "pos": "noun",
@@ -5620,7 +5610,7 @@
   "band": "A2"
  },
  {
-  "rank": 563,
+  "rank": 562,
   "word": "لدى",
   "meaning": "at, near",
   "pos": "prep",
@@ -5630,7 +5620,7 @@
   "band": "A2"
  },
  {
-  "rank": 564,
+  "rank": 563,
   "word": "أكل",
   "meaning": "food",
   "pos": "noun",
@@ -5640,7 +5630,7 @@
   "band": "A2"
  },
  {
-  "rank": 565,
+  "rank": 564,
   "word": "تعلق",
   "meaning": "to be suspended, to hang (بِ (bi) from)",
   "pos": "noun",
@@ -5650,7 +5640,7 @@
   "band": "A2"
  },
  {
-  "rank": 566,
+  "rank": 565,
   "word": "حذف",
   "meaning": "shortening, curtailing, cutting off, trimming",
   "pos": "noun",
@@ -5660,7 +5650,7 @@
   "band": "A2"
  },
  {
-  "rank": 567,
+  "rank": 566,
   "word": "خسر",
   "meaning": "to lose",
   "pos": "noun",
@@ -5670,7 +5660,7 @@
   "band": "A2"
  },
  {
-  "rank": 568,
+  "rank": 567,
   "word": "مدخل",
   "meaning": "entrance (place of entrance), ingress, access",
   "pos": "noun",
@@ -5680,7 +5670,7 @@
   "band": "A2"
  },
  {
-  "rank": 569,
+  "rank": 568,
   "word": "كي",
   "meaning": "in order that (followed by the subjunctive)",
   "pos": "noun",
@@ -5690,7 +5680,7 @@
   "band": "A2"
  },
  {
-  "rank": 570,
+  "rank": 569,
   "word": "خير",
   "meaning": "goodness, good",
   "pos": "noun",
@@ -5700,7 +5690,7 @@
   "band": "A2"
  },
  {
-  "rank": 571,
+  "rank": 570,
   "word": "بان",
   "meaning": "ben tree, horseradish tree (the Moringa oleifera of Arabia and India, which produces oil of ben)",
   "pos": "noun",
@@ -5710,7 +5700,7 @@
   "band": "A2"
  },
  {
-  "rank": 572,
+  "rank": 571,
   "word": "توقف",
   "meaning": "stopping (intransitive)",
   "pos": "noun",
@@ -5720,7 +5710,7 @@
   "band": "A2"
  },
  {
-  "rank": 573,
+  "rank": 572,
   "word": "سكر",
   "meaning": "intoxicant",
   "pos": "noun",
@@ -5730,7 +5720,7 @@
   "band": "A2"
  },
  {
-  "rank": 574,
+  "rank": 573,
   "word": "عال",
   "meaning": "The upper part of something",
   "pos": "noun",
@@ -5740,7 +5730,7 @@
   "band": "A2"
  },
  {
-  "rank": 575,
+  "rank": 574,
   "word": "لجنة",
   "meaning": "committee, commission, council",
   "pos": "noun",
@@ -5750,7 +5740,7 @@
   "band": "A2"
  },
  {
-  "rank": 576,
+  "rank": 575,
   "word": "هيئة",
   "meaning": "form, shape",
   "pos": "noun",
@@ -5760,7 +5750,7 @@
   "band": "A2"
  },
  {
-  "rank": 577,
+  "rank": 576,
   "word": "مكان",
   "meaning": "place, location, position",
   "pos": "noun",
@@ -5770,7 +5760,7 @@
   "band": "A2"
  },
  {
-  "rank": 578,
+  "rank": 577,
   "word": "تعرض",
   "meaning": "exposure",
   "pos": "noun",
@@ -5780,7 +5770,7 @@
   "band": "A2"
  },
  {
-  "rank": 579,
+  "rank": 578,
   "word": "كيفية",
   "meaning": "howness",
   "pos": "noun",
@@ -5790,7 +5780,7 @@
   "band": "A2"
  },
  {
-  "rank": 580,
+  "rank": 579,
   "word": "لغة",
   "meaning": "language",
   "pos": "noun",
@@ -5800,7 +5790,7 @@
   "band": "A2"
  },
  {
-  "rank": 581,
+  "rank": 580,
   "word": "حظر",
   "meaning": "interdiction, banning, embargo, curfew",
   "pos": "noun",
@@ -5810,7 +5800,7 @@
   "band": "A2"
  },
  {
-  "rank": 582,
+  "rank": 581,
   "word": "سلام",
   "meaning": "peace",
   "pos": "noun",
@@ -5820,7 +5810,7 @@
   "band": "A2"
  },
  {
-  "rank": 583,
+  "rank": 582,
   "word": "سيد",
   "meaning": "master, lord, prince",
   "pos": "noun",
@@ -5830,7 +5820,7 @@
   "band": "A2"
  },
  {
-  "rank": 584,
+  "rank": 583,
   "word": "اعترف",
   "meaning": "to confess, own, avow, to admit",
   "pos": "verb",
@@ -5840,7 +5830,7 @@
   "band": "A2"
  },
  {
-  "rank": 585,
+  "rank": 584,
   "word": "سام",
   "meaning": "death",
   "pos": "noun",
@@ -5850,7 +5840,7 @@
   "band": "A2"
  },
  {
-  "rank": 586,
+  "rank": 585,
   "word": "أعلى",
   "meaning": "highest part, top",
   "pos": "noun",
@@ -5860,7 +5850,7 @@
   "band": "A2"
  },
  {
-  "rank": 587,
+  "rank": 586,
   "word": "بكر",
   "meaning": "firstborn child",
   "pos": "noun",
@@ -5870,7 +5860,7 @@
   "band": "A2"
  },
  {
-  "rank": 588,
+  "rank": 587,
   "word": "حافظ",
   "meaning": "guard, guardian, keeper, custodian, caretaker",
   "pos": "noun",
@@ -5880,7 +5870,7 @@
   "band": "A2"
  },
  {
-  "rank": 589,
+  "rank": 588,
   "word": "بد",
   "meaning": "escape, means of avoiding something",
   "pos": "noun",
@@ -5890,7 +5880,7 @@
   "band": "A2"
  },
  {
-  "rank": 590,
+  "rank": 589,
   "word": "جمال",
   "meaning": "beauty",
   "pos": "noun",
@@ -5900,7 +5890,7 @@
   "band": "A2"
  },
  {
-  "rank": 591,
+  "rank": 590,
   "word": "شرطة",
   "meaning": "police",
   "pos": "noun",
@@ -5910,7 +5900,7 @@
   "band": "A2"
  },
  {
-  "rank": 592,
+  "rank": 591,
   "word": "أنس",
   "meaning": "to become used to, to be comfortable with",
   "pos": "verb",
@@ -5920,7 +5910,7 @@
   "band": "A2"
  },
  {
-  "rank": 593,
+  "rank": 592,
   "word": "مباشرة",
   "meaning": "directly",
   "pos": "noun",
@@ -5930,7 +5920,7 @@
   "band": "A2"
  },
  {
-  "rank": 594,
+  "rank": 593,
   "word": "خطأ",
   "meaning": "mistake, error",
   "pos": "noun",
@@ -5940,7 +5930,7 @@
   "band": "A2"
  },
  {
-  "rank": 595,
+  "rank": 594,
   "word": "سي",
   "meaning": "seventh note of a major scale; si",
   "pos": "noun",
@@ -5950,7 +5940,7 @@
   "band": "A2"
  },
  {
-  "rank": 596,
+  "rank": 595,
   "word": "سوف",
   "meaning": "to postpone, delay, procrastinate, to put off a person or thing",
   "pos": "verb",
@@ -5960,7 +5950,7 @@
   "band": "A2"
  },
  {
-  "rank": 597,
+  "rank": 596,
   "word": "بيع",
   "meaning": "sale, exchange",
   "pos": "noun",
@@ -5970,7 +5960,7 @@
   "band": "A2"
  },
  {
-  "rank": 598,
+  "rank": 597,
   "word": "نطاق",
   "meaning": "range, extent, scope",
   "pos": "noun",
@@ -5980,7 +5970,7 @@
   "band": "A2"
  },
  {
-  "rank": 599,
+  "rank": 598,
   "word": "فلا",
   "meaning": "waterless desert",
   "pos": "noun",
@@ -5990,9 +5980,9 @@
   "band": "A2"
  },
  {
-  "rank": 600,
+  "rank": 599,
   "word": "طبيعي",
-  "meaning": "physicist",
+  "meaning": "natural",
   "pos": "noun",
   "ipa": "",
   "zipf": 4.82,
@@ -6000,7 +5990,7 @@
   "band": "A2"
  },
  {
-  "rank": 601,
+  "rank": 600,
   "word": "معين",
   "meaning": "well, spring, water source",
   "pos": "noun",
@@ -6010,7 +6000,7 @@
   "band": "A2"
  },
  {
-  "rank": 602,
+  "rank": 601,
   "word": "لأن",
   "meaning": "because, on the grounds that, for",
   "pos": "conj",
@@ -6020,7 +6010,7 @@
   "band": "A2"
  },
  {
-  "rank": 603,
+  "rank": 602,
   "word": "الجزيرة",
   "meaning": "Al Jazirah (a settlement in Sharjah, United Arab Emirates)",
   "pos": "noun",
@@ -6030,7 +6020,7 @@
   "band": "A2"
  },
  {
-  "rank": 604,
+  "rank": 603,
   "word": "بني",
   "meaning": "brown, coffee-colored",
   "pos": "noun",
@@ -6040,7 +6030,7 @@
   "band": "A2"
  },
  {
-  "rank": 605,
+  "rank": 604,
   "word": "فني",
   "meaning": "technician",
   "pos": "noun",
@@ -6050,7 +6040,7 @@
   "band": "A2"
  },
  {
-  "rank": 606,
+  "rank": 605,
   "word": "رسول",
   "meaning": "messenger; emissary; envoy; delegate",
   "pos": "noun",
@@ -6060,7 +6050,7 @@
   "band": "A2"
  },
  {
-  "rank": 607,
+  "rank": 606,
   "word": "إشارة",
   "meaning": "sign, signal",
   "pos": "noun",
@@ -6070,7 +6060,7 @@
   "band": "A2"
  },
  {
-  "rank": 608,
+  "rank": 607,
   "word": "قرر",
   "meaning": "to fix, to settle",
   "pos": "verb",
@@ -6080,7 +6070,7 @@
   "band": "A2"
  },
  {
-  "rank": 609,
+  "rank": 608,
   "word": "يعني",
   "meaning": "in other words, actually, namely, to wit, kind of, somewhat, id est, that is, meaning, you know",
   "pos": "intj",
@@ -6090,7 +6080,7 @@
   "band": "A2"
  },
  {
-  "rank": 610,
+  "rank": 609,
   "word": "شخصية",
   "meaning": "personality",
   "pos": "noun",
@@ -6100,7 +6090,7 @@
   "band": "A2"
  },
  {
-  "rank": 611,
+  "rank": 610,
   "word": "محسن",
   "meaning": "embellisher",
   "pos": "noun",
@@ -6110,7 +6100,7 @@
   "band": "A2"
  },
  {
-  "rank": 612,
+  "rank": 611,
   "word": "محيط",
   "meaning": "ocean",
   "pos": "noun",
@@ -6120,7 +6110,7 @@
   "band": "A2"
  },
  {
-  "rank": 613,
+  "rank": 612,
   "word": "آل",
   "meaning": "family",
   "pos": "noun",
@@ -6130,7 +6120,7 @@
   "band": "A2"
  },
  {
-  "rank": 614,
+  "rank": 613,
   "word": "صحة",
   "meaning": "health",
   "pos": "noun",
@@ -6140,7 +6130,7 @@
   "band": "A2"
  },
  {
-  "rank": 615,
+  "rank": 614,
   "word": "نظم",
   "meaning": "verse (“poetic form with regular meter and a fixed rhyme scheme”)",
   "pos": "noun",
@@ -6150,7 +6140,7 @@
   "band": "A2"
  },
  {
-  "rank": 616,
+  "rank": 615,
   "word": "من حيث",
   "meaning": "from where, whence, wherefrom",
   "pos": "conj",
@@ -6160,7 +6150,7 @@
   "band": "A2"
  },
  {
-  "rank": 617,
+  "rank": 616,
   "word": "لن",
   "meaning": "not (future)",
   "pos": "adv",
@@ -6170,7 +6160,7 @@
   "band": "A2"
  },
  {
-  "rank": 618,
+  "rank": 617,
   "word": "سبب",
   "meaning": "cable, rope",
   "pos": "noun",
@@ -6180,7 +6170,7 @@
   "band": "A2"
  },
  {
-  "rank": 619,
+  "rank": 618,
   "word": "شيخ",
   "meaning": "old man",
   "pos": "noun",
@@ -6190,7 +6180,7 @@
   "band": "A2"
  },
  {
-  "rank": 620,
+  "rank": 619,
   "word": "صرف",
   "meaning": "diverting, averting, turning away",
   "pos": "noun",
@@ -6200,7 +6190,7 @@
   "band": "A2"
  },
  {
-  "rank": 621,
+  "rank": 620,
   "word": "طعم",
   "meaning": "morsel of food, chunk",
   "pos": "noun",
@@ -6210,7 +6200,7 @@
   "band": "A2"
  },
  {
-  "rank": 622,
+  "rank": 621,
   "word": "قصد",
   "meaning": "intention, objective, purpose, resolution, end, aim",
   "pos": "noun",
@@ -6220,7 +6210,7 @@
   "band": "A2"
  },
  {
-  "rank": 623,
+  "rank": 622,
   "word": "هرب",
   "meaning": "flight, escape, getaway",
   "pos": "noun",
@@ -6230,7 +6220,7 @@
   "band": "A2"
  },
  {
-  "rank": 624,
+  "rank": 623,
   "word": "عدن",
   "meaning": "Eden",
   "pos": "noun",
@@ -6240,7 +6230,7 @@
   "band": "A2"
  },
  {
-  "rank": 625,
+  "rank": 624,
   "word": "ما إن",
   "meaning": "whether if",
   "pos": "conj",
@@ -6250,7 +6240,7 @@
   "band": "A2"
  },
  {
-  "rank": 626,
+  "rank": 625,
   "word": "أبدا",
   "meaning": "forever, always",
   "pos": "adv",
@@ -6260,7 +6250,7 @@
   "band": "A2"
  },
  {
-  "rank": 627,
+  "rank": 626,
   "word": "بالغ",
   "meaning": "one who has reached puberty; pubescent, mature, of age, in one’s majority, adult",
   "pos": "noun",
@@ -6270,7 +6260,7 @@
   "band": "A2"
  },
  {
-  "rank": 628,
+  "rank": 627,
   "word": "نقد",
   "meaning": "cash, ready money",
   "pos": "noun",
@@ -6280,7 +6270,7 @@
   "band": "A2"
  },
  {
-  "rank": 629,
+  "rank": 628,
   "word": "حضور",
   "meaning": "presence",
   "pos": "noun",
@@ -6290,7 +6280,7 @@
   "band": "A2"
  },
  {
-  "rank": 630,
+  "rank": 629,
   "word": "بواسطة",
   "meaning": "by means of, using, with, through (indicates an instrument or tool)",
   "pos": "prep",
@@ -6300,7 +6290,7 @@
   "band": "A2"
  },
  {
-  "rank": 631,
+  "rank": 630,
   "word": "رفض",
   "meaning": "refusal",
   "pos": "noun",
@@ -6310,7 +6300,7 @@
   "band": "A2"
  },
  {
-  "rank": 632,
+  "rank": 631,
   "word": "مساء",
   "meaning": "evening",
   "pos": "noun",
@@ -6320,7 +6310,7 @@
   "band": "A2"
  },
  {
-  "rank": 633,
+  "rank": 632,
   "word": "حجز",
   "meaning": "curbing, restraint",
   "pos": "noun",
@@ -6330,7 +6320,7 @@
   "band": "A2"
  },
  {
-  "rank": 634,
+  "rank": 633,
   "word": "خفض",
   "meaning": "quiet, comfortable life",
   "pos": "noun",
@@ -6340,7 +6330,7 @@
   "band": "A2"
  },
  {
-  "rank": 635,
+  "rank": 634,
   "word": "صفة",
   "meaning": "bench, stone bench",
   "pos": "noun",
@@ -6350,7 +6340,7 @@
   "band": "A2"
  },
  {
-  "rank": 636,
+  "rank": 635,
   "word": "قلم",
   "meaning": "pen, reed pen",
   "pos": "noun",
@@ -6360,7 +6350,7 @@
   "band": "A2"
  },
  {
-  "rank": 637,
+  "rank": 636,
   "word": "عني",
   "meaning": "to engage with, to be occupied with",
   "pos": "noun",
@@ -6370,7 +6360,7 @@
   "band": "A2"
  },
  {
-  "rank": 638,
+  "rank": 637,
   "word": "ترك",
   "meaning": "leaving, abandoning",
   "pos": "noun",
@@ -6380,7 +6370,7 @@
   "band": "A2"
  },
  {
-  "rank": 639,
+  "rank": 638,
   "word": "رضي",
   "meaning": "to be pleased",
   "pos": "verb",
@@ -6390,7 +6380,7 @@
   "band": "A2"
  },
  {
-  "rank": 640,
+  "rank": 639,
   "word": "قدرة",
   "meaning": "power, capacity, faculty",
   "pos": "noun",
@@ -6400,7 +6390,7 @@
   "band": "A2"
  },
  {
-  "rank": 641,
+  "rank": 640,
   "word": "زرع",
   "meaning": "seed",
   "pos": "noun",
@@ -6410,7 +6400,7 @@
   "band": "A2"
  },
  {
-  "rank": 642,
+  "rank": 641,
   "word": "كبيرة",
   "meaning": "great sin",
   "pos": "noun",
@@ -6420,7 +6410,7 @@
   "band": "A2"
  },
  {
-  "rank": 643,
+  "rank": 642,
   "word": "دقيقة",
   "meaning": "minute (unit of time)",
   "pos": "noun",
@@ -6430,7 +6420,7 @@
   "band": "A2"
  },
  {
-  "rank": 644,
+  "rank": 643,
   "word": "مبلغ",
   "meaning": "sum, amount",
   "pos": "noun",
@@ -6440,7 +6430,7 @@
   "band": "A2"
  },
  {
-  "rank": 645,
+  "rank": 644,
   "word": "ترجمة",
   "meaning": "translation",
   "pos": "noun",
@@ -6450,7 +6440,7 @@
   "band": "A2"
  },
  {
-  "rank": 646,
+  "rank": 645,
   "word": "مقتل",
   "meaning": "noun of place of قَتَلَ (qatala): place of killing",
   "pos": "noun",
@@ -6460,7 +6450,7 @@
   "band": "A2"
  },
  {
-  "rank": 647,
+  "rank": 646,
   "word": "سكن",
   "meaning": "time for rest, means for rest",
   "pos": "noun",
@@ -6470,7 +6460,7 @@
   "band": "A2"
  },
  {
-  "rank": 648,
+  "rank": 647,
   "word": "كرم",
   "meaning": "nobleness, kindness",
   "pos": "noun",
@@ -6480,7 +6470,7 @@
   "band": "A2"
  },
  {
-  "rank": 649,
+  "rank": 648,
   "word": "شركة",
   "meaning": "company (a business)",
   "pos": "noun",
@@ -6490,7 +6480,7 @@
   "band": "A2"
  },
  {
-  "rank": 650,
+  "rank": 649,
   "word": "فترة",
   "meaning": "interval, a while, a period of time",
   "pos": "noun",
@@ -6500,7 +6490,7 @@
   "band": "A2"
  },
  {
-  "rank": 651,
+  "rank": 650,
   "word": "لان",
   "meaning": "to soften, to become soft",
   "pos": "verb",
@@ -6510,7 +6500,7 @@
   "band": "A2"
  },
  {
-  "rank": 652,
+  "rank": 651,
   "word": "اتخذ",
   "meaning": "to take",
   "pos": "verb",
@@ -6520,7 +6510,7 @@
   "band": "A2"
  },
  {
-  "rank": 653,
+  "rank": 652,
   "word": "كاتب",
   "meaning": "writer; author",
   "pos": "noun",
@@ -6530,7 +6520,7 @@
   "band": "A2"
  },
  {
-  "rank": 654,
+  "rank": 653,
   "word": "صلب",
   "meaning": "backbone, the bone extending from the base of the neck to the coccyx",
   "pos": "noun",
@@ -6540,7 +6530,7 @@
   "band": "A2"
  },
  {
-  "rank": 655,
+  "rank": 654,
   "word": "كف",
   "meaning": "palm of the hand, the inner surface of the hand from wrist to finger tips",
   "pos": "noun",
@@ -6550,7 +6540,7 @@
   "band": "A2"
  },
  {
-  "rank": 656,
+  "rank": 655,
   "word": "مسح",
   "meaning": "a survey",
   "pos": "noun",
@@ -6560,7 +6550,7 @@
   "band": "A2"
  },
  {
-  "rank": 657,
+  "rank": 656,
   "word": "بينما",
   "meaning": "while",
   "pos": "conj",
@@ -6570,7 +6560,7 @@
   "band": "A2"
  },
  {
-  "rank": 658,
+  "rank": 657,
   "word": "تاريخ",
   "meaning": "date, time",
   "pos": "noun",
@@ -6580,7 +6570,7 @@
   "band": "A2"
  },
  {
-  "rank": 659,
+  "rank": 658,
   "word": "تعمل",
   "meaning": "to be tired",
   "pos": "noun",
@@ -6590,7 +6580,7 @@
   "band": "A2"
  },
  {
-  "rank": 660,
+  "rank": 659,
   "word": "دان",
   "meaning": "to owe (money)",
   "pos": "verb",
@@ -6600,7 +6590,7 @@
   "band": "A2"
  },
  {
-  "rank": 661,
+  "rank": 660,
   "word": "غير أن",
   "meaning": "only",
   "pos": "conj",
@@ -6610,7 +6600,7 @@
   "band": "A2"
  },
  {
-  "rank": 662,
+  "rank": 661,
   "word": "أسر",
   "meaning": "to bind, to fetter",
   "pos": "noun",
@@ -6620,7 +6610,7 @@
   "band": "A2"
  },
  {
-  "rank": 663,
+  "rank": 662,
   "word": "عجز",
   "meaning": "sacrum",
   "pos": "noun",
@@ -6630,7 +6620,7 @@
   "band": "A2"
  },
  {
-  "rank": 664,
+  "rank": 663,
   "word": "فقر",
   "meaning": "poverty",
   "pos": "noun",
@@ -6640,7 +6630,7 @@
   "band": "A2"
  },
  {
-  "rank": 665,
+  "rank": 664,
   "word": "محافظة",
   "meaning": "preservation",
   "pos": "noun",
@@ -6650,7 +6640,7 @@
   "band": "A2"
  },
  {
-  "rank": 666,
+  "rank": 665,
   "word": "إذ",
   "meaning": "and then",
   "pos": "conj",
@@ -6660,7 +6650,7 @@
   "band": "A2"
  },
  {
-  "rank": 667,
+  "rank": 666,
   "word": "توفيق",
   "meaning": "guidance and grace of God",
   "pos": "noun",
@@ -6670,7 +6660,7 @@
   "band": "A2"
  },
  {
-  "rank": 668,
+  "rank": 667,
   "word": "أجر",
   "meaning": "wages, salary, pay, hire",
   "pos": "noun",
@@ -6680,7 +6670,7 @@
   "band": "A2"
  },
  {
-  "rank": 669,
+  "rank": 668,
   "word": "أقبل",
   "meaning": "to turn forward",
   "pos": "verb",
@@ -6690,7 +6680,7 @@
   "band": "A2"
  },
  {
-  "rank": 670,
+  "rank": 669,
   "word": "منظر",
   "meaning": "sight",
   "pos": "noun",
@@ -6700,7 +6690,7 @@
   "band": "A2"
  },
  {
-  "rank": 671,
+  "rank": 670,
   "word": "قرية",
   "meaning": "any populated area or the community thereof",
   "pos": "noun",
@@ -6710,7 +6700,7 @@
   "band": "A2"
  },
  {
-  "rank": 672,
+  "rank": 671,
   "word": "ولاية",
   "meaning": "province, governorate",
   "pos": "noun",
@@ -6720,7 +6710,7 @@
   "band": "A2"
  },
  {
-  "rank": 673,
+  "rank": 672,
   "word": "فضل",
   "meaning": "grace, favor (especially when seen as unmerited or unconditional); courtesy",
   "pos": "noun",
@@ -6730,7 +6720,7 @@
   "band": "A2"
  },
  {
-  "rank": 674,
+  "rank": 673,
   "word": "باسم",
   "meaning": "smiler: someone who smiles",
   "pos": "noun",
@@ -6740,7 +6730,7 @@
   "band": "A2"
  },
  {
-  "rank": 675,
+  "rank": 674,
   "word": "سوء",
   "meaning": "evil, badness",
   "pos": "noun",
@@ -6750,7 +6740,7 @@
   "band": "A2"
  },
  {
-  "rank": 676,
+  "rank": 675,
   "word": "رخصة",
   "meaning": "permission",
   "pos": "noun",
@@ -6760,7 +6750,7 @@
   "band": "A2"
  },
  {
-  "rank": 677,
+  "rank": 676,
   "word": "ضيق",
   "meaning": "strait, distress, poverty",
   "pos": "noun",
@@ -6770,7 +6760,7 @@
   "band": "A2"
  },
  {
-  "rank": 678,
+  "rank": 677,
   "word": "نسب",
   "meaning": "lineage, genealogy",
   "pos": "noun",
@@ -6780,7 +6770,7 @@
   "band": "A2"
  },
  {
-  "rank": 679,
+  "rank": 678,
   "word": "مقام",
   "meaning": "place, spot",
   "pos": "noun",
@@ -6790,7 +6780,7 @@
   "band": "A2"
  },
  {
-  "rank": 680,
+  "rank": 679,
   "word": "ربط",
   "meaning": "binding",
   "pos": "noun",
@@ -6800,7 +6790,7 @@
   "band": "A2"
  },
  {
-  "rank": 681,
+  "rank": 680,
   "word": "غضب",
   "meaning": "anger",
   "pos": "noun",
@@ -6810,7 +6800,7 @@
   "band": "A2"
  },
  {
-  "rank": 682,
+  "rank": 681,
   "word": "لين",
   "meaning": "soft",
   "pos": "noun",
@@ -6820,7 +6810,7 @@
   "band": "A2"
  },
  {
-  "rank": 683,
+  "rank": 682,
   "word": "مطر",
   "meaning": "rain",
   "pos": "noun",
@@ -6830,7 +6820,7 @@
   "band": "A2"
  },
  {
-  "rank": 684,
+  "rank": 683,
   "word": "دعم",
   "meaning": "support",
   "pos": "noun",
@@ -6840,7 +6830,7 @@
   "band": "A2"
  },
  {
-  "rank": 685,
+  "rank": 684,
   "word": "اعتمد",
   "meaning": "to lean, to support oneself",
   "pos": "verb",
@@ -6850,7 +6840,7 @@
   "band": "A2"
  },
  {
-  "rank": 686,
+  "rank": 685,
   "word": "رجع",
   "meaning": "to return, to come back",
   "pos": "noun",
@@ -6860,7 +6850,7 @@
   "band": "A2"
  },
  {
-  "rank": 687,
+  "rank": 686,
   "word": "عدل",
   "meaning": "justice, equity",
   "pos": "noun",
@@ -6870,7 +6860,7 @@
   "band": "A2"
  },
  {
-  "rank": 688,
+  "rank": 687,
   "word": "قابل",
   "meaning": "to stand exactly opposite, to be opposite, to be face to face",
   "pos": "verb",
@@ -6880,9 +6870,9 @@
   "band": "A2"
  },
  {
-  "rank": 689,
+  "rank": 688,
   "word": "بلا",
-  "meaning": "to test, to try",
+  "meaning": "without",
   "pos": "noun",
   "ipa": "",
   "zipf": 5.36,
@@ -6890,7 +6880,7 @@
   "band": "A2"
  },
  {
-  "rank": 690,
+  "rank": 689,
   "word": "جنوب",
   "meaning": "south",
   "pos": "noun",
@@ -6900,7 +6890,7 @@
   "band": "A2"
  },
  {
-  "rank": 691,
+  "rank": 690,
   "word": "لهم",
   "meaning": "greedy, covetous, voracious, gluttonous",
   "pos": "adj",
@@ -6910,7 +6900,7 @@
   "band": "A2"
  },
  {
-  "rank": 692,
+  "rank": 691,
   "word": "صوت",
   "meaning": "a sound (of a thing, an animal, and so on)",
   "pos": "noun",
@@ -6920,7 +6910,7 @@
   "band": "A2"
  },
  {
-  "rank": 693,
+  "rank": 692,
   "word": "أكد",
   "meaning": "to assure",
   "pos": "verb",
@@ -6930,7 +6920,7 @@
   "band": "A2"
  },
  {
-  "rank": 694,
+  "rank": 693,
   "word": "النار",
   "meaning": "Hell, the Fire",
   "pos": "noun",
@@ -6940,7 +6930,7 @@
   "band": "A2"
  },
  {
-  "rank": 695,
+  "rank": 694,
   "word": "تقول",
   "meaning": "to fabricate, to make up",
   "pos": "noun",
@@ -6950,7 +6940,7 @@
   "band": "A2"
  },
  {
-  "rank": 696,
+  "rank": 695,
   "word": "كثيرا",
   "meaning": "a lot; many; much",
   "pos": "adv",
@@ -6960,7 +6950,7 @@
   "band": "A2"
  },
  {
-  "rank": 697,
+  "rank": 696,
   "word": "وزارة",
   "meaning": "the office, responsibility, or burden of ministry",
   "pos": "noun",
@@ -6970,7 +6960,7 @@
   "band": "A2"
  },
  {
-  "rank": 698,
+  "rank": 697,
   "word": "تصميم",
   "meaning": "design, layout, model, outline, pattern, plan, schema, sketch",
   "pos": "noun",
@@ -6980,7 +6970,7 @@
   "band": "A2"
  },
  {
-  "rank": 699,
+  "rank": 698,
   "word": "حملة",
   "meaning": "attack",
   "pos": "noun",
@@ -6990,7 +6980,7 @@
   "band": "A2"
  },
  {
-  "rank": 700,
+  "rank": 699,
   "word": "عامة",
   "meaning": "the major or most general part (of), the majority or generality (of); most (of), most",
   "pos": "noun",
@@ -7000,7 +6990,7 @@
   "band": "A2"
  },
  {
-  "rank": 701,
+  "rank": 700,
   "word": "غرفة",
   "meaning": "the quantity of water laded out with the hand",
   "pos": "noun",
@@ -7010,7 +7000,7 @@
   "band": "A2"
  },
  {
-  "rank": 702,
+  "rank": 701,
   "word": "نسخة",
   "meaning": "copy",
   "pos": "noun",
@@ -7020,7 +7010,7 @@
   "band": "A2"
  },
  {
-  "rank": 703,
+  "rank": 702,
   "word": "جان",
   "meaning": "snake, serpent",
   "pos": "noun",
@@ -7030,7 +7020,7 @@
   "band": "A2"
  },
  {
-  "rank": 704,
+  "rank": 703,
   "word": "بداية",
   "meaning": "beginning, start",
   "pos": "noun",
@@ -7040,7 +7030,7 @@
   "band": "A2"
  },
  {
-  "rank": 705,
+  "rank": 704,
   "word": "جناح",
   "meaning": "wing (organ of flight)",
   "pos": "noun",
@@ -7050,9 +7040,9 @@
   "band": "A2"
  },
  {
-  "rank": 706,
+  "rank": 705,
   "word": "مرور",
-  "meaning": "passing, passing by",
+  "meaning": "traffic",
   "pos": "noun",
   "ipa": "/mu.ruːr/",
   "zipf": 4.84,
@@ -7060,7 +7050,7 @@
   "band": "A2"
  },
  {
-  "rank": 707,
+  "rank": 706,
   "word": "تنقل",
   "meaning": "change of residence",
   "pos": "noun",
@@ -7070,9 +7060,9 @@
   "band": "A2"
  },
  {
-  "rank": 708,
+  "rank": 707,
   "word": "غني",
-  "meaning": "to marry",
+  "meaning": "rich, wealthy",
   "pos": "verb",
   "ipa": "/ɣa.niː/",
   "zipf": 4.34,
@@ -7080,7 +7070,7 @@
   "band": "A2"
  },
  {
-  "rank": 709,
+  "rank": 708,
   "word": "سلسلة",
   "meaning": "iron chain",
   "pos": "noun",
@@ -7090,7 +7080,7 @@
   "band": "A2"
  },
  {
-  "rank": 710,
+  "rank": 709,
   "word": "كرة",
   "meaning": "ball",
   "pos": "noun",
@@ -7100,7 +7090,7 @@
   "band": "A2"
  },
  {
-  "rank": 711,
+  "rank": 710,
   "word": "رسمي",
   "meaning": "official, public servant",
   "pos": "noun",
@@ -7110,7 +7100,7 @@
   "band": "A2"
  },
  {
-  "rank": 712,
+  "rank": 711,
   "word": "أذن",
   "meaning": "ear",
   "pos": "noun",
@@ -7120,7 +7110,7 @@
   "band": "A2"
  },
  {
-  "rank": 713,
+  "rank": 712,
   "word": "حنا",
   "meaning": "to bend, to curve",
   "pos": "verb",
@@ -7130,7 +7120,7 @@
   "band": "A2"
  },
  {
-  "rank": 714,
+  "rank": 713,
   "word": "طبع",
   "meaning": "printing, print",
   "pos": "noun",
@@ -7140,7 +7130,7 @@
   "band": "A2"
  },
  {
-  "rank": 715,
+  "rank": 714,
   "word": "قبض",
   "meaning": "taking possession, possession",
   "pos": "noun",
@@ -7150,7 +7140,7 @@
   "band": "A2"
  },
  {
-  "rank": 716,
+  "rank": 715,
   "word": "عربية",
   "meaning": "Arabness, Arabicness",
   "pos": "noun",
@@ -7160,7 +7150,7 @@
   "band": "A2"
  },
  {
-  "rank": 717,
+  "rank": 716,
   "word": "مرحلة",
   "meaning": "phase, stage",
   "pos": "noun",
@@ -7170,7 +7160,7 @@
   "band": "A2"
  },
  {
-  "rank": 718,
+  "rank": 717,
   "word": "مسلسل",
   "meaning": "series",
   "pos": "noun",
@@ -7180,7 +7170,7 @@
   "band": "A2"
  },
  {
-  "rank": 719,
+  "rank": 718,
   "word": "واضح",
   "meaning": "clear",
   "pos": "adj",
@@ -7190,7 +7180,7 @@
   "band": "A2"
  },
  {
-  "rank": 720,
+  "rank": 719,
   "word": "وحدة",
   "meaning": "unit (a standard measure of a quantity)",
   "pos": "noun",
@@ -7200,7 +7190,7 @@
   "band": "A2"
  },
  {
-  "rank": 721,
+  "rank": 720,
   "word": "قناة",
   "meaning": "channel, canal",
   "pos": "noun",
@@ -7210,7 +7200,7 @@
   "band": "A2"
  },
  {
-  "rank": 722,
+  "rank": 721,
   "word": "نقص",
   "meaning": "reduction",
   "pos": "noun",
@@ -7220,7 +7210,7 @@
   "band": "A2"
  },
  {
-  "rank": 723,
+  "rank": 722,
   "word": "طريق",
   "meaning": "way, road, path, track, street",
   "pos": "noun",
@@ -7230,7 +7220,7 @@
   "band": "A2"
  },
  {
-  "rank": 724,
+  "rank": 723,
   "word": "رأي",
   "meaning": "an idea, a notion, a concept, a conception; a particular way of thinking, an ideology; a philosophy",
   "pos": "noun",
@@ -7240,7 +7230,7 @@
   "band": "A2"
  },
  {
-  "rank": 725,
+  "rank": 724,
   "word": "زوج",
   "meaning": "one of a pair",
   "pos": "noun",
@@ -7250,7 +7240,7 @@
   "band": "A2"
  },
  {
-  "rank": 726,
+  "rank": 725,
   "word": "شرف",
   "meaning": "elevated place",
   "pos": "noun",
@@ -7260,7 +7250,7 @@
   "band": "A2"
  },
  {
-  "rank": 727,
+  "rank": 726,
   "word": "أثناء",
   "meaning": "during, in the course of",
   "pos": "noun",
@@ -7270,7 +7260,7 @@
   "band": "A2"
  },
  {
-  "rank": 728,
+  "rank": 727,
   "word": "واجب",
   "meaning": "duty, obligation",
   "pos": "noun",
@@ -7280,9 +7270,9 @@
   "band": "A2"
  },
  {
-  "rank": 729,
+  "rank": 728,
   "word": "تعلم",
-  "meaning": "action of learning",
+  "meaning": "to learn (something)",
   "pos": "noun",
   "ipa": "/ta.ʕal.lum/",
   "zipf": 5.32,
@@ -7290,7 +7280,7 @@
   "band": "A2"
  },
  {
-  "rank": 730,
+  "rank": 729,
   "word": "حاليا",
   "meaning": "currently",
   "pos": "adv",
@@ -7300,7 +7290,7 @@
   "band": "A2"
  },
  {
-  "rank": 731,
+  "rank": 730,
   "word": "دول",
   "meaning": "to internationalize",
   "pos": "noun",
@@ -7310,7 +7300,7 @@
   "band": "A2"
  },
  {
-  "rank": 732,
+  "rank": 731,
   "word": "معظم",
   "meaning": "most, the majority of",
   "pos": "noun",
@@ -7320,7 +7310,7 @@
   "band": "A2"
  },
  {
-  "rank": 733,
+  "rank": 732,
   "word": "زر",
   "meaning": "button",
   "pos": "noun",
@@ -7330,7 +7320,7 @@
   "band": "A2"
  },
  {
-  "rank": 734,
+  "rank": 733,
   "word": "نحن",
   "meaning": "we (subject pronoun)",
   "pos": "pron",
@@ -7340,7 +7330,7 @@
   "band": "A2"
  },
  {
-  "rank": 735,
+  "rank": 734,
   "word": "رئاسة",
   "meaning": "ruling, governing",
   "pos": "noun",
@@ -7350,7 +7340,7 @@
   "band": "A2"
  },
  {
-  "rank": 736,
+  "rank": 735,
   "word": "رضا",
   "meaning": "contentedness, satisfaction, fulfillment, being well pleased",
   "pos": "noun",
@@ -7360,7 +7350,7 @@
   "band": "A2"
  },
  {
-  "rank": 737,
+  "rank": 736,
   "word": "أقام",
   "meaning": "to raise, to lift",
   "pos": "verb",
@@ -7370,7 +7360,7 @@
   "band": "A2"
  },
  {
-  "rank": 738,
+  "rank": 737,
   "word": "خال",
   "meaning": "beauty spot, birthmark",
   "pos": "noun",
@@ -7380,7 +7370,7 @@
   "band": "A2"
  },
  {
-  "rank": 739,
+  "rank": 738,
   "word": "نهاية",
   "meaning": "end (“extreme part of something”)",
   "pos": "noun",
@@ -7390,7 +7380,7 @@
   "band": "A2"
  },
  {
-  "rank": 740,
+  "rank": 739,
   "word": "أ",
   "meaning": "introduces a positive yes-no question",
   "pos": "particle",
@@ -7400,7 +7390,7 @@
   "band": "A2"
  },
  {
-  "rank": 741,
+  "rank": 740,
   "word": "سياسة",
   "meaning": "administration, management",
   "pos": "noun",
@@ -7410,7 +7400,7 @@
   "band": "A2"
  },
  {
-  "rank": 742,
+  "rank": 741,
   "word": "سار",
   "meaning": "to step along, to pace, to go, to depart, to travel, to walk",
   "pos": "verb",
@@ -7420,7 +7410,7 @@
   "band": "A2"
  },
  {
-  "rank": 743,
+  "rank": 742,
   "word": "عضو",
   "meaning": "organ",
   "pos": "noun",
@@ -7430,7 +7420,7 @@
   "band": "A2"
  },
  {
-  "rank": 744,
+  "rank": 743,
   "word": "عمان",
   "meaning": "Amman (the capital city of Jordan)",
   "pos": "noun",
@@ -7440,7 +7430,7 @@
   "band": "A2"
  },
  {
-  "rank": 745,
+  "rank": 744,
   "word": "قلة",
   "meaning": "littleness, smallness, scarceness, fewness",
   "pos": "noun",
@@ -7450,7 +7440,7 @@
   "band": "A2"
  },
  {
-  "rank": 746,
+  "rank": 745,
   "word": "حرس",
   "meaning": "watch",
   "pos": "noun",
@@ -7460,7 +7450,7 @@
   "band": "A2"
  },
  {
-  "rank": 747,
+  "rank": 746,
   "word": "رحم",
   "meaning": "uterus, womb",
   "pos": "noun",
@@ -7470,7 +7460,7 @@
   "band": "A2"
  },
  {
-  "rank": 748,
+  "rank": 747,
   "word": "مذهب",
   "meaning": "going, leaving, departure",
   "pos": "noun",
@@ -7480,7 +7470,7 @@
   "band": "A2"
  },
  {
-  "rank": 749,
+  "rank": 748,
   "word": "كن",
   "meaning": "veil, envelope, cover",
   "pos": "noun",
@@ -7490,7 +7480,7 @@
   "band": "A2"
  },
  {
-  "rank": 750,
+  "rank": 749,
   "word": "كما أن",
   "meaning": "just like, just as, also, even then, besides, furthermore, moreover",
   "pos": "conj",
@@ -7500,17 +7490,17 @@
   "band": "A2"
  },
  {
-  "rank": 751,
+  "rank": 750,
   "word": "مجرد",
   "meaning": "abstract, absolute",
   "pos": "adj",
   "ipa": "/mu.d͡ʒar.rad/",
   "zipf": 5.3,
   "score": 109.39999999999999,
-  "band": "B1"
+  "band": "A2"
  },
  {
-  "rank": 752,
+  "rank": 751,
   "word": "نتيجة",
   "meaning": "result",
   "pos": "noun",
@@ -7520,7 +7510,7 @@
   "band": "B1"
  },
  {
-  "rank": 753,
+  "rank": 752,
   "word": "أقرب",
   "meaning": "to cause a thing to be nearly filled or completed, to be close to being reached, to approach nigh to a time, point, or degree",
   "pos": "verb",
@@ -7530,7 +7520,7 @@
   "band": "B1"
  },
  {
-  "rank": 754,
+  "rank": 753,
   "word": "كون",
   "meaning": "being, essence",
   "pos": "noun",
@@ -7540,7 +7530,7 @@
   "band": "B1"
  },
  {
-  "rank": 755,
+  "rank": 754,
   "word": "بدون",
   "meaning": "without",
   "pos": "prep",
@@ -7550,7 +7540,7 @@
   "band": "B1"
  },
  {
-  "rank": 756,
+  "rank": 755,
   "word": "سكان",
   "meaning": "rudder, helm, steering wheel of a ship",
   "pos": "noun",
@@ -7560,7 +7550,7 @@
   "band": "B1"
  },
  {
-  "rank": 757,
+  "rank": 756,
   "word": "إصابة",
   "meaning": "injury, trauma",
   "pos": "noun",
@@ -7570,7 +7560,7 @@
   "band": "B1"
  },
  {
-  "rank": 758,
+  "rank": 757,
   "word": "حمد",
   "meaning": "praise, eulogy, commendation",
   "pos": "noun",
@@ -7580,7 +7570,7 @@
   "band": "B1"
  },
  {
-  "rank": 759,
+  "rank": 758,
   "word": "حس",
   "meaning": "feeling",
   "pos": "noun",
@@ -7590,7 +7580,7 @@
   "band": "B1"
  },
  {
-  "rank": 760,
+  "rank": 759,
   "word": "حشد",
   "meaning": "assembling, rallying",
   "pos": "noun",
@@ -7600,7 +7590,7 @@
   "band": "B1"
  },
  {
-  "rank": 761,
+  "rank": 760,
   "word": "دوار",
   "meaning": "wandering, cruising, going about",
   "pos": "noun",
@@ -7610,7 +7600,7 @@
   "band": "B1"
  },
  {
-  "rank": 762,
+  "rank": 761,
   "word": "شق",
   "meaning": "a gap; a gash; a fissure; a hollow, a cranny",
   "pos": "noun",
@@ -7620,9 +7610,9 @@
   "band": "B1"
  },
  {
-  "rank": 763,
+  "rank": 762,
   "word": "عظم",
-  "meaning": "greatness, magnitude, power",
+  "meaning": "bone",
   "pos": "noun",
   "ipa": "/ʕi.ðˤam/",
   "zipf": 4.13,
@@ -7630,7 +7620,7 @@
   "band": "B1"
  },
  {
-  "rank": 764,
+  "rank": 763,
   "word": "قم",
   "meaning": "to sweep, to scoop",
   "pos": "noun",
@@ -7640,7 +7630,7 @@
   "band": "B1"
  },
  {
-  "rank": 765,
+  "rank": 764,
   "word": "اختلاف",
   "meaning": "disagreement",
   "pos": "noun",
@@ -7650,7 +7640,7 @@
   "band": "B1"
  },
  {
-  "rank": 766,
+  "rank": 765,
   "word": "مباراة",
   "meaning": "contest, match",
   "pos": "noun",
@@ -7660,7 +7650,7 @@
   "band": "B1"
  },
  {
-  "rank": 767,
+  "rank": 766,
   "word": "عودة",
   "meaning": "return",
   "pos": "noun",
@@ -7670,7 +7660,7 @@
   "band": "B1"
  },
  {
-  "rank": 768,
+  "rank": 767,
   "word": "أدب",
   "meaning": "discipline",
   "pos": "noun",
@@ -7680,7 +7670,7 @@
   "band": "B1"
  },
  {
-  "rank": 769,
+  "rank": 768,
   "word": "أيمن",
   "meaning": "used comparatively: more on the right, more to the right hand",
   "pos": "noun",
@@ -7690,7 +7680,7 @@
   "band": "B1"
  },
  {
-  "rank": 770,
+  "rank": 769,
   "word": "فرح",
   "meaning": "happiness, gladness, mirth, joy, exultation",
   "pos": "noun",
@@ -7700,7 +7690,7 @@
   "band": "B1"
  },
  {
-  "rank": 771,
+  "rank": 770,
   "word": "الخاصة",
   "meaning": "See خَاصَّة (ḵāṣṣa)",
   "pos": "noun",
@@ -7710,7 +7700,7 @@
   "band": "B1"
  },
  {
-  "rank": 772,
+  "rank": 771,
   "word": "نقطة",
   "meaning": "dot, point",
   "pos": "noun",
@@ -7720,7 +7710,7 @@
   "band": "B1"
  },
  {
-  "rank": 773,
+  "rank": 772,
   "word": "بر",
   "meaning": "faith, godliness, piety",
   "pos": "noun",
@@ -7730,7 +7720,7 @@
   "band": "B1"
  },
  {
-  "rank": 774,
+  "rank": 773,
   "word": "جوهر",
   "meaning": "jewel(s)",
   "pos": "noun",
@@ -7740,7 +7730,7 @@
   "band": "B1"
  },
  {
-  "rank": 775,
+  "rank": 774,
   "word": "أمس",
   "meaning": "yesterday",
   "pos": "noun",
@@ -7750,7 +7740,7 @@
   "band": "B1"
  },
  {
-  "rank": 776,
+  "rank": 775,
   "word": "شاب",
   "meaning": "young man, youth, adolescent",
   "pos": "noun",
@@ -7760,7 +7750,7 @@
   "band": "B1"
  },
  {
-  "rank": 777,
+  "rank": 776,
   "word": "مدة",
   "meaning": "period of time, interval",
   "pos": "noun",
@@ -7770,7 +7760,7 @@
   "band": "B1"
  },
  {
-  "rank": 778,
+  "rank": 777,
   "word": "طبق",
   "meaning": "plate (serving dish)",
   "pos": "noun",
@@ -7780,7 +7770,7 @@
   "band": "B1"
  },
  {
-  "rank": 779,
+  "rank": 778,
   "word": "سهل",
   "meaning": "a plain, a grassland",
   "pos": "noun",
@@ -7790,7 +7780,7 @@
   "band": "B1"
  },
  {
-  "rank": 780,
+  "rank": 779,
   "word": "علامة",
   "meaning": "sign, mark",
   "pos": "noun",
@@ -7800,7 +7790,7 @@
   "band": "B1"
  },
  {
-  "rank": 781,
+  "rank": 780,
   "word": "مضى",
   "meaning": "to pass, be past",
   "pos": "verb",
@@ -7810,7 +7800,7 @@
   "band": "B1"
  },
  {
-  "rank": 782,
+  "rank": 781,
   "word": "جهاز",
   "meaning": "equipment, device, appliances, outfit, gear, rig",
   "pos": "noun",
@@ -7820,7 +7810,7 @@
   "band": "B1"
  },
  {
-  "rank": 783,
+  "rank": 782,
   "word": "لاعب",
   "meaning": "player",
   "pos": "noun",
@@ -7830,7 +7820,7 @@
   "band": "B1"
  },
  {
-  "rank": 784,
+  "rank": 783,
   "word": "إقامة",
   "meaning": "staying, remaining, stopping",
   "pos": "noun",
@@ -7840,7 +7830,7 @@
   "band": "B1"
  },
  {
-  "rank": 785,
+  "rank": 784,
   "word": "بطن",
   "meaning": "stomach, abdomen",
   "pos": "noun",
@@ -7850,7 +7840,7 @@
   "band": "B1"
  },
  {
-  "rank": 786,
+  "rank": 785,
   "word": "ثقيل",
   "meaning": "heavy",
   "pos": "adj",
@@ -7860,7 +7850,7 @@
   "band": "B1"
  },
  {
-  "rank": 787,
+  "rank": 786,
   "word": "جار",
   "meaning": "neighbor",
   "pos": "noun",
@@ -7870,7 +7860,7 @@
   "band": "B1"
  },
  {
-  "rank": 788,
+  "rank": 787,
   "word": "حكمة",
   "meaning": "wisdom",
   "pos": "noun",
@@ -7880,7 +7870,7 @@
   "band": "B1"
  },
  {
-  "rank": 789,
+  "rank": 788,
   "word": "مسلم",
   "meaning": "Muslim",
   "pos": "noun",
@@ -7890,7 +7880,7 @@
   "band": "B1"
  },
  {
-  "rank": 790,
+  "rank": 789,
   "word": "بنى",
   "meaning": "to build, to construct, to raise",
   "pos": "noun",
@@ -7900,7 +7890,7 @@
   "band": "B1"
  },
  {
-  "rank": 791,
+  "rank": 790,
   "word": "سمح",
   "meaning": "magnanimity",
   "pos": "noun",
@@ -7910,7 +7900,7 @@
   "band": "B1"
  },
  {
-  "rank": 792,
+  "rank": 791,
   "word": "صادق",
   "meaning": "to befriend",
   "pos": "verb",
@@ -7920,7 +7910,7 @@
   "band": "B1"
  },
  {
-  "rank": 793,
+  "rank": 792,
   "word": "ضعيف",
   "meaning": "weak",
   "pos": "adj",
@@ -7930,7 +7920,7 @@
   "band": "B1"
  },
  {
-  "rank": 794,
+  "rank": 793,
   "word": "من غير",
   "meaning": "without",
   "pos": "prep",
@@ -7940,7 +7930,7 @@
   "band": "B1"
  },
  {
-  "rank": 795,
+  "rank": 794,
   "word": "جون",
   "meaning": "bay, inlet, gulf, lagoon",
   "pos": "noun",
@@ -7950,7 +7940,7 @@
   "band": "B1"
  },
  {
-  "rank": 796,
+  "rank": 795,
   "word": "حاد",
   "meaning": "to deviate, to turn away",
   "pos": "verb",
@@ -7960,7 +7950,7 @@
   "band": "B1"
  },
  {
-  "rank": 797,
+  "rank": 796,
   "word": "هوية",
   "meaning": "identity",
   "pos": "noun",
@@ -7970,7 +7960,7 @@
   "band": "B1"
  },
  {
-  "rank": 798,
+  "rank": 797,
   "word": "كبر",
   "meaning": "greatness, largeness",
   "pos": "noun",
@@ -7980,7 +7970,7 @@
   "band": "B1"
  },
  {
-  "rank": 799,
+  "rank": 798,
   "word": "نوبة",
   "meaning": "change, alteration, shift, rotation",
   "pos": "noun",
@@ -7990,7 +7980,7 @@
   "band": "B1"
  },
  {
-  "rank": 800,
+  "rank": 799,
   "word": "ماذا",
   "meaning": "what",
   "pos": "pron",
@@ -8000,9 +7990,9 @@
   "band": "B1"
  },
  {
-  "rank": 801,
+  "rank": 800,
   "word": "تحقيق",
-  "meaning": "securing, fulfillment, achievement (dreams, victory, etc)",
+  "meaning": "investigation, research",
   "pos": "noun",
   "ipa": "/taħ.qiːq/",
   "zipf": 5.09,
@@ -8010,7 +8000,7 @@
   "band": "B1"
  },
  {
-  "rank": 802,
+  "rank": 801,
   "word": "فرج",
   "meaning": "opening, aperture, gap, breach",
   "pos": "noun",
@@ -8020,7 +8010,7 @@
   "band": "B1"
  },
  {
-  "rank": 803,
+  "rank": 802,
   "word": "مولد",
   "meaning": "birthplace",
   "pos": "noun",
@@ -8030,7 +8020,7 @@
   "band": "B1"
  },
  {
-  "rank": 804,
+  "rank": 803,
   "word": "بطولة",
   "meaning": "bravery",
   "pos": "noun",
@@ -8040,7 +8030,7 @@
   "band": "B1"
  },
  {
-  "rank": 805,
+  "rank": 804,
   "word": "تسبب",
   "meaning": "to be caused by, to be the result of",
   "pos": "verb",
@@ -8050,7 +8040,7 @@
   "band": "B1"
  },
  {
-  "rank": 806,
+  "rank": 805,
   "word": "شأن",
   "meaning": "thing, matter, affair",
   "pos": "noun",
@@ -8060,7 +8050,7 @@
   "band": "B1"
  },
  {
-  "rank": 807,
+  "rank": 806,
   "word": "توفر",
   "meaning": "to pay respect, honor or regards to",
   "pos": "verb",
@@ -8070,7 +8060,7 @@
   "band": "B1"
  },
  {
-  "rank": 808,
+  "rank": 807,
   "word": "درب",
   "meaning": "path, pass, way",
   "pos": "noun",
@@ -8080,7 +8070,7 @@
   "band": "B1"
  },
  {
-  "rank": 809,
+  "rank": 808,
   "word": "مدير",
   "meaning": "manager, head, chief, director, administrator, headmaster, boss",
   "pos": "noun",
@@ -8090,7 +8080,7 @@
   "band": "B1"
  },
  {
-  "rank": 810,
+  "rank": 809,
   "word": "بلدية",
   "meaning": "township, rural community",
   "pos": "noun",
@@ -8100,7 +8090,7 @@
   "band": "B1"
  },
  {
-  "rank": 811,
+  "rank": 810,
   "word": "سعادة",
   "meaning": "happiness, gladness",
   "pos": "noun",
@@ -8110,7 +8100,7 @@
   "band": "B1"
  },
  {
-  "rank": 812,
+  "rank": 811,
   "word": "حائل",
   "meaning": "anything shifting or moving in (مِن (min)) its place",
   "pos": "noun",
@@ -8120,7 +8110,7 @@
   "band": "B1"
  },
  {
-  "rank": 813,
+  "rank": 812,
   "word": "شبح",
   "meaning": "specter, ghost, apparition, phantom, spirit",
   "pos": "noun",
@@ -8130,7 +8120,7 @@
   "band": "B1"
  },
  {
-  "rank": 814,
+  "rank": 813,
   "word": "معلق",
   "meaning": "that on which anything is suspended",
   "pos": "noun",
@@ -8140,7 +8130,7 @@
   "band": "B1"
  },
  {
-  "rank": 815,
+  "rank": 814,
   "word": "أيام",
   "meaning": "days (“A particular time or period of vague extent”)",
   "pos": "noun",
@@ -8150,7 +8140,7 @@
   "band": "B1"
  },
  {
-  "rank": 816,
+  "rank": 815,
   "word": "دولة",
   "meaning": "state (sovereign polity)",
   "pos": "noun",
@@ -8160,7 +8150,7 @@
   "band": "B1"
  },
  {
-  "rank": 817,
+  "rank": 816,
   "word": "تطبيق",
   "meaning": "application, implementation",
   "pos": "noun",
@@ -8170,7 +8160,7 @@
   "band": "B1"
  },
  {
-  "rank": 818,
+  "rank": 817,
   "word": "مستوى",
   "meaning": "level",
   "pos": "noun",
@@ -8180,7 +8170,7 @@
   "band": "B1"
  },
  {
-  "rank": 819,
+  "rank": 818,
   "word": "موسم",
   "meaning": "season",
   "pos": "noun",
@@ -8190,7 +8180,7 @@
   "band": "B1"
  },
  {
-  "rank": 820,
+  "rank": 819,
   "word": "دولار",
   "meaning": "dollar",
   "pos": "noun",
@@ -8200,7 +8190,7 @@
   "band": "B1"
  },
  {
-  "rank": 821,
+  "rank": 820,
   "word": "قول",
   "meaning": "a saying; a declaration; a statement; an assertion",
   "pos": "noun",
@@ -8210,7 +8200,7 @@
   "band": "B1"
  },
  {
-  "rank": 822,
+  "rank": 821,
   "word": "أتى",
   "meaning": "to come",
   "pos": "verb",
@@ -8220,7 +8210,7 @@
   "band": "B1"
  },
  {
-  "rank": 823,
+  "rank": 822,
   "word": "راح",
   "meaning": "wine",
   "pos": "noun",
@@ -8230,7 +8220,7 @@
   "band": "B1"
  },
  {
-  "rank": 824,
+  "rank": 823,
   "word": "سلك",
   "meaning": "thread",
   "pos": "noun",
@@ -8240,7 +8230,7 @@
   "band": "B1"
  },
  {
-  "rank": 825,
+  "rank": 824,
   "word": "كره",
   "meaning": "hatred, hate",
   "pos": "noun",
@@ -8250,7 +8240,7 @@
   "band": "B1"
  },
  {
-  "rank": 826,
+  "rank": 825,
   "word": "ثلاث",
   "meaning": "three at a time, in a group of three, in threes",
   "pos": "num",
@@ -8260,9 +8250,9 @@
   "band": "B1"
  },
  {
-  "rank": 827,
+  "rank": 826,
   "word": "تصوير",
-  "meaning": "depiction",
+  "meaning": "photography",
   "pos": "noun",
   "ipa": "/tasˤ.wiːr/",
   "zipf": 4.9,
@@ -8270,7 +8260,7 @@
   "band": "B1"
  },
  {
-  "rank": 828,
+  "rank": 827,
   "word": "واسع",
   "meaning": "large in area, extensive, vast; broad; wide; open",
   "pos": "adj",
@@ -8280,7 +8270,7 @@
   "band": "B1"
  },
  {
-  "rank": 829,
+  "rank": 828,
   "word": "أي ما",
   "meaning": "whichever, whichsoever",
   "pos": "pron",
@@ -8290,7 +8280,7 @@
   "band": "B1"
  },
  {
-  "rank": 830,
+  "rank": 829,
   "word": "توجد",
   "meaning": "to be passionately in love",
   "pos": "noun",
@@ -8300,7 +8290,7 @@
   "band": "B1"
  },
  {
-  "rank": 831,
+  "rank": 830,
   "word": "اتصال",
   "meaning": "union",
   "pos": "noun",
@@ -8310,7 +8300,7 @@
   "band": "B1"
  },
  {
-  "rank": 832,
+  "rank": 831,
   "word": "بطاقة",
   "meaning": "card",
   "pos": "noun",
@@ -8320,7 +8310,7 @@
   "band": "B1"
  },
  {
-  "rank": 833,
+  "rank": 832,
   "word": "حقق",
   "meaning": "to realize, to actualize, to make a reality or an actuality",
   "pos": "noun",
@@ -8330,7 +8320,7 @@
   "band": "B1"
  },
  {
-  "rank": 834,
+  "rank": 833,
   "word": "ف",
   "meaning": "then, and then",
   "pos": "noun",
@@ -8340,7 +8330,7 @@
   "band": "B1"
  },
  {
-  "rank": 835,
+  "rank": 834,
   "word": "فرض",
   "meaning": "duty",
   "pos": "noun",
@@ -8350,7 +8340,7 @@
   "band": "B1"
  },
  {
-  "rank": 836,
+  "rank": 835,
   "word": "إلا أن",
   "meaning": "only",
   "pos": "conj",
@@ -8360,7 +8350,7 @@
   "band": "B1"
  },
  {
-  "rank": 837,
+  "rank": 836,
   "word": "كلف",
   "meaning": "pains and care taken",
   "pos": "noun",
@@ -8370,9 +8360,9 @@
   "band": "B1"
  },
  {
-  "rank": 838,
+  "rank": 837,
   "word": "مؤثر",
-  "meaning": "affecter",
+  "meaning": "moving, touching",
   "pos": "noun",
   "ipa": "/mu.ʔaθ.θir/",
   "zipf": 4.06,
@@ -8380,7 +8370,7 @@
   "band": "B1"
  },
  {
-  "rank": 839,
+  "rank": 838,
   "word": "نام",
   "meaning": "to sleep",
   "pos": "verb",
@@ -8390,7 +8380,7 @@
   "band": "B1"
  },
  {
-  "rank": 840,
+  "rank": 839,
   "word": "دعوة",
   "meaning": "call; call to action",
   "pos": "noun",
@@ -8400,7 +8390,7 @@
   "band": "B1"
  },
  {
-  "rank": 841,
+  "rank": 840,
   "word": "لا غير",
   "meaning": "only, just, nothing besides that, nothing more, nothing else, merely",
   "pos": "adv",
@@ -8410,7 +8400,7 @@
   "band": "B1"
  },
  {
-  "rank": 842,
+  "rank": 841,
   "word": "شعبة",
   "meaning": "branch",
   "pos": "noun",
@@ -8420,7 +8410,7 @@
   "band": "B1"
  },
  {
-  "rank": 843,
+  "rank": 842,
   "word": "ال",
   "meaning": "the",
   "pos": "article",
@@ -8430,7 +8420,7 @@
   "band": "B1"
  },
  {
-  "rank": 844,
+  "rank": 843,
   "word": "فيديو",
   "meaning": "video",
   "pos": "noun",
@@ -8440,7 +8430,7 @@
   "band": "B1"
  },
  {
-  "rank": 845,
+  "rank": 844,
   "word": "مليون",
   "meaning": "million",
   "pos": "num",
@@ -8450,7 +8440,7 @@
   "band": "B1"
  },
  {
-  "rank": 846,
+  "rank": 845,
   "word": "أمي",
   "meaning": "gentile, illiterate, heathen",
   "pos": "noun",
@@ -8460,7 +8450,7 @@
   "band": "B1"
  },
  {
-  "rank": 847,
+  "rank": 846,
   "word": "مصدر",
   "meaning": "starting point, point of origin",
   "pos": "noun",
@@ -8470,7 +8460,7 @@
   "band": "B1"
  },
  {
-  "rank": 848,
+  "rank": 847,
   "word": "تخيل",
   "meaning": "to imagine, to take into one's head, to fancy",
   "pos": "noun",
@@ -8480,7 +8470,7 @@
   "band": "B1"
  },
  {
-  "rank": 849,
+  "rank": 848,
   "word": "هام",
   "meaning": "important, significant",
   "pos": "noun",
@@ -8490,7 +8480,7 @@
   "band": "B1"
  },
  {
-  "rank": 850,
+  "rank": 849,
   "word": "دورة",
   "meaning": "rotation, gyration, cycle, circuit, circulation (with all kinds of technical meanings; often translatable as “period”)",
   "pos": "noun",
@@ -8500,7 +8490,7 @@
   "band": "B1"
  },
  {
-  "rank": 851,
+  "rank": 850,
   "word": "تعديل",
   "meaning": "straightening",
   "pos": "noun",
@@ -8510,7 +8500,7 @@
   "band": "B1"
  },
  {
-  "rank": 852,
+  "rank": 851,
   "word": "عصر",
   "meaning": "period of time; season; age, century, era; reign",
   "pos": "noun",
@@ -8520,7 +8510,7 @@
   "band": "B1"
  },
  {
-  "rank": 853,
+  "rank": 852,
   "word": "فارس",
   "meaning": "horseman, rider",
   "pos": "noun",
@@ -8530,7 +8520,7 @@
   "band": "B1"
  },
  {
-  "rank": 854,
+  "rank": 853,
   "word": "دائما",
   "meaning": "always",
   "pos": "adv",
@@ -8540,7 +8530,7 @@
   "band": "B1"
  },
  {
-  "rank": 855,
+  "rank": 854,
   "word": "دراسة",
   "meaning": "an implement used for threshing",
   "pos": "noun",
@@ -8550,7 +8540,7 @@
   "band": "B1"
  },
  {
-  "rank": 856,
+  "rank": 855,
   "word": "موضوع",
   "meaning": "topic, subject, theme",
   "pos": "noun",
@@ -8560,7 +8550,7 @@
   "band": "B1"
  },
  {
-  "rank": 857,
+  "rank": 856,
   "word": "سير",
   "meaning": "strap, strip of hide, skin thong (such as, and originally, of a horse-harness or a shoulder-strap, and modernly a belt in machinery)",
   "pos": "noun",
@@ -8570,7 +8560,7 @@
   "band": "B1"
  },
  {
-  "rank": 858,
+  "rank": 857,
   "word": "مبدأ",
   "meaning": "beginning, start",
   "pos": "noun",
@@ -8580,7 +8570,7 @@
   "band": "B1"
  },
  {
-  "rank": 859,
+  "rank": 858,
   "word": "أقل",
   "meaning": "to diminish, reduce",
   "pos": "verb",
@@ -8590,7 +8580,7 @@
   "band": "B1"
  },
  {
-  "rank": 860,
+  "rank": 859,
   "word": "تماما",
   "meaning": "completely",
   "pos": "adv",
@@ -8600,7 +8590,7 @@
   "band": "B1"
  },
  {
-  "rank": 861,
+  "rank": 860,
   "word": "أسوأ",
   "meaning": "bad, evil",
   "pos": "adj",
@@ -8610,7 +8600,7 @@
   "band": "B1"
  },
  {
-  "rank": 862,
+  "rank": 861,
   "word": "بث",
   "meaning": "transmission",
   "pos": "noun",
@@ -8620,7 +8610,7 @@
   "band": "B1"
  },
  {
-  "rank": 863,
+  "rank": 862,
   "word": "كأس",
   "meaning": "a glass, especially a wine glass or arak glass",
   "pos": "noun",
@@ -8630,7 +8620,7 @@
   "band": "B1"
  },
  {
-  "rank": 864,
+  "rank": 863,
   "word": "أعرب",
   "meaning": "to Arabicize, Arabize; to give an Arabic form",
   "pos": "verb",
@@ -8640,7 +8630,7 @@
   "band": "B1"
  },
  {
-  "rank": 865,
+  "rank": 864,
   "word": "سابق",
   "meaning": "to race",
   "pos": "verb",
@@ -8650,7 +8640,7 @@
   "band": "B1"
  },
  {
-  "rank": 866,
+  "rank": 865,
   "word": "خلاف",
   "meaning": "controversy, disagreement, dispute",
   "pos": "noun",
@@ -8660,7 +8650,7 @@
   "band": "B1"
  },
  {
-  "rank": 867,
+  "rank": 866,
   "word": "إعلان",
   "meaning": "advertisement",
   "pos": "noun",
@@ -8670,7 +8660,7 @@
   "band": "B1"
  },
  {
-  "rank": 868,
+  "rank": 867,
   "word": "مبارك",
   "meaning": "blesser",
   "pos": "noun",
@@ -8680,7 +8670,7 @@
   "band": "B1"
  },
  {
-  "rank": 869,
+  "rank": 868,
   "word": "منع",
   "meaning": "prevention",
   "pos": "noun",
@@ -8690,7 +8680,7 @@
   "band": "B1"
  },
  {
-  "rank": 870,
+  "rank": 869,
   "word": "أمان",
   "meaning": "security, safety, peace",
   "pos": "noun",
@@ -8700,7 +8690,7 @@
   "band": "B1"
  },
  {
-  "rank": 871,
+  "rank": 870,
   "word": "جبل",
   "meaning": "mountain",
   "pos": "noun",
@@ -8710,7 +8700,7 @@
   "band": "B1"
  },
  {
-  "rank": 872,
+  "rank": 871,
   "word": "قليل",
   "meaning": "a few; a little",
   "pos": "noun",
@@ -8720,7 +8710,7 @@
   "band": "B1"
  },
  {
-  "rank": 873,
+  "rank": 872,
   "word": "سواء",
   "meaning": "equal",
   "pos": "noun",
@@ -8730,7 +8720,7 @@
   "band": "B1"
  },
  {
-  "rank": 874,
+  "rank": 873,
   "word": "سطح",
   "meaning": "surface",
   "pos": "noun",
@@ -8740,7 +8730,7 @@
   "band": "B1"
  },
  {
-  "rank": 875,
+  "rank": 874,
   "word": "لذلك",
   "meaning": "therefore",
   "pos": "adv",
@@ -8750,7 +8740,7 @@
   "band": "B1"
  },
  {
-  "rank": 876,
+  "rank": 875,
   "word": "لهذا",
   "meaning": "therefore",
   "pos": "adv",
@@ -8760,7 +8750,7 @@
   "band": "B1"
  },
  {
-  "rank": 877,
+  "rank": 876,
   "word": "م",
   "meaning": "AD",
   "pos": "adv",
@@ -8770,7 +8760,7 @@
   "band": "B1"
  },
  {
-  "rank": 878,
+  "rank": 877,
   "word": "أطلق",
   "meaning": "to free, to liberate, to emancipate",
   "pos": "verb",
@@ -8780,7 +8770,7 @@
   "band": "B1"
  },
  {
-  "rank": 879,
+  "rank": 878,
   "word": "عظيم",
   "meaning": "magnificent, grandiose",
   "pos": "adj",
@@ -8790,7 +8780,7 @@
   "band": "B1"
  },
  {
-  "rank": 880,
+  "rank": 879,
   "word": "خرق",
   "meaning": "rending, tearing",
   "pos": "noun",
@@ -8800,7 +8790,7 @@
   "band": "B1"
  },
  {
-  "rank": 881,
+  "rank": 880,
   "word": "عمد",
   "meaning": "intent, intention, design, purpose, plan",
   "pos": "noun",
@@ -8810,7 +8800,7 @@
   "band": "B1"
  },
  {
-  "rank": 882,
+  "rank": 881,
   "word": "صغيرة",
   "meaning": "a minor sin",
   "pos": "noun",
@@ -8820,7 +8810,7 @@
   "band": "B1"
  },
  {
-  "rank": 883,
+  "rank": 882,
   "word": "معلومات",
   "meaning": "information",
   "pos": "noun",
@@ -8830,7 +8820,7 @@
   "band": "B1"
  },
  {
-  "rank": 884,
+  "rank": 883,
   "word": "جلسة",
   "meaning": "session, sitting",
   "pos": "noun",
@@ -8840,7 +8830,7 @@
   "band": "B1"
  },
  {
-  "rank": 885,
+  "rank": 884,
   "word": "لبس",
   "meaning": "conflation, confusion",
   "pos": "noun",
@@ -8850,7 +8840,7 @@
   "band": "B1"
  },
  {
-  "rank": 886,
+  "rank": 885,
   "word": "رحلة",
   "meaning": "trip, voyage, tour",
   "pos": "noun",
@@ -8860,7 +8850,7 @@
   "band": "B1"
  },
  {
-  "rank": 887,
+  "rank": 886,
   "word": "سؤال",
   "meaning": "question",
   "pos": "noun",
@@ -8870,7 +8860,7 @@
   "band": "B1"
  },
  {
-  "rank": 888,
+  "rank": 887,
   "word": "تجاوز",
   "meaning": "a violation",
   "pos": "noun",
@@ -8880,7 +8870,7 @@
   "band": "B1"
  },
  {
-  "rank": 889,
+  "rank": 888,
   "word": "عرق",
   "meaning": "plant stem, leaf stem",
   "pos": "noun",
@@ -8890,7 +8880,7 @@
   "band": "B1"
  },
  {
-  "rank": 890,
+  "rank": 889,
   "word": "قرض",
   "meaning": "cutting",
   "pos": "noun",
@@ -8900,7 +8890,7 @@
   "band": "B1"
  },
  {
-  "rank": 891,
+  "rank": 890,
   "word": "وفر",
   "meaning": "abundance",
   "pos": "noun",
@@ -8910,7 +8900,7 @@
   "band": "B1"
  },
  {
-  "rank": 892,
+  "rank": 891,
   "word": "اتحاد",
   "meaning": "union",
   "pos": "noun",
@@ -8920,7 +8910,7 @@
   "band": "B1"
  },
  {
-  "rank": 893,
+  "rank": 892,
   "word": "بلد",
   "meaning": "country, land, homeland",
   "pos": "noun",
@@ -8930,7 +8920,7 @@
   "band": "B1"
  },
  {
-  "rank": 894,
+  "rank": 893,
   "word": "إذا ما",
   "meaning": "when; whenever",
   "pos": "conj",
@@ -8940,7 +8930,7 @@
   "band": "B1"
  },
  {
-  "rank": 895,
+  "rank": 894,
   "word": "بين بين",
   "meaning": "in-between, lying between, neither one thing nor the other",
   "pos": "adv",
@@ -8950,7 +8940,7 @@
   "band": "B1"
  },
  {
-  "rank": 896,
+  "rank": 895,
   "word": "حبيب",
   "meaning": "beloved",
   "pos": "noun",
@@ -8960,7 +8950,7 @@
   "band": "B1"
  },
  {
-  "rank": 897,
+  "rank": 896,
   "word": "مستقبل",
   "meaning": "future",
   "pos": "noun",
@@ -8970,9 +8960,9 @@
   "band": "B1"
  },
  {
-  "rank": 898,
+  "rank": 897,
   "word": "مسيرة",
-  "meaning": "walk, ride, travel, journey",
+  "meaning": "a march",
   "pos": "noun",
   "ipa": "/ma.siː.ra/",
   "zipf": 4.66,
@@ -8980,7 +8970,7 @@
   "band": "B1"
  },
  {
-  "rank": 899,
+  "rank": 898,
   "word": "سهم",
   "meaning": "arrow, dart",
   "pos": "noun",
@@ -8990,7 +8980,7 @@
   "band": "B1"
  },
  {
-  "rank": 900,
+  "rank": 899,
   "word": "غلاف",
   "meaning": "cover",
   "pos": "noun",
@@ -9000,7 +8990,7 @@
   "band": "B1"
  },
  {
-  "rank": 901,
+  "rank": 900,
   "word": "جهد",
   "meaning": "strain, exertion, effort",
   "pos": "noun",
@@ -9010,7 +9000,7 @@
   "band": "B1"
  },
  {
-  "rank": 902,
+  "rank": 901,
   "word": "مربع",
   "meaning": "square, quadrangular piece",
   "pos": "noun",
@@ -9020,7 +9010,7 @@
   "band": "B1"
  },
  {
-  "rank": 903,
+  "rank": 902,
   "word": "زيادة",
   "meaning": "increase, surplus, addition",
   "pos": "noun",
@@ -9030,7 +9020,7 @@
   "band": "B1"
  },
  {
-  "rank": 904,
+  "rank": 903,
   "word": "قائمة",
   "meaning": "list (“enumeration or compilation of a set of possible items”)",
   "pos": "noun",
@@ -9040,7 +9030,7 @@
   "band": "B1"
  },
  {
-  "rank": 905,
+  "rank": 904,
   "word": "لكم",
   "meaning": "to punch, to box",
   "pos": "verb",
@@ -9050,7 +9040,7 @@
   "band": "B1"
  },
  {
-  "rank": 906,
+  "rank": 905,
   "word": "طرق",
   "meaning": "to beat, to knock, to ring (a bell), to hammer",
   "pos": "noun",
@@ -9060,7 +9050,7 @@
   "band": "B1"
  },
  {
-  "rank": 907,
+  "rank": 906,
   "word": "ثابت",
   "meaning": "something permanent or invariable; constant",
   "pos": "noun",
@@ -9070,7 +9060,7 @@
   "band": "B1"
  },
  {
-  "rank": 908,
+  "rank": 907,
   "word": "جسر",
   "meaning": "bridge",
   "pos": "noun",
@@ -9080,7 +9070,7 @@
   "band": "B1"
  },
  {
-  "rank": 909,
+  "rank": 908,
   "word": "حزن",
   "meaning": "sadness, grief, sorrow",
   "pos": "noun",
@@ -9090,7 +9080,7 @@
   "band": "B1"
  },
  {
-  "rank": 910,
+  "rank": 909,
   "word": "صغر",
   "meaning": "young age, childhood",
   "pos": "noun",
@@ -9100,7 +9090,7 @@
   "band": "B1"
  },
  {
-  "rank": 911,
+  "rank": 910,
   "word": "كعب",
   "meaning": "knot, knob, node",
   "pos": "noun",
@@ -9110,7 +9100,7 @@
   "band": "B1"
  },
  {
-  "rank": 912,
+  "rank": 911,
   "word": "كثير",
   "meaning": "many, much",
   "pos": "noun",
@@ -9120,7 +9110,7 @@
   "band": "B1"
  },
  {
-  "rank": 913,
+  "rank": 912,
   "word": "دائرة",
   "meaning": "a defeat",
   "pos": "noun",
@@ -9130,7 +9120,7 @@
   "band": "B1"
  },
  {
-  "rank": 914,
+  "rank": 913,
   "word": "مدرسة",
   "meaning": "school, academy",
   "pos": "noun",
@@ -9140,7 +9130,7 @@
   "band": "B1"
  },
  {
-  "rank": 915,
+  "rank": 914,
   "word": "أقصى",
   "meaning": "farthest part",
   "pos": "noun",
@@ -9150,7 +9140,7 @@
   "band": "B1"
  },
  {
-  "rank": 916,
+  "rank": 915,
   "word": "مكتبة",
   "meaning": "library",
   "pos": "noun",
@@ -9160,7 +9150,7 @@
   "band": "B1"
  },
  {
-  "rank": 917,
+  "rank": 916,
   "word": "شرع",
   "meaning": "to prescribe a road to walk upon or a law to follow, to lead, to give laws",
   "pos": "noun",
@@ -9170,7 +9160,7 @@
   "band": "B1"
  },
  {
-  "rank": 918,
+  "rank": 917,
   "word": "ظرف",
   "meaning": "vessel, container, receptacle",
   "pos": "noun",
@@ -9180,7 +9170,7 @@
   "band": "B1"
  },
  {
-  "rank": 919,
+  "rank": 918,
   "word": "عزم",
   "meaning": "firm resolution, resolve, determination",
   "pos": "noun",
@@ -9190,7 +9180,7 @@
   "band": "B1"
  },
  {
-  "rank": 920,
+  "rank": 919,
   "word": "زيارة",
   "meaning": "visit",
   "pos": "noun",
@@ -9200,7 +9190,7 @@
   "band": "B1"
  },
  {
-  "rank": 921,
+  "rank": 920,
   "word": "قائد",
   "meaning": "leader",
   "pos": "noun",
@@ -9210,7 +9200,7 @@
   "band": "B1"
  },
  {
-  "rank": 922,
+  "rank": 921,
   "word": "حمص",
   "meaning": "hummus",
   "pos": "noun",
@@ -9220,7 +9210,7 @@
   "band": "B1"
  },
  {
-  "rank": 923,
+  "rank": 922,
   "word": "مطلع",
   "meaning": "beginning, onset, outset",
   "pos": "noun",
@@ -9230,7 +9220,7 @@
   "band": "B1"
  },
  {
-  "rank": 924,
+  "rank": 923,
   "word": "فكرة",
   "meaning": "thought, reflection",
   "pos": "noun",
@@ -9240,7 +9230,7 @@
   "band": "B1"
  },
  {
-  "rank": 925,
+  "rank": 924,
   "word": "مختلف",
   "meaning": "different",
   "pos": "adj",
@@ -9250,7 +9240,7 @@
   "band": "B1"
  },
  {
-  "rank": 926,
+  "rank": 925,
   "word": "استمر",
   "meaning": "to continue",
   "pos": "verb",
@@ -9260,7 +9250,7 @@
   "band": "B1"
  },
  {
-  "rank": 927,
+  "rank": 926,
   "word": "سيرة",
   "meaning": "biography, chronicle, romance",
   "pos": "noun",
@@ -9270,7 +9260,7 @@
   "band": "B1"
  },
  {
-  "rank": 928,
+  "rank": 927,
   "word": "هيكل",
   "meaning": "temple",
   "pos": "noun",
@@ -9280,7 +9270,7 @@
   "band": "B1"
  },
  {
-  "rank": 929,
+  "rank": 928,
   "word": "سيارة",
   "meaning": "automobile, car, motorcar",
   "pos": "noun",
@@ -9290,7 +9280,7 @@
   "band": "B1"
  },
  {
-  "rank": 930,
+  "rank": 929,
   "word": "معرفة",
   "meaning": "knowledge",
   "pos": "noun",
@@ -9300,7 +9290,7 @@
   "band": "B1"
  },
  {
-  "rank": 931,
+  "rank": 930,
   "word": "وسائل",
   "meaning": "means",
   "pos": "noun",
@@ -9310,7 +9300,7 @@
   "band": "B1"
  },
  {
-  "rank": 932,
+  "rank": 931,
   "word": "يد",
   "meaning": "an appendage of a body (as of an animal)",
   "pos": "noun",
@@ -9320,7 +9310,7 @@
   "band": "B1"
  },
  {
-  "rank": 933,
+  "rank": 932,
   "word": "ميلاد",
   "meaning": "birth",
   "pos": "noun",
@@ -9330,7 +9320,7 @@
   "band": "B1"
  },
  {
-  "rank": 934,
+  "rank": 933,
   "word": "وارد",
   "meaning": "one who descends, especially to a watering place",
   "pos": "noun",
@@ -9340,9 +9330,9 @@
   "band": "B1"
  },
  {
-  "rank": 935,
+  "rank": 934,
   "word": "تذكر",
-  "meaning": "remembrance, recollection",
+  "meaning": "to remember, to bear in mind",
   "pos": "noun",
   "ipa": "/ta.ðak.kur/",
   "zipf": 4.96,
@@ -9350,7 +9340,7 @@
   "band": "B1"
  },
  {
-  "rank": 936,
+  "rank": 935,
   "word": "عربي",
   "meaning": "Arab",
   "pos": "noun",
@@ -9360,7 +9350,7 @@
   "band": "B1"
  },
  {
-  "rank": 937,
+  "rank": 936,
   "word": "حرام",
   "meaning": "forbidden, interdicted, unlawful, illegitimate, haram",
   "pos": "noun",
@@ -9370,7 +9360,7 @@
   "band": "B1"
  },
  {
-  "rank": 938,
+  "rank": 937,
   "word": "سلوك",
   "meaning": "march, journey, travel",
   "pos": "noun",
@@ -9380,7 +9370,7 @@
   "band": "B1"
  },
  {
-  "rank": 939,
+  "rank": 938,
   "word": "ثقب",
   "meaning": "hole",
   "pos": "noun",
@@ -9390,7 +9380,7 @@
   "band": "B1"
  },
  {
-  "rank": 940,
+  "rank": 939,
   "word": "قطب",
   "meaning": "axis, axle",
   "pos": "noun",
@@ -9400,7 +9390,7 @@
   "band": "B1"
  },
  {
-  "rank": 941,
+  "rank": 940,
   "word": "قفل",
   "meaning": "to return from a journey",
   "pos": "noun",
@@ -9410,7 +9400,7 @@
   "band": "B1"
  },
  {
-  "rank": 942,
+  "rank": 941,
   "word": "وكل",
   "meaning": "to authorize, empower, put someone [+direct object] in charge of [+بِ (object)] or entrust to someone [+direct object] something [+بِ (object)], invest someone with full power",
   "pos": "verb",
@@ -9420,7 +9410,7 @@
   "band": "B1"
  },
  {
-  "rank": 943,
+  "rank": 942,
   "word": "إيجاد",
   "meaning": "creation; creating",
   "pos": "noun",
@@ -9430,7 +9420,7 @@
   "band": "B1"
  },
  {
-  "rank": 944,
+  "rank": 943,
   "word": "سلاح",
   "meaning": "weapon, arm",
   "pos": "noun",
@@ -9440,7 +9430,7 @@
   "band": "B1"
  },
  {
-  "rank": 945,
+  "rank": 944,
   "word": "صف",
   "meaning": "row, line (sequence of people or objects)",
   "pos": "noun",
@@ -9450,7 +9440,7 @@
   "band": "B1"
  },
  {
-  "rank": 946,
+  "rank": 945,
   "word": "وزن",
   "meaning": "weight (heavy object used to weigh something down)",
   "pos": "noun",
@@ -9460,7 +9450,7 @@
   "band": "B1"
  },
  {
-  "rank": 947,
+  "rank": 946,
   "word": "شارك",
   "meaning": "to share, to participate",
   "pos": "verb",
@@ -9470,7 +9460,7 @@
   "band": "B1"
  },
  {
-  "rank": 948,
+  "rank": 947,
   "word": "تحقق",
   "meaning": "verification, assurance",
   "pos": "noun",
@@ -9480,7 +9470,7 @@
   "band": "B1"
  },
  {
-  "rank": 949,
+  "rank": 948,
   "word": "رمز",
   "meaning": "symbol, emblem",
   "pos": "noun",
@@ -9490,7 +9480,7 @@
   "band": "B1"
  },
  {
-  "rank": 950,
+  "rank": 949,
   "word": "ملكة",
   "meaning": "possession",
   "pos": "noun",
@@ -9500,7 +9490,7 @@
   "band": "B1"
  },
  {
-  "rank": 951,
+  "rank": 950,
   "word": "هاتف",
   "meaning": "shouting, calling loudly",
   "pos": "noun",
@@ -9510,7 +9500,7 @@
   "band": "B1"
  },
  {
-  "rank": 952,
+  "rank": 951,
   "word": "ورقة",
   "meaning": "leaf",
   "pos": "noun",
@@ -9520,7 +9510,7 @@
   "band": "B1"
  },
  {
-  "rank": 953,
+  "rank": 952,
   "word": "جنة",
   "meaning": "madness, craziness, possession, mania",
   "pos": "noun",
@@ -9530,7 +9520,7 @@
   "band": "B1"
  },
  {
-  "rank": 954,
+  "rank": 953,
   "word": "فتنة",
   "meaning": "trial",
   "pos": "noun",
@@ -9540,7 +9530,7 @@
   "band": "B1"
  },
  {
-  "rank": 955,
+  "rank": 954,
   "word": "فيلم",
   "meaning": "film, movie",
   "pos": "noun",
@@ -9550,7 +9540,7 @@
   "band": "B1"
  },
  {
-  "rank": 956,
+  "rank": 955,
   "word": "لماذا",
   "meaning": "why",
   "pos": "adv",
@@ -9560,7 +9550,7 @@
   "band": "B1"
  },
  {
-  "rank": 957,
+  "rank": 956,
   "word": "اختيار",
   "meaning": "choice",
   "pos": "noun",
@@ -9570,7 +9560,7 @@
   "band": "B1"
  },
  {
-  "rank": 958,
+  "rank": 957,
   "word": "ناحية",
   "meaning": "side, direction",
   "pos": "noun",
@@ -9580,7 +9570,7 @@
   "band": "B1"
  },
  {
-  "rank": 959,
+  "rank": 958,
   "word": "فك",
   "meaning": "jaw",
   "pos": "noun",
@@ -9590,7 +9580,7 @@
   "band": "B1"
  },
  {
-  "rank": 960,
+  "rank": 959,
   "word": "عارض",
   "meaning": "obstacle",
   "pos": "noun",
@@ -9600,7 +9590,7 @@
   "band": "B1"
  },
  {
-  "rank": 961,
+  "rank": 960,
   "word": "فرط",
   "meaning": "swift horse",
   "pos": "noun",
@@ -9610,7 +9600,7 @@
   "band": "B1"
  },
  {
-  "rank": 962,
+  "rank": 961,
   "word": "إعادة",
   "meaning": "reconduction, repeat undertaking or restoration",
   "pos": "noun",
@@ -9620,7 +9610,7 @@
   "band": "B1"
  },
  {
-  "rank": 963,
+  "rank": 962,
   "word": "فرصة",
   "meaning": "chance, occasion, opportunity",
   "pos": "noun",
@@ -9630,7 +9620,7 @@
   "band": "B1"
  },
  {
-  "rank": 964,
+  "rank": 963,
   "word": "أبرز",
   "meaning": "to cause to come out, get into motion, bring out, expose, make manifest",
   "pos": "verb",
@@ -9640,7 +9630,7 @@
   "band": "B1"
  },
  {
-  "rank": 965,
+  "rank": 964,
   "word": "أغلب",
   "meaning": "more numerous, most numerous, more, most",
   "pos": "adj",
@@ -9650,7 +9640,7 @@
   "band": "B1"
  },
  {
-  "rank": 966,
+  "rank": 965,
   "word": "ألم",
   "meaning": "pain",
   "pos": "noun",
@@ -9660,7 +9650,7 @@
   "band": "B1"
  },
  {
-  "rank": 967,
+  "rank": 966,
   "word": "توزيع",
   "meaning": "distribution, dispensation",
   "pos": "noun",
@@ -9670,7 +9660,7 @@
   "band": "B1"
  },
  {
-  "rank": 968,
+  "rank": 967,
   "word": "بركة",
   "meaning": "pond",
   "pos": "noun",
@@ -9680,7 +9670,7 @@
   "band": "B1"
  },
  {
-  "rank": 969,
+  "rank": 968,
   "word": "حكيم",
   "meaning": "sage",
   "pos": "noun",
@@ -9690,7 +9680,7 @@
   "band": "B1"
  },
  {
-  "rank": 970,
+  "rank": 969,
   "word": "تبقى",
   "meaning": "to remain, to continue, to stay",
   "pos": "verb",
@@ -9700,7 +9690,7 @@
   "band": "B1"
  },
  {
-  "rank": 971,
+  "rank": 970,
   "word": "تغيير",
   "meaning": "changing, alteration, modification, variation",
   "pos": "noun",
@@ -9710,7 +9700,7 @@
   "band": "B1"
  },
  {
-  "rank": 972,
+  "rank": 971,
   "word": "حياتي",
   "meaning": "Of life; living",
   "pos": "adj",
@@ -9720,7 +9710,7 @@
   "band": "B1"
  },
  {
-  "rank": 973,
+  "rank": 972,
   "word": "رؤية",
   "meaning": "sight; vision (ability to see)",
   "pos": "noun",
@@ -9730,7 +9720,7 @@
   "band": "B1"
  },
  {
-  "rank": 974,
+  "rank": 973,
   "word": "ثبت",
   "meaning": "proof",
   "pos": "noun",
@@ -9740,7 +9730,7 @@
   "band": "B1"
  },
  {
-  "rank": 975,
+  "rank": 974,
   "word": "ديوان",
   "meaning": "register (registration book)",
   "pos": "noun",
@@ -9750,7 +9740,7 @@
   "band": "B1"
  },
  {
-  "rank": 976,
+  "rank": 975,
   "word": "سند",
   "meaning": "a surface that rises from a base, face of a mountain, a wall",
   "pos": "noun",
@@ -9760,7 +9750,7 @@
   "band": "B1"
  },
  {
-  "rank": 977,
+  "rank": 976,
   "word": "حوالي",
   "meaning": "around",
   "pos": "prep",
@@ -9770,7 +9760,7 @@
   "band": "B1"
  },
  {
-  "rank": 978,
+  "rank": 977,
   "word": "طويلة",
   "meaning": "a long rope attached to animals to graze",
   "pos": "noun",
@@ -9780,7 +9770,7 @@
   "band": "B1"
  },
  {
-  "rank": 979,
+  "rank": 978,
   "word": "اجتماع",
   "meaning": "meeting (بِ (bi) with someone), assembly",
   "pos": "noun",
@@ -9790,7 +9780,7 @@
   "band": "B1"
  },
  {
-  "rank": 980,
+  "rank": 979,
   "word": "غدا",
   "meaning": "go away, leave, come, do something, or exist early in the morning",
   "pos": "verb",
@@ -9800,7 +9790,7 @@
   "band": "B1"
  },
  {
-  "rank": 981,
+  "rank": 980,
   "word": "وعد",
   "meaning": "promise",
   "pos": "noun",
@@ -9810,7 +9800,7 @@
   "band": "B1"
  },
  {
-  "rank": 982,
+  "rank": 981,
   "word": "أل",
   "meaning": "to be agitated",
   "pos": "noun",
@@ -9820,7 +9810,7 @@
   "band": "B1"
  },
  {
-  "rank": 983,
+  "rank": 982,
   "word": "نفق",
   "meaning": "tunnel, a passageway or burrow having two openings",
   "pos": "noun",
@@ -9830,7 +9820,7 @@
   "band": "B1"
  },
  {
-  "rank": 984,
+  "rank": 983,
   "word": "بدأ",
   "meaning": "to begin",
   "pos": "verb",
@@ -9840,7 +9830,7 @@
   "band": "B1"
  },
  {
-  "rank": 985,
+  "rank": 984,
   "word": "تسجيل",
   "meaning": "registration",
   "pos": "noun",
@@ -9850,7 +9840,7 @@
   "band": "B1"
  },
  {
-  "rank": 986,
+  "rank": 985,
   "word": "سياسي",
   "meaning": "politician",
   "pos": "noun",
@@ -9860,7 +9850,7 @@
   "band": "B1"
  },
  {
-  "rank": 987,
+  "rank": 986,
   "word": "قل",
   "meaning": "to be few, to be little",
   "pos": "verb",
@@ -9870,7 +9860,7 @@
   "band": "B1"
  },
  {
-  "rank": 988,
+  "rank": 987,
   "word": "جواز",
   "meaning": "lawfulness",
   "pos": "noun",
@@ -9880,7 +9870,7 @@
   "band": "B1"
  },
  {
-  "rank": 989,
+  "rank": 988,
   "word": "راشد",
   "meaning": "one who follows the right path",
   "pos": "noun",
@@ -9890,7 +9880,7 @@
   "band": "B1"
  },
  {
-  "rank": 990,
+  "rank": 989,
   "word": "لطيف",
   "meaning": "thin, fine, delicate, dainty",
   "pos": "adj",
@@ -9900,7 +9890,7 @@
   "band": "B1"
  },
  {
-  "rank": 991,
+  "rank": 990,
   "word": "جانب",
   "meaning": "side",
   "pos": "noun",
@@ -9910,7 +9900,7 @@
   "band": "B1"
  },
  {
-  "rank": 992,
+  "rank": 991,
   "word": "انتشار",
   "meaning": "spread, proliferation",
   "pos": "noun",
@@ -9920,7 +9910,7 @@
   "band": "B1"
  },
  {
-  "rank": 993,
+  "rank": 992,
   "word": "تواصل",
   "meaning": "to be united by friendship",
   "pos": "noun",
@@ -9930,7 +9920,7 @@
   "band": "B1"
  },
  {
-  "rank": 994,
+  "rank": 993,
   "word": "خمس",
   "meaning": "the five digits of the hand",
   "pos": "noun",
@@ -9940,7 +9930,7 @@
   "band": "B1"
  },
  {
-  "rank": 995,
+  "rank": 994,
   "word": "عبارة",
   "meaning": "expression",
   "pos": "noun",
@@ -9950,7 +9940,7 @@
   "band": "B1"
  },
  {
-  "rank": 996,
+  "rank": 995,
   "word": "مشاهدة",
   "meaning": "observation; viewing; inspection",
   "pos": "noun",
@@ -9960,7 +9950,7 @@
   "band": "B1"
  },
  {
-  "rank": 997,
+  "rank": 996,
   "word": "مميز",
   "meaning": "distinctive, distinct, special",
   "pos": "adj",
@@ -9970,7 +9960,7 @@
   "band": "B1"
  },
  {
-  "rank": 998,
+  "rank": 997,
   "word": "تجربة",
   "meaning": "trial, essay, experiment",
   "pos": "noun",
@@ -9980,9 +9970,9 @@
   "band": "B1"
  },
  {
-  "rank": 999,
+  "rank": 998,
   "word": "وطن",
-  "meaning": "nation",
+  "meaning": "home, homeland, country, fatherland",
   "pos": "noun",
   "ipa": "/wa.tˤan/",
   "zipf": 4.42,
@@ -9990,11 +9980,21 @@
   "band": "B1"
  },
  {
-  "rank": 1000,
+  "rank": 999,
   "word": "أتم",
   "meaning": "to complete, finish",
   "pos": "verb",
   "ipa": "",
+  "zipf": 3.92,
+  "score": 105.56,
+  "band": "B1"
+ },
+ {
+  "rank": 1000,
+  "word": "طعن",
+  "meaning": "stabbing, piercing, thrusting",
+  "pos": "noun",
+  "ipa": "/tˤaʕn/",
   "zipf": 3.92,
   "score": 105.56,
   "band": "B1"
