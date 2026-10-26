@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
-import zlib from "node:zlib";
 import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 
@@ -37,21 +36,27 @@ const ORDER = ["es", "ja", "ar", "fr", "ru", "hi", "de", "zh", "he", "it", "ko",
 const FONTS =
   "https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;800&family=Space+Mono:wght@700&family=Noto+Sans:wght@400;800&family=Noto+Sans+Hebrew:wght@800&family=Noto+Sans+Arabic:wght@800&family=Noto+Sans+Devanagari:wght@800&family=Noto+Sans+SC:wght@800&family=Noto+Sans+JP:wght@800&family=Noto+Sans+KR:wght@800&family=Noto+Sans+Thai:wght@800&display=block";
 
-function loadPhotons() {
-  return JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(ROOT, "data", "photons.json.gz"))).toString("utf8"));
-}
+const CORPUS = path.resolve(ROOT, "..", "learning", "app", "corpus");
+const PIN_CATEGORIES = ["animal", "food", "nature", "body", "family", "object", "time"];
 
-export function groupMeanings(rows) {
-  const by = new Map();
-  for (const [, lang, surface, meaning, , ipa] of rows) {
-    if (!FLAGS[lang]) continue;
-    const key = meaning.trim().toLowerCase();
-    if (!/^(to )?[a-z]+$/.test(key) || key.length > 14) continue;
-    const m = by.get(key) ?? new Map();
-    if (!m.has(lang)) m.set(lang, { lang, w: surface, ipa: (ipa ?? "").replace(/^[/[]+|[/\]]+$/g, "") });
-    by.set(key, m);
+const readJson = (f) => JSON.parse(fs.readFileSync(path.join(CORPUS, f), "utf8"));
+
+export function loadConcepts() {
+  const atoms = new Map(readJson("lang-core.json").atoms.map((a) => [a.id, a]));
+  const ipa = readJson("_build/gold/kaikki-ipa.json");
+  const out = new Map();
+  for (const c of readJson("_build/concepts.json").concepts) {
+    const atom = atoms.get(c.id);
+    if (c.pos !== "noun" || !atom || !PIN_CATEGORIES.includes(atom.category)) continue;
+    const langs = new Map();
+    for (const [lang, form] of Object.entries(atom.forms)) {
+      if (!FLAGS[lang] || !form.word) continue;
+      const w = form.word.split(/[,;/(]/)[0].trim();
+      if (w) langs.set(lang, { lang, w, ipa: (form.ipa ?? ipa[lang]?.[w] ?? "").replace(/^[/[]+|[/\]]+$/g, "") });
+    }
+    out.set(c.id, { category: atom.category, langs });
   }
-  return by;
+  return out;
 }
 
 export function pickTiles(langs, max = 6) {
@@ -93,9 +98,12 @@ function args(argv) {
 
 async function main() {
   const o = args(process.argv.slice(2));
-  const by = groupMeanings(loadPhotons());
-  const ranked = [...by.entries()].filter(([, m]) => m.size >= 4).sort((a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0]));
-  const chosen = o.meanings.length ? o.meanings.map((k) => [k, by.get(k)]).filter(([, m]) => m && m.size >= 4) : ranked.slice(0, o.count);
+  const concepts = loadConcepts();
+  const usable = [...concepts.entries()].filter(([, c]) => c.langs.size >= 4);
+  const step = Math.max(1, Math.floor(usable.length / o.count));
+  const chosen = o.meanings.length
+    ? o.meanings.map((k) => [k, concepts.get(k)?.langs]).filter(([, m]) => m && m.size >= 4)
+    : usable.filter((_, i) => i % step === 0).slice(0, o.count).map(([k, c]) => [k, c.langs]);
   const css = fs.readFileSync(path.join(ROOT, "public", "d8", "tiles.css"), "utf8");
   fs.mkdirSync(o.out, { recursive: true });
   const browser = await chromium.launch();
