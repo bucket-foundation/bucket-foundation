@@ -25,7 +25,10 @@ Bucket OS is the shell. It holds four modules that share one account, one memory
 3. Add Read, with the founder as the first learner.
 4. Rename the Research OS shell to Bucket and move Research under it. URLs keep working through redirects.
 
-## Open Questions For The Founder
+## Founder Decisions
 
-- Does Polingual stay a separate App Store listing after the rename, or does it become a mode of Bucket?
-- Which science branch goes first for the applied rewrite?
+Answered 2026-10-26:
+
+- Polingual stays a separate paid app. Bucket stays free.
+- The applied science rewrite covers every branch.
+- The site sends people to the Bucket beta until the founder switches Polingual live.
