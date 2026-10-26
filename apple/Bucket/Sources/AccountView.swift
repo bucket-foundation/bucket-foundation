@@ -1,3 +1,4 @@
+import AuthenticationServices
 import BucketKit
 import SwiftUI
 import UserNotifications
@@ -9,6 +10,8 @@ struct AccountView: View {
     @State private var code = ""
     @State private var confirmingDelete = false
     @FocusState private var focused: Bool
+    @State private var nonce: AppleNonce?
+    @Environment(\.colorScheme) private var scheme
 
     private static var privacyURL: URL {
         let polingual = Bundle.main.bundleIdentifier == "com.polingual.app"
@@ -21,6 +24,24 @@ struct AccountView: View {
                 switch account.stage {
                 case .signedOut:
                     Section {
+                        SignInWithAppleButton(.signIn) { request in
+                            let n = AppleNonce.make()
+                            nonce = n
+                            request.requestedScopes = [.email]
+                            request.nonce = n.hashed
+                        } onCompletion: { result in
+                            guard case .success(let auth) = result,
+                                  let credential = auth.credential as? ASAuthorizationAppleIDCredential,
+                                  let token = credential.identityToken.flatMap({ String(data: $0, encoding: .utf8) }),
+                                  let raw = nonce?.raw else { return }
+                            Task { await account.signInWithApple(idToken: token, nonce: raw) }
+                        }
+                        .signInWithAppleButtonStyle(scheme == .dark ? .white : .black)
+                        .frame(height: 52)
+                        .clipShape(.rect(cornerRadius: 12))
+                        .disabled(account.busy)
+                    }
+                    Section {
                         TextField("you@school.example", text: $email)
                             .textContentType(.emailAddress)
                             .autocorrectionDisabled()
@@ -30,7 +51,7 @@ struct AccountView: View {
                             .buttonStyle(D8Primary())
                             .disabled(account.busy || !email.contains("@"))
                     } header: {
-                        Eyebrow(text: "Sign in")
+                        Eyebrow(text: "Or use email")
                     } footer: {
                         Text("Bucket emails a one-time code. The same account works on bucket.foundation.")
                     }

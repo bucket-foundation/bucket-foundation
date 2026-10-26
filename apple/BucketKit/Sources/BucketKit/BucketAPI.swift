@@ -75,6 +75,11 @@ public struct BucketAPI: Sendable {
         return try decodeBody(data)
     }
 
+    public func signInWithApple(idToken: String, nonce: String) async throws -> Session {
+        let data = try await session(["action": "apple", "id_token": idToken, "nonce": nonce, "app": Self.appName])
+        return try decodeBody(data)
+    }
+
     public func refresh(_ s: Session) async throws -> Session {
         let data = try await session(["action": "refresh", "refresh_token": s.refreshToken])
         return try decodeBody(data)
