@@ -1,7 +1,7 @@
 import test from "node:test";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
-import { appleAudiences, bearerToken, clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
+import { APPLE_SIGNIN_REPLY_BUDGET_MS, appleAudiences, bearerToken, clientIp, createSessionHandler, OTP_LOCKOUT_MESSAGE, RATE_MESSAGE, SESSION_LIMITS, type AuthResult, type SessionDeps } from "../src/lib/academy/session-server";
 
 const SESSION = { access_token: "at", refresh_token: "rt", expires_in: 3600, user: { id: "u1" } };
 
@@ -191,4 +191,62 @@ test("apple sign-in passes the authorization code on, and an exchange failure st
   const r = await failing.handle({ action: "apple", id_token: tok, nonce: "n1", app: "polingual", authorization_code: "c1" }, "1.1.1.1");
   assert.equal(r.status, 200);
   assert.equal(r.body.access_token, "at");
+});
+
+test("an Apple code exchange that finishes inside the budget is awaited and nothing is deferred", async () => {
+  const saved: string[] = [];
+  const deferred: Promise<unknown>[] = [];
+  const tok = appleToken({ aud: "foundation.bucket.app", nonce: sha("n1") });
+  const w = world({ linkBudgetMs: 50, defer: (p) => void deferred.push(p), linkAppleCode: async (u, _a, c) => void saved.push(`${u} ${c}`) });
+  const r = await w.handle({ action: "apple", id_token: tok, nonce: "n1", app: "bucket", authorization_code: "c1" }, "1.1.1.1");
+  assert.equal(r.status, 200);
+  assert.deepEqual(saved, ["u1 c1"]);
+  assert.equal(deferred.length, 0);
+  assert.equal(APPLE_SIGNIN_REPLY_BUDGET_MS, 3000);
+});
+
+test("a late Apple code exchange returns the session first, keeps the same exchange running, and stores the token", async () => {
+  const saved: string[] = [];
+  const deferred: Promise<unknown>[] = [];
+  let starts = 0;
+  let finish: () => void = () => undefined;
+  const tok = appleToken({ aud: "foundation.bucket.app", nonce: sha("n1") });
+  const w = world({
+    linkBudgetMs: 10,
+    defer: (p) => void deferred.push(p),
+    linkAppleCode: (u, _a, c) => (starts++, new Promise<void>((res) => (finish = () => (saved.push(`${u} ${c}`), res())))),
+  });
+  const r = await w.handle({ action: "apple", id_token: tok, nonce: "n1", app: "bucket", authorization_code: "c1" }, "1.1.1.1");
+  assert.equal(r.status, 200);
+  assert.equal(r.body.access_token, "at");
+  assert.deepEqual(saved, []);
+  assert.equal(deferred.length, 1);
+  finish();
+  await deferred[0];
+  assert.deepEqual(saved, ["u1 c1"]);
+  assert.equal(starts, 1);
+});
+
+test("a late Apple code exchange that fails is logged once", async () => {
+  const deferred: Promise<unknown>[] = [];
+  const errors: unknown[][] = [];
+  const realError = console.error;
+  console.error = (...a: unknown[]) => void errors.push(a);
+  let fail: () => void = () => undefined;
+  try {
+    const tok = appleToken({ aud: "foundation.bucket.app", nonce: sha("n1") });
+    const w = world({
+      linkBudgetMs: 10,
+      defer: (p) => void deferred.push(p),
+      linkAppleCode: () => new Promise<void>((_, rej) => (fail = () => rej(new Error("apple down")))),
+    });
+    const r = await w.handle({ action: "apple", id_token: tok, nonce: "n1", app: "bucket", authorization_code: "c1" }, "1.1.1.1");
+    assert.equal(r.status, 200);
+    assert.equal(errors.length, 0);
+    fail();
+    await deferred[0];
+  } finally {
+    console.error = realError;
+  }
+  assert.deepEqual(errors, [["apple code exchange", "apple down"]]);
 });

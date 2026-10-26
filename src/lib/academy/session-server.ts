@@ -33,6 +33,8 @@ export interface SessionDeps {
   signInWithApple: (token: string, nonce: string) => Promise<AuthResult>;
   appleAudiences?: () => string[];
   linkAppleCode?: (userId: string, app: string, code: string) => Promise<void>;
+  defer?: (work: Promise<unknown>) => void;
+  linkBudgetMs?: number;
   deleteAccount: (accessToken: string) => Promise<{ status: number | null }>;
   now: () => number;
 }
@@ -49,6 +51,8 @@ export function clientIp(headers: Headers): string {
   if (platform) return platform;
   return headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
 }
+
+export const APPLE_SIGNIN_REPLY_BUDGET_MS = 3000;
 
 export const OTP_LOCKOUT_MESSAGE = "Bucket sent several codes to this email. Wait ten minutes and try again.";
 export const RATE_MESSAGE = "Too many tries from here. Wait ten minutes and try again.";
@@ -138,11 +142,15 @@ export function createSessionHandler(deps: SessionDeps) {
       if (r.session) {
         const userId = r.session.user?.id;
         if (code && userId && deps.linkAppleCode) {
-          try {
-            await deps.linkAppleCode(userId, app, code);
-          } catch (e) {
-            console.error("apple code exchange", e instanceof Error ? e.message : e);
-          }
+          const job = deps.linkAppleCode(userId, app, code).then(
+            () => "done" as const,
+            (e: unknown) => (console.error("apple code exchange", e instanceof Error ? e.message : e), "failed" as const),
+          );
+          let timer: ReturnType<typeof setTimeout> | undefined;
+          const late = new Promise<"late">((resolve) => (timer = setTimeout(() => resolve("late"), deps.linkBudgetMs ?? APPLE_SIGNIN_REPLY_BUDGET_MS)));
+          const first = await Promise.race([job, late]);
+          clearTimeout(timer);
+          if (first === "late") deps.defer?.(job);
         }
         return { status: 200, body: tokens(r.session) };
       }

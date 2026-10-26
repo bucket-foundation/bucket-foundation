@@ -2,6 +2,7 @@ import type { NextRequest } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { exchangeAppleCode, revokeForAccountDelete } from "@/lib/academy/apple-token";
 import { appleTokenDeps } from "@/lib/academy/apple-token-store";
+import { vercelDefer } from "@/lib/capture/legs";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
 import { appleAudiences, bearerToken, clientIp, createSessionHandler } from "@/lib/academy/session-server";
@@ -65,6 +66,7 @@ const handle = createSessionHandler({
   linkAppleCode: async (userId, app, code) => {
     await exchangeAppleCode(appleTokens, userId, app, code);
   },
+  defer: vercelDefer,
   appleAudiences: () => appleAudiences(process.env.APPLE_AUDIENCES),
   deleteAccount: deleteAccountFor,
 });
