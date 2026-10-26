@@ -1,6 +1,7 @@
 import { DAY_MS, FSRS, type Card, type Rating } from "./fsrs";
 import { dayKey, grade, makeFsrs, normalizeState, type EngineState } from "./engine";
 import { alphabetDone, alphabetUnit, dueLetters, FOLDABLE_MARKS, judgeSpelled, letterItemId, nextLetters } from "./lang-script";
+import { isHAspire } from "./french-h-aspire";
 
 export interface LangInfo {
   name: string;
@@ -241,13 +242,11 @@ const SPANISH_STRESSED_A = new Set(["agua", "águila", "alma", "arma", "hambre",
 
 const ITALIAN_LO = /^(s[^aeiouàèéìòù]|z|gn|ps|pn|x|y)/i;
 
-const FRENCH_ASPIRATED_H = /^h(aricot|éros|ibou|omard|onte|uit|ache|aine|all|asard|aut|ockey|amac|amburger|andicap|angar|anche|areng|arpe|érisson|être|utte|ublot|uppe|ameau|alle|ibou)/i;
-
 export function articleWord(lang: string, gender: string, noun: string): string | null {
   const a = ARTICLES[lang]?.[gender];
   if (!a) return null;
   if (lang === "es" && gender === "f" && SPANISH_STRESSED_A.has(noun.toLowerCase())) return "el";
-  if (lang === "fr" && /^[aeiouhàâéèêîôûœ]/i.test(noun) && !FRENCH_ASPIRATED_H.test(noun)) return "l'";
+  if (lang === "fr" && /^[aeiouhàâéèêîôûœ]/i.test(noun) && !isHAspire(noun)) return "l'";
   if (lang === "it" && /^[aeiouàèéìòù]/i.test(noun)) return "l'";
   if (lang === "it" && gender === "m" && ITALIAN_LO.test(noun)) return "lo";
   return a;
