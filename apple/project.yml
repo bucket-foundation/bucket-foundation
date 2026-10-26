@@ -116,6 +116,7 @@ targets:
     platform: iOS
     sources:
       - path: Polingual/Widget/PolingualWidget.swift
+      - path: Bucket/Widget/PrivacyInfo.xcprivacy
       - path: Polingual/WidgetShared
     info:
       path: Bucket/Widget/Info.plist
