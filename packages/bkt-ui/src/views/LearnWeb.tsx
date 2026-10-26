@@ -38,7 +38,7 @@ export function LanguagesView() {
 export function LangSystemView({ system }: { system: string }) {
   return (
     <Web>
-      <SystemView systemId={system} />
+      <SystemView systemId={system} showMilestones={false} />
     </Web>
   );
 }
