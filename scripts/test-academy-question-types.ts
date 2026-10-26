@@ -21,8 +21,13 @@ for (const { branch, atomIds, raw } of decks) {
   test(`${branch}: deck loads and every atom has all five kinds`, () => {
     const deck = loadQuestionDeck(raw, atomIds);
     assert.equal(deck.branch, branch);
-    assert.equal(deck.questions.length, atomIds.length * 5);
-    for (const id of atomIds) for (const k of KINDS) assert.equal(questionsFor(deck, id, k).length, 1, `${id} ${k}`);
+    for (const id of atomIds) {
+      const all = questionsFor(deck, id);
+      const extras = all.filter((q) => q.id === `${id}.applied`);
+      assert.ok(extras.length <= 1 && extras.every((q) => q.applied === true), `${id}: at most one extra, marked applied`);
+      for (const k of KINDS) assert.equal(all.filter((q) => q.kind === k && !extras.includes(q)).length, 1, `${id} ${k}`);
+      assert.equal(all.length, 5 + extras.length, `${id}: five kinds plus one applied extra at most`);
+    }
   });
 
   test(`${branch}: every question grades its own key as correct`, () => {
@@ -40,6 +45,10 @@ for (const { branch, atomIds, raw } of decks) {
     }
   });
 }
+
+test("loader rejects a non-boolean applied flag", () => {
+  assert.throws(() => loadQuestionDeck({ branch: "x", version: "0", questions: [{ id: "a", atom: "a", kind: "pick", prompt: "?", options: ["a", "b"], answer: 0, applied: "yes" }] }), /applied must be a boolean/);
+});
 
 test("loader rejects unknown atoms, bad indices and duplicate ids", () => {
   const bad = { branch: "x", version: "0", questions: [
