@@ -181,8 +181,8 @@ import Testing
 @Test func flagMergeMatchesTheWebGolden() throws {
     let url = try #require(Bundle.module.url(forResource: "flag-merge-golden", withExtension: "json", subdirectory: "Fixtures/lang"))
     let root = try #require(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
-    func settings(_ key: String) -> JSObject {
-        let side = root[key] as? [String: [String: Int]] ?? [:]
+    func settings(_ side: Any?) -> JSObject {
+        let side = side as? [String: [String: Int]] ?? [:]
         return JSObject(side.keys.sorted().map { k in (k, .object(JSObject((side[k] ?? [:]).sorted { $0.key < $1.key }.map { ($0.key, .number(Double($0.value))) }))) })
     }
     func ints(_ v: JSValue?) -> [String: Int] {
@@ -190,14 +190,37 @@ import Testing
         for k in v?.object?.keys ?? [] { out[k] = Int(v?.object?[k]?.number ?? 0) }
         return out
     }
-    let want = root["synced"] as? [String: [String: Int]] ?? [:]
-    for (a, b) in [("a", "b"), ("b", "a")] {
-        var out = JSObject()
-        FlagMisses.mergeSynced(&out, settings(a), settings(b))
-        #expect(ints(out["flagHits"]) == want["flagHits"], "\(a)+\(b)")
-        #expect(ints(out["flagMisses"]) == want["flagMisses"], "\(a)+\(b)")
+    func merged(_ sides: [JSObject]) -> JSObject {
+        sides.dropFirst().reduce(sides[0]) { acc, next in
+            var out = JSObject()
+            FlagMisses.mergeSynced(&out, acc, next)
+            return out
+        }
     }
-    #expect(want["flagHits"]?["it"] == 0 && want["flagMisses"]?["it"] == 1)
+    func orders(_ xs: [JSObject]) -> [[JSObject]] {
+        xs.count <= 1 ? [xs] : xs.indices.flatMap { i in orders(Array(xs[..<i] + xs[(i + 1)...])).map { [xs[i]] + $0 } }
+    }
+    let cases = [root] + (root["cases"] as? [[String: Any]] ?? [])
+    #expect(cases.count == 4)
+    for c in cases {
+        let want = c["synced"] as? [String: [String: Int]] ?? [:]
+        let sides = ["a", "b", "c"].compactMap { c[$0] }.map(settings)
+        for order in orders(sides) {
+            let out = merged(order)
+            #expect(ints(out["flagHits"]) == want["flagHits"] ?? [:], "\(c["name"] ?? "root")")
+            #expect(ints(out["flagMisses"]) == want["flagMisses"] ?? [:], "\(c["name"] ?? "root")")
+        }
+    }
+    #expect((root["synced"] as? [String: [String: Int]])?["flagHits"]?["it"] == 0)
+}
+
+@Test func frenchHAspireBlocksElision() {
+    #expect(Lang.isHAspire("haricot") && Lang.isHAspire("haricots") && Lang.isHAspire("hiboux"))
+    #expect(Lang.isHAspire("Homard") && Lang.isHAspire(" haut de gamme"))
+    #expect(!Lang.isHAspire("homme") && !Lang.isHAspire("heure") && !Lang.isHAspire("hôtels"))
+    #expect(Lang.isHAspire("hot-dog") && Lang.isHAspire("haut-parleur") && Lang.isHAspire("hors-d'œuvre") && !Lang.isHAspire("hallucination"))
+    #expect(Lang.articleWord("fr", "m", "haricot") == "le" && Lang.articleWord("fr", "f", "hache") == "la")
+    #expect(Lang.articleWord("fr", "m", "homme") == "l'" && Lang.articleWord("fr", "f", "heure") == "l'")
 }
 
 @Test func aStreakShowsOnlyThroughTheDayAfterTheLastStudy() {
@@ -248,4 +271,55 @@ import Testing
     #expect(zero.day == 0 && zero.left == 100)
     let done = StreakGoal(streak: 130)
     #expect(done.reached && done.left == 0 && done.fraction == 1 && done.day == 130)
+}
+
+@Test func a311CardPlacementPileSpreadsOnceAtMost25ADay() {
+    let now = 1_792_508_400_000.0
+    var st = EngineState()
+    for i in 0..<311 {
+        var c = Card(state: "review")
+        c.reps = 1
+        c.stability = 3.2
+        c.lastReview = now - 3 * DAY_MS
+        c.due = now
+        c.placed = true
+        st.cards["fr:w\(i)"] = c
+    }
+    var seen = Card(state: "review")
+    seen.reps = 2
+    seen.due = now
+    seen.placed = true
+    st.cards["fr:seen"] = seen
+    let spread = spreadingUntouchedPlaced(st, now: now)
+    var perDay: [Int: Int] = [:]
+    for (id, c) in spread.cards.entries where id != "fr:seen" {
+        let day = Int(((c.due ?? 0) - now) / DAY_MS)
+        #expect(day >= 1)
+        perDay[day, default: 0] += 1
+    }
+    #expect(perDay.values.allSatisfy { $0 <= PLACED_PER_DAY })
+    #expect(perDay.keys.filter { $0 <= PLACED_SPREAD_DAYS }.count == PLACED_SPREAD_DAYS)
+    #expect(spread.cards["fr:seen"] == seen)
+    #expect(spreadingUntouchedPlaced(spread, now: now + 5 * DAY_MS) == spread)
+    #expect(EngineState(js: spread.js).cards["fr:w0"]?.spread == true)
+}
+
+@Test func placedReviewsAreCappedBehindRealReviews() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    let utc = TimeZone(identifier: "UTC")!
+    let now = 1_792_508_400_000.0
+    let sys = try createSystem("en", ["fr"], [], now: now)
+    let items = corpus.items.filter { $0.form("fr") != nil }.prefix(40)
+    var st = EngineState()
+    for (i, item) in items.enumerated() {
+        var c = Card(state: "review")
+        c.reps = i < 3 ? 4 : 1
+        c.placed = i < 3 ? nil : true
+        c.due = now - Double(40 - i) * 60_000
+        st.cards[cardId("fr", item.id)] = c
+    }
+    let plan = planSession(sys, corpus, st, now: now, size: 40, tz: utc)
+    let reviewed = plan.filter { st.cards.has(cardId($0.lang, $0.itemId)) }
+    #expect(reviewed.prefix(3).map(\.itemId) == items.prefix(3).map(\.id))
+    #expect(reviewed.count == 3 + PLACED_PER_DAY)
 }

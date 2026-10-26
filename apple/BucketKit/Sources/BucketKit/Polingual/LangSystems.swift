@@ -103,7 +103,17 @@ public enum Lang {
 
     static func article(_ lang: String, _ gender: String) -> String? { articles[lang]?.first { $0.0 == gender }?.1 }
 
-    static let frenchAspiratedH = ["haricot", "héros", "hibou", "homard", "honte", "huit", "hache", "haine", "hall", "hasard", "haut", "hockey", "hamac", "hamburger", "handicap", "hangar", "hanche", "hareng", "harpe", "hérisson", "hêtre", "hutte", "hublot", "huppe", "hameau", "halle"]
+    static let frenchHAspire: Set<String> = ["hache", "hachis", "haie", "haillon", "haine", "haïr", "hall", "halle", "halte", "hamac", "hameau", "hamburger", "hamster", "hanche", "handball", "handicap", "hangar", "hanneton", "hanter", "happer", "harangue", "haras", "harceler", "hardi", "harem", "hareng", "hargne", "haricot", "harnais", "harpe", "harpon", "hasard", "hâte", "hausse", "haut", "hautbois", "hauteur", "havre", "hennir", "hérisson", "hernie", "héron", "héros", "herse", "hêtre", "heurter", "hibou", "hiérarchie", "hisser", "hobby", "hockey", "hold-up", "hollandais", "homard", "hongrois", "honte", "honteux", "hoquet", "horde", "hors", "hot-dog", "hotte", "houblon", "houle", "houppe", "housse", "houx", "hublot", "huer", "huit", "huitième", "hululer", "humer", "hurler", "hutte", "hyène", "hachette", "hachoir", "haineux", "hâtif", "hautain", "hautement", "huitaine", "hurlement", "hurleur", "harponner", "hargneux", "hardiesse", "hanté", "handicapé", "haute", "hip-hop", "hiérarchique", "houleux", "hutin"]
+
+    public static func isHAspire(_ noun: String) -> Bool {
+        let token = noun.trimmingCharacters(in: .whitespacesAndNewlines).lowercased().split(whereSeparator: \.isWhitespace).first.map(String.init) ?? ""
+        let head = token.split(omittingEmptySubsequences: false) { "'’-".contains($0) }.first.map(String.init) ?? ""
+        return knownHAspire(token) || knownHAspire(head)
+    }
+
+    static func knownHAspire(_ w: String) -> Bool {
+        frenchHAspire.contains(w) || ((w.hasSuffix("s") || w.hasSuffix("x")) && frenchHAspire.contains(String(w.dropLast())))
+    }
 
     public static func contextualArticle(_ lang: String, _ gender: String, _ noun: String) -> String? {
         let w = noun.lowercased()
@@ -118,7 +128,7 @@ public enum Lang {
             return nil
         case "fr":
             guard "aeiouhàâéèêîôûœ".contains(first) else { return nil }
-            return frenchAspiratedH.contains(where: { w.hasPrefix($0) }) ? nil : "l'"
+            return isHAspire(noun) ? nil : "l'"
         case "es":
             let stressedA = ["agua", "águila", "alma", "arma", "hambre", "hacha", "aula", "área", "ala", "ave", "ancla", "hada", "haba", "habla", "alba", "asma", "aya"]
             return gender == "f" && stressedA.contains(w) ? "el" : nil
@@ -1039,11 +1049,29 @@ func grammarReady(_ item: LangItem, _ lang: String, _ state: EngineState) -> Boo
     return (base.reps ?? 0) >= 2
 }
 
+func isPlacedReview(_ c: Card) -> Bool { c.placed == true && (c.reps ?? 0) <= 1 }
+
+func placedReviewedToday(_ state: EngineState, now: Double, tz: TimeZone) -> Int {
+    let dk = dayKey(now, tz: tz)
+    return state.cards.entries.filter { e in
+        e.value.placed == true && (e.value.reps ?? 0) == 2 && e.value.lastReview.map { dayKey($0, tz: tz) == dk } == true
+    }.count
+}
+
 public func planSession(_ system: LangSystem, _ corpus: LangCorpus, _ state: EngineState, now: Double, size: Int = 14, tz: TimeZone = .current) -> [SessionCard] {
+    var placedRoom = max(0, PLACED_PER_DAY - placedReviewedToday(state, now: now, tz: tz))
     let due = state.cards.entries
         .map { (parseCardId($0.key), $0.value) }
         .filter { system.targets.contains($0.0.lang) && corpus.byId[$0.0.itemId] != nil && $0.1.due != nil && $0.1.due! <= now }
-        .stableSorted { ($0.1.due ?? 0) < ($1.1.due ?? 0) }
+        .stableSorted { a, b in
+            let pa = isPlacedReview(a.1), pb = isPlacedReview(b.1)
+            return pa != pb ? !pa : (a.1.due ?? 0) < (b.1.due ?? 0)
+        }
+        .filter { x in
+            guard isPlacedReview(x.1) else { return true }
+            placedRoom -= 1
+            return placedRoom >= 0
+        }
         .prefix(size)
         .map { SessionCard(itemId: $0.0.itemId, lang: $0.0.lang) }
     let room = max(0, size - due.count)
@@ -1134,17 +1162,20 @@ public func placementOptions(_ corpus: LangCorpus, _ item: LangItem, _ lang: Str
 }
 
 public func applyPlacement(_ state: EngineState, _ system: LangSystem, _ corpus: LangCorpus, _ lang: String, _ tier: Double, now: Double, tz: TimeZone = .current) -> EngineState {
-    var next = state
+    var next = spreadingUntouchedPlaced(state, now: now)
     let fsrs = next.fsrs
+    var placed: [String] = []
     for item in corpus.items {
         if !isVocab(item) || item.tier >= tier || !usable(item, system.root, lang) { continue }
         let id = cardId(lang, item.id)
         if next.cards.has(id) { continue }
-        var c = fsrs.review(Card(state: "new"), 3, now: now)
+        var c = fsrs.review(Card(state: "new"), 4, now: now)
         c.placed = true
         c.introduced = dayKey(now, tz: tz)
         next.cards[id] = c
+        placed.append(id)
     }
+    spreadPlaced(&next.cards, placed, now: now)
     return next
 }
 
