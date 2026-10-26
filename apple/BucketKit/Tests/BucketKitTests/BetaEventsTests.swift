@@ -50,9 +50,26 @@ func betaFile() -> URL { FileManager.default.temporaryDirectory.appending(path: 
 
 @Test func betaFlagsFallBackAndParseTheServerShape() {
     #expect(BetaFlags().newWords == 4)
-    #expect(!BetaFlags().crossLanguageOptions)
+    #expect(BetaFlags().crossLanguageOptions)
     let f = BetaFlags.parse(Data(#"{"cohort":"default","flags":{"new_words":{"value":"8","arm":"8","source":"hash"},"option_language":{"value":"cross","arm":"cross","source":"hash"}}}"#.utf8))
     #expect(f?.newWords == 8)
     #expect(f?.crossLanguageOptions == true)
     #expect(f?.cognateHints == false)
+}
+
+@Test func optOutWithoutNetworkIsRetriedWithTheNextToken() async throws {
+    let d = UUID().uuidString
+    let down = RecordingTransport([503])
+    let beta = BetaEvents(app: "bucket", transport: down, file: betaFile(), suite: d)
+    await beta.setOptedOut(true, token: "tok")
+    #expect(await beta.pendingOptOut == true)
+    let up = RecordingTransport([200])
+    let later = BetaEvents(app: "bucket", transport: up, file: betaFile(), suite: d)
+    _ = await later.flush(token: "tok")
+    #expect(await later.pendingOptOut == nil)
+    let body = try JSONSerialization.jsonObject(with: up.bodies[0]) as? [String: Bool]
+    #expect(body?["opted_out"] == true)
+    let offline = BetaEvents(app: "bucket", transport: RecordingTransport([200]), file: betaFile(), suite: UUID().uuidString)
+    await offline.setOptedOut(true, token: nil)
+    #expect(await offline.pendingOptOut == true)
 }

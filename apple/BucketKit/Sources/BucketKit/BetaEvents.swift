@@ -48,6 +48,7 @@ public actor BetaEvents {
     public static let batchSize = 100
     public static let maxQueue = 2000
     public static let optOutKey = "beta.optedOut"
+    public static let pendingKey = "beta.optOutPending"
 
     let app: String
     let base: URL
@@ -76,7 +77,10 @@ public actor BetaEvents {
         save()
     }
 
+    public var pendingOptOut: Bool? { defaults.object(forKey: Self.pendingKey) as? Bool }
+
     public func flush(token: String?) async -> BetaFlush {
+        if let token, let pending = pendingOptOut { await sendOptOut(pending, token: token) }
         guard let token, !flushing, !queue.isEmpty, !optedOut else { return BetaFlush(sent: 0, kept: queue.count) }
         flushing = true
         defer { flushing = false }
@@ -97,17 +101,27 @@ public actor BetaEvents {
 
     public func setOptedOut(_ out: Bool, token: String?) async {
         defaults.set(out, forKey: Self.optOutKey)
+        defaults.set(out, forKey: Self.pendingKey)
         if out {
             queue = []
             save()
         }
-        guard let token else { return }
+        if let token { await sendOptOut(out, token: token) }
+    }
+
+    func sendOptOut(_ out: Bool, token: String) async {
         var r = URLRequest(url: base.appending(path: "api/beta/opt-out"))
         r.httpMethod = "POST"
         r.setValue("Bearer \(token)", forHTTPHeaderField: "authorization")
         r.setValue("application/json", forHTTPHeaderField: "content-type")
         r.httpBody = try? JSONEncoder().encode(["opted_out": out])
-        _ = try? await transport.send(r)
+        guard let (_, http) = try? await transport.send(r), http.statusCode == 200 else { return }
+        if pendingOptOut == out { defaults.removeObject(forKey: Self.pendingKey) }
+    }
+
+    public func clearQueue() {
+        queue = []
+        save()
     }
 
     func post(_ batch: [BetaEvent], token: String) async -> Int? {

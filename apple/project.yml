@@ -33,6 +33,8 @@ targets:
       properties:
         keychain-access-groups:
           - $(AppIdentifierPrefix)foundation.bucket.shared
+        com.apple.developer.applesignin:
+          - Default
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: foundation.bucket.app

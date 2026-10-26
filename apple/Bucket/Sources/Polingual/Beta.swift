@@ -9,6 +9,7 @@ final class Beta {
     private(set) var flags = BetaFlags.cached()
     private var sessionId = UUID().uuidString.lowercased()
     private var sessionStarted: Date?
+    weak var account: Account?
 
     init() {
         let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
@@ -16,11 +17,13 @@ final class Beta {
     }
 
     func log(_ name: String, _ props: [String: JSONScalar] = [:]) {
+        guard account?.session != nil else { return }
         let event = BetaEvent(name: name, sessionId: sessionId, props: props)
         Task { await events.log(event) }
     }
 
     func foreground(_ account: Account) {
+        self.account = account
         sessionId = UUID().uuidString.lowercased()
         log("app_open")
         Task {
@@ -31,6 +34,7 @@ final class Beta {
     }
 
     func background(_ account: Account) {
+        self.account = account
         Task { _ = await events.flush(token: await account.freshToken()) }
     }
 

@@ -244,6 +244,12 @@ struct Onboarding: View {
             }
             .buttonStyle(D8Primary())
             .disabled((step == .languages && targets.isEmpty) || creating)
+            if step == .daily && !reminders.enabled && !reminders.denied {
+                Button("Not now") { advance() }
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(D8.parchment.opacity(0.85))
+                    .buttonStyle(LinkPad())
+            }
         }
         .padding(.horizontal, 24)
         .padding(.bottom, 20)

@@ -18,6 +18,7 @@ struct BucketApp: App {
         let langs = LangStore(api: BucketAPI(), token: { await account.freshToken() })
         LangVoice.shared.store = langs
         _account = State(initialValue: account)
+        Beta.shared.account = account
         _langs = State(initialValue: langs)
         #if DEBUG
         let shift = (Launch.value("-clockDays").flatMap(Double.init) ?? 0) * DAY_MS

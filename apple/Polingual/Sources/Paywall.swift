@@ -68,7 +68,7 @@ struct Paywall: View {
         #if os(iOS)
         .offerCodeRedemption(isPresented: $redeeming) { _ in Task { await subs.refresh() } }
         .sheet(isPresented: $student) {
-            StudentPlan {
+            StudentPlan(yearly: products.first { $0.id == Plan.yearly }) {
                 student = false
                 Task {
                     try? await Task.sleep(for: .milliseconds(450))
@@ -421,7 +421,16 @@ struct Weave: View {
 
 struct StudentPlan: View {
     @Environment(\.openURL) private var openURL
+    let yearly: Product?
     let redeem: () -> Void
+
+    static let studentUSD: Decimal = 29.99
+
+    var price: String {
+        guard let yearly else { return String(localized: "Half the yearly price") }
+        let style = yearly.priceFormatStyle
+        return style.currencyCode == "USD" ? String(localized: "\(Self.studentUSD.formatted(style)) a year") : String(localized: "Half the yearly price")
+    }
 
     static var mail: URL {
         var c = URLComponents()
@@ -435,7 +444,7 @@ struct StudentPlan: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Student plan").font(.system(size: 26, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
-            Text("$29.99 a year").font(.title3.weight(.bold)).foregroundStyle(Color(hex: 0x5B1A4A))
+            Text(price).font(.title3.weight(.bold)).foregroundStyle(Color(hex: 0x5B1A4A))
             Text("Email us from your school address. We reply with a one-time code for the student price.")
                 .font(.body).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
             Button("Email from my school address") { openURL(Self.mail) }.buttonStyle(D8Primary())
