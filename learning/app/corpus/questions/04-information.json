@@ -605,7 +605,7 @@
    "kind": "pick",
    "prompt": "x -> a divisor of x is what?",
    "options": [
-    "A relation, not a function",
+    "A relation that is no function",
     "A function",
     "A bijection",
     "Empty"
@@ -1207,7 +1207,7 @@
    "kind": "pick",
    "prompt": "The halting language is what?",
    "options": [
-    "Recognizable, not decidable",
+    "Recognizable and undecidable",
     "Decidable",
     "Not recognizable",
     "Regular"
@@ -1277,11 +1277,11 @@
    "id": "decidability.applied",
    "atom": "decidability",
    "kind": "pick",
-   "prompt": "A test harness runs a submitted program and waits. Why can it never safely say 'this loops forever'?",
+   "prompt": "A grading server runs a submitted program and waits. Why can it never safely say 'this loops forever'?",
    "options": [
     "A program still running may halt later",
     "Programs cannot loop, so a running program must be broken",
-    "The harness is decidable",
+    "The grading server is decidable",
     "Loops always crash"
    ],
    "answer": 0,
@@ -3035,7 +3035,7 @@
     "Overparameterized nets can generalize"
    ],
    "error": 2,
-   "fix": "Large nets often generalize, beyond classical expectations."
+   "fix": "Overparameterized nets can generalize well past what classical theory predicts."
   },
   {
    "id": "neural-network-learning.match",
@@ -3852,7 +3852,7 @@
    "options": [
     "At least as long as the message",
     "Shorter than the message it protects",
-    "Reused often",
+    "Reused for many messages",
     "Public"
    ],
    "answer": 0
