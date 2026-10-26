@@ -46,6 +46,7 @@ const SUITES = {
       "scripts/test-waitlist-invites.ts",
       "scripts/test-academy-{engine,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-systems-sync,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
+      "scripts/test-academy-fsrs-fit.ts",
       "scripts/test-academy-delete-account.ts",
       "scripts/test-photon-means-like.ts",
       "scripts/test-plain-words-demo.ts",
