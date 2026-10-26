@@ -158,7 +158,7 @@ describe("install", () => {
     const inner = buildDeck(join(ROOT, "noinner"), "de", "German", GERMAN, { innerLicence: null });
     expect(await refusal(() => installDeck(home, inner.dir))).toContain("carries no licence inside");
     const differs = buildDeck(join(ROOT, "differs"), "de", "German", GERMAN, { innerLicence: "CC0" });
-    expect(await refusal(() => installDeck(home, differs.dir))).toContain("its manifest says CC-BY-SA 3.0");
+    expect(await refusal(() => installDeck(home, differs.dir))).toContain("its manifest says CC-BY-SA 4.0");
     expect(listInstalled(home)).toEqual([]);
   });
 
@@ -513,7 +513,7 @@ describe("credit", () => {
     expect([hit.source, hit.licence, hit.href]).toEqual(["Open Word List", "CC0 1.0", null]);
     expect(found.credits.find((c) => c.deck === "polingual-de")).toMatchObject({ source: "Open Word List", licence: "CC0 1.0", curator: "Ada Example" });
     const mixed = searchWords(book, book.files, HELD.word, { lang: "de" });
-    expect(mixed.credits.find((c) => c.deck === "bundled")).toMatchObject({ title: "Words that came with Bucket", licence: "CC-BY-SA 3.0" });
+    expect(mixed.credits.find((c) => c.deck === "bundled")).toMatchObject({ title: "Words that came with Bucket", licence: "CC-BY-SA 4.0" });
     expect(deckLine(deckRows(home, null)[0])).toContain("Open Word List, CC0 1.0, curated by Ada Example");
 
     const s = session(book, ["de"]);
@@ -677,7 +677,7 @@ describe("through the command line", () => {
     expect(put.code).toBe(0);
     expect(put.out.trimEnd().split("\n")).toEqual([
       `Installed Arabic words: ${ARABIC.length} words, version ${AR.manifest.version}, checksum matches.`,
-      "Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, curated by Bucket Foundation.",
+      "Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0, curated by Bucket Foundation.",
       "Restart Bucket to see it in Learn.",
     ]);
     expect(existsSync(join(home, "bkt.db"))).toBe(false);
@@ -689,16 +689,16 @@ describe("through the command line", () => {
     expect(lines.length).toBe(3);
     expect(lines[0]).toStartWith("installed  polingual-ar");
     expect(lines[2]).toStartWith("available  polingual-de");
-    expect(lines.every((l) => l.includes("Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, curated by Bucket Foundation"))).toBe(true);
+    expect(lines.every((l) => l.includes("Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0, curated by Bucket Foundation"))).toBe(true);
     expect(bkt("words", "list").out).toBe(bkt("decks", "list").out);
 
     const found = bkt("search", "--words", "كتاب");
     expect(found.code).toBe(0);
     expect(found.out.split("\n")[0]).toBe("Arabic  كِتَاب  /ki.taːb/  noun  book");
-    expect(found.out).toContain("Arabic words: Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0, curated by Bucket Foundation.");
+    expect(found.out).toContain("Arabic words: Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0, curated by Bucket Foundation.");
     const han = JSON.parse(bkt("search", "--words", "学", "--lang", "zh", "--json").out) as { v: number; hits: { word: string; dir: string }[]; credits: { licence: string }[]; words: number };
     expect([han.v, han.hits[0].word, han.hits[0].dir]).toEqual([1, "学校", "ltr"]);
-    expect(han.credits.map((c) => c.licence)).toContain("CC-BY-SA 3.0");
+    expect(han.credits.map((c) => c.licence)).toContain("CC-BY-SA 4.0");
     const miss = bkt("search", "--words", "zzzzqq");
     expect(miss.code).toBe(3);
     expect(miss.err).toContain("no word matches zzzzqq in");
@@ -739,7 +739,7 @@ describe("the exporter's own output", () => {
     expect(run.exitCode).toBe(0);
     const home = join(ROOT, "h-exported");
     const m = await installDeck(home, join(out, "es"));
-    expect([m.id, m.title, m.kind, m.licence, m.curator, m.counts.cards]).toEqual(["polingual-es", "Spanish words", "words", "CC-BY-SA 3.0", "Bucket Foundation", 7]);
+    expect([m.id, m.title, m.kind, m.licence, m.curator, m.counts.cards]).toEqual(["polingual-es", "Spanish words", "words", "CC-BY-SA 4.0", "Bucket Foundation", 7]);
     const [deck] = openWordDecks(home);
     expect(deck.meta().adaptation).toContain("same licence");
     expect([...deck.top(2)].map((r) => r.surface)).toEqual(["gato", "agua"]);

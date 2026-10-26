@@ -47,6 +47,14 @@ export function langDir(code: string): "rtl" | undefined {
 }
 
 export const LANG_CODES = Object.keys(LANGS);
+
+export function heritageLangs(system: { targets: string[] }): string[] {
+  return system.targets.filter((l) => LANGS[l] && LANGS[l].latin === false);
+}
+
+export function studyHref(systemId: string, heritage: boolean): string {
+  return `/research-os/learn/languages/${encodeURIComponent(systemId)}/study${heritage ? "?heritage=1" : ""}`;
+}
 export const MAX_TARGETS = 6;
 export const NEW_PER_LANG_PER_DAY = 5;
 export const PLACEMENT_TIERS = [0, 2, 4, 6, 8, 10];

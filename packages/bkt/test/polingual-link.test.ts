@@ -30,7 +30,7 @@ import {
 const ROOT = mkdtempSync(join(tmpdir(), "bkt-link-"));
 const KEY = newDataKey();
 const GOOD = "postgres://bucket:s3cret-pw@127.0.0.1:5433/polingual";
-const CREDIT = { text: "Words from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0.", licence: "CC-BY-SA 3.0", licenceHref: "https://creativecommons.org/licenses/by-sa/3.0/", href: "https://en.wiktionary.org", sourceHref: "https://kaikki.org" };
+const CREDIT = { text: "Words from Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0.", licence: "CC-BY-SA 4.0", licenceHref: "https://creativecommons.org/licenses/by-sa/4.0/", href: "https://en.wiktionary.org", sourceHref: "https://kaikki.org" };
 afterAll(() => rmSync(ROOT, { recursive: true, force: true }));
 
 const ROWS: LinkRow[] = [
@@ -185,7 +185,7 @@ describe("link", () => {
     ]);
     expect(found.hits[0].closeness).toBeCloseTo(0.95, 5);
     expect(found.hits[0].href).toBe("https://en.wiktionary.org/wiki/agua");
-    expect(found.credit.licence).toBe("CC-BY-SA 3.0");
+    expect(found.credit.licence).toBe("CC-BY-SA 4.0");
   });
 
   test("sounds-like uses the phonetic vector, clamps the count, and copes with a language Bucket has no name for", async () => {
@@ -284,7 +284,7 @@ describe("routes", () => {
     expect((await call("POST /local/polingual-link", {})).status).toBe(400);
     expect((await call("POST /local/polingual-link", { url: GOOD })).body).toMatchObject({ linked: true, place: "127.0.0.1:5433/polingual", words: 6_564_942 });
     const found = await call("GET /local/polingual-link/search?q=water&mode=sound&lang=es&n=2");
-    expect([found.status, found.body.mode, found.body.hits.length, found.body.credit.licence]).toEqual([200, "sound", 2, "CC-BY-SA 3.0"]);
+    expect([found.status, found.body.mode, found.body.hits.length, found.body.credit.licence]).toEqual([200, "sound", 2, "CC-BY-SA 4.0"]);
     expect(x.calls.at(-1)).toEqual(["near", "sound", "photon:word:nl:water", "es", 2]);
     expect((await call("GET /local/polingual-link/search?q=water&mode=spelling")).body.error).toBe(BAD_MODE);
     await call("GET /local/polingual-link/search?q=water&mode=meaning&lang=es';drop");
