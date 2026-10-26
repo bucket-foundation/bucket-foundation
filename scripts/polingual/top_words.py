@@ -114,6 +114,7 @@ def clean(row: dict, lang: str, senses: list[str]) -> dict | None:
 MIN_SENSE_ZIPF = 4.0
 MIN_AGREEMENT = 200.0
 AGREEMENT_MARGIN = 2.0
+JUNK_SENSE = re.compile(r"defective spelling|eye dialect|obsolete|archaic", re.I)
 STRIP_MARKS = re.compile(r"[\u0300-\u036f\u064b-\u065f\u0670\u0591-\u05c7]")
 GLOSS_WORD = re.compile(r"[a-z]+(?:[ -][a-z]+)*")
 
@@ -164,6 +165,14 @@ def sense_score(gloss: str, votes: dict[str, float]) -> float:
 def head_zipf(gloss: str) -> float:
     terms = sense_terms(gloss)
     return zipf_frequency(terms[0], "en") if terms else 0.0
+
+
+def junk_sense(sense: dict) -> bool:
+    return bool(JUNK_SENSE.search(sense.get("gloss") or "")) or any(JUNK_SENSE.search(t) for t in sense.get("tags") or [])
+
+
+def replaceable(senses: list[dict], pos: str | None) -> list[str]:
+    return [x["gloss"] for x in senses if x.get("pos") == pos and not junk_sense(x)]
 
 
 def agreed_sense(current: str, senses: list[str], votes: dict[str, float]) -> str | None:
@@ -265,15 +274,16 @@ def rank_index(db: sqlite3.Connection, lang: str, n: int, votes: dict | None = N
         if freq:
             zipf = round(math.log10(freq[surface] * 1e9), 2) if surface in freq else 0.0
             score = zipf * 100 + score / 100
-        senses = [x.get("gloss") for x in json.loads(payload).get("senses") or [] if x.get("gloss")]
-        scored.append((score, zipf, surface, meaning, pos, ipa, senses))
+        raw = [x for x in json.loads(payload).get("senses") or [] if x.get("gloss")]
+        senses = [x["gloss"] for x in raw]
+        scored.append((score, zipf, surface, meaning, pos, ipa, senses, replaceable(raw, pos)))
     scored.sort(key=lambda r: (-r[0], -r[1], r[2]))
     seen: set[str] = set()
     out = []
-    for score, zipf, surface, meaning, pos, ipa, senses in scored:
+    for score, zipf, surface, meaning, pos, ipa, senses, options in scored:
         if fold(surface) in seen:
             continue
-        agreed = PINS.get((lang, surface)) or (agreed_sense(meaning, senses, votes.get((lang, strip_marks(surface)), {})) if votes else None)
+        agreed = PINS.get((lang, surface)) or (agreed_sense(meaning, options, votes.get((lang, strip_marks(surface)), {})) if votes else None)
         row = clean({"word": surface, "meaning": agreed or meaning, "pos": pos}, lang, senses)
         if not row:
             continue
