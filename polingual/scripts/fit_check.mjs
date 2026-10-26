@@ -18,13 +18,14 @@ export async function fitCheck(url, sizes = VIEWPORTS) {
     out.push(await page.evaluate(([w, h]) => {
       scrollTo(0, 0);
       const doc = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-      const btn = document.querySelector(w <= 640 ? "#app .pill" : "#dk .hc .btn");
+      const app = getComputedStyle(document.getElementById("app")).display !== "none";
+      const btn = document.querySelector(app ? "#app .pill" : "#dk .hc .btn");
       const r = btn.getBoundingClientRect();
       const inView = r.top >= 0 && r.left >= 0 && r.bottom <= innerHeight + 0.5 && r.right <= innerWidth + 0.5 && r.width > 10;
       const hit = inView && document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
-      const tile = [...document.querySelectorAll(w <= 640 ? "#app-grid .t" : "#hc-grid .t")].find((e) => e.offsetParent);
+      const tile = [...document.querySelectorAll(app ? "#app-grid .t" : "#hc-grid .t")].find((e) => e.offsetParent);
       const tw = tile ? Math.round(tile.offsetWidth * parseFloat(getComputedStyle(tile).zoom || 1)) : 0;
-      return { w, h, doc, fits: doc <= h + 1, button: Boolean(hit && (hit === btn || btn.contains(hit))), tile: tw, docW: document.documentElement.scrollWidth };
+      return { w, h, app, doc, fits: doc <= h + 1, button: Boolean(hit && (hit === btn || btn.contains(hit))), tile: tw, docW: document.documentElement.scrollWidth };
     }, [w, h]));
   }
   await browser.close();
@@ -33,6 +34,6 @@ export async function fitCheck(url, sizes = VIEWPORTS) {
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
   const rows = await fitCheck(process.argv[2] ?? "http://localhost:3110/");
-  for (const r of rows) console.log(`${r.w}x${r.h}\tdoc ${r.doc}\t${r.fits ? "fits" : "SCROLLS"}\tbutton ${r.button ? "ok" : "HIDDEN"}\ttile ${r.tile}\tdocW ${r.docW}`);
+  for (const r of rows) console.log(`${r.w}x${r.h}\tdoc ${r.doc}\t${r.fits ? "fits" : "SCROLLS"}\tbutton ${r.button ? "ok" : "HIDDEN"}\ttile ${r.tile}\t${r.app ? "app" : "desk"}\tdocW ${r.docW}`);
   process.exit(rows.every((r) => r.fits && r.button && r.docW <= r.w) ? 0 : 1);
 }

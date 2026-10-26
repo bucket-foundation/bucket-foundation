@@ -126,7 +126,7 @@ ES = [
     ("Join the beta on TestFlight", "Únete a la beta en TestFlight"),
     (">Join the beta<", ">Únete a la beta<"),
     (">day streak<", ">días de racha<"),
-    ("After 100 days, expect to know 280 words across 4 languages, and remember 95% of them.", "Después de 100 días, espera conocer 280 palabras en 4 idiomas y recordar el 95 % de ellas."),
+    ("After 100 days, expect to know 280 words across 4 languages, and remember 95% of them.", "Después de 100 días, conocerás unas 280 palabras en 4 idiomas y recordarás el 95%."),
     ('aria-label="100 day streak"', 'aria-label="100 días de racha"'),
     (">Support<", ">Ayuda<"),
     (">Privacy<", ">Privacidad<"),
