@@ -1,7 +1,11 @@
 import json
 import re
 import unittest
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from top_words import junk_sense, replaceable  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "learning/app/polingual"
@@ -66,6 +70,17 @@ class CorpusTest(unittest.TestCase):
             words = {w["word"]: w["meaning"] for w in json.loads((DATA / f"top1000/{lang}.json").read_text())}
             if word in words:
                 self.assertEqual(words[word], gloss, f"{lang} {word}")
+
+    def test_replacement_matches_pos(self):
+        senses = [{"gloss": "cousin", "pos": "noun"}, {"gloss": "first", "pos": "adj"}, {"gloss": "prime number", "pos": "noun"}]
+        self.assertEqual(replaceable(senses, "noun"), ["cousin", "prime number"])
+        self.assertEqual(replaceable(senses, "adj"), ["first"])
+
+    def test_junk_senses_are_filtered(self):
+        for sense in [{"gloss": "defective spelling of x", "pos": "noun"}, {"gloss": "Eye dialect spelling of was", "pos": "noun"}, {"gloss": "horse", "pos": "noun", "tags": ["obsolete"]}, {"gloss": "steed", "pos": "noun", "tags": ["archaic"]}]:
+            self.assertTrue(junk_sense(sense), sense)
+        self.assertFalse(junk_sense({"gloss": "horse", "pos": "noun", "tags": ["masculine"]}))
+        self.assertEqual(replaceable([{"gloss": "thou", "pos": "noun", "tags": ["archaic"]}, {"gloss": "you", "pos": "noun"}], "noun"), ["you"])
 
     def test_punjabi_is_gurmukhi(self):
         words = json.loads((DATA / "top1000/pa.json").read_text())
