@@ -103,7 +103,13 @@ public enum Lang {
 
     static func article(_ lang: String, _ gender: String) -> String? { articles[lang]?.first { $0.0 == gender }?.1 }
 
-    static let frenchAspiratedH = ["haricot", "héros", "hibou", "homard", "honte", "huit", "hache", "haine", "hall", "hasard", "haut", "hockey", "hamac", "hamburger", "handicap", "hangar", "hanche", "hareng", "harpe", "hérisson", "hêtre", "hutte", "hublot", "huppe", "hameau", "halle"]
+    static let frenchHAspire: Set<String> = ["hache", "hachis", "haie", "haillon", "haine", "haïr", "hall", "halle", "halte", "hamac", "hameau", "hamburger", "hamster", "hanche", "handball", "handicap", "hangar", "hanneton", "hanter", "happer", "harangue", "haras", "harceler", "hardi", "harem", "hareng", "hargne", "haricot", "harnais", "harpe", "harpon", "hasard", "hâte", "hausse", "haut", "hautbois", "hauteur", "havre", "hennir", "hérisson", "hernie", "héron", "héros", "herse", "hêtre", "heurter", "hibou", "hiérarchie", "hisser", "hobby", "hockey", "hold-up", "hollandais", "homard", "hongrois", "honte", "honteux", "hoquet", "horde", "hors", "hot-dog", "hotte", "houblon", "houle", "houppe", "housse", "houx", "hublot", "huer", "huit", "huitième", "hululer", "humer", "hurler", "hutte", "hyène"]
+
+    public static func isHAspire(_ noun: String) -> Bool {
+        let w = noun.trimmingCharacters(in: .whitespacesAndNewlines).lowercased().split(whereSeparator: \.isWhitespace).first.map(String.init) ?? ""
+        if frenchHAspire.contains(w) { return true }
+        return (w.hasSuffix("s") || w.hasSuffix("x")) && frenchHAspire.contains(String(w.dropLast()))
+    }
 
     public static func contextualArticle(_ lang: String, _ gender: String, _ noun: String) -> String? {
         let w = noun.lowercased()
@@ -118,7 +124,7 @@ public enum Lang {
             return nil
         case "fr":
             guard "aeiouhàâéèêîôûœ".contains(first) else { return nil }
-            return frenchAspiratedH.contains(where: { w.hasPrefix($0) }) ? nil : "l'"
+            return isHAspire(noun) ? nil : "l'"
         case "es":
             let stressedA = ["agua", "águila", "alma", "arma", "hambre", "hacha", "aula", "área", "ala", "ave", "ancla", "hada", "haba", "habla", "alba", "asma", "aya"]
             return gender == "f" && stressedA.contains(w) ? "el" : nil

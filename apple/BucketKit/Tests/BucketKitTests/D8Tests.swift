@@ -181,8 +181,8 @@ import Testing
 @Test func flagMergeMatchesTheWebGolden() throws {
     let url = try #require(Bundle.module.url(forResource: "flag-merge-golden", withExtension: "json", subdirectory: "Fixtures/lang"))
     let root = try #require(JSONSerialization.jsonObject(with: Data(contentsOf: url)) as? [String: Any])
-    func settings(_ key: String) -> JSObject {
-        let side = root[key] as? [String: [String: Int]] ?? [:]
+    func settings(_ side: Any?) -> JSObject {
+        let side = side as? [String: [String: Int]] ?? [:]
         return JSObject(side.keys.sorted().map { k in (k, .object(JSObject((side[k] ?? [:]).sorted { $0.key < $1.key }.map { ($0.key, .number(Double($0.value))) }))) })
     }
     func ints(_ v: JSValue?) -> [String: Int] {
@@ -190,12 +190,26 @@ import Testing
         for k in v?.object?.keys ?? [] { out[k] = Int(v?.object?[k]?.number ?? 0) }
         return out
     }
-    let want = root["synced"] as? [String: [String: Int]] ?? [:]
-    for (a, b) in [("a", "b"), ("b", "a")] {
-        var out = JSObject()
-        FlagMisses.mergeSynced(&out, settings(a), settings(b))
-        #expect(ints(out["flagHits"]) == want["flagHits"], "\(a)+\(b)")
-        #expect(ints(out["flagMisses"]) == want["flagMisses"], "\(a)+\(b)")
+    func merged(_ sides: [JSObject]) -> JSObject {
+        sides.dropFirst().reduce(sides[0]) { acc, next in
+            var out = JSObject()
+            FlagMisses.mergeSynced(&out, acc, next)
+            return out
+        }
     }
-    #expect(want["flagHits"]?["it"] == 0 && want["flagMisses"]?["it"] == 1)
+    func orders(_ xs: [JSObject]) -> [[JSObject]] {
+        xs.count <= 1 ? [xs] : xs.indices.flatMap { i in orders(Array(xs[..<i] + xs[(i + 1)...])).map { [xs[i]] + $0 } }
+    }
+    let cases = [root] + (root["cases"] as? [[String: Any]] ?? [])
+    #expect(cases.count == 4)
+    for c in cases {
+        let want = c["synced"] as? [String: [String: Int]] ?? [:]
+        let sides = ["a", "b", "c"].compactMap { c[$0] }.map(settings)
+        for order in orders(sides) {
+            let out = merged(order)
+            #expect(ints(out["flagHits"]) == want["flagHits"] ?? [:], "\(c["name"] ?? "root")")
+            #expect(ints(out["flagMisses"]) == want["flagMisses"] ?? [:], "\(c["name"] ?? "root")")
+        }
+    }
+    #expect((root["synced"] as? [String: [String: Int]])?["flagHits"]?["it"] == 0)
 }
