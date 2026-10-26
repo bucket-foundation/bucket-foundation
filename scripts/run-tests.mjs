@@ -78,6 +78,7 @@ const SUITES = {
       "scripts/test-release-signing.mjs",
       "scripts/test-solver-gap-backtest-numbers.mjs",
       "scripts/test-provenance-packet.ts",
+      "scripts/test-polingual-deck.ts",
       "scripts/test-deck-catalog-route.ts",
       "scripts/test-brand-pick.ts",
       "scripts/test-beta-tracking.ts",
@@ -88,6 +89,7 @@ const SUITES = {
       ["python3", "-m", "unittest", "scripts/canon-explorer/test_embed.py"],
       ["python3", "scripts/canon-explorer/embed.py", "--check"],
       ["python3", "-m", "unittest", "tools/learning-corpus/test_build.py", "tools/learning-corpus/test_check_refs.py"],
+      ["python3", "-m", "unittest", "services/photon-api/test_server.py"],
     ],
   },
   db: {

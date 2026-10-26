@@ -166,3 +166,82 @@ def api_translate(surface: str, to: str, frm: str = Query(alias="from"), k: int 
                       (vtxt, to, qid, vtxt, min(max(k,1),50)))
             return {"query": surface, "from": frm, "to": to, "results": _rows(c), "axis": "translate"}
     return timed(go)
+
+FAVORITE_LANGS = [c.strip() for c in os.environ.get(
+    "POLINGUAL_FAVORITES", "es,fr,de,it,pt,ja,zh,ar,he,ru").split(",") if c.strip()]
+
+def _known_langs(c):
+    c.execute(f"SELECT array_agg(DISTINCT lang ORDER BY lang) FROM {TABLE}")
+    return c.fetchone()[0] or []
+
+def resolve_targets(known, to, frm):
+    if not to or to == "favorites":
+        wanted = FAVORITE_LANGS
+    elif to == "all":
+        wanted = known
+    else:
+        wanted = [x.strip() for x in to.split(",") if x.strip()]
+    ks = set(known)
+    return [x for x in dict.fromkeys(wanted) if x in ks and x != frm]
+
+@app.get("/translate/many")
+def api_translate_many(surface: str, to: str | None = None,
+                       frm: str = Query("en", alias="from"), k: int = 3):
+    def go():
+        with cur() as c:
+            known = _known_langs(c)
+            qv = _qvec(c, surface, frm, "embedding")
+            if not qv:
+                return {"error": f"{surface!r} not found in {frm}", "found": False,
+                        "word": surface, "from": frm, "translations": []}
+            qid, vtxt = qv
+            rows = []
+            for lang in resolve_targets(known, to, frm):
+                c.execute(f"SELECT {COLS}, 1-(embedding <=> %s::vector) AS score FROM {TABLE} "
+                          f"WHERE embedding IS NOT NULL AND lang=%s AND id<>%s "
+                          f"ORDER BY embedding <=> %s::vector LIMIT %s",
+                          (vtxt, lang, qid, vtxt, min(max(k, 1), 10)))
+                res = _rows(c)
+                rows.append({"lang": lang, "match": "semantic" if res else "none",
+                             "results": res})
+            scope = "all" if to == "all" else ("favorites" if not to or to == "favorites" else "custom")
+            return {"axis": "translate_many", "found": True, "word": surface, "from": frm,
+                    "scope": scope, "available_langs": known, "translations": rows,
+                    "provenance": PROV}
+    return timed(go)
+
+@app.get("/search/meaning")
+def api_meaning(q: str, lang: str | None = None, k: int = 10):
+    def go():
+        terms = [t for t in (q or "").lower().split() if t]
+        if not terms:
+            return {"query": q, "lang": lang, "results": [], "axis": "meaning"}
+        with cur() as c:
+            where = " AND ".join(["lower(meaning_en) LIKE %s"] * len(terms))
+            args = [f"%{t.replace('%', '').replace('_', '')}%" for t in terms]
+            sql = (f"SELECT {COLS}, 1.0/(1+length(meaning_en)/80.0) AS score FROM {TABLE} "
+                   f"WHERE {where}")
+            if lang: sql += " AND lang=%s"; args.append(lang)
+            sql += " ORDER BY score DESC, surface LIMIT %s"; args.append(min(max(k, 1), 50))
+            c.execute(sql, args)
+            return {"query": q, "lang": lang, "results": _rows(c), "axis": "meaning"}
+    return timed(go)
+
+@app.get("/search/phonetic")
+def api_phonetic_search(ipa: str, lang: str | None = None, k: int = 10):
+    def go():
+        key = "".join(ch for ch in (ipa or "") if ch not in "/[]ˈˌ.ː ")
+        if not key:
+            return {"query": ipa, "lang": lang, "results": [], "axis": "phonetic_search"}
+        with cur() as c:
+            c.execute("SET pg_trgm.similarity_threshold = 0.3")
+            norm = "translate(coalesce(ipa,''), '/[]ˈˌ.ː ', '')"
+            sql = (f"SELECT {COLS}, similarity({norm}, %s) AS score FROM {TABLE} "
+                   f"WHERE ipa IS NOT NULL AND {norm} %% %s")
+            args = [key, key]
+            if lang: sql += " AND lang=%s"; args.append(lang)
+            sql += " ORDER BY score DESC LIMIT %s"; args.append(min(max(k, 1), 50))
+            c.execute(sql, args)
+            return {"query": ipa, "lang": lang, "results": _rows(c, "similarity"),
+                    "axis": "phonetic_search"}
+    return timed(go)

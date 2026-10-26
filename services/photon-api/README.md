@@ -34,6 +34,11 @@ longer limited to the ~6,500-word baked subset.
 | GET | `/spelling` | `surface,lang,k` | words SPELLED similarly |
 | GET | `/etymology` | `surface,lang` | where a word COMES FROM |
 | GET | `/translate` | `surface,from,to,k` | same meaning across languages |
+| GET | `/translate/many` | `surface,from,to,k` | one word into favorites (default, `POLINGUAL_FAVORITES`), `to=all`, or a comma list |
+| GET | `/search/meaning` | `q,lang,k` | words whose English gloss holds every term |
+| GET | `/search/phonetic` | `ipa,lang,k` | words whose IPA sounds like the input |
+
+Save to deck goes through the Next app: `POST /api/polingual/deck` with a Supabase bearer token, `GET /api/polingual/deck?deck=` lists it.
 
 Example:
 ```bash
