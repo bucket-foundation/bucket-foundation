@@ -3,7 +3,7 @@ import type { Question } from "../academy/question-types";
 export const BETA_APPS = ["bucket", "polingual", "web"] as const;
 export type BetaApp = (typeof BETA_APPS)[number];
 
-export const BETA_EVENT_NAMES = ["app_open", "session_start", "session_end", "card_shown", "card_answered", "lesson_complete"] as const;
+export const BETA_EVENT_NAMES = ["app_open", "session_start", "session_end", "card_shown", "card_answered", "lesson_complete", "account_token_failed"] as const;
 export type BetaEventName = (typeof BETA_EVENT_NAMES)[number];
 
 export const BETA_LIMITS = {
@@ -69,6 +69,22 @@ export function parseProps(raw: unknown): Parsed<Record<string, PropValue>> {
   return { ok: true, value: out };
 }
 
+const SHORT_RE = /^[a-z0-9_.-]{1,32}$/;
+
+export const STRICT_PROPS: Partial<Record<BetaEventName, readonly string[]>> = {
+  account_token_failed: ["kind", "stage"],
+};
+
+function strictProps(name: BetaEventName, props: Record<string, PropValue>): Parsed<Record<string, PropValue>> {
+  const allowed = STRICT_PROPS[name];
+  if (!allowed) return { ok: true, value: props };
+  for (const [k, v] of Object.entries(props)) {
+    if (!allowed.includes(k)) return { ok: false, error: "forbidden_prop" };
+    if (typeof v !== "string" || !SHORT_RE.test(v)) return { ok: false, error: "bad_prop_value" };
+  }
+  return { ok: true, value: props };
+}
+
 export function parseEvent(raw: unknown, now: Date): Parsed<BetaEvent> {
   if (!isObj(raw)) return { ok: false, error: "bad_event" };
   if (typeof raw.id !== "string" || !UUID_RE.test(raw.id)) return { ok: false, error: "bad_id" };
@@ -83,7 +99,9 @@ export function parseEvent(raw: unknown, now: Date): Parsed<BetaEvent> {
     if (typeof raw.session_id !== "string" || !UUID_RE.test(raw.session_id)) return { ok: false, error: "bad_session_id" };
     sessionId = raw.session_id.toLowerCase();
   }
-  const props = parseProps(raw.props);
+  const loose = parseProps(raw.props);
+  if (!loose.ok) return loose;
+  const props = strictProps(raw.name as BetaEventName, loose.value);
   if (!props.ok) return props;
   return { ok: true, value: { id: raw.id.toLowerCase(), name: raw.name as BetaEventName, ts: new Date(t).toISOString(), sessionId, props: props.value } };
 }

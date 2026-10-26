@@ -27,12 +27,12 @@
 |---|---|
 | `app` | `bucket`, `polingual` or `web` |
 | `id` | UUID made on the device. Resending the same id is a no-op, so retry whole batches freely |
-| `name` | `app_open`, `session_start`, `session_end`, `card_shown`, `card_answered`, `lesson_complete` |
+| `name` | `app_open`, `session_start`, `session_end`, `card_shown`, `card_answered`, `lesson_complete`, `account_token_failed` |
 | `ts` | ISO 8601 device time; at most 30 days old and 5 minutes ahead |
 | `session_id` | optional UUID, one per foreground session |
 | `props` | flat object: up to 16 keys matching `^[a-z][a-z0-9_]{0,31}$`; values string up to 128 chars, number, boolean or null; 2 KB total |
 
-Props the metrics read: `card_answered.correct` (boolean) and `session_end.seconds` (number). Keys that name a device or a person are refused: `ip`, `ip_address`, `idfa`, `idfv`, `device_id`, `advertising_id`, `email`, `phone`, `lat`, `lng`, `latitude`, `longitude`, `location`. The server stores no IP address, user agent or device fingerprint. The key check covers names only: apps must keep personal data out of string values.
+`account_token_failed` takes only `kind` and `stage`, each a string matching `^[a-z0-9_.-]{1,32}$`; any other prop rejects the event with `forbidden_prop`. Props the metrics read: `card_answered.correct` (boolean) and `session_end.seconds` (number). Keys that name a device or a person are refused: `ip`, `ip_address`, `idfa`, `idfv`, `device_id`, `advertising_id`, `email`, `phone`, `lat`, `lng`, `latitude`, `longitude`, `location`. The server stores no IP address, user agent or device fingerprint. The key check covers names only: apps must keep personal data out of string values.
 
 ## Limits
 
