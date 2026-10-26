@@ -159,3 +159,21 @@ import Testing
     let roundTrip = mergeState(EngineState(js: phone.js), EngineState(js: ipad.js))
     #expect(FlagMisses.hits(roundTrip, "es") == 1 && FlagMisses.count(roundTrip, "it") == 1)
 }
+
+@Test func aMissOnOneDeviceBeatsStaleHitsFromAnother() {
+    var stale = EngineState()
+    for _ in 0..<3 { stale = FlagMisses.recordingHit(stale, "it") }
+    var fresh = stale
+    fresh = FlagMisses.recording(fresh, "it")
+    #expect(!FlagMisses.showsName(stale, "it"))
+    #expect(FlagMisses.showsName(fresh, "it"))
+    for merged in [mergeState(stale, fresh), mergeState(fresh, stale)] {
+        #expect(FlagMisses.count(merged, "it") == 1)
+        #expect(FlagMisses.hits(merged, "it") == 0)
+        #expect(FlagMisses.showsName(merged, "it"))
+    }
+    var later = fresh
+    later = FlagMisses.recordingHit(later, "it")
+    let tie = mergeState(fresh, later)
+    #expect(FlagMisses.count(tie, "it") == 1 && FlagMisses.hits(tie, "it") == 1)
+}
