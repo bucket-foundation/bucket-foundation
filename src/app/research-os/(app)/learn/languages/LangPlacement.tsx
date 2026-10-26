@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { langName, readingsByForm, seededRng, type Exercise } from "@/lib/academy/lang-systems";
-import { bandsAvailable, cefrPlacement, cefrQuestion, cefrStep, levelLabel, type CefrAnswer, type CefrPlacement, type CefrTask } from "@/lib/academy/placement-cefr";
-import { speechSupported } from "@/lib/academy/lang-client";
+import { bandsAvailable, cefrPlacement, cefrQuestion, cefrStep, levelLabel, type CefrAnswer, type CefrPlacement, type CefrTask, type PlacementSource, type TopWord } from "@/lib/academy/placement-cefr";
+import { loadTopWords, speechSupported } from "@/lib/academy/lang-client";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState, PageHeader } from "@/components/ui";
 import { useLangSystem } from "./useLangSystem";
 import SaveNotice from "./SaveNotice";
@@ -33,21 +33,32 @@ export default function LangPlacement({ systemId, lang: requested }: { systemId:
     });
   }, [system, requested]);
 
-  const available = useMemo(() => (system && corpus && lang ? bandsAvailable(system, corpus, lang) : []), [system, corpus, lang]);
+  const [top, setTop] = useState<{ lang: string; words: TopWord[] | null } | null>(null);
+  useEffect(() => {
+    if (!lang) return;
+    let live = true;
+    void loadTopWords(lang).then((words) => live && setTop({ lang, words }));
+    return () => {
+      live = false;
+    };
+  }, [lang]);
+  const src = useMemo<PlacementSource | null>(() => (system && corpus && lang && top?.lang === lang ? { system, corpus, lang, top: top.words } : null), [system, corpus, lang, top]);
+  const available = useMemo(() => (src ? bandsAvailable(src) : []), [src]);
 
   useEffect(() => {
-    if (!system || !corpus || !lang || result || q) return;
+    if (!src || result || q) return;
+    const lang = src.lang;
     const step = cefrStep(answers, available);
     const finish = (s: typeof step) => {
-      const p = cefrPlacement(corpus, lang, answers, s);
+      const p = cefrPlacement(src, answers, s);
       h.place(lang, p.floorTier, p.placeIds, levelLabel(p));
       setResult(p);
     };
     if (step.done) return finish(step);
-    const next = cefrQuestion(system, corpus, lang, step.next!.band, step.next!.task, seen, rng, { speech: speechSupported() });
+    const next = cefrQuestion(src, step.next!.band, step.next!.task, seen, rng, { speech: speechSupported() });
     if (!next) return finish({ ...step, done: true, unknownFrom: step.next!.band });
     setQ(next);
-  }, [system, corpus, lang, answers, seen, q, result, rng, h, available]);
+  }, [src, answers, seen, q, result, rng, h, available]);
 
   const readings = useMemo(() => (corpus && lang ? readingsByForm(corpus, lang) : {}), [corpus, lang]);
 

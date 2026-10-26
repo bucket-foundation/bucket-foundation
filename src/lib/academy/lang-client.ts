@@ -1,5 +1,6 @@
 "use client";
 
+import type { TopWord } from "./placement-cefr";
 import { buildLangCorpus, LANGS, mergeSystems, normalizeSystemsDoc, type LangCorpus, type LangSystem, type RawLayers, type SystemsDoc } from "./lang-systems";
 import { AUDIO_BASE, audioKey, audioUrl, pickVoice } from "./lang-audio";
 import { pullServer, type ServerBranches } from "./progress-store";
@@ -14,6 +15,21 @@ async function getJson(file: string): Promise<unknown> {
   const r = await fetch(`${BASE}/${file}`, { cache: "force-cache" });
   if (!r.ok) throw new Error(`${file} ${r.status}`);
   return r.json();
+}
+
+const topCache = new Map<string, Promise<TopWord[] | null>>();
+
+export function loadTopWords(lang: string): Promise<TopWord[] | null> {
+  if (!topCache.has(lang)) {
+    topCache.set(
+      lang,
+      fetch(`/academy-app/polingual/top1000/${lang}.json`, { cache: "force-cache" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((d) => (Array.isArray(d) ? (d as TopWord[]) : null))
+        .catch(() => null)
+    );
+  }
+  return topCache.get(lang)!;
 }
 
 export function loadLangCorpus(): Promise<LangCorpus | null> {

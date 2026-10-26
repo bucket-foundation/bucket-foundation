@@ -63,25 +63,43 @@ Published CEFR mappings:
 
 Two lessons. Frequency bands are the input both tests sample from. A recognition yes or no checks breadth, and recall tests run 20 to 40 percent lower than recognition scores for the same learner (Laufer and Goldstein, 2004, https://doi.org/10.1111/j.0023-8333.2004.00260.x), so a placement that only uses recognition places learners too high.
 
-## What This Means For Polingual
+## Polingual Item Pools
 
-The Polingual corpus holds 244 word atoms in category tiers 0 to 10, phrases on tiers 1 to 8, gender and conjugation items, and 8,695 pool sentences tagged with a length and frequency level 1 to 3. By Milton's numbers, 244 words sit well inside A1 vocabulary size. No item carries a CEFR tag.
+Placement draws words from `learning/app/polingual/top1000/<lang>.json` (#1010): 1,000 words per language ranked by wordfreq Zipf frequency, with Wiktionary glosses. The shipped `band` field is a rank cut, A1 for ranks 1 to 400, A2 for 401 to 750, B1 for 751 to 1000. `learning/app/polingual/sources/README.md` states that no CEFR list stands behind these names.
 
-Consequences for the build:
+| Band | Pool | Source of the cut |
+|---|---|---|
+| A1 | top1000 band A1, ranks 1 to 400 | #1010 rank cut |
+| A2 | top1000 band A2, ranks 401 to 750 | #1010 rank cut |
+| B1 | top1000 band B1 words at or above that language's median Zipf | #1010 rank cut, split by per-language Zipf |
+| B2 | top1000 band B1 words below that language's median Zipf | Proxy. No source |
 
-- The corpus can check A1 and A2 content with some confidence. B1 and B2 bands can only be proxies built from the hardest tiers, past-tense grammar and level 2 and 3 sentences. The test reports them as proxy levels, and the doc marks every band mapping as unvalidated.
-- Each band uses mixed items: recognition, typed recall, listening, cloze, a grammar form, a short reading item. Recall and listening carry most of the weight, as in the Duolingo English Test.
-- A band passes on 6 right before 3 wrong, out of at most 8 items, with at least one typed recall right. A band the corpus cannot fill with 8 items for a language stops the test, and the level above it reports as unknown.
-- Cards are placed only for words the learner answered right. Words skip the new-word queue only when the learner passed two bands above them.
+Difficulty is per language because the B1 and B2 split uses each language's own Zipf values: the B2 ceiling is Zipf 5.05 in Spanish, 4.94 in German and 4.56 in Japanese.
+
+How the cited mappings compare:
+
+- Milton (2010) puts A1 learners under 1,500 known words. By that mapping the whole top1000 sits inside A1 recognition size, and the rank cuts above place learners higher than Milton would.
+- Nation (2006, https://doi.org/10.3138/cmlr.63.1.59) ties 95 percent text coverage to the 3,000 most frequent word families, a B1 to B2 threshold. Words past rank 1,000 are needed to separate B1 from B2 by frequency alone.
+- The Kelly lists (Kilgarriff et al., 2014) tag CEFR levels on 9,000 words for nine languages. They would replace the rank cuts for it, sv, ru, pl, el, ar and zh.
+
+The B levels lean on task demand to make up for the narrow word range: B1 and B2 sequences are mostly typed recall, past-tense conjugation and reading at sentence levels 2 and 3, where sentence level comes from token count and a frequency cut in `learning/app/build-lang-layers.mjs`.
+
+## Placement Rules
+
+- Each band asks up to 8 mixed items: recognition, typed recall, listening, cloze from pool sentences, a grammar form, a short reading item.
+- A band passes on 6 right before 3 wrong, with at least one typed recall right. The test stops at the first failed band, or at a band a language cannot fill with 8 words.
+- Cards are placed only for corpus words that match a word the learner answered right, and only after two bands pass.
+- Band confidence is the Wilson 95 percent lower bound of the band score. Unchecked words skip the new-word queue only when the two bands above them passed with confidence of at least 0.5, which takes 6 right of 6 or 7 right of 8.
+- Without a top1000 file, or with a root other than English, the pools fall back to `lang-core` tiers 0 to 3, 4 to 6, 7 to 8 and 9 to 10.
 
 ## Unknown CEFR Mappings
 
 | Item | Status |
 |---|---|
-| Corpus tier to CEFR band | Proxy. Tiers order categories by frequency. No CEFR source tags them |
-| Pool sentence level to CEFR | Proxy. Level comes from token count and a frequency-rank cut, `learning/app/build-lang-layers.mjs` `levelOf` |
-| Latin, Ancient Greek, Sanskrit | No CEFR exams exist. Bands report but carry no CEFR claim |
-| Languages with fewer than 8 usable items in a band | The band is skipped and the level above it reports as unknown |
-| C1 and C2 | Out of reach of this corpus. Not offered |
+| top1000 rank cuts to A1, A2, B1 | Named after CEFR levels, no CEFR list behind them |
+| B1 and B2 split at median Zipf | Proxy with no source |
+| Pool sentence level to CEFR | Proxy from token count and a frequency cut |
+| Latin, Sanskrit | No Zipf data, so B2 reports unknown. No CEFR exams exist, so bands carry no CEFR claim |
+| C1 and C2 | Out of reach of a 1,000-word list. Not offered |
 
-Follow-up data work that would replace proxies with sourced mappings: import the Kelly lists for it, sv, ru, pl, el, ar, zh and the English Vocabulary Profile, then tag `lang-core` atoms with a CEFR level per language.
+Follow-up data work: import the Kelly lists and the English Vocabulary Profile, then tag top1000 words with a sourced CEFR level per language.

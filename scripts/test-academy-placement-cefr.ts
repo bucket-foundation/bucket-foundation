@@ -4,6 +4,7 @@ import { normalizeState } from "../src/lib/academy/engine";
 import { buildLangCorpus, cardId, createSystem, mergeSystems, seededRng, unitStatus, type LangSystem } from "../src/lib/academy/lang-systems";
 import {
   applyCefrPlacement,
+  bareForm,
   BAND_ITEMS,
   bandsAvailable,
   CEFR_MAX_ITEMS,
@@ -11,7 +12,11 @@ import {
   cefrQuestion,
   cefrStep,
   levelLabel,
+  skipFloor,
+  topBands,
   wilsonLower,
+  type PlacementSource,
+  type TopWord,
   type CefrAnswer,
   type CefrBand,
   type CefrTask,
@@ -30,16 +35,18 @@ const dir = path.resolve(__dirname, "../learning/app/corpus");
 const read = (f: string) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
 const corpus = buildLangCorpus(read("lang-core.json"), read("lang-cognates.json"), read("lang-phrases.json"), read("lang-layers.json"));
 const NOW = Date.UTC(2026, 9, 26, 12);
+const topOf = (lang: string): TopWord[] => JSON.parse(fs.readFileSync(path.resolve(__dirname, `../learning/app/polingual/top1000/${lang}.json`), "utf8"));
 
-function run(system: LangSystem, lang: string, knows: (band: CefrBand, task: CefrTask, i: number) => boolean, seed = 7) {
+function run(system: LangSystem, lang: string, knows: (band: CefrBand, task: CefrTask, i: number) => boolean, seed = 7, top: TopWord[] | null = topOf(lang)) {
+  const src: PlacementSource = { system, corpus, lang, top };
   const answers: CefrAnswer[] = [];
   const seen = new Set<string>();
   const rng = seededRng(seed);
-  const available = bandsAvailable(system, corpus, lang);
+  const available = bandsAvailable(src);
   const tasks: CefrTask[] = [];
   let step = cefrStep(answers, available);
   while (!step.done && answers.length < 100) {
-    const q = cefrQuestion(system, corpus, lang, step.next!.band, step.next!.task, seen, rng, { speech: true });
+    const q = cefrQuestion(src, step.next!.band, step.next!.task, seen, rng, { speech: true });
     if (!q) {
       step = { ...step, done: true, unknownFrom: step.next!.band };
       break;
@@ -49,7 +56,7 @@ function run(system: LangSystem, lang: string, knows: (band: CefrBand, task: Cef
     answers.push({ band: step.next!.band, task: q.task, itemId: q.ex.itemId, correct: knows(step.next!.band, q.task, answers.length) });
     step = cefrStep(answers, available);
   }
-  return { answers, step, tasks, placement: cefrPlacement(corpus, lang, answers, step) };
+  return { answers, step, tasks, placement: cefrPlacement(src, answers, step), src };
 }
 
 {
@@ -69,7 +76,7 @@ function run(system: LangSystem, lang: string, knows: (band: CefrBand, task: Cef
 const sys = createSystem("en", ["es", "fr", "de"], [], NOW);
 
 for (const lang of ["es", "fr", "de"]) {
-  const avail = bandsAvailable(sys, corpus, lang);
+  const avail = bandsAvailable({ system: sys, corpus, lang, top: topOf(lang) });
   ok(avail.length === 4, `${lang} has material for all four bands (${avail.join(",")})`);
 
   const strong = run(sys, lang, () => true);
@@ -78,18 +85,22 @@ for (const lang of ["es", "fr", "de"]) {
   ok(strong.answers.length <= CEFR_MAX_ITEMS, `${lang}: strong learner answers ${strong.answers.length} of at most ${CEFR_MAX_ITEMS}`);
   ok(new Set(strong.tasks).size >= 4, `${lang}: items mix ${new Set(strong.tasks).size} task kinds`);
   const right = new Set(strong.answers.filter((a) => a.correct).map((a) => a.itemId));
-  ok(strong.placement.placeIds.every((id) => right.has(id)), `${lang}: only words answered right are placed`);
+  ok(strong.answers.filter((a) => a.task !== "grammar").every((a) => a.itemId.startsWith("top:")), `${lang}: word items come from the top1000 list`);
+  const bands = topBands(topOf(lang));
+  ok(strong.answers.filter((a) => a.band === "B2" && a.itemId.startsWith("top:")).every((a) => bands.get(Number(a.itemId.slice(4))) === "B2"), `${lang}: B2 items come from the low-zipf half of the B1 frequency band`);
+  const rightWords = new Set(strong.answers.filter((a) => a.correct && a.itemId.startsWith("top:")).map((a) => topOf(lang).find((w) => `top:${w.rank}` === a.itemId)!.word));
+  ok(strong.placement.placeIds.every((id) => Array.from(rightWords).some((w) => bareForm(w, lang) === bareForm(corpus.byId.get(id)!.forms[lang], lang)) || right.has(id)), `${lang}: only words answered right are placed`);
   ok(strong.placement.placeIds.length <= strong.answers.length, `${lang}: placed count ${strong.placement.placeIds.length} stays within the questions asked`);
   const state = applyCefrPlacement(normalizeState(null), { ...sys, placement: { [lang]: strong.placement.floorTier } }, corpus, lang, strong.placement, NOW);
   const cards = Object.keys(state.cards).filter((id) => id.startsWith(`${lang}:`));
   ok(cards.length === strong.placement.placeIds.length && cards.length <= CEFR_MAX_ITEMS, `${lang}: placement writes ${cards.length} cards, no tier fill`);
-  ok(strong.placement.floorTier === 7, `${lang}: B2 skips new words only below B1 (floor ${strong.placement.floorTier})`);
+  ok(strong.placement.floorTier === 7, `${lang}: B2 with full confidence skips new words only below B1 (floor ${strong.placement.floorTier})`);
   const units = unitStatus({ ...sys, placement: { [lang]: strong.placement.floorTier } }, corpus, state, lang);
   ok(units[1]?.unlocked === true, `${lang}: skipped words still unlock the next unit`);
 
   const aOnly = run(sys, lang, (band) => band === "A1" || band === "A2");
   ok(aOnly.step.level === "A2" && aOnly.placement.floorTier === 0, `${lang}: an A-level learner reports A2 and skips no words`);
-  ok(aOnly.placement.placeIds.length > 0 && aOnly.placement.placeIds.every((id) => corpus.byId.get(id)!.tier <= 6), `${lang}: A2 places only checked A-band words`);
+  ok(aOnly.placement.placeIds.length <= aOnly.answers.length, `${lang}: A2 places at most the words it checked (${aOnly.placement.placeIds.length})`);
 
   const a1 = run(sys, lang, (band) => band === "A1");
   ok(a1.step.level === "A1" && a1.placement.placeIds.length === 0, `${lang}: one passed band places nothing`);
@@ -106,10 +117,24 @@ for (const lang of ["es", "fr", "de"]) {
 }
 
 {
+  const zipfCut = (l: string) => {
+    const t = topOf(l);
+    const b = topBands(t);
+    return Math.max(...t.filter((w) => b.get(w.rank) === "B2").map((w) => w.zipf ?? 0));
+  };
+  ok(new Set(["es", "de", "ja"].map((l) => zipfCut(l).toFixed(2))).size === 3, `B2 zipf cut differs per language (${["es", "de", "ja"].map((l) => `${l} ${zipfCut(l).toFixed(2)}`).join(", ")})`);
+  const pass = (band: CefrBand, right: number, asked: number) => ({ band, asked, right, recallRight: 1, passed: true, failed: false, confidence: wilsonLower(right, asked) });
+  ok(skipFloor([pass("A1", 6, 6), pass("A2", 6, 6), pass("B1", 6, 6), pass("B2", 6, 6)]) === 7, "full-confidence passes skip A1 and A2 words");
+  ok(skipFloor([pass("A1", 6, 6), pass("A2", 6, 8), pass("B1", 6, 8), pass("B2", 6, 6)]) === 0, "passes at 6 of 8 carry Wilson confidence below 0.5 and skip nothing");
+  const fallback = run(sys, "es", () => true, 7, null);
+  ok(fallback.step.level === "B2" && fallback.answers.every((a) => !a.itemId.startsWith("top:")), "without a top1000 list the test falls back to corpus tiers");
+}
+
+{
   const la = createSystem("en", ["la"], [], NOW);
   const r = run(la, "la", () => true);
   ok(r.placement.mapping === "none" && levelLabel(r.placement).startsWith("band"), "Latin reports bands with no CEFR claim");
-  ok(r.answers.length <= CEFR_MAX_ITEMS, `Latin run stays bounded (${r.answers.length}, bands ${bandsAvailable(la, corpus, "la").join(",") || "none"})`);
+  ok(r.answers.length <= CEFR_MAX_ITEMS && r.step.unknownFrom === "B2", `Latin has no frequency data, so B2 is unknown (${r.step.level})`);
 }
 
 {
