@@ -68,7 +68,7 @@ struct Paywall: View {
         .task { await load() }
         .task(id: account.session?.userId) {
             accountToken = nil
-            accountToken = await tokens.token(for: account)
+            accountToken = try? await fetchToken(at: "prefetch").get()
         }
         .sheet(isPresented: $signingIn) { AccountView() }
         #if os(iOS)
@@ -171,13 +171,25 @@ struct Paywall: View {
         loading = false
     }
 
+    func fetchToken(at stage: String) async -> Result<UUID, AccountTokenFailure> {
+        let fetched = await tokens.fetch(for: account)
+        if case .failure(let f) = fetched, f != .signedOut {
+            Beta.shared.log("account_token_failed", ["kind": .string(f.rawValue), "stage": .string(stage)])
+        }
+        return fetched
+    }
+
     func buy() async {
         guard let product else { return }
         buying = true
         note = nil
         defer { buying = false }
-        if accountToken == nil { accountToken = await tokens.token(for: account) }
-        let options = PurchaseOptions.make(accountToken: accountToken)
+        let fetched: Result<UUID, AccountTokenFailure> = if let accountToken { .success(accountToken) } else { await fetchToken(at: "purchase") }
+        accountToken = try? fetched.get()
+        guard let options = try? PurchaseOptions.make(fetched).get() else {
+            note = String(localized: "We could not link this purchase to your account. Check your connection and tap again.")
+            return
+        }
         do {
             switch try await product.purchase(options: options) {
             case .success(.verified(let t)):
@@ -269,8 +281,12 @@ extension PlanCard {
 }
 
 enum PurchaseOptions {
-    static func make(accountToken: UUID?) -> Set<Product.PurchaseOption> {
-        accountToken.map { [.appAccountToken($0)] } ?? []
+    static func make(_ fetched: Result<UUID, AccountTokenFailure>) -> Result<Set<Product.PurchaseOption>, AccountTokenFailure> {
+        switch fetched {
+        case .success(let id): .success([.appAccountToken(id)])
+        case .failure(.signedOut): .success([])
+        case .failure(let f): .failure(f)
+        }
     }
 }
 

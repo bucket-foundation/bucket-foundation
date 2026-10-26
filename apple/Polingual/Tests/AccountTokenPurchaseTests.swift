@@ -4,10 +4,10 @@ import StoreKit
 import Testing
 @testable import Polingual
 
-struct IssuedTokenTransport: Transport {
+struct ServerTokenTransport: Transport {
     let issued: UUID
     func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
-        let body = try JSONSerialization.data(withJSONObject: ["token": issued.uuidString])
+        let body = Data(#"{"app_account_token":"\#(issued.uuidString.lowercased())"}"#.utf8)
         return (body, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
     }
 }
@@ -15,14 +15,19 @@ struct IssuedTokenTransport: Transport {
 @MainActor
 @Test func purchaseOptionsCarryTheFetchedAccountToken() async throws {
     let issued = UUID()
-    let api = BucketAPI(transport: IssuedTokenTransport(issued: issued))
-    let userId = UUID().uuidString
-    let live = Session(accessToken: "b", refreshToken: "r", expiresAt: 9_999_999_999, userId: userId)
+    let api = BucketAPI(transport: ServerTokenTransport(issued: issued))
+    let live = Session(accessToken: "b", refreshToken: "r", expiresAt: 9_999_999_999, userId: UUID().uuidString)
     let tokens = AccountTokens(api: api, defaults: try #require(UserDefaults(suiteName: "purchase-token-\(UUID())")))
-    let fetched = await tokens.token(for: Account(api: api, store: MemorySessionStore(live)))
-    #expect(fetched == issued)
-    let options = PurchaseOptions.make(accountToken: fetched)
+    let fetched = await tokens.fetch(for: Account(api: api, store: MemorySessionStore(live)))
+    #expect(try fetched.get() == issued)
+    let options = try PurchaseOptions.make(fetched).get()
     #expect(options.count == 1)
     #expect(options.allSatisfy { String(describing: $0).localizedCaseInsensitiveContains(issued.uuidString) })
-    #expect(PurchaseOptions.make(accountToken: nil).isEmpty)
+}
+
+@Test func aSignedInPurchaseWithoutATokenIsBlocked() throws {
+    for kind in [AccountTokenFailure.unauthorized, .timeout, .offline, .unavailable, .server, .decode] {
+        #expect(PurchaseOptions.make(.failure(kind)).map(\.count) == .failure(kind))
+    }
+    #expect(try PurchaseOptions.make(.failure(.signedOut)).get().isEmpty)
 }
