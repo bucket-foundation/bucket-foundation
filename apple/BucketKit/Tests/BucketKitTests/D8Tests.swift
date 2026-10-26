@@ -63,14 +63,14 @@ import Testing
     #expect(Lang.contextualArticle("es", "f", "casa") == nil)
 }
 
-@Test func genderCardsUseTheRightItalianArticle() {
-    var ex = Exercise(kind: .gender, itemId: "x", lang: "it", root: "en", prompt: "zero", promptLang: "it", answer: "il", answerLang: "it")
-    ex.options = ["il", "la"]
-    var rng = Rng(seed: 3)
-    let out = correctArticle(ex, &rng)
-    #expect(out.answer == "lo")
-    #expect(Set(out.options ?? []) == ["il", "la", "lo", "l'"])
-    var plain = ex
-    plain.prompt = "libro"
-    #expect(correctArticle(plain, &rng).answer == "il")
+@Test func articleWordMatchesTheWebEngine() {
+    #expect(Lang.articleWord("it", "m", "libro") == "il")
+    #expect(Lang.articleWord("it", "m", "zero") == "lo")
+    #expect(Lang.articleWord("it", "f", "acqua") == "l'")
+    #expect(Lang.articleWord("it", "m", "hotel") == "il")
+    #expect(Lang.articleWord("fr", "m", "homme") == "l'")
+    #expect(Lang.articleWord("fr", "m", "haricot") == "le")
+    #expect(Lang.articleWord("es", "f", "agua") == "el")
+    #expect(Lang.articleWord("de", "f", "Kirche") == "die")
+    #expect(Lang.articleWord("en", "m", "x") == nil)
 }
