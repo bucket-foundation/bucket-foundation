@@ -118,7 +118,7 @@ public enum Lang {
         case "fr":
             return vowel ? "l'" : nil
         case "es":
-            let stressedA = ["agua", "águila", "alma", "arma", "hambre", "hacha", "aula", "área", "ala", "ave", "ancla", "hada", "haba", "habla", "asa", "aria"]
+            let stressedA = ["agua", "águila", "alma", "arma", "hambre", "hacha", "aula", "área", "ala", "ave", "ancla", "hada", "haba", "habla", "alba", "asma", "aya"]
             return gender == "f" && stressedA.contains(w) ? "el" : nil
         default:
             return nil
