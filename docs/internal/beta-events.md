@@ -81,3 +81,12 @@ The first answer that gives a tester an arm writes it to `bucket.beta_assignment
 | `extra_plans` | `on`, `off` | `off` |
 
 Per cohort an experiment is `on` (hash split, the default), `off`, or pinned to one arm. Set it from `/admin/beta` or `POST /api/admin/beta` with `{ experiment, cohort, setting }`. The report shows n, the pinned count, D1/D7/D30 retention, recall and time per card for each arm. Pinned testers are not randomized; compare arms on hash-split testers. Recall at DN is the share of `card_answered` events with `correct: true` on day N after the tester's first event; time per card reads `card_answered.ms`.
+
+## Readout
+
+`readoutExperiment` in `src/lib/beta/readout.ts` reports D1, D7 and D30 per arm. Exposure is the assignment's `assignedAt`; day N is UTC day `exposureDay + N`. A user counts toward D-N only once that day has ended (`exposureDay + N < today`); younger users are censored.
+
+- Retention: share of eligible users with any event on day N. Unit is the user.
+- Recall: share of `card_answered` events on day N with `props.correct === true`, among eligible users. Answers cluster within learners.
+- Intervals: 95%. Retention per arm uses Wilson, since the learner is the unit. Recall per arm and every arm-minus-control difference use a percentile bootstrap that resamples learners, 2000 replicates, seed 20261026. Control is the experiment's `fallback` arm.
+- Pinned users (assignment source `cohort`) leave the randomized comparison and appear under `pinned`, with no difference against control.

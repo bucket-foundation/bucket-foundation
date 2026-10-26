@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { isHAspire } from "../src/lib/academy/french-h-aspire";
 import path from "node:path";
 import { normalizeState, dayKey } from "../src/lib/academy/engine";
 import { DAY_MS } from "../src/lib/academy/fsrs";
@@ -371,6 +372,24 @@ ok(articleWord("it", "m", "sole") === "il" && articleWord("it", "m", "gnomo") ==
   const semitic = createSystem("en", ["he", "ar"], []);
   ok(semitic.name === "Semitic from English" && semitic.id === "en-he-ar", "starting Semitic makes en-he-ar");
 }
+
+for (const w of ["héron", "hibou", "haricot", "hasard", "hache", "hall", "hamac", "hangar", "harpe", "hêtre", "hockey", "homard", "housse", "hublot"]) {
+  ok(/^l[ea] /.test(articleFor("fr", ["hache", "harpe", "housse", "haine", "honte"].includes(w) ? "f" : "m", w)!), `h aspiré keeps le/la: ${w}`);
+}
+for (const [w, g] of [["homme", "m"], ["heure", "f"], ["hôtel", "m"], ["histoire", "f"], ["herbe", "f"], ["hiver", "m"], ["héroïne", "f"]]) {
+  ok(articleWord("fr", g, w) === "l'", `h muet elides: ${w}`);
+}
+ok(articleFor("fr", "m", "héros") === "le héros" && articleFor("fr", "f", "héroïne") === "l'héroïne", "le héros but l'héroïne");
+ok(isHAspire("hiboux") && isHAspire("haricots") && isHAspire("hall d'entrée") && !isHAspire("hommes"), "plural and multiword lookups");
+
+ok(isHAspire("hors-d'œuvre") && isHAspire("haut-parleur") && articleFor("fr", "m", "haut-parleur") === "le haut-parleur", "hyphenated and apostrophe compounds match their first element");
+ok(["hautain", "huitaine", "hurlement", "haineux", "hâtif", "honteux", "hurleur", "hachette"].every(isHAspire), "derived aspirated words kept");
+for (const [w, g] of [["hallucination", "f"], ["haltère", "m"], ["héroïsme", "m"], ["hommage", "m"], ["horizon", "m"]]) {
+  ok(articleWord("fr", g, w) === "l'", `hallucination bug: aspirated prefix does not capture h muet ${w}`);
+}
+
+ok(["hot-dog", "hold-up", "hip-hop", "hot-dogs"].every(isHAspire) && articleFor("fr", "m", "hold-up") === "le hold-up", "whole hyphenated words match before their first element");
+ok(isHAspire("haute") && articleFor("fr", "f", "haute") === "la haute", "haute is aspirated");
 
 if (failures) {
   console.error(`\n${failures} failure(s)`);

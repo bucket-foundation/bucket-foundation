@@ -21,7 +21,10 @@ for (const l of nonLatin) {
   ok(new Set(u.letters.map((x) => x.ch)).size === u.letters.length, `${l} letters are unique`);
 }
 ok(alphabetUnit("es") === null, "Latin languages have no alphabet unit");
-ok(alphabetUnit("ru")!.letters.length === 33 && alphabetUnit("he")!.letters.length === 22 && alphabetUnit("th")!.letters.length === 44 && alphabetUnit("ja")!.letters.length === 46, "full alphabets for ru, he, th, ja");
+ok(alphabetUnit("ru")!.letters.length === 33 && alphabetUnit("he")!.letters.length === 22 && alphabetUnit("th")!.letters.length === 44 + 14 && alphabetUnit("ja")!.letters.length === 92, "full alphabets for ru, he, th, ja");
+ok(alphabetUnit("ja")!.letters.some((l) => l.ch === "カ" && l.sound === "ka"), "ja: katakana follows hiragana");
+for (const l of ["hi", "sa", "ta", "th"]) ok(alphabetUnit(l)!.letters.filter((x) => x.ch.includes("◌")).length >= 10, `${l}: dependent vowel signs are taught`);
+ok(alphabetUnit("hi")!.letters.some((l) => l.ch === "◌ा" && l.sound === "-ā"), "hi: matra aa is in the unit");
 ok(alphabetUnit("ru")!.letters[0].ch === "а" && alphabetUnit("ja")!.letters[5].ch === "か", "letters keep their traditional order");
 
 ok(judgeSpelled("שָׁלוֹם", "שלום", "he") === "exact", "he: niqqud is optional");
@@ -30,7 +33,9 @@ ok(judgeSpelled("كِتَاب", "كتاب", "ar") === "exact", "ar: harakat are 
 ok(judgeSpelled("كتـاب", "كتاب", "ar") === "exact", "ar: tatweel is ignored");
 ok(judgeSpelled("كتاي", "كتاب", "ar") === "close", "ar: one wrong letter is close");
 ok(judgeSpelled("يك", "یک", "fa") === "exact", "fa: Arabic yeh and kaf fold to Persian forms");
-ok(judgeSpelled("еж", "ёж", "ru") === "exact", "ru: ё folds to е");
+ok(judgeSpelled("еж", "ёж", "ru") === "close", "ru: е for ё is close");
+ok(judgeSpelled("все", "всё", "ru") !== "exact" && judgeSpelled("всё", "все", "ru") !== "exact", "ru: все and всё never grade exact for each other");
+ok(judgeSpelled("ВСЁ", "всё", "ru") === "exact", "ru: ё matches ё exactly");
 ok(judgeSpelled("мои", "мой", "ru") !== "exact", "ru: и and й stay distinct");
 ok(judgeSpelled("кни\u0301га", "книга", "ru") === "exact", "ru: stress accent folds");
 ok(foldMarks("ї", "uk") === "ї" && foldMarks("ў", "be") === "ў" && foldMarks("ϊ", "el") === "ι", "Cyrillic breve and diaeresis letters survive, Greek dialytika folds");
@@ -64,6 +69,12 @@ ok(gradeSpelling(ex, "zzz").rating === 1, "wrong spelling rates Again");
 
 const lx = letterExercise("he", "en", 1, seededRng(2))!;
 ok(lx.kind === "letter" && lx.answer === "ב" && lx.prompt === "b/v" && lx.options!.length === 4 && lx.options!.includes("ב"), "letter card asks for the letter by sound");
+const thx = letterExercise("th", "en", 1, seededRng(2))!;
+ok(thx.prompt === "kh · kho khai" && thx.accept!.join("") === "ข", "th: a shared sound is prompted with the letter name");
+const fax = letterExercise("fa", "en", alphabetUnit("fa")!.letters.findIndex((l) => l.ch === "س"), seededRng(2))!;
+ok(fax.prompt === "s · sin", "fa: sin is named apart from se and sad");
+const rux = letterExercise("ru", "en", alphabetUnit("ru")!.letters.findIndex((l) => l.ch === "й"), seededRng(2))!;
+ok(rux.accept!.includes("й") && rux.accept!.includes("ы"), "unnamed letters accept every letter with the same sound");
 ok(letterExercise("he", "en", 99, seededRng(2)) === null && letterExercise("es", "en", 0, seededRng(2)) === null, "letter card out of range or Latin is null");
 
 const NOW = Date.UTC(2026, 9, 25, 12);
@@ -88,6 +99,25 @@ let lst = fresh;
 for (const e of letters) lst = gradeCard(lst, "ru", e.itemId, 3, 1000);
 const next = buildQueue(sys, corpus, lst, 2000, 14, { heritage: true }).filter((e) => e.stage === "letter");
 ok(next.length === 5 && next.every((e) => !letters.some((l) => l.itemId === e.itemId)), "graded letters give way to the next five");
+const learn = (lang: string, pick: (ch: string) => boolean) => {
+  let s0 = normalizeState(null);
+  for (const l of alphabetUnit(lang)!.letters) if (pick(l.ch)) s0 = gradeCard(s0, lang, letterItemId(l.ch), 3, NOW, "UTC");
+  return s0;
+};
+const jaBase = learn("ja", (c) => /[\u3040-\u309f]/.test(c));
+ok(!alphabetDone(jaBase, "ja") && nextLetters(jaBase, "ja", 5).every((l) => /[\u30a0-\u30ff]/.test(l.ch)), "ja: after hiragana, katakana comes next and the script is not done");
+ok(alphabetDone(learn("ja", () => true), "ja"), "ja: hiragana and katakana together finish the script");
+const hiBase = learn("hi", (c) => !c.includes("◌"));
+ok(!alphabetDone(hiBase, "hi") && nextLetters(hiBase, "hi", 5).every((l) => l.ch.includes("◌")), "hi: after base letters, vowel signs come next");
+ok(nextLetters(normalizeState(null), "hi", 50).every((l) => !l.ch.includes("◌")), "hi: vowel signs wait until the base block is done");
+ok(!alphabetDone(learn("hi", (c) => c.includes("◌")), "hi"), "hi: vowel signs alone do not finish the script");
+for (const [lang, isExtra] of [["ja", (c: string) => /[\u30a0-\u30ff]/.test(c)], ["hi", (c: string) => c.includes("◌")]] as const) {
+  const hs = createSystem("en", [lang], [], 1);
+  const q = buildQueue(hs, corpus, learn(lang, (c) => !isExtra(c)), NOW, 14, { heritage: true }).filter((e) => e.stage === "letter" && e.lang === lang);
+  ok(q.length > 0 && q.some((e) => isExtra(e.itemId.slice(4))), `${lang}: heritage queue still offers extras after the base is done`);
+}
+const ruLetters = alphabetUnit("ru")!.letters.map((l) => l.ch);
+ok(alphabetDone(learn("ru", (c) => ruLetters.indexOf(c) < 27), "ru") && !alphabetDone(learn("ru", (c) => ruLetters.indexOf(c) < 26), "ru"), "ru: gate stays at 27 of 33 letters");
 if (failures) {
   console.error(`${failures} failure(s)`);
   process.exit(1);
