@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   applyPlacement,
+  articleWord,
   buildLangCorpus,
   buildQueue,
   crossLanguageOptions,
@@ -177,7 +178,7 @@ const H_JUDGE: [string, string[], string][] = [
   ["שָׁלוֹם", ["שלום"], "he"], ["كتـاب", ["كتاب"], "ar"], ["كتاي", ["كتاب"], "ar"], ["يك", ["یک"], "fa"],
   ["еж", ["ёж"], "ru"], ["мои", ["мой"], "ru"], ["кни\u0301га", ["книга"], "ru"], ["моско", ["москва"], "ru"],
   ["καλημερα", ["καλημέρα"], "el"], ["ΟΔΟΣ", ["οδός"], "el"], ["नमसते", ["नमस्ते"], "hi"], ["ﾈｺ", ["ネコ"], "ja"],
-  ["", ["猫"], "zh"], ["ねこ", ["猫", "ねこ"], "ja"], ["한국", ["한국".normalize("NFD")], "ko"],
+  ["", ["猫"], "zh"], ["все", ["всё"], "ru"], ["ВСЁ", ["всё"], "ru"], ["еж", ["ёж"], "ru"], ["ねこ", ["猫", "ねこ"], "ja"], ["한국", ["한국".normalize("NFD")], "ko"],
 ];
 const H_FOLD: [string, string][] = [["ru", "кни\u0301га"], ["el", "ΟΔΟΣ"], ["el", "ὀδός"], ["grc", "Ἀθῆναι"], ["he", " שָׁלוֹם! "], ["fa", "يك"], ["ja", "ﾈｺ"], ["uk", "ї"]];
 const lrng = seededRng(31);
@@ -212,7 +213,7 @@ out.heritage = {
     const u = alphabetUnit(l)!;
     return [0, 1, u.letters.length - 1].map((i) => {
       const x = letterExercise(l, "en", i, lrng)!;
-      return `${l}|${x.prompt}|${x.answer}|${(x.options ?? []).join("")}`;
+      return `${l}|${x.prompt}|${x.answer}|${(x.options ?? []).join("")}|${(x.accept ?? []).join("")}`;
     });
   }),
   sched,
@@ -220,6 +221,21 @@ out.heritage = {
   queue: hQueue,
 };
 
+const ARTICLE_CASES: [string, string, string][] = [["fr","m","haricot"],["fr","m","haricots"],["fr","m","hibou"],["fr","m","hiboux"],["fr","m","héros"],["fr","f","hache"],["fr","m","hamburger"],["fr","m","Homard"],["fr","f","honte"],["fr","m","hors-d'œuvre"],["fr","m","haut de gamme"],["fr","m","homme"],["fr","f","heure"],["fr","m","hôtel"],["fr","f","herbe"],["fr","m","hot-dog"],["fr","m","hold-up"],["fr","m","hip-hop"],["fr","f","haute couture"],["fr","m","haut-parleur"],["fr","f","hallucination"],["fr","m","hautbois"],["fr","f","haches"],["fr","m","ami"],["fr","f","eau"],["fr","m","livre"],["it","m","zero"],["it","f","acqua"],["it","m","libro"],["es","f","agua"],["es","f","casa"],["de","f","Kirche"]];
+const GATE_LANGS = ["ja", "th", "hi", "ru"];
+out.gate = GATE_LANGS.map((l) => {
+  const u = alphabetUnit(l)!;
+  const rows: unknown[] = [];
+  let gs = normalizeState(null);
+  for (let round = 0; round < 30; round++) {
+    const fresh = nextLetters(gs, l, 5).map((x) => x.ch);
+    rows.push([fresh.join(""), alphabetDone(gs, l)]);
+    if (!fresh.length) break;
+    for (const ch of fresh) gs = gradeCard(gs, l, letterItemId(ch), 3, T0 + round * 86400000, "UTC");
+  }
+  return [l, u.letters.length, rows];
+});
+out.articles = ARTICLE_CASES.map(([l, g, n]) => articleWord(l, g, n));
 const pSys = { ...createSystem("en", ["fr"], [], T0), placement: { fr: 99 } };
 const placed = applyPlacement(normalizeState(null), pSys, corpus, "fr", 99, T0);
 const legacyCards: Record<string, unknown> = {};
