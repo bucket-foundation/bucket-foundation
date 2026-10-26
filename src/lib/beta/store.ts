@@ -19,12 +19,19 @@ export interface StoredBetaEvent {
   props: Record<string, PropValue>;
 }
 
+export type InsertOutcome = { outcome: "recorded"; accepted: number } | { outcome: "rate_limited" | "opted_out"; accepted: 0 };
+
+export interface EventPage {
+  rows: StoredBetaEvent[];
+  truncated: boolean;
+}
+
 export interface BetaStore {
   tester: (userId: string, app: BetaApp) => Promise<BetaTester>;
-  countToday: (userId: string) => Promise<number>;
-  insert: (userId: string, app: BetaApp, events: BetaEvent[]) => Promise<number>;
+  insert: (userId: string, app: BetaApp, events: BetaEvent[], cap: number) => Promise<InsertOutcome>;
+  setOptOut: (userId: string, optedOut: boolean) => Promise<void>;
   testers: () => Promise<BetaTester[]>;
-  events: (sinceIso: string) => Promise<StoredBetaEvent[]>;
+  events: (sinceIso: string) => Promise<EventPage>;
   setCohort: (userId: string, cohort: string) => Promise<boolean>;
 }
 
@@ -64,18 +71,22 @@ export function supabaseBetaStore(): BetaStore | null {
       if (error || !data) throw new Error(`beta_testers read failed: ${error?.message ?? "no row"}`);
       return toTester(data as TesterRow);
     },
-    countToday: async (userId) => {
-      const day = new Date();
-      day.setUTCHours(0, 0, 0, 0);
-      const { count, error } = await client().from("beta_events").select("event_id", { count: "exact", head: true }).eq("user_id", userId).gte("created_at", day.toISOString());
-      if (error) throw new Error(`beta_events count failed: ${error.message}`);
-      return count ?? 0;
+    insert: async (userId, app, events, cap) => {
+      const payload = events.map((e) => ({ id: e.id, name: e.name, session_id: e.sessionId, ts: e.ts, props: e.props }));
+      const { data, error } = await client().rpc("record_beta_events", { p_user_id: userId, p_app: app, p_events: payload, p_cap: cap });
+      if (error) throw new Error(`record_beta_events failed: ${error.message}`);
+      const out = data as { outcome?: string; accepted?: number } | null;
+      if (out?.outcome === "recorded" && typeof out.accepted === "number") return { outcome: "recorded", accepted: out.accepted };
+      if (out?.outcome === "rate_limited" || out?.outcome === "opted_out") return { outcome: out.outcome, accepted: 0 };
+      throw new Error(`record_beta_events returned ${JSON.stringify(data)}`);
     },
-    insert: async (userId, app, events) => {
-      const rows = events.map((e) => ({ user_id: userId, event_id: e.id, app, name: e.name, session_id: e.sessionId, client_ts: e.ts, props: e.props }));
-      const { data, error } = await client().from("beta_events").upsert(rows, { onConflict: "user_id,event_id", ignoreDuplicates: true }).select("event_id");
-      if (error) throw new Error(`beta_events insert failed: ${error.message}`);
-      return data?.length ?? 0;
+    setOptOut: async (userId, optedOut) => {
+      const db = client();
+      const { error } = await db.from("beta_testers").upsert({ user_id: userId, first_app: "web", opted_out: optedOut }, { onConflict: "user_id" });
+      if (error) throw new Error(`beta_testers opt-out failed: ${error.message}`);
+      if (!optedOut) return;
+      const { error: delErr } = await db.from("beta_events").delete().eq("user_id", userId);
+      if (delErr) throw new Error(`beta_events delete failed: ${delErr.message}`);
     },
     testers: async () => {
       const { data, error } = await client().from("beta_testers").select("user_id, cohort, first_app, opted_out, enrolled_at").order("enrolled_at");
@@ -84,20 +95,25 @@ export function supabaseBetaStore(): BetaStore | null {
     },
     events: async (sinceIso) => {
       const out: StoredBetaEvent[] = [];
-      for (let from = 0; from < MAX_ROWS; from += PAGE) {
-        const { data, error } = await client()
+      let cursor: { ts: string; id: string } | null = null;
+      while (out.length < MAX_ROWS) {
+        let q = client()
           .from("beta_events")
-          .select("user_id, app, name, session_id, client_ts, props")
+          .select("event_id, user_id, app, name, session_id, client_ts, props")
           .gte("client_ts", sinceIso)
           .order("client_ts")
-          .range(from, from + PAGE - 1);
+          .order("event_id")
+          .limit(PAGE);
+        if (cursor) q = q.or(`client_ts.gt.${cursor.ts},and(client_ts.eq.${cursor.ts},event_id.gt.${cursor.id})`);
+        const { data, error } = await q;
         if (error) throw new Error(`beta_events list failed: ${error.message}`);
-        for (const r of data as { user_id: string; app: BetaApp; name: BetaEventName; session_id: string | null; client_ts: string; props: Record<string, PropValue> }[]) {
-          out.push({ userId: r.user_id, app: r.app, name: r.name, sessionId: r.session_id, ts: r.client_ts, props: r.props });
-        }
-        if (data.length < PAGE) break;
+        const rows = data as { event_id: string; user_id: string; app: BetaApp; name: BetaEventName; session_id: string | null; client_ts: string; props: Record<string, PropValue> }[];
+        for (const r of rows) out.push({ userId: r.user_id, app: r.app, name: r.name, sessionId: r.session_id, ts: r.client_ts, props: r.props });
+        if (rows.length < PAGE) return { rows: out, truncated: false };
+        const last = rows[rows.length - 1];
+        cursor = { ts: last.client_ts, id: last.event_id };
       }
-      return out;
+      return { rows: out, truncated: true };
     },
     setCohort: async (userId, cohort) => {
       const { data, error } = await client().from("beta_testers").update({ cohort }).eq("user_id", userId).select("user_id");

@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import type { BetaReport, CohortSummary, UserSummary } from "@/lib/beta/metrics";
 
+type Report = BetaReport & { truncated?: boolean };
+
 const STORAGE_KEY = "bucket.waitlist.key";
 const INPUT =
   "w-full border border-[color:var(--hairline)] px-3 py-3 text-[15px] bg-white/70 text-[color:var(--basalt)] focus:outline-none focus:border-[color:var(--gold-deep)]";
@@ -117,7 +119,7 @@ function UserTable({ rows }: { rows: UserSummary[] }) {
 
 export default function BetaAdmin() {
   const [key, setKey] = useState("");
-  const [data, setData] = useState<BetaReport | null>(null);
+  const [data, setData] = useState<Report | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -133,13 +135,13 @@ export default function BetaAdmin() {
         setError("That key does not open the report.");
         return;
       }
-      const body = (await res.json().catch(() => ({}))) as Partial<BetaReport> & { error?: string };
+      const body = (await res.json().catch(() => ({}))) as Partial<Report> & { error?: string };
       if (!res.ok || !Array.isArray(body.users)) {
         setError(body.error ?? `The report did not load (HTTP ${res.status}).`);
         return;
       }
       writeKey(k);
-      setData(body as BetaReport);
+      setData(body as Report);
     } catch {
       setError("No connection. Check your network and try again.");
     } finally {
@@ -174,7 +176,7 @@ export default function BetaAdmin() {
 
   return (
     <section className="mt-8 flex flex-col gap-10">
-      <p className="text-[12px] text-[color:var(--basalt-3)]">Generated {data.generatedAt.slice(0, 16).replace("T", " ")} UTC. Last 90 days.</p>
+      <p className="text-[12px] text-[color:var(--basalt-3)]">Generated {data.generatedAt.slice(0, 16).replace("T", " ")} UTC. Last 90 days.{data.truncated ? " Event cap reached: counts are partial." : ""}</p>
       <div>
         <h2 className="small-caps text-[12px] tracking-[0.18em] text-[color:var(--basalt-2)] mb-3">Cohorts</h2>
         <CohortTable rows={data.cohorts} label="cohort" />

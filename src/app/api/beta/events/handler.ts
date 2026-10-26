@@ -39,15 +39,37 @@ export async function handleBetaEvents(req: NextRequest, deps: BetaIngestDeps): 
     const tester = await store.tester(user.id, app);
     if (tester.optedOut) return reply({ accepted: 0, duplicate: 0, rejected, cohort: tester.cohort, opted_out: true }, 200);
     if (events.length === 0) return reply({ accepted: 0, duplicate: 0, rejected, cohort: tester.cohort }, 200);
-    const used = await store.countToday(user.id);
-    if (used + events.length > BETA_LIMITS.dailyCap) {
+    const result = await store.insert(user.id, app, events, BETA_LIMITS.dailyCap);
+    if (result.outcome === "opted_out") return reply({ accepted: 0, duplicate: 0, rejected, cohort: tester.cohort, opted_out: true }, 200);
+    if (result.outcome === "rate_limited") {
       const retry = secondsUntilUtcMidnight(now);
       return reply({ error: "rate_limited", cap: BETA_LIMITS.dailyCap, retryAfterSeconds: retry }, 429, { "retry-after": String(retry) });
     }
-    const accepted = await store.insert(user.id, app, events);
-    return reply({ accepted, duplicate: events.length - accepted, rejected, cohort: tester.cohort }, 200);
+    return reply({ accepted: result.accepted, duplicate: events.length - result.accepted, rejected, cohort: tester.cohort }, 200);
   } catch (err) {
     console.error("[beta/events] write failed:", err instanceof Error ? err.message : err);
+    return reply({ error: "write_failed" }, 500);
+  }
+}
+
+export async function handleBetaOptOut(req: NextRequest, deps: BetaIngestDeps): Promise<NextResponse> {
+  const store = deps.store();
+  if (!store) return reply({ error: "events_unavailable" }, 503);
+  const user = await deps.verifyUser(req);
+  if (!user) return reply({ error: "unauthorized" }, 401);
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return reply({ error: "bad_request" }, 400);
+  }
+  const optedOut = (body as { opted_out?: unknown } | null)?.opted_out;
+  if (typeof optedOut !== "boolean") return reply({ error: "bad_request" }, 400);
+  try {
+    await store.setOptOut(user.id, optedOut);
+    return reply({ opted_out: optedOut }, 200);
+  } catch (err) {
+    console.error("[beta/opt-out] write failed:", err instanceof Error ? err.message : err);
     return reply({ error: "write_failed" }, 500);
   }
 }

@@ -4,48 +4,16 @@ import { randomUUID } from "node:crypto";
 import { NextRequest } from "next/server";
 import { BETA_LIMITS, parseBatch, parseProps } from "../src/lib/beta/events";
 import type { BetaStore, BetaTester, StoredBetaEvent } from "../src/lib/beta/store";
+import { memory, NOW } from "./beta-memory-store";
 import { buildReport, summarizeUser, utcDay } from "../src/lib/beta/metrics";
-import { handleBetaEvents } from "../src/app/api/beta/events/handler";
+import { handleBetaEvents, handleBetaOptOut } from "../src/app/api/beta/events/handler";
 import { handleBetaReport, handleSetCohort } from "../src/app/api/admin/beta/handler";
 
-const NOW = new Date("2026-10-26T12:00:00Z");
 const USER = "11111111-1111-1111-1111-111111111111";
 const KEY = "k".repeat(24);
 
 function ev(over: Record<string, unknown> = {}) {
   return { id: randomUUID(), name: "card_answered", ts: "2026-10-26T11:00:00Z", session_id: randomUUID(), props: { correct: true }, ...over };
-}
-
-function memory(optedOut = false) {
-  const rows = new Map<string, StoredBetaEvent>();
-  const testers = new Map<string, BetaTester>();
-  const store: BetaStore & { rows: typeof rows } = {
-    rows,
-    tester: async (userId, app) => {
-      if (!testers.has(userId)) testers.set(userId, { userId, cohort: "default", firstApp: app, optedOut, enrolledAt: NOW.toISOString() });
-      return testers.get(userId)!;
-    },
-    countToday: async (userId) => Array.from(rows.values()).filter((r) => r.userId === userId).length,
-    insert: async (userId, app, events) => {
-      let n = 0;
-      for (const e of events) {
-        const k = `${userId}:${e.id}`;
-        if (rows.has(k)) continue;
-        rows.set(k, { userId, app, name: e.name, sessionId: e.sessionId, ts: e.ts, props: e.props });
-        n++;
-      }
-      return n;
-    },
-    testers: async () => Array.from(testers.values()),
-    events: async () => Array.from(rows.values()),
-    setCohort: async (userId, cohort) => {
-      const t = testers.get(userId);
-      if (!t) return false;
-      t.cohort = cohort;
-      return true;
-    },
-  };
-  return store;
 }
 
 function post(body: unknown, auth = true): NextRequest {
@@ -108,12 +76,35 @@ test("ingest records nothing for an opted-out tester", async () => {
   assert.equal(store.rows.size, 0);
 });
 
-test("ingest returns 429 past the daily cap", async () => {
+test("ingest returns 429 past the daily cap and resent duplicates do not count", async () => {
   const store = memory();
-  store.countToday = async () => BETA_LIMITS.dailyCap;
+  const batch = Array.from({ length: 50 }, () => ev());
+  for (let i = 0; i < BETA_LIMITS.dailyCap / 50; i++) {
+    const fresh = Array.from({ length: 50 }, () => ev());
+    assert.equal((await ingest(store)(post({ app: "bucket", events: i === 0 ? batch : fresh }))).status, 200);
+  }
+  assert.equal((await ingest(store)(post({ app: "bucket", events: batch }))).status, 200);
   const res = await ingest(store)(post({ app: "bucket", events: [ev()] }));
   assert.equal(res.status, 429);
   assert.ok(Number(res.headers.get("retry-after")) > 0);
+  assert.equal(store.rows.size, BETA_LIMITS.dailyCap);
+});
+
+test("opt-out stops storage and deletes held events, opt-in resumes", async () => {
+  const store = memory();
+  await ingest(store)(post({ app: "bucket", events: [ev()] }));
+  const optOut = (v: unknown, auth = true) =>
+    handleBetaOptOut(post({ opted_out: v }, auth), { verifyUser: async (r) => (r.headers.get("authorization") ? { id: USER, email: null } : null), store: () => store });
+  assert.equal((await optOut(true, false)).status, 401);
+  assert.equal((await optOut("yes")).status, 400);
+  assert.equal((await optOut(true)).status, 200);
+  assert.equal(store.rows.size, 0);
+  const body = await (await ingest(store)(post({ app: "bucket", events: [ev()] }))).json();
+  assert.equal(body.opted_out, true);
+  assert.equal(store.rows.size, 0);
+  await optOut(false);
+  await ingest(store)(post({ app: "bucket", events: [ev()] }));
+  assert.equal(store.rows.size, 1);
 });
 
 function tester(userId: string, cohort = "a"): BetaTester {

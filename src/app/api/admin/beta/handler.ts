@@ -36,7 +36,7 @@ export async function handleBetaReport(req: NextRequest, deps: BetaAdminDeps): P
   try {
     const since = new Date(now.getTime() - REPORT_WINDOW_DAYS * 86_400_000).toISOString();
     const [testers, events] = await Promise.all([store.testers(), store.events(since)]);
-    return json(buildReport(testers, events, now));
+    return json({ ...buildReport(testers, events.rows, now), truncated: events.truncated });
   } catch (err) {
     console.error("[admin/beta] report failed:", err instanceof Error ? err.message : err);
     return json({ error: "report_failed" }, 502);
