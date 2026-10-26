@@ -221,7 +221,20 @@ out.heritage = {
   queue: hQueue,
 };
 
-const ARTICLE_CASES: [string, string, string][] = [["fr","m","haricot"],["fr","m","haricots"],["fr","m","hibou"],["fr","m","hiboux"],["fr","m","héros"],["fr","f","hache"],["fr","m","hamburger"],["fr","m","Homard"],["fr","f","honte"],["fr","m","hors-d'œuvre"],["fr","m","haut de gamme"],["fr","m","homme"],["fr","f","heure"],["fr","m","hôtel"],["fr","f","herbe"],["fr","m","ami"],["fr","f","eau"],["fr","m","livre"],["it","m","zero"],["it","f","acqua"],["it","m","libro"],["es","f","agua"],["es","f","casa"],["de","f","Kirche"]];
+const ARTICLE_CASES: [string, string, string][] = [["fr","m","haricot"],["fr","m","haricots"],["fr","m","hibou"],["fr","m","hiboux"],["fr","m","héros"],["fr","f","hache"],["fr","m","hamburger"],["fr","m","Homard"],["fr","f","honte"],["fr","m","hors-d'œuvre"],["fr","m","haut de gamme"],["fr","m","homme"],["fr","f","heure"],["fr","m","hôtel"],["fr","f","herbe"],["fr","m","hot-dog"],["fr","m","hold-up"],["fr","m","hip-hop"],["fr","f","haute couture"],["fr","m","haut-parleur"],["fr","f","hallucination"],["fr","m","hautbois"],["fr","f","haches"],["fr","m","ami"],["fr","f","eau"],["fr","m","livre"],["it","m","zero"],["it","f","acqua"],["it","m","libro"],["es","f","agua"],["es","f","casa"],["de","f","Kirche"]];
+const GATE_LANGS = ["ja", "th", "hi", "ru"];
+out.gate = GATE_LANGS.map((l) => {
+  const u = alphabetUnit(l)!;
+  const rows: unknown[] = [];
+  let gs = normalizeState(null);
+  for (let round = 0; round < 30; round++) {
+    const fresh = nextLetters(gs, l, 5).map((x) => x.ch);
+    rows.push([fresh.join(""), alphabetDone(gs, l)]);
+    if (!fresh.length) break;
+    for (const ch of fresh) gs = gradeCard(gs, l, letterItemId(ch), 3, T0 + round * 86400000, "UTC");
+  }
+  return [l, u.letters.length, rows];
+});
 out.articles = ARTICLE_CASES.map(([l, g, n]) => articleWord(l, g, n));
 
 writeFileSync(process.argv[3], JSON.stringify(out, null, 1));

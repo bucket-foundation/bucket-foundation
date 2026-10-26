@@ -218,6 +218,7 @@ import Testing
     #expect(Lang.isHAspire("haricot") && Lang.isHAspire("haricots") && Lang.isHAspire("hiboux"))
     #expect(Lang.isHAspire("Homard") && Lang.isHAspire(" haut de gamme"))
     #expect(!Lang.isHAspire("homme") && !Lang.isHAspire("heure") && !Lang.isHAspire("hôtels"))
+    #expect(Lang.isHAspire("hot-dog") && Lang.isHAspire("haut-parleur") && Lang.isHAspire("hors-d'œuvre") && !Lang.isHAspire("hallucination"))
     #expect(Lang.articleWord("fr", "m", "haricot") == "le" && Lang.articleWord("fr", "f", "hache") == "la")
     #expect(Lang.articleWord("fr", "m", "homme") == "l'" && Lang.articleWord("fr", "f", "heure") == "l'")
 }

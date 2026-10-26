@@ -103,12 +103,16 @@ public enum Lang {
 
     static func article(_ lang: String, _ gender: String) -> String? { articles[lang]?.first { $0.0 == gender }?.1 }
 
-    static let frenchHAspire: Set<String> = ["hache", "hachis", "haie", "haillon", "haine", "haïr", "hall", "halle", "halte", "hamac", "hameau", "hamburger", "hamster", "hanche", "handball", "handicap", "hangar", "hanneton", "hanter", "happer", "harangue", "haras", "harceler", "hardi", "harem", "hareng", "hargne", "haricot", "harnais", "harpe", "harpon", "hasard", "hâte", "hausse", "haut", "hautbois", "hauteur", "havre", "hennir", "hérisson", "hernie", "héron", "héros", "herse", "hêtre", "heurter", "hibou", "hiérarchie", "hisser", "hobby", "hockey", "hold-up", "hollandais", "homard", "hongrois", "honte", "honteux", "hoquet", "horde", "hors", "hot-dog", "hotte", "houblon", "houle", "houppe", "housse", "houx", "hublot", "huer", "huit", "huitième", "hululer", "humer", "hurler", "hutte", "hyène"]
+    static let frenchHAspire: Set<String> = ["hache", "hachis", "haie", "haillon", "haine", "haïr", "hall", "halle", "halte", "hamac", "hameau", "hamburger", "hamster", "hanche", "handball", "handicap", "hangar", "hanneton", "hanter", "happer", "harangue", "haras", "harceler", "hardi", "harem", "hareng", "hargne", "haricot", "harnais", "harpe", "harpon", "hasard", "hâte", "hausse", "haut", "hautbois", "hauteur", "havre", "hennir", "hérisson", "hernie", "héron", "héros", "herse", "hêtre", "heurter", "hibou", "hiérarchie", "hisser", "hobby", "hockey", "hold-up", "hollandais", "homard", "hongrois", "honte", "honteux", "hoquet", "horde", "hors", "hot-dog", "hotte", "houblon", "houle", "houppe", "housse", "houx", "hublot", "huer", "huit", "huitième", "hululer", "humer", "hurler", "hutte", "hyène", "hachette", "hachoir", "haineux", "hâtif", "hautain", "hautement", "huitaine", "hurlement", "hurleur", "harponner", "hargneux", "hardiesse", "hanté", "handicapé", "haute", "hip-hop", "hiérarchique", "houleux", "hutin"]
 
     public static func isHAspire(_ noun: String) -> Bool {
-        let w = noun.trimmingCharacters(in: .whitespacesAndNewlines).lowercased().split(whereSeparator: \.isWhitespace).first.map(String.init) ?? ""
-        if frenchHAspire.contains(w) { return true }
-        return (w.hasSuffix("s") || w.hasSuffix("x")) && frenchHAspire.contains(String(w.dropLast()))
+        let token = noun.trimmingCharacters(in: .whitespacesAndNewlines).lowercased().split(whereSeparator: \.isWhitespace).first.map(String.init) ?? ""
+        let head = token.split(omittingEmptySubsequences: false) { "'’-".contains($0) }.first.map(String.init) ?? ""
+        return knownHAspire(token) || knownHAspire(head)
+    }
+
+    static func knownHAspire(_ w: String) -> Bool {
+        frenchHAspire.contains(w) || ((w.hasSuffix("s") || w.hasSuffix("x")) && frenchHAspire.contains(String(w.dropLast())))
     }
 
     public static func contextualArticle(_ lang: String, _ gender: String, _ noun: String) -> String? {

@@ -171,7 +171,20 @@ func runScenario(_ corpus: LangCorpus) throws -> JSValue {
     }
     out.append(("cross", .array(cross)))
     out.append(("heritage", heritageScenario(corpus, t0: t0)))
-    let articleCases: [(String, String, String)] = [("fr","m","haricot"),("fr","m","haricots"),("fr","m","hibou"),("fr","m","hiboux"),("fr","m","héros"),("fr","f","hache"),("fr","m","hamburger"),("fr","m","Homard"),("fr","f","honte"),("fr","m","hors-d'œuvre"),("fr","m","haut de gamme"),("fr","m","homme"),("fr","f","heure"),("fr","m","hôtel"),("fr","f","herbe"),("fr","m","ami"),("fr","f","eau"),("fr","m","livre"),("it","m","zero"),("it","f","acqua"),("it","m","libro"),("es","f","agua"),("es","f","casa"),("de","f","Kirche")]
+    let articleCases: [(String, String, String)] = [("fr","m","haricot"),("fr","m","haricots"),("fr","m","hibou"),("fr","m","hiboux"),("fr","m","héros"),("fr","f","hache"),("fr","m","hamburger"),("fr","m","Homard"),("fr","f","honte"),("fr","m","hors-d'œuvre"),("fr","m","haut de gamme"),("fr","m","homme"),("fr","f","heure"),("fr","m","hôtel"),("fr","f","herbe"),("fr","m","hot-dog"),("fr","m","hold-up"),("fr","m","hip-hop"),("fr","f","haute couture"),("fr","m","haut-parleur"),("fr","f","hallucination"),("fr","m","hautbois"),("fr","f","haches"),("fr","m","ami"),("fr","f","eau"),("fr","m","livre"),("it","m","zero"),("it","f","acqua"),("it","m","libro"),("es","f","agua"),("es","f","casa"),("de","f","Kirche")]
+    let gateLangs = ["ja", "th", "hi", "ru"]
+    out.append(("gate", .array(gateLangs.map { l in
+        let u = LangScript.alphabetUnit(l)!
+        var rows: [JSValue] = []
+        var gs = EngineState()
+        for round in 0..<30 {
+            let fresh = LangScript.nextLetters(gs, l, n: 5).map(\.ch)
+            rows.append(.array([.string(fresh.joined()), .bool(LangScript.alphabetDone(gs, l))]))
+            if fresh.isEmpty { break }
+            for ch in fresh { gs = gradeCard(gs, l, LangScript.letterItemId(ch), 3, now: t0 + Double(round) * 86_400_000, tz: "UTC") }
+        }
+        return .array([.string(l), .number(Double(u.letters.count)), .array(rows)])
+    })))
     out.append(("articles", .array(articleCases.map { Lang.articleWord($0.0, $0.1, $0.2).map(JSValue.string) ?? .null })))
     return obj(out)
 }

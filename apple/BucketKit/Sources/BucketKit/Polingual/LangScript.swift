@@ -176,7 +176,10 @@ public enum LangScript {
 
     public static func nextLetters(_ state: EngineState, _ lang: String, n: Int = 5) -> [Letter] {
         guard let unit = alphabetUnit(lang) else { return [] }
-        return Array(unit.letters.filter { !state.cards.has(letterCardId(lang, $0.ch)) }.prefix(n))
+        let fresh = { (ls: [Letter]) in ls.filter { !state.cards.has(letterCardId(lang, $0.ch)) } }
+        let (core, extras) = letterBlocks(unit)
+        let pool = blockDone(state, lang, core) ? fresh(extras) + fresh(core) : fresh(core)
+        return Array(pool.prefix(n))
     }
 
     public static func dueLetters(_ state: EngineState, _ lang: String, now: Double) -> [Letter] {
@@ -189,8 +192,21 @@ public enum LangScript {
 
     public static func alphabetDone(_ state: EngineState, _ lang: String, share: Double = 0.8) -> Bool {
         guard let unit = alphabetUnit(lang) else { return true }
-        let seen = unit.letters.filter { (state.cards[letterCardId(lang, $0.ch)]?.reps ?? 0) > 0 }.count
-        return Double(seen) >= (Double(unit.letters.count) * share).rounded(.up)
+        let (core, extras) = letterBlocks(unit)
+        return blockDone(state, lang, core, share: share) && blockDone(state, lang, extras, share: share)
+    }
+
+    public static func isBaseLetter(_ ch: String) -> Bool {
+        !ch.unicodeScalars.contains { $0 == "◌" || (0x30A0...0x30FF).contains($0.value) }
+    }
+
+    static func letterBlocks(_ unit: AlphabetUnit) -> ([Letter], [Letter]) {
+        (unit.letters.filter { isBaseLetter($0.ch) }, unit.letters.filter { !isBaseLetter($0.ch) })
+    }
+
+    static func blockDone(_ state: EngineState, _ lang: String, _ block: [Letter], share: Double = 0.8) -> Bool {
+        let seen = block.filter { (state.cards[letterCardId(lang, $0.ch)]?.reps ?? 0) > 0 }.count
+        return Double(seen) >= (Double(block.count) * share).rounded(.up)
     }
 }
 
