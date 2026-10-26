@@ -9,7 +9,9 @@ import {
   encKeyFromEnv,
   exchangeAppleCode,
   openToken,
+  retryCronReply,
   retryPendingRevokes,
+  MAX_CREDENTIAL_WAIT_DAYS,
   revokeForAccountDelete,
   revokeUserTokens,
   MAX_REVOKE_ATTEMPTS,
@@ -30,17 +32,19 @@ type Reply = { ok: boolean; status: number; body?: unknown } | "throw" | "timeou
 function apple(replies: Reply[]) {
   const calls: { url: string; body: URLSearchParams; signal: AbortSignal }[] = [];
   const tokens = new Map<string, StoredAppleToken>();
-  const pending: (PendingRevoke & { status: string })[] = [];
+  const pending: (PendingRevoke & { status: string; touched: number })[] = [];
   let pendingReads = 0;
   const alerts: string[] = [];
   const logs: string[] = [];
   let nextId = 1;
+  let clock = 0;
+  let now = 1_760_000_000;
   const deps: AppleTokenDeps = {
     key: () => KEY,
     encKey: () => ENC,
     timeoutMs: 20,
     alert: (m) => void alerts.push(m),
-    nowSeconds: () => 1_760_000_000,
+    nowSeconds: () => now,
     log: (event, f) => void logs.push(`${event} ${f.ok} ${f.reason ?? ""}`.trim()),
     fetch: async (url, init) => {
       calls.push({ url, body: new URLSearchParams(init.body), signal: init.signal });
@@ -55,17 +59,19 @@ function apple(replies: Reply[]) {
     save: async (u, t) => void tokens.set(`${u}|${t.clientId}`, t),
     list: async (u) => Array.from(tokens.entries()).filter(([k]) => k.startsWith(`${u}|`)).map(([, t]) => t),
     remove: async (u, c) => void tokens.delete(`${u}|${c}`),
-    addPending: async (t) => void pending.push({ ...t, id: nextId++, attempts: 1, status: "pending" }),
-    listPending: async (n) => (pendingReads++, pending.filter((p) => p.status === "pending").slice(0, n)),
+    addPending: async (t) => void pending.push({ ...t, id: nextId++, attempts: 1, status: "pending", createdSeconds: now, touched: clock++ }),
+    listPending: async (n) => (pendingReads++, pending.filter((p) => p.status === "pending").sort((a, b) => a.touched - b.touched).slice(0, n)),
+    touchPending: async (id) => void (pending.find((x) => x.id === id)!.touched = clock++),
     removePending: async (id) => void pending.splice(pending.findIndex((p) => p.id === id), 1),
     bumpPending: async (id, _r, failed) => {
       const p = pending.find((x) => x.id === id)!;
       p.attempts += 1;
+      p.touched = clock++;
       if (failed) p.status = "failed";
     },
   };
   const store = (u: string, clientId: string, refresh: string) => tokens.set(`${u}|${clientId}`, { clientId, sealed: sealToken(ENC, refresh) });
-  return { deps, calls, tokens, pending, logs, store, pendingReads: () => pendingReads, alerts };
+  return { deps, calls, tokens, pending, logs, store, pendingReads: () => pendingReads, alerts, advance: (s: number) => void (now += s) };
 }
 
 test("client secret is an ES256 JWT for the app's client id that the key verifies", () => {
@@ -165,7 +171,7 @@ for (const reply of [{ ok: false, status: 500 }, "throw", "timeout"] as const) {
     assert.equal(w.tokens.size, 0);
     assert.equal(w.pending.length, 1);
     assert.equal(openToken(ENC, w.pending[0].sealed), "rb");
-    assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 1, failed: 0 });
+    assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 1, failed: 0, expired: 0, alerts: [] });
     assert.equal(w.pending.length, 0);
     assert.equal(w.calls.at(-1)!.body.get("token"), "rb");
   });
@@ -175,7 +181,7 @@ test("a retry that fails again keeps the pending row and counts the attempt", as
   const w = apple([{ ok: false, status: 503 }]);
   w.store("u1", "foundation.bucket.app", "rb");
   await revokeUserTokens(w.deps, "u1");
-  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 1 });
+  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 1, expired: 0, alerts: [] });
   assert.equal(w.pending[0].attempts, 2);
   assert.ok(w.logs.includes("apple_revoke_retry false http_503"));
 });
@@ -221,7 +227,7 @@ test("a pending row is marked failed after five attempts and then skipped", asyn
   assert.equal(w.pending[0].attempts, MAX_REVOKE_ATTEMPTS);
   assert.equal(w.pending[0].status, "failed");
   const before = w.calls.length;
-  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 0 });
+  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 0, expired: 0, alerts: [] });
   assert.equal(w.calls.length, before);
 });
 
@@ -240,7 +246,7 @@ test("invalid_client keeps rows pending without counting the attempt and alerts 
   w.store("u2", "com.polingual.app", "r2");
   await revokeUserTokens(w.deps, "u1");
   await revokeUserTokens(w.deps, "u2");
-  for (let i = 0; i < MAX_REVOKE_ATTEMPTS + 1; i++) assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 2 });
+  for (let i = 0; i < MAX_REVOKE_ATTEMPTS + 1; i++) assert.deepEqual((({ alerts, ...r }) => (assert.equal(alerts.length, 1), r))(await retryPendingRevokes(w.deps)), { revoked: 0, failed: 2, expired: 0 });
   assert.deepEqual(w.pending.map((p) => [p.status, p.attempts]), [["pending", 1], ["pending", 1]]);
   assert.equal(w.alerts.length, MAX_REVOKE_ATTEMPTS + 1);
   assert.match(w.alerts[0], /invalid_client/);
@@ -253,4 +259,46 @@ test("invalid_grant stays permanent and sends no credential alert", async () => 
   await retryPendingRevokes(w.deps);
   assert.equal(w.pending[0].status, "failed");
   assert.deepEqual(w.alerts, []);
+});
+
+test("invalid_client makes the cron answer 503 with the alert; a clean run answers 200", async () => {
+  const w = apple([{ ok: false, status: 400, body: { error: "invalid_client" } }]);
+  w.store("u1", "foundation.bucket.app", "r1");
+  await revokeUserTokens(w.deps, "u1");
+  const bad = retryCronReply(await retryPendingRevokes(w.deps));
+  assert.equal(bad.status, 503);
+  assert.equal(bad.body.ok, false);
+  assert.match(bad.body.alerts[0], /invalid_client for foundation\.bucket\.app/);
+  const empty = apple([{ ok: true, status: 200 }]);
+  assert.deepEqual(retryCronReply(await retryPendingRevokes(empty.deps)), { status: 200, body: { ok: true, revoked: 0, failed: 0, expired: 0, alerts: [] } });
+});
+
+test("rows held by invalid_client rotate: each run takes the oldest-touched batch, so every row gets a turn", async () => {
+  const w = apple([{ ok: false, status: 400, body: { error: "invalid_client" } }]);
+  for (let i = 0; i < 5; i++) {
+    w.store(`u${i}`, "foundation.bucket.app", `r${i}`);
+    await revokeUserTokens(w.deps, `u${i}`);
+  }
+  const seen: number[][] = [];
+  for (let run = 0; run < 3; run++) {
+    const before = w.calls.length;
+    await retryPendingRevokes(w.deps, 2);
+    seen.push(w.calls.slice(before).map((c) => Number(c.body.get("token")!.slice(1))));
+  }
+  assert.deepEqual(seen, [[0, 1], [2, 3], [4, 0]]);
+});
+
+test("a row stuck on invalid_client past the age limit is marked failed and alerted", async () => {
+  const w = apple([{ ok: false, status: 400, body: { error: "invalid_client" } }]);
+  w.store("u1", "foundation.bucket.app", "r1");
+  await revokeUserTokens(w.deps, "u1");
+  w.advance(MAX_CREDENTIAL_WAIT_DAYS * 86400 - 60);
+  assert.equal((await retryPendingRevokes(w.deps)).expired, 0);
+  assert.equal(w.pending[0].status, "pending");
+  w.advance(120);
+  const r = await retryPendingRevokes(w.deps);
+  assert.equal(r.expired, 1);
+  assert.equal(w.pending[0].status, "failed");
+  assert.match(r.alerts[1], /waited over 30 days/);
+  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 0, expired: 0, alerts: [] });
 });
