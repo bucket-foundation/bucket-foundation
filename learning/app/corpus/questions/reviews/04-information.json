@@ -1,0 +1,1979 @@
+{
+ "branch": "04-information",
+ "reviews": {
+  "bit.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "bit.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "bit.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "bit.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "bit.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "probability-basics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "probability-basics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "probability-basics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "probability-basics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "probability-basics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "shannon-entropy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "shannon-entropy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "shannon-entropy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "shannon-entropy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "shannon-entropy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kraft-source-coding.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kraft-source-coding.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kraft-source-coding.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kraft-source-coding.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kraft-source-coding.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "mutual-information.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "mutual-information.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "mutual-information.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "mutual-information.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "mutual-information.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "channel-capacity.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "channel-capacity.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "channel-capacity.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "channel-capacity.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "channel-capacity.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "error-correcting-codes.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "error-correcting-codes.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "error-correcting-codes.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "error-correcting-codes.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "error-correcting-codes.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kolmogorov-complexity.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kolmogorov-complexity.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kolmogorov-complexity.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kolmogorov-complexity.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kolmogorov-complexity.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kolmogorov-complexity.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function-relation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function-relation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function-relation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function-relation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function-relation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "set-function-relation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dfa-nfa.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dfa-nfa.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dfa-nfa.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dfa-nfa.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dfa-nfa.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dfa-nfa.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-languages.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-languages.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-languages.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-languages.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-languages.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-languages.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "context-free.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "context-free.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "context-free.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "context-free.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "context-free.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "context-free.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "chomsky-hierarchy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "chomsky-hierarchy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "chomsky-hierarchy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "chomsky-hierarchy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "chomsky-hierarchy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "chomsky-hierarchy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "turing-machine.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "turing-machine.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "turing-machine.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "turing-machine.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "turing-machine.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "turing-machine.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "church-turing.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "church-turing.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "church-turing.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "church-turing.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "church-turing.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "church-turing.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "decidability.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "decidability.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "decidability.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "decidability.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "decidability.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "decidability.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "halting-problem.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "halting-problem.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "halting-problem.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "halting-problem.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "halting-problem.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "halting-problem.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "big-o.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "big-o.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "big-o.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "big-o.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "big-o.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "divide-and-conquer.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "divide-and-conquer.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "divide-and-conquer.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "divide-and-conquer.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "divide-and-conquer.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dynamic-programming.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dynamic-programming.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dynamic-programming.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dynamic-programming.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dynamic-programming.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "dynamic-programming.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-algorithms.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-algorithms.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-algorithms.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-algorithms.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-algorithms.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "graph-algorithms.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "hashing-data-structures.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "hashing-data-structures.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "hashing-data-structures.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "hashing-data-structures.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "hashing-data-structures.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-p.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-p.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-p.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-p.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-p.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-np.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-np.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-np.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-np.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "complexity-np.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "reductions.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "reductions.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "reductions.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "reductions.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "reductions.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "reductions.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "np-completeness.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "np-completeness.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "np-completeness.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "np-completeness.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "np-completeness.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "np-completeness.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "space-complexity.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "space-complexity.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "space-complexity.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "space-complexity.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "space-complexity.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "space-complexity.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "propositional-logic.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "propositional-logic.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "propositional-logic.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "propositional-logic.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "propositional-logic.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "propositional-logic.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "predicate-logic.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "predicate-logic.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "predicate-logic.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "predicate-logic.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "predicate-logic.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "predicate-logic.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "proof-systems.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "proof-systems.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "proof-systems.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "proof-systems.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "proof-systems.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "proof-systems.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "godel-incompleteness.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "one-way-functions.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "one-way-functions.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "one-way-functions.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "one-way-functions.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "one-way-functions.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "public-key-crypto.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "public-key-crypto.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "public-key-crypto.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "public-key-crypto.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "public-key-crypto.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "public-key-crypto.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pseudorandomness.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pseudorandomness.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pseudorandomness.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pseudorandomness.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pseudorandomness.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pseudorandomness.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pac-learning.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pac-learning.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pac-learning.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pac-learning.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "pac-learning.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "vc-dimension.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "vc-dimension.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "vc-dimension.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "vc-dimension.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "vc-dimension.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "vc-dimension.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-statistical-mechanics-link.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-statistical-mechanics-link.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-statistical-mechanics-link.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-statistical-mechanics-link.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "entropy-statistical-mechanics-link.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "neural-network-learning.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "neural-network-learning.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "neural-network-learning.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "neural-network-learning.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "neural-network-learning.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "neural-network-learning.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "randomized-algorithms.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "randomized-algorithms.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "randomized-algorithms.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "randomized-algorithms.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "randomized-algorithms.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kl-divergence.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kl-divergence.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kl-divergence.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kl-divergence.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "kl-divergence.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "conditional-probability-bayes.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "conditional-probability-bayes.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "conditional-probability-bayes.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "conditional-probability-bayes.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "conditional-probability-bayes.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-expressions.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-expressions.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-expressions.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-expressions.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-expressions.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "regular-expressions.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "greedy-algorithms.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "greedy-algorithms.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "greedy-algorithms.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "greedy-algorithms.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "greedy-algorithms.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "amortized-analysis.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "amortized-analysis.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "amortized-analysis.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "amortized-analysis.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "amortized-analysis.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "time-hierarchy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "time-hierarchy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "time-hierarchy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "time-hierarchy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "time-hierarchy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "time-hierarchy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-distortion.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-distortion.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-distortion.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-distortion.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rate-distortion.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "approximation-algorithms.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "approximation-algorithms.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "approximation-algorithms.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "approximation-algorithms.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "approximation-algorithms.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "approximation-algorithms.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "typical-sequences-aep.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "typical-sequences-aep.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "typical-sequences-aep.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "typical-sequences-aep.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "typical-sequences-aep.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "perfect-secrecy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "perfect-secrecy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "perfect-secrecy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "perfect-secrecy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "perfect-secrecy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "huffman-coding.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "huffman-coding.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "huffman-coding.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "huffman-coding.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "huffman-coding.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lambda-calculus.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lambda-calculus.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lambda-calculus.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lambda-calculus.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lambda-calculus.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lambda-calculus.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "fast-fourier-transform.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "fast-fourier-transform.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "fast-fourier-transform.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "fast-fourier-transform.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "fast-fourier-transform.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "master-theorem.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "master-theorem.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "master-theorem.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "master-theorem.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "master-theorem.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rices-theorem.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rices-theorem.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rices-theorem.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rices-theorem.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rices-theorem.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "rices-theorem.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "data-processing-inequality.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "data-processing-inequality.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "data-processing-inequality.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "data-processing-inequality.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "data-processing-inequality.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "differential-entropy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "differential-entropy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "differential-entropy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "differential-entropy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "differential-entropy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lempel-ziv.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lempel-ziv.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lempel-ziv.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lempel-ziv.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lempel-ziv.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "lempel-ziv.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "diffie-hellman.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "diffie-hellman.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "diffie-hellman.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "diffie-hellman.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "diffie-hellman.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "cryptographic-hash.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "cryptographic-hash.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "cryptographic-hash.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "cryptographic-hash.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "cryptographic-hash.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "boolean-circuits.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "boolean-circuits.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "boolean-circuits.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "boolean-circuits.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  },
+  "boolean-circuits.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs information theory, computation and atom lesson",
+   "verdict": "ok"
+  }
+ }
+}

@@ -1,0 +1,4763 @@
+{
+ "branch": "04-information",
+ "version": "0.5.0",
+ "questions": [
+  {
+   "id": "bit.pick",
+   "atom": "bit",
+   "kind": "pick",
+   "prompt": "How much information does one fair yes/no answer carry?",
+   "options": [
+    "1 bit",
+    "2 bits",
+    "Half a bit",
+    "8 bits"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "bit.calculate",
+   "atom": "bit",
+   "kind": "calculate",
+   "prompt": "In a game of twenty questions, how many yes/no questions does it take at most to pick one card from a 64-card deck?",
+   "answer": 6.0,
+   "unit": "questions",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "bit.order",
+   "atom": "bit",
+   "kind": "order",
+   "prompt": "Order the halving search for one card in 52.",
+   "steps": [
+    "Ask a question that splits the cards in half",
+    "Keep the half that matches",
+    "Ask again on what remains",
+    "Stop when one card is left"
+   ]
+  },
+  {
+   "id": "bit.spot-error",
+   "atom": "bit",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "One fair yes/no answer is 1 bit",
+    "N equally likely options need log2 N bits",
+    "A 52-card deck needs exactly 5 questions",
+    "A biased question carries less than 1 bit"
+   ],
+   "error": 2,
+   "fix": "log2 52 is about 5.7, so 6 questions are needed in the worst case."
+  },
+  {
+   "id": "bit.match",
+   "atom": "bit",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Bit",
+     "meaning": "One fair yes/no answer"
+    },
+    {
+     "term": "Byte",
+     "meaning": "8 bits"
+    },
+    {
+     "term": "log2 N",
+     "meaning": "Bits for N equal options"
+    },
+    {
+     "term": "Halving",
+     "meaning": "Each question splits the options in two"
+    }
+   ]
+  },
+  {
+   "id": "probability-basics.pick",
+   "atom": "probability-basics",
+   "kind": "pick",
+   "prompt": "What must the probabilities of all outcomes sum to?",
+   "options": [
+    "1",
+    "0",
+    "100",
+    "The number of outcomes"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "probability-basics.calculate",
+   "atom": "probability-basics",
+   "kind": "calculate",
+   "prompt": "A game pays 10 dollars on a roll of 6 and nothing otherwise, with a fair die. What is the expected payout in dollars?",
+   "answer": 1.667,
+   "unit": "dollars",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "probability-basics.order",
+   "atom": "probability-basics",
+   "kind": "order",
+   "prompt": "Order the expectation of a die roll.",
+   "steps": [
+    "List outcomes 1 to 6",
+    "Give each probability 1/6",
+    "Multiply each outcome by its probability",
+    "Add the products"
+   ]
+  },
+  {
+   "id": "probability-basics.spot-error",
+   "atom": "probability-basics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Probabilities are nonnegative",
+    "They sum to 1",
+    "The mean must be a value the die can show",
+    "A fair die has mean 3.5"
+   ],
+   "error": 2,
+   "fix": "The mean is a weighted average and need not be a possible outcome."
+  },
+  {
+   "id": "probability-basics.match",
+   "atom": "probability-basics",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Distribution",
+     "meaning": "Weights on outcomes"
+    },
+    {
+     "term": "Expectation",
+     "meaning": "Weighted average"
+    },
+    {
+     "term": "Outcome",
+     "meaning": "One possible result"
+    },
+    {
+     "term": "Fair die",
+     "meaning": "Each face 1/6"
+    }
+   ]
+  },
+  {
+   "id": "shannon-entropy.pick",
+   "atom": "shannon-entropy",
+   "kind": "pick",
+   "prompt": "Which distribution on two outcomes has the most entropy?",
+   "options": [
+    "50/50",
+    "90/10",
+    "99/1",
+    "100/0"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "shannon-entropy.calculate",
+   "atom": "shannon-entropy",
+   "kind": "calculate",
+   "prompt": "A weather station reports sun 3/4 of days and rain 1/4. What is the entropy per report in bits?",
+   "answer": 0.8113,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "shannon-entropy.order",
+   "atom": "shannon-entropy",
+   "kind": "order",
+   "prompt": "Order the entropy calculation.",
+   "steps": [
+    "List the probabilities",
+    "Take -log2 of each",
+    "Weight each by its probability",
+    "Add them up"
+   ]
+  },
+  {
+   "id": "shannon-entropy.spot-error",
+   "atom": "shannon-entropy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Entropy measures average surprise",
+    "A fair coin has 1 bit",
+    "A biased coin has more entropy than a fair one",
+    "A certain outcome has 0 bits"
+   ],
+   "error": 2,
+   "fix": "Bias lowers entropy; the fair coin has the most."
+  },
+  {
+   "id": "shannon-entropy.match",
+   "atom": "shannon-entropy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Entropy",
+     "meaning": "Average bits per outcome"
+    },
+    {
+     "term": "Surprise",
+     "meaning": "-log2 p"
+    },
+    {
+     "term": "Uniform",
+     "meaning": "Maximum entropy"
+    },
+    {
+     "term": "Certain event",
+     "meaning": "Zero entropy"
+    }
+   ]
+  },
+  {
+   "id": "kraft-source-coding.pick",
+   "atom": "kraft-source-coding",
+   "kind": "pick",
+   "prompt": "Can codeword lengths {1, 2, 2, 3} form a binary prefix code?",
+   "options": [
+    "No, Kraft sum is 9/8",
+    "Yes, always",
+    "Yes, Kraft sum is 1",
+    "Only with three symbols"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "kraft-source-coding.calculate",
+   "atom": "kraft-source-coding",
+   "kind": "calculate",
+   "prompt": "A source has entropy 1.75 bits per symbol. A file holds 8,000 symbols. What is the smallest lossless size in bits?",
+   "answer": 14000.0,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "kraft-source-coding.order",
+   "atom": "kraft-source-coding",
+   "kind": "order",
+   "prompt": "Order the Kraft check.",
+   "steps": [
+    "List the codeword lengths",
+    "Compute 2^-l for each",
+    "Add them",
+    "A prefix code exists if the sum is at most 1"
+   ]
+  },
+  {
+   "id": "kraft-source-coding.spot-error",
+   "atom": "kraft-source-coding",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Kraft sum must be at most 1",
+    "Average length is at least H",
+    "Lossless codes can go below entropy",
+    "Optimal codes lie within 1 bit of H"
+   ],
+   "error": 2,
+   "fix": "No lossless code beats entropy on average."
+  },
+  {
+   "id": "kraft-source-coding.match",
+   "atom": "kraft-source-coding",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Prefix code",
+     "meaning": "No codeword starts another"
+    },
+    {
+     "term": "Kraft inequality",
+     "meaning": "Sum of 2^-l at most 1"
+    },
+    {
+     "term": "Average length",
+     "meaning": "Expected bits per symbol"
+    },
+    {
+     "term": "Entropy bound",
+     "meaning": "Floor on average length"
+    }
+   ]
+  },
+  {
+   "id": "mutual-information.pick",
+   "atom": "mutual-information",
+   "kind": "pick",
+   "prompt": "Y is an independent coin unrelated to X. What is I(X; Y)?",
+   "options": [
+    "0",
+    "H(X)",
+    "1 bit",
+    "H(Y)"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "mutual-information.calculate",
+   "atom": "mutual-information",
+   "kind": "calculate",
+   "prompt": "A sensor reading cuts uncertainty about the weather from 1.0 bit to 0.3 bits. How many bits of mutual information does it carry?",
+   "answer": 0.7,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "mutual-information.order",
+   "atom": "mutual-information",
+   "kind": "order",
+   "prompt": "Order computing I(X; Y).",
+   "steps": [
+    "Find H(X)",
+    "Find H(X | Y)",
+    "Subtract",
+    "Read bits shared"
+   ]
+  },
+  {
+   "id": "mutual-information.spot-error",
+   "atom": "mutual-information",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "I(X; Y) = H(X) - H(X | Y)",
+    "A noiseless copy gives I = H(X)",
+    "Mutual information can be negative",
+    "It is symmetric in X and Y"
+   ],
+   "error": 2,
+   "fix": "Mutual information is never negative."
+  },
+  {
+   "id": "mutual-information.match",
+   "atom": "mutual-information",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "H(X)",
+     "meaning": "Uncertainty about X"
+    },
+    {
+     "term": "H(X | Y)",
+     "meaning": "Uncertainty left after Y"
+    },
+    {
+     "term": "I(X; Y)",
+     "meaning": "Bits Y reveals about X"
+    },
+    {
+     "term": "Independent",
+     "meaning": "I = 0"
+    }
+   ]
+  },
+  {
+   "id": "channel-capacity.pick",
+   "atom": "channel-capacity",
+   "kind": "pick",
+   "prompt": "What happens when you send below capacity with good codes?",
+   "options": [
+    "Errors can be made as rare as you like",
+    "Errors grow without limit however the code is designed",
+    "Nothing can be sent",
+    "Capacity rises"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "channel-capacity.calculate",
+   "atom": "channel-capacity",
+   "kind": "calculate",
+   "prompt": "A link flips each bit with p = 0.11. What is its capacity C = 1 - H(p) in bits per use?",
+   "answer": 0.6497,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "channel-capacity.order",
+   "atom": "channel-capacity",
+   "kind": "order",
+   "prompt": "Order the BSC capacity calculation.",
+   "steps": [
+    "Find the flip probability p",
+    "Compute H(p)",
+    "Subtract from 1",
+    "Read capacity per bit sent"
+   ]
+  },
+  {
+   "id": "channel-capacity.spot-error",
+   "atom": "channel-capacity",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Capacity is the max of I(X; Y)",
+    "Below C, reliable transmission is possible",
+    "Above C, coding can still make errors vanish",
+    "A BSC with p = 0.5 has zero capacity"
+   ],
+   "error": 2,
+   "fix": "Above capacity, errors cannot be driven to zero."
+  },
+  {
+   "id": "channel-capacity.match",
+   "atom": "channel-capacity",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Capacity",
+     "meaning": "Max reliable rate"
+    },
+    {
+     "term": "BSC",
+     "meaning": "Flips bits with probability p"
+    },
+    {
+     "term": "H(p)",
+     "meaning": "Binary entropy"
+    },
+    {
+     "term": "Rate",
+     "meaning": "Bits per channel use"
+    }
+   ]
+  },
+  {
+   "id": "error-correcting-codes.pick",
+   "atom": "error-correcting-codes",
+   "kind": "pick",
+   "prompt": "A code has d_min = 7. How many bit errors can it correct?",
+   "options": [
+    "3",
+    "7",
+    "6",
+    "1"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "error-correcting-codes.calculate",
+   "atom": "error-correcting-codes",
+   "kind": "calculate",
+   "prompt": "A QR code must correct any 5 symbol errors. What minimum distance does it need?",
+   "answer": 11.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "error-correcting-codes.order",
+   "atom": "error-correcting-codes",
+   "kind": "order",
+   "prompt": "Order nearest-codeword decoding.",
+   "steps": [
+    "Receive a word",
+    "Measure its distance to each codeword",
+    "Pick the closest",
+    "Output that codeword"
+   ]
+  },
+  {
+   "id": "error-correcting-codes.spot-error",
+   "atom": "error-correcting-codes",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "d_min >= 2t + 1 corrects t errors",
+    "Spheres of radius t must not overlap",
+    "d_min = 4 corrects 2 errors",
+    "Spreading codewords apart costs rate"
+   ],
+   "error": 2,
+   "fix": "d_min = 4 corrects 1 error and detects 3."
+  },
+  {
+   "id": "error-correcting-codes.match",
+   "atom": "error-correcting-codes",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Hamming distance",
+     "meaning": "Positions that differ"
+    },
+    {
+     "term": "d_min",
+     "meaning": "Closest pair of codewords"
+    },
+    {
+     "term": "t",
+     "meaning": "Errors corrected"
+    },
+    {
+     "term": "Parity bit",
+     "meaning": "Extra bit for checking"
+    }
+   ]
+  },
+  {
+   "id": "kolmogorov-complexity.pick",
+   "atom": "kolmogorov-complexity",
+   "kind": "pick",
+   "prompt": "Which string has low Kolmogorov complexity?",
+   "options": [
+    "A million zeros",
+    "Random coin flips",
+    "A password from a generator",
+    "Radio noise"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "kolmogorov-complexity.calculate",
+   "atom": "kolmogorov-complexity",
+   "kind": "calculate",
+   "prompt": "How many binary strings of length 10 exist, which no shorter programs can all describe?",
+   "answer": 1024.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "kolmogorov-complexity.order",
+   "atom": "kolmogorov-complexity",
+   "kind": "order",
+   "prompt": "Order the counting argument.",
+   "steps": [
+    "Count the 2^n strings of length n",
+    "Count programs shorter than n: 2^n - 1",
+    "There are fewer programs than strings",
+    "Some string has no shorter description"
+   ]
+  },
+  {
+   "id": "kolmogorov-complexity.spot-error",
+   "atom": "kolmogorov-complexity",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "K(x) is the shortest program printing x",
+    "Most strings are incompressible",
+    "K(x) can be computed by a program",
+    "Patterned strings have small K"
+   ],
+   "error": 2,
+   "fix": "K(x) is uncomputable."
+  },
+  {
+   "id": "kolmogorov-complexity.match",
+   "atom": "kolmogorov-complexity",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "K(x)",
+     "meaning": "Shortest program length"
+    },
+    {
+     "term": "Incompressible",
+     "meaning": "No shorter program"
+    },
+    {
+     "term": "Universal machine",
+     "meaning": "Runs any program"
+    },
+    {
+     "term": "Randomness",
+     "meaning": "Lack of short description"
+    }
+   ]
+  },
+  {
+   "id": "kolmogorov-complexity.applied",
+   "atom": "kolmogorov-complexity",
+   "kind": "pick",
+   "prompt": "A zip file of random photo noise comes out no smaller. Which idea explains it?",
+   "options": [
+    "Random data has no shorter description",
+    "Zip only works on text",
+    "The file was already encrypted with a key",
+    "Compression adds data"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "set-function-relation.pick",
+   "atom": "set-function-relation",
+   "kind": "pick",
+   "prompt": "x -> a divisor of x is what?",
+   "options": [
+    "A relation, not a function",
+    "A function",
+    "A bijection",
+    "Empty"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "set-function-relation.calculate",
+   "atom": "set-function-relation",
+   "kind": "calculate",
+   "prompt": "How many functions are there from a 3-element set to a 4-element set?",
+   "answer": 64.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "set-function-relation.order",
+   "atom": "set-function-relation",
+   "kind": "order",
+   "prompt": "Order the check that a relation is a function.",
+   "steps": [
+    "List all input-output pairs",
+    "Check every input appears",
+    "Check no input has two outputs",
+    "Conclude it is a function"
+   ]
+  },
+  {
+   "id": "set-function-relation.spot-error",
+   "atom": "set-function-relation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Every function is a relation",
+    "A function gives each input one output",
+    "Every relation is a function",
+    "A bijection pairs elements exactly"
+   ],
+   "error": 2,
+   "fix": "A relation can link one input to many outputs."
+  },
+  {
+   "id": "set-function-relation.match",
+   "atom": "set-function-relation",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Set",
+     "meaning": "Collection"
+    },
+    {
+     "term": "Relation",
+     "meaning": "Set of pairs"
+    },
+    {
+     "term": "Function",
+     "meaning": "One output per input"
+    },
+    {
+     "term": "Bijection",
+     "meaning": "Perfect pairing"
+    }
+   ]
+  },
+  {
+   "id": "set-function-relation.applied",
+   "atom": "set-function-relation",
+   "kind": "pick",
+   "prompt": "A database table maps each user ID to one email. Why is that a function?",
+   "options": [
+    "Each ID has exactly one email",
+    "Emails repeat freely and each ID can hold several of them",
+    "IDs have many emails",
+    "It has no inputs"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "dfa-nfa.pick",
+   "atom": "dfa-nfa",
+   "kind": "pick",
+   "prompt": "A DFA tracks even or odd count of 1s. Which state accepts?",
+   "options": [
+    "Even",
+    "Odd",
+    "Both",
+    "Neither"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "dfa-nfa.calculate",
+   "atom": "dfa-nfa",
+   "kind": "calculate",
+   "prompt": "Subset construction turns an NFA with 4 states into a DFA. At most how many DFA states can result?",
+   "answer": 16.0,
+   "unit": "states",
+   "relTol": 0.02
+  },
+  {
+   "id": "dfa-nfa.order",
+   "atom": "dfa-nfa",
+   "kind": "order",
+   "prompt": "Order a DFA run on 1011 for even 1s.",
+   "steps": [
+    "Start in E",
+    "1 moves to O, 0 stays",
+    "1 moves to E",
+    "Last 1 ends in O, reject"
+   ]
+  },
+  {
+   "id": "dfa-nfa.spot-error",
+   "atom": "dfa-nfa",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A DFA has finitely many states",
+    "Each symbol moves it to one next state",
+    "NFAs recognize more languages than DFAs",
+    "Accepting states decide the answer"
+   ],
+   "error": 2,
+   "fix": "NFAs and DFAs recognize the same languages."
+  },
+  {
+   "id": "dfa-nfa.match",
+   "atom": "dfa-nfa",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "State",
+     "meaning": "Memory of the past"
+    },
+    {
+     "term": "Transition",
+     "meaning": "Move on a symbol"
+    },
+    {
+     "term": "Accepting state",
+     "meaning": "Yes answer"
+    },
+    {
+     "term": "NFA",
+     "meaning": "Can branch on a symbol"
+    }
+   ]
+  },
+  {
+   "id": "dfa-nfa.applied",
+   "atom": "dfa-nfa",
+   "kind": "pick",
+   "prompt": "A vending machine tracks coins inserted up to 25 cents in 5-cent steps. What model fits it?",
+   "options": [
+    "A finite automaton",
+    "A Turing machine with infinite tape",
+    "A context-free grammar",
+    "A hash table"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "regular-languages.pick",
+   "atom": "regular-languages",
+   "kind": "pick",
+   "prompt": "Is {0^n 1^n} regular?",
+   "options": [
+    "No",
+    "Yes",
+    "Only for n < 5",
+    "Only for even n"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "regular-languages.calculate",
+   "atom": "regular-languages",
+   "kind": "calculate",
+   "prompt": "Pumping 0^p 1^p with y = 0^k, k = 3 and p = 5 gives xy^2z. How many 0s does it have?",
+   "answer": 8.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "regular-languages.order",
+   "atom": "regular-languages",
+   "kind": "order",
+   "prompt": "Order the pumping-lemma proof for 0^n 1^n.",
+   "steps": [
+    "Assume a pumping length p",
+    "Pick w = 0^p 1^p",
+    "Note y holds only 0s",
+    "Pumping breaks the balance"
+   ]
+  },
+  {
+   "id": "regular-languages.spot-error",
+   "atom": "regular-languages",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Regular languages are those DFAs accept",
+    "The pumping lemma proves non-regularity",
+    "Every finite language is non-regular",
+    "Regular languages are closed under union"
+   ],
+   "error": 2,
+   "fix": "Every finite language is regular."
+  },
+  {
+   "id": "regular-languages.match",
+   "atom": "regular-languages",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Regular",
+     "meaning": "DFA-recognizable"
+    },
+    {
+     "term": "Pumping length",
+     "meaning": "Bound p"
+    },
+    {
+     "term": "Closure",
+     "meaning": "Operations stay in the class"
+    },
+    {
+     "term": "Non-regular",
+     "meaning": "Needs unbounded memory"
+    }
+   ]
+  },
+  {
+   "id": "regular-languages.applied",
+   "atom": "regular-languages",
+   "kind": "pick",
+   "prompt": "Why can a plain regular expression not check that HTML tags nest to any depth?",
+   "options": [
+    "Nesting needs unbounded counting",
+    "HTML uses too many different letters for a regex alphabet",
+    "Regex cannot match text",
+    "Tags are binary"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "context-free.pick",
+   "atom": "context-free",
+   "kind": "pick",
+   "prompt": "Which structure do context-free grammars handle that DFAs cannot?",
+   "options": [
+    "Nested balanced parentheses",
+    "Strings over 0 and 1 that end in the symbol 1",
+    "Even number of 0s",
+    "Fixed-length strings"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "context-free.calculate",
+   "atom": "context-free",
+   "kind": "calculate",
+   "prompt": "How many balanced strings use 3 pairs of parentheses? It is the Catalan number C3.",
+   "answer": 5.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "context-free.order",
+   "atom": "context-free",
+   "kind": "order",
+   "prompt": "Order the derivation of (()).",
+   "steps": [
+    "S -> (S)S",
+    "Inner S -> (S)S",
+    "Inner S's -> empty",
+    "Result: (())"
+   ]
+  },
+  {
+   "id": "context-free.spot-error",
+   "atom": "context-free",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "CFGs generate nested structure",
+    "A stack recognizes them",
+    "Every context-free language is regular",
+    "Parsers use CFGs"
+   ],
+   "error": 2,
+   "fix": "Balanced parentheses are context-free but not regular."
+  },
+  {
+   "id": "context-free.match",
+   "atom": "context-free",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Grammar",
+     "meaning": "Rewrite rules"
+    },
+    {
+     "term": "Start symbol",
+     "meaning": "Where derivations begin"
+    },
+    {
+     "term": "Pushdown automaton",
+     "meaning": "Machine with a stack"
+    },
+    {
+     "term": "Parse tree",
+     "meaning": "Structure of a derivation"
+    }
+   ]
+  },
+  {
+   "id": "context-free.applied",
+   "atom": "context-free",
+   "kind": "pick",
+   "prompt": "A compiler checks that every opening brace in your code has a match. What does it use?",
+   "options": [
+    "A context-free parser",
+    "A finite automaton only",
+    "A hash function",
+    "A random test"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "chomsky-hierarchy.pick",
+   "atom": "chomsky-hierarchy",
+   "kind": "pick",
+   "prompt": "Which class is {0^n 1^n 2^n} in?",
+   "options": [
+    "Context-sensitive",
+    "Regular",
+    "Context-free",
+    "None"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "chomsky-hierarchy.calculate",
+   "atom": "chomsky-hierarchy",
+   "kind": "calculate",
+   "prompt": "How many classes are in the Chomsky hierarchy?",
+   "answer": 4.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "chomsky-hierarchy.order",
+   "atom": "chomsky-hierarchy",
+   "kind": "order",
+   "prompt": "Order the classes from smallest to largest.",
+   "steps": [
+    "Regular",
+    "Context-free",
+    "Context-sensitive",
+    "Recursively enumerable"
+   ]
+  },
+  {
+   "id": "chomsky-hierarchy.spot-error",
+   "atom": "chomsky-hierarchy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Regular is inside context-free",
+    "Each class has a matching machine",
+    "Context-free languages need a Turing machine",
+    "{0^n 1^n} is context-free"
+   ],
+   "error": 2,
+   "fix": "Context-free languages need only a pushdown automaton."
+  },
+  {
+   "id": "chomsky-hierarchy.match",
+   "atom": "chomsky-hierarchy",
+   "kind": "match",
+   "prompt": "Match each class to its machine.",
+   "pairs": [
+    {
+     "term": "Regular",
+     "meaning": "Finite automaton"
+    },
+    {
+     "term": "Context-free",
+     "meaning": "Pushdown automaton"
+    },
+    {
+     "term": "Context-sensitive",
+     "meaning": "Linear-bounded automaton"
+    },
+    {
+     "term": "Recursively enumerable",
+     "meaning": "Turing machine"
+    }
+   ]
+  },
+  {
+   "id": "chomsky-hierarchy.applied",
+   "atom": "chomsky-hierarchy",
+   "kind": "pick",
+   "prompt": "A spell checker matches word lists, and a compiler checks nested code. Which classes do they need?",
+   "options": [
+    "Regular, then context-free",
+    "Both recursively enumerable",
+    "Context-free, then regular",
+    "Neither needs a class"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "turing-machine.pick",
+   "atom": "turing-machine",
+   "kind": "pick",
+   "prompt": "What does a Turing machine add to a finite controller?",
+   "options": [
+    "An unbounded tape",
+    "A single stack that it can push to and pop from",
+    "A clock",
+    "A random coin"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "turing-machine.calculate",
+   "atom": "turing-machine",
+   "kind": "calculate",
+   "prompt": "A machine scans right one cell per step through 0001 until it reads a 1. How many steps until it accepts?",
+   "answer": 4.0,
+   "unit": "steps",
+   "relTol": 0.02
+  },
+  {
+   "id": "turing-machine.order",
+   "atom": "turing-machine",
+   "kind": "order",
+   "prompt": "Order a run that checks for a 1.",
+   "steps": [
+    "Start at the left end in q0",
+    "Read 0, move right",
+    "Read 1, accept",
+    "Blank reached means reject"
+   ]
+  },
+  {
+   "id": "turing-machine.spot-error",
+   "atom": "turing-machine",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The tape is unbounded",
+    "The controller has finite states",
+    "A TM can only move right",
+    "It models any computation"
+   ],
+   "error": 2,
+   "fix": "A TM can move left or right."
+  },
+  {
+   "id": "turing-machine.match",
+   "atom": "turing-machine",
+   "kind": "match",
+   "prompt": "Match each part to its role.",
+   "pairs": [
+    {
+     "term": "Tape",
+     "meaning": "Unbounded memory"
+    },
+    {
+     "term": "Head",
+     "meaning": "Reads and writes one cell"
+    },
+    {
+     "term": "State",
+     "meaning": "Controller memory"
+    },
+    {
+     "term": "Transition",
+     "meaning": "Rule for each state and symbol"
+    }
+   ]
+  },
+  {
+   "id": "turing-machine.applied",
+   "atom": "turing-machine",
+   "kind": "pick",
+   "prompt": "Your laptop has finite memory but counts as Turing-complete in practice. Why?",
+   "options": [
+    "It can run any algorithm given enough memory",
+    "It has an infinite tape built into the motherboard",
+    "It never halts",
+    "It uses lambda calculus"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "church-turing.pick",
+   "atom": "church-turing",
+   "kind": "pick",
+   "prompt": "What does the Church-Turing thesis claim?",
+   "options": [
+    "Effective computation equals Turing computability",
+    "Every function from numbers to numbers is computable",
+    "Turing machines are fastest",
+    "Lambda calculus is stronger"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "church-turing.calculate",
+   "atom": "church-turing",
+   "kind": "calculate",
+   "prompt": "Four 1930s models (lambda calculus, recursive functions, Turing machines, Post systems) are compared. How many turned out equivalent?",
+   "answer": 4.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "church-turing.order",
+   "atom": "church-turing",
+   "kind": "order",
+   "prompt": "Order the evidence for the thesis.",
+   "steps": [
+    "Many models are invented independently",
+    "Each is proved equivalent to Turing machines",
+    "No stronger mechanical model appears",
+    "Computable gets one definition"
+   ]
+  },
+  {
+   "id": "church-turing.spot-error",
+   "atom": "church-turing",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The thesis is a claim about the informal notion",
+    "Lambda calculus equals Turing machines in power",
+    "The thesis is a proved theorem",
+    "It defines what computable means"
+   ],
+   "error": 2,
+   "fix": "It is a thesis, supported by evidence and not provable."
+  },
+  {
+   "id": "church-turing.match",
+   "atom": "church-turing",
+   "kind": "match",
+   "prompt": "Match each model to its primitive.",
+   "pairs": [
+    {
+     "term": "Lambda calculus",
+     "meaning": "Functions"
+    },
+    {
+     "term": "Recursive functions",
+     "meaning": "Arithmetic and recursion"
+    },
+    {
+     "term": "Turing machine",
+     "meaning": "Tape and states"
+    },
+    {
+     "term": "Thesis",
+     "meaning": "All match effective computation"
+    }
+   ]
+  },
+  {
+   "id": "church-turing.applied",
+   "atom": "church-turing",
+   "kind": "pick",
+   "prompt": "A new programming language claims it can compute something no Turing machine can. Under the thesis, what should you expect?",
+   "options": [
+    "The claim fails for mechanical procedures",
+    "The claim holds for most new languages that come out each year",
+    "Turing machines will be retired",
+    "It is faster at everything"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "decidability.pick",
+   "atom": "decidability",
+   "kind": "pick",
+   "prompt": "The halting language is what?",
+   "options": [
+    "Recognizable, not decidable",
+    "Decidable",
+    "Not recognizable",
+    "Regular"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "decidability.calculate",
+   "atom": "decidability",
+   "kind": "calculate",
+   "prompt": "A decider halts within n^2 steps. How many steps on an input of length 30?",
+   "answer": 900.0,
+   "unit": "steps",
+   "relTol": 0.02
+  },
+  {
+   "id": "decidability.order",
+   "atom": "decidability",
+   "kind": "order",
+   "prompt": "Order recognizing the halting language.",
+   "steps": [
+    "Take M and x",
+    "Simulate M on x",
+    "If it halts, accept",
+    "Otherwise run forever"
+   ]
+  },
+  {
+   "id": "decidability.spot-error",
+   "atom": "decidability",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A decider always halts",
+    "Recognizers halt on yes inputs",
+    "Every recognizable language is decidable",
+    "Halting is recognizable"
+   ],
+   "error": 2,
+   "fix": "Halting is recognizable but not decidable."
+  },
+  {
+   "id": "decidability.match",
+   "atom": "decidability",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Decidable",
+     "meaning": "Always halts with an answer"
+    },
+    {
+     "term": "Recognizable",
+     "meaning": "Halts on yes instances"
+    },
+    {
+     "term": "Co-recognizable",
+     "meaning": "Halts on no instances"
+    },
+    {
+     "term": "Undecidable",
+     "meaning": "No decider exists"
+    }
+   ]
+  },
+  {
+   "id": "decidability.applied",
+   "atom": "decidability",
+   "kind": "pick",
+   "prompt": "A test harness runs a submitted program and waits. Why can it never safely say 'this loops forever'?",
+   "options": [
+    "A program still running may halt later",
+    "Programs cannot loop, so a running program must be broken",
+    "The harness is decidable",
+    "Loops always crash"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "halting-problem.pick",
+   "atom": "halting-problem",
+   "kind": "pick",
+   "prompt": "What does D do when H says P halts on P?",
+   "options": [
+    "Loops forever",
+    "Halts",
+    "Calls H again",
+    "Crashes"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "halting-problem.calculate",
+   "atom": "halting-problem",
+   "kind": "calculate",
+   "prompt": "A brute-force checker tests 3 programs on 5 inputs each, running each pair once. How many runs?",
+   "answer": 15.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "halting-problem.order",
+   "atom": "halting-problem",
+   "kind": "order",
+   "prompt": "Order the diagonal proof.",
+   "steps": [
+    "Assume decider H",
+    "Build D that does the opposite of H(P, P)",
+    "Run D(D)",
+    "Both answers contradict"
+   ]
+  },
+  {
+   "id": "halting-problem.spot-error",
+   "atom": "halting-problem",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Assume H decides halting",
+    "D flips H's answer on itself",
+    "D(D) halts if H says it halts",
+    "The contradiction kills H"
+   ],
+   "error": 2,
+   "fix": "D(D) loops if H says it halts."
+  },
+  {
+   "id": "halting-problem.match",
+   "atom": "halting-problem",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "H",
+     "meaning": "Assumed halting decider"
+    },
+    {
+     "term": "D",
+     "meaning": "Diagonal program"
+    },
+    {
+     "term": "D(D)",
+     "meaning": "Self-application"
+    },
+    {
+     "term": "Contradiction",
+     "meaning": "H cannot exist"
+    }
+   ]
+  },
+  {
+   "id": "halting-problem.applied",
+   "atom": "halting-problem",
+   "kind": "pick",
+   "prompt": "Why does no compiler warn about every infinite loop in your code?",
+   "options": [
+    "Detecting all of them is undecidable",
+    "Compilers ignore loops when they translate the source code",
+    "Infinite loops are legal",
+    "Warnings slow builds"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "big-o.pick",
+   "atom": "big-o",
+   "kind": "pick",
+   "prompt": "What is 3n^2 + 100n + 7 in big-O?",
+   "options": [
+    "O(n^2)",
+    "O(n)",
+    "O(n^3)",
+    "O(1)"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "big-o.calculate",
+   "atom": "big-o",
+   "kind": "calculate",
+   "prompt": "An O(n^2) report takes 1 second on 1,000 rows. About how many seconds on 10,000 rows?",
+   "answer": 100.0,
+   "unit": "seconds",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "big-o.order",
+   "atom": "big-o",
+   "kind": "order",
+   "prompt": "Order the proof that 3n^2 + 100n + 7 is O(n^2).",
+   "steps": [
+    "Take n >= 100",
+    "Bound 100n by n^2",
+    "Bound 7 by n^2",
+    "Sum at most 5n^2"
+   ]
+  },
+  {
+   "id": "big-o.spot-error",
+   "atom": "big-o",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Big-O ignores constants",
+    "Big-O ignores small n",
+    "O(n) grows faster than O(n^2)",
+    "Leading terms dominate"
+   ],
+   "error": 2,
+   "fix": "O(n^2) grows faster than O(n)."
+  },
+  {
+   "id": "big-o.match",
+   "atom": "big-o",
+   "kind": "match",
+   "prompt": "Match each class to an example.",
+   "pairs": [
+    {
+     "term": "O(1)",
+     "meaning": "Array lookup"
+    },
+    {
+     "term": "O(log n)",
+     "meaning": "Binary search"
+    },
+    {
+     "term": "O(n)",
+     "meaning": "Scan a list"
+    },
+    {
+     "term": "O(n log n)",
+     "meaning": "Mergesort"
+    }
+   ]
+  },
+  {
+   "id": "divide-and-conquer.pick",
+   "atom": "divide-and-conquer",
+   "kind": "pick",
+   "prompt": "What is mergesort's recurrence?",
+   "options": [
+    "T(n) = 2T(n/2) + n",
+    "T(n) = T(n - 1) + 1",
+    "T(n) = 2T(n - 1)",
+    "T(n) = T(n/2) + 1"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "divide-and-conquer.calculate",
+   "atom": "divide-and-conquer",
+   "kind": "calculate",
+   "prompt": "Mergesort on 1,024 records makes how many levels of halving?",
+   "answer": 10.0,
+   "unit": "levels",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "divide-and-conquer.order",
+   "atom": "divide-and-conquer",
+   "kind": "order",
+   "prompt": "Order mergesort.",
+   "steps": [
+    "Split the array in half",
+    "Sort each half",
+    "Merge the halves",
+    "Return the sorted array"
+   ]
+  },
+  {
+   "id": "divide-and-conquer.spot-error",
+   "atom": "divide-and-conquer",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Split into subproblems",
+    "Solve them recursively",
+    "Mergesort runs in O(n^2)",
+    "Combine the results"
+   ],
+   "error": 2,
+   "fix": "Mergesort runs in O(n log n)."
+  },
+  {
+   "id": "divide-and-conquer.match",
+   "atom": "divide-and-conquer",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "a",
+     "meaning": "Number of subproblems"
+    },
+    {
+     "term": "b",
+     "meaning": "Size shrink factor"
+    },
+    {
+     "term": "f(n)",
+     "meaning": "Combine cost"
+    },
+    {
+     "term": "T(n)",
+     "meaning": "Total time"
+    }
+   ]
+  },
+  {
+   "id": "dynamic-programming.pick",
+   "atom": "dynamic-programming",
+   "kind": "pick",
+   "prompt": "Why is memoized Fibonacci fast?",
+   "options": [
+    "Each F(k) is computed once",
+    "It skips F(0) and starts the table at a later value",
+    "It uses floats",
+    "It guesses"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "dynamic-programming.calculate",
+   "atom": "dynamic-programming",
+   "kind": "calculate",
+   "prompt": "A memoized Fibonacci computes F(0) to F(n). How many distinct values for n = 50?",
+   "answer": 51.0,
+   "unit": "values",
+   "relTol": 0.02
+  },
+  {
+   "id": "dynamic-programming.order",
+   "atom": "dynamic-programming",
+   "kind": "order",
+   "prompt": "Order a DP solution.",
+   "steps": [
+    "Define the subproblems",
+    "Write the recurrence",
+    "Order them so each needs only earlier ones",
+    "Fill the table"
+   ]
+  },
+  {
+   "id": "dynamic-programming.spot-error",
+   "atom": "dynamic-programming",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "DP needs overlapping subproblems",
+    "Memoization stores answers",
+    "Naive Fibonacci makes linear calls",
+    "DP can turn exponential into polynomial"
+   ],
+   "error": 2,
+   "fix": "Naive Fibonacci makes exponentially many calls."
+  },
+  {
+   "id": "dynamic-programming.match",
+   "atom": "dynamic-programming",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Memoization",
+     "meaning": "Cache results"
+    },
+    {
+     "term": "Subproblem",
+     "meaning": "Smaller instance"
+    },
+    {
+     "term": "Recurrence",
+     "meaning": "Answer from smaller answers"
+    },
+    {
+     "term": "Table",
+     "meaning": "Stored results"
+    }
+   ]
+  },
+  {
+   "id": "dynamic-programming.applied",
+   "atom": "dynamic-programming",
+   "kind": "pick",
+   "prompt": "Spell checkers find the closest word with edit distance. Why is DP used?",
+   "options": [
+    "Prefix comparisons overlap and are reused",
+    "Words are random strings, so no structure can be reused at all",
+    "It avoids storing anything",
+    "It sorts the dictionary"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "graph-algorithms.pick",
+   "atom": "graph-algorithms",
+   "kind": "pick",
+   "prompt": "Which search finds fewest hops in an unweighted graph?",
+   "options": [
+    "BFS",
+    "DFS",
+    "Random walk",
+    "Sorting"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "graph-algorithms.calculate",
+   "atom": "graph-algorithms",
+   "kind": "calculate",
+   "prompt": "Edges A-B, A-C, B-D, C-D, D-E. How many hops from A to E?",
+   "answer": 3.0,
+   "unit": "hops",
+   "relTol": 0.02
+  },
+  {
+   "id": "graph-algorithms.order",
+   "atom": "graph-algorithms",
+   "kind": "order",
+   "prompt": "Order a BFS.",
+   "steps": [
+    "Put the start in a queue",
+    "Pop a vertex",
+    "Add its unvisited neighbors",
+    "Repeat until empty"
+   ]
+  },
+  {
+   "id": "graph-algorithms.spot-error",
+   "atom": "graph-algorithms",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "BFS explores layer by layer",
+    "DFS goes deep first",
+    "BFS uses a stack",
+    "Graphs model relationships"
+   ],
+   "error": 2,
+   "fix": "BFS uses a queue."
+  },
+  {
+   "id": "graph-algorithms.match",
+   "atom": "graph-algorithms",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Vertex",
+     "meaning": "Node"
+    },
+    {
+     "term": "Edge",
+     "meaning": "Link"
+    },
+    {
+     "term": "BFS",
+     "meaning": "Layer search"
+    },
+    {
+     "term": "DFS",
+     "meaning": "Depth-first search"
+    }
+   ]
+  },
+  {
+   "id": "graph-algorithms.applied",
+   "atom": "graph-algorithms",
+   "kind": "pick",
+   "prompt": "A navigation app finds a route with the fewest turns in a city grid. Which search fits?",
+   "options": [
+    "Breadth-first search",
+    "Bubble sort",
+    "Binary search on names",
+    "Hashing"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "hashing-data-structures.pick",
+   "atom": "hashing-data-structures",
+   "kind": "pick",
+   "prompt": "What is the expected lookup time in a good hash table?",
+   "options": [
+    "O(1)",
+    "O(n)",
+    "O(log n)",
+    "O(n^2)"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hashing-data-structures.calculate",
+   "atom": "hashing-data-structures",
+   "kind": "calculate",
+   "prompt": "A login service hashes 23 into 16 buckets with h(k) = k mod 16. Which bucket?",
+   "answer": 7.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "hashing-data-structures.order",
+   "atom": "hashing-data-structures",
+   "kind": "order",
+   "prompt": "Order a hash lookup.",
+   "steps": [
+    "Compute h(key)",
+    "Go to that bucket",
+    "Walk its chain",
+    "Compare keys"
+   ]
+  },
+  {
+   "id": "hashing-data-structures.spot-error",
+   "atom": "hashing-data-structures",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Hashing scatters keys",
+    "Collisions share a bucket",
+    "A bad hash keeps lookups O(1)",
+    "Load factor affects speed"
+   ],
+   "error": 2,
+   "fix": "A bad hash piles keys into few buckets and lookups slow toward O(n)."
+  },
+  {
+   "id": "hashing-data-structures.match",
+   "atom": "hashing-data-structures",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Hash function",
+     "meaning": "Key to bucket"
+    },
+    {
+     "term": "Collision",
+     "meaning": "Two keys, one bucket"
+    },
+    {
+     "term": "Load factor",
+     "meaning": "Keys per bucket"
+    },
+    {
+     "term": "Chaining",
+     "meaning": "List in each bucket"
+    }
+   ]
+  },
+  {
+   "id": "complexity-p.pick",
+   "atom": "complexity-p",
+   "kind": "pick",
+   "prompt": "Why is trial division not polynomial for primality?",
+   "options": [
+    "sqrt n is exponential in digit count",
+    "It is wrong for numbers that have more than ten digits",
+    "It needs negative numbers",
+    "Primes are infinite"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "complexity-p.calculate",
+   "atom": "complexity-p",
+   "kind": "calculate",
+   "prompt": "A 20-digit number needs trial division up to sqrt n, about 10^10 steps. At 10^9 steps per second, how many seconds?",
+   "answer": 10.0,
+   "unit": "seconds",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "complexity-p.order",
+   "atom": "complexity-p",
+   "kind": "order",
+   "prompt": "Order the input-size reasoning.",
+   "steps": [
+    "Input is n in binary",
+    "Size is about log n bits",
+    "sqrt n = 2^(size/2)",
+    "That is exponential in size"
+   ]
+  },
+  {
+   "id": "complexity-p.spot-error",
+   "atom": "complexity-p",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "P is polynomial-time decision problems",
+    "Input size counts digits",
+    "Trial division is polynomial in n's digits",
+    "Primality is in P"
+   ],
+   "error": 2,
+   "fix": "Trial division is exponential in the number of digits."
+  },
+  {
+   "id": "complexity-p.match",
+   "atom": "complexity-p",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "P",
+     "meaning": "Polynomial-time decidable"
+    },
+    {
+     "term": "Input size",
+     "meaning": "Bits to write the input"
+    },
+    {
+     "term": "Tractable",
+     "meaning": "In P"
+    },
+    {
+     "term": "AKS",
+     "meaning": "Polynomial primality test"
+    }
+   ]
+  },
+  {
+   "id": "complexity-np.pick",
+   "atom": "complexity-np",
+   "kind": "pick",
+   "prompt": "What makes SAT in NP?",
+   "options": [
+    "A proposed assignment checks fast",
+    "It is easy to solve for every formula with any number of variables",
+    "It has no answer",
+    "It is undecidable"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "complexity-np.calculate",
+   "atom": "complexity-np",
+   "kind": "calculate",
+   "prompt": "A Sudoku-like puzzle has 40 yes/no choices. How many assignments would brute force try?",
+   "answer": 1100000000000.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "complexity-np.order",
+   "atom": "complexity-np",
+   "kind": "order",
+   "prompt": "Order NP verification.",
+   "steps": [
+    "Receive a certificate",
+    "Plug it into the formula",
+    "Check each clause",
+    "Accept if all hold"
+   ]
+  },
+  {
+   "id": "complexity-np.spot-error",
+   "atom": "complexity-np",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "NP has short checkable certificates",
+    "P is inside NP",
+    "NP means not polynomial",
+    "SAT is in NP"
+   ],
+   "error": 2,
+   "fix": "NP means nondeterministic polynomial time."
+  },
+  {
+   "id": "complexity-np.match",
+   "atom": "complexity-np",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Certificate",
+     "meaning": "Proof of a yes"
+    },
+    {
+     "term": "Verifier",
+     "meaning": "Checks the certificate"
+    },
+    {
+     "term": "SAT",
+     "meaning": "Satisfiability"
+    },
+    {
+     "term": "NP",
+     "meaning": "Verifiable in polynomial time"
+    }
+   ]
+  },
+  {
+   "id": "reductions.pick",
+   "atom": "reductions",
+   "kind": "pick",
+   "prompt": "If A reduces to B and B is easy, what follows?",
+   "options": [
+    "A is easy",
+    "B is hard",
+    "A is undecidable",
+    "Nothing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "reductions.calculate",
+   "atom": "reductions",
+   "kind": "calculate",
+   "prompt": "A 5-literal clause splits into 3-literal clauses with fresh variables. How many clauses result, k - 2 for k = 5?",
+   "answer": 3.0,
+   "unit": "clauses",
+   "relTol": 0.02
+  },
+  {
+   "id": "reductions.order",
+   "atom": "reductions",
+   "kind": "order",
+   "prompt": "Order a reduction from SAT to 3-SAT.",
+   "steps": [
+    "Take a long clause",
+    "Add a fresh variable y",
+    "Split into shorter clauses",
+    "Repeat until all have three"
+   ]
+  },
+  {
+   "id": "reductions.spot-error",
+   "atom": "reductions",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Reductions run in polynomial time",
+    "They transfer hardness",
+    "A <= B means B is easier than A",
+    "They preserve yes answers"
+   ],
+   "error": 2,
+   "fix": "A <= B means B is at least as hard as A."
+  },
+  {
+   "id": "reductions.match",
+   "atom": "reductions",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Reduction",
+     "meaning": "Transform instances"
+    },
+    {
+     "term": "<= p",
+     "meaning": "Polynomial-time reducible"
+    },
+    {
+     "term": "Hardness",
+     "meaning": "Transfers upward"
+    },
+    {
+     "term": "Gadget",
+     "meaning": "Building block of a reduction"
+    }
+   ]
+  },
+  {
+   "id": "reductions.applied",
+   "atom": "reductions",
+   "kind": "pick",
+   "prompt": "A logistics firm maps its delivery problem onto a known solver for graph coloring. What has it done?",
+   "options": [
+    "Reduced its problem to coloring",
+    "Proved P = NP for every delivery problem it will ever face",
+    "Made the problem undecidable",
+    "Removed all constraints"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "np-completeness.pick",
+   "atom": "np-completeness",
+   "kind": "pick",
+   "prompt": "What would a fast algorithm for one NP-complete problem give?",
+   "options": [
+    "Fast algorithms for all of NP",
+    "Nothing",
+    "Only faster SAT",
+    "An undecidable problem"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "np-completeness.calculate",
+   "atom": "np-completeness",
+   "kind": "calculate",
+   "prompt": "In the 3-SAT to Independent Set reduction, a formula has 7 clauses. How many triangle vertices are built?",
+   "answer": 21.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "np-completeness.order",
+   "atom": "np-completeness",
+   "kind": "order",
+   "prompt": "Order Karp's approach.",
+   "steps": [
+    "Start from SAT",
+    "Reduce it to a new problem",
+    "Show the new problem is in NP",
+    "Conclude it is NP-complete"
+   ]
+  },
+  {
+   "id": "np-completeness.spot-error",
+   "atom": "np-completeness",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "SAT was the first NP-complete problem",
+    "NP-complete problems are in NP",
+    "NP-complete problems are known to need exponential time",
+    "Many are reduced from 3-SAT"
+   ],
+   "error": 2,
+   "fix": "No one has proved they need exponential time."
+  },
+  {
+   "id": "np-completeness.match",
+   "atom": "np-completeness",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "NP-hard",
+     "meaning": "At least as hard as NP"
+    },
+    {
+     "term": "NP-complete",
+     "meaning": "NP-hard and in NP"
+    },
+    {
+     "term": "Cook-Levin",
+     "meaning": "SAT is NP-complete"
+    },
+    {
+     "term": "Karp",
+     "meaning": "21 NP-complete problems"
+    }
+   ]
+  },
+  {
+   "id": "np-completeness.applied",
+   "atom": "np-completeness",
+   "kind": "pick",
+   "prompt": "A scheduling app gives near-best timetables instead of perfect ones. Why?",
+   "options": [
+    "Exact scheduling is NP-hard",
+    "Perfect timetables never exist",
+    "Computers cannot sort",
+    "Times are random"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "space-complexity.pick",
+   "atom": "space-complexity",
+   "kind": "pick",
+   "prompt": "Which is known to contain NP?",
+   "options": [
+    "PSPACE",
+    "L",
+    "Regular",
+    "AC0"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "space-complexity.calculate",
+   "atom": "space-complexity",
+   "kind": "calculate",
+   "prompt": "A TQBF solver reuses memory per variable. With 30 variables and 4 bytes each, how many bytes deep is its stack?",
+   "answer": 120.0,
+   "unit": "bytes",
+   "relTol": 0.02
+  },
+  {
+   "id": "space-complexity.order",
+   "atom": "space-complexity",
+   "kind": "order",
+   "prompt": "Order the classes.",
+   "steps": [
+    "L",
+    "P",
+    "PSPACE",
+    "EXP"
+   ]
+  },
+  {
+   "id": "space-complexity.spot-error",
+   "atom": "space-complexity",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Space can be reused",
+    "TQBF is PSPACE-complete",
+    "PSPACE is inside P",
+    "Savitch: NPSPACE = PSPACE"
+   ],
+   "error": 2,
+   "fix": "P is inside PSPACE."
+  },
+  {
+   "id": "space-complexity.match",
+   "atom": "space-complexity",
+   "kind": "match",
+   "prompt": "Match each class to its resource.",
+   "pairs": [
+    {
+     "term": "L",
+     "meaning": "Log space"
+    },
+    {
+     "term": "PSPACE",
+     "meaning": "Polynomial space"
+    },
+    {
+     "term": "EXP",
+     "meaning": "Exponential time"
+    },
+    {
+     "term": "TQBF",
+     "meaning": "PSPACE-complete problem"
+    }
+   ]
+  },
+  {
+   "id": "space-complexity.applied",
+   "atom": "space-complexity",
+   "kind": "pick",
+   "prompt": "Chess on an n by n board is PSPACE-hard. What does that mean for a perfect chess program on large boards?",
+   "options": [
+    "It is at least as hard as every polynomial-space problem",
+    "It runs in log space on boards of any size",
+    "It is trivial",
+    "It is regular"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "propositional-logic.pick",
+   "atom": "propositional-logic",
+   "kind": "pick",
+   "prompt": "Is (P -> Q) or (Q -> P) a tautology?",
+   "options": [
+    "Yes",
+    "No",
+    "Only if P",
+    "Only if Q"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "propositional-logic.calculate",
+   "atom": "propositional-logic",
+   "kind": "calculate",
+   "prompt": "A truth table for 5 variables has how many rows?",
+   "answer": 32.0,
+   "unit": "rows",
+   "relTol": 0.02
+  },
+  {
+   "id": "propositional-logic.order",
+   "atom": "propositional-logic",
+   "kind": "order",
+   "prompt": "Order a truth-table validity check.",
+   "steps": [
+    "List all assignments",
+    "Evaluate the formula on each",
+    "Look for a false row",
+    "Valid if none"
+   ]
+  },
+  {
+   "id": "propositional-logic.spot-error",
+   "atom": "propositional-logic",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "P -> Q is false only when P true, Q false",
+    "A tautology is true in every row",
+    "P -> Q is false when P is false",
+    "Truth tables decide validity"
+   ],
+   "error": 2,
+   "fix": "P -> Q is true when P is false."
+  },
+  {
+   "id": "propositional-logic.match",
+   "atom": "propositional-logic",
+   "kind": "match",
+   "prompt": "Match each connective to its meaning.",
+   "pairs": [
+    {
+     "term": "AND",
+     "meaning": "Both true"
+    },
+    {
+     "term": "OR",
+     "meaning": "At least one true"
+    },
+    {
+     "term": "NOT",
+     "meaning": "Flips truth"
+    },
+    {
+     "term": "->",
+     "meaning": "False only for true then false"
+    }
+   ]
+  },
+  {
+   "id": "propositional-logic.applied",
+   "atom": "propositional-logic",
+   "kind": "pick",
+   "prompt": "A smoke alarm sounds if smoke OR heat is detected. Smoke is absent and heat present. Does it sound?",
+   "options": [
+    "Yes",
+    "No",
+    "Only with both",
+    "Never"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "predicate-logic.pick",
+   "atom": "predicate-logic",
+   "kind": "pick",
+   "prompt": "Which is true of the integers?",
+   "options": [
+    "For all x, exists y, y > x",
+    "Exists y, for all x, y > x",
+    "For all x, x > x",
+    "Exists x, x > x"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "predicate-logic.calculate",
+   "atom": "predicate-logic",
+   "kind": "calculate",
+   "prompt": "A domain has 3 objects. How many truth assignments does a unary predicate P(x) have?",
+   "answer": 8.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "predicate-logic.order",
+   "atom": "predicate-logic",
+   "kind": "order",
+   "prompt": "Order formalizing 'every number has a larger one'.",
+   "steps": [
+    "Pick variables x and y",
+    "Write y > x",
+    "Add exists y",
+    "Add for all x in front"
+   ]
+  },
+  {
+   "id": "predicate-logic.spot-error",
+   "atom": "predicate-logic",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Quantifier order matters",
+    "First-order logic adds predicates",
+    "Swapping for all and exists keeps meaning",
+    "It can formalize mathematics"
+   ],
+   "error": 2,
+   "fix": "Swapping the quantifiers changes the meaning."
+  },
+  {
+   "id": "predicate-logic.match",
+   "atom": "predicate-logic",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "For all",
+     "meaning": "Every object"
+    },
+    {
+     "term": "Exists",
+     "meaning": "Some object"
+    },
+    {
+     "term": "Predicate",
+     "meaning": "Property of objects"
+    },
+    {
+     "term": "Variable",
+     "meaning": "Stands for an object"
+    }
+   ]
+  },
+  {
+   "id": "predicate-logic.applied",
+   "atom": "predicate-logic",
+   "kind": "pick",
+   "prompt": "A database query says: find customers with some order over 100 dollars. Which quantifier is that?",
+   "options": [
+    "Exists",
+    "For all",
+    "Not",
+    "Implies"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "proof-systems.pick",
+   "atom": "proof-systems",
+   "kind": "pick",
+   "prompt": "What does soundness mean?",
+   "options": [
+    "It proves only truths",
+    "It proves all true statements of the language",
+    "It is fast",
+    "It has no axioms"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "proof-systems.calculate",
+   "atom": "proof-systems",
+   "kind": "calculate",
+   "prompt": "A proof uses 3 axioms and 4 rule applications, one line each. How many lines?",
+   "answer": 7.0,
+   "unit": "lines",
+   "relTol": 0.02
+  },
+  {
+   "id": "proof-systems.order",
+   "atom": "proof-systems",
+   "kind": "order",
+   "prompt": "Order proving A from A and B.",
+   "steps": [
+    "Assume A and B",
+    "Apply and-elimination",
+    "Infer A",
+    "Conclude"
+   ]
+  },
+  {
+   "id": "proof-systems.spot-error",
+   "atom": "proof-systems",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Each step cites a rule",
+    "Completeness proves every truth",
+    "Soundness proves every truth",
+    "A checker needs no creativity"
+   ],
+   "error": 2,
+   "fix": "Soundness means it proves only truths."
+  },
+  {
+   "id": "proof-systems.match",
+   "atom": "proof-systems",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Axiom",
+     "meaning": "Starting assumption"
+    },
+    {
+     "term": "Rule",
+     "meaning": "Allowed step"
+    },
+    {
+     "term": "Soundness",
+     "meaning": "Only truths provable"
+    },
+    {
+     "term": "Completeness",
+     "meaning": "All truths provable"
+    }
+   ]
+  },
+  {
+   "id": "proof-systems.applied",
+   "atom": "proof-systems",
+   "kind": "pick",
+   "prompt": "A proof assistant checks a chip design's correctness proof step by step. Which property makes its yes trustworthy?",
+   "options": [
+    "Soundness",
+    "Speed",
+    "Completeness alone",
+    "Randomness"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "godel-incompleteness.pick",
+   "atom": "godel-incompleteness",
+   "kind": "pick",
+   "prompt": "What does the Gödel sentence assert?",
+   "options": [
+    "It is not provable",
+    "It is false",
+    "Arithmetic is complete",
+    "All truths are provable"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "godel-incompleteness.calculate",
+   "atom": "godel-incompleteness",
+   "kind": "calculate",
+   "prompt": "Add the Gödel sentence as an axiom 5 times in a row. How many new unprovable sentences have appeared along the way?",
+   "answer": 5.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "godel-incompleteness.order",
+   "atom": "godel-incompleteness",
+   "kind": "order",
+   "prompt": "Order the Gödel argument.",
+   "steps": [
+    "Build G saying G is unprovable",
+    "If provable, the system proves a falsehood",
+    "So G is unprovable",
+    "So G is true"
+   ]
+  },
+  {
+   "id": "godel-incompleteness.spot-error",
+   "atom": "godel-incompleteness",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The system is consistent",
+    "It can express arithmetic",
+    "It can prove its own consistency",
+    "G is true but unprovable"
+   ],
+   "error": 2,
+   "fix": "It cannot prove its own consistency."
+  },
+  {
+   "id": "godel-incompleteness.match",
+   "atom": "godel-incompleteness",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "G",
+     "meaning": "Self-referential sentence"
+    },
+    {
+     "term": "Consistent",
+     "meaning": "No contradiction"
+    },
+    {
+     "term": "First theorem",
+     "meaning": "True unprovable statements exist"
+    },
+    {
+     "term": "Second theorem",
+     "meaning": "No self-proof of consistency"
+    }
+   ]
+  },
+  {
+   "id": "godel-incompleteness.applied",
+   "atom": "godel-incompleteness",
+   "kind": "pick",
+   "prompt": "A verification tool proves facts about programs inside one fixed formal system. What does incompleteness imply for it?",
+   "options": [
+    "Some true facts about programs will have no proof in that system",
+    "It will prove every true fact given time",
+    "It must prove false facts",
+    "It can prove its own consistency"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "one-way-functions.pick",
+   "atom": "one-way-functions",
+   "kind": "pick",
+   "prompt": "Which is easy and which hard?",
+   "options": [
+    "Multiply easy, factor hard",
+    "Both easy",
+    "Both hard",
+    "Factor easy, multiply hard"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "one-way-functions.calculate",
+   "atom": "one-way-functions",
+   "kind": "calculate",
+   "prompt": "Two 1,024-bit primes are multiplied. How many bits long is the product, at most?",
+   "answer": 2048.0,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "one-way-functions.order",
+   "atom": "one-way-functions",
+   "kind": "order",
+   "prompt": "Order the one-way idea.",
+   "steps": [
+    "Pick large primes p and q",
+    "Compute N = pq fast",
+    "Publish N",
+    "Recovering p and q is infeasible"
+   ]
+  },
+  {
+   "id": "one-way-functions.spot-error",
+   "atom": "one-way-functions",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "One-way functions are easy to compute",
+    "They are hard to invert",
+    "Their existence is proved",
+    "Crypto rests on them"
+   ],
+   "error": 2,
+   "fix": "Their existence is a conjecture."
+  },
+  {
+   "id": "one-way-functions.match",
+   "atom": "one-way-functions",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "One-way",
+     "meaning": "Easy forward, hard back"
+    },
+    {
+     "term": "Factoring",
+     "meaning": "Recover p and q"
+    },
+    {
+     "term": "Trapdoor",
+     "meaning": "Secret that eases inversion"
+    },
+    {
+     "term": "Conjecture",
+     "meaning": "Unproved assumption"
+    }
+   ]
+  },
+  {
+   "id": "public-key-crypto.pick",
+   "atom": "public-key-crypto",
+   "kind": "pick",
+   "prompt": "What can be published in public-key crypto?",
+   "options": [
+    "The encryption key",
+    "The decryption key",
+    "Both keys",
+    "Neither key"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "public-key-crypto.calculate",
+   "atom": "public-key-crypto",
+   "kind": "calculate",
+   "prompt": "Toy RSA uses n = 3 x 11 = 33. What is phi(n) = (p - 1)(q - 1)?",
+   "answer": 20.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "public-key-crypto.order",
+   "atom": "public-key-crypto",
+   "kind": "order",
+   "prompt": "Order sending a secret message.",
+   "steps": [
+    "Get the receiver's public key",
+    "Encrypt with it",
+    "Send the ciphertext",
+    "The receiver decrypts with the private key"
+   ]
+  },
+  {
+   "id": "public-key-crypto.spot-error",
+   "atom": "public-key-crypto",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Public keys can be shared openly",
+    "Private keys stay secret",
+    "Anyone with the public key can decrypt",
+    "No prior shared secret is needed"
+   ],
+   "error": 2,
+   "fix": "Only the private key decrypts."
+  },
+  {
+   "id": "public-key-crypto.match",
+   "atom": "public-key-crypto",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Public key",
+     "meaning": "Encrypts"
+    },
+    {
+     "term": "Private key",
+     "meaning": "Decrypts"
+    },
+    {
+     "term": "Signature",
+     "meaning": "Proves who sent it"
+    },
+    {
+     "term": "Key exchange",
+     "meaning": "Agree on a secret openly"
+    }
+   ]
+  },
+  {
+   "id": "public-key-crypto.applied",
+   "atom": "public-key-crypto",
+   "kind": "pick",
+   "prompt": "A browser shows a padlock on a shopping site. What did it use to set up the session?",
+   "options": [
+    "Public-key cryptography",
+    "A shared password mailed earlier",
+    "No encryption",
+    "A one-time pad on paper"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "pseudorandomness.pick",
+   "atom": "pseudorandomness",
+   "kind": "pick",
+   "prompt": "What does a PRG stretch?",
+   "options": [
+    "A short seed into a long string",
+    "A long string into a seed",
+    "Noise into signal",
+    "Keys into hashes"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "pseudorandomness.calculate",
+   "atom": "pseudorandomness",
+   "kind": "calculate",
+   "prompt": "A stream cipher XORs a keystream with the byte 01100001. The keystream byte is 11111111. How many 1 bits are in the result?",
+   "answer": 5.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "pseudorandomness.order",
+   "atom": "pseudorandomness",
+   "kind": "order",
+   "prompt": "Order a stream cipher.",
+   "steps": [
+    "Take a short key",
+    "Expand it with a PRG",
+    "XOR with the plaintext",
+    "Send the ciphertext"
+   ]
+  },
+  {
+   "id": "pseudorandomness.spot-error",
+   "atom": "pseudorandomness",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "PRG output fools efficient tests",
+    "Security rests on the seed staying secret",
+    "Reusing a keystream is safe",
+    "Stream ciphers XOR a keystream"
+   ],
+   "error": 2,
+   "fix": "Reusing a keystream leaks the XOR of two messages."
+  },
+  {
+   "id": "pseudorandomness.match",
+   "atom": "pseudorandomness",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Seed",
+     "meaning": "Short random key"
+    },
+    {
+     "term": "PRG",
+     "meaning": "Stretches the seed"
+    },
+    {
+     "term": "Keystream",
+     "meaning": "Long pseudorandom output"
+    },
+    {
+     "term": "Distinguisher",
+     "meaning": "Test for randomness"
+    }
+   ]
+  },
+  {
+   "id": "pseudorandomness.applied",
+   "atom": "pseudorandomness",
+   "kind": "pick",
+   "prompt": "A game uses a fixed seed to generate the same map for every player. What property does it use?",
+   "options": [
+    "Same seed gives the same output",
+    "True randomness drawn fresh from a hardware noise source",
+    "Hashing collisions",
+    "Lossy compression"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "pac-learning.pick",
+   "atom": "pac-learning",
+   "kind": "pick",
+   "prompt": "What does PAC stand for?",
+   "options": [
+    "Probably approximately correct",
+    "Perfect and complete",
+    "Parallel algorithmic computing",
+    "Pure accurate classification"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "pac-learning.calculate",
+   "atom": "pac-learning",
+   "kind": "calculate",
+   "prompt": "A finite class of 1,000 hypotheses, epsilon = 0.1 and delta = 0.05. How many samples does m >= (1/epsilon)(ln|H| + ln(1/delta)) give?",
+   "answer": 100.0,
+   "unit": "samples",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "pac-learning.order",
+   "atom": "pac-learning",
+   "kind": "order",
+   "prompt": "Order learning a threshold.",
+   "steps": [
+    "Draw labeled samples",
+    "Find the largest - and smallest +",
+    "Place the threshold between them",
+    "Error shrinks with more samples"
+   ]
+  },
+  {
+   "id": "pac-learning.spot-error",
+   "atom": "pac-learning",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "PAC bounds error with high probability",
+    "More samples reduce error",
+    "PAC promises zero error always",
+    "epsilon is the error tolerance"
+   ],
+   "error": 2,
+   "fix": "PAC promises small error with high probability."
+  },
+  {
+   "id": "pac-learning.match",
+   "atom": "pac-learning",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "epsilon",
+     "meaning": "Error tolerance"
+    },
+    {
+     "term": "delta",
+     "meaning": "Failure probability"
+    },
+    {
+     "term": "m",
+     "meaning": "Sample count"
+    },
+    {
+     "term": "H",
+     "meaning": "Hypothesis class"
+    }
+   ]
+  },
+  {
+   "id": "vc-dimension.pick",
+   "atom": "vc-dimension",
+   "kind": "pick",
+   "prompt": "What is the VC dimension of lines in the plane?",
+   "options": [
+    "3",
+    "2",
+    "4",
+    "Infinite"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "vc-dimension.calculate",
+   "atom": "vc-dimension",
+   "kind": "calculate",
+   "prompt": "How many labelings must a line produce to shatter 3 points?",
+   "answer": 8.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "vc-dimension.order",
+   "atom": "vc-dimension",
+   "kind": "order",
+   "prompt": "Order the shattering test.",
+   "steps": [
+    "Pick n points",
+    "List all 2^n labelings",
+    "Find a separator for each",
+    "If all work, the set is shattered"
+   ]
+  },
+  {
+   "id": "vc-dimension.spot-error",
+   "atom": "vc-dimension",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "VC dimension is the largest shattered set",
+    "Lines shatter 3 points",
+    "Lines shatter any 4 points",
+    "Higher VC dimension needs more data"
+   ],
+   "error": 2,
+   "fix": "No 4 points can be shattered by lines."
+  },
+  {
+   "id": "vc-dimension.match",
+   "atom": "vc-dimension",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Shatter",
+     "meaning": "Realize every labeling"
+    },
+    {
+     "term": "VC dimension",
+     "meaning": "Largest shattered set"
+    },
+    {
+     "term": "Capacity",
+     "meaning": "Model flexibility"
+    },
+    {
+     "term": "XOR",
+     "meaning": "Labeling lines cannot split"
+    }
+   ]
+  },
+  {
+   "id": "vc-dimension.applied",
+   "atom": "vc-dimension",
+   "kind": "pick",
+   "prompt": "A model with huge VC dimension fits training data perfectly but fails on new data. What is that called?",
+   "options": [
+    "Overfitting",
+    "Underfitting",
+    "Shattering zero",
+    "Hashing"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "entropy-statistical-mechanics-link.pick",
+   "atom": "entropy-statistical-mechanics-link",
+   "kind": "pick",
+   "prompt": "What does Landauer's bound set?",
+   "options": [
+    "Minimum energy to erase a bit",
+    "Maximum clock speed of any processor",
+    "Disk size",
+    "Bits per photon"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "entropy-statistical-mechanics-link.calculate",
+   "atom": "entropy-statistical-mechanics-link",
+   "kind": "calculate",
+   "prompt": "What is the minimum energy in joules to erase one bit at 300 K, k_B T ln 2?",
+   "answer": 2.872e-21,
+   "unit": "J",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "entropy-statistical-mechanics-link.order",
+   "atom": "entropy-statistical-mechanics-link",
+   "kind": "order",
+   "prompt": "Order the bit-erasure argument.",
+   "steps": [
+    "A bit has two states",
+    "Erasing maps both to one",
+    "Entropy k_B ln 2 must leave",
+    "It leaves as heat k_B T ln 2"
+   ]
+  },
+  {
+   "id": "entropy-statistical-mechanics-link.spot-error",
+   "atom": "entropy-statistical-mechanics-link",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Shannon and Gibbs entropy share a form",
+    "Erasing a bit costs at least k_B T ln 2",
+    "Copying a bit must cost k_B T ln 2",
+    "Information is physical"
+   ],
+   "error": 2,
+   "fix": "Copying can be done reversibly; erasure carries the cost."
+  },
+  {
+   "id": "entropy-statistical-mechanics-link.match",
+   "atom": "entropy-statistical-mechanics-link",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "k_B",
+     "meaning": "Boltzmann constant"
+    },
+    {
+     "term": "Omega",
+     "meaning": "Microstates"
+    },
+    {
+     "term": "Landauer",
+     "meaning": "Erasure costs heat"
+    },
+    {
+     "term": "ln 2",
+     "meaning": "One bit in nats"
+    }
+   ]
+  },
+  {
+   "id": "neural-network-learning.pick",
+   "atom": "neural-network-learning",
+   "kind": "pick",
+   "prompt": "What is backpropagation?",
+   "options": [
+    "Chain rule applied backward",
+    "Random search",
+    "A sorting step",
+    "A loss function"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "neural-network-learning.calculate",
+   "atom": "neural-network-learning",
+   "kind": "calculate",
+   "prompt": "A layer has 100 inputs and 50 outputs with a bias each. How many parameters?",
+   "answer": 5050.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "neural-network-learning.order",
+   "atom": "neural-network-learning",
+   "kind": "order",
+   "prompt": "Order one training step.",
+   "steps": [
+    "Forward pass",
+    "Compute the loss",
+    "Backpropagate gradients",
+    "Update weights"
+   ]
+  },
+  {
+   "id": "neural-network-learning.spot-error",
+   "atom": "neural-network-learning",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Gradient descent lowers the loss",
+    "Backprop reuses partial derivatives",
+    "Deep nets always overfit",
+    "Overparameterized nets can generalize"
+   ],
+   "error": 2,
+   "fix": "Large nets often generalize, beyond classical expectations."
+  },
+  {
+   "id": "neural-network-learning.match",
+   "atom": "neural-network-learning",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Loss",
+     "meaning": "Error to minimize"
+    },
+    {
+     "term": "Gradient",
+     "meaning": "Direction of steepest increase"
+    },
+    {
+     "term": "Learning rate",
+     "meaning": "Step size"
+    },
+    {
+     "term": "Epoch",
+     "meaning": "One pass through the data"
+    }
+   ]
+  },
+  {
+   "id": "neural-network-learning.applied",
+   "atom": "neural-network-learning",
+   "kind": "pick",
+   "prompt": "A phone recognizes your face after training on many photos. Which method set its weights?",
+   "options": [
+    "Gradient descent with backprop",
+    "A lookup table holding every face that could ever appear",
+    "Hand-written rules",
+    "Random guessing"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "randomized-algorithms.pick",
+   "atom": "randomized-algorithms",
+   "kind": "pick",
+   "prompt": "A composite fails Miller-Rabin for at least what fraction of bases?",
+   "options": [
+    "3/4",
+    "1/2",
+    "1/10",
+    "All"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "randomized-algorithms.calculate",
+   "atom": "randomized-algorithms",
+   "kind": "calculate",
+   "prompt": "Miller-Rabin runs 10 random rounds on a composite. What is the most it could be missed, (1/4)^10?",
+   "answer": 9.537e-07,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "randomized-algorithms.order",
+   "atom": "randomized-algorithms",
+   "kind": "order",
+   "prompt": "Order a Monte Carlo primality test.",
+   "steps": [
+    "Pick a random base",
+    "Check the identity",
+    "Repeat k times",
+    "Declare prime if all pass"
+   ]
+  },
+  {
+   "id": "randomized-algorithms.spot-error",
+   "atom": "randomized-algorithms",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Randomness can simplify algorithms",
+    "Error shrinks with repetition",
+    "Monte Carlo answers are always right",
+    "Las Vegas algorithms are always right"
+   ],
+   "error": 2,
+   "fix": "Monte Carlo answers can be wrong with small probability."
+  },
+  {
+   "id": "randomized-algorithms.match",
+   "atom": "randomized-algorithms",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Monte Carlo",
+     "meaning": "Fast, maybe wrong"
+    },
+    {
+     "term": "Las Vegas",
+     "meaning": "Always right, time varies"
+    },
+    {
+     "term": "Amplification",
+     "meaning": "Repeat to cut error"
+    },
+    {
+     "term": "Witness",
+     "meaning": "Base that proves compositeness"
+    }
+   ]
+  },
+  {
+   "id": "kl-divergence.pick",
+   "atom": "kl-divergence",
+   "kind": "pick",
+   "prompt": "When is KL divergence zero?",
+   "options": [
+    "When p = q",
+    "Always",
+    "When q is uniform",
+    "Never"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "kl-divergence.calculate",
+   "atom": "kl-divergence",
+   "kind": "calculate",
+   "prompt": "Data is fair coin flips, but the code assumes q = (1/4, 3/4). How many extra bits per flip are wasted?",
+   "answer": 0.2075,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "kl-divergence.order",
+   "atom": "kl-divergence",
+   "kind": "order",
+   "prompt": "Order the KL computation.",
+   "steps": [
+    "List p and q",
+    "Compute log2(p/q) for each outcome",
+    "Weight by p",
+    "Sum"
+   ]
+  },
+  {
+   "id": "kl-divergence.spot-error",
+   "atom": "kl-divergence",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "KL is extra bits from the wrong code",
+    "KL is never negative",
+    "KL is symmetric in p and q",
+    "KL is zero when p = q"
+   ],
+   "error": 2,
+   "fix": "KL is not symmetric."
+  },
+  {
+   "id": "kl-divergence.match",
+   "atom": "kl-divergence",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "p",
+     "meaning": "True distribution"
+    },
+    {
+     "term": "q",
+     "meaning": "Model distribution"
+    },
+    {
+     "term": "D_KL",
+     "meaning": "Wasted bits"
+    },
+    {
+     "term": "Cross-entropy",
+     "meaning": "H(p) + D_KL"
+    }
+   ]
+  },
+  {
+   "id": "conditional-probability-bayes.pick",
+   "atom": "conditional-probability-bayes",
+   "kind": "pick",
+   "prompt": "A test is 99% accurate for a 1-in-10,000 disease. A positive means roughly what chance of disease?",
+   "options": [
+    "1%",
+    "99%",
+    "50%",
+    "90%"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "conditional-probability-bayes.calculate",
+   "atom": "conditional-probability-bayes",
+   "kind": "calculate",
+   "prompt": "Out of 1,000,000 people, 100 sick test positive and 9,999 healthy test positive. What is P(sick | positive)?",
+   "answer": 0.009902,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "conditional-probability-bayes.order",
+   "atom": "conditional-probability-bayes",
+   "kind": "order",
+   "prompt": "Order a Bayes update by counting.",
+   "steps": [
+    "Imagine a large population",
+    "Count true positives",
+    "Count false positives",
+    "Divide true positives by all positives"
+   ]
+  },
+  {
+   "id": "conditional-probability-bayes.spot-error",
+   "atom": "conditional-probability-bayes",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Bayes inverts conditionals",
+    "The prior matters",
+    "P(A | B) = P(B | A)",
+    "Rare events make positives weak evidence"
+   ],
+   "error": 2,
+   "fix": "P(A | B) and P(B | A) differ in general."
+  },
+  {
+   "id": "conditional-probability-bayes.match",
+   "atom": "conditional-probability-bayes",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Prior",
+     "meaning": "Before evidence"
+    },
+    {
+     "term": "Likelihood",
+     "meaning": "P(evidence | hypothesis)"
+    },
+    {
+     "term": "Posterior",
+     "meaning": "After evidence"
+    },
+    {
+     "term": "False positive",
+     "meaning": "Positive when absent"
+    }
+   ]
+  },
+  {
+   "id": "regular-expressions.pick",
+   "atom": "regular-expressions",
+   "kind": "pick",
+   "prompt": "What does (0|1)*1 match?",
+   "options": [
+    "Binary strings ending in 1",
+    "Binary strings that start with the symbol 1",
+    "Only 1",
+    "Even-length strings"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "regular-expressions.calculate",
+   "atom": "regular-expressions",
+   "kind": "calculate",
+   "prompt": "How many binary strings of length 4 match (0|1)*1?",
+   "answer": 8.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "regular-expressions.order",
+   "atom": "regular-expressions",
+   "kind": "order",
+   "prompt": "Order compiling a regex.",
+   "steps": [
+    "Parse the regex",
+    "Build an NFA",
+    "Convert to a DFA",
+    "Run it on the text"
+   ]
+  },
+  {
+   "id": "regular-expressions.spot-error",
+   "atom": "regular-expressions",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Regexes equal finite automata in power",
+    "* means any number of repeats",
+    "Regexes can match balanced parentheses of any depth",
+    "| means or"
+   ],
+   "error": 2,
+   "fix": "Balanced parentheses need a stack; regexes cannot count depth."
+  },
+  {
+   "id": "regular-expressions.match",
+   "atom": "regular-expressions",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "*",
+     "meaning": "Zero or more"
+    },
+    {
+     "term": "|",
+     "meaning": "Or"
+    },
+    {
+     "term": "+",
+     "meaning": "One or more"
+    },
+    {
+     "term": ".",
+     "meaning": "Any symbol"
+    }
+   ]
+  },
+  {
+   "id": "regular-expressions.applied",
+   "atom": "regular-expressions",
+   "kind": "pick",
+   "prompt": "A form checks that a zip code is exactly five digits. Which tool fits?",
+   "options": [
+    "A regular expression",
+    "A Turing machine proof",
+    "A hash collision",
+    "A neural net"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "greedy-algorithms.pick",
+   "atom": "greedy-algorithms",
+   "kind": "pick",
+   "prompt": "Which greedy rule is optimal for interval scheduling?",
+   "options": [
+    "Earliest finish first",
+    "Earliest start first",
+    "Shortest meeting first",
+    "Random"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "greedy-algorithms.calculate",
+   "atom": "greedy-algorithms",
+   "kind": "calculate",
+   "prompt": "A cashier gives 68 cents with US coins (25, 10, 5, 1) greedily. How many coins?",
+   "answer": 7.0,
+   "unit": "coins",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "greedy-algorithms.order",
+   "atom": "greedy-algorithms",
+   "kind": "order",
+   "prompt": "Order greedy interval scheduling.",
+   "steps": [
+    "Sort by finish time",
+    "Take the first",
+    "Skip overlapping ones",
+    "Take the next compatible"
+   ]
+  },
+  {
+   "id": "greedy-algorithms.spot-error",
+   "atom": "greedy-algorithms",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Greedy picks the local best",
+    "It is optimal with matroid structure",
+    "Greedy is optimal for every problem",
+    "Earliest finish works for scheduling"
+   ],
+   "error": 2,
+   "fix": "Greedy fails on many problems, such as some coin systems."
+  },
+  {
+   "id": "greedy-algorithms.match",
+   "atom": "greedy-algorithms",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Greedy",
+     "meaning": "Best local choice"
+    },
+    {
+     "term": "Exchange argument",
+     "meaning": "Proof technique"
+    },
+    {
+     "term": "Matroid",
+     "meaning": "Structure where greedy works"
+    },
+    {
+     "term": "Counterexample",
+     "meaning": "Shows greedy fails"
+    }
+   ]
+  },
+  {
+   "id": "amortized-analysis.pick",
+   "atom": "amortized-analysis",
+   "kind": "pick",
+   "prompt": "A doubling array has amortized insert cost of what?",
+   "options": [
+    "O(1)",
+    "O(n)",
+    "O(log n)",
+    "O(n^2)"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "amortized-analysis.calculate",
+   "atom": "amortized-analysis",
+   "kind": "calculate",
+   "prompt": "A doubling array grows from 1 to 1,024 slots. How many copies happen in total, 1 + 2 + ... + 512?",
+   "answer": 1023.0,
+   "unit": "copies",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "amortized-analysis.order",
+   "atom": "amortized-analysis",
+   "kind": "order",
+   "prompt": "Order the amortized argument.",
+   "steps": [
+    "Most inserts cost 1",
+    "Doubling copies n items",
+    "Copies total under 2n",
+    "Average cost is constant"
+   ]
+  },
+  {
+   "id": "amortized-analysis.spot-error",
+   "atom": "amortized-analysis",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Amortized cost averages over a sequence",
+    "Doubling makes total copy work linear",
+    "Every insertion into a doubling array is O(1)",
+    "The potential method is one tool"
+   ],
+   "error": 2,
+   "fix": "Some insertions cost O(n); the average is O(1)."
+  },
+  {
+   "id": "amortized-analysis.match",
+   "atom": "amortized-analysis",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Amortized cost",
+     "meaning": "Average over a sequence"
+    },
+    {
+     "term": "Potential",
+     "meaning": "Stored credit"
+    },
+    {
+     "term": "Doubling",
+     "meaning": "Resize strategy"
+    },
+    {
+     "term": "Worst case",
+     "meaning": "Single most expensive step"
+    }
+   ]
+  },
+  {
+   "id": "time-hierarchy.pick",
+   "atom": "time-hierarchy",
+   "kind": "pick",
+   "prompt": "What does the time hierarchy theorem show?",
+   "options": [
+    "More time solves strictly more problems",
+    "All decidable problems take equal time",
+    "P = NP",
+    "Time is irrelevant"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "time-hierarchy.calculate",
+   "atom": "time-hierarchy",
+   "kind": "calculate",
+   "prompt": "A machine with budget n^3 simulates one with budget n^2 on n = 100. How many steps does the simulated one get?",
+   "answer": 10000.0,
+   "unit": "steps",
+   "relTol": 0.02
+  },
+  {
+   "id": "time-hierarchy.order",
+   "atom": "time-hierarchy",
+   "kind": "order",
+   "prompt": "Order the diagonal construction.",
+   "steps": [
+    "D gets input M",
+    "D simulates M on M for f(n) steps",
+    "D outputs the opposite",
+    "No g-time machine matches D"
+   ]
+  },
+  {
+   "id": "time-hierarchy.spot-error",
+   "atom": "time-hierarchy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "More time buys more power",
+    "D disagrees with every g-time machine",
+    "The theorem proves P is not NP",
+    "It uses diagonalization"
+   ],
+   "error": 2,
+   "fix": "It separates P from EXP; P versus NP remains open."
+  },
+  {
+   "id": "time-hierarchy.match",
+   "atom": "time-hierarchy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Diagonalization",
+     "meaning": "Disagree with every machine"
+    },
+    {
+     "term": "Time budget",
+     "meaning": "Allowed steps"
+    },
+    {
+     "term": "P vs EXP",
+     "meaning": "Separated by the theorem"
+    },
+    {
+     "term": "Time-constructible",
+     "meaning": "Budget a machine can count"
+    }
+   ]
+  },
+  {
+   "id": "time-hierarchy.applied",
+   "atom": "time-hierarchy",
+   "kind": "pick",
+   "prompt": "A slower but more thorough chess engine solves positions a fast one cannot. Which theorem's idea does that echo?",
+   "options": [
+    "The time hierarchy theorem",
+    "The pumping lemma",
+    "Bayes' rule",
+    "Kraft's inequality"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "rate-distortion.pick",
+   "atom": "rate-distortion",
+   "kind": "pick",
+   "prompt": "What is R(0)?",
+   "options": [
+    "H(X)",
+    "0",
+    "Infinity",
+    "1"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "rate-distortion.calculate",
+   "atom": "rate-distortion",
+   "kind": "calculate",
+   "prompt": "A Gaussian source with variance 1 is coded at distortion 0.25. What rate does R(D) = 0.5 log2(1/D) give?",
+   "answer": 1.0,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "rate-distortion.order",
+   "atom": "rate-distortion",
+   "kind": "order",
+   "prompt": "Order the rate-distortion trade-off.",
+   "steps": [
+    "Demand perfect copy: rate H(X)",
+    "Allow some distortion",
+    "Rate falls",
+    "At large distortion rate reaches 0"
+   ]
+  },
+  {
+   "id": "rate-distortion.spot-error",
+   "atom": "rate-distortion",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "R(D) is convex and decreasing",
+    "R(0) = H(X)",
+    "Allowing more distortion raises the rate",
+    "It sets the limit for lossy compression"
+   ],
+   "error": 2,
+   "fix": "Allowing more distortion lowers the rate."
+  },
+  {
+   "id": "rate-distortion.match",
+   "atom": "rate-distortion",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "R(D)",
+     "meaning": "Min bits at distortion D"
+    },
+    {
+     "term": "D",
+     "meaning": "Allowed distortion"
+    },
+    {
+     "term": "Lossy",
+     "meaning": "Some error allowed"
+    },
+    {
+     "term": "Distortion measure",
+     "meaning": "Error scoring"
+    }
+   ]
+  },
+  {
+   "id": "approximation-algorithms.pick",
+   "atom": "approximation-algorithms",
+   "kind": "pick",
+   "prompt": "The edge-picking vertex cover algorithm guarantees what?",
+   "options": [
+    "At most twice optimal",
+    "Exactly optimal on every graph it is given",
+    "At most 10% over",
+    "No guarantee"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "approximation-algorithms.calculate",
+   "atom": "approximation-algorithms",
+   "kind": "calculate",
+   "prompt": "The 2-approximation picks 6 edges. How many vertices go in the cover?",
+   "answer": 12.0,
+   "unit": "vertices",
+   "relTol": 0.02
+  },
+  {
+   "id": "approximation-algorithms.order",
+   "atom": "approximation-algorithms",
+   "kind": "order",
+   "prompt": "Order the vertex-cover 2-approximation.",
+   "steps": [
+    "Pick an uncovered edge",
+    "Add both endpoints",
+    "Remove covered edges",
+    "Repeat until none remain"
+   ]
+  },
+  {
+   "id": "approximation-algorithms.spot-error",
+   "atom": "approximation-algorithms",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Approximation algorithms run in polynomial time",
+    "Picked edges share no endpoints",
+    "The cover can be 3 times optimal",
+    "Any cover needs one vertex per picked edge"
+   ],
+   "error": 2,
+   "fix": "The cover is at most 2 times optimal."
+  },
+  {
+   "id": "approximation-algorithms.match",
+   "atom": "approximation-algorithms",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Approximation ratio",
+     "meaning": "Worst-case ratio to optimal"
+    },
+    {
+     "term": "Vertex cover",
+     "meaning": "Touches every edge"
+    },
+    {
+     "term": "NP-hard",
+     "meaning": "No known fast exact method"
+    },
+    {
+     "term": "Matching",
+     "meaning": "Edges with no shared endpoint"
+    }
+   ]
+  },
+  {
+   "id": "approximation-algorithms.applied",
+   "atom": "approximation-algorithms",
+   "kind": "pick",
+   "prompt": "A city places fire stations so every street has a station at one end, accepting up to double the minimum count. Which method fits?",
+   "options": [
+    "A 2-approximation for vertex cover",
+    "An exact exponential search",
+    "Random placement",
+    "Huffman coding"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "typical-sequences-aep.pick",
+   "atom": "typical-sequences-aep",
+   "kind": "pick",
+   "prompt": "Where does almost all probability sit for long i.i.d. sequences?",
+   "options": [
+    "In the typical set",
+    "In one single sequence, the most likely one of all",
+    "Spread evenly",
+    "In all-heads"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "typical-sequences-aep.calculate",
+   "atom": "typical-sequences-aep",
+   "kind": "calculate",
+   "prompt": "A coin with P(H) = 0.9 has H about 0.469 bits. About how many bits index the typical set for 100 flips?",
+   "answer": 46.9,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "typical-sequences-aep.order",
+   "atom": "typical-sequences-aep",
+   "kind": "order",
+   "prompt": "Order the AEP compression idea.",
+   "steps": [
+    "List typical sequences",
+    "Number them",
+    "Send the index, about nH bits",
+    "Rare atypical sequences cost extra"
+   ]
+  },
+  {
+   "id": "typical-sequences-aep.spot-error",
+   "atom": "typical-sequences-aep",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Typical sets have about 2^(nH) members",
+    "They hold almost all probability",
+    "The most likely sequence is typical",
+    "AEP justifies entropy as compression limit"
+   ],
+   "error": 2,
+   "fix": "The single most likely sequence, such as all heads, is atypical."
+  },
+  {
+   "id": "typical-sequences-aep.match",
+   "atom": "typical-sequences-aep",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "AEP",
+     "meaning": "Asymptotic equipartition"
+    },
+    {
+     "term": "Typical set",
+     "meaning": "Sequences near 2^(-nH)"
+    },
+    {
+     "term": "i.i.d.",
+     "meaning": "Independent, same distribution"
+    },
+    {
+     "term": "nH",
+     "meaning": "Bits to index typical sequences"
+    }
+   ]
+  },
+  {
+   "id": "perfect-secrecy.pick",
+   "atom": "perfect-secrecy",
+   "kind": "pick",
+   "prompt": "What does perfect secrecy require of the key?",
+   "options": [
+    "At least as long as the message",
+    "Shorter than the message it protects",
+    "Reused often",
+    "Public"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "perfect-secrecy.calculate",
+   "atom": "perfect-secrecy",
+   "kind": "calculate",
+   "prompt": "A one-time pad encrypts a 1 MB file. How many bytes of key does it need?",
+   "answer": 1000000.0,
+   "unit": "bytes",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "perfect-secrecy.order",
+   "atom": "perfect-secrecy",
+   "kind": "order",
+   "prompt": "Order one-time-pad use.",
+   "steps": [
+    "Generate a random key as long as the message",
+    "XOR key with message",
+    "Send the ciphertext",
+    "Destroy the key after one use"
+   ]
+  },
+  {
+   "id": "perfect-secrecy.spot-error",
+   "atom": "perfect-secrecy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The ciphertext reveals nothing",
+    "I(M; C) = 0",
+    "A short key can give perfect secrecy",
+    "Keys must never be reused"
+   ],
+   "error": 2,
+   "fix": "Shannon proved the key must be at least as long as the message."
+  },
+  {
+   "id": "perfect-secrecy.match",
+   "atom": "perfect-secrecy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "One-time pad",
+     "meaning": "XOR with a random key"
+    },
+    {
+     "term": "Perfect secrecy",
+     "meaning": "I(M; C) = 0"
+    },
+    {
+     "term": "Key reuse",
+     "meaning": "Breaks secrecy"
+    },
+    {
+     "term": "XOR",
+     "meaning": "Bitwise addition mod 2"
+    }
+   ]
+  },
+  {
+   "id": "huffman-coding.pick",
+   "atom": "huffman-coding",
+   "kind": "pick",
+   "prompt": "What does Huffman merge at each step?",
+   "options": [
+    "The two least likely nodes",
+    "The two most likely",
+    "Random nodes",
+    "The first two"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "huffman-coding.calculate",
+   "atom": "huffman-coding",
+   "kind": "calculate",
+   "prompt": "Huffman codes lengths 1, 2, 3, 3 for probabilities 0.4, 0.3, 0.2, 0.1. What is the expected length in bits?",
+   "answer": 1.9,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "huffman-coding.order",
+   "atom": "huffman-coding",
+   "kind": "order",
+   "prompt": "Order Huffman's algorithm.",
+   "steps": [
+    "Sort symbols by probability",
+    "Merge the two smallest",
+    "Insert the merged node",
+    "Repeat until one root"
+   ]
+  },
+  {
+   "id": "huffman-coding.spot-error",
+   "atom": "huffman-coding",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Huffman codes are prefix-free",
+    "They are optimal for known probabilities",
+    "Huffman can beat the entropy bound",
+    "Expected length is under H + 1"
+   ],
+   "error": 2,
+   "fix": "No prefix code beats the entropy bound."
+  },
+  {
+   "id": "huffman-coding.match",
+   "atom": "huffman-coding",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Leaf",
+     "meaning": "Symbol"
+    },
+    {
+     "term": "Root",
+     "meaning": "Final merged node"
+    },
+    {
+     "term": "Codeword",
+     "meaning": "Path from the root"
+    },
+    {
+     "term": "Prefix-free",
+     "meaning": "No code starts another"
+    }
+   ]
+  },
+  {
+   "id": "lambda-calculus.pick",
+   "atom": "lambda-calculus",
+   "kind": "pick",
+   "prompt": "What is the Church numeral 2?",
+   "options": [
+    "lambda f. lambda x. f(f x)",
+    "lambda x. x",
+    "lambda f. f",
+    "2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "lambda-calculus.calculate",
+   "atom": "lambda-calculus",
+   "kind": "calculate",
+   "prompt": "Apply the Church numeral 3 to f = add 2 and x = 1. What is the result?",
+   "answer": 7.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "lambda-calculus.order",
+   "atom": "lambda-calculus",
+   "kind": "order",
+   "prompt": "Order a beta reduction of (lambda x. x + 1) 4.",
+   "steps": [
+    "Find the applied lambda",
+    "Substitute 4 for x",
+    "Get 4 + 1",
+    "Simplify to 5"
+   ]
+  },
+  {
+   "id": "lambda-calculus.spot-error",
+   "atom": "lambda-calculus",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Lambda calculus uses only functions",
+    "Beta reduction substitutes arguments",
+    "It cannot express recursion",
+    "It equals Turing machines in power"
+   ],
+   "error": 2,
+   "fix": "Fixed-point combinators such as Y give recursion."
+  },
+  {
+   "id": "lambda-calculus.match",
+   "atom": "lambda-calculus",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Abstraction",
+     "meaning": "lambda x. M"
+    },
+    {
+     "term": "Application",
+     "meaning": "M N"
+    },
+    {
+     "term": "Beta reduction",
+     "meaning": "Substitute the argument"
+    },
+    {
+     "term": "Y combinator",
+     "meaning": "Gives recursion"
+    }
+   ]
+  },
+  {
+   "id": "lambda-calculus.applied",
+   "atom": "lambda-calculus",
+   "kind": "pick",
+   "prompt": "JavaScript and Python have anonymous functions such as arrow functions. Where do they come from?",
+   "options": [
+    "Lambda calculus",
+    "Huffman coding",
+    "Turing tapes",
+    "Hash tables"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "fast-fourier-transform.pick",
+   "atom": "fast-fourier-transform",
+   "kind": "pick",
+   "prompt": "What is the FFT's running time?",
+   "options": [
+    "O(N log N)",
+    "O(N^2)",
+    "O(N)",
+    "O(2^N)"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "fast-fourier-transform.calculate",
+   "atom": "fast-fourier-transform",
+   "kind": "calculate",
+   "prompt": "An audio app transforms 1,024 samples. What is the ratio of N^2 to N log2 N operations?",
+   "answer": 102.4,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "fast-fourier-transform.order",
+   "atom": "fast-fourier-transform",
+   "kind": "order",
+   "prompt": "Order the FFT split.",
+   "steps": [
+    "Split into even and odd samples",
+    "Compute two half-size DFTs",
+    "Combine with twiddle factors",
+    "Recurse on each half"
+   ]
+  },
+  {
+   "id": "fast-fourier-transform.spot-error",
+   "atom": "fast-fourier-transform",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The FFT computes the DFT exactly",
+    "It splits into even and odd parts",
+    "The FFT is an approximation of the DFT",
+    "Twiddle factors combine halves"
+   ],
+   "error": 2,
+   "fix": "The FFT gives the exact DFT, only faster."
+  },
+  {
+   "id": "fast-fourier-transform.match",
+   "atom": "fast-fourier-transform",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "DFT",
+     "meaning": "Discrete Fourier transform"
+    },
+    {
+     "term": "Twiddle factor",
+     "meaning": "e^(-2 pi i k/N)"
+    },
+    {
+     "term": "Radix 2",
+     "meaning": "Halving split"
+    },
+    {
+     "term": "Butterfly",
+     "meaning": "Combine step"
+    }
+   ]
+  },
+  {
+   "id": "master-theorem.pick",
+   "atom": "master-theorem",
+   "kind": "pick",
+   "prompt": "What does T(n) = T(n/2) + 1 solve to?",
+   "options": [
+    "Theta(log n)",
+    "Theta(n)",
+    "Theta(n log n)",
+    "Theta(1)"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "master-theorem.calculate",
+   "atom": "master-theorem",
+   "kind": "calculate",
+   "prompt": "Binary search over 1,000,000 sorted names takes about how many halvings?",
+   "answer": 20.0,
+   "unit": "steps",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "master-theorem.order",
+   "atom": "master-theorem",
+   "kind": "order",
+   "prompt": "Order applying the master theorem.",
+   "steps": [
+    "Read a, b and f(n)",
+    "Compute n^(log_b a)",
+    "Compare it with f(n)",
+    "Pick the matching case"
+   ]
+  },
+  {
+   "id": "master-theorem.spot-error",
+   "atom": "master-theorem",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Merge sort is case 2",
+    "Binary search is Theta(log n)",
+    "T(n) = 4T(n/2) + n is Theta(n log n)",
+    "Compare f with n^(log_b a)"
+   ],
+   "error": 2,
+   "fix": "T(n) = 4T(n/2) + n is Theta(n^2)."
+  },
+  {
+   "id": "master-theorem.match",
+   "atom": "master-theorem",
+   "kind": "match",
+   "prompt": "Match each case to its result.",
+   "pairs": [
+    {
+     "term": "f smaller",
+     "meaning": "Theta(n^(log_b a))"
+    },
+    {
+     "term": "f equal",
+     "meaning": "Theta(n^(log_b a) log n)"
+    },
+    {
+     "term": "f larger",
+     "meaning": "Theta(f(n))"
+    },
+    {
+     "term": "Merge sort",
+     "meaning": "Theta(n log n)"
+    }
+   ]
+  },
+  {
+   "id": "rices-theorem.pick",
+   "atom": "rices-theorem",
+   "kind": "pick",
+   "prompt": "What does Rice's theorem make undecidable?",
+   "options": [
+    "Every nontrivial behavior property",
+    "Syntax checks on the text of the source code",
+    "File size",
+    "Counting lines"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "rices-theorem.calculate",
+   "atom": "rices-theorem",
+   "kind": "calculate",
+   "prompt": "A linter checks 12 programs for a syntax rule and 3 for a behavior property. Rice applies to how many of those checks?",
+   "answer": 3.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "rices-theorem.order",
+   "atom": "rices-theorem",
+   "kind": "order",
+   "prompt": "Order the reduction from halting.",
+   "steps": [
+    "Take P and w",
+    "Build Q that runs P on w then outputs 0",
+    "Q computes zero iff P halts",
+    "A zero-detector would decide halting"
+   ]
+  },
+  {
+   "id": "rices-theorem.spot-error",
+   "atom": "rices-theorem",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Rice covers input-output behavior",
+    "Trivial properties are decidable",
+    "Rice makes syntax checks undecidable",
+    "It reduces from halting"
+   ],
+   "error": 2,
+   "fix": "Syntax properties are decidable; Rice covers behavior."
+  },
+  {
+   "id": "rices-theorem.match",
+   "atom": "rices-theorem",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Semantic property",
+     "meaning": "About behavior"
+    },
+    {
+     "term": "Syntactic property",
+     "meaning": "About code text"
+    },
+    {
+     "term": "Nontrivial",
+     "meaning": "Some programs have it, some not"
+    },
+    {
+     "term": "Reduction",
+     "meaning": "From halting"
+    }
+   ]
+  },
+  {
+   "id": "rices-theorem.applied",
+   "atom": "rices-theorem",
+   "kind": "pick",
+   "prompt": "Why do code-review tools flag possible bugs instead of proving none exist?",
+   "options": [
+    "Exact behavior checks are undecidable",
+    "Tools are written to save time and skip hard cases on purpose",
+    "Bugs are syntax",
+    "Proof is illegal"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "data-processing-inequality.pick",
+   "atom": "data-processing-inequality",
+   "kind": "pick",
+   "prompt": "For X -> Y -> Z, how does I(X; Z) compare with I(X; Y)?",
+   "options": [
+    "At most I(X; Y)",
+    "Greater",
+    "Equal always",
+    "Unrelated"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "data-processing-inequality.calculate",
+   "atom": "data-processing-inequality",
+   "kind": "calculate",
+   "prompt": "A signal carries I(X; Y) = 0.3 bits. A decoder then loses half of it. What is I(X; Z)?",
+   "answer": 0.15,
+   "unit": "bits",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "data-processing-inequality.order",
+   "atom": "data-processing-inequality",
+   "kind": "order",
+   "prompt": "Order the inequality in use.",
+   "steps": [
+    "Send X through a channel",
+    "Get Y",
+    "Process Y into Z",
+    "Information about X cannot grow"
+   ]
+  },
+  {
+   "id": "data-processing-inequality.spot-error",
+   "atom": "data-processing-inequality",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Processing cannot add information",
+    "X -> Y -> Z is a Markov chain",
+    "A clever decoder can raise I(X; Z) above I(X; Y)",
+    "Equality can hold for sufficient statistics"
+   ],
+   "error": 2,
+   "fix": "No decoder raises I(X; Z) above I(X; Y)."
+  },
+  {
+   "id": "data-processing-inequality.match",
+   "atom": "data-processing-inequality",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Markov chain",
+     "meaning": "Z depends on X only through Y"
+    },
+    {
+     "term": "Processing",
+     "meaning": "Any function of Y"
+    },
+    {
+     "term": "Sufficient statistic",
+     "meaning": "Keeps all information"
+    },
+    {
+     "term": "I(X; Z)",
+     "meaning": "Bits Z holds about X"
+    }
+   ]
+  },
+  {
+   "id": "differential-entropy.pick",
+   "atom": "differential-entropy",
+   "kind": "pick",
+   "prompt": "Can differential entropy be negative?",
+   "options": [
+    "Yes",
+    "No",
+    "Only for discrete",
+    "Only at zero"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "differential-entropy.calculate",
+   "atom": "differential-entropy",
+   "kind": "calculate",
+   "prompt": "A sensor error is uniform on [0, 2]. What is h = ln a in nats?",
+   "answer": 0.6931,
+   "unit": "nats",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "differential-entropy.order",
+   "atom": "differential-entropy",
+   "kind": "order",
+   "prompt": "Order h for a uniform on [0, a].",
+   "steps": [
+    "Density f = 1/a",
+    "Compute -f ln f = (1/a) ln a",
+    "Integrate over length a",
+    "Get ln a"
+   ]
+  },
+  {
+   "id": "differential-entropy.spot-error",
+   "atom": "differential-entropy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "h uses a density",
+    "Uniform on [0, a] has h = ln a",
+    "Differential entropy is never negative",
+    "The Gaussian maximizes h at fixed variance"
+   ],
+   "error": 2,
+   "fix": "Uniform on [0, 1/2] has h = -ln 2."
+  },
+  {
+   "id": "differential-entropy.match",
+   "atom": "differential-entropy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Density",
+     "meaning": "f(x)"
+    },
+    {
+     "term": "Nat",
+     "meaning": "Unit with natural log"
+    },
+    {
+     "term": "Gaussian",
+     "meaning": "Max h at fixed variance"
+    },
+    {
+     "term": "ln a",
+     "meaning": "h for uniform on [0, a]"
+    }
+   ]
+  },
+  {
+   "id": "lempel-ziv.pick",
+   "atom": "lempel-ziv",
+   "kind": "pick",
+   "prompt": "How does LZ77 compress?",
+   "options": [
+    "Pointers to earlier repeats",
+    "Sorting letters",
+    "Dropping vowels",
+    "Random sampling"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "lempel-ziv.calculate",
+   "atom": "lempel-ziv",
+   "kind": "calculate",
+   "prompt": "abababab: emit a and b, then one back-reference copies the rest. How many symbols does that reference copy?",
+   "answer": 6.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "lempel-ziv.order",
+   "atom": "lempel-ziv",
+   "kind": "order",
+   "prompt": "Order LZ77 encoding.",
+   "steps": [
+    "Scan the input",
+    "Find the longest earlier match",
+    "Emit offset and length",
+    "Advance past the match"
+   ]
+  },
+  {
+   "id": "lempel-ziv.spot-error",
+   "atom": "lempel-ziv",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "LZ needs no model of the source",
+    "It reaches the entropy rate",
+    "LZ needs known symbol probabilities",
+    "zip and gzip use it"
+   ],
+   "error": 2,
+   "fix": "LZ is universal and needs no probabilities."
+  },
+  {
+   "id": "lempel-ziv.match",
+   "atom": "lempel-ziv",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Offset",
+     "meaning": "How far back"
+    },
+    {
+     "term": "Length",
+     "meaning": "How much to copy"
+    },
+    {
+     "term": "Literal",
+     "meaning": "Raw symbol"
+    },
+    {
+     "term": "Universal",
+     "meaning": "No source model needed"
+    }
+   ]
+  },
+  {
+   "id": "lempel-ziv.applied",
+   "atom": "lempel-ziv",
+   "kind": "pick",
+   "prompt": "Why does a log file full of repeated lines zip so small?",
+   "options": [
+    "LZ replaces repeats with short pointers",
+    "Zip deletes duplicate lines from the file before storing it",
+    "Logs are random",
+    "Text is binary"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "diffie-hellman.pick",
+   "atom": "diffie-hellman",
+   "kind": "pick",
+   "prompt": "What do Alice and Bob send openly?",
+   "options": [
+    "g^a and g^b mod p",
+    "a and b",
+    "The shared key",
+    "Nothing"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "diffie-hellman.calculate",
+   "atom": "diffie-hellman",
+   "kind": "calculate",
+   "prompt": "With p = 23, g = 5, Alice a = 6, Bob b = 15. What is the shared key?",
+   "answer": 2.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "diffie-hellman.order",
+   "atom": "diffie-hellman",
+   "kind": "order",
+   "prompt": "Order Diffie-Hellman.",
+   "steps": [
+    "Agree on public g and p",
+    "Each picks a secret",
+    "Exchange g^secret mod p",
+    "Each raises the other's value to its secret"
+   ]
+  },
+  {
+   "id": "diffie-hellman.spot-error",
+   "atom": "diffie-hellman",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The key is never sent",
+    "Security rests on discrete log hardness",
+    "An eavesdropper can compute g^(ab) from g^a and g^b fast",
+    "It works over a public channel"
+   ],
+   "error": 2,
+   "fix": "Computing g^(ab) from g^a and g^b is believed hard."
+  },
+  {
+   "id": "diffie-hellman.match",
+   "atom": "diffie-hellman",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "p",
+     "meaning": "Public prime"
+    },
+    {
+     "term": "g",
+     "meaning": "Public base"
+    },
+    {
+     "term": "a",
+     "meaning": "Alice's secret"
+    },
+    {
+     "term": "g^(ab)",
+     "meaning": "Shared key"
+    }
+   ]
+  },
+  {
+   "id": "cryptographic-hash.pick",
+   "atom": "cryptographic-hash",
+   "kind": "pick",
+   "prompt": "Why sign H(contract) instead of the contract?",
+   "options": [
+    "The digest is short and binds the document",
+    "Hashes are secret",
+    "Hashes are reversible",
+    "It is required by law"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "cryptographic-hash.calculate",
+   "atom": "cryptographic-hash",
+   "kind": "calculate",
+   "prompt": "A 256-bit hash meets the birthday bound. About how many hashes, 2^(n/2), until a likely collision? Give the exponent n/2.",
+   "answer": 128.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "cryptographic-hash.order",
+   "atom": "cryptographic-hash",
+   "kind": "order",
+   "prompt": "Order signing with a hash.",
+   "steps": [
+    "Hash the document",
+    "Sign the digest",
+    "Send document and signature",
+    "The verifier rehashes and checks"
+   ]
+  },
+  {
+   "id": "cryptographic-hash.spot-error",
+   "atom": "cryptographic-hash",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A hash maps any input to fixed length",
+    "It is one-way",
+    "Finding collisions is easy by design",
+    "Signatures trust collision resistance"
+   ],
+   "error": 2,
+   "fix": "Collision resistance makes collisions hard to find."
+  },
+  {
+   "id": "cryptographic-hash.match",
+   "atom": "cryptographic-hash",
+   "kind": "match",
+   "prompt": "Match each property to its meaning.",
+   "pairs": [
+    {
+     "term": "Preimage resistance",
+     "meaning": "Hard to invert"
+    },
+    {
+     "term": "Second preimage resistance",
+     "meaning": "Hard to match a given input"
+    },
+    {
+     "term": "Collision resistance",
+     "meaning": "Hard to find any pair"
+    },
+    {
+     "term": "Digest",
+     "meaning": "Fixed-length output"
+    }
+   ]
+  },
+  {
+   "id": "boolean-circuits.pick",
+   "atom": "boolean-circuits",
+   "kind": "pick",
+   "prompt": "Which function needs exponential size in AC0?",
+   "options": [
+    "PARITY",
+    "AND",
+    "OR",
+    "NOT"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "boolean-circuits.calculate",
+   "atom": "boolean-circuits",
+   "kind": "calculate",
+   "prompt": "A chain of XOR gates computes PARITY of 64 bits. How many two-input XOR gates?",
+   "answer": 63.0,
+   "unit": "gates",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "boolean-circuits.order",
+   "atom": "boolean-circuits",
+   "kind": "order",
+   "prompt": "Order the circuit model.",
+   "steps": [
+    "Fix the input size n",
+    "Build a circuit of gates",
+    "Count its size",
+    "Study growth with n"
+   ]
+  },
+  {
+   "id": "boolean-circuits.spot-error",
+   "atom": "boolean-circuits",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Circuits count gates",
+    "P is inside P/poly",
+    "PARITY is easy in AC0",
+    "Lower bounds are hard to prove"
+   ],
+   "error": 2,
+   "fix": "PARITY needs exponential size in AC0."
+  },
+  {
+   "id": "boolean-circuits.match",
+   "atom": "boolean-circuits",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Gate",
+     "meaning": "AND, OR or NOT"
+    },
+    {
+     "term": "Depth",
+     "meaning": "Longest path"
+    },
+    {
+     "term": "Size",
+     "meaning": "Number of gates"
+    },
+    {
+     "term": "AC0",
+     "meaning": "Constant depth, unbounded fan-in"
+    }
+   ]
+  }
+ ]
+}

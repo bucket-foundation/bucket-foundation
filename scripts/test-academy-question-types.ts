@@ -63,6 +63,13 @@ test("loader works for any branch without atom ids", () => {
   assert.equal(deck.branch, "02-physics");
 });
 
+test("04-information: deck exists and every question has a review verdict", () => {
+  const deck = decks.find((d) => d.branch === "04-information");
+  assert.ok(deck);
+  const rec = JSON.parse(readFileSync(join(QDIR, "reviews/04-information.json"), "utf8")) as { reviews: Record<string, { verdict?: string }> };
+  for (const q of deck.raw.questions as Question[]) assert.ok(rec.reviews[q.id]?.verdict, q.id);
+});
+
 test("pick and spot-error grade exact choices", () => {
   const q: Question = { id: "p", atom: "a", kind: "pick", prompt: "?", options: ["x", "y", "z"], answer: 1 };
   assert.equal(gradeQuestion(q, { kind: "pick", choice: 0 }).rating, 1);
