@@ -32,7 +32,7 @@ function ShareButton({ p }: { p: MilestoneProgress }) {
       setMsg("Card saved as an image.");
     } catch (e) {
       if ((e as Error).name === "AbortError") return;
-      setMsg((e as Error).message || "The card did not share.");
+      setMsg("The card did not share. Try again, or take a screenshot of this page.");
     }
   }
 
