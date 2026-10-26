@@ -46,6 +46,13 @@ class CorpusTest(unittest.TestCase):
                 self.assertIn(p["band"], LEVELS)
                 self.assertTrue(p["url"].startswith("https://") and p["license"] and p["author"] and p["english"], lang)
 
+    def test_gloss_pins_hold(self):
+        rows = [line.split("\t") for line in (DATA / "sources/gloss_pins.tsv").read_text(encoding="utf-8").splitlines()[1:] if line]
+        for lang, word, gloss in rows:
+            words = {w["word"]: w["meaning"] for w in json.loads((DATA / f"top1000/{lang}.json").read_text())}
+            if word in words:
+                self.assertEqual(words[word], gloss, f"{lang} {word}")
+
     def test_punjabi_is_gurmukhi(self):
         words = json.loads((DATA / "top1000/pa.json").read_text())
         self.assertTrue(all(re.fullmatch(r"[਀-੿]+", w["word"]) for w in words))

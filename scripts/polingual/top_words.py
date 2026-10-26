@@ -118,6 +118,17 @@ STRIP_MARKS = re.compile(r"[\u0300-\u036f\u064b-\u065f\u0670\u0591-\u05c7]")
 GLOSS_WORD = re.compile(r"[a-z]+(?:[ -][a-z]+)*")
 
 
+def gloss_pins() -> dict[tuple[str, str], str]:
+    path = SOURCES / "gloss_pins.tsv"
+    if not path.exists():
+        return {}
+    rows = [line.split("\t") for line in path.read_text(encoding="utf-8").splitlines()[1:] if line]
+    return {(lang, word): gloss for lang, word, gloss in rows}
+
+
+PINS = gloss_pins()
+
+
 def strip_marks(word: str) -> str:
     return unicodedata.normalize("NFC", STRIP_MARKS.sub("", unicodedata.normalize("NFD", word))).casefold()
 
@@ -262,7 +273,7 @@ def rank_index(db: sqlite3.Connection, lang: str, n: int, votes: dict | None = N
     for score, zipf, surface, meaning, pos, ipa, senses in scored:
         if fold(surface) in seen:
             continue
-        agreed = agreed_sense(meaning, senses, votes.get((lang, strip_marks(surface)), {})) if votes else None
+        agreed = PINS.get((lang, surface)) or (agreed_sense(meaning, senses, votes.get((lang, strip_marks(surface)), {})) if votes else None)
         row = clean({"word": surface, "meaning": agreed or meaning, "pos": pos}, lang, senses)
         if not row:
             continue
