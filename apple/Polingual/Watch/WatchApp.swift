@@ -57,6 +57,14 @@ final class WatchModel: NSObject, WCSessionDelegate {
     }
 }
 
+enum WatchBrand {
+    #if BUCKET
+    static var openPhone: String { String(localized: "Open Bucket on your iPhone for new words.") }
+    #else
+    static var openPhone: String { String(localized: "Open Polingual on your iPhone for new words.") }
+    #endif
+}
+
 @main
 struct PolingualWatchApp: App {
     @State private var model = WatchModel()
@@ -89,7 +97,7 @@ struct ReviewView: View {
             VStack(spacing: 6) {
                 Image(systemName: "checkmark.circle.fill").font(.largeTitle).foregroundStyle(.green)
                 Text(model.done > 0 ? String(localized: "\(model.done) reviewed") : String(localized: "Nothing due")).font(.headline)
-                Text("Open Polingual on your iPhone for new words.").font(.caption2).multilineTextAlignment(.center).foregroundStyle(.secondary)
+                Text(WatchBrand.openPhone).font(.caption2).multilineTextAlignment(.center).foregroundStyle(.secondary)
             }
         }
     }
