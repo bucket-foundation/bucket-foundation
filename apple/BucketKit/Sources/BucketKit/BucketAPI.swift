@@ -43,18 +43,42 @@ public struct BucketAPI: Sendable {
 
     public let base: URL
     let transport: Transport
+    let cacheDir: URL?
 
-    public init(base: URL = BucketAPI.production, transport: Transport = URLSessionTransport()) {
+    public static let defaultCache = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?.appending(path: "bucket-api", directoryHint: .isDirectory)
+
+    public init(base: URL = BucketAPI.production, transport: Transport = URLSessionTransport(), cacheDir: URL? = BucketAPI.defaultCache) {
         self.base = base
         self.transport = transport
+        self.cacheDir = cacheDir
     }
 
     public func deckIndex() async throws -> DeckIndex {
-        try await get("academy-app/corpus/index.json")
+        try await cached("academy-app/corpus/index.json")
     }
 
     public func deck(_ entry: DeckEntry) async throws -> Deck {
-        try await get("academy-app/\(entry.file)")
+        try await cached("academy-app/\(entry.file)")
+    }
+
+    func cacheURL(_ path: String) -> URL? {
+        guard let dir = cacheDir else { return nil }
+        return dir.appending(path: path.replacingOccurrences(of: "/", with: "_"))
+    }
+
+    func cached<T: Decodable>(_ path: String) async throws -> T {
+        do {
+            let (data, http) = try await transport.send(URLRequest(url: base.appending(path: path)))
+            let value: T = try decode(data, http)
+            if let url = cacheURL(path) {
+                try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+                try? data.write(to: url, options: .atomic)
+            }
+            return value
+        } catch {
+            guard let url = cacheURL(path), let data = try? Data(contentsOf: url) else { throw error }
+            return try decodeBody(data)
+        }
     }
 
     public func canonSearch(_ query: String, topK: Int = 20) async throws -> CanonSearch {
