@@ -328,7 +328,7 @@
     "A geodesic of curved spacetime",
     "A straight line pushed by thrust",
     "A path set by air resistance",
-    "A random walk around Earth"
+    "A path set by the station's magnetic field"
    ],
    "answer": 0,
    "applied": true
@@ -2078,8 +2078,8 @@
    "id": "large-scale-structure.calculate",
    "atom": "large-scale-structure",
    "kind": "calculate",
-   "prompt": "A void spans 30 Mpc. With 1 Mpc about 3.26 million light-years, how many million light-years across is it?",
-   "answer": 97.8,
+   "prompt": "A survey maps a 300 Mpc cube and finds voids about 30 Mpc across. Treating them as cubes packed edge to edge, how many void-sized cells fit in the survey?",
+   "answer": 1000.0,
    "unit": "million ly",
    "relTol": 0.02
   },
@@ -3021,7 +3021,7 @@
    "options": [
     "Dark energy is dynamical, unlike a cosmological constant",
     "Dark matter is hot",
-    "The CMB is not thermal and must be re-measured",
+    "Dark energy is a form of dark matter",
     "Gravity is repulsive"
    ],
    "answer": 0,
@@ -3538,7 +3538,7 @@
     "It must be larger than its Jeans length",
     "It must be smaller than its Jeans length",
     "It must be hotter than its surroundings",
-    "It must spin faster than light"
+    "It must spin faster than its neighbors"
    ],
    "answer": 0,
    "applied": true
@@ -4703,7 +4703,7 @@
    "options": [
     "Inflation left a slight red tilt",
     "Inflation never happened",
-    "The CMB is not thermal and must be re-measured",
+    "Inflation ran for exactly one e-fold",
     "Dark energy is hot"
    ],
    "answer": 0,

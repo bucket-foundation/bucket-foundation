@@ -19,8 +19,8 @@
    "id": "atom-nucleus-electrons.calculate",
    "atom": "atom-nucleus-electrons",
    "kind": "calculate",
-   "prompt": "An atom has 6 protons, 8 neutrons and 6 electrons. What is its mass number?",
-   "answer": 14.0,
+   "prompt": "Radiocarbon dating uses carbon-14. Carbon has 6 protons. How many neutrons does a carbon-14 nucleus hold?",
+   "answer": 8.0,
    "unit": "",
    "relTol": 0.02
   },
@@ -398,23 +398,23 @@
    "id": "periodic-trends.match",
    "atom": "periodic-trends",
    "kind": "match",
-   "prompt": "Match each trend to its direction across a period.",
+   "prompt": "Match each trend to its direction.",
    "pairs": [
     {
-     "term": "Atomic radius",
+     "term": "Atomic radius across a period",
      "meaning": "Shrinks"
     },
     {
-     "term": "Ionization energy",
+     "term": "Ionization energy across a period",
      "meaning": "Rises"
     },
     {
      "term": "Electronegativity",
-     "meaning": "Rises toward fluorine"
+     "meaning": "Peaks at fluorine"
     },
     {
-     "term": "Down a group",
-     "meaning": "Radius grows"
+     "term": "Atomic radius down a group",
+     "meaning": "Grows"
     }
    ]
   },
@@ -780,8 +780,8 @@
    "id": "lewis-structures.calculate",
    "atom": "lewis-structures",
    "kind": "calculate",
-   "prompt": "How many valence electrons does methane, CH4, have? Carbon brings 4 and each hydrogen 1.",
-   "answer": 8.0,
+   "prompt": "Ammonia, NH3, is made for fertilizer. N brings 5 valence electrons and each H brings 1. After three N-H bonds, how many electrons sit in nitrogen's lone pair?",
+   "answer": 2.0,
    "unit": "electrons",
    "relTol": 0.02
   },
@@ -952,8 +952,8 @@
    "id": "hybridization.calculate",
    "atom": "hybridization",
    "kind": "calculate",
-   "prompt": "An sp3 carbon has bonds to 4 hydrogens in methane. How many s and p orbitals mixed to make its hybrids?",
-   "answer": 4.0,
+   "prompt": "Ethene, used to ripen fruit, has two sp2 carbons. Each sp2 carbon has 3 hybrid orbitals. How many sp2 hybrids do the two carbons hold in all?",
+   "answer": 6.0,
    "unit": "orbitals",
    "relTol": 0.02
   },
@@ -2078,8 +2078,8 @@
    "id": "le-chatelier.calculate",
    "atom": "le-chatelier",
    "kind": "calculate",
-   "prompt": "N2 + 3 H2 <=> 2 NH3: how many moles of gas are on the reactant side?",
-   "answer": 4.0,
+   "prompt": "In the Haber process, N2 + 3 H2 <=> 2 NH3. By how many moles does the gas amount fall when the reaction runs once as written?",
+   "answer": 2.0,
    "unit": "mol",
    "relTol": 0.02
   },
@@ -3256,8 +3256,8 @@
    "id": "thermodynamics-vs-kinetics.calculate",
    "atom": "thermodynamics-vs-kinetics",
    "kind": "calculate",
-   "prompt": "A kinetic product forms over a 50 kJ/mol barrier, a thermodynamic one over 60 kJ/mol. At 298 K, what is the rate ratio e^(10000/(8.314 x 298))?",
-   "answer": 56.61,
+   "prompt": "Two products form over barriers 10 kJ/mol apart. What is the kinetic preference e^(10000/(8.314 T)) at 373 K, where a refluxing reaction runs?",
+   "answer": 25.14,
    "unit": "",
    "relTol": 0.02
   },
@@ -3428,8 +3428,8 @@
    "id": "coordination-complexes.calculate",
    "atom": "coordination-complexes",
    "kind": "calculate",
-   "prompt": "An octahedral complex holds 6 ligands. If each donates one electron pair, how many electrons do they donate in total?",
-   "answer": 12.0,
+   "prompt": "EDTA in a chelation drip binds a metal ion through 6 donor atoms, each giving one pair. Two EDTA ions bind two metal ions. How many electrons are donated in all?",
+   "answer": 24.0,
    "unit": "electrons",
    "relTol": 0.02
   },

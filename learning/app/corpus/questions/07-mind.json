@@ -277,7 +277,7 @@
    "id": "nernst.calculate",
    "atom": "nernst",
    "kind": "calculate",
-   "prompt": "A cation is 10 times more concentrated outside at 37 C. What is E = 26.7 mV x ln 10?",
+   "prompt": "In a lab bath, a neuron's outside K+ is raised to 10 times its inside level at 37 C. What is E_K = 26.7 mV x ln 10?",
    "answer": 61.48,
    "unit": "mV",
    "relTol": 0.02,
@@ -495,7 +495,7 @@
    "id": "resting-potential.applied",
    "atom": "resting-potential",
    "kind": "pick",
-   "prompt": "A cardiologist reads a cell sitting at -70 mV as healthy at rest. What keeps it there?",
+   "prompt": "A cardiologist reads a ventricular heart cell sitting near -85 mV as healthy at rest. What keeps it there?",
    "options": [
     "Balanced leaks and the Na/K pump",
     "No ion movement at all across the membrane",
@@ -1442,7 +1442,7 @@
    "id": "stdp.pick",
    "atom": "stdp",
    "kind": "pick",
-   "prompt": "Pre fires 10 ms before post. What happens at most cortical synapses?",
+   "prompt": "At many cortical and hippocampal synapses studied in slices, pre fires 10 ms before post. What change do most of those studies report?",
    "options": [
     "Potentiation",
     "Depression",
@@ -1799,7 +1799,7 @@
    "id": "working-memory.calculate",
    "atom": "working-memory",
    "kind": "calculate",
-   "prompt": "A span test holds 4 items in 10 tries and 5 items in 6 tries. What is the success rate at 5 items, as a percent?",
+   "prompt": "In a digit-span test a subject gets 10 trials at 5 digits and recalls 6 of them perfectly. What percent of 5-digit trials succeed?",
    "answer": 60.0,
    "unit": "%",
    "relTol": 0.02
@@ -2401,7 +2401,7 @@
    "id": "attention.calculate",
    "atom": "attention",
    "kind": "calculate",
-   "prompt": "A cell gives 60 spikes/s to the preferred bar and 20 to the other. What is the unattended average response?",
+   "prompt": "Both bars sit inside one cell's receptive field and attention is spread evenly. The cell gives 60 spikes/s to the preferred bar alone and 20 to the other alone. Under the averaging model, what is its response to the pair?",
    "answer": 40.0,
    "unit": "spikes/s",
    "relTol": 0.02
@@ -2487,7 +2487,7 @@
    "id": "perception-inference.calculate",
    "atom": "perception-inference",
    "kind": "calculate",
-   "prompt": "Vision has variance 1 and touch variance 4. What weight does vision get, (1/1)/(1/1 + 1/4)?",
+   "prompt": "A surgeon judges a lump's size by sight (variance 1) and by touch through a probe (variance 4). What weight should vision get, (1/1)/(1/1 + 1/4)?",
    "answer": 0.8,
    "unit": "",
    "relTol": 0.02,
@@ -2685,19 +2685,19 @@
    "pairs": [
     {
      "term": "Dopamine",
-     "meaning": "Reward prediction error"
+     "meaning": "Linked to reward prediction error"
     },
     {
      "term": "Acetylcholine",
-     "meaning": "Attention and learning"
+     "meaning": "Linked to attention and learning"
     },
     {
      "term": "Norepinephrine",
-     "meaning": "Arousal"
+     "meaning": "Linked to arousal"
     },
     {
      "term": "Serotonin",
-     "meaning": "Mood and patience"
+     "meaning": "Linked to mood and patience"
     }
    ]
   },
@@ -3221,7 +3221,7 @@
    "id": "reinforcement-learning-brain.applied",
    "atom": "reinforcement-learning-brain",
    "kind": "pick",
-   "prompt": "A habit like checking your phone runs without thinking. Which system drives it?",
+   "prompt": "Habit researchers model automatic routines such as checking a phone. Which learning system do they say drives such habits most?",
    "options": [
     "Model-free learning",
     "Model-based planning",
@@ -3493,7 +3493,7 @@
    "id": "connectomics.calculate",
    "atom": "connectomics",
    "kind": "calculate",
-   "prompt": "C. elegans has 302 neurons. If each connects to 25 others on average, about how many connections exist?",
+   "prompt": "C. elegans has 302 neurons. If each sends directed synapses to 25 others on average, about how many directed links exist?",
    "answer": 7550.0,
    "unit": "",
    "relTol": 0.02
