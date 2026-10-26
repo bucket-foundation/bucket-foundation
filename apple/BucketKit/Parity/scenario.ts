@@ -11,7 +11,6 @@ import {
   exerciseFor,
   gradeCard,
   judgeTyped,
-  letterExercise,
   langProgress,
   learnerLevel,
   matchExercise,
@@ -29,7 +28,6 @@ import {
 } from "../../../src/lib/academy/lang-systems";
 import { normalizeState } from "../../../src/lib/academy/engine";
 import { audioKey } from "../../../src/lib/academy/lang-audio";
-import { alphabetUnit, HERITAGE_LANGS, judgeSpelled } from "../../../src/lib/academy/lang-script";
 
 const dir = process.argv[2];
 const read = (n: string) => JSON.parse(readFileSync(join(dir, `${n}.json`), "utf8"));
@@ -172,26 +170,5 @@ for (const item of corpus.items) {
   }
 }
 out.cross = cross;
-
-const hrng = seededRng(515);
-const hSys = createSystem("en", ["ru", "ja", "es"], [], T0);
-const hItem = corpus.items.find((i) => i.kind === "word" && i.forms.ru && i.forms.en)!;
-const hCard = { state: "review", reps: 3, lapses: 0, stability: 3, difficulty: 5, lastReview: T0, due: T0 };
-out.heritage = {
-  spelled: [
-    ["шалом", "שָׁלוֹם", "he"],
-    ["שלום", "שָׁלוֹם", "he"],
-    ["كتاي", "كتاب", "ar"],
-    ["все", "всё", "ru"],
-    ["ВСЁ", "всё", "ru"],
-    ["καλημερα", "καλημέρα", "el"],
-    ["नमसते", "नमस्ते", "hi"],
-    ["ﾈｺ", "ネコ", "ja"],
-  ].map(([g, e, l]) => judgeSpelled(g, e, l)),
-  units: HERITAGE_LANGS.map((l) => [l, alphabetUnit(l)!.letters.length, alphabetUnit(l)!.title]),
-  letters: ["th", "fa", "ru", "hi", "ja"].map((l) => ex(letterExercise(l, "en", 1, hrng))),
-  spell: ex(exerciseFor(corpus, hSys, hItem, "ru", hCard, hrng, { heritage: true })),
-  queue: buildQueue(hSys, corpus, normalizeState({}), T0, 14, { heritage: true }).map((q) => `${q.lang}:${q.itemId}:${q.stage}`),
-};
 
 writeFileSync(process.argv[3], JSON.stringify(out, null, 1));
