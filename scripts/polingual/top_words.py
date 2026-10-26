@@ -112,6 +112,8 @@ def clean(row: dict, lang: str, senses: list[str]) -> dict | None:
 
 
 MIN_SENSE_ZIPF = 4.0
+MIN_AGREEMENT = 200.0
+AGREEMENT_MARGIN = 2.0
 STRIP_MARKS = re.compile(r"[\u0300-\u036f\u064b-\u065f\u0670\u0591-\u05c7]")
 GLOSS_WORD = re.compile(r"[a-z]+(?:[ -][a-z]+)*")
 
@@ -156,12 +158,14 @@ def head_zipf(gloss: str) -> float:
 def agreed_sense(current: str, senses: list[str], votes: dict[str, float]) -> str | None:
     if not votes or sense_score(current or "", votes) > 0:
         return None
-    best, best_score = None, 0.0
-    for gloss in senses:
-        score = sense_score(gloss, votes)
-        if score > best_score:
-            best, best_score = gloss, score
-    if best and (head_zipf(best) < max(MIN_SENSE_ZIPF, head_zipf(current or ""))):
+    scored = sorted(((sense_score(g, votes), g) for g in senses), key=lambda x: -x[0])
+    if not scored or scored[0][0] < MIN_AGREEMENT:
+        return None
+    best_score, best = scored[0]
+    runner_up = next((sc for sc, g in scored[1:] if sc > 0 and g != best), 0.0)
+    if runner_up * AGREEMENT_MARGIN > best_score:
+        return None
+    if head_zipf(best) < max(MIN_SENSE_ZIPF, head_zipf(current or "")):
         return None
     return best
 
