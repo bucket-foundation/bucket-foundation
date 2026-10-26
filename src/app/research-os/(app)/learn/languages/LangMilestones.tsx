@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { allMilestones, shareText, type MilestoneProgress } from "@/lib/academy/lang-milestones";
+import { langDir } from "@/lib/academy/lang-systems";
 import { cardBlob, drawMilestoneCard } from "@/lib/academy/milestone-card";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState, PageHeader, Panel } from "@/components/ui";
 import { useLangSystem } from "./useLangSystem";
@@ -61,7 +62,7 @@ export default function LangMilestones({ systemId }: { systemId: string }) {
       <PageHeader
         eyebrow={system.name}
         title="milestones"
-        lede={`${list.filter((p) => p.earned).length} of ${list.length} earned. Each one counts once you have met every word in every language of the set.`}
+        lede={`${list.filter((p) => p.earned).length} of ${list.length} earned. Each one counts once you have answered every word in every language of the set in review.`}
         actions={
           <>
             <Link href={`${back}/study`} className={BTN_PRIMARY}>study</Link>
@@ -75,7 +76,11 @@ export default function LangMilestones({ systemId }: { systemId: string }) {
             {p.langs.map((l) => (
               <li key={l.lang} className="flex gap-3">
                 <span className="w-24 shrink-0 text-[color:var(--basalt-3)]">{l.name}</span>
-                <span lang={l.lang} className={l.done ? "" : "opacity-50"}>{l.words.map((w) => w.form).join(" · ")}</span>
+                {l.missing.length ? (
+                  <span className="text-[color:var(--basalt-3)]" data-testid={`missing-${l.lang}`}>not in the {l.name} deck yet: {l.missing.join(", ")}</span>
+                ) : (
+                  <span lang={l.lang} dir={langDir(l.lang)} className={l.done ? "" : "opacity-50"}>{l.words.map((w) => w.form).join(" · ")}</span>
+                )}
               </li>
             ))}
           </ul>
