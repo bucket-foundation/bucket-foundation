@@ -99,6 +99,16 @@ let lst = fresh;
 for (const e of letters) lst = gradeCard(lst, "ru", e.itemId, 3, 1000);
 const next = buildQueue(sys, corpus, lst, 2000, 14, { heritage: true }).filter((e) => e.stage === "letter");
 ok(next.length === 5 && next.every((e) => !letters.some((l) => l.itemId === e.itemId)), "graded letters give way to the next five");
+const learn = (lang: string, pick: (ch: string) => boolean) => {
+  let s0 = normalizeState(null);
+  for (const l of alphabetUnit(lang)!.letters) if (pick(l.ch)) s0 = gradeCard(s0, lang, letterItemId(l.ch), 3, NOW, "UTC");
+  return s0;
+};
+ok(alphabetDone(learn("ja", (c) => /[\u3040-\u309f]/.test(c)), "ja"), "ja: all hiragana and no katakana unlocks");
+ok(alphabetDone(learn("hi", (c) => !c.includes("◌")), "hi"), "hi: all consonants and vowels with no signs unlocks");
+ok(!alphabetDone(learn("hi", (c) => c.includes("◌")), "hi"), "hi: vowel signs alone do not unlock");
+const ruLetters = alphabetUnit("ru")!.letters.map((l) => l.ch);
+ok(alphabetDone(learn("ru", (c) => ruLetters.indexOf(c) < 27), "ru") && !alphabetDone(learn("ru", (c) => ruLetters.indexOf(c) < 26), "ru"), "ru: gate stays at 27 of 33 letters");
 if (failures) {
   console.error(`${failures} failure(s)`);
   process.exit(1);

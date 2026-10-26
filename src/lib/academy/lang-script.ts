@@ -151,9 +151,14 @@ export function dueLetters(state: EngineState, lang: string, now: number = Date.
   });
 }
 
+export function isBaseLetter(ch: string): boolean {
+  return !ch.includes("◌") && !/[\u30a0-\u30ff]/.test(ch);
+}
+
 export function alphabetDone(state: EngineState, lang: string, share = 0.8): boolean {
   const unit = alphabetUnit(lang);
   if (!unit) return true;
-  const seen = unit.letters.filter((l) => (state.cards[letterCardId(lang, l.ch)]?.reps ?? 0) > 0).length;
-  return seen >= Math.ceil(unit.letters.length * share);
+  const core = unit.letters.filter((l) => isBaseLetter(l.ch));
+  const seen = core.filter((l) => (state.cards[letterCardId(lang, l.ch)]?.reps ?? 0) > 0).length;
+  return seen >= Math.ceil(core.length * share);
 }
