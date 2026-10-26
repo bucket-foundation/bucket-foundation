@@ -45,7 +45,11 @@ struct StudyView: View {
         guard queue == nil, store.status == .ready, let system = store.system(systemId), let corpus = store.corpus else { return }
         let state = store.state(systemId)
         xpStart = state.xp
-        queue = buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000)
+        let wanted = WantedWords.take(systemId, carded: { id in system.targets.contains { state.cards.has(cardId($0, id)) } })
+        let asked = wanted.flatMap { id in
+            system.targets.filter { corpus.byId[id]?.form($0) != nil }.flatMap { l in [QueueEntry(itemId: id, lang: l, stage: .intro), QueueEntry(itemId: id, lang: l, stage: .check)] }
+        }
+        queue = asked + buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000)
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }

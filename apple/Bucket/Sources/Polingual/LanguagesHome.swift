@@ -111,6 +111,10 @@ struct LanguagesHome: View {
                         .foregroundStyle(Palette.muted)
                         .listRowBackground(Color.clear)
                 }
+                if !store.systems.isEmpty {
+                    Section { TranslateCard() }
+                        .listRowBackground(Palette.card)
+                }
                 ForEach(store.systems) { s in
                     Section {
                         systemCard(s, corpus)

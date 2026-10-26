@@ -126,6 +126,10 @@ struct TodayView: View {
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(Palette.card)
+                if !langs.systems.isEmpty {
+                    Section { TranslateCard() }
+                        .listRowBackground(Palette.card)
+                }
                 if loaded && !items.isEmpty {
                     Section {
                         ForEach(items) { item in
