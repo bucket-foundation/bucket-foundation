@@ -41,6 +41,16 @@ const PIN_CATEGORIES = ["animal", "food", "nature", "body", "family", "object", 
 
 const readJson = (f) => JSON.parse(fs.readFileSync(path.join(CORPUS, f), "utf8"));
 
+export function credit(meta) {
+  const v = /CC-BY-SA (\d+\.\d+)/.exec(meta?.license ?? "")?.[1];
+  if (!v) throw new Error("lang-core.json meta.license names no CC-BY-SA version");
+  return { text: `Words from Wiktionary via Kaikki, CC BY-SA ${v}`, url: `https://creativecommons.org/licenses/by-sa/${v}/` };
+}
+
+export function loadCredit() {
+  return credit(readJson("lang-core.json").meta);
+}
+
 export function loadConcepts() {
   const atoms = new Map(readJson("lang-core.json").atoms.map((a) => [a.id, a]));
   const ipa = readJson("_build/gold/kaikki-ipa.json");
@@ -59,8 +69,10 @@ export function loadConcepts() {
   return out;
 }
 
-export function pickTiles(langs, max = 6) {
-  return ORDER.filter((l) => langs.has(l)).slice(0, max).map((l) => langs.get(l));
+export function pickTiles(langs, max = 6, turn = 0) {
+  const start = (turn * max) % ORDER.length;
+  const order = [...ORDER.slice(start), ...ORDER.slice(0, start)];
+  return order.filter((l) => langs.has(l)).slice(0, max).map((l) => langs.get(l));
 }
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -72,7 +84,7 @@ function tile(t) {
   return `<div class="t tt" style="--flag:${f.bg}"><span class="cc">${f.n}</span><div class="wd"><b style="${size}font-family:'${f.f}'">${esc(t.w)}</b></div>${t.ipa ? `<i>/${esc(t.ipa)}/</i>` : ""}</div>`;
 }
 
-export function pinHtml(meaning, tiles, css) {
+export function pinHtml(meaning, tiles, css, creditText) {
   return `<!doctype html><html><head><meta charset="utf-8"><link href="${FONTS}" rel="stylesheet"><style>${css}
 *{box-sizing:border-box;margin:0}
 body{width:${W}px;height:${H}px;background:#231F20;background-image:radial-gradient(#3a3335 1.4px,transparent 1.5px);background-size:32px 32px;font-family:Nunito,sans-serif;display:flex;flex-direction:column;align-items:center;padding:90px 70px 70px;overflow:hidden}
@@ -83,7 +95,8 @@ h1{font-family:Fredoka;font-weight:700;font-size:${meaning.length > 9 ? 96 : 128
 .g .t{zoom:${tiles.length > 4 ? 1.6 : 1.85}}
 .f{font-family:Fredoka;font-weight:600;font-size:40px;color:#F6EEDC}
 .f span{color:#D9381E}
-</style></head><body><div class="k">one word, ${tiles.length} languages</div><h1>${esc(meaning)}</h1><div class="sub">How do you say it?</div><div class="g">${tiles.map(tile).join("")}</div><div class="f">polingual<span>.com</span></div></body></html>`;
+.cr{margin-top:14px;font-size:20px;color:#9d927c}
+</style></head><body><div class="k">one word, ${tiles.length} languages</div><h1>${esc(meaning)}</h1><div class="sub">How do you say it?</div><div class="g">${tiles.map(tile).join("")}</div><div class="f">polingual<span>.com</span></div><div class="cr">${esc(creditText)}</div></body></html>`;
 }
 
 function args(argv) {
@@ -104,16 +117,18 @@ async function main() {
   const chosen = o.meanings.length
     ? o.meanings.map((k) => [k, concepts.get(k)?.langs]).filter(([, m]) => m && m.size >= 4)
     : usable.filter((_, i) => i % step === 0).slice(0, o.count).map(([k, c]) => [k, c.langs]);
+  const cr = loadCredit();
   const css = fs.readFileSync(path.join(ROOT, "public", "d8", "tiles.css"), "utf8");
   fs.mkdirSync(o.out, { recursive: true });
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: W, height: H } });
-  for (const [meaning, langs] of chosen) {
-    const tiles = pickTiles(langs);
-    await page.setContent(pinHtml(meaning, tiles, css), { waitUntil: "networkidle" });
+  for (const [turn, [meaning, langs]] of chosen.entries()) {
+    const tiles = pickTiles(langs, 6, turn);
+    await page.setContent(pinHtml(meaning, tiles, css, cr.text), { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
     const file = path.join(o.out, `pin-${meaning.replace(/\s+/g, "-")}.png`);
     await page.screenshot({ path: file });
+    fs.writeFileSync(file.replace(/\.png$/, ".txt"), `${meaning}: ${tiles.map((t) => `${FLAGS[t.lang].n} ${t.w}`).join(", ")}\n${cr.text}\nLicense: ${cr.url}\n`);
     console.log(file);
   }
   await browser.close();
