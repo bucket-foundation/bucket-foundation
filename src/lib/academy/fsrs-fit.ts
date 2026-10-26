@@ -100,7 +100,17 @@ function objective(w: number[], log: ReviewEntry[]): number {
   return logLoss(w, log) + PRIOR * prior;
 }
 
-const clampW = (i: number, v: number) => Math.min(Math.max(v, FSRS_W_BOUNDS[i][0]), FSRS_W_BOUNDS[i][1]);
+export const MAX_WEIGHT_RATIO = 3;
+
+export function weightCap(i: number): readonly [number, number] {
+  const d = FSRS_DEFAULT_W[i];
+  return [Math.max(FSRS_W_BOUNDS[i][0], d / MAX_WEIGHT_RATIO), Math.min(FSRS_W_BOUNDS[i][1], d * MAX_WEIGHT_RATIO)];
+}
+
+const clampW = (i: number, v: number) => {
+  const [lo, hi] = weightCap(i);
+  return Math.min(Math.max(v, lo), hi);
+};
 
 export function splitByCard(log: ReviewEntry[], every = HOLDOUT_EVERY): { train: ReviewEntry[]; test: ReviewEntry[] } {
   const ids = Array.from(new Set(log.map((r) => r.cardId))).sort();

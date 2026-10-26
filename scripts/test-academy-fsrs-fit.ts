@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import path from "node:path";
 import { Worker } from "node:worker_threads";
 import { DAY_MS, FSRS, FSRS_DEFAULT_W, type Card, type Rating } from "../src/lib/academy/fsrs";
-import { FSRS_FIT_GATE, fitFsrsWeights, fitInWorker, type FitWorker, splitByCard, logLoss, predictions, type ReviewEntry } from "../src/lib/academy/fsrs-fit";
+import { FSRS_FIT_GATE, MAX_WEIGHT_RATIO, weightCap, fitFsrsWeights, fitInWorker, type FitWorker, splitByCard, logLoss, predictions, type ReviewEntry } from "../src/lib/academy/fsrs-fit";
 
 const T0 = 1_800_000_000_000;
 const TRUE_W = FSRS_DEFAULT_W.map((v, i) => (i < 4 ? v * 0.2 : i === 8 ? v * 0.6 : i === 10 ? v * 1.3 : v));
@@ -155,4 +155,21 @@ test("worker body runs off the main thread and returns the sync weights", async 
   assert.ok(ticks > 5, `ticks ${ticks}`);
   assert.deepEqual(res.w, fit.w);
   assert.equal(res.heldOutAfter, fit.heldOutAfter);
+});
+
+test("a pathological log cannot push any weight past three times or a third of its default", () => {
+  const log: ReviewEntry[] = [];
+  for (let c = 0; c < 80; c++) {
+    for (let k = 0; k < 8; k++) {
+      const id = `x${String(c).padStart(3, "0")}`;
+      log.push({ cardId: id, ts: T0 + k * k * 400 * DAY_MS, rating: c % 2 === 0 ? 4 : k === 0 ? 4 : 1 });
+    }
+  }
+  const res = fitFsrsWeights(log, { initial: FSRS_DEFAULT_W.map((v) => v * 50), gate: { minReviews: 1, minCards: 1 } });
+  assert.equal(MAX_WEIGHT_RATIO, 3);
+  res.w.forEach((v, i) => {
+    const [lo, hi] = weightCap(i);
+    assert.ok(v >= lo - 1e-12 && v <= hi + 1e-12, `w${i}=${v} outside [${lo}, ${hi}]`);
+    assert.ok(v <= FSRS_DEFAULT_W[i] * 3 + 1e-12 && v >= FSRS_DEFAULT_W[i] / 3 - 1e-12);
+  });
 });
