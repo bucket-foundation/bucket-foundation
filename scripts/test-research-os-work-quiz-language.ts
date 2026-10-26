@@ -9,7 +9,8 @@ import { gradeAnswer } from "../src/lib/research-os/work-quiz/grade";
 import { checkLimits } from "../src/lib/research-os/work-quiz/limits";
 import { LANGUAGE_CHOICES, MIN_PAIR_LANGUAGES, MIN_STRICT_PAIRS, buildWordSet, cleanMatch, contentWords, fold, headword, knownLanguages, languageMakers, languageRivals, pairTargets, rivals, sharesSense, scriptOf, strictMatch, strictPairs, type RawSubset, type WordCell } from "../src/lib/research-os/work-quiz/polingual-forms";
 import { SUBSET_FILE, loadWordSet, subsetPath } from "../src/lib/research-os/work-quiz/polingual-server";
-import { LANGUAGE_CODES, LANGUAGE_NAMES, MAX_LANGUAGES, RTL_LANGUAGES, languageDir, languagesByName, parseLanguages, textDir, toggleLanguage, wordCaption } from "../src/lib/research-os/work-quiz/languages";
+import { PRESETS, SYSTEM_CATALOG } from "../src/lib/academy/lang-systems";
+import { PREVIEW_LANGUAGES, LANGUAGE_CODES, LANGUAGE_NAMES, MAX_LANGUAGES, RTL_LANGUAGES, languageDir, languagesByName, parseLanguages, textDir, toggleLanguage, wordCaption } from "../src/lib/research-os/work-quiz/languages";
 import { builtCells, dueFrom, languageCells, sampleQuiz } from "../src/lib/research-os/work-quiz/sampler";
 import { BLOCKED_FORMS, DEPTHS, FORMS, FORM_LIMIT_SEC, LANGUAGE_FORMS, VALID_PAIRS, type Depth, type LanguageForm } from "../src/lib/research-os/work-quiz/space";
 import { ALL_QUIZ_TYPES, LANGUAGE_QUIZ_TYPES, QUIZ_TYPES, SOURCE_KINDS, TYPE_LABEL, toPublic, type WorkSources } from "../src/lib/research-os/work-quiz/types";
@@ -415,4 +416,9 @@ test("a stored language card keeps its key, has no rewrite, and comes up when du
       assert.ok(quiz.questions.slice(1).every((x) => (QUIZ_TYPES as readonly string[]).includes(x.type)));
     }
   }
+});
+
+test("preview languages stay out of presets and the system catalog", () => {
+  assert.deepEqual(PREVIEW_LANGUAGES, ["pa"]);
+  for (const p of [...PRESETS, ...SYSTEM_CATALOG]) for (const code of PREVIEW_LANGUAGES) assert.ok(!p.targets.includes(code), p.name);
 });

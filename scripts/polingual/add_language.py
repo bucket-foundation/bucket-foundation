@@ -65,6 +65,8 @@ def main() -> None:
     m["language_names"] = dict(sorted({**m["language_names"], a.lang: a.name}.items()))
     m["words"] = len(words)
     subset["words"] = words
+    subset["attribution"]["license"] = "CC-BY-SA 4.0"
+    m["preview"] = sorted(set(m.get("preview", [])) | {a.lang})
     SUBSET.write_text(json.dumps(subset, ensure_ascii=False, separators=(",", ":")))
     print(a.lang, len(chosen), "of", len(concepts), "concepts,", len(forced), "from overrides")
 

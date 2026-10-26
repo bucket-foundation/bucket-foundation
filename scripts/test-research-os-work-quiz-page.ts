@@ -11,7 +11,9 @@ const noSave = async (next: string[]) => next;
 
 test("the language picker lists all 28 names in Academy chip style and marks the saved ones pressed", () => {
   const html = renderToStaticMarkup(createElement(LanguagePicker, { languages: ["he", "de"], save: noSave }));
-  for (const l of languagesByName()) assert.ok(html.includes(`>${l.name}</button>`), l.name);
+  for (const l of languagesByName()) assert.ok(html.includes(`>${l.name}</button>`) || html.includes(`>${l.name}<span data-testid="preview-badge"`), l.name);
+  assert.equal((html.match(/data-testid="preview-badge"/g) ?? []).length, 1);
+  assert.ok(html.includes(`>Punjabi<span data-testid="preview-badge" class="ml-1 small-caps text-[10px] tracking-[0.12em]">Preview</span></button>`));
   assert.equal((html.match(/aria-pressed="true"/g) ?? []).length, 2);
   assert.equal((html.match(/aria-pressed="false"/g) ?? []).length, 26);
   assert.ok(html.includes(`class="${CHIP_ON}"`) && html.includes(`class="${CHIP_OFF}"`));
