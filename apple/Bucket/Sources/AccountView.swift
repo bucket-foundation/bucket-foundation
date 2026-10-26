@@ -98,6 +98,9 @@ struct AccountView: View {
                 }
                 ReminderSettings()
                 BetaSharing()
+                #if POLINGUAL && os(iOS)
+                SwapSettings()
+                #endif
                 FeedbackSettings()
                 #if DEBUG
                 Section {

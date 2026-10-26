@@ -248,4 +248,12 @@ final class NotificationPresenter: NSObject, UNUserNotificationCenterDelegate, S
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
         [.banner, .list, .sound]
     }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        guard response.notification.request.content.userInfo["study"] as? Bool == true else { return }
+        await MainActor.run {
+            UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: StudyRequest.key)
+            NotificationCenter.default.post(name: .startStudy, object: nil)
+        }
+    }
 }

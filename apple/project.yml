@@ -68,16 +68,25 @@ targets:
       - path: Bucket/Sources/Style.swift
       - path: Bucket/Sources/AccountView.swift
       - path: Polingual/WidgetShared
+      - path: Polingual/Swap/Shared
+        destinationFilters: [iOS]
       - path: Polingual/Polingual.storekit
         buildPhase: none
     dependencies:
       - package: BucketKit
       - target: PolingualWidgets
         destinationFilters: [iOS]
+      - target: PolingualShieldConfig
+        destinationFilters: [iOS]
+      - target: PolingualShieldAction
+        destinationFilters: [iOS]
+      - target: PolingualSwapMonitor
+        destinationFilters: [iOS]
     settings:
       base:
         CODE_SIGN_ENTITLEMENTS: Polingual/Polingual.entitlements
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) POLINGUAL
         PRODUCT_NAME: Polingual
         MARKETING_VERSION: "1.0.1"
         CURRENT_PROJECT_VERSION: "1"
@@ -121,6 +130,81 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.widgets
+        IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+        MARKETING_VERSION: "1.0.1"
+        SKIP_INSTALL: YES
+  PolingualShieldConfig:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Polingual/Swap/Config
+      - path: Polingual/Swap/Shared
+    info:
+      path: Polingual/Swap/Config/Info.plist
+      properties:
+        CFBundleDisplayName: Polingual
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.ManagedSettingsUI.shield-configuration-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).SwapShieldConfiguration
+    entitlements:
+      path: Polingual/Swap/Swap.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups:
+          - group.com.polingual.app
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.shield-config
+        IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+        MARKETING_VERSION: "1.0.1"
+        SKIP_INSTALL: YES
+  PolingualShieldAction:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Polingual/Swap/Action
+      - path: Polingual/Swap/Shared
+    info:
+      path: Polingual/Swap/Action/Info.plist
+      properties:
+        CFBundleDisplayName: Polingual
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.ManagedSettings.shield-action-service
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).SwapShieldAction
+    entitlements:
+      path: Polingual/Swap/Swap.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups:
+          - group.com.polingual.app
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.shield-action
+        IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+        MARKETING_VERSION: "1.0.1"
+        SKIP_INSTALL: YES
+  PolingualSwapMonitor:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Polingual/Swap/Monitor
+      - path: Polingual/Swap/Shared
+    info:
+      path: Polingual/Swap/Monitor/Info.plist
+      properties:
+        CFBundleDisplayName: Polingual
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.deviceactivity.monitor-extension
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).SwapMonitor
+    entitlements:
+      path: Polingual/Swap/Swap.entitlements
+      properties:
+        com.apple.developer.family-controls: true
+        com.apple.security.application-groups:
+          - group.com.polingual.app
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.swap-monitor
         IPHONEOS_DEPLOYMENT_TARGET: "26.0"
         MARKETING_VERSION: "1.0.1"
         SKIP_INSTALL: YES
