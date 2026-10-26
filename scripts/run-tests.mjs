@@ -75,6 +75,7 @@ const SUITES = {
       "scripts/test-release-signing.mjs",
       "scripts/test-solver-gap-backtest-numbers.mjs",
       "scripts/test-provenance-packet.ts",
+      "scripts/test-polingual-checkout.ts",
       "scripts/test-deck-catalog-route.ts",
       "scripts/test-brand-pick.ts",
     ],
