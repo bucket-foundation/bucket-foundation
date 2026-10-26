@@ -278,6 +278,32 @@ export function checkedCorpusIds(src: PlacementSource, answers: CefrAnswer[], ba
   return Array.from(ids);
 }
 
+export function corpusTopBands(src: PlacementSource): Map<string, CefrBand> {
+  const out = new Map<string, CefrBand>();
+  if (!usesTop(src)) return out;
+  const bands = topBands(src.top);
+  const byWord = new Map<string, CefrBand>();
+  for (const w of src.top) {
+    const b = bands.get(w.rank);
+    const k = bareForm(w.word, src.lang);
+    if (b && !byWord.has(k)) byWord.set(k, b);
+  }
+  for (const i of src.corpus.items) {
+    if (!isVocab(i) || !usable(i, src.system.root, src.lang)) continue;
+    const b = byWord.get(bareForm(i.forms[src.lang], src.lang));
+    if (b) out.set(i.id, b);
+  }
+  return out;
+}
+
+export function trustedBands(bands: BandResult[]): Set<CefrBand> {
+  const out = new Set<CefrBand>();
+  bands.forEach((b, k) => {
+    if (b.passed && b.confidence >= SKIP_CONFIDENCE) for (const s of CEFR_BANDS.slice(0, k + 1)) out.add(s.band);
+  });
+  return out;
+}
+
 export function skipFloor(bands: BandResult[]): number {
   let floor = 0;
   for (let k = 0; k + 2 < CEFR_BANDS.length; k++) {
@@ -293,7 +319,12 @@ export function cefrPlacement(src: PlacementSource, answers: CefrAnswer[], step:
   const mapping: CefrMapping = NO_CEFR_LANGS.has(src.lang) ? "none" : "proxy";
   const out = { level: step.level, mapping, bands: step.bands, ...(step.unknownFrom ? { unknownFrom: step.unknownFrom } : {}) };
   if (passed.length < PLACE_MIN_BANDS) return { ...out, floorTier: 0, placeIds: [] };
-  return { ...out, floorTier: skipFloor(step.bands), placeIds: checkedCorpusIds(src, answers, new Set(passed.map((b) => b.band))) };
+  const trusted = trustedBands(step.bands);
+  const ids = new Set(checkedCorpusIds(src, answers, new Set(passed.map((b) => b.band))));
+  corpusTopBands(src).forEach((band, id) => {
+    if (trusted.has(band)) ids.add(id);
+  });
+  return { ...out, floorTier: skipFloor(step.bands), placeIds: Array.from(ids) };
 }
 
 export function applyCefrPlacement(state: EngineState, system: LangSystem, corpus: LangCorpus, lang: string, placement: CefrPlacement, now: number = Date.now()): EngineState {

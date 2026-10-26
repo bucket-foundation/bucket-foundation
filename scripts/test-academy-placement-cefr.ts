@@ -5,6 +5,8 @@ import { buildLangCorpus, cardId, createSystem, mergeSystems, seededRng, unitSta
 import {
   applyCefrPlacement,
   bareForm,
+  corpusTopBands,
+  type CefrPlacement,
   BAND_ITEMS,
   bandsAvailable,
   CEFR_MAX_ITEMS,
@@ -36,6 +38,10 @@ const read = (f: string) => JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"
 const corpus = buildLangCorpus(read("lang-core.json"), read("lang-cognates.json"), read("lang-phrases.json"), read("lang-layers.json"));
 const NOW = Date.UTC(2026, 9, 26, 12);
 const topOf = (lang: string): TopWord[] => JSON.parse(fs.readFileSync(path.resolve(__dirname, `../learning/app/polingual/top1000/${lang}.json`), "utf8"));
+
+function state0(lang: string, p: CefrPlacement) {
+  return applyCefrPlacement(normalizeState(null), { ...sys, placement: { [lang]: p.floorTier } }, corpus, lang, p, NOW);
+}
 
 function run(system: LangSystem, lang: string, knows: (band: CefrBand, task: CefrTask, i: number) => boolean, seed = 7, top: TopWord[] | null = topOf(lang)) {
   const src: PlacementSource = { system, corpus, lang, top };
@@ -89,18 +95,21 @@ for (const lang of ["es", "fr", "de"]) {
   const bands = topBands(topOf(lang));
   ok(strong.answers.filter((a) => a.band === "B2" && a.itemId.startsWith("top:")).every((a) => bands.get(Number(a.itemId.slice(4))) === "B2"), `${lang}: B2 items come from the low-zipf half of the B1 frequency band`);
   const rightWords = new Set(strong.answers.filter((a) => a.correct && a.itemId.startsWith("top:")).map((a) => topOf(lang).find((w) => `top:${w.rank}` === a.itemId)!.word));
-  ok(strong.placement.placeIds.every((id) => Array.from(rightWords).some((w) => bareForm(w, lang) === bareForm(corpus.byId.get(id)!.forms[lang], lang)) || right.has(id)), `${lang}: only words answered right are placed`);
-  ok(strong.placement.placeIds.length <= strong.answers.length, `${lang}: placed count ${strong.placement.placeIds.length} stays within the questions asked`);
+  ok(strong.placement.placeIds.length >= 100, `${lang}: a B2 pass places ${strong.placement.placeIds.length} cards keyed to top1000`);
+  const placedDays = new Set(strong.placement.placeIds.map((id) => Math.floor(((state0(lang, strong.placement).cards[`${lang}:${id}`]?.due ?? 0) - NOW) / 86_400_000)));
+  ok(placedDays.size >= 10 && Math.min(...Array.from(placedDays)) >= 1, `${lang}: placed cards spread over ${placedDays.size} days`);
+  ok(strong.placement.placeIds.every((id) => Array.from(rightWords).some((w) => bareForm(w, lang) === bareForm(corpus.byId.get(id)!.forms[lang], lang)) || right.has(id) || corpusTopBands(strong.src).has(id)), `${lang}: every placed card is a checked word or a top1000 match in a trusted band`);
   const state = applyCefrPlacement(normalizeState(null), { ...sys, placement: { [lang]: strong.placement.floorTier } }, corpus, lang, strong.placement, NOW);
   const cards = Object.keys(state.cards).filter((id) => id.startsWith(`${lang}:`));
-  ok(cards.length === strong.placement.placeIds.length && cards.length <= CEFR_MAX_ITEMS, `${lang}: placement writes ${cards.length} cards, no tier fill`);
+  ok(cards.length === strong.placement.placeIds.length && cards.length <= corpusTopBands(strong.src).size + strong.answers.length, `${lang}: placement writes ${cards.length} cards, bounded by top1000 matches`);
   ok(strong.placement.floorTier === 7, `${lang}: B2 with full confidence skips new words only below B1 (floor ${strong.placement.floorTier})`);
   const units = unitStatus({ ...sys, placement: { [lang]: strong.placement.floorTier } }, corpus, state, lang);
   ok(units[1]?.unlocked === true, `${lang}: skipped words still unlock the next unit`);
 
   const aOnly = run(sys, lang, (band) => band === "A1" || band === "A2");
   ok(aOnly.step.level === "A2" && aOnly.placement.floorTier === 0, `${lang}: an A-level learner reports A2 and skips no words`);
-  ok(aOnly.placement.placeIds.length <= aOnly.answers.length, `${lang}: A2 places at most the words it checked (${aOnly.placement.placeIds.length})`);
+  const aBands = corpusTopBands(aOnly.src);
+  ok(aOnly.placement.placeIds.every((id) => aBands.get(id) !== "B1" && aBands.get(id) !== "B2"), `${lang}: an A2 pass places no B-band words (${aOnly.placement.placeIds.length})`);
 
   const a1 = run(sys, lang, (band) => band === "A1");
   ok(a1.step.level === "A1" && a1.placement.placeIds.length === 0, `${lang}: one passed band places nothing`);

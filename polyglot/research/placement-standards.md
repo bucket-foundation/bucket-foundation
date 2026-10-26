@@ -88,7 +88,7 @@ The B levels lean on task demand to make up for the narrow word range: B1 and B2
 
 - Each band asks up to 8 mixed items: recognition, typed recall, listening, cloze from pool sentences, a grammar form, a short reading item.
 - A band passes on 6 right before 3 wrong, with at least one typed recall right. The test stops at the first failed band, or at a band a language cannot fill with 8 words.
-- Cards are placed only for corpus words that match a word the learner answered right, and only after two bands pass.
+- Cards are placed only after two bands pass. Lang-core words are keyed to top1000 by word per language. A passed band with Wilson confidence of at least 0.5 places every keyed word in that band and the bands below it. Words answered right are placed too. A B2 pass places 122 Spanish, 130 French and 148 German cards, spread over 14 days.
 - Band confidence is the Wilson 95 percent lower bound of the band score. Unchecked words skip the new-word queue only when the two bands above them passed with confidence of at least 0.5, which takes 6 right of 6 or 7 right of 8.
 - Without a top1000 file, or with a root other than English, the pools fall back to `lang-core` tiers 0 to 3, 4 to 6, 7 to 8 and 9 to 10.
 
