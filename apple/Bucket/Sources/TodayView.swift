@@ -67,7 +67,8 @@ struct TodayView: View {
     }
 
     var streak: Double {
-        (library.scienceDecks.map { science.state($0.id).streak } + langs.systems.map { langs.state($0.id).streak }).max() ?? 0
+        let now = Date().timeIntervalSince1970 * 1000
+        return (library.scienceDecks.map { liveStreak(science.state($0.id), now: now) } + langs.systems.map { liveStreak(langs.state($0.id), now: now) }).max() ?? 0
     }
 
     func startNext() {
@@ -194,7 +195,7 @@ struct ReviewDeckRow: View {
         guard let deck = library.prepared[entry.id] else { return nil }
         let r = science.route(deck)
         let due = r.filter { $0.kind == .review }.count
-        return (due, r.count - due, science.state(entry.id).streak)
+        return (due, r.count - due, liveStreak(science.state(entry.id), now: Date().timeIntervalSince1970 * 1000))
     }
 
     var detail: String? {
@@ -215,7 +216,8 @@ func bucketForecast(_ library: Library, _ science: ScienceStore, _ langs: LangSt
             due.append((d, library.prepared[entry.id]?.byId[id]?.title))
         }
     }
-    let streak = max(langStreak(langs), library.scienceDecks.map { Int(science.state($0.id).streak) }.max() ?? 0)
+    let ms = date.timeIntervalSince1970 * 1000
+    let streak = max(langStreak(langs, now: date), library.scienceDecks.map { Int(liveStreak(science.state($0.id), now: ms)) }.max() ?? 0)
     return ReminderPlan.forecast(due: due, at: date, streak: streak)
 }
 
@@ -310,4 +312,23 @@ struct TodaySkeleton: View {
         .accessibilityElement()
         .accessibilityLabel("Loading your reviews")
     }
+}
+
+@MainActor
+func scienceWidgetExtra(_ library: Library, _ science: ScienceStore, now: Date = .now) -> WidgetExtra {
+    var extra = WidgetExtra()
+    let tomorrow = (Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: now)) ?? now).timeIntervalSince1970 * 1000 + 3_600_000
+    for entry in library.scienceDecks {
+        guard let deck = library.prepared[entry.id] else { continue }
+        let state = science.state(entry.id)
+        guard state.cards.count > 0 else { continue }
+        let r = science.route(deck)
+        let due = r.filter { $0.kind == .review }.count
+        extra.dueNow += due
+        extra.newToday += r.count - due
+        extra.newTomorrow += route(state, deck.atoms, now: tomorrow).filter { $0.kind != .review }.count
+        extra.dueLater += state.cards.entries.compactMap { $0.value.due }
+        extra.states.append(state)
+    }
+    return extra
 }

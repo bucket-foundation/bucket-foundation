@@ -49,7 +49,7 @@ struct LangSystemRow: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(system.name).font(.headline).foregroundStyle(Palette.ink).lineLimit(1)
                 if let sum {
-                    Text("\(sum.started) of \(sum.total) cards · \(Int(sum.streak)) day streak").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
+                    Text("\(sum.started) of \(sum.total) cards · \(Int(liveStreak(state, now: now))) day streak").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                 }
             }
             Spacer(minLength: 0)

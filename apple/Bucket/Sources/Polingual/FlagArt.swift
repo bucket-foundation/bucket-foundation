@@ -83,7 +83,7 @@ struct Glaze: ViewModifier {
                     .allowsHitTesting(false)
             }
             .clipShape(.rect(cornerRadius: radius))
-            .shadow(color: D8.ink.opacity(lip > 0 ? 0.3 : 0), radius: 0, x: 0, y: lip)
+            .shadow(color: Color(hex: 0x231F20).opacity(lip > 0 ? 0.3 : 0), radius: 0, x: 0, y: lip)
     }
 }
 

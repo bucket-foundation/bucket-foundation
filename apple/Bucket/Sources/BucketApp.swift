@@ -44,7 +44,7 @@ struct BucketApp: App {
                     backgroundSafe {
                         await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) }
                         await WordOfDayReminder.schedule(langs, enabled: reminders.wordOfDay)
-                        WidgetSync.refresh(langs)
+                        WidgetSync.refresh(langs, extra: scienceWidgetExtra(library, science))
                     }
                 }
                 .onChange(of: reminders.wordOfDay) {

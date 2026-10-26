@@ -199,3 +199,16 @@ import Testing
     }
     #expect(want["flagHits"]?["it"] == 0 && want["flagMisses"]?["it"] == 1)
 }
+
+@Test func aStreakShowsOnlyThroughTheDayAfterTheLastStudy() {
+    let utc = TimeZone(identifier: "UTC")!
+    let day = 86_400_000.0
+    let monday = 1_761_523_200_000.0
+    var st = EngineState()
+    st.streak = 6
+    st.lastStudyDay = dayKey(monday, tz: utc)
+    #expect(liveStreak(st, now: monday + 3_600_000, tz: utc) == 6)
+    #expect(liveStreak(st, now: monday + day + 82_800_000, tz: utc) == 6)
+    #expect(liveStreak(st, now: monday + 2 * day + 60_000, tz: utc) == 0)
+    #expect(liveStreak(EngineState(), now: monday, tz: utc) == 0)
+}
