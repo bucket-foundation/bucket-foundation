@@ -49,7 +49,7 @@ struct StudyView: View {
         let asked = wanted.flatMap { id in
             system.targets.filter { corpus.byId[id]?.form($0) != nil }.flatMap { l in [QueueEntry(itemId: id, lang: l, stage: .intro), QueueEntry(itemId: id, lang: l, stage: .check)] }
         }
-        queue = asked + buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000)
+        queue = asked + buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000, heritage: HeritageMode.on(systemId))
         Beta.shared.studyStarted("lang:\(system.targets.joined(separator: ","))")
         makeExercise()
     }
@@ -67,6 +67,13 @@ struct StudyView: View {
             return
         }
         let entry = queue[i]
+        if entry.stage == .letter {
+            current = letterExerciseFor(entry.lang, system.root, entry.itemId, &rng)
+            currentKey = "\(i)-\(entry.itemId)-\(entry.lang)-letter"
+            cardStart = .now
+            if current == nil { self.i += 1; makeExercise() }
+            return
+        }
         guard let item = corpus.byId[entry.itemId] else {
             current = nil
             return
@@ -75,7 +82,7 @@ struct StudyView: View {
         if entry.stage == .match {
             current = matchExercise(corpus, system, item, &rng)
         } else {
-            let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang))
+            let made = exerciseFor(corpus, system, item, entry.lang, state.cards[cardId(entry.lang, entry.itemId)], &rng, speech: LangListener.shared.supported, afterIntro: entry.stage == .check, level: learnerLevel(state, entry.lang), heritage: HeritageMode.on(systemId))
             let crossed = !Beta.shared.flags.crossLanguageOptions ? made : crossLanguageOptions(made, item, system, &rng)
             current = crossed
         }
@@ -132,7 +139,7 @@ struct StudyView: View {
                 }
                 .buttonStyle(D8Primary())
                 Button("Another round") {
-                    self.queue = buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000)
+                    self.queue = buildQueue(system, corpus, state, now: Date().timeIntervalSince1970 * 1000, heritage: HeritageMode.on(systemId))
                     i = 0
                     graded = 0
                     correct = 0
@@ -181,6 +188,12 @@ struct StudyView: View {
                             makeExercise()
                         }
                         Toggle("Show readings and IPA", systemImage: "character.phonetic", isOn: $readings)
+                        if let system = store.system(systemId), system.targets.contains(where: { LangScript.alphabetUnit($0) != nil }) {
+                            Toggle("Heritage mode: spell what you hear", systemImage: "pencil.and.scribble", isOn: Binding(get: { HeritageMode.on(systemId) }, set: { UserDefaults.standard.set($0, forKey: HeritageMode.key(systemId)) }))
+                            ForEach(system.targets.filter { LangScript.alphabetUnit($0) != nil }, id: \.self) { l in
+                                Button(LangScript.alphabetUnit(l)?.title ?? l, systemImage: "character.book.closed") { path.append(LangRoute.alphabet(systemId, l)) }
+                            }
+                        }
                     } label: {
                         Image(systemName: "ellipsis")
                     }
@@ -208,6 +221,9 @@ struct StudyView: View {
     }()
 
     func forced(_ kind: ExerciseKind, _ system: LangSystem, _ corpus: LangCorpus) -> Exercise? {
+        if kind == .letter, let l = system.targets.first(where: { LangScript.alphabetUnit($0) != nil }) {
+            return letterExercise(l, system.root, rng.index(LangScript.alphabetUnit(l)!.letters.count), &rng)
+        }
         for _ in 0..<4000 {
             let item = corpus.items[rng.index(corpus.items.count)]
             let lang = system.targets[rng.index(system.targets.count)]
@@ -221,7 +237,7 @@ struct StudyView: View {
             var card = Card(state: rng.next() < 0.3 ? "relearning" : "review")
             card.reps = Double(rng.index(6))
             card.lapses = Double(rng.index(2))
-            let made = exerciseFor(corpus, system, item, lang, kind == .intro ? nil : card, &rng, speech: true, afterIntro: false, level: 3)
+            let made = exerciseFor(corpus, system, item, lang, kind == .intro ? nil : card, &rng, speech: true, afterIntro: false, level: 3, heritage: kind == .spellHeard)
             if made.kind == kind { return crossLanguageOptions(made, item, system, &rng) }
         }
         return nil

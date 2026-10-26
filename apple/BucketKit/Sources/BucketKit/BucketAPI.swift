@@ -108,8 +108,10 @@ public struct BucketAPI: Sendable {
         return try decodeBody(data)
     }
 
-    public func signInWithApple(idToken: String, nonce: String) async throws -> Session {
-        let data = try await session(["action": "apple", "id_token": idToken, "nonce": nonce, "app": Self.appName])
+    public func signInWithApple(idToken: String, nonce: String, authorizationCode: String? = nil) async throws -> Session {
+        var body = ["action": "apple", "id_token": idToken, "nonce": nonce, "app": Self.appName]
+        if let authorizationCode { body["authorization_code"] = authorizationCode }
+        let data = try await session(body)
         return try decodeBody(data)
     }
 

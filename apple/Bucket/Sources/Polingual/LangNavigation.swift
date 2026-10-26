@@ -91,6 +91,7 @@ extension View {
             case .system(let id): SystemView(path: path, systemId: id)
             case .study(let id): StudyView(path: path, systemId: id)
             case .place(let id, let lang): PlacementView(path: path, systemId: id, requested: lang)
+            case .alphabet(let id, let lang): AlphabetStudy(systemId: id, lang: lang)
             }
         }
     }

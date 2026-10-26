@@ -1,0 +1,10 @@
+[
+ {"name": "all right on named flags", "hits": {}, "misses": {}, "assign": {"fr": "fr", "es": "es", "it": "it"}},
+ {"name": "swap on named flags", "hits": {}, "misses": {}, "assign": {"fr": "es", "es": "fr", "it": "it"}},
+ {"name": "miss on a nameless flag", "hits": {"it": 3}, "misses": {}, "assign": {"fr": "it", "it": "fr", "es": "es"}},
+ {"name": "unplaced word", "hits": {"it": 3}, "misses": {}, "assign": {"es": "es", "it": "it"}},
+ {"name": "all nameless, rotated", "hits": {"fr": 3, "es": 4, "it": 3}, "misses": {"fr": 2}, "assign": {"fr": "it", "es": "fr", "it": "es"}},
+ {"name": "third hit hides the name next card", "hits": {"fr": 2}, "misses": {}, "assign": {"fr": "fr", "es": "es", "it": "it"}},
+ {"name": "two words on one nameless flag", "hits": {"es": 3}, "misses": {"es": 1}, "assign": {"fr": "es", "it": "es", "es": "fr"}},
+ {"name": "hit then miss on the same flag in one card", "hits": {"fr": 3}, "misses": {}, "assign": {"fr": "fr", "es": "fr", "it": "it"}}
+]
