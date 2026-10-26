@@ -47,6 +47,15 @@ struct PolingualRoot: View {
     }
 }
 
+enum LaunchRouting {
+    enum Step: Equatable { case study, place(String), none }
+
+    static func step(requestTaken: Bool, firstSystem: String) -> Step {
+        if requestTaken { return .study }
+        return firstSystem.isEmpty ? .none : .place(firstSystem)
+    }
+}
+
 struct Studio: View {
     @Environment(Subscriptions.self) private var subs
     @Environment(LangStore.self) private var store
@@ -98,7 +107,15 @@ struct Studio: View {
     }
 
     func openFromLaunch() async {
-        if StudyRequest.pending, await openRequested() { return }
+        let step = LaunchRouting.step(requestTaken: StudyRequest.pending && StudyRequest.take(), firstSystem: firstSystem)
+        if step == .study {
+            await store.load()
+            if let first = store.systems.first {
+                path = NavigationPath()
+                path.append(LangRoute.study(first.id))
+                return
+            }
+        }
         if !firstSystem.isEmpty {
             await store.load()
             if store.system(firstSystem) != nil { path.append(LangRoute.place(firstSystem, nil)) }
