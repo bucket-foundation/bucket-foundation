@@ -10,7 +10,7 @@ export interface AuditEntry {
   targetUserId: string;
   targetEmail: string | null;
   reason: string;
-  outcome: "ok" | "failed";
+  outcome: "requested" | "ok" | "failed";
   detail: string | null;
 }
 
@@ -22,6 +22,7 @@ export interface AuditRow extends AuditEntry {
 export interface ActionDeps {
   lookup: (userId: string) => Promise<{ email: string | null } | null>;
   setDisabled: (userId: string, disabled: boolean) => Promise<void>;
+  revokeApple: (userId: string) => Promise<{ failed: boolean }>;
   deleteUser: (userId: string) => Promise<void>;
   audit: (entry: AuditEntry) => Promise<void>;
 }
@@ -51,24 +52,24 @@ export async function runUserAction(deps: ActionDeps, actor: Staff, input: Actio
     const want = [input.targetUserId.toLowerCase(), (target.email ?? "").toLowerCase()].filter(Boolean);
     if (!want.includes(typed)) return { ok: false, error: "confirm_mismatch" };
   }
+  const entry = { actorId: actor.id, actorEmail: actor.email, action: input.action, targetUserId: input.targetUserId, targetEmail: target.email, reason };
+  try {
+    await deps.audit({ ...entry, outcome: "requested", detail: null });
+  } catch (err) {
+    console.error("[admin] intent audit failed, action not run", input.action, input.targetUserId, err instanceof Error ? err.message : err);
+    return { ok: false, error: "audit_failed" };
+  }
   let failure: string | null = null;
   try {
-    if (input.action === "delete") await deps.deleteUser(input.targetUserId);
-    else await deps.setDisabled(input.targetUserId, input.action === "disable");
+    if (input.action === "delete") {
+      if ((await deps.revokeApple(input.targetUserId)).failed) throw new Error("apple_revoke_failed");
+      await deps.deleteUser(input.targetUserId);
+    } else await deps.setDisabled(input.targetUserId, input.action === "disable");
   } catch (err) {
     failure = (err instanceof Error ? err.message : String(err)).slice(0, 500);
   }
   try {
-    await deps.audit({
-      actorId: actor.id,
-      actorEmail: actor.email,
-      action: input.action,
-      targetUserId: input.targetUserId,
-      targetEmail: target.email,
-      reason,
-      outcome: failure ? "failed" : "ok",
-      detail: failure,
-    });
+    await deps.audit({ ...entry, outcome: failure ? "failed" : "ok", detail: failure });
   } catch (err) {
     console.error("[admin] audit write failed after", input.action, input.targetUserId, err instanceof Error ? err.message : err);
     return { ok: false, error: "audit_failed" };

@@ -6,7 +6,7 @@ create table if not exists bucket.admin_audit_log (
   target_user_id uuid        not null,
   target_email   text,
   reason         text        not null check (length(reason) between 3 and 500),
-  outcome        text        not null check (outcome in ('ok', 'failed')),
+  outcome        text        not null check (outcome in ('requested', 'ok', 'failed')),
   detail         text        check (detail is null or length(detail) <= 500),
   created_at     timestamptz not null default now()
 );

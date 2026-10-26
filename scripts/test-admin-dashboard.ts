@@ -5,7 +5,8 @@ import path from "node:path";
 import { runUserAction, type ActionDeps, type AuditEntry } from "../src/lib/admin/actions";
 import { buildFixtureWorld } from "../src/lib/admin/fixtures";
 import { FIXTURE_STAFF, fixturesEnabled, resolveStaff } from "../src/lib/admin/gate";
-import { monthlyFactor, summarizeRevenue, type RevenueEventRow } from "../src/lib/admin/revenue";
+import { monthlyFactor, summarizeRevenue, toRevenueRow, UNKNOWN_CURRENCY, type RevenueEventRow } from "../src/lib/admin/revenue";
+import { pick, TRANSACTION_FIELDS } from "../src/lib/app-store/notifications";
 import { eventFunnel, userTimeline } from "../src/lib/admin/tracking";
 import { levelFor, matchesQuery, parseUserQuery, planFor, streakFor, toProfile, type OverviewRow } from "../src/lib/admin/users";
 import { buildActivity } from "../src/lib/growth/activity";
@@ -209,8 +210,9 @@ function actionWorld(over: Partial<ActionDeps> = {}) {
   const deps: ActionDeps = {
     lookup: async (id) => (id === "target" ? { email: "t@example.test" } : null),
     setDisabled: async (id, d) => void log.push(`${d ? "disable" : "enable"} ${id}`),
+    revokeApple: async (id) => (log.push(`apple ${id}`), { failed: false }),
     deleteUser: async (id) => void log.push(`delete ${id}`),
-    audit: async (e) => void audits.push(e),
+    audit: async (e) => void (log.push(`audit ${e.outcome}`), audits.push(e)),
     ...over,
   };
   return { deps, log, audits };
@@ -218,22 +220,49 @@ function actionWorld(over: Partial<ActionDeps> = {}) {
 
 const ACTOR = { id: "staff", email: "boss@bucket.test" };
 
-test("disable runs and writes one audit row with actor and reason", async () => {
+test("disable writes an intent row, runs, then writes the outcome", async () => {
   const w = actionWorld();
   assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "disable", targetUserId: "target", reason: " spam " }), { ok: true });
-  assert.deepEqual(w.log, ["disable target"]);
+  assert.deepEqual(w.log, ["audit requested", "disable target", "audit ok"]);
+  const base = { actorId: "staff", actorEmail: "boss@bucket.test", action: "disable", targetUserId: "target", targetEmail: "t@example.test", reason: "spam" };
   assert.deepEqual(w.audits, [
-    { actorId: "staff", actorEmail: "boss@bucket.test", action: "disable", targetUserId: "target", targetEmail: "t@example.test", reason: "spam", outcome: "ok", detail: null },
+    { ...base, outcome: "requested", detail: null },
+    { ...base, outcome: "ok", detail: null },
   ]);
 });
 
-test("delete needs the typed email or id and is audited", async () => {
+test("delete needs the typed email or id, revokes Apple first and is audited", async () => {
   const w = actionWorld();
   assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "delete", targetUserId: "target", reason: "GDPR request 42", confirm: "nope" }), { ok: false, error: "confirm_mismatch" });
-  assert.equal(w.log.length + w.audits.length, 0);
+  assert.equal(w.log.length, 0);
   assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "delete", targetUserId: "target", reason: "GDPR request 42", confirm: "T@example.test" }), { ok: true });
-  assert.deepEqual(w.log, ["delete target"]);
-  assert.equal(w.audits[0].action, "delete");
+  assert.deepEqual(w.log, ["audit requested", "apple target", "delete target", "audit ok"]);
+});
+
+test("a failed Apple revoke deletes nothing and is audited as failed", async () => {
+  const w = actionWorld({ revokeApple: async () => ({ failed: true }) });
+  assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "delete", targetUserId: "target", reason: "request 7", confirm: "target" }), { ok: false, error: "action_failed" });
+  assert.equal(w.log.some((l) => l.startsWith("delete")), false);
+  assert.equal(w.audits[1].detail, "apple_revoke_failed");
+});
+
+test("a delete that fails midway keeps the account and completes on retry", async () => {
+  let rowsFail = true;
+  let authGone = false;
+  const w = actionWorld({
+    lookup: async () => (authGone ? null : { email: "t@example.test" }),
+    deleteUser: async () => {
+      if (rowsFail) throw new Error("academy_progress delete failed");
+      authGone = true;
+    },
+  });
+  const input = { action: "delete", targetUserId: "target", reason: "request 9", confirm: "target" };
+  assert.deepEqual(await runUserAction(w.deps, ACTOR, input), { ok: false, error: "action_failed" });
+  assert.equal(authGone, false);
+  rowsFail = false;
+  assert.deepEqual(await runUserAction(w.deps, ACTOR, input), { ok: true });
+  assert.equal(authGone, true);
+  assert.deepEqual(w.audits.map((a) => a.outcome), ["requested", "failed", "requested", "ok"]);
 });
 
 test("refusals write nothing", async () => {
@@ -242,19 +271,82 @@ test("refusals write nothing", async () => {
   assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "disable", targetUserId: "target", reason: " a " }), { ok: false, error: "reason_required" });
   assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "disable", targetUserId: "staff", reason: "self test" }), { ok: false, error: "self_action" });
   assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "disable", targetUserId: "ghost", reason: "missing" }), { ok: false, error: "not_found" });
-  assert.equal(w.log.length + w.audits.length, 0);
+  assert.equal(w.log.length, 0);
+});
+
+test("a lost intent row stops the action before it runs", async () => {
+  const w = actionWorld({ audit: async () => { throw new Error("db down"); } });
+  assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "delete", targetUserId: "target", reason: "request 3", confirm: "target" }), { ok: false, error: "audit_failed" });
+  assert.equal(w.log.length, 0);
 });
 
 test("a failed action is audited as failed", async () => {
   const w = actionWorld({ setDisabled: async () => { throw new Error("auth down"); } });
   assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "disable", targetUserId: "target", reason: "spam" }), { ok: false, error: "action_failed" });
-  assert.equal(w.audits[0].outcome, "failed");
-  assert.equal(w.audits[0].detail, "auth down");
+  assert.equal(w.audits[1].outcome, "failed");
+  assert.equal(w.audits[1].detail, "auth down");
 });
 
-test("a lost audit write is reported", async () => {
-  const w = actionWorld({ audit: async () => { throw new Error("db down"); } });
+test("a lost outcome row is reported", async () => {
+  let n = 0;
+  const w = actionWorld({ audit: async () => { if (n++ > 0) throw new Error("db down"); } });
   assert.deepEqual(await runUserAction(w.deps, ACTOR, { action: "enable", targetUserId: "target", reason: "appeal granted" }), { ok: false, error: "audit_failed" });
+});
+
+const APPLE_TX = {
+  transactionId: "2000000812345678",
+  originalTransactionId: "2000000800000001",
+  webOrderLineItemId: "2000000055555555",
+  bundleId: "com.polingual.app",
+  productId: "polingual.yearly",
+  subscriptionGroupIdentifier: "21456789",
+  purchaseDate: 1793491200000,
+  originalPurchaseDate: 1793491200000,
+  expiresDate: 1825027200000,
+  quantity: 1,
+  type: "Auto-Renewable Subscription",
+  inAppOwnershipType: "PURCHASED",
+  signedDate: 1793491201000,
+  environment: "Production",
+  transactionReason: "PURCHASE",
+  storefront: "DEU",
+  storefrontId: "143443",
+  price: 59990,
+  currency: "EUR",
+  appTransactionId: "704289572311837000",
+};
+
+test("MRR reads price and currency through the stored allowlist of a real Apple transaction", () => {
+  const stored = pick(APPLE_TX, TRANSACTION_FIELDS);
+  assert.equal(stored.currency, "EUR");
+  const row = toRevenueRow({
+    kind: "subscribe",
+    product_id: APPLE_TX.productId,
+    bundle_id: APPLE_TX.bundleId,
+    environment: APPLE_TX.environment,
+    original_transaction_id: APPLE_TX.originalTransactionId,
+    signed_at: new Date(APPLE_TX.signedDate).toISOString(),
+    expires_at: new Date(APPLE_TX.expiresDate).toISOString(),
+    transaction_info: stored,
+    renewal_info: {},
+  });
+  assert.deepEqual(summarizeRevenue([row], 90, NOW).apps[0].mrr, { EUR: 5 });
+});
+
+test("rows stored before currency was kept count under unknown currency", () => {
+  const legacy = pick({ ...APPLE_TX, currency: undefined }, TRANSACTION_FIELDS);
+  const row = toRevenueRow({ kind: "renew", product_id: "polingual.monthly", bundle_id: "com.polingual.app", environment: "Production", original_transaction_id: "x", signed_at: "2026-10-20T00:00:00Z", expires_at: "2026-11-20T00:00:00Z", transaction_info: { ...legacy, price: 7990 }, renewal_info: {} });
+  assert.deepEqual(summarizeRevenue([row], 90, NOW).apps[0].mrr, { [UNKNOWN_CURRENCY]: 7.99 });
+});
+
+test("a reversed refund puts the subscription back in MRR", () => {
+  const s = summarizeRevenue(
+    [rev({ kind: "subscribe", originalTransactionId: "r" }), rev({ kind: "refund", originalTransactionId: "r", signedAt: "2026-10-05T00:00:00.000Z" }), rev({ kind: "refund_reversed", originalTransactionId: "r", signedAt: "2026-10-09T00:00:00.000Z" })],
+    90,
+    NOW,
+  );
+  assert.equal(s.apps[0].activeSubscriptions, 1);
+  assert.equal(s.apps[0].refunds, 1);
 });
 
 test("fixtures render every section without production data", () => {

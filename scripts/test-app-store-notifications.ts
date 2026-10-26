@@ -191,8 +191,9 @@ test("stored transaction and renewal info keep only the allowlist", () => {
     notification("DID_RENEW", null, { storefront: "USA", storefrontId: "143441", currency: "USD", deviceVerification: "x", inAppOwnershipType: "PURCHASED", price: 4990, type: "Auto-Renewable Subscription", webOrderLineItemId: "3000", purchaseDate: 1, nested: { a: 1 } }),
     OPTS,
   );
-  assert.deepEqual(Object.keys(e.transactionInfo).sort(), ["expiresDate", "originalTransactionId", "price", "productId", "purchaseDate", "signedDate", "transactionId", "type", "webOrderLineItemId"]);
+  assert.deepEqual(Object.keys(e.transactionInfo).sort(), ["currency", "expiresDate", "originalTransactionId", "price", "productId", "purchaseDate", "signedDate", "transactionId", "type", "webOrderLineItemId"]);
   assert.equal(e.transactionInfo.price, 4990);
+  assert.equal(e.transactionInfo.currency, "USD");
   assert.deepEqual(Object.keys(e.renewalInfo).sort(), ["originalTransactionId", "productId", "signedDate"]);
-  for (const info of [e.transactionInfo, e.renewalInfo]) for (const banned of ["storefront", "storefrontId", "currency", "appAccountToken", "bundleId", "environment", "nested"]) assert.equal(banned in info, false, banned);
+  for (const info of [e.transactionInfo, e.renewalInfo]) for (const banned of ["storefront", "storefrontId", "appAccountToken", "bundleId", "environment", "nested"]) assert.equal(banned in info, false, banned);
 });

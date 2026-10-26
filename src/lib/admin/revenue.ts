@@ -31,7 +31,8 @@ export interface RevenueSummary {
   sandboxSkipped: number;
 }
 
-const PAID_KINDS = new Set<StoreEventKind>(["subscribe", "renew", "uncancel"]);
+const PAID_KINDS = new Set<StoreEventKind>(["subscribe", "renew", "uncancel", "refund_reversed"]);
+export const UNKNOWN_CURRENCY = "unknown currency";
 const ENDING_KINDS = new Set<StoreEventKind>(["expire", "refund", "revoke"]);
 
 export function monthlyFactor(productId: string | null): number {
@@ -87,9 +88,10 @@ export function summarizeRevenue(rows: RevenueEventRow[], windowDays: number, no
       active++;
       const product = lastPaid.productId ?? "unknown";
       mix.set(product, (mix.get(product) ?? 0) + 1);
-      if (lastPaid.priceMilli !== null && lastPaid.currency) {
+      if (lastPaid.priceMilli !== null) {
+        const cur = lastPaid.currency ?? UNKNOWN_CURRENCY;
         const monthly = (lastPaid.priceMilli / 1000) * monthlyFactor(lastPaid.productId);
-        mrr[lastPaid.currency] = Math.round(((mrr[lastPaid.currency] ?? 0) + monthly) * 100) / 100;
+        mrr[cur] = Math.round(((mrr[cur] ?? 0) + monthly) * 100) / 100;
       }
     }
     apps.push({
@@ -106,4 +108,33 @@ export function summarizeRevenue(rows: RevenueEventRow[], windowDays: number, no
     });
   }
   return { windowDays, apps, sandboxSkipped };
+}
+
+export interface StoredRevenueRow {
+  kind: StoreEventKind;
+  product_id: string | null;
+  bundle_id: string | null;
+  environment: string | null;
+  original_transaction_id: string | null;
+  signed_at: string;
+  expires_at: string | null;
+  transaction_info: Record<string, unknown>;
+  renewal_info: Record<string, unknown>;
+}
+
+export function toRevenueRow(r: StoredRevenueRow): RevenueEventRow {
+  const tx = r.transaction_info ?? {};
+  const renewal = r.renewal_info ?? {};
+  const currency = typeof tx.currency === "string" ? tx.currency : typeof renewal.currency === "string" ? renewal.currency : null;
+  return {
+    kind: r.kind,
+    productId: r.product_id,
+    bundleId: r.bundle_id,
+    environment: r.environment,
+    originalTransactionId: r.original_transaction_id,
+    signedAt: r.signed_at,
+    expiresAt: r.expires_at,
+    priceMilli: typeof tx.price === "number" ? tx.price : null,
+    currency,
+  };
 }

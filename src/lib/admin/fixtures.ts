@@ -157,6 +157,7 @@ export function fixtureSource(): AdminSource {
         const o = w.overview.find((x) => x.user_id === id);
         if (o) o.banned_until = disabled ? new Date(Date.now() + 365 * DAY).toISOString() : null;
       },
+      revokeApple: async () => ({ failed: false }),
       deleteUser: async (id) => {
         w.overview = w.overview.filter((x) => x.user_id !== id);
       },
