@@ -72,4 +72,36 @@ struct EntitlementTests {
         #expect(PaywallCopy.disclosure(trial: true, price: "$59.99", period: "year").hasPrefix("3 days free, then $59.99 a year."))
         #expect(PaywallCopy.disclosure(trial: false, price: "$9.99", period: "month").contains("24 hours"))
     }
+
+    @Test func lifetimeNeverExpiresAndFamilyIsASubscription() {
+        #expect(Entitlement.access([record(Plan.lifetime, expiresIn: nil)], now: now) == .subscribed(productID: Plan.lifetime, until: nil))
+        #expect(Entitlement.access([record(Plan.family)], now: now).open)
+        #expect(Entitlement.trialEligible(history: [record(Plan.lifetime, expiresIn: nil)]))
+    }
+
+    @Test func extraPlansShowOnlyBehindTheFlag() {
+        #expect(Plan.shown(extra: false) == [Plan.yearly, Plan.monthly])
+        #expect(Plan.shown(extra: true) == [Plan.yearly, Plan.family, Plan.monthly, Plan.lifetime])
+        #expect(!Plan.hasTrial(Plan.lifetime) && !Plan.hasTrial(Plan.family) && Plan.hasTrial(Plan.yearly))
+    }
+
+    @Test func lifetimeAndFamilyDisclosures() {
+        let once = PaywallCopy.disclosure(trial: false, price: "$149.99", period: "once")
+        #expect(once.hasPrefix("$149.99 once.") && once.contains("no renewal") && !once.contains("24 hours"))
+        let family = PaywallCopy.disclosure(trial: false, price: "$89.99", period: "year", family: true)
+        #expect(family.contains("24 hours") && family.contains("Family Sharing"))
+    }
+
+    @Test func trialReminderOnlyForAnIntroOfferOnYearlyOrMonthly() {
+        #expect(TrialReminder.action(productID: Plan.yearly, introductory: true) == .schedule)
+        #expect(TrialReminder.action(productID: Plan.monthly, introductory: true) == .schedule)
+        #expect(TrialReminder.action(productID: Plan.yearly, introductory: false) == .cancel)
+    }
+
+    @Test func lifetimeAndFamilyCancelAnyPendingTrialReminder() {
+        #expect(TrialReminder.action(productID: Plan.lifetime, introductory: false) == .cancel)
+        #expect(TrialReminder.action(productID: Plan.family, introductory: false) == .cancel)
+        #expect(TrialReminder.action(productID: Plan.lifetime, introductory: true) == .cancel)
+        #expect(TrialReminder.action(productID: Plan.family, introductory: true) == .cancel)
+    }
 }

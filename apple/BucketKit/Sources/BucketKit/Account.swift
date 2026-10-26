@@ -44,9 +44,9 @@ public final class Account {
         }
     }
 
-    public func signInWithApple(idToken: String, nonce: String) async {
+    public func signInWithApple(idToken: String, nonce: String, authorizationCode: String? = nil) async {
         await run {
-            let s = try await self.api.signInWithApple(idToken: idToken, nonce: nonce)
+            let s = try await self.api.signInWithApple(idToken: idToken, nonce: nonce, authorizationCode: authorizationCode)
             try self.store.save(s)
             self.session = s
             self.ending = nil
