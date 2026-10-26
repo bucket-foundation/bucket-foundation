@@ -41,3 +41,10 @@
 .preset:focus-visible,.pick:focus-visible{outline:3px solid var(--lapis);outline-offset:2px}
 .bands{margin:0 0 16px;padding-left:20px;font-size:15px;color:var(--ink-2)}
 .exercise{margin:12px 0}
+.session{display:flex;flex-direction:column;gap:10px;width:100%;max-width:720px;margin:0 auto;height:calc(100dvh - 56px - 32px);min-height:0}
+.sessionTop{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.progress{height:8px;border-radius:999px;background:var(--parchment-2);overflow:hidden;flex:none}
+.progress>div{height:100%;background:var(--ochre);border-radius:999px;transition:width .2s}
+.sessionBody{flex:1;min-height:0;overflow-y:auto;background:#fff8ea;border:1px solid var(--hair);border-radius:20px;padding:20px}
+.sessionFoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex:none}
+.toggle{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
