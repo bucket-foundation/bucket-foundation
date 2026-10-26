@@ -88,7 +88,7 @@ struct ReviewView: View {
         } else {
             VStack(spacing: 6) {
                 Image(systemName: "checkmark.circle.fill").font(.largeTitle).foregroundStyle(.green)
-                Text(model.done > 0 ? "\(model.done) reviewed" : "Nothing due").font(.headline)
+                Text(model.done > 0 ? String(localized: "\(model.done) reviewed") : String(localized: "Nothing due")).font(.headline)
                 Text("Open Polingual on your iPhone for new words.").font(.caption2).multilineTextAlignment(.center).foregroundStyle(.secondary)
             }
         }

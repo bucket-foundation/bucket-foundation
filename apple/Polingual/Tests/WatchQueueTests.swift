@@ -33,4 +33,16 @@ struct WatchQueueTests {
         #expect(later.cards.map(\.id) == ["b", "d"])
         #expect(later.graded.isEmpty)
     }
+
+    @Test func deckTakesTheOldestDueCardsFirst() {
+        func due(_ id: String, _ at: Double?) -> WatchCard {
+            var c = card(id)
+            c.due = at
+            return c
+        }
+        let cards = [due("late", 90), due("future", 500), due("early", 10), due("mid", 50), due("none", nil), due("tie-b", 50)]
+        #expect(WatchQueue.oldestDue(cards, now: 100, limit: 20).map(\.id) == ["early", "mid", "tie-b", "late"])
+        #expect(WatchQueue.oldestDue(cards, now: 100, limit: 2).map(\.id) == ["early", "mid"])
+        #expect(WatchQueue.oldestDue([], now: 100, limit: 20).isEmpty)
+    }
 }
