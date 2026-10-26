@@ -185,6 +185,7 @@ struct StudySession: View {
     @State private var position = 0
     @State private var showLesson = false
     @State private var graded = 0
+    @State private var cardStart = Date()
 
     var body: some View {
         NavigationStack {
@@ -210,7 +211,13 @@ struct StudySession: View {
                 ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
             }
         }
-        .onAppear { if queue == nil { queue = store.route(deck) } }
+        .onAppear {
+            if queue == nil {
+                queue = store.route(deck)
+                cardStart = .now
+                Beta.shared.studyStarted("science:\(deck.branch)")
+            }
+        }
         .onDisappear { Task { await store.flush() } }
     }
 
@@ -236,6 +243,8 @@ struct StudySession: View {
                 }
                 ScienceDrill(atom: atom, level: pickLevel(store.state(deck.branch), atom), onRate: { rating, level in
                     store.grade(deck, id: item.id, rating: rating, level: level)
+                    Beta.shared.answered("science:\(deck.branch)", correct: rating > 1, ms: Int(Date.now.timeIntervalSince(cardStart) * 1000), kind: item.kind == .new ? "new" : "review")
+                    cardStart = .now
                     reminders.noteStudy()
                     graded += 1
                     advance()
@@ -278,6 +287,7 @@ struct StudySession: View {
                 DeckStats(summary: s)
                 if let nextLine { Text(nextLine).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink) }
                 ReminderPrompt()
+                FeedbackLink()
                 SyncLine(state: store.saveState)
                 Button {
                     dismiss()
@@ -289,6 +299,8 @@ struct StudySession: View {
             }
             .padding(20)
         }
+        .modifier(AskForReview(streak: Int(store.state(deck.branch).streak), graded: graded, correct: graded))
+        .onAppear { Beta.shared.studyEnded("science:\(deck.branch)", graded: graded, correct: graded) }
     }
 }
 

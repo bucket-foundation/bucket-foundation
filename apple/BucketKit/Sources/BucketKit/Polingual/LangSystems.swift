@@ -103,6 +103,35 @@ public enum Lang {
 
     static func article(_ lang: String, _ gender: String) -> String? { articles[lang]?.first { $0.0 == gender }?.1 }
 
+    static let frenchAspiratedH = ["haricot", "héros", "hibou", "homard", "honte", "huit", "hache", "haine", "hall", "hasard", "haut", "hockey", "hamac", "hamburger", "handicap", "hangar", "hanche", "hareng", "harpe", "hérisson", "hêtre", "hutte", "hublot", "huppe", "hameau", "halle"]
+
+    public static func contextualArticle(_ lang: String, _ gender: String, _ noun: String) -> String? {
+        let w = noun.lowercased()
+        guard let first = w.first else { return nil }
+        switch lang {
+        case "it":
+            if "aeiouàèéìòù".contains(first) { return "l'" }
+            guard gender == "m" else { return nil }
+            let rest = w.dropFirst()
+            let sCluster = first == "s" && rest.first.map { !"aeiouàèéìòù".contains($0) } == true
+            if sCluster || "zxy".contains(first) || ["gn", "ps", "pn"].contains(where: { w.hasPrefix($0) }) { return "lo" }
+            return nil
+        case "fr":
+            guard "aeiouhàâéèêîôûœ".contains(first) else { return nil }
+            return frenchAspiratedH.contains(where: { w.hasPrefix($0) }) ? nil : "l'"
+        case "es":
+            let stressedA = ["agua", "águila", "alma", "arma", "hambre", "hacha", "aula", "área", "ala", "ave", "ancla", "hada", "haba", "habla", "alba", "asma", "aya"]
+            return gender == "f" && stressedA.contains(w) ? "el" : nil
+        default:
+            return nil
+        }
+    }
+
+    public static func articleWord(_ lang: String, _ gender: String, _ noun: String) -> String? {
+        guard let base = article(lang, gender) else { return nil }
+        return contextualArticle(lang, gender, noun) ?? base
+    }
+
     static let phraseTier: [String: Double] = ["greeting": 1, "courtesy": 1, "intro": 3, "basics": 4, "smalltalk": 5, "survival": 6, "dining": 7, "shopping": 7, "direction": 8, "time": 8]
 }
 
@@ -777,7 +806,7 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
     let note = relevantNote(item.note, system)
     let reps = Int(card?.reps ?? 0)
     let latin = Lang.info[lang]?.latin ?? true
-    let family = sharedRootLangs(item, system).filter { $0 != lang }.map { LangWord(lang: $0, word: item.forms[$0] ?? "") }
+    let family = sharedRootLangs(item, system).filter { $0 != lang }.map { LangWord(lang: $0, word: item.forms[$0] ?? "", reading: item.readings[$0]) }
     let ff = item.falseFriends[lang]
 
     if item.kind == .gender { return genderExercise(item, lang, root, &rng) }
@@ -888,21 +917,23 @@ public func exerciseFor(_ corpus: LangCorpus, _ system: LangSystem, _ item: Lang
 func genderExercise(_ item: LangItem, _ lang: String, _ root: String, _ rng: inout Rng) -> Exercise {
     let full = item.forms[lang] ?? ""
     var noun = full
-    for a in ["el", "la", "le", "il", "o", "a", "der", "die", "das", "de", "het"] where noun.hasPrefix("\(a) ") {
+    for a in ["el", "la", "le", "il", "lo", "o", "a", "der", "die", "das", "de", "het"] where noun.hasPrefix("\(a) ") {
         noun = String(noun.dropFirst(a.count + 1))
         break
     }
     if noun.hasPrefix("l'") { noun = String(noun.dropFirst(2)) }
     let g = item.gender[lang] ?? ""
     let table = Lang.articles[lang] ?? []
-    let answer = Lang.article(lang, g) ?? ""
-    let options = shuffle(unique(table.map(\.1)), &rng)
+    let answer = Lang.articleWord(lang, g, noun) ?? Lang.article(lang, g) ?? ""
+    let extra = lang == "it" ? ["lo", "l'"] : lang == "fr" ? ["l'"] : []
+    let options = shuffle(unique(table.map(\.1) + extra), &rng)
     let elided = full.hasPrefix("l'")
     var ex = Exercise(kind: .gender, itemId: item.id, lang: lang, root: root, prompt: noun, promptLang: lang, answer: answer, answerLang: lang,
                       note: elided ? "Before a vowel the article shortens to l': \(full)." : full)
     ex.options = options
-    ex.cloze = ("", " \(noun)")
-    ex.promptReading = Reading(roman: item.forms[root])
+    ex.cloze = ("", answer == "l'" ? noun : " \(noun)")
+    let rootForm = item.forms[root]
+    ex.promptReading = Reading(roman: root == "en" && rootForm.map { !$0.lowercased().hasPrefix("the ") } == true ? "the \(rootForm!)" : rootForm)
     return ex
 }
 
@@ -945,7 +976,7 @@ public func matchExercise(_ corpus: LangCorpus, _ system: LangSystem, _ item: La
     guard langs.count >= 2, let rootWord = item.form(system.root) else { return nil }
     var ex = Exercise(kind: .match, itemId: item.id, lang: langs[0], root: system.root, prompt: rootWord, promptLang: system.root, answer: "", answerLang: langs[0], note: nil)
     ex.pairs = shuffle(langs.map { LangWord(lang: $0, word: item.forms[$0]!, reading: item.readings[$0]) }, &rng)
-    ex.family = sharedRootLangs(item, system).map { LangWord(lang: $0, word: item.forms[$0] ?? "") }
+    ex.family = sharedRootLangs(item, system).map { LangWord(lang: $0, word: item.forms[$0] ?? "", reading: item.readings[$0]) }
     ex.note = relevantNote(item.note, system)
     return ex
 }

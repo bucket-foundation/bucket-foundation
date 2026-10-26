@@ -228,3 +228,30 @@ final class Counter: @unchecked Sendable {
         #expect(calls.value == 1)
     }
 }
+
+final class FlakyRoutes: @unchecked Sendable {
+    var up = true
+}
+
+@Test func deckIndexFallsBackToTheLastSavedCopyWhenOffline() async throws {
+    let url = try #require(Bundle.module.url(forResource: "index", withExtension: "json", subdirectory: "Fixtures"))
+    let data = try Data(contentsOf: url)
+    let net = FlakyRoutes()
+    let dir = FileManager.default.temporaryDirectory.appending(path: "api-\(UUID().uuidString)")
+    let api = BucketAPI(transport: StubTransport { _ in net.up ? (200, data) : (503, Data()) }, cacheDir: dir)
+    let online = try await api.deckIndex()
+    net.up = false
+    let offline = try await api.deckIndex()
+    #expect(offline.decks.count == online.decks.count)
+    #expect(!offline.decks.isEmpty)
+    let empty = BucketAPI(transport: StubTransport { _ in (503, Data()) }, cacheDir: FileManager.default.temporaryDirectory.appending(path: "api-\(UUID().uuidString)"))
+    await #expect(throws: (any Error).self) { try await empty.deckIndex() }
+}
+
+@Test func offlineDirectoriesAreExcludedFromBackup() throws {
+    let url = try #require(BucketAPI.offlineDirectory("test-\(UUID().uuidString)"))
+    defer { try? FileManager.default.removeItem(at: url) }
+    #expect(url.path.contains("Application Support"))
+    let values = try url.resourceValues(forKeys: [.isExcludedFromBackupKey])
+    #expect(values.isExcludedFromBackup == true)
+}

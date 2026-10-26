@@ -54,17 +54,23 @@ public final class LangStore {
     let api: BucketAPI
     let disk: LangDisk
     let cache: LangDisk
+    let seed: @Sendable (String) -> Data?
     let token: @MainActor () async -> String?
     let now: @MainActor () -> Double
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
     @ObservationIgnored private var pending: [String: String] = [:]
 
-    public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
+    public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
         self.disk = disk
-        self.cache = cache ?? FileLangDisk(root: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appending(path: "polingual-corpus", directoryHint: .isDirectory))
+        self.cache = cache ?? FileLangDisk(root: BucketAPI.offlineDirectory("polingual-corpus") ?? FileManager.default.temporaryDirectory.appending(path: "polingual-corpus", directoryHint: .isDirectory))
+        self.seed = seed
         self.token = token
         self.now = now
+    }
+
+    public static let bundled: @Sendable (String) -> Data? = { name in
+        Bundle.main.url(forResource: (name as NSString).deletingPathExtension, withExtension: "json", subdirectory: "Corpus").flatMap { try? Data(contentsOf: $0) }
     }
 
     public func state(_ systemId: String) -> EngineState { states[systemId] ?? EngineState() }
@@ -87,11 +93,18 @@ public final class LangStore {
     }
 
     func file(_ name: String) async -> Data? {
-        if let d = try? await api.raw("academy-app/corpus/\(name)") {
+        let path = "academy-app/corpus/\(name)"
+        if let local = cache.read(name) ?? seed(name) {
+            let api = api
+            let cache = cache
+            Task.detached(priority: .background) { if let d = try? await api.raw(path) { cache.write(name, d) } }
+            return local
+        }
+        if let d = try? await api.raw(path) {
             cache.write(name, d)
             return d
         }
-        return cache.read(name)
+        return nil
     }
 
     func loadCorpus() async -> LangCorpus? {
@@ -198,6 +211,22 @@ public final class LangStore {
     public func grade(_ systemId: String, lang: String, itemId: String, rating: Rating) {
         guard let s = system(systemId) else { return }
         commit(s, gradeCard(state(systemId), lang, itemId, rating, now: now(), tz: TimeZone.current.identifier))
+    }
+
+    public func flagMisses(_ systemId: String, lang: String) -> Int { FlagMisses.count(state(systemId), lang) }
+
+    public func recordFlagMiss(_ systemId: String, lang: String) {
+        guard let s = system(systemId) else { return }
+        commit(s, FlagMisses.recording(state(systemId), lang))
+    }
+
+    public func showsFlagName(_ systemId: String, lang: String) -> Bool { FlagMisses.showsName(state(systemId), lang) }
+
+    public func gradeMatchFlags(_ systemId: String, _ pairs: [LangWord], _ assign: [String: String]) -> [(lang: String, rating: Rating?)] {
+        guard let s = system(systemId) else { return gradeMatch(pairs, assign).map { ($0.lang, $0.correct ? 3 : 1) } }
+        let out = FlagMisses.gradeMatch(pairs, assign, state(systemId))
+        commit(s, FlagMisses.merging(out.state, into: state(systemId)))
+        return out.ratings
     }
 
     public func place(_ systemId: String, lang: String, tier: Double) async {

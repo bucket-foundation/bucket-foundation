@@ -44,6 +44,16 @@ public final class Account {
         }
     }
 
+    public func signInWithApple(idToken: String, nonce: String) async {
+        await run {
+            let s = try await self.api.signInWithApple(idToken: idToken, nonce: nonce)
+            try self.store.save(s)
+            self.session = s
+            self.ending = nil
+            self.stage = .signedIn
+        }
+    }
+
     public static let refreshMargin = 60
 
     @ObservationIgnored private var refreshing: Task<String?, Never>?

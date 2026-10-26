@@ -42,6 +42,7 @@ import Testing
     @Test func messagesNameARealItem() {
         #expect(ReminderPlan.message(ReviewForecast(count: 1, example: "Entropy", streak: 0)) == "Entropy is due. One quick review keeps it.")
         #expect(ReminderPlan.message(ReviewForecast(count: 12, example: "Entropy", streak: 4)) == "Entropy and 11 more are due. A few minutes keeps them in long-term memory. Your streak is 4 days.")
+        #expect(ReminderPlan.message(ReviewForecast(count: 0, example: nil, streak: 5)) == "New words are ready. Five minutes today keeps the habit. Your streak is 5 days.")
         #expect(ReminderPlan.message(ReviewForecast(count: 3, example: nil, streak: 1)) == "3 reviews are due. A few minutes keeps them in long-term memory. Your streak is 1 day.")
     }
 

@@ -50,6 +50,7 @@ final class Reminders {
     static let customKey = "reminders.customMinute"
     static let studyKey = "reminders.studyMinutes"
     static let lastStudyKey = "reminders.lastStudy"
+    static let wordKey = "reminders.wordOfDay"
     static let idPrefix = "review-reminder-"
     static let fallbackMinute = 19 * 60
     static let quietAfterDays = 7
@@ -58,12 +59,25 @@ final class Reminders {
     var enabled: Bool { didSet { defaults.set(enabled, forKey: Self.enabledKey) } }
     var customMinute: Int? { didSet { defaults.set(customMinute ?? -1, forKey: Self.customKey) } }
     var denied = false
+    var wordChoice: Bool? { didSet { defaults.set(wordChoice, forKey: Self.wordKey) } }
+    var wordOfDay: Bool { wordChoice ?? enabled }
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         enabled = defaults.bool(forKey: Self.enabledKey)
         let c = defaults.object(forKey: Self.customKey) as? Int ?? -1
         customMinute = c >= 0 ? c : nil
+        wordChoice = defaults.object(forKey: Self.wordKey) as? Bool
+    }
+
+    func setWordOfDay(_ on: Bool) async {
+        guard on else {
+            wordChoice = false
+            return
+        }
+        let granted = (try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])) ?? false
+        denied = !granted
+        wordChoice = granted
     }
 
     var studyMinutes: [Int] { defaults.array(forKey: Self.studyKey) as? [Int] ?? [] }
@@ -93,6 +107,27 @@ final class Reminders {
         return t > 0 ? Date(timeIntervalSince1970: t) : nil
     }
 
+    #if DEBUG
+    static func test() async -> String {
+        let center = UNUserNotificationCenter.current()
+        _ = try? await center.requestAuthorization(options: [.alert, .sound, .badge])
+        let settings = await center.notificationSettings()
+        guard settings.authorizationStatus == .authorized || settings.authorizationStatus == .provisional else {
+            return "Notifications are off for this app. Turn them on in iPhone Settings, Notifications."
+        }
+        let content = UNMutableNotificationContent()
+        content.title = "Test reminder"
+        content.body = "Notifications reach this phone."
+        content.sound = .default
+        do {
+            try await center.add(UNNotificationRequest(identifier: "test.reminder", content: content, trigger: UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)))
+            return "Scheduled. It arrives in 10 seconds, in the app or on the lock screen."
+        } catch {
+            return "Could not schedule: \(error.localizedDescription)"
+        }
+    }
+    #endif
+
     func enable() async -> Bool {
         let center = UNUserNotificationCenter.current()
         let granted = (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
@@ -113,10 +148,12 @@ final class Reminders {
     func reschedule(title: String, forecast: (Date) -> ReviewForecast) async {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: (0..<Self.quietAfterDays + 1).map { Self.idPrefix + String($0) })
+        #if DEBUG
+        if !enabled, ProcessInfo.processInfo.arguments.contains("-reminderProbe") { print("reminderProbe enabled false auth", (await center.notificationSettings()).authorizationStatus.rawValue) }
+        #endif
         guard enabled else { return }
         for (i, date) in fireDates().enumerated() {
             let raw = forecast(date)
-            guard raw.count > 0 else { continue }
             let f = i == 0 ? raw : ReviewForecast(count: raw.count, example: raw.example, streak: 0)
             let content = UNMutableNotificationContent()
             content.title = title
@@ -125,6 +162,13 @@ final class Reminders {
             let comps = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
             try? await center.add(UNNotificationRequest(identifier: Self.idPrefix + String(i), content: content, trigger: UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)))
         }
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-reminderProbe") {
+            let auth = await center.notificationSettings()
+            let pending = await center.pendingNotificationRequests().compactMap { r in (r.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate().map { "\($0) \(r.content.body.prefix(40))" } }
+            print("reminderProbe enabled", enabled, "auth", auth.authorizationStatus.rawValue, "alert", auth.alertSetting.rawValue, "lock", auth.lockScreenSetting.rawValue, "minute", minute, "studyMinutes", studyMinutes, "lastStudy", lastStudy as Any, "fire", fireDates(), "pending", pending)
+        }
+        #endif
     }
 }
 
@@ -134,7 +178,7 @@ struct ReminderPrompt: View {
     var body: some View {
         if !reminders.enabled {
             VStack(alignment: .leading, spacing: 6) {
-                Text(reminders.denied ? "Notifications are off for this app. Turn them on in Settings to get review reminders." : "Get one nudge a day when reviews are due, at your regular study time.")
+                Text(reminders.denied ? String(localized: "Notifications are off for this app. Turn them on in Settings to get review reminders.") : String(localized: "Get one nudge a day when reviews are due, at your regular study time."))
                     .font(.subheadline)
                     .foregroundStyle(Palette.muted)
                 if !reminders.denied {
@@ -148,6 +192,8 @@ struct ReminderPrompt: View {
 
 struct ReminderSettings: View {
     @Environment(Reminders.self) private var reminders
+    @State private var testResult: String?
+    @State private var nextReminder: Date?
 
     var body: some View {
         @Bindable var r = reminders
@@ -172,13 +218,34 @@ struct ReminderSettings: View {
                         .foregroundStyle(Palette.muted)
                 }
             }
+            if Feedback.isPolingual {
+                Toggle("Word of the day at 9am", isOn: Binding(get: { reminders.wordOfDay }, set: { on in Task { await reminders.setWordOfDay(on) } }))
+            }
             if reminders.denied {
                 Text("Notifications are off for this app in Settings.").font(.footnote).foregroundStyle(Palette.muted)
             }
+            #if DEBUG
+            if let nextReminder { Text("Next reminder \(nextReminder.formatted(date: .abbreviated, time: .shortened))").font(.footnote).foregroundStyle(Palette.muted) }
+            Button("Send a test reminder in 10 seconds") { Task { testResult = await Reminders.test() } }
+            if let testResult { Text(testResult).font(.footnote).foregroundStyle(Palette.muted) }
+            #endif
         } header: {
             Eyebrow(text: "Reminders")
-        } footer: {
-            Text("One reminder a day at most, only when something is due. It stops after a week away.")
         }
+        #if DEBUG
+        .task(id: reminders.enabled) {
+            try? await Task.sleep(for: .seconds(1))
+            let pending = await UNUserNotificationCenter.current().pendingNotificationRequests()
+            nextReminder = pending.compactMap { ($0.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate() }.min()
+        }
+        #endif
+    }
+}
+
+final class NotificationPresenter: NSObject, UNUserNotificationCenterDelegate, Sendable {
+    static let shared = NotificationPresenter()
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
+        [.banner, .list, .sound]
     }
 }

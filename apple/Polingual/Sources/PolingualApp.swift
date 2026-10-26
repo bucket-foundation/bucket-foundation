@@ -1,5 +1,6 @@
 import BucketKit
 import SwiftUI
+import UserNotifications
 
 @main
 struct PolingualApp: App {
@@ -11,11 +12,13 @@ struct PolingualApp: App {
     @Environment(\.scenePhase) private var phase
 
     init() {
+        UNUserNotificationCenter.current().delegate = NotificationPresenter.shared
         let api = BucketAPI()
         let account = Account(api: api, store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
         let store = LangStore(api: api, token: { await account.freshToken() })
         LangVoice.shared.store = store
         _account = State(initialValue: account)
+        Beta.shared.account = account
         _store = State(initialValue: store)
         _gate = State(initialValue: Gate(account: account))
         _subs = State(initialValue: Subscriptions(forced: Subscriptions.launchOverride()))
@@ -31,6 +34,17 @@ struct PolingualApp: App {
                 .environment(reminders)
                 .onChange(of: phase) { _, p in
                     guard p == .background || p == .active else { return }
+                    if p == .active { Beta.shared.foreground(account) } else { Beta.shared.background(account) }
+                    backgroundSafe {
+                        await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
+                        WidgetSync.refresh(store)
+                        await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay)
+                    }
+                }
+                .onChange(of: reminders.wordOfDay) {
+                    backgroundSafe { await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay) }
+                }
+                .onChange(of: reminders.enabled) {
                     backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
                 }
                 .tint(Palette.green)

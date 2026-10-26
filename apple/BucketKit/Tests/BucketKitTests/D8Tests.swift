@@ -49,3 +49,61 @@ import Testing
     #expect(out.options == ex.options)
     #expect(out.optionLangs == nil)
 }
+
+@Test func italianAndFrenchArticlesFollowTheNoun() {
+    #expect(Lang.contextualArticle("it", "m", "zero") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "studente") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "gnomo") == "lo")
+    #expect(Lang.contextualArticle("it", "m", "amico") == "l'")
+    #expect(Lang.contextualArticle("it", "f", "acqua") == "l'")
+    #expect(Lang.contextualArticle("it", "m", "libro") == nil)
+    #expect(Lang.contextualArticle("it", "m", "sole") == nil)
+    #expect(Lang.contextualArticle("fr", "f", "eau") == "l'")
+    #expect(Lang.contextualArticle("es", "f", "agua") == "el")
+    #expect(Lang.contextualArticle("es", "f", "casa") == nil)
+}
+
+@Test func articleWordMatchesTheWebEngine() {
+    #expect(Lang.articleWord("it", "m", "libro") == "il")
+    #expect(Lang.articleWord("it", "m", "zero") == "lo")
+    #expect(Lang.articleWord("it", "f", "acqua") == "l'")
+    #expect(Lang.articleWord("it", "m", "hotel") == "il")
+    #expect(Lang.articleWord("fr", "m", "homme") == "l'")
+    #expect(Lang.articleWord("fr", "m", "haricot") == "le")
+    #expect(Lang.articleWord("es", "f", "agua") == "el")
+    #expect(Lang.articleWord("de", "f", "Kirche") == "die")
+    #expect(Lang.articleWord("en", "m", "x") == nil)
+}
+
+@Test func flagMissCountersSurviveAReload() {
+    var st = EngineState()
+    st = FlagMisses.recording(st, "fr")
+    st = FlagMisses.recording(st, "fr")
+    st = FlagMisses.recording(st, "it")
+    let reloaded = EngineState(js: st.js)
+    #expect(FlagMisses.count(reloaded, "fr") == 2)
+    #expect(FlagMisses.count(reloaded, "it") == 1)
+    #expect(FlagMisses.count(reloaded, "es") == 0)
+}
+
+@Test func namelessFlagMissLeavesTheWordUnratedAndCounts() {
+    let pairs = [LangWord(lang: "fr", word: "nuit"), LangWord(lang: "es", word: "noche"), LangWord(lang: "it", word: "notte")]
+    var st = EngineState()
+    for _ in 0..<FlagMisses.hitsToHideName { st = FlagMisses.recordingHit(st, "it") }
+    #expect(!FlagMisses.showsName(st, "it") && FlagMisses.showsName(st, "fr"))
+    let out = FlagMisses.gradeMatch(pairs, ["fr": "it", "it": "fr", "es": "es"], st)
+    #expect(out.ratings.first { $0.lang == "fr" }?.rating == nil)
+    #expect(out.ratings.first { $0.lang == "it" }?.rating == 1)
+    #expect(out.ratings.first { $0.lang == "es" }?.rating == 3)
+    #expect(FlagMisses.count(out.state, "it") == 1)
+    #expect(FlagMisses.showsName(out.state, "it"))
+}
+
+@Test func namedFlagsGradeLikeGradeMatch() {
+    let pairs = [LangWord(lang: "fr", word: "nuit"), LangWord(lang: "es", word: "noche"), LangWord(lang: "it", word: "notte")]
+    for assign in [["fr": "fr", "es": "es", "it": "it"], ["fr": "es", "es": "fr", "it": "it"], ["fr": "it", "es": "fr", "it": "es"]] {
+        let plain = gradeMatch(pairs, assign).map { $0.correct ? 3 : 1 }
+        let flags = FlagMisses.gradeMatch(pairs, assign, EngineState()).ratings.map { $0.rating }
+        #expect(flags == plain.map { Optional($0) })
+    }
+}
