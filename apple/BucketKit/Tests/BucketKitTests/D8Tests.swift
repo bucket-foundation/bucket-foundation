@@ -85,3 +85,25 @@ import Testing
     #expect(FlagMisses.count(reloaded, "it") == 1)
     #expect(FlagMisses.count(reloaded, "es") == 0)
 }
+
+@Test func namelessFlagMissLeavesTheWordUnratedAndCounts() {
+    let pairs = [LangWord(lang: "fr", word: "nuit"), LangWord(lang: "es", word: "noche"), LangWord(lang: "it", word: "notte")]
+    var st = EngineState()
+    for _ in 0..<FlagMisses.hitsToHideName { st = FlagMisses.recordingHit(st, "it") }
+    #expect(!FlagMisses.showsName(st, "it") && FlagMisses.showsName(st, "fr"))
+    let out = FlagMisses.gradeMatch(pairs, ["fr": "it", "it": "fr", "es": "es"], st)
+    #expect(out.ratings.first { $0.lang == "fr" }?.rating == nil)
+    #expect(out.ratings.first { $0.lang == "it" }?.rating == 1)
+    #expect(out.ratings.first { $0.lang == "es" }?.rating == 3)
+    #expect(FlagMisses.count(out.state, "it") == 1)
+    #expect(FlagMisses.showsName(out.state, "it"))
+}
+
+@Test func namedFlagsGradeLikeGradeMatch() {
+    let pairs = [LangWord(lang: "fr", word: "nuit"), LangWord(lang: "es", word: "noche"), LangWord(lang: "it", word: "notte")]
+    for assign in [["fr": "fr", "es": "es", "it": "it"], ["fr": "es", "es": "fr", "it": "it"], ["fr": "it", "es": "fr", "it": "es"]] {
+        let plain = gradeMatch(pairs, assign).map { $0.correct ? 3 : 1 }
+        let flags = FlagMisses.gradeMatch(pairs, assign, EngineState()).ratings.map { $0.rating }
+        #expect(flags == plain.map { Optional($0) })
+    }
+}

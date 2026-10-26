@@ -63,6 +63,8 @@ struct ExerciseView: View {
     let readings: Bool
     let reading: (String, String) -> Reading?
     let onDone: ([ExerciseResult]) -> Void
+    var flagNamed: (String) -> Bool = { _ in true }
+    var onMatch: (([String: String]) -> Void)?
 
     @State private var selected: String?
     @State private var picked: String?
@@ -154,7 +156,7 @@ struct ExerciseView: View {
                                             .frame(width: 24, height: 24).background(ok ? D8.malachite : D8.vermilion, in: .circle).offset(x: 7, y: -7)
                                     }
                                 }
-                            Text(langName(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.muted)
+                            if flagNamed(l) || matchDone { Text(langName(l)).font(.caption.weight(.bold)).foregroundStyle(Palette.muted) }
                             Text(word ?? " ").font(D8.word(16)).strikethrough(matchDone && !ok, color: D8.vermilion)
                                 .foregroundStyle(matchDone ? (ok ? D8.malachite : Palette.muted) : Palette.ink).lineLimit(1).minimumScaleFactor(0.6)
                             if matchDone && !ok { Text(truth).font(D8.word(16)).foregroundStyle(D8.malachite).lineLimit(1).minimumScaleFactor(0.6) }
@@ -168,7 +170,7 @@ struct ExerciseView: View {
             if matchDone {
                 Notes(ex: ex, showNote: false, readings: readings)
                 Button("Continue") {
-                    onDone(gradeMatch(pairs, assign).map { ExerciseResult(lang: $0.lang, rating: $0.correct ? 3 : 1) })
+                    if let onMatch { onMatch(assign) } else { onDone(gradeMatch(pairs, assign).map { ExerciseResult(lang: $0.lang, rating: $0.correct ? 3 : 1) }) }
                 }
                 .buttonStyle(D8Primary())
             } else {

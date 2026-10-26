@@ -220,6 +220,15 @@ public final class LangStore {
         commit(s, FlagMisses.recording(state(systemId), lang))
     }
 
+    public func showsFlagName(_ systemId: String, lang: String) -> Bool { FlagMisses.showsName(state(systemId), lang) }
+
+    public func gradeMatchFlags(_ systemId: String, _ pairs: [LangWord], _ assign: [String: String]) -> [(lang: String, rating: Rating?)] {
+        guard let s = system(systemId) else { return gradeMatch(pairs, assign).map { ($0.lang, $0.correct ? 3 : 1) } }
+        let out = FlagMisses.gradeMatch(pairs, assign, state(systemId))
+        commit(s, FlagMisses.merging(out.state, into: state(systemId)))
+        return out.ratings
+    }
+
     public func place(_ systemId: String, lang: String, tier: Double) async {
         guard var s = system(systemId), let corpus else { return }
         s.placement[lang] = tier
