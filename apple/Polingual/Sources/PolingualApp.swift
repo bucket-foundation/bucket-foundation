@@ -53,6 +53,7 @@ struct PolingualApp: App {
                 }
                 .task {
                     #if os(iOS)
+                    WatchBridge.shared.allowed = { subs.access.open }
                     WatchBridge.shared.start(store)
                     #endif
                 }

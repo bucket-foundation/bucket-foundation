@@ -8,10 +8,11 @@ final class WatchModel: NSObject, WCSessionDelegate {
     var index = 0
     var revealed = false
     var done = 0
+    var graded: Set<String> = Set(UserDefaults.standard.stringArray(forKey: WatchQueue.gradedKey) ?? [])
 
     override init() {
         super.init()
-        if let data = UserDefaults.standard.data(forKey: WatchKeys.deck), let saved = try? JSONDecoder().decode([WatchCard].self, from: data) { cards = saved }
+        if let data = UserDefaults.standard.data(forKey: WatchKeys.deck), let saved = try? JSONDecoder().decode([WatchCard].self, from: data) { cards = WatchQueue.unseen(saved, graded: graded).cards }
         if WCSession.isSupported() {
             WCSession.default.delegate = self
             WCSession.default.activate()
@@ -22,7 +23,9 @@ final class WatchModel: NSObject, WCSessionDelegate {
 
     func grade(_ rating: Int) {
         guard let card = current else { return }
-        if let data = try? JSONEncoder().encode([WatchGrade(card: card, rating: rating)]) {
+        graded.insert(card.id)
+        UserDefaults.standard.set(Array(graded), forKey: WatchQueue.gradedKey)
+        if let data = try? JSONEncoder().encode([WatchGrade(card: card, rating: rating, at: Date().timeIntervalSince1970 * 1000)]) {
             WCSession.default.transferUserInfo([WatchKeys.grades: data])
         }
         done += 1
@@ -43,8 +46,11 @@ final class WatchModel: NSObject, WCSessionDelegate {
     func take(_ data: Data?) {
         guard let data, let deck = try? JSONDecoder().decode([WatchCard].self, from: data) else { return }
         UserDefaults.standard.set(data, forKey: WatchKeys.deck)
-        if deck.map(\.id) != cards.map(\.id) {
-            cards = deck
+        let next = WatchQueue.unseen(deck, graded: graded)
+        graded = next.graded
+        UserDefaults.standard.set(Array(graded), forKey: WatchQueue.gradedKey)
+        if next.cards.map(\.id) != cards.map(\.id) {
+            cards = next.cards
             index = 0
             revealed = false
         }
