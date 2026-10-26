@@ -81,6 +81,7 @@ const SUITES = {
       "scripts/test-deck-catalog-route.ts",
       "scripts/test-brand-pick.ts",
       "scripts/test-beta-tracking.ts",
+      "scripts/test-beta-experiments.ts",
     ],
     commands: [
       ["python3", "-m", "unittest", "_intake/solver-gap-engine/tests/test_watch.py"],

@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { buildReport } from "@/lib/beta/metrics";
 import type { BetaStore } from "@/lib/beta/store";
+import { findExperiment, validSetting } from "@/lib/beta/experiments";
 import { adminKeyMatches } from "@/lib/waitlist/store";
 
 const NO_STORE = { "cache-control": "no-store" };
@@ -35,8 +36,8 @@ export async function handleBetaReport(req: NextRequest, deps: BetaAdminDeps): P
   const now = deps.now?.() ?? new Date();
   try {
     const since = new Date(now.getTime() - REPORT_WINDOW_DAYS * 86_400_000).toISOString();
-    const [testers, events] = await Promise.all([store.testers(), store.events(since)]);
-    return json({ ...buildReport(testers, events.rows, now), truncated: events.truncated });
+    const [testers, events, settings, assignments] = await Promise.all([store.testers(), store.events(since), store.cohortSettings(), store.assignments()]);
+    return json({ ...buildReport(testers, events.rows, now, assignments), truncated: events.truncated, settings });
   } catch (err) {
     console.error("[admin/beta] report failed:", err instanceof Error ? err.message : err);
     return json({ error: "report_failed" }, 502);
@@ -53,7 +54,8 @@ export async function handleSetCohort(req: NextRequest, deps: BetaAdminDeps): Pr
   } catch {
     return json({ error: "bad_request" }, 400);
   }
-  const b = body as { user_id?: unknown; cohort?: unknown } | null;
+  const b = body as { user_id?: unknown; cohort?: unknown; experiment?: unknown; setting?: unknown } | null;
+  if (b && typeof b.experiment === "string") return setExperiment(store, b);
   if (!b || typeof b.user_id !== "string" || !UUID_RE.test(b.user_id)) return json({ error: "bad_user_id" }, 400);
   if (typeof b.cohort !== "string" || !COHORT_RE.test(b.cohort)) return json({ error: "bad_cohort" }, 400);
   try {
@@ -61,6 +63,20 @@ export async function handleSetCohort(req: NextRequest, deps: BetaAdminDeps): Pr
     return ok ? json({ ok: true }) : json({ error: "not_found" }, 404);
   } catch (err) {
     console.error("[admin/beta] cohort update failed:", err instanceof Error ? err.message : err);
+    return json({ error: "update_failed" }, 502);
+  }
+}
+
+async function setExperiment(store: BetaStore, b: { experiment?: unknown; cohort?: unknown; setting?: unknown }): Promise<NextResponse> {
+  const exp = findExperiment(String(b.experiment));
+  if (!exp) return json({ error: "bad_experiment" }, 400);
+  if (typeof b.cohort !== "string" || !COHORT_RE.test(b.cohort)) return json({ error: "bad_cohort" }, 400);
+  if (typeof b.setting !== "string" || !validSetting(exp, b.setting)) return json({ error: "bad_setting" }, 400);
+  try {
+    await store.setCohortSetting({ experiment: exp.key, cohort: b.cohort, setting: b.setting });
+    return json({ ok: true });
+  } catch (err) {
+    console.error("[admin/beta] experiment update failed:", err instanceof Error ? err.message : err);
     return json({ error: "update_failed" }, 502);
   }
 }

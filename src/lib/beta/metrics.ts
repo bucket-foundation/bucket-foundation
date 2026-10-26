@@ -1,3 +1,4 @@
+import { EXPERIMENTS, type AssignmentRow } from "./experiment-registry";
 import type { BetaTester, StoredBetaEvent } from "./store";
 
 export const RETENTION_DAYS = [1, 7, 30] as const;
@@ -22,6 +23,8 @@ export interface UserSummary {
   cardsCorrect: number;
   lessonsCompleted: number;
   secondsInSession: number;
+  cardMsTotal: number;
+  cardMsCount: number;
   retained: Record<RetentionDay, boolean | null>;
   recall: Record<RetentionDay, number | null>;
 }
@@ -34,6 +37,7 @@ export interface CohortSummary {
   cardsAnswered: number;
   accuracy: number | null;
   lessonsCompleted: number;
+  avgCardMs: number | null;
   retention: Record<RetentionDay, number | null>;
   recall: Record<RetentionDay, number | null>;
 }
@@ -52,6 +56,8 @@ export function summarizeUser(tester: BetaTester, events: StoredBetaEvent[], tod
   let cardsCorrect = 0;
   let lessons = 0;
   let seconds = 0;
+  let cardMsTotal = 0;
+  let cardMsCount = 0;
   const dayAnswers = new Map<number, { n: number; c: number }>();
   for (const e of sorted) {
     if (e.sessionId) sessions.add(e.sessionId);
@@ -60,6 +66,10 @@ export function summarizeUser(tester: BetaTester, events: StoredBetaEvent[], tod
     if (e.name === "session_end" && typeof e.props.seconds === "number" && e.props.seconds >= 0) seconds += Math.min(e.props.seconds, 86_400);
     if (e.name === "card_answered") {
       cardsAnswered++;
+      if (typeof e.props.ms === "number" && e.props.ms >= 0 && e.props.ms <= 600_000) {
+        cardMsTotal += e.props.ms;
+        cardMsCount++;
+      }
       const ok = e.props.correct === true;
       if (ok) cardsCorrect++;
       const d = utcDay(e.ts);
@@ -94,6 +104,8 @@ export function summarizeUser(tester: BetaTester, events: StoredBetaEvent[], tod
     cardsCorrect,
     lessonsCompleted: lessons,
     secondsInSession: seconds,
+    cardMsTotal,
+    cardMsCount,
     retained,
     recall,
   };
@@ -117,6 +129,7 @@ export function summarizeGroup(label: string, users: UserSummary[]): CohortSumma
     cardsAnswered: answered,
     accuracy: ratio(users.reduce((s, u) => s + u.cardsCorrect, 0), answered),
     lessonsCompleted: users.reduce((s, u) => s + u.lessonsCompleted, 0),
+    avgCardMs: ratio(users.reduce((s, u) => s + u.cardMsTotal, 0), users.reduce((s, u) => s + u.cardMsCount, 0)),
     retention,
     recall,
   };
@@ -126,9 +139,20 @@ export interface BetaReport {
   generatedAt: string;
   users: UserSummary[];
   cohorts: CohortSummary[];
+  experiments: ExperimentSummary[];
 }
 
-export function buildReport(testers: BetaTester[], events: StoredBetaEvent[], now: Date = new Date()): BetaReport {
+export interface ArmSummary extends CohortSummary {
+  pinned: number;
+}
+
+export interface ExperimentSummary {
+  key: string;
+  arms: ArmSummary[];
+  excluded: number;
+}
+
+export function buildReport(testers: BetaTester[], events: StoredBetaEvent[], now: Date = new Date(), assignments: AssignmentRow[] = []): BetaReport {
   const today = Math.floor(now.getTime() / DAY_MS);
   const byUser = new Map<string, StoredBetaEvent[]>();
   for (const e of events) {
@@ -142,5 +166,16 @@ export function buildReport(testers: BetaTester[], events: StoredBetaEvent[], no
     generatedAt: now.toISOString(),
     users,
     cohorts: cohortNames.map((c) => summarizeGroup(c, users.filter((u) => u.cohort === c))),
+    experiments: EXPERIMENTS.map((exp) => {
+      const held = new Map(assignments.filter((a) => a.experiment === exp.key).map((a) => [a.userId, a]));
+      return {
+        key: exp.key,
+        arms: exp.arms.map((arm) => {
+          const inArm = users.filter((u) => held.get(u.userId)?.arm === arm);
+          return { ...summarizeGroup(arm, inArm), pinned: inArm.filter((u) => held.get(u.userId)?.source === "cohort").length };
+        }),
+        excluded: users.filter((u) => !held.has(u.userId)).length,
+      };
+    }),
   };
 }

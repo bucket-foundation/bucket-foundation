@@ -59,3 +59,24 @@ Per-event errors in `rejected`: `bad_event`, `bad_id`, `bad_name`, `bad_ts`, `ts
 ## Admin
 
 `/admin/beta` shows per-tester and per-cohort sessions, cards, completions and D1/D7/D30 retention. It opens with `WAITLIST_ADMIN_KEY`. `POST /api/admin/beta` with `{ user_id, cohort }` and the same bearer key moves a tester to a cohort. Deleting the auth user deletes their rows. The report reads up to 100,000 events and sets `truncated: true` past that.
+
+## Flags
+
+`GET /api/beta/flags?app=polingual` with the same bearer token returns the tester's cohort and one flag per experiment. Bead `bkt-go6ko`.
+
+```json
+{ "cohort": "default", "flags": { "new_words": { "value": "8", "arm": "8", "source": "hash" } } }
+```
+
+Apps read `value`. On any non-200 answer, or with no network, apps use the fallback from the table below and retry on the next launch. `arm` is null and `value` holds the fallback when the cohort has the experiment off.
+
+The first answer that gives a tester an arm writes it to `bucket.beta_assignments` with its source and cohort. Later answers return the stored arm, so a cohort change or a new pinned arm never moves a tester, and the report groups testers by the stored row. Switching a cohort `off` stops the experiment for its testers and keeps their rows. Hash assignment is `sha256("<experiment>:<user_id>")` mod the arm count.
+
+| Experiment | Arms | Fallback |
+|---|---|---|
+| `option_language` | `cross`, `same` | `same` |
+| `new_words` | `4`, `8` | `4` |
+| `practice_order` | `mixed`, `blocked` | `blocked` |
+| `cognate_hints` | `on`, `off` | `off` |
+
+Per cohort an experiment is `on` (hash split, the default), `off`, or pinned to one arm. Set it from `/admin/beta` or `POST /api/admin/beta` with `{ experiment, cohort, setting }`. The report shows n, the pinned count, D1/D7/D30 retention, recall and time per card for each arm. Pinned testers are not randomized; compare arms on hash-split testers. Recall at DN is the share of `card_answered` events with `correct: true` on day N after the tester's first event; time per card reads `card_answered.ms`.
