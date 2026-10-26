@@ -1,0 +1,26 @@
+{
+  "locale": "es",
+  "branch": "02-physics",
+  "questions": {
+    "kinematics.pick": {
+      "prompt": "Un auto mantiene 20 m/s constantes mientras toma una curva. ¿Qué afirmación es verdadera?",
+      "options": [
+        "Su velocidad es constante porque su rapidez no cambia",
+        "Su aceleración es cero porque el velocímetro está fijo",
+        "Su velocidad cambia porque su dirección cambia",
+        "Su posición se mantiene fija respecto de la carretera"
+      ],
+      "review": { "reviewed_by": "claude-opus-5-5", "reviewed_at": "2026-10-26" }
+    },
+    "kinematics.order": {
+      "prompt": "Ordena los pasos para resolver un problema de aceleración constante.",
+      "steps": [
+        "Anota v0, a y t",
+        "Usa v = v0 + a t para la rapidez final",
+        "Usa x = v0 t + (1/2) a t^2 para la distancia",
+        "Comprueba que las unidades resulten en m/s y m"
+      ],
+      "review": { "reviewed_by": "claude-opus-5-5", "reviewed_at": "2026-10-26" }
+    }
+  }
+}

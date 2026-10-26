@@ -1,0 +1,16 @@
+{
+  "locale": "es",
+  "shape": {
+    "terms": "map from the English term, lowercase, to an entry",
+    "entry.es": "approved Spanish translation",
+    "entry.polingual": "Polingual word id for the Spanish word, or null until linked",
+    "entry.note": "optional usage note"
+  },
+  "terms": {
+    "velocity": { "es": "velocidad", "polingual": null },
+    "speed": { "es": "rapidez", "polingual": null, "note": "Physics keeps rapidez for the scalar and velocidad for the vector." },
+    "acceleration": { "es": "aceleración", "polingual": null },
+    "position": { "es": "posición", "polingual": null },
+    "derivative": { "es": "derivada", "polingual": null }
+  }
+}
