@@ -3897,7 +3897,7 @@
    "kind": "calculate",
    "prompt": "Complexes I, III and IV pump 4, 4 and 2 protons per NADH. A mitochondrion oxidizes 1,000 NADH per second. How many protons does it pump per second?",
    "answer": 10000.0,
-   "unit": "kJ/mol",
+   "unit": "protons/s",
    "relTol": 0.02
   },
   {
@@ -7009,7 +7009,7 @@
    "kind": "calculate",
    "prompt": "An optical-trap bead shows <x^2> = 4.14e-17 m^2 at k_BT = 4.14e-21 J. Equipartition gives k = k_BT/<x^2>. What is the trap stiffness, in N/m?",
    "answer": 0.0001,
-   "unit": "m^2/s",
+   "unit": "N/m",
    "relTol": 0.02
   },
   {
