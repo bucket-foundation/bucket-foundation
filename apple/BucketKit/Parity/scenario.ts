@@ -4,6 +4,7 @@ import {
   applyPlacement,
   buildLangCorpus,
   buildQueue,
+  crossLanguageOptions,
   cardId,
   createSystem,
   editDistance,
@@ -154,5 +155,20 @@ for (const item of corpus.items) {
   }
 }
 out.sweep = sweep;
+
+const crng = seededRng(808);
+const cross: unknown[] = [];
+for (const item of corpus.items) {
+  if (item.kind !== "word" && item.kind !== "phrase") continue;
+  for (const lang of sweepSys.targets) {
+    if (!item.forms[lang] || !item.forms["en"]) continue;
+    const card = { state: "review", reps: 1, lapses: 0, stability: 3, difficulty: 5, lastReview: T0, due: T0 };
+    const made = exerciseFor(corpus, sweepSys, item, lang, card, crng, { speech: false, level: 1 });
+    if (!made || made.kind !== "choose") continue;
+    const c = crossLanguageOptions(made, item, sweepSys, crng);
+    cross.push({ itemId: item.id, lang, options: c.options ?? null, optionLangs: c.optionLangs ? Object.entries(c.optionLangs).map(([f, l]) => `${f}=${l}`).sort() : null });
+  }
+}
+out.cross = cross;
 
 writeFileSync(process.argv[3], JSON.stringify(out, null, 1));

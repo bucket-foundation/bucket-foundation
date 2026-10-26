@@ -493,6 +493,7 @@ export interface Exercise {
   tense?: "present" | "past";
   level?: number;
   falseFriend?: FalseFriend;
+  optionLangs?: Record<string, string>;
 }
 
 export function readingLabel(r?: Reading): string | null {
@@ -735,6 +736,28 @@ function conjExercise(corpus: LangCorpus, item: LangItem, lang: string, root: st
 
 export function gradeMatch(pairs: { lang: string; word: string }[], assign: Record<string, string>): { lang: string; correct: boolean }[] {
   return pairs.map((p) => ({ lang: p.lang, correct: pairs.find((q) => q.lang === assign[p.lang])?.word === p.word }));
+}
+
+export function crossLanguageOptions(ex: Exercise, item: LangItem, system: LangSystem, rng: Rng): Exercise {
+  if (ex.kind !== "choose" || !ex.options) return ex;
+  const seen = new Set([ex.answer, ...(ex.accept ?? [])]);
+  const langs: Record<string, string> = { [ex.answer]: ex.answerLang };
+  const picks: string[] = [];
+  for (const l of shuffle(system.targets.filter((t) => t !== ex.answerLang), rng)) {
+    const f = item.forms[l];
+    if (picks.length >= 3 || !f || seen.has(f)) continue;
+    seen.add(f);
+    langs[f] = l;
+    picks.push(f);
+  }
+  if (picks.length === 0) return ex;
+  for (const o of ex.options) {
+    if (picks.length >= 3 || seen.has(o)) continue;
+    seen.add(o);
+    langs[o] = ex.answerLang;
+    picks.push(o);
+  }
+  return { ...ex, options: shuffle([ex.answer, ...picks], rng), optionLangs: langs };
 }
 
 export function matchExercise(corpus: LangCorpus, system: LangSystem, item: LangItem, rng: Rng): Exercise | null {
