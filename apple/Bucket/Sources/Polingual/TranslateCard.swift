@@ -58,7 +58,9 @@ struct TranslateCard: View {
         if let corpus = store.corpus, !store.systems.isEmpty {
             let searchIn: Set<String> = from.map { [$0] } ?? Set(langs)
             let hits = translateSearch(corpus, query, langs: searchIn, limit: 6)
-            let detected = from == nil ? hits.first?.matchedLang : nil
+            let sentence = !query.isEmpty && (hits.first?.exact != true) && (SentenceLanguage.isSentence(query) || hits.isEmpty)
+            let sentenceSource = from ?? SentenceLanguage.detect(query, among: sources.isEmpty ? langs : sources) ?? store.systems.first?.root ?? "en"
+            let detected = from == nil ? (sentence ? (query.isEmpty ? nil : sentenceSource) : hits.first?.matchedLang) : nil
             VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 8) {
                     Menu {
@@ -127,7 +129,9 @@ struct TranslateCard: View {
                 } else if missedVoice {
                     Text("Didn't catch that. Tap the mic and try again.").font(.subheadline).foregroundStyle(Palette.muted)
                 }
-                if !query.isEmpty {
+                if sentence {
+                    SentenceTranslations(text: query, source: sentenceSource, targets: shown.filter { $0 != sentenceSource })
+                } else if !query.isEmpty {
                     if let id = picked ?? hits.first?.itemId, let item = corpus.byId[id] {
                         ForEach(shown, id: \.self) { l in
                             if let f = item.form(l) {
