@@ -87,6 +87,7 @@ const SUITES = {
       "scripts/test-deck-catalog-route.ts",
       "scripts/test-brand-pick.ts",
       "scripts/test-beta-tracking.ts",
+      "scripts/test-app-store-notifications.ts",
       "scripts/test-beta-experiments.ts",
       "scripts/test-growth-dashboard.ts",
       "scripts/test-beta-readout.ts",
