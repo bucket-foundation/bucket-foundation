@@ -2338,7 +2338,7 @@
    "id": "esm.applied",
    "atom": "esm",
    "kind": "pick",
-   "prompt": "A clinic gets a rare patient variant with no lab data. What can a protein language model give quickly?",
+   "prompt": "A clinic gets a rare patient variant with no lab data. What can a protein language model give within minutes?",
    "options": [
     "A score of how disfavored the mutation is",
     "A crystal structure of the variant protein",
@@ -2562,7 +2562,7 @@
    "steps": [
     "Large MD archives allow proteome-scale tests",
     "Random splits can leak homologs",
-    "Random splits give honest test scores",
+    "Random splits give trustworthy test scores",
     "Fold-level splits test generalization"
    ],
    "error": 2,
@@ -5218,7 +5218,7 @@
    "steps": [
     "Relaxation reports motion",
     "Rigid residues have high S^2",
-    "Loops usually have the highest S^2",
+    "Loops have the highest S^2",
     "Exchange reports slow motions"
    ],
    "error": 2,
