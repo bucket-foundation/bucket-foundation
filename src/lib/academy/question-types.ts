@@ -138,6 +138,17 @@ export function questionsFor(deck: QuestionDeck, atom: string, kind?: QuestionKi
   return deck.questions.filter((q) => q.atom === atom && (!kind || q.kind === kind));
 }
 
+export function rotationFor(deck: QuestionDeck, atom: string, kind?: QuestionKind): Question[] {
+  const qs = questionsFor(deck, atom, kind);
+  return [...qs.filter((q) => q.applied === true), ...qs.filter((q) => q.applied !== true)];
+}
+
+export function questionForReview(deck: QuestionDeck, atom: string, reps: number, kind?: QuestionKind): Question | undefined {
+  const qs = rotationFor(deck, atom, kind);
+  const i = reps - 1;
+  return qs.length ? qs[((i % qs.length) + qs.length) % qs.length] : undefined;
+}
+
 function hashSeed(s: string): number {
   let h = 2166136261;
   for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619);
