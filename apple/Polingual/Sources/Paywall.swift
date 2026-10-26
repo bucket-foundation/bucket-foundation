@@ -16,6 +16,7 @@ struct Paywall: View {
     @State private var signingIn = false
     @State private var restoring = false
     @State private var redeeming = false
+    @State private var student = false
 
     var product: Product? { products.first { $0.id == chosen } }
 
@@ -66,6 +67,16 @@ struct Paywall: View {
         .sheet(isPresented: $signingIn) { AccountView() }
         #if os(iOS)
         .offerCodeRedemption(isPresented: $redeeming) { _ in Task { await subs.refresh() } }
+        .sheet(isPresented: $student) {
+            StudentPlan {
+                student = false
+                Task {
+                    try? await Task.sleep(for: .milliseconds(450))
+                    redeeming = true
+                }
+            }
+            .presentationDetents([.medium])
+        }
         #endif
     }
 
@@ -134,6 +145,7 @@ struct Paywall: View {
             FlowLayout(spacing: 4) {
                 Button(restoring ? String(localized: "Restoring") : String(localized: "Restore")) { Task { await restore() } }.disabled(restoring)
                 Button("Code") { redeeming = true }
+                Button("Student") { student = true }
                 if account.stage != .signedIn { Button("Sign in") { signingIn = true } }
                 Button("Terms") { openURL(Plan.terms) }
                 Button("Privacy") { openURL(Plan.privacy) }
@@ -404,5 +416,33 @@ struct Weave: View {
         }
         .clipShape(.rect(cornerRadius: 3))
         .shadow(color: .black.opacity(0.25), radius: 0, x: 0, y: 5)
+    }
+}
+
+struct StudentPlan: View {
+    @Environment(\.openURL) private var openURL
+    let redeem: () -> Void
+
+    static var mail: URL {
+        var c = URLComponents()
+        c.scheme = "mailto"
+        c.path = "support@polingual.com"
+        c.queryItems = [URLQueryItem(name: "subject", value: String(localized: "Polingual student plan")),
+                        URLQueryItem(name: "body", value: String(localized: "Sending from my school email for the student plan."))]
+        return c.url!
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Student plan").font(.system(size: 26, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
+            Text("$29.99 a year").font(.title3.weight(.bold)).foregroundStyle(Color(hex: 0x5B1A4A))
+            Text("Email us from your school address. We reply with a one-time code for the student price.")
+                .font(.body).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
+            Button("Email from my school address") { openURL(Self.mail) }.buttonStyle(D8Primary())
+            Button("I have a code") { redeem() }.buttonStyle(D8Option(align: .center, compact: true))
+        }
+        .padding(24)
+        .frame(maxHeight: .infinity, alignment: .top)
+        .background(D8.parchment)
     }
 }
