@@ -48,7 +48,7 @@ const SUITES = {
       "scripts/test-whats-new-email.ts",
       "scripts/test-explore-canon-drive-build.mjs",
       "scripts/test-waitlist-invites.ts",
-      "scripts/test-academy-{engine,question-types,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-script,lang-systems-sync,flag-misses,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted}.ts",
+      "scripts/test-academy-{engine,question-types,question-overlay,diagnostic,assess,mastery,tutor-route,tutor-client,answer-guard,events,grip-sphere,prereq-path,lang-systems,lang-script,lang-systems-sync,flag-misses,lang-data,lang-audio,lang-memory,lang-layout,replay,review-log,review-sync,device-auth,session,sync-hosted}.ts",
       "scripts/test-academy-fsrs-lean-bounds.ts",
       "scripts/test-academy-fsrs-fit.ts",
       "scripts/test-academy-delete-account.ts",
