@@ -1,6 +1,6 @@
 const nextConfig = {
   async rewrites() {
-    return { beforeFiles: [{ source: "/", destination: "/d8/index.html" }] };
+    return { beforeFiles: [{ source: "/", destination: "/d8/index.html" }, { source: "/es", destination: "/d8/es.html" }] };
   },
   reactStrictMode: true,
   outputFileTracingIncludes: {
