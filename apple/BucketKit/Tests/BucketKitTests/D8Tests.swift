@@ -140,3 +140,22 @@ import Testing
         #expect(got == want, "\(c.name)")
     }
 }
+
+@Test func flagCountersFromTwoDevicesBothSurviveTheMerge() {
+    var phone = EngineState()
+    phone = FlagMisses.recordingHit(phone, "fr")
+    phone = FlagMisses.recordingHit(phone, "fr")
+    phone = FlagMisses.recording(phone, "it")
+    var ipad = EngineState()
+    ipad = FlagMisses.recordingHit(ipad, "es")
+    ipad = FlagMisses.recordingHit(ipad, "fr")
+    ipad = FlagMisses.recording(ipad, "de")
+    for merged in [mergeState(phone, ipad), mergeState(ipad, phone)] {
+        #expect(FlagMisses.hits(merged, "fr") == 2)
+        #expect(FlagMisses.hits(merged, "es") == 1)
+        #expect(FlagMisses.count(merged, "it") == 1)
+        #expect(FlagMisses.count(merged, "de") == 1)
+    }
+    let roundTrip = mergeState(EngineState(js: phone.js), EngineState(js: ipad.js))
+    #expect(FlagMisses.hits(roundTrip, "es") == 1 && FlagMisses.count(roundTrip, "it") == 1)
+}

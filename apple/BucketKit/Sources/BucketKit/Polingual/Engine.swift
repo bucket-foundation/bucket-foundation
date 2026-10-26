@@ -312,6 +312,9 @@ public func mergeState(_ a: EngineState?, _ b: EngineState?) -> EngineState {
     out.requestRetention = b.requestRetention
     out.settingsExtra = a.settingsExtra
     for (k, v) in b.settingsExtra.entries { out.settingsExtra[k] = v }
+    for k in FlagMisses.syncedKeys {
+        if let merged = FlagMisses.mergeCounts(a.settingsExtra[k], b.settingsExtra[k]) { out.settingsExtra[k] = merged }
+    }
     var ids = a.cards.keys
     for k in b.cards.keys where !a.cards.has(k) { ids.append(k) }
     for id in ids {

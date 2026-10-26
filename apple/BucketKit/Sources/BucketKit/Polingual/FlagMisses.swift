@@ -49,6 +49,19 @@ public enum FlagMisses {
         return (out, next)
     }
 
+    static var syncedKeys: [String] { [key, hitsKey] }
+
+    static func mergeCounts(_ a: JSValue?, _ b: JSValue?) -> JSValue? {
+        guard a?.object != nil || b?.object != nil else { return nil }
+        let x = a?.object ?? JSObject()
+        let y = b?.object ?? JSObject()
+        var out = JSObject()
+        for lang in (x.keys + y.keys.filter { !x.keys.contains($0) }) {
+            out[lang] = .number(max(x[lang]?.number ?? 0, y[lang]?.number ?? 0))
+        }
+        return .object(out)
+    }
+
     public static func merging(_ flags: EngineState, into state: EngineState) -> EngineState {
         var next = state
         for k in [key, hitsKey] { next.settingsExtra[k] = flags.settingsExtra[k] }
