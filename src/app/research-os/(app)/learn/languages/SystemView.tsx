@@ -39,6 +39,9 @@ export default function SystemView({ systemId }: { systemId: string }) {
             <Link href={`/research-os/learn/languages/${system.id}/study`} className={BTN_PRIMARY}>
               {sum.due > 0 ? "review" : "study"}
             </Link>
+            <Link href={`/research-os/learn/languages/${system.id}/milestones`} className={BTN_SECONDARY}>
+              milestones
+            </Link>
             <Link href="/research-os/learn/languages" className={BTN_SECONDARY}>
               all systems
             </Link>
