@@ -655,7 +655,7 @@
    "id": "ramachandran.calculate",
    "atom": "ramachandran",
    "kind": "calculate",
-   "prompt": "A 200-residue model has 196 residues in favoured regions. What percent is that?",
+   "prompt": "MolProbity checks a 200-residue crystal structure before PDB deposition and finds 196 residues in Ramachandran-favoured regions. What percent is favoured?",
    "answer": 98.0,
    "unit": "%",
    "relTol": 0.02,
@@ -813,7 +813,7 @@
    "kind": "order",
    "prompt": "Order the worm-like-chain picture.",
    "steps": [
-    "The chain bends smoothly",
+    "The chain bends without kinks",
     "Bends cost energy",
     "Thermal kicks randomize direction",
     "Direction is forgotten over l_p"
@@ -2206,7 +2206,7 @@
    "id": "alphafold-plddt.calculate",
    "atom": "alphafold-plddt",
    "kind": "calculate",
-   "prompt": "A model has 180 of 200 residues above pLDDT 70. What percent is that?",
+   "prompt": "A drug team will dock only into parts of an AlphaFold model with pLDDT above 70. In their 200-residue target, 180 residues pass. What percent of the model can they use?",
    "answer": 90.0,
    "unit": "%",
    "relTol": 0.02,
@@ -2233,7 +2233,7 @@
     "pLDDT is per residue",
     "Over 90 means high confidence",
     "Low pLDDT proves the region is flexible",
-    "Linkers often score low"
+    "Linkers tend to score low"
    ],
    "error": 2,
    "fix": "Low pLDDT means low confidence; it may or may not mean flexibility."
@@ -3173,7 +3173,7 @@
    "id": "cryo-em-ctf.calculate",
    "atom": "cryo-em-ctf",
    "kind": "calculate",
-   "prompt": "A cryo-EM dataset holds 1,000,000 particles and 2D classification keeps 35%. How many remain?",
+   "prompt": "A cryo-EM session yields 1,000,000 particle picks. After CTF estimation and 2D classification, 35% go on to 3D refinement. How many particles enter refinement?",
    "answer": 350000.0,
    "unit": "particles",
    "relTol": 0.02,
@@ -4312,7 +4312,7 @@
    "id": "ion-channel-gating.calculate",
    "atom": "ion-channel-gating",
    "kind": "calculate",
-   "prompt": "A K+ channel passes 1e8 ions per second. How many pass in 1 ms?",
+   "prompt": "A patch-clamp recording shows one K+ channel open for 1 ms, passing 1e8 ions per second while open. How many ions cross during that opening?",
    "answer": 100000.0,
    "unit": "ions",
    "relTol": 0.02,
@@ -7927,7 +7927,7 @@
    "id": "fourier-transform.calculate",
    "atom": "fourier-transform",
    "kind": "calculate",
-   "prompt": "An NMR signal oscillates at 500 MHz. What is its period in ns?",
+   "prompt": "A 500 MHz NMR spectrometer records a proton signal oscillating near 500 MHz before Fourier transforming it. What is the period of that oscillation, in ns?",
    "answer": 2.0,
    "unit": "ns",
    "relTol": 0.02,
@@ -8172,7 +8172,7 @@
    "id": "itc.calculate",
    "atom": "itc",
    "kind": "calculate",
-   "prompt": "ITC gives Delta H = -40 and Delta G = -34.2 kJ/mol. What is T Delta S in kJ/mol?",
+   "prompt": "An ITC run titrates a drug into its target protein at 298 K and reports Delta H = -40 kJ/mol. The fitted binding constant gives Delta G = -34.2 kJ/mol. What is T Delta S, in kJ/mol?",
    "answer": -5.8,
    "unit": "kJ/mol",
    "relTol": 0.02,
@@ -8662,7 +8662,7 @@
    "id": "selection-rules.calculate",
    "atom": "selection-rules",
    "kind": "calculate",
-   "prompt": "In an infrared spectrometer, a harmonic C=O bond has transition dipoles proportional to sqrt(1) for 0 to 1 and sqrt(2) for 1 to 2. What is the intensity ratio of the 1 to 2 line to the 0 to 1 line?",
+   "prompt": "In an infrared spectrometer, a harmonic C=O bond has transition dipoles proportional to sqrt(1) for 0 to 1 and sqrt(2) for 1 to 2. Per molecule starting in the lower level of each transition, what is the ratio of the squared transition dipole for 1 to 2 against 0 to 1?",
    "answer": 2.0,
    "unit": "",
    "relTol": 0.02
@@ -9608,7 +9608,7 @@
     "Thermal motion damps diffraction",
     "B = 8 pi^2 <u^2>",
     "Higher B sharpens high-angle spots",
-    "Loops often have high B"
+    "Loops tend to have high B"
    ],
    "error": 2,
    "fix": "Higher B weakens high-angle spots."
@@ -9926,7 +9926,7 @@
    "id": "continuity-equation.calculate",
    "atom": "continuity-equation",
    "kind": "calculate",
-   "prompt": "A cell takes in 5 fmol/s of a solute and exports 3 fmol/s. At what rate does its content grow?",
+   "prompt": "A yeast cell in a microfluidic chamber imports a fluorescent glucose analog at 5 fmol/s and pumps it out at 3 fmol/s. At what rate does its content rise, in fmol/s?",
    "answer": 2.0,
    "unit": "fmol/s",
    "relTol": 0.02,
@@ -10144,9 +10144,9 @@
    "id": "debye-huckel-activity.applied",
    "atom": "debye-huckel-activity",
    "kind": "pick",
-   "prompt": "A clinical lab's ion-selective electrode reads ion activity in blood. Which theory converts activity to concentration?",
+   "prompt": "A clinical lab's ion-selective electrode reads ion activity in blood, at an ionic strength near 0.15 M. Which theory converts that activity to concentration?",
    "options": [
-    "Debye-Huckel",
+    "Extended Debye-Huckel (Davies)",
     "Bragg",
     "Michaelis-Menten",
     "Rouse"
@@ -10429,7 +10429,7 @@
    "id": "stern-layer.calculate",
    "atom": "stern-layer",
    "kind": "calculate",
-   "prompt": "A Stern capacitance of 0.2 F/m^2 is in series with a diffuse capacitance of 0.8 F/m^2. What is the total in F/m^2?",
+   "prompt": "A biosensor electrode has a Stern-layer capacitance of 0.2 F/m^2 in series with a diffuse-layer capacitance of 0.8 F/m^2. What total capacitance per area does the impedance analyser measure?",
    "answer": 0.16,
    "unit": "F/m^2",
    "relTol": 0.02,
@@ -10784,7 +10784,7 @@
    "prompt": "Find the faulty step.",
    "steps": [
     "CH-pi is weak per contact",
-    "Trp often lines sugar sites",
+    "Trp tends to line sugar sites",
     "CH-pi is stronger than a salt bridge per contact",
     "Many contacts add up"
    ],
