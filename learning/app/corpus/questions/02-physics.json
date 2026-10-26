@@ -1,0 +1,3966 @@
+{
+ "branch": "02-physics",
+ "version": "0.3.0",
+ "questions": [
+  {
+   "id": "kinematics.pick",
+   "atom": "kinematics",
+   "kind": "pick",
+   "prompt": "A car holds a steady 20 m/s while it rounds a curve. Which statement is true?",
+   "options": [
+    "Its velocity is constant because its speed never changes",
+    "Its acceleration is zero because the speedometer is steady",
+    "Its velocity changes because its direction changes",
+    "Its position stays fixed relative to the road"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "kinematics.calculate",
+   "atom": "kinematics",
+   "kind": "calculate",
+   "prompt": "A car merging onto a highway starts from rest and accelerates at 3 m/s^2 for 8 s. How far does it travel in that time?",
+   "answer": 96.0,
+   "unit": "m",
+   "relTol": 0.02
+  },
+  {
+   "id": "kinematics.order",
+   "atom": "kinematics",
+   "kind": "order",
+   "prompt": "Order the steps to solve a constant-acceleration problem.",
+   "steps": [
+    "Write down v0, a and t",
+    "Use v = v0 + a t for the final speed",
+    "Use x = v0 t + (1/2) a t^2 for the distance",
+    "Check that the units come out as m/s and m"
+   ]
+  },
+  {
+   "id": "kinematics.spot-error",
+   "atom": "kinematics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Velocity is the time derivative of position",
+    "Acceleration is the time derivative of velocity",
+    "From rest under constant acceleration, distance grows in proportion to time",
+    "From rest, doubling the time quadruples the distance"
+   ],
+   "error": 2,
+   "fix": "From rest under constant acceleration, distance grows as t^2."
+  },
+  {
+   "id": "kinematics.match",
+   "atom": "kinematics",
+   "kind": "match",
+   "prompt": "Match each quantity to its unit or meaning.",
+   "pairs": [
+    {
+     "term": "Position",
+     "meaning": "Metres"
+    },
+    {
+     "term": "Velocity",
+     "meaning": "Metres per second"
+    },
+    {
+     "term": "Acceleration",
+     "meaning": "Metres per second squared"
+    },
+    {
+     "term": "Speed",
+     "meaning": "Size of the velocity with direction dropped"
+    }
+   ]
+  },
+  {
+   "id": "vectors.pick",
+   "atom": "vectors",
+   "kind": "pick",
+   "prompt": "What is the dot product of two perpendicular vectors?",
+   "options": [
+    "Zero",
+    "The product of their lengths",
+    "Negative one times the product of their lengths",
+    "The length of their sum"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "vectors.calculate",
+   "atom": "vectors",
+   "kind": "calculate",
+   "prompt": "You pull a sled 20 m along flat snow with a rope tension of 50 N at 60 degrees above the ground. How much work does the rope do?",
+   "answer": 500.0,
+   "unit": "J",
+   "relTol": 0.02
+  },
+  {
+   "id": "vectors.order",
+   "atom": "vectors",
+   "kind": "order",
+   "prompt": "Order the steps to find the angle between two vectors.",
+   "steps": [
+    "Write both vectors in components",
+    "Multiply matching components and add them to get a·b",
+    "Divide by the product of their lengths to get cos theta",
+    "Take the inverse cosine to get theta"
+   ]
+  },
+  {
+   "id": "vectors.spot-error",
+   "atom": "vectors",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The dot product is a·b = ab cos theta",
+    "The cross product has magnitude ab sin theta",
+    "Parallel vectors have the largest cross product",
+    "The cross product points perpendicular to both vectors"
+   ],
+   "error": 2,
+   "fix": "Parallel vectors have zero cross product; perpendicular vectors give the largest."
+  },
+  {
+   "id": "vectors.match",
+   "atom": "vectors",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Scalar",
+     "meaning": "Quantity with size only"
+    },
+    {
+     "term": "Vector",
+     "meaning": "Quantity with size and direction"
+    },
+    {
+     "term": "Dot product",
+     "meaning": "Measures how aligned two vectors are"
+    },
+    {
+     "term": "Cross product",
+     "meaning": "Measures the perpendicular twist between two vectors"
+    }
+   ]
+  },
+  {
+   "id": "calculus-physics.pick",
+   "atom": "calculus-physics",
+   "kind": "pick",
+   "prompt": "What does the area under a velocity-versus-time graph give?",
+   "options": [
+    "Acceleration",
+    "Displacement",
+    "Force",
+    "Average mass"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "calculus-physics.calculate",
+   "atom": "calculus-physics",
+   "kind": "calculate",
+   "prompt": "A position is x(t) = 4t^2 metres. What is the velocity at t = 3 s?",
+   "answer": 24.0,
+   "unit": "m/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "calculus-physics.order",
+   "atom": "calculus-physics",
+   "kind": "order",
+   "prompt": "Order the steps to find displacement from a velocity function.",
+   "steps": [
+    "Write v(t)",
+    "Find an antiderivative x(t)",
+    "Evaluate it at t2 and at t1",
+    "Subtract to get the displacement"
+   ]
+  },
+  {
+   "id": "calculus-physics.spot-error",
+   "atom": "calculus-physics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Velocity is the derivative of position",
+    "Acceleration is the derivative of velocity",
+    "Integrating acceleration over time gives the change in position",
+    "Integrating velocity over time gives the change in position"
+   ],
+   "error": 2,
+   "fix": "Integrating acceleration over time gives the change in velocity."
+  },
+  {
+   "id": "calculus-physics.match",
+   "atom": "calculus-physics",
+   "kind": "match",
+   "prompt": "Match each idea to its meaning.",
+   "pairs": [
+    {
+     "term": "Derivative",
+     "meaning": "Instantaneous rate of change"
+    },
+    {
+     "term": "Integral",
+     "meaning": "Accumulated total of a rate"
+    },
+    {
+     "term": "Slope of x(t)",
+     "meaning": "Velocity"
+    },
+    {
+     "term": "Area under a(t)",
+     "meaning": "Change in velocity"
+    }
+   ]
+  },
+  {
+   "id": "newton-laws.pick",
+   "atom": "newton-laws",
+   "kind": "pick",
+   "prompt": "A book rests on a table. What is the third-law partner of Earth's pull on the book?",
+   "options": [
+    "The table's upward push on the book",
+    "The book's gravitational pull on Earth",
+    "The book's weight pressing on the table",
+    "Friction from the table on the book"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "newton-laws.calculate",
+   "atom": "newton-laws",
+   "kind": "calculate",
+   "prompt": "A 1,200 kg car brakes from 20 m/s to rest in 4 s. What is the size of the average braking force?",
+   "answer": 6000.0,
+   "unit": "N",
+   "relTol": 0.02
+  },
+  {
+   "id": "newton-laws.order",
+   "atom": "newton-laws",
+   "kind": "order",
+   "prompt": "Order the steps to predict motion with Newton's second law.",
+   "steps": [
+    "Draw a free-body diagram",
+    "Add the forces as vectors to get the net force",
+    "Divide the net force by the mass to get acceleration",
+    "Use kinematics to find the motion"
+   ]
+  },
+  {
+   "id": "newton-laws.spot-error",
+   "atom": "newton-laws",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "An object with no net force keeps its velocity",
+    "Net force equals mass times acceleration",
+    "Action and reaction act on the same object and cancel",
+    "Force equals the rate of change of momentum"
+   ],
+   "error": 2,
+   "fix": "Action and reaction act on different objects, so they never cancel each other."
+  },
+  {
+   "id": "newton-laws.match",
+   "atom": "newton-laws",
+   "kind": "match",
+   "prompt": "Match each law to its content.",
+   "pairs": [
+    {
+     "term": "First law",
+     "meaning": "Inertia: velocity stays fixed with no net force"
+    },
+    {
+     "term": "Second law",
+     "meaning": "F = ma"
+    },
+    {
+     "term": "Third law",
+     "meaning": "Equal and opposite forces on two bodies"
+    },
+    {
+     "term": "Newton",
+     "meaning": "kg m/s^2"
+    }
+   ]
+  },
+  {
+   "id": "momentum.pick",
+   "atom": "momentum",
+   "kind": "pick",
+   "prompt": "When is the total momentum of a system conserved?",
+   "options": [
+    "Whenever kinetic energy is conserved",
+    "When no external net force acts on it",
+    "Only in perfectly elastic collisions",
+    "Only when every object starts at rest"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "momentum.calculate",
+   "atom": "momentum",
+   "kind": "calculate",
+   "prompt": "A 1,000 kg car at 20 m/s rear-ends a stopped 1,500 kg car and the two lock together. What is their speed just after the crash?",
+   "answer": 8.0,
+   "unit": "m/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "momentum.order",
+   "atom": "momentum",
+   "kind": "order",
+   "prompt": "Order the steps to solve a collision.",
+   "steps": [
+    "Choose the system and check for external forces",
+    "Write the total momentum before",
+    "Write the total momentum after",
+    "Set them equal and solve for the unknown"
+   ]
+  },
+  {
+   "id": "momentum.spot-error",
+   "atom": "momentum",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Momentum is mass times velocity",
+    "Momentum is a vector",
+    "In a perfectly inelastic collision kinetic energy is conserved",
+    "Total momentum is conserved when no external force acts"
+   ],
+   "error": 2,
+   "fix": "In a perfectly inelastic collision kinetic energy is lost while momentum is conserved."
+  },
+  {
+   "id": "momentum.match",
+   "atom": "momentum",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Momentum",
+     "meaning": "Mass times velocity"
+    },
+    {
+     "term": "Impulse",
+     "meaning": "Force times time, equal to the change in momentum"
+    },
+    {
+     "term": "Elastic collision",
+     "meaning": "Kinetic energy conserved"
+    },
+    {
+     "term": "Inelastic collision",
+     "meaning": "Kinetic energy lost to heat and deformation"
+    }
+   ]
+  },
+  {
+   "id": "work-energy.pick",
+   "atom": "work-energy",
+   "kind": "pick",
+   "prompt": "A force acts perpendicular to an object's motion the whole time. How much work does it do?",
+   "options": [
+    "Zero",
+    "Force times distance",
+    "Minus force times distance",
+    "Half of force times distance"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "work-energy.calculate",
+   "atom": "work-energy",
+   "kind": "calculate",
+   "prompt": "A 0.145 kg baseball leaves the bat at 40 m/s from rest. How much work did the bat do on it?",
+   "answer": 116.0,
+   "unit": "J",
+   "relTol": 0.02
+  },
+  {
+   "id": "work-energy.order",
+   "atom": "work-energy",
+   "kind": "order",
+   "prompt": "Order the steps to use the work-energy theorem.",
+   "steps": [
+    "Find the net force on the object",
+    "Compute the work it does along the path",
+    "Set that work equal to the change in kinetic energy",
+    "Solve for the final speed"
+   ]
+  },
+  {
+   "id": "work-energy.spot-error",
+   "atom": "work-energy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Work is force dotted with displacement",
+    "Net work equals the change in kinetic energy",
+    "Kinetic energy grows in proportion to speed",
+    "Doubling the speed quadruples the kinetic energy"
+   ],
+   "error": 2,
+   "fix": "Kinetic energy grows as the square of speed."
+  },
+  {
+   "id": "work-energy.match",
+   "atom": "work-energy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Work",
+     "meaning": "F · d along the path"
+    },
+    {
+     "term": "Kinetic energy",
+     "meaning": "(1/2) m v^2"
+    },
+    {
+     "term": "Joule",
+     "meaning": "Newton metre"
+    },
+    {
+     "term": "Work-energy theorem",
+     "meaning": "Net work equals the change in kinetic energy"
+    }
+   ]
+  },
+  {
+   "id": "energy-conservation.pick",
+   "atom": "energy-conservation",
+   "kind": "pick",
+   "prompt": "For a conservative force, how is force related to potential energy U(x)?",
+   "options": [
+    "F = +dU/dx",
+    "F = -dU/dx",
+    "F = U / x",
+    "F = U times x"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "energy-conservation.calculate",
+   "atom": "energy-conservation",
+   "kind": "calculate",
+   "prompt": "A roller coaster starts from rest 45 m above the lowest point. Ignoring friction, how fast is it moving at the bottom?",
+   "answer": 29.7,
+   "unit": "m/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "energy-conservation.order",
+   "atom": "energy-conservation",
+   "kind": "order",
+   "prompt": "Order the steps to use energy conservation.",
+   "steps": [
+    "Pick the start and end points",
+    "Write K + U at the start",
+    "Write K + U at the end",
+    "Set them equal and solve for the unknown"
+   ]
+  },
+  {
+   "id": "energy-conservation.spot-error",
+   "atom": "energy-conservation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "K + U stays constant when only conservative forces act",
+    "Gravitational potential energy near Earth is mgh",
+    "Friction is a conservative force",
+    "Force points downhill on the potential energy curve"
+   ],
+   "error": 2,
+   "fix": "Friction is nonconservative; it turns mechanical energy into heat."
+  },
+  {
+   "id": "energy-conservation.match",
+   "atom": "energy-conservation",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Kinetic energy",
+     "meaning": "Energy of motion"
+    },
+    {
+     "term": "Potential energy",
+     "meaning": "Stored energy of position"
+    },
+    {
+     "term": "Conservative force",
+     "meaning": "Work does not depend on the path"
+    },
+    {
+     "term": "Equilibrium point",
+     "meaning": "Where dU/dx = 0"
+    }
+   ]
+  },
+  {
+   "id": "rotational.pick",
+   "atom": "rotational",
+   "kind": "pick",
+   "prompt": "A spinning skater pulls in her arms. What happens?",
+   "options": [
+    "She spins faster because her angular momentum stays fixed",
+    "She spins slower because her moment of inertia drops",
+    "Her angular momentum rises",
+    "Her angular momentum falls to zero"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "rotational.calculate",
+   "atom": "rotational",
+   "kind": "calculate",
+   "prompt": "A mechanic pushes with 200 N perpendicular to a wrench handle, 0.3 m from the bolt. What torque does she apply?",
+   "answer": 60.0,
+   "unit": "N m",
+   "relTol": 0.02
+  },
+  {
+   "id": "rotational.order",
+   "atom": "rotational",
+   "kind": "order",
+   "prompt": "Order the steps to find a rotation rate from torque.",
+   "steps": [
+    "Find the moment of inertia I",
+    "Find the net torque",
+    "Divide torque by I to get angular acceleration",
+    "Use rotational kinematics to find omega"
+   ]
+  },
+  {
+   "id": "rotational.spot-error",
+   "atom": "rotational",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Torque is r cross F",
+    "Moment of inertia plays the role of mass",
+    "Angular momentum is L = I omega",
+    "Angular momentum changes even with zero net external torque"
+   ],
+   "error": 3,
+   "fix": "With zero net external torque, angular momentum is conserved."
+  },
+  {
+   "id": "rotational.match",
+   "atom": "rotational",
+   "kind": "match",
+   "prompt": "Match each rotational quantity to its role.",
+   "pairs": [
+    {
+     "term": "Torque",
+     "meaning": "Rotational analog of force"
+    },
+    {
+     "term": "Moment of inertia",
+     "meaning": "Rotational analog of mass"
+    },
+    {
+     "term": "Angular velocity",
+     "meaning": "Rotation rate in rad/s"
+    },
+    {
+     "term": "Angular momentum",
+     "meaning": "I omega"
+    }
+   ]
+  },
+  {
+   "id": "gravitation.pick",
+   "atom": "gravitation",
+   "kind": "pick",
+   "prompt": "The distance between two masses doubles. What happens to the gravitational force?",
+   "options": [
+    "It halves",
+    "It drops to one quarter",
+    "It doubles",
+    "It grows four times"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "gravitation.calculate",
+   "atom": "gravitation",
+   "kind": "calculate",
+   "prompt": "Earth has mass 5.97e24 kg and radius 6.37e6 m. What gravitational force does it exert on a 70 kg person at the surface?",
+   "answer": 687.4,
+   "unit": "N",
+   "relTol": 0.02
+  },
+  {
+   "id": "gravitation.order",
+   "atom": "gravitation",
+   "kind": "order",
+   "prompt": "Order the steps to compute a gravitational force.",
+   "steps": [
+    "Identify the two masses",
+    "Measure the center-to-center distance r",
+    "Compute G m1 m2 / r^2",
+    "Point the force along the line joining them"
+   ]
+  },
+  {
+   "id": "gravitation.spot-error",
+   "atom": "gravitation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Every mass attracts every other mass",
+    "The force falls off as 1/r^2",
+    "The force is repulsive between two large masses",
+    "G is a universal constant"
+   ],
+   "error": 2,
+   "fix": "Gravity between masses is always attractive."
+  },
+  {
+   "id": "gravitation.match",
+   "atom": "gravitation",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "G",
+     "meaning": "6.67e-11 N m^2/kg^2"
+    },
+    {
+     "term": "r",
+     "meaning": "Center-to-center distance"
+    },
+    {
+     "term": "Inverse square",
+     "meaning": "Force falls as 1/r^2"
+    },
+    {
+     "term": "Weight",
+     "meaning": "Earth's gravitational force on a body"
+    }
+   ]
+  },
+  {
+   "id": "lagrangian.pick",
+   "atom": "lagrangian",
+   "kind": "pick",
+   "prompt": "What is the Lagrangian L?",
+   "options": [
+    "T + V",
+    "T - V",
+    "V - T",
+    "T times V"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "lagrangian.calculate",
+   "atom": "lagrangian",
+   "kind": "calculate",
+   "prompt": "A 2 kg mass moves at 3 m/s where its potential energy is 5 J. What is L = T - V?",
+   "answer": 4.0,
+   "unit": "J",
+   "relTol": 0.02
+  },
+  {
+   "id": "lagrangian.order",
+   "atom": "lagrangian",
+   "kind": "order",
+   "prompt": "Order the Lagrangian method.",
+   "steps": [
+    "Choose generalized coordinates q",
+    "Write T and V in terms of q and q-dot",
+    "Form L = T - V",
+    "Apply the Euler-Lagrange equation"
+   ]
+  },
+  {
+   "id": "lagrangian.spot-error",
+   "atom": "lagrangian",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "L = T - V",
+    "Generalized coordinates can be angles",
+    "The method needs every constraint force written as a vector",
+    "Euler-Lagrange reproduces Newton's second law"
+   ],
+   "error": 2,
+   "fix": "Good coordinates make constraint forces drop out, so you never write them as vectors."
+  },
+  {
+   "id": "lagrangian.match",
+   "atom": "lagrangian",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "L",
+     "meaning": "Kinetic minus potential energy"
+    },
+    {
+     "term": "q",
+     "meaning": "Generalized coordinate"
+    },
+    {
+     "term": "q-dot",
+     "meaning": "Generalized velocity"
+    },
+    {
+     "term": "Euler-Lagrange equation",
+     "meaning": "Equation of motion built from L"
+    }
+   ]
+  },
+  {
+   "id": "least-action.pick",
+   "atom": "least-action",
+   "kind": "pick",
+   "prompt": "What does the principle of least action require of the action S?",
+   "options": [
+    "S equals zero",
+    "S is stationary",
+    "S is as large as possible",
+    "S equals the total energy"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "least-action.calculate",
+   "atom": "least-action",
+   "kind": "calculate",
+   "prompt": "A ball sits at rest with L = -10 J for 3 s. What is the action S, the integral of L over time?",
+   "answer": -30.0,
+   "unit": "J s",
+   "relTol": 0.02
+  },
+  {
+   "id": "least-action.order",
+   "atom": "least-action",
+   "kind": "order",
+   "prompt": "Order the logic of the action principle.",
+   "steps": [
+    "Fix the start and end points in time",
+    "Consider every path between them",
+    "Compute the action for each path",
+    "The true path makes S stationary"
+   ]
+  },
+  {
+   "id": "least-action.spot-error",
+   "atom": "least-action",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The action is the time integral of the Lagrangian",
+    "The true path has delta S = 0",
+    "The true path must be a strict minimum of S",
+    "The Euler-Lagrange equation follows from delta S = 0"
+   ],
+   "error": 2,
+   "fix": "The true path makes S stationary; it can be a minimum or a saddle point."
+  },
+  {
+   "id": "least-action.match",
+   "atom": "least-action",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Action",
+     "meaning": "Time integral of L"
+    },
+    {
+     "term": "Stationary",
+     "meaning": "First-order change is zero"
+    },
+    {
+     "term": "Variation",
+     "meaning": "Small change of the path"
+    },
+    {
+     "term": "Endpoints",
+     "meaning": "Held fixed while the path varies"
+    }
+   ]
+  },
+  {
+   "id": "hamiltonian.pick",
+   "atom": "hamiltonian",
+   "kind": "pick",
+   "prompt": "For most simple mechanical systems, what does H equal?",
+   "options": [
+    "Total energy T + V",
+    "T - V",
+    "Momentum",
+    "Action"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hamiltonian.calculate",
+   "atom": "hamiltonian",
+   "kind": "calculate",
+   "prompt": "For H = p^2/(2m) with m = 2 kg and p = 6 kg m/s, what is q-dot = dH/dp?",
+   "answer": 3.0,
+   "unit": "m/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "hamiltonian.order",
+   "atom": "hamiltonian",
+   "kind": "order",
+   "prompt": "Order the steps from Lagrangian to Hamiltonian.",
+   "steps": [
+    "Start from the Lagrangian",
+    "Define momentum p = dL/d(q-dot)",
+    "Write H = p q-dot - L in terms of q and p",
+    "Use Hamilton's equations"
+   ]
+  },
+  {
+   "id": "hamiltonian.spot-error",
+   "atom": "hamiltonian",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "H equals the total energy for simple systems",
+    "q-dot = dH/dp",
+    "p-dot = +dH/dq",
+    "Hamilton's equations are first order"
+   ],
+   "error": 2,
+   "fix": "p-dot = -dH/dq."
+  },
+  {
+   "id": "hamiltonian.match",
+   "atom": "hamiltonian",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "H",
+     "meaning": "Hamiltonian, the total energy for simple systems"
+    },
+    {
+     "term": "p",
+     "meaning": "Conjugate momentum"
+    },
+    {
+     "term": "Phase space",
+     "meaning": "Space of positions and momenta"
+    },
+    {
+     "term": "Hamilton's equations",
+     "meaning": "First-order equations of motion"
+    }
+   ]
+  },
+  {
+   "id": "shm.pick",
+   "atom": "shm",
+   "kind": "pick",
+   "prompt": "What change doubles the period of a mass on a spring?",
+   "options": [
+    "Doubling the mass",
+    "Quadrupling the mass",
+    "Doubling the spring constant",
+    "Doubling the amplitude"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "shm.calculate",
+   "atom": "shm",
+   "kind": "calculate",
+   "prompt": "A car suspension acts as a spring with k = 40,000 N/m holding 400 kg. What is its natural angular frequency?",
+   "answer": 10.0,
+   "unit": "rad/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "shm.order",
+   "atom": "shm",
+   "kind": "order",
+   "prompt": "Order one cycle of an oscillator.",
+   "steps": [
+    "Pull the mass from equilibrium",
+    "The restoring force -kx pulls it back",
+    "It overshoots equilibrium",
+    "It returns, and the cycle repeats at omega = sqrt(k/m)"
+   ]
+  },
+  {
+   "id": "shm.spot-error",
+   "atom": "shm",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "SHM needs a linear restoring force",
+    "omega = sqrt(k/m)",
+    "Larger amplitude gives a longer period",
+    "The motion is sinusoidal"
+   ],
+   "error": 2,
+   "fix": "In SHM the period does not depend on amplitude."
+  },
+  {
+   "id": "shm.match",
+   "atom": "shm",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "omega",
+     "meaning": "Angular frequency"
+    },
+    {
+     "term": "Period",
+     "meaning": "Time for one cycle, 2 pi / omega"
+    },
+    {
+     "term": "Amplitude",
+     "meaning": "Largest displacement"
+    },
+    {
+     "term": "Restoring force",
+     "meaning": "F = -kx"
+    }
+   ]
+  },
+  {
+   "id": "waves.pick",
+   "atom": "waves",
+   "kind": "pick",
+   "prompt": "Which relation holds for any wave?",
+   "options": [
+    "v = f lambda",
+    "v = f / lambda",
+    "v = lambda / f^2",
+    "v = f + lambda"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "waves.calculate",
+   "atom": "waves",
+   "kind": "calculate",
+   "prompt": "A 440 Hz tuning fork sends sound through air at 343 m/s. What is the wavelength?",
+   "answer": 0.7795,
+   "unit": "m",
+   "relTol": 0.02
+  },
+  {
+   "id": "waves.order",
+   "atom": "waves",
+   "kind": "order",
+   "prompt": "Order how a pulse moves along a rope.",
+   "steps": [
+    "Shake one end of the rope",
+    "Each segment pulls on its neighbor",
+    "The disturbance passes along the rope",
+    "Each segment settles back where it started"
+   ]
+  },
+  {
+   "id": "waves.spot-error",
+   "atom": "waves",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A wave carries energy",
+    "A wave carries the medium along with it",
+    "v = f lambda",
+    "The wave equation is second order in space and time"
+   ],
+   "error": 1,
+   "fix": "The medium oscillates in place while the disturbance travels."
+  },
+  {
+   "id": "waves.match",
+   "atom": "waves",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Frequency",
+     "meaning": "Cycles per second"
+    },
+    {
+     "term": "Wavelength",
+     "meaning": "Distance between crests"
+    },
+    {
+     "term": "Wave speed",
+     "meaning": "f times lambda"
+    },
+    {
+     "term": "Wave equation",
+     "meaning": "Links curvature in time to curvature in space"
+    }
+   ]
+  },
+  {
+   "id": "coulomb.pick",
+   "atom": "coulomb",
+   "kind": "pick",
+   "prompt": "One of two charges doubles while the distance stays fixed. What happens to the force?",
+   "options": [
+    "It halves",
+    "It doubles",
+    "It grows four times",
+    "It stays the same"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "coulomb.calculate",
+   "atom": "coulomb",
+   "kind": "calculate",
+   "prompt": "Two 1 microcoulomb charges sit 0.1 m apart. What is the force between them? Use k = 8.99e9 N m^2/C^2.",
+   "answer": 0.899,
+   "unit": "N",
+   "relTol": 0.02
+  },
+  {
+   "id": "coulomb.order",
+   "atom": "coulomb",
+   "kind": "order",
+   "prompt": "Order the steps to compute a Coulomb force.",
+   "steps": [
+    "Find the charges q1 and q2",
+    "Measure their separation r",
+    "Compute k q1 q2 / r^2",
+    "Set the direction: like charges repel"
+   ]
+  },
+  {
+   "id": "coulomb.spot-error",
+   "atom": "coulomb",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Like charges repel",
+    "The force falls as 1/r^2",
+    "The field is E = F/q",
+    "The field points toward positive charges"
+   ],
+   "error": 3,
+   "fix": "The field points away from positive charges."
+  },
+  {
+   "id": "coulomb.match",
+   "atom": "coulomb",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "k",
+     "meaning": "8.99e9 N m^2/C^2"
+    },
+    {
+     "term": "Electric field",
+     "meaning": "Force per unit charge"
+    },
+    {
+     "term": "Coulomb",
+     "meaning": "SI unit of charge"
+    },
+    {
+     "term": "Field line",
+     "meaning": "Path a positive test charge would follow"
+    }
+   ]
+  },
+  {
+   "id": "gauss-law.pick",
+   "atom": "gauss-law",
+   "kind": "pick",
+   "prompt": "A closed surface encloses no net charge. What is the net electric flux through it?",
+   "options": [
+    "Zero",
+    "Positive",
+    "Negative",
+    "Infinite"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "gauss-law.calculate",
+   "atom": "gauss-law",
+   "kind": "calculate",
+   "prompt": "A closed surface encloses 8.85e-12 C. What is the electric flux through it? Use epsilon_0 = 8.85e-12 C^2/(N m^2).",
+   "answer": 1.0,
+   "unit": "N m^2/C",
+   "relTol": 0.02
+  },
+  {
+   "id": "gauss-law.order",
+   "atom": "gauss-law",
+   "kind": "order",
+   "prompt": "Order the Gauss's law method.",
+   "steps": [
+    "Pick a symmetric Gaussian surface",
+    "Find the enclosed charge",
+    "Write the flux as E times the area",
+    "Solve for E"
+   ]
+  },
+  {
+   "id": "gauss-law.spot-error",
+   "atom": "gauss-law",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Flux counts field lines through a surface",
+    "Flux equals Q_enc / epsilon_0",
+    "Charges outside the surface change the net flux",
+    "Gauss's law is Coulomb's law in field form"
+   ],
+   "error": 2,
+   "fix": "Outside charges add no net flux: every line that enters also leaves."
+  },
+  {
+   "id": "gauss-law.match",
+   "atom": "gauss-law",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Flux",
+     "meaning": "Field passing through a surface"
+    },
+    {
+     "term": "Gaussian surface",
+     "meaning": "Imagined closed surface"
+    },
+    {
+     "term": "Q_enc",
+     "meaning": "Charge inside the surface"
+    },
+    {
+     "term": "epsilon_0",
+     "meaning": "Permittivity of free space"
+    }
+   ]
+  },
+  {
+   "id": "magnetism-lorentz.pick",
+   "atom": "magnetism-lorentz",
+   "kind": "pick",
+   "prompt": "A charge moves parallel to a magnetic field. What magnetic force acts on it?",
+   "options": [
+    "None",
+    "qvB",
+    "A force along the field",
+    "Its largest possible force"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "magnetism-lorentz.calculate",
+   "atom": "magnetism-lorentz",
+   "kind": "calculate",
+   "prompt": "An electron (charge 1.6e-19 C) moves at 1e6 m/s perpendicular to a 0.5 T field in an MRI scanner. What magnetic force acts on it?",
+   "answer": 8e-14,
+   "unit": "N",
+   "relTol": 0.02
+  },
+  {
+   "id": "magnetism-lorentz.order",
+   "atom": "magnetism-lorentz",
+   "kind": "order",
+   "prompt": "Order the steps to find the magnetic force on a charge.",
+   "steps": [
+    "Find the charge q and velocity v",
+    "Find the magnetic field B",
+    "Compute v cross B",
+    "Multiply by q to get the force"
+   ]
+  },
+  {
+   "id": "magnetism-lorentz.spot-error",
+   "atom": "magnetism-lorentz",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The magnetic force is q v x B",
+    "It acts perpendicular to v",
+    "The magnetic force does work and speeds the charge up",
+    "A charge in a uniform field can move in a circle"
+   ],
+   "error": 2,
+   "fix": "The magnetic force is perpendicular to v, so it does no work and leaves the speed unchanged."
+  },
+  {
+   "id": "magnetism-lorentz.match",
+   "atom": "magnetism-lorentz",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "B",
+     "meaning": "Magnetic field"
+    },
+    {
+     "term": "Tesla",
+     "meaning": "SI unit of magnetic field"
+    },
+    {
+     "term": "Lorentz force",
+     "meaning": "q (E + v x B)"
+    },
+    {
+     "term": "Right-hand rule",
+     "meaning": "Finds the direction of v x B"
+    }
+   ]
+  },
+  {
+   "id": "faraday.pick",
+   "atom": "faraday",
+   "kind": "pick",
+   "prompt": "What induces an EMF in a loop of wire?",
+   "options": [
+    "A steady magnetic field",
+    "A changing magnetic flux",
+    "A constant current elsewhere",
+    "A static charge nearby"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "faraday.calculate",
+   "atom": "faraday",
+   "kind": "calculate",
+   "prompt": "The flux through a one-turn generator coil drops from 0.6 Wb to 0 in 0.2 s. What average EMF is induced?",
+   "answer": 3.0,
+   "unit": "V",
+   "relTol": 0.02
+  },
+  {
+   "id": "faraday.order",
+   "atom": "faraday",
+   "kind": "order",
+   "prompt": "Order how a generator makes current.",
+   "steps": [
+    "Turn a coil in a magnetic field",
+    "The flux through the coil changes",
+    "An EMF is induced",
+    "Current flows in the circuit"
+   ]
+  },
+  {
+   "id": "faraday.spot-error",
+   "atom": "faraday",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A changing flux induces an EMF",
+    "The induced current opposes the flux change",
+    "A strong steady field induces a large EMF",
+    "Faster change gives a larger EMF"
+   ],
+   "error": 2,
+   "fix": "Only a changing flux induces an EMF."
+  },
+  {
+   "id": "faraday.match",
+   "atom": "faraday",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Magnetic flux",
+     "meaning": "Field times area through a loop"
+    },
+    {
+     "term": "Weber",
+     "meaning": "Unit of magnetic flux"
+    },
+    {
+     "term": "Lenz's law",
+     "meaning": "Induced current opposes the change"
+    },
+    {
+     "term": "Transformer",
+     "meaning": "Uses induction to change voltage"
+    }
+   ]
+  },
+  {
+   "id": "ampere-maxwell.pick",
+   "atom": "ampere-maxwell",
+   "kind": "pick",
+   "prompt": "What did Maxwell add to Ampère's law?",
+   "options": [
+    "A displacement current from changing E",
+    "Magnetic monopoles",
+    "A term for gravity",
+    "A friction term"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "ampere-maxwell.calculate",
+   "atom": "ampere-maxwell",
+   "kind": "calculate",
+   "prompt": "A wire carries 2 A into a charging capacitor. How much displacement current crosses the gap between the plates?",
+   "answer": 2.0,
+   "unit": "A",
+   "relTol": 0.02
+  },
+  {
+   "id": "ampere-maxwell.order",
+   "atom": "ampere-maxwell",
+   "kind": "order",
+   "prompt": "Order the capacitor puzzle Maxwell solved.",
+   "steps": [
+    "Current flows in a wire to a capacitor",
+    "No charge crosses the gap",
+    "The electric field in the gap grows",
+    "The growing field sources the magnetic field around the gap"
+   ]
+  },
+  {
+   "id": "ampere-maxwell.spot-error",
+   "atom": "ampere-maxwell",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Currents create circulating B",
+    "A changing E also creates B",
+    "The new term is mu_0 epsilon_0 dE/dt",
+    "Without the new term, Ampère's law still fits charge conservation"
+   ],
+   "error": 3,
+   "fix": "Without displacement current, Ampère's law breaks charge conservation at a charging capacitor."
+  },
+  {
+   "id": "ampere-maxwell.match",
+   "atom": "ampere-maxwell",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "mu_0",
+     "meaning": "Permeability of free space"
+    },
+    {
+     "term": "J",
+     "meaning": "Current density"
+    },
+    {
+     "term": "Displacement current",
+     "meaning": "epsilon_0 dE/dt term"
+    },
+    {
+     "term": "Curl of B",
+     "meaning": "Circulation of the magnetic field"
+    }
+   ]
+  },
+  {
+   "id": "maxwell-equations.pick",
+   "atom": "maxwell-equations",
+   "kind": "pick",
+   "prompt": "Which equation says there are no magnetic monopoles?",
+   "options": [
+    "div E = rho / epsilon_0",
+    "div B = 0",
+    "curl E = -dB/dt",
+    "curl B = mu_0 J + mu_0 epsilon_0 dE/dt"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "maxwell-equations.calculate",
+   "atom": "maxwell-equations",
+   "kind": "calculate",
+   "prompt": "With mu_0 = 1.257e-6 and epsilon_0 = 8.854e-12 in SI units, what is 1/sqrt(mu_0 epsilon_0)?",
+   "answer": 299800000.0,
+   "unit": "m/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "maxwell-equations.order",
+   "atom": "maxwell-equations",
+   "kind": "order",
+   "prompt": "Order how the equations build light.",
+   "steps": [
+    "Charges source E",
+    "A changing B creates a curling E",
+    "A changing E creates a curling B",
+    "The pair sustains a traveling wave"
+   ]
+  },
+  {
+   "id": "maxwell-equations.spot-error",
+   "atom": "maxwell-equations",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "div E = rho / epsilon_0 is Gauss's law",
+    "div B = 0 bans monopoles",
+    "curl E = +dB/dt",
+    "curl B includes the displacement current"
+   ],
+   "error": 2,
+   "fix": "curl E = -dB/dt; the minus sign is Lenz's law."
+  },
+  {
+   "id": "maxwell-equations.match",
+   "atom": "maxwell-equations",
+   "kind": "match",
+   "prompt": "Match each equation to its name.",
+   "pairs": [
+    {
+     "term": "div E = rho / epsilon_0",
+     "meaning": "Gauss's law"
+    },
+    {
+     "term": "div B = 0",
+     "meaning": "Gauss's law for magnetism"
+    },
+    {
+     "term": "curl E = -dB/dt",
+     "meaning": "Faraday's law"
+    },
+    {
+     "term": "curl B = mu_0 J + mu_0 epsilon_0 dE/dt",
+     "meaning": "Ampère-Maxwell law"
+    }
+   ]
+  },
+  {
+   "id": "em-waves.pick",
+   "atom": "em-waves",
+   "kind": "pick",
+   "prompt": "How are E and B oriented in a light wave in vacuum?",
+   "options": [
+    "Parallel to each other and to the motion",
+    "Perpendicular to each other and to the motion",
+    "E along the motion, B across it",
+    "Both along the motion"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "em-waves.calculate",
+   "atom": "em-waves",
+   "kind": "calculate",
+   "prompt": "A Wi-Fi router transmits at 2.4 GHz. What is the wavelength of its signal?",
+   "answer": 0.125,
+   "unit": "m",
+   "relTol": 0.02
+  },
+  {
+   "id": "em-waves.order",
+   "atom": "em-waves",
+   "kind": "order",
+   "prompt": "Order these from shortest to longest wavelength.",
+   "steps": [
+    "Gamma rays",
+    "Visible light",
+    "Microwaves",
+    "Radio waves"
+   ]
+  },
+  {
+   "id": "em-waves.spot-error",
+   "atom": "em-waves",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "EM waves need no medium",
+    "They travel at c in vacuum",
+    "In a vacuum plane wave E and B are 90 degrees out of phase",
+    "E, B and the direction of travel are mutually perpendicular"
+   ],
+   "error": 2,
+   "fix": "In a vacuum plane wave E and B oscillate in phase."
+  },
+  {
+   "id": "em-waves.match",
+   "atom": "em-waves",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "c",
+     "meaning": "3e8 m/s"
+    },
+    {
+     "term": "Frequency",
+     "meaning": "Oscillations per second"
+    },
+    {
+     "term": "Wavelength",
+     "meaning": "c divided by frequency"
+    },
+    {
+     "term": "Polarization",
+     "meaning": "Direction the E field points"
+    }
+   ]
+  },
+  {
+   "id": "thermo-temperature.pick",
+   "atom": "thermo-temperature",
+   "kind": "pick",
+   "prompt": "What does temperature measure at the molecular level?",
+   "options": [
+    "Total energy of the gas",
+    "Average kinetic energy per molecule",
+    "Number of molecules",
+    "Pressure on the walls"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "thermo-temperature.calculate",
+   "atom": "thermo-temperature",
+   "kind": "calculate",
+   "prompt": "A 0.0224 m^3 tank holds 6.02e23 gas molecules at 273 K. What is the pressure? Use k_B = 1.381e-23 J/K.",
+   "answer": 101300.0,
+   "unit": "Pa",
+   "relTol": 0.02
+  },
+  {
+   "id": "thermo-temperature.order",
+   "atom": "thermo-temperature",
+   "kind": "order",
+   "prompt": "Order what happens when a sealed gas is heated.",
+   "steps": [
+    "Molecules move faster",
+    "They hit the walls harder and more often",
+    "Pressure on the walls rises",
+    "PV = N k_B T tracks the change"
+   ]
+  },
+  {
+   "id": "thermo-temperature.spot-error",
+   "atom": "thermo-temperature",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Average kinetic energy is (3/2) k_B T",
+    "PV = N k_B T",
+    "The gas law works with T in Celsius",
+    "Two bodies in equilibrium share a temperature"
+   ],
+   "error": 2,
+   "fix": "Use kelvin, an absolute temperature scale."
+  },
+  {
+   "id": "thermo-temperature.match",
+   "atom": "thermo-temperature",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Zeroth law",
+     "meaning": "Thermal equilibrium is transitive"
+    },
+    {
+     "term": "k_B",
+     "meaning": "Boltzmann constant"
+    },
+    {
+     "term": "Kelvin",
+     "meaning": "Absolute temperature scale"
+    },
+    {
+     "term": "Ideal gas",
+     "meaning": "Molecules with no forces between them"
+    }
+   ]
+  },
+  {
+   "id": "first-law-thermo.pick",
+   "atom": "first-law-thermo",
+   "kind": "pick",
+   "prompt": "A gas expands and does work with no heat flow. What happens to its internal energy?",
+   "options": [
+    "It rises",
+    "It falls",
+    "It stays fixed",
+    "It doubles"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "first-law-thermo.calculate",
+   "atom": "first-law-thermo",
+   "kind": "calculate",
+   "prompt": "An engine cylinder takes in 500 J of heat while the gas does 200 J of work. What is the change in internal energy?",
+   "answer": 300.0,
+   "unit": "J",
+   "relTol": 0.02
+  },
+  {
+   "id": "first-law-thermo.order",
+   "atom": "first-law-thermo",
+   "kind": "order",
+   "prompt": "Order the first-law bookkeeping.",
+   "steps": [
+    "Define the system",
+    "Find the heat Q added",
+    "Find the work W done by the system",
+    "Compute Delta U = Q - W"
+   ]
+  },
+  {
+   "id": "first-law-thermo.spot-error",
+   "atom": "first-law-thermo",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Internal energy is a state function",
+    "dU = dQ - dW with W done by the system",
+    "Heat and work are state functions",
+    "Over a full cycle Delta U = 0"
+   ],
+   "error": 2,
+   "fix": "Heat and work depend on the path; only U is a state function."
+  },
+  {
+   "id": "first-law-thermo.match",
+   "atom": "first-law-thermo",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "Q",
+     "meaning": "Heat added to the system"
+    },
+    {
+     "term": "W",
+     "meaning": "Work done by the system"
+    },
+    {
+     "term": "U",
+     "meaning": "Internal energy"
+    },
+    {
+     "term": "Adiabatic",
+     "meaning": "No heat exchanged"
+    }
+   ]
+  },
+  {
+   "id": "entropy-second-law.pick",
+   "atom": "entropy-second-law",
+   "kind": "pick",
+   "prompt": "What does entropy do in an isolated system?",
+   "options": [
+    "It never decreases",
+    "It always decreases",
+    "It swings up and down",
+    "It drops to zero"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "entropy-second-law.calculate",
+   "atom": "entropy-second-law",
+   "kind": "calculate",
+   "prompt": "1,000 J of heat flows from a 400 K stove into 300 K kitchen air. What is the total entropy change?",
+   "answer": 0.8333,
+   "unit": "J/K",
+   "relTol": 0.02
+  },
+  {
+   "id": "entropy-second-law.order",
+   "atom": "entropy-second-law",
+   "kind": "order",
+   "prompt": "Order the entropy bookkeeping for heat flow.",
+   "steps": [
+    "Heat Q leaves the hot body",
+    "Its entropy drops by Q / T_h",
+    "The cold body's entropy rises by Q / T_c",
+    "The total rises because T_c < T_h"
+   ]
+  },
+  {
+   "id": "entropy-second-law.spot-error",
+   "atom": "entropy-second-law",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "dS >= dQ / T",
+    "Heat flows on its own from hot to cold",
+    "A refrigerator breaks the second law",
+    "Total entropy of the universe never falls"
+   ],
+   "error": 2,
+   "fix": "A refrigerator uses work and dumps extra entropy outside, so total entropy still rises."
+  },
+  {
+   "id": "entropy-second-law.match",
+   "atom": "entropy-second-law",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Entropy",
+     "meaning": "Measure of disorder, S"
+    },
+    {
+     "term": "Isolated system",
+     "meaning": "No exchange with surroundings"
+    },
+    {
+     "term": "Reversible process",
+     "meaning": "dS = dQ / T"
+    },
+    {
+     "term": "Arrow of time",
+     "meaning": "Direction in which entropy grows"
+    }
+   ]
+  },
+  {
+   "id": "boltzmann-entropy.pick",
+   "atom": "boltzmann-entropy",
+   "kind": "pick",
+   "prompt": "The number of microstates doubles. How much does entropy rise?",
+   "options": [
+    "k_B ln 2",
+    "2 k_B",
+    "k_B / 2",
+    "It doubles"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "boltzmann-entropy.calculate",
+   "atom": "boltzmann-entropy",
+   "kind": "calculate",
+   "prompt": "A system has Omega = e^10 microstates. What is its entropy in units of k_B?",
+   "answer": 10.0,
+   "unit": "k_B",
+   "relTol": 0.02
+  },
+  {
+   "id": "boltzmann-entropy.order",
+   "atom": "boltzmann-entropy",
+   "kind": "order",
+   "prompt": "Order the steps to compute Boltzmann entropy.",
+   "steps": [
+    "Pick a macrostate",
+    "Count its microstates Omega",
+    "Take ln Omega",
+    "Multiply by k_B"
+   ]
+  },
+  {
+   "id": "boltzmann-entropy.spot-error",
+   "atom": "boltzmann-entropy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "S = k_B ln Omega",
+    "A microstate is one exact arrangement",
+    "Joining two systems multiplies Omega and adds S",
+    "More ordered macrostates have more microstates"
+   ],
+   "error": 3,
+   "fix": "Ordered macrostates have fewer microstates and lower entropy."
+  },
+  {
+   "id": "boltzmann-entropy.match",
+   "atom": "boltzmann-entropy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Omega",
+     "meaning": "Number of microstates"
+    },
+    {
+     "term": "Microstate",
+     "meaning": "One exact arrangement"
+    },
+    {
+     "term": "Macrostate",
+     "meaning": "Bulk description such as P, V, T"
+    },
+    {
+     "term": "k_B",
+     "meaning": "1.38e-23 J/K"
+    }
+   ]
+  },
+  {
+   "id": "boltzmann-distribution.pick",
+   "atom": "boltzmann-distribution",
+   "kind": "pick",
+   "prompt": "What happens to occupation of high-energy states as temperature rises?",
+   "options": [
+    "It rises",
+    "It falls",
+    "It drops to zero",
+    "It stays fixed"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "boltzmann-distribution.calculate",
+   "atom": "boltzmann-distribution",
+   "kind": "calculate",
+   "prompt": "Two states differ in energy by exactly k_B T. What is the ratio p_high / p_low?",
+   "answer": 0.3679,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "boltzmann-distribution.order",
+   "atom": "boltzmann-distribution",
+   "kind": "order",
+   "prompt": "Order the steps to find state probabilities.",
+   "steps": [
+    "List the states and their energies",
+    "Compute each Boltzmann factor e^(-E/k_B T)",
+    "Sum the factors to get Z",
+    "Divide each factor by Z"
+   ]
+  },
+  {
+   "id": "boltzmann-distribution.spot-error",
+   "atom": "boltzmann-distribution",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "p_i is proportional to e^(-E_i / k_B T)",
+    "Z normalizes the probabilities",
+    "Higher-energy states are more likely",
+    "At high T the states approach equal odds"
+   ],
+   "error": 2,
+   "fix": "Higher-energy states are less likely."
+  },
+  {
+   "id": "boltzmann-distribution.match",
+   "atom": "boltzmann-distribution",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Z",
+     "meaning": "Partition function"
+    },
+    {
+     "term": "Boltzmann factor",
+     "meaning": "e^(-E / k_B T)"
+    },
+    {
+     "term": "k_B T",
+     "meaning": "Thermal energy scale"
+    },
+    {
+     "term": "Equilibrium",
+     "meaning": "Condition for the distribution to hold"
+    }
+   ]
+  },
+  {
+   "id": "geometric-optics.pick",
+   "atom": "geometric-optics",
+   "kind": "pick",
+   "prompt": "Light passes from air into glass at an angle. Which way does it bend?",
+   "options": [
+    "Toward the normal",
+    "Away from the normal",
+    "It goes straight",
+    "It always reflects back"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "geometric-optics.calculate",
+   "atom": "geometric-optics",
+   "kind": "calculate",
+   "prompt": "A ray in air hits a pool surface (n = 1.33) at 45 degrees from the normal. What is the refraction angle in degrees?",
+   "answer": 32.12,
+   "unit": "degrees",
+   "relTol": 0.02
+  },
+  {
+   "id": "geometric-optics.order",
+   "atom": "geometric-optics",
+   "kind": "order",
+   "prompt": "Order the steps to apply Snell's law.",
+   "steps": [
+    "Draw the normal at the interface",
+    "Measure the incident angle from the normal",
+    "Apply n1 sin theta1 = n2 sin theta2",
+    "Solve for the refraction angle"
+   ]
+  },
+  {
+   "id": "geometric-optics.spot-error",
+   "atom": "geometric-optics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Angle of incidence equals angle of reflection",
+    "n1 sin theta1 = n2 sin theta2",
+    "Light speeds up when it enters glass",
+    "Total internal reflection needs light heading into lower n"
+   ],
+   "error": 2,
+   "fix": "Light slows down in glass: v = c / n."
+  },
+  {
+   "id": "geometric-optics.match",
+   "atom": "geometric-optics",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Index n",
+     "meaning": "c divided by the speed in the medium"
+    },
+    {
+     "term": "Normal",
+     "meaning": "Line perpendicular to the surface"
+    },
+    {
+     "term": "Critical angle",
+     "meaning": "Onset of total internal reflection"
+    },
+    {
+     "term": "Ray",
+     "meaning": "Path light follows"
+    }
+   ]
+  },
+  {
+   "id": "wave-optics.pick",
+   "atom": "wave-optics",
+   "kind": "pick",
+   "prompt": "In a double-slit experiment, when do bright fringes appear?",
+   "options": [
+    "Path difference is a whole number of wavelengths",
+    "Path difference is half a wavelength",
+    "Path difference is zero only",
+    "At any path difference"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "wave-optics.calculate",
+   "atom": "wave-optics",
+   "kind": "calculate",
+   "prompt": "A 650 nm laser pointer shines through two slits 0.1 mm apart. At what angle in degrees is the first bright fringe?",
+   "answer": 0.3724,
+   "unit": "degrees",
+   "relTol": 0.02
+  },
+  {
+   "id": "wave-optics.order",
+   "atom": "wave-optics",
+   "kind": "order",
+   "prompt": "Order the double-slit story.",
+   "steps": [
+    "Light reaches two slits",
+    "Waves spread from each slit",
+    "They overlap on a screen",
+    "Path differences set bright and dark fringes"
+   ]
+  },
+  {
+   "id": "wave-optics.spot-error",
+   "atom": "wave-optics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Bright fringes satisfy d sin theta = m lambda",
+    "Dark fringes come from destructive interference",
+    "Larger slit spacing spreads the fringes farther apart",
+    "Longer wavelength spreads them farther apart"
+   ],
+   "error": 2,
+   "fix": "Larger slit spacing brings the fringes closer together."
+  },
+  {
+   "id": "wave-optics.match",
+   "atom": "wave-optics",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Interference",
+     "meaning": "Overlap of waves adding or cancelling"
+    },
+    {
+     "term": "Diffraction",
+     "meaning": "Spreading around edges and through gaps"
+    },
+    {
+     "term": "Coherent",
+     "meaning": "Fixed phase relation"
+    },
+    {
+     "term": "Fringe",
+     "meaning": "Bright or dark band"
+    }
+   ]
+  },
+  {
+   "id": "special-relativity.pick",
+   "atom": "special-relativity",
+   "kind": "pick",
+   "prompt": "What do all inertial observers agree on?",
+   "options": [
+    "The speed of light",
+    "The time between two events",
+    "The length of a moving rod",
+    "Which events are simultaneous"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "special-relativity.calculate",
+   "atom": "special-relativity",
+   "kind": "calculate",
+   "prompt": "A cosmic-ray muon moves at 0.8c and lives 2.2 microseconds in its own frame. How long does it live in Earth's frame, in microseconds?",
+   "answer": 3.667,
+   "unit": "microseconds",
+   "relTol": 0.02
+  },
+  {
+   "id": "special-relativity.order",
+   "atom": "special-relativity",
+   "kind": "order",
+   "prompt": "Order the logic of special relativity.",
+   "steps": [
+    "Assume physics is the same in every inertial frame",
+    "Assume light has the same speed for everyone",
+    "Demand coordinates transform consistently",
+    "Derive the Lorentz transformation"
+   ]
+  },
+  {
+   "id": "special-relativity.spot-error",
+   "atom": "special-relativity",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "c is the same for all inertial observers",
+    "Moving clocks run slow",
+    "Moving rods are longer along their motion",
+    "gamma is always at least 1"
+   ],
+   "error": 2,
+   "fix": "Moving rods are shorter along their motion."
+  },
+  {
+   "id": "special-relativity.match",
+   "atom": "special-relativity",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "gamma",
+     "meaning": "Lorentz factor 1 / sqrt(1 - v^2/c^2)"
+    },
+    {
+     "term": "Time dilation",
+     "meaning": "Moving clocks run slow"
+    },
+    {
+     "term": "Length contraction",
+     "meaning": "Moving rods shorten"
+    },
+    {
+     "term": "Inertial frame",
+     "meaning": "Frame with no acceleration"
+    }
+   ]
+  },
+  {
+   "id": "spacetime.pick",
+   "atom": "spacetime",
+   "kind": "pick",
+   "prompt": "Which quantity do all inertial observers agree on?",
+   "options": [
+    "The interval Delta s^2",
+    "Delta t",
+    "Delta x",
+    "Simultaneity"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "spacetime.calculate",
+   "atom": "spacetime",
+   "kind": "calculate",
+   "prompt": "Two events are 4 s apart in time and 3 light-seconds apart in space. What proper time in seconds separates them?",
+   "answer": 2.646,
+   "unit": "s",
+   "relTol": 0.02
+  },
+  {
+   "id": "spacetime.order",
+   "atom": "spacetime",
+   "kind": "order",
+   "prompt": "Order the steps to classify two events.",
+   "steps": [
+    "Measure Delta t and Delta x in one frame",
+    "Compute Delta s^2 = -c^2 Delta t^2 + Delta x^2",
+    "Check its sign",
+    "Call the separation timelike, lightlike or spacelike"
+   ]
+  },
+  {
+   "id": "spacetime.spot-error",
+   "atom": "spacetime",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Delta s^2 is the same in every frame",
+    "Timelike events can be causally linked",
+    "Spacelike events can be causally linked",
+    "Light rays have Delta s^2 = 0"
+   ],
+   "error": 2,
+   "fix": "Spacelike events cannot influence each other."
+  },
+  {
+   "id": "spacetime.match",
+   "atom": "spacetime",
+   "kind": "match",
+   "prompt": "Match each term to its meaning, with the sign convention Delta s^2 = -c^2 Delta t^2 + Delta x^2.",
+   "pairs": [
+    {
+     "term": "Timelike",
+     "meaning": "Delta s^2 < 0"
+    },
+    {
+     "term": "Spacelike",
+     "meaning": "Delta s^2 > 0"
+    },
+    {
+     "term": "Lightlike",
+     "meaning": "Delta s^2 = 0"
+    },
+    {
+     "term": "Worldline",
+     "meaning": "Path of an object through spacetime"
+    }
+   ]
+  },
+  {
+   "id": "mass-energy.pick",
+   "atom": "mass-energy",
+   "kind": "pick",
+   "prompt": "What is the rest energy of a body of mass m?",
+   "options": [
+    "mc^2",
+    "(1/2) m v^2",
+    "pc",
+    "Zero"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "mass-energy.calculate",
+   "atom": "mass-energy",
+   "kind": "calculate",
+   "prompt": "How much energy would 1 g of mass release if fully converted?",
+   "answer": 90000000000000.0,
+   "unit": "J",
+   "relTol": 0.02
+  },
+  {
+   "id": "mass-energy.order",
+   "atom": "mass-energy",
+   "kind": "order",
+   "prompt": "Order where fission energy comes from.",
+   "steps": [
+    "A heavy nucleus splits",
+    "The products have less total mass",
+    "The missing mass is Delta m",
+    "The energy released is Delta m c^2"
+   ]
+  },
+  {
+   "id": "mass-energy.spot-error",
+   "atom": "mass-energy",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "E_0 = mc^2",
+    "E^2 = (pc)^2 + (mc^2)^2",
+    "A photon has rest mass",
+    "A body at rest still holds energy"
+   ],
+   "error": 2,
+   "fix": "A photon is massless, so E = pc."
+  },
+  {
+   "id": "mass-energy.match",
+   "atom": "mass-energy",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Rest energy",
+     "meaning": "mc^2"
+    },
+    {
+     "term": "Mass defect",
+     "meaning": "Mass missing after binding"
+    },
+    {
+     "term": "Photon energy",
+     "meaning": "E = pc"
+    },
+    {
+     "term": "c^2",
+     "meaning": "9e16 m^2/s^2"
+    }
+   ]
+  },
+  {
+   "id": "equivalence-principle.pick",
+   "atom": "equivalence-principle",
+   "kind": "pick",
+   "prompt": "What does the equivalence principle equate?",
+   "options": [
+    "Inertial and gravitational mass",
+    "Mass and charge",
+    "Energy and momentum",
+    "Space and time"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "equivalence-principle.calculate",
+   "atom": "equivalence-principle",
+   "kind": "calculate",
+   "prompt": "An elevator accelerates upward at 2 m/s^2. A 60 kg person stands on a scale. What does the scale read in newtons?",
+   "answer": 708.0,
+   "unit": "N",
+   "relTol": 0.02
+  },
+  {
+   "id": "equivalence-principle.order",
+   "atom": "equivalence-principle",
+   "kind": "order",
+   "prompt": "Order Einstein's reasoning.",
+   "steps": [
+    "All objects fall at the same rate",
+    "A freely falling lab feels weightless",
+    "Locally, gravity looks like acceleration",
+    "Gravity becomes geometry"
+   ]
+  },
+  {
+   "id": "equivalence-principle.spot-error",
+   "atom": "equivalence-principle",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Inertial mass equals gravitational mass",
+    "A freely falling observer feels weightless",
+    "Some local experiment can tell gravity from acceleration",
+    "Light bends in a gravitational field"
+   ],
+   "error": 2,
+   "fix": "No local experiment can tell gravity from acceleration."
+  },
+  {
+   "id": "equivalence-principle.match",
+   "atom": "equivalence-principle",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Inertial mass",
+     "meaning": "Resists acceleration"
+    },
+    {
+     "term": "Gravitational mass",
+     "meaning": "Sets the pull of gravity"
+    },
+    {
+     "term": "Free fall",
+     "meaning": "Weightless motion"
+    },
+    {
+     "term": "Local",
+     "meaning": "Small region of spacetime"
+    }
+   ]
+  },
+  {
+   "id": "geodesics-curvature.pick",
+   "atom": "geodesics-curvature",
+   "kind": "pick",
+   "prompt": "What path does a freely falling body follow?",
+   "options": [
+    "A geodesic",
+    "A straight line in space",
+    "A circle",
+    "A random path"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "geodesics-curvature.calculate",
+   "atom": "geodesics-curvature",
+   "kind": "calculate",
+   "prompt": "A long-haul flight follows a great circle on Earth, radius 6,371 km. How long is a quarter of a great circle in km?",
+   "answer": 10010.0,
+   "unit": "km",
+   "relTol": 0.02
+  },
+  {
+   "id": "geodesics-curvature.order",
+   "atom": "geodesics-curvature",
+   "kind": "order",
+   "prompt": "Order the geometric view of an orbit.",
+   "steps": [
+    "Mass curves spacetime",
+    "A free body has no force on it",
+    "It follows the straightest path",
+    "Seen from outside, the path bends"
+   ]
+  },
+  {
+   "id": "geodesics-curvature.spot-error",
+   "atom": "geodesics-curvature",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Free fall follows geodesics",
+    "Christoffel symbols appear in the geodesic equation",
+    "In general relativity a gravitational force pushes planets off straight lines",
+    "Great circles are geodesics on a sphere"
+   ],
+   "error": 2,
+   "fix": "In general relativity planets follow geodesics with no gravitational force acting."
+  },
+  {
+   "id": "geodesics-curvature.match",
+   "atom": "geodesics-curvature",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Geodesic",
+     "meaning": "Straightest path"
+    },
+    {
+     "term": "Curvature",
+     "meaning": "Bending of spacetime"
+    },
+    {
+     "term": "Proper time",
+     "meaning": "Time on a clock along the path"
+    },
+    {
+     "term": "Great circle",
+     "meaning": "Geodesic on a sphere"
+    }
+   ]
+  },
+  {
+   "id": "einstein-equation.pick",
+   "atom": "einstein-equation",
+   "kind": "pick",
+   "prompt": "What sits on the right side of Einstein's field equation?",
+   "options": [
+    "The stress-energy tensor",
+    "The Einstein tensor",
+    "The metric alone",
+    "The Christoffel symbols"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "einstein-equation.calculate",
+   "atom": "einstein-equation",
+   "kind": "calculate",
+   "prompt": "What is the coupling 8 pi G / c^4 in SI units? Use G = 6.674e-11 and c = 3e8.",
+   "answer": 2.071e-43,
+   "unit": "s^2/(kg m)",
+   "relTol": 0.02
+  },
+  {
+   "id": "einstein-equation.order",
+   "atom": "einstein-equation",
+   "kind": "order",
+   "prompt": "Order a use of the field equation.",
+   "steps": [
+    "Describe matter with T_mu nu",
+    "Insert it into G_mu nu = (8 pi G / c^4) T_mu nu",
+    "Solve for the metric",
+    "Find geodesics for the motion"
+   ]
+  },
+  {
+   "id": "einstein-equation.spot-error",
+   "atom": "einstein-equation",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The left side is geometry",
+    "The right side is matter and energy",
+    "The coupling is large, so small masses curve spacetime strongly",
+    "Spacetime tells matter how to move"
+   ],
+   "error": 2,
+   "fix": "The coupling 8 pi G / c^4 is tiny, so it takes huge masses to curve spacetime noticeably."
+  },
+  {
+   "id": "einstein-equation.match",
+   "atom": "einstein-equation",
+   "kind": "match",
+   "prompt": "Match each symbol to its meaning.",
+   "pairs": [
+    {
+     "term": "G_mu nu",
+     "meaning": "Einstein tensor"
+    },
+    {
+     "term": "T_mu nu",
+     "meaning": "Stress-energy tensor"
+    },
+    {
+     "term": "Metric",
+     "meaning": "Geometry of spacetime"
+    },
+    {
+     "term": "8 pi G / c^4",
+     "meaning": "Coupling constant"
+    }
+   ]
+  },
+  {
+   "id": "photoelectric-quantization.pick",
+   "atom": "photoelectric-quantization",
+   "kind": "pick",
+   "prompt": "Light below the threshold frequency gets brighter. What happens?",
+   "options": [
+    "Still no electrons leave",
+    "Faster electrons leave",
+    "More electrons leave",
+    "The work function drops"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "photoelectric-quantization.calculate",
+   "atom": "photoelectric-quantization",
+   "kind": "calculate",
+   "prompt": "UV light at 1.5e15 Hz hits a metal with work function 4.0 eV. What is K_max in eV?",
+   "answer": 2.204,
+   "unit": "eV",
+   "relTol": 0.02
+  },
+  {
+   "id": "photoelectric-quantization.order",
+   "atom": "photoelectric-quantization",
+   "kind": "order",
+   "prompt": "Order the photoelectric process.",
+   "steps": [
+    "A photon of energy h nu hits the metal",
+    "It gives all its energy to one electron",
+    "The electron spends phi to escape",
+    "It leaves with K_max = h nu - phi"
+   ]
+  },
+  {
+   "id": "photoelectric-quantization.spot-error",
+   "atom": "photoelectric-quantization",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "E = h nu",
+    "Brighter light carries more photons",
+    "Brighter light gives each electron more energy",
+    "Below threshold no electrons leave"
+   ],
+   "error": 2,
+   "fix": "Each electron's energy depends on frequency alone."
+  },
+  {
+   "id": "photoelectric-quantization.match",
+   "atom": "photoelectric-quantization",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Photon",
+     "meaning": "Quantum of light"
+    },
+    {
+     "term": "Work function",
+     "meaning": "Energy needed to free an electron"
+    },
+    {
+     "term": "Threshold frequency",
+     "meaning": "phi / h"
+    },
+    {
+     "term": "h",
+     "meaning": "6.626e-34 J s"
+    }
+   ]
+  },
+  {
+   "id": "matter-waves.pick",
+   "atom": "matter-waves",
+   "kind": "pick",
+   "prompt": "A particle's momentum doubles. What happens to its de Broglie wavelength?",
+   "options": [
+    "It halves",
+    "It doubles",
+    "It stays the same",
+    "It grows four times"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "matter-waves.calculate",
+   "atom": "matter-waves",
+   "kind": "calculate",
+   "prompt": "Electrons in an electron microscope have momentum 5.3e-24 kg m/s. What is their wavelength?",
+   "answer": 1.25e-10,
+   "unit": "m",
+   "relTol": 0.02
+  },
+  {
+   "id": "matter-waves.order",
+   "atom": "matter-waves",
+   "kind": "order",
+   "prompt": "Order the steps to find a matter wavelength.",
+   "steps": [
+    "Find the mass and velocity",
+    "Compute p = mv",
+    "Compute lambda = h / p",
+    "Compare lambda with the gap or atom it meets"
+   ]
+  },
+  {
+   "id": "matter-waves.spot-error",
+   "atom": "matter-waves",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "lambda = h / p",
+    "Electrons diffract off crystals",
+    "A thrown baseball shows strong wave effects",
+    "Faster particles have shorter wavelengths"
+   ],
+   "error": 2,
+   "fix": "A baseball's wavelength is far too small to observe."
+  },
+  {
+   "id": "matter-waves.match",
+   "atom": "matter-waves",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "de Broglie wavelength",
+     "meaning": "h / p"
+    },
+    {
+     "term": "Electron diffraction",
+     "meaning": "Evidence that matter is wavy"
+    },
+    {
+     "term": "h",
+     "meaning": "Planck constant"
+    },
+    {
+     "term": "Momentum",
+     "meaning": "Mass times velocity"
+    }
+   ]
+  },
+  {
+   "id": "wavefunction.pick",
+   "atom": "wavefunction",
+   "kind": "pick",
+   "prompt": "What gives the probability density of finding a particle at x?",
+   "options": [
+    "|psi(x)|^2",
+    "psi(x)",
+    "The real part of psi",
+    "The phase of psi"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "wavefunction.calculate",
+   "atom": "wavefunction",
+   "kind": "calculate",
+   "prompt": "psi is uniform across a box 4 nm wide. What is the probability of finding the particle in a 1 nm slice?",
+   "answer": 0.25,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "wavefunction.order",
+   "atom": "wavefunction",
+   "kind": "order",
+   "prompt": "Order the use of the Born rule.",
+   "steps": [
+    "Write psi(x)",
+    "Square its magnitude",
+    "Normalize so the total is 1",
+    "Integrate over a region for its probability"
+   ]
+  },
+  {
+   "id": "wavefunction.spot-error",
+   "atom": "wavefunction",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "psi can be complex",
+    "|psi|^2 is a probability density",
+    "psi itself is the probability",
+    "Total probability integrates to 1"
+   ],
+   "error": 2,
+   "fix": "The probability density is |psi|^2."
+  },
+  {
+   "id": "wavefunction.match",
+   "atom": "wavefunction",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "psi",
+     "meaning": "Wavefunction"
+    },
+    {
+     "term": "Born rule",
+     "meaning": "P = |psi|^2"
+    },
+    {
+     "term": "Normalization",
+     "meaning": "Total probability equals 1"
+    },
+    {
+     "term": "Amplitude",
+     "meaning": "Complex value of psi"
+    }
+   ]
+  },
+  {
+   "id": "schrodinger.pick",
+   "atom": "schrodinger",
+   "kind": "pick",
+   "prompt": "What does the Hamiltonian operator represent?",
+   "options": [
+    "Total energy",
+    "Momentum alone",
+    "Position",
+    "Probability"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "schrodinger.calculate",
+   "atom": "schrodinger",
+   "kind": "calculate",
+   "prompt": "A particle in a box has ground state energy 2 eV. With E_n proportional to n^2, what is E_3 in eV?",
+   "answer": 18.0,
+   "unit": "eV",
+   "relTol": 0.02
+  },
+  {
+   "id": "schrodinger.order",
+   "atom": "schrodinger",
+   "kind": "order",
+   "prompt": "Order the steps to solve a quantum problem.",
+   "steps": [
+    "Write the potential V",
+    "Build H = -(hbar^2 / 2m) nabla^2 + V",
+    "Solve H psi = E psi",
+    "Evolve each state with phase e^(-iEt/hbar)"
+   ]
+  },
+  {
+   "id": "schrodinger.spot-error",
+   "atom": "schrodinger",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The equation is first order in time",
+    "The evolution is deterministic",
+    "The equation contains no i",
+    "Stationary states have fixed |psi|^2"
+   ],
+   "error": 2,
+   "fix": "The equation is i hbar d psi/dt = H psi; the i is essential."
+  },
+  {
+   "id": "schrodinger.match",
+   "atom": "schrodinger",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "i hbar d/dt",
+     "meaning": "Time evolution"
+    },
+    {
+     "term": "H",
+     "meaning": "Hamiltonian"
+    },
+    {
+     "term": "V",
+     "meaning": "Potential energy"
+    },
+    {
+     "term": "Stationary state",
+     "meaning": "Energy eigenstate"
+    }
+   ]
+  },
+  {
+   "id": "operators-observables.pick",
+   "atom": "operators-observables",
+   "kind": "pick",
+   "prompt": "What results can a measurement of observable A give?",
+   "options": [
+    "Eigenvalues of A",
+    "Any real number",
+    "Only the expectation value",
+    "Zero"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "operators-observables.calculate",
+   "atom": "operators-observables",
+   "kind": "calculate",
+   "prompt": "A state gives a = 2 with probability 0.6 and a = 5 with probability 0.4. What is <A>?",
+   "answer": 3.2,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "operators-observables.order",
+   "atom": "operators-observables",
+   "kind": "order",
+   "prompt": "Order a quantum measurement.",
+   "steps": [
+    "Expand psi in eigenstates of A",
+    "Measure A",
+    "Get eigenvalue a_n with probability |c_n|^2",
+    "The state collapses to psi_n"
+   ]
+  },
+  {
+   "id": "operators-observables.spot-error",
+   "atom": "operators-observables",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Observables are Hermitian operators",
+    "Their eigenvalues are real",
+    "The expectation value is the most likely single result",
+    "A measurement yields an eigenvalue"
+   ],
+   "error": 2,
+   "fix": "The expectation value is the average over many runs and may not be a possible single result."
+  },
+  {
+   "id": "operators-observables.match",
+   "atom": "operators-observables",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Operator",
+     "meaning": "Acts on psi"
+    },
+    {
+     "term": "Eigenvalue",
+     "meaning": "Possible measurement result"
+    },
+    {
+     "term": "Hermitian",
+     "meaning": "Has real eigenvalues"
+    },
+    {
+     "term": "Expectation value",
+     "meaning": "Average over many measurements"
+    }
+   ]
+  },
+  {
+   "id": "uncertainty.pick",
+   "atom": "uncertainty",
+   "kind": "pick",
+   "prompt": "You squeeze a particle's position spread Delta x. What must happen to Delta p?",
+   "options": [
+    "It must grow",
+    "It must shrink",
+    "It stays fixed",
+    "It drops to zero"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "uncertainty.calculate",
+   "atom": "uncertainty",
+   "kind": "calculate",
+   "prompt": "An electron is confined to Delta x = 1e-10 m. What is the minimum Delta p?",
+   "answer": 5.273e-25,
+   "unit": "kg m/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "uncertainty.order",
+   "atom": "uncertainty",
+   "kind": "order",
+   "prompt": "Order why confinement raises momentum spread.",
+   "steps": [
+    "Confine the particle",
+    "Its wavefunction narrows in x",
+    "A narrow packet needs many wavelengths",
+    "The momentum spread grows"
+   ]
+  },
+  {
+   "id": "uncertainty.spot-error",
+   "atom": "uncertainty",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Delta x Delta p >= hbar / 2",
+    "It follows from the wave nature of states",
+    "It comes only from clumsy measurement",
+    "It sets a zero-point energy"
+   ],
+   "error": 2,
+   "fix": "It is built into the wave nature of quantum states."
+  },
+  {
+   "id": "uncertainty.match",
+   "atom": "uncertainty",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Delta x",
+     "meaning": "Position spread"
+    },
+    {
+     "term": "Delta p",
+     "meaning": "Momentum spread"
+    },
+    {
+     "term": "hbar",
+     "meaning": "h / 2 pi"
+    },
+    {
+     "term": "Zero-point energy",
+     "meaning": "Lowest energy allowed by uncertainty"
+    }
+   ]
+  },
+  {
+   "id": "quantum-tunneling.pick",
+   "atom": "quantum-tunneling",
+   "kind": "pick",
+   "prompt": "A barrier gets wider. What happens to the transmission probability?",
+   "options": [
+    "It drops exponentially",
+    "It rises",
+    "It drops in a straight line",
+    "It stays the same"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "quantum-tunneling.calculate",
+   "atom": "quantum-tunneling",
+   "kind": "calculate",
+   "prompt": "In a scanning tunneling microscope, widening the gap raises 2 kappa L by 2. By what factor does the tunneling current fall?",
+   "answer": 7.389,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "quantum-tunneling.order",
+   "atom": "quantum-tunneling",
+   "kind": "order",
+   "prompt": "Order a tunneling event.",
+   "steps": [
+    "The wavefunction meets a barrier",
+    "Inside the barrier it decays exponentially",
+    "A small tail reaches the far side",
+    "The particle can appear beyond the barrier"
+   ]
+  },
+  {
+   "id": "quantum-tunneling.spot-error",
+   "atom": "quantum-tunneling",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Tunneling happens with E < V_0",
+    "Inside the barrier psi oscillates with fixed amplitude",
+    "Transmission falls with barrier width",
+    "Heavier particles tunnel less"
+   ],
+   "error": 1,
+   "fix": "Inside the barrier psi decays exponentially."
+  },
+  {
+   "id": "quantum-tunneling.match",
+   "atom": "quantum-tunneling",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Barrier",
+     "meaning": "Region where V exceeds E"
+    },
+    {
+     "term": "kappa",
+     "meaning": "Decay constant inside the barrier"
+    },
+    {
+     "term": "Transmission",
+     "meaning": "Probability of getting through"
+    },
+    {
+     "term": "STM",
+     "meaning": "Microscope that images atoms by tunneling current"
+    }
+   ]
+  },
+  {
+   "id": "quantum-spin.pick",
+   "atom": "quantum-spin",
+   "kind": "pick",
+   "prompt": "What is the spin quantum number s of an electron?",
+   "options": [
+    "1/2",
+    "1",
+    "0",
+    "2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "quantum-spin.calculate",
+   "atom": "quantum-spin",
+   "kind": "calculate",
+   "prompt": "For s = 1/2, what is S^2 in units of hbar^2?",
+   "answer": 0.75,
+   "unit": "hbar^2",
+   "relTol": 0.02
+  },
+  {
+   "id": "quantum-spin.order",
+   "atom": "quantum-spin",
+   "kind": "order",
+   "prompt": "Order how electrons fill the lowest states of lithium.",
+   "steps": [
+    "The first electron enters 1s with spin up",
+    "The second enters 1s with spin down",
+    "The 1s level is now full",
+    "The third electron goes to 2s"
+   ]
+  },
+  {
+   "id": "quantum-spin.spot-error",
+   "atom": "quantum-spin",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Electrons have s = 1/2",
+    "S_z = plus or minus hbar / 2",
+    "Two electrons in one atom can share all quantum numbers",
+    "Pauli exclusion shapes the periodic table"
+   ],
+   "error": 2,
+   "fix": "Pauli exclusion forbids identical fermions from sharing all quantum numbers."
+  },
+  {
+   "id": "quantum-spin.match",
+   "atom": "quantum-spin",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Spin",
+     "meaning": "Intrinsic angular momentum"
+    },
+    {
+     "term": "Fermion",
+     "meaning": "Half-integer spin"
+    },
+    {
+     "term": "Boson",
+     "meaning": "Integer spin"
+    },
+    {
+     "term": "Pauli principle",
+     "meaning": "Identical fermions cannot share a state"
+    }
+   ]
+  },
+  {
+   "id": "hydrogen-atom.pick",
+   "atom": "hydrogen-atom",
+   "kind": "pick",
+   "prompt": "What is the ground state energy of hydrogen?",
+   "options": [
+    "-13.6 eV",
+    "-3.4 eV",
+    "0 eV",
+    "+13.6 eV"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "hydrogen-atom.calculate",
+   "atom": "hydrogen-atom",
+   "kind": "calculate",
+   "prompt": "Astronomers image the red H-alpha line from hydrogen dropping from n = 3 to n = 2. What photon energy is that in eV?",
+   "answer": 1.889,
+   "unit": "eV",
+   "relTol": 0.02
+  },
+  {
+   "id": "hydrogen-atom.order",
+   "atom": "hydrogen-atom",
+   "kind": "order",
+   "prompt": "Order the solution of the hydrogen atom.",
+   "steps": [
+    "Write the Coulomb potential",
+    "Solve the Schrödinger equation",
+    "Bound solutions need whole-number n",
+    "Find E_n = -13.6 eV / n^2"
+   ]
+  },
+  {
+   "id": "hydrogen-atom.spot-error",
+   "atom": "hydrogen-atom",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "E_n = -13.6 eV / n^2",
+    "Levels crowd together at high n",
+    "Ionizing from the ground state takes 3.4 eV",
+    "Transitions emit photons with the energy difference"
+   ],
+   "error": 2,
+   "fix": "Ionizing from the ground state takes 13.6 eV."
+  },
+  {
+   "id": "hydrogen-atom.match",
+   "atom": "hydrogen-atom",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "n",
+     "meaning": "Principal quantum number"
+    },
+    {
+     "term": "Orbital",
+     "meaning": "Shape of the electron wavefunction"
+    },
+    {
+     "term": "Ionization energy",
+     "meaning": "13.6 eV from the ground state"
+    },
+    {
+     "term": "Spectral line",
+     "meaning": "Photon from a transition"
+    }
+   ]
+  },
+  {
+   "id": "quantum-entanglement.pick",
+   "atom": "quantum-entanglement",
+   "kind": "pick",
+   "prompt": "In the singlet state, one spin measures up along z. What does the other give along z?",
+   "options": [
+    "Down",
+    "Up",
+    "Up or down at 50/50",
+    "No result"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "quantum-entanglement.calculate",
+   "atom": "quantum-entanglement",
+   "kind": "calculate",
+   "prompt": "Singlet pairs are measured along the same axis 1,000 times. In how many runs do the two results disagree?",
+   "answer": 1000.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "quantum-entanglement.order",
+   "atom": "quantum-entanglement",
+   "kind": "order",
+   "prompt": "Order a Bell test.",
+   "steps": [
+    "Prepare an entangled pair",
+    "Send the particles far apart",
+    "Measure each along chosen axes",
+    "Compare the correlations with Bell's bound"
+   ]
+  },
+  {
+   "id": "quantum-entanglement.spot-error",
+   "atom": "quantum-entanglement",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Entangled particles share one state",
+    "Their outcomes are correlated",
+    "Entanglement lets you send signals faster than light",
+    "Experiments violate Bell inequalities"
+   ],
+   "error": 2,
+   "fix": "Each outcome is random, so the correlations carry no message."
+  },
+  {
+   "id": "quantum-entanglement.match",
+   "atom": "quantum-entanglement",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Entanglement",
+     "meaning": "One shared state for two particles"
+    },
+    {
+     "term": "Bell inequality",
+     "meaning": "Limit on correlations in local theories"
+    },
+    {
+     "term": "Singlet",
+     "meaning": "Perfectly anti-correlated spin pair"
+    },
+    {
+     "term": "Local hidden variables",
+     "meaning": "Classical explanation Bell's theorem rules out"
+    }
+   ]
+  },
+  {
+   "id": "qft-idea.pick",
+   "atom": "qft-idea",
+   "kind": "pick",
+   "prompt": "What is a particle in quantum field theory?",
+   "options": [
+    "A quantized excitation of a field",
+    "A tiny hard sphere",
+    "A wave in an ether",
+    "A point with no field around it"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "qft-idea.calculate",
+   "atom": "qft-idea",
+   "kind": "calculate",
+   "prompt": "A photon is one quantum of the electromagnetic field. What is the energy of a 500 nm photon in eV?",
+   "answer": 2.482,
+   "unit": "eV",
+   "relTol": 0.02
+  },
+  {
+   "id": "qft-idea.order",
+   "atom": "qft-idea",
+   "kind": "order",
+   "prompt": "Order the steps of field quantization.",
+   "steps": [
+    "Start with a classical field",
+    "Promote it to an operator",
+    "Impose commutation relations",
+    "Excitations appear as particles"
+   ]
+  },
+  {
+   "id": "qft-idea.spot-error",
+   "atom": "qft-idea",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Fields fill all of space",
+    "Particles are field excitations",
+    "Every electron differs slightly from every other",
+    "QFT joins quantum mechanics and special relativity"
+   ],
+   "error": 2,
+   "fix": "All electrons are excitations of one field, so they are identical."
+  },
+  {
+   "id": "qft-idea.match",
+   "atom": "qft-idea",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Field",
+     "meaning": "Quantity defined at every point"
+    },
+    {
+     "term": "Quantum",
+     "meaning": "Single excitation of a field"
+    },
+    {
+     "term": "Vacuum",
+     "meaning": "Lowest energy state of the fields"
+    },
+    {
+     "term": "Antiparticle",
+     "meaning": "Partner particle QFT predicts"
+    }
+   ]
+  },
+  {
+   "id": "standard-model.pick",
+   "atom": "standard-model",
+   "kind": "pick",
+   "prompt": "Which force does the Standard Model leave out?",
+   "options": [
+    "Gravity",
+    "Electromagnetism",
+    "Weak force",
+    "Strong force"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "standard-model.calculate",
+   "atom": "standard-model",
+   "kind": "calculate",
+   "prompt": "A proton is two up quarks (+2/3 each) and one down quark (-1/3). What is its charge in units of e?",
+   "answer": 1.0,
+   "unit": "e",
+   "relTol": 0.02
+  },
+  {
+   "id": "standard-model.order",
+   "atom": "standard-model",
+   "kind": "order",
+   "prompt": "Order a neutron's beta decay.",
+   "steps": [
+    "A down quark in the neutron emits a W- boson",
+    "The down quark becomes an up quark",
+    "The neutron becomes a proton",
+    "The W- turns into an electron and an antineutrino"
+   ]
+  },
+  {
+   "id": "standard-model.spot-error",
+   "atom": "standard-model",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "SU(3) describes the strong force",
+    "SU(2) x U(1) describes the electroweak force",
+    "Gluons carry electric charge",
+    "The Higgs mechanism gives the W and Z mass"
+   ],
+   "error": 2,
+   "fix": "Gluons carry color charge and no electric charge."
+  },
+  {
+   "id": "standard-model.match",
+   "atom": "standard-model",
+   "kind": "match",
+   "prompt": "Match each particle to its role.",
+   "pairs": [
+    {
+     "term": "Quark",
+     "meaning": "Feels the strong force"
+    },
+    {
+     "term": "Lepton",
+     "meaning": "Matter particle with no strong force"
+    },
+    {
+     "term": "Gluon",
+     "meaning": "Carrier of the strong force"
+    },
+    {
+     "term": "Higgs boson",
+     "meaning": "Excitation of the field that gives mass"
+    }
+   ]
+  },
+  {
+   "id": "cosmology-glimpse.pick",
+   "atom": "cosmology-glimpse",
+   "kind": "pick",
+   "prompt": "What does Hubble's law say?",
+   "options": [
+    "Recession speed grows in proportion to distance",
+    "All galaxies recede at one speed",
+    "Speed falls with distance",
+    "Distances stay fixed"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "cosmology-glimpse.calculate",
+   "atom": "cosmology-glimpse",
+   "kind": "calculate",
+   "prompt": "A galaxy is 100 Mpc away and H_0 = 70 km/s/Mpc. What is its recession speed?",
+   "answer": 7000.0,
+   "unit": "km/s",
+   "relTol": 0.02
+  },
+  {
+   "id": "cosmology-glimpse.order",
+   "atom": "cosmology-glimpse",
+   "kind": "order",
+   "prompt": "Order these from earliest to latest.",
+   "steps": [
+    "A hot, dense early universe",
+    "Expansion cools it",
+    "Light elements and atoms form",
+    "Galaxies form"
+   ]
+  },
+  {
+   "id": "cosmology-glimpse.spot-error",
+   "atom": "cosmology-glimpse",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Farther galaxies recede faster",
+    "The expansion is centered on the Milky Way",
+    "The Friedmann equations come from general relativity",
+    "The early universe was hot and dense"
+   ],
+   "error": 1,
+   "fix": "The expansion has no center; every observer sees the same law."
+  },
+  {
+   "id": "cosmology-glimpse.match",
+   "atom": "cosmology-glimpse",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "H_0",
+     "meaning": "Hubble constant"
+    },
+    {
+     "term": "a(t)",
+     "meaning": "Scale factor"
+    },
+    {
+     "term": "Redshift",
+     "meaning": "Stretching of light by expansion"
+    },
+    {
+     "term": "Big Bang",
+     "meaning": "Hot, dense origin"
+    }
+   ]
+  },
+  {
+   "id": "forces-friction.pick",
+   "atom": "forces-friction",
+   "kind": "pick",
+   "prompt": "What does the friction force depend on most directly?",
+   "options": [
+    "The normal force",
+    "The contact area",
+    "The sliding speed",
+    "The color of the surfaces"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "forces-friction.calculate",
+   "atom": "forces-friction",
+   "kind": "calculate",
+   "prompt": "A 30 kg crate slides across a warehouse floor with mu_k = 0.4. What is the kinetic friction force?",
+   "answer": 117.6,
+   "unit": "N",
+   "relTol": 0.02
+  },
+  {
+   "id": "forces-friction.order",
+   "atom": "forces-friction",
+   "kind": "order",
+   "prompt": "Order the steps for a push on a resting crate.",
+   "steps": [
+    "Find the normal force",
+    "Check whether the push exceeds mu_s N",
+    "If it does, the crate slides with f_k = mu_k N",
+    "Find the net force and the acceleration"
+   ]
+  },
+  {
+   "id": "forces-friction.spot-error",
+   "atom": "forces-friction",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "f_s <= mu_s N",
+    "f_k = mu_k N",
+    "mu_k is larger than mu_s for most surfaces",
+    "Friction opposes sliding"
+   ],
+   "error": 2,
+   "fix": "mu_k is smaller than mu_s for most surfaces: keeping a crate sliding takes less force than starting it."
+  },
+  {
+   "id": "forces-friction.match",
+   "atom": "forces-friction",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Normal force",
+     "meaning": "Perpendicular contact push"
+    },
+    {
+     "term": "Static friction",
+     "meaning": "Holds surfaces from slipping"
+    },
+    {
+     "term": "Kinetic friction",
+     "meaning": "Acts while surfaces slide"
+    },
+    {
+     "term": "mu",
+     "meaning": "Ratio of friction to normal force"
+    }
+   ]
+  },
+  {
+   "id": "fluids-bernoulli.pick",
+   "atom": "fluids-bernoulli",
+   "kind": "pick",
+   "prompt": "Water flows through a level pipe that narrows. What happens to pressure in the narrow part?",
+   "options": [
+    "It drops",
+    "It rises",
+    "It stays the same",
+    "It drops to zero"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "fluids-bernoulli.calculate",
+   "atom": "fluids-bernoulli",
+   "kind": "calculate",
+   "prompt": "In a venturi meter, water (1000 kg/m^3) speeds up from 2 m/s to 4 m/s in a level pipe. What is the pressure drop?",
+   "answer": 6000.0,
+   "unit": "Pa",
+   "relTol": 0.02
+  },
+  {
+   "id": "fluids-bernoulli.order",
+   "atom": "fluids-bernoulli",
+   "kind": "order",
+   "prompt": "Order the steps to apply Bernoulli's equation.",
+   "steps": [
+    "Pick two points on one streamline",
+    "Write P + (1/2) rho v^2 + rho g h at each",
+    "Set the two sums equal",
+    "Solve for the unknown"
+   ]
+  },
+  {
+   "id": "fluids-bernoulli.spot-error",
+   "atom": "fluids-bernoulli",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Bernoulli's equation is energy conservation for fluids",
+    "Faster flow has lower pressure",
+    "It holds for viscous, turbulent flow",
+    "rho g h is potential energy per volume"
+   ],
+   "error": 2,
+   "fix": "Bernoulli's equation assumes steady, nonviscous, incompressible flow along a streamline."
+  },
+  {
+   "id": "fluids-bernoulli.match",
+   "atom": "fluids-bernoulli",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "P",
+     "meaning": "Pressure"
+    },
+    {
+     "term": "(1/2) rho v^2",
+     "meaning": "Kinetic energy per volume"
+    },
+    {
+     "term": "rho g h",
+     "meaning": "Potential energy per volume"
+    },
+    {
+     "term": "Streamline",
+     "meaning": "Path of one fluid parcel"
+    }
+   ]
+  },
+  {
+   "id": "heat-engines-carnot.pick",
+   "atom": "heat-engines-carnot",
+   "kind": "pick",
+   "prompt": "Which change raises the Carnot limit?",
+   "options": [
+    "Lowering T_c",
+    "Raising T_c",
+    "Making T_h equal T_c",
+    "Burning more fuel"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "heat-engines-carnot.calculate",
+   "atom": "heat-engines-carnot",
+   "kind": "calculate",
+   "prompt": "A power plant runs steam at 800 K and dumps heat at 300 K. What is its Carnot efficiency limit as a fraction?",
+   "answer": 0.625,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "heat-engines-carnot.order",
+   "atom": "heat-engines-carnot",
+   "kind": "order",
+   "prompt": "Order the Carnot cycle.",
+   "steps": [
+    "Isothermal expansion at T_h",
+    "Adiabatic expansion cools the gas to T_c",
+    "Isothermal compression at T_c",
+    "Adiabatic compression back to T_h"
+   ]
+  },
+  {
+   "id": "heat-engines-carnot.spot-error",
+   "atom": "heat-engines-carnot",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "eta <= 1 - T_c / T_h",
+    "Temperatures must be in kelvin",
+    "A perfect engine reaches 100% with T_c above 0 K",
+    "Real engines fall below the Carnot limit"
+   ],
+   "error": 2,
+   "fix": "100% efficiency would need T_c = 0 K."
+  },
+  {
+   "id": "heat-engines-carnot.match",
+   "atom": "heat-engines-carnot",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "T_h",
+     "meaning": "Hot reservoir temperature"
+    },
+    {
+     "term": "T_c",
+     "meaning": "Cold reservoir temperature"
+    },
+    {
+     "term": "Efficiency",
+     "meaning": "Work out over heat in"
+    },
+    {
+     "term": "Carnot cycle",
+     "meaning": "Reversible ideal cycle"
+    }
+   ]
+  },
+  {
+   "id": "electric-potential.pick",
+   "atom": "electric-potential",
+   "kind": "pick",
+   "prompt": "Which way does the electric field point?",
+   "options": [
+    "Toward lower potential",
+    "Toward higher potential",
+    "Along lines of constant potential",
+    "Nowhere, it is a scalar"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "electric-potential.calculate",
+   "atom": "electric-potential",
+   "kind": "calculate",
+   "prompt": "A camera flash capacitor of 100 microfarads is charged to 300 V. How much energy does it store?",
+   "answer": 4.5,
+   "unit": "J",
+   "relTol": 0.02
+  },
+  {
+   "id": "electric-potential.order",
+   "atom": "electric-potential",
+   "kind": "order",
+   "prompt": "Order the charging of a capacitor.",
+   "steps": [
+    "Connect it to a battery",
+    "Charge builds on the plates",
+    "The voltage rises to the battery's",
+    "It holds Q = CV"
+   ]
+  },
+  {
+   "id": "electric-potential.spot-error",
+   "atom": "electric-potential",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "V = U / q",
+    "E = -grad V",
+    "C = Q / V",
+    "Doubling V on a capacitor doubles its stored energy"
+   ],
+   "error": 3,
+   "fix": "Stored energy is (1/2) C V^2, so doubling V quadruples it."
+  },
+  {
+   "id": "electric-potential.match",
+   "atom": "electric-potential",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Volt",
+     "meaning": "Joule per coulomb"
+    },
+    {
+     "term": "Farad",
+     "meaning": "Coulomb per volt"
+    },
+    {
+     "term": "Equipotential",
+     "meaning": "Surface of constant V"
+    },
+    {
+     "term": "Capacitor",
+     "meaning": "Stores charge across a gap"
+    }
+   ]
+  },
+  {
+   "id": "circuits-ohm.pick",
+   "atom": "circuits-ohm",
+   "kind": "pick",
+   "prompt": "Two resistors sit in series. How does the current compare between them?",
+   "options": [
+    "It is the same in both",
+    "It splits between them",
+    "It is zero in the second",
+    "It doubles in the second"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "circuits-ohm.calculate",
+   "atom": "circuits-ohm",
+   "kind": "calculate",
+   "prompt": "A 12 V car battery drives a 3 ohm headlamp. What current flows?",
+   "answer": 4.0,
+   "unit": "A",
+   "relTol": 0.02
+  },
+  {
+   "id": "circuits-ohm.order",
+   "atom": "circuits-ohm",
+   "kind": "order",
+   "prompt": "Order the steps to solve a DC circuit.",
+   "steps": [
+    "Label the current in each branch",
+    "Apply the node rule",
+    "Apply the loop rule",
+    "Solve the equations"
+   ]
+  },
+  {
+   "id": "circuits-ohm.spot-error",
+   "atom": "circuits-ohm",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "V = IR",
+    "Current into a node equals current out",
+    "Voltages around a loop sum to zero",
+    "Parallel resistances add directly"
+   ],
+   "error": 3,
+   "fix": "Series resistances add; parallel ones add as reciprocals."
+  },
+  {
+   "id": "circuits-ohm.match",
+   "atom": "circuits-ohm",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Ohm",
+     "meaning": "Volt per ampere"
+    },
+    {
+     "term": "Ampere",
+     "meaning": "Unit of current"
+    },
+    {
+     "term": "Node rule",
+     "meaning": "Charge conservation"
+    },
+    {
+     "term": "Loop rule",
+     "meaning": "Energy conservation"
+    }
+   ]
+  },
+  {
+   "id": "blackbody-planck.pick",
+   "atom": "blackbody-planck",
+   "kind": "pick",
+   "prompt": "A body gets hotter. Where does its spectral peak move?",
+   "options": [
+    "To shorter wavelength",
+    "To longer wavelength",
+    "It stays put",
+    "Into the radio band"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "blackbody-planck.calculate",
+   "atom": "blackbody-planck",
+   "kind": "calculate",
+   "prompt": "The Sun's surface is about 5,800 K. With Wien's constant 2.898e-3 m K, what is its peak wavelength in nm?",
+   "answer": 499.7,
+   "unit": "nm",
+   "relTol": 0.02
+  },
+  {
+   "id": "blackbody-planck.order",
+   "atom": "blackbody-planck",
+   "kind": "order",
+   "prompt": "Order the birth of Planck's law.",
+   "steps": [
+    "Classical theory predicts the ultraviolet catastrophe",
+    "Planck assumes energy comes in quanta h nu",
+    "High-frequency modes are frozen out",
+    "The spectrum matches experiment"
+   ]
+  },
+  {
+   "id": "blackbody-planck.spot-error",
+   "atom": "blackbody-planck",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Hot bodies glow",
+    "Classical physics predicted infinite ultraviolet energy",
+    "Planck let oscillator energy vary smoothly",
+    "Planck's law matches the data"
+   ],
+   "error": 2,
+   "fix": "Planck required energy in quanta of h nu."
+  },
+  {
+   "id": "blackbody-planck.match",
+   "atom": "blackbody-planck",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Blackbody",
+     "meaning": "Perfect absorber and emitter"
+    },
+    {
+     "term": "Ultraviolet catastrophe",
+     "meaning": "Classical prediction of infinite energy"
+    },
+    {
+     "term": "h",
+     "meaning": "Planck constant"
+    },
+    {
+     "term": "Wien's law",
+     "meaning": "Peak wavelength falls as T rises"
+    }
+   ]
+  },
+  {
+   "id": "bohr-model.pick",
+   "atom": "bohr-model",
+   "kind": "pick",
+   "prompt": "What did Bohr quantize?",
+   "options": [
+    "Angular momentum",
+    "Linear momentum",
+    "Charge",
+    "Mass"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "bohr-model.calculate",
+   "atom": "bohr-model",
+   "kind": "calculate",
+   "prompt": "Hydrogen drops from n = 2 to n = 1, releasing 10.2 eV. What is the photon wavelength in nm? Use hc = 1240 eV nm.",
+   "answer": 121.6,
+   "unit": "nm",
+   "relTol": 0.02
+  },
+  {
+   "id": "bohr-model.order",
+   "atom": "bohr-model",
+   "kind": "order",
+   "prompt": "Order the Bohr model.",
+   "steps": [
+    "An electron orbits a proton",
+    "Require L = n hbar",
+    "Only certain radii are allowed",
+    "Jumps emit hf = E_i - E_f"
+   ]
+  },
+  {
+   "id": "bohr-model.spot-error",
+   "atom": "bohr-model",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "L = n hbar",
+    "Photons carry the energy difference",
+    "Electrons radiate all the time in allowed orbits",
+    "Bohr matched the hydrogen spectrum"
+   ],
+   "error": 2,
+   "fix": "Electrons in allowed orbits do not radiate."
+  },
+  {
+   "id": "bohr-model.match",
+   "atom": "bohr-model",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "n",
+     "meaning": "Quantum number"
+    },
+    {
+     "term": "Bohr radius",
+     "meaning": "0.0529 nm"
+    },
+    {
+     "term": "Emission",
+     "meaning": "Photon from a downward jump"
+    },
+    {
+     "term": "Absorption",
+     "meaning": "Photon taken in for an upward jump"
+    }
+   ]
+  },
+  {
+   "id": "quantum-harmonic-oscillator.pick",
+   "atom": "quantum-harmonic-oscillator",
+   "kind": "pick",
+   "prompt": "How are the energy levels of a quantum oscillator spaced?",
+   "options": [
+    "Evenly, by hbar omega",
+    "Evenly, by hbar omega / 2",
+    "Wider as n grows",
+    "Not at all, energy is continuous"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "quantum-harmonic-oscillator.calculate",
+   "atom": "quantum-harmonic-oscillator",
+   "kind": "calculate",
+   "prompt": "A carbon monoxide molecule vibrates with hbar omega = 0.266 eV. What is its ground-state energy in eV?",
+   "answer": 0.133,
+   "unit": "eV",
+   "relTol": 0.02
+  },
+  {
+   "id": "quantum-harmonic-oscillator.order",
+   "atom": "quantum-harmonic-oscillator",
+   "kind": "order",
+   "prompt": "Order the oscillator solution.",
+   "steps": [
+    "Write V = (1/2) m omega^2 x^2",
+    "Solve the Schrödinger equation",
+    "Find E_n = hbar omega (n + 1/2)",
+    "Transitions emit photons of hbar omega"
+   ]
+  },
+  {
+   "id": "quantum-harmonic-oscillator.spot-error",
+   "atom": "quantum-harmonic-oscillator",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Levels are evenly spaced",
+    "The ground-state energy is zero",
+    "Zero-point energy follows from uncertainty",
+    "The spacing is hbar omega"
+   ],
+   "error": 1,
+   "fix": "The ground-state energy is hbar omega / 2."
+  },
+  {
+   "id": "quantum-harmonic-oscillator.match",
+   "atom": "quantum-harmonic-oscillator",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "n",
+     "meaning": "Level index"
+    },
+    {
+     "term": "Zero-point energy",
+     "meaning": "hbar omega / 2"
+    },
+    {
+     "term": "hbar omega",
+     "meaning": "Level spacing"
+    },
+    {
+     "term": "Large n",
+     "meaning": "Classical limit"
+    }
+   ]
+  }
+ ]
+}

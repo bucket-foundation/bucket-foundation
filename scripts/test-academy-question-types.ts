@@ -13,8 +13,8 @@ const decks = readdirSync(QDIR).filter((f) => f.endsWith(".json")).map((f) => {
   return { branch, atomIds: corpus.atoms.map((a: { id: string }) => a.id) as string[], raw: JSON.parse(readFileSync(join(QDIR, f), "utf8")) };
 });
 
-test("question decks exist for the cosmology pilot", () => {
-  assert.ok(decks.some((d) => d.branch === "06-cosmology"));
+test("question decks exist for cosmology and physics", () => {
+  for (const b of ["06-cosmology", "02-physics"]) assert.ok(decks.some((d) => d.branch === b), b);
 });
 
 for (const { branch, atomIds, raw } of decks) {
@@ -152,14 +152,17 @@ test("review records point at questions that exist", () => {
   const dir = join(QDIR, "reviews");
   const files = readdirSync(dir).filter((f) => f.endsWith(".json"));
   assert.ok(files.includes("06-cosmology.json"));
+  assert.ok(files.includes("02-physics.json"));
   for (const f of files) {
     const rec = JSON.parse(readFileSync(join(dir, f), "utf8")) as { branch: string; reviews: Record<string, { reviewed_by: string; reviewed_at: string; verdict?: string; note?: string }> };
     const deck = decks.find((d) => d.branch === rec.branch);
     assert.ok(deck, `${f}: no deck for ${rec.branch}`);
     const ids = new Set((deck.raw.questions as Question[]).map((q) => q.id));
+    if (rec.branch === "02-physics") assert.equal(Object.keys(rec.reviews).length, ids.size, `${f}: every question needs a record`);
     for (const [id, r] of Object.entries(rec.reviews)) {
       assert.ok(ids.has(id), `${f}: unknown question ${id}`);
       assert.ok(r.reviewed_by && /^\d{4}-\d{2}-\d{2}$/.test(r.reviewed_at), `${f}: bad record ${id}`);
+      if (rec.branch === "02-physics") assert.ok(r.verdict, `${f}: missing verdict ${id}`);
       if (r.verdict !== undefined) assert.ok(r.verdict === "ok" || (r.verdict === "fixed" && !!r.note), `${f}: bad verdict ${id}`);
     }
   }
