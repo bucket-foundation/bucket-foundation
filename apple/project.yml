@@ -32,7 +32,6 @@ targets:
     dependencies:
       - package: BucketKit
       - target: BucketWidgets
-        destinationFilters: [iOS]
       - target: BucketWatch
         destinationFilters: [iOS]
     entitlements:
@@ -84,7 +83,6 @@ targets:
     dependencies:
       - package: BucketKit
       - target: PolingualWidgets
-        destinationFilters: [iOS]
       - target: PolingualWatch
         destinationFilters: [iOS]
     settings:
@@ -116,13 +114,14 @@ targets:
           CODE_SIGN_ENTITLEMENTS: Polingual/PolingualDebug.entitlements
   BucketWidgets:
     type: app-extension
-    platform: iOS
+    supportedDestinations: [iOS, macOS]
     sources:
       - path: Polingual/Widget/PolingualWidget.swift
       - path: Bucket/Widget
         excludes:
           - Info.plist
           - Widget.entitlements
+          - WidgetMac.entitlements
       - path: Polingual/WidgetShared
       - path: Bucket/Sources/Polingual/FlagArt.swift
     dependencies:
@@ -142,13 +141,16 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: foundation.bucket.app.widgets
         IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+        CODE_SIGN_ENTITLEMENTS[sdk=macosx*]: Bucket/Widget/WidgetMac.entitlements
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) BUCKET
         SKIP_INSTALL: YES
   PolingualWidgets:
     type: app-extension
-    platform: iOS
+    supportedDestinations: [iOS, macOS]
     sources:
       - path: Polingual/Widget
+        excludes:
+          - WidgetMac.entitlements
       - path: Polingual/WidgetShared
       - path: Bucket/Sources/Polingual/FlagArt.swift
     dependencies:
@@ -168,6 +170,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.polingual.app.widgets
         IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+        CODE_SIGN_ENTITLEMENTS[sdk=macosx*]: Polingual/Widget/WidgetMac.entitlements
         MARKETING_VERSION: "1.0.1"
         SKIP_INSTALL: YES
   BucketWatch:

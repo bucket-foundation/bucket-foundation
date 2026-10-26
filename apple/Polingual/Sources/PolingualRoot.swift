@@ -64,7 +64,49 @@ struct Studio: View {
     @State private var managing = false
     @AppStorage("polingual.firstSystem") private var firstSystem = ""
 
+    @State private var section: String? = "home"
+
     var body: some View {
+        #if os(macOS)
+        NavigationSplitView {
+            List(selection: $section) {
+                Label("Home", systemImage: "house").tag("home")
+                Section("Language sets") {
+                    ForEach(store.systems) { s in
+                        HStack(spacing: 6) {
+                            HStack(spacing: 2) { ForEach(s.targets.prefix(3), id: \.self) { FlagTile(lang: $0, size: 18) } }
+                            Text(s.name).lineLimit(1)
+                        }
+                        .tag("sys:\(s.id)")
+                    }
+                }
+                Section {
+                    Button { showAccount = true } label: { Label("Account", systemImage: "person.crop.circle") }.buttonStyle(.plain)
+                    Button { manage() } label: { Label("Subscription", systemImage: "creditcard") }.buttonStyle(.plain)
+                }
+            }
+            .navigationSplitViewColumnWidth(min: 200, ideal: 240)
+        } detail: {
+            stack
+        }
+        .onChange(of: section) { _, s in
+            path = NavigationPath()
+            if let s, s.hasPrefix("sys:") { path.append(LangRoute.system(String(s.dropFirst(4)))) }
+        }
+        .sheet(isPresented: $showAccount) { AccountView() }
+        .manageSubscriptions(isPresented: $managing)
+        .task { await openFromLaunch() }
+        .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
+        #else
+        stack
+            .sheet(isPresented: $showAccount) { AccountView() }
+            .manageSubscriptions(isPresented: $managing)
+            .task { await openFromLaunch() }
+            .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
+        #endif
+    }
+
+    var stack: some View {
         NavigationStack(path: $path) {
             LanguagesHome(path: $path)
                 .langDestinations(path: $path)
@@ -90,10 +132,6 @@ struct Studio: View {
                     }
                 }
         }
-        .sheet(isPresented: $showAccount) { AccountView() }
-        .manageSubscriptions(isPresented: $managing)
-        .task { await openFromLaunch() }
-        .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in Task { await openRequested() } }
     }
 
     @discardableResult

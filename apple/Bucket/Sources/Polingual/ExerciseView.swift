@@ -258,14 +258,16 @@ struct ExerciseView: View {
                     let row = ex.kind == .gender && options.count <= 3
                     let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways || ex.kind == .letter ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
                     LazyVGrid(columns: cols, spacing: 10) {
-                        ForEach(options, id: \.self) { o in
+                        ForEach(Array(options.enumerated()), id: \.element) { k, o in
                             OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o, tall: sideways || ex.kind == .letter, glyph: ex.kind == .letter) { selected = o; tap() }
+                                .optionKey(k)
                         }
                     }
                     if ex.kind == .gender { ArticleKey(lang: ex.lang) }
                     Button("Check") { picked = selected }
                         .buttonStyle(D8Primary())
                         .disabled(selected == nil)
+                        .keyboardShortcut(.defaultAction)
                 }
             }
             if ex.kind == .speak && !typedKind && verdict == nil {
@@ -294,6 +296,7 @@ struct ExerciseView: View {
                 Button("Check") { verdict = judgeAnswer(typed) }
                     .buttonStyle(D8Primary())
                     .disabled(typed.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .keyboardShortcut(.defaultAction)
             }
             if let verdict {
                 Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: ex.kind == .speak ? heard : typed, reading: r(ex.lang == ex.answerLang ? ex.answer : ex.prompt, ex.lang)) { finish(verdict != .wrong, verdict) }
@@ -538,6 +541,24 @@ struct Prompt: View {
             AskWord(word: ex.prompt, sub: "say it in \(name)")
         default:
             AskWord(word: ex.prompt, sub: "in \(name)")
+        }
+    }
+}
+
+extension View {
+    func optionKey(_ index: Int) -> some View {
+        modifier(OptionKey(index: index))
+    }
+}
+
+struct OptionKey: ViewModifier {
+    let index: Int
+
+    func body(content: Content) -> some View {
+        if index < 9 {
+            content.keyboardShortcut(KeyEquivalent(Character(String(index + 1))), modifiers: [])
+        } else {
+            content
         }
     }
 }
