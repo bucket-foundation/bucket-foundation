@@ -175,3 +175,17 @@ test("card_answered props carry question_kind and applied with the BetaEvents.sw
   assert.ok(!("question_kind" in drill) && !("applied" in drill) && drill.kind === "review");
   assert.ok(parseProps(props).ok);
 });
+
+test("account_token_failed takes kind and stage only", () => {
+  const ok = parseBatch({ app: "polingual", events: [ev({ name: "account_token_failed", props: { kind: "network", stage: "fetch" } })] }, NOW);
+  assert.ok(ok.ok);
+  if (ok.ok) assert.deepEqual([ok.value.events.length, ok.value.events[0].props], [1, { kind: "network", stage: "fetch" }]);
+  const bad = (props: Record<string, unknown>) => {
+    const r = parseBatch({ app: "polingual", events: [ev({ name: "account_token_failed", props })] }, NOW);
+    return r.ok ? r.value.rejected[0]?.error : r.error;
+  };
+  assert.equal(bad({ kind: "network", stage: "fetch", status: 500 }), "forbidden_prop");
+  assert.equal(bad({ message: "boom" }), "forbidden_prop");
+  assert.equal(bad({ kind: "x".repeat(33) }), "bad_prop_value");
+  assert.equal(bad({ kind: 1 }), "bad_prop_value");
+});

@@ -11,7 +11,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
   },
   "atom-nucleus-electrons.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -173,7 +174,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer key vs chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Low from #1066: each meaning now carries its direction, so the pairs read without the prompt."
   },
   "periodic-trends.applied": {
    "reviewed_by": "claude-opus-5-5",
@@ -331,7 +333,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
   },
   "lewis-structures.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -403,7 +406,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
   },
   "hybridization.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -871,7 +875,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
   },
   "le-chatelier.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1363,7 +1368,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Near-duplicate of catalysis.calculate (same e^(10000/RT) = 56.61); replaced with a temperature comparison."
   },
   "thermodynamics-vs-kinetics.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1435,7 +1441,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Counting-only item given a setting and a step."
   },
   "coordination-complexes.order": {
    "reviewed_by": "claude-opus-5-5",
@@ -1678,7 +1685,8 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "applied task; answer recomputed; checked against chemistry and atom lesson",
-   "verdict": "ok"
+   "verdict": "fixed",
+   "note": "Prompt asked for the drop \"in C\"; it now says degrees C to match the unit."
   },
   "colligative-properties.order": {
    "reviewed_by": "claude-opus-5-5",

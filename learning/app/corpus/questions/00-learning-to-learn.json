@@ -71,6 +71,20 @@
    ]
   },
   {
+   "id": "how-learning-works.applied",
+   "atom": "how-learning-works",
+   "kind": "pick",
+   "prompt": "You have one week before a biology exam. Which plan uses the two high-utility techniques?",
+   "options": [
+    "Rereading the notes every night",
+    "Spaced self-testing with flashcards",
+    "Highlighting the textbook in color",
+    "Copying the notes out neatly in a fresh notebook each night"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "metacognition.pick",
    "atom": "metacognition",
    "kind": "pick",
@@ -90,7 +104,8 @@
    "prompt": "You predicted you would get 9 of 10 quiz items right and got 6. By how many percentage points did you overestimate?",
    "answer": 30,
    "tol": 0.5,
-   "unit": "points"
+   "unit": "points",
+   "applied": true
   },
   {
    "id": "metacognition.order",
@@ -207,6 +222,20 @@
    ]
   },
   {
+   "id": "fluency-illusion.applied",
+   "atom": "fluency-illusion",
+   "kind": "pick",
+   "prompt": "Your notes feel easy on the third reread the night before a test. What should that feeling tell you?",
+   "options": [
+    "You have mastered the material",
+    "Familiarity can mislead, so test yourself with recall",
+    "Stop studying now and go out, since the material has stuck",
+    "Reread a fourth time"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "retrieval-practice.pick",
    "atom": "retrieval-practice",
    "kind": "pick",
@@ -226,7 +255,8 @@
    "prompt": "A deck has 40 cards. A learner recalls 28 on the first self-test. What percent did they retrieve?",
    "answer": 70,
    "tol": 0.5,
-   "unit": "%"
+   "unit": "%",
+   "applied": true
   },
   {
    "id": "retrieval-practice.order",
@@ -294,7 +324,8 @@
    "prompt": "A review schedule doubles the gap each time: 1, 2, 4, 8 days. How many days after the first study is the fifth review if the first review is 1 day after study?",
    "answer": 31,
    "tol": 0,
-   "unit": "days"
+   "unit": "days",
+   "applied": true
   },
   {
    "id": "spacing.order",
@@ -411,6 +442,20 @@
    ]
   },
   {
+   "id": "spacing-vs-massing-misconception.applied",
+   "atom": "spacing-vs-massing-misconception",
+   "kind": "pick",
+   "prompt": "A friend crams all night and says it worked last time. What does the research say about the long run?",
+   "options": [
+    "Cramming beats spacing for long-term retention",
+    "Spacing beats cramming for long-term retention",
+    "They are equal after a month",
+    "Neither works without music"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "desirable-difficulties.pick",
    "atom": "desirable-difficulties",
    "kind": "pick",
@@ -430,7 +475,8 @@
    "prompt": "Group A scores 80% right after blocked practice and 50% a week later. Group B scores 65% then 60%. How many percentage points more does B retain at one week?",
    "answer": 10,
    "tol": 0.5,
-   "unit": "points"
+   "unit": "points",
+   "applied": true
   },
   {
    "id": "desirable-difficulties.order",
@@ -498,7 +544,8 @@
    "prompt": "A set has 3 problem types with 4 problems each, fully interleaved so no two adjacent problems share a type. How many type switches occur across the 12 problems?",
    "answer": 11,
    "tol": 0,
-   "unit": "switches"
+   "unit": "switches",
+   "applied": true
   },
   {
    "id": "interleaving.order",
@@ -566,7 +613,8 @@
    "prompt": "A learner writes a why-explanation for 12 of 20 facts. What fraction, as a percent, got an explanation?",
    "answer": 60,
    "tol": 0.5,
-   "unit": "%"
+   "unit": "%",
+   "applied": true
   },
   {
    "id": "elaboration-self-explanation.order",
@@ -681,6 +729,20 @@
      "meaning": "The pattern needed to support meshing"
     }
    ]
+  },
+  {
+   "id": "learning-styles-myth.applied",
+   "atom": "learning-styles-myth",
+   "kind": "pick",
+   "prompt": "A tutor says you are a visual learner and should avoid audio lectures. What does the evidence say?",
+   "options": [
+    "Matching teaching to a style improves learning",
+    "Matching to a learning style shows no reliable benefit",
+    "Audio lectures harm visual learners",
+    "Styles predict exam scores"
+   ],
+   "answer": 1,
+   "applied": true
   }
  ]
 }

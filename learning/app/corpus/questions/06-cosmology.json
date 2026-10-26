@@ -22,7 +22,8 @@
    "prompt": "An elevator in deep space accelerates upward at 9.8 m/s^2. A 70 kg passenger stands on a scale. What force does the scale read?",
    "answer": 686,
    "unit": "N",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "equivalence-principle.order",
@@ -147,6 +148,20 @@
    ]
   },
   {
+   "id": "spacetime-curvature.applied",
+   "atom": "spacetime-curvature",
+   "kind": "pick",
+   "prompt": "GPS satellites must correct their clocks for general relativity. What causes the gravitational part of that correction?",
+   "options": [
+    "Earth's mass curves spacetime, so clocks higher up tick faster",
+    "Satellites carry heavier clocks than the ones on the ground",
+    "Radio signals slow down as they pass through the ionosphere on the way to Earth",
+    "The satellites spin and drag the clocks along with them"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "metric.pick",
    "atom": "metric",
    "kind": "pick",
@@ -217,6 +232,20 @@
      "meaning": "Table of numbers that transforms correctly between viewpoints"
     }
    ]
+  },
+  {
+   "id": "metric.applied",
+   "atom": "metric",
+   "kind": "pick",
+   "prompt": "A survey grid uses 1 km east-west steps at the equator. On a sphere the metric scales east-west distance by cos(latitude). How long is the same grid step at 60 degrees north?",
+   "options": [
+    "0.5 km",
+    "0.87 km",
+    "1 km",
+    "2 km"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "geodesics.pick",
@@ -291,6 +320,20 @@
    ]
   },
   {
+   "id": "geodesics.applied",
+   "atom": "geodesics",
+   "kind": "pick",
+   "prompt": "The International Space Station orbits with its engines off. In general relativity, what path does it follow?",
+   "options": [
+    "A geodesic of curved spacetime",
+    "A straight line pushed by thrust",
+    "A path set by air resistance",
+    "A path set by the station's magnetic field"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "stress-energy.pick",
    "atom": "stress-energy",
    "kind": "pick",
@@ -361,6 +404,20 @@
      "meaning": "4 by 4 table of energy and momentum density and flow"
     }
    ]
+  },
+  {
+   "id": "stress-energy.applied",
+   "atom": "stress-energy",
+   "kind": "pick",
+   "prompt": "Two neutron stars have the same rest mass, but one has far higher internal pressure. Which one curves spacetime more strongly?",
+   "options": [
+    "Both the same, since only rest mass sources gravity",
+    "The higher-pressure star, since pressure also sources gravity",
+    "The lower-pressure star, since pressure pushes outward against gravity",
+    "Neither, since pressure and mass cancel inside a star"
+   ],
+   "answer": 1,
+   "applied": true
   },
   {
    "id": "einstein-field-equations.pick",
@@ -435,6 +492,20 @@
    ]
   },
   {
+   "id": "einstein-field-equations.applied",
+   "atom": "einstein-field-equations",
+   "kind": "pick",
+   "prompt": "A GPS clock orbits at 20,200 km, where Earth's gravity is weaker than on the ground. From gravity alone, how does it run against a ground clock?",
+   "options": [
+    "Slower, by about 45 microseconds a day",
+    "Faster, by about 7 microseconds a day",
+    "Faster, by about 45 microseconds a day",
+    "At the same rate, since both clocks are identical"
+   ],
+   "answer": 2,
+   "applied": true
+  },
+  {
    "id": "cosmological-principle.pick",
    "atom": "cosmological-principle",
    "kind": "pick",
@@ -505,6 +576,20 @@
      "meaning": "Evidence for isotropy to 1 part in 100,000"
     }
    ]
+  },
+  {
+   "id": "cosmological-principle.applied",
+   "atom": "cosmological-principle",
+   "kind": "pick",
+   "prompt": "Telescopes in Chile and Australia map galaxies in opposite directions and find the same average density on large scales. Which idea does that support?",
+   "options": [
+    "The cosmological principle",
+    "A center of the universe near Earth",
+    "That galaxies avoid the southern sky",
+    "That light slows in one direction"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "frw-metric.pick",
@@ -579,6 +664,20 @@
    ]
   },
   {
+   "id": "frw-metric.applied",
+   "atom": "frw-metric",
+   "kind": "pick",
+   "prompt": "A radio survey finds the 21 cm hydrogen line from a distant galaxy arriving at 42 cm. By what factor has space stretched since the light left?",
+   "options": [
+    "21",
+    "0.5",
+    "42",
+    "2"
+   ],
+   "answer": 3,
+   "applied": true
+  },
+  {
    "id": "scale-factor.pick",
    "atom": "scale-factor",
    "kind": "pick",
@@ -651,6 +750,20 @@
    ]
   },
   {
+   "id": "scale-factor.applied",
+   "atom": "scale-factor",
+   "kind": "pick",
+   "prompt": "An astronomer sees a quasar at z = 3. How big was the universe then, relative to today?",
+   "options": [
+    "One quarter of today's size",
+    "Three times today's size",
+    "One third of today's size",
+    "The same size as today"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "cosmological-redshift.pick",
    "atom": "cosmological-redshift",
    "kind": "pick",
@@ -670,7 +783,8 @@
    "prompt": "A line emitted at 121.6 nm is observed at 486.4 nm. What is the redshift z?",
    "answer": 3,
    "unit": "",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "cosmological-redshift.order",
@@ -742,7 +856,8 @@
    "prompt": "With H_0 = 70 km/s/Mpc, how fast does a galaxy 200 Mpc away recede?",
    "answer": 14000,
    "unit": "km/s",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "hubble-law.order",
@@ -867,6 +982,20 @@
    ]
   },
   {
+   "id": "friedmann-equations.applied",
+   "atom": "friedmann-equations",
+   "kind": "pick",
+   "prompt": "The first Friedmann equation sets the critical density in proportion to H squared. If H0 were twice Planck's 67.4 km/s/Mpc, the critical density would be:",
+   "options": [
+    "Four times larger",
+    "Twice as large",
+    "Half as large",
+    "Unchanged"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "critical-density.pick",
    "atom": "critical-density",
    "kind": "pick",
@@ -937,6 +1066,20 @@
      "meaning": "Density that makes space exactly flat"
     }
    ]
+  },
+  {
+   "id": "critical-density.applied",
+   "atom": "critical-density",
+   "kind": "pick",
+   "prompt": "Survey teams compare the measured total density with about 9e-27 kg/m^3. What does that comparison decide?",
+   "options": [
+    "Whether space is flat, open or closed",
+    "How hot the surface of the Sun is compared with other stars",
+    "How old Earth is",
+    "How fast light moves"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "big-bang.pick",
@@ -1011,6 +1154,20 @@
    ]
   },
   {
+   "id": "big-bang.applied",
+   "atom": "big-bang",
+   "kind": "pick",
+   "prompt": "A radio engineer finds noise from every direction at about 3 K. What did Penzias and Wilson conclude in 1965?",
+   "options": [
+    "It is relic radiation from a hot early universe",
+    "Pigeons in the antenna caused the signal",
+    "It is heat from the Milky Way's center alone, spread by interstellar dust",
+    "It came from nearby city radio stations"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "thermal-history.pick",
    "atom": "thermal-history",
    "kind": "pick",
@@ -1081,6 +1238,20 @@
      "meaning": "Factor by which space grew since emission"
     }
    ]
+  },
+  {
+   "id": "thermal-history.applied",
+   "atom": "thermal-history",
+   "kind": "pick",
+   "prompt": "A CMB detector is cooled far below 2.725 K. Why must it be colder than the sky it measures?",
+   "options": [
+    "Its own heat would swamp the faint signal",
+    "Cold detectors see farther into space than warm ones do",
+    "The CMB only exists below 1 K",
+    "Heat bends incoming microwaves"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "inflation.pick",
@@ -1155,6 +1326,20 @@
    ]
   },
   {
+   "id": "inflation.applied",
+   "atom": "inflation",
+   "kind": "pick",
+   "prompt": "Satellites find CMB temperature matching to 1 part in 100,000 across the sky. Which idea explains how distant regions agree?",
+   "options": [
+    "Inflation stretched one causally connected patch",
+    "The regions exchanged light recently",
+    "The CMB is reflected toward us from a single giant mirror in space",
+    "Every region was heated by the Sun"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "baryogenesis.pick",
    "atom": "baryogenesis",
    "kind": "pick",
@@ -1225,6 +1410,20 @@
      "meaning": "Slight excess of matter over antimatter"
     }
    ]
+  },
+  {
+   "id": "baryogenesis.applied",
+   "atom": "baryogenesis",
+   "kind": "pick",
+   "prompt": "A particle collider makes equal matter and antimatter in each collision. Why is that a puzzle for cosmology?",
+   "options": [
+    "The universe today holds far more matter than antimatter",
+    "Colliders make only antimatter",
+    "Matter never forms in collisions, so all of today's matter is ancient",
+    "Antimatter is heavier than matter"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "bbn.pick",
@@ -1299,6 +1498,20 @@
    ]
   },
   {
+   "id": "bbn.applied",
+   "atom": "bbn",
+   "kind": "pick",
+   "prompt": "Spectra of old, pristine gas clouds show about 25% helium by mass. Which process set that number?",
+   "options": [
+    "Big Bang nucleosynthesis",
+    "Fusion in today's stars alone",
+    "Supernova explosions last year",
+    "Chemical reactions in the clouds"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "recombination.pick",
    "atom": "recombination",
    "kind": "pick",
@@ -1371,6 +1584,20 @@
    ]
   },
   {
+   "id": "recombination.applied",
+   "atom": "recombination",
+   "kind": "pick",
+   "prompt": "A radio telescope sees the CMB but cannot see light from before it. Why?",
+   "options": [
+    "Before recombination free electrons scattered all light",
+    "Earlier light was too cold to detect",
+    "Telescopes block old light",
+    "No light of any kind existed before 380,000 years had passed"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "cmb-origin.pick",
    "atom": "cmb-origin",
    "kind": "pick",
@@ -1387,8 +1614,9 @@
    "id": "cmb-origin.calculate",
    "atom": "cmb-origin",
    "kind": "calculate",
-   "prompt": "Wien's law gives peak wavelength = 2.898e-3 / T meters. For T = 2.725 K, find the peak in mm.",
+   "prompt": "A team designs a receiver for the 2.725 K CMB. Wien's law gives the peak wavelength as 2.898e-3 / T meters. At what wavelength, in mm, should the receiver be most sensitive?",
    "answer": 1.063,
+   "applied": true,
    "unit": "mm",
    "relTol": 0.02
   },
@@ -1459,8 +1687,9 @@
    "id": "cmb-anisotropies.calculate",
    "atom": "cmb-anisotropies",
    "kind": "calculate",
-   "prompt": "The CMB averages 2.725 K. A fluctuation of 1 part in 100,000 is how many microkelvin?",
+   "prompt": "A CMB telescope must map hot and cold spots of 1 part in 100,000 on the 2.725 K sky. What temperature difference, in microkelvin, must its detectors resolve?",
    "answer": 27.25,
+   "applied": true,
    "unit": "µK",
    "relTol": 0.02
   },
@@ -1534,7 +1763,8 @@
    "prompt": "A 150 Mpc sound horizon sits about 14,000 Mpc away. What angle does it span on the sky in degrees?",
    "answer": 0.614,
    "unit": "degrees",
-   "relTol": 0.03
+   "relTol": 0.03,
+   "applied": true
   },
   {
    "id": "acoustic-peaks.order",
@@ -1659,6 +1889,20 @@
    ]
   },
   {
+   "id": "gravitational-instability.applied",
+   "atom": "gravitational-instability",
+   "kind": "pick",
+   "prompt": "Computer simulations seed a smooth universe with tiny lumps and run gravity forward. What appears?",
+   "options": [
+    "A web of galaxies and clusters",
+    "A perfectly smooth gas forever",
+    "A single giant star",
+    "Galaxies evenly spaced on a grid"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "dark-matter-evidence.pick",
    "atom": "dark-matter-evidence",
    "kind": "pick",
@@ -1678,7 +1922,8 @@
    "prompt": "Visible mass predicts Keplerian speeds that fall as 1 over the square root of radius. A star orbits at 200 km/s at 5 kpc. What speed does visible mass predict at 20 kpc?",
    "answer": 100,
    "unit": "km/s",
-   "tol": 0.5
+   "tol": 0.5,
+   "applied": true
   },
   {
    "id": "dark-matter-evidence.order",
@@ -1803,6 +2048,20 @@
    ]
   },
   {
+   "id": "dark-matter-halos.applied",
+   "atom": "dark-matter-halos",
+   "kind": "pick",
+   "prompt": "Simulations place every galaxy at the center of something larger and unseen. What is it?",
+   "options": [
+    "A dark matter halo",
+    "A black hole of equal size",
+    "A cloud of cold hydrogen alone",
+    "A ring of old stars"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "large-scale-structure.pick",
    "atom": "large-scale-structure",
    "kind": "pick",
@@ -1819,9 +2078,9 @@
    "id": "large-scale-structure.calculate",
    "atom": "large-scale-structure",
    "kind": "calculate",
-   "prompt": "A void spans 30 Mpc. With 1 Mpc about 3.26 million light-years, how many million light-years across is it?",
-   "answer": 97.8,
-   "unit": "million ly",
+   "prompt": "A survey maps a 300 Mpc cube and finds voids about 30 Mpc across. Treating them as cubes packed edge to edge, how many void-sized cells fit in the survey?",
+   "answer": 1000.0,
+   "unit": "",
    "relTol": 0.02
   },
   {
@@ -1873,6 +2132,20 @@
      "meaning": "Dense knot where filaments cross"
     }
    ]
+  },
+  {
+   "id": "large-scale-structure.applied",
+   "atom": "large-scale-structure",
+   "kind": "pick",
+   "prompt": "The Sloan survey map shows galaxies strung along threads around empty regions. What are those empty regions?",
+   "options": [
+    "Voids",
+    "Clusters",
+    "Filaments",
+    "Sheets"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "baryon-acoustic-oscillations.pick",
@@ -1947,6 +2220,20 @@
    ]
   },
   {
+   "id": "baryon-acoustic-oscillations.applied",
+   "atom": "baryon-acoustic-oscillations",
+   "kind": "pick",
+   "prompt": "A galaxy survey finds a slight excess of galaxy pairs 150 Mpc apart. How do astronomers use that excess?",
+   "options": [
+    "As a standard ruler for distances",
+    "As a clock for star ages",
+    "As a thermometer for stars",
+    "As a map of the color and temperature of dark energy"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "standard-candles.pick",
    "atom": "standard-candles",
    "kind": "pick",
@@ -1966,7 +2253,8 @@
    "prompt": "A standard candle is moved 3 times farther away. How many times dimmer does it appear?",
    "answer": 9,
    "unit": "x",
-   "tol": 0.5
+   "tol": 0.5,
+   "applied": true
   },
   {
    "id": "standard-candles.order",
@@ -2038,7 +2326,8 @@
    "prompt": "A galaxy has z = 0.02. Using v = cz and H0 = 70 km/s/Mpc, how far away is it in Mpc?",
    "answer": 85.7,
    "unit": "Mpc",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "redshift-surveys.order",
@@ -2163,6 +2452,20 @@
    ]
   },
   {
+   "id": "dark-energy.applied",
+   "atom": "dark-energy",
+   "kind": "pick",
+   "prompt": "The 1998 supernova teams expected distant supernovae to look brighter than they did. What did the dimming imply?",
+   "options": [
+    "Expansion is speeding up",
+    "Expansion is slowing down sharply",
+    "Supernovae are fainter in the past",
+    "Dust blocks all distant light evenly"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "cosmological-constant.pick",
    "atom": "cosmological-constant",
    "kind": "pick",
@@ -2233,6 +2536,20 @@
      "meaning": "Hallmark of a true constant"
     }
    ]
+  },
+  {
+   "id": "cosmological-constant.applied",
+   "atom": "cosmological-constant",
+   "kind": "pick",
+   "prompt": "As the universe doubles in size, matter density drops by a factor of 8. If dark energy is a cosmological constant, its density over the same doubling:",
+   "options": [
+    "Drops by 8, like matter",
+    "Stays the same",
+    "Drops by 2",
+    "Drops by 16, like radiation"
+   ],
+   "answer": 1,
+   "applied": true
   },
   {
    "id": "lambda-cdm.pick",
@@ -2306,6 +2623,20 @@
    ]
   },
   {
+   "id": "lambda-cdm.applied",
+   "atom": "lambda-cdm",
+   "kind": "pick",
+   "prompt": "Lambda-CDM fits today's universe with matter near 0.3 and Lambda near 0.7 of the critical density. What does it predict for the far future?",
+   "options": [
+    "A recollapse into a big crunch",
+    "Expansion slowing until the universe stops growing",
+    "Accelerating expansion that tends to exponential growth",
+    "Coasting at a constant expansion speed"
+   ],
+   "answer": 2,
+   "applied": true
+  },
+  {
    "id": "cosmic-distance-ladder.pick",
    "atom": "cosmic-distance-ladder",
    "kind": "pick",
@@ -2325,7 +2656,8 @@
    "prompt": "A star shows a parallax of 0.01 arcseconds. Using d = 1/p, how many parsecs away is it?",
    "answer": 100,
    "unit": "pc",
-   "tol": 0.5
+   "tol": 0.5,
+   "applied": true
   },
   {
    "id": "cosmic-distance-ladder.order",
@@ -2450,6 +2782,20 @@
    ]
   },
   {
+   "id": "observable-universe.applied",
+   "atom": "observable-universe",
+   "kind": "pick",
+   "prompt": "The James Webb telescope sees a galaxy whose light left it 13 billion years ago. Is the galaxy now 13 billion light-years away?",
+   "options": [
+    "No, expansion has carried it much farther",
+    "Yes, exactly 13 billion light-years",
+    "No, it is now closer",
+    "Distance has no meaning for galaxies, so the question cannot be answered"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "gravitational-lensing.pick",
    "atom": "gravitational-lensing",
    "kind": "pick",
@@ -2466,8 +2812,9 @@
    "id": "gravitational-lensing.calculate",
    "atom": "gravitational-lensing",
    "kind": "calculate",
-   "prompt": "Lensing shows a cluster mass of 1.0e15 solar masses; visible matter is 1.5e14. What is the ratio of total to visible mass?",
+   "prompt": "Hubble images of a cluster show arcs whose Einstein radius implies 1.0e15 solar masses. X-ray gas and stars add up to 1.5e14. How many times more mass does lensing see than the visible matter?",
    "answer": 6.67,
+   "applied": true,
    "unit": "x",
    "relTol": 0.02
   },
@@ -2538,8 +2885,9 @@
    "id": "hubble-tension.calculate",
    "atom": "hubble-tension",
    "kind": "calculate",
-   "prompt": "By what percent does 73 exceed 67.4 km/s/Mpc?",
+   "prompt": "SH0ES Cepheid-calibrated supernovae give H0 = 73.0 km/s/Mpc; the Planck CMB fit gives 67.4. By what percent is the local value higher?",
    "answer": 8.31,
+   "applied": true,
    "unit": "%",
    "relTol": 0.02
   },
@@ -2666,6 +3014,20 @@
    ]
   },
   {
+   "id": "dark-energy-equation-of-state.applied",
+   "atom": "dark-energy-equation-of-state",
+   "kind": "pick",
+   "prompt": "The DESI survey tests whether w equals -1. What would a measured w that changes over time mean?",
+   "options": [
+    "Dark energy is dynamical, unlike a cosmological constant",
+    "Dark matter is hot",
+    "Dark energy is a form of dark matter",
+    "Gravity is repulsive"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "primordial-gravitational-waves.pick",
    "atom": "primordial-gravitational-waves",
    "kind": "pick",
@@ -2736,6 +3098,20 @@
      "meaning": "Ripple in spacetime"
     }
    ]
+  },
+  {
+   "id": "primordial-gravitational-waves.applied",
+   "atom": "primordial-gravitational-waves",
+   "kind": "pick",
+   "prompt": "The BICEP telescope at the South Pole searches the CMB for B-mode polarization. What signal is it hunting?",
+   "options": [
+    "Gravitational waves from inflation",
+    "Light from the first stars",
+    "Radio noise from satellites",
+    "Dark matter decays"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "multiverse-inflation-debate.pick",
@@ -2810,6 +3186,20 @@
    ]
   },
   {
+   "id": "multiverse-inflation-debate.applied",
+   "atom": "multiverse-inflation-debate",
+   "kind": "pick",
+   "prompt": "Critics call some multiverse claims untestable. What would make a pocket-universe idea testable?",
+   "options": [
+    "A predicted signal such as a bubble collision mark in the CMB",
+    "Repeating the claim in more papers until most researchers accept it",
+    "Finding more pockets by counting",
+    "A larger telescope pointed at nothing"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "cosmic-fate.pick",
    "atom": "cosmic-fate",
    "kind": "pick",
@@ -2880,6 +3270,20 @@
      "meaning": "Dark energy that turns attractive"
     }
    ]
+  },
+  {
+   "id": "cosmic-fate.applied",
+   "atom": "cosmic-fate",
+   "kind": "pick",
+   "prompt": "Far-future astronomers in a Lambda universe look out from their galaxy. What will they see?",
+   "options": [
+    "Only their own merged galaxy group, the rest beyond the horizon",
+    "More galaxies than today",
+    "The CMB brighter than now",
+    "The Big Bang itself"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "cosmic-history-synthesis.pick",
@@ -2954,6 +3358,20 @@
    ]
   },
   {
+   "id": "cosmic-history-synthesis.applied",
+   "atom": "cosmic-history-synthesis",
+   "kind": "pick",
+   "prompt": "A museum timeline places the CMB, first stars and the Sun. Which order is right?",
+   "options": [
+    "CMB, first stars, Sun",
+    "Sun, first stars, CMB",
+    "First stars, CMB, Sun",
+    "CMB, Sun, first stars"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "matter-radiation-equality.pick",
    "atom": "matter-radiation-equality",
    "kind": "pick",
@@ -3024,6 +3442,20 @@
      "meaning": "a^-2"
     }
    ]
+  },
+  {
+   "id": "matter-radiation-equality.applied",
+   "atom": "matter-radiation-equality",
+   "kind": "pick",
+   "prompt": "CMB peak heights depend on when matter overtook radiation. What sets that moment?",
+   "options": [
+    "The ratio of matter to radiation density",
+    "The Sun's age",
+    "The size of Earth's orbit",
+    "The number of galaxies counted in today's surveys"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "jeans-instability.pick",
@@ -3098,6 +3530,20 @@
    ]
   },
   {
+   "id": "jeans-instability.applied",
+   "atom": "jeans-instability",
+   "kind": "pick",
+   "prompt": "A cold gas cloud in our galaxy starts forming stars. Which condition must it meet?",
+   "options": [
+    "It must be larger than its Jeans length",
+    "It must be smaller than its Jeans length",
+    "It must be hotter than its surroundings",
+    "It must spin faster than its neighbors"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "matter-power-spectrum.pick",
    "atom": "matter-power-spectrum",
    "kind": "pick",
@@ -3170,6 +3616,20 @@
    ]
   },
   {
+   "id": "matter-power-spectrum.applied",
+   "atom": "matter-power-spectrum",
+   "kind": "pick",
+   "prompt": "A galaxy survey finds less clustering on small scales than pure cold dark matter predicts. Which change to the model produces that suppression?",
+   "options": [
+    "More cold dark matter",
+    "A higher CMB temperature",
+    "Removing dark energy",
+    "Massive neutrinos or warmer dark matter that streams out of small clumps"
+   ],
+   "answer": 3,
+   "applied": true
+  },
+  {
    "id": "type-ia-supernovae.pick",
    "atom": "type-ia-supernovae",
    "kind": "pick",
@@ -3186,10 +3646,11 @@
    "id": "type-ia-supernovae.calculate",
    "atom": "type-ia-supernovae",
    "kind": "calculate",
-   "prompt": "Two standardized Type Ia supernovae differ by 5 magnitudes in apparent brightness. By what factor do their luminosity distances differ?",
-   "answer": 10,
-   "unit": "",
-   "tol": 0.01
+   "prompt": "A survey's Type Ia supernova looks 5 magnitudes fainter than an identical one in a calibrator galaxy 20 Mpc away. Ignoring expansion effects, how far away is it, in Mpc?",
+   "answer": 200,
+   "applied": true,
+   "unit": "Mpc",
+   "relTol": 0.02
   },
   {
    "id": "type-ia-supernovae.order",
@@ -3315,6 +3776,20 @@
    ]
   },
   {
+   "id": "silk-damping.applied",
+   "atom": "silk-damping",
+   "kind": "pick",
+   "prompt": "Planck sees CMB spots fade at the smallest angular scales. What causes the fading?",
+   "options": [
+    "Photon diffusion smoothed small fluctuations",
+    "Telescope blur alone",
+    "Dust in our galaxy",
+    "Expansion stopped at small scales before recombination"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "sachs-wolfe-effect.pick",
    "atom": "sachs-wolfe-effect",
    "kind": "pick",
@@ -3385,6 +3860,20 @@
      "meaning": "Region where photons start deeper"
     }
    ]
+  },
+  {
+   "id": "sachs-wolfe-effect.applied",
+   "atom": "sachs-wolfe-effect",
+   "kind": "pick",
+   "prompt": "The largest cold spots in WMAP maps trace what at last scattering?",
+   "options": [
+    "Deep gravitational potential wells",
+    "Regions with no matter at all",
+    "Nearby galaxy clusters",
+    "Hot gas in the Milky Way"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "cosmic-neutrino-background.pick",
@@ -3459,6 +3948,20 @@
    ]
   },
   {
+   "id": "cosmic-neutrino-background.applied",
+   "atom": "cosmic-neutrino-background",
+   "kind": "pick",
+   "prompt": "Why has no detector yet seen relic neutrinos at 1.95 K?",
+   "options": [
+    "They carry tiny energy and barely interact",
+    "They decayed long ago",
+    "They are hotter than the CMB and pass straight through detectors",
+    "They move slower than sound"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "reionization.pick",
    "atom": "reionization",
    "kind": "pick",
@@ -3531,6 +4034,20 @@
    ]
   },
   {
+   "id": "reionization.applied",
+   "atom": "reionization",
+   "kind": "pick",
+   "prompt": "Spectra of quasars beyond z = 6 show almost no light just blueward of Lyman-alpha. What does that reveal?",
+   "options": [
+    "Neutral hydrogen before reionization finished",
+    "Dust in the quasar",
+    "Cosmic rays near Earth",
+    "Detector noise"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "redshift-space-distortions.pick",
    "atom": "redshift-space-distortions",
    "kind": "pick",
@@ -3547,7 +4064,7 @@
    "id": "redshift-space-distortions.calculate",
    "atom": "redshift-space-distortions",
    "kind": "calculate",
-   "prompt": "The Kaiser boost of the monopole is 1 + 2beta/3 + beta^2/5. For beta = 0.5, what is it?",
+   "prompt": "The Kaiser factor for the monopole is 1 + 2beta/3 + beta^2/5. For beta = 0.5, what is it?",
    "answer": 1.383,
    "unit": "",
    "relTol": 0.02
@@ -3603,6 +4120,20 @@
    ]
   },
   {
+   "id": "redshift-space-distortions.applied",
+   "atom": "redshift-space-distortions",
+   "kind": "pick",
+   "prompt": "Survey maps show galaxy clusters stretched into fingers pointing at Earth. What causes them?",
+   "options": [
+    "Random galaxy motions inside clusters",
+    "Telescope errors",
+    "Gravitational lensing",
+    "Earth's rotation"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "sunyaev-zeldovich-effect.pick",
    "atom": "sunyaev-zeldovich-effect",
    "kind": "pick",
@@ -3619,10 +4150,11 @@
    "id": "sunyaev-zeldovich-effect.calculate",
    "atom": "sunyaev-zeldovich-effect",
    "kind": "calculate",
-   "prompt": "The SZ null sits near 217 GHz. A map at 150 GHz sits how many GHz below it?",
-   "answer": 67,
-   "unit": "GHz",
-   "tol": 0.5
+   "prompt": "A cluster in a South Pole Telescope map has Compton y = 1e-4. At low frequency the CMB behind it dims by 2yT, with T = 2.725 K. How deep is the decrement, in microkelvin?",
+   "answer": 545,
+   "applied": true,
+   "unit": "µK",
+   "relTol": 0.02
   },
   {
    "id": "sunyaev-zeldovich-effect.order",
@@ -3694,7 +4226,8 @@
    "prompt": "Shape noise per galaxy is 0.3. Averaging N galaxies cuts it by sqrt(N). How many galaxies bring the noise down to 0.01?",
    "answer": 900,
    "unit": "",
-   "tol": 1
+   "tol": 1,
+   "applied": true
   },
   {
    "id": "weak-lensing-shear.order",
@@ -3819,6 +4352,20 @@
    ]
   },
   {
+   "id": "halo-mass-function.applied",
+   "atom": "halo-mass-function",
+   "kind": "pick",
+   "prompt": "eROSITA counts fewer massive galaxy clusters than a model with sigma_8 = 0.9 predicts. Which change brings the model in line?",
+   "options": [
+    "A lower sigma_8, the amplitude of matter fluctuations",
+    "A higher sigma_8",
+    "A higher CMB temperature",
+    "More stars per galaxy"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "fluid-equation.pick",
    "atom": "fluid-equation",
    "kind": "pick",
@@ -3889,6 +4436,20 @@
      "meaning": "a^-6"
     }
    ]
+  },
+  {
+   "id": "fluid-equation.applied",
+   "atom": "fluid-equation",
+   "kind": "pick",
+   "prompt": "Radiation has pressure equal to a third of its energy density. When the universe doubles in size, its energy density drops by what factor?",
+   "options": [
+    "8",
+    "16",
+    "4",
+    "2"
+   ],
+   "answer": 1,
+   "applied": true
   },
   {
    "id": "deceleration-parameter.pick",
@@ -3963,6 +4524,20 @@
    ]
   },
   {
+   "id": "deceleration-parameter.applied",
+   "atom": "deceleration-parameter",
+   "kind": "pick",
+   "prompt": "Supernova data give q0 near -0.55. What does the negative sign tell observers?",
+   "options": [
+    "Expansion is accelerating today",
+    "Expansion is slowing today",
+    "The universe is shrinking",
+    "The universe is static"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "growth-of-structure.pick",
    "atom": "growth-of-structure",
    "kind": "pick",
@@ -4033,6 +4608,20 @@
      "meaning": "Growth slows and stalls"
     }
    ]
+  },
+  {
+   "id": "growth-of-structure.applied",
+   "atom": "growth-of-structure",
+   "kind": "pick",
+   "prompt": "Weak lensing finds clumps grew more slowly since redshift 1 than gravity in a matter-only universe predicts. What is the standard explanation?",
+   "options": [
+    "Gravity grew stronger at late times",
+    "More baryons formed after redshift 1",
+    "Dark energy sped up expansion, which slows clumping",
+    "The CMB cooled faster than expected"
+   ],
+   "answer": 2,
+   "applied": true
   },
   {
    "id": "primordial-power-spectrum.pick",
@@ -4107,6 +4696,20 @@
    ]
   },
   {
+   "id": "primordial-power-spectrum.applied",
+   "atom": "primordial-power-spectrum",
+   "kind": "pick",
+   "prompt": "Planck measures n_s near 0.965, slightly below 1. What does that tell model builders?",
+   "options": [
+    "Inflation left a slight red tilt",
+    "Inflation never happened",
+    "Inflation ran for exactly one e-fold",
+    "Dark energy is hot"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "transfer-function.pick",
    "atom": "transfer-function",
    "kind": "pick",
@@ -4179,6 +4782,20 @@
    ]
   },
   {
+   "id": "transfer-function.applied",
+   "atom": "transfer-function",
+   "kind": "pick",
+   "prompt": "Galaxy surveys see less clustering on small scales than the primordial spectrum alone predicts. What explains the drop?",
+   "options": [
+    "Modes that entered during radiation domination grew less",
+    "Galaxies avoid small scales",
+    "Dark energy erased them",
+    "Telescopes cannot see them"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "cmb-polarization.pick",
    "atom": "cmb-polarization",
    "kind": "pick",
@@ -4249,6 +4866,20 @@
      "meaning": "Large-scale polarization signal"
     }
    ]
+  },
+  {
+   "id": "cmb-polarization.applied",
+   "atom": "cmb-polarization",
+   "kind": "pick",
+   "prompt": "The Simons Observatory detects primordial B-mode polarization on large angular scales, after removing dust. What does that point to?",
+   "options": [
+    "Hot gas in galaxy clusters",
+    "Earth's magnetic field",
+    "Rotation of nearby galaxies",
+    "Gravitational waves from inflation"
+   ],
+   "answer": 3,
+   "applied": true
   }
  ]
 }
