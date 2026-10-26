@@ -49,6 +49,25 @@ public enum FlagMisses {
         return (out, next)
     }
 
+    static func mergeSynced(_ out: inout JSObject, _ a: JSObject, _ b: JSObject) {
+        let ma = a[key]?.object, mb = b[key]?.object, ha = a[hitsKey]?.object, hb = b[hitsKey]?.object
+        guard ma != nil || mb != nil || ha != nil || hb != nil else { return }
+        var langs: [String] = []
+        for t in [ma, ha, mb, hb] { for l in t?.keys ?? [] where !langs.contains(l) { langs.append(l) } }
+        var misses = JSObject()
+        var hits = JSObject()
+        for l in langs {
+            let pa = (ma?[l]?.number, ha?[l]?.number)
+            let pb = (mb?[l]?.number, hb?[l]?.number)
+            let na = pa.0 ?? 0, nb = pb.0 ?? 0
+            let win: (Double?, Double?) = na > nb ? pa : nb > na ? pb : (pa.0 ?? pb.0, [pa.1, pb.1].compactMap { $0 }.max())
+            if let m = win.0 { misses[l] = .number(m) }
+            if let h = win.1 { hits[l] = .number(h) }
+        }
+        out[key] = misses.keys.isEmpty && ma == nil && mb == nil ? nil : .object(misses)
+        out[hitsKey] = hits.keys.isEmpty && ha == nil && hb == nil ? nil : .object(hits)
+    }
+
     public static func merging(_ flags: EngineState, into state: EngineState) -> EngineState {
         var next = state
         for k in [key, hitsKey] { next.settingsExtra[k] = flags.settingsExtra[k] }

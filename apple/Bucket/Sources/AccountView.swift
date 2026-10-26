@@ -43,7 +43,8 @@ struct AccountView: View {
                                     return
                                 }
                                 account.error = nil
-                                Task { await account.signInWithApple(idToken: token, nonce: raw) }
+                                let code = credential.authorizationCode.flatMap { String(data: $0, encoding: .utf8) }
+                                Task { await account.signInWithApple(idToken: token, nonce: raw, authorizationCode: code) }
                             }
                         }
                         .signInWithAppleButtonStyle(scheme == .dark ? .white : .black)

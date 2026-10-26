@@ -62,6 +62,37 @@ struct StoreKitTests {
         #expect(subs.access == .locked)
     }
 
+    @Test func familyPurchaseUnlocks() async throws {
+        _ = try session()
+        let subs = Subscriptions()
+        await subs.refresh()
+        #expect(subs.access == .locked)
+        let family = try #require(try await Product.products(for: [Plan.family]).first)
+        #expect(family.subscription != nil)
+        #expect(family.isFamilyShareable)
+        _ = try await family.purchase()
+        await subs.refresh()
+        guard case .subscribed(let id, let until) = subs.access else {
+            Issue.record("expected subscribed, got \(subs.access)")
+            return
+        }
+        #expect(id == Plan.family)
+        #expect(until != nil)
+    }
+
+    @Test func lifetimePurchaseUnlocksWithoutExpiry() async throws {
+        _ = try session()
+        let subs = Subscriptions()
+        await subs.refresh()
+        #expect(subs.access == .locked)
+        let lifetime = try #require(try await Product.products(for: [Plan.lifetime]).first)
+        #expect(lifetime.type == .nonConsumable)
+        _ = try await lifetime.purchase()
+        await subs.refresh()
+        #expect(subs.access == .subscribed(productID: Plan.lifetime, until: nil))
+        #expect(subs.access.open)
+    }
+
     @Test(.enabled(if: ProcessInfo.processInfo.environment["POLINGUAL_SHOTS"] != nil))
     func holdPaywallForScreenshots() async throws {
         let s = try session()
