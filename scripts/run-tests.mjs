@@ -90,7 +90,7 @@ const SUITES = {
       ["python3", "-m", "unittest", "scripts/canon-explorer/test_embed.py"],
       ["python3", "scripts/canon-explorer/embed.py", "--check"],
       ["python3", "-m", "unittest", "tools/learning-corpus/test_build.py", "tools/learning-corpus/test_check_refs.py"],
-      ["python3", "-m", "unittest", "services/photon-api/test_server.py"],
+      ["python3", "-m", "unittest", "services/photon-api/test_server.py", "services/photon-api/test_pg_migration.py"],
     ],
   },
   db: {

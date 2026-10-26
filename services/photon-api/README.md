@@ -38,6 +38,10 @@ longer limited to the ~6,500-word baked subset.
 | GET | `/search/meaning` | `q,lang,k` | words whose English gloss holds every term |
 | GET | `/search/phonetic` | `ipa,lang,k` | words whose IPA sounds like the input |
 
+Search indexes for `server_pg.py`: run `psql -f services/photon-api/migrations/001_search_indexes.sql` once against the polingual database. It builds both trigram indexes with `CREATE INDEX CONCURRENTLY`, so writes keep going. Until it runs, `/search/phonetic` and `/spelling` return 503 `search_unavailable`. Every pg query runs with `SET LOCAL statement_timeout` (`POLINGUAL_STATEMENT_TIMEOUT_MS`, default 3000) and returns 503 `query_timeout` past it. A request waits up to `POLINGUAL_POOL_WAIT_S` (default 2) for one of `POLINGUAL_POOL_MAX` (default 12) connections, then gets 503 `busy`.
+
+Lookup goes through the Next app: `GET /api/polingual/lookup?surface=&from=&to=` returns translations plus similar words by meaning and by sound and writes nothing. `POST` with `{"surface", "from", "save": true}` and a bearer token also adds the word to the deck, once. Both are limited to 60 a minute per IP and 8 in flight per instance.
+
 Save to deck goes through the Next app: `POST /api/polingual/deck` with a Supabase bearer token, `GET /api/polingual/deck?deck=` lists it.
 
 Example:

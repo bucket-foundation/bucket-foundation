@@ -31,7 +31,48 @@ function similar(res: Json | null): SimilarWord[] {
   })).filter((r) => r.surface);
 }
 
-export async function handleLookup(deps: LookupDeps, q: { surface: string; from: string; to: string | null; deck: string | null }): Promise<LookupResult> {
+export interface LookupQuery {
+  surface: string;
+  from: string;
+  to: string | null;
+  deck: string | null;
+  save: boolean;
+}
+
+export const LOOKUP_IP_LIMIT = 60;
+export const LOOKUP_WINDOW_S = 60;
+export const LOOKUP_MAX_INFLIGHT = 8;
+
+export function createGate(maxInflight: number) {
+  let inflight = 0;
+  return async function run<T>(fn: () => Promise<T>, busy: () => T): Promise<T> {
+    if (inflight >= maxInflight) return busy();
+    inflight++;
+    try {
+      return await fn();
+    } finally {
+      inflight--;
+    }
+  };
+}
+
+export function createMemoryRate(now: () => number = Date.now) {
+  const hits = new Map<string, number[]>();
+  return async function rateHit(key: string, limit: number, windowSeconds: number): Promise<boolean> {
+    const t = now();
+    const recent = (hits.get(key) ?? []).filter((h) => t - h < windowSeconds * 1000);
+    if (recent.length >= limit) {
+      hits.set(key, recent);
+      return false;
+    }
+    recent.push(t);
+    hits.set(key, recent);
+    if (hits.size > 10000) hits.clear();
+    return true;
+  };
+}
+
+export async function handleLookup(deps: LookupDeps, q: LookupQuery): Promise<LookupResult> {
   const surface = q.surface.trim();
   if (!surface) return { status: 400, body: { error: "missing_surface" } };
   const params: Record<string, string> = { surface, from: q.from };
@@ -45,8 +86,9 @@ export async function handleLookup(deps: LookupDeps, q: { surface: string; from:
     deps.fetchJson("/phonetic", { surface, lang: q.from, k: String(SIMILAR_K) }),
   ]);
 
-  let deck: Json = { saved: false, reason: "signed_out" };
-  const uid = await deps.userId();
+  let deck: Json = { saved: false, reason: "not_requested" };
+  const uid = q.save ? await deps.userId() : null;
+  if (q.save && !uid) deck = { saved: false, reason: "signed_out" };
   if (uid) {
     const parsed = parseDeckCard({
       surface: typeof main.word === "string" ? main.word : surface,

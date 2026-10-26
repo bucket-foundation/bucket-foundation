@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os, time
+from threading import BoundedSemaphore
 from contextlib import contextmanager
 from fastapi import FastAPI, Request, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,7 +16,28 @@ TABLE = os.environ.get("PHOTON_TABLE", "photons_full")
 PROV = {"source": "Wiktionary via Kaikki", "license": "CC-BY-SA 3.0"}
 COLS = "surface, lang, meaning_en, ipa, pos"
 
-pool = ThreadedConnectionPool(1, 12, **DSN)
+POOL_MAX = int(os.environ.get("POLINGUAL_POOL_MAX", "12"))
+POOL_WAIT_S = float(os.environ.get("POLINGUAL_POOL_WAIT_S", "2"))
+pool = ThreadedConnectionPool(1, POOL_MAX, **DSN)
+_slots = BoundedSemaphore(POOL_MAX)
+
+class PoolBusy(Exception):
+    pass
+
+@contextmanager
+def _conn():
+    if not _slots.acquire(timeout=POOL_WAIT_S):
+        raise PoolBusy()
+    try:
+        conn = pool.getconn()
+        try:
+            yield conn
+        finally:
+            if not conn.closed:
+                conn.autocommit = True
+            pool.putconn(conn, close=bool(conn.closed))
+    finally:
+        _slots.release()
 
 STATEMENT_TIMEOUT_MS = int(os.environ.get("POLINGUAL_STATEMENT_TIMEOUT_MS", "3000"))
 MAX_K = 50
@@ -26,24 +48,16 @@ MAX_TARGETS = 29
 IPA_STRIP = "/[]ˈˌ.ː "
 IPA_NORM = f"translate(coalesce(ipa,''), '{IPA_STRIP}', '')"
 
-INDEX_DDL = [
-    "CREATE EXTENSION IF NOT EXISTS pg_trgm",
-    f"CREATE INDEX IF NOT EXISTS {TABLE}_meaning_trgm ON {TABLE} USING gin (lower(meaning_en) gin_trgm_ops)",
-    f"CREATE INDEX IF NOT EXISTS {TABLE}_ipa_norm_trgm ON {TABLE} USING gin (({IPA_NORM}) gin_trgm_ops) WHERE ipa IS NOT NULL",
-]
 
 @contextmanager
 def cur():
-    conn = pool.getconn()
-    try:
+    with _conn() as conn:
         conn.autocommit = True
         c = conn.cursor()
         try:
             yield c
         finally:
             c.close()
-    finally:
-        pool.putconn(conn)
 
 def _rows(c, score_name="score"):
     out = []
@@ -64,8 +78,7 @@ def _qvec(c, surface, lang, col="embedding"):
 
 @contextmanager
 def txn(similarity=None):
-    conn = pool.getconn()
-    try:
+    with _conn() as conn:
         conn.autocommit = False
         c = conn.cursor()
         try:
@@ -79,14 +92,6 @@ def txn(similarity=None):
             raise
         finally:
             c.close()
-    finally:
-        conn.autocommit = True
-        pool.putconn(conn)
-
-def ensure_indexes():
-    with cur() as c:
-        for ddl in INDEX_DDL:
-            c.execute(ddl)
 
 def _cap_k(k):
     return min(max(int(k), 1), MAX_K)
@@ -100,6 +105,16 @@ from psycopg2.errors import QueryCanceled  # noqa: E402
 @app.exception_handler(QueryCanceled)
 def _query_timeout(request: Request, exc: QueryCanceled):
     return JSONResponse({"error": "query_timeout", "timeout_ms": STATEMENT_TIMEOUT_MS}, status_code=503)
+
+from psycopg2.errors import UndefinedFunction  # noqa: E402
+
+@app.exception_handler(PoolBusy)
+def _pool_busy(request: Request, exc: PoolBusy):
+    return JSONResponse({"error": "busy", "retry_after_s": 1}, status_code=503, headers={"retry-after": "1"})
+
+@app.exception_handler(UndefinedFunction)
+def _missing_extension(request: Request, exc: UndefinedFunction):
+    return JSONResponse({"error": "search_unavailable", "detail": "run migrations/001_search_indexes.sql"}, status_code=503)
 
 def timed(fn):
     t = time.time(); out = fn(); out["took_ms"] = round((time.time()-t)*1000, 1); return out
@@ -219,11 +234,6 @@ def api_translate(surface: str, to: str, frm: str = Query(alias="from"), k: int 
 
 FAVORITE_LANGS = [c.strip() for c in os.environ.get(
     "POLINGUAL_FAVORITES", "es,fr,de,it,pt,ja,zh,ar,he,ru").split(",") if c.strip()]
-
-@app.on_event("startup")
-def _startup():
-    if os.environ.get("POLINGUAL_ENSURE_INDEXES", "1") == "1":
-        ensure_indexes()
 
 def _known_langs(c):
     c.execute(f"SELECT array_agg(DISTINCT lang ORDER BY lang) FROM {TABLE}")
