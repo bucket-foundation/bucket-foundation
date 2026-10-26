@@ -320,6 +320,17 @@ ok(verdictRating("exact") === 3 && verdictRating("close") === 2 && verdictRating
   const hibou = { ...dog, forms: { ...dog.forms, fr: "le hibou" } };
   const gh = exerciseFor(corpus, romance, hibou, "fr", undefined, seededRng(5), { afterIntro: true });
   ok(gh.kind === "gender" && gh.answer === "le" && gh.prompt === "hibou", "French drill keeps le before an aspirated h");
+{
+  const missing: string[] = [];
+  for (const item of corpus.items) {
+    for (const [lang, g] of Object.entries(item.gender ?? {})) {
+      const noun = (item.forms[lang] ?? "").split(" ").pop() ?? "";
+      if (["es", "fr", "it", "pt", "de", "nl"].includes(lang) && articleWord(lang, g, noun) === null) missing.push(`${item.id}:${lang}:${g}`);
+    }
+  }
+  ok(missing.length === 0, `every gendered noun has an article (${missing.join(", ")})`);
+  ok(articleWord("de", "pl", "Kleider") === "die", "German plural takes die");
+}
 ok(articleFor("it", "m", "zero") === "lo zero" && articleFor("it", "m", "studente") === "lo studente" && articleFor("it", "m", "libro") === "il libro", "Italian lo before z and s plus consonant");
 ok(articleFor("it", "m", "amico") === "l'amico" && articleFor("fr", "f", "eau") === "l'eau" && articleFor("fr", "m", "homme") === "l'homme", "elision before a vowel or mute h");
 ok(articleFor("fr", "m", "héros") === "le héros" && articleFor("fr", "f", "haine") === "la haine", "no elision before an aspirated h");
