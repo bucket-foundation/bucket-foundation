@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
-import { bearerToken, clientIp, createSessionHandler } from "@/lib/academy/session-server";
+import { appleAudiences, bearerToken, clientIp, createSessionHandler } from "@/lib/academy/session-server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -53,6 +53,11 @@ const handle = createSessionHandler({
     const { data, error } = await anonClient().auth.refreshSession({ refresh_token: refreshToken });
     return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
   },
+  signInWithApple: async (token, nonce) => {
+    const { data, error } = await anonClient().auth.signInWithIdToken({ provider: "apple", token, nonce });
+    return { session: error ? null : data.session, status: error ? (error.status ?? 500) : null };
+  },
+  appleAudiences: () => appleAudiences(process.env.APPLE_AUDIENCES),
   deleteAccount: deleteAccountFor,
 });
 
