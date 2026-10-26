@@ -79,13 +79,23 @@ struct TranslateCard: View {
                                 .accessibilityElement(children: .combine)
                             }
                         }
-                        if added.contains(id) {
-                            Label("Added to your next session", systemImage: "checkmark.circle.fill")
-                                .font(.subheadline.weight(.semibold))
-                                .foregroundStyle(D8.malachite)
-                        } else {
-                            Button("Add to my deck") { add(id, corpus) }
-                                .buttonStyle(D8Option(align: .center, compact: true))
+                        HStack(spacing: 10) {
+                            if added.contains(id) {
+                                Label("Added to your next session", systemImage: "checkmark.circle.fill")
+                                    .font(.subheadline.weight(.semibold))
+                                    .foregroundStyle(D8.malachite)
+                            } else {
+                                Button("Add to my deck") { add(id, corpus) }
+                                    .buttonStyle(D8Option(align: .center, compact: true))
+                            }
+                            let words = langs.compactMap { l in item.form(l).map { (lang: l, form: $0) } }
+                            if let image = Share.wordImage(gloss: query, words: words) {
+                                ShareLink(item: image, message: Text(words.map(\.form).joined(separator: " · ") + " \(Share.appLink.absoluteString)"), preview: SharePreview(query, image: image)) {
+                                    Image(systemName: "square.and.arrow.up").font(.headline)
+                                }
+                                .buttonStyle(.borderless)
+                                .accessibilityLabel("Share this word")
+                            }
                         }
                         let shown = Set(langs.compactMap { item.form($0).map(foldForSearch) })
                         let similar = hits.filter { h in h.itemId != id && !shown.contains(foldForSearch(corpus.byId[h.itemId]?.form(h.matchedLang) ?? "")) }

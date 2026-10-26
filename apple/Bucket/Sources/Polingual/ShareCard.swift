@@ -38,6 +38,29 @@ struct ShareCard: View {
     }
 }
 
+struct WordShareCard: View {
+    let gloss: String
+    let words: [(lang: String, form: String)]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text(gloss).font(D8.caps(20)).tracking(2).foregroundStyle(Color(hex: 0x5d5650))
+            ForEach(words.prefix(6), id: \.lang) { w in
+                HStack(spacing: 14) {
+                    FlagTile(lang: w.lang, size: 52)
+                    Text(w.form).font(.system(size: 40, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink).lineLimit(1).minimumScaleFactor(0.5)
+                }
+            }
+            Text(Feedback.isPolingual ? String(localized: "One word, every language. polingual.com") : String(localized: "One word, every language. bucket.foundation"))
+                .font(D8.caps(15)).tracking(1.2).foregroundStyle(Color(hex: 0x5B1A4A))
+        }
+        .padding(48)
+        .frame(width: 1080 / 2, alignment: .leading)
+        .background(D8.parchment)
+        .overlay(alignment: .bottom) { Rectangle().fill(Color(hex: 0x5B1A4A)).frame(height: 18) }
+    }
+}
+
 enum Share {
     static var appLink: URL { URL(string: "https://apps.apple.com/app/id\(Feedback.appID)")! }
 
@@ -47,6 +70,17 @@ enum Share {
         return streak > 1
             ? String(localized: "\(streak) days in a row learning \(set) together on \(Feedback.appName). Try it: \(link)")
             : String(localized: "Today learning \(set) together on \(Feedback.appName). Try it: \(link)")
+    }
+
+    @MainActor
+    static func wordImage(gloss: String, words: [(lang: String, form: String)]) -> Image? {
+        let r = ImageRenderer(content: WordShareCard(gloss: gloss, words: words))
+        r.scale = 2
+        #if os(iOS)
+        return r.uiImage.map { Image(uiImage: $0) }
+        #else
+        return r.nsImage.map { Image(nsImage: $0) }
+        #endif
     }
 
     @MainActor
