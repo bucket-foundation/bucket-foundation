@@ -177,6 +177,14 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
 #dk .stage .xp b{display:block;font-family:Fredoka,sans-serif;font-weight:700;font-size:var(--xpb,40px);line-height:1;color:#5B1A4A}
 #dk .stage .xp span{display:block;text-transform:none;letter-spacing:0;white-space:normal;font-family:Nunito,sans-serif;font-weight:800;font-size:var(--xps,17px);color:#231F20;margin-top:2px}
 #dk .stage .xp small{display:block;font-family:"Space Mono",monospace;font-size:var(--xpm,11px);color:#7a6f63;margin-top:2px}
+#dk .stage .pot{gap:16px;margin-left:32px;padding-left:28px;border-left:3px solid #E3D6B8}
+#dk .stage .pot .fire{width:64px;height:110px}
+#dk .stage .pot .sk b{font-size:52px}
+#dk .stage .pot .sk span{display:block;margin-top:4px}
+#dk .stage .pot .sk small{display:block;margin-top:10px;max-width:320px;font-family:Nunito,sans-serif;font-size:21px;font-weight:600;line-height:1.35;color:#5d5650}
+#dk .stage h1{margin:16px 0 0}
+#dk .stage .btns{margin-top:64px}
+#dk .stage .cards{bottom:96px}
 #mb{--bg:#F6EEDC;--ink:#231F20;--pur:#5B1A4A;--lip:#3A0F2F;--ochre:#E9A23B;--cta:#D9381E;--cta-lip:#8E2312;--muted:#5d5650;--btn-r:12px}
 #mb *{box-sizing:border-box;margin:0}
 #mb{overflow-x:hidden}
@@ -341,6 +349,17 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
 #mb .xp small{display:block;font-family:"Space Mono",monospace;font-size:var(--xpm,11px);color:#7a6f63;margin-top:2px}
 #mb .pot span{white-space:nowrap}
 #mb #mb .xp,#mb .pg .xp{--xpb:min(7vw,3.6vh);--xps:min(3.6vw,1.9vh);--xpm:min(2.6vw,1.3vh)}
+#mb .pg{padding:0 24px}
+#mb .pot{gap:12px}
+#mb .pot .fire{width:auto;height:min(8vh,72px)}
+#mb .pot .sk b{font-size:min(8vw,4vh)}
+#mb .pot .sk span{display:block;margin-top:2px}
+#mb .pot .sk small{display:block;margin-top:6px;font-family:Nunito,sans-serif;font-size:min(3.4vw,1.7vh);font-weight:600;line-height:1.3;color:#5d5650;max-width:220px}
+#mb h1{margin-top:min(3.5vh,28px)}
+#mb .pot{margin-top:min(3vh,24px)}
+#mb .grid{margin-top:min(3.5vh,28px)}
+#mb .cta{margin-top:min(3.5vh,28px)}
+@media (min-width:600px){#mb .pg{padding:0 8vw}}
 @media (max-width:759px),(max-aspect-ratio:5/4){#dk{display:none}#mb{display:block}}
 </style></head><body>
 <div id="dk">
@@ -351,7 +370,7 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
  </nav></div></header>
 <main class="hero" id="hero"><div class="stage" id="stage">
 <div class="s">
- <div class="wedge"></div><div class="tile"></div><div class="memphis"></div>
+ <div class="wedge"></div><div class="tile"></div>
  <div class="l">
   <div class="brand"><div class="mark" data-slot="logo"><img src="/d8/mark-pl.svg" alt="Polingual"></div><div class="wm">polingual</div></div>
   <h1>Language learning<br>for <em>multilingual</em><br>learners.</h1>
@@ -375,7 +394,7 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
     <path class="mho" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#3A0F2F" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 6)"/>
     <path class="mho face" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#5B1A4A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
    </svg>
-   <div><b>100</b><span>day streak</span></div><div class="xp"><b>≈ 360 words</b><span>90 meanings × 4 languages</span><small>expected · 1 new meaning a day</small></div>
+   <div class="sk"><b>100</b><span>day streak</span><small>1 new meaning a day in 4 languages: up to 400 words</small></div>
   </div></div>
  </div>
  <div class="cards" data-slot="flag-tiles" data-tiles="text" data-cycle="2200"></div>
@@ -395,10 +414,9 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
   <div class="stamp" style="left:1240px;top:400px;transform:rotate(6deg)"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
   <div class="torn" style="left:1500px;top:720px;transform:rotate(-4deg)"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
   <div class="paisley" style="left:1780px;top:620px;transform:rotate(25deg)"></div>
-  <div class="ink" style="left:1420px;top:160px"></div><div class="ink" style="left:1830px;top:420px;width:26px;height:26px"></div><div class="ink" style="left:1290px;top:720px;width:18px;height:18px;background:#D9381E"></div>
   <div class="mini" style="left:1680px;top:40px;transform:rotate(-12deg);font-family:'Noto Sans Hebrew'">מאה</div>
   <div class="mini" style="left:1460px;top:540px;transform:rotate(18deg);font-family:'Noto Sans'">сто</div>
-  <div class="mini" style="left:1840px;top:300px;transform:rotate(-30deg);font-family:'Noto Sans'">백</div>
+  
  </div>
  <div class="stripe"></div>
  
@@ -410,7 +428,7 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
  </div></footer>
 </div>
 <div id="mb">
-<div class="memphis"></div>
+
 <div class="pg">
  <nav><a class="brand" href="/"><span class="mark"><img src="/d8/mark-pl.svg" alt="Polingual"></span>polingual</a><a class="si" href="mailto:?subject=Polingual&amp;body=https%3A%2F%2Fwww.polingual.com%2F" data-slot="share">Share</a></nav>
  <main class="mn">
@@ -435,7 +453,7 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
     <path class="mho" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#3A0F2F" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 6)"/>
     <path class="mho face" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#5B1A4A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
    </svg>
-   <div><b>100</b><span>day streak</span></div><div class="xp"><b>≈ 360 words</b><span>90 meanings × 4 languages</span><small>expected · 1 new meaning a day</small></div>
+   <div class="sk"><b>100</b><span>day streak</span><small>1 new meaning a day in 4 languages: up to 400 words</small></div>
   </div>
  <div class="grid" data-tiles="text" data-cycle="2400"></div>
  <div class="cta"><a class="btn btn-p" href="https://testflight.apple.com/join/HfeRBKr8" data-slot="appstore" rel="noopener">Join the beta on TestFlight</a></div>
