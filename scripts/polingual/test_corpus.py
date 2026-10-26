@@ -42,6 +42,13 @@ class CorpusTest(unittest.TestCase):
         self.assertNotIn("ਵਾਕ", {w["s"] for w in pa.values()})
         self.assertNotIn("young", pa)
 
+    def test_every_punjabi_match_is_reviewed(self):
+        subset = json.loads((DATA / "subset.json").read_text())
+        rows = [line.split("\t") for line in (DATA / "sources/pa_review.tsv").read_text(encoding="utf-8").splitlines()[1:]]
+        reviewed = {(r[0], r[1]) for r in rows if r[2] == "ok" and r[4]}
+        shipped = {(w["c"], w["s"]) for w in subset["words"] if w["l"] == "pa"}
+        self.assertEqual(shipped - reviewed, set())
+
     def test_punjabi_is_gurmukhi(self):
         words = json.loads((DATA / "top1000/pa.json").read_text())
         self.assertTrue(all(re.fullmatch(r"[਀-੿]+", w["word"]) for w in words))
