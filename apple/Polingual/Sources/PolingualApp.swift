@@ -38,6 +38,10 @@ struct PolingualApp: App {
                     backgroundSafe {
                         await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) }
                         WidgetSync.refresh(store)
+                        #if os(iOS)
+                        WatchBridge.shared.store = store
+                        WatchBridge.shared.send()
+                        #endif
                         await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay)
                     }
                 }
@@ -46,6 +50,11 @@ struct PolingualApp: App {
                 }
                 .onChange(of: reminders.enabled) {
                     backgroundSafe { await reminders.reschedule(title: "Polingual") { langForecast(store, at: $0) } }
+                }
+                .task {
+                    #if os(iOS)
+                    WatchBridge.shared.start(store)
+                    #endif
                 }
                 .tint(Palette.green)
         }
