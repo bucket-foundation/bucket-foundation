@@ -26,3 +26,28 @@ test("the route exports POST only, so Next answers 405 for other methods", () =>
   assert.deepEqual(methods, []);
   assert.equal(typeof route.POST, "function");
 });
+
+test("a right key and admin id requeue through the store and answer the count", async () => {
+  process.env.WAITLIST_ADMIN_KEY = KEY;
+  process.env.NEXT_PUBLIC_SUPABASE_URL = "http://supabase.test";
+  process.env.SUPABASE_SERVICE_ROLE_KEY = "service-role-test";
+  const seen: string[] = [];
+  const realFetch = globalThis.fetch;
+  const realLog = console.log;
+  const logged: string[] = [];
+  globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
+    seen.push(`${init?.method ?? "GET"} ${String(input)}`);
+    return new Response("3", { status: 200, headers: { "content-type": "application/json" } });
+  }) as typeof fetch;
+  console.log = (...a: unknown[]) => void logged.push(a.join(" "));
+  try {
+    const res = await post({ authorization: `Bearer ${KEY}`, "x-admin-id": "gian" });
+    assert.equal(res.status, 200);
+    assert.deepEqual(await res.json(), { ok: true, requeued: 3 });
+    assert.deepEqual(seen, ["POST http://supabase.test/rest/v1/rpc/apple_revoke_pending_requeue"]);
+    assert.ok(logged.some((l) => l.includes("apple_revoke_requeue") && l.includes('"adminId":"gian"') && !l.includes(KEY)));
+  } finally {
+    globalThis.fetch = realFetch;
+    console.log = realLog;
+  }
+});
