@@ -23,20 +23,28 @@ async function answerOne(page: Page): Promise<void> {
   if (await button.isVisible().catch(() => false)) await button.click({ timeout: 2000 }).catch(() => undefined);
 }
 
+const LONG_KINDS = ["match the set", "translate"];
+
 for (const width of [1280, 390]) {
-  test(`daily session fits without page scroll at ${width}px`, async ({ page }) => {
+  test(`daily session fits without page scroll through every exercise kind at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width > 500 ? 800 : 844 });
     await mockApi(page, { branches: seeded() });
     await signIn(page);
     await page.goto("/app/en-es-fr/study");
     await expect(page.getByTestId("session")).toBeVisible({ timeout: 60_000 });
-    await expect(page.getByTestId("counter")).toContainText("1 /");
-    for (let n = 0; n < 4; n++) {
+    const kinds = new Set<string>();
+    for (let n = 0; n < 80 && !(await page.getByTestId("session-done").isVisible()); n++) {
+      const body = page.getByTestId("session-body");
+      if (!(await body.isVisible())) break;
+      const kind = ((await body.locator("span, div").first().textContent()) ?? "").split("·")[0].trim().toLowerCase();
+      kinds.add(kind);
       const fits = await page.evaluate(() => ({ h: document.documentElement.scrollHeight <= window.innerHeight, w: document.documentElement.scrollWidth <= window.innerWidth }));
-      expect(fits).toEqual({ h: true, w: true });
-      if (n === 0 && SHOTS) await page.screenshot({ path: `${SHOTS}/session-${width}.png` });
-      await page.getByTestId("skip-exercise").click();
+      expect(fits, `page scrolls on ${kind} at step ${n}`).toEqual({ h: true, w: true });
+      if (SHOTS && LONG_KINDS.includes(kind)) await page.screenshot({ path: `${SHOTS}/session-${kind.replace(/\s+/g, "-")}-${width}.png` });
+      await answerOne(page);
+      await page.waitForTimeout(50);
     }
+    for (const k of LONG_KINDS) expect([...kinds], `saw ${k}`).toContain(k);
   });
 }
 
