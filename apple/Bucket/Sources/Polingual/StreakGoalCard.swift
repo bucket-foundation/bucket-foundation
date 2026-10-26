@@ -11,7 +11,7 @@ struct StreakGoalCard: View {
                 .font(.system(size: 30))
                 .foregroundStyle(LinearGradient(colors: [Color(hex: 0xE9A23B), D8.vermilion], startPoint: .top, endPoint: .bottom))
             VStack(alignment: .leading, spacing: 5) {
-                Text(title(g)).font(.system(size: 19, weight: .heavy, design: .rounded)).foregroundStyle(D8.ink)
+                Text(title(g)).font(.system(size: 19, weight: .heavy, design: .rounded)).foregroundStyle(Palette.ink)
                 ProgressView(value: g.fraction).tint(D8.vermilion)
                 Text(detail(g)).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
             }
