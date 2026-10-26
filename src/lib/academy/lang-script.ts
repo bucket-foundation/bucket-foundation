@@ -139,7 +139,10 @@ export function letterCardId(lang: string, ch: string): string {
 export function nextLetters(state: EngineState, lang: string, n = 5): Letter[] {
   const unit = alphabetUnit(lang);
   if (!unit) return [];
-  return unit.letters.filter((l) => !state.cards[letterCardId(lang, l.ch)]).slice(0, n);
+  const fresh = (ls: Letter[]) => ls.filter((l) => !state.cards[letterCardId(lang, l.ch)]);
+  const [core, extras] = letterBlocks(unit);
+  const pool = blockDone(state, lang, core) ? [...fresh(extras), ...fresh(core)] : fresh(core);
+  return pool.slice(0, n);
 }
 
 export function dueLetters(state: EngineState, lang: string, now: number = Date.now()): Letter[] {
@@ -155,10 +158,18 @@ export function isBaseLetter(ch: string): boolean {
   return !ch.includes("◌") && !/[\u30a0-\u30ff]/.test(ch);
 }
 
+function letterBlocks(unit: AlphabetUnit): [Letter[], Letter[]] {
+  return [unit.letters.filter((l) => isBaseLetter(l.ch)), unit.letters.filter((l) => !isBaseLetter(l.ch))];
+}
+
+function blockDone(state: EngineState, lang: string, block: Letter[], share = 0.8): boolean {
+  const seen = block.filter((l) => (state.cards[letterCardId(lang, l.ch)]?.reps ?? 0) > 0).length;
+  return seen >= Math.ceil(block.length * share);
+}
+
 export function alphabetDone(state: EngineState, lang: string, share = 0.8): boolean {
   const unit = alphabetUnit(lang);
   if (!unit) return true;
-  const core = unit.letters.filter((l) => isBaseLetter(l.ch));
-  const seen = core.filter((l) => (state.cards[letterCardId(lang, l.ch)]?.reps ?? 0) > 0).length;
-  return seen >= Math.ceil(core.length * share);
+  const [core, extras] = letterBlocks(unit);
+  return blockDone(state, lang, core, share) && blockDone(state, lang, extras, share);
 }

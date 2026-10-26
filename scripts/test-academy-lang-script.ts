@@ -104,9 +104,18 @@ const learn = (lang: string, pick: (ch: string) => boolean) => {
   for (const l of alphabetUnit(lang)!.letters) if (pick(l.ch)) s0 = gradeCard(s0, lang, letterItemId(l.ch), 3, NOW, "UTC");
   return s0;
 };
-ok(alphabetDone(learn("ja", (c) => /[\u3040-\u309f]/.test(c)), "ja"), "ja: all hiragana and no katakana unlocks");
-ok(alphabetDone(learn("hi", (c) => !c.includes("◌")), "hi"), "hi: all consonants and vowels with no signs unlocks");
-ok(!alphabetDone(learn("hi", (c) => c.includes("◌")), "hi"), "hi: vowel signs alone do not unlock");
+const jaBase = learn("ja", (c) => /[\u3040-\u309f]/.test(c));
+ok(!alphabetDone(jaBase, "ja") && nextLetters(jaBase, "ja", 5).every((l) => /[\u30a0-\u30ff]/.test(l.ch)), "ja: after hiragana, katakana comes next and the script is not done");
+ok(alphabetDone(learn("ja", () => true), "ja"), "ja: hiragana and katakana together finish the script");
+const hiBase = learn("hi", (c) => !c.includes("◌"));
+ok(!alphabetDone(hiBase, "hi") && nextLetters(hiBase, "hi", 5).every((l) => l.ch.includes("◌")), "hi: after base letters, vowel signs come next");
+ok(nextLetters(normalizeState(null), "hi", 50).every((l) => !l.ch.includes("◌")), "hi: vowel signs wait until the base block is done");
+ok(!alphabetDone(learn("hi", (c) => c.includes("◌")), "hi"), "hi: vowel signs alone do not finish the script");
+for (const [lang, isExtra] of [["ja", (c: string) => /[\u30a0-\u30ff]/.test(c)], ["hi", (c: string) => c.includes("◌")]] as const) {
+  const hs = createSystem("en", [lang], [], 1);
+  const q = buildQueue(hs, corpus, learn(lang, (c) => !isExtra(c)), NOW, 14, { heritage: true }).filter((e) => e.stage === "letter" && e.lang === lang);
+  ok(q.length > 0 && q.some((e) => isExtra(e.itemId.slice(4))), `${lang}: heritage queue still offers extras after the base is done`);
+}
 const ruLetters = alphabetUnit("ru")!.letters.map((l) => l.ch);
 ok(alphabetDone(learn("ru", (c) => ruLetters.indexOf(c) < 27), "ru") && !alphabetDone(learn("ru", (c) => ruLetters.indexOf(c) < 26), "ru"), "ru: gate stays at 27 of 33 letters");
 if (failures) {
