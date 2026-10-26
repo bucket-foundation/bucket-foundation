@@ -1,0 +1,4541 @@
+{
+ "branch": "biophysics",
+ "reviews": {
+  "boltzmann.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "boltzmann.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "partition-function.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "partition-function.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "partition-function.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "partition-function.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "partition-function.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "partition-function.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "free-energy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "free-energy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "free-energy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "free-energy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "free-energy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "free-energy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gibbs.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigen-modes.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigen-modes.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "eigen-modes.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigen-modes.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigen-modes.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eigen-modes.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrophobic.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrophobic.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "hydrophobic.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrophobic.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrophobic.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "debye.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "structure-hierarchy.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "structure-hierarchy.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "structure-hierarchy.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "structure-hierarchy.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "structure-hierarchy.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "structure-hierarchy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ramachandran.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ramachandran.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "ramachandran.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ramachandran.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ramachandran.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-chain.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-chain.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-chain.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-chain.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ideal-chain.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "wlc.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "wlc.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "wlc.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "wlc.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "wlc.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "two-state-folding.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "two-state-folding.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "two-state-folding.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "two-state-folding.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "two-state-folding.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "folding-funnel.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "folding-funnel.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "folding-funnel.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "folding-funnel.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "folding-funnel.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "folding-funnel.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: energy surface in place of landscape."
+  },
+  "anfinsen.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anfinsen.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "anfinsen.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anfinsen.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anfinsen.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anfinsen.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ddg.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ddg.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "ddg.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ddg.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ddg.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "binding-kd.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "binding-kd.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "binding-kd.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "binding-kd.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "binding-kd.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hill.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hill.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "hill.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hill.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hill.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hill.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mwc.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mwc.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "mwc.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mwc.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mwc.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mwc.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "michaelis.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "michaelis.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "michaelis.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "michaelis.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "michaelis.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eyring.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eyring.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "eyring.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eyring.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "eyring.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fick.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fick.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "fick.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fick.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fick.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-stokes.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-stokes.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "States the particle radius as 2 nm."
+  },
+  "einstein-stokes.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-stokes.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-stokes.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-walk.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-walk.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "random-walk.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-walk.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "random-walk.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "nernst.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nernst.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bilayer.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bilayer.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "bilayer.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bilayer.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bilayer.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bilayer.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hodgkin-huxley.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hodgkin-huxley.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "hodgkin-huxley.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hodgkin-huxley.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hodgkin-huxley.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hodgkin-huxley.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gnm.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gnm.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Item described the ANM count 3N - 6; GNM has N - 1 nonzero modes. Also given a real setting."
+  },
+  "gnm.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Names the GNM's Kirchhoff matrix in place of a generic spring matrix."
+  },
+  "gnm.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gnm.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gnm.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "md.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "md.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "md.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "md.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "md.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "alphafold-plddt.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "alphafold-plddt.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "alphafold-plddt.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "alphafold-plddt.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "alphafold-plddt.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "esm.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "esm.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "esm.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "esm.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "esm.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "esm.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Softened: a language-model score is one line of evidence, not a diagnosis."
+  },
+  "idp-llps.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "idp-llps.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "idp-llps.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "idp-llps.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "idp-llps.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "idp-llps.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Softened: phase separation is thought to help assemble stress granules alongside other interactions."
+  },
+  "amyloid.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "amyloid.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "amyloid.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "amyloid.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "amyloid.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "amyloid.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mdcath.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mdcath.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "mdcath.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mdcath.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mdcath.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mdcath.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "poisson-boltzmann.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "poisson-boltzmann.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "poisson-boltzmann.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "poisson-boltzmann.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "poisson-boltzmann.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "poisson-boltzmann.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "langevin.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "langevin.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "langevin.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "langevin.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "langevin.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "langevin.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smoluchowski-rate.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smoluchowski-rate.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "smoluchowski-rate.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smoluchowski-rate.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smoluchowski-rate.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "kramers.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "kramers.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "kramers.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "kramers.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "kramers.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "kramers.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bragg.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bragg.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "bragg.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bragg.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "bragg.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-noe.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-noe.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-noe.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-noe.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-noe.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fret.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fret.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "fret.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fret.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fret.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-ctf.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-ctf.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "cryo-em-ctf.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-ctf.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-ctf.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "helfrich.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "helfrich.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "helfrich.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "helfrich.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "helfrich.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "helfrich.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ghk.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ghk.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "ghk.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ghk.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ghk.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ghk.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cable-equation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cable-equation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "cable-equation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cable-equation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cable-equation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "monte-carlo.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "monte-carlo.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "monte-carlo.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "monte-carlo.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "monte-carlo.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fep-wham.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fep-wham.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "fep-wham.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fep-wham.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fep-wham.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fep-wham.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-state-model.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-state-model.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "markov-state-model.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-state-model.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-state-model.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "markov-state-model.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "contact-order.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "contact-order.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "contact-order.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "contact-order.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "contact-order.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "contact-order.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "redox-potential.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "redox-potential.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "redox-potential.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "redox-potential.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "redox-potential.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-transport-chain.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-transport-chain.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "electron-transport-chain.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-transport-chain.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-transport-chain.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electron-transport-chain.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "chemiosmosis.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "chemiosmosis.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "chemiosmosis.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "chemiosmosis.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "chemiosmosis.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "atp-synthase.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "atp-synthase.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "atp-synthase.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "atp-synthase.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "atp-synthase.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "atp-synthase.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "knf-allostery.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "knf-allostery.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "knf-allostery.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "knf-allostery.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "knf-allostery.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "knf-allostery.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pka-shift.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pka-shift.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "pka-shift.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pka-shift.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pka-shift.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pka-shift.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ion-channel-gating.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ion-channel-gating.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "ion-channel-gating.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ion-channel-gating.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ion-channel-gating.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "membrane-transport.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "membrane-transport.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "membrane-transport.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "membrane-transport.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "membrane-transport.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "membrane-transport.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "signal-transduction.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "signal-transduction.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "signal-transduction.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "signal-transduction.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "signal-transduction.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "signal-transduction.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "molecular-motors.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "molecular-motors.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "molecular-motors.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "molecular-motors.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "molecular-motors.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropic-elasticity.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropic-elasticity.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "entropic-elasticity.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropic-elasticity.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropic-elasticity.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "entropic-elasticity.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "polymer-gels.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "polymer-gels.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "polymer-gels.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "polymer-gels.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "polymer-gels.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-diffusion.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-diffusion.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-diffusion.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-diffusion.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-diffusion.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "reaction-diffusion.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "optical-tweezers.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "optical-tweezers.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "optical-tweezers.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "optical-tweezers.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "optical-tweezers.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "afm.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "afm.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "afm.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "afm.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "afm.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saxs.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saxs.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "saxs.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saxs.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saxs.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saxs.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-spec.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-spec.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "mass-spec.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-spec.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-spec.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-spec.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-relaxation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-relaxation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-relaxation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-relaxation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-relaxation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "nmr-relaxation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-workflow.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-workflow.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-workflow.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-workflow.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-workflow.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-workflow.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-revolution.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-revolution.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-revolution.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-revolution.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-revolution.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cryo-em-revolution.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ml-force-fields.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ml-force-fields.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "ml-force-fields.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ml-force-fields.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ml-force-fields.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ml-force-fields.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "condensate-biophysics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "condensate-biophysics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "condensate-biophysics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "condensate-biophysics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "condensate-biophysics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "condensate-biophysics.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "circular-dichroism.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "circular-dichroism.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "circular-dichroism.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "circular-dichroism.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
+  },
+  "circular-dichroism.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "circular-dichroism.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "patch-clamp.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "patch-clamp.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "patch-clamp.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "patch-clamp.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "patch-clamp.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smfret-dynamics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smfret-dynamics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "smfret-dynamics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smfret-dynamics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smfret-dynamics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "smfret-dynamics.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "marcus-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "marcus-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "marcus-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "marcus-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "marcus-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "marcus-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "verlet.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "verlet.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "verlet.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "verlet.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "verlet.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "verlet.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rmsf.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rmsf.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "rmsf.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rmsf.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rmsf.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rmsf.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "replica-exchange.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "replica-exchange.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "16 replicas give 15 neighbor intervals; the text said 16 steps. The key (450/300)^(1/15) = 1.027 already matched 16 replicas."
+  },
+  "replica-exchange.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "replica-exchange.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "replica-exchange.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "replica-exchange.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "coarse-graining.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "coarse-graining.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "coarse-graining.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "coarse-graining.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "coarse-graining.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "coarse-graining.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "flory-scaling.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "flory-scaling.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "flory-scaling.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "flory-scaling.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "flory-scaling.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "flory-scaling.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
+  },
+  "rouse-model.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rouse-model.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "rouse-model.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rouse-model.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rouse-model.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "rouse-model.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "equipartition.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "equipartition.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "equipartition.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "equipartition.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "equipartition.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-potential.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-potential.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-potential.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-potential.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "chemical-potential.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-potential.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-potential.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-potential.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-potential.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrochemical-potential.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-action.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-action.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "mass-action.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-action.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
+  },
+  "mass-action.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "mass-action.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "arrhenius.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "osmotic-pressure.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "osmotic-pressure.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "osmotic-pressure.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "osmotic-pressure.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "osmotic-pressure.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "detailed-balance.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "detailed-balance.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "detailed-balance.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "detailed-balance.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "detailed-balance.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "detailed-balance.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluctuation-dissipation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluctuation-dissipation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "fluctuation-dissipation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluctuation-dissipation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluctuation-dissipation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fluctuation-dissipation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "le-chatelier.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "stirling-approximation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "stirling-approximation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "stirling-approximation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "stirling-approximation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "stirling-approximation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "stirling-approximation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "central-limit-theorem.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "master-equation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "master-equation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "master-equation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "master-equation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "master-equation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "master-equation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gaussian-integral.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gaussian-integral.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "gaussian-integral.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gaussian-integral.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gaussian-integral.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gaussian-integral.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "lagrange-multipliers.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "lagrange-multipliers.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "harmonic-approximation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "harmonic-approximation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "harmonic-approximation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "harmonic-approximation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "harmonic-approximation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "harmonic-approximation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "legendre-transform.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "legendre-transform.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "legendre-transform.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "legendre-transform.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "legendre-transform.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "legendre-transform.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saddle-point-method.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saddle-point-method.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "saddle-point-method.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saddle-point-method.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saddle-point-method.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "saddle-point-method.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "correlation-function.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "correlation-function.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "correlation-function.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "correlation-function.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "correlation-function.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "correlation-function.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier-transform.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier-transform.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "fourier-transform.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier-transform.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fourier-transform.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "onsager-reciprocity.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "onsager-reciprocity.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "onsager-reciprocity.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "onsager-reciprocity.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "onsager-reciprocity.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "onsager-reciprocity.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-response-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-response-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "linear-response-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-response-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-response-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "linear-response-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "itc.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "itc.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "itc.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "itc.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "itc.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "spr.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "spr.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "spr.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "spr.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "spr.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fcs.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fcs.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "fcs.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fcs.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fcs.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "fcs.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "epr.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "epr.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "epr.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "epr.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "epr.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "epr.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Dentists do not date fossils; ESR dating of tooth enamel is a geochronology method."
+  },
+  "schrodinger-equation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-equation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-equation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-equation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-equation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "schrodinger-equation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "perturbation-theory.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "perturbation-theory.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "perturbation-theory.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "perturbation-theory.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "perturbation-theory.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "perturbation-theory.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "selection-rules.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "selection-rules.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Asks for the squared transition dipole ratio per molecule; observed intensities also depend on level populations."
+  },
+  "selection-rules.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "selection-rules.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "selection-rules.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "selection-rules.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "tunneling-wkb.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "tunneling-wkb.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "tunneling-wkb.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "tunneling-wkb.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "tunneling-wkb.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "steady-state-approximation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "steady-state-approximation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "steady-state-approximation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "steady-state-approximation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "steady-state-approximation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "steady-state-approximation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-dipole-radiation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-dipole-radiation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-dipole-radiation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-dipole-radiation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-dipole-radiation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "maxwell-dipole-radiation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dls.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dls.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "dls.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dls.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dls.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dls.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dsc.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dsc.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "dsc.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dsc.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dsc.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dsc.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "analytical-ultracentrifugation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "analytical-ultracentrifugation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "analytical-ultracentrifugation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "analytical-ultracentrifugation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "analytical-ultracentrifugation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "analytical-ultracentrifugation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "radius-of-gyration.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "radius-of-gyration.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "radius-of-gyration.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "radius-of-gyration.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "radius-of-gyration.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "radius-of-gyration.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "persistence-length.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "persistence-length.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "persistence-length.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "persistence-length.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "persistence-length.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "persistence-length.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "zeta-potential.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "zeta-potential.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "zeta-potential.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "zeta-potential.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "zeta-potential.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "zeta-potential.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "preferential-interaction.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "preferential-interaction.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "preferential-interaction.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "preferential-interaction.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "preferential-interaction.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-waller-factor.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-waller-factor.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "debye-waller-factor.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-waller-factor.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-waller-factor.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-waller-factor.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrostatics.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrostatics.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "electrostatics.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrostatics.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrostatics.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "electrostatics.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "van-der-waals.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "van-der-waals.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "van-der-waals.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "van-der-waals.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "van-der-waals.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "van-der-waals.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-bond.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-bond.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-bond.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-bond.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-bond.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hydrogen-bond.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "continuity-equation.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "continuity-equation.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "continuity-equation.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "continuity-equation.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "continuity-equation.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gouy-chapman.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gouy-chapman.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "gouy-chapman.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gouy-chapman.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gouy-chapman.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "gouy-chapman.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-huckel-activity.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-huckel-activity.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "debye-huckel-activity.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-huckel-activity.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-huckel-activity.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "debye-huckel-activity.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Names the extended Debye-Huckel (Davies) form used at blood ionic strength."
+  },
+  "pi-stacking.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pi-stacking.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "pi-stacking.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pi-stacking.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pi-stacking.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "pi-stacking.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cation-pi.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cation-pi.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "cation-pi.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cation-pi.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cation-pi.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "cation-pi.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "salt-bridge.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "salt-bridge.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "salt-bridge.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "salt-bridge.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
+  },
+  "salt-bridge.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "salt-bridge.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
+  },
+  "stern-layer.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "stern-layer.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "fixed",
+   "note": "Given a real setting."
+  },
+  "stern-layer.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "stern-layer.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "stern-layer.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dlvo.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dlvo.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "dlvo.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dlvo.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dlvo.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "dlvo.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hofmeister.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hofmeister.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "hofmeister.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hofmeister.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hofmeister.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "hofmeister.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anion-pi.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anion-pi.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "anion-pi.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anion-pi.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anion-pi.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "anion-pi.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ch-pi.pick": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ch-pi.calculate": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer recomputed by scripts/academy/check_keys.py; checked against the atom lesson",
+   "verdict": "ok"
+  },
+  "ch-pi.order": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ch-pi.spot-error": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ch-pi.match": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "answer key vs biophysics and atom lesson",
+   "verdict": "ok"
+  },
+  "ch-pi.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs biophysics and atom lesson",
+   "verdict": "fixed",
+   "note": "Reworded for the voice rules: no antithesis or vague frequency word."
+  }
+ }
+}
