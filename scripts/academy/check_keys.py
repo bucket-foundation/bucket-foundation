@@ -1,5 +1,5 @@
 import glob, json, math, os, sys
-from math import log, log2, log10, sqrt, exp, pi, sin, cos, radians, degrees, asin, comb, factorial
+from math import e, log, log2, log10, sqrt, exp, pi, sin, cos, radians, degrees, asin, comb, factorial
 
 def bent(p):
     return -p * log2(p) - (1 - p) * log2(1 - p)
@@ -76,6 +76,43 @@ E = {
 "data-processing-inequality": 0.15, "differential-entropy": log(2), "lempel-ziv": 6, "diffie-hellman": pow(pow(5, 15, 23), 6, 23),
 "cryptographic-hash": 128, "boolean-circuits": 63,
 }
+
+BIO = {
+"boltzmann": exp(-2.0), "partition-function": 1 + 1 / e, "free-energy": log(10) * 2, "gibbs": -0.6 * 6 * log(10),
+"eigen-modes": 2, "hydrophobic": 50, "debye": 0.3 * 0.15**-0.5, "structure-hierarchy": 4, "ramachandran": 98,
+"ideal-chain": 1.4 * 50**0.5, "wlc": 50 / 0.34, "two-state-folding": 100 / 101, "folding-funnel": log10(3) * 100,
+"anfinsen": 2, "ddg": 1.8, "binding-kd": 0.75, "hill": 0.5, "mwc": 4, "michaelis": 50000 / 550,
+"eyring": 6e12 * exp(-25), "fick": (10e-6)**2 / (2e-9) * 1e3, "einstein-stokes": 4.1e-21 / (12e-12 * pi), "random-walk": 0.2,
+"nernst": 61 * (log10(5) - log10(140)), "bilayer": 1 / 1.05, "hodgkin-huxley": 110, "gnm": 294, "md": 5e8,
+"alphafold-plddt": 90, "esm": -4, "idp-llps": 36, "amyloid": 3, "mdcath": 540, "poisson-boltzmann": exp(-1.6 / 0.8),
+"langevin": 4.1e-13, "smoluchowski-rate": 4 * pi * 1e-18, "kramers": 10, "bragg": degrees(asin(0.154)),
+"nmr-noe": 2.5 * sqrt(2), "fret": 1 / (1 + 0.8**6), "cryo-em-ctf": 350000, "helfrich": 160 * pi, "ghk": 20,
+"cable-equation": exp(-2), "monte-carlo": exp(-2), "fep-wham": -8, "markov-state-model": 10 / log(1 / 0.9),
+"contact-order": 0.15, "redox-potential": -2 * 96.485 * 1.14, "electron-transport-chain": 192.97 * 1.14,
+"chemiosmosis": 209, "atp-synthase": 10 / 3, "knf-allostery": 2, "pka-shift": 7.7, "ion-channel-gating": 1e5,
+"membrane-transport": 1, "signal-transduction": 1000, "molecular-motors": 800, "entropic-elasticity": 0.615,
+"polymer-gels": 4e4, "reaction-diffusion": 20, "optical-tweezers": 2, "afm": 100, "saxs": 1.8 * sqrt(5 / 3),
+"mass-spec": 1000, "nmr-relaxation": 0.15, "cryo-em-workflow": 1e5, "cryo-em-revolution": 5, "ml-force-fields": 0.05,
+"condensate-biophysics": 150, "circular-dichroism": 0.6, "patch-clamp": 2e-12 / 1.602e-19, "smfret-dynamics": 0.44,
+"marcus-theory": -2.5, "verlet": 1, "rmsf": 8 * pi**2 / 3, "replica-exchange": 1.5**(1 / 15), "coarse-graining": 12,
+"flory-scaling": 2**0.6, "rouse-model": 4, "equipartition": sqrt(4.14e-17) * 1e9, "chemical-potential": -2.58 * log(10),
+"electrochemical-potential": -26.7 * log(28), "mass-action": -8.314e-3 * 310 * 3 * log(10),
+"arrhenius": exp(50000 / 8.314 * 10 / 93000), "osmotic-pressure": 300 * 8.314 * 310, "detailed-balance": 1e6 * e**2,
+"fluctuation-dissipation": 2.07e-13, "le-chatelier@biophysics": exp(-50000 / 8.314 * 10 / 93000),
+"stirling-approximation": 200 * log(10) - 100, "central-limit-theorem@biophysics": 100, "master-equation": 1 / 6,
+"gaussian-integral": sqrt(pi) / 2, "lagrange-multipliers@biophysics": 25, "harmonic-approximation": 57.1,
+"legendre-transform": 40, "saddle-point-method": log(sqrt(20 * pi) * (10 / e)**10), "correlation-function": e**-2,
+"fourier-transform": 2, "onsager-reciprocity": 6, "linear-response-theory": 4e-17 / 4.1e-21, "itc": -5.8,
+"spr": 100 * log(2), "fcs": 156.25, "epr": 2.0023 * 9.274e-24 * 0.35 / 6.626e-34 * 1e-9, "schrodinger-equation": 2,
+"perturbation-theory": -0.02, "selection-rules": 2, "tunneling-wkb": exp(-5.12), "steady-state-approximation": 0.001,
+"maxwell-dipole-radiation": 1e18, "dls": 2e-11 * 1.87e7**2, "dsc": 0.825, "analytical-ultracentrifugation": 4e-13 * 8.314 * 293 / 1.62e-11,
+"radius-of-gyration": 0.38 * sqrt(50 / 3), "persistence-length": 51, "zeta-potential": -7.08e-10 * 0.03 / 8.9e-4,
+"preferential-interaction": 5, "debye-waller-factor": 2.5 / pi**2, "electrostatics": 2.875e-21, "van-der-waals": 0.34 * 2**(1 / 6),
+"hydrogen-bond": 2, "continuity-equation": 2, "gouy-chapman": 7.08e-10 / 7.8e-10, "debye-huckel-activity": 10**-0.0509,
+"pi-stacking": 28.5, "cation-pi": 7.5, "salt-bridge": 20.75, "stern-layer": 0.16, "dlvo": 50 / 64, "hofmeister": 10,
+"anion-pi": 8, "ch-pi": -4.5,
+}
+E.update({k if "@" in k else f"{k}@biophysics": v for k, v in BIO.items()})
 
 LEGACY = {"00-learning-to-learn", "06-cosmology"}
 QDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "learning", "app", "corpus", "questions")
