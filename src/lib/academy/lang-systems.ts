@@ -483,7 +483,7 @@ export interface Exercise {
   options?: string[];
   pairs?: { lang: string; word: string; reading?: Reading }[];
   cloze?: { before: string; after: string };
-  family?: { lang: string; word: string }[];
+  family?: { lang: string; word: string; reading?: Reading }[];
   note?: string;
   promptReading?: Reading;
   answerReading?: Reading;
@@ -493,6 +493,12 @@ export interface Exercise {
   tense?: "present" | "past";
   level?: number;
   falseFriend?: FalseFriend;
+}
+
+export function readingLabel(r?: Reading): string | null {
+  if (!r) return null;
+  const parts = [r.kana, r.roman, r.ipa ? `/${r.ipa}/` : undefined].filter((x): x is string => Boolean(x && x.trim()));
+  return parts.length ? parts.join(" · ") : null;
 }
 
 export type Rng = () => number;
@@ -617,7 +623,7 @@ export function exerciseFor(
   const base = { itemId: item.id, lang, root, note: relevantNote(item.note, system) };
   const reps = card?.reps ?? 0;
   const latin = LANGS[lang]?.latin ?? true;
-  const family = sharedRootLangs(item, system).filter((l) => l !== lang).map((l) => ({ lang: l, word: item.forms[l] }));
+  const family = sharedRootLangs(item, system).filter((l) => l !== lang).map((l) => ({ lang: l, word: item.forms[l], reading: item.readings[l] }));
   const ff = item.falseFriends[lang];
 
   if (item.kind === "gender") return genderExercise(item, lang, root, rng);
@@ -744,7 +750,7 @@ export function matchExercise(corpus: LangCorpus, system: LangSystem, item: Lang
     answer: "",
     answerLang: langs[0],
     pairs: shuffle(langs.map((l) => ({ lang: l, word: item.forms[l], reading: item.readings[l] })), rng),
-    family: sharedRootLangs(item, system).map((l) => ({ lang: l, word: item.forms[l] })),
+    family: sharedRootLangs(item, system).map((l) => ({ lang: l, word: item.forms[l], reading: item.readings[l] })),
     note: relevantNote(item.note, system),
   };
 }
