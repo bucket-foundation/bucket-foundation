@@ -813,7 +813,7 @@
    "kind": "order",
    "prompt": "Order the worm-like-chain picture.",
    "steps": [
-    "The chain bends smoothly",
+    "The chain bends without kinks",
     "Bends cost energy",
     "Thermal kicks randomize direction",
     "Direction is forgotten over l_p"
@@ -2233,7 +2233,7 @@
     "pLDDT is per residue",
     "Over 90 means high confidence",
     "Low pLDDT proves the region is flexible",
-    "Linkers often score low"
+    "Linkers tend to score low"
    ],
    "error": 2,
    "fix": "Low pLDDT means low confidence; it may or may not mean flexibility."
@@ -9608,7 +9608,7 @@
     "Thermal motion damps diffraction",
     "B = 8 pi^2 <u^2>",
     "Higher B sharpens high-angle spots",
-    "Loops often have high B"
+    "Loops tend to have high B"
    ],
    "error": 2,
    "fix": "Higher B weakens high-angle spots."
@@ -10784,7 +10784,7 @@
    "prompt": "Find the faulty step.",
    "steps": [
     "CH-pi is weak per contact",
-    "Trp often lines sugar sites",
+    "Trp tends to line sugar sites",
     "CH-pi is stronger than a salt bridge per contact",
     "Many contacts add up"
    ],
