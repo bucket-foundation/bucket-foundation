@@ -1,6 +1,7 @@
 import { GlobalRegistrator } from "@happy-dom/global-registrator";
 import { afterAll, afterEach, beforeAll, describe, expect, test } from "bun:test";
 import type { Api, WorkQuestion } from "./api";
+import { LANGUAGE_CODES } from "@ros/work-quiz/languages";
 
 beforeAll(() => {
   GlobalRegistrator.register();
@@ -61,7 +62,7 @@ describe("language chips on the desktop work quiz", () => {
       },
     };
     const v = await render(<LanguageChips api={api} />);
-    expect(v.host.querySelectorAll(".lang-chip").length).toBe(27);
+    expect(v.host.querySelectorAll(".lang-chip").length).toBe(LANGUAGE_CODES.length);
     expect(v.button("Hebrew")!.getAttribute("aria-pressed")).toBe("true");
     expect(v.button("German")!.getAttribute("aria-pressed")).toBe("false");
     await v.click(v.button("German"));
