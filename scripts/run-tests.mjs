@@ -53,6 +53,7 @@ const SUITES = {
       "scripts/test-academy-fsrs-fit.ts",
       "scripts/test-academy-delete-account.ts",
       "scripts/test-academy-apple-token.ts",
+      "scripts/test-apple-requeue-route.ts",
       "scripts/test-photon-means-like.ts",
       "scripts/test-plain-words-demo.ts",
       "scripts/test-research-agent-route.ts",
