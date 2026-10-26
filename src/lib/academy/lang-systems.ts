@@ -1,6 +1,6 @@
 import { DAY_MS, FSRS, type Card, type Rating } from "./fsrs";
 import { dayKey, grade, makeFsrs, normalizeState, type EngineState } from "./engine";
-import { alphabetUnit, FOLDABLE_MARKS, judgeSpelled, letterItemId } from "./lang-script";
+import { alphabetDone, alphabetUnit, dueLetters, FOLDABLE_MARKS, judgeSpelled, letterItemId, nextLetters } from "./lang-script";
 
 export interface LangInfo {
   name: string;
@@ -682,6 +682,11 @@ export function gradeSpelling(ex: Exercise, given: string, hesitated = false): {
   return { verdict, rating: verdictRating(verdict, hesitated) };
 }
 
+export function letterExerciseFor(lang: string, root: string, itemId: string, rng: Rng): Exercise | null {
+  const index = alphabetUnit(lang)?.letters.findIndex((l) => letterItemId(l.ch) === itemId) ?? -1;
+  return index < 0 ? null : letterExercise(lang, root, index, rng);
+}
+
 export function letterExercise(lang: string, root: string, index: number, rng: Rng): Exercise | null {
   const unit = alphabetUnit(lang);
   const letter = unit?.letters[index];
@@ -940,15 +945,35 @@ export function applyPlacement(state: EngineState, system: LangSystem, corpus: L
 export interface QueueEntry {
   itemId: string;
   lang: string;
-  stage: "intro" | "check" | "review" | "match";
+  stage: "intro" | "check" | "review" | "match" | "letter";
 }
 
 export const CHECK_GAP = 3;
 export const MAX_TRIES = 2;
 
-export function buildQueue(system: LangSystem, corpus: LangCorpus, state: EngineState, now: number = Date.now(), size = 14): QueueEntry[] {
-  const plan = planSession(system, corpus, state, now, size);
+export const LETTERS_PER_SESSION = 5;
+
+export function letterQueue(system: LangSystem, state: EngineState, now: number = Date.now()): QueueEntry[] {
   const out: QueueEntry[] = [];
+  for (const lang of system.targets) {
+    if (!alphabetUnit(lang)) continue;
+    const due = dueLetters(state, lang, now);
+    const fresh = alphabetDone(state, lang) ? [] : nextLetters(state, lang, Math.max(0, LETTERS_PER_SESSION - due.length));
+    for (const l of [...due, ...fresh]) out.push({ itemId: letterItemId(l.ch), lang, stage: "letter" });
+  }
+  return out;
+}
+
+export function buildQueue(
+  system: LangSystem,
+  corpus: LangCorpus,
+  state: EngineState,
+  now: number = Date.now(),
+  size = 14,
+  opts: { heritage?: boolean } = {}
+): QueueEntry[] {
+  const plan = planSession(system, corpus, state, now, size);
+  const out: QueueEntry[] = opts.heritage ? letterQueue(system, state, now) : [];
   const pendingChecks: { at: number; e: QueueEntry }[] = [];
   for (const c of plan) {
     const isNew = !state.cards[cardId(c.lang, c.itemId)];

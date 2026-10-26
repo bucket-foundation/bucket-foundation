@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Rating } from "@/lib/academy/fsrs";
 import { canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
 import { gradeMatch, joinTokens, judgeTyped, langDir, langName, LEVEL_LABEL, readingLabel, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
+import { judgeSpelled } from "@/lib/academy/lang-script";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 import type { LinkForm } from "@/lib/academy/lang-layout";
 
@@ -144,7 +145,7 @@ function Feedback({ ok, verdict, ex, onNext }: { ok: boolean; verdict?: Verdict;
 }
 
 function Prompt({ ex }: { ex: Exercise }) {
-  const hidden = ex.kind === "listen" || ex.kind === "type-heard";
+  const hidden = ex.kind === "listen" || ex.kind === "type-heard" || ex.kind === "spell-heard";
   if (ex.kind === "cloze" && ex.cloze) {
     return (
       <span lang={ex.lang} dir={langDir(ex.lang)}>
@@ -417,7 +418,7 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
     );
   }
 
-  const typedKind = ex.kind === "translate" || ex.kind === "type-heard" || (ex.kind === "conjugate" && !ex.options) || (ex.kind === "speak" && (!recognitionSupported() || heard === ""));
+  const typedKind = ex.kind === "translate" || ex.kind === "type-heard" || ex.kind === "spell-heard" || (ex.kind === "conjugate" && !ex.options) || (ex.kind === "speak" && (!recognitionSupported() || heard === ""));
   const mc = !!ex.options && !typedKind;
   const isRight = (o: string) => accepted.includes(o);
 
@@ -482,7 +483,7 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
           className="mt-4 flex flex-wrap gap-2"
           onSubmit={(e) => {
             e.preventDefault();
-            setVerdict(judgeTyped(typed, accepted, ex.answerLang));
+            setVerdict(ex.kind === "spell-heard" ? judgeSpelled(typed, accepted, ex.answerLang) : judgeTyped(typed, accepted, ex.answerLang));
           }}
         >
           <input

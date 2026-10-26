@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { normalizeState } from "../src/lib/academy/engine";
-import { buildLangCorpus, createSystem, exerciseFor, gradeCard, gradeSpelling, LANGS, letterExercise, seededRng } from "../src/lib/academy/lang-systems";
+import { buildLangCorpus, buildQueue, createSystem, letterExerciseFor, exerciseFor, gradeCard, gradeSpelling, LANGS, letterExercise, seededRng } from "../src/lib/academy/lang-systems";
 import { alphabetDone, alphabetUnit, dueLetters, foldMarks, HERITAGE_LANGS, judgeSpelled, letterCardId, letterItemId, nextLetters } from "../src/lib/academy/lang-script";
 
 let failures = 0;
@@ -77,6 +77,17 @@ ok(!alphabetDone(st, "ko"), "alphabet not done after one letter");
 for (const l of alphabetUnit("ko")!.letters) st = gradeCard(st, "ko", letterItemId(l.ch), 3, NOW, "UTC");
 ok(alphabetDone(st, "ko") && alphabetDone(st, "es"), "alphabet done once letters are learned");
 
+const fresh = normalizeState({});
+const hq = buildQueue(sys, corpus, fresh, 1000, 14, { heritage: true });
+const letters = hq.filter((e) => e.stage === "letter");
+ok(letters.length === 5 && letters.every((e) => e.lang === "ru") && hq[0].stage === "letter", "heritage queue opens with five new ru letters and skips Latin es");
+ok(buildQueue(sys, corpus, fresh, 1000).every((e) => e.stage !== "letter"), "plain queue has no letter cards");
+const lex = letterExerciseFor("ru", "en", letters[0].itemId, seededRng(2));
+ok(lex?.kind === "letter" && lex.answer === "а" && lex.options!.includes("а"), "letter entries resolve to letter exercises");
+let lst = fresh;
+for (const e of letters) lst = gradeCard(lst, "ru", e.itemId, 3, 1000);
+const next = buildQueue(sys, corpus, lst, 2000, 14, { heritage: true }).filter((e) => e.stage === "letter");
+ok(next.length === 5 && next.every((e) => !letters.some((l) => l.itemId === e.itemId)), "graded letters give way to the next five");
 if (failures) {
   console.error(`${failures} failure(s)`);
   process.exit(1);
