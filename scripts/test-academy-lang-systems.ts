@@ -388,6 +388,9 @@ for (const [w, g] of [["hallucination", "f"], ["haltère", "m"], ["héroïsme", 
   ok(articleWord("fr", g, w) === "l'", `hallucination bug: aspirated prefix does not capture h muet ${w}`);
 }
 
+ok(["hot-dog", "hold-up", "hip-hop", "hot-dogs"].every(isHAspire) && articleFor("fr", "m", "hold-up") === "le hold-up", "whole hyphenated words match before their first element");
+ok(isHAspire("haute") && articleFor("fr", "f", "haute") === "la haute", "haute is aspirated");
+
 if (failures) {
   console.error(`\n${failures} failure(s)`);
   process.exit(1);
