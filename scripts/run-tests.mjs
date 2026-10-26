@@ -36,6 +36,7 @@ const SUITES = {
     "scripts/test-account-pill.ts",
       "scripts/test-site-zoom-pane.ts",
       "scripts/test-sitemap-routes.ts",
+      "scripts/test-lang-tile-readings.ts",
       "scripts/test-workspace-tabs.ts",
       "scripts/test-canon-branch-status.ts",
       "scripts/test-download-install.ts",
@@ -77,6 +78,7 @@ const SUITES = {
       "scripts/test-provenance-packet.ts",
       "scripts/test-deck-catalog-route.ts",
       "scripts/test-brand-pick.ts",
+      "scripts/test-beta-tracking.ts",
     ],
     commands: [
       ["python3", "-m", "unittest", "_intake/solver-gap-engine/tests/test_watch.py"],

@@ -110,3 +110,12 @@ test("bearerToken reads the authorization header", () => {
   assert.equal(bearerToken(new Headers({ authorization: "Basic abc" })), "");
   assert.equal(bearerToken(new Headers()), "");
 });
+
+test("otp with app polingual redirects to polingual.com, other apps keep the default", async () => {
+  const seen: (string | undefined)[] = [];
+  const w = world({ sendOtp: async (_e, redirectTo) => (seen.push(redirectTo), { status: null }) });
+  assert.equal((await w.handle({ action: "otp", email: "a@b.co", app: "polingual" }, "1.1.1.1")).status, 200);
+  assert.equal((await w.handle({ action: "otp", email: "c@b.co", app: "constructor" }, "1.1.1.1")).status, 200);
+  assert.equal((await w.handle({ action: "otp", email: "d@b.co" }, "1.1.1.1")).status, 200);
+  assert.deepEqual(seen, ["https://polingual.com/", undefined, undefined]);
+});
