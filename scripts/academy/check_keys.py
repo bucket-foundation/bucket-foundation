@@ -114,6 +114,25 @@ BIO = {
 }
 E.update({k if "@" in k else f"{k}@biophysics": v for k, v in BIO.items()})
 
+MIND = {
+"neuron-doctrine": 500, "neuron-structure": 50, "ionic-gradients": 500, "nernst": 26.7 * 2.302585,
+"goldman": 25, "resting-potential": 20, "passive-cable": 10 / e**2, "voltage-gated-channels": 0.7,
+"action-potential": 100, "hodgkin-huxley": 0.1, "saltatory-conduction": 1000 / 60, "chemical-synapse": 3,
+"electrical-synapse": 2, "neurotransmitters-receptors": 100, "synaptic-integration": 50, "ltp-ltd": 50,
+"hebbian-learning": 0.1, "stdp": 1 / e, "neural-coding": 60, "population-coding": 10, "neural-circuits": 30,
+"working-memory": 60, "sensory-transduction": 1e5, "receptive-fields": 30, "hierarchical-processing": 20,
+"motor-control": 1, "hippocampus-memory": 75, "memory-consolidation": 1 / e, "attention": 40,
+"perception-inference": 0.8, "neural-oscillations": 25, "neuromodulation": 5, "integrate-and-fire": 500,
+"neuronal-dynamics": 60, "perceptron": 0.5, "artificial-neural-networks": 78500, "predictive-coding": 3,
+"reinforcement-learning-brain": 1, "neural-criticality": 1, "theories-of-consciousness": 0.5,
+"brain-computer-interfaces": 1.5, "connectomics": 7550, "glia": 1, "reward-prediction-error": 0.2,
+"cognitive-map": 58.8, "drift-diffusion": 400, "efficient-coding": 3, "neurovascular-coupling": 15,
+"interoception": 15 / 285 * 100, "amygdala-emotion": 45, "sleep-memory-replay": 10, "free-energy-principle": 2,
+"tripartite-synapse": 10, "homeostatic-plasticity": 3, "oja-rule": 0.8, "bcm-rule": 2.25, "hopfield-network": 14,
+"backpropagation": -0.128, "sparse-coding": 0.05, "signal-detection-theory": 2,
+}
+E.update({f"{k}@07-mind": v for k, v in MIND.items()})
+
 LEGACY = {"00-learning-to-learn", "06-cosmology"}
 QDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "learning", "app", "corpus", "questions")
 
