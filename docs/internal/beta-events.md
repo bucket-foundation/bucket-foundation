@@ -87,5 +87,6 @@ Per cohort an experiment is `on` (hash split, the default), `off`, or pinned to 
 `readoutExperiment` in `src/lib/beta/readout.ts` reports D1, D7 and D30 per arm. Exposure is the assignment's `assignedAt`; day N is UTC day `exposureDay + N`. A user counts toward D-N only once that day has ended (`exposureDay + N < today`); younger users are censored.
 
 - Retention: share of eligible users with any event on day N. Unit is the user.
-- Recall: share of `card_answered` events on day N with `props.correct === true`, among eligible users. Unit is the answer, so the interval runs narrow when a few users answer many cards.
-- Intervals: 95% Wilson score per arm. Arm minus control uses the Newcombe hybrid score interval built from the two Wilson intervals. Control is the experiment's `fallback` arm.
+- Recall: share of `card_answered` events on day N with `props.correct === true`, among eligible users. Answers cluster within learners.
+- Intervals: 95%. Retention per arm uses Wilson, since the learner is the unit. Recall per arm and every arm-minus-control difference use a percentile bootstrap that resamples learners, 2000 replicates, seed 20261026. Control is the experiment's `fallback` arm.
+- Pinned users (assignment source `cohort`) leave the randomized comparison and appear under `pinned`, with no difference against control.
