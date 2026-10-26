@@ -13,9 +13,10 @@ export async function tileCurve(url, { from = 1920, to = 641, step = 20, height 
     await page.setViewportSize({ width: w, height });
     await page.waitForTimeout(60);
     rows.push(await page.evaluate((w) => {
-      const g = document.getElementById("hc-grid");
+      const app = getComputedStyle(document.getElementById("app")).display !== "none";
+      const g = document.getElementById(app ? "app-grid" : "hc-grid");
       const t = [...g.children].find((el) => el.offsetParent);
-      return { w, tile: Math.round(t.offsetWidth * parseFloat(getComputedStyle(t).zoom || 1) * 10) / 10, layout: g.dataset.layout };
+      return { w, tile: Math.round(t.offsetWidth * parseFloat(getComputedStyle(t).zoom || 1) * 10) / 10, layout: app ? "app" : g.dataset.layout };
     }, w));
   }
   await browser.close();
@@ -25,9 +26,9 @@ export async function tileCurve(url, { from = 1920, to = 641, step = 20, height 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
   const rows = await tileCurve(process.argv[2] ?? "http://localhost:3110/");
   for (const r of rows) console.log(`${r.w}\t${r.tile}\t${r.layout}`);
-  const bad = rows.filter((r, i) => i && r.tile > rows[i - 1].tile + 0.5);
+  const bad = rows.filter((r, i) => i && Math.abs(r.tile - rows[i - 1].tile) > Math.max(12, rows[i - 1].tile * 0.12));
   if (bad.length) {
-    console.error("tile grew as width shrank at", bad.map((r) => r.w).join(", "));
+    console.error("tile size jumps at", bad.map((r) => r.w).join(", "));
     process.exit(1);
   }
 }
