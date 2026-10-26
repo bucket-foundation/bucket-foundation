@@ -22,7 +22,8 @@ export async function handleStoreSummary(req: NextRequest, deps: StoreAdminDeps)
   const now = deps.now?.() ?? new Date();
   try {
     const rows = await store.since(new Date(now.getTime() - STORE_WINDOW_DAYS * 86_400_000).toISOString());
-    return NextResponse.json(summarizeStoreEvents(rows, STORE_WINDOW_DAYS), { headers: NO_STORE });
+    const includeSandbox = req.nextUrl.searchParams.get("sandbox") === "include";
+    return NextResponse.json(summarizeStoreEvents(rows, STORE_WINDOW_DAYS, includeSandbox), { headers: NO_STORE });
   } catch (err) {
     console.error("[admin/app-store] summary failed:", err instanceof Error ? err.message : err);
     return NextResponse.json({ error: "summary_failed" }, { status: 502, headers: NO_STORE });
