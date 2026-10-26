@@ -7,9 +7,10 @@ struct SentenceTranslations: View {
     let source: String
     let targets: [String]
     @State private var results: [String: String] = [:]
+    @State private var needsDownload: Set<String> = []
     @State private var missing: Set<String> = []
-    @State private var queue: [String] = []
-    @State private var config: TranslationSession.Configuration?
+    @State private var download: TranslationSession.Configuration?
+    @State private var round = 0
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -22,6 +23,9 @@ struct SentenceTranslations: View {
                             .textSelection(.enabled)
                         Spacer(minLength: 4)
                         PlayButton(text: r, lang: l)
+                    } else if needsDownload.contains(l) {
+                        Button("Download \(Lang.name(l))") { download = TranslationSession.Configuration(source: language(source), target: language(l)) }
+                            .buttonStyle(D8Option(align: .center, compact: true))
                     } else if missing.contains(l) {
                         Text("Translation isn't available for \(Lang.name(l)) on this device.").font(.subheadline).foregroundStyle(Palette.muted)
                     } else {
@@ -31,39 +35,37 @@ struct SentenceTranslations: View {
                 .accessibilityElement(children: .combine)
             }
         }
-        .task(id: "\(source)|\(targets.joined(separator: ","))|\(text)") { await start() }
-        .translationTask(config) { session in
-            guard let l = queue.first else { return }
-            do {
-                let reply = try await session.translate(text)
-                results[l] = reply.targetText
-            } catch {
+        .task(id: "\(source)|\(targets.joined(separator: ","))|\(text)|\(round)") { await run() }
+        .translationTask(download) { session in
+            try? await session.prepareTranslation()
+            download = nil
+            round += 1
+        }
+    }
+
+    func language(_ code: String) -> Locale.Language { Locale.Language(identifier: SentenceLanguage.appleCode(code)) }
+
+    func run() async {
+        try? await Task.sleep(for: .milliseconds(700))
+        guard !Task.isCancelled else { return }
+        let availability = LanguageAvailability()
+        var found: [String: String] = [:]
+        var download: Set<String> = []
+        var missing: Set<String> = []
+        for l in targets {
+            switch await availability.status(from: language(source), to: language(l)) {
+            case .installed:
+                let session = TranslationSession(installedSource: language(source), target: language(l))
+                if let reply = try? await session.translate(text) { found[l] = reply.targetText } else { missing.insert(l) }
+            case .supported:
+                download.insert(l)
+            default:
                 missing.insert(l)
             }
-            queue.removeFirst()
-            next()
+            guard !Task.isCancelled else { return }
         }
-    }
-
-    func start() async {
-        try? await Task.sleep(for: .milliseconds(450))
-        guard !Task.isCancelled else { return }
-        results = [:]
-        missing = []
-        let availability = LanguageAvailability()
-        let from = Locale.Language(identifier: SentenceLanguage.appleCode(source))
-        var todo: [String] = []
-        for l in targets {
-            let status = await availability.status(from: from, to: Locale.Language(identifier: SentenceLanguage.appleCode(l)))
-            if status == .unsupported { missing.insert(l) } else { todo.append(l) }
-        }
-        queue = todo
-        config = nil
-        next()
-    }
-
-    func next() {
-        guard let l = queue.first else { return }
-        config = TranslationSession.Configuration(source: Locale.Language(identifier: SentenceLanguage.appleCode(source)), target: Locale.Language(identifier: SentenceLanguage.appleCode(l)))
+        results = found
+        needsDownload = download
+        self.missing = missing
     }
 }
