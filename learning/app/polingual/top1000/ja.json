@@ -102,7 +102,7 @@
  {
   "rank": 11,
   "word": "難しい",
-  "meaning": "difficult",
+  "meaning": "hard, probably impossible",
   "pos": "adj",
   "ipa": "[mɯ̟zɨka̠ɕii]",
   "zipf": 5.05,
@@ -332,7 +332,7 @@
  {
   "rank": 34,
   "word": "暗黒",
-  "meaning": "darkness",
+  "meaning": "dark",
   "pos": "noun",
   "ipa": "[ã̠ŋko̞kɯ̟]",
   "zipf": 4.12,
@@ -972,7 +972,7 @@
  {
   "rank": 98,
   "word": "へ",
-  "meaning": "戸: a house; a household",
+  "meaning": "to, towards (indicates a destination or movement toward something)",
   "pos": "noun",
   "ipa": "[he̞]",
   "zipf": 6.08,
@@ -1302,7 +1302,7 @@
  {
   "rank": 131,
   "word": "万",
-  "meaning": "ten thousand",
+  "meaning": "ten thousand, myriad",
   "pos": "noun",
   "ipa": "[jo̞ɾo̞zɨ]",
   "zipf": 5.72,
@@ -1582,7 +1582,7 @@
  {
   "rank": 159,
   "word": "力",
-  "meaning": "physical strength",
+  "meaning": "strength; power; force",
   "pos": "noun",
   "ipa": "[ɾʲikʲi]",
   "zipf": 5.59,
@@ -2192,7 +2192,7 @@
  {
   "rank": 220,
   "word": "点",
-  "meaning": "spot, dot",
+  "meaning": "point",
   "pos": "noun",
   "ipa": "[tẽ̞ɴ]",
   "zipf": 5.38,
@@ -2392,7 +2392,7 @@
  {
   "rank": 240,
   "word": "事件",
-  "meaning": "event, incident",
+  "meaning": "matter, affair",
   "pos": "noun",
   "ipa": "[d͡ʑikẽ̞ɴ]",
   "zipf": 5.32,
@@ -2481,6 +2481,16 @@
  },
  {
   "rank": 249,
+  "word": "中国",
+  "meaning": "China",
+  "pos": "noun",
+  "ipa": "[t͡ɕɨːɡo̞kɯ̟]",
+  "zipf": 5.3,
+  "score": 530.29,
+  "band": "A1"
+ },
+ {
+  "rank": 250,
   "word": "先生",
   "meaning": "an elder",
   "pos": "noun",
@@ -2490,21 +2500,11 @@
   "band": "A1"
  },
  {
-  "rank": 250,
+  "rank": 251,
   "word": "まあ",
   "meaning": "oh! dear! (expression of surprise)",
   "pos": "intj",
   "ipa": "[ma̠ː]",
-  "zipf": 5.3,
-  "score": 530.2,
-  "band": "A1"
- },
- {
-  "rank": 251,
-  "word": "気持ち",
-  "meaning": "a feeling, sensation, feelings",
-  "pos": "noun",
-  "ipa": "[kʲimo̞t͡ɕi]",
   "zipf": 5.3,
   "score": 530.2,
   "band": "A1"
@@ -3102,7 +3102,7 @@
  {
   "rank": 311,
   "word": "うん",
-  "meaning": "strainingly, with a grunt",
+  "meaning": "yeah, uh-huh, mhm (an interjection expressing agreement)",
   "pos": "adv",
   "ipa": "[ɯ̟̃ɴ]",
   "zipf": 5.17,
@@ -3132,7 +3132,7 @@
  {
   "rank": 314,
   "word": "注意",
-  "meaning": "caution; warning",
+  "meaning": "attention; notice",
   "pos": "noun",
   "ipa": "[t͡ɕɨːi]",
   "zipf": 5.16,
@@ -3512,7 +3512,7 @@
  {
   "rank": 352,
   "word": "全く",
-  "meaning": "(not) at all",
+  "meaning": "completely",
   "pos": "adj",
   "ipa": "[ma̠t̚ta̠kɯ̟]",
   "zipf": 5.09,
@@ -4412,7 +4412,7 @@
  {
   "rank": 442,
   "word": "例",
-  "meaning": "a custom, usual practice, habit",
+  "meaning": "a case, an instance, an illustration, an example",
   "pos": "noun",
   "ipa": "[ɾe̞ː]",
   "zipf": 4.98,
@@ -4582,7 +4582,7 @@
  {
   "rank": 459,
   "word": "大切",
-  "meaning": "importance, weight",
+  "meaning": "important, weighty",
   "pos": "noun",
   "ipa": "[ta̠ise̞t͡sɨ]",
   "zipf": 4.96,
@@ -4662,7 +4662,7 @@
  {
   "rank": 467,
   "word": "反応",
-  "meaning": "chemical reaction",
+  "meaning": "reaction, response",
   "pos": "noun",
   "ipa": "[hã̠nːo̞ː]",
   "zipf": 4.95,
@@ -5242,7 +5242,7 @@
  {
   "rank": 525,
   "word": "客",
-  "meaning": "guest; visitor",
+  "meaning": "customer; client",
   "pos": "noun",
   "ipa": "[kʲa̠kɯ̟]",
   "zipf": 4.88,
@@ -5472,7 +5472,7 @@
  {
   "rank": 548,
   "word": "カップ",
-  "meaning": "cup or mug, specifically, one with a handle",
+  "meaning": "cup, a unit of measure",
   "pos": "noun",
   "ipa": "[ka̠p̚pɯ̟]",
   "zipf": 4.86,
@@ -5602,7 +5602,7 @@
  {
   "rank": 561,
   "word": "局",
-  "meaning": "a temporary room created by subdividing a larger room with curtains and screens",
+  "meaning": "bureau, department",
   "pos": "noun",
   "ipa": "[t͡sɨbo̞ne̞]",
   "zipf": 4.84,
@@ -5652,7 +5652,7 @@
  {
   "rank": 566,
   "word": "土",
-  "meaning": "earth, soil",
+  "meaning": "land, ground, territory",
   "pos": "noun",
   "ipa": "[do̞]",
   "zipf": 4.83,
@@ -5682,7 +5682,7 @@
  {
   "rank": 569,
   "word": "勝利",
-  "meaning": "victory",
+  "meaning": "to win, to achieve victory",
   "pos": "noun",
   "ipa": "[ɕo̞ːɾʲi]",
   "zipf": 4.83,
@@ -5712,7 +5712,7 @@
  {
   "rank": 572,
   "word": "おめでとう",
-  "meaning": "御目出糖: a type of Japanese sweet made from rice and azuki bean paste, eaten at times of celebration",
+  "meaning": "congratulations, congrats",
   "pos": "noun",
   "ipa": "[o̞me̞de̞to̞ː]",
   "zipf": 4.83,
@@ -5962,7 +5962,7 @@
  {
   "rank": 597,
   "word": "コース",
-  "meaning": "itinerary",
+  "meaning": "course (stage of a meal)",
   "pos": "noun",
   "ipa": "[ko̞ːsɨ]",
   "zipf": 4.8,
@@ -6102,7 +6102,7 @@
  {
   "rank": 611,
   "word": "切れ",
-  "meaning": "sharpness, cutting quality",
+  "meaning": "piece, bit, strip, slice",
   "pos": "noun",
   "ipa": "[kʲiɾe̞]",
   "zipf": 4.78,
@@ -6212,7 +6212,7 @@
  {
   "rank": 622,
   "word": "クラブ",
-  "meaning": "倶楽部: a club (association of members)",
+  "meaning": "clubs",
   "pos": "noun",
   "ipa": "[kɯ̟ɾa̠bɯ̟]",
   "zipf": 4.77,
@@ -6372,7 +6372,7 @@
  {
   "rank": 638,
   "word": "停止",
-  "meaning": "suspension, stoppage, abeyance",
+  "meaning": "arrest",
   "pos": "noun",
   "ipa": "[te̞ːɕi]",
   "zipf": 4.76,
@@ -6672,7 +6672,7 @@
  {
   "rank": 668,
   "word": "実行",
-  "meaning": "practice",
+  "meaning": "performance; execution (of a program)",
   "pos": "noun",
   "ipa": "[d͡ʑik̚ko̞ː]",
   "zipf": 4.74,
@@ -6702,7 +6702,7 @@
  {
   "rank": 671,
   "word": "博士",
-  "meaning": "a court academician",
+  "meaning": "a doctor (person who has attained a doctorate)",
   "pos": "noun",
   "ipa": "[ha̠ka̠se̞]",
   "zipf": 4.74,
@@ -7012,7 +7012,7 @@
  {
   "rank": 702,
   "word": "本来",
-  "meaning": "origin",
+  "meaning": "originally",
   "pos": "noun",
   "ipa": "[hõ̞n̺ɾa̠i]",
   "zipf": 4.72,
@@ -7192,7 +7192,7 @@
  {
   "rank": 720,
   "word": "エッチ",
-  "meaning": "sexual activity",
+  "meaning": "dirty; lewd; perverted; sexual",
   "pos": "noun",
   "ipa": "[e̞t̚t͡ɕi]",
   "zipf": 4.7,
@@ -7552,7 +7552,7 @@
  {
   "rank": 756,
   "word": "草",
-  "meaning": "grass",
+  "meaning": "LOL",
   "pos": "noun",
   "ipa": "[kɯ̟̊sa̠]",
   "zipf": 4.67,
@@ -7882,7 +7882,7 @@
  {
   "rank": 789,
   "word": "鬼",
-  "meaning": "ghost",
+  "meaning": "evil spirit, demon, ogre",
   "pos": "noun",
   "ipa": "[o̞ɲ̟i]",
   "zipf": 4.64,
@@ -8022,7 +8022,7 @@
  {
   "rank": 803,
   "word": "中身",
-  "meaning": "physical contents",
+  "meaning": "contents, substance (of speech, etc.)",
   "pos": "noun",
   "ipa": "[na̠ka̠mʲi]",
   "zipf": 4.63,
@@ -8162,7 +8162,7 @@
  {
   "rank": 817,
   "word": "株",
-  "meaning": "stump of a tree",
+  "meaning": "stock (in a company)",
   "pos": "noun",
   "ipa": "[ka̠bɯ̟]",
   "zipf": 4.62,
@@ -8202,7 +8202,7 @@
  {
   "rank": 821,
   "word": "単位",
-  "meaning": "unit of measure",
+  "meaning": "unit (an organized group)",
   "pos": "noun",
   "ipa": "[tã̠ɰ̃i]",
   "zipf": 4.62,
@@ -8242,7 +8242,7 @@
  {
   "rank": 825,
   "word": "厳しい",
-  "meaning": "stern, grave, forbidding; dignified, stately",
+  "meaning": "strict, unforgiving",
   "pos": "adj",
   "ipa": "[kʲibʲiɕii]",
   "zipf": 4.61,
@@ -8302,7 +8302,7 @@
  {
   "rank": 831,
   "word": "核",
-  "meaning": "atomic nucleus",
+  "meaning": "core, nucleus",
   "pos": "noun",
   "ipa": "[ka̠kɯ̟]",
   "zipf": 4.61,
@@ -8892,7 +8892,7 @@
  {
   "rank": 890,
   "word": "真面目",
-  "meaning": "seriousness",
+  "meaning": "serious, earnest",
   "pos": "noun",
   "ipa": "[ma̠ʑime̞]",
   "zipf": 4.55,
@@ -9102,7 +9102,7 @@
  {
   "rank": 911,
   "word": "コピー",
-  "meaning": "act of copying",
+  "meaning": "to copy",
   "pos": "noun",
   "ipa": "[ko̞pʲiː]",
   "zipf": 4.54,
@@ -9432,7 +9432,7 @@
  {
   "rank": 944,
   "word": "描く",
-  "meaning": "to paint; to draw",
+  "meaning": "to picture; to portray; to depict",
   "pos": "verb",
   "ipa": "[e̞ɡa̠kɯ̟]",
   "zipf": 4.52,
@@ -9472,7 +9472,7 @@
  {
   "rank": 948,
   "word": "ダウン",
-  "meaning": "going down, fall, decrease",
+  "meaning": "down (feathers)",
   "pos": "noun",
   "ipa": "[da̠ɯ̟̃ɴ]",
   "zipf": 4.51,
@@ -9522,7 +9522,7 @@
  {
   "rank": 953,
   "word": "名誉",
-  "meaning": "fame",
+  "meaning": "honor, prestige",
   "pos": "noun",
   "ipa": "[me̞ːjo̞]",
   "zipf": 4.51,
@@ -9742,7 +9742,7 @@
  {
   "rank": 975,
   "word": "ピン",
-  "meaning": "an ace in cards or a \"one\" in dice",
+  "meaning": "a pin, such as a hairpin, tie pin, bowling pin, or golf pin",
   "pos": "noun",
   "ipa": "[pʲĩɴ]",
   "zipf": 4.5,
@@ -9841,6 +9841,16 @@
  },
  {
   "rank": 985,
+  "word": "源",
+  "meaning": "a source, origin",
+  "pos": "noun",
+  "ipa": "[mʲina̠mo̞to̞]",
+  "zipf": 4.5,
+  "score": 450.14,
+  "band": "B1"
+ },
+ {
+  "rank": 986,
   "word": "素人",
   "meaning": "amateur, novice",
   "pos": "noun",
@@ -9850,7 +9860,7 @@
   "band": "B1"
  },
  {
-  "rank": 986,
+  "rank": 987,
   "word": "配置",
   "meaning": "arrangement of resources, placement of people",
   "pos": "noun",
@@ -9860,7 +9870,7 @@
   "band": "B1"
  },
  {
-  "rank": 987,
+  "rank": 988,
   "word": "正",
   "meaning": "propriety, fairness, justness",
   "pos": "noun",
@@ -9870,7 +9880,7 @@
   "band": "B1"
  },
  {
-  "rank": 988,
+  "rank": 989,
   "word": "見事",
   "meaning": "something that should be looked at, something worthy of looking at, a spectacle, a sight, a magnificent deed",
   "pos": "noun",
@@ -9880,7 +9890,7 @@
   "band": "B1"
  },
  {
-  "rank": 989,
+  "rank": 990,
   "word": "谷",
   "meaning": "a valley (elongated depression between hills or mountains)",
   "pos": "noun",
@@ -9890,7 +9900,7 @@
   "band": "B1"
  },
  {
-  "rank": 990,
+  "rank": 991,
   "word": "変換",
   "meaning": "conversion, change",
   "pos": "noun",
@@ -9900,7 +9910,7 @@
   "band": "B1"
  },
  {
-  "rank": 991,
+  "rank": 992,
   "word": "幅",
   "meaning": "width, breadth",
   "pos": "noun",
@@ -9910,7 +9920,7 @@
   "band": "B1"
  },
  {
-  "rank": 992,
+  "rank": 993,
   "word": "応募",
   "meaning": "written request for employment etc.; application",
   "pos": "noun",
@@ -9920,7 +9930,7 @@
   "band": "B1"
  },
  {
-  "rank": 993,
+  "rank": 994,
   "word": "置く",
   "meaning": "to put, place, set",
   "pos": "verb",
@@ -9930,7 +9940,7 @@
   "band": "B1"
  },
  {
-  "rank": 994,
+  "rank": 995,
   "word": "腰",
   "meaning": "the waist, the (lower) back, the small of the back",
   "pos": "noun",
@@ -9940,7 +9950,7 @@
   "band": "B1"
  },
  {
-  "rank": 995,
+  "rank": 996,
   "word": "ルート",
   "meaning": "a route",
   "pos": "noun",
@@ -9950,7 +9960,7 @@
   "band": "B1"
  },
  {
-  "rank": 996,
+  "rank": 997,
   "word": "再現",
   "meaning": "reproduction",
   "pos": "noun",
@@ -9960,7 +9970,7 @@
   "band": "B1"
  },
  {
-  "rank": 997,
+  "rank": 998,
   "word": "味方",
   "meaning": "a friend",
   "pos": "noun",
@@ -9970,7 +9980,7 @@
   "band": "B1"
  },
  {
-  "rank": 998,
+  "rank": 999,
   "word": "変態",
   "meaning": "metamorphosis, transformation",
   "pos": "noun",
@@ -9980,23 +9990,13 @@
   "band": "B1"
  },
  {
-  "rank": 999,
+  "rank": 1000,
   "word": "高級",
   "meaning": "high class, luxury",
   "pos": "noun",
   "ipa": "[ko̞ːkʲɨː]",
   "zipf": 4.49,
   "score": 449.17,
-  "band": "B1"
- },
- {
-  "rank": 1000,
-  "word": "おる",
-  "meaning": "to exist, to be, to have",
-  "pos": "verb",
-  "ipa": "[o̞ɾɯ̟]",
-  "zipf": 4.49,
-  "score": 449.14,
   "band": "B1"
  }
 ]

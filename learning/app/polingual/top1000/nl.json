@@ -12,7 +12,7 @@
  {
   "rank": 2,
   "word": "wat",
-  "meaning": "what: e.g. (1) asking for a subject complement; (2) asking for a sentence object",
+  "meaning": "what (a), such",
   "pos": "pron",
   "ipa": "/ʋɑt/",
   "zipf": 6.58,
@@ -42,7 +42,7 @@
  {
   "rank": 5,
   "word": "goed",
-  "meaning": "goods, wares, commodities, assets",
+  "meaning": "good (not bad)",
   "pos": "noun",
   "ipa": "/ɣut/",
   "zipf": 6.2,
@@ -52,7 +52,7 @@
  {
   "rank": 6,
   "word": "doen",
-  "meaning": "routine",
+  "meaning": "to put",
   "pos": "noun",
   "ipa": "/dun/",
   "zipf": 6.13,
@@ -172,7 +172,7 @@
  {
   "rank": 18,
   "word": "goede",
-  "meaning": "good person",
+  "meaning": "good (as a concept), that which is good",
   "pos": "noun",
   "ipa": "/ˈɣudə/",
   "zipf": 5.67,
@@ -292,7 +292,7 @@
  {
   "rank": 30,
   "word": "nummer",
-  "meaning": "number used as a means of identification",
+  "meaning": "number (used to show the rank of something in a list or sequence)",
   "pos": "noun",
   "ipa": "/ˈnʏ.mər/",
   "zipf": 5.32,
@@ -302,7 +302,7 @@
  {
   "rank": 31,
   "word": "familie",
-  "meaning": "relatives (extended kin)",
+  "meaning": "family (close kin)",
   "pos": "noun",
   "ipa": "/faːˈmi.li/",
   "zipf": 5.56,
@@ -332,7 +332,7 @@
  {
   "rank": 34,
   "word": "weinig",
-  "meaning": "little, not much, not a lot",
+  "meaning": "little, few, not much, not many",
   "pos": "pron",
   "ipa": "/ˈʋɛi̯nəx/",
   "zipf": 5.35,
@@ -422,7 +422,7 @@
  {
   "rank": 43,
   "word": "blauw",
-  "meaning": "the colour blue",
+  "meaning": "blue",
   "pos": "noun",
   "ipa": "/blɑu̯/",
   "zipf": 4.73,
@@ -442,7 +442,7 @@
  {
   "rank": 45,
   "word": "zwart",
-  "meaning": "the colour black",
+  "meaning": "black",
   "pos": "noun",
   "ipa": "/zʋɑrt/",
   "zipf": 5.0,
@@ -472,7 +472,7 @@
  {
   "rank": 48,
   "word": "groen",
-  "meaning": "the colour green",
+  "meaning": "green",
   "pos": "noun",
   "ipa": "/ɣrun/",
   "zipf": 4.82,
@@ -642,7 +642,7 @@
  {
   "rank": 65,
   "word": "rood",
-  "meaning": "the colour red",
+  "meaning": "red",
   "pos": "noun",
   "ipa": "/roːt/",
   "zipf": 4.84,
@@ -782,7 +782,7 @@
  {
   "rank": 79,
   "word": "bok",
-  "meaning": "male goat, billy",
+  "meaning": "buck, horse or pony; strong contraption on legs, resembling a mount",
   "pos": "noun",
   "ipa": "/bɔk/",
   "zipf": 3.45,
@@ -802,7 +802,7 @@
  {
   "rank": 81,
   "word": "geel",
-  "meaning": "the colour yellow",
+  "meaning": "yellow",
   "pos": "noun",
   "ipa": "/ɣeːl/",
   "zipf": 4.54,
@@ -962,7 +962,7 @@
  {
   "rank": 97,
   "word": "loslaten",
-  "meaning": "to let go",
+  "meaning": "to free, release",
   "pos": "verb",
   "ipa": "/ˈlɔsˌlaː.tə(n)/",
   "zipf": 4.12,
@@ -1152,7 +1152,7 @@
  {
   "rank": 116,
   "word": "blauwtje",
-  "meaning": "a rejection, in particular a romantic rejection",
+  "meaning": "a blue, a butterfly of the lycaenid subfamily Polyommatinae",
   "pos": "noun",
   "ipa": "/ˈblɑu̯tjə/",
   "zipf": 2.75,
@@ -1252,7 +1252,7 @@
  {
   "rank": 126,
   "word": "peinzen",
-  "meaning": "to ponder, meditate",
+  "meaning": "to think",
   "pos": "verb",
   "ipa": "/ˈpɛi̯nzə(n)/",
   "zipf": 2.03,
@@ -1281,6 +1281,16 @@
  },
  {
   "rank": 129,
+  "word": "van",
+  "meaning": "of, out of, from, with (cause)",
+  "pos": "noun",
+  "ipa": "/vɑn/",
+  "zipf": 7.51,
+  "score": 170.18,
+  "band": "A1"
+ },
+ {
+  "rank": 130,
   "word": "op",
   "meaning": "up, awake, out of bed",
   "pos": "adj",
@@ -1290,7 +1300,7 @@
   "band": "A1"
  },
  {
-  "rank": 130,
+  "rank": 131,
   "word": "zijn",
   "meaning": "to be, to exist",
   "pos": "verb",
@@ -1300,9 +1310,9 @@
   "band": "A1"
  },
  {
-  "rank": 131,
+  "rank": 132,
   "word": "aan",
-  "meaning": "on (functional, operational)",
+  "meaning": "to, indicates the target or recipient of an action",
   "pos": "adj",
   "ipa": "/aːn/",
   "zipf": 6.76,
@@ -1310,9 +1320,9 @@
   "band": "A1"
  },
  {
-  "rank": 132,
+  "rank": 133,
   "word": "om",
-  "meaning": "convinced, persuaded",
+  "meaning": "around, about",
   "pos": "adj",
   "ipa": "/ɔm/",
   "zipf": 6.77,
@@ -1320,7 +1330,7 @@
   "band": "A1"
  },
  {
-  "rank": 133,
+  "rank": 134,
   "word": "en",
   "meaning": "and",
   "pos": "conj",
@@ -1330,7 +1340,7 @@
   "band": "A1"
  },
  {
-  "rank": 134,
+  "rank": 135,
   "word": "in",
   "meaning": "in (expressing containment)",
   "pos": "verb",
@@ -1340,7 +1350,7 @@
   "band": "A1"
  },
  {
-  "rank": 135,
+  "rank": 136,
   "word": "het",
   "meaning": "it; third-person singular neuter subjective personal pronoun",
   "pos": "pron",
@@ -1350,7 +1360,7 @@
   "band": "A1"
  },
  {
-  "rank": 136,
+  "rank": 137,
   "word": "een",
   "meaning": "one (digit or figure 1)",
   "pos": "noun",
@@ -1360,7 +1370,7 @@
   "band": "A1"
  },
  {
-  "rank": 137,
+  "rank": 138,
   "word": "de",
   "meaning": "the; definite article, masculine and feminine singular, plural",
   "pos": "article",
@@ -1370,9 +1380,9 @@
   "band": "A1"
  },
  {
-  "rank": 138,
+  "rank": 139,
   "word": "voor",
-  "meaning": "pro, advantage, upside, positive",
+  "meaning": "before",
   "pos": "noun",
   "ipa": "/voːr/",
   "zipf": 7.05,
@@ -1380,7 +1390,7 @@
   "band": "A1"
  },
  {
-  "rank": 139,
+  "rank": 140,
   "word": "over",
   "meaning": "over, above",
   "pos": "adv",
@@ -1390,9 +1400,9 @@
   "band": "A1"
  },
  {
-  "rank": 140,
+  "rank": 141,
   "word": "door",
-  "meaning": "fool, moron",
+  "meaning": "by, by means of",
   "pos": "noun",
   "ipa": "/doːr/",
   "zipf": 6.66,
@@ -1400,7 +1410,7 @@
   "band": "A1"
  },
  {
-  "rank": 141,
+  "rank": 142,
   "word": "als",
   "meaning": "if, when",
   "pos": "conj",
@@ -1410,9 +1420,9 @@
   "band": "A1"
  },
  {
-  "rank": 142,
+  "rank": 143,
   "word": "bij",
-  "meaning": "bee, insect of the clade Anthophila",
+  "meaning": "at, with",
   "pos": "noun",
   "ipa": "/bɛi̯/",
   "zipf": 6.62,
@@ -1420,7 +1430,7 @@
   "band": "A1"
  },
  {
-  "rank": 143,
+  "rank": 144,
   "word": "maar",
   "meaning": "only, just",
   "pos": "verb",
@@ -1430,7 +1440,7 @@
   "band": "A1"
  },
  {
-  "rank": 144,
+  "rank": 145,
   "word": "gaan",
   "meaning": "to go, to move from one place to another",
   "pos": "verb",
@@ -1440,9 +1450,9 @@
   "band": "A1"
  },
  {
-  "rank": 145,
+  "rank": 146,
   "word": "met",
-  "meaning": "ground meat (sometimes specifically uncooked)",
+  "meaning": "with, along with (another person)",
   "pos": "noun",
   "ipa": "/mɛt/",
   "zipf": 7.0,
@@ -1450,7 +1460,7 @@
   "band": "A1"
  },
  {
-  "rank": 146,
+  "rank": 147,
   "word": "was",
   "meaning": "wash, washing, laundry (act of cleaning with water)",
   "pos": "noun",
@@ -1460,7 +1470,7 @@
   "band": "A1"
  },
  {
-  "rank": 147,
+  "rank": 148,
   "word": "wel",
   "meaning": "weal (general state of well-being and prosperity)",
   "pos": "noun",
@@ -1470,7 +1480,7 @@
   "band": "A1"
  },
  {
-  "rank": 148,
+  "rank": 149,
   "word": "weer",
   "meaning": "defense",
   "pos": "noun",
@@ -1480,7 +1490,7 @@
   "band": "A1"
  },
  {
-  "rank": 149,
+  "rank": 150,
   "word": "te",
   "meaning": "to",
   "pos": "prep",
@@ -1490,9 +1500,9 @@
   "band": "A1"
  },
  {
-  "rank": 150,
+  "rank": 151,
   "word": "dan",
-  "meaning": "unit of grading proficiency of black belt or greater than black-belt in Japanese martial arts",
+  "meaning": "than (in comparison)",
   "pos": "noun",
   "ipa": "/dɑn/",
   "zipf": 6.62,
@@ -1500,7 +1510,7 @@
   "band": "A1"
  },
  {
-  "rank": 151,
+  "rank": 152,
   "word": "net",
   "meaning": "net (mesh)",
   "pos": "noun",
@@ -1510,9 +1520,9 @@
   "band": "A1"
  },
  {
-  "rank": 152,
+  "rank": 153,
   "word": "uit",
-  "meaning": "out, from the inside to the outside",
+  "meaning": "out of, from",
   "pos": "verb",
   "ipa": "/œy̯t/",
   "zipf": 6.65,
@@ -1520,7 +1530,7 @@
   "band": "A1"
  },
  {
-  "rank": 153,
+  "rank": 154,
   "word": "zij",
   "meaning": "she (a female)",
   "pos": "noun",
@@ -1530,7 +1540,7 @@
   "band": "A1"
  },
  {
-  "rank": 154,
+  "rank": 155,
   "word": "niet",
   "meaning": "staple (wire fastener)",
   "pos": "noun",
@@ -1540,7 +1550,7 @@
   "band": "A1"
  },
  {
-  "rank": 155,
+  "rank": 156,
   "word": "er",
   "meaning": "there (can refer to any place, used when not emphasizing the distance to the speaker, see usage notes)",
   "pos": "adv",
@@ -1550,7 +1560,7 @@
   "band": "A1"
  },
  {
-  "rank": 156,
+  "rank": 157,
   "word": "al",
   "meaning": "already",
   "pos": "adv",
@@ -1560,7 +1570,7 @@
   "band": "A1"
  },
  {
-  "rank": 157,
+  "rank": 158,
   "word": "mijn",
   "meaning": "mine (place where ore is taken out of the ground)",
   "pos": "noun",
@@ -1570,9 +1580,9 @@
   "band": "A1"
  },
  {
-  "rank": 158,
+  "rank": 159,
   "word": "laten",
-  "meaning": "to leave, to cause to remain in the same position or state",
+  "meaning": "to let, to allow to",
   "pos": "noun",
   "ipa": "/ˈlaːtə(n)/",
   "zipf": 5.88,
@@ -1580,7 +1590,7 @@
   "band": "A1"
  },
  {
-  "rank": 159,
+  "rank": 160,
   "word": "nog",
   "meaning": "still, as before",
   "pos": "adv",
@@ -1590,7 +1600,7 @@
   "band": "A1"
  },
  {
-  "rank": 160,
+  "rank": 161,
   "word": "ook",
   "meaning": "also, too, moreover",
   "pos": "adv",
@@ -1600,9 +1610,9 @@
   "band": "A1"
  },
  {
-  "rank": 161,
+  "rank": 162,
   "word": "eens",
-  "meaning": "of one accord or opinion, in agreement",
+  "meaning": "once, one time",
   "pos": "adj",
   "ipa": "/eːns/",
   "zipf": 6.01,
@@ -1610,7 +1620,7 @@
   "band": "A1"
  },
  {
-  "rank": 162,
+  "rank": 163,
   "word": "kan",
   "meaning": "jug",
   "pos": "noun",
@@ -1620,7 +1630,7 @@
   "band": "A1"
  },
  {
-  "rank": 163,
+  "rank": 164,
   "word": "ik",
   "meaning": "I; first-person singular subjective personal pronoun",
   "pos": "pron",
@@ -1630,7 +1640,7 @@
   "band": "A1"
  },
  {
-  "rank": 164,
+  "rank": 165,
   "word": "zo",
   "meaning": "so, thus, like that/this",
   "pos": "adv",
@@ -1640,7 +1650,7 @@
   "band": "A1"
  },
  {
-  "rank": 165,
+  "rank": 166,
   "word": "kunnen",
   "meaning": "can, to be able to",
   "pos": "verb",
@@ -1650,7 +1660,7 @@
   "band": "A1"
  },
  {
-  "rank": 166,
+  "rank": 167,
   "word": "onder",
   "meaning": "under, below, beneath, underneath",
   "pos": "prep",
@@ -1660,9 +1670,9 @@
   "band": "A1"
  },
  {
-  "rank": 167,
+  "rank": 168,
   "word": "rond",
-  "meaning": "sphericity",
+  "meaning": "around, about",
   "pos": "noun",
   "ipa": "/rɔnt/",
   "zipf": 5.56,
@@ -1670,7 +1680,7 @@
   "band": "A1"
  },
  {
-  "rank": 168,
+  "rank": 169,
   "word": "of",
   "meaning": "or",
   "pos": "conj",
@@ -1680,7 +1690,7 @@
   "band": "A1"
  },
  {
-  "rank": 169,
+  "rank": 170,
   "word": "deze",
   "meaning": "this (one)",
   "pos": "pron",
@@ -1690,7 +1700,7 @@
   "band": "A1"
  },
  {
-  "rank": 170,
+  "rank": 171,
   "word": "hebben",
   "meaning": "to have, to possess, own, hold",
   "pos": "verb",
@@ -1700,7 +1710,7 @@
   "band": "A1"
  },
  {
-  "rank": 171,
+  "rank": 172,
   "word": "dag",
   "meaning": "day (period of 24 hours)",
   "pos": "noun",
@@ -1710,9 +1720,9 @@
   "band": "A1"
  },
  {
-  "rank": 172,
+  "rank": 173,
   "word": "pas",
-  "meaning": "pace, step; also as a measure of distance",
+  "meaning": "pass, passport (travel document)",
   "pos": "noun",
   "ipa": "/pɑs/",
   "zipf": 5.45,
@@ -1720,9 +1730,9 @@
   "band": "A1"
  },
  {
-  "rank": 173,
+  "rank": 174,
   "word": "vast",
-  "meaning": "firm, fast, tight",
+  "meaning": "surely, certainly",
   "pos": "verb",
   "ipa": "/vɑst/",
   "zipf": 5.43,
@@ -1730,7 +1740,7 @@
   "band": "A1"
  },
  {
-  "rank": 174,
+  "rank": 175,
   "word": "zeer",
   "meaning": "a physical pain, ache, hurt",
   "pos": "noun",
@@ -1740,9 +1750,9 @@
   "band": "A1"
  },
  {
-  "rank": 175,
+  "rank": 176,
   "word": "geen",
-  "meaning": "yonder, yon, that",
+  "meaning": "none",
   "pos": "adj",
   "ipa": "/ɣeːn/",
   "zipf": 6.42,
@@ -1750,7 +1760,7 @@
   "band": "A1"
  },
  {
-  "rank": 176,
+  "rank": 177,
   "word": "tot",
   "meaning": "to, up to",
   "pos": "prep",
@@ -1760,7 +1770,7 @@
   "band": "A1"
  },
  {
-  "rank": 177,
+  "rank": 178,
   "word": "nu",
   "meaning": "n (letter of the Greek alphabet)",
   "pos": "noun",
@@ -1770,7 +1780,7 @@
   "band": "A1"
  },
  {
-  "rank": 178,
+  "rank": 179,
   "word": "hij",
   "meaning": "he (a male)",
   "pos": "noun",
@@ -1780,7 +1790,7 @@
   "band": "A1"
  },
  {
-  "rank": 179,
+  "rank": 180,
   "word": "even",
   "meaning": "even, opposite of odd",
   "pos": "adj",
@@ -1790,7 +1800,7 @@
   "band": "A1"
  },
  {
-  "rank": 180,
+  "rank": 181,
   "word": "lopen",
   "meaning": "a dry measure of content",
   "pos": "noun",
@@ -1800,7 +1810,7 @@
   "band": "A1"
  },
  {
-  "rank": 181,
+  "rank": 182,
   "word": "een-op-een",
   "meaning": "one-on-one",
   "pos": "adv",
@@ -1810,7 +1820,7 @@
   "band": "A1"
  },
  {
-  "rank": 182,
+  "rank": 183,
   "word": "dagen",
   "meaning": "to dawn",
   "pos": "noun",
@@ -1820,7 +1830,7 @@
   "band": "A1"
  },
  {
-  "rank": 183,
+  "rank": 184,
   "word": "waren",
   "meaning": "to wander, to roam",
   "pos": "noun",
@@ -1830,7 +1840,7 @@
   "band": "A1"
  },
  {
-  "rank": 184,
+  "rank": 185,
   "word": "plaats",
   "meaning": "place, position",
   "pos": "noun",
@@ -1840,7 +1850,7 @@
   "band": "A1"
  },
  {
-  "rank": 185,
+  "rank": 186,
   "word": "krijgen",
   "meaning": "to get, to receive, to come into possession of (anything ranging from concrete to abstract inputs such as news, gift, punishment, et cetera)",
   "pos": "noun",
@@ -1850,7 +1860,7 @@
   "band": "A1"
  },
  {
-  "rank": 186,
+  "rank": 187,
   "word": "want",
   "meaning": "a coarse type of woolen fabric; anything made from it",
   "pos": "noun",
@@ -1860,9 +1870,9 @@
   "band": "A1"
  },
  {
-  "rank": 187,
+  "rank": 188,
   "word": "na",
-  "meaning": "close",
+  "meaning": "after",
   "pos": "adj",
   "ipa": "/naː/",
   "zipf": 6.21,
@@ -1870,9 +1880,9 @@
   "band": "A1"
  },
  {
-  "rank": 188,
+  "rank": 189,
   "word": "ons",
-  "meaning": "metric ounce (100 grams)",
+  "meaning": "our; first-person plural possessive determiner",
   "pos": "noun",
   "ipa": "/ɔns/",
   "zipf": 6.21,
@@ -1880,7 +1890,7 @@
   "band": "A1"
  },
  {
-  "rank": 189,
+  "rank": 190,
   "word": "staan",
   "meaning": "to stand, to be upright",
   "pos": "verb",
@@ -1890,9 +1900,9 @@
   "band": "A1"
  },
  {
-  "rank": 190,
+  "rank": 191,
   "word": "moeten",
-  "meaning": "to be necessary, to be required",
+  "meaning": "to have to, must",
   "pos": "verb",
   "ipa": "/ˈmutə(n)/",
   "zipf": 6.03,
@@ -1900,7 +1910,7 @@
   "band": "A1"
  },
  {
-  "rank": 191,
+  "rank": 192,
   "word": "heel",
   "meaning": "complete, full, whole",
   "pos": "verb",
@@ -1910,7 +1920,7 @@
   "band": "A1"
  },
  {
-  "rank": 192,
+  "rank": 193,
   "word": "toch",
   "meaning": "still, nevertheless, anyway",
   "pos": "adv",
@@ -1920,9 +1930,9 @@
   "band": "A1"
  },
  {
-  "rank": 193,
+  "rank": 194,
   "word": "hard",
-  "meaning": "hard, strong",
+  "meaning": "loud (of sound)",
   "pos": "verb",
   "ipa": "/ɦɑrt/",
   "zipf": 5.15,
@@ -1930,7 +1940,7 @@
   "band": "A1"
  },
  {
-  "rank": 194,
+  "rank": 195,
   "word": "staat",
   "meaning": "state (political entity)",
   "pos": "noun",
@@ -1940,7 +1950,7 @@
   "band": "A1"
  },
  {
-  "rank": 195,
+  "rank": 196,
   "word": "kom",
   "meaning": "bowl",
   "pos": "noun",
@@ -1950,7 +1960,7 @@
   "band": "A1"
  },
  {
-  "rank": 196,
+  "rank": 197,
   "word": "werk",
   "meaning": "work, labor",
   "pos": "noun",
@@ -1960,7 +1970,7 @@
   "band": "A1"
  },
  {
-  "rank": 197,
+  "rank": 198,
   "word": "punt",
   "meaning": "point (a position, place, or spot)",
   "pos": "noun",
@@ -1970,7 +1980,7 @@
   "band": "A1"
  },
  {
-  "rank": 198,
+  "rank": 199,
   "word": "alleen",
   "meaning": "alone, by oneself",
   "pos": "adj",
@@ -1980,7 +1990,7 @@
   "band": "A1"
  },
  {
-  "rank": 199,
+  "rank": 200,
   "word": "kop",
   "meaning": "cup (for drinking)",
   "pos": "noun",
@@ -1990,7 +2000,7 @@
   "band": "A1"
  },
  {
-  "rank": 200,
+  "rank": 201,
   "word": "me",
   "meaning": "myself; first-person singular reflexive pronoun",
   "pos": "pron",
@@ -2000,7 +2010,7 @@
   "band": "A1"
  },
  {
-  "rank": 201,
+  "rank": 202,
   "word": "toe",
   "meaning": "due for, ready for, in need of",
   "pos": "adv",
@@ -2010,7 +2020,7 @@
   "band": "A1"
  },
  {
-  "rank": 202,
+  "rank": 203,
   "word": "hun",
   "meaning": "their; third-person plural possessive determiner",
   "pos": "pron",
@@ -2020,7 +2030,7 @@
   "band": "A1"
  },
  {
-  "rank": 203,
+  "rank": 204,
   "word": "huis",
   "meaning": "a house, home; residence",
   "pos": "noun",
@@ -2030,7 +2040,7 @@
   "band": "A1"
  },
  {
-  "rank": 204,
+  "rank": 205,
   "word": "weet",
   "meaning": "awareness, knowledge",
   "pos": "noun",
@@ -2040,7 +2050,7 @@
   "band": "A1"
  },
  {
-  "rank": 205,
+  "rank": 206,
   "word": "worden",
   "meaning": "to become, to get, to grow, to turn",
   "pos": "verb",
@@ -2050,7 +2060,7 @@
   "band": "A1"
  },
  {
-  "rank": 206,
+  "rank": 207,
   "word": "zeker",
   "meaning": "certain, sure",
   "pos": "adj",
@@ -2060,7 +2070,7 @@
   "band": "A1"
  },
  {
-  "rank": 207,
+  "rank": 208,
   "word": "terug",
   "meaning": "backwards, back (in the opposite direction)",
   "pos": "adv",
@@ -2070,7 +2080,7 @@
   "band": "A1"
  },
  {
-  "rank": 208,
+  "rank": 209,
   "word": "onze",
   "meaning": "non-attributive form of ons; ours",
   "pos": "pron",
@@ -2080,7 +2090,7 @@
   "band": "A1"
  },
  {
-  "rank": 209,
+  "rank": 210,
   "word": "slag",
   "meaning": "a blow, knock, strike",
   "pos": "noun",
@@ -2090,7 +2100,7 @@
   "band": "A1"
  },
  {
-  "rank": 210,
+  "rank": 211,
   "word": "gelijk",
   "meaning": "right, justice",
   "pos": "noun",
@@ -2100,7 +2110,7 @@
   "band": "A1"
  },
  {
-  "rank": 211,
+  "rank": 212,
   "word": "zich",
   "meaning": "Third person singular and plural reflexive pronoun; himself, herself, itself, themselves, oneself",
   "pos": "pron",
@@ -2110,7 +2120,7 @@
   "band": "A1"
  },
  {
-  "rank": 212,
+  "rank": 213,
   "word": "houden",
   "meaning": "to keep, preserve",
   "pos": "verb",
@@ -2120,7 +2130,7 @@
   "band": "A1"
  },
  {
-  "rank": 213,
+  "rank": 214,
   "word": "top",
   "meaning": "top (uppermost part)",
   "pos": "noun",
@@ -2130,7 +2140,7 @@
   "band": "A1"
  },
  {
-  "rank": 214,
+  "rank": 215,
   "word": "en/of",
   "meaning": "and/or",
   "pos": "conj",
@@ -2140,7 +2150,7 @@
   "band": "A1"
  },
  {
-  "rank": 215,
+  "rank": 216,
   "word": "school",
   "meaning": "a school, educational institution that provides education, whether combined with research or not",
   "pos": "noun",
@@ -2150,7 +2160,7 @@
   "band": "A1"
  },
  {
-  "rank": 216,
+  "rank": 217,
   "word": "weg",
   "meaning": "way, road",
   "pos": "noun",
@@ -2160,7 +2170,7 @@
   "band": "A1"
  },
  {
-  "rank": 217,
+  "rank": 218,
   "word": "binnen",
   "meaning": "inside, indoors",
   "pos": "adj",
@@ -2170,7 +2180,7 @@
   "band": "A1"
  },
  {
-  "rank": 218,
+  "rank": 219,
   "word": "tegen",
   "meaning": "against",
   "pos": "prep",
@@ -2180,7 +2190,7 @@
   "band": "A1"
  },
  {
-  "rank": 219,
+  "rank": 220,
   "word": "lijn",
   "meaning": "a line",
   "pos": "noun",
@@ -2190,7 +2200,7 @@
   "band": "A1"
  },
  {
-  "rank": 220,
+  "rank": 221,
   "word": "zit",
   "meaning": "the act of sitting",
   "pos": "noun",
@@ -2200,7 +2210,7 @@
   "band": "A1"
  },
  {
-  "rank": 221,
+  "rank": 222,
   "word": "jongen",
   "meaning": "a boy, any male child",
   "pos": "noun",
@@ -2210,7 +2220,7 @@
   "band": "A1"
  },
  {
-  "rank": 222,
+  "rank": 223,
   "word": "jaar",
   "meaning": "year (the time it takes the Earth to circle the Sun; its equivalent on other planets)",
   "pos": "noun",
@@ -2220,7 +2230,7 @@
   "band": "A1"
  },
  {
-  "rank": 223,
+  "rank": 224,
   "word": "hoe",
   "meaning": "how",
   "pos": "adv",
@@ -2230,7 +2240,7 @@
   "band": "A1"
  },
  {
-  "rank": 224,
+  "rank": 225,
   "word": "ja",
   "meaning": "yes",
   "pos": "noun",
@@ -2240,7 +2250,7 @@
   "band": "A1"
  },
  {
-  "rank": 225,
+  "rank": 226,
   "word": "eerder",
   "meaning": "one who pays honor",
   "pos": "noun",
@@ -2250,7 +2260,7 @@
   "band": "A1"
  },
  {
-  "rank": 226,
+  "rank": 227,
   "word": "gewoon",
   "meaning": "regular, ordinary, usual",
   "pos": "adj",
@@ -2260,7 +2270,7 @@
   "band": "A1"
  },
  {
-  "rank": 227,
+  "rank": 228,
   "word": "lekker",
   "meaning": "leaker",
   "pos": "noun",
@@ -2270,7 +2280,7 @@
   "band": "A1"
  },
  {
-  "rank": 228,
+  "rank": 229,
   "word": "wil",
   "meaning": "will",
   "pos": "noun",
@@ -2280,7 +2290,7 @@
   "band": "A1"
  },
  {
-  "rank": 229,
+  "rank": 230,
   "word": "in en in",
   "meaning": "through and through, completely",
   "pos": "adv",
@@ -2290,7 +2300,7 @@
   "band": "A1"
  },
  {
-  "rank": 230,
+  "rank": 231,
   "word": "echt",
   "meaning": "the institution or bond of marriage; matrimony",
   "pos": "noun",
@@ -2300,7 +2310,7 @@
   "band": "A1"
  },
  {
-  "rank": 231,
+  "rank": 232,
   "word": "af",
   "meaning": "finished, done (when working on something)",
   "pos": "adj",
@@ -2310,7 +2320,7 @@
   "band": "A1"
  },
  {
-  "rank": 232,
+  "rank": 233,
   "word": "laat",
   "meaning": "serf",
   "pos": "noun",
@@ -2320,7 +2330,7 @@
   "band": "A1"
  },
  {
-  "rank": 233,
+  "rank": 234,
   "word": "druk",
   "meaning": "pressure",
   "pos": "noun",
@@ -2330,7 +2340,7 @@
   "band": "A1"
  },
  {
-  "rank": 234,
+  "rank": 235,
   "word": "nou",
   "meaning": "come on; modal particle indicating a certain degree of urgency or impatience on behalf of the speaker",
   "pos": "adv",
@@ -2340,7 +2350,7 @@
   "band": "A1"
  },
  {
-  "rank": 235,
+  "rank": 236,
   "word": "mee",
   "meaning": "able to follow",
   "pos": "adj",
@@ -2350,7 +2360,7 @@
   "band": "A1"
  },
  {
-  "rank": 236,
+  "rank": 237,
   "word": "val",
   "meaning": "a fall (act or event of falling)",
   "pos": "noun",
@@ -2360,7 +2370,7 @@
   "band": "A1"
  },
  {
-  "rank": 237,
+  "rank": 238,
   "word": "werken",
   "meaning": "to work, labour",
   "pos": "noun",
@@ -2370,7 +2380,7 @@
   "band": "A1"
  },
  {
-  "rank": 238,
+  "rank": 239,
   "word": "eigen",
   "meaning": "own, private (not shared)",
   "pos": "verb",
@@ -2380,7 +2390,7 @@
   "band": "A1"
  },
  {
-  "rank": 239,
+  "rank": 240,
   "word": "willen",
   "meaning": "to want, desire",
   "pos": "verb",
@@ -2390,7 +2400,7 @@
   "band": "A1"
  },
  {
-  "rank": 240,
+  "rank": 241,
   "word": "vraag",
   "meaning": "question, query",
   "pos": "noun",
@@ -2400,7 +2410,7 @@
   "band": "A1"
  },
  {
-  "rank": 241,
+  "rank": 242,
   "word": "spelen",
   "meaning": "an organised series of athletic or other entertaining competitive events, such as the Olympics or varied gladiatorial fights",
   "pos": "noun",
@@ -2410,7 +2420,7 @@
   "band": "A1"
  },
  {
-  "rank": 242,
+  "rank": 243,
   "word": "waard",
   "meaning": "an innkeeper, a publican",
   "pos": "noun",
@@ -2420,7 +2430,7 @@
   "band": "A1"
  },
  {
-  "rank": 243,
+  "rank": 244,
   "word": "aan het",
   "meaning": "Used other than figuratively or idiomatically: see aan, het",
   "pos": "particle",
@@ -2430,7 +2440,7 @@
   "band": "A1"
  },
  {
-  "rank": 244,
+  "rank": 245,
   "word": "recht",
   "meaning": "a right, competence, authority, privilege",
   "pos": "noun",
@@ -2440,7 +2450,7 @@
   "band": "A1"
  },
  {
-  "rank": 245,
+  "rank": 246,
   "word": "hier",
   "meaning": "here",
   "pos": "adv",
@@ -2450,7 +2460,7 @@
   "band": "A1"
  },
  {
-  "rank": 246,
+  "rank": 247,
   "word": "iets",
   "meaning": "something",
   "pos": "pron",
@@ -2460,7 +2470,7 @@
   "band": "A1"
  },
  {
-  "rank": 247,
+  "rank": 248,
   "word": "leven",
   "meaning": "life (act or duration of living)",
   "pos": "noun",
@@ -2470,7 +2480,7 @@
   "band": "A1"
  },
  {
-  "rank": 248,
+  "rank": 249,
   "word": "nemen",
   "meaning": "to take, to take hold of, to grasp or grab",
   "pos": "verb",
@@ -2480,7 +2490,7 @@
   "band": "A1"
  },
  {
-  "rank": 249,
+  "rank": 250,
   "word": "je van het",
   "meaning": "the bee's knees, the very best, fantastic",
   "pos": "phrase",
@@ -2490,7 +2500,7 @@
   "band": "A1"
  },
  {
-  "rank": 250,
+  "rank": 251,
   "word": "vrij",
   "meaning": "free; not imprisoned or enslaved",
   "pos": "verb",
@@ -2500,9 +2510,9 @@
   "band": "A1"
  },
  {
-  "rank": 251,
+  "rank": 252,
   "word": "min",
-  "meaning": "minus sign",
+  "meaning": "minus (disadvantage)",
   "pos": "noun",
   "ipa": "/mɪn/",
   "zipf": 4.75,
@@ -2510,7 +2520,7 @@
   "band": "A1"
  },
  {
-  "rank": 252,
+  "rank": 253,
   "word": "week",
   "meaning": "week, period of seven days",
   "pos": "noun",
@@ -2520,7 +2530,7 @@
   "band": "A1"
  },
  {
-  "rank": 253,
+  "rank": 254,
   "word": "jullie",
   "meaning": "you; second-person plural subjective personal pronoun",
   "pos": "pron",
@@ -2530,7 +2540,7 @@
   "band": "A1"
  },
  {
-  "rank": 254,
+  "rank": 255,
   "word": "stuk",
   "meaning": "a piece, part, share (of a whole)",
   "pos": "noun",
@@ -2540,7 +2550,7 @@
   "band": "A1"
  },
  {
-  "rank": 255,
+  "rank": 256,
   "word": "weten",
   "meaning": "to know (knowledge), to be aware of something",
   "pos": "verb",
@@ -2550,7 +2560,7 @@
   "band": "A1"
  },
  {
-  "rank": 256,
+  "rank": 257,
   "word": "zitten",
   "meaning": "to sit",
   "pos": "verb",
@@ -2560,7 +2570,7 @@
   "band": "A1"
  },
  {
-  "rank": 257,
+  "rank": 258,
   "word": "een voor een",
   "meaning": "one by one",
   "pos": "adv",
@@ -2570,9 +2580,9 @@
   "band": "A1"
  },
  {
-  "rank": 258,
+  "rank": 259,
   "word": "dicht",
-  "meaning": "poem",
+  "meaning": "thick, tight, dense",
   "pos": "noun",
   "ipa": "/dɪxt/",
   "zipf": 5.05,
@@ -2580,7 +2590,7 @@
   "band": "A1"
  },
  {
-  "rank": 259,
+  "rank": 260,
   "word": "beter",
   "meaning": "comparative degree of goed; better",
   "pos": "verb",
@@ -2590,7 +2600,7 @@
   "band": "A1"
  },
  {
-  "rank": 260,
+  "rank": 261,
   "word": "erg",
   "meaning": "serious, considerable, severe",
   "pos": "adj",
@@ -2600,7 +2610,7 @@
   "band": "A1"
  },
  {
-  "rank": 261,
+  "rank": 262,
   "word": "bank",
   "meaning": "bench",
   "pos": "noun",
@@ -2610,7 +2620,7 @@
   "band": "A1"
  },
  {
-  "rank": 262,
+  "rank": 263,
   "word": "om te",
   "meaning": "to",
   "pos": "particle",
@@ -2620,7 +2630,7 @@
   "band": "A1"
  },
  {
-  "rank": 263,
+  "rank": 264,
   "word": "man",
   "meaning": "man, human male, either adult or age-irrespective",
   "pos": "noun",
@@ -2630,7 +2640,7 @@
   "band": "A1"
  },
  {
-  "rank": 264,
+  "rank": 265,
   "word": "klaar",
   "meaning": "ready",
   "pos": "adj",
@@ -2640,7 +2650,7 @@
   "band": "A1"
  },
  {
-  "rank": 265,
+  "rank": 266,
   "word": "er zijn",
   "meaning": "there to be (there is, there are, etc.)",
   "pos": "verb",
@@ -2650,9 +2660,9 @@
   "band": "A1"
  },
  {
-  "rank": 266,
+  "rank": 267,
   "word": "anders",
-  "meaning": "predicative of ander",
+  "meaning": "otherwise",
   "pos": "adj",
   "ipa": "/ˈɑn.dərs/",
   "zipf": 5.67,
@@ -2660,9 +2670,9 @@
   "band": "A1"
  },
  {
-  "rank": 267,
+  "rank": 268,
   "word": "zin",
-  "meaning": "meaning, significance",
+  "meaning": "sense (means of perceiving reality)",
   "pos": "noun",
   "ipa": "/zɪn/",
   "zipf": 5.17,
@@ -2670,7 +2680,7 @@
   "band": "A1"
  },
  {
-  "rank": 268,
+  "rank": 269,
   "word": "uur",
   "meaning": "an hour, a period of time",
   "pos": "noun",
@@ -2680,7 +2690,7 @@
   "band": "A1"
  },
  {
-  "rank": 269,
+  "rank": 270,
   "word": "beetje",
   "meaning": "a bit, a little bit, somewhat",
   "pos": "noun",
@@ -2690,9 +2700,9 @@
   "band": "A1"
  },
  {
-  "rank": 270,
+  "rank": 271,
   "word": "later",
-  "meaning": "having to do with or occurring in the future",
+  "meaning": "later",
   "pos": "adj",
   "ipa": "/ˈlaː.tər/",
   "zipf": 5.49,
@@ -2700,9 +2710,9 @@
   "band": "A1"
  },
  {
-  "rank": 271,
+  "rank": 272,
   "word": "steeds",
-  "meaning": "always, continually, all the time, every time, each time",
+  "meaning": "increasingly, more and more, ever (+ comparative)",
   "pos": "adj",
   "ipa": "/steːts/",
   "zipf": 5.82,
@@ -2710,7 +2720,7 @@
   "band": "A1"
  },
  {
-  "rank": 272,
+  "rank": 273,
   "word": "vragen",
   "meaning": "to ask (a question)",
   "pos": "noun",
@@ -2720,7 +2730,7 @@
   "band": "A1"
  },
  {
-  "rank": 273,
+  "rank": 274,
   "word": "links",
   "meaning": "the left, the left side or tendency, especially in politics and any ideology",
   "pos": "noun",
@@ -2730,7 +2740,7 @@
   "band": "A1"
  },
  {
-  "rank": 274,
+  "rank": 275,
   "word": "keer",
   "meaning": "time (occasion, instance)",
   "pos": "noun",
@@ -2740,7 +2750,7 @@
   "band": "A1"
  },
  {
-  "rank": 275,
+  "rank": 276,
   "word": "alle",
   "meaning": "all (every individual of the given class)",
   "pos": "pron",
@@ -2750,7 +2760,7 @@
   "band": "A1"
  },
  {
-  "rank": 276,
+  "rank": 277,
   "word": "tijd",
   "meaning": "time",
   "pos": "noun",
@@ -2760,9 +2770,9 @@
   "band": "A1"
  },
  {
-  "rank": 277,
+  "rank": 278,
   "word": "zoals",
-  "meaning": "like, such as",
+  "meaning": "as, just like, just as, the way that",
   "pos": "conj",
   "ipa": "/zoːˈɑls/",
   "zipf": 5.97,
@@ -2770,7 +2780,7 @@
   "band": "A1"
  },
  {
-  "rank": 278,
+  "rank": 279,
   "word": "als in",
   "meaning": "as in",
   "pos": "adv",
@@ -2780,7 +2790,7 @@
   "band": "A1"
  },
  {
-  "rank": 279,
+  "rank": 280,
   "word": "leger",
   "meaning": "army, armed forces",
   "pos": "noun",
@@ -2790,7 +2800,7 @@
   "band": "A1"
  },
  {
-  "rank": 280,
+  "rank": 281,
   "word": "hen",
   "meaning": "hen, female chicken; female of a related species",
   "pos": "noun",
@@ -2800,7 +2810,7 @@
   "band": "A1"
  },
  {
-  "rank": 281,
+  "rank": 282,
   "word": "vier",
   "meaning": "a sign for or representation of four",
   "pos": "noun",
@@ -2810,7 +2820,7 @@
   "band": "A1"
  },
  {
-  "rank": 282,
+  "rank": 283,
   "word": "sterk",
   "meaning": "strong, having physical strength",
   "pos": "noun",
@@ -2820,7 +2830,7 @@
   "band": "A1"
  },
  {
-  "rank": 283,
+  "rank": 284,
   "word": "op is op",
   "meaning": "while supplies last",
   "pos": "phrase",
@@ -2830,7 +2840,7 @@
   "band": "A1"
  },
  {
-  "rank": 284,
+  "rank": 285,
   "word": "prijs",
   "meaning": "price, fare, charge",
   "pos": "noun",
@@ -2840,7 +2850,7 @@
   "band": "A1"
  },
  {
-  "rank": 285,
+  "rank": 286,
   "word": "dus",
   "meaning": "so, therefore, thus, ergo",
   "pos": "adv",
@@ -2850,7 +2860,7 @@
   "band": "A1"
  },
  {
-  "rank": 286,
+  "rank": 287,
   "word": "geld",
   "meaning": "money",
   "pos": "noun",
@@ -2860,9 +2870,9 @@
   "band": "A1"
  },
  {
-  "rank": 287,
+  "rank": 288,
   "word": "voorkomen",
-  "meaning": "appearance, look",
+  "meaning": "to prevent; to avert",
   "pos": "noun",
   "ipa": "/ˈvoːrˌkoːmə(n)/",
   "zipf": 5.11,
@@ -2870,7 +2880,7 @@
   "band": "A1"
  },
  {
-  "rank": 288,
+  "rank": 289,
   "word": "video",
   "meaning": "video, movie (regardless of medium)",
   "pos": "noun",
@@ -2880,7 +2890,7 @@
   "band": "A1"
  },
  {
-  "rank": 289,
+  "rank": 290,
   "word": "leuk",
   "meaning": "nice, pleasant, enjoyable",
   "pos": "adj",
@@ -2890,7 +2900,7 @@
   "band": "A1"
  },
  {
-  "rank": 290,
+  "rank": 291,
   "word": "link",
   "meaning": "physical connection, as in a hardware cable",
   "pos": "noun",
@@ -2900,7 +2910,7 @@
   "band": "A1"
  },
  {
-  "rank": 291,
+  "rank": 292,
   "word": "zelf",
   "meaning": "self",
   "pos": "noun",
@@ -2910,7 +2920,7 @@
   "band": "A1"
  },
  {
-  "rank": 292,
+  "rank": 293,
   "word": "landen",
   "meaning": "to (arrive on) land from the air (for birds, airplanes)",
   "pos": "noun",
@@ -2920,7 +2930,7 @@
   "band": "A1"
  },
  {
-  "rank": 293,
+  "rank": 294,
   "word": "reden",
   "meaning": "reason, ground",
   "pos": "noun",
@@ -2930,7 +2940,7 @@
   "band": "A1"
  },
  {
-  "rank": 294,
+  "rank": 295,
   "word": "groot",
   "meaning": "big, large, great",
   "pos": "adj",
@@ -2940,9 +2950,9 @@
   "band": "A1"
  },
  {
-  "rank": 295,
+  "rank": 296,
   "word": "vlak",
-  "meaning": "a plain, a flat surface",
+  "meaning": "flat, plane",
   "pos": "noun",
   "ipa": "/vlɑk/",
   "zipf": 4.92,
@@ -2950,7 +2960,7 @@
   "band": "A1"
  },
  {
-  "rank": 296,
+  "rank": 297,
   "word": "aantal",
   "meaning": "countable amount",
   "pos": "noun",
@@ -2960,7 +2970,7 @@
   "band": "A1"
  },
  {
-  "rank": 297,
+  "rank": 298,
   "word": "geven",
   "meaning": "to give",
   "pos": "verb",
@@ -2970,7 +2980,7 @@
   "band": "A1"
  },
  {
-  "rank": 298,
+  "rank": 299,
   "word": "vinden",
   "meaning": "to find (after searching)",
   "pos": "verb",
@@ -2980,7 +2990,7 @@
   "band": "A1"
  },
  {
-  "rank": 299,
+  "rank": 300,
   "word": "mij",
   "meaning": "me; first-person singular objective personal pronoun",
   "pos": "pron",
@@ -2990,7 +3000,7 @@
   "band": "A1"
  },
  {
-  "rank": 300,
+  "rank": 301,
   "word": "hem",
   "meaning": "him; third-person singular masculine objective personal pronoun",
   "pos": "pron",
@@ -3000,7 +3010,7 @@
   "band": "A1"
  },
  {
-  "rank": 301,
+  "rank": 302,
   "word": "best",
   "meaning": "superlative degree of goed; best",
   "pos": "noun",
@@ -3010,7 +3020,7 @@
   "band": "A1"
  },
  {
-  "rank": 302,
+  "rank": 303,
   "word": "daarom",
   "meaning": "therefore, so, that's why",
   "pos": "adv",
@@ -3020,7 +3030,7 @@
   "band": "A1"
  },
  {
-  "rank": 303,
+  "rank": 304,
   "word": "dood",
   "meaning": "death",
   "pos": "noun",
@@ -3030,7 +3040,7 @@
   "band": "A1"
  },
  {
-  "rank": 304,
+  "rank": 305,
   "word": "tussen",
   "meaning": "between",
   "pos": "prep",
@@ -3040,9 +3050,9 @@
   "band": "A1"
  },
  {
-  "rank": 305,
+  "rank": 306,
   "word": "bus",
-  "meaning": "a container, a box, a tin",
+  "meaning": "bus, omnibus (vehicle)",
   "pos": "noun",
   "ipa": "/bʏs/",
   "zipf": 4.9,
@@ -3050,7 +3060,7 @@
   "band": "A1"
  },
  {
-  "rank": 306,
+  "rank": 307,
   "word": "deel",
   "meaning": "part, piece",
   "pos": "noun",
@@ -3060,7 +3070,7 @@
   "band": "A1"
  },
  {
-  "rank": 307,
+  "rank": 308,
   "word": "nodig",
   "meaning": "necessary, needed",
   "pos": "adj",
@@ -3070,7 +3080,7 @@
   "band": "A1"
  },
  {
-  "rank": 308,
+  "rank": 309,
   "word": "oog",
   "meaning": "eye",
   "pos": "noun",
@@ -3080,7 +3090,7 @@
   "band": "A1"
  },
  {
-  "rank": 309,
+  "rank": 310,
   "word": "zien",
   "meaning": "to see",
   "pos": "verb",
@@ -3090,9 +3100,9 @@
   "band": "A1"
  },
  {
-  "rank": 310,
+  "rank": 311,
   "word": "jouw",
-  "meaning": "a jeer",
+  "meaning": "your; second-person singular possessive determiner",
   "pos": "noun",
   "ipa": "/jɑu̯/",
   "zipf": 5.55,
@@ -3100,7 +3110,7 @@
   "band": "A1"
  },
  {
-  "rank": 311,
+  "rank": 312,
   "word": "baan",
   "meaning": "a road, way, path",
   "pos": "noun",
@@ -3110,7 +3120,7 @@
   "band": "A1"
  },
  {
-  "rank": 312,
+  "rank": 313,
   "word": "ruim",
   "meaning": "the wide, open space",
   "pos": "noun",
@@ -3120,7 +3130,7 @@
   "band": "A1"
  },
  {
-  "rank": 313,
+  "rank": 314,
   "word": "waarom",
   "meaning": "why, because of what",
   "pos": "adv",
@@ -3130,7 +3140,7 @@
   "band": "A1"
  },
  {
-  "rank": 314,
+  "rank": 315,
   "word": "bewijs",
   "meaning": "proof",
   "pos": "noun",
@@ -3140,7 +3150,7 @@
   "band": "A1"
  },
  {
-  "rank": 315,
+  "rank": 316,
   "word": "allemaal",
   "meaning": "all, everyone",
   "pos": "pron",
@@ -3150,7 +3160,7 @@
   "band": "A1"
  },
  {
-  "rank": 316,
+  "rank": 317,
   "word": "lid",
   "meaning": "member (of a group)",
   "pos": "noun",
@@ -3160,7 +3170,7 @@
   "band": "A1"
  },
  {
-  "rank": 317,
+  "rank": 318,
   "word": "zat",
   "meaning": "having had enough, having had it up to here, fed up",
   "pos": "verb",
@@ -3170,7 +3180,7 @@
   "band": "A1"
  },
  {
-  "rank": 318,
+  "rank": 319,
   "word": "zetten",
   "meaning": "to set, to put",
   "pos": "noun",
@@ -3180,7 +3190,7 @@
   "band": "A1"
  },
  {
-  "rank": 319,
+  "rank": 320,
   "word": "kanten",
   "meaning": "made or consisting of lace",
   "pos": "noun",
@@ -3190,7 +3200,7 @@
   "band": "A1"
  },
  {
-  "rank": 320,
+  "rank": 321,
   "word": "via",
   "meaning": "via, through, by way of",
   "pos": "prep",
@@ -3200,7 +3210,7 @@
   "band": "A1"
  },
  {
-  "rank": 321,
+  "rank": 322,
   "word": "gemaakt",
   "meaning": "artificial, unnatural",
   "pos": "verb",
@@ -3210,7 +3220,7 @@
   "band": "A1"
  },
  {
-  "rank": 322,
+  "rank": 323,
   "word": "zullen",
   "meaning": "used to form the conditional mood of a verb, together with an infinitive; would",
   "pos": "verb",
@@ -3220,7 +3230,7 @@
   "band": "A1"
  },
  {
-  "rank": 323,
+  "rank": 324,
   "word": "eerste",
   "meaning": "first",
   "pos": "adj",
@@ -3230,7 +3240,7 @@
   "band": "A1"
  },
  {
-  "rank": 324,
+  "rank": 325,
   "word": "wij",
   "meaning": "we; first-person plural subjective personal pronoun",
   "pos": "pron",
@@ -3240,7 +3250,7 @@
   "band": "A1"
  },
  {
-  "rank": 325,
+  "rank": 326,
   "word": "water",
   "meaning": "water (H₂O)",
   "pos": "noun",
@@ -3250,7 +3260,7 @@
   "band": "A1"
  },
  {
-  "rank": 326,
+  "rank": 327,
   "word": "uit-en-te-na",
   "meaning": "comprehensively, thoroughly",
   "pos": "adv",
@@ -3260,9 +3270,9 @@
   "band": "A1"
  },
  {
-  "rank": 327,
+  "rank": 328,
   "word": "mogen",
-  "meaning": "to be allowed",
+  "meaning": "may, can, be allowed to",
   "pos": "verb",
   "ipa": "/ˈmoːɣə(n)/",
   "zipf": 5.34,
@@ -3270,7 +3280,7 @@
   "band": "A1"
  },
  {
-  "rank": 328,
+  "rank": 329,
   "word": "open",
   "meaning": "open, not closed",
   "pos": "verb",
@@ -3280,7 +3290,7 @@
   "band": "A1"
  },
  {
-  "rank": 329,
+  "rank": 330,
   "word": "bak",
   "meaning": "container, such as a box, a crate, a tray or a tub",
   "pos": "noun",
@@ -3290,7 +3300,7 @@
   "band": "A1"
  },
  {
-  "rank": 330,
+  "rank": 331,
   "word": "leek",
   "meaning": "layman, non-clergyman",
   "pos": "noun",
@@ -3300,7 +3310,7 @@
   "band": "A1"
  },
  {
-  "rank": 331,
+  "rank": 332,
   "word": "blijven",
   "meaning": "to stay, to remain",
   "pos": "verb",
@@ -3310,9 +3320,9 @@
   "band": "A1"
  },
  {
-  "rank": 332,
+  "rank": 333,
   "word": "verder",
-  "meaning": "comparative degree of ver",
+  "meaning": "further",
   "pos": "adj",
   "ipa": "/ˈvɛr.dər/",
   "zipf": 5.66,
@@ -3320,7 +3330,7 @@
   "band": "A1"
  },
  {
-  "rank": 333,
+  "rank": 334,
   "word": "vallen",
   "meaning": "to fall, to tumble",
   "pos": "noun",
@@ -3330,7 +3340,7 @@
   "band": "A1"
  },
  {
-  "rank": 334,
+  "rank": 335,
   "word": "geslacht",
   "meaning": "sex",
   "pos": "noun",
@@ -3340,7 +3350,7 @@
   "band": "A1"
  },
  {
-  "rank": 335,
+  "rank": 336,
   "word": "langs",
   "meaning": "along, alongside (implying motion)",
   "pos": "adj",
@@ -3350,7 +3360,7 @@
   "band": "A1"
  },
  {
-  "rank": 336,
+  "rank": 337,
   "word": "eerst",
   "meaning": "first, at first, before something else",
   "pos": "adv",
@@ -3360,7 +3370,7 @@
   "band": "A1"
  },
  {
-  "rank": 337,
+  "rank": 338,
   "word": "den",
   "meaning": "pine, pine tree",
   "pos": "noun",
@@ -3370,7 +3380,7 @@
   "band": "A1"
  },
  {
-  "rank": 338,
+  "rank": 339,
   "word": "gebruiken",
   "meaning": "to use",
   "pos": "noun",
@@ -3380,7 +3390,7 @@
   "band": "A1"
  },
  {
-  "rank": 339,
+  "rank": 340,
   "word": "wagen",
   "meaning": "a wagon, carriage",
   "pos": "noun",
@@ -3390,7 +3400,7 @@
   "band": "A1"
  },
  {
-  "rank": 340,
+  "rank": 341,
   "word": "wat een",
   "meaning": "what a, such a",
   "pos": "phrase",
@@ -3400,9 +3410,9 @@
   "band": "A1"
  },
  {
-  "rank": 341,
+  "rank": 342,
   "word": "stem",
-  "meaning": "voice, sound made by the mouth using airflow",
+  "meaning": "vote",
   "pos": "noun",
   "ipa": "/stɛm/",
   "zipf": 5.13,
@@ -3410,7 +3420,7 @@
   "band": "A1"
  },
  {
-  "rank": 342,
+  "rank": 343,
   "word": "dan ook",
   "meaning": "any, ever (as in anywhere, wherever and suchlike)",
   "pos": "phrase",
@@ -3420,7 +3430,7 @@
   "band": "A1"
  },
  {
-  "rank": 343,
+  "rank": 344,
   "word": "band",
   "meaning": "bond, connection, relationship, liaison, tie (attachment, as in a relation)",
   "pos": "noun",
@@ -3430,7 +3440,7 @@
   "band": "A1"
  },
  {
-  "rank": 344,
+  "rank": 345,
   "word": "iemand",
   "meaning": "someone",
   "pos": "pron",
@@ -3440,7 +3450,7 @@
   "band": "A1"
  },
  {
-  "rank": 345,
+  "rank": 346,
   "word": "wilde",
   "meaning": "savage, uncivilized person",
   "pos": "noun",
@@ -3450,7 +3460,7 @@
   "band": "A1"
  },
  {
-  "rank": 346,
+  "rank": 347,
   "word": "die voor je",
   "meaning": "take that!",
   "pos": "intj",
@@ -3460,7 +3470,7 @@
   "band": "A1"
  },
  {
-  "rank": 347,
+  "rank": 348,
   "word": "paar",
   "meaning": "pair, couple",
   "pos": "noun",
@@ -3470,7 +3480,7 @@
   "band": "A1"
  },
  {
-  "rank": 348,
+  "rank": 349,
   "word": "omdat",
   "meaning": "because",
   "pos": "conj",
@@ -3480,7 +3490,7 @@
   "band": "A1"
  },
  {
-  "rank": 349,
+  "rank": 350,
   "word": "kamer",
   "meaning": "a room, physical chamber in a building",
   "pos": "noun",
@@ -3490,7 +3500,7 @@
   "band": "A1"
  },
  {
-  "rank": 350,
+  "rank": 351,
   "word": "doe",
   "meaning": "a festival of song and dance organised and performed by and for enslaved people",
   "pos": "noun",
@@ -3500,7 +3510,7 @@
   "band": "A1"
  },
  {
-  "rank": 351,
+  "rank": 352,
   "word": "vormen",
   "meaning": "to form, mold",
   "pos": "noun",
@@ -3510,9 +3520,9 @@
   "band": "A1"
  },
  {
-  "rank": 352,
+  "rank": 353,
   "word": "vaak",
-  "meaning": "sleepiness",
+  "meaning": "often",
   "pos": "noun",
   "ipa": "/vaːk/",
   "zipf": 5.6,
@@ -3520,9 +3530,9 @@
   "band": "A1"
  },
  {
-  "rank": 353,
+  "rank": 354,
   "word": "zak",
-  "meaning": "sack or sack-like container, such as a bag, sachet, pouch",
+  "meaning": "a pocket",
   "pos": "noun",
   "ipa": "/zɑk/",
   "zipf": 4.6,
@@ -3530,7 +3540,7 @@
   "band": "A1"
  },
  {
-  "rank": 354,
+  "rank": 355,
   "word": "ooit",
   "meaning": "sometime (in the future), someday, at some point",
   "pos": "adv",
@@ -3540,7 +3550,7 @@
   "band": "A1"
  },
  {
-  "rank": 355,
+  "rank": 356,
   "word": "post",
   "meaning": "mail",
   "pos": "noun",
@@ -3550,9 +3560,9 @@
   "band": "A1"
  },
  {
-  "rank": 356,
+  "rank": 357,
   "word": "juist",
-  "meaning": "right, correct",
+  "meaning": "just",
   "pos": "adj",
   "ipa": "/jœy̯st/",
   "zipf": 5.26,
@@ -3560,7 +3570,7 @@
   "band": "A1"
  },
  {
-  "rank": 357,
+  "rank": 358,
   "word": "kant",
   "meaning": "side, face (of an object)",
   "pos": "noun",
@@ -3570,7 +3580,7 @@
   "band": "A1"
  },
  {
-  "rank": 358,
+  "rank": 359,
   "word": "en of",
   "meaning": "you bet",
   "pos": "intj",
@@ -3580,7 +3590,7 @@
   "band": "A1"
  },
  {
-  "rank": 359,
+  "rank": 360,
   "word": "natuurlijk",
   "meaning": "natural",
   "pos": "adj",
@@ -3590,7 +3600,7 @@
   "band": "A1"
  },
  {
-  "rank": 360,
+  "rank": 361,
   "word": "zo'n",
   "meaning": "such a",
   "pos": "det",
@@ -3600,7 +3610,7 @@
   "band": "A1"
  },
  {
-  "rank": 361,
+  "rank": 362,
   "word": "artikel",
   "meaning": "article (report)",
   "pos": "noun",
@@ -3610,7 +3620,7 @@
   "band": "A1"
  },
  {
-  "rank": 362,
+  "rank": 363,
   "word": "gebied",
   "meaning": "area, region",
   "pos": "noun",
@@ -3620,7 +3630,7 @@
   "band": "A1"
  },
  {
-  "rank": 363,
+  "rank": 364,
   "word": "last",
   "meaning": "load, weight",
   "pos": "noun",
@@ -3630,7 +3640,7 @@
   "band": "A1"
  },
  {
-  "rank": 364,
+  "rank": 365,
   "word": "tijdens",
   "meaning": "during",
   "pos": "prep",
@@ -3640,7 +3650,7 @@
   "band": "A1"
  },
  {
-  "rank": 365,
+  "rank": 366,
   "word": "leren",
   "meaning": "to learn, to study",
   "pos": "noun",
@@ -3650,7 +3660,7 @@
   "band": "A1"
  },
  {
-  "rank": 366,
+  "rank": 367,
   "word": "rij",
   "meaning": "row, line",
   "pos": "noun",
@@ -3660,7 +3670,7 @@
   "band": "A1"
  },
  {
-  "rank": 367,
+  "rank": 368,
   "word": "snel",
   "meaning": "fast, quick, rapid",
   "pos": "verb",
@@ -3670,7 +3680,7 @@
   "band": "A1"
  },
  {
-  "rank": 368,
+  "rank": 369,
   "word": "altijd",
   "meaning": "always",
   "pos": "adv",
@@ -3680,7 +3690,7 @@
   "band": "A1"
  },
  {
-  "rank": 369,
+  "rank": 370,
   "word": "der",
   "meaning": "there",
   "pos": "article",
@@ -3690,7 +3700,7 @@
   "band": "A1"
  },
  {
-  "rank": 370,
+  "rank": 371,
   "word": "vanaf",
   "meaning": "starting from, from onwards, as of, as from",
   "pos": "prep",
@@ -3700,7 +3710,7 @@
   "band": "A1"
  },
  {
-  "rank": 371,
+  "rank": 372,
   "word": "vrouw",
   "meaning": "woman",
   "pos": "noun",
@@ -3710,7 +3720,7 @@
   "band": "A1"
  },
  {
-  "rank": 372,
+  "rank": 373,
   "word": "bedrijf",
   "meaning": "business, economic activity",
   "pos": "noun",
@@ -3720,7 +3730,7 @@
   "band": "A1"
  },
  {
-  "rank": 373,
+  "rank": 374,
   "word": "gelukkig",
   "meaning": "happy; generally in life. For momentarily, see blij",
   "pos": "adj",
@@ -3730,7 +3740,7 @@
   "band": "A1"
  },
  {
-  "rank": 374,
+  "rank": 375,
   "word": "lichaam",
   "meaning": "body",
   "pos": "noun",
@@ -3740,9 +3750,9 @@
   "band": "A1"
  },
  {
-  "rank": 375,
+  "rank": 376,
   "word": "stellen",
-  "meaning": "to position; place",
+  "meaning": "to suppose (commonly as an imperative and followed by a clause beginning with dat)",
   "pos": "noun",
   "ipa": "/ˈstɛlə(n)/",
   "zipf": 5.23,
@@ -3750,7 +3760,7 @@
   "band": "A1"
  },
  {
-  "rank": 376,
+  "rank": 377,
   "word": "wat voor",
   "meaning": "what kind of",
   "pos": "phrase",
@@ -3760,7 +3770,7 @@
   "band": "A1"
  },
  {
-  "rank": 377,
+  "rank": 378,
   "word": "stemmen",
   "meaning": "to vote (to cast a vote)",
   "pos": "noun",
@@ -3770,7 +3780,7 @@
   "band": "A1"
  },
  {
-  "rank": 378,
+  "rank": 379,
   "word": "meester",
   "meaning": "a master, boss, superior",
   "pos": "noun",
@@ -3780,7 +3790,7 @@
   "band": "A1"
  },
  {
-  "rank": 379,
+  "rank": 380,
   "word": "doet",
   "meaning": "obsolete spelling of dood",
   "pos": "noun",
@@ -3790,7 +3800,7 @@
   "band": "A1"
  },
  {
-  "rank": 380,
+  "rank": 381,
   "word": "rol",
   "meaning": "role, function (as in actions or tasks that a person or a group is expected to perform)",
   "pos": "noun",
@@ -3800,7 +3810,7 @@
   "band": "A1"
  },
  {
-  "rank": 381,
+  "rank": 382,
   "word": "als ook",
   "meaning": "as well as",
   "pos": "conj",
@@ -3810,7 +3820,7 @@
   "band": "A1"
  },
  {
-  "rank": 382,
+  "rank": 383,
   "word": "dit en dat",
   "meaning": "this and that",
   "pos": "pron",
@@ -3820,7 +3830,7 @@
   "band": "A1"
  },
  {
-  "rank": 383,
+  "rank": 384,
   "word": "stoel",
   "meaning": "a chair, a piece of furniture used for sitting, normally portable and having four legs",
   "pos": "noun",
@@ -3830,7 +3840,7 @@
   "band": "A1"
  },
  {
-  "rank": 384,
+  "rank": 385,
   "word": "zeggen",
   "meaning": "to say, tell",
   "pos": "noun",
@@ -3840,7 +3850,7 @@
   "band": "A1"
  },
  {
-  "rank": 385,
+  "rank": 386,
   "word": "tot en met",
   "meaning": "up to and including",
   "pos": "prep",
@@ -3850,7 +3860,7 @@
   "band": "A1"
  },
  {
-  "rank": 386,
+  "rank": 387,
   "word": "ander",
   "meaning": "other",
   "pos": "adj",
@@ -3860,7 +3870,7 @@
   "band": "A1"
  },
  {
-  "rank": 387,
+  "rank": 388,
   "word": "naast",
   "meaning": "beside, next to",
   "pos": "verb",
@@ -3870,7 +3880,7 @@
   "band": "A1"
  },
  {
-  "rank": 388,
+  "rank": 389,
   "word": "slaan",
   "meaning": "to hit, to slap",
   "pos": "verb",
@@ -3880,7 +3890,7 @@
   "band": "A1"
  },
  {
-  "rank": 389,
+  "rank": 390,
   "word": "voeren",
   "meaning": "to guide, lead",
   "pos": "verb",
@@ -3890,7 +3900,7 @@
   "band": "A1"
  },
  {
-  "rank": 390,
+  "rank": 391,
   "word": "om en om",
   "meaning": "taking turns, alternatingly",
   "pos": "adv",
@@ -3900,7 +3910,7 @@
   "band": "A1"
  },
  {
-  "rank": 391,
+  "rank": 392,
   "word": "hoofd",
   "meaning": "head",
   "pos": "noun",
@@ -3910,7 +3920,7 @@
   "band": "A1"
  },
  {
-  "rank": 392,
+  "rank": 393,
   "word": "zorg",
   "meaning": "care",
   "pos": "noun",
@@ -3920,7 +3930,7 @@
   "band": "A1"
  },
  {
-  "rank": 393,
+  "rank": 394,
   "word": "rijk",
   "meaning": "a realm, kingdom ruled by a monarch",
   "pos": "noun",
@@ -3930,7 +3940,7 @@
   "band": "A1"
  },
  {
-  "rank": 394,
+  "rank": 395,
   "word": "naam",
   "meaning": "name",
   "pos": "noun",
@@ -3940,9 +3950,9 @@
   "band": "A1"
  },
  {
-  "rank": 395,
+  "rank": 396,
   "word": "buiten",
-  "meaning": "a mansion and its surrounding estate in the countryside",
+  "meaning": "outside",
   "pos": "noun",
   "ipa": "/ˈbœy̯.tə(n)/",
   "zipf": 5.52,
@@ -3950,7 +3960,7 @@
   "band": "A1"
  },
  {
-  "rank": 396,
+  "rank": 397,
   "word": "geleden",
   "meaning": "ago",
   "pos": "noun",
@@ -3960,7 +3970,7 @@
   "band": "A1"
  },
  {
-  "rank": 397,
+  "rank": 398,
   "word": "tot aan",
   "meaning": "up to",
   "pos": "prep",
@@ -3970,7 +3980,7 @@
   "band": "A1"
  },
  {
-  "rank": 398,
+  "rank": 399,
   "word": "dank",
   "meaning": "gratitude, thanks",
   "pos": "noun",
@@ -3980,7 +3990,7 @@
   "band": "A1"
  },
  {
-  "rank": 399,
+  "rank": 400,
   "word": "hoor",
   "meaning": "only used in hoor en wederhoor",
   "pos": "noun",
@@ -3990,17 +4000,17 @@
   "band": "A1"
  },
  {
-  "rank": 400,
+  "rank": 401,
   "word": "bleek",
   "meaning": "bleach (chemical used for bleaching)",
   "pos": "noun",
   "ipa": "/bleːk/",
   "zipf": 4.85,
   "score": 113.3,
-  "band": "A1"
+  "band": "A2"
  },
  {
-  "rank": 401,
+  "rank": 402,
   "word": "stad",
   "meaning": "city, town",
   "pos": "noun",
@@ -4010,7 +4020,7 @@
   "band": "A2"
  },
  {
-  "rank": 402,
+  "rank": 403,
   "word": "eten",
   "meaning": "food",
   "pos": "noun",
@@ -4020,7 +4030,7 @@
   "band": "A2"
  },
  {
-  "rank": 403,
+  "rank": 404,
   "word": "zonder",
   "meaning": "without",
   "pos": "prep",
@@ -4030,7 +4040,7 @@
   "band": "A2"
  },
  {
-  "rank": 404,
+  "rank": 405,
   "word": "blij",
   "meaning": "lead (metal)",
   "pos": "noun",
@@ -4040,7 +4050,7 @@
   "band": "A2"
  },
  {
-  "rank": 405,
+  "rank": 406,
   "word": "precies",
   "meaning": "exact, precise",
   "pos": "adj",
@@ -4050,9 +4060,9 @@
   "band": "A2"
  },
  {
-  "rank": 406,
+  "rank": 407,
   "word": "dom",
-  "meaning": "a duomo, either an episcopal cathedral or another major church (often a basilica) which has been granted this high rank",
+  "meaning": "stupid, silly",
   "pos": "noun",
   "ipa": "/dɔm/",
   "zipf": 4.67,
@@ -4060,7 +4070,7 @@
   "band": "A2"
  },
  {
-  "rank": 407,
+  "rank": 408,
   "word": "nog niet",
   "meaning": "not yet",
   "pos": "adv",
@@ -4070,7 +4080,7 @@
   "band": "A2"
  },
  {
-  "rank": 408,
+  "rank": 409,
   "word": "enige",
   "meaning": "only one",
   "pos": "adj",
@@ -4080,7 +4090,7 @@
   "band": "A2"
  },
  {
-  "rank": 409,
+  "rank": 410,
   "word": "gebruik",
   "meaning": "use",
   "pos": "noun",
@@ -4090,7 +4100,7 @@
   "band": "A2"
  },
  {
-  "rank": 410,
+  "rank": 411,
   "word": "helpen",
   "meaning": "to help",
   "pos": "verb",
@@ -4100,7 +4110,7 @@
   "band": "A2"
  },
  {
-  "rank": 411,
+  "rank": 412,
   "word": "ene",
   "meaning": "one (contrasting with another)",
   "pos": "pron",
@@ -4110,7 +4120,7 @@
   "band": "A2"
  },
  {
-  "rank": 412,
+  "rank": 413,
   "word": "graag",
   "meaning": "willingly, gladly (meaning that the subject enjoys doing the action of the verb)",
   "pos": "adv",
@@ -4120,7 +4130,7 @@
   "band": "A2"
  },
  {
-  "rank": 413,
+  "rank": 414,
   "word": "wanneer",
   "meaning": "when",
   "pos": "conj",
@@ -4130,9 +4140,9 @@
   "band": "A2"
  },
  {
-  "rank": 414,
+  "rank": 415,
   "word": "bekend",
-  "meaning": "known",
+  "meaning": "familiar, trusted",
   "pos": "verb",
   "ipa": "/bəˈkɛnt/",
   "zipf": 5.49,
@@ -4140,7 +4150,7 @@
   "band": "A2"
  },
  {
-  "rank": 415,
+  "rank": 416,
   "word": "genoeg",
   "meaning": "enough",
   "pos": "det",
@@ -4150,9 +4160,9 @@
   "band": "A2"
  },
  {
-  "rank": 416,
+  "rank": 417,
   "word": "pakken",
-  "meaning": "to grab, to take",
+  "meaning": "to get, to fetch",
   "pos": "noun",
   "ipa": "/ˈpɑkə(n)/",
   "zipf": 4.99,
@@ -4160,7 +4170,7 @@
   "band": "A2"
  },
  {
-  "rank": 417,
+  "rank": 418,
   "word": "partij",
   "meaning": "party, quantity",
   "pos": "noun",
@@ -4170,7 +4180,7 @@
   "band": "A2"
  },
  {
-  "rank": 418,
+  "rank": 419,
   "word": "weken",
   "meaning": "to soften",
   "pos": "noun",
@@ -4180,7 +4190,7 @@
   "band": "A2"
  },
  {
-  "rank": 419,
+  "rank": 420,
   "word": "ramen",
   "meaning": "ramen (Japanese dish)",
   "pos": "noun",
@@ -4190,7 +4200,7 @@
   "band": "A2"
  },
  {
-  "rank": 420,
+  "rank": 421,
   "word": "per",
   "meaning": "for each; for every; per",
   "pos": "prep",
@@ -4200,7 +4210,7 @@
   "band": "A2"
  },
  {
-  "rank": 421,
+  "rank": 422,
   "word": "bericht",
   "meaning": "message",
   "pos": "noun",
@@ -4210,7 +4220,7 @@
   "band": "A2"
  },
  {
-  "rank": 422,
+  "rank": 423,
   "word": "film",
   "meaning": "a film, thin layer or membrane; especially the physical medium film",
   "pos": "noun",
@@ -4220,9 +4230,9 @@
   "band": "A2"
  },
  {
-  "rank": 423,
+  "rank": 424,
   "word": "niks",
-  "meaning": "disagreeable, distasteful, not liking",
+  "meaning": "nothing",
   "pos": "adj",
   "ipa": "/nɪks/",
   "zipf": 5.47,
@@ -4230,9 +4240,9 @@
   "band": "A2"
  },
  {
-  "rank": 424,
+  "rank": 425,
   "word": "macht",
-  "meaning": "political power, control",
+  "meaning": "power, might, capability",
   "pos": "noun",
   "ipa": "/mɑxt/",
   "zipf": 4.97,
@@ -4240,7 +4250,7 @@
   "band": "A2"
  },
  {
-  "rank": 425,
+  "rank": 426,
   "word": "trekken",
   "meaning": "to pull, to draw",
   "pos": "noun",
@@ -4250,7 +4260,7 @@
   "band": "A2"
  },
  {
-  "rank": 426,
+  "rank": 427,
   "word": "iedereen",
   "meaning": "everyone",
   "pos": "pron",
@@ -4260,7 +4270,7 @@
   "band": "A2"
  },
  {
-  "rank": 427,
+  "rank": 428,
   "word": "maat",
   "meaning": "mate, buddy",
   "pos": "noun",
@@ -4270,7 +4280,7 @@
   "band": "A2"
  },
  {
-  "rank": 428,
+  "rank": 429,
   "word": "gezien",
   "meaning": "in view of, considering",
   "pos": "verb",
@@ -4280,7 +4290,7 @@
   "band": "A2"
  },
  {
-  "rank": 429,
+  "rank": 430,
   "word": "bezoek",
   "meaning": "visit",
   "pos": "noun",
@@ -4290,7 +4300,7 @@
   "band": "A2"
  },
  {
-  "rank": 430,
+  "rank": 431,
   "word": "gek",
   "meaning": "lunatic, madman",
   "pos": "noun",
@@ -4300,7 +4310,7 @@
   "band": "A2"
  },
  {
-  "rank": 431,
+  "rank": 432,
   "word": "onderzoek",
   "meaning": "research, experiment, study, trial, test, survey",
   "pos": "noun",
@@ -4310,7 +4320,7 @@
   "band": "A2"
  },
  {
-  "rank": 432,
+  "rank": 433,
   "word": "zeg",
   "meaning": "hey, used to draw the addressed person's attention",
   "pos": "verb",
@@ -4320,7 +4330,7 @@
   "band": "A2"
  },
  {
-  "rank": 433,
+  "rank": 434,
   "word": "delen",
   "meaning": "to divide, to split up",
   "pos": "noun",
@@ -4330,7 +4340,7 @@
   "band": "A2"
  },
  {
-  "rank": 434,
+  "rank": 435,
   "word": "uw",
   "meaning": "your; second-person singular and plural possessive determiner",
   "pos": "det",
@@ -4340,7 +4350,7 @@
   "band": "A2"
  },
  {
-  "rank": 435,
+  "rank": 436,
   "word": "stond",
   "meaning": "time; point in time, moment",
   "pos": "noun",
@@ -4350,7 +4360,7 @@
   "band": "A2"
  },
  {
-  "rank": 436,
+  "rank": 437,
   "word": "kijk",
   "meaning": "view, opinion (way of understanding or looking at something)",
   "pos": "noun",
@@ -4360,7 +4370,7 @@
   "band": "A2"
  },
  {
-  "rank": 437,
+  "rank": 438,
   "word": "vooral",
   "meaning": "especially, above all",
   "pos": "adv",
@@ -4370,9 +4380,9 @@
   "band": "A2"
  },
  {
-  "rank": 438,
+  "rank": 439,
   "word": "voorbij",
-  "meaning": "past, previous",
+  "meaning": "past, beyond",
   "pos": "adj",
   "ipa": "/voːrˈbɛi̯/",
   "zipf": 5.11,
@@ -4380,7 +4390,7 @@
   "band": "A2"
  },
  {
-  "rank": 439,
+  "rank": 440,
   "word": "niet meer",
   "meaning": "no more (not anymore, no longer)",
   "pos": "adv",
@@ -4390,7 +4400,7 @@
   "band": "A2"
  },
  {
-  "rank": 440,
+  "rank": 441,
   "word": "nog maar",
   "meaning": "only, just, merely, no more than (of a remainder)",
   "pos": "adv",
@@ -4400,7 +4410,7 @@
   "band": "A2"
  },
  {
-  "rank": 441,
+  "rank": 442,
   "word": "opdracht",
   "meaning": "task, assignment, an action that one is required to do",
   "pos": "noun",
@@ -4410,7 +4420,7 @@
   "band": "A2"
  },
  {
-  "rank": 442,
+  "rank": 443,
   "word": "het gaat",
   "meaning": "A conventional response to hoe gaat het met u (“how do you do”) or hoe gaat het met je (“how are you”), indicating that one is well; I'm fine, I'm doing well",
   "pos": "phrase",
@@ -4420,7 +4430,7 @@
   "band": "A2"
  },
  {
-  "rank": 443,
+  "rank": 444,
   "word": "nooit",
   "meaning": "never",
   "pos": "adv",
@@ -4430,7 +4440,7 @@
   "band": "A2"
  },
  {
-  "rank": 444,
+  "rank": 445,
   "word": "liggen",
   "meaning": "to lie; to be lying down",
   "pos": "verb",
@@ -4440,7 +4450,7 @@
   "band": "A2"
  },
  {
-  "rank": 445,
+  "rank": 446,
   "word": "volgen",
   "meaning": "to follow (go after)",
   "pos": "verb",
@@ -4450,7 +4460,7 @@
   "band": "A2"
  },
  {
-  "rank": 446,
+  "rank": 447,
   "word": "schoot",
   "meaning": "the act(ivity) of shooting",
   "pos": "noun",
@@ -4460,7 +4470,7 @@
   "band": "A2"
  },
  {
-  "rank": 447,
+  "rank": 448,
   "word": "stoppen",
   "meaning": "to stop, to halt",
   "pos": "noun",
@@ -4470,7 +4480,7 @@
   "band": "A2"
  },
  {
-  "rank": 448,
+  "rank": 449,
   "word": "door en door",
   "meaning": "through and through, completely",
   "pos": "adv",
@@ -4480,7 +4490,7 @@
   "band": "A2"
  },
  {
-  "rank": 449,
+  "rank": 450,
   "word": "tot op",
   "meaning": "up to, up until",
   "pos": "prep",
@@ -4490,7 +4500,7 @@
   "band": "A2"
  },
  {
-  "rank": 450,
+  "rank": 451,
   "word": "zo niet",
   "meaning": "if not",
   "pos": "conj",
@@ -4500,7 +4510,7 @@
   "band": "A2"
  },
  {
-  "rank": 451,
+  "rank": 452,
   "word": "drie",
   "meaning": "three",
   "pos": "num",
@@ -4510,7 +4520,7 @@
   "band": "A2"
  },
  {
-  "rank": 452,
+  "rank": 453,
   "word": "zaak",
   "meaning": "a thing, matter (general term with for a concept other than animate beings)",
   "pos": "noun",
@@ -4520,7 +4530,7 @@
   "band": "A2"
  },
  {
-  "rank": 453,
+  "rank": 454,
   "word": "achter",
   "meaning": "behind",
   "pos": "prep",
@@ -4530,9 +4540,9 @@
   "band": "A2"
  },
  {
-  "rank": 454,
+  "rank": 455,
   "word": "meerdere",
-  "meaning": "someone higher in rank; a superior or boss",
+  "meaning": "more, several, multiple",
   "pos": "noun",
   "ipa": "/ˈmeːr.də.rə/",
   "zipf": 5.09,
@@ -4540,7 +4550,7 @@
   "band": "A2"
  },
  {
-  "rank": 455,
+  "rank": 456,
   "word": "normaal",
   "meaning": "normal (line or vector perpendicular to another element)",
   "pos": "noun",
@@ -4550,7 +4560,7 @@
   "band": "A2"
  },
  {
-  "rank": 456,
+  "rank": 457,
   "word": "opnemen",
   "meaning": "to pick up, to raise",
   "pos": "verb",
@@ -4560,7 +4570,7 @@
   "band": "A2"
  },
  {
-  "rank": 457,
+  "rank": 458,
   "word": "wat is er",
   "meaning": "what's the matter? what's on your mind? what's wrong?",
   "pos": "phrase",
@@ -4570,7 +4580,7 @@
   "band": "A2"
  },
  {
-  "rank": 458,
+  "rank": 459,
   "word": "samen",
   "meaning": "together",
   "pos": "adv",
@@ -4580,7 +4590,7 @@
   "band": "A2"
  },
  {
-  "rank": 459,
+  "rank": 460,
   "word": "zo-even",
   "meaning": "just now (a moment ago)",
   "pos": "adv",
@@ -4590,7 +4600,7 @@
   "band": "A2"
  },
  {
-  "rank": 460,
+  "rank": 461,
   "word": "veld",
   "meaning": "field, open country",
   "pos": "noun",
@@ -4600,7 +4610,7 @@
   "band": "A2"
  },
  {
-  "rank": 461,
+  "rank": 462,
   "word": "bijna",
   "meaning": "almost",
   "pos": "adv",
@@ -4610,7 +4620,7 @@
   "band": "A2"
  },
  {
-  "rank": 462,
+  "rank": 463,
   "word": "kijken",
   "meaning": "to look",
   "pos": "verb",
@@ -4620,7 +4630,7 @@
   "band": "A2"
  },
  {
-  "rank": 463,
+  "rank": 464,
   "word": "mooi",
   "meaning": "beautiful, pretty, handsome",
   "pos": "adj",
@@ -4630,7 +4640,7 @@
   "band": "A2"
  },
  {
-  "rank": 464,
+  "rank": 465,
   "word": "aandacht",
   "meaning": "attention",
   "pos": "noun",
@@ -4640,7 +4650,7 @@
   "band": "A2"
  },
  {
-  "rank": 465,
+  "rank": 466,
   "word": "ogen",
   "meaning": "to look, to appear",
   "pos": "noun",
@@ -4650,7 +4660,7 @@
   "band": "A2"
  },
  {
-  "rank": 466,
+  "rank": 467,
   "word": "verhaal",
   "meaning": "story",
   "pos": "noun",
@@ -4660,7 +4670,7 @@
   "band": "A2"
  },
  {
-  "rank": 467,
+  "rank": 468,
   "word": "elkaar",
   "meaning": "each other, one another",
   "pos": "pron",
@@ -4670,9 +4680,9 @@
   "band": "A2"
  },
  {
-  "rank": 468,
+  "rank": 469,
   "word": "kust",
-  "meaning": "the shoreline",
+  "meaning": "the coast, seaside",
   "pos": "noun",
   "ipa": "/kʏst/",
   "zipf": 4.73,
@@ -4680,7 +4690,7 @@
   "band": "A2"
  },
  {
-  "rank": 469,
+  "rank": 470,
   "word": "nieuws",
   "meaning": "news",
   "pos": "noun",
@@ -4690,7 +4700,7 @@
   "band": "A2"
  },
  {
-  "rank": 470,
+  "rank": 471,
   "word": "raad",
   "meaning": "an advice, counsel",
   "pos": "noun",
@@ -4700,7 +4710,7 @@
   "band": "A2"
  },
  {
-  "rank": 471,
+  "rank": 472,
   "word": "stel",
   "meaning": "couple, pair",
   "pos": "noun",
@@ -4710,7 +4720,7 @@
   "band": "A2"
  },
  {
-  "rank": 472,
+  "rank": 473,
   "word": "kans",
   "meaning": "chance",
   "pos": "noun",
@@ -4720,7 +4730,7 @@
   "band": "A2"
  },
  {
-  "rank": 473,
+  "rank": 474,
   "word": "het doen",
   "meaning": "to function, to work",
   "pos": "verb",
@@ -4730,7 +4740,7 @@
   "band": "A2"
  },
  {
-  "rank": 474,
+  "rank": 475,
   "word": "bol",
   "meaning": "a sphere; a ball, globe or bulb",
   "pos": "noun",
@@ -4740,7 +4750,7 @@
   "band": "A2"
  },
  {
-  "rank": 475,
+  "rank": 476,
   "word": "voer",
   "meaning": "act(ion), deed; business",
   "pos": "noun",
@@ -4750,7 +4760,7 @@
   "band": "A2"
  },
  {
-  "rank": 476,
+  "rank": 477,
   "word": "online",
   "meaning": "online (on, via, connected or related to the Internet or another network)",
   "pos": "adj",
@@ -4760,7 +4770,7 @@
   "band": "A2"
  },
  {
-  "rank": 477,
+  "rank": 478,
   "word": "bouw",
   "meaning": "built, structural design",
   "pos": "noun",
@@ -4770,9 +4780,9 @@
   "band": "A2"
  },
  {
-  "rank": 478,
+  "rank": 479,
   "word": "contact",
-  "meaning": "physical contact, touching",
+  "meaning": "contact (close association)",
   "pos": "noun",
   "ipa": "/kɔnˈtɑkt/",
   "zipf": 5.21,
@@ -4780,7 +4790,7 @@
   "band": "A2"
  },
  {
-  "rank": 479,
+  "rank": 480,
   "word": "baas",
   "meaning": "boss, chief, superior",
   "pos": "noun",
@@ -4790,7 +4800,7 @@
   "band": "A2"
  },
  {
-  "rank": 480,
+  "rank": 481,
   "word": "missen",
   "meaning": "to miss (not hit)",
   "pos": "noun",
@@ -4800,7 +4810,7 @@
   "band": "A2"
  },
  {
-  "rank": 481,
+  "rank": 482,
   "word": "moment",
   "meaning": "moment (very brief period of time)",
   "pos": "noun",
@@ -4810,7 +4820,7 @@
   "band": "A2"
  },
  {
-  "rank": 482,
+  "rank": 483,
   "word": "meisje",
   "meaning": "girl (especially of a premature age)",
   "pos": "noun",
@@ -4820,7 +4830,7 @@
   "band": "A2"
  },
  {
-  "rank": 483,
+  "rank": 484,
   "word": "bel",
   "meaning": "bell",
   "pos": "noun",
@@ -4830,7 +4840,7 @@
   "band": "A2"
  },
  {
-  "rank": 484,
+  "rank": 485,
   "word": "doel",
   "meaning": "aim, purpose",
   "pos": "noun",
@@ -4840,7 +4850,7 @@
   "band": "A2"
  },
  {
-  "rank": 485,
+  "rank": 486,
   "word": "heen",
   "meaning": "sea clubrush (Bolboschoenus maritimus)",
   "pos": "noun",
@@ -4850,7 +4860,7 @@
   "band": "A2"
  },
  {
-  "rank": 486,
+  "rank": 487,
   "word": "vergeten",
   "meaning": "to forget (lose remembrance of)",
   "pos": "verb",
@@ -4860,7 +4870,7 @@
   "band": "A2"
  },
  {
-  "rank": 487,
+  "rank": 488,
   "word": "manier",
   "meaning": "way, manner",
   "pos": "noun",
@@ -4870,7 +4880,7 @@
   "band": "A2"
  },
  {
-  "rank": 488,
+  "rank": 489,
   "word": "politie",
   "meaning": "police",
   "pos": "noun",
@@ -4880,7 +4890,7 @@
   "band": "A2"
  },
  {
-  "rank": 489,
+  "rank": 490,
   "word": "taal",
   "meaning": "language (form of communication consisting of vocabulary and grammar)",
   "pos": "noun",
@@ -4890,9 +4900,9 @@
   "band": "A2"
  },
  {
-  "rank": 490,
+  "rank": 491,
   "word": "vroeger",
-  "meaning": "having to do with or occurring in the past",
+  "meaning": "formerly, previously",
   "pos": "adj",
   "ipa": "/ˈvru.ɣər/",
   "zipf": 5.03,
@@ -4900,7 +4910,7 @@
   "band": "A2"
  },
  {
-  "rank": 491,
+  "rank": 492,
   "word": "nog wat",
   "meaning": "then some",
   "pos": "phrase",
@@ -4910,7 +4920,7 @@
   "band": "A2"
  },
  {
-  "rank": 492,
+  "rank": 493,
   "word": "duidelijk",
   "meaning": "clear, precise",
   "pos": "adj",
@@ -4920,7 +4930,7 @@
   "band": "A2"
  },
  {
-  "rank": 493,
+  "rank": 494,
   "word": "actie",
   "meaning": "action, activity, movement; especially (without article) a fast-paced activity",
   "pos": "noun",
@@ -4930,7 +4940,7 @@
   "band": "A2"
  },
  {
-  "rank": 494,
+  "rank": 495,
   "word": "as",
   "meaning": "ash",
   "pos": "noun",
@@ -4940,7 +4950,7 @@
   "band": "A2"
  },
  {
-  "rank": 495,
+  "rank": 496,
   "word": "zoet",
   "meaning": "the sweet taste",
   "pos": "noun",
@@ -4950,7 +4960,7 @@
   "band": "A2"
  },
  {
-  "rank": 496,
+  "rank": 497,
   "word": "gezicht",
   "meaning": "seeing, the ability to observe visually, vision, sight",
   "pos": "noun",
@@ -4960,7 +4970,7 @@
   "band": "A2"
  },
  {
-  "rank": 497,
+  "rank": 498,
   "word": "boek",
   "meaning": "book",
   "pos": "noun",
@@ -4970,7 +4980,7 @@
   "band": "A2"
  },
  {
-  "rank": 498,
+  "rank": 499,
   "word": "misschien",
   "meaning": "perhaps, maybe",
   "pos": "adv",
@@ -4980,7 +4990,7 @@
   "band": "A2"
  },
  {
-  "rank": 499,
+  "rank": 500,
   "word": "volgens",
   "meaning": "according to",
   "pos": "prep",
@@ -4990,9 +5000,9 @@
   "band": "A2"
  },
  {
-  "rank": 500,
+  "rank": 501,
   "word": "bang",
-  "meaning": "a sharp, percussive sound, like the sound of an explosion or gun; bang",
+  "meaning": "scared, frightened",
   "pos": "noun",
   "ipa": "/bɑŋ/",
   "zipf": 5.18,
@@ -5000,7 +5010,7 @@
   "band": "A2"
  },
  {
-  "rank": 501,
+  "rank": 502,
   "word": "centrum",
   "meaning": "the centre, middle of focal part (e.g. of activity)",
   "pos": "noun",
@@ -5010,7 +5020,7 @@
   "band": "A2"
  },
  {
-  "rank": 502,
+  "rank": 503,
   "word": "plan",
   "meaning": "a set of intended actions, through which one expects to achieve a goal: plan, plot, scheme",
   "pos": "noun",
@@ -5020,7 +5030,7 @@
   "band": "A2"
  },
  {
-  "rank": 503,
+  "rank": 504,
   "word": "wezen",
   "meaning": "a being, creature",
   "pos": "noun",
@@ -5030,7 +5040,7 @@
   "band": "A2"
  },
  {
-  "rank": 504,
+  "rank": 505,
   "word": "ook al",
   "meaning": "even though, despite that",
   "pos": "conj",
@@ -5040,7 +5050,7 @@
   "band": "A2"
  },
  {
-  "rank": 505,
+  "rank": 506,
   "word": "oud",
   "meaning": "old (having existed for a relatively long period of time)",
   "pos": "adj",
@@ -5050,7 +5060,7 @@
   "band": "A2"
  },
  {
-  "rank": 506,
+  "rank": 507,
   "word": "vol",
   "meaning": "full, replete",
   "pos": "adj",
@@ -5060,7 +5070,7 @@
   "band": "A2"
  },
  {
-  "rank": 507,
+  "rank": 508,
   "word": "enkel",
   "meaning": "ankle",
   "pos": "noun",
@@ -5070,7 +5080,7 @@
   "band": "A2"
  },
  {
-  "rank": 508,
+  "rank": 509,
   "word": "overal",
   "meaning": "overall",
   "pos": "noun",
@@ -5080,9 +5090,9 @@
   "band": "A2"
  },
  {
-  "rank": 509,
+  "rank": 510,
   "word": "echter",
-  "meaning": "comparative degree of echt",
+  "meaning": "however",
   "pos": "adj",
   "ipa": "/ˈɛx.tər/",
   "zipf": 5.5,
@@ -5090,7 +5100,7 @@
   "band": "A2"
  },
  {
-  "rank": 510,
+  "rank": 511,
   "word": "men",
   "meaning": "one, you, they, everyone; humanity, (the) people, the public opinion",
   "pos": "verb",
@@ -5100,7 +5110,7 @@
   "band": "A2"
  },
  {
-  "rank": 511,
+  "rank": 512,
   "word": "markt",
   "meaning": "a physical market place, usually a public square",
   "pos": "noun",
@@ -5110,7 +5120,7 @@
   "band": "A2"
  },
  {
-  "rank": 512,
+  "rank": 513,
   "word": "rustig",
   "meaning": "calm, tranquil, quiet",
   "pos": "adj",
@@ -5120,7 +5130,7 @@
   "band": "A2"
  },
  {
-  "rank": 513,
+  "rank": 514,
   "word": "afgelopen",
   "meaning": "last, past",
   "pos": "verb",
@@ -5130,7 +5140,7 @@
   "band": "A2"
  },
  {
-  "rank": 514,
+  "rank": 515,
   "word": "wijze",
   "meaning": "manner, mode, way, method",
   "pos": "noun",
@@ -5140,7 +5150,7 @@
   "band": "A2"
  },
  {
-  "rank": 515,
+  "rank": 516,
   "word": "bestaan",
   "meaning": "existence",
   "pos": "noun",
@@ -5150,7 +5160,7 @@
   "band": "A2"
  },
  {
-  "rank": 516,
+  "rank": 517,
   "word": "dingen",
   "meaning": "to solicit",
   "pos": "noun",
@@ -5160,7 +5170,7 @@
   "band": "A2"
  },
  {
-  "rank": 517,
+  "rank": 518,
   "word": "groep",
   "meaning": "group",
   "pos": "noun",
@@ -5170,7 +5180,7 @@
   "band": "A2"
  },
  {
-  "rank": 518,
+  "rank": 519,
   "word": "maart",
   "meaning": "March",
   "pos": "noun",
@@ -5180,7 +5190,7 @@
   "band": "A2"
  },
  {
-  "rank": 519,
+  "rank": 520,
   "word": "mogelijk",
   "meaning": "possible",
   "pos": "adj",
@@ -5190,7 +5200,7 @@
   "band": "A2"
  },
  {
-  "rank": 520,
+  "rank": 521,
   "word": "fout",
   "meaning": "error, mistake",
   "pos": "noun",
@@ -5200,7 +5210,7 @@
   "band": "A2"
  },
  {
-  "rank": 521,
+  "rank": 522,
   "word": "halen",
   "meaning": "to fetch, to get",
   "pos": "verb",
@@ -5210,7 +5220,7 @@
   "band": "A2"
  },
  {
-  "rank": 522,
+  "rank": 523,
   "word": "zaken",
   "meaning": "business",
   "pos": "noun",
@@ -5220,7 +5230,7 @@
   "band": "A2"
  },
  {
-  "rank": 523,
+  "rank": 524,
   "word": "model",
   "meaning": "model (type, design)",
   "pos": "noun",
@@ -5230,7 +5240,7 @@
   "band": "A2"
  },
  {
-  "rank": 524,
+  "rank": 525,
   "word": "niets",
   "meaning": "nothing",
   "pos": "pron",
@@ -5240,7 +5250,7 @@
   "band": "A2"
  },
  {
-  "rank": 525,
+  "rank": 526,
   "word": "meter",
   "meaning": "meter (device that measures things or indicates a physical quantity)",
   "pos": "noun",
@@ -5250,7 +5260,7 @@
   "band": "A2"
  },
  {
-  "rank": 526,
+  "rank": 527,
   "word": "wet",
   "meaning": "law (rule)",
   "pos": "noun",
@@ -5260,7 +5270,7 @@
   "band": "A2"
  },
  {
-  "rank": 527,
+  "rank": 528,
   "word": "spoor",
   "meaning": "track",
   "pos": "noun",
@@ -5270,7 +5280,7 @@
   "band": "A2"
  },
  {
-  "rank": 528,
+  "rank": 529,
   "word": "soms",
   "meaning": "sometimes",
   "pos": "adv",
@@ -5280,7 +5290,7 @@
   "band": "A2"
  },
  {
-  "rank": 529,
+  "rank": 530,
   "word": "thuis",
   "meaning": "one's home",
   "pos": "noun",
@@ -5290,7 +5300,7 @@
   "band": "A2"
  },
  {
-  "rank": 530,
+  "rank": 531,
   "word": "vuur",
   "meaning": "fire",
   "pos": "noun",
@@ -5300,7 +5310,7 @@
   "band": "A2"
  },
  {
-  "rank": 531,
+  "rank": 532,
   "word": "zelfs",
   "meaning": "even (extreme example)",
   "pos": "adv",
@@ -5310,7 +5320,7 @@
   "band": "A2"
  },
  {
-  "rank": 532,
+  "rank": 533,
   "word": "boeken",
   "meaning": "to book, to reserve",
   "pos": "noun",
@@ -5320,7 +5330,7 @@
   "band": "A2"
  },
  {
-  "rank": 533,
+  "rank": 534,
   "word": "kleur",
   "meaning": "a color, colour",
   "pos": "noun",
@@ -5330,7 +5340,7 @@
   "band": "A2"
  },
  {
-  "rank": 534,
+  "rank": 535,
   "word": "zoek",
   "meaning": "lost, missing, gone",
   "pos": "verb",
@@ -5340,7 +5350,7 @@
   "band": "A2"
  },
  {
-  "rank": 535,
+  "rank": 536,
   "word": "knap",
   "meaning": "attractive, handsome, pretty",
   "pos": "verb",
@@ -5350,7 +5360,7 @@
   "band": "A2"
  },
  {
-  "rank": 536,
+  "rank": 537,
   "word": "tot dan",
   "meaning": "see you later (referring to a specific moment in time when one expects to meet or communicate again)",
   "pos": "intj",
@@ -5360,7 +5370,7 @@
   "band": "A2"
  },
  {
-  "rank": 537,
+  "rank": 538,
   "word": "gaan over",
   "meaning": "to be about (in a story, narrative, song etc.)",
   "pos": "verb",
@@ -5370,7 +5380,7 @@
   "band": "A2"
  },
  {
-  "rank": 538,
+  "rank": 539,
   "word": "wereld",
   "meaning": "world",
   "pos": "noun",
@@ -5380,7 +5390,7 @@
   "band": "A2"
  },
  {
-  "rank": 539,
+  "rank": 540,
   "word": "bed",
   "meaning": "bed (furniture for sleeping)",
   "pos": "noun",
@@ -5390,7 +5400,7 @@
   "band": "A2"
  },
  {
-  "rank": 540,
+  "rank": 541,
   "word": "los",
   "meaning": "loose",
   "pos": "noun",
@@ -5400,7 +5410,7 @@
   "band": "A2"
  },
  {
-  "rank": 541,
+  "rank": 542,
   "word": "klappen",
   "meaning": "to clap (make sound or music with the hands)",
   "pos": "noun",
@@ -5410,7 +5420,7 @@
   "band": "A2"
  },
  {
-  "rank": 542,
+  "rank": 543,
   "word": "terwijl",
   "meaning": "while, during the same time that",
   "pos": "conj",
@@ -5420,7 +5430,7 @@
   "band": "A2"
  },
  {
-  "rank": 543,
+  "rank": 544,
   "word": "zorgen",
   "meaning": "to make sure, to ensure",
   "pos": "noun",
@@ -5430,7 +5440,7 @@
   "band": "A2"
  },
  {
-  "rank": 544,
+  "rank": 545,
   "word": "wacht",
   "meaning": "the function, duty of standing guard; a watch or vigil",
   "pos": "noun",
@@ -5440,7 +5450,7 @@
   "band": "A2"
  },
  {
-  "rank": 545,
+  "rank": 546,
   "word": "wees",
   "meaning": "an orphan, person or animal having survived both parents",
   "pos": "noun",
@@ -5450,7 +5460,7 @@
   "band": "A2"
  },
  {
-  "rank": 546,
+  "rank": 547,
   "word": "of zo",
   "meaning": "or something, or so; indicates indifference to the exact details",
   "pos": "intj",
@@ -5460,7 +5470,7 @@
   "band": "A2"
  },
  {
-  "rank": 547,
+  "rank": 548,
   "word": "uit elkaar",
   "meaning": "split up",
   "pos": "adj",
@@ -5470,7 +5480,7 @@
   "band": "A2"
  },
  {
-  "rank": 548,
+  "rank": 549,
   "word": "bedankt",
   "meaning": "thanks",
   "pos": "verb",
@@ -5480,7 +5490,7 @@
   "band": "A2"
  },
  {
-  "rank": 549,
+  "rank": 550,
   "word": "zet",
   "meaning": "shove, push",
   "pos": "noun",
@@ -5490,7 +5500,7 @@
   "band": "A2"
  },
  {
-  "rank": 550,
+  "rank": 551,
   "word": "rekening",
   "meaning": "a calculation",
   "pos": "noun",
@@ -5500,7 +5510,7 @@
   "band": "A2"
  },
  {
-  "rank": 551,
+  "rank": 552,
   "word": "voorstellen",
   "meaning": "to present, to put forth, to introduce",
   "pos": "noun",
@@ -5510,7 +5520,7 @@
   "band": "A2"
  },
  {
-  "rank": 552,
+  "rank": 553,
   "word": "mis",
   "meaning": "mass (service in a Catholic church)",
   "pos": "noun",
@@ -5520,7 +5530,7 @@
   "band": "A2"
  },
  {
-  "rank": 553,
+  "rank": 554,
   "word": "vervallen",
   "meaning": "to decline, reject",
   "pos": "verb",
@@ -5530,7 +5540,7 @@
   "band": "A2"
  },
  {
-  "rank": 554,
+  "rank": 555,
   "word": "eigenlijk",
   "meaning": "actual",
   "pos": "adj",
@@ -5540,7 +5550,7 @@
   "band": "A2"
  },
  {
-  "rank": 555,
+  "rank": 556,
   "word": "plaatsen",
   "meaning": "to place",
   "pos": "noun",
@@ -5550,7 +5560,7 @@
   "band": "A2"
  },
  {
-  "rank": 556,
+  "rank": 557,
   "word": "beer",
   "meaning": "boar (male swine)",
   "pos": "noun",
@@ -5560,7 +5570,7 @@
   "band": "A2"
  },
  {
-  "rank": 557,
+  "rank": 558,
   "word": "goed zo",
   "meaning": "well done!",
   "pos": "intj",
@@ -5570,7 +5580,7 @@
   "band": "A2"
  },
  {
-  "rank": 558,
+  "rank": 559,
   "word": "foto",
   "meaning": "photo, photograph",
   "pos": "noun",
@@ -5580,7 +5590,7 @@
   "band": "A2"
  },
  {
-  "rank": 559,
+  "rank": 560,
   "word": "vanuit",
   "meaning": "from (inside), (from) out of",
   "pos": "prep",
@@ -5590,7 +5600,7 @@
   "band": "A2"
  },
  {
-  "rank": 560,
+  "rank": 561,
   "word": "ronde",
   "meaning": "round, iteration",
   "pos": "noun",
@@ -5600,7 +5610,7 @@
   "band": "A2"
  },
  {
-  "rank": 561,
+  "rank": 562,
   "word": "schuld",
   "meaning": "debt, account payable",
   "pos": "noun",
@@ -5610,7 +5620,7 @@
   "band": "A2"
  },
  {
-  "rank": 562,
+  "rank": 563,
   "word": "verlaten",
   "meaning": "to leave",
   "pos": "verb",
@@ -5620,7 +5630,7 @@
   "band": "A2"
  },
  {
-  "rank": 563,
+  "rank": 564,
   "word": "hoe is het",
   "meaning": "how are you",
   "pos": "phrase",
@@ -5630,7 +5640,7 @@
   "band": "A2"
  },
  {
-  "rank": 564,
+  "rank": 565,
   "word": "nog wel",
   "meaning": "sometime",
   "pos": "adv",
@@ -5640,7 +5650,7 @@
   "band": "A2"
  },
  {
-  "rank": 565,
+  "rank": 566,
   "word": "soort",
   "meaning": "sort, kind",
   "pos": "noun",
@@ -5650,7 +5660,7 @@
   "band": "A2"
  },
  {
-  "rank": 566,
+  "rank": 567,
   "word": "vader",
   "meaning": "father, male parent",
   "pos": "noun",
@@ -5660,7 +5670,7 @@
   "band": "A2"
  },
  {
-  "rank": 567,
+  "rank": 568,
   "word": "zuid",
   "meaning": "south",
   "pos": "adv",
@@ -5670,7 +5680,7 @@
   "band": "A2"
  },
  {
-  "rank": 568,
+  "rank": 569,
   "word": "nu en dan",
   "meaning": "now and then, occasionally",
   "pos": "adv",
@@ -5680,7 +5690,7 @@
   "band": "A2"
  },
  {
-  "rank": 569,
+  "rank": 570,
   "word": "wat dan ook",
   "meaning": "whatever, anything",
   "pos": "pron",
@@ -5690,7 +5700,7 @@
   "band": "A2"
  },
  {
-  "rank": 570,
+  "rank": 571,
   "word": "kamp",
   "meaning": "camp",
   "pos": "noun",
@@ -5700,7 +5710,7 @@
   "band": "A2"
  },
  {
-  "rank": 571,
+  "rank": 572,
   "word": "sinds",
   "meaning": "since",
   "pos": "conj",
@@ -5710,7 +5720,7 @@
   "band": "A2"
  },
  {
-  "rank": 572,
+  "rank": 573,
   "word": "bar",
   "meaning": "a bar, counter, drink cabinet",
   "pos": "noun",
@@ -5720,7 +5730,7 @@
   "band": "A2"
  },
  {
-  "rank": 573,
+  "rank": 574,
   "word": "kat",
   "meaning": "domestic cat, pussy, Felis silvestris catus",
   "pos": "noun",
@@ -5730,7 +5740,7 @@
   "band": "A2"
  },
  {
-  "rank": 574,
+  "rank": 575,
   "word": "begin",
   "meaning": "start, beginning",
   "pos": "noun",
@@ -5740,7 +5750,7 @@
   "band": "A2"
  },
  {
-  "rank": 575,
+  "rank": 576,
   "word": "moest",
   "meaning": "superlative degree of moe",
   "pos": "verb",
@@ -5750,7 +5760,7 @@
   "band": "A2"
  },
  {
-  "rank": 576,
+  "rank": 577,
   "word": "zodat",
   "meaning": "such that (indicating result or consequence)",
   "pos": "conj",
@@ -5760,7 +5770,7 @@
   "band": "A2"
  },
  {
-  "rank": 577,
+  "rank": 578,
   "word": "al dan niet",
   "meaning": "or ... not",
   "pos": "adv",
@@ -5770,9 +5780,9 @@
   "band": "A2"
  },
  {
-  "rank": 578,
+  "rank": 579,
   "word": "leer",
-  "meaning": "doctrine",
+  "meaning": "leather",
   "pos": "noun",
   "ipa": "/leːr/",
   "zipf": 4.75,
@@ -5780,7 +5790,7 @@
   "band": "A2"
  },
  {
-  "rank": 579,
+  "rank": 580,
   "word": "richting",
   "meaning": "direction",
   "pos": "noun",
@@ -5790,7 +5800,7 @@
   "band": "A2"
  },
  {
-  "rank": 580,
+  "rank": 581,
   "word": "schreef",
   "meaning": "line, stroke of the pen",
   "pos": "noun",
@@ -5800,7 +5810,7 @@
   "band": "A2"
  },
  {
-  "rank": 581,
+  "rank": 582,
   "word": "idee",
   "meaning": "idea",
   "pos": "noun",
@@ -5810,7 +5820,7 @@
   "band": "A2"
  },
  {
-  "rank": 582,
+  "rank": 583,
   "word": "moeder",
   "meaning": "mother, female parent",
   "pos": "noun",
@@ -5820,7 +5830,7 @@
   "band": "A2"
  },
  {
-  "rank": 583,
+  "rank": 584,
   "word": "geschiedenis",
   "meaning": "history (that which happened in the past, especially insofar as it is relevant for later times)",
   "pos": "noun",
@@ -5830,7 +5840,7 @@
   "band": "A2"
  },
  {
-  "rank": 584,
+  "rank": 585,
   "word": "hetzelfde",
   "meaning": "the same",
   "pos": "pron",
@@ -5840,7 +5850,7 @@
   "band": "A2"
  },
  {
-  "rank": 585,
+  "rank": 586,
   "word": "slecht",
   "meaning": "bad",
   "pos": "verb",
@@ -5850,7 +5860,7 @@
   "band": "A2"
  },
  {
-  "rank": 586,
+  "rank": 587,
   "word": "bal",
   "meaning": "a ball or any object with such a shape",
   "pos": "noun",
@@ -5860,9 +5870,9 @@
   "band": "A2"
  },
  {
-  "rank": 587,
+  "rank": 588,
   "word": "kiezen",
-  "meaning": "to choose, decide",
+  "meaning": "to elect, choose",
   "pos": "noun",
   "ipa": "/ˈki.zə(n)/",
   "zipf": 5.07,
@@ -5870,7 +5880,7 @@
   "band": "A2"
  },
  {
-  "rank": 588,
+  "rank": 589,
   "word": "verzet",
   "meaning": "resistance",
   "pos": "noun",
@@ -5880,7 +5890,7 @@
   "band": "A2"
  },
  {
-  "rank": 589,
+  "rank": 590,
   "word": "boven",
   "meaning": "above",
   "pos": "adv",
@@ -5890,9 +5900,9 @@
   "band": "A2"
  },
  {
-  "rank": 590,
+  "rank": 591,
   "word": "straks",
-  "meaning": "later today, shortly, in a moment",
+  "meaning": "soon (in an unspecified amount of time)",
   "pos": "adj",
   "ipa": "[strɑks]",
   "zipf": 4.9,
@@ -5900,7 +5910,7 @@
   "band": "A2"
  },
  {
-  "rank": 591,
+  "rank": 592,
   "word": "gegeven",
   "meaning": "datum, a given fact, parameter, piece of information",
   "pos": "noun",
@@ -5910,7 +5920,7 @@
   "band": "A2"
  },
  {
-  "rank": 592,
+  "rank": 593,
   "word": "zes",
   "meaning": "six (the digit or figure 6)",
   "pos": "noun",
@@ -5920,7 +5930,7 @@
   "band": "A2"
  },
  {
-  "rank": 593,
+  "rank": 594,
   "word": "website",
   "meaning": "web site",
   "pos": "noun",
@@ -5930,7 +5940,7 @@
   "band": "A2"
  },
  {
-  "rank": 594,
+  "rank": 595,
   "word": "heerlijk",
   "meaning": "wonderful (when referring to a sensation), great",
   "pos": "adj",
@@ -5940,7 +5950,7 @@
   "band": "A2"
  },
  {
-  "rank": 595,
+  "rank": 596,
   "word": "hol",
   "meaning": "a hole, hollow, cavity",
   "pos": "noun",
@@ -5950,7 +5960,7 @@
   "band": "A2"
  },
  {
-  "rank": 596,
+  "rank": 597,
   "word": "brengen",
   "meaning": "to bring, to carry",
   "pos": "verb",
@@ -5960,7 +5970,7 @@
   "band": "A2"
  },
  {
-  "rank": 597,
+  "rank": 598,
   "word": "meest",
   "meaning": "most; superlative degree of veel",
   "pos": "det",
@@ -5970,7 +5980,7 @@
   "band": "A2"
  },
  {
-  "rank": 598,
+  "rank": 599,
   "word": "bellen",
   "meaning": "to ring, like using a bell",
   "pos": "noun",
@@ -5980,7 +5990,7 @@
   "band": "A2"
  },
  {
-  "rank": 599,
+  "rank": 600,
   "word": "optreden",
   "meaning": "a performance (theatrical or otherwise)",
   "pos": "noun",
@@ -5990,7 +6000,7 @@
   "band": "A2"
  },
  {
-  "rank": 600,
+  "rank": 601,
   "word": "kern",
   "meaning": "nucleus, physical core",
   "pos": "noun",
@@ -6000,7 +6010,7 @@
   "band": "A2"
  },
  {
-  "rank": 601,
+  "rank": 602,
   "word": "kruis",
   "meaning": "cross (X-shape)",
   "pos": "noun",
@@ -6010,7 +6020,7 @@
   "band": "A2"
  },
  {
-  "rank": 602,
+  "rank": 603,
   "word": "tot zo",
   "meaning": "see you later, see you soon",
   "pos": "phrase",
@@ -6020,7 +6030,7 @@
   "band": "A2"
  },
  {
-  "rank": 603,
+  "rank": 604,
   "word": "persoon",
   "meaning": "person, individual",
   "pos": "noun",
@@ -6030,9 +6040,9 @@
   "band": "A2"
  },
  {
-  "rank": 604,
+  "rank": 605,
   "word": "uiteindelijk",
-  "meaning": "eventual",
+  "meaning": "in the end; eventually",
   "pos": "adj",
   "ipa": "/ˌœy̯tˈɛi̯n.də.lək/",
   "zipf": 5.22,
@@ -6040,7 +6050,7 @@
   "band": "A2"
  },
  {
-  "rank": 605,
+  "rank": 606,
   "word": "vorm",
   "meaning": "a form, shape",
   "pos": "noun",
@@ -6050,7 +6060,7 @@
   "band": "A2"
  },
  {
-  "rank": 606,
+  "rank": 607,
   "word": "standaard",
   "meaning": "standard, norm",
   "pos": "noun",
@@ -6060,7 +6070,7 @@
   "band": "A2"
  },
  {
-  "rank": 607,
+  "rank": 608,
   "word": "acht",
   "meaning": "attention, heed",
   "pos": "noun",
@@ -6070,7 +6080,7 @@
   "band": "A2"
  },
  {
-  "rank": 608,
+  "rank": 609,
   "word": "ie",
   "meaning": "Second-person singular, mute form: you",
   "pos": "pron",
@@ -6080,7 +6090,7 @@
   "band": "A2"
  },
  {
-  "rank": 609,
+  "rank": 610,
   "word": "ster",
   "meaning": "star (celestial body)",
   "pos": "noun",
@@ -6090,7 +6100,7 @@
   "band": "A2"
  },
  {
-  "rank": 610,
+  "rank": 611,
   "word": "verkopen",
   "meaning": "to sell",
   "pos": "noun",
@@ -6100,7 +6110,7 @@
   "band": "A2"
  },
  {
-  "rank": 611,
+  "rank": 612,
   "word": "wat dan nog",
   "meaning": "so what, who cares (expression of indifference)",
   "pos": "intj",
@@ -6110,7 +6120,7 @@
   "band": "A2"
  },
  {
-  "rank": 612,
+  "rank": 613,
   "word": "leeftijd",
   "meaning": "age (amount of time a being or object has lived or existed)",
   "pos": "noun",
@@ -6120,7 +6130,7 @@
   "band": "A2"
  },
  {
-  "rank": 613,
+  "rank": 614,
   "word": "tweede",
   "meaning": "second, number two",
   "pos": "adj",
@@ -6130,9 +6140,9 @@
   "band": "A2"
  },
  {
-  "rank": 614,
+  "rank": 615,
   "word": "ieder",
-  "meaning": "everybody, everyone",
+  "meaning": "each",
   "pos": "pron",
   "ipa": "/ˈi.dər/",
   "zipf": 5.2,
@@ -6140,7 +6150,7 @@
   "band": "A2"
  },
  {
-  "rank": 615,
+  "rank": 616,
   "word": "hoeven",
   "meaning": "to be necessary",
   "pos": "noun",
@@ -6150,7 +6160,7 @@
   "band": "A2"
  },
  {
-  "rank": 616,
+  "rank": 617,
   "word": "bekende",
   "meaning": "an acquaintance, someone known/trusted to the person of reference, yet often less than a friend",
   "pos": "noun",
@@ -6160,7 +6170,7 @@
   "band": "A2"
  },
  {
-  "rank": 617,
+  "rank": 618,
   "word": "kaart",
   "meaning": "card (rectangular hard flat object)",
   "pos": "noun",
@@ -6170,9 +6180,9 @@
   "band": "A2"
  },
  {
-  "rank": 618,
+  "rank": 619,
   "word": "liever",
-  "meaning": "comparative degree of lief",
+  "meaning": "rather, preferably",
   "pos": "adj",
   "ipa": "",
   "zipf": 5.03,
@@ -6180,7 +6190,7 @@
   "band": "A2"
  },
  {
-  "rank": 619,
+  "rank": 620,
   "word": "blik",
   "meaning": "a glance",
   "pos": "noun",
@@ -6190,7 +6200,7 @@
   "band": "A2"
  },
  {
-  "rank": 620,
+  "rank": 621,
   "word": "wachten",
   "meaning": "to wait",
   "pos": "noun",
@@ -6200,7 +6210,7 @@
   "band": "A2"
  },
  {
-  "rank": 621,
+  "rank": 622,
   "word": "bepaald",
   "meaning": "certain",
   "pos": "verb",
@@ -6210,7 +6220,7 @@
   "band": "A2"
  },
  {
-  "rank": 622,
+  "rank": 623,
   "word": "rechten",
   "meaning": "law",
   "pos": "noun",
@@ -6220,7 +6230,7 @@
   "band": "A2"
  },
  {
-  "rank": 623,
+  "rank": 624,
   "word": "stappen",
   "meaning": "to march",
   "pos": "noun",
@@ -6230,7 +6240,7 @@
   "band": "A2"
  },
  {
-  "rank": 624,
+  "rank": 625,
   "word": "waarde",
   "meaning": "value, monetary or figurative worth",
   "pos": "noun",
@@ -6240,7 +6250,7 @@
   "band": "A2"
  },
  {
-  "rank": 625,
+  "rank": 626,
   "word": "draaien",
   "meaning": "to turn, to turn round",
   "pos": "verb",
@@ -6250,7 +6260,7 @@
   "band": "A2"
  },
  {
-  "rank": 626,
+  "rank": 627,
   "word": "passen",
   "meaning": "to fit (have the right size)",
   "pos": "noun",
@@ -6260,7 +6270,7 @@
   "band": "A2"
  },
  {
-  "rank": 627,
+  "rank": 628,
   "word": "schoon",
   "meaning": "beauty",
   "pos": "noun",
@@ -6270,7 +6280,7 @@
   "band": "A2"
  },
  {
-  "rank": 628,
+  "rank": 629,
   "word": "gemeente",
   "meaning": "municipality, commune",
   "pos": "noun",
@@ -6280,7 +6290,7 @@
   "band": "A2"
  },
  {
-  "rank": 629,
+  "rank": 630,
   "word": "hou",
   "meaning": "friendly, of a favourable disposition",
   "pos": "verb",
@@ -6290,7 +6300,7 @@
   "band": "A2"
  },
  {
-  "rank": 630,
+  "rank": 631,
   "word": "vroeg",
   "meaning": "early",
   "pos": "verb",
@@ -6300,7 +6310,7 @@
   "band": "A2"
  },
  {
-  "rank": 631,
+  "rank": 632,
   "word": "direct",
   "meaning": "direct, immediate",
   "pos": "adj",
@@ -6310,7 +6320,7 @@
   "band": "A2"
  },
  {
-  "rank": 632,
+  "rank": 633,
   "word": "nog eens",
   "meaning": "once again",
   "pos": "adv",
@@ -6320,7 +6330,7 @@
   "band": "A2"
  },
  {
-  "rank": 633,
+  "rank": 634,
   "word": "nieuw",
   "meaning": "new",
   "pos": "adj",
@@ -6330,7 +6340,7 @@
   "band": "A2"
  },
  {
-  "rank": 634,
+  "rank": 635,
   "word": "september",
   "meaning": "September",
   "pos": "noun",
@@ -6340,7 +6350,7 @@
   "band": "A2"
  },
  {
-  "rank": 635,
+  "rank": 636,
   "word": "betrokken",
   "meaning": "involved",
   "pos": "verb",
@@ -6350,7 +6360,7 @@
   "band": "A2"
  },
  {
-  "rank": 636,
+  "rank": 637,
   "word": "gevallen",
   "meaning": "to happen, to occur",
   "pos": "noun",
@@ -6360,7 +6370,7 @@
   "band": "A2"
  },
  {
-  "rank": 637,
+  "rank": 638,
   "word": "heer",
   "meaning": "a lord; master",
   "pos": "noun",
@@ -6370,9 +6380,9 @@
   "band": "A2"
  },
  {
-  "rank": 638,
+  "rank": 639,
   "word": "jong",
-  "meaning": "a young: a young being, especially an immature animal",
+  "meaning": "young",
   "pos": "noun",
   "ipa": "/jɔŋ/",
   "zipf": 5.01,
@@ -6380,7 +6390,7 @@
   "band": "A2"
  },
  {
-  "rank": 639,
+  "rank": 640,
   "word": "droog",
   "meaning": "dry (not wet)",
   "pos": "verb",
@@ -6390,7 +6400,7 @@
   "band": "A2"
  },
  {
-  "rank": 640,
+  "rank": 641,
   "word": "rechts",
   "meaning": "right",
   "pos": "adj",
@@ -6400,7 +6410,7 @@
   "band": "A2"
  },
  {
-  "rank": 641,
+  "rank": 642,
   "word": "al met al",
   "meaning": "all in all",
   "pos": "adv",
@@ -6410,7 +6420,7 @@
   "band": "A2"
  },
  {
-  "rank": 642,
+  "rank": 643,
   "word": "basis",
   "meaning": "basis (principle, foundation, that which is elementary)",
   "pos": "noun",
@@ -6420,7 +6430,7 @@
   "band": "A2"
  },
  {
-  "rank": 643,
+  "rank": 644,
   "word": "derde",
   "meaning": "a third (part)",
   "pos": "noun",
@@ -6430,7 +6440,7 @@
   "band": "A2"
  },
  {
-  "rank": 644,
+  "rank": 645,
   "word": "geloof",
   "meaning": "belief, conviction",
   "pos": "noun",
@@ -6440,7 +6450,7 @@
   "band": "A2"
  },
  {
-  "rank": 645,
+  "rank": 646,
   "word": "mens",
   "meaning": "human, any member of the species Homo sapiens",
   "pos": "noun",
@@ -6450,7 +6460,7 @@
   "band": "A2"
  },
  {
-  "rank": 646,
+  "rank": 647,
   "word": "stof",
   "meaning": "substance in general, matter, material",
   "pos": "noun",
@@ -6460,7 +6470,7 @@
   "band": "A2"
  },
  {
-  "rank": 647,
+  "rank": 648,
   "word": "cultuur",
   "meaning": "culture (practices and beliefs particular to a society or group)",
   "pos": "noun",
@@ -6470,7 +6480,7 @@
   "band": "A2"
  },
  {
-  "rank": 648,
+  "rank": 649,
   "word": "geval",
   "meaning": "case, situation, instance",
   "pos": "noun",
@@ -6480,7 +6490,7 @@
   "band": "A2"
  },
  {
-  "rank": 649,
+  "rank": 650,
   "word": "sommige",
   "meaning": "some",
   "pos": "pron",
@@ -6490,9 +6500,9 @@
   "band": "A2"
  },
  {
-  "rank": 650,
+  "rank": 651,
   "word": "zoeken",
-  "meaning": "to search",
+  "meaning": "to look for, to seek",
   "pos": "verb",
   "ipa": "/ˈzu.kə(n)/",
   "zipf": 5.33,
@@ -6500,7 +6510,7 @@
   "band": "A2"
  },
  {
-  "rank": 651,
+  "rank": 652,
   "word": "zoveel",
   "meaning": "so many, so much",
   "pos": "pron",
@@ -6510,7 +6520,7 @@
   "band": "A2"
  },
  {
-  "rank": 652,
+  "rank": 653,
   "word": "tafel",
   "meaning": "table (item of furniture)",
   "pos": "noun",
@@ -6520,7 +6530,7 @@
   "band": "A2"
  },
  {
-  "rank": 653,
+  "rank": 654,
   "word": "voorzien",
   "meaning": "to provide, to supply (optionally [with van ‘with’])",
   "pos": "verb",
@@ -6530,9 +6540,9 @@
   "band": "A2"
  },
  {
-  "rank": 654,
+  "rank": 655,
   "word": "extra",
-  "meaning": "something extra, something in addition",
+  "meaning": "extra",
   "pos": "noun",
   "ipa": "/ˈɛks.traː/",
   "zipf": 5.16,
@@ -6540,7 +6550,7 @@
   "band": "A2"
  },
  {
-  "rank": 655,
+  "rank": 656,
   "word": "leiden",
   "meaning": "to lead, to take the lead",
   "pos": "verb",
@@ -6550,7 +6560,7 @@
   "band": "A2"
  },
  {
-  "rank": 656,
+  "rank": 657,
   "word": "geloven",
   "meaning": "to believe, to hold a belief",
   "pos": "verb",
@@ -6560,7 +6570,7 @@
   "band": "A2"
  },
  {
-  "rank": 657,
+  "rank": 658,
   "word": "lucht",
   "meaning": "air (mixture of gases)",
   "pos": "noun",
@@ -6570,7 +6580,7 @@
   "band": "A2"
  },
  {
-  "rank": 658,
+  "rank": 659,
   "word": "scherp",
   "meaning": "sharp, able to cut easily",
   "pos": "verb",
@@ -6580,7 +6590,7 @@
   "band": "A2"
  },
  {
-  "rank": 659,
+  "rank": 660,
   "word": "lezen",
   "meaning": "to read",
   "pos": "verb",
@@ -6590,7 +6600,7 @@
   "band": "A2"
  },
  {
-  "rank": 660,
+  "rank": 661,
   "word": "doden",
   "meaning": "to kill",
   "pos": "noun",
@@ -6600,7 +6610,7 @@
   "band": "A2"
  },
  {
-  "rank": 661,
+  "rank": 662,
   "word": "eind",
   "meaning": "end",
   "pos": "noun",
@@ -6610,7 +6620,7 @@
   "band": "A2"
  },
  {
-  "rank": 662,
+  "rank": 663,
   "word": "auto",
   "meaning": "car, automobile",
   "pos": "noun",
@@ -6620,7 +6630,7 @@
   "band": "A2"
  },
  {
-  "rank": 663,
+  "rank": 664,
   "word": "pop",
   "meaning": "cocoon, pupa",
   "pos": "noun",
@@ -6630,7 +6640,7 @@
   "band": "A2"
  },
  {
-  "rank": 664,
+  "rank": 665,
   "word": "bezig",
   "meaning": "busy, occupied",
   "pos": "adj",
@@ -6640,7 +6650,7 @@
   "band": "A2"
  },
  {
-  "rank": 665,
+  "rank": 666,
   "word": "site",
   "meaning": "web site",
   "pos": "noun",
@@ -6650,7 +6660,7 @@
   "band": "A2"
  },
  {
-  "rank": 666,
+  "rank": 667,
   "word": "handel",
   "meaning": "trade (activity of trading)",
   "pos": "noun",
@@ -6660,7 +6670,7 @@
   "band": "A2"
  },
  {
-  "rank": 667,
+  "rank": 668,
   "word": "stop",
   "meaning": "an action of stopping, cessation",
   "pos": "noun",
@@ -6670,7 +6680,7 @@
   "band": "A2"
  },
  {
-  "rank": 668,
+  "rank": 669,
   "word": "hulp",
   "meaning": "help, assistance, rescue",
   "pos": "noun",
@@ -6680,7 +6690,7 @@
   "band": "A2"
  },
  {
-  "rank": 669,
+  "rank": 670,
   "word": "klein",
   "meaning": "small, little",
   "pos": "adj",
@@ -6690,7 +6700,7 @@
   "band": "A2"
  },
  {
-  "rank": 670,
+  "rank": 671,
   "word": "krijg",
   "meaning": "war",
   "pos": "noun",
@@ -6700,7 +6710,7 @@
   "band": "A2"
  },
  {
-  "rank": 671,
+  "rank": 672,
   "word": "beeld",
   "meaning": "image",
   "pos": "noun",
@@ -6710,7 +6720,7 @@
   "band": "A2"
  },
  {
-  "rank": 672,
+  "rank": 673,
   "word": "jongens",
   "meaning": "guys, a form of address for a group of male persons or a group of mixed male and female persons",
   "pos": "noun",
@@ -6720,7 +6730,7 @@
   "band": "A2"
  },
  {
-  "rank": 673,
+  "rank": 674,
   "word": "rijden",
   "meaning": "to ride",
   "pos": "verb",
@@ -6730,7 +6740,7 @@
   "band": "A2"
  },
  {
-  "rank": 674,
+  "rank": 675,
   "word": "zwarte",
   "meaning": "a black person, especially a (sub-Saharan) African",
   "pos": "noun",
@@ -6740,7 +6750,7 @@
   "band": "A2"
  },
  {
-  "rank": 675,
+  "rank": 676,
   "word": "stroom",
   "meaning": "a flow, current or flush, as of moving water or other liquid",
   "pos": "noun",
@@ -6750,7 +6760,7 @@
   "band": "A2"
  },
  {
-  "rank": 676,
+  "rank": 677,
   "word": "trap",
   "meaning": "stairs, staircase",
   "pos": "noun",
@@ -6760,7 +6770,7 @@
   "band": "A2"
  },
  {
-  "rank": 677,
+  "rank": 678,
   "word": "feest",
   "meaning": "party",
   "pos": "noun",
@@ -6770,7 +6780,7 @@
   "band": "A2"
  },
  {
-  "rank": 678,
+  "rank": 679,
   "word": "noord",
   "meaning": "north",
   "pos": "adv",
@@ -6780,7 +6790,7 @@
   "band": "A2"
  },
  {
-  "rank": 679,
+  "rank": 680,
   "word": "teken",
   "meaning": "sign, indication, mark",
   "pos": "noun",
@@ -6790,7 +6800,7 @@
   "band": "A2"
  },
  {
-  "rank": 680,
+  "rank": 681,
   "word": "alleen maar",
   "meaning": "only, just",
   "pos": "adv",
@@ -6800,7 +6810,7 @@
   "band": "A2"
  },
  {
-  "rank": 681,
+  "rank": 682,
   "word": "club",
   "meaning": "club (an association of members joining together for some common purpose, especially sports or recreation)",
   "pos": "noun",
@@ -6810,7 +6820,7 @@
   "band": "A2"
  },
  {
-  "rank": 682,
+  "rank": 683,
   "word": "stal",
   "meaning": "a stable, a place to keep hoofed animals",
   "pos": "noun",
@@ -6820,7 +6830,7 @@
   "band": "A2"
  },
  {
-  "rank": 683,
+  "rank": 684,
   "word": "informatie",
   "meaning": "information",
   "pos": "noun",
@@ -6830,9 +6840,9 @@
   "band": "A2"
  },
  {
-  "rank": 684,
+  "rank": 685,
   "word": "stand",
-  "meaning": "posture, position, bearing",
+  "meaning": "score (of a game, match)",
   "pos": "noun",
   "ipa": "/stɑnt/",
   "zipf": 4.95,
@@ -6840,7 +6850,7 @@
   "band": "A2"
  },
  {
-  "rank": 685,
+  "rank": 686,
   "word": "terecht",
   "meaning": "just, right, for good reason",
   "pos": "adj",
@@ -6850,9 +6860,9 @@
   "band": "A2"
  },
  {
-  "rank": 686,
+  "rank": 687,
   "word": "uitgebreid",
-  "meaning": "vast, spacious",
+  "meaning": "comprehensive, extensive",
   "pos": "verb",
   "ipa": "",
   "zipf": 4.78,
@@ -6860,7 +6870,7 @@
   "band": "A2"
  },
  {
-  "rank": 687,
+  "rank": 688,
   "word": "bedrijven",
   "meaning": "to do, to perform, to carry out",
   "pos": "noun",
@@ -6870,7 +6880,7 @@
   "band": "A2"
  },
  {
-  "rank": 688,
+  "rank": 689,
   "word": "april",
   "meaning": "the month of April",
   "pos": "noun",
@@ -6880,7 +6890,7 @@
   "band": "A2"
  },
  {
-  "rank": 689,
+  "rank": 690,
   "word": "probleem",
   "meaning": "problem",
   "pos": "noun",
@@ -6890,7 +6900,7 @@
   "band": "A2"
  },
  {
-  "rank": 690,
+  "rank": 691,
   "word": "pijn",
   "meaning": "pain, ache (physical)",
   "pos": "noun",
@@ -6900,7 +6910,7 @@
   "band": "A2"
  },
  {
-  "rank": 691,
+  "rank": 692,
   "word": "prima",
   "meaning": "excellent",
   "pos": "adj",
@@ -6910,7 +6920,7 @@
   "band": "A2"
  },
  {
-  "rank": 692,
+  "rank": 693,
   "word": "stuur",
   "meaning": "a steering device, notably a steering wheel in a vehicle or handlebars on a bicycle",
   "pos": "noun",
@@ -6920,7 +6930,7 @@
   "band": "A2"
  },
  {
-  "rank": 693,
+  "rank": 694,
   "word": "geef",
   "meaning": "gift",
   "pos": "noun",
@@ -6930,7 +6940,7 @@
   "band": "A2"
  },
  {
-  "rank": 694,
+  "rank": 695,
   "word": "diep",
   "meaning": "the deep, profound part of a body of water",
   "pos": "noun",
@@ -6940,7 +6950,7 @@
   "band": "A2"
  },
  {
-  "rank": 695,
+  "rank": 696,
   "word": "negen",
   "meaning": "a nine, an instance or representation of the digit nine",
   "pos": "noun",
@@ -6950,7 +6960,7 @@
   "band": "A2"
  },
  {
-  "rank": 696,
+  "rank": 697,
   "word": "neuken",
   "meaning": "to fuck, to screw",
   "pos": "verb",
@@ -6960,7 +6970,7 @@
   "band": "A2"
  },
  {
-  "rank": 697,
+  "rank": 698,
   "word": "fijn",
   "meaning": "nice, pleasant",
   "pos": "adj",
@@ -6970,9 +6980,9 @@
   "band": "A2"
  },
  {
-  "rank": 698,
+  "rank": 699,
   "word": "regering",
-  "meaning": "governing (act of; ruling a state or similar political entity)",
+  "meaning": "government (a governing council: especially the executive branch of government)",
   "pos": "noun",
   "ipa": "/rəˈɣeː.rɪŋ/",
   "zipf": 5.09,
@@ -6980,7 +6990,7 @@
   "band": "A2"
  },
  {
-  "rank": 699,
+  "rank": 700,
   "word": "straat",
   "meaning": "street, paved way",
   "pos": "noun",
@@ -6990,7 +7000,7 @@
   "band": "A2"
  },
  {
-  "rank": 700,
+  "rank": 701,
   "word": "trots",
   "meaning": "pride",
   "pos": "noun",
@@ -7000,7 +7010,7 @@
   "band": "A2"
  },
  {
-  "rank": 701,
+  "rank": 702,
   "word": "beelden",
   "meaning": "to shape, form",
   "pos": "noun",
@@ -7010,7 +7020,7 @@
   "band": "A2"
  },
  {
-  "rank": 702,
+  "rank": 703,
   "word": "functie",
   "meaning": "job, position",
   "pos": "noun",
@@ -7020,9 +7030,9 @@
   "band": "A2"
  },
  {
-  "rank": 703,
+  "rank": 704,
   "word": "elk",
-  "meaning": "everyone; everybody",
+  "meaning": "each; every",
   "pos": "pron",
   "ipa": "/ɛlk/",
   "zipf": 5.25,
@@ -7030,7 +7040,7 @@
   "band": "A2"
  },
  {
-  "rank": 704,
+  "rank": 705,
   "word": "euro",
   "meaning": "euro (currency)",
   "pos": "noun",
@@ -7040,7 +7050,7 @@
   "band": "A2"
  },
  {
-  "rank": 705,
+  "rank": 706,
   "word": "gevoel",
   "meaning": "feeling, emotion",
   "pos": "noun",
@@ -7050,7 +7060,7 @@
   "band": "A2"
  },
  {
-  "rank": 706,
+  "rank": 707,
   "word": "heten",
   "meaning": "to be named; to have as name; to be called",
   "pos": "verb",
@@ -7060,7 +7070,7 @@
   "band": "A2"
  },
  {
-  "rank": 707,
+  "rank": 708,
   "word": "ergens",
   "meaning": "somewhere, anywhere",
   "pos": "adv",
@@ -7070,7 +7080,7 @@
   "band": "A2"
  },
  {
-  "rank": 708,
+  "rank": 709,
   "word": "noemen",
   "meaning": "to call, to name",
   "pos": "verb",
@@ -7080,7 +7090,7 @@
   "band": "A2"
  },
  {
-  "rank": 709,
+  "rank": 710,
   "word": "periode",
   "meaning": "period (of time)",
   "pos": "noun",
@@ -7090,7 +7100,7 @@
   "band": "A2"
  },
  {
-  "rank": 710,
+  "rank": 711,
   "word": "trek",
   "meaning": "appetite",
   "pos": "noun",
@@ -7100,7 +7110,7 @@
   "band": "A2"
  },
  {
-  "rank": 711,
+  "rank": 712,
   "word": "ongeveer",
   "meaning": "about, roughly, approximately",
   "pos": "adv",
@@ -7110,7 +7120,7 @@
   "band": "A2"
  },
  {
-  "rank": 712,
+  "rank": 713,
   "word": "regio",
   "meaning": "region",
   "pos": "noun",
@@ -7120,7 +7130,7 @@
   "band": "A2"
  },
  {
-  "rank": 713,
+  "rank": 714,
   "word": "vijf",
   "meaning": "five",
   "pos": "num",
@@ -7130,7 +7140,7 @@
   "band": "A2"
  },
  {
-  "rank": 714,
+  "rank": 715,
   "word": "kost",
   "meaning": "cost, expenses",
   "pos": "noun",
@@ -7140,7 +7150,7 @@
   "band": "A2"
  },
  {
-  "rank": 715,
+  "rank": 716,
   "word": "lijken",
   "meaning": "to seem, appear",
   "pos": "noun",
@@ -7150,9 +7160,9 @@
   "band": "A2"
  },
  {
-  "rank": 716,
+  "rank": 717,
   "word": "opname",
-  "meaning": "the act of absorbing or assimilating, uptake, absorption",
+  "meaning": "a recording, a record, something that has been recorded",
   "pos": "noun",
   "ipa": "/ˈɔpˌnaː.mə/",
   "zipf": 4.41,
@@ -7160,7 +7170,7 @@
   "band": "A2"
  },
  {
-  "rank": 717,
+  "rank": 718,
   "word": "midden",
   "meaning": "middle, centre",
   "pos": "noun",
@@ -7170,7 +7180,7 @@
   "band": "A2"
  },
  {
-  "rank": 718,
+  "rank": 719,
   "word": "des",
   "meaning": "D-flat",
   "pos": "noun",
@@ -7180,7 +7190,7 @@
   "band": "A2"
  },
  {
-  "rank": 719,
+  "rank": 720,
   "word": "echt niet",
   "meaning": "no way! really not! definitely not!",
   "pos": "intj",
@@ -7190,7 +7200,7 @@
   "band": "A2"
  },
  {
-  "rank": 720,
+  "rank": 721,
   "word": "niet eens",
   "meaning": "not even",
   "pos": "adv",
@@ -7200,7 +7210,7 @@
   "band": "A2"
  },
  {
-  "rank": 721,
+  "rank": 722,
   "word": "been",
   "meaning": "leg, limb of a person, horse (other animals would have poten) and certain objects (again many have poten)",
   "pos": "noun",
@@ -7210,7 +7220,7 @@
   "band": "A2"
  },
  {
-  "rank": 722,
+  "rank": 723,
   "word": "niemand",
   "meaning": "nobody, no one",
   "pos": "pron",
@@ -7220,7 +7230,7 @@
   "band": "A2"
  },
  {
-  "rank": 723,
+  "rank": 724,
   "word": "oktober",
   "meaning": "October",
   "pos": "noun",
@@ -7230,7 +7240,7 @@
   "band": "A2"
  },
  {
-  "rank": 724,
+  "rank": 725,
   "word": "app",
   "meaning": "an app",
   "pos": "noun",
@@ -7240,7 +7250,7 @@
   "band": "A2"
  },
  {
-  "rank": 725,
+  "rank": 726,
   "word": "positie",
   "meaning": "position, posture",
   "pos": "noun",
@@ -7250,9 +7260,9 @@
   "band": "A2"
  },
  {
-  "rank": 726,
+  "rank": 727,
   "word": "blad",
-  "meaning": "a sheet of paper, leaf (in a book)",
+  "meaning": "the broad, flat blade of a weapon or tool; a blade",
   "pos": "noun",
   "ipa": "/blɑt/",
   "zipf": 4.4,
@@ -7260,7 +7270,7 @@
   "band": "A2"
  },
  {
-  "rank": 727,
+  "rank": 728,
   "word": "onderwijs",
   "meaning": "education",
   "pos": "noun",
@@ -7270,7 +7280,7 @@
   "band": "A2"
  },
  {
-  "rank": 728,
+  "rank": 729,
   "word": "plek",
   "meaning": "spot, place",
   "pos": "noun",
@@ -7280,9 +7290,9 @@
   "band": "A2"
  },
  {
-  "rank": 729,
+  "rank": 730,
   "word": "wedstrijd",
-  "meaning": "race, competition",
+  "meaning": "game, match",
   "pos": "noun",
   "ipa": "/ˈʋɛt.strɛi̯t/",
   "zipf": 5.23,
@@ -7290,7 +7300,7 @@
   "band": "A2"
  },
  {
-  "rank": 730,
+  "rank": 731,
   "word": "overleden",
   "meaning": "deceased",
   "pos": "verb",
@@ -7300,7 +7310,7 @@
   "band": "A2"
  },
  {
-  "rank": 731,
+  "rank": 732,
   "word": "reis",
   "meaning": "travel",
   "pos": "noun",
@@ -7310,7 +7320,7 @@
   "band": "A2"
  },
  {
-  "rank": 732,
+  "rank": 733,
   "word": "sturen",
   "meaning": "to steer, guide",
   "pos": "noun",
@@ -7320,7 +7330,7 @@
   "band": "A2"
  },
  {
-  "rank": 733,
+  "rank": 734,
   "word": "tegenwoordig",
   "meaning": "present (in time), current",
   "pos": "adj",
@@ -7330,7 +7340,7 @@
   "band": "A2"
  },
  {
-  "rank": 734,
+  "rank": 735,
   "word": "vertrouwen",
   "meaning": "trust, faith",
   "pos": "noun",
@@ -7340,7 +7350,7 @@
   "band": "A2"
  },
  {
-  "rank": 735,
+  "rank": 736,
   "word": "kanaal",
   "meaning": "canal (artificial waterway)",
   "pos": "noun",
@@ -7350,7 +7360,7 @@
   "band": "A2"
  },
  {
-  "rank": 736,
+  "rank": 737,
   "word": "straf",
   "meaning": "a punishment, penalty, sanction",
   "pos": "noun",
@@ -7360,7 +7370,7 @@
   "band": "A2"
  },
  {
-  "rank": 737,
+  "rank": 738,
   "word": "medium",
   "meaning": "means, system or instrument for fulfilling an end",
   "pos": "noun",
@@ -7370,7 +7380,7 @@
   "band": "A2"
  },
  {
-  "rank": 738,
+  "rank": 739,
   "word": "nog wel eens",
   "meaning": "ever (at least once)",
   "pos": "adv",
@@ -7380,7 +7390,7 @@
   "band": "A2"
  },
  {
-  "rank": 739,
+  "rank": 740,
   "word": "mee-eten",
   "meaning": "to eat along with others, to join others for a meal",
   "pos": "verb",
@@ -7390,7 +7400,7 @@
   "band": "A2"
  },
  {
-  "rank": 740,
+  "rank": 741,
   "word": "gang",
   "meaning": "passageway, alley",
   "pos": "noun",
@@ -7400,7 +7410,7 @@
   "band": "A2"
  },
  {
-  "rank": 741,
+  "rank": 742,
   "word": "steun",
   "meaning": "support",
   "pos": "noun",
@@ -7410,7 +7420,7 @@
   "band": "A2"
  },
  {
-  "rank": 742,
+  "rank": 743,
   "word": "wijk",
   "meaning": "neighborhood",
   "pos": "noun",
@@ -7420,7 +7430,7 @@
   "band": "A2"
  },
  {
-  "rank": 743,
+  "rank": 744,
   "word": "winkel",
   "meaning": "shop, store (establishment that sells goods to the public)",
   "pos": "noun",
@@ -7430,7 +7440,7 @@
   "band": "A2"
  },
  {
-  "rank": 744,
+  "rank": 745,
   "word": "dochter",
   "meaning": "daughter (female offspring)",
   "pos": "noun",
@@ -7440,7 +7450,7 @@
   "band": "A2"
  },
  {
-  "rank": 745,
+  "rank": 746,
   "word": "meteen",
   "meaning": "immediately; at once",
   "pos": "adv",
@@ -7450,7 +7460,7 @@
   "band": "A2"
  },
  {
-  "rank": 746,
+  "rank": 747,
   "word": "kloppen",
   "meaning": "to knock or beat audibly",
   "pos": "noun",
@@ -7460,7 +7470,7 @@
   "band": "A2"
  },
  {
-  "rank": 747,
+  "rank": 748,
   "word": "zo goed als",
   "meaning": "as good as",
   "pos": "adv",
@@ -7470,7 +7480,7 @@
   "band": "A2"
  },
  {
-  "rank": 748,
+  "rank": 749,
   "word": "half",
   "meaning": "half",
   "pos": "adj",
@@ -7480,7 +7490,7 @@
   "band": "A2"
  },
  {
-  "rank": 749,
+  "rank": 750,
   "word": "slechte",
   "meaning": "bad person",
   "pos": "noun",
@@ -7490,17 +7500,17 @@
   "band": "A2"
  },
  {
-  "rank": 750,
+  "rank": 751,
   "word": "tekst",
   "meaning": "text",
   "pos": "noun",
   "ipa": "/tɛkst/",
   "zipf": 5.05,
   "score": 104.89999999999999,
-  "band": "A2"
+  "band": "B1"
  },
  {
-  "rank": 751,
+  "rank": 752,
   "word": "hand",
   "meaning": "a hand of a human, other simian or other animal with fingers",
   "pos": "noun",
@@ -7510,7 +7520,7 @@
   "band": "B1"
  },
  {
-  "rank": 752,
+  "rank": 753,
   "word": "november",
   "meaning": "November",
   "pos": "noun",
@@ -7520,7 +7530,7 @@
   "band": "B1"
  },
  {
-  "rank": 753,
+  "rank": 754,
   "word": "opnieuw",
   "meaning": "again",
   "pos": "adv",
@@ -7530,7 +7540,7 @@
   "band": "B1"
  },
  {
-  "rank": 754,
+  "rank": 755,
   "word": "besloten",
   "meaning": "private",
   "pos": "verb",
@@ -7540,7 +7550,7 @@
   "band": "B1"
  },
  {
-  "rank": 755,
+  "rank": 756,
   "word": "bestuur",
   "meaning": "management",
   "pos": "noun",
@@ -7550,7 +7560,7 @@
   "band": "B1"
  },
  {
-  "rank": 756,
+  "rank": 757,
   "word": "buurt",
   "meaning": "neighborhood, part of town",
   "pos": "noun",
@@ -7560,7 +7570,7 @@
   "band": "B1"
  },
  {
-  "rank": 757,
+  "rank": 758,
   "word": "kopen",
   "meaning": "to buy, purchase",
   "pos": "noun",
@@ -7570,7 +7580,7 @@
   "band": "B1"
  },
  {
-  "rank": 758,
+  "rank": 759,
   "word": "minister",
   "meaning": "minister (a politician who heads a ministry)",
   "pos": "noun",
@@ -7580,7 +7590,7 @@
   "band": "B1"
  },
  {
-  "rank": 759,
+  "rank": 760,
   "word": "verkeer",
   "meaning": "traffic",
   "pos": "noun",
@@ -7590,7 +7600,7 @@
   "band": "B1"
  },
  {
-  "rank": 760,
+  "rank": 761,
   "word": "maar toch",
   "meaning": "yet; and yet, but still",
   "pos": "conj",
@@ -7600,7 +7610,7 @@
   "band": "B1"
  },
  {
-  "rank": 761,
+  "rank": 762,
   "word": "reactie",
   "meaning": "reaction (action in response to an event)",
   "pos": "noun",
@@ -7610,7 +7620,7 @@
   "band": "B1"
  },
  {
-  "rank": 762,
+  "rank": 763,
   "word": "ruimte",
   "meaning": "space, room (for a physical object to occupy)",
   "pos": "noun",
@@ -7620,7 +7630,7 @@
   "band": "B1"
  },
  {
-  "rank": 763,
+  "rank": 764,
   "word": "zeven",
   "meaning": "seven",
   "pos": "noun",
@@ -7630,7 +7640,7 @@
   "band": "B1"
  },
  {
-  "rank": 764,
+  "rank": 765,
   "word": "paal",
   "meaning": "post, stake, pole, pile",
   "pos": "noun",
@@ -7640,7 +7650,7 @@
   "band": "B1"
  },
  {
-  "rank": 765,
+  "rank": 766,
   "word": "muziek",
   "meaning": "music (sound; art)",
   "pos": "noun",
@@ -7650,7 +7660,7 @@
   "band": "B1"
  },
  {
-  "rank": 766,
+  "rank": 767,
   "word": "slechts",
   "meaning": "only, just",
   "pos": "adv",
@@ -7660,7 +7670,7 @@
   "band": "B1"
  },
  {
-  "rank": 767,
+  "rank": 768,
   "word": "zoon",
   "meaning": "son",
   "pos": "noun",
@@ -7670,7 +7680,7 @@
   "band": "B1"
  },
  {
-  "rank": 768,
+  "rank": 769,
   "word": "kappen",
   "meaning": "to chop, as with an axe",
   "pos": "noun",
@@ -7680,7 +7690,7 @@
   "band": "B1"
  },
  {
-  "rank": 769,
+  "rank": 770,
   "word": "betalen",
   "meaning": "to pay",
   "pos": "verb",
@@ -7690,7 +7700,7 @@
   "band": "B1"
  },
  {
-  "rank": 770,
+  "rank": 771,
   "word": "organisatie",
   "meaning": "an organization (institution)",
   "pos": "noun",
@@ -7700,7 +7710,7 @@
   "band": "B1"
  },
  {
-  "rank": 771,
+  "rank": 772,
   "word": "provincie",
   "meaning": "province",
   "pos": "noun",
@@ -7710,7 +7720,7 @@
   "band": "B1"
  },
  {
-  "rank": 772,
+  "rank": 773,
   "word": "klasse",
   "meaning": "quality, class",
   "pos": "noun",
@@ -7720,7 +7730,7 @@
   "band": "B1"
  },
  {
-  "rank": 773,
+  "rank": 774,
   "word": "laatst",
   "meaning": "latest, most recent, newest",
   "pos": "adj",
@@ -7730,9 +7740,9 @@
   "band": "B1"
  },
  {
-  "rank": 774,
+  "rank": 775,
   "word": "geheel",
-  "meaning": "whole, entirety",
+  "meaning": "whole, entire",
   "pos": "noun",
   "ipa": "",
   "zipf": 5.03,
@@ -7740,7 +7750,7 @@
   "band": "B1"
  },
  {
-  "rank": 775,
+  "rank": 776,
   "word": "kerk",
   "meaning": "church, house of Christian worship",
   "pos": "noun",
@@ -7750,7 +7760,7 @@
   "band": "B1"
  },
  {
-  "rank": 776,
+  "rank": 777,
   "word": "voorbeeld",
   "meaning": "example",
   "pos": "noun",
@@ -7760,7 +7770,7 @@
   "band": "B1"
  },
  {
-  "rank": 777,
+  "rank": 778,
   "word": "zowel",
   "meaning": "both, as well as",
   "pos": "conj",
@@ -7770,7 +7780,7 @@
   "band": "B1"
  },
  {
-  "rank": 778,
+  "rank": 779,
   "word": "netwerk",
   "meaning": "network (system of interconnected narrow elements)",
   "pos": "noun",
@@ -7780,7 +7790,7 @@
   "band": "B1"
  },
  {
-  "rank": 779,
+  "rank": 780,
   "word": "het hebben over",
   "meaning": "to talk about, discuss",
   "pos": "verb",
@@ -7790,7 +7800,7 @@
   "band": "B1"
  },
  {
-  "rank": 780,
+  "rank": 781,
   "word": "hier en nu",
   "meaning": "here and now, present moment",
   "pos": "noun",
@@ -7800,7 +7810,7 @@
   "band": "B1"
  },
  {
-  "rank": 781,
+  "rank": 782,
   "word": "over en weer",
   "meaning": "mutually; from both sides",
   "pos": "phrase",
@@ -7810,7 +7820,7 @@
   "band": "B1"
  },
  {
-  "rank": 782,
+  "rank": 783,
   "word": "bron",
   "meaning": "source",
   "pos": "noun",
@@ -7820,7 +7830,7 @@
   "band": "B1"
  },
  {
-  "rank": 783,
+  "rank": 784,
   "word": "gezet",
   "meaning": "fixed, set, determined (said of mortgage terms, timeframe of a plan, etc)",
   "pos": "verb",
@@ -7830,7 +7840,7 @@
   "band": "B1"
  },
  {
-  "rank": 784,
+  "rank": 785,
   "word": "gratis",
   "meaning": "free, without charge",
   "pos": "adj",
@@ -7840,7 +7850,7 @@
   "band": "B1"
  },
  {
-  "rank": 785,
+  "rank": 786,
   "word": "team",
   "meaning": "team (group of people)",
   "pos": "noun",
@@ -7850,7 +7860,7 @@
   "band": "B1"
  },
  {
-  "rank": 786,
+  "rank": 787,
   "word": "jammer",
   "meaning": "too bad, unfortunately",
   "pos": "verb",
@@ -7860,7 +7870,7 @@
   "band": "B1"
  },
  {
-  "rank": 787,
+  "rank": 788,
   "word": "internet",
   "meaning": "Internet (specific internet consisting of the global network of computers)",
   "pos": "noun",
@@ -7870,7 +7880,7 @@
   "band": "B1"
  },
  {
-  "rank": 788,
+  "rank": 789,
   "word": "jarige",
   "meaning": "person whose birthday it is; birthday girl, birthday boy; birthday kid",
   "pos": "noun",
@@ -7880,7 +7890,7 @@
   "band": "B1"
  },
  {
-  "rank": 789,
+  "rank": 790,
   "word": "zichzelf",
   "meaning": "oneself; himself/herself/themselves",
   "pos": "pron",
@@ -7890,7 +7900,7 @@
   "band": "B1"
  },
  {
-  "rank": 790,
+  "rank": 791,
   "word": "steken",
   "meaning": "to prick, sting",
   "pos": "noun",
@@ -7900,7 +7910,7 @@
   "band": "B1"
  },
  {
-  "rank": 791,
+  "rank": 792,
   "word": "dragen",
   "meaning": "to carry",
   "pos": "verb",
@@ -7910,7 +7920,7 @@
   "band": "B1"
  },
  {
-  "rank": 792,
+  "rank": 793,
   "word": "gelegen",
   "meaning": "opportune, timely",
   "pos": "verb",
@@ -7920,7 +7930,7 @@
   "band": "B1"
  },
  {
-  "rank": 793,
+  "rank": 794,
   "word": "belangrijk",
   "meaning": "important",
   "pos": "adj",
@@ -7930,7 +7940,7 @@
   "band": "B1"
  },
  {
-  "rank": 794,
+  "rank": 795,
   "word": "wapen",
   "meaning": "weapon",
   "pos": "noun",
@@ -7940,7 +7950,7 @@
   "band": "B1"
  },
  {
-  "rank": 795,
+  "rank": 796,
   "word": "genoemd",
   "meaning": "said, given",
   "pos": "verb",
@@ -7950,7 +7960,7 @@
   "band": "B1"
  },
  {
-  "rank": 796,
+  "rank": 797,
   "word": "politiek",
   "meaning": "politics",
   "pos": "noun",
@@ -7960,7 +7970,7 @@
   "band": "B1"
  },
  {
-  "rank": 797,
+  "rank": 798,
   "word": "vertellen",
   "meaning": "to tell",
   "pos": "verb",
@@ -7970,7 +7980,7 @@
   "band": "B1"
  },
  {
-  "rank": 798,
+  "rank": 799,
   "word": "bomen",
   "meaning": "to close/shut with a beam",
   "pos": "noun",
@@ -7980,7 +7990,7 @@
   "band": "B1"
  },
  {
-  "rank": 799,
+  "rank": 800,
   "word": "hoe gaat het",
   "meaning": "how are you",
   "pos": "phrase",
@@ -7990,7 +8000,7 @@
   "band": "B1"
  },
  {
-  "rank": 800,
+  "rank": 801,
   "word": "haag",
   "meaning": "a hedge, thicket of woody bushes planted in a row",
   "pos": "noun",
@@ -8000,7 +8010,7 @@
   "band": "B1"
  },
  {
-  "rank": 801,
+  "rank": 802,
   "word": "leggen",
   "meaning": "to lay (to place in a lying position)",
   "pos": "verb",
@@ -8010,7 +8020,7 @@
   "band": "B1"
  },
  {
-  "rank": 802,
+  "rank": 803,
   "word": "winnen",
   "meaning": "to win, to triumph, to be victorious (in)",
   "pos": "verb",
@@ -8020,7 +8030,7 @@
   "band": "B1"
  },
  {
-  "rank": 803,
+  "rank": 804,
   "word": "beginnen",
   "meaning": "to begin",
   "pos": "verb",
@@ -8030,7 +8040,7 @@
   "band": "B1"
  },
  {
-  "rank": 804,
+  "rank": 805,
   "word": "december",
   "meaning": "December",
   "pos": "noun",
@@ -8040,7 +8050,7 @@
   "band": "B1"
  },
  {
-  "rank": 805,
+  "rank": 806,
   "word": "dezelfde",
   "meaning": "the same",
   "pos": "pron",
@@ -8050,7 +8060,7 @@
   "band": "B1"
  },
  {
-  "rank": 806,
+  "rank": 807,
   "word": "miljoen",
   "meaning": "a million, 10⁶",
   "pos": "noun",
@@ -8060,7 +8070,7 @@
   "band": "B1"
  },
  {
-  "rank": 807,
+  "rank": 808,
   "word": "o",
   "meaning": "oh",
   "pos": "intj",
@@ -8070,7 +8080,7 @@
   "band": "B1"
  },
  {
-  "rank": 808,
+  "rank": 809,
   "word": "bureau",
   "meaning": "desk",
   "pos": "noun",
@@ -8080,7 +8090,7 @@
   "band": "B1"
  },
  {
-  "rank": 809,
+  "rank": 810,
   "word": "muur",
   "meaning": "wall",
   "pos": "noun",
@@ -8090,7 +8100,7 @@
   "band": "B1"
  },
  {
-  "rank": 810,
+  "rank": 811,
   "word": "konden",
   "meaning": "To announce, proclaim, make known",
   "pos": "verb",
@@ -8100,7 +8110,7 @@
   "band": "B1"
  },
  {
-  "rank": 811,
+  "rank": 812,
   "word": "seizoen",
   "meaning": "a season, major part of the year",
   "pos": "noun",
@@ -8110,7 +8120,7 @@
   "band": "B1"
  },
  {
-  "rank": 812,
+  "rank": 813,
   "word": "paard",
   "meaning": "horse (Equus caballus or Equus ferus)",
   "pos": "noun",
@@ -8120,7 +8130,7 @@
   "band": "B1"
  },
  {
-  "rank": 813,
+  "rank": 814,
   "word": "pers",
   "meaning": "a press, mechanical device to exert pression",
   "pos": "noun",
@@ -8130,7 +8140,7 @@
   "band": "B1"
  },
  {
-  "rank": 814,
+  "rank": 815,
   "word": "genieten",
   "meaning": "to enjoy oneself, to have a pleasant experience",
   "pos": "verb",
@@ -8140,7 +8150,7 @@
   "band": "B1"
  },
  {
-  "rank": 815,
+  "rank": 816,
   "word": "verhalen",
   "meaning": "to narrate",
   "pos": "noun",
@@ -8150,7 +8160,7 @@
   "band": "B1"
  },
  {
-  "rank": 816,
+  "rank": 817,
   "word": "voetbal",
   "meaning": "football, soccer (association football)",
   "pos": "noun",
@@ -8160,7 +8170,7 @@
   "band": "B1"
  },
  {
-  "rank": 817,
+  "rank": 818,
   "word": "tip",
   "meaning": "tip, small amount of money left for a waiter, taxi driver, etc. as a token of appreciation",
   "pos": "noun",
@@ -8170,7 +8180,7 @@
   "band": "B1"
  },
  {
-  "rank": 818,
+  "rank": 819,
   "word": "vermogen",
   "meaning": "ability, power, capacity",
   "pos": "noun",
@@ -8180,7 +8190,7 @@
   "band": "B1"
  },
  {
-  "rank": 819,
+  "rank": 820,
   "word": "mei",
   "meaning": "May",
   "pos": "noun",
@@ -8190,7 +8200,7 @@
   "band": "B1"
  },
  {
-  "rank": 820,
+  "rank": 821,
   "word": "inhoud",
   "meaning": "content; contents",
   "pos": "noun",
@@ -8200,7 +8210,7 @@
   "band": "B1"
  },
  {
-  "rank": 821,
+  "rank": 822,
   "word": "algemeen",
   "meaning": "general",
   "pos": "adj",
@@ -8210,7 +8220,7 @@
   "band": "B1"
  },
  {
-  "rank": 822,
+  "rank": 823,
   "word": "antwoord",
   "meaning": "answer, reply",
   "pos": "noun",
@@ -8220,7 +8230,7 @@
   "band": "B1"
  },
  {
-  "rank": 823,
+  "rank": 824,
   "word": "geweldig",
   "meaning": "tremendous, enormous",
   "pos": "adj",
@@ -8230,7 +8240,7 @@
   "band": "B1"
  },
  {
-  "rank": 824,
+  "rank": 825,
   "word": "omgeving",
   "meaning": "surroundings, area, environment, environs",
   "pos": "noun",
@@ -8240,7 +8250,7 @@
   "band": "B1"
  },
  {
-  "rank": 825,
+  "rank": 826,
   "word": "succes",
   "meaning": "success",
   "pos": "noun",
@@ -8250,7 +8260,7 @@
   "band": "B1"
  },
  {
-  "rank": 826,
+  "rank": 827,
   "word": "welkom",
   "meaning": "welcome",
   "pos": "adj",
@@ -8260,7 +8270,7 @@
   "band": "B1"
  },
  {
-  "rank": 827,
+  "rank": 828,
   "word": "golf",
   "meaning": "wave",
   "pos": "noun",
@@ -8270,7 +8280,7 @@
   "band": "B1"
  },
  {
-  "rank": 828,
+  "rank": 829,
   "word": "zo te zien",
   "meaning": "apparently",
   "pos": "phrase",
@@ -8280,9 +8290,9 @@
   "band": "B1"
  },
  {
-  "rank": 829,
+  "rank": 830,
   "word": "bereiken",
-  "meaning": "to arrive at, to reach, to get to",
+  "meaning": "to achieve, to attain",
   "pos": "noun",
   "ipa": "/bəˈrɛi̯kə(n)/",
   "zipf": 4.98,
@@ -8290,7 +8300,7 @@
   "band": "B1"
  },
  {
-  "rank": 830,
+  "rank": 831,
   "word": "moord",
   "meaning": "murder, a type of killing legally in a more severe degree than homicide",
   "pos": "noun",
@@ -8300,7 +8310,7 @@
   "band": "B1"
  },
  {
-  "rank": 831,
+  "rank": 832,
   "word": "sport",
   "meaning": "a sport; (uncountable) sports",
   "pos": "noun",
@@ -8310,7 +8320,7 @@
   "band": "B1"
  },
  {
-  "rank": 832,
+  "rank": 833,
   "word": "strijd",
   "meaning": "conflict, strife",
   "pos": "noun",
@@ -8320,7 +8330,7 @@
   "band": "B1"
  },
  {
-  "rank": 833,
+  "rank": 834,
   "word": "mee eens",
   "meaning": "Indicates agreement on the part of the speaker; agreed",
   "pos": "phrase",
@@ -8330,7 +8340,7 @@
   "band": "B1"
  },
  {
-  "rank": 834,
+  "rank": 835,
   "word": "januari",
   "meaning": "January",
   "pos": "noun",
@@ -8340,7 +8350,7 @@
   "band": "B1"
  },
  {
-  "rank": 835,
+  "rank": 836,
   "word": "vlucht",
   "meaning": "flight (the act of flying, an instance thereof)",
   "pos": "noun",
@@ -8350,7 +8360,7 @@
   "band": "B1"
  },
  {
-  "rank": 836,
+  "rank": 837,
   "word": "stom",
   "meaning": "mute, unable to speak, as medical condition or species-determined",
   "pos": "adj",
@@ -8360,7 +8370,7 @@
   "band": "B1"
  },
  {
-  "rank": 837,
+  "rank": 838,
   "word": "vleugel",
   "meaning": "wing to fly with",
   "pos": "noun",
@@ -8370,7 +8380,7 @@
   "band": "B1"
  },
  {
-  "rank": 838,
+  "rank": 839,
   "word": "hoewel",
   "meaning": "though, although",
   "pos": "conj",
@@ -8380,7 +8390,7 @@
   "band": "B1"
  },
  {
-  "rank": 839,
+  "rank": 840,
   "word": "stap",
   "meaning": "step",
   "pos": "noun",
@@ -8390,7 +8400,7 @@
   "band": "B1"
  },
  {
-  "rank": 840,
+  "rank": 841,
   "word": "telefoon",
   "meaning": "telephone (device)",
   "pos": "noun",
@@ -8400,7 +8410,7 @@
   "band": "B1"
  },
  {
-  "rank": 841,
+  "rank": 842,
   "word": "waarop",
   "meaning": "after which",
   "pos": "adv",
@@ -8410,7 +8420,7 @@
   "band": "B1"
  },
  {
-  "rank": 842,
+  "rank": 843,
   "word": "sporen",
   "meaning": "to spur",
   "pos": "noun",
@@ -8420,7 +8430,7 @@
   "band": "B1"
  },
  {
-  "rank": 843,
+  "rank": 844,
   "word": "ban",
   "meaning": "excommunication, denunciation, shunning",
   "pos": "noun",
@@ -8430,7 +8440,7 @@
   "band": "B1"
  },
  {
-  "rank": 844,
+  "rank": 845,
   "word": "echt wel",
   "meaning": "really (so)! definitely (so)!",
   "pos": "intj",
@@ -8440,7 +8450,7 @@
   "band": "B1"
  },
  {
-  "rank": 845,
+  "rank": 846,
   "word": "er was eens",
   "meaning": "once upon a time there was",
   "pos": "phrase",
@@ -8450,7 +8460,7 @@
   "band": "B1"
  },
  {
-  "rank": 846,
+  "rank": 847,
   "word": "weet je",
   "meaning": "you know",
   "pos": "intj",
@@ -8460,7 +8470,7 @@
   "band": "B1"
  },
  {
-  "rank": 847,
+  "rank": 848,
   "word": "wel eens",
   "meaning": "occasionally, sometimes",
   "pos": "adv",
@@ -8470,7 +8480,7 @@
   "band": "B1"
  },
  {
-  "rank": 848,
+  "rank": 849,
   "word": "engels",
   "meaning": "a unit of mass equal to one twentieth of an ounce, approximately 1.5 grams",
   "pos": "noun",
@@ -8480,7 +8490,7 @@
   "band": "B1"
  },
  {
-  "rank": 849,
+  "rank": 850,
   "word": "ontstaan",
   "meaning": "to arise, to come into being",
   "pos": "verb",
@@ -8490,7 +8500,7 @@
   "band": "B1"
  },
  {
-  "rank": 850,
+  "rank": 851,
   "word": "boer",
   "meaning": "a (male) farmer, peasant",
   "pos": "noun",
@@ -8500,7 +8510,7 @@
   "band": "B1"
  },
  {
-  "rank": 851,
+  "rank": 852,
   "word": "een-twee-drie",
   "meaning": "one-two-three (quickly, with ease)",
   "pos": "adv",
@@ -8510,7 +8520,7 @@
   "band": "B1"
  },
  {
-  "rank": 852,
+  "rank": 853,
   "word": "nadat",
   "meaning": "after, after which",
   "pos": "conj",
@@ -8520,7 +8530,7 @@
   "band": "B1"
  },
  {
-  "rank": 853,
+  "rank": 854,
   "word": "hartelijk",
   "meaning": "cordial",
   "pos": "adj",
@@ -8530,7 +8540,7 @@
   "band": "B1"
  },
  {
-  "rank": 854,
+  "rank": 855,
   "word": "dienst",
   "meaning": "service",
   "pos": "noun",
@@ -8540,7 +8550,7 @@
   "band": "B1"
  },
  {
-  "rank": 855,
+  "rank": 856,
   "word": "lijst",
   "meaning": "list",
   "pos": "noun",
@@ -8550,7 +8560,7 @@
   "band": "B1"
  },
  {
-  "rank": 856,
+  "rank": 857,
   "word": "hof",
   "meaning": "court, residence of a monarch or other high-placed person",
   "pos": "noun",
@@ -8560,7 +8570,7 @@
   "band": "B1"
  },
  {
-  "rank": 857,
+  "rank": 858,
   "word": "hond",
   "meaning": "dog (Canis lupus familiaris)",
   "pos": "noun",
@@ -8570,7 +8580,7 @@
   "band": "B1"
  },
  {
-  "rank": 858,
+  "rank": 859,
   "word": "bijvoorbeeld",
   "meaning": "for example",
   "pos": "adv",
@@ -8580,7 +8590,7 @@
   "band": "B1"
  },
  {
-  "rank": 859,
+  "rank": 860,
   "word": "maand",
   "meaning": "a month",
   "pos": "noun",
@@ -8590,7 +8600,7 @@
   "band": "B1"
  },
  {
-  "rank": 860,
+  "rank": 861,
   "word": "oorlog",
   "meaning": "war",
   "pos": "noun",
@@ -8600,7 +8610,7 @@
   "band": "B1"
  },
  {
-  "rank": 861,
+  "rank": 862,
   "word": "praten",
   "meaning": "to talk",
   "pos": "verb",
@@ -8610,7 +8620,7 @@
   "band": "B1"
  },
  {
-  "rank": 862,
+  "rank": 863,
   "word": "erop",
   "meaning": "following, next",
   "pos": "adv",
@@ -8620,7 +8630,7 @@
   "band": "B1"
  },
  {
-  "rank": 863,
+  "rank": 864,
   "word": "geboren",
   "meaning": "born",
   "pos": "verb",
@@ -8630,7 +8640,7 @@
   "band": "B1"
  },
  {
-  "rank": 864,
+  "rank": 865,
   "word": "helaas",
   "meaning": "unfortunately",
   "pos": "adv",
@@ -8640,7 +8650,7 @@
   "band": "B1"
  },
  {
-  "rank": 865,
+  "rank": 866,
   "word": "veilig",
   "meaning": "safe",
   "pos": "adj",
@@ -8650,7 +8660,7 @@
   "band": "B1"
  },
  {
-  "rank": 866,
+  "rank": 867,
   "word": "vriend",
   "meaning": "friend",
   "pos": "noun",
@@ -8660,7 +8670,7 @@
   "band": "B1"
  },
  {
-  "rank": 867,
+  "rank": 868,
   "word": "platform",
   "meaning": "a platform, flat surface, notably a dais or stage",
   "pos": "noun",
@@ -8670,7 +8680,7 @@
   "band": "B1"
  },
  {
-  "rank": 868,
+  "rank": 869,
   "word": "domein",
   "meaning": "domain, territory (land belonging to an individual, ruler or entity)",
   "pos": "noun",
@@ -8680,7 +8690,7 @@
   "band": "B1"
  },
  {
-  "rank": 869,
+  "rank": 870,
   "word": "programma",
   "meaning": "program",
   "pos": "noun",
@@ -8690,7 +8700,7 @@
   "band": "B1"
  },
  {
-  "rank": 870,
+  "rank": 871,
   "word": "beroep",
   "meaning": "profession, vocation",
   "pos": "noun",
@@ -8700,7 +8710,7 @@
   "band": "B1"
  },
  {
-  "rank": 871,
+  "rank": 872,
   "word": "mede",
   "meaning": "mead (fermented drink made from honey)",
   "pos": "noun",
@@ -8710,7 +8720,7 @@
   "band": "B1"
  },
  {
-  "rank": 872,
+  "rank": 873,
   "word": "stijl",
   "meaning": "style, fashion",
   "pos": "noun",
@@ -8720,7 +8730,7 @@
   "band": "B1"
  },
  {
-  "rank": 873,
+  "rank": 874,
   "word": "wind",
   "meaning": "wind (movement of air)",
   "pos": "noun",
@@ -8730,7 +8740,7 @@
   "band": "B1"
  },
  {
-  "rank": 874,
+  "rank": 875,
   "word": "pil",
   "meaning": "a pill, a usually ball- or oval-shaped, coated portion of a drug to be taken orally",
   "pos": "noun",
@@ -8740,7 +8750,7 @@
   "band": "B1"
  },
  {
-  "rank": 875,
+  "rank": 876,
   "word": "het zij zo",
   "meaning": "so be it",
   "pos": "phrase",
@@ -8750,7 +8760,7 @@
   "band": "B1"
  },
  {
-  "rank": 876,
+  "rank": 877,
   "word": "kosten",
   "meaning": "to cost",
   "pos": "noun",
@@ -8760,7 +8770,7 @@
   "band": "B1"
  },
  {
-  "rank": 877,
+  "rank": 878,
   "word": "namelijk",
   "meaning": "namely",
   "pos": "adv",
@@ -8770,7 +8780,7 @@
   "band": "B1"
  },
  {
-  "rank": 878,
+  "rank": 879,
   "word": "welk",
   "meaning": "which, which one",
   "pos": "pron",
@@ -8780,7 +8790,7 @@
   "band": "B1"
  },
  {
-  "rank": 879,
+  "rank": 880,
   "word": "vet",
   "meaning": "fat",
   "pos": "noun",
@@ -8790,7 +8800,7 @@
   "band": "B1"
  },
  {
-  "rank": 880,
+  "rank": 881,
   "word": "orde",
   "meaning": "order",
   "pos": "noun",
@@ -8800,7 +8810,7 @@
   "band": "B1"
  },
  {
-  "rank": 881,
+  "rank": 882,
   "word": "bezit",
   "meaning": "possession",
   "pos": "noun",
@@ -8810,7 +8820,7 @@
   "band": "B1"
  },
  {
-  "rank": 882,
+  "rank": 883,
   "word": "eisen",
   "meaning": "to demand",
   "pos": "noun",
@@ -8820,7 +8830,7 @@
   "band": "B1"
  },
  {
-  "rank": 883,
+  "rank": 884,
   "word": "pro",
   "meaning": "pro (advantage of something)",
   "pos": "noun",
@@ -8830,7 +8840,7 @@
   "band": "B1"
  },
  {
-  "rank": 884,
+  "rank": 885,
   "word": "vuil",
   "meaning": "dirt, filth",
   "pos": "noun",
@@ -8840,9 +8850,9 @@
   "band": "B1"
  },
  {
-  "rank": 885,
+  "rank": 886,
   "word": "la",
-  "meaning": "drawer",
+  "meaning": "la (music)",
   "pos": "noun",
   "ipa": "/laː/",
   "zipf": 5.1,
@@ -8850,7 +8860,7 @@
   "band": "B1"
  },
  {
-  "rank": 886,
+  "rank": 887,
   "word": "boord",
   "meaning": "border, boundary",
   "pos": "noun",
@@ -8860,7 +8870,7 @@
   "band": "B1"
  },
  {
-  "rank": 887,
+  "rank": 888,
   "word": "karakter",
   "meaning": "a character, standardized graphic symbol, such as a letter of an alphabet or a numeric digit",
   "pos": "noun",
@@ -8870,7 +8880,7 @@
   "band": "B1"
  },
  {
-  "rank": 888,
+  "rank": 889,
   "word": "drinken",
   "meaning": "drink, beverage",
   "pos": "noun",
@@ -8880,7 +8890,7 @@
   "band": "B1"
  },
  {
-  "rank": 889,
+  "rank": 890,
   "word": "hoger",
   "meaning": "comparative degree of hoog",
   "pos": "adj",
@@ -8890,7 +8900,7 @@
   "band": "B1"
  },
  {
-  "rank": 890,
+  "rank": 891,
   "word": "kwijt",
   "meaning": "Translated into English with lose or be rid of",
   "pos": "verb",
@@ -8900,7 +8910,7 @@
   "band": "B1"
  },
  {
-  "rank": 891,
+  "rank": 892,
   "word": "verleden",
   "meaning": "the past",
   "pos": "noun",
@@ -8910,7 +8920,7 @@
   "band": "B1"
  },
  {
-  "rank": 892,
+  "rank": 893,
   "word": "zon",
   "meaning": "sun, Sun",
   "pos": "noun",
@@ -8920,9 +8930,9 @@
   "band": "B1"
  },
  {
-  "rank": 893,
+  "rank": 894,
   "word": "klok",
-  "meaning": "clock",
+  "meaning": "bell",
   "pos": "noun",
   "ipa": "/klɔk/",
   "zipf": 4.43,
@@ -8930,7 +8940,7 @@
   "band": "B1"
  },
  {
-  "rank": 894,
+  "rank": 895,
   "word": "maal",
   "meaning": "stain",
   "pos": "noun",
@@ -8940,7 +8950,7 @@
   "band": "B1"
  },
  {
-  "rank": 895,
+  "rank": 896,
   "word": "wandelen",
   "meaning": "to stroll, be on a walk (‘to go for a walk’ = ‘gaan wandelen’)",
   "pos": "verb",
@@ -8950,7 +8960,7 @@
   "band": "B1"
  },
  {
-  "rank": 896,
+  "rank": 897,
   "word": "vanwege",
   "meaning": "because of, due to",
   "pos": "prep",
@@ -8960,7 +8970,7 @@
   "band": "B1"
  },
  {
-  "rank": 897,
+  "rank": 898,
   "word": "centrale",
   "meaning": "hub, central",
   "pos": "noun",
@@ -8970,7 +8980,7 @@
   "band": "B1"
  },
  {
-  "rank": 898,
+  "rank": 899,
   "word": "harde",
   "meaning": "a hard one, e.g. a hard hit, a tough guy",
   "pos": "noun",
@@ -8980,7 +8990,7 @@
   "band": "B1"
  },
  {
-  "rank": 899,
+  "rank": 900,
   "word": "actief",
   "meaning": "active voice",
   "pos": "noun",
@@ -8990,7 +9000,7 @@
   "band": "B1"
  },
  {
-  "rank": 900,
+  "rank": 901,
   "word": "dik",
   "meaning": "thick",
   "pos": "adj",
@@ -9000,7 +9010,7 @@
   "band": "B1"
  },
  {
-  "rank": 901,
+  "rank": 902,
   "word": "eer",
   "meaning": "copper",
   "pos": "noun",
@@ -9010,7 +9020,7 @@
   "band": "B1"
  },
  {
-  "rank": 902,
+  "rank": 903,
   "word": "kies",
   "meaning": "molar",
   "pos": "noun",
@@ -9020,7 +9030,7 @@
   "band": "B1"
  },
  {
-  "rank": 903,
+  "rank": 904,
   "word": "uitslag",
   "meaning": "result",
   "pos": "noun",
@@ -9030,7 +9040,7 @@
   "band": "B1"
  },
  {
-  "rank": 904,
+  "rank": 905,
   "word": "net als",
   "meaning": "just like",
   "pos": "conj",
@@ -9040,7 +9050,7 @@
   "band": "B1"
  },
  {
-  "rank": 905,
+  "rank": 906,
   "word": "afstand",
   "meaning": "distance",
   "pos": "noun",
@@ -9050,7 +9060,7 @@
   "band": "B1"
  },
  {
-  "rank": 906,
+  "rank": 907,
   "word": "rechter",
   "meaning": "judge",
   "pos": "noun",
@@ -9060,7 +9070,7 @@
   "band": "B1"
  },
  {
-  "rank": 907,
+  "rank": 908,
   "word": "speciaal",
   "meaning": "special",
   "pos": "adj",
@@ -9070,7 +9080,7 @@
   "band": "B1"
  },
  {
-  "rank": 908,
+  "rank": 909,
   "word": "voordat",
   "meaning": "before",
   "pos": "conj",
@@ -9080,7 +9090,7 @@
   "band": "B1"
  },
  {
-  "rank": 909,
+  "rank": 910,
   "word": "beneden",
   "meaning": "below",
   "pos": "verb",
@@ -9090,9 +9100,9 @@
   "band": "B1"
  },
  {
-  "rank": 910,
+  "rank": 911,
   "word": "code",
-  "meaning": "book or body of laws, code of laws, lawbook",
+  "meaning": "code (set of symbols)",
   "pos": "noun",
   "ipa": "/ˈkoː.də/",
   "zipf": 4.75,
@@ -9100,7 +9110,7 @@
   "band": "B1"
  },
  {
-  "rank": 911,
+  "rank": 912,
   "word": "kraken",
   "meaning": "to crack, break open (a shell)",
   "pos": "noun",
@@ -9110,7 +9120,7 @@
   "band": "B1"
  },
  {
-  "rank": 912,
+  "rank": 913,
   "word": "belang",
   "meaning": "interest, concern",
   "pos": "noun",
@@ -9120,7 +9130,7 @@
   "band": "B1"
  },
  {
-  "rank": 913,
+  "rank": 914,
   "word": "bovendien",
   "meaning": "moreover, furthermore",
   "pos": "adv",
@@ -9130,7 +9140,7 @@
   "band": "B1"
  },
  {
-  "rank": 914,
+  "rank": 915,
   "word": "broer",
   "meaning": "brother (male sibling)",
   "pos": "noun",
@@ -9140,7 +9150,7 @@
   "band": "B1"
  },
  {
-  "rank": 915,
+  "rank": 916,
   "word": "zee",
   "meaning": "sea",
   "pos": "noun",
@@ -9150,7 +9160,7 @@
   "band": "B1"
  },
  {
-  "rank": 916,
+  "rank": 917,
   "word": "creëren",
   "meaning": "to create, make, put into existence",
   "pos": "verb",
@@ -9160,7 +9170,7 @@
   "band": "B1"
  },
  {
-  "rank": 917,
+  "rank": 918,
   "word": "boos",
   "meaning": "mad, angry",
   "pos": "adj",
@@ -9170,7 +9180,7 @@
   "band": "B1"
  },
  {
-  "rank": 918,
+  "rank": 919,
   "word": "schade",
   "meaning": "damage, detrimental effect",
   "pos": "noun",
@@ -9180,7 +9190,7 @@
   "band": "B1"
  },
  {
-  "rank": 919,
+  "rank": 920,
   "word": "steden",
   "meaning": "to place",
   "pos": "noun",
@@ -9190,7 +9200,7 @@
   "band": "B1"
  },
  {
-  "rank": 920,
+  "rank": 921,
   "word": "beide",
   "meaning": "both",
   "pos": "pron",
@@ -9200,7 +9210,7 @@
   "band": "B1"
  },
  {
-  "rank": 921,
+  "rank": 922,
   "word": "juli",
   "meaning": "July",
   "pos": "noun",
@@ -9210,7 +9220,7 @@
   "band": "B1"
  },
  {
-  "rank": 922,
+  "rank": 923,
   "word": "proberen",
   "meaning": "to try, to attempt",
   "pos": "verb",
@@ -9220,7 +9230,7 @@
   "band": "B1"
  },
  {
-  "rank": 923,
+  "rank": 924,
   "word": "vervolgens",
   "meaning": "subsequently",
   "pos": "adv",
@@ -9230,7 +9240,7 @@
   "band": "B1"
  },
  {
-  "rank": 924,
+  "rank": 925,
   "word": "boom",
   "meaning": "tree",
   "pos": "noun",
@@ -9240,7 +9250,7 @@
   "band": "B1"
  },
  {
-  "rank": 925,
+  "rank": 926,
   "word": "vliegen",
   "meaning": "to fly",
   "pos": "noun",
@@ -9250,7 +9260,7 @@
   "band": "B1"
  },
  {
-  "rank": 926,
+  "rank": 927,
   "word": "laat maar",
   "meaning": "never mind, forget it",
   "pos": "intj",
@@ -9260,7 +9270,7 @@
   "band": "B1"
  },
  {
-  "rank": 927,
+  "rank": 928,
   "word": "om het even",
   "meaning": "making no difference; -ever",
   "pos": "phrase",
@@ -9270,7 +9280,7 @@
   "band": "B1"
  },
  {
-  "rank": 928,
+  "rank": 929,
   "word": "hoi",
   "meaning": "A greeting acknowledging someone’s arrival or presence, comparable to English hey, hi",
   "pos": "intj",
@@ -9280,7 +9290,7 @@
   "band": "B1"
  },
  {
-  "rank": 929,
+  "rank": 930,
   "word": "hopen",
   "meaning": "to hope for, to wish for",
   "pos": "noun",
@@ -9290,7 +9300,7 @@
   "band": "B1"
  },
  {
-  "rank": 930,
+  "rank": 931,
   "word": "februari",
   "meaning": "February",
   "pos": "noun",
@@ -9300,7 +9310,7 @@
   "band": "B1"
  },
  {
-  "rank": 931,
+  "rank": 932,
   "word": "juni",
   "meaning": "June (month)",
   "pos": "noun",
@@ -9310,7 +9320,7 @@
   "band": "B1"
  },
  {
-  "rank": 932,
+  "rank": 933,
   "word": "inzet",
   "meaning": "commitment, effort",
   "pos": "noun",
@@ -9320,7 +9330,7 @@
   "band": "B1"
  },
  {
-  "rank": 933,
+  "rank": 934,
   "word": "raken",
   "meaning": "to touch",
   "pos": "verb",
@@ -9330,7 +9340,7 @@
   "band": "B1"
  },
  {
-  "rank": 934,
+  "rank": 935,
   "word": "slapen",
   "meaning": "to sleep",
   "pos": "noun",
@@ -9340,7 +9350,7 @@
   "band": "B1"
  },
  {
-  "rank": 935,
+  "rank": 936,
   "word": "start",
   "meaning": "start",
   "pos": "noun",
@@ -9350,7 +9360,7 @@
   "band": "B1"
  },
  {
-  "rank": 936,
+  "rank": 937,
   "word": "vriendin",
   "meaning": "female friend",
   "pos": "noun",
@@ -9360,7 +9370,7 @@
   "band": "B1"
  },
  {
-  "rank": 937,
+  "rank": 938,
   "word": "ziekenhuis",
   "meaning": "a hospital, medical care facility",
   "pos": "noun",
@@ -9370,7 +9380,7 @@
   "band": "B1"
  },
  {
-  "rank": 938,
+  "rank": 939,
   "word": "gedragen",
   "meaning": "to behave, to behave oneself",
   "pos": "verb",
@@ -9380,7 +9390,7 @@
   "band": "B1"
  },
  {
-  "rank": 939,
+  "rank": 940,
   "word": "klik",
   "meaning": "click, sharp sound",
   "pos": "noun",
@@ -9390,7 +9400,7 @@
   "band": "B1"
  },
  {
-  "rank": 940,
+  "rank": 941,
   "word": "af en aan",
   "meaning": "on and off, intermittently",
   "pos": "adv",
@@ -9400,9 +9410,9 @@
   "band": "B1"
  },
  {
-  "rank": 941,
+  "rank": 942,
   "word": "generaal",
-  "meaning": "full general (rank higher than a colonel)",
+  "meaning": "general",
   "pos": "noun",
   "ipa": "/ˈɣeː.nə.raːl/",
   "zipf": 4.89,
@@ -9410,7 +9420,7 @@
   "band": "B1"
  },
  {
-  "rank": 942,
+  "rank": 943,
   "word": "middel",
   "meaning": "means",
   "pos": "noun",
@@ -9420,7 +9430,7 @@
   "band": "B1"
  },
  {
-  "rank": 943,
+  "rank": 944,
   "word": "mond",
   "meaning": "mouth",
   "pos": "noun",
@@ -9430,7 +9440,7 @@
   "band": "B1"
  },
  {
-  "rank": 944,
+  "rank": 945,
   "word": "drukken",
   "meaning": "to press",
   "pos": "noun",
@@ -9440,7 +9450,7 @@
   "band": "B1"
  },
  {
-  "rank": 945,
+  "rank": 946,
   "word": "kom op",
   "meaning": "come on!",
   "pos": "verb",
@@ -9450,7 +9460,7 @@
   "band": "B1"
  },
  {
-  "rank": 946,
+  "rank": 947,
   "word": "woord",
   "meaning": "word",
   "pos": "noun",
@@ -9460,7 +9470,7 @@
   "band": "B1"
  },
  {
-  "rank": 947,
+  "rank": 948,
   "word": "bewust",
   "meaning": "conscious, aware",
   "pos": "adj",
@@ -9470,7 +9480,7 @@
   "band": "B1"
  },
  {
-  "rank": 948,
+  "rank": 949,
   "word": "bloed",
   "meaning": "blood",
   "pos": "noun",
@@ -9480,7 +9490,7 @@
   "band": "B1"
  },
  {
-  "rank": 949,
+  "rank": 950,
   "word": "redenen",
   "meaning": "to speak",
   "pos": "noun",
@@ -9490,7 +9500,7 @@
   "band": "B1"
  },
  {
-  "rank": 950,
+  "rank": 951,
   "word": "studie",
   "meaning": "a study (tertiary education, usually at an academic level)",
   "pos": "noun",
@@ -9500,7 +9510,7 @@
   "band": "B1"
  },
  {
-  "rank": 951,
+  "rank": 952,
   "word": "als het goed is",
   "meaning": "expressing that a statement should hold under normal conditions (if the assumptions are correct, if everything goes according to plan)",
   "pos": "phrase",
@@ -9510,7 +9520,7 @@
   "band": "B1"
  },
  {
-  "rank": 952,
+  "rank": 953,
   "word": "relatie",
   "meaning": "relation",
   "pos": "noun",
@@ -9520,7 +9530,7 @@
   "band": "B1"
  },
  {
-  "rank": 953,
+  "rank": 954,
   "word": "kut",
   "meaning": "vulva, especially the vagina; cunt, pussy",
   "pos": "noun",
@@ -9530,7 +9540,7 @@
   "band": "B1"
  },
  {
-  "rank": 954,
+  "rank": 955,
   "word": "wijzen",
   "meaning": "to point",
   "pos": "noun",
@@ -9540,7 +9550,7 @@
   "band": "B1"
  },
  {
-  "rank": 955,
+  "rank": 956,
   "word": "beleid",
   "meaning": "policy, strategy, course of action",
   "pos": "noun",
@@ -9550,7 +9560,7 @@
   "band": "B1"
  },
  {
-  "rank": 956,
+  "rank": 957,
   "word": "beweging",
   "meaning": "movement, motion (act of physically moving)",
   "pos": "noun",
@@ -9560,7 +9570,7 @@
   "band": "B1"
  },
  {
-  "rank": 957,
+  "rank": 958,
   "word": "gebieden",
   "meaning": "to command, order",
   "pos": "noun",
@@ -9570,7 +9580,7 @@
   "band": "B1"
  },
  {
-  "rank": 958,
+  "rank": 959,
   "word": "interessant",
   "meaning": "interesting, arousing or holding the attention of; fascinating",
   "pos": "adj",
@@ -9580,7 +9590,7 @@
   "band": "B1"
  },
  {
-  "rank": 959,
+  "rank": 960,
   "word": "prijzen",
   "meaning": "to praise",
   "pos": "noun",
@@ -9590,9 +9600,9 @@
   "band": "B1"
  },
  {
-  "rank": 960,
+  "rank": 961,
   "word": "beurs",
-  "meaning": "a purse, both as object or capital",
+  "meaning": "a fair, event or place where specific goods, services or know-how are physically presented and usually traded or bartered, often aimed at collectors; a trade fair",
   "pos": "noun",
   "ipa": "/bøːrs/",
   "zipf": 4.38,
@@ -9600,7 +9610,7 @@
   "band": "B1"
  },
  {
-  "rank": 961,
+  "rank": 962,
   "word": "onderhoud",
   "meaning": "maintenance",
   "pos": "noun",
@@ -9610,7 +9620,7 @@
   "band": "B1"
  },
  {
-  "rank": 962,
+  "rank": 963,
   "word": "pot",
   "meaning": "jar, pot, solid container",
   "pos": "noun",
@@ -9620,7 +9630,7 @@
   "band": "B1"
  },
  {
-  "rank": 963,
+  "rank": 964,
   "word": "verbetering",
   "meaning": "an improvement, amelioration",
   "pos": "noun",
@@ -9630,7 +9640,7 @@
   "band": "B1"
  },
  {
-  "rank": 964,
+  "rank": 965,
   "word": "augustus",
   "meaning": "August (month)",
   "pos": "noun",
@@ -9640,7 +9650,7 @@
   "band": "B1"
  },
  {
-  "rank": 965,
+  "rank": 966,
   "word": "liefde",
   "meaning": "love",
   "pos": "noun",
@@ -9650,7 +9660,7 @@
   "band": "B1"
  },
  {
-  "rank": 966,
+  "rank": 967,
   "word": "toekomst",
   "meaning": "future",
   "pos": "noun",
@@ -9660,7 +9670,7 @@
   "band": "B1"
  },
  {
-  "rank": 967,
+  "rank": 968,
   "word": "kracht",
   "meaning": "power, force, strength",
   "pos": "noun",
@@ -9670,7 +9680,7 @@
   "band": "B1"
  },
  {
-  "rank": 968,
+  "rank": 969,
   "word": "les",
   "meaning": "course, lesson",
   "pos": "noun",
@@ -9680,7 +9690,7 @@
   "band": "B1"
  },
  {
-  "rank": 969,
+  "rank": 970,
   "word": "ontvangen",
   "meaning": "to receive",
   "pos": "verb",
@@ -9690,7 +9700,7 @@
   "band": "B1"
  },
  {
-  "rank": 970,
+  "rank": 971,
   "word": "sorry",
   "meaning": "sorry (expressing regret)",
   "pos": "intj",
@@ -9700,7 +9710,7 @@
   "band": "B1"
  },
  {
-  "rank": 971,
+  "rank": 972,
   "word": "netjes",
   "meaning": "tidy, neat",
   "pos": "noun",
@@ -9710,7 +9720,7 @@
   "band": "B1"
  },
  {
-  "rank": 972,
+  "rank": 973,
   "word": "piet",
   "meaning": "VIP, important person",
   "pos": "noun",
@@ -9720,7 +9730,7 @@
   "band": "B1"
  },
  {
-  "rank": 973,
+  "rank": 974,
   "word": "directeur",
   "meaning": "director, manager (in a company), general manager, CEO (or at a lower (e.g., branch) level)",
   "pos": "noun",
@@ -9730,7 +9740,7 @@
   "band": "B1"
  },
  {
-  "rank": 974,
+  "rank": 975,
   "word": "groene",
   "meaning": "a green one, literally or in some figurative sense (e.g. greenhorn)",
   "pos": "noun",
@@ -9740,7 +9750,7 @@
   "band": "B1"
  },
  {
-  "rank": 975,
+  "rank": 976,
   "word": "tien",
   "meaning": "ten",
   "pos": "num",
@@ -9750,7 +9760,7 @@
   "band": "B1"
  },
  {
-  "rank": 976,
+  "rank": 977,
   "word": "bad",
   "meaning": "bath (object)",
   "pos": "noun",
@@ -9760,9 +9770,9 @@
   "band": "B1"
  },
  {
-  "rank": 977,
+  "rank": 978,
   "word": "schat",
-  "meaning": "a treasure, amassed valuables",
+  "meaning": "honey, darling, sweet person (term of endearment)",
   "pos": "noun",
   "ipa": "/sxɑt/",
   "zipf": 4.7,
@@ -9770,7 +9780,7 @@
   "band": "B1"
  },
  {
-  "rank": 978,
+  "rank": 979,
   "word": "zagen",
   "meaning": "to saw",
   "pos": "noun",
@@ -9780,7 +9790,7 @@
   "band": "B1"
  },
  {
-  "rank": 979,
+  "rank": 980,
   "word": "bot",
   "meaning": "bone",
   "pos": "noun",
@@ -9790,7 +9800,7 @@
   "band": "B1"
  },
  {
-  "rank": 980,
+  "rank": 981,
   "word": "afzetten",
   "meaning": "to take off (an item of clothing)",
   "pos": "verb",
@@ -9800,9 +9810,9 @@
   "band": "B1"
  },
  {
-  "rank": 981,
+  "rank": 982,
   "word": "gebeuren",
-  "meaning": "something which is happening or which happened; event",
+  "meaning": "to happen",
   "pos": "noun",
   "ipa": "/ɣəˈbøːrə(n)/",
   "zipf": 5.03,
@@ -9810,7 +9820,7 @@
   "band": "B1"
  },
  {
-  "rank": 982,
+  "rank": 983,
   "word": "west",
   "meaning": "west",
   "pos": "adv",
@@ -9820,7 +9830,7 @@
   "band": "B1"
  },
  {
-  "rank": 983,
+  "rank": 984,
   "word": "omgaan",
   "meaning": "to go around",
   "pos": "verb",
@@ -9830,7 +9840,7 @@
   "band": "B1"
  },
  {
-  "rank": 984,
+  "rank": 985,
   "word": "hier en daar",
   "meaning": "here and there",
   "pos": "adv",
@@ -9840,7 +9850,7 @@
   "band": "B1"
  },
  {
-  "rank": 985,
+  "rank": 986,
   "word": "ding",
   "meaning": "matter, thing",
   "pos": "noun",
@@ -9850,7 +9860,7 @@
   "band": "B1"
  },
  {
-  "rank": 986,
+  "rank": 987,
   "word": "rug",
   "meaning": "back, backside",
   "pos": "noun",
@@ -9860,7 +9870,7 @@
   "band": "B1"
  },
  {
-  "rank": 987,
+  "rank": 988,
   "word": "ziek",
   "meaning": "sick, ill",
   "pos": "adj",
@@ -9870,7 +9880,7 @@
   "band": "B1"
  },
  {
-  "rank": 988,
+  "rank": 989,
   "word": "naakt",
   "meaning": "a nude, an artwork representing a naked subject",
   "pos": "noun",
@@ -9880,7 +9890,7 @@
   "band": "B1"
  },
  {
-  "rank": 989,
+  "rank": 990,
   "word": "pik",
   "meaning": "penis",
   "pos": "noun",
@@ -9890,7 +9900,7 @@
   "band": "B1"
  },
  {
-  "rank": 990,
+  "rank": 991,
   "word": "voegen",
   "meaning": "to place, to put",
   "pos": "noun",
@@ -9900,7 +9910,7 @@
   "band": "B1"
  },
  {
-  "rank": 991,
+  "rank": 992,
   "word": "rest",
   "meaning": "rest (that which remains)",
   "pos": "noun",
@@ -9910,9 +9920,9 @@
   "band": "B1"
  },
  {
-  "rank": 992,
+  "rank": 993,
   "word": "bereid",
-  "meaning": "ready, prepared",
+  "meaning": "willing",
   "pos": "verb",
   "ipa": "/bəˈrɛi̯t/",
   "zipf": 4.69,
@@ -9920,9 +9930,9 @@
   "band": "B1"
  },
  {
-  "rank": 993,
+  "rank": 994,
   "word": "gast",
-  "meaning": "guest",
+  "meaning": "dude, guy",
   "pos": "noun",
   "ipa": "/ɣɑst/",
   "zipf": 4.69,
@@ -9930,7 +9940,7 @@
   "band": "B1"
  },
  {
-  "rank": 994,
+  "rank": 995,
   "word": "merk",
   "meaning": "mark",
   "pos": "noun",
@@ -9940,7 +9950,7 @@
   "band": "B1"
  },
  {
-  "rank": 995,
+  "rank": 996,
   "word": "test",
   "meaning": "a test, an earthen bowl or pot",
   "pos": "noun",
@@ -9950,9 +9960,9 @@
   "band": "B1"
  },
  {
-  "rank": 996,
+  "rank": 997,
   "word": "vierde",
-  "meaning": "a fourth in ranking",
+  "meaning": "fourth",
   "pos": "noun",
   "ipa": "/ˈvirdə/",
   "zipf": 4.69,
@@ -9960,7 +9970,7 @@
   "band": "B1"
  },
  {
-  "rank": 997,
+  "rank": 998,
   "word": "vos",
   "meaning": "fox, carnivore of the tribe Vulpini",
   "pos": "noun",
@@ -9970,7 +9980,7 @@
   "band": "B1"
  },
  {
-  "rank": 998,
+  "rank": 999,
   "word": "gevolg",
   "meaning": "consequence, result",
   "pos": "noun",
@@ -9980,23 +9990,13 @@
   "band": "B1"
  },
  {
-  "rank": 999,
+  "rank": 1000,
   "word": "zakken",
-  "meaning": "to fall, to drop, to sink",
+  "meaning": "to fail, to flunk",
   "pos": "noun",
   "ipa": "/ˈzɑkə(n)/",
   "zipf": 4.52,
   "score": 101.35999999999999,
-  "band": "B1"
- },
- {
-  "rank": 1000,
-  "word": "nog steeds",
-  "meaning": "still (as before)",
-  "pos": "adv",
-  "ipa": "",
-  "zipf": 5.74,
-  "score": 101.32000000000001,
   "band": "B1"
  }
 ]
