@@ -23,6 +23,9 @@ targets:
     sources:
       - path: Bucket/Sources
       - path: Bucket/Resources
+      - path: Shared/Corpus
+        type: folder
+        buildPhase: resources
     dependencies:
       - package: BucketKit
     entitlements:
@@ -56,6 +59,9 @@ targets:
     sources:
       - path: Polingual/Sources
       - path: Polingual/Resources
+      - path: Shared/Corpus
+        type: folder
+        buildPhase: resources
       - path: Bucket/Sources/Polingual
       - path: Bucket/Sources/Style.swift
       - path: Bucket/Sources/AccountView.swift

@@ -54,17 +54,23 @@ public final class LangStore {
     let api: BucketAPI
     let disk: LangDisk
     let cache: LangDisk
+    let seed: @Sendable (String) -> Data?
     let token: @MainActor () async -> String?
     let now: @MainActor () -> Double
     @ObservationIgnored private var pushes: [String: Task<Void, Never>] = [:]
     @ObservationIgnored private var pending: [String: String] = [:]
 
-    public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
+    public init(api: BucketAPI, disk: LangDisk = FileLangDisk(), cache: LangDisk? = nil, seed: @escaping @Sendable (String) -> Data? = LangStore.bundled, token: @escaping @MainActor () async -> String?, now: @escaping @MainActor () -> Double = { Date().timeIntervalSince1970 * 1000 }) {
         self.api = api
         self.disk = disk
         self.cache = cache ?? FileLangDisk(root: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appending(path: "polingual-corpus", directoryHint: .isDirectory))
+        self.seed = seed
         self.token = token
         self.now = now
+    }
+
+    public static let bundled: @Sendable (String) -> Data? = { name in
+        Bundle.main.url(forResource: (name as NSString).deletingPathExtension, withExtension: "json", subdirectory: "Corpus").flatMap { try? Data(contentsOf: $0) }
     }
 
     public func state(_ systemId: String) -> EngineState { states[systemId] ?? EngineState() }
@@ -87,11 +93,18 @@ public final class LangStore {
     }
 
     func file(_ name: String) async -> Data? {
-        if let d = try? await api.raw("academy-app/corpus/\(name)") {
+        let path = "academy-app/corpus/\(name)"
+        if let local = cache.read(name) ?? seed(name) {
+            let api = api
+            let cache = cache
+            Task.detached(priority: .background) { if let d = try? await api.raw(path) { cache.write(name, d) } }
+            return local
+        }
+        if let d = try? await api.raw(path) {
             cache.write(name, d)
             return d
         }
-        return cache.read(name)
+        return nil
     }
 
     func loadCorpus() async -> LangCorpus? {
