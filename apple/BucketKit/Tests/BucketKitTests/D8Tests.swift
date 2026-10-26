@@ -59,7 +59,8 @@ import Testing
     #expect(Lang.contextualArticle("it", "m", "libro") == nil)
     #expect(Lang.contextualArticle("it", "m", "sole") == nil)
     #expect(Lang.contextualArticle("fr", "f", "eau") == "l'")
-    #expect(Lang.contextualArticle("es", "m", "agua") == nil)
+    #expect(Lang.contextualArticle("es", "f", "agua") == "el")
+    #expect(Lang.contextualArticle("es", "f", "casa") == nil)
 }
 
 @Test func genderCardsUseTheRightItalianArticle() {

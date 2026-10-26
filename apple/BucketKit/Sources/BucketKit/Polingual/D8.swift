@@ -115,13 +115,13 @@ public func crossLanguageOptions(_ ex: Exercise, _ item: LangItem, _ system: Lan
 }
 
 public func correctArticle(_ ex: Exercise, _ rng: inout Rng) -> Exercise {
-    guard ex.kind == .gender, ["it", "fr"].contains(ex.lang), let options = ex.options else { return ex }
+    guard ex.kind == .gender, ["it", "fr", "es"].contains(ex.lang), let options = ex.options else { return ex }
     let gender = Lang.articles[ex.lang]?.first { $0.1 == ex.answer }?.0 ?? "m"
     guard let article = Lang.contextualArticle(ex.lang, gender, ex.prompt) else { return ex }
     var out = ex
     out.answer = article
     out.accept = [article]
-    out.options = shuffle(unique(options + (ex.lang == "it" ? ["lo", "l'"] : ["l'"])), &rng)
+    out.options = shuffle(unique(options + (ex.lang == "it" ? ["lo", "l'"] : ex.lang == "fr" ? ["l'"] : [])), &rng)
     let elided = article.hasSuffix("'")
     out.cloze = ("", elided ? ex.prompt : " \(ex.prompt)")
     out.note = elided ? "Before a vowel the article shortens to \(article): \(article)\(ex.prompt)." : "\(article) \(ex.prompt)"
