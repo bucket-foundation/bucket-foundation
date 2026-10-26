@@ -61,7 +61,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
     struct Row: Decodable { let branch: String; let id: String; let order: [Int]; let meanings: [Int]?; let cases: [Case] }
     let url = try #require(Bundle.module.url(forResource: "golden", withExtension: "json", subdirectory: "Fixtures/questions"))
     let rows = try JSONDecoder().decode([Row].self, from: Data(contentsOf: url))
-    let decks = try ["00-learning-to-learn", "02-physics", "06-cosmology"].map { try questionDeck($0) }
+    let decks = try ["00-learning-to-learn", "01-mathematics", "02-physics", "03-chemistry", "06-cosmology"].map { try questionDeck($0) }
     let byId = Dictionary(uniqueKeysWithValues: decks.flatMap { d in d.questions.map { ("\(d.branch)/\($0.id)", $0) } })
     #expect(rows.count == byId.count)
     var checked = 0
@@ -84,7 +84,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
             checked += 1
         }
     }
-    #expect(checked == 3680)
+    #expect(checked == 7110)
 }
 
 @Test func missingQuestionDeckFallsBackToTheDrill() async throws {
@@ -95,14 +95,19 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
     #expect(deck == nil)
 }
 
-@Test func everyPhysicsReviewCycleIncludesTheAppliedTask() throws {
-    let deck = try questionDeck("02-physics")
+@Test(arguments: [("01-mathematics", 46), ("02-physics", 55), ("03-chemistry", 55)])
+func everyReviewCycleIncludesTheAppliedTask(_ name: String, _ applied: Int) throws {
+    let deck = try questionDeck(name)
     let atoms = Set(deck.questions.map(\.atom))
     let withApplied = atoms.filter { a in deck.questions(for: a).contains { $0.applied == true } }
-    #expect(withApplied.count == 55)
+    #expect(withApplied.count == applied)
+    for atom in atoms {
+        #expect(deck.questions(for: atom).filter { $0.applied == true }.count <= 1, "\(atom)")
+    }
     for atom in withApplied {
         let n = deck.rotation(for: atom).count
         #expect(n == 5 || n == 6, "\(atom)")
+        #expect(deck.question(for: atom, reps: 1)?.applied == true, "\(atom) first review")
         for start in 0..<(2 * n) {
             let cycle = (start..<(start + n)).compactMap { deck.question(for: atom, reps: $0) }
             #expect(cycle.filter { $0.applied == true }.count == 1, "\(atom) from \(start)")
@@ -110,9 +115,8 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
         }
     }
     #expect(deck.question(for: "nope", reps: 1) == nil)
-    for atom in withApplied { #expect(deck.question(for: atom, reps: 1)?.applied == true, "\(atom) first review") }
-    let pickOnly = try #require(withApplied.first)
-    #expect(deck.question(for: pickOnly, reps: 3, kind: .pick)?.kind == .pick)
+    let first = try #require(withApplied.sorted().first)
+    #expect(deck.question(for: first, reps: 3, kind: .pick)?.kind == .pick)
 }
 
 @Test func appliedFlagMustBeABoolean() {
