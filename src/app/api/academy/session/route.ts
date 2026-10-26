@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import { exchangeAppleCode, retryPendingRevokes, revokeUserTokens } from "@/lib/academy/apple-token";
+import { exchangeAppleCode, revokeForAccountDelete } from "@/lib/academy/apple-token";
 import { appleTokenDeps } from "@/lib/academy/apple-token-store";
 import { deleteAccount } from "@/lib/academy/delete-account";
 import { jsonResponse, readJson } from "@/lib/academy/device-server";
@@ -28,20 +28,7 @@ const deleteAccountFor = (accessToken: string) =>
         return { id: error ? null : (data.user?.id ?? null), status: error ? (error.status ?? 500) : null };
       },
       deleteRows: async (table, userId) => ({ failed: Boolean((await bucketClient().from(table).delete().eq("user_id", userId)).error) }),
-      revokeApple: async (userId) => {
-        try {
-          await revokeUserTokens(appleTokens, userId);
-        } catch (e) {
-          console.error("[apple] revoke step failed, delete held", e instanceof Error ? e.message : e);
-          return { failed: true };
-        }
-        try {
-          await retryPendingRevokes(appleTokens);
-        } catch (e) {
-          console.error("[apple] pending retry failed", e instanceof Error ? e.message : e);
-        }
-        return { failed: false };
-      },
+      revokeApple: (userId) => revokeForAccountDelete(appleTokens, userId),
       deleteUser: async (userId) => {
         const { error } = await adminClient().auth.admin.deleteUser(userId);
         return { status: error ? (error.status ?? 500) : null };

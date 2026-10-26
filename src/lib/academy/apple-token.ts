@@ -5,6 +5,7 @@ export const APPLE_REVOKE_URL = "https://appleid.apple.com/auth/revoke";
 export const APPLE_CLIENT_IDS: Record<string, string> = { bucket: "foundation.bucket.app", polingual: "com.polingual.app" };
 export const APPLE_FETCH_TIMEOUT_MS = 8000;
 export const PENDING_BATCH = 20;
+export const MAX_REVOKE_ATTEMPTS = 5;
 
 export interface AppleKey {
   teamId: string;
@@ -35,7 +36,7 @@ export interface AppleTokenDeps {
   addPending: (token: StoredAppleToken, reason: string) => Promise<void>;
   listPending: (limit: number) => Promise<PendingRevoke[]>;
   removePending: (id: number) => Promise<void>;
-  bumpPending: (id: number, reason: string) => Promise<void>;
+  bumpPending: (id: number, reason: string, failed: boolean) => Promise<void>;
   log: (event: string, fields: Record<string, unknown>) => void;
   nowSeconds: () => number;
 }
@@ -81,7 +82,9 @@ const FORM_HEADERS = { "content-type": "application/x-www-form-urlencoded" };
 async function postApple(deps: AppleTokenDeps, url: string, fields: Record<string, string>) {
   try {
     const res = await deps.fetch(url, { method: "POST", headers: FORM_HEADERS, body: new URLSearchParams(fields).toString(), signal: AbortSignal.timeout(deps.timeoutMs ?? APPLE_FETCH_TIMEOUT_MS) });
-    return { res, reason: res.ok ? null : `http_${res.status}` };
+    if (res.ok) return { res, reason: null };
+    const err = await res.json().then((b) => (b as { error?: unknown }).error, () => undefined);
+    return { res, reason: typeof err === "string" && /^[a-z_]{1,40}$/.test(err) ? `http_${res.status}_${err}` : `http_${res.status}` };
   } catch (e) {
     return { res: null, reason: e instanceof Error && (e.name === "TimeoutError" || e.name === "AbortError") ? "timeout" : "fetch_error" };
   }
@@ -118,19 +121,33 @@ async function revokeSealed(deps: AppleTokenDeps, t: StoredAppleToken): Promise<
   return reason;
 }
 
+export const isPermanentRevokeError = (reason: string | null) => Boolean(reason && (reason.endsWith("_invalid_grant") || reason.endsWith("_invalid_client")));
+
+export async function revokeForAccountDelete(deps: AppleTokenDeps, userId: string): Promise<{ failed: boolean }> {
+  try {
+    await revokeUserTokens(deps, userId);
+    return { failed: false };
+  } catch (e) {
+    deps.log("apple_revoke_step_failed", { userId, ok: false, reason: e instanceof Error ? e.message : String(e) });
+    return { failed: true };
+  }
+}
+
 export async function retryPendingRevokes(deps: AppleTokenDeps, limit = PENDING_BATCH): Promise<{ revoked: number; failed: number }> {
   let revoked = 0;
   let failed = 0;
   for (const p of await deps.listPending(limit)) {
     const reason = await revokeSealed(deps, p);
+    const attempts = p.attempts + 1;
+    const giveUp = Boolean(reason) && (attempts >= MAX_REVOKE_ATTEMPTS || isPermanentRevokeError(reason));
     if (reason) {
       failed++;
-      await deps.bumpPending(p.id, reason);
+      await deps.bumpPending(p.id, reason, giveUp);
     } else {
       revoked++;
       await deps.removePending(p.id);
     }
-    deps.log("apple_revoke_retry", { id: p.id, clientId: p.clientId, attempts: p.attempts + 1, ok: !reason, reason });
+    deps.log("apple_revoke_retry", { id: p.id, clientId: p.clientId, attempts, ok: !reason, reason, gaveUp: giveUp });
   }
   return { revoked, failed };
 }

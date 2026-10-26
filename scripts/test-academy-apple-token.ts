@@ -10,7 +10,9 @@ import {
   exchangeAppleCode,
   openToken,
   retryPendingRevokes,
+  revokeForAccountDelete,
   revokeUserTokens,
+  MAX_REVOKE_ATTEMPTS,
   sealToken,
   type AppleTokenDeps,
   type PendingRevoke,
@@ -28,7 +30,8 @@ type Reply = { ok: boolean; status: number; body?: unknown } | "throw" | "timeou
 function apple(replies: Reply[]) {
   const calls: { url: string; body: URLSearchParams; signal: AbortSignal }[] = [];
   const tokens = new Map<string, StoredAppleToken>();
-  const pending: PendingRevoke[] = [];
+  const pending: (PendingRevoke & { status: string })[] = [];
+  let pendingReads = 0;
   const logs: string[] = [];
   let nextId = 1;
   const deps: AppleTokenDeps = {
@@ -50,13 +53,17 @@ function apple(replies: Reply[]) {
     save: async (u, t) => void tokens.set(`${u}|${t.clientId}`, t),
     list: async (u) => Array.from(tokens.entries()).filter(([k]) => k.startsWith(`${u}|`)).map(([, t]) => t),
     remove: async (u, c) => void tokens.delete(`${u}|${c}`),
-    addPending: async (t) => void pending.push({ ...t, id: nextId++, attempts: 1 }),
-    listPending: async (n) => pending.slice(0, n),
+    addPending: async (t) => void pending.push({ ...t, id: nextId++, attempts: 1, status: "pending" }),
+    listPending: async (n) => (pendingReads++, pending.filter((p) => p.status === "pending").slice(0, n)),
     removePending: async (id) => void pending.splice(pending.findIndex((p) => p.id === id), 1),
-    bumpPending: async (id) => void (pending.find((p) => p.id === id)!.attempts += 1),
+    bumpPending: async (id, _r, failed) => {
+      const p = pending.find((x) => x.id === id)!;
+      p.attempts += 1;
+      if (failed) p.status = "failed";
+    },
   };
   const store = (u: string, clientId: string, refresh: string) => tokens.set(`${u}|${clientId}`, { clientId, sealed: sealToken(ENC, refresh) });
-  return { deps, calls, tokens, pending, logs, store };
+  return { deps, calls, tokens, pending, logs, store, pendingReads: () => pendingReads };
 }
 
 test("client secret is an ES256 JWT for the app's client id that the key verifies", () => {
@@ -188,4 +195,39 @@ test("account deletion revokes Apple first, and a revoke step that cannot queue 
   log.length = 0;
   assert.deepEqual(await deleteAccount(clients(async () => ({ failed: true })), "good"), { status: 500 });
   assert.deepEqual(log, []);
+});
+
+test("the delete path revokes the user's tokens and never runs the pending retry", async () => {
+  const w = apple([{ ok: false, status: 500 }]);
+  w.store("u1", "foundation.bucket.app", "rb");
+  assert.deepEqual(await revokeForAccountDelete(w.deps, "u1"), { failed: false });
+  assert.equal(w.pending.length, 1);
+  assert.equal(w.pendingReads(), 0);
+  w.deps.addPending = async () => {
+    throw new Error("db down");
+  };
+  w.store("u2", "foundation.bucket.app", "r2");
+  assert.deepEqual(await revokeForAccountDelete(w.deps, "u2"), { failed: true });
+  assert.equal(w.pendingReads(), 0);
+});
+
+test("a pending row is marked failed after five attempts and then skipped", async () => {
+  const w = apple([{ ok: false, status: 503 }]);
+  w.store("u1", "foundation.bucket.app", "rb");
+  await revokeUserTokens(w.deps, "u1");
+  for (let i = 1; i < MAX_REVOKE_ATTEMPTS; i++) await retryPendingRevokes(w.deps);
+  assert.equal(w.pending[0].attempts, MAX_REVOKE_ATTEMPTS);
+  assert.equal(w.pending[0].status, "failed");
+  const before = w.calls.length;
+  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 0 });
+  assert.equal(w.calls.length, before);
+});
+
+test("invalid_grant from Apple marks the row failed on the first retry", async () => {
+  const w = apple([{ ok: false, status: 400, body: { error: "invalid_grant" } }]);
+  w.store("u1", "foundation.bucket.app", "rb");
+  await revokeUserTokens(w.deps, "u1");
+  await retryPendingRevokes(w.deps);
+  assert.equal(w.pending[0].status, "failed");
+  assert.ok(w.logs.includes("apple_revoke_retry false http_400_invalid_grant"));
 });
