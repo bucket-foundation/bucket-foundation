@@ -47,6 +47,13 @@ export function cadenceFor(builds: SnapshotBuild[], app: GrowthApp): CadenceBuil
     .reverse();
 }
 
+export function siteVisits(snap: GrowthSnapshot | null): FunnelStep {
+  const v = snap?.visits;
+  const counts = v ? GROWTH_APPS.map((a) => v.byApp[a]).filter((n): n is number => typeof n === "number") : [];
+  if (!v || counts.length === 0) return { key: "site_visits", label: "Site visits", count: null, source: "Vercel Web Analytics, not reachable from the snapshot yet" };
+  return { key: "site_visits", label: `Site visits, last ${v.days} days`, count: counts.reduce((a, b) => a + b, 0), source: `Vercel Web Analytics, ${GROWTH_APPS.filter((a) => typeof v.byApp[a] === "number").join(" and ")}` };
+}
+
 export function buildGrowthReport(input: {
   waitlist: WaitlistEntry[] | null;
   beta: BetaReport;
@@ -72,7 +79,7 @@ export function buildGrowthReport(input: {
     generatedAt: now.toISOString(),
     snapshotAt: snap?.takenAt ?? null,
     funnel: [
-      { key: "site_visits", label: "Site visits", count: null, source: "Vercel Web Analytics; no API source in the repo yet" },
+      siteVisits(snap),
       { key: "beta_signups", label: "Beta signups", count: input.waitlist ? input.waitlist.length : null, source: "launch list" },
       { key: "testflight_invites", label: "TestFlight invites", count: invited, source: "App Store Connect snapshot" },
       { key: "installs", label: "Installs", count: installed, source: "App Store Connect snapshot" },

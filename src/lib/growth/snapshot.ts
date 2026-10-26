@@ -21,10 +21,29 @@ export interface SnapshotBuild {
   notes: string[];
 }
 
+export interface SnapshotVisits {
+  days: number;
+  byApp: Partial<Record<GrowthApp, number | null>>;
+}
+
 export interface GrowthSnapshot {
   takenAt: string;
   testers: SnapshotTester[];
   builds: SnapshotBuild[];
+  visits?: SnapshotVisits | null;
+}
+
+function parseVisits(v: unknown): SnapshotVisits | null | undefined {
+  if (v === undefined || v === null) return null;
+  if (!isObj(v) || !isObj(v.byApp) || typeof v.days !== "number" || !Number.isInteger(v.days) || v.days < 1 || v.days > 90) return undefined;
+  const byApp: Partial<Record<GrowthApp, number | null>> = {};
+  for (const app of GROWTH_APPS) {
+    const n = v.byApp[app];
+    if (n === undefined || n === null) byApp[app] = null;
+    else if (typeof n === "number" && Number.isInteger(n) && n >= 0) byApp[app] = n;
+    else return undefined;
+  }
+  return { days: v.days, byApp };
 }
 
 type Parsed<T> = { ok: true; value: T } | { ok: false; error: string };
@@ -75,5 +94,7 @@ export function parseSnapshot(raw: unknown): Parsed<GrowthSnapshot> {
   if (testers.some((t) => t === null)) return { ok: false, error: "bad_tester" };
   const builds = raw.builds.map(parseBuild);
   if (builds.some((b) => b === null)) return { ok: false, error: "bad_build" };
-  return { ok: true, value: { takenAt, testers: testers as SnapshotTester[], builds: builds as SnapshotBuild[] } };
+  const visits = parseVisits(raw.visits);
+  if (visits === undefined) return { ok: false, error: "bad_visits" };
+  return { ok: true, value: { takenAt, testers: testers as SnapshotTester[], builds: builds as SnapshotBuild[], visits } };
 }

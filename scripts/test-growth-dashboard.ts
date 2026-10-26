@@ -95,3 +95,23 @@ test("growth routes sit behind the admin key and round-trip a snapshot", async (
   assert.equal(body.cadence.bucket.length, 3);
   assert.equal((await handleGrowthReport(req("GET", KEY), { ...deps, snapshots: () => null })).status, 503);
 });
+
+test("site visits come from the snapshot and stay empty when Vercel is unreachable", async () => {
+  const { siteVisits } = await import("../src/lib/growth/report");
+  const base = parseSnapshot(FIXTURE);
+  assert.ok(base.ok);
+  if (!base.ok) return;
+  assert.equal(siteVisits(base.value).count, null);
+  const withVisits = parseSnapshot({ ...FIXTURE, visits: { days: 7, byApp: { bucket: 120, polingual: 30 } } });
+  assert.ok(withVisits.ok);
+  if (withVisits.ok) {
+    const s = siteVisits(withVisits.value);
+    assert.equal(s.count, 150);
+    assert.equal(s.label, "Site visits, last 7 days");
+  }
+  const half = parseSnapshot({ ...FIXTURE, visits: { days: 7, byApp: { bucket: 9, polingual: null } } });
+  assert.ok(half.ok);
+  if (half.ok) assert.match(siteVisits(half.value).source, /bucket$/);
+  assert.equal(parseSnapshot({ ...FIXTURE, visits: { days: 7, byApp: { bucket: -1 } } }).ok, false);
+  assert.equal(parseSnapshot({ ...FIXTURE, visits: { days: 400, byApp: {} } }).ok, false);
+});
