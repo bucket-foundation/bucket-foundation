@@ -1,3 +1,4 @@
+import { parseLocaleNumber, resolveNumber } from "./locale-number";
 import type { Atom, Depth } from "./engine";
 import type { Card, Rating } from "./fsrs";
 
@@ -29,8 +30,9 @@ export function normSymbolic(s: unknown): string {
   return asciiMath(s).toLowerCase().replace(/\s+/g, "").replace(/[.;]+$/, "");
 }
 
-export function parseNumber(tok: unknown): number | null {
+export function parseNumber(tok: unknown, locale?: string): number | null {
   if (tok == null) return null;
+  if (locale !== undefined) return resolveNumber(parseLocaleNumber(String(tok).replace(/\s*[x×]\s*10\s*\^\s*/i, "e")), locale);
   let s = asciiMath(String(tok)).trim().toLowerCase();
   if (!s) return null;
   s = s.replace(/\s*x\s*10\s*\^\s*([+-]?\d+)/g, "e$1");
