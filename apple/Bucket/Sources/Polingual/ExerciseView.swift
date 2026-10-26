@@ -226,8 +226,14 @@ struct ExerciseView: View {
         }
     }
 
-    var typedKind: Bool {
-        ex.kind == .translate || ex.kind == .typeHeard || ex.kind == .spellHeard || (ex.kind == .conjugate && ex.options == nil) || (ex.kind == .speak && (!LangListener.shared.supported || heard == ""))
+    var typedKind: Bool { Self.typed(ex, speech: LangListener.shared.supported, heard: heard) }
+
+    static func typed(_ ex: Exercise, speech: Bool, heard: String?) -> Bool {
+        ex.kind == .translate || ex.kind == .typeHeard || ex.kind == .spellHeard || (ex.kind == .conjugate && ex.options == nil) || (ex.kind == .speak && (!speech || heard == ""))
+    }
+
+    static func choiceKeys(_ ex: Exercise, speech: Bool, heard: String?) -> Bool {
+        ex.options != nil && !typed(ex, speech: speech, heard: heard)
     }
 
     func judgeAnswer(_ s: String) -> Verdict {
@@ -237,7 +243,7 @@ struct ExerciseView: View {
     func optionLang(_ o: String) -> String { ex.optionLangs?[o] ?? ex.answerLang }
 
     var standard: some View {
-        let mc = ex.options != nil && !typedKind
+        let mc = Self.choiceKeys(ex, speech: LangListener.shared.supported, heard: heard)
         let sameLangReadings = ex.kind != .gender && ex.kind != .conjugate
         let prompt = Prompt(ex: ex, readings: readings, cousins: { l in r(ex.family?.first { $0.lang == l }?.word ?? "", l) })
         let answers = VStack(alignment: .leading, spacing: 14) {
@@ -296,7 +302,6 @@ struct ExerciseView: View {
                 Button("Check") { verdict = judgeAnswer(typed) }
                     .buttonStyle(D8Primary())
                     .disabled(typed.trimmingCharacters(in: .whitespaces).isEmpty)
-                    .keyboardShortcut(.defaultAction)
             }
             if let verdict {
                 Answered(ex: ex, ok: verdict != .wrong, verdict: verdict, given: ex.kind == .speak ? heard : typed, reading: r(ex.lang == ex.answerLang ? ex.answer : ex.prompt, ex.lang)) { finish(verdict != .wrong, verdict) }
