@@ -249,3 +249,18 @@ import Testing
     let done = StreakGoal(streak: 130)
     #expect(done.reached && done.left == 0 && done.fraction == 1 && done.day == 130)
 }
+
+@Test func theHundredDayGoalTurnsOverAtDay100AndSurvivesBadNumbers() {
+    let ninetyNine = StreakGoal(streak: 99)
+    #expect(ninetyNine.day == 99 && ninetyNine.left == 1 && !ninetyNine.reached && abs(ninetyNine.fraction - 0.99) < 1e-9)
+    let hundred = StreakGoal(streak: 100)
+    #expect(hundred.day == 100 && hundred.left == 0 && hundred.reached && hundred.fraction == 1)
+    for bad in [Double.nan, .infinity, -.infinity, -4] {
+        let g = StreakGoal(streak: bad)
+        #expect(g.day == 0 && g.left == 100 && !g.reached && g.fraction == 0)
+    }
+    var st = EngineState()
+    st.streak = .nan
+    st.lastStudyDay = dayKey(1_761_566_400_000, tz: TimeZone(identifier: "UTC")!)
+    #expect(ReminderPlan.streak([st], at: Date(timeIntervalSince1970: 1_761_566_400), tz: TimeZone(identifier: "UTC")!) == 0)
+}

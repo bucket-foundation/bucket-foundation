@@ -22,7 +22,7 @@ enum WidgetPlan {
         let streak = states.map { liveStreak($0, now: ms, tz: calendar.timeZone) }.max() ?? 0
         let studiedToday = states.contains { $0.lastStudyDay == dayKey(ms, tz: calendar.timeZone) }
         let until: Date? = streak > 0 ? (studiedToday ? calendar.date(byAdding: .day, value: 1, to: tomorrow) : tomorrow) : nil
-        return (Int(streak), dueNow, newToday, newTomorrow, Array(dueAt), tomorrow, until)
+        return (StreakGoal(streak: streak).day, dueNow, newToday, newTomorrow, Array(dueAt), tomorrow, until)
     }
 }
 
