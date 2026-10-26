@@ -24,7 +24,7 @@ function appendLog(entry) {
 }
 
 function filedInBd() {
-  const r = spawnSync("bd", ["--allow-stale", "list", "--all", "--label", "source-tester", "--json"], { cwd: repo, encoding: "utf8", maxBuffer: 64 << 20 });
+  const r = spawnSync("bd", ["--allow-stale", "list", "--all", "--limit", "0", "--label", "source-tester", "--json"], { cwd: repo, encoding: "utf8", maxBuffer: 64 << 20 });
   if (r.status !== 0) throw new Error(`bd list exited ${r.status}: ${(r.stderr ?? "").slice(-300)}`);
   return filedIds(JSON.parse(r.stdout || "[]"));
 }
@@ -47,15 +47,20 @@ async function main() {
   const items = fetchItems();
   const fresh = newItems(items, state, filedInBd());
   const entries = [];
+  const failures = [];
   for (const item of fresh) {
     if (dryRun) {
       entries.push({ item, beadId: null });
       continue;
     }
-    const beadId = execFileSync("bd", beadArgs(item), { cwd: repo, encoding: "utf8" }).trim();
-    state.seen[item.id] = { beadId, at: new Date().toISOString() };
-    saveState(stateFile, state);
-    entries.push({ item, beadId });
+    try {
+      const beadId = execFileSync("bd", beadArgs(item), { cwd: repo, encoding: "utf8", timeout: 60_000 }).trim();
+      state.seen[item.id] = { beadId, at: new Date().toISOString() };
+      saveState(stateFile, state);
+      entries.push({ item, beadId });
+    } catch (e) {
+      failures.push({ id: item.id, error: String(e.message).slice(0, 300) });
+    }
   }
   const text = digest(entries);
   if (dryRun) {
@@ -63,8 +68,9 @@ async function main() {
     if (text) console.log(text);
     return;
   }
-  appendLog({ status: "ok", fetched: items.length, items: entries.map((e) => logItem(e.item, e.beadId)) });
-  console.log(`fetched ${items.length}, created ${entries.length}`);
+  appendLog({ status: failures.length ? "partial" : "ok", fetched: items.length, items: entries.map((e) => logItem(e.item, e.beadId)), failures });
+  console.log(`fetched ${items.length}, created ${entries.length}, failed ${failures.length}`);
+  if (failures.length) process.exitCode = 1;
 }
 
 main().catch((e) => {

@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -68,8 +69,20 @@ function oneLine(s, n) {
 
 export function beadTitle(it) {
   const label = it.kind === "crash" ? "crash" : "feedback";
-  const text = oneLine(it.comment, 70) || "no comment";
+  const text = oneLine(scrub(it.comment), 70) || "no comment";
   return `TestFlight ${label}, ${it.app}: ${text}`;
+}
+
+export function testerHash(email) {
+  if (!email) return "unknown";
+  return `t-${crypto.createHash("sha256").update(email.trim().toLowerCase()).digest("hex").slice(0, 8)}`;
+}
+
+const EMAIL = /[^\s@<>()]+@[^\s@<>()]+\.[a-z]{2,}/gi;
+const URLS = /https?:\/\/\S+/gi;
+
+export function scrub(text) {
+  return text.replace(EMAIL, "[email]").replace(URLS, "[link]");
 }
 
 export function beadDescription(it) {
@@ -79,14 +92,11 @@ export function beadDescription(it) {
     `ASC feedback id: ${it.id}`,
     `Submitted: ${it.createdDate}`,
     `Device: ${it.device || "unknown"}`,
-    `Tester: ${it.email || "unknown"}`,
+    `Tester: ${testerHash(it.email)}`,
     "",
-    it.comment || "(no comment)",
+    scrub(it.comment) || "(no comment)",
   ];
-  if (it.screenshots.length) {
-    lines.push("", "Screenshots, signed URLs that expire:");
-    for (const u of it.screenshots) lines.push(`- ${u}`);
-  }
+  if (it.screenshots.length) lines.push("", `${it.screenshots.length} screenshot(s) in App Store Connect, feedback id ${it.id}.`);
   if (it.kind === "crash") lines.push("", `Crash log: GET /v1/betaFeedbackCrashSubmissions/${it.id}/crashLog`);
   return lines.join("\n");
 }
@@ -108,11 +118,11 @@ export function beadArgs(it) {
 export function digestLine(it, beadId) {
   const tag = it.kind === "crash" ? "crash" : "feedback";
   const shots = it.screenshots.length ? `, ${it.screenshots.length} screenshot(s)` : "";
-  return `${beadId ?? "dry-run"} ${it.app} ${tag}${shots}: ${oneLine(it.comment, 100) || "no comment"}`;
+  return `${beadId ?? "dry-run"} ${it.app} ${tag}${shots}: ${oneLine(scrub(it.comment), 100) || "no comment"}`;
 }
 
 export function logItem(it, beadId) {
-  return { beadId, id: it.id, app: it.app, kind: it.kind, comment: oneLine(it.comment, 100), screenshots: it.screenshots.length };
+  return { beadId, id: it.id, app: it.app, kind: it.kind, comment: oneLine(scrub(it.comment), 100), screenshots: it.screenshots.length };
 }
 
 export function readLog(file) {
@@ -129,7 +139,7 @@ export function dailyDigest(log, now = Date.now()) {
   const from = Math.max(since, lastSent);
   const runs = log.filter((e) => Date.parse(e.at) > from && e.status !== "digest");
   const items = runs.flatMap((e) => e.items ?? []);
-  const errors = runs.filter((e) => e.status === "error").length;
+  const errors = runs.filter((e) => e.status === "error" || e.status === "partial").length;
   const head = `TestFlight daily: ${items.length} new item(s), ${runs.length - errors} run(s) ok, ${errors} failed`;
   const lines = items.map((i) => `${i.beadId} ${i.app} ${i.kind === "crash" ? "crash" : "feedback"}${i.screenshots ? `, ${i.screenshots} screenshot(s)` : ""}: ${i.comment || "no comment"}`);
   return { text: [head, ...lines].join("\n"), items: items.length, runs: runs.length, errors };

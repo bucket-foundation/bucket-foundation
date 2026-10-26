@@ -22,4 +22,6 @@ systemctl --user daemon-reload
 systemctl --user enable --now bucket-testflight-feedback.timer bucket-testflight-digest.timer
 ```
 
-The units run the tool from `TOOL_ROOT`, the main checkout by default. Before this branch merges, point both services at the worktree with a drop-in: `systemctl --user edit <unit>` and `Environment=TOOL_ROOT=<worktree>`.
+The units run the tool from the main checkout (`TOOL_ROOT`, default `~/agfarms/bucket-foundation`), so install them only after this branch reaches the branch that checkout follows. Each run holds a `flock` lock and has a start timeout; one failing item is logged and the rest still file.
+
+Beads carry no tester email and no screenshot URL: the tester is a short SHA-256 hash, screenshots are named by count and feedback id, and emails or links in a comment become `[email]` and `[link]`.

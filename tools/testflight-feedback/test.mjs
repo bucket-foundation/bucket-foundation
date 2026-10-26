@@ -34,7 +34,8 @@ test("state round-trips through disk", () => {
 test("bead formatting", () => {
   assert.equal(beadTitle(shots[0]), "TestFlight feedback, Polingual: Tiles overlap on small screens");
   assert.equal(beadTitle(shots[1]), "TestFlight feedback, Polingual: no comment");
-  assert.match(beadDescription(shots[0]), /ASC feedback id: fb-2[\s\S]*- https:\/\/example.com\/s1.png/);
+  assert.match(beadDescription(shots[0]), /ASC feedback id: fb-2[\s\S]*1 screenshot\(s\) in App Store Connect, feedback id fb-2/);
+  assert.doesNotMatch(beadDescription(shots[0]), /example\.com/);
   assert.match(beadDescription(crashes[0]), /crashLog/);
   const args = beadArgs(crashes[0]);
   assert.ok(args.includes("--labels=source-tester"));
@@ -86,4 +87,28 @@ test("a digest right after another one reports nothing new", async () => {
   const { dailyDigest } = await import("./lib.mjs");
   const d = dailyDigest([{ at: "2026-10-27T08:59:00Z", status: "digest" }], Date.parse("2026-10-27T09:00:00Z"));
   assert.equal(d.items, 0);
+});
+
+test("no tester email or signed URL reaches bd create", async () => {
+  const { normalize, beadArgs, testerHash, logItem, digestLine } = await import("./lib.mjs");
+  const it = normalize({
+    app: "polingual",
+    kind: "screenshot",
+    id: "AbC123",
+    attributes: {
+      createdDate: "2026-10-26T01:00:00Z",
+      email: "tester.one@example.com",
+      comment: "Broken, mail me at Tester.One@Example.com or see https://x.example/a?X-Amz-Signature=abc",
+      screenshots: [{ url: "https://tf-feedback.s3.amazonaws.com/s.png?X-Amz-Algorithm=AWS4&X-Amz-Signature=deadbeef" }],
+      deviceModel: "iPhone15,2",
+      osVersion: "26.1",
+    },
+  });
+  const out = [...beadArgs(it), JSON.stringify(logItem(it, "bkt-x")), digestLine(it, "bkt-x")].join("\n");
+  assert.doesNotMatch(out, /@/);
+  assert.doesNotMatch(out, /x-amz/i);
+  assert.doesNotMatch(out, /https?:\/\//);
+  assert.match(out, new RegExp(testerHash("tester.one@example.com")));
+  assert.match(out, /1 screenshot\(s\) in App Store Connect, feedback id AbC123/);
+  assert.equal(testerHash("Tester.One@example.com "), testerHash("tester.one@example.com"));
 });
