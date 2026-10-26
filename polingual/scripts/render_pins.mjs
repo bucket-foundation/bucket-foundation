@@ -44,7 +44,7 @@ const readJson = (f) => JSON.parse(fs.readFileSync(path.join(CORPUS, f), "utf8")
 export function credit(meta) {
   const v = /CC-BY-SA (\d+\.\d+)/.exec(meta?.license ?? "")?.[1];
   if (!v) throw new Error("lang-core.json meta.license names no CC-BY-SA version");
-  return { text: `Words from Wiktionary via Kaikki, CC BY-SA ${v}`, url: `https://creativecommons.org/licenses/by-sa/${v}/` };
+  return { text: `Words and pronunciation from Wiktionary via Kaikki, CC BY-SA ${v}`, url: `https://creativecommons.org/licenses/by-sa/${v}/` };
 }
 
 export function loadCredit() {
@@ -109,14 +109,18 @@ function args(argv) {
   return o;
 }
 
+export function defaultPins(concepts, count) {
+  const usable = [...concepts.entries()].filter(([, c]) => c.langs.size >= 4);
+  const step = Math.max(1, Math.floor(usable.length / count));
+  return usable.filter((_, i) => i % step === 0).slice(0, count).map(([k, c]) => [k, c.langs]);
+}
+
 async function main() {
   const o = args(process.argv.slice(2));
   const concepts = loadConcepts();
-  const usable = [...concepts.entries()].filter(([, c]) => c.langs.size >= 4);
-  const step = Math.max(1, Math.floor(usable.length / o.count));
   const chosen = o.meanings.length
     ? o.meanings.map((k) => [k, concepts.get(k)?.langs]).filter(([, m]) => m && m.size >= 4)
-    : usable.filter((_, i) => i % step === 0).slice(0, o.count).map(([k, c]) => [k, c.langs]);
+    : defaultPins(concepts, o.count);
   const cr = loadCredit();
   const css = fs.readFileSync(path.join(ROOT, "public", "d8", "tiles.css"), "utf8");
   fs.mkdirSync(o.out, { recursive: true });
