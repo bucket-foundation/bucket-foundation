@@ -361,7 +361,47 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
 #mb .cta{margin-top:min(3.5vh,28px)}
 @media (min-width:600px){#mb .pg{padding:0 8vw}}
 @media (max-width:759px),(max-aspect-ratio:5/4){#dk{display:none}#mb{display:block}}
+
+#app{display:none}
+@media (max-width:640px){
+#dk,#mb{display:none!important}
+#app{display:block;min-height:100vh;min-height:100dvh;background:#EEE6D3;color:#231F20;font-family:Nunito,sans-serif;padding:16px 16px 32px}
+#app .top{display:flex;align-items:center;gap:8px;font-family:Fredoka;font-weight:600;font-size:20px;color:#231F20;text-decoration:none}
+#app .top img{width:30px;height:30px}
+#app h1{font-family:Nunito,sans-serif;font-weight:800;font-size:34px;line-height:1.1;letter-spacing:-.01em;margin:28px 0 10px}
+#app .sub{font-size:17px;color:#6b635b;margin:0 0 24px}
+#app .card{background:#F6EEDC;border:1px solid #E6DAC0;border-radius:24px;padding:20px}
+#app .field{display:flex;align-items:center;gap:10px;background:#FFFDF8;border:2px solid #E3D6B8;border-radius:14px;padding:12px 14px;font-weight:700;font-size:15px;line-height:1.35}
+#app .field .ic{flex:none;width:26px;height:26px;border-radius:7px;background:#D9381E;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:800}
+#app .rows{list-style:none;margin:10px 0 18px;padding:0}
+#app .rows li{display:flex;align-items:center;gap:12px;padding:7px 0}
+#app .fi{flex:none;width:30px;height:30px;border-radius:8px;background:var(--flag);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12),inset 0 -6px 8px rgba(0,0,0,.15),inset 0 5px 6px rgba(255,255,255,.3);position:relative;overflow:hidden}
+#app .fi .em{position:absolute;left:var(--ex,50%);top:var(--ey,50%);transform:translate(-50%,-50%);font-size:calc(var(--es,0px) * .17);color:var(--ec);line-height:1}
+#app .rows b{flex:1;font-size:19px;font-weight:800}
+#app .rows button{border:0;background:none;padding:4px;color:#1E7A5A;cursor:pointer}
+#app .rows button svg{width:22px;height:22px;display:block}
+#app .rows li.playing button{color:#D9381E}
+#app .pills{display:flex;flex-wrap:wrap;gap:10px}
+#app .pill{display:inline-block;padding:13px 20px;border-radius:14px;font-weight:800;font-size:17px;text-decoration:none}
+#app .pill.p{background:#D9381E;color:#fff;box-shadow:0 4px 0 #8E2312}
+#app .pill.s{background:#FFFDF8;color:#231F20;border:2px solid #E3D6B8;box-shadow:0 4px 0 #E3D6B8}
+#app .pill:active{transform:translateY(3px);box-shadow:none}
+#app .ft{margin-top:28px;font-size:13px;color:#6b635b;display:flex;flex-wrap:wrap;gap:12px}
+#app .ft a{color:inherit}
+}
 </style></head><body>
+<div id="app">
+ <a class="top" href="/"><img src="/d8/mark-pl.svg" alt="">polingual</a>
+ <h1>Language learning for multilingual learners.</h1>
+ <p class="sub">Learn several languages together.</p>
+ <div class="card">
+  <div class="field"><span class="ic" aria-hidden="true">100</span><span>100 day streak · 1 meaning a day in 4 languages · up to 400 words</span></div>
+  <ul class="rows" id="app-rows"></ul>
+  <div class="pills"><a class="pill p" href="https://testflight.apple.com/join/HfeRBKr8" data-slot="appstore" rel="noopener">Join the beta on TestFlight</a><a class="pill s" href="mailto:?subject=Polingual&amp;body=https%3A%2F%2Fwww.polingual.com%2F" data-slot="share">Share</a></div>
+ </div>
+ <footer class="ft"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/support">Support</a><span>Words: <a href="https://en.wiktionary.org">Wiktionary</a> via <a href="https://kaikki.org">Kaikki</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></span></footer>
+</div>
+
 <div id="dk">
 <header class="hd"><div class="wrap"><nav>
   <a class="brand" href="/"><span class="mark" data-slot="logo"><img src="/d8/mark-pl.svg" alt="Polingual"></span>polingual</a>
@@ -488,6 +528,7 @@ html,body{height:100%;overflow:hidden;background:#F6EEDC}
 
 </div>
 <script src="/d8/tiles.js"></script>
+<script>(()=>{const ul=document.getElementById("app-rows");if(!ul)return;ul.innerHTML=TILES.map(t=>`<li data-c="${t.c}"><span class="fi" style="${style(t)}"><span class="em">${t.e||""}</span></span><b lang="${t.lang}" style="font-family:'${t.f}',Nunito,sans-serif">${t.w}</b><button aria-label="Play ${t.n} ${t.w}">${SPK}</button></li>`).join("");ul.querySelectorAll("li").forEach(li=>{li.querySelector("button").onclick=()=>say(li,byC(li.dataset.c))})})()</script>
 <script src="/d8/beta.js"></script>
 <script src="/d8/share.js"></script>
 <script>(()=>{const S=["#5B1A4A","url(#sk-kente)","url(#sk-azulejo)","url(#sk-girih)","url(#sk-seal)","url(#sk-paisley)","url(#sk-mudcloth)"];let i=0;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;setInterval(()=>{i=(i+1)%S.length;document.querySelectorAll(".mho.face").forEach(p=>p.setAttribute("stroke",S[i]))},3000)})()</script>
