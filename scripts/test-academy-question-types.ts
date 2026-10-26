@@ -70,6 +70,15 @@ test("04-information: deck exists and every question has a review verdict", () =
   for (const q of deck.raw.questions as Question[]) assert.ok(rec.reviews[q.id]?.verdict, q.id);
 });
 
+for (const { branch, atomIds, raw } of decks) {
+  test(`${branch}: every atom has exactly one applied task`, () => {
+    for (const id of atomIds) {
+      const applied = (raw.questions as Question[]).filter((q) => q.atom === id && q.applied === true);
+      assert.equal(applied.length, 1, `${branch} ${id}`);
+    }
+  });
+}
+
 test("pick and spot-error grade exact choices", () => {
   const q: Question = { id: "p", atom: "a", kind: "pick", prompt: "?", options: ["x", "y", "z"], answer: 1 };
   assert.equal(gradeQuestion(q, { kind: "pick", choice: 0 }).rating, 1);

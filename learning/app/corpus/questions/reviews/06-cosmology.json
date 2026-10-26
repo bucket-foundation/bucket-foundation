@@ -3,8 +3,9 @@
  "reviews": {
   "acoustic-peaks.calculate": {
    "reviewed_by": "claude-opus-5-5",
-   "reviewed_at": "2026-10-25",
-   "scope": "answer key vs physics and atom lesson"
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
+   "verdict": "ok"
   },
   "baryogenesis.calculate": {
    "reviewed_by": "claude-opus-5-5",
@@ -44,7 +45,8 @@
   "cmb-origin.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer key vs physics and atom lesson"
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
+   "verdict": "ok"
   },
   "cmb-polarization.calculate": {
    "reviewed_by": "claude-opus-5-5",
@@ -94,7 +96,8 @@
   "cosmological-redshift.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer key vs physics and atom lesson"
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
+   "verdict": "ok"
   },
   "cosmological-redshift.spot-error": {
    "reviewed_by": "claude-opus-5-5",
@@ -208,13 +211,15 @@
   },
   "hubble-law.calculate": {
    "reviewed_by": "claude-opus-5-5",
-   "reviewed_at": "2026-10-25",
-   "scope": "answer key vs physics and atom lesson"
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
+   "verdict": "ok"
   },
   "hubble-tension.calculate": {
    "reviewed_by": "claude-opus-5-5",
-   "reviewed_at": "2026-10-25",
-   "scope": "answer key vs physics and atom lesson"
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
+   "verdict": "ok"
   },
   "hubble-tension.match": {
    "reviewed_by": "claude-opus-5-5",
@@ -374,7 +379,8 @@
   "sunyaev-zeldovich-effect.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer key vs physics and atom lesson"
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
+   "verdict": "ok"
   },
   "sunyaev-zeldovich-effect.spot-error": {
    "reviewed_by": "claude-opus-5-5",
@@ -409,7 +415,8 @@
   "type-ia-supernovae.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer key vs physics and atom lesson"
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
+   "verdict": "ok"
   },
   "type-ia-supernovae.spot-error": {
    "reviewed_by": "claude-opus-5-5",
@@ -418,13 +425,14 @@
   },
   "weak-lensing-shear.calculate": {
    "reviewed_by": "claude-opus-5-5",
-   "reviewed_at": "2026-10-25",
-   "scope": "answer key vs physics and atom lesson"
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
+   "verdict": "ok"
   },
   "equivalence-principle.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer recomputed; checked against physics and atom lesson",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
    "verdict": "ok"
   },
   "spacetime-curvature.calculate": {
@@ -472,13 +480,13 @@
   "cmb-anisotropies.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer recomputed; checked against physics and atom lesson",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
    "verdict": "ok"
   },
   "dark-matter-evidence.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer recomputed; checked against physics and atom lesson",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
    "verdict": "ok"
   },
   "large-scale-structure.calculate": {
@@ -490,13 +498,13 @@
   "standard-candles.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer recomputed; checked against physics and atom lesson",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
    "verdict": "ok"
   },
   "redshift-surveys.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer recomputed; checked against physics and atom lesson",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
    "verdict": "ok"
   },
   "dark-energy.calculate": {
@@ -520,13 +528,13 @@
   "cosmic-distance-ladder.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer recomputed; checked against physics and atom lesson",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
    "verdict": "ok"
   },
   "gravitational-lensing.calculate": {
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
-   "scope": "answer recomputed; checked against physics and atom lesson",
+   "scope": "applied task; answer recomputed; checked against the atom lesson",
    "verdict": "ok"
   },
   "primordial-gravitational-waves.calculate": {
@@ -1688,6 +1696,270 @@
    "reviewed_by": "claude-opus-5-5",
    "reviewed_at": "2026-10-26",
    "scope": "answer recomputed; checked against physics and atom lesson",
+   "verdict": "ok"
+  },
+  "spacetime-curvature.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "metric.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "geodesics.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "stress-energy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "einstein-field-equations.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "cosmological-principle.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "frw-metric.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "scale-factor.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "friedmann-equations.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "critical-density.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "big-bang.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "thermal-history.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "inflation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "baryogenesis.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "bbn.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "recombination.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "gravitational-instability.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "dark-matter-halos.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "large-scale-structure.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "baryon-acoustic-oscillations.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "dark-energy.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "cosmological-constant.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "lambda-cdm.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "observable-universe.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "dark-energy-equation-of-state.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "primordial-gravitational-waves.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "multiverse-inflation-debate.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "cosmic-fate.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "cosmic-history-synthesis.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "matter-radiation-equality.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "jeans-instability.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "matter-power-spectrum.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "silk-damping.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "sachs-wolfe-effect.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "cosmic-neutrino-background.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "reionization.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "redshift-space-distortions.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "halo-mass-function.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "fluid-equation.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "deceleration-parameter.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "growth-of-structure.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "primordial-power-spectrum.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "transfer-function.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
+   "verdict": "ok"
+  },
+  "cmb-polarization.applied": {
+   "reviewed_by": "claude-opus-5-5",
+   "reviewed_at": "2026-10-26",
+   "scope": "applied task; answer key vs the atom lesson",
    "verdict": "ok"
   }
  }
