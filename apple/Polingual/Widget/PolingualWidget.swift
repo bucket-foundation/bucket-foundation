@@ -19,6 +19,14 @@ struct SnapshotProvider: TimelineProvider {
     }
 }
 
+enum WidgetBrand {
+    #if BUCKET
+    static let name = "Bucket"
+    #else
+    static let name = "Polingual"
+    #endif
+}
+
 enum WidgetInk {
     static let parchment = Color(red: 0xF6 / 255, green: 0xEE / 255, blue: 0xDC / 255)
     static let ink = Color(red: 0x23 / 255, green: 0x1F / 255, blue: 0x20 / 255)
@@ -91,7 +99,7 @@ struct PolingualWidget: Widget {
             PolingualWidgetView(entry: entry)
                 .containerBackground(WidgetInk.parchment, for: .widget)
         }
-        .configurationDisplayName("Polingual")
+        .configurationDisplayName(WidgetBrand.name)
         .description("Your streak, reviews due and the word of the day.")
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
