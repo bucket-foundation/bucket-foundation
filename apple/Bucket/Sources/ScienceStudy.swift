@@ -9,10 +9,10 @@ struct DrillRating: Identifiable {
     var id: Int { value }
 
     static let all = [
-        DrillRating(value: 1, label: "Again", hint: "did not have it", color: .red),
-        DrillRating(value: 2, label: "Hard", hint: "had it, slowly", color: Palette.gold),
-        DrillRating(value: 3, label: "Good", hint: "had it", color: Palette.green),
-        DrillRating(value: 4, label: "Easy", hint: "had it at once", color: .blue),
+        DrillRating(value: 1, label: "Again", hint: "did not have it", color: D8.vermilion),
+        DrillRating(value: 2, label: "Hard", hint: "had it, slowly", color: Color(hex: 0xA9781C)),
+        DrillRating(value: 3, label: "Good", hint: "had it", color: D8.malachite),
+        DrillRating(value: 4, label: "Easy", hint: "had it at once", color: D8.lapis),
     ]
 }
 
@@ -23,48 +23,48 @@ struct ScienceDrill: View {
     var onSkip: (() -> Void)?
     @State private var revealed = Launch.flag("-revealAnswer")
     @State private var picked: Int?
+    @State private var full = false
 
     var quiz: QuizItem? { atom.quiz.first { $0.level == level } ?? atom.quiz.first }
 
     var body: some View {
         if let quiz {
             VStack(alignment: .leading, spacing: 14) {
-                Eyebrow(text: "Retrieve · \(quiz.level)")
-                Text(LessonText.inline(quiz.prompt)).font(.serif(.title3, weight: .medium)).foregroundStyle(Palette.ink)
+                Text(quiz.level).font(.subheadline).foregroundStyle(Palette.muted)
+                Text(LessonText.inline(quiz.prompt)).font(.serif(revealed ? .body : .title2, weight: .semibold)).foregroundStyle(revealed ? Palette.muted : Palette.ink)
                 if revealed {
-                    Divider().overlay(Palette.rule)
-                    Text("ANSWER").font(.caption2.weight(.semibold)).tracking(1.4).foregroundStyle(Palette.muted)
+                    let long = quiz.answer.count > 320
                     Text(LessonText.inline(quiz.answer)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                        .lineLimit(long && !full ? 6 : nil)
+                        .padding(14)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(D8.parchment.opacity(0.55), in: .rect(cornerRadius: 12))
                         .transition(.opacity.combined(with: .move(edge: .bottom)))
+                    if long && !full {
+                        Button("Read the full answer") { withAnimation(.snappy) { full = true } }.buttonStyle(PlainLink())
+                    }
                     if let picked {
                         Text(feedback(picked)).font(.subheadline).foregroundStyle(Palette.muted)
                             .accessibilityAddTraits(.updatesFrequently)
                     } else {
-                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                        LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible())], spacing: 10) {
                             ForEach(DrillRating.all) { r in rateButton(r) }
                         }
                         .accessibilityLabel("How well did you recall it")
                     }
                 } else {
-                    HStack {
-                        Button {
+                    VStack(spacing: 10) {
+                        Button("Show the answer") {
+                            tap()
                             withAnimation(.snappy) { revealed = true }
-                        } label: {
-                            Text("Show the answer").frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
+                        .buttonStyle(D8Primary())
                         .keyboardShortcut(.space, modifiers: [])
-                        if let onSkip {
-                            Button("Skip", action: onSkip).buttonStyle(.bordered).controlSize(.large)
-                        }
+                        if let onSkip { Button("Skip", action: onSkip).buttonStyle(PlainLink()) }
                     }
                 }
             }
-            .padding(18)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Palette.card, in: .rect(cornerRadius: 16))
-            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Palette.rule))
+            .exerciseCard()
             .task(id: picked) {
                 guard let picked else { return }
                 try? await Task.sleep(for: .milliseconds(picked == 1 ? 1100 : 600))
@@ -75,28 +75,24 @@ struct ScienceDrill: View {
             Button {
                 onRate(3, level)
             } label: {
-                Text("Got it").frame(maxWidth: .infinity)
+                Text("Got it")
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
+            .buttonStyle(D8Primary())
         }
     }
 
     func rateButton(_ r: DrillRating) -> some View {
         Button {
             picked = r.value
-            #if os(iOS)
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            #endif
+            haptic(r.value > 1)
         } label: {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(r.label).font(.subheadline.weight(.semibold))
-                Text(r.hint).font(.caption).foregroundStyle(Palette.muted)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(r.label).font(.system(size: 17, weight: .heavy, design: .rounded)).foregroundStyle(r.color)
+                Text(r.hint).font(.caption).foregroundStyle(D8.label)
             }
-            .frame(maxWidth: .infinity, minHeight: 48, alignment: .leading)
+            .padding(.vertical, 8)
         }
-        .buttonStyle(.bordered)
-        .tint(r.color)
+        .buttonStyle(D8Option(selected: picked == r.value))
         .keyboardShortcut(KeyEquivalent(Character(String(r.value))), modifiers: [])
     }
 
@@ -189,6 +185,8 @@ struct StudySession: View {
     @State private var position = 0
     @State private var showLesson = false
     @State private var graded = 0
+    @State private var cardStart = Date()
+    @State private var questions: QuestionDeck?
 
     var body: some View {
         NavigationStack {
@@ -214,35 +212,70 @@ struct StudySession: View {
                 ToolbarItem(placement: .cancellationAction) { Button("Done") { dismiss() } }
             }
         }
-        .onAppear { if queue == nil { queue = store.route(deck) } }
+        .onAppear {
+            if queue == nil {
+                queue = store.route(deck)
+                cardStart = .now
+                Beta.shared.studyStarted("science:\(deck.branch)")
+            }
+        }
         .onDisappear { Task { await store.flush() } }
+        .task {
+            #if DEBUG
+            if let path = Launch.value("-questionsFile"), let data = FileManager.default.contents(atPath: path) {
+                questions = try? JSONDecoder().decode(QuestionDeck.self, from: data)
+                return
+            }
+            #endif
+            questions = try? await BucketAPI().questionDeck(deck.branch)
+        }
+    }
+
+    func question(for atom: Atom) -> Question? {
+        var kind: QuestionKind?
+        #if DEBUG
+        kind = Launch.value("-questionKind").flatMap(QuestionKind.init(rawValue:))
+        #endif
+        let reps = Int(store.state(deck.branch).cards[atom.id]?.reps ?? 0)
+        return questions?.question(for: atom.id, reps: reps, kind: kind)
     }
 
     func card(_ item: RouteItem, _ atom: Atom, count: Int) -> some View {
         let isNew = item.kind == .new
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                HStack {
-                    Eyebrow(text: isNew ? "New" : "Review")
-                    Spacer()
-                    Text("\(position + 1) / \(count)").font(.footnote).foregroundStyle(Palette.muted).monospacedDigit()
+                HStack(spacing: 10) {
+                    ProgressView(value: Double(position), total: Double(count)).tint(D8.malachite)
+                    Text("\(position + 1)/\(count)").font(.caption.weight(.semibold)).foregroundStyle(Palette.muted).monospacedDigit()
                 }
-                ProgressView(value: Double(position), total: Double(count)).tint(Palette.gold)
-                Text(atom.title).font(.serif(.title, weight: .semibold)).foregroundStyle(Palette.ink)
-                if isNew || showLesson {
+                HStack(spacing: 10) {
+                    BranchTile(branch: entry.id)
+                    Text("\(entry.title) · \(isNew ? "new atom" : "review")").font(.subheadline).foregroundStyle(Palette.muted)
+                }
+                Text(atom.title).font(.system(size: 26, weight: .bold, design: .rounded)).foregroundStyle(Palette.ink)
+                if (isNew && !Launch.flag("-hideLesson")) || showLesson {
                     AtomLesson(atom: atom)
                 } else {
                     Button("Read the lesson first") { withAnimation(.snappy) { showLesson = true } }
                         .font(.footnote.weight(.semibold))
                         .tint(Palette.muted)
                 }
-                ScienceDrill(atom: atom, level: pickLevel(store.state(deck.branch), atom), onRate: { rating, level in
+                let level = pickLevel(store.state(deck.branch), atom)
+                let rate: (Int, String, String, Question?) -> Void = { rating, level, kind, q in
                     store.grade(deck, id: item.id, rating: rating, level: level)
+                    Beta.shared.answered("science:\(deck.branch)", correct: rating > 1, ms: Int(Date.now.timeIntervalSince(cardStart) * 1000), kind: kind, question: q)
+                    cardStart = .now
                     reminders.noteStudy()
                     graded += 1
                     advance()
-                }, onSkip: advance)
-                .id(item.id)
+                }
+                if !isNew || Launch.flag("-questionsAlways"), let q = question(for: atom) {
+                    QuestionCard(presented: QuestionEngine.present(q, seed: "\(deck.branch):\(graded)")) { rating in rate(rating, level, isNew ? "new" : "review", q) }
+                        .id("\(item.id)-q")
+                } else {
+                    ScienceDrill(atom: atom, level: level, onRate: { rating, level in rate(rating, level, isNew ? "new" : "review", nil) }, onSkip: advance)
+                        .id(item.id)
+                }
             }
             .padding(20)
         }
@@ -280,17 +313,20 @@ struct StudySession: View {
                 DeckStats(summary: s)
                 if let nextLine { Text(nextLine).font(.subheadline.weight(.medium)).foregroundStyle(Palette.ink) }
                 ReminderPrompt()
+                FeedbackLink()
                 SyncLine(state: store.saveState)
                 Button {
                     dismiss()
                 } label: {
                     Text("Done").frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(D8Primary())
                 .controlSize(.large)
             }
             .padding(20)
         }
+        .modifier(AskForReview(streak: Int(store.state(deck.branch).streak), graded: graded, correct: graded))
+        .onAppear { Beta.shared.studyEnded("science:\(deck.branch)", graded: graded, correct: graded) }
     }
 }
 

@@ -19,20 +19,20 @@ struct LearnView: View {
                 case .ready:
                     List {
                         Section {
-                            ForEach(library.scienceDecks) { entry in
-                                NavigationLink(value: entry) { DeckRow(entry: entry) }
-                                    .listRowBackground(Palette.card)
-                            }
-                        } header: {
-                            Eyebrow(text: "Seven branches and the meta-skill")
-                        }
-                        Section {
                             ForEach(library.languageDecks) { entry in
                                 NavigationLink(value: LangRoute.home) { DeckRow(entry: entry, subtitle: "Learn a set of languages together from one root language") }
                                     .listRowBackground(Palette.card)
                             }
                         } header: {
                             Eyebrow(text: "Languages")
+                        }
+                        Section {
+                            ForEach(library.scienceDecks) { entry in
+                                NavigationLink(value: entry) { DeckRow(entry: entry) }
+                                    .listRowBackground(Palette.card)
+                            }
+                        } header: {
+                            Eyebrow(text: "Seven branches and the meta-skill")
                         }
                     }
                 }
@@ -72,12 +72,9 @@ struct DeckRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            Text(entry.mark)
-                .font(.serif(.title3, weight: .semibold))
-                .foregroundStyle(Palette.gold)
-                .frame(width: 34)
+            BranchTile(branch: entry.id, size: 36)
             VStack(alignment: .leading, spacing: 3) {
-                Text(entry.title).font(.serif(.headline)).foregroundStyle(Palette.ink)
+                Text(entry.title).font(.headline).foregroundStyle(Palette.ink)
                 if let sub = subtitle ?? entry.sub {
                     Text(sub).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(2)
                 }
@@ -112,7 +109,7 @@ struct DeckView: View {
                         Button {
                             studying = StudyLaunch(entry: entry, deck: deck)
                         } label: {
-                            Label(today.isEmpty ? "Study" : "Study today (\(today.count))", systemImage: "play.fill").font(.headline)
+                            Label(today.isEmpty ? String(localized: "Study") : String(localized: "Study today (\(today.count))"), systemImage: "play.fill").font(.headline)
                         }
                     }
                     .listRowBackground(Palette.card)
@@ -127,7 +124,7 @@ struct DeckView: View {
                                     HStack {
                                         Text(atom.title).font(.serif(.body)).foregroundStyle(Palette.ink)
                                         Spacer()
-                                        Text(item.kind == .review ? "REVIEW" : "NEW").font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
+                                        Text(item.kind == .review ? String(localized: "REVIEW") : String(localized: "NEW")).font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
                                     }
                                 }
                             }
@@ -220,7 +217,7 @@ struct AtomView: View {
                     } label: {
                         Label("Test yourself", systemImage: "checkmark.circle").frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(D8Primary())
                     .controlSize(.large)
                 }
             }
@@ -249,24 +246,92 @@ struct AtomView: View {
 struct LessonText: View {
     let markdown: String
 
+    enum Block: Hashable {
+        case heading(String), equation(String), text(String), bullet(String), numbered(String, String), quote(String)
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            ForEach(Array(paragraphs.enumerated()), id: \.offset) { _, p in
-                if p.hasPrefix("#") {
-                    Text(p.drop { $0 == "#" }.trimmingCharacters(in: .whitespaces))
-                        .font(.serif(.title3, weight: .semibold)).foregroundStyle(Palette.ink)
-                } else if p.hasPrefix("$$") {
-                    EquationView(tex: p.trimmingCharacters(in: CharacterSet(charactersIn: "$ \n")))
-                } else {
-                    Text(Self.inline(p)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
+            ForEach(Array(blocks.enumerated()), id: \.offset) { _, b in
+                switch b {
+                case .heading(let t):
+                    Text(t).font(.serif(.title3, weight: .semibold)).foregroundStyle(Palette.ink)
+                case .equation(let t):
+                    EquationView(tex: t)
+                case .text(let t):
+                    Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
+                case .bullet(let t):
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Text("•").foregroundStyle(Palette.muted)
+                        Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                    }
+                case .numbered(let n, let t):
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Text(n).font(.serif(.body, weight: .semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                        Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                    }
+                case .quote(let t):
+                    Text(Self.inline(t)).font(.serif(.body).italic()).foregroundStyle(Palette.ink.opacity(0.8)).lineSpacing(4)
+                        .padding(.leading, 12)
+                        .overlay(alignment: .leading) { Rectangle().fill(Palette.rule).frame(width: 3) }
                 }
             }
         }
         .textSelection(.enabled)
     }
 
-    var paragraphs: [String] {
-        markdown.components(separatedBy: "\n\n").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
+    var blocks: [Block] { Self.parse(markdown) }
+
+    static func parse(_ markdown: String) -> [Block] {
+        var out: [Block] = []
+        for para in markdown.components(separatedBy: "\n\n") {
+            let p = para.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !p.isEmpty else { continue }
+            var body = p
+            if p.hasPrefix("#") {
+                let first = p.prefix { $0 != "\n" }
+                out.append(.heading(first.drop { $0 == "#" }.trimmingCharacters(in: .whitespaces)))
+                body = String(p.dropFirst(first.count)).trimmingCharacters(in: .whitespacesAndNewlines)
+                if body.isEmpty { continue }
+            }
+            let parts = body.components(separatedBy: "$$")
+            for (i, part) in parts.enumerated() {
+                let t = part.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !t.isEmpty else { continue }
+                if !i.isMultiple(of: 2) && parts.count >= 3 {
+                    out.append(.equation(t))
+                } else {
+                    out.append(contentsOf: lines(t))
+                }
+            }
+        }
+        return out
+    }
+
+    static func lines(_ t: String) -> [Block] {
+        var out: [Block] = []
+        var prose: [String] = []
+        func flush() {
+            if !prose.isEmpty { out.append(.text(prose.joined(separator: " "))) }
+            prose = []
+        }
+        for raw in t.components(separatedBy: "\n") {
+            let line = raw.trimmingCharacters(in: .whitespaces)
+            if line.hasPrefix("- ") || line.hasPrefix("* ") {
+                flush()
+                out.append(.bullet(String(line.dropFirst(2))))
+            } else if let dot = line.firstIndex(of: "."), line[..<dot].allSatisfy(\.isNumber), !line[..<dot].isEmpty, line[line.index(after: dot)...].hasPrefix(" ") {
+                flush()
+                out.append(.numbered(String(line[...dot]), String(line[line.index(dot, offsetBy: 2)...])))
+            } else if line.hasPrefix(">") {
+                flush()
+                out.append(.quote(line.drop { $0 == ">" || $0 == " " }.description))
+            } else if !line.isEmpty {
+                prose.append(line)
+            }
+        }
+        flush()
+        return out
     }
 
     static func inline(_ p: String) -> AttributedString {

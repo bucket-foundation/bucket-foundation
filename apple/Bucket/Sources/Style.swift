@@ -47,10 +47,11 @@ struct Eyebrow: View {
     let text: String
 
     var body: some View {
-        Text(text.uppercased())
-            .font(.caption.weight(.semibold))
-            .tracking(1.6)
-            .foregroundStyle(Palette.gold)
+        Text(LocalizedStringKey(text))
+            .textCase(.uppercase)
+            .font(D8.caps(11))
+            .tracking(1.2)
+            .foregroundStyle(Palette.muted)
     }
 }
 
@@ -104,7 +105,7 @@ struct StateMessage: View {
         } description: {
             if let detail { Text(detail) }
         } actions: {
-            if let retry { Button("Try again", action: retry).buttonStyle(.bordered) }
+            if let retry { Button("Try again", action: retry).buttonStyle(D8Option(align: .center, compact: true)) }
         }
     }
 }

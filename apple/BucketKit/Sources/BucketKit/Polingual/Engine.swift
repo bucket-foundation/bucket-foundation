@@ -312,6 +312,7 @@ public func mergeState(_ a: EngineState?, _ b: EngineState?) -> EngineState {
     out.requestRetention = b.requestRetention
     out.settingsExtra = a.settingsExtra
     for (k, v) in b.settingsExtra.entries { out.settingsExtra[k] = v }
+    FlagMisses.mergeSynced(&out.settingsExtra, a.settingsExtra, b.settingsExtra)
     var ids = a.cards.keys
     for k in b.cards.keys where !a.cards.has(k) { ids.append(k) }
     for id in ids {
@@ -353,4 +354,13 @@ func dayTime(_ d: String) -> Double {
     c.month = p[1]
     c.day = p[2]
     return (Calendar(identifier: .gregorian).date(from: c)?.timeIntervalSince1970 ?? .nan) * 1000
+}
+
+public func liveStreak(_ state: EngineState, now: Double, tz: TimeZone = .current) -> Double {
+    guard let last = state.lastStudyDay else { return 0 }
+    var cal = Calendar(identifier: .gregorian)
+    cal.timeZone = tz
+    let today = Date(timeIntervalSince1970: now / 1000)
+    let yesterday = cal.date(byAdding: .day, value: -1, to: today) ?? today.addingTimeInterval(-86_400)
+    return last == dayKey(now, tz: tz) || last == dayKey(yesterday.timeIntervalSince1970 * 1000, tz: tz) ? state.streak : 0
 }

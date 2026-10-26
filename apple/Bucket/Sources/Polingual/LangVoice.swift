@@ -4,24 +4,40 @@ import Speech
 import SwiftUI
 
 @MainActor
-final class LangVoice {
+final class LangVoice: NSObject {
     static let shared = LangVoice()
     private let synth = AVSpeechSynthesizer()
+
     private var player: AVPlayer?
+    private var active = false
+    private var warmed = false
+    private lazy var voices = AVSpeechSynthesisVoice.speechVoices()
+    private var picked: [String: AVSpeechSynthesisVoice?] = [:]
     weak var store: LangStore?
 
     func activate() {
+        guard !active else { return }
         #if os(iOS)
         let session = AVAudioSession.sharedInstance()
-        try? session.setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
+        try? session.setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
         try? session.setActive(true)
         #endif
+        active = true
+    }
+
+    func warm() {
+        guard !warmed else { return }
+        warmed = true
+        let u = AVSpeechUtterance(string: " ")
+        u.volume = 0
+        synth.speak(u)
     }
 
     func voice(_ lang: String) -> AVSpeechSynthesisVoice? {
-        let voices = AVSpeechSynthesisVoice.speechVoices()
-        guard let tag = LangAudio.pickVoice(voices.map(\.language), lang) else { return nil }
-        return voices.first { $0.language == tag }
+        if let hit = picked[lang] { return hit }
+        let v = LangAudio.pickVoice(voices.map(\.language), lang).flatMap { tag in voices.first { $0.language == tag } }
+        picked[lang] = v
+        return v
     }
 
     func canSpeak(_ text: String, _ lang: String) -> Bool {
@@ -67,7 +83,7 @@ final class LangListener {
     }
 
     func authorize() async -> Bool {
-        let speech = await withCheckedContinuation { c in SFSpeechRecognizer.requestAuthorization { c.resume(returning: $0 == .authorized) } }
+        let speech = await Self.speechAuthorized()
         guard speech else { return false }
         #if os(iOS)
         return await AVAudioApplication.requestRecordPermission()
@@ -76,17 +92,32 @@ final class LangListener {
         #endif
     }
 
+    nonisolated private static func speechAuthorized() async -> Bool {
+        await withCheckedContinuation { c in SFSpeechRecognizer.requestAuthorization { c.resume(returning: $0 == .authorized) } }
+    }
+
+    nonisolated private static func tap(_ input: AVAudioInputNode, into request: SFSpeechAudioBufferRecognitionRequest) {
+        input.installTap(onBus: 0, bufferSize: 1024, format: input.outputFormat(forBus: 0)) { buf, _ in request.append(buf) }
+    }
+
+    nonisolated private static func recognize(_ rec: SFSpeechRecognizer, _ request: SFSpeechAudioBufferRecognitionRequest, _ finish: @escaping @Sendable ([String]) -> Void) -> SFSpeechRecognitionTask {
+        rec.recognitionTask(with: request) { r, err in
+            if let r, r.isFinal { finish(r.transcriptions.prefix(5).map(\.formattedString)) } else if err != nil { finish([]) }
+        }
+    }
+
     func listenOnce(_ lang: String) async -> [String] {
         guard await authorize(), let rec = SFSpeechRecognizer(locale: Locale(identifier: Lang.info[lang]?.bcp47 ?? lang)), rec.isAvailable else { return [] }
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = false
+        request.requiresOnDeviceRecognition = rec.supportsOnDeviceRecognition
         #if os(iOS)
         try? AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .measurement, options: [.duckOthers, .defaultToSpeaker])
         try? AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
         #endif
         let input = engine.inputNode
         input.removeTap(onBus: 0)
-        input.installTap(onBus: 0, bufferSize: 1024, format: input.outputFormat(forBus: 0)) { buf, _ in request.append(buf) }
+        Self.tap(input, into: request)
         engine.prepare()
         guard (try? engine.start()) != nil else { return [] }
         let result: [String] = await withCheckedContinuation { c in
@@ -98,9 +129,7 @@ final class LangListener {
                     c.resume(returning: xs)
                 }
             }
-            let task = rec.recognitionTask(with: request) { r, err in
-                if let r, r.isFinal { finish(r.transcriptions.prefix(5).map(\.formattedString)) } else if err != nil { finish([]) }
-            }
+            let task = Self.recognize(rec, request, finish)
             DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                 request.endAudio()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -112,7 +141,7 @@ final class LangListener {
         engine.stop()
         input.removeTap(onBus: 0)
         #if os(iOS)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.duckOthers])
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .spokenAudio, options: [.mixWithOthers])
         #endif
         return result
     }
@@ -132,7 +161,7 @@ struct PlayButton: View {
             }
             .buttonStyle(.borderless)
             .tint(Palette.green)
-            .accessibilityLabel(label ?? "Hear it in \(Lang.name(lang))")
+            .accessibilityLabel(label ?? "Hear it in \(langName(lang))")
         }
     }
 }

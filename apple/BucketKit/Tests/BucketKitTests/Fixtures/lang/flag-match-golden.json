@@ -1,0 +1,58 @@
+[
+  [
+    "all right on named flags",
+    "fr=3,es=3,it=3",
+    "es=1,fr=1,it=1",
+    "",
+    "fr=true,es=true,it=true"
+  ],
+  [
+    "swap on named flags",
+    "fr=1,es=1,it=3",
+    "it=1",
+    "",
+    "fr=true,es=true,it=true"
+  ],
+  [
+    "miss on a nameless flag",
+    "fr=none,es=3,it=1",
+    "es=1,it=0",
+    "it=1",
+    "fr=true,es=true,it=true"
+  ],
+  [
+    "unplaced word",
+    "fr=1,es=3,it=3",
+    "es=1,it=4",
+    "",
+    "fr=true,es=true,it=false"
+  ],
+  [
+    "all nameless, rotated",
+    "fr=none,es=none,it=none",
+    "es=0,fr=0,it=0",
+    "es=1,fr=3,it=1",
+    "fr=true,es=true,it=true"
+  ],
+  [
+    "third hit hides the name next card",
+    "fr=3,es=3,it=3",
+    "es=1,fr=3,it=1",
+    "",
+    "fr=false,es=true,it=true"
+  ],
+  [
+    "two words on one nameless flag",
+    "fr=none,es=1,it=none",
+    "es=0",
+    "es=3",
+    "fr=true,es=true,it=true"
+  ],
+  [
+    "hit then miss on the same flag in one card",
+    "fr=3,es=none,it=3",
+    "fr=0,it=1",
+    "fr=1",
+    "fr=true,es=true,it=true"
+  ]
+]

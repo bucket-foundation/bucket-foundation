@@ -33,6 +33,10 @@ public enum ReminderPlan {
         return ReviewForecast(count: ready.count, example: first?.label, streak: streak)
     }
 
+    public static func streak(_ states: [EngineState], at date: Date, tz: TimeZone = .current) -> Int {
+        StreakGoal(streak: states.map { liveStreak($0, now: date.timeIntervalSince1970 * 1000, tz: tz) }.max() ?? 0).day
+    }
+
     public static func median(_ minutes: [Int], fallback: Int) -> Int {
         let m = minutes.sorted()
         return m.isEmpty ? fallback : m[m.count / 2]
@@ -40,7 +44,9 @@ public enum ReminderPlan {
 
     public static func message(_ f: ReviewForecast) -> String {
         let lead: String
-        if let ex = f.example, f.count == 1 {
+        if f.count == 0 {
+            lead = "New words are ready. Five minutes today keeps the habit."
+        } else if let ex = f.example, f.count == 1 {
             lead = "\(ex) is due. One quick review keeps it."
         } else if let ex = f.example {
             lead = "\(ex) and \(f.count - 1) more are due. A few minutes keeps them in long-term memory."

@@ -7,6 +7,42 @@ struct TodayView: View {
     @Environment(ScienceStore.self) private var science
     @State private var path = NavigationPath()
     @State private var session: StudyLaunch?
+    @AppStorage("bucket.today.order") private var order = ""
+    @State private var scienceReady = false
+
+    var loaded: Bool {
+        #if DEBUG
+        if Launch.flag("-holdLoading") { return false }
+        #endif
+        let indexDone: Bool
+        switch library.index {
+        case .ready, .failed: indexDone = true
+        default: indexDone = false
+        }
+        return indexDone && scienceReady && (langs.status == .ready || langs.status == .error)
+    }
+
+    enum Item: Identifiable {
+        case deck(Work)
+        case lang(LangSystem)
+
+        var id: String {
+            switch self {
+            case .deck(let w): "d:\(w.entry.id)"
+            case .lang(let s): "l:\(s.id)"
+            }
+        }
+    }
+
+    var items: [Item] {
+        let all = langs.systems.map(Item.lang) + work.map(Item.deck)
+        let saved = order.split(separator: ",").map(String.init)
+        return all.enumerated().sorted { a, b in
+            let ia = saved.firstIndex(of: a.element.id) ?? saved.count + a.offset
+            let ib = saved.firstIndex(of: b.element.id) ?? saved.count + b.offset
+            return ia < ib
+        }.map(\.element)
+    }
 
     struct Work {
         let entry: DeckEntry
@@ -31,86 +67,109 @@ struct TodayView: View {
     }
 
     var streak: Double {
-        (library.scienceDecks.map { science.state($0.id).streak } + langs.systems.map { langs.state($0.id).streak }).max() ?? 0
+        let now = Date().timeIntervalSince1970 * 1000
+        return (library.scienceDecks.map { liveStreak(science.state($0.id), now: now) } + langs.systems.map { liveStreak(langs.state($0.id), now: now) }).max() ?? 0
+    }
+
+    func startNext() {
+        guard let next = nextUp(Date().timeIntervalSince1970 * 1000) ?? items.first else { return }
+        switch next {
+        case .deck(let w): session = StudyLaunch(entry: w.entry, deck: w.deck)
+        case .lang(let s): path.append(LangRoute.study(s.id))
+        }
+    }
+
+    func nextUp(_ now: Double) -> Item? {
+        let corpus = langs.corpus
+        return items.first { item in
+            switch item {
+            case .deck(let w): w.due + w.new > 0
+            case .lang(let s):
+                (corpus.map { systemSummary(s, $0, langs.state(s.id), now: now).due } ?? 0) > 0 || langNewLeft(s, langs.state(s.id), now: now) > 0
+            }
+        }
     }
 
     var body: some View {
         let w = work
-        let pending = w.filter { $0.due + $0.new > 0 }.sorted { ($0.due, $0.new) > ($1.due, $1.new) }
         let due = w.reduce(0) { $0 + $1.due } + langDue.reduce(0) { $0 + $1.due }
-        let new = w.reduce(0) { $0 + $1.new }
+        let now = Date().timeIntervalSince1970 * 1000
+        let new = w.reduce(0) { $0 + $1.new } + langs.systems.reduce(0) { $0 + langNewLeft($1, langs.state($1.id), now: now) }
+        let today = dayKey(now)
+        let done = library.scienceDecks.reduce(0) { t, e in t + science.state(e.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
+            + langs.systems.reduce(0) { t, s in t + langs.state(s.id).history[today].map { Int($0.new + $0.reviews) }.orZero }
         NavigationStack(path: $path) {
+            Group {
+            if !loaded {
+                TodaySkeleton()
+            } else {
             List {
                 Section {
-                    VStack(alignment: .leading, spacing: 10) {
-                        if streak > 0 { Eyebrow(text: "\(streakText(streak)) streak") }
-                        Text(due + new == 0 ? (langs.systems.contains { langs.state($0.id).cards.count == 0 } && w.isEmpty ? "Ready when you are" : "All caught up") : "\(due) due · \(new) new")
-                            .font(.serif(.largeTitle, weight: .semibold))
-                            .foregroundStyle(Palette.ink)
-                            .monospacedDigit()
-                        Text(w.isEmpty && langs.systems.isEmpty ? "Start a deck in Learn or build a language system, and its reviews show up here." : w.isEmpty && langs.systems.contains(where: { langs.state($0.id).cards.count == 0 }) ? "Your first words are waiting. Reviews appear here as you learn." : due + new == 0 ? "Reviews come back as their intervals run out." : "Due reviews first, then new atoms, up to \(Int(EngineState().newPerDay)) a day in each deck.")
+                    VStack(alignment: .leading, spacing: 14) {
+                        StreakGoalCard(streak: streak)
+                        HStack(spacing: 0) {
+                            Tally(n: due, label: "due now", color: D8.vermilion)
+                            Tally(n: new, label: "new today", color: D8.lapis)
+                            Tally(n: done, label: "done today", color: D8.malachite)
+                        }
+                        Text(due + new == 0 ? (w.isEmpty && langs.systems.isEmpty ? "Start a deck in Learn or build a language system, and its reviews show up here." : "All caught up. Reviews come back as their intervals run out.") : "Due reviews first, then new cards.")
                             .font(.subheadline)
                             .foregroundStyle(Palette.muted)
-                        if let first = pending.first {
-                            Button {
-                                session = StudyLaunch(entry: first.entry, deck: first.deck)
-                            } label: {
-                                Text("Start with \(first.entry.title)").frame(maxWidth: .infinity)
+                        if loaded, let next = nextUp(now) {
+                            switch next {
+                            case .deck(let work):
+                                Button("Start · \(work.entry.title)") { session = StudyLaunch(entry: work.entry, deck: work.deck) }.buttonStyle(D8Primary())
+                            case .lang(let system):
+                                Button("Start · \(system.name)") { path.append(LangRoute.study(system.id)) }.buttonStyle(D8Primary())
                             }
-                            .buttonStyle(.borderedProminent)
-                            .controlSize(.large)
-                            .padding(.top, 4)
-                        } else if let lang = langDue.first(where: { $0.due > 0 }) ?? langDue.first(where: { langs.state($0.system.id).cards.count == 0 }) {
-                            Button {
-                                path.append(LangRoute.study(lang.system.id))
-                            } label: {
-                                Text(lang.due > 0 ? "Review \(lang.system.name)" : "Start \(lang.system.name)").frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .controlSize(.large)
-                            .padding(.top, 4)
                         }
                     }
                     .padding(.vertical, 8)
                 }
                 .listRowBackground(Palette.card)
-                if !pending.isEmpty {
+                if !langs.systems.isEmpty {
+                    Section { TranslateCard() }
+                        .listRowBackground(Palette.card)
+                }
+                if loaded && !items.isEmpty {
                     Section {
-                        ForEach(pending, id: \.entry.id) { item in
-                            Button {
-                                session = StudyLaunch(entry: item.entry, deck: item.deck)
-                            } label: {
-                                ReviewDeckRow(entry: item.entry)
+                        ForEach(items) { item in
+                            switch item {
+                            case .deck(let work):
+                                Button { session = StudyLaunch(entry: work.entry, deck: work.deck) } label: { ReviewDeckRow(entry: work.entry) }
+                            case .lang(let system):
+                                Button { path.append(LangRoute.study(system.id)) } label: { LangSystemRow(system: system) }
                             }
+                        }
+                        .onMove { from, to in
+                            var ids = items.map(\.id)
+                            ids.move(fromOffsets: from, toOffset: to)
+                            order = ids.joined(separator: ",")
                         }
                         .listRowBackground(Palette.card)
                     } header: {
-                        Eyebrow(text: "Science")
+                        Eyebrow(text: "Your studies")
                     }
-                }
-                if !langs.systems.isEmpty {
-                Section {
-                    ForEach(langs.systems) { s in
-                        Button {
-                            path.append(LangRoute.study(s.id))
-                        } label: {
-                            LangSystemRow(system: s)
-                        }
-                    }
-                    .listRowBackground(Palette.card)
-                } header: {
-                    Eyebrow(text: "Language systems")
-                }
                 }
             }
+            #if os(iOS)
+            .toolbar { if items.count > 1 { EditButton().tint(Palette.ink) } }
+            #endif
+            }
+            }
+            .animation(.easeOut(duration: 0.35), value: loaded)
             .paper()
             .navigationTitle("Today")
             .sheet(item: $session) { StudySession(entry: $0.entry, deck: $0.deck) }
             .langDestinations(path: $path)
+            .onChange(of: loaded, initial: true) { _, ready in if ready && StudyRequest.take() { startNext() } }
+            .onReceive(NotificationCenter.default.publisher(for: .startStudy)) { _ in if loaded && StudyRequest.take() { startNext() } }
             .task { await langs.load() }
             .task(id: library.scienceDecks.map(\.id)) {
+                scienceReady = false
                 await science.load(library.scienceDecks.map(\.id))
                 for entry in library.scienceDecks { _ = await library.prepared(entry) }
+                scienceReady = true
                 guard session == nil, let id = Launch.value("-study"), let entry = library.scienceDecks.first(where: { $0.id == id }), let deck = await library.prepared(entry) else { return }
                 session = StudyLaunch(entry: entry, deck: deck)
             }
@@ -127,13 +186,7 @@ struct ReviewDeckRow: View {
         HStack(alignment: .center, spacing: 12) {
             DeckRow(entry: entry, subtitle: detail)
             Spacer(minLength: 0)
-            if let due = counts?.due, due > 0 {
-                Text("\(due)").font(.subheadline.weight(.semibold)).monospacedDigit()
-                    .padding(.horizontal, 10).padding(.vertical, 4)
-                    .background(Palette.gold.opacity(0.18), in: .capsule)
-                    .foregroundStyle(Palette.ink)
-                    .accessibilityLabel("\(due) due")
-            }
+            if let c = counts { CountPills(due: c.due, new: c.new) }
         }
         .task { _ = await library.prepared(entry) }
     }
@@ -142,7 +195,7 @@ struct ReviewDeckRow: View {
         guard let deck = library.prepared[entry.id] else { return nil }
         let r = science.route(deck)
         let due = r.filter { $0.kind == .review }.count
-        return (due, r.count - due, science.state(entry.id).streak)
+        return (due, r.count - due, liveStreak(science.state(entry.id), now: Date().timeIntervalSince1970 * 1000))
     }
 
     var detail: String? {
@@ -163,6 +216,118 @@ func bucketForecast(_ library: Library, _ science: ScienceStore, _ langs: LangSt
             due.append((d, library.prepared[entry.id]?.byId[id]?.title))
         }
     }
-    let streak = max(langStreak(langs), library.scienceDecks.map { Int(science.state($0.id).streak) }.max() ?? 0)
+    let streak = ReminderPlan.streak(langs.systems.map { langs.state($0.id) } + library.scienceDecks.map { science.state($0.id) }, at: date)
     return ReminderPlan.forecast(due: due, at: date, streak: streak)
+}
+
+struct Tally: View {
+    let n: Int
+    let label: String
+    let color: Color
+
+    var body: some View {
+        VStack(spacing: 2) {
+            Text("\(n)").font(.system(size: 34, weight: .bold, design: .rounded)).foregroundStyle(n > 0 ? color : Palette.muted).monospacedDigit()
+            Text(label).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
+        }
+        .frame(maxWidth: .infinity)
+        .accessibilityElement(children: .combine)
+    }
+}
+
+extension Optional where Wrapped == Int {
+    var orZero: Int { self ?? 0 }
+}
+
+struct Shimmer: ViewModifier {
+    @Environment(\.accessibilityReduceMotion) private var still
+    @Environment(\.colorScheme) private var scheme
+    @State private var phase: CGFloat = -1
+
+    func body(content: Content) -> some View {
+        content
+            .overlay {
+                if !still {
+                    GeometryReader { g in
+                        LinearGradient(colors: [.clear, .white.opacity(scheme == .dark ? 0.08 : 0.35), .clear], startPoint: .leading, endPoint: .trailing)
+                            .frame(width: g.size.width * 0.6)
+                            .offset(x: phase * g.size.width * 1.6)
+                    }
+                    .mask(content)
+                    .allowsHitTesting(false)
+                }
+            }
+            .onAppear {
+                withAnimation(.linear(duration: 1.3).repeatForever(autoreverses: false)) { phase = 1 }
+            }
+    }
+}
+
+struct TodaySkeleton: View {
+    var body: some View {
+        let block = Palette.rule.opacity(0.7)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 22) {
+                VStack(alignment: .leading, spacing: 16) {
+                    RoundedRectangle(cornerRadius: 5).fill(block).frame(width: 90, height: 12)
+                    HStack(spacing: 0) {
+                        ForEach(0..<3, id: \.self) { _ in
+                            VStack(spacing: 8) {
+                                RoundedRectangle(cornerRadius: 8).fill(block).frame(width: 40, height: 34)
+                                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 58, height: 10)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+                    RoundedRectangle(cornerRadius: 5).fill(block).frame(height: 12).padding(.trailing, 60)
+                    RoundedRectangle(cornerRadius: 12).fill(D8.vermilion.opacity(0.25)).frame(height: 50)
+                }
+                .padding(18)
+                .background(Palette.card, in: .rect(cornerRadius: 22))
+                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 100, height: 10).padding(.leading, 18)
+                VStack(spacing: 0) {
+                    ForEach(0..<3, id: \.self) { i in
+                        HStack(spacing: 12) {
+                            RoundedRectangle(cornerRadius: 8).fill(block).frame(width: 36, height: 36)
+                            VStack(alignment: .leading, spacing: 7) {
+                                RoundedRectangle(cornerRadius: 5).fill(block).frame(width: 150, height: 13)
+                                RoundedRectangle(cornerRadius: 4).fill(block).frame(width: 110, height: 10)
+                            }
+                            Spacer()
+                            Capsule().fill(block).frame(width: 56, height: 24)
+                        }
+                        .padding(.vertical, 14)
+                        if i < 2 { Divider().overlay(Palette.rule) }
+                    }
+                }
+                .padding(.horizontal, 18)
+                .background(Palette.card, in: .rect(cornerRadius: 22))
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            .modifier(Shimmer())
+        }
+        .scrollDisabled(true)
+        .accessibilityElement()
+        .accessibilityLabel("Loading your reviews")
+    }
+}
+
+@MainActor
+func scienceWidgetExtra(_ library: Library, _ science: ScienceStore, now: Date = .now) -> WidgetExtra {
+    var extra = WidgetExtra()
+    let tomorrow = (Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: now)) ?? now).timeIntervalSince1970 * 1000 + 3_600_000
+    for entry in library.scienceDecks {
+        guard let deck = library.prepared[entry.id] else { continue }
+        let state = science.state(entry.id)
+        guard state.cards.count > 0 else { continue }
+        let r = science.route(deck)
+        let due = r.filter { $0.kind == .review }.count
+        extra.dueNow += due
+        extra.newToday += r.count - due
+        extra.newTomorrow += route(state, deck.atoms, now: tomorrow).filter { $0.kind != .review }.count
+        extra.dueLater += state.cards.entries.compactMap { $0.value.due }
+        extra.states.append(state)
+    }
+    return extra
 }

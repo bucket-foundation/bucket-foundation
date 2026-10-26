@@ -107,4 +107,18 @@ struct ProgressServer: Sendable {
         await store.syncAfterSignIn()
         #expect(server.posts.value.isEmpty)
     }
+
+    @Test func summaryStreakLapsesAfterAMissedDay() throws {
+        let clock = LockedBox<Double>(1_761_566_400_000)
+        let store = ScienceStore(api: BucketAPI(transport: ProgressServer().transport), disk: MemoryLangDisk(), token: { nil }, now: { clock.value }, tz: { TimeZone(identifier: "UTC")! })
+        let d = try deck()
+        let first = try #require(store.route(d).first)
+        store.grade(d, id: first.id, rating: 3, level: "recall")
+        #expect(store.summary(d).streak == 1)
+        clock.mutate { $0 += 86_400_000 }
+        #expect(store.summary(d).streak == 1)
+        clock.mutate { $0 += 86_400_000 }
+        #expect(store.summary(d).streak == 0)
+        #expect(summary(store.state(d.branch), d.atoms, now: clock.value).streak == 1)
+    }
 }

@@ -49,7 +49,9 @@ public final class ScienceStore {
     }
 
     public func summary(_ deck: PreparedDeck) -> ScienceSummary {
-        BucketKit.summary(state(deck.branch), deck.atoms, now: now())
+        let s = BucketKit.summary(state(deck.branch), deck.atoms, now: now())
+        return ScienceSummary(total: s.total, introduced: s.introduced, mastered: s.mastered, dueCount: s.dueCount, xp: s.xp,
+                              streak: liveStreak(state(deck.branch), now: now(), tz: tz()))
     }
 
     public func mastery(_ branch: String, _ id: String) -> Double { masteryFor(state(branch), id) }

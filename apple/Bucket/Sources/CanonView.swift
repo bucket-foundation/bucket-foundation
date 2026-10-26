@@ -25,7 +25,7 @@ struct CanonView: View {
                     ContentUnavailableView(
                         query.isEmpty ? "Search the canon" : "No results",
                         systemImage: "text.magnifyingglass",
-                        description: Text(query.isEmpty ? "Foundations across seven branches: mathematics to mind." : "Try another word.")
+                        description: Text(query.isEmpty ? String(localized: "Foundations across seven branches: mathematics to mind.") : String(localized: "Try another word."))
                     )
                 }
             }

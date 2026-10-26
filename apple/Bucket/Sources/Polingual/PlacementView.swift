@@ -80,29 +80,29 @@ struct PlacementView: View {
             let nextLang = system.targets.first { $0 != lang && system.placement[$0] == nil }
             List {
                 Section {
-                    Eyebrow(text: "Placement · \(Lang.name(lang))")
+                    Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
                     Text("Placed at tier \(JSON.number(result))").font(.serif(.title, weight: .semibold))
                     Text("\(answers.count) questions. \(result > 0 ? "Words below tier \(JSON.number(result)) start as known and come back for review on the normal schedule." : "You start from the first words.")")
                         .foregroundStyle(Palette.muted)
                     SaveNotice(state: store.saveState)
                     if let nextLang {
-                        Button("Place \(Lang.name(nextLang))") {
+                        Button("Place \(langName(nextLang))") {
                             path.removeLast()
                             path.append(LangRoute.place(system.id, nextLang))
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(D8Primary())
                     } else {
                         Button("Start studying") {
                             path.removeLast()
                             path.append(LangRoute.study(system.id))
                         }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(D8Primary())
                     }
                     Button("Progress") {
                         path.removeLast()
                         path.append(LangRoute.system(system.id))
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(D8Option(align: .center))
                 }
                 .listRowBackground(Palette.card)
             }
@@ -110,31 +110,31 @@ struct PlacementView: View {
             let optionReadings = readingsByForm(corpus, lang)
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    Eyebrow(text: "Placement · \(Lang.name(lang))")
-                    Text("\(Lang.name(system.root)) to \(Lang.name(lang))").font(.serif(.title2, weight: .semibold))
+                    Eyebrow(text: String(localized: "Placement · \(langName(lang))"))
+                    Text("\(langName(system.root)) to \(langName(lang))").font(.serif(.title2, weight: .semibold))
                     Text("Pick the word you know. Skip the ones you do not. The test narrows in on your level and stops when it finds it.")
                         .foregroundStyle(Palette.muted)
                     Text("Question \(answers.count + 1) · tier \(JSON.number(item.tier))").font(.caption).foregroundStyle(Palette.muted).monospacedDigit()
                     VStack(alignment: .leading, spacing: 14) {
-                        Text("\(Lang.name(lang)) for **\(item.forms[system.root] ?? "")**").font(.serif(.title3))
+                        HStack(spacing: 10) { FlagTile(lang: lang, size: 32); Text(item.forms[system.root] ?? "").font(.system(size: 30, weight: .bold, design: .rounded)) }
                         if mode == .produce {
                             HStack {
-                                TextField("Answer in \(Lang.name(lang))", text: $typed)
+                                TextField("Answer in \(langName(lang))", text: $typed)
                                     .textFieldStyle(.roundedBorder)
                                     .autocorrectionDisabled()
                                     .langInput(lang)
                                     .onSubmit { answer(judgeTyped(typed, [item.forms[lang] ?? ""], lang) != .wrong) }
                                 Button("Check") { answer(judgeTyped(typed, [item.forms[lang] ?? ""], lang) != .wrong) }
-                                    .buttonStyle(.borderedProminent)
+                                    .buttonStyle(D8Primary(compact: true))
                             }
                         } else {
                             ForEach(options, id: \.self) { o in
-                                OptionButton(text: o, lang: lang, reading: readings ? optionReadings[o] : nil, state: .idle) {
+                                OptionButton(text: o, lang: lang, reading: readings ? optionReadings[o] : nil) {
                                     answer(o == item.forms[lang])
                                 }
                             }
                         }
-                        Button("I do not know") { answer(false) }.font(.footnote).buttonStyle(.borderless)
+                        Button("I do not know") { answer(false) }.buttonStyle(PlainLink())
                     }
                     .exerciseCard()
                 }

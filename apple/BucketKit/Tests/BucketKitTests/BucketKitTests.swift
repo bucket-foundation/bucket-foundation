@@ -176,11 +176,28 @@ func bodyAction(_ r: URLRequest) -> String? {
 }
 
 @Suite struct TeXLiteTests {
+    @Test func functionNamesAndEscapedSpace() {
+        #expect(TeXLite.render("|a\\times b| = ab\\sin\\theta") == "|a× b| = ab sin θ")
+        #expect(TeXLite.render("20\\ km/h") == "20 km/h")
+    }
+
     @Test(arguments: [
         ("f\\colon X \\to Y,\\quad x \\mapsto f(x)", "f: X → Y,  x ↦ f(x)"),
         ("E = mc^2", "E = mc²"),
         ("x_{n+1} = x_n", "xₙ₊₁ = xₙ"),
-        ("\\frac{a}{b}", "(a)⁄(b)"),
+        ("\\frac{a}{b}", "a⁄b"),
+        ("\\dfrac{f(a+h)-f(a)}{h}", "(f(a+h)-f(a))⁄(h)"),
+        ("a \\equiv b \\pmod n", "a ≡ b  (mod n)"),
+        ("\\sinh x", " sinh  x"),
+        ("27\\,^\\circ\\text{C}", "27 °C"),
+        ("\\hat f(\\omega)", "f̂(ω)"),
+        ("\\vec{a} \\cdot \\vec b", "a⃗ · b⃗"),
+        ("\\bar\\rho", "ρ̄"),
+        ("Q \\ne K, L \\gg l_p", "Q ≠ K, L ≫ lₚ"),
+        ("\\mathbb{E}[X]", "𝔼[X]"),
+        ("\\foo x", "foo x"),
+        ("\\begin{array}{cc}1&2\\end{array}", "(1 2)"),
+        ("A=\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}", "A=(2 1; 0 3)"),
         ("\\alpha + \\beta \\leq \\gamma", "α + β ≤ γ"),
         ("e^{i\\pi} + 1 = 0", "e^(iπ) + 1 = 0"),
     ])
@@ -210,4 +227,47 @@ final class Counter: @unchecked Sendable {
         #expect(tokens == ["a2", "a2", "a2"])
         #expect(calls.value == 1)
     }
+}
+
+final class FlakyRoutes: @unchecked Sendable {
+    var up = true
+}
+
+@Test func deckIndexFallsBackToTheLastSavedCopyWhenOffline() async throws {
+    let url = try #require(Bundle.module.url(forResource: "index", withExtension: "json", subdirectory: "Fixtures"))
+    let data = try Data(contentsOf: url)
+    let net = FlakyRoutes()
+    let dir = FileManager.default.temporaryDirectory.appending(path: "api-\(UUID().uuidString)")
+    let api = BucketAPI(transport: StubTransport { _ in net.up ? (200, data) : (503, Data()) }, cacheDir: dir)
+    let online = try await api.deckIndex()
+    net.up = false
+    let offline = try await api.deckIndex()
+    #expect(offline.decks.count == online.decks.count)
+    #expect(!offline.decks.isEmpty)
+    let empty = BucketAPI(transport: StubTransport { _ in (503, Data()) }, cacheDir: FileManager.default.temporaryDirectory.appending(path: "api-\(UUID().uuidString)"))
+    await #expect(throws: (any Error).self) { try await empty.deckIndex() }
+}
+
+@Test func offlineDirectoriesAreExcludedFromBackup() throws {
+    let url = try #require(BucketAPI.offlineDirectory("test-\(UUID().uuidString)"))
+    defer { try? FileManager.default.removeItem(at: url) }
+    #expect(url.path.contains("Application Support"))
+    let values = try url.resourceValues(forKeys: [.isExcludedFromBackupKey])
+    #expect(values.isExcludedFromBackup == true)
+}
+
+final class BodyBox: @unchecked Sendable { var bodies: [[String: String]] = [] }
+
+@Test func appleSignInSendsTheAuthorizationCodeForRevocation() async throws {
+    let box = BodyBox()
+    let reply = try JSONSerialization.data(withJSONObject: ["access_token": "a", "refresh_token": "r", "expires_at": 9_999_999_999, "user_id": "u"])
+    let api = BucketAPI(transport: StubTransport { r in
+        box.bodies.append((try? JSONDecoder().decode([String: String].self, from: r.httpBody ?? Data())) ?? [:])
+        return (200, reply)
+    })
+    _ = try await api.signInWithApple(idToken: "jwt", nonce: "raw", authorizationCode: "code-1")
+    _ = try await api.signInWithApple(idToken: "jwt", nonce: "raw")
+    #expect(box.bodies[0]["authorization_code"] == "code-1")
+    #expect(box.bodies[0]["nonce"] == "raw" && box.bodies[0]["id_token"] == "jwt" && box.bodies[0]["action"] == "apple")
+    #expect(box.bodies[1]["authorization_code"] == nil)
 }
