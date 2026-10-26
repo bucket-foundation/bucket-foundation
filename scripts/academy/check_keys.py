@@ -83,7 +83,7 @@ BIO = {
 "ideal-chain": 1.4 * 50**0.5, "wlc": 50 / 0.34, "two-state-folding": 100 / 101, "folding-funnel": log10(3) * 100,
 "anfinsen": 2, "ddg": 1.8, "binding-kd": 0.75, "hill": 0.5, "mwc": 4, "michaelis": 50000 / 550,
 "eyring": 6e12 * exp(-25), "fick": (10e-6)**2 / (2e-9) * 1e3, "einstein-stokes": 4.1e-21 / (12e-12 * pi), "random-walk": 0.2,
-"nernst": 61 * (log10(5) - log10(140)), "bilayer": 1 / 1.05, "hodgkin-huxley": 110, "gnm": 294, "md": 5e8,
+"nernst": 61 * (log10(5) - log10(140)), "bilayer": 1 / 1.05, "hodgkin-huxley": 110, "gnm": 100 - 1, "md": 5e8,
 "alphafold-plddt": 90, "esm": -4, "idp-llps": 36, "amyloid": 3, "mdcath": 540, "poisson-boltzmann": exp(-1.6 / 0.8),
 "langevin": 4.1e-13, "smoluchowski-rate": 4 * pi * 1e-18, "kramers": 10, "bragg": degrees(asin(0.154)),
 "nmr-noe": 2.5 * sqrt(2), "fret": 1 / (1 + 0.8**6), "cryo-em-ctf": 350000, "helfrich": 160 * pi, "ghk": 20,
