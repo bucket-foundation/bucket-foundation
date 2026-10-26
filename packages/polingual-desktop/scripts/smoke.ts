@@ -47,7 +47,11 @@ else {
   if (first.exitCode !== null) failures.push(`the first instance exited with ${first.exitCode} after the deep link`);
   console.log(JSON.stringify({ routed }));
 }
-first.kill("SIGTERM");
+try {
+  process.kill(started?.pid ?? first.pid, "SIGTERM");
+} catch (e) {
+  failures.push(`could not send SIGTERM: ${(e as Error).message}`);
+}
 const gone = await until(20_000, () => first.exitCode !== null);
 if (!gone) {
   failures.push("the app ignored SIGTERM");

@@ -169,6 +169,10 @@ pub fn run() {
         .manage(Routes(Mutex::new(Vec::new())))
         .manage(record)
         .setup(|app| {
+            #[cfg(target_os = "linux")]
+            if let Ok(data) = app.path().data_dir() {
+                let _ = std::fs::create_dir_all(data.join("applications"));
+            }
             #[cfg(any(target_os = "linux", windows))]
             if let Err(e) = app.deep_link().register_all() {
                 eprintln!("polingual could not register {SCHEME}:// links: {e}");
