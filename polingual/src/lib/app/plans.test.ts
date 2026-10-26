@@ -6,6 +6,10 @@ test("plans list the five prices", () => {
   assert.deepEqual(PLANS.map((p) => `${p.name} ${p.price}`), ["Monthly $9.99", "Yearly $59.99", "Family $89.99", "Lifetime $149.99", "Student $29.99"]);
 });
 
+test("only monthly and yearly sell today; the rest are coming soon", () => {
+  assert.deepEqual(PLANS.filter((p) => p.productId).map((p) => p.productId), ["com.polingual.monthly", "com.polingual.yearly"]);
+});
+
 test("accessFrom opens only on an active entitlement", () => {
   assert.equal(accessFrom({ status: 200, body: { active: true, productId: "com.polingual.yearly", expiresAt: null, trial: false } }).status, "open");
   assert.equal(accessFrom({ status: 200, body: { active: false } }).status, "locked");

@@ -13,11 +13,11 @@ export default function Paywall({ access, retry }: { access: Access; retry: () =
       </div>
       <ul className={styles.plans}>
         {PLANS.map((p) => (
-          <li key={p.id} className={styles.plan} data-testid="plan">
+          <li key={p.id} className={styles.plan} data-testid="plan" data-available={p.productId ? "yes" : "no"}>
             <span className={styles.planName}>{p.name}</span>
             <span className={styles.planPrice}>{p.price}</span>
             <span className={styles.small}>{p.cadence}</span>
-            {p.note ? <span className={styles.level}>{p.note}</span> : null}
+            {p.productId ? (p.note ? <span className={styles.level}>{p.note}</span> : null) : <span className={styles.soon} data-testid="coming-soon">Coming soon</span>}
           </li>
         ))}
       </ul>

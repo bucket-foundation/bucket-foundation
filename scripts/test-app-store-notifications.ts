@@ -208,9 +208,12 @@ test("entitlementFrom keeps the latest event per original transaction", () => {
   assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", "2028-02-01T00:00:00Z"), ev("refund", "2027-02-10T00:00:00Z", null)], NOW).active, false);
   assert.equal(entitlementFrom([ev("subscribe", "2026-02-01T00:00:00Z", "2027-02-01T00:00:00Z")], NOW).active, false);
   assert.equal(entitlementFrom([ev("cancel", "2027-02-01T00:00:00Z", "2027-04-01T00:00:00Z")], NOW).active, true);
-  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", null, "otx-life", "com.polingual.lifetime")], NOW).productId, "com.polingual.lifetime");
-  const two = entitlementFrom([ev("renew", "2027-02-01T00:00:00Z", "2027-03-10T00:00:00Z"), ev("subscribe", "2027-02-02T00:00:00Z", "2028-02-02T00:00:00Z", "otx-2", "com.polingual.family")], NOW);
-  assert.equal(two.productId, "com.polingual.family");
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", null, "otx-life", "com.polingual.lifetime")], NOW).active, false);
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", "2028-02-01T00:00:00Z", "otx-x", "foundation.bucket.pro")], NOW).active, false);
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", "2028-02-01T00:00:00Z", "otx-x", null as unknown as string)], NOW).active, false);
+  assert.equal(entitlementFrom([ev("subscribe", "2027-02-01T00:00:00Z", null, "otx-life", "com.polingual.lifetime")], NOW, ["com.polingual.lifetime"]).active, true);
+  const two = entitlementFrom([ev("renew", "2027-02-01T00:00:00Z", "2027-03-10T00:00:00Z"), ev("subscribe", "2027-02-02T00:00:00Z", "2028-02-02T00:00:00Z", "otx-2", "com.polingual.monthly")], NOW);
+  assert.equal(two.productId, "com.polingual.monthly");
   assert.equal(entitlementFrom([ev("expire", "2027-02-20T00:00:00Z", "2027-02-20T00:00:00Z"), ev("renew", "2027-02-01T00:00:00Z", "2027-04-01T00:00:00Z")], NOW).active, false);
 });
 

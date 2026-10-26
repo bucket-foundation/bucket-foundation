@@ -16,6 +16,9 @@ for (const width of [1280, 390]) {
     await expect(page.getByTestId("paywall")).toBeVisible();
     await expect(page.getByTestId("plan")).toHaveCount(5);
     for (const price of ["$9.99", "$59.99", "$89.99", "$149.99", "$29.99"]) await expect(page.getByTestId("paywall")).toContainText(price);
+    await expect(page.getByTestId("coming-soon")).toHaveCount(3);
+    await expect(page.locator("[data-testid=plan][data-available=no]")).toContainText(["Family", "Lifetime", "Student"]);
+    await expect(page.locator("[data-testid=plan] a, [data-testid=plan] button")).toHaveCount(0);
     await expect(page.getByTestId("app-store-link")).toHaveAttribute("href", /apps\.apple\.com/);
     await expect(page.getByTestId("new-system")).toHaveCount(0);
     if (SHOTS) await page.screenshot({ path: `${SHOTS}/paywall-${width}.png`, fullPage: true });

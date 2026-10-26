@@ -18,12 +18,14 @@ export interface Entitlement {
 const ENDED: ReadonlySet<StoreEventKind> = new Set<StoreEventKind>(["refund", "revoke", "expire"]);
 const LIVE: ReadonlySet<StoreEventKind> = new Set<StoreEventKind>(["trial", "subscribe", "renew", "cancel", "uncancel", "refund_reversed", "billing_issue"]);
 
+export const POLINGUAL_PRODUCTS: readonly string[] = ["com.polingual.monthly", "com.polingual.yearly"];
+
 export const NO_ENTITLEMENT: Entitlement = { active: false, productId: null, expiresAt: null, trial: false };
 
-export function entitlementFrom(events: EntitlementEvent[], now: number): Entitlement {
+export function entitlementFrom(events: EntitlementEvent[], now: number, products: readonly string[] = POLINGUAL_PRODUCTS): Entitlement {
   const latest = new Map<string, EntitlementEvent>();
   for (const e of events) {
-    if (e.kind === "other") continue;
+    if (e.kind === "other" || !e.productId || !products.includes(e.productId)) continue;
     const key = e.originalTransactionId ?? e.productId ?? "";
     const prev = latest.get(key);
     if (!prev || Date.parse(e.signedAt) >= Date.parse(prev.signedAt)) latest.set(key, e);

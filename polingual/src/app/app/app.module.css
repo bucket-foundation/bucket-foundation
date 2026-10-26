@@ -60,3 +60,5 @@
 .streakBar{height:10px;border-radius:999px;background:rgba(246,238,220,.2);overflow:hidden}
 .streakBar>div{height:100%;background:var(--ochre);border-radius:999px}
 .gapTop{margin-top:16px}
+.soon{align-self:flex-start;font-family:"Space Mono",monospace;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--parchment);background:var(--lapis);border-radius:999px;padding:3px 10px;margin-top:4px}
+.plan[data-available=no] .planPrice{color:var(--ink-2)}
