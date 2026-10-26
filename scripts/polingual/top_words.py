@@ -31,7 +31,7 @@ BANDS = ((400, "A1"), (750, "A2"), (1000, "B1"))
 SOURCE_INFO = {
     "zh": {"name": "wordfreq zh", "url": "https://github.com/rspeer/wordfreq", "license": "CC-BY-SA 4.0", "glosses": "CC-CEDICT, https://www.mdbg.net/chinese/dictionary?page=cc-cedict, CC-BY-SA 4.0"},
     "th": {"name": "FrequencyWords th 2018, OpenSubtitles", "url": "https://github.com/hermitdave/FrequencyWords", "license": "CC-BY-SA 4.0"},
-    "la": {"name": "Dickinson College Commentaries Latin Core Vocabulary", "url": "https://dcc.dickinson.edu/latin-core-list1", "license": "CC-BY-SA 3.0"},
+    "la": {"name": "Dickinson College Commentaries Latin Core Vocabulary", "url": "https://dcc.dickinson.edu/latin-core-list1", "license": "CC-BY-SA"},
     "sa": {"name": "Digital Corpus of Sanskrit, lemma counts", "url": "https://github.com/OliverHellwig/sanskrit", "license": "CC-BY 4.0"},
     "pa": {"name": "Punjabi Wikipedia token counts", "url": "https://dumps.wikimedia.org/pawiki/", "license": "CC-BY-SA 4.0"},
 }
