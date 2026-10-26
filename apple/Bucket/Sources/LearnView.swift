@@ -72,12 +72,9 @@ struct DeckRow: View {
 
     var body: some View {
         HStack(spacing: 14) {
-            Text(entry.mark)
-                .font(.serif(.title3, weight: .semibold))
-                .foregroundStyle(Palette.gold)
-                .frame(width: 34)
+            BranchTile(branch: entry.id, size: 36)
             VStack(alignment: .leading, spacing: 3) {
-                Text(entry.title).font(.serif(.headline)).foregroundStyle(Palette.ink)
+                Text(entry.title).font(.headline).foregroundStyle(Palette.ink)
                 if let sub = subtitle ?? entry.sub {
                     Text(sub).font(.subheadline).foregroundStyle(Palette.muted).lineLimit(2)
                 }
@@ -94,53 +91,100 @@ struct AtomRoute: Hashable {
 
 struct DeckView: View {
     @Environment(Library.self) private var library
+    @Environment(ScienceStore.self) private var science
     let entry: DeckEntry
-    @State private var deck: Deck?
-    @State private var practicing = false
+    @State private var deck: PreparedDeck?
+    @State private var studying: StudyLaunch?
+
+    static let shells = [("prereq", "Prerequisites", "The base everything rests on"), ("nucleus", "Nucleus", "The small set that opens the most"), ("frontier", "Frontier", "Where the branch is still moving")]
 
     var body: some View {
         Group {
             if let deck {
+                let state = science.state(deck.branch)
+                let today = science.route(deck)
                 List {
                     Section {
+                        DeckStats(summary: science.summary(deck))
                         Button {
-                            practicing = true
+                            studying = StudyLaunch(entry: entry, deck: deck)
                         } label: {
-                            Label("Practice this deck", systemImage: "play.fill").font(.headline)
+                            Label(today.isEmpty ? "Study" : "Study today (\(today.count))", systemImage: "play.fill").font(.headline)
                         }
-                        .listRowBackground(Palette.card)
                     }
+                    .listRowBackground(Palette.card)
                     Section {
-                        ForEach(deck.atoms) { atom in
-                            NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(atom.title).font(.serif(.body, weight: .medium)).foregroundStyle(Palette.ink)
-                                    Text(atom.summary).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
+                        if today.isEmpty {
+                            Text("Nothing due. Every card is scheduled ahead and today's new atoms are done.")
+                                .font(.subheadline).foregroundStyle(Palette.muted)
+                        }
+                        ForEach(today, id: \.id) { item in
+                            if let atom = deck.byId[item.id] {
+                                NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
+                                    HStack {
+                                        Text(atom.title).font(.serif(.body)).foregroundStyle(Palette.ink)
+                                        Spacer()
+                                        Text(item.kind == .review ? "REVIEW" : "NEW").font(.caption2.weight(.semibold)).tracking(1.2).foregroundStyle(Palette.muted)
+                                    }
                                 }
-                                .padding(.vertical, 4)
+                            }
+                        }
+                    } header: {
+                        Eyebrow(text: "Today's route")
+                    }
+                    .listRowBackground(Palette.card)
+                    ForEach(Self.shells, id: \.0) { key, label, hint in
+                        let atoms = deck.atoms.filter { ($0.shell ?? "nucleus") == key }
+                        if !atoms.isEmpty {
+                            Section {
+                                ForEach(atoms) { atom in atomRow(atom, state) }
+                            } header: {
+                                Eyebrow(text: label)
+                            } footer: {
+                                Text(hint).font(.footnote).foregroundStyle(Palette.muted)
                             }
                             .listRowBackground(Palette.card)
                         }
-                    } header: {
-                        Eyebrow(text: "\(deck.atoms.count) foundations")
                     }
                 }
             } else if let error = library.deckErrors[entry.id] {
-                StateMessage(title: "This deck did not load", detail: error) { Task { deck = await library.deck(entry) } }
+                StateMessage(title: "This deck did not load", detail: error) { Task { deck = await library.prepared(entry) } }
             } else {
                 ProgressView()
             }
         }
         .paper()
         .navigationTitle(entry.title)
-        .task { deck = await library.deck(entry) }
-        .sheet(isPresented: $practicing) {
-            if let deck { PracticeSession(title: entry.title, cards: PracticeCard.cards(from: deck.atoms)) }
+        .task {
+            deck = await library.prepared(entry)
+            await science.load(library.scienceDecks.map(\.id))
+        }
+        .sheet(item: $studying) { StudySession(entry: $0.entry, deck: $0.deck) }
+    }
+
+    func atomRow(_ atom: Atom, _ state: EngineState) -> some View {
+        let started = state.cards.has(atom.id)
+        let open = started || atom.requires.allSatisfy { state.cards.has($0) }
+        return NavigationLink(value: AtomRoute(deck: entry, atom: atom)) {
+            HStack(spacing: 10) {
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(atom.title).font(.serif(.body, weight: .medium)).foregroundStyle(open ? Palette.ink : Palette.muted)
+                    if !open {
+                        Text("After \(atom.requires.count) prerequisite\(atom.requires.count == 1 ? "" : "s")").font(.caption).foregroundStyle(Palette.muted)
+                    } else if !atom.summary.isEmpty {
+                        Text(atom.summary).font(.footnote).foregroundStyle(Palette.muted).lineLimit(2)
+                    }
+                }
+                Spacer(minLength: 0)
+                if started { MasteryBar(value: masteryFor(state, atom.id)) }
+            }
+            .padding(.vertical, 4)
         }
     }
 }
 
 struct AtomView: View {
+    @Environment(Library.self) private var library
     let route: AtomRoute
     @State private var depth = "core"
     @State private var practicing = false
@@ -173,7 +217,7 @@ struct AtomView: View {
                     } label: {
                         Label("Test yourself", systemImage: "checkmark.circle").frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(D8Primary())
                     .controlSize(.large)
                 }
             }
@@ -184,8 +228,9 @@ struct AtomView: View {
         .paper()
         .inlineTitle()
         .sheet(isPresented: $practicing) {
-            PracticeSession(title: atom.title, cards: PracticeCard.cards(from: [atom]))
+            if let deck = library.prepared[route.deck.id] { AtomDrillSheet(deck: deck, atom: deck.byId[atom.id] ?? atom) }
         }
+        .task { _ = await library.prepared(route.deck) }
     }
 
     static func depthName(_ key: String) -> String {
@@ -201,24 +246,92 @@ struct AtomView: View {
 struct LessonText: View {
     let markdown: String
 
+    enum Block: Hashable {
+        case heading(String), equation(String), text(String), bullet(String), numbered(String, String), quote(String)
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            ForEach(Array(paragraphs.enumerated()), id: \.offset) { _, p in
-                if p.hasPrefix("#") {
-                    Text(p.drop { $0 == "#" }.trimmingCharacters(in: .whitespaces))
-                        .font(.serif(.title3, weight: .semibold)).foregroundStyle(Palette.ink)
-                } else if p.hasPrefix("$$") {
-                    EquationView(tex: p.trimmingCharacters(in: CharacterSet(charactersIn: "$ \n")))
-                } else {
-                    Text(Self.inline(p)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
+            ForEach(Array(blocks.enumerated()), id: \.offset) { _, b in
+                switch b {
+                case .heading(let t):
+                    Text(t).font(.serif(.title3, weight: .semibold)).foregroundStyle(Palette.ink)
+                case .equation(let t):
+                    EquationView(tex: t)
+                case .text(let t):
+                    Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(5)
+                case .bullet(let t):
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Text("•").foregroundStyle(Palette.muted)
+                        Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                    }
+                case .numbered(let n, let t):
+                    HStack(alignment: .firstTextBaseline, spacing: 8) {
+                        Text(n).font(.serif(.body, weight: .semibold)).foregroundStyle(Palette.muted).monospacedDigit()
+                        Text(Self.inline(t)).font(.serif(.body)).foregroundStyle(Palette.ink).lineSpacing(4)
+                    }
+                case .quote(let t):
+                    Text(Self.inline(t)).font(.serif(.body).italic()).foregroundStyle(Palette.ink.opacity(0.8)).lineSpacing(4)
+                        .padding(.leading, 12)
+                        .overlay(alignment: .leading) { Rectangle().fill(Palette.rule).frame(width: 3) }
                 }
             }
         }
         .textSelection(.enabled)
     }
 
-    var paragraphs: [String] {
-        markdown.components(separatedBy: "\n\n").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }.filter { !$0.isEmpty }
+    var blocks: [Block] { Self.parse(markdown) }
+
+    static func parse(_ markdown: String) -> [Block] {
+        var out: [Block] = []
+        for para in markdown.components(separatedBy: "\n\n") {
+            let p = para.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !p.isEmpty else { continue }
+            var body = p
+            if p.hasPrefix("#") {
+                let first = p.prefix { $0 != "\n" }
+                out.append(.heading(first.drop { $0 == "#" }.trimmingCharacters(in: .whitespaces)))
+                body = String(p.dropFirst(first.count)).trimmingCharacters(in: .whitespacesAndNewlines)
+                if body.isEmpty { continue }
+            }
+            let parts = body.components(separatedBy: "$$")
+            for (i, part) in parts.enumerated() {
+                let t = part.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !t.isEmpty else { continue }
+                if !i.isMultiple(of: 2) && parts.count >= 3 {
+                    out.append(.equation(t))
+                } else {
+                    out.append(contentsOf: lines(t))
+                }
+            }
+        }
+        return out
+    }
+
+    static func lines(_ t: String) -> [Block] {
+        var out: [Block] = []
+        var prose: [String] = []
+        func flush() {
+            if !prose.isEmpty { out.append(.text(prose.joined(separator: " "))) }
+            prose = []
+        }
+        for raw in t.components(separatedBy: "\n") {
+            let line = raw.trimmingCharacters(in: .whitespaces)
+            if line.hasPrefix("- ") || line.hasPrefix("* ") {
+                flush()
+                out.append(.bullet(String(line.dropFirst(2))))
+            } else if let dot = line.firstIndex(of: "."), line[..<dot].allSatisfy(\.isNumber), !line[..<dot].isEmpty, line[line.index(after: dot)...].hasPrefix(" ") {
+                flush()
+                out.append(.numbered(String(line[...dot]), String(line[line.index(dot, offsetBy: 2)...])))
+            } else if line.hasPrefix(">") {
+                flush()
+                out.append(.quote(line.drop { $0 == ">" || $0 == " " }.description))
+            } else if !line.isEmpty {
+                prose.append(line)
+            }
+        }
+        flush()
+        return out
     }
 
     static func inline(_ p: String) -> AttributedString {

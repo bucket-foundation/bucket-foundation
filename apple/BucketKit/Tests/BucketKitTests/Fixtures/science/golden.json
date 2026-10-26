@@ -1,0 +1,3817 @@
+{
+ "leverage": [
+  [
+   "kinematics",
+   0.972,
+   "newton-laws,thermo-temperature"
+  ],
+  [
+   "vectors",
+   1,
+   "newton-laws,work-energy,rotational,coulomb,magnetism-lorentz"
+  ],
+  [
+   "calculus-physics",
+   0.908,
+   "work-energy,lagrangian,waves,faraday,wavefunction"
+  ],
+  [
+   "newton-laws",
+   1,
+   "momentum,work-energy,rotational,gravitation,shm,special-relativity,forces-friction"
+  ],
+  [
+   "momentum",
+   0.495,
+   "rotational,thermo-temperature,mass-energy,matter-waves"
+  ],
+  [
+   "work-energy",
+   0.853,
+   "energy-conservation"
+  ],
+  [
+   "energy-conservation",
+   0.89,
+   "gravitation,lagrangian,shm,first-law-thermo,photoelectric-quantization,fluids-bernoulli,electric-potential"
+  ],
+  [
+   "rotational",
+   0,
+   ""
+  ],
+  [
+   "gravitation",
+   0.624,
+   "coulomb,equivalence-principle"
+  ],
+  [
+   "lagrangian",
+   0.239,
+   "least-action,hamiltonian"
+  ],
+  [
+   "least-action",
+   0.092,
+   "geometric-optics,geodesics-curvature"
+  ],
+  [
+   "hamiltonian",
+   0.119,
+   "schrodinger"
+  ],
+  [
+   "shm",
+   0.385,
+   "waves,quantum-harmonic-oscillator"
+  ],
+  [
+   "waves",
+   0.367,
+   "em-waves,wave-optics"
+  ],
+  [
+   "coulomb",
+   0.633,
+   "gauss-law,magnetism-lorentz,hydrogen-atom,electric-potential,bohr-model"
+  ],
+  [
+   "gauss-law",
+   0.514,
+   "ampere-maxwell,maxwell-equations"
+  ],
+  [
+   "magnetism-lorentz",
+   0.541,
+   "faraday,ampere-maxwell,quantum-spin"
+  ],
+  [
+   "faraday",
+   0.514,
+   "ampere-maxwell,maxwell-equations"
+  ],
+  [
+   "ampere-maxwell",
+   0.486,
+   "maxwell-equations"
+  ],
+  [
+   "maxwell-equations",
+   0.486,
+   "em-waves,special-relativity,standard-model"
+  ],
+  [
+   "em-waves",
+   0.385,
+   "geometric-optics,wave-optics,photoelectric-quantization,qft-idea,cosmology-glimpse,blackbody-planck"
+  ],
+  [
+   "thermo-temperature",
+   0.156,
+   "first-law-thermo,boltzmann-distribution,fluids-bernoulli"
+  ],
+  [
+   "first-law-thermo",
+   0.101,
+   "entropy-second-law"
+  ],
+  [
+   "entropy-second-law",
+   0.092,
+   "boltzmann-entropy,heat-engines-carnot"
+  ],
+  [
+   "boltzmann-entropy",
+   0.046,
+   "boltzmann-distribution"
+  ],
+  [
+   "boltzmann-distribution",
+   0.028,
+   "blackbody-planck"
+  ],
+  [
+   "geometric-optics",
+   0,
+   ""
+  ],
+  [
+   "wave-optics",
+   0,
+   ""
+  ],
+  [
+   "special-relativity",
+   0.183,
+   "spacetime,mass-energy,equivalence-principle,qft-idea"
+  ],
+  [
+   "spacetime",
+   0.064,
+   "geodesics-curvature"
+  ],
+  [
+   "mass-energy",
+   0.046,
+   "einstein-equation"
+  ],
+  [
+   "equivalence-principle",
+   0.064,
+   "geodesics-curvature"
+  ],
+  [
+   "geodesics-curvature",
+   0.046,
+   "einstein-equation"
+  ],
+  [
+   "einstein-equation",
+   0.028,
+   "cosmology-glimpse"
+  ],
+  [
+   "photoelectric-quantization",
+   0.257,
+   "matter-waves,bohr-model"
+  ],
+  [
+   "matter-waves",
+   0.248,
+   "wavefunction,uncertainty,bohr-model"
+  ],
+  [
+   "wavefunction",
+   0.211,
+   "schrodinger,operators-observables,quantum-entanglement"
+  ],
+  [
+   "schrodinger",
+   0.128,
+   "quantum-tunneling,hydrogen-atom,qft-idea,quantum-harmonic-oscillator"
+  ],
+  [
+   "operators-observables",
+   0.11,
+   "uncertainty,quantum-spin"
+  ],
+  [
+   "uncertainty",
+   0,
+   ""
+  ],
+  [
+   "quantum-tunneling",
+   0,
+   ""
+  ],
+  [
+   "quantum-spin",
+   0.083,
+   "hydrogen-atom,quantum-entanglement,standard-model"
+  ],
+  [
+   "hydrogen-atom",
+   0,
+   ""
+  ],
+  [
+   "quantum-entanglement",
+   0,
+   ""
+  ],
+  [
+   "qft-idea",
+   0.028,
+   "standard-model"
+  ],
+  [
+   "standard-model",
+   0,
+   ""
+  ],
+  [
+   "cosmology-glimpse",
+   0,
+   ""
+  ],
+  [
+   "forces-friction",
+   0,
+   ""
+  ],
+  [
+   "fluids-bernoulli",
+   0,
+   ""
+  ],
+  [
+   "heat-engines-carnot",
+   0,
+   ""
+  ],
+  [
+   "electric-potential",
+   0.028,
+   "circuits-ohm"
+  ],
+  [
+   "circuits-ohm",
+   0,
+   ""
+  ],
+  [
+   "blackbody-planck",
+   0,
+   ""
+  ],
+  [
+   "bohr-model",
+   0,
+   ""
+  ],
+  [
+   "quantum-harmonic-oscillator",
+   0,
+   ""
+  ]
+ ],
+ "enc": [
+  [
+   "kinematics",
+   []
+  ],
+  [
+   "vectors",
+   []
+  ],
+  [
+   "calculus-physics",
+   []
+  ],
+  [
+   "newton-laws",
+   [
+    "kinematics:0.6:1",
+    "vectors:0.6:1"
+   ]
+  ],
+  [
+   "momentum",
+   [
+    "newton-laws:0.6:1",
+    "kinematics:0.3:2",
+    "vectors:0.3:2"
+   ]
+  ],
+  [
+   "work-energy",
+   [
+    "newton-laws:0.6:1",
+    "calculus-physics:0.6:1",
+    "vectors:0.6:1",
+    "kinematics:0.3:2"
+   ]
+  ],
+  [
+   "energy-conservation",
+   [
+    "work-energy:0.6:1",
+    "newton-laws:0.3:2",
+    "calculus-physics:0.3:2",
+    "vectors:0.3:2",
+    "kinematics:0.15:3"
+   ]
+  ],
+  [
+   "rotational",
+   [
+    "newton-laws:0.6:1",
+    "momentum:0.6:1",
+    "vectors:0.6:1",
+    "kinematics:0.3:2"
+   ]
+  ],
+  [
+   "gravitation",
+   [
+    "newton-laws:0.6:1",
+    "energy-conservation:0.6:1",
+    "kinematics:0.3:2",
+    "vectors:0.3:2",
+    "work-energy:0.3:2",
+    "calculus-physics:0.15:3"
+   ]
+  ],
+  [
+   "lagrangian",
+   [
+    "energy-conservation:0.6:1",
+    "calculus-physics:0.6:1",
+    "work-energy:0.3:2",
+    "newton-laws:0.15:3",
+    "vectors:0.15:3",
+    "kinematics:0.075:4"
+   ]
+  ],
+  [
+   "least-action",
+   [
+    "lagrangian:0.6:1",
+    "energy-conservation:0.3:2",
+    "calculus-physics:0.3:2",
+    "work-energy:0.15:3",
+    "newton-laws:0.075:4",
+    "vectors:0.075:4"
+   ]
+  ],
+  [
+   "hamiltonian",
+   [
+    "lagrangian:0.6:1",
+    "energy-conservation:0.3:2",
+    "calculus-physics:0.3:2",
+    "work-energy:0.15:3",
+    "newton-laws:0.075:4",
+    "vectors:0.075:4"
+   ]
+  ],
+  [
+   "shm",
+   [
+    "newton-laws:0.6:1",
+    "energy-conservation:0.6:1",
+    "kinematics:0.3:2",
+    "vectors:0.3:2",
+    "work-energy:0.3:2",
+    "calculus-physics:0.15:3"
+   ]
+  ],
+  [
+   "waves",
+   [
+    "shm:0.6:1",
+    "calculus-physics:0.6:1",
+    "newton-laws:0.3:2",
+    "energy-conservation:0.3:2",
+    "kinematics:0.15:3",
+    "vectors:0.15:3",
+    "work-energy:0.15:3"
+   ]
+  ],
+  [
+   "coulomb",
+   [
+    "vectors:0.6:1",
+    "gravitation:0.6:1",
+    "newton-laws:0.3:2",
+    "energy-conservation:0.3:2",
+    "kinematics:0.15:3",
+    "work-energy:0.15:3",
+    "calculus-physics:0.075:4"
+   ]
+  ],
+  [
+   "gauss-law",
+   [
+    "coulomb:0.6:1",
+    "vectors:0.3:2",
+    "gravitation:0.3:2",
+    "newton-laws:0.15:3",
+    "energy-conservation:0.15:3",
+    "kinematics:0.075:4",
+    "work-energy:0.075:4"
+   ]
+  ],
+  [
+   "magnetism-lorentz",
+   [
+    "coulomb:0.6:1",
+    "vectors:0.6:1",
+    "gravitation:0.3:2",
+    "newton-laws:0.15:3",
+    "energy-conservation:0.15:3",
+    "kinematics:0.075:4",
+    "work-energy:0.075:4"
+   ]
+  ],
+  [
+   "faraday",
+   [
+    "magnetism-lorentz:0.6:1",
+    "calculus-physics:0.6:1",
+    "coulomb:0.3:2",
+    "vectors:0.3:2",
+    "gravitation:0.15:3",
+    "newton-laws:0.075:4",
+    "energy-conservation:0.075:4"
+   ]
+  ],
+  [
+   "ampere-maxwell",
+   [
+    "magnetism-lorentz:0.6:1",
+    "gauss-law:0.6:1",
+    "faraday:0.6:1",
+    "coulomb:0.3:2",
+    "vectors:0.3:2",
+    "calculus-physics:0.3:2",
+    "gravitation:0.15:3",
+    "newton-laws:0.075:4",
+    "energy-conservation:0.075:4"
+   ]
+  ],
+  [
+   "maxwell-equations",
+   [
+    "gauss-law:0.6:1",
+    "faraday:0.6:1",
+    "ampere-maxwell:0.6:1",
+    "coulomb:0.3:2",
+    "magnetism-lorentz:0.3:2",
+    "calculus-physics:0.3:2",
+    "vectors:0.15:3",
+    "gravitation:0.15:3",
+    "newton-laws:0.075:4",
+    "energy-conservation:0.075:4"
+   ]
+  ],
+  [
+   "em-waves",
+   [
+    "maxwell-equations:0.6:1",
+    "waves:0.6:1",
+    "gauss-law:0.3:2",
+    "faraday:0.3:2",
+    "ampere-maxwell:0.3:2",
+    "shm:0.3:2",
+    "calculus-physics:0.3:2",
+    "coulomb:0.15:3",
+    "magnetism-lorentz:0.15:3",
+    "newton-laws:0.15:3",
+    "energy-conservation:0.15:3",
+    "vectors:0.075:4",
+    "gravitation:0.075:4",
+    "kinematics:0.075:4",
+    "work-energy:0.075:4"
+   ]
+  ],
+  [
+   "thermo-temperature",
+   [
+    "kinematics:0.6:1",
+    "momentum:0.6:1",
+    "newton-laws:0.3:2",
+    "vectors:0.15:3"
+   ]
+  ],
+  [
+   "first-law-thermo",
+   [
+    "energy-conservation:0.6:1",
+    "thermo-temperature:0.6:1",
+    "work-energy:0.3:2",
+    "kinematics:0.3:2",
+    "momentum:0.3:2",
+    "newton-laws:0.15:3",
+    "calculus-physics:0.15:3",
+    "vectors:0.15:3"
+   ]
+  ],
+  [
+   "entropy-second-law",
+   [
+    "first-law-thermo:0.6:1",
+    "energy-conservation:0.3:2",
+    "thermo-temperature:0.3:2",
+    "work-energy:0.15:3",
+    "kinematics:0.15:3",
+    "momentum:0.15:3",
+    "newton-laws:0.075:4",
+    "calculus-physics:0.075:4",
+    "vectors:0.075:4"
+   ]
+  ],
+  [
+   "boltzmann-entropy",
+   [
+    "entropy-second-law:0.6:1",
+    "first-law-thermo:0.3:2",
+    "energy-conservation:0.15:3",
+    "thermo-temperature:0.15:3",
+    "work-energy:0.075:4",
+    "kinematics:0.075:4",
+    "momentum:0.075:4"
+   ]
+  ],
+  [
+   "boltzmann-distribution",
+   [
+    "boltzmann-entropy:0.6:1",
+    "thermo-temperature:0.6:1",
+    "entropy-second-law:0.3:2",
+    "kinematics:0.3:2",
+    "momentum:0.3:2",
+    "first-law-thermo:0.15:3",
+    "newton-laws:0.15:3",
+    "energy-conservation:0.075:4",
+    "vectors:0.075:4"
+   ]
+  ],
+  [
+   "geometric-optics",
+   [
+    "em-waves:0.6:1",
+    "least-action:0.6:1",
+    "maxwell-equations:0.3:2",
+    "waves:0.3:2",
+    "lagrangian:0.3:2",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "shm:0.15:3",
+    "calculus-physics:0.15:3",
+    "energy-conservation:0.15:3",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4",
+    "newton-laws:0.075:4",
+    "work-energy:0.075:4"
+   ]
+  ],
+  [
+   "wave-optics",
+   [
+    "em-waves:0.6:1",
+    "waves:0.6:1",
+    "maxwell-equations:0.3:2",
+    "shm:0.3:2",
+    "calculus-physics:0.3:2",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "newton-laws:0.15:3",
+    "energy-conservation:0.15:3",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4",
+    "kinematics:0.075:4",
+    "vectors:0.075:4",
+    "work-energy:0.075:4"
+   ]
+  ],
+  [
+   "special-relativity",
+   [
+    "maxwell-equations:0.6:1",
+    "newton-laws:0.6:1",
+    "gauss-law:0.3:2",
+    "faraday:0.3:2",
+    "ampere-maxwell:0.3:2",
+    "kinematics:0.3:2",
+    "vectors:0.3:2",
+    "coulomb:0.15:3",
+    "magnetism-lorentz:0.15:3",
+    "calculus-physics:0.15:3",
+    "gravitation:0.075:4"
+   ]
+  ],
+  [
+   "spacetime",
+   [
+    "special-relativity:0.6:1",
+    "maxwell-equations:0.3:2",
+    "newton-laws:0.3:2",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "kinematics:0.15:3",
+    "vectors:0.15:3",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4",
+    "calculus-physics:0.075:4"
+   ]
+  ],
+  [
+   "mass-energy",
+   [
+    "special-relativity:0.6:1",
+    "momentum:0.6:1",
+    "maxwell-equations:0.3:2",
+    "newton-laws:0.3:2",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "kinematics:0.15:3",
+    "vectors:0.15:3",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4",
+    "calculus-physics:0.075:4"
+   ]
+  ],
+  [
+   "equivalence-principle",
+   [
+    "gravitation:0.6:1",
+    "special-relativity:0.6:1",
+    "newton-laws:0.3:2",
+    "energy-conservation:0.3:2",
+    "maxwell-equations:0.3:2",
+    "kinematics:0.15:3",
+    "vectors:0.15:3",
+    "work-energy:0.15:3",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "calculus-physics:0.075:4",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4"
+   ]
+  ],
+  [
+   "geodesics-curvature",
+   [
+    "equivalence-principle:0.6:1",
+    "spacetime:0.6:1",
+    "least-action:0.6:1",
+    "gravitation:0.3:2",
+    "special-relativity:0.3:2",
+    "lagrangian:0.3:2",
+    "newton-laws:0.15:3",
+    "energy-conservation:0.15:3",
+    "maxwell-equations:0.15:3",
+    "calculus-physics:0.15:3",
+    "kinematics:0.075:4",
+    "vectors:0.075:4",
+    "work-energy:0.075:4",
+    "gauss-law:0.075:4",
+    "faraday:0.075:4",
+    "ampere-maxwell:0.075:4"
+   ]
+  ],
+  [
+   "einstein-equation",
+   [
+    "geodesics-curvature:0.6:1",
+    "mass-energy:0.6:1",
+    "equivalence-principle:0.3:2",
+    "spacetime:0.3:2",
+    "least-action:0.3:2",
+    "special-relativity:0.3:2",
+    "momentum:0.3:2",
+    "gravitation:0.15:3",
+    "lagrangian:0.15:3",
+    "maxwell-equations:0.15:3",
+    "newton-laws:0.15:3",
+    "energy-conservation:0.075:4",
+    "calculus-physics:0.075:4",
+    "gauss-law:0.075:4",
+    "faraday:0.075:4",
+    "ampere-maxwell:0.075:4",
+    "kinematics:0.075:4",
+    "vectors:0.075:4"
+   ]
+  ],
+  [
+   "photoelectric-quantization",
+   [
+    "em-waves:0.6:1",
+    "energy-conservation:0.6:1",
+    "maxwell-equations:0.3:2",
+    "waves:0.3:2",
+    "work-energy:0.3:2",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "shm:0.15:3",
+    "calculus-physics:0.15:3",
+    "newton-laws:0.15:3",
+    "vectors:0.15:3",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4",
+    "kinematics:0.075:4"
+   ]
+  ],
+  [
+   "matter-waves",
+   [
+    "photoelectric-quantization:0.6:1",
+    "momentum:0.6:1",
+    "em-waves:0.3:2",
+    "energy-conservation:0.3:2",
+    "newton-laws:0.3:2",
+    "maxwell-equations:0.15:3",
+    "waves:0.15:3",
+    "work-energy:0.15:3",
+    "kinematics:0.15:3",
+    "vectors:0.15:3",
+    "gauss-law:0.075:4",
+    "faraday:0.075:4",
+    "ampere-maxwell:0.075:4",
+    "shm:0.075:4",
+    "calculus-physics:0.075:4"
+   ]
+  ],
+  [
+   "wavefunction",
+   [
+    "matter-waves:0.6:1",
+    "calculus-physics:0.6:1",
+    "photoelectric-quantization:0.3:2",
+    "momentum:0.3:2",
+    "em-waves:0.15:3",
+    "energy-conservation:0.15:3",
+    "newton-laws:0.15:3",
+    "maxwell-equations:0.075:4",
+    "waves:0.075:4",
+    "work-energy:0.075:4",
+    "kinematics:0.075:4",
+    "vectors:0.075:4"
+   ]
+  ],
+  [
+   "schrodinger",
+   [
+    "wavefunction:0.6:1",
+    "hamiltonian:0.6:1",
+    "matter-waves:0.3:2",
+    "calculus-physics:0.3:2",
+    "lagrangian:0.3:2",
+    "photoelectric-quantization:0.15:3",
+    "momentum:0.15:3",
+    "energy-conservation:0.15:3",
+    "em-waves:0.075:4",
+    "newton-laws:0.075:4",
+    "work-energy:0.075:4"
+   ]
+  ],
+  [
+   "operators-observables",
+   [
+    "wavefunction:0.6:1",
+    "matter-waves:0.3:2",
+    "calculus-physics:0.3:2",
+    "photoelectric-quantization:0.15:3",
+    "momentum:0.15:3",
+    "em-waves:0.075:4",
+    "energy-conservation:0.075:4",
+    "newton-laws:0.075:4"
+   ]
+  ],
+  [
+   "uncertainty",
+   [
+    "operators-observables:0.6:1",
+    "matter-waves:0.6:1",
+    "wavefunction:0.3:2",
+    "photoelectric-quantization:0.3:2",
+    "momentum:0.3:2",
+    "calculus-physics:0.15:3",
+    "em-waves:0.15:3",
+    "energy-conservation:0.15:3",
+    "newton-laws:0.15:3",
+    "maxwell-equations:0.075:4",
+    "waves:0.075:4",
+    "work-energy:0.075:4",
+    "kinematics:0.075:4",
+    "vectors:0.075:4"
+   ]
+  ],
+  [
+   "quantum-tunneling",
+   [
+    "schrodinger:0.6:1",
+    "wavefunction:0.3:2",
+    "hamiltonian:0.3:2",
+    "matter-waves:0.15:3",
+    "calculus-physics:0.15:3",
+    "lagrangian:0.15:3",
+    "photoelectric-quantization:0.075:4",
+    "momentum:0.075:4",
+    "energy-conservation:0.075:4"
+   ]
+  ],
+  [
+   "quantum-spin",
+   [
+    "operators-observables:0.6:1",
+    "magnetism-lorentz:0.6:1",
+    "wavefunction:0.3:2",
+    "coulomb:0.3:2",
+    "vectors:0.3:2",
+    "matter-waves:0.15:3",
+    "calculus-physics:0.15:3",
+    "gravitation:0.15:3",
+    "photoelectric-quantization:0.075:4",
+    "momentum:0.075:4",
+    "newton-laws:0.075:4",
+    "energy-conservation:0.075:4"
+   ]
+  ],
+  [
+   "hydrogen-atom",
+   [
+    "schrodinger:0.6:1",
+    "coulomb:0.6:1",
+    "quantum-spin:0.6:1",
+    "wavefunction:0.3:2",
+    "hamiltonian:0.3:2",
+    "vectors:0.3:2",
+    "gravitation:0.3:2",
+    "operators-observables:0.3:2",
+    "magnetism-lorentz:0.3:2",
+    "matter-waves:0.15:3",
+    "calculus-physics:0.15:3",
+    "lagrangian:0.15:3",
+    "newton-laws:0.15:3",
+    "energy-conservation:0.15:3",
+    "photoelectric-quantization:0.075:4",
+    "momentum:0.075:4",
+    "kinematics:0.075:4",
+    "work-energy:0.075:4"
+   ]
+  ],
+  [
+   "quantum-entanglement",
+   [
+    "wavefunction:0.6:1",
+    "quantum-spin:0.6:1",
+    "matter-waves:0.3:2",
+    "calculus-physics:0.3:2",
+    "operators-observables:0.3:2",
+    "magnetism-lorentz:0.3:2",
+    "photoelectric-quantization:0.15:3",
+    "momentum:0.15:3",
+    "coulomb:0.15:3",
+    "vectors:0.15:3",
+    "em-waves:0.075:4",
+    "energy-conservation:0.075:4",
+    "newton-laws:0.075:4",
+    "gravitation:0.075:4"
+   ]
+  ],
+  [
+   "qft-idea",
+   [
+    "schrodinger:0.6:1",
+    "special-relativity:0.6:1",
+    "em-waves:0.6:1",
+    "wavefunction:0.3:2",
+    "hamiltonian:0.3:2",
+    "maxwell-equations:0.3:2",
+    "newton-laws:0.3:2",
+    "waves:0.3:2",
+    "matter-waves:0.15:3",
+    "calculus-physics:0.15:3",
+    "lagrangian:0.15:3",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "kinematics:0.15:3",
+    "vectors:0.15:3",
+    "shm:0.15:3",
+    "photoelectric-quantization:0.075:4",
+    "momentum:0.075:4",
+    "energy-conservation:0.075:4",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4"
+   ]
+  ],
+  [
+   "standard-model",
+   [
+    "qft-idea:0.6:1",
+    "quantum-spin:0.6:1",
+    "maxwell-equations:0.6:1",
+    "schrodinger:0.3:2",
+    "special-relativity:0.3:2",
+    "em-waves:0.3:2",
+    "operators-observables:0.3:2",
+    "magnetism-lorentz:0.3:2",
+    "gauss-law:0.3:2",
+    "faraday:0.3:2",
+    "ampere-maxwell:0.3:2",
+    "wavefunction:0.15:3",
+    "hamiltonian:0.15:3",
+    "newton-laws:0.15:3",
+    "waves:0.15:3",
+    "coulomb:0.15:3",
+    "vectors:0.15:3",
+    "calculus-physics:0.15:3",
+    "matter-waves:0.075:4",
+    "lagrangian:0.075:4",
+    "kinematics:0.075:4",
+    "shm:0.075:4",
+    "gravitation:0.075:4"
+   ]
+  ],
+  [
+   "cosmology-glimpse",
+   [
+    "einstein-equation:0.6:1",
+    "em-waves:0.6:1",
+    "geodesics-curvature:0.3:2",
+    "mass-energy:0.3:2",
+    "maxwell-equations:0.3:2",
+    "waves:0.3:2",
+    "equivalence-principle:0.15:3",
+    "spacetime:0.15:3",
+    "least-action:0.15:3",
+    "special-relativity:0.15:3",
+    "momentum:0.15:3",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "shm:0.15:3",
+    "calculus-physics:0.15:3",
+    "gravitation:0.075:4",
+    "lagrangian:0.075:4",
+    "newton-laws:0.075:4",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4",
+    "energy-conservation:0.075:4"
+   ]
+  ],
+  [
+   "forces-friction",
+   [
+    "newton-laws:0.6:1",
+    "kinematics:0.3:2",
+    "vectors:0.3:2"
+   ]
+  ],
+  [
+   "fluids-bernoulli",
+   [
+    "energy-conservation:0.6:1",
+    "thermo-temperature:0.6:1",
+    "work-energy:0.3:2",
+    "kinematics:0.3:2",
+    "momentum:0.3:2",
+    "newton-laws:0.15:3",
+    "calculus-physics:0.15:3",
+    "vectors:0.15:3"
+   ]
+  ],
+  [
+   "heat-engines-carnot",
+   [
+    "entropy-second-law:0.6:1",
+    "first-law-thermo:0.3:2",
+    "energy-conservation:0.15:3",
+    "thermo-temperature:0.15:3",
+    "work-energy:0.075:4",
+    "kinematics:0.075:4",
+    "momentum:0.075:4"
+   ]
+  ],
+  [
+   "electric-potential",
+   [
+    "coulomb:0.6:1",
+    "energy-conservation:0.6:1",
+    "vectors:0.3:2",
+    "gravitation:0.3:2",
+    "work-energy:0.3:2",
+    "newton-laws:0.15:3",
+    "calculus-physics:0.15:3",
+    "kinematics:0.075:4"
+   ]
+  ],
+  [
+   "circuits-ohm",
+   [
+    "electric-potential:0.6:1",
+    "coulomb:0.3:2",
+    "energy-conservation:0.3:2",
+    "vectors:0.15:3",
+    "gravitation:0.15:3",
+    "work-energy:0.15:3",
+    "newton-laws:0.075:4",
+    "calculus-physics:0.075:4"
+   ]
+  ],
+  [
+   "blackbody-planck",
+   [
+    "em-waves:0.6:1",
+    "boltzmann-distribution:0.6:1",
+    "maxwell-equations:0.3:2",
+    "waves:0.3:2",
+    "boltzmann-entropy:0.3:2",
+    "thermo-temperature:0.3:2",
+    "gauss-law:0.15:3",
+    "faraday:0.15:3",
+    "ampere-maxwell:0.15:3",
+    "shm:0.15:3",
+    "calculus-physics:0.15:3",
+    "entropy-second-law:0.15:3",
+    "kinematics:0.15:3",
+    "momentum:0.15:3",
+    "coulomb:0.075:4",
+    "magnetism-lorentz:0.075:4",
+    "newton-laws:0.075:4",
+    "energy-conservation:0.075:4",
+    "first-law-thermo:0.075:4"
+   ]
+  ],
+  [
+   "bohr-model",
+   [
+    "matter-waves:0.6:1",
+    "coulomb:0.6:1",
+    "photoelectric-quantization:0.6:1",
+    "momentum:0.3:2",
+    "vectors:0.3:2",
+    "gravitation:0.3:2",
+    "em-waves:0.3:2",
+    "energy-conservation:0.3:2",
+    "newton-laws:0.15:3",
+    "maxwell-equations:0.15:3",
+    "waves:0.15:3",
+    "work-energy:0.15:3",
+    "kinematics:0.075:4",
+    "gauss-law:0.075:4",
+    "faraday:0.075:4",
+    "ampere-maxwell:0.075:4",
+    "shm:0.075:4",
+    "calculus-physics:0.075:4"
+   ]
+  ],
+  [
+   "quantum-harmonic-oscillator",
+   [
+    "schrodinger:0.6:1",
+    "shm:0.6:1",
+    "wavefunction:0.3:2",
+    "hamiltonian:0.3:2",
+    "newton-laws:0.3:2",
+    "energy-conservation:0.3:2",
+    "matter-waves:0.15:3",
+    "calculus-physics:0.15:3",
+    "lagrangian:0.15:3",
+    "kinematics:0.15:3",
+    "vectors:0.15:3",
+    "work-energy:0.15:3",
+    "photoelectric-quantization:0.075:4",
+    "momentum:0.075:4"
+   ]
+  ]
+ ],
+ "sessions": [
+  {
+   "day": 0,
+   "h": 8,
+   "rows": [
+    [
+     "vectors",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "kinematics",
+     "new",
+     null,
+     "recall",
+     4
+    ],
+    [
+     "calculus-physics",
+     "new",
+     null,
+     "recall",
+     1
+    ]
+   ],
+   "summary": [
+    55,
+    3,
+    0,
+    0,
+    10,
+    1
+   ]
+  },
+  {
+   "day": 0,
+   "h": 19,
+   "rows": [
+    [
+     "newton-laws",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    4,
+    0,
+    0,
+    15,
+    1
+   ]
+  },
+  {
+   "day": 1,
+   "h": 8,
+   "rows": [
+    [
+     "forces-friction",
+     "new",
+     null,
+     "recall",
+     2
+    ],
+    [
+     "work-energy",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "momentum",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    7,
+    0,
+    1,
+    30,
+    2
+   ]
+  },
+  {
+   "day": 1,
+   "h": 19,
+   "rows": [
+    [
+     "calculus-physics",
+     "review",
+     1792569660000,
+     "recall",
+     4
+    ],
+    [
+     "energy-conservation",
+     "new",
+     null,
+     "recall",
+     1
+    ]
+   ],
+   "summary": [
+    55,
+    8,
+    0,
+    0,
+    35,
+    2
+   ]
+  },
+  {
+   "day": 2,
+   "h": 8,
+   "rows": [
+    [
+     "forces-friction",
+     "review",
+     1792656000000,
+     "recall",
+     2
+    ],
+    [
+     "gravitation",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "shm",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "lagrangian",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "thermo-temperature",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    12,
+    0,
+    0,
+    60,
+    3
+   ]
+  },
+  {
+   "day": 2,
+   "h": 19,
+   "rows": [],
+   "summary": [
+    55,
+    12,
+    0,
+    0,
+    60,
+    3
+   ]
+  },
+  {
+   "day": 3,
+   "h": 8,
+   "rows": [
+    [
+     "energy-conservation",
+     "review",
+     1792695630000,
+     "recall",
+     4
+    ],
+    [
+     "coulomb",
+     "new",
+     null,
+     "recall",
+     1
+    ],
+    [
+     "waves",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "hamiltonian",
+     "new",
+     null,
+     "recall",
+     2
+    ],
+    [
+     "first-law-thermo",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    16,
+    0,
+    0,
+    80,
+    4
+   ]
+  },
+  {
+   "day": 3,
+   "h": 19,
+   "rows": [],
+   "summary": [
+    55,
+    16,
+    0,
+    0,
+    80,
+    4
+   ]
+  },
+  {
+   "day": 5,
+   "h": 8,
+   "rows": [
+    [
+     "vectors",
+     "review",
+     1792828800000,
+     "recall",
+     3
+    ],
+    [
+     "forces-friction",
+     "review",
+     1792828800000,
+     "recall",
+     4
+    ],
+    [
+     "coulomb",
+     "review",
+     1792828830000,
+     "recall",
+     1
+    ],
+    [
+     "momentum",
+     "review",
+     1792828860000,
+     "recall",
+     2
+    ],
+    [
+     "hamiltonian",
+     "review",
+     1792828890000,
+     "recall",
+     3
+    ],
+    [
+     "newton-laws",
+     "review",
+     1792868400000,
+     "apply",
+     3
+    ],
+    [
+     "magnetism-lorentz",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "gauss-law",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "least-action",
+     "new",
+     null,
+     "recall",
+     4
+    ],
+    [
+     "entropy-second-law",
+     "new",
+     null,
+     "recall",
+     1
+    ]
+   ],
+   "summary": [
+    55,
+    20,
+    0,
+    5,
+    123,
+    1
+   ]
+  },
+  {
+   "day": 5,
+   "h": 19,
+   "rows": [
+    [
+     "work-energy",
+     "review",
+     1792915230000,
+     "recall",
+     3
+    ],
+    [
+     "gravitation",
+     "review",
+     1792915230000,
+     "recall",
+     2
+    ],
+    [
+     "shm",
+     "review",
+     1792915260000,
+     "recall",
+     3
+    ],
+    [
+     "lagrangian",
+     "review",
+     1792915290000,
+     "recall",
+     3
+    ],
+    [
+     "thermo-temperature",
+     "review",
+     1792915320000,
+     "recall",
+     4
+    ]
+   ],
+   "summary": [
+    55,
+    20,
+    0,
+    0,
+    148,
+    1
+   ]
+  },
+  {
+   "day": 6,
+   "h": 8,
+   "rows": [
+    [
+     "faraday",
+     "new",
+     null,
+     "recall",
+     1
+    ],
+    [
+     "boltzmann-entropy",
+     "new",
+     null,
+     "recall",
+     2
+    ],
+    [
+     "electric-potential",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "rotational",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    24,
+    0,
+    3,
+    163,
+    2
+   ]
+  },
+  {
+   "day": 6,
+   "h": 19,
+   "rows": [
+    [
+     "coulomb",
+     "review",
+     1793001660000,
+     "recall",
+     3
+    ],
+    [
+     "waves",
+     "review",
+     1793001660000,
+     "recall",
+     3
+    ],
+    [
+     "first-law-thermo",
+     "review",
+     1793001720000,
+     "recall",
+     4
+    ],
+    [
+     "entropy-second-law",
+     "review",
+     1793001870000,
+     "recall",
+     1
+    ]
+   ],
+   "summary": [
+    55,
+    24,
+    0,
+    0,
+    178,
+    2
+   ]
+  },
+  {
+   "day": 9,
+   "h": 8,
+   "rows": [
+    [
+     "faraday",
+     "review",
+     1793088000000,
+     "recall",
+     3
+    ],
+    [
+     "boltzmann-entropy",
+     "review",
+     1793088030000,
+     "recall",
+     2
+    ],
+    [
+     "entropy-second-law",
+     "review",
+     1793127690000,
+     "recall",
+     3
+    ],
+    [
+     "magnetism-lorentz",
+     "review",
+     1793174580000,
+     "recall",
+     3
+    ],
+    [
+     "gauss-law",
+     "review",
+     1793174610000,
+     "recall",
+     4
+    ],
+    [
+     "coulomb",
+     "review",
+     1793214000000,
+     "recall",
+     1
+    ],
+    [
+     "ampere-maxwell",
+     "new",
+     null,
+     "recall",
+     2
+    ],
+    [
+     "boltzmann-distribution",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "fluids-bernoulli",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "heat-engines-carnot",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    28,
+    0,
+    2,
+    223,
+    1
+   ]
+  },
+  {
+   "day": 9,
+   "h": 19,
+   "rows": [
+    [
+     "electric-potential",
+     "review",
+     1793260860000,
+     "recall",
+     3
+    ],
+    [
+     "rotational",
+     "review",
+     1793260890000,
+     "recall",
+     4
+    ]
+   ],
+   "summary": [
+    55,
+    28,
+    0,
+    0,
+    233,
+    1
+   ]
+  },
+  {
+   "day": 10,
+   "h": 8,
+   "rows": [
+    [
+     "maxwell-equations",
+     "new",
+     null,
+     "recall",
+     1
+    ],
+    [
+     "circuits-ohm",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    30,
+    0,
+    0,
+    238,
+    2
+   ]
+  },
+  {
+   "day": 10,
+   "h": 19,
+   "rows": [
+    [
+     "hamiltonian",
+     "review",
+     1793347320000,
+     "apply",
+     2
+    ],
+    [
+     "coulomb",
+     "review",
+     1793347350000,
+     "recall",
+     3
+    ],
+    [
+     "ampere-maxwell",
+     "review",
+     1793347380000,
+     "recall",
+     3
+    ],
+    [
+     "em-waves",
+     "new",
+     null,
+     "recall",
+     4
+    ],
+    [
+     "special-relativity",
+     "new",
+     null,
+     "recall",
+     1
+    ]
+   ],
+   "summary": [
+    55,
+    32,
+    0,
+    0,
+    261,
+    2
+   ]
+  },
+  {
+   "day": 14,
+   "h": 8,
+   "rows": [
+    [
+     "maxwell-equations",
+     "review",
+     1793433600000,
+     "recall",
+     2
+    ],
+    [
+     "special-relativity",
+     "review",
+     1793473320000,
+     "recall",
+     3
+    ],
+    [
+     "boltzmann-entropy",
+     "review",
+     1793520030000,
+     "recall",
+     3
+    ],
+    [
+     "entropy-second-law",
+     "review",
+     1793520060000,
+     "recall",
+     3
+    ],
+    [
+     "momentum",
+     "review",
+     1793520090000,
+     "recall",
+     3
+    ],
+    [
+     "boltzmann-distribution",
+     "review",
+     1793520210000,
+     "recall",
+     4
+    ],
+    [
+     "fluids-bernoulli",
+     "review",
+     1793520240000,
+     "recall",
+     1
+    ],
+    [
+     "heat-engines-carnot",
+     "review",
+     1793520270000,
+     "recall",
+     3
+    ],
+    [
+     "gravitation",
+     "review",
+     1793559630000,
+     "recall",
+     2
+    ],
+    [
+     "circuits-ohm",
+     "review",
+     1793606430000,
+     "recall",
+     3
+    ],
+    [
+     "coulomb",
+     "review",
+     1793646030000,
+     "recall",
+     3
+    ],
+    [
+     "faraday",
+     "review",
+     1793692800000,
+     "recall",
+     4
+    ],
+    [
+     "photoelectric-quantization",
+     "new",
+     null,
+     "recall",
+     1
+    ],
+    [
+     "geometric-optics",
+     "new",
+     null,
+     "recall",
+     2
+    ],
+    [
+     "wave-optics",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "blackbody-planck",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    36,
+    0,
+    0,
+    331,
+    1
+   ]
+  },
+  {
+   "day": 14,
+   "h": 19,
+   "rows": [],
+   "summary": [
+    55,
+    36,
+    0,
+    0,
+    331,
+    1
+   ]
+  },
+  {
+   "day": 20,
+   "h": 8,
+   "rows": [
+    [
+     "fluids-bernoulli",
+     "review",
+     1793779380000,
+     "recall",
+     3
+    ],
+    [
+     "photoelectric-quantization",
+     "review",
+     1793779560000,
+     "recall",
+     3
+    ],
+    [
+     "geometric-optics",
+     "review",
+     1793779590000,
+     "recall",
+     4
+    ],
+    [
+     "calculus-physics",
+     "review",
+     1793818800000,
+     "recall",
+     1
+    ],
+    [
+     "ampere-maxwell",
+     "review",
+     1793818860000,
+     "apply",
+     3
+    ],
+    [
+     "maxwell-equations",
+     "review",
+     1793865600000,
+     "recall",
+     2
+    ],
+    [
+     "wave-optics",
+     "review",
+     1793952420000,
+     "recall",
+     3
+    ],
+    [
+     "blackbody-planck",
+     "review",
+     1793952450000,
+     "recall",
+     3
+    ],
+    [
+     "lagrangian",
+     "review",
+     1793991690000,
+     "recall",
+     4
+    ],
+    [
+     "hamiltonian",
+     "review",
+     1794078000000,
+     "apply",
+     1
+    ],
+    [
+     "shm",
+     "review",
+     1794078060000,
+     "recall",
+     2
+    ],
+    [
+     "special-relativity",
+     "review",
+     1794124830000,
+     "recall",
+     3
+    ],
+    [
+     "waves",
+     "review",
+     1794164430000,
+     "apply",
+     3
+    ],
+    [
+     "energy-conservation",
+     "review",
+     1794211200000,
+     "apply",
+     3
+    ],
+    [
+     "matter-waves",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "spacetime",
+     "new",
+     null,
+     "recall",
+     4
+    ],
+    [
+     "equivalence-principle",
+     "new",
+     null,
+     "recall",
+     1
+    ],
+    [
+     "mass-energy",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    40,
+    0,
+    0,
+    415,
+    1
+   ]
+  },
+  {
+   "day": 20,
+   "h": 19,
+   "rows": [],
+   "summary": [
+    55,
+    40,
+    0,
+    0,
+    415,
+    1
+   ]
+  },
+  {
+   "day": 21,
+   "h": 8,
+   "rows": [
+    [
+     "wavefunction",
+     "new",
+     null,
+     "recall",
+     2
+    ],
+    [
+     "bohr-model",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "geodesics-curvature",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    43,
+    0,
+    0,
+    430,
+    2
+   ]
+  },
+  {
+   "day": 21,
+   "h": 19,
+   "rows": [
+    [
+     "hamiltonian",
+     "review",
+     1794297870000,
+     "recall",
+     4
+    ],
+    [
+     "coulomb",
+     "review",
+     1794297900000,
+     "recall",
+     1
+    ],
+    [
+     "equivalence-principle",
+     "review",
+     1794298080000,
+     "recall",
+     2
+    ],
+    [
+     "schrodinger",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    44,
+    0,
+    0,
+    445,
+    3
+   ]
+  },
+  {
+   "day": 30,
+   "h": 8,
+   "rows": [
+    [
+     "wavefunction",
+     "review",
+     1794384000000,
+     "recall",
+     3
+    ],
+    [
+     "forces-friction",
+     "review",
+     1794384030000,
+     "recall",
+     3
+    ],
+    [
+     "least-action",
+     "review",
+     1794384240000,
+     "recall",
+     3
+    ],
+    [
+     "electric-potential",
+     "review",
+     1794423600000,
+     "apply",
+     4
+    ],
+    [
+     "coulomb",
+     "review",
+     1794423630000,
+     "recall",
+     1
+    ],
+    [
+     "equivalence-principle",
+     "review",
+     1794423660000,
+     "recall",
+     3
+    ],
+    [
+     "calculus-physics",
+     "review",
+     1794470490000,
+     "recall",
+     2
+    ],
+    [
+     "matter-waves",
+     "review",
+     1794470820000,
+     "recall",
+     3
+    ],
+    [
+     "mass-energy",
+     "review",
+     1794470910000,
+     "recall",
+     3
+    ],
+    [
+     "bohr-model",
+     "review",
+     1794556830000,
+     "recall",
+     4
+    ],
+    [
+     "geodesics-curvature",
+     "review",
+     1794556860000,
+     "recall",
+     1
+    ],
+    [
+     "entropy-second-law",
+     "review",
+     1794556890000,
+     "apply",
+     2
+    ],
+    [
+     "maxwell-equations",
+     "review",
+     1794556950000,
+     "recall",
+     3
+    ],
+    [
+     "schrodinger",
+     "review",
+     1794596490000,
+     "recall",
+     3
+    ],
+    [
+     "magnetism-lorentz",
+     "review",
+     1794643290000,
+     "apply",
+     3
+    ],
+    [
+     "boltzmann-entropy",
+     "review",
+     1794729660000,
+     "recall",
+     3
+    ],
+    [
+     "gravitation",
+     "review",
+     1794729840000,
+     "recall",
+     4
+    ],
+    [
+     "photoelectric-quantization",
+     "review",
+     1794816030000,
+     "apply",
+     1
+    ],
+    [
+     "circuits-ohm",
+     "review",
+     1794816270000,
+     "apply",
+     3
+    ],
+    [
+     "work-energy",
+     "review",
+     1794942000000,
+     "apply",
+     2
+    ],
+    [
+     "heat-engines-carnot",
+     "review",
+     1794989010000,
+     "recall",
+     3
+    ],
+    [
+     "fluids-bernoulli",
+     "review",
+     1795075200000,
+     "apply",
+     3
+    ],
+    [
+     "operators-observables",
+     "new",
+     null,
+     "recall",
+     4
+    ],
+    [
+     "quantum-tunneling",
+     "new",
+     null,
+     "recall",
+     1
+    ],
+    [
+     "quantum-harmonic-oscillator",
+     "new",
+     null,
+     "recall",
+     2
+    ],
+    [
+     "einstein-equation",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    48,
+    0,
+    0,
+    573,
+    1
+   ]
+  },
+  {
+   "day": 30,
+   "h": 19,
+   "rows": [
+    [
+     "hamiltonian",
+     "review",
+     1795114800000,
+     "apply",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    48,
+    0,
+    0,
+    581,
+    2
+   ]
+  },
+  {
+   "day": 31,
+   "h": 8,
+   "rows": [
+    [
+     "quantum-spin",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "uncertainty",
+     "new",
+     null,
+     "recall",
+     3
+    ],
+    [
+     "qft-idea",
+     "new",
+     null,
+     "recall",
+     4
+    ],
+    [
+     "cosmology-glimpse",
+     "new",
+     null,
+     "recall",
+     1
+    ]
+   ],
+   "summary": [
+    55,
+    52,
+    0,
+    1,
+    596,
+    2
+   ]
+  },
+  {
+   "day": 31,
+   "h": 19,
+   "rows": [
+    [
+     "coulomb",
+     "review",
+     1795161720000,
+     "recall",
+     3
+    ],
+    [
+     "geodesics-curvature",
+     "review",
+     1795161900000,
+     "recall",
+     2
+    ],
+    [
+     "quantum-tunneling",
+     "review",
+     1795162290000,
+     "recall",
+     3
+    ],
+    [
+     "quantum-harmonic-oscillator",
+     "review",
+     1795162320000,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    52,
+    0,
+    0,
+    616,
+    2
+   ]
+  },
+  {
+   "day": 45,
+   "h": 8,
+   "rows": [
+    [
+     "cosmology-glimpse",
+     "review",
+     1795248090000,
+     "recall",
+     4
+    ],
+    [
+     "photoelectric-quantization",
+     "review",
+     1795248510000,
+     "recall",
+     1
+    ],
+    [
+     "einstein-equation",
+     "review",
+     1795335150000,
+     "recall",
+     2
+    ],
+    [
+     "coulomb",
+     "review",
+     1795374000000,
+     "recall",
+     3
+    ],
+    [
+     "geodesics-curvature",
+     "review",
+     1795374030000,
+     "recall",
+     3
+    ],
+    [
+     "quantum-spin",
+     "review",
+     1795420800000,
+     "recall",
+     3
+    ],
+    [
+     "uncertainty",
+     "review",
+     1795420830000,
+     "recall",
+     3
+    ],
+    [
+     "quantum-tunneling",
+     "review",
+     1795460460000,
+     "recall",
+     4
+    ],
+    [
+     "em-waves",
+     "review",
+     1795460490000,
+     "recall",
+     1
+    ],
+    [
+     "quantum-harmonic-oscillator",
+     "review",
+     1795546890000,
+     "recall",
+     3
+    ],
+    [
+     "wave-optics",
+     "review",
+     1795680180000,
+     "recall",
+     2
+    ],
+    [
+     "blackbody-planck",
+     "review",
+     1795680210000,
+     "recall",
+     3
+    ],
+    [
+     "spacetime",
+     "review",
+     1795680450000,
+     "recall",
+     3
+    ],
+    [
+     "calculus-physics",
+     "review",
+     1795766580000,
+     "recall",
+     4
+    ],
+    [
+     "special-relativity",
+     "review",
+     1795766730000,
+     "apply",
+     1
+    ],
+    [
+     "rotational",
+     "review",
+     1795806030000,
+     "apply",
+     2
+    ],
+    [
+     "equivalence-principle",
+     "review",
+     1795939350000,
+     "recall",
+     3
+    ],
+    [
+     "first-law-thermo",
+     "review",
+     1796151660000,
+     "recall",
+     3
+    ],
+    [
+     "kinematics",
+     "review",
+     1796284830000,
+     "apply",
+     3
+    ],
+    [
+     "shm",
+     "review",
+     1796285100000,
+     "recall",
+     3
+    ],
+    [
+     "hydrogen-atom",
+     "new",
+     null,
+     "recall",
+     4
+    ],
+    [
+     "quantum-entanglement",
+     "new",
+     null,
+     "recall",
+     1
+    ],
+    [
+     "standard-model",
+     "new",
+     null,
+     "recall",
+     3
+    ]
+   ],
+   "summary": [
+    55,
+    55,
+    0,
+    0,
+    717,
+    1
+   ]
+  },
+  {
+   "day": 45,
+   "h": 19,
+   "rows": [],
+   "summary": [
+    55,
+    55,
+    0,
+    0,
+    717,
+    1
+   ]
+  }
+ ],
+ "mastery": [
+  [
+   "kinematics",
+   0.6630456543162584
+  ],
+  [
+   "vectors",
+   0.5916611012079563
+  ],
+  [
+   "calculus-physics",
+   0.40167993909308763
+  ],
+  [
+   "newton-laws",
+   0.6055287167131712
+  ],
+  [
+   "momentum",
+   0.5295524961638968
+  ],
+  [
+   "work-energy",
+   0.5430160545309693
+  ],
+  [
+   "energy-conservation",
+   0.5459458766987305
+  ],
+  [
+   "rotational",
+   0.5494322380273097
+  ],
+  [
+   "gravitation",
+   0.573534726409441
+  ],
+  [
+   "lagrangian",
+   0.6695805839834653
+  ],
+  [
+   "least-action",
+   0.6108539013662465
+  ],
+  [
+   "hamiltonian",
+   0.46524055887801125
+  ],
+  [
+   "shm",
+   0.5985868101066931
+  ],
+  [
+   "waves",
+   0.6188040430264671
+  ],
+  [
+   "coulomb",
+   0.2639402048739935
+  ],
+  [
+   "gauss-law",
+   0.5683013963114721
+  ],
+  [
+   "magnetism-lorentz",
+   0.646469648294527
+  ],
+  [
+   "faraday",
+   0.4631560813042433
+  ],
+  [
+   "ampere-maxwell",
+   0.5151344970707926
+  ],
+  [
+   "maxwell-equations",
+   0.34679263384419473
+  ],
+  [
+   "em-waves",
+   0.17913644005797097
+  ],
+  [
+   "thermo-temperature",
+   0.5628264314468827
+  ],
+  [
+   "first-law-thermo",
+   0.6612210458566112
+  ],
+  [
+   "entropy-second-law",
+   0.333143231272825
+  ],
+  [
+   "boltzmann-entropy",
+   0.511206485766784
+  ],
+  [
+   "boltzmann-distribution",
+   0.5577772454413273
+  ],
+  [
+   "geometric-optics",
+   0.4627849970533476
+  ],
+  [
+   "wave-optics",
+   0.4836721631020894
+  ],
+  [
+   "special-relativity",
+   0.1628467407404327
+  ],
+  [
+   "spacetime",
+   0.6067076487668966
+  ],
+  [
+   "mass-energy",
+   0.5018464230096782
+  ],
+  [
+   "equivalence-principle",
+   0.4369152511752727
+  ],
+  [
+   "geodesics-curvature",
+   0.36208510544814626
+  ],
+  [
+   "einstein-equation",
+   0.3321697226583212
+  ],
+  [
+   "photoelectric-quantization",
+   0.07253686721817613
+  ],
+  [
+   "matter-waves",
+   0.5271645421634917
+  ],
+  [
+   "wavefunction",
+   0.41605957435981583
+  ],
+  [
+   "schrodinger",
+   0.5148589522661633
+  ],
+  [
+   "operators-observables",
+   0.43332193707309646
+  ],
+  [
+   "uncertainty",
+   0.5182431976770019
+  ],
+  [
+   "quantum-tunneling",
+   0.4845106370916493
+  ],
+  [
+   "quantum-spin",
+   0.5275800038096154
+  ],
+  [
+   "hydrogen-atom",
+   0.4079801387906447
+  ],
+  [
+   "quantum-entanglement",
+   0.05196627251491677
+  ],
+  [
+   "qft-idea",
+   0.4131141075858724
+  ],
+  [
+   "standard-model",
+   0.22585182785763297
+  ],
+  [
+   "cosmology-glimpse",
+   0.3568489817823823
+  ],
+  [
+   "forces-friction",
+   0.5491125141916919
+  ],
+  [
+   "fluids-bernoulli",
+   0.47396352556885546
+  ],
+  [
+   "heat-engines-carnot",
+   0.5986601388767906
+  ],
+  [
+   "electric-potential",
+   0.6891818791187556
+  ],
+  [
+   "circuits-ohm",
+   0.6118154580725658
+  ],
+  [
+   "blackbody-planck",
+   0.6249574456702754
+  ],
+  [
+   "bohr-model",
+   0.5838765537469867
+  ],
+  [
+   "quantum-harmonic-oscillator",
+   0.48961363880219594
+  ]
+ ],
+ "levels": [
+  "apply",
+  "apply",
+  "recall",
+  "apply",
+  "derive",
+  "apply",
+  "apply",
+  "apply",
+  "recall",
+  "derive",
+  "recall",
+  "apply",
+  "recall",
+  "apply",
+  "apply",
+  "derive",
+  "apply",
+  "recall",
+  "apply",
+  "recall",
+  "recall",
+  "apply",
+  "recall",
+  "apply",
+  "recall",
+  "apply",
+  "recall",
+  "recall",
+  "recall",
+  "recall",
+  "apply",
+  "recall",
+  "recall",
+  "apply",
+  "recall",
+  "recall",
+  "recall",
+  "derive",
+  "apply",
+  "recall",
+  "apply",
+  "recall",
+  "apply",
+  "recall",
+  "recall",
+  "recall",
+  "apply",
+  "recall",
+  "apply",
+  "recall",
+  "apply",
+  "apply",
+  "recall",
+  "recall",
+  "recall"
+ ],
+ "route": [
+  "review:entropy-second-law",
+  "review:quantum-entanglement",
+  "review:photoelectric-quantization",
+  "review:qft-idea",
+  "review:ampere-maxwell",
+  "review:special-relativity",
+  "review:standard-model",
+  "review:wavefunction",
+  "review:em-waves",
+  "review:maxwell-equations",
+  "review:geometric-optics",
+  "review:operators-observables",
+  "review:thermo-temperature",
+  "review:faraday",
+  "review:hamiltonian",
+  "review:einstein-equation",
+  "review:coulomb",
+  "review:momentum",
+  "review:mass-energy",
+  "review:fluids-bernoulli",
+  "review:boltzmann-distribution",
+  "review:gauss-law",
+  "review:schrodinger"
+ ],
+ "summary": [
+  55,
+  55,
+  0,
+  23,
+  717,
+  1
+ ],
+ "fixed": [
+  0.13,
+  1,
+  0.001,
+  3,
+  1.4,
+  0.075,
+  0.667,
+  -0.13,
+  12345.6789
+ ],
+ "state": {
+  "cards": {
+   "vectors": {
+    "state": "review",
+    "stability": 67.1453,
+    "difficulty": 5.272967931287446,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1792915200000,
+    "scheduledDays": 16,
+    "due": 1798704000000,
+    "firedCredit": 11.25
+   },
+   "kinematics": {
+    "state": "review",
+    "stability": 164.9711,
+    "difficulty": 3.2245015893713673,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1796371740000,
+    "scheduledDays": 160,
+    "due": 1810627740000,
+    "firedCredit": 7.725
+   },
+   "calculus-physics": {
+    "state": "review",
+    "stability": 58.5377,
+    "difficulty": 7.777450818452123,
+    "reps": 5,
+    "lapses": 1,
+    "lastReview": 1796371590000,
+    "scheduledDays": 56,
+    "due": 1801469190000,
+    "firedCredit": 9.1125
+   },
+   "newton-laws": {
+    "state": "review",
+    "stability": 59.9018,
+    "difficulty": 5.272967931287446,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1792915350000,
+    "scheduledDays": 15,
+    "due": 1798099350000,
+    "firedCredit": 11.3625
+   },
+   "forces-friction": {
+    "state": "review",
+    "stability": 55.52062943378904,
+    "difficulty": 6.529655080932676,
+    "reps": 4,
+    "lapses": 0,
+    "lastReview": 1795075230000,
+    "scheduledDays": 56,
+    "due": 1799913630000
+   },
+   "work-energy": {
+    "state": "review",
+    "stability": 43.1789,
+    "difficulty": 6.0270563403407795,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1795075770000,
+    "scheduledDays": 37,
+    "due": 1798790970000,
+    "firedCredit": 6.075
+   },
+   "momentum": {
+    "state": "review",
+    "stability": 41.9423,
+    "difficulty": 6.022022191745521,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1793692920000,
+    "scheduledDays": 24,
+    "due": 1797321720000,
+    "firedCredit": 5.6625
+   },
+   "energy-conservation": {
+    "state": "review",
+    "stability": 93.6417,
+    "difficulty": 6.707460092984616,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1794211590000,
+    "scheduledDays": 46,
+    "due": 1802333190000,
+    "firedCredit": 11.625
+   },
+   "gravitation": {
+    "state": "review",
+    "stability": 111.8323,
+    "difficulty": 6.107562790291268,
+    "reps": 4,
+    "lapses": 0,
+    "lastReview": 1795075680000,
+    "scheduledDays": 89,
+    "due": 1804752480000,
+    "firedCredit": 5.0625
+   },
+   "shm": {
+    "state": "review",
+    "stability": 68.3284,
+    "difficulty": 6.01416458848632,
+    "reps": 4,
+    "lapses": 0,
+    "lastReview": 1796371770000,
+    "scheduledDays": 68,
+    "due": 1802246970000,
+    "firedCredit": 2.6625
+   },
+   "lagrangian": {
+    "state": "review",
+    "stability": 141.3275,
+    "difficulty": 4.500033631888484,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1794211440000,
+    "scheduledDays": 104,
+    "due": 1806393840000,
+    "firedCredit": 2.85
+   },
+   "thermo-temperature": {
+    "state": "review",
+    "stability": 46.6504,
+    "difficulty": 4.510985606964673,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1792954920000,
+    "scheduledDays": 29,
+    "due": 1797015720000,
+    "firedCredit": 3.525
+   },
+   "coulomb": {
+    "state": "review",
+    "stability": 10.7955,
+    "difficulty": 9.265718223279366,
+    "reps": 10,
+    "lapses": 4,
+    "lastReview": 1796371290000,
+    "scheduledDays": 10,
+    "due": 1797321690000,
+    "firedCredit": 5.6625
+   },
+   "waves": {
+    "state": "review",
+    "stability": 49.7287,
+    "difficulty": 5.263544986114632,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1794211560000,
+    "scheduledDays": 43,
+    "due": 1798531560000,
+    "firedCredit": 2.4375
+   },
+   "hamiltonian": {
+    "state": "review",
+    "stability": 23.8994,
+    "difficulty": 7.6007183288230005,
+    "reps": 6,
+    "lapses": 1,
+    "lastReview": 1795114800000,
+    "scheduledDays": 21,
+    "due": 1797188400000,
+    "firedCredit": 1.575
+   },
+   "first-law-thermo": {
+    "state": "review",
+    "stability": 118.18800625383359,
+    "difficulty": 4.505067780483744,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1796371710000,
+    "scheduledDays": 118,
+    "due": 1806566910000,
+    "firedCredit": 1.6125
+   },
+   "magnetism-lorentz": {
+    "state": "review",
+    "stability": 69.1692,
+    "difficulty": 5.263544986114632,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1795075620000,
+    "scheduledDays": 59,
+    "due": 1801037220000,
+    "firedCredit": 3.0375
+   },
+   "gauss-law": {
+    "state": "review",
+    "stability": 49.7099,
+    "difficulty": 4.510985606964673,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1793260920000,
+    "scheduledDays": 32,
+    "due": 1797580920000,
+    "firedCredit": 2.8875
+   },
+   "least-action": {
+    "state": "review",
+    "stability": 90.5627,
+    "difficulty": 3.2245015893713673,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1795075260000,
+    "scheduledDays": 84,
+    "due": 1802937660000,
+    "firedCredit": 1.125
+   },
+   "entropy-second-law": {
+    "state": "review",
+    "stability": 15.5617,
+    "difficulty": 8.33293031384734,
+    "reps": 5,
+    "lapses": 1,
+    "lastReview": 1795075530000,
+    "scheduledDays": 14,
+    "due": 1796457930000,
+    "firedCredit": 2.025
+   },
+   "faraday": {
+    "state": "review",
+    "stability": 40.1418,
+    "difficulty": 6.702425944389355,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1793693130000,
+    "scheduledDays": 29,
+    "due": 1797149130000,
+    "firedCredit": 2.8875
+   },
+   "boltzmann-entropy": {
+    "state": "review",
+    "stability": 35.6295,
+    "difficulty": 7.005475094336151,
+    "reps": 4,
+    "lapses": 0,
+    "lastReview": 1795075650000,
+    "scheduledDays": 35,
+    "due": 1798186050000,
+    "firedCredit": 1.05
+   },
+   "electric-potential": {
+    "state": "review",
+    "stability": 142.2184,
+    "difficulty": 4.500033631888484,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1795075290000,
+    "scheduledDays": 136,
+    "due": 1807344090000,
+    "firedCredit": 0.9
+   },
+   "rotational": {
+    "state": "review",
+    "stability": 46.46440538113107,
+    "difficulty": 5.391654702610264,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1796371650000,
+    "scheduledDays": 46,
+    "due": 1800346050000
+   },
+   "ampere-maxwell": {
+    "state": "review",
+    "stability": 27.2159,
+    "difficulty": 6.458347336709581,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1794211320000,
+    "scheduledDays": 21,
+    "due": 1796544120000,
+    "firedCredit": 2.2875
+   },
+   "boltzmann-distribution": {
+    "state": "review",
+    "stability": 44.0774,
+    "difficulty": 4.510985606964673,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1793692950000,
+    "scheduledDays": 39,
+    "due": 1797494550000,
+    "firedCredit": 0.9
+   },
+   "fluids-bernoulli": {
+    "state": "review",
+    "stability": 26.283762095444096,
+    "difficulty": 6.764141807459586,
+    "reps": 4,
+    "lapses": 1,
+    "lastReview": 1795075830000,
+    "scheduledDays": 26,
+    "due": 1797322230000
+   },
+   "heat-engines-carnot": {
+    "state": "review",
+    "stability": 48.217573065167045,
+    "difficulty": 5.263544986114632,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1795075800000,
+    "scheduledDays": 48,
+    "due": 1799223000000
+   },
+   "maxwell-equations": {
+    "state": "review",
+    "stability": 19.035,
+    "difficulty": 7.970369469470943,
+    "reps": 4,
+    "lapses": 0,
+    "lastReview": 1795075560000,
+    "scheduledDays": 16,
+    "due": 1796717160000,
+    "firedCredit": 4.0875
+   },
+   "circuits-ohm": {
+    "state": "review",
+    "stability": 46.16918626082309,
+    "difficulty": 5.263544986114632,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1795075740000,
+    "scheduledDays": 46,
+    "due": 1799050140000
+   },
+   "em-waves": {
+    "state": "relearning",
+    "stability": 4.0048,
+    "difficulty": 5.4132618481800785,
+    "reps": 2,
+    "lapses": 1,
+    "lastReview": 1796371440000,
+    "scheduledDays": 1,
+    "due": 1796717040000,
+    "firedCredit": 3.7875
+   },
+   "special-relativity": {
+    "state": "relearning",
+    "stability": 3.2068,
+    "difficulty": 8.058293781563167,
+    "reps": 4,
+    "lapses": 1,
+    "lastReview": 1796371620000,
+    "scheduledDays": 1,
+    "due": 1796630820000,
+    "firedCredit": 2.775
+   },
+   "photoelectric-quantization": {
+    "state": "relearning",
+    "stability": 1.5202,
+    "difficulty": 8.67152654845694,
+    "reps": 4,
+    "lapses": 2,
+    "lastReview": 1796371230000,
+    "scheduledDays": 1,
+    "due": 1796544030000,
+    "firedCredit": 2.175
+   },
+   "geometric-optics": {
+    "state": "review",
+    "stability": 29.911964484968813,
+    "difficulty": 5.9060819957043655,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1794211260000,
+    "scheduledDays": 30,
+    "due": 1796803260000
+   },
+   "wave-optics": {
+    "state": "review",
+    "stability": 28.36131183254682,
+    "difficulty": 6.0270563403407795,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1796371500000,
+    "scheduledDays": 28,
+    "due": 1798790700000
+   },
+   "blackbody-planck": {
+    "state": "review",
+    "stability": 66.10186036755368,
+    "difficulty": 5.263544986114632,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1796371530000,
+    "scheduledDays": 66,
+    "due": 1802073930000
+   },
+   "matter-waves": {
+    "state": "review",
+    "stability": 32.1958,
+    "difficulty": 5.272967931287446,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1795075410000,
+    "scheduledDays": 25,
+    "due": 1797840210000,
+    "firedCredit": 2.5875
+   },
+   "spacetime": {
+    "state": "review",
+    "stability": 84.43693347800256,
+    "difficulty": 3.2245015893713673,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1796371560000,
+    "scheduledDays": 84,
+    "due": 1803629160000,
+    "firedCredit": 0.825
+   },
+   "equivalence-principle": {
+    "state": "review",
+    "stability": 28.82549354656231,
+    "difficulty": 7.5892818288554675,
+    "reps": 4,
+    "lapses": 0,
+    "lastReview": 1796371680000,
+    "scheduledDays": 29,
+    "due": 1798877280000,
+    "firedCredit": 0.825
+   },
+   "mass-energy": {
+    "state": "review",
+    "stability": 25.5278,
+    "difficulty": 5.272967931287446,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1795075440000,
+    "scheduledDays": 24,
+    "due": 1797321840000,
+    "firedCredit": 0.45
+   },
+   "wavefunction": {
+    "state": "review",
+    "stability": 19.0118,
+    "difficulty": 6.473291771547592,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1795075200000,
+    "scheduledDays": 14,
+    "due": 1796716800000,
+    "firedCredit": 2.475
+   },
+   "bohr-model": {
+    "state": "review",
+    "stability": 60.37062188920693,
+    "difficulty": 4.510985606964673,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1795075470000,
+    "scheduledDays": 60,
+    "due": 1800259470000
+   },
+   "geodesics-curvature": {
+    "state": "review",
+    "stability": 17.667137123080398,
+    "difficulty": 7.279122168880233,
+    "reps": 4,
+    "lapses": 1,
+    "lastReview": 1796371320000,
+    "scheduledDays": 18,
+    "due": 1797926520000,
+    "firedCredit": 0.45
+   },
+   "schrodinger": {
+    "state": "review",
+    "stability": 28.6913,
+    "difficulty": 5.272967931287446,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1795075590000,
+    "scheduledDays": 22,
+    "due": 1797581190000,
+    "firedCredit": 1.95
+   },
+   "operators-observables": {
+    "state": "review",
+    "stability": 19.5634,
+    "difficulty": 3.2245015893713678,
+    "reps": 1,
+    "lapses": 0,
+    "lastReview": 1795075860000,
+    "scheduledDays": 16,
+    "due": 1796803860000,
+    "firedCredit": 1.5
+   },
+   "quantum-tunneling": {
+    "state": "review",
+    "stability": 53.531242901962344,
+    "difficulty": 6.702425944389355,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1796371410000,
+    "scheduledDays": 54,
+    "due": 1801037010000
+   },
+   "quantum-harmonic-oscillator": {
+    "state": "review",
+    "stability": 25.802439437180485,
+    "difficulty": 6.458347336709581,
+    "reps": 3,
+    "lapses": 0,
+    "lastReview": 1796371470000,
+    "scheduledDays": 26,
+    "due": 1798617870000
+   },
+   "einstein-equation": {
+    "state": "review",
+    "stability": 9.783096669760699,
+    "difficulty": 6.0349502556102195,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1796371260000,
+    "scheduledDays": 10,
+    "due": 1797235260000,
+    "firedCredit": 0.3
+   },
+   "quantum-spin": {
+    "state": "review",
+    "stability": 32.3243,
+    "difficulty": 5.272967931287446,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1796371350000,
+    "scheduledDays": 30,
+    "due": 1799136150000,
+    "firedCredit": 0.6
+   },
+   "uncertainty": {
+    "state": "review",
+    "stability": 29.60032029867379,
+    "difficulty": 5.272967931287446,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1796371380000,
+    "scheduledDays": 30,
+    "due": 1798963380000
+   },
+   "qft-idea": {
+    "state": "review",
+    "stability": 16.3971,
+    "difficulty": 3.2245015893713678,
+    "reps": 1,
+    "lapses": 0,
+    "lastReview": 1795161660000,
+    "scheduledDays": 16,
+    "due": 1796544060000,
+    "firedCredit": 0.3
+   },
+   "cosmology-glimpse": {
+    "state": "review",
+    "stability": 23.838629680483063,
+    "difficulty": 6.723555742087108,
+    "reps": 2,
+    "lapses": 0,
+    "lastReview": 1796371200000,
+    "scheduledDays": 24,
+    "due": 1798444800000
+   },
+   "hydrogen-atom": {
+    "state": "review",
+    "stability": 15.69105,
+    "difficulty": 3.2245015893713678,
+    "reps": 1,
+    "lapses": 0,
+    "lastReview": 1796371800000,
+    "scheduledDays": 16,
+    "due": 1797754200000
+   },
+   "quantum-entanglement": {
+    "state": "relearning",
+    "stability": 0.40255,
+    "difficulty": 7.1949,
+    "reps": 1,
+    "lapses": 0,
+    "lastReview": 1796371830000,
+    "scheduledDays": 1,
+    "due": 1796458230000
+   },
+   "standard-model": {
+    "state": "review",
+    "stability": 3.173,
+    "difficulty": 5.282434422319005,
+    "reps": 1,
+    "lapses": 0,
+    "lastReview": 1796371860000,
+    "scheduledDays": 3,
+    "due": 1796631060000
+   }
+  },
+  "prof": {
+   "vectors": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "kinematics": {
+    "theta": 0.6673469887116499,
+    "n": 2
+   },
+   "calculus-physics": {
+    "theta": -0.32598353642471684,
+    "n": 5
+   },
+   "newton-laws": {
+    "theta": 0.6673469887116499,
+    "n": 2
+   },
+   "forces-friction": {
+    "theta": 0.3976435979534544,
+    "n": 4
+   },
+   "work-energy": {
+    "theta": 0.474883222288958,
+    "n": 3
+   },
+   "momentum": {
+    "theta": 0.4159097903257535,
+    "n": 3
+   },
+   "energy-conservation": {
+    "theta": 0.2236705762295298,
+    "n": 3
+   },
+   "gravitation": {
+    "theta": 0.3122353153477438,
+    "n": 4
+   },
+   "shm": {
+    "theta": 0.5761201819338486,
+    "n": 4
+   },
+   "lagrangian": {
+    "theta": 0.7338254006646285,
+    "n": 3
+   },
+   "thermo-temperature": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "coulomb": {
+    "theta": -0.38549718621554907,
+    "n": 10
+   },
+   "waves": {
+    "theta": 0.8385195859253216,
+    "n": 3
+   },
+   "hamiltonian": {
+    "theta": 0.36873314278986086,
+    "n": 6
+   },
+   "first-law-thermo": {
+    "theta": 0.7338254006646285,
+    "n": 3
+   },
+   "magnetism-lorentz": {
+    "theta": 0.8385195859253216,
+    "n": 3
+   },
+   "gauss-law": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "least-action": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "entropy-second-law": {
+    "theta": -0.15432681782058205,
+    "n": 5
+   },
+   "faraday": {
+    "theta": 0.09053388695755699,
+    "n": 3
+   },
+   "boltzmann-entropy": {
+    "theta": 0.3976435979534544,
+    "n": 4
+   },
+   "electric-potential": {
+    "theta": 0.8385195859253216,
+    "n": 3
+   },
+   "rotational": {
+    "theta": 0.474883222288958,
+    "n": 3
+   },
+   "ampere-maxwell": {
+    "theta": 0.583540351561667,
+    "n": 3
+   },
+   "boltzmann-distribution": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "fluids-bernoulli": {
+    "theta": 0.3600051693527982,
+    "n": 4
+   },
+   "heat-engines-carnot": {
+    "theta": 0.7338254006646285,
+    "n": 3
+   },
+   "maxwell-equations": {
+    "theta": -0.18546317195329454,
+    "n": 4
+   },
+   "circuits-ohm": {
+    "theta": 0.8385195859253216,
+    "n": 3
+   },
+   "em-waves": {
+    "theta": -0.40629245152341364,
+    "n": 2
+   },
+   "special-relativity": {
+    "theta": -0.4069677063218448,
+    "n": 4
+   },
+   "photoelectric-quantization": {
+    "theta": -1.1450843495051488,
+    "n": 4
+   },
+   "geometric-optics": {
+    "theta": 0.22392380599400924,
+    "n": 2
+   },
+   "wave-optics": {
+    "theta": 0.37018903702826494,
+    "n": 3
+   },
+   "blackbody-planck": {
+    "theta": 0.7338254006646285,
+    "n": 3
+   },
+   "matter-waves": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "spacetime": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "equivalence-principle": {
+    "theta": 0.10255443507703976,
+    "n": 4
+   },
+   "mass-energy": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "wavefunction": {
+    "theta": 0.22392380599400924,
+    "n": 2
+   },
+   "bohr-model": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "geodesics-curvature": {
+    "theta": -0.05397857478285073,
+    "n": 4
+   },
+   "schrodinger": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "operators-observables": {
+    "theta": 0.3100255188723875,
+    "n": 1
+   },
+   "quantum-tunneling": {
+    "theta": 0.09053388695755699,
+    "n": 3
+   },
+   "quantum-harmonic-oscillator": {
+    "theta": 0.464163620271783,
+    "n": 3
+   },
+   "einstein-equation": {
+    "theta": 0.16513611990515778,
+    "n": 2
+   },
+   "quantum-spin": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "uncertainty": {
+    "theta": 0.5460885008575387,
+    "n": 2
+   },
+   "qft-idea": {
+    "theta": 0.3100255188723875,
+    "n": 1
+   },
+   "cosmology-glimpse": {
+    "theta": -0.23995416188802804,
+    "n": 2
+   },
+   "hydrogen-atom": {
+    "theta": 0.3100255188723875,
+    "n": 1
+   },
+   "quantum-entanglement": {
+    "theta": -0.6899744811276125,
+    "n": 1
+   },
+   "standard-model": {
+    "theta": 0.3100255188723875,
+    "n": 1
+   }
+  },
+  "settings": {
+   "newPerDay": 4,
+   "requestRetention": 0.9
+  },
+  "stats": {
+   "xp": 717,
+   "streak": 1,
+   "lastStudyDay": "2026-12-4",
+   "history": {
+    "2026-10-20": {
+     "new": 4,
+     "reviews": 0
+    },
+    "2026-10-21": {
+     "new": 4,
+     "reviews": 1
+    },
+    "2026-10-22": {
+     "new": 4,
+     "reviews": 1
+    },
+    "2026-10-23": {
+     "new": 4,
+     "reviews": 1
+    },
+    "2026-10-25": {
+     "new": 4,
+     "reviews": 11
+    },
+    "2026-10-26": {
+     "new": 4,
+     "reviews": 4
+    },
+    "2026-10-29": {
+     "new": 4,
+     "reviews": 8
+    },
+    "2026-10-30": {
+     "new": 4,
+     "reviews": 3
+    },
+    "2026-11-3": {
+     "new": 4,
+     "reviews": 12
+    },
+    "2026-11-9": {
+     "new": 4,
+     "reviews": 14
+    },
+    "2026-11-10": {
+     "new": 3,
+     "reviews": 0
+    },
+    "2026-11-11": {
+     "new": 1,
+     "reviews": 3
+    },
+    "2026-11-19": {
+     "new": 4,
+     "reviews": 22
+    },
+    "2026-11-20": {
+     "new": 4,
+     "reviews": 5
+    },
+    "2026-12-4": {
+     "new": 3,
+     "reviews": 20
+    }
+   }
+  }
+ }
+}

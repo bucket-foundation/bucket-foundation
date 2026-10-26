@@ -1,0 +1,1297 @@
+{
+"meta": {
+"branch": "02-physics",
+"title": "Physics — matter, energy, spacetime",
+"version": "0.3.0"
+},
+"atoms": [
+{
+"id": "kinematics",
+"title": "Kinematics — describing motion",
+"shell": "prereq",
+"type": "concept",
+"requires": [],
+"note": "Constant speed is not the same as constant velocity: 'speed' is just the number, 'velocity' includes direction, so turning at a steady speed is still acceleration.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "How are velocity and acceleration related to position?",
+"answer": "Velocity is the first time-derivative of position; accelerat"
+},
+{
+"level": "apply",
+"prompt": "A car drives around a roundabout at a steady 30 km/h. Is it ",
+"answer": "Yes — its speed is constant but its velocity vector keeps ch"
+}
+]
+},
+{
+"id": "vectors",
+"title": "Vectors and the dot/cross product",
+"shell": "prereq",
+"type": "concept",
+"requires": [],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Which product gives a scalar and which gives a vector, and w",
+"answer": "The dot product gives a scalar measuring alignment (ab cosθ)"
+},
+{
+"level": "apply",
+"prompt": "When are a·b and |a×b| each zero for nonzero vectors?",
+"answer": "a·b = 0 when the vectors are perpendicular; |a×b| = 0 when t"
+}
+]
+},
+{
+"id": "calculus-physics",
+"title": "Derivatives and integrals for physics",
+"shell": "prereq",
+"type": "method",
+"requires": [],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does the fundamental theorem of calculus say connects d",
+"answer": "Integrating the derivative of a function over an interval re"
+},
+{
+"level": "teach",
+"prompt": "Explain to a beginner why most laws of physics are different",
+"answer": "Because nature specifies how a quantity changes from instant"
+}
+]
+},
+{
+"id": "newton-laws",
+"title": "Newton's three laws of motion",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"kinematics",
+"vectors"
+],
+"note": "Action and reaction act on different bodies, so they never cancel on the same object.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "State Newton's second law in its momentum form and say when ",
+"answer": "F = dp/dt; it reduces to F = ma when mass m is constant, so "
+},
+{
+"level": "apply",
+"prompt": "A rocket pushes exhaust backward. Which law explains its for",
+"answer": "The third law: the rocket pushes gas backward and the gas pu"
+}
+]
+},
+{
+"id": "momentum",
+"title": "Momentum and its conservation",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"newton-laws"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Under what condition is total momentum conserved?",
+"answer": "When the net external force on the system is zero (an isolat"
+},
+{
+"level": "derive",
+"prompt": "Show that momentum conservation follows from Newton's second",
+"answer": "F₁₂ = −F₂₁ (third law). Each force equals dp/dt of its body,"
+}
+]
+},
+{
+"id": "work-energy",
+"title": "Work, kinetic energy, and the work–energy theorem",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"newton-laws",
+"calculus-physics",
+"vectors"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does the work–energy theorem equate?",
+"answer": "The net work done on an object equals the change in its kine"
+},
+{
+"level": "apply",
+"prompt": "Why does the tension in a string doing circular motion at co",
+"answer": "Tension points toward the center, perpendicular to the veloc"
+}
+]
+},
+{
+"id": "energy-conservation",
+"title": "Conservation of energy and potential energy",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"work-energy"
+],
+"note": "F = −∇U: force points from high to low potential, the direction of steepest descent (the gradient ∇U points uphill, so the minus sign turns it downhill).",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What relation lets you derive a conservative force from its ",
+"answer": "F = −∇U: the force is minus the gradient of the potential en"
+},
+{
+"level": "apply",
+"prompt": "A pendulum swings without friction. Where is kinetic energy ",
+"answer": "Kinetic energy is maximal at the lowest point (fastest); pot"
+}
+]
+},
+{
+"id": "rotational",
+"title": "Rotational motion and angular momentum",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"newton-laws",
+"momentum",
+"vectors"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What are the rotational analogs of force and mass?",
+"answer": "Torque (τ = r×F) is the analog of force; moment of inertia I"
+},
+{
+"level": "apply",
+"prompt": "Why does a spinning skater speed up when pulling in their ar",
+"answer": "Pulling in arms lowers I; with no external torque L = Iω is "
+}
+]
+},
+{
+"id": "gravitation",
+"title": "Newtonian gravitation",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"newton-laws",
+"energy-conservation"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "How does gravitational force scale with distance between two",
+"answer": "As the inverse square of the separation, F ∝ 1/r²."
+},
+{
+"level": "teach",
+"prompt": "Explain why the same G-based law governs both a falling appl",
+"answer": "Both are responses to Earth's gravity; the apple accelerates"
+}
+]
+},
+{
+"id": "lagrangian",
+"title": "Lagrangian mechanics",
+"shell": "nucleus",
+"type": "method",
+"requires": [
+"energy-conservation",
+"calculus-physics"
+],
+"note": "A coordinate missing from L (called a cyclic or ignorable coordinate) means its matching ('conjugate') momentum is conserved.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What is the Lagrangian, and what equation generates the equa",
+"answer": "L = T − V (kinetic minus potential energy); the Euler–Lagran"
+},
+{
+"level": "derive",
+"prompt": "Why does a coordinate absent from L give a conservation law?",
+"answer": "If q is absent then ∂L/∂q = 0, so d/dt(∂L/∂q̇) = 0, meaning "
+}
+]
+},
+{
+"id": "least-action",
+"title": "The principle of least action",
+"shell": "nucleus",
+"type": "concept",
+"requires": [
+"lagrangian"
+],
+"note": "Stationary, not strictly minimal — the true path is a critical point (a tipping point) of the action, which may be a minimum or a saddle.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What quantity is made stationary in the principle of least a",
+"answer": "The action S = ∫L dt is made stationary (δS = 0) over all pa"
+},
+{
+"level": "teach",
+"prompt": "Explain why 'least action' is a slightly misleading name.",
+"answer": "The true path makes the action stationary — a critical point"
+}
+]
+},
+{
+"id": "hamiltonian",
+"title": "Hamiltonian mechanics",
+"shell": "nucleus",
+"type": "method",
+"requires": [
+"lagrangian"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What variables does the Hamiltonian formulation use, and wha",
+"answer": "Position q and momentum p (phase space); H usually equals th"
+},
+{
+"level": "apply",
+"prompt": "What classical structure becomes the quantum commutator [x̂,",
+"answer": "The Poisson bracket {q, p} = 1; quantization replaces Poisso"
+}
+]
+},
+{
+"id": "shm",
+"title": "Simple harmonic motion",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"newton-laws",
+"energy-conservation"
+],
+"note": "Frequency is amplitude-independent only while the restoring force stays linear (proportional to displacement); push too far and this breaks down.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What condition on the force produces simple harmonic motion,",
+"answer": "A restoring force proportional to displacement (F = −kx); th"
+},
+{
+"level": "teach",
+"prompt": "Explain why the harmonic oscillator shows up everywhere in p",
+"answer": "Near any potential minimum the potential is approximately qu"
+}
+]
+},
+{
+"id": "waves",
+"title": "Waves and the wave equation",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"shm",
+"calculus-physics"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Write the relation between wave speed, frequency, and wavele",
+"answer": "v = fλ — speed equals frequency times wavelength."
+},
+{
+"level": "apply",
+"prompt": "Two identical waves meet crest-to-trough. What property of t",
+"answer": "Linearity allows superposition; the waves add and cancel — d"
+}
+]
+},
+{
+"id": "coulomb",
+"title": "Coulomb's law and the electric field",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"vectors",
+"gravitation"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Define the electric field in terms of force.",
+"answer": "The electric field is the force per unit positive test charg"
+},
+{
+"level": "apply",
+"prompt": "How does the Coulomb force differ qualitatively from Newtoni",
+"answer": "Charge has two signs, so the electric force can attract or r"
+}
+]
+},
+{
+"id": "gauss-law",
+"title": "Gauss's law",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"coulomb"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does Gauss's law relate the electric flux through a clo",
+"answer": "To the total charge enclosed by that surface, divided by ε₀."
+},
+{
+"level": "derive",
+"prompt": "Sketch how Gauss's law gives the field of a point charge.",
+"answer": "By symmetry E is radial and constant on a sphere of radius r"
+}
+]
+},
+{
+"id": "magnetism-lorentz",
+"title": "Magnetic field and the Lorentz force",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"coulomb",
+"vectors"
+],
+"note": "The magnetic force never changes a particle's speed — only its direction.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Write the Lorentz force law and state why the magnetic part ",
+"answer": "F = q(E + v×B); the magnetic force qv×B is perpendicular to "
+},
+{
+"level": "apply",
+"prompt": "A charged particle enters a uniform magnetic field perpendic",
+"answer": "A circle — the magnetic force is constant in magnitude and a"
+}
+]
+},
+{
+"id": "faraday",
+"title": "Faraday's law of induction",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"magnetism-lorentz",
+"calculus-physics"
+],
+"note": "Lenz's law (the minus sign) is energy conservation in disguise: induced currents flow so as to oppose the change driving them.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What induces an electromotive force in a loop according to F",
+"answer": "A changing magnetic flux through the loop; the EMF equals mi"
+},
+{
+"level": "teach",
+"prompt": "Explain the physical meaning of the minus sign in Faraday's ",
+"answer": "It is Lenz's law: the induced current flows so as to oppose "
+}
+]
+},
+{
+"id": "ampere-maxwell",
+"title": "Ampère–Maxwell law",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"magnetism-lorentz",
+"gauss-law",
+"faraday"
+],
+"note": "The displacement-current term is what makes Maxwell's equations consistent with conservation of charge (charge is never created or destroyed).",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What two things can create a circulating magnetic field acco",
+"answer": "An electric current J and a changing electric field (the dis"
+},
+{
+"level": "apply",
+"prompt": "Why did Maxwell need to add the displacement-current term?",
+"answer": "To make the law consistent when current is interrupted (e.g."
+}
+]
+},
+{
+"id": "maxwell-equations",
+"title": "Maxwell's equations unified",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"gauss-law",
+"faraday",
+"ampere-maxwell"
+],
+"note": "c = 1/√(μ₀ε₀): the speed of light is built from the electric constant ε₀ and magnetic constant μ₀ alone.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does ∇·B = 0 express physically?",
+"answer": "There are no magnetic monopoles; magnetic field lines have n"
+},
+{
+"level": "derive",
+"prompt": "Where does the speed of light come from in Maxwell's framewo",
+"answer": "Combining Faraday's and Ampère–Maxwell's laws in vacuum yiel"
+}
+]
+},
+{
+"id": "em-waves",
+"title": "Electromagnetic waves",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"maxwell-equations",
+"waves"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "How are E, B, and the direction of propagation oriented in a",
+"answer": "All three are mutually perpendicular; E and B oscillate in p"
+},
+{
+"level": "teach",
+"prompt": "Explain to a beginner why light needs no medium to travel.",
+"answer": "The wave is a self-sustaining exchange between changing elec"
+}
+]
+},
+{
+"id": "thermo-temperature",
+"title": "Temperature and the zeroth/ideal-gas laws",
+"shell": "nucleus",
+"type": "concept",
+"requires": [
+"kinematics",
+"momentum"
+],
+"note": "Equipartition: ½k_BT of energy per quadratic degree of freedom — translation, rotation, and vibration each count as ways to store energy.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What microscopic quantity does temperature measure in an ide",
+"answer": "The average translational kinetic energy of the molecules, ⟨"
+},
+{
+"level": "apply",
+"prompt": "If you double the absolute temperature of a fixed amount of ",
+"answer": "It doubles — by PV = NkT, with N and V fixed, P is proportio"
+}
+]
+},
+{
+"id": "first-law-thermo",
+"title": "First law of thermodynamics",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"energy-conservation",
+"thermo-temperature"
+],
+"note": "U is a state function (depends only on the current state); Q and W are path-dependent (depend on the route taken) — which is why we write δ, not d, for them.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "State the first law of thermodynamics in words.",
+"answer": "The change in a system's internal energy equals the heat add"
+},
+{
+"level": "teach",
+"prompt": "Why do we write δQ and δW but dU?",
+"answer": "Heat and work depend on the process path (inexact differenti"
+}
+]
+},
+{
+"id": "entropy-second-law",
+"title": "Entropy and the second law",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"first-law-thermo"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does the second law say about the entropy of an isolate",
+"answer": "It never decreases; it increases for irreversible processes "
+},
+{
+"level": "apply",
+"prompt": "Why can't a heat engine convert all absorbed heat into work?",
+"answer": "Doing so would lower total entropy; some heat must be dumped"
+}
+]
+},
+{
+"id": "boltzmann-entropy",
+"title": "Boltzmann's entropy and the microscopic view",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"entropy-second-law"
+],
+"note": "Engraved on Boltzmann's tombstone: S = k log W (his W is the same as Ω, the microstate count).",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does Ω represent in S = k ln Ω?",
+"answer": "The number of microstates (microscopic arrangements) consist"
+},
+{
+"level": "teach",
+"prompt": "Use S = k ln Ω to explain why entropy tends to increase.",
+"answer": "Macrostates with more microstates are vastly more numerous, "
+}
+]
+},
+{
+"id": "boltzmann-distribution",
+"title": "Boltzmann distribution and partition function",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"boltzmann-entropy",
+"thermo-temperature"
+],
+"note": "Once you can write Z, you can compute everything: F = −k_BT ln Z, and the average energy ⟨E⟩ = −∂lnZ/∂β (where β = 1/k_BT).",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What is the partition function and why is it central?",
+"answer": "Z = Σ e^(−Eᵢ/kT), the sum of Boltzmann factors; it normalize"
+},
+{
+"level": "apply",
+"prompt": "Two states differ by energy ΔE at temperature T. What is the",
+"answer": "p_high/p_low = e^(−ΔE/kT); a few kT of energy difference mak"
+}
+]
+},
+{
+"id": "geometric-optics",
+"title": "Geometric optics — reflection and refraction",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"em-waves",
+"least-action"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "State Snell's law and define the refractive index.",
+"answer": "n₁sinθ₁ = n₂sinθ₂; the refractive index n = c/v is the ratio"
+},
+{
+"level": "derive",
+"prompt": "What variational principle does Snell's law follow from?",
+"answer": "Fermat's principle of least time — light takes the path that"
+}
+]
+},
+{
+"id": "wave-optics",
+"title": "Wave optics — interference and diffraction",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"em-waves",
+"waves"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What is the condition for bright fringes in a two-slit inter",
+"answer": "d sinθ = mλ — the path difference between slits is a whole n"
+},
+{
+"level": "teach",
+"prompt": "Why did the double-slit experiment settle the wave-vs-partic",
+"answer": "Interference fringes can only arise from waves adding and ca"
+}
+]
+},
+{
+"id": "special-relativity",
+"title": "Special relativity — postulates and Lorentz transforms",
+"shell": "frontier",
+"type": "result",
+"requires": [
+"maxwell-equations",
+"newton-laws"
+],
+"note": "γ ≈ 1 for everyday speeds (so relativity is invisible in daily life); its effects only become large as v approaches c, the speed of light.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "State Einstein's two postulates of special relativity.",
+"answer": "(1) The laws of physics are identical in all inertial frames"
+},
+{
+"level": "apply",
+"prompt": "A muon travels at 0.99c. Qualitatively, why does it reach th",
+"answer": "Time dilation (large γ) stretches its lifetime in the ground"
+}
+]
+},
+{
+"id": "spacetime",
+"title": "Spacetime and the invariant interval",
+"shell": "frontier",
+"type": "concept",
+"requires": [
+"special-relativity"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What quantity is invariant for all inertial observers in spe",
+"answer": "The spacetime interval Δs² = −c²Δt² + Δx² + Δy² + Δz², even "
+},
+{
+"level": "teach",
+"prompt": "Explain what the light cone tells you about causality.",
+"answer": "Only events within (or on) each other's light cones are time"
+}
+]
+},
+{
+"id": "mass-energy",
+"title": "Mass–energy equivalence",
+"shell": "frontier",
+"type": "equation",
+"requires": [
+"special-relativity",
+"momentum"
+],
+"note": "Massless particles obey E = pc and must move at exactly the speed of light c.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Write the full energy–momentum relation and state what it gi",
+"answer": "E² = (pc)² + (mc²)²; at rest p = 0 so E₀ = mc²."
+},
+{
+"level": "apply",
+"prompt": "What does the relation predict for a massless particle?",
+"answer": "With m = 0, E = pc, so it has energy and momentum but no res"
+}
+]
+},
+{
+"id": "equivalence-principle",
+"title": "Equivalence principle",
+"shell": "frontier",
+"type": "concept",
+"requires": [
+"gravitation",
+"special-relativity"
+],
+"note": "The equivalence is local: over any extended region, tidal forces (the field's variation from point to point) betray real spacetime curvature.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does the equivalence principle assert about gravity and",
+"answer": "Locally, the effects of a uniform gravitational field are in"
+},
+{
+"level": "teach",
+"prompt": "Why is the equivalence principle only valid locally?",
+"answer": "Over extended regions, tidal differences in a real gravitati"
+}
+]
+},
+{
+"id": "geodesics-curvature",
+"title": "Curved spacetime and geodesics",
+"shell": "frontier",
+"type": "concept",
+"requires": [
+"equivalence-principle",
+"spacetime",
+"least-action"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What path does a freely falling body follow in general relat",
+"answer": "A geodesic — the straightest possible path (extremal proper "
+},
+{
+"level": "teach",
+"prompt": "Explain how GR reinterprets the 'force' of gravity.",
+"answer": "There is no force; mass-energy curves spacetime, and free ob"
+}
+]
+},
+{
+"id": "einstein-equation",
+"title": "Einstein field equation (a glimpse)",
+"shell": "frontier",
+"type": "equation",
+"requires": [
+"geodesics-curvature",
+"mass-energy"
+],
+"note": "Often written G_μν + Λg_μν = (8πG/c⁴)T_μν once the cosmological constant Λ is included.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "In one sentence, what does the Einstein field equation relat",
+"answer": "It relates the curvature of spacetime (G_μν) to its energy–m"
+},
+{
+"level": "apply",
+"prompt": "Name two famous classes of solutions to the Einstein field e",
+"answer": "The Schwarzschild solution (black holes / spherical masses) "
+}
+]
+},
+{
+"id": "photoelectric-quantization",
+"title": "Quantization — photons and the photoelectric effect",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"em-waves",
+"energy-conservation"
+],
+"note": "Planck's constant h is the quantum of action — it sets the size of the 'graininess' of the world.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does the photoelectric effect reveal about light, and w",
+"answer": "Light energy is quantized into photons of energy E = hν; eje"
+},
+{
+"level": "apply",
+"prompt": "Why does dim blue light eject electrons from a metal while b",
+"answer": "Each blue photon may exceed the work function φ while each r"
+}
+]
+},
+{
+"id": "matter-waves",
+"title": "Matter waves — de Broglie",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"photoelectric-quantization",
+"momentum"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Write the de Broglie relation and say what it asserts.",
+"answer": "λ = h/p; every particle has a wavelength inversely proportio"
+},
+{
+"level": "teach",
+"prompt": "Why don't we observe the wave nature of everyday objects?",
+"answer": "Their momenta are enormous compared to h, so λ = h/p is unim"
+}
+]
+},
+{
+"id": "wavefunction",
+"title": "The wavefunction and Born rule",
+"shell": "nucleus",
+"type": "concept",
+"requires": [
+"matter-waves",
+"calculus-physics"
+],
+"note": "The phase of ψ (its clock-hand angle) has no classical analog, but it is exactly what makes quantum interference possible.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does the Born rule say |ψ(x)|² represents?",
+"answer": "The probability density of finding the particle at position "
+},
+{
+"level": "teach",
+"prompt": "Why must the wavefunction be complex rather than real?",
+"answer": "Its phase carries physical information: relative phases betw"
+}
+]
+},
+{
+"id": "schrodinger",
+"title": "Schrödinger equation",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"wavefunction",
+"hamiltonian"
+],
+"note": "Evolution of ψ is deterministic and smooth; only the act of measurement injects probability.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does the time-independent Schrödinger equation Ĥψ = Eψ ",
+"answer": "The stationary states and their allowed (often discrete) ene"
+},
+{
+"level": "derive",
+"prompt": "What operator replaces classical momentum p to build the Ham",
+"answer": "p → −iℏ∇, so p²/2m becomes −(ℏ²/2m)∇², the kinetic-energy op"
+}
+]
+},
+{
+"id": "operators-observables",
+"title": "Operators, observables, and eigenstates",
+"shell": "nucleus",
+"type": "concept",
+"requires": [
+"wavefunction"
+],
+"note": "Hermitian operators have real eigenvalues — exactly what measured quantities must be, since you never read off an imaginary number on an instrument.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What are the possible results of measuring an observable, in",
+"answer": "The eigenvalues of the (Hermitian) operator representing tha"
+},
+{
+"level": "apply",
+"prompt": "Why must observables be represented by Hermitian operators?",
+"answer": "Because Hermitian operators have real eigenvalues (measureme"
+}
+]
+},
+{
+"id": "uncertainty",
+"title": "Heisenberg uncertainty principle",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"operators-observables",
+"matter-waves"
+],
+"note": "It is fundamental, not instrumental — a consequence of the wave (Fourier) structure of matter itself.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "State the position–momentum uncertainty relation.",
+"answer": "Δx·Δp ≥ ℏ/2 — the product of position and momentum uncertain"
+},
+{
+"level": "teach",
+"prompt": "Explain why uncertainty is fundamental rather than a limitat",
+"answer": "It follows from the Fourier relationship between a wave's sp"
+}
+]
+},
+{
+"id": "quantum-tunneling",
+"title": "Quantum tunneling",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"schrodinger"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What is quantum tunneling?",
+"answer": "The passage of a particle through a potential barrier higher"
+},
+{
+"level": "apply",
+"prompt": "How does the transmission probability depend on barrier widt",
+"answer": "It decays exponentially with width (T ~ e^(−2κL)); applicati"
+}
+]
+},
+{
+"id": "quantum-spin",
+"title": "Spin and the Pauli exclusion principle",
+"shell": "nucleus",
+"type": "concept",
+"requires": [
+"operators-observables",
+"magnetism-lorentz"
+],
+"note": "Fermions (half-integer spin) refuse to share states; bosons (integer spin) happily pile up — the basis of all matter structure.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does the Pauli exclusion principle forbid, and to which",
+"answer": "It forbids two identical fermions (half-integer-spin particl"
+},
+{
+"level": "teach",
+"prompt": "How does spin and exclusion explain the structure of the per",
+"answer": "Electrons are spin-½ fermions; exclusion forces them into su"
+}
+]
+},
+{
+"id": "hydrogen-atom",
+"title": "The hydrogen atom and quantized energy levels",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"schrodinger",
+"coulomb",
+"quantum-spin"
+],
+"note": "13.6 eV is the ionization energy of hydrogen — the energy needed to rip its single electron entirely free.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What is the energy of the nth hydrogen level, and what does ",
+"answer": "E_n = −13.6 eV/n²; the ground state (n = 1) is −13.6 eV, the"
+},
+{
+"level": "apply",
+"prompt": "Why does hydrogen emit light only at sharp, specific wavelen",
+"answer": "Because its energy levels are discrete; an electron dropping"
+}
+]
+},
+{
+"id": "quantum-entanglement",
+"title": "Entanglement and Bell's theorem",
+"shell": "frontier",
+"type": "result",
+"requires": [
+"wavefunction",
+"quantum-spin"
+],
+"note": "Entanglement correlates outcomes but cannot transmit a signal — so there is no conflict with relativity's speed limit.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does Bell's theorem establish about quantum correlation",
+"answer": "That entangled-particle correlations exceed what any local h"
+},
+{
+"level": "teach",
+"prompt": "Explain why entanglement does not violate relativity despite",
+"answer": "The measurement outcome on each side is random; no controlla"
+}
+]
+},
+{
+"id": "qft-idea",
+"title": "Quantum field theory — the idea",
+"shell": "frontier",
+"type": "concept",
+"requires": [
+"schrodinger",
+"special-relativity",
+"em-waves"
+],
+"note": "The photon is the quantum (single ripple) of the electromagnetic field — QFT is why 'particle' and 'wave' finally stop being a paradox.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "In quantum field theory, what is a particle?",
+"answer": "A quantized excitation (a ripple) of an underlying field tha"
+},
+{
+"level": "teach",
+"prompt": "Why is a field theory needed when relativity meets quantum m",
+"answer": "Relativity's E = mc² permits energy to create and destroy pa"
+}
+]
+},
+{
+"id": "standard-model",
+"title": "The Standard Model (a glimpse)",
+"shell": "frontier",
+"type": "result",
+"requires": [
+"qft-idea",
+"quantum-spin",
+"maxwell-equations"
+],
+"note": "It excludes gravity; unifying the Standard Model with general relativity (a 'theory of everything') remains one of physics' biggest open problems.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Which fundamental force is NOT described by the Standard Mod",
+"answer": "Gravity; the Standard Model covers the electromagnetic, weak"
+},
+{
+"level": "teach",
+"prompt": "What role does the Higgs field play in the Standard Model?",
+"answer": "Through spontaneous symmetry breaking, the Higgs field gives"
+}
+]
+},
+{
+"id": "cosmology-glimpse",
+"title": "Expanding universe (a glimpse)",
+"shell": "frontier",
+"type": "result",
+"requires": [
+"einstein-equation",
+"em-waves"
+],
+"note": "The cosmic microwave background is the relic light released when the cooling universe first became transparent, about 380,000 years after the Big Bang.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does Hubble's law relate, and what does it imply about ",
+"answer": "Recession velocity to distance (v = H₀d); it implies the uni"
+},
+{
+"level": "apply",
+"prompt": "What observation is taken as direct evidence of a hot early ",
+"answer": "The cosmic microwave background — relic thermal radiation le"
+}
+]
+},
+{
+"id": "forces-friction",
+"title": "Contact forces and friction",
+"shell": "prereq",
+"type": "concept",
+"requires": [
+"newton-laws"
+],
+"note": "Static friction is a range (anything up to μ_s N), not a fixed value — it rises to match whatever force you apply, right up until the surface slips.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "How does kinetic friction depend on the normal force, and ho",
+"answer": "Kinetic friction is f_k = μ_k N (fixed once sliding); static"
+},
+{
+"level": "teach",
+"prompt": "Explain why friction connects mechanics to thermodynamics.",
+"answer": "Friction converts ordered mechanical energy into disordered "
+}
+]
+},
+{
+"id": "fluids-bernoulli",
+"title": "Fluid flow and Bernoulli's principle",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"energy-conservation",
+"thermo-temperature"
+],
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What does Bernoulli's principle say about the pressure of a ",
+"answer": "Its pressure is lower; pressure plus kinetic plus gravitatio"
+},
+{
+"level": "apply",
+"prompt": "Why does air flowing faster over the top of a wing contribut",
+"answer": "Faster flow over the top means lower pressure there; the hig"
+}
+]
+},
+{
+"id": "heat-engines-carnot",
+"title": "Heat engines and the Carnot limit",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"entropy-second-law"
+],
+"note": "Carnot efficiency depends only on the two temperatures, never on the engine's design, materials, or fuel.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "Write the maximum (Carnot) efficiency of a heat engine betwe",
+"answer": "η_Carnot = 1 − T_c/T_h, achievable only by a reversible engi"
+},
+{
+"level": "teach",
+"prompt": "Why can no engine ever reach 100% efficiency converting heat",
+"answer": "Rejecting some heat to a cold reservoir is required to keep "
+}
+]
+},
+{
+"id": "electric-potential",
+"title": "Electric potential and capacitance",
+"shell": "nucleus",
+"type": "equation",
+"requires": [
+"coulomb",
+"energy-conservation"
+],
+"note": "Voltage is energy per unit charge; the field points from high to low potential (E = −∇V).",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "How are electric field and electric potential related?",
+"answer": "The field is minus the gradient of the potential, E = −∇V; t"
+},
+{
+"level": "apply",
+"prompt": "A capacitor of capacitance C is charged to voltage V. How mu",
+"answer": "U = ½CV², stored in the electric field between the plates."
+}
+]
+},
+{
+"id": "circuits-ohm",
+"title": "Circuits — Ohm's law and Kirchhoff's rules",
+"shell": "nucleus",
+"type": "method",
+"requires": [
+"electric-potential"
+],
+"note": "Junction rule = conservation of charge; loop rule = conservation of energy — both in circuit clothing.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "State Kirchhoff's two rules and the conservation law each ex",
+"answer": "Junction rule: currents into a node equal currents out (char"
+},
+{
+"level": "apply",
+"prompt": "Two resistors R₁ and R₂ are in series across voltage V. What",
+"answer": "The same current through both, I = V/(R₁ + R₂), since series"
+}
+]
+},
+{
+"id": "blackbody-planck",
+"title": "Blackbody radiation and Planck's law",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"em-waves",
+"boltzmann-distribution"
+],
+"note": "Planck introduced energy quantization reluctantly, as a mathematical trick to fit the data — it turned out to be how the world actually works.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What assumption did Planck introduce to explain blackbody ra",
+"answer": "That the emitting oscillators could only carry energy in dis"
+},
+{
+"level": "teach",
+"prompt": "What was the 'ultraviolet catastrophe' and how did quantizat",
+"answer": "Classical theory predicted infinite emission at short wavele"
+}
+]
+},
+{
+"id": "bohr-model",
+"title": "Bohr model of the atom",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"matter-waves",
+"coulomb",
+"photoelectric-quantization"
+],
+"note": "Bohr's neat orbits are a useful fiction — full quantum mechanics replaces them with three-dimensional probability clouds.",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What quantity did Bohr quantize, and what determines the fre",
+"answer": "He quantized orbital angular momentum (L = nℏ); emitted ligh"
+},
+{
+"level": "teach",
+"prompt": "How does the de Broglie wavelength justify Bohr's angular-mo",
+"answer": "Requiring a whole number of de Broglie wavelengths to fit ar"
+}
+]
+},
+{
+"id": "quantum-harmonic-oscillator",
+"title": "Quantum harmonic oscillator",
+"shell": "nucleus",
+"type": "result",
+"requires": [
+"schrodinger",
+"shm"
+],
+"note": "Zero-point energy ½ℏω is real and measurable — it keeps helium liquid even at absolute zero and produces the Casimir effect (a tiny force between nearby plates in vacuum).",
+"summary": "",
+"quiz": [
+{
+"level": "recall",
+"prompt": "What is the energy spectrum of the quantum harmonic oscillat",
+"answer": "E_n = ℏω(n + ½) for n = 0, 1, 2, …; levels are equally space"
+},
+{
+"level": "teach",
+"prompt": "Why does the quantum oscillator have nonzero energy in its g",
+"answer": "The uncertainty principle forbids simultaneously definite ze"
+}
+]
+}
+]
+}
