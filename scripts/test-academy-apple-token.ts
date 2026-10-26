@@ -10,6 +10,9 @@ import {
   exchangeAppleCode,
   openToken,
   retryCronReply,
+  APPLE_FETCH_TIMEOUT_MS,
+  requeueCredentialFailed,
+  RUN_BUDGET_SECONDS,
   retryPendingRevokes,
   MAX_CREDENTIAL_WAIT_DAYS,
   revokeForAccountDelete,
@@ -29,10 +32,10 @@ const ENC = randomBytes(32);
 
 type Reply = { ok: boolean; status: number; body?: unknown } | "throw" | "timeout";
 
-function apple(replies: Reply[]) {
+function apple(replies: Reply[], fetchSeconds = 0) {
   const calls: { url: string; body: URLSearchParams; signal: AbortSignal }[] = [];
   const tokens = new Map<string, StoredAppleToken>();
-  const pending: (PendingRevoke & { status: string; touched: number })[] = [];
+  const pending: (PendingRevoke & { status: string; touched: number; lastError: string; first: number | null })[] = [];
   let pendingReads = 0;
   const alerts: string[] = [];
   const logs: string[] = [];
@@ -48,6 +51,7 @@ function apple(replies: Reply[]) {
     log: (event, f) => void logs.push(`${event} ${f.ok} ${f.reason ?? ""}`.trim()),
     fetch: async (url, init) => {
       calls.push({ url, body: new URLSearchParams(init.body), signal: init.signal });
+      now += fetchSeconds;
       const r = replies.length > 1 ? replies.shift()! : replies[0];
       if (r === "throw") throw new TypeError("network down");
       if (r === "timeout") {
@@ -59,12 +63,25 @@ function apple(replies: Reply[]) {
     save: async (u, t) => void tokens.set(`${u}|${t.clientId}`, t),
     list: async (u) => Array.from(tokens.entries()).filter(([k]) => k.startsWith(`${u}|`)).map(([, t]) => t),
     remove: async (u, c) => void tokens.delete(`${u}|${c}`),
-    addPending: async (t) => void pending.push({ ...t, id: nextId++, attempts: 1, status: "pending", createdSeconds: now, touched: clock++ }),
+    addPending: async (t) => void pending.push({ ...t, id: nextId++, attempts: 1, status: "pending", touched: clock++, lastError: "", first: null }),
     listPending: async (n) => (pendingReads++, pending.filter((p) => p.status === "pending").sort((a, b) => a.touched - b.touched).slice(0, n)),
-    touchPending: async (id) => void (pending.find((x) => x.id === id)!.touched = clock++),
-    removePending: async (id) => void pending.splice(pending.findIndex((p) => p.id === id), 1),
-    bumpPending: async (id, _r, failed) => {
+    touchPending: async (id, reason) => {
       const p = pending.find((x) => x.id === id)!;
+      p.touched = clock++;
+      p.lastError = reason;
+      p.first ??= now;
+      return p.first;
+    },
+    countCredentialFailed: async () => pending.filter((p) => p.status === "failed" && p.lastError.endsWith("invalid_client")).length,
+    requeueCredentialFailed: async () => {
+      const hit = pending.filter((p) => p.status === "failed" && p.lastError.endsWith("invalid_client"));
+      for (const p of hit) Object.assign(p, { status: "pending", first: null, touched: clock++ });
+      return hit.length;
+    },
+    removePending: async (id) => void pending.splice(pending.findIndex((p) => p.id === id), 1),
+    bumpPending: async (id, r, failed) => {
+      const p = pending.find((x) => x.id === id)!;
+      p.lastError = r;
       p.attempts += 1;
       p.touched = clock++;
       if (failed) p.status = "failed";
@@ -171,7 +188,7 @@ for (const reply of [{ ok: false, status: 500 }, "throw", "timeout"] as const) {
     assert.equal(w.tokens.size, 0);
     assert.equal(w.pending.length, 1);
     assert.equal(openToken(ENC, w.pending[0].sealed), "rb");
-    assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 1, failed: 0, expired: 0, alerts: [] });
+    assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 1, failed: 0, expired: 0, credentialFailedRows: 0, skipped: 0, alerts: [] });
     assert.equal(w.pending.length, 0);
     assert.equal(w.calls.at(-1)!.body.get("token"), "rb");
   });
@@ -181,7 +198,7 @@ test("a retry that fails again keeps the pending row and counts the attempt", as
   const w = apple([{ ok: false, status: 503 }]);
   w.store("u1", "foundation.bucket.app", "rb");
   await revokeUserTokens(w.deps, "u1");
-  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 1, expired: 0, alerts: [] });
+  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 1, expired: 0, credentialFailedRows: 0, skipped: 0, alerts: [] });
   assert.equal(w.pending[0].attempts, 2);
   assert.ok(w.logs.includes("apple_revoke_retry false http_503"));
 });
@@ -227,7 +244,7 @@ test("a pending row is marked failed after five attempts and then skipped", asyn
   assert.equal(w.pending[0].attempts, MAX_REVOKE_ATTEMPTS);
   assert.equal(w.pending[0].status, "failed");
   const before = w.calls.length;
-  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 0, expired: 0, alerts: [] });
+  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 0, expired: 0, credentialFailedRows: 0, skipped: 0, alerts: [] });
   assert.equal(w.calls.length, before);
 });
 
@@ -246,7 +263,7 @@ test("invalid_client keeps rows pending without counting the attempt and alerts 
   w.store("u2", "com.polingual.app", "r2");
   await revokeUserTokens(w.deps, "u1");
   await revokeUserTokens(w.deps, "u2");
-  for (let i = 0; i < MAX_REVOKE_ATTEMPTS + 1; i++) assert.deepEqual((({ alerts, ...r }) => (assert.equal(alerts.length, 1), r))(await retryPendingRevokes(w.deps)), { revoked: 0, failed: 2, expired: 0 });
+  for (let i = 0; i < MAX_REVOKE_ATTEMPTS + 1; i++) assert.deepEqual((({ alerts, ...r }) => (assert.equal(alerts.length, 1), r))(await retryPendingRevokes(w.deps)), { revoked: 0, failed: 2, expired: 0, credentialFailedRows: 0, skipped: 0 });
   assert.deepEqual(w.pending.map((p) => [p.status, p.attempts]), [["pending", 1], ["pending", 1]]);
   assert.equal(w.alerts.length, MAX_REVOKE_ATTEMPTS + 1);
   assert.match(w.alerts[0], /invalid_client/);
@@ -270,7 +287,7 @@ test("invalid_client makes the cron answer 503 with the alert; a clean run answe
   assert.equal(bad.body.ok, false);
   assert.match(bad.body.alerts[0], /invalid_client for foundation\.bucket\.app/);
   const empty = apple([{ ok: true, status: 200 }]);
-  assert.deepEqual(retryCronReply(await retryPendingRevokes(empty.deps)), { status: 200, body: { ok: true, revoked: 0, failed: 0, expired: 0, alerts: [] } });
+  assert.deepEqual(retryCronReply(await retryPendingRevokes(empty.deps)), { status: 200, body: { ok: true, revoked: 0, failed: 0, expired: 0, credentialFailedRows: 0, skipped: 0, alerts: [] } });
 });
 
 test("rows held by invalid_client rotate: each run takes the oldest-touched batch, so every row gets a turn", async () => {
@@ -288,10 +305,12 @@ test("rows held by invalid_client rotate: each run takes the oldest-touched batc
   assert.deepEqual(seen, [[0, 1], [2, 3], [4, 0]]);
 });
 
-test("a row stuck on invalid_client past the age limit is marked failed and alerted", async () => {
+test("the age limit counts from the first invalid_client, and failed rows keep the cron red until an admin requeue", async () => {
   const w = apple([{ ok: false, status: 400, body: { error: "invalid_client" } }]);
   w.store("u1", "foundation.bucket.app", "r1");
   await revokeUserTokens(w.deps, "u1");
+  w.advance(40 * 86400);
+  assert.equal((await retryPendingRevokes(w.deps)).expired, 0);
   w.advance(MAX_CREDENTIAL_WAIT_DAYS * 86400 - 60);
   assert.equal((await retryPendingRevokes(w.deps)).expired, 0);
   assert.equal(w.pending[0].status, "pending");
@@ -299,6 +318,35 @@ test("a row stuck on invalid_client past the age limit is marked failed and aler
   const r = await retryPendingRevokes(w.deps);
   assert.equal(r.expired, 1);
   assert.equal(w.pending[0].status, "failed");
-  assert.match(r.alerts[1], /waited over 30 days/);
-  assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 0, expired: 0, alerts: [] });
+  assert.ok(r.alerts.some((a) => /waited over 30 days/.test(a)));
+  const idle = await retryPendingRevokes(w.deps);
+  assert.equal(idle.failed, 0);
+  assert.equal(idle.credentialFailedRows, 1);
+  assert.equal(retryCronReply(idle).status, 503);
+  assert.match(idle.alerts[0], /requeue/);
+  assert.deepEqual(await requeueCredentialFailed(w.deps), { requeued: 1 });
+  assert.deepEqual([w.pending[0].status, w.pending[0].first], ["pending", null]);
+});
+
+test("requeue leaves invalid_grant failures alone", async () => {
+  const w = apple([{ ok: false, status: 400, body: { error: "invalid_grant" } }]);
+  w.store("u1", "foundation.bucket.app", "r1");
+  await revokeUserTokens(w.deps, "u1");
+  await retryPendingRevokes(w.deps);
+  assert.deepEqual(await requeueCredentialFailed(w.deps), { requeued: 0 });
+  assert.equal(w.pending[0].status, "failed");
+  assert.equal(retryCronReply(await retryPendingRevokes(w.deps)).status, 200);
+});
+
+test("a run stops starting Apple calls once the time budget is spent", async () => {
+  const w = apple([{ ok: true, status: 200 }], 10);
+  for (let i = 0; i < 8; i++) {
+    w.store(`u${i}`, "foundation.bucket.app", `r${i}`);
+    w.pending.push({ clientId: "foundation.bucket.app", sealed: w.tokens.get(`u${i}|foundation.bucket.app`)!.sealed, id: 100 + i, attempts: 1, status: "pending", touched: -100 + i, lastError: "", first: null });
+  }
+  const r = await retryPendingRevokes(w.deps);
+  assert.equal(r.revoked, Math.ceil(RUN_BUDGET_SECONDS / 10));
+  assert.equal(r.skipped, 8 - r.revoked);
+  assert.equal(retryCronReply(r).status, 200);
+  assert.ok(RUN_BUDGET_SECONDS + APPLE_FETCH_TIMEOUT_MS / 1000 < 60);
 });

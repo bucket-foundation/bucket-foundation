@@ -7,6 +7,7 @@ export const APPLE_FETCH_TIMEOUT_MS = 8000;
 export const PENDING_BATCH = 20;
 export const MAX_REVOKE_ATTEMPTS = 5;
 export const MAX_CREDENTIAL_WAIT_DAYS = 30;
+export const RUN_BUDGET_SECONDS = 45;
 
 export interface AppleKey {
   teamId: string;
@@ -22,7 +23,6 @@ export interface StoredAppleToken {
 export interface PendingRevoke extends StoredAppleToken {
   id: number;
   attempts: number;
-  createdSeconds: number;
 }
 
 type FetchInit = { method: "POST"; headers: Record<string, string>; body: string; signal: AbortSignal };
@@ -39,7 +39,9 @@ export interface AppleTokenDeps {
   listPending: (limit: number) => Promise<PendingRevoke[]>;
   removePending: (id: number) => Promise<void>;
   bumpPending: (id: number, reason: string, failed: boolean) => Promise<void>;
-  touchPending: (id: number, reason: string) => Promise<void>;
+  touchPending: (id: number, reason: string) => Promise<number>;
+  countCredentialFailed: () => Promise<number>;
+  requeueCredentialFailed: () => Promise<number>;
   log: (event: string, fields: Record<string, unknown>) => void;
   alert: (message: string) => void;
   nowSeconds: () => number;
@@ -142,11 +144,19 @@ export interface RetryResult {
   revoked: number;
   failed: number;
   expired: number;
+  credentialFailedRows: number;
+  skipped: number;
   alerts: string[];
 }
 
+export async function requeueCredentialFailed(deps: AppleTokenDeps): Promise<{ requeued: number }> {
+  const requeued = await deps.requeueCredentialFailed();
+  deps.log("apple_revoke_requeue", { ok: true, requeued });
+  return { requeued };
+}
+
 export function retryCronReply(r: RetryResult): { status: number; body: RetryResult & { ok: boolean } } {
-  return r.alerts.length ? { status: 503, body: { ok: false, ...r } } : { status: 200, body: { ok: true, ...r } };
+  return r.alerts.length || r.credentialFailedRows ? { status: 503, body: { ok: false, ...r } } : { status: 200, body: { ok: true, ...r } };
 }
 
 export async function retryPendingRevokes(deps: AppleTokenDeps, limit = PENDING_BATCH): Promise<RetryResult> {
@@ -155,17 +165,24 @@ export async function retryPendingRevokes(deps: AppleTokenDeps, limit = PENDING_
   let expired = 0;
   const credentialClients = new Set<string>();
   const maxWait = MAX_CREDENTIAL_WAIT_DAYS * 86400;
-  for (const p of await deps.listPending(limit)) {
+  const start = deps.nowSeconds();
+  const batch = await deps.listPending(limit);
+  let skipped = 0;
+  for (let i = 0; i < batch.length; i++) {
+    const p = batch[i];
+    if (deps.nowSeconds() - start >= RUN_BUDGET_SECONDS) {
+      skipped = batch.length - i;
+      break;
+    }
     const reason = await revokeSealed(deps, p);
     if (reason && isCredentialRevokeError(reason)) {
       failed++;
       credentialClients.add(p.clientId);
-      const giveUp = deps.nowSeconds() - p.createdSeconds > maxWait;
+      const first = await deps.touchPending(p.id, reason);
+      const giveUp = deps.nowSeconds() - first > maxWait;
       if (giveUp) {
         expired++;
         await deps.bumpPending(p.id, reason, true);
-      } else {
-        await deps.touchPending(p.id, reason);
       }
       deps.log("apple_revoke_retry", { id: p.id, clientId: p.clientId, attempts: p.attempts, ok: false, reason, gaveUp: giveUp });
       continue;
@@ -184,8 +201,11 @@ export async function retryPendingRevokes(deps: AppleTokenDeps, limit = PENDING_
   const alerts: string[] = [];
   if (credentialClients.size) alerts.push(`Apple revoke returned invalid_client for ${Array.from(credentialClients).join(", ")}: check APPLE_TEAM_ID, APPLE_KEY_ID and APPLE_PRIVATE_KEY. Pending rows stay queued.`);
   if (expired) alerts.push(`${expired} Apple revoke rows waited over ${MAX_CREDENTIAL_WAIT_DAYS} days on invalid_client and were marked failed.`);
+  const credentialFailedRows = await deps.countCredentialFailed();
+  if (credentialFailedRows) alerts.push(`${credentialFailedRows} Apple revoke rows are failed on invalid_client. Fix the key, then POST /api/admin/apple-revoke/requeue.`);
+  if (skipped) deps.log("apple_revoke_retry_budget", { ok: true, skipped });
   for (const a of alerts) deps.alert(a);
-  return { revoked, failed, expired, alerts };
+  return { revoked, failed, expired, credentialFailedRows, skipped, alerts };
 }
 
 export async function revokeUserTokens(deps: AppleTokenDeps, userId: string): Promise<{ revoked: number; pending: number }> {
