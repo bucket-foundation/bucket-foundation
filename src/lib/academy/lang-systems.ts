@@ -342,7 +342,7 @@ export function buildLangCorpus(
   return {
     items,
     byId: new Map(items.map((i) => [i.id, i])),
-    attribution: cognates?.meta?.attribution ?? "Language data from Wiktionary contributors via Kaikki (kaikki.org), CC-BY-SA 3.0.",
+    attribution: cognates?.meta?.attribution ?? "Language data from Wiktionary contributors via Kaikki (kaikki.org), CC-BY-SA 4.0.",
     sources: layers?.meta?.attribution ?? [],
     pool: layers?.sentences?.pool ?? {},
     persons: layers?.persons ?? {},
