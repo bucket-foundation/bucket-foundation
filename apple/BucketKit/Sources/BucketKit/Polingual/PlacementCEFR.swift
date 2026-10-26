@@ -60,6 +60,8 @@ public struct CefrStep: Sendable, Equatable {
     public var next: (band: CefrBand, task: CefrTask)?
     public var unknownFrom: CefrBand?
 
+    public var stoppedHere: CefrStep { CefrStep(done: true, level: level, bands: bands, unknownFrom: next?.band) }
+
     public static func == (a: CefrStep, b: CefrStep) -> Bool {
         a.done == b.done && a.level == b.level && a.bands == b.bands && a.next?.band == b.next?.band && a.next?.task == b.next?.task && a.unknownFrom == b.unknownFrom
     }

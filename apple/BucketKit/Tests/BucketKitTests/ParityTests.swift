@@ -187,7 +187,48 @@ func runScenario(_ corpus: LangCorpus) throws -> JSValue {
     })))
     out.append(("articles", .array(articleCases.map { Lang.articleWord($0.0, $0.1, $0.2).map(JSValue.string) ?? .null })))
     out.append(("placement", placementScenario(corpus, t0: t0)))
+    out.append(("cefr", try cefrScenario(corpus, t0: t0)))
     return obj(out)
+}
+
+func cefrScenario(_ corpus: LangCorpus, t0: Double) throws -> JSValue {
+    let utc = TimeZone(identifier: "UTC")!
+    return .array(try ["es", "fr", "de"].map { lang in
+        let url = try #require(Bundle.module.url(forResource: "top-\(lang)", withExtension: "json", subdirectory: "Fixtures/lang"))
+        let top = try JSONDecoder().decode([TopWord].self, from: Data(contentsOf: url))
+        let sys = try createSystem("en", [lang], [], now: t0)
+        let src = PlacementSource(system: sys, corpus: corpus, lang: lang, top: top)
+        let avail = Cefr.bandsAvailable(src)
+        var crng = Rng(seed: 77)
+        var answers: [CefrAnswer] = []
+        var seen = Set<String>()
+        var asked: [JSValue] = []
+        for i in 0..<40 {
+            let st = Cefr.step(answers, available: avail)
+            guard !st.done, let next = st.next else { break }
+            guard let q = Cefr.question(src, next.band, next.task, seen: seen, &crng, speech: true) else {
+                asked.append(.string("\(next.band.rawValue)|none"))
+                answers.append(CefrAnswer(band: next.band, task: next.task, itemId: "none\(i)", correct: false))
+                continue
+            }
+            seen.insert(q.ex.itemId)
+            asked.append(.string("\(next.band.rawValue)|\(q.task.rawValue)|\(q.ex.kind.rawValue)|\(q.ex.itemId)|\(q.ex.answer)|\((q.ex.options ?? []).joined(separator: "/"))"))
+            answers.append(CefrAnswer(band: next.band, task: q.task, itemId: q.ex.itemId, correct: true))
+        }
+        let st = Cefr.step(answers, available: avail)
+        let p = Cefr.placement(src, answers, st)
+        let placed = Cefr.apply(EngineState(), sys, corpus, lang, p, now: t0, tz: utc)
+        return obj([
+            ("lang", .string(lang)),
+            ("avail", .array(avail.map { .string($0.rawValue) })),
+            ("asked", .array(asked)),
+            ("level", .string(p.level)),
+            ("floor", .number(p.floorTier)),
+            ("bands", .array(p.bands.map { .array([.string($0.band.rawValue), .number(Double($0.asked)), .number(Double($0.right)), .number(Double($0.recallRight)), .bool($0.passed), .bool($0.failed), .number($0.confidence)]) })),
+            ("ids", .array(p.placeIds.map(JSValue.string))),
+            ("cards", .array(placed.cards.entries.map { .array([.string($0.key), .number($0.value.due ?? 0)]) })),
+        ])
+    })
 }
 
 func placementScenario(_ corpus: LangCorpus, t0: Double) -> JSValue {

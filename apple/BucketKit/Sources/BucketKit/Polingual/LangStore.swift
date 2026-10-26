@@ -46,6 +46,11 @@ public final class LangStore {
 
     public private(set) var status = Status.idle
     public private(set) var corpus: LangCorpus?
+
+    public static func topWords(_ lang: String, bundle: Bundle = .main) -> [TopWord]? {
+        guard let url = bundle.url(forResource: lang, withExtension: "json", subdirectory: "Corpus/top1000"), let data = try? Data(contentsOf: url) else { return nil }
+        return try? JSONDecoder().decode([TopWord].self, from: data)
+    }
     public private(set) var systems: [LangSystem] = []
     public private(set) var states: [String: EngineState] = [:]
     public private(set) var saveState = SaveResult.idle
@@ -233,11 +238,12 @@ public final class LangStore {
         return out.ratings
     }
 
-    public func place(_ systemId: String, lang: String, tier: Double) async {
+    public func place(_ systemId: String, lang: String, tier: Double, only: [String]? = nil, level: String? = nil) async {
         guard var s = system(systemId), let corpus else { return }
         s.placement[lang] = tier
+        if let level { s.levels = (s.levels ?? [:]).merging([lang: level]) { _, n in n } }
         replace(s)
-        commit(s, applyPlacement(state(systemId), s, corpus, lang, tier, now: now()))
+        commit(s, applyPlacement(state(systemId), s, corpus, lang, tier, now: now(), only: only.map(Set.init)))
         await persistSystems(upsert: s)
     }
 

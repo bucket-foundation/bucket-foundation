@@ -392,6 +392,7 @@ struct ArticleKey: View {
         case "f": String(localized: "feminine")
         case "n": String(localized: "neuter")
         case "de": String(localized: "common")
+        case "pl": String(localized: "plural")
         default: String(localized: "neuter")
         }
     }

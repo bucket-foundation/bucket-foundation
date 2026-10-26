@@ -51181,7 +51181,7 @@
    "lang": "de",
    "prompt": "Kleider",
    "promptLang": "de",
-   "answer": "",
+   "answer": "die",
    "answerLang": "de",
    "options": [
     "das",
@@ -51198,7 +51198,7 @@
    ],
    "person": null,
    "tense": null,
-   "note": "Kleider",
+   "note": "die Kleider",
    "sentenceId": null
   },
   {
@@ -51207,7 +51207,7 @@
    "lang": "de",
    "prompt": "Kleider",
    "promptLang": "de",
-   "answer": "",
+   "answer": "die",
    "answerLang": "de",
    "options": [
     "die",
@@ -51224,7 +51224,7 @@
    ],
    "person": null,
    "tense": null,
-   "note": "Kleider",
+   "note": "die Kleider",
    "sentenceId": null
   },
   {
@@ -51233,7 +51233,7 @@
    "lang": "de",
    "prompt": "Kleider",
    "promptLang": "de",
-   "answer": "",
+   "answer": "die",
    "answerLang": "de",
    "options": [
     "der",
@@ -51250,7 +51250,7 @@
    ],
    "person": null,
    "tense": null,
-   "note": "Kleider",
+   "note": "die Kleider",
    "sentenceId": null
   },
   {
@@ -51259,7 +51259,7 @@
    "lang": "de",
    "prompt": "Kleider",
    "promptLang": "de",
-   "answer": "",
+   "answer": "die",
    "answerLang": "de",
    "options": [
     "das",
@@ -51276,7 +51276,7 @@
    ],
    "person": null,
    "tense": null,
-   "note": "Kleider",
+   "note": "die Kleider",
    "sentenceId": null
   },
   {
@@ -68036,5 +68036,689 @@
    "fr:coffee:review",
    "fr:fruit:review"
   ]
- }
+ },
+ "cefr": [
+  {
+   "lang": "es",
+   "avail": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "asked": [
+    "A1|recognize|choose|top:149|es que|fuerte/matar/es que/tirar",
+    "A1|recall|translate|top:205|tan|",
+    "A1|listen|listen|top:35|semen|to touch/the/to throw, to toss/semen",
+    "A1|cloze|cloze|top:7|todo|no/desde/todo/que si",
+    "A1|grammar|gender|g-friend|el|la/el",
+    "A1|recognize|choose|top:254|número|para/vez/durante/número",
+    "A2|recall|translate|top:678|fuente|",
+    "A2|recognize|choose|top:478|más y más|servicio/fuente/salud/más y más",
+    "A2|cloze|cloze|top:452|camino|cagar/nueva/radio/camino",
+    "A2|listen|listen|top:514|wholly, fully, completely|at best, tops, at most/superseded spelling of solo/wholly, fully, completely/what for?",
+    "A2|grammar|gender|g-cheese|el|la/el",
+    "A2|reading|sentence|top:732|Culpa mía.|Mi camisa es naranja./¿Alguna vez te has roto un hueso?/Cuece el arroz./Culpa mía.",
+    "B1|recall|translate|top:815|ni que|",
+    "B1|cloze|cloze|top:835|mundial|social/en parte/a que sí/mundial",
+    "B1|reading|sentence|top:761|¿Dónde está vuestro padre?|Ella tiene el pelo largo./Lo compré./¿Quién comió?/¿Dónde está vuestro padre?",
+    "B1|grammar|gender|g-clothes|la|el/la",
+    "B1|listen|listen|top:810|trafficking, trade, slave trade|meanwhile/there, there/trafficking, trade, slave trade/in a group, in groups",
+    "B1|recall|translate|top:831|local|",
+    "B2|recall|translate|top:800|agencia|",
+    "B2|reading|sentence|top:944|Cerrá la boca.|Tom es malo./Cerrá la boca./Mi hermano llamó a su gato \"Hanako\"./Con mi padre son cinco hermanos.",
+    "B2|grammar|conjugate|c-eat|comemos|",
+    "B2|recall|translate|top:931|oficina|",
+    "B2|cloze|cloze|top:786|novia|monte/jornada/cocina/novia",
+    "B2|listen|listen|top:805|industry|industry/prize, award/command/barely, scarcely"
+   ],
+   "level": "B2",
+   "floor": 7,
+   "bands": [
+    [
+     "A1",
+     6,
+     6,
+     1,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "A2",
+     6,
+     6,
+     1,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "B1",
+     6,
+     6,
+     2,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "B2",
+     6,
+     6,
+     2,
+     true,
+     false,
+     0.61
+    ]
+   ],
+   "ids": [
+    "number",
+    "eight",
+    "five",
+    "four",
+    "one",
+    "ph-thank-you",
+    "ph-you-are-welcome",
+    "ph-yes",
+    "ph-no",
+    "brother",
+    "father",
+    "friend",
+    "man",
+    "black",
+    "color",
+    "green",
+    "cat",
+    "bad",
+    "big",
+    "long",
+    "close",
+    "come",
+    "eat",
+    "find"
+   ],
+   "cards": [
+    [
+     "es:eight",
+     1793113200000
+    ],
+    [
+     "es:five",
+     1793718000000
+    ],
+    [
+     "es:four",
+     1792681200000
+    ],
+    [
+     "es:number",
+     1792767600000
+    ],
+    [
+     "es:one",
+     1793199600000
+    ],
+    [
+     "es:ph-thank-you",
+     1792594800000
+    ],
+    [
+     "es:ph-you-are-welcome",
+     1793372400000
+    ],
+    [
+     "es:ph-yes",
+     1793026800000
+    ],
+    [
+     "es:ph-no",
+     1793026800000
+    ],
+    [
+     "es:brother",
+     1793372400000
+    ],
+    [
+     "es:father",
+     1792854000000
+    ],
+    [
+     "es:friend",
+     1793372400000
+    ],
+    [
+     "es:man",
+     1793545200000
+    ],
+    [
+     "es:black",
+     1792594800000
+    ],
+    [
+     "es:color",
+     1792767600000
+    ],
+    [
+     "es:green",
+     1792767600000
+    ],
+    [
+     "es:cat",
+     1793545200000
+    ],
+    [
+     "es:bad",
+     1792940400000
+    ],
+    [
+     "es:big",
+     1792681200000
+    ],
+    [
+     "es:long",
+     1792681200000
+    ],
+    [
+     "es:close",
+     1793545200000
+    ],
+    [
+     "es:come",
+     1793026800000
+    ],
+    [
+     "es:eat",
+     1793372400000
+    ],
+    [
+     "es:find",
+     1792940400000
+    ]
+   ]
+  },
+  {
+   "lang": "fr",
+   "avail": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "asked": [
+    "A1|recognize|choose|top:149|point|reste/poste/point/tant",
+    "A1|recall|translate|top:205|mettre|",
+    "A1|listen|listen|top:35|hand|moment/it, this, that/so much/hand",
+    "A1|cloze|cloze|top:7|grand|demain/à le/grand/bande",
+    "A1|grammar|gender|g-friend|l'|la/l'/le",
+    "A1|recognize|choose|top:193|esprit|poste/esprit/ils/pièce",
+    "A2|recall|translate|top:617|chiffre|",
+    "A2|recognize|choose|top:603|retour|ci/époque/retour/celui",
+    "A2|cloze|cloze|top:463|ainsi|qu'est-ce que/lire/quel/ainsi",
+    "A2|listen|listen|top:700|light|method, means, way, mode/except, if not/all that/light",
+    "A2|grammar|gender|g-beer|la|la/l'/le",
+    "A2|reading|sentence|top:460|La pomme est rouge.|Je bois du jus./La pomme est rouge./Putain de chat !/Recule !",
+    "B1|recall|translate|top:858|région|",
+    "B1|cloze|cloze|top:752|frère|mec/chance/sur-ensemble/frère",
+    "B1|reading|sentence|top:870|Il est quatre heures moins cinq.|Il est en train de pleurer./Le frère de Shinko a 8 ans./Est-ce sale ?/Il est quatre heures moins cinq.",
+    "B1|grammar|gender|g-clothes|le|le/l'/la",
+    "B1|listen|listen|top:857|music|else, besides, other than/you see/music/only",
+    "B1|recall|translate|top:973|y avoir|",
+    "B2|recall|translate|top:996|travailler|",
+    "B2|reading|sentence|top:890|Le vert est ma couleur favorite.|J'ai des fourmis dans la jambe./Penses-tu vraiment que cela soit mauvais ?/La pomme est rouge./Le vert est ma couleur favorite.",
+    "B2|grammar|conjugate|c-drink|avez bu|",
+    "B2|recall|translate|top:899|entier|",
+    "B2|cloze|cloze|top:977|sacré|couleur/sacré/soi/demander",
+    "B2|listen|listen|top:959|the self|to reflect/an impression, the overall effect of something/the self/to work"
+   ],
+   "level": "B2",
+   "floor": 7,
+   "bands": [
+    [
+     "A1",
+     6,
+     6,
+     1,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "A2",
+     6,
+     6,
+     1,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "B1",
+     6,
+     6,
+     2,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "B2",
+     6,
+     6,
+     2,
+     true,
+     false,
+     0.61
+    ]
+   ],
+   "ids": [
+    "brother",
+    "big",
+    "four",
+    "number",
+    "one",
+    "ph-hello",
+    "ph-good-morning",
+    "ph-thank-you",
+    "ph-you-are-welcome",
+    "ph-yes",
+    "ph-no",
+    "ph-maybe",
+    "child",
+    "daughter",
+    "father",
+    "man",
+    "black",
+    "blue",
+    "color",
+    "green",
+    "apple",
+    "bread",
+    "coffee",
+    "bird",
+    "back",
+    "bad",
+    "beautiful",
+    "clean",
+    "long",
+    "close",
+    "find"
+   ],
+   "cards": [
+    [
+     "fr:four",
+     1793545200000
+    ],
+    [
+     "fr:number",
+     1792940400000
+    ],
+    [
+     "fr:one",
+     1792854000000
+    ],
+    [
+     "fr:ph-hello",
+     1793631600000
+    ],
+    [
+     "fr:ph-good-morning",
+     1793113200000
+    ],
+    [
+     "fr:ph-thank-you",
+     1792940400000
+    ],
+    [
+     "fr:ph-you-are-welcome",
+     1792681200000
+    ],
+    [
+     "fr:ph-yes",
+     1792681200000
+    ],
+    [
+     "fr:ph-no",
+     1793545200000
+    ],
+    [
+     "fr:ph-maybe",
+     1793113200000
+    ],
+    [
+     "fr:brother",
+     1792854000000
+    ],
+    [
+     "fr:child",
+     1792854000000
+    ],
+    [
+     "fr:daughter",
+     1793199600000
+    ],
+    [
+     "fr:father",
+     1793718000000
+    ],
+    [
+     "fr:man",
+     1792854000000
+    ],
+    [
+     "fr:black",
+     1793631600000
+    ],
+    [
+     "fr:blue",
+     1793372400000
+    ],
+    [
+     "fr:color",
+     1793113200000
+    ],
+    [
+     "fr:green",
+     1792594800000
+    ],
+    [
+     "fr:apple",
+     1793718000000
+    ],
+    [
+     "fr:bread",
+     1793026800000
+    ],
+    [
+     "fr:coffee",
+     1792681200000
+    ],
+    [
+     "fr:bird",
+     1792594800000
+    ],
+    [
+     "fr:back",
+     1792767600000
+    ],
+    [
+     "fr:bad",
+     1792940400000
+    ],
+    [
+     "fr:beautiful",
+     1792594800000
+    ],
+    [
+     "fr:big",
+     1792681200000
+    ],
+    [
+     "fr:clean",
+     1792940400000
+    ],
+    [
+     "fr:long",
+     1793718000000
+    ],
+    [
+     "fr:close",
+     1793372400000
+    ],
+    [
+     "fr:find",
+     1792594800000
+    ]
+   ]
+  },
+  {
+   "lang": "de",
+   "avail": [
+    "A1",
+    "A2",
+    "B1",
+    "B2"
+   ],
+   "asked": [
+    "A1|recognize|choose|top:149|Platz|Stand/etwas/Platz/Berg",
+    "A1|recall|translate|top:205|Teil|",
+    "A1|listen|listen|top:35|black|debit/from/a mountain, hill/black",
+    "A1|cloze|cloze|top:7|mehr|Freundin/einfach/mehr/Art",
+    "A1|grammar|gender|g-bear|der|die/der/das",
+    "A1|recognize|choose|top:254|müssen|Typ/Leben/Mann/müssen",
+    "A2|recall|translate|top:678|Schuss|",
+    "A2|recognize|choose|top:478|gerne|rechts/Schuss/fest/gerne",
+    "A2|cloze|cloze|top:485|schlagen|Wolf/Bank/Job/schlagen",
+    "A2|listen|listen|top:514|to enter|former/to introduce , to present/to enter/covering, wrapping",
+    "A2|grammar|gender|g-cheese|der|die/das/der",
+    "A2|reading|sentence|top:618|Der Apfel ist gefallen!|Trink./Bring deinen Freund mit./Reinige das Zimmer./Der Apfel ist gefallen!",
+    "B1|recall|translate|top:987|Schöne|",
+    "B1|cloze|cloze|top:973|Nähe|Programm/Nähe/Zehn/Team",
+    "B1|reading|sentence|top:801|Trinkst du grünen Tee?|Die Ratte ist braun./Bitte warten Sie fünf Minuten./Trinkst du grünen Tee?/Ich bin eine Miezekatze.",
+    "B1|grammar|gender|g-clothes|die|die/der/das",
+    "B1|listen|listen|top:798|month|nearness, closeness/against it, against that/month/important, relevant, significant, weighty",
+    "B1|recall|translate|top:979|Super|",
+    "B2|recall|translate|top:953|ausmachen|",
+    "B2|reading|sentence|top:991|Tom hat eine zu große Vorliebe für Butter.|Sie sterben./Das ist eine Frucht./Toms Gesichtsfarbe änderte sich./Tom hat eine zu große Vorliebe für Butter.",
+    "B2|grammar|conjugate|c-come|kommt|",
+    "B2|recall|translate|top:975|Ausdruck|",
+    "B2|cloze|cloze|top:828|bauen|Netz/bauen/aussehen/Rum",
+    "B2|listen|listen|top:941|English|English/character/turn/deep (having a long distance to the bottom"
+   ],
+   "level": "B2",
+   "floor": 7,
+   "bands": [
+    [
+     "A1",
+     6,
+     6,
+     1,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "A2",
+     6,
+     6,
+     1,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "B1",
+     6,
+     6,
+     2,
+     true,
+     false,
+     0.61
+    ],
+    [
+     "B2",
+     6,
+     6,
+     2,
+     true,
+     false,
+     0.61
+    ]
+   ],
+   "ids": [
+    "black",
+    "eight",
+    "five",
+    "four",
+    "half",
+    "number",
+    "one",
+    "ph-thank-you",
+    "ph-you-are-welcome",
+    "ph-please",
+    "ph-yes",
+    "ph-no",
+    "ph-maybe",
+    "ph-of-course",
+    "child",
+    "daughter",
+    "father",
+    "friend",
+    "man",
+    "blue",
+    "color",
+    "green",
+    "bear",
+    "bird",
+    "bad",
+    "beautiful",
+    "big",
+    "long",
+    "buy",
+    "close",
+    "come",
+    "drink",
+    "eat",
+    "find"
+   ],
+   "cards": [
+    [
+     "de:eight",
+     1793372400000
+    ],
+    [
+     "de:five",
+     1792940400000
+    ],
+    [
+     "de:four",
+     1792940400000
+    ],
+    [
+     "de:half",
+     1793372400000
+    ],
+    [
+     "de:number",
+     1793718000000
+    ],
+    [
+     "de:one",
+     1793458800000
+    ],
+    [
+     "de:ph-thank-you",
+     1792681200000
+    ],
+    [
+     "de:ph-you-are-welcome",
+     1793286000000
+    ],
+    [
+     "de:ph-please",
+     1793372400000
+    ],
+    [
+     "de:ph-yes",
+     1793458800000
+    ],
+    [
+     "de:ph-no",
+     1792767600000
+    ],
+    [
+     "de:ph-maybe",
+     1792681200000
+    ],
+    [
+     "de:ph-of-course",
+     1793458800000
+    ],
+    [
+     "de:child",
+     1793113200000
+    ],
+    [
+     "de:daughter",
+     1792767600000
+    ],
+    [
+     "de:father",
+     1793631600000
+    ],
+    [
+     "de:friend",
+     1792767600000
+    ],
+    [
+     "de:man",
+     1793113200000
+    ],
+    [
+     "de:black",
+     1792681200000
+    ],
+    [
+     "de:blue",
+     1792940400000
+    ],
+    [
+     "de:color",
+     1793026800000
+    ],
+    [
+     "de:green",
+     1792681200000
+    ],
+    [
+     "de:bear",
+     1792767600000
+    ],
+    [
+     "de:bird",
+     1793199600000
+    ],
+    [
+     "de:bad",
+     1793199600000
+    ],
+    [
+     "de:beautiful",
+     1792854000000
+    ],
+    [
+     "de:big",
+     1792767600000
+    ],
+    [
+     "de:long",
+     1792594800000
+    ],
+    [
+     "de:buy",
+     1793113200000
+    ],
+    [
+     "de:close",
+     1792767600000
+    ],
+    [
+     "de:come",
+     1793458800000
+    ],
+    [
+     "de:drink",
+     1793286000000
+    ],
+    [
+     "de:eat",
+     1793113200000
+    ],
+    [
+     "de:find",
+     1793026800000
+    ]
+   ]
+  }
+ ]
 }

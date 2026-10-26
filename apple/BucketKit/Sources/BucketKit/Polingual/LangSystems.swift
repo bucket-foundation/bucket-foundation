@@ -97,7 +97,7 @@ public enum Lang {
         "fr": [("m", "le"), ("f", "la")],
         "it": [("m", "il"), ("f", "la")],
         "pt": [("m", "o"), ("f", "a")],
-        "de": [("m", "der"), ("f", "die"), ("n", "das")],
+        "de": [("m", "der"), ("f", "die"), ("n", "das"), ("pl", "die")],
         "nl": [("de", "de"), ("het", "het")],
     ]
 

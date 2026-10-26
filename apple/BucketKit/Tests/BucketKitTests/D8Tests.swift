@@ -338,3 +338,17 @@ import Testing
     #expect(reviewed.prefix(3).map(\.itemId) == items.prefix(3).map(\.id))
     #expect(reviewed.count == 3 + PLACED_PER_DAY)
 }
+
+@Test func everyGenderedNounHasAnArticle() throws {
+    let corpus = buildLangCorpus(core: try langFixture("core"), cognates: try langFixture("cognates"), phrases: try langFixture("phrases"), layers: try langFixture("layers"))
+    var checked = 0
+    for item in corpus.items where item.kind == .gender {
+        for (lang, g) in item.gender.entries {
+            let noun = item.forms[lang] ?? ""
+            #expect(Lang.articleWord(lang, g, noun) != nil, "\(item.id) \(lang) \(g)")
+            checked += 1
+        }
+    }
+    #expect(checked > 0)
+    #expect(Lang.articleWord("de", "pl", "Kleider") == "die")
+}

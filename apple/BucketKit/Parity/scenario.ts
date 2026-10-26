@@ -29,6 +29,7 @@ import {
   type PlacementAnswer,
 } from "../../../src/lib/academy/lang-systems";
 import { normalizeState } from "../../../src/lib/academy/engine";
+import { applyCefrPlacement, bandsAvailable, cefrPlacement, cefrQuestion, cefrStep, type CefrAnswer } from "../../../src/lib/academy/placement-cefr";
 import { alphabetDone, alphabetUnit, dueLetters, foldMarks, HERITAGE_LANGS, judgeSpelled, letterItemId, nextLetters } from "../../../src/lib/academy/lang-script";
 import { audioKey } from "../../../src/lib/academy/lang-audio";
 
@@ -246,5 +247,42 @@ out.placement = {
   legacy: Object.entries(normalizeState({ cards: legacyCards }, T0).cards).map(([id, c]) => [id, c.due]),
   plan: buildQueue(pSys, corpus, placed, T0 + 20 * DAY).map((q) => `${q.lang}:${q.itemId}:${q.stage}`),
 };
+
+out.cefr = ["es", "fr", "de"].map((lang) => {
+  const top = read(`top-${lang}`);
+  const sys = createSystem("en", [lang], [], T0);
+  const src = { system: sys, corpus, lang, top };
+  const avail = bandsAvailable(src);
+  const crng = seededRng(77);
+  const answers: CefrAnswer[] = [];
+  const seen = new Set<string>();
+  const asked: string[] = [];
+  for (let i = 0; i < 40; i++) {
+    const st = cefrStep(answers, avail);
+    if (st.done || !st.next) break;
+    const q = cefrQuestion(src, st.next.band, st.next.task, seen, crng, { speech: true });
+    if (!q) {
+      asked.push(`${st.next.band}|none`);
+      answers.push({ band: st.next.band, task: st.next.task, itemId: `none${i}`, correct: false });
+      continue;
+    }
+    seen.add(q.ex.itemId);
+    asked.push(`${st.next.band}|${q.task}|${q.ex.kind}|${q.ex.itemId}|${q.ex.answer}|${(q.ex.options ?? []).join("/")}`);
+    answers.push({ band: st.next.band, task: q.task, itemId: q.ex.itemId, correct: true });
+  }
+  const st = cefrStep(answers, avail);
+  const p = cefrPlacement(src, answers, st);
+  const placedState = applyCefrPlacement(normalizeState(null), sys, corpus, lang, p, T0);
+  return {
+    lang,
+    avail,
+    asked,
+    level: p.level,
+    floor: p.floorTier,
+    bands: p.bands.map((b) => [b.band, b.asked, b.right, b.recallRight, b.passed, b.failed, b.confidence]),
+    ids: p.placeIds,
+    cards: Object.entries(placedState.cards).map(([id, c]) => [id, c.due]),
+  };
+});
 
 writeFileSync(process.argv[3], JSON.stringify(out, null, 1));
