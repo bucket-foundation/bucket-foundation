@@ -9,11 +9,11 @@ import type { PublicQuestion } from "../src/lib/research-os/work-quiz/types";
 
 const noSave = async (next: string[]) => next;
 
-test("the language picker lists all 27 names in Academy chip style and marks the saved ones pressed", () => {
+test("the language picker lists all 28 names in Academy chip style and marks the saved ones pressed", () => {
   const html = renderToStaticMarkup(createElement(LanguagePicker, { languages: ["he", "de"], save: noSave }));
   for (const l of languagesByName()) assert.ok(html.includes(`>${l.name}</button>`), l.name);
   assert.equal((html.match(/aria-pressed="true"/g) ?? []).length, 2);
-  assert.equal((html.match(/aria-pressed="false"/g) ?? []).length, 25);
+  assert.equal((html.match(/aria-pressed="false"/g) ?? []).length, 26);
   assert.ok(html.includes(`class="${CHIP_ON}"`) && html.includes(`class="${CHIP_OFF}"`));
   assert.ok(CHIP_ON.includes("rounded-full") && CHIP_ON.includes("min-h-[44px]"));
   assert.match(html, /Wiktionary via Kaikki, CC-BY-SA/);
