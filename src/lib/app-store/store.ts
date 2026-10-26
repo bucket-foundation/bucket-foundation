@@ -98,17 +98,22 @@ export interface StoreSummary {
   byProduct: { productId: string; counts: Partial<Record<StoreEventKind, number>> }[];
   unlinked: number;
   sandbox: number;
+  includesSandbox: boolean;
 }
 
-export function summarizeStoreEvents(rows: StoreEventRow[], windowDays: number): StoreSummary {
+export function isSandbox(environment: string | null): boolean {
+  return environment !== null && environment !== "Production";
+}
+
+export function summarizeStoreEvents(rows: StoreEventRow[], windowDays: number, includeSandbox = false): StoreSummary {
   const totals = { trial: 0, subscribe: 0, renew: 0, cancel: 0, uncancel: 0, refund: 0, refund_reversed: 0, revoke: 0, expire: 0, billing_issue: 0, other: 0 } as Record<StoreEventKind, number>;
   const products = new Map<string, Partial<Record<StoreEventKind, number>>>();
   let unlinked = 0;
   let sandbox = 0;
   for (const r of rows) {
-    if (r.environment === "Sandbox") {
+    if (isSandbox(r.environment)) {
       sandbox++;
-      continue;
+      if (!includeSandbox) continue;
     }
     totals[r.kind]++;
     if (!r.linked) unlinked++;
@@ -125,5 +130,6 @@ export function summarizeStoreEvents(rows: StoreEventRow[], windowDays: number):
       .map(([productId, counts]) => ({ productId, counts })),
     unlinked,
     sandbox,
+    includesSandbox: includeSandbox,
   };
 }

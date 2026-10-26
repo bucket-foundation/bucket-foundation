@@ -166,3 +166,22 @@ test("only a server-issued token links a user; an unknown token keeps the decode
   assert.equal(rows[1].appAccountToken, USER);
   assert.equal(rows[1].transactionInfo.productId, "polingual.monthly");
 });
+
+test("environment comes from data.environment and sandbox stays out of admin totals by default", async () => {
+  const signedDate = Date.parse("2027-01-01T12:00:00Z");
+  const sandboxTx = jws({ productId: "polingual.monthly", transactionId: "9", originalTransactionId: "9", signedDate, environment: "Sandbox" });
+  const payload = jws({ notificationType: "DID_RENEW", notificationUUID: randomUUID(), signedDate, data: { bundleId: "com.polingual.app", environment: "Sandbox", signedTransactionInfo: sandboxTx } });
+  assert.equal(decodeNotification(payload, OPTS).environment, "Sandbox");
+  const store = memory();
+  const deps = { store: () => store, bundleIds: () => parseBundleIds(undefined), verify: OPTS };
+  await handleNotification(post({ signedPayload: payload }), deps);
+  await handleNotification(post({ signedPayload: notification("DID_RENEW", null) }), deps);
+  const KEY = "k".repeat(24);
+  const get = async (q: string) =>
+    (await handleStoreSummary(new NextRequest(`http://localhost/api/admin/app-store${q}`, { headers: { authorization: `Bearer ${KEY}` } }), { adminKey: () => KEY, store: () => store })).json();
+  const prod = await get("");
+  assert.deepEqual([prod.totals.renew, prod.sandbox, prod.includesSandbox], [1, 1, false]);
+  const all = await get("?sandbox=include");
+  assert.deepEqual([all.totals.renew, all.sandbox, all.includesSandbox], [2, 1, true]);
+  assert.equal(summarizeStoreEvents([{ kind: "renew", productId: null, environment: "Xcode", signedAt: "", linked: false }], 90).totals.renew, 0);
+});
