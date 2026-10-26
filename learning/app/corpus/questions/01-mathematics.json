@@ -1330,7 +1330,7 @@
    "id": "number-systems.calculate",
    "atom": "number-systems",
    "kind": "calculate",
-   "prompt": "What is the decimal value of 3/8?",
+   "prompt": "A recipe calls for 3/8 cup of oil and the measuring jug shows decimals. What decimal amount should you pour?",
    "answer": 0.375,
    "unit": "",
    "relTol": 0.02
@@ -1344,6 +1344,7 @@
     "N: counting",
     "Z: x + 5 = 3",
     "Q: 2x = 3",
+    "R: x^2 = 2",
     "C: x^2 = -1"
    ]
   },
@@ -2344,7 +2345,7 @@
    "id": "topology.calculate",
    "atom": "topology",
    "kind": "calculate",
-   "prompt": "A coffee mug and a donut each have how many holes?",
+   "prompt": "Euler's formula V - E + F = 2 - 2g gives the genus g. A 3D-printed mug mesh has V = 1,000, E = 3,000 and F = 2,000. What is its genus?",
    "answer": 1.0,
    "unit": "",
    "relTol": 0.02
@@ -2834,8 +2835,8 @@
    "id": "godel-incompleteness.calculate",
    "atom": "godel-incompleteness",
    "kind": "calculate",
-   "prompt": "Add G to T to get T', then G' to get T'', and so on. After 3 additions, how many new axioms are there?",
-   "answer": 3.0,
+   "prompt": "A verification team extends its axiom system T by adding each new unprovable sentence it finds, starting from 12 axioms. After 3 rounds, how many axioms does it hold?",
+   "answer": 15.0,
    "unit": "",
    "relTol": 0.02
   },
@@ -2920,7 +2921,7 @@
    "id": "category-theory.calculate",
    "atom": "category-theory",
    "kind": "calculate",
-   "prompt": "Objects A and B have 2 and 3 elements in Set. How many elements does their product A x B have?",
+   "prompt": "A type system pairs a Bool (2 values) with a 3-value Color enum in a product type. How many distinct values does the product type have?",
    "answer": 6.0,
    "unit": "",
    "relTol": 0.02
@@ -3719,7 +3720,7 @@
     },
     {
      "term": "Contour",
-     "meaning": "Closed path"
+     "meaning": "Path of integration in the plane"
     },
     {
      "term": "Residue",
@@ -3848,8 +3849,8 @@
    "id": "manifolds.calculate",
    "atom": "manifolds",
    "kind": "calculate",
-   "prompt": "How many dimensions does the surface of a sphere have as a manifold?",
-   "answer": 2.0,
+   "prompt": "A drone's pose is its position in 3D plus its orientation on a 3-dimensional rotation manifold. How many dimensions does its pose space have?",
+   "answer": 6.0,
    "unit": "",
    "relTol": 0.02
   },

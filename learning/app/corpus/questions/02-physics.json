@@ -1411,7 +1411,7 @@
    "id": "ampere-maxwell.calculate",
    "atom": "ampere-maxwell",
    "kind": "calculate",
-   "prompt": "A wire carries 2 A into a charging capacitor. How much displacement current crosses the gap between the plates?",
+   "prompt": "Between the plates of a charging capacitor the electric flux grows at 2.26e11 V m/s. With epsilon_0 = 8.85e-12 F/m, what displacement current crosses the gap, in A?",
    "answer": 2.0,
    "unit": "A",
    "relTol": 0.02
@@ -2253,12 +2253,12 @@
    "id": "spacetime.pick",
    "atom": "spacetime",
    "kind": "pick",
-   "prompt": "Which quantity do all inertial observers agree on?",
+   "prompt": "Two events have Delta s^2 > 0 in the convention -c^2 Delta t^2 + Delta x^2. What follows?",
    "options": [
-    "The interval Delta s^2",
-    "Delta t",
-    "Delta x",
-    "Simultaneity"
+    "No signal can link them, so neither can cause the other",
+    "One can cause the other",
+    "They happen at the same place",
+    "A light ray connects them"
    ],
    "answer": 0
   },
@@ -3379,8 +3379,8 @@
    "id": "quantum-entanglement.calculate",
    "atom": "quantum-entanglement",
    "kind": "calculate",
-   "prompt": "Singlet pairs are measured along the same axis 1,000 times. In how many runs do the two results disagree?",
-   "answer": 1000.0,
+   "prompt": "Singlet pairs are measured along the same axis 1,000 times. Alice gets up in 503 runs. In how many runs does Bob get up?",
+   "answer": 497.0,
    "unit": "",
    "relTol": 0.02
   },
@@ -3551,8 +3551,8 @@
    "id": "standard-model.calculate",
    "atom": "standard-model",
    "kind": "calculate",
-   "prompt": "A proton is two up quarks (+2/3 each) and one down quark (-1/3). What is its charge in units of e?",
-   "answer": 1.0,
+   "prompt": "A neutron is one up quark (+2/3) and two down quarks (-1/3 each). A Delta++ baryon is three up quarks. What is the Delta++ charge minus the neutron charge, in units of e?",
+   "answer": 2.0,
    "unit": "e",
    "relTol": 0.02
   },
@@ -3590,7 +3590,7 @@
    "pairs": [
     {
      "term": "Quark",
-     "meaning": "Feels the strong force"
+     "meaning": "Matter particle bound into protons and neutrons"
     },
     {
      "term": "Lepton",

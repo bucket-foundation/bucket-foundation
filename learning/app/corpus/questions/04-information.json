@@ -960,8 +960,8 @@
    "id": "chomsky-hierarchy.calculate",
    "atom": "chomsky-hierarchy",
    "kind": "calculate",
-   "prompt": "How many classes are in the Chomsky hierarchy?",
-   "answer": 4.0,
+   "prompt": "A compiler course tests one sample language per class at each of the 4 Chomsky levels, with 3 test strings per language. How many test strings in all?",
+   "answer": 12.0,
    "unit": "",
    "relTol": 0.02
   },
@@ -1132,8 +1132,8 @@
    "id": "church-turing.calculate",
    "atom": "church-turing",
    "kind": "calculate",
-   "prompt": "Four 1930s models (lambda calculus, recursive functions, Turing machines, Post systems) are compared. How many turned out equivalent?",
-   "answer": 4.0,
+   "prompt": "A course compares 4 models of computation pairwise to show each pair is equivalent. How many pairwise proofs would a full comparison need, 4 choose 2?",
+   "answer": 6.0,
    "unit": "",
    "relTol": 0.02
   },
@@ -2381,7 +2381,7 @@
    "prompt": "Find the faulty step.",
    "steps": [
     "Each step cites a rule",
-    "Completeness proves every truth",
+    "Completeness proves every valid formula",
     "Soundness proves every truth",
     "A checker needs no creativity"
    ],
