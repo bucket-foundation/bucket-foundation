@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   applyPlacement,
+  articleWord,
   buildLangCorpus,
   buildQueue,
   crossLanguageOptions,
@@ -219,5 +220,8 @@ out.heritage = {
   spell,
   queue: hQueue,
 };
+
+const ARTICLE_CASES: [string, string, string][] = [["fr","m","haricot"],["fr","m","haricots"],["fr","m","hibou"],["fr","m","hiboux"],["fr","m","héros"],["fr","f","hache"],["fr","m","hamburger"],["fr","m","Homard"],["fr","f","honte"],["fr","m","hors-d'œuvre"],["fr","m","haut de gamme"],["fr","m","homme"],["fr","f","heure"],["fr","m","hôtel"],["fr","f","herbe"],["fr","m","ami"],["fr","f","eau"],["fr","m","livre"],["it","m","zero"],["it","f","acqua"],["it","m","libro"],["es","f","agua"],["es","f","casa"],["de","f","Kirche"]];
+out.articles = ARTICLE_CASES.map(([l, g, n]) => articleWord(l, g, n));
 
 writeFileSync(process.argv[3], JSON.stringify(out, null, 1));
