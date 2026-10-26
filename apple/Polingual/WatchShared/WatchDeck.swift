@@ -12,6 +12,7 @@ struct WatchCard: Codable, Equatable, Identifiable {
     let lang: String
     let prompt: String
     let answer: WatchAnswer
+    var due: Double?
 }
 
 struct WatchGrade: Codable, Equatable {
@@ -44,6 +45,10 @@ enum WatchQueue {
         let all = pending(defaults)
         defaults.removeObject(forKey: pendingKey)
         return all
+    }
+
+    static func oldestDue(_ cards: [WatchCard], now: Double, limit: Int) -> [WatchCard] {
+        Array(cards.filter { ($0.due ?? .infinity) <= now }.sorted { ($0.due ?? 0, $0.id) < ($1.due ?? 0, $1.id) }.prefix(limit))
     }
 
     static func unseen(_ deck: [WatchCard], graded: Set<String>) -> (cards: [WatchCard], graded: Set<String>) {

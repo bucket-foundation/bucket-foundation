@@ -45,6 +45,11 @@ struct PolingualApp: App {
                         await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay)
                     }
                 }
+                .onChange(of: subs.access) {
+                    #if os(iOS)
+                    WatchBridge.shared.send()
+                    #endif
+                }
                 .onChange(of: reminders.wordOfDay) {
                     backgroundSafe { await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay) }
                 }

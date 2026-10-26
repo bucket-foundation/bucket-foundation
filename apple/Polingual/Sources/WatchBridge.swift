@@ -31,11 +31,10 @@ final class WatchBridge: NSObject, WCSessionDelegate {
                 guard let due = card.due, due <= ms else { continue }
                 let p = parseCardId(id)
                 guard system.targets.contains(p.lang), let item = corpus.byId[p.itemId], let form = item.form(p.lang), let prompt = item.form(system.root) else { continue }
-                cards.append(WatchCard(id: "\(system.id)|\(id)", systemId: system.id, itemId: p.itemId, lang: p.lang, prompt: prompt, answer: WatchAnswer(lang: p.lang, form: form)))
-                if cards.count >= 20 { break }
+                cards.append(WatchCard(id: "\(system.id)|\(id)", systemId: system.id, itemId: p.itemId, lang: p.lang, prompt: prompt, answer: WatchAnswer(lang: p.lang, form: form), due: due))
             }
-            if cards.count >= 20 { break }
         }
+        cards = WatchQueue.oldestDue(cards, now: ms, limit: 20)
         guard let data = try? JSONEncoder().encode(cards) else { return }
         try? WCSession.default.updateApplicationContext([WatchKeys.deck: data])
     }

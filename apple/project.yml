@@ -5,6 +5,7 @@ options:
   deploymentTarget:
     iOS: "26.0"
     macOS: "26.0"
+    watchOS: "26.0"
 settings:
   base:
     DEVELOPMENT_TEAM: QQ6D6A2LLS
@@ -130,7 +131,6 @@ targets:
   PolingualWatch:
     type: application
     platform: watchOS
-    deploymentTarget: "26.0"
     sources:
       - path: Polingual/Watch
       - path: Polingual/WatchShared
