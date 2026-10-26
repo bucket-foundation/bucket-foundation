@@ -17,6 +17,8 @@ struct Paywall: View {
     @State private var restoring = false
     @State private var redeeming = false
     @State private var student = false
+    @State private var tokens = AccountTokens()
+    @State private var accountToken: UUID?
 
     var product: Product? { products.first { $0.id == chosen } }
 
@@ -64,6 +66,10 @@ struct Paywall: View {
         }
         .dynamicTypeSize(...DynamicTypeSize.xLarge)
         .task { await load() }
+        .task(id: account.session?.userId) {
+            accountToken = nil
+            accountToken = await tokens.token(for: account)
+        }
         .sheet(isPresented: $signingIn) { AccountView() }
         #if os(iOS)
         .offerCodeRedemption(isPresented: $redeeming) { _ in Task { await subs.refresh() } }
@@ -170,8 +176,8 @@ struct Paywall: View {
         buying = true
         note = nil
         defer { buying = false }
-        var options: Set<Product.PurchaseOption> = []
-        if let id = account.session?.userId.flatMap(UUID.init(uuidString:)) { options.insert(.appAccountToken(id)) }
+        if accountToken == nil { accountToken = await tokens.token(for: account) }
+        let options = PurchaseOptions.make(accountToken: accountToken)
         do {
             switch try await product.purchase(options: options) {
             case .success(.verified(let t)):
@@ -259,6 +265,12 @@ extension PlanCard {
         case Plan.lifetime: String(localized: "once")
         default: String(localized: "per month")
         }
+    }
+}
+
+enum PurchaseOptions {
+    static func make(accountToken: UUID?) -> Set<Product.PurchaseOption> {
+        accountToken.map { [.appAccountToken($0)] } ?? []
     }
 }
 
