@@ -38,6 +38,7 @@ export interface AppleTokenDeps {
   removePending: (id: number) => Promise<void>;
   bumpPending: (id: number, reason: string, failed: boolean) => Promise<void>;
   log: (event: string, fields: Record<string, unknown>) => void;
+  alert: (message: string) => void;
   nowSeconds: () => number;
 }
 
@@ -121,7 +122,8 @@ async function revokeSealed(deps: AppleTokenDeps, t: StoredAppleToken): Promise<
   return reason;
 }
 
-export const isPermanentRevokeError = (reason: string | null) => Boolean(reason && (reason.endsWith("_invalid_grant") || reason.endsWith("_invalid_client")));
+export const isPermanentRevokeError = (reason: string | null) => Boolean(reason?.endsWith("_invalid_grant"));
+export const isCredentialRevokeError = (reason: string | null) => Boolean(reason?.endsWith("_invalid_client"));
 
 export async function revokeForAccountDelete(deps: AppleTokenDeps, userId: string): Promise<{ failed: boolean }> {
   try {
@@ -136,8 +138,18 @@ export async function revokeForAccountDelete(deps: AppleTokenDeps, userId: strin
 export async function retryPendingRevokes(deps: AppleTokenDeps, limit = PENDING_BATCH): Promise<{ revoked: number; failed: number }> {
   let revoked = 0;
   let failed = 0;
+  let alerted = false;
   for (const p of await deps.listPending(limit)) {
     const reason = await revokeSealed(deps, p);
+    if (isCredentialRevokeError(reason)) {
+      failed++;
+      deps.log("apple_revoke_retry", { id: p.id, clientId: p.clientId, attempts: p.attempts, ok: false, reason, gaveUp: false });
+      if (!alerted) {
+        alerted = true;
+        deps.alert(`Apple revoke returned invalid_client for ${p.clientId}: check APPLE_TEAM_ID, APPLE_KEY_ID and APPLE_PRIVATE_KEY. Pending rows stay queued.`);
+      }
+      continue;
+    }
     const attempts = p.attempts + 1;
     const giveUp = Boolean(reason) && (attempts >= MAX_REVOKE_ATTEMPTS || isPermanentRevokeError(reason));
     if (reason) {

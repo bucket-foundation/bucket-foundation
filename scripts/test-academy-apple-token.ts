@@ -32,12 +32,14 @@ function apple(replies: Reply[]) {
   const tokens = new Map<string, StoredAppleToken>();
   const pending: (PendingRevoke & { status: string })[] = [];
   let pendingReads = 0;
+  const alerts: string[] = [];
   const logs: string[] = [];
   let nextId = 1;
   const deps: AppleTokenDeps = {
     key: () => KEY,
     encKey: () => ENC,
     timeoutMs: 20,
+    alert: (m) => void alerts.push(m),
     nowSeconds: () => 1_760_000_000,
     log: (event, f) => void logs.push(`${event} ${f.ok} ${f.reason ?? ""}`.trim()),
     fetch: async (url, init) => {
@@ -63,7 +65,7 @@ function apple(replies: Reply[]) {
     },
   };
   const store = (u: string, clientId: string, refresh: string) => tokens.set(`${u}|${clientId}`, { clientId, sealed: sealToken(ENC, refresh) });
-  return { deps, calls, tokens, pending, logs, store, pendingReads: () => pendingReads };
+  return { deps, calls, tokens, pending, logs, store, pendingReads: () => pendingReads, alerts };
 }
 
 test("client secret is an ES256 JWT for the app's client id that the key verifies", () => {
@@ -230,4 +232,25 @@ test("invalid_grant from Apple marks the row failed on the first retry", async (
   await retryPendingRevokes(w.deps);
   assert.equal(w.pending[0].status, "failed");
   assert.ok(w.logs.includes("apple_revoke_retry false http_400_invalid_grant"));
+});
+
+test("invalid_client keeps rows pending without counting the attempt and alerts once per run", async () => {
+  const w = apple([{ ok: false, status: 400, body: { error: "invalid_client" } }]);
+  w.store("u1", "foundation.bucket.app", "r1");
+  w.store("u2", "com.polingual.app", "r2");
+  await revokeUserTokens(w.deps, "u1");
+  await revokeUserTokens(w.deps, "u2");
+  for (let i = 0; i < MAX_REVOKE_ATTEMPTS + 1; i++) assert.deepEqual(await retryPendingRevokes(w.deps), { revoked: 0, failed: 2 });
+  assert.deepEqual(w.pending.map((p) => [p.status, p.attempts]), [["pending", 1], ["pending", 1]]);
+  assert.equal(w.alerts.length, MAX_REVOKE_ATTEMPTS + 1);
+  assert.match(w.alerts[0], /invalid_client/);
+});
+
+test("invalid_grant stays permanent and sends no credential alert", async () => {
+  const w = apple([{ ok: false, status: 400, body: { error: "invalid_grant" } }]);
+  w.store("u1", "foundation.bucket.app", "r1");
+  await revokeUserTokens(w.deps, "u1");
+  await retryPendingRevokes(w.deps);
+  assert.equal(w.pending[0].status, "failed");
+  assert.deepEqual(w.alerts, []);
 });

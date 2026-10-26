@@ -19,6 +19,7 @@ export function appleTokenDeps(): AppleTokenDeps {
     fetch: (url, init) => fetch(url, init),
     nowSeconds: () => Math.floor(Date.now() / 1000),
     log: (event, fields) => console.log(`[apple] ${event}`, JSON.stringify(fields)),
+    alert: (message) => console.error(`[apple] ALERT ${message}`),
     save: async (userId, t) => must("apple token save", (await db().from("apple_tokens").upsert({ user_id: userId, client_id: t.clientId, refresh_token_enc: t.sealed, updated_at: new Date().toISOString() })).error),
     list: async (userId) => {
       const { data, error } = await db().from("apple_tokens").select("client_id, refresh_token_enc").eq("user_id", userId);
