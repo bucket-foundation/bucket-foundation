@@ -108,4 +108,36 @@ html,body{{height:100%;overflow:hidden;background:#F6EEDC}}
 </body></html>
 """
 out = out.replace('src="mark-pl.svg"', 'src="/d8/mark-pl.svg"').replace('href="/d8/mark.svg"', 'href="/d8/mark-pl.svg"')
+ALT = '<link rel="alternate" hreflang="en-US" href="https://www.polingual.com/">\n<link rel="alternate" hreflang="es-US" href="https://www.polingual.com/es">\n<link rel="alternate" hreflang="x-default" href="https://www.polingual.com/">\n'
+out = out.replace('<link rel="canonical"', ALT + '<link rel="canonical"', 1)
 (D / "index.html").write_text(out)
+
+ES = [
+    ('<html lang="en">', '<html lang="es">'),
+    ("Polingual: language learning for multilingual learners", "Polingual: tu tercer idioma con el español y el inglés"),
+    ("Polingual teaches one word across many languages and scripts. Hear every word said, see its roots, and keep a daily streak. For iPhone and iPad.", "Para quienes hablan español e inglés en Estados Unidos. Polingual enseña cada palabra en todos tus idiomas a la vez, con audio y raíces. Para iPhone y iPad."),
+    (", with word tiles in French, Hebrew, Greek, Arabic, Hindi and Chinese", ", con palabras en francés, hebreo, griego, árabe, hindi y chino"),
+    ("Polingual word tiles in six scripts", "Palabras de Polingual en seis escrituras"),
+    ('<link rel="canonical" href="https://www.polingual.com/">', '<link rel="canonical" href="https://www.polingual.com/es">'),
+    ('<meta property="og:url" content="https://www.polingual.com/">', '<meta property="og:url" content="https://www.polingual.com/es">'),
+    ('content="en_US"', 'content="es_US"'),
+    ("Language learning<br>for <em>multilingual</em><br>learners.", "Ya hablas español<br>e inglés. Suma tu<br><em>tercer</em> idioma."),
+    ("Language learning for <em>multilingual</em> learners.", "Ya hablas español e inglés. Suma tu <em>tercer</em> idioma."),
+    ("Join the beta on TestFlight", "Únete a la beta en TestFlight"),
+    (">Join the beta<", ">Únete a la beta<"),
+    (">day streak<", ">días de racha<"),
+    ("1 new meaning a day in 4 languages: up to 400 words", "1 significado nuevo al día en 4 idiomas: hasta 400 palabras"),
+    ('aria-label="100 day streak"', 'aria-label="100 días de racha"'),
+    (">Support<", ">Ayuda<"),
+    (">Privacy<", ">Privacidad<"),
+    (">Terms<", ">Términos<"),
+    (">Share<", ">Compartir<"),
+    ("for iPhone and iPad<", "para iPhone y iPad<"),
+    (">Word data: <", ">Datos de palabras: <"),
+]
+es = out
+for a, b in ES:
+    if a not in es:
+        raise SystemExit(f"es: missing {a!r}")
+    es = es.replace(a, b)
+(D / "es.html").write_text(es)
