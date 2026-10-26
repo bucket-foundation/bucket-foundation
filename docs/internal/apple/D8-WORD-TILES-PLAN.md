@@ -57,6 +57,12 @@ Every language card opens with the same row:
 
 - Match is where flags teach: the learner places each word on its flag.
 - A flag shows its language name underneath until the learner has matched that language correctly 3 times; after that the flag stands alone. Any miss on a nameless flag brings the name back.
+- D8-14 grading rule, implemented as `FlagMisses.gradeMatch(pairs, assign, state)` in BucketKit and checked by `namelessFlagMissLeavesTheWordUnratedAndCounts` and `namedFlagsGradeLikeGradeMatch`. For each word placed in a match card:
+  - On its own flag: rating 3 (Good), and that language's flag hit count goes up by one.
+  - On another language's flag whose name is hidden: no rating for this word from this card, a flag miss is counted against the flag it was placed on, and that flag's hit count resets to 0 so its name shows again.
+  - On another language's flag whose name is shown: rating 1 (Again), the same as `gradeMatch`.
+  - A flag's name is hidden once its hit count reaches 3 (`FlagMisses.hitsToHideName`). Name visibility is read from the state before the card is graded.
+  - Hits and misses are stored per language under `flagHits` and `flagMisses` in the set's synced settings.
 - Grading keeps flag knowledge out of the word schedule. With the name shown, match grades as today through `gradeMatch`. With a nameless flag, a wrong assignment records a flag miss in a per-language counter and gives that word card no rating from this match. The counters live in the language system's synced state (`FlagMisses` in BucketKit, stored under `flagMisses` in the set's settings), so a second device or a reinstall keeps them; `flagMissCountersSurviveAReload` covers the round trip; a right assignment grades as today.
 - The prompt word sits in a word tile, as D8 asks of the hero. Intro root words stay in plain text under the tile, and answer options stay as option buttons. Sentences and gapped sentences stay in plain serif, since a square tile cannot hold a sentence. This is the one deviation from "the hero of every screen".
 - Feedback after an answer keeps today's content: the answer, its reading, the family line and the false-friend note.
