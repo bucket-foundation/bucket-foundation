@@ -1,6 +1,6 @@
 # Polingual Core Vocabulary Sources
 
-Each language has 1,000 ranked words in `../top1000/<lang>.json` and up to 300 phrases in `../phrases/<lang>.json`.
+Each language has 1,000 ranked words in `../top1000/<lang>.json` and up to 300 phrases in `../phrases/<lang>.json`. Licenses and attribution for every file: `../NOTICE.md`.
 
 ## Word Frequency
 
@@ -17,11 +17,11 @@ Glosses, parts of speech and IPA come from Wiktionary via Kaikki (CC-BY-SA 4.0) 
 
 ## Phrases
 
-Tatoeba sentence pairs with an English translation (CC-BY 2.0 FR). Each phrase keeps its sentence URL and author, and the English side keeps its own. Where Tatoeba has fewer than 600 candidates (sa, ta, pa) Wiktionary usage examples fill in, each linked to its Wiktionary page. A phrase is 2 to 8 words, or 2 to 16 characters in zh, ja and th.
+Tatoeba sentence pairs with an English translation (CC-BY 2.0 FR). Each phrase keeps its sentence URL and author, and the English side keeps its own. Sentences with no owner in the Tatoeba export are dropped. Where Tatoeba has fewer than 600 candidates (sa, ta, pa) Wiktionary usage examples fill in, each linked to its Wiktionary page. A phrase is 2 to 8 words, or 2 to 16 characters in zh, ja and th.
 
-## CEFR Method
+## Frequency Bands
 
-No openly licensed CEFR word list covers these languages, so levels come from frequency bands.
+Each word and phrase has a `band` field holding A1, A2 or B1. These are frequency bands named after the CEFR levels they target; no CEFR assessment or CEFR word list stands behind them, since no openly licensed CEFR list covers these languages.
 
 - Words: rank 1 to 400 is A1, 401 to 750 is A2, 751 to 1000 is B1.
 - Phrases: the level follows the rarest word in the phrase, by its rank in the frequency list above. Rank up to 500 is A1, up to 1,500 is A2, up to 4,000 is B1. Sanskrit and Latin phrases rank against their own corpus. When a language has fewer than 300 phrases inside rank 4,000, B1 extends to rank 50,000.

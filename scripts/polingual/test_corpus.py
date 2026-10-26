@@ -20,7 +20,7 @@ class CorpusTest(unittest.TestCase):
             words = json.loads((DATA / f"top1000/{lang}.json").read_text())
             self.assertEqual(len(words), 1000, lang)
             self.assertEqual([w["rank"] for w in words], list(range(1, 1001)), lang)
-            self.assertTrue(all(w["cefr"] in LEVELS and w["meaning"] for w in words), lang)
+            self.assertTrue(all(w["band"] in LEVELS and w["meaning"] for w in words), lang)
 
     def test_word_sources_are_recorded(self):
         index = json.loads((DATA / "top1000/index.json").read_text())
@@ -32,7 +32,7 @@ class CorpusTest(unittest.TestCase):
             phrases = json.loads((DATA / f"phrases/{lang}.json").read_text())
             self.assertGreaterEqual(len(phrases), 200, lang)
             for p in phrases:
-                self.assertIn(p["cefr"], LEVELS)
+                self.assertIn(p["band"], LEVELS)
                 self.assertTrue(p["url"].startswith("https://") and p["license"] and p["author"] and p["english"], lang)
 
     def test_punjabi_is_gurmukhi(self):

@@ -25,6 +25,7 @@ BANDS = ((500, "A1"), (1500, "A2"), (4000, "B1"))
 TARGET = 300
 RELAXED_B1 = 50000
 PER_BAND = 100
+UNOWNED = "\\N"
 TATOEBA_LICENSE = "CC-BY 2.0 FR"
 KAIKKI_LICENSE = "CC-BY-SA 4.0"
 
@@ -109,16 +110,16 @@ def select(lang: str, cands: list[dict], ranks: dict[str, int], vocab: set[str],
         if not level:
             continue
         seen.update((key, norm(c["english"])))
-        scored.append((hardest, length, {**c, "cefr": level, "hardest_rank": hardest}))
+        scored.append((hardest, length, {**c, "band": level, "hardest_rank": hardest}))
     scored.sort(key=lambda r: (r[0], r[1]))
     picked: list[dict] = []
     for _, lvl in BANDS:
-        picked += [c for _, _, c in scored if c["cefr"] == lvl][:PER_BAND]
+        picked += [c for _, _, c in scored if c["band"] == lvl][:PER_BAND]
     if len(picked) < TARGET:
         ids = {id(c) for c in picked}
         picked += [c for _, _, c in scored if id(c) not in ids][: TARGET - len(picked)]
     order = {lvl: i for i, (_, lvl) in enumerate(BANDS)}
-    picked.sort(key=lambda c: (order[c["cefr"]], c["hardest_rank"]))
+    picked.sort(key=lambda c: (order[c["band"]], c["hardest_rank"]))
     return picked[:TARGET]
 
 
@@ -138,9 +139,9 @@ def main() -> None:
         for line in fh:
             s, _, t = line.partition("\t")
             s, t = int(s), int(t)
-            if s in owner and t in eng and s not in pairs:
+            if s in owner and t in eng and s not in pairs and eng[t][1] != UNOWNED:
                 pairs[s] = t
-            elif "en" in langs and s in eng and t in eng and s not in en_pairs and t != s:
+            elif "en" in langs and s in eng and t in eng and s not in en_pairs and t != s and eng[t][1] != UNOWNED:
                 en_pairs[s] = t
     OUT.mkdir(parents=True, exist_ok=True)
     index_path = OUT / "index.json"
@@ -153,6 +154,8 @@ def main() -> None:
             rows = {sid: target[lang][sid] for sid in pairs if owner[sid] == lang}
         for sid, (text, user) in rows.items():
             eid = sid if lang == "en" else pairs[sid]
+            if UNOWNED in (user, eng[eid][1]):
+                continue
             cands.append({"text": text, "english": eng[eid][0] if lang != "en" else text, "source": "tatoeba", "license": TATOEBA_LICENSE,
                           "url": f"https://tatoeba.org/en/sentences/show/{sid}", "author": user,
                           "english_url": f"https://tatoeba.org/en/sentences/show/{eid}", "english_author": eng[eid][1]})
@@ -167,7 +170,7 @@ def main() -> None:
         (OUT / f"{lang}.json").write_text(json.dumps(picked, ensure_ascii=False, indent=1))
         summary[lang] = {"count": len(picked), "tatoeba": sum(1 for p in picked if p["source"] == "tatoeba"),
                          "wiktionary": sum(1 for p in picked if p["source"] == "wiktionary"),
-                         "cefr": {lvl: sum(1 for p in picked if p["cefr"] == lvl) for _, lvl in BANDS}}
+                         "band": {lvl: sum(1 for p in picked if p["band"] == lvl) for _, lvl in BANDS}}
         print(lang, summary[lang])
     index_path.write_text(json.dumps(dict(sorted(summary.items())), ensure_ascii=False, indent=1))
 

@@ -37,7 +37,7 @@ DEFAULT_SOURCE = {"name": "wordfreq", "url": "https://github.com/rspeer/wordfreq
 GLOSS_SOURCE = {"name": "Wiktionary via Kaikki", "url": "https://kaikki.org", "license": "CC-BY-SA 4.0"}
 
 
-def cefr(rank: int) -> str:
+def band_of(rank: int) -> str:
     return next((level for limit, level in BANDS if rank <= limit), "B1")
 
 
@@ -150,7 +150,7 @@ def rank_sourced(db: sqlite3.Connection, lang: str, n: int, kaikki: Path | None,
         seen.add(entry["word"])
         rank = len(out) + 1
         zipf = zipf_of(count, total) if lang not in ("la",) else 0.0
-        row = {"rank": rank, "word": entry["word"], "meaning": entry["meaning"], "pos": entry["pos"], "ipa": entry.get("ipa"), "zipf": zipf, "cefr": cefr(rank)}
+        row = {"rank": rank, "word": entry["word"], "meaning": entry["meaning"], "pos": entry["pos"], "ipa": entry.get("ipa"), "zipf": zipf, "band": band_of(rank)}
         if lang == "sa":
             row["iast"] = word
         if entry.get("pinyin"):
@@ -164,7 +164,7 @@ def rank_sourced(db: sqlite3.Connection, lang: str, n: int, kaikki: Path | None,
         for row in rank_index(db, lang, n * 2):
             if row["word"] not in seen and len(out) < n:
                 seen.add(row["word"])
-                out.append({**row, "rank": len(out) + 1, "cefr": cefr(len(out) + 1), "source": "index"})
+                out.append({**row, "rank": len(out) + 1, "band": band_of(len(out) + 1), "source": "index"})
     return out
 
 
@@ -189,7 +189,7 @@ def rank_index(db: sqlite3.Connection, lang: str, n: int) -> list[dict]:
             continue
         seen.add(surface.lower())
         rank = len(out) + 1
-        out.append({"rank": rank, "word": surface, "meaning": meaning, "pos": pos, "ipa": ipa, "zipf": zipf, "score": score, "cefr": cefr(rank)})
+        out.append({"rank": rank, "word": surface, "meaning": meaning, "pos": pos, "ipa": ipa, "zipf": zipf, "score": score, "band": band_of(rank)})
         if len(out) == n:
             break
     return out
@@ -215,7 +215,7 @@ def main() -> None:
             "with_frequency": sum(1 for w in words if w["zipf"] > 0 or lang == "la"),
             "frequency_source": SOURCE_INFO.get(lang, DEFAULT_SOURCE),
             "gloss_source": GLOSS_SOURCE,
-            "cefr": {lvl: sum(1 for w in words if w["cefr"] == lvl) for _, lvl in BANDS},
+            "band": {lvl: sum(1 for w in words if w["band"] == lvl) for _, lvl in BANDS},
         }
     (OUT / "index.json").write_text(json.dumps(dict(sorted(summary.items())), ensure_ascii=False, indent=1))
     print(json.dumps({k: v["count"] for k, v in summary.items()}))
