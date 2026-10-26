@@ -40,6 +40,7 @@ struct PolingualApp: App {
                         WidgetSync.refresh(store)
                         #if os(iOS)
                         WatchBridge.shared.store = store
+                        WatchBridge.shared.sink = store
                         WatchBridge.shared.send()
                         #endif
                         await WidgetSync.scheduleWordOfDay(store, enabled: reminders.wordOfDay)

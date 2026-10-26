@@ -4,6 +4,30 @@ import Foundation
 import WatchConnectivity
 
 @MainActor
+protocol WatchGradeSink: AnyObject {
+    var watchReady: Bool { get }
+    func lastReview(_ g: WatchGrade) -> Double?
+    func applyWatchGrade(_ g: WatchGrade)
+    func watchGradesApplied()
+}
+
+extension LangStore: WatchGradeSink {
+    var watchReady: Bool { status == .ready && !systems.isEmpty }
+
+    func lastReview(_ g: WatchGrade) -> Double? {
+        state(g.card.systemId).cards[cardId(g.card.lang, g.card.itemId)]?.lastReview
+    }
+
+    func applyWatchGrade(_ g: WatchGrade) {
+        grade(g.card.systemId, lang: g.card.lang, itemId: g.card.itemId, rating: Rating(g.rating))
+    }
+
+    func watchGradesApplied() {
+        Task { await flush() }
+    }
+}
+
+@MainActor
 final class WatchBridge: NSObject, WCSessionDelegate {
     static let shared = WatchBridge()
     weak var store: LangStore?
@@ -12,6 +36,7 @@ final class WatchBridge: NSObject, WCSessionDelegate {
 
     func start(_ store: LangStore) {
         self.store = store
+        self.sink = store
         guard WCSession.isSupported() else { return }
         WCSession.default.delegate = self
         WCSession.default.activate()
@@ -39,7 +64,7 @@ final class WatchBridge: NSObject, WCSessionDelegate {
         try? WCSession.default.updateApplicationContext([WatchKeys.deck: data])
     }
 
-    var ready: Bool { store?.status == .ready && store?.systems.isEmpty == false }
+    weak var sink: (any WatchGradeSink)?
 
     func apply(_ grades: [WatchGrade]) {
         WatchQueue.enqueue(grades, defaults)
@@ -47,16 +72,12 @@ final class WatchBridge: NSObject, WCSessionDelegate {
     }
 
     func drain() {
-        guard let store else { return }
-        let grades = WatchQueue.drain(defaults, ready: ready)
+        guard let sink else { return }
+        let grades = WatchQueue.drain(defaults, ready: sink.watchReady)
         guard !grades.isEmpty else { return }
-        let fresh = WatchQueue.fresh(grades) { g in
-            store.state(g.card.systemId).cards[cardId(g.card.lang, g.card.itemId)]?.lastReview
-        }
-        for g in fresh {
-            store.grade(g.card.systemId, lang: g.card.lang, itemId: g.card.itemId, rating: Rating(g.rating))
-        }
-        Task { await store.flush() }
+        let fresh = WatchQueue.fresh(grades) { sink.lastReview($0) }
+        for g in fresh { sink.applyWatchGrade(g) }
+        sink.watchGradesApplied()
     }
 
     nonisolated func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
