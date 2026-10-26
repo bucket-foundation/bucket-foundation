@@ -216,8 +216,7 @@ func bucketForecast(_ library: Library, _ science: ScienceStore, _ langs: LangSt
             due.append((d, library.prepared[entry.id]?.byId[id]?.title))
         }
     }
-    let ms = date.timeIntervalSince1970 * 1000
-    let streak = max(langStreak(langs, now: date), library.scienceDecks.map { Int(liveStreak(science.state($0.id), now: ms)) }.max() ?? 0)
+    let streak = ReminderPlan.streak(langs.systems.map { langs.state($0.id) } + library.scienceDecks.map { science.state($0.id) }, at: date)
     return ReminderPlan.forecast(due: due, at: date, streak: streak)
 }
 

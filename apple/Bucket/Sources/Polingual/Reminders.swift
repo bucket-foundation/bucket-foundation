@@ -37,7 +37,7 @@ func langDue(_ store: LangStore) -> [(due: Double, label: String?)] {
 
 @MainActor
 func langStreak(_ store: LangStore, now: Date = .now) -> Int {
-    store.systems.map { Int(liveStreak(store.state($0.id), now: now.timeIntervalSince1970 * 1000)) }.max() ?? 0
+    ReminderPlan.streak(store.systems.map { store.state($0.id) }, at: now)
 }
 
 @MainActor
