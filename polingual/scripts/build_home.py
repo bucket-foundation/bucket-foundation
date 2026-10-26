@@ -100,6 +100,7 @@ html,body{{height:100%;overflow:hidden;background:#F6EEDC}}
 <div id="mb">{body(mobile)}</div>
 <script src="/d8/tiles.js"></script>
 <script src="/d8/beta.js"></script>
+<script src="/d8/ads.js"></script>
 <script src="/d8/share.js"></script>
 {skins.replace('document.querySelectorAll(".mho.face")', 'document.querySelectorAll(".mho.face")')}
 <script>(()=>{{const f=()=>document.querySelectorAll(".wd-art").forEach(a=>{{const b=a.firstElementChild;if(!a.clientWidth)return;b.style.setProperty("--k",Math.min(a.clientWidth/520,a.clientHeight/1060))}});f();addEventListener("resize",f);setTimeout(f,300)}})()</script>

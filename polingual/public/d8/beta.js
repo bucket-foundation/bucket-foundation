@@ -12,10 +12,10 @@ const bg=document.createElement('div');bg.className='bt-bg';bg.innerHTML=tr(`<fo
 document.body.appendChild(bg);const f=bg.querySelector('form'),m=f.querySelector('.msg'),e=f.querySelector('#bt-e');
 const open=()=>{bg.classList.add('on');setTimeout(()=>e.focus(),30)},close=()=>bg.classList.remove('on');
 bg.addEventListener('click',x=>{if(x.target===bg)close()});f.querySelector('.x').onclick=close;addEventListener('keydown',x=>{if(x.key==='Escape')close()});
-f.onsubmit=async x=>{x.preventDefault();m.className='msg';m.textContent=t('Saving…');
-try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value,website:f.website.value,turnstile:(f.querySelector('[name="cf-turnstile-response"]')||{}).value,speaks:'',learning:'beta',source:ES?'polingual-es':'polingual'})});
+f.onsubmit=async x=>{x.preventDefault();const ex=window.plAds?window.plAds.extras():{};m.className='msg';m.textContent=t('Saving…');
+try{const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value,website:f.website.value,turnstile:(f.querySelector('[name="cf-turnstile-response"]')||{}).value,...ex,speaks:'',learning:'beta',source:ES?'polingual-es':'polingual'})});
 const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(ES?t('Something went wrong. Try again.'):j.error||'Something went wrong. Try again.');
-m.innerHTML=FD?t('Your spot is saved. Check your email for your one-time code.'):tr(`You are on the list. <a href="${TF}" target="_blank" rel="noopener">Open TestFlight</a>`);if(!FD)window.open(TF,'_blank','noopener')}
+window.plAds&&window.plAds.lead(ex.event_id);m.innerHTML=FD?t('Your spot is saved. Check your email for your one-time code.'):tr(`You are on the list. <a href="${TF}" target="_blank" rel="noopener">Open TestFlight</a>`);if(!FD)window.open(TF,'_blank','noopener')}
 catch(err){m.className='msg err';m.textContent=(err instanceof TypeError?t('Could not reach the signup service.'):err.message)+' ';const a=document.createElement('a');a.href=TF;a.target='_blank';a.rel='noopener';a.textContent=t('Open TestFlight anyway');m.appendChild(a)}};
 document.addEventListener('click',x=>{const a=x.target.closest('[data-slot="appstore"]');if(!a)return;x.preventDefault();(top!==self?top:window).dispatchEvent(new CustomEvent('pl-beta'));if(top===self)open()});
 addEventListener('pl-beta',()=>{if(top===self)open()});
