@@ -10,6 +10,7 @@ final class Library {
     private(set) var index: Load<[DeckEntry]> = .idle
     private(set) var decks: [String: Deck] = [:]
     private(set) var deckErrors: [String: String] = [:]
+    private(set) var prepared: [String: PreparedDeck] = [:]
 
     let api: BucketAPI
 
@@ -25,7 +26,6 @@ final class Library {
         return []
     }
 
-
     func loadIndex() async {
         if case .ready = index { return }
         index = .loading
@@ -39,6 +39,14 @@ final class Library {
     func retryIndex() async {
         index = .idle
         await loadIndex()
+    }
+
+    func prepared(_ entry: DeckEntry) async -> PreparedDeck? {
+        if let p = prepared[entry.id] { return p }
+        guard let d = await deck(entry) else { return nil }
+        let p = PreparedDeck(branch: entry.id, atoms: d.atoms)
+        prepared[entry.id] = p
+        return p
     }
 
     func deck(_ entry: DeckEntry) async -> Deck? {

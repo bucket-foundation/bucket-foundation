@@ -25,6 +25,7 @@ struct AccountView: View {
                             .focused($focused)
                             .emailField()
                         Button("Send code") { Task { await account.sendCode(to: email) } }
+                            .buttonStyle(D8Primary())
                             .disabled(account.busy || !email.contains("@"))
                     } header: {
                         Eyebrow(text: "Sign in")
@@ -38,6 +39,7 @@ struct AccountView: View {
                             .focused($focused)
                             .codeField()
                         Button("Verify") { Task { await account.verify(code: code) } }
+                            .buttonStyle(D8Primary())
                             .disabled(account.busy || code.filter(\.isNumber).count < 6)
                         Button("Use a different email", role: .cancel) {
                             code = ""
@@ -52,12 +54,13 @@ struct AccountView: View {
                     Section {
                         LabeledContent("Status", value: "Signed in")
                         if let id = account.session?.userId { LabeledContent("Account", value: String(id.prefix(8))) }
-                        Button("Sign out", role: .destructive) { account.signOut() }
+                        Button("Sign out", role: .destructive) { Task { await account.signOutAfterSync() } }
                         Button("Delete account", role: .destructive) { confirmingDelete = true }
                     } header: {
                         Eyebrow(text: "Account")
                     }
                 }
+                ReminderSettings()
                 if let error = account.error {
                     Section { Text(error).foregroundStyle(.red) }
                 }

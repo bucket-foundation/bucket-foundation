@@ -6,7 +6,10 @@ struct BucketApp: App {
     @State private var account: Account
     @State private var library = Library(api: BucketAPI())
     @State private var langs: LangStore
+    @State private var science: ScienceStore
     @State private var gate: Gate
+    @State private var reminders = Reminders()
+    @Environment(\.scenePhase) private var phase
 
     init() {
         let account = Account(api: BucketAPI(), store: KeychainSessionStore(accessGroup: "QQ6D6A2LLS.foundation.bucket.shared"))
@@ -14,6 +17,12 @@ struct BucketApp: App {
         LangVoice.shared.store = langs
         _account = State(initialValue: account)
         _langs = State(initialValue: langs)
+        #if DEBUG
+        let shift = (Launch.value("-clockDays").flatMap(Double.init) ?? 0) * DAY_MS
+        #else
+        let shift = 0.0
+        #endif
+        _science = State(initialValue: ScienceStore(api: BucketAPI(), token: { await account.freshToken() }, now: { Date().timeIntervalSince1970 * 1000 + shift }))
         _gate = State(initialValue: Gate(account: account))
     }
 
@@ -23,13 +32,19 @@ struct BucketApp: App {
                 .environment(account)
                 .environment(library)
                 .environment(langs)
+                .environment(science)
                 .environment(gate)
+                .environment(reminders)
+                .onChange(of: phase) { _, p in
+                    guard p == .background || p == .active else { return }
+                    backgroundSafe { await reminders.reschedule(title: "Bucket") { bucketForecast(library, science, langs, at: $0) } }
+                }
                 .tint(Palette.green)
         }
     }
 }
 
-enum AppTab: String, Hashable { case learn, practice, canon, account }
+enum AppTab: String, Hashable { case today, learn, canon, account }
 
 enum Launch {
     static func value(_ flag: String) -> String? {
@@ -37,25 +52,43 @@ enum Launch {
         guard let i = args.firstIndex(of: flag), i + 1 < args.count else { return nil }
         return args[i + 1]
     }
+
+    static func flag(_ name: String) -> Bool { ProcessInfo.processInfo.arguments.contains(name) }
 }
 
 struct RootView: View {
+    @Environment(Reminders.self) private var reminders
     @Environment(Library.self) private var library
     @Environment(LangStore.self) private var langs
+    @Environment(ScienceStore.self) private var science
     @Environment(Gate.self) private var gate
     @Environment(Account.self) private var account
-    @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .learn
+    @State private var tab = Launch.value("-startTab").flatMap(AppTab.init(rawValue:)) ?? .today
 
     var body: some View {
         TabView(selection: $tab) {
+            Tab("Today", systemImage: "sun.max", value: .today) { TodayView() }
             Tab("Learn", systemImage: "book.closed", value: .learn) { LearnView() }
-            Tab("Practice", systemImage: "rectangle.on.rectangle.angled", value: .practice) { PracticeHome() }
             Tab("Account", systemImage: "person.crop.circle", value: AppTab.account) { AccountView() }
         }
         .task { await library.loadIndex() }
         .sheet(isPresented: Binding(get: { gate.asking }, set: { if !$0 { gate.asking = false; gate.dismissed() } })) { GateSheet() }
         .onChange(of: account.stage) { old, new in
-            if new == .signedIn && old != .signedIn { Task { await langs.syncAfterSignIn() } }
+            if new == .signedIn && old != .signedIn {
+                Task { await langs.syncAfterSignIn() }
+                Task { await science.syncAfterSignIn() }
+            }
+            if new == .signedOut && old == .signedIn && account.endedByUser {
+                science.clearLocal()
+                langs.clearLocal()
+                reminders.reset()
+            }
+        }
+        .task {
+            account.beforeSignOut = {
+                await science.flush()
+                await langs.flush()
+            }
         }
     }
 }

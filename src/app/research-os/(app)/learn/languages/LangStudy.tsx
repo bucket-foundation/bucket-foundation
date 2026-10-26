@@ -3,13 +3,13 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib/academy/lang-client";
-import { buildQueue, cardId, exerciseFor, learnerLevel, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
+import { buildQueue, cardId, exerciseFor, learnerLevel, letterExerciseFor, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
 import { linkForms, targetFirst } from "@/lib/academy/lang-layout";
 import LangExercise, { ReadingsContext, type ExerciseResult } from "./LangExercise";
 import { useLangSystem } from "./useLangSystem";
 
-export default function LangStudy({ systemId }: { systemId: string }) {
+export default function LangStudy({ systemId, heritage = false }: { systemId: string; heritage?: boolean }) {
   const h = useLangSystem(systemId);
   const { system, corpus, state } = h;
   const [queue, setQueue] = useState<QueueEntry[] | null>(null);
@@ -24,19 +24,20 @@ export default function LangStudy({ systemId }: { systemId: string }) {
   useEffect(() => {
     if (h.status === "ready" && system && corpus && queue === null) {
       xpStart.current = state.stats.xp;
-      setQueue(buildQueue(system, corpus, state));
+      setQueue(buildQueue(system, corpus, state, Date.now(), 14, { heritage }));
     }
-  }, [h.status, system, corpus, state, queue]);
+  }, [h.status, system, corpus, state, queue, heritage]);
 
   const entry = queue?.[i];
   const unitTitle = entry && corpus ? corpus.units[corpus.byId.get(entry.itemId)?.unit ?? -1]?.title : undefined;
   const ex: Exercise | null = useMemo(() => {
     if (!entry || !system || !corpus) return null;
+    if (entry.stage === "letter") return letterExerciseFor(entry.lang, system.root, entry.itemId, rng);
     const item = corpus.byId.get(entry.itemId);
     if (!item) return null;
     if (entry.stage === "match") return matchExercise(corpus, system, item, rng);
     const card = state.cards[cardId(entry.lang, entry.itemId)];
-    const made = exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang) });
+    const made = exerciseFor(corpus, system, item, entry.lang, card, rng, { speech: recognitionSupported(), afterIntro: entry.stage === "check", level: learnerLevel(state, entry.lang), heritage });
     return h.shared ? targetFirst(corpus, item, made, rng) : made;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entry, system, corpus, rng]);
@@ -89,7 +90,7 @@ export default function LangStudy({ systemId }: { systemId: string }) {
             type="button"
             className={BTN_SECONDARY}
             onClick={() => {
-              setQueue(buildQueue(system, corpus, state));
+              setQueue(buildQueue(system, corpus, state, Date.now(), 14, { heritage }));
               setI(0);
               setGraded(0);
               setCorrect(0);

@@ -257,6 +257,14 @@ enum Adaptive {
     static let profDepthB: [String: Double] = ["recall": -0.8, "apply": -0.2, "derive": 0.6, "teach": 1.2]
     static let profRatingScore: [Int: Double] = [1: 0, 2: 0.6, 3: 1, 4: 1]
     static let depthXP: [String: Double] = ["recall": 5, "apply": 8, "derive": 14, "teach": 20]
+    static let encompassBase = 0.6
+    static let encompassDecay = 0.5
+    static let encompassMin = 0.05
+    static let encompassMaxHops = 4
+    static let fireMaxCredit = 0.5
+    static let fireMaxStabilityGain = 0.15
+    static let fireMinRetrievability = 0.6
+    static let fireMinRating = 3
 }
 
 func updateProficiency(_ prof: Proficiency?, _ depth: String, _ score: Double) -> Proficiency {
@@ -267,7 +275,7 @@ func updateProficiency(_ prof: Proficiency?, _ depth: String, _ score: Double) -
     return Proficiency(theta: p.theta + k * (score - pr), n: p.n + 1)
 }
 
-public func grade(_ state: EngineState, id: String, rating: Rating, level: String = "recall", now: Double, tz: String? = nil) -> EngineState {
+public func grade(_ state: EngineState, encompassing: [String: [EncEdge]] = [:], id: String, rating: Rating, level: String = "recall", now: Double, tz: String? = nil) -> EngineState {
     var next = state
     let fsrs = next.fsrs
     let prev = next.cards[id] ?? Card(state: "new")
@@ -275,6 +283,15 @@ public func grade(_ state: EngineState, id: String, rating: Rating, level: Strin
     next.cards[id] = fsrs.review(prev, rating, now: now)
     let score = Adaptive.profRatingScore[rating] ?? (rating > 1 ? 1 : 0)
     next.prof[id] = updateProficiency(next.prof[id], level, score)
+    if rating >= Adaptive.fireMinRating {
+        for p in fireCredits(encompassing[id] ?? [], next.cards, fsrs, now: now, ratingScore: score) {
+            guard var c = next.cards[p.id] else { continue }
+            c.stability = p.stability
+            c.due = p.due
+            c.firedCredit = toFixed((c.firedCredit ?? 0) + p.credit, 4)
+            next.cards[p.id] = c
+        }
+    }
     if rating > 1 { next.xp += Adaptive.depthXP[level] ?? 5 }
     let dk = dayKey(now, tzName: tz)
     var h = next.history[dk] ?? DayStats(new: 0, reviews: 0)

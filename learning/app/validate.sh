@@ -1,14 +1,11 @@
 #!/usr/bin/env bash
-# Validate the Bucket Academy app: JSON integrity + JS syntax + engine simulation.
-# Used by the overnight build loop before committing, and by humans before shipping.
 set -e
 cd "$(dirname "$0")"
 echo "== corpus JSON integrity =="
 for f in corpus/*.json; do
   python3 - "$f" <<'PY'
-import json,sys,collections
+import json,sys,collections,re,os
 f=sys.argv[1]; d=json.load(open(f))
-# index.json is the branch MANIFEST (a list of decks), not a corpus — skip it.
 if 'atoms' not in d:
     print(f"  -- {f}: manifest ({len(d.get('decks',[]))} decks), skipping corpus checks"); sys.exit(0)
 a=d['atoms']; ids=[x['id'] for x in a]
@@ -19,7 +16,6 @@ assert not dup, f"{f}: duplicate ids {dup}"
 assert not miss, f"{f}: missing requires {miss}"
 assert all(x.get('shell') for x in a), f"{f}: atoms missing shell"
 if kind=='language':
-    # language atoms carry gloss + per-language forms instead of quiz/depths
     langs=d.get('meta',{}).get('languages',[])
     bad=[x['id'] for x in a if not x.get('gloss') or not all(l in x.get('forms',{}) and x['forms'][l].get('word') for l in langs)]
     assert not bad, f"{f}: language atoms missing gloss/forms {bad}"
@@ -29,6 +25,12 @@ else:
     assert not nq, f"{f}: atoms without quiz {nq}"
     bad=[x['id'] for x in a if not x.get('summary') or not x.get('depths')]
     assert not bad, f"{f}: atoms missing summary/depths {bad}"
+    prose=lambda t: re.sub(r'\$\$[\s\S]*?\$\$','',t)
+    long=sorted({x['id'] for x in a for q in x['quiz'] if len(prose(q.get('answer','')))>400})
+    if os.path.basename(f) in ('biophysics.json',):
+        assert not long, f"{f}: answers over 400 prose chars {long}"
+    elif long:
+        print(f"  WARN {f}: {len(long)} atoms with answers over 400 prose chars")
     print(f"  OK {f}: {len(a)} atoms, no dupes/missing/empty")
 PY
 done
@@ -71,14 +73,7 @@ node test-assess.mjs | tail -3
 echo "== test-yourself flow headless smoke (bkt-v7y) =="
 node test-assess-flow.mjs | tail -2
 echo "== language learn flow: word drill + transposition typo + cloze (bkt-m9j) =="
-# DOM-shim test — drives the real language word drill (asserts a TRANSPOSITION
-# typo grades 'close' via Damerau-Levenshtein) then the sentence/cloze drill.
-# Run WITHOUT a masking pipe so a failure aborts under `set -e`.
 node test-lang-flow.mjs | tail -3; test "${PIPESTATUS[0]}" -eq 0
 echo "== Polingual word explorer smoke (bkt-nhy) =="
-# DOM-shim test (no ws, no Chrome) — runs the REAL polingual.js over the baked
-# starter asset and genuinely gates the explorer logic. We run it WITHOUT a
-# masking `| tail` so its non-zero exit aborts validation under `set -e`
-# (a real gate, not a fake pass).
 node test-explorer.mjs
 echo "ALL VALIDATIONS PASSED"

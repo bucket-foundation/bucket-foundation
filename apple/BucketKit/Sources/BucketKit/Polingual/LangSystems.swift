@@ -608,6 +608,7 @@ public struct Exercise: Sendable {
     public var answerLang: String
     public var accept: [String]?
     public var options: [String]?
+    public var optionLangs: [String: String]?
     public var pairs: [LangWord]?
     public var cloze: (before: String, after: String)?
     public var family: [LangWord]?

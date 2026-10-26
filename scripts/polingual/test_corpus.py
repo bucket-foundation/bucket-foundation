@@ -1,0 +1,55 @@
+import json
+import re
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+DATA = ROOT / "learning/app/polingual"
+LEVELS = {"A1", "A2", "B1"}
+
+
+def codes() -> list[str]:
+    src = (ROOT / "src/lib/research-os/work-quiz/languages.ts").read_text()
+    block = src.split("LANGUAGE_NAMES")[1].split("};")[0]
+    return sorted(set(re.findall(r"^\s+([a-z]{2}):", block, re.M)) | {"pa"})
+
+
+class CorpusTest(unittest.TestCase):
+    def test_lists_pass_the_word_qa(self):
+        import sys
+        sys.path.insert(0, str(ROOT / "scripts/polingual"))
+        from wordlist_qa import audit, defects
+        for lang in codes():
+            words = json.loads((DATA / f"top1000/{lang}.json").read_text())
+            self.assertEqual(audit(lang, words)["full_list_flagged"], 0, lang)
+        self.assertEqual(defects({"word": "kann", "meaning": "first/third-person singular present of können", "pos": "verb"}, "de"), ["gloss"])
+        self.assertIn("proper", defects({"word": "Eind", "meaning": "a hamlet in Leudal, Limburg; a village", "pos": "noun"}, "nl"))
+        self.assertIn("junk", defects({"word": "16-mal", "meaning": "sixteen times", "pos": "adv"}, "de"))
+
+    def test_every_language_has_1000_tagged_words(self):
+        for lang in codes():
+            words = json.loads((DATA / f"top1000/{lang}.json").read_text())
+            self.assertEqual(len(words), 1000, lang)
+            self.assertEqual([w["rank"] for w in words], list(range(1, 1001)), lang)
+            self.assertTrue(all(w["band"] in LEVELS and w["meaning"] for w in words), lang)
+
+    def test_word_sources_are_recorded(self):
+        index = json.loads((DATA / "top1000/index.json").read_text())
+        for lang in codes():
+            self.assertIn("license", index[lang]["frequency_source"], lang)
+
+    def test_phrases_are_attributed(self):
+        for lang in codes():
+            phrases = json.loads((DATA / f"phrases/{lang}.json").read_text())
+            self.assertGreaterEqual(len(phrases), 200, lang)
+            for p in phrases:
+                self.assertIn(p["band"], LEVELS)
+                self.assertTrue(p["url"].startswith("https://") and p["license"] and p["author"] and p["english"], lang)
+
+    def test_punjabi_is_gurmukhi(self):
+        words = json.loads((DATA / "top1000/pa.json").read_text())
+        self.assertTrue(all(re.fullmatch(r"[਀-੿]+", w["word"]) for w in words))
+
+
+if __name__ == "__main__":
+    unittest.main()

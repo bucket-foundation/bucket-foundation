@@ -3,7 +3,8 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import type { Rating } from "@/lib/academy/fsrs";
 import { canSpeak, listenOnce, loadClipIndex, recognitionSupported, speak, speechSupported } from "@/lib/academy/lang-client";
-import { gradeMatch, joinTokens, judgeTyped, langDir, langName, LEVEL_LABEL, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
+import { gradeMatch, joinTokens, judgeTyped, langDir, langName, LEVEL_LABEL, readingLabel, verdictRating, type Exercise, type Reading, type Verdict } from "@/lib/academy/lang-systems";
+import { judgeSpelled } from "@/lib/academy/lang-script";
 import { BTN_PRIMARY, BTN_SECONDARY } from "@/components/ui";
 import type { LinkForm } from "@/lib/academy/lang-layout";
 
@@ -30,17 +31,38 @@ const KIND_LABEL: Record<Exercise["kind"], string> = {
   gender: "article",
   conjugate: "conjugate",
   "false-friend": "false friend",
+  "spell-heard": "spell what you hear",
+  letter: "find the letter",
 };
 
 export function ReadingLine({ reading, testId }: { reading?: Reading; testId?: string }) {
   const on = useContext(ReadingsContext);
-  if (!on || !reading) return null;
-  const parts = [reading.kana, reading.roman, reading.ipa ? `/${reading.ipa}/` : undefined].filter(Boolean);
-  if (!parts.length) return null;
+  const label = on ? readingLabel(reading) : null;
+  if (!label) return null;
   return (
     <div className="text-[12px] leading-[1.5] text-[color:var(--basalt-3)]" data-testid={testId ?? "reading"}>
-      {parts.join(" · ")}
+      {label}
     </div>
+  );
+}
+
+function WordTile({ lang, word, reading, testId }: { lang: string; word: string; reading?: Reading; testId: string }) {
+  const on = useContext(ReadingsContext);
+  const label = on ? readingLabel(reading) : null;
+  return (
+    <span className="inline-flex flex-col align-top" data-testid={testId}>
+      <span>
+        {langName(lang)}{" "}
+        <span lang={lang} dir={langDir(lang)}>
+          {word}
+        </span>
+      </span>
+      {label && (
+        <span className="text-[11px] leading-[1.4] text-[color:var(--basalt-3)]" data-testid={`${testId}-reading`}>
+          {label}
+        </span>
+      )}
+    </span>
   );
 }
 
@@ -73,7 +95,13 @@ function Family({ ex }: { ex: Exercise }) {
   if (!ex.family || ex.family.length === 0) return null;
   return (
     <div className="mt-3 text-[13px] text-[color:var(--basalt-2)]" data-testid="family">
-      <span className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">same root</span> {ex.family.map((f) => `${langName(f.lang)} ${f.word}`).join(" · ")}
+      <span className="small-caps text-[10px] tracking-[0.18em] text-[color:var(--basalt-3)]">same root</span>{" "}
+      {ex.family.map((f, i) => (
+        <span key={f.lang}>
+          {i > 0 && " · "}
+          <WordTile lang={f.lang} word={f.word} reading={f.reading} testId="family-word" />
+        </span>
+      ))}
     </div>
   );
 }
@@ -117,7 +145,7 @@ function Feedback({ ok, verdict, ex, onNext }: { ok: boolean; verdict?: Verdict;
 }
 
 function Prompt({ ex }: { ex: Exercise }) {
-  const hidden = ex.kind === "listen" || ex.kind === "type-heard";
+  const hidden = ex.kind === "listen" || ex.kind === "type-heard" || ex.kind === "spell-heard";
   if (ex.kind === "cloze" && ex.cloze) {
     return (
       <span lang={ex.lang} dir={langDir(ex.lang)}>
@@ -207,10 +235,7 @@ function Links({ links }: { links?: LinkForm[] }) {
       {links.map((l, i) => (
         <span key={l.lang} data-link-lang={l.lang} data-link-why={l.why}>
           {i > 0 && " · "}
-          {langName(l.lang)}{" "}
-          <span lang={l.lang} dir={langDir(l.lang)}>
-            {l.word}
-          </span>
+          <WordTile lang={l.lang} word={l.word} reading={l.reading} testId="link-word" />
         </span>
       ))}
     </p>
@@ -393,7 +418,7 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
     );
   }
 
-  const typedKind = ex.kind === "translate" || ex.kind === "type-heard" || (ex.kind === "conjugate" && !ex.options) || (ex.kind === "speak" && (!recognitionSupported() || heard === ""));
+  const typedKind = ex.kind === "translate" || ex.kind === "type-heard" || ex.kind === "spell-heard" || (ex.kind === "conjugate" && !ex.options) || (ex.kind === "speak" && (!recognitionSupported() || heard === ""));
   const mc = !!ex.options && !typedKind;
   const isRight = (o: string) => accepted.includes(o);
 
@@ -458,7 +483,7 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
           className="mt-4 flex flex-wrap gap-2"
           onSubmit={(e) => {
             e.preventDefault();
-            setVerdict(judgeTyped(typed, accepted, ex.answerLang));
+            setVerdict(ex.kind === "spell-heard" ? judgeSpelled(typed, accepted, ex.answerLang) : judgeTyped(typed, accepted, ex.answerLang));
           }}
         >
           <input
