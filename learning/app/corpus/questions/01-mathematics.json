@@ -1,0 +1,4272 @@
+{
+ "branch": "01-mathematics",
+ "version": "0.5.0",
+ "questions": [
+  {
+   "id": "set-function.pick",
+   "atom": "set-function",
+   "kind": "pick",
+   "prompt": "f(x) = x^2 on X = {1, 2, 3} with codomain {1, 4, 9}. What kind of function is it?",
+   "options": [
+    "Injective only",
+    "Surjective only",
+    "A bijection",
+    "Not a function"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "set-function.calculate",
+   "atom": "set-function",
+   "kind": "calculate",
+   "prompt": "How many functions are there from a 3-element set to a 2-element set?",
+   "answer": 8.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "set-function.order",
+   "atom": "set-function",
+   "kind": "order",
+   "prompt": "Order the check that a rule is a function.",
+   "steps": [
+    "Name the domain X and codomain Y",
+    "Apply the rule to each input",
+    "Confirm every input gets an output",
+    "Confirm no input gets two outputs"
+   ]
+  },
+  {
+   "id": "set-function.spot-error",
+   "atom": "set-function",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A function gives each input one output",
+    "Injective means no two inputs share an output",
+    "Surjective means every input is used",
+    "A bijection is injective and surjective"
+   ],
+   "error": 2,
+   "fix": "Surjective means every element of the codomain is hit."
+  },
+  {
+   "id": "set-function.match",
+   "atom": "set-function",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Domain",
+     "meaning": "Set of inputs"
+    },
+    {
+     "term": "Codomain",
+     "meaning": "Set outputs land in"
+    },
+    {
+     "term": "Injective",
+     "meaning": "No two inputs collide"
+    },
+    {
+     "term": "Surjective",
+     "meaning": "Every target is hit"
+    }
+   ]
+  },
+  {
+   "id": "set-function.applied",
+   "atom": "set-function",
+   "kind": "pick",
+   "prompt": "A coat check gives each coat its own ticket number, and every ticket goes to some coat. What is the coat-to-ticket map?",
+   "options": [
+    "A bijection",
+    "Neither injective nor surjective",
+    "Injective but not surjective",
+    "A rule that fails to be a function"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "limit.pick",
+   "atom": "limit",
+   "kind": "pick",
+   "prompt": "For f(x) = 3x + 1 near x = 2, which delta works for a given epsilon?",
+   "options": [
+    "epsilon / 3",
+    "3 epsilon",
+    "epsilon + 3",
+    "epsilon squared"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "limit.calculate",
+   "atom": "limit",
+   "kind": "calculate",
+   "prompt": "What is the limit of (x^2 - 4)/(x - 2) as x approaches 2?",
+   "answer": 4.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "limit.order",
+   "atom": "limit",
+   "kind": "order",
+   "prompt": "Order the epsilon-delta proof that 3x + 1 tends to 7 at x = 2.",
+   "steps": [
+    "Take any epsilon > 0",
+    "Rewrite |f(x) - 7| as 3|x - 2|",
+    "Choose delta = epsilon / 3",
+    "Show |x - 2| < delta gives |f(x) - 7| < epsilon"
+   ]
+  },
+  {
+   "id": "limit.spot-error",
+   "atom": "limit",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A limit describes the value f approaches",
+    "Continuity means the limit equals f(a)",
+    "A limit needs f to be defined at a",
+    "The challenger picks epsilon, the prover answers with delta"
+   ],
+   "error": 2,
+   "fix": "A limit can exist where f is undefined at a."
+  },
+  {
+   "id": "limit.match",
+   "atom": "limit",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "epsilon",
+     "meaning": "Allowed error in the output"
+    },
+    {
+     "term": "delta",
+     "meaning": "Allowed distance in the input"
+    },
+    {
+     "term": "Continuity",
+     "meaning": "Limit equals the value"
+    },
+    {
+     "term": "Limit",
+     "meaning": "Value approached"
+    }
+   ]
+  },
+  {
+   "id": "limit.applied",
+   "atom": "limit",
+   "kind": "pick",
+   "prompt": "A machinist must cut a part within 0.01 mm of spec. In limit terms, what is 0.01 mm?",
+   "options": [
+    "The epsilon tolerance",
+    "The delta reply",
+    "The limit value itself",
+    "The function's slope"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "group.pick",
+   "atom": "group",
+   "kind": "pick",
+   "prompt": "In the rotation group of a square, what is the inverse of a 90 degree turn?",
+   "options": [
+    "270 degrees",
+    "90 degrees",
+    "180 degrees",
+    "0 degrees"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "group.calculate",
+   "atom": "group",
+   "kind": "calculate",
+   "prompt": "How many elements does the full symmetry group of a square, rotations and reflections, have?",
+   "answer": 8.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "group.order",
+   "atom": "group",
+   "kind": "order",
+   "prompt": "Order the group axioms check for square rotations.",
+   "steps": [
+    "Check closure under composition",
+    "Check associativity",
+    "Find the identity, the 0 degree turn",
+    "Find each inverse"
+   ]
+  },
+  {
+   "id": "group.spot-error",
+   "atom": "group",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A group operation is associative",
+    "A group has an identity",
+    "Every group is commutative",
+    "Each element has an inverse"
+   ],
+   "error": 2,
+   "fix": "Many groups do not commute; those that do are called abelian."
+  },
+  {
+   "id": "group.match",
+   "atom": "group",
+   "kind": "match",
+   "prompt": "Match each axiom to its meaning.",
+   "pairs": [
+    {
+     "term": "Closure",
+     "meaning": "Result stays in the set"
+    },
+    {
+     "term": "Identity",
+     "meaning": "Element that changes nothing"
+    },
+    {
+     "term": "Inverse",
+     "meaning": "Element that undoes another"
+    },
+    {
+     "term": "Abelian",
+     "meaning": "Order does not matter"
+    }
+   ]
+  },
+  {
+   "id": "group.applied",
+   "atom": "group",
+   "kind": "pick",
+   "prompt": "Every twist of a Rubik's cube can be undone by another twist sequence. Which group axiom is that?",
+   "options": [
+    "Inverses",
+    "Commutativity",
+    "Closure under addition",
+    "A finite order of one"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "derivative.pick",
+   "atom": "derivative",
+   "kind": "pick",
+   "prompt": "What is the derivative of x^2?",
+   "options": [
+    "2x",
+    "x",
+    "x^2 / 2",
+    "2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "derivative.calculate",
+   "atom": "derivative",
+   "kind": "calculate",
+   "prompt": "A ball's height is h(t) = 20t - 5t^2 metres. What is its velocity at t = 1 s?",
+   "answer": 10.0,
+   "unit": "m/s",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "derivative.order",
+   "atom": "derivative",
+   "kind": "order",
+   "prompt": "Order the derivative from the definition.",
+   "steps": [
+    "Form f(x + h) - f(x)",
+    "Divide by h",
+    "Simplify",
+    "Let h tend to 0"
+   ]
+  },
+  {
+   "id": "derivative.spot-error",
+   "atom": "derivative",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The derivative is a limit of difference quotients",
+    "For x^2 the quotient simplifies to 2x + h",
+    "The derivative of x^2 at x = 3 is 9",
+    "The derivative is the slope of the tangent"
+   ],
+   "error": 2,
+   "fix": "The derivative of x^2 at x = 3 is 2 times 3 = 6."
+  },
+  {
+   "id": "derivative.match",
+   "atom": "derivative",
+   "kind": "match",
+   "prompt": "Match each idea to its meaning.",
+   "pairs": [
+    {
+     "term": "Derivative",
+     "meaning": "Instantaneous rate of change"
+    },
+    {
+     "term": "Tangent line",
+     "meaning": "Best linear approximation"
+    },
+    {
+     "term": "Difference quotient",
+     "meaning": "Average rate over h"
+    },
+    {
+     "term": "f'(a) = 0",
+     "meaning": "Flat tangent"
+    }
+   ]
+  },
+  {
+   "id": "integral.pick",
+   "atom": "integral",
+   "kind": "pick",
+   "prompt": "What is the integral of 2x from 0 to 3?",
+   "options": [
+    "6",
+    "9",
+    "3",
+    "18"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "integral.calculate",
+   "atom": "integral",
+   "kind": "calculate",
+   "prompt": "A car's velocity is v(t) = 4t m/s. How far does it travel from t = 0 to t = 5 s?",
+   "answer": 50.0,
+   "unit": "m",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "integral.order",
+   "atom": "integral",
+   "kind": "order",
+   "prompt": "Order the evaluation by the Fundamental Theorem.",
+   "steps": [
+    "Find an antiderivative F",
+    "Evaluate F(b)",
+    "Evaluate F(a)",
+    "Subtract F(b) - F(a)"
+   ]
+  },
+  {
+   "id": "integral.spot-error",
+   "atom": "integral",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The integral is a limit of sums",
+    "An antiderivative of 2x is x^2",
+    "The integral of 2x from 0 to 3 is 6",
+    "Integration and differentiation are inverse"
+   ],
+   "error": 2,
+   "fix": "x^2 from 0 to 3 gives 9."
+  },
+  {
+   "id": "integral.match",
+   "atom": "integral",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Integral",
+     "meaning": "Accumulated area"
+    },
+    {
+     "term": "Antiderivative",
+     "meaning": "F with F' = f"
+    },
+    {
+     "term": "Riemann sum",
+     "meaning": "Sum of thin rectangles"
+    },
+    {
+     "term": "FTC",
+     "meaning": "Links integrals and derivatives"
+    }
+   ]
+  },
+  {
+   "id": "vector-space.pick",
+   "atom": "vector-space",
+   "kind": "pick",
+   "prompt": "What is the dimension of polynomials of degree at most 2?",
+   "options": [
+    "2",
+    "3",
+    "1",
+    "Infinite"
+   ],
+   "answer": 1
+  },
+  {
+   "id": "vector-space.calculate",
+   "atom": "vector-space",
+   "kind": "calculate",
+   "prompt": "Write (3, 5) in the standard basis of R^2. What is the coefficient on e2?",
+   "answer": 5.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "vector-space.order",
+   "atom": "vector-space",
+   "kind": "order",
+   "prompt": "Order the check that a set is a vector space.",
+   "steps": [
+    "Pick the set and the scalars",
+    "Check sums stay in the set",
+    "Check scaled vectors stay in the set",
+    "Check the distributive and associative rules"
+   ]
+  },
+  {
+   "id": "vector-space.spot-error",
+   "atom": "vector-space",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Vector spaces allow adding and scaling",
+    "A basis spans and is independent",
+    "R^2 has dimension 3",
+    "Polynomials can form a vector space"
+   ],
+   "error": 2,
+   "fix": "R^2 has dimension 2."
+  },
+  {
+   "id": "vector-space.match",
+   "atom": "vector-space",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Basis",
+     "meaning": "Independent spanning set"
+    },
+    {
+     "term": "Dimension",
+     "meaning": "Number of basis vectors"
+    },
+    {
+     "term": "Span",
+     "meaning": "All linear combinations"
+    },
+    {
+     "term": "Zero vector",
+     "meaning": "Additive identity"
+    }
+   ]
+  },
+  {
+   "id": "vector-space.applied",
+   "atom": "vector-space",
+   "kind": "pick",
+   "prompt": "An RGB color is a mix of red, green and blue intensities. Seen as a vector space, what is its dimension?",
+   "options": [
+    "3",
+    "1",
+    "256",
+    "Infinite"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "linear-map.pick",
+   "atom": "linear-map",
+   "kind": "pick",
+   "prompt": "A 90 degree counterclockwise rotation sends e1 to what?",
+   "options": [
+    "(0, 1)",
+    "(1, 0)",
+    "(-1, 0)",
+    "(0, -1)"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "linear-map.calculate",
+   "atom": "linear-map",
+   "kind": "calculate",
+   "prompt": "A shop uses the matrix [[2, 0], [0, 3]] to rescale a 1 by 1 image to new width and height. What is the new area?",
+   "answer": 6.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "linear-map.order",
+   "atom": "linear-map",
+   "kind": "order",
+   "prompt": "Order the steps to build a map's matrix.",
+   "steps": [
+    "Fix a basis",
+    "Apply the map to each basis vector",
+    "Write each image as a column",
+    "Read off the matrix"
+   ]
+  },
+  {
+   "id": "linear-map.spot-error",
+   "atom": "linear-map",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Linear maps preserve sums",
+    "Linear maps preserve scaling",
+    "Composition of maps is matrix addition",
+    "The columns are images of basis vectors"
+   ],
+   "error": 2,
+   "fix": "Composition is matrix multiplication."
+  },
+  {
+   "id": "linear-map.match",
+   "atom": "linear-map",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Linear map",
+     "meaning": "Preserves sums and scaling"
+    },
+    {
+     "term": "Matrix",
+     "meaning": "Map written in a basis"
+    },
+    {
+     "term": "Composition",
+     "meaning": "Matrix product"
+    },
+    {
+     "term": "Kernel",
+     "meaning": "Vectors sent to zero"
+    }
+   ]
+  },
+  {
+   "id": "inner-product.pick",
+   "atom": "inner-product",
+   "kind": "pick",
+   "prompt": "u = (1, 2, 2) and v = (2, 0, -1). What is their inner product?",
+   "options": [
+    "0",
+    "1",
+    "3",
+    "-2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "inner-product.calculate",
+   "atom": "inner-product",
+   "kind": "calculate",
+   "prompt": "What is the length of u = (1, 2, 2)?",
+   "answer": 3.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "inner-product.order",
+   "atom": "inner-product",
+   "kind": "order",
+   "prompt": "Order the projection of v onto u.",
+   "steps": [
+    "Compute <u, v>",
+    "Compute <u, u>",
+    "Divide to get the coefficient",
+    "Multiply u by it"
+   ]
+  },
+  {
+   "id": "inner-product.spot-error",
+   "atom": "inner-product",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Orthogonal vectors have zero inner product",
+    "Length is the square root of <v, v>",
+    "Cauchy-Schwarz says |<u, v>| >= |u| |v|",
+    "Inner products define angles"
+   ],
+   "error": 2,
+   "fix": "Cauchy-Schwarz says |<u, v>| <= |u| |v|."
+  },
+  {
+   "id": "inner-product.match",
+   "atom": "inner-product",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Norm",
+     "meaning": "Length of a vector"
+    },
+    {
+     "term": "Orthogonal",
+     "meaning": "Zero inner product"
+    },
+    {
+     "term": "Projection",
+     "meaning": "Closest point on a line"
+    },
+    {
+     "term": "Cauchy-Schwarz",
+     "meaning": "Bound on the inner product"
+    }
+   ]
+  },
+  {
+   "id": "inner-product.applied",
+   "atom": "inner-product",
+   "kind": "pick",
+   "prompt": "A recommender scores how alike two users' rating vectors are. Which quantity measures their alignment?",
+   "options": [
+    "The cosine from the inner product",
+    "The sum of all their ratings across every movie they rated",
+    "The number of users",
+    "The largest single rating"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "eigenvalue.pick",
+   "atom": "eigenvalue",
+   "kind": "pick",
+   "prompt": "What are the eigenvalues of [[2, 1], [0, 3]]?",
+   "options": [
+    "2 and 3",
+    "1 and 2",
+    "0 and 3",
+    "1 and 3"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "eigenvalue.calculate",
+   "atom": "eigenvalue",
+   "kind": "calculate",
+   "prompt": "A population matrix has eigenvalue 1.05 on its dominant direction. After 10 years, by what factor has that mode grown?",
+   "answer": 1.629,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "eigenvalue.order",
+   "atom": "eigenvalue",
+   "kind": "order",
+   "prompt": "Order the eigenvalue computation.",
+   "steps": [
+    "Form A - lambda I",
+    "Take its determinant",
+    "Set it to zero",
+    "Solve for lambda"
+   ]
+  },
+  {
+   "id": "eigenvalue.spot-error",
+   "atom": "eigenvalue",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Av = lambda v",
+    "Eigenvectors are only stretched",
+    "A triangular matrix's eigenvalues are its off-diagonal entries",
+    "det(A - lambda I) = 0 gives eigenvalues"
+   ],
+   "error": 2,
+   "fix": "A triangular matrix's eigenvalues are its diagonal entries."
+  },
+  {
+   "id": "eigenvalue.match",
+   "atom": "eigenvalue",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Eigenvector",
+     "meaning": "Direction kept by the map"
+    },
+    {
+     "term": "Eigenvalue",
+     "meaning": "Stretch factor"
+    },
+    {
+     "term": "Characteristic polynomial",
+     "meaning": "det(A - lambda I)"
+    },
+    {
+     "term": "Eigenspace",
+     "meaning": "All eigenvectors for one lambda"
+    }
+   ]
+  },
+  {
+   "id": "taylor.pick",
+   "atom": "taylor",
+   "kind": "pick",
+   "prompt": "What is the degree-2 Taylor polynomial of e^x at 0?",
+   "options": [
+    "1 + x + x^2/2",
+    "1 + x + x^2",
+    "x + x^2/2",
+    "1 + 2x + x^2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "taylor.calculate",
+   "atom": "taylor",
+   "kind": "calculate",
+   "prompt": "A calculator estimates e^0.1 with 1 + x + x^2/2. What value does it give?",
+   "answer": 1.105,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "taylor.order",
+   "atom": "taylor",
+   "kind": "order",
+   "prompt": "Order the build of a Taylor polynomial.",
+   "steps": [
+    "Pick the center a",
+    "Compute derivatives at a",
+    "Divide the k-th by k!",
+    "Multiply by (x - a)^k and add"
+   ]
+  },
+  {
+   "id": "taylor.spot-error",
+   "atom": "taylor",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Taylor polynomials use derivatives at one point",
+    "Adding terms improves the fit near a",
+    "The approximation is equally good far from a",
+    "The remainder bounds the error"
+   ],
+   "error": 2,
+   "fix": "The fit worsens with distance from a."
+  },
+  {
+   "id": "taylor.match",
+   "atom": "taylor",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Center a",
+     "meaning": "Point of expansion"
+    },
+    {
+     "term": "k!",
+     "meaning": "Factorial divisor"
+    },
+    {
+     "term": "Remainder",
+     "meaning": "Error term"
+    },
+    {
+     "term": "Maclaurin series",
+     "meaning": "Taylor series at 0"
+    }
+   ]
+  },
+  {
+   "id": "metric-space.pick",
+   "atom": "metric-space",
+   "kind": "pick",
+   "prompt": "Which axiom says a detour is never shorter?",
+   "options": [
+    "Triangle inequality",
+    "Symmetry",
+    "Positivity",
+    "Completeness"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "metric-space.calculate",
+   "atom": "metric-space",
+   "kind": "calculate",
+   "prompt": "What is the Euclidean distance from (0, 0) to (3, 4)?",
+   "answer": 5.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "metric-space.order",
+   "atom": "metric-space",
+   "kind": "order",
+   "prompt": "Order the check that d is a metric.",
+   "steps": [
+    "Check d(x, y) >= 0 with equality only at x = y",
+    "Check symmetry",
+    "Check the triangle inequality",
+    "Conclude d is a metric"
+   ]
+  },
+  {
+   "id": "metric-space.spot-error",
+   "atom": "metric-space",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "d(x, y) = d(y, x)",
+    "d(x, x) = 0",
+    "d(x, z) >= d(x, y) + d(y, z)",
+    "Distances are never negative"
+   ],
+   "error": 2,
+   "fix": "The triangle inequality is d(x, z) <= d(x, y) + d(y, z)."
+  },
+  {
+   "id": "metric-space.match",
+   "atom": "metric-space",
+   "kind": "match",
+   "prompt": "Match each axiom to its meaning.",
+   "pairs": [
+    {
+     "term": "Positivity",
+     "meaning": "Distance is at least zero"
+    },
+    {
+     "term": "Symmetry",
+     "meaning": "Same both ways"
+    },
+    {
+     "term": "Triangle inequality",
+     "meaning": "Detours are no shorter"
+    },
+    {
+     "term": "Identity",
+     "meaning": "Zero distance only to itself"
+    }
+   ]
+  },
+  {
+   "id": "metric-space.applied",
+   "atom": "metric-space",
+   "kind": "pick",
+   "prompt": "A taxi in a grid city drives 3 blocks east and 4 north. Which metric gives the trip length of 7 blocks?",
+   "options": [
+    "Taxicab metric",
+    "Euclidean metric",
+    "Discrete metric",
+    "Maximum metric"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "spectral-theorem.pick",
+   "atom": "spectral-theorem",
+   "kind": "pick",
+   "prompt": "What do the eigenvalues of a symmetric real matrix have in common?",
+   "options": [
+    "They are real",
+    "They are zero",
+    "They are complex",
+    "They are equal"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "spectral-theorem.calculate",
+   "atom": "spectral-theorem",
+   "kind": "calculate",
+   "prompt": "What is the larger eigenvalue of [[2, 1], [1, 2]]?",
+   "answer": 3.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "spectral-theorem.order",
+   "atom": "spectral-theorem",
+   "kind": "order",
+   "prompt": "Order the diagonalization of a symmetric matrix.",
+   "steps": [
+    "Find the eigenvalues",
+    "Find orthonormal eigenvectors",
+    "Stack them as columns of Q",
+    "Write A = Q D Q^T"
+   ]
+  },
+  {
+   "id": "spectral-theorem.spot-error",
+   "atom": "spectral-theorem",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Self-adjoint operators have real eigenvalues",
+    "Their eigenvectors can be orthonormal",
+    "Every matrix has an orthonormal eigenbasis",
+    "The theorem underlies quantum observables"
+   ],
+   "error": 2,
+   "fix": "Only normal matrices, such as symmetric ones, are guaranteed that."
+  },
+  {
+   "id": "spectral-theorem.match",
+   "atom": "spectral-theorem",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Self-adjoint",
+     "meaning": "Equal to its adjoint"
+    },
+    {
+     "term": "Orthonormal basis",
+     "meaning": "Unit vectors at right angles"
+    },
+    {
+     "term": "Projector P_i",
+     "meaning": "Onto one eigenspace"
+    },
+    {
+     "term": "Diagonal form",
+     "meaning": "Map written in eigenbasis"
+    }
+   ]
+  },
+  {
+   "id": "spectral-theorem.applied",
+   "atom": "spectral-theorem",
+   "kind": "pick",
+   "prompt": "Principal component analysis finds main directions in a data cloud. Why are those directions at right angles?",
+   "options": [
+    "The covariance matrix is symmetric",
+    "Real data always lies on a circle around its own mean value",
+    "The matrix is triangular",
+    "Every matrix rotates data"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "stokes-theorem.pick",
+   "atom": "stokes-theorem",
+   "kind": "pick",
+   "prompt": "In one dimension, Stokes' theorem becomes which result?",
+   "options": [
+    "The Fundamental Theorem of Calculus",
+    "The chain rule",
+    "Taylor's theorem",
+    "Bayes' theorem"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "stokes-theorem.calculate",
+   "atom": "stokes-theorem",
+   "kind": "calculate",
+   "prompt": "For f(x) = x^3 on [0, 2], what is the integral of f' over the interval?",
+   "answer": 8.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "stokes-theorem.order",
+   "atom": "stokes-theorem",
+   "kind": "order",
+   "prompt": "Order the 1D case of Stokes.",
+   "steps": [
+    "Take omega = f on [a, b]",
+    "Find d omega = f' dx",
+    "The boundary is b minus a",
+    "Both sides give f(b) - f(a)"
+   ]
+  },
+  {
+   "id": "stokes-theorem.spot-error",
+   "atom": "stokes-theorem",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Stokes relates boundary and interior",
+    "In 1D the boundary is two points",
+    "Green's theorem has nothing to do with Stokes",
+    "The divergence theorem is a case of it"
+   ],
+   "error": 2,
+   "fix": "Green's theorem is the 2D case of Stokes."
+  },
+  {
+   "id": "stokes-theorem.match",
+   "atom": "stokes-theorem",
+   "kind": "match",
+   "prompt": "Match each theorem to its dimension.",
+   "pairs": [
+    {
+     "term": "FTC",
+     "meaning": "1D interval"
+    },
+    {
+     "term": "Green",
+     "meaning": "2D region"
+    },
+    {
+     "term": "Classical Stokes",
+     "meaning": "Surface in 3D"
+    },
+    {
+     "term": "Divergence theorem",
+     "meaning": "3D solid"
+    }
+   ]
+  },
+  {
+   "id": "stokes-theorem.applied",
+   "atom": "stokes-theorem",
+   "kind": "pick",
+   "prompt": "A sailor finds the circulation of wind around a closed loop. Stokes' theorem lets her get it from what?",
+   "options": [
+    "The curl integrated over the enclosed surface",
+    "The wind speed measured at one single point on the loop",
+    "The loop's perimeter",
+    "The air pressure"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "logic-proof.pick",
+   "atom": "logic-proof",
+   "kind": "pick",
+   "prompt": "When is P => Q false?",
+   "options": [
+    "P true, Q false",
+    "P false, Q true",
+    "Both false",
+    "Both true"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "logic-proof.calculate",
+   "atom": "logic-proof",
+   "kind": "calculate",
+   "prompt": "A truth table for three statements P, Q, R has how many rows?",
+   "answer": 8.0,
+   "unit": "rows",
+   "relTol": 0.02
+  },
+  {
+   "id": "logic-proof.order",
+   "atom": "logic-proof",
+   "kind": "order",
+   "prompt": "Order a proof by contrapositive.",
+   "steps": [
+    "Want to show P => Q",
+    "Assume not Q",
+    "Deduce not P",
+    "Conclude P => Q"
+   ]
+  },
+  {
+   "id": "logic-proof.spot-error",
+   "atom": "logic-proof",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "P => Q is false only when P is true and Q false",
+    "The contrapositive is equivalent",
+    "The converse Q => P is equivalent",
+    "Proofs chain valid deductions"
+   ],
+   "error": 2,
+   "fix": "The converse is a different statement."
+  },
+  {
+   "id": "logic-proof.match",
+   "atom": "logic-proof",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Contrapositive",
+     "meaning": "not Q => not P"
+    },
+    {
+     "term": "Converse",
+     "meaning": "Q => P"
+    },
+    {
+     "term": "Contradiction",
+     "meaning": "Assume the opposite"
+    },
+    {
+     "term": "Axiom",
+     "meaning": "Accepted starting point"
+    }
+   ]
+  },
+  {
+   "id": "logic-proof.applied",
+   "atom": "logic-proof",
+   "kind": "pick",
+   "prompt": "A sign says: if it is raining, the game is cancelled. The game is on. What can you conclude?",
+   "options": [
+    "It is not raining",
+    "It is raining",
+    "Nothing about rain",
+    "The sign is wrong"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "quantifiers-induction.pick",
+   "atom": "quantifiers-induction",
+   "kind": "pick",
+   "prompt": "What does an induction proof need?",
+   "options": [
+    "A base case and a step",
+    "Only a base case",
+    "Only the step",
+    "A counterexample"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "quantifiers-induction.calculate",
+   "atom": "quantifiers-induction",
+   "kind": "calculate",
+   "prompt": "Use n(n + 1)/2 to find 1 + 2 + ... + 100.",
+   "answer": 5050.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "quantifiers-induction.order",
+   "atom": "quantifiers-induction",
+   "kind": "order",
+   "prompt": "Order a proof by induction.",
+   "steps": [
+    "Prove the base case",
+    "Assume the claim for n",
+    "Prove it for n + 1",
+    "Conclude it holds for all n"
+   ]
+  },
+  {
+   "id": "quantifiers-induction.spot-error",
+   "atom": "quantifiers-induction",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Base case n = 1: 1 = 1",
+    "Assume 1 + ... + n = n(n + 1)/2",
+    "Adding n + 1 gives n(n + 1)/2 + n",
+    "That equals (n + 1)(n + 2)/2"
+   ],
+   "error": 2,
+   "fix": "Adding n + 1 gives n(n + 1)/2 + (n + 1)."
+  },
+  {
+   "id": "quantifiers-induction.match",
+   "atom": "quantifiers-induction",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "For all",
+     "meaning": "Universal quantifier"
+    },
+    {
+     "term": "There exists",
+     "meaning": "Existential quantifier"
+    },
+    {
+     "term": "Base case",
+     "meaning": "Starting instance"
+    },
+    {
+     "term": "Inductive step",
+     "meaning": "n implies n + 1"
+    }
+   ]
+  },
+  {
+   "id": "quantifiers-induction.applied",
+   "atom": "quantifiers-induction",
+   "kind": "pick",
+   "prompt": "Dominoes stand in a line. Which pair of facts guarantees they all fall?",
+   "options": [
+    "The first falls, and each knocks the next",
+    "The last falls first",
+    "Half of them fall at random and the rest follow after",
+    "They are all the same height"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "set-theory-axioms.pick",
+   "atom": "set-theory-axioms",
+   "kind": "pick",
+   "prompt": "How do the naturals and even naturals compare in size?",
+   "options": [
+    "Same size",
+    "Naturals are twice as big",
+    "Evens are bigger",
+    "They cannot be compared"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "set-theory-axioms.calculate",
+   "atom": "set-theory-axioms",
+   "kind": "calculate",
+   "prompt": "How many subsets does a 4-element set have?",
+   "answer": 16.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "set-theory-axioms.order",
+   "atom": "set-theory-axioms",
+   "kind": "order",
+   "prompt": "Order the proof that N and the evens match in size.",
+   "steps": [
+    "Define f(n) = 2n",
+    "Show f is injective",
+    "Show f is surjective",
+    "Conclude f is a bijection"
+   ]
+  },
+  {
+   "id": "set-theory-axioms.spot-error",
+   "atom": "set-theory-axioms",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A bijection shows equal size",
+    "f(n) = 2n pairs N with the evens",
+    "A proper subset is always smaller in size",
+    "The reals are larger than the naturals"
+   ],
+   "error": 2,
+   "fix": "An infinite set can match a proper subset in size."
+  },
+  {
+   "id": "set-theory-axioms.match",
+   "atom": "set-theory-axioms",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Bijection",
+     "meaning": "Perfect pairing"
+    },
+    {
+     "term": "Countable",
+     "meaning": "Same size as N"
+    },
+    {
+     "term": "Equivalence relation",
+     "meaning": "Reflexive, symmetric, transitive"
+    },
+    {
+     "term": "Power set",
+     "meaning": "Set of all subsets"
+    }
+   ]
+  },
+  {
+   "id": "number-systems.pick",
+   "atom": "number-systems",
+   "kind": "pick",
+   "prompt": "Which number system first contains the square root of 2?",
+   "options": [
+    "The reals",
+    "The rationals",
+    "The integers",
+    "The naturals"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "number-systems.calculate",
+   "atom": "number-systems",
+   "kind": "calculate",
+   "prompt": "What is the decimal value of 3/8?",
+   "answer": 0.375,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "number-systems.order",
+   "atom": "number-systems",
+   "kind": "order",
+   "prompt": "Order the number systems by the equations they solve.",
+   "steps": [
+    "N: counting",
+    "Z: x + 5 = 3",
+    "Q: 2x = 3",
+    "C: x^2 = -1"
+   ]
+  },
+  {
+   "id": "number-systems.spot-error",
+   "atom": "number-systems",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Suppose root 2 = p/q in lowest terms",
+    "Then p^2 = 2q^2, so p is even",
+    "Then q^2 = 2k^2, so q is odd",
+    "That contradicts lowest terms"
+   ],
+   "error": 2,
+   "fix": "q^2 = 2k^2 makes q even."
+  },
+  {
+   "id": "number-systems.match",
+   "atom": "number-systems",
+   "kind": "match",
+   "prompt": "Match each system to its symbol.",
+   "pairs": [
+    {
+     "term": "Naturals",
+     "meaning": "N"
+    },
+    {
+     "term": "Integers",
+     "meaning": "Z"
+    },
+    {
+     "term": "Rationals",
+     "meaning": "Q"
+    },
+    {
+     "term": "Complex numbers",
+     "meaning": "C"
+    }
+   ]
+  },
+  {
+   "id": "number-systems.applied",
+   "atom": "number-systems",
+   "kind": "pick",
+   "prompt": "A bank balance can drop below zero. Which number system is the smallest that records it?",
+   "options": [
+    "Integers",
+    "Naturals",
+    "Complex numbers",
+    "Irrationals"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "modular-arithmetic.pick",
+   "atom": "modular-arithmetic",
+   "kind": "pick",
+   "prompt": "What is 7 x 8 mod 5?",
+   "options": [
+    "1",
+    "2",
+    "3",
+    "4"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "modular-arithmetic.calculate",
+   "atom": "modular-arithmetic",
+   "kind": "calculate",
+   "prompt": "It is 9 o'clock. What time does a 12-hour clock show 50 hours later?",
+   "answer": 11.0,
+   "unit": "o'clock",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "modular-arithmetic.order",
+   "atom": "modular-arithmetic",
+   "kind": "order",
+   "prompt": "Order the computation of 7 x 8 mod 5.",
+   "steps": [
+    "Reduce 7 to 2",
+    "Reduce 8 to 3",
+    "Multiply to get 6",
+    "Reduce 6 to 1"
+   ]
+  },
+  {
+   "id": "modular-arithmetic.spot-error",
+   "atom": "modular-arithmetic",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "a = b mod n means n divides a - b",
+    "You may reduce before multiplying",
+    "17 = 3 mod 5",
+    "Clock time is arithmetic mod 12"
+   ],
+   "error": 2,
+   "fix": "17 = 2 mod 5."
+  },
+  {
+   "id": "modular-arithmetic.match",
+   "atom": "modular-arithmetic",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Modulus",
+     "meaning": "Number you divide by"
+    },
+    {
+     "term": "Residue",
+     "meaning": "Remainder"
+    },
+    {
+     "term": "Congruent",
+     "meaning": "Same remainder"
+    },
+    {
+     "term": "Mod 12",
+     "meaning": "Clock arithmetic"
+    }
+   ]
+  },
+  {
+   "id": "polynomials-roots.pick",
+   "atom": "polynomials-roots",
+   "kind": "pick",
+   "prompt": "What are the roots of x^2 - 5x + 6?",
+   "options": [
+    "2 and 3",
+    "1 and 6",
+    "-2 and -3",
+    "5 and 6"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "polynomials-roots.calculate",
+   "atom": "polynomials-roots",
+   "kind": "calculate",
+   "prompt": "A ball's height is -5t^2 + 20t. At what positive time t does it land?",
+   "answer": 4.0,
+   "unit": "s",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "polynomials-roots.order",
+   "atom": "polynomials-roots",
+   "kind": "order",
+   "prompt": "Order factoring a quadratic.",
+   "steps": [
+    "Find two numbers with the right sum",
+    "Check they have the right product",
+    "Write the factors",
+    "Read off the roots"
+   ]
+  },
+  {
+   "id": "polynomials-roots.spot-error",
+   "atom": "polynomials-roots",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "p(r) = 0 means x - r divides p",
+    "A degree n polynomial has at most n real roots",
+    "x^2 - 5x + 6 = (x + 2)(x + 3)",
+    "Roots are where the graph meets the axis"
+   ],
+   "error": 2,
+   "fix": "x^2 - 5x + 6 = (x - 2)(x - 3)."
+  },
+  {
+   "id": "polynomials-roots.match",
+   "atom": "polynomials-roots",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Root",
+     "meaning": "Input giving zero"
+    },
+    {
+     "term": "Degree",
+     "meaning": "Highest power"
+    },
+    {
+     "term": "Factor theorem",
+     "meaning": "Root gives a linear factor"
+    },
+    {
+     "term": "Leading coefficient",
+     "meaning": "Coefficient of the top power"
+    }
+   ]
+  },
+  {
+   "id": "combinatorics.pick",
+   "atom": "combinatorics",
+   "kind": "pick",
+   "prompt": "Picking a 3-person committee from 6 people, does order matter?",
+   "options": [
+    "No, use combinations",
+    "Yes, use permutations",
+    "Only for the chair",
+    "It depends on names"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "combinatorics.calculate",
+   "atom": "combinatorics",
+   "kind": "calculate",
+   "prompt": "A lottery draws 6 numbers from 49, order ignored. How many tickets are possible?",
+   "answer": 13980000.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "combinatorics.order",
+   "atom": "combinatorics",
+   "kind": "order",
+   "prompt": "Order the count of committees.",
+   "steps": [
+    "Decide if order matters",
+    "Pick the formula",
+    "Plug in n and k",
+    "Simplify the factorials"
+   ]
+  },
+  {
+   "id": "combinatorics.spot-error",
+   "atom": "combinatorics",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "C(6, 3) = 20",
+    "P(6, 3) = 120",
+    "Permutations ignore order",
+    "The multiplication principle multiplies independent choices"
+   ],
+   "error": 2,
+   "fix": "Permutations count ordered arrangements."
+  },
+  {
+   "id": "combinatorics.match",
+   "atom": "combinatorics",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Permutation",
+     "meaning": "Ordered arrangement"
+    },
+    {
+     "term": "Combination",
+     "meaning": "Unordered selection"
+    },
+    {
+     "term": "n!",
+     "meaning": "Ways to order n items"
+    },
+    {
+     "term": "Multiplication principle",
+     "meaning": "Multiply independent choices"
+    }
+   ]
+  },
+  {
+   "id": "probability.pick",
+   "atom": "probability",
+   "kind": "pick",
+   "prompt": "What is P of the whole sample space?",
+   "options": [
+    "1",
+    "0",
+    "0.5",
+    "Undefined"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "probability.calculate",
+   "atom": "probability",
+   "kind": "calculate",
+   "prompt": "Two fair coins are tossed. What is the probability of two heads?",
+   "answer": 0.25,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "probability.order",
+   "atom": "probability",
+   "kind": "order",
+   "prompt": "Order the computation of P(A and B) for independent events.",
+   "steps": [
+    "Check independence",
+    "Find P(A)",
+    "Find P(B)",
+    "Multiply them"
+   ]
+  },
+  {
+   "id": "probability.spot-error",
+   "atom": "probability",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Probabilities lie in [0, 1]",
+    "Disjoint events add",
+    "Independent events always are disjoint",
+    "P(A | B) = P(A and B)/P(B)"
+   ],
+   "error": 2,
+   "fix": "Disjoint events with positive probability cannot be independent."
+  },
+  {
+   "id": "probability.match",
+   "atom": "probability",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Sample space",
+     "meaning": "All outcomes"
+    },
+    {
+     "term": "Event",
+     "meaning": "Set of outcomes"
+    },
+    {
+     "term": "Independent",
+     "meaning": "One gives no information on the other"
+    },
+    {
+     "term": "Conditional probability",
+     "meaning": "Probability given another event"
+    }
+   ]
+  },
+  {
+   "id": "random-variables.pick",
+   "atom": "random-variables",
+   "kind": "pick",
+   "prompt": "What is the expected roll of a fair die?",
+   "options": [
+    "3.5",
+    "3",
+    "4",
+    "6"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "random-variables.calculate",
+   "atom": "random-variables",
+   "kind": "calculate",
+   "prompt": "A raffle ticket wins 100 dollars with probability 0.01 and nothing otherwise. What is its expected value in dollars?",
+   "answer": 1.0,
+   "unit": "dollars",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "random-variables.order",
+   "atom": "random-variables",
+   "kind": "order",
+   "prompt": "Order the variance computation.",
+   "steps": [
+    "Find E[X]",
+    "Find E[X^2]",
+    "Subtract E[X]^2",
+    "Take the square root for the standard deviation"
+   ]
+  },
+  {
+   "id": "random-variables.spot-error",
+   "atom": "random-variables",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "E[X + Y] = E[X] + E[Y]",
+    "Variance measures spread",
+    "Var(X) = E[X]^2 - E[X^2]",
+    "A die has variance about 2.92"
+   ],
+   "error": 2,
+   "fix": "Var(X) = E[X^2] - E[X]^2."
+  },
+  {
+   "id": "random-variables.match",
+   "atom": "random-variables",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Random variable",
+     "meaning": "Number from an outcome"
+    },
+    {
+     "term": "Expectation",
+     "meaning": "Weighted average"
+    },
+    {
+     "term": "Variance",
+     "meaning": "Spread around the mean"
+    },
+    {
+     "term": "Standard deviation",
+     "meaning": "Square root of variance"
+    }
+   ]
+  },
+  {
+   "id": "ring-field.pick",
+   "atom": "ring-field",
+   "kind": "pick",
+   "prompt": "Why is Z/6Z not a field?",
+   "options": [
+    "2 x 3 = 0 there",
+    "It has no zero",
+    "It has infinitely many elements",
+    "It has no addition"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "ring-field.calculate",
+   "atom": "ring-field",
+   "kind": "calculate",
+   "prompt": "In Z/7Z, what is the inverse of 3?",
+   "answer": 5.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "ring-field.order",
+   "atom": "ring-field",
+   "kind": "order",
+   "prompt": "Order the check that Z/pZ is a field.",
+   "steps": [
+    "It is a ring",
+    "Pick nonzero a",
+    "Since p is prime, gcd(a, p) = 1",
+    "So a has an inverse"
+   ]
+  },
+  {
+   "id": "ring-field.spot-error",
+   "atom": "ring-field",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A ring has addition and multiplication",
+    "A field needs every nonzero inverse",
+    "Z/6Z is a field",
+    "Z/5Z is a field"
+   ],
+   "error": 2,
+   "fix": "Z/6Z has zero divisors, so it is not a field."
+  },
+  {
+   "id": "ring-field.match",
+   "atom": "ring-field",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Ring",
+     "meaning": "Addition and multiplication"
+    },
+    {
+     "term": "Field",
+     "meaning": "Nonzero elements invertible"
+    },
+    {
+     "term": "Zero divisor",
+     "meaning": "Nonzero factors with product zero"
+    },
+    {
+     "term": "Z/pZ",
+     "meaning": "Field when p is prime"
+    }
+   ]
+  },
+  {
+   "id": "ring-field.applied",
+   "atom": "ring-field",
+   "kind": "pick",
+   "prompt": "Error-correcting codes on QR codes work over finite fields. Which structure lets them divide by any nonzero symbol?",
+   "options": [
+    "A field",
+    "A ring with zero divisors",
+    "A metric space",
+    "A graph"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "homomorphism.pick",
+   "atom": "homomorphism",
+   "kind": "pick",
+   "prompt": "What is the kernel of x -> x mod 3 from Z to Z/3Z?",
+   "options": [
+    "Multiples of 3",
+    "All integers",
+    "Only 0",
+    "Odd numbers"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "homomorphism.calculate",
+   "atom": "homomorphism",
+   "kind": "calculate",
+   "prompt": "By the isomorphism theorem, Z/ker has how many elements for x -> x mod 3?",
+   "answer": 3.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "homomorphism.order",
+   "atom": "homomorphism",
+   "kind": "order",
+   "prompt": "Order the first isomorphism theorem.",
+   "steps": [
+    "Define the homomorphism",
+    "Find its kernel",
+    "Find its image",
+    "Conclude G/ker is isomorphic to the image"
+   ]
+  },
+  {
+   "id": "homomorphism.spot-error",
+   "atom": "homomorphism",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A homomorphism preserves the operation",
+    "The kernel collapses to the identity",
+    "The kernel is never a subgroup",
+    "The image is a subgroup"
+   ],
+   "error": 2,
+   "fix": "The kernel is always a subgroup, and a normal one."
+  },
+  {
+   "id": "homomorphism.match",
+   "atom": "homomorphism",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Homomorphism",
+     "meaning": "Structure-preserving map"
+    },
+    {
+     "term": "Kernel",
+     "meaning": "What maps to identity"
+    },
+    {
+     "term": "Image",
+     "meaning": "What is hit"
+    },
+    {
+     "term": "Isomorphism",
+     "meaning": "Bijective homomorphism"
+    }
+   ]
+  },
+  {
+   "id": "complex-numbers.pick",
+   "atom": "complex-numbers",
+   "kind": "pick",
+   "prompt": "What is e^(i pi)?",
+   "options": [
+    "-1",
+    "1",
+    "i",
+    "0"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "complex-numbers.calculate",
+   "atom": "complex-numbers",
+   "kind": "calculate",
+   "prompt": "What is the modulus of 3 + 4i?",
+   "answer": 5.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "complex-numbers.order",
+   "atom": "complex-numbers",
+   "kind": "order",
+   "prompt": "Order multiplying by e^(i theta).",
+   "steps": [
+    "Write z in polar form",
+    "Add theta to its angle",
+    "Keep its modulus",
+    "Read the rotated point"
+   ]
+  },
+  {
+   "id": "complex-numbers.spot-error",
+   "atom": "complex-numbers",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "i^2 = -1",
+    "e^(i theta) = cos theta + i sin theta",
+    "Multiplying by e^(i theta) stretches by theta",
+    "|e^(i theta)| = 1"
+   ],
+   "error": 2,
+   "fix": "Multiplying by e^(i theta) rotates by theta."
+  },
+  {
+   "id": "complex-numbers.match",
+   "atom": "complex-numbers",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Modulus",
+     "meaning": "Distance from 0"
+    },
+    {
+     "term": "Argument",
+     "meaning": "Angle from real axis"
+    },
+    {
+     "term": "Conjugate",
+     "meaning": "Flip the sign of i"
+    },
+    {
+     "term": "Euler formula",
+     "meaning": "e^(i theta) = cos + i sin"
+    }
+   ]
+  },
+  {
+   "id": "complex-numbers.applied",
+   "atom": "complex-numbers",
+   "kind": "pick",
+   "prompt": "Engineers write AC voltages as complex numbers. What does the argument of the number represent?",
+   "options": [
+    "The phase",
+    "The resistance",
+    "The frequency",
+    "The current"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "sequences-series.pick",
+   "atom": "sequences-series",
+   "kind": "pick",
+   "prompt": "For which r does the geometric series converge?",
+   "options": [
+    "|r| < 1",
+    "r > 1",
+    "r = 1",
+    "Any r"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "sequences-series.calculate",
+   "atom": "sequences-series",
+   "kind": "calculate",
+   "prompt": "A bouncing ball travels 1 m, then each next path is 1/2 the last. What total distance does the geometric series give?",
+   "answer": 2.0,
+   "unit": "m",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "sequences-series.order",
+   "atom": "sequences-series",
+   "kind": "order",
+   "prompt": "Order the geometric sum derivation.",
+   "steps": [
+    "Write s = 1 + r + ... + r^N",
+    "Multiply by r",
+    "Subtract to get s(1 - r)",
+    "Let N grow for |r| < 1"
+   ]
+  },
+  {
+   "id": "sequences-series.spot-error",
+   "atom": "sequences-series",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A series is a limit of partial sums",
+    "The harmonic series converges",
+    "1 + 1/2 + 1/4 + ... = 2",
+    "Absolute convergence allows rearranging"
+   ],
+   "error": 1,
+   "fix": "The harmonic series diverges."
+  },
+  {
+   "id": "sequences-series.match",
+   "atom": "sequences-series",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Partial sum",
+     "meaning": "Sum of first N terms"
+    },
+    {
+     "term": "Converges",
+     "meaning": "Partial sums approach a limit"
+    },
+    {
+     "term": "Diverges",
+     "meaning": "No finite limit"
+    },
+    {
+     "term": "Geometric ratio",
+     "meaning": "r"
+    }
+   ]
+  },
+  {
+   "id": "multivariable-calculus.pick",
+   "atom": "multivariable-calculus",
+   "kind": "pick",
+   "prompt": "Which way does the gradient point?",
+   "options": [
+    "Steepest increase",
+    "Steepest decrease",
+    "Along a level curve",
+    "Toward the origin"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "multivariable-calculus.calculate",
+   "atom": "multivariable-calculus",
+   "kind": "calculate",
+   "prompt": "For f(x, y) = x^2 y, what is df/dx at (1, 2)?",
+   "answer": 4.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "multivariable-calculus.order",
+   "atom": "multivariable-calculus",
+   "kind": "order",
+   "prompt": "Order finding a gradient.",
+   "steps": [
+    "Take df/dx",
+    "Take df/dy",
+    "Stack them as a vector",
+    "Evaluate at the point"
+   ]
+  },
+  {
+   "id": "multivariable-calculus.spot-error",
+   "atom": "multivariable-calculus",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The gradient points uphill steepest",
+    "Divergence measures outflow",
+    "Curl measures how fast a field grows",
+    "Partials hold other variables fixed"
+   ],
+   "error": 2,
+   "fix": "Curl measures rotation."
+  },
+  {
+   "id": "multivariable-calculus.match",
+   "atom": "multivariable-calculus",
+   "kind": "match",
+   "prompt": "Match each operator to its meaning.",
+   "pairs": [
+    {
+     "term": "Gradient",
+     "meaning": "Direction of steepest ascent"
+    },
+    {
+     "term": "Divergence",
+     "meaning": "Net outflow"
+    },
+    {
+     "term": "Curl",
+     "meaning": "Rotation"
+    },
+    {
+     "term": "Partial derivative",
+     "meaning": "Rate in one variable"
+    }
+   ]
+  },
+  {
+   "id": "multivariable-calculus.applied",
+   "atom": "multivariable-calculus",
+   "kind": "pick",
+   "prompt": "A hiker wants the steepest way up a hill described by f(x, y). Which direction should she take?",
+   "options": [
+    "Along the gradient",
+    "Along a contour line",
+    "Opposite the gradient",
+    "Straight north"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "ode.pick",
+   "atom": "ode",
+   "kind": "pick",
+   "prompt": "What solves y' = ky with y(0) = y0?",
+   "options": [
+    "y0 e^(kt)",
+    "y0 + kt",
+    "y0 kt",
+    "k e^(y0 t)"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "ode.calculate",
+   "atom": "ode",
+   "kind": "calculate",
+   "prompt": "Bacteria grow as y' = 0.5y per hour, starting at 100. How many are there after 4 hours?",
+   "answer": 738.9,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "ode.order",
+   "atom": "ode",
+   "kind": "order",
+   "prompt": "Order the separation of variables.",
+   "steps": [
+    "Write dy/y = k dt",
+    "Integrate both sides",
+    "Exponentiate",
+    "Fit the constant to y(0)"
+   ]
+  },
+  {
+   "id": "ode.spot-error",
+   "atom": "ode",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "ODEs relate a function to its derivatives",
+    "y' = ky with k < 0 gives decay",
+    "Initial conditions never matter",
+    "Existence theorems guarantee solutions"
+   ],
+   "error": 2,
+   "fix": "The initial condition picks one solution."
+  },
+  {
+   "id": "ode.match",
+   "atom": "ode",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "ODE",
+     "meaning": "Equation in one variable's derivatives"
+    },
+    {
+     "term": "Initial condition",
+     "meaning": "Value at the start"
+    },
+    {
+     "term": "Separation",
+     "meaning": "Split y and t sides"
+    },
+    {
+     "term": "Exponential decay",
+     "meaning": "k < 0"
+    }
+   ]
+  },
+  {
+   "id": "fourier.pick",
+   "atom": "fourier",
+   "kind": "pick",
+   "prompt": "Differentiation becomes what after a Fourier transform?",
+   "options": [
+    "Multiplication by 2 pi i xi",
+    "Division by xi",
+    "Addition",
+    "Convolution"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "fourier.calculate",
+   "atom": "fourier",
+   "kind": "calculate",
+   "prompt": "A 440 Hz note plays. What is its period in milliseconds?",
+   "answer": 2.273,
+   "unit": "ms",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "fourier.order",
+   "atom": "fourier",
+   "kind": "order",
+   "prompt": "Order solving f'' + f = g by Fourier.",
+   "steps": [
+    "Transform both sides",
+    "Derivatives become multiplications",
+    "Divide to get f hat",
+    "Transform back"
+   ]
+  },
+  {
+   "id": "fourier.spot-error",
+   "atom": "fourier",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Fourier splits signals into frequencies",
+    "Periodic signals use series",
+    "The transform turns derivatives into integrals",
+    "Noncompact signals give a continuous spectrum"
+   ],
+   "error": 2,
+   "fix": "The transform turns derivatives into multiplications."
+  },
+  {
+   "id": "fourier.match",
+   "atom": "fourier",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Frequency",
+     "meaning": "Cycles per unit"
+    },
+    {
+     "term": "Spectrum",
+     "meaning": "Amplitude at each frequency"
+    },
+    {
+     "term": "Fourier series",
+     "meaning": "Sum of sines for periodic signals"
+    },
+    {
+     "term": "Inverse transform",
+     "meaning": "Rebuilds the signal"
+    }
+   ]
+  },
+  {
+   "id": "topology.pick",
+   "atom": "topology",
+   "kind": "pick",
+   "prompt": "On which interval does f(x) = x surely attain a maximum?",
+   "options": [
+    "[0, 1]",
+    "(0, 1)",
+    "[0, infinity)",
+    "All of R"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "topology.calculate",
+   "atom": "topology",
+   "kind": "calculate",
+   "prompt": "A coffee mug and a donut each have how many holes?",
+   "answer": 1.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "topology.order",
+   "atom": "topology",
+   "kind": "order",
+   "prompt": "Order the extreme value argument.",
+   "steps": [
+    "Take a continuous f on a compact space",
+    "Its image is compact",
+    "In R, compact means closed and bounded",
+    "So f attains max and min"
+   ]
+  },
+  {
+   "id": "topology.spot-error",
+   "atom": "topology",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Topology uses open sets",
+    "Unions of open sets are open",
+    "Infinite intersections of open sets are always open",
+    "The empty set is open"
+   ],
+   "error": 2,
+   "fix": "Only finite intersections of open sets must be open."
+  },
+  {
+   "id": "topology.match",
+   "atom": "topology",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Open set",
+     "meaning": "Basic notion of nearness"
+    },
+    {
+     "term": "Compact",
+     "meaning": "Every open cover has a finite subcover"
+    },
+    {
+     "term": "Homeomorphism",
+     "meaning": "Continuous bijection with continuous inverse"
+    },
+    {
+     "term": "Connected",
+     "meaning": "Cannot split into two open parts"
+    }
+   ]
+  },
+  {
+   "id": "determinant.pick",
+   "atom": "determinant",
+   "kind": "pick",
+   "prompt": "What is det [[1, 2], [3, 4]]?",
+   "options": [
+    "-2",
+    "2",
+    "10",
+    "-10"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "determinant.calculate",
+   "atom": "determinant",
+   "kind": "calculate",
+   "prompt": "A map has determinant 3. A 2 square-metre garden plot is mapped by it. What is the image area?",
+   "answer": 6.0,
+   "unit": "m^2",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "determinant.order",
+   "atom": "determinant",
+   "kind": "order",
+   "prompt": "Order the 2 by 2 determinant.",
+   "steps": [
+    "Multiply a by d",
+    "Multiply b by c",
+    "Subtract bc from ad",
+    "Check for zero"
+   ]
+  },
+  {
+   "id": "determinant.spot-error",
+   "atom": "determinant",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "det(AB) = det A det B",
+    "det A = 0 means invertible",
+    "The determinant scales volume",
+    "A negative determinant flips orientation"
+   ],
+   "error": 1,
+   "fix": "det A = 0 means not invertible."
+  },
+  {
+   "id": "determinant.match",
+   "atom": "determinant",
+   "kind": "match",
+   "prompt": "Match each value to its meaning.",
+   "pairs": [
+    {
+     "term": "det = 0",
+     "meaning": "Collapses dimension"
+    },
+    {
+     "term": "|det| = 2",
+     "meaning": "Doubles area"
+    },
+    {
+     "term": "det < 0",
+     "meaning": "Flips orientation"
+    },
+    {
+     "term": "det = 1",
+     "meaning": "Keeps area"
+    }
+   ]
+  },
+  {
+   "id": "real-analysis.pick",
+   "atom": "real-analysis",
+   "kind": "pick",
+   "prompt": "What does uniform convergence let you swap?",
+   "options": [
+    "Limit and integral",
+    "Sum and product",
+    "x and y",
+    "Domain and range"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "real-analysis.calculate",
+   "atom": "real-analysis",
+   "kind": "calculate",
+   "prompt": "f_n(x) = x^n on [0, 1]. What is the limit of f_n(0.5) as n grows?",
+   "answer": 0.0,
+   "unit": "",
+   "tol": 0.001
+  },
+  {
+   "id": "real-analysis.order",
+   "atom": "real-analysis",
+   "kind": "order",
+   "prompt": "Order why x^n converges but not uniformly.",
+   "steps": [
+    "Each x^n is continuous",
+    "For x < 1 the limit is 0",
+    "At x = 1 the limit is 1",
+    "The limit is discontinuous, so convergence is not uniform"
+   ]
+  },
+  {
+   "id": "real-analysis.spot-error",
+   "atom": "real-analysis",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "R is complete",
+    "Uniform limits of continuous functions are continuous",
+    "Pointwise convergence always allows swapping limit and integral",
+    "x^n converges pointwise on [0, 1]"
+   ],
+   "error": 2,
+   "fix": "Pointwise convergence can fail to allow the swap."
+  },
+  {
+   "id": "real-analysis.match",
+   "atom": "real-analysis",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Complete",
+     "meaning": "Cauchy sequences converge"
+    },
+    {
+     "term": "Pointwise",
+     "meaning": "Converges at each x"
+    },
+    {
+     "term": "Uniform",
+     "meaning": "Converges at one rate for all x"
+    },
+    {
+     "term": "Supremum",
+     "meaning": "Least upper bound"
+    }
+   ]
+  },
+  {
+   "id": "fundamental-theorem-algebra.pick",
+   "atom": "fundamental-theorem-algebra",
+   "kind": "pick",
+   "prompt": "How many complex roots, with multiplicity, does a degree 5 polynomial have?",
+   "options": [
+    "5",
+    "At most 2",
+    "At least 6",
+    "None"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "fundamental-theorem-algebra.calculate",
+   "atom": "fundamental-theorem-algebra",
+   "kind": "calculate",
+   "prompt": "What is the product of the roots of x^2 + 1?",
+   "answer": 1.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "fundamental-theorem-algebra.order",
+   "atom": "fundamental-theorem-algebra",
+   "kind": "order",
+   "prompt": "Order the factorization of a degree-n polynomial.",
+   "steps": [
+    "Find one complex root r",
+    "Divide out (z - r)",
+    "The quotient has degree n - 1",
+    "Repeat until fully factored"
+   ]
+  },
+  {
+   "id": "fundamental-theorem-algebra.spot-error",
+   "atom": "fundamental-theorem-algebra",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "x^2 + 1 has no real roots",
+    "Over C it factors as (x - i)(x + i)",
+    "Some polynomials have no complex root",
+    "C is algebraically closed"
+   ],
+   "error": 2,
+   "fix": "Every nonconstant complex polynomial has a complex root."
+  },
+  {
+   "id": "fundamental-theorem-algebra.match",
+   "atom": "fundamental-theorem-algebra",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Algebraically closed",
+     "meaning": "Every polynomial has a root"
+    },
+    {
+     "term": "Multiplicity",
+     "meaning": "Times a root repeats"
+    },
+    {
+     "term": "Linear factor",
+     "meaning": "z - r"
+    },
+    {
+     "term": "Degree",
+     "meaning": "Number of roots with multiplicity"
+    }
+   ]
+  },
+  {
+   "id": "fundamental-theorem-algebra.applied",
+   "atom": "fundamental-theorem-algebra",
+   "kind": "pick",
+   "prompt": "Engineers check a circuit's stability by finding all roots of its characteristic polynomial. What guarantees those roots exist?",
+   "options": [
+    "The fundamental theorem of algebra",
+    "The central limit theorem",
+    "Bayes' theorem",
+    "The halting problem"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "central-limit-theorem.pick",
+   "atom": "central-limit-theorem",
+   "kind": "pick",
+   "prompt": "What shape does the sum of many dice tend toward?",
+   "options": [
+    "Bell curve",
+    "Flat",
+    "Triangle forever",
+    "Exponential"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "central-limit-theorem.calculate",
+   "atom": "central-limit-theorem",
+   "kind": "calculate",
+   "prompt": "A die has sigma about 1.71. What is the standard deviation of the mean of 100 rolls?",
+   "answer": 0.171,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "central-limit-theorem.order",
+   "atom": "central-limit-theorem",
+   "kind": "order",
+   "prompt": "Order the CLT story for dice.",
+   "steps": [
+    "One die is flat",
+    "Two dice give a triangle",
+    "Ten dice look bell-shaped",
+    "Standardized sums approach N(0, 1)"
+   ]
+  },
+  {
+   "id": "central-limit-theorem.spot-error",
+   "atom": "central-limit-theorem",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The CLT needs finite variance",
+    "It holds for many distributions",
+    "The spread of the mean grows with n",
+    "The limit is Gaussian"
+   ],
+   "error": 2,
+   "fix": "The spread of the mean shrinks as 1/sqrt(n)."
+  },
+  {
+   "id": "central-limit-theorem.match",
+   "atom": "central-limit-theorem",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "mu",
+     "meaning": "Mean of one variable"
+    },
+    {
+     "term": "sigma",
+     "meaning": "Standard deviation"
+    },
+    {
+     "term": "sqrt(n)",
+     "meaning": "Scaling of the sum's spread"
+    },
+    {
+     "term": "N(0, 1)",
+     "meaning": "Standard normal"
+    }
+   ]
+  },
+  {
+   "id": "computability.pick",
+   "atom": "computability",
+   "kind": "pick",
+   "prompt": "What does the halting problem show?",
+   "options": [
+    "No program decides halting for all programs",
+    "Every program halts",
+    "Computers are too slow",
+    "Loops are illegal"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "computability.calculate",
+   "atom": "computability",
+   "kind": "calculate",
+   "prompt": "A Turing machine has 3 states and reads 2 symbols. How many state-symbol pairs need a rule?",
+   "answer": 6.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "computability.order",
+   "atom": "computability",
+   "kind": "order",
+   "prompt": "Order the diagonal argument.",
+   "steps": [
+    "Assume a halting decider H",
+    "Build D that does the opposite of H(P, P)",
+    "Run D on itself",
+    "Reach a contradiction"
+   ]
+  },
+  {
+   "id": "computability.spot-error",
+   "atom": "computability",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A Turing machine models computation",
+    "The halting problem is undecidable",
+    "Some programs can decide halting for all inputs",
+    "The proof uses self-reference"
+   ],
+   "error": 2,
+   "fix": "No program decides halting for all programs and inputs."
+  },
+  {
+   "id": "computability.match",
+   "atom": "computability",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Turing machine",
+     "meaning": "Model of computation"
+    },
+    {
+     "term": "Decidable",
+     "meaning": "An algorithm always answers"
+    },
+    {
+     "term": "Halting problem",
+     "meaning": "Undecidable question"
+    },
+    {
+     "term": "Diagonalization",
+     "meaning": "Self-reference trick"
+    }
+   ]
+  },
+  {
+   "id": "computability.applied",
+   "atom": "computability",
+   "kind": "pick",
+   "prompt": "Why can no antivirus detect every possible malicious program exactly?",
+   "options": [
+    "Deciding program behavior is undecidable in general",
+    "Antivirus software runs too slowly to finish scanning a whole disk",
+    "Malware is always encrypted",
+    "Computers lack the memory to store every program that exists"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "godel-incompleteness.pick",
+   "atom": "godel-incompleteness",
+   "kind": "pick",
+   "prompt": "What does the first incompleteness theorem say?",
+   "options": [
+    "Rich consistent theories have true unprovable statements",
+    "Every true statement of arithmetic is provable in the theory",
+    "Arithmetic is inconsistent, so it proves every statement",
+    "Proofs are infinite"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "godel-incompleteness.calculate",
+   "atom": "godel-incompleteness",
+   "kind": "calculate",
+   "prompt": "Add G to T to get T', then G' to get T'', and so on. After 3 additions, how many new axioms are there?",
+   "answer": 3.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "godel-incompleteness.order",
+   "atom": "godel-incompleteness",
+   "kind": "order",
+   "prompt": "Order the patching attempt.",
+   "steps": [
+    "Start with consistent T",
+    "Find G unprovable in T",
+    "Add G as an axiom",
+    "The theorem gives a new G' for T + G"
+   ]
+  },
+  {
+   "id": "godel-incompleteness.spot-error",
+   "atom": "godel-incompleteness",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Theory T is consistent and effectively axiomatized",
+    "T can express arithmetic",
+    "T can prove its own consistency",
+    "Some true G is unprovable in T"
+   ],
+   "error": 2,
+   "fix": "Such a T cannot prove its own consistency."
+  },
+  {
+   "id": "godel-incompleteness.match",
+   "atom": "godel-incompleteness",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Consistent",
+     "meaning": "Proves no contradiction"
+    },
+    {
+     "term": "Complete",
+     "meaning": "Proves or refutes every sentence"
+    },
+    {
+     "term": "Effectively axiomatized",
+     "meaning": "Axioms listable by algorithm"
+    },
+    {
+     "term": "G",
+     "meaning": "Gödel sentence"
+    }
+   ]
+  },
+  {
+   "id": "category-theory.pick",
+   "atom": "category-theory",
+   "kind": "pick",
+   "prompt": "What does a functor preserve?",
+   "options": [
+    "Composition and identities",
+    "Only objects",
+    "Element counts",
+    "Distances"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "category-theory.calculate",
+   "atom": "category-theory",
+   "kind": "calculate",
+   "prompt": "Objects A and B have 2 and 3 elements in Set. How many elements does their product A x B have?",
+   "answer": 6.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "category-theory.order",
+   "atom": "category-theory",
+   "kind": "order",
+   "prompt": "Order the universal property of a product.",
+   "steps": [
+    "Take any object C",
+    "Give maps f: C -> A and g: C -> B",
+    "Find the unique map C -> A x B",
+    "Check it commutes with the projections"
+   ]
+  },
+  {
+   "id": "category-theory.spot-error",
+   "atom": "category-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A category has objects and arrows",
+    "Arrows compose associatively",
+    "Functors may break composition",
+    "Products can be defined by universal properties"
+   ],
+   "error": 2,
+   "fix": "Functors preserve composition."
+  },
+  {
+   "id": "category-theory.match",
+   "atom": "category-theory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Object",
+     "meaning": "Node of the category"
+    },
+    {
+     "term": "Morphism",
+     "meaning": "Arrow between objects"
+    },
+    {
+     "term": "Functor",
+     "meaning": "Map between categories"
+    },
+    {
+     "term": "Universal property",
+     "meaning": "Defines by unique maps"
+    }
+   ]
+  },
+  {
+   "id": "trigonometry.pick",
+   "atom": "trigonometry",
+   "kind": "pick",
+   "prompt": "What is sin(pi/2)?",
+   "options": [
+    "1",
+    "0",
+    "-1",
+    "1/2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "trigonometry.calculate",
+   "atom": "trigonometry",
+   "kind": "calculate",
+   "prompt": "A 10 m ladder leans at 60 degrees to the ground. How high up the wall does it reach?",
+   "answer": 8.66,
+   "unit": "m",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "trigonometry.order",
+   "atom": "trigonometry",
+   "kind": "order",
+   "prompt": "Order finding cos and sin of an angle.",
+   "steps": [
+    "Start at (1, 0)",
+    "Turn the angle counterclockwise",
+    "Read the x coordinate as cos",
+    "Read the y coordinate as sin"
+   ]
+  },
+  {
+   "id": "trigonometry.spot-error",
+   "atom": "trigonometry",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "sin^2 + cos^2 = 1",
+    "cos(pi/2) = 0",
+    "sin(0) = 1",
+    "pi radians is a half turn"
+   ],
+   "error": 2,
+   "fix": "sin(0) = 0."
+  },
+  {
+   "id": "trigonometry.match",
+   "atom": "trigonometry",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Cosine",
+     "meaning": "x coordinate"
+    },
+    {
+     "term": "Sine",
+     "meaning": "y coordinate"
+    },
+    {
+     "term": "Radian",
+     "meaning": "Arc length on the unit circle"
+    },
+    {
+     "term": "Period",
+     "meaning": "2 pi"
+    }
+   ]
+  },
+  {
+   "id": "exponential-logarithm.pick",
+   "atom": "exponential-logarithm",
+   "kind": "pick",
+   "prompt": "Solve 2^x = 8.",
+   "options": [
+    "3",
+    "4",
+    "2",
+    "6"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "exponential-logarithm.calculate",
+   "atom": "exponential-logarithm",
+   "kind": "calculate",
+   "prompt": "A 1,000 dollar deposit grows at 5% a year compounded continuously. How many years until it doubles?",
+   "answer": 13.86,
+   "unit": "years",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "exponential-logarithm.order",
+   "atom": "exponential-logarithm",
+   "kind": "order",
+   "prompt": "Order solving an exponential equation.",
+   "steps": [
+    "Isolate the exponential",
+    "Take a log of both sides",
+    "Bring down the exponent",
+    "Solve for x"
+   ]
+  },
+  {
+   "id": "exponential-logarithm.spot-error",
+   "atom": "exponential-logarithm",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "d/dx e^x = e^x",
+    "ln(ab) = ln a + ln b",
+    "ln(a + b) = ln a + ln b",
+    "Logs undo exponentials"
+   ],
+   "error": 2,
+   "fix": "ln(a + b) has no such rule; ln(ab) = ln a + ln b."
+  },
+  {
+   "id": "exponential-logarithm.match",
+   "atom": "exponential-logarithm",
+   "kind": "match",
+   "prompt": "Match each rule to its meaning.",
+   "pairs": [
+    {
+     "term": "ln(ab)",
+     "meaning": "ln a + ln b"
+    },
+    {
+     "term": "ln(a^k)",
+     "meaning": "k ln a"
+    },
+    {
+     "term": "log_2 8",
+     "meaning": "3"
+    },
+    {
+     "term": "ln e",
+     "meaning": "1"
+    }
+   ]
+  },
+  {
+   "id": "mean-value-theorems.pick",
+   "atom": "mean-value-theorems",
+   "kind": "pick",
+   "prompt": "f(0) = -1 and f(1) = 1 for continuous f. What follows?",
+   "options": [
+    "f has a root in (0, 1)",
+    "f is increasing",
+    "f(0.5) = 0",
+    "f has no root"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "mean-value-theorems.calculate",
+   "atom": "mean-value-theorems",
+   "kind": "calculate",
+   "prompt": "A car covers 120 km in 1.5 h. What speed must the speedometer show at some instant, by the MVT?",
+   "answer": 80.0,
+   "unit": "km/h",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "mean-value-theorems.order",
+   "atom": "mean-value-theorems",
+   "kind": "order",
+   "prompt": "Order the IVT argument for x^3 + x - 1.",
+   "steps": [
+    "Note f is continuous",
+    "Compute f(0) = -1",
+    "Compute f(1) = 1",
+    "Conclude a root in (0, 1)"
+   ]
+  },
+  {
+   "id": "mean-value-theorems.spot-error",
+   "atom": "mean-value-theorems",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "IVT needs continuity",
+    "MVT needs differentiability inside",
+    "EVT holds on open intervals",
+    "MVT gives a point with average slope"
+   ],
+   "error": 2,
+   "fix": "EVT needs a closed bounded interval."
+  },
+  {
+   "id": "mean-value-theorems.match",
+   "atom": "mean-value-theorems",
+   "kind": "match",
+   "prompt": "Match each theorem to its claim.",
+   "pairs": [
+    {
+     "term": "IVT",
+     "meaning": "Hits every value between"
+    },
+    {
+     "term": "EVT",
+     "meaning": "Attains max and min"
+    },
+    {
+     "term": "MVT",
+     "meaning": "Some slope equals average"
+    },
+    {
+     "term": "Rolle",
+     "meaning": "Equal ends give a flat point"
+    }
+   ]
+  },
+  {
+   "id": "optimization.pick",
+   "atom": "optimization",
+   "kind": "pick",
+   "prompt": "Where is the minimum of x^2 - 4x + 7?",
+   "options": [
+    "x = 2",
+    "x = 4",
+    "x = -2",
+    "x = 7"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "optimization.calculate",
+   "atom": "optimization",
+   "kind": "calculate",
+   "prompt": "A farmer fences a rectangle with 40 m of fence. What is the largest area she can enclose?",
+   "answer": 100.0,
+   "unit": "m^2",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "optimization.order",
+   "atom": "optimization",
+   "kind": "order",
+   "prompt": "Order a one-variable optimization.",
+   "steps": [
+    "Take f'",
+    "Set f' = 0",
+    "Check f''",
+    "Evaluate f at the critical point"
+   ]
+  },
+  {
+   "id": "optimization.spot-error",
+   "atom": "optimization",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Critical points have f' = 0",
+    "f'' > 0 marks a minimum",
+    "A convex function can have many local minima",
+    "Convexity makes a critical point global"
+   ],
+   "error": 2,
+   "fix": "A convex function's local minima are global."
+  },
+  {
+   "id": "optimization.match",
+   "atom": "optimization",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Critical point",
+     "meaning": "f' = 0"
+    },
+    {
+     "term": "Convex",
+     "meaning": "Bowl-shaped"
+    },
+    {
+     "term": "Global minimum",
+     "meaning": "Lowest value anywhere"
+    },
+    {
+     "term": "Second derivative test",
+     "meaning": "Classifies critical points"
+    }
+   ]
+  },
+  {
+   "id": "change-of-variables.pick",
+   "atom": "change-of-variables",
+   "kind": "pick",
+   "prompt": "What is the area element in polar coordinates?",
+   "options": [
+    "r dr d theta",
+    "dr d theta",
+    "r^2 dr d theta",
+    "theta dr dr"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "change-of-variables.calculate",
+   "atom": "change-of-variables",
+   "kind": "calculate",
+   "prompt": "A circular pizza has radius 0.2 m. What is its area by the polar integral of r dr dtheta?",
+   "answer": 0.1257,
+   "unit": "m^2",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "change-of-variables.order",
+   "atom": "change-of-variables",
+   "kind": "order",
+   "prompt": "Order a change of variables.",
+   "steps": [
+    "Pick the substitution T",
+    "Compute the Jacobian matrix DT",
+    "Take |det DT|",
+    "Rewrite and integrate"
+   ]
+  },
+  {
+   "id": "change-of-variables.spot-error",
+   "atom": "change-of-variables",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The Jacobian scales volume",
+    "Polar coordinates use |det| = r",
+    "You can drop the Jacobian factor",
+    "The region transforms too"
+   ],
+   "error": 2,
+   "fix": "The |det DT| factor is required."
+  },
+  {
+   "id": "change-of-variables.match",
+   "atom": "change-of-variables",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Jacobian",
+     "meaning": "Matrix of partial derivatives"
+    },
+    {
+     "term": "|det DT|",
+     "meaning": "Local volume stretch"
+    },
+    {
+     "term": "Polar",
+     "meaning": "r and theta"
+    },
+    {
+     "term": "Spherical",
+     "meaning": "r, theta and phi"
+    }
+   ]
+  },
+  {
+   "id": "orthogonality-least-squares.pick",
+   "atom": "orthogonality-least-squares",
+   "kind": "pick",
+   "prompt": "Fitting y = c to data 1, 3, 5 by least squares gives c = ?",
+   "options": [
+    "3",
+    "1",
+    "5",
+    "9"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "orthogonality-least-squares.calculate",
+   "atom": "orthogonality-least-squares",
+   "kind": "calculate",
+   "prompt": "Fit y = c to daily sales 10, 12, 14, 16 by least squares. What is c?",
+   "answer": 13.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "orthogonality-least-squares.order",
+   "atom": "orthogonality-least-squares",
+   "kind": "order",
+   "prompt": "Order the least-squares fit.",
+   "steps": [
+    "Write A x = b",
+    "Form A^T A",
+    "Form A^T b",
+    "Solve the normal equations"
+   ]
+  },
+  {
+   "id": "orthogonality-least-squares.spot-error",
+   "atom": "orthogonality-least-squares",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Least squares projects b onto the column space",
+    "The residual is orthogonal to the columns",
+    "The normal equations are A A^T x = b",
+    "Fitting a constant gives the mean"
+   ],
+   "error": 2,
+   "fix": "The normal equations are A^T A x = A^T b."
+  },
+  {
+   "id": "orthogonality-least-squares.match",
+   "atom": "orthogonality-least-squares",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Residual",
+     "meaning": "b - A x"
+    },
+    {
+     "term": "Projection",
+     "meaning": "Closest point in the subspace"
+    },
+    {
+     "term": "Normal equations",
+     "meaning": "A^T A x = A^T b"
+    },
+    {
+     "term": "Overdetermined",
+     "meaning": "More equations than unknowns"
+    }
+   ]
+  },
+  {
+   "id": "svd.pick",
+   "atom": "svd",
+   "kind": "pick",
+   "prompt": "What does SVD do to the unit circle?",
+   "options": [
+    "Turns it into an ellipse",
+    "Leaves it a circle",
+    "Shrinks it to a single point at the origin of the plane",
+    "Makes it a square"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "svd.calculate",
+   "atom": "svd",
+   "kind": "calculate",
+   "prompt": "A matrix has singular values 5 and 2. By what factor does it scale areas?",
+   "answer": 10.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "svd.order",
+   "atom": "svd",
+   "kind": "order",
+   "prompt": "Order the SVD action.",
+   "steps": [
+    "V^T rotates",
+    "Sigma stretches the axes",
+    "U rotates again",
+    "The circle becomes an ellipse"
+   ]
+  },
+  {
+   "id": "svd.spot-error",
+   "atom": "svd",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Every matrix has an SVD",
+    "Singular values are nonnegative",
+    "Singular values can be negative",
+    "The largest singular value is the biggest stretch"
+   ],
+   "error": 2,
+   "fix": "Singular values are nonnegative."
+  },
+  {
+   "id": "svd.match",
+   "atom": "svd",
+   "kind": "match",
+   "prompt": "Match each factor to its role.",
+   "pairs": [
+    {
+     "term": "U",
+     "meaning": "Output rotation"
+    },
+    {
+     "term": "Sigma",
+     "meaning": "Axis stretch"
+    },
+    {
+     "term": "V^T",
+     "meaning": "Input rotation"
+    },
+    {
+     "term": "sigma_1",
+     "meaning": "Largest stretch"
+    }
+   ]
+  },
+  {
+   "id": "svd.applied",
+   "atom": "svd",
+   "kind": "pick",
+   "prompt": "Photo compression keeps only the largest singular values of an image matrix. Why does that work?",
+   "options": [
+    "They carry most of the image's structure",
+    "The smallest singular values hold most of the detail in the image",
+    "Images have no singular values",
+    "It sorts pixels by color"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "graph-theory.pick",
+   "atom": "graph-theory",
+   "kind": "pick",
+   "prompt": "How many edges does a tree with 10 vertices have?",
+   "options": [
+    "9",
+    "10",
+    "11",
+    "45"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "graph-theory.calculate",
+   "atom": "graph-theory",
+   "kind": "calculate",
+   "prompt": "A road network has 4 towns each joined by 3 roads. Using the handshake lemma, how many roads are there?",
+   "answer": 6.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "graph-theory.order",
+   "atom": "graph-theory",
+   "kind": "order",
+   "prompt": "Order growing a tree.",
+   "steps": [
+    "Start with one vertex",
+    "Attach a new vertex with one edge",
+    "Repeat",
+    "End with n vertices and n - 1 edges"
+   ]
+  },
+  {
+   "id": "graph-theory.spot-error",
+   "atom": "graph-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Sum of degrees is 2|E|",
+    "A tree has no cycles",
+    "A tree on n vertices has n edges",
+    "Graphs model networks"
+   ],
+   "error": 2,
+   "fix": "A tree on n vertices has n - 1 edges."
+  },
+  {
+   "id": "graph-theory.match",
+   "atom": "graph-theory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Vertex",
+     "meaning": "Node"
+    },
+    {
+     "term": "Edge",
+     "meaning": "Link between nodes"
+    },
+    {
+     "term": "Degree",
+     "meaning": "Edges at a vertex"
+    },
+    {
+     "term": "Tree",
+     "meaning": "Connected graph with no cycles"
+    }
+   ]
+  },
+  {
+   "id": "recurrence-generating.pick",
+   "atom": "recurrence-generating",
+   "kind": "pick",
+   "prompt": "What sets Fibonacci's growth rate?",
+   "options": [
+    "The golden ratio",
+    "e",
+    "pi",
+    "2"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "recurrence-generating.calculate",
+   "atom": "recurrence-generating",
+   "kind": "calculate",
+   "prompt": "Rabbit pairs follow Fibonacci: 1, 1, 2, 3, 5, ... How many pairs in month 10?",
+   "answer": 55.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "recurrence-generating.order",
+   "atom": "recurrence-generating",
+   "kind": "order",
+   "prompt": "Order solving a linear recurrence.",
+   "steps": [
+    "Write the characteristic equation",
+    "Find its roots",
+    "Write the general solution",
+    "Fit constants to initial terms"
+   ]
+  },
+  {
+   "id": "recurrence-generating.spot-error",
+   "atom": "recurrence-generating",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "F_n = F_(n-1) + F_(n-2)",
+    "The characteristic equation is x^2 - x - 1 = 0",
+    "The golden ratio is about 2.618",
+    "Generating functions turn recurrences into algebra"
+   ],
+   "error": 2,
+   "fix": "The golden ratio is about 1.618."
+  },
+  {
+   "id": "recurrence-generating.match",
+   "atom": "recurrence-generating",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Recurrence",
+     "meaning": "Term from earlier terms"
+    },
+    {
+     "term": "Generating function",
+     "meaning": "Sequence as a power series"
+    },
+    {
+     "term": "Golden ratio",
+     "meaning": "(1 + sqrt 5)/2"
+    },
+    {
+     "term": "Initial terms",
+     "meaning": "Fix the constants"
+    }
+   ]
+  },
+  {
+   "id": "complex-analysis.pick",
+   "atom": "complex-analysis",
+   "kind": "pick",
+   "prompt": "What does Cauchy's integral formula compute?",
+   "options": [
+    "f inside from values on the boundary",
+    "Real roots",
+    "The derivative at infinity from the values along the real axis",
+    "The area of a loop"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "complex-analysis.calculate",
+   "atom": "complex-analysis",
+   "kind": "calculate",
+   "prompt": "What is the contour integral of z^2 around the unit circle?",
+   "answer": 0.0,
+   "unit": "",
+   "tol": 0.001
+  },
+  {
+   "id": "complex-analysis.order",
+   "atom": "complex-analysis",
+   "kind": "order",
+   "prompt": "Order Cauchy's formula for f(a).",
+   "steps": [
+    "Take f holomorphic on and inside gamma",
+    "Pick an interior point a",
+    "Integrate f(z)/(z - a) around gamma",
+    "Divide by 2 pi i"
+   ]
+  },
+  {
+   "id": "complex-analysis.spot-error",
+   "atom": "complex-analysis",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Holomorphic functions are infinitely differentiable",
+    "Integrals of holomorphic f around loops vanish",
+    "f inside depends on values far outside gamma",
+    "Contour integrals give interior values"
+   ],
+   "error": 2,
+   "fix": "f inside is fixed by its values on gamma."
+  },
+  {
+   "id": "complex-analysis.match",
+   "atom": "complex-analysis",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Holomorphic",
+     "meaning": "Complex differentiable"
+    },
+    {
+     "term": "Contour",
+     "meaning": "Closed path"
+    },
+    {
+     "term": "Residue",
+     "meaning": "Coefficient of 1/(z - a)"
+    },
+    {
+     "term": "Analytic",
+     "meaning": "Given by a power series"
+    }
+   ]
+  },
+  {
+   "id": "measure-theory.pick",
+   "atom": "measure-theory",
+   "kind": "pick",
+   "prompt": "What is the Lebesgue measure of the rationals in [0, 1]?",
+   "options": [
+    "0",
+    "1",
+    "1/2",
+    "Infinite"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "measure-theory.calculate",
+   "atom": "measure-theory",
+   "kind": "calculate",
+   "prompt": "What is the Lebesgue integral over [0, 1] of the function equal to 1 on rationals and 0 elsewhere?",
+   "answer": 0.0,
+   "unit": "",
+   "tol": 0.001
+  },
+  {
+   "id": "measure-theory.order",
+   "atom": "measure-theory",
+   "kind": "order",
+   "prompt": "Order the Lebesgue integral of the rational indicator.",
+   "steps": [
+    "Note the rationals are countable",
+    "Countable sets have measure zero",
+    "So f = 0 almost everywhere",
+    "The integral is 0"
+   ]
+  },
+  {
+   "id": "measure-theory.spot-error",
+   "atom": "measure-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Lebesgue partitions the range",
+    "Countable sets have measure zero",
+    "Riemann integrates the rational indicator",
+    "Measure theory swaps limits and integrals cleanly"
+   ],
+   "error": 2,
+   "fix": "Riemann upper and lower sums for it never meet."
+  },
+  {
+   "id": "measure-theory.match",
+   "atom": "measure-theory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Measure",
+     "meaning": "Consistent size of sets"
+    },
+    {
+     "term": "Almost everywhere",
+     "meaning": "Except a measure zero set"
+    },
+    {
+     "term": "Simple function",
+     "meaning": "Finite-valued step"
+    },
+    {
+     "term": "Lebesgue integral",
+     "meaning": "Partitions the range"
+    }
+   ]
+  },
+  {
+   "id": "manifolds.pick",
+   "atom": "manifolds",
+   "kind": "pick",
+   "prompt": "How many charts are needed to cover a sphere?",
+   "options": [
+    "At least two",
+    "One",
+    "None",
+    "Infinitely many"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "manifolds.calculate",
+   "atom": "manifolds",
+   "kind": "calculate",
+   "prompt": "How many dimensions does the surface of a sphere have as a manifold?",
+   "answer": 2.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "manifolds.order",
+   "atom": "manifolds",
+   "kind": "order",
+   "prompt": "Order covering a sphere with charts.",
+   "steps": [
+    "Project from the north pole",
+    "Every point but the pole is covered",
+    "Project from the south pole",
+    "Together they cover the sphere"
+   ]
+  },
+  {
+   "id": "manifolds.spot-error",
+   "atom": "manifolds",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A manifold looks locally like R^n",
+    "d^2 = 0 for forms",
+    "A sphere can be covered by one chart",
+    "Differential forms are integrated on manifolds"
+   ],
+   "error": 2,
+   "fix": "A sphere needs at least two charts."
+  },
+  {
+   "id": "manifolds.match",
+   "atom": "manifolds",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Chart",
+     "meaning": "Local flat map"
+    },
+    {
+     "term": "Atlas",
+     "meaning": "Set of charts"
+    },
+    {
+     "term": "Differential form",
+     "meaning": "Thing to integrate"
+    },
+    {
+     "term": "Exterior derivative",
+     "meaning": "d"
+    }
+   ]
+  },
+  {
+   "id": "manifolds.applied",
+   "atom": "manifolds",
+   "kind": "pick",
+   "prompt": "Pilots use flat maps for a round Earth. Why does no single flat map show the whole globe without a tear?",
+   "options": [
+    "A sphere needs at least two charts",
+    "The Earth is too large",
+    "Maps cannot show oceans",
+    "Flat paper has no dimension"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "bayes-theorem.pick",
+   "atom": "bayes-theorem",
+   "kind": "pick",
+   "prompt": "A positive test for a 1-in-1000 disease with a 99% accurate test means roughly what chance of disease?",
+   "options": [
+    "9%",
+    "99%",
+    "50%",
+    "1%"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "bayes-theorem.calculate",
+   "atom": "bayes-theorem",
+   "kind": "calculate",
+   "prompt": "A spam filter: 20% of mail is spam, a word appears in 50% of spam and 5% of other mail. What is P(spam | word)?",
+   "answer": 0.7143,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "bayes-theorem.order",
+   "atom": "bayes-theorem",
+   "kind": "order",
+   "prompt": "Order a Bayes update.",
+   "steps": [
+    "Set the prior P(H)",
+    "Find the likelihood P(E | H)",
+    "Compute P(E)",
+    "Divide to get P(H | E)"
+   ]
+  },
+  {
+   "id": "bayes-theorem.spot-error",
+   "atom": "bayes-theorem",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Bayes inverts a conditional",
+    "P(E) sums over all hypotheses",
+    "P(H | E) equals P(E | H)",
+    "Rare diseases make positives less telling"
+   ],
+   "error": 2,
+   "fix": "P(H | E) and P(E | H) differ in general."
+  },
+  {
+   "id": "bayes-theorem.match",
+   "atom": "bayes-theorem",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Prior",
+     "meaning": "Belief before evidence"
+    },
+    {
+     "term": "Likelihood",
+     "meaning": "P(E | H)"
+    },
+    {
+     "term": "Posterior",
+     "meaning": "P(H | E)"
+    },
+    {
+     "term": "Evidence",
+     "meaning": "P(E)"
+    }
+   ]
+  },
+  {
+   "id": "prime-numbers.pick",
+   "atom": "prime-numbers",
+   "kind": "pick",
+   "prompt": "What is the prime factorization of 60?",
+   "options": [
+    "2^2 x 3 x 5",
+    "2 x 3 x 10",
+    "6 x 10",
+    "2^3 x 5"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "prime-numbers.calculate",
+   "atom": "prime-numbers",
+   "kind": "calculate",
+   "prompt": "How many positive divisors does 60 have?",
+   "answer": 12.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "prime-numbers.order",
+   "atom": "prime-numbers",
+   "kind": "order",
+   "prompt": "Order Euclid's proof of infinite primes.",
+   "steps": [
+    "Suppose p1, ..., pk are all the primes",
+    "Form N = p1...pk + 1",
+    "No pi divides N",
+    "So N has a new prime factor"
+   ]
+  },
+  {
+   "id": "prime-numbers.spot-error",
+   "atom": "prime-numbers",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Every integer above 1 factors into primes",
+    "The factorization is unique up to order",
+    "1 is prime",
+    "There are infinitely many primes"
+   ],
+   "error": 2,
+   "fix": "1 is not prime."
+  },
+  {
+   "id": "prime-numbers.match",
+   "atom": "prime-numbers",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Prime",
+     "meaning": "Only divisors 1 and itself"
+    },
+    {
+     "term": "Composite",
+     "meaning": "Has other divisors"
+    },
+    {
+     "term": "Unique factorization",
+     "meaning": "One prime multiset"
+    },
+    {
+     "term": "Coprime",
+     "meaning": "gcd 1"
+    }
+   ]
+  },
+  {
+   "id": "prime-numbers.applied",
+   "atom": "prime-numbers",
+   "kind": "pick",
+   "prompt": "RSA encryption rests on which fact about primes?",
+   "options": [
+    "Multiplying is fast but factoring large products is slow",
+    "Primes are all even",
+    "There are only finitely many primes, so the key list is short",
+    "Every number is prime"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "markov-chains.pick",
+   "atom": "markov-chains",
+   "kind": "pick",
+   "prompt": "What does the next step of a Markov chain depend on?",
+   "options": [
+    "Only the current state",
+    "All past states",
+    "Nothing",
+    "The future"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "markov-chains.calculate",
+   "atom": "markov-chains",
+   "kind": "calculate",
+   "prompt": "Weather: sunny stays sunny 0.9, rainy turns sunny 0.4. What is the long-run fraction of sunny days?",
+   "answer": 0.8,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "markov-chains.order",
+   "atom": "markov-chains",
+   "kind": "order",
+   "prompt": "Order finding a stationary distribution.",
+   "steps": [
+    "Write pi P = pi",
+    "Solve the balance equations",
+    "Use pi_A + pi_B = 1",
+    "Read pi"
+   ]
+  },
+  {
+   "id": "markov-chains.spot-error",
+   "atom": "markov-chains",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Transition rows sum to 1",
+    "Stationary pi satisfies pi P = pi",
+    "A Markov chain remembers its whole history",
+    "PageRank is a stationary distribution"
+   ],
+   "error": 2,
+   "fix": "The next step depends only on the current state."
+  },
+  {
+   "id": "markov-chains.match",
+   "atom": "markov-chains",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "State",
+     "meaning": "Current condition"
+    },
+    {
+     "term": "Transition matrix",
+     "meaning": "Step probabilities"
+    },
+    {
+     "term": "Stationary distribution",
+     "meaning": "Long-run fractions"
+    },
+    {
+     "term": "Memoryless",
+     "meaning": "Past beyond now is irrelevant"
+    }
+   ]
+  },
+  {
+   "id": "lagrange-multipliers.pick",
+   "atom": "lagrange-multipliers",
+   "kind": "pick",
+   "prompt": "At a constrained optimum, how are the gradients related?",
+   "options": [
+    "Parallel",
+    "Perpendicular",
+    "Equal length",
+    "Opposite and unequal"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "lagrange-multipliers.calculate",
+   "atom": "lagrange-multipliers",
+   "kind": "calculate",
+   "prompt": "Maximize xy subject to x + y = 10. What is the maximum?",
+   "answer": 25.0,
+   "unit": "",
+   "relTol": 0.02,
+   "applied": true
+  },
+  {
+   "id": "lagrange-multipliers.order",
+   "atom": "lagrange-multipliers",
+   "kind": "order",
+   "prompt": "Order the multiplier method.",
+   "steps": [
+    "Write grad f = lambda grad g",
+    "Write each component equation",
+    "Add the constraint",
+    "Solve the system"
+   ]
+  },
+  {
+   "id": "lagrange-multipliers.spot-error",
+   "atom": "lagrange-multipliers",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "The constraint surface is g = c",
+    "At the optimum grad f is parallel to grad g",
+    "lambda must be zero at every optimum",
+    "Fixed perimeter maximizes area as a square"
+   ],
+   "error": 2,
+   "fix": "lambda gives the trade-off rate and need not be zero."
+  },
+  {
+   "id": "lagrange-multipliers.match",
+   "atom": "lagrange-multipliers",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Objective",
+     "meaning": "f to optimize"
+    },
+    {
+     "term": "Constraint",
+     "meaning": "g = c"
+    },
+    {
+     "term": "lambda",
+     "meaning": "Multiplier"
+    },
+    {
+     "term": "Parallel gradients",
+     "meaning": "Optimum condition"
+    }
+   ]
+  },
+  {
+   "id": "banach-fixed-point.pick",
+   "atom": "banach-fixed-point",
+   "kind": "pick",
+   "prompt": "What does iterating a contraction from any start do?",
+   "options": [
+    "Converges to the unique fixed point",
+    "Diverges",
+    "Cycles forever",
+    "Reaches every point"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "banach-fixed-point.calculate",
+   "atom": "banach-fixed-point",
+   "kind": "calculate",
+   "prompt": "Iterate x -> cos x from x0 = 1. What is x1, in radians?",
+   "answer": 0.5403,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "banach-fixed-point.order",
+   "atom": "banach-fixed-point",
+   "kind": "order",
+   "prompt": "Order the fixed-point iteration.",
+   "steps": [
+    "Pick x0",
+    "Apply T to get x1",
+    "Keep applying T",
+    "Converge to x*"
+   ]
+  },
+  {
+   "id": "banach-fixed-point.spot-error",
+   "atom": "banach-fixed-point",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "A contraction shrinks distances by q < 1",
+    "The space must be complete",
+    "A contraction can have two fixed points",
+    "Iteration finds the fixed point"
+   ],
+   "error": 2,
+   "fix": "A contraction has exactly one fixed point."
+  },
+  {
+   "id": "banach-fixed-point.match",
+   "atom": "banach-fixed-point",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Contraction",
+     "meaning": "Shrinks distances"
+    },
+    {
+     "term": "Fixed point",
+     "meaning": "T x = x"
+    },
+    {
+     "term": "q",
+     "meaning": "Contraction factor"
+    },
+    {
+     "term": "Complete space",
+     "meaning": "Cauchy sequences converge"
+    }
+   ]
+  },
+  {
+   "id": "banach-fixed-point.applied",
+   "atom": "banach-fixed-point",
+   "kind": "pick",
+   "prompt": "A mall map says you are here. Drop a scaled-down map of the mall inside the mall. Why is exactly one point on the map at its own spot?",
+   "options": [
+    "Shrinking the mall onto itself is a contraction",
+    "Maps are always accurate",
+    "Every mall is built as a circle around its central point",
+    "The map is upside down"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
+   "id": "galois-theory.pick",
+   "atom": "galois-theory",
+   "kind": "pick",
+   "prompt": "Why is there no general quintic formula?",
+   "options": [
+    "S5 is not solvable",
+    "Quintics have no roots",
+    "Fifth roots do not exist",
+    "S5 is abelian"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "galois-theory.calculate",
+   "atom": "galois-theory",
+   "kind": "calculate",
+   "prompt": "How many elements does S_5, the symmetric group on 5 roots, have?",
+   "answer": 120.0,
+   "unit": "",
+   "relTol": 0.02
+  },
+  {
+   "id": "galois-theory.order",
+   "atom": "galois-theory",
+   "kind": "order",
+   "prompt": "Order the Galois argument for the quintic.",
+   "steps": [
+    "Find the Galois group S5",
+    "Note it contains A5",
+    "A5 is simple and nonabelian",
+    "So no radical formula exists"
+   ]
+  },
+  {
+   "id": "galois-theory.spot-error",
+   "atom": "galois-theory",
+   "kind": "spot-error",
+   "prompt": "Find the faulty step.",
+   "steps": [
+    "Galois groups permute roots",
+    "Subgroups match intermediate fields",
+    "S5 is solvable",
+    "Quadratics have a radical formula"
+   ],
+   "error": 2,
+   "fix": "S5 is not solvable."
+  },
+  {
+   "id": "galois-theory.match",
+   "atom": "galois-theory",
+   "kind": "match",
+   "prompt": "Match each term to its meaning.",
+   "pairs": [
+    {
+     "term": "Galois group",
+     "meaning": "Root symmetries"
+    },
+    {
+     "term": "Solvable group",
+     "meaning": "Built from abelian steps"
+    },
+    {
+     "term": "A5",
+     "meaning": "Simple nonabelian group"
+    },
+    {
+     "term": "Radical formula",
+     "meaning": "Roots via n-th roots"
+    }
+   ]
+  }
+ ]
+}

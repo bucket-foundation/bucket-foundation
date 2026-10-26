@@ -176,3 +176,10 @@ test("review records point at questions that exist", () => {
     }
   }
 });
+
+test("01-mathematics: deck exists and every question has a review verdict", () => {
+  const deck = decks.find((d) => d.branch === "01-mathematics");
+  assert.ok(deck);
+  const rec = JSON.parse(readFileSync(join(QDIR, "reviews/01-mathematics.json"), "utf8")) as { reviews: Record<string, { verdict?: string }> };
+  for (const q of deck.raw.questions as Question[]) assert.ok(rec.reviews[q.id]?.verdict, q.id);
+});
