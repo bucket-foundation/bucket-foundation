@@ -5,6 +5,7 @@ struct StudyView: View {
     @Environment(Reminders.self) private var reminders
     @Environment(LangStore.self) private var store
     @Environment(Gate.self) private var gate
+    @Environment(\.verticalSizeClass) private var vertical
     @Binding var path: NavigationPath
     let systemId: String
     @State private var queue: [QueueEntry]?
@@ -146,9 +147,15 @@ struct StudyView: View {
             .padding(.bottom, 12)
             .frame(maxWidth: 900, alignment: .top)
             .frame(maxWidth: .infinity)
-            ScrollView { page }
-                .scrollBounceBehavior(.basedOnSize)
-                .scrollDismissesKeyboard(.interactively)
+            Group {
+                if vertical == .compact {
+                    page.frame(maxHeight: .infinity, alignment: .top)
+                } else {
+                    ScrollView { page }
+                        .scrollBounceBehavior(.basedOnSize)
+                        .scrollDismissesKeyboard(.interactively)
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Menu {

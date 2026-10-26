@@ -39,15 +39,17 @@ struct OptionButton: View {
     let lang: String
     let reading: Reading?
     var selected = false
+    var tall = false
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text(text).multilineTextAlignment(.leading)
+            VStack(alignment: tall ? .center : .leading, spacing: 2) {
+                Text(text).multilineTextAlignment(tall ? .center : .leading).lineLimit(tall ? 2 : nil).minimumScaleFactor(tall ? 0.6 : 1)
                 if let r = readingText(reading) { Text(r).font(.caption).foregroundStyle(D8.ipa) }
             }
             .padding(.vertical, 10)
+            .frame(maxWidth: tall ? .infinity : nil, minHeight: tall ? 72 : nil)
         }
         .buttonStyle(D8Option(selected: selected))
         .environment(\.layoutDirection, Lang.isRTL(lang) ? .rightToLeft : .leftToRight)
@@ -234,7 +236,7 @@ struct ExerciseView: View {
         let answers = VStack(alignment: .leading, spacing: 14) {
             if mc, let options = ex.options {
                 if let picked {
-                    LazyVGrid(columns: sideways && options.allSatisfy({ $0.count <= 14 }) ? [GridItem(.flexible(), spacing: 8), GridItem(.flexible())] : [GridItem(.flexible())], spacing: 8) {
+                    LazyVGrid(columns: sideways ? [GridItem(.flexible(), spacing: 8), GridItem(.flexible())] : [GridItem(.flexible())], spacing: 8) {
                         ForEach(options, id: \.self) { o in
                             AnswerRow(word: o, lang: optionLang(o), state: accepted.contains(o) ? .right : o == picked ? .wrong : .other,
                                       flag: ex.optionLangs != nil || accepted.contains(o), reading: sameLangReadings ? r(o, optionLang(o)) : nil)
@@ -247,10 +249,10 @@ struct ExerciseView: View {
                         .onAppear { haptic(accepted.contains(picked)) }
                 } else {
                     let row = ex.kind == .gender && options.count <= 3
-                    let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways && options.allSatisfy({ $0.count <= 14 }) ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
+                    let cols = row ? Array(repeating: GridItem(.flexible(), spacing: 10), count: options.count) : sideways ? [GridItem(.flexible(), spacing: 10), GridItem(.flexible())] : [GridItem(.flexible())]
                     LazyVGrid(columns: cols, spacing: 10) {
                         ForEach(options, id: \.self) { o in
-                            OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o) { selected = o; tap() }
+                            OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o, tall: sideways) { selected = o; tap() }
                         }
                     }
                     Button("Check") { picked = selected }
