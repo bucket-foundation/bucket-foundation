@@ -13,7 +13,7 @@ const NONE = { beads: [], prs: [], notes: [], repoUrl: null };
 describe("language questions in the desktop engine", () => {
   test("the word set loads under bun from the package folder", () => {
     expect(subsetPath(join(import.meta.dir, ".."))).toEndWith("learning/app/polingual/subset.json");
-    expect(loadWordSet().languages.length).toBe(27);
+    expect(loadWordSet().languages.length).toBe(28);
   });
 
   test("the daily quiz parser takes every language type and the word source kind", () => {
@@ -101,7 +101,7 @@ describe("schema 11 languages", () => {
     const s = new Store(join(dir, "bkt.db"), key);
     const wq = new WorkQuizStore(s, key);
     const routes = workQuizRoutes(wq, { now: () => 1, log: () => {} });
-    expect(((await (await get(routes, "/local/work-quiz/languages")).json()) as { languages: string[]; available: { code: string }[] }).available.length).toBe(27);
+    expect(((await (await get(routes, "/local/work-quiz/languages")).json()) as { languages: string[]; available: { code: string }[] }).available.length).toBe(28);
     let res = await post(routes, "/local/work-quiz/languages", { languages: ["ja", "he", "ja"] });
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ languages: ["ja", "he"], chosen: ["ja", "he"], fromSystems: [] });
@@ -163,9 +163,9 @@ describe("schema 11 languages", () => {
   });
 
   test("the daily parser keeps a well-formed word block and refuses a bad one", () => {
-    const base = { id: "w1", type: "meaning", prompt: "Which German word means \"tooth\"?", choices: ["Zahn", "Hand", "Fuß"], answer: "Zahn", limitSec: 20, sources: [{ kind: "word", ref: "de:tooth", label: "Wiktionary via Kaikki (kaikki.org), CC-BY-SA 3.0", href: "https://en.wiktionary.org/wiki/Zahn" }] };
-    const ok = parseDailyQuiz({ day: "2026-10-05", questions: [{ ...base, word: { lang: null, choicesLang: "de", credit: "Wiktionary, CC-BY-SA 3.0", href: "https://en.wiktionary.org" } }] }).questions[0];
-    expect(ok.word).toEqual({ lang: null, choicesLang: "de", credit: "Wiktionary, CC-BY-SA 3.0", href: "https://en.wiktionary.org" });
+    const base = { id: "w1", type: "meaning", prompt: "Which German word means \"tooth\"?", choices: ["Zahn", "Hand", "Fuß"], answer: "Zahn", limitSec: 20, sources: [{ kind: "word", ref: "de:tooth", label: "Wiktionary via Kaikki (kaikki.org), CC-BY-SA 4.0", href: "https://en.wiktionary.org/wiki/Zahn" }] };
+    const ok = parseDailyQuiz({ day: "2026-10-05", questions: [{ ...base, word: { lang: null, choicesLang: "de", credit: "Wiktionary, CC-BY-SA 4.0", href: "https://en.wiktionary.org" } }] }).questions[0];
+    expect(ok.word).toEqual({ lang: null, choicesLang: "de", credit: "Wiktionary, CC-BY-SA 4.0", href: "https://en.wiktionary.org" });
     expect(parseDailyQuiz({ day: "2026-10-05", questions: [base] }).questions[0].word).toBeUndefined();
     expect(() => parseDailyQuiz({ day: "2026-10-05", questions: [{ ...base, word: { lang: "xx", choicesLang: null, credit: "c", href: null } }] })).toThrow(DailyQuizError);
     expect(() => parseDailyQuiz({ day: "2026-10-05", questions: [{ ...base, word: { lang: null, choicesLang: null, credit: "c", href: "http://x" } }] })).toThrow(DailyQuizError);
