@@ -12,6 +12,10 @@ export interface ExerciseResult {
   rating: Rating;
 }
 
+export interface MatchGrading {
+  grade: (pairs: { lang: string; word: string }[], assign: Record<string, string>) => ExerciseResult[];
+}
+
 export const ReadingsContext = createContext(true);
 
 const KIND_LABEL: Record<Exercise["kind"], string> = {
@@ -251,7 +255,7 @@ function TargetHeadline({ ex }: { ex: Exercise }) {
   );
 }
 
-export default function LangExercise({ ex, onDone, optionReadings, links, targetLayout = false }: { ex: Exercise; onDone: (results: ExerciseResult[]) => void; optionReadings?: Record<string, Reading>; links?: LinkForm[]; targetLayout?: boolean }) {
+export default function LangExercise({ ex, onDone, optionReadings, links, targetLayout = false, match }: { ex: Exercise; onDone: (results: ExerciseResult[]) => void; optionReadings?: Record<string, Reading>; links?: LinkForm[]; targetLayout?: boolean; match?: MatchGrading }) {
   const [picked, setPicked] = useState<string | null>(null);
   const [typed, setTyped] = useState("");
   const [verdict, setVerdict] = useState<Verdict | null>(null);
@@ -330,7 +334,8 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
   if (ex.kind === "match" && ex.pairs) {
     const langs = ex.pairs.map((p) => p.lang);
     const pairWordFor = (l?: string) => ex.pairs?.find((q) => q.lang === l)?.word;
-    const results = gradeMatch(ex.pairs, assign).map((r) => ({ lang: r.lang, rating: (r.correct ? 3 : 1) as Rating }));
+    const pairs = ex.pairs;
+    const finish = () => onDone(match ? match.grade(pairs, assign) : gradeMatch(pairs, assign).map((r) => ({ lang: r.lang, rating: (r.correct ? 3 : 1) as Rating })));
     return (
       <section className="bg-[color:var(--bone)] p-4 md:p-5" data-testid="exercise" data-kind={ex.kind} data-lang={ex.lang}>
         {header}
@@ -372,7 +377,7 @@ export default function LangExercise({ ex, onDone, optionReadings, links, target
         ) : (
           <>
             <Family ex={ex} />
-            <button type="button" onClick={() => onDone(results)} className={BTN_PRIMARY + " mt-4"} data-testid="next">
+            <button type="button" onClick={finish} className={BTN_PRIMARY + " mt-4"} data-testid="next">
               continue
             </button>
           </>

@@ -38,6 +38,7 @@ export function gradeFlagMatch(
   pairs: readonly { lang: string; word: string }[],
   assign: Readonly<Record<string, string>>,
   state: EngineState,
+  showsName: (lang: string) => boolean = (lang) => flagShowsName(state, lang),
 ): { ratings: { lang: string; rating: FlagRating }[]; state: EngineState } {
   let next = state;
   const ratings: { lang: string; rating: FlagRating }[] = [];
@@ -46,7 +47,7 @@ export function gradeFlagMatch(
     if (flag === p.lang) {
       ratings.push({ lang: p.lang, rating: 3 });
       next = recordingFlagHit(next, p.lang);
-    } else if (flag !== undefined && !flagShowsName(state, flag)) {
+    } else if (flag !== undefined && !showsName(flag)) {
       ratings.push({ lang: p.lang, rating: null });
       next = recordingFlagMiss(next, flag);
     } else {
@@ -83,4 +84,17 @@ export function mergeFlagTables(a: FlagTables, b: FlagTables): FlagTables {
   if (a.flagHits || b.flagHits) out.flagHits = hits;
   if (a.flagMisses || b.flagMisses) out.flagMisses = misses;
   return out;
+}
+
+export const WEB_SHOWS_NAMES = (): boolean => true;
+
+export function gradeWebMatch(
+  pairs: readonly { lang: string; word: string }[],
+  assign: Readonly<Record<string, string>>,
+  state: EngineState,
+  showsName: (lang: string) => boolean = WEB_SHOWS_NAMES,
+): { results: { lang: string; rating: 1 | 3 }[]; tables: FlagTables } {
+  const r = gradeFlagMatch(pairs, assign, state, showsName);
+  const results = r.ratings.filter((x): x is { lang: string; rating: 1 | 3 } => x.rating !== null);
+  return { results, tables: flagTables(r.state) };
 }

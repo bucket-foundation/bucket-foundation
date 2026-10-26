@@ -6,7 +6,8 @@ import { readReadingsPref, recognitionSupported, writeReadingsPref } from "@/lib
 import { buildQueue, cardId, exerciseFor, learnerLevel, matchExercise, readingsByForm, requeueAfterMiss, seededRng, type Exercise, type QueueEntry } from "@/lib/academy/lang-systems";
 import { BTN_PRIMARY, BTN_SECONDARY, EmptyState, ErrorState, LoadingState } from "@/components/ui";
 import { linkForms, targetFirst } from "@/lib/academy/lang-layout";
-import LangExercise, { ReadingsContext, type ExerciseResult } from "./LangExercise";
+import LangExercise, { ReadingsContext, type ExerciseResult, type MatchGrading } from "./LangExercise";
+import { gradeWebMatch } from "@/lib/academy/flag-misses";
 import { useLangSystem } from "./useLangSystem";
 
 export default function LangStudy({ systemId }: { systemId: string }) {
@@ -67,6 +68,17 @@ export default function LangStudy({ systemId }: { systemId: string }) {
     [entry, queue, i, h]
   );
 
+  const match = useMemo<MatchGrading>(
+    () => ({
+      grade: (pairs, assign) => {
+        const { results, tables } = gradeWebMatch(pairs, assign, state);
+        h.recordFlags(tables);
+        return results;
+      },
+    }),
+    [state, h]
+  );
+
   if (h.status === "loading" || (h.status === "ready" && queue === null)) return <LoadingState label="Building your session" />;
   if (h.status === "error") return <ErrorState title="The session did not load" />;
   if (!system || !corpus || !queue) return <EmptyState title="No such language system" action={{ href: "/research-os/learn/languages", label: "your systems" }} />;
@@ -117,7 +129,7 @@ export default function LangStudy({ systemId }: { systemId: string }) {
         <div className="h-1 bg-[color:var(--gold-deep)]" style={{ width: `${Math.round((i / queue.length) * 100)}%` }} />
       </div>
       <ReadingsContext.Provider value={readings}>
-        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} links={links} targetLayout={!!h.shared} />
+        <LangExercise key={`${i}-${entry?.itemId}-${entry?.lang}-${entry?.stage}`} ex={ex} onDone={onDone} optionReadings={optionReadings} links={links} targetLayout={!!h.shared} match={match} />
       </ReadingsContext.Provider>
       <div className="flex flex-wrap items-center justify-between gap-3">
       <button type="button" onClick={() => setI((x) => x + 1)} className="text-[12px] small-caps underline underline-offset-4 text-[color:var(--basalt-3)]" data-testid="skip-exercise">
