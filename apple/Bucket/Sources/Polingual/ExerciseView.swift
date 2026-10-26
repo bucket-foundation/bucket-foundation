@@ -255,6 +255,7 @@ struct ExerciseView: View {
                             OptionButton(text: o, lang: optionLang(o), reading: nil, selected: selected == o, tall: sideways) { selected = o; tap() }
                         }
                     }
+                    if ex.kind == .gender { ArticleKey(lang: ex.lang) }
                     Button("Check") { picked = selected }
                         .buttonStyle(D8Primary())
                         .disabled(selected == nil)
@@ -366,10 +367,34 @@ struct Notes: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             FamilyLine(ex: ex)
+            if ex.kind == .gender { ArticleKey(lang: ex.lang) }
             FalseFriendNote(ex: ex)
             if showNote, let note = ex.note, !note.isEmpty { Text(note).font(.caption).foregroundStyle(Palette.muted) }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+struct ArticleKey: View {
+    let lang: String
+
+    static func gender(_ g: String) -> String {
+        switch g {
+        case "m": String(localized: "masculine")
+        case "f": String(localized: "feminine")
+        case "n": String(localized: "neuter")
+        case "de": String(localized: "common")
+        default: String(localized: "neuter")
+        }
+    }
+
+    var body: some View {
+        if let table = Lang.articles[lang] {
+            Text(table.map { "\($0.1): \(String(localized: "the")), \(Self.gender($0.0))" }.joined(separator: " · "))
+                .font(.caption)
+                .foregroundStyle(Palette.muted)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 }
 
