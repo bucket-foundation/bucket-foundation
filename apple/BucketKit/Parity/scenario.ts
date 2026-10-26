@@ -220,4 +220,15 @@ out.heritage = {
   queue: hQueue,
 };
 
+const pSys = { ...createSystem("en", ["fr"], [], T0), placement: { fr: 99 } };
+const placed = applyPlacement(normalizeState(null), pSys, corpus, "fr", 99, T0);
+const legacyCards: Record<string, unknown> = {};
+for (let i = 0; i < 311; i++) legacyCards[`fr:w${i}`] = { state: "review", reps: 1, lapses: 0, stability: 3.2, difficulty: 5, lastReview: T0 - 3 * DAY, due: T0, placed: true };
+legacyCards["fr:seen"] = { state: "review", reps: 2, lapses: 0, stability: 9, difficulty: 5, lastReview: T0 - DAY, due: T0, placed: true };
+out.placement = {
+  due: Object.entries(placed.cards).map(([id, c]) => [id, c.due, c.stability, c.reps]),
+  legacy: Object.entries(normalizeState({ cards: legacyCards }, T0).cards).map(([id, c]) => [id, c.due]),
+  plan: buildQueue(pSys, corpus, placed, T0 + 20 * DAY).map((q) => `${q.lang}:${q.itemId}:${q.stage}`),
+};
+
 writeFileSync(process.argv[3], JSON.stringify(out, null, 1));

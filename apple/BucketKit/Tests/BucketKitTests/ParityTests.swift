@@ -171,7 +171,30 @@ func runScenario(_ corpus: LangCorpus) throws -> JSValue {
     }
     out.append(("cross", .array(cross)))
     out.append(("heritage", heritageScenario(corpus, t0: t0)))
+    out.append(("placement", placementScenario(corpus, t0: t0)))
     return obj(out)
+}
+
+func placementScenario(_ corpus: LangCorpus, t0: Double) -> JSValue {
+    let day = 86_400_000.0
+    let utc = TimeZone(identifier: "UTC")!
+    var sys = try! createSystem("en", ["fr"], [], now: t0)
+    sys.placement["fr"] = 99
+    let placed = applyPlacement(EngineState(), sys, corpus, "fr", 99, now: t0, tz: utc)
+    var legacy = JSObject()
+    for i in 0..<311 {
+        legacy["fr:w\(i)"] = .object(JSObject([("state", .string("review")), ("reps", .number(1)), ("lapses", .number(0)), ("stability", .number(3.2)), ("difficulty", .number(5)),
+                                               ("lastReview", .number(t0 - 3 * day)), ("due", .number(t0)), ("placed", .bool(true))]))
+    }
+    legacy["fr:seen"] = .object(JSObject([("state", .string("review")), ("reps", .number(2)), ("lapses", .number(0)), ("stability", .number(9)), ("difficulty", .number(5)),
+                                          ("lastReview", .number(t0 - day)), ("due", .number(t0)), ("placed", .bool(true))]))
+    let spread = spreadingUntouchedPlaced(EngineState(js: .object(JSObject([("cards", .object(legacy))]))), now: t0)
+    let plan = buildQueue(sys, corpus, placed, now: t0 + 20 * day, tz: utc)
+    return obj([
+        ("due", .array(placed.cards.entries.map { .array([.string($0.key), .number($0.value.due ?? 0), .number($0.value.stability ?? 0), .number($0.value.reps ?? 0)]) })),
+        ("legacy", .array(spread.cards.entries.map { .array([.string($0.key), .number($0.value.due ?? 0)]) })),
+        ("plan", .array(plan.map { .string("\($0.lang):\($0.itemId):\($0.stage.rawValue)") })),
+    ])
 }
 
 func diff(_ a: JSValue, _ b: JSValue, _ path: String = "$") -> String? {
