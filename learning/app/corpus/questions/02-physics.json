@@ -22,7 +22,8 @@
    "prompt": "A car merging onto a highway starts from rest and accelerates at 3 m/s^2 for 8 s. How far does it travel in that time?",
    "answer": 96.0,
    "unit": "m",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "kinematics.order",
@@ -94,7 +95,8 @@
    "prompt": "You pull a sled 20 m along flat snow with a rope tension of 50 N at 60 degrees above the ground. How much work does the rope do?",
    "answer": 500.0,
    "unit": "J",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "vectors.order",
@@ -219,6 +221,20 @@
    ]
   },
   {
+   "id": "calculus-physics.applied",
+   "atom": "calculus-physics",
+   "kind": "pick",
+   "prompt": "A trip logger records a car's speed once per second. How do you get the distance driven?",
+   "options": [
+    "Add speed times one second for every reading",
+    "Take the slope between neighboring readings",
+    "Multiply the last speed by the first speed",
+    "Average only the first and the last readings of the trip"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "newton-laws.pick",
    "atom": "newton-laws",
    "kind": "pick",
@@ -238,7 +254,8 @@
    "prompt": "A 1,200 kg car brakes from 20 m/s to rest in 4 s. What is the size of the average braking force?",
    "answer": 6000.0,
    "unit": "N",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "newton-laws.order",
@@ -310,7 +327,8 @@
    "prompt": "A 1,000 kg car at 20 m/s rear-ends a stopped 1,500 kg car and the two lock together. What is their speed just after the crash?",
    "answer": 8.0,
    "unit": "m/s",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "momentum.order",
@@ -382,7 +400,8 @@
    "prompt": "A 0.145 kg baseball leaves the bat at 40 m/s from rest. How much work did the bat do on it?",
    "answer": 116.0,
    "unit": "J",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "work-energy.order",
@@ -454,7 +473,8 @@
    "prompt": "A roller coaster starts from rest 45 m above the lowest point. Ignoring friction, how fast is it moving at the bottom?",
    "answer": 29.7,
    "unit": "m/s",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "energy-conservation.order",
@@ -526,7 +546,8 @@
    "prompt": "A mechanic pushes with 200 N perpendicular to a wrench handle, 0.3 m from the bolt. What torque does she apply?",
    "answer": 60.0,
    "unit": "N m",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "rotational.order",
@@ -598,7 +619,8 @@
    "prompt": "Earth has mass 5.97e24 kg and radius 6.37e6 m. What gravitational force does it exert on a 70 kg person at the surface?",
    "answer": 687.4,
    "unit": "N",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "gravitation.order",
@@ -723,6 +745,20 @@
    ]
   },
   {
+   "id": "lagrangian.applied",
+   "atom": "lagrangian",
+   "kind": "pick",
+   "prompt": "A bead slides on a frictionless circular hoop. Why does the Lagrangian method suit this problem?",
+   "options": [
+    "One angle describes the motion and the hoop's push drops out",
+    "It writes the hoop's normal force out as a vector at every point",
+    "It leaves the bead's kinetic energy out of the problem",
+    "It needs the hoop to stay at rest relative to the stars"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "least-action.pick",
    "atom": "least-action",
    "kind": "pick",
@@ -793,6 +829,20 @@
      "meaning": "Held fixed while the path varies"
     }
    ]
+  },
+  {
+   "id": "least-action.applied",
+   "atom": "least-action",
+   "kind": "pick",
+   "prompt": "A lifeguard runs on sand, then swims to a swimmer. Fermat's least-time rule, a cousin of least action, picks which route?",
+   "options": [
+    "A straight line from the lifeguard to the swimmer",
+    "A bent path with more distance on sand than in water",
+    "A bent path with more distance in water than on sand",
+    "Swim the whole way, starting at the water's edge nearest the lifeguard"
+   ],
+   "answer": 1,
+   "applied": true
   },
   {
    "id": "hamiltonian.pick",
@@ -867,6 +917,20 @@
    ]
   },
   {
+   "id": "hamiltonian.applied",
+   "atom": "hamiltonian",
+   "kind": "pick",
+   "prompt": "A frictionless pendulum makes small swings. What shape does its state trace in phase space, angle against momentum?",
+   "options": [
+    "A closed loop",
+    "A spiral that winds into the origin",
+    "A straight line heading outward",
+    "A single point that never moves"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "shm.pick",
    "atom": "shm",
    "kind": "pick",
@@ -886,7 +950,8 @@
    "prompt": "A car suspension acts as a spring with k = 40,000 N/m holding 400 kg. What is its natural angular frequency?",
    "answer": 10.0,
    "unit": "rad/s",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "shm.order",
@@ -958,7 +1023,8 @@
    "prompt": "A 440 Hz tuning fork sends sound through air at 343 m/s. What is the wavelength?",
    "answer": 0.7795,
    "unit": "m",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "waves.order",
@@ -1083,6 +1149,20 @@
    ]
   },
   {
+   "id": "coulomb.applied",
+   "atom": "coulomb",
+   "kind": "pick",
+   "prompt": "A balloon rubbed on your hair is held near a charged sweater. Doubling the distance does what to the electric force?",
+   "options": [
+    "Leaves the force unchanged",
+    "Cuts it in half",
+    "Cuts it to a quarter",
+    "Doubles it"
+   ],
+   "answer": 2,
+   "applied": true
+  },
+  {
    "id": "gauss-law.pick",
    "atom": "gauss-law",
    "kind": "pick",
@@ -1155,6 +1235,20 @@
    ]
   },
   {
+   "id": "gauss-law.applied",
+   "atom": "gauss-law",
+   "kind": "pick",
+   "prompt": "Why are people inside a metal car safe when lightning strikes it?",
+   "options": [
+    "Rubber tires insulate the car from the ground and block the whole current",
+    "Charge sits on the outer metal skin, so the field inside is near zero",
+    "The glass windows soak up the charge before it reaches anyone",
+    "Lightning cannot strike an object that is moving"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "magnetism-lorentz.pick",
    "atom": "magnetism-lorentz",
    "kind": "pick",
@@ -1174,7 +1268,8 @@
    "prompt": "An electron (charge 1.6e-19 C) moves at 1e6 m/s perpendicular to a 0.5 T field in an MRI scanner. What magnetic force acts on it?",
    "answer": 8e-14,
    "unit": "N",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "magnetism-lorentz.order",
@@ -1246,7 +1341,8 @@
    "prompt": "The flux through a one-turn generator coil drops from 0.6 Wb to 0 in 0.2 s. What average EMF is induced?",
    "answer": 3.0,
    "unit": "V",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "faraday.order",
@@ -1371,6 +1467,20 @@
    ]
   },
   {
+   "id": "ampere-maxwell.applied",
+   "atom": "ampere-maxwell",
+   "kind": "pick",
+   "prompt": "How does a radio signal cross empty space from a tower to your car?",
+   "options": [
+    "Air molecules hand the signal along from one to the next",
+    "A changing E makes B and a changing B makes E, so the pair travels",
+    "Electric current flows through the air between the antennas",
+    "The ground conducts the signal and the car's frame picks it up from below"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "maxwell-equations.pick",
    "atom": "maxwell-equations",
    "kind": "pick",
@@ -1443,6 +1553,20 @@
    ]
   },
   {
+   "id": "maxwell-equations.applied",
+   "atom": "maxwell-equations",
+   "kind": "pick",
+   "prompt": "A compass needle near a wire swings when you switch on a current. Which equation explains the swing?",
+   "options": [
+    "Gauss's law",
+    "Gauss's law for magnetism",
+    "Ampère-Maxwell law",
+    "Faraday's law"
+   ],
+   "answer": 2,
+   "applied": true
+  },
+  {
    "id": "em-waves.pick",
    "atom": "em-waves",
    "kind": "pick",
@@ -1462,7 +1586,8 @@
    "prompt": "A Wi-Fi router transmits at 2.4 GHz. What is the wavelength of its signal?",
    "answer": 0.125,
    "unit": "m",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "em-waves.order",
@@ -1534,7 +1659,8 @@
    "prompt": "A 0.0224 m^3 tank holds 6.02e23 gas molecules at 273 K. What is the pressure? Use k_B = 1.381e-23 J/K.",
    "answer": 101300.0,
    "unit": "Pa",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "thermo-temperature.order",
@@ -1606,7 +1732,8 @@
    "prompt": "An engine cylinder takes in 500 J of heat while the gas does 200 J of work. What is the change in internal energy?",
    "answer": 300.0,
    "unit": "J",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "first-law-thermo.order",
@@ -1678,7 +1805,8 @@
    "prompt": "1,000 J of heat flows from a 400 K stove into 300 K kitchen air. What is the total entropy change?",
    "answer": 0.8333,
    "unit": "J/K",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "entropy-second-law.order",
@@ -1803,6 +1931,20 @@
    ]
   },
   {
+   "id": "boltzmann-entropy.applied",
+   "atom": "boltzmann-entropy",
+   "kind": "pick",
+   "prompt": "A drop of dye spreads through a glass of water and never gathers back. Why?",
+   "options": [
+    "Dye molecules repel each other and push outward",
+    "Mixed arrangements have far more microstates than unmixed ones",
+    "The water pushes the dye outward from the drop",
+    "Gravity pulls the dye down and spreads it in a layer across the bottom of the glass"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "boltzmann-distribution.pick",
    "atom": "boltzmann-distribution",
    "kind": "pick",
@@ -1875,6 +2017,20 @@
    ]
   },
   {
+   "id": "boltzmann-distribution.applied",
+   "atom": "boltzmann-distribution",
+   "kind": "pick",
+   "prompt": "Air thins out as you climb a mountain. How does the Boltzmann distribution explain it?",
+   "options": [
+    "Cold air at altitude freezes molecules out of the gas",
+    "Wind carries molecules down the slopes into the valleys",
+    "Higher molecules carry more potential energy, so fewer sit there",
+    "Gravity switches off a few kilometers above sea level, so air drifts away"
+   ],
+   "answer": 2,
+   "applied": true
+  },
+  {
    "id": "geometric-optics.pick",
    "atom": "geometric-optics",
    "kind": "pick",
@@ -1894,7 +2050,8 @@
    "prompt": "A ray in air hits a pool surface (n = 1.33) at 45 degrees from the normal. What is the refraction angle in degrees?",
    "answer": 32.12,
    "unit": "degrees",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "geometric-optics.order",
@@ -1966,7 +2123,8 @@
    "prompt": "A 650 nm laser pointer shines through two slits 0.1 mm apart. At what angle in degrees is the first bright fringe?",
    "answer": 0.3724,
    "unit": "degrees",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "wave-optics.order",
@@ -2038,7 +2196,8 @@
    "prompt": "A cosmic-ray muon moves at 0.8c and lives 2.2 microseconds in its own frame. How long does it live in Earth's frame, in microseconds?",
    "answer": 3.667,
    "unit": "microseconds",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "special-relativity.order",
@@ -2163,6 +2322,20 @@
    ]
   },
   {
+   "id": "spacetime.applied",
+   "atom": "spacetime",
+   "kind": "pick",
+   "prompt": "GPS satellites orbit at about 4 km/s. Counting only their speed, how do their clocks run compared with clocks on the ground?",
+   "options": [
+    "Faster",
+    "Slower",
+    "At the same rate",
+    "Backward"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "mass-energy.pick",
    "atom": "mass-energy",
    "kind": "pick",
@@ -2182,7 +2355,8 @@
    "prompt": "How much energy would 1 g of mass release if fully converted?",
    "answer": 90000000000000.0,
    "unit": "J",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "mass-energy.order",
@@ -2254,7 +2428,8 @@
    "prompt": "An elevator accelerates upward at 2 m/s^2. A 60 kg person stands on a scale. What does the scale read in newtons?",
    "answer": 708.0,
    "unit": "N",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "equivalence-principle.order",
@@ -2326,7 +2501,8 @@
    "prompt": "A long-haul flight follows a great circle on Earth, radius 6,371 km. How long is a quarter of a great circle in km?",
    "answer": 10010.0,
    "unit": "km",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "geodesics-curvature.order",
@@ -2451,6 +2627,20 @@
    ]
   },
   {
+   "id": "einstein-equation.applied",
+   "atom": "einstein-equation",
+   "kind": "pick",
+   "prompt": "GPS satellites sit higher in Earth's curved spacetime. Counting only gravity, how do their clocks run compared with ground clocks?",
+   "options": [
+    "Faster",
+    "Slower",
+    "At the same rate",
+    "They stop"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "photoelectric-quantization.pick",
    "atom": "photoelectric-quantization",
    "kind": "pick",
@@ -2470,7 +2660,8 @@
    "prompt": "UV light at 1.5e15 Hz hits a metal with work function 4.0 eV. What is K_max in eV?",
    "answer": 2.204,
    "unit": "eV",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "photoelectric-quantization.order",
@@ -2542,7 +2733,8 @@
    "prompt": "Electrons in an electron microscope have momentum 5.3e-24 kg m/s. What is their wavelength?",
    "answer": 1.25e-10,
    "unit": "m",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "matter-waves.order",
@@ -2667,6 +2859,20 @@
    ]
   },
   {
+   "id": "wavefunction.applied",
+   "atom": "wavefunction",
+   "kind": "pick",
+   "prompt": "Electrons go one at a time through a double slit and land as single dots. What sets where the dots pile up over many runs?",
+   "options": [
+    "The detector's position on the lab bench",
+    "|psi|^2 across the screen",
+    "The phase of psi at the source",
+    "Which slit the experimenter watches last"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "schrodinger.pick",
    "atom": "schrodinger",
    "kind": "pick",
@@ -2737,6 +2943,20 @@
      "meaning": "Energy eigenstate"
     }
    ]
+  },
+  {
+   "id": "schrodinger.applied",
+   "atom": "schrodinger",
+   "kind": "pick",
+   "prompt": "Smaller quantum dots in a TV screen glow bluer. What does the particle-in-a-box result say?",
+   "options": [
+    "Smaller dots run hotter, and hot things glow blue",
+    "Smaller dots hold more electrons in each level",
+    "Smaller L raises E_n, so each emitted photon carries more energy",
+    "Blue light fits inside a small dot more easily than red"
+   ],
+   "answer": 2,
+   "applied": true
   },
   {
    "id": "operators-observables.pick",
@@ -2811,6 +3031,20 @@
    ]
   },
   {
+   "id": "operators-observables.applied",
+   "atom": "operators-observables",
+   "kind": "pick",
+   "prompt": "A lab measures spin along z on many atoms and only ever gets +hbar/2 or -hbar/2. Why only those two values?",
+   "options": [
+    "The detector rounds every result to the nearest value",
+    "Other values occur but are too rare to see",
+    "They are the eigenvalues of the S_z operator",
+    "Spin is a classical arrow with two settings"
+   ],
+   "answer": 2,
+   "applied": true
+  },
+  {
    "id": "uncertainty.pick",
    "atom": "uncertainty",
    "kind": "pick",
@@ -2883,6 +3117,20 @@
    ]
   },
   {
+   "id": "uncertainty.applied",
+   "atom": "uncertainty",
+   "kind": "pick",
+   "prompt": "Why can an electron not sit inside a nucleus-sized region about 1e-15 m across?",
+   "options": [
+    "Nuclei repel electrons with a strong electric force",
+    "Its momentum spread would give it far too much energy to stay",
+    "The electron is too heavy to fit in that space",
+    "Electrons have no size, so they cannot be confined"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "quantum-tunneling.pick",
    "atom": "quantum-tunneling",
    "kind": "pick",
@@ -2902,7 +3150,8 @@
    "prompt": "In a scanning tunneling microscope, widening the gap raises 2 kappa L by 2. By what factor does the tunneling current fall?",
    "answer": 7.389,
    "unit": "",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "quantum-tunneling.order",
@@ -3027,6 +3276,20 @@
    ]
   },
   {
+   "id": "quantum-spin.applied",
+   "atom": "quantum-spin",
+   "kind": "pick",
+   "prompt": "A white dwarf has no fusion left, yet it does not collapse. What holds it up?",
+   "options": [
+    "Heat left over from past fusion keeps the gas pressure high enough to hold",
+    "Its fast rotation flings matter outward",
+    "Electrons cannot share states, so they fill high-momentum levels and push back",
+    "Magnetic fields inside the star push back"
+   ],
+   "answer": 2,
+   "applied": true
+  },
+  {
    "id": "hydrogen-atom.pick",
    "atom": "hydrogen-atom",
    "kind": "pick",
@@ -3046,7 +3309,8 @@
    "prompt": "Astronomers image the red H-alpha line from hydrogen dropping from n = 3 to n = 2. What photon energy is that in eV?",
    "answer": 1.889,
    "unit": "eV",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "hydrogen-atom.order",
@@ -3171,6 +3435,20 @@
    ]
   },
   {
+   "id": "quantum-entanglement.applied",
+   "atom": "quantum-entanglement",
+   "kind": "pick",
+   "prompt": "In quantum key distribution, Alice and Bob measure halves of entangled pairs. What do they end up with?",
+   "options": [
+    "Matching random bits for a shared secret key",
+    "A message Alice sent faster than light",
+    "Bits that Alice chose in advance",
+    "Bits that differ with no pattern at all"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "qft-idea.pick",
    "atom": "qft-idea",
    "kind": "pick",
@@ -3241,6 +3519,20 @@
      "meaning": "Partner particle QFT predicts"
     }
    ]
+  },
+  {
+   "id": "qft-idea.applied",
+   "atom": "qft-idea",
+   "kind": "pick",
+   "prompt": "In a PET scanner a positron meets an electron. What comes out?",
+   "options": [
+    "A neutron",
+    "Two gamma-ray photons",
+    "Heat and nothing else",
+    "A proton"
+   ],
+   "answer": 1,
+   "applied": true
   },
   {
    "id": "standard-model.pick",
@@ -3315,6 +3607,20 @@
    ]
   },
   {
+   "id": "standard-model.applied",
+   "atom": "standard-model",
+   "kind": "pick",
+   "prompt": "Carbon-14 dating relies on carbon-14 beta decaying to nitrogen-14. Which force drives that decay?",
+   "options": [
+    "The strong force",
+    "Electromagnetism",
+    "Gravity",
+    "The weak force"
+   ],
+   "answer": 3,
+   "applied": true
+  },
+  {
    "id": "cosmology-glimpse.pick",
    "atom": "cosmology-glimpse",
    "kind": "pick",
@@ -3334,7 +3640,8 @@
    "prompt": "A galaxy is 100 Mpc away and H_0 = 70 km/s/Mpc. What is its recession speed?",
    "answer": 7000.0,
    "unit": "km/s",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "cosmology-glimpse.order",
@@ -3406,7 +3713,8 @@
    "prompt": "A 30 kg crate slides across a warehouse floor with mu_k = 0.4. What is the kinetic friction force?",
    "answer": 117.6,
    "unit": "N",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "forces-friction.order",
@@ -3478,7 +3786,8 @@
    "prompt": "In a venturi meter, water (1000 kg/m^3) speeds up from 2 m/s to 4 m/s in a level pipe. What is the pressure drop?",
    "answer": 6000.0,
    "unit": "Pa",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "fluids-bernoulli.order",
@@ -3550,7 +3859,8 @@
    "prompt": "A power plant runs steam at 800 K and dumps heat at 300 K. What is its Carnot efficiency limit as a fraction?",
    "answer": 0.625,
    "unit": "",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "heat-engines-carnot.order",
@@ -3622,7 +3932,8 @@
    "prompt": "A camera flash capacitor of 100 microfarads is charged to 300 V. How much energy does it store?",
    "answer": 4.5,
    "unit": "J",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "electric-potential.order",
@@ -3694,7 +4005,8 @@
    "prompt": "A 12 V car battery drives a 3 ohm headlamp. What current flows?",
    "answer": 4.0,
    "unit": "A",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "circuits-ohm.order",
@@ -3766,7 +4078,8 @@
    "prompt": "The Sun's surface is about 5,800 K. With Wien's constant 2.898e-3 m K, what is its peak wavelength in nm?",
    "answer": 499.7,
    "unit": "nm",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "blackbody-planck.order",
@@ -3891,6 +4204,20 @@
    ]
   },
   {
+   "id": "bohr-model.applied",
+   "atom": "bohr-model",
+   "kind": "pick",
+   "prompt": "Why do neon signs and sodium streetlights glow in sharp colors?",
+   "options": [
+    "The hot gas glows across all colors and the glass filters most out",
+    "Atoms emit photons only at the energy gaps between allowed levels",
+    "Electric current paints the gas with its own color",
+    "The tubes reflect sunlight stored during the day"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "quantum-harmonic-oscillator.pick",
    "atom": "quantum-harmonic-oscillator",
    "kind": "pick",
@@ -3910,7 +4237,8 @@
    "prompt": "A carbon monoxide molecule vibrates with hbar omega = 0.266 eV. What is its ground-state energy in eV?",
    "answer": 0.133,
    "unit": "eV",
-   "relTol": 0.02
+   "relTol": 0.02,
+   "applied": true
   },
   {
    "id": "quantum-harmonic-oscillator.order",

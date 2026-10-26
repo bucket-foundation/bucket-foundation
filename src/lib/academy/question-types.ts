@@ -8,6 +8,7 @@ interface QuestionBase {
   kind: QuestionKind;
   prompt: string;
   explain?: string;
+  applied?: boolean;
 }
 
 export interface PickQuestion extends QuestionBase {
@@ -86,6 +87,7 @@ export function validateQuestion(q: Question, atomIds?: Set<string>): string[] {
   else if (atomIds && !atomIds.has(q.atom)) at(`unknown atom ${q.atom}`);
   if (!KINDS.includes(q.kind)) at(`unknown kind ${q.kind}`);
   if (!nonEmpty(q.prompt)) at("missing prompt");
+  if (q.applied !== undefined && typeof q.applied !== "boolean") at("applied must be a boolean");
   switch (q.kind) {
     case "pick":
       if (!Array.isArray(q.options) || q.options.length < 2 || !q.options.every(nonEmpty)) at("pick needs 2+ options");
