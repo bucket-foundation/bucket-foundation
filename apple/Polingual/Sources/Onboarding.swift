@@ -184,13 +184,6 @@ struct Onboarding: View {
                 Label("Reminder on", systemImage: "checkmark.circle.fill").font(.headline).foregroundStyle(D8.malachite)
             } else if reminders.denied {
                 Text("Notifications are off for Polingual. You can turn them on later in Settings.").font(.subheadline).foregroundStyle(Palette.muted)
-            } else {
-                Button {
-                    Task { _ = await reminders.enable() }
-                } label: {
-                    Label("Turn on my daily reminder", systemImage: "bell.fill")
-                }
-                .buttonStyle(D8Option(align: .center))
             }
         }
     }
@@ -238,7 +231,16 @@ struct Onboarding: View {
             }
             .accessibilityHidden(true)
             Button(label) {
-                if step == .account { Task { await complete() } } else { advance() }
+                if step == .account {
+                    Task { await complete() }
+                } else if step == .daily && !reminders.enabled && !reminders.denied {
+                    Task {
+                        _ = await reminders.enable()
+                        advance()
+                    }
+                } else {
+                    advance()
+                }
             }
             .buttonStyle(D8Primary())
             .disabled((step == .languages && targets.isEmpty) || creating)
@@ -251,6 +253,7 @@ struct Onboarding: View {
     var label: String {
         switch step {
         case .welcome: "Get started"
+        case .daily where !reminders.enabled && !reminders.denied: "Turn on my daily reminder"
         case .account: creating ? "Setting up" : failed == nil ? "Start learning" : "Try again"
         default: "Continue"
         }

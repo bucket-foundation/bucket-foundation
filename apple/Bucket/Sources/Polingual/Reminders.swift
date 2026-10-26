@@ -134,6 +134,9 @@ final class Reminders {
     func reschedule(title: String, forecast: (Date) -> ReviewForecast) async {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: (0..<Self.quietAfterDays + 1).map { Self.idPrefix + String($0) })
+        #if DEBUG
+        if !enabled, ProcessInfo.processInfo.arguments.contains("-reminderProbe") { print("reminderProbe enabled false auth", (await center.notificationSettings()).authorizationStatus.rawValue) }
+        #endif
         guard enabled else { return }
         for (i, date) in fireDates().enumerated() {
             let raw = forecast(date)
@@ -145,6 +148,13 @@ final class Reminders {
             let comps = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
             try? await center.add(UNNotificationRequest(identifier: Self.idPrefix + String(i), content: content, trigger: UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)))
         }
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("-reminderProbe") {
+            let auth = await center.notificationSettings()
+            let pending = await center.pendingNotificationRequests().compactMap { r in (r.trigger as? UNCalendarNotificationTrigger)?.nextTriggerDate().map { "\($0) \(r.content.body.prefix(40))" } }
+            print("reminderProbe enabled", enabled, "auth", auth.authorizationStatus.rawValue, "alert", auth.alertSetting.rawValue, "lock", auth.lockScreenSetting.rawValue, "minute", minute, "studyMinutes", studyMinutes, "lastStudy", lastStudy as Any, "fire", fireDates(), "pending", pending)
+        }
+        #endif
     }
 }
 
