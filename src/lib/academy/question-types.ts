@@ -1,3 +1,4 @@
+import { isEnglish, parseLocaleNumber, parseNumberFor } from "./locale-number";
 import type { Rating } from "./fsrs";
 
 export type QuestionKind = "pick" | "calculate" | "order" | "spot-error" | "match";
@@ -55,6 +56,7 @@ export interface GradeResult {
   correct: boolean;
   score: number;
   rating: Rating;
+  hint?: string;
 }
 
 export interface QuestionDeck {
@@ -197,16 +199,16 @@ function result(score: number): GradeResult {
   return { correct: s === 1, score: s, rating: s === 1 ? 3 : s >= 0.5 ? 2 : 1 };
 }
 
-export function parseNumber(v: number | string): number {
-  if (typeof v === "number") return v;
-  const t = v.trim().replace(/,/g, "").replace(/\s+/g, "").replace(/[×x]10\^?/i, "e").replace(/%$/, "");
-  if (!/^[-+]?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?$/i.test(t)) return NaN;
-  return Number(t);
+export function parseNumber(v: number | string, locale?: string): number {
+  return parseNumberFor(v, locale) ?? NaN;
 }
 
-function gradeCalculate(q: CalculateQuestion, value: number | string): GradeResult {
-  const x = parseNumber(value);
-  if (!Number.isFinite(x)) return result(0);
+function gradeCalculate(q: CalculateQuestion, value: number | string, locale?: string): GradeResult {
+  const x = parseNumberFor(value, locale);
+  if (x == null || !Number.isFinite(x)) {
+    const parsed = isEnglish(locale) ? undefined : parseLocaleNumber(value);
+    return parsed?.status === "ambiguous" ? { ...result(0), hint: parsed.hint } : result(0);
+  }
   const tol = Math.max(q.tol ?? 0, Math.abs(q.answer) * (q.relTol ?? 0), 1e-9);
   return result(Math.abs(x - q.answer) <= tol ? 1 : 0);
 }
@@ -231,13 +233,13 @@ function gradeMatch(q: MatchQuestion, given: Record<string, string>): GradeResul
   return result((hits - 1) / (q.pairs.length - 1));
 }
 
-export function gradeQuestion(q: Question, r: Response): GradeResult {
+export function gradeQuestion(q: Question, r: Response, opts: { locale?: string } = {}): GradeResult {
   if (r.kind !== q.kind) return result(0);
   switch (q.kind) {
     case "pick":
       return result((r as { choice: number }).choice === q.answer ? 1 : 0);
     case "calculate":
-      return gradeCalculate(q, (r as { value: number | string }).value);
+      return gradeCalculate(q, (r as { value: number | string }).value, opts.locale);
     case "order":
       return gradeOrder(q, (r as { order: number[] }).order);
     case "spot-error":
