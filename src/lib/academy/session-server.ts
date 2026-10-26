@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { forwardedClientIp, verifiedProxyIp } from "./proxy-ip";
+import { forwardedClientIp, proxyVerdict, verifiedProxyIp } from "./proxy-ip";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const WINDOW_S = 600;
@@ -49,6 +49,11 @@ export function bearerToken(headers: Headers): string {
 
 export function clientIp(headers: Headers, proxy?: { secret?: string; now?: number }): string {
   return verifiedProxyIp(headers, proxy?.secret, proxy?.now ?? Date.now()) ?? forwardedClientIp(headers);
+}
+
+export function sessionClientIp(headers: Headers, proxy: { secret?: string; now?: number }): { ip: string } | { reject: SessionResult } {
+  if (proxyVerdict(headers, proxy.secret, proxy.now ?? Date.now()) === "invalid") return { reject: { status: 400, body: { error: "bad_proxy_signature" } } };
+  return { ip: clientIp(headers, proxy) };
 }
 
 export const APPLE_SIGNIN_REPLY_BUDGET_MS = 3000;
