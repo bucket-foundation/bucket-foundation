@@ -32,7 +32,7 @@ export interface Atom {
 export interface EngineState extends StoredEngineState {
   cards: Record<string, Card>;
   prof: Record<string, ProficiencyState>;
-  settings: { newPerDay: number; requestRetention: number };
+  settings: { newPerDay: number; requestRetention: number; flagHits?: Record<string, number>; flagMisses?: Record<string, number> };
   stats: { xp: number; streak: number; lastStudyDay: string | null; history: Record<string, { new: number; reviews: number }> };
 }
 
