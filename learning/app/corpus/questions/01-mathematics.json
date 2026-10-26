@@ -1300,6 +1300,20 @@
    ]
   },
   {
+   "id": "set-theory-axioms.applied",
+   "atom": "set-theory-axioms",
+   "kind": "pick",
+   "prompt": "A query returns customers who bought shoes AND hats. Which set operation is that?",
+   "options": [
+    "Union of the two buyer sets",
+    "Intersection of the two buyer sets",
+    "Complement of the shoe buyers",
+    "Power set of all customers"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "number-systems.pick",
    "atom": "number-systems",
    "kind": "pick",
@@ -1909,6 +1923,20 @@
    ]
   },
   {
+   "id": "homomorphism.applied",
+   "atom": "homomorphism",
+   "kind": "pick",
+   "prompt": "A checksum keeps only the parity of a sum of bytes. Why does adding two messages add their parities?",
+   "options": [
+    "The parity map is a homomorphism to Z/2Z",
+    "Parity ignores every byte of the message",
+    "The two messages always have the same length",
+    "Addition of bytes is not associative"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "complex-numbers.pick",
    "atom": "complex-numbers",
    "kind": "pick",
@@ -2372,6 +2400,20 @@
    ]
   },
   {
+   "id": "topology.applied",
+   "atom": "topology",
+   "kind": "pick",
+   "prompt": "A network stays connected after you stretch its cables without cutting any. Which kind of property is connectivity?",
+   "options": [
+    "A metric property that depends on cable length",
+    "A topological property kept by continuous deformation",
+    "A property that changes with every stretch",
+    "An algebraic property of the routers"
+   ],
+   "answer": 1,
+   "applied": true
+  },
+  {
    "id": "determinant.pick",
    "atom": "determinant",
    "kind": "pick",
@@ -2515,6 +2557,20 @@
      "meaning": "Least upper bound"
     }
    ]
+  },
+  {
+   "id": "real-analysis.applied",
+   "atom": "real-analysis",
+   "kind": "pick",
+   "prompt": "Newton's method gives 1.5, 1.4167, 1.41422 for root 2. What makes 'the answer' well defined?",
+   "options": [
+    "The iterates converge to a limit in the complete reals",
+    "The third iterate is exactly root 2",
+    "Rational numbers contain root 2",
+    "The method stops after three steps by rule"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "fundamental-theorem-algebra.pick",
@@ -2834,6 +2890,20 @@
    ]
   },
   {
+   "id": "godel-incompleteness.applied",
+   "atom": "godel-incompleteness",
+   "kind": "pick",
+   "prompt": "A team wants a tool that proves every true property of any program. What do Gödel's and related results imply?",
+   "options": [
+    "Some true properties will have no proof in the tool's system",
+    "The tool will run faster on larger programs",
+    "Every property can be proved with enough memory",
+    "Only false properties lack proofs"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "category-theory.pick",
    "atom": "category-theory",
    "kind": "pick",
@@ -2904,6 +2974,20 @@
      "meaning": "Defines by unique maps"
     }
    ]
+  },
+  {
+   "id": "category-theory.applied",
+   "atom": "category-theory",
+   "kind": "pick",
+   "prompt": "In typed code, f: A -> B and g: B -> C compose to g after f. Which law says composing with the identity changes nothing?",
+   "options": [
+    "The identity law of a category",
+    "The distributive law of a ring",
+    "The triangle inequality",
+    "The pumping lemma for regular languages"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "trigonometry.pick",
@@ -3167,11 +3251,11 @@
    "steps": [
     "Critical points have f' = 0",
     "f'' > 0 marks a minimum",
-    "A convex function can have many local minima",
+    "A convex function can have a local minimum that is not global",
     "Convexity makes a critical point global"
    ],
    "error": 2,
-   "fix": "A convex function's local minima are global."
+   "fix": "Every local minimum of a convex function is global. A flat-bottomed convex function can have many minimizers, all with the same value, so convexity alone does not give a unique minimizer."
   },
   {
    "id": "optimization.match",
@@ -3648,6 +3732,20 @@
    ]
   },
   {
+   "id": "complex-analysis.applied",
+   "atom": "complex-analysis",
+   "kind": "pick",
+   "prompt": "Engineers add AC voltages as complex phasors V e^(i theta). Why does that work?",
+   "options": [
+    "Sums of e^(i omega t) terms stay e^(i omega t) terms with new amplitude and phase",
+    "Phasors ignore the phase of each source",
+    "AC voltages never oscillate",
+    "Complex numbers have no angle"
+   ],
+   "answer": 0,
+   "applied": true
+  },
+  {
    "id": "measure-theory.pick",
    "atom": "measure-theory",
    "kind": "pick",
@@ -3718,6 +3816,20 @@
      "meaning": "Partitions the range"
     }
    ]
+  },
+  {
+   "id": "measure-theory.applied",
+   "atom": "measure-theory",
+   "kind": "pick",
+   "prompt": "A dart lands uniformly in a unit square. What is the chance it hits a single line drawn across the square?",
+   "options": [
+    "0, since a line has zero area",
+    "1/2, since it splits the square",
+    "1, since every dart crosses some line",
+    "It depends on the color of the line"
+   ],
+   "answer": 0,
+   "applied": true
   },
   {
    "id": "manifolds.pick",
@@ -4267,6 +4379,20 @@
      "meaning": "Roots via n-th roots"
     }
    ]
+  },
+  {
+   "id": "galois-theory.applied",
+   "atom": "galois-theory",
+   "kind": "pick",
+   "prompt": "A software library offers formulas for roots of degree 2, 3 and 4 polynomials and falls back to numerics for degree 5. Why?",
+   "options": [
+    "No general radical formula exists for degree 5",
+    "Degree 5 polynomials have no roots at all",
+    "The programmers ran out of time",
+    "Numerics are always exact"
+   ],
+   "answer": 0,
+   "applied": true
   }
  ]
 }
