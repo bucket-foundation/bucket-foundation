@@ -57,8 +57,8 @@ Every language card opens with the same row:
 
 - Match is where flags teach: the learner places each word on its flag.
 - A flag shows its language name underneath until the learner has matched that language correctly 3 times; after that the flag stands alone. Any miss on a nameless flag brings the name back.
-- Grading keeps flag knowledge out of the word schedule. With the name shown, match grades as today through `gradeMatch`. With a nameless flag, a wrong assignment records a flag miss in a local per-language counter and gives that word card no rating from this match; a right assignment grades as today.
-- Every single word sits in a word tile, as D8 asks of the hero. Sentences and gapped sentences stay in plain serif, since a square tile cannot hold a sentence. This is the one deviation from "the hero of every screen".
+- Grading keeps flag knowledge out of the word schedule. With the name shown, match grades as today through `gradeMatch`. With a nameless flag, a wrong assignment records a flag miss in a per-language counter and gives that word card no rating from this match. The counters live in the language system's synced state (`FlagMisses` in BucketKit, stored under `flagMisses` in the set's settings), so a second device or a reinstall keeps them; `flagMissCountersSurviveAReload` covers the round trip; a right assignment grades as today.
+- The prompt word sits in a word tile, as D8 asks of the hero. Intro root words stay in plain text under the tile, and answer options stay as option buttons. Sentences and gapped sentences stay in plain serif, since a square tile cannot hold a sentence. This is the one deviation from "the hero of every screen".
 - Feedback after an answer keeps today's content: the answer, its reading, the family line and the false-friend note.
 
 ## Option Buttons
