@@ -451,7 +451,7 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 #dk .stage{z-index:1}
 #dk .pp{z-index:2}
 #dk .hc{z-index:3}
-#dk .pp>*{transform:translate(-50%,-50%) rotate(var(--r,0deg))}
+#dk .pp>*{transform:translate(-50%,-50%) rotate(var(--r,0deg)) scale(var(--s,1))}
 #dk .pp .bunt svg{width:clamp(130px,15vw,300px);height:auto}
 #dk .pp .gridp svg{width:clamp(80px,8.5vw,160px);height:auto}
 #dk .pp .starp svg{width:clamp(70px,7.5vw,150px);height:auto}
@@ -472,13 +472,37 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 @media (prefers-reduced-motion:reduce){#dk .pp>*{animation:none!important}}
 #dk .hd a,#dk .hd .btn{white-space:nowrap}
 @media (max-width:899px){#dk .hd a.l:not([data-slot=share]){display:none}}
+
+@media (max-width:640px){
+html,body{height:100%!important;overflow:hidden!important}
+#app{height:100vh;height:100dvh;min-height:0;overflow:hidden}
+#app .in{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:clamp(4px,1.1dvh,12px);padding:clamp(10px,2.2dvh,26px) 18px 0 30px}
+#app .top{font-size:clamp(17px,2.9dvh,26px);gap:9px}
+#app .top img{width:clamp(26px,4.6dvh,42px);height:clamp(26px,4.6dvh,42px);border-radius:9px}
+#app h1{font-size:clamp(21px,min(7.2vw,4.3dvh),37px);line-height:1.1;margin:clamp(2px,1dvh,12px) 0 0}
+#app .streak svg{width:clamp(22px,3.4dvh,34px);height:clamp(28px,4.4dvh,44px)}
+#app .streak b{font-size:clamp(19px,3.3dvh,30px)}
+#app .streak small{font-size:clamp(9px,1.4dvh,12px);margin-top:2px}
+#app .stat{font-size:clamp(11.5px,min(3.5vw,1.95dvh),16px);line-height:1.3;margin:0;text-align:left}
+#app .grid4{flex:1 1 0;min-height:0;padding:0 0 4px;gap:var(--gap,10px);align-content:center;justify-content:center;grid-template-columns:repeat(2,max-content)}
+#app .grid4 .t{zoom:var(--z,.7)}
+#app .wrapb{flex:none;margin-top:0;padding-top:clamp(18px,3dvh,36px)}
+#app .band{min-height:0;height:clamp(150px,25dvh,260px);padding:clamp(56px,9dvh,96px) 22px clamp(8px,1.6dvh,18px);justify-content:flex-end}
+#app .pill{padding:clamp(11px,1.9dvh,16px);font-size:clamp(16px,2.4dvh,19px)}
+#app .ft{margin-top:clamp(6px,1.2dvh,14px);font-size:11px;gap:4px 10px}
+#app .stk1{top:clamp(26px,5dvh,50px);font-size:clamp(14px,2.3dvh,18px)}
+#app .stk2{top:0;width:clamp(44px,7dvh,62px);height:clamp(44px,7dvh,62px);font-size:clamp(26px,4dvh,36px)}
+#app .stk3{top:clamp(52px,8.5dvh,96px);width:clamp(28px,4.4dvh,40px);height:clamp(28px,4.4dvh,40px)}
+#app .stk4{top:clamp(58px,9.6dvh,104px);font-size:clamp(16px,2.6dvh,22px)}
+#app .stk5{top:clamp(60px,10dvh,110px);width:clamp(20px,3.4dvh,30px)}
+}
 </style></head><body>
 <div id="app">
  <div class="in">
   <a class="top" href="/"><img src="/d8/mark-pl.svg" alt="">polingual</a>
   <h1>Language learning for <em>multilingual</em> learners.</h1>
   <div class="streak" aria-label="100 day streak"><svg viewBox="0 0 34 44" aria-hidden="true"><defs><linearGradient id="apf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F28C28"/><stop offset="1" stop-color="#D9381E"/></linearGradient></defs><path d="M17 1c3 8 14 13 14 26a14 14 0 0 1-28 0c0-7 4-11 6-14 1 4 3 6 5 7-1-7 0-13 3-19z" fill="url(#apf)"/><path d="M17 23c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 1 2 2 3 3 3-1-3-1-6 0-8z" fill="#F6EEDC"/></svg><div><b>100</b><small>DAY STREAK</small></div></div>
-  <p class="stat">1 meaning a day in 4 languages · up to 400 words</p>
+  <p class="stat">After 100 days, expect to know 280 words across 4 languages, and remember 95% of them.</p>
   <div class="grid4" id="app-grid"></div>
  </div>
  <div class="wrapb"><span class="stk1">ἑκατόν</span><span class="stk2">百</span><span class="stk3" aria-hidden="true"></span><span class="stk4" aria-hidden="true">сто</span><span class="stk5" aria-hidden="true"></span>
@@ -520,7 +544,7 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
     <path class="mho" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#3A0F2F" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 6)"/>
     <path class="mho face" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#5B1A4A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
    </svg>
-   <div class="sk"><b>100</b><span>day streak</span><small>1 new meaning a day in 4 languages: up to 400 words</small></div>
+   <div class="sk"><b>100</b><span>day streak</span><small>After 100 days, expect to know 280 words across 4 languages, and remember 95% of them.</small></div>
   </div></div>
  </div>
  <div class="cards" data-slot="flag-tiles" data-tiles="text" data-cycle="2200"></div>
@@ -548,21 +572,21 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
  
 </div></div><div class="hc">
  <h1>Language learning for <em>multilingual</em> learners.</h1>
- <div class="stk"><svg viewBox="0 0 34 44" aria-hidden="true"><path d="M17 1c3 8 14 13 14 26a14 14 0 0 1-28 0c0-7 4-11 6-14 1 4 3 6 5 7-1-7 0-13 3-19z" fill="#E8602A"/><path d="M17 23c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 1 2 2 3 3 3-1-3-1-6 0-8z" fill="#F6EEDC"/></svg><div><b>100</b><small>DAY STREAK</small></div><p>1 new meaning a day in 4 languages: up to 400 words</p></div>
+ <div class="stk"><svg viewBox="0 0 34 44" aria-hidden="true"><path d="M17 1c3 8 14 13 14 26a14 14 0 0 1-28 0c0-7 4-11 6-14 1 4 3 6 5 7-1-7 0-13 3-19z" fill="#E8602A"/><path d="M17 23c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-6 1 2 2 3 3 3-1-3-1-6 0-8z" fill="#F6EEDC"/></svg><div><b>100</b><small>DAY STREAK</small></div><p>After 100 days, expect to know 280 words across 4 languages, and remember 95% of them.</p></div>
  <div class="g4" id="hc-grid"></div><div class="probe" id="hc-probe"></div>
  <a class="btn btn-p" href="https://testflight.apple.com/join/HfeRBKr8" data-slot="appstore" rel="noopener">Join the beta on TestFlight</a>
 </div>
 <div class="pz" id="pz" aria-hidden="true"></div>
 <div class="pp" id="pp" aria-hidden="true">
- <div class="azu" data-a="0.06,0.3" style="--r:12deg;--dx:4px;--dy:-6px;--dur:7.0s;"></div>
- <div class="stamp" data-a="0.35,0.12" style="--r:6deg;--dx:-5px;--dy:4px;--dur:8.5s;"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
- <div class="mini" data-a="0.12,0.72" style="--r:-12deg;--dx:3px;--dy:5px;--dur:9.5s;font-family:'Noto Sans Hebrew';">מאה</div>
- <div class="seal" data-a="0.3,0.55" style="--r:-7deg;--dx:-4px;--dy:-5px;--dur:6.5s;"><span>百</span></div>
- <div class="torn" data-a="0.6,0.4" style="--r:-4deg;--dx:5px;--dy:-3px;--dur:10.0s;"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
- <div class="kente" data-a="0.68,0.85" style="--r:-18deg;--dx:-3px;--dy:6px;--dur:11.0s;"></div>
- <div class="paisley" data-a="0.45,0.75" style="--r:25deg;--dx:6px;--dy:3px;--dur:7.8s;"></div>
- <div class="mini" data-a="0.82,0.62" style="--r:18deg;--dx:-4px;--dy:-4px;--dur:8.8s;font-family:'Noto Sans';">сто</div>
- <div class="mini" data-a="0.16,0.95" style="--r:-24deg;--dx:4px;--dy:4px;--dur:9.9s;font-family:'Noto Sans';">백</div>
+ <div class="azu" data-a="0.06,0.3" style="--s:1.35;--r:12deg;--dx:4px;--dy:-6px;--dur:7.0s;"></div>
+ <div class="stamp" data-a="0.35,0.12" style="--s:1.0;--r:6deg;--dx:-5px;--dy:4px;--dur:8.5s;"><b style="font-family:'Noto Sans'">ἑκατόν</b><small>ATHENS · 400 BC</small></div>
+ <div class="mini" data-a="0.12,0.72" style="--s:.75;--r:-12deg;--dx:3px;--dy:5px;--dur:9.5s;font-family:'Noto Sans Hebrew';">מאה</div>
+ <div class="seal" data-a="0.3,0.55" style="--s:1.3;--r:-7deg;--dx:-4px;--dy:-5px;--dur:6.5s;"><span>百</span></div>
+ <div class="torn" data-a="0.6,0.4" style="--s:0.85;--r:-4deg;--dx:5px;--dy:-3px;--dur:10.0s;"><span style="font-family:'Noto Sans Devanagari'">शतम्</span></div>
+ <div class="kente" data-a="0.68,0.85" style="--s:1.15;--r:-18deg;--dx:-3px;--dy:6px;--dur:11.0s;"></div>
+ <div class="paisley" data-a="0.45,0.75" style="--s:0.75;--r:25deg;--dx:6px;--dy:3px;--dur:7.8s;"></div>
+ <div class="mini" data-a="0.82,0.62" style="--s:.75;--r:18deg;--dx:-4px;--dy:-4px;--dur:8.8s;font-family:'Noto Sans';">сто</div>
+ <div class="mini" data-a="0.16,0.95" style="--s:.75;--r:-24deg;--dx:4px;--dy:4px;--dur:9.9s;font-family:'Noto Sans';">백</div>
  <div class="ink" data-a="0.5,0.3" style="--r:0deg;--dx:3px;--dy:-3px;--dur:6.0s;"></div>
  <div class="ink red" data-a="0.86,0.22" style="--r:0deg;--dx:-3px;--dy:3px;--dur:7.2s;"></div>
 </div>
@@ -599,7 +623,7 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
     <path class="mho" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#3A0F2F" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 6)"/>
     <path class="mho face" d="M16 15H30C35 15 38 19 38.5 27A32 32 0 1 0 61.5 27C62 19 65 15 70 15H84" fill="none" stroke="#5B1A4A" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
    </svg>
-   <div class="sk"><b>100</b><span>day streak</span><small>1 new meaning a day in 4 languages: up to 400 words</small></div>
+   <div class="sk"><b>100</b><span>day streak</span><small>After 100 days, expect to know 280 words across 4 languages, and remember 95% of them.</small></div>
   </div>
  <div class="grid" data-tiles="text" data-cycle="2400"></div>
  <div class="cta"><a class="btn btn-p" href="https://testflight.apple.com/join/HfeRBKr8" data-slot="appstore" rel="noopener">Join the beta on TestFlight</a></div>
@@ -634,9 +658,9 @@ html,body{height:auto!important;overflow:visible!important;background:#5B1A4A}
 
 </div>
 <script src="/d8/tiles.js"></script>
-<script>(()=>{const g=document.getElementById("app-grid");if(!g)return;const set=TILES.slice(0,4);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");const els=[...g.children];els.forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const z=()=>g.style.setProperty("--z",Math.min(1,(g.clientWidth-24)/2/208).toFixed(3));z();addEventListener("resize",z)})()</script>
+<script>(()=>{const g=document.getElementById("app-grid");if(!g)return;const set=TILES.slice(0,4);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");const els=[...g.children];els.forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const z=()=>{if(!g.offsetParent)return;const gap=Math.max(6,Math.min(12,innerHeight*.012));g.style.setProperty("--gap",gap+"px");const t=Math.max(60,Math.min(200,(g.parentElement.clientWidth-gap-8)/2,(g.clientHeight-gap-8)/2));g.style.setProperty("--z",(t/200).toFixed(4))};z();addEventListener("resize",z);document.fonts.ready.then(z)})()</script>
 <script>(()=>{const g=document.getElementById("hc-grid"),pr=document.getElementById("hc-probe");if(!g)return;const set=TILES.slice(0,6);g.innerHTML=set.map(()=>'<div class="t tt"></div>').join("");[...g.children].forEach((el,i)=>{paint(el,set[i],"text");el.onclick=()=>say(el,byC(el.dataset.c))});const hc=g.parentElement,GAP=14;
-const z=()=>{if(!hc.offsetParent)return;const t=pr.getBoundingClientRect().width;g.style.setProperty("--hz",(t/200).toFixed(4));const w=innerWidth,left=hc.offsetLeft,band=hc.dataset.band==="1";const R=band?w-2*left:.66*w-left;const kids=[...hc.children].filter(c=>c!==g&&c!==pr);const gap=parseFloat(getComputedStyle(hc).rowGap)||0;const other=kids.reduce((a,c)=>a+c.offsetHeight,0)+gap*kids.length+32;const H=hc.clientHeight-other;const fits=(c,r)=>c*t+(c-1)*GAP<=R&&r*t+(r-1)*GAP<=H;const L=[[6,1],[3,2],[4,1]].find(([c,r])=>fits(c,r))||[4,1];g.style.setProperty("--cols",L[0]);g.dataset.n=L[0]*L[1]===4?"4":"6";g.dataset.layout=L.join("x")};
+const z=()=>{if(!hc.offsetParent)return;const T=pr.getBoundingClientRect().width;const w=innerWidth,left=hc.offsetLeft,tt=+(hc.dataset.t||0);const R=w-left-(1-tt)*.34*w-tt*left;const kids=[...hc.children].filter(c=>c!==g&&c!==pr);const gap=parseFloat(getComputedStyle(hc).rowGap)||0;const other=kids.reduce((a,c)=>a+c.offsetHeight,0)+gap*kids.length+32;const H=hc.clientHeight-other;const size=(c,r)=>Math.min(T,(R-(c-1)*GAP)/c,(H-(r-1)*GAP)/r);let L,t;if(size(6,1)>=T-.5){L=[6,1];t=T}else{const a=size(3,2),b=size(4,1),prev=g.dataset.layout;[L,t]=a>=b?[[3,2],a]:[[4,1],b];if(prev==="3x2"&&a>=t-8)[L,t]=[[3,2],a];if(prev==="4x1"&&b>=t-8)[L,t]=[[4,1],b]}t=Math.max(56,Math.floor(t));g.style.setProperty("--hz",(t/200).toFixed(4));g.style.setProperty("--cols",L[0]);g.dataset.n=L[0]*L[1]===4?"4":"6";g.dataset.layout=L.join("x")};
 z();addEventListener("resize",z);document.fonts.ready.then(z);window.hcZ=z})()</script>
 <script>(()=>{const hero=document.getElementById("hero"),pz=document.getElementById("pz"),pp=document.getElementById("pp"),hc=document.querySelector("#dk .hc");if(!hero||!pz)return;
 const lerp=(a,b,t)=>a+(b-a)*t;
@@ -649,13 +673,13 @@ function lay(){const w=hero.clientWidth,h=hero.clientHeight;if(!w||!h)return;
  const L=Math.hypot(w,h)/2,S=Math.min(lerp(.42*w,h,t)*.5,lerp(.42*w,.22*h,t)*1.6);
  const seg=(()=>{const ts=[];const P=[[0,0],[w,0],[w,h],[0,h]];for(let i=0;i<4;i++){const A=P[i],B=P[(i+1)%4];const ex=B[0]-A[0],ey=B[1]-A[1];const den=d[0]*ey-d[1]*ex;if(Math.abs(den)<1e-9)continue;const k=((A[0]-c[0])*ey-(A[1]-c[1])*ex)/den;const m=((A[0]-c[0])*d[1]-(A[1]-c[1])*d[0])/den;if(m>=-1e-6&&m<=1+1e-6)ts.push(k)}return[Math.min(...ts),Math.max(...ts)]})();
  const depth=(x,y)=>{let q=Infinity;if(n[0]>1e-6)q=Math.min(q,(w-x)/n[0]);if(n[0]<-1e-6)q=Math.min(q,-x/n[0]);if(n[1]>1e-6)q=Math.min(q,(h-y)/n[1]);if(n[1]<-1e-6)q=Math.min(q,-y/n[1]);return q};
- pp.querySelectorAll("[data-a]").forEach(el=>{const [u,v]=el.dataset.a.split(",").map(Number);const hw=el.offsetWidth/2,hh=el.offsetHeight/2,m=Math.hypot(hw,hh)*.8+6;const s0=seg[0]+m,s1=seg[1]-m;const sv=s1>s0?s1-(s1-s0)*u:(seg[0]+seg[1])/2;let x=c[0]+d[0]*sv,y=c[1]+d[1]*sv;const q=depth(x,y);const qq=Math.max(m*.9,Math.min(q-m,m*.9+(q-2*m*.9)*v));x+=n[0]*qq;y+=n[1]*qq;x=Math.min(w-hw-4,Math.max(hw+4,x));y=Math.min(h-hh-4,Math.max(hh+4,y));el._p=[x,y,hw,hh]});
+ pp.querySelectorAll("[data-a]").forEach(el=>{const [u,v]=el.dataset.a.split(",").map(Number);const sc=parseFloat(el.style.getPropertyValue("--s"))||1;const hw=el.offsetWidth/2*sc,hh=el.offsetHeight/2*sc,m=Math.hypot(hw,hh)*.8+6;const s0=seg[0]+m,s1=seg[1]-m;const sv=s1>s0?s1-(s1-s0)*u:(seg[0]+seg[1])/2;let x=c[0]+d[0]*sv,y=c[1]+d[1]*sv;const q=depth(x,y);const qq=Math.max(m*.9,Math.min(q-m,m*.9+(q-2*m*.9)*v));x+=n[0]*qq;y+=n[1]*qq;x=Math.min(w-hw-4,Math.max(hw+4,x));y=Math.min(h-hh-4,Math.max(hh+4,y));el._p=[x,y,hw,hh]});
  const E=[...pp.querySelectorAll("[data-a]")].filter(e=>!e.classList.contains("ink"));
  const ov=(a,b)=>{const pa=1.22;const ox=Math.min(a[0]+a[2]*pa,b[0]+b[2]*pa)-Math.max(a[0]-a[2]*pa,b[0]-b[2]*pa),oy=Math.min(a[1]+a[3]*pa,b[1]+b[3]*pa)-Math.max(a[1]-a[3]*pa,b[1]-b[3]*pa);return ox>0&&oy>0?ox*oy/Math.min(4*a[2]*a[3],4*b[2]*b[3]):0};
  const inside=(P)=>((P[0]-c[0])*n[0]+(P[1]-c[1])*n[1])>=Math.min(P[2],P[3])*.5;
  for(let it=0;it<160;it++){let moved=false;for(let i=0;i<E.length;i++)for(let j=i+1;j<E.length;j++){const A=E[i]._p,B=E[j]._p;if(ov(A,B)<=.04)continue;moved=true;let dx=B[0]-A[0],dy=B[1]-A[1];const l=Math.hypot(dx,dy)||1;const k=5;dx=dx/l*k;dy=dy/l*k;A[0]-=dx;A[1]-=dy;B[0]+=dx;B[1]+=dy;for(const P of [A,B]){P[0]=Math.min(w-P[2]-4,Math.max(P[2]+4,P[0]));P[1]=Math.min(h-P[3]-4,Math.max(P[3]+4,P[1]));if(!inside(P)){P[0]+=n[0]*6;P[1]+=n[1]*6}}}if(!moved)break}
  pp.querySelectorAll("[data-a]").forEach(el=>{const P=el._p;el.style.left=P[0].toFixed(1)+"px";el.style.top=P[1].toFixed(1)+"px"});
- if(hc){const band=t>.55;hc.dataset.band=band?"1":"0";const xr=hc.offsetLeft+Math.min(hc.offsetWidth,340);const yl=c[1]+(c[0]-xr)*Math.tan(th);hc.style.bottom=Math.max(0,h-Math.min(h,yl)+14)+"px";if(window.hcZ)window.hcZ()}}
+ if(hc){hc.dataset.t=t.toFixed(4);const xr=hc.offsetLeft+Math.min(hc.offsetWidth,340);const yl=c[1]+(c[0]-xr)*Math.tan(th);hc.style.bottom=Math.max(0,h-Math.min(h,yl)+14)+"px";if(window.hcZ)window.hcZ()}}
 lay();addEventListener("resize",lay);document.fonts.ready.then(lay)})()</script>
 
 <script src="/d8/beta.js"></script>
