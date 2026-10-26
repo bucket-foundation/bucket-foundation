@@ -1,6 +1,6 @@
 import { verifyJws, type VerifyOptions } from "./jws";
 
-export const STORE_EVENT_KINDS = ["trial", "subscribe", "renew", "cancel", "uncancel", "refund", "expire", "billing_issue", "other"] as const;
+export const STORE_EVENT_KINDS = ["trial", "subscribe", "renew", "cancel", "uncancel", "refund", "refund_reversed", "revoke", "expire", "billing_issue", "other"] as const;
 export type StoreEventKind = (typeof STORE_EVENT_KINDS)[number];
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -10,7 +10,7 @@ export interface StoreEvent {
   type: string;
   subtype: string | null;
   kind: StoreEventKind;
-  userId: string | null;
+  appAccountToken: string | null;
   bundleId: string | null;
   environment: string | null;
   productId: string | null;
@@ -19,6 +19,8 @@ export interface StoreEvent {
   offerType: number | null;
   signedAt: string;
   expiresAt: string | null;
+  transactionInfo: Record<string, unknown>;
+  renewalInfo: Record<string, unknown>;
 }
 
 function str(v: unknown): string | null {
@@ -47,6 +49,10 @@ export function classify(type: string, subtype: string | null, offerType: number
       return subtype === "AUTO_RENEW_DISABLED" ? "cancel" : subtype === "AUTO_RENEW_ENABLED" ? "uncancel" : "other";
     case "REFUND":
       return "refund";
+    case "REFUND_REVERSED":
+      return "refund_reversed";
+    case "REVOKE":
+      return "revoke";
     case "EXPIRED":
     case "GRACE_PERIOD_EXPIRED":
       return "expire";
@@ -73,7 +79,7 @@ export function decodeNotification(signedPayload: string, opts: VerifyOptions = 
     type,
     subtype: str(p.subtype),
     kind: classify(type, str(p.subtype), offerType, str(tx.offerDiscountType)),
-    userId: token && UUID_RE.test(token) ? token.toLowerCase() : null,
+    appAccountToken: token && UUID_RE.test(token) ? token.toLowerCase() : null,
     bundleId: str(data.bundleId) ?? str(tx.bundleId),
     environment: str(data.environment) ?? str(tx.environment),
     productId: str(tx.productId) ?? str(renewal.productId),
@@ -82,5 +88,7 @@ export function decodeNotification(signedPayload: string, opts: VerifyOptions = 
     offerType,
     signedAt: ms(p.signedDate) ?? new Date().toISOString(),
     expiresAt: ms(tx.expiresDate),
+    transactionInfo: tx,
+    renewalInfo: renewal,
   };
 }

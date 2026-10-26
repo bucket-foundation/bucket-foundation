@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import type { RequestUser } from "@/lib/auth/verify";
 import { JwsError, type VerifyOptions } from "@/lib/app-store/jws";
 import { decodeNotification } from "@/lib/app-store/notifications";
 import type { AppStoreEventStore } from "@/lib/app-store/store";
@@ -16,8 +17,11 @@ function reply(body: Record<string, unknown>, status: number): NextResponse {
   return NextResponse.json(body, { status, headers: NO_STORE });
 }
 
+export const DEFAULT_BUNDLE_IDS = ["foundation.bucket.app", "com.polingual.app"] as const;
+
 export function parseBundleIds(raw: string | undefined): string[] {
-  return (raw ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  const ids = (raw ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  return ids.length > 0 ? ids : [...DEFAULT_BUNDLE_IDS];
 }
 
 export async function handleNotification(req: NextRequest, deps: NotificationDeps): Promise<NextResponse> {
@@ -41,12 +45,30 @@ export async function handleNotification(req: NextRequest, deps: NotificationDep
     return reply({ error: "invalid_payload" }, 400);
   }
   const allowed = deps.bundleIds();
-  if (allowed.length > 0 && (!event.bundleId || !allowed.includes(event.bundleId))) return reply({ outcome: "ignored" }, 200);
+  if (!event.bundleId || !allowed.includes(event.bundleId)) return reply({ outcome: "ignored" }, 200);
   try {
     const outcome = await store.save(event);
     return reply({ outcome }, 200);
   } catch (err) {
     console.error("[app-store/notifications] write failed:", err instanceof Error ? err.message : err);
+    return reply({ error: "write_failed" }, 500);
+  }
+}
+
+export interface TokenDeps {
+  store: () => AppStoreEventStore | null;
+  verifyUser: (req: NextRequest) => Promise<RequestUser | null>;
+}
+
+export async function handleAccountToken(req: NextRequest, deps: TokenDeps): Promise<NextResponse> {
+  const store = deps.store();
+  if (!store) return reply({ error: "unavailable" }, 503);
+  const user = await deps.verifyUser(req);
+  if (!user) return reply({ error: "unauthorized" }, 401);
+  try {
+    return reply({ app_account_token: await store.tokenFor(user.id) }, 200);
+  } catch (err) {
+    console.error("[app-store/account-token] failed:", err instanceof Error ? err.message : err);
     return reply({ error: "write_failed" }, 500);
   }
 }

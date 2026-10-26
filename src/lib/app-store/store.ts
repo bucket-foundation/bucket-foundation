@@ -14,10 +14,9 @@ export interface StoreEventRow {
 
 export interface AppStoreEventStore {
   save: (e: StoreEvent) => Promise<SaveOutcome>;
+  tokenFor: (userId: string) => Promise<string>;
   since: (iso: string) => Promise<StoreEventRow[]>;
 }
-
-const FK_VIOLATION = "23503";
 
 let _client: SupabaseClient | null = null;
 function client(): SupabaseClient {
@@ -29,13 +28,13 @@ function client(): SupabaseClient {
   return _client;
 }
 
-function row(e: StoreEvent, userId: string | null) {
+function row(e: StoreEvent) {
   return {
     notification_uuid: e.notificationUuid,
     type: e.type,
     subtype: e.subtype,
     kind: e.kind,
-    user_id: userId,
+    app_account_token: e.appAccountToken,
     bundle_id: e.bundleId,
     environment: e.environment,
     product_id: e.productId,
@@ -44,6 +43,8 @@ function row(e: StoreEvent, userId: string | null) {
     offer_type: e.offerType,
     signed_at: e.signedAt,
     expires_at: e.expiresAt,
+    transaction_info: e.transactionInfo,
+    renewal_info: e.renewalInfo,
   };
 }
 
@@ -51,12 +52,26 @@ export function supabaseAppStoreEventStore(): AppStoreEventStore | null {
   if (!configured()) return null;
   return {
     save: async (e) => {
-      const insert = (userId: string | null) =>
-        client().from("app_store_events").upsert(row(e, userId), { onConflict: "notification_uuid", ignoreDuplicates: true }).select("notification_uuid");
-      let { data, error } = await insert(e.userId);
-      if (error?.code === FK_VIOLATION) ({ data, error } = await insert(null));
+      let userId: string | null = null;
+      if (e.appAccountToken) {
+        const { data: bound, error: bindErr } = await client().from("app_store_account_tokens").select("user_id").eq("token", e.appAccountToken).maybeSingle();
+        if (bindErr) throw new Error(`app_store_account_tokens read failed: ${bindErr.message}`);
+        userId = (bound as { user_id: string } | null)?.user_id ?? null;
+      }
+      const { data, error } = await client()
+        .from("app_store_events")
+        .upsert({ ...row(e), user_id: userId }, { onConflict: "notification_uuid", ignoreDuplicates: true })
+        .select("notification_uuid");
       if (error) throw new Error(`app_store_events insert failed: ${error.message}`);
       return (data?.length ?? 0) > 0 ? "recorded" : "duplicate";
+    },
+    tokenFor: async (userId) => {
+      const db = client();
+      const { error: insErr } = await db.from("app_store_account_tokens").upsert({ user_id: userId }, { onConflict: "user_id", ignoreDuplicates: true });
+      if (insErr) throw new Error(`app_store_account_tokens insert failed: ${insErr.message}`);
+      const { data, error } = await db.from("app_store_account_tokens").select("token").eq("user_id", userId).single();
+      if (error || !data) throw new Error(`app_store_account_tokens read failed: ${error?.message ?? "no row"}`);
+      return (data as { token: string }).token;
     },
     since: async (iso) => {
       const { data, error } = await client()
@@ -86,7 +101,7 @@ export interface StoreSummary {
 }
 
 export function summarizeStoreEvents(rows: StoreEventRow[], windowDays: number): StoreSummary {
-  const totals = { trial: 0, subscribe: 0, renew: 0, cancel: 0, uncancel: 0, refund: 0, expire: 0, billing_issue: 0, other: 0 } as Record<StoreEventKind, number>;
+  const totals = { trial: 0, subscribe: 0, renew: 0, cancel: 0, uncancel: 0, refund: 0, refund_reversed: 0, revoke: 0, expire: 0, billing_issue: 0, other: 0 } as Record<StoreEventKind, number>;
   const products = new Map<string, Partial<Record<StoreEventKind, number>>>();
   let unlinked = 0;
   let sandbox = 0;
