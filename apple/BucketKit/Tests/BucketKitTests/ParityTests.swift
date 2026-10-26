@@ -206,7 +206,7 @@ func heritageScenario(_ corpus: LangCorpus, t0: Double) -> JSValue {
         ("שָׁלוֹם", ["שלום"], "he"), ("كتـاب", ["كتاب"], "ar"), ("كتاي", ["كتاب"], "ar"), ("يك", ["یک"], "fa"),
         ("еж", ["ёж"], "ru"), ("мои", ["мой"], "ru"), ("кни\u{301}га", ["книга"], "ru"), ("моско", ["москва"], "ru"),
         ("καλημερα", ["καλημέρα"], "el"), ("ΟΔΟΣ", ["οδός"], "el"), ("नमसते", ["नमस्ते"], "hi"), ("ﾈｺ", ["ネコ"], "ja"),
-        ("", ["猫"], "zh"), ("ねこ", ["猫", "ねこ"], "ja"), ("한국", ["한국".decomposedStringWithCanonicalMapping], "ko"),
+        ("", ["猫"], "zh"), ("все", ["всё"], "ru"), ("ВСЁ", ["всё"], "ru"), ("еж", ["ёж"], "ru"), ("ねこ", ["猫", "ねこ"], "ja"), ("한국", ["한국".decomposedStringWithCanonicalMapping], "ko"),
     ]
     let foldCases: [(String, String)] = [("ru", "кни\u{301}га"), ("el", "ΟΔΟΣ"), ("el", "ὀδός"), ("grc", "Ἀθῆναι"), ("he", " שָׁלוֹם! "), ("fa", "يك"), ("ja", "ﾈｺ"), ("uk", "ї")]
     var lrng = Rng(seed: 31)
@@ -214,7 +214,7 @@ func heritageScenario(_ corpus: LangCorpus, t0: Double) -> JSValue {
         let u = LangScript.alphabetUnit(l)!
         return .array([0, 1, u.letters.count - 1].map { i in
             let x = letterExercise(l, "en", i, &lrng)!
-            return .string("\(l)|\(x.prompt)|\(x.answer)|\((x.options ?? []).joined())")
+            return .string("\(l)|\(x.prompt)|\(x.answer)|\((x.options ?? []).joined())|\((x.accept ?? []).joined())")
         })
     }
     var hs = EngineState()
