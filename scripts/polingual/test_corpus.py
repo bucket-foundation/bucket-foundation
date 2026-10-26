@@ -1,10 +1,13 @@
 import json
 import re
 import unittest
+import sqlite3
 import sys
+from unittest import mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import top_words  # noqa: E402
 from top_words import junk_sense, majority_pos, replaceable  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,6 +19,34 @@ def codes() -> list[str]:
     src = (ROOT / "src/lib/research-os/work-quiz/languages.ts").read_text()
     block = src.split("LANGUAGE_NAMES")[1].split("};")[0]
     return sorted(set(re.findall(r"^\s+([a-z]{2}):", block, re.M)))
+
+
+def replaced(meaning: str, pos: str, senses: list[dict], pos_counts: dict[str, int], pins: dict | None = None) -> dict:
+    db = sqlite3.connect(":memory:")
+    db.execute("create table photons(surface, meaning_en, pos, ipa, payload, lang)")
+    payload = json.dumps({"coreness": {"zipf": 5, "score": 1}, "senses": senses})
+    db.execute("insert into photons values ('casa', ?, ?, '', ?, 'xx')", (meaning, pos, payload))
+    with mock.patch.object(top_words, "PINS", pins or {}):
+        return top_words.rank_index(db, "xx", 10, {("xx", "casa"): {"house": 500.0}}, {("xx", "casa"): pos_counts})[0]
+
+
+class ReplacementRuleTest(unittest.TestCase):
+    def test_replaces_when_majority_pos_agrees(self):
+        row = replaced("dung", "verb", [{"gloss": "dung", "pos": "verb"}, {"gloss": "house", "pos": "noun"}], {"noun": 4, "verb": 1})
+        self.assertEqual((row["meaning"], row["pos"]), ("house", "noun"))
+
+    def test_refuses_on_pos_mismatch(self):
+        row = replaced("dung", "noun", [{"gloss": "dung", "pos": "noun"}, {"gloss": "house", "pos": "adj"}], {"noun": 4})
+        self.assertEqual((row["meaning"], row["pos"]), ("dung", "noun"))
+
+    def test_skips_junk_senses(self):
+        senses = [{"gloss": "dung", "pos": "noun"}, {"gloss": "house", "pos": "noun", "tags": ["archaic"]}]
+        self.assertEqual(replaced("dung", "noun", senses, {"noun": 4})["meaning"], "dung")
+
+    def test_pin_overrides_agreement(self):
+        senses = [{"gloss": "dung", "pos": "noun"}, {"gloss": "house", "pos": "noun"}]
+        row = replaced("dung", "noun", senses, {"noun": 4}, {("xx", "casa"): "home"})
+        self.assertEqual((row["meaning"], row["pos"]), ("home", "noun"))
 
 
 class CorpusTest(unittest.TestCase):
