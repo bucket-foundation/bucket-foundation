@@ -149,3 +149,14 @@ public actor BetaEvents {
         try? JSONEncoder().encode(queue).write(to: file, options: .atomic)
     }
 }
+
+extension BetaEvent {
+    public static func answeredProps(deck: String, correct: Bool, ms: Int, kind: String, question: Question? = nil) -> [String: JSONScalar] {
+        var props: [String: JSONScalar] = ["deck": .string(deck), "correct": .bool(correct), "ms": .number(Double(ms)), "kind": .string(kind)]
+        if let question {
+            props["question_kind"] = .string(question.kind.rawValue)
+            props["applied"] = .bool(question.applied == true)
+        }
+        return props
+    }
+}

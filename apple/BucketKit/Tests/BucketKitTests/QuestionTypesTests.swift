@@ -61,7 +61,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
     struct Row: Decodable { let branch: String; let id: String; let order: [Int]; let meanings: [Int]?; let cases: [Case] }
     let url = try #require(Bundle.module.url(forResource: "golden", withExtension: "json", subdirectory: "Fixtures/questions"))
     let rows = try JSONDecoder().decode([Row].self, from: Data(contentsOf: url))
-    let decks = try ["00-learning-to-learn", "06-cosmology"].map { try questionDeck($0) }
+    let decks = try ["00-learning-to-learn", "02-physics", "06-cosmology"].map { try questionDeck($0) }
     let byId = Dictionary(uniqueKeysWithValues: decks.flatMap { d in d.questions.map { ("\(d.branch)/\($0.id)", $0) } })
     #expect(rows.count == byId.count)
     var checked = 0
@@ -84,7 +84,7 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
             checked += 1
         }
     }
-    #expect(checked == 2001)
+    #expect(checked == 3680)
 }
 
 @Test func missingQuestionDeckFallsBackToTheDrill() async throws {
@@ -93,4 +93,39 @@ func questionDeck(_ name: String = "06-cosmology") throws -> QuestionDeck {
     await #expect(throws: (any Error).self) { try await api.questionDeck("07-mind") }
     let deck = try? await api.questionDeck("07-mind")
     #expect(deck == nil)
+}
+
+@Test func everyPhysicsReviewCycleIncludesTheAppliedTask() throws {
+    let deck = try questionDeck("02-physics")
+    let atoms = Set(deck.questions.map(\.atom))
+    let withApplied = atoms.filter { a in deck.questions(for: a).contains { $0.applied == true } }
+    #expect(withApplied.count == 55)
+    for atom in withApplied {
+        let n = deck.rotation(for: atom).count
+        #expect(n == 5 || n == 6, "\(atom)")
+        for start in 0..<(2 * n) {
+            let cycle = (start..<(start + n)).compactMap { deck.question(for: atom, review: $0) }
+            #expect(cycle.filter { $0.applied == true }.count == 1, "\(atom) from \(start)")
+            #expect(Set(cycle.map(\.id)).count == n, "\(atom) from \(start)")
+        }
+    }
+    #expect(deck.question(for: "nope", review: 0) == nil)
+    let pickOnly = try #require(withApplied.first)
+    #expect(deck.question(for: pickOnly, review: 3, kind: .pick)?.kind == .pick)
+}
+
+@Test func appliedFlagMustBeABoolean() {
+    let bad = #"{"branch":"x","version":"0","questions":[{"id":"a","atom":"a","kind":"pick","prompt":"?","options":["a","b"],"answer":0,"applied":"yes"}]}"#
+    #expect(throws: (any Error).self) { try JSONDecoder().decode(QuestionDeck.self, from: Data(bad.utf8)) }
+    let good = #"{"branch":"x","version":"0","questions":[{"id":"a","atom":"a","kind":"pick","prompt":"?","options":["a","b"],"answer":0,"applied":true}]}"#
+    #expect((try? JSONDecoder().decode(QuestionDeck.self, from: Data(good.utf8)))?.questions.first?.applied == true)
+}
+
+@Test func answeredEventsCarryTheQuestionKindAndAppliedFlag() throws {
+    let q = try #require(try questionDeck("02-physics").questions.first { $0.applied == true })
+    let props = BetaEvent.answeredProps(deck: "science:02-physics", correct: true, ms: 1200, kind: q.kind.rawValue, question: q)
+    #expect(props["question_kind"] == .string(q.kind.rawValue))
+    #expect(props["applied"] == .bool(true))
+    let drill = BetaEvent.answeredProps(deck: "science:02-physics", correct: false, ms: 900, kind: "review")
+    #expect(drill["question_kind"] == nil && drill["applied"] == nil && drill["kind"] == .string("review"))
 }

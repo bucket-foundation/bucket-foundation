@@ -47,8 +47,8 @@ final class Beta {
         log("session_start", ["deck": .string(deck)])
     }
 
-    func answered(_ deck: String, correct: Bool, ms: Int, kind: String) {
-        log("card_answered", ["deck": .string(deck), "correct": .bool(correct), "ms": .number(Double(ms)), "kind": .string(kind)])
+    func answered(_ deck: String, correct: Bool, ms: Int, kind: String, question: Question? = nil) {
+        log("card_answered", BetaEvent.answeredProps(deck: deck, correct: correct, ms: ms, kind: kind, question: question))
     }
 
     func studyEnded(_ deck: String, graded: Int, correct: Int) {

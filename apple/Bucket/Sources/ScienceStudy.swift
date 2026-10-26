@@ -236,8 +236,8 @@ struct StudySession: View {
         #if DEBUG
         kind = Launch.value("-questionKind").flatMap(QuestionKind.init(rawValue:))
         #endif
-        guard let qs = questions?.questions(for: atom.id, kind: kind), !qs.isEmpty else { return nil }
-        return qs[(graded + position) % qs.count]
+        let reviews = Int(store.state(deck.branch).cards[atom.id]?.reps ?? 0)
+        return questions?.question(for: atom.id, review: reviews, kind: kind)
     }
 
     func card(_ item: RouteItem, _ atom: Atom, count: Int) -> some View {
@@ -261,19 +261,19 @@ struct StudySession: View {
                         .tint(Palette.muted)
                 }
                 let level = pickLevel(store.state(deck.branch), atom)
-                let rate: (Int, String, String) -> Void = { rating, level, kind in
+                let rate: (Int, String, String, Question?) -> Void = { rating, level, kind, q in
                     store.grade(deck, id: item.id, rating: rating, level: level)
-                    Beta.shared.answered("science:\(deck.branch)", correct: rating > 1, ms: Int(Date.now.timeIntervalSince(cardStart) * 1000), kind: kind)
+                    Beta.shared.answered("science:\(deck.branch)", correct: rating > 1, ms: Int(Date.now.timeIntervalSince(cardStart) * 1000), kind: kind, question: q)
                     cardStart = .now
                     reminders.noteStudy()
                     graded += 1
                     advance()
                 }
                 if !isNew || Launch.flag("-questionsAlways"), let q = question(for: atom) {
-                    QuestionCard(presented: QuestionEngine.present(q, seed: "\(deck.branch):\(graded)")) { rating in rate(rating, level, q.kind.rawValue) }
+                    QuestionCard(presented: QuestionEngine.present(q, seed: "\(deck.branch):\(graded)")) { rating in rate(rating, level, q.kind.rawValue, q) }
                         .id("\(item.id)-q")
                 } else {
-                    ScienceDrill(atom: atom, level: level, onRate: { rating, level in rate(rating, level, isNew ? "new" : "review") }, onSkip: advance)
+                    ScienceDrill(atom: atom, level: level, onRate: { rating, level in rate(rating, level, isNew ? "new" : "review", nil) }, onSkip: advance)
                         .id(item.id)
                 }
             }
