@@ -143,9 +143,10 @@ export function rotationFor(deck: QuestionDeck, atom: string, kind?: QuestionKin
   return [...qs.filter((q) => q.applied === true), ...qs.filter((q) => q.applied !== true)];
 }
 
-export function questionForReview(deck: QuestionDeck, atom: string, review: number, kind?: QuestionKind): Question | undefined {
+export function questionForReview(deck: QuestionDeck, atom: string, reps: number, kind?: QuestionKind): Question | undefined {
   const qs = rotationFor(deck, atom, kind);
-  return qs.length ? qs[((review % qs.length) + qs.length) % qs.length] : undefined;
+  const i = reps - 1;
+  return qs.length ? qs[((i % qs.length) + qs.length) % qs.length] : undefined;
 }
 
 function hashSeed(s: string): number {

@@ -189,14 +189,14 @@ function swiftRotation(qs: Question[]): Question[] {
   return [...qs.filter((q) => q.applied === true), ...qs.filter((q) => q.applied !== true)];
 }
 
-test("web rotation matches the QuestionTypes.swift rotation for reviews 0 to 2n on every fixture deck", () => {
+test("web rotation matches the QuestionTypes.swift rotation for reps 1 to 2n on every fixture deck", () => {
   for (const { branch, atomIds, raw } of decks) {
     const deck = loadQuestionDeck(raw, atomIds);
     for (const atom of atomIds) {
       const expected = swiftRotation(deck.questions.filter((q) => q.atom === atom));
       const n = expected.length;
       assert.deepEqual(rotationFor(deck, atom).map((q) => q.id), expected.map((q) => q.id), `${branch} ${atom}`);
-      for (let r = 0; r <= 2 * n; r++) assert.equal(questionForReview(deck, atom, r)?.id, expected[r % n].id, `${branch} ${atom} review ${r}`);
+      for (let reps = 1; reps <= 2 * n; reps++) assert.equal(questionForReview(deck, atom, reps)?.id, expected[(reps - 1) % n].id, `${branch} ${atom} reps ${reps}`);
     }
   }
 });
@@ -209,13 +209,20 @@ test("02-physics: any n consecutive reviews show the applied task exactly once",
   for (const atom of withApplied) {
     const n = rotationFor(deck, atom).length;
     assert.ok(n === 5 || n === 6, atom);
-    assert.equal(questionForReview(deck, atom, 0)?.applied, true, atom);
-    for (let start = 0; start < 2 * n; start++) {
+    for (let start = 1; start <= 2 * n; start++) {
       const cycle: Question[] = Array.from({ length: n }, (_, i) => questionForReview(deck, atom, start + i)!);
       assert.equal(cycle.filter((q) => q.applied === true).length, 1, `${atom} from ${start}`);
       assert.equal(new Set(cycle.map((q) => q.id)).size, n, `${atom} from ${start}`);
     }
   }
-  assert.equal(questionForReview(deck, "nope", 0), undefined);
+  assert.equal(questionForReview(deck, "nope", 1), undefined);
   assert.equal(questionForReview(deck, withApplied[0], 3, "pick")?.kind, "pick");
+});
+
+test("02-physics: reps = 1 shows the applied task for all 55 atoms", () => {
+  const d = decks.find((x) => x.branch === "02-physics")!;
+  const deck = loadQuestionDeck(d.raw, d.atomIds);
+  const withApplied = d.atomIds.filter((a) => questionsFor(deck, a).some((q) => q.applied === true));
+  assert.equal(withApplied.length, 55);
+  for (const atom of withApplied) assert.equal(questionForReview(deck, atom, 1)?.applied, true, atom);
 });
